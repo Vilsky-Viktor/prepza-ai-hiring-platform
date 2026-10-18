@@ -13,7 +13,7 @@ export const FREE_LINES = [
 ] as const
 
 // The made-up interview's invited candidates; as many answer as the biggest top-up pays for.
-export const DEMO_INVITED = 600
+export const DEMO_INVITED = 500
 
 // Blank until seen, then the free lines tick in one by one, a pause, and the paid line lands;
 // the receipt then stays finished until it's scrolled back into view.
