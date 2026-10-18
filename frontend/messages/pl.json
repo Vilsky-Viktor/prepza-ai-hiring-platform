@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Lepiej niż rozmowy telefoniczne\nTaniej niż abonamenty",
       "text": "Bez godzin przy telefonie i bez miesięcznej opłaty: rozmowa z Twojego opisu stanowiska, płatna za kandydata.",
+      "checks": "Pytania",
       "time": "Twój czas",
       "cost": "Ile płacisz",
       "phone": {
         "name": "Rozmowy telefoniczne",
-        "time": "~30 min na kandydata",
-        "cost": "Godziny Twojego zespołu"
+        "checks": "Co przyjdzie do głowy, w każdej rozmowie inne",
+        "time": "~30 min na rozmowę, z każdym kandydatem",
+        "cost": "Godziny Twojego zespołu, rozmowa za rozmową"
       },
       "subscription": {
         "name": "Narzędzia do testów",
+        "checks": "Gotowe testy z biblioteki",
         "time": "Testy do wybrania lub napisania dla każdej roli",
         "cost": "Miesięczna opłata, czy rekrutujesz, czy nie"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 min na rolę, z Twojego opisu stanowiska",
+        "checks": "Pisane przez AI specjalnie pod Twoją rolę",
+        "time": "~10 min na rolę, zero na kandydata",
         "cost": "{price} za kandydata, który odpowiada"
       },
       "more": "Porównaj z innymi narzędziami"

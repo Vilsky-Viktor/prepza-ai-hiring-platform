@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Beter dan bellen\nGoedkoper dan een abonnement",
       "text": "Geen uren aan de telefoon en geen maandelijkse kosten: een interview op basis van je functieomschrijving, betaald per kandidaat.",
+      "checks": "De vragen",
       "time": "Jouw tijd",
       "cost": "Wat je betaalt",
       "phone": {
         "name": "Telefonische screenings",
-        "time": "~30 min per kandidaat",
-        "cost": "De uren van je team"
+        "checks": "Wat in je opkomt, elk gesprek anders",
+        "time": "~30 min per gesprek, voor elke kandidaat",
+        "cost": "Uren van je team, gesprek na gesprek"
       },
       "subscription": {
         "name": "Testtools",
+        "checks": "Kant-en-klare tests uit een bibliotheek",
         "time": "Voor elke functie tests kiezen of schrijven",
         "cost": "Maandelijkse kosten, of je nu werft of niet"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 min per functie, op basis van je functieomschrijving",
+        "checks": "Door AI geschreven, speciaal voor jouw functie",
+        "time": "~10 min per functie, niets per kandidaat",
         "cost": "{price} per kandidaat die antwoordt"
       },
       "more": "Vergelijk met andere tools"

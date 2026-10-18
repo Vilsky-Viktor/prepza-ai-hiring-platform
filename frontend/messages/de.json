@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Besser als Telefoninterviews\nGünstiger als Abos",
       "text": "Keine Stunden am Telefon und keine Monatsgebühr: ein Interview aus deiner Stellenbeschreibung, bezahlt pro Kandidat.",
+      "checks": "Die Fragen",
       "time": "Deine Zeit",
       "cost": "Was du zahlst",
       "phone": {
         "name": "Telefoninterviews",
-        "time": "~30 Min. pro Kandidat",
-        "cost": "Die Stunden deines Teams"
+        "checks": "Was gerade einfällt, bei jedem Anruf anders",
+        "time": "~30 Min. pro Anruf, für jeden Kandidaten",
+        "cost": "Stunden deines Teams, Anruf für Anruf"
       },
       "subscription": {
         "name": "Testtools",
+        "checks": "Fertige Tests aus einer Bibliothek",
         "time": "Tests für jede Rolle auswählen oder schreiben",
         "cost": "Eine Monatsgebühr, ob du einstellst oder nicht"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 Min. pro Rolle, aus deiner Stellenbeschreibung",
+        "checks": "Von KI speziell für deine Rolle geschrieben",
+        "time": "~10 Min. pro Rolle, keine pro Kandidat",
         "cost": "{price} pro Kandidat, der antwortet"
       },
       "more": "Mit anderen Tools vergleichen"

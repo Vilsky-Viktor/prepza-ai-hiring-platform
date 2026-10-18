@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Mas mahusay kaysa phone screen\nMas mura kaysa subscription",
       "text": "Walang oras-oras na tawag at walang buwanang bayad: isang interview mula sa iyong job description, bayad bawat aplikante.",
+      "checks": "Ang mga tanong",
       "time": "Iyong oras",
       "cost": "Ang binabayaran mo",
       "phone": {
         "name": "Phone screen",
-        "time": "~30 min bawat aplikante",
-        "cost": "Oras ng iyong team"
+        "checks": "Kung ano ang maisip, iba-iba bawat tawag",
+        "time": "~30 min bawat tawag, sa bawat aplikante",
+        "cost": "Oras ng iyong team, tawag nang tawag"
       },
       "subscription": {
         "name": "Mga testing tool",
+        "checks": "Mga handang test mula sa isang library",
         "time": "Mga test na pipiliin o isusulat para sa bawat role",
         "cost": "Buwanang bayad, nagha-hire ka man o hindi"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 min bawat role, mula sa iyong job description",
+        "checks": "Isinulat ng AI para mismo sa iyong role",
+        "time": "~10 min bawat role, wala bawat aplikante",
         "cost": "{price} bawat aplikanteng sumasagot"
       },
       "more": "Ikumpara sa ibang tool"

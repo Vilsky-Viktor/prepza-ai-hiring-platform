@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Mejor que las llamadas\nMás barato que las suscripciones",
       "text": "Sin horas al teléfono ni cuota mensual: una entrevista a partir de tu descripción del puesto, pagada por candidato.",
+      "checks": "Las preguntas",
       "time": "Tu tiempo",
       "cost": "Lo que pagas",
       "phone": {
         "name": "Entrevistas telefónicas",
-        "time": "~30 min por candidato",
-        "cost": "Las horas de tu equipo"
+        "checks": "Lo que surja, distintas en cada llamada",
+        "time": "~30 min por llamada, con cada candidato",
+        "cost": "Horas de tu equipo, llamada tras llamada"
       },
       "subscription": {
         "name": "Herramientas de pruebas",
+        "checks": "Pruebas prediseñadas de una biblioteca",
         "time": "Pruebas que elegir o escribir para cada puesto",
         "cost": "Una cuota mensual, contrates o no"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 min por puesto, a partir de tu descripción del puesto",
+        "checks": "Escritas por IA específicamente para tu puesto",
+        "time": "~10 min por puesto, nada por candidato",
         "cost": "{price} por candidato que responde"
       },
       "more": "Comparar con otras herramientas"

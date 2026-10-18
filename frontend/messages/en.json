@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Better than phone screens\nCheaper than subscriptions",
       "text": "No hours on calls and no monthly fee: an interview from your job description, paid per candidate.",
+      "checks": "The questions",
       "time": "Your time",
       "cost": "What you pay",
       "phone": {
         "name": "Phone screens",
-        "time": "~30 min per candidate",
-        "cost": "Your team's hours"
+        "checks": "Whatever comes up, different each call",
+        "time": "~30 min a call, for every candidate",
+        "cost": "Hours of your team's time, call after call"
       },
       "subscription": {
         "name": "Testing tools",
+        "checks": "Ready-made tests from a library",
         "time": "Tests to pick or write for every role",
-        "cost": "A monthly fee, hiring or not"
+        "cost": "A monthly fee, whether you hire or not"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 min per role, from your job description",
+        "checks": "Written by AI specifically for your role",
+        "time": "~10 min per role, none per candidate",
         "cost": "{price} per candidate who answers"
       },
       "more": "Compare with other tools"

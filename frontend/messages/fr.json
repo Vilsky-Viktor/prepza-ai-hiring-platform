@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Mieux que le téléphone\nMoins cher qu'un abonnement",
       "text": "Pas d'heures au téléphone ni d'abonnement mensuel : un entretien à partir de votre fiche de poste, payé par candidat.",
+      "checks": "Les questions",
       "time": "Votre temps",
       "cost": "Ce que vous payez",
       "phone": {
         "name": "Entretiens téléphoniques",
-        "time": "~30 min par candidat",
-        "cost": "Les heures de votre équipe"
+        "checks": "Ce qui vient à l'esprit, différentes à chaque appel",
+        "time": "~30 min par appel, pour chaque candidat",
+        "cost": "Des heures de votre équipe, appel après appel"
       },
       "subscription": {
         "name": "Outils de test",
+        "checks": "Des tests tout faits, issus d'une bibliothèque",
         "time": "Des tests à choisir ou à rédiger pour chaque poste",
         "cost": "Un abonnement mensuel, que vous recrutiez ou non"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 min par poste, à partir de votre fiche de poste",
+        "checks": "Rédigées par l'IA spécialement pour votre poste",
+        "time": "~10 min par poste, aucune par candidat",
         "cost": "{price} par candidat qui répond"
       },
       "more": "Comparer avec d'autres outils"

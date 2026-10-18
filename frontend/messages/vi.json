@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Tốt hơn sàng lọc qua điện thoại\nRẻ hơn gói đăng ký",
       "text": "Không tốn hàng giờ gọi điện, không phí hằng tháng: buổi phỏng vấn tạo từ mô tả công việc của bạn, trả tiền theo ứng viên.",
+      "checks": "Câu hỏi",
       "time": "Thời gian của bạn",
       "cost": "Chi phí",
       "phone": {
         "name": "Sàng lọc qua điện thoại",
-        "time": "~30 phút mỗi ứng viên",
-        "cost": "Thời gian của đội ngũ"
+        "checks": "Nghĩ gì hỏi nấy, mỗi cuộc gọi một khác",
+        "time": "~30 phút mỗi cuộc gọi, với mọi ứng viên",
+        "cost": "Thời gian của đội ngũ, hết cuộc gọi này đến cuộc khác"
       },
       "subscription": {
         "name": "Công cụ kiểm tra",
+        "checks": "Bài kiểm tra có sẵn từ thư viện",
         "time": "Phải chọn hoặc viết bài kiểm tra cho từng vị trí",
         "cost": "Phí hằng tháng, dù có tuyển hay không"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 phút mỗi vị trí, từ mô tả công việc của bạn",
+        "checks": "AI viết riêng cho vị trí của bạn",
+        "time": "~10 phút mỗi vị trí, 0 phút mỗi ứng viên",
         "cost": "{price} mỗi ứng viên đã trả lời"
       },
       "more": "So sánh với công cụ khác"

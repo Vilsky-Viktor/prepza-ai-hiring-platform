@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Meglio delle telefonate\nPiù economico degli abbonamenti",
       "text": "Niente ore al telefono e nessun canone mensile: un colloquio dalla tua descrizione del ruolo, pagato per candidato.",
+      "checks": "Le domande",
       "time": "Il tuo tempo",
       "cost": "Quanto paghi",
       "phone": {
         "name": "Colloqui telefonici",
-        "time": "~30 min per candidato",
-        "cost": "Le ore del tuo team"
+        "checks": "Quello che viene in mente, diverse a ogni chiamata",
+        "time": "~30 min a chiamata, per ogni candidato",
+        "cost": "Ore del tuo team, chiamata dopo chiamata"
       },
       "subscription": {
         "name": "Strumenti di test",
+        "checks": "Test già pronti da una libreria",
         "time": "Test da scegliere o scrivere per ogni ruolo",
         "cost": "Un canone mensile, che tu assuma o no"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 min per ruolo, dalla tua descrizione del ruolo",
+        "checks": "Scritte dall'IA apposta per il tuo ruolo",
+        "time": "~10 min per ruolo, nessuno per candidato",
         "cost": "{price} per candidato che risponde"
       },
       "more": "Confronta con altri strumenti"

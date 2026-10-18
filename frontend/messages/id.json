@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Lebih baik dari skrining telepon\nLebih murah dari langganan",
       "text": "Tanpa berjam-jam menelepon dan tanpa biaya bulanan: wawancara dari deskripsi pekerjaanmu, dibayar per kandidat.",
+      "checks": "Pertanyaannya",
       "time": "Waktumu",
       "cost": "Yang kamu bayar",
       "phone": {
         "name": "Skrining telepon",
-        "time": "~30 mnt per kandidat",
-        "cost": "Jam kerja timmu"
+        "checks": "Apa saja yang terlintas, beda tiap panggilan",
+        "time": "~30 mnt per panggilan, untuk setiap kandidat",
+        "cost": "Jam kerja timmu, panggilan demi panggilan"
       },
       "subscription": {
         "name": "Alat tes",
+        "checks": "Tes siap pakai dari pustaka tes",
         "time": "Tes yang harus dipilih atau ditulis untuk setiap posisi",
         "cost": "Biaya bulanan, sedang merekrut atau tidak"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 mnt per posisi, dari deskripsi pekerjaanmu",
+        "checks": "Ditulis AI khusus untuk posisimu",
+        "time": "~10 mnt per posisi, tanpa waktu per kandidat",
         "cost": "{price} per kandidat yang menjawab"
       },
       "more": "Bandingkan dengan alat lain"

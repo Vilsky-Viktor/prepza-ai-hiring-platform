@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Telefon görüşmelerinden iyi\nAboneliklerden ucuz",
       "text": "Telefonda saatler yok, aylık ücret yok: iş tanımınızdan bir mülakat, aday başına ödeme.",
+      "checks": "Sorular",
       "time": "Zamanınız",
       "cost": "Ne ödersiniz",
       "phone": {
         "name": "Telefon görüşmeleri",
-        "time": "Aday başına ~30 dk",
-        "cost": "Ekibinizin saatleri"
+        "checks": "Akla ne gelirse, her görüşmede farklı",
+        "time": "Görüşme başına ~30 dk, her adayla",
+        "cost": "Ekibinizin saatleri, görüşme üstüne görüşme"
       },
       "subscription": {
         "name": "Test araçları",
+        "checks": "Bir kütüphaneden hazır testler",
         "time": "Her pozisyon için seçilecek ya da yazılacak testler",
         "cost": "İşe alım olsun olmasın aylık ücret"
       },
       "prepza": {
         "name": "prepza",
-        "time": "Pozisyon başına ~10 dk, iş tanımınızdan",
+        "checks": "Yapay zekâ tam pozisyonunuza göre yazar",
+        "time": "Pozisyon başına ~10 dk, aday başına sıfır",
         "cost": "Yanıt veren aday başına {price}"
       },
       "more": "Diğer araçlarla karşılaştırın"

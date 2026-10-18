@@ -15,8 +15,8 @@ const ICONS: Record<
   subscription: CalendarSyncIcon,
 }
 
-/** prepza beside the usual ways to screen candidates: a card each with what it takes of your
- * time and what you pay, prepza's last and ringed; then a link to the comparisons with other
+/** prepza beside the usual ways to screen candidates: a card each with what it checks, what it
+ * takes of your time and what you pay, prepza's last and ringed; then a link to the comparisons with other
  * tools. prepza's price range per candidate comes from billing's catalog. */
 export async function ComparisonSection({ catalog }: { catalog: Catalog }) {
   const t = await getTranslations("landing.comparison")
@@ -53,7 +53,7 @@ export async function ComparisonSection({ catalog }: { catalog: Catalog }) {
                     {ours && <span className="text-primary">.</span>}
                   </span>
                 </div>
-                {(["time", "cost"] as const).map((fact) => (
+                {(["checks", "time", "cost"] as const).map((fact) => (
                   <div key={fact} className="space-y-1">
                     <p className="text-sm text-muted-foreground">{t(fact)}</p>
                     <p

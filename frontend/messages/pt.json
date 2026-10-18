@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Melhor que ligações\nMais barato que assinaturas",
       "text": "Sem horas em ligações e sem mensalidade: uma entrevista a partir da sua descrição de vaga, paga por candidato.",
+      "checks": "As perguntas",
       "time": "Seu tempo",
       "cost": "O que você paga",
       "phone": {
         "name": "Triagem por telefone",
-        "time": "~30 min por candidato",
-        "cost": "As horas da sua equipe"
+        "checks": "O que vier à cabeça, diferentes a cada ligação",
+        "time": "~30 min por ligação, com cada candidato",
+        "cost": "Horas da sua equipe, ligação após ligação"
       },
       "subscription": {
         "name": "Ferramentas de teste",
+        "checks": "Testes prontos de uma biblioteca",
         "time": "Testes para escolher ou escrever para cada vaga",
         "cost": "Uma mensalidade, contratando ou não"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 min por vaga, a partir da sua descrição de vaga",
+        "checks": "Escritas por IA especificamente para a sua vaga",
+        "time": "~10 min por vaga, nenhum por candidato",
         "cost": "{price} por candidato que responde"
       },
       "more": "Comparar com outras ferramentas"

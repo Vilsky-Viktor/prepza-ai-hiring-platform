@@ -1355,21 +1355,25 @@
     "comparison": {
       "title": "Parem kui telefonivestlused\nOdavam kui tellimused",
       "text": "Ei tunde kõnedele ega kuutasu: intervjuu sinu töökuulutusest, tasu kandidaadi kohta.",
+      "checks": "Küsimused",
       "time": "Sinu aeg",
       "cost": "Mida maksad",
       "phone": {
         "name": "Telefonivestlused",
-        "time": "~30 min kandidaadi kohta",
-        "cost": "Sinu meeskonna tunnid"
+        "checks": "Mis pähe tuleb, igas kõnes erinevad",
+        "time": "~30 min kõne kohta, iga kandidaadiga",
+        "cost": "Sinu meeskonna tunnid, kõne kõne järel"
       },
       "subscription": {
         "name": "Testimisvahendid",
+        "checks": "Valmis testid testikogust",
         "time": "Testid, mis tuleb iga rolli jaoks valida või kirjutada",
         "cost": "Kuutasu, värbad või mitte"
       },
       "prepza": {
         "name": "prepza",
-        "time": "~10 min rolli kohta, sinu töökuulutusest",
+        "checks": "Tehisintellekt kirjutab need just sinu rollile",
+        "time": "~10 min rolli kohta, kandidaadile mitte minutitki",
         "cost": "{price} iga vastava kandidaadi kohta"
       },
       "more": "Võrdle teiste tööriistadega"
