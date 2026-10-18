@@ -73,7 +73,12 @@ export async function FreeToStartSection({ catalog }: { catalog: Catalog }) {
                       )}
                     >
                       {price(product.candidate_cents)}
-                      <span className="ml-1 font-sans text-sm font-normal text-muted-foreground">
+                      <span
+                        className={cn(
+                          "ml-1 font-sans text-sm font-normal",
+                          used ? "text-primary" : "text-muted-foreground"
+                        )}
+                      >
                         {t("perCandidate")}
                       </span>
                     </span>
