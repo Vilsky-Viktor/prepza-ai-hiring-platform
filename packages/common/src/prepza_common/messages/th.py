@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "การสัมภาษณ์ต้องมีอย่างน้อยหนึ่งหัวข้อที่มีคำถาม",
     "Choose at most {count} topics": "เลือกได้สูงสุด {count} หัวข้อ",
     "A topic can have at most {count} subtopics": "หัวข้อหนึ่งมีหัวข้อย่อยได้สูงสุด {count} หัวข้อ",
+    "This pattern was already reviewed": "รูปแบบนี้ได้รับการพิจารณาแล้ว",
+    "Not allowed": "ไม่ได้รับอนุญาต",
 }

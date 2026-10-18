@@ -43,3 +43,24 @@ class ReplacedQuestionOut(BaseModel):
     # What replaced it: the question's next version.
     new_text: str
     new_options: list[OptionIn]
+
+
+class QualitySignalOut(BaseModel):
+    """A question flagged or replaced lately, for generation's weekly pattern job: its content
+    and what showed it was bad, without any id, set or company."""
+
+    flag: str
+    text: str
+    options: list[OptionIn]
+    answers: int
+    correct: float
+    # Times each option was picked, keyed by its text.
+    option_picks: dict[str, int]
+    timeouts: int
+    # Reports per reason; never their comments.
+    reasons: dict[str, int]
+    likes: int
+    dislikes: int
+    # What replaced it, for a replaced question.
+    new_text: str | None = None
+    new_options: list[OptionIn] | None = None

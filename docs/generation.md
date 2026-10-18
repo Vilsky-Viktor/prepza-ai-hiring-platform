@@ -126,6 +126,18 @@ For a multi-answer question, "correct" is the share of the question's point the 
 
 Superadmins see flagged and replaced questions on the admin zone's Questions tab, under Flagged and Replaced (see [Admin zone](features/admin-zone.md#questions)).
 
+### Patterns from bad questions
+
+Once a week (Mondays, 05:00 UTC, `/internal/schedules/patterns` on the worker) generation turns the past week's flagged and replaced questions into general rules for a superadmin to review, without one company's questions ever reaching another's prompts.
+
+- It reads them through library's `/internal/questions/signals`, which answers generation's service token only (any other service gets 403): each question's text, options, answer stats, the number of reports per reason and the thumbs, and what replaced it. No question id, set, company or report comment leaves library. A replaced question comes with the flag it had; revisions kept before flags were kept with them get the flag their stats and feedback give, and an owner's edit of a question nothing was wrong with is left out.
+- Questions are grouped by flag; a flag with fewer than 2 is skipped, and the model reads at most 60 a flag, newest first. One call a flag, with a domain-neutral prompt (`app/prompts/patterns.py`) that also lists the flag's known patterns, so a known mistake is counted again rather than reworded.
+- A new rule is kept only when at least 2 of the questions show it, it's at most 300 characters, it names no technology, field or role (`DENIED_TERMS`) and has no capitalized word other than at the start of a sentence (a name), and it shares no 6 words in a row with any question, option or replacement it was given. A rejected rule is logged by its reason, never its text.
+- Stored: the rule's text, the flag, how many questions showed it (a count only), when it was first and last seen, its status (proposed, approved, dismissed, in use) and who reviewed it when. No question ids or text. A known rule found again adds to its count and last seen; a dismissed one stays dismissed and is never proposed again.
+- Each flag is read once a week (a Redis key per flag, kept 6 days), so a retried or repeated run counts no question twice; one run at a time (a lock), and none during the emergency pause. Its AI cost is recorded under its own line, "Question quality patterns".
+- Superadmins approve or dismiss the proposed rules on the admin zone's Questions tab, under Patterns (see [Admin zone](features/admin-zone.md#questions)). An approved rule is only a candidate: it's used in generation once an eval shows it helps.
+- In production the job is created paused (`infra/terraform/jobs.tf`) until the terms and privacy version that allows it is in force.
+
 ## Generation settings
 
 Four values shape every generation. They aren't settings: each starts at its default in `prepza_common.limit_list` and a superadmin changes it in the admin zone's Controls tab ([Admin zone](features/admin-zone.md#limits)), in effect within 30 seconds. A run takes its questions per topic when it starts and keeps them to its end, also through a retry or a resume; a change applies to generations started after it. The topic caps are read when the topics are drafted or revised, and when a review is sent.

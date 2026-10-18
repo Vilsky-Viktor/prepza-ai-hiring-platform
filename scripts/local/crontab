@@ -2,6 +2,8 @@
 */5 * * * * curl -s -X POST http://generation-worker:8000/internal/schedules/sweep
 */10 * * * * curl -s -X POST http://generation-worker:8000/internal/schedules/key-check-batches
 0 3 * * * curl -s -X POST http://generation-worker:8000/internal/schedules/retention
+# Last week's flagged and replaced questions as proposed general rules (generation), weekly.
+0 5 * * 1 curl -s -X POST http://generation-worker:8000/internal/schedules/patterns
 15 3 * * * curl -s -X POST http://companies:8000/internal/schedules/retention
 30 3 * * * curl -s -X POST http://companies:8000/internal/schedules/invite-expiry
 0 9 * * * curl -s -X POST http://companies:8000/internal/schedules/invite-reminders

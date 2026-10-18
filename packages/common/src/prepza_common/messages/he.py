@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "ריאיון צריך לפחות נושא אחד עם שאלות.",
     "Choose at most {count} topics": "בחרו לכל היותר {count} נושאים",
     "A topic can have at most {count} subtopics": "לנושא יכולים להיות לכל היותר {count} תתי-נושאים",
+    "This pattern was already reviewed": "הדפוס הזה כבר נבדק",
+    "Not allowed": "אין הרשאה",
 }

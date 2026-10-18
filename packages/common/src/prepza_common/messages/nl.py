@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "Een interview heeft minstens één onderwerp met vragen nodig.",
     "Choose at most {count} topics": "Kies maximaal {count} onderwerpen",
     "A topic can have at most {count} subtopics": "Een onderwerp kan maximaal {count} subonderwerpen hebben",
+    "This pattern was already reviewed": "Dit patroon is al beoordeeld",
+    "Not allowed": "Niet toegestaan",
 }

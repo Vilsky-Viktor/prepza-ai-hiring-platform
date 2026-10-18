@@ -3367,6 +3367,61 @@
     }
    }
   },
+  "/internal/questions/signals": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "List Signals",
+    "description": "Questions flagged or replaced in the last `days` across every company and template, for\ngeneration's weekly pattern job only: it turns them into general rules without any company's\ntext, and nothing else may read other companies' questions.",
+    "operationId": "list_signals_internal_questions_signals_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "days",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 31,
+       "minimum": 1,
+       "default": 7,
+       "title": "Days"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/QualitySignalOut"
+         },
+         "title": "Response List Signals Internal Questions Signals Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/questions/{question_id}/quality": {
    "get": {
     "tags": [
@@ -4828,6 +4883,99 @@
      "messageId"
     ],
     "title": "PushMessage"
+   },
+   "QualitySignalOut": {
+    "properties": {
+     "flag": {
+      "type": "string",
+      "title": "Flag"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "options": {
+      "items": {
+       "$ref": "#/components/schemas/OptionIn"
+      },
+      "type": "array",
+      "title": "Options"
+     },
+     "answers": {
+      "type": "integer",
+      "title": "Answers"
+     },
+     "correct": {
+      "type": "number",
+      "title": "Correct"
+     },
+     "option_picks": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Option Picks"
+     },
+     "timeouts": {
+      "type": "integer",
+      "title": "Timeouts"
+     },
+     "reasons": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Reasons"
+     },
+     "likes": {
+      "type": "integer",
+      "title": "Likes"
+     },
+     "dislikes": {
+      "type": "integer",
+      "title": "Dislikes"
+     },
+     "new_text": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "New Text"
+     },
+     "new_options": {
+      "anyOf": [
+       {
+        "items": {
+         "$ref": "#/components/schemas/OptionIn"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "New Options"
+     }
+    },
+    "type": "object",
+    "required": [
+     "flag",
+     "text",
+     "options",
+     "answers",
+     "correct",
+     "option_picks",
+     "timeouts",
+     "reasons",
+     "likes",
+     "dislikes"
+    ],
+    "title": "QualitySignalOut",
+    "description": "A question flagged or replaced lately, for generation's weekly pattern job: its content\nand what showed it was bad, without any id, set or company."
    },
    "QuestionContext": {
     "properties": {

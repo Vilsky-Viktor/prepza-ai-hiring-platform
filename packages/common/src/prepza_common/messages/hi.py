@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "इंटरव्यू में सवालों वाला कम से कम एक विषय होना चाहिए।",
     "Choose at most {count} topics": "ज़्यादा से ज़्यादा {count} विषय चुनें",
     "A topic can have at most {count} subtopics": "किसी विषय में ज़्यादा से ज़्यादा {count} उप-विषय हो सकते हैं",
+    "This pattern was already reviewed": "इस पैटर्न की समीक्षा पहले ही हो चुकी है",
+    "Not allowed": "अनुमति नहीं है",
 }

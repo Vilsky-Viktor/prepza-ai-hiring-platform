@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "Wawancara memerlukan setidaknya satu topik yang berisi soal.",
     "Choose at most {count} topics": "Pilih maksimal {count} topik",
     "A topic can have at most {count} subtopics": "Satu topik boleh memiliki maksimal {count} subtopik",
+    "This pattern was already reviewed": "Pola ini sudah ditinjau",
+    "Not allowed": "Tidak diizinkan",
 }

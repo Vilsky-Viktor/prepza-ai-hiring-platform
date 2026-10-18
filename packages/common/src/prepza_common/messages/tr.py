@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "Bir mülakatta sorusu olan en az bir konu olmalı.",
     "Choose at most {count} topics": "En fazla {count} konu seçin",
     "A topic can have at most {count} subtopics": "Bir konunun en fazla {count} alt konusu olabilir",
+    "This pattern was already reviewed": "Bu örüntü zaten incelendi",
+    "Not allowed": "İzin verilmiyor",
 }

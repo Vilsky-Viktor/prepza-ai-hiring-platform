@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "面试至少需要一个有题目的主题。",
     "Choose at most {count} topics": "最多选择 {count} 个主题",
     "A topic can have at most {count} subtopics": "一个主题最多有 {count} 个子主题",
+    "This pattern was already reviewed": "此模式已审核过",
+    "Not allowed": "不允许",
 }

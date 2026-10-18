@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "Kailangan ng interview ng kahit isang topic na may mga tanong.",
     "Choose at most {count} topics": "Pumili ng hanggang {count} topic",
     "A topic can have at most {count} subtopics": "Hanggang {count} subtopic lang ang puwede sa isang topic",
+    "This pattern was already reviewed": "Nasuri na ang pattern na ito",
+    "Not allowed": "Hindi pinapayagan",
 }

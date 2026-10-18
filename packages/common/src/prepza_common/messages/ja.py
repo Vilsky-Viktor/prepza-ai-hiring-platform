@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "面接には、問題のあるトピックが少なくとも 1 つ必要です。",
     "Choose at most {count} topics": "トピックは最大 {count} 件まで選んでください",
     "A topic can have at most {count} subtopics": "1 つのトピックのサブトピックは最大 {count} 件です",
+    "This pattern was already reviewed": "このパターンはすでに確認済みです",
+    "Not allowed": "許可されていません",
 }

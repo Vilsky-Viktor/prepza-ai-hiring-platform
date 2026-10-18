@@ -59,6 +59,8 @@ class QuestionRevision(Base):
     dislikes: Mapped[int]
     # Every report: [{"reason", "comment", "created_at"}].
     reports: Mapped[list] = mapped_column(JSONB)
+    # The QualityFlag it had when it was replaced; None for an owner's edit of an unflagged one.
+    flag: Mapped[str | None] = mapped_column(String(32))
     replaced_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=lambda: datetime.now(UTC)
     )

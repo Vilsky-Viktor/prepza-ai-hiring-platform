@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "У співбесіді має бути хоча б одна тема з питаннями.",
     "Choose at most {count} topics": "Тем можна обрати не більше: {count}",
     "A topic can have at most {count} subtopics": "Підтем у темі може бути не більше: {count}",
+    "This pattern was already reviewed": "Ця закономірність уже розглянута",
+    "Not allowed": "Немає доступу",
 }

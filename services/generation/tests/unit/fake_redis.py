@@ -78,3 +78,19 @@ class FakeRedis:
         self.check()
 
         return {name.encode(): value.encode() for name, value in self.limits.items()}
+
+    async def exists(self, key):
+        self.check()
+
+        return int(key in self.counts)
+
+    async def eval(self, script, numkeys, key, token):
+        """Only the lock's release (storage/locks.py): deletes the key while it holds `token`."""
+        self.check()
+
+        if self.counts.get(key) == token:
+            del self.counts[key]
+
+            return 1
+
+        return 0

@@ -45,6 +45,7 @@ ACTIONS = {
     "embeddings": "generation",
     "news_translation": "generation",
     "campaign_translation": "generation",
+    "quality_patterns": "generation",
     "assistant_message": "assistant",
     "assistant_title": "assistant",
     "transcription": "assistant",
@@ -62,6 +63,7 @@ PREPZA_ACTIONS = {
     "embeddings",
     "news_translation",
     "campaign_translation",
+    "quality_patterns",
 }
 
 

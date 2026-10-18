@@ -8,6 +8,7 @@ from prepza_common.sets import AddedQuestionsIn, AdditionContext, PreparationIn,
 from app.config.settings import settings
 from app.schemas.library import ReuseIn
 from app.schemas.news import NewsSource, TranslatedNews
+from app.schemas.patterns import QualitySignal
 from app.schemas.regenerate import QuestionContext, RegeneratedQuestion
 from app.schemas.verify import QuestionQuality
 from app.service_auth import service_token
@@ -226,3 +227,17 @@ async def save_news_translations(
     )
 
     response.raise_for_status()
+
+
+async def quality_signals(days: int) -> list[QualitySignal]:
+    """Questions flagged or replaced in the last `days`, across every company and template,
+    without ids; library gives them to this service only."""
+    response = await http.get_client().get(
+        f"{settings.library_url}/internal/questions/signals",
+        params={"days": days},
+        headers=bearer(service_token("library")),
+    )
+
+    response.raise_for_status()
+
+    return [QualitySignal.model_validate(item) for item in response.json()]

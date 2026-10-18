@@ -26,6 +26,9 @@ locals {
     sweep                = { service = "generation-worker", path = "/internal/schedules/sweep", cron = "*/5 * * * *" }
     key-check-batches    = { service = "generation-worker", path = "/internal/schedules/key-check-batches", cron = "*/10 * * * *" }
     generation-retention = { service = "generation-worker", path = "/internal/schedules/retention", cron = "0 3 * * *" }
+    # Weekly, Monday morning: last week's flagged and replaced questions turned into proposed
+    # general rules for the admin zone's patterns tab. Created paused (paused_schedules).
+    quality-patterns     = { service = "generation-worker", path = "/internal/schedules/patterns", cron = "0 5 * * 1" }
     candidate-retention  = { service = "companies", path = "/internal/schedules/retention", cron = "15 3 * * *" }
     invite-expiry        = { service = "companies", path = "/internal/schedules/invite-expiry", cron = "30 3 * * *" }
     # In the morning (UTC), not the night: a reminder candidates see.
@@ -65,6 +68,13 @@ locals {
   }
 }
 
+# Jobs created paused, to be resumed by removing them here. quality-patterns reads every company's
+# flagged questions to write general rules: it may run on real data only once the terms and
+# privacy version that says so (internal_docs/plans/quality-patterns.md) is in force.
+locals {
+  paused_schedules = ["quality-patterns"]
+}
+
 resource "google_cloud_scheduler_job" "schedule" {
   for_each  = local.schedules
   name      = each.key
@@ -75,6 +85,7 @@ resource "google_cloud_scheduler_job" "schedule" {
   # longer only delays the retry. A retry may still overlap a run Cloud Run cut off, so each job
   # is safe to run twice at once (invite expiry re-checks before holding credits again).
   attempt_deadline = "${max(15, min(local.services[each.value.service].timeout, 1800))}s"
+  paused           = contains(local.paused_schedules, each.key)
 
   # The daily jobs retry a failed run; the frequent ones (cron starting with "*") just run again
   # soon.

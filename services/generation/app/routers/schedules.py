@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, status
 from prepza_common.google import Invoker
 
-from app.services import schedules
+from app.services import patterns, schedules
 
 router = APIRouter(prefix="/internal/schedules", tags=["schedules"], dependencies=[Invoker])
 
@@ -29,3 +29,10 @@ async def retention(request: Request) -> None:
 async def flush_outbox() -> None:
     """Every minute: publishes events that weren't published right after their change."""
     await schedules.flush_outbox()
+
+
+@router.post("/patterns", status_code=status.HTTP_204_NO_CONTENT)
+async def quality_patterns() -> None:
+    """Weekly: the recurring mistakes in last week's flagged and replaced questions, proposed
+    as general rules for a superadmin to review."""
+    await patterns.run()

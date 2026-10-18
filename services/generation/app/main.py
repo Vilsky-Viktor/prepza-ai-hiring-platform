@@ -12,7 +12,14 @@ from prepza_common.sentry import init_sentry
 
 from app.config.settings import settings
 from app.integrations.redis import get_redis
-from app.routers import internal, internal_accounts, languages, superadmin, superadmin_additions
+from app.routers import (
+    internal,
+    internal_accounts,
+    languages,
+    superadmin,
+    superadmin_additions,
+    superadmin_patterns,
+)
 from app.storage.db import engine
 
 configure_logging()
@@ -41,6 +48,7 @@ app.add_middleware(BodyLimitMiddleware)
 app.include_router(languages.router)
 app.include_router(superadmin.router)
 app.include_router(superadmin_additions.router)
+app.include_router(superadmin_patterns.router)
 app.include_router(internal.router)
 app.include_router(internal_accounts.router)
 

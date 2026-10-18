@@ -34,3 +34,8 @@ TOO_SLOW_SHARE = 0.25
 FLAG_RESEND_AFTER_HOURS = 48
 # Flags sent again by one daily sweep, oldest first.
 MAX_FLAG_RESENDS = 100
+# The questions flagged or replaced lately that generation's weekly pattern job reads, newest
+# first, at most this many.
+MAX_PATTERN_SIGNALS = 500
+# Only generation reads them.
+PATTERN_SIGNALS_CALLER = "generation"

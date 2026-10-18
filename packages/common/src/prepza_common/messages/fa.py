@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "هر مصاحبه دست‌کم به یک موضوع با پرسش نیاز دارد.",
     "Choose at most {count} topics": "حداکثر {count} موضوع انتخاب کنید",
     "A topic can have at most {count} subtopics": "هر موضوع حداکثر {count} زیرموضوع می‌تواند داشته باشد",
+    "This pattern was already reviewed": "این الگو قبلاً بررسی شده است",
+    "Not allowed": "مجاز نیست",
 }

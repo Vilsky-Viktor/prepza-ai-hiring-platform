@@ -173,6 +173,7 @@ async def archive(session: AsyncSession, question_id: uuid.UUID) -> None:
             answers=stats.answers if stats else 0,
             correct=stats.correct if stats else 0,
             option_picks=stats.option_picks if stats else {},
+            flag=stats.flag if stats else None,
             likes=likes,
             dislikes=dislikes,
             reports=[

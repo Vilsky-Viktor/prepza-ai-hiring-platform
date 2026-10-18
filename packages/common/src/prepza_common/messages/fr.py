@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "Un entretien doit avoir au moins un thème avec des questions.",
     "Choose at most {count} topics": "Choisissez au plus {count} thèmes",
     "A topic can have at most {count} subtopics": "Un thème peut avoir au plus {count} sous-thèmes",
+    "This pattern was already reviewed": "Ce schéma a déjà été examiné",
+    "Not allowed": "Non autorisé",
 }

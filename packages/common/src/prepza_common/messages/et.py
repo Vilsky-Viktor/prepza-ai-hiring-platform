@@ -253,4 +253,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "Intervjuul peab olema vähemalt üks küsimustega teema.",
     "Choose at most {count} topics": "Vali kuni {count} teemat",
     "A topic can have at most {count} subtopics": "Teemal võib olla kuni {count} alateemat",
+    "This pattern was already reviewed": "Seda mustrit on juba hinnatud",
+    "Not allowed": "Pole lubatud",
 }

@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "Buổi phỏng vấn cần ít nhất một chủ đề có câu hỏi.",
     "Choose at most {count} topics": "Chọn tối đa {count} chủ đề",
     "A topic can have at most {count} subtopics": "Mỗi chủ đề có tối đa {count} chủ đề con",
+    "This pattern was already reviewed": "Lỗi lặp lại này đã được xem xét",
+    "Not allowed": "Không được phép",
 }

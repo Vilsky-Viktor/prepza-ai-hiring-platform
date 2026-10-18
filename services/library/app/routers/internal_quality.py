@@ -1,13 +1,29 @@
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, Query, status
 
+from app.constants.quality import PATTERN_SIGNALS_CALLER
 from app.schemas.quality import QuestionQuality, ReportNote
+from app.schemas.quality_report import QualitySignalOut
 from app.service_auth import ServiceCaller
 from app.services import quality as quality_service
+from app.services import quality_signals
 from app.storage import feedback, quality
 
 router = APIRouter(prefix="/internal/questions", tags=["internal"])
+
+
+@router.get("/signals")
+async def list_signals(
+    caller: ServiceCaller, days: int = Query(7, ge=1, le=31)
+) -> list[QualitySignalOut]:
+    """Questions flagged or replaced in the last `days` across every company and template, for
+    generation's weekly pattern job only: it turns them into general rules without any company's
+    text, and nothing else may read other companies' questions."""
+    if caller != PATTERN_SIGNALS_CALLER:
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "Not allowed")
+
+    return await quality_signals.recent(days)
 
 
 @router.get("/{question_id}/quality")

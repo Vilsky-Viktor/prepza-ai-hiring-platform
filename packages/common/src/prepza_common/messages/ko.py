@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "면접에는 문제가 있는 주제가 하나 이상 있어야 합니다.",
     "Choose at most {count} topics": "주제는 최대 {count}개까지 선택하세요",
     "A topic can have at most {count} subtopics": "한 주제의 하위 주제는 최대 {count}개입니다",
+    "This pattern was already reviewed": "이 패턴은 이미 검토되었습니다",
+    "Not allowed": "허용되지 않습니다",
 }

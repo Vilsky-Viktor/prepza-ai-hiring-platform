@@ -243,4 +243,6 @@ MESSAGES = {
     "An interview needs at least one topic with questions.": "Un colloquio ha bisogno di almeno un argomento con domande.",
     "Choose at most {count} topics": "Scegli al massimo {count} argomenti",
     "A topic can have at most {count} subtopics": "Un argomento può avere al massimo {count} sottoargomenti",
+    "This pattern was already reviewed": "Questo schema è già stato esaminato",
+    "Not allowed": "Non consentito",
 }
