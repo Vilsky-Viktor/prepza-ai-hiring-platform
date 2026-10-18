@@ -1198,7 +1198,7 @@
       "title": "Dakikalar içinde mülakat oluşturun",
       "text": "Bir iş tanımı yapıştırın, konuları düzenleyin; mülakatınız dakikalar içinde hazır.",
       "notes": {
-        "questions": "konu başına {count} soru üretilir",
+        "questions": "konu başına {count} soru",
         "templates": "hazır şablonlar mevcut",
         "expert": "alan uzmanı gerekmez"
       },

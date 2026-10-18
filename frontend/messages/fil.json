@@ -1198,7 +1198,7 @@
       "title": "Gumawa ng interview sa loob ng ilang minuto",
       "text": "I-paste ang job description, ayusin ang mga topic, at handa na ang interview mo sa loob ng ilang minuto.",
       "notes": {
-        "questions": "{count} tanong ang ginagawa sa bawat topic",
+        "questions": "{count} tanong sa bawat topic",
         "templates": "may mga handang template",
         "expert": "hindi kailangan ng eksperto sa larangan"
       },

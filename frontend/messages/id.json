@@ -1198,7 +1198,7 @@
       "title": "Buat wawancara dalam hitungan menit",
       "text": "Tempel deskripsi pekerjaan, sesuaikan topiknya, dan wawancaramu siap dalam hitungan menit.",
       "notes": {
-        "questions": "{count} pertanyaan dibuat per topik",
+        "questions": "{count} pertanyaan per topik",
         "templates": "templat siap pakai tersedia",
         "expert": "tanpa perlu ahli di bidangnya"
       },

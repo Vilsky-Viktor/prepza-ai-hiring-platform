@@ -1198,7 +1198,7 @@
       "title": "Create an interview in minutes",
       "text": "Paste a job description, adjust the topics, and your interview is ready in minutes.",
       "notes": {
-        "questions": "{count} questions generated per topic",
+        "questions": "{count} questions per topic",
         "templates": "ready-made templates available",
         "expert": "no expert needed"
       },

@@ -1198,7 +1198,7 @@
       "title": "Crea una entrevista en minutos",
       "text": "Pega una descripción del puesto, ajusta los temas y tu entrevista estará lista en minutos.",
       "notes": {
-        "questions": "{count} preguntas generadas por tema",
+        "questions": "{count} preguntas por tema",
         "templates": "plantillas listas para usar",
         "expert": "sin necesidad de un experto en la materia"
       },

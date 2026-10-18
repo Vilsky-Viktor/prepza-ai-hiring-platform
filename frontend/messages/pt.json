@@ -1198,7 +1198,7 @@
       "title": "Crie uma entrevista em minutos",
       "text": "Cole uma descrição de vaga, ajuste os tópicos e sua entrevista fica pronta em minutos.",
       "notes": {
-        "questions": "{count} perguntas geradas por tópico",
+        "questions": "{count} perguntas por tópico",
         "templates": "modelos prontos disponíveis",
         "expert": "sem precisar de um especialista na área"
       },

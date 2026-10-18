@@ -1198,7 +1198,7 @@
       "title": "Créez un entretien en quelques minutes",
       "text": "Collez une fiche de poste, ajustez les thèmes, et votre entretien est prêt en quelques minutes.",
       "notes": {
-        "questions": "{count} questions générées par thème",
+        "questions": "{count} questions par thème",
         "templates": "modèles prêts à l'emploi disponibles",
         "expert": "aucun expert du métier requis"
       },

@@ -1198,7 +1198,7 @@
       "title": "Tạo buổi phỏng vấn trong vài phút",
       "text": "Dán mô tả công việc, điều chỉnh các chủ đề, và buổi phỏng vấn của bạn sẵn sàng sau vài phút.",
       "notes": {
-        "questions": "{count} câu hỏi được tạo cho mỗi chủ đề",
+        "questions": "{count} câu hỏi cho mỗi chủ đề",
         "templates": "có sẵn các mẫu dùng ngay",
         "expert": "không cần chuyên gia trong lĩnh vực"
       },

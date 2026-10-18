@@ -1198,7 +1198,7 @@
       "title": "Ein Interview in Minuten erstellen",
       "text": "Füge eine Stellenbeschreibung ein, passe die Themen an, und dein Interview ist in Minuten fertig.",
       "notes": {
-        "questions": "{count} Fragen pro Thema generiert",
+        "questions": "{count} Fragen pro Thema",
         "templates": "fertige Vorlagen verfügbar",
         "expert": "kein Fachexperte nötig"
       },

@@ -1198,7 +1198,7 @@
       "title": "Maak een interview in enkele minuten",
       "text": "Plak een functieomschrijving, pas de onderwerpen aan en je interview is binnen enkele minuten klaar.",
       "notes": {
-        "questions": "{count} vragen gegenereerd per onderwerp",
+        "questions": "{count} vragen per onderwerp",
         "templates": "kant-en-klare sjablonen beschikbaar",
         "expert": "geen vakexpert nodig"
       },

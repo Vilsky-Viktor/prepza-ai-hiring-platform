@@ -1198,7 +1198,7 @@
       "title": "Crea un colloquio in pochi minuti",
       "text": "Incolla una descrizione del ruolo, regola gli argomenti e il tuo colloquio è pronto in pochi minuti.",
       "notes": {
-        "questions": "{count} domande generate per argomento",
+        "questions": "{count} domande per argomento",
         "templates": "modelli pronti disponibili",
         "expert": "nessun esperto della materia necessario"
       },
