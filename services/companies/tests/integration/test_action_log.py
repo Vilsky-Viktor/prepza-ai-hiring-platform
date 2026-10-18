@@ -222,7 +222,9 @@ def test_rows_name_members_and_candidates_only_while_they_are_there(run):
                 target_label="Zapier",
                 removed=["mcp"],
             ),
-            NOW + timedelta(seconds=1),
+            # After the two rows just recorded: NOW is when the module loaded, which earlier
+            # tests can leave more than a second behind.
+            datetime.now(UTC) + timedelta(seconds=1),
         )
         rows = await action_log.rows(acme.id, await audit.list_for_company(acme.id, 0, 10))
         await companies.delete(acme.id)
