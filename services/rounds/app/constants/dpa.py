@@ -50,7 +50,7 @@ DPA_SECTIONS = [
         "heading": "Changes and transfers",
         "paragraphs": [
             "We email the company's owners and admins about a new sub-processor, or any other significant change to this agreement, at least 14 days before it applies; every earlier version stays readable on this page; a company that objects for reasonable data protection reasons can stop using prepza and delete its company.",
-            "Transfers outside the EU (to Google Firebase, and by OpenAI Ireland Ltd to OpenAI, in the United States) are covered by the EU-US Data Privacy Framework or the European Commission's standard contractual clauses, as listed above; the company can ask for a copy of the safeguards.",
+            "Transfers outside the EU, all to the United States, are covered as listed above: to Google Firebase and Cloudflare under the EU-US Data Privacy Framework, and by OpenAI Ireland Ltd to OpenAI under the European Commission's standard contractual clauses; the company can ask for a copy of the safeguards.",
         ],
     },
     {
