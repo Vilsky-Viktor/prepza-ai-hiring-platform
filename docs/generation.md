@@ -149,11 +149,11 @@ Four values shape every generation. They aren't settings: each starts at its def
 | `INTERVIEW_QUESTIONS_PER_TOPIC` | 70 | 10–500 | Questions per topic of a company's interview, from which each candidate gets a random subset |
 | `TEMPLATE_QUESTIONS_PER_TOPIC` | 90 | 10–500 | Questions per topic of a template: 30 for free practice and 60 for companies' interviews (library's `PRACTICE_QUESTIONS` and `COMPANY_QUESTIONS`) |
 
-These settings in `.env` trace generation. Terraform doesn't pass them to Google Cloud (see [infra/README.md](../infra/README.md#notes)).
+These settings in `.env` trace generation to Langfuse. Terraform doesn't pass them to Google Cloud yet (see [infra/README.md](../infra/README.md#notes)).
 
 | Setting | Default | What it sets |
 |---|---|---|
-| `LANGSMITH_TRACING`, `LANGSMITH_API_KEY`, `LANGSMITH_PROJECT`, `LANGSMITH_ENDPOINT` | Off | Trace generation, help chat and assistant calls to LangSmith; the endpoint is the key's region (US by default, `https://eu.api.smith.langchain.com` for EU). The chats' answers and votes also go to Langfuse when it's set up ([Votes in Langfuse](features/assistant.md#votes-in-langfuse)) |
+| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Off; `https://cloud.langfuse.com` (EU) | Trace generation's AI calls to Langfuse, on only with both keys (`prepza_common.tracing`). Each AI run (a generation's pipeline run through LangGraph, a regenerated question, a key check, a translation, ...) is one trace with every call it makes: named by its action and tagged with it and its subject's id (the generation's id for a generation), with no company names, job text or emails in its name or tags; the calls' inputs and outputs are traced. A generation's runs before and after its review share one trace. The assistant and the help chat use the same keys ([Votes in Langfuse](features/assistant.md#votes-in-langfuse)). Nothing goes to LangSmith |
 
 ## Models
 

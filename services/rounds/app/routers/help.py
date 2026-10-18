@@ -8,7 +8,6 @@ from prepza_common import ai_cap
 from prepza_common.ai_constants import Outcome
 from prepza_common.ai_usage import provider_refused
 from prepza_common.analytics import track
-from prepza_common.answer_votes import new_trace_id
 from prepza_common.auth import OptionalUser
 from prepza_common.client_ip import client_ip
 from prepza_common.constants import DEFAULT_LANGUAGE, LEGAL_VERSIONS
@@ -18,6 +17,7 @@ from prepza_common.pause import refuse_if_paused
 from prepza_common.rate_limit import hit, spend
 from prepza_common.secrets_check import secret_in
 from prepza_common.sse import event_stream, sse_event
+from prepza_common.tracing import new_trace_id
 from prepza_common.user import Language
 
 from app.config.settings import settings

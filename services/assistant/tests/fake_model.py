@@ -25,7 +25,7 @@ class FakeModel:
         self.replies = list(replies)
         self.prompts = []
         self.bound = []
-        # Each call's config: its LangSmith run id when tracing is on.
+        # Each call's config: its Langfuse callback when tracing is on.
         self.configs = []
 
     def bind_tools(self, tools, **options):

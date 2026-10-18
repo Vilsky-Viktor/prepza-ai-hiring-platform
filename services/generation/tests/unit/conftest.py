@@ -16,6 +16,13 @@ from tests.unit.fakes import EXAMPLE, MULTI_OPTIONS, OPTIONS
 
 
 @pytest.fixture(autouse=True)
+def no_langfuse(monkeypatch):
+    """No test traces to Langfuse, also when its keys are set where tests run."""
+    monkeypatch.delenv("LANGFUSE_PUBLIC_KEY", raising=False)
+    monkeypatch.delenv("LANGFUSE_SECRET_KEY", raising=False)
+
+
+@pytest.fixture(autouse=True)
 def redis(monkeypatch):
     """Redis in memory for the requests' limits and budgets: unit tests have none. Each test
     reads the limits afresh, not values an earlier test cached."""

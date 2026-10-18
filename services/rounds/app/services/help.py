@@ -4,13 +4,13 @@ from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from langchain_core.messages.ai import add_usage
 from prepza_common import ai_usage, memory_cache
 from prepza_common.ai_constants import Outcome
-from prepza_common.answer_votes import traced
 from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
 from prepza_common.limit_schemas import BudgetOut
 from prepza_common.limits import limit, question_seconds
 from prepza_common.llm import estimated_input, estimated_tokens, latest_messages
 from prepza_common.rate_limit import add_spent
 from prepza_common.scope import SCOPE_RULE
+from prepza_common.tracing import traced
 
 from app.config.settings import settings
 from app.constants.help import (

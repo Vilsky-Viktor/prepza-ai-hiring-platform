@@ -18,11 +18,13 @@ if [[ ${#services[@]} -eq 0 ]]; then
   services=(library generation rounds companies billing notifications ats api assistant)
 fi
 
+# Langfuse's keys emptied: tests trace nothing.
 for service in "${services[@]}"; do
   echo "== $service"
   "${compose[@]}" run --rm --no-deps \
     -e INTEGRATION_TESTS=1 \
     -e REDIS_URL=redis://redis:6379/15 \
+    -e LANGFUSE_PUBLIC_KEY= -e LANGFUSE_SECRET_KEY= \
     -v "$PWD/services/$service/tests:/services/$service/tests" \
     "$service" \
     uv run --no-sync --with pytest pytest -q tests/integration

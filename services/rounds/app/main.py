@@ -1,5 +1,3 @@
-import logging
-import os
 from contextlib import asynccontextmanager
 
 import firebase_admin
@@ -31,15 +29,11 @@ from app.storage.db import engine
 
 configure_logging()
 init_sentry("rounds")
-logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     firebase_admin.initialize_app(options={"projectId": settings.firebase_project_id})
-
-    if os.getenv("LANGSMITH_TRACING", "").lower() == "true":
-        logger.info("LangSmith tracing enabled")
 
     yield
 

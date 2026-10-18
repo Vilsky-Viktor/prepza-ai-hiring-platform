@@ -5,6 +5,7 @@ from prepza_common import ai_usage
 from prepza_common.ai_constants import Outcome
 from prepza_common.constants import LANGUAGES
 from prepza_common.llm import estimated_input
+from prepza_common.tracing import traced_run
 
 from app.config.settings import settings
 from app.constants.ai_usage import TITLE_ACTION
@@ -39,7 +40,9 @@ async def refresh(turn: Turn) -> str | None:
     recorded = {**who, "subject_id": turn.conversation_id}
 
     try:
-        reply = await llm.get_title_model().ainvoke(prompt)
+        # Its own trace in Langfuse when that's set up.
+        with traced_run(TITLE_ACTION, [TITLE_ACTION, str(turn.conversation_id)]):
+            reply = await llm.get_title_model().ainvoke(prompt)
     except Exception as failure:  # noqa: BLE001 - logged by its type only
         logger.error("A conversation's title failed: %s", type(failure).__name__)
         await ai_usage.provider_refused(failure, TITLE_ACTION, **who)

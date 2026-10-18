@@ -12,6 +12,12 @@ and the draw itself, by `MULTI_ANSWER_PERCENT`, a value in the admin zone's Cont
 OpenAI chat models: `llm.chat_model` builds them one way for every service (a temperature only at
 reasoning effort `none`). It needs the package's `llm` extra (langchain-openai), so a service that
 calls OpenAI depends on `prepza-common[llm]`; the others don't install it.
+Tracing: `tracing` sends AI calls to Langfuse through its LangChain callback, only when
+`LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` are set (`LANGFUSE_HOST`: the EU cloud unless set).
+`traced_run(name, tags, seed)` makes every LangChain call inside it (LangGraph runs too) one trace,
+tagged with ids only; `new_trace_id` and `traced(trace_id)` give the chats' answers theirs.
+`answer_votes` mirrors the chats' thumbs up and down there as a score on the answer's trace. Both
+need the `langfuse` extra: `prepza-common[llm,langfuse]` (generation, the assistant, rounds).
 Limits: `limit_list.LIMITS` is every usage limit of ours (`limit_types.Limit`: its service, default,
 unit, window, lowest and highest value, scope), and the plain values tuned beside them
 (`counted=False`: nothing counts against them), and `limits.limit(redis, NAME)` its current value,

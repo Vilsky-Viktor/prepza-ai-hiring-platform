@@ -1,9 +1,11 @@
 import asyncio
 import uuid
+from contextlib import contextmanager
 
 import pytest
 from langchain_core.messages import AIMessage
 
+from app.constants.ai_usage import TITLE_ACTION
 from app.helpers.titles import clean_title, should_title
 from app.models.answers import Turn
 from app.services import titles
@@ -129,3 +131,28 @@ def test_no_call_between_the_trigger_points(stored, monkeypatch):
 
 async def _count(value):
     return value
+
+
+def test_a_title_is_its_own_trace_tagged_with_the_conversation_only(stored, monkeypatch):
+    runs = []
+
+    @contextmanager
+    def traced_run(name, tags):
+        runs.append((name, tags, "open"))
+        yield "a" * 32
+        runs.append((name, tags, "closed"))
+
+    class Model(TitleModel):
+        async def ainvoke(self, messages):
+            # The call is made inside the trace.
+            assert runs[-1][2] == "open"
+
+            return await super().ainvoke(messages)
+
+    reply = AIMessage(content="Backend hiring")
+    monkeypatch.setattr(titles, "traced_run", traced_run)
+    monkeypatch.setattr(titles.llm, "get_title_model", lambda: Model(reply))
+    asyncio.run(titles.refresh(TURN))
+
+    tags = [TITLE_ACTION, str(TURN.conversation_id)]
+    assert runs == [(TITLE_ACTION, tags, "open"), (TITLE_ACTION, tags, "closed")]

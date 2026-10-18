@@ -12,11 +12,11 @@ from langchain_core.messages import (
 )
 from prepza_common import ai_usage
 from prepza_common.ai_constants import Outcome
-from prepza_common.answer_votes import new_trace_id, traced
 from prepza_common.constants import LANGUAGES
 from prepza_common.i18n import translate
 from prepza_common.llm import estimated_input, estimated_tokens
 from prepza_common.scope import SCOPE_RULE
+from prepza_common.tracing import new_trace_id, traced
 
 from app.config.settings import settings
 from app.constants.ai_usage import MESSAGE_ACTION

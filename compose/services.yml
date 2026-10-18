@@ -32,10 +32,6 @@ x-rounds-env: &rounds-env
   BILLING_URL: http://billing:8000
   SERVICE_SECRET: ${SERVICE_SECRET}
   OPENAI_API_KEY: ${OPENAI_API_KEY}
-  LANGSMITH_TRACING: ${LANGSMITH_TRACING}
-  LANGSMITH_API_KEY: ${LANGSMITH_API_KEY}
-  LANGSMITH_PROJECT: ${LANGSMITH_PROJECT}
-  LANGSMITH_ENDPOINT: ${LANGSMITH_ENDPOINT}
   LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
   LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
   LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
@@ -123,10 +119,9 @@ services:
       <<: *generation-env
       # Re-generating a single question runs in the request, not in the worker.
       OPENAI_API_KEY: ${OPENAI_API_KEY}
-      LANGSMITH_TRACING: ${LANGSMITH_TRACING}
-      LANGSMITH_API_KEY: ${LANGSMITH_API_KEY}
-      LANGSMITH_PROJECT: ${LANGSMITH_PROJECT}
-      LANGSMITH_ENDPOINT: ${LANGSMITH_ENDPOINT}
+      LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
+      LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
+      LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
     depends_on:
       generation-migrate:
         condition: service_completed_successfully
@@ -149,10 +144,9 @@ services:
     environment:
       <<: *generation-env
       OPENAI_API_KEY: ${OPENAI_API_KEY}
-      LANGSMITH_TRACING: ${LANGSMITH_TRACING}
-      LANGSMITH_API_KEY: ${LANGSMITH_API_KEY}
-      LANGSMITH_PROJECT: ${LANGSMITH_PROJECT}
-      LANGSMITH_ENDPOINT: ${LANGSMITH_ENDPOINT}
+      LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
+      LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
+      LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
     depends_on:
       generation-migrate:
         condition: service_completed_successfully

@@ -149,7 +149,7 @@ The limits for everyone hold only people in a company that never topped up, so f
 
 ### Votes in Langfuse
 
-With `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` set (local only for now: not in Terraform until the legal version that lists Langfuse is in force), the assistant's and the help chat's answers are traced to Langfuse (`LANGFUSE_HOST`, its EU cloud by default) through its LangChain callback: each answer gets one trace, which all its model calls report to, and its id is kept with the answer. A vote is then sent in the background as a Langfuse score on that trace (`prepza_common.answer_votes`): name `user_vote`, value 1 for a thumbs up and 0 for a thumbs down, one score a trace (a stable id, so a changed vote replaces it), deleted when the vote is cleared. Each send reads the vote as it is then, one at a time an answer, and is tried 4 times with growing waits before it's logged and dropped; the vote itself stays saved. Without the keys nothing is traced, no trace id is kept and nothing is sent. Generation's calls still go to LangSmith when its tracing is on (see [Generation settings](../generation.md#generation-settings)).
+With `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` set (local only for now: not in Terraform until the legal version that lists Langfuse is in force), the assistant's and the help chat's answers are traced to Langfuse (`LANGFUSE_HOST`, its EU cloud by default) through its LangChain callback (`prepza_common.tracing`): each answer gets one trace, which all its model calls report to, and its id is kept with the answer. A vote is then sent in the background as a Langfuse score on that trace (`prepza_common.answer_votes`): name `user_vote`, value 1 for a thumbs up and 0 for a thumbs down, one score a trace (a stable id, so a changed vote replaces it), deleted when the vote is cleared. Each send reads the vote as it is then, one at a time an answer, and is tried 4 times with growing waits before it's logged and dropped; the vote itself stays saved. Without the keys nothing is traced, no trace id is kept and nothing is sent. A conversation's title is its own trace, tagged with the conversation's id. Generation traces to Langfuse with the same keys (see [Generation settings](../generation.md#generation-settings)).
 
 ## Retention and deletion
 
@@ -180,6 +180,6 @@ An action is the same in `app/constants/company_actions.py`, `interview_actions.
 | `TRANSCRIBE_MODEL` | `gpt-4o-mini-transcribe` | Voice input |
 | `ASSISTANT_RETENTION_DAYS` | 90 | Days a conversation is kept after its last message |
 | `OPENAI_API_KEY` | | OpenAI's key |
-| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Off; `https://cloud.langfuse.com` (EU) | Trace answers and send votes to Langfuse (also rounds' help chat), see [Votes in Langfuse](#votes-in-langfuse); local only for now |
+| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Off; `https://cloud.langfuse.com` (EU) | Trace answers and titles and send votes to Langfuse (also rounds' help chat), see [Votes in Langfuse](#votes-in-langfuse); local only for now |
 | `SITE_URL` | required (`http://localhost:8090` locally) | Where AI apps connect (`<SITE_URL>/mcp`), see [AI apps over MCP](mcp.md#settings) |
 | `FIREBASE_WEB_API_KEY` | required (`demo-api-key` locally) | Firebase's public web key, for AI apps' calls as the user |

@@ -1,23 +1,18 @@
-"""The chats' answers (the assistant's and the help chat's) traced to Langfuse, and people's thumbs
-up and down on them sent there as a score on the answer's trace. On only when
-LANGFUSE_PUBLIC_KEY and LANGFUSE_SECRET_KEY are set (LANGFUSE_HOST: Langfuse's EU cloud unless
-set). The vote itself is saved by the service first; this only mirrors it. Needs the package's
+"""People's thumbs up and down on the chats' answers (the assistant's and the help chat's) sent
+to Langfuse as a score on the answer's trace (prepza_common.tracing), only when Langfuse is set
+up. The vote itself is saved by the service first; this only mirrors it. Needs the package's
 `langfuse` extra."""
 
 import asyncio
 import logging
-import os
 from collections.abc import Awaitable, Callable
-from functools import cache
 
-from langfuse import Langfuse
 from langfuse.api import CreateScoreRequest
 from langfuse.api.core.api_error import ApiError
-from langfuse.langchain import CallbackHandler
+from prepza_common import tracing
 
 logger = logging.getLogger(__name__)
 
-EU_CLOUD = "https://cloud.langfuse.com"
 # The score's name in Langfuse; its value is 1 for a thumbs up, 0 for a thumbs down.
 VOTE_SCORE = "user_vote"
 UP = 1
@@ -33,49 +28,13 @@ _sending: set[asyncio.Task] = set()
 _locks: dict[str, asyncio.Lock] = {}
 
 
-def tracing_on() -> bool:
-    return bool(os.getenv("LANGFUSE_PUBLIC_KEY") and os.getenv("LANGFUSE_SECRET_KEY"))
-
-
-@cache
-def _client() -> Langfuse:
-    return Langfuse(
-        public_key=os.environ["LANGFUSE_PUBLIC_KEY"],
-        secret_key=os.environ["LANGFUSE_SECRET_KEY"],
-        host=os.getenv("LANGFUSE_HOST") or EU_CLOUD,
-    )
-
-
-def new_trace_id() -> str | None:
-    """A new answer's Langfuse trace, which its model calls report to and a vote scores; None
-    when Langfuse isn't set up."""
-    if not tracing_on():
-        return None
-
-    return _client().create_trace_id()
-
-
-def traced(trace_id: str | None) -> dict | None:
-    """The config a model call reports to the answer's trace with; None without one."""
-    if trace_id is None:
-        return None
-
-    # The handler reports through the client made with these keys.
-    _client()
-    handler = CallbackHandler(
-        public_key=os.environ["LANGFUSE_PUBLIC_KEY"], trace_context={"trace_id": trace_id}
-    )
-
-    return {"callbacks": [handler]}
-
-
 def score_id(trace_id: str) -> str:
     """One vote score a trace: a changed vote replaces it, a cleared one deletes it."""
     return f"{trace_id}-{VOTE_SCORE}"
 
 
 def _mirror(trace_id: str, vote: int | None) -> None:
-    scores = _client().api.scores
+    scores = tracing.client().api.scores
     found = score_id(trace_id)
 
     if vote is None:
@@ -124,7 +83,7 @@ async def send_vote(trace_id: str, current: Callable[[], Awaitable[int | None]])
 def mirror_vote(trace_id: str | None, current: Callable[[], Awaitable[int | None]]) -> None:
     """Sends the vote in the background; nothing when the answer has no trace or Langfuse isn't
     set up."""
-    if trace_id is None or not tracing_on():
+    if trace_id is None or not tracing.tracing_on():
         return
 
     task = asyncio.create_task(send_vote(trace_id, current))

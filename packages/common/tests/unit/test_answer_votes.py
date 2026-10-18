@@ -1,12 +1,11 @@
-"""Chat answers traced to Langfuse and votes on them sent there (prepza_common.answer_votes): one
-score a trace, created or replaced to match the vote as it is when sent, deleted when cleared,
+"""Votes on the chats' answers sent to Langfuse (prepza_common.answer_votes): one score a trace, created or replaced to match the vote as it is when sent, deleted when cleared,
 retried, and nothing at all without Langfuse's keys. Langfuse itself is a fake here."""
 
 import asyncio
 
 import pytest
 from langfuse.api.core.api_error import ApiError
-from prepza_common import answer_votes
+from prepza_common import answer_votes, tracing
 
 TRACE = "a" * 32
 
@@ -45,16 +44,13 @@ class FakeLangfuse:
     def __init__(self):
         self.api = type("Api", (), {"scores": FakeScores()})()
 
-    def create_trace_id(self):
-        return TRACE
-
 
 @pytest.fixture
 def langfuse(monkeypatch):
     fake = FakeLangfuse()
     monkeypatch.setenv("LANGFUSE_PUBLIC_KEY", "pk-lf-test")
     monkeypatch.setenv("LANGFUSE_SECRET_KEY", "sk-lf-test")
-    monkeypatch.setattr(answer_votes, "_client", lambda: fake)
+    monkeypatch.setattr(tracing, "client", lambda: fake)
     monkeypatch.setattr(answer_votes, "FIRST_WAIT_SECONDS", 0)
     monkeypatch.setattr(answer_votes, "_locks", {})
 
@@ -138,7 +134,7 @@ def test_quick_changes_are_sent_one_after_another_ending_with_the_latest(langfus
     assert score.value == 0
 
 
-def test_with_langfuse_a_vote_goes_in_the_background_and_answers_get_traces(langfuse):
+def test_with_langfuse_a_vote_goes_in_the_background(langfuse):
     async def current():
         return answer_votes.DOWN
 
@@ -148,14 +144,10 @@ def test_with_langfuse_a_vote_goes_in_the_background_and_answers_get_traces(lang
 
     asyncio.run(scenario())
 
-    assert answer_votes.new_trace_id() == TRACE
-    [handler] = answer_votes.traced(TRACE)["callbacks"]
     assert [score.value for score in langfuse.kept.values()] == [0]
-    assert answer_votes.traced(None) is None
-    assert handler is not None
 
 
-def test_without_langfuses_keys_or_a_trace_nothing_is_traced_or_sent(langfuse, monkeypatch):
+def test_without_langfuses_keys_or_a_trace_nothing_is_sent(langfuse, monkeypatch):
     async def current():
         return answer_votes.UP
 
@@ -167,5 +159,4 @@ def test_without_langfuses_keys_or_a_trace_nothing_is_traced_or_sent(langfuse, m
 
     asyncio.run(scenario())
 
-    assert answer_votes.new_trace_id() is None
     assert langfuse.calls == []

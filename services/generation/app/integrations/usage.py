@@ -1,7 +1,9 @@
 """Recording what AI calls used (prepza_common.ai_usage). A run is every model call made for one
 action, such as a generation's pipeline run or one regenerated question: it records once per
 model when it ends, and its calls that got no answer once more, estimated. A call inside a
-nested run counts only for that one."""
+nested run counts only for that one. With Langfuse set up, a run is also one trace there
+(prepza_common.tracing): named by its action and tagged with it and its subject's id (the
+generation's, for a generation), the same trace for every run of the same subject."""
 
 import asyncio
 from contextlib import asynccontextmanager
@@ -12,6 +14,7 @@ from langchain_core.tracers.context import register_configure_hook
 from prepza_common import ai_usage
 from prepza_common.ai_constants import Outcome
 from prepza_common.llm import estimated_input, estimated_tokens
+from prepza_common.tracing import traced_run
 
 from app.constants.actions import EMBEDDINGS
 from app.constants.reuse import EMBEDDING_MODEL
@@ -75,9 +78,13 @@ async def ai_run(action: str, company_id=None, user_id: str | None = None, subje
     when cancelled, failed when it raised. A provider's refusal of a call is recorded too."""
     run = Run(action, company_id, user_id, subject_id)
     token = current.set(run)
+    subject = str(subject_id) if subject_id else None
+    tags = [action, subject] if subject else [action]
+    seed = f"{action}:{subject}" if subject else None
 
     try:
-        yield run
+        with traced_run(action, tags, seed):
+            yield run
     except asyncio.CancelledError:
         run.outcome = Outcome.CUT
 

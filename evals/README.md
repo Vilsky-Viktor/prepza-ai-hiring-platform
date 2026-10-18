@@ -230,7 +230,7 @@ real generations have such slips, and a verifier test should see some.
 The scripts run inside the local stack's service containers, which have the service code,
 packages and OpenAI key. `run.sh` copies `evals/` in, runs the script, and copies results back to
 `results/` (not committed). Use `generation-worker` in place of `generation` to run a second
-generation test at the same time. LangSmith tracing is off for test runs. `MODEL`, `EFFORT`,
+generation test at the same time. Langfuse tracing is off for test runs. `MODEL`, `EFFORT`,
 `JUDGE_MODEL`, `JUDGE_EFFORT` and `OVERSAMPLE` are passed into the container when set; without
 `MODEL` and `EFFORT`, generation tests use the service's own model.
 

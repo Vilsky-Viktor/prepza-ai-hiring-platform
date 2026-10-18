@@ -27,9 +27,9 @@ for name in MODEL EFFORT JUDGE_MODEL JUDGE_EFFORT OVERSAMPLE; do
   fi
 done
 
-# Tracing off: test runs would use up LangSmith's monthly trace quota.
+# Langfuse tracing off (its keys emptied): test runs would fill it with eval traffic.
 docker exec -w "/services/$code" -e "PYTHONPATH=/services/$code:/tmp/evals/scripts" \
-  -e LANGSMITH_TRACING=false \
+  -e LANGFUSE_PUBLIC_KEY= -e LANGFUSE_SECRET_KEY= \
   "${env_args[@]+"${env_args[@]}"}" "$container" \
   uv run --no-sync python "/tmp/evals/scripts/$script" "$@"
 
