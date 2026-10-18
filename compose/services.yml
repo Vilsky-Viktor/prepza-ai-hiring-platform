@@ -35,6 +35,7 @@ x-rounds-env: &rounds-env
   LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
   LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
   LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
+  LANGFUSE_ENVIRONMENT: ${LANGFUSE_ENVIRONMENT:-development}
   HELP_MODEL: ${HELP_MODEL:-gpt-6-luna}
   HELP_REASONING_EFFORT: ${HELP_REASONING_EFFORT:-none}
 
@@ -122,6 +123,7 @@ services:
       LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
       LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
       LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
+      LANGFUSE_ENVIRONMENT: ${LANGFUSE_ENVIRONMENT:-development}
     depends_on:
       generation-migrate:
         condition: service_completed_successfully
@@ -147,6 +149,7 @@ services:
       LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
       LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
       LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
+      LANGFUSE_ENVIRONMENT: ${LANGFUSE_ENVIRONMENT:-development}
     depends_on:
       generation-migrate:
         condition: service_completed_successfully

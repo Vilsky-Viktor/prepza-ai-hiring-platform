@@ -136,6 +136,30 @@ def test_the_host_is_langfuses_eu_cloud_unless_set(monkeypatch):
     assert made["host"] == "https://cloud.langfuse.com"
 
 
+@pytest.mark.parametrize(
+    ("set_to", "environment"), [(None, "production"), ("development", "development")]
+)
+def test_traces_carry_their_environment(monkeypatch, set_to, environment):
+    made = {}
+    monkeypatch.setenv("LANGFUSE_PUBLIC_KEY", "pk-lf-test")
+    monkeypatch.setenv("LANGFUSE_SECRET_KEY", "sk-lf-test")
+
+    if set_to is None:
+        monkeypatch.delenv("LANGFUSE_ENVIRONMENT", raising=False)
+    else:
+        monkeypatch.setenv("LANGFUSE_ENVIRONMENT", set_to)
+
+    monkeypatch.setattr(tracing, "Langfuse", lambda **kwargs: made.update(kwargs))
+    tracing.client.cache_clear()
+
+    try:
+        tracing.client()
+    finally:
+        tracing.client.cache_clear()
+
+    assert made["environment"] == environment
+
+
 def test_nothing_configures_langsmith():
     """No service, compose file, setting or dependency sets up LangSmith or LangChain's own
     tracing; Langfuse is the only tracing."""
