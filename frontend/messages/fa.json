@@ -160,8 +160,20 @@
     "questions": "پرسش‌ها",
     "flagged": "علامت‌خورده",
     "replaced": "جایگزین‌شده",
+    "patterns": "الگوها",
     "noFlagged": "اکنون چیزی علامت نخورده است.",
     "noReplaced": "هنوز چیزی جایگزین نشده است.",
+    "noPatterns": "هنوز الگویی اینجا نیست.",
+    "patternStatusLabel": "وضعیت",
+    "patternStatus": {
+      "proposed": "پیشنهادشده",
+      "approved": "تأییدشده",
+      "in_use": "در حال استفاده",
+      "dismissed": "ردشده"
+    },
+    "patternQuestions": "{count, plural, one {# پرسش} other {# پرسش}}",
+    "firstSeen": "نخستین مشاهده {date}",
+    "lastSeen": "آخرین مشاهده {date}",
     "replacedWith": "جایگزین شده با",
     "answers": "{count, plural, one {# پاسخ} other {# پاسخ}}",
     "right": "{percent}٪ درست",
@@ -496,7 +508,8 @@
       "assistant_message": "پیام‌های دستیار",
       "assistant_title": "عنوان گفت‌وگوهای دستیار",
       "transcription": "پیام‌های صوتی",
-      "help_chat": "گفت‌وگوی راهنما"
+      "help_chat": "گفت‌وگوی راهنما",
+      "quality_patterns": "الگوهای کیفیت پرسش‌ها"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} برای هر مصاحبه",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} برای هر گفت‌وگو",
       "assistant_title": "{cost} برای هر گفت‌وگو",
       "transcription": "{cost} برای هر دقیقه",
-      "help_chat": "{cost} برای هر فراخوانی"
+      "help_chat": "{cost} برای هر فراخوانی",
+      "quality_patterns": "{cost} برای هر اجرا"
     },
     "aiPaid": "پرداخت‌کننده {spend}",
     "aiUnpaid": "بدون پرداخت {spend}",

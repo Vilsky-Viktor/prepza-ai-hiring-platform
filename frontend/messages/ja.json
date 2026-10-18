@@ -160,8 +160,20 @@
     "questions": "問題",
     "flagged": "報告あり",
     "replaced": "差し替え済み",
+    "patterns": "パターン",
     "noFlagged": "現在、報告された問題はありません。",
     "noReplaced": "差し替えられた問題はまだありません。",
+    "noPatterns": "ここにはまだパターンがありません。",
+    "patternStatusLabel": "ステータス",
+    "patternStatus": {
+      "proposed": "提案中",
+      "approved": "承認済み",
+      "in_use": "使用中",
+      "dismissed": "却下"
+    },
+    "patternQuestions": "{count, plural, other {# 問}}",
+    "firstSeen": "初回検出 {date}",
+    "lastSeen": "最終検出 {date}",
     "replacedWith": "置き換え後",
     "answers": "{count, plural, other {回答 # 件}}",
     "right": "正答率 {percent}%",
@@ -496,7 +508,8 @@
       "assistant_message": "アシスタントのメッセージ",
       "assistant_title": "アシスタントのチャットタイトル",
       "transcription": "音声メッセージ",
-      "help_chat": "ヘルプチャット"
+      "help_chat": "ヘルプチャット",
+      "quality_patterns": "問題の品質パターン"
     },
     "aiUnitCost": {
       "interview_generation": "面接 1 件あたり {cost}",
@@ -512,7 +525,8 @@
       "assistant_message": "会話 1 件あたり {cost}",
       "assistant_title": "会話 1 件あたり {cost}",
       "transcription": "1 分あたり {cost}",
-      "help_chat": "呼び出し 1 回あたり {cost}"
+      "help_chat": "呼び出し 1 回あたり {cost}",
+      "quality_patterns": "実行 1 回あたり {cost}"
     },
     "aiPaid": "有料 {spend}",
     "aiUnpaid": "無料 {spend}",

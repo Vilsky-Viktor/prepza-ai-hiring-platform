@@ -160,8 +160,20 @@
     "questions": "Questions",
     "flagged": "Flagged",
     "replaced": "Replaced",
+    "patterns": "Patterns",
     "noFlagged": "Nothing is flagged right now.",
     "noReplaced": "Nothing has been replaced yet.",
+    "noPatterns": "No patterns here yet.",
+    "patternStatusLabel": "Status",
+    "patternStatus": {
+      "proposed": "proposed",
+      "approved": "approved",
+      "in_use": "in use",
+      "dismissed": "dismissed"
+    },
+    "patternQuestions": "{count, plural, one {# question} other {# questions}}",
+    "firstSeen": "first seen {date}",
+    "lastSeen": "last seen {date}",
     "replacedWith": "Replaced with",
     "answers": "{count, plural, one {# answer} other {# answers}}",
     "right": "{percent}% right",
@@ -496,7 +508,8 @@
       "assistant_message": "Assistant messages",
       "assistant_title": "Assistant chat titles",
       "transcription": "Voice messages",
-      "help_chat": "Help chat"
+      "help_chat": "Help chat",
+      "quality_patterns": "Question quality patterns"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} an interview",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} a conversation",
       "assistant_title": "{cost} a conversation",
       "transcription": "{cost} a minute",
-      "help_chat": "{cost} a call"
+      "help_chat": "{cost} a call",
+      "quality_patterns": "{cost} a run"
     },
     "aiPaid": "paid {spend}",
     "aiUnpaid": "unpaid {spend}",

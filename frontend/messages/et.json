@@ -160,8 +160,20 @@
     "questions": "Küsimused",
     "flagged": "Märgitud",
     "replaced": "Asendatud",
+    "patterns": "Mustrid",
     "noFlagged": "Praegu pole midagi märgitud.",
     "noReplaced": "Midagi pole veel asendatud.",
+    "noPatterns": "Siin pole veel mustreid.",
+    "patternStatusLabel": "Olek",
+    "patternStatus": {
+      "proposed": "pakutud",
+      "approved": "kinnitatud",
+      "in_use": "kasutusel",
+      "dismissed": "tagasi lükatud"
+    },
+    "patternQuestions": "{count, plural, one {# küsimus} other {# küsimust}}",
+    "firstSeen": "esimest korda leitud {date}",
+    "lastSeen": "viimati leitud {date}",
     "replacedWith": "Asendatud",
     "answers": "{count, plural, one {# vastus} other {# vastust}}",
     "right": "{percent}% õigesti",
@@ -496,7 +508,8 @@
       "assistant_message": "Assistendi sõnumid",
       "assistant_title": "Assistendi vestluste pealkirjad",
       "transcription": "Häälsõnumid",
-      "help_chat": "Abivestlus"
+      "help_chat": "Abivestlus",
+      "quality_patterns": "Küsimuste kvaliteedimustrid"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} intervjuu kohta",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} vestluse kohta",
       "assistant_title": "{cost} vestluse kohta",
       "transcription": "{cost} minuti kohta",
-      "help_chat": "{cost} päringu kohta"
+      "help_chat": "{cost} päringu kohta",
+      "quality_patterns": "{cost} käivituse kohta"
     },
     "aiPaid": "maksvad {spend}",
     "aiUnpaid": "mittemaksvad {spend}",

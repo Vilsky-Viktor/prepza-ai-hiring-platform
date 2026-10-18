@@ -53,11 +53,12 @@ POST       /notifications/superadmin/campaigns/from-news/{news_id}
 
 ## Questions
 
-Two tabs of its own, at `/superadmin/questions/flagged` and `/superadmin/questions/replaced` (the older `/superadmin/flagged` and `/superadmin/replaced` lead there):
+Three tabs of its own, at `/superadmin/questions/flagged`, `/superadmin/questions/replaced` and `/superadmin/questions/patterns` (the older `/superadmin/flagged` and `/superadmin/replaced` lead there):
 
 - **Flagged:** the flagged questions, each to fix now or dismiss. A superadmin's "Fix now" isn't counted towards the verifier's daily limit.
 - **Replaced:** the questions the verifier replaced.
 - Each replaced question has a "replaced with" button showing the question that took its place: the next kept version, or the question as it is now.
+- **Patterns:** recurring mistakes the weekly job found in flagged and replaced questions, each written as a general rule, with the problem of the questions it comes from, how many questions showed it, and when it was first and last seen; most recently seen first. A status pill above the list shows the proposed ones (the default), approved, in use or dismissed. A proposed one is approved (a candidate rule, used only once an eval shows it helps) or dismissed (kept, so it's never proposed again, and never used), and leaves the list; who reviewed it and when is kept. One reviewed meanwhile is refused with "This pattern was already reviewed". On a phone the problem, the count and the buttons go under the rule. See [Patterns from bad questions](../generation.md#patterns-from-bad-questions).
 
 See [Question quality](../generation.md#question-quality) for how questions get flagged.
 

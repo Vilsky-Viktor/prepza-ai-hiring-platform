@@ -1096,6 +1096,28 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/questions/signals": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * List Signals
+     * @description Questions flagged or replaced in the last `days` across every company and template, for
+     *     generation's weekly pattern job only: it turns them into general rules without any company's
+     *     text, and nothing else may read other companies' questions.
+     */
+    get: operations["list_signals_internal_questions_signals_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/questions/{question_id}/quality": {
     parameters: {
       query?: never
@@ -1767,6 +1789,41 @@ export interface components {
       messageId: string
       /** Publishtime */
       publishTime?: string | null
+    }
+    /**
+     * QualitySignalOut
+     * @description A question flagged or replaced lately, for generation's weekly pattern job: its content
+     *     and what showed it was bad, without any id, set or company.
+     */
+    QualitySignalOut: {
+      /** Flag */
+      flag: string
+      /** Text */
+      text: string
+      /** Options */
+      options: components["schemas"]["OptionIn"][]
+      /** Answers */
+      answers: number
+      /** Correct */
+      correct: number
+      /** Option Picks */
+      option_picks: {
+        [key: string]: number
+      }
+      /** Timeouts */
+      timeouts: number
+      /** Reasons */
+      reasons: {
+        [key: string]: number
+      }
+      /** Likes */
+      likes: number
+      /** Dislikes */
+      dislikes: number
+      /** New Text */
+      new_text?: string | null
+      /** New Options */
+      new_options?: components["schemas"]["OptionIn"][] | null
     }
     /**
      * QuestionContext
@@ -4344,6 +4401,37 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["SetContent"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  list_signals_internal_questions_signals_get: {
+    parameters: {
+      query?: {
+        days?: number
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["QualitySignalOut"][]
         }
       }
       /** @description Validation Error */

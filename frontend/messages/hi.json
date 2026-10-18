@@ -160,8 +160,20 @@
     "questions": "सवाल",
     "flagged": "फ़्लैग किए गए",
     "replaced": "बदले गए",
+    "patterns": "पैटर्न",
     "noFlagged": "अभी कुछ भी फ़्लैग नहीं किया गया है।",
     "noReplaced": "अभी तक कुछ नहीं बदला गया।",
+    "noPatterns": "यहाँ अभी कोई पैटर्न नहीं है।",
+    "patternStatusLabel": "स्थिति",
+    "patternStatus": {
+      "proposed": "प्रस्तावित",
+      "approved": "स्वीकृत",
+      "in_use": "इस्तेमाल में",
+      "dismissed": "ख़ारिज"
+    },
+    "patternQuestions": "{count, plural, one {# सवाल} other {# सवाल}}",
+    "firstSeen": "पहली बार दिखा {date}",
+    "lastSeen": "आख़िरी बार दिखा {date}",
     "replacedWith": "इससे बदला गया",
     "answers": "{count, plural, one {# जवाब} other {# जवाब}}",
     "right": "{percent}% सही",
@@ -496,7 +508,8 @@
       "assistant_message": "असिस्टेंट संदेश",
       "assistant_title": "असिस्टेंट चैट के शीर्षक",
       "transcription": "वॉइस संदेश",
-      "help_chat": "हेल्प चैट"
+      "help_chat": "हेल्प चैट",
+      "quality_patterns": "सवालों की गुणवत्ता के पैटर्न"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} प्रति इंटरव्यू",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} प्रति बातचीत",
       "assistant_title": "{cost} प्रति बातचीत",
       "transcription": "{cost} प्रति मिनट",
-      "help_chat": "{cost} प्रति कॉल"
+      "help_chat": "{cost} प्रति कॉल",
+      "quality_patterns": "{cost} प्रति रन"
     },
     "aiPaid": "भुगतान वाले {spend}",
     "aiUnpaid": "बिना भुगतान वाले {spend}",

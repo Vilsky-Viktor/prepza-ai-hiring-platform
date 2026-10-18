@@ -160,8 +160,20 @@
     "questions": "الأسئلة",
     "flagged": "مُعلَّمة",
     "replaced": "مُستبدَلة",
+    "patterns": "الأنماط",
     "noFlagged": "لا يوجد شيء مُعلَّم حاليًا.",
     "noReplaced": "لم يُستبدَل شيء بعد.",
+    "noPatterns": "لا توجد أنماط هنا بعد.",
+    "patternStatusLabel": "الحالة",
+    "patternStatus": {
+      "proposed": "مقترح",
+      "approved": "معتمد",
+      "in_use": "قيد الاستخدام",
+      "dismissed": "مرفوض"
+    },
+    "patternQuestions": "{count, plural, zero {لا أسئلة} one {سؤال واحد} two {سؤالان} few {# أسئلة} many {# سؤالًا} other {# سؤال}}",
+    "firstSeen": "أول ظهور {date}",
+    "lastSeen": "آخر ظهور {date}",
     "replacedWith": "استُبدل بـ",
     "answers": "{count, plural, zero {لا إجابات} one {إجابة واحدة} two {إجابتان} few {# إجابات} many {# إجابةً} other {# إجابة}}",
     "right": "{percent}٪ صحيحة",
@@ -496,7 +508,8 @@
       "assistant_message": "رسائل المساعد",
       "assistant_title": "عناوين محادثات المساعد",
       "transcription": "الرسائل الصوتية",
-      "help_chat": "دردشة المساعدة"
+      "help_chat": "دردشة المساعدة",
+      "quality_patterns": "أنماط جودة الأسئلة"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} لكل مقابلة",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} لكل محادثة",
       "assistant_title": "{cost} لكل محادثة",
       "transcription": "{cost} لكل دقيقة",
-      "help_chat": "{cost} لكل طلب"
+      "help_chat": "{cost} لكل طلب",
+      "quality_patterns": "{cost} لكل تشغيل"
     },
     "aiPaid": "الدافعون {spend}",
     "aiUnpaid": "غير الدافعين {spend}",

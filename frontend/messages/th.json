@@ -160,8 +160,20 @@
     "questions": "คำถาม",
     "flagged": "ถูกแจ้ง",
     "replaced": "แทนที่แล้ว",
+    "patterns": "รูปแบบ",
     "noFlagged": "ขณะนี้ไม่มีคำถามที่ถูกแจ้ง",
     "noReplaced": "ยังไม่มีคำถามที่ถูกแทนที่",
+    "noPatterns": "ยังไม่มีรูปแบบในส่วนนี้",
+    "patternStatusLabel": "สถานะ",
+    "patternStatus": {
+      "proposed": "ถูกเสนอ",
+      "approved": "อนุมัติแล้ว",
+      "in_use": "ใช้งานอยู่",
+      "dismissed": "ปัดตก"
+    },
+    "patternQuestions": "{count, plural, other {# คำถาม}}",
+    "firstSeen": "พบครั้งแรก {date}",
+    "lastSeen": "พบล่าสุด {date}",
     "replacedWith": "แทนที่ด้วย",
     "answers": "{count, plural, other {# คำตอบ}}",
     "right": "ถูก {percent}%",
@@ -496,7 +508,8 @@
       "assistant_message": "ข้อความของผู้ช่วย",
       "assistant_title": "ชื่อแชตของผู้ช่วย",
       "transcription": "ข้อความเสียง",
-      "help_chat": "แชตช่วยเหลือ"
+      "help_chat": "แชตช่วยเหลือ",
+      "quality_patterns": "รูปแบบคุณภาพของคำถาม"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} ต่อการสัมภาษณ์",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} ต่อบทสนทนา",
       "assistant_title": "{cost} ต่อบทสนทนา",
       "transcription": "{cost} ต่อนาที",
-      "help_chat": "{cost} ต่อการเรียกใช้"
+      "help_chat": "{cost} ต่อการเรียกใช้",
+      "quality_patterns": "{cost} ต่อการรันหนึ่งครั้ง"
     },
     "aiPaid": "ชำระเงินแล้ว {spend}",
     "aiUnpaid": "ยังไม่ชำระเงิน {spend}",

@@ -160,8 +160,20 @@
     "questions": "Sorular",
     "flagged": "İşaretlenenler",
     "replaced": "Değiştirilenler",
+    "patterns": "Örüntüler",
     "noFlagged": "Şu anda işaretli bir şey yok.",
     "noReplaced": "Henüz hiçbir şey değiştirilmedi.",
+    "noPatterns": "Burada henüz örüntü yok.",
+    "patternStatusLabel": "Durum",
+    "patternStatus": {
+      "proposed": "önerildi",
+      "approved": "onaylandı",
+      "in_use": "kullanımda",
+      "dismissed": "reddedildi"
+    },
+    "patternQuestions": "{count, plural, one {# soru} other {# soru}}",
+    "firstSeen": "ilk görülme {date}",
+    "lastSeen": "son görülme {date}",
     "replacedWith": "Yerine gelen",
     "answers": "{count, plural, one {# cevap} other {# cevap}}",
     "right": "%{percent} doğru",
@@ -496,7 +508,8 @@
       "assistant_message": "Asistan mesajları",
       "assistant_title": "Asistan sohbet başlıkları",
       "transcription": "Sesli mesajlar",
-      "help_chat": "Yardım sohbeti"
+      "help_chat": "Yardım sohbeti",
+      "quality_patterns": "Soru kalitesi örüntüleri"
     },
     "aiUnitCost": {
       "interview_generation": "mülakat başına {cost}",
@@ -512,7 +525,8 @@
       "assistant_message": "sohbet başına {cost}",
       "assistant_title": "sohbet başına {cost}",
       "transcription": "dakika başına {cost}",
-      "help_chat": "çağrı başına {cost}"
+      "help_chat": "çağrı başına {cost}",
+      "quality_patterns": "çalıştırma başına {cost}"
     },
     "aiPaid": "ödeme yapan {spend}",
     "aiUnpaid": "ödeme yapmayan {spend}",

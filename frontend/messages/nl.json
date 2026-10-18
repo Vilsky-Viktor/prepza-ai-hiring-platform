@@ -160,8 +160,20 @@
     "questions": "Vragen",
     "flagged": "Gemarkeerd",
     "replaced": "Vervangen",
+    "patterns": "Patronen",
     "noFlagged": "Er is nu niets gemarkeerd.",
     "noReplaced": "Er is nog niets vervangen.",
+    "noPatterns": "Hier zijn nog geen patronen.",
+    "patternStatusLabel": "Status",
+    "patternStatus": {
+      "proposed": "voorgesteld",
+      "approved": "goedgekeurd",
+      "in_use": "in gebruik",
+      "dismissed": "afgewezen"
+    },
+    "patternQuestions": "{count, plural, one {# vraag} other {# vragen}}",
+    "firstSeen": "eerst gezien {date}",
+    "lastSeen": "laatst gezien {date}",
     "replacedWith": "Vervangen door",
     "answers": "{count, plural, one {# antwoord} other {# antwoorden}}",
     "right": "{percent}% goed",
@@ -496,7 +508,8 @@
       "assistant_message": "Berichten aan de assistent",
       "assistant_title": "Titels van assistentchats",
       "transcription": "Spraakberichten",
-      "help_chat": "Helpchat"
+      "help_chat": "Helpchat",
+      "quality_patterns": "Kwaliteitspatronen van vragen"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} per interview",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} per gesprek",
       "assistant_title": "{cost} per gesprek",
       "transcription": "{cost} per minuut",
-      "help_chat": "{cost} per aanroep"
+      "help_chat": "{cost} per aanroep",
+      "quality_patterns": "{cost} per run"
     },
     "aiPaid": "betalend {spend}",
     "aiUnpaid": "niet-betalend {spend}",

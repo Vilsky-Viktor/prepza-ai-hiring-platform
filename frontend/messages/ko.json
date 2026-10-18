@@ -160,8 +160,20 @@
     "questions": "문제",
     "flagged": "신고됨",
     "replaced": "교체됨",
+    "patterns": "패턴",
     "noFlagged": "현재 신고된 문제가 없습니다.",
     "noReplaced": "아직 교체된 문제가 없습니다.",
+    "noPatterns": "아직 여기에 패턴이 없습니다.",
+    "patternStatusLabel": "상태",
+    "patternStatus": {
+      "proposed": "제안됨",
+      "approved": "승인됨",
+      "in_use": "사용 중",
+      "dismissed": "반려됨"
+    },
+    "patternQuestions": "{count, plural, other {문제 #개}}",
+    "firstSeen": "처음 발견 {date}",
+    "lastSeen": "마지막 발견 {date}",
     "replacedWith": "교체된 문제",
     "answers": "{count, plural, other {답변 #개}}",
     "right": "정답률 {percent}%",
@@ -496,7 +508,8 @@
       "assistant_message": "어시스턴트 메시지",
       "assistant_title": "어시스턴트 채팅 제목",
       "transcription": "음성 메시지",
-      "help_chat": "도움말 채팅"
+      "help_chat": "도움말 채팅",
+      "quality_patterns": "문제 품질 패턴"
     },
     "aiUnitCost": {
       "interview_generation": "면접당 {cost}",
@@ -512,7 +525,8 @@
       "assistant_message": "대화당 {cost}",
       "assistant_title": "대화당 {cost}",
       "transcription": "분당 {cost}",
-      "help_chat": "호출당 {cost}"
+      "help_chat": "호출당 {cost}",
+      "quality_patterns": "실행 1회당 {cost}"
     },
     "aiPaid": "유료 {spend}",
     "aiUnpaid": "무료 {spend}",

@@ -197,6 +197,63 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/superadmin/patterns": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** List Patterns */
+    get: operations["list_patterns_superadmin_patterns_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/superadmin/patterns/{pattern_id}/approve": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Approve
+     * @description A candidate rule now: it's used only once an eval shows it helps.
+     */
+    post: operations["approve_superadmin_patterns__pattern_id__approve_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/superadmin/patterns/{pattern_id}/dismiss": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Dismiss
+     * @description Never used, and kept so the job doesn't propose it again.
+     */
+    post: operations["dismiss_superadmin_patterns__pattern_id__dismiss_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/generations": {
     parameters: {
       query?: never
@@ -666,6 +723,44 @@ export interface components {
       paid: boolean
     }
     /**
+     * PatternOut
+     * @description A pattern on the admin zone's patterns tab.
+     */
+    PatternOut: {
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string
+      /** Text */
+      text: string
+      /** Flag */
+      flag: string
+      /** Question Count */
+      question_count: number
+      /**
+       * First Seen
+       * Format: date-time
+       */
+      first_seen: string
+      /**
+       * Last Seen
+       * Format: date-time
+       */
+      last_seen: string
+      /** Status */
+      status: string
+      /** Reviewed At */
+      reviewed_at: string | null
+    }
+    /**
+     * PatternStatus
+     * @description Where a quality pattern stands: proposed by the weekly job, then approved or dismissed
+     *     by a superadmin; an approved one in use once an eval shows it helps.
+     * @enum {string}
+     */
+    PatternStatus: "proposed" | "approved" | "dismissed" | "in_use"
+    /**
      * QualityFlag
      * @description Why the library sent a question to the verifier; mirrors the library's flags.
      * @enum {string}
@@ -1099,6 +1194,99 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["AdditionOut"]
         }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  list_patterns_superadmin_patterns_get: {
+    parameters: {
+      query?: {
+        status?: components["schemas"]["PatternStatus"]
+        /** @description Number of items to skip */
+        offset?: number
+        /** @description Number of items to return, up to 100 */
+        limit?: number
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["PatternOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  approve_superadmin_patterns__pattern_id__approve_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        pattern_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  dismiss_superadmin_patterns__pattern_id__dismiss_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        pattern_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
       }
       /** @description Validation Error */
       422: {

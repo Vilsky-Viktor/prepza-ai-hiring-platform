@@ -160,8 +160,20 @@
     "questions": "Fragen",
     "flagged": "Gemeldet",
     "replaced": "Ersetzt",
+    "patterns": "Muster",
     "noFlagged": "Gerade ist nichts gemeldet.",
     "noReplaced": "Noch wurde nichts ersetzt.",
+    "noPatterns": "Hier gibt es noch keine Muster.",
+    "patternStatusLabel": "Status",
+    "patternStatus": {
+      "proposed": "vorgeschlagen",
+      "approved": "freigegeben",
+      "in_use": "in Verwendung",
+      "dismissed": "verworfen"
+    },
+    "patternQuestions": "{count, plural, one {# Frage} other {# Fragen}}",
+    "firstSeen": "erstmals gesehen {date}",
+    "lastSeen": "zuletzt gesehen {date}",
     "replacedWith": "Ersetzt durch",
     "answers": "{count, plural, one {# Antwort} other {# Antworten}}",
     "right": "{percent} % richtig",
@@ -496,7 +508,8 @@
       "assistant_message": "Nachrichten an den Assistenten",
       "assistant_title": "Titel von Assistenten-Chats",
       "transcription": "Sprachnachrichten",
-      "help_chat": "Hilfe-Chat"
+      "help_chat": "Hilfe-Chat",
+      "quality_patterns": "Qualitätsmuster bei Fragen"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} pro Interview",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} pro Unterhaltung",
       "assistant_title": "{cost} pro Unterhaltung",
       "transcription": "{cost} pro Minute",
-      "help_chat": "{cost} pro Aufruf"
+      "help_chat": "{cost} pro Aufruf",
+      "quality_patterns": "{cost} pro Durchlauf"
     },
     "aiPaid": "zahlend {spend}",
     "aiUnpaid": "nicht zahlend {spend}",

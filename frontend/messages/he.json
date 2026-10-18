@@ -160,8 +160,20 @@
     "questions": "שאלות",
     "flagged": "מסומנות",
     "replaced": "הוחלפו",
+    "patterns": "דפוסים",
     "noFlagged": "אין כרגע שום דבר מסומן.",
     "noReplaced": "עדיין לא הוחלף דבר.",
+    "noPatterns": "אין כאן דפוסים עדיין.",
+    "patternStatusLabel": "סטטוס",
+    "patternStatus": {
+      "proposed": "מוצע",
+      "approved": "אושר",
+      "in_use": "בשימוש",
+      "dismissed": "נדחה"
+    },
+    "patternQuestions": "{count, plural, one {שאלה אחת} two {# שאלות} other {# שאלות}}",
+    "firstSeen": "נראה לראשונה {date}",
+    "lastSeen": "נראה לאחרונה {date}",
     "replacedWith": "הוחלפה ב",
     "answers": "{count, plural, one {תשובה אחת} two {# תשובות} other {# תשובות}}",
     "right": "{percent}% נכונות",
@@ -496,7 +508,8 @@
       "assistant_message": "הודעות לעוזר",
       "assistant_title": "כותרות שיחות עם העוזר",
       "transcription": "הודעות קוליות",
-      "help_chat": "צ׳אט העזרה"
+      "help_chat": "צ׳אט העזרה",
+      "quality_patterns": "דפוסי איכות של שאלות"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} לראיון",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} לשיחה",
       "assistant_title": "{cost} לשיחה",
       "transcription": "{cost} לדקה",
-      "help_chat": "{cost} לקריאה"
+      "help_chat": "{cost} לקריאה",
+      "quality_patterns": "{cost} להרצה"
     },
     "aiPaid": "משלמים {spend}",
     "aiUnpaid": "לא משלמים {spend}",

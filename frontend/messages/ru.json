@@ -160,8 +160,20 @@
     "questions": "Вопросы",
     "flagged": "Отмеченные",
     "replaced": "Заменённые",
+    "patterns": "Закономерности",
     "noFlagged": "Сейчас ничего не отмечено.",
     "noReplaced": "Пока ничего не заменено.",
+    "noPatterns": "Здесь пока нет закономерностей.",
+    "patternStatusLabel": "Статус",
+    "patternStatus": {
+      "proposed": "предложена",
+      "approved": "одобрена",
+      "in_use": "используется",
+      "dismissed": "отклонена"
+    },
+    "patternQuestions": "{count, plural, one {# вопрос} few {# вопроса} many {# вопросов} other {# вопроса}}",
+    "firstSeen": "первое появление {date}",
+    "lastSeen": "последнее появление {date}",
     "replacedWith": "Заменён на",
     "answers": "{count, plural, one {# ответ} few {# ответа} many {# ответов} other {# ответа}}",
     "right": "{percent}% верно",
@@ -496,7 +508,8 @@
       "assistant_message": "Сообщения ассистенту",
       "assistant_title": "Названия чатов ассистента",
       "transcription": "Голосовые сообщения",
-      "help_chat": "Чат помощи"
+      "help_chat": "Чат помощи",
+      "quality_patterns": "Закономерности качества вопросов"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} за собеседование",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} за чат",
       "assistant_title": "{cost} за чат",
       "transcription": "{cost} за минуту",
-      "help_chat": "{cost} за вызов"
+      "help_chat": "{cost} за вызов",
+      "quality_patterns": "{cost} за запуск"
     },
     "aiPaid": "платящие {spend}",
     "aiUnpaid": "неплатящие {spend}",

@@ -160,8 +160,20 @@
     "questions": "Mga tanong",
     "flagged": "Naka-flag",
     "replaced": "Napalitan",
+    "patterns": "Mga pattern",
     "noFlagged": "Walang naka-flag ngayon.",
     "noReplaced": "Wala pang napapalitan.",
+    "noPatterns": "Wala pang pattern dito.",
+    "patternStatusLabel": "Status",
+    "patternStatus": {
+      "proposed": "iminungkahi",
+      "approved": "inaprubahan",
+      "in_use": "ginagamit",
+      "dismissed": "ibinasura"
+    },
+    "patternQuestions": "{count, plural, one {# tanong} other {# tanong}}",
+    "firstSeen": "unang nakita {date}",
+    "lastSeen": "huling nakita {date}",
     "replacedWith": "Pinalitan ng",
     "answers": "{count, plural, one {# sagot} other {# sagot}}",
     "right": "{percent}% tama",
@@ -496,7 +508,8 @@
       "assistant_message": "Mga mensahe sa assistant",
       "assistant_title": "Mga pamagat ng chat sa assistant",
       "transcription": "Mga voice message",
-      "help_chat": "Help chat"
+      "help_chat": "Help chat",
+      "quality_patterns": "Mga pattern sa kalidad ng tanong"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} bawat interview",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} bawat usapan",
       "assistant_title": "{cost} bawat usapan",
       "transcription": "{cost} bawat minuto",
-      "help_chat": "{cost} bawat call"
+      "help_chat": "{cost} bawat call",
+      "quality_patterns": "{cost} bawat pagpapatakbo"
     },
     "aiPaid": "bayad {spend}",
     "aiUnpaid": "hindi bayad {spend}",

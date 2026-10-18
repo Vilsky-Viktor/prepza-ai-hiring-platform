@@ -160,8 +160,20 @@
     "questions": "Pytania",
     "flagged": "Oznaczone",
     "replaced": "Zastąpione",
+    "patterns": "Wzorce",
     "noFlagged": "Obecnie nic nie jest oznaczone.",
     "noReplaced": "Nic jeszcze nie zastąpiono.",
+    "noPatterns": "Nie ma tu jeszcze wzorców.",
+    "patternStatusLabel": "Status",
+    "patternStatus": {
+      "proposed": "zaproponowany",
+      "approved": "zatwierdzony",
+      "in_use": "w użyciu",
+      "dismissed": "odrzucony"
+    },
+    "patternQuestions": "{count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}}",
+    "firstSeen": "pierwsze wystąpienie {date}",
+    "lastSeen": "ostatnie wystąpienie {date}",
     "replacedWith": "Zastąpione przez",
     "answers": "{count, plural, one {# odpowiedź} few {# odpowiedzi} many {# odpowiedzi} other {# odpowiedzi}}",
     "right": "{percent}% poprawnych",
@@ -496,7 +508,8 @@
       "assistant_message": "Wiadomości do asystenta",
       "assistant_title": "Tytuły czatów z asystentem",
       "transcription": "Wiadomości głosowe",
-      "help_chat": "Czat pomocy"
+      "help_chat": "Czat pomocy",
+      "quality_patterns": "Wzorce jakości pytań"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} za rozmowę",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} za czat",
       "assistant_title": "{cost} za czat",
       "transcription": "{cost} za minutę",
-      "help_chat": "{cost} za wywołanie"
+      "help_chat": "{cost} za wywołanie",
+      "quality_patterns": "{cost} za uruchomienie"
     },
     "aiPaid": "płacące {spend}",
     "aiUnpaid": "niepłacące {spend}",

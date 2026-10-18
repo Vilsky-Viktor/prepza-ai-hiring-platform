@@ -160,8 +160,20 @@
     "questions": "题目",
     "flagged": "已标记",
     "replaced": "已替换",
+    "patterns": "模式",
     "noFlagged": "目前没有被标记的题目。",
     "noReplaced": "还没有被替换的题目。",
+    "noPatterns": "这里还没有模式。",
+    "patternStatusLabel": "状态",
+    "patternStatus": {
+      "proposed": "已提议",
+      "approved": "已批准",
+      "in_use": "使用中",
+      "dismissed": "已驳回"
+    },
+    "patternQuestions": "{count, plural, other {# 道题}}",
+    "firstSeen": "首次发现 {date}",
+    "lastSeen": "最近发现 {date}",
     "replacedWith": "替换为",
     "answers": "{count, plural, other {# 次作答}}",
     "right": "正确率 {percent}%",
@@ -496,7 +508,8 @@
       "assistant_message": "助手消息",
       "assistant_title": "助手对话标题",
       "transcription": "语音消息",
-      "help_chat": "帮助聊天"
+      "help_chat": "帮助聊天",
+      "quality_patterns": "题目质量模式"
     },
     "aiUnitCost": {
       "interview_generation": "每场面试 {cost}",
@@ -512,7 +525,8 @@
       "assistant_message": "每次对话 {cost}",
       "assistant_title": "每次对话 {cost}",
       "transcription": "每分钟 {cost}",
-      "help_chat": "每次调用 {cost}"
+      "help_chat": "每次调用 {cost}",
+      "quality_patterns": "每次运行 {cost}"
     },
     "aiPaid": "付费 {spend}",
     "aiUnpaid": "未付费 {spend}",

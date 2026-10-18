@@ -160,8 +160,20 @@
     "questions": "Soal",
     "flagged": "Ditandai",
     "replaced": "Diganti",
+    "patterns": "Pola",
     "noFlagged": "Tidak ada yang ditandai saat ini.",
     "noReplaced": "Belum ada yang diganti.",
+    "noPatterns": "Belum ada pola di sini.",
+    "patternStatusLabel": "Status",
+    "patternStatus": {
+      "proposed": "diusulkan",
+      "approved": "disetujui",
+      "in_use": "digunakan",
+      "dismissed": "ditolak"
+    },
+    "patternQuestions": "{count, plural, other {# soal}}",
+    "firstSeen": "pertama terlihat {date}",
+    "lastSeen": "terakhir terlihat {date}",
     "replacedWith": "Diganti dengan",
     "answers": "{count, plural, other {# jawaban}}",
     "right": "{percent}% benar",
@@ -496,7 +508,8 @@
       "assistant_message": "Pesan asisten",
       "assistant_title": "Judul obrolan asisten",
       "transcription": "Pesan suara",
-      "help_chat": "Chat bantuan"
+      "help_chat": "Chat bantuan",
+      "quality_patterns": "Pola kualitas soal"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} per wawancara",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} per percakapan",
       "assistant_title": "{cost} per percakapan",
       "transcription": "{cost} per menit",
-      "help_chat": "{cost} per panggilan"
+      "help_chat": "{cost} per panggilan",
+      "quality_patterns": "{cost} per eksekusi"
     },
     "aiPaid": "sudah membayar {spend}",
     "aiUnpaid": "belum membayar {spend}",

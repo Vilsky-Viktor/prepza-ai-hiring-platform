@@ -160,8 +160,20 @@
     "questions": "Питання",
     "flagged": "Позначені",
     "replaced": "Замінені",
+    "patterns": "Закономірності",
     "noFlagged": "Зараз нічого не позначено.",
     "noReplaced": "Ще нічого не замінено.",
+    "noPatterns": "Тут поки немає закономірностей.",
+    "patternStatusLabel": "Статус",
+    "patternStatus": {
+      "proposed": "запропонована",
+      "approved": "схвалена",
+      "in_use": "використовується",
+      "dismissed": "відхилена"
+    },
+    "patternQuestions": "{count, plural, one {# питання} few {# питання} many {# питань} other {# питання}}",
+    "firstSeen": "перша поява {date}",
+    "lastSeen": "остання поява {date}",
     "replacedWith": "Замінено на",
     "answers": "{count, plural, one {# відповідь} few {# відповіді} many {# відповідей} other {# відповіді}}",
     "right": "{percent}% правильних",
@@ -496,7 +508,8 @@
       "assistant_message": "Повідомлення асистенту",
       "assistant_title": "Назви чатів асистента",
       "transcription": "Голосові повідомлення",
-      "help_chat": "Чат допомоги"
+      "help_chat": "Чат допомоги",
+      "quality_patterns": "Закономірності якості питань"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} за співбесіду",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} за чат",
       "assistant_title": "{cost} за чат",
       "transcription": "{cost} за хвилину",
-      "help_chat": "{cost} за виклик"
+      "help_chat": "{cost} за виклик",
+      "quality_patterns": "{cost} за запуск"
     },
     "aiPaid": "платні {spend}",
     "aiUnpaid": "неплатні {spend}",

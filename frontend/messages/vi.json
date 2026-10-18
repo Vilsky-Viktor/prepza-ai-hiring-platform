@@ -160,8 +160,20 @@
     "questions": "Câu hỏi",
     "flagged": "Bị đánh dấu",
     "replaced": "Đã thay thế",
+    "patterns": "Lỗi lặp lại",
     "noFlagged": "Hiện không có gì bị đánh dấu.",
     "noReplaced": "Chưa có gì được thay thế.",
+    "noPatterns": "Chưa có lỗi lặp lại nào ở đây.",
+    "patternStatusLabel": "Trạng thái",
+    "patternStatus": {
+      "proposed": "được đề xuất",
+      "approved": "đã duyệt",
+      "in_use": "đang dùng",
+      "dismissed": "đã loại bỏ"
+    },
+    "patternQuestions": "{count, plural, other {# câu hỏi}}",
+    "firstSeen": "phát hiện lần đầu {date}",
+    "lastSeen": "phát hiện gần nhất {date}",
     "replacedWith": "Được thay bằng",
     "answers": "{count, plural, other {# câu trả lời}}",
     "right": "{percent}% đúng",
@@ -496,7 +508,8 @@
       "assistant_message": "Tin nhắn trợ lý",
       "assistant_title": "Tiêu đề cuộc trò chuyện với trợ lý",
       "transcription": "Tin nhắn thoại",
-      "help_chat": "Chat hỗ trợ"
+      "help_chat": "Chat hỗ trợ",
+      "quality_patterns": "Lỗi lặp lại trong câu hỏi"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} mỗi buổi phỏng vấn",
@@ -512,7 +525,8 @@
       "assistant_message": "{cost} mỗi cuộc trò chuyện",
       "assistant_title": "{cost} mỗi cuộc trò chuyện",
       "transcription": "{cost} mỗi phút",
-      "help_chat": "{cost} mỗi lượt gọi"
+      "help_chat": "{cost} mỗi lượt gọi",
+      "quality_patterns": "{cost} mỗi lần chạy"
     },
     "aiPaid": "đã thanh toán {spend}",
     "aiUnpaid": "chưa thanh toán {spend}",

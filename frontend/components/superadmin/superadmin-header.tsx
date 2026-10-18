@@ -12,6 +12,7 @@ const SUBTABS = {
   questions: [
     { id: "flagged", label: "flagged" },
     { id: "replaced", label: "replaced" },
+    { id: "patterns", label: "patterns" },
   ],
   stats: [
     { id: "general", label: "statsGeneral" },
@@ -36,7 +37,7 @@ export function SuperadminHeader({
     | "controls"
     | "news"
     | "campaigns"
-  sub?: "flagged" | "replaced" | "general" | "ai-costs"
+  sub?: "flagged" | "replaced" | "patterns" | "general" | "ai-costs"
   action?: ReactNode
 }) {
   const t = useTranslations("superadmin")

@@ -7,3 +7,5 @@ export type GenerationStatus = Generation["status"]
 export type DraftTopic = Schemas["DraftTopic"]
 /** A template's latest question addition and the numbers a superadmin's addition may ask for. */
 export type Addition = Schemas["AdditionOut"]
+/** A recurring mistake the weekly job proposed, on the admin zone's patterns tab. */
+export type QualityPattern = Schemas["PatternOut"]
