@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "Een onderwerp kan maximaal {count} subonderwerpen hebben",
     "This pattern was already reviewed": "Dit patroon is al beoordeeld",
     "Not allowed": "Niet toegestaan",
+    "There's no such answer.": "Dit antwoord bestaat niet.",
 }

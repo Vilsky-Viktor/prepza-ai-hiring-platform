@@ -4,6 +4,7 @@ from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from langchain_core.messages.ai import add_usage
 from prepza_common import ai_usage, memory_cache
 from prepza_common.ai_constants import Outcome
+from prepza_common.answer_votes import traced
 from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
 from prepza_common.limit_schemas import BudgetOut
 from prepza_common.limits import limit, question_seconds
@@ -68,9 +69,12 @@ async def build_messages(
     return [SystemMessage(content=system), *earlier, HumanMessage(content=conversation[-1].content)]
 
 
-async def stream_reply(messages: list[BaseMessage], used: dict) -> AsyncIterator[str]:
-    """The answer's text as it comes; its usage metadata is kept in `used["usage"]`."""
-    async for chunk in llm.get_help_llm().astream(messages):
+async def stream_reply(
+    messages: list[BaseMessage], used: dict, trace_id: str | None = None
+) -> AsyncIterator[str]:
+    """The answer's text as it comes; its usage metadata is kept in `used["usage"]`. `trace_id`:
+    its Langfuse trace, when that's set up."""
+    async for chunk in llm.get_help_llm().astream(messages, traced(trace_id)):
         if chunk.usage_metadata:
             used["usage"] = add_usage(used.get("usage"), chunk.usage_metadata)
 

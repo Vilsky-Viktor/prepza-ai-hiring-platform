@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "Pesan dihapus: berisi rahasia"
+    "removed": "Pesan dihapus: berisi rahasia",
+    "goodAnswer": "Jawaban bagus",
+    "badAnswer": "Jawaban buruk",
+    "voteFailed": "Penilaianmu tidak bisa disimpan. Coba lagi."
   },
   "pageHelp": {
     "label": "Tentang halaman ini",

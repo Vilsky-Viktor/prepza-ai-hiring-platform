@@ -21,6 +21,8 @@ MAX_HELP_QUESTION_LENGTH = 1_000
 MAX_HELP_MESSAGE_LENGTH = 10_000
 # A reply's signature: SHA-256, in hex.
 SIGNATURE_LENGTH = 64
+# A Langfuse trace id: 32 hex characters.
+TRACE_ID_LENGTH = 32
 MAX_HELP_MESSAGES = 200
 HELP_HISTORY_MESSAGES = 10
 # The page's conversation can't be checked, so the model sees at most this many characters of
@@ -74,3 +76,6 @@ PAGE_ARTICLES = {
     "interviewSettings": "skills-test-timing-and-extra-time",
     "candidate": "skills-test-timing-and-extra-time",
 }
+
+# A vote on a help chat answer whose signature doesn't match its id and run.
+NO_SUCH_ANSWER = "There's no such answer."

@@ -20,6 +20,8 @@ class Answer:
     # blocks, sent under the answer once it's written.
     shown: set = field(default_factory=set)
     shown_blocks: list = field(default_factory=list)
+    # The Langfuse trace its model calls report to; None when Langfuse isn't set up.
+    trace_id: str | None = None
 
     @property
     def content(self) -> str:

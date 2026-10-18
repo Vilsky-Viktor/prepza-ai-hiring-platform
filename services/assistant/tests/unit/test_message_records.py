@@ -24,7 +24,7 @@ class Failing:
     def __init__(self, error):
         self.error = error
 
-    async def astream(self, messages):
+    async def astream(self, messages, config=None):
         yield AIMessageChunk(content="Two candidates")
         raise self.error
 

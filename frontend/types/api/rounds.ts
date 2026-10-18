@@ -283,10 +283,54 @@ export interface paths {
     }
     /**
      * Get Page Guide
-     * @description A page's guide, by its key, in the page's language (English until it's translated): its
-     *     info button shows it, and the assistant reads it about the page the user is on; public.
+     * @description A page's guide, by its key, in the page's language (English until it's translated), with
+     *     the guide article to read more in, if any: its info button shows it, and the assistant reads
+     *     it about the page the user is on; public.
      */
     get: operations["get_page_guide_help_pages__key__get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/help/guides": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * List Guides
+     * @description The site's guide articles (hiring advice and how-tos: hiring engineers, interviewing in
+     *     the age of AI, AI hiring and the law, ATS integration, MCP and the API, ...), by title, in
+     *     the page's language where translated; public.
+     */
+    get: operations["list_guides_help_guides_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/help/guides/{slug}": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get Guide Article
+     * @description One guide article, by its slug, with its Markdown text, in the page's language (English
+     *     until it's translated); public.
+     */
+    get: operations["get_guide_article_help_guides__slug__get"]
     put?: never
     post?: never
     delete?: never
@@ -356,6 +400,29 @@ export interface paths {
      *     sender shows they're a person.
      */
     post: operations["contact_help_contact_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/help/answers/{answer_id}/vote": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    /**
+     * Vote
+     * @description A thumbs up or down on one of the help chat's answers, for visitors too: one an answer, a
+     *     new vote replaces it, null clears it. The help chat keeps no conversation, so the answer's
+     *     signature (from its last event) shows the vote comes from the page that got it. Sent on to
+     *     Langfuse as a score on the answer's trace when that's set up.
+     */
+    put: operations["vote_help_answers__answer_id__vote_put"]
+    post?: never
     delete?: never
     options?: never
     head?: never
@@ -734,6 +801,45 @@ export interface components {
       /** Answer */
       answer: string
     }
+    /**
+     * GuideItemOut
+     * @description A guide article of the site: its title and summary in `language` (English until it's
+     *     translated), and where the site shows it.
+     */
+    GuideItemOut: {
+      /** Slug */
+      slug: string
+      /** Language */
+      language: string
+      /** Title */
+      title: string
+      /** Description */
+      description: string
+      /** Updated */
+      updated: string
+      /** Path */
+      path: string
+    }
+    /**
+     * GuideOut
+     * @description A guide article with its Markdown text.
+     */
+    GuideOut: {
+      /** Slug */
+      slug: string
+      /** Language */
+      language: string
+      /** Title */
+      title: string
+      /** Description */
+      description: string
+      /** Updated */
+      updated: string
+      /** Path */
+      path: string
+      /** Body */
+      body: string
+    }
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */
@@ -764,6 +870,19 @@ export interface components {
      * @enum {string}
      */
     HelpRole: "user" | "assistant"
+    /**
+     * HelpVoteIn
+     * @description A thumbs up (1) or down (-1) on a help chat answer, null to clear it, with the answer's
+     *     run and signature as its last event gave them.
+     */
+    HelpVoteIn: {
+      /** Trace Id */
+      trace_id?: string | null
+      /** Signature */
+      signature: string
+      /** Value */
+      value: (1 | -1) | null
+    }
     /**
      * IntegritySignal
      * @description What the candidate's browser reports during an interview.
@@ -868,7 +987,8 @@ export interface components {
     }
     /**
      * PageGuideOut
-     * @description A page's guide: what it's for (`text`), what you can do there and tips.
+     * @description A page's guide: what it's for (`text`), what you can do there, tips, and the guide
+     *     article to read more in, if the page has one.
      */
     PageGuideOut: {
       /** Key */
@@ -881,6 +1001,7 @@ export interface components {
       actions: string[]
       /** Tips */
       tips: string[]
+      article?: components["schemas"]["GuideItemOut"] | null
     }
     /**
      * PracticeRoundOut
@@ -1737,6 +1858,57 @@ export interface operations {
       }
     }
   }
+  list_guides_help_guides_get: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["GuideItemOut"][]
+        }
+      }
+    }
+  }
+  get_guide_article_help_guides__slug__get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        slug: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["GuideOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   get_legal_help_legal__document__get: {
     parameters: {
       query?: {
@@ -1837,6 +2009,39 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["ContactRequest"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  vote_help_answers__answer_id__vote_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        answer_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["HelpVoteIn"]
       }
     }
     responses: {

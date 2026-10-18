@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "Bericht verwijderd: er stond een geheim in"
+    "removed": "Bericht verwijderd: er stond een geheim in",
+    "goodAnswer": "Goed antwoord",
+    "badAnswer": "Slecht antwoord",
+    "voteFailed": "Je beoordeling kon niet worden opgeslagen. Probeer het opnieuw."
   },
   "pageHelp": {
     "label": "Over deze pagina",

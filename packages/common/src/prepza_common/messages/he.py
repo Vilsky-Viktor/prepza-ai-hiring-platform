@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "לנושא יכולים להיות לכל היותר {count} תתי-נושאים",
     "This pattern was already reviewed": "הדפוס הזה כבר נבדק",
     "Not allowed": "אין הרשאה",
+    "There's no such answer.": "אין תשובה כזו.",
 }

@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "Підтем у темі може бути не більше: {count}",
     "This pattern was already reviewed": "Ця закономірність уже розглянута",
     "Not allowed": "Немає доступу",
+    "There's no such answer.": "Такої відповіді немає.",
 }

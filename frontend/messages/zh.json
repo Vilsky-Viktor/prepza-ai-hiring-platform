@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "消息已删除：其中包含机密信息"
+    "removed": "消息已删除：其中包含机密信息",
+    "goodAnswer": "回答很好",
+    "badAnswer": "回答不好",
+    "voteFailed": "无法保存你的评价，请重试。"
   },
   "pageHelp": {
     "label": "关于此页面",

@@ -1,12 +1,18 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, Response, status
+from prepza_common.answer_votes import mirror_vote
 from prepza_common.i18n import request_language
 from prepza_common.paging import PageParams
 
 from app.auth import UserWithToken
 from app.constants.chat import NOT_FOUND, RESTORE_MINUTES
-from app.schemas.conversations import ConversationDetailOut, ConversationOut, MessageOut
+from app.schemas.conversations import (
+    ConversationDetailOut,
+    ConversationOut,
+    MessageOut,
+    VoteIn,
+)
 from app.services.conversations import open_conversation
 from app.services.live_blocks import live
 from app.storage import actions, conversations, messages
@@ -85,3 +91,17 @@ async def delete_conversation(conversation_id: UUID, auth: UserWithToken) -> Non
         raise HTTPException(status.HTTP_404_NOT_FOUND, NOT_FOUND)
 
     await conversations.delete_one(conversation_id)
+
+
+@router.put("/{conversation_id}/messages/{message_id}/vote", status_code=status.HTTP_204_NO_CONTENT)
+async def vote(conversation_id: UUID, message_id: UUID, body: VoteIn, auth: UserWithToken) -> None:
+    """The user's thumbs up or down on one of the assistant's answers in their own
+    conversation, one an answer: a new vote replaces it, null clears it. Sent on to Langfuse
+    as a score on the answer's trace when Langfuse is set up."""
+    user, _ = auth
+    found, trace_id = await messages.set_vote(conversation_id, user.uid, message_id, body.value)
+
+    if not found:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, NOT_FOUND)
+
+    mirror_vote(trace_id, lambda: messages.vote_of(message_id))

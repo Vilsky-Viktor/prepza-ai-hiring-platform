@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "يمكن أن يضم الموضوع {count} مواضيع فرعية على الأكثر",
     "This pattern was already reviewed": "تمت مراجعة هذا النمط بالفعل",
     "Not allowed": "غير مسموح",
+    "There's no such answer.": "لا توجد إجابة كهذه.",
 }

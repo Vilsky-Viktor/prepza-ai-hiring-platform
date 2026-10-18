@@ -47,6 +47,7 @@ Settings are described with the feature they shape:
 | Topic | Page |
 |---|---|
 | Generation, models, rate limits, LangSmith | [Generation and question quality](generation.md#generation-settings) |
+| Langfuse (the chats' traces and votes) | [In-app assistant](features/assistant.md#settings) |
 | Paddle | [Credits and payments](features/billing.md#setting-up-paddle) |
 | Resend, Mailpit, `SITE_URL`, `CONTACT_EMAIL` | [Notifications and emails](features/notifications.md#emails) |
 | `EMAIL_LINK_SECRET` | [Notifications and emails](features/notifications.md#unsubscribing) |

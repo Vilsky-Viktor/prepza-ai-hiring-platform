@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "Hanggang {count} subtopic lang ang puwede sa isang topic",
     "This pattern was already reviewed": "Nasuri na ang pattern na ito",
     "Not allowed": "Hindi pinapayagan",
+    "There's no such answer.": "Walang ganoong sagot.",
 }

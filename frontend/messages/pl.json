@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "Wiadomość usunięta: zawierała sekret"
+    "removed": "Wiadomość usunięta: zawierała sekret",
+    "goodAnswer": "Dobra odpowiedź",
+    "badAnswer": "Zła odpowiedź",
+    "voteFailed": "Nie udało się zapisać oceny. Spróbuj ponownie."
   },
   "pageHelp": {
     "label": "O tej stronie",

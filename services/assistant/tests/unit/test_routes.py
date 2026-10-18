@@ -13,13 +13,16 @@ from app.integrations import services
 from app.main import app
 from app.models.conversations import Conversation
 from app.routers import chat as chat_router
+from app.routers import conversations as conversations_router
 from app.services import conversations as conversation_service
 from app.services import events, turns
-from app.storage import conversations
+from app.storage import conversations, messages
 from tests.unit.fake_redis import FakeRedis
 
 COMPANY = uuid.UUID("8c1d2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f")
 ANN = User(uid="ann", email="ann@example.com", email_verified=True)
+# The answer a vote names: (conversation, message).
+VOTED = (uuid.uuid4(), uuid.uuid4())
 
 
 @pytest.fixture
@@ -220,3 +223,58 @@ def test_only_a_recent_conversation_is_brought_back(client, signed_in, monkeypat
     response = client.get("/conversations/active")
     assert response.json()["id"] == str(latest.found.id)
     assert windows == [("ann", 30), ("ann", 30)]
+
+
+@pytest.fixture
+def voted(monkeypatch):
+    """Votes saved, as (conversation, user, message, vote), on an answer that's the user's when
+    `owned`; and the traces sent on to Langfuse."""
+    saved, mirrored = [], []
+    state = {"owned": True, "trace": "a" * 32}
+
+    async def set_vote(conversation_id, user_id, message_id, vote):
+        saved.append((conversation_id, user_id, message_id, vote))
+
+        return state["owned"], state["trace"] if state["owned"] else None
+
+    monkeypatch.setattr(messages, "set_vote", set_vote)
+    monkeypatch.setattr(
+        conversations_router, "mirror_vote", lambda trace_id, current: mirrored.append(trace_id)
+    )
+
+    return saved, mirrored, state
+
+
+def vote_path():
+    return f"/conversations/{VOTED[0]}/messages/{VOTED[1]}/vote"
+
+
+@pytest.mark.parametrize("value", [1, -1, None])
+def test_the_owner_votes_changes_or_clears_their_vote(client, signed_in, voted, value):
+    saved, mirrored, state = voted
+
+    assert client.put(vote_path(), json={"value": value}).status_code == 204
+    assert saved == [(VOTED[0], "ann", VOTED[1], value)]
+    assert mirrored == [state["trace"]]
+
+
+def test_an_answer_not_in_the_users_own_conversation_is_not_found(client, signed_in, voted):
+    _, mirrored, state = voted
+    state["owned"] = False
+
+    response = client.put(vote_path(), json={"value": 1})
+
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Not found"
+    assert mirrored == []
+
+
+@pytest.mark.parametrize("value", [0, 2, "up"])
+def test_only_a_thumbs_up_or_down_is_taken(client, signed_in, voted, value):
+    assert client.put(vote_path(), json={"value": value}).status_code == 422
+    assert voted[0] == []
+
+
+def test_signed_out_nobody_votes(client, voted):
+    assert client.put(vote_path(), json={"value": 1}).status_code == 401
+    assert voted[0] == []

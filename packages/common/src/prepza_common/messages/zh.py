@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "一个主题最多有 {count} 个子主题",
     "This pattern was already reviewed": "此模式已审核过",
     "Not allowed": "不允许",
+    "There's no such answer.": "没有这个回答。",
 }

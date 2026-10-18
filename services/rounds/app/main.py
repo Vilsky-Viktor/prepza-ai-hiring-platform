@@ -16,6 +16,7 @@ from app.config.settings import settings
 from app.integrations.redis import get_redis
 from app.routers import (
     help,
+    help_votes,
     internal,
     internal_accounts,
     internal_maintenance,
@@ -60,6 +61,7 @@ app.include_router(interview_flow.router)
 app.include_router(practice.router)
 app.include_router(session_feedback.router)
 app.include_router(help.router)
+app.include_router(help_votes.router)
 app.include_router(internal.router)
 app.include_router(schedules.router)
 app.include_router(superadmin.router)

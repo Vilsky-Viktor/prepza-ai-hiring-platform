@@ -10,6 +10,7 @@ import type {
   Conversation,
   ConversationDetail,
   PageContext,
+  Vote,
 } from "@/types/assistant"
 import type { HelpMessage } from "@/types/help"
 
@@ -229,4 +230,46 @@ export function withoutSecret(messages: ChatMessage[]): ChatMessage[] {
   return messages.map((message, index) =>
     index === question ? { ...message, content: "", removed: true } : message
   )
+}
+
+/** The answer being written with one event of it applied: a tool at work, a block, more text,
+ * the help chat's signature, and once it's done, what a vote on it names. */
+export function withEvent(
+  answer: ChatMessage,
+  event: AssistantEvent
+): ChatMessage {
+  const { tool, block, delta, signature, done } = event
+
+  return {
+    ...answer,
+    ...(tool && {
+      progress: [...new Set([...(answer.progress ?? []), tool.label])],
+    }),
+    ...(block && { blocks: [...answer.blocks, block] }),
+    ...(delta && { content: answer.content + delta }),
+    ...(signature && { signature }),
+    ...(done && done !== true && { id: done.message_id }),
+    ...(event.answer && { helpAnswer: event.answer }),
+  }
+}
+
+/** Saves the user's vote on an answer (null clears it): the assistant's in its conversation,
+ * the help chat's with the answer's signature. */
+export function voteAnswer(
+  conversationId: string | null,
+  answer: ChatMessage,
+  value: Vote | null
+) {
+  const help = answer.helpAnswer
+  const [path, body] = help
+    ? [
+        `/rounds/help/answers/${help.id}/vote`,
+        { trace_id: help.trace_id, signature: help.signature, value },
+      ]
+    : [
+        `${BASE}/conversations/${conversationId}/messages/${answer.id}/vote`,
+        { value },
+      ]
+
+  return apiFetch(path, { method: "PUT", body: JSON.stringify(body) })
 }

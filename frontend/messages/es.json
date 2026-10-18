@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "Mensaje eliminado: contenía un secreto"
+    "removed": "Mensaje eliminado: contenía un secreto",
+    "goodAnswer": "Buena respuesta",
+    "badAnswer": "Mala respuesta",
+    "voteFailed": "No se pudo guardar tu voto. Inténtalo de nuevo."
   },
   "pageHelp": {
     "label": "Sobre esta página",

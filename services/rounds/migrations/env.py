@@ -5,6 +5,7 @@ from prepza_common.db import sqlalchemy_url
 from sqlalchemy import create_engine
 
 import app.models.answers  # registers the tables on Base.metadata
+import app.models.help_votes
 import app.models.outbox
 import app.models.sessions
 import app.models.signals  # noqa: F401

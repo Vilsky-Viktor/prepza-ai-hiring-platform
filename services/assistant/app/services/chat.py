@@ -12,6 +12,7 @@ from langchain_core.messages import (
 )
 from prepza_common import ai_usage
 from prepza_common.ai_constants import Outcome
+from prepza_common.answer_votes import new_trace_id, traced
 from prepza_common.constants import LANGUAGES
 from prepza_common.i18n import translate
 from prepza_common.llm import estimated_input, estimated_tokens
@@ -110,9 +111,11 @@ async def ask(
     reports none, though the model read the messages and wrote what came."""
     reply = AIMessageChunk(content="")
     outcome = Outcome.OK
+    # Every model call of the answer reports to its one Langfuse trace, kept with the answer.
+    answer.trace_id = answer.trace_id or new_trace_id()
 
     try:
-        async for chunk in model.astream(messages):
+        async for chunk in model.astream(messages, traced(answer.trace_id)):
             reply += chunk
 
             if chunk.text:

@@ -11,6 +11,7 @@ from app.constants.chat import MAX_TOOL_STEPS
 from app.integrations import llm, services
 from app.models.answers import Answer, Turn
 from app.prompts.assistant import UNKNOWN_PAGE
+from app.services import chat
 from app.services.chat import SessionExpired, ask, build_messages, converse
 from app.services.registry import tools
 from tests.fake_model import FakeModel, calls, text
@@ -239,7 +240,7 @@ def test_a_call_cut_short_still_counts_its_tokens_estimated():
     messages and wrote what came: they're estimated, so the budgets count them."""
 
     class CutShort:
-        async def astream(self, messages):
+        async def astream(self, messages, config=None):
             yield AIMessageChunk(content="Two candidates")
             raise TimeoutError
 
@@ -250,3 +251,21 @@ def test_a_call_cut_short_still_counts_its_tokens_estimated():
         asyncio.run(ask(CutShort(), prompt, TURN, answer, lambda event: None))
 
     assert (answer.input_tokens, answer.output_tokens) == (100, 4)
+
+
+def test_with_langfuse_every_call_of_an_answer_reports_to_its_one_trace(model, gets, monkeypatch):
+    traces = iter(["a" * 32, "b" * 32])
+    monkeypatch.setattr(chat, "new_trace_id", lambda: next(traces))
+    monkeypatch.setattr(chat, "traced", lambda trace_id: {"trace": trace_id})
+
+    _, answer = run(model, calls(("list_interviews", {})), text("One interview."))
+
+    assert model.configs == [{"trace": "a" * 32}, {"trace": "a" * 32}]
+    assert answer.trace_id == "a" * 32
+
+
+def test_without_langfuse_no_trace_is_named_or_kept(model):
+    _, answer = run(model, text("Hello."))
+
+    assert model.configs == [None]
+    assert answer.trace_id is None

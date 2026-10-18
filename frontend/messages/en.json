@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "Message removed: it contained a secret"
+    "removed": "Message removed: it contained a secret",
+    "goodAnswer": "Good answer",
+    "badAnswer": "Bad answer",
+    "voteFailed": "Couldn't save your vote. Please try again."
   },
   "pageHelp": {
     "label": "About this page",

@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import DateTime, ForeignKey, Integer, SmallInteger, String, Text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -51,6 +51,10 @@ class Message(Base):
     status: Mapped[str] = mapped_column(String(16), default="complete")
     input_tokens: Mapped[int] = mapped_column(Integer, default=0)
     output_tokens: Mapped[int] = mapped_column(Integer, default=0)
+    # An answer's Langfuse trace, its model calls'; None when Langfuse wasn't set up.
+    trace_id: Mapped[str | None] = mapped_column(String(32))
+    # The user's thumbs up (1) or down (-1) on an answer; None when there's none.
+    vote: Mapped[int | None] = mapped_column(SmallInteger)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 

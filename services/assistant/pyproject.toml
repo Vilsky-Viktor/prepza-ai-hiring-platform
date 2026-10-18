@@ -3,7 +3,7 @@ name = "assistant"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
-    "prepza-common[llm]",
+    "prepza-common[llm,langfuse]",
     "alembic>=1.20.0",
     "fastapi>=0.141.1",
     "firebase-admin>=7.7.0",

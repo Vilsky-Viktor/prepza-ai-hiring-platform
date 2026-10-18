@@ -255,4 +255,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "Teemal võib olla kuni {count} alateemat",
     "This pattern was already reviewed": "Seda mustrit on juba hinnatud",
     "Not allowed": "Pole lubatud",
+    "There's no such answer.": "Sellist vastust pole.",
 }

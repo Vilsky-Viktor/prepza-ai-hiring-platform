@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "Подтем в теме может быть не больше: {count}",
     "This pattern was already reviewed": "Эта закономерность уже рассмотрена",
     "Not allowed": "Нет доступа",
+    "There's no such answer.": "Такого ответа нет.",
 }

@@ -12,7 +12,9 @@ import {
   withoutSecret,
   refreshToken,
   streamAssistant,
+  voteAnswer,
   withCard,
+  withEvent,
 } from "@/lib/assistant"
 import { clearChat } from "@/lib/assistant-storage"
 import { signOut } from "@/lib/auth"
@@ -21,7 +23,7 @@ import { pageContext } from "@/lib/page-context"
 import { pageKey } from "@/lib/page-key"
 import { useActionCards } from "@/hooks/use-action-cards"
 import { useChatRestore } from "@/hooks/use-chat-restore"
-import type { AssistantEvent, ChatMessage } from "@/types/assistant"
+import type { AssistantEvent, ChatMessage, Vote } from "@/types/assistant"
 
 // The service's error code for a token it stopped taking mid-answer.
 const SESSION_EXPIRED = "session_expired"
@@ -71,37 +73,33 @@ export function useAssistantChat(
   }
 
   function apply(event: AssistantEvent) {
-    const { tool, block, delta } = event
-
     // The question had a secret in it: the service kept nothing of it, and neither does the
     // panel (nor what it keeps for a reload).
     if (event.removed) {
       setMessages((current) => withoutSecret(current))
     }
 
-    if (tool) {
-      updateAnswer((answer) => ({
-        ...answer,
-        progress: [...new Set([...(answer.progress ?? []), tool.label])],
-      }))
-    }
+    updateAnswer((answer) => withEvent(answer, event))
+  }
 
-    if (block) {
-      updateAnswer((answer) => ({
-        ...answer,
-        blocks: [...answer.blocks, block],
-      }))
-    }
+  /** The user's vote on the answer at `index` (null: cleared), shown at once and put back as it
+   * was if it couldn't be saved. */
+  async function vote(index: number, value: Vote | null) {
+    const answer = messages[index]
+    const setVote = (next: Vote | null | undefined) =>
+      setMessages((current) =>
+        current.map((message, at) =>
+          at === index ? { ...message, vote: next } : message
+        )
+      )
 
-    if (delta) {
-      updateAnswer((answer) => ({
-        ...answer,
-        content: answer.content + delta,
-      }))
-    }
+    setVote(value)
 
-    if (event.signature) {
-      updateAnswer((answer) => ({ ...answer, signature: event.signature }))
+    try {
+      await voteAnswer(conversationId, answer, value)
+    } catch (error) {
+      setVote(answer.vote)
+      toast.error(apiErrorMessage(error, t("voteFailed")))
     }
   }
 
@@ -265,6 +263,8 @@ export function useAssistantChat(
           content: message.content,
           blocks: message.blocks,
           source: message.source,
+          id: message.id,
+          vote: message.vote,
         }))
       )
       return found.company_id
@@ -284,6 +284,7 @@ export function useAssistantChat(
     streaming,
     send,
     retry,
+    vote,
     confirm,
     cancel,
     stop,

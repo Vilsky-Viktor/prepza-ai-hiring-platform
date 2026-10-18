@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "Nachricht entfernt: Sie enthielt ein Geheimnis"
+    "removed": "Nachricht entfernt: Sie enthielt ein Geheimnis",
+    "goodAnswer": "Gute Antwort",
+    "badAnswer": "Schlechte Antwort",
+    "voteFailed": "Deine Bewertung konnte nicht gespeichert werden. Bitte versuche es erneut."
   },
   "pageHelp": {
     "label": "Über diese Seite",

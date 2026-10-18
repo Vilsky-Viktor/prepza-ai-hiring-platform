@@ -5,15 +5,17 @@ import { useTranslations } from "next-intl"
 import { AnswerBlocks } from "@/components/assistant/answer-blocks"
 import { type CardActions } from "@/components/assistant/action-card"
 import { AnswerMarkdown } from "@/components/assistant/answer-markdown"
+import { AnswerVote } from "@/components/assistant/answer-vote"
 import { ChatBubble, ThinkingDots } from "@/components/chat-bubble"
 import { Button } from "@/components/ui/button"
 import { WELCOME_QUESTIONS } from "@/constants/assistant"
-import type { ChatMessage } from "@/types/assistant"
+import type { ChatMessage, Vote } from "@/types/assistant"
 
 /** The conversation in the panel: questions, answers with what their tools found, the tools
  * at work while one is written, and a failed answer's error with Try again. With no messages
  * yet, a welcome for the user's stage: what the assistant helps with there, and questions to
- * tap, first "What can I do on this page?" on a page with a guide (`onPage`). */
+ * tap, first "What can I do on this page?" on a page with a guide (`onPage`). Under each written
+ * answer, thumbs up and down. */
 export function AssistantMessages({
   messages,
   streaming,
@@ -22,6 +24,7 @@ export function AssistantMessages({
   onPage,
   onAsk,
   onRetry,
+  onVote,
   onNavigate,
   actions,
 }: {
@@ -34,6 +37,7 @@ export function AssistantMessages({
   onPage: boolean
   onAsk: (question: string) => void
   onRetry: () => void
+  onVote: (index: number, value: Vote | null) => void
   onNavigate: () => void
   actions: CardActions
 }) {
@@ -111,6 +115,19 @@ export function AssistantMessages({
                 key={`${index}-text`}
                 role="assistant"
                 className="space-y-2 border bg-transparent p-4 whitespace-normal"
+                // A written answer, saved by the assistant or signed by the help chat, can be
+                // voted on, right under it.
+                after={
+                  !writing &&
+                  message.content &&
+                  !message.error &&
+                  (message.id || message.helpAnswer) && (
+                    <AnswerVote
+                      value={message.vote ?? null}
+                      onVote={(value) => onVote(index, value)}
+                    />
+                  )
+                }
                 content={
                   <>
                     {writing &&

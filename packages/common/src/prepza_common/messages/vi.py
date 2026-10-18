@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "Mỗi chủ đề có tối đa {count} chủ đề con",
     "This pattern was already reviewed": "Lỗi lặp lại này đã được xem xét",
     "Not allowed": "Không được phép",
+    "There's no such answer.": "Không có câu trả lời này.",
 }

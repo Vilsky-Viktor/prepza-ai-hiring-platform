@@ -1059,6 +1059,53 @@
     }
    }
   },
+  "/help/answers/{answer_id}/vote": {
+   "put": {
+    "tags": [
+     "help"
+    ],
+    "summary": "Vote",
+    "description": "A thumbs up or down on one of the help chat's answers, for visitors too: one an answer, a\nnew vote replaces it, null clears it. The help chat keeps no conversation, so the answer's\nsignature (from its last event) shows the vote comes from the page that got it. Sent on to\nLangfuse as a score on the answer's trace when that's set up.",
+    "operationId": "vote_help_answers__answer_id__vote_put",
+    "parameters": [
+     {
+      "name": "answer_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Answer Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/HelpVoteIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/sessions": {
    "post": {
     "tags": [
@@ -2031,6 +2078,49 @@
      "assistant"
     ],
     "title": "HelpRole"
+   },
+   "HelpVoteIn": {
+    "properties": {
+     "trace_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 32
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Trace Id"
+     },
+     "signature": {
+      "type": "string",
+      "maxLength": 64,
+      "title": "Signature"
+     },
+     "value": {
+      "anyOf": [
+       {
+        "type": "integer",
+        "enum": [
+         1,
+         -1
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Value"
+     }
+    },
+    "type": "object",
+    "required": [
+     "signature",
+     "value"
+    ],
+    "title": "HelpVoteIn",
+    "description": "A thumbs up (1) or down (-1) on a help chat answer, null to clear it, with the answer's\nrun and signature as its last event gave them."
    },
    "IntegritySignal": {
     "type": "string",

@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "Satu topik boleh memiliki maksimal {count} subtopik",
     "This pattern was already reviewed": "Pola ini sudah ditinjau",
     "Not allowed": "Tidak diizinkan",
+    "There's no such answer.": "Tidak ada jawaban seperti itu.",
 }

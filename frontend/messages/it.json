@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "Messaggio rimosso: conteneva un segreto"
+    "removed": "Messaggio rimosso: conteneva un segreto",
+    "goodAnswer": "Risposta buona",
+    "badAnswer": "Risposta scadente",
+    "voteFailed": "Impossibile salvare il voto. Riprova."
   },
   "pageHelp": {
     "label": "Informazioni su questa pagina",

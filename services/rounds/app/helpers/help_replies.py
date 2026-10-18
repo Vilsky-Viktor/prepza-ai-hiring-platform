@@ -1,5 +1,6 @@
 import hashlib
 import hmac
+from uuid import UUID
 
 from prepza_common.tokens import same_secret
 
@@ -22,3 +23,11 @@ def trusted(messages: list[HelpMessage], secret: str) -> list[HelpMessage]:
         if message.role == HelpRole.USER
         or same_secret(message.signature or "", reply_signature(message.content, secret))
     ]
+
+
+def vote_signature(answer_id: UUID, trace_id: str | None, secret: str) -> str:
+    """The signature the help chat gives an answer with its id and Langfuse trace: a vote on it
+    must send it back, so only the page that got the answer can vote on it, on its own run."""
+    signed = f"help-vote:{answer_id}:{trace_id or ''}".encode()
+
+    return hmac.new(secret.encode(), signed, hashlib.sha256).hexdigest()

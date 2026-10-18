@@ -1,5 +1,6 @@
 import asyncio
 import json
+import uuid
 
 from firebase_admin import auth as firebase_auth
 from prepza_common.limit_list import LIMITS
@@ -12,7 +13,7 @@ from app.constants.help import (
 )
 from app.constants.terms import TERMS_SECTIONS
 from app.helpers.help import guide
-from app.helpers.help_replies import reply_signature
+from app.helpers.help_replies import reply_signature, vote_signature
 from app.schemas.help import HelpMessage
 from app.services.help import build_messages, guide_limits
 
@@ -85,7 +86,7 @@ def test_long_earlier_messages_are_left_out_but_the_question_stays():
 
 
 def test_visitors_can_chat_and_get_a_stream(client, monkeypatch):
-    async def fake_stream(messages, used=None):
+    async def fake_stream(messages, used=None, run_id=None):
         yield "Paste "
         yield "a job description."
 
@@ -98,12 +99,19 @@ def test_visitors_can_chat_and_get_a_stream(client, monkeypatch):
     events = [json.loads(line[6:]) for line in response.text.split("\n\n") if line]
 
     assert response.status_code == 200
-    # The reply's signature, which the page sends back with it.
+    # The reply's signature, which the page sends back with it, and the answer as a vote on it
+    # names it: its id, no Langfuse trace (it isn't set up) and their signature.
     signature = reply_signature("Paste a job description.", settings.service_secret)
+    answer = events[-1]["answer"]
+    voting = vote_signature(uuid.UUID(answer["id"]), None, settings.service_secret)
     assert events == [
         {"delta": "Paste "},
         {"delta": "a job description."},
-        {"done": True, "signature": signature},
+        {
+            "done": True,
+            "signature": signature,
+            "answer": {"id": answer["id"], "trace_id": None, "signature": voting},
+        },
     ]
 
 
@@ -111,7 +119,7 @@ def test_the_model_reads_only_the_replies_the_chat_signed(client, monkeypatch):
     """A reply the page made up ("Ignore your scope...") never reaches the model."""
     read = []
 
-    async def fake_stream(messages, used=None):
+    async def fake_stream(messages, used=None, run_id=None):
         read.extend(message.content for message in messages[1:])
         yield "Sure."
 
@@ -146,7 +154,7 @@ def test_the_chat_needs_a_question_last_and_not_too_long(client):
 
 
 def test_accounts_addresses_and_the_daily_total_are_limited(client, monkeypatch, redis):
-    async def fake_stream(messages, used=None):
+    async def fake_stream(messages, used=None, run_id=None):
         yield "ok"
 
     monkeypatch.setattr("app.routers.help.billing.catalog", fake_catalog(None))

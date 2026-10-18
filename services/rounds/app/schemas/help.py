@@ -10,6 +10,7 @@ from app.constants.help import (
     MAX_PAGE_KEY_LENGTH,
     QUESTION_TOO_LONG,
     SIGNATURE_LENGTH,
+    TRACE_ID_LENGTH,
     HelpRole,
 )
 
@@ -96,3 +97,12 @@ class PageGuideOut(BaseModel):
     actions: list[str]
     tips: list[str]
     article: GuideItemOut | None = None
+
+
+class HelpVoteIn(BaseModel):
+    """A thumbs up (1) or down (-1) on a help chat answer, null to clear it, with the answer's
+    run and signature as its last event gave them."""
+
+    trace_id: str | None = Field(default=None, max_length=TRACE_ID_LENGTH)
+    signature: str = Field(max_length=SIGNATURE_LENGTH)
+    value: Literal[1, -1] | None

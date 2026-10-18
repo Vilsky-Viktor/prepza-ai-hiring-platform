@@ -153,7 +153,7 @@ These settings in `.env` trace generation. Terraform doesn't pass them to Google
 
 | Setting | Default | What it sets |
 |---|---|---|
-| `LANGSMITH_TRACING`, `LANGSMITH_API_KEY`, `LANGSMITH_PROJECT`, `LANGSMITH_ENDPOINT` | Off | Trace generation, help chat and assistant calls to LangSmith; the endpoint is the key's region (US by default, `https://eu.api.smith.langchain.com` for EU) |
+| `LANGSMITH_TRACING`, `LANGSMITH_API_KEY`, `LANGSMITH_PROJECT`, `LANGSMITH_ENDPOINT` | Off | Trace generation, help chat and assistant calls to LangSmith; the endpoint is the key's region (US by default, `https://eu.api.smith.langchain.com` for EU). The chats' answers and votes also go to Langfuse when it's set up ([Votes in Langfuse](features/assistant.md#votes-in-langfuse)) |
 
 ## Models
 

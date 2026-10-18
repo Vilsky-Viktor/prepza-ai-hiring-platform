@@ -61,6 +61,7 @@ async def add_answer(conversation_id: UUID, answer: Answer, status: Status) -> U
             status=status,
             input_tokens=answer.input_tokens,
             output_tokens=answer.output_tokens,
+            trace_id=answer.trace_id,
         )
         session.add(message)
         await session.flush()
@@ -144,6 +145,7 @@ async def export(user_id: str) -> list[dict]:
                 "blocks": message.blocks,
                 "page": message.page,
                 "status": message.status,
+                "vote": message.vote,
                 "at": message.created_at,
             }
         )
@@ -167,3 +169,34 @@ async def count_questions(conversation_id: UUID) -> int:
             .select_from(Message)
             .where(Message.conversation_id == conversation_id, Message.role == Role.USER)
         )
+
+
+async def set_vote(
+    conversation_id: UUID, user_id: str, message_id: UUID, vote: int | None
+) -> tuple[bool, str | None]:
+    """Sets or clears the vote on an answer in the user's own conversation: whether there was
+    one, and its Langfuse trace."""
+    owned = select(Conversation.id).where(
+        Conversation.id == conversation_id, Conversation.user_id == user_id
+    )
+    statement = (
+        update(Message)
+        .where(
+            Message.id == message_id,
+            Message.role == Role.ASSISTANT,
+            Message.conversation_id.in_(owned),
+        )
+        .values(vote=vote)
+        .returning(Message.trace_id)
+    )
+
+    async with Session() as session:
+        found = (await session.execute(statement)).first()
+        await session.commit()
+
+    return (found is not None, found[0] if found else None)
+
+
+async def vote_of(message_id: UUID) -> int | None:
+    async with Session() as session:
+        return await session.scalar(select(Message.vote).where(Message.id == message_id))

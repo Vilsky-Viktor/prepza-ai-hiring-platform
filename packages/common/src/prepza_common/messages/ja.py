@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "1 つのトピックのサブトピックは最大 {count} 件です",
     "This pattern was already reviewed": "このパターンはすでに確認済みです",
     "Not allowed": "許可されていません",
+    "There's no such answer.": "そのような回答はありません。",
 }

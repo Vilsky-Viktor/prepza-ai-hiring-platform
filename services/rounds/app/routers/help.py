@@ -1,4 +1,5 @@
 import logging
+import uuid
 
 import anyio
 from fastapi import APIRouter, HTTPException, Path, Query, Request, status
@@ -7,6 +8,7 @@ from prepza_common import ai_cap
 from prepza_common.ai_constants import Outcome
 from prepza_common.ai_usage import provider_refused
 from prepza_common.analytics import track
+from prepza_common.answer_votes import new_trace_id
 from prepza_common.auth import OptionalUser
 from prepza_common.client_ip import client_ip
 from prepza_common.constants import DEFAULT_LANGUAGE, LEGAL_VERSIONS
@@ -37,7 +39,7 @@ from app.constants.rounds import CHAT_FAILED
 from app.helpers import legal
 from app.helpers.guide_articles import guide_article, guide_articles
 from app.helpers.help import faq_items
-from app.helpers.help_replies import reply_signature, trusted
+from app.helpers.help_replies import reply_signature, trusted, vote_signature
 from app.helpers.page_guides import page_guide
 from app.helpers.sign_in import secret_reply, with_sign_in
 from app.integrations import billing
@@ -186,6 +188,9 @@ async def help_chat(
 
     messages = await build_messages(conversation, language, await billing.catalog(), body.page)
     used: dict = {}
+    # The answer's id, which a vote on it names, and its Langfuse trace when that's set up.
+    answer_id = uuid.uuid4()
+    trace_id = new_trace_id()
 
     async def events():
         reply = ""
@@ -193,7 +198,7 @@ async def help_chat(
         outcome = Outcome.CUT
 
         try:
-            async for event in with_sign_in(stream_reply(messages, used)):
+            async for event in with_sign_in(stream_reply(messages, used, trace_id)):
                 reply += event.get("delta", "")
                 yield sse_event(event)
 
@@ -213,9 +218,18 @@ async def help_chat(
 
         await track("help_chat_turn", user_id=user_id, turn=len(body.messages))
 
-        # The page sends it back with the reply, which the next answer then reads.
+        # The page sends the signature back with the reply, which the next answer then reads,
+        # and the answer's id, trace and vote signature with a vote on it.
         yield sse_event(
-            {"done": True, "signature": reply_signature(reply, settings.service_secret)}
+            {
+                "done": True,
+                "signature": reply_signature(reply, settings.service_secret),
+                "answer": {
+                    "id": str(answer_id),
+                    "trace_id": trace_id,
+                    "signature": vote_signature(answer_id, trace_id, settings.service_secret),
+                },
+            }
         )
 
     return event_stream(events())

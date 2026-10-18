@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "Mesaj kaldırıldı: gizli bilgi içeriyordu"
+    "removed": "Mesaj kaldırıldı: gizli bilgi içeriyordu",
+    "goodAnswer": "İyi yanıt",
+    "badAnswer": "Kötü yanıt",
+    "voteFailed": "Oyunuz kaydedilemedi. Lütfen tekrar deneyin."
   },
   "pageHelp": {
     "label": "Bu sayfa hakkında",

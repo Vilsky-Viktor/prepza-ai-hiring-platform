@@ -19,7 +19,7 @@ USAGE = {"input_tokens": 1_000, "output_tokens": 234}
 def answering(*parts, usage=None, error=None):
     """The model's answer: `parts`, its `usage`, then `error` raised when given."""
 
-    async def stream(messages, used):
+    async def stream(messages, used, run_id=None):
         for part in parts:
             yield part
 

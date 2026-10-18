@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "한 주제의 하위 주제는 최대 {count}개입니다",
     "This pattern was already reviewed": "이 패턴은 이미 검토되었습니다",
     "Not allowed": "허용되지 않습니다",
+    "There's no such answer.": "그런 답변은 없습니다.",
 }

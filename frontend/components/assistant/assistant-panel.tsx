@@ -234,6 +234,7 @@ export function AssistantPanel({
                 focusInput()
               }}
               onRetry={chat.retry}
+              onVote={(index, value) => void chat.vote(index, value)}
               onNavigate={navigated}
               actions={{
                 onConfirm: (id) => void chat.confirm(id),

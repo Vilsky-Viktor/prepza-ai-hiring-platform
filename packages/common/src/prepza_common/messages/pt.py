@@ -245,4 +245,5 @@ MESSAGES = {
     "A topic can have at most {count} subtopics": "Um tópico pode ter no máximo {count} subtópicos",
     "This pattern was already reviewed": "Este padrão já foi analisado",
     "Not allowed": "Não permitido",
+    "There's no such answer.": "Essa resposta não existe.",
 }

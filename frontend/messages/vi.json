@@ -2089,7 +2089,10 @@
         }
       }
     },
-    "removed": "Đã xóa tin nhắn: chứa thông tin bí mật"
+    "removed": "Đã xóa tin nhắn: chứa thông tin bí mật",
+    "goodAnswer": "Câu trả lời tốt",
+    "badAnswer": "Câu trả lời không tốt",
+    "voteFailed": "Không thể lưu đánh giá của bạn. Vui lòng thử lại."
   },
   "pageHelp": {
     "label": "Về trang này",

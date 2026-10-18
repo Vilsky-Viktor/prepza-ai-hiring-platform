@@ -55,7 +55,10 @@ export type AssistantEvent = {
   tool?: ToolProgress
   block?: AssistantBlock
   delta?: string
-  done?: { message_id: string }
+  // The assistant's: the saved answer's id; the help chat's: true, with `answer`.
+  done?: { message_id: string } | true
+  // The help chat's answer, as a vote on it names it.
+  answer?: HelpAnswer
   // A confirmed action's card, in its new state.
   action?: AssistantBlock
   // The user asked to sign out: the panel does it.
@@ -75,7 +78,18 @@ export type AssistantMessage = {
   content: string
   blocks: AssistantBlock[]
   status: "complete" | "cancelled" | "failed"
+  vote: Vote | null
   created_at: string
+}
+
+/** A thumbs up (1) or down (-1) on an answer. */
+export type Vote = 1 | -1
+
+/** A help chat answer as a vote on it names it: its id, Langfuse trace and signature. */
+export type HelpAnswer = {
+  id: string
+  trace_id: string | null
+  signature: string
 }
 
 export type Conversation = {
@@ -114,6 +128,11 @@ export type ChatMessage = {
   progress?: string[]
   // An answer that failed, with what to show and whether a retry can fix it.
   error?: string
+  // A written answer, as a vote on it names it: the assistant's saved message, or the help
+  // chat's answer; and the vote on it.
+  id?: string
+  helpAnswer?: HelpAnswer
+  vote?: Vote | null
 }
 
 // The page a message is asked on (lib/page-context.ts): context for the assistant only.

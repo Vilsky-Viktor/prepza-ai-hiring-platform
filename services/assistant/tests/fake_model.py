@@ -25,14 +25,17 @@ class FakeModel:
         self.replies = list(replies)
         self.prompts = []
         self.bound = []
+        # Each call's config: its LangSmith run id when tracing is on.
+        self.configs = []
 
     def bind_tools(self, tools, **options):
         self.bound.append((tools, options))
 
         return self
 
-    async def astream(self, messages):
+    async def astream(self, messages, config=None):
         self.prompts.append(list(messages))
+        self.configs.append(config)
         reply = self.replies.pop(0)
 
         if isinstance(reply, Exception):
