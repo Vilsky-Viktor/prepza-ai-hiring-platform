@@ -1196,12 +1196,18 @@
     "askAgent": "agent fragen",
     "create": {
       "title": "Ein Interview in Minuten erstellen",
-      "text": "Füge eine Stellenbeschreibung ein und passe die Themen an, oder wähle eine fertige Vorlage.",
+      "text": "Füge eine Stellenbeschreibung ein, passe die Themen an, und dein Interview ist in Minuten fertig.",
+      "notes": {
+        "questions": "{count} Fragen pro Thema generiert",
+        "templates": "fertige Vorlagen verfügbar",
+        "expert": "kein Fachexperte nötig"
+      },
       "describe": "Beschreibung einfügen",
       "adjust": "Themen anpassen",
       "ask": "Themen von der KI ändern lassen",
-      "or": "oder",
-      "fromTemplate": "Aus unseren Vorlagen"
+      "ready": "Dein Interview ist fertig",
+      "status": "Bereit",
+      "invite": "Kandidaten einladen"
     },
     "proof": {
       "languages": "{count} Sprachen",

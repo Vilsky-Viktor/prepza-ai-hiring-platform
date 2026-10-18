@@ -6,17 +6,17 @@ import { Progress } from "@/components/ui/progress"
 
 /** The questions being written, as the generation page shows it (components/generation/
  * generation-progress.tsx), small: its spinner and title, the bar with its percent and the
- * topics ready, and each topic checked off once its questions are written. */
+ * topics `ready`, and each topic checked off once its questions are written. The percent is the
+ * share of topics ready, so the two always agree. */
 export function DemoWriting({
   topics,
-  percent,
+  ready,
 }: {
   topics: string[]
-  percent: number
+  ready: number
 }) {
   const t = useTranslations("generation")
-  // Topics finish one after another as the bar fills.
-  const ready = Math.floor((percent / 100) * topics.length)
+  const percent = Math.round((ready / topics.length) * 100)
 
   return (
     <div className="flex flex-1 flex-col justify-center gap-4 px-2">

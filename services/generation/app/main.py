@@ -16,6 +16,7 @@ from app.routers import (
     internal,
     internal_accounts,
     languages,
+    sizes,
     superadmin,
     superadmin_additions,
     superadmin_patterns,
@@ -46,6 +47,7 @@ app.add_middleware(MaintenanceMiddleware, get_redis=get_redis)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
 app.include_router(languages.router)
+app.include_router(sizes.router)
 app.include_router(superadmin.router)
 app.include_router(superadmin_additions.router)
 app.include_router(superadmin_patterns.router)

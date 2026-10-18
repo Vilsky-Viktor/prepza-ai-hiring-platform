@@ -24,6 +24,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/sizes": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Sizes
+     * @description How big a new interview is made, for the home page's facts: public, the current Controls
+     *     values.
+     */
+    get: operations["sizes_sizes_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/superadmin/templates": {
     parameters: {
       query?: never
@@ -804,6 +825,14 @@ export interface components {
       topics?: components["schemas"]["EditedTopic"][] | null
     }
     /**
+     * SizesOut
+     * @description How big a new interview is made, as set in the admin zone's Controls.
+     */
+    SizesOut: {
+      /** Questions Per Topic */
+      questions_per_topic: number
+    }
+    /**
      * Status
      * @enum {string}
      */
@@ -892,6 +921,26 @@ export interface operations {
         }
         content: {
           "application/json": string[]
+        }
+      }
+    }
+  }
+  sizes_sizes_get: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["SizesOut"]
         }
       }
     }

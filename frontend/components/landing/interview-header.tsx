@@ -7,18 +7,20 @@ import { InterviewStatus } from "@/components/company/interview-status"
 import { Dotted } from "@/components/dot"
 
 /** An interview's page header, small, for the landing's pictures: its title (a size up when
- * `large`), then its `status` and size. */
+ * `large`), then its `status` (named `statusLabel` when given) and size. */
 export function InterviewHeader({
   title,
   topics,
   questions,
   status = "new",
+  statusLabel,
   large = false,
 }: {
   title: string
   topics: number
   questions: number
   status?: "new" | "in_process"
+  statusLabel?: string
   large?: boolean
 }) {
   const t = useTranslations("templates")
@@ -36,7 +38,7 @@ export function InterviewHeader({
       </p>
       {/* On phones the size goes on its own line under the status. */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-        <InterviewStatus status={status} />
+        <InterviewStatus status={status} label={statusLabel} />
         <span className="text-xs whitespace-nowrap text-muted-foreground max-sm:basis-full">
           <Dotted
             items={[

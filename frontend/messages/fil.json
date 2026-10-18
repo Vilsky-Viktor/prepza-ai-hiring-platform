@@ -1196,12 +1196,18 @@
     "askAgent": "magtanong sa agent",
     "create": {
       "title": "Gumawa ng interview sa loob ng ilang minuto",
-      "text": "I-paste ang job description at ayusin ang mga topic, o pumili ng handang template.",
+      "text": "I-paste ang job description, ayusin ang mga topic, at handa na ang interview mo sa loob ng ilang minuto.",
+      "notes": {
+        "questions": "{count} tanong ang ginagawa sa bawat topic",
+        "templates": "may mga handang template",
+        "expert": "hindi kailangan ng eksperto sa larangan"
+      },
       "describe": "I-paste ang iyong description",
       "adjust": "Ayusin ang mga topic",
       "ask": "Hilingin sa AI na baguhin ang mga topic",
-      "or": "o",
-      "fromTemplate": "Mula sa aming mga template"
+      "ready": "Handa na ang interview mo",
+      "status": "Handa na",
+      "invite": "Mag-imbita ng mga aplikante"
     },
     "proof": {
       "languages": "{count} wika",

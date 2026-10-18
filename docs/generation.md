@@ -146,7 +146,7 @@ Four values shape every generation. They aren't settings: each starts at its def
 |---|---|---|---|
 | `MAX_TOPICS` | 10 | 1–20 | Main topics an interview or template has. The review page follows it; approving more without instructions is refused ("Choose at most {count} topics") |
 | `MAX_SUBTOPICS` | 5 | 1–20 | Subtopics per topic; every subtopic is at least one model call. The review page follows it; a topic edited with more is refused ("A topic can have at most {count} subtopics") |
-| `INTERVIEW_QUESTIONS_PER_TOPIC` | 70 | 10–500 | Questions per topic of a company's interview, from which each candidate gets a random subset |
+| `INTERVIEW_QUESTIONS_PER_TOPIC` | 70 | 10–500 | Questions per topic of a company's interview, from which each candidate gets a random subset. Public at `GET /api/generate/sizes` (`questions_per_topic`, no sign-in) for the home page's facts |
 | `TEMPLATE_QUESTIONS_PER_TOPIC` | 90 | 10–500 | Questions per topic of a template: 30 for free practice and 60 for companies' interviews (library's `PRACTICE_QUESTIONS` and `COMPANY_QUESTIONS`) |
 
 These settings in `.env` trace generation to Langfuse. Terraform doesn't pass them to Google Cloud yet (see [infra/README.md](../infra/README.md#notes)).

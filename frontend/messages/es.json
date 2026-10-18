@@ -1196,12 +1196,18 @@
     "askAgent": "preguntar al agente",
     "create": {
       "title": "Crea una entrevista en minutos",
-      "text": "Pega una descripción del puesto y ajusta los temas, o elige una plantilla lista.",
+      "text": "Pega una descripción del puesto, ajusta los temas y tu entrevista estará lista en minutos.",
+      "notes": {
+        "questions": "{count} preguntas generadas por tema",
+        "templates": "plantillas listas para usar",
+        "expert": "sin necesidad de un experto en la materia"
+      },
       "describe": "Pega tu descripción",
       "adjust": "Ajusta los temas",
       "ask": "Pide a la IA que cambie los temas",
-      "or": "o",
-      "fromTemplate": "Desde nuestras plantillas"
+      "ready": "Tu entrevista está lista",
+      "status": "Lista",
+      "invite": "Invitar a candidatos"
     },
     "proof": {
       "languages": "{count} idiomas",

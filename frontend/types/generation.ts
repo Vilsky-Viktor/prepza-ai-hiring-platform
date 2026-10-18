@@ -9,3 +9,5 @@ export type DraftTopic = Schemas["DraftTopic"]
 export type Addition = Schemas["AdditionOut"]
 /** A recurring mistake the weekly job proposed, on the admin zone's patterns tab. */
 export type QualityPattern = Schemas["PatternOut"]
+/** How big a new interview is made (questions per topic), as set in Controls. */
+export type Sizes = Schemas["SizesOut"]

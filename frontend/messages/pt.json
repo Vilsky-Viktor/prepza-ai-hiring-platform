@@ -1196,12 +1196,18 @@
     "askAgent": "perguntar ao agente",
     "create": {
       "title": "Crie uma entrevista em minutos",
-      "text": "Cole uma descrição de vaga e ajuste os tópicos, ou escolha um modelo pronto.",
+      "text": "Cole uma descrição de vaga, ajuste os tópicos e sua entrevista fica pronta em minutos.",
+      "notes": {
+        "questions": "{count} perguntas geradas por tópico",
+        "templates": "modelos prontos disponíveis",
+        "expert": "sem precisar de um especialista na área"
+      },
       "describe": "Cole sua descrição",
       "adjust": "Ajuste os tópicos",
       "ask": "Peça à IA para mudar os tópicos",
-      "or": "ou",
-      "fromTemplate": "Dos nossos modelos"
+      "ready": "Sua entrevista está pronta",
+      "status": "Pronta",
+      "invite": "Convidar candidatos"
     },
     "proof": {
       "languages": "{count} idiomas",

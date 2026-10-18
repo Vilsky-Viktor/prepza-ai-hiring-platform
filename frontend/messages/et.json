@@ -1196,12 +1196,18 @@
     "askAgent": "küsi agendilt",
     "create": {
       "title": "Loo intervjuu mõne minutiga",
-      "text": "Kleebi töökuulutus ja kohanda teemasid või vali valmis mall.",
+      "text": "Kleebi töökuulutus, kohanda teemasid ja intervjuu on mõne minutiga valmis.",
+      "notes": {
+        "questions": "{count, plural, one {# küsimus} other {# küsimust}} iga teema kohta",
+        "templates": "valmis mallid olemas",
+        "expert": "valdkonna eksperti pole vaja"
+      },
       "describe": "Kleebi oma kuulutus",
       "adjust": "Kohanda teemasid",
       "ask": "Palu tehisarul teemasid muuta",
-      "or": "või",
-      "fromTemplate": "Meie mallidest"
+      "ready": "Sinu intervjuu on valmis",
+      "status": "Valmis",
+      "invite": "Kutsu kandidaadid"
     },
     "proof": {
       "languages": "{count} keelt",

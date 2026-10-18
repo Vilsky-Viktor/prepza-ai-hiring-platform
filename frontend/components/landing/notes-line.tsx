@@ -1,17 +1,32 @@
 import { Dotted } from "@/components/dot"
+import { DOT_CLASS } from "@/constants/dot"
 
-/** A centered line of short facts under a section's picture, split by the logo's blue dots; a
- * fact stays whole on one line, and lines break between facts. */
+/** Short facts under a section's picture: from tablets up, one centered line split by the logo's
+ * blue dots, a fact staying whole and lines breaking between facts; on phones, one fact a row,
+ * each starting with the blue dot, the list centered under the picture. */
 export function NotesLine({ notes }: { notes: string[] }) {
   return (
-    <p className="text-center text-sm text-balance text-muted-foreground">
-      <Dotted
-        items={notes.map((note) => (
-          <span key={note} className="whitespace-nowrap">
+    <div
+      data-testid="notes"
+      className="text-center text-sm text-balance text-muted-foreground"
+    >
+      <ul className="mx-auto w-fit space-y-1 text-start sm:hidden">
+        {notes.map((note) => (
+          <li key={note} className="flex items-center">
+            <span aria-hidden className={`${DOT_CLASS} ms-0`} />
             {note}
-          </span>
+          </li>
         ))}
-      />
-    </p>
+      </ul>
+      <p className="max-sm:hidden">
+        <Dotted
+          items={notes.map((note) => (
+            <span key={note} className="whitespace-nowrap">
+              {note}
+            </span>
+          ))}
+        />
+      </p>
+    </div>
   )
 }

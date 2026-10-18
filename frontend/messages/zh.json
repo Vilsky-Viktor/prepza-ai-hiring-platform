@@ -1196,12 +1196,18 @@
     "askAgent": "问问智能助手",
     "create": {
       "title": "几分钟创建一场面试",
-      "text": "粘贴职位描述并调整主题，或直接选用现成的模板。",
+      "text": "粘贴职位描述并调整主题，几分钟内即可完成面试。",
+      "notes": {
+        "questions": "每个主题生成 {count} 道题",
+        "templates": "提供现成模板",
+        "expert": "无需专业领域专家"
+      },
       "describe": "粘贴职位描述",
       "adjust": "调整主题",
       "ask": "让 AI 修改主题",
-      "or": "或",
-      "fromTemplate": "从我们的模板"
+      "ready": "你的面试已就绪",
+      "status": "就绪",
+      "invite": "邀请候选人"
     },
     "proof": {
       "languages": "{count} 种语言",

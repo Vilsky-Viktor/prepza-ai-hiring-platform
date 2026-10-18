@@ -1196,12 +1196,18 @@
     "askAgent": "asistana sor",
     "create": {
       "title": "Dakikalar içinde mülakat oluşturun",
-      "text": "Bir iş tanımı yapıştırıp konuları düzenleyin ya da hazır bir şablon seçin.",
+      "text": "Bir iş tanımı yapıştırın, konuları düzenleyin; mülakatınız dakikalar içinde hazır.",
+      "notes": {
+        "questions": "konu başına {count} soru üretilir",
+        "templates": "hazır şablonlar mevcut",
+        "expert": "alan uzmanı gerekmez"
+      },
       "describe": "İş tanımınızı yapıştırın",
       "adjust": "Konuları düzenleyin",
       "ask": "Konuları değiştirmesini yapay zekâdan isteyin",
-      "or": "veya",
-      "fromTemplate": "Şablonlarımızdan"
+      "ready": "Mülakatınız hazır",
+      "status": "Hazır",
+      "invite": "Adayları davet et"
     },
     "proof": {
       "languages": "{count} dil",

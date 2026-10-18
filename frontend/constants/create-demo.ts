@@ -1,4 +1,4 @@
-// The home page's "create an interview" demos: what their three panels show. Display only.
+// The home page's "create an interview" demo: what its three panels show. Display only.
 
 // The job description typed into the box.
 export const DEMO_DESCRIPTION =
@@ -20,22 +20,14 @@ export const DEMO_NEW_TOPIC = {
   subtopics: ["Code reviews", "Feedback"],
 }
 
-// The search typed; the templates listed (those whose title has the search stay); the one
-// used, and its topics on the interview it creates.
-export const DEMO_SEARCH = "marketing"
+// The interview it makes: its title, each topic's questions (as many as an interview's topic
+// gets) and how many each candidate gets of them, and the time for each question.
+export const DEMO_INTERVIEW = {
+  title: "Senior Python Developer",
+  topicQuestions: 70,
+  perCandidate: 10,
+  questionSeconds: 60,
+}
 
-export const DEMO_TEMPLATES = [
-  { title: "Digital Marketing Manager", topics: 4, questions: 360 },
-  { title: "Senior Accountant", topics: 5, questions: 450 },
-  { title: "Content Marketing Specialist", topics: 5, questions: 450 },
-  { title: "Customer Support Agent", topics: 4, questions: 360 },
-]
-
-export const DEMO_PICKED = DEMO_TEMPLATES[0]
-
-export const DEMO_TEMPLATE_TOPICS = [
-  "SEO and content",
-  "Paid ads and budgets",
-  "Analytics and attribution",
-  "Email and lifecycle",
-]
+// The candidate invited to it.
+export const DEMO_INVITE_EMAIL = "maria@example.com"

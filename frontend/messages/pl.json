@@ -1196,12 +1196,18 @@
     "askAgent": "zapytaj agenta",
     "create": {
       "title": "Utwórz rozmowę w kilka minut",
-      "text": "Wklej opis stanowiska i dopasuj tematy albo wybierz gotowy szablon.",
+      "text": "Wklej opis stanowiska, dopasuj tematy, a rozmowa będzie gotowa w kilka minut.",
+      "notes": {
+        "questions": "{count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}} na każdy temat",
+        "templates": "gotowe szablony do wyboru",
+        "expert": "bez eksperta w danej dziedzinie"
+      },
       "describe": "Wklej swój opis",
       "adjust": "Dopasuj tematy",
       "ask": "Poproś AI o zmianę tematów",
-      "or": "lub",
-      "fromTemplate": "Z naszych szablonów"
+      "ready": "Twoja rozmowa jest gotowa",
+      "status": "Gotowa",
+      "invite": "Zaproś kandydatów"
     },
     "proof": {
       "languages": "{count, plural, one {# język} few {# języki} many {# języków} other {# języka}}",

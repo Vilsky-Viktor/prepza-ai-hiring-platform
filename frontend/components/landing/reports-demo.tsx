@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "cn"
+import { useTranslations } from "next-intl"
 import { useRef } from "react"
 
 import { DemoCandidates } from "@/components/landing/demo-candidates"
@@ -8,7 +9,8 @@ import { DemoChat } from "@/components/landing/demo-chat"
 import { DemoPanel } from "@/components/landing/demo-panel"
 import { DemoPointer } from "@/components/landing/demo-pointer"
 import { DemoReport } from "@/components/landing/demo-report"
-import { DemoSentNotice, DemoSharePopup } from "@/components/landing/demo-share"
+import { DemoSentNotice } from "@/components/landing/demo-popup"
+import { DemoSharePopup } from "@/components/landing/demo-share"
 import { DEMO_SHARE_EMAIL } from "@/constants/reports-demo"
 import {
   countedAt,
@@ -92,6 +94,7 @@ const REPORT = STEPS.findIndex(({ name }) => name === "report")
  * to WhatsApp as a text summary. One screen fades out and the next in; the popup and the notice
  * lie over them. With reduced motion, the candidate's report at its top. */
 export function ReportsDemo() {
+  const report = useTranslations("report")
   const { ref, ...at } = useDemoSteps<HTMLDivElement>(STEPS)
   const step = STEPS[at.index]
   const listShareRef = useRef<HTMLSpanElement>(null)
@@ -180,7 +183,10 @@ export function ReportsDemo() {
           sendRef={sendRef}
           whatsAppRef={whatsAppRef}
         />
-        <DemoSentNotice shown={step.notice === true} email={DEMO_SHARE_EMAIL} />
+        <DemoSentNotice
+          shown={step.notice === true}
+          text={report("sent", { email: DEMO_SHARE_EMAIL })}
+        />
       </DemoPanel>
     </div>
   )

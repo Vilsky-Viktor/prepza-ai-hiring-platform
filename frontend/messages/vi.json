@@ -1196,12 +1196,18 @@
     "askAgent": "hỏi trợ lý AI",
     "create": {
       "title": "Tạo buổi phỏng vấn trong vài phút",
-      "text": "Dán mô tả công việc rồi điều chỉnh các chủ đề, hoặc chọn một mẫu có sẵn.",
+      "text": "Dán mô tả công việc, điều chỉnh các chủ đề, và buổi phỏng vấn của bạn sẵn sàng sau vài phút.",
+      "notes": {
+        "questions": "{count} câu hỏi được tạo cho mỗi chủ đề",
+        "templates": "có sẵn các mẫu dùng ngay",
+        "expert": "không cần chuyên gia trong lĩnh vực"
+      },
       "describe": "Dán mô tả công việc",
       "adjust": "Điều chỉnh chủ đề",
       "ask": "Nhờ AI thay đổi chủ đề",
-      "or": "hoặc",
-      "fromTemplate": "Từ mẫu của chúng tôi"
+      "ready": "Buổi phỏng vấn của bạn đã sẵn sàng",
+      "status": "Sẵn sàng",
+      "invite": "Mời ứng viên"
     },
     "proof": {
       "languages": "{count} ngôn ngữ",

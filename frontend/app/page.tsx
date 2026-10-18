@@ -24,6 +24,7 @@ import { publicFetch } from "@/lib/server-api"
 import { pageMetadata, siteUrl } from "@/lib/site"
 import { organizationData } from "@/lib/structured-data"
 import type { Catalog } from "@/types/billing"
+import type { Sizes } from "@/types/generation"
 
 export async function generateMetadata() {
   const t = await getTranslations("site")
@@ -46,6 +47,8 @@ export default async function HomePage() {
     () => null
   )
   const freeCandidates = catalog?.free_candidates ?? null
+  // Without it, the create section shows without its questions-per-topic fact.
+  const sizes = await publicFetch<Sizes>("/generate/sizes").catch(() => null)
 
   return (
     <main className="mx-auto max-w-5xl px-6">
@@ -112,7 +115,7 @@ export default async function HomePage() {
           <ArrowDownIcon className="size-5" />
         </a>
       </div>
-      <CreateSection />
+      <CreateSection questionsPerTopic={sizes?.questions_per_topic ?? null} />
       <InviteFromSection />
       <CandidatesSection />
       <ShareReportsSection />

@@ -1196,12 +1196,18 @@
     "askAgent": "tanya agen",
     "create": {
       "title": "Buat wawancara dalam hitungan menit",
-      "text": "Tempel deskripsi pekerjaan dan sesuaikan topiknya, atau pilih templat siap pakai.",
+      "text": "Tempel deskripsi pekerjaan, sesuaikan topiknya, dan wawancaramu siap dalam hitungan menit.",
+      "notes": {
+        "questions": "{count} pertanyaan dibuat per topik",
+        "templates": "templat siap pakai tersedia",
+        "expert": "tanpa perlu ahli di bidangnya"
+      },
       "describe": "Tempel deskripsimu",
       "adjust": "Sesuaikan topiknya",
       "ask": "Minta AI mengubah topiknya",
-      "or": "atau",
-      "fromTemplate": "Dari templat kami"
+      "ready": "Wawancaramu sudah siap",
+      "status": "Siap",
+      "invite": "Undang kandidat"
     },
     "proof": {
       "languages": "{count} bahasa",

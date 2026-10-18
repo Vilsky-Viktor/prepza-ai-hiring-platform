@@ -23,7 +23,11 @@ export function DemoPanel({
   children: React.ReactNode
 }) {
   return (
-    <div ref={ref} className="flex min-w-0 flex-col gap-3">
+    <div
+      ref={ref}
+      data-testid="demo-panel"
+      className="flex min-w-0 flex-col gap-3"
+    >
       {label && <DemoLabel>{label}</DemoLabel>}
       <div
         aria-hidden

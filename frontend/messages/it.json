@@ -1196,12 +1196,18 @@
     "askAgent": "chiedi all'agente",
     "create": {
       "title": "Crea un colloquio in pochi minuti",
-      "text": "Incolla una descrizione del ruolo e regola gli argomenti, oppure scegli un modello pronto.",
+      "text": "Incolla una descrizione del ruolo, regola gli argomenti e il tuo colloquio è pronto in pochi minuti.",
+      "notes": {
+        "questions": "{count} domande generate per argomento",
+        "templates": "modelli pronti disponibili",
+        "expert": "nessun esperto della materia necessario"
+      },
       "describe": "Incolla la descrizione",
       "adjust": "Regola gli argomenti",
       "ask": "Chiedi all'IA di cambiare gli argomenti",
-      "or": "oppure",
-      "fromTemplate": "Dai nostri modelli"
+      "ready": "Il tuo colloquio è pronto",
+      "status": "Pronto",
+      "invite": "Invita candidati"
     },
     "proof": {
       "languages": "{count} lingue",

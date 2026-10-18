@@ -1196,12 +1196,18 @@
     "askAgent": "demander à l'agent",
     "create": {
       "title": "Créez un entretien en quelques minutes",
-      "text": "Collez une fiche de poste et ajustez les thèmes, ou choisissez un modèle prêt à l'emploi.",
+      "text": "Collez une fiche de poste, ajustez les thèmes, et votre entretien est prêt en quelques minutes.",
+      "notes": {
+        "questions": "{count} questions générées par thème",
+        "templates": "modèles prêts à l'emploi disponibles",
+        "expert": "aucun expert du métier requis"
+      },
       "describe": "Collez votre fiche",
       "adjust": "Ajustez les thèmes",
       "ask": "Demandez à l'IA de modifier les thèmes",
-      "or": "ou",
-      "fromTemplate": "Depuis nos modèles"
+      "ready": "Votre entretien est prêt",
+      "status": "Prêt",
+      "invite": "Inviter des candidats"
     },
     "proof": {
       "languages": "{count} langues",

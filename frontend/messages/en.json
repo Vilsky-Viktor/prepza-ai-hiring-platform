@@ -1196,12 +1196,18 @@
     "askAgent": "ask agent",
     "create": {
       "title": "Create an interview in minutes",
-      "text": "Paste a job description and adjust the topics, or pick a ready template.",
+      "text": "Paste a job description, adjust the topics, and your interview is ready in minutes.",
+      "notes": {
+        "questions": "{count} questions generated per topic",
+        "templates": "ready-made templates available",
+        "expert": "no expert needed"
+      },
       "describe": "Paste your description",
       "adjust": "Adjust the topics",
       "ask": "Ask AI to change the topics",
-      "or": "or",
-      "fromTemplate": "From our templates"
+      "ready": "Your interview is ready",
+      "status": "Ready",
+      "invite": "Invite candidates"
     },
     "proof": {
       "languages": "{count} languages",
