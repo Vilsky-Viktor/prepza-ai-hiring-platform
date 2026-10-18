@@ -1373,7 +1373,7 @@
       "prepza": {
         "name": "prepza",
         "checks": "Tehisintellekt kirjutab need just sinu rollile",
-        "time": "~10 min rolli kohta, kandidaadile mitte minutitki",
+        "time": "~10 min rolli kohta, 0 kandidaadi kohta",
         "cost": "{price} iga vastava kandidaadi kohta"
       },
       "more": "Võrdle teiste tööriistadega"
