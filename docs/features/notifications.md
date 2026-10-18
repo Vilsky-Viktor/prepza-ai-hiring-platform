@@ -10,6 +10,7 @@ A bell next to the account menu shows notifications live: it updates within a se
 - It shows the latest 10.
 - Each person or company keeps at most 100, none older than 90 days.
 - A deleted company's notifications go with it.
+- AI apps hear what reached a company's bell through the assistant's `get_updates` ([AI apps over MCP](mcp.md#whats-new-get_updates)), which reads `POST /internal/updates`: the company notifications of the given companies after `since` and up to `until`, newest first. Only the assistant's service token may call it (others get `403`), and reading marks nothing as seen.
 
 ### What gets a notification
 

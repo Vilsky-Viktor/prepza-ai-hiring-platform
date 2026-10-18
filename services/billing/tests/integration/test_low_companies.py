@@ -34,3 +34,60 @@ def test_running_low_lists_companies_short_of_a_candidate_unless_a_top_up_refill
     found, low = run(scenario())
 
     assert found == {low}
+
+
+def test_running_low_with_owner_ids_lists_only_those_owners(run):
+    async def scenario():
+        asked = await wallet(0)
+        asked_enough = await wallet(CANDIDATE_CREDITS)
+        await wallet(0)
+        found = await ledger.running_low(COMPANY, [asked, asked_enough])
+
+        return [row.owner_id for row in found], asked
+
+    found, asked = run(scenario())
+
+    assert found == [asked]
+
+
+def test_running_low_counts_an_automatic_top_up_waiting_for_its_checkout(run):
+    async def scenario():
+        waiting = await wallet(0)
+        await rows.save(COMPANY, waiting, "topup_50", 500, "ann")
+        found = await ledger.running_low(COMPANY, [waiting])
+
+        return [row.owner_id for row in found], waiting
+
+    found, waiting = run(scenario())
+
+    assert found == [waiting]
+
+
+def test_running_low_leaves_out_an_asked_owner_with_an_active_automatic_top_up(run):
+    async def scenario():
+        refilled = await wallet(0)
+        await rows.save(COMPANY, refilled, "topup_50", 500, "ann")
+        await rows.start(COMPANY, refilled, "ann", f"sub_{uuid.uuid4().hex[:12]}")
+
+        return await ledger.running_low(COMPANY, [refilled])
+
+    assert run(scenario()) == []
+
+
+def test_running_low_takes_credits_set_aside_off_the_balance(run):
+    async def scenario():
+        owner = str(uuid.uuid4())
+
+        async with Session() as session:
+            session.add(
+                Wallet(owner_type=COMPANY, owner_id=owner, balance=CANDIDATE_CREDITS, reserved=1)
+            )
+            await session.commit()
+
+        found = await ledger.running_low(COMPANY, [owner])
+
+        return [row.owner_id for row in found], owner
+
+    found, owner = run(scenario())
+
+    assert found == [owner]

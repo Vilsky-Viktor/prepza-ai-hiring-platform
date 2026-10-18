@@ -90,6 +90,8 @@ class AtsCandidate(Base):
     claimed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     # Why they weren't invited (constants/ats.py FailReason).
     reason: Mapped[str | None] = mapped_column(String(16))
+    # When they first couldn't be invited; a retry that fails again keeps it.
+    failed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     # Invites that failed in passing (companies erred or didn't answer), tried again until
     # MAX_INVITE_ATTEMPTS.
     attempts: Mapped[int] = mapped_column(default=0, server_default="0")

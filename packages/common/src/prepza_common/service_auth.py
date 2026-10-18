@@ -5,7 +5,7 @@ from typing import Annotated
 import jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from prepza_common.constants import SERVICE_TOKEN_LIFETIME
+from prepza_common.constants import NOT_ALLOWED, SERVICE_TOKEN_LIFETIME
 
 bearer = HTTPBearer()
 
@@ -69,3 +69,9 @@ def service_caller(secret: str, name: str):
         return caller
 
     return Annotated[str, Depends(verify_service)]
+
+
+def only_from(caller: str, allowed: str) -> None:
+    """Refuses a call from any service but `allowed`, for an internal route only it may use."""
+    if caller != allowed:
+        raise HTTPException(status.HTTP_403_FORBIDDEN, NOT_ALLOWED)

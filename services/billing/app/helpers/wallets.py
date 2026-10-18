@@ -11,5 +11,10 @@ def balance_out(row: Wallet) -> BalanceOut:
         reserved=row.reserved,
         available=available,
         low=available < LOW_BALANCE,
-        candidates=max(available, 0) // CANDIDATE_CREDITS,
+        candidates=candidates_for(available),
     )
+
+
+def candidates_for(available: int) -> int:
+    """The candidates the available credits pay for."""
+    return max(available, 0) // CANDIDATE_CREDITS

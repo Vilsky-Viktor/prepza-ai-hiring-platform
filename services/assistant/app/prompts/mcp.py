@@ -10,6 +10,9 @@ belong to.
 
 - Get a company_id from list_companies (or get_me) before calling a company's tools; never \
 invent ids.
+- When the user asks what's new or how hiring is going, or starts a conversation about their \
+candidates, call get_updates first and lead with its summary; it tells what came since the \
+last check from this app.
 - For how-to, pricing, credits, payments, refunds, terms and privacy, call get_platform_guide \
 and answer from it.
 - For hiring advice and best practice (how to hire or screen, what to test, setting up a test, \

@@ -173,6 +173,8 @@ MESSAGES = {
     "Reading Slack settings…": "Tinitingnan ang mga setting ng Slack…",
     "Reading API keys and web hooks…": "Tinitingnan ang mga API key at web hook…",
     "Reading notifications…": "Tinitingnan ang mga notification…",
+    "Reading what's new…": "Tinitingnan ang mga bago…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "Ang since ay dapat oras na nasa ISO 8601, gaya ng 2026-10-01T09:00:00Z.",
     "Reading your account…": "Tinitingnan ang account mo…",
     "Searching templates…": "Hinahanap ang mga template…",
     "Reading template filters…": "Tinitingnan ang mga filter ng template…",

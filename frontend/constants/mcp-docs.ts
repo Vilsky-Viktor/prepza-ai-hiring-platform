@@ -11,6 +11,7 @@ export const MCP_TITLES = {
   server: "Server",
   apps: "AI apps",
   agents: "Your own agent",
+  updates: "Daily updates",
   tools: "Tools",
   rules: "Rules",
   connections: "Managing connections",
@@ -47,6 +48,10 @@ export const MCP_OTHER_APPS = [
     code: null,
   },
 ]
+
+export const MCP_UPDATES = `Ask your AI app "What's new in prepza?" and it calls \`get_updates\`: what happened in your companies since that app last checked (the first time, the last 7 days). A short summary comes first, then each candidate who started or finished, with their grade and whether they passed, invites that weren't delivered, candidates from your ATS who couldn't be invited, questions flagged or fixed, interviews that are ready, the rest of your notifications, and companies running low on credits that no automatic top-up refills. Each app and each API key keeps its own last check, so every update reaches it once, and checking doesn't mark anything as read in prepza. Only companies that allow AI apps are included; an API key needs the \`candidates:read\` permission, and \`credits:read\` to hear about credits.
+
+**Every morning, by itself.** In an app with scheduled tasks, such as ChatGPT's, add a daily task like: "Every weekday at 9:00, call prepza's get_updates and tell me who started, who finished, who passed and what needs my attention." The app then brings you the summary without being asked.`
 
 export const MCP_AGENTS =
   "Complete examples in Python and TypeScript. They share one sign-in file: with `PREPZA_API_KEY` set it signs in with that key; otherwise it opens prepza's consent page in your browser once and keeps the tokens in `prepza-tokens.json`, updating them at each refresh. Each file's first line installs the versions it was run with."

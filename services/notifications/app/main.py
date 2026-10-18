@@ -16,6 +16,7 @@ from app.routers import (
     events,
     internal_accounts,
     internal_campaigns,
+    internal_updates,
     me,
     schedules,
     slack,
@@ -62,6 +63,7 @@ app.include_router(superadmin_legal.router)
 app.include_router(superadmin_campaigns.router)
 app.include_router(superadmin_suppressed.router)
 app.include_router(internal_campaigns.router)
+app.include_router(internal_updates.router)
 app.include_router(schedules.router)
 
 

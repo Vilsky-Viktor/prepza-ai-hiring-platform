@@ -4,6 +4,7 @@ from pathlib import Path
 
 from app.constants.tool_calls import DEFAULT_MAX_ITEMS, MAX_STRING_LENGTH, SERVICE_URLS
 from app.constants.tools import TOOLS
+from app.constants.updates import GET_UPDATES, GET_UPDATES_DEFINITION, MAX_UPDATES, UPDATES_PATH
 from app.helpers.tool_schema import check_route, definition
 from app.models.tools import Tool
 
@@ -60,7 +61,28 @@ def build(name: str, entry: dict) -> Tool:
     )
 
 
+def updates_tool() -> Tool:
+    """get_updates, a read of the notifications service's internal feed: services/updates.py
+    carries it out, never the generic call of a user-facing route."""
+    return Tool(
+        name=GET_UPDATES,
+        service="notifications",
+        method="GET",
+        path=UPDATES_PATH,
+        path_params=(),
+        query_params=(),
+        definition=GET_UPDATES_DEFINITION,
+        fields=None,
+        max_items=MAX_UPDATES,
+        max_length=MAX_STRING_LENGTH,
+        render=None,
+        link=None,
+    )
+
+
 @cache
 def tools() -> dict[str, Tool]:
     """Every tool, built once; the service doesn't start when one can't be."""
-    return {name: build(name, entry) for name, entry in TOOLS.items()}
+    built = {name: build(name, entry) for name, entry in TOOLS.items()}
+
+    return {**built, GET_UPDATES: updates_tool()}

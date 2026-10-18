@@ -1,14 +1,22 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, status
+from prepza_common.constants import UPDATES_CALLER
+from prepza_common.service_auth import only_from
 
-from app.constants.quality import PATTERN_SIGNALS_CALLER
-from app.schemas.quality import QuestionQuality, ReportNote
+from app.constants.quality import COMPANY_INTERVIEWS_LINK, PATTERN_SIGNALS_CALLER
+from app.schemas.quality import (
+    QuestionQuality,
+    QuestionUpdateOut,
+    QuestionUpdatesIn,
+    QuestionUpdatesOut,
+    ReportNote,
+)
 from app.schemas.quality_report import QualitySignalOut
 from app.service_auth import ServiceCaller
 from app.services import quality as quality_service
 from app.services import quality_signals
-from app.storage import feedback, quality
+from app.storage import feedback, quality, question_updates
 
 router = APIRouter(prefix="/internal/questions", tags=["internal"])
 
@@ -20,10 +28,33 @@ async def list_signals(
     """Questions flagged or replaced in the last `days` across every company and template, for
     generation's weekly pattern job only: it turns them into general rules without any company's
     text, and nothing else may read other companies' questions."""
-    if caller != PATTERN_SIGNALS_CALLER:
-        raise HTTPException(status.HTTP_403_FORBIDDEN, "Not allowed")
+    only_from(caller, PATTERN_SIGNALS_CALLER)
 
     return await quality_signals.recent(days)
+
+
+@router.post("/updates")
+async def company_question_updates(
+    body: QuestionUpdatesIn, caller: ServiceCaller
+) -> QuestionUpdatesOut:
+    """The assistant, for its get_updates tool: each question of these companies' interviews
+    newly flagged or fixed after `since` and up to `until`, named by its topic."""
+    only_from(caller, UPDATES_CALLER)
+    rows = await question_updates.between(body.company_ids, body.since, body.until)
+
+    return QuestionUpdatesOut(
+        items=[
+            QuestionUpdateOut(
+                kind=kind,
+                at=at,
+                company_id=company_id,
+                title=title,
+                topic=topic,
+                link=COMPANY_INTERVIEWS_LINK.format(company_id=company_id),
+            )
+            for kind, at, company_id, title, topic in rows
+        ]
+    )
 
 
 @router.get("/{question_id}/quality")

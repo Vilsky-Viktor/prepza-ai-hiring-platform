@@ -21,11 +21,12 @@ import {
   MCP_TITLES,
   MCP_TOOL_LABELS,
   MCP_TOOLS_TEXT,
+  MCP_UPDATES,
 } from "@/constants/mcp-docs"
 import type { McpExample, McpTool, McpTools } from "@/types/mcp"
 
 /** The developer docs' MCP tab: the server and how to sign in, the AI apps' setup as tabs (the AI
- * apps page's own steps for Claude and ChatGPT, then other apps), example agents, and the tools and limits as the server
+ * apps page's own steps for Claude and ChatGPT, then other apps), daily updates, example agents, and the tools and limits as the server
  * lists them. */
 export function McpTab({
   site,
@@ -76,6 +77,9 @@ export function McpTab({
             })),
           ]}
         />
+      </DocSection>
+      <DocSection title={MCP_TITLES.updates}>
+        <RichText text={MCP_UPDATES} />
       </DocSection>
       <DocSection title={MCP_TITLES.agents}>
         <RichText text={MCP_AGENTS} />

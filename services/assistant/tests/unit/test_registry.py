@@ -2,13 +2,14 @@ import pytest
 
 from app.constants.tool_calls import FORBIDDEN_PATH_PREFIXES
 from app.constants.tools import TOOLS
+from app.constants.updates import GET_UPDATES
 from app.services.registry import build, tools
 
 
 def test_every_tool_resolves_in_its_services_snapshot():
     built = tools()
 
-    assert set(built) == set(TOOLS)
+    assert set(built) == set(TOOLS) | {GET_UPDATES}
     assert {"search_candidates", "get_platform_guide", "get_api_settings"} <= set(built)
 
 

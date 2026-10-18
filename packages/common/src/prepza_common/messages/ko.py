@@ -173,6 +173,8 @@ MESSAGES = {
     "Reading Slack settings…": "Slack 설정을 확인하는 중…",
     "Reading API keys and web hooks…": "API 키와 웹훅을 확인하는 중…",
     "Reading notifications…": "알림을 확인하는 중…",
+    "Reading what's new…": "새 소식을 확인하는 중…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "since는 ISO 8601 형식의 시간이어야 합니다(예: 2026-10-01T09:00:00Z).",
     "Reading your account…": "계정을 확인하는 중…",
     "Searching templates…": "템플릿을 검색하는 중…",
     "Reading template filters…": "템플릿 필터를 확인하는 중…",

@@ -89,7 +89,9 @@ async def change_flag(
 ) -> bool:
     """Flags the question only if its flag is still `previous`, as read before; `notice`, the
     owner's notification, is saved with it. False when another event changed it meanwhile, so
-    two events at once flag a question, notify and send it to the verifier once."""
+    two events at once flag a question, notify and send it to the verifier once. A question
+    with no flag before is newly flagged then (flag_raised_at)."""
+    raised = func.now() if previous is None else QuestionStats.flag_raised_at
     statement = (
         insert(QuestionStats)
         .values(
@@ -100,10 +102,11 @@ async def change_flag(
             flag=flag,
             kept=False,
             flagged_at=func.now(),
+            flag_raised_at=func.now(),
         )
         .on_conflict_do_update(
             index_elements=[QuestionStats.question_id],
-            set_={"flag": flag, "kept": False, "flagged_at": func.now()},
+            set_={"flag": flag, "kept": False, "flagged_at": func.now(), "flag_raised_at": raised},
             where=QuestionStats.flag.is_not_distinct_from(previous),
         )
         .returning(QuestionStats.question_id)
@@ -150,8 +153,9 @@ async def take_stale_flags(before: datetime, limit: int) -> list[tuple[uuid.UUID
         return taken
 
 
-async def archive(session: AsyncSession, question_id: uuid.UUID) -> None:
-    """Moves a question's content, answer stats and feedback into a revision, in `session`.
+async def archive(session: AsyncSession, question_id: uuid.UUID, fixed: bool = False) -> None:
+    """Moves a question's content, answer stats and feedback into a revision, in `session`;
+    `fixed` when it's replaced because it was flagged.
 
     The caller then replaces the question; its new content starts with no feedback.
     """
@@ -174,6 +178,7 @@ async def archive(session: AsyncSession, question_id: uuid.UUID) -> None:
             correct=stats.correct if stats else 0,
             option_picks=stats.option_picks if stats else {},
             flag=stats.flag if stats else None,
+            fixed=fixed,
             likes=likes,
             dislikes=dislikes,
             reports=[

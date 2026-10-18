@@ -173,6 +173,8 @@ MESSAGES = {
     "Reading Slack settings…": "جارٍ الاطلاع على إعدادات Slack…",
     "Reading API keys and web hooks…": "جارٍ الاطلاع على مفاتيح API وخطافات الويب…",
     "Reading notifications…": "جارٍ الاطلاع على الإشعارات…",
+    "Reading what's new…": "جارٍ الاطلاع على المستجدات…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "يجب أن يكون since وقتًا بصيغة ISO 8601، مثل 2026-10-01T09:00:00Z.",
     "Reading your account…": "جارٍ الاطلاع على حسابك…",
     "Searching templates…": "جارٍ البحث عن قوالب…",
     "Reading template filters…": "جارٍ الاطلاع على عوامل تصفية القوالب…",

@@ -169,12 +169,15 @@ async def settle(
     notice: dict | None = None,
 ) -> None:
     """The candidate's outcome, with the company's notification about it in the same
-    transaction (the outbox sends it)."""
+    transaction (the outbox sends it); the first failure's time is kept."""
     query = (
         update(AtsCandidate)
         .where(AtsCandidate.id == row_id)
         .values(status=status, reason=reason, invite_id=invite_id)
     )
+
+    if status == CandidateStatus.FAILED:
+        query = query.values(failed_at=func.coalesce(AtsCandidate.failed_at, func.now()))
 
     async with Session() as session:
         await session.execute(query)

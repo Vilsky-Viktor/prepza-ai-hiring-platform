@@ -183,6 +183,8 @@ MESSAGES = {
     "Reading Slack settings…": "Vaatan Slacki seadeid…",
     "Reading API keys and web hooks…": "Vaatan API-võtmeid ja veebihaake…",
     "Reading notifications…": "Vaatan teavitusi…",
+    "Reading what's new…": "Vaatan, mis on uut…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "since peab olema ISO 8601 vormingus aeg, näiteks 2026-10-01T09:00:00Z.",
     "Reading your account…": "Vaatan sinu kontot…",
     "Searching templates…": "Otsin malle…",
     "Reading template filters…": "Vaatan mallifiltreid…",

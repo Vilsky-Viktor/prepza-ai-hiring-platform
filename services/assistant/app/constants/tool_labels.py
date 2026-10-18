@@ -24,6 +24,7 @@ TOOL_LABELS = {
     "get_slack": "Reading Slack settings…",
     "get_api_settings": "Reading API keys and web hooks…",
     "list_notifications": "Reading notifications…",
+    "get_updates": "Reading what's new…",
     "get_me": "Reading your account…",
     "search_templates": "Searching templates…",
     "list_template_filters": "Reading template filters…",

@@ -2,11 +2,12 @@ from datetime import UTC, datetime, timedelta
 
 import jwt
 import pytest
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.testclient import TestClient
 from prepza_common.service_auth import (
     callee_secret,
     issue_token,
+    only_from,
     service_caller,
     token_caller,
     token_claims,
@@ -91,3 +92,15 @@ def test_extra_claims_ride_along_signed_and_never_replace_the_callers():
     assert claims["company"] == "c1"
     assert claims["iss"] == "assistant"
     assert token_claims(token, ROUNDS_SECRET, "library") is None
+
+
+def test_only_from_lets_the_allowed_caller_through():
+    assert only_from("assistant", "assistant") is None
+
+
+def test_only_from_refuses_another_caller():
+    with pytest.raises(HTTPException) as refused:
+        only_from("library", "assistant")
+
+    assert refused.value.status_code == 403
+    assert refused.value.detail == "Not allowed"

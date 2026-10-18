@@ -5,6 +5,8 @@ from prepza_common import http
 from prepza_common.http import bearer
 
 from app.config.settings import settings
+from app.constants.tool_calls import TOOL_TIMEOUT_SECONDS
+from app.constants.updates import LOW_COMPANIES_PATH
 from app.service_auth import service_token
 
 
@@ -21,3 +23,18 @@ async def company_paid(company_id: UUID) -> bool:
         return False
 
     return response.json()["paid"]
+
+
+async def low_companies(company_ids: list[str]) -> list[dict]:
+    """Those of the companies running low on credits that no automatic top-up refills (as
+    billing's reminders tell it), each with the candidates its credits still pay for; raises
+    when billing doesn't answer."""
+    response = await http.get_client().get(
+        settings.billing_url + LOW_COMPANIES_PATH,
+        params={"ids": company_ids},
+        headers=bearer(service_token("billing")),
+        timeout=TOOL_TIMEOUT_SECONDS,
+    )
+    response.raise_for_status()
+
+    return response.json()["companies"]

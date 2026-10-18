@@ -629,6 +629,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/updates": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Company Updates
+     * @description The assistant, for its get_updates tool: what reached these companies' bells between two
+     *     times, newest first. Reading them marks nothing as seen.
+     */
+    post: operations["company_updates_internal_updates_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/schedules/digest": {
     parameters: {
       query?: never
@@ -686,6 +707,27 @@ export interface paths {
      *     each run going on where the last one stopped; nobody gets one twice.
      */
     post: operations["bulk_internal_schedules_bulk_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/schedules/outbox": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Flush Outbox
+     * @description Every minute, from Cloud Scheduler: publishes events that weren't published right after
+     *     their change.
+     */
+    post: operations["flush_outbox_internal_schedules_outbox_post"]
     delete?: never
     options?: never
     head?: never
@@ -1058,6 +1100,52 @@ export interface components {
       | "promotions"
       | "invite_reminders"
       | "company"
+    /** UpdateOut */
+    UpdateOut: {
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string
+      /** Kind */
+      kind: string
+      /** Link */
+      link: string
+      /** Data */
+      data: {
+        [key: string]: unknown
+      }
+      /**
+       * Created At
+       * Format: date-time
+       */
+      created_at: string
+      /** Company Id */
+      company_id: string
+    }
+    /**
+     * UpdatesIn
+     * @description The companies whose notifications to read, after `since` and up to `until`.
+     */
+    UpdatesIn: {
+      /** Company Ids */
+      company_ids: string[]
+      /**
+       * Since
+       * Format: date-time
+       */
+      since: string
+      /**
+       * Until
+       * Format: date-time
+       */
+      until: string
+    }
+    /** UpdatesOut */
+    UpdatesOut: {
+      /** Items */
+      items: components["schemas"]["UpdateOut"][]
+    }
     /**
      * UserEmailIn
      * @description An email address sent in the body, so request logs don't record it: the account's, in
@@ -2221,6 +2309,39 @@ export interface operations {
       }
     }
   }
+  company_updates_internal_updates_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UpdatesIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["UpdatesOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   digest_internal_schedules_digest_post: {
     parameters: {
       query?: never
@@ -2258,6 +2379,24 @@ export interface operations {
     }
   }
   bulk_internal_schedules_bulk_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  flush_outbox_internal_schedules_outbox_post: {
     parameters: {
       query?: never
       header?: never

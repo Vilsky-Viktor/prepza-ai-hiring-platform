@@ -25,6 +25,7 @@ from app.constants.mcp import (
     UPDATE_LANGUAGE,
 )
 from app.constants.tool_calls import UNKNOWN_TOOL
+from app.constants.updates import GET_UPDATES
 from app.helpers.mcp_schema import mcp_tool
 from app.helpers.oauth import funnel_client
 from app.integrations import firebase_tokens
@@ -32,6 +33,7 @@ from app.integrations.redis import get_redis
 from app.integrations.services import KEY_CLAIMS
 from app.models.oauth_tokens import Access
 from app.models.tools import Tool
+from app.services import updates
 from app.services.actions import checked_arguments, count_action
 from app.services.mcp_keys import key_may_use, key_refusal
 from app.services.registry import tools
@@ -147,6 +149,14 @@ async def call(name: str, arguments: dict, access: Access) -> types.CallToolResu
             arguments = await checked_write(tool, arguments, user, token)
     except HTTPException as error:
         return error_result(translate(str(error.detail), user.language))
+
+    if name == GET_UPDATES:
+        result = await updates.for_app(arguments, access, token, user.language)
+
+        if not result.succeeded:
+            return error_result(result.content["detail"])
+
+        return text_result(result.content, False)
 
     result = await call_tool(
         name,

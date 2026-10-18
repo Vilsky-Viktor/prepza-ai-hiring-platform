@@ -124,11 +124,34 @@ def test_library_exports_a_users_purchases_and_automatic_top_ups_with_a_post(cli
 
 
 def test_low_companies_say_how_many_credits_are_available(client, monkeypatch):
-    async def running_low(owner_type):
-        return [SimpleNamespace(owner_id="acme", balance=400, reserved=300)]
+    asked = []
+
+    async def running_low(owner_type, owner_ids=None):
+        asked.append(owner_ids)
+
+        return [SimpleNamespace(owner_id="acme", balance=1400, reserved=300)]
 
     monkeypatch.setattr(ledger, "running_low", running_low)
 
     response = client.get("/internal/companies/low", headers=AUTH)
 
-    assert response.json() == {"companies": [{"company_id": "acme", "available": 100}]}
+    assert response.json() == {
+        "companies": [{"company_id": "acme", "available": 1100, "candidates": 2}]
+    }
+    assert asked == [None]
+
+
+def test_low_companies_can_be_only_those_asked_for(client, monkeypatch):
+    asked = []
+
+    async def running_low(owner_type, owner_ids=None):
+        asked.append(owner_ids)
+
+        return []
+
+    monkeypatch.setattr(ledger, "running_low", running_low)
+
+    response = client.get("/internal/companies/low?ids=a&ids=b", headers=AUTH)
+
+    assert response.json() == {"companies": []}
+    assert asked == [["a", "b"]]

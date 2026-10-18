@@ -1,6 +1,9 @@
-from fastapi import APIRouter, BackgroundTasks, HTTPException, status
+from typing import Annotated
+
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Query, status
 from fastapi.encoders import jsonable_encoder
 from prepza_common.analytics import track
+from prepza_common.constants import MAX_PAGE_SIZE
 from prepza_common.paging import PageParams
 
 from app.constants.credits import (
@@ -13,7 +16,7 @@ from app.constants.credits import (
 )
 from app.constants.products import MAX_BUYER_PURCHASES, TOP_UP_UNAVAILABLE, OwnerType
 from app.helpers.history import history_entry_out
-from app.helpers.wallets import balance_out
+from app.helpers.wallets import balance_out, candidates_for
 from app.integrations import paddle
 from app.schemas.billing import (
     AdjustmentIn,
@@ -204,13 +207,21 @@ async def companies_credits(body: OwnersIn, caller: ServiceCaller) -> dict[str, 
 
 
 @router.get("/companies/low")
-async def low_companies(caller: ServiceCaller) -> LowCompaniesOut:
-    """Notifications, for its reminders: companies running low on credits that no automatic
-    top-up refills."""
+async def low_companies(
+    caller: ServiceCaller, ids: Annotated[list[str] | None, Query(max_length=MAX_PAGE_SIZE)] = None
+) -> LowCompaniesOut:
+    """Companies running low on credits that no automatic top-up refills: for notifications'
+    reminders, and (only `ids`) the assistant's get_updates."""
+    rows = await ledger.running_low(OwnerType.COMPANY, ids)
+
     return LowCompaniesOut(
         companies=[
-            LowCompanyOut(company_id=row.owner_id, available=row.balance - row.reserved)
-            for row in await ledger.running_low(OwnerType.COMPANY)
+            LowCompanyOut(
+                company_id=row.owner_id,
+                available=row.balance - row.reserved,
+                candidates=candidates_for(row.balance - row.reserved),
+            )
+            for row in rows
         ]
     )
 

@@ -173,6 +173,8 @@ MESSAGES = {
     "Reading Slack settings…": "正在查看 Slack 设置…",
     "Reading API keys and web hooks…": "正在查看 API 密钥和 Webhook…",
     "Reading notifications…": "正在查看通知…",
+    "Reading what's new…": "正在查看最新动态…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "since 必须是 ISO 8601 格式的时间，例如 2026-10-01T09:00:00Z。",
     "Reading your account…": "正在查看你的账户…",
     "Searching templates…": "正在搜索模板…",
     "Reading template filters…": "正在查看模板筛选条件…",

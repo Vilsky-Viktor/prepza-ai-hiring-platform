@@ -3422,6 +3422,53 @@
     }
    }
   },
+  "/internal/questions/updates": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Company Question Updates",
+    "description": "The assistant, for its get_updates tool: each question of these companies' interviews\nnewly flagged or fixed after `since` and up to `until`, named by its topic.",
+    "operationId": "company_question_updates_internal_questions_updates_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/QuestionUpdatesIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/QuestionUpdatesOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
   "/internal/questions/{question_id}/quality": {
    "get": {
     "tags": [
@@ -5247,6 +5294,91 @@
     ],
     "title": "QuestionText",
     "description": "A question as its owner manages it: text, answer options and feedback counts."
+   },
+   "QuestionUpdateOut": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "At"
+     },
+     "company_id": {
+      "type": "string",
+      "title": "Company Id"
+     },
+     "title": {
+      "type": "string",
+      "title": "Title"
+     },
+     "topic": {
+      "type": "string",
+      "title": "Topic"
+     },
+     "link": {
+      "type": "string",
+      "title": "Link"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind",
+     "at",
+     "company_id",
+     "title",
+     "topic",
+     "link"
+    ],
+    "title": "QuestionUpdateOut",
+    "description": "A question of a company's interview newly flagged (question_flagged) or fixed\n(question_fixed), named by its topic as the bell names it."
+   },
+   "QuestionUpdatesIn": {
+    "properties": {
+     "company_ids": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "maxItems": 100,
+      "title": "Company Ids"
+     },
+     "since": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Since"
+     },
+     "until": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Until"
+     }
+    },
+    "type": "object",
+    "required": [
+     "company_ids",
+     "since",
+     "until"
+    ],
+    "title": "QuestionUpdatesIn"
+   },
+   "QuestionUpdatesOut": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/QuestionUpdateOut"
+      },
+      "type": "array",
+      "title": "Items"
+     }
+    },
+    "type": "object",
+    "required": [
+     "items"
+    ],
+    "title": "QuestionUpdatesOut"
    },
    "RecipientOut": {
     "properties": {

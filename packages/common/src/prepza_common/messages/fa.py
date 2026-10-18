@@ -173,6 +173,8 @@ MESSAGES = {
     "Reading Slack settings…": "در حال بررسی تنظیمات Slack…",
     "Reading API keys and web hooks…": "در حال بررسی کلیدهای API و وب‌هوک‌ها…",
     "Reading notifications…": "در حال بررسی اعلان‌ها…",
+    "Reading what's new…": "در حال بررسی تازه‌ها…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "since باید زمانی در قالب ISO 8601 باشد، مانند 2026-10-01T09:00:00Z.",
     "Reading your account…": "در حال بررسی حساب شما…",
     "Searching templates…": "در حال جست‌وجوی قالب‌ها…",
     "Reading template filters…": "در حال بررسی فیلترهای قالب…",

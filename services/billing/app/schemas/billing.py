@@ -60,6 +60,8 @@ class PaidOut(BaseModel):
 class LowCompanyOut(BaseModel):
     company_id: str
     available: int
+    # Candidates the available credits pay for.
+    candidates: int = 0
 
 
 class LowCompaniesOut(BaseModel):

@@ -65,8 +65,10 @@ locals {
     ats                  = ["companies"]
     api                  = ["companies"]
     # Its X-Assistant header, so companies audits reads made through it as such; billing, whether
-    # a company ever paid (its limits); api, checking an AI agent's API key at the MCP server.
-    assistant = ["companies", "billing", "api"]
+    # a company ever paid (its limits); api, checking an AI agent's API key at the MCP server;
+    # notifications, ats and library, what get_updates reads (the bell, ATS candidates not
+    # invited, questions flagged or fixed).
+    assistant = ["companies", "billing", "api", "notifications", "ats", "library"]
   }
 
   # Each service's own key checks calls to it. The worker and the stream share generation's and

@@ -1532,6 +1532,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/candidates/updates": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Company Candidate Updates
+     * @description The assistant, for its get_updates tool: each candidate of these companies who started,
+     *     finished or whose invite wasn't delivered after `since` and up to `until`, newest first.
+     */
+    post: operations["company_candidate_updates_internal_candidates_updates_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/companies/members": {
     parameters: {
       query?: never
@@ -2638,6 +2659,67 @@ export interface components {
      * @enum {string}
      */
     CandidateSort: "grade" | "date"
+    /**
+     * CandidateUpdateOut
+     * @description One candidate's step: `kind` is candidate_started, candidate_finished (with the grade and
+     *     whether it reached the interview's pass mark) or invite_undelivered; `link` is their page.
+     */
+    CandidateUpdateOut: {
+      /** Kind */
+      kind: string
+      /**
+       * At
+       * Format: date-time
+       */
+      at: string
+      /**
+       * Company Id
+       * Format: uuid
+       */
+      company_id: string
+      /**
+       * Interview Id
+       * Format: uuid
+       */
+      interview_id: string
+      /** Title */
+      title: string | null
+      /**
+       * Invite Id
+       * Format: uuid
+       */
+      invite_id: string
+      /** Email */
+      email: string
+      /** Candidate Name */
+      candidate_name: string | null
+      /** Grade */
+      grade?: number | null
+      /** Passed */
+      passed?: boolean | null
+      /** Link */
+      link: string
+    }
+    /** CandidateUpdatesIn */
+    CandidateUpdatesIn: {
+      /** Company Ids */
+      company_ids: string[]
+      /**
+       * Since
+       * Format: date-time
+       */
+      since: string
+      /**
+       * Until
+       * Format: date-time
+       */
+      until: string
+    }
+    /** CandidateUpdatesOut */
+    CandidateUpdatesOut: {
+      /** Items */
+      items: components["schemas"]["CandidateUpdateOut"][]
+    }
     /**
      * CheckoutOut
      * @description The Paddle checkout to open: its price and the custom data to send with it.
@@ -7177,6 +7259,39 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["InvitedCompaniesOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  company_candidate_updates_internal_candidates_updates_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CandidateUpdatesIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CandidateUpdatesOut"]
         }
       }
       /** @description Validation Error */

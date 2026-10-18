@@ -327,8 +327,8 @@ export interface paths {
     }
     /**
      * Low Companies
-     * @description Notifications, for its reminders: companies running low on credits that no automatic
-     *     top-up refills.
+     * @description Companies running low on credits that no automatic top-up refills: for notifications'
+     *     reminders, and (only `ids`) the assistant's get_updates.
      */
     get: operations["low_companies_internal_companies_low_get"]
     put?: never
@@ -947,6 +947,11 @@ export interface components {
       company_id: string
       /** Available */
       available: number
+      /**
+       * Candidates
+       * @default 0
+       */
+      candidates: number
     }
     /** ModelOut */
     ModelOut: {
@@ -1691,7 +1696,9 @@ export interface operations {
   }
   low_companies_internal_companies_low_get: {
     parameters: {
-      query?: never
+      query?: {
+        ids?: string[] | null
+      }
       header?: never
       path?: never
       cookie?: never
@@ -1705,6 +1712,15 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["LowCompaniesOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }

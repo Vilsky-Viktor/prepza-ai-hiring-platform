@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, Float, ForeignKey, String, Text
+from sqlalchemy import DateTime, Float, ForeignKey, String, Text, false
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -36,6 +36,8 @@ class QuestionStats(Base):
     kept: Mapped[bool] = mapped_column(default=False)
     # When the flag was set, or last sent to the verifier again (services/quality.py).
     flagged_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # When it was last newly flagged (no flag before), which its company was told of.
+    flag_raised_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=lambda: datetime.now(UTC)
     )
@@ -61,6 +63,9 @@ class QuestionRevision(Base):
     reports: Mapped[list] = mapped_column(JSONB)
     # The QualityFlag it had when it was replaced; None for an owner's edit of an unflagged one.
     flag: Mapped[str | None] = mapped_column(String(32))
+    # Replaced because it, or the bank question it's an unchanged copy of, was flagged: its
+    # company was told it's fixed.
+    fixed: Mapped[bool] = mapped_column(default=False, server_default=false())
     replaced_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=lambda: datetime.now(UTC)
     )

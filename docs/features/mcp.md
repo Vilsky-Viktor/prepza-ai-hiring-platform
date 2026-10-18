@@ -6,6 +6,7 @@ A user connects prepza to their own AI app (Claude, ChatGPT, Claude Code, or any
 - [The authorization flow](#the-authorization-flow)
 - [API keys](#api-keys)
 - [Tools](#tools)
+- [What's new (get_updates)](#whats-new-get_updates)
 - [Calling the services as the user](#calling-the-services-as-the-user)
 - [Connections and tokens](#connections-and-tokens)
 - [Limits](#limits)
@@ -52,8 +53,18 @@ An agent on a server, with no browser, signs in with a company's API key (`Autho
 - A write runs at once: the app asks the user before calling it, instead of the panel's confirmation card. It still passes the panel's checks (`app/services/mcp_tools.py`): the emergency pause, what it's about must be the user's (`subject`, else a `404`), a partial update sends only what changes (nothing to change is refused), and it counts against the user's 30 actions an hour. It runs once with a new `Idempotency-Key`.
 - A string argument holding a secret is refused with the chat's "secrets never through the chat" reply, before anything is sent.
 - A result is the tool's data as JSON (trimmed as for the model, with `shown`/`more` on a cut list) and `links` to the prepza pages that show it, absolute. An error (the service's own, in the user's language, or a limit) is a result with `isError`.
-- The server's instructions (`app/prompts/mcp.py`) tell the app to get ids from the companies tools, to use `get_platform_guide` for how-to and pricing and `list_guides` and `get_guide` for hiring advice, never to ask for secrets, and that deletions are done in prepza.
+- The server's instructions (`app/prompts/mcp.py`) tell the app to get ids from the companies tools, to call `get_updates` first when the user asks what's new or how hiring is going, to use `get_platform_guide` for how-to and pricing and `list_guides` and `get_guide` for hiring advice, never to ask for secrets, and that deletions are done in prepza.
 - Streamable HTTP, stateless, with plain JSON answers: no sessions and no streams held open, so any assistant instance answers any request.
+
+## What's new (get_updates)
+
+MCP can't push: an app connects for a call and disconnects, and doesn't show a server's notification as a message. So the app asks, and `get_updates` makes asking cheap; a daily scheduled task in the app (ChatGPT's scheduled tasks) turns it into a morning summary. The developer docs' MCP tab has a **Daily updates** section with that tip. Real push stays Slack, email digests and web hooks.
+
+- **What it tells**, newest first, grouped by company and then interview, each with a link to its prepza page: each candidate who started or finished (with their grade and whether it reached the pass mark), invites not delivered, each ATS candidate who couldn't be invited, each question flagged or fixed, and the bell's other notifications (interviews ready or cancelled, automatic top-ups, ...). Before them, a summary with a count of each kind and of those who passed. Companies running low on credits that no automatic top-up refills come with every check while it lasts, for their owners and admins only.
+- **Where it comes from** (`app/services/update_sources.py`): each service tells its own, one per candidate or question, through an internal route only the assistant's service token may use (others get `403`): companies `POST /internal/candidates/updates` (the invites' `started_at`, `finished_at`, `undelivered_at`), ats `POST /internal/candidates/not-invited` (`failed_at`, kept from the first failure), library `POST /internal/questions/updates` (`flag_raised_at` and revisions marked `fixed`), notifications `POST /internal/updates` (the bell's company notifications), and billing `GET /internal/companies/low?ids=`. The bell's own notifications of the kinds the services tell one by one (which it groups) are left out, so nothing is told twice. Reading marks nothing as seen in the bell.
+- **Since the last check, per connection:** each app connection (its grant) and each API key keeps the time of its last call (`update_checks`, assistant migration 0007). A call covers from there (the first one, the last 7 days) up to 30 seconds before it was made, and the next one starts there: a step saved in a transaction still open when a check runs is stamped before it can be read, so it reaches the next check instead of none. So each update reaches each connection once, and one app's check hides nothing from another. A `since` argument (ISO 8601; without a zone, UTC) asks for a period instead and doesn't count as a check; anything else is refused with "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z." `company_id` keeps to one company. The daily retention deletes checks unused for 90 days.
+- **What it may read:** only companies that allow AI apps; an API key only its own company and needs `candidates:read`, and `credits:read` to hear about credits. At most 50 updates are listed (`shown`, `more`); the summary counts them all. It's a read (`readOnlyHint`) and counts against the same limits.
+- In the in-app panel it reads the last 7 days (or `since`) of every company of the user's, and keeps no check.
 
 ## Calling the services as the user
 

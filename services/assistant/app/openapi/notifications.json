@@ -1709,6 +1709,53 @@
     }
    }
   },
+  "/internal/updates": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Company Updates",
+    "description": "The assistant, for its get_updates tool: what reached these companies' bells between two\ntimes, newest first. Reading them marks nothing as seen.",
+    "operationId": "company_updates_internal_updates_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UpdatesIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UpdatesOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
   "/internal/schedules/digest": {
    "post": {
     "tags": [
@@ -2635,6 +2682,94 @@
     ],
     "title": "UnsubscribeType",
     "description": "What an unsubscribe link stops. A user's optional emails: one kind of the activity digest,\nthe whole digest, reminders, product updates or offers. A candidate's emails, sent on a\ncompany's behalf: the reminders for one invite, or every email from that company."
+   },
+   "UpdateOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Id"
+     },
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "link": {
+      "type": "string",
+      "title": "Link"
+     },
+     "data": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Data"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "company_id": {
+      "type": "string",
+      "title": "Company Id"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "kind",
+     "link",
+     "data",
+     "created_at",
+     "company_id"
+    ],
+    "title": "UpdateOut"
+   },
+   "UpdatesIn": {
+    "properties": {
+     "company_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "maxItems": 100,
+      "title": "Company Ids"
+     },
+     "since": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Since"
+     },
+     "until": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Until"
+     }
+    },
+    "type": "object",
+    "required": [
+     "company_ids",
+     "since",
+     "until"
+    ],
+    "title": "UpdatesIn",
+    "description": "The companies whose notifications to read, after `since` and up to `until`."
+   },
+   "UpdatesOut": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/UpdateOut"
+      },
+      "type": "array",
+      "title": "Items"
+     }
+    },
+    "type": "object",
+    "required": [
+     "items"
+    ],
+    "title": "UpdatesOut"
    },
    "UserEmailIn": {
     "properties": {

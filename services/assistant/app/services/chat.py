@@ -25,6 +25,7 @@ from app.constants.client_tools import SIGN_OUT, SIGN_OUT_DEFINITION, SIGN_OUT_F
 from app.constants.show import SHOW, SHOW_DEFINITION
 from app.constants.tool_calls import INVALID_ARGUMENTS
 from app.constants.tool_labels import ACTION_LABEL, TOOL_LABELS, UNKNOWN_TOOL_LABEL
+from app.constants.updates import GET_UPDATES
 from app.helpers.history import history
 from app.helpers.page_context import describe_page
 from app.integrations import llm
@@ -44,6 +45,7 @@ from app.services.registry import tools
 from app.services.show import show
 from app.services.tenancy import foreign_company
 from app.services.tool_calls import call_tools
+from app.services.updates import in_panel
 
 # Each event the turn sends the panel goes through one of these.
 Emit = Callable[[dict], None]
@@ -182,6 +184,8 @@ async def step_results(
             results[index] = ToolResult(name, arguments, None, content, None, 0)
         elif tool is not None and tool.confirm:
             results[index] = await prepare(tool, arguments, turn)
+        elif name == GET_UPDATES:
+            results[index] = await in_panel(arguments, turn)
         else:
             reads.append(index)
 

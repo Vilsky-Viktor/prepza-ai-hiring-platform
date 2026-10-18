@@ -511,6 +511,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/candidates/not-invited": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Candidates Not Invited
+     * @description The assistant, for its get_updates tool: each candidate of these companies' ATSs who first
+     *     couldn't be invited after `since` and up to `until`, and still isn't.
+     */
+    post: operations["candidates_not_invited_internal_candidates_not_invited_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
 export type webhooks = Record<string, never>
 export interface components {
@@ -631,6 +652,60 @@ export interface components {
     JobTextOut: {
       /** Text */
       text: string
+    }
+    /** NotInvitedIn */
+    NotInvitedIn: {
+      /** Company Ids */
+      company_ids: string[]
+      /**
+       * Since
+       * Format: date-time
+       */
+      since: string
+      /**
+       * Until
+       * Format: date-time
+       */
+      until: string
+    }
+    /** NotInvitedListOut */
+    NotInvitedListOut: {
+      /** Items */
+      items: components["schemas"]["NotInvitedOut"][]
+    }
+    /**
+     * NotInvitedOut
+     * @description A candidate an ATS sent who couldn't be invited, and why (FailReason); `link` is the
+     *     ATS's page, where they're retried.
+     */
+    NotInvitedOut: {
+      /**
+       * At
+       * Format: date-time
+       */
+      at: string
+      /**
+       * Company Id
+       * Format: uuid
+       */
+      company_id: string
+      /**
+       * Interview Id
+       * Format: uuid
+       */
+      interview_id: string
+      /** Title */
+      title: string | null
+      /** Ats */
+      ats: string
+      /** Email */
+      email: string
+      /** Candidate Name */
+      candidate_name: string | null
+      /** Reason */
+      reason: string | null
+      /** Link */
+      link: string
     }
     /**
      * PushBody
@@ -1528,6 +1603,39 @@ export interface operations {
           "application/json": {
             [key: string]: unknown
           }
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  candidates_not_invited_internal_candidates_not_invited_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NotInvitedIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["NotInvitedListOut"]
         }
       }
       /** @description Validation Error */

@@ -159,6 +159,7 @@ When such a candidate finishes, companies publishes `candidate.finished` (grade,
 
 - All of it is the `ats` service (`services/ats`, its own database).
 - It asks companies who is a member or editor, the interviews' titles, and to send invites.
+- A candidate who couldn't be invited keeps when that first happened (`ats_candidates.failed_at`, migration 0012; a retry that fails again keeps it). The assistant's `get_updates` reads them one by one through `POST /internal/candidates/not-invited` (those who first failed after `since` and up to `until` and still aren't invited, with the interview's title, the ATS, the reason and a link to the ATS's page); only the assistant's service token may call it ([AI apps over MCP](mcp.md#whats-new-get_updates)).
 - Each ATS's API is one client module (`app/integrations/workable.py`, `greenhouse.py`, `teamtailor.py`, `recruitee.py`, `breezy.py`) with the same functions. Each names the credentials it takes (`KEYS`), so a connection can keep others, like a web hook's secret key.
 - `app/integrations/ats_clients.py` picks the module by provider. A new ATS adds its module there.
 - The web hook handlers are in `app/services/ats_webhooks.py`, one per ATS.

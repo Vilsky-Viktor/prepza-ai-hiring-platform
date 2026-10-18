@@ -173,6 +173,8 @@ MESSAGES = {
     "Reading Slack settings…": "Melihat pengaturan Slack…",
     "Reading API keys and web hooks…": "Melihat kunci API dan webhook…",
     "Reading notifications…": "Melihat notifikasi…",
+    "Reading what's new…": "Melihat kabar terbaru…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "since harus berupa waktu ISO 8601, misalnya 2026-10-01T09:00:00Z.",
     "Reading your account…": "Melihat akunmu…",
     "Searching templates…": "Mencari templat…",
     "Reading template filters…": "Melihat filter templat…",

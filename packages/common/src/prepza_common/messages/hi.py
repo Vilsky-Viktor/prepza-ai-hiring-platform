@@ -173,6 +173,8 @@ MESSAGES = {
     "Reading Slack settings…": "Slack सेटिंग्स देख रहा है…",
     "Reading API keys and web hooks…": "API कुंजियाँ और वेबहुक देख रहा है…",
     "Reading notifications…": "सूचनाएँ देख रहा है…",
+    "Reading what's new…": "नया क्या है, देख रहा है…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "since ISO 8601 प्रारूप में समय होना चाहिए, जैसे 2026-10-01T09:00:00Z.",
     "Reading your account…": "आपका खाता देख रहा है…",
     "Searching templates…": "टेम्पलेट खोज रहा है…",
     "Reading template filters…": "टेम्पलेट फ़िल्टर देख रहा है…",

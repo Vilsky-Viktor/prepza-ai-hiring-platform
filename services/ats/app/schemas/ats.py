@@ -1,7 +1,8 @@
 from datetime import datetime
 from uuid import UUID
 
-from pydantic import BaseModel, Field
+from prepza_common.constants import MAX_PAGE_SIZE
+from pydantic import AwareDatetime, BaseModel, Field
 
 from app.constants.ats import AtsProvider, ConnectionStatus
 
@@ -93,3 +94,28 @@ class JobTextOut(BaseModel):
     """A job's text to make an interview from, which the company can edit first."""
 
     text: str
+
+
+class NotInvitedIn(BaseModel):
+    company_ids: list[UUID] = Field(max_length=MAX_PAGE_SIZE)
+    since: AwareDatetime
+    until: AwareDatetime
+
+
+class NotInvitedOut(BaseModel):
+    """A candidate an ATS sent who couldn't be invited, and why (FailReason); `link` is the
+    ATS's page, where they're retried."""
+
+    at: datetime
+    company_id: UUID
+    interview_id: UUID
+    title: str | None
+    ats: str
+    email: str
+    candidate_name: str | None
+    reason: str | None
+    link: str
+
+
+class NotInvitedListOut(BaseModel):
+    items: list[NotInvitedOut]

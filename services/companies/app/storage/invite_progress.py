@@ -49,7 +49,7 @@ async def mark_undelivered(invite_id: uuid.UUID, notice: dict) -> None:
                 CandidateInvite.id == invite_id,
                 CandidateInvite.status == InviteStatus.INVITED,
             )
-            .values(status=InviteStatus.UNDELIVERED)
+            .values(status=InviteStatus.UNDELIVERED, undelivered_at=func.now())
             .returning(CandidateInvite.interview_id)
         )
 

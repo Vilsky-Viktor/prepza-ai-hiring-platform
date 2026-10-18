@@ -824,8 +824,35 @@
      "internal"
     ],
     "summary": "Low Companies",
-    "description": "Notifications, for its reminders: companies running low on credits that no automatic\ntop-up refills.",
+    "description": "Companies running low on credits that no automatic top-up refills: for notifications'\nreminders, and (only `ids`) the assistant's get_updates.",
     "operationId": "low_companies_internal_companies_low_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "ids",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "array",
+         "items": {
+          "type": "string"
+         },
+         "maxItems": 100
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Ids"
+      }
+     }
+    ],
     "responses": {
      "200": {
       "description": "Successful Response",
@@ -836,13 +863,18 @@
         }
        }
       }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
      }
-    },
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ]
+    }
    }
   },
   "/internal/companies/{company_id}": {
@@ -2549,6 +2581,11 @@
      "available": {
       "type": "integer",
       "title": "Available"
+     },
+     "candidates": {
+      "type": "integer",
+      "title": "Candidates",
+      "default": 0
      }
     },
     "type": "object",

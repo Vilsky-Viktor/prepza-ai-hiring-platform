@@ -1118,6 +1118,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/questions/updates": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Company Question Updates
+     * @description The assistant, for its get_updates tool: each question of these companies' interviews
+     *     newly flagged or fixed after `since` and up to `until`, named by its topic.
+     */
+    post: operations["company_question_updates_internal_questions_updates_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/questions/{question_id}/quality": {
     parameters: {
       query?: never
@@ -1947,6 +1968,48 @@ export interface components {
        * @default 0
        */
       reports: number
+    }
+    /**
+     * QuestionUpdateOut
+     * @description A question of a company's interview newly flagged (question_flagged) or fixed
+     *     (question_fixed), named by its topic as the bell names it.
+     */
+    QuestionUpdateOut: {
+      /** Kind */
+      kind: string
+      /**
+       * At
+       * Format: date-time
+       */
+      at: string
+      /** Company Id */
+      company_id: string
+      /** Title */
+      title: string
+      /** Topic */
+      topic: string
+      /** Link */
+      link: string
+    }
+    /** QuestionUpdatesIn */
+    QuestionUpdatesIn: {
+      /** Company Ids */
+      company_ids: string[]
+      /**
+       * Since
+       * Format: date-time
+       */
+      since: string
+      /**
+       * Until
+       * Format: date-time
+       */
+      until: string
+    }
+    /** QuestionUpdatesOut */
+    QuestionUpdatesOut: {
+      /** Items */
+      items: components["schemas"]["QuestionUpdateOut"][]
     }
     /** RecipientOut */
     RecipientOut: {
@@ -4432,6 +4495,39 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["QualitySignalOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  company_question_updates_internal_questions_updates_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["QuestionUpdatesIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["QuestionUpdatesOut"]
         }
       }
       /** @description Validation Error */

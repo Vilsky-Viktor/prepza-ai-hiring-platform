@@ -22,7 +22,15 @@ def passed(totals: dict, pass_mark: int) -> bool | None:
     if not totals.get("finished") or totals.get("grade") is None:
         return None
 
-    return totals["grade"] >= pass_mark
+    return grade_passed(totals["grade"], pass_mark)
+
+
+def grade_passed(grade: int | None, pass_mark: int) -> bool | None:
+    """Whether a grade reaches the pass mark; None without a grade."""
+    if grade is None:
+        return None
+
+    return grade >= pass_mark
 
 
 def finished_result(interview, invite_id, grade: int | None, flagged: bool) -> dict:
@@ -35,7 +43,7 @@ def finished_result(interview, invite_id, grade: int | None, flagged: bool) -> d
         "title": interview.title or "",
         "language": interview.language,
         "grade": grade,
-        "passed": grade is not None and grade >= interview.pass_mark,
+        "passed": bool(grade_passed(grade, interview.pass_mark)),
         "flagged": flagged,
     }
 

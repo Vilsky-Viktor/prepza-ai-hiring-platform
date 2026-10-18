@@ -40,6 +40,7 @@ KEY_TOOLS = {
     "search_candidates": CANDIDATES_READ,
     "get_scorecard": CANDIDATES_READ,
     "get_interview_report": CANDIDATES_READ,
+    "get_updates": CANDIDATES_READ,
     "invite_candidate": CANDIDATES_INVITE,
     "invite_candidates": CANDIDATES_INVITE,
     "rename_candidate": CANDIDATES_CHANGE,

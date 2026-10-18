@@ -173,6 +173,8 @@ MESSAGES = {
     "Reading Slack settings…": "Slack の設定を確認しています…",
     "Reading API keys and web hooks…": "API キーと Webhook を確認しています…",
     "Reading notifications…": "お知らせを確認しています…",
+    "Reading what's new…": "新着情報を確認しています…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "since は ISO 8601 形式の日時で指定してください（例: 2026-10-01T09:00:00Z）。",
     "Reading your account…": "アカウントを確認しています…",
     "Searching templates…": "テンプレートを検索しています…",
     "Reading template filters…": "テンプレートの絞り込み条件を確認しています…",

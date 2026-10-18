@@ -1264,6 +1264,53 @@
      }
     }
    }
+  },
+  "/internal/candidates/not-invited": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Candidates Not Invited",
+    "description": "The assistant, for its get_updates tool: each candidate of these companies' ATSs who first\ncouldn't be invited after `since` and up to `until`, and still isn't.",
+    "operationId": "candidates_not_invited_internal_candidates_not_invited_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/NotInvitedIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NotInvitedListOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
   }
  },
  "components": {
@@ -1512,6 +1559,130 @@
     ],
     "title": "JobTextOut",
     "description": "A job's text to make an interview from, which the company can edit first."
+   },
+   "NotInvitedIn": {
+    "properties": {
+     "company_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "maxItems": 100,
+      "title": "Company Ids"
+     },
+     "since": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Since"
+     },
+     "until": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Until"
+     }
+    },
+    "type": "object",
+    "required": [
+     "company_ids",
+     "since",
+     "until"
+    ],
+    "title": "NotInvitedIn"
+   },
+   "NotInvitedListOut": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/NotInvitedOut"
+      },
+      "type": "array",
+      "title": "Items"
+     }
+    },
+    "type": "object",
+    "required": [
+     "items"
+    ],
+    "title": "NotInvitedListOut"
+   },
+   "NotInvitedOut": {
+    "properties": {
+     "at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "At"
+     },
+     "company_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Company Id"
+     },
+     "interview_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Interview Id"
+     },
+     "title": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Title"
+     },
+     "ats": {
+      "type": "string",
+      "title": "Ats"
+     },
+     "email": {
+      "type": "string",
+      "title": "Email"
+     },
+     "candidate_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Candidate Name"
+     },
+     "reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reason"
+     },
+     "link": {
+      "type": "string",
+      "title": "Link"
+     }
+    },
+    "type": "object",
+    "required": [
+     "at",
+     "company_id",
+     "interview_id",
+     "title",
+     "ats",
+     "email",
+     "candidate_name",
+     "reason",
+     "link"
+    ],
+    "title": "NotInvitedOut",
+    "description": "A candidate an ATS sent who couldn't be invited, and why (FailReason); `link` is the\nATS's page, where they're retried."
    },
    "PushBody": {
     "properties": {

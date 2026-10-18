@@ -173,6 +173,8 @@ MESSAGES = {
     "Reading Slack settings…": "De Slack-instellingen bekijken…",
     "Reading API keys and web hooks…": "API-sleutels en webhooks bekijken…",
     "Reading notifications…": "De meldingen bekijken…",
+    "Reading what's new…": "Bekijken wat er nieuw is…",
+    "since must be an ISO 8601 time, like 2026-10-01T09:00:00Z.": "since moet een tijd in ISO 8601-formaat zijn, zoals 2026-10-01T09:00:00Z.",
     "Reading your account…": "Je account bekijken…",
     "Searching templates…": "Sjablonen zoeken…",
     "Reading template filters…": "De sjabloonfilters bekijken…",

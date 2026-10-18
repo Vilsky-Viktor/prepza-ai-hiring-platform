@@ -77,6 +77,10 @@ test("the MCP tab shows the server, the example agents and the server's tools", 
   await expect(rows.locator("code:first-child")).toHaveText(tools.map((tool) => tool.name));
   const withKey = tools.findIndex((tool) => tool.key_permission);
   await expect(rows.nth(withKey)).toContainText(tools[withKey].key_permission!);
+  // What's new since the app's last check: a key needs candidates:read for it.
+  const updates = tools.findIndex((tool) => tool.name === "get_updates");
+  expect(tools[updates]?.key_permission).toBe("candidates:read");
+  await expect(rows.nth(updates)).toContainText("candidates:read");
 
   // The examples start in Python; picking TypeScript in one editor switches them all.
   const menus = page.locator('main [aria-haspopup="menu"]');

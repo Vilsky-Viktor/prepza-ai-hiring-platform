@@ -2,6 +2,7 @@ import asyncio
 import uuid
 from types import SimpleNamespace
 
+import pytest
 from prepza_common.notifications import NOTIFICATION_REQUESTED
 
 from app.constants.quality import QualityFlag
@@ -87,7 +88,7 @@ def test_a_flagged_question_is_not_notified_again(monkeypatch):
     assert flushes == []
 
 
-def fake_session(monkeypatch, flag):
+def fake_session(monkeypatch, flag, archived=None):
     added = []
     # What the session's lookups find, in order: the question's flag, its set and its topic.
     replies = [flag, kit(), TOPIC]
@@ -115,8 +116,9 @@ def fake_session(monkeypatch, flag):
         async def commit(self):
             pass
 
-    async def fake_archive(session, question_id):
-        pass
+    async def fake_archive(session, question_id, fixed=False):
+        if archived is not None:
+            archived.append(fixed)
 
     monkeypatch.setattr(preparations, "Session", FakeSession)
     monkeypatch.setattr(quality, "archive", fake_archive)
@@ -149,3 +151,13 @@ def test_replacing_an_unflagged_question_notifies_nobody(monkeypatch):
     asyncio.run(preparations.replace_question(QUESTION_ID, "What is debit?", OPTIONS))
 
     assert added == []
+
+
+@pytest.mark.parametrize("flag, fixed", [(QualityFlag.WRONG_KEY, True), (None, False)])
+def test_only_a_flagged_questions_revision_counts_as_fixed(monkeypatch, flag, fixed):
+    archived = []
+    fake_session(monkeypatch, flag, archived)
+
+    asyncio.run(preparations.replace_question(QUESTION_ID, "What is debit?", OPTIONS))
+
+    assert archived == [fixed]

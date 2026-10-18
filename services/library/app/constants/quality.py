@@ -39,3 +39,7 @@ MAX_FLAG_RESENDS = 100
 MAX_PATTERN_SIGNALS = 500
 # Only generation reads them.
 PATTERN_SIGNALS_CALLER = "generation"
+
+# The page a company's question notifications open: its interviews (the library doesn't know
+# which interview a set belongs to).
+COMPANY_INTERVIEWS_LINK = "/companies/{company_id}/interviews"

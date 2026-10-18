@@ -27,6 +27,9 @@ NOT_READY = "Not ready"
 # ...) the member connected over MCP, which the assistant serves too. Audit events keep it.
 VIA_ASSISTANT = "assistant"
 VIA_MCP = "mcp"
+# The only service that may read the internal routes of what's new (its get_updates tool).
+UPDATES_CALLER = "assistant"
+NOT_ALLOWED = "Not allowed"
 SIGN_IN_UNAVAILABLE = "Sign-in is temporarily unavailable. Please try again shortly."
 MINUTE_SECONDS = 60
 HOUR_SECONDS = 60 * MINUTE_SECONDS

@@ -5232,6 +5232,53 @@
     ]
    }
   },
+  "/internal/candidates/updates": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Company Candidate Updates",
+    "description": "The assistant, for its get_updates tool: each candidate of these companies who started,\nfinished or whose invite wasn't delivered after `since` and up to `until`, newest first.",
+    "operationId": "company_candidate_updates_internal_candidates_updates_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CandidateUpdatesIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CandidateUpdatesOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
   "/internal/companies/members": {
    "post": {
     "tags": [
@@ -8076,6 +8123,146 @@
      "date"
     ],
     "title": "CandidateSort"
+   },
+   "CandidateUpdateOut": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "At"
+     },
+     "company_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Company Id"
+     },
+     "interview_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Interview Id"
+     },
+     "title": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Title"
+     },
+     "invite_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Invite Id"
+     },
+     "email": {
+      "type": "string",
+      "title": "Email"
+     },
+     "candidate_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Candidate Name"
+     },
+     "grade": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Grade"
+     },
+     "passed": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Passed"
+     },
+     "link": {
+      "type": "string",
+      "title": "Link"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind",
+     "at",
+     "company_id",
+     "interview_id",
+     "title",
+     "invite_id",
+     "email",
+     "candidate_name",
+     "link"
+    ],
+    "title": "CandidateUpdateOut",
+    "description": "One candidate's step: `kind` is candidate_started, candidate_finished (with the grade and\nwhether it reached the interview's pass mark) or invite_undelivered; `link` is their page."
+   },
+   "CandidateUpdatesIn": {
+    "properties": {
+     "company_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "maxItems": 1000,
+      "title": "Company Ids"
+     },
+     "since": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Since"
+     },
+     "until": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Until"
+     }
+    },
+    "type": "object",
+    "required": [
+     "company_ids",
+     "since",
+     "until"
+    ],
+    "title": "CandidateUpdatesIn"
+   },
+   "CandidateUpdatesOut": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/CandidateUpdateOut"
+      },
+      "type": "array",
+      "title": "Items"
+     }
+    },
+    "type": "object",
+    "required": [
+     "items"
+    ],
+    "title": "CandidateUpdatesOut"
    },
    "CheckoutOut": {
     "properties": {

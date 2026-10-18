@@ -1,5 +1,7 @@
 from prepza_common.notifications import EVERYONE, NotificationKind, Recipient, notification
 
+from app.constants.quality import COMPANY_INTERVIEWS_LINK
+
 
 def question_notification(question_set, topic: str, kind: NotificationKind) -> dict:
     """For every member of the company that owns the interview. It names the question's topic,
@@ -9,7 +11,7 @@ def question_notification(question_set, topic: str, kind: NotificationKind) -> d
         Recipient.COMPANY,
         question_set.owner_id,
         kind,
-        f"/companies/{question_set.owner_id}/interviews",
+        COMPANY_INTERVIEWS_LINK.format(company_id=question_set.owner_id),
         title=question_set.title,
         topic=topic,
     )

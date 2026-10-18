@@ -216,7 +216,7 @@ async def replace_question(question_id: uuid.UUID, text: str, options: list[dict
             fixed += await unchanged_copies(session, question_id)
 
         for each in fixed:
-            await quality.archive(session, each)
+            await quality.archive(session, each, fixed=flagged is not None)
 
         await session.execute(
             update(Question).where(Question.id.in_(fixed)).values(text=text, options=options)
