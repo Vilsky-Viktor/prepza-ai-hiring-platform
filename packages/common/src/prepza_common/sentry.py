@@ -62,7 +62,7 @@ def init_sentry(service: str, integrations: list | None = None) -> None:
 
     sentry_sdk.init(
         dsn=dsn,
-        environment=os.getenv("SENTRY_ENVIRONMENT", "production"),
+        environment=os.getenv("ENVIRONMENT", "production"),
         release=os.getenv("SENTRY_RELEASE") or None,
         server_name=service,
         traces_sampler=traces_sampler,

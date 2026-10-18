@@ -35,7 +35,7 @@ export function sentryOptions() {
   return {
     dsn,
     enabled: Boolean(dsn),
-    environment: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT ?? "production",
+    environment: process.env.NEXT_PUBLIC_ENVIRONMENT ?? "production",
     tracesSampleRate: SENTRY_TRACES_SAMPLE_RATE,
     sendDefaultPii: false,
     beforeSend: (event: ErrorEvent) => scrub(event),

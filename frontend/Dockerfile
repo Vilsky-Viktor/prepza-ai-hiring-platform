@@ -16,7 +16,7 @@ ARG NEXT_PUBLIC_FIREBASE_PROJECT_ID
 ARG NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL
 ARG NEXT_PUBLIC_TURNSTILE_SITE_KEY
 ARG FRONTEND_SENTRY_DSN
-ARG NEXT_PUBLIC_SENTRY_ENVIRONMENT
+ARG NEXT_PUBLIC_ENVIRONMENT
 # Optional: uploads source maps to Sentry, so stack traces show the original code. The token is a
 # build secret, mounted for this step only, so it stays out of the image and the build cache.
 ARG SENTRY_ORG

@@ -44,7 +44,7 @@ sign-in settings they all read (`FIREBASE_PROJECT_ID`, and `FIREBASE_AUTH_EMULAT
 unless the project is a `demo-` one). Each service's own settings live in its
 `app/config/settings.py`, and it passes in what differs (its name, its database URL). Otherwise the
 package reads only environment variables every service has: `BACKEND_SENTRY_DSN`,
-`SENTRY_ENVIRONMENT`, `SENTRY_RELEASE` and `SENTRY_TRACES_SAMPLE_RATE`, `GOOGLE_CLOUD_PROJECT`,
+`ENVIRONMENT`, `SENTRY_RELEASE` and `SENTRY_TRACES_SAMPLE_RATE`, `GOOGLE_CLOUD_PROJECT`,
 `PUBSUB_EMULATOR_HOST` (locally), `ANALYTICS_SALT`, `SUPERADMIN_EMAILS`, `INVOKER_SERVICE_ACCOUNT`
 and `INVOKER_AUDIENCE`, and the `<SERVICE>_SERVICE_SECRET` keys of the services it calls.
 

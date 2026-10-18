@@ -27,7 +27,8 @@ x-firebase-env: &firebase-env
   PUBSUB_EMULATOR_HOST: pubsub:8085
   # Error reports; nothing is sent while BACKEND_SENTRY_DSN is empty.
   BACKEND_SENTRY_DSN: ${BACKEND_SENTRY_DSN:-}
-  SENTRY_ENVIRONMENT: ${SENTRY_ENVIRONMENT:-development}
+  # Which environment this is (Sentry's and Langfuse's label); Paddle's account is PADDLE_ENVIRONMENT.
+  ENVIRONMENT: ${ENVIRONMENT:-development}
   SENTRY_TRACES_SAMPLE_RATE: ${SENTRY_TRACES_SAMPLE_RATE:-0.1}
 
 services:

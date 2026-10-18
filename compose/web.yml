@@ -20,7 +20,7 @@ services:
       NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL: ${NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL}
       NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:-}
       FRONTEND_SENTRY_DSN: ${FRONTEND_SENTRY_DSN:-}
-      NEXT_PUBLIC_SENTRY_ENVIRONMENT: ${SENTRY_ENVIRONMENT:-development}
+      NEXT_PUBLIC_ENVIRONMENT: ${ENVIRONMENT:-development}
     volumes:
       - ./frontend:/frontend
       - frontend-modules:/frontend/node_modules

@@ -145,9 +145,9 @@ def test_traces_carry_their_environment(monkeypatch, set_to, environment):
     monkeypatch.setenv("LANGFUSE_SECRET_KEY", "sk-lf-test")
 
     if set_to is None:
-        monkeypatch.delenv("LANGFUSE_ENVIRONMENT", raising=False)
+        monkeypatch.delenv("ENVIRONMENT", raising=False)
     else:
-        monkeypatch.setenv("LANGFUSE_ENVIRONMENT", set_to)
+        monkeypatch.setenv("ENVIRONMENT", set_to)
 
     monkeypatch.setattr(tracing, "Langfuse", lambda **kwargs: made.update(kwargs))
     tracing.client.cache_clear()

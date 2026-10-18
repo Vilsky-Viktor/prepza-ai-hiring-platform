@@ -273,7 +273,7 @@ jobs:
             NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ env.PUBLISH == 'true' && vars.GCP_PROJECT_ID || 'demo-prepza' }}
             NEXT_PUBLIC_TURNSTILE_SITE_KEY=${{ env.PUBLISH == 'true' && vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA' }}
             FRONTEND_SENTRY_DSN=${{ env.PUBLISH == 'true' && vars.FRONTEND_SENTRY_DSN || '' }}
-            NEXT_PUBLIC_SENTRY_ENVIRONMENT=${{ env.PUBLISH == 'true' && 'production' || '' }}
+            NEXT_PUBLIC_ENVIRONMENT=${{ env.PUBLISH == 'true' && 'production' || '' }}
             SENTRY_ORG=${{ env.PUBLISH == 'true' && vars.SENTRY_ORG || '' }}
             SENTRY_PROJECT=${{ env.PUBLISH == 'true' && vars.SENTRY_PROJECT || '' }}
           # Uploads the frontend's source maps to Sentry; a secret, so it stays out of the image.

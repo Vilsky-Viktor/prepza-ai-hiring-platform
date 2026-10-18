@@ -5,7 +5,7 @@ locals {
     FIREBASE_PROJECT_ID     = var.project_id
     BACKEND_SENTRY_DSN      = var.backend_sentry_dsn
     SUPERADMIN_EMAILS       = join(",", var.superadmin_emails)
-    SENTRY_ENVIRONMENT      = "production"
+    ENVIRONMENT             = "production"
     INVOKER_SERVICE_ACCOUNT = google_service_account.invoker.email
     LIBRARY_URL             = local.run_url["library"]
     GENERATION_URL          = local.run_url["generation"]

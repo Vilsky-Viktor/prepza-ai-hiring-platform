@@ -30,8 +30,8 @@ def client() -> Langfuse:
         public_key=os.environ["LANGFUSE_PUBLIC_KEY"],
         secret_key=os.environ["LANGFUSE_SECRET_KEY"],
         host=os.getenv("LANGFUSE_HOST") or EU_CLOUD,
-        # Which environment the traces are from, like Sentry's (SENTRY_ENVIRONMENT).
-        environment=os.getenv("LANGFUSE_ENVIRONMENT", "production"),
+        # Which environment the traces are from, the same ENVIRONMENT Sentry reports.
+        environment=os.getenv("ENVIRONMENT", "production"),
     )
 
 

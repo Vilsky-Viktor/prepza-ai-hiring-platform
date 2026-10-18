@@ -180,6 +180,6 @@ An action is the same in `app/constants/company_actions.py`, `interview_actions.
 | `TRANSCRIBE_MODEL` | `gpt-4o-mini-transcribe` | Voice input |
 | `ASSISTANT_RETENTION_DAYS` | 90 | Days a conversation is kept after its last message |
 | `OPENAI_API_KEY` | | OpenAI's key |
-| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST`, `LANGFUSE_ENVIRONMENT` | Off; `https://cloud.langfuse.com` (EU); `production` | Trace answers, marked with their environment (`development` locally), and titles and send votes to Langfuse (also rounds' help chat), see [Votes in Langfuse](#votes-in-langfuse); local only for now |
+| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Off; `https://cloud.langfuse.com` (EU) | Trace answers, marked with their environment (`ENVIRONMENT`), and titles and send votes to Langfuse (also rounds' help chat), see [Votes in Langfuse](#votes-in-langfuse); local only for now |
 | `SITE_URL` | required (`http://localhost:8090` locally) | Where AI apps connect (`<SITE_URL>/mcp`), see [AI apps over MCP](mcp.md#settings) |
 | `FIREBASE_WEB_API_KEY` | required (`demo-api-key` locally) | Firebase's public web key, for AI apps' calls as the user |
