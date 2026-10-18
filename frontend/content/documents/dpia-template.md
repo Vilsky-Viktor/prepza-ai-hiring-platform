@@ -103,9 +103,10 @@ unless they turn it off, each change recorded in your action log. **[COMPANY]** 
 decision, and the terms you require (for example, only your organisation's business plans of
 those apps).
 
-**International transfers.** Two sub-processors handle data in the United States: Google
-Firebase (sign-in), under the EU-US Data Privacy Framework, and OpenAI, through OpenAI Ireland Ltd
-under the European Commission's standard contractual clauses. prepza gives a copy of the
+**International transfers.** Three sub-processors handle data in the United States: Google
+Firebase (sign-in) and Cloudflare (the "I'm not a robot" check), under the EU-US Data Privacy
+Framework, and OpenAI, through OpenAI Ireland Ltd under the European Commission's standard
+contractual clauses. prepza gives a copy of the
 safeguards on request. Transfers to tools you connect are yours to cover.
 
 **Retention.** Candidate results, timings and signals: deleted automatically 12 months after the
