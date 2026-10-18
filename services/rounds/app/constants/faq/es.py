@@ -100,7 +100,7 @@ FAQ = [
     {
         "key": "privacy",
         "question": "¿Qué pasa con las descripciones de puesto y las respuestas?",
-        "answer": "Las descripciones de puesto se usan para crear las entrevistas de tu empresa, y las respuestas de los candidatos, para puntuarlas para tu empresa. prepza también usa las respuestas agregadas, sin identificar a nadie, para medir y mejorar la calidad de las preguntas. La [política de privacidad](/privacy) explica qué guardamos, durante cuánto tiempo y los derechos de cada persona.",
+        "answer": "Las descripciones de puesto se usan para crear las entrevistas de tu empresa, y las respuestas de los candidatos, para puntuarlas para tu empresa. Las preguntas que genera prepza también pueden reutilizarse en las entrevistas y la práctica de otras empresas, sin nada que te identifique a ti, a tu empresa ni a ninguna otra persona; puedes excluir de esto las preguntas de una entrevista en sus ajustes. prepza también extrae, de cómo se responden las preguntas, patrones generales y anonimizados sobre su calidad para mejorar cómo se generan las preguntas. La [política de privacidad](/privacy) explica qué guardamos, durante cuánto tiempo y los derechos de cada persona.",
     },
     {
         "key": "eu_ai_law",

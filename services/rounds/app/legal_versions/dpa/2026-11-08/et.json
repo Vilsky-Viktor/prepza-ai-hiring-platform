@@ -36,6 +36,7 @@
         "Resend (e-kirjad; EL, Iirimaa).",
         "Google Workspace (meie e-postkast: ettevõtete ja kandidaatide sõnumid ning ettevõttele edastatud taotlused; Google Ireland Ltd, kirju võidakse säilitada väljaspool ELi ELi–USA andmekaitseraamistiku ja lepingu tüüptingimuste alusel).",
         "Sentry (vearaportid ilma e-posti aadressideta; EL).",
+        "Langfuse (AI-päringute kirjed vastuste kvaliteedi jälgimiseks ja parandamiseks: mida AI-le saadetakse ja selle vastused, mis võivad hõlmata AI töödeldavaid kandidaatide andmeid, näiteks tulemusi, mida assistent liikmele vastamiseks loeb, ning hinnanguid assistendi vastustele; säilitatakse 30 päeva; Langfuse GmbH, Saksamaa, selle ELi pilv).",
         "Cloudflare (kontroll „Ma ei ole robot“, Turnstile, kui kandidaat alustab töökuulutuse lingi kaudu: tema brauseri signaalid ja aadress, millest me säilitame ainult selle, kas kontroll läbiti; Cloudflare, Inc., Ameerika Ühendriigid, ELi–USA andmekaitseraamistiku alusel).",
         "Upstash (lühiajalised loendurid piirangute ja reaalajas uuenduste jaoks; EL, Belgia)."
       ]
@@ -54,6 +55,7 @@
         "Kandidaat, kes kustutab oma prepza konto, kustutab koos sellega oma vastused ja tulemused kõigi ettevõtete jaoks; ettevõte näeb teda kustutatud kandidaadina.",
         "prepza ei tee kandidaadi kohta ühtegi otsust. Ettevõte vaatab tulemused enne otsustamist üle, ei lükka kandidaati tagasi ainult punktisumma põhjal, võimaldab kandidaatidele, kes seda vajavad, kohandust, näiteks lisaaega, ja võimaldab kandidaadil paluda, et tema tulemuse vaataks üle inimene. See kehtib samamoodi tulemuste kohta, mis saadetakse ettevõtte värbamissüsteemi või muudesse tööriistadesse: ettevõte ei seadista neid kandidaate automaatselt tagasi lükkama.",
         "Ettevõte lubab prepzal kasutada kandidaatide vastuseid koondatult ja kedagi tuvastamata, et mõõta ja parandada küsimuste kvaliteeti kogu prepzas.",
+        "Küsimused, mille prepza ettevõtte jaoks loob, on tingimuste mõistes ettevõtte sisu, mitte kandidaatide isikuandmed, mistõttu see leping neid ei hõlma: tingimustes antud litsentsi alusel võib prepza neid taaskasutada teiste klientide intervjuudes ja harjutusintervjuudes, eemaldades kõik, mis tuvastaks ettevõtte või kellegi teise, välja arvatud juhul, kui ettevõte jätab intervjuu küsimused sellest välja selle intervjuu seadetes.",
         "Kui seadus seda nõuab, teeb ettevõte mõjuhinnangu ja annab kandidaatidele teavitused, mida tema jurisdiktsioon nõuab."
       ]
     },

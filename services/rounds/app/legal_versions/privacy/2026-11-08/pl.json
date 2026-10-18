@@ -13,7 +13,7 @@
       "items": [
         "Konto: Twoje imię i nazwisko, adres e-mail, zdjęcie profilowe i identyfikator konta z konta Google, LinkedIn lub GitHub, przez które się logujesz, oraz informacja, które z nich są połączone z Twoim kontem.",
         "To, co nam przekazujesz: wklejane opisy stanowisk i utworzone na ich podstawie rozmowy, adresy e-mail zapraszanych kandydatów (oraz ich imiona i nazwiska, jeśli je podasz lub poprawisz), osób, które zapraszasz do zespołu swojej firmy, i osób, którym wysyłasz raport, a także Twoje oceny pytań i zgłoszenia pytań.",
-        "Asystent: gdy jesteś zalogowany, to, co do niego piszesz lub mówisz (wiadomość głosowa jest zamieniana na tekst i nigdy nie jest przechowywana), oraz jego odpowiedzi, abyś mógł wrócić do czatu. Nie przechowuje on tego, co przeczytał, aby Ci odpowiedzieć, na przykład wyników kandydatów: gdy ponownie otworzysz czat, pobiera je jeszcze raz z Twoimi bieżącymi uprawnieniami dostępu. Jeśli nie jesteś zalogowany, Twoje pytania są wykorzystywane wyłącznie do udzielenia na nie odpowiedzi i nie są przechowywane. Wiadomość zawierająca klucz, token lub hasło jest natychmiast usuwana: nie jest przechowywana ani przekazywana dalej.",
+        "Asystent: gdy jesteś zalogowany, to, co do niego piszesz lub mówisz (wiadomość głosowa jest zamieniana na tekst i nigdy nie jest przechowywana), oraz jego odpowiedzi, abyś mógł wrócić do czatu. Nie przechowuje on tego, co przeczytał, aby Ci odpowiedzieć, na przykład wyników kandydatów, z wyjątkiem opisanych niżej rejestrów wywołań AI: gdy ponownie otworzysz czat, pobiera je jeszcze raz z Twoimi bieżącymi uprawnieniami dostępu. Jeśli nie jesteś zalogowany, Twoje pytania są wykorzystywane wyłącznie do udzielenia na nie odpowiedzi i nie są przechowywane, z wyjątkiem opisanych niżej rejestrów wywołań AI. Wiadomość zawierająca klucz, token lub hasło jest natychmiast usuwana: nie jest przechowywana ani przekazywana dalej.",
         "Firmy: nazwa, logo i strona internetowa firmy oraz domena e-mail, za pomocą której została zweryfikowana; gdy właściciel lub administrator prosi o weryfikację, potwierdzony przez niego adres e-mail w tej domenie i nazwa firmy, którą wysłał do sprawdzenia.",
         "Ćwiczenia: jeśli odbywasz darmowe rozmowy ćwiczeniowe, Twoje odpowiedzi, wyniki i czas trwania każdej odpowiedzi. Widzisz je tylko Ty.",
         "Wiadomości kontaktowe: imię i nazwisko, adres e-mail i wiadomość wysłane przez stronę kontaktową.",
@@ -32,6 +32,7 @@
         "Zakupy: dla każdego doładowania firma, dla której było, kto je kupił, co zostało kupione, kwota łączna i waluta, identyfikator transakcji Paddle oraz kiedy. Dane karty i dane rozliczeniowe przechowuje Paddle, nie my.",
         "Dziennik działań firmy: co robią w niej jej członkowie, na przykład zaproszenie, wyświetlenie lub usunięcie kandydata, zmiana rozmowy lub zespołu, doładowanie lub podłączenie narzędzia, wraz z tym, kto to zrobił, kiedy i czy zrobił to za niego asystent, aplikacja AI lub API. Widzi go właściciel firmy. Kandydaci i członkowie są wskazywani z imienia i nazwiska tylko dopóki nadal należą do firmy: dziennik przechowuje ich identyfikatory, nigdy ich adresów e-mail.",
         "Wykorzystanie AI i limity: dla każdego użycia AI, na przykład do napisania pytań lub odpowiedzi asystenta, w jakim celu nastąpiło, model, jego zakres i koszt oraz konto i firma, dla których nastąpiło; a za każdym razem, gdy limit odrzuca żądanie: który limit, kiedy oraz konto i firma, których żądanie odrzucił. Nigdy tekst wysłany do AI ani jej odpowiedź.",
+        "Rejestry wywołań AI: to, co prepza wysyła do AI i co AI odpowiada przy każdym jej użyciu, na przykład przy pisaniu pytań na podstawie opisu stanowiska albo odpowiedzi asystenta i czatu pomocy wraz z tym, co przeczytały, aby odpowiedzieć (co może obejmować wyniki kandydatów), oraz oceny tych odpowiedzi. Przechowuje je Langfuse (patrz niżej) wyłącznie w celu monitorowania i poprawy jakości odpowiedzi.",
         "Statystyki użytkowania: kroki takie jak rejestracja, utworzenie firmy, zaproszenie kandydata czy doładowanie, z wartościami takimi jak wynik lub kwota. Identyfikator Twojego konta zastępowany jest kodem utworzonym za pomocą tajnego klucza, który przechowujemy, więc statystyki nie wskazują Cię z imienia i nazwiska, ale są to dane spseudonimizowane, a nie anonimowe: przy użyciu klucza kod odpowiada identyfikatorowi Twojego konta. Identyfikator firmy jest zachowywany bez zmian. Nie są uwzględniane żadne imiona, nazwiska, adresy e-mail ani teksty."
       ]
     },
@@ -45,6 +46,9 @@
         "Oferty i promocje: tylko jeśli wyrazisz zgodę, zaznaczając pole przy logowaniu lub w Ustawieniach (zgoda). Możesz ją w każdej chwili wycofać.",
         "Zapamiętanie, że kandydat zrezygnował z e-maili firmy, aby prepza nie wysyłała mu już e-maili w imieniu tej firmy (uszanowanie jego sprzeciwu).",
         "Zapewnienie bezpieczeństwa i działania prepza: zapobieganie nadużyciom, limity zapytań, raporty o błędach i statystyki poprawiające jakość pytań (nasz prawnie uzasadniony interes).",
+        "Jakość pytań: analizujemy odpowiedzi na pytania i zgłoszenia pytań, aby znaleźć ogólne, zanonimizowane wzorce jakości pytań, które ulepszają generowanie pytań dla wszystkich; wzorce te nie zawierają danych osobowych (nasz prawnie uzasadniony interes).",
+        "Ponowne wykorzystywanie wygenerowanych pytań: pytania generowane przez prepza mogą być ponownie wykorzystywane w rozmowach i rozmowach ćwiczeniowych innych klientów, bez żadnych danych osobowych ani szczegółów identyfikujących firmę lub osobę. Firma może wyłączyć z tego pytania danej rozmowy w jej ustawieniach.",
+        "Rejestry wywołań AI pozwalają nam monitorować i poprawiać jakość pytań i odpowiedzi AI (nasz prawnie uzasadniony interes).",
         "Kontrola kosztów i zapobieganie nadużyciom: rejestry wykorzystania AI i osiągniętych limitów pokazują, ile kosztuje AI i kto osiąga który limit, abyśmy mogli utrzymać przystępne ceny prepza i powstrzymywać nadużycia (nasz prawnie uzasadniony interes).",
         "Dziennik działań firmy pozwala jej właścicielowi zobaczyć, kto co zrobił w firmie, a naszemu wsparciu sprawdzić go, gdy firma prosi o pomoc (prawnie uzasadniony interes firmy i nasz w zakresie rozliczalności).",
         "Statystyki użytkowania pokazują, które części prepza pomagają ludziom oraz które ceny i limity się sprawdzają, abyśmy mogli je ulepszać (nasz prawnie uzasadniony interes).",
@@ -64,6 +68,7 @@
         "Resend: wysyłanie e-maili: zaproszeń i przypomnień do kandydatów, raportów, e-maili do członków firm, takich jak podsumowanie aktywności, oraz wiadomości kontaktowych (w UE, Irlandia).",
         "Google Workspace: nasza skrzynka e-mail, która odbiera wiadomości kontaktowe i e-maile, które do nas wysyłasz (Google Ireland Ltd; poczta może być przechowywana poza UE, w ramach Ram ochrony danych UE-USA i standardowych klauzul umownych).",
         "Sentry: raporty o błędach, z usuniętymi adresami e-mail (w UE).",
+        "Langfuse (Langfuse GmbH, Niemcy, jej chmura w UE): rejestry wywołań AI (to, co jest wysyłane do AI, i jej odpowiedzi, które mogą obejmować opisy stanowisk, pytania, wiadomości z czatu i to, co asystent przeczytał, aby na nie odpowiedzieć, oraz oceny odpowiedzi asystenta), w celu monitorowania i poprawy jakości odpowiedzi (w UE).",
         "Cloudflare (Turnstile; Cloudflare, Inc., Stany Zjednoczone, w ramach Ram ochrony danych UE-USA): weryfikacja „Nie jestem robotem”.",
         "Google Cloud, nasz dostawca hostingu, który przechowuje dane (w UE, Belgia).",
         "Upstash: krótkotrwałe liczniki limitów użycia i aktualizacji na żywo (w UE, Belgia).",
@@ -116,6 +121,7 @@
         "Żądanie kandydata dotyczące rezygnacji z e-maili firmy, w postaci skrótu jego adresu e-mail: do czasu usunięcia firmy, nawet jeśli firma usunie dane kandydata.",
         "Wiadomości kontaktowe: tak długo, jak są nam potrzebne, aby Ci odpowiedzieć, maksymalnie 2 lata.",
         "Raporty o błędach: do 90 dni.",
+        "Rejestry wywołań AI w Langfuse: 30 dni, a następnie są automatycznie usuwane.",
         "Kopie zapasowe bazy danych: 14 dni, a następnie są nadpisywane; do tego czasu znika z nich wszystko, co zostało usunięte.",
         "Statystyki użytkowania: 25 miesięcy, a następnie są automatycznie usuwane.",
         "Dokumentacja zakupów: tak długo, jak wymagają tego przepisy o rachunkowości (7 lat w Estonii), bez identyfikatora Twojego konta po jego usunięciu.",

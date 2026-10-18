@@ -36,6 +36,7 @@
         "Resend (e-mails; UE, Irlanda).",
         "Google Workspace (nossa caixa de entrada de e-mail: mensagens de empresas e candidatos, e pedidos encaminhados a uma empresa; Google Ireland Ltd, as mensagens podem ser armazenadas fora da UE com base no Quadro de Privacidade de Dados UE-EUA e em cláusulas contratuais-tipo).",
         "Sentry (relatórios de erros, sem endereços de e-mail; UE).",
+        "Langfuse (registros de chamadas à IA, para monitorar e melhorar a qualidade das respostas: o que é enviado à IA e as respostas dela, que podem incluir dados de candidatos tratados pela IA, como os resultados que o assistente lê para responder a um membro, e os votos nas respostas do assistente; guardados por 30 dias; Langfuse GmbH, Alemanha, a nuvem dela na UE).",
         "Cloudflare (a verificação \"Não sou um robô\", Turnstile, quando um candidato começa pelo link de um anúncio de vaga: os sinais e o endereço do navegador dele, dos quais guardamos apenas se a verificação foi aprovada; Cloudflare, Inc., Estados Unidos, com base no Quadro de Privacidade de Dados UE-EUA).",
         "Upstash (contadores de curta duração para limites e atualizações ao vivo; UE, Bélgica)."
       ]
@@ -54,6 +55,7 @@
         "Um candidato que exclui a sua própria conta da prepza apaga com ela as suas respostas e resultados, para todas as empresas; a empresa o vê como um candidato excluído.",
         "A prepza não toma nenhuma decisão sobre um candidato. A empresa revisa os resultados antes de decidir, não rejeita um candidato apenas pela pontuação, oferece aos candidatos que precisarem uma adaptação, como tempo extra, e permite que um candidato peça que uma pessoa revise o resultado dele. Isso se aplica igualmente aos resultados enviados ao seu sistema de gestão de candidatos ou a outras ferramentas: a empresa não as configura para rejeitar candidatos automaticamente.",
         "A empresa permite que a prepza use as respostas dos candidatos, agregadas e sem identificar ninguém, para medir e melhorar a qualidade das perguntas em toda a prepza.",
+        "As perguntas que a prepza gera para a empresa são conteúdo da empresa conforme os termos, e não dados pessoais dos candidatos, por isso este acordo não as abrange: com base na licença prevista nos termos, a prepza pode reutilizá-las em entrevistas e na prática de outros clientes, sem nada que identifique a empresa ou qualquer outra pessoa, a menos que a empresa exclua disso as perguntas de uma entrevista nas configurações dela.",
         "Quando a lei o exigir, a empresa realiza uma avaliação de impacto e fornece aos candidatos os avisos exigidos pela sua jurisdição."
       ]
     },

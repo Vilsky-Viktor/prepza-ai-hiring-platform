@@ -100,7 +100,7 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Co dzieje się z opisami stanowisk i odpowiedziami?",
-        "answer": "Opisy stanowisk służą do tworzenia rozmów Twojej firmy, a odpowiedzi kandydatów do ich oceny na potrzeby Twojej firmy. prepza wykorzystuje też odpowiedzi w formie zagregowanej, bez identyfikowania kogokolwiek, do mierzenia i poprawy jakości pytań. [Polityka prywatności](/privacy) wyjaśnia, co przechowujemy, jak długo i jakie prawa przysługują każdemu.",
+        "answer": "Opisy stanowisk służą do tworzenia rozmów Twojej firmy, a odpowiedzi kandydatów do ich oceny na potrzeby Twojej firmy. Pytania generowane przez prepza mogą być też ponownie wykorzystywane w rozmowach i rozmowach ćwiczeniowych innych firm, bez niczego, co identyfikuje Ciebie, Twoją firmę lub kogokolwiek innego; możesz wyłączyć z tego pytania danej rozmowy w jej ustawieniach. prepza wyodrębnia także z odpowiedzi na pytania ogólne, zanonimizowane wzorce jakości pytań, aby ulepszać sposób ich generowania. [Polityka prywatności](/privacy) wyjaśnia, co przechowujemy, jak długo i jakie prawa przysługują każdemu.",
     },
     {
         "key": "eu_ai_law",

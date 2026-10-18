@@ -36,6 +36,7 @@
         "Resend (e-postalar; AB, İrlanda).",
         "Google Workspace (e-posta gelen kutumuz: şirketlerden ve adaylardan gelen mesajlar ve bir şirkete iletilen talepler; Google Ireland Ltd, e-postalar AB-ABD Veri Gizliliği Çerçevesi ve standart sözleşme hükümleri kapsamında AB dışında saklanabilir).",
         "Sentry (e-posta adresleri olmadan hata raporları; AB).",
+        "Langfuse (cevapların kalitesini izlemek ve iyileştirmek için yapay zekâ çağrı kayıtları: yapay zekâya gönderilenler ve onun cevapları; bunlar, asistanın bir üyeye cevap vermek için okuduğu sonuçlar gibi, yapay zekânın işlediği aday verilerini içerebilir; ayrıca asistanın cevaplarına verilen oylar; 30 gün saklanır; Langfuse GmbH, Almanya, AB bulutu).",
         "Cloudflare (\"Ben robot değilim\" doğrulaması, Turnstile, bir aday bir iş ilanının bağlantısı üzerinden başladığında: tarayıcısının sinyalleri ve adresi; bunlardan yalnızca doğrulamanın geçilip geçilmediğini saklarız; Cloudflare, Inc., Amerika Birleşik Devletleri, AB-ABD Veri Gizliliği Çerçevesi kapsamında).",
         "Upstash (sınırlar ve canlı güncellemeler için kısa ömürlü sayaçlar; AB, Belçika)."
       ]
@@ -54,6 +55,7 @@
         "Kendi prepza hesabını silen bir aday, cevaplarını ve sonuçlarını da her şirket için hesabıyla birlikte siler; şirket onu silinmiş bir aday olarak görür.",
         "prepza bir aday hakkında hiçbir karar vermez. Şirket karar vermeden önce sonuçları gözden geçirir, bir adayı yalnızca puana dayanarak reddetmez, ihtiyacı olan adaylara ek süre gibi bir uyarlama sağlar ve adayın sonucunun bir insan tarafından incelenmesini istemesine olanak tanır. Bu, şirketin aday takip sistemine veya diğer araçlarına gönderilen sonuçlar için de aynen geçerlidir: şirket bunları adayları otomatik olarak reddedecek şekilde ayarlamaz.",
         "Şirket, prepza genelinde soruların kalitesini ölçmek ve iyileştirmek için prepza'nın adayların cevaplarını birleştirilmiş şekilde ve kimseyi tanımlamadan kullanmasına izin verir.",
+        "prepza'nın şirket için oluşturduğu sorular, koşullar kapsamında şirketin içeriğidir, adayların kişisel verileri değildir; bu nedenle bu sözleşme onları kapsamaz: koşullardaki lisans kapsamında prepza, şirket bir mülakatın sorularını mülakatın ayarlarından bunun dışında tutmadıkça, bu soruları şirketi veya başka birini tanımlayan her şeyden arındırarak diğer müşterilerin mülakatlarında ve pratiklerinde yeniden kullanabilir.",
         "Yasaların gerektirdiği durumlarda şirket bir etki değerlendirmesi yapar ve adaylara kendi yargı bölgesinin gerektirdiği bildirimleri yapar."
       ]
     },

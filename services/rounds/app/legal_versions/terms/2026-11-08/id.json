@@ -18,8 +18,7 @@
     {
       "heading": "Kontenmu",
       "paragraphs": [
-        "Kamu tetap memegang hak atas apa yang kamu tempel dan buat. Kamu mengizinkan kami menyimpan dan memprosesnya untuk menjalankan prepza, termasuk mengirimkannya ke penyedia AI kami.",
-        "Jangan menempelkan apa pun yang tidak boleh kamu bagikan, seperti informasi rahasia milik orang lain."
+        "Kamu tetap memegang hak atas apa yang kamu tempel dan buat. Kamu mengizinkan kami menyimpan dan memprosesnya untuk menjalankan prepza, termasuk mengirimkannya ke layanan AI yang kami gunakan. Kamu juga memberi kami lisensi yang berlaku di seluruh dunia, bebas royalti, dan berlaku selamanya untuk menggunakan, mengadaptasi, dan menggunakan kembali soal yang dibuat prepza untukmu dalam wawancara dan latihan bagi pelanggan lain, tanpa apa pun yang mengidentifikasi kamu, perusahaanmu, atau orang lain; kamu bisa mengecualikan soal suatu wawancara dari hal ini di pengaturannya, dan soal yang sudah digunakan kembali tetap di tempatnya. Kami juga mempelajari pola umum kualitas soal yang dianonimkan dari semua soal untuk meningkatkan cara soal dibuat. Jangan menempelkan rahasia dagang atau data pribadi ke dalam deskripsi pekerjaan."
       ]
     },
     {
@@ -57,8 +56,8 @@
     {
       "heading": "Kredit dan pembayaran",
       "items": [
-        "prepza dibayar dengan kredit: 1 dolar AS membeli 100 kredit, dan isi ulang yang lebih besar memberikan lebih banyak kredit per dolar. Biaya setiap hal dalam kredit tercantum di halaman harga dan ditampilkan sebelum kamu menggunakannya.",
-        "Isi ulang dijual oleh Paddle, yang bertindak sebagai penjual kembali (merchant of record): Paddle menerima pembayaran, memungut PPN atau pajak penjualan yang berlaku, dan menerbitkan tanda terima atau faktur. Isi ulang dapat dibeli oleh pelaku usaha maupun konsumen. Di tempat yang harganya biasanya sudah termasuk PPN, seperti di Uni Eropa dan Inggris, harga di halaman harga sudah termasuk PPN; di tempat lain, seperti di Amerika Serikat, pajak penjualan ditambahkan saat checkout. Halaman checkout menampilkan totalnya sebelum kamu membayar.",
+        "prepza dibayar dengan kredit: setiap isi ulang membeli jumlah kredit yang ditampilkan sebelum kamu membayar, dan isi ulang yang lebih besar memberikan lebih banyak kredit untuk uang yang sama. Biaya setiap hal dalam kredit tercantum di halaman harga dan ditampilkan sebelum kamu menggunakannya.",
+        "Isi ulang dijual oleh Paddle, yang bertindak sebagai penjual kembali (merchant of record): Paddle menerima pembayaran, memungut PPN atau pajak penjualan yang berlaku, dan menerbitkan tanda terima atau faktur. Isi ulang dapat dibeli oleh pelaku usaha maupun konsumen. Di tempat yang harganya biasanya sudah termasuk PPN, seperti di Uni Eropa dan Inggris, harga di halaman harga sudah termasuk PPN; di tempat lain, seperti di Amerika Serikat, pajak penjualan ditambahkan saat checkout. Harga ditampilkan dalam mata uang lokalmu jika tersedia, dan dalam dolar AS jika tidak; halaman checkout menampilkan jumlah akhirnya, termasuk pajak yang berlaku, sebelum kamu membayar.",
         "Kredit milik perusahaan dan digunakan untuk kandidatnya; pemilik dan admin perusahaan dapat mengisi ulang kredit tersebut. Kredit tidak dapat dipindahkan antarakun atau antarperusahaan, dijual, atau dicairkan sebagai uang.",
         "Isi ulang otomatis bersifat opsional dan nonaktif kecuali kamu menyalakannya. Saat kamu menyalakannya, kamu memberi wewenang kepada Paddle untuk menyimpan kartumu dan menagihnya sebesar jumlah isi ulang yang kamu pilih setiap kali saldo yang tersedia turun di bawah batas yang kamu pilih, tanpa meminta persetujuan lagi. Paddle mengirim tanda terima melalui email untuk setiap tagihan. Kamu bisa mengubah atau mematikannya kapan saja di halaman isi ulang, yang juga membatalkan otorisasi kartu yang tersimpan; tagihan yang sudah dilakukan mengikuti aturan pengembalian dana di bawah.",
         "Kredit tidak kedaluwarsa. Menghapus perusahaan akan menghapus kreditnya, dan kredit itu tidak dikembalikan: ajukan pengembalian dana yang menjadi hakmu sebelum menghapusnya.",

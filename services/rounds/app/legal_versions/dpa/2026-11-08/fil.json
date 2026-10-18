@@ -36,6 +36,7 @@
         "Resend (mga email; EU, Ireland).",
         "Google Workspace (ang aming email inbox: mga mensahe mula sa mga kumpanya at aplikante, at mga kahilingang ipinapasa sa isang kumpanya; Google Ireland Ltd, maaaring i-store ang mail sa labas ng EU sa ilalim ng EU-US Data Privacy Framework at ng standard contractual clauses).",
         "Sentry (mga error report, nang walang email address; EU).",
+        "Langfuse (mga talaan ng mga AI call, para subaybayan at pahusayin ang kalidad ng mga sagot: ang ipinapadala sa AI at ang mga sagot nito, na maaaring kabilang ang data ng mga aplikante na pinoproseso ng AI, gaya ng mga resultang binabasa ng assistant para sagutin ang isang miyembro, at mga boto sa mga sagot ng assistant; iniingatan nang 30 araw; Langfuse GmbH, Germany, ang EU cloud nito).",
         "Cloudflare (ang \"I'm not a robot\" na pagsusuri, Turnstile, kapag nagsimula ang isang aplikante sa pamamagitan ng link ng isang job ad: ang mga signal at address ng kanyang browser, kung saan ang iniingatan lang namin ay kung pumasa ito; Cloudflare, Inc., United States, sa ilalim ng EU-US Data Privacy Framework).",
         "Upstash (mga panandaliang counter para sa mga limitasyon at live na update; EU, Belgium)."
       ]
@@ -54,6 +55,7 @@
         "Ang aplikanteng nagbubura ng sarili niyang prepza account ay nagbubura rin ng kanyang mga sagot at resulta, para sa bawat kumpanya; nakikita siya ng kumpanya bilang isang binurang aplikante.",
         "Walang desisyong ginagawa ang prepza tungkol sa isang aplikante. Sinusuri ng kumpanya ang mga resulta bago magpasya, hindi nito tinatanggihan ang isang aplikante batay lamang sa score, nagbibigay ito ng akomodasyon gaya ng dagdag na oras sa mga aplikanteng nangangailangan nito, at pinapayagan nito ang aplikante na humiling na suriin ng isang tao ang kanyang resulta. Pareho itong nalalapat sa mga resultang ipinapadala sa applicant tracking system nito o sa iba pang tool: hindi sine-set up ng kumpanya ang mga ito para awtomatikong tanggihan ang mga aplikante.",
         "Pinapayagan ng kumpanya ang prepza na gamitin ang mga sagot ng mga aplikante, nang pinagsama-sama at nang hindi kinikilala ang sinuman, para sukatin at pahusayin ang kalidad ng mga tanong sa buong prepza.",
+        "Ang mga tanong na ginagawa ng prepza para sa kumpanya ay nilalaman ng kumpanya sa ilalim ng mga tuntunin, hindi personal data ng mga aplikante, kaya hindi saklaw ng kasunduang ito ang mga ito: sa ilalim ng lisensya sa mga tuntunin, maaaring muling gamitin ng prepza ang mga ito sa mga interview at practice ng ibang mga customer, nang inalis ang anumang tumutukoy sa kumpanya o sa sinumang iba, maliban kung hindi isinama rito ng kumpanya ang mga tanong ng isang interview sa mga setting nito.",
         "Kung hinihingi ng batas, nagsasagawa ang kumpanya ng impact assessment, at ibinibigay nito sa mga aplikante ang mga abisong hinihingi ng hurisdiksyon nito."
       ]
     },

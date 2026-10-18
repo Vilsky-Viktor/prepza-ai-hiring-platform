@@ -13,7 +13,7 @@
       "items": [
         "Conta: seu nome, endereço de e-mail, foto de perfil e ID de conta, da conta Google, LinkedIn ou GitHub com que você entra, e quais delas estão vinculadas à sua conta.",
         "O que você nos fornece: as descrições de vagas que você cola e as entrevistas criadas a partir delas, os e-mails dos candidatos que você convida (e os nomes deles, se você os informar ou corrigir), das pessoas que você convida para a equipe da sua empresa e das pessoas a quem você envia um relatório, e suas avaliações e denúncias de perguntas.",
-        "O assistente: quando você está conectado, o que você escreve ou diz a ele (uma mensagem de voz é convertida em texto e nunca armazenada) e as respostas dele, para que você possa voltar a uma conversa. Ele não guarda o que leu para responder a você, como os resultados dos candidatos: quando você abre uma conversa de novo, ele os busca novamente com o seu acesso atual. Se você não estiver conectado, suas perguntas são usadas apenas para respondê-las e não são armazenadas. Uma mensagem que contenha uma chave, um token ou uma senha é removida imediatamente: não é armazenada nem encaminhada.",
+        "O assistente: quando você está conectado, o que você escreve ou diz a ele (uma mensagem de voz é convertida em texto e nunca armazenada) e as respostas dele, para que você possa voltar a uma conversa. Ele não guarda o que leu para responder a você, como os resultados dos candidatos, exceto nos registros de chamadas à IA descritos abaixo: quando você abre uma conversa de novo, ele os busca novamente com o seu acesso atual. Se você não estiver conectado, suas perguntas são usadas apenas para respondê-las e não são armazenadas, exceto nos registros de chamadas à IA descritos abaixo. Uma mensagem que contenha uma chave, um token ou uma senha é removida imediatamente: não é armazenada nem encaminhada.",
         "Empresas: o nome, o logotipo e o site da empresa, e o domínio de e-mail com que ela foi verificada; quando um proprietário ou administrador pede a verificação, o endereço de e-mail nesse domínio que ele confirmou e o nome da empresa que ele enviou para análise.",
         "Prática: se você faz entrevistas de prática gratuitas, suas respostas, notas e quanto tempo levou cada resposta. Só você as vê.",
         "Mensagens de contato: o nome, o endereço de e-mail e a mensagem que você envia pela página de contato.",
@@ -32,6 +32,7 @@
         "Compras: para cada recarga, a empresa a que se destinava, quem a comprou, o que foi comprado, o total e a moeda, o ID da transação da Paddle e quando. Os dados do cartão e de faturamento ficam com a Paddle, não conosco.",
         "Registro de ações de uma empresa: o que os membros dela fazem nela, como convidar, ver ou remover um candidato, alterar uma entrevista ou a equipe, fazer uma recarga ou conectar uma ferramenta, com quem fez, quando e se o assistente, um app de IA ou a API fez isso por eles. O proprietário da empresa o vê. Candidatos e membros só aparecem pelo nome enquanto ainda fazem parte da empresa: o registro guarda os IDs deles, nunca os e-mails.",
         "Uso de IA e limites: para cada uso de IA, como escrever perguntas ou a resposta do assistente, para que foi, o modelo, o volume e o custo, e a conta e a empresa a que se destinou; e cada vez que um limite recusa uma solicitação, qual limite, quando, e a conta e a empresa cuja solicitação foi recusada. Nunca o texto enviado à IA nem a resposta dela.",
+        "Registros de chamadas à IA: o que a prepza envia à IA e o que ela responde cada vez que é usada, como ao escrever perguntas a partir de uma descrição de vaga, ou as respostas do assistente e do chat de ajuda com o que eles leram para responder (o que pode incluir resultados de candidatos), e os votos nessas respostas. Eles são guardados pela Langfuse (veja abaixo), apenas para monitorar e melhorar a qualidade das respostas.",
         "Estatísticas de uso: etapas como o cadastro, a criação de uma empresa, um candidato convidado ou uma recarga, com valores como uma pontuação ou um montante. O ID da sua conta é substituído por um código gerado com uma chave secreta que mantemos, de modo que as estatísticas não identificam você pelo nome, mas são pseudonimizadas, não anônimas: com a chave, o código corresponde ao ID da sua conta. O ID de uma empresa é mantido como está. Nenhum nome, e-mail ou texto é incluído."
       ]
     },
@@ -45,6 +46,9 @@
         "Ofertas e promoções: somente se você concordar, marcando a caixa ao entrar ou em Configurações (consentimento). Você pode retirar o consentimento a qualquer momento.",
         "Lembrar que um candidato deixou de receber os e-mails de uma empresa, para que a prepza não volte a enviar e-mails a ele em nome dessa empresa (respeitando a oposição dele).",
         "Para manter a prepza segura e funcionando: prevenção de abusos, limites de requisições, relatórios de erros e estatísticas que melhoram a qualidade das perguntas (nosso interesse legítimo).",
+        "Qualidade das perguntas: analisamos como as perguntas são respondidas e denunciadas para encontrar padrões gerais e anonimizados de qualidade das perguntas, que melhoram a geração de perguntas para todos; esses padrões não contêm dados pessoais (nosso interesse legítimo).",
+        "Reutilização das perguntas geradas: as perguntas que a prepza gera podem ser reutilizadas em entrevistas e na prática de outros clientes, sem nenhum dado pessoal ou detalhe que identifique uma empresa ou uma pessoa. Uma empresa pode excluir disso as perguntas de uma entrevista nas configurações dela.",
+        "Os registros de chamadas à IA nos permitem monitorar e melhorar a qualidade das perguntas e respostas da IA (nosso interesse legítimo).",
         "Controle de custos e prevenção de abusos: os registros do uso de IA e dos limites atingidos mostram quanto custa a IA e quem atinge cada limite, para que possamos manter a prepza acessível e impedir o uso indevido (nosso interesse legítimo).",
         "O registro de ações de uma empresa permite que o proprietário dela veja quem fez o quê na empresa, e que o nosso suporte o consulte quando a empresa pede ajuda (interesse legítimo da empresa e nosso na prestação de contas).",
         "As estatísticas de uso mostram quais partes da prepza ajudam as pessoas e quais preços e limites funcionam, para que possamos melhorá-los (nosso interesse legítimo).",
@@ -64,6 +68,7 @@
         "Resend: envio de e-mails: convites e lembretes aos candidatos, relatórios, e-mails aos membros da empresa, como o resumo de atividades, e mensagens de contato (na UE, Irlanda).",
         "Google Workspace: nossa caixa de entrada de e-mail, que recebe as mensagens de contato e os e-mails que você nos envia (Google Ireland Ltd; as mensagens podem ser armazenadas fora da UE, com base no Quadro de Privacidade de Dados UE-EUA e em cláusulas contratuais-tipo).",
         "Sentry: relatórios de erros, sem e-mails (na UE).",
+        "Langfuse (Langfuse GmbH, Alemanha, a nuvem dela na UE): registros de chamadas à IA (o que é enviado à IA e as respostas dela, que podem incluir descrições de vagas, perguntas, mensagens de chat e o que o assistente leu para respondê-las, e os votos nas respostas do assistente), para monitorar e melhorar a qualidade das respostas (na UE).",
         "Cloudflare (Turnstile; Cloudflare, Inc., Estados Unidos, com base no Quadro de Privacidade de Dados UE-EUA): a verificação \"Não sou um robô\".",
         "Google Cloud, nosso provedor de hospedagem, que armazena os dados (na UE, Bélgica).",
         "Upstash: contadores de curta duração para limites de uso e atualizações ao vivo (na UE, Bélgica).",
@@ -116,6 +121,7 @@
         "O pedido de um candidato para deixar de receber os e-mails de uma empresa, como um hash do e-mail dele: até a empresa ser excluída, mesmo que a empresa apague o candidato.",
         "Mensagens de contato: pelo tempo necessário para responder a você, no máximo 2 anos.",
         "Relatórios de erros: até 90 dias.",
+        "Registros de chamadas à IA na Langfuse: 30 dias; depois, são excluídos automaticamente.",
         "Backups do banco de dados: 14 dias, depois são sobrescritos; tudo o que foi excluído já terá desaparecido deles até lá.",
         "Estatísticas de uso: 25 meses; depois, são excluídas automaticamente.",
         "Registros de compras: pelo tempo exigido pela legislação contábil (7 anos na Estônia), sem o ID da sua conta depois que você excluir a sua conta.",

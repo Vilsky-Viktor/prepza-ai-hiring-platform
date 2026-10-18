@@ -36,6 +36,7 @@
         "Resend (e-mails; EU, Ierland).",
         "Google Workspace (onze e-mailinbox: berichten van bedrijven en kandidaten, en verzoeken die aan een bedrijf worden doorgegeven; Google Ireland Ltd, e-mail kan buiten de EU worden opgeslagen onder het EU-VS-kader voor gegevensbescherming en standaardcontractbepalingen).",
         "Sentry (foutrapporten, zonder e-mailadressen; EU).",
+        "Langfuse (registraties van AI-aanroepen, om de kwaliteit van antwoorden te bewaken en te verbeteren: wat naar de AI wordt gestuurd en de antwoorden ervan, waaronder gegevens van kandidaten kunnen vallen die de AI verwerkt, zoals de resultaten die de assistent leest om een lid te antwoorden, en beoordelingen van de antwoorden van de assistent; 30 dagen bewaard; Langfuse GmbH, Duitsland, de EU-cloud ervan).",
         "Cloudflare (de controle 'Ik ben geen robot', Turnstile, wanneer een kandidaat start via de link van een vacature: de signalen en het adres van diens browser, waarvan we alleen bewaren of de controle is geslaagd; Cloudflare, Inc., Verenigde Staten, onder het EU-VS-kader voor gegevensbescherming).",
         "Upstash (kortlevende tellers voor limieten en live-updates; EU, België)."
       ]
@@ -54,6 +55,7 @@
         "Een kandidaat die zijn eigen prepza-account verwijdert, wist daarmee zijn antwoorden en resultaten, voor elk bedrijf; het bedrijf ziet hem als een verwijderde kandidaat.",
         "prepza neemt geen beslissing over een kandidaat. Het bedrijf beoordeelt de resultaten voordat het beslist, wijst een kandidaat niet alleen op basis van de score af, geeft kandidaten die dat nodig hebben een aanpassing zoals extra tijd, en laat een kandidaat vragen om een beoordeling van zijn resultaat door een mens. Dit geldt evenzeer voor resultaten die naar zijn sollicitantvolgsysteem of andere tools worden gestuurd: het bedrijf stelt ze niet zo in dat ze kandidaten automatisch afwijzen.",
         "Het bedrijf staat prepza toe de antwoorden van kandidaten, samengevoegd en zonder iemand te identificeren, te gebruiken om de kwaliteit van vragen in heel prepza te meten en te verbeteren.",
+        "De vragen die prepza voor het bedrijf genereert, zijn content van het bedrijf in de zin van de voorwaarden, geen persoonsgegevens van kandidaten, dus deze overeenkomst is er niet op van toepassing: op grond van de licentie in de voorwaarden mag prepza ze hergebruiken in interviews en oefeninterviews van andere klanten, ontdaan van alles wat het bedrijf of iemand anders identificeert, tenzij het bedrijf de vragen van een interview hiervan uitsluit in de instellingen van dat interview.",
         "Waar de wet dat vereist, voert het bedrijf een effectbeoordeling uit en geeft het kandidaten de kennisgevingen die zijn rechtsgebied vereist."
       ]
     },

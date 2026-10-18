@@ -100,7 +100,7 @@ FAQ = [
     {
         "key": "privacy",
         "question": "O que acontece com as descrições de vaga e as respostas?",
-        "answer": "As descrições de vaga são usadas para criar as entrevistas da sua empresa, e as respostas dos candidatos para avaliá-las para a sua empresa. A prepza também usa as respostas agregadas, sem identificar ninguém, para medir e melhorar a qualidade das perguntas. A [política de privacidade](/privacy) explica o que guardamos, por quanto tempo e os direitos de cada pessoa.",
+        "answer": "As descrições de vaga são usadas para criar as entrevistas da sua empresa, e as respostas dos candidatos para avaliá-las para a sua empresa. As perguntas que a prepza gera também podem ser reutilizadas em entrevistas e na prática de outras empresas, sem nada que identifique você, a sua empresa ou qualquer outra pessoa; você pode excluir disso as perguntas de uma entrevista nas configurações dela. A prepza também extrai, da forma como as perguntas são respondidas, padrões gerais e anonimizados de qualidade das perguntas, para melhorar a forma como elas são geradas. A [política de privacidade](/privacy) explica o que guardamos, por quanto tempo e os direitos de cada pessoa.",
     },
     {
         "key": "eu_ai_law",

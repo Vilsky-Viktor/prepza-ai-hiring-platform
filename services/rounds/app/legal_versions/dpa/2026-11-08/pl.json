@@ -36,6 +36,7 @@
         "Resend (e-maile; UE, Irlandia).",
         "Google Workspace (nasza skrzynka e-mail: wiadomości od firm i kandydatów oraz żądania przekazywane firmie; Google Ireland Ltd, poczta może być przechowywana poza UE w ramach Ram ochrony danych UE-USA i standardowych klauzul umownych).",
         "Sentry (raporty o błędach, bez adresów e-mail; UE).",
+        "Langfuse (rejestry wywołań AI, w celu monitorowania i poprawy jakości odpowiedzi: to, co jest wysyłane do AI, i jej odpowiedzi, które mogą obejmować przetwarzane przez AI dane kandydatów, na przykład wyniki, które asystent odczytuje, aby odpowiedzieć członkowi, oraz oceny odpowiedzi asystenta; przechowywane 30 dni; Langfuse GmbH, Niemcy, jej chmura w UE).",
         "Cloudflare (weryfikacja „Nie jestem robotem”, Turnstile, gdy kandydat rozpoczyna przez link z ogłoszenia o pracę: sygnały i adres jego przeglądarki, z których zachowujemy wyłącznie informację, czy weryfikacja zakończyła się powodzeniem; Cloudflare, Inc., Stany Zjednoczone, w ramach Ram ochrony danych UE-USA).",
         "Upstash (krótkotrwałe liczniki limitów i aktualizacji na żywo; UE, Belgia)."
       ]
@@ -54,6 +55,7 @@
         "Kandydat, który usuwa swoje własne konto prepza, usuwa wraz z nim swoje odpowiedzi i wyniki, w każdej firmie; firma widzi go jako usuniętego kandydata.",
         "prepza nie podejmuje żadnej decyzji w sprawie kandydata. Firma przegląda wyniki przed podjęciem decyzji, nie odrzuca kandydata wyłącznie na podstawie wyniku punktowego, zapewnia kandydatom, którzy tego potrzebują, dostosowanie, takie jak dodatkowy czas, i umożliwia kandydatowi wystąpienie o weryfikację jego wyniku przez człowieka. Dotyczy to w równym stopniu wyników przesyłanych do jej systemu ATS lub innych narzędzi: firma nie konfiguruje ich tak, aby automatycznie odrzucały kandydatów.",
         "Firma zezwala prepza na wykorzystywanie odpowiedzi kandydatów, w formie zagregowanej i bez identyfikowania kogokolwiek, do mierzenia i poprawy jakości pytań w całej prepza.",
+        "Pytania, które prepza generuje dla firmy, są treściami firmy w rozumieniu regulaminu, a nie danymi osobowymi kandydatów, dlatego niniejsza umowa ich nie obejmuje: na podstawie licencji udzielonej w regulaminie prepza może ponownie wykorzystywać je w rozmowach i rozmowach ćwiczeniowych innych klientów, po usunięciu wszystkiego, co identyfikuje firmę lub kogokolwiek innego, chyba że firma wyłączy z tego pytania danej rozmowy w jej ustawieniach.",
         "Jeśli wymaga tego prawo, firma przeprowadza ocenę skutków i przekazuje kandydatom informacje wymagane w jej jurysdykcji."
       ]
     },

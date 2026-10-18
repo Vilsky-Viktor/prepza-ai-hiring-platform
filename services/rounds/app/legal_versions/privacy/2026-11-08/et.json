@@ -13,7 +13,7 @@
       "items": [
         "Konto: sinu nimi, e-posti aadress, profiilipilt ja konto ID sellelt Google'i, LinkedIni või GitHubi kontolt, millega sisse logid, ning see, millised neist on sinu kontoga seotud.",
         "Mida sa meile annad: töökuulutuste kirjeldused, mida kleebid, ja nende põhjal loodud intervjuud, sinu kutsutud kandidaatide e-posti aadressid (ja nende nimed, kui need annad või parandad), nende inimeste e-posti aadressid, keda kutsud oma ettevõtte meeskonda, ning nende inimeste e-posti aadressid, kellele saadad aruande, ning sinu küsimuste hinnangud ja küsimustest teatamised.",
-        "Assistent: kui oled sisse logitud, see, mida talle kirjutad või ütled (häälsõnum muudetakse tekstiks ja seda ei salvestata kunagi), ja tema vastused, et saaksid vestluse juurde tagasi tulla. Ta ei säilita seda, mida ta sulle vastamiseks luges, näiteks kandidaatide tulemusi: kui avad vestluse uuesti, toob ta need uuesti sinu praeguse juurdepääsuga. Kui sa pole sisse logitud, kasutatakse sinu küsimusi ainult neile vastamiseks ja neid ei salvestata. Sõnum, mis sisaldab võtit, tokenit või parooli, eemaldatakse kohe: seda ei salvestata ega edastata.",
+        "Assistent: kui oled sisse logitud, see, mida talle kirjutad või ütled (häälsõnum muudetakse tekstiks ja seda ei salvestata kunagi), ja tema vastused, et saaksid vestluse juurde tagasi tulla. Ta ei säilita seda, mida ta sulle vastamiseks luges, näiteks kandidaatide tulemusi, välja arvatud allpool kirjeldatud AI-päringute kirjed: kui avad vestluse uuesti, toob ta need uuesti sinu praeguse juurdepääsuga. Kui sa pole sisse logitud, kasutatakse sinu küsimusi ainult neile vastamiseks ja neid ei salvestata, välja arvatud allpool kirjeldatud AI-päringute kirjed. Sõnum, mis sisaldab võtit, tokenit või parooli, eemaldatakse kohe: seda ei salvestata ega edastata.",
         "Ettevõtted: ettevõtte nimi, logo ja veebisait ning e-posti domeen, millega see kinnitati; kui omanik või administraator taotleb kinnitamist, selle domeeni e-posti aadress, mille ta kinnitas, ja ettevõtte nimi, mille ta ülevaatusele saatis.",
         "Harjutamine: kui teed tasuta harjutusintervjuusid, sinu vastused, hinded ja see, kui kaua iga vastus aega võttis. Neid näed ainult sina.",
         "Kontaktsõnumid: nimi, e-posti aadress ja sõnum, mille saadad kontaktilehe kaudu.",
@@ -32,6 +32,7 @@
         "Ostud: iga juurdelaadimise kohta ettevõte, kellele see oli, kes selle ostis, mida osteti, kogusumma ja valuuta, Paddle'i tehingu ID ja aeg. Kaardi- ja arveldusandmeid hoiab Paddle, mitte meie.",
         "Ettevõtte toimingute logi: mida selle liikmed ettevõttes teevad, näiteks kandidaadi kutsumine, vaatamine või eemaldamine, intervjuu või meeskonna muutmine, juurdelaadimine või tööriista ühendamine, koos sellega, kes seda tegi, millal ja kas seda tegi tema eest assistent, AI-rakendus või API. Seda näeb ettevõtte omanik. Kandidaate ja liikmeid näidatakse nimega ainult seni, kuni nad on veel ettevõttes: logi säilitab nende ID-d, mitte kunagi nende e-posti aadresse.",
         "AI kasutus ja piirangud: iga AI kasutuse kohta, näiteks küsimuste kirjutamine või assistendi vastus, milleks see oli, mudel, selle maht ja kulu ning konto ja ettevõte, kelle jaoks see oli; ning iga kord, kui piirang päringu tagasi lükkab, milline piirang, millal ning konto ja ettevõte, kelle päringu see tagasi lükkas. Mitte kunagi AI-le saadetud teksti ega selle vastust.",
+        "AI-päringute kirjed: mida prepza AI-le saadab ja mida see vastab iga kord, kui seda kasutatakse, näiteks küsimuste kirjutamisel töökuulutuse põhjal või assistendi ja abivestluse vastuste puhul koos sellega, mida nad vastamiseks lugesid (see võib hõlmata kandidaatide tulemusi), ning nende vastuste hinnangud. Neid hoiab allpool nimetatud Langfuse ainult vastuste kvaliteedi jälgimiseks ja parandamiseks.",
         "Kasutusstatistika: sammud, nagu registreerumine, ettevõtte loomine, kandidaadi kutsumine või juurdelaadimine, koos arvväärtustega, nagu punktisumma või summa. Sinu konto ID asendatakse koodiga, mis on loodud meie hoitava salajase võtmega, nii et statistika ei nimeta sind, kuid see on pseudonüümitud, mitte anonüümne: võtme abil vastab kood sinu konto ID-le. Ettevõtte ID jäetakse muutmata. Nimesid, e-posti aadresse ega tekste ei lisata."
       ]
     },
@@ -45,6 +46,9 @@
         "Pakkumised ja kampaaniad: ainult siis, kui oled nõus, märkides ruudu sisselogimisel või jaotises Seaded (nõusolek). Saad nõusoleku igal ajal tagasi võtta.",
         "Meeles pidamine, et kandidaat loobus ettevõtte e-kirjadest, et prepza ei saadaks talle selle ettevõtte nimel enam e-kirju (tema vastuväite austamine).",
         "prepza turvalisuse ja toimimise tagamiseks: kuritarvitamise ennetamine, päringupiirangud, vearaportid ja statistika, mis parandab küsimuste kvaliteeti (meie õigustatud huvi).",
+        "Küsimuste kvaliteet: analüüsime, kuidas küsimustele vastatakse ja neist teatatakse, et leida üldisi, anonüümitud küsimuste kvaliteedi mustreid, mis parandavad küsimuste loomist kõigi jaoks; need mustrid ei sisalda isikuandmeid (meie õigustatud huvi).",
+        "Loodud küsimuste taaskasutamine: prepza loodud küsimusi võidakse taaskasutada teiste klientide intervjuudes ja harjutusintervjuudes, ilma isikuandmete või üksikasjadeta, mis tuvastaksid ettevõtte või isiku. Ettevõte saab intervjuu küsimused sellest välja jätta selle intervjuu seadetes.",
+        "AI-päringute kirjed võimaldavad meil jälgida ja parandada AI küsimuste ja vastuste kvaliteeti (meie õigustatud huvi).",
         "Kulude kontroll ja kuritarvitamise ennetamine: AI kasutuse ja saavutatud piirangute kirjed näitavad, palju AI maksab ja kes millise piiranguni jõuab, et saaksime hoida prepza taskukohasena ja peatada väärkasutuse (meie õigustatud huvi).",
         "Ettevõtte toimingute logi võimaldab selle omanikul näha, kes mida ettevõttes tegi, ja meie toel seda kontrollida, kui ettevõte abi palub (ettevõtte ja meie õigustatud huvi vastutuse tagamise vastu).",
         "Kasutusstatistika näitab, millised prepza osad inimesi aitavad ning millised hinnad ja piirangud toimivad, et saaksime neid parandada (meie õigustatud huvi).",
@@ -64,6 +68,7 @@
         "Resend: e-kirjade saatmine: kutsed ja meeldetuletused kandidaatidele, aruanded, e-kirjad ettevõtte liikmetele, näiteks tegevuste kokkuvõte, ja kontaktsõnumid (ELis, Iirimaal).",
         "Google Workspace: meie e-postkast, kuhu jõuavad kontaktsõnumid ja e-kirjad, mida meile saadad (Google Ireland Ltd; kirju võidakse säilitada väljaspool ELi ELi–USA andmekaitseraamistiku ja lepingu tüüptingimuste alusel).",
         "Sentry: vearaportid, millest on e-posti aadressid eemaldatud (ELis).",
+        "Langfuse (Langfuse GmbH, Saksamaa, selle ELi pilv): AI-päringute kirjed (mida AI-le saadetakse ja selle vastused, mis võivad hõlmata töökuulutusi, küsimusi, vestluste sõnumeid ja seda, mida assistent neile vastamiseks luges, ning hinnanguid assistendi vastustele), et jälgida ja parandada vastuste kvaliteeti (ELis).",
         "Cloudflare (Turnstile; Cloudflare, Inc., Ameerika Ühendriigid, ELi–USA andmekaitseraamistiku alusel): kontroll „Ma ei ole robot“.",
         "Google Cloud, meie majutusteenuse pakkuja, kes andmeid säilitab (ELis, Belgias).",
         "Upstash: lühiajalised loendurid kasutuspiirangute ja reaalajas uuenduste jaoks (EL-is, Belgias).",
@@ -116,6 +121,7 @@
         "Kandidaadi taotlus ettevõtte e-kirjadest loobumiseks, tema e-posti aadressi räsina: kuni ettevõte kustutatakse, ka siis, kui ettevõte kandidaadi kustutab.",
         "Kontaktsõnumid: nii kaua, kui meil on neid sulle vastamiseks vaja, kõige rohkem 2 aastat.",
         "Vearaportid: kuni 90 päeva.",
+        "AI-päringute kirjed Langfuse juures: 30 päeva, seejärel kustutatakse need automaatselt.",
         "Andmebaasi varukoopiad: 14 päeva, seejärel kirjutatakse need üle; selleks ajaks on kõik kustutatu ka neist kadunud.",
         "Kasutusstatistika: 25 kuud, seejärel kustutatakse see automaatselt.",
         "Ostukirjed: nii kaua, kui raamatupidamisseadus nõuab (Eestis 7 aastat), pärast konto kustutamist ilma sinu konto ID-ta.",

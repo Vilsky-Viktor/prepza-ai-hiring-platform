@@ -18,8 +18,7 @@
     {
       "heading": "Sinu sisu",
       "paragraphs": [
-        "Õigused sellele, mida kleebid ja lood, jäävad sulle. Lubad meil seda säilitada ja töödelda, et prepzat käitada, sealhulgas saata see meie tehisintellekti teenusepakkujale.",
-        "Ära kleebi midagi, mida sul pole lubatud jagada, näiteks kellegi teise konfidentsiaalset teavet."
+        "Õigused sellele, mida kleebid ja lood, jäävad sulle. Lubad meil seda säilitada ja töödelda, et prepzat käitada, sealhulgas saata see meie kasutatavatele tehisintellekti teenustele. Samuti annad meile ülemaailmse, tasuta ja tähtajatu litsentsi kasutada, kohandada ja taaskasutada küsimusi, mille prepza sinu jaoks loob, teiste klientide intervjuudes ja harjutusintervjuudes, ilma millegita, mis tuvastaks sind, sinu ettevõtet või kedagi teist; saad intervjuu küsimused sellest välja jätta selle intervjuu seadetes ning juba taaskasutatud küsimused jäävad sinna, kus need on. Lisaks tuletame kõigist küsimustest üldisi, anonüümitud küsimuste kvaliteedi mustreid, et parandada küsimuste loomist. Ära kleebi töökuulutuse kirjeldusse ärisaladusi ega isikuandmeid."
       ]
     },
     {
@@ -57,8 +56,8 @@
     {
       "heading": "Krediidid ja maksed",
       "items": [
-        "prepza eest makstakse krediitidega: 1 USA dollari eest saab 100 krediiti ja suuremate juurdelaadimiste puhul saab dollari eest rohkem krediiti. See, mitu krediiti miski maksab, on kirjas hinnalehel ja seda näidatakse enne kasutamist.",
-        "Juurdelaadimisi müüb Paddle, kes tegutseb edasimüüjana (merchant of record): Paddle võtab makse vastu, arvestab käibemaksu või müügimaksu ning väljastab kviitungi või arve. Neid saavad osta nii ettevõtjad kui ka tarbijad. Kus hinnad sisaldavad tavaliselt käibemaksu, nagu ELis ja Ühendkuningriigis, sisaldavad hinnalehel olevad hinnad seda; mujal, näiteks Ameerika Ühendriikides, lisatakse müügimaks maksmisel. Maksmisel näidatakse kogusummat enne, kui maksad.",
+        "prepza eest makstakse krediitidega: iga juurdelaadimisega saad nii palju krediiti, kui sulle enne maksmist näidatakse, ja suuremate juurdelaadimiste puhul saab sama raha eest rohkem krediiti. See, mitu krediiti miski maksab, on kirjas hinnalehel ja seda näidatakse enne kasutamist.",
+        "Juurdelaadimisi müüb Paddle, kes tegutseb edasimüüjana (merchant of record): Paddle võtab makse vastu, arvestab käibemaksu või müügimaksu ning väljastab kviitungi või arve. Neid saavad osta nii ettevõtjad kui ka tarbijad. Kus hinnad sisaldavad tavaliselt käibemaksu, nagu ELis ja Ühendkuningriigis, sisaldavad hinnalehel olevad hinnad seda; mujal, näiteks Ameerika Ühendriikides, lisatakse müügimaks maksmisel. Hinnad näidatakse sinu kohalikus valuutas, kui see on saadaval, muul juhul USA dollarites; maksmisel näidatakse lõppsummat koos võimalike maksudega enne, kui maksad.",
         "Krediidid kuuluvad ettevõttele ja neid kasutatakse selle kandidaatide jaoks; neid saavad juurde laadida ettevõtte omanik ja administraatorid. Krediite ei saa kontode ega ettevõtete vahel üle kanda, müüa ega rahana välja maksta.",
         "Automaatne juurdelaadimine on vabatahtlik ja väljas, kui sa seda sisse ei lülita. Selle sisse lülitamisega volitad Paddle'it salvestama sinu kaardi ja võtma sealt sinu valitud juurdelaadimise summa iga kord, kui kasutatav saldo langeb alla sinu valitud taseme, ilma uuesti küsimata. Paddle saadab iga makse kohta kviitungi e-kirjaga. Saad seda igal ajal muuta või välja lülitada juurdelaadimise lehel, mis tühistab ka salvestatud kaardi volituse; juba tehtud maksete suhtes kehtivad allpool toodud tagasimakse reeglid.",
         "Krediidid ei aegu. Ettevõtte kustutamisel kustutatakse ka selle krediidid ja neid ei hüvitata: küsi tagasimakset, mis sulle ette nähtud on, enne ettevõtte kustutamist.",

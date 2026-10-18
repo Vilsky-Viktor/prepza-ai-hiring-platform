@@ -18,8 +18,7 @@
     {
       "heading": "Nội dung của bạn",
       "paragraphs": [
-        "Bạn giữ quyền đối với những gì bạn dán vào và tạo ra. Bạn cho phép chúng tôi lưu trữ và xử lý nội dung đó để vận hành prepza, bao gồm cả việc gửi nội dung đó đến nhà cung cấp AI của chúng tôi.",
-        "Không dán bất cứ thứ gì bạn không được phép chia sẻ, chẳng hạn như thông tin bí mật của người khác."
+        "Bạn giữ quyền đối với những gì bạn dán vào và tạo ra. Bạn cho phép chúng tôi lưu trữ và xử lý nội dung đó để vận hành prepza, bao gồm cả việc gửi nội dung đó đến các dịch vụ AI mà chúng tôi sử dụng. Bạn cũng cấp cho chúng tôi một giấy phép toàn cầu, miễn phí bản quyền (royalty-free) và vĩnh viễn để sử dụng, điều chỉnh và tái sử dụng các câu hỏi mà prepza tạo cho bạn trong các buổi phỏng vấn và luyện tập cho khách hàng khác, mà không kèm bất cứ thông tin nào nhận dạng bạn, công ty của bạn hay bất kỳ ai khác; bạn có thể loại các câu hỏi của một buổi phỏng vấn khỏi việc này trong phần cài đặt của buổi phỏng vấn đó, và các câu hỏi đã được tái sử dụng vẫn giữ nguyên ở nơi chúng đang được dùng. Chúng tôi cũng học các mẫu chung, đã ẩn danh hóa, về chất lượng câu hỏi từ tất cả các câu hỏi để cải thiện cách tạo câu hỏi. Không dán bí mật kinh doanh hoặc dữ liệu cá nhân vào mô tả công việc."
       ]
     },
     {
@@ -57,8 +56,8 @@
     {
       "heading": "Credit và thanh toán",
       "items": [
-        "prepza được thanh toán bằng credit: 1 đô la Mỹ mua được 100 credit, và các lần nạp lớn hơn mua được nhiều credit hơn trên mỗi đô la. Chi phí bằng credit của từng thứ được nêu trên trang Bảng giá và được hiển thị trước khi bạn sử dụng.",
-        "Việc nạp credit do Paddle bán, với tư cách là bên bán lại (merchant of record): Paddle nhận thanh toán, thu thuế GTGT hoặc thuế bán hàng nếu có, và phát hành biên lai hoặc hóa đơn. Cả doanh nghiệp và người tiêu dùng đều có thể mua. Ở những nơi giá thường đã bao gồm thuế GTGT, như ở Liên minh châu Âu và Vương quốc Anh, giá trên trang Bảng giá đã bao gồm thuế này; ở những nơi khác, như Hoa Kỳ, thuế bán hàng được cộng thêm khi thanh toán. Trang thanh toán hiển thị tổng số tiền trước khi bạn trả.",
+        "prepza được thanh toán bằng credit: mỗi lần nạp mua được số credit được hiển thị trước khi bạn thanh toán, và các lần nạp lớn hơn mua được nhiều credit hơn với cùng số tiền. Chi phí bằng credit của từng thứ được nêu trên trang Bảng giá và được hiển thị trước khi bạn sử dụng.",
+        "Việc nạp credit do Paddle bán, với tư cách là bên bán lại (merchant of record): Paddle nhận thanh toán, thu thuế GTGT hoặc thuế bán hàng nếu có, và phát hành biên lai hoặc hóa đơn. Cả doanh nghiệp và người tiêu dùng đều có thể mua. Ở những nơi giá thường đã bao gồm thuế GTGT, như ở Liên minh châu Âu và Vương quốc Anh, giá trên trang Bảng giá đã bao gồm thuế này; ở những nơi khác, như Hoa Kỳ, thuế bán hàng được cộng thêm khi thanh toán. Giá được hiển thị bằng đồng tiền địa phương của bạn nếu có, và bằng đô la Mỹ trong trường hợp ngược lại; trang thanh toán hiển thị số tiền cuối cùng, đã gồm thuế nếu có, trước khi bạn trả.",
         "Credit thuộc về một công ty và được dùng cho ứng viên của công ty đó; chủ sở hữu và quản trị viên của công ty có thể nạp credit. Credit không thể chuyển giữa các tài khoản hoặc các công ty, không thể bán, và không thể quy đổi thành tiền.",
         "Tự động nạp là tùy chọn và tắt trừ khi bạn bật. Khi bật, bạn ủy quyền cho Paddle lưu thẻ của bạn và trừ vào thẻ số tiền nạp bạn đã chọn mỗi khi số dư khả dụng giảm xuống dưới mức bạn đã chọn, mà không hỏi lại. Paddle gửi biên lai qua email cho mỗi lần trừ tiền. Bạn có thể thay đổi hoặc tắt tính năng này bất cứ lúc nào trên trang nạp credit, việc này cũng hủy ủy quyền đối với thẻ đã lưu; các khoản đã trừ tuân theo quy định hoàn tiền dưới đây.",
         "Credit không hết hạn. Xóa một công ty sẽ xóa credit của công ty đó, và số credit này không được hoàn tiền: hãy yêu cầu mọi khoản hoàn tiền bạn được hưởng trước khi xóa công ty.",

@@ -13,7 +13,7 @@
       "items": [
         "Hesap: giriş yaptığınız Google, LinkedIn veya GitHub hesabından adınız, e-posta adresiniz, profil fotoğrafınız ve hesap kimliğiniz ile bunlardan hangilerinin hesabınıza bağlı olduğu.",
         "Bize verdikleriniz: yapıştırdığınız iş tanımları ve bunlardan oluşturulan mülakatlar, davet ettiğiniz adayların e-posta adresleri (ve adlarını verir veya düzeltirseniz adları), şirketinizin ekibine davet ettiğiniz kişilerin e-posta adresleri ile rapor gönderdiğiniz kişilerin e-posta adresleri ve sorulara verdiğiniz puanlar ve sorularla ilgili bildirimleriniz.",
-        "Asistan: giriş yapmışken ona yazdıklarınız veya söyledikleriniz (sesli mesaj metne dönüştürülür ve hiçbir zaman saklanmaz) ve onun cevapları; böylece bir sohbete geri dönebilirsiniz. Size cevap vermek için okuduklarını, örneğin adayların sonuçlarını saklamaz: bir sohbeti yeniden açtığınızda bunları mevcut erişiminizle yeniden getirir. Giriş yapmamışsanız sorularınız yalnızca cevaplanmak için kullanılır ve saklanmaz. Anahtar, token veya parola içeren bir mesaj hemen kaldırılır: saklanmaz ve başka bir yere gönderilmez.",
+        "Asistan: giriş yapmışken ona yazdıklarınız veya söyledikleriniz (sesli mesaj metne dönüştürülür ve hiçbir zaman saklanmaz) ve onun cevapları; böylece bir sohbete geri dönebilirsiniz. Size cevap vermek için okuduklarını, örneğin adayların sonuçlarını, aşağıdaki yapay zekâ çağrı kayıtları dışında saklamaz: bir sohbeti yeniden açtığınızda bunları mevcut erişiminizle yeniden getirir. Giriş yapmamışsanız sorularınız yalnızca cevaplanmak için kullanılır ve aşağıdaki yapay zekâ çağrı kayıtları dışında saklanmaz. Anahtar, token veya parola içeren bir mesaj hemen kaldırılır: saklanmaz ve başka bir yere gönderilmez.",
         "Şirketler: şirketin adı, logosu ve web sitesi ile şirketin doğrulandığı e-posta alan adı; bir sahip veya yönetici doğrulama istediğinde, onayladığı o alan adındaki e-posta adresi ve incelemeye gönderdiği şirket adı.",
         "Pratik: ücretsiz pratik mülakatlarına girerseniz cevaplarınız, notlarınız ve her cevabın ne kadar sürdüğü. Bunları yalnızca siz görürsünüz.",
         "İletişim mesajları: iletişim sayfası üzerinden gönderdiğiniz ad, e-posta adresi ve mesaj.",
@@ -32,6 +32,7 @@
         "Satın almalar: her kredi yüklemesi için hangi şirket için yapıldığı, kimin satın aldığı, ne satın alındığı, toplam tutar ve para birimi, Paddle'ın işlem kimliği ve zamanı. Kart ve fatura bilgilerini biz değil, Paddle saklar.",
         "Bir şirketin işlem kaydı: üyelerinin şirkette yaptıkları, örneğin bir adayı davet etme, görüntüleme veya kaldırma, bir mülakatı ya da ekibi değiştirme, kredi yükleme veya bir araç bağlama; bunu kimin yaptığı, ne zaman yaptığı ve bunu onlar adına asistanın, bir yapay zekâ uygulamasının veya API'nin yapıp yapmadığı ile birlikte. Bunu şirketin sahibi görür. Adaylar ve üyeler yalnızca hâlâ şirkette oldukları sürece adlarıyla gösterilir: kayıt onların kimliklerini saklar, e-posta adreslerini asla saklamaz.",
         "Yapay zekâ kullanımı ve sınırlar: soru yazma veya asistanın cevabı gibi her yapay zekâ kullanımı için ne amaçla yapıldığı, model, kullanımın boyutu ve maliyeti ile hangi hesap ve şirket için yapıldığı; ve bir sınır bir isteği her reddettiğinde hangi sınır olduğu, ne zaman olduğu ve isteği reddedilen hesap ve şirket. Yapay zekâya gönderilen metin veya onun cevabı asla saklanmaz.",
+        "Yapay zekâ çağrı kayıtları: yapay zekâ her kullanıldığında prepza'nın ona ne gönderdiği ve onun ne cevap verdiği; örneğin bir iş tanımından soru yazılması ya da asistanın ve yardım sohbetinin cevapları ile cevap vermek için okudukları (bunlar adayların sonuçlarını da içerebilir) ve bu cevaplara verilen oylar. Bunlar yalnızca cevapların kalitesini izlemek ve iyileştirmek için, aşağıda belirtilen Langfuse tarafından saklanır.",
         "Kullanım istatistikleri: kaydolma, bir şirketin oluşturulması, bir adayın davet edilmesi veya kredi yükleme gibi adımlar, puan veya tutar gibi sayısal değerlerle birlikte. Hesap kimliğiniz, elimizde tuttuğumuz gizli bir anahtarla oluşturulan bir kodla değiştirilir; bu nedenle istatistikler adınızı içermez, ancak anonim değil, takma adlandırılmış (pseudonymous) verilerdir: anahtarla bu kod hesap kimliğinizle eşleşir. Bir şirketin kimliği olduğu gibi tutulur. Hiçbir ad, e-posta veya metin dahil edilmez."
       ]
     },
@@ -45,6 +46,9 @@
         "Teklifler ve kampanyalar: yalnızca giriş yaparken veya Ayarlar'da kutuyu işaretleyerek onay verirseniz (açık rıza). Rızanızı istediğiniz zaman geri çekebilirsiniz.",
         "Bir adayın bir şirketin e-postalarını durdurduğunu hatırlamak; böylece prepza o şirket adına ona bir daha e-posta göndermez (itirazına saygı göstermek).",
         "prepza'yı güvenli ve çalışır durumda tutmak için: kötüye kullanımı önleme, istek sınırları, hata raporları ve soru kalitesini iyileştiren istatistikler (meşru menfaatimiz).",
+        "Soru kalitesi: herkes için soru oluşturmayı iyileştiren, soru kalitesine ilişkin genel, anonimleştirilmiş örüntüleri bulmak için soruların nasıl cevaplandığını ve nasıl bildirildiğini analiz ederiz; bu örüntüler hiçbir kişisel veri içermez (meşru menfaatimiz).",
+        "Oluşturulan soruların yeniden kullanımı: prepza'nın oluşturduğu sorular, herhangi bir kişisel veri ya da bir şirketi veya kişiyi tanımlayan herhangi bir ayrıntı olmadan diğer müşterilerin mülakatlarında ve pratiklerinde yeniden kullanılabilir. Bir şirket, bir mülakatın sorularını mülakatın ayarlarından bunun dışında tutabilir.",
+        "Yapay zekâ çağrı kayıtları, yapay zekânın sorularının ve cevaplarının kalitesini izlememizi ve iyileştirmemizi sağlar (meşru menfaatimiz).",
         "Maliyet kontrolü ve kötüye kullanımı önleme: yapay zekâ kullanımı ve ulaşılan sınırlarla ilgili kayıtlar, yapay zekânın ne kadara mal olduğunu ve kimin hangi sınıra ulaştığını gösterir; böylece prepza'yı uygun fiyatlı tutabilir ve kötüye kullanımı durdurabiliriz (meşru menfaatimiz).",
         "Bir şirketin işlem kaydı, şirketin sahibinin şirkette kimin ne yaptığını görmesini ve şirket yardım istediğinde destek ekibimizin bunu incelemesini sağlar (şirketin ve bizim hesap verebilirliğe ilişkin meşru menfaatimiz).",
         "Kullanım istatistikleri, prepza'nın hangi bölümlerinin insanlara yardımcı olduğunu ve hangi fiyatların ve sınırların işe yaradığını gösterir; böylece bunları iyileştirebiliriz (meşru menfaatimiz).",
@@ -64,6 +68,7 @@
         "Resend: e-posta gönderimi: adaylara davetler ve hatırlatmalar, raporlar, etkinlik özeti gibi şirket üyelerine gönderilen e-postalar ve iletişim mesajları (AB'de, İrlanda).",
         "Google Workspace: iletişim mesajlarını ve bize gönderdiğiniz e-postaları alan e-posta gelen kutumuz (Google Ireland Ltd; e-postalar AB-ABD Veri Gizliliği Çerçevesi ve standart sözleşme hükümleri kapsamında AB dışında saklanabilir).",
         "Sentry: e-posta adresleri çıkarılmış hata raporları (AB'de).",
+        "Langfuse (Langfuse GmbH, Almanya, AB bulutu): yapay zekâ çağrı kayıtları (yapay zekâya gönderilenler ve onun cevapları; bunlar iş tanımlarını, soruları, sohbet mesajlarını ve asistanın bunları cevaplamak için okuduklarını içerebilir; ayrıca asistanın cevaplarına verilen oylar), cevapların kalitesini izlemek ve iyileştirmek için (AB'de).",
         "Cloudflare (Turnstile; Cloudflare, Inc., Amerika Birleşik Devletleri, AB-ABD Veri Gizliliği Çerçevesi kapsamında): \"Ben robot değilim\" doğrulaması.",
         "Verileri saklayan barındırma sağlayıcımız Google Cloud (AB'de, Belçika).",
         "Upstash: kullanım sınırları ve canlı güncellemeler için kısa ömürlü sayaçlar (AB'de, Belçika).",
@@ -116,6 +121,7 @@
         "Bir adayın bir şirketin e-postalarını durdurma talebi, e-posta adresinin özeti olarak: şirket silinene kadar, şirket adayı silse bile.",
         "İletişim mesajları: size cevap vermek için ihtiyaç duyduğumuz süre boyunca, en fazla 2 yıl.",
         "Hata raporları: en fazla 90 gün.",
+        "Langfuse'taki yapay zekâ çağrı kayıtları: 30 gün, ardından otomatik olarak silinir.",
         "Veritabanı yedekleri: 14 gün, ardından üzerine yazılır; silinen her şey o zamana kadar yedeklerden de kaybolur.",
         "Kullanım istatistikleri: 25 ay, ardından otomatik olarak silinir.",
         "Satın alma kayıtları: muhasebe mevzuatının gerektirdiği süre boyunca (Estonya'da 7 yıl), hesabınızı sildikten sonra hesap kimliğiniz olmadan.",

@@ -36,6 +36,7 @@
         "Resend (email; UE, Irlanda).",
         "Google Workspace (la nostra casella email: messaggi di aziende e candidati, e richieste inoltrate a un'azienda; Google Ireland Ltd, la posta può essere conservata al di fuori dell'UE nell'ambito del quadro UE-USA per la protezione dei dati personali e delle clausole contrattuali tipo).",
         "Sentry (report degli errori, senza indirizzi email; UE).",
+        "Langfuse (registri delle chiamate all'IA, per monitorare e migliorare la qualità delle risposte: ciò che viene inviato all'IA e le sue risposte, che possono includere dati dei candidati trattati dall'IA, come i risultati che l'assistente legge per rispondere a un membro, e i voti sulle risposte dell'assistente; conservati per 30 giorni; Langfuse GmbH, Germania, il suo cloud nell'UE).",
         "Cloudflare (la verifica «Non sono un robot», Turnstile, quando un candidato inizia dal link di un annuncio di lavoro: i segnali e l'indirizzo del suo browser, dei quali conserviamo solo se la verifica è stata superata; Cloudflare, Inc., Stati Uniti, nell'ambito del quadro UE-USA per la protezione dei dati personali).",
         "Upstash (contatori di breve durata per i limiti e gli aggiornamenti in tempo reale; UE, Belgio)."
       ]
@@ -54,6 +55,7 @@
         "Un candidato che elimina il proprio account prepza cancella con esso le sue risposte e i suoi risultati, per tutte le aziende; l'azienda lo vede come candidato eliminato.",
         "prepza non prende alcuna decisione su un candidato. L'azienda esamina i risultati prima di decidere, non scarta un candidato sulla base del solo punteggio, concede ai candidati che ne hanno bisogno un accomodamento come del tempo extra e consente a un candidato di chiedere che una persona riesamini il suo risultato. Ciò vale allo stesso modo per i risultati inviati al suo sistema di gestione delle candidature o ad altri strumenti: l'azienda non li configura per scartare automaticamente i candidati.",
         "L'azienda consente a prepza di usare le risposte dei candidati, aggregate e senza identificare nessuno, per misurare e migliorare la qualità delle domande in tutto prepza.",
+        "Le domande che prepza genera per l'azienda sono contenuti dell'azienda ai sensi dei termini, non dati personali dei candidati, quindi il presente accordo non le copre: in base alla licenza prevista dai termini, prepza può riutilizzarle nei colloqui e nelle simulazioni di altri clienti, private di tutto ciò che identifica l'azienda o chiunque altro, a meno che l'azienda non escluda da questo riutilizzo le domande di un colloquio nelle sue impostazioni.",
         "Ove la legge lo richieda, l'azienda effettua una valutazione d'impatto e fornisce ai candidati le informative richieste dalla sua giurisdizione."
       ]
     },

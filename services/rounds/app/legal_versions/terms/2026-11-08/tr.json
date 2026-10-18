@@ -18,8 +18,7 @@
     {
       "heading": "İçeriğiniz",
       "paragraphs": [
-        "Yapıştırdığınız ve oluşturduğunuz içerik üzerindeki haklar sizde kalır. prepza'yı işletmek için, yapay zekâ sağlayıcımıza göndermek de dahil olmak üzere, bu içeriği saklamamıza ve işlememize izin verirsiniz.",
-        "Başka birinin gizli bilgileri gibi, paylaşma izniniz olmayan hiçbir şeyi yapıştırmayın."
+        "Yapıştırdığınız ve oluşturduğunuz içerik üzerindeki haklar sizde kalır. prepza'yı işletmek için, kullandığımız yapay zekâ hizmetlerine göndermek de dahil olmak üzere, bu içeriği saklamamıza ve işlememize izin verirsiniz. Ayrıca prepza'nın sizin için oluşturduğu soruları, sizi, şirketinizi veya başka birini tanımlayan hiçbir bilgi olmadan diğer müşterilerin mülakatlarında ve pratiklerinde kullanmamız, uyarlamamız ve yeniden kullanmamız için bize dünya çapında, telif ücreti gerektirmeyen, süresiz bir lisans verirsiniz; bir mülakatın sorularını mülakatın ayarlarından bunun dışında tutabilirsiniz ve daha önce yeniden kullanılmış sorular bulundukları yerde kalır. Ayrıca soruların oluşturulma şeklini iyileştirmek için tüm sorulardan soru kalitesine ilişkin genel, anonimleştirilmiş örüntüler çıkarırız. Bir iş tanımına ticari sır veya kişisel veri yapıştırmayın."
       ]
     },
     {
@@ -57,8 +56,8 @@
     {
       "heading": "Krediler ve ödemeler",
       "items": [
-        "prepza kredilerle ödenir: 1 ABD doları ile 100 kredi alınır ve daha büyük yüklemelerde dolar başına daha fazla kredi alınır. Her şeyin kaç kredi tuttuğu fiyatlar sayfasında yer alır ve kullanmadan önce gösterilir.",
-        "Kredi yüklemeleri, yeniden satıcı (merchant of record) olarak hareket eden Paddle tarafından satılır: ödemeyi Paddle alır, varsa KDV'yi veya satış vergisini tahsil eder ve makbuzu veya faturayı düzenler. Bunları hem işletmeler hem de tüketiciler satın alabilir. AB ve Birleşik Krallık'ta olduğu gibi fiyatların normalde KDV dahil olduğu yerlerde, fiyatlar sayfasındaki fiyatlara KDV dahildir; Amerika Birleşik Devletleri gibi diğer yerlerde satış vergisi ödeme adımında eklenir. Ödeme sayfası, ödeme yapmadan önce toplam tutarı gösterir.",
+        "prepza kredilerle ödenir: her yükleme, ödeme yapmadan önce gösterilen sayıda kredi alır ve daha büyük yüklemelerde ödenen paraya oranla daha fazla kredi alınır. Her şeyin kaç kredi tuttuğu fiyatlar sayfasında yer alır ve kullanmadan önce gösterilir.",
+        "Kredi yüklemeleri, yeniden satıcı (merchant of record) olarak hareket eden Paddle tarafından satılır: ödemeyi Paddle alır, varsa KDV'yi veya satış vergisini tahsil eder ve makbuzu veya faturayı düzenler. Bunları hem işletmeler hem de tüketiciler satın alabilir. AB ve Birleşik Krallık'ta olduğu gibi fiyatların normalde KDV dahil olduğu yerlerde, fiyatlar sayfasındaki fiyatlara KDV dahildir; Amerika Birleşik Devletleri gibi diğer yerlerde satış vergisi ödeme adımında eklenir. Fiyatlar, mevcutsa yerel para biriminizde, değilse ABD doları cinsinden gösterilir; ödeme sayfası, ödeme yapmadan önce varsa vergiler dahil son tutarı gösterir.",
         "Krediler bir şirkete aittir ve o şirketin adayları için kullanılır; şirketin sahibi ve yöneticileri kredi yükleyebilir. Krediler hesaplar veya şirketler arasında aktarılamaz, satılamaz ya da paraya çevrilerek ödenemez.",
         "Otomatik yükleme isteğe bağlıdır ve siz açmadıkça kapalıdır. Açtığınızda, kullanılabilir bakiye seçtiğiniz seviyenin altına her düştüğünde, size tekrar sormadan, Paddle'a kartınızı kaydetme ve seçtiğiniz yükleme tutarını karttan tahsil etme yetkisi verirsiniz. Paddle her tahsilat için e-postayla makbuz gönderir. Otomatik yüklemeyi istediğiniz zaman kredi yükleme sayfasında değiştirebilir veya kapatabilirsiniz; bu, kayıtlı kartın yetkisini de iptal eder; daha önce yapılmış tahsilatlar aşağıdaki iade kurallarına tabidir.",
         "Kredilerin süresi dolmaz. Bir şirketi silmek kredilerini de siler ve bunlar iade edilmez: hak ettiğiniz bir iade varsa şirketi silmeden önce isteyin.",

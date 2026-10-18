@@ -36,6 +36,7 @@
         "Resend (email; EU, Ireland).",
         "Google Workspace (hộp thư email của chúng tôi: tin nhắn từ các công ty và ứng viên, và các yêu cầu được chuyển đến một công ty; Google Ireland Ltd, thư có thể được lưu bên ngoài EU theo EU-US Data Privacy Framework và các điều khoản hợp đồng tiêu chuẩn).",
         "Sentry (báo cáo lỗi, không có địa chỉ email; EU).",
+        "Langfuse (bản ghi các lệnh gọi AI, để theo dõi và cải thiện chất lượng câu trả lời: những gì được gửi đến AI và các câu trả lời của AI, có thể bao gồm dữ liệu của ứng viên mà AI xử lý, chẳng hạn như kết quả trợ lý đọc để trả lời một thành viên, cùng các lượt bình chọn cho câu trả lời của trợ lý; lưu 30 ngày; Langfuse GmbH, Đức, đám mây EU của công ty này).",
         "Cloudflare (bước kiểm tra \"Tôi không phải là người máy\", Turnstile, khi một ứng viên bắt đầu qua liên kết của một tin tuyển dụng: các tín hiệu và địa chỉ của trình duyệt của ứng viên, trong đó chúng tôi chỉ giữ lại kết quả là bước kiểm tra có được vượt qua hay không; Cloudflare, Inc., Hoa Kỳ, theo EU-US Data Privacy Framework).",
         "Upstash (bộ đếm ngắn hạn cho giới hạn và cập nhật trực tiếp; EU, Bỉ)."
       ]
@@ -54,6 +55,7 @@
         "Ứng viên xóa tài khoản prepza của chính mình sẽ xóa luôn câu trả lời và kết quả của họ, đối với mọi công ty; công ty thấy họ là một ứng viên đã xóa.",
         "prepza không đưa ra quyết định nào về ứng viên. Công ty xem xét kết quả trước khi quyết định, không loại ứng viên chỉ dựa trên điểm số, cung cấp sự điều chỉnh hợp lý như thêm thời gian cho ứng viên cần đến, và cho phép ứng viên yêu cầu một người xem xét lại kết quả của họ. Điều này áp dụng như nhau đối với kết quả được gửi đến hệ thống theo dõi ứng viên của công ty hoặc các công cụ khác: công ty không thiết lập chúng để tự động loại ứng viên.",
         "Công ty cho phép prepza sử dụng câu trả lời của ứng viên, ở dạng tổng hợp và không nhận dạng bất kỳ ai, để đo lường và cải thiện chất lượng câu hỏi trên toàn prepza.",
+        "Các câu hỏi prepza tạo cho công ty là nội dung của công ty theo các điều khoản, không phải dữ liệu cá nhân của ứng viên, nên thỏa thuận này không áp dụng cho chúng: theo giấy phép trong các điều khoản, prepza có thể tái sử dụng chúng trong các buổi phỏng vấn và luyện tập của khách hàng khác, sau khi loại bỏ mọi thông tin nhận dạng công ty hoặc bất kỳ ai khác, trừ khi công ty loại các câu hỏi của một buổi phỏng vấn khỏi việc này trong phần cài đặt của buổi phỏng vấn đó.",
         "Khi pháp luật yêu cầu, công ty thực hiện đánh giá tác động, và cung cấp cho ứng viên các thông báo mà khu vực tài phán của công ty yêu cầu."
       ]
     },

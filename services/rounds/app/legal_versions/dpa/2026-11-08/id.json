@@ -36,6 +36,7 @@
         "Resend (email; UE, Irlandia).",
         "Google Workspace (kotak masuk email kami: pesan dari perusahaan dan kandidat, serta permintaan yang diteruskan kepada perusahaan; Google Ireland Ltd, email dapat disimpan di luar UE berdasarkan EU-US Data Privacy Framework dan klausul kontrak standar).",
         "Sentry (laporan kesalahan, tanpa alamat email; UE).",
+        "Langfuse (catatan panggilan AI, untuk memantau dan meningkatkan kualitas jawaban: apa yang dikirim ke AI dan jawabannya, yang dapat mencakup data kandidat yang ditangani AI, seperti hasil yang dibaca asisten untuk menjawab seorang anggota, serta penilaian atas jawaban asisten; disimpan 30 hari; Langfuse GmbH, Jerman, cloud UE-nya).",
         "Cloudflare (pemeriksaan \"Saya bukan robot\", Turnstile, saat kandidat memulai melalui tautan iklan lowongan kerja: sinyal dan alamat browser-nya, yang darinya kami hanya menyimpan apakah pemeriksaan itu lolos; Cloudflare, Inc., Amerika Serikat, berdasarkan EU-US Data Privacy Framework).",
         "Upstash (penghitung berumur pendek untuk batas dan pembaruan langsung; UE, Belgia)."
       ]
@@ -54,6 +55,7 @@
         "Kandidat yang menghapus akun prepza-nya sendiri ikut menghapus jawaban dan hasilnya, untuk setiap perusahaan; perusahaan melihatnya sebagai kandidat yang dihapus.",
         "prepza tidak membuat keputusan apa pun tentang kandidat. Perusahaan meninjau hasil sebelum memutuskan, tidak menolak kandidat hanya berdasarkan skor, memberikan penyesuaian seperti waktu tambahan kepada kandidat yang membutuhkannya, dan memungkinkan kandidat meminta agar hasilnya ditinjau oleh manusia. Hal ini juga berlaku untuk hasil yang dikirim ke sistem pelacakan pelamarnya atau alat lain: perusahaan tidak mengaturnya untuk menolak kandidat secara otomatis.",
         "Perusahaan mengizinkan prepza menggunakan jawaban kandidat, secara gabungan dan tanpa mengidentifikasi siapa pun, untuk mengukur dan meningkatkan kualitas soal di seluruh prepza.",
+        "Soal yang dibuat prepza untuk perusahaan adalah konten perusahaan berdasarkan ketentuan, bukan data pribadi kandidat, sehingga perjanjian ini tidak mencakupnya: berdasarkan lisensi dalam ketentuan, prepza dapat menggunakannya kembali dalam wawancara dan latihan pelanggan lain, tanpa apa pun yang mengidentifikasi perusahaan atau orang lain, kecuali perusahaan mengecualikan soal suatu wawancara dari hal ini di pengaturannya.",
         "Jika diwajibkan oleh hukum, perusahaan melakukan penilaian dampak, dan memberikan kepada kandidat pemberitahuan yang diwajibkan oleh yurisdiksinya."
       ]
     },

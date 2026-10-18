@@ -100,7 +100,7 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Apa yang terjadi pada deskripsi pekerjaan dan jawaban?",
-        "answer": "Deskripsi pekerjaan dipakai untuk membuat wawancara perusahaanmu, dan jawaban kandidat untuk menilainya bagi perusahaanmu. prepza juga menggunakan jawaban secara gabungan, tanpa mengidentifikasi siapa pun, untuk mengukur dan meningkatkan kualitas soal. [Kebijakan privasi](/privacy) menjelaskan apa yang kami simpan, berapa lama, dan hak setiap orang.",
+        "answer": "Deskripsi pekerjaan dipakai untuk membuat wawancara perusahaanmu, dan jawaban kandidat untuk menilainya bagi perusahaanmu. Soal yang dibuat prepza juga dapat digunakan kembali dalam wawancara dan latihan perusahaan lain, tanpa apa pun yang mengidentifikasi kamu, perusahaanmu, atau orang lain; kamu bisa mengecualikan soal suatu wawancara dari hal ini di pengaturannya. prepza juga mempelajari pola umum kualitas soal yang dianonimkan dari cara soal dijawab, untuk meningkatkan cara soal dibuat. [Kebijakan privasi](/privacy) menjelaskan apa yang kami simpan, berapa lama, dan hak setiap orang.",
     },
     {
         "key": "eu_ai_law",

@@ -22,8 +22,7 @@ TERMS_SECTIONS = [
     {
         "heading": "Your content",
         "paragraphs": [
-            "You keep the rights to what you paste and create. You let us store and process it to run prepza, including sending it to our AI provider.",
-            "Don't paste anything you aren't allowed to share, such as someone else's confidential information.",
+            "You keep the rights to what you paste and create. You let us store and process it to run prepza, including sending it to the AI services we use. You also give us a worldwide, royalty-free, perpetual licence to use, adapt and reuse the questions prepza generates for you in interviews and practice for other customers, without anything that identifies you, your company or anyone else; you can keep an interview's questions out of this in its settings, and questions already reused stay where they are. We also learn general, anonymised patterns of question quality from all questions to improve how questions are generated. Don't paste trade secrets or personal data into a job description.",
         ],
     },
     {
@@ -61,8 +60,8 @@ TERMS_SECTIONS = [
     {
         "heading": "Credits and payments",
         "items": [
-            "prepza is paid with credits: 1 US dollar buys 100 credits, and larger top-ups buy more credits per dollar. What each thing costs in credits is on the pricing page and is shown before you use it.",
-            "Top-ups are sold by Paddle, who acts as the reseller (merchant of record): Paddle takes the payment, charges any VAT or sales tax, and issues the receipt or invoice. Businesses and consumers can both buy them. Where prices normally include VAT, as in the EU and the UK, the prices on the pricing page include it; elsewhere, such as in the United States, sales tax is added at checkout. The checkout shows the total before you pay.",
+            "prepza is paid with credits: each top-up buys the number of credits shown before you pay, and larger top-ups buy more credits for the money. What each thing costs in credits is on the pricing page and is shown before you use it.",
+            "Top-ups are sold by Paddle, who acts as the reseller (merchant of record): Paddle takes the payment, charges any VAT or sales tax, and issues the receipt or invoice. Businesses and consumers can both buy them. Where prices normally include VAT, as in the EU and the UK, the prices on the pricing page include it; elsewhere, such as in the United States, sales tax is added at checkout. Prices are shown in your local currency where it's available, and in US dollars otherwise; the checkout shows the final amount, with any tax, before you pay.",
             "Credits belong to a company and are used for its candidates; its owner and admins can top them up. Credits can't be transferred between accounts or companies, sold, or paid out as money.",
             "Automatic top-up is optional and off unless you turn it on. When you turn it on, you authorise Paddle to save your card and to charge it the top-up amount you chose each time the available balance falls under the level you chose, without asking again. Paddle emails a receipt for every charge. You can change or turn it off at any time on the top-up page, which also cancels the saved card's authorisation; charges already made follow the refund rules below.",
             "Credits don't expire. Deleting a company deletes its credits, and they aren't refunded: ask for any refund you're due before deleting it.",

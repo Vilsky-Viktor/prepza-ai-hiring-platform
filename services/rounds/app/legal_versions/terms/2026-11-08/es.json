@@ -18,8 +18,7 @@
     {
       "heading": "Tu contenido",
       "paragraphs": [
-        "Conservas los derechos sobre lo que pegas y creas. Nos permites almacenarlo y tratarlo para hacer funcionar prepza, lo que incluye enviarlo a nuestro proveedor de IA.",
-        "No pegues nada que no tengas permiso para compartir, como información confidencial de otra persona."
+        "Conservas los derechos sobre lo que pegas y creas. Nos permites almacenarlo y tratarlo para hacer funcionar prepza, lo que incluye enviarlo a los servicios de IA que usamos. Además, nos concedes una licencia mundial, gratuita y perpetua para usar, adaptar y reutilizar las preguntas que prepza genera para ti en las entrevistas y la práctica de otros clientes, sin nada que te identifique a ti, a tu empresa ni a ninguna otra persona; puedes excluir de esto las preguntas de una entrevista en sus ajustes, y las preguntas ya reutilizadas se quedan donde están. También extraemos de todas las preguntas patrones generales y anonimizados sobre la calidad de las preguntas para mejorar cómo se generan. No pegues secretos empresariales ni datos personales en una descripción de puesto."
       ]
     },
     {
@@ -57,8 +56,8 @@
     {
       "heading": "Créditos y pagos",
       "items": [
-        "prepza se paga con créditos: 1 dólar estadounidense compra 100 créditos, y las recargas más grandes dan más créditos por dólar. Lo que cuesta cada cosa en créditos figura en la página de precios y se muestra antes de que lo uses.",
-        "Las recargas las vende Paddle, que actúa como revendedor (merchant of record): Paddle cobra el pago, aplica el IVA o el impuesto sobre las ventas que corresponda y emite el recibo o la factura. Pueden comprarlas tanto empresas como consumidores. Donde los precios suelen incluir el IVA, como en la UE y el Reino Unido, los precios de la página de precios lo incluyen; en otros lugares, como en Estados Unidos, el impuesto sobre las ventas se añade al pagar. La página de pago muestra el total antes de que pagues.",
+        "prepza se paga con créditos: cada recarga compra la cantidad de créditos que se muestra antes de que pagues, y las recargas más grandes dan proporcionalmente más créditos. Lo que cuesta cada cosa en créditos figura en la página de precios y se muestra antes de que lo uses.",
+        "Las recargas las vende Paddle, que actúa como revendedor (merchant of record): Paddle cobra el pago, aplica el IVA o el impuesto sobre las ventas que corresponda y emite el recibo o la factura. Pueden comprarlas tanto empresas como consumidores. Donde los precios suelen incluir el IVA, como en la UE y el Reino Unido, los precios de la página de precios lo incluyen; en otros lugares, como en Estados Unidos, el impuesto sobre las ventas se añade al pagar. Los precios se muestran en tu moneda local cuando está disponible y, si no, en dólares estadounidenses; la página de pago muestra el importe final, con los impuestos que correspondan, antes de que pagues.",
         "Los créditos pertenecen a una empresa y se usan para sus candidatos; su propietario y sus administradores pueden recargarlos. Los créditos no se pueden transferir entre cuentas o empresas, vender ni canjear por dinero.",
         "La recarga automática es opcional y está desactivada salvo que la actives. Al activarla, autorizas a Paddle a guardar tu tarjeta y a cargarle el importe de recarga que elegiste cada vez que el saldo disponible baje del nivel que elegiste, sin volver a preguntarte. Paddle envía por correo un recibo de cada cargo. Puedes cambiarla o desactivarla en cualquier momento en la página de recarga, lo que también cancela la autorización de la tarjeta guardada; los cargos ya realizados siguen las reglas de reembolso que se indican a continuación.",
         "Los créditos no caducan. Eliminar una empresa elimina sus créditos, y no se reembolsan: pide cualquier reembolso que te corresponda antes de eliminarla.",

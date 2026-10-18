@@ -100,7 +100,7 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Mô tả công việc và câu trả lời được xử lý thế nào?",
-        "answer": "Mô tả công việc được dùng để tạo các buổi phỏng vấn của công ty bạn, và câu trả lời của ứng viên để chấm điểm cho công ty bạn. prepza cũng sử dụng câu trả lời ở dạng tổng hợp, không nhận dạng bất kỳ ai, để đo lường và cải thiện chất lượng câu hỏi. [Chính sách quyền riêng tư](/privacy) giải thích chúng tôi lưu gì, trong bao lâu, và quyền của mọi người.",
+        "answer": "Mô tả công việc được dùng để tạo các buổi phỏng vấn của công ty bạn, và câu trả lời của ứng viên để chấm điểm cho công ty bạn. Các câu hỏi prepza tạo cũng có thể được tái sử dụng trong các buổi phỏng vấn và luyện tập của công ty khác, mà không kèm bất cứ thông tin nào nhận dạng bạn, công ty của bạn hay bất kỳ ai khác; bạn có thể loại các câu hỏi của một buổi phỏng vấn khỏi việc này trong phần cài đặt của buổi phỏng vấn đó. prepza cũng học các mẫu chung, đã ẩn danh hóa, về chất lượng câu hỏi từ cách các câu hỏi được trả lời, để cải thiện cách tạo câu hỏi. [Chính sách quyền riêng tư](/privacy) giải thích chúng tôi lưu gì, trong bao lâu, và quyền của mọi người.",
     },
     {
         "key": "eu_ai_law",

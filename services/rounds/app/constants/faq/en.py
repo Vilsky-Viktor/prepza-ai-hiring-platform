@@ -99,7 +99,7 @@ FAQ = [
     {
         "key": "privacy",
         "question": "What happens to job descriptions and answers?",
-        "answer": "Job descriptions are used to build your company's interviews, and candidates' answers to score them for your company. prepza also uses answers combined, without identifying anyone, to measure and improve the quality of questions. The [privacy policy](/privacy) explains what we keep, for how long, and everyone's rights.",
+        "answer": "Job descriptions are used to build your company's interviews, and candidates' answers to score them for your company. The questions prepza generates may also be reused in other companies' interviews and practice, without anything that identifies you, your company or anyone else; you can keep an interview's questions out of this in its settings. prepza also learns general, anonymised patterns of question quality from how questions are answered, to improve how questions are generated. The [privacy policy](/privacy) explains what we keep, for how long, and everyone's rights.",
     },
     {
         "key": "eu_ai_law",

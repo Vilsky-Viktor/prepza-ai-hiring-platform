@@ -100,7 +100,7 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Mis saab töökuulutustest ja vastustest?",
-        "answer": "Töökuulutusi kasutatakse sinu ettevõtte intervjuude loomiseks ja kandidaatide vastuseid nende hindamiseks sinu ettevõtte jaoks. prepza kasutab vastuseid ka koondatult ja kedagi tuvastamata, et mõõta ja parandada küsimuste kvaliteeti. [Privaatsuspoliitika](/privacy) selgitab, mida me säilitame, kui kaua ja millised on kõigi õigused.",
+        "answer": "Töökuulutusi kasutatakse sinu ettevõtte intervjuude loomiseks ja kandidaatide vastuseid nende hindamiseks sinu ettevõtte jaoks. prepza loodud küsimusi võidakse taaskasutada ka teiste ettevõtete intervjuudes ja harjutusintervjuudes, ilma millegita, mis tuvastaks sind, sinu ettevõtet või kedagi teist; saad intervjuu küsimused sellest välja jätta selle intervjuu seadetes. Samuti tuletab prepza sellest, kuidas küsimustele vastatakse, üldisi, anonüümitud küsimuste kvaliteedi mustreid, et parandada küsimuste loomist. [Privaatsuspoliitika](/privacy) selgitab, mida me säilitame, kui kaua ja millised on kõigi õigused.",
     },
     {
         "key": "eu_ai_law",

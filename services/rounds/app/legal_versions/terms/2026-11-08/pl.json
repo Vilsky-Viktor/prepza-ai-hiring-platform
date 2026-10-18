@@ -18,8 +18,7 @@
     {
       "heading": "Twoje treści",
       "paragraphs": [
-        "Zachowujesz prawa do tego, co wklejasz i tworzysz. Pozwalasz nam to przechowywać i przetwarzać w celu prowadzenia prepza, w tym przesyłać to naszemu dostawcy AI.",
-        "Nie wklejaj niczego, czego nie wolno Ci udostępniać, na przykład cudzych informacji poufnych."
+        "Zachowujesz prawa do tego, co wklejasz i tworzysz. Pozwalasz nam to przechowywać i przetwarzać w celu prowadzenia prepza, w tym przesyłać to do usług AI, z których korzystamy. Udzielasz nam też ogólnoświatowej, nieodpłatnej i bezterminowej licencji na korzystanie z pytań, które prepza generuje dla Ciebie, ich modyfikowanie i ponowne wykorzystywanie w rozmowach i rozmowach ćwiczeniowych dla innych klientów, bez niczego, co identyfikuje Ciebie, Twoją firmę lub kogokolwiek innego; możesz wyłączyć z tego pytania danej rozmowy w jej ustawieniach, a pytania już ponownie wykorzystane pozostają tam, gdzie są. Ze wszystkich pytań wyodrębniamy także ogólne, zanonimizowane wzorce jakości pytań, aby ulepszać sposób ich generowania. Nie wklejaj do opisu stanowiska tajemnic przedsiębiorstwa ani danych osobowych."
       ]
     },
     {
@@ -57,8 +56,8 @@
     {
       "heading": "Kredyty i płatności",
       "items": [
-        "Za prepza płaci się kredytami: za 1 dolara amerykańskiego otrzymujesz 100 kredytów, a przy większych doładowaniach więcej kredytów za dolara. Koszt każdej rzeczy w kredytach podany jest w cenniku i wyświetlany, zanim z niej skorzystasz.",
-        "Doładowania sprzedaje Paddle, który działa jako odsprzedawca (merchant of record): Paddle przyjmuje płatność, nalicza ewentualny VAT lub podatek od sprzedaży oraz wystawia potwierdzenie zakupu lub fakturę. Mogą je kupować zarówno przedsiębiorcy, jak i konsumenci. Tam, gdzie ceny zwykle zawierają VAT, jak w UE i Wielkiej Brytanii, ceny w cenniku go zawierają; gdzie indziej, na przykład w Stanach Zjednoczonych, podatek od sprzedaży jest doliczany przy płatności. Przed zapłatą strona płatności pokazuje łączną kwotę.",
+        "Za prepza płaci się kredytami: każde doładowanie daje liczbę kredytów pokazaną przed zapłatą, a przy większych doładowaniach otrzymujesz więcej kredytów za wydane pieniądze. Koszt każdej rzeczy w kredytach podany jest w cenniku i wyświetlany, zanim z niej skorzystasz.",
+        "Doładowania sprzedaje Paddle, który działa jako odsprzedawca (merchant of record): Paddle przyjmuje płatność, nalicza ewentualny VAT lub podatek od sprzedaży oraz wystawia potwierdzenie zakupu lub fakturę. Mogą je kupować zarówno przedsiębiorcy, jak i konsumenci. Tam, gdzie ceny zwykle zawierają VAT, jak w UE i Wielkiej Brytanii, ceny w cenniku go zawierają; gdzie indziej, na przykład w Stanach Zjednoczonych, podatek od sprzedaży jest doliczany przy płatności. Ceny są wyświetlane w Twojej walucie lokalnej, jeśli jest dostępna, a w przeciwnym razie w dolarach amerykańskich; przed zapłatą strona płatności pokazuje ostateczną kwotę wraz z ewentualnym podatkiem.",
         "Kredyty należą do firmy i są wykorzystywane na jej kandydatów; mogą je doładowywać jej właściciel i administratorzy. Kredytów nie można przenosić między kontami ani firmami, sprzedawać ani wypłacać w formie pieniędzy.",
         "Automatyczne doładowanie jest opcjonalne i wyłączone, dopóki go nie włączysz. Włączając je, upoważniasz Paddle do zapisania Twojej karty i obciążania jej wybraną przez Ciebie kwotą doładowania za każdym razem, gdy dostępne saldo spadnie poniżej wybranego przez Ciebie poziomu, bez ponownego pytania. Paddle wysyła e-mailem potwierdzenie każdego obciążenia. Możesz je w każdej chwili zmienić lub wyłączyć na stronie doładowania, co anuluje też upoważnienie dla zapisanej karty; do obciążeń już dokonanych stosuje się poniższe zasady zwrotów.",
         "Kredyty nie wygasają. Usunięcie firmy usuwa jej kredyty i nie są one zwracane: poproś o należny Ci zwrot, zanim ją usuniesz.",
