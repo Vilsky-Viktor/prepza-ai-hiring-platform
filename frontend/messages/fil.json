@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Ang nakikita ng mga aplikante",
       "text": "Isang timed interview na may brand mo: single choice, multi-choice at praktikal.",
+      "notes": {
+        "language": "sa sarili nilang wika",
+        "phone": "gumagana sa phone",
+        "time": "makikita agad ang oras",
+        "extraTime": "dagdag na oras para sa nangangailangan"
+      },
       "rules": {
         "pick": "Pumili ng isang sagot, o lahat ng tama kapag nakasulat ang Piliin ang lahat ng tamang opsyon.",
         "change": "Mapapalitan mo ang pinili mo hanggang lumipat ka sa susunod.",

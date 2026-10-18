@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Wat kandidaten zien",
       "text": "Een interview met tijdslimiet in je eigen huisstijl: één antwoord, meerdere antwoorden en praktijkopdrachten.",
+      "notes": {
+        "language": "in hun eigen taal",
+        "phone": "werkt op een telefoon",
+        "time": "tijd vooraf zichtbaar",
+        "extraTime": "extra tijd voor wie dat nodig heeft"
+      },
       "rules": {
         "pick": "Kies één antwoord, of elk juist antwoord waar ‘Kies alle juiste opties’ staat.",
         "change": "Je kunt je keuze wijzigen tot je verdergaat.",

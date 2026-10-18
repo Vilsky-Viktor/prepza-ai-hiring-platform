@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Ce que voient les candidats",
       "text": "Un entretien chronométré aux couleurs de votre marque : choix unique, choix multiple et mises en situation.",
+      "notes": {
+        "language": "dans leur langue",
+        "phone": "fonctionne sur mobile",
+        "time": "durée affichée à l'avance",
+        "extraTime": "temps supplémentaire pour qui en a besoin"
+      },
       "rules": {
         "pick": "Choisissez une réponse, ou toutes les bonnes là où il est indiqué « Cochez toutes les bonnes réponses ».",
         "change": "Vous pouvez changer votre choix jusqu'à ce que vous passiez à la suite.",

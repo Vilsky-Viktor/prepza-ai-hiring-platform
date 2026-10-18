@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Cosa vedono i candidati",
       "text": "Un colloquio a tempo con il tuo brand: scelta singola, scelta multipla e prove pratiche.",
+      "notes": {
+        "language": "nella loro lingua",
+        "phone": "funziona su smartphone",
+        "time": "tempi indicati in anticipo",
+        "extraTime": "tempo extra per chi ne ha bisogno"
+      },
       "rules": {
         "pick": "Scegli una risposta, oppure tutte quelle corrette dove compare «Seleziona tutte le opzioni corrette».",
         "change": "Puoi cambiare la tua scelta finché non vai avanti.",

@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Yang dilihat kandidat",
       "text": "Wawancara berbatas waktu dengan merekmu: pilihan tunggal, pilihan ganda, dan praktik.",
+      "notes": {
+        "language": "dalam bahasa mereka",
+        "phone": "bisa di ponsel",
+        "time": "waktu ditampilkan di awal",
+        "extraTime": "waktu tambahan bagi yang membutuhkan"
+      },
       "rules": {
         "pick": "Pilih satu jawaban, atau setiap jawaban yang benar jika tertulis Pilih semua jawaban yang benar.",
         "change": "Kamu bisa mengubah pilihanmu sampai lanjut ke soal berikutnya.",

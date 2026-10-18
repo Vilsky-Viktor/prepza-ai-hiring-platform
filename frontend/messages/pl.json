@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Co widzą kandydaci",
       "text": "Rozmowa na czas w barwach Twojej marki: jednokrotny wybór, wielokrotny wybór i zadania praktyczne.",
+      "notes": {
+        "language": "w ich języku",
+        "phone": "działa na telefonie",
+        "time": "czas widoczny z góry",
+        "extraTime": "dodatkowy czas dla potrzebujących"
+      },
       "rules": {
         "pick": "Wybierz jedną odpowiedź albo każdą poprawną tam, gdzie widnieje „Zaznacz wszystkie poprawne odpowiedzi”.",
         "change": "Możesz zmienić wybór, dopóki nie przejdziesz dalej.",

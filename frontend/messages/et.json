@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Mida kandidaadid näevad",
       "text": "Ajapiiranguga intervjuu sinu brändis: üks õige vastus, mitu õiget vastust ja praktilised ülesanded.",
+      "notes": {
+        "language": "nende keeles",
+        "phone": "töötab telefonis",
+        "time": "aeg on enne näha",
+        "extraTime": "lisaaeg neile, kes seda vajavad"
+      },
       "rules": {
         "pick": "Vali üks vastus või kõik õiged seal, kus on kirjas „Vali kõik sobivad variandid“.",
         "change": "Saad valikut muuta, kuni liigud edasi.",

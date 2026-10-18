@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Was Kandidaten sehen",
       "text": "Ein Interview mit Zeitlimit im Look deiner Marke: Einfachauswahl, Mehrfachauswahl und Praxisaufgaben.",
+      "notes": {
+        "language": "in ihrer Sprache",
+        "phone": "funktioniert auf dem Handy",
+        "time": "Zeit vorab sichtbar",
+        "extraTime": "mehr Zeit für alle, die sie brauchen"
+      },
       "rules": {
         "pick": "Wähle eine Antwort oder, wo „Alle zutreffenden Optionen auswählen“ steht, jede richtige.",
         "change": "Du kannst deine Auswahl ändern, bis du weitergehst.",

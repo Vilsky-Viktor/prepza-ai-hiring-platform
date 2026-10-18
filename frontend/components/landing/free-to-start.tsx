@@ -2,7 +2,7 @@ import { cn } from "cn"
 import { GiftIcon } from "lucide-react"
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { Dotted } from "@/components/dot"
+import { NotesLine } from "@/components/landing/notes-line"
 import { Receipt } from "@/components/landing/receipt"
 import { LandingSection, MoreLink } from "@/components/landing/section"
 import { StartButton } from "@/components/landing/start-button"
@@ -103,16 +103,7 @@ export async function FreeToStartSection({ catalog }: { catalog: Catalog }) {
             </div>
           </div>
         </div>
-        <p className="text-center text-sm text-balance text-muted-foreground">
-          <Dotted
-            items={NOTES.map((key) => (
-              // A note stays whole on one line; lines break between notes.
-              <span key={key} className="whitespace-nowrap">
-                {t(`notes.${key}`)}
-              </span>
-            ))}
-          />
-        </p>
+        <NotesLine notes={NOTES.map((key) => t(`notes.${key}`))} />
       </div>
     </LandingSection>
   )

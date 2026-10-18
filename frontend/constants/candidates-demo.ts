@@ -65,3 +65,11 @@ export const DEMO_QUESTIONS: DemoQuestion[] = [
     picks: [0],
   },
 ]
+
+// The facts under the picture, by their text's key.
+export const CANDIDATE_NOTES = [
+  "language",
+  "phone",
+  "time",
+  "extraTime",
+] as const

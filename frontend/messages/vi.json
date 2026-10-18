@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Ứng viên thấy gì",
       "text": "Buổi phỏng vấn có tính giờ mang thương hiệu của bạn: một đáp án, nhiều đáp án và câu hỏi thực hành.",
+      "notes": {
+        "language": "bằng ngôn ngữ của họ",
+        "phone": "dùng được trên điện thoại",
+        "time": "thời gian hiển thị trước",
+        "extraTime": "thêm thời gian cho người cần"
+      },
       "rules": {
         "pick": "Chọn một đáp án, hoặc chọn mọi đáp án đúng ở câu có ghi Chọn tất cả phương án đúng.",
         "change": "Bạn có thể đổi lựa chọn cho đến khi chuyển sang câu tiếp theo.",

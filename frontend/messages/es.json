@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Lo que ven los candidatos",
       "text": "Una entrevista cronometrada con tu marca: opción única, opción múltiple y casos prácticos.",
+      "notes": {
+        "language": "en su idioma",
+        "phone": "funciona en el móvil",
+        "time": "el tiempo, visible de antemano",
+        "extraTime": "tiempo extra para quien lo necesite"
+      },
       "rules": {
         "pick": "Elige una respuesta, o todas las correctas donde ponga «Selecciona todas las opciones que correspondan».",
         "change": "Puedes cambiar tu elección hasta que avances.",

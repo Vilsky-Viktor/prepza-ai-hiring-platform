@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "Adaylar ne görür",
       "text": "Markanıza özel, süreli bir mülakat: tek seçimli, çok seçimli ve uygulamalı sorular.",
+      "notes": {
+        "language": "kendi dillerinde",
+        "phone": "telefonda çalışır",
+        "time": "süre baştan gösterilir",
+        "extraTime": "ihtiyacı olana ek süre"
+      },
       "rules": {
         "pick": "Bir cevap seçin ya da “Doğru olanların tümünü seçin” yazan yerlerde her doğru cevabı işaretleyin.",
         "change": "Sonraki soruya geçene kadar seçiminizi değiştirebilirsiniz.",

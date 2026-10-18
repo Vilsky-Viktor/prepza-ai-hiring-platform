@@ -1213,6 +1213,12 @@
     "candidates": {
       "title": "What candidates see",
       "text": "A timed interview in your brand: single choice, multi-choice and practical.",
+      "notes": {
+        "language": "in their language",
+        "phone": "works on a phone",
+        "time": "time shown up front",
+        "extraTime": "extra time for those who need it"
+      },
       "rules": {
         "pick": "Pick one answer, or every right one where it says Select all that apply.",
         "change": "You can change your pick until you move on.",
