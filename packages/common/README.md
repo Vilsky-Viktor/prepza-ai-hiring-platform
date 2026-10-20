@@ -9,7 +9,7 @@ seconds left in the limit's window, which `http.passed_on` keeps when it relays 
 and the assistant's answers, the bell's stream), secret tokens kept as their hashes (`tokens`: API
 keys, AI apps' access), a visitor's address behind the load balancer (`client_ip`), requests to addresses someone gave
 (`public_urls`: `public_address` lets only HTTPS to the public internet through, `pinned` connects
-to that checked address: the api's web hooks) and
+to that checked address: the api's web hooks, the assistant's AI app metadata documents) and
 "select all that apply" questions (`multi_answer`: which questions are, how many of a draw are,
 and the draw itself, by `MULTI_ANSWER_PERCENT`, a value in the admin zone's Controls).
 OpenAI chat models: `llm.chat_model` builds them one way for every service (a temperature only at

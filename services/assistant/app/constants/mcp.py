@@ -41,6 +41,14 @@ REFRESH_REUSE_GRACE_SECONDS = 60
 LAST_USED_EVERY_SECONDS = 60 * 60
 # An app that registered but has had no connection for this many days is deleted.
 IDLE_CLIENT_DAYS = 30
+# An app may name itself by its Client ID Metadata Document instead of registering: its client_id
+# is the document's HTTPS address (with a path), read when it first asks to connect, kept a day,
+# then read again (the kept copy serves while the app's site doesn't answer). The read is bounded
+# in time and in size (MAX_REGISTRATION_BYTES), and only public addresses are read (SSRF).
+METADATA_DOCUMENT_SECONDS = 24 * 60 * 60
+METADATA_DOCUMENT_TIMEOUT_SECONDS = 5
+# Such an app has no secret: its document can't hold one.
+METADATA_DOCUMENT_AUTH = "none"
 # The longest app name kept from what an app says about itself.
 MAX_CLIENT_NAME_LENGTH = 80
 

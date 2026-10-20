@@ -24,6 +24,35 @@ async def get_client(client_id: str) -> dict | None:
         )
 
 
+async def read_document(client_id: str) -> tuple[dict, datetime] | None:
+    """A metadata document app's kept copy and when it was read."""
+    async with Session() as session:
+        found = await session.execute(
+            select(OAuthClient.info, OAuthClient.created_at).where(
+                OAuthClient.client_id == client_id
+            )
+        )
+        row = found.first()
+
+        return (row.info, row.created_at) if row else None
+
+
+async def keep_document(client_id: str, info: dict, read_at: datetime) -> None:
+    """A metadata document app's copy, as just read; it replaces the one kept (its connections
+    stay)."""
+    async with Session() as session:
+        values = {"client_id": client_id, "info": info, "created_at": read_at}
+        await session.execute(
+            insert(OAuthClient)
+            .values(**values)
+            .on_conflict_do_update(
+                index_elements=[OAuthClient.client_id],
+                set_={"info": info, "created_at": read_at},
+            )
+        )
+        await session.commit()
+
+
 async def add_grant(grant: McpGrant) -> McpGrant:
     async with Session() as session:
         session.add(grant)

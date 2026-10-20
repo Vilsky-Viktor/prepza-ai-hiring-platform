@@ -22,10 +22,11 @@ from app.constants.mcp import (
     MCP_SCOPE,
     REFRESH_REUSE_GRACE_SECONDS,
 )
-from app.helpers.mcp_clients import describe_client, refused_redirect
+from app.helpers.mcp_clients import describe_client, is_document_id, refused_redirect
 from app.helpers.oauth import funnel_client, new_tokens, resource_url
 from app.models.oauth import McpGrant
-from app.models.oauth_tokens import Access, Code, Refresh
+from app.models.oauth_tokens import Access, Client, Code, Refresh
+from app.services import client_documents
 from app.services.mcp_keys import key_access
 from app.services.oauth_limits import limit_tokens
 from app.storage import oauth, oauth_requests
@@ -55,9 +56,13 @@ class Provider:
     site's /connect page, and they get opaque tokens, kept as hashes, one connection each."""
 
     async def get_client(self, client_id: str) -> OAuthClientInformationFull | None:
-        found = await oauth.get_client(client_id)
+        """An app that registered, or one named by its metadata document's address."""
+        if is_document_id(client_id):
+            found = await client_documents.client_of(client_id)
+        else:
+            found = await oauth.get_client(client_id)
 
-        return OAuthClientInformationFull.model_validate(found) if found else None
+        return Client.model_validate(found) if found else None
 
     async def register_client(self, client_info: OAuthClientInformationFull) -> None:
         """Kept 30 days; one bigger than MAX_REGISTRATION_BYTES is refused."""

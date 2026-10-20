@@ -69,6 +69,8 @@ def routes() -> list[Route]:
     metadata.revocation_endpoint_auth_methods_supported = AUTH_METHODS
     # Every answer to /authorize names the issuer (services/connections.py, RFC 9207).
     metadata.authorization_response_iss_parameter_supported = True
+    # An app may name itself by its metadata document's address instead of registering.
+    metadata.client_id_metadata_document_supported = True
     found = []
 
     for route in create_auth_routes(Provider(), issuer, None, registration, revocation):

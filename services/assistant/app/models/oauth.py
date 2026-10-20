@@ -13,13 +13,15 @@ def now() -> datetime:
 
 
 class OAuthClient(Base):
-    """An AI app that registered itself (OAuth dynamic client registration), as it described
-    itself: its name and the addresses it returns to. Deleted once it has had no connection for
-    IDLE_CLIENT_DAYS."""
+    """An AI app that registered itself (OAuth dynamic client registration) or named itself by its
+    Client ID Metadata Document (its HTTPS address is the client_id), as it described itself: its
+    name and the addresses it returns to. A document's copy is read again once older than
+    METADATA_DOCUMENT_SECONDS (created_at: when it was read). Deleted once it has had no
+    connection for IDLE_CLIENT_DAYS."""
 
     __tablename__ = "oauth_clients"
 
-    client_id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    client_id: Mapped[str] = mapped_column(String(512), primary_key=True)
     # The MCP SDK's OAuthClientInformationFull, as JSON.
     info: Mapped[dict] = mapped_column(JSONB)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
@@ -34,7 +36,7 @@ class McpGrant(Base):
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     user_id: Mapped[str] = mapped_column(String(128), index=True)
     client_id: Mapped[str] = mapped_column(
-        ForeignKey("oauth_clients.client_id", ondelete="CASCADE"), index=True
+        String(512), ForeignKey("oauth_clients.client_id", ondelete="CASCADE"), index=True
     )
     # What the user saw when they allowed it: the app's name and the site it returns to.
     client_name: Mapped[str] = mapped_column(String(80))

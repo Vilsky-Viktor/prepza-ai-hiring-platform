@@ -190,3 +190,26 @@ def test_a_request_and_a_code_are_taken_once(run):
 
     assert peeked == taken == code == {"client_id": "c"}
     assert again is None and code_again is None
+
+
+def test_a_metadata_document_app_keeps_its_long_id_and_newest_copy_and_connections(run):
+    """An app named by its metadata document's address (longer than a registration's id): a new
+    read replaces its copy and when it was read, and its connections stay."""
+    client_id = f"https://app-{uuid.uuid4().hex}.example.com/oauth/clients/prepza/metadata.json"
+    first = datetime(2026, 10, 1, tzinfo=UTC)
+
+    async def scenario():
+        await oauth.keep_document(client_id, {"client_id": client_id, "client_name": "A"}, first)
+        grant, _ = await connect("doc-user-" + uuid.uuid4().hex[:8], client_id)
+        later = first + timedelta(days=2)
+        await oauth.keep_document(client_id, {"client_id": client_id, "client_name": "B"}, later)
+        found = await oauth.read_document(client_id)
+        still = await oauth.by_access(grant.access_hash)
+
+        return found, still, grant
+
+    (info, read_at), still, grant = run(scenario())
+
+    assert len(client_id) > 64
+    assert info["client_name"] == "B" and read_at == first + timedelta(days=2)
+    assert still.id == grant.id
