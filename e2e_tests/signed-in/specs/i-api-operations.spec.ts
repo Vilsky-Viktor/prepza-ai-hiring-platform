@@ -121,5 +121,5 @@ test("the API invites, updates, reminds, finds and removes a candidate", async (
     job_description:
       "Senior accountant: month-end close, IFRS reporting and audits.",
   });
-  expect(made.status()).toBe(429);
+  expect(made.status()).toBe(409);
 });
