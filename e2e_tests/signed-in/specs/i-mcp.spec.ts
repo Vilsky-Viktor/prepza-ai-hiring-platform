@@ -5,7 +5,7 @@ import { FRONTEND_URL } from "../constants"
 import { expect, test } from "../fixtures"
 import { createCompany } from "../helpers/api"
 import { addAiConnections, deleteAiConnections } from "../helpers/db-integrations"
-import { box, PHONE } from "../helpers/layout"
+import { box, PHONE, settled } from "../helpers/layout"
 import { integrationRow, openDialog, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { uidOf } from "../helpers/sign-in"
@@ -98,7 +98,7 @@ test("the MCP server's instructions fill a phone's screen", async ({ signInAs })
 
   await visit(owner, `/companies/${company.id}/integrations/ai`)
   await openDialog(owner, owner.getByRole("main").getByTestId("instructions"))
-  await owner.waitForTimeout(400)
+  await settled(owner.getByRole("dialog"))
   const dialog = await box(owner.getByRole("dialog"))
   expect(Math.abs(dialog.height - PHONE.height)).toBeLessThanOrEqual(2)
   expect(dialog.top).toBe(0)

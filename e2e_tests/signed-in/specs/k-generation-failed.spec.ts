@@ -54,13 +54,16 @@ test("a description sent twice quickly asks for one interview", async ({ signInA
   const owner = await signInAs(throwawayEmail("double-submit"))
   const company = await createCompany(owner)
   let asked = 0
+  // The first request stays unanswered until both presses are in.
+  let answer = () => {}
+  const answered = new Promise<void>((resolve) => (answer = resolve))
   await owner.route(`**/api/companies/interviews?company_id=${company.id}`, async (route) => {
     if (route.request().method() !== "POST") {
       return route.continue()
     }
 
     asked += 1
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await answered
     // Refused, so nothing is generated.
     await route.fulfill({
       status: 429,
@@ -74,6 +77,7 @@ test("a description sent twice quickly asks for one interview", async ({ signInA
   await box.fill("Senior accountant: month-end close, IFRS reporting and audits.")
   await box.press("ControlOrMeta+Enter")
   await box.press("ControlOrMeta+Enter")
+  answer()
 
   await expect(owner.getByText("Too many requests. Try again later.")).toBeVisible()
   expect(asked).toBe(1)
