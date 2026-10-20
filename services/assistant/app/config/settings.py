@@ -1,6 +1,8 @@
 from prepza_common.settings import ServiceSettings
 from pydantic import Field
 
+from app.constants.subagents import AssistantMode
+
 
 class Settings(ServiceSettings):
     # The API description lists every route, internal ones too: development only.
@@ -15,6 +17,9 @@ class Settings(ServiceSettings):
     # The chat model, and how hard it thinks: "none", "minimal", "low", "medium" or "high".
     assistant_model: str = "gpt-6-luna"
     assistant_reasoning_effort: str = "low"
+    # One agent with every tool ("single"), or a main agent handing each domain's work to an
+    # agent of its own ("subagents", constants/subagents.py).
+    assistant_mode: AssistantMode = AssistantMode.SINGLE
     # Turns a held voice message into text.
     transcribe_model: str = "gpt-4o-mini-transcribe"
     # Conversations nobody has added to for this many days are deleted.

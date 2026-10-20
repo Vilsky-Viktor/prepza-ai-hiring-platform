@@ -22,6 +22,8 @@ class Answer:
     shown_blocks: list = field(default_factory=list)
     # The Langfuse trace its model calls report to; None when Langfuse isn't set up.
     trace_id: str | None = None
+    # The span its model calls report under: a domain agent's, within the turn's trace.
+    span_id: str | None = None
 
     @property
     def content(self) -> str:
