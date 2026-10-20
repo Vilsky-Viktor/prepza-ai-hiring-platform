@@ -7,6 +7,9 @@ HTTP_TIMEOUT_SECONDS = 30
 # Retries only connection attempts that failed, so a request is never sent twice.
 HTTP_RETRIES = 3
 
+# Requests that only read: their sign-in token isn't checked for revocation (auth.py), which
+# costs a call to Firebase; every other method's is, so a deleted account can't change anything.
+READ_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
 RATE_LIMITED = "Too many requests. Try again later."
 # A 429 says in this header (RFC 9110) how many seconds are left until its limit's window ends.
 RETRY_AFTER = "Retry-After"

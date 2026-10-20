@@ -18,7 +18,10 @@ from app.storage import accounts, legal
 
 
 def delete_sign_in(user_id: str) -> None:
+    """Revokes the account's sign-ins, then deletes it: its ID tokens are refused at once for
+    any change (auth.py checks revocation on writes), not only once they expire."""
     try:
+        firebase_auth.revoke_refresh_tokens(user_id)
         firebase_auth.delete_user(user_id)
     except firebase_auth.UserNotFoundError:
         pass

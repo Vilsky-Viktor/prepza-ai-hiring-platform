@@ -16,7 +16,7 @@ CLAIMS = {
 }
 
 
-def fake_verify(token):
+def fake_verify(token, **_):
     if token != "good-token":
         raise firebase_auth.InvalidIdTokenError("bad token")
 
@@ -41,7 +41,7 @@ def test_me_says_whether_the_user_is_an_admin(client, monkeypatch):
 
 def test_me_reads_the_language_from_the_token(client, monkeypatch):
     monkeypatch.setattr(
-        firebase_auth, "verify_id_token", lambda token: {**CLAIMS, "language": "ru"}
+        firebase_auth, "verify_id_token", lambda token, **_: {**CLAIMS, "language": "ru"}
     )
 
     assert client.get("/me", headers=AUTH).json()["language"] == "ru"

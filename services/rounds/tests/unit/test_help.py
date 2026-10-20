@@ -159,7 +159,7 @@ def test_accounts_addresses_and_the_daily_total_are_limited(client, monkeypatch,
 
     monkeypatch.setattr("app.routers.help.billing.catalog", fake_catalog(None))
     monkeypatch.setattr("app.routers.help.stream_reply", fake_stream)
-    monkeypatch.setattr(firebase_auth, "verify_id_token", lambda token: {"uid": "u1"})
+    monkeypatch.setattr(firebase_auth, "verify_id_token", lambda token, **_: {"uid": "u1"})
     body = {"messages": [{"role": "user", "content": "Hi"}]}
 
     client.post("/help/chat", json=body)
