@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, UniqueConstraint, func
+from sqlalchemy import DateTime, ForeignKey, Index, String, UniqueConstraint, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.constants.invites import MAX_CANDIDATE_NAME_LENGTH, InviteStatus
@@ -10,7 +10,12 @@ from app.models.base import Base
 
 class CandidateInvite(Base):
     __tablename__ = "candidate_invites"
-    __table_args__ = (UniqueConstraint("interview_id", "email"),)
+    __table_args__ = (
+        UniqueConstraint("interview_id", "email"),
+        # An interview's invites by last change, for the public API's updated_since (migration
+        # 0045).
+        Index("ix_candidate_invites_interview_updated", "interview_id", "updated_at", "id"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     interview_id: Mapped[uuid.UUID] = mapped_column(

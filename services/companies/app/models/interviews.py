@@ -2,7 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 from prepza_common.constants import DEFAULT_LANGUAGE
-from sqlalchemy import DateTime, ForeignKey, String, Text, func
+from sqlalchemy import DateTime, ForeignKey, Index, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -12,6 +12,8 @@ from app.models.base import Base
 
 class Interview(Base):
     __tablename__ = "interviews"
+    # A company's interviews by last change, for the public API's updated_since (migration 0045).
+    __table_args__ = (Index("ix_interviews_company_updated", "company_id", "updated_at", "id"),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     company_id: Mapped[uuid.UUID] = mapped_column(
