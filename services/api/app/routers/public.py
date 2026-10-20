@@ -191,11 +191,11 @@ async def invite_candidate(
         422: {"description": "The body is invalid"},
         429: {
             "description": (
-                "Your company has as many interviews without candidates as it may, or made as "
-                "many today as it may"
+                "Your company has as many interviews without candidates as it may, or it or the "
+                "key's creator made as many today as it may"
             )
         },
-        503: {"description": "Making interviews is temporarily paused"},
+        503: {"description": "Making interviews is paused, or today's AI budget is used up"},
     },
 )
 async def create_interview(

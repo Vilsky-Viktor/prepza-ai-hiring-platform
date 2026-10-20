@@ -192,4 +192,6 @@ Each limit is one of `prepza_common.limit_list.LIMITS`, with its default; a supe
 
 Above them all, the daily AI spend cap for unpaid companies and people without a company (`AI_SPEND_UNPAID_DAY`, $15 a UTC day by default): once their AI calls of the day (generations, regenerations, the assistant and the help chat) have cost that much, generating for an unpaid company answers 503 ("AI features are paused for today…") until midnight UTC. Paid companies and prepza's own work (templates, quality checks, news) aren't counted or held to it. Billing adds each call's cost to the day's Redis counter (`spend:ai:unpaid:<date>`) as it stores it; with Redis down, nothing is refused.
 
+A company's new interview passes generation's refusals on to the person as generation gave them (its status, message and `Retry-After`: the account's generations a day, the day's budget, the AI spend cap), and an attempt generation refused or failed doesn't count towards the company's interviews a day.
+
 Email limits are in [Candidates](features/candidates.md#email-limits).

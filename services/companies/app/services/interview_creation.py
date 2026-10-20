@@ -2,10 +2,12 @@ import httpx
 from fastapi import HTTPException, status
 from prepza_common.analytics import track
 from prepza_common.audit_actions import AuditAction
+from prepza_common.http import passed_on
+from prepza_common.limit_list import LIMITS
 from prepza_common.limits import at_most, question_seconds
-from prepza_common.rate_limit import hit
+from prepza_common.rate_limit import counted, hit
 
-from app.constants.interviews import UNKNOWN_LEVEL
+from app.constants.interviews import GENERATION_REFUSALS, UNKNOWN_LEVEL
 from app.constants.invites import (
     TOO_MANY_INTERVIEWS,
     TOO_MANY_INTERVIEWS_UNPAID,
@@ -53,11 +55,14 @@ async def create(
         await track("limit_hit", which="interviews_without_candidates", **who)
         raise
 
+    daily = "INTERVIEWS_PER_DAY" if paid else "INTERVIEWS_PER_DAY_UNPAID"
+    daily_key = f"rate:interviews:{company.id}"
+
     try:
         await hit(
             redis,
-            f"rate:interviews:{company.id}",
-            "INTERVIEWS_PER_DAY" if paid else "INTERVIEWS_PER_DAY_UNPAID",
+            daily_key,
+            daily,
             TOO_MANY_INTERVIEWS if paid else TOO_MANY_INTERVIEWS_UNPAID,
             **who,
         )
@@ -69,11 +74,13 @@ async def create(
         created = await generation_api.create(
             text, company.id, user_id, language, generate_in, paid
         )
-    except httpx.HTTPStatusError as error:
-        if error.response.status_code == status.HTTP_429_TOO_MANY_REQUESTS:
-            raise HTTPException(
-                status.HTTP_429_TOO_MANY_REQUESTS, "Too many requests. Try again later."
-            )
+    except Exception as error:
+        # Nothing was made: the attempt gives back its place in the day's count.
+        await counted(redis, daily_key, -1, LIMITS[daily].window)
+
+        if isinstance(error, httpx.HTTPStatusError):
+            # Generation's own refusal (its limit per person, the day's AI budget), as it said it.
+            passed_on(error.response, GENERATION_REFUSALS)
 
         raise
 

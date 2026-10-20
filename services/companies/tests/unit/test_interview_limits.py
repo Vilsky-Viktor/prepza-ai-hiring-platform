@@ -1,6 +1,7 @@
 import uuid
 from types import SimpleNamespace
 
+import httpx
 import pytest
 from prepza_common.auth import current_user
 from prepza_common.translations import TRANSLATIONS
@@ -38,10 +39,11 @@ def signed_in_manager(monkeypatch):
     app.dependency_overrides.clear()
 
 
-def generate(client, monkeypatch, waiting, paid=False, redis=None):
+def generate(client, monkeypatch, waiting, paid=False, redis=None, refusal=None):
     """Asks for a new interview while `waiting` generated interviews have no candidate, for a
-    company that topped up (`paid`) or not, with the limits and counters in `redis`; returns the
-    response and whether generation was reached (False, or whether it was sent as paid)."""
+    company that topped up (`paid`) or not, with the limits and counters in `redis`; generation
+    answers `refusal` (a response) when given. Returns the response and whether generation was
+    reached (False, or whether it was sent as paid)."""
     reached = []
     redis = redis or FakeRedis()
 
@@ -50,6 +52,9 @@ def generate(client, monkeypatch, waiting, paid=False, redis=None):
 
     async def fake_generation(*args):
         reached.append(args[-1])
+
+        if refusal is not None:
+            refusal.raise_for_status()
 
         return {"id": str(uuid.uuid4()), "language": "en"}
 
@@ -206,3 +211,42 @@ def test_the_limit_messages_have_translations():
             TOO_MANY_INTERVIEWS_UNPAID,
         ):
             assert message in language
+
+
+def generation_answer(status: int, detail: str, headers: dict | None = None) -> httpx.Response:
+    request = httpx.Request("POST", "http://generation/internal/generations")
+
+    return httpx.Response(status, json={"detail": detail}, headers=headers, request=request)
+
+
+@pytest.mark.parametrize(
+    ("status", "detail", "retry_after"),
+    [
+        (429, "Too many requests. Try again later.", "3000"),
+        (503, "AI features are paused for today. They're back tomorrow.", "7200"),
+    ],
+)
+def test_generations_refusal_reaches_the_user_and_gives_back_the_days_place(
+    client, monkeypatch, status, detail, retry_after
+):
+    redis = FakeRedis({"INTERVIEWS_PER_DAY_UNPAID": 1})
+    refusal = generation_answer(status, detail, {"Retry-After": retry_after})
+    refused, _ = generate(client, monkeypatch, 0, redis=redis, refusal=refusal)
+    allowed, _ = generate(client, monkeypatch, 0, redis=redis)
+
+    assert refused.status_code == status
+    assert refused.json()["detail"] == detail
+    assert refused.headers["Retry-After"] == retry_after
+    # The refused attempt left the day's one interview for the next.
+    assert allowed.status_code == 201
+    assert redis.counts == {f"rate:interviews:{COMPANY_ID}": 1}
+
+
+def test_a_failed_generation_gives_back_the_days_place(client, monkeypatch):
+    redis = FakeRedis()
+    failure = generation_answer(500, "Internal Server Error")
+
+    with pytest.raises(httpx.HTTPStatusError):
+        generate(client, monkeypatch, 0, redis=redis, refusal=failure)
+
+    assert redis.counts == {f"rate:interviews:{COMPANY_ID}": 0}

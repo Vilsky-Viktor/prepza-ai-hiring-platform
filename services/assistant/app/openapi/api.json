@@ -177,7 +177,7 @@
       "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
      },
      "429": {
-      "description": "Your company has as many interviews without candidates as it may, or made as many today as it may"
+      "description": "Your company has as many interviews without candidates as it may, or it or the key's creator made as many today as it may"
      },
      "409": {
       "description": "A request with this Idempotency-Key is still running"
@@ -186,7 +186,7 @@
       "description": "The body is invalid"
      },
      "503": {
-      "description": "Making interviews is temporarily paused"
+      "description": "Making interviews is paused, or today's AI budget is used up"
      }
     }
    }
