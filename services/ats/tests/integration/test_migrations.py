@@ -2,6 +2,7 @@ from alembic import command
 from alembic.config import Config
 from alembic.script import ScriptDirectory
 from sqlalchemy import text
+from sqlalchemy.exc import DBAPIError
 
 
 def test_every_migration_ran_on_a_fresh_database(run):
@@ -62,3 +63,23 @@ def test_postgres_ends_a_transaction_left_idle(run):
 
     # IDLE_IN_TRANSACTION_TIMEOUT, as Postgres shows it.
     assert run(setting()) == "1min"
+
+
+def test_postgres_stops_a_runaway_statement(run):
+    from app.storage.db import engine
+
+    async def outcome():
+        async with engine.connect() as connection:
+            limit = (await connection.execute(text("SHOW statement_timeout"))).scalar()
+            # A job that needs longer lowers it for its transaction; here, below the sleep.
+            await connection.execute(text("SET LOCAL statement_timeout = '100ms'"))
+
+            try:
+                await connection.execute(text("SELECT pg_sleep(1)"))
+            except DBAPIError as error:
+                return limit, type(error.orig).__name__
+
+            return limit, None
+
+    # STATEMENT_TIMEOUT, as Postgres shows it.
+    assert run(outcome()) == ("1min", "QueryCanceled")

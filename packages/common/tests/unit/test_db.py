@@ -5,6 +5,7 @@ from prepza_common.constants import (
     DB_POOL_RECYCLE_SECONDS,
     IDLE_IN_TRANSACTION_TIMEOUT,
     MIGRATION_LOCK_TIMEOUT,
+    STATEMENT_TIMEOUT,
 )
 
 
@@ -17,7 +18,8 @@ def test_pooled_connections_are_replaced_by_age_not_pinged_on_every_use():
     assert "pool_pre_ping" not in options
     assert (options["pool_size"], options["max_overflow"]) == (2, 1)
     assert options["connect_args"] == {
-        "options": f"-c idle_in_transaction_session_timeout={IDLE_IN_TRANSACTION_TIMEOUT}"
+        "options": f"-c idle_in_transaction_session_timeout={IDLE_IN_TRANSACTION_TIMEOUT} "
+        f"-c statement_timeout={STATEMENT_TIMEOUT}"
     }
 
 

@@ -58,6 +58,10 @@ DB_POOL_RECYCLE_SECONDS = 1800
 # would otherwise hold its pool slot and its row locks for good. No transaction waits on another
 # service or a model; the longest wait inside one is the outbox's publish call.
 IDLE_IN_TRANSACTION_TIMEOUT = "60s"
+# Postgres stops a service's statement that runs this long: the shortest request timeout (60 s),
+# after which Cloud Run has already answered the caller, while the query would go on holding a
+# connection and its locks. A job that needs longer raises it with SET LOCAL statement_timeout.
+STATEMENT_TIMEOUT = "60s"
 # Old rows (retention, published events) are deleted this many at a time, each batch its own
 # short transaction: one DELETE of a month of rows would run long, hold its locks and write its
 # whole WAL at once.

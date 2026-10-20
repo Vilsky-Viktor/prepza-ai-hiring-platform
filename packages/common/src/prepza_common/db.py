@@ -5,6 +5,7 @@ from prepza_common.constants import (
     DELETE_BATCH,
     IDLE_IN_TRANSACTION_TIMEOUT,
     MIGRATION_LOCK_TIMEOUT,
+    STATEMENT_TIMEOUT,
 )
 from sqlalchemy import Engine, create_engine, delete, inspect, select, text
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, create_async_engine
@@ -20,14 +21,18 @@ def database(
 ) -> tuple[AsyncEngine, async_sessionmaker]:
     """The engine and session factory for a service's database; a service with few, short queries
     takes a smaller pool, to stay within the database's connection budget. A transaction left
-    idle past IDLE_IN_TRANSACTION_TIMEOUT is ended by Postgres."""
+    idle past IDLE_IN_TRANSACTION_TIMEOUT, and a statement running past STATEMENT_TIMEOUT, are
+    ended by Postgres."""
     engine = create_async_engine(
         sqlalchemy_url(url),
         pool_recycle=DB_POOL_RECYCLE_SECONDS,
         pool_size=pool_size,
         max_overflow=max_overflow,
         connect_args={
-            "options": f"-c idle_in_transaction_session_timeout={IDLE_IN_TRANSACTION_TIMEOUT}"
+            "options": (
+                f"-c idle_in_transaction_session_timeout={IDLE_IN_TRANSACTION_TIMEOUT} "
+                f"-c statement_timeout={STATEMENT_TIMEOUT}"
+            )
         },
     )
 
