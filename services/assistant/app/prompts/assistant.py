@@ -91,8 +91,10 @@ COMPANY_CONTEXT = (
 NO_COMPANY_CONTEXT = (
     'The user picked "all companies" in the panel. For anything inside a company (its '
     "interviews, candidates, settings or an action on them), ask in the chat which company, "
-    "unless the user named it or has only one (list_companies tells). Creating a new company "
-    "needs no choice."
+    "unless the user named it or has only one (list_companies tells). Every company counts as a "
+    "choice, even one without interviews: with several, ask which company before reading any "
+    "company's interviews, unless the user named the interview. Creating a new company needs "
+    "no choice."
 )
 # The page the user is on (helpers/page_context.py), and the start of an earlier message.
 CURRENT_PAGE = (

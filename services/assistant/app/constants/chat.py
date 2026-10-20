@@ -58,6 +58,14 @@ SESSION_EXPIRED = "Your session expired. Sign in again."
 QUESTION_TOO_LONG = "The question is too long."
 NOT_FOUND = "Not found"
 COMPANY_NOT_FOUND = "Company not found"
+# With "all companies" picked and several of them, a company's interviews come with this note
+# for the model (not the user's text): the company comes first, unless the user named it or
+# the interview.
+INTERVIEWS_TOOL = "list_interviews"
+WHICH_COMPANY_FIRST = (
+    "The user picked all companies and has {count}. Unless they named this company or an "
+    "interview, don't offer these interviews: ask which company first, by name."
+)
 # The error event's code when a service refused the user's token mid-turn: the panel refreshes
 # the token and sends the message again, once.
 SESSION_EXPIRED_CODE = "session_expired"

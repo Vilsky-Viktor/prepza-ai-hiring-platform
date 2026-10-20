@@ -26,6 +26,7 @@ from app.constants.show import SHOW
 from app.constants.tool_calls import INVALID_ARGUMENTS, UNKNOWN_TOOL
 from app.constants.tool_labels import ACTION_LABEL, TOOL_LABELS, UNKNOWN_TOOL_LABEL
 from app.constants.updates import GET_UPDATES
+from app.helpers.company_note import with_company_note
 from app.helpers.history import history
 from app.helpers.page_context import describe_page
 from app.integrations import llm
@@ -237,7 +238,7 @@ async def step_results(
     )
 
     for index, result in zip(reads, called, strict=True):
-        results[index] = result
+        results[index] = with_company_note(result, turn)
 
     return results
 

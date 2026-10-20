@@ -183,3 +183,23 @@ one card with `?@example.com`, which the address pattern didn't see as one, so a
 is now checked whole; rerun on the invite cases 5 times each (`…_emails-invites.json`), "Invite a
 new team member as an admin." and "Invite a new candidate here." asked 10 of 10. The German case
 kept the job and dropped the instruction 5 of 5. Tool choice 299/300.
+
+**Assistant: the company before the interview** (2026-10-20, the same eval, 5 repeats, 60 cases;
+the domain agents' `cross` cases ran alongside and are left out, `…_parent.json`). With "all
+companies" picked and two companies, one of them empty, "Invite lena.fox@example.com to an
+interview." asked which interview of the company with interviews instead of which company (1 to
+4 of 5 per run): the parents rule's "don't ask when there's only one choice" read as one company
+with interviews. The context line now says every company counts as a choice, even one without
+interviews, and with several companies a company's interviews reach the model with a note to ask
+which company first unless the user named it or the interview. The line alone fixed 4 of 5
+(`…_parent-try.json`); with the note, 5 of 5 on those cases and in the full run.
+
+| Run | Task success | Asked first | Link | Arguments | Tool choice | Tokens / seconds a turn |
+|---|---|---|---|---|---|---|
+| Before (`…_emails.json`) | 297/300 | 43/45 | 39/40 | 160/160 | 299/300 | 20,800, 8.0 s |
+| After (in use) | 297/300, 99.0% (97.1–99.7) | **45/45, 100% (92.1–100)** | 38/40 | 159/159 | 299/300 | 21,300, 7.4 ± 0.4 s |
+
+"Invite jon.berg@example.com to the Data Analyst (eval) interview." from the companies page asked
+which company once in 5 (5 of 5 before), though the interview was named; the other differences
+are single cases. Page context 110/129 correct, scope 115, tools 108, page checks 26/27
+(`assistant_page_context_parent.json`): within noise.
