@@ -28,6 +28,8 @@ def capped(redis, **who) -> bool:
         asyncio.run(refuse_if_capped(redis, **who))
     except HTTPException as error:
         assert (error.status_code, error.detail) == (503, AI_PAUSED_TODAY)
+        # Until the next UTC day, at most a day away.
+        assert 0 < int(error.headers["Retry-After"]) <= 24 * 60 * 60
 
         return True
 

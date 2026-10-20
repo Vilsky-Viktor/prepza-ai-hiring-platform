@@ -4,6 +4,7 @@ from fastapi import HTTPException, status
 from prepza_common.limit_list import LIMITS
 from prepza_common.limit_schemas import BudgetOut
 from prepza_common.limits import limit, record_hit
+from prepza_common.rate_limit import until_tomorrow
 
 from app.constants.generation import BUDGET_KEY, BUDGET_KEY_SECONDS, GENERATIONS_PAUSED
 from app.constants.quality import VERIFY_BUDGET_KEY, VERIFY_PAUSED
@@ -39,7 +40,9 @@ async def use_daily_budget(paid: bool = False, company_id=None, user_id: str | N
     if await count_today(BUDGET_KEY) > await limit(get_redis(), name):
         await record_hit(name, company_id=company_id, user_id=user_id)
 
-        raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, GENERATIONS_PAUSED)
+        raise HTTPException(
+            status.HTTP_503_SERVICE_UNAVAILABLE, GENERATIONS_PAUSED, headers=until_tomorrow()
+        )
 
 
 async def use_verify_budget() -> None:

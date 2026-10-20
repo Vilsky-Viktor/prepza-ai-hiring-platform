@@ -3,6 +3,7 @@ the current one (limits.limit) and its window the list's. A refusal is recorded
 (limits.record_hit) and answers 429 with its message, in which "{limit}" is the limit's value."""
 
 import logging
+from datetime import UTC, datetime, timedelta
 
 from fastapi import HTTPException, status
 from prepza_common.constants import RATE_LIMITED, RETRY_AFTER
@@ -24,6 +25,14 @@ async def counted(redis, key: str, amount: int, window: int) -> tuple[int, int]:
         _, total, seconds = await pipe.execute()
 
     return total, seconds
+
+
+def until_tomorrow(now: datetime | None = None) -> dict[str, str]:
+    """The Retry-After header of a daily cap (UTC days): the seconds until the next day starts."""
+    now = now or datetime.now(UTC)
+    tomorrow = datetime.combine(now.date() + timedelta(days=1), datetime.min.time(), UTC)
+
+    return {RETRY_AFTER: str(max(int((tomorrow - now).total_seconds()), 1))}
 
 
 async def refuse(name: str, value: float, message: str, seconds: int, company_id, user_id) -> None:

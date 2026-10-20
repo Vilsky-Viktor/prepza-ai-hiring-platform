@@ -15,6 +15,7 @@ from prepza_common.ai_constants import (
 )
 from prepza_common.limits import limit as limit_value
 from prepza_common.limits import record_hit
+from prepza_common.rate_limit import until_tomorrow
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +49,9 @@ async def refuse_if_capped(
 
     await record_hit(CAP, company_id=company_id, user_id=user_id)
 
-    raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, AI_PAUSED_TODAY)
+    raise HTTPException(
+        status.HTTP_503_SERVICE_UNAVAILABLE, AI_PAUSED_TODAY, headers=until_tomorrow()
+    )
 
 
 async def add_unpaid(redis, cost_usd: float) -> None:

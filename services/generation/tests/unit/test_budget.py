@@ -26,6 +26,7 @@ def test_generations_past_the_daily_limits_edited_value_wait_until_tomorrow(redi
         asyncio.run(budget.use_daily_budget(company_id=COMPANY_ID, user_id="bob"))
 
     assert paused.value.status_code == 503
+    assert 0 < int(paused.value.headers["Retry-After"]) <= 24 * 60 * 60
     assert paused.value.detail == GENERATIONS_PAUSED
     [key] = redis.counts
     assert key.startswith(f"{BUDGET_KEY}:")

@@ -1,11 +1,12 @@
 import asyncio
+from datetime import UTC, datetime
 
 import pytest
 from fastapi import HTTPException
 from prepza_common import rate_limit
 from prepza_common.ai_constants import LIMIT_HIT
 from prepza_common.limit_list import LIMITS
-from prepza_common.rate_limit import add_spent, hit, hit_emails, hit_or_skip, spend
+from prepza_common.rate_limit import add_spent, hit, hit_emails, hit_or_skip, spend, until_tomorrow
 
 from tests.unit.fake_redis import DownRedis, FakeRedis
 
@@ -171,3 +172,9 @@ def test_adding_what_a_request_spent_goes_over_without_refusing_it(published):
 
 def test_adding_what_a_request_spent_never_fails_it_with_redis_down():
     asyncio.run(rate_limit.add_spent(DownRedis(), "spend:x:all", 500, TOKENS))
+
+
+def test_a_daily_cap_says_the_seconds_until_the_next_utc_day():
+    evening = datetime(2026, 10, 20, 23, 59, 30, tzinfo=UTC)
+
+    assert until_tomorrow(evening) == {"Retry-After": "30"}

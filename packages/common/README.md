@@ -33,7 +33,7 @@ half) and every kind of AI call (`ACTIONS`), and `ai_usage.record` records one c
 and cost as an "AI used" log line (`prepza_ai_spend`) and an `ai.used` event billing stores;
 `ai_usage.provider_refused` records OpenAI's rate limit and quota. `ai_cap` is the unpaid users'
 daily AI spend cap (`AI_SPEND_UNPAID_DAY`): `refuse_if_capped` answers 503 once today's spend
-reached it, and `add_unpaid` (billing) adds to it. Only `ai_usage` needs the `llm` extra.
+reached it (with `Retry-After` to the next UTC day, `rate_limit.until_tomorrow`), and `add_unpaid` (billing) adds to it. Only `ai_usage` needs the `llm` extra.
 Request bodies: `body_limit.BodyLimitMiddleware` refuses one over 1 MB (`MAX_BODY_BYTES`) with a
 translated 413, counting a streamed body as it arrives; companies (report PDFs) and the assistant
 (voice messages) pass larger limits.
