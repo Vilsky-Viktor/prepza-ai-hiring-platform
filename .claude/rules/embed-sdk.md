@@ -14,7 +14,7 @@ paths:
 
 Companies show a guest candidate's interview on their own site with
 `https://prepza.ai/embed/v1.js` and `Prepza.embed({element, url, theme, title, onReady, onStart,
-onFinish})`, which frames `/embedded/{token}`. The script, its options, callbacks and messages
+onFinish, onError})`, which frames `/embedded/{token}`. The script, its options, callbacks and messages
 are a contract with customers' pages: any change to them is integrator-visible (rule 14) and
 updates `docs/features/api.md` and the API description's snippet (rule 9). CLAUDE.md wins on any
 conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
@@ -31,7 +31,9 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
   request; adopt it if the script grows).
 - `"use strict"` in an IIFE; exactly one global, `window.Prepza`; nothing on built-in
   prototypes; options read key by key, never merged into objects (prototype pollution).
-- Including the script twice is harmless: a second copy keeps the first `Prepza`.
+- Including the script twice is harmless: a second copy keeps the first `Prepza` (it carries
+  `version`). Calls made before it loads go to the documented one-line stub's queue (`q`),
+  which the script replays (the Intercom and Cal.com pattern), so the snippet loads it `async`.
 - Feature detection, never user-agent sniffing; what's missing degrades (no resize, a fixed
   height) instead of throwing.
 
@@ -47,9 +49,9 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
   ever ships; TLS and the site's CSP are the protection.
 - The proxy skips `/embed/`: the script is served as it is, also during maintenance (the frame
   then shows the maintenance screen), with no per-request work.
-- The docs tell integrators to load it with `async` (and wait for its `load` or call after it),
-  and the CSP lines they need: `script-src https://prepza.ai` and `frame-src https://prepza.ai`.
-  A stub that queues calls made before load (Intercom, Cal.com) would be a new API: approval.
+- The docs give integrators the async snippet with its stub, the CSP lines they need
+  (`script-src https://prepza.ai`, `frame-src https://prepza.ai`), why not to pin it with SRI,
+  and a dated "Changes to v1" list.
 
 ## Who may frame it
 
@@ -104,12 +106,15 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
   candidate's pages, which meet `accessibility.md`; no focus is taken on load and nothing traps
   focus; the theme passes through (`theme`), and color scheme and reduced motion follow the
   candidate's settings inside.
-- `Prepza.embed` takes one options object and returns `{destroy}`, which removes the frame and
-  the listener; several embeds per page work. A missing element throws, as v1 always did.
-- Not yet adopted (new API, approval): `onError({code})` for a frame that never says `ready`
-  within a timeout (an iframe's `error` event never fires) or a refused domain, typed `error`
-  messages from the frame, a console warning for unknown options, `minHeight`/`maxHeight`, a
-  declarative `data-prepza-url` element, and a `lang` option.
+- `Prepza.embed` takes one options object and returns `{destroy}`, which removes the frame, the
+  listener and the timer; several embeds per page work. A missing element throws, as v1 always
+  did; an unknown option gets a console warning; callbacks are called only when functions.
+- Errors: an iframe's `error` event never fires, so no `ready` within 20 s is
+  `onError({code: "timeout"})` (a refused domain or the network); the frame sends `error` with a
+  stable code when the invite reads as gone (`invite_unavailable`) or can't be read
+  (`load_failed`). New codes are additions.
+- Not adopted (rule 4, no need yet): `minHeight`/`maxHeight`, a declarative `data-prepza-url`
+  element and a `lang` option (the frame follows the candidate's own language).
 
 ## Testing
 
@@ -117,8 +122,10 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
   partitioning and `SameSite` apply as in production: framing refused before verification and
   for email invites, the full interview in the frame, the callbacks in order, the script's
   headers. Unit tests cover `embedAncestors` and `originOf`.
-- Chromium only today. WebKit and Firefox runs of the embed spec need those browsers in the
-  test image (approval); Playwright's WebKit doesn't apply Safari's tracking prevention, so
-  Safari is checked by hand before a change to sign-in or storage in the frame.
+- Chromium only today, and Playwright launches it with `ThirdPartyStoragePartitioning` off, so
+  the spec doesn't see partitioned storage. WebKit and Firefox are in the test image, but the
+  frontend's emulator and site addresses are `localhost` ones the containers can't map for
+  them; Playwright's WebKit doesn't apply Safari's tracking prevention anyway, so Safari and
+  Firefox are checked by hand before a change to sign-in or storage in the frame.
 
 Research (local notes, git-ignored): `internal_docs/embed-sdk-best-practices.md`.

@@ -1,3 +1,5 @@
+import type { Browser, Page } from "@playwright/test"
+
 import { expect, test } from "../fixtures"
 import { API_URL, FRONTEND_URL } from "../constants"
 import { api, createCompany, createInterview } from "../helpers/api"
@@ -6,16 +8,19 @@ import { shot } from "../helpers/screenshots"
 import { ownerEmail, throwawayEmail } from "../helpers/users"
 
 // The company's own site, at an address of its verified website's domain: it embeds the interview with
-// the hosted script and hears when the candidate has finished.
+// the hosted script and hears when the candidate has finished. It calls Prepza.embed before the
+// script has loaded (the documented stub queues it) and includes the script twice by mistake.
 const DOMAIN = "acme-embed.com"
 const SITE = `http://jobs.${DOMAIN}`
 
 function sitePage(siteUrl: string, inviteUrl: string) {
   return `<!doctype html><html><head><title>Acme careers</title></head><body>
     <h1>Acme careers</h1><div id="interview"></div>
-    <script src="${siteUrl}/embed/v1.js"></script>
     <script>
       window.events = []
+      window.messages = []
+      window.addEventListener("message", (event) => window.messages.push(event.data))
+      window.Prepza = window.Prepza || { q: [], embed: function (o) { this.q.push(o) } }
       Prepza.embed({
         element: "#interview",
         url: ${JSON.stringify(inviteUrl)},
@@ -23,8 +28,29 @@ function sitePage(siteUrl: string, inviteUrl: string) {
         onReady: () => window.events.push("ready"),
         onStart: () => window.events.push("started"),
         onFinish: ({ candidateId }) => window.events.push("finished:" + candidateId),
+        onError: ({ code }) => window.events.push("error:" + code),
       })
-    </script></body></html>`
+    </script>
+    <script async src="${siteUrl}/embed/v1.js"></script>
+    <script async src="${siteUrl}/embed/v1.js"></script>
+    </body></html>`
+}
+
+type SiteWindow = { events: string[]; messages: { version?: number }[] }
+
+/** The company's site in a new browser context, embedding `inviteUrl`. */
+async function openSite(browser: Browser, baseURL: string, inviteUrl: string) {
+  const context = await browser.newContext()
+  const site = await context.newPage()
+  await site.route(`${SITE}/**`, (route) =>
+    route.fulfill({ contentType: "text/html", body: sitePage(baseURL, inviteUrl) })
+  )
+
+  return { context, site }
+}
+
+function events(site: Page) {
+  return site.evaluate(() => (window as unknown as SiteWindow).events)
 }
 
 test("a company's own site embeds a candidate's interview and hears it finish", async ({
@@ -66,11 +92,7 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   const byEmail = await invite(throwawayEmail("by-email"), true)
   expect(await framers(byEmail.invite_url)).toBe("'none'")
 
-  const context = await browser.newContext()
-  const site = await context.newPage()
-  await site.route(`${SITE}/**`, (route) =>
-    route.fulfill({ contentType: "text/html", body: sitePage(baseURL!, candidate.invite_url) })
-  )
+  const { context, site } = await openSite(browser, baseURL!, candidate.invite_url)
   await site.goto(`${SITE}/apply`)
   const frame = site.frameLocator("iframe")
 
@@ -103,11 +125,37 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   await expect(frame.getByRole("heading", { level: 1 })).toBeVisible()
   await expect(frame.getByTestId("finish-interview")).toHaveCount(0)
   await expect(frame.getByRole("main").locator("a")).toHaveCount(0)
-  await expect
-    .poll(() => site.evaluate(() => (window as unknown as { events: string[] }).events))
-    .toEqual(["ready", "started", `finished:${candidate.id}`])
+  // One frame (the second copy of the script did nothing), each event once, in order; every
+  // message names its version.
+  await expect(site.locator("iframe")).toHaveCount(1)
+  await expect.poll(() => events(site)).toEqual(["ready", "started", `finished:${candidate.id}`])
+  const versions = await site.evaluate(() =>
+    (window as unknown as SiteWindow).messages.map((message) => message.version)
+  )
+  expect(versions.length).toBeGreaterThan(0)
+  expect(new Set(versions)).toEqual(new Set([1]))
   await shot(site, "finished")
   await context.close()
+
+  // An invite the company's site may not frame (sent by email): the frame never says it's ready,
+  // so the site hears a timeout.
+  const refused = await openSite(browser, baseURL!, byEmail.invite_url)
+  await refused.site.clock.install()
+  await refused.site.goto(`${SITE}/apply`)
+  await expect(refused.site.locator("iframe")).toHaveCount(1)
+  await refused.site.clock.runFor(21_000)
+  await expect.poll(() => events(refused.site)).toEqual(["error:timeout"])
+  await refused.context.close()
+
+  // A link that's gone by the time the frame reads it: the frame tells the site why.
+  const gone = await openSite(browser, baseURL!, candidate.invite_url)
+  const token = new URL(candidate.invite_url).pathname.split("/").pop()
+  await gone.context.route(`**/api/companies/invites/${token}`, (route) =>
+    route.fulfill({ status: 404, json: { detail: "Not found" } })
+  )
+  await gone.site.goto(`${SITE}/apply`)
+  await expect.poll(() => events(gone.site)).toEqual(["ready", "error:invite_unavailable"])
+  await gone.context.close()
 })
 
 test("the hosted script is served as it is, cached briefly and loadable cross-origin", async ({

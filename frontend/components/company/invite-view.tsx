@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { useAuth } from "@/components/auth-provider"
@@ -19,13 +19,15 @@ import type { InviteView as Invite, SessionSummary } from "@/types/company"
 import { START_BUTTON } from "@/constants/start-page"
 
 /** The invitation. Embedded in a company's site, `onStarted` opens the interview in place
- * instead of going to its page. */
+ * instead of going to its page, and `onUnavailable` hears when the link can't be read. */
 export function InviteView({
   token,
   onStarted,
+  onUnavailable,
 }: {
   token: string
   onStarted?: (sessionId: string) => void
+  onUnavailable?: (status: "missing" | "failed") => void
 }) {
   const share = useTranslations("share")
   const session = useTranslations("session")
@@ -46,6 +48,12 @@ export function InviteView({
   )
 
   useBrandColors(invite?.brand_colors, invite?.theme, invite?.brand_style)
+
+  useEffect(() => {
+    if (status === "missing" || status === "failed") {
+      onUnavailable?.(status)
+    }
+  }, [status, onUnavailable])
   // A theme the address asks for goes on with the candidate to the questions.
   const asked = useSearchParams().get("theme")
 

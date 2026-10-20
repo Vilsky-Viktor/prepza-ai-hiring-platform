@@ -2,8 +2,10 @@
  * prepza embed, v1: a candidate's interview inside your own site.
  *
  *   <div id="interview"></div>
- *   <script src="https://prepza.ai/embed/v1.js"></script>
+ *   <script async src="https://prepza.ai/embed/v1.js"></script>
  *   <script>
+ *     // Calls made before the script has loaded wait for it.
+ *     window.Prepza = window.Prepza || { q: [], embed: function (o) { this.q.push(o) } }
  *     Prepza.embed({
  *       element: "#interview",
  *       // The invite_url your server got from POST /v1/interviews/{id}/candidates.
@@ -11,19 +13,64 @@
  *       // Optional: "light" or "dark" always shows that theme, in your company's colors for it;
  *       // "default" (or none) the candidate's own.
  *       theme: "dark",
+ *       // Optional: the frame's name for screen readers.
+ *       title: "Interview",
+ *       onReady: () => {},
+ *       onStart: () => {},
  *       onFinish: ({ candidateId }) => {},
+ *       // "timeout": the frame didn't load (not your verified domain, or the network);
+ *       // "invite_unavailable": the link expired or was revoked; "load_failed": try again.
+ *       onError: ({ code }) => {},
  *     })
  *   </script>
  *
  * Only a candidate invited with sign_in false, and only on your company's verified website
- * domain (and its subdomains): anywhere else the frame stays empty.
+ * domain (and its subdomains): anywhere else the frame stays empty and onError says "timeout".
+ * Within v1, options, callbacks and messages are only ever added.
  */
 ;(function () {
   "use strict"
 
-  var ORIGIN = new URL(document.currentScript.src).origin
+  var VERSION = 1
   var SOURCE = "prepza"
   var MIN_HEIGHT = 640
+  // How long the frame has to say it's ready before onError({ code: "timeout" }).
+  var READY_TIMEOUT_MS = 20000
+  var OPTIONS = [
+    "element",
+    "url",
+    "theme",
+    "title",
+    "onReady",
+    "onStart",
+    "onFinish",
+    "onError",
+  ]
+  var existing = window.Prepza
+
+  // Included twice: the first copy stays.
+  if (existing && existing.version) {
+    return
+  }
+
+  var ORIGIN = new URL(document.currentScript.src).origin
+
+  function call(callback, value) {
+    if (typeof callback === "function") {
+      callback(value)
+    }
+  }
+
+  function warnUnknown(options) {
+    for (var name in options) {
+      if (
+        Object.prototype.hasOwnProperty.call(options, name) &&
+        OPTIONS.indexOf(name) === -1
+      ) {
+        console.warn("Prepza.embed: unknown option " + name)
+      }
+    }
+  }
 
   function embed(options) {
     var element =
@@ -35,6 +82,7 @@
       throw new Error("Prepza.embed: no element " + options.element)
     }
 
+    warnUnknown(options)
     var token = new URL(options.url).pathname.split("/").filter(Boolean).pop()
     var frame = document.createElement("iframe")
     frame.src =
@@ -48,25 +96,36 @@
     frame.style.cssText =
       "display:block;width:100%;border:0;height:" + MIN_HEIGHT + "px"
 
+    // An iframe never says it failed to load: no "ready" in time is the failure.
+    var timer = window.setTimeout(function () {
+      call(options.onError, { code: "timeout" })
+    }, READY_TIMEOUT_MS)
+
     function listen(event) {
-      var data = event.data || {}
+      var data = event.data
 
       if (
         event.origin !== ORIGIN ||
         event.source !== frame.contentWindow ||
+        !data ||
         data.source !== SOURCE
       ) {
         return
       }
 
       if (data.type === "resize") {
-        frame.style.height = Math.max(data.height, MIN_HEIGHT) + "px"
-      } else if (data.type === "ready" && options.onReady) {
-        options.onReady()
-      } else if (data.type === "started" && options.onStart) {
-        options.onStart()
-      } else if (data.type === "finished" && options.onFinish) {
-        options.onFinish({ candidateId: data.candidateId })
+        if (typeof data.height === "number" && isFinite(data.height)) {
+          frame.style.height = Math.max(data.height, MIN_HEIGHT) + "px"
+        }
+      } else if (data.type === "ready") {
+        window.clearTimeout(timer)
+        call(options.onReady)
+      } else if (data.type === "started") {
+        call(options.onStart)
+      } else if (data.type === "finished") {
+        call(options.onFinish, { candidateId: data.candidateId })
+      } else if (data.type === "error") {
+        call(options.onError, { code: String(data.code) })
       }
     }
 
@@ -75,11 +134,19 @@
 
     return {
       destroy: function () {
+        window.clearTimeout(timer)
         window.removeEventListener("message", listen)
         frame.remove()
       },
     }
   }
 
-  window.Prepza = { embed: embed }
+  window.Prepza = { version: VERSION, embed: embed }
+
+  // Calls the page made before this loaded.
+  var queued = (existing && existing.q) || []
+
+  for (var i = 0; i < queued.length; i++) {
+    embed(queued[i])
+  }
 })()

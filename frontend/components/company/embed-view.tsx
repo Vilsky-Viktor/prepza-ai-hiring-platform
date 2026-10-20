@@ -4,11 +4,16 @@ import { useCallback, useEffect, useRef, useState } from "react"
 
 import { InviteView } from "@/components/company/invite-view"
 import { SessionView } from "@/components/company/session-view"
-import { EMBED_EVENTS, EMBED_SOURCE } from "@/constants/embed"
+import {
+  EMBED_ERRORS,
+  EMBED_EVENTS,
+  EMBED_SOURCE,
+  EMBED_VERSION,
+} from "@/constants/embed"
 
 /** A candidate's interview inside a company's own site (public/embed/v1.js frames it): the
  * invitation, then the questions in place. The company's page hears when it's ready, started and
- * finished, and how tall it is; only `origin`, the page that framed it, hears it. */
+ * finished, how tall it is and why it can't show; only `origin`, the page that framed it, hears it. */
 export function EmbedView({
   token,
   origin,
@@ -22,7 +27,7 @@ export function EmbedView({
     (type: string, data: Record<string, unknown> = {}) => {
       if (origin && window.parent !== window) {
         window.parent.postMessage(
-          { source: EMBED_SOURCE, type, ...data },
+          { source: EMBED_SOURCE, version: EMBED_VERSION, type, ...data },
           origin
         )
       }
@@ -64,13 +69,22 @@ export function EmbedView({
     (candidateId: string) => post(EMBED_EVENTS.finished, { candidateId }),
     [post]
   )
+  const unavailable = useCallback(
+    (status: keyof typeof EMBED_ERRORS) =>
+      post(EMBED_EVENTS.error, { code: EMBED_ERRORS[status] }),
+    [post]
+  )
 
   return (
     <div ref={content} className="flex flex-col items-center py-12">
       {sessionId ? (
         <SessionView id={sessionId} onFinished={finished} />
       ) : (
-        <InviteView token={token} onStarted={started} />
+        <InviteView
+          token={token}
+          onStarted={started}
+          onUnavailable={unavailable}
+        />
       )}
     </div>
   )
