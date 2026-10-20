@@ -9,6 +9,7 @@ from app.constants.show import (
     PAGE_NAMES,
     PAGES,
     ROW_KINDS,
+    SETTING_PAGES,
     SHOWN,
 )
 from app.helpers.blocks import SAFE_ID, link
@@ -173,9 +174,28 @@ INTERVIEW_ARGUMENT = "interview_id"
 CANDIDATE_READS = {"get_scorecard": "invite_id"}
 
 
+async def setting_link(answer, turn: Turn) -> dict | None:
+    """The page of the one setting the answer read (auto top-up, Slack, ATSs, the API), where
+    it's changed: asked to change it, the assistant can only point there. None beside an
+    action's card."""
+    found = {
+        (SETTING_PAGES[result.tool], result.arguments.get("company_id"))
+        for result in answer.results
+        if result.succeeded and result.tool in SETTING_PAGES
+    }
+
+    if answer.pending or len(found) != 1:
+        return None
+
+    [(page, company_id)] = found
+
+    return await link_block({"kind": "link", "page": page, "company_id": company_id}, turn)
+
+
 async def implied_link(answer, turn: Turn) -> dict | None:
-    """The link an answer about one interview or one candidate needs when the model gave none:
-    that candidate's report, or that interview's candidates, from what the turn read."""
+    """The link an answer about one interview, one candidate or one setting needs when the model
+    gave none: that candidate's report, that interview's candidates, or the setting's page,
+    from what the turn read."""
     interviews, candidates = set(), set()
 
     for result in answer.results:
@@ -187,6 +207,9 @@ async def implied_link(answer, turn: Turn) -> dict | None:
 
         if result.tool in CANDIDATE_READS:
             candidates.add(str(result.arguments.get(CANDIDATE_READS[result.tool])))
+
+    if not interviews:
+        return await setting_link(answer, turn)
 
     if len(interviews) != 1:
         return None

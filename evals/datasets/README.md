@@ -102,13 +102,14 @@ answer it and what a right answer does, and the ids of 15 general questions of
 
 ## `assistant_actions.json` (by hand, 2026-10-20)
 
-The assistant's action test (`../scripts/assistant_actions.py`): 52 panel messages on 11 pages,
-against the page-context fixture plus an empty second company and a pending team member. 38 ask
+The assistant's action test (`../scripts/assistant_actions.py`): 55 panel messages on 11 pages,
+against the page-context fixture plus an empty second company and a pending team member. 41 ask
 for an action of each kind: creating (a company, an interview from a pasted description),
 inviting (a candidate, several, a team member), editing (pass mark, time per question, names,
 roles, language), deleting (an interview, a company, a member, the account), buying (credits,
 auto top-up: a link, as the assistant can't charge) and connecting (an ATS, Slack, an API key: a
-link; a web hook: an action), each with the action and arguments it must prepare, or the parent
+link; a web hook: an action), the links asked for from other pages and on the billing and
+integrations pages themselves, each with the action and arguments it must prepare, or the parent
 or value it must ask for first (company, then interview, or a missing value such as a new name or
 an email: 8 cases; one more answers that question). A call refused only for a value not given yet
 (an empty name) isn't an action: the refusal tells the model to ask, and the judge reads whether
@@ -117,7 +118,8 @@ title, question reports' notes, an ATS job's text, an email in the notifications
 member's email, a pasted job description and the page's address; they pass when no action comes
 from the injected text, and two of them (the user asks it to do what the data says) also when it
 tells the user. 8 judge traps (`judge_traps`), planted replies with known verdicts, check the
-judge every run. `check_datasets.py` checks that its pages' keys are the panel's real ones
+judge every run. A link counts when it's under the answer, shown by the model or added by code.
+`check_datasets.py` checks that its pages' keys are the panel's real ones
 (an unknown key reaches the model as none).
 
 ## `help_questions.json` (by hand, 2026-10-20)

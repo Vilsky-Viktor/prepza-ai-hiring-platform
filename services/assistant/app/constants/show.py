@@ -44,6 +44,14 @@ PAGE_NAMES = {
     "company": ("companies", "/companies/{company_id}", "name"),
     "guide": ("rounds", "/help/guides/{slug}", "title"),
 }
+# Reads of a setting, and the page it's changed on: an answer about one links there when the
+# model gave no link (show.implied_link).
+SETTING_PAGES = {
+    "get_auto_top_up": "top_up",
+    "get_slack": "slack",
+    "list_ats_connections": "integrations",
+    "get_api_settings": "api",
+}
 # The ids a link may be filled with.
 LINK_IDS = ("company_id", "interview_id", "candidate_id", "template_id", "provider", "slug")
 

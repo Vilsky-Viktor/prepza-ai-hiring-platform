@@ -17,7 +17,7 @@ from fastapi import HTTPException
 from app.config.settings import settings
 from app.constants.chat import HISTORY_CHARACTERS, Role
 from app.models.answers import Answer, Turn
-from app.services import chat
+from app.services import chat, show
 from app.services.registry import tools
 from app.services.tenancy import user_companies
 from app.storage import actions
@@ -81,7 +81,8 @@ async def ask(
 ) -> dict:
     """One message, on `page` (the context the panel sends), after `earlier` turns ({role,
     content, page}); the answer's text, tool calls (with why one was refused), the actions it
-    prepared for the user to confirm, shown rows, tokens, cost and seconds."""
+    prepared for the user to confirm, shown rows, the pages linked under it (by the model or by
+    code), tokens, cost and seconds."""
     uid = user_id(token)
     companies = await companies_of(uid)
     picked = uuid.UUID(company_id) if company_id else None
@@ -96,6 +97,9 @@ async def ask(
 
     try:
         await chat.converse(messages, turn, answer, lambda event: None)
+        # What goes under the answer once it's written, with the link code adds when the
+        # model gave none.
+        await show.finish(answer, turn, lambda event: None)
         error = None
     except Exception as failure:  # noqa: BLE001 - a failed turn is a result too
         error = type(failure).__name__
@@ -126,6 +130,7 @@ async def ask(
             }
             for block in answer.shown_blocks
         ],
+        "linked": [block["page"] for block in answer.blocks if block["kind"] == "link"],
         "error": error,
         "tokens": answer.tokens,
         "cost": cost(settings.assistant_model, usage),

@@ -577,6 +577,18 @@
    }
   },
   {
+   "id": "b04",
+   "kind": "buy",
+   "page": "billingA",
+   "message": "Turn on auto top-up.",
+   "expect": {
+    "link": [
+     "top_up",
+     "pricing"
+    ]
+   }
+  },
+  {
    "id": "n01",
    "kind": "connect",
    "page": "interviewsA",
@@ -629,6 +641,32 @@
        "url": "https://hooks.example.com/results"
       }
      }
+    ]
+   }
+  },
+  {
+   "id": "n05",
+   "kind": "connect",
+   "page": "integrationsA",
+   "message": "Connect Slack here.",
+   "expect": {
+    "link": [
+     "slack",
+     "integrations",
+     "guide"
+    ]
+   }
+  },
+  {
+   "id": "n06",
+   "kind": "connect",
+   "page": "integrationsA",
+   "message": "Set up the Workable integration for this company.",
+   "expect": {
+    "link": [
+     "ats",
+     "integrations",
+     "guide"
     ]
    }
   },

@@ -124,6 +124,7 @@ it or code added it. The baseline is the code before these changes on that set
 |---|---|---|---|---|---|---|
 | Before (`…_gaps-base.json`) | 248/290, 85.5% (81.0–89.1) | 31/40, 77.5% (62.5–87.7) | 23/40 | 141/155 | 80/80 | 23,400, 7.9 ± 0.6 s |
 | Missing values: an empty required text is refused with "ask the user for it", and the prompt says to ask for a missing value instead of calling the tool (`…_gap1.json`) | 252/290, 86.9% (82.5–90.3) | **38/40, 95.0% (83.5–98.6)** | 19/40 | 140/154 | 80/80 | 24,100, 9.2 ± 0.6 s |
+| Page links: the prompt names what's done only on a page (credits and auto top-up, an ATS, Slack, an API key) and says to link it; an answer that read one setting (auto top-up, Slack, ATS connections, the API) and shows no link gets that setting's page from code (`…_gap2.json`) | **269/290, 92.8% (89.2–95.2)** | 36/40 | **38/40, 95.0% (83.5–98.6)** | 140/155 | 80/80 | 20,200, 7.3 ± 0.4 s |
 
 Missing values: "Create a new company." prepared a card with an empty name in 4 of 5 before and
 none after (it asks for the name 5 of 5; 2 of them first call the tool, which now refuses the empty
@@ -135,3 +136,17 @@ Page context with the change: 115/129 correct, scope 114, tools 106, page checks
 (`assistant_page_context_gap1.json`); guides 60/60 correct, 59/60 read and linked, general 40/45
 (`assistant_guides_gap1.json`): within noise of before. The seconds differ by the API's speed (the
 same tokens; a page-context run shared the API with it).
+
+Page links: buying and auto top-up passed 15 of 15 (7 of 15 before), connecting 23 of 25 (16 of
+25; the two left, "Create an API key for us.", answered from no tool with a link written in the
+text, which the panel drops). The model showed all 38 links itself; the code's link is the floor
+for the turns that read the setting and still give none, which were 6 of the 17 misses before.
+Page context 112/129 correct, scope 116, tools 100, page checks 26/27
+(`assistant_page_context_gap2.json`); guides 58/60 correct, 56/60 read and linked, general 39/45
+(`assistant_guides_gap2.json`): within noise. The tools score fell by 6 to 8 on three questions
+that compare candidates across interviews ("Who is my best candidate overall?"), which ask which
+interview; the same three questions asked 5 times each on the code before both changes asked as
+often (right answers 1 of 15 there, 4 of 15 with the changes: `…_base-sub.json`, `…_gap2-sub.json`),
+so it comes from elsewhere (the stack changed under these runs), not from them. The fixture now
+takes a topic's question that isn't one of the templates' own (no "Right" option) by its first
+option, as such a question appeared in a template's topic during these runs.

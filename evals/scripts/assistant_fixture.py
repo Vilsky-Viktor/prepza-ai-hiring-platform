@@ -102,7 +102,9 @@ class Fixture:
         while not step["done"]:
             question = step["question"]
             options = question["options"]
-            pick = next(i for i, text in enumerate(options) if text.startswith("Right"))
+            # A question that isn't the templates' own (the topic can get others) has no "Right"
+            # option: the first one is taken.
+            pick = next((i for i, text in enumerate(options) if text.startswith("Right")), 0)
 
             if luck.random() >= right:
                 pick = (pick + 1) % len(options)
