@@ -34,7 +34,7 @@ A company's **brand** tab (owners and admins, like billing) sets how its candida
 
 ### Logo
 
-A company can upload its logo: PNG, JPEG or WebP, up to 500 KB (a WebP is kept as PNG, with its transparency, since classic Outlook shows no WebP in emails; Pillow in companies), on the brand tab or by clicking the logo beside its name (hovering an editable logo shows an edit icon in its middle). It is shown on:
+A company can upload its logo: PNG, JPEG or WebP, up to 500 KB (a WebP is kept as PNG, with its transparency, since classic Outlook shows no WebP in emails; Pillow in companies, off the request loop, and only up to 4,096 pixels a side, read from the file's header first, so a small file declaring a huge image can't use up the service's memory), on the brand tab or by clicking the logo beside its name (hovering an editable logo shows an edit icon in its middle). It is shown on:
 
 - invite and reminder emails, beside the title,
 - the invite page and the interview candidates take, above the title on the finished screen,

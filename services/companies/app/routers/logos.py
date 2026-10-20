@@ -1,3 +1,4 @@
+import asyncio
 import base64
 import binascii
 from uuid import UUID
@@ -41,11 +42,8 @@ async def set_logo(company_id: UUID, body: LogoIn, user: CurrentUser) -> LogoOut
 
     media_type = logo_type(content)
 
-    try:
-        stored = for_email(content, media_type) if media_type else None
-    except OSError:
-        # A WebP whose first bytes look right but that can't be read.
-        stored = None
+    # Decoding a WebP is CPU work, kept off the event loop.
+    stored = await asyncio.to_thread(for_email, content, media_type) if media_type else None
 
     if stored is None:
         raise HTTPException(

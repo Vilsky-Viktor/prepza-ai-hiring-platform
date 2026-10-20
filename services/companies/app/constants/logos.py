@@ -2,6 +2,9 @@
 # accepted: it can carry scripts.
 MAX_LOGO_BYTES = 500_000
 WEBP_TYPE = "image/webp"
+# A WebP logo is decoded (to keep it as PNG) only up to this many pixels a side: 500 KB of
+# WebP can declare an image far larger than an instance's memory.
+MAX_LOGO_SIDE = 4096
 # A WebP logo is kept as PNG, which every email client shows.
 PNG_TYPE = "image/png"
 LOGO_SIGNATURES = (
