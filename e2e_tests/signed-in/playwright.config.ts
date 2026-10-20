@@ -11,6 +11,8 @@ export default defineConfig({
   globalTeardown: "./teardown.ts",
   reporter: "list",
   workers: 1,
+  // A test.only left in fails the run instead of quietly skipping every other test.
+  forbidOnly: true,
   // Once more on failure: the local dev frontend can restart mid-test (see helpers/navigation.ts).
   retries: 1,
   fullyParallel: false,

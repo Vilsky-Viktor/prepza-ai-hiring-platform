@@ -6,8 +6,12 @@ import { defineConfig, devices } from "@playwright/test"
 export default defineConfig({
   testDir: ".",
   reporter: "list",
+  // A test.only left in fails the run instead of quietly skipping every other test.
+  forbidOnly: true,
   use: {
     baseURL: process.env.SITE_URL ?? "http://localhost:8090",
+    // What happened in a failed test, step by step: npx playwright show-trace <trace.zip>.
+    trace: "retain-on-failure",
     launchOptions: {
       args: process.env.HOST_RULES
         ? [`--host-resolver-rules=${process.env.HOST_RULES}`]
