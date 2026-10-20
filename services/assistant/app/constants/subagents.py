@@ -156,10 +156,10 @@ DELEGATE_DESCRIPTIONS = {
     ),
     "interviews": (
         "Hand an interview task to the interviews' agent: create an interview (from a job "
-        "description, an ATS job's text or a template), rename or delete one, its settings (pass mark, seconds a "
-        "question, its link, a topic's question count), its questions (read, regenerate, mark "
-        "wrong, candidates' reports) and its generation (status, review, retry, cancel). It "
-        "prepares the confirmation cards."
+        "description, a template, or an ATS job, whose text it reads itself), rename or delete "
+        "one, its settings (pass mark, seconds a question, its link, a topic's question "
+        "count), its questions (read, regenerate, mark wrong, candidates' reports) and its "
+        "generation (status, review, retry, cancel). It prepares the confirmation cards."
     ),
     "company": (
         "Hand a company or team task to the company's agent: create, rename or delete a "
@@ -199,7 +199,11 @@ DELEGATE_PARAMETERS = {
         },
         "interview_id": {
             "type": ["string", "null"],
-            "description": "The interview's id, from your tools' data or the page; null if none.",
+            "description": (
+                "The id of the interview this part is about, from your tools' data or the page; "
+                "null if none, or when it's about a candidate the user named without their "
+                "interview."
+            ),
         },
     },
     "required": ["task", "company_id", "interview_id"],

@@ -114,6 +114,7 @@ def child_answer(answer: Answer, span_id: str | None) -> Answer:
         results=answer.results,
         shown=answer.shown,
         shown_blocks=answer.shown_blocks,
+        given=answer.given,
         trace_id=answer.trace_id,
         span_id=span_id,
     )
@@ -130,15 +131,12 @@ def merge(answer: Answer, child: Answer) -> dict:
 
 
 def cards_only(replies: list[ToolMessage]) -> bool:
-    """Whether every call of a step only put cards in front of the user: an action prepared, or
-    a domain agent's cards with nothing to add. The agent stops there, as a card says it all
-    and the user's Confirm brings the next turn."""
+    """Whether every call of a domain agent's step prepared a card: its part is done, as a card
+    says it all, so it isn't asked again. The main agent always is (a step of delegates is never
+    cards only), as the request may have more parts to hand on."""
     contents = [json.loads(reply.content) for reply in replies]
 
-    return bool(contents) and all(
-        content.get("pending_confirmation") or (content.get("cards_shown") and not content["reply"])
-        for content in contents
-    )
+    return bool(contents) and all(content.get("pending_confirmation") for content in contents)
 
 
 def quiet(emit):

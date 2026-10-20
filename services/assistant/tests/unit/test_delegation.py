@@ -80,9 +80,9 @@ def offered(model, call: int) -> list[str]:
     return [tool["function"]["name"] for tool in tools]
 
 
-def test_a_domain_agent_prepares_the_card_and_the_turn_ends_with_it(model, prepared):
+def test_a_domain_agent_prepares_the_card_and_hands_back_without_more_text(model, prepared):
     events, answer = run(
-        model, calls(("delegate_candidates", BRIEF)), calls(("invite_candidate", INVITE))
+        model, calls(("delegate_candidates", BRIEF)), calls(("invite_candidate", INVITE)), text("")
     )
 
     # The main agent has delegates, the domain agent its own tools.
@@ -96,12 +96,15 @@ def test_a_domain_agent_prepares_the_card_and_the_turn_ends_with_it(model, prepa
     assert user.content == "Invite a@example.com to Data Analyst"
     assert "Invite a@example.com" in brief.content and "i-1" in brief.content
     assert prepared == [("invite_candidate", INVITE, "user-token")]
-    # Its card reached the panel unchanged, and says it all: nobody is asked again.
+    # Its card reached the panel unchanged and says it all: the domain agent isn't asked again,
+    # the main agent is, for any other part of the request.
     assert {"block": {"kind": "action", "action_id": "a-1"}} in events
-    assert len(model.prompts) == 2
+    assert len(model.prompts) == 3
+    [reply] = [m for m in model.prompts[2] if isinstance(m, ToolMessage)]
+    assert json.loads(reply.content) == {"reply": "", "cards_shown": 1}
     assert len(answer.pending) == 1
     # Each model call's tokens, the domain agent's too; the delegate kept without its brief.
-    assert (answer.input_tokens, answer.output_tokens) == (20, 10)
+    assert (answer.input_tokens, answer.output_tokens) == (30, 15)
     assert [(result.tool, result.arguments) for result in answer.results] == [
         ("delegate_candidates", {})
     ]
@@ -129,7 +132,7 @@ def test_the_main_agent_reads_a_domain_agents_reply_the_user_doesnt(model, prepa
 def test_independent_parts_go_to_their_domains_at_once(model, prepared):
     member = {"task": "Add b@example.com as a viewer", "company_id": COMPANY, "interview_id": None}
     scripts = {
-        "Rules": [calls(("delegate_candidates", BRIEF), ("delegate_company", member))],
+        "Rules": [calls(("delegate_candidates", BRIEF), ("delegate_company", member)), text("")],
         "You manage the candidates": [calls(("invite_candidate", INVITE))],
         "You manage a company's profile": [
             calls(("invite_member", {"email": "b@example.com", "role": "viewer"}))
