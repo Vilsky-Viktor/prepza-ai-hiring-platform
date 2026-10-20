@@ -262,9 +262,18 @@ In that run the "already off" check read the fixture's real state, so `b03` and 
 turn-off refused too and passed only because a refused call still counted as an action then; the
 eval now feeds the check the case's made-up state (the injected read of the same route) and counts
 a call refused for changing nothing like one refused for a missing value, the check working. `b05`
-passed 1 of 5 there, as its refused card still counted. A run with both eval fixes on the
-committed code alone (`…_cross3.json`) was still running when this was recorded. Some turns ran
-alongside another change's tool descriptions, then uncommitted ("Rename the Data Analyst
-interview …" prepared `rename_company` 2 of 5); nothing in this change touches renaming. Cost
-about $2.8.
+passed 1 of 5 there, as its refused card still counted. Some turns ran alongside another
+change's tool descriptions, then uncommitted ("Rename the Data Analyst interview …" prepared
+`rename_company` 2 of 5).
+
+The check run, with both eval fixes on the committed code plus this change alone (a copy of the
+service's code, without other changes in progress; `…_cross3.json`): task success 331/335, 98.8%
+(97.0–99.5), asked first 45/45, link 45/45, arguments 190/190, cross 30/30, pass^5 98.5%, 21,300
+tokens and 8.6 ± 0.7 s a turn. "Rename the Data Analyst interview …" renamed the interview 5 of 5,
+so the earlier company renames came from those uncommitted descriptions, which now go to AI apps
+only. The 4 failures are `b05`: in 4 of its 5 turns the auto top-up read answered 422, as another
+change then in progress required a country header on that route, so the check couldn't tell it
+was off and left the decision to the service (the card was prepared); in the fifth the read worked
+and the call was refused with "nothing to change", as it should. Cost about $3.7 in all.
+
 
