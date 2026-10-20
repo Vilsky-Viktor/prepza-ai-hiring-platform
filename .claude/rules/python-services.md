@@ -64,6 +64,7 @@ install it as an editable path dependency from the same commit: no releases, no 
   (`prepza_common.http`). Retry only idempotent calls, at one layer only, with exponential
   backoff and jitter and a cap on attempts; never two back-to-back retries. A side-effecting
   call carries an idempotency key.
+- Deadlines, overload answers and scaling limits: `.claude/rules/scalability.md`.
 - No circuit breakers or extra resilience layers (rule 4): Pub/Sub and Cloud Tasks retry with
   backoff and dead-letter, and synchronous calls have timeouts.
 - Calls to other services carry the request's `X-Cloud-Trace-Context`, so one user action can

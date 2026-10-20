@@ -55,6 +55,8 @@ Shared test rules are in `testing.md`; CLAUDE.md wins on any conflict.
 
 - k6 thresholds encode the SLOs (`http_req_failed`, `p(95)`) plus a threshold on `checks`
   (failed checks alone don't fail a run). Data made in `setup()` is deleted in `teardown()`.
+- Capacity runs use an open model (arrival rate, `RATE`), watching `dropped_iterations`; what
+  else load tests decide: `.claude/rules/scalability.md`.
 - Smoke is minimal and read-only, run after each deploy and before heavier runs.
 
 Research (local notes, git-ignored): `internal_docs/testing-best-practices.md`.

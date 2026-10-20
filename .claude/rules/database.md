@@ -83,5 +83,7 @@ runs older code on the newer schema.
   stays under `max_connections` minus a reserve; Terraform checks it. A change to a service's
   `max` instances or pool updates that budget.
 - `max_connections` fits the instance tier's memory; `pool_recycle` replaces old connections.
+- Large deletes and backfills go in batches; paging, replicas and partitioning:
+  `.claude/rules/scalability.md`.
 
 Research (local notes, git-ignored): `internal_docs/database-best-practices.md`.
