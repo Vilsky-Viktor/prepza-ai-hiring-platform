@@ -102,6 +102,8 @@ def test_allowing_gives_the_app_a_code_bound_to_the_user_once(client, kept):
     query = parse_qs(url.query)
     assert f"{url.scheme}://{url.netloc}{url.path}" == REQUEST["redirect_uri"]
     assert query["state"] == ["s1"]
+    # The answer names who gave it (RFC 9207).
+    assert query["iss"] == ["http://localhost:8090"]
     code = kept.codes[hashed(query["code"][0])]
     assert code["user_id"] == "ann" and code["client_id"] == "c1"
     assert code["expires_at"] > time.time()
@@ -131,7 +133,11 @@ def test_denying_tells_the_app_and_gives_no_code(client, kept):
     response = client.post("/connect/r1/deny")
 
     query = parse_qs(urlparse(response.json()["redirect_url"]).query)
-    assert query == {"error": ["access_denied"], "state": ["s1"]}
+    assert query == {
+        "error": ["access_denied"],
+        "state": ["s1"],
+        "iss": ["http://localhost:8090"],
+    }
     assert kept.codes == {}
 
 

@@ -16,6 +16,7 @@ def test_the_metadata_names_the_site_as_issuer_and_takes_apps_without_a_secret(c
     assert server["authorization_endpoint"] == f"{SITE}/authorize"
     assert "none" in server["token_endpoint_auth_methods_supported"]
     assert server["code_challenge_methods_supported"] == ["S256"]
+    assert server["authorization_response_iss_parameter_supported"] is True
     assert resource == client.get("/.well-known/oauth-protected-resource").json()
     assert resource["resource"] == f"{SITE}/mcp"
     assert resource["authorization_servers"] == [SITE]

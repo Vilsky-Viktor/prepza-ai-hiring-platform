@@ -67,6 +67,8 @@ def routes() -> list[Route]:
     metadata = build_metadata(issuer, None, registration, revocation)
     metadata.token_endpoint_auth_methods_supported = AUTH_METHODS
     metadata.revocation_endpoint_auth_methods_supported = AUTH_METHODS
+    # Every answer to /authorize names the issuer (services/connections.py, RFC 9207).
+    metadata.authorization_response_iss_parameter_supported = True
     found = []
 
     for route in create_auth_routes(Provider(), issuer, None, registration, revocation):

@@ -9,6 +9,7 @@ from prepza_common.tokens import new_token
 from prepza_common.user import User
 
 from app.constants.mcp import CODE_BYTES, CODE_SECONDS, NOT_FOUND, OTHER_BROWSER
+from app.helpers.oauth import auth_settings
 from app.integrations.redis import get_redis
 from app.models.oauth import McpGrant
 from app.storage import oauth, oauth_requests
@@ -40,7 +41,9 @@ async def approve(request_id: str, user: User, marked: str | None) -> str:
     kept = {**found, "user_id": user.uid, "expires_at": time.time() + CODE_SECONDS}
     await oauth_requests.save_code(code_hash, kept)
 
-    return construct_redirect_uri(found["redirect_uri"], code=code, state=found["state"])
+    return construct_redirect_uri(
+        found["redirect_uri"], code=code, state=found["state"], iss=issuer()
+    )
 
 
 async def deny(request_id: str) -> str:
@@ -48,8 +51,15 @@ async def deny(request_id: str) -> str:
     found = await taken(request_id)
 
     return construct_redirect_uri(
-        found["redirect_uri"], error="access_denied", state=found["state"]
+        found["redirect_uri"], error="access_denied", state=found["state"], iss=issuer()
     )
+
+
+def issuer() -> str:
+    """Who answers, in every answer to an app (RFC 9207): an app talking to several
+    authorization servers can tell this answer is prepza's (mix-up attacks)."""
+
+    return str(auth_settings().issuer_url)
 
 
 async def taken(request_id: str) -> dict:
