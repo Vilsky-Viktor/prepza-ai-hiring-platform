@@ -17,7 +17,7 @@ import os
 import time
 import uuid
 
-from common import DATASETS, RESULTS, cost, generation_models, load, save
+from common import DATASETS, RESULTS, cost, generation_models, load, run_record, save
 from langchain_core.callbacks import get_usage_metadata_callback
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.types import Command
@@ -133,7 +133,7 @@ async def main(domain_ids: list[str], label: str, template: bool) -> None:
     for domain_id in domain_ids:
         fill_calls.clear()
         items, run = await generate(domains[domain_id], fill_calls, template)
-        run["model"] = models
+        run = {**run_record(model=models), **run}
         run["oversample"] = questions_node.QUESTION_OVERSAMPLE
         save(RESULTS / f"test_{domain_id}_{label}.json", {"run": run, "items": items})
         print(

@@ -62,6 +62,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
 | Assistant page context: general correct with / without; page checks | 121/129 / 108/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-17 |
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
+| Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 100% / 3.38 ± 0.27 / 4.58 | 40 of `multi_questions.json` | 2026-10-20 |
 | Help chat: passed / made up / sign-in marker | 90.7% (80.1–96.0) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-20 |
 
 ## Datasets
@@ -95,6 +96,11 @@ MODEL=gpt-6-luna EFFORT=low evals/run.sh generation generate_tests.py --all --la
 
 # Another oversample, on full interviews; each result counts the fill-up calls it needed
 OVERSAMPLE=1.1 evals/run.sh generation-worker generate_tests.py python_backend --label os-1.1
+
+# Re-generation (a company replacing a question; the verifier replacing one it can't fix): the
+# service's own write of a new question and its options, on a fixed 40 of multi_questions.json
+evals/run.sh generation regenerate_test.py --label x
+evals/run.sh generation review_questions.py results/regenerated_x.json
 
 # Verifier settings, on the traps and the same questions with their real key
 evals/run.sh generation verify_test.py gpt-6.1-sol/low gpt-6.1-sol/medium
@@ -150,7 +156,8 @@ evals/run.sh rounds help_chat.py --label new-prompt          # --repeat 3, --onl
 | A full interview, `gpt-6-luna` low | about $0.05 at 100 questions a topic |
 | A verifier setting on 120 checks (`verify_test.py`) | about $0.11 on Sol |
 | Reviewing 40 questions (Sol judge, high) | about $0.20 (measured 2026-10-20: $0.88 for 240) |
-| The language set: build and review | about $0.25 |
+| The language set: build and review | about $0.50 |
+| Re-generating 40 questions and reviewing them | about $0.65 |
 | The help chat's test, 3 repeats | about $1.05 (nearly all the judge) |
 | The assistant's page-context test, 3 repeats | about $1.70 |
 | The assistant's guides test, 3 repeats | about $1.50 |

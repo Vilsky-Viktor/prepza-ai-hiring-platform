@@ -202,3 +202,10 @@ questions, scored 1.83.)
 (asked in Japanese how many attempts a candidate has, it invented "one"). $1.06 a run. The first
 run (63%) judged against expectations that listed optional details as required, and without the
 page's guide; both fixed before this baseline.
+
+**Re-generation** (`regenerate_test.py`, new: the service's `write` on a fixed 40 of
+`multi_questions.json`, 25 multi-answer, each told the other questions of its subtopic;
+`gpt-6.1-sol` low, judged at high): 40 of 40 written, all of their kind; keys 100% (91.2–100),
+clarity 5.00, relevance 4.58 ± 0.20, distractors 3.38 ± 0.27; $0.49 for 40 (a new question, its
+options, and a retry when one came out ambiguous), 121 s.
+
