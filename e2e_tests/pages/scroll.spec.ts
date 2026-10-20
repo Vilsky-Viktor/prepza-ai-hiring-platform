@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { scrollAtRest } from "./helpers/waits";
+
 // The home page's "how it works" link scrolls smoothly to its section, not in one jump.
 
 test("how it works scrolls smoothly", async ({ page }, info) => {
@@ -7,14 +9,19 @@ test("how it works scrolls smoothly", async ({ page }, info) => {
   await page.goto("/")
   await page.waitForLoadState("networkidle")
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("smooth")
+  // Every place the page scrolls through on its way.
+  await page.evaluate(() => {
+    const passed: number[] = []
+    Object.assign(window, { passed })
+    window.addEventListener("scroll", () => passed.push(window.scrollY))
+  })
   await page.locator('main a[href="#how"]').click()
-  // Midway through the animation the page is between the top and the section.
-  await page.waitForTimeout(120)
-  const midway = await page.evaluate(() => window.scrollY)
-  await page.waitForTimeout(1500)
-  const end = await page.evaluate(() => window.scrollY)
-  expect(midway).toBeGreaterThan(0)
-  expect(midway).toBeLessThan(end)
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0)
+  await scrollAtRest(page)
+  const passed = await page.evaluate(() => (window as unknown as { passed: number[] }).passed)
+  const end = passed[passed.length - 1]
+  // A jump lands at once; a smooth scroll passes places between the top and the section.
+  expect(passed.some((place) => place > 0 && place < end)).toBe(true)
 })
 
 // On a long page, "back to top" shows once it's scrolled down, and goes back to the top.

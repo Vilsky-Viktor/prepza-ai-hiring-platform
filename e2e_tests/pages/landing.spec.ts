@@ -113,13 +113,15 @@ for (const locale of LOCALES) {
 test("with reduced motion every picture is a still frame", async ({ page }) => {
   test.setTimeout(120_000);
   await page.emulateMedia({ reducedMotion: "reduce" });
+  // The page's timers run on Playwright's clock, so a second and a half passes at once.
+  await page.clock.install();
   await page.goto("/");
 
   for (const id of SECTIONS) {
     const section = page.locator(`#${id}`);
     await section.scrollIntoViewIfNeeded();
     const before = await section.innerHTML();
-    await page.waitForTimeout(1_500);
+    await page.clock.runFor(1_500);
     // Nothing changes, and nothing in sight moves.
     expect(await section.innerHTML(), id).toBe(before);
     const moving = await section.evaluate(

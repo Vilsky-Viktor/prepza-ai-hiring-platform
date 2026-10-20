@@ -1,4 +1,5 @@
 import { expect, test } from "./helpers/templates";
+import { loaded, settled } from "./helpers/waits";
 
 // How the public pages fit a phone: wider previews, a centered footer in one column, popups
 // across the screen, no keyboard hint on a touch screen. Desktop keeps its layout.
@@ -93,7 +94,7 @@ test("a dialog spans a phone's width", async ({ page }, info) => {
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
   // It finishes opening first.
-  await page.waitForTimeout(400);
+  await settled(dialog);
   const box = (await dialog.boundingBox())!;
 
   if (isPhone(info.project.name)) {
@@ -152,7 +153,7 @@ test("the home page's box and the prices span a phone's width", async ({
 test("the home page's box isn't focused on load", async ({ page }) => {
   test.setTimeout(120_000);
   await page.goto("/");
-  await page.waitForTimeout(1_000);
+  await loaded(page);
   await expect(page.locator("main textarea").first()).not.toBeFocused();
 });
 

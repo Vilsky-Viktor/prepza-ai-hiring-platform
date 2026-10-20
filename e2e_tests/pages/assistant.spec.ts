@@ -1,5 +1,7 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
 
+import { scrollAtRest } from "./helpers/waits";
+
 // Signed out, "ask agent" opens the assistant with FAQ answers only: the welcome for visitors,
 // an answer from the help chat (stubbed here: no OpenAI in tests), and a sign-in card when the
 // visitor asks to sign in. No history, company or voice.
@@ -69,7 +71,7 @@ test("a visitor asks the assistant about prepza", async ({ page }) => {
     await page.mouse.wheel(0, 600);
     await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
     await page.mouse.wheel(0, 600);
-    await page.waitForTimeout(300);
+    await scrollAtRest(page);
     expect(await page.evaluate(() => window.scrollY)).toBe(before);
     await page.mouse.move(100, 400);
     await page.mouse.wheel(0, 600);

@@ -1,5 +1,7 @@
 import { expect, type Page, test } from "@playwright/test";
 
+import { loaded } from "./helpers/waits";
+
 const KEPT = "prepza_ref";
 
 async function referral(page: Page) {
@@ -23,7 +25,7 @@ test("a referral link asks before it's kept in a cookie", async ({ page }) => {
 
   // Kept: not asked again.
   await page.goto("/?ref=e2eRef01");
-  await page.waitForTimeout(1_000);
+  await loaded(page);
   await expect(notice(page)).toHaveCount(0);
 });
 
@@ -34,6 +36,6 @@ test("turning a referral link down keeps nothing", async ({ page }) => {
 
   // A code that doesn't read right isn't offered.
   await page.goto("/?ref=bad!");
-  await page.waitForTimeout(1_000);
+  await loaded(page);
   await expect(notice(page)).toHaveCount(0);
 });

@@ -22,8 +22,10 @@ test("the error page reports what the user was doing", async ({ page }) => {
   const send = dialog.locator('button[type="submit"]');
   await expect(send).toBeDisabled();
   await dialog.getByRole("textbox").fill("Opened my invite from the email.");
-  await page.waitForTimeout(400);
-  await page.screenshot({ path: test.info().outputPath("report-dialog.png") });
+  await page.screenshot({
+    path: test.info().outputPath("report-dialog.png"),
+    animations: "disabled",
+  });
   await send.click();
   // Sent: a success notice, and the dialog closes.
   await expect(page.locator('[data-sonner-toast][data-type="success"]')).toBeVisible();
