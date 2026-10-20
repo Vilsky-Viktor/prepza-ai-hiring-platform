@@ -26,6 +26,10 @@ the local site so much that the user can't review it meanwhile.
 
 Run a unit test's whole suite, not one file: fakes in other files often depend on what changed.
 
+A prompt, model, effort, schema or output-shaping change also runs its eval (the `run-eval`
+skill). Mechanics of browser tests (fixtures, locators, waits, retries):
+`.claude/rules/testing.md`.
+
 ## What a test checks
 
 The line (CLAUDE.md rule 8): does the text depend on what happened, or would it read the same

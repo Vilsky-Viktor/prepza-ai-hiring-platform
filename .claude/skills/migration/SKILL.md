@@ -39,7 +39,18 @@ Each service with a database has its own Alembic history in `services/<svc>/migr
 
 3. Keep it additive where you can: a rollback redeploys older code on the newer schema
    (`infra/README.md`, Rolling back), so don't drop or rename what running code still reads.
-4. Change the model in `app/models/` to match.
+4. Follow `.claude/rules/database.md`, Migrations without downtime: an index on an existing
+   table is built concurrently inside `autocommit_block()`; a new foreign key or `CHECK` on one
+   is added `NOT VALID` and validated in a later migration; no column type changes in place;
+   a short `lock_timeout`.
+
+   ```python
+   with op.get_context().autocommit_block():
+       op.create_index("ix_t_col", "t", ["col"], postgresql_concurrently=True)
+   ```
+
+5. Change the model in `app/models/` to match: column types, `server_default`, `ondelete` and an
+   index on every new foreign key as the database rule says.
 
 ## Run and check
 

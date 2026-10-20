@@ -28,8 +28,12 @@ has it translated, reuse those translations for the frontend key rather than tra
 - Reuse the words each file already uses for the same thing ("invite", "interview", "company",
   "candidate"): read neighbouring keys of the same file first.
 - Keep each file's form of address (informal or formal) as its other texts do.
-- Keep ICU plurals valid: the same `{count, plural, ...}` selector, the plural categories the
-  language's file already uses for that key, and `#` for the number.
+- Keep ICU plurals valid: the same `{count, plural, ...}` selector, every CLDR category the
+  language needs (ru, uk, pl `one/few/many/other`; ar all six; he `two`; the list is in
+  `.claude/rules/content-i18n.md`), and `#` for the number; a count outside a plural is
+  `{count, number}`.
+- Punctuation and spacing stay inside each language's text (ja/zh "。", hi "।"); never rely on
+  code to join sentences.
 - Percent signs and numbers go where the language puts them ("%85" in Turkish, "85 %" in French).
 - Watch for words with a second meaning (Persian «شرکت» is both "company" and "take part").
 
