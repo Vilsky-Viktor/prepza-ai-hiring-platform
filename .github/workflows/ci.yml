@@ -61,6 +61,17 @@ jobs:
       - run: uvx ruff@${{ env.RUFF_VERSION }} check services packages evals
       - run: uvx ruff@${{ env.RUFF_VERSION }} format --check services packages evals
 
+  # Rule 2: no hand-written file over 300 lines.
+  size:
+    name: file size
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: scripts/check_file_size.sh
+
   # Terraform's format and configuration, without credentials or state (no backend), so it runs
   # on pull requests too. It always reports; unchanged, it skips its steps.
   terraform:
