@@ -20,6 +20,7 @@ from app.constants.actions_flow import (
 )
 from app.constants.chat import SESSION_EXPIRED
 from app.helpers.arguments import fill_path, problems
+from app.helpers.untrusted_text import without_instructions
 from app.integrations import services
 from app.integrations.redis import get_redis
 from app.models.answers import Turn
@@ -141,10 +142,24 @@ async def count_action(redis, user_id: str, company_id: object | None = None) ->
     await hit(redis, key, "ACTIONS_PER_USER_HOUR", company_id=company_id, user_id=user_id)
 
 
+def cleaned(tool: Tool, arguments: dict) -> dict:
+    """An action's texts (its body's fields) without what data may hide in them to steer the
+    assistant, which may have copied them from an ATS job or a pasted description: hidden
+    content and parts addressed to an AI. The user's visible words stay."""
+    return {
+        name: without_instructions(value)
+        if name in tool.body_params and isinstance(value, str)
+        else value
+        for name, value in arguments.items()
+    }
+
+
 async def prepare(tool: Tool, arguments: dict, turn: Turn) -> ToolResult:
-    """What the model asked for, kept (in Redis, for a short while) for the user to confirm: bound
-    to them, the conversation and the company. Nothing runs yet; what it's about is read with
-    the user's token to name it on the card, and must be theirs to see."""
+    """What the model asked for, its texts cleaned, kept (in Redis, for a short while) for the
+    user to confirm: bound to them, the conversation and the company. Nothing runs yet; what
+    it's about is read with the user's token to name it on the card, and must be theirs to
+    see."""
+    arguments = cleaned(tool, arguments)
     found = problems(arguments, tool.parameters)
 
     if found:

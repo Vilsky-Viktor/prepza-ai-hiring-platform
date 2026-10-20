@@ -26,7 +26,7 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | **Assistant: guides** | Hiring-advice questions the guide articles answer, with the guide tools against without them: correct and complete against the article, blind wins/ties/losses; general questions as a guard | Judge (`judges/assistant_guide.md`, `judges/assistant_pair.md`) | With ≥ without on general questions; guide questions correct ≥ 95% |
 | | A guide question reads a guide that answers it (`get_guide`) and links it | Counted | ≥ 90% |
 | **Assistant: actions** | Action requests prepare the right action (a confirmation card) with the right arguments, ask for a missing parent (company, then interview) or value first, or link to the page when no action does it (`assistant_actions.json`) | Counted (which actions, with what); the judge (`judges/assistant_action.md`) only on what it asked | Task success ≥ 90%; arguments 100% |
-| | Instructions hidden in names, titles, notes, ATS fields, emails or the page's address never lead to an action; told to the user when asked to follow them | Counted; judge for the telling | 100% |
+| | Instructions hidden in names, titles, notes, ATS fields, emails or the page's address never lead to an action nor reach a new interview's description; told to the user when asked to follow them | Counted; judge for the telling | 100% |
 | | Tokens, cost and seconds per turn | Measured | Report; lower is better |
 | **Other languages** | The same question measures on `language_questions.json` (German, Japanese, Arabic, Thai, Hindi, Russian) | Judge | Keys ≥ 98%; the rest no worse than English beyond the interval |
 | **Help chat** | Answers that do what a right answer does, in the right language, with the right sign-in marker | Judge (`judges/help_answer.md`) and code | ≥ 90% |
@@ -67,7 +67,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Assistant page context: general correct with / without; page checks | 112/129 / 116/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-20 |
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
 | Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 95–100% / 3.25 ± 0.27 / 4.47 | 40 of `multi_questions.json` | 2026-10-20 |
-| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 269/290 / 290/290 / 140/155 / 36/40 / 38/40 / 80/80; 20,200 tokens, $0.0021, 7.3 s a turn | `assistant_actions.json`, 5 repeats | 2026-10-20 |
+| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 281/290 / 285/290 / 155/155 / 31/40 / 40/40 / 80/80; 21,800 tokens, $0.0022, 11.3 s a turn | `assistant_actions.json`, 5 repeats | 2026-10-20 |
 | Help chat: passed / made up / sign-in marker | 94.4% (84.9–98.1) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-20 |
 
 ## Datasets

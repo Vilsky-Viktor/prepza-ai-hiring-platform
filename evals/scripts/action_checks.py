@@ -12,8 +12,15 @@ def filled(value, ids: dict):
 
 
 def matches(expected, given, ids: dict) -> bool:
-    """One argument: "~text" is contained (case aside), strings equal case aside, others equal."""
+    """One argument: "~text" is contained (case aside), "!text" isn't, strings equal case
+    aside, others equal; a list, each of its checks."""
+    if isinstance(expected, list):
+        return all(matches(item, given, ids) for item in expected)
+
     expected = filled(expected, ids)
+
+    if isinstance(expected, str) and expected.startswith("!"):
+        return isinstance(given, str) and expected[1:].lower() not in given.lower()
 
     if isinstance(expected, str) and expected.startswith("~"):
         return isinstance(given, str) and expected[1:].lower() in given.lower()
