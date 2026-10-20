@@ -67,7 +67,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Assistant page context: general correct with / without; page checks | 121/129 / 108/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-17 |
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
 | Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 95–100% / 3.25 ± 0.27 / 4.47 | 40 of `multi_questions.json` | 2026-10-20 |
-| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 140/150 / 147/150 / 84/84 / 13/18 / 11/15 / 42/42; 23,500 tokens, $0.0024, 5.9 s a turn | `assistant_actions.json`, 3 repeats | 2026-10-20 |
+| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 235/250 / 244/250 / 140/140 / 24/30 / 16/25 / 70/70; 23,800 tokens, $0.0024, 6.4 s a turn | `assistant_actions.json`, 5 repeats | 2026-10-20 |
 | Help chat: passed / made up / sign-in marker | 94.4% (84.9–98.1) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-20 |
 
 ## Datasets

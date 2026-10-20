@@ -39,7 +39,7 @@
    "candidate": "ben"
   },
   "membersA": {
-   "key": "members",
+   "key": "team",
    "path": "/companies/{company}/members",
    "company": "company"
   },

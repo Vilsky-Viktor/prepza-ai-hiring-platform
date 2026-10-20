@@ -15,6 +15,8 @@ from pathlib import Path
 EVALS = Path(__file__).resolve().parents[1]
 DATASETS = EVALS / "datasets"
 SERVICES = EVALS.parent / "services"
+# The keys of the pages the panel opens on (an unknown one reaches the model as no key).
+PAGE_KEYS = EVALS.parent / "packages/common/src/prepza_common/page_keys.py"
 QUESTION_SETS = ("questions.json", "multi_questions.json", "language_questions.json")
 TRAP_SETS = {"key_traps.json": "questions.json", "multi_key_traps.json": "multi_questions.json"}
 # Two questions of one subtopic this alike, options included, are the same question reworded.
@@ -129,6 +131,13 @@ def check_actions(problems: list[str]) -> list[str]:
 
         if expect is None or set(expect) - {"actions", "ask", "link", "warn"}:
             problems.append(f"assistant_actions: {case['id']} has no known expectation")
+
+    known = set(re.findall(r'"(\w+)"', PAGE_KEYS.read_text()))
+    problems += [
+        f"assistant_actions: page {name} has an unknown key {page['key']!r}"
+        for name, page in data["pages"].items()
+        if page["key"] not in known
+    ]
 
     for trap in data["judge_traps"]:
         if trap["case"] not in ids:
