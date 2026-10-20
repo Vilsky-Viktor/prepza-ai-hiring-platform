@@ -14,6 +14,7 @@ import { TOKEN_COOKIE } from "@/constants/auth"
 import { LIST_BOX, PAGE_SIZE } from "@/constants/lists"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
+import { companyHeaderProps } from "@/lib/company-header"
 import type { Catalog, CompanyCredits } from "@/types/billing"
 import type {
   Company,
@@ -82,30 +83,16 @@ export default async function BillingPage({
     <main className="mx-auto max-w-5xl space-y-12 px-6 py-12">
       <RefreshOnFocus />
       <CompanyHeader
-        suspended={company.suspended}
+        {...companyHeaderProps(company)}
         companyId={companyId}
-        name={company.name}
-        logoUrl={company.logo_url ?? null}
-        verifiedDomain={company.verified_domain ?? null}
-        websiteDomain={company.website_domain ?? null}
-        verificationStatus={company.verification_status}
-        declineReason={company.decline_reason ?? null}
         current="billing"
-        canEdit={company.can_edit}
-        canSeeActions={company.can_see_actions}
       />
-      {credits && catalog && (
-        <div className={LIST_BOX}>
-          <BalanceRow
-            catalog={catalog}
-            name={company.name}
-            available={credits.available}
-            reserved={credits.reserved}
-            low={credits.low}
-            companyId={companyId}
-          />
-        </div>
-      )}
+      <Balance
+        credits={credits}
+        catalog={catalog}
+        name={company.name}
+        companyId={companyId}
+      />
       <div className="space-y-6">
         <TabNav
           items={[
@@ -121,22 +108,67 @@ export default async function BillingPage({
           current={tab}
         />
         {tab === "reserved" ? (
-          <div className="space-y-4">
-            <InfoCard className="max-sm:-mx-6 max-sm:rounded-none">
-              {t("reservedNote")}
-            </InfoCard>
-            {reserved && reserved.length > 0 ? (
-              <ReservedList companyId={companyId} initial={reserved} />
-            ) : (
-              <p className="py-16 text-center text-muted-foreground">
-                {t("reservedEmpty")}
-              </p>
-            )}
-          </div>
+          <ReservedTab companyId={companyId} reserved={reserved} />
         ) : (
           <CreditHistory companyId={companyId} initial={history ?? []} />
         )}
       </div>
     </main>
+  )
+}
+
+/** The candidates holding credits, with a note on why; a line when there are none. */
+async function ReservedTab({
+  companyId,
+  reserved,
+}: {
+  companyId: string
+  reserved: CreditCandidate[] | null
+}) {
+  const t = await getTranslations("companyBilling")
+
+  return (
+    <div className="space-y-4">
+      <InfoCard className="max-sm:-mx-6 max-sm:rounded-none">
+        {t("reservedNote")}
+      </InfoCard>
+      {reserved && reserved.length > 0 ? (
+        <ReservedList companyId={companyId} initial={reserved} />
+      ) : (
+        <p className="py-16 text-center text-muted-foreground">
+          {t("reservedEmpty")}
+        </p>
+      )}
+    </div>
+  )
+}
+
+/** The balance with its top-up, once both the credits and the prices could be read. */
+function Balance({
+  credits,
+  catalog,
+  name,
+  companyId,
+}: {
+  credits: CompanyCredits | null
+  catalog: Catalog | null
+  name: string
+  companyId: string
+}) {
+  if (!credits || !catalog) {
+    return null
+  }
+
+  return (
+    <div className={LIST_BOX}>
+      <BalanceRow
+        catalog={catalog}
+        name={name}
+        available={credits.available}
+        reserved={credits.reserved}
+        low={credits.low}
+        companyId={companyId}
+      />
+    </div>
   )
 }

@@ -12,6 +12,7 @@ import { ATS_PROVIDERS } from "@/constants/ats"
 import { TOKEN_COOKIE } from "@/constants/auth"
 import { optionalFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
+import { companyHeaderProps } from "@/lib/company-header"
 import type { ApiSettings } from "@/types/api-access"
 import type { AtsIntegrations, Company } from "@/types/company"
 import type { AiConnection } from "@/types/connections"
@@ -62,17 +63,9 @@ export default async function IntegrationsPage({
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
       <CompanyHeader
-        suspended={company.suspended}
+        {...companyHeaderProps(company)}
         companyId={companyId}
-        name={company.name}
-        logoUrl={company.logo_url ?? null}
-        verifiedDomain={company.verified_domain ?? null}
-        websiteDomain={company.website_domain ?? null}
-        verificationStatus={company.verification_status}
-        declineReason={company.decline_reason ?? null}
         current="integrations"
-        canEdit={company.can_edit}
-        canSeeActions={company.can_see_actions}
       />
       {slack && (
         <section className="space-y-6">

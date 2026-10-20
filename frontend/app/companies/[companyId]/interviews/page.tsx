@@ -12,6 +12,7 @@ import { TOKEN_COOKIE } from "@/constants/auth"
 import { PAGE_SIZE } from "@/constants/lists"
 import { optionalFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
+import { companyHeaderProps } from "@/lib/company-header"
 import type { Catalog, CompanyCredits } from "@/types/billing"
 import type { Company, Interview } from "@/types/company"
 
@@ -55,17 +56,9 @@ export default async function InterviewsPage({
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
       <CompanyHeader
-        suspended={company.suspended}
+        {...companyHeaderProps(company)}
         companyId={companyId}
-        name={company.name}
-        logoUrl={company.logo_url ?? null}
-        verifiedDomain={company.verified_domain ?? null}
-        websiteDomain={company.website_domain ?? null}
-        verificationStatus={company.verification_status}
-        declineReason={company.decline_reason ?? null}
         current="interviews"
-        canEdit={company.can_edit}
-        canSeeActions={company.can_see_actions}
         action={
           <div className="flex shrink-0 items-center gap-6 max-sm:flex-col max-sm:items-stretch max-sm:gap-3">
             {credits != null && catalog && (

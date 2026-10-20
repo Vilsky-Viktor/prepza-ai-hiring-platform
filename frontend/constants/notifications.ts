@@ -57,3 +57,20 @@ export const NOTIFICATION_LOOKS: Record<
 export const COMPANIES_CHANGED = "prepza:companies-changed"
 // A closed legal banner stays closed in this browser, for that document's version.
 export const LEGAL_BANNER_KEY = "prepza:legal-banner:{document}:{version}"
+
+/** A notification's message values the service left out. "none" is what the messages'
+ * selects read as "leave it out"; `role` is a member's ("admin" or "viewer"); `ats` is the ATS
+ * a candidate came from, which older notifications don't name; `integration` is what stopped
+ * working ("slack", or an ATS); `url` is a web hook's address. */
+export const NOTIFICATION_DEFAULTS = {
+  title: "none",
+  topic: "",
+  grade: "none",
+  name: "",
+  domain: "",
+  reason: "none",
+  role: "",
+  ats: "ATS",
+  integration: "ats",
+  url: "",
+}

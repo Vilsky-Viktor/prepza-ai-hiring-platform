@@ -4,7 +4,6 @@ import { getLocale, getTranslations } from "next-intl/server"
 import { InputAction } from "@/components/input-action"
 import {
   ALL_LANGUAGES,
-  type TemplateChoice,
   TemplateFilterBar,
 } from "@/components/templates/template-filters"
 import { TemplateList } from "@/components/templates/template-list"
@@ -12,6 +11,7 @@ import { DEFAULT_LOCALE } from "@/constants/i18n"
 import { MAX_TITLE_LENGTH } from "@/constants/limits"
 import { PAGE_SIZE, PUBLIC_TEMPLATES_PATH } from "@/constants/lists"
 import { publicFetch, serverFetch } from "@/lib/server-api"
+import { templateChoice, templateQuery } from "@/lib/templates"
 import type { TemplateFilters, TemplateSummary } from "@/types/superadmin"
 
 export type TemplateSearchParams = {
@@ -59,26 +59,8 @@ export async function TemplateBrowser({
     asked.length > 0 || allLanguages
       ? asked
       : [await getLocale(), DEFAULT_LOCALE]
-  // Only what the API offers; anything else in the address is ignored.
-  const choice: TemplateChoice = {
-    q: params.q?.trim() ?? "",
-    level: filters.levels.find((level) => level === params.level) ?? null,
-    languages: asked.includes(ALL_LANGUAGES)
-      ? []
-      : filters.languages.filter((code) => preferred.includes(code)),
-  }
-  const query = new URLSearchParams()
-
-  if (choice.q) {
-    query.set("q", choice.q)
-  }
-
-  if (choice.level) {
-    query.set("level", choice.level)
-  }
-
-  choice.languages.forEach((language) => query.append("language", language))
-
+  const choice = templateChoice(params, asked, preferred, filters)
+  const query = templateQuery(choice)
   const path = `${listPath}?${query}`
   const narrowed = Boolean(choice.q || choice.level || choice.languages.length)
   // The first page renders on the server; the rest load as the user scrolls.

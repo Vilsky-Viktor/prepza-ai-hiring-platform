@@ -2,6 +2,7 @@ import { InfoIcon, LinkIcon } from "lucide-react"
 import { notFound } from "next/navigation"
 import { getLocale, getTranslations } from "next-intl/server"
 import { cn } from "cn"
+import type { ComponentProps } from "react"
 
 import { BackLink } from "@/components/back-link"
 import { CopyField } from "@/components/copy-field"
@@ -39,7 +40,6 @@ export default async function ScorecardPage({
   }
 
   const { companyId, id, inviteId } = await params
-  const reportT = await getTranslations("report")
   const locale = await getLocale()
   const t = await getTranslations("candidates")
   const statuses = await getTranslations("candidateStatus")
@@ -129,87 +129,21 @@ export default async function ScorecardPage({
         />
         {/* On phones the actions take their own line under the name, centered. */}
         {!deleted && (
-          <div className="flex items-center gap-3 max-sm:basis-full max-sm:justify-center">
-            <ExtraTime
-              interviewId={id}
-              inviteId={inviteId}
-              current={card.extra_time}
-              options={card.extra_time_options}
-            />
-            {card.can_edit && (
-              <CandidateActions
-                interviewId={id}
-                inviteId={inviteId}
-                email={card.email}
-                canResend={card.can_resend ?? false}
-                revokable={card.revokable ?? false}
-                backHref={`/companies/${companyId}/interviews/${id}?tab=candidates`}
-              />
-            )}
-            {reportable && (
-              <CandidateReportActions
-                interviewId={id}
-                inviteId={inviteId}
-                report={report}
-              />
-            )}
-          </div>
+          <ScorecardActions
+            card={card}
+            companyId={companyId}
+            interviewId={id}
+            inviteId={inviteId}
+            report={reportable ? report : null}
+          />
         )}
       </div>
 
       {/* The invite link until the interview is finished, in case the email didn't reach the
           candidate or they lost it. */}
-      {card.invite_token && (
-        <div className="mx-auto max-w-xl space-y-4 rounded-2xl border p-5 max-sm:-mx-6 max-sm:rounded-none max-sm:border-x-0">
-          <div className="flex items-center gap-4 text-base">
-            <LinkIcon aria-hidden className="size-7 shrink-0 text-primary" />
-            <div className="min-w-0 flex-1 space-y-1">
-              <p className="font-medium lowercase">{t("inviteLinkTitle")}</p>
-              <p className="text-sm text-muted-foreground">
-                {t("inviteLinkHint")}
-              </p>
-            </div>
-          </div>
-          <CopyField path={`/invite/${card.invite_token}`} />
-        </div>
-      )}
+      <InviteLink token={card.invite_token} />
 
-      {/* The overall grade, like the practice result's, with whether it passed. */}
-      {card.sessions.length > 0 && (
-        <GradeCard>
-          <GradeBlock
-            value={formatPercent(card.grade, locale)}
-            label={t("grade")}
-            tone={
-              card.passed == null
-                ? "text-muted-foreground"
-                : gradeTone(card.passed)
-            }
-          />
-          <div className="flex items-center px-8 py-6 text-base">
-            <PassStatus passed={card.passed} passMark={card.pass_mark} />
-          </div>
-        </GradeCard>
-      )}
-
-      {/* The score supports a decision people make; in the gray info card, like the practice
-          test page's. On phones it spans the screen, with square corners. */}
-      {card.sessions.length > 0 && (
-        <div
-          data-testid="human-review"
-          className="flex items-center gap-3 rounded-2xl border bg-muted px-5 py-4 text-sm text-muted-foreground max-sm:-mx-6 max-sm:rounded-none max-sm:border-x-0 max-sm:px-6"
-        >
-          <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
-          <p>
-            {reportT("humanReview")}
-            {/* Signals are the browser's report: said so wherever they show. */}
-            {card.sessions.some(
-              (session) =>
-                session.tab_leaves || session.copies || session.fast_answers
-            ) && ` ${reportT("signalsNote")}`}
-          </p>
-        </div>
-      )}
+      {card.sessions.length > 0 && <ScorecardSummary card={card} />}
 
       {card.sessions.length === 0 && (
         <p className="py-16 text-center text-muted-foreground">
@@ -240,5 +174,115 @@ export default async function ScorecardPage({
         )
       })}
     </main>
+  )
+}
+
+/** Beside the email and status: extra time, and for editors the candidate's actions; with a
+ * report, its download and sharing. On phones they take their own line under the name,
+ * centered. */
+function ScorecardActions({
+  card,
+  companyId,
+  interviewId,
+  inviteId,
+  report,
+}: {
+  card: Scorecard
+  companyId: string
+  interviewId: string
+  inviteId: string
+  report: ComponentProps<typeof CandidateReportActions>["report"] | null
+}) {
+  return (
+    <div className="flex items-center gap-3 max-sm:basis-full max-sm:justify-center">
+      <ExtraTime
+        interviewId={interviewId}
+        inviteId={inviteId}
+        current={card.extra_time}
+        options={card.extra_time_options}
+      />
+      {card.can_edit && (
+        <CandidateActions
+          interviewId={interviewId}
+          inviteId={inviteId}
+          email={card.email}
+          canResend={card.can_resend ?? false}
+          revokable={card.revokable ?? false}
+          backHref={`/companies/${companyId}/interviews/${interviewId}?tab=candidates`}
+        />
+      )}
+      {report && (
+        <CandidateReportActions
+          interviewId={interviewId}
+          inviteId={inviteId}
+          report={report}
+        />
+      )}
+    </div>
+  )
+}
+
+/** The invite link until the interview is finished, in case the email didn't reach the
+ * candidate or they lost it. */
+async function InviteLink({ token }: { token?: string | null }) {
+  const t = await getTranslations("candidates")
+
+  if (!token) {
+    return null
+  }
+
+  return (
+    <div className="mx-auto max-w-xl space-y-4 rounded-2xl border p-5 max-sm:-mx-6 max-sm:rounded-none max-sm:border-x-0">
+      <div className="flex items-center gap-4 text-base">
+        <LinkIcon aria-hidden className="size-7 shrink-0 text-primary" />
+        <div className="min-w-0 flex-1 space-y-1">
+          <p className="font-medium lowercase">{t("inviteLinkTitle")}</p>
+          <p className="text-sm text-muted-foreground">{t("inviteLinkHint")}</p>
+        </div>
+      </div>
+      <CopyField path={`/invite/${token}`} />
+    </div>
+  )
+}
+
+/** A started candidate's overall grade, like the practice result's, with whether it passed;
+ * then that the score supports a decision people make, in the gray info card, like the
+ * practice test page's (on phones it spans the screen, with square corners). Signals are the
+ * browser's report: said so wherever they show. */
+async function ScorecardSummary({ card }: { card: Scorecard }) {
+  const t = await getTranslations("candidates")
+  const reportT = await getTranslations("report")
+  const locale = await getLocale()
+  const signals = card.sessions.some(
+    (session) => session.tab_leaves || session.copies || session.fast_answers
+  )
+
+  return (
+    <>
+      <GradeCard>
+        <GradeBlock
+          value={formatPercent(card.grade, locale)}
+          label={t("grade")}
+          tone={
+            card.passed == null
+              ? "text-muted-foreground"
+              : gradeTone(card.passed)
+          }
+        />
+        <div className="flex items-center px-8 py-6 text-base">
+          <PassStatus passed={card.passed} passMark={card.pass_mark} />
+        </div>
+      </GradeCard>
+      <div
+        data-testid="human-review"
+        className="flex items-center gap-3 rounded-2xl border bg-muted px-5 py-4 text-sm text-muted-foreground max-sm:-mx-6 max-sm:rounded-none max-sm:border-x-0 max-sm:px-6"
+      >
+        <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
+        <p>
+          {reportT("humanReview")}
+          {signals && ` ${reportT("signalsNote")}`}
+        </p>
+      </div>
+    </>
   )
 }

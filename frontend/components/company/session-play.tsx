@@ -2,22 +2,15 @@ import { CornerRightDownIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { type ReactNode, useEffect, useRef, useState } from "react"
 
+import {
+  FinishDialog,
+  SessionFooter,
+} from "@/components/company/session-finish"
 import { SessionHeader } from "@/components/company/session-header"
 import { QuestionActions } from "@/components/questions/question-actions"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { QuestionText } from "@/components/questions/question-text"
 import { ChoiceOptions } from "@/components/session/choice-options"
-import { RoundFooter } from "@/components/session/round-footer"
-import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
 import { useIntegritySignals } from "@/hooks/use-integrity-signals"
 import type { InterviewSession } from "@/types/company"
 import type { AnswerInput, NextQuestion } from "@/types/round"
@@ -52,8 +45,6 @@ export function SessionPlay({
 }: SessionPlayProps) {
   const t = useTranslations("session")
   const locale = useLocale()
-  const rounds = useTranslations("rounds")
-  const common = useTranslations("common")
   const [confirmFinish, setConfirmFinish] = useState(false)
   // The question whose clock ran out, announced to screen readers; the screen moves on quietly.
   const [timedOut, setTimedOut] = useState<string | null>(null)
@@ -185,75 +176,23 @@ export function SessionPlay({
           )}
         </div>
       )}
-      <RoundFooter>
-        <Button
-          variant="ghost"
-          className="h-12 px-6 text-base"
-          disabled={finishing || sending}
-          onClick={() => setConfirmFinish(true)}
-          data-testid="finish-interview"
-        >
-          {finishing ? rounds("finishing") : t("finish")}
-        </Button>
-        <div className="flex items-center gap-3">
-          {chosen.length > 0 && (
-            // Focus stays on the pick, so it can still be changed; Next is the following stop.
-            <Button
-              className="h-12 px-6 text-base"
-              disabled={sending}
-              onClick={sendAndAdvance}
-              data-testid="next-question"
-            >
-              {rounds("next")}
-            </Button>
-          )}
-        </div>
-      </RoundFooter>
-      <Dialog
+      <SessionFooter
+        finishing={finishing}
+        sending={sending}
+        picked={chosen.length > 0}
+        onFinish={() => setConfirmFinish(true)}
+        onNext={sendAndAdvance}
+      />
+      <FinishDialog
         open={confirmFinish}
-        onOpenChange={(open) => {
-          if (!open && !finishing) {
-            setConfirmFinish(false)
-          }
-        }}
-      >
-        <DialogContent showCloseButton={false}>
-          <DialogHeader className="gap-4">
-            <DialogTitle className="no-dot mb-2">
-              {t("finishTitle")}
-            </DialogTitle>
-            <DialogDescription>
-              {section.count > 1
-                ? t("endsAll", { count: section.count })
-                : t("endsOne")}
-              {!allAnswered &&
-                ` ${t("unscored", { count: progress.total - answered })}`}
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <DialogClose
-              render={
-                <Button
-                  variant="outline"
-                  className="h-10 px-5 text-base"
-                  disabled={finishing}
-                />
-              }
-            >
-              {common("cancel")}
-            </DialogClose>
-            <Button
-              className="h-10 px-5 text-base"
-              disabled={finishing}
-              // The pick on screen is saved first, so it counts; finishing goes ahead even when
-              // it can't be saved.
-              onClick={() => sendThen(onFinish, true)}
-            >
-              {finishing ? rounds("finishing") : rounds("finish")}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+        finishing={finishing}
+        sections={section.count}
+        unanswered={allAnswered ? null : progress.total - answered}
+        onClose={() => setConfirmFinish(false)}
+        // The pick on screen is saved first, so it counts; finishing goes ahead even when it
+        // can't be saved.
+        onFinish={() => sendThen(onFinish, true)}
+      />
     </div>
   )
 }

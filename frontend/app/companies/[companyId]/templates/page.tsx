@@ -14,6 +14,7 @@ import {
 import { TOKEN_COOKIE } from "@/constants/auth"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
+import { companyHeaderProps } from "@/lib/company-header"
 import type { Company } from "@/types/company"
 
 export const generateMetadata = () => translatedTitle("templates", "title")
@@ -60,17 +61,9 @@ export default async function CompanyTemplatesPage({
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
       <CompanyHeader
-        suspended={company.suspended}
+        {...companyHeaderProps(company)}
         companyId={companyId}
-        name={company.name}
-        logoUrl={company.logo_url ?? null}
-        verifiedDomain={company.verified_domain ?? null}
-        websiteDomain={company.website_domain ?? null}
-        verificationStatus={company.verification_status}
-        declineReason={company.decline_reason ?? null}
         current="templates"
-        canEdit={company.can_edit}
-        canSeeActions={company.can_see_actions}
       />
       {/* Templates are generic; an interview from the job description fits the role closer. */}
       <div className="flex items-center gap-4 rounded-2xl bg-muted p-5 text-base">

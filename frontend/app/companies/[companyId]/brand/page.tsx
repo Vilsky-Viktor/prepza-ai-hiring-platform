@@ -9,6 +9,7 @@ import { SignInPrompt } from "@/components/sign-in-prompt"
 import { TOKEN_COOKIE } from "@/constants/auth"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
+import { companyHeaderProps } from "@/lib/company-header"
 import type { Company, PrepzaBrand } from "@/types/company"
 
 export const generateMetadata = () => translatedTitle("company", "brand")
@@ -48,17 +49,9 @@ export default async function BrandPage({
   return (
     <main className="mx-auto max-w-5xl space-y-12 px-6 py-12">
       <CompanyHeader
-        suspended={company.suspended}
+        {...companyHeaderProps(company)}
         companyId={companyId}
-        name={company.name}
-        logoUrl={company.logo_url ?? null}
-        verifiedDomain={company.verified_domain ?? null}
-        websiteDomain={company.website_domain ?? null}
-        verificationStatus={company.verification_status}
-        declineReason={company.decline_reason ?? null}
         current="brand"
-        canEdit={company.can_edit}
-        canSeeActions={company.can_see_actions}
       />
       <section className="flex items-center gap-5">
         <LogoPicker

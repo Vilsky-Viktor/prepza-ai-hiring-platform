@@ -17,6 +17,7 @@ import {
 import {
   COMPANIES_CHANGED,
   MAX_BADGE_COUNT,
+  NOTIFICATION_DEFAULTS,
   NOTIFICATION_LOOKS,
 } from "@/constants/notifications"
 import { apiFetch } from "@/lib/api"
@@ -33,25 +34,17 @@ function useNotificationText() {
 
   return (item: AppNotification) => {
     const data = item.data as Record<string, string | number | undefined>
+    // The values the service sent, the others as NOTIFICATION_DEFAULTS has them.
+    const given = Object.entries(data).filter(
+      ([key, value]) => key in NOTIFICATION_DEFAULTS && value != null
+    )
     const values = {
-      title: data.title ?? "none",
-      topic: data.topic ?? "",
+      ...NOTIFICATION_DEFAULTS,
+      ...Object.fromEntries(given),
       // "Name (email)" once the candidate's name is known.
       email: data.candidate_name
         ? `${data.candidate_name} (${data.email})`
         : (data.email ?? ""),
-      grade: data.grade ?? "none",
-      name: data.name ?? "",
-      domain: data.domain ?? "",
-      reason: data.reason ?? "none",
-      // A member's role: "admin" or "viewer".
-      role: data.role ?? "",
-      // The ATS a candidate came from; older notifications don't name it.
-      ats: data.ats ?? "ATS",
-      // What stopped working: "slack", or an ATS.
-      integration: data.integration ?? "ats",
-      // A web hook's address.
-      url: data.url ?? "",
       // How many came together, for the kinds the service groups.
       count: typeof data.count === "number" ? data.count : 1,
       credits:

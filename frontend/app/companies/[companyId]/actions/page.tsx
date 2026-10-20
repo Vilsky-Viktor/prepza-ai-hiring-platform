@@ -5,11 +5,12 @@ import { ActionFilters } from "@/components/company/action-filters"
 import { ActionList } from "@/components/company/action-list"
 import { CompanyHeader } from "@/components/company/company-header"
 import { SignInPrompt } from "@/components/sign-in-prompt"
-import { ACTION_FILTERS } from "@/constants/action-log"
 import { TOKEN_COOKIE } from "@/constants/auth"
 import { PAGE_SIZE } from "@/constants/lists"
+import { actionFilters } from "@/lib/action-log"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
+import { companyHeaderProps } from "@/lib/company-header"
 import type { Company, CompanyAction, CompanyMember } from "@/types/company"
 
 export const generateMetadata = () => translatedTitle("company", "actions")
@@ -25,16 +26,7 @@ export default async function ActionsPage({
 }) {
   const { companyId } = await params
   const asked = await searchParams
-  const filters = new URLSearchParams()
-
-  for (const name of ACTION_FILTERS) {
-    const value = asked[name]
-
-    if (value) {
-      filters.set(name, value)
-    }
-  }
-
+  const filters = actionFilters(asked)
   const path = `/companies/companies/${companyId}/actions${filters.size ? `?${filters}` : ""}`
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
   const company = signedIn
@@ -72,17 +64,9 @@ export default async function ActionsPage({
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
       <CompanyHeader
-        suspended={company.suspended}
+        {...companyHeaderProps(company)}
         companyId={companyId}
-        name={company.name}
-        logoUrl={company.logo_url ?? null}
-        verifiedDomain={company.verified_domain ?? null}
-        websiteDomain={company.website_domain ?? null}
-        verificationStatus={company.verification_status}
-        declineReason={company.decline_reason ?? null}
         current="actions"
-        canEdit={company.can_edit}
-        canSeeActions
       />
       <ActionFilters
         members={(members ?? []).filter((member) => member.joined)}

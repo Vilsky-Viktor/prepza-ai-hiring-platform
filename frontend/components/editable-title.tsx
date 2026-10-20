@@ -138,36 +138,8 @@ export function EditableTitle({
     const split = title.lastIndexOf(" ")
     const head = title.slice(0, split + 1)
     const last = title.slice(split + 1)
-    // On a name line, the app's small icon button; over a title's dot, a bare pencil as wide
-    // as the dot's box and starting where it does, its tip over the dot, raised clear of it
-    // like a superscript.
-    const pencil = small ? (
-      <Button
-        type="button"
-        variant="ghost"
-        size="icon-xs"
-        className="-my-1 ms-1 align-middle text-muted-foreground hover:text-foreground"
-        aria-label={edit}
-        onClick={startEditing}
-      >
-        <SquarePenIcon className="size-3.5" />
-      </Button>
-    ) : (
-      <Tooltip>
-        <TooltipTrigger
-          render={
-            <button
-              type="button"
-              aria-label={edit}
-              className="-ms-[0.3em] inline-flex size-[0.55em] align-[0.3em] text-muted-foreground transition-colors hover:text-foreground"
-              onClick={startEditing}
-            />
-          }
-        >
-          <SquarePenIcon className="size-full rtl:-scale-x-100" />
-        </TooltipTrigger>
-        <TooltipContent>{edit}</TooltipContent>
-      </Tooltip>
+    const pencil = (
+      <EditPencil small={small} label={edit} onClick={startEditing} />
     )
 
     // Clicking the text edits too; the pencil is the button for the keyboard and screen
@@ -240,5 +212,51 @@ export function EditableTitle({
       {input}
       <p className="px-4 text-sm text-muted-foreground">{hint}</p>
     </div>
+  )
+}
+
+/** The pencil after a title that starts editing it. On a name line, the app's small icon
+ * button; over a title's dot, a bare pencil as wide as the dot's box and starting where it
+ * does, its tip over the dot, raised clear of it like a superscript. */
+function EditPencil({
+  small,
+  label,
+  onClick,
+}: {
+  small: boolean
+  label: string
+  onClick: () => void
+}) {
+  if (small) {
+    return (
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon-xs"
+        className="-my-1 ms-1 align-middle text-muted-foreground hover:text-foreground"
+        aria-label={label}
+        onClick={onClick}
+      >
+        <SquarePenIcon className="size-3.5" />
+      </Button>
+    )
+  }
+
+  return (
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <button
+            type="button"
+            aria-label={label}
+            className="-ms-[0.3em] inline-flex size-[0.55em] align-[0.3em] text-muted-foreground transition-colors hover:text-foreground"
+            onClick={onClick}
+          />
+        }
+      >
+        <SquarePenIcon className="size-full rtl:-scale-x-100" />
+      </TooltipTrigger>
+      <TooltipContent>{label}</TooltipContent>
+    </Tooltip>
   )
 }

@@ -42,7 +42,6 @@ export function AssistantMessages({
   actions: CardActions
 }) {
   const t = useTranslations("assistant")
-  const common = useTranslations("common")
 
   if (messages.length === 0) {
     const questions = (stage && WELCOME_QUESTIONS[stage]) || []
@@ -111,58 +110,14 @@ export function AssistantMessages({
           // and its error; what its tools found sits right under it.
           return [
             (writing || message.content || message.error) && (
-              <ChatBubble
+              <AssistantAnswer
                 key={`${index}-text`}
-                role="assistant"
-                className="space-y-2 border bg-transparent p-4 whitespace-normal"
-                // A written answer, saved by the assistant or signed by the help chat, can be
-                // voted on, right under it.
-                after={
-                  !writing &&
-                  message.content &&
-                  !message.error &&
-                  (message.id || message.helpAnswer) && (
-                    <AnswerVote
-                      value={message.vote ?? null}
-                      onVote={(value) => onVote(index, value)}
-                    />
-                  )
-                }
-                content={
-                  <>
-                    {writing &&
-                      message.progress?.map((label) => (
-                        <p
-                          key={label}
-                          className="text-xs text-muted-foreground"
-                        >
-                          {label}
-                        </p>
-                      ))}
-                    {message.content ? (
-                      <AnswerMarkdown
-                        text={message.content}
-                        onNavigate={onNavigate}
-                      />
-                    ) : (
-                      writing && (
-                        <span className="flex h-5 items-center gap-1">
-                          <ThinkingDots label={common("thinking")} />
-                        </span>
-                      )
-                    )}
-                    {message.error && (
-                      <span className="flex flex-wrap items-center gap-3 text-destructive">
-                        {message.error}
-                        {last && (
-                          <Button variant="outline" size="sm" onClick={onRetry}>
-                            {common("retry")}
-                          </Button>
-                        )}
-                      </span>
-                    )}
-                  </>
-                }
+                message={message}
+                writing={writing}
+                last={last}
+                onVote={(value) => onVote(index, value)}
+                onRetry={onRetry}
+                onNavigate={onNavigate}
               />
             ),
             message.blocks.length > 0 && (
@@ -181,5 +136,70 @@ export function AssistantMessages({
         {answered}
       </p>
     </>
+  )
+}
+
+/** One answer's card: the tools at work and the dots while it's written, its text, and its
+ * error (with Try again on the last one). A written answer, saved by the assistant or signed
+ * by the help chat, can be voted on, right under it. */
+function AssistantAnswer({
+  message,
+  writing,
+  last,
+  onVote,
+  onRetry,
+  onNavigate,
+}: {
+  message: ChatMessage
+  writing: boolean
+  last: boolean
+  onVote: (value: Vote | null) => void
+  onRetry: () => void
+  onNavigate: () => void
+}) {
+  const common = useTranslations("common")
+
+  return (
+    <ChatBubble
+      role="assistant"
+      className="space-y-2 border bg-transparent p-4 whitespace-normal"
+      after={
+        !writing &&
+        message.content &&
+        !message.error &&
+        (message.id || message.helpAnswer) && (
+          <AnswerVote value={message.vote ?? null} onVote={onVote} />
+        )
+      }
+      content={
+        <>
+          {writing &&
+            message.progress?.map((label) => (
+              <p key={label} className="text-xs text-muted-foreground">
+                {label}
+              </p>
+            ))}
+          {message.content ? (
+            <AnswerMarkdown text={message.content} onNavigate={onNavigate} />
+          ) : (
+            writing && (
+              <span className="flex h-5 items-center gap-1">
+                <ThinkingDots label={common("thinking")} />
+              </span>
+            )
+          )}
+          {message.error && (
+            <span className="flex flex-wrap items-center gap-3 text-destructive">
+              {message.error}
+              {last && (
+                <Button variant="outline" size="sm" onClick={onRetry}>
+                  {common("retry")}
+                </Button>
+              )}
+            </span>
+          )}
+        </>
+      }
+    />
   )
 }

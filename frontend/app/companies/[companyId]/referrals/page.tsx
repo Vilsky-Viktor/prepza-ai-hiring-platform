@@ -10,6 +10,7 @@ import { TOKEN_COOKIE } from "@/constants/auth"
 import { LocalDate } from "@/components/local-date"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
+import { companyHeaderProps } from "@/lib/company-header"
 import type { Company, CompanyReferral } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
 
@@ -47,17 +48,9 @@ export default async function ReferralsPage({
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
       <CompanyHeader
-        suspended={company.suspended}
+        {...companyHeaderProps(company)}
         companyId={companyId}
-        name={company.name}
-        logoUrl={company.logo_url ?? null}
-        verifiedDomain={company.verified_domain ?? null}
-        websiteDomain={company.website_domain ?? null}
-        verificationStatus={company.verification_status}
-        declineReason={company.decline_reason ?? null}
         current="referrals"
-        canEdit={company.can_edit}
-        canSeeActions={company.can_see_actions}
       />
       {referral && (
         <>

@@ -60,7 +60,6 @@ export default async function ApiDocsPage({
     keepCase: id === "api" || id === "sdk" || id === "mcp",
   }))
 
-  const base = spec.servers?.[0]?.url ?? ""
   const site = siteUrl()
 
   return (
@@ -90,38 +89,9 @@ export default async function ApiDocsPage({
       </header>
       <TabNav items={tabs} current={current} />
       <div lang="en" dir="ltr" className="space-y-12">
-        {current === "api" && (
-          <>
-            {texts.api && <RichText text={texts.api} />}
-            <DocSection title={t("baseUrl")}>
-              <CopyValue
-                value={base}
-                label={t("copyBaseUrl")}
-                copied={t("baseUrlCopied")}
-              />
-            </DocSection>
-            <DocSection title={t("endpoints")}>
-              {operationsOf(spec.paths).map((item) => (
-                <Operation
-                  key={`${item.method} ${item.path}`}
-                  spec={spec}
-                  {...item}
-                />
-              ))}
-            </DocSection>
-          </>
-        )}
+        {current === "api" && <ApiTab spec={spec} text={texts.api} />}
         {current === "webhooks" && (
-          <>
-            {texts.webhooks && <RichText text={texts.webhooks} />}
-            {spec.webhooks && (
-              <DocSection title={t("webhooks")}>
-                {operationsOf(spec.webhooks).map((item) => (
-                  <Operation key={item.path} spec={spec} {...item} />
-                ))}
-              </DocSection>
-            )}
-          </>
+          <WebhooksTab spec={spec} text={texts.webhooks} />
         )}
         {current === "sdk" && texts.sdk && <RichText text={texts.sdk} />}
         {current === "mcp" && (
@@ -145,5 +115,50 @@ export default async function ApiDocsPage({
           ))}
       </div>
     </main>
+  )
+}
+
+/** The API tab: how to sign in (the description's text), the base URL and every route. */
+async function ApiTab({ spec, text }: { spec: OpenApi; text?: string }) {
+  const t = await getTranslations("apiDocs")
+
+  return (
+    <>
+      {text && <RichText text={text} />}
+      <DocSection title={t("baseUrl")}>
+        <CopyValue
+          value={spec.servers?.[0]?.url ?? ""}
+          label={t("copyBaseUrl")}
+          copied={t("baseUrlCopied")}
+        />
+      </DocSection>
+      <DocSection title={t("endpoints")}>
+        {operationsOf(spec.paths).map((item) => (
+          <Operation
+            key={`${item.method} ${item.path}`}
+            spec={spec}
+            {...item}
+          />
+        ))}
+      </DocSection>
+    </>
+  )
+}
+
+/** The web hooks tab: the description's text and each web hook. */
+async function WebhooksTab({ spec, text }: { spec: OpenApi; text?: string }) {
+  const t = await getTranslations("apiDocs")
+
+  return (
+    <>
+      {text && <RichText text={text} />}
+      {spec.webhooks && (
+        <DocSection title={t("webhooks")}>
+          {operationsOf(spec.webhooks).map((item) => (
+            <Operation key={item.path} spec={spec} {...item} />
+          ))}
+        </DocSection>
+      )}
+    </>
   )
 }

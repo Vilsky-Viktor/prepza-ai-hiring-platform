@@ -24,6 +24,7 @@ import {
   MAX_CAMPAIGN_TEXT_LENGTH,
 } from "@/constants/limits"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { campaignForm } from "@/lib/campaigns"
 import type { Campaign } from "@/types/campaigns"
 import { GRAY_FIELD } from "@/constants/fields"
 
@@ -50,12 +51,12 @@ export function CampaignDialog({
   const t = useTranslations("superadmin")
   const common = useTranslations("common")
   const english = language === "en"
-  const texts = campaign?.texts[language] ?? campaign?.texts.en
-  const [kind, setKind] = useState<string>(campaign?.kind ?? "updates")
-  const [subject, setSubject] = useState(texts?.subject ?? "")
-  const [text, setText] = useState(texts?.text ?? "")
-  const [button, setButton] = useState(texts?.button ?? "")
-  const [link, setLink] = useState(campaign?.link ?? "")
+  const initial = campaignForm(campaign, language)
+  const [kind, setKind] = useState<string>(initial.kind)
+  const [subject, setSubject] = useState(initial.subject)
+  const [text, setText] = useState(initial.text)
+  const [button, setButton] = useState(initial.button)
+  const [link, setLink] = useState(initial.link)
   const [saving, setSaving] = useState(false)
 
   async function save(event: React.FormEvent) {

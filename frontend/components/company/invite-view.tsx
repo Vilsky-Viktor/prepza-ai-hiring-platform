@@ -27,7 +27,6 @@ export function InviteView({
   token: string
   onStarted?: (sessionId: string) => void
 }) {
-  const t = useTranslations("invite")
   const share = useTranslations("share")
   const session = useTranslations("session")
   const router = useRouter()
@@ -121,20 +120,56 @@ export function InviteView({
       totalMinutes={invite.total_minutes}
       finished={invite.status === "finished"}
       action={
-        // A guest's link is all they need; anyone else signs in with the invited email.
-        !invite.guest && !user ? (
-          <Button className={START_BUTTON} onClick={() => signIn()}>
-            {t("signInToStart")}
-          </Button>
-        ) : invite.guest || matches ? (
-          <Button className={START_BUTTON} disabled={starting} onClick={start}>
-            {invite.status === "in_process" ? t("continue") : t("start")}
-          </Button>
-        ) : (
-          // Signed in with another email: a warning, in the warning card.
-          <WarningCard className="text-start">{t("mismatch")}</WarningCard>
-        )
+        <InviteAction
+          guest={invite.guest}
+          signedIn={!!user}
+          matches={matches}
+          inProcess={invite.status === "in_process"}
+          starting={starting}
+          onSignIn={() => signIn()}
+          onStart={start}
+        />
       }
     />
   )
+}
+
+/** A guest's link is all they need; anyone else signs in with the invited email. Signed in
+ * with another email: a warning, in the warning card. */
+function InviteAction({
+  guest,
+  signedIn,
+  matches,
+  inProcess,
+  starting,
+  onSignIn,
+  onStart,
+}: {
+  guest: boolean | undefined
+  signedIn: boolean
+  matches: boolean
+  inProcess: boolean
+  starting: boolean
+  onSignIn: () => void
+  onStart: () => void
+}) {
+  const t = useTranslations("invite")
+
+  if (!guest && !signedIn) {
+    return (
+      <Button className={START_BUTTON} onClick={onSignIn}>
+        {t("signInToStart")}
+      </Button>
+    )
+  }
+
+  if (guest || matches) {
+    return (
+      <Button className={START_BUTTON} disabled={starting} onClick={onStart}>
+        {inProcess ? t("continue") : t("start")}
+      </Button>
+    )
+  }
+
+  return <WarningCard className="text-start">{t("mismatch")}</WarningCard>
 }
