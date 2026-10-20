@@ -10,3 +10,8 @@ PDF_SIGNATURE = b"%PDF-"
 NOT_A_PDF = "The report isn't a PDF"
 NO_FINISHED_CANDIDATES = "A report can be emailed once a candidate has finished this interview."
 TOO_MANY_REPORT_EMAILS = "Your company has emailed its daily limit of reports. Try again tomorrow."
+# A viewer emails a report only to the company's own members; owners and admins to anyone.
+OUTSIDE_COMPANY = (
+    "Only an owner or admin can email a report outside the company. Send it to one of your "
+    "company's members."
+)

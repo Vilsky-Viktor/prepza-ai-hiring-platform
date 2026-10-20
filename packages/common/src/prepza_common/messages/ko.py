@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "이 패턴은 이미 검토되었습니다",
     "Not allowed": "허용되지 않습니다",
     "There's no such answer.": "그런 답변은 없습니다.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "회사 외부로 보고서를 이메일로 보낼 수 있는 사람은 소유자나 관리자뿐입니다. 회사 멤버에게 보내 주세요.",
 }

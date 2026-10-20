@@ -17,7 +17,7 @@ A company has one owner. On the company's **Team** tab, the owner adds a member'
 |---|---|
 | Owner | Everything, including managing the team and removing the company |
 | Admin | Works like the owner, except managing the team and removing the company |
-| Viewer | Sees the company's interviews, questions, candidates and scorecards; downloads and shares reports; previews interviews. Changes nothing and spends no credits |
+| Viewer | Sees the company's interviews, questions, candidates and scorecards; downloads and shares reports (emails them only to the company's members); previews interviews. Changes nothing and spends no credits |
 
 The companies service enforces the roles: `require_editor` answers 403 to a viewer.
 

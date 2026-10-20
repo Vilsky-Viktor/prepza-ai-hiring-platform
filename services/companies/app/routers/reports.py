@@ -28,15 +28,16 @@ async def email_report(
     interview_id: UUID, invite_id: UUID, body: ReportEmailIn, user: CurrentUser, via: Via
 ) -> None:
     """Emails the candidate's PDF report, made on their page, to someone such as a hiring
-    manager. A reply goes to the member who sent it. Counts towards the member's email limits
-    and the company's daily reports."""
-    interview, invite, company, _ = await candidate_for(user, interview_id, invite_id)
+    manager (a viewer: only to one of the company's members). A reply goes to the member who sent
+    it. Counts towards the member's email limits and the company's daily reports."""
+    interview, invite, company, member = await candidate_for(user, interview_id, invite_id)
 
     if invite.status == InviteStatus.DELETED:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
 
     email = str(body.email).lower()
-    await allow_report_email(user, company, interview, body.pdf, f"report:{invite.id}:{email}")
+    recipient = f"report:{invite.id}:{email}"
+    await allow_report_email(user, company, member, interview, body.pdf, email, recipient)
     await reports.queue_email(
         {
             "email": email,
@@ -82,10 +83,11 @@ async def email_interview_report(
     interview_id: UUID, body: ReportEmailIn, user: CurrentUser, via: Via
 ) -> None:
     """Emails the test's candidates report, made on its candidates tab, like a candidate's."""
-    interview, company, _ = await interview_for(user, interview_id)
+    interview, company, member = await interview_for(user, interview_id)
 
     email = str(body.email).lower()
-    await allow_report_email(user, company, interview, body.pdf, f"report:{interview.id}:{email}")
+    recipient = f"report:{interview.id}:{email}"
+    await allow_report_email(user, company, member, interview, body.pdf, email, recipient)
     title = await interview_title(interview) or ""
     await reports.queue_email(
         {

@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "このパターンはすでに確認済みです",
     "Not allowed": "許可されていません",
     "There's no such answer.": "そのような回答はありません。",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "会社の外にレポートをメールで送れるのは所有者または管理者だけです。会社のメンバーに送ってください。",
 }

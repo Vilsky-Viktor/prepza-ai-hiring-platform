@@ -143,7 +143,7 @@ Each candidate's grade and integrity flag are stored on their invite when they f
 A report is a PDF, made in the browser, for one candidate or for all of an interview's candidates. A report can be:
 
 - downloaded,
-- emailed from prepza, with the PDF attached (it counts towards the member's email limits),
+- emailed from prepza, with the PDF attached (it counts towards the member's email limits); owners and admins send it to any address, viewers only to one of the company's joined members (another address is refused with a 403 that says so),
 - shared as a short summary on WhatsApp, Telegram, Viber or LINE (Viber's button opens only where its app is installed).
 
 ## Email limits

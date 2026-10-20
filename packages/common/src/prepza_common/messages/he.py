@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "הדפוס הזה כבר נבדק",
     "Not allowed": "אין הרשאה",
     "There's no such answer.": "אין תשובה כזו.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "רק בעלים או מנהל יכולים לשלוח דוח באימייל אל מחוץ לחברה. שלחו אותו לאחד מחברי הצוות בחברה שלכם.",
 }

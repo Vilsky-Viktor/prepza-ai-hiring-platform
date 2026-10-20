@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "Este patrón ya se revisó",
     "Not allowed": "No permitido",
     "There's no such answer.": "No existe esa respuesta.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Solo un propietario o administrador puede enviar un informe por correo fuera de la empresa. Envíalo a uno de los miembros de tu empresa.",
 }

@@ -259,4 +259,5 @@ MESSAGES = {
     "This pattern was already reviewed": "Seda mustrit on juba hinnatud",
     "Not allowed": "Pole lubatud",
     "There's no such answer.": "Sellist vastust pole.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Aruannet saab väljapoole ettevõtet saata ainult omanik või administraator. Saada see mõnele oma ettevõtte liikmele.",
 }

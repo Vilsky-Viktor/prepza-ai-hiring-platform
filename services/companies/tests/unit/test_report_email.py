@@ -6,7 +6,7 @@ import pytest
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
-from app.constants.reports import NO_FINISHED_CANDIDATES, TOO_MANY_REPORT_EMAILS
+from app.constants.reports import NO_FINISHED_CANDIDATES, OUTSIDE_COMPANY, TOO_MANY_REPORT_EMAILS
 from app.integrations import rounds
 from app.main import app
 from app.models.companies import Company, Member
@@ -58,7 +58,10 @@ def queued(monkeypatch):
     fake_candidates.add(invite)
     company = Company(id=COMPANY_ID, name="Arcolabs", created_at=datetime.now(UTC))
     company.members = [
-        Member(company_id=COMPANY_ID, user_id="bob", invited_email="bob@example.com", role="member")
+        Member(company_id=COMPANY_ID, user_id="bob", invited_email="bob@example.com", role="admin"),
+        Member(company_id=COMPANY_ID, user_id="cy", invited_email="Cy@Example.com", role="viewer"),
+        # Invited, not joined yet.
+        Member(company_id=COMPANY_ID, user_id=None, invited_email="dan@example.com", role="admin"),
     ]
     events = []
 
@@ -230,3 +233,22 @@ def test_a_company_emails_a_limited_number_of_reports_a_day(
     assert [(hit["limit"], hit["company_id"], hit["user_id"]) for hit in limit_hits] == [
         ("REPORT_EMAILS_PER_COMPANY_DAY", str(COMPANY_ID), "bob")
     ]
+
+
+@pytest.mark.parametrize("url", [URL, f"/interviews/{INTERVIEW_ID}/report/email"])
+def test_a_viewer_emails_reports_only_to_the_companys_members(client, queued, url):
+    app.dependency_overrides[current_user] = lambda: User(
+        uid="cy", email="cy@example.com", email_verified=True, name="Cy"
+    )
+
+    def send(email):
+        return client.post(url, json={"email": email, "pdf": PDF})
+
+    outside = send("boss@example.com")
+    invited_only = send("dan@example.com")
+    member = send("Bob@Example.com")
+
+    assert (outside.status_code, invited_only.status_code) == (403, 403)
+    assert outside.json()["detail"] == OUTSIDE_COMPANY
+    assert member.status_code == 202
+    assert [event["email"] for event in queued] == ["bob@example.com"]

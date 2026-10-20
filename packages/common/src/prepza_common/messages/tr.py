@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "Bu örüntü zaten incelendi",
     "Not allowed": "İzin verilmiyor",
     "There's no such answer.": "Böyle bir yanıt yok.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Şirket dışına e-postayla rapor gönderebilen yalnızca sahip veya yöneticidir. Raporu şirketinizin üyelerinden birine gönderin.",
 }

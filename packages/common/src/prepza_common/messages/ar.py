@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "تمت مراجعة هذا النمط بالفعل",
     "Not allowed": "غير مسموح",
     "There's no such answer.": "لا توجد إجابة كهذه.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "يمكن للمالك أو المسؤول فقط إرسال تقرير بالبريد إلى خارج الشركة. أرسله إلى أحد أعضاء شركتك.",
 }

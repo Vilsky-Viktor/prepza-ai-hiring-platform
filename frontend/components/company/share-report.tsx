@@ -65,8 +65,9 @@ export function ShareReport({
       setEmail("")
       onOpenChange(false)
     } catch (error) {
-      // Too many emails, or nothing to report yet: the API's message says why.
-      toast.error(serviceRefusal(error, [409, 429]) ?? t("sendFailed"))
+      // A viewer's address outside the company, nothing to report yet, or too many emails: the
+      // API's message says why.
+      toast.error(serviceRefusal(error, [403, 409, 429]) ?? t("sendFailed"))
     } finally {
       setSending(false)
     }

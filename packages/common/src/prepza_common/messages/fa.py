@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "این الگو قبلاً بررسی شده است",
     "Not allowed": "مجاز نیست",
     "There's no such answer.": "چنین پاسخی وجود ندارد.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "فقط مالک یا مدیر می‌تواند گزارش را به نشانی‌ای بیرون از شرکت ایمیل کند. آن را برای یکی از اعضای شرکتتان بفرستید.",
 }

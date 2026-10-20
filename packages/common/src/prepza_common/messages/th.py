@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "รูปแบบนี้ได้รับการพิจารณาแล้ว",
     "Not allowed": "ไม่ได้รับอนุญาต",
     "There's no such answer.": "ไม่มีคำตอบนี้",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "เฉพาะเจ้าของหรือผู้ดูแลเท่านั้นที่ส่งรายงานทางอีเมลไปนอกบริษัทได้ โปรดส่งถึงสมาชิกคนใดคนหนึ่งของบริษัทคุณ",
 }

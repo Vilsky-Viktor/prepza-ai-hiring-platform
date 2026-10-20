@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "Эта закономерность уже рассмотрена",
     "Not allowed": "Нет доступа",
     "There's no such answer.": "Такого ответа нет.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Отправить отчёт по email за пределы компании может только владелец или администратор. Отправьте его одному из участников вашей компании.",
 }

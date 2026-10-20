@@ -132,6 +132,7 @@ Playwright tests of the signed-in pages, in the same Docker image, against the r
 - the admin zone's campaigns (`zm-campaigns.spec.ts`): a campaign written with the editor (bold and a link), its preview and recipients, a test sent to the superadmin's own address and read back from the local Mailpit (then deleted), its kind changed and the draft deleted; an account's support page showing its address on the suppression list and taking it off; the legal banner for a pending DPA change concerning one throwaway user, closed and still closed after a reload. Nothing is sent to users,
 - the admin zone's support pages for people: an address found in another case giving its account first, then its candidates; on the account's page turning off all optional emails (still off after a reload) and marketing refused with its error; on a candidate's page stopping and resuming one inviting company's emails (still stopped after a reload) while the person's own stop has nothing to press; the emails tab's old address leading to support, and "not found" for anyone else on the support, account and candidate pages,
 - the candidates' PDF report,
+- a viewer emailing a report: an address outside the company refused with the reason, a member's address let through (`f-reports-viewer.spec.ts`),
 - a practice result leading to a company's test,
 - a talent's practice history, newest first, loading older rounds as it scrolls,
 - an interview's settings tab,

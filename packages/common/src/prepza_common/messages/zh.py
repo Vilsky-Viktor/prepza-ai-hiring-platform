@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "此模式已审核过",
     "Not allowed": "不允许",
     "There's no such answer.": "没有这个回答。",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "只有所有者或管理员可以把报告通过邮件发到公司外部。请发送给你公司的成员。",
 }

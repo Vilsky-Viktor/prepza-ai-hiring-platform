@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "इस पैटर्न की समीक्षा पहले ही हो चुकी है",
     "Not allowed": "अनुमति नहीं है",
     "There's no such answer.": "ऐसा कोई जवाब नहीं है।",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "सिर्फ़ ओनर या एडमिन ही कंपनी से बाहर रिपोर्ट ईमेल कर सकते हैं। इसे अपनी कंपनी के किसी सदस्य को भेजें।",
 }

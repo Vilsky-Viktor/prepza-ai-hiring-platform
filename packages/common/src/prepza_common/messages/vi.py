@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "Lỗi lặp lại này đã được xem xét",
     "Not allowed": "Không được phép",
     "There's no such answer.": "Không có câu trả lời này.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Chỉ chủ sở hữu hoặc quản trị viên mới có thể gửi báo cáo qua email ra ngoài công ty. Hãy gửi cho một thành viên trong công ty của bạn.",
 }

@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "Nasuri na ang pattern na ito",
     "Not allowed": "Hindi pinapayagan",
     "There's no such answer.": "Walang ganoong sagot.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Ang may-ari o admin lang ang puwedeng mag-email ng report sa labas ng kumpanya. Ipadala ito sa isa sa mga miyembro ng iyong kumpanya.",
 }

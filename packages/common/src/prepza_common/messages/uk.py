@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "Ця закономірність уже розглянута",
     "Not allowed": "Немає доступу",
     "There's no such answer.": "Такої відповіді немає.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Надіслати звіт на email за межі компанії може лише власник або адміністратор. Надішліть його одному з учасників вашої компанії.",
 }

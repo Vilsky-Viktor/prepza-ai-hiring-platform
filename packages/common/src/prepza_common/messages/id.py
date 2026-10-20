@@ -249,4 +249,5 @@ MESSAGES = {
     "This pattern was already reviewed": "Pola ini sudah ditinjau",
     "Not allowed": "Tidak diizinkan",
     "There's no such answer.": "Tidak ada jawaban seperti itu.",
+    "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Hanya pemilik atau admin yang bisa mengirim laporan lewat email ke luar perusahaan. Kirimkan ke salah satu anggota perusahaanmu.",
 }
