@@ -77,6 +77,11 @@ questions with their real key): `gpt-6.1-sol` at low and at medium both fixed 60
 kept 60 of 60 real keys, at $0.0009 a check and 1.8 s; medium is in use.
 
 **Judge**, `gpt-6.1-sol` at high reasoning: caught 60 of 60 planted wrong keys.
+Its wording of 2026-10-20 (a role, "skills test" and "candidate" for "prep kit" and "learner",
+tagged data, anchored clarity and relevance) caught 60 of 60 single-answer traps and a fixed 60
+of the multi-answer ones, and agreed with the reference on 239 of 240 keys (right kept 236 of
+237, wrong found 3 of 3, kappa 0.86); clarity 4.95, relevance 4.20, distractors 2.82 ± 0.12
+against the reference run's 4.95, 4.23, 3.03, within the judge's noise.
 
 **Multi-answer questions** (2026-10-16, the gate before they ship: keys must reach 98%; the same
 prompt's single-answer questions are the control), judged by `gpt-6.1-sol` at high, on fresh
