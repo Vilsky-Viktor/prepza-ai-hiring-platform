@@ -5,7 +5,7 @@ from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import CurrentUser, OptionalUser
 from prepza_common.limits import at_most
 from prepza_common.paging import PageParams
-from prepza_common.rate_limit import hit, hit_emails
+from prepza_common.rate_limit import hit, hit_emails, recipient_key
 
 from app.constants.roles import (
     ALREADY_INVITED,
@@ -83,7 +83,7 @@ async def invite_member(company_id: UUID, body: MemberIn, user: CurrentUser) -> 
         await hit(redis, key, "MEMBER_INVITES_PER_UNPAID_DAY", **who)
 
     # The invite emails the member, so it counts toward the owner's email limits.
-    await hit_emails(redis, user.uid, f"member:{company.id}:{email}", company.id)
+    await hit_emails(redis, user.uid, f"member:{company.id}:{recipient_key(email)}", company.id)
     sender = {
         "company": company.name,
         "company_id": str(company.id),

@@ -154,7 +154,7 @@ Candidate invites, emailed reports and [team invites](companies.md) count toward
 |---|---|---|
 | Per user, an hour | `EMAIL_HOURLY_LIMIT` | 100 |
 | Per user, a day | `EMAIL_DAILY_LIMIT` | 200 |
-| Per recipient address, a day | `EMAIL_RECIPIENT_DAILY_LIMIT` | 3 |
+| Per recipient address, a day (counted per inbox: lowercased and without a `+tag`, so `name+1@` and `name+2@` share one count; the email still goes to the address as typed) | `EMAIL_RECIPIENT_DAILY_LIMIT` | 3 |
 | Reports a company emails a day | `REPORT_EMAILS_PER_COMPANY_DAY` | 20 |
 
 An invite counts towards these limits only once the company's credits are set aside for it: an invite refused for lack of credits (an ATS's too) uses up none of them, and one refused over a limit gives back the credits it just set aside.

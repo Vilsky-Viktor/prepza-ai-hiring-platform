@@ -180,6 +180,18 @@ def test_an_invite_emails_the_member_from_the_owner_within_their_email_limits(cl
     assert flushed
 
 
+def test_a_tagged_address_counts_as_its_inbox_but_is_invited_as_given(client, team):
+    _, changed, _ = team
+    limited.clear()
+    sign_in("ann@example.com", uid="ann")
+
+    client.post(f"/members?company_id={COMPANY_ID}", json={"email": "Dan+Team@example.com"})
+
+    # name+tag@ reaches name@'s inbox, so the per-recipient limit counts them together.
+    assert limited == [("ann", f"member:{COMPANY_ID}:dan@example.com")]
+    assert changed[-1] == ("dan+team@example.com", "admin")
+
+
 def test_an_owner_over_their_email_limits_invites_nobody(client, team, monkeypatch, audited):
     _, changed, _ = team
 

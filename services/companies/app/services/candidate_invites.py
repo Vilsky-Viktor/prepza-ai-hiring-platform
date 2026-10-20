@@ -2,7 +2,7 @@ from fastapi import HTTPException, status
 from prepza_common.analytics import track
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.names import clean_name
-from prepza_common.rate_limit import hit_emails
+from prepza_common.rate_limit import hit_emails, recipient_key
 from prepza_common.user import User
 
 from app.constants.invites import (
@@ -60,7 +60,8 @@ async def invite(
         if current is None or current in NOT_STARTED:
             await billing.hold_candidate(company.id, key)
 
-        await hit_emails(get_redis(), user.uid, f"{interview.id}:{email}", company.id)
+        recipient = f"{interview.id}:{recipient_key(email)}"
+        await hit_emails(get_redis(), user.uid, recipient, company.id)
         title = await interview_title(interview)
 
         # A ready interview has its title; without one, no email names it wrongly.

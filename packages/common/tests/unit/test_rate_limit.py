@@ -6,7 +6,15 @@ from fastapi import HTTPException
 from prepza_common import rate_limit
 from prepza_common.ai_constants import LIMIT_HIT
 from prepza_common.limit_list import LIMITS
-from prepza_common.rate_limit import add_spent, hit, hit_emails, hit_or_skip, spend, until_tomorrow
+from prepza_common.rate_limit import (
+    add_spent,
+    hit,
+    hit_emails,
+    hit_or_skip,
+    recipient_key,
+    spend,
+    until_tomorrow,
+)
 
 from tests.unit.fake_redis import DownRedis, FakeRedis
 
@@ -111,6 +119,30 @@ def test_emails_are_limited_per_recipient(published):
         200,
         200,
     ]
+
+
+@pytest.mark.parametrize(
+    ("address", "key"),
+    [
+        ("Bob@Example.com", "bob@example.com"),
+        ("bob+jobs@example.com", "bob@example.com"),
+        (" Bob+a+b@Example.com ", "bob@example.com"),
+        ("+tag@example.com", "@example.com"),
+        ("not-an-address", "not-an-address"),
+    ],
+)
+def test_a_recipients_key_is_its_inbox(address, key):
+    assert recipient_key(address) == key
+
+
+def test_tagged_addresses_share_their_inboxs_count(published):
+    redis = FakeRedis({"EMAIL_RECIPIENT_DAILY_LIMIT": 2})
+    calls = [
+        lambda tag=tag: hit_emails(redis, "ann", f"set-1:{recipient_key(f'bob+{tag}@example.com')}")
+        for tag in ("a", "b", "c")
+    ]
+
+    assert statuses(calls) == [200, 200, 429]
 
 
 def test_emails_are_limited_per_sender_across_recipients(published):

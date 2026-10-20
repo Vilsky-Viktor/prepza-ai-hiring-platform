@@ -3,6 +3,7 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, status
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import CurrentUser
+from prepza_common.rate_limit import recipient_key
 
 from app.constants.invites import InviteStatus
 from app.helpers.candidates import candidate_label, candidate_out
@@ -36,7 +37,7 @@ async def email_report(
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
 
     email = str(body.email).lower()
-    recipient = f"report:{invite.id}:{email}"
+    recipient = f"report:{invite.id}:{recipient_key(email)}"
     await allow_report_email(user, company, member, interview, body.pdf, email, recipient)
     await reports.queue_email(
         {
@@ -86,7 +87,7 @@ async def email_interview_report(
     interview, company, member = await interview_for(user, interview_id)
 
     email = str(body.email).lower()
-    recipient = f"report:{interview.id}:{email}"
+    recipient = f"report:{interview.id}:{recipient_key(email)}"
     await allow_report_email(user, company, member, interview, body.pdf, email, recipient)
     title = await interview_title(interview) or ""
     await reports.queue_email(

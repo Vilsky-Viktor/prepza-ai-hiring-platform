@@ -118,11 +118,24 @@ async def add_spent(
         logger.warning("Spending on %s not counted, Redis failed", name, exc_info=True)
 
 
+def recipient_key(email: str) -> str:
+    """An address as the per-recipient email limit counts it: lowercased and without a +tag, as
+    name+1@ and name+2@ reach one inbox. Only for the limit's key; the email still goes to the
+    address as given."""
+    local, at, domain = email.strip().lower().rpartition("@")
+
+    if not at:
+        return domain
+
+    return f"{local.split('+', 1)[0]}@{domain}"
+
+
 async def hit_emails(redis, sender: str, recipient: str, company_id: object | None = None) -> None:
     """Limits invite emails, so nobody can spam from our domain.
 
     The sender's counts are shared by every service that sends invites. `recipient` names the
-    address and what it's invited to, so resending to one person is limited on its own.
+    address (its recipient_key) and what it's invited to, so resending to one person is limited
+    on its own.
     """
     who = {"company_id": company_id, "user_id": sender}
     await hit(redis, f"rate:emails:hour:{sender}", "EMAIL_HOURLY_LIMIT", **who)
