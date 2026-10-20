@@ -130,16 +130,17 @@ async def start_link(token: str, user: CurrentUser, request: Request) -> InviteS
     if current != InviteStatus.IN_PROCESS:
         await refuse_if_paused(get_redis(), "interview_start", interview.company_id, user.uid)
 
-    # A new candidate shows they're a person and counts toward the link's and their address's
-    # hourly limits; one already invited is never held back by them.
+    # A new candidate shows they're a person and counts toward their address's and the link's
+    # hourly limits; one already invited is never held back by them. The address comes first,
+    # so one address refused can't go on using up the link's count for real candidates.
     if current is None:
         await require_human(request, settings.turnstile_secret_key)
         redis = get_redis()
         who = {"company_id": interview.company_id, "user_id": user.uid}
-        link_key = f"rate:link-starts:{interview.id}"
-        await hit(redis, link_key, "LINK_STARTS_PER_HOUR", **who)
         address = client_ip(request)
         await hit(redis, f"rate:link-starts:ip:{address}", "LINK_STARTS_PER_IP_HOUR", **who)
+        link_key = f"rate:link-starts:{interview.id}"
+        await hit(redis, link_key, "LINK_STARTS_PER_HOUR", **who)
 
     # Credits set aside just now: a new candidate's, or an expired invite's (expiry gave them
     # back, and won't again). Anything failing before the candidate has started gives them back.

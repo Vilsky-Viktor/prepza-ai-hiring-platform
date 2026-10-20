@@ -224,6 +224,15 @@ def test_one_addresss_hourly_limit_is_as_edited(client, linked, limit_hits):
     assert [hit["limit"] for hit in limit_hits] == ["LINK_STARTS_PER_IP_HOUR"]
 
 
+def test_an_address_over_its_limit_uses_up_nothing_of_the_links(client, linked):
+    linked["limits"]["LINK_STARTS_PER_IP_HOUR"] = "1"
+    starts = [client.post("/links/abc/start").status_code for _ in range(5)]
+
+    assert starts == [200] + [429] * 4
+    # Only the one start that went through counts toward the link.
+    assert linked["counts"][f"rate:link-starts:{INTERVIEW.id}"] == 1
+
+
 def test_a_candidate_already_invited_is_never_held_back_by_the_limits(client, linked):
     linked["status"] = InviteStatus.IN_PROCESS
     linked["counts"][f"rate:link-starts:{INTERVIEW.id}"] = LINK_STARTS_PER_HOUR
