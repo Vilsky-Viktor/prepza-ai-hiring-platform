@@ -33,6 +33,7 @@ async function opened(paid: "top_up" | "auto_top_up") {
     theme: "dark",
     paid,
     locale: "de",
+    companyId: "company-1",
   })
 
   return handler
@@ -78,5 +79,66 @@ describe("Paddle's checkout", () => {
     fake.callback?.({ name: "checkout.closed", data: {} })
 
     expect(handler).not.toHaveBeenCalled()
+  })
+})
+
+describe("a failed payment in Paddle's checkout", () => {
+  beforeEach(() => {
+    vi.resetModules()
+    fake.open.mockClear()
+  })
+
+  async function opening() {
+    const paddle = await import("@/lib/paddle")
+    const failed = vi.fn()
+    paddle.whenPaymentFails(failed)
+    await paddle.openCheckout({
+      catalog,
+      checkout: { priceId: "pri_auto", customData: { owner_id: "company-1" } },
+      email: null,
+      theme: "light",
+      paid: "auto_top_up",
+      locale: "en",
+      companyId: "company-1",
+    })
+
+    return { paddle, failed }
+  }
+
+  it("is told with its transaction and company, and is the latest attempt until another starts", async () => {
+    const { paddle, failed } = await opening()
+
+    fake.callback?.({
+      name: "checkout.payment.initiated",
+      data: { transaction_id: "txn_9" },
+    })
+    fake.callback?.({
+      name: "checkout.payment.failed",
+      data: { transaction_id: "txn_9" },
+    })
+
+    const failure = failed.mock.calls[0][0]
+    expect(failure).toMatchObject({
+      companyId: "company-1",
+      transactionId: "txn_9",
+    })
+    expect(paddle.stillLatest(failure)).toBe(true)
+
+    fake.callback?.({
+      name: "checkout.payment.initiated",
+      data: { transaction_id: "txn_9" },
+    })
+    expect(paddle.stillLatest(failure)).toBe(false)
+  })
+
+  it("opens the same transaction again, with the checkout's other settings, to try again", async () => {
+    const { paddle } = await opening()
+
+    await paddle.reopenCheckout("txn_9")
+
+    const reopened = fake.open.mock.calls[1][0]
+    expect(reopened.transactionId).toBe("txn_9")
+    expect(reopened).not.toHaveProperty("items")
+    expect(reopened.settings).toMatchObject({ theme: "light", locale: "en" })
   })
 })

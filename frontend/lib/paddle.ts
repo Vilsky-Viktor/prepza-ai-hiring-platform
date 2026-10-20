@@ -23,12 +23,31 @@ export type CheckoutOptions = {
   theme: "light" | "dark"
   paid: PaidKind
   locale: string
+  // The company it pays into, whose billing says why a payment failed.
+  companyId: string
 }
 
-// The checkout open now, and who's told when its payment completes (the success dialog,
-// components/billing/paid-notice.tsx).
+/** A payment that failed in the checkout: its transaction, the company it was for, and which
+ * payment attempt it was. */
+export type PaymentFailure = {
+  companyId: string
+  transactionId: string
+  attempt: number
+}
+
+// The checkout open now, to open it again after a failed payment; and who's told when a payment
+// completes (the success dialog, components/billing/paid-notice.tsx) or fails (the failure
+// dialog, components/billing/payment-failed.tsx).
 let opened: CheckoutOptions | null = null
 let onPaid: ((paid: PaidKind) => void) | null = null
+let onFailed: ((failure: PaymentFailure) => void) | null = null
+// Counts the payment attempts, so a failure the buyer has already retried past is left alone.
+let attempt = 0
+
+/** Whether `failure` is still the latest payment attempt. */
+export function stillLatest(failure: PaymentFailure) {
+  return failure.attempt === attempt
+}
 
 /** Tells `handler` when the checkout completes a payment, with what it paid for; returns what
  * stops it. */
@@ -38,6 +57,17 @@ export function whenPaid(handler: (paid: PaidKind) => void) {
   return () => {
     if (onPaid === handler) {
       onPaid = null
+    }
+  }
+}
+
+/** Tells `handler` when a payment fails in the checkout; returns what stops it. */
+export function whenPaymentFails(handler: (failure: PaymentFailure) => void) {
+  onFailed = handler
+
+  return () => {
+    if (onFailed === handler) {
+      onFailed = null
     }
   }
 }
@@ -54,12 +84,26 @@ function load(catalog: Catalog) {
       catalog.environment === "production" ? "production" : "sandbox",
     token: catalog.client_token,
     eventCallback: (event) => {
+      const transactionId = event.data?.transaction_id
+
+      if (event.name === CheckoutEventNames.CHECKOUT_PAYMENT_INITIATED) {
+        attempt += 1
+      }
+
       // Paid: the checkout closes and the success dialog shows on the page, once per checkout.
       if (event.name === CheckoutEventNames.CHECKOUT_COMPLETED && opened) {
         const { paid } = opened
         opened = null
         void closeCheckout()
         onPaid?.(paid)
+      }
+
+      if (
+        event.name === CheckoutEventNames.CHECKOUT_PAYMENT_FAILED &&
+        opened &&
+        transactionId
+      ) {
+        onFailed?.({ companyId: opened.companyId, transactionId, attempt })
       }
     },
   })
@@ -73,7 +117,7 @@ function load(catalog: Catalog) {
  * grants is decided by the backend from Paddle's price, once the payment has gone through. It
  * follows the site's light or dark theme and language (`locale`, English where Paddle hasn't
  * it). The buyer stays on the page: a completed payment is told to `whenPaid`, with what it
- * paid for (`paid`).
+ * paid for (`paid`), and a failed one to `whenPaymentFails`.
  */
 export async function openCheckout(options: CheckoutOptions) {
   const { catalog, checkout, email, theme, locale } = options
@@ -98,7 +142,15 @@ export async function openCheckout(options: CheckoutOptions) {
   })
 }
 
-/** Closes the checkout, so our success dialog shows instead of it. */
-async function closeCheckout() {
+/** Closes the checkout, so our success or failure dialog shows instead of it. */
+export async function closeCheckout() {
   ;(await paddle)?.Checkout.close()
+}
+
+/** Opens the failed payment's checkout again (its transaction keeps what it buys and the
+ * custom data), for another card or payment method. */
+export async function reopenCheckout(transactionId: string) {
+  if (opened) {
+    await openCheckout({ ...opened, checkout: { transactionId } })
+  }
 }

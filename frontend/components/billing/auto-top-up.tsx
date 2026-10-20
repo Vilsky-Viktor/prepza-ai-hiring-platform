@@ -95,7 +95,8 @@ export function AutoTopUpSetting({
         return
       }
 
-      // It opens over this page; a completed payment shows the success dialog here.
+      // It opens over this page; a completed payment shows the success dialog here, a failed
+      // one the failure dialog.
       await openCheckout({
         catalog,
         checkout: {
@@ -106,6 +107,7 @@ export function AutoTopUpSetting({
         theme: resolvedTheme === "dark" ? "dark" : "light",
         paid: "auto_top_up",
         locale,
+        companyId,
       })
     } catch (error) {
       toast.error(apiErrorMessage(error, t("failed")))

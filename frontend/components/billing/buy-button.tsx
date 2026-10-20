@@ -69,7 +69,8 @@ export function BuyButton({
         `/companies/companies/${companyId}/billing/checkout`,
         { method: "POST", body: JSON.stringify({ candidates }) }
       )
-      // It opens over this page; a completed payment shows the success dialog here.
+      // It opens over this page; a completed payment shows the success dialog here, a failed
+      // one the failure dialog.
       await openCheckout({
         catalog,
         checkout: { transactionId },
@@ -77,6 +78,7 @@ export function BuyButton({
         theme: resolvedTheme === "dark" ? "dark" : "light",
         paid: "top_up",
         locale,
+        companyId,
       })
       onOpened?.()
     } catch {

@@ -422,6 +422,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/companies/{company_id}/payment-failure": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Company Payment Failure
+     * @description Why the latest payment of `buyer_id`'s checkout into the company failed; 404 for any
+     *     transaction that isn't theirs, so its id alone reveals nothing.
+     */
+    get: operations["company_payment_failure_internal_companies__company_id__payment_failure_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/superadmin/stats": {
     parameters: {
       query?: never
@@ -1020,6 +1041,31 @@ export interface components {
     PaidOut: {
       /** Paid */
       paid: boolean
+    }
+    /**
+     * PaymentFailure
+     * @description Why a checkout's payment failed, as the buyer can act on it; the site says what to do for
+     *     each.
+     * @enum {string}
+     */
+    PaymentFailure:
+      | "card_declined"
+      | "insufficient_funds"
+      | "expired_card"
+      | "invalid_details"
+      | "authentication_failed"
+      | "card_not_supported"
+      | "payment_method_failed"
+      | "try_later"
+      | "other"
+    /**
+     * PaymentFailureOut
+     * @description Why a checkout's latest payment failed, as one of a fixed set; the site says what the buyer
+     *     can do for each.
+     */
+    PaymentFailureOut: {
+      /** @description Why the payment failed, by what the buyer can do. */
+      reason: components["schemas"]["PaymentFailure"]
     }
     /** ProviderLimitOut */
     ProviderLimitOut: {
@@ -1938,6 +1984,40 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  company_payment_failure_internal_companies__company_id__payment_failure_get: {
+    parameters: {
+      query: {
+        transaction_id: string
+        buyer_id: string
+      }
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["PaymentFailureOut"]
+        }
       }
       /** @description Validation Error */
       422: {

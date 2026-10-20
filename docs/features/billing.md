@@ -60,6 +60,14 @@ The top-up dialog (on the top-up page and a company's billing tab and header) bu
 - When Paddle completes the payment (`checkout.completed` in Paddle.js), its checkout closes and a dialog on the same page says the payment went through: "Payment received" for a top-up, "Automatic top-up is on" for the card that turns it on. Nothing is added to the address, and one checkout shows it once.
 - The home and pricing pages show the prices, their range and the free candidates as billing's catalog (`/billing/catalog`) gives them, in its currency. Kept 5 minutes; when billing can't answer and nothing is kept, the pricing page shows its title, intro and Top up with "Prices aren't available right now" instead of the list, rather than an empty or error page.
 
+When a payment fails in Paddle's checkout (a declined card, a failed Google Pay, Apple Pay or PayPal payment, and so on), the site says why and what to do:
+
+- Paddle.js reports `checkout.payment.failed`; while Paddle's checkout still shows its own error, the site asks why (`GET /companies/{id}/billing/payment-failure?transaction_id=…`, owners and admins). Billing reads the transaction from Paddle and answers only for the caller's own checkout into that company (its custom data names both; 404 otherwise, and a malformed id is refused before Paddle is asked).
+- Billing names the latest payment attempt's `error_code` by what the buyer can do (`app/constants/payment_failures.py`): `card_declined`, `insufficient_funds`, `expired_card`, `invalid_details`, `authentication_failed` (the bank's 3-D Secure check), `card_not_supported`, `payment_method_failed` (a wallet or PayPal without a clearer code), `try_later` (the bank or Paddle unreachable) or `other` (anything else, and Paddle slow or down: two reads a second apart, 4 seconds each).
+- Then Paddle's checkout closes and a dialog says "Payment didn't go through" with that reason's advice (another card or payment method, check the card details, confirm in the banking app, try later, ask the bank), **Close** and **Try again**, which opens the same checkout again. A failure the buyer has already retried past in Paddle's checkout shows nothing.
+- The same holds for the checkout that turns automatic top-up on.
+- Making checkouts and looking up failed payments count together against `CHECKOUT_CALLS_PER_USER_HOUR` (60 a user an hour by default), as each calls Paddle's API.
+
 Balances follow a payment as it lands:
 
 - They are rechecked for a minute after a completed payment.

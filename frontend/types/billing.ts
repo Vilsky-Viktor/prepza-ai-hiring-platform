@@ -18,3 +18,6 @@ export type CompanyCredits = {
   low: boolean
   candidates: number
 }
+// Why a checkout's payment failed, as billing decides it: one of a fixed set of keys, each with
+// its advice in the messages (billing.paymentFailed).
+export type PaymentFailureData = companies["schemas"]["PaymentFailureOut"]

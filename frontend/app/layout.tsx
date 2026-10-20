@@ -6,6 +6,7 @@ import { getLocale, getMessages, getTranslations } from "next-intl/server"
 import "./globals.css"
 import { AssistantProvider } from "@/components/assistant/assistant-provider"
 import { PaidNotice } from "@/components/billing/paid-notice"
+import { PaymentFailed } from "@/components/billing/payment-failed"
 import { AuthProvider } from "@/components/auth-provider"
 import { CjkFonts } from "@/components/cjk-fonts"
 import { UrlLocaleProvider } from "@/components/localized-link"
@@ -114,6 +115,7 @@ export default async function RootLayout({
                       <Toaster />
                       <ReferralNotice />
                       <PaidNotice />
+                      <PaymentFailed />
                     </AssistantProvider>
                   </SignInProvider>
                 </TooltipProvider>

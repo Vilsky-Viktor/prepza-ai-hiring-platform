@@ -296,6 +296,28 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/companies/{company_id}/billing/payment-failure": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get Payment Failure
+     * @description Why the latest payment of the user's own checkout into the company failed (a top-up's, or
+     *     the one that saves the card for automatic top-up), for the site to say what to try next;
+     *     404 for any other transaction.
+     */
+    get: operations["get_payment_failure_companies__company_id__billing_payment_failure_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/members": {
     parameters: {
       query?: never
@@ -3537,6 +3559,16 @@ export interface components {
       /** Paused */
       paused: boolean
     }
+    /**
+     * PaymentFailureOut
+     * @description Why a checkout's latest payment failed, as billing decides it: one of card_declined,
+     *     insufficient_funds, expired_card, invalid_details, authentication_failed, card_not_supported,
+     *     payment_method_failed, try_later or other. The site says what the buyer can do for each.
+     */
+    PaymentFailureOut: {
+      /** Reason */
+      reason: string
+    }
     /** PrepzaBrand */
     PrepzaBrand: {
       colors: components["schemas"]["BrandColorSets"]
@@ -4946,6 +4978,39 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["TopUpCheckoutOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_payment_failure_companies__company_id__billing_payment_failure_get: {
+    parameters: {
+      query: {
+        transaction_id: string
+      }
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["PaymentFailureOut"]
         }
       }
       /** @description Validation Error */

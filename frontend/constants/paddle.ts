@@ -18,3 +18,6 @@ export const PADDLE_LOCALES: Record<string, string> = {
   zh: "zh-Hans",
 }
 export const PADDLE_FALLBACK_LOCALE = "en"
+// How long the failure dialog waits for billing to say why a payment failed (billing gives up on
+// Paddle within about 10 seconds); after that it gives the general advice.
+export const PAYMENT_FAILURE_TIMEOUT_MS = 12_000
