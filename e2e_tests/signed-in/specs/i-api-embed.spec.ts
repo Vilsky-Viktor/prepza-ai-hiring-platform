@@ -88,7 +88,8 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   await api(owner, "PUT", `/companies/companies/${company.id}/website`, { website: DOMAIN })
   expect(await framers(candidate.invite_url)).toBe("'none'")
   await verifyCompany(company.id, DOMAIN)
-  expect(await framers(candidate.invite_url)).toBe(`${DOMAIN} *.${DOMAIN}`)
+  // Polled: the page gives up on a slow lookup (3 s) and refuses framing, as it should.
+  await expect.poll(() => framers(candidate.invite_url)).toBe(`${DOMAIN} *.${DOMAIN}`)
   const byEmail = await invite(throwawayEmail("by-email"), true)
   expect(await framers(byEmail.invite_url)).toBe("'none'")
 
