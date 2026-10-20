@@ -2,6 +2,7 @@ from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
 from prepza_common import outbox
+from prepza_common.db import delete_in_batches
 from prepza_common.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import and_, delete, func, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
@@ -221,12 +222,9 @@ async def counts(company_id: UUID) -> dict[UUID, dict[str, int]]:
 
 
 async def delete_older_than(before: datetime) -> int:
-    """Candidates the ATS sent before `before` go (they hold emails); how many."""
-    async with Session() as session:
-        result = await session.execute(delete(AtsCandidate).where(AtsCandidate.created_at < before))
-        await session.commit()
-
-        return result.rowcount
+    """Candidates the ATS sent before `before` go (they hold emails), a batch at a time; how
+    many."""
+    return await delete_in_batches(Session, AtsCandidate, AtsCandidate.created_at < before)
 
 
 async def of_email(email: str) -> list[AtsCandidate]:

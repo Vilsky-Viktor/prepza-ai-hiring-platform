@@ -2,10 +2,11 @@ from prepza_common.constants import (
     DB_MAX_OVERFLOW,
     DB_POOL_RECYCLE_SECONDS,
     DB_POOL_SIZE,
+    DELETE_BATCH,
     IDLE_IN_TRANSACTION_TIMEOUT,
     MIGRATION_LOCK_TIMEOUT,
 )
-from sqlalchemy import Engine, create_engine, text
+from sqlalchemy import Engine, create_engine, delete, inspect, select, text
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, create_async_engine
 
 
@@ -39,6 +40,26 @@ def migration_engine(database_url: str) -> Engine:
     options = f"-c lock_timeout={MIGRATION_LOCK_TIMEOUT}"
 
     return create_engine(sqlalchemy_url(database_url), connect_args={"options": options})
+
+
+async def delete_in_batches(sessionmaker, model, *conditions, batch: int = DELETE_BATCH) -> int:
+    """Deletes `model`'s rows matching `conditions`, `batch` at a time, each batch committed on
+    its own, and returns how many went. For old rows (retention): a run cut off midway keeps what
+    it deleted, and the next run goes on."""
+    (key,) = inspect(model).primary_key
+    total = 0
+
+    while True:
+        chosen = select(key).where(*conditions).limit(batch)
+
+        async with sessionmaker() as session:
+            result = await session.execute(delete(model).where(key.in_(chosen)))
+            await session.commit()
+
+        total += result.rowcount
+
+        if result.rowcount < batch:
+            return total
 
 
 async def ping(engine: AsyncEngine) -> None:

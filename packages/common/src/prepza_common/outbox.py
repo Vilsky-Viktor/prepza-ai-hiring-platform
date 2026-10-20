@@ -15,7 +15,8 @@ from prepza_common.constants import (
     OUTBOX_REJECTED_STATUSES,
     PUBLISH_IN_REQUEST_TIMEOUT_SECONDS,
 )
-from sqlalchemy import delete, select
+from prepza_common.db import delete_in_batches
+from sqlalchemy import select
 
 logger = logging.getLogger(__name__)
 
@@ -118,14 +119,9 @@ async def flush_batch(
 
 
 async def delete_published(sessionmaker, model) -> None:
-    """Deletes events published more than OUTBOX_KEEP_DAYS ago."""
-    async with sessionmaker() as session:
-        await session.execute(
-            delete(model).where(
-                model.published_at < datetime.now(UTC) - timedelta(days=OUTBOX_KEEP_DAYS)
-            )
-        )
-        await session.commit()
+    """Deletes events published more than OUTBOX_KEEP_DAYS ago, a batch at a time."""
+    before = datetime.now(UTC) - timedelta(days=OUTBOX_KEEP_DAYS)
+    await delete_in_batches(sessionmaker, model, model.published_at < before)
 
 
 async def flush(

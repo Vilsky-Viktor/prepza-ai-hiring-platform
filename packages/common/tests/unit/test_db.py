@@ -36,3 +36,38 @@ def test_migrations_wait_only_so_long_for_a_lock():
     assert create.call_args.kwargs["connect_args"] == {
         "options": f"-c lock_timeout={MIGRATION_LOCK_TIMEOUT}"
     }
+
+
+def test_old_rows_are_deleted_batch_after_batch_until_one_comes_up_short():
+    import asyncio
+
+    from sqlalchemy import Column, Integer
+    from sqlalchemy.orm import declarative_base
+
+    Row = declarative_base()
+
+    class Old(Row):
+        __tablename__ = "old"
+        id = Column(Integer, primary_key=True)
+
+    counts = iter([3, 3, 1])
+    commits = []
+
+    class FakeSession:
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *exc):
+            return False
+
+        async def execute(self, statement):
+            return mock.Mock(rowcount=next(counts))
+
+        async def commit(self):
+            commits.append(True)
+
+    deleted = asyncio.run(db.delete_in_batches(FakeSession, Old, Old.id < 10, batch=3))
+
+    # Each batch is its own transaction; the short one is the last.
+    assert deleted == 7
+    assert len(commits) == 3

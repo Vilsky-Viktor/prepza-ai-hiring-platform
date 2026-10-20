@@ -103,3 +103,38 @@ def test_a_read_through_the_assistant_is_listed_and_exported_with_via(run):
 
     assert sorted(row.via or "" for row in listed) == ["", VIA_ASSISTANT]
     assert sorted(row["via"] or "" for row in exported) == ["", VIA_ASSISTANT]
+
+
+def test_old_audit_events_are_deleted_in_batches_and_new_ones_kept(run):
+    from prepza_common.db import delete_in_batches
+
+    async def scenario():
+        company = await companies.create(f"Batches {uuid.uuid4()}", "ann", "ann@example.com")
+
+        for _ in range(5):
+            await audit.record(company.id, "ann", AuditAction.PASS_MARK_CHANGED)
+
+        await audit.record(company.id, "ann", AuditAction.TOPICS_APPROVED)
+        old = AuditEvent.company_id == company.id, AuditEvent.action != AuditAction.TOPICS_APPROVED
+
+        async with Session() as session:
+            await session.execute(
+                update(AuditEvent).where(*old).values(created_at=datetime(2000, 1, 1, tzinfo=UTC))
+            )
+            await session.commit()
+
+        cutoff = datetime(2001, 1, 1, tzinfo=UTC)
+        mine = AuditEvent.company_id == company.id
+        # Two at a time: three batches, the last one short.
+        deleted = await delete_in_batches(
+            Session, AuditEvent, mine, AuditEvent.created_at < cutoff, batch=2
+        )
+        kept = await audit.list_for_company(company.id, 0, 10)
+        await companies.delete(company.id)
+
+        return deleted, kept
+
+    deleted, kept = run(scenario())
+
+    assert deleted == 5
+    assert [row.action for row in kept] == [AuditAction.TOPICS_APPROVED]

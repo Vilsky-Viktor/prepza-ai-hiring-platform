@@ -3,7 +3,8 @@
 from datetime import datetime, timedelta
 
 from prepza_common.ai_constants import PREPZA_ACTIONS, Category
-from sqlalchemy import delete, exists, select, update
+from prepza_common.db import delete_in_batches
+from sqlalchemy import exists, select, update
 from sqlalchemy.dialects.postgresql import insert
 
 from app.constants.products import OwnerType
@@ -87,11 +88,12 @@ async def forget(column: str, value: str) -> None:
 
 
 async def drop_old(now: datetime, usage_days: int, changes_days: int) -> None:
-    async with Session() as session:
-        for model in (AiUsage, LimitHit):
-            before = now - timedelta(days=usage_days)
-            await session.execute(delete(model).where(model.occurred_at < before))
+    """AI usage and limit hits older than `usage_days`, limit changes older than `changes_days`,
+    deleted a batch at a time."""
+    before = now - timedelta(days=usage_days)
 
-        before = now - timedelta(days=changes_days)
-        await session.execute(delete(LimitChange).where(LimitChange.changed_at < before))
-        await session.commit()
+    for model in (AiUsage, LimitHit):
+        await delete_in_batches(Session, model, model.occurred_at < before)
+
+    before = now - timedelta(days=changes_days)
+    await delete_in_batches(Session, LimitChange, LimitChange.changed_at < before)

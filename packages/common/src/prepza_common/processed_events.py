@@ -2,7 +2,7 @@
 # redelivery finds it and changes nothing. `model` is the service's ProcessedEventColumns table.
 from datetime import datetime
 
-from sqlalchemy import delete
+from prepza_common.db import delete_in_batches
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -22,9 +22,6 @@ async def claim(session: AsyncSession, model, event_id: str | None) -> bool:
 
 
 async def forget(sessionmaker, model, before: datetime) -> int:
-    """Drops the notes of events received before `before`, long past Pub/Sub's redeliveries."""
-    async with sessionmaker() as session:
-        result = await session.execute(delete(model).where(model.received_at < before))
-        await session.commit()
-
-        return result.rowcount
+    """Drops the notes of events received before `before`, long past Pub/Sub's redeliveries, a
+    batch at a time."""
+    return await delete_in_batches(sessionmaker, model, model.received_at < before)

@@ -3,7 +3,8 @@ from uuid import UUID, uuid4
 
 from prepza_common.audit_actions import ACTION_GROUPS, MAX_TARGET_LABEL, AuditAction, TargetKind
 from prepza_common.constants import DELETED_USER
-from sqlalchemy import delete, select, update
+from prepza_common.db import delete_in_batches
+from sqlalchemy import select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError
 
@@ -161,8 +162,5 @@ async def forget_user(user_id: str) -> None:
 
 
 async def delete_before(before: datetime) -> int:
-    async with Session() as session:
-        result = await session.execute(delete(AuditEvent).where(AuditEvent.created_at < before))
-        await session.commit()
-
-        return result.rowcount
+    """Audit events from before `before`, deleted a batch at a time; how many."""
+    return await delete_in_batches(Session, AuditEvent, AuditEvent.created_at < before)
