@@ -28,9 +28,9 @@ locals {
     generation-retention = { service = "generation-worker", path = "/internal/schedules/retention", cron = "0 3 * * *" }
     # Weekly, Monday morning: last week's flagged and replaced questions turned into proposed
     # general rules for the admin zone's patterns tab. Created paused (paused_schedules).
-    quality-patterns     = { service = "generation-worker", path = "/internal/schedules/patterns", cron = "0 5 * * 1" }
-    candidate-retention  = { service = "companies", path = "/internal/schedules/retention", cron = "15 3 * * *" }
-    invite-expiry        = { service = "companies", path = "/internal/schedules/invite-expiry", cron = "30 3 * * *" }
+    quality-patterns    = { service = "generation-worker", path = "/internal/schedules/patterns", cron = "0 5 * * 1" }
+    candidate-retention = { service = "companies", path = "/internal/schedules/retention", cron = "15 3 * * *" }
+    invite-expiry       = { service = "companies", path = "/internal/schedules/invite-expiry", cron = "30 3 * * *" }
     # In the morning (UTC), not the night: a reminder candidates see.
     invite-reminders = { service = "companies", path = "/internal/schedules/invite-reminders", cron = "0 9 * * *" }
     bank-stages      = { service = "library", path = "/internal/schedules/bank", cron = "45 3 * * *" }
