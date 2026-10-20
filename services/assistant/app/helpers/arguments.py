@@ -7,11 +7,17 @@ TYPES = {"string": str, "integer": int, "number": (int, float), "boolean": bool}
 
 def problems(arguments: dict, parameters: dict) -> list[str]:
     """What's wrong with the model's arguments for a tool's `parameters` schema; empty when
-    nothing is. A null counts as left out."""
+    nothing is. A null counts as left out, and an empty required text as missing."""
     properties = parameters["properties"]
     given = {name: value for name, value in arguments.items() if value is not None}
     found = [f"unknown argument {name}" for name in given if name not in properties]
     found += [f"{name} is required" for name in parameters["required"] if name not in given]
+    # A required text left empty is missing too: the model asks the user for it.
+    found += [
+        f"{name} is empty: ask the user for it"
+        for name in parameters["required"]
+        if isinstance(given.get(name), str) and not given[name].strip()
+    ]
 
     for name, value in given.items():
         if name in properties:

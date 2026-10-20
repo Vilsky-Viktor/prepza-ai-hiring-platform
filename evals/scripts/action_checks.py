@@ -26,10 +26,27 @@ def matches(expected, given, ids: dict) -> bool:
     return expected == given
 
 
+# A call refused for a value the user hasn't given yet: the refusal tells the model to ask for
+# it, so it's the check working, not an action (whether it asked is the judge's).
+MISSING_VALUE = (" is required", " is empty")
+
+
+def missing_value(detail: str | None) -> bool:
+    """A refusal whose every problem is a value not given yet."""
+    parts = (detail or "").split("; ")
+
+    return bool(detail) and all(any(mark in part for mark in MISSING_VALUE) for part in parts)
+
+
 def tried(answer: dict, confirm_tools: set[str]) -> list[dict]:
     """Every action the turn prepared, and the ones it called that were refused before a card
-    (bad arguments, not found): both are what the model chose to do."""
-    refused = [call for call in answer["tools"] if call["name"] in confirm_tools]
+    (bad arguments, not found): both are what the model chose to do. Not a call refused only
+    for a missing value."""
+    refused = [
+        call
+        for call in answer["tools"]
+        if call["name"] in confirm_tools and not missing_value(call.get("refused"))
+    ]
 
     return answer["actions"] + refused
 

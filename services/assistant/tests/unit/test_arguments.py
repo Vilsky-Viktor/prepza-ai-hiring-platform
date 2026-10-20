@@ -53,3 +53,16 @@ def test_path_values_are_escaped_as_one_segment():
         fill_path("/{provider}/jobs", {"provider": "work able/../x"})
         == "/work%20able%2F..%2Fx/jobs"
     )
+
+
+def test_an_empty_required_text_is_missing_and_the_model_is_told_to_ask():
+    parameters = {
+        "type": "object",
+        "properties": {"name": {"type": "string"}, "note": {"type": "string"}},
+        "required": ["name"],
+    }
+
+    assert problems({"name": "  ", "note": ""}, parameters) == [
+        "name is empty: ask the user for it"
+    ]
+    assert problems({"name": "Acme"}, parameters) == []

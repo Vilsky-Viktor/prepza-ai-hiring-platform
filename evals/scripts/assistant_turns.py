@@ -2,6 +2,7 @@
 context (as the service does now) or without it (as before: the page's path alone, no
 get_page_guide tool and no page instructions, earlier messages without their page)."""
 
+import asyncio
 import base64
 import json
 import re
@@ -11,6 +12,7 @@ from contextlib import contextmanager
 from types import SimpleNamespace
 
 from common import cost
+from fastapi import HTTPException
 
 from app.config.settings import settings
 from app.constants.chat import HISTORY_CHARACTERS, Role
@@ -23,6 +25,10 @@ from app.storage import actions
 # What answers, for the results.
 MODEL = f"{settings.assistant_model} ({settings.assistant_reasoning_effort})"
 
+# Reading the user's companies is tried this many times, this many seconds apart: the local
+# stack's services restart when their code changes.
+COMPANIES_TRIES = 5
+COMPANIES_WAIT_SECONDS = 3
 # The context line before the page context, which named the path alone.
 OLD_PAGE = "The user is on the page {page}."
 PAGE_TOOL = "get_page_guide"
@@ -59,14 +65,25 @@ def user_id(token: str) -> str:
     return json.loads(base64.urlsafe_b64decode(payload + "=" * (-len(payload) % 4)))["user_id"]
 
 
+async def companies_of(uid: str) -> frozenset[str]:
+    """The user's companies, read again while companies restarts."""
+    for _ in range(COMPANIES_TRIES - 1):
+        try:
+            return await user_companies(uid)
+        except HTTPException:
+            await asyncio.sleep(COMPANIES_WAIT_SECONDS)
+
+    return await user_companies(uid)
+
+
 async def ask(
     token: str, owner: str, company_id: str | None, message: str, page: dict, earlier: list
 ) -> dict:
     """One message, on `page` (the context the panel sends), after `earlier` turns ({role,
-    content, page}); the answer's text, tool calls, the actions it prepared for the user to
-    confirm, shown rows, tokens, cost and seconds."""
+    content, page}); the answer's text, tool calls (with why one was refused), the actions it
+    prepared for the user to confirm, shown rows, tokens, cost and seconds."""
     uid = user_id(token)
-    companies = await user_companies(uid)
+    companies = await companies_of(uid)
     picked = uuid.UUID(company_id) if company_id else None
     turn = Turn(uuid.uuid4(), uid, picked, token, "en", companies, owner)
     stored = [
@@ -90,7 +107,14 @@ async def ask(
 
     return {
         "text": answer.content,
-        "tools": [{"name": item.tool, "arguments": item.arguments} for item in answer.results],
+        "tools": [
+            {
+                "name": item.tool,
+                "arguments": item.arguments,
+                "refused": None if item.succeeded else item.content.get("detail"),
+            }
+            for item in answer.results
+        ],
         "actions": [
             {"name": item["tool"], "arguments": item["arguments"]} for item in prepared if item
         ],

@@ -267,6 +267,15 @@
    }
   },
   {
+   "id": "i10",
+   "kind": "invite",
+   "page": "membersA",
+   "message": "Invite a new team member as an admin.",
+   "expect": {
+    "ask": "value"
+   }
+  },
+  {
    "id": "e01",
    "kind": "edit",
    "page": "candidatesA",
@@ -428,6 +437,15 @@
       }
      }
     ]
+   }
+  },
+  {
+   "id": "e11",
+   "kind": "edit",
+   "page": "interviewsA",
+   "message": "Rename the Data Analyst interview.",
+   "expect": {
+    "ask": "value"
    }
   },
   {

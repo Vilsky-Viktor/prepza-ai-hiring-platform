@@ -22,7 +22,10 @@ COMPANY_ACTIONS = {
         "params": [],
         "body": ["name"],
         "confirm": True,
-        "description": "Create a company the user will own; needs only its name.",
+        "description": (
+            "Create a company the user will own; needs only its name. When the user gave no "
+            "name, ask for it instead of calling this."
+        ),
         "fields": ["id", "name", "role"],
         "render": "link",
         "link": "/companies/{id}/interviews",
