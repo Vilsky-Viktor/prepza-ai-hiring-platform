@@ -201,3 +201,26 @@ def test_a_sign_in_already_gone_is_deleted(monkeypatch):
     monkeypatch.setattr(account_service.firebase_auth, "revoke_refresh_tokens", gone)
 
     account_service.delete_sign_in("ann")
+
+
+def test_deleting_and_exporting_in_a_service_waits_longer_than_an_ordinary_call(monkeypatch):
+    from prepza_common.constants import HTTP_TIMEOUT_SECONDS
+
+    from app.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
+
+    waits = []
+
+    def answer(request):
+        waits.append(request.extensions["timeout"]["read"])
+
+        return httpx.Response(200, json={}, request=request)
+
+    client = httpx.AsyncClient(transport=httpx.MockTransport(answer))
+    monkeypatch.setattr(http, "get_client", lambda: client)
+    monkeypatch.setattr(account_services, "service_token", lambda service: "token")
+
+    asyncio.run(account_services.delete_user("companies", "ann", "ann@example.com"))
+    asyncio.run(account_services.export_user("rounds", "ann", "ann@example.com"))
+
+    assert waits == [ACCOUNT_CALL_TIMEOUT_SECONDS] * 2
+    assert ACCOUNT_CALL_TIMEOUT_SECONDS > HTTP_TIMEOUT_SECONDS

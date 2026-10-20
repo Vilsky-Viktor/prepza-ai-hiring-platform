@@ -2,6 +2,7 @@ from prepza_common import http
 from prepza_common.http import bearer
 
 from app.config.settings import settings
+from app.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
 from app.service_auth import service_token
 
 
@@ -28,6 +29,7 @@ async def delete_user(service: str, user_id: str, email: str) -> None:
         f"{services()[service]}/internal/users/{user_id}",
         json={"email": email},
         headers=bearer(service_token(service)),
+        timeout=ACCOUNT_CALL_TIMEOUT_SECONDS,
     )
 
     response.raise_for_status()
@@ -38,6 +40,7 @@ async def export_user(service: str, user_id: str, email: str) -> dict:
         f"{services()[service]}/internal/users/{user_id}/export",
         json={"email": email},
         headers=bearer(service_token(service)),
+        timeout=ACCOUNT_CALL_TIMEOUT_SECONDS,
     )
 
     response.raise_for_status()

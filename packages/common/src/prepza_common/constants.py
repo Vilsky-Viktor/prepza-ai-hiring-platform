@@ -3,7 +3,11 @@ from datetime import timedelta
 # Service tokens live this long; each call between services signs a new one.
 SERVICE_TOKEN_LIFETIME = timedelta(seconds=60)
 
-HTTP_TIMEOUT_SECONDS = 30
+# A call to another service (or Google's APIs) gives up after this long, unless it sets its own:
+# enough for a callee starting cold (3-6 s) and its slowest ordinary answer. A hung callee then
+# holds its callers' requests and pool slots for 15 s, not 30, so its trouble spreads less under
+# load. Calls known to take longer (deletions, starting a generation) pass their own timeout.
+HTTP_TIMEOUT_SECONDS = 15
 # Retries only connection attempts that failed, so a request is never sent twice.
 HTTP_RETRIES = 3
 
