@@ -4,6 +4,8 @@ import createNextIntlPlugin from "next-intl/plugin"
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  // No X-Powered-By header: it only tells attackers what the site runs on.
+  poweredByHeader: false,
   // Into the browser's code too, under its own name (only NEXT_PUBLIC_ names go there by
   // themselves); read when the site is built. Not secret: it only allows sending error reports.
   env: {

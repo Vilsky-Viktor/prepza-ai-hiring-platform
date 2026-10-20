@@ -34,4 +34,13 @@ check /api/notifications/ready
 check /.well-known/oauth-authorization-server
 check /.well-known/oauth-protected-resource/mcp
 
+# The site doesn't say what it runs on.
+if curl -sSI "$base/" | grep -qi '^x-powered-by:'; then
+  echo "FAIL / sends X-Powered-By" >&2
+
+  exit 1
+fi
+
+echo "ok no X-Powered-By"
+
 echo "smoke ok"
