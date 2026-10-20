@@ -71,7 +71,8 @@ async def sign_in(uid: str) -> tuple[User, str] | None:
 
     response.raise_for_status()
     found = response.json()
-    user = verify(found["idToken"])
+    # The check may fetch Google's certificates, a blocking call.
+    user = await asyncio.to_thread(verify, found["idToken"])
 
     if user is None:
         return None

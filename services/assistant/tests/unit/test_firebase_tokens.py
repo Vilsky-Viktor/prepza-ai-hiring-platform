@@ -1,4 +1,5 @@
 import asyncio
+import threading
 from types import SimpleNamespace
 
 import httpx
@@ -59,6 +60,20 @@ def test_the_user_is_signed_in_with_a_custom_token_and_kept(firebase):
     assert url.endswith("/accounts:signInWithCustomToken")
     assert params == {"key": settings.firebase_web_api_key}
     assert body == {"token": "custom", "returnSecureToken": True}
+
+
+def test_the_token_is_checked_off_the_event_loop(firebase, monkeypatch):
+    threads = []
+
+    def verify(token):
+        threads.append(threading.current_thread())
+
+        return ANN
+
+    monkeypatch.setattr(firebase_tokens, "verify", verify)
+    asyncio.run(firebase_tokens.sign_in("ann"))
+
+    assert threads and threads[0] is not threading.main_thread()
 
 
 def test_an_account_disabled_after_signing_in_loses_access_within_minutes(firebase, monkeypatch):
