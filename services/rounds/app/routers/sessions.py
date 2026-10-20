@@ -2,7 +2,7 @@ from uuid import UUID
 
 from fastapi import APIRouter
 from prepza_common.auth import CurrentUser
-from prepza_common.rate_limit import hit
+from prepza_common.rate_limit import hit_or_skip
 
 from app.constants.integrity import IntegritySignal
 from app.constants.rounds import TIME_GRACE_SECONDS, RoundStatus
@@ -28,7 +28,9 @@ async def add_signal(session_id: UUID, body: SignalIn, user: CurrentUser) -> Non
     if row.status != RoundStatus.IN_PROGRESS or row.practice or row.preview:
         return
 
-    await hit(get_redis(), f"rate:signals:{row.id}", "SIGNALS_PER_MINUTE", user_id=user.uid)
+    # Against flooding only (a question keeps at most MAX_SIGNALS_PER_QUESTION anyway): with
+    # Redis down the signal is still saved rather than lost.
+    await hit_or_skip(get_redis(), f"rate:signals:{row.id}", "SIGNALS_PER_MINUTE", user_id=user.uid)
 
     if body.kind == IntegritySignal.TAB_RETURN:
         if body.seconds is not None:

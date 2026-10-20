@@ -14,6 +14,7 @@ from app.main import app
 from app.models.answers import Answer
 from app.models.sessions import Session
 from app.models.signals import Signal
+from app.routers import sessions as routes
 from app.schemas.library import TopicQuestions
 from app.storage import sessions, signals
 
@@ -142,6 +143,41 @@ def test_the_browser_reports_signals(monkeypatch, redis, published, edited):
     assert [(data["limit"], data["user_id"]) for _, data in published] == [
         ("SIGNALS_PER_MINUTE", "cand")
     ]
+
+
+def test_with_redis_down_a_signal_is_still_saved(monkeypatch):
+    row = session(seconds=10)
+    row.answers = []
+    row.question_shown_at = datetime.now(UTC)
+    counted = []
+
+    class DownRedis:
+        def pipeline(self, transaction):
+            raise ConnectionError("Redis is down")
+
+        async def hgetall(self, key):
+            raise ConnectionError("Redis is down")
+
+    async def fake_get(session_id):
+        return row
+
+    async def fake_add_signal(session_id, question_id, kind):
+        counted.append((question_id, kind))
+
+    monkeypatch.setattr(sessions, "get", fake_get)
+    monkeypatch.setattr(signals, "add_signal", fake_add_signal)
+    monkeypatch.setattr(routes, "get_redis", DownRedis)
+    app.dependency_overrides[current_user] = lambda: User(
+        uid="cand", email="cand@example.com", email_verified=True
+    )
+
+    try:
+        saved = TestClient(app).post(f"/sessions/{row.id}/signals", json={"kind": "copy"})
+    finally:
+        app.dependency_overrides.clear()
+
+    assert saved.status_code == 204
+    assert counted == [(QUESTION_ID, "copy")]
 
 
 def test_signals_are_counted_on_their_question():
