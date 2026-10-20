@@ -6,18 +6,21 @@ import { visit } from "./navigation"
 
 // The email boxes under the sign-in buttons to tick first; both start unticked.
 export type SignInEmails = { noUpdates?: boolean; promotions?: boolean }
+// The ways to sign in the site offers (frontend/constants/auth.ts).
+export type SignInProvider = "google" | "linkedin" | "github"
 
 
-/** A new browser signed in as `email`, through the site's own "Continue with Google" and the
- * Auth emulator's sign-in page (never real Google): an account the emulator already has is
- * picked from its list, any other is added. The emulator marks these emails verified. `emails`
- * ticks the email boxes first. A new account's `displayName` (its sign-in's name claim) is the
- * email's local part unless given. */
+/** A new browser signed in as `email`, through the site's own "Continue with Google" (or another
+ * `provider`'s button) and the Auth emulator's sign-in page (never the real provider): an account
+ * the emulator already has is picked from its list, any other is added. The emulator marks these
+ * emails verified. `emails` ticks the email boxes first. A new account's `displayName` (its
+ * sign-in's name claim) is the email's local part unless given. */
 export async function signIn(
   browser: Browser,
   email: string,
   emails: SignInEmails = {},
   displayName = email.split("@")[0],
+  provider: SignInProvider = "google",
 ): Promise<Page> {
   if (!env("NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL")) {
     throw new Error("Signed-in tests need the Firebase Auth emulator")
@@ -36,7 +39,7 @@ export async function signIn(
     }
   }
 
-  const popup = await openGooglePopup(page)
+  const popup = await openPopup(page, provider)
   await popup.waitForLoadState()
   // Each listed account carries its claims, the email among them, URL-encoded.
   const claim = encodeURIComponent(`"email":"${email}"`)
@@ -62,10 +65,10 @@ export async function signIn(
   return page
 }
 
-/** Clicks "Continue with Google" until the emulator's page opens: a click before the page is
+/** Clicks the provider's button until the emulator's page opens: a click before the page is
  * ready opens nothing. A page that opens late still counts, and while one is open the buttons
  * are disabled, so a click waits for them instead of failing. */
-async function openGooglePopup(page: Page): Promise<Page> {
+async function openPopup(page: Page, provider: SignInProvider): Promise<Page> {
   const popups: Page[] = []
   const onPage = (opened: Page) => popups.push(opened)
   page.context().on("page", onPage)
@@ -73,7 +76,7 @@ async function openGooglePopup(page: Page): Promise<Page> {
   try {
     await expect(async () => {
       if (popups.length === 0) {
-        const button = page.getByTestId("sign-in-google")
+        const button = page.getByTestId(`sign-in-${provider}`)
         await expect(button).toBeEnabled({ timeout: 5_000 })
         await button.click()
       }

@@ -120,6 +120,7 @@ Playwright tests of the signed-in pages, in the same Docker image, against the r
 - an expired invite, which asks to have it sent again,
 - extra time: a candidate given it sees the longer time per question on their invite,
 - a candidate whose email isn't confirmed, told to confirm it,
+- signing in through each provider's popup (Google, LinkedIn, GitHub) under the site's `Cross-Origin-Opener-Policy`, which the pages send (`y-sign-in-providers.spec.ts`),
 - the team and a viewer, and a join link opened while signed in with another email (a warning, no Join),
 - a company's action log: the owner sees their own and another member's actions, with who did what, and filters them by member, kind of action and days; an admin and a viewer have no tab, and its page sends them to the company,
 - handing a company to an admin, who's told in the bell, and deleting an account that owns a company others joined, which waits, then names the companies deleted with it and their credits,
