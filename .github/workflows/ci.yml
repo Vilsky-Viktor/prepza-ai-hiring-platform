@@ -26,10 +26,9 @@ env:
   PUBLISH: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
 jobs:
-  # What changed, so only that is tested and built. A pull request compares with its base; main
-  # compares with the last commit CI passed on (runs on main go one at a time), so a failed run's
-  # changes are built by the next one. Each service also depends on packages/common; a change to
-  # CI itself or the Python version counts as everything.
+  # What changed, so only that is tested and built (scripts/ci_changes.sh). A pull request compares
+  # with its base; main compares with the last commit CI passed on (runs on main go one at a time),
+  # so a failed run's changes are built by the next one.
   changes:
     name: what changed
     runs-on: ubuntu-latest
@@ -49,68 +48,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PR_BASE: ${{ github.event.pull_request.base.sha }}
-        run: |
-          everything="library generation rounds companies billing notifications ats api assistant frontend common"
-
-          if [ -n "$PR_BASE" ]; then
-            base="$PR_BASE"
-          else
-            base="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs?branch=main&event=push&status=success&per_page=1" --jq '.workflow_runs[0].head_sha // ""')"
-          fi
-
-          # No earlier passing commit to build on: everything.
-          if [ -z "$base" ] || ! git merge-base --is-ancestor "$base" HEAD; then
-            base=""
-            changed="$everything"
-          else
-            files="$(git diff --name-only "$base" HEAD)"
-            changed=""
-
-            if echo "$files" | grep -qE '^(\.github/workflows/ci\.yml|\.python-version)$'; then
-              changed="$everything"
-            else
-              for name in library generation rounds companies billing notifications ats api assistant; do
-                if echo "$files" | grep -qE "^(services/$name|packages/common)/"; then
-                  changed="$changed $name"
-                fi
-              done
-
-              if echo "$files" | grep -q '^frontend/'; then
-                changed="$changed frontend"
-              fi
-
-              # rounds serves the site's guide articles from its image.
-              if echo "$files" | grep -qE '^frontend/content/([a-z]+/)?guides/'; then
-                changed="$changed rounds"
-              fi
-
-              if echo "$files" | grep -q '^packages/common/'; then
-                changed="$changed common"
-              fi
-            fi
-          fi
-
-          # The whole-stack tests run when any part, or the stack and its tests, changed.
-          stack=false
-
-          if [ -n "$changed" ] || echo "${files:-}" | grep -qE '^(e2e_tests|gateway|database|firebase|scripts|compose)/|^docker-compose\.yml$'; then
-            stack=true
-          fi
-
-          # Terraform is checked when it changed, or when there's nothing to compare with.
-          infra=false
-
-          if [ -z "$base" ] || echo "${files:-}" | grep -q '^infra/terraform/'; then
-            infra=true
-          fi
-
-          echo "Since ${base:-the start}: ${changed:-nothing}"
-          {
-            echo "changed=$(jq -nc --arg names "$changed" '$names | split(" ") | map(select(. != ""))')"
-            echo "stack=$stack"
-            echo "infra=$infra"
-            echo "base=$base"
-          } >> "$GITHUB_OUTPUT"
+        run: scripts/ci_changes.sh
 
   lint:
     name: python lint and format

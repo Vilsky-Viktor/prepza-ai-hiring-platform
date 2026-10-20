@@ -223,7 +223,7 @@ Model and prompt quality is tested offline with the prepared datasets, judge pro
 
 CI runs all of these except the end-to-end test, which needs an OpenAI key, and the load tests, but only for what changed.
 
-- A service counts as changed when its folder or `packages/common` changed; the frontend, when `frontend/` did. A change to `ci.yml` or `.python-version` counts as everything.
+- A service counts as changed when its folder or `packages/common` changed; the frontend, when `frontend/` did. A change to `ci.yml`, `scripts/ci_changes.sh` (which works this out) or `.python-version` counts as everything.
 - A pull request compares with its base. `main` compares with the last commit CI passed on, so a failed run's changes are tested and built by the next one.
 - Each changed part's unit tests run and its production image is built. A changed frontend also gets lint, types and the translations check (`pnpm check:messages`). On `main`, an unchanged part's image is the last passing commit's, tagged with the new commit too.
 - Ruff runs on every change.
