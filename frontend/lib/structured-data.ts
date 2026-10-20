@@ -20,7 +20,7 @@ export function organizationData(site: string, description: string) {
       email: OPERATOR.email,
       address: { "@type": "PostalAddress", name: OPERATOR.address },
       url: site,
-      logo: `${site}/icon.svg`,
+      logo: `${site}/icon.png`,
       founder: { "@type": "Person", name: FOUNDER.name },
       sameAs: [FOUNDER.linkedin],
     },
