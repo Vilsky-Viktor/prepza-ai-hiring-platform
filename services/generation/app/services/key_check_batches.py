@@ -18,6 +18,7 @@ from app.integrations import library, openai_batch
 from app.integrations.redis import get_redis
 from app.integrations.usage import ai_run
 from app.models.key_checks import KeyCheck as KeyCheckRow
+from app.prompts.verify import VERIFIER_ROLE
 from app.schemas.verify import KeyCheck
 from app.services.verify import apply_key_check, check_key, key_check_prompt, marked_answer
 from app.storage import key_checks
@@ -30,10 +31,18 @@ def request_body(prompt: str) -> dict:
         "model": settings.verify_model,
         "reasoning_effort": settings.verify_reasoning_effort,
         "max_completion_tokens": MAX_OUTPUT_TOKENS,
-        "messages": [{"role": "user", "content": prompt}],
+        "messages": [
+            {"role": "system", "content": VERIFIER_ROLE},
+            {"role": "user", "content": prompt},
+        ],
+        # Strict, as with_structured_output asks for the checks made at once.
         "response_format": {
             "type": "json_schema",
-            "json_schema": {"name": "key_check", "schema": KeyCheck.model_json_schema()},
+            "json_schema": {
+                "name": "key_check",
+                "strict": True,
+                "schema": {**KeyCheck.model_json_schema(), "additionalProperties": False},
+            },
         },
     }
 

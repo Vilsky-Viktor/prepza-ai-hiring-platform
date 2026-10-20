@@ -3,9 +3,9 @@ import logging
 import random
 from collections import Counter
 
-from langchain_core.messages import HumanMessage
 from prepza_common.multi_answer import is_multi
 
+from app.helpers.prompts import checker_messages
 from app.integrations import llm
 from app.prompts.verify import MULTI_ANSWER_KEY, SELF_CHECK_PROMPT
 from app.schemas.regenerate import RegeneratedOption
@@ -42,7 +42,7 @@ async def self_check(question: dict, topic: str, level: str) -> str | None:
         result: SelfCheck = (
             await llm.get_verifier_llm()
             .with_structured_output(SelfCheck)
-            .ainvoke([HumanMessage(content=prompt)])
+            .ainvoke(checker_messages(prompt))
         )
     except Exception:
         logger.warning("Couldn't check a new question's key; it's dropped", exc_info=True)

@@ -53,7 +53,7 @@ class FakeLLM:
         return self
 
     async def ainvoke(self, messages):
-        self.prompts.append(messages[0].content)
+        self.prompts.append("\n".join(message.content for message in messages))
 
         return self.results.pop(0) if len(self.results) > 1 else self.results[0]
 

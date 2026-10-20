@@ -31,8 +31,8 @@ from common import (
     run_record,
     save,
 )
-from langchain_core.messages import HumanMessage
 
+from app.helpers.prompts import checker_messages
 from app.prompts.verify import MULTI_ANSWER_KEY, SINGLE_ANSWER_KEY, VERIFY_PROMPT
 from app.schemas.verify import KeyCheck
 
@@ -95,7 +95,7 @@ def prompt_for(item: dict) -> tuple[str, list[str]]:
 async def check(checker, case: dict) -> dict:
     text, shown = prompt_for(case["item"])
     started = time.monotonic()
-    result = await checker.ainvoke([HumanMessage(content=text)])
+    result = await checker.ainvoke(checker_messages(text))
     seconds = time.monotonic() - started
     indexes = result["parsed"].correct_indexes if result["parsed"] else None
     picked = (

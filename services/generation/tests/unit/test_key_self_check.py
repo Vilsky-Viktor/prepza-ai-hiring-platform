@@ -46,7 +46,7 @@ def test_a_multi_answer_question_whose_blind_answer_matches_its_key_is_kept(monk
     # The check sees the question's kind, but no option marked.
     assert MULTI_ANSWER_KEY in verifier.prompts[0]
     assert "Which entries debit cash?" in verifier.prompts[0]
-    assert "correct" not in verifier.prompts[0].split("Options")[-1]
+    assert "correct" not in verifier.prompts[0].split("<options>")[-1]
 
 
 def test_a_multi_answer_question_whose_key_doesnt_hold_is_dropped(monkeypatch):

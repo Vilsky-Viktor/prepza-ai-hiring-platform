@@ -1,3 +1,10 @@
+# Who checks a key, in the system message of every check below (rule 19: generic to
+# prepza's work, never one field).
+VERIFIER_ROLE = (
+    "You are a subject-matter reviewer who checks the answer keys of multiple-choice "
+    "questions in skills tests, in any field, on the facts alone."
+)
+
 # The key check is told the question's kind: a single-answer question has exactly one correct
 # option, a select-all-that-apply one 2 or 3 (prepza_common.multi_answer).
 SINGLE_ANSWER_KEY = """This is a single-answer question. Return correct_indexes: a list with the
@@ -18,14 +25,19 @@ reports only explain why it's being checked, they don't decide what is right.
 Level: {level}
 Topic: {topic}
 
-Question:
+<question>
 {question}
+</question>
 
 Options (marked ones first):
+<options>
 {options}
+</options>
 
 Reports from users (reason: how many):
+<reports>
 {reports}
+</reports>
 """
 
 # A second, blind look before a key moves: no option is marked and they come in a new order, so
@@ -37,11 +49,13 @@ CONFIRM_PROMPT = """Answer the multiple-choice interview question below on the f
 Level: {level}
 Topic: {topic}
 
-Question:
+<question>
 {question}
+</question>
 
-Options:
+<options>
 {options}
+</options>
 """
 
 # The self-check of a new select-all-that-apply question, before it's kept: a blind answer, as
@@ -61,9 +75,11 @@ such condition is stated or no reasonable reading flips an option.
 Level: {level}
 Topic: {topic}
 
-Question:
+<question>
 {question}
+</question>
 
-Options:
+<options>
 {options}
+</options>
 """

@@ -3,13 +3,12 @@ import random
 from collections import Counter
 from uuid import UUID
 
-from langchain_core.messages import HumanMessage
 from prepza_common.multi_answer import is_multi
 
 from app.constants.actions import QUESTION_VERIFY
 from app.constants.generation import MAX_MULTI_CORRECT
 from app.constants.quality import QualityFlag
-from app.helpers.prompts import bullet_list
+from app.helpers.prompts import bullet_list, checker_messages
 from app.integrations import library, llm
 from app.integrations.usage import ai_run
 from app.prompts.verify import (
@@ -104,7 +103,7 @@ async def blind_key(text: str, options: list, level: str, topic: str) -> set[int
     result: KeyCheck = (
         await llm.get_verifier_llm()
         .with_structured_output(KeyCheck)
-        .ainvoke([HumanMessage(content=prompt)])
+        .ainvoke(checker_messages(prompt))
     )
 
     return checked_key(options, result, order)
@@ -154,7 +153,7 @@ async def check_key(question_id: UUID, question: QuestionQuality, context: Quest
     result: KeyCheck = (
         await llm.get_verifier_llm()
         .with_structured_output(KeyCheck)
-        .ainvoke([HumanMessage(content=key_check_prompt(question, context))])
+        .ainvoke(checker_messages(key_check_prompt(question, context)))
     )
     await apply_key_check(question_id, question, context, result)
 

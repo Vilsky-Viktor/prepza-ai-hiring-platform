@@ -258,3 +258,15 @@ for rule 19 (a role, the company's text read as data) rather than for a measured
 accountant's relevance near 3 in both runs is the hard-level gap already known (Luna and Sol
 rows above).
 
+## Key-check prompts: role, data tagged, strict batch (2026-10-20)
+
+The verifier's key check, the blind confirmation and the self-check get a reviewer's role in a
+system message, with the question, options and reports tagged; the Batch API request, which sent
+its JSON schema without `strict`, now sets it (checked once against the API). `gpt-6.1-sol`
+medium, before → after: single-answer traps fixed 60/60 → 60/60, real keys kept 60/60 → 60/60
+($0.0009 → $0.0010 a check); multi-answer 263/263 → 263/263 both ($0.0012). The self-check, on
+a fresh build of 311 questions (53 subtopics × 6, 2 multi): dropped 7 of 106 for an open
+condition (5 before); keys 98.4% (96.3–99.3) against 98.7%, multi-answer 98.0% (92.9–99.4)
+against 100%, distractors 2.95, clarity 4.97, relevance 4.22: within the intervals. Kept for
+rule 19 and the strict batch schema.
+

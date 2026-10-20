@@ -84,7 +84,12 @@ def test_waiting_checks_go_out_in_one_batch(monkeypatch):
 
     assert list(sent) == [str(KEPT)]
     assert sent[str(KEPT)]["reasoning_effort"] == "medium"
-    assert TEXT in sent[str(KEPT)]["messages"][0]["content"]
+    system, question = sent[str(KEPT)]["messages"]
+    # The checker's role first, the question after; the schema is enforced, as for checks made
+    # at once.
+    assert system["role"] == "system" and question["role"] == "user"
+    assert TEXT in question["content"] and TEXT not in system["content"]
+    assert sent[str(KEPT)]["response_format"]["json_schema"]["strict"] is True
     # A question deleted since it was flagged is dropped.
     assert store.rows == {KEPT: "batch-1"}
 

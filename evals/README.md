@@ -59,7 +59,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Correct option the longest | 11% (multi: 57% against 75% by chance) | `questions.json` | 2026-10-04 |
 | Price and time per 100-question topic | $0.21–0.25, 49–61 s | full interviews | 2026-10-04 |
 | Other languages: keys / clarity / relevance / distractors | 100% (71) / 5.00 / 3.85 / 2.15 | `language_inputs.json` | 2026-10-20 |
-| Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-17 |
+| Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-20 |
 | Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
 | Assistant page context: general correct with / without; page checks | 121/129 / 108/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-17 |
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
