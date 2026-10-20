@@ -54,9 +54,14 @@ def listed(access: Access | None = None) -> list[types.Tool]:
 
 
 def text_result(content: dict, error: bool) -> types.CallToolResult:
+    """The result as structured content, and as its JSON text for apps that read only text."""
     text = json.dumps(content, ensure_ascii=False, default=str)
 
-    return types.CallToolResult(content=[types.TextContent(text=text)], is_error=error)
+    return types.CallToolResult(
+        content=[types.TextContent(text=text)],
+        structured_content=json.loads(text),
+        is_error=error,
+    )
 
 
 def error_result(detail: str) -> types.CallToolResult:

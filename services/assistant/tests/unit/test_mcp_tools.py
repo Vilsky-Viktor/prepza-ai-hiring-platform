@@ -96,9 +96,23 @@ def test_a_tool_is_listed_with_its_parameters_and_hints():
 
     assert read.input_schema == tools()["get_company"].parameters
     assert read.annotations.read_only_hint is True and read.annotations.open_world_hint is False
+    # All four hints are set: left out, an app would take a read as destructive.
+    assert read.annotations.destructive_hint is False
+    assert read.annotations.idempotent_hint is True
     assert write.annotations.read_only_hint is False
     assert write.annotations.destructive_hint is False
     assert write.annotations.idempotent_hint is False
+
+
+def test_every_listed_tool_has_a_title():
+    assert all(tool.title for tool in mcp_tools.listed())
+
+
+def test_a_result_is_structured_content_and_the_same_as_text(calls):
+    result = asyncio.run(mcp_tools.call("get_company", {"company_id": COMPANY}, ACCESS))
+
+    assert result.structured_content["data"]["name"] == "Acme"
+    assert json.loads(result.content[0].text) == result.structured_content
 
 
 def test_a_destructive_write_is_hinted_as_such():
