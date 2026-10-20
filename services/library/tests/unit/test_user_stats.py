@@ -30,7 +30,10 @@ def accounts(monkeypatch):
     listed = SimpleNamespace(iterate_all=lambda: iter(made))
     monkeypatch.setattr(firebase_auth, "list_users", lambda: listed)
     app.dependency_overrides[current_user] = lambda: User(
-        uid="sam", email="sam@prepza.dev", email_verified=True
+        uid="sam",
+        email="sam@prepza.dev",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     yield
@@ -49,7 +52,10 @@ def test_the_stats_count_users_who_signed_up_in_the_period(client, accounts, que
 
 def test_only_a_superadmin_sees_the_stats(client, accounts):
     app.dependency_overrides[current_user] = lambda: User(
-        uid="ann", email="ann@example.com", email_verified=True
+        uid="ann",
+        email="ann@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     assert client.get("/superadmin/stats").status_code == 404

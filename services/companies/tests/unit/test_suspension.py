@@ -87,7 +87,9 @@ def test_a_suspended_company_is_read_not_changed(monkeypatch):
         return suspended_company()
 
     monkeypatch.setattr(companies, "get", get)
-    owner = User(uid="ann", email="ann@example.com", email_verified=True)
+    owner = User(
+        uid="ann", email="ann@example.com", email_verified=True, sign_in_provider="google.com"
+    )
 
     with pytest.raises(HTTPException) as refused:
         asyncio.run(require_editor(owner, COMPANY_ID))

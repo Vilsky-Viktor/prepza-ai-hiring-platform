@@ -62,7 +62,10 @@ def signed_in(monkeypatch):
 
     def sign_in(email):
         app.dependency_overrides[current_user] = lambda: User(
-            uid=email.split("@")[0], email=email, email_verified=True
+            uid=email.split("@")[0],
+            email=email,
+            email_verified=True,
+            sign_in_provider="google.com",
         )
 
     yield sign_in

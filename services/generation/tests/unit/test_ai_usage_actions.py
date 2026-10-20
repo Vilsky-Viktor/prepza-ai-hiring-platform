@@ -166,7 +166,10 @@ def test_a_regenerated_template_question_is_the_superadmins(client, events, monk
 
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="ann", email="ann@example.com", email_verified=True
+        uid="ann",
+        email="ann@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
     monkeypatch.setattr(library, "get_question_context", context)
     monkeypatch.setattr(library, "replace_question", replace)

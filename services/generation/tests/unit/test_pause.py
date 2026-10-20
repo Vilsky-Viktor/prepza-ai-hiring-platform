@@ -20,7 +20,10 @@ def paused(monkeypatch):
     monkeypatch.setattr("prepza_common.pause.is_paused", on)
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="ann", email="ann@example.com", email_verified=True
+        uid="ann",
+        email="ann@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
     yield
     app.dependency_overrides.clear()

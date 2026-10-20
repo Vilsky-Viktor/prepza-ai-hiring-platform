@@ -39,7 +39,10 @@ def created(monkeypatch):
 
 def sign_in(email):
     app.dependency_overrides[current_user] = lambda: User(
-        uid="u1", email=email, email_verified=True
+        uid="u1",
+        email=email,
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
 

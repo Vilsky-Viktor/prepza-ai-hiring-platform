@@ -55,7 +55,10 @@ def signed_in(monkeypatch):
 
     def sign_in(email="sam@prepza.dev"):
         app.dependency_overrides[current_user] = lambda: User(
-            uid="sam", email=email, email_verified=True
+            uid="sam",
+            email=email,
+            email_verified=True,
+            sign_in_provider="google.com",
         )
 
     sign_in()

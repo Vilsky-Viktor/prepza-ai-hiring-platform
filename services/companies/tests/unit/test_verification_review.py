@@ -42,7 +42,10 @@ def pending_company():
 def superadmin(monkeypatch):
     monkeypatch.setenv("SUPERADMIN_EMAILS", "root@example.com")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="root", email="root@example.com", email_verified=True
+        uid="root",
+        email="root@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
     yield
     app.dependency_overrides.clear()
@@ -142,7 +145,10 @@ def test_the_list_shows_what_to_review(client, superadmin, monkeypatch):
 
 def test_review_is_only_for_superadmins(client, decisions):
     app.dependency_overrides[current_user] = lambda: User(
-        uid="ann", email="ann@acme.com", email_verified=True
+        uid="ann",
+        email="ann@acme.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     assert client.get("/superadmin/verifications").status_code == 404

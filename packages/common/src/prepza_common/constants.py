@@ -109,6 +109,8 @@ OCCURRED_AT_ATTRIBUTE = "occurred_at"
 PUBLISH_IN_REQUEST_TIMEOUT_SECONDS = 5
 # Google APIs our services call with their own credentials (Pub/Sub, Cloud Tasks).
 GOOGLE_SCOPE = "https://www.googleapis.com/auth/cloud-platform"
+# A Firebase ID token's sign-in provider for Google accounts, the only one the admin zone takes.
+GOOGLE_SIGN_IN = "google.com"
 
 # Outbox: events published per call to Pub/Sub, and how long published ones are kept. The
 # scheduled flush sends batch after batch until none wait, starting no new batch after

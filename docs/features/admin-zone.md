@@ -2,7 +2,7 @@
 
 The admin zone is for superadmins: prepza's own team, not a company's admins.
 
-- Superadmins are the accounts in `SUPERADMIN_EMAILS` (verified Google emails).
+- Superadmins are the accounts in `SUPERADMIN_EMAILS`, signed in with Google (verified addresses; the ID token's sign-in provider is `google.com`, so Google's account security, two-step verification included, guards the zone). The same address signed in another way (GitHub, LinkedIn, a token a service signed for an AI app) isn't a superadmin.
 - Only they see the Admin zone in the account menu.
 - Everyone else gets "not found" from its pages and routes.
 

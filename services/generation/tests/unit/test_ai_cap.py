@@ -121,7 +121,10 @@ def test_prepzas_own_templates_arent_held_to_the_unpaid_cap(client, redis, start
     spent(redis, LIMITS["AI_SPEND_UNPAID_DAY"].default)
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="ann", email="ann@example.com", email_verified=True
+        uid="ann",
+        email="ann@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     try:

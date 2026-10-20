@@ -20,7 +20,10 @@ def test_paused_a_superadmin_cant_send_a_question_to_the_verifier(client, monkey
     monkeypatch.setattr(generation, "verify_question", verify_question)
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="ann", email="ann@example.com", email_verified=True
+        uid="ann",
+        email="ann@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     response = client.post(f"/superadmin/quality/{uuid.uuid4()}/fix")

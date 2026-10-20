@@ -84,7 +84,9 @@ def switched_on(monkeypatch):
     monkeypatch.setattr(
         maintenance,
         "verify",
-        lambda token: User(uid=token, email=token, email_verified=True),
+        lambda token: User(
+            uid=token, email=token, email_verified=True, sign_in_provider="google.com"
+        ),
     )
 
 

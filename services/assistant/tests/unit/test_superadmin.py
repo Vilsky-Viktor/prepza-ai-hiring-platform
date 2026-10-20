@@ -13,7 +13,7 @@ def sign_in(monkeypatch):
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
 
     def signed_in(email):
-        user = User(uid=email, email=email, email_verified=True)
+        user = User(uid=email, email=email, email_verified=True, sign_in_provider="google.com")
         app.dependency_overrides[current_user] = lambda: user
 
     yield signed_in

@@ -36,7 +36,10 @@ def test_the_trigger_needs_twenty_finished_and_a_rate_below_10_or_above_95():
 def superadmin(monkeypatch):
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="ann", email="ann@example.com", email_verified=True
+        uid="ann",
+        email="ann@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
     yield
     app.dependency_overrides.clear()
@@ -80,7 +83,10 @@ def test_superadmin_sees_each_interviews_rates_with_its_timeouts(client, monkeyp
 
 def test_pass_rates_are_not_found_for_others(client):
     app.dependency_overrides[current_user] = lambda: User(
-        uid="eve", email="eve@example.com", email_verified=True
+        uid="eve",
+        email="eve@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     assert client.get("/superadmin/pass-rates").status_code == 404

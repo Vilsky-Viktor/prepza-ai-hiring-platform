@@ -156,13 +156,19 @@ def test_the_banner_shows_changes_noticed_until_they_apply_to_whom_they_concern(
 def test_only_a_superadmin_sees_and_asks_for_notices(client, notices, monkeypatch):
     monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="ann", email="ann@example.com", email_verified=True
+        uid="ann",
+        email="ann@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     assert client.get("/superadmin/legal-notices").status_code == 404
 
     app.dependency_overrides[current_user] = lambda: User(
-        uid="sam", email="sam@prepza.dev", email_verified=True
+        uid="sam",
+        email="sam@prepza.dev",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     assert client.post("/superadmin/legal-notices/terms").status_code == 204

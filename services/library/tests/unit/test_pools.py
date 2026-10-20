@@ -124,7 +124,10 @@ def test_a_topic_lacks_what_falls_short_of_30_practice_and_60_company_questions(
 def superadmin(monkeypatch):
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="u1", email="ann@example.com", email_verified=True
+        uid="u1",
+        email="ann@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     async def get(set_id):

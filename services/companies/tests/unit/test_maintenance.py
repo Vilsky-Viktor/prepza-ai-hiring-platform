@@ -8,8 +8,8 @@ from prepza_common.user import User
 from app.main import app
 from app.routers import maintenance as maintenance_routes
 
-ANN = User(uid="ann", email="ann@example.com", email_verified=True)
-BOB = User(uid="bob", email="bob@example.com", email_verified=True)
+ANN = User(uid="ann", email="ann@example.com", email_verified=True, sign_in_provider="google.com")
+BOB = User(uid="bob", email="bob@example.com", email_verified=True, sign_in_provider="google.com")
 
 
 @pytest.fixture(autouse=True)

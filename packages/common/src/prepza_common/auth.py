@@ -45,6 +45,7 @@ def verify(token: str, check_revoked: bool = False) -> User | None:
         email_verified=claims.get("email_verified", False),
         name=claims.get("name"),
         language=claims_language(claims),
+        sign_in_provider=claims.get("firebase", {}).get("sign_in_provider"),
     )
 
 

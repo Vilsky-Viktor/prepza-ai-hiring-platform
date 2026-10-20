@@ -108,7 +108,10 @@ def superadmin(monkeypatch):
 
     def sign_in(email):
         app.dependency_overrides[current_user] = lambda: User(
-            uid=email, email=email, email_verified=True
+            uid=email,
+            email=email,
+            email_verified=True,
+            sign_in_provider="google.com",
         )
 
     yield sign_in

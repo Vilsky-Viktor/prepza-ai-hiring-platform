@@ -47,7 +47,10 @@ def superadmin(monkeypatch):
     """Ann, the only superadmin; library knows one template, and additions are recorded."""
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="u1", email="ann@example.com", email_verified=True
+        uid="u1",
+        email="ann@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
     state = {"context": context(topic(practice_missing=2)), "running": False, "created": []}
 
@@ -144,7 +147,10 @@ def test_the_page_reads_the_latest_addition_and_the_numbers_it_may_ask_for(
 
 def test_anyone_else_cant_add_questions(client, superadmin):
     app.dependency_overrides[current_user] = lambda: User(
-        uid="u2", email="eve@example.com", email_verified=True
+        uid="u2",
+        email="eve@example.com",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     assert client.post(f"/superadmin/templates/{TEMPLATE_ID}/top-up").status_code == 404
