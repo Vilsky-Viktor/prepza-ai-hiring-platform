@@ -111,3 +111,21 @@ def test_credits_taken_back_tell_nobody(adjusted, published, action):
     asyncio.run(webhooks.handle(adjustment(action=action)))
 
     assert published == []
+
+
+def test_a_slow_pub_sub_delays_paddles_answer_once_not_once_a_message(top_up, monkeypatch):
+    import time
+
+    from app.services import topups
+
+    async def slow(*args, **kwargs):
+        await asyncio.sleep(0.3)
+
+    monkeypatch.setattr(credit_events.pubsub, "publish", slow)
+    monkeypatch.setattr(topups, "track", slow)
+    monkeypatch.setattr(topups.outbox_service, "flush_quietly", slow)
+    started = time.monotonic()
+    asyncio.run(webhooks.handle(completed()))
+
+    # Three messages of 0.3 s each: sent together, not one after another (0.9 s).
+    assert time.monotonic() - started < 0.6

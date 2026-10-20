@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from datetime import UTC, datetime
 
@@ -87,24 +88,42 @@ async def handle_completed(data: dict) -> None:
         await reward_after_top_up(owner_type, owner_id, data["id"])
 
         if granted:
-            await outbox_service.flush_quietly()
-            await credit_events.credits_added(owner_type, owner_id)
-            await track(
-                "topped_up",
-                company_id=owner_id,
-                amount_cents=paid_cents,
-                product=key,
-                currency=data["currency_code"],
-                automatic=subscription_id is not None,
+            await announce_top_up(
+                owner_type, owner_id, paid_cents, key, credits, data, subscription_id
             )
 
-            if subscription_id:
-                await publish_quietly(
-                    notification(
-                        owner_type,
-                        owner_id,
-                        NotificationKind.AUTO_TOP_UP_CHARGED,
-                        TOP_UP_LINK,
-                        credits=credits,
-                    )
+
+async def announce_top_up(
+    owner_type, owner_id, paid_cents, key, credits, data, subscription_id
+) -> None:
+    """Tells everyone of a new top-up: the action log, the services waiting for credits, the
+    funnel and, for an automatic one, the owner's bell. All at once, never one after another:
+    each waits at most PUBLISH_IN_REQUEST_TIMEOUT_SECONDS and none raises, so Paddle gets its
+    answer within its 5 seconds even when Pub/Sub is slow, instead of retrying."""
+    steps = [
+        outbox_service.flush_quietly(),
+        credit_events.credits_added(owner_type, owner_id),
+        track(
+            "topped_up",
+            company_id=owner_id,
+            amount_cents=paid_cents,
+            product=key,
+            currency=data["currency_code"],
+            automatic=subscription_id is not None,
+        ),
+    ]
+
+    if subscription_id:
+        steps.append(
+            publish_quietly(
+                notification(
+                    owner_type,
+                    owner_id,
+                    NotificationKind.AUTO_TOP_UP_CHARGED,
+                    TOP_UP_LINK,
+                    credits=credits,
                 )
+            )
+        )
+
+    await asyncio.gather(*steps)
