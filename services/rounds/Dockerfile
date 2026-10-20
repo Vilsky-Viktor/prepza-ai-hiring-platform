@@ -49,4 +49,7 @@ ARG SENTRY_RELEASE
 ENV SENTRY_RELEASE=$SENTRY_RELEASE
 USER app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Cloud Run kills the container 10 seconds after asking it to stop: requests still running
+# after 8 are dropped, so the app's shutdown (and Sentry's last reports) still run.
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", \
+    "--timeout-graceful-shutdown", "8"]
