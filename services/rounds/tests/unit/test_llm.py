@@ -1,5 +1,5 @@
 from app.config.settings import settings
-from app.constants.rounds import CHAT_TIMEOUT_SECONDS
+from app.constants.rounds import CHAT_RETRIES, CHAT_TIMEOUT_SECONDS
 from app.integrations import llm
 
 
@@ -14,6 +14,9 @@ def test_the_help_chat_uses_its_own_model(monkeypatch):
         assert help_chat.reasoning_effort == settings.help_reasoning_effort == "none"
         assert help_chat.temperature == 0.3
         assert help_chat.request_timeout == CHAT_TIMEOUT_SECONDS
+        assert help_chat.max_retries == CHAT_RETRIES
+        # Every try ends within rounds' 60 s request timeout.
+        assert (1 + CHAT_RETRIES) * CHAT_TIMEOUT_SECONDS < 60
     finally:
         llm.get_help_llm.cache_clear()
 

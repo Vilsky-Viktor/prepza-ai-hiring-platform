@@ -12,7 +12,11 @@ CORRECT_SCORE = 100
 
 # The help chat couldn't answer; its replies are short, so a call silent for longer has hung.
 CHAT_FAILED = "Couldn't get a reply right now. Please try again."
-CHAT_TIMEOUT_SECONDS = 60
+CHAT_TIMEOUT_SECONDS = 25
+# Tries after a failed call. Every try together stays within rounds' request timeout (60 s,
+# infra/terraform/locals.tf): beyond it Cloud Run has already cut the answer off, and the calls
+# only go on spending.
+CHAT_RETRIES = 1
 
 # A timed interview's question ran out of time; it counts as wrong.
 TIME_UP = "Time is up for this question."
