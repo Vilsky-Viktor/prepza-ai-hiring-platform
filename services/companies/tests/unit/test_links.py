@@ -230,3 +230,24 @@ def test_a_candidate_already_invited_is_never_held_back_by_the_limits(client, li
 
     assert client.post("/links/abc/start").status_code == 200
     assert linked["counts"] == {f"rate:link-starts:{INTERVIEW.id}": LINK_STARTS_PER_HOUR}
+
+
+def test_an_unverified_email_learns_nothing_of_that_addresss_status(client, linked, monkeypatch):
+    async def no_company(_company_id):
+        return None
+
+    async def title(_interview):
+        return "Backend"
+
+    async def found_set(_set_id):
+        return {"topics": []}
+
+    monkeypatch.setattr(companies, "get", no_company)
+    monkeypatch.setattr(links, "interview_title", title)
+    monkeypatch.setattr(links.set_cache, "get_set", found_set)
+    linked["status"] = "finished"
+    app.dependency_overrides[optional_user] = lambda: User(
+        uid="x", email="cand@example.com", email_verified=False
+    )
+
+    assert client.get("/links/abc").json()["status"] is None

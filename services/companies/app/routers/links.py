@@ -80,11 +80,13 @@ async def set_link(interview_id: UUID, body: LinkIn, user: CurrentUser) -> LinkO
 
 @router.get("/links/{token}")
 async def get_link(token: str, user: OptionalUser) -> LinkView:
-    """Shown to anyone with the link, signed in or not, before they start. Signed in, it also
-    says how far they got, so a finished test is never offered again."""
+    """Shown to anyone with the link, signed in or not, before they start. Signed in with a
+    verified email, it also says how far they got, so a finished test is never offered again;
+    an unverified one could claim anyone's address, so it learns nothing about that person."""
     interview = await attach_set(await linked_interview(token))
     company = await companies.get(interview.company_id)
-    status_now = await invites.status_of(interview.id, user.email) if user else None
+    verified = user is not None and user.email_verified
+    status_now = await invites.status_of(interview.id, user.email) if verified else None
     refuse_if_suspended(company, status_now)
     found = await set_cache.get_set(interview.set_id) if interview.set_id else None
 
