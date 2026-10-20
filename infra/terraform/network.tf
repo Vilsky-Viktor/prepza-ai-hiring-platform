@@ -22,13 +22,23 @@ resource "google_compute_router" "main" {
   network = google_compute_network.main.id
 }
 
+# The NAT's one fixed address: the frontend's server-side calls to the API reach the load balancer
+# from it, so Cloud Armor's per-IP limit leaves it out (load_balancer.tf). One address gives about
+# 64,000 ports, far above what this size needs.
+resource "google_compute_address" "nat" {
+  name       = "prepza-nat"
+  region     = var.region
+  depends_on = [google_project_service.apis]
+}
+
 # Each instance gets NAT ports as it needs them: 64 at first, up to 4096. A fixed 64 would cap an
 # instance at about 64 connections to one address (Upstash, OpenAI, Resend).
 resource "google_compute_router_nat" "main" {
   name                                = "prepza"
   router                              = google_compute_router.main.name
   region                              = var.region
-  nat_ip_allocate_option              = "AUTO_ONLY"
+  nat_ip_allocate_option              = "MANUAL_ONLY"
+  nat_ips                             = [google_compute_address.nat.self_link]
   source_subnetwork_ip_ranges_to_nat  = "ALL_SUBNETWORKS_ALL_IP_RANGES"
   enable_dynamic_port_allocation      = true
   enable_endpoint_independent_mapping = false

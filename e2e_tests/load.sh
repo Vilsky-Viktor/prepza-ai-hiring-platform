@@ -7,13 +7,14 @@
 #
 # Usage: e2e_tests/load.sh candidates|dashboard|public|clean [--i-mean-it]
 # Settings (environment): VUS, DURATION, ITERATIONS, THINK_SECONDS, COMPANIES, TEMPLATE_ID, PAGES,
-# BASE_URL (default http://gateway; another host than the local stack's needs --i-mean-it).
+# BASE_URL (default http://gateway:8081, the gateway's port without the per-IP limit; another host
+# than the local stack's needs --i-mean-it).
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
 scenario="${1:-}"
-base_url="${BASE_URL:-http://gateway}"
+base_url="${BASE_URL:-http://gateway:8081}"
 host="$(echo "$base_url" | sed -E 's#^[a-z]+://##; s#[:/].*$##')"
 
 case "$scenario" in

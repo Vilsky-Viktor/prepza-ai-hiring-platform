@@ -9,7 +9,7 @@ services:
       target: dev
     environment:
       # Server-side rendering calls the API through the gateway.
-      API_URL: http://gateway
+      API_URL: http://gateway:8081
       SITE_URL: ${SITE_URL:-http://localhost:8090}
       PREVIEW_SECRET: ${PREVIEW_SECRET}
       GOOGLE_SITE_VERIFICATION: ${GOOGLE_SITE_VERIFICATION:-}

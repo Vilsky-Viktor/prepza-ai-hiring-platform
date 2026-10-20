@@ -1,7 +1,7 @@
 // Where the load goes and how much of it. Every value can be set from the environment
 // (e2e_tests/load.sh passes them through); the defaults are modest, for a laptop's Docker VM.
 
-export const BASE_URL = __ENV.BASE_URL || "http://gateway"
+export const BASE_URL = __ENV.BASE_URL || "http://gateway:8081"
 export const API_URL = `${BASE_URL}/api`
 // The Firebase Auth emulator: users are made and signed in here, never in a real project.
 export const AUTH_URL = __ENV.AUTH_URL || "http://firebase-auth:9199"

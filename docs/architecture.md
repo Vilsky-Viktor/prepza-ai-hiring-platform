@@ -98,6 +98,7 @@ What each service does for users is described in the feature pages, linked from 
 
 - **Databases:** each service owns its own Postgres database.
 - **Internal calls:** services call each other's `/internal/` endpoints with short-lived signed tokens. The gateway never exposes those routes.
+- **Requests per address:** each IP address gets about 600 requests a minute, after which it's answered `429` (Cloud Armor in production, `limit_req` in the local gateway). Static files outside `/api` don't count, and neither do the frontend's server-side calls (from the NAT's fixed address in production, the gateway's inner port 8081 locally, which the load tests use too). The services' own limits per user, company and address apply on top.
 - **Shared code:** code the API services share (sign-in, service tokens, logging, database and HTTP setup) lives in [`packages/common`](../packages/common/README.md), installed into each service from the repo. The API images are therefore built from the repo root.
 - **Paging:** every list endpoint takes `offset` and `limit`, at most 100 per page.
 - **Sign-in:** users sign in with Firebase Authentication. The local setup uses the Firebase emulator, so no Firebase project is needed.
