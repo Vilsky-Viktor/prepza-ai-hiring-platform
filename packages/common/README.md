@@ -39,7 +39,8 @@ translated 413, counting a streamed body as it arrives; companies (report PDFs) 
 (voice messages) pass larger limits.
 Logs: `logging.configure_logging` writes one JSON line per entry in the fields Cloud Logging reads
 (`severity`, `message`), and `RequestLogMiddleware` ties every line logged while serving a request
-to its trace (`logging.googleapis.com/trace`, from the load balancer's `X-Cloud-Trace-Context`).
+to its trace (`logging.googleapis.com/trace`, from the load balancer's `X-Cloud-Trace-Context`),
+which `http.get_client` passes on to the services a request calls, so their lines join the same trace.
 Each request's own line names its route's template (`/invites/{token}`), never the path, which can
 carry a secret token; uvicorn's access log, which prints paths and visitors' addresses, is off.
 Retries: `backoff.wait_seconds(first, attempt)` is the wait before a retry, doubling from `first`

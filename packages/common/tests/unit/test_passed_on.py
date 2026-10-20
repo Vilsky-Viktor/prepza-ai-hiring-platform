@@ -6,6 +6,7 @@ import pytest
 from fastapi import HTTPException
 from prepza_common import company_invites, http
 from prepza_common.http import bearer, passed_on
+from prepza_common.logging import trace_header
 
 
 def answer(code: int, body=None) -> httpx.Response:
@@ -70,3 +71,23 @@ def test_an_invite_through_companies_returns_its_id_or_its_refusal(monkeypatch):
 
 def test_a_token_goes_in_the_authorization_header():
     assert bearer("t0ken") == {"Authorization": "Bearer t0ken"}
+
+
+def test_a_call_made_while_serving_a_request_carries_its_trace():
+    request = httpx.Request("GET", "http://library/internal/x")
+    token = trace_header.set("abc123/1;o=1")
+
+    try:
+        asyncio.run(http.pass_trace(request))
+    finally:
+        trace_header.reset(token)
+
+    assert request.headers["X-Cloud-Trace-Context"] == "abc123/1;o=1"
+    assert http.pass_trace in http.get_client().event_hooks["request"]
+
+
+def test_a_call_outside_any_request_carries_no_trace():
+    request = httpx.Request("GET", "http://library/internal/x")
+    asyncio.run(http.pass_trace(request))
+
+    assert "X-Cloud-Trace-Context" not in request.headers

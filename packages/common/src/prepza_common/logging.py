@@ -11,6 +11,9 @@ from starlette.requests import Request
 
 # The trace of the request being served, as Cloud Logging names it; None outside a request.
 current_trace: ContextVar[str | None] = ContextVar("current_trace", default=None)
+# The load balancer's trace header as the request brought it, passed on to the services it calls
+# (http.get_client), so their lines join the same trace.
+trace_header: ContextVar[str | None] = ContextVar("trace_header", default=None)
 
 
 class JsonFormatter(logging.Formatter):
@@ -78,7 +81,9 @@ class RequestLogMiddleware(BaseHTTPMiddleware):
     a secret token."""
 
     async def dispatch(self, request: Request, call_next):
-        token = current_trace.set(trace_of(request.headers.get(TRACE_HEADER)))
+        header = request.headers.get(TRACE_HEADER)
+        token = current_trace.set(trace_of(header))
+        header_token = trace_header.set(header)
         start = time.perf_counter()
 
         try:
@@ -93,5 +98,6 @@ class RequestLogMiddleware(BaseHTTPMiddleware):
             )
         finally:
             current_trace.reset(token)
+            trace_header.reset(header_token)
 
         return response
