@@ -18,6 +18,9 @@ code="${service%-worker}"
 
 docker exec "$container" rm -rf /tmp/evals
 docker cp "$here" "$container:/tmp/evals"
+# What this run writes is copied back alone: copying all of datasets/ and results/ would undo
+# changes made here while it ran (a concurrent run's results, a dataset edited meanwhile).
+docker exec "$container" touch /tmp/evals/.started
 
 # The commit a result was made on; "+changes" when the service or evals/ differ from it.
 commit="$(git -C "$here" rev-parse --short HEAD)"
@@ -41,5 +44,9 @@ docker exec -w "/services/$code" -e "PYTHONPATH=/services/$code:/tmp/evals/scrip
   uv run --no-sync python "/tmp/evals/scripts/$script" "$@"
 
 # Build scripts write datasets/; every script writes results/.
-docker cp "$container:/tmp/evals/datasets/." "$here/datasets/"
-docker cp "$container:/tmp/evals/results/." "$here/results/"
+docker exec "$container" find /tmp/evals/datasets /tmp/evals/results -type f \
+  -newer /tmp/evals/.started |
+  while read -r path; do
+    mkdir -p "$(dirname "$here/${path#/tmp/evals/}")"
+    docker cp "$container:$path" "$here/${path#/tmp/evals/}"
+  done
