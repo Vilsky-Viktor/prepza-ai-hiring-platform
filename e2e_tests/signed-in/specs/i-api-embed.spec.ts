@@ -82,6 +82,14 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   // The SDK asked for the dark theme: prepza's dark colors, as the company has none of its own.
   await expect(frame.locator("html")).toHaveCSS("--background", "#0a0a0a")
   await shot(site, "invitation")
+  // The frame fits its content and stops: a page sized by the screen (the frame's own height)
+  // would grow it without end.
+  const frameHeight = () =>
+    site.locator("iframe").evaluate((element) => element.getBoundingClientRect().height)
+  await expect.poll(frameHeight).toBeLessThan(1600)
+  const settled = await frameHeight()
+  await expect(start).toBeEnabled()
+  expect(await frameHeight()).toBe(settled)
   await start.click()
   await expect(frame.getByTestId("finish-interview")).toBeVisible({
     timeout: 60_000,

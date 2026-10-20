@@ -119,6 +119,7 @@ export function InviteView({
       questionSeconds={invite.question_seconds}
       totalMinutes={invite.total_minutes}
       finished={invite.status === "finished"}
+      fillScreen={!onStarted}
       action={
         <InviteAction
           guest={invite.guest}

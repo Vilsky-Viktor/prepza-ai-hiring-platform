@@ -20,6 +20,7 @@ export function InviteIntro({
   totalMinutes,
   finished,
   viaLink = false,
+  fillScreen,
   action,
 }: {
   company: string
@@ -35,9 +36,14 @@ export function InviteIntro({
   // Opened from the test's shareable link: their own link comes by email, and extra time needs
   // a personal invite.
   viaLink?: boolean
+  // Fills the screen from md up unless false: false inside a company's own site (the embed),
+  // whose frame grows to fit its content, so a height taken from the frame would grow it without
+  // end.
+  fillScreen?: boolean
   action: ReactNode
 }) {
   const t = useTranslations("invite")
+  const height = screenHeight(fillScreen !== false)
 
   const header = (
     <div className="space-y-4">
@@ -100,7 +106,12 @@ export function InviteIntro({
   return (
     // From md up the grid fills the screen (these pages have no header), so the rules can run its
     // full height.
-    <div className="grid w-full items-center gap-10 max-md:text-center md:min-h-dvh md:grid-cols-[5fr_6fr] md:gap-16">
+    <div
+      className={cn(
+        "grid w-full items-center gap-10 max-md:text-center md:grid-cols-[5fr_6fr] md:gap-16",
+        height.grid
+      )}
+    >
       <div className="space-y-8 text-center max-md:contents">
         {header}
         {/* The time per question and, when known, the whole interview's, side by side. */}
@@ -126,7 +137,10 @@ export function InviteIntro({
           scrolling inside when the rules don't fit. */}
       <ol
         data-testid="invite-rules"
-        className="-mx-6 space-y-4 bg-muted p-8 text-start text-base text-muted-foreground sm:mx-0 sm:rounded-2xl sm:p-10 md:flex md:max-h-dvh md:flex-col md:self-stretch md:overflow-y-auto md:rounded-none md:[&>li:first-child]:mt-auto md:[&>li:last-child]:mb-auto"
+        className={cn(
+          "-mx-6 space-y-4 bg-muted p-8 text-start text-base text-muted-foreground sm:mx-0 sm:rounded-2xl sm:p-10 md:flex md:flex-col md:self-stretch md:overflow-y-auto md:rounded-none md:[&>li:first-child]:mt-auto md:[&>li:last-child]:mb-auto",
+          height.rules
+        )}
       >
         {[
           t("pickOne"),
@@ -189,4 +203,11 @@ export function TimeFact({
       </span>
     </p>
   )
+}
+
+/** From md up the page fills the screen and the rules scroll within it; embedded, neither. */
+function screenHeight(fill: boolean) {
+  return fill
+    ? { grid: "md:min-h-dvh", rules: "md:max-h-dvh" }
+    : { grid: "", rules: "" }
 }
