@@ -51,7 +51,11 @@ No new colors, shadows, gradients or effects unless asked.
   (`max-sm:flex-col max-sm:items-stretch`); lists and cards reach the screen's edges
   (`-mx-6 sm:mx-0`, square corners); dialogs span the screen with their buttons side by side.
 - **Right to left:** Arabic, Hebrew and Persian flip; use logical classes (`ps-`, `me-`,
-  `text-start`), not `pl-`/`mr-`/`text-left`.
+  `text-start`), not `pl-`/`mr-`/`text-left`; people's text in a sentence goes in `<bdi>`, and
+  text in another language carries its `lang` and `dir` (`.claude/rules/nextjs.md`).
+- **Accessible from the start:** the rules in `.claude/rules/accessibility.md` (roles, focus,
+  contrast from existing tokens, live regions, labels, 24 px targets, reduced motion), and
+  `.claude/rules/performance.md` (Server Components, `"use client"` on the smallest leaf).
 
 ## Behaviour
 
@@ -67,6 +71,4 @@ phone screenshots from one short run (the `ui-check` skill). Then wait. Until th
 the UI, write no tests, run no test suites and translate nothing: a test run slows the local
 site so much that the user can't move between pages to review it.
 
-Once approved: write and run the tests (they check what the screen does, not its wording; see
-the `verify` skill, "What a test checks"), translate into every language (the `translate`
-skill), and update READMEs, docs, help texts, the FAQ, the assistant's knowledge and articles.
+Once approved: the `finish-ui` skill (tests, translations, docs, one commit).
