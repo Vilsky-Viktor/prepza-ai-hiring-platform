@@ -12,7 +12,7 @@ backend_sentry_dsn = ""
 # sign the user in with it.
 firebase_web_api_key = ""
 
-# Outage and budget alerts (monitoring.tf).
+# Outage and budget alerts (monitoring*.tf, budget.tf).
 alert_email     = "you@example.com"
 # alert_sms     = "+3725550000"   # optional: every alert by text message too
 billing_account = "XXXXXX-XXXXXX-XXXXXX"
