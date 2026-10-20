@@ -6,7 +6,7 @@
 # checked for anything left.
 #
 # Usage: e2e_tests/load.sh candidates|dashboard|public|clean [--i-mean-it]
-# Settings (environment): VUS, DURATION, ITERATIONS, THINK_SECONDS, COMPANIES, TEMPLATE_ID, PAGES,
+# Settings (environment): VUS, RATE, DURATION, ITERATIONS, THINK_SECONDS, COMPANIES, TEMPLATE_ID, PAGES,
 # BASE_URL (default http://gateway:8081, the gateway's port without the per-IP limit; another host
 # than the local stack's needs --i-mean-it).
 set -euo pipefail
@@ -59,7 +59,7 @@ k6() {
   COPYFILE_DISABLE=1 tar -C e2e_tests/load --no-xattrs -cf - --exclude README.md . |
     docker run -i --rm --network "$network" \
       -e BASE_URL="$base_url" -e FIREBASE_PROJECT_ID="$project" \
-      -e VUS -e DURATION -e ITERATIONS -e THINK_SECONDS -e COMPANIES -e TEMPLATE_ID -e PAGES \
+      -e VUS -e RATE -e DURATION -e ITERATIONS -e THINK_SECONDS -e COMPANIES -e TEMPLATE_ID -e PAGES \
       --entrypoint sh grafana/k6:2.3.0 \
       -c "mkdir -p /tmp/load && tar -xf - -C /tmp/load && cd /tmp/load && k6 run --quiet $1"
 }

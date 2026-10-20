@@ -122,8 +122,9 @@ Points other rule files already hold are only pointed at.
 ## Load tests and capacity
 
 - k6 in `e2e_tests/load`, only against the local stack or a test environment
-  (`.claude/rules/testing-browser.md`). Capacity is measured with an open model (`RATE`: arrivals
-  a second), so a slow system can't slow the test down; the closed model checks a flow end to end.
+  (`.claude/rules/testing-browser.md`). Capacity is measured with an open model (`RATE`: new
+  candidates a minute), so a slow system can't slow the test down; the closed model checks a flow
+  end to end.
 - A change to a hot path (a candidate's answer, `start`, a list page) is load-tested before and
   after; numbers go to `e2e_tests/load/README.md`.
 - Estimates, first bottlenecks and costs per size: `internal_docs/capacity-and-costs.md` and

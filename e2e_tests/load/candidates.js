@@ -6,20 +6,44 @@ import exec from "k6/execution"
 import { Rate } from "k6/metrics"
 
 import { candidateEmail, signUp } from "./lib/accounts.js"
-import { API_P95, CANDIDATES_PER_COMPANY, ERROR_RATE, ITERATIONS, VUS } from "./lib/config.js"
+import {
+  API_P95,
+  CANDIDATES_PER_COMPANY,
+  DURATION,
+  ERROR_RATE,
+  ITERATIONS,
+  RATE,
+  VUS,
+} from "./lib/config.js"
 import { createCompany, takeInterview } from "./lib/interviews.js"
 
 const finished = new Rate("interviews_finished")
 
+// With RATE, candidates arrive at that rate for DURATION, each on a free VU (up to ten times VUS;
+// past that k6 drops them and counts dropped_iterations), and those started finish; otherwise VUS take ITERATIONS turns.
+const arrivals = {
+  executor: "constant-arrival-rate",
+  rate: RATE,
+  timeUnit: "1m",
+  duration: DURATION,
+  preAllocatedVUs: VUS,
+  maxVUs: VUS * 10,
+  // Candidates who started before the end finish their interview.
+  gracefulStop: "15m",
+}
+const turns = { executor: "per-vu-iterations", vus: VUS, iterations: ITERATIONS, maxDuration: "15m" }
+
+function minutes(duration) {
+  const [, amount, unit] = duration.match(/^(\d+)([smh])$/)
+
+  return Number(amount) * { s: 1 / 60, m: 1, h: 60 }[unit]
+}
+
+// Every candidate a run can start, so setup makes enough companies for them.
+const candidates = RATE ? Math.ceil(RATE * minutes(DURATION)) + 1 : VUS * ITERATIONS
+
 export const options = {
-  scenarios: {
-    candidates: {
-      executor: "per-vu-iterations",
-      vus: VUS,
-      iterations: ITERATIONS,
-      maxDuration: "15m",
-    },
-  },
+  scenarios: { candidates: RATE ? arrivals : turns },
   setupTimeout: "10m",
   thresholds: {
     "http_req_duration{endpoint:link}": [API_P95],
@@ -28,12 +52,14 @@ export const options = {
     "http_req_duration{endpoint:answer}": [API_P95],
     "http_req_failed{phase:load}": [ERROR_RATE],
     interviews_finished: ["rate>0.99"],
+    // Arrivals the stack couldn't take (no VU free): capacity ran out.
+    ...(RATE ? { dropped_iterations: ["count==0"] } : {}),
   },
 }
 
 export function setup() {
   const run = Date.now().toString(36)
-  const count = Math.ceil((VUS * ITERATIONS) / CANDIDATES_PER_COMPANY)
+  const count = Math.ceil(candidates / CANDIDATES_PER_COMPANY)
   const companies = []
 
   for (let index = 0; index < count; index++) {

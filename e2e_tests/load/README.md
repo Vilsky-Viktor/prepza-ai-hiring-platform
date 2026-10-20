@@ -13,13 +13,15 @@ e2e_tests/load.sh public              # signed-out pages and the public API
 e2e_tests/load.sh clean               # delete what an interrupted run left behind
 
 VUS=20 ITERATIONS=2 THINK_SECONDS=3 e2e_tests/load.sh candidates
+RATE=10 DURATION=3m e2e_tests/load.sh candidates   # capacity: 10 new candidates a minute
 PAGES=0 VUS=20 e2e_tests/load.sh public    # the public API only, without the frontend
 ```
 
 | Setting | Default | Meaning |
 |---|---|---|
 | `VUS` | 5 | Users at once |
-| `DURATION` | 1m | How long `dashboard` and `public` run |
+| `RATE` | 0 | `candidates`: new candidates a minute for `DURATION`, however fast the stack answers (an open model, for finding capacity; a run fails when arrivals are dropped). 0: `VUS` take `ITERATIONS` turns |
+| `DURATION` | 1m | How long `dashboard` and `public` run, and `candidates` with `RATE` |
 | `ITERATIONS` | 1 | `candidates`: tests each user takes, one after the other (each as a new candidate) |
 | `THINK_SECONDS` | 1 | Pause between two actions: reading a question, looking at a page |
 | `COMPANIES` | 3 | `dashboard`: throwaway companies, each with 3 finished candidates |

@@ -13,6 +13,9 @@ export const DURATION = __ENV.DURATION || "1m"
 export const THINK_SECONDS = Number(__ENV.THINK_SECONDS || 1)
 // Candidates each VU takes the interview as, one after the other.
 export const ITERATIONS = Number(__ENV.ITERATIONS || 1)
+// Candidates starting a minute, whatever the stack's speed (an open model, for capacity: a slow
+// stack can't slow the arrivals down, as it does with VUS taking turns); 0 keeps the VUs' turns.
+export const RATE = Number(__ENV.RATE || 0)
 // A test made from this local template; else the smallest one that can be used.
 export const TEMPLATE_ID = __ENV.TEMPLATE_ID || ""
 
@@ -23,6 +26,9 @@ export const CANDIDATES_PER_COMPANY = 3
 export const DASHBOARD_COMPANIES = Number(__ENV.COMPANIES || 3)
 
 export const PASSWORD = "load-test-secret"
+// Cloudflare Turnstile's dummy token, which the local test secret passes (prepza_common
+// human_check): sent as the browser sends its token, so a first company and a link start work.
+export const HUMAN_CHECK_TOKEN = "XXXX.DUMMY.TOKEN.XXXX"
 // Every throwaway account's email carries this, with the run's own id after it.
 export const EMAIL_TAG = "load-"
 

@@ -1,12 +1,12 @@
 import { check } from "k6"
 import http from "k6/http"
 
-import { API_URL } from "./config.js"
+import { API_URL, HUMAN_CHECK_TOKEN } from "./config.js"
 
 // A call the run measures carries its endpoint's name, which the thresholds and the summary go
 // by; setup, sign-ins and clean-up carry none and count towards no threshold.
 function params(token, endpoint) {
-  const headers = { "Content-Type": "application/json" }
+  const headers = { "Content-Type": "application/json", "X-Human-Check": HUMAN_CHECK_TOKEN }
 
   if (token) {
     headers.Authorization = `Bearer ${token}`
