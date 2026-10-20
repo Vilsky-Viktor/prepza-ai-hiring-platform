@@ -53,3 +53,50 @@ install it as an editable path dependency from the same commit: no releases, no 
 - A change updates every caller in the same commit and runs the library's tests and every
   user's unit tests; nothing deprecated is kept. Moving code in deletes the services' copies and
   moves their tests.
+
+## Calls between services
+
+- Synchronous HTTP only where the caller needs the answer now; everything that can happen later
+  goes through events: the event row is written in the same transaction as the change (outbox),
+  published only once committed, and every consumer is idempotent on the event's id (delivery is
+  at least once; rule 11).
+- Every call has a timeout set from the callee's latency, through the shared client
+  (`prepza_common.http`). Retry only idempotent calls, at one layer only, with exponential
+  backoff and jitter and a cap on attempts; never two back-to-back retries. A side-effecting
+  call carries an idempotency key.
+- No circuit breakers or extra resilience layers (rule 4): Pub/Sub and Cloud Tasks retry with
+  backoff and dead-letter, and synchronous calls have timeouts.
+- Calls to other services carry the request's `X-Cloud-Trace-Context`, so one user action can
+  be followed across services in the logs.
+
+## FastAPI on Cloud Run
+
+- Start-up and shutdown in the lifespan (never `on_event`). `async def` only around awaitable
+  IO; blocking work (a sync SDK, image decoding, CPU-heavy code) runs in `asyncio.to_thread`.
+- One Uvicorn process per container, exec-form `CMD`, `--timeout-graceful-shutdown` under Cloud
+  Run's 10 s between SIGTERM and SIGKILL (5–8 s), so in-flight requests and Sentry's flush end
+  in time.
+- No work after the response: request-based billing throttles the CPU once the response is
+  sent, so background tasks stall or are lost. Await the work (with a short timeout) or hand it
+  to an event.
+- `/health` checks only the process (liveness: never a dependency, or a database outage restarts
+  every instance); `/ready` checks the database and is the startup probe.
+
+## Redis
+
+- Connect and command timeouts, retries with backoff and jitter on connection errors and a
+  health check (`prepza_common.redis_client`). The service keeps working, degraded, while Redis
+  is down: limits keep their last values, switches their last state.
+- Test fakes for Redis or other shared clients live once beside the shared library's tests and
+  are imported by services, never copied (rule 10).
+
+## Logs and errors
+
+- One-line JSON logs with the fields Cloud Logging reads: `severity`, `message`, `time`,
+  `logging.googleapis.com/trace`. Every logger in the process writes that format, Uvicorn's
+  included; no plain-text access log (Cloud Run's request log already records each request).
+- Log ids, never emails, names, tokens or other personal data; a URL path that carries a token
+  is logged as its route template (`.claude/rules/security.md`).
+- Sentry: `send_default_pii=False`, no local variables, users by internal id.
+
+Research (local notes, git-ignored): `internal_docs/architecture-best-practices.md`.
