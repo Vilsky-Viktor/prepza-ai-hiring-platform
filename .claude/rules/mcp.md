@@ -30,8 +30,8 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   modern ones per request (the SDK picks by `MCP-Protocol-Version`). `e2e_tests/mcp.py` calls
   both.
 - Streamable HTTP only, stateless, plain JSON answers: any instance answers any request; no
-  sessions to hijack, nothing to resume (`Last-Event-ID` is ignored). HTTP+SSE (2024-11-05) is
-  not served.
+  sessions to hijack, nothing to resume (`Last-Event-ID` is ignored). Not used (deprecated in
+  2026-07-28): HTTP+SSE (2024-11-05), roots, sampling, logging.
 - Every POST carries `MCP-Protocol-Version`, and in 2026-07-28 `Mcp-Method` and `Mcp-Name`
   matching the body (else `400`, `-32020`); an unsupported version is `400` with the supported
   ones; GET and DELETE are `405` in the modern era. The SDK enforces these; don't bypass it.
@@ -41,7 +41,6 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
 - Origin: the spec says to validate it against DNS rebinding. Not adopted for this remote server:
   every call needs a bearer token no page can read, and browser-based apps must work; local
   servers are where rebinding bites.
-- Deprecated in 2026-07-28 and not used: roots, sampling, logging, HTTP+SSE.
 - Results that can be cached (`tools/list`, `server/discover`) carry `ttlMs` and `cacheScope`;
   `tools/list` varies by caller (API key permissions), so its scope is `private`. Its order is
   fixed (prompt caching). `listChanged` is declared only if the server emits it (it doesn't).
@@ -63,21 +62,22 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
 - Tokens only in the `Authorization` header, never a query string; stored as SHA-256 hashes.
   Access 1 hour; refresh 90 days, rotated on every use (public clients), a replayed old refresh
   token after the grace minute revokes the connection; `invalid_grant` for a dead one.
-- Registration: dynamic client registration (RFC 7591) is what apps use today; 2026-07-28
-  deprecates it for Client ID Metadata Documents (an HTTPS URL as `client_id`, preferred by
-  Claude and ChatGPT). Adding CIMD means fetching an app's document: HTTPS only, public
-  addresses only (SSRF, `security.md`), `client_id` equal to the URL, redirect URIs from the
-  document, cached per its headers, size and time bounded. Not yet adopted: needs approval.
-- Redirect URIs match exactly what was registered; schemes that run in the browser are refused;
-  `/authorize` never redirects anywhere but the consent page (no open redirect). Loopback
-  addresses on any port (RFC 8252) matter once a client reuses one registration (CIMD).
+- Registration: Client ID Metadata Documents (an HTTPS URL with a path as `client_id`;
+  preferred by Claude and ChatGPT, advertised as `client_id_metadata_document_supported`) and,
+  deprecated in 2026-07-28 but kept for apps that use it, dynamic client registration (RFC 7591).
+  A document is read through `prepza_common.public_urls` (HTTPS, public addresses, pinned, no
+  redirects, 5 s, 4,000 bytes), must name itself by its URL, have no secret and return only to
+  app addresses; its copy is kept a day, and serves while its site is down.
+- Redirect URIs match exactly what was registered, but a loopback one on any port (RFC 8252);
+  schemes that run in the browser are refused; `/authorize` never redirects anywhere but the
+  consent page (no open redirect).
 - Consent: prepza's own page names the app by the site it returns to (not its claimed name),
   shows the redirect host and warns for unknown ones; only the browser that started the request
   may allow it (`prepza_connect` cookie: `HttpOnly`, `SameSite=Lax`, `Secure`, short-lived);
   codes are single-use, 5 minutes, bound to app, redirect URI and PKCE challenge; the page
   can't be framed. This is the confused-deputy defence.
-- RFC 9207 `iss` in the authorization response (SHOULD, may become MUST): add with
-  `authorization_response_iss_parameter_supported` when the consent flow is next touched.
+- Every authorization answer names the issuer (`iss`, RFC 9207), advertised as
+  `authorization_response_iss_parameter_supported` (the SDK's client then requires it).
 - Scopes: one scope, `prepza`, is everything the user may do. Least privilege would split read
   from write with step-up (`403 insufficient_scope` naming every scope needed in one challenge);
   that changes what connected apps must ask for, so it waits for approval. Never change a
@@ -102,8 +102,9 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   never instruct the model to call other tools or fetch instructions (tool-description injection;
   Claude's review rejects it).
 - `inputSchema` is a strict JSON Schema object (`additionalProperties: false`, enums for closed
-  sets, no network `$ref`). An `outputSchema` requires `structuredContent` that matches it,
-  mirrored as JSON text for older clients.
+  sets, no network `$ref`). Results carry `structuredContent` and the same JSON as text for
+  older clients. Not adopted: `outputSchema` (shapes vary per tool and are trimmed; it would
+  bind every result to a schema the spec then requires).
 - Annotations on every tool, all four explicit (the defaults are destructive and open world):
   `readOnlyHint` for reads, `destructiveHint` for what can't be undone, `idempotentHint` for
   repeat-safe writes, `openWorldHint: false` (prepza only). Hosts decide confirmations from them
@@ -114,8 +115,8 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   Elicitation (2026-07-28: `input_required` with an integrity-protected `requestState`) is not
   adopted: hosts confirm from the hints, and Claude's support is unverified.
 - Errors: a business refusal, a limit or bad input is a result with `isError: true` and text
-  that says what to do next; JSON-RPC errors only for the protocol (the spec: an unknown tool is
-  `-32602`; prepza answers it as a result today, an integrator-visible change to align).
+  that says what to do next; JSON-RPC errors only for the protocol. Not adopted: the spec's
+  `-32602` for an unknown tool; it's a result, which the model reads and corrects itself by.
 - Results are the tool's data as JSON, trimmed with `shown`/`more` and a narrowing hint, links
   built by code (absolute), only what the request needs (no internal trace ids or secrets);
   within Claude's limits (about 150,000 characters, 25,000 tokens in Claude Code, 240 s).
@@ -134,17 +135,16 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   minutes), company membership and the AI apps switch checked by companies, secrets refused in
   arguments, calls and writes rate-limited per user, writes audited `via: "mcp"`.
 - Never log tokens, codes, request ids or arguments; log refusals with ids.
-- Network allowlisting of Anthropic's or OpenAI's ranges is not adopted: agents with API keys
-  call from anywhere.
+- Not adopted: allowlisting Anthropic's or OpenAI's ranges (API-key agents call from anywhere).
 
 ## Testing
 
 - Unit tests per behaviour (`tests/unit/test_mcp_*`, `test_oauth_*`), integration for storage
   (`scripts/integration.sh`), and `e2e_tests/mcp.py` through the gateway: discovery, register,
   consent, PKCE, both protocol eras, tools as the user, API keys, refresh, revoke, disconnect.
-- Before a release that changes the protocol surface, run MCP Inspector (`--cli --method
-  tools/list`) and the conformance suite (`npx @modelcontextprotocol/conformance server --url
-  … --spec-version 2025-11-25`, then `2026-07-28`); check new tools in Claude and ChatGPT
-  themselves.
+- The conformance suite (`npx @modelcontextprotocol/conformance server --url …`) targets an
+  unauthenticated reference server and has no auth option, so against prepza only its
+  rebinding refusal applies; `e2e_tests/mcp.py` covers the protocol instead. Check new tools in
+  MCP Inspector (`--cli --method tools/list` with a token), Claude and ChatGPT themselves.
 
 Research (local notes, git-ignored): `internal_docs/mcp-best-practices.md`.
