@@ -1,9 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-/* The "ask agent" pill's circling border and the bell's swing. */
+/* The "ask agent" pill's circling border, the bell's swing and the other animations. */
 @import "./agent-border.css";
 @import "./bell.css";
+@import "./animations.css";
 
 /* Dark, except inside .light-scope: the candidate PDF report keeps the light design. */
 @custom-variant dark (&:is(.dark *):not(.light-scope *));
@@ -258,73 +259,6 @@
   nav[data-slot="footer-nav"] a::after {
     content: ".";
     color: var(--primary);
-  }
-}
-
-/* The chat's thinking dots: each rises and brightens in turn. */
-@keyframes thinking {
-  0%,
-  80%,
-  100% {
-    opacity: 0.3;
-    transform: translateY(0);
-  }
-  40% {
-    opacity: 1;
-    transform: translateY(-3px);
-  }
-}
-
-/* The landing's arrows between two panels: each lights up in turn. */
-@keyframes light-up {
-  0%,
-  70%,
-  100% {
-    opacity: 0.25;
-  }
-  35% {
-    opacity: 1;
-  }
-}
-
-/* A landing demo pointer's click: a ring spreading out and fading. */
-@keyframes ripple {
-  from {
-    opacity: 0.7;
-    transform: scale(0.3);
-  }
-  to {
-    opacity: 0;
-    transform: scale(1);
-  }
-}
-
-/* A landing card floating in place: a slow, small sway. */
-@keyframes source-float {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  30% {
-    transform: translate(3px, -5px);
-  }
-  65% {
-    transform: translate(-2px, 4px);
-  }
-}
-
-@keyframes caret-blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
   }
 }
 
