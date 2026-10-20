@@ -11,6 +11,7 @@ from prepza_common.user import User
 from app.constants.actions_flow import NOTHING_TO_CHANGE, SUBJECT_NOT_FOUND
 from app.constants.chat import COMPANY_NOT_FOUND
 from app.constants.mcp import ACCOUNT_GONE, EXCLUDED_TOOL
+from app.constants.mcp_descriptions import MCP_DESCRIPTIONS
 from app.constants.tool_calls import UNKNOWN_TOOL
 from app.helpers.mcp_schema import mcp_tool
 from app.integrations import firebase_tokens, services
@@ -220,3 +221,11 @@ def test_a_company_that_isnt_the_users_isnt_called_through_mcp(calls):
 
     assert (error, content) == (True, {"error": translate(COMPANY_NOT_FOUND, "de")})
     assert calls == []
+
+def test_an_app_reads_a_fuller_description_where_the_panels_is_short():
+    listed = {tool.name: tool.description for tool in mcp_tools.listed()}
+
+    assert listed["get_me"] == MCP_DESCRIPTIONS["get_me"]
+    assert tools()["get_me"].definition["function"]["description"] != listed["get_me"]
+    # Every fuller description is of a tool that's listed.
+    assert set(MCP_DESCRIPTIONS) <= set(listed)
