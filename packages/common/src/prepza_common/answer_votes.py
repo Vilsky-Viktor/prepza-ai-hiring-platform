@@ -10,6 +10,7 @@ from collections.abc import Awaitable, Callable
 from langfuse.api import CreateScoreRequest
 from langfuse.api.core.api_error import ApiError
 from prepza_common import tracing
+from prepza_common.backoff import wait_seconds
 
 logger = logging.getLogger(__name__)
 
@@ -77,7 +78,7 @@ async def send_vote(trace_id: str, current: Callable[[], Awaitable[int | None]])
                 )
 
                 if attempt + 1 < SEND_ATTEMPTS:
-                    await asyncio.sleep(FIRST_WAIT_SECONDS * 2**attempt)
+                    await asyncio.sleep(wait_seconds(FIRST_WAIT_SECONDS, attempt))
 
 
 def mirror_vote(trace_id: str | None, current: Callable[[], Awaitable[int | None]]) -> None:

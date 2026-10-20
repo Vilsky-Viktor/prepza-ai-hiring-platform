@@ -1,12 +1,14 @@
+import asyncio
 from uuid import UUID
 
 import httpx
 from fastapi import HTTPException, status
 from prepza_common import http
+from prepza_common.backoff import wait_seconds
 from prepza_common.http import bearer, passed_on
 
 from app.config.settings import settings
-from app.constants.billing import WELCOME_ATTEMPTS
+from app.constants.billing import WELCOME_ATTEMPTS, WELCOME_FIRST_WAIT_SECONDS
 from app.service_auth import service_token
 
 
@@ -68,6 +70,8 @@ async def welcome_company(
         except Exception:
             if attempt == WELCOME_ATTEMPTS - 1:
                 raise
+
+            await asyncio.sleep(wait_seconds(WELCOME_FIRST_WAIT_SECONDS, attempt))
 
 
 async def company_referral(company_id: UUID) -> dict:
