@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
   output: "standalone",
   // No X-Powered-By header: it only tells attackers what the site runs on.
   poweredByHeader: false,
+  // Version skew protection: the commit CI builds the image from (a build argument). A page left
+  // open across a deploy then reloads in full on its next navigation instead of asking the new
+  // server for the old build's files. Unset in development, where it does nothing.
+  deploymentId: process.env.SENTRY_RELEASE || undefined,
   // Into the browser's code too, under its own name (only NEXT_PUBLIC_ names go there by
   // themselves); read when the site is built. Not secret: it only allows sending error reports.
   env: {

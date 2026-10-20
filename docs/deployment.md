@@ -45,7 +45,7 @@ When a page fails, the error page offers **Report**: what the user writes there 
 | `FRONTEND_SENTRY_DSN` | The DSN for the frontend, a build argument |
 | `ENVIRONMENT` | The environment's name, which Sentry's error reports and Langfuse's traces carry: `production` in Google Cloud (Terraform sets it, and CI builds the frontend's images with `NEXT_PUBLIC_ENVIRONMENT=production`), `development` locally. Paddle's account is chosen separately (`PADDLE_ENVIRONMENT`), on purpose |
 | `SENTRY_TRACES_SAMPLE_RATE` | The share of requests traced (default 0.1). Uptime checks (`/ready`, `/health`), scheduled jobs and Pub/Sub events (`/internal/`) aren't traced unless a traced request made the call; their errors are still reported |
-| `SENTRY_RELEASE` | The release events are tagged with: the commit, built into every image by CI (services read it at runtime; the frontend's Sentry plugin names it at build time) |
+| `SENTRY_RELEASE` | The release events are tagged with: the commit, built into every image by CI (services read it at runtime; the frontend's Sentry plugin names it at build time). The frontend's build also uses it as Next.js's `deploymentId`, so a page left open across a deploy reloads in full on its next navigation instead of asking for files the new build no longer has |
 | `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, `SENTRY_PROJECT` | Optional, for the frontend build to upload its source maps, so frontend stack traces show the original code: CI passes the organization and project from the GitHub variables of the same names, and the token from the `SENTRY_AUTH_TOKEN` secret as a build secret, which stays out of the image. Without the token, nothing uploads |
 
 Events carry user ids only, with emails scrubbed.
