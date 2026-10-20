@@ -11,7 +11,12 @@ builds only the hard domains' questions.
 
 Multi-answer ("select all that apply") questions: --multi N asks for N of each subtopic's questions
 as multi-answer, the rest single-answer, and without --label writes datasets/multi_questions.json:
-    evals/run.sh generation build_questions.py --multi 3"""
+    evals/run.sh generation build_questions.py --multi 3
+
+Other languages: --inputs language_inputs.json writes datasets/language_questions.json, each
+domain in its own language:
+    evals/run.sh generation build_questions.py --inputs language_inputs.json --per-subtopic 6 \
+        --multi 2"""
 
 import argparse
 import asyncio
@@ -52,7 +57,7 @@ async def subtopic_questions(
         options=OPTIONS,
         max_chars=MAX_OPTION_CHARS,
         existing="None",
-        language="English",
+        language=domain.get("language", "English"),
     )
     structured = llm.get_generation_llm().with_structured_output(QuestionItemList)
     result = await structured.ainvoke([HumanMessage(content=prompt)])
@@ -78,6 +83,7 @@ async def subtopic_questions(
             "level": domain["level"],
             "topic": topic,
             "subtopic": subtopic,
+            "language": domain.get("language", "English"),
             "question": question["text"],
             "options": question["options"],
         }
@@ -87,9 +93,11 @@ async def subtopic_questions(
     return items[:count]
 
 
-async def main(per_subtopic: int, multi: int, label: str | None, level: str | None) -> None:
+async def main(
+    per_subtopic: int, multi: int, label: str | None, level: str | None, inputs: str
+) -> None:
     models = generation_models(settings)
-    domains = load(DATASETS / "inputs.json")["domains"]
+    domains = load(DATASETS / inputs)["domains"]
     calls = [
         (domain, topic["topic"], subtopic)
         for domain in domains
@@ -118,12 +126,15 @@ async def main(per_subtopic: int, multi: int, label: str | None, level: str | No
     seconds = round(time.monotonic() - started)
     spent = sum(cost(name, metadata) for name, metadata in usage.usage_metadata.items())
     dataset = "multi_questions.json" if multi else "questions.json"
+
+    if inputs != "inputs.json":
+        dataset = inputs.replace("inputs", "questions")
     save(
         RESULTS / f"questions_{label}.json" if label else DATASETS / dataset,
         {
-            "about": "Reference questions, frozen: build_questions.py writes them with the "
-            "generation prompt of the date below. Reviewed in reviews.json; altered in "
-            "key_traps.json.",
+            "about": f"Reference questions on the subtopics of {inputs}, frozen: "
+            "build_questions.py writes them with the generation prompt of the date below "
+            "(`run` names its commit and prompts). See datasets/README.md.",
             "model": models,
             "built": datetime.now(UTC).date().isoformat(),
             "run": run_record(model=models, cost=round(spent, 4), seconds=seconds),
@@ -143,5 +154,6 @@ if __name__ == "__main__":
     parser.add_argument("--multi", type=int, default=0, help="multi-answer ones a subtopic")
     parser.add_argument("--label", help="write results/questions_<label>.json instead")
     parser.add_argument("--level", help="only the domains of this level (with --label)")
+    parser.add_argument("--inputs", default="inputs.json", help="the subtopics, in datasets/")
     args = parser.parse_args()
-    asyncio.run(main(args.per_subtopic, args.multi, args.label, args.level))
+    asyncio.run(main(args.per_subtopic, args.multi, args.label, args.level, args.inputs))

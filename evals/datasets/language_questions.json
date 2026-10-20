@@ -1,0 +1,961 @@
+{
+ "about": "Reference questions on the subtopics of language_inputs.json, frozen: build_questions.py writes them with the generation prompt of the date below (`run` names its commit and prompts). See datasets/README.md.",
+ "model": "interview gpt-6.1-sol (low)",
+ "built": "2026-10-20",
+ "run": {
+  "date": "2026-10-20",
+  "commit": "abd1cbf44+changes",
+  "prompts": "b27c8b0865",
+  "judge": "gpt-6.1-sol (high)",
+  "model": "interview gpt-6.1-sol (low)",
+  "cost": 0.1248,
+  "seconds": 39
+ },
+ "items": [
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Kommissioniermethoden",
+   "language": "German",
+   "question": "Sechs Aufträge enthalten dieselben zehn Artikel. Jeder Entnahmeplatz soll für alle sechs Aufträge nur einmal angefahren werden; ein Wagen mit sechs getrennten Auftragsbehältern reicht aus. Welche Vorgehensweise erfüllt diese Vorgabe?",
+   "options": [
+    {
+     "answer": "Aufträge einzeln kommissionieren und jeweils alle Entnahmeplätze erneut anfahren.",
+     "correct": false
+    },
+    {
+     "answer": "Aufträge einzeln kommissionieren und dabei wechselnde Laufwege nutzen.",
+     "correct": false
+    },
+    {
+     "answer": "Aufträge gemeinsam kommissionieren und direkt auf die Auftragsbehälter verteilen.",
+     "correct": true
+    },
+    {
+     "answer": "Aufträge nacheinander kommissionieren und anschließend gemeinsam zum Versand bringen.",
+     "correct": false
+    }
+   ],
+   "id": "m0000"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Kommissioniermethoden",
+   "language": "German",
+   "question": "Ein Auftragsbehälter durchläuft drei Kommissionierzonen nacheinander. Die Bearbeitung beginnt jeweils sofort nach Ankunft. Wie lange dauert es vom Bearbeitungsbeginn in Zone A bis zum Bearbeitungsende in Zone C?\n```text\nBearbeitung Zone A: 3 Minuten\nBearbeitung Zone B: 5 Minuten\nBearbeitung Zone C: 2 Minuten\nTransport A → B und B → C: jeweils 1 Minute\n```",
+   "options": [
+    {
+     "answer": "10 Minuten",
+     "correct": false
+    },
+    {
+     "answer": "12 Minuten",
+     "correct": true
+    },
+    {
+     "answer": "13 Minuten",
+     "correct": false
+    },
+    {
+     "answer": "11 Minuten",
+     "correct": false
+    }
+   ],
+   "id": "m0001"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Kommissioniermethoden",
+   "language": "German",
+   "question": "Kleine Artikel liegen in automatisch bereitstellbaren Behältern. Die Beschäftigten sollen an festen Arbeitsplätzen bleiben, während das System die benötigten Behälter anliefert. Welches Kommissionierprinzip entspricht dieser Anforderung?",
+   "options": [
+    {
+     "answer": "Ware-zur-Person-Kommissionierung",
+     "correct": true
+    },
+    {
+     "answer": "Beleggestützte Person-zur-Ware-Kommissionierung",
+     "correct": false
+    },
+    {
+     "answer": "Sprachgeführte Person-zur-Ware-Kommissionierung",
+     "correct": false
+    },
+    {
+     "answer": "Person-zur-Ware-Kommissionierung",
+     "correct": false
+    }
+   ],
+   "id": "m0002"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Kommissioniermethoden",
+   "language": "German",
+   "question": "Beim Kommissionieren müssen beide Hände frei bleiben. Die Beschäftigten sollen Entnahmeinformationen hören und Entnahmen mündlich bestätigen, ohne auf eine Anzeige zu schauen. Welches Verfahren passt dazu?",
+   "options": [
+    {
+     "answer": "Pick-by-Light mit Fachanzeige und Quittiertaste",
+     "correct": false
+    },
+    {
+     "answer": "Pick-by-Scan mit Handscanner und Display",
+     "correct": false
+    },
+    {
+     "answer": "Pick-by-Vision mit Datenbrille und visueller Führung",
+     "correct": false
+    },
+    {
+     "answer": "Pick-by-Voice mit Headset und Mikrofon",
+     "correct": true
+    }
+   ],
+   "id": "m0003"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Kommissioniermethoden",
+   "language": "German",
+   "question": "Ein Pick-by-Light-System zeigt am Entnahmefach die Sollmenge an. Nach der Entnahme drücken Beschäftigte die Quittiertaste; Sensoren zur Mengenprüfung fehlen. Welche Aussagen treffen zu?",
+   "options": [
+    {
+     "answer": "Die Fachanzeige kennzeichnet den vorgesehenen Entnahmeort.",
+     "correct": true
+    },
+    {
+     "answer": "Die Quittiertaste ermittelt die tatsächlich entnommene Stückzahl.",
+     "correct": false
+    },
+    {
+     "answer": "Die Quittierung beweist nicht die tatsächlich entnommene Menge.",
+     "correct": true
+    },
+    {
+     "answer": "Die Mengenanzeige verhindert die Entnahme einer falschen Stückzahl.",
+     "correct": false
+    }
+   ],
+   "id": "m0004"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Inventur und Bestandsabweichungen",
+   "language": "German",
+   "question": "Der Zählbestand enthält den noch ungebuchten Wareneingang vollständig. Weitere offene Buchungen gibt es nicht. Welche Bestandsabweichung bleibt nach Buchung des Wareneingangs?\n```text\nBuchbestand vor Wareneingang: 100 Stück\nNoch ungebuchter Wareneingang: 6 Stück\nZählbestand: 94 Stück\n```",
+   "options": [
+    {
+     "answer": "Fehlbestand von 12 Stück",
+     "correct": true
+    },
+    {
+     "answer": "Fehlbestand von 6 Stück",
+     "correct": false
+    },
+    {
+     "answer": "Fehlbestand von 0 Stück",
+     "correct": false
+    },
+    {
+     "answer": "Mehrbestand von 12 Stück",
+     "correct": false
+    }
+   ],
+   "id": "m0005"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Inventur und Bestandsabweichungen",
+   "language": "German",
+   "question": "Bei einem Artikel ergibt die erste Zählung einen hohen Fehlbestand. Alle Warenbewegungen sind korrekt gebucht, die Ursache ist unbekannt. Was ist vor einer Bestandskorrektur zu tun?",
+   "options": [
+    {
+     "answer": "Die Differenz mit anderen Artikeln verrechnen",
+     "correct": false
+    },
+    {
+     "answer": "Den Fehlbestand sofort als Diebstahl buchen",
+     "correct": false
+    },
+    {
+     "answer": "Den Buchbestand als Zählergebnis übernehmen",
+     "correct": false
+    },
+    {
+     "answer": "Den Bestand unabhängig nachzählen lassen",
+     "correct": true
+    }
+   ],
+   "id": "m0006"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Inventur und Bestandsabweichungen",
+   "language": "German",
+   "question": "Ein falscher Buchbestand soll die körperliche Inventur nicht beeinflussen. Welche Maßnahmen verhindern, dass dieser Wert als vermeintliches Zählergebnis übernommen wird?",
+   "options": [
+    {
+     "answer": "Zählergebnisse bei Abweichungen durch Buchmengen ersetzen",
+     "correct": false
+    },
+    {
+     "answer": "Buchmengen als vorausgefüllte Zählergebnisse bereitstellen",
+     "correct": false
+    },
+    {
+     "answer": "Buchmengen auf den Zähllisten ausblenden",
+     "correct": true
+    },
+    {
+     "answer": "Kontrollzählungen ohne Kenntnis der Buchmengen durchführen",
+     "correct": true
+    }
+   ],
+   "id": "m0007"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Inventur und Bestandsabweichungen",
+   "language": "German",
+   "question": "Der Buchbestand beträgt 50 Stück, das Zählergebnis 40 Stück. Welche Fehler erklären diese Differenz jeweils allein, wenn ansonsten alle Vorgänge und Zählungen korrekt sind?",
+   "options": [
+    {
+     "answer": "Eine Entnahme von zehn Stück blieb ungebucht",
+     "correct": true
+    },
+    {
+     "answer": "Zehn vorhandene Stück wurden beim Zählen übersehen",
+     "correct": true
+    },
+    {
+     "answer": "Ein Wareneingang über zehn Stück blieb ungebucht",
+     "correct": false
+    },
+    {
+     "answer": "Ein Wareneingang über zehn Stück wurde doppelt gebucht",
+     "correct": true
+    }
+   ],
+   "id": "m0008"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Inventur und Bestandsabweichungen",
+   "language": "German",
+   "question": "Um 10 Uhr werden 80 Stück gezählt. Danach werden fünf Stück entnommen und korrekt gebucht. Weitere Bewegungen gibt es nicht. Welcher Zählbestand ist für den Vergleich mit dem Buchbestand um 11 Uhr anzusetzen?",
+   "options": [
+    {
+     "answer": "85 Stück",
+     "correct": false
+    },
+    {
+     "answer": "80 Stück",
+     "correct": false
+    },
+    {
+     "answer": "70 Stück",
+     "correct": false
+    },
+    {
+     "answer": "75 Stück",
+     "correct": true
+    }
+   ],
+   "id": "m0009"
+  },
+  {
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Inventur und Bestandsabweichungen",
+   "language": "German",
+   "question": "Bei zwei verschiedenen Artikeln entstehen ein Fehlbestand und ein gleich hoher Mehrbestand, jeweils 200 Euro. Beide Abweichungen sind bestätigt. Wie sind die Bestandsmengen zu korrigieren?",
+   "options": [
+    {
+     "answer": "Beide Artikelmengen wegen des Wertausgleichs unverändert lassen",
+     "correct": false
+    },
+    {
+     "answer": "Nur die Artikelmenge mit dem Fehlbestand anpassen",
+     "correct": false
+    },
+    {
+     "answer": "Nur die Artikelmenge mit dem Mehrbestand anpassen",
+     "correct": false
+    },
+    {
+     "answer": "Beide Artikelmengen getrennt an die Zählbestände anpassen",
+     "correct": true
+    }
+   ],
+   "id": "m0010"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "苦情対応の手順",
+   "language": "Japanese",
+   "question": "顧客が商品の不具合について話し始めました。緊急の危険はなく、詳しい状況はまだ分かりません。担当者はまずどう対応しますか。",
+   "options": [
+    {
+     "answer": "原因を推測し、商品の使い方を説明する",
+     "correct": false
+    },
+    {
+     "answer": "詳しい状況を聞く前に、返金を約束する",
+     "correct": false
+    },
+    {
+     "answer": "話を遮らずに聞き、要点を確認する",
+     "correct": true
+    },
+    {
+     "answer": "説明を途中で止め、交換手続きを始める",
+     "correct": false
+    }
+   ],
+   "id": "m0011"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "苦情対応の手順",
+   "language": "Japanese",
+   "question": "注文内容を伝える前に本人確認が必要な窓口です。注文者の家族から、注文番号だけを示して配送への苦情がありました。どう対応しますか。",
+   "options": [
+    {
+     "answer": "家族だと名乗れば注文内容を伝える",
+     "correct": false
+    },
+    {
+     "answer": "必要な本人確認を行ってから案内する",
+     "correct": true
+    },
+    {
+     "answer": "注文番号が合えば配送先を伝える",
+     "correct": false
+    },
+    {
+     "answer": "苦情への対応を優先して確認を省く",
+     "correct": false
+    }
+   ],
+   "id": "m0012"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "苦情対応の手順",
+   "language": "Japanese",
+   "question": "顧客の返金希望を聞き、購入状況を確認しました。返金には責任者の承認が必要で、担当者には決定権がありません。次にどう対応しますか。",
+   "options": [
+    {
+     "answer": "承認が必要と伝え、責任者へ引き継ぐ",
+     "correct": true
+    },
+    {
+     "answer": "返金すると伝え、後で承認を求める",
+     "correct": false
+    },
+    {
+     "answer": "承認を待たず、担当者の判断で断る",
+     "correct": false
+    },
+    {
+     "answer": "決定権がないと伝え、対応を終了する",
+     "correct": false
+    }
+   ],
+   "id": "m0013"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "苦情対応の手順",
+   "language": "Japanese",
+   "question": "調査が終わる前に、約束した回答期限を迎えます。まだ原因も完了日も確定していません。顧客への連絡はどうしますか。",
+   "options": [
+    {
+     "answer": "回答期限を延ばし、顧客への連絡は省く",
+     "correct": false
+    },
+    {
+     "answer": "調査を急がせるため、解決済みと伝える",
+     "correct": false
+    },
+    {
+     "answer": "期限内に進捗と次の連絡予定を伝える",
+     "correct": true
+    },
+    {
+     "answer": "原因が確定するまで連絡を見送る",
+     "correct": false
+    }
+   ],
+   "id": "m0014"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "苦情対応の手順",
+   "language": "Japanese",
+   "question": "苦情を別の担当者へ引き継ぐため、対応記録を作ります。正確な引き継ぎに必要な記録方法はどれですか。",
+   "options": [
+    {
+     "answer": "約束した対応内容と期限を記録する",
+     "correct": true
+    },
+    {
+     "answer": "確認済みの事実と推測を区別する",
+     "correct": true
+    },
+    {
+     "answer": "顧客が求めている対応を記録する",
+     "correct": true
+    },
+    {
+     "answer": "解決後は、それまでの対応履歴を消す",
+     "correct": false
+    }
+   ],
+   "id": "m0015"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "苦情対応の手順",
+   "language": "Japanese",
+   "question": "顧客から「届いた商品が壊れていた」と苦情がありました。原因は未確認です。最初の応対として適切なものはどれですか。",
+   "options": [
+    {
+     "answer": "配送会社の責任だと断定して伝える",
+     "correct": false
+    },
+    {
+     "answer": "顧客の扱い方が原因だと決めつける",
+     "correct": false
+    },
+    {
+     "answer": "不便をかけていることにおわびする",
+     "correct": true
+    },
+    {
+     "answer": "破損の状態や到着時の状況を確認する",
+     "correct": true
+    }
+   ],
+   "id": "m0016"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "問い合わせの優先順位付け",
+   "language": "Japanese",
+   "question": "問い合わせは、業務への影響が大きく、対応の遅れによる損失が迫っているものを優先します。最優先にするのはどれですか。",
+   "options": [
+    {
+     "answer": "全利用者向けの色変更を、来月までに希望している",
+     "correct": false
+    },
+    {
+     "answer": "全利用者の決済が停止し、現在の注文を失っている",
+     "correct": true
+    },
+    {
+     "answer": "一人の表示が崩れているが、購入は完了できる",
+     "correct": false
+    },
+    {
+     "answer": "一人が操作説明を求め、業務は継続できている",
+     "correct": false
+    }
+   ],
+   "id": "m0017"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "問い合わせの優先順位付け",
+   "language": "Japanese",
+   "question": "現在は10時です。重要度が同じ問い合わせは、初回回答期限が早い順に対応します。この受付一覧では、どの順番になりますか。\n```text\n問い合わせ  受付時刻  初回回答期限\nA           09:00     11:00\nB           09:30     10:15\nC           08:30     12:00\n```",
+   "options": [
+    {
+     "answer": "B → C → A",
+     "correct": false
+    },
+    {
+     "answer": "C → A → B",
+     "correct": false
+    },
+    {
+     "answer": "B → A → C",
+     "correct": true
+    },
+    {
+     "answer": "A → B → C",
+     "correct": false
+    }
+   ],
+   "id": "m0018"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "問い合わせの優先順位付け",
+   "language": "Japanese",
+   "question": "優先度は、影響範囲と業務停止までの残り時間だけで決めます。受付後、優先度を上げる根拠になる変化はどれですか。",
+   "options": [
+    {
+     "answer": "業務停止までの時間が明日から一時間後になった",
+     "correct": true
+    },
+    {
+     "answer": "影響が一人から全利用者に広がった",
+     "correct": true
+    },
+    {
+     "answer": "同じ状況のまま、連絡者が部長に代わった",
+     "correct": false
+    },
+    {
+     "answer": "同じ状況のまま、催促の回数が増えた",
+     "correct": false
+    }
+   ],
+   "id": "m0019"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "問い合わせの優先順位付け",
+   "language": "Japanese",
+   "question": "個人情報の漏えい疑いは、通常の問い合わせより先に専門窓口へ連絡する規則です。漏えい疑いと、一人のログイン不具合を同時に受け付けました。最初に行うのはどれですか。",
+   "options": [
+    {
+     "answer": "ログイン不具合の調査を完了させる",
+     "correct": false
+    },
+    {
+     "answer": "漏えいの確定まで専門窓口への連絡を待つ",
+     "correct": false
+    },
+    {
+     "answer": "両方を通常の受付順に並べて対応する",
+     "correct": false
+    },
+    {
+     "answer": "漏えい疑いを専門窓口へ連絡する",
+     "correct": true
+    }
+   ],
+   "id": "m0020"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "問い合わせの優先順位付け",
+   "language": "Japanese",
+   "question": "業務への影響と緊急性で優先度を決めます。「システムが使えない」という連絡だけで、詳細は不明です。優先度の判断に必要な確認事項はどれですか。",
+   "options": [
+    {
+     "answer": "使えない利用者や業務の範囲",
+     "correct": true
+    },
+    {
+     "answer": "いつまでに復旧しないと損失が出るか",
+     "correct": true
+    },
+    {
+     "answer": "連絡者の社内での役職の高さ",
+     "correct": false
+    },
+    {
+     "answer": "代わりの方法で業務を続けられるか",
+     "correct": true
+    }
+   ],
+   "id": "m0021"
+  },
+  {
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "問い合わせの優先順位付け",
+   "language": "Japanese",
+   "question": "同じ優先度では受付順に対応する規則です。担当者が短時間で終わる問い合わせばかり選び、古い問い合わせが残っています。規則に沿った改善はどれですか。",
+   "options": [
+    {
+     "answer": "同じ優先度では、解決時間が短いものから対応する",
+     "correct": false
+    },
+    {
+     "answer": "同じ優先度では、担当者が得意なものから対応する",
+     "correct": false
+    },
+    {
+     "answer": "同じ優先度では、最新の催促があるものから対応する",
+     "correct": false
+    },
+    {
+     "answer": "同じ優先度では、受付が古いものから対応する",
+     "correct": true
+    }
+   ],
+   "id": "m0022"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "حساب الجرعات",
+   "language": "Arabic",
+   "question": "وُصفت لطفل وزنه ١٨ كغ جرعة مقدارها ٤٠ ملغ/كغ/اليوم، مقسمة بالتساوي على ثلاث جرعات. ما مقدار الجرعة الواحدة؟",
+   "options": [
+    {
+     "answer": "٢٤٠ ملغ",
+     "correct": true
+    },
+    {
+     "answer": "٢١٦٠ ملغ",
+     "correct": false
+    },
+    {
+     "answer": "١٢٠ ملغ",
+     "correct": false
+    },
+    {
+     "answer": "٧٢٠ ملغ",
+     "correct": false
+    }
+   ],
+   "id": "m0023"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "حساب الجرعات",
+   "language": "Arabic",
+   "question": "أُعيد تحضير الدواء وفق البيانات المعروضة. ما حجم السائل الذي يحتوي على جرعة مقدارها ٣٠٠ ملغ؟\n```text\nكمية الدواء في القارورة: ٦٠٠ ملغ\nحجم الماء المضاف: ٨ مل\nالحجم النهائي بعد التحضير: ١٠ مل\n```",
+   "options": [
+    {
+     "answer": "٨ مل",
+     "correct": false
+    },
+    {
+     "answer": "١٠ مل",
+     "correct": false
+    },
+    {
+     "answer": "٥ مل",
+     "correct": true
+    },
+    {
+     "answer": "٤ مل",
+     "correct": false
+    }
+   ],
+   "id": "m0024"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "حساب الجرعات",
+   "language": "Arabic",
+   "question": "يجب إعطاء ٦٠٠ مل من محلول وريدي خلال خمس ساعات بمعدل ثابت، دون توقف. ما معدل المضخة المطلوب؟",
+   "options": [
+    {
+     "answer": "٣٠٠ مل/ساعة",
+     "correct": false
+    },
+    {
+     "answer": "١٢٠ مل/ساعة",
+     "correct": true
+    },
+    {
+     "answer": "١٥٠ مل/ساعة",
+     "correct": false
+    },
+    {
+     "answer": "١٠٠ مل/ساعة",
+     "correct": false
+    }
+   ],
+   "id": "m0025"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "حساب الجرعات",
+   "language": "Arabic",
+   "question": "يزن طفل ٣٥ كغ. الجرعة الموصوفة ١٥ ملغ/كغ لكل جرعة، بحد أقصى ٥٠٠ ملغ للجرعة الواحدة. ما المقدار الذي يُصرف لكل جرعة؟",
+   "options": [
+    {
+     "answer": "٥٢٥ ملغ",
+     "correct": false
+    },
+    {
+     "answer": "١٥٠٠ ملغ",
+     "correct": false
+    },
+    {
+     "answer": "١٧٥ ملغ",
+     "correct": false
+    },
+    {
+     "answer": "٥٠٠ ملغ",
+     "correct": true
+    }
+   ],
+   "id": "m0026"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "حساب الجرعات",
+   "language": "Arabic",
+   "question": "الجرعة الموصوفة ٠٫٢٥ ملغ، والمتاح أقراص بتركيز ٠٫٥ ملغ قابلة للتقسيم إلى نصفين متساويين. أي العبارات صحيحة عن الجرعة الواحدة؟",
+   "options": [
+    {
+     "answer": "تعادل نصف قرص.",
+     "correct": true
+    },
+    {
+     "answer": "تعادل ٢٥ ميكروغرامًا.",
+     "correct": false
+    },
+    {
+     "answer": "تعادل قرصين.",
+     "correct": false
+    },
+    {
+     "answer": "تعادل ٢٥٠ ميكروغرامًا.",
+     "correct": true
+    }
+   ],
+   "id": "m0027"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "حساب الجرعات",
+   "language": "Arabic",
+   "question": "وفق الوصفة والتركيز المعروضين، أي الحسابات صحيحة؟ افترض عدم وجود فاقد أثناء القياس.\n```text\nتركيز المعلق: ٢٥٠ ملغ في كل ٥ مل\nالجرعة الموصوفة: ٣٧٥ ملغ ثلاث مرات يوميًا\nمدة العلاج: ٥ أيام\n```",
+   "options": [
+    {
+     "answer": "الكمية اليومية من الدواء ١١٢٥ ملغ.",
+     "correct": true
+    },
+    {
+     "answer": "حجم الجرعة الواحدة ٧٫٥ مل.",
+     "correct": true
+    },
+    {
+     "answer": "الحجم اللازم للعلاج كاملًا ٣٧٫٥ مل.",
+     "correct": false
+    },
+    {
+     "answer": "الحجم اليومي ٢٢٫٥ مل.",
+     "correct": true
+    }
+   ],
+   "id": "m0028"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "تخزين الأدوية",
+   "language": "Arabic",
+   "question": "تتطلب نشرة دواء حفظه بين 2 و8 درجات مئوية. كشف مسجل الحرارة بقاءه عند 12 درجة أربع ساعات، ولا توجد بيانات متاحة عن ثباته خارج المدى. ما الإجراء الصحيح قبل صرفه؟",
+   "options": [
+    {
+     "answer": "إعادته للثلاجة وصرفه بعد استعادة حرارته المطلوبة",
+     "correct": false
+    },
+    {
+     "answer": "صرفه بعد التأكد من بقاء مظهره دون تغير",
+     "correct": false
+    },
+    {
+     "answer": "تقصير صلاحيته أربعة أيام ثم إتاحته للصرف",
+     "correct": false
+    },
+    {
+     "answer": "عزله وتقييم صلاحيته وفق بيانات الشركة المصنّعة",
+     "correct": true
+    }
+   ],
+   "id": "m0029"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "تخزين الأدوية",
+   "language": "Arabic",
+   "question": "وصلت دفعة دواء تنتهي صلاحيتها في ديسمبر، بينما تنتهي دفعة موجودة في أكتوبر من السنة نفسها. الدفعتان سليمتان وتكفي صلاحيتهما للعلاج المطلوب. وفق مبدأ الأقرب انتهاءً يُصرف أولًا، أيهما تُصرف أولًا؟",
+   "options": [
+    {
+     "answer": "الدفعة التي تحتوي على عدد عبوات أكبر",
+     "correct": false
+    },
+    {
+     "answer": "الدفعة التي كان سعر شرائها أقل",
+     "correct": false
+    },
+    {
+     "answer": "الدفعة الواردة التي تنتهي صلاحيتها في ديسمبر",
+     "correct": false
+    },
+    {
+     "answer": "الدفعة الموجودة التي تنتهي صلاحيتها في أكتوبر",
+     "correct": true
+    }
+   ],
+   "id": "m0030"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "تخزين الأدوية",
+   "language": "Arabic",
+   "question": "تنص نشرة أقراص على حفظها في عبوتها الأصلية لحمايتها من الضوء. يريد الصيدلي تجهيز مخزون الشهر في عبوات شفافة بجوار نافذة. ما التعديل الذي يطابق تعليمات التخزين؟",
+   "options": [
+    {
+     "answer": "إبقاؤها بعبوتها الأصلية تحت ضوء الشمس المباشر",
+     "correct": false
+    },
+    {
+     "answer": "إبقاؤها بعبوتها الأصلية بعيدًا عن الضوء المباشر",
+     "correct": true
+    },
+    {
+     "answer": "نقلها لعبوات شفافة داخل الثلاجة المضيئة",
+     "correct": false
+    },
+    {
+     "answer": "نقلها لعبوات شفافة بعيدًا عن الضوء المباشر",
+     "correct": false
+    }
+   ],
+   "id": "m0031"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "تخزين الأدوية",
+   "language": "Arabic",
+   "question": "حُضّر معلق فموي يوم 1 مارس الساعة العاشرة صباحًا. تنص نشرته على إتلافه بعد سبعة أيام من التحضير مع حفظه مبردًا. حُفظ كما هو مطلوب؛ متى يحين موعد إتلافه؟",
+   "options": [
+    {
+     "answer": "9 مارس الساعة العاشرة صباحًا",
+     "correct": false
+    },
+    {
+     "answer": "8 مارس الساعة العاشرة صباحًا",
+     "correct": true
+    },
+    {
+     "answer": "7 مارس الساعة العاشرة صباحًا",
+     "correct": false
+    },
+    {
+     "answer": "1 أبريل الساعة العاشرة صباحًا",
+     "correct": false
+    }
+   ],
+   "id": "m0032"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "تخزين الأدوية",
+   "language": "Arabic",
+   "question": "تُخزّن عبوات دواء بين 2 و8 درجات مئوية، ويحظر تجميدها. في ثلاجة أدوية مؤهلة، أي الممارسات تحافظ على شروط التخزين وتتيح كشف الانحرافات الحرارية؟",
+   "options": [
+    {
+     "answer": "إبعاد العبوات عن الأسطح التي قد تجمّدها",
+     "correct": true
+    },
+    {
+     "answer": "ترك فراغات بين العبوات لمرور الهواء",
+     "correct": true
+    },
+    {
+     "answer": "وضع العبوات في رف الباب لتسهيل الوصول إليها",
+     "correct": false
+    },
+    {
+     "answer": "استخدام مسجل حرارة معاير بإنذار عند تجاوز المدى",
+     "correct": true
+    }
+   ],
+   "id": "m0033"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "تخزين الأدوية",
+   "language": "Arabic",
+   "question": "تنص نشرة أقراص حساسة للرطوبة على إبقائها في عبوتها الأصلية محكمة الإغلاق، مع كيس المجفف المرفق. أي ممارسات التخزين تطابق هذه التعليمات؟",
+   "options": [
+    {
+     "answer": "إبقاء كيس المجفف المرفق داخل العبوة",
+     "correct": true
+    },
+    {
+     "answer": "ترك غطاء العبوة مفتوحًا لتهوية الأقراص",
+     "correct": false
+    },
+    {
+     "answer": "نقل مخزون العبوة إلى منظم أسبوعي للجرعات",
+     "correct": false
+    },
+    {
+     "answer": "إغلاق العبوة بإحكام بعد إخراج الجرعة",
+     "correct": true
+    }
+   ],
+   "id": "m0034"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "about": "Made-up subtopics in other languages, for question-only tests of generation in a language other than English: a Latin script with its own conventions (German), a script without spaces (Japanese) and a right-to-left one (Arabic). Topics and subtopics are written in the domain's language, as the pipeline writes them. Built by hand 2026-10-20; no company's text.",
+ "domains": [
+  {
+   "id": "warehouse_lead_de",
+   "kind": "job",
+   "level": "medium",
+   "language": "German",
+   "topics": [
+    {
+     "topic": "Lagerlogistik",
+     "subtopics": ["Kommissioniermethoden", "Inventur und Bestandsabweichungen"]
+    }
+   ]
+  },
+  {
+   "id": "customer_support_ja",
+   "kind": "job",
+   "level": "basic",
+   "language": "Japanese",
+   "topics": [
+    {
+     "topic": "顧客対応",
+     "subtopics": ["苦情対応の手順", "問い合わせの優先順位付け"]
+    }
+   ]
+  },
+  {
+   "id": "pharmacy_technician_ar",
+   "kind": "job",
+   "level": "medium",
+   "language": "Arabic",
+   "topics": [
+    {
+     "topic": "صرف الأدوية",
+     "subtopics": ["حساب الجرعات", "تخزين الأدوية"]
+    }
+   ]
+  }
+ ]
+}

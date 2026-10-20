@@ -1,0 +1,100 @@
+# Datasets
+
+The frozen inputs of the offline tests (`../README.md`). How they are made, what they cover and
+when they were last built, one section each. Best practices behind them:
+`internal_docs/eval-best-practices.md`.
+
+## Rules for every dataset
+
+- **Made-up or public data only**, never a company's text, not even anonymised (CLAUDE.md
+  rule 20). Job descriptions, people and companies here are invented.
+- **Frozen.** Rebuild one only on purpose (a new domain, a new prompt generation), note the date
+  in its `built` field and below, and re-run the baselines on it. A file built by a script
+  records `model`, `built` and `run` (commit, prompts hash, cost); hand-made files say so in
+  `about`.
+- **Typical, edge and trap cases.** The question sets are typical generations on every level,
+  both question kinds and several fields; traps are planted wrong keys; the assistant sets mix
+  general questions, page questions and named-vs-page edge cases.
+- **Every real AI failure adds a case**, rewritten as a made-up one that fails the same way
+  (a reported wrong key, a thumbs-down answer in Langfuse, a support complaint): never the
+  real text. Hand-made assistant cases go into `assistant_questions.json` or
+  `assistant_guides.json` with what a right answer does; a question failure (a wrong key, an arguable one) becomes a made-up
+  question that fails the same way, with its right key, in the `key_traps.json` format, in a
+  `regression_questions.json` started with the first such case.
+- **No overlap with the prompts' examples**: a dataset that repeats an example a prompt shows
+  tests memory, not the prompt. `../scripts/check_datasets.py` checks this, duplicates and each
+  file's shape, for free; run it after any change here.
+- **A fast set and a full set.** The fast set is a fixed sample of the full one
+  (`review_questions.py --sample 40`, always the same 40 by its seed) for a quick look; a
+  decision is made on the full set only.
+
+## How big for the noise we accept
+
+A share's 95% interval at 98% (key accuracy) is about ±1.8 points on 240 questions, ±1.3 on
+460; a 1–5 score's interval is about ±0.05–0.1 on 240. Judge runs differ by up to 0.3 on a
+40-question sample. So: key accuracy and one-defensible-answer on 240 or more, multi-answer keys
+on about 140 or more of their own, scores compared only across a difference above the noise.
+Results print every share and mean with its interval (`../scripts/stats.py`).
+
+## `inputs.json` (by hand, 2026-10-04; `typescript_node` added 2026-10-17)
+
+9 domains in English: Python backend, TypeScript/Node.js, marketing, nursing, accounting,
+Spanish for travel, school chemistry, electrician apprentice, project management; basic, medium
+and hard. Each has a job description or goal (`text`, for the full pipeline: extraction, topics,
+questions) and fixed topics and subtopics (for question-only tests, cheap and stable).
+
+## `language_inputs.json` (by hand, 2026-10-20)
+
+3 made-up domains in other languages, for generation in the language a test is written in:
+German (medium), Japanese (basic, no spaces between words) and Arabic (medium, right to left),
+2 subtopics each, written in that language. Feeds `language_questions.json`.
+
+## `questions.json` (`build_questions.py`, `gpt-6.1-sol` low, 2026-10-04)
+
+240 single-answer questions, 5 per subtopic of the 8 domains then in `inputs.json` (not
+`typescript_node`), written with the generation prompt of the date. The reference set for the
+judge (`reviews.json`) and the verifier (`key_traps.json`).
+
+## `reviews.json` (`review_questions.py --save-reference`, `gpt-6.1-sol` high)
+
+The reference judge's verdict on each of `questions.json`'s questions. It flags 4 as flawed
+(q0008, q0072, q0094, q0232), kept on purpose: real generations have such slips. A new judge or
+judge wording must agree with it (`--compare-reference`: agreement on right and on wrong keys
+apart, and Cohen's kappa).
+
+## `key_traps.json` (`build_traps.py`, free)
+
+60 of `questions.json`'s questions with the key moved to a wrong option (`expected_key_correct`
+false), spread over every domain and level. Ground truth for judges (all must be caught) and the
+verifier (all must be fixed, and the same questions with their real key kept).
+
+## `multi_questions.json` (`build_questions.py --per-subtopic 10 --multi 6`, 2026-10-16/17)
+
+460 questions on the same subtopics, 6 of each 10 select-all-that-apply (136 with 2 right
+options, 132 with 3), written by `gpt-6.1-sol` low with its self-check; ids `m0000`…
+
+## `multi_key_traps.json` (`build_traps.py --multi --count 268`, free)
+
+The 268 multi-answer questions with one option's mark flipped (with 2 right a wrong one marked,
+with 3 a right one unmarked), so 2 or 3 stay marked.
+
+## `language_questions.json` (`build_questions.py --inputs language_inputs.json`, 2026-10-20)
+
+36 questions on `language_inputs.json`'s subtopics, 6 a subtopic with 2 select-all-that-apply,
+each item tagged with its `language`. Shows whether quality holds in the languages tests are
+written in; small, so it flags large drops only.
+
+## `assistant_questions.json` (by hand, 2026-10-17)
+
+The assistant's page-context test: 8 pages (key, path, the ids the panel sends), 43 general
+questions asked on 6 of them (6 name an interview or candidate other than the page's), each with
+what a right answer does, and 9 page checks ("What can I do on this page?" on 5 pages, "Who's
+best here?", "How did this candidate do?", "and here?" after moving). They run against the
+throwaway fixture (`../scripts/assistant_fixture.py`), never real records.
+
+## `assistant_guides.json` (by hand, 2026-10-17)
+
+20 hiring-advice questions the site's guide articles answer, each with its page, the guides that
+answer it and what a right answer does, and the ids of 15 general questions of
+`assistant_questions.json` asked as a guard.
+
