@@ -256,7 +256,7 @@ def test_a_call_cut_short_still_counts_its_tokens_estimated():
 def test_with_langfuse_every_call_of_an_answer_reports_to_its_one_trace(model, gets, monkeypatch):
     traces = iter(["a" * 32, "b" * 32])
     monkeypatch.setattr(chat, "new_trace_id", lambda: next(traces))
-    monkeypatch.setattr(chat, "traced", lambda trace_id, span_id: {"trace": trace_id})
+    monkeypatch.setattr(chat, "traced", lambda trace_id: {"trace": trace_id})
 
     _, answer = run(model, calls(("list_interviews", {})), text("One interview."))
 

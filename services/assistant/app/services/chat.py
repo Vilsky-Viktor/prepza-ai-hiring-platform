@@ -21,9 +21,9 @@ from prepza_common.tracing import new_trace_id, traced
 from app.config.settings import settings
 from app.constants.ai_usage import MESSAGE_ACTION
 from app.constants.chat import COMPANY_NOT_FOUND, MAX_TOOL_STEPS, ToolState
-from app.constants.client_tools import SIGN_OUT, SIGN_OUT_FOR_MODEL
-from app.constants.show import SHOW
-from app.constants.tool_calls import INVALID_ARGUMENTS, UNKNOWN_TOOL
+from app.constants.client_tools import SIGN_OUT, SIGN_OUT_DEFINITION, SIGN_OUT_FOR_MODEL
+from app.constants.show import SHOW, SHOW_DEFINITION
+from app.constants.tool_calls import INVALID_ARGUMENTS
 from app.constants.tool_labels import ACTION_LABEL, TOOL_LABELS, UNKNOWN_TOOL_LABEL
 from app.constants.updates import GET_UPDATES
 from app.helpers.company_note import with_company_note
@@ -42,7 +42,6 @@ from app.prompts.assistant import (
     USER_CONTEXT,
 )
 from app.prompts.parents import PARENTS_RULE
-from app.services import subagents
 from app.services.actions import prepare
 from app.services.registry import tools
 from app.services.show import show
@@ -81,9 +80,6 @@ def build_messages(
         else NO_USER_NAME,
     )
 
-    if subagents.split():
-        system = subagents.main_system(system)
-
     return [
         SystemMessage(content=system),
         *history(earlier, room, with_pages=True),
@@ -91,21 +87,15 @@ def build_messages(
     ]
 
 
-async def converse(
-    messages: list[BaseMessage], turn: Turn, answer: Answer, emit: Emit, domain: str | None = None
-) -> None:
+async def converse(messages: list[BaseMessage], turn: Turn, answer: Answer, emit: Emit) -> None:
     """Asks the model, runs the tools it calls and asks again with their results, streaming its
     text, until it answers without tools. After MAX_TOOL_STEPS steps with tools, it must answer
-    with what it has. The main agent's loop, or a domain agent's (`domain`, see delegate)."""
-    every = tools()
-    definitions = [every[name].definition for name in subagents.tool_names(domain, list(every))]
-    definitions += subagents.extra_definitions(domain)
-    offered = {definition["function"]["name"] for definition in definitions}
+    with what it has."""
+    definitions = [tool.definition for tool in tools().values()]
+    definitions += [SIGN_OUT_DEFINITION, SHOW_DEFINITION]
     model = llm.get_chat_model()
-
     # The conversation as the user wrote and read it (not the instructions), once per turn.
-    if domain is None:
-        answer.given = "\n".join(str(message.content) for message in messages[1:])
+    answer.given = "\n".join(str(message.content) for message in messages[1:])
 
     for step in range(MAX_TOOL_STEPS + 1):
         last = step == MAX_TOOL_STEPS
@@ -117,32 +107,7 @@ async def converse(
             return
 
         messages.append(reply)
-        replies = await run_step(calls, offered, messages, turn, answer, emit)
-        messages += replies
-
-        if subagents.split() and subagents.cards_only(replies):
-            return
-
-
-async def run_step(
-    calls: list[dict], offered: set, messages: list, turn: Turn, answer: Answer, emit: Emit
-) -> list[ToolMessage]:
-    """One step's calls at once: the delegates' domain agents and the other tools. A tool the
-    agent wasn't offered is refused: each agent acts only with its own."""
-    refused = [call for call in calls if call.get("name") not in offered]
-    delegated = [
-        call for call in calls if call not in refused and subagents.domain_of(call["name"])
-    ]
-    direct = [call for call in calls if call not in refused and call not in delegated]
-    done = await asyncio.gather(
-        run_tools(direct, turn, answer, emit),
-        *(subagents.delegate(call, messages, turn, answer, emit, converse) for call in delegated),
-    )
-    error = json.dumps({"error": 404, "detail": translate(UNKNOWN_TOOL, turn.language)})
-
-    refusals = [ToolMessage(content=error, tool_call_id=call["id"]) for call in refused]
-
-    return [reply for replies in done for reply in replies] + refusals
+        messages += await run_tools(calls, turn, answer, emit)
 
 
 async def ask(
@@ -157,7 +122,7 @@ async def ask(
     answer.trace_id = answer.trace_id or new_trace_id()
 
     try:
-        async for chunk in model.astream(messages, traced(answer.trace_id, answer.span_id)):
+        async for chunk in model.astream(messages, traced(answer.trace_id)):
             reply += chunk
 
             if chunk.text:

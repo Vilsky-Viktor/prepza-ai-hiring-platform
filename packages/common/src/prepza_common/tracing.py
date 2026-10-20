@@ -43,43 +43,22 @@ def new_trace_id(seed: str | None = None) -> str | None:
     return Langfuse.create_trace_id(seed=seed)
 
 
-def handler(trace_id: str, parent_span_id: str | None = None) -> CallbackHandler:
-    """The callback that reports model calls to the trace, under the span `parent_span_id` when
-    given."""
+def handler(trace_id: str) -> CallbackHandler:
+    """The callback that reports model calls to the trace."""
     # The handler reports through the client made with these keys.
     client()
-    context = {"trace_id": trace_id}
 
-    if parent_span_id is not None:
-        context["parent_span_id"] = parent_span_id
-
-    return CallbackHandler(public_key=os.environ["LANGFUSE_PUBLIC_KEY"], trace_context=context)
+    return CallbackHandler(
+        public_key=os.environ["LANGFUSE_PUBLIC_KEY"], trace_context={"trace_id": trace_id}
+    )
 
 
-def traced(trace_id: str | None, parent_span_id: str | None = None) -> dict | None:
-    """The config a model call reports to the trace with (under the span `parent_span_id` when
-    given); None without a trace."""
+def traced(trace_id: str | None) -> dict | None:
+    """The config a model call reports to the trace with; None without one."""
     if trace_id is None:
         return None
 
-    return {"callbacks": [handler(trace_id, parent_span_id)]}
-
-
-@contextmanager
-def child_span(trace_id: str | None, name: str) -> Iterator[str | None]:
-    """A span named `name` in the trace, for a part of its work (an agent the main one hands a
-    task to); yields its id, which `traced` nests calls under. None without a trace."""
-    if trace_id is None:
-        yield None
-
-        return
-
-    span = client().start_observation(trace_context={"trace_id": trace_id}, name=name)
-
-    try:
-        yield span.id
-    finally:
-        span.end()
+    return {"callbacks": [handler(trace_id)]}
 
 
 @contextmanager

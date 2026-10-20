@@ -5,8 +5,7 @@
 #   evals/run.sh <generation|generation-worker|rounds|library|assistant> <script.py> [arguments]
 #
 # generation-worker has generation's code too: a second container, so two tests can run at once.
-# MODEL, EFFORT, JUDGE_MODEL, JUDGE_EFFORT, OVERSAMPLE and ASSISTANT_MODE are passed through when
-# set.
+# MODEL, EFFORT, JUDGE_MODEL, JUDGE_EFFORT and OVERSAMPLE are passed through when set.
 set -euo pipefail
 
 service="$1"
@@ -32,7 +31,7 @@ fi
 
 env_args=(-e "EVAL_COMMIT=$commit")
 
-for name in MODEL EFFORT JUDGE_MODEL JUDGE_EFFORT OVERSAMPLE ASSISTANT_MODE; do
+for name in MODEL EFFORT JUDGE_MODEL JUDGE_EFFORT OVERSAMPLE; do
   if [[ -n "${!name:-}" ]]; then
     env_args+=(-e "$name=${!name}")
   fi

@@ -25,7 +25,6 @@ class FakeHandler(BaseCallbackHandler):
 
     def __init__(self, public_key, trace_context):
         self.trace_id = trace_context["trace_id"]
-        self.parent_span_id = trace_context.get("parent_span_id")
         self.runs = []
         MADE.append(self)
 
@@ -106,38 +105,6 @@ def test_a_chat_answer_gets_a_trace_its_calls_report_to(langfuse):
     assert TRACE_ID.fullmatch(trace)
     assert handler.trace_id == trace
     assert tracing.traced(None) is None
-
-
-class FakeSpan:
-    id = "span-1"
-    ended = False
-
-    def end(self):
-        self.ended = True
-
-
-def test_a_child_span_nests_the_calls_made_under_it(langfuse, monkeypatch):
-    span, started = FakeSpan(), []
-
-    class Client:
-        def start_observation(self, **kwargs):
-            started.append(kwargs)
-
-            return span
-
-    monkeypatch.setattr(tracing, "client", Client)
-    trace = tracing.new_trace_id()
-
-    with tracing.child_span(trace, "delegate_candidates") as span_id:
-        [handler] = tracing.traced(trace, span_id)["callbacks"]
-
-    assert started == [{"trace_context": {"trace_id": trace}, "name": "delegate_candidates"}]
-    assert (handler.trace_id, handler.parent_span_id, span.ended) == (trace, "span-1", True)
-
-
-def test_without_a_trace_a_child_span_is_none():
-    with tracing.child_span(None, "delegate_candidates") as span_id:
-        assert span_id is None
 
 
 @pytest.mark.parametrize("missing", ["LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY"])

@@ -173,16 +173,11 @@ To add one:
 
 An action is the same in `app/constants/company_actions.py`, `interview_actions.py` or `account_actions.py` (gathered in `actions.py`), with its method, `confirm: True`, the body fields the model may set (`body`), what its card shows (`preview`), whether it can't be undone (`destructive`), and the page its result opens (`render: "link"`, `link` filled from the arguments and the result). The panel names it by its tool in the `assistant.actions` messages.
 
-### Domain agents
-
-With `ASSISTANT_MODE=subagents` the panel's turn has two levels (the MCP server's tools don't change). The main agent keeps the conversation, the page, the picked company and the parents rule, and reads what most questions need itself (companies, interviews, candidates, results, balances, the help, `get_updates`). Every other tool belongs to one domain (`app/constants/subagents.py`: candidates, interviews, company and team, billing, integrations, account; a unit test checks each registry tool has exactly one owner), and the main agent hands that part of a request to the domain's agent through its `delegate_<domain>` tool: a brief (the task, in a sentence) with the company's and the interview's ids. The domain agent reads its own instructions with the main agent's context, the conversation up to the user's message and the brief as data, and is offered only its domain's tools, a few shared finders and `show`; a tool it wasn't offered is refused, and a brief naming another user's company runs nothing. Its tools run as the user, exactly as the main agent's: cards and links reach the panel unchanged, its text goes only to the main agent. Parts in different domains go to their agents at once. When every call of a step only prepared cards, the agent stops there, as the card says it all. Each domain agent's calls report under their own span of the turn's Langfuse trace and are priced like the main agent's.
-
 ## Settings
 
 | Setting | Default | What it sets |
 |---|---|---|
 | `ASSISTANT_MODEL`, `ASSISTANT_REASONING_EFFORT` | `gpt-6-luna`, `low` | The chat model |
-| `ASSISTANT_MODE` | `single` | One agent with every tool, or a main agent with an agent per domain (`subagents`, see [Domain agents](#domain-agents)) |
 | `TRANSCRIBE_MODEL` | `gpt-4o-mini-transcribe` | Voice input |
 | `ASSISTANT_RETENTION_DAYS` | 90 | Days a conversation is kept after its last message |
 | `OPENAI_API_KEY` | | OpenAI's key |
