@@ -99,6 +99,7 @@
     "skipToContent": "Lumaktaw sa nilalaman",
     "loadMoreFailed": "Hindi makapag-load ng higit pa. Pakisubukang muli.",
     "submitHint": "⌘/Ctrl + Enter para ipadala",
+    "chatKeysHint": "Enter para ipadala, ⌘/Ctrl + Enter para sa bagong linya",
     "failed": "Nagkaproblema. Pakisubukang muli.",
     "title": "Pamagat",
     "editTitle": "I-edit ang pamagat",

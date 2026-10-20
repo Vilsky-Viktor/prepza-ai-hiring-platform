@@ -99,6 +99,7 @@
     "skipToContent": "İçeriğe geç",
     "loadMoreFailed": "Daha fazlası yüklenemedi. Lütfen tekrar deneyin.",
     "submitHint": "Göndermek için ⌘/Ctrl + Enter",
+    "chatKeysHint": "Göndermek için Enter, yeni satır için ⌘/Ctrl + Enter",
     "failed": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
     "title": "Başlık",
     "editTitle": "Başlığı düzenle",

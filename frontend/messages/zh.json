@@ -99,6 +99,7 @@
     "skipToContent": "跳至内容",
     "loadMoreFailed": "无法加载更多内容，请重试。",
     "submitHint": "⌘/Ctrl + Enter 发送",
+    "chatKeysHint": "Enter 发送，⌘/Ctrl + Enter 换行",
     "failed": "出了点问题，请重试。",
     "title": "标题",
     "editTitle": "编辑标题",

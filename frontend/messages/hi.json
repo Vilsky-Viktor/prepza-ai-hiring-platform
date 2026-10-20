@@ -99,6 +99,7 @@
     "skipToContent": "सामग्री पर जाएँ",
     "loadMoreFailed": "और लोड नहीं हो सका। कृपया फिर से कोशिश करें।",
     "submitHint": "भेजने के लिए ⌘/Ctrl + Enter",
+    "chatKeysHint": "भेजने के लिए Enter, नई लाइन के लिए ⌘/Ctrl + Enter",
     "failed": "कुछ गड़बड़ हो गई। कृपया फिर से कोशिश करें।",
     "title": "शीर्षक",
     "editTitle": "शीर्षक संपादित करें",

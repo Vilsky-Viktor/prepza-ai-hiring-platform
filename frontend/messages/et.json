@@ -99,6 +99,7 @@
     "skipToContent": "Liigu sisu juurde",
     "loadMoreFailed": "Rohkem ei õnnestunud laadida. Proovi uuesti.",
     "submitHint": "Saatmiseks ⌘/Ctrl + Enter",
+    "chatKeysHint": "Saatmiseks Enter, uueks reaks ⌘/Ctrl + Enter",
     "failed": "Midagi läks valesti. Proovi uuesti.",
     "title": "Pealkiri",
     "editTitle": "Muuda pealkirja",

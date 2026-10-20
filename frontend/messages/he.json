@@ -99,6 +99,7 @@
     "skipToContent": "דילוג לתוכן",
     "loadMoreFailed": "לא ניתן לטעון עוד. נסו שוב.",
     "submitHint": "⌘/Ctrl + Enter לשליחה",
+    "chatKeysHint": "Enter לשליחה, ⌘/Ctrl + Enter לשורה חדשה",
     "failed": "משהו השתבש. נסו שוב.",
     "title": "כותרת",
     "editTitle": "עריכת הכותרת",

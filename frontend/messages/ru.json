@@ -99,6 +99,7 @@
     "skipToContent": "Перейти к содержимому",
     "loadMoreFailed": "Не удалось загрузить ещё. Попробуйте ещё раз.",
     "submitHint": "⌘/Ctrl + Enter — отправить",
+    "chatKeysHint": "Enter — отправить, ⌘/Ctrl + Enter — новая строка",
     "failed": "Что-то пошло не так. Попробуйте ещё раз.",
     "title": "Название",
     "editTitle": "Изменить название",

@@ -99,6 +99,7 @@
     "skipToContent": "ข้ามไปยังเนื้อหา",
     "loadMoreFailed": "โหลดเพิ่มไม่สำเร็จ โปรดลองอีกครั้ง",
     "submitHint": "⌘/Ctrl + Enter เพื่อส่ง",
+    "chatKeysHint": "Enter เพื่อส่ง, ⌘/Ctrl + Enter เพื่อขึ้นบรรทัดใหม่",
     "failed": "เกิดข้อผิดพลาด โปรดลองอีกครั้ง",
     "title": "ชื่อ",
     "editTitle": "แก้ไขชื่อเรื่อง",

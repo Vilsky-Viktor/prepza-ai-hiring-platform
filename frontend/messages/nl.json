@@ -99,6 +99,7 @@
     "skipToContent": "Naar de inhoud springen",
     "loadMoreFailed": "Er kon niet meer worden geladen. Probeer het opnieuw.",
     "submitHint": "⌘/Ctrl + Enter om te verzenden",
+    "chatKeysHint": "Enter om te verzenden, ⌘/Ctrl + Enter voor een nieuwe regel",
     "failed": "Er ging iets mis. Probeer het opnieuw.",
     "title": "Titel",
     "editTitle": "Titel bewerken",

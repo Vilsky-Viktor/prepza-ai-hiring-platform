@@ -92,6 +92,24 @@ test("a visitor asks the assistant about prepza", async ({ page }) => {
   await expect(panel).toHaveCount(0);
 });
 
+test("Enter sends a message and ⌘/Ctrl + Enter adds a new line", async ({ page }) => {
+  await helpAnswers(page, [{ delta: "Yes." }]);
+  const panel = await openPanel(page);
+  const field = panel.getByRole("textbox");
+
+  await field.fill("First line");
+  await field.press("ControlOrMeta+Enter");
+  await field.pressSequentially("second line");
+
+  // A new line, and nothing sent yet.
+  await expect(field).toHaveValue("First line\nsecond line");
+  await expect(welcomeQuestions(panel).first()).toBeVisible();
+
+  await field.press("Enter");
+  await expect(panel.getByRole("list").getByText(/^First line\s+second line$/)).toBeVisible();
+  await expect(field).toHaveValue("");
+});
+
 test("a visitor asking to sign in gets the sign-in card, their way first", async ({ page }) => {
   await helpAnswers(page, [
     { block: { kind: "sign_in", items: [], links: [], provider: "github" } },

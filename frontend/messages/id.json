@@ -99,6 +99,7 @@
     "skipToContent": "Langsung ke konten",
     "loadMoreFailed": "Tidak bisa memuat lagi. Coba lagi.",
     "submitHint": "⌘/Ctrl + Enter untuk mengirim",
+    "chatKeysHint": "Enter untuk mengirim, ⌘/Ctrl + Enter untuk baris baru",
     "failed": "Terjadi kesalahan. Coba lagi.",
     "title": "Judul",
     "editTitle": "Edit judul",

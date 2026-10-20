@@ -99,6 +99,7 @@
     "skipToContent": "پرش به محتوا",
     "loadMoreFailed": "بارگذاری بیشتر ممکن نشد. دوباره امتحان کنید.",
     "submitHint": "⌘/Ctrl + Enter برای ارسال",
+    "chatKeysHint": "Enter برای ارسال، ⌘/Ctrl + Enter برای خط جدید",
     "failed": "مشکلی پیش آمد. دوباره امتحان کنید.",
     "title": "عنوان",
     "editTitle": "ویرایش عنوان",

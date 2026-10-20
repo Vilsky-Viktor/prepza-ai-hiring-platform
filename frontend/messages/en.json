@@ -99,6 +99,7 @@
     "skipToContent": "Skip to content",
     "loadMoreFailed": "Couldn't load more. Please try again.",
     "submitHint": "⌘/Ctrl + Enter to send",
+    "chatKeysHint": "Enter to send, ⌘/Ctrl + Enter for a new line",
     "failed": "Something went wrong. Please try again.",
     "title": "Title",
     "editTitle": "Edit title",

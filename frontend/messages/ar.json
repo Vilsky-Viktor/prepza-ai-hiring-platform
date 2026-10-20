@@ -99,6 +99,7 @@
     "skipToContent": "تخطي إلى المحتوى",
     "loadMoreFailed": "تعذّر تحميل المزيد. حاول مرة أخرى.",
     "submitHint": "⌘/Ctrl + Enter للإرسال",
+    "chatKeysHint": "Enter للإرسال، و⌘/Ctrl + Enter لسطر جديد",
     "failed": "حدث خطأ ما. حاول مرة أخرى.",
     "title": "العنوان",
     "editTitle": "تعديل العنوان",

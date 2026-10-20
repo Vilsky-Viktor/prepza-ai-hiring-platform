@@ -99,6 +99,7 @@
     "skipToContent": "본문 바로가기",
     "loadMoreFailed": "더 불러오지 못했습니다. 다시 시도해 주세요.",
     "submitHint": "⌘/Ctrl + Enter로 보내기",
+    "chatKeysHint": "Enter로 보내기, ⌘/Ctrl + Enter로 줄 바꿈",
     "failed": "문제가 발생했습니다. 다시 시도해 주세요.",
     "title": "제목",
     "editTitle": "제목 편집",

@@ -99,6 +99,7 @@
     "skipToContent": "コンテンツへスキップ",
     "loadMoreFailed": "続きを読み込めませんでした。もう一度お試しください。",
     "submitHint": "⌘/Ctrl + Enter で送信",
+    "chatKeysHint": "Enter で送信、⌘/Ctrl + Enter で改行",
     "failed": "問題が発生しました。もう一度お試しください。",
     "title": "タイトル",
     "editTitle": "タイトルを編集",

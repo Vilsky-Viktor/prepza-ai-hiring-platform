@@ -99,6 +99,7 @@
     "skipToContent": "Chuyển đến nội dung",
     "loadMoreFailed": "Không thể tải thêm. Vui lòng thử lại.",
     "submitHint": "⌘/Ctrl + Enter để gửi",
+    "chatKeysHint": "Enter để gửi, ⌘/Ctrl + Enter để xuống dòng",
     "failed": "Đã xảy ra lỗi. Vui lòng thử lại.",
     "title": "Tiêu đề",
     "editTitle": "Sửa tiêu đề",

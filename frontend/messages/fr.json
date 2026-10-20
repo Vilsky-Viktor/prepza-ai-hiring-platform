@@ -99,6 +99,7 @@
     "skipToContent": "Aller au contenu",
     "loadMoreFailed": "Impossible de charger la suite. Veuillez réessayer.",
     "submitHint": "⌘/Ctrl + Entrée pour envoyer",
+    "chatKeysHint": "Entrée pour envoyer, ⌘/Ctrl + Entrée pour une nouvelle ligne",
     "failed": "Une erreur s'est produite. Veuillez réessayer.",
     "title": "Titre",
     "editTitle": "Modifier le titre",
