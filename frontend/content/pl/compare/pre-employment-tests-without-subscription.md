@@ -45,7 +45,7 @@ Te narzędzia sprawdzają też różne rzeczy. Subskrypcja platformy psychometry
 
 prepza nie ma subskrypcji ani umowy. Kupujesz kredyty, kiedy ich potrzebujesz, i wydajesz je na kandydatów.
 
-- **Za $1 kupujesz 100 kredytów.** Kredyty nie wygasają.
+- **Kredyty nie wygasają.**
 - **Kandydat kosztuje 500 kredytów,** pobieranych dopiero, gdy odpowie na co najmniej jedno pytanie. Jeśli zaproszony kandydat nie zacznie, kredyty wracają. Zaproszenie nierozpoczęte w ciągu 30 dni wygasa, a jego kredyty wracają.
 - **Większe doładowania dają więcej kredytów za dolara,** więc cena za kandydata spada wraz z wielkością doładowania. Doładowania znajdziesz w [cenniku](/pricing).
 - **Generowanie rozmów jest darmowe,** podobnie jak podgląd rozmowy z perspektywy kandydata.

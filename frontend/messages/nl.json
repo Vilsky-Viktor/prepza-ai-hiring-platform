@@ -1098,7 +1098,7 @@
     "candidateVolume": "Met credits uit een opwaardering van {from} of meer",
     "perCandidate": "{price} per kandidaat",
     "welcome": "{count, plural, one {Je eerste kandidaat} other {Je eerste # kandidaten}}",
-    "credits": "$1 = 100 credits, credits verlopen nooit.",
+    "credits": "Een kandidaat kost {credits, number} credits, en credits verlopen nooit.",
     "referrals": "Doorverwijzingen",
     "referralsNote": "Deel de link van je bedrijf via het tabblad Doorverwijzingen.",
     "companyReferral": "Een bedrijf dat je hebt uitgenodigd, waardeert voor het eerst op",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Opwaarderen",
-    "intro": "Voor $1 krijg je 100 credits, en credits verlopen nooit.",
+    "intro": "Een kandidaat kost {credits, number} credits, en credits verlopen nooit.",
     "companies": "Credits van bedrijven",
     "companiesNote": "Voor de kandidaten van elk bedrijf.",
     "noCompany": "Credits horen bij een bedrijf. Maak eerst je bedrijf aan en waardeer het dan hier op.",

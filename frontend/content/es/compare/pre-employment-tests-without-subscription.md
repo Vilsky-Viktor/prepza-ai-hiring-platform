@@ -45,7 +45,7 @@ Estas herramientas también evalúan cosas distintas. Una suscripción a una pla
 
 prepza no tiene suscripción ni contrato. Compras créditos cuando los necesitas y los gastas en candidatos.
 
-- **$1 compra 100 créditos.** Los créditos no caducan.
+- **Los créditos no caducan.**
 - **Un candidato cuesta 500 créditos,** que se cobran solo cuando responde al menos una pregunta. Si un candidato invitado nunca empieza, los créditos se devuelven. Una invitación no iniciada en 30 días caduca y devuelve sus créditos.
 - **Las recargas más grandes dan más créditos por dólar,** así que el precio por candidato baja a medida que sube la recarga. Consulta los [precios](/pricing) para ver las recargas.
 - **Generar entrevistas es gratis,** y también lo es probar tu entrevista como candidato.

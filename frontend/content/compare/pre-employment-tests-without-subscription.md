@@ -45,7 +45,7 @@ These tools also test different things. A subscription to a psychometric or codi
 
 prepza has no subscription and no contract. You buy credits when you need them and spend them on candidates.
 
-- **$1 buys 100 credits.** Credits don't expire.
+- **Credits don't expire.**
 - **A candidate costs 500 credits,** charged only when they answer at least one question. If an invited candidate never starts, the credits come back. An invite not started within 30 days expires and returns its credits.
 - **Bigger top-ups buy more credits per dollar,** so the price per candidate goes down as the top-up goes up. See [pricing](/pricing) for the top-ups.
 - **Generating interviews is free,** and so is previewing your interview as a candidate.

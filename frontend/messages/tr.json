@@ -1098,7 +1098,7 @@
     "candidateVolume": "{from} veya üzeri bir yüklemeden gelen kredilerle",
     "perCandidate": "Aday başına {price}",
     "welcome": "{count, plural, one {İlk adayınız} other {İlk # adayınız}}",
-    "credits": "$1 = 100 kredi, krediler hiç sona ermez.",
+    "credits": "Bir aday {credits, number} kredi tutar ve krediler hiç sona ermez.",
     "referrals": "Davetler",
     "referralsNote": "Şirketinizin bağlantısını şirketin davetler sekmesinden paylaşın.",
     "companyReferral": "Davet ettiğiniz bir şirket ilk yüklemesini yapar",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Kredi yükle",
-    "intro": "$1 ile 100 kredi alırsınız ve krediler hiç sona ermez.",
+    "intro": "Bir aday {credits, number} kredi tutar ve krediler hiç sona ermez.",
     "companies": "Şirket kredileri",
     "companiesNote": "Her şirketin adayları için.",
     "noCompany": "Krediler bir şirkete aittir. Önce şirketinizi oluşturun, sonra burada kredi yükleyin.",

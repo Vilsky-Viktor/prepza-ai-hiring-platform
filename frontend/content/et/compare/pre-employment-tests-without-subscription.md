@@ -45,7 +45,7 @@ Need tööriistad testivad ka eri asju. Psühhomeetrilise või programmeerimispl
 
 prepzal pole tellimust ega lepingut. Ostad krediite siis, kui neid vajad, ja kasutad neid kandidaatide jaoks.
 
-- **1 $ eest saad 100 krediiti.** Krediidid ei aegu.
+- **Krediidid ei aegu.**
 - **Kandidaat maksab 500 krediiti,** mis võetakse alles siis, kui ta vastab vähemalt ühele küsimusele. Kui kutsutud kandidaat ei alusta, tulevad krediidid tagasi. Kutse, mida 30 päeva jooksul ei alustata, aegub ja selle krediidid tulevad tagasi.
 - **Suuremad juurdelaadimised annavad dollari kohta rohkem krediite,** nii et kandidaadi hind langeb juurdelaadimise kasvades. Juurdelaadimised leiad [hinnalehelt](/pricing).
 - **Intervjuude loomine on tasuta,** samuti oma intervjuu eelvaade kandidaadina.

@@ -45,7 +45,7 @@ Bu araçlar ayrıca farklı şeyleri ölçer. Bir psikometri veya kodlama platfo
 
 prepza'da abonelik ve sözleşme yoktur. İhtiyaç duyduğunuzda kredi satın alır ve adaylar için harcarsınız.
 
-- **$1 ile 100 kredi alırsınız.** Krediler süresiz geçerlidir.
+- **Krediler süresiz geçerlidir.**
 - **Bir aday 500 kredidir;** yalnızca en az bir soruyu yanıtladığında düşülür. Davet edilen bir aday hiç başlamazsa krediler geri gelir. 30 gün içinde başlanmayan bir davetin süresi dolar ve kredileri iade edilir.
 - **Daha büyük yüklemeler dolar başına daha fazla kredi sağlar;** yani yükleme tutarı arttıkça aday başı fiyat düşer. Yükleme seçenekleri için [fiyatlar](/pricing) sayfasına bakın.
 - **Mülakat oluşturmak ücretsizdir;** mülakatınızı aday gözüyle önizlemek de öyle.

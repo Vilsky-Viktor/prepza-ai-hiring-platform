@@ -45,7 +45,7 @@ Diese Tools prüfen zudem unterschiedliche Dinge. Ein Abo für eine Psychometrie
 
 prepza hat kein Abo und keinen Vertrag. Du kaufst Credits, wenn du sie brauchst, und setzt sie für Kandidaten ein.
 
-- **Für 1 $ erhältst du 100 Credits.** Credits verfallen nicht.
+- **Credits verfallen nicht.**
 - **Ein Kandidat kostet 500 Credits,** berechnet nur, wenn er mindestens eine Frage beantwortet. Fängt ein eingeladener Kandidat nie an, kommen die Credits zurück. Eine Einladung, die nicht innerhalb von 30 Tagen begonnen wird, läuft ab und gibt ihre Credits zurück.
 - **Größere Aufladungen bringen mehr Credits pro Dollar,** sodass der Preis pro Kandidat sinkt, je höher die Aufladung ist. Die Aufladungen findest du unter [Preise](/pricing).
 - **Interviews zu generieren ist kostenlos,** ebenso, dein Interview vorab als Kandidat auszuprobieren.

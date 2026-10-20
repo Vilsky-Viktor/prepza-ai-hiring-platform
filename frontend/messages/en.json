@@ -1098,7 +1098,7 @@
     "candidateVolume": "With credits from a top-up of {from} or more",
     "perCandidate": "{price} a candidate",
     "welcome": "Your first {count, plural, one {candidate} other {# candidates}}",
-    "credits": "$1 = 100 credits, credits never expire.",
+    "credits": "A candidate takes {credits, number} credits, and credits never expire.",
     "referrals": "Referrals",
     "referralsNote": "Share your company's link from its referrals tab.",
     "companyReferral": "A company you invited makes its first top-up",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Top up",
-    "intro": "$1 buys 100 credits, and credits never expire.",
+    "intro": "A candidate takes {credits, number} credits, and credits never expire.",
     "companies": "Company credits",
     "companiesNote": "For each company's candidates.",
     "noCompany": "Credits belong to a company. Create your company first, then top it up here.",

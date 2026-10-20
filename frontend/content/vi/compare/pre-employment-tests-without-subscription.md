@@ -45,7 +45,7 @@ Các công cụ này cũng kiểm tra những thứ khác nhau. Một gói đăn
 
 prepza không có gói đăng ký và không có hợp đồng. Bạn mua credit khi cần và dùng chúng cho ứng viên.
 
-- **$1 mua được 100 credit.** Credit không hết hạn.
+- **Credit không hết hạn.**
 - **Một ứng viên tốn 500 credit,** chỉ bị trừ khi họ trả lời ít nhất một câu hỏi. Nếu một ứng viên được mời không bao giờ bắt đầu, credit sẽ được hoàn lại. Lời mời không được bắt đầu trong 30 ngày sẽ hết hạn và hoàn lại credit.
 - **Mức nạp lớn hơn mua được nhiều credit hơn trên mỗi đô la,** nên giá mỗi ứng viên giảm khi mức nạp tăng. Xem [bảng giá](/pricing) để biết các mức nạp.
 - **Tạo buổi phỏng vấn là miễn phí,** xem trước buổi phỏng vấn với tư cách ứng viên cũng vậy.

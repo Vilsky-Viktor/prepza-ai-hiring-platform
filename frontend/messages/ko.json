@@ -1098,7 +1098,7 @@
     "candidateVolume": "{from} 이상 충전한 크레딧 사용 시",
     "perCandidate": "지원자당 {price}",
     "welcome": "처음 {count, plural, other {지원자 #명}}",
-    "credits": "$1 = 100 크레딧, 크레딧은 만료되지 않습니다.",
+    "credits": "지원자 1명당 {credits, number}크레딧이며, 크레딧은 만료되지 않습니다.",
     "referrals": "추천",
     "referralsNote": "회사의 추천 탭에서 회사 링크를 공유하세요.",
     "companyReferral": "추천한 회사가 첫 충전을 하면",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "충전",
-    "intro": "$1로 100크레딧, 크레딧은 만료되지 않습니다.",
+    "intro": "지원자 1명당 {credits, number}크레딧이며, 크레딧은 만료되지 않습니다.",
     "companies": "회사 크레딧",
     "companiesNote": "각 회사의 지원자에게 사용됩니다.",
     "noCompany": "크레딧은 회사에 속합니다. 먼저 회사를 만든 후 여기에서 충전하세요.",

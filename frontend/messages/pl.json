@@ -1098,7 +1098,7 @@
     "candidateVolume": "Z kredytami z doładowania za {from} lub więcej",
     "perCandidate": "{price} za kandydata",
     "welcome": "{count, plural, one {Twój pierwszy kandydat} few {Twoich pierwszych # kandydatów} many {Twoich pierwszych # kandydatów} other {Twoich pierwszych # kandydata}}",
-    "credits": "$1 = 100 kredytów, kredyty nie wygasają.",
+    "credits": "Jeden kandydat to {credits, plural, one {# kredyt} few {# kredyty} many {# kredytów} other {# kredytu}}, a kredyty nie wygasają.",
     "referrals": "Polecenia",
     "referralsNote": "Udostępnij link swojej firmy z jej zakładki poleceń.",
     "companyReferral": "Firma, którą zaprosisz, robi pierwsze doładowanie",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Doładowanie",
-    "intro": "Za $1 otrzymujesz 100 kredytów, a kredyty nie wygasają.",
+    "intro": "Jeden kandydat to {credits, plural, one {# kredyt} few {# kredyty} many {# kredytów} other {# kredytu}}, a kredyty nie wygasają.",
     "companies": "Kredyty firm",
     "companiesNote": "Na kandydatów każdej firmy.",
     "noCompany": "Kredyty należą do firmy. Najpierw utwórz firmę, a potem doładuj ją tutaj.",

@@ -1098,7 +1098,7 @@
     "candidateVolume": "Với credit từ lần nạp {from} trở lên",
     "perCandidate": "{price} mỗi ứng viên",
     "welcome": "{count, plural, other {# ứng viên}} đầu tiên của bạn",
-    "credits": "$1 = 100 credit, credit không bao giờ hết hạn.",
+    "credits": "Mỗi ứng viên tốn {credits, number} credit, và credit không bao giờ hết hạn.",
     "referrals": "Giới thiệu",
     "referralsNote": "Chia sẻ liên kết của công ty bạn từ thẻ Giới thiệu của công ty.",
     "companyReferral": "Một công ty bạn mời nạp credit lần đầu",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Nạp credit",
-    "intro": "$1 mua được 100 credit, và credit không bao giờ hết hạn.",
+    "intro": "Mỗi ứng viên tốn {credits, number} credit, và credit không bao giờ hết hạn.",
     "companies": "Credit của công ty",
     "companiesNote": "Cho ứng viên của từng công ty.",
     "noCompany": "Credit thuộc về công ty. Hãy tạo công ty trước, rồi nạp credit tại đây.",

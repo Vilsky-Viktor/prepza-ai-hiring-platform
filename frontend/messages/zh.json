@@ -1098,7 +1098,7 @@
     "candidateVolume": "使用 {from} 及以上充值所得的点数",
     "perCandidate": "每位候选人 {price}",
     "welcome": "你的前 {count, plural, other {# 位候选人}}",
-    "credits": "$1 = 100 点数，点数永不过期。",
+    "credits": "每位候选人需 {credits, number} 点数，点数永不过期。",
     "referrals": "推荐",
     "referralsNote": "在公司的推荐标签页中分享公司链接。",
     "companyReferral": "你推荐的公司首次充值",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "充值",
-    "intro": "$1 可购买 100 点数，点数永不过期。",
+    "intro": "每位候选人需 {credits, number} 点数，点数永不过期。",
     "companies": "公司点数",
     "companiesNote": "用于各公司的候选人。",
     "noCompany": "点数属于公司。请先创建公司，再在这里充值。",

@@ -14,7 +14,7 @@ Companies pay per candidate from a wallet of credits. There's no paid subscripti
 
 ## Credits
 
-- $1 buys 100 credits. Credits never expire.
+- Credits never expire. Larger top-ups buy them for less money (see [Top-ups](#top-ups)), so a credit has no fixed price in dollars.
 - A company pays 500 credits ($5) per candidate who answers at least one question: picks an answer, not lets its time run out.
 - Generating an interview is free.
 - Only what works is charged: a candidate's credits are set aside on invite and given back if they never answer.

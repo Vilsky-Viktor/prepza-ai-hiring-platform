@@ -1098,7 +1098,7 @@
     "candidateVolume": "Avec des crédits d'une recharge de {from} ou plus",
     "perCandidate": "{price} par candidat",
     "welcome": "{count, plural, =1 {Votre premier candidat} other {Vos # premiers candidats}}",
-    "credits": "1 $ = 100 crédits, les crédits n'expirent jamais.",
+    "credits": "Un candidat coûte {credits, number} crédits, et les crédits n'expirent jamais.",
     "referrals": "Parrainage",
     "referralsNote": "Partagez le lien de votre entreprise depuis son onglet Parrainage.",
     "companyReferral": "Une entreprise que vous avez invitée fait sa première recharge",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Recharger",
-    "intro": "1 $ donne 100 crédits, et les crédits n'expirent jamais.",
+    "intro": "Un candidat coûte {credits, number} crédits, et les crédits n'expirent jamais.",
     "companies": "Crédits des entreprises",
     "companiesNote": "Pour les candidats de chaque entreprise.",
     "noCompany": "Les crédits appartiennent à une entreprise. Créez d'abord votre entreprise, puis rechargez-la ici.",

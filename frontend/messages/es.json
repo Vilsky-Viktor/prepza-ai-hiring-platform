@@ -1098,7 +1098,7 @@
     "candidateVolume": "Con créditos de una recarga de {from} o más",
     "perCandidate": "{price} por candidato",
     "welcome": "{count, plural, one {Tu primer candidato} other {Tus primeros # candidatos}}",
-    "credits": "$1 = 100 créditos, los créditos no caducan.",
+    "credits": "Un candidato cuesta {credits, number} créditos, y los créditos no caducan.",
     "referrals": "Recomendaciones",
     "referralsNote": "Comparte el enlace de tu empresa desde su pestaña de recomendaciones.",
     "companyReferral": "Una empresa que invitaste hace su primera recarga",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Recargar",
-    "intro": "$1 equivale a 100 créditos y los créditos no caducan.",
+    "intro": "Un candidato cuesta {credits, number} créditos, y los créditos no caducan.",
     "companies": "Créditos de empresas",
     "companiesNote": "Para los candidatos de cada empresa.",
     "noCompany": "Los créditos pertenecen a una empresa. Crea primero tu empresa y luego recárgala aquí.",

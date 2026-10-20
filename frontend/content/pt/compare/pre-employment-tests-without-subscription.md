@@ -45,7 +45,7 @@ Essas ferramentas também avaliam coisas diferentes. Uma assinatura de uma plata
 
 A prepza não tem assinatura nem contrato. Você compra créditos quando precisa e os usa com candidatos.
 
-- **$1 compra 100 créditos.** Os créditos não expiram.
+- **Os créditos não expiram.**
 - **Um candidato custa 500 créditos,** cobrados só quando ele responde pelo menos uma pergunta. Se um candidato convidado nunca começar, os créditos voltam para você. Um convite não iniciado em 30 dias expira e devolve os créditos.
 - **Recargas maiores compram mais créditos por dólar,** então o preço por candidato cai à medida que a recarga aumenta. Veja os [preços](/pricing) para as recargas.
 - **Gerar entrevistas é gratuito,** assim como testar a sua entrevista como candidato.

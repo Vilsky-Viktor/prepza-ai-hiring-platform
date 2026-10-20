@@ -1098,7 +1098,7 @@
     "candidateVolume": "Gamit ang credits mula sa top-up na {from} o higit pa",
     "perCandidate": "{price} bawat aplikante",
     "welcome": "{count, plural, =1 {Ang iyong unang aplikante} other {Ang iyong unang # aplikante}}",
-    "credits": "$1 = 100 credits, hindi nag-e-expire ang credits.",
+    "credits": "Ang bawat aplikante ay {credits, number} credits, at hindi nag-e-expire ang credits.",
     "referrals": "Referrals",
     "referralsNote": "I-share ang link ng iyong kumpanya mula sa tab na Referrals nito.",
     "companyReferral": "Unang top-up ng kumpanyang inimbitahan mo",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Mag-top up",
-    "intro": "Ang $1 ay 100 credits, at hindi nag-e-expire ang credits.",
+    "intro": "Ang bawat aplikante ay {credits, number} credits, at hindi nag-e-expire ang credits.",
     "companies": "Credits ng mga kumpanya",
     "companiesNote": "Para sa mga aplikante ng bawat kumpanya.",
     "noCompany": "Ang credits ay pag-aari ng isang kumpanya. Gumawa muna ng iyong kumpanya, saka ito i-top up dito.",

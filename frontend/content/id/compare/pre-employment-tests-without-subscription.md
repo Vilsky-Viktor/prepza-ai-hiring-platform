@@ -45,7 +45,7 @@ Alat-alat ini juga menguji hal yang berbeda. Langganan platform psikometri atau 
 
 prepza tidak memakai langganan dan tidak memakai kontrak. Kamu membeli kredit saat membutuhkannya dan memakainya untuk kandidat.
 
-- **$1 membeli 100 kredit.** Kredit tidak kedaluwarsa.
+- **Kredit tidak kedaluwarsa.**
 - **Satu kandidat memakai 500 kredit,** yang hanya ditagih saat kandidat menjawab setidaknya satu soal. Kalau kandidat yang diundang tidak pernah mulai, kreditnya kembali. Undangan yang tidak dimulai dalam 30 hari kedaluwarsa dan kreditnya dikembalikan.
 - **Isi ulang yang lebih besar memberi lebih banyak kredit per dolar,** jadi harga per kandidat turun seiring naiknya isi ulang. Lihat [harga](/pricing) untuk pilihan isi ulang.
 - **Membuat wawancara gratis,** begitu juga melihat pratinjau wawancaramu sebagai kandidat.

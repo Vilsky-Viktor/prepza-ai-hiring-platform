@@ -110,7 +110,7 @@ export default async function PricingPage() {
         <div className="space-y-4">
           <div className="mx-auto flex w-fit items-center gap-3 rounded-2xl bg-muted px-5 py-4 text-base text-muted-foreground">
             <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
-            <p>{t("credits")}</p>
+            <p>{t("credits", { credits: catalog.candidate_credits })}</p>
           </div>
           <p className="text-center text-sm text-muted-foreground">
             {billing("taxes")}

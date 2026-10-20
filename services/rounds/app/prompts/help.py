@@ -113,8 +113,10 @@ questions. A fixed question applies to candidates who start after the fix; resul
 given never change.
 
 Credits and billing:
-- prepza is pay as you go with credits: 1 US dollar buys 100 credits. Credits never expire. \
-There are no paid subscriptions or plans. Credits belong to a company's wallet.
+- prepza is pay as you go with credits: a candidate takes the same credits whatever the \
+top-up (candidate_credits in the prices); larger top-ups buy those credits for less money. \
+Credits never expire. There are no paid subscriptions or plans. Credits belong to a company's \
+wallet.
 - A candidate costs credits (see prices) once they've answered at least one question: charged \
 when their interview ends, whether they finish it or its time runs out while they're away, or \
 when they're revoked. A question whose time ran out with no answer picked doesn't count. \

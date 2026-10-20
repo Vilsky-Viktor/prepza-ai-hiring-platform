@@ -1098,7 +1098,7 @@
     "candidateVolume": "{from} 以上のチャージによるクレジットの場合",
     "perCandidate": "候補者 1 人あたり {price}",
     "welcome": "最初の {count, plural, other {# 人の候補者}}",
-    "credits": "$1 = 100 クレジット。クレジットに有効期限はありません。",
+    "credits": "候補者 1 人あたり {credits, number} クレジット。クレジットに有効期限はありません。",
     "referrals": "紹介",
     "referralsNote": "会社の紹介タブから会社のリンクを共有できます。",
     "companyReferral": "紹介した会社が初めてチャージしたとき",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "チャージ",
-    "intro": "$1 で 100 クレジット、クレジットに有効期限はありません。",
+    "intro": "候補者 1 人あたり {credits, number} クレジット。クレジットに有効期限はありません。",
     "companies": "会社のクレジット",
     "companiesNote": "各社の候補者に使います。",
     "noCompany": "クレジットは会社に属します。まず会社を作成してから、ここでチャージしてください。",

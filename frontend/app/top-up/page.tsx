@@ -55,7 +55,11 @@ export default async function TopUpPage() {
                 {t("pricing")}
               </Button>
             </div>
-            <p className="text-base text-muted-foreground">{t("intro")}</p>
+            {catalog && (
+              <p className="text-base text-muted-foreground">
+                {t("intro", { credits: catalog.candidate_credits })}
+              </p>
+            )}
           </div>
         }
       />

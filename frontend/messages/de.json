@@ -1098,7 +1098,7 @@
     "candidateVolume": "Mit Credits aus einer Aufladung ab {from}",
     "perCandidate": "{price} pro Kandidat",
     "welcome": "{count, plural, one {Dein erster Kandidat} other {Deine ersten # Kandidaten}}",
-    "credits": "$1 = 100 Credits, Credits verfallen nie.",
+    "credits": "Ein Kandidat kostet {credits, number} Credits, und Credits verfallen nie.",
     "referrals": "Empfehlungen",
     "referralsNote": "Teile den Link deines Unternehmens im Tab Empfehlungen.",
     "companyReferral": "Ein von dir eingeladenes Unternehmen lädt zum ersten Mal auf",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Aufladen",
-    "intro": "Für $1 gibt es 100 Credits, und Credits verfallen nie.",
+    "intro": "Ein Kandidat kostet {credits, number} Credits, und Credits verfallen nie.",
     "companies": "Credits der Unternehmen",
     "companiesNote": "Für die Kandidaten jedes Unternehmens.",
     "noCompany": "Credits gehören einem Unternehmen. Erstelle zuerst dein Unternehmen und lade es dann hier auf.",

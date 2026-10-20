@@ -45,7 +45,7 @@ Ces outils évaluent aussi des choses différentes. Un abonnement à une platefo
 
 prepza n'a ni abonnement ni contrat. Vous achetez des crédits quand vous en avez besoin et les utilisez pour vos candidats.
 
-- **1 $ achète 100 crédits.** Les crédits n'expirent pas.
+- **Les crédits n'expirent pas.**
 - **Un candidat coûte 500 crédits,** débités uniquement s'il répond à au moins une question. Si un candidat invité ne commence jamais, les crédits vous sont rendus. Une invitation non commencée sous 30 jours expire et restitue ses crédits.
 - **Les recharges plus importantes donnent plus de crédits par dollar,** si bien que le prix par candidat baisse quand la recharge augmente. Voir les [tarifs](/pricing) pour les recharges.
 - **Générer des entretiens est gratuit,** tout comme essayer votre entretien en tant que candidat.

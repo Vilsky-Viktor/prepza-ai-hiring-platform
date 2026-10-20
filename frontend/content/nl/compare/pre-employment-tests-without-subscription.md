@@ -45,7 +45,7 @@ Deze tools toetsen ook verschillende dingen. Een abonnement op een psychometrisc
 
 prepza heeft geen abonnement en geen contract. Je koopt credits wanneer je ze nodig hebt en besteedt ze aan kandidaten.
 
-- **Voor $1 krijg je 100 credits.** Credits verlopen niet.
+- **Credits verlopen niet.**
 - **Een kandidaat kost 500 credits,** alleen gerekend als hij of zij minstens één vraag beantwoordt. Begint een uitgenodigde kandidaat nooit, dan komen de credits terug. Een uitnodiging die niet binnen 30 dagen is gestart, verloopt en geeft haar credits terug.
 - **Grotere opwaarderingen geven meer credits per dollar,** dus de prijs per kandidaat daalt naarmate de opwaardering groter wordt. Zie [prijzen](/pricing) voor de opwaarderingen.
 - **Interviews genereren is gratis,** en je interview als kandidaat proberen ook.

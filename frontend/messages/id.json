@@ -1098,7 +1098,7 @@
     "candidateVolume": "Dengan kredit dari isi ulang {from} atau lebih",
     "perCandidate": "{price} per kandidat",
     "welcome": "{count, plural, other {# kandidat}} pertamamu",
-    "credits": "$1 = 100 kredit, kredit tidak pernah kedaluwarsa.",
+    "credits": "Satu kandidat memakai {credits, number} kredit, dan kredit tidak pernah kedaluwarsa.",
     "referrals": "Referal",
     "referralsNote": "Bagikan tautan perusahaanmu dari tab Referal perusahaan.",
     "companyReferral": "Perusahaan yang kamu undang melakukan isi ulang pertama",
@@ -1183,7 +1183,7 @@
   },
   "topUp": {
     "title": "Isi ulang",
-    "intro": "$1 = 100 kredit, dan kredit tidak pernah kedaluwarsa.",
+    "intro": "Satu kandidat memakai {credits, number} kredit, dan kredit tidak pernah kedaluwarsa.",
     "companies": "Kredit perusahaan",
     "companiesNote": "Untuk kandidat setiap perusahaan.",
     "noCompany": "Kredit milik perusahaan. Buat perusahaanmu dulu, lalu isi ulang di sini.",

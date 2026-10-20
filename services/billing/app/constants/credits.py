@@ -1,4 +1,4 @@
-# $1 = 100 credits. Amounts are whole credits.
+# Amounts are whole credits; a candidate takes CANDIDATE_CREDITS, whatever the top-up bought them for.
 CANDIDATE_CREDITS = 500
 # A new company gets its first 3 candidates.
 WELCOME_COMPANY = 3 * CANDIDATE_CREDITS
