@@ -9,7 +9,7 @@ from prepza_common.limits import question_seconds
 from prepza_common.multi_answer import multi_share
 from prepza_common.paging import PageParams
 from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit
+from prepza_common.rate_limit import hit, hit_or_skip
 
 from app.constants.invites import INTERVIEW_NOT_READY, MAX_SEARCH_LENGTH
 from app.helpers.interviews import (
@@ -61,6 +61,9 @@ async def create_from_template(
 ) -> InterviewOut:
     """A test copied from a template: free and ready at once, so no generation limits apply."""
     company, _ = await require_editor(user, company_id)
+    key = f"rate:template-copies:{company.id}"
+    who = {"company_id": company.id, "user_id": user.uid}
+    await hit_or_skip(get_redis(), key, "TEMPLATE_COPIES_PER_HOUR", **who)
     copy = await library.copy_template(body.template_id, company.id)
 
     if copy is None:

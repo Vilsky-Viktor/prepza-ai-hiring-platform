@@ -10,6 +10,7 @@ from app.integrations import companies, workable
 from app.integrations.errors import KeyRejected
 from app.main import app
 from app.models.ats import AtsConnection
+from app.services import ats as ats_service
 from app.storage import ats, ats_candidates, ats_links
 from tests.unit.workable_setup import (
     COMPANY_ID,
@@ -89,6 +90,13 @@ def stored(monkeypatch, companies_api):
         THEIR_INTERVIEW: interview(OTHER_COMPANY, "Theirs", interview_id=THEIR_INTERVIEW),
     }
     rows = {"connection": None, "links": [], "subscriptions": [], "targets": [], "read": []}
+    # Connections made, as the ATS_CONNECTS_PER_HOUR limit counts them (no Redis in unit tests).
+    rows["connects"] = []
+
+    async def count(redis, key, name, message=None, **who):
+        rows["connects"].append((key, name, who["user_id"]))
+
+    monkeypatch.setattr(ats_service, "hit_or_skip", count)
 
     async def connect(
         company_id, provider, account, credentials, user_id, member_id=None, language=None

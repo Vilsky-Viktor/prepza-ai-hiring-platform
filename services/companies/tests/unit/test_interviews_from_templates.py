@@ -112,3 +112,12 @@ def test_an_unknown_template_or_another_company_is_not_found(client, setup):
     assert start(client, template_id=uuid.uuid4()).status_code == 404
     assert start(client, company_id=uuid.uuid4()).status_code == 404
     assert setup == []
+
+
+def test_copies_past_the_hourly_limit_are_refused_and_nothing_is_copied(client, setup, monkeypatch):
+    redis = FakeRedis({"TEMPLATE_COPIES_PER_HOUR": 2})
+    monkeypatch.setattr(routes, "get_redis", lambda: redis)
+
+    assert [start(client).status_code for _ in range(3)] == [201, 201, 429]
+    assert len(setup) == 2
+    assert redis.counts[f"rate:template-copies:{COMPANY_ID}"] == 3

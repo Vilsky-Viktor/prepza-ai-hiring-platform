@@ -3,7 +3,9 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
+from fastapi import HTTPException
 
+from app.routers import manage as manage_routes
 from app.services import events, manage
 from app.services import webhooks as delivery
 from app.storage import webhooks
@@ -151,6 +153,28 @@ def test_only_editors_send_test_events_and_only_to_their_companys_hooks(
 
     assert client.post(f"/manage/webhooks/{other}/test", params=params).status_code == 404
     assert hook_routes.tested_by == []
+
+
+def test_test_events_past_the_hourly_limit_are_refused_and_not_sent(
+    client, companies_api, hook_routes, monkeypatch
+):
+    counted = []
+
+    async def one_left(redis, key, name, message=None, **who):
+        counted.append((key, name, who["user_id"]))
+
+        if len(counted) > 1:
+            raise HTTPException(429, "Too many requests. Try again later.")
+
+    monkeypatch.setattr(manage_routes, "hit_or_skip", one_left)
+    sign_in("u1")
+    url = f"/manage/webhooks/{hook_routes.id}/test"
+    params = {"company_id": str(COMPANY)}
+
+    assert client.post(url, params=params).status_code == 200
+    assert client.post(url, params=params).status_code == 429
+    assert hook_routes.tested_by == ["u1"]
+    assert counted[0] == (f"rate:webhook-tests:{COMPANY}", "WEBHOOK_TESTS_PER_HOUR", "u1")
 
 
 def test_an_event_says_when_its_change_happened(endpoints):

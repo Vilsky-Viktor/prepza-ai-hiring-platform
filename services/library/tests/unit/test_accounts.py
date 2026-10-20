@@ -10,8 +10,10 @@ from prepza_common.user import User
 
 from app.integrations import accounts as account_services
 from app.main import app
+from app.routers import me as me_routes
 from app.services import accounts as account_service
 from app.storage import accounts
+from tests.unit.fake_redis import FakeRedis
 
 USER = User(uid="ann", email="Ann@Example.com", email_verified=True, name="Ann")
 
@@ -125,6 +127,7 @@ def test_the_export_holds_every_service_and_downloads_as_a_file(client, monkeypa
 
     monkeypatch.setattr(account_services, "export_user", export_from)
     monkeypatch.setattr(accounts, "export", library_export)
+    monkeypatch.setattr(me_routes, "get_redis", lambda: FakeRedis())
     app.dependency_overrides[current_user] = lambda: USER
 
     try:
@@ -224,3 +227,31 @@ def test_deleting_and_exporting_in_a_service_waits_longer_than_an_ordinary_call(
 
     assert waits == [ACCOUNT_CALL_TIMEOUT_SECONDS] * 2
     assert ACCOUNT_CALL_TIMEOUT_SECONDS > HTTP_TIMEOUT_SECONDS
+
+
+def test_data_downloads_past_the_hourly_limit_are_refused_before_asking_anyone(client, monkeypatch):
+    asked = []
+
+    async def export_from(service, user_id, email):
+        asked.append(service)
+
+        return {}
+
+    async def library_export(user_id):
+        return {}
+
+    monkeypatch.setattr(account_services, "export_user", export_from)
+    monkeypatch.setattr(accounts, "export", library_export)
+    redis = FakeRedis({"DATA_EXPORTS_PER_HOUR": 1})
+    monkeypatch.setattr(me_routes, "get_redis", lambda: redis)
+    app.dependency_overrides[current_user] = lambda: USER
+
+    try:
+        first = client.get("/me/export")
+        asked_once = len(asked)
+        second = client.get("/me/export")
+    finally:
+        app.dependency_overrides.clear()
+
+    assert (first.status_code, second.status_code) == (200, 429)
+    assert len(asked) == asked_once

@@ -25,6 +25,7 @@ On a company's **Integrations** tab, an owner or admin connects an ATS with its 
 | Recruitee | Its address and a personal API token (Settings → Apps and plugins → Personal API tokens) | The token acts as the person who made it: an admin who sees every job |
 | Breezy HR | An API key (your name → My Settings → API Keys) | The key acts as the person who made it: an admin who sees every position. Breezy's API and web hooks come with its Pro plan |
 
+- A company connects or replaces an ATS connection at most 20 times an hour by default (`ATS_CONNECTS_PER_HOUR`, `429` past it), as each is checked with the ATS.
 - prepza checks the key with one read before saving it. A Teamtailor key is tried in each of Teamtailor's regions (EU, North America, Asia-Pacific) until one accepts it; the connection keeps that region.
 - The key is saved encrypted with `ATS_ENCRYPTION_KEY`, the ats service's Fernet key. An empty key turns integrations off. To replace it, list the new key and the old one, comma-separated, new first (see [infra/README.md](../../infra/README.md), step 8). After the key that sealed them is gone, saved keys can't be read: their connections are marked for reconnecting, and reconnecting starts afresh (Greenhouse gets a new web hook secret key to paste; Teamtailor's and Recruitee's are pasted again).
 - prepza never shows the key again.

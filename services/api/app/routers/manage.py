@@ -2,8 +2,10 @@ from uuid import UUID
 
 from fastapi import APIRouter, status
 from prepza_common.auth import CurrentUser
+from prepza_common.rate_limit import hit_or_skip
 
 from app.integrations import companies
+from app.integrations.redis import get_redis
 from app.schemas.manage import (
     ApiSettingsOut,
     KeyIn,
@@ -88,6 +90,13 @@ async def test_webhook(company_id: UUID, webhook_id: UUID, user: CurrentUser) ->
     await companies.require(company_id, user.uid, editor=True)
 
     hook = await manage.webhook(company_id, webhook_id)
+    await hit_or_skip(
+        get_redis(),
+        f"rate:webhook-tests:{company_id}",
+        "WEBHOOK_TESTS_PER_HOUR",
+        company_id=company_id,
+        user_id=user.uid,
+    )
     ok = await webhook_events.test(hook)
     await webhooks.tested(hook, user.uid)
     await outbox_service.flush_quietly()

@@ -1,10 +1,12 @@
 import uuid
 
+from fastapi import HTTPException
 from prepza_common.encryption import decrypt
 
 from app.config.settings import settings
 from app.integrations import workable
 from app.integrations.errors import KeyRejected
+from app.services import ats as ats_service
 from app.storage import ats
 from tests.unit.workable_setup import COMPANY_ID, connect, sign_in
 
@@ -85,3 +87,32 @@ def test_a_stranger_or_an_unknown_company_is_not_found(client, stored, key):
     assert client.get(f"/connections?company_id={COMPANY_ID}").status_code == 404
     assert client.get(f"/links?company_id={uuid.uuid4()}").status_code == 404
     assert connect(client).status_code == 404
+
+
+def test_each_connect_is_counted_against_the_companys_hourly_limit(client, stored, key):
+    sign_in("ann")
+    connect(client)
+
+    assert stored["connects"] == [
+        (f"rate:ats-connects:{COMPANY_ID}", "ATS_CONNECTS_PER_HOUR", "ann")
+    ]
+
+
+def test_a_connect_past_the_limit_is_refused_before_the_ats_is_asked(
+    client, stored, key, monkeypatch
+):
+    async def used_up(redis, key, name, message=None, **who):
+        raise HTTPException(429, "Too many requests. Try again later.")
+
+    asked = []
+
+    async def check(account, token):
+        asked.append(token)
+
+    monkeypatch.setattr(ats_service, "hit_or_skip", used_up)
+    monkeypatch.setattr(workable, "check", check)
+    sign_in("ann")
+
+    assert connect(client).status_code == 429
+    assert asked == []
+    assert stored["connection"] is None

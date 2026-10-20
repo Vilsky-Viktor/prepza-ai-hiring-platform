@@ -92,6 +92,8 @@ LIMITS = {
     "PREVIEWS_PER_USER_HOUR": Limit(COMPANIES, 20, "calls", HOUR_SECONDS, 1, 1_000, "user"),
     # Checkouts made and failed payments looked up, each a call to Paddle's API.
     "CHECKOUT_CALLS_PER_USER_HOUR": Limit(COMPANIES, 60, "calls", HOUR_SECONDS, 1, 1_000, "user"),
+    # Interviews copied from templates (each copies a whole question bank in library).
+    "TEMPLATE_COPIES_PER_HOUR": Limit(COMPANIES, 30, "calls", HOUR_SECONDS, 1, 1_000, "company"),
     "LINK_STARTS_PER_HOUR": Limit(COMPANIES, 30, "calls", HOUR_SECONDS, 1, 10_000, "company"),
     "LINK_STARTS_PER_IP_HOUR": Limit(COMPANIES, 10, "calls", HOUR_SECONDS, 1, 1_000, "ip"),
     "MAX_BULK_INVITES": Limit(COMPANIES, 100, "items", None, 1, 1_000, "company"),
@@ -184,12 +186,18 @@ LIMITS = {
     "CONTACT_IP_LIMIT": Limit(ROUNDS, 5, "calls", DAY_SECONDS, 1, 100, "ip"),
     "CONTACT_DAILY_LIMIT": Limit(ROUNDS, 200, "calls", DAY_SECONDS, 1, 10_000, "everyone"),
     # Library: feedback on questions.
+    # "Download my data": each asks every service for the account's data.
+    "DATA_EXPORTS_PER_HOUR": Limit("library", 5, "calls", HOUR_SECONDS, 1, 100, "user"),
     "RATINGS_PER_DAY": Limit("library", 200, "calls", DAY_SECONDS, 1, 10_000, "user"),
     "REPORTS_PER_DAY": Limit("library", 30, "calls", DAY_SECONDS, 1, 1_000, "user"),
     # The public API: keys, web hooks and requests.
     "MAX_API_KEYS": Limit("api", 10, "items", None, 1, 100, "company"),
     "MAX_WEBHOOKS": Limit("api", 5, "items", None, 1, 100, "company"),
     "API_REQUESTS_PER_MINUTE": Limit("api", 60, "calls", MINUTE_SECONDS, 1, 10_000, "company"),
+    # Test events sent to a company's web hooks, each a request to the company's server.
+    "WEBHOOK_TESTS_PER_HOUR": Limit("api", 30, "calls", HOUR_SECONDS, 1, 1_000, "company"),
+    # ATS connections made or replaced, each checked with a call to the ATS.
+    "ATS_CONNECTS_PER_HOUR": Limit("ats", 20, "calls", HOUR_SECONDS, 1, 1_000, "company"),
     # Notifications: emails a day through Resend, for the bulk ones' share (bulk.py).
     "RESEND_DAILY_LIMIT": Limit(
         "notifications", 100, "calls", DAY_SECONDS, 1, 1_000_000, "everyone"

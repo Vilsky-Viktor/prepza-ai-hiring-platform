@@ -4,6 +4,7 @@ import logging
 from cryptography.fernet import Fernet
 from fastapi import HTTPException, status
 from prepza_common.encryption import decrypt, encrypt
+from prepza_common.rate_limit import hit_or_skip
 
 from app.config.settings import settings
 from app.constants.ats import ATS_NAMES, WORKABLE_WEBHOOK, WRITES, AtsProvider
@@ -11,6 +12,7 @@ from app.integrations import breezy, workable
 from app.integrations.ats_clients import client
 from app.integrations.ats_http import calling_company
 from app.integrations.errors import KeyRejected, WriteRefused
+from app.integrations.redis import get_redis
 from app.models.ats import AtsConnection
 from app.services import outbox as outbox_service
 from app.storage import ats
@@ -24,6 +26,13 @@ def available() -> bool:
         return False
 
     return True
+
+
+async def count_connect(company_id, user_id: str) -> None:
+    """Counts one connection made or replaced: each is checked with a call to the ATS."""
+    key = f"rate:ats-connects:{company_id}"
+    who = {"company_id": company_id, "user_id": user_id}
+    await hit_or_skip(get_redis(), key, "ATS_CONNECTS_PER_HOUR", **who)
 
 
 def require_available() -> None:

@@ -6,7 +6,7 @@ An interview is a timed multiple-choice test for one role. A company makes it fr
 
 There are two ways to start:
 
-- **From a template:** pick a ready-made interview, searchable by role, level and language. It is copied at once, for free. The list shows only templates that can still be copied (see [Templates and practice](templates-and-practice.md#copying-a-template)).
+- **From a template:** pick a ready-made interview, searchable by role, level and language. It is copied at once, for free (at most 30 copies a company an hour by default, `TEMPLATE_COPIES_PER_HOUR`, `429` past it). The list shows only templates that can still be copied (see [Templates and practice](templates-and-practice.md#copying-a-template)).
 - **From a job description:** paste it or describe the role. The AI extracts the requirements and proposes topics.
 
 For each topic, set how many questions it asks each candidate: 10 by default, drawn from the topic's 70 (`INTERVIEW_QUESTIONS_PER_TOPIC`, a value in the admin zone's Controls), from 0 to the whole bank. A topic at 0 is left out: new candidates never see it, and it counts in no grade. The last topic with questions can't be set to 0 ("An interview needs at least one topic with questions."), and candidates who already started keep the questions drawn at their start.

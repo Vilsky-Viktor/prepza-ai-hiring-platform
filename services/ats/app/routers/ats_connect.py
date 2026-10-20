@@ -53,6 +53,7 @@ async def connect_workable(company_id: UUID, body: WorkableIn, user: CurrentUser
     second connect replaces the key."""
     await companies.require(company_id, user.uid, editor=True)
     integrations.require_available()
+    await integrations.count_connect(company_id, user.uid)
     calling_company.set(company_id)
     account = subdomain(body.account, ".workable.com")
 
@@ -86,6 +87,7 @@ async def connect_greenhouse(company_id: UUID, body: GreenhouseIn, user: Current
     reconnect keeps it, so the web hook goes on working."""
     await companies.require(company_id, user.uid, editor=True)
     integrations.require_available()
+    await integrations.count_connect(company_id, user.uid)
     calling_company.set(company_id)
     client_id, client_secret = body.client_id.strip(), body.client_secret.strip()
 
@@ -121,6 +123,7 @@ async def connect_teamtailor(company_id: UUID, body: TeamtailorIn, user: Current
     keeps it."""
     await companies.require(company_id, user.uid, editor=True)
     integrations.require_available()
+    await integrations.count_connect(company_id, user.uid)
     calling_company.set(company_id)
     key = body.key.strip()
 
@@ -155,6 +158,7 @@ async def connect_recruitee(company_id: UUID, body: RecruiteeIn, user: CurrentUs
     (Recruitee shows it); a reconnect keeps it."""
     await companies.require(company_id, user.uid, editor=True)
     integrations.require_available()
+    await integrations.count_connect(company_id, user.uid)
     calling_company.set(company_id)
     account = subdomain(body.account, RECRUITEE_DOMAIN)
 
@@ -193,6 +197,7 @@ async def connect_breezy(company_id: UUID, body: BreezyIn, user: CurrentUser) ->
     earlier connection, marked for reconnecting."""
     await companies.require(company_id, user.uid, editor=True)
     integrations.require_available()
+    await integrations.count_connect(company_id, user.uid)
     calling_company.set(company_id)
     token = body.token.strip()
 
