@@ -3,6 +3,17 @@ line-length = 100
 # Each service has its own first-party `app` package.
 src = ["services/*"]
 
+# Rule 2: a function's branching stays readable. Test fakes and migrations are exempt.
+[lint]
+extend-select = ["C90", "PLR0912", "PLR0915"]
+
+[lint.mccabe]
+max-complexity = 15
+
+[lint.per-file-ignores]
+"**/tests/**" = ["C90", "PLR0912", "PLR0915"]
+"**/migrations/**" = ["C90", "PLR0912", "PLR0915"]
+
 [lint.isort]
 # The shared package is installed like any other dependency.
 known-first-party = ["app"]
