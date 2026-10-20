@@ -8,6 +8,7 @@ from prepza_common.body_limit import BodyLimitMiddleware
 from prepza_common.health import health_router
 from prepza_common.i18n import add_localized_errors
 from prepza_common.logging import RequestLogMiddleware, configure_logging
+from prepza_common.no_store import NoStoreMiddleware
 from prepza_common.sentry import init_sentry
 
 from app.config.settings import settings
@@ -52,6 +53,7 @@ app = FastAPI(
     openapi_url="/openapi.json" if settings.api_docs else None,
 )
 add_localized_errors(app)
+app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
 app.include_router(billing.router)

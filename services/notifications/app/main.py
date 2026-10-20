@@ -8,6 +8,7 @@ from prepza_common.health import health_router
 from prepza_common.i18n import add_localized_errors
 from prepza_common.logging import RequestLogMiddleware, configure_logging
 from prepza_common.maintenance import MaintenanceMiddleware
+from prepza_common.no_store import NoStoreMiddleware
 from prepza_common.sentry import init_sentry
 
 from app.config.settings import settings
@@ -50,6 +51,7 @@ app = FastAPI(
 )
 add_localized_errors(app)
 app.add_middleware(MaintenanceMiddleware, get_redis=get_redis)
+app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
 app.include_router(me.router)

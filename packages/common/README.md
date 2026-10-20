@@ -42,6 +42,8 @@ Logs: `logging.configure_logging` writes one JSON line per entry in the fields C
 to its trace (`logging.googleapis.com/trace`, from the load balancer's `X-Cloud-Trace-Context`).
 Each request's own line names its route's template (`/invites/{token}`), never the path, which can
 carry a secret token; uvicorn's access log, which prints paths and visitors' addresses, is off.
+Caching: `no_store.NoStoreMiddleware` marks every answer to a signed-in request `Cache-Control:
+no-store`, unless its route set its own (a stream, a versioned logo).
 Settings: `ServiceSettings` (`settings.py`) is the base of every service's `Settings`, with the
 sign-in settings they all read (`FIREBASE_PROJECT_ID`, and `FIREBASE_AUTH_EMULATOR_HOST`, refused
 unless the project is a `demo-` one). Each service's own settings live in its

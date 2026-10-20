@@ -19,6 +19,8 @@ BODY_TOO_LARGE = "The request is too large."
 # ("TRACE_ID/SPAN_ID;o=1"), so one request can be followed across services.
 TRACE_HEADER = "X-Cloud-Trace-Context"
 TRACE_FIELD = "logging.googleapis.com/trace"
+# Cache-Control on answers to signed-in requests (no_store.py): kept by no browser or proxy.
+NO_STORE = "no-store"
 # What a request's log line names instead of a route's template when no route took it.
 UNMATCHED_ROUTE = "(no route)"
 
