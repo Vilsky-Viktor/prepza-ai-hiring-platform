@@ -14,13 +14,10 @@
    prompts and constants each get their own module. Don't mix them with the logic
    that uses them.
 
-   Group modules into folders by kind. A service's `app/` folder holds only very
-   general files: `main.py` (app setup: lifespan, routers, health check) and auth
-   (`auth.py`, `service_auth.py`). `main.py` defines no route logic: routes live in
-   `routers/`. Everything else goes in a subfolder, for example `routers/`,
-   `models/`, `prompts/`, `helpers/` (pure helpers), `storage/` (databases, file
-   storage, anything that persists data), `services/`, `integrations/` (external
-   services) and `constants/`.
+   Group modules into folders by kind: a Python service's layout is in
+   `.claude/rules/python-services.md`; within it, besides its folders, `prompts/`,
+   `helpers/` (pure helpers), `integrations/` (external services) and `constants/` each
+   keep their own folder.
 
 4. **Keep code as simple as possible.** Strictly avoid overcomplicating and
    overengineering: no abstractions, layers, options or generalizations that the
@@ -115,3 +112,13 @@
     so much that the user can't move between pages to review it. Once the UI is approved,
     write and run its tests, translate it into every language, and update READMEs, docs,
     help texts, the FAQ, the assistant's knowledge and articles.
+
+## Area rules, research and workflows
+
+Rules for each area of the repo (Python services, the frontend, AI code, evals, tests,
+infrastructure, content and more) live in `.claude/rules/<area>.md`, one file per area. Each
+loads automatically when files matching its `paths` are read or edited, and binds as these
+rules do; read the matching file before planning or delegating work in an area. Where an area
+rule and rules 1–14 disagree, rules 1–14 win. The research behind the area rules (sources, gap
+tables) is in `internal_docs/*-best-practices.md`, local notes that aren't committed. Workflows
+(building UI, translating, verifying, migrations and more) are skills in `.claude/skills/`.
