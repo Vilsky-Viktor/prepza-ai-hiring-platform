@@ -110,3 +110,6 @@ GENERATIONS_PAUSED = (
 )
 # Notifications asks for at most this many generations' statuses in one call (its reminders).
 MAX_STATUSES_PER_CALL = 1000
+
+# A review sent for a generation that isn't waiting for one (already reviewed, or never drafted).
+NOT_AWAITING_REVIEW = "Generation is not awaiting review"

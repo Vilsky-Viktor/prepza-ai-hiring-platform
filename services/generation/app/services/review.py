@@ -3,11 +3,13 @@ from prepza_common.i18n import TemplateError
 from prepza_common.rate_limit import hit
 
 from app.constants.generation import (
+    NOT_AWAITING_REVIEW,
     RUN_GENERATION,
     TOO_MANY_CHOSEN,
     TOO_MANY_REVISIONS,
     TOO_MANY_SUBTOPICS,
 )
+from app.constants.statuses import Status
 from app.integrations import tasks
 from app.integrations.redis import get_redis
 from app.models.generation import Generation
@@ -39,6 +41,10 @@ async def submit_review(generation: Generation, body: ReviewRequest) -> Generati
             status.HTTP_422_UNPROCESSABLE_CONTENT, TOO_MANY_SUBTOPICS, count=caps["max_subtopics"]
         )
 
+    # Refused before it counts a revision; the claim below still settles two reviews at once.
+    if generation.status != Status.AWAITING_REVIEW:
+        raise HTTPException(status.HTTP_409_CONFLICT, NOT_AWAITING_REVIEW)
+
     if body.instructions.strip():
         await hit(
             get_redis(),
@@ -50,7 +56,7 @@ async def submit_review(generation: Generation, body: ReviewRequest) -> Generati
         )
 
     if not await generations.claim_review(generation.id):
-        raise HTTPException(status.HTTP_409_CONFLICT, "Generation is not awaiting review")
+        raise HTTPException(status.HTTP_409_CONFLICT, NOT_AWAITING_REVIEW)
 
     await tasks.enqueue(
         RUN_GENERATION, {"generation_id": str(generation.id), "resume": body.model_dump()}

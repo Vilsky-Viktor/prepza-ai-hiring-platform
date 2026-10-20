@@ -82,6 +82,18 @@ def test_topic_revisions_stop_at_the_default_limit(claimed, redis):
     assert claimed == []
 
 
+def test_a_review_of_a_generation_not_awaiting_one_counts_no_revision(claimed, redis):
+    generation = awaiting_review()
+    generation.status = "queued"
+    body = ReviewRequest(selected=[0], instructions="Merge them")
+
+    with pytest.raises(HTTPException) as refused:
+        asyncio.run(review.submit_review(generation, body))
+
+    assert refused.value.status_code == 409
+    assert redis.counts == {} and claimed == []
+
+
 def test_a_bank_question_goes_into_one_topic_of_a_test_only(monkeypatch):
     shared = QuestionIn(text="Same?", options=[], source_id=uuid.uuid4())
     other = QuestionIn(text="Other?", options=[], source_id=uuid.uuid4())
