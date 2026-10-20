@@ -6,8 +6,21 @@
    is when that statement is the first line of its enclosing block; formatters
    remove a blank line there anyway.
 
-2. **At most 300 lines per file.** When a file would grow past 300 lines, split it
-   along the lines of rule 4 before adding more.
+2. **Small files, simple functions.** A hand-written file has at most 300 lines (all
+   lines, as `wc -l` counts them). When a change would take it past 300, first split it at
+   a seam: one responsibility per file (rule 3), in the simplest way (rule 4), never at an
+   arbitrary line; the pieces stay in the folder their layout rule gives them.
+   - Exempt: generated files (lockfiles, OpenAPI snapshots, `frontend/types/api/`), data
+     (`frontend/messages/`, page guides, the email texts in `templates/languages/`,
+     `evals/datasets/`, fixtures), binary files and articles in `frontend/content/`. Tests
+     are not exempt; they split by area.
+   - A function does one thing. Over about 50 lines (Python) or past one screen of logic
+     (TypeScript, JSX markup aside), look for a seam. Complexity is enforced: at most 15 per
+     function (Ruff `C901`, ESLint `complexity`), at most 12 branches and 50 statements in
+     Python (`PLR0912`, `PLR0915`); test fakes and migrations are exempt.
+   - Files agents read stay short: CLAUDE.md under 200 lines, one topic per rule file, a
+     SKILL.md under 500 lines; a doc past 100 lines starts with its contents.
+   - CI fails on a hand-written file over 300 lines (`scripts/check_file_size.sh`).
 
 3. **Separate logical modules.** Keep each kind of code in its own file for
    readability and maintainability: schemas, models, types, helper functions,
