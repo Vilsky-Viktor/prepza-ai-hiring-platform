@@ -1,8 +1,7 @@
 from logging.config import fileConfig
 
 from alembic import context
-from prepza_common.db import sqlalchemy_url
-from sqlalchemy import create_engine
+from prepza_common.db import migration_engine
 
 import app.models.events  # registers the tables on Base.metadata
 import app.models.feedback
@@ -24,7 +23,7 @@ def include_object(object, name, type_, reflected, compare_to):
     return not (type_ == "column" and name == "embedding" and object.table.name == "topics")
 
 
-engine = create_engine(sqlalchemy_url(settings.database_url))
+engine = migration_engine(settings.database_url)
 
 with engine.connect() as connection:
     context.configure(

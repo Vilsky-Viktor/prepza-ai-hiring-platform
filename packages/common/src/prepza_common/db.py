@@ -1,5 +1,10 @@
-from prepza_common.constants import DB_MAX_OVERFLOW, DB_POOL_RECYCLE_SECONDS, DB_POOL_SIZE
-from sqlalchemy import text
+from prepza_common.constants import (
+    DB_MAX_OVERFLOW,
+    DB_POOL_RECYCLE_SECONDS,
+    DB_POOL_SIZE,
+    MIGRATION_LOCK_TIMEOUT,
+)
+from sqlalchemy import Engine, create_engine, text
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, create_async_engine
 
 
@@ -21,6 +26,14 @@ def database(
     )
 
     return engine, async_sessionmaker(engine, expire_on_commit=False)
+
+
+def migration_engine(database_url: str) -> Engine:
+    """The engine a service's migrations (Alembic's env.py) run on: a statement waiting longer
+    than MIGRATION_LOCK_TIMEOUT for a lock fails rather than block its table."""
+    options = f"-c lock_timeout={MIGRATION_LOCK_TIMEOUT}"
+
+    return create_engine(sqlalchemy_url(database_url), connect_args={"options": options})
 
 
 async def ping(engine: AsyncEngine) -> None:

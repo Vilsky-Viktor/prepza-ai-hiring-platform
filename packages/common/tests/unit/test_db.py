@@ -1,7 +1,7 @@
 from unittest import mock
 
 from prepza_common import db
-from prepza_common.constants import DB_POOL_RECYCLE_SECONDS
+from prepza_common.constants import DB_POOL_RECYCLE_SECONDS, MIGRATION_LOCK_TIMEOUT
 
 
 def test_pooled_connections_are_replaced_by_age_not_pinged_on_every_use():
@@ -18,3 +18,14 @@ def test_a_database_url_connects_through_psycopg():
     url = "postgresql://user:pass@db:5432/companies"
 
     assert db.sqlalchemy_url(url) == "postgresql+psycopg://user:pass@db:5432/companies"
+
+
+def test_migrations_wait_only_so_long_for_a_lock():
+    with mock.patch.object(db, "create_engine") as create:
+        db.migration_engine("postgresql://user:pass@db:5432/companies")
+
+    url = create.call_args.args[0]
+    assert url == "postgresql+psycopg://user:pass@db:5432/companies"
+    assert create.call_args.kwargs["connect_args"] == {
+        "options": f"-c lock_timeout={MIGRATION_LOCK_TIMEOUT}"
+    }
