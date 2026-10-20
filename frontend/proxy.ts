@@ -87,10 +87,12 @@ export async function proxy(request: NextRequest) {
 }
 
 // Pages only: not the API (/api/..., but /api-docs is a page), static files or link prefetches.
+// Nor the hosted embed script (/embed/v1.js): companies' sites load it as it is, also during
+// maintenance, when the frame it makes shows the maintenance screen.
 export const config = {
   matcher: [
     {
-      source: "/((?!api/|_next/static|_next/image|favicon.ico|icon.svg).*)",
+      source: "/((?!api/|embed/|_next/static|_next/image|favicon.ico|icon.svg).*)",
       missing: [
         { type: "header", key: "next-router-prefetch" },
         { type: "header", key: "purpose", value: "prefetch" },

@@ -12,5 +12,16 @@ export const EMBED_EVENTS = {
   resize: "resize",
 } as const
 
+// The hosted script's headers (next.config.ts): browsers keep it 5 minutes and then use it while
+// they fetch it again for a day, so a fix reaches every site soon without slowing a visit; any
+// site may load it with `crossorigin`, which shows its errors there instead of "Script error.".
+export const EMBED_SCRIPT_HEADERS = [
+  {
+    key: "Cache-Control",
+    value: "public, max-age=300, stale-while-revalidate=86400",
+  },
+  { key: "Access-Control-Allow-Origin", value: "*" },
+]
+
 // How long the page waits for the company's domain before refusing to be framed.
 export const EMBED_LOOKUP_TIMEOUT_MS = 3000

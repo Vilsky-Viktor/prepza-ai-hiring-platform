@@ -2,6 +2,8 @@ import { withSentryConfig } from "@sentry/nextjs/config"
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 
+import { EMBED_SCRIPT_HEADERS } from "./constants/embed"
+
 const nextConfig: NextConfig = {
   output: "standalone",
   // No X-Powered-By header: it only tells attackers what the site runs on.
@@ -59,6 +61,9 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ]
+  },
+  async headers() {
+    return [{ source: "/embed/:file*", headers: EMBED_SCRIPT_HEADERS }]
   },
   // In `pnpm dev` there is no gateway in front of Next, so proxy the API to it.
   async rewrites() {

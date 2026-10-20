@@ -101,3 +101,16 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   await shot(site, "finished")
   await context.close()
 })
+
+test("the hosted script is served as it is, cached briefly and loadable cross-origin", async ({
+  request,
+}) => {
+  const script = await request.get(`${FRONTEND_URL}/embed/v1.js`)
+
+  expect(script.status()).toBe(200)
+  const headers = script.headers()
+  expect(headers["cache-control"]).toBe("public, max-age=300, stale-while-revalidate=86400")
+  expect(headers["access-control-allow-origin"]).toBe("*")
+  // Not a page: the proxy (CSP, maintenance) leaves it alone.
+  expect(headers["content-security-policy"]).toBeUndefined()
+})
