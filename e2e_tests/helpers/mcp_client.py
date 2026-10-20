@@ -211,6 +211,36 @@ def rpc(access: str, method: str, params: dict | None = None, number: int = 1):
     return status, (answer or {}).get("result", answer)
 
 
+def stateless_rpc(access: str, method: str, params: dict | None = None, name: str | None = None):
+    """One call as the 2026-07-28 revision makes it: no initialize, the protocol version and
+    the client's capabilities in each request's _meta, the method (and the tool's name) in
+    headers. (status, result or error)."""
+    meta = {
+        "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+        "io.modelcontextprotocol/clientCapabilities": {},
+    }
+    headers = {
+        "Authorization": f"Bearer {access}",
+        "Content-Type": "application/json",
+        "Accept": "application/json, text/event-stream",
+        "MCP-Protocol-Version": "2026-07-28",
+        "Mcp-Method": method,
+    }
+
+    if name:
+        headers["Mcp-Name"] = name
+
+    body = {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": method,
+        "params": {**(params or {}), "_meta": meta},
+    }
+    status, _, answer = send("POST", f"{SITE}/mcp", json.dumps(body).encode(), headers)
+
+    return status, (answer or {}).get("result", answer)
+
+
 def tool(access: str, name: str, arguments: dict) -> tuple[bool, object]:
     """A tool's (error, data) as the app reads them."""
     status, result = rpc(access, "tools/call", {"name": name, "arguments": arguments})

@@ -21,6 +21,7 @@ from helpers.mcp_client import (
     rpc,
     send,
     sign_up,
+    stateless_rpc,
     tool,
 )
 
@@ -59,6 +60,13 @@ def tool_list(access: str) -> None:
     create = next(item for item in listed["tools"] if item["name"] == "create_company")
     check(create["annotations"]["readOnlyHint"] is False, "create_company is a write")
     print(f"  {len(names)} tools")
+
+    step("the newest revision (2026-07-28): stateless calls without initialize")
+    status, listed = stateless_rpc(access, "tools/list")
+    check(status == 200 and {item["name"] for item in listed["tools"]} == names, "tools/list")
+    arguments = {"name": "get_me", "arguments": {}}
+    status, called = stateless_rpc(access, "tools/call", arguments, "get_me")
+    check(status == 200 and called["isError"] is False, f"tools/call {called}")
 
 
 def tools_as_the_user(access: str, email: str) -> str:
