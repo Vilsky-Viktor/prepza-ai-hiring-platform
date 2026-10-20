@@ -5,6 +5,7 @@ get_page_guide tool and no page instructions, earlier messages without their pag
 import base64
 import json
 import re
+import time
 import uuid
 from contextlib import contextmanager
 from types import SimpleNamespace
@@ -17,6 +18,7 @@ from app.models.answers import Answer, Turn
 from app.services import chat
 from app.services.registry import tools
 from app.services.tenancy import user_companies
+from app.storage import actions
 
 # What answers, for the results.
 MODEL = f"{settings.assistant_model} ({settings.assistant_reasoning_effort})"
@@ -61,7 +63,8 @@ async def ask(
     token: str, owner: str, company_id: str | None, message: str, page: dict, earlier: list
 ) -> dict:
     """One message, on `page` (the context the panel sends), after `earlier` turns ({role,
-    content, page}); the answer's text, tool calls, shown rows, tokens and cost."""
+    content, page}); the answer's text, tool calls, the actions it prepared for the user to
+    confirm, shown rows, tokens, cost and seconds."""
     uid = user_id(token)
     companies = await user_companies(uid)
     picked = uuid.UUID(company_id) if company_id else None
@@ -72,6 +75,7 @@ async def ask(
     ]
     messages = chat.build_messages(turn, stored, message, page, HISTORY_CHARACTERS)
     answer = Answer()
+    started = time.monotonic()
 
     try:
         await chat.converse(messages, turn, answer, lambda event: None)
@@ -79,11 +83,17 @@ async def ask(
     except Exception as failure:  # noqa: BLE001 - a failed turn is a result too
         error = type(failure).__name__
 
+    seconds = round(time.monotonic() - started, 2)
     usage = {"input_tokens": answer.input_tokens, "output_tokens": answer.output_tokens}
+    # A prepared action is kept in Redis only, until the user confirms or cancels its card.
+    prepared = [await actions.peek(action_id) for action_id in answer.pending]
 
     return {
         "text": answer.content,
         "tools": [{"name": item.tool, "arguments": item.arguments} for item in answer.results],
+        "actions": [
+            {"name": item["tool"], "arguments": item["arguments"]} for item in prepared if item
+        ],
         "shown": [
             {
                 "kind": block["kind"],
@@ -95,6 +105,7 @@ async def ask(
         "error": error,
         "tokens": answer.tokens,
         "cost": cost(settings.assistant_model, usage),
+        "seconds": seconds,
     }
 
 

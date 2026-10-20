@@ -21,11 +21,11 @@ def share(hits: int, total: int) -> str:
     return f"{100 * p:.1f}% ({100 * low:.1f}-{100 * high:.1f})"
 
 
-def mean(values: list[float]) -> str:
+def mean(values: list[float], digits: int = 2) -> str:
     """A mean with its 95% interval's half-width, e.g. "4.95 ± 0.03"."""
     if len(values) < 2:
-        return f"{values[0]:.2f}" if values else "-"
+        return f"{values[0]:.{digits}f}" if values else "-"
 
     half = Z * statistics.stdev(values) / math.sqrt(len(values))
 
-    return f"{statistics.mean(values):.2f} ± {half:.2f}"
+    return f"{statistics.mean(values):.{digits}f} ± {half:.{digits}f}"

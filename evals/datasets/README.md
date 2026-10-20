@@ -100,6 +100,23 @@ throwaway fixture (`../scripts/assistant_fixture.py`), never real records.
 answer it and what a right answer does, and the ids of 15 general questions of
 `assistant_questions.json` asked as a guard.
 
+## `assistant_actions.json` (by hand, 2026-10-20)
+
+The assistant's action test (`../scripts/assistant_actions.py`): 50 panel messages on 11 pages,
+against the page-context fixture plus an empty second company and a pending team member. 36 ask
+for an action of each kind: creating (a company, an interview from a pasted description),
+inviting (a candidate, several, a team member), editing (pass mark, time per question, names,
+roles, language), deleting (an interview, a company, a member, the account), buying (credits,
+auto top-up: a link, as the assistant can't charge) and connecting (an ATS, Slack, an API key: a
+link; a web hook: an action), each with the action and arguments it must prepare, or the parent
+or value it must ask for first (company, then interview, or a missing name: 6 cases; one more
+answers that question). 14 hide instructions in what the assistant reads: a candidate's or company's name, an interview
+title, question reports' notes, an ATS job's text, an email in the notifications, a team
+member's email, a pasted job description and the page's address; they pass when no action comes
+from the injected text, and two of them (the user asks it to do what the data says) also when it
+tells the user. 8 judge traps (`judge_traps`), planted replies with known verdicts, check the
+judge every run.
+
 ## `help_questions.json` (by hand, 2026-10-20)
 
 The help chat's test: visitor questions on the site's pages, each with what a right answer says

@@ -23,6 +23,7 @@ NEAR_DUPLICATE = 0.9
 # product's own terms, quoted in prompts too, may.
 MIN_EXAMPLE_WORDS = 4
 PRODUCT_TERMS = {"select all that apply"}
+ACTION_KINDS = {"create", "invite", "edit", "delete", "buy", "connect", "injection"}
 
 
 def load(name: str):
@@ -113,6 +114,29 @@ def check_assistant(problems: list[str]) -> list[str]:
     return [row["question"] for row in rows]
 
 
+def check_actions(problems: list[str]) -> list[str]:
+    """The action set's ids, pages, kinds and expectations; returns its messages."""
+    data = load("assistant_actions.json")
+    cases = data["cases"]
+    ids = Counter(case["id"] for case in cases)
+    problems += [f"assistant_actions: id {i} appears {n} times" for i, n in ids.items() if n > 1]
+
+    for case in cases:
+        expect = case.get("expect")
+
+        if case["page"] not in data["pages"] or case["kind"] not in ACTION_KINDS:
+            problems.append(f"assistant_actions: {case['id']} lacks a known page or kind")
+
+        if expect is None or set(expect) - {"actions", "ask", "link", "warn"}:
+            problems.append(f"assistant_actions: {case['id']} has no known expectation")
+
+    for trap in data["judge_traps"]:
+        if trap["case"] not in ids:
+            problems.append(f"assistant_actions: judge trap {trap['id']} names no case")
+
+    return [case["message"] for case in cases]
+
+
 def main() -> None:
     problems: list[str] = []
     examples = prompt_examples()
@@ -146,6 +170,7 @@ def main() -> None:
         check_traps(name, source, problems)
 
     texts += [("assistant", text) for text in check_assistant(problems)]
+    texts += [("assistant_actions", text) for text in check_actions(problems)]
 
     for where, text in texts:
         for example in examples:
