@@ -34,6 +34,12 @@ resource "google_sql_database_instance" "main" {
       update_track = "stable"
     }
 
+    # Only encrypted connections. The services, jobs and the Cloud SQL Auth Proxy (the restore
+    # drill) connect through Google's connector, which is always encrypted, so all of them pass.
+    ip_configuration {
+      ssl_mode = "ENCRYPTED_ONLY"
+    }
+
     database_flags {
       name  = "max_connections"
       value = tostring(local.db_max_connections)

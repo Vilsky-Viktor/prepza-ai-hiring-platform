@@ -208,6 +208,7 @@ jobs:
           # Cloud Run runs x86.
           platforms: linux/amd64
           push: ${{ env.PUBLISH == 'true' }}
+          load: true
           # Published images go to the registry; others (pull requests) only need a valid local tag,
           # as the registry's settings exist only where images are published.
           tags: ${{ env.PUBLISH == 'true' && format('{0}/{1}:{2}', env.REGISTRY, matrix.name, github.sha) || format('prepza/{0}:{1}', matrix.name, github.sha) }}
@@ -228,6 +229,13 @@ jobs:
           # Uploads the frontend's source maps to Sentry; a secret, so it stays out of the image.
           secrets: |
             sentry_auth_token=${{ env.PUBLISH == 'true' && secrets.SENTRY_AUTH_TOKEN || '' }}
+      - name: Scan the image's OS packages (trivy.yaml)
+        if: env.CHANGED == 'true'
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          version: v0.76.0
+          image-ref: ${{ env.PUBLISH == 'true' && format('{0}/{1}:{2}', env.REGISTRY, matrix.name, github.sha) || format('prepza/{0}:{1}', matrix.name, github.sha) }}
+          trivy-config: trivy.yaml
 
   smoke:
     name: smoke test (whole stack)

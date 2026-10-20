@@ -82,4 +82,5 @@ Run Actions → Deploy → Run workflow with an earlier tag. It redeploys that v
 - The frontend's and the services' packages are locked (`pnpm-lock.yaml`, each `uv.lock`).
 - Dependabot ([`.github/dependabot.yml`](../.github/dependabot.yml)) opens weekly pull requests to update all of them, grouped, with minor and patch versions only; a major version is planned by hand.
 - The dependency audit ([`.github/workflows/audit.yml`](../.github/workflows/audit.yml)) fails when a package the frontend or a service ships has a known high-severity vulnerability (`pnpm audit`, `pip-audit`), on every push and every Monday.
+- Each production image CI builds is scanned by Trivy (pinned by commit and version, settings in [`trivy.yaml`](../trivy.yaml)): a high or critical vulnerability with a fix in its OS packages fails the run. Images of unchanged parts aren't built, so aren't scanned again until they change.
 - The containers run their commands (`uvicorn`, `alembic`, `python`) directly from the service's environment, not through `uv`, so the server gets the container's signals.
