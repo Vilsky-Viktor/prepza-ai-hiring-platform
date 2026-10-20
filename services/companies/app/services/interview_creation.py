@@ -47,7 +47,8 @@ async def create(
             if paid
             else "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID",
             await interviews.without_candidates(company.id),
-            status.HTTP_429_TOO_MANY_REQUESTS,
+            # Waiting won't free one, inviting a candidate will: a quota, not a rate limit.
+            status.HTTP_409_CONFLICT,
             TOO_MANY_WITHOUT_CANDIDATES if paid else TOO_MANY_WITHOUT_CANDIDATES_UNPAID,
             **who,
         )

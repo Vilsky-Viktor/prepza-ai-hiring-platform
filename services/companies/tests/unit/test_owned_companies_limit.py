@@ -33,7 +33,7 @@ def test_nobody_creates_more_companies_than_one_person_may_own(
     # Under the limit, the company is made: its name being taken is the next refusal.
     allowed = client.post("/companies", json={"name": "Acme"})
 
-    assert refused.status_code == 429
+    assert refused.status_code == 409
     assert refused.json() == {
         "detail": f"You already own as many companies as one person may: {most}."
     }

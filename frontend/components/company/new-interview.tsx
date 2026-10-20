@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 
 import { DescriptionBox } from "@/components/description-box"
-import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import type { Interview } from "@/types/company"
 
 export function NewInterview({
@@ -32,7 +32,10 @@ export function NewInterview({
         `/generate/${interview.generation_id}?next=/companies/${companyId}/interviews/${interview.id}`
       )
     } catch (error) {
-      toast.error(apiErrorMessage(error, t("startFailed")))
+      // Too many interviews waiting without candidates (409) is the service's own refusal too.
+      toast.error(
+        serviceRefusal(error, [409]) ?? apiErrorMessage(error, t("startFailed"))
+      )
     }
   }
 

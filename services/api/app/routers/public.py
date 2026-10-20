@@ -187,14 +187,14 @@ async def invite_candidate(
     status_code=status.HTTP_201_CREATED,
     summary="Create an interview",
     responses={
-        409: {"description": "A request with this Idempotency-Key is still running"},
-        422: {"description": "The body is invalid"},
-        429: {
+        409: {
             "description": (
-                "Your company has as many interviews without candidates as it may, or it or the "
-                "key's creator made as many today as it may"
+                "A request with this Idempotency-Key is still running, or your company has as "
+                "many interviews without candidates as it may"
             )
         },
+        422: {"description": "The body is invalid"},
+        429: {"description": "Your company or the key's creator made as many today as it may"},
         503: {"description": "Making interviews is paused, or today's AI budget is used up"},
     },
 )

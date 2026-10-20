@@ -70,7 +70,8 @@ export function CreateCompany({ templateId }: { templateId?: string }) {
           : `/companies/${company.id}/interviews`
       )
     } catch (error) {
-      // A name taken (409) or too short (422) is said under the field.
+      // A name taken or as many companies owned as one may (409), or a name too short (422),
+      // is said under the field.
       const refused = serviceRefusal(error, [409, 422])
 
       if (refused) {

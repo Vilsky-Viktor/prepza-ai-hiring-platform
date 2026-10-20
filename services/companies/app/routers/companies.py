@@ -87,7 +87,8 @@ async def create_company(
             get_redis(),
             "MAX_OWNED_COMPANIES",
             owned,
-            status.HTTP_429_TOO_MANY_REQUESTS,
+            # Waiting won't free one: a quota, not a rate limit.
+            status.HTTP_409_CONFLICT,
             TOO_MANY_COMPANIES,
             user_id=user.uid,
         )

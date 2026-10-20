@@ -133,7 +133,7 @@ def test_an_unpaid_company_generates_another_only_once_its_one_waiting_has_a_can
     response, reached = generate(client, monkeypatch, waiting=1, redis=redis)
 
     assert allowed.status_code == 201
-    assert response.status_code == 429
+    assert response.status_code == 409
     assert response.json()["detail"] == WAITING_UNPAID.format(1)
     # Refused before the day's limit, so the attempt doesn't use one of the day's.
     assert reached == []
@@ -155,7 +155,7 @@ def test_a_paid_company_can_have_five_waiting(client, monkeypatch):
     refused, _ = generate(client, monkeypatch, waiting=5, paid=True)
 
     assert allowed.status_code == 201
-    assert refused.status_code == 429
+    assert refused.status_code == 409
     assert refused.json()["detail"] == WAITING_PAID.format(5)
 
 
@@ -170,7 +170,7 @@ def test_the_waiting_limits_are_as_edited(client, monkeypatch, paid, message):
     refused, _ = generate(client, monkeypatch, most, paid, FakeRedis(edited))
 
     assert allowed.status_code == 201
-    assert refused.status_code == 429
+    assert refused.status_code == 409
     assert refused.json()["detail"] == message.format(most)
 
 
