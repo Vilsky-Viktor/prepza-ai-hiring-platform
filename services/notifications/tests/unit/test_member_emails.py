@@ -64,6 +64,16 @@ def test_the_digest_groups_a_users_companies_and_adds_up_each_page():
     ]
 
 
+def test_the_digest_names_each_ats_its_candidates_were_not_invited_from():
+    activity = [
+        note("c2", "ats_not_invited", "/ats/greenhouse", title="Design", ats="Greenhouse"),
+        note("c2", "ats_not_invited", "/ats/workable", title="Design", ats="Workable"),
+    ]
+    sections = digest_sections("ann", ALL_ON, COMPANIES, activity, SITE)
+
+    assert [values["ats"] for _, values, _ in sections[0][1]] == ["Greenhouse", "Workable"]
+
+
 def test_the_digest_leaves_out_kinds_turned_off_and_has_nothing_when_all_are():
     finished_off = {**ALL_ON, "candidate_finished": False}
     sections = digest_sections("ann", finished_off, COMPANIES, ACTIVITY, SITE)

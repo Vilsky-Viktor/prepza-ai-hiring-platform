@@ -118,7 +118,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "Kandidaten die klaar zijn: {count} · “{title}”",
             "invite_undelivered": "Niet-bezorgde uitnodigingen: {count} · “{title}”",
-            "ats_not_invited": "Niet-uitgenodigde kandidaten uit het ATS: {count}",
+            "ats_not_invited": "Niet-uitgenodigde kandidaten uit {ats}: {count}",
             "interview_ready": "Interview klaar: “{title}”",
         },
         "button": "prepza openen",

@@ -79,7 +79,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "已完成面试的候选人：{count} · “{title}”",
             "invite_undelivered": "未送达的邀请：{count} · “{title}”",
-            "ats_not_invited": "未被邀请的 ATS 候选人：{count}",
+            "ats_not_invited": "未被邀请的 {ats} 候选人：{count}",
             "interview_ready": "已就绪的面试：“{title}”",
         },
         "button": "打开 prepza",

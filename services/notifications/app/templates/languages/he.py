@@ -99,7 +99,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": 'מועמדים שסיימו: {count} · "{title}"',
             "invite_undelivered": 'הזמנות שלא נמסרו: {count} · "{title}"',
-            "ats_not_invited": "מועמדים מה-ATS שלא הוזמנו: {count}",
+            "ats_not_invited": "מועמדים מ-{ats} שלא הוזמנו: {count}",
             "interview_ready": 'ראיון מוכן: "{title}"',
         },
         "button": "פתיחת prepza",

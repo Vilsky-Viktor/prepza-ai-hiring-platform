@@ -98,7 +98,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "المرشحون الذين أنهوا المقابلة: {count} · «{title}»",
             "invite_undelivered": "الدعوات التي لم تُسلَّم: {count} · «{title}»",
-            "ats_not_invited": "مرشحو ATS الذين لم تُرسَل إليهم دعوة: {count}",
+            "ats_not_invited": "المرشحون من {ats} الذين لم تُرسَل إليهم دعوة: {count}",
             "interview_ready": "مقابلة جاهزة: «{title}»",
         },
         "button": "افتح prepza",

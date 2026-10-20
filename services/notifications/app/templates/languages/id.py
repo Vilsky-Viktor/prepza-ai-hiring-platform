@@ -111,7 +111,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "Kandidat yang selesai: {count} · “{title}”",
             "invite_undelivered": "Undangan yang tidak terkirim: {count} · “{title}”",
-            "ats_not_invited": "Kandidat ATS yang tidak diundang: {count}",
+            "ats_not_invited": "Kandidat dari {ats} yang tidak diundang: {count}",
             "interview_ready": "Wawancara siap: “{title}”",
         },
         "button": "Buka prepza",

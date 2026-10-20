@@ -33,6 +33,11 @@ def digest_sections(
             line = lines.setdefault(
                 (item.kind, item.link), {"title": item.data.get("title") or "", "count": 0}
             )
+
+            # An ATS's line names that ATS.
+            if item.data.get("ats"):
+                line["ats"] = item.data["ats"]
+
             line["count"] += item.data.get("count", 1)
 
         rows = [

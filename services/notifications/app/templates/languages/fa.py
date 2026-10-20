@@ -105,7 +105,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "متقاضیانی که مصاحبه را تمام کردند: {count} · «{title}»",
             "invite_undelivered": "دعوت‌های تحویل‌نشده: {count} · «{title}»",
-            "ats_not_invited": "متقاضیان ATS که دعوت نشدند: {count}",
+            "ats_not_invited": "متقاضیان {ats} که دعوت نشدند: {count}",
             "interview_ready": "مصاحبه آماده: «{title}»",
         },
         "button": "باز کردن prepza",

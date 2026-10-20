@@ -114,7 +114,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "Mülakatı tamamlayan adaylar: {count} · “{title}”",
             "invite_undelivered": "İletilemeyen davetler: {count} · “{title}”",
-            "ats_not_invited": "Davet edilmeyen ATS adayları: {count}",
+            "ats_not_invited": "Davet edilmeyen {ats} adayları: {count}",
             "interview_ready": "Hazır mülakat: “{title}”",
         },
         "button": "prepza'yı aç",

@@ -84,7 +84,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "면접을 완료한 지원자: {count} · “{title}”",
             "invite_undelivered": "전달되지 않은 초대: {count} · “{title}”",
-            "ats_not_invited": "초대되지 않은 ATS 지원자: {count}",
+            "ats_not_invited": "초대되지 않은 {ats} 지원자: {count}",
             "interview_ready": "준비된 면접: “{title}”",
         },
         "button": "prepza 열기",

@@ -109,7 +109,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "इंटरव्यू पूरा करने वाले उम्मीदवार: {count} · “{title}”",
             "invite_undelivered": "डिलीवर न हुए इनवाइट: {count} · “{title}”",
-            "ats_not_invited": "ATS के उम्मीदवार जिन्हें इनवाइट नहीं भेजा गया: {count}",
+            "ats_not_invited": "{ats} के उम्मीदवार जिन्हें इनवाइट नहीं भेजा गया: {count}",
             "interview_ready": "तैयार इंटरव्यू: “{title}”",
         },
         "button": "prepza खोलें",

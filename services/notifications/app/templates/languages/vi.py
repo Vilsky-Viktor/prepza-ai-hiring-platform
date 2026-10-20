@@ -119,7 +119,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "Ứng viên đã hoàn thành: {count} · “{title}”",
             "invite_undelivered": "Lời mời chưa được gửi đến: {count} · “{title}”",
-            "ats_not_invited": "Ứng viên từ ATS chưa được mời: {count}",
+            "ats_not_invited": "Ứng viên từ {ats} chưa được mời: {count}",
             "interview_ready": "Buổi phỏng vấn đã sẵn sàng: “{title}”",
         },
         "button": "Mở prepza",

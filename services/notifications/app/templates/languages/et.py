@@ -112,7 +112,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "Lõpetanud kandidaadid: {count} · „{title}“",
             "invite_undelivered": "Kohale jõudmata kutsed: {count} · „{title}“",
-            "ats_not_invited": "Kutsumata ATS-i kandidaadid: {count}",
+            "ats_not_invited": "Kutsumata kandidaadid süsteemist {ats}: {count}",
             "interview_ready": "Valmis intervjuu: „{title}“",
         },
         "button": "Ava prepza",

@@ -120,7 +120,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "Kandidaten, die fertig sind: {count} · „{title}“",
             "invite_undelivered": "Nicht zugestellte Einladungen: {count} · „{title}“",
-            "ats_not_invited": "Nicht eingeladene Kandidaten aus dem ATS: {count}",
+            "ats_not_invited": "Nicht eingeladene Kandidaten aus {ats}: {count}",
             "interview_ready": "Interview fertig: „{title}“",
         },
         "button": "prepza öffnen",

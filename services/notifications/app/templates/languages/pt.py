@@ -109,7 +109,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "Candidatos que concluíram: {count} · “{title}”",
             "invite_undelivered": "Convites não entregues: {count} · “{title}”",
-            "ats_not_invited": "Candidatos do ATS não convidados: {count}",
+            "ats_not_invited": "Candidatos de {ats} não convidados: {count}",
             "interview_ready": "Entrevista pronta: “{title}”",
         },
         "button": "Abrir a prepza",

@@ -84,7 +84,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "面接を完了した候補者：{count} · 「{title}」",
             "invite_undelivered": "届かなかった招待：{count} · 「{title}」",
-            "ats_not_invited": "招待されなかった ATS の候補者：{count}",
+            "ats_not_invited": "招待されなかった {ats} の候補者：{count}",
             "interview_ready": "準備ができた面接：「{title}」",
         },
         "button": "prepza を開く",

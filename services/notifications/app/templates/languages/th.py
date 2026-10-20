@@ -82,7 +82,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "ผู้สมัครที่สัมภาษณ์เสร็จแล้ว: {count} · “{title}”",
             "invite_undelivered": "คำเชิญที่ส่งไม่ถึง: {count} · “{title}”",
-            "ats_not_invited": "ผู้สมัครจาก ATS ที่ไม่ได้รับคำเชิญ: {count}",
+            "ats_not_invited": "ผู้สมัครจาก {ats} ที่ไม่ได้รับคำเชิญ: {count}",
             "interview_ready": "การสัมภาษณ์ที่พร้อมแล้ว: “{title}”",
         },
         "button": "เปิด prepza",

@@ -122,7 +122,7 @@ TEXTS = {
         "rows": {
             "candidate_finished": "Mga aplikanteng nakatapos: {count} · “{title}”",
             "invite_undelivered": "Mga imbitasyong hindi naihatid: {count} · “{title}”",
-            "ats_not_invited": "Mga aplikante mula sa ATS na hindi na-imbitahan: {count}",
+            "ats_not_invited": "Mga aplikante mula sa {ats} na hindi na-imbitahan: {count}",
             "interview_ready": "Handa na ang interview: “{title}”",
         },
         "button": "Buksan ang prepza",

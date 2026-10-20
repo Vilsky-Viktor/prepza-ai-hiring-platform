@@ -46,7 +46,10 @@ REPORT = {
     "pdf": "JVBERi0=",
 }
 CONTACT = {"name": "Eve", "email": "eve@example.com", "language": "en", "message": "Hi"}
-ROW = (f"{SITE}/companies/c1", {"title": "Backend", "company": "Acme", "count": 2})
+ROW = (
+    f"{SITE}/companies/c1",
+    {"title": "Backend", "company": "Acme", "ats": "Greenhouse", "count": 2},
+)
 
 # Every email the service sends, and whether it's one the recipient may stop with their mail
 # client's unsubscribe button.
@@ -172,6 +175,7 @@ def placeholders(language: str) -> dict:
         "role": "admin",
         "candidate": "ann@example.com",
         "count": 2,
+        "ats": "Greenhouse",
         "available": 5,
         "days": 3,
         # A campaign's own texts.
