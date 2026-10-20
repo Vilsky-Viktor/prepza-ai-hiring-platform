@@ -21,10 +21,17 @@ tools.
   `secret_key_ref`); never in tfvars, compose, images or logs. Each service account gets only
   the roles it needs.
 - Near-identical resources: one resource with `for_each` over `locals`. CI runs
-  `terraform fmt -check` and `terraform validate`. Every variable and output has a description.
+  `terraform fmt -check` and `terraform validate`. Every variable and output has a type and a
+  description, secrets are `sensitive`, Terraform and provider versions are pinned in
+  `versions.tf`; the state holds secrets, so it's treated as one.
 - The local stack uses the same Dockerfiles and variable names (`.env.example`) and emulators;
   a new production resource gets its local counterpart in the same change.
 - nginx: one `location` per service; upstreams as variables; security headers with `always`,
-  repeated in any block that adds its own.
-- Scripts: `set -euo pipefail` (`set -eu` in plain `sh`), a header comment, quoted variables,
-  errors to stderr, safe to run twice; past ~100 lines, Python.
+  repeated in any block that adds its own (a block with any `add_header` inherits none).
+- Scripts: `set -euo pipefail` (`set -eu` in plain `sh`), a header comment, quoted variables
+  (ShellCheck clean), `[[ ]]` in bash, errors to stderr, safe to run twice; past ~100 lines,
+  Python.
+- Operations (alerts, runbooks, backups): `.claude/rules/operations.md`; CI and images:
+  `.claude/rules/ci.md`.
+
+Research (local notes, git-ignored): `internal_docs/best-practices-sources.md`.
