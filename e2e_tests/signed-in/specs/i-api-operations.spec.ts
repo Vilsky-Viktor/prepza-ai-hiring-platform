@@ -40,22 +40,32 @@ test("the API invites, updates, reminds, finds and removes a candidate", async (
   const email = throwawayEmail("api-candidate");
   const candidates = `/interviews/${interviewId}/candidates`;
 
-  // The same Idempotency-Key twice: one candidate, invited once.
-  const first = await call(
-    "POST",
-    candidates,
-    { email },
-    { "Idempotency-Key": "e2e-1" },
-  );
-  const again = await call(
-    "POST",
-    candidates,
-    { email },
-    { "Idempotency-Key": "e2e-1" },
-  );
-  expect([first.status(), again.status()]).toEqual([201, 201]);
+  // A retry needs nothing from the client: the same invite again is the same candidate,
+  // returned as they are (200), invited once.
+  const first = await call("POST", candidates, { email });
+  const again = await call("POST", candidates, { email });
+  expect([first.status(), again.status()]).toEqual([201, 200]);
   const candidate = await first.json();
   expect((await again.json()).id).toBe(candidate.id);
+  // An Idempotency-Key an older integration still sends keeps working; the same key with
+  // another request is refused.
+  const keyed = await call(
+    "POST",
+    candidates,
+    { email },
+    { "Idempotency-Key": "e2e-1" },
+  );
+  expect(keyed.status()).toBe(200);
+  const reused = await call(
+    "POST",
+    candidates,
+    { email: throwawayEmail("api-other") },
+    { "Idempotency-Key": "e2e-1" },
+  );
+  expect(reused.status()).toBe(422);
+  expect((await reused.json()).detail).toBe(
+    "This Idempotency-Key was already used for a different request.",
+  );
 
   const path = `${candidates}/${candidate.id}`;
   const updated = await call("PATCH", path, {

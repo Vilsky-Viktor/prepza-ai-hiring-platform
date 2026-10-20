@@ -113,7 +113,7 @@ def test_ats_invites_a_candidate_as_the_member_who_connected_it(client, stored):
     response = client.post(f"/internal/interviews/{READY.id}/invites", json=body, headers=HEADERS)
 
     assert response.status_code == 201
-    assert response.json() == {"invite_id": str(uuid.UUID(int=7))}
+    assert response.json() == {"invite_id": str(uuid.UUID(int=7)), "created": True}
     # The action log shows it came through the ATS.
     assert stored["invites"] == [(READY.id, COMPANY.id, "ann", "Cara@example.com", VIA_ATS)]
     assert stored["flushes"] == 1
@@ -125,8 +125,31 @@ def test_a_candidate_who_finished_is_returned_without_another_email(client, stor
     response = client.post(f"/internal/interviews/{READY.id}/invites", json=body, headers=HEADERS)
 
     assert response.status_code == 201
-    assert response.json() == {"invite_id": str(uuid.UUID(int=9))}
+    assert response.json() == {"invite_id": str(uuid.UUID(int=9)), "created": False}
     assert stored["invites"] == []
+
+
+@pytest.mark.parametrize(
+    ("status", "resend", "sent"),
+    [
+        ("invited", False, False),
+        ("undelivered", False, False),
+        ("in_process", False, False),
+        ("expired", False, True),
+        ("invited", True, True),
+    ],
+)
+def test_without_resend_a_candidate_still_invited_is_returned_as_they_are(
+    client, stored, status, resend, sent
+):
+    """The API's retries: the same candidate, no second email; an expired invite is sent again,
+    and an ATS (resend) sends an open one again as before."""
+    stored["found"] = SimpleNamespace(id=uuid.UUID(int=9), status=status)
+    body = {"email": "cara@example.com", "sender_id": "ann", "resend": resend}
+    response = client.post(f"/internal/interviews/{READY.id}/invites", json=body, headers=HEADERS)
+
+    assert response.json()["created"] is sent
+    assert bool(stored["invites"]) is sent
 
 
 @pytest.mark.parametrize(("interview_id", "code"), [(uuid.uuid4(), 404), (MAKING.id, 409)])

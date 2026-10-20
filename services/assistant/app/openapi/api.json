@@ -121,32 +121,11 @@
      "Interviews"
     ],
     "summary": "Create an interview",
-    "description": "Makes an interview from a job description, as the key's creator would. Its questions take\na few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web\nhook event says when it is.\n\nNeeds the `interviews:create` permission.",
+    "description": "Makes an interview from a job description, as the key's creator would. Its questions take\na few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web\nhook event says when it is. Retrying is safe: the same request from the same key within 15\nminutes returns the interview the first one made.\n\nNeeds the `interviews:create` permission.",
     "operationId": "create_interview_interviews_post",
     "security": [
      {
       "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "idempotency-key",
-      "in": "header",
-      "required": false,
-      "schema": {
-       "anyOf": [
-        {
-         "type": "string",
-         "maxLength": 255
-        },
-        {
-         "type": "null"
-        }
-       ],
-       "description": "Any unique string, such as a UUID: a retry with the same key within 24 hours gets the first request's result instead of doing it again",
-       "title": "Idempotency-Key"
-      },
-      "description": "Any unique string, such as a UUID: a retry with the same key within 24 hours gets the first request's result instead of doing it again"
      }
     ],
     "requestBody": {
@@ -180,7 +159,7 @@
       "description": "Your company or the key's creator made as many today as it may"
      },
      "409": {
-      "description": "A request with this Idempotency-Key is still running, or your company has as many interviews without candidates as it may"
+      "description": "The same request is still running, or your company has as many interviews without candidates as it may"
      },
      "422": {
       "description": "The body is invalid"
@@ -388,7 +367,7 @@
      "Candidates"
     ],
     "summary": "Invite a candidate",
-    "description": "Invites the candidate to the interview on behalf of the key's creator and reserves credits\nfor them, with their name if given. By default prepza emails the invitation and the\ncandidate signs in with that email; with `sign_in` false, your platform sends them to the\nresponse's `invite_url`, which opens the interview without signing in. With a `return_url`,\nthe finished page takes the candidate back to your platform. Inviting an address that was\nalready invited sends the invitation again, if emails are on; one who already finished is\nreturned as they are, without an email.\n\nNeeds the `candidates:invite` permission.",
+    "description": "Invites the candidate to the interview on behalf of the key's creator and reserves credits\nfor them, with their name if given. By default prepza emails the invitation and the\ncandidate signs in with that email; with `sign_in` false, your platform sends them to the\nresponse's `invite_url`, which opens the interview without signing in. With a `return_url`,\nthe finished page takes the candidate back to your platform. Retrying is safe: inviting an\naddress whose invite is still open, or who already finished, returns that candidate as they\nare (`200`), without another email or credits; an expired invite is sent again. To send an\nopen invite again, use the resend endpoint.\n\nNeeds the `candidates:invite` permission.",
     "operationId": "invite_candidate_interviews__interview_id__candidates_post",
     "security": [
      {
@@ -405,25 +384,6 @@
        "format": "uuid",
        "title": "Interview Id"
       }
-     },
-     {
-      "name": "idempotency-key",
-      "in": "header",
-      "required": false,
-      "schema": {
-       "anyOf": [
-        {
-         "type": "string",
-         "maxLength": 255
-        },
-        {
-         "type": "null"
-        }
-       ],
-       "description": "Any unique string, such as a UUID: a retry with the same key within 24 hours gets the first request's result instead of doing it again",
-       "title": "Idempotency-Key"
-      },
-      "description": "Any unique string, such as a UUID: a retry with the same key within 24 hours gets the first request's result instead of doing it again"
      }
     ],
     "requestBody": {
@@ -455,6 +415,16 @@
      },
      "429": {
       "description": "The key's creator reached their email limits, or the key its rate limit"
+     },
+     "200": {
+      "description": "Already invited or finished: the candidate as they are",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Candidate"
+        }
+       }
+      }
      },
      "404": {
       "description": "The interview or candidate doesn't exist in your company"

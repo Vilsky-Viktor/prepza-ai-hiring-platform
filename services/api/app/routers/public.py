@@ -1,8 +1,7 @@
-from datetime import datetime
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Header, Query, status
+from fastapi import APIRouter, Response, status
 from prepza_common.paging import PageParams
 
 from app.auth import needs
@@ -13,7 +12,8 @@ from app.integrations import companies
 from app.models.api import ApiKey
 from app.schemas.changes import CandidateUpdate, InterviewIn
 from app.schemas.public import Candidate, CandidateIn, Interview
-from app.services.idempotency import once
+from app.schemas.public_params import After, IdempotencyKey, UpdatedSince
+from app.services.idempotency import fingerprint, once, slot
 
 # Every route can answer these; ones under an interview also 404 (NOT_FOUND).
 router = APIRouter(
@@ -33,34 +33,6 @@ router = APIRouter(
     },
 )
 NOT_FOUND = {404: {"description": "The interview or candidate doesn't exist in your company"}}
-UpdatedSince = Annotated[
-    datetime | None,
-    Query(
-        description=(
-            "Only items that changed at this time or later (ISO 8601), oldest change first: "
-            "pass the last `updated_at` you got to sync"
-        )
-    ),
-]
-After = Annotated[
-    UUID | None,
-    Query(
-        description=(
-            "With `updated_since`: the `id` of the last item you got, so the next page starts "
-            "after it and items changed at the same moment are neither repeated nor missed"
-        )
-    ),
-]
-IdempotencyKey = Annotated[
-    str | None,
-    Header(
-        max_length=255,
-        description=(
-            "Any unique string, such as a UUID: a retry with the same key within 24 hours gets "
-            "the first request's result instead of doing it again"
-        ),
-    ),
-]
 
 
 @router.get("", summary="List interviews")
@@ -132,6 +104,10 @@ async def get_candidate(
     summary="Invite a candidate",
     tags=["Candidates"],
     responses={
+        200: {
+            "model": Candidate,
+            "description": "Already invited or finished: the candidate as they are",
+        },
         **NOT_FOUND,
         402: {"description": "The company doesn't have enough credits"},
         409: {"description": "The interview's questions are still being generated"},
@@ -151,19 +127,24 @@ async def invite_candidate(
     interview_id: UUID,
     body: CandidateIn,
     key: Annotated[ApiKey, needs(Permission.CANDIDATES_INVITE)],
+    response: Response,
     idempotency_key: IdempotencyKey = None,
 ) -> Candidate:
     """Invites the candidate to the interview on behalf of the key's creator and reserves credits
     for them, with their name if given. By default prepza emails the invitation and the
     candidate signs in with that email; with `sign_in` false, your platform sends them to the
     response's `invite_url`, which opens the interview without signing in. With a `return_url`,
-    the finished page takes the candidate back to your platform. Inviting an address that was
-    already invited sends the invitation again, if emails are on; one who already finished is
-    returned as they are, without an email."""
+    the finished page takes the candidate back to your platform. Retrying is safe: inviting an
+    address whose invite is still open, or who already finished, returns that candidate as they
+    are (`200`), without another email or credits; an expired invite is sent again. To send an
+    open invite again, use the resend endpoint."""
     await companies.interview(key.company_id, interview_id)
 
+    created = True
+
     async def invite() -> str:
-        invite_id = await companies.invite(
+        nonlocal created
+        invite_id, created = await companies.invite(
             interview_id,
             str(body.email),
             key.created_by,
@@ -176,7 +157,17 @@ async def invite_candidate(
 
         return str(invite_id)
 
-    invite_id = UUID(await once(key.company_id, idempotency_key, invite))
+    request = fingerprint("invite", interview_id, body.model_dump(mode="json"))
+    name, seconds = slot(key.company_id, key.id, idempotency_key, request)
+
+    if idempotency_key:
+        invite_id = UUID(await once(name, seconds, request, invite))
+    else:
+        invite_id = UUID(await invite())
+
+    if not created:
+        response.status_code = status.HTTP_200_OK
+
     found = await companies.candidate(key.company_id, interview_id, invite_id)
 
     return candidate_of(found, key.company_id, interview_id, settings.site_url)
@@ -189,8 +180,8 @@ async def invite_candidate(
     responses={
         409: {
             "description": (
-                "A request with this Idempotency-Key is still running, or your company has as "
-                "many interviews without candidates as it may"
+                "The same request is still running, or your company has as many interviews "
+                "without candidates as it may"
             )
         },
         422: {"description": "The body is invalid"},
@@ -205,7 +196,8 @@ async def create_interview(
 ) -> Interview:
     """Makes an interview from a job description, as the key's creator would. Its questions take
     a few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web
-    hook event says when it is."""
+    hook event says when it is. Retrying is safe: the same request from the same key within 15
+    minutes returns the interview the first one made."""
 
     async def create() -> str:
         made = await companies.create_interview(
@@ -214,7 +206,9 @@ async def create_interview(
 
         return made["id"]
 
-    interview_id = UUID(await once(key.company_id, idempotency_key, create))
+    request = fingerprint("interview", body.model_dump(mode="json"))
+    name, seconds = slot(key.company_id, key.id, idempotency_key, request)
+    interview_id = UUID(await once(name, seconds, request, create))
 
     return interview_of(await companies.interview(key.company_id, interview_id))
 

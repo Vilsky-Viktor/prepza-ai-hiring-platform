@@ -53,7 +53,8 @@ def test_an_invite_through_companies_returns_its_id_or_its_refusal(monkeypatch):
     made = uuid.uuid4()
     answers = iter(
         [
-            httpx.Response(201, json={"invite_id": str(made)}),
+            httpx.Response(201, json={"invite_id": str(made), "created": True}),
+            httpx.Response(201, json={"invite_id": str(made), "created": False}),
             httpx.Response(409, json={"detail": "Interview is still being generated"}),
         ]
     )
@@ -62,8 +63,11 @@ def test_an_invite_through_companies_returns_its_id_or_its_refusal(monkeypatch):
     body = {"email": "ann@example.com", "sender_id": "u1"}
 
     found = asyncio.run(company_invites.invite("http://companies", "t", made, body, {409}))
+    again = asyncio.run(company_invites.invite("http://companies", "t", made, body, {409}))
 
-    assert found == made
+    assert found == (made, True)
+    # Already invited and returned as they were.
+    assert again == (made, False)
     with pytest.raises(HTTPException) as refused:
         asyncio.run(company_invites.invite("http://companies", "t", made, body, {409}))
     assert refused.value.detail == "Interview is still being generated"

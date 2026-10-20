@@ -30,33 +30,27 @@ or admin, the key stops working and requests return `401`.
 
 ## Example: inviting a candidate
 
-Invite a candidate to an interview and get their invite link, with a fresh `Idempotency-Key` so a
-retry can't invite them twice.
+Invite a candidate to an interview and get their invite link. Sending the same request again is
+safe: it never invites them twice.
 
 ```bash
 curl -X POST "https://prepza.ai/api/v1/interviews/$INTERVIEW_ID/candidates" \\
   -H "Authorization: Bearer $PREPZA_API_KEY" \\
   -H "Content-Type: application/json" \\
-  -H "Idempotency-Key: $(uuidgen)" \\
   -d '{"email": "ada@example.com", "name": "Ada Lovelace"}'
 ```
 
 ```python
 import os
-import uuid
 
 import httpx
 
 interview_id = "YOUR_INTERVIEW_ID"
 api_key = os.environ["PREPZA_API_KEY"]
-idempotency_key = str(uuid.uuid4())
 
 response = httpx.post(
     f"https://prepza.ai/api/v1/interviews/{interview_id}/candidates",
-    headers={
-        "Authorization": f"Bearer {api_key}",
-        "Idempotency-Key": idempotency_key,
-    },
+    headers={"Authorization": f"Bearer {api_key}"},
     json={"email": "ada@example.com", "name": "Ada Lovelace"},
 )
 response.raise_for_status()
@@ -72,7 +66,6 @@ const response = await fetch(
     headers: {
       Authorization: `Bearer ${process.env.PREPZA_API_KEY}`,
       "Content-Type": "application/json",
-      "Idempotency-Key": crypto.randomUUID(),
     },
     body: JSON.stringify({ email: "ada@example.com", name: "Ada Lovelace" }),
   },
@@ -104,10 +97,11 @@ says so.
 
 ## Retrying safely
 
-Creating an interview and inviting a candidate accept an `Idempotency-Key` header: any unique
-string, such as a UUID. If a request times out, send it again with the same key: within 24 hours
-you get the first request's result, and the candidate isn't emailed twice. A retry while the
-first request is still running returns `409`.
+Every request can be retried as it is, with nothing extra to send. Inviting an address that is
+already invited, or has finished, returns that candidate as they are (`200` instead of `201`),
+without another email or credits; an expired invite is sent again. Creating an interview with
+the same request from the same key within 15 minutes returns the interview the first request
+made. A retry while the first request is still running returns `409`: wait a moment and retry.
 
 ## Errors
 

@@ -1,8 +1,11 @@
+import asyncio
+
 # The key fixture is imported from test_public_routes and named in the tests.
 # ruff: noqa: F811
 import pytest
 from fastapi import HTTPException
 
+from app.constants.api import IDEMPOTENCY_KEY_REUSED
 from app.integrations import companies
 from app.services import idempotency
 from tests.unit.conftest import CANDIDATE, COMPANY, INTERVIEW, interview
@@ -11,8 +14,11 @@ from tests.unit.test_public_routes import KEY, call, key  # noqa: F401 (fixture)
 CANDIDATE_PATH = f"/interviews/{INTERVIEW}/candidates/{CANDIDATE}"
 
 
-def post(client, path, body, idempotency_key):
-    headers = {"Authorization": f"Bearer {KEY}", "Idempotency-Key": idempotency_key}
+def post(client, path, body, idempotency_key=None):
+    headers = {"Authorization": f"Bearer {KEY}"}
+
+    if idempotency_key:
+        headers["Idempotency-Key"] = idempotency_key
 
     return client.post(path, json=body, headers=headers)
 
@@ -87,6 +93,40 @@ def test_an_invite_retried_with_its_idempotency_key_goes_out_once(
         response = post(client, f"/interviews/{INTERVIEW}/candidates", body, "invite-1")
         assert response.status_code == 201
 
+    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", "u1")]
+
+
+def test_a_retried_interview_without_a_key_is_made_once_and_another_one_again(client, key, changes):
+    """No key from the client: the same request from the same API key within the retry window
+    returns the first interview; another body makes another."""
+    body = {"job_description": "Backend developer", "language": "de"}
+    first = post(client, "/interviews", body)
+    again = post(client, "/interviews", body)
+    other = post(client, "/interviews", {**body, "job_description": "Data engineer"})
+
+    assert first.status_code == again.status_code == other.status_code == 201
+    assert [change[2] for change in changes] == ["Backend developer", "Data engineer"]
+
+
+def test_a_retried_invite_without_a_key_returns_the_candidate_as_they_are(
+    client, companies_api, key, changes
+):
+    body = {"email": "bob@example.com"}
+    first = post(client, f"/interviews/{INTERVIEW}/candidates", body)
+    again = post(client, f"/interviews/{INTERVIEW}/candidates", body)
+
+    assert (first.status_code, again.status_code) == (201, 200)
+    assert first.json()["id"] == again.json()["id"]
+    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", "u1")]
+
+
+def test_a_key_used_again_for_another_request_is_refused(client, companies_api, key, changes):
+    path = f"/interviews/{INTERVIEW}/candidates"
+    post(client, path, {"email": "bob@example.com"}, "invite-3")
+    reused = post(client, path, {"email": "eve@example.com"}, "invite-3")
+
+    assert reused.status_code == 422
+    assert reused.json()["detail"] == IDEMPOTENCY_KEY_REUSED
     assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", "u1")]
 
 
@@ -172,3 +212,28 @@ def test_lists_pass_on_what_changed_since_and_after_which_item(
         call(client, "GET", "/interviews", params={"updated_since": "yesterday"}).status_code == 422
     )
     assert asked == [("2026-10-15T10:00:00+00:00", INTERVIEW)]
+
+
+def test_a_result_kept_before_requests_were_fingerprinted_is_still_returned(monkeypatch):
+    redis = FakeRedis()
+    redis.values["old"] = str(INTERVIEW).encode()
+    monkeypatch.setattr(idempotency, "get_redis", lambda: redis)
+
+    async def run():
+        raise AssertionError("ran again")
+
+    assert asyncio.run(idempotency.once("old", 60, "any", run)) == str(INTERVIEW)
+
+
+def test_a_retry_while_the_first_still_runs_is_refused(monkeypatch):
+    redis = FakeRedis()
+    redis.values["running"] = b"req:pending"
+    monkeypatch.setattr(idempotency, "get_redis", lambda: redis)
+
+    async def run():
+        return "x"
+
+    with pytest.raises(HTTPException) as refused:
+        asyncio.run(idempotency.once("running", 60, "req", run))
+
+    assert refused.value.status_code == 409

@@ -61,7 +61,12 @@ API_PAGE = "/companies/{company_id}/integrations/api"
 # Each web hook's delivery log keeps its latest sends.
 WEBHOOK_LOG_KEPT = 20
 
-# A POST with an Idempotency-Key gives the same result for that key this long (a client's retry
-# doesn't invite or create twice); a retry while the first request still runs is refused.
+# Retries are safe without anything from the client. Creating an interview: the same request
+# from the same API key within RETRY_WINDOW_SECONDS gets the first result (longer than HTTP
+# clients' timeouts and their retries' backoff, shorter than a person making the same interview
+# again on purpose). Inviting: the candidate is the key (the interview and their email).
+RETRY_WINDOW_SECONDS = 15 * 60
+# An Idempotency-Key a client still sends keeps working: its first result, this long.
 IDEMPOTENCY_SECONDS = 24 * 60 * 60
-IDEMPOTENCY_IN_PROGRESS = "A request with this Idempotency-Key is still running. Try again shortly."
+IDEMPOTENCY_IN_PROGRESS = "The same request is still running. Try again shortly."
+IDEMPOTENCY_KEY_REUSED = "This Idempotency-Key was already used for a different request."

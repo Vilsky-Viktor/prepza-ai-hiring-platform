@@ -113,9 +113,11 @@ async def invite(
     return_url: str | None = None,
     sign_in: bool = True,
     theme: str | None = None,
-) -> UUID:
-    """Invites the candidate as `sender_id` would, and returns the invite's id. Companies'
-    refusals (PASSED_ON) raise an HTTPException with its status and reason."""
+) -> tuple[UUID, bool]:
+    """Invites the candidate as `sender_id` would: the invite's id, and whether this invited them.
+    A candidate whose invite is still open, or who finished, is returned as they are (no second
+    email: a retried request invites once). Companies' refusals (PASSED_ON) raise an
+    HTTPException with its status and reason."""
     body = {
         "email": email,
         "sender_id": sender_id,
@@ -123,6 +125,7 @@ async def invite(
         "return_url": return_url,
         "sign_in": sign_in,
         "theme": theme,
+        "resend": False,
     }
 
     return await company_invites.invite(

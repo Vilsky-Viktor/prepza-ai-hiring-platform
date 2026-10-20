@@ -6,7 +6,7 @@ from prepza_common.pause import refuse_if_paused
 from prepza_common.user import User
 
 from app.constants.audit import VIA_API, VIA_ATS
-from app.constants.invites import RETURN_URL_OFF_DOMAIN, InviteStatus
+from app.constants.invites import OPEN, RETURN_URL_OFF_DOMAIN, InviteStatus
 from app.helpers.return_urls import on_domain
 from app.integrations.redis import get_redis
 from app.schemas.internal_ats import AccessOut, AtsInviteIn, AtsInviteOut, InterviewBriefOut
@@ -52,7 +52,7 @@ async def invite(interview_id: UUID, body: AtsInviteIn, caller: ServiceCaller) -
     during the emergency pause, 402 without credits and 429 over the email limits; 404 when the
     interview is gone, 409 while it has no questions yet, and 403 when that member is no longer
     an owner or admin (a removed member's connection invites no one). A candidate who already
-    finished is returned as they are."""
+    finished is returned as they are, and so is one still invited when `resend` is false."""
     interview = await interviews.get(interview_id)
 
     if interview is None:
@@ -71,11 +71,13 @@ async def invite(interview_id: UUID, body: AtsInviteIn, caller: ServiceCaller) -
     if body.return_url and not on_domain(body.return_url, company.verified_domain):
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, RETURN_URL_OFF_DOMAIN)
 
-    # A candidate who already finished keeps their results, and isn't emailed again.
+    # A candidate who already finished keeps their results, and isn't emailed again; nor is one
+    # whose invite is still open, when the caller asked for no resend (the API's retries).
     found = await invites.find(interview_id, str(body.email))
+    kept = (InviteStatus.FINISHED,) if body.resend else (InviteStatus.FINISHED, *OPEN)
 
-    if found is not None and found.status == InviteStatus.FINISHED:
-        return AtsInviteOut(invite_id=found.id)
+    if found is not None and found.status in kept:
+        return AtsInviteOut(invite_id=found.id, created=False)
 
     user = User(uid=body.sender_id, email="", email_verified=True)
     sent = await candidate_invites.invite(

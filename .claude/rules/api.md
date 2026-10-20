@@ -42,9 +42,15 @@ and updates `docs/features/api.md` or `mcp.md` and the API description in the sa
 
 ## Idempotency
 
-- Every create in the public API takes `Idempotency-Key`: the first result is kept 24 hours and
-  returned on a retry; a retry while the first still runs gets `409`; the same key with a
-  different body is refused with `422`; a failure frees the key.
+- Clients never manage idempotency keys; the server derives them, so every create is safe to
+  retry as it is. A natural key where one exists (a candidate: the interview and the normalised
+  email, returned as they are with `200`, no second email or credit); otherwise the API key, the
+  route and a hash of the canonical body, kept for a short retry window (15 minutes) so a
+  deliberate identical request later still creates. A retry while the first still runs gets
+  `409`; a failure frees the key.
+- An `Idempotency-Key` an older integration sends is still honoured (24 hours) but never
+  documented, required or generated in examples or SDK code; the same key with a different body
+  is refused with `422`.
 
 ## Versions
 

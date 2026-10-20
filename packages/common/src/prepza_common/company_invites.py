@@ -8,13 +8,15 @@ from prepza_common.http import bearer, passed_on
 
 async def invite(
     companies_url: str, token: str, interview_id: UUID, body: dict, refusals: set[int]
-) -> UUID:
-    """The invite's id. `body` names the email and `sender_id`, and what else the caller sets;
-    companies' refusals in `refusals` reach the caller with their status and reason."""
+) -> tuple[UUID, bool]:
+    """The invite's id, and whether this request invited them (False: returned as they were).
+    `body` names the email and `sender_id`, and what else the caller sets; companies' refusals in
+    `refusals` reach the caller with their status and reason."""
     response = await http.get_client().post(
         f"{companies_url}/internal/interviews/{interview_id}/invites",
         json=body,
         headers=bearer(token),
     )
+    found = passed_on(response, refusals).json()
 
-    return UUID(passed_on(response, refusals).json()["invite_id"])
+    return UUID(found["invite_id"]), found.get("created", True)

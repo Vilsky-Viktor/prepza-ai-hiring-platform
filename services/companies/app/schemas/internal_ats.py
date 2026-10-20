@@ -31,7 +31,12 @@ class AtsInviteIn(BaseModel):
     # The theme the candidate's pages show; None: the candidate's own.
     theme: Theme | None = None
     sign_in: bool = True
+    # False (the API): a candidate whose invite is still open is returned as they are, without
+    # another email, so a retried request invites once; an ATS sends the invite again.
+    resend: bool = True
 
 
 class AtsInviteOut(BaseModel):
     invite_id: UUID
+    # Whether this request invited them (or invited them again).
+    created: bool = True

@@ -118,11 +118,15 @@ def companies_api(monkeypatch):
         if state["refuse"]:
             raise HTTPException(state["refuse"], "Refused")
 
+        # Companies returns a candidate already invited as they are (resend false).
+        if (interview_id, email, sender_id) in state["sent"]:
+            return CANDIDATE, False
+
         state["sent"].append((interview_id, email, sender_id))
         state.setdefault("names", {})[email] = name
         state.setdefault("options", {})[email] = (return_url, sign_in, theme)
 
-        return CANDIDATE
+        return CANDIDATE, True
 
     monkeypatch.setattr(companies, "access", access)
     monkeypatch.setattr(companies, "interviews", interviews)

@@ -59,6 +59,8 @@ async def invite(interview_id: UUID, email: str, sender_id: str, name: str | Non
     A refusal raises an HTTPException with companies' status and reason (INVITE_REFUSALS)."""
     body = {"email": email, "sender_id": sender_id, "name": name}
 
-    return await company_invites.invite(
+    invite_id, _ = await company_invites.invite(
         settings.companies_url, service_token("companies"), interview_id, body, INVITE_REFUSALS
     )
+
+    return invite_id
