@@ -123,12 +123,16 @@ when they're revoked. A question whose time ran out with no answer picked doesn'
 Credits are set aside when a candidate is invited and come back if they're revoked before \
 answering anything, never start, or their interview ends with nothing answered.
 - A person's first company gets free welcome credits (see prices).
-- Top up on the top-up page (account menu → Top up) with one of the fixed top-ups shown there, \
-for a company you belong to. Larger top-ups buy more credits per dollar, \
-so a candidate costs less (see prices). Payments go through Paddle, which issues the receipt.
-- Automatic top-up, optional, on the top-up page: choose a top-up and a balance to refill \
-under. Turning it on saves the card through Paddle as a $0 subscription; only the top-ups \
-it makes are charged.
+- Top up on the top-up page (account menu → Top up), a company's billing tab or its credits in \
+the company's header, for a company you belong to (owners and admins): its dialog buys any \
+number of candidates in the range on a slider ("custom" in the prices), each level at its price \
+per candidate, never more than the next level costs: from a level's "upgrade_from", the same \
+money buys the next level's first count instead. It shows the price, the credits and the \
+candidates before checkout. Payments go through Paddle, which issues the receipt.
+- Automatic top-up, optional, on the top-up page and under the top-up dialog's button: choose \
+one of the fixed top-ups ("products" in the prices) and a balance to refill \
+under. Turning it on saves the card through Paddle as a $0 subscription; only the top-ups it \
+makes are charged.
 - A company's Billing tab (owners and admins): the balance, the credits reserved for \
 candidates who haven't finished (listed under "reserved"), the history of every credit \
 movement with each top-up's invoice, and the automatic top-up setting.

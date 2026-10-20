@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "L'accesso è temporaneamente non disponibile. Riprova tra poco.",
     "Not enough credits. Top up to continue.": "Crediti insufficienti. Ricarica per continuare.",
     "This top-up isn't available": "Questa ricarica non è disponibile",
+    "Choose from 10 to 1,000 candidates.": "Scegli da 10 a 1.000 candidati.",
     "Choose one of the balances": "Scegli una delle soglie di saldo",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "Abbiamo raggiunto il limite di nuove generazioni di oggi. Riprova domani; simulazioni e colloqui continuano a funzionare.",
     "Couldn't get a reply right now. Please try again.": "Non è stato possibile ottenere una risposta. Riprova.",

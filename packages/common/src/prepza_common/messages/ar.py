@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "تسجيل الدخول غير متاح مؤقتًا. حاول مرة أخرى بعد قليل.",
     "Not enough credits. Top up to continue.": "رصيدك غير كافٍ. اشحن رصيدك للمتابعة.",
     "This top-up isn't available": "عملية الشحن هذه غير متاحة",
+    "Choose from 10 to 1,000 candidates.": "اختر من 10 إلى 1,000 مرشح.",
     "Choose one of the balances": "اختر أحد حدود الرصيد",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "بلغنا الحد اليومي لعمليات الإنشاء الجديدة. حاول مرة أخرى غدًا؛ التدريب والمقابلات تعمل كالمعتاد.",
     "Couldn't get a reply right now. Please try again.": "تعذّر الحصول على رد الآن. حاول مرة أخرى.",

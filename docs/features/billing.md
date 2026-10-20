@@ -40,7 +40,17 @@ Large top-ups buy more credits per dollar: each top-up has its own price per can
 | $600 | 200 | $3 |
 | $1,000 | 500 | $2 |
 
-Saved automatic top-ups were moved to these by billing's migration 0012 ($30 to $50, $150 to $200, $250 to $600), each threshold keeping its number of candidates.
+Saved automatic top-ups were moved to these by billing's migration 0012 ($30 to $50, $150 to $200, $250 to $600), each threshold keeping its number of candidates. These fixed amounts are what automatic top-up buys, and what the pricing and home pages show.
+
+The top-up dialog (on the top-up page and a company's billing tab and header) buys any number of candidates from 10 to 1,000 instead:
+
+- A slider with one equal part per price level, 10–49 at $5, 50–199 at $4, 200–499 at $3 and 500–1,000 at $2 a candidate, each labelled with its price; the count shows over the knob. Arrow keys move one candidate, Page Up and Page Down ten, Home and End to the ends.
+- Under it, what the count costs, as three cards: the price, the credits (500 a candidate) and the candidates.
+- Never more than the next level: when the count at its level's price costs at least the next level's smallest top-up (50 for $200, 200 for $600, 500 for $1,000), it buys that instead, at that price, and the dialog says so ("50 candidates for the same price"). So 40–49 buy 50 for $200, 150–199 buy 200 for $600 and 334–499 buy 500 for $1,000.
+- Billing decides all of it (`custom_top_up` in `app/helpers/credits.py`): the levels come from the fixed top-ups, and its catalog (`custom`) gives the range, whether it's on sale (Paddle's product for it is set), and each level's first count, price per candidate and the count from which it buys the next level (`upgrade_from`). The dialog only displays and multiplies.
+- Top up sends the count (`POST /companies/{id}/billing/checkout` with `{"candidates": N}`); billing works out again what it buys, refuses a count out of the range ("Choose from 10 to 1,000 candidates.", 422) or a sale before the product is set ("This top-up isn't available", 422), and makes the checkout: one item ("50 candidates") with its price made in the transaction, under the `PADDLE_PRODUCT_CANDIDATES` product, at the total billing worked out, tax added on top (`tax_mode: external`), quantity fixed at 1, so the buyer can't change what they buy. The candidates go in the transaction's custom data, beside the wallet.
+- The webhook grants those candidates (500 credits each) for a paid line of that product, never anything the browser sent; a count billing doesn't sell grants nothing and is logged as an error, to refund.
+- Under the button, the automatic top-up as a card: what it does or is set to, and **Set up** or **Change**.
 
 - Top up on the top-up page, for any company you belong to.
 - Billing makes each top-up's checkout (a Paddle transaction naming the company and the buyer), after companies checks the buyer is its owner or an admin (`POST /companies/{id}/billing/checkout`); the browser only opens it, so it can't send the money to another wallet or record someone else as the buyer. A paid transaction billing didn't make (its origin isn't `api`), or one into a company deleted meanwhile, adds no credits and is logged as an error, to refund.
@@ -55,7 +65,10 @@ Balances follow a payment as it lands:
 
 ## Automatic top-up
 
-On the top-up page, under each balance, "Set up automatic top-up" opens the choice of a top-up and a balance to refill under; once it's on, the line shows the setting ("Automatic top-up: $50 under 500 credits") with an edit icon to change or turn it off.
+On the top-up page, under each balance, "Set up automatic top-up" opens the choice of a top-up and a balance to refill under; once it's on, the line shows the setting ("Automatic top-up: $50 under 500 credits") with an edit icon to change or turn it off. The top-up dialog shows it as a card with **Set up** or **Change**.
+
+- Each amount shows the candidates it buys, in the list and in the chosen amount, from billing's catalog.
+- The dialog's buttons: **Turn off** (when it's on), **Close**, and **Save**, which needs a change once it's on (turning it on needs none).
 
 - The card is saved through Paddle once.
 - Running, it charges the card of whoever set it up: only they change what it buys or when. Any other owner or admin may turn it off, then turn it on with their own card (`NOT_YOUR_AUTO_TOP_UP`, a 403, otherwise).
@@ -92,7 +105,7 @@ Billing's history entries keep the money a top-up, refund or chargeback moved (`
 
 ## Refunds and chargebacks
 
-Refunds and chargebacks in Paddle take back the credits they bought.
+Refunds and chargebacks in Paddle take back the credits they bought, in proportion to the money returned (a top-up of any number of candidates too: $100 back of $200 takes back half its credits).
 
 ## Deleting a company
 
@@ -136,7 +149,7 @@ To fill in the top lists' names, billing asks companies for companies' names and
 
 `billing` sells through [Paddle](https://www.paddle.com), which is the merchant of record: it handles VAT and sales tax. Businesses and consumers can both buy; prices don't include VAT or sales tax: where it applies, Paddle adds it at checkout, on top of the listed price, and the checkout shows the total before the buyer pays.
 
-1. In Paddle (start with the sandbox), create a product with a USD price for each top-up in `services/billing/app/constants/products.py` ($50, $200, $600, $1,000), each with its **Tax** set to **Exclusive** (`tax_mode: external`): VAT or sales tax, where it applies, is added on top of the price at checkout, as the pricing page and the terms say. Also create a client-side token.
+1. In Paddle (start with the sandbox), create a product with a USD price for each top-up in `services/billing/app/constants/products.py` ($50, $200, $600, $1,000), each with its **Tax** set to **Exclusive** (`tax_mode: external`): VAT or sales tax, where it applies, is added on top of the price at checkout, as the pricing page and the terms say. For the top-up of any number of candidates, also create one product (say, "Candidates"), with no price: billing prices each top-up in its transaction, tax Exclusive. Also create a client-side token.
 2. Under Developer tools → Notifications, add a webhook destination at `https://<your domain>/api/billing/webhooks/paddle` for these events, then copy its secret key:
 
    | Event | Why |
@@ -154,11 +167,12 @@ To fill in the top lists' names, billing asks companies for companies' names and
    | `PADDLE_CLIENT_TOKEN` | The client-side token |
    | `PADDLE_WEBHOOK_SECRET` | The webhook's secret key |
    | `PADDLE_PRICE_TOPUP_50`, `PADDLE_PRICE_TOPUP_200`, `PADDLE_PRICE_TOPUP_600`, `PADDLE_PRICE_TOPUP_1000` | The top-up prices |
+   | `PADDLE_PRODUCT_CANDIDATES` | The product for a top-up of any number of candidates |
    | `PADDLE_PRICE_AUTO_TOP_UP` | The $0 monthly price |
    | `PADDLE_API_KEY` | The server-side API key |
 
 In Google Cloud, the webhook secret and the API key go into the `paddle-webhook-secret` and `paddle-api-key` secrets (see [infra/README.md](../../infra/README.md)).
 
-- Until a price is set, its top-up button is disabled.
+- Until `PADDLE_PRODUCT_CANDIDATES` is set, the top-up dialog's button is disabled.
 - Until both automatic top-up values are set, its line on the top-up page is hidden.
 - Locally, Paddle reaches the webhook only through a tunnel, for example `cloudflared tunnel --url http://localhost:8090`.

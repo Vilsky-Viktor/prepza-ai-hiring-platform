@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "サインインは一時的に利用できません。少し時間をおいてもう一度お試しください。",
     "Not enough credits. Top up to continue.": "クレジットが足りません。続けるにはチャージしてください。",
     "This top-up isn't available": "このチャージは利用できません",
+    "Choose from 10 to 1,000 candidates.": "候補者は 10〜1,000 人の範囲で選んでください。",
     "Choose one of the balances": "残高のしきい値をひとつ選んでください",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "本日の新規生成の上限に達しました。明日もう一度お試しください。練習と面接はそのままご利用いただけます。",
     "Couldn't get a reply right now. Please try again.": "現在、返信を取得できませんでした。もう一度お試しください。",

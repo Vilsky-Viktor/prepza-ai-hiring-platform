@@ -16,18 +16,20 @@ import type { Catalog, CheckoutData } from "@/types/billing"
 // When to look for the new balance after a payment, in seconds.
 const RECHECK_SECONDS = [2, 5, 10, 20, 40]
 
-/** Buys a top-up for `companyId`: Paddle's `priceId`. */
+/** Buys a top-up of `candidates` for `companyId`, at the price billing sets for the count. */
 export function BuyButton({
   catalog,
-  priceId,
+  candidates,
+  onSale,
   companyId,
   label,
   variant = "default",
   className,
 }: {
   catalog: Catalog
-  // None while the price isn't on sale yet.
-  priceId: string | null
+  candidates: number
+  // False while its price isn't on sale yet.
+  onSale: boolean
   companyId: string
   label?: string
   variant?: "default" | "outline"
@@ -43,7 +45,7 @@ export function BuyButton({
 
   useEffect(() => () => rechecks.current.forEach(clearTimeout), [])
 
-  if (!priceId) {
+  if (!onSale) {
     return (
       <Button
         variant="outline"
@@ -65,10 +67,10 @@ export function BuyButton({
     setOpening(true)
 
     try {
-      // The backend makes the checkout, with whose wallet it pays into.
+      // The backend makes the checkout, with its price and whose wallet it pays into.
       const { transaction_id: transactionId } = await apiFetch<CheckoutData>(
         `/companies/companies/${companyId}/billing/checkout`,
-        { method: "POST", body: JSON.stringify({ price_id: priceId }) }
+        { method: "POST", body: JSON.stringify({ candidates }) }
       )
       await openCheckout(catalog, { transactionId }, user.email, () => {
         toast.success(t("paid"))

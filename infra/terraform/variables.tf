@@ -79,6 +79,12 @@ variable "paddle_client_token" {
   default     = ""
 }
 
+variable "paddle_product_candidates" {
+  description = "The Paddle product a top-up of any number of candidates is sold under (docs/features/billing.md); empty: not sold."
+  type        = string
+  default     = ""
+}
+
 variable "paddle_prices" {
   description = "Paddle price id of each product (services/billing/app/constants/products.py)."
   type        = map(string)

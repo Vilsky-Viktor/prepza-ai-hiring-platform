@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "ورود موقتاً در دسترس نیست. کمی بعد دوباره امتحان کنید.",
     "Not enough credits. Top up to continue.": "اعتبار کافی ندارید. برای ادامه، شارژ کنید.",
     "This top-up isn't available": "این شارژ در دسترس نیست",
+    "Choose from 10 to 1,000 candidates.": "از ۱۰ تا ۱٬۰۰۰ متقاضی انتخاب کنید.",
     "Choose one of the balances": "یکی از آستانه\u200cهای موجودی را انتخاب کنید",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "به سقف ساخت\u200cهای جدید امروز رسیده\u200cایم. فردا دوباره امتحان کنید؛ تمرین و مصاحبه\u200cها همچنان کار می\u200cکنند.",
     "Couldn't get a reply right now. Please try again.": "فعلاً پاسخی دریافت نشد. دوباره امتحان کنید.",

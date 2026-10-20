@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "ההתחברות אינה זמינה כרגע. נסו שוב בעוד רגע.",
     "Not enough credits. Top up to continue.": "אין מספיק קרדיטים. יש לטעון כדי להמשיך.",
     "This top-up isn't available": "טעינה זו אינה זמינה",
+    "Choose from 10 to 1,000 candidates.": "יש לבחור בין 10 ל-1,000 מועמדים.",
     "Choose one of the balances": "יש לבחור אחד מספי היתרה",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "הגענו למגבלת היצירות החדשות של היום. נסו שוב מחר; התרגול והראיונות ממשיכים לפעול.",
     "Couldn't get a reply right now. Please try again.": "לא ניתן לקבל תשובה כרגע. נסו שוב.",

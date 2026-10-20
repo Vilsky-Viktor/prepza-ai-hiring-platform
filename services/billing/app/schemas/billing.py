@@ -23,6 +23,27 @@ class CandidatePriceOut(BaseModel):
     cents: int
 
 
+class CandidateTierOut(BaseModel):
+    """A candidate's price in a top-up of any number of candidates, from this many. From
+    `upgrade_from` candidates on, the top-up buys the next tier's smallest one instead, which
+    costs no more (none for the last tier)."""
+
+    from_candidates: int
+    cents: int
+    upgrade_from: int | None
+
+
+class CustomTopUpOut(BaseModel):
+    """A top-up of any number of candidates, from `min_candidates` to `max_candidates`, each at
+    its tier's price, smallest first."""
+
+    min_candidates: int
+    max_candidates: int
+    # Not while Paddle's product for it isn't set.
+    on_sale: bool
+    tiers: list[CandidateTierOut]
+
+
 class CatalogOut(BaseModel):
     """What the pricing page and Paddle.js need. Prices are decided here, not in the client."""
 
@@ -40,6 +61,7 @@ class CatalogOut(BaseModel):
     free_candidates: int
     referral_company: int
     products: list[TopUpOut]
+    custom: CustomTopUpOut
 
 
 class BalanceOut(BaseModel):
@@ -83,7 +105,9 @@ class OwnersIn(BaseModel):
 
 
 class TopUpCheckoutIn(BaseModel):
-    price_id: str = Field(max_length=64)
+    """A top-up of this many candidates; billing checks the count and sets the price."""
+
+    candidates: int
 
 
 class TopUpCheckoutOut(BaseModel):

@@ -48,13 +48,13 @@ async def charge(subscription_id: str, price_id: str) -> None:
     )
 
 
-async def create_transaction(price_id: str, custom_data: dict) -> str:
-    """A checkout's transaction for one top-up, with whose wallet it's for set here, not in the
-    browser; Paddle.js opens it by its id."""
+async def create_transaction(price: dict, custom_data: dict) -> str:
+    """A checkout's transaction for one top-up, one item at a `price` made here, with whose
+    wallet it's for set here, not in the browser; Paddle.js opens it by its id."""
     response = await _call(
         "POST",
         "/transactions",
-        json={"items": [{"price_id": price_id, "quantity": 1}], "custom_data": custom_data},
+        json={"items": [{"price": price, "quantity": 1}], "custom_data": custom_data},
     )
 
     return response.json()["data"]["id"]

@@ -278,7 +278,7 @@
      "internal"
     ],
     "summary": "Company Checkout",
-    "description": "A checkout for one of our top-ups, paid into the company by `buyer_id`: companies has\nchecked they're its owner or an admin. Any other price is refused (422).",
+    "description": "A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies\nhas checked they're its owner or an admin. What it buys and its price are set here from the\ncount (helpers/credits.py), and the candidates go in its custom data, which the webhook\ngrants; a count outside the range, or before Paddle's product is set, is refused (422).",
     "operationId": "company_checkout_internal_companies__company_id__checkout_post",
     "security": [
      {
@@ -1959,6 +1959,37 @@
     "title": "CandidatePriceOut",
     "description": "A candidate's price when credits are bought in a top-up from this many dollars."
    },
+   "CandidateTierOut": {
+    "properties": {
+     "from_candidates": {
+      "type": "integer",
+      "title": "From Candidates"
+     },
+     "cents": {
+      "type": "integer",
+      "title": "Cents"
+     },
+     "upgrade_from": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Upgrade From"
+     }
+    },
+    "type": "object",
+    "required": [
+     "from_candidates",
+     "cents",
+     "upgrade_from"
+    ],
+    "title": "CandidateTierOut",
+    "description": "A candidate's price in a top-up of any number of candidates, from this many. From\n`upgrade_from` candidates on, the top-up buys the next tier's smallest one instead, which\ncosts no more (none for the last tier)."
+   },
    "CatalogOut": {
     "properties": {
      "environment": {
@@ -2010,6 +2041,9 @@
       },
       "type": "array",
       "title": "Products"
+     },
+     "custom": {
+      "$ref": "#/components/schemas/CustomTopUpOut"
      }
     },
     "type": "object",
@@ -2024,7 +2058,8 @@
      "welcome_company",
      "free_candidates",
      "referral_company",
-     "products"
+     "products",
+     "custom"
     ],
     "title": "CatalogOut",
     "description": "What the pricing page and Paddle.js need. Prices are decided here, not in the client."
@@ -2078,6 +2113,38 @@
     ],
     "title": "CheckoutOut",
     "description": "The Paddle checkout to open: its price and the custom data to send with it."
+   },
+   "CustomTopUpOut": {
+    "properties": {
+     "min_candidates": {
+      "type": "integer",
+      "title": "Min Candidates"
+     },
+     "max_candidates": {
+      "type": "integer",
+      "title": "Max Candidates"
+     },
+     "on_sale": {
+      "type": "boolean",
+      "title": "On Sale"
+     },
+     "tiers": {
+      "items": {
+       "$ref": "#/components/schemas/CandidateTierOut"
+      },
+      "type": "array",
+      "title": "Tiers"
+     }
+    },
+    "type": "object",
+    "required": [
+     "min_candidates",
+     "max_candidates",
+     "on_sale",
+     "tiers"
+    ],
+    "title": "CustomTopUpOut",
+    "description": "A top-up of any number of candidates, from `min_candidates` to `max_candidates`, each at\nits tier's price, smallest first."
    },
    "DayOut": {
     "properties": {
@@ -2909,17 +2976,17 @@
    },
    "TopUpCheckoutIn": {
     "properties": {
-     "price_id": {
-      "type": "string",
-      "maxLength": 64,
-      "title": "Price Id"
+     "candidates": {
+      "type": "integer",
+      "title": "Candidates"
      }
     },
     "type": "object",
     "required": [
-     "price_id"
+     "candidates"
     ],
-    "title": "TopUpCheckoutIn"
+    "title": "TopUpCheckoutIn",
+    "description": "A top-up of this many candidates; billing checks the count and sets the price."
    },
    "TopUpCheckoutOut": {
     "properties": {

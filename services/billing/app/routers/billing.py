@@ -12,14 +12,17 @@ from app.constants.credits import (
 )
 from app.constants.products import (
     CURRENCY,
+    CUSTOM_TOP_UP_MAX,
     TOP_UPS,
     WEBHOOK_TOLERANCE_SECONDS,
 )
-from app.helpers.credits import candidate_prices, credits_for
+from app.helpers.credits import candidate_prices, candidate_tiers, credits_for, upgrade_from
 from app.helpers.paddle import signature_valid
 from app.schemas.billing import (
     CandidatePriceOut,
+    CandidateTierOut,
     CatalogOut,
+    CustomTopUpOut,
     TopUpOut,
 )
 from app.services.catalog import price_ids
@@ -32,6 +35,7 @@ router = APIRouter(tags=["billing"])
 @router.get("/catalog")
 def catalog() -> CatalogOut:
     prices = price_ids()
+    custom_tiers = candidate_tiers()
     tiers = candidate_prices()
     cents = [price for _, price in tiers]
 
@@ -62,6 +66,19 @@ def catalog() -> CatalogOut:
             )
             for product in TOP_UPS
         ],
+        custom=CustomTopUpOut(
+            min_candidates=custom_tiers[0][0],
+            max_candidates=CUSTOM_TOP_UP_MAX,
+            on_sale=bool(settings.paddle_product_candidates),
+            tiers=[
+                CandidateTierOut(
+                    from_candidates=count,
+                    cents=cents,
+                    upgrade_from=upgrade_from(index),
+                )
+                for index, (count, cents) in enumerate(custom_tiers)
+            ],
+        ),
     )
 
 

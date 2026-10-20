@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "การลงชื่อเข้าใช้ไม่พร้อมใช้งานชั่วคราว โปรดลองอีกครั้งในอีกสักครู่",
     "Not enough credits. Top up to continue.": "เครดิตไม่เพียงพอ โปรดเติมเครดิตเพื่อดำเนินการต่อ",
     "This top-up isn't available": "การเติมเครดิตนี้ไม่พร้อมใช้งาน",
+    "Choose from 10 to 1,000 candidates.": "เลือกผู้สมัครได้ตั้งแต่ 10 ถึง 1,000 คน",
     "Choose one of the balances": "โปรดเลือกเกณฑ์ยอดคงเหลือหนึ่งรายการ",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "ถึงขีดจำกัดการสร้างใหม่ของวันนี้แล้ว โปรดลองอีกครั้งพรุ่งนี้ การฝึกซ้อมและการสัมภาษณ์ยังใช้งานได้ตามปกติ",
     "Couldn't get a reply right now. Please try again.": "ยังไม่สามารถรับคำตอบได้ในขณะนี้ โปรดลองอีกครั้ง",

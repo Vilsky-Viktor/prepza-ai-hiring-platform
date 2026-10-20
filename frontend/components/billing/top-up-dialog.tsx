@@ -1,9 +1,10 @@
 "use client"
 
-import { useLocale, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { BuyButton } from "@/components/billing/buy-button"
+import { AutoTopUpSetting } from "@/components/billing/auto-top-up"
+import { CustomTopUp } from "@/components/billing/custom-top-up"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -14,10 +15,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { formatPrice } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
 
-/** The top-up button and its dialog of amounts, for `companyId`'s credits. */
+/** The top-up button and its dialog: any number of candidates, and the automatic top-up, for
+ * `companyId`'s credits. */
 export function TopUpDialog({
   catalog,
   title,
@@ -32,7 +33,6 @@ export function TopUpDialog({
   card?: ReactNode
 }) {
   const t = useTranslations("billing")
-  const locale = useLocale()
 
   return (
     <Dialog>
@@ -58,38 +58,8 @@ export function TopUpDialog({
             {t("topUpNote")} {t("taxes")}
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {catalog.products.map((product) => (
-            <div
-              key={product.key}
-              className="flex items-center justify-between gap-4 rounded-2xl border p-5 transition-colors hover:border-ring"
-            >
-              <div className="min-w-0 space-y-1">
-                <p className="font-heading text-2xl font-medium tabular-nums">
-                  {formatPrice(product.price_cents, catalog.currency, locale)}
-                </p>
-                <p className="text-base tabular-nums">
-                  {t("candidates", { count: product.candidates })}
-                </p>
-                <p className="text-sm text-muted-foreground tabular-nums">
-                  {t("each", {
-                    price: formatPrice(
-                      product.candidate_cents,
-                      catalog.currency,
-                      locale
-                    ),
-                  })}
-                </p>
-              </div>
-              <BuyButton
-                catalog={catalog}
-                priceId={product.price_id}
-                companyId={companyId}
-                className="h-10 px-5"
-              />
-            </div>
-          ))}
-        </div>
+        <CustomTopUp catalog={catalog} companyId={companyId} />
+        <AutoTopUpSetting catalog={catalog} companyId={companyId} card />
         <DialogFooter showCloseButton />
       </DialogContent>
     </Dialog>

@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "Inloggen is tijdelijk niet beschikbaar. Probeer het zo meteen opnieuw.",
     "Not enough credits. Top up to continue.": "Niet genoeg credits. Waardeer op om door te gaan.",
     "This top-up isn't available": "Deze opwaardering is niet beschikbaar",
+    "Choose from 10 to 1,000 candidates.": "Kies 10 tot 1.000 kandidaten.",
     "Choose one of the balances": "Kies een van de saldogrenzen",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "De limiet voor nieuwe generaties van vandaag is bereikt. Probeer het morgen opnieuw; oefenen en interviews werken gewoon.",
     "Couldn't get a reply right now. Please try again.": "Er kon nu geen antwoord worden opgehaald. Probeer het opnieuw.",

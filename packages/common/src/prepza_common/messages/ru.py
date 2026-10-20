@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "Вход временно недоступен. Попробуйте чуть позже.",
     "Not enough credits. Top up to continue.": "Недостаточно кредитов. Пополните баланс, чтобы продолжить.",
     "This top-up isn't available": "Это пополнение недоступно",
+    "Choose from 10 to 1,000 candidates.": "Выберите от 10 до 1000 кандидатов.",
     "Choose one of the balances": "Выберите один из порогов баланса",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "Сегодняшний лимит новых генераций исчерпан. Попробуйте завтра; тренировки и собеседования работают.",
     "Couldn't get a reply right now. Please try again.": "Не удалось получить ответ. Попробуйте ещё раз.",

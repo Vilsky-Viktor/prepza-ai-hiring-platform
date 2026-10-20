@@ -7,10 +7,9 @@ from prepza_common.notifications import NotificationKind, notification, publish_
 from app.config.settings import settings
 from app.constants.notifications import TOP_UP_LINK
 from app.constants.products import PADDLE_API_ORIGIN, OwnerType
-from app.helpers.credits import credits_for
 from app.services import auto_top_ups, credit_events
 from app.services import outbox as outbox_service
-from app.services.catalog import price_cents_for
+from app.services.catalog import bought_for, custom_bought
 from app.services.referrals import reward_after_top_up
 from app.storage import ledger, purchases
 
@@ -57,15 +56,18 @@ async def handle_completed(data: dict) -> None:
             continue
 
         quantity = item.get("quantity", 1)
-        found = price_cents_for(item["price"]["id"], quantity)
+        found = bought_for(item["price"]["id"], quantity) or custom_bought(item, custom)
 
         if found is None:
-            logger.warning("Ignoring item %s of transaction %s", item["price"]["id"], data["id"])
+            logger.error(
+                "Item %s of transaction %s isn't one we sell: refund it",
+                item["price"]["id"],
+                data["id"],
+            )
 
             continue
 
-        key, paid_cents = found
-        credits = credits_for(paid_cents)
+        key, paid_cents, credits = found
         granted = await purchases.grant(
             owner_type,
             owner_id,

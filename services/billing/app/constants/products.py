@@ -35,6 +35,15 @@ TOP_UPS = [
 # CREDITS_PER_DOLLAR, $5; so larger top-ups buy more credits per dollar.
 CANDIDATE_PRICE_TIERS = [(100_000, 200), (60_000, 300), (20_000, 400)]
 
+# A top-up of any number of candidates: from the smallest top-up's candidates up to this many.
+# Each candidate costs what it does in the largest top-up the count reaches (helpers/credits.py).
+# Billing sells it as one item priced in the transaction itself (quantity 1, which the buyer
+# can't change), with the candidates in its custom data under CUSTOM_TOP_UP_FLAG; the purchase
+# is recorded as CUSTOM_TOP_UP_KEY.
+CUSTOM_TOP_UP_MAX = 1_000
+CUSTOM_TOP_UP_FLAG = "candidates"
+CUSTOM_TOP_UP_KEY = "candidates"
+
 CURRENCY = "USD"
 # Paddle signs each webhook with a timestamp; older ones are refused, so a captured one can't be
 # replayed later.
@@ -45,6 +54,9 @@ TRANSACTION_COMPLETED = "transaction.completed"
 # items in the browser is "web").
 PADDLE_API_ORIGIN = "api"
 TOP_UP_UNAVAILABLE = "This top-up isn't available"
+# Fixed text, so it's translated by its words: the range sold, from the smallest top-up's
+# candidates to CUSTOM_TOP_UP_MAX (a test keeps them the same).
+CANDIDATES_OUT_OF_RANGE = "Choose from 10 to 1,000 candidates."
 # Refunds and chargebacks; a refund is approved after it's created, so both events matter.
 ADJUSTMENT_EVENTS = ("adjustment.created", "adjustment.updated")
 ADJUSTMENT_APPROVED = "approved"

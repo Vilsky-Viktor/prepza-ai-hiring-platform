@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "Đăng nhập tạm thời không khả dụng. Vui lòng thử lại sau ít phút.",
     "Not enough credits. Top up to continue.": "Không đủ credit. Hãy nạp thêm để tiếp tục.",
     "This top-up isn't available": "Gói nạp này không khả dụng",
+    "Choose from 10 to 1,000 candidates.": "Hãy chọn từ 10 đến 1.000 ứng viên.",
     "Choose one of the balances": "Hãy chọn một ngưỡng số dư",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "Đã đạt giới hạn tạo mới của hôm nay. Vui lòng thử lại vào ngày mai; luyện tập và phỏng vấn vẫn hoạt động bình thường.",
     "Couldn't get a reply right now. Please try again.": "Hiện chưa nhận được phản hồi. Vui lòng thử lại.",

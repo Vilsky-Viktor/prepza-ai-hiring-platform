@@ -21,6 +21,7 @@ MESSAGES = {
         "Krediiti pole piisavalt. Jätkamiseks laadi juurde."
     ),
     "This top-up isn't available": "See juurdelaadimine pole saadaval",
+    "Choose from 10 to 1,000 candidates.": "Vali 10 kuni 1000 kandidaati.",
     "Choose one of the balances": "Vali üks saldopiiridest",
     "We've reached today's limit for new generations. Please try again tomorrow; practice "
     "and interviews keep working.": (

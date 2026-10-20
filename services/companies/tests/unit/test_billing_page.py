@@ -200,18 +200,18 @@ def test_the_credits_say_how_many_candidates_hold_the_reserved_ones(client, monk
 def test_an_admin_gets_a_checkout_billing_made_and_a_viewer_none(client, monkeypatch):
     made = []
 
-    async def checkout(company_id, price_id, buyer_id):
-        made.append((company_id, price_id, buyer_id))
+    async def checkout(company_id, candidates, buyer_id):
+        made.append((company_id, candidates, buyer_id))
 
         return "txn_new"
 
     monkeypatch.setattr(billing, "company_checkout", checkout)
     as_member(monkeypatch, "admin")
-    admin = client.post(f"{COMPANY}/billing/checkout", json={"price_id": "pri_50"})
+    admin = client.post(f"{COMPANY}/billing/checkout", json={"candidates": 45})
     as_member(monkeypatch, "viewer")
-    viewer = client.post(f"{COMPANY}/billing/checkout", json={"price_id": "pri_50"})
+    viewer = client.post(f"{COMPANY}/billing/checkout", json={"candidates": 45})
     app.dependency_overrides.clear()
 
     assert admin.json() == {"transaction_id": "txn_new"}
     assert viewer.status_code == 403
-    assert made == [(COMPANY_ID, "pri_50", "bob")]
+    assert made == [(COMPANY_ID, 45, "bob")]

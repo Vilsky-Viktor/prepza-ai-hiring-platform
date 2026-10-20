@@ -2,6 +2,7 @@
 
 import { cn } from "cn"
 import { ChevronDownIcon } from "lucide-react"
+import type { ReactNode } from "react"
 
 import {
   DropdownMenu,
@@ -33,6 +34,8 @@ export function MenuPill({
     keepCase?: boolean
     // Draws the label in this font: a font's name in itself.
     fontFamily?: string
+    // Shown in the pill instead of the label once chosen.
+    display?: ReactNode
   }[]
   onChange: (value: string) => void
   placeholder?: string
@@ -59,7 +62,7 @@ export function MenuPill({
             className={cn("truncate", chosen?.keepCase && "normal-case")}
             style={{ fontFamily: chosen?.fontFamily }}
           >
-            {chosen?.label ?? placeholder}
+            {chosen ? (chosen.display ?? chosen.label) : placeholder}
           </span>
           <ChevronDownIcon
             aria-hidden

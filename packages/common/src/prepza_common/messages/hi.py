@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "साइन-इन अस्थायी रूप से उपलब्ध नहीं है। कृपया थोड़ी देर बाद फिर से कोशिश करें।",
     "Not enough credits. Top up to continue.": "पर्याप्त क्रेडिट नहीं हैं। जारी रखने के लिए टॉप अप करें।",
     "This top-up isn't available": "यह टॉप-अप उपलब्ध नहीं है",
+    "Choose from 10 to 1,000 candidates.": "10 से 1,000 उम्मीदवार चुनें।",
     "Choose one of the balances": "बैलेंस की कोई एक सीमा चुनें",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "आज की नई जनरेशन की सीमा पूरी हो गई है। कृपया कल फिर से कोशिश करें; प्रैक्टिस और इंटरव्यू चलते रहेंगे।",
     "Couldn't get a reply right now. Please try again.": "अभी जवाब नहीं मिल सका। कृपया फिर से कोशिश करें।",

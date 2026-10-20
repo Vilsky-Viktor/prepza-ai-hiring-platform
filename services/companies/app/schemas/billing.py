@@ -1,7 +1,7 @@
 from datetime import datetime
 from uuid import UUID
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class CreditCandidateOut(BaseModel):
@@ -36,7 +36,9 @@ class HistoryEntryOut(BaseModel):
 
 
 class TopUpCheckoutIn(BaseModel):
-    price_id: str = Field(max_length=64)
+    """A top-up of this many candidates; billing checks the count and sets the price."""
+
+    candidates: int
 
 
 class TopUpCheckoutOut(BaseModel):

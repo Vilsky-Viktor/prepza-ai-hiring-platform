@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "登录暂时不可用，请稍后再试。",
     "Not enough credits. Top up to continue.": "点数不足，请充值后继续。",
     "This top-up isn't available": "此充值选项不可用",
+    "Choose from 10 to 1,000 candidates.": "请选择 10 到 1,000 位候选人。",
     "Choose one of the balances": "请选择一个余额阈值",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "今日的新生成次数已达上限，请明天再试；练习和面试仍可正常使用。",
     "Couldn't get a reply right now. Please try again.": "暂时无法获取回复，请重试。",

@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "로그인을 일시적으로 사용할 수 없습니다. 잠시 후 다시 시도해 주세요.",
     "Not enough credits. Top up to continue.": "크레딧이 부족합니다. 계속하려면 충전해 주세요.",
     "This top-up isn't available": "이 충전은 사용할 수 없습니다",
+    "Choose from 10 to 1,000 candidates.": "지원자를 10~1,000명 사이로 선택하세요.",
     "Choose one of the balances": "잔액 기준 중 하나를 선택해 주세요",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "오늘의 새 생성 한도에 도달했습니다. 내일 다시 시도해 주세요. 연습과 면접은 계속 이용할 수 있습니다.",
     "Couldn't get a reply right now. Please try again.": "지금은 답변을 받을 수 없습니다. 다시 시도해 주세요.",

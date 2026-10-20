@@ -1,4 +1,5 @@
 import { cn } from "cn"
+import type { ReactNode } from "react"
 
 import { MenuPill } from "@/components/menu-pill"
 
@@ -18,7 +19,15 @@ export function PillSelect({
   label?: string
   ariaLabel?: string
   value: string
-  options: { value: string; label: string; fontFamily?: string }[]
+  // `note`: a line under the option in the open menu; `display`: what the pill shows once
+  // it's chosen, instead of the label.
+  options: {
+    value: string
+    label: string
+    note?: string
+    fontFamily?: string
+    display?: ReactNode
+  }[]
   onChange: (value: string) => void
   disabled?: boolean
   className?: string

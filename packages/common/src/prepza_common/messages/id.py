@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "Masuk sedang tidak tersedia untuk sementara. Coba lagi sebentar lagi.",
     "Not enough credits. Top up to continue.": "Kredit tidak cukup. Isi ulang untuk melanjutkan.",
     "This top-up isn't available": "Isi ulang ini tidak tersedia",
+    "Choose from 10 to 1,000 candidates.": "Pilih 10 sampai 1.000 kandidat.",
     "Choose one of the balances": "Pilih salah satu batas saldo",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "Batas pembuatan baru hari ini sudah tercapai. Coba lagi besok; latihan dan wawancara tetap berjalan.",
     "Couldn't get a reply right now. Please try again.": "Belum bisa mendapatkan balasan saat ini. Coba lagi.",

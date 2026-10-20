@@ -13,7 +13,7 @@ test("a top-up opens the checkout the backend made", async ({ signInAs }) => {
   await visit(owner, `/companies/${company.id}/billing`);
   await owner.getByTestId("top-up").first().click();
   const dialog = owner.getByRole("dialog");
-  // The first top-up's button (the products come before the dialog's Close).
+  // The Top up button, for the slider's first count (it comes before the dialog's other buttons).
   const buy = dialog.getByRole("button").first();
   test.skip(await buy.isDisabled(), "Paddle's prices aren't set");
 

@@ -201,13 +201,14 @@ async def company_invoice(company_id: UUID, transaction_id: str) -> str:
     return response.json()["url"]
 
 
-async def company_checkout(company_id: UUID, price_id: str, buyer_id: str) -> str:
-    """The Paddle transaction of a checkout for one top-up into the company, made by billing;
-    its refusal of a price it doesn't sell (422) reaches the user unchanged."""
+async def company_checkout(company_id: UUID, candidates: int, buyer_id: str) -> str:
+    """The Paddle transaction of a checkout for a top-up of `candidates` into the company, made
+    by billing; its refusal of a count or a price it doesn't sell (422) reaches the user
+    unchanged."""
     response = await http.get_client().post(
         f"{settings.billing_url}/internal/companies/{company_id}/checkout",
         params={"buyer_id": buyer_id},
-        json={"price_id": price_id},
+        json={"candidates": candidates},
         headers=_headers(),
     )
 

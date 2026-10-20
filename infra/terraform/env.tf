@@ -49,9 +49,10 @@ locals {
     }
     billing = merge(
       {
-        INVOKER_AUDIENCE    = local.run_url["billing"]
-        PADDLE_ENVIRONMENT  = var.paddle_environment
-        PADDLE_CLIENT_TOKEN = var.paddle_client_token
+        INVOKER_AUDIENCE          = local.run_url["billing"]
+        PADDLE_ENVIRONMENT        = var.paddle_environment
+        PADDLE_CLIENT_TOKEN       = var.paddle_client_token
+        PADDLE_PRODUCT_CANDIDATES = var.paddle_product_candidates
       },
       { for key, price in var.paddle_prices : "PADDLE_PRICE_${upper(key)}" => price },
     )

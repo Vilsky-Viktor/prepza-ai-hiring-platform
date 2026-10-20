@@ -21,6 +21,9 @@ class Settings(ServiceSettings):
     paddle_price_topup_200: str = ""
     paddle_price_topup_600: str = ""
     paddle_price_topup_1000: str = ""
+    # The Paddle product a top-up of any number of candidates is sold under, at the price billing
+    # works out (helpers/credits.py); without it, that top-up isn't sold.
+    paddle_product_candidates: str = ""
     # Automatic top-up: the server-side API key that charges the saved card, and the $0
     # monthly price whose checkout saves it. Without both, it isn't offered.
     paddle_api_key: str = ""

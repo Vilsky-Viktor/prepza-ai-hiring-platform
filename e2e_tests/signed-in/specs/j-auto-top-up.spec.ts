@@ -39,10 +39,11 @@ test("an owner picks the automatic top-up's amount and level", async ({ signInAs
     const items = owner.getByRole("menu").getByRole("menuitemradio")
     await expect(items.nth(1)).toBeVisible()
     await shot(owner, `menu-${name}`)
-    const picked = (await items.last().textContent()) ?? ""
+    // The option's first line: the amount (its candidates under it) or the level.
+    const picked = (await items.last().innerText()).split("\n")[0]
     await items.last().click()
     await expect(owner.getByRole("menu")).toHaveCount(0)
-    await expect(pill).toHaveText(picked)
+    await expect(pill).toContainText(picked)
   }
 })
 

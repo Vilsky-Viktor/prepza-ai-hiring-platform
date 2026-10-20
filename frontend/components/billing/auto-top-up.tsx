@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
 
 import { useAuth } from "@/components/auth-provider"
+import { Dotted } from "@/components/dot"
 import { PillSelect } from "@/components/pill-select"
 import { Button } from "@/components/ui/button"
 import {
@@ -23,16 +24,20 @@ import { openCheckout } from "@/lib/paddle"
 import type { AutoTopUp, Catalog } from "@/types/billing"
 
 /** A wallet's automatic top-up: what it is now, and a dialog to turn it on, change or turn
- * off. Turning it on the first time opens Paddle's checkout to save the card. */
+ * off. Turning it on the first time opens Paddle's checkout to save the card. As a `card`, it
+ * has a title, what it does or is set to, and a button to set it up or change it. */
 export function AutoTopUpSetting({
   catalog,
   companyId,
+  card,
 }: {
   catalog: Catalog
   companyId: string
+  card?: boolean
 }) {
   const t = useTranslations("autoTopUp")
   const common = useTranslations("common")
+  const billing = useTranslations("billing")
   const locale = useLocale()
   const router = useRouter()
   const { user } = useAuth()
@@ -59,6 +64,10 @@ export function AutoTopUpSetting({
 
   const titles = Object.fromEntries(
     catalog.products.map((item) => [item.key, item.title])
+  )
+  // The candidates each amount buys, as billing's catalog says.
+  const buys = Object.fromEntries(
+    catalog.products.map((item) => [item.key, item.candidates])
   )
   const credits = (count: number) => count.toLocaleString(locale)
 
@@ -140,11 +149,51 @@ export function AutoTopUpSetting({
         ? t("waiting")
         : null
 
+  const set = setting.on || setting.waiting
+  // Once on, saving needs a change; turning it on doesn't.
+  const changed =
+    !setting.on ||
+    product !== setting.product ||
+    Number(threshold) !== setting.threshold
+
   return (
     <Dialog open={open} onOpenChange={handleOpen}>
       {/* Off: a button that says what it does. On (or waiting for the card): the setting, with
           the app's edit icon to change it. */}
-      {summary ? (
+      {card ? (
+        <div
+          className="flex items-center gap-4 rounded-2xl border p-5 max-sm:flex-col max-sm:items-stretch"
+          data-testid="auto-top-up"
+        >
+          <div className="min-w-0 flex-1 space-y-1">
+            <p className="font-heading text-base font-medium lowercase">
+              {t("title")}
+              <span className="text-primary">.</span>
+            </p>
+            <p
+              className="text-sm text-muted-foreground"
+              data-testid={set ? "auto-top-up-on" : undefined}
+            >
+              {setting.on && setting.product && setting.threshold
+                ? t("cardOn", {
+                    amount: titles[setting.product] ?? setting.product,
+                    threshold: credits(setting.threshold),
+                  })
+                : setting.waiting
+                  ? t("cardWaiting")
+                  : t("cardOff")}
+            </p>
+          </div>
+          <DialogTrigger
+            data-testid={set ? undefined : "set-up-auto-top-up"}
+            render={
+              <Button type="button" variant="outline" className="h-10 px-5" />
+            }
+          >
+            {set ? t("changeShort") : t("setUpShort")}
+          </DialogTrigger>
+        </div>
+      ) : summary ? (
         <p
           className="text-sm text-muted-foreground"
           data-testid="auto-top-up-on"
@@ -193,6 +242,21 @@ export function AutoTopUpSetting({
             options={setting.products.map((key) => ({
               value: key,
               label: titles[key] ?? key,
+              note: billing("candidates", { count: buys[key] ?? 0 }),
+              // The pill: the amount and, smaller, the candidates it buys.
+              display: (
+                <Dotted
+                  items={[
+                    titles[key] ?? key,
+                    <span
+                      key="candidates"
+                      className="text-sm text-muted-foreground"
+                    >
+                      {billing("candidates", { count: buys[key] ?? 0 })}
+                    </span>,
+                  ]}
+                />
+              ),
             }))}
           />
           <PillSelect
@@ -201,35 +265,34 @@ export function AutoTopUpSetting({
             onChange={setThreshold}
             options={setting.thresholds.map((value) => ({
               value: String(value),
-              label: t("under", { threshold: credits(value) }),
+              label: t("level", { threshold: credits(value) }),
             }))}
           />
         </form>
         <DialogFooter>
-          {setting.on || setting.waiting ? (
+          {set && (
             <Button
-              variant="outline"
-              className="h-10 px-5 text-base"
+              variant="secondary"
+              className="h-10 px-5 text-base sm:me-auto"
               disabled={saving}
               onClick={turnOff}
             >
               {t("turnOff")}
             </Button>
-          ) : (
-            <Button
-              variant="outline"
-              className="h-10 px-5 text-base"
-              disabled={saving}
-              onClick={() => setOpen(false)}
-            >
-              {common("cancel")}
-            </Button>
           )}
+          <Button
+            variant="outline"
+            className="h-10 px-5 text-base"
+            disabled={saving}
+            onClick={() => setOpen(false)}
+          >
+            {common("close")}
+          </Button>
           <Button
             type="submit"
             form="auto-top-up-form"
             className="h-10 px-5 text-base"
-            disabled={saving || !product || !threshold}
+            disabled={saving || !product || !threshold || !changed}
           >
             {setting.on ? t("save") : t("turnOn")}
           </Button>

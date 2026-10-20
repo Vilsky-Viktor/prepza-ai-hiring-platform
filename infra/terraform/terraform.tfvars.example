@@ -21,6 +21,8 @@ monthly_budget  = 300
 # "production" for the live site, with the production prices below (sandbox ones don't charge).
 paddle_environment  = "sandbox"
 paddle_client_token = ""
+# The product a top-up of any number of candidates is sold under; billing prices each one.
+paddle_product_candidates = ""
 paddle_prices = {
   topup_50   = ""
   topup_200  = ""

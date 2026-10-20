@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "Giriş geçici olarak kullanılamıyor. Lütfen birazdan tekrar deneyin.",
     "Not enough credits. Top up to continue.": "Yeterli krediniz yok. Devam etmek için kredi yükleyin.",
     "This top-up isn't available": "Bu kredi yüklemesi kullanılamıyor",
+    "Choose from 10 to 1,000 candidates.": "10 ile 1.000 arasında aday seçin.",
     "Choose one of the balances": "Bakiye eşiklerinden birini seçin",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "Bugünkü yeni oluşturma sınırına ulaşıldı. Lütfen yarın tekrar deneyin; pratik mülakatlar ve mülakatlar çalışmaya devam ediyor.",
     "Couldn't get a reply right now. Please try again.": "Şu anda yanıt alınamadı. Lütfen tekrar deneyin.",

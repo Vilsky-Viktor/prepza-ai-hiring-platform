@@ -285,8 +285,9 @@ export interface paths {
     put?: never
     /**
      * Create Checkout
-     * @description A Paddle checkout for one top-up, paid by the user into the company: billing makes it, so
-     *     whose wallet it pays into can't be changed in the browser.
+     * @description A Paddle checkout for a top-up of some number of candidates, paid by the user into the
+     *     company: billing checks the count and makes it at its price, so neither the price nor whose
+     *     wallet it pays into can be changed in the browser.
      */
     post: operations["create_checkout_companies__company_id__billing_checkout_post"]
     delete?: never
@@ -4189,10 +4190,13 @@ export interface components {
       /** Title */
       title: string
     }
-    /** TopUpCheckoutIn */
+    /**
+     * TopUpCheckoutIn
+     * @description A top-up of this many candidates; billing checks the count and sets the price.
+     */
     TopUpCheckoutIn: {
-      /** Price Id */
-      price_id: string
+      /** Candidates */
+      candidates: number
     }
     /**
      * TopUpCheckoutOut

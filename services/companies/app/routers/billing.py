@@ -51,10 +51,11 @@ async def get_invoice(company_id: UUID, transaction_id: str, user: CurrentUser) 
 async def create_checkout(
     company_id: UUID, body: TopUpCheckoutIn, user: CurrentUser
 ) -> TopUpCheckoutOut:
-    """A Paddle checkout for one top-up, paid by the user into the company: billing makes it, so
-    whose wallet it pays into can't be changed in the browser."""
+    """A Paddle checkout for a top-up of some number of candidates, paid by the user into the
+    company: billing checks the count and makes it at its price, so neither the price nor whose
+    wallet it pays into can be changed in the browser."""
     await require_editor(user, company_id)
 
     return TopUpCheckoutOut(
-        transaction_id=await billing.company_checkout(company_id, body.price_id, user.uid)
+        transaction_id=await billing.company_checkout(company_id, body.candidates, user.uid)
     )

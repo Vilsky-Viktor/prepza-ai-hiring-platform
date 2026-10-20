@@ -134,8 +134,10 @@ export interface paths {
     put?: never
     /**
      * Company Checkout
-     * @description A checkout for one of our top-ups, paid into the company by `buyer_id`: companies has
-     *     checked they're its owner or an admin. Any other price is refused (422).
+     * @description A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies
+     *     has checked they're its owner or an admin. What it buys and its price are set here from the
+     *     count (helpers/credits.py), and the candidates go in its custom data, which the webhook
+     *     grants; a count outside the range, or before Paddle's product is set, is refused (422).
      */
     post: operations["company_checkout_internal_companies__company_id__checkout_post"]
     delete?: never
@@ -724,6 +726,20 @@ export interface components {
       cents: number
     }
     /**
+     * CandidateTierOut
+     * @description A candidate's price in a top-up of any number of candidates, from this many. From
+     *     `upgrade_from` candidates on, the top-up buys the next tier's smallest one instead, which
+     *     costs no more (none for the last tier).
+     */
+    CandidateTierOut: {
+      /** From Candidates */
+      from_candidates: number
+      /** Cents */
+      cents: number
+      /** Upgrade From */
+      upgrade_from: number | null
+    }
+    /**
      * CatalogOut
      * @description What the pricing page and Paddle.js need. Prices are decided here, not in the client.
      */
@@ -750,6 +766,7 @@ export interface components {
       referral_company: number
       /** Products */
       products: components["schemas"]["TopUpOut"][]
+      custom: components["schemas"]["CustomTopUpOut"]
     }
     /** CategoryOut */
     CategoryOut: {
@@ -773,6 +790,21 @@ export interface components {
       custom_data: {
         [key: string]: string
       }
+    }
+    /**
+     * CustomTopUpOut
+     * @description A top-up of any number of candidates, from `min_candidates` to `max_candidates`, each at
+     *     its tier's price, smallest first.
+     */
+    CustomTopUpOut: {
+      /** Min Candidates */
+      min_candidates: number
+      /** Max Candidates */
+      max_candidates: number
+      /** On Sale */
+      on_sale: boolean
+      /** Tiers */
+      tiers: components["schemas"]["CandidateTierOut"][]
     }
     /** DayOut */
     DayOut: {
@@ -1085,10 +1117,13 @@ export interface components {
       /** Currency */
       currency?: string | null
     }
-    /** TopUpCheckoutIn */
+    /**
+     * TopUpCheckoutIn
+     * @description A top-up of this many candidates; billing checks the count and sets the price.
+     */
     TopUpCheckoutIn: {
-      /** Price Id */
-      price_id: string
+      /** Candidates */
+      candidates: number
     }
     /**
      * TopUpCheckoutOut

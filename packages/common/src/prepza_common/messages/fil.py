@@ -17,6 +17,7 @@ MESSAGES = {
     "Sign-in is temporarily unavailable. Please try again shortly.": "Pansamantalang hindi available ang pag-sign in. Subukang muli maya-maya.",
     "Not enough credits. Top up to continue.": "Kulang ang credits. Mag-top up para magpatuloy.",
     "This top-up isn't available": "Hindi available ang top-up na ito",
+    "Choose from 10 to 1,000 candidates.": "Pumili mula 10 hanggang 1,000 aplikante.",
     "Choose one of the balances": "Pumili ng isa sa mga balance threshold",
     "We've reached today's limit for new generations. Please try again tomorrow; practice and interviews keep working.": "Naabot na ang limit ng mga bagong generation ngayong araw. Subukang muli bukas; gumagana pa rin ang practice at mga interview.",
     "Couldn't get a reply right now. Please try again.": "Hindi makakuha ng sagot sa ngayon. Subukang muli.",
