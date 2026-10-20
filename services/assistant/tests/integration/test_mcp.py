@@ -68,7 +68,10 @@ async def connected(id_token: str, storage: Memory):
     async def callback_handler() -> AuthorizationCodeResult:
         params = answered["url"].params
 
-        return AuthorizationCodeResult(code=params["code"], state=params.get("state"))
+        # The answer names its issuer (RFC 9207), which the SDK checks against the metadata's.
+        return AuthorizationCodeResult(
+            code=params["code"], state=params.get("state"), iss=params.get("iss")
+        )
 
     metadata = OAuthClientMetadata(
         client_name="Integration app",
