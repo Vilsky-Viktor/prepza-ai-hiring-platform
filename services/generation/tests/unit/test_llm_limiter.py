@@ -62,3 +62,25 @@ def test_the_rate_is_24_a_second_until_it_is_set_in_controls(monkeypatch):
         return [await limiter.aacquire(blocking=False) for _ in range(25)]
 
     assert asyncio.run(many()) == [True] * 24 + [False]
+
+
+def test_held_calls_ask_again_at_different_moments_of_the_next_second(monkeypatch):
+    from app.constants.generation import LLM_WAIT_JITTER_SECONDS
+
+    redis = FakeRedis({"GENERATION_CALLS_PER_SECOND": 1})
+    now = [1000.5]
+    waits = []
+
+    async def wait(seconds):
+        waits.append(seconds)
+        now[0] = 1001.5
+
+    monkeypatch.setattr(llm_limiter, "get_redis", lambda: redis)
+    monkeypatch.setattr(llm_limiter.time, "time", lambda: now[0])
+    monkeypatch.setattr(llm_limiter.asyncio, "sleep", wait)
+    monkeypatch.setattr(llm_limiter.random, "uniform", lambda low, high: high)
+    redis.counts[f"{LLM_RATE_KEY}:1000"] = 1
+
+    assert asyncio.run(SharedRateLimiter().aacquire()) is True
+    # Half a second to the next one, and the jitter on top.
+    assert waits == [0.5 + LLM_WAIT_JITTER_SECONDS]

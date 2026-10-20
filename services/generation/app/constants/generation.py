@@ -98,6 +98,9 @@ DRAFT_CACHE_SECONDS = 30 * 24 * 60 * 60
 
 # Redis counters for the LLM requests made in each second, shared by all generation processes.
 LLM_RATE_KEY = "rate:llm"
+# A call held back for the next second waits up to this much longer, at random, so the held calls
+# don't all ask again at the same instant (and collide again, each ask a paid Redis command).
+LLM_WAIT_JITTER_SECONDS = 0.3
 # Connections of the checkpointer's own pool, on top of the SQLAlchemy pool.
 CHECKPOINTER_POOL_SIZE = 4
 

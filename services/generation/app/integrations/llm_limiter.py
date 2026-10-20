@@ -1,11 +1,12 @@
 import asyncio
 import logging
+import random
 import time
 
 from langchain_core.rate_limiters import BaseRateLimiter
 from prepza_common.limits import EVERYONE, limit, record_hit
 
-from app.constants.generation import LLM_RATE_KEY
+from app.constants.generation import LLM_RATE_KEY, LLM_WAIT_JITTER_SECONDS
 from app.integrations.redis import get_redis
 
 logger = logging.getLogger(__name__)
@@ -53,4 +54,5 @@ class SharedRateLimiter(BaseRateLimiter):
                 waited = True
                 await record_hit("OPENAI_THROTTLED", kind="provider:openai", scope=EVERYONE)
 
-            await asyncio.sleep(max(0.0, second + 1 - time.time()))
+            until_next = max(0.0, second + 1 - time.time())
+            await asyncio.sleep(until_next + random.uniform(0, LLM_WAIT_JITTER_SECONDS))
