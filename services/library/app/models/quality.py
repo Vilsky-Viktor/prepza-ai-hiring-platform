@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, Float, ForeignKey, String, Text, false
+from sqlalchemy import DateTime, Float, ForeignKey, Index, String, Text, false, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -12,6 +12,12 @@ class QuestionStats(Base):
     """How a question has been answered, from rounds' answer.recorded and session.scored events."""
 
     __tablename__ = "question_stats"
+    # Flagged questions by when they were flagged, for the verifier's sweep (migration 0019).
+    __table_args__ = (
+        Index(
+            "ix_question_stats_flagged_at", "flagged_at", postgresql_where=text("flag IS NOT NULL")
+        ),
+    )
 
     question_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("questions.id", ondelete="CASCADE"), primary_key=True

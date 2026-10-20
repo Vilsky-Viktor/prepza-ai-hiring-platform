@@ -16,10 +16,20 @@ from app.models.base import Base
 
 fileConfig(context.config.config_file_name)
 
+
+def include_object(object, name, type_, reflected, compare_to):
+    """topics.embedding is a pgvector column (migration 0011), read and written with SQL
+    (storage/reuse.py) rather than mapped: autogenerate leaves it alone."""
+
+    return not (type_ == "column" and name == "embedding" and object.table.name == "topics")
+
+
 engine = create_engine(sqlalchemy_url(settings.database_url))
 
 with engine.connect() as connection:
-    context.configure(connection=connection, target_metadata=Base.metadata)
+    context.configure(
+        connection=connection, target_metadata=Base.metadata, include_object=include_object
+    )
 
     with context.begin_transaction():
         context.run_migrations()
