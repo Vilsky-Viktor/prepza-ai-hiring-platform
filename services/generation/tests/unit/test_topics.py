@@ -3,7 +3,7 @@ import asyncio
 import pytest
 
 from app.integrations import llm
-from app.prompts.topics import TOPICS_PROMPT
+from app.prompts.topics import TOPICS_SYSTEM
 from app.schemas.topics import TopicList, TopicStructure
 from app.services.nodes.topics import revise_topics
 
@@ -90,14 +90,7 @@ def test_a_drafted_topic_keeps_at_most_max_subtopics():
 
 
 def test_the_plan_uses_every_topic_up_to_the_limit_it_includes():
-    prompt = TOPICS_PROMPT.format(
-        max_topics=10,
-        max_subtopics=10,
-        max_name=60,
-        language="English",
-        level="hard",
-        requirements="",
-    )
+    prompt = TOPICS_SYSTEM.format(max_topics=10, max_subtopics=10, max_name=60)
 
     assert "Up to 10 main topics, 10 included" in prompt
     assert "Never\n  merge distinct subjects to stay below the limit" in prompt

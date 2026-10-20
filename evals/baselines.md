@@ -241,3 +241,20 @@ miss is h17 ("How many times can a candidate take the test?" in Japanese: it ans
 which the platform guide doesn't state). That gap is the guide's: it should say whether a
 candidate can take a test again.
 
+## Topic and extraction prompts: role, data tagged (2026-10-20)
+
+The topic draft, its revision and the extraction start with a role; the requirements, current
+topics and reviewer instructions move to the user's message, tagged and read as data (the
+posting already was). Full pipeline, `gpt-6.1-sol` low, two domains, before → after (after also
+has the question prompts' change above), 40 questions of each judged:
+
+| Domain | Topics | Keys | Clarity | Relevance | Distractors | Price, time |
+|---|---|---|---|---|---|---|
+| spanish_travel (basic) | 10 → 10, the same subjects regrouped | 100% → 100% | 4.95 → 5.00 | 4.92 → 4.97 | 2.23 → 2.30 | $1.29 → $0.93, 303 → 264 s |
+| senior_accountant (hard) | 10 → 10, the same subjects regrouped | 100% → 95% (83.5–98.6; 2 keys with an unstated condition) | 4.97 → 4.88 | 2.75 → 2.98 | 2.65 → 2.80 | $1.83 → $1.63, 594 → 584 s |
+
+Both plans cover every requirement within the limits; nothing moved beyond its interval. Kept
+for rule 19 (a role, the company's text read as data) rather than for a measured gain. The hard
+accountant's relevance near 3 in both runs is the hard-level gap already known (Luna and Sol
+rows above).
+
