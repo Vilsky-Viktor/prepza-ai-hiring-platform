@@ -58,9 +58,10 @@ resource "google_compute_backend_service" "service" {
   # The security headers the nginx gateway adds locally (gateway/nginx.conf); the frontend adds
   # its own Content-Security-Policy, whose frame-ancestors says who may frame a page (no one, but
   # a company's own site its embedded interview), so it gets no X-Frame-Options.
+  # HSTS covers the subdomains too: any subdomain added later must serve HTTPS.
   custom_response_headers = concat(
     [
-      "Strict-Transport-Security: max-age=31536000",
+      "Strict-Transport-Security: max-age=31536000; includeSubDomains",
       "X-Content-Type-Options: nosniff",
       "Referrer-Policy: strict-origin-when-cross-origin",
       "Permissions-Policy: camera=(), microphone=(self), geolocation=()",
