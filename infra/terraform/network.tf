@@ -23,7 +23,7 @@ resource "google_compute_router" "main" {
 }
 
 # The NAT's one fixed address: the frontend's server-side calls to the API reach the load balancer
-# from it, so Cloud Armor's per-IP limit leaves it out (load_balancer.tf). One address gives about
+# from it, so Cloud Armor's per-IP limit leaves it out (edge_security.tf). One address gives about
 # 64,000 ports, far above what this size needs.
 resource "google_compute_address" "nat" {
   name       = "prepza-nat"
