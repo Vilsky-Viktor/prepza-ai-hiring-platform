@@ -1,15 +1,18 @@
 {
- "about": "Made-up subtopics in other languages, for question-only tests of generation in a language other than English: a Latin script with its own conventions (German), a script without spaces (Japanese) and a right-to-left one (Arabic). Topics and subtopics are written in the domain's language, as the pipeline writes them. Built by hand 2026-10-20; no company's text.",
+ "about": "Made-up subtopics in other languages, for question-only tests of generation in a language other than English, one per script family we ship: German (Latin with its own conventions), Japanese (CJK, no spaces), Arabic (right to left), Thai (no spaces, its own script), Hindi (Devanagari) and Russian (Cyrillic, plural-heavy). `language` is the site's language code. Topics and subtopics are written in the domain's language, as the pipeline writes them. Built by hand 2026-10-20; no company's text.",
  "domains": [
   {
    "id": "warehouse_lead_de",
    "kind": "job",
    "level": "medium",
-   "language": "German",
+   "language": "de",
    "topics": [
     {
      "topic": "Lagerlogistik",
-     "subtopics": ["Kommissioniermethoden", "Inventur und Bestandsabweichungen"]
+     "subtopics": [
+      "Kommissioniermethoden",
+      "Inventur und Bestandsabweichungen"
+     ]
     }
    ]
   },
@@ -17,11 +20,14 @@
    "id": "customer_support_ja",
    "kind": "job",
    "level": "basic",
-   "language": "Japanese",
+   "language": "ja",
    "topics": [
     {
      "topic": "顧客対応",
-     "subtopics": ["苦情対応の手順", "問い合わせの優先順位付け"]
+     "subtopics": [
+      "苦情対応の手順",
+      "問い合わせの優先順位付け"
+     ]
     }
    ]
   },
@@ -29,11 +35,59 @@
    "id": "pharmacy_technician_ar",
    "kind": "job",
    "level": "medium",
-   "language": "Arabic",
+   "language": "ar",
    "topics": [
     {
      "topic": "صرف الأدوية",
-     "subtopics": ["حساب الجرعات", "تخزين الأدوية"]
+     "subtopics": [
+      "حساب الجرعات",
+      "تخزين الأدوية"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hotel_receptionist_th",
+   "kind": "job",
+   "level": "basic",
+   "language": "th",
+   "topics": [
+    {
+     "topic": "งานต้อนรับส่วนหน้า",
+     "subtopics": [
+      "การเช็กอินและเช็กเอาต์",
+      "การจัดการคำร้องเรียนของแขก"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "payroll_clerk_hi",
+   "kind": "job",
+   "level": "medium",
+   "language": "hi",
+   "topics": [
+    {
+     "topic": "वेतन प्रबंधन",
+     "subtopics": [
+      "वेतन से कटौतियों की गणना",
+      "ओवरटाइम भुगतान की गणना"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "logistics_coordinator_ru",
+   "kind": "job",
+   "level": "hard",
+   "language": "ru",
+   "topics": [
+    {
+     "topic": "Управление поставками",
+     "subtopics": [
+      "Планирование маршрутов доставки",
+      "Управление складскими запасами"
+     ]
     }
    ]
   }

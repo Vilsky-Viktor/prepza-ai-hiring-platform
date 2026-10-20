@@ -27,6 +27,7 @@ from datetime import UTC, datetime
 from common import DATASETS, RESULTS, cost, generation_models, is_multi, load, run_record, save
 from langchain_core.callbacks import get_usage_metadata_callback
 from langchain_core.messages import HumanMessage
+from prepza_common.constants import LANGUAGES
 from prepza_common.examples import example_count
 
 from app.config.settings import settings
@@ -57,7 +58,7 @@ async def subtopic_questions(
         options=OPTIONS,
         max_chars=MAX_OPTION_CHARS,
         existing="None",
-        language=domain.get("language", "English"),
+        language=LANGUAGES[domain.get("language", "en")],
     )
     structured = llm.get_generation_llm().with_structured_output(QuestionItemList)
     result = await structured.ainvoke([HumanMessage(content=prompt)])
@@ -83,7 +84,7 @@ async def subtopic_questions(
             "level": domain["level"],
             "topic": topic,
             "subtopic": subtopic,
-            "language": domain.get("language", "English"),
+            "language": domain.get("language", "en"),
             "question": question["text"],
             "options": question["options"],
         }

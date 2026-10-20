@@ -189,10 +189,11 @@ distractors 2.82 ± 0.12 (the reference run of the old wording: 4.95, 4.23, 3.03
 judge's run-to-run noise). The three runs cost $1.42.
 
 **Other languages** (`language_questions.json`, new: German medium, Japanese basic, Arabic
-medium; 35 questions, 11 multi-answer, `gpt-6.1-sol` low, $0.12): keys 100% (90.1–100), one
-defensible answer 100%, clarity 5.00, relevance 3.86 ± 0.27, distractors **1.83 ± 0.32**. The
-wrong options are far less tempting than in English (2.8–3.0): the gap to work on in other
-languages.
+medium, Thai basic, Hindi medium, Russian hard; 72 questions, 24 multi-answer, `gpt-6.1-sol` low,
+$0.24): keys 100% (94.9–100), one defensible answer 100%, clarity 4.99, relevance 3.89 ± 0.23,
+distractors **2.28 ± 0.24**. The wrong options are less tempting than in English (2.8–3.0): the
+gap to work on in other languages. (A first build with only German, Japanese and Arabic, 35
+questions, scored 1.83.)
 
 **Help chat** (`help_chat.py`, new; `gpt-6-luna` at none, 18 messages × 3, judged by
 `gpt-6.1-sol` high): passed 49 of 54, 90.7% (80.1–96.0); made up 5.6%; sign-in markers 54 of

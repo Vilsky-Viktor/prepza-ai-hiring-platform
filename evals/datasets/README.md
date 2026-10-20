@@ -46,9 +46,10 @@ questions) and fixed topics and subtopics (for question-only tests, cheap and st
 
 ## `language_inputs.json` (by hand, 2026-10-20)
 
-3 made-up domains in other languages, for generation in the language a test is written in:
-German (medium), Japanese (basic, no spaces between words) and Arabic (medium, right to left),
-2 subtopics each, written in that language. Feeds `language_questions.json`.
+6 made-up domains in other languages, one per script family the site ships: German (Latin,
+medium), Japanese (CJK, basic), Arabic (right to left, medium), Thai (basic), Hindi
+(Devanagari, medium) and Russian (Cyrillic, hard), 2 subtopics each, written in that language;
+`language` is the site's language code. Feeds `language_questions.json`.
 
 ## `questions.json` (`build_questions.py`, `gpt-6.1-sol` low, 2026-10-04)
 
@@ -81,7 +82,7 @@ with 3 a right one unmarked), so 2 or 3 stay marked.
 
 ## `language_questions.json` (`build_questions.py --inputs language_inputs.json`, 2026-10-20)
 
-36 questions on `language_inputs.json`'s subtopics, 6 a subtopic with 2 select-all-that-apply,
+72 questions on `language_inputs.json`'s subtopics, 6 a subtopic with 2 select-all-that-apply,
 each item tagged with its `language`. Shows whether quality holds in the languages tests are
 written in; small, so it flags large drops only.
 

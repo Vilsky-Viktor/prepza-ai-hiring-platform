@@ -134,7 +134,7 @@ def main() -> None:
 
         for item in items:
             kind = "multi" if sum(o["correct"] for o in item["options"]) > 1 else "single"
-            language = item.get("language", "English")
+            language = item.get("language", "en")
             coverage[(name, item["domain"], item["level"], language, kind)] += 1
             texts.append((f"{name} {item['id']}", item["question"]))
             seen = every_question.setdefault(normal(item["question"]), f"{name} {item['id']}")

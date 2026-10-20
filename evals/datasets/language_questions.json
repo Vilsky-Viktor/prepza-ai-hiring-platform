@@ -4,12 +4,12 @@
  "built": "2026-10-20",
  "run": {
   "date": "2026-10-20",
-  "commit": "abd1cbf44+changes",
+  "commit": "40b732da3+changes",
   "prompts": "b27c8b0865",
   "judge": "gpt-6.1-sol (high)",
   "model": "interview gpt-6.1-sol (low)",
-  "cost": 0.1248,
-  "seconds": 39
+  "cost": 0.2408,
+  "seconds": 94
  },
  "items": [
   {
@@ -17,23 +17,23 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Kommissioniermethoden",
-   "language": "German",
-   "question": "Sechs Aufträge enthalten dieselben zehn Artikel. Jeder Entnahmeplatz soll für alle sechs Aufträge nur einmal angefahren werden; ein Wagen mit sechs getrennten Auftragsbehältern reicht aus. Welche Vorgehensweise erfüllt diese Vorgabe?",
+   "language": "de",
+   "question": "Kleinteile liegen in einem automatischen Behälterlager. Die Beschäftigten sollen an festen Arbeitsplätzen bleiben, während die benötigten Behälter zu ihnen transportiert werden. Welches Kommissionierprinzip passt dazu?",
    "options": [
     {
-     "answer": "Aufträge einzeln kommissionieren und jeweils alle Entnahmeplätze erneut anfahren.",
+     "answer": "Person-zur-Ware-Kommissionierung",
      "correct": false
     },
     {
-     "answer": "Aufträge einzeln kommissionieren und dabei wechselnde Laufwege nutzen.",
-     "correct": false
-    },
-    {
-     "answer": "Aufträge gemeinsam kommissionieren und direkt auf die Auftragsbehälter verteilen.",
+     "answer": "Ware-zur-Person-Kommissionierung",
      "correct": true
     },
     {
-     "answer": "Aufträge nacheinander kommissionieren und anschließend gemeinsam zum Versand bringen.",
+     "answer": "Kommissionierung mit mitfahrendem Bediener",
+     "correct": false
+    },
+    {
+     "answer": "Dezentrale Kommissionierung direkt am Lagerfach",
      "correct": false
     }
    ],
@@ -44,23 +44,23 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Kommissioniermethoden",
-   "language": "German",
-   "question": "Ein Auftragsbehälter durchläuft drei Kommissionierzonen nacheinander. Die Bearbeitung beginnt jeweils sofort nach Ankunft. Wie lange dauert es vom Bearbeitungsbeginn in Zone A bis zum Bearbeitungsende in Zone C?\n```text\nBearbeitung Zone A: 3 Minuten\nBearbeitung Zone B: 5 Minuten\nBearbeitung Zone C: 2 Minuten\nTransport A → B und B → C: jeweils 1 Minute\n```",
+   "language": "de",
+   "question": "Die beiden Aufträge werden gemeinsam zweistufig kommissioniert. Welche Gesamtmengen werden in der ersten Stufe entnommen, bevor die Ware auftragsweise verteilt wird?\n```text\nAuftrag 1: Artikel A 3 Stück, Artikel B 2 Stück\nAuftrag 2: Artikel A 4 Stück, Artikel B 1 Stück\n```",
    "options": [
     {
-     "answer": "10 Minuten",
-     "correct": false
-    },
-    {
-     "answer": "12 Minuten",
+     "answer": "Artikel A: 7 Stück; Artikel B: 3 Stück",
      "correct": true
     },
     {
-     "answer": "13 Minuten",
+     "answer": "Artikel A: 3 Stück; Artikel B: 1 Stück",
      "correct": false
     },
     {
-     "answer": "11 Minuten",
+     "answer": "Artikel A: 4 Stück; Artikel B: 2 Stück",
+     "correct": false
+    },
+    {
+     "answer": "Artikel A: 6 Stück; Artikel B: 4 Stück",
      "correct": false
     }
    ],
@@ -71,24 +71,24 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Kommissioniermethoden",
-   "language": "German",
-   "question": "Kleine Artikel liegen in automatisch bereitstellbaren Behältern. Die Beschäftigten sollen an festen Arbeitsplätzen bleiben, während das System die benötigten Behälter anliefert. Welches Kommissionierprinzip entspricht dieser Anforderung?",
+   "language": "de",
+   "question": "Mehrere Kundenaufträge werden zweistufig kommissioniert: Zuerst werden ihre Artikel gemeinsam entnommen, danach auftragsweise verteilt. Welche Aussagen über dieses Verfahren treffen zu?",
    "options": [
     {
-     "answer": "Ware-zur-Person-Kommissionierung",
+     "answer": "Die zweite Stufe ersetzt die Zuordnung zu Kundenaufträgen.",
+     "correct": false
+    },
+    {
+     "answer": "Die erste Stufe fasst Bedarf mehrerer Aufträge zusammen.",
      "correct": true
     },
     {
-     "answer": "Beleggestützte Person-zur-Ware-Kommissionierung",
+     "answer": "Die erste Stufe schließt jeden Kundenauftrag einzeln ab.",
      "correct": false
     },
     {
-     "answer": "Sprachgeführte Person-zur-Ware-Kommissionierung",
-     "correct": false
-    },
-    {
-     "answer": "Person-zur-Ware-Kommissionierung",
-     "correct": false
+     "answer": "Die zweite Stufe ordnet entnommene Mengen einzelnen Aufträgen zu.",
+     "correct": true
     }
    ],
    "id": "m0002"
@@ -98,23 +98,23 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Kommissioniermethoden",
-   "language": "German",
-   "question": "Beim Kommissionieren müssen beide Hände frei bleiben. Die Beschäftigten sollen Entnahmeinformationen hören und Entnahmen mündlich bestätigen, ohne auf eine Anzeige zu schauen. Welches Verfahren passt dazu?",
+   "language": "de",
+   "question": "Ein Auftrag enthält Artikel aus drei Lagerzonen. Jede Zone kommissioniert ihren Teil gleichzeitig in einen eigenen Behälter. Was ist anschließend erforderlich, bevor der Auftrag vollständig als eine Sendung verpackt wird?",
    "options": [
     {
-     "answer": "Pick-by-Light mit Fachanzeige und Quittiertaste",
+     "answer": "Den gesamten Auftrag nochmals in einer Zone kommissionieren.",
      "correct": false
     },
     {
-     "answer": "Pick-by-Scan mit Handscanner und Display",
+     "answer": "Jeden Teilauftrag als vollständigen Auftrag abschließen.",
      "correct": false
     },
     {
-     "answer": "Pick-by-Vision mit Datenbrille und visueller Führung",
+     "answer": "Die Behälter nacheinander durch alle Zonen schicken.",
      "correct": false
     },
     {
-     "answer": "Pick-by-Voice mit Headset und Mikrofon",
+     "answer": "Die drei Teilaufträge auftragsbezogen zusammenführen.",
      "correct": true
     }
    ],
@@ -125,24 +125,24 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Kommissioniermethoden",
-   "language": "German",
-   "question": "Ein Pick-by-Light-System zeigt am Entnahmefach die Sollmenge an. Nach der Entnahme drücken Beschäftigte die Quittiertaste; Sensoren zur Mengenprüfung fehlen. Welche Aussagen treffen zu?",
+   "language": "de",
+   "question": "Ein Pick-by-Voice-System gibt Entnahmeanweisungen ausschließlich über ein Headset aus und nimmt Bestätigungen ausschließlich per Sprache entgegen. Eine Artikelidentifikation ist nicht eingebunden. Welche Aussagen treffen zu?",
    "options": [
     {
-     "answer": "Die Fachanzeige kennzeichnet den vorgesehenen Entnahmeort.",
+     "answer": "Zur Bestätigung muss kein Handterminal bedient werden.",
      "correct": true
     },
     {
-     "answer": "Die Quittiertaste ermittelt die tatsächlich entnommene Stückzahl.",
+     "answer": "Bestätigungen prüfen automatisch die Identität entnommener Artikel.",
      "correct": false
     },
     {
-     "answer": "Die Quittierung beweist nicht die tatsächlich entnommene Menge.",
+     "answer": "Entnahmeanweisungen werden akustisch übermittelt.",
      "correct": true
     },
     {
-     "answer": "Die Mengenanzeige verhindert die Entnahme einer falschen Stückzahl.",
-     "correct": false
+     "answer": "Bestätigungen erfolgen durch gesprochene Eingaben.",
+     "correct": true
     }
    ],
    "id": "m0004"
@@ -151,25 +151,25 @@
    "domain": "warehouse_lead_de",
    "level": "medium",
    "topic": "Lagerlogistik",
-   "subtopic": "Inventur und Bestandsabweichungen",
-   "language": "German",
-   "question": "Der Zählbestand enthält den noch ungebuchten Wareneingang vollständig. Weitere offene Buchungen gibt es nicht. Welche Bestandsabweichung bleibt nach Buchung des Wareneingangs?\n```text\nBuchbestand vor Wareneingang: 100 Stück\nNoch ungebuchter Wareneingang: 6 Stück\nZählbestand: 94 Stück\n```",
+   "subtopic": "Kommissioniermethoden",
+   "language": "de",
+   "question": "Bei Pick-by-Light liegt im richtigen Fach versehentlich ein falscher Artikel. Stückzahl und Tastenbestätigung stimmen. Beide Artikel haben unterschiedliche Barcodes. Welche zusätzliche Prüfung erkennt die Artikelverwechslung sicher?",
    "options": [
     {
-     "answer": "Fehlbestand von 12 Stück",
+     "answer": "Entnommene Stückzahl erneut mit der Sollmenge abgleichen.",
+     "correct": false
+    },
+    {
+     "answer": "Bestätigte Fachnummer mit der angezeigten Fachnummer abgleichen.",
+     "correct": false
+    },
+    {
+     "answer": "Fachbarcode scannen und mit dem Sollfach abgleichen.",
+     "correct": false
+    },
+    {
+     "answer": "Artikelbarcode scannen und mit dem Sollartikel abgleichen.",
      "correct": true
-    },
-    {
-     "answer": "Fehlbestand von 6 Stück",
-     "correct": false
-    },
-    {
-     "answer": "Fehlbestand von 0 Stück",
-     "correct": false
-    },
-    {
-     "answer": "Mehrbestand von 12 Stück",
-     "correct": false
     }
    ],
    "id": "m0005"
@@ -179,24 +179,24 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Inventur und Bestandsabweichungen",
-   "language": "German",
-   "question": "Bei einem Artikel ergibt die erste Zählung einen hohen Fehlbestand. Alle Warenbewegungen sind korrekt gebucht, die Ursache ist unbekannt. Was ist vor einer Bestandskorrektur zu tun?",
+   "language": "de",
+   "question": "Bei der Inventur sind die aufgeführten Bewegungen bereits körperlich erfolgt, aber noch nicht gebucht. Welche Bestandsabweichung bleibt nach ihrer korrekten Buchung?\n```text\nBuchbestand: 120 Stück\nZählbestand: 111 Stück\nUngebuchter Wareneingang: 8 Stück\nUngebuchter Warenausgang: 5 Stück\n```",
    "options": [
     {
-     "answer": "Die Differenz mit anderen Artikeln verrechnen",
+     "answer": "Fehlbestand von 6 Stück",
      "correct": false
     },
     {
-     "answer": "Den Fehlbestand sofort als Diebstahl buchen",
-     "correct": false
-    },
-    {
-     "answer": "Den Buchbestand als Zählergebnis übernehmen",
-     "correct": false
-    },
-    {
-     "answer": "Den Bestand unabhängig nachzählen lassen",
+     "answer": "Fehlbestand von 12 Stück",
      "correct": true
+    },
+    {
+     "answer": "Fehlbestand von 9 Stück",
+     "correct": false
+    },
+    {
+     "answer": "Fehlbestand von 4 Stück",
+     "correct": false
     }
    ],
    "id": "m0006"
@@ -206,23 +206,23 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Inventur und Bestandsabweichungen",
-   "language": "German",
-   "question": "Ein falscher Buchbestand soll die körperliche Inventur nicht beeinflussen. Welche Maßnahmen verhindern, dass dieser Wert als vermeintliches Zählergebnis übernommen wird?",
+   "language": "de",
+   "question": "Eine erste Inventurzählung ergibt einen unerklärten Fehlbestand. Welche Maßnahmen dienen dazu, vor einer Bestandskorrektur die Abweichung zu prüfen?",
    "options": [
     {
-     "answer": "Zählergebnisse bei Abweichungen durch Buchmengen ersetzen",
+     "answer": "Den Fehlbestand ohne weitere Prüfung als Schwund buchen.",
      "correct": false
     },
     {
-     "answer": "Buchmengen als vorausgefüllte Zählergebnisse bereitstellen",
+     "answer": "Den Buchbestand sofort dem ersten Zählergebnis anpassen.",
      "correct": false
     },
     {
-     "answer": "Buchmengen auf den Zähllisten ausblenden",
+     "answer": "Offene Warenbewegungen mit den Belegen abgleichen.",
      "correct": true
     },
     {
-     "answer": "Kontrollzählungen ohne Kenntnis der Buchmengen durchführen",
+     "answer": "Den Bestand unabhängig erneut zählen lassen.",
      "correct": true
     }
    ],
@@ -233,23 +233,23 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Inventur und Bestandsabweichungen",
-   "language": "German",
-   "question": "Der Buchbestand beträgt 50 Stück, das Zählergebnis 40 Stück. Welche Fehler erklären diese Differenz jeweils allein, wenn ansonsten alle Vorgänge und Zählungen korrekt sind?",
+   "language": "de",
+   "question": "Welche Vorgänge verursachen jeweils für sich einen höheren Buchbestand als den tatsächlich vorhandenen Bestand? Ausgangspunkt ist jeweils ein vollständig übereinstimmender Bestand.",
    "options": [
     {
-     "answer": "Eine Entnahme von zehn Stück blieb ungebucht",
-     "correct": true
-    },
-    {
-     "answer": "Zehn vorhandene Stück wurden beim Zählen übersehen",
-     "correct": true
-    },
-    {
-     "answer": "Ein Wareneingang über zehn Stück blieb ungebucht",
+     "answer": "Ein Wareneingang wird geliefert, aber nicht gebucht.",
      "correct": false
     },
     {
-     "answer": "Ein Wareneingang über zehn Stück wurde doppelt gebucht",
+     "answer": "Ein Wareneingang wird einmal geliefert, aber doppelt gebucht.",
+     "correct": true
+    },
+    {
+     "answer": "Ein Warenausgang wird durchgeführt, aber nicht gebucht.",
+     "correct": true
+    },
+    {
+     "answer": "Ware wird gestohlen, aber nicht ausgebucht.",
      "correct": true
     }
    ],
@@ -260,23 +260,23 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Inventur und Bestandsabweichungen",
-   "language": "German",
-   "question": "Um 10 Uhr werden 80 Stück gezählt. Danach werden fünf Stück entnommen und korrekt gebucht. Weitere Bewegungen gibt es nicht. Welcher Zählbestand ist für den Vergleich mit dem Buchbestand um 11 Uhr anzusetzen?",
+   "language": "de",
+   "question": "Während einer Stichtagsinventur muss eine bereits gezählte Palette vor Abschluss der Zählung versendet werden. Wie bleibt das Zählergebnis zum Inventurstichtag nachvollziehbar?",
    "options": [
     {
-     "answer": "85 Stück",
+     "answer": "Palette unabhängig vom Versandzeitpunkt im Zählergebnis belassen.",
      "correct": false
     },
     {
-     "answer": "80 Stück",
+     "answer": "Abgang erst nach Abschluss der Inventur dokumentieren.",
      "correct": false
     },
     {
-     "answer": "70 Stück",
+     "answer": "Palette unabhängig vom Versandzeitpunkt aus der Zählung streichen.",
      "correct": false
     },
     {
-     "answer": "75 Stück",
+     "answer": "Abgang mit Zeitpunkt dokumentieren und stichtagsgerecht abgrenzen.",
      "correct": true
     }
    ],
@@ -287,51 +287,51 @@
    "level": "medium",
    "topic": "Lagerlogistik",
    "subtopic": "Inventur und Bestandsabweichungen",
-   "language": "German",
-   "question": "Bei zwei verschiedenen Artikeln entstehen ein Fehlbestand und ein gleich hoher Mehrbestand, jeweils 200 Euro. Beide Abweichungen sind bestätigt. Wie sind die Bestandsmengen zu korrigieren?",
+   "language": "de",
+   "question": "Bei früheren Inventuren übernahmen Zählende wiederholt den angezeigten Sollbestand, statt vollständig zu zählen. Welche Änderung verhindert gezielt diese Orientierung am Sollbestand?",
    "options": [
     {
-     "answer": "Beide Artikelmengen wegen des Wertausgleichs unverändert lassen",
+     "answer": "Zähllisten mit deutlich hervorgehobenen Sollmengen verwenden.",
      "correct": false
     },
     {
-     "answer": "Nur die Artikelmenge mit dem Fehlbestand anpassen",
+     "answer": "Sollmengen vor Zählbeginn gemeinsam bestätigen lassen.",
      "correct": false
     },
     {
-     "answer": "Nur die Artikelmenge mit dem Mehrbestand anpassen",
-     "correct": false
-    },
-    {
-     "answer": "Beide Artikelmengen getrennt an die Zählbestände anpassen",
+     "answer": "Zähllisten ohne angezeigte Sollmengen verwenden.",
      "correct": true
+    },
+    {
+     "answer": "Nur Positionen mit hohen Sollmengen zählen.",
+     "correct": false
     }
    ],
    "id": "m0010"
   },
   {
-   "domain": "customer_support_ja",
-   "level": "basic",
-   "topic": "顧客対応",
-   "subtopic": "苦情対応の手順",
-   "language": "Japanese",
-   "question": "顧客が商品の不具合について話し始めました。緊急の危険はなく、詳しい状況はまだ分かりません。担当者はまずどう対応しますか。",
+   "domain": "warehouse_lead_de",
+   "level": "medium",
+   "topic": "Lagerlogistik",
+   "subtopic": "Inventur und Bestandsabweichungen",
+   "language": "de",
+   "question": "Im Lager stehen eigene Waren und eindeutig gekennzeichnete Konsignationswaren eines Lieferanten. Letztere bleiben bis zur Entnahme dessen wirtschaftliches Eigentum. Wie sind sie bei der Ermittlung des eigenen Warenbestands nach HGB zu behandeln?",
    "options": [
     {
-     "answer": "原因を推測し、商品の使い方を説明する",
+     "answer": "Gemeinsam erfassen und erst nach Lieferantenrechnung ausschließen.",
      "correct": false
     },
     {
-     "answer": "詳しい状況を聞く前に、返金を約束する",
+     "answer": "Gemeinsam erfassen und in den eigenen Warenbestand einbeziehen.",
      "correct": false
     },
     {
-     "answer": "話を遮らずに聞き、要点を確認する",
+     "answer": "Getrennt erfassen und zum halben Warenwert einbeziehen.",
+     "correct": false
+    },
+    {
+     "answer": "Getrennt erfassen und vom eigenen Warenbestand ausschließen.",
      "correct": true
-    },
-    {
-     "answer": "説明を途中で止め、交換手続きを始める",
-     "correct": false
     }
    ],
    "id": "m0011"
@@ -341,23 +341,23 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "苦情対応の手順",
-   "language": "Japanese",
-   "question": "注文内容を伝える前に本人確認が必要な窓口です。注文者の家族から、注文番号だけを示して配送への苦情がありました。どう対応しますか。",
+   "language": "ja",
+   "question": "顧客が配送の遅れへの不満を話し始めました。安全上の問題はなく、まだ事情を聞けていません。最初に取る対応はどれですか。",
    "options": [
     {
-     "answer": "家族だと名乗れば注文内容を伝える",
+     "answer": "事情を聞く前に、次回購入の割引を勧める",
      "correct": false
     },
     {
-     "answer": "必要な本人確認を行ってから案内する",
+     "answer": "話を途中で止め、配送規約を読み上げる",
+     "correct": false
+    },
+    {
+     "answer": "話を遮らずに聞き、不満の内容を把握する",
      "correct": true
     },
     {
-     "answer": "注文番号が合えば配送先を伝える",
-     "correct": false
-    },
-    {
-     "answer": "苦情への対応を優先して確認を省く",
+     "answer": "事情を聞く前に、配送会社の責任だと伝える",
      "correct": false
     }
    ],
@@ -368,23 +368,23 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "苦情対応の手順",
-   "language": "Japanese",
-   "question": "顧客の返金希望を聞き、購入状況を確認しました。返金には責任者の承認が必要で、担当者には決定権がありません。次にどう対応しますか。",
+   "language": "ja",
+   "question": "顧客から二重請求の苦情を受けました。請求記録は未確認です。この段階で適切な対応はどれですか。",
    "options": [
     {
-     "answer": "承認が必要と伝え、責任者へ引き継ぐ",
+     "answer": "二重請求を認め、確認前に返金を約束する",
+     "correct": false
+    },
+    {
+     "answer": "不便をかけたことを詫び、請求記録を確認する",
      "correct": true
     },
     {
-     "answer": "返金すると伝え、後で承認を求める",
+     "answer": "操作ミスと判断し、顧客に再確認を求める",
      "correct": false
     },
     {
-     "answer": "承認を待たず、担当者の判断で断る",
-     "correct": false
-    },
-    {
-     "answer": "決定権がないと伝え、対応を終了する",
+     "answer": "請求は正常と伝え、問い合わせを終了する",
      "correct": false
     }
    ],
@@ -395,24 +395,24 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "苦情対応の手順",
-   "language": "Japanese",
-   "question": "調査が終わる前に、約束した回答期限を迎えます。まだ原因も完了日も確定していません。顧客への連絡はどうしますか。",
+   "language": "ja",
+   "question": "苦情を聞き終え、解決策を検討する前に内容を確認します。この確認で適切な対応はどれですか。",
    "options": [
     {
-     "answer": "回答期限を延ばし、顧客への連絡は省く",
-     "correct": false
-    },
-    {
-     "answer": "調査を急がせるため、解決済みと伝える",
-     "correct": false
-    },
-    {
-     "answer": "期限内に進捗と次の連絡予定を伝える",
+     "answer": "顧客が希望する解決を尋ねる",
      "correct": true
     },
     {
-     "answer": "原因が確定するまで連絡を見送る",
+     "answer": "記録と違う点は、顧客の記憶違いと決める",
      "correct": false
+    },
+    {
+     "answer": "希望を聞いたら、実現可能性を確認せず約束する",
+     "correct": false
+    },
+    {
+     "answer": "起きたことを要約し、認識の一致を確かめる",
+     "correct": true
     }
    ],
    "id": "m0014"
@@ -422,24 +422,24 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "苦情対応の手順",
-   "language": "Japanese",
-   "question": "苦情を別の担当者へ引き継ぐため、対応記録を作ります。正確な引き継ぎに必要な記録方法はどれですか。",
+   "language": "ja",
+   "question": "希望された返金額は担当者の承認権限を超えています。社内手順では上司の判断が必要です。担当者は次にどう対応しますか。",
    "options": [
     {
-     "answer": "約束した対応内容と期限を記録する",
-     "correct": true
-    },
-    {
-     "answer": "確認済みの事実と推測を区別する",
-     "correct": true
-    },
-    {
-     "answer": "顧客が求めている対応を記録する",
-     "correct": true
-    },
-    {
-     "answer": "解決後は、それまでの対応履歴を消す",
+     "answer": "担当者の権限内の金額で、一方的に返金を確定する",
      "correct": false
+    },
+    {
+     "answer": "希望額を返金すると約束し、後から承認を求める",
+     "correct": false
+    },
+    {
+     "answer": "担当者には決められないと伝え、対応を終了する",
+     "correct": false
+    },
+    {
+     "answer": "上司の判断が必要と伝え、経緯を引き継ぐ",
+     "correct": true
     }
    ],
    "id": "m0015"
@@ -449,24 +449,24 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "苦情対応の手順",
-   "language": "Japanese",
-   "question": "顧客から「届いた商品が壊れていた」と苦情がありました。原因は未確認です。最初の応対として適切なものはどれですか。",
+   "language": "ja",
+   "question": "調査が必要な苦情について、本日中の回答を約束しました。期限前ですが、調査は終わっていません。次の対応はどれですか。",
    "options": [
     {
-     "answer": "配送会社の責任だと断定して伝える",
+     "answer": "結論が出るまで待ち、調査後にまとめて連絡する",
      "correct": false
     },
     {
-     "answer": "顧客の扱い方が原因だと決めつける",
+     "answer": "期限内に進捗を伝え、次の連絡時刻を約束する",
+     "correct": true
+    },
+    {
+     "answer": "回答できないため、顧客からの再連絡を待つ",
      "correct": false
     },
     {
-     "answer": "不便をかけていることにおわびする",
-     "correct": true
-    },
-    {
-     "answer": "破損の状態や到着時の状況を確認する",
-     "correct": true
+     "answer": "調査途中の推測を、確定した結果として伝える",
+     "correct": false
     }
    ],
    "id": "m0016"
@@ -475,25 +475,25 @@
    "domain": "customer_support_ja",
    "level": "basic",
    "topic": "顧客対応",
-   "subtopic": "問い合わせの優先順位付け",
-   "language": "Japanese",
-   "question": "問い合わせは、業務への影響が大きく、対応の遅れによる損失が迫っているものを優先します。最優先にするのはどれですか。",
+   "subtopic": "苦情対応の手順",
+   "language": "ja",
+   "question": "返金完了後、苦情対応の記録を作成します。個人情報は社内規程に従って扱います。記録に残す内容として適切なのはどれですか。",
    "options": [
     {
-     "answer": "全利用者向けの色変更を、来月までに希望している",
-     "correct": false
-    },
-    {
-     "answer": "全利用者の決済が停止し、現在の注文を失っている",
+     "answer": "確認できた事実と実施した対応",
      "correct": true
     },
     {
-     "answer": "一人の表示が崩れているが、購入は完了できる",
+     "answer": "顧客が申し出た苦情の内容",
+     "correct": true
+    },
+    {
+     "answer": "確認せずに推測した顧客の悪意",
      "correct": false
     },
     {
-     "answer": "一人が操作説明を求め、業務は継続できている",
-     "correct": false
+     "answer": "顧客と合意した解決内容",
+     "correct": true
     }
    ],
    "id": "m0017"
@@ -503,23 +503,23 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "問い合わせの優先順位付け",
-   "language": "Japanese",
-   "question": "現在は10時です。重要度が同じ問い合わせは、初回回答期限が早い順に対応します。この受付一覧では、どの順番になりますか。\n```text\n問い合わせ  受付時刻  初回回答期限\nA           09:00     11:00\nB           09:30     10:15\nC           08:30     12:00\n```",
+   "language": "ja",
+   "question": "影響範囲と業務停止の有無を優先する窓口です。受付時刻が同じなら、どの問い合わせに最初に対応しますか。",
    "options": [
     {
-     "answer": "B → C → A",
+     "answer": "全利用者に業務を妨げない表示ずれがある",
      "correct": false
     },
     {
-     "answer": "C → A → B",
-     "correct": false
-    },
-    {
-     "answer": "B → A → C",
+     "answer": "全利用者が注文を確定できない",
      "correct": true
     },
     {
-     "answer": "A → B → C",
+     "answer": "１人が画面の配色変更を希望している",
+     "correct": false
+    },
+    {
+     "answer": "１人が過去の領収書を取得できない",
      "correct": false
     }
    ],
@@ -530,23 +530,23 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "問い合わせの優先順位付け",
-   "language": "Japanese",
-   "question": "優先度は、影響範囲と業務停止までの残り時間だけで決めます。受付後、優先度を上げる根拠になる変化はどれですか。",
+   "language": "ja",
+   "question": "影響度が同じ問い合わせは、初回回答期限が早い順に対応します。現在９時で、いずれも未回答です。どれを最初に対応しますか。\n```text\n問い合わせ  受付時刻  初回回答期限\n甲          08:00     12:00\n乙          08:30     09:30\n丙          07:00     10:00\n丁          08:45     11:00\n```",
    "options": [
     {
-     "answer": "業務停止までの時間が明日から一時間後になった",
+     "answer": "乙の問い合わせ",
      "correct": true
     },
     {
-     "answer": "影響が一人から全利用者に広がった",
-     "correct": true
-    },
-    {
-     "answer": "同じ状況のまま、連絡者が部長に代わった",
+     "answer": "丙の問い合わせ",
      "correct": false
     },
     {
-     "answer": "同じ状況のまま、催促の回数が増えた",
+     "answer": "甲の問い合わせ",
+     "correct": false
+    },
+    {
+     "answer": "丁の問い合わせ",
      "correct": false
     }
    ],
@@ -557,24 +557,24 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "問い合わせの優先順位付け",
-   "language": "Japanese",
-   "question": "個人情報の漏えい疑いは、通常の問い合わせより先に専門窓口へ連絡する規則です。漏えい疑いと、一人のログイン不具合を同時に受け付けました。最初に行うのはどれですか。",
+   "language": "ja",
+   "question": "「使えないので至急対応してほしい」とだけ届きました。業務への影響で優先度を決めるには、まず何を確認しますか。",
    "options": [
     {
-     "answer": "ログイン不具合の調査を完了させる",
+     "answer": "過去の問い合わせ回数と文章の丁寧さ",
      "correct": false
     },
     {
-     "answer": "漏えいの確定まで専門窓口への連絡を待つ",
+     "answer": "担当者の得意分野と対応への好み",
      "correct": false
     },
     {
-     "answer": "両方を通常の受付順に並べて対応する",
-     "correct": false
-    },
-    {
-     "answer": "漏えい疑いを専門窓口へ連絡する",
+     "answer": "止まっている業務と影響を受ける人数",
      "correct": true
+    },
+    {
+     "answer": "文章の長さと強い表現の数",
+     "correct": false
     }
    ],
    "id": "m0020"
@@ -584,24 +584,24 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "問い合わせの優先順位付け",
-   "language": "Japanese",
-   "question": "業務への影響と緊急性で優先度を決めます。「システムが使えない」という連絡だけで、詳細は不明です。優先度の判断に必要な確認事項はどれですか。",
+   "language": "ja",
+   "question": "１人だけの障害として低優先度にしていましたが、全拠点で受注が停止していると判明しました。影響度を優先する運用では、次にどうしますか。",
    "options": [
     {
-     "answer": "使えない利用者や業務の範囲",
-     "correct": true
-    },
-    {
-     "answer": "いつまでに復旧しないと損失が出るか",
-     "correct": true
-    },
-    {
-     "answer": "連絡者の社内での役職の高さ",
+     "answer": "追加情報を別件にして最後尾へ回す",
      "correct": false
     },
     {
-     "answer": "代わりの方法で業務を続けられるか",
+     "answer": "優先度を上げ、対応順を見直す",
      "correct": true
+    },
+    {
+     "answer": "受付時の優先度を維持して待たせる",
+     "correct": false
+    },
+    {
+     "answer": "苦情の表現が強まるまで判断を保留する",
+     "correct": false
     }
    ],
    "id": "m0021"
@@ -611,50 +611,50 @@
    "level": "basic",
    "topic": "顧客対応",
    "subtopic": "問い合わせの優先順位付け",
-   "language": "Japanese",
-   "question": "同じ優先度では受付順に対応する規則です。担当者が短時間で終わる問い合わせばかり選び、古い問い合わせが残っています。規則に沿った改善はどれですか。",
+   "language": "ja",
+   "question": "業務への影響度と緊急度で優先順位を決めます。優先度を上げる根拠になる情報はどれですか。",
    "options": [
     {
-     "answer": "同じ優先度では、解決時間が短いものから対応する",
-     "correct": false
-    },
-    {
-     "answer": "同じ優先度では、担当者が得意なものから対応する",
-     "correct": false
-    },
-    {
-     "answer": "同じ優先度では、最新の催促があるものから対応する",
-     "correct": false
-    },
-    {
-     "answer": "同じ優先度では、受付が古いものから対応する",
+     "answer": "影響が１部署から全社に広がった",
      "correct": true
+    },
+    {
+     "answer": "回避策がなく、業務の締切が迫っている",
+     "correct": true
+    },
+    {
+     "answer": "担当者が短時間で回答できると分かった",
+     "correct": false
+    },
+    {
+     "answer": "同じ内容の催促メールが増えた",
+     "correct": false
     }
    ],
    "id": "m0022"
   },
   {
-   "domain": "pharmacy_technician_ar",
-   "level": "medium",
-   "topic": "صرف الأدوية",
-   "subtopic": "حساب الجرعات",
-   "language": "Arabic",
-   "question": "وُصفت لطفل وزنه ١٨ كغ جرعة مقدارها ٤٠ ملغ/كغ/اليوم، مقسمة بالتساوي على ثلاث جرعات. ما مقدار الجرعة الواحدة؟",
+   "domain": "customer_support_ja",
+   "level": "basic",
+   "topic": "顧客対応",
+   "subtopic": "問い合わせの優先順位付け",
+   "language": "ja",
+   "question": "影響度を最優先し、同じ影響度なら回答期限順に対応する窓口です。未対応の問い合わせが増えたとき、このルールに沿う行動はどれですか。",
    "options": [
     {
-     "answer": "٢٤٠ ملغ",
+     "answer": "同じ影響度では回答期限を比較する",
      "correct": true
     },
     {
-     "answer": "٢١٦٠ ملغ",
-     "correct": false
+     "answer": "新たな影響情報を得たら順位を見直す",
+     "correct": true
     },
     {
-     "answer": "١٢٠ ملغ",
-     "correct": false
+     "answer": "影響度ごとに問い合わせを分ける",
+     "correct": true
     },
     {
-     "answer": "٧٢٠ ملغ",
+     "answer": "同じ影響度では受付順を期限より優先する",
      "correct": false
     }
    ],
@@ -665,23 +665,23 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "حساب الجرعات",
-   "language": "Arabic",
-   "question": "أُعيد تحضير الدواء وفق البيانات المعروضة. ما حجم السائل الذي يحتوي على جرعة مقدارها ٣٠٠ ملغ؟\n```text\nكمية الدواء في القارورة: ٦٠٠ ملغ\nحجم الماء المضاف: ٨ مل\nالحجم النهائي بعد التحضير: ١٠ مل\n```",
+   "language": "ar",
+   "question": "وُصفت لطفل وزنه ١٨ كغ جرعة يومية مقدارها ٣٠ ملغ/كغ، تُقسم إلى ثلاث جرعات متساوية. ما مقدار الجرعة الواحدة؟",
    "options": [
     {
-     "answer": "٨ مل",
+     "answer": "٦٠ ملغ",
      "correct": false
     },
     {
-     "answer": "١٠ مل",
-     "correct": false
-    },
-    {
-     "answer": "٥ مل",
+     "answer": "١٨٠ ملغ",
      "correct": true
     },
     {
-     "answer": "٤ مل",
+     "answer": "٥٤٠ ملغ",
+     "correct": false
+    },
+    {
+     "answer": "٣٠ ملغ",
      "correct": false
     }
    ],
@@ -692,23 +692,23 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "حساب الجرعات",
-   "language": "Arabic",
-   "question": "يجب إعطاء ٦٠٠ مل من محلول وريدي خلال خمس ساعات بمعدل ثابت، دون توقف. ما معدل المضخة المطلوب؟",
+   "language": "ar",
+   "question": "أُعيد حل محتوى القارورة وفق البيانات المعروضة. ما الحجم الذي يُسحب لإعطاء جرعة مقدارها ٣٧٥ ملغ؟\n```text\nكمية الدواء في القارورة: ١ غرام\nالحجم النهائي بعد إعادة الحل: ٤ مل\n```",
    "options": [
     {
-     "answer": "٣٠٠ مل/ساعة",
+     "answer": "٠٫٣٧٥ مل",
      "correct": false
     },
     {
-     "answer": "١٢٠ مل/ساعة",
+     "answer": "٠٫٧٥ مل",
+     "correct": false
+    },
+    {
+     "answer": "١٫٥ مل",
      "correct": true
     },
     {
-     "answer": "١٥٠ مل/ساعة",
-     "correct": false
-    },
-    {
-     "answer": "١٠٠ مل/ساعة",
+     "answer": "٢٫٥ مل",
      "correct": false
     }
    ],
@@ -719,24 +719,24 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "حساب الجرعات",
-   "language": "Arabic",
-   "question": "يزن طفل ٣٥ كغ. الجرعة الموصوفة ١٥ ملغ/كغ لكل جرعة، بحد أقصى ٥٠٠ ملغ للجرعة الواحدة. ما المقدار الذي يُصرف لكل جرعة؟",
+   "language": "ar",
+   "question": "يجب تسريب ٥٠٠ مل خلال أربع ساعات، باستخدام طقم يعطي ٢٠ قطرة/مل. ما معدل التنقيط، مقربًا إلى أقرب قطرة في الدقيقة؟",
    "options": [
     {
-     "answer": "٥٢٥ ملغ",
+     "answer": "١٢٥ قطرة/دقيقة",
      "correct": false
     },
     {
-     "answer": "١٥٠٠ ملغ",
-     "correct": false
-    },
-    {
-     "answer": "١٧٥ ملغ",
-     "correct": false
-    },
-    {
-     "answer": "٥٠٠ ملغ",
+     "answer": "٤٢ قطرة/دقيقة",
      "correct": true
+    },
+    {
+     "answer": "٢٥ قطرة/دقيقة",
+     "correct": false
+    },
+    {
+     "answer": "٤٠ قطرة/دقيقة",
+     "correct": false
     }
    ],
    "id": "m0026"
@@ -746,23 +746,23 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "حساب الجرعات",
-   "language": "Arabic",
-   "question": "الجرعة الموصوفة ٠٫٢٥ ملغ، والمتاح أقراص بتركيز ٠٫٥ ملغ قابلة للتقسيم إلى نصفين متساويين. أي العبارات صحيحة عن الجرعة الواحدة؟",
+   "language": "ar",
+   "question": "تنص الوصفة على ١٥ ملغ/كغ لكل جرعة، بحد أقصى ٥٠٠ ملغ للجرعة. إذا كان وزن المريض ٤٢ كغ، فما مقدار الجرعة بعد تطبيق الحد الأقصى؟",
    "options": [
     {
-     "answer": "تعادل نصف قرص.",
-     "correct": true
-    },
-    {
-     "answer": "تعادل ٢٥ ميكروغرامًا.",
+     "answer": "٦٣٠ ملغ",
      "correct": false
     },
     {
-     "answer": "تعادل قرصين.",
+     "answer": "١٣٠ ملغ",
      "correct": false
     },
     {
-     "answer": "تعادل ٢٥٠ ميكروغرامًا.",
+     "answer": "٢١٠ ملغ",
+     "correct": false
+    },
+    {
+     "answer": "٥٠٠ ملغ",
      "correct": true
     }
    ],
@@ -773,24 +773,24 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "حساب الجرعات",
-   "language": "Arabic",
-   "question": "وفق الوصفة والتركيز المعروضين، أي الحسابات صحيحة؟ افترض عدم وجود فاقد أثناء القياس.\n```text\nتركيز المعلق: ٢٥٠ ملغ في كل ٥ مل\nالجرعة الموصوفة: ٣٧٥ ملغ ثلاث مرات يوميًا\nمدة العلاج: ٥ أيام\n```",
+   "language": "ar",
+   "question": "بناءً على سجل الإعطاء المعروض، ما العبارات الصحيحة عن عدد الأقراص المطلوب والجرعة التي تلقاها المريض؟\n```text\nالجرعة الموصوفة: ٠٫٥ ملغ\nقوة القرص: ٠٫٢٥ ملغ\nالكمية التي أُعطيت: ٤ أقراص\n```",
    "options": [
     {
-     "answer": "الكمية اليومية من الدواء ١١٢٥ ملغ.",
+     "answer": "الكمية المطلوبة قرصان.",
      "correct": true
     },
     {
-     "answer": "حجم الجرعة الواحدة ٧٫٥ مل.",
-     "correct": true
-    },
-    {
-     "answer": "الحجم اللازم للعلاج كاملًا ٣٧٫٥ مل.",
+     "answer": "الكمية المطلوبة نصف قرص.",
      "correct": false
     },
     {
-     "answer": "الحجم اليومي ٢٢٫٥ مل.",
+     "answer": "الجرعة المعطاة ضعف الجرعة الموصوفة.",
      "correct": true
+    },
+    {
+     "answer": "الجرعة المعطاة أربعة أمثال الجرعة الموصوفة.",
+     "correct": false
     }
    ],
    "id": "m0028"
@@ -799,24 +799,24 @@
    "domain": "pharmacy_technician_ar",
    "level": "medium",
    "topic": "صرف الأدوية",
-   "subtopic": "تخزين الأدوية",
-   "language": "Arabic",
-   "question": "تتطلب نشرة دواء حفظه بين 2 و8 درجات مئوية. كشف مسجل الحرارة بقاءه عند 12 درجة أربع ساعات، ولا توجد بيانات متاحة عن ثباته خارج المدى. ما الإجراء الصحيح قبل صرفه؟",
+   "subtopic": "حساب الجرعات",
+   "language": "ar",
+   "question": "تركيز معلق دوائي ١٠٠ ملغ/٥ مل، والوصفة ٢٠٠ ملغ مرتين يوميًا لمدة خمسة أيام. ما الحسابات الصحيحة، بافتراض عدم وجود فاقد؟",
    "options": [
     {
-     "answer": "إعادته للثلاجة وصرفه بعد استعادة حرارته المطلوبة",
+     "answer": "الحجم اللازم للعلاج كاملًا ١٠٠ مل.",
+     "correct": true
+    },
+    {
+     "answer": "حجم المعلق اليومي ٤٠ مل.",
      "correct": false
     },
     {
-     "answer": "صرفه بعد التأكد من بقاء مظهره دون تغير",
-     "correct": false
+     "answer": "حجم الجرعة الواحدة ١٠ مل.",
+     "correct": true
     },
     {
-     "answer": "تقصير صلاحيته أربعة أيام ثم إتاحته للصرف",
-     "correct": false
-    },
-    {
-     "answer": "عزله وتقييم صلاحيته وفق بيانات الشركة المصنّعة",
+     "answer": "كمية الدواء اليومية ٤٠٠ ملغ.",
      "correct": true
     }
    ],
@@ -827,24 +827,24 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "تخزين الأدوية",
-   "language": "Arabic",
-   "question": "وصلت دفعة دواء تنتهي صلاحيتها في ديسمبر، بينما تنتهي دفعة موجودة في أكتوبر من السنة نفسها. الدفعتان سليمتان وتكفي صلاحيتهما للعلاج المطلوب. وفق مبدأ الأقرب انتهاءً يُصرف أولًا، أيهما تُصرف أولًا؟",
+   "language": "ar",
+   "question": "دواء مغلق يُشترط حفظه بين 2 و8 درجات مئوية، سُجّلت حرارته عند 15 درجة لساعتين. لا توجد بيانات متاحة عن ثباته خارج المجال. ما الإجراء الصحيح قبل صرفه؟",
    "options": [
     {
-     "answer": "الدفعة التي تحتوي على عدد عبوات أكبر",
+     "answer": "تقليل مدة صلاحيته للنصف ثم السماح بصرفه",
      "correct": false
     },
     {
-     "answer": "الدفعة التي كان سعر شرائها أقل",
-     "correct": false
-    },
-    {
-     "answer": "الدفعة الواردة التي تنتهي صلاحيتها في ديسمبر",
-     "correct": false
-    },
-    {
-     "answer": "الدفعة الموجودة التي تنتهي صلاحيتها في أكتوبر",
+     "answer": "عزله وتقييم الانحراف الحراري قبل السماح بصرفه",
      "correct": true
+    },
+    {
+     "answer": "فحص مظهره وصرفه إذا بقي دون تغير",
+     "correct": false
+    },
+    {
+     "answer": "إعادته للثلاجة وصرفه بعد استعادة درجة الحفظ",
+     "correct": false
     }
    ],
    "id": "m0030"
@@ -854,23 +854,23 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "تخزين الأدوية",
-   "language": "Arabic",
-   "question": "تنص نشرة أقراص على حفظها في عبوتها الأصلية لحمايتها من الضوء. يريد الصيدلي تجهيز مخزون الشهر في عبوات شفافة بجوار نافذة. ما التعديل الذي يطابق تعليمات التخزين؟",
+   "language": "ar",
+   "question": "وصلت دفعة دواء اليوم وتنتهي صلاحيتها قبل دفعة وصلت الشهر الماضي. الدفعتان سليمتان ومحفوظتان وفق التعليمات. أي ترتيب للصرف يقلل خسائر انتهاء الصلاحية؟",
    "options": [
     {
-     "answer": "إبقاؤها بعبوتها الأصلية تحت ضوء الشمس المباشر",
-     "correct": false
-    },
-    {
-     "answer": "إبقاؤها بعبوتها الأصلية بعيدًا عن الضوء المباشر",
+     "answer": "صرف الدفعة الجديدة لأنها الأقرب لانتهاء الصلاحية",
      "correct": true
     },
     {
-     "answer": "نقلها لعبوات شفافة داخل الثلاجة المضيئة",
+     "answer": "صرف الدفعتين بالتناوب لتوزيع مدة التخزين",
      "correct": false
     },
     {
-     "answer": "نقلها لعبوات شفافة بعيدًا عن الضوء المباشر",
+     "answer": "صرف الدفعة القديمة لأنها الأسبق في الوصول",
+     "correct": false
+    },
+    {
+     "answer": "تأجيل صرف الدفعة الجديدة حتى نفاد القديمة",
      "correct": false
     }
    ],
@@ -881,23 +881,23 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "تخزين الأدوية",
-   "language": "Arabic",
-   "question": "حُضّر معلق فموي يوم 1 مارس الساعة العاشرة صباحًا. تنص نشرته على إتلافه بعد سبعة أيام من التحضير مع حفظه مبردًا. حُفظ كما هو مطلوب؛ متى يحين موعد إتلافه؟",
+   "language": "ar",
+   "question": "يُحفظ دواء بين 2 و8 درجات مئوية ويُمنع تجميده. رف الثلاجة الأوسط ضمن المجال، والباب يتجاوز 8 درجات، والجدار الخلفي يُجمّد العبوات الملامسة. أي ممارسات تحقق شروط التخزين؟",
    "options": [
     {
-     "answer": "9 مارس الساعة العاشرة صباحًا",
-     "correct": false
-    },
-    {
-     "answer": "8 مارس الساعة العاشرة صباحًا",
+     "answer": "وضع العبوات على الرف الأوسط بعيدًا عن الجدار",
      "correct": true
     },
     {
-     "answer": "7 مارس الساعة العاشرة صباحًا",
+     "answer": "ترك فراغات بين العبوات تسمح بدوران الهواء",
+     "correct": true
+    },
+    {
+     "answer": "إلصاق العبوات بالجدار الخلفي لضمان تبريدها",
      "correct": false
     },
     {
-     "answer": "1 أبريل الساعة العاشرة صباحًا",
+     "answer": "وضع العبوات في الباب لتسهيل الوصول إليها",
      "correct": false
     }
    ],
@@ -908,23 +908,23 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "تخزين الأدوية",
-   "language": "Arabic",
-   "question": "تُخزّن عبوات دواء بين 2 و8 درجات مئوية، ويحظر تجميدها. في ثلاجة أدوية مؤهلة، أي الممارسات تحافظ على شروط التخزين وتتيح كشف الانحرافات الحرارية؟",
+   "language": "ar",
+   "question": "تنص نشرة أقراص حساسة للرطوبة على حفظها بعبوتها الأصلية المحكمة، مع كيس المجفف، بين 20 و25 درجة مئوية. أي ممارسات تتفق مع هذه التعليمات؟",
    "options": [
     {
-     "answer": "إبعاد العبوات عن الأسطح التي قد تجمّدها",
-     "correct": true
-    },
-    {
-     "answer": "ترك فراغات بين العبوات لمرور الهواء",
-     "correct": true
-    },
-    {
-     "answer": "وضع العبوات في رف الباب لتسهيل الوصول إليها",
+     "answer": "نقل الأقراص لعلبة أسبوعية محكمة عند 22 درجة",
      "correct": false
     },
     {
-     "answer": "استخدام مسجل حرارة معاير بإنذار عند تجاوز المدى",
+     "answer": "إبقاء كيس المجفف داخل العبوة الأصلية",
+     "correct": true
+    },
+    {
+     "answer": "حفظ العبوة بخزانة جافة عند 22 درجة",
+     "correct": true
+    },
+    {
+     "answer": "إغلاق العبوة بإحكام بعد كل استعمال",
      "correct": true
     }
    ],
@@ -935,27 +935,1026 @@
    "level": "medium",
    "topic": "صرف الأدوية",
    "subtopic": "تخزين الأدوية",
-   "language": "Arabic",
-   "question": "تنص نشرة أقراص حساسة للرطوبة على إبقائها في عبوتها الأصلية محكمة الإغلاق، مع كيس المجفف المرفق. أي ممارسات التخزين تطابق هذه التعليمات؟",
+   "language": "ar",
+   "question": "حُضّر المعلق وفق التعليمات أدناه، وحُفظ كما هو مطلوب. مضت عشرة أيام كاملة على تحضيره، والصلاحية المطبوعة للعبوة غير المحضرة تنتهي بعد ستة أشهر. كم بقي قبل وجوب التخلص منه؟\n```text\nبعد التحضير: يُحفظ بين 2 و8 درجات مئوية.\nيُتخلص من المعلق بعد 14 يومًا من التحضير.\n```",
    "options": [
     {
-     "answer": "إبقاء كيس المجفف المرفق داخل العبوة",
-     "correct": true
-    },
-    {
-     "answer": "ترك غطاء العبوة مفتوحًا لتهوية الأقراص",
+     "answer": "عشرة أيام",
      "correct": false
     },
     {
-     "answer": "نقل مخزون العبوة إلى منظم أسبوعي للجرعات",
+     "answer": "ستة أشهر",
      "correct": false
     },
     {
-     "answer": "إغلاق العبوة بإحكام بعد إخراج الجرعة",
+     "answer": "أربعة عشر يومًا",
+     "correct": false
+    },
+    {
+     "answer": "أربعة أيام",
      "correct": true
     }
    ],
    "id": "m0034"
+  },
+  {
+   "domain": "pharmacy_technician_ar",
+   "level": "medium",
+   "topic": "صرف الأدوية",
+   "subtopic": "تخزين الأدوية",
+   "language": "ar",
+   "question": "دواء في زجاجة شفافة داخل علبة كرتونية، وتنص نشرته على إبقائه داخل العلبة للحماية من الضوء. الرف ضمن درجة الحرارة المطلوبة لكنه مضاء طوال اليوم. ما طريقة تخزينه الصحيحة؟",
+   "options": [
+    {
+     "answer": "إخراج الزجاجة وتوجيه ملصقها نحو مصدر الضوء",
+     "correct": false
+    },
+    {
+     "answer": "نقل المحتوى إلى زجاجة شفافة أصغر محكمة",
+     "correct": false
+    },
+    {
+     "answer": "إبقاء الزجاجة داخل علبتها على الرف",
+     "correct": true
+    },
+    {
+     "answer": "إخراج الزجاجة ووضعها خلف العبوات الأخرى",
+     "correct": false
+    }
+   ],
+   "id": "m0035"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การเช็กอินและเช็กเอาต์",
+   "language": "th",
+   "question": "ขณะเช็กอิน ชื่อในใบจองไม่ตรงกับเอกสารยืนยันตัวตน และยังไม่ทราบสาเหตุ พนักงานควรทำสิ่งใดก่อนออกกุญแจห้อง",
+   "options": [
+    {
+     "answer": "ออกกุญแจโดยใช้หมายเลขการจองเพียงอย่างเดียว",
+     "correct": false
+    },
+    {
+     "answer": "ตรวจสอบข้อมูลการจองและสิทธิ์เข้าพักให้ตรงกัน",
+     "correct": true
+    },
+    {
+     "answer": "เปลี่ยนชื่อผู้จองตามเอกสารทันที",
+     "correct": false
+    },
+    {
+     "answer": "ยกเลิกการจองเพราะถือว่าเป็นคนละคน",
+     "correct": false
+    }
+   ],
+   "id": "m0036"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การเช็กอินและเช็กเอาต์",
+   "language": "th",
+   "question": "แขกมาถึงก่อนเวลาเช็กอิน ห้องยังไม่พร้อม และต้องการออกไปเที่ยว โรงแรมมีบริการรับฝากกระเป๋าฟรี พนักงานควรเสนอทางเลือกใด",
+   "options": [
+    {
+     "answer": "มอบกุญแจให้แขกนำกระเป๋าไปเก็บในห้อง",
+     "correct": false
+    },
+    {
+     "answer": "ยืนยันว่าห้องจะพร้อมทันทีหลังรับฝากกระเป๋า",
+     "correct": false
+    },
+    {
+     "answer": "รับฝากกระเป๋าและแจ้งเวลาเช็กอินตามกำหนด",
+     "correct": true
+    },
+    {
+     "answer": "ถือว่าฝากกระเป๋าแล้วจึงเริ่มคิดค่าห้องเพิ่ม",
+     "correct": false
+    }
+   ],
+   "id": "m0037"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การเช็กอินและเช็กเอาต์",
+   "language": "th",
+   "question": "ตอนเช็กเอาต์ แขกต้องชำระเพิ่มเท่าใดตามรายการนี้ โดยไม่มีค่าใช้จ่ายอื่น\n```text\nค่าห้องรวมภาษี 2 คืน 4,000 บาท\nค่าอาหารรวมภาษี 600 บาท\nชำระค่าห้องล่วงหน้าแล้ว 3,000 บาท\n```",
+   "options": [
+    {
+     "answer": "1,000 บาท",
+     "correct": false
+    },
+    {
+     "answer": "3,600 บาท",
+     "correct": false
+    },
+    {
+     "answer": "1,600 บาท",
+     "correct": true
+    },
+    {
+     "answer": "4,600 บาท",
+     "correct": false
+    }
+   ],
+   "id": "m0038"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การเช็กอินและเช็กเอาต์",
+   "language": "th",
+   "question": "โรงแรมกันวงเงินบัตรเครดิตเป็นหลักประกันตอนเช็กอิน โดยยังไม่ตัดเงินจริง ข้อใดถูกต้องเกี่ยวกับวงเงินที่กันไว้",
+   "options": [
+    {
+     "answer": "วงเงินพร้อมใช้ของบัตรยังคงเท่าเดิม",
+     "correct": false
+    },
+    {
+     "answer": "วงเงินพร้อมใช้ของบัตรลดลงตามยอดที่กัน",
+     "correct": true
+    },
+    {
+     "answer": "ยอดที่กันถือเป็นการชำระค่าห้องแล้ว",
+     "correct": false
+    },
+    {
+     "answer": "ยอดที่กันยังไม่ใช่ยอดชำระค่าห้อง",
+     "correct": true
+    }
+   ],
+   "id": "m0039"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การเช็กอินและเช็กเอาต์",
+   "language": "th",
+   "question": "แขกกำลังเช็กเอาต์ มีคีย์การ์ดและค่าอาหารค้างชำระ โดยไม่ได้รับสิทธิ์ออกล่าช้า ข้อใดถูกต้องเกี่ยวกับการดำเนินการเช็กเอาต์",
+   "options": [
+    {
+     "answer": "ให้แขกใช้ห้องต่อหลังชำระโดยไม่กำหนดเวลา",
+     "correct": false
+    },
+    {
+     "answer": "ให้แขกตรวจสอบค่าอาหารก่อนชำระ",
+     "correct": true
+    },
+    {
+     "answer": "ออกหลักฐานการชำระเงินหลังรับชำระ",
+     "correct": true
+    },
+    {
+     "answer": "รับคืนคีย์การ์ดตามขั้นตอนโรงแรม",
+     "correct": true
+    }
+   ],
+   "id": "m0040"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การเช็กอินและเช็กเอาต์",
+   "language": "th",
+   "question": "โรงแรมกำหนดเช็กเอาต์เที่ยง ออกหลังเที่ยงถึงหกโมงเย็นคิดเพิ่มครึ่งวัน หลังจากนั้นคิดเต็มวัน แขกได้รับอนุมัติให้ออกบ่ายสองแต่ไม่ได้ยกเว้นค่าบริการ ต้องคิดเพิ่มเท่าใด",
+   "options": [
+    {
+     "answer": "ไม่คิดค่าห้องเพิ่มเพราะได้รับอนุมัติ",
+     "correct": false
+    },
+    {
+     "answer": "ค่าห้องสองชั่วโมงตามสัดส่วน",
+     "correct": false
+    },
+    {
+     "answer": "ค่าห้องเต็มวัน",
+     "correct": false
+    },
+    {
+     "answer": "ค่าห้องครึ่งวัน",
+     "correct": true
+    }
+   ],
+   "id": "m0041"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การจัดการคำร้องเรียนของแขก",
+   "language": "th",
+   "question": "แขกกำลังเล่าเรื่องห้องพักสกปรกด้วยความไม่พอใจ และยังเล่าไม่จบ โดยไม่มีเหตุฉุกเฉิน พนักงานควรทำอย่างไรเป็นอันดับแรก",
+   "options": [
+    {
+     "answer": "ฟังให้จบโดยไม่ขัดจังหวะ",
+     "correct": true
+    },
+    {
+     "answer": "เสนอส่วนลดก่อนฟังรายละเอียดครบ",
+     "correct": false
+    },
+    {
+     "answer": "ชี้แจงขั้นตอนทำความสะอาดทันที",
+     "correct": false
+    },
+    {
+     "answer": "ขอให้แขกสงบก่อนจึงรับฟัง",
+     "correct": false
+    }
+   ],
+   "id": "m0042"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การจัดการคำร้องเรียนของแขก",
+   "language": "th",
+   "question": "แขกร้องเรียนว่ามีกลิ่นไหม้และควันออกจากปลั๊กในห้อง ขณะนี้แขกอยู่ที่เคาน์เตอร์ พนักงานควรทำสิ่งใดก่อน",
+   "options": [
+    {
+     "answer": "รอช่างยืนยันก่อนแจ้งเหตุฉุกเฉิน",
+     "correct": false
+    },
+    {
+     "answer": "แจ้งเหตุฉุกเฉินตามแผนความปลอดภัย",
+     "correct": true
+    },
+    {
+     "answer": "ให้แขกกลับไปถอดปลั๊กเอง",
+     "correct": false
+    },
+    {
+     "answer": "ส่งแม่บ้านไปดับกลิ่นในห้อง",
+     "correct": false
+    }
+   ],
+   "id": "m0043"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การจัดการคำร้องเรียนของแขก",
+   "language": "th",
+   "question": "แขกขอคืนค่าห้องเพราะเครื่องปรับอากาศเสีย พนักงานรับเรื่องได้แต่ไม่มีอำนาจอนุมัติคืนเงิน ควรตอบอย่างไร",
+   "options": [
+    {
+     "answer": "จะส่งคำขอให้ผู้มีอำนาจพิจารณา",
+     "correct": true
+    },
+    {
+     "answer": "จะคืนเงินเต็มจำนวนให้อย่างแน่นอน",
+     "correct": false
+    },
+    {
+     "answer": "จะหักค่าห้องคืนจากยอดชำระทันที",
+     "correct": false
+    },
+    {
+     "answer": "จะไม่รับคำขอเพราะไม่มีอำนาจอนุมัติ",
+     "correct": false
+    }
+   ],
+   "id": "m0044"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การจัดการคำร้องเรียนของแขก",
+   "language": "th",
+   "question": "แขกต้องการร้องเรียนเรื่องส่วนตัวโดยไม่ให้ผู้รอเช็กอินได้ยิน มีพื้นที่สนทนาส่วนตัวพร้อมใช้งาน พนักงานควรทำอย่างไร",
+   "options": [
+    {
+     "answer": "ให้แขกเขียนรายละเอียดบนสมุดส่วนกลาง",
+     "correct": false
+    },
+    {
+     "answer": "เชิญแขกไปพูดคุยในพื้นที่ส่วนตัว",
+     "correct": true
+    },
+    {
+     "answer": "ถามรายละเอียดต่อโดยลดเสียงลงเล็กน้อย",
+     "correct": false
+    },
+    {
+     "answer": "ขอให้ผู้รอเช็กอินช่วยประเมินปัญหา",
+     "correct": false
+    }
+   ],
+   "id": "m0045"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การจัดการคำร้องเรียนของแขก",
+   "language": "th",
+   "question": "แขกแจ้งว่าเมื่อคืนมีเสียงดัง แต่พนักงานยังไม่ได้ตรวจสอบ ข้อความใดเหมาะกับบันทึกข้อเท็จจริงเพื่อส่งต่องาน",
+   "options": [
+    {
+     "answer": "ห้องข้างเคียงเป็นต้นเหตุแน่นอน",
+     "correct": false
+    },
+    {
+     "answer": "ยังไม่ได้ตรวจสอบแหล่งกำเนิดเสียง",
+     "correct": true
+    },
+    {
+     "answer": "แขกมีนิสัยอ่อนไหวต่อเสียง",
+     "correct": false
+    },
+    {
+     "answer": "แขกแจ้งว่ามีเสียงดังเมื่อคืน",
+     "correct": true
+    }
+   ],
+   "id": "m0046"
+  },
+  {
+   "domain": "hotel_receptionist_th",
+   "level": "basic",
+   "topic": "งานต้อนรับส่วนหน้า",
+   "subtopic": "การจัดการคำร้องเรียนของแขก",
+   "language": "th",
+   "question": "ช่างรับงานแก้น้ำไม่ไหลแล้ว แต่ยังไม่ได้เข้าห้อง โรงแรมกำหนดให้ปิดคำร้องเมื่อแก้ปัญหาและยืนยันผลกับแขกแล้ว การดำเนินการใดสอดคล้องกับการติดตามคำร้องนี้",
+   "options": [
+    {
+     "answer": "ยืนยันกับแขกว่าน้ำใช้งานได้หลังซ่อม",
+     "correct": true
+    },
+    {
+     "answer": "ปิดคำร้องทันทีที่ช่างรับงาน",
+     "correct": false
+    },
+    {
+     "answer": "แจ้งความคืบหน้าให้แขกทราบ",
+     "correct": true
+    },
+    {
+     "answer": "ติดตามผลการซ่อมจากช่าง",
+     "correct": true
+    }
+   ],
+   "id": "m0047"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "वेतन से कटौतियों की गणना",
+   "language": "hi",
+   "question": "इस वेतन नीति में कर्मचारी अंशदान केवल मूल वेतन और महँगाई भत्ते के योग का 10% है। दिखाए गए मासिक वेतन पर कितना अंशदान कटेगा?\n```text\nमूल वेतन: ₹20,000\nमहँगाई भत्ता: ₹4,000\nमकान किराया भत्ता: ₹6,000\n```",
+   "options": [
+    {
+     "answer": "₹3,000",
+     "correct": false
+    },
+    {
+     "answer": "₹1,000",
+     "correct": false
+    },
+    {
+     "answer": "₹2,400",
+     "correct": true
+    },
+    {
+     "answer": "₹2,000",
+     "correct": false
+    }
+   ],
+   "id": "m0048"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "वेतन से कटौतियों की गणना",
+   "language": "hi",
+   "question": "नीति के अनुसार वर्तमान वेतन और बकाया वेतन, दोनों पर 10% कटौती होती है। बकाया पर पहले कोई कटौती नहीं हुई है। इस भुगतान से कुल कितनी कटौती होगी?\n```text\nवर्तमान महीने का वेतन: ₹30,000\nपिछले महीने का बकाया वेतन: ₹5,000\n```",
+   "options": [
+    {
+     "answer": "₹500",
+     "correct": false
+    },
+    {
+     "answer": "₹2,500",
+     "correct": false
+    },
+    {
+     "answer": "₹3,500",
+     "correct": true
+    },
+    {
+     "answer": "₹3,000",
+     "correct": false
+    }
+   ],
+   "id": "m0049"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "वेतन से कटौतियों की गणना",
+   "language": "hi",
+   "question": "नीति में नियोक्ता का अंशदान कर्मचारी के वेतन से नहीं कटता। कर्मचारी की सही कटौतियों के अतिरिक्त ₹1,800 नियोक्ता अंशदान भी काट लिया गया। भुगतान अभी नहीं हुआ है। कौन-सा सुधार सही है?",
+   "options": [
+    {
+     "answer": "कटौती यथावत रखें; सकल वेतन ₹1,800 घटाएँ।",
+     "correct": false
+    },
+    {
+     "answer": "कटौती यथावत रखें; नियोक्ता अंशदान ₹1,800 घटाएँ।",
+     "correct": false
+    },
+    {
+     "answer": "कटौती ₹1,800 घटाएँ; देय वेतन उतना बढ़ाएँ।",
+     "correct": true
+    },
+    {
+     "answer": "कटौती ₹1,800 बढ़ाएँ; देय वेतन उतना घटाएँ।",
+     "correct": false
+    }
+   ],
+   "id": "m0050"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "वेतन से कटौतियों की गणना",
+   "language": "hi",
+   "question": "सकल वेतन ₹30,000 है। कर ₹2,000 और ऋण किस्त ₹1,000 काटनी है। अलग से ₹1,500 की खर्च-प्रतिपूर्ति देनी है, जिस पर कोई कटौती नहीं है। बैंक में कुल कितनी राशि भेजी जाएगी?",
+   "options": [
+    {
+     "answer": "₹28,500",
+     "correct": true
+    },
+    {
+     "answer": "₹27,000",
+     "correct": false
+    },
+    {
+     "answer": "₹31,500",
+     "correct": false
+    },
+    {
+     "answer": "₹25,500",
+     "correct": false
+    }
+   ],
+   "id": "m0051"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "वेतन से कटौतियों की गणना",
+   "language": "hi",
+   "question": "सकल वेतन ₹40,000 और कर्मचारी की कुल कटौतियाँ ₹4,000 हैं। नियोक्ता अलग से ₹3,000 अंशदान देता है; यह वेतन से नहीं कटता। कोई अन्य लागत या भुगतान नहीं है। कौन-से कथन सही हैं?",
+   "options": [
+    {
+     "answer": "कर्मचारी को ₹36,000 मिलेंगे।",
+     "correct": true
+    },
+    {
+     "answer": "नियोक्ता अंशदान कर्मचारी की कटौती नहीं है।",
+     "correct": true
+    },
+    {
+     "answer": "नियोक्ता की कुल लागत ₹43,000 होगी।",
+     "correct": true
+    },
+    {
+     "answer": "कर्मचारी की कुल कटौती ₹7,000 होगी।",
+     "correct": false
+    }
+   ],
+   "id": "m0052"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "वेतन से कटौतियों की गणना",
+   "language": "hi",
+   "question": "नीति में ₹40,000 सकल वेतन से ₹2,000 अंशदान घटाकर 10% कर निकालना है। ₹1,000 ऋण किस्त कर निकालने के बाद कटती है। कोई अन्य कटौती नहीं है। कौन-सी गणनाएँ सही हैं?",
+   "options": [
+    {
+     "answer": "ऋण घटाने से कर ₹100 कम होगा।",
+     "correct": false
+    },
+    {
+     "answer": "कर्मचारी को शुद्ध वेतन ₹34,200 मिलेगा।",
+     "correct": false
+    },
+    {
+     "answer": "ऋण किस्त सहित कुल कटौती ₹6,800 है।",
+     "correct": true
+    },
+    {
+     "answer": "कर का आधार ₹38,000 है।",
+     "correct": true
+    }
+   ],
+   "id": "m0053"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "ओवरटाइम भुगतान की गणना",
+   "language": "hi",
+   "question": "इस काल्पनिक नीति में सप्ताह के पहले 40 घंटे सामान्य दर पर और उसके बाद के घंटे 1.5 गुना दर पर देय हैं। दिए गए रिकॉर्ड का कुल साप्ताहिक वेतन कितना होगा?\n```text\nकाम किए घंटे: 44\nसामान्य दर: ₹200 प्रति घंटा\n```",
+   "options": [
+    {
+     "answer": "₹10,000",
+     "correct": false
+    },
+    {
+     "answer": "₹13,200",
+     "correct": false
+    },
+    {
+     "answer": "₹8,800",
+     "correct": false
+    },
+    {
+     "answer": "₹9,200",
+     "correct": true
+    }
+   ],
+   "id": "m0054"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "ओवरटाइम भुगतान की गणना",
+   "language": "hi",
+   "question": "कंपनी की नीति में मासिक मूल वेतन को 200 से भाग देकर घंटे की दर निकालते हैं। ₹26,000 मूल वेतन और दोगुनी दर पर चार ओवरटाइम घंटों के लिए केवल ओवरटाइम भुगतान कितना होगा?",
+   "options": [
+    {
+     "answer": "₹780",
+     "correct": false
+    },
+    {
+     "answer": "₹1,560",
+     "correct": false
+    },
+    {
+     "answer": "₹520",
+     "correct": false
+    },
+    {
+     "answer": "₹1,040",
+     "correct": true
+    }
+   ],
+   "id": "m0055"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "ओवरटाइम भुगतान की गणना",
+   "language": "hi",
+   "question": "नीति में प्रतिदिन आठ या सप्ताह में 40 से अधिक घंटे ओवरटाइम हैं। दैनिक ओवरटाइम घंटे साप्ताहिक सीमा जाँचते समय हटते हैं। दिए पूरे सप्ताह के रिकॉर्ड पर कौन-से निष्कर्ष सही हैं?\n```text\nसोमवार: 9 घंटे\nमंगलवार: 9 घंटे\nबुधवार: 9 घंटे\nगुरुवार: 9 घंटे\nशुक्रवार: 9 घंटे\n```",
+   "options": [
+    {
+     "answer": "दोनों नियमों से कुल दस ओवरटाइम घंटे बनेंगे।",
+     "correct": false
+    },
+    {
+     "answer": "सामान्य दर पर 45 घंटे देय होंगे।",
+     "correct": false
+    },
+    {
+     "answer": "दैनिक नियम से पाँच ओवरटाइम घंटे बनेंगे।",
+     "correct": true
+    },
+    {
+     "answer": "साप्ताहिक नियम से अतिरिक्त ओवरटाइम नहीं बनेगा।",
+     "correct": true
+    }
+   ],
+   "id": "m0056"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "ओवरटाइम भुगतान की गणना",
+   "language": "hi",
+   "question": "नीति में केवल वास्तविक काम के 40 साप्ताहिक घंटों से अधिक पर ओवरटाइम मिलता है। सवेतन छुट्टी सामान्य दर पर देय है। किसी सप्ताह 36 घंटे काम और आठ घंटे सवेतन छुट्टी होने पर क्या सही है?",
+   "options": [
+    {
+     "answer": "सीमा जाँच में 36 घंटे गिने जाएँगे।",
+     "correct": true
+    },
+    {
+     "answer": "ओवरटाइम घंटे शून्य होंगे।",
+     "correct": true
+    },
+    {
+     "answer": "चार घंटों पर ओवरटाइम दर लागू होगी।",
+     "correct": false
+    },
+    {
+     "answer": "कुल 44 घंटों का भुगतान होगा।",
+     "correct": true
+    }
+   ],
+   "id": "m0057"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "ओवरटाइम भुगतान की गणना",
+   "language": "hi",
+   "question": "नीति में ओवरटाइम का आधार मूल प्रति घंटा दर और निश्चित प्रति घंटा भत्ते का योग है। मूल दर ₹180, भत्ता ₹20 और गुणक 1.5 होने पर छह ओवरटाइम घंटों का भुगतान कितना होगा?",
+   "options": [
+    {
+     "answer": "₹1,800",
+     "correct": true
+    },
+    {
+     "answer": "₹1,620",
+     "correct": false
+    },
+    {
+     "answer": "₹1,740",
+     "correct": false
+    },
+    {
+     "answer": "₹1,200",
+     "correct": false
+    }
+   ],
+   "id": "m0058"
+  },
+  {
+   "domain": "payroll_clerk_hi",
+   "level": "medium",
+   "topic": "वेतन प्रबंधन",
+   "subtopic": "ओवरटाइम भुगतान की गणना",
+   "language": "hi",
+   "question": "नीति में ओवरटाइम प्रत्येक कैलेंडर दिन के आठ घंटों से अधिक काम पर मिलता है; साप्ताहिक नियम नहीं है। बिना विराम रात 22:00 से सुबह 08:00 तक काम हुआ। दोनों दिनों में अन्य काम नहीं हुआ। कितने ओवरटाइम घंटे बनेंगे?",
+   "options": [
+    {
+     "answer": "चार घंटे",
+     "correct": false
+    },
+    {
+     "answer": "आठ घंटे",
+     "correct": false
+    },
+    {
+     "answer": "दो घंटे",
+     "correct": false
+    },
+    {
+     "answer": "शून्य घंटे",
+     "correct": true
+    }
+   ],
+   "id": "m0059"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Планирование маршрутов доставки",
+   "language": "ru",
+   "question": "Машина выполняет маршрут склад–B–A–склад. Время отсчитывается от открытия склада; ожидание разрешено, окна ограничивают начало обслуживания. Какое самое позднее отправление позволит вернуться не позднее минуты 110?\n```text\nВремя движения, минут:\nсклад → B: 20\nB → A: 15\nA → склад: 30\nОбслуживание: по 10 минут\nОкно B: [20, 45]\nОкно A: [60, 80]\n```",
+   "options": [
+    {
+     "answer": "На минуте 40",
+     "correct": false
+    },
+    {
+     "answer": "На минуте 25",
+     "correct": true
+    },
+    {
+     "answer": "На минуте 15",
+     "correct": false
+    },
+    {
+     "answer": "На минуте 35",
+     "correct": false
+    }
+   ],
+   "id": "m0060"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Планирование маршрутов доставки",
+   "language": "ru",
+   "question": "Машина выезжает со всеми доставляемыми грузами, посещает каждого клиента один раз и возвращает весь забор на склад. Разгрузка предшествует забору; промежуточных посещений склада нет. Какие утверждения верны?\n```text\nВместимость машины: 8 паллет\nКлиент | Доставить | Забрать\nA      | 4         | 1\nB      | 2         | 5\n```",
+   "options": [
+    {
+     "answer": "Порядок B–A требует вместимости минимум 9 паллет.",
+     "correct": true
+    },
+    {
+     "answer": "Порядок A–B не нарушает вместимость.",
+     "correct": true
+    },
+    {
+     "answer": "После обоих клиентов в машине будет 6 паллет.",
+     "correct": true
+    },
+    {
+     "answer": "Порядок A–B требует вместимости минимум 7 паллет.",
+     "correct": false
+    }
+   ],
+   "id": "m0061"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Планирование маршрутов доставки",
+   "language": "ru",
+   "question": "Сначала требуется строго минимизировать число машин, затем пробег среди решений с этим числом машин. Верхняя граница пробега заранее неизвестна. Как задать цель, чтобы гарантировать этот приоритет?",
+   "options": [
+    {
+     "answer": "Минимизировать пробег плюс большой фиксированный штраф за машину.",
+     "correct": false
+    },
+    {
+     "answer": "Лексикографически минимизировать число машин, затем пробег.",
+     "correct": true
+    },
+    {
+     "answer": "Лексикографически минимизировать пробег, затем число машин.",
+     "correct": false
+    },
+    {
+     "answer": "Минимизировать только число машин, не учитывая пробег.",
+     "correct": false
+    }
+   ],
+   "id": "m0062"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Планирование маршрутов доставки",
+   "language": "ru",
+   "question": "В допустимой задаче доставки грузы неотрицательны, ожидание разрешено, времена движения постоянны и подчиняются неравенству треугольника. Минимальной загрузки нет. Какие изменения по отдельности гарантированно сохраняют существование допустимого решения при прежних временных окнах и ограничениях смен?",
+   "options": [
+    {
+     "answer": "Запрет ожидания перед началом обслуживания.",
+     "correct": false
+    },
+    {
+     "answer": "Увеличение вместимости каждой машины.",
+     "correct": true
+    },
+    {
+     "answer": "Удаление одного клиента вместе с его доставкой.",
+     "correct": true
+    },
+    {
+     "answer": "Замена двух машин одной с их суммарной вместимостью.",
+     "correct": false
+    }
+   ],
+   "id": "m0063"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Планирование маршрутов доставки",
+   "language": "ru",
+   "question": "На маршруте десять клиентов. События своевременного обслуживания независимы и имеют одинаковую вероятность p. Какое минимальное p обеспечивает вероятность своевременного обслуживания всех клиентов не ниже 95%? Выберите ближайшее значение.",
+   "options": [
+    {
+     "answer": "90,25%",
+     "correct": false
+    },
+    {
+     "answer": "99,95%",
+     "correct": false
+    },
+    {
+     "answer": "99,49%",
+     "correct": true
+    },
+    {
+     "answer": "95,00%",
+     "correct": false
+    }
+   ],
+   "id": "m0064"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Планирование маршрутов доставки",
+   "language": "ru",
+   "question": "Перепланирование выполняется каждые пять минут. Уже начатые рейсы нельзя прерывать; подтверждённые следующие остановки нельзя менять. Новые заказы необязательны. Как обеспечить эти требования, сохранив возможность менять оставшуюся часть маршрутов?",
+   "options": [
+    {
+     "answer": "Зафиксировать исполняемые участки и подтверждённые остановки жёсткими ограничениями.",
+     "correct": true
+    },
+    {
+     "answer": "Перестраивать все маршруты, сохраняя только текущие координаты машин.",
+     "correct": false
+    },
+    {
+     "answer": "Назначить большой конечный штраф за изменение подтверждённых остановок.",
+     "correct": false
+    },
+    {
+     "answer": "Зафиксировать целиком все маршруты уже выехавших машин.",
+     "correct": false
+    }
+   ],
+   "id": "m0065"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Управление складскими запасами",
+   "language": "ru",
+   "question": "Применяется непрерывная политика (s, S). Заказ размещают при позиции запаса ≤ s и доводят её до S. Все ожидаемые поставки подтверждены, просроченный спрос ещё не вычтен из остатка. Какой объём нужно заказать?\n```text\nФизический остаток: 70 шт.\nОжидаемые поставки: 80 шт.\nНеисполненный просроченный спрос: 30 шт.\ns: 130 шт.\nS: 200 шт.\n```",
+   "options": [
+    {
+     "answer": "Заказ не требуется.",
+     "correct": false
+    },
+    {
+     "answer": "80 шт.",
+     "correct": true
+    },
+    {
+     "answer": "50 шт.",
+     "correct": false
+    },
+    {
+     "answer": "130 шт.",
+     "correct": false
+    }
+   ],
+   "id": "m0066"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Управление складскими запасами",
+   "language": "ru",
+   "question": "Нужно отгрузить 80 единиц по FEFO. Доставка занимает 5 дней, при получении требуется остаточный срок годности не менее 30 дней. Резервы других клиентов недоступны. Как распределить отгрузку?\n```text\nПартия | Остаток | Чужой резерв | До истечения срока\nA      | 50      | 0            | 32 дня\nB      | 60      | 20           | 40 дней\nC      | 70      | 0            | 70 дней\n```",
+   "options": [
+    {
+     "answer": "A: 50; B: 30.",
+     "correct": false
+    },
+    {
+     "answer": "B: 60; C: 20.",
+     "correct": false
+    },
+    {
+     "answer": "C: 70; B: 10.",
+     "correct": false
+    },
+    {
+     "answer": "B: 40; C: 40.",
+     "correct": true
+    }
+   ],
+   "id": "m0067"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Управление складскими запасами",
+   "language": "ru",
+   "question": "За 100 завершённых циклов пополнения предъявлен спрос на 1000 единиц. В десяти циклах по одной единице потеряно из-за отсутствия товара; остальное выдано сразу. Какие показатели верны, если цикловой сервис — доля циклов без дефицита, а fill rate — доля немедленно удовлетворённого спроса?",
+   "options": [
+    {
+     "answer": "Цикловой уровень сервиса равен 90%.",
+     "correct": true
+    },
+    {
+     "answer": "Fill rate равен 99%.",
+     "correct": true
+    },
+    {
+     "answer": "Fill rate равен 90%.",
+     "correct": false
+    },
+    {
+     "answer": "Цикловой уровень сервиса равен 99%.",
+     "correct": false
+    }
+   ],
+   "id": "m0068"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Управление складскими запасами",
+   "language": "ru",
+   "question": "Запасная часть относится к классу C по годовому расходу в деньгах. За год выдач не было; оборудование продолжает работать. Замены нет, поставка занимает полгода, простой дорог. Какие выводы обоснованы?",
+   "options": [
+    {
+     "answer": "Целевой запас требует оценки риска отказа оборудования.",
+     "correct": true
+    },
+    {
+     "answer": "Класс C не доказывает низкую стоимость дефицита.",
+     "correct": true
+    },
+    {
+     "answer": "Отсутствие выдач не доказывает ненужность запаса.",
+     "correct": true
+    },
+    {
+     "answer": "Нулевой годовой расход обосновывает нулевой страховой запас.",
+     "correct": false
+    }
+   ],
+   "id": "m0069"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Управление складскими запасами",
+   "language": "ru",
+   "question": "Прогноз строят по отгрузкам; неудовлетворённые заявки не записывают. При частых дефицитах прогноз и целевой запас последовательно снижаются. Цена и ассортимент неизменны. Что сделать первым, чтобы проверить, вызвано ли снижение реальным падением спроса?",
+   "options": [
+    {
+     "answer": "Сначала снизить страховой запас вслед за прогнозом.",
+     "correct": false
+    },
+    {
+     "answer": "Сначала увеличить окно усреднения исторических отгрузок.",
+     "correct": false
+    },
+    {
+     "answer": "Сначала исключить нулевые отгрузки из расчёта прогноза.",
+     "correct": false
+    },
+    {
+     "answer": "Начать учитывать заявки, включая неудовлетворённые, и периоды отсутствия.",
+     "correct": true
+    }
+   ],
+   "id": "m0070"
+  },
+  {
+   "domain": "logistics_coordinator_ru",
+   "level": "hard",
+   "topic": "Управление поставками",
+   "subtopic": "Управление складскими запасами",
+   "language": "ru",
+   "question": "Годовой спрос постоянен: 10 000 единиц; оформление заказа стоит 1000. Цена всей партии: 100 при объёме менее 2000, 98 от 2000 до 4999, 97 от 5000. Годовое хранение — 20% закупочной цены; дефицит запрещён, поставка мгновенная. Какой постоянный размер заказа минимизирует годовые закупочные, заказные и складские затраты?",
+   "options": [
+    {
+     "answer": "1010 единиц.",
+     "correct": false
+    },
+    {
+     "answer": "2000 единиц.",
+     "correct": true
+    },
+    {
+     "answer": "5000 единиц.",
+     "correct": false
+    },
+    {
+     "answer": "1000 единиц.",
+     "correct": false
+    }
+   ],
+   "id": "m0071"
   }
  ]
 }

@@ -25,7 +25,7 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | | "What can I do on this page?" calls `get_page_guide` with the page's key | Counted | 100% |
 | **Assistant: guides** | Hiring-advice questions the guide articles answer, with the guide tools against without them: correct and complete against the article, blind wins/ties/losses; general questions as a guard | Judge (`judges/assistant_guide.md`, `judges/assistant_pair.md`) | With ≥ without on general questions; guide questions correct ≥ 95% |
 | | A guide question reads a guide that answers it (`get_guide`) and links it | Counted | ≥ 90% |
-| **Other languages** | The same question measures on `language_questions.json` (German, Japanese, Arabic) | Judge | Keys ≥ 98%; the rest no worse than English beyond the interval |
+| **Other languages** | The same question measures on `language_questions.json` (German, Japanese, Arabic, Thai, Hindi, Russian) | Judge | Keys ≥ 98%; the rest no worse than English beyond the interval |
 | **Help chat** | Answers that do what a right answer does, in the right language, with the right sign-in marker | Judge (`judges/help_answer.md`) and code | ≥ 90% |
 | | Answers that state something the site's information doesn't support | Judge | ≤ 5% |
 | **Judge reliability** | Planted wrong keys it catches (`key_traps.json`, `multi_key_traps.json`) | `review_questions.py` | 100% |
@@ -57,7 +57,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Keys correct: single / multi-answer | 98.4% / 99% (multi set: 98.5%) | same; `multi_questions.json` | 2026-10-17 |
 | Correct option the longest | 11% (multi: 57% against 75% by chance) | `questions.json` | 2026-10-04 |
 | Price and time per 100-question topic | $0.21–0.25, 49–61 s | full interviews | 2026-10-04 |
-| Other languages: keys / clarity / relevance / distractors | 100% (35) / 5.00 / 3.86 / 1.83 | `language_questions.json` | 2026-10-20 |
+| Other languages: keys / clarity / relevance / distractors | 100% (72) / 4.99 / 3.89 / 2.28 | `language_questions.json` | 2026-10-20 |
 | Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-17 |
 | Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
 | Assistant page context: general correct with / without; page checks | 121/129 / 108/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-17 |
@@ -110,7 +110,7 @@ evals/run.sh generation build_traps.py --multi --count 268
 evals/run.sh generation review_questions.py datasets/multi_questions.json
 evals/run.sh generation verify_test.py --multi gpt-6.1-sol/medium
 
-# Generation in other languages (German, Japanese, Arabic), on its frozen set or a new prompt
+# Generation in other languages (one per script family), on its frozen set or a new prompt
 evals/run.sh generation build_questions.py --inputs language_inputs.json --per-subtopic 6 \
     --multi 2 --label x
 evals/run.sh generation review_questions.py datasets/language_questions.json
