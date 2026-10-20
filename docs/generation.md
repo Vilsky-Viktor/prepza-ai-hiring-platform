@@ -33,7 +33,7 @@ job text -> extract requirements and level -> draft topics          (both cached
 
 ### Prompts
 
-Prompts are task wording only, never a persona, and work for any field: they name no technology, standard or field (the kinds of material are described generically, such as "a lookup over stored records" or "the standard, law, framework or version in use"), and questions are driven by the topic, subtopic and level, never the job's role. A unit test keeps a list of such names out of every generation prompt (`test_generation_prompts_name_no_technology_standard_or_field`).
+Every prompt that writes questions or their options (`questions.py`, `answers.py`, `regenerate.py`) starts with the same generic role, an assessment designer who writes questions for skills tests in any field (`QUESTION_WRITER_ROLE` in `app/prompts/question_rules.py`), in a system message that holds all the instructions and changes with no call, so OpenAI's prompt cache keeps it; the call's own values (counts, language, level, topic, subtopic) and the topic's existing questions, tagged as data, come after in the request message. Prompts work for any field: they name no technology, standard or field (the kinds of material are described generically, such as "a lookup over stored records" or "the standard, law, framework or version in use"), and questions are driven by the topic, subtopic and level, never the job's role. A unit test keeps a list of such names out of every generation prompt (`test_generation_prompts_name_no_technology_standard_or_field`).
 
 ### Topics
 
@@ -56,7 +56,7 @@ A question that still comes back far over is dropped, and the topic's top-up wri
 
 On a topic about material written in a formal notation (instructions a machine runs, a lookup over stored records, commands, settings files, text-matching patterns), about a third of the questions show an example and ask what it produces, what it does, why it fails or which change fixes it. It's held both ways (`prepza_common.examples`):
 
-- each question call is asked for its share: exactly a third of its questions with an example when the subtopic is about such material, otherwise none (`QUESTIONS_PROMPT`);
+- each question call is asked for its share: exactly a third of its questions with an example when the subtopic is about such material, otherwise none (`QUESTIONS_REQUEST`);
 - each topic keeps 30–40% with an example (`MIN_EXAMPLE_SHARE`, `MAX_EXAMPLE_SHARE`; 27–36 of a template's 90), and each of a template's pools its share too (9–12 of the 30 practice questions, 18–24 of the 60 company ones, `pool_share`). A topic counts as being about such material when at least 15% of its questions came with an example in a notation the site colors (`FORMAL_SHARE`; a table's rows are `text` and don't count). Other topics, such as nursing or a language for travel, are never asked for examples and only held to the 40% ceiling;
 - the top-up writes each kind that's missing apart (single- or multi-answer, with an example or without), and the last round makes up anything still missing with single-answer questions without one, so a topic isn't failed for its mix. A superadmin's addition gives each pool its share the same way, and a regenerated question shows an example exactly when the one it replaces did.
 

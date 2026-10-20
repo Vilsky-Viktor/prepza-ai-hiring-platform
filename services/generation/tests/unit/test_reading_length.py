@@ -3,8 +3,8 @@ import asyncio
 from app.constants.generation import MAX_EXAMPLE_LINES, MAX_OPTION_CHARS, MAX_QUESTION_CHARS
 from app.helpers.questions import readable
 from app.integrations import library, llm
-from app.prompts.questions import QUESTIONS_PROMPT
-from app.prompts.regenerate import REGENERATE_PROMPT
+from app.prompts.questions import QUESTIONS_SYSTEM
+from app.prompts.regenerate import REGENERATE_SYSTEM
 from app.schemas.questions import QuestionItem, QuestionItemList
 from app.services.nodes.questions import generate_questions
 from app.services.regenerate import regenerate
@@ -26,7 +26,7 @@ def test_a_question_reads_within_a_minute():
 
 
 def test_every_question_prompt_sets_the_reading_budget():
-    for prompt in (QUESTIONS_PROMPT, REGENERATE_PROMPT):
+    for prompt in (QUESTIONS_SYSTEM, REGENERATE_SYSTEM):
         assert "within one minute" in prompt
         assert "isn't their own" in prompt
         assert "at most 40 words" in prompt

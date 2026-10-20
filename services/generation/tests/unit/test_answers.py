@@ -111,7 +111,7 @@ class ReplyInTurn:
         self.prompts = []
 
     async def ainvoke(self, messages):
-        self.prompts.append(messages[-1].content)
+        self.prompts.append("\n".join(message.content for message in messages))
         correct, distractors = self.replies.pop(0)
 
         return AnswerList(

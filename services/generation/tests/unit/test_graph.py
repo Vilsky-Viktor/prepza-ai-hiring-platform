@@ -38,7 +38,7 @@ class FakeStructured:
                 ]
             )
 
-        count = int(re.search(r"Number of questions: (\d+)", prompt).group(1))
+        count = int(re.search(r"Write (\d+) questions", prompt).group(1))
         subtopic = re.search(r"Subtopic: (.+)", prompt).group(1)
         focus = re.search(r"Focus: (.+)", prompt).group(1)[:12]
         # Every call also writes one question that only rephrases another call's.

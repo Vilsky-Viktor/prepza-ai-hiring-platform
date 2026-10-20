@@ -46,7 +46,7 @@ def test_questions_are_asked_for_in_the_users_language(monkeypatch):
         )
     )
 
-    assert "Write every question and option in Russian." in recorder.prompts[0]
+    assert "Write 3 questions in Russian." in recorder.prompts[0]
 
 
 def test_reuse_looks_only_at_sets_in_the_same_language(monkeypatch):

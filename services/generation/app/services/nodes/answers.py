@@ -1,6 +1,6 @@
 import logging
 
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from openai import LengthFinishReasonError
 
 from app.constants.generation import ANSWER_ATTEMPTS, MAX_OPTION_CHARS, OPTIONS
@@ -8,7 +8,12 @@ from app.helpers.prompts import language_name
 from app.helpers.questions import build_options
 from app.integrations import llm
 from app.models.state import AnswerTask
-from app.prompts.answers import ANSWERS_PROMPT, MULTI_ANSWER_KIND, SINGLE_ANSWER_KIND
+from app.prompts.answers import (
+    ANSWERS_REQUEST,
+    ANSWERS_SYSTEM,
+    MULTI_ANSWER_KIND,
+    SINGLE_ANSWER_KIND,
+)
 from app.schemas.questions import AnswerList
 
 logger = logging.getLogger(__name__)
@@ -22,23 +27,29 @@ async def generate_answers(task: AnswerTask) -> dict:
     multi = task.get("multi", False)
     done: dict = {}
     pending = list(range(len(questions)))
+    system = SystemMessage(
+        content=ANSWERS_SYSTEM.format(
+            options=OPTIONS,
+            max_chars=MAX_OPTION_CHARS,
+            kind=MULTI_ANSWER_KIND if multi else SINGLE_ANSWER_KIND,
+        )
+    )
 
     # Retry only the questions the model skipped or returned incomplete/invalid.
     for _ in range(ANSWER_ATTEMPTS):
         if not pending:
             break
 
-        prompt = ANSWERS_PROMPT.format(
+        request = ANSWERS_REQUEST.format(
             level=task["level"],
             topic=task["topic"],
-            kind=MULTI_ANSWER_KIND if multi else SINGLE_ANSWER_KIND,
-            options=OPTIONS,
-            max_chars=MAX_OPTION_CHARS,
             language=language_name(task.get("language")),
             questions="\n".join(f"[{i}] {questions[i]}" for i in pending),
         )
         try:
-            result: AnswerList = await structured_llm.ainvoke([HumanMessage(content=prompt)])
+            result: AnswerList = await structured_llm.ainvoke(
+                [system, HumanMessage(content=request)]
+            )
         except LengthFinishReasonError:
             # The model looped until the output cap; the next attempt retries the same questions.
             logger.warning("Options for %r ran too long", task["topic"])

@@ -38,7 +38,7 @@ class FakeStructured:
         self.prompts = prompts
 
     async def ainvoke(self, messages):
-        prompt = messages[0].content
+        prompt = "\n".join(message.content for message in messages)
         self.prompts.append(prompt)
 
         if self.schema is NewQuestion:

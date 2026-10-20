@@ -209,3 +209,22 @@ page's guide; both fixed before this baseline.
 clarity 5.00, relevance 4.58 ± 0.20, distractors 3.38 ± 0.27; $0.49 for 40 (a new question, its
 options, and a retry when one came out ambiguous), 121 s.
 
+## Question prompts: role, instructions first, data tagged (2026-10-20)
+
+`questions.py`, `answers.py` and `regenerate.py` start with a generic role (an assessment
+designer who writes questions for skills tests in any field); their instructions move into a
+system message that changes with no call, so the provider caches it, and the call's values and
+the topic's existing questions, tagged as data, come last in the request. Same wording
+otherwise. `gpt-6.1-sol` low, judged by `gpt-6.1-sol` high, before → after:
+
+| Set | Keys | One defensible answer | Clarity | Relevance | Distractors | Price |
+|---|---|---|---|---|---|---|
+| 53 subtopics × 6, 2 multi (300 → 312 questions) | 98.3% (96.2–99.3) → 98.7% (96.8–99.5); multi 100% → 100% | 98.3% → 98.4% | 4.97 → 4.97 | 4.30 ± 0.10 → 4.24 ± 0.10 | 2.92 ± 0.10 → 2.88 ± 0.10 | $1.21 → $0.90 (**$0.0040 → $0.0029 a question, −28%**), 301 → 284 s |
+| Re-generation, 40 (two runs after) | 100% → 95% (2 misses, one subtopic) and 100% | 100% → 95%, 100% | 5.00 → 4.92, 5.00 | 4.58 → 4.50, 4.47 | 3.38 → 3.27, 3.25 | $0.49 → $0.33, $0.25 |
+| Other languages (72 → 71) | 100% → 100% | 100% → 100% | 4.99 → 5.00 | 3.89 → 3.85 | 2.28 → 2.15 (± 0.24) | $0.24 → $0.23 |
+
+No quality metric moved beyond its interval; the price per question fell by about a quarter on
+the full set (the ~2,500 tokens of rules are now a cached prefix) and by a third to a half on
+re-generation. The self-check dropped 5 of 106 multi-answer questions for an open condition (11
+of 104 before). Kept: cheaper, and the role and tagged data rule 19 asks for.
+

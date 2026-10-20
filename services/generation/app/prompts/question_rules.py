@@ -2,6 +2,13 @@
 # regenerate.py), so a question reads the same however it was made. Plain text without braces:
 # the prompts that include them are filled with str.format.
 
+# Who writes questions and their options, for every prompt that does (rule 19: a role
+# generic to prepza's work, never one job, field or language).
+QUESTION_WRITER_ROLE = (
+    "You are an assessment designer who writes multiple-choice questions for the skills "
+    "tests companies give job candidates, in any field."
+)
+
 # The whole question, its example and its four options read and answered within a minute (a
 # minute and a half for the hardest), also by someone reading in a language that isn't their own
 # (constants/generation.py checks the limits).

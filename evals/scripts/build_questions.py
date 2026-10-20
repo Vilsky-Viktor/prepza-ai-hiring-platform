@@ -26,18 +26,14 @@ from datetime import UTC, datetime
 
 from common import DATASETS, RESULTS, cost, generation_models, is_multi, load, run_record, save
 from langchain_core.callbacks import get_usage_metadata_callback
-from langchain_core.messages import HumanMessage
-from prepza_common.constants import LANGUAGES
 from prepza_common.examples import example_count
 
 from app.config.settings import settings
-from app.constants.generation import MAX_OPTION_CHARS, OPTIONS
 from app.helpers.questions import build_options, with_example
 from app.integrations import llm
-from app.prompts.questions import QUESTIONS_PROMPT
 from app.schemas.questions import QuestionItemList
 from app.services.key_self_check import self_check
-from app.services.nodes.questions import focus_for
+from app.services.nodes.questions import focus_for, question_messages
 
 # Multi-answer questions the self-check saw, and dropped by reason, over the run.
 CHECKED = [0]
@@ -47,21 +43,19 @@ DROPPED = Counter()
 async def subtopic_questions(
     domain: dict, topic: str, subtopic: str, count: int, multi: int
 ) -> list[dict]:
-    prompt = QUESTIONS_PROMPT.format(
-        level=domain["level"],
-        topic=topic,
-        subtopic=subtopic,
-        focus=focus_for(0, 1),
-        count=count,
-        multi=multi,
-        examples=example_count(count),
-        options=OPTIONS,
-        max_chars=MAX_OPTION_CHARS,
-        existing="None",
-        language=LANGUAGES[domain.get("language", "en")],
-    )
+    task = {
+        "level": domain["level"],
+        "topic": topic,
+        "subtopic": subtopic,
+        "focus": focus_for(0, 1),
+        "count": count,
+        "multi": multi,
+        "examples": example_count(count),
+        "existing": [],
+        "language": domain.get("language", "en"),
+    }
     structured = llm.get_generation_llm().with_structured_output(QuestionItemList)
-    result = await structured.ainvoke([HumanMessage(content=prompt)])
+    result = await structured.ainvoke(question_messages(task))
     written = []
 
     for item in result.items:

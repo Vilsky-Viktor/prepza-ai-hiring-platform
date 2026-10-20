@@ -1,7 +1,7 @@
 import logging
 import math
 
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from langgraph.types import Send
 from openai import LengthFinishReasonError
 from prepza_common.examples import example_count, example_range, is_formal, pick
@@ -30,7 +30,7 @@ from app.helpers.questions import (
 )
 from app.integrations import llm
 from app.models.state import QuestionTask, State
-from app.prompts.questions import QUESTIONS_PROMPT
+from app.prompts.questions import QUESTIONS_REQUEST, QUESTIONS_SYSTEM
 from app.schemas.questions import QuestionItemList
 from app.services.dedupe import distinct_by_meaning
 from app.services.key_self_check import keys_that_hold
@@ -92,11 +92,10 @@ def fan_out_questions(state: State):
     return sends or "collect_results"
 
 
-async def generate_questions(task: QuestionTask) -> dict:
-    """Questions with their options in one call; ambiguous, too long or incomplete ones are
-    dropped."""
-    structured_llm = llm.get_generation_llm().with_structured_output(QuestionItemList)
-    prompt = QUESTIONS_PROMPT.format(
+def question_messages(task: QuestionTask) -> list[BaseMessage]:
+    """The instructions, the same for every call so the model's prompt cache keeps them, then
+    this call's request."""
+    request = QUESTIONS_REQUEST.format(
         level=task["level"],
         topic=task["topic"],
         subtopic=task["subtopic"],
@@ -104,16 +103,26 @@ async def generate_questions(task: QuestionTask) -> dict:
         count=task["count"],
         multi=task.get("multi", 0),
         examples=task.get("examples", 0),
-        options=OPTIONS,
-        max_chars=MAX_OPTION_CHARS,
         existing=bullet_list(task.get("existing", [])) or "None",
         language=language_name(task.get("language")),
     )
+
+    return [
+        SystemMessage(content=QUESTIONS_SYSTEM.format(options=OPTIONS, max_chars=MAX_OPTION_CHARS)),
+        HumanMessage(content=request),
+    ]
+
+
+async def generate_questions(task: QuestionTask) -> dict:
+    """Questions with their options in one call; ambiguous, too long or incomplete ones are
+    dropped."""
+    structured_llm = llm.get_generation_llm().with_structured_output(QuestionItemList)
+    messages = question_messages(task)
     items = []
 
     for attempt in range(1, QUESTION_ATTEMPTS + 1):
         try:
-            result: QuestionItemList = await structured_llm.ainvoke([HumanMessage(content=prompt)])
+            result: QuestionItemList = await structured_llm.ainvoke(messages)
         except LengthFinishReasonError:
             # The model looped until the output cap; ask again.
             logger.warning("Questions for %r ran too long (attempt %d)", task["subtopic"], attempt)

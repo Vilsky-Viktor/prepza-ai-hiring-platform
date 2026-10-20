@@ -2,7 +2,7 @@ import asyncio
 import logging
 from uuid import UUID
 
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from prepza_common.examples import has_example
 
 from app.constants.generation import REGENERATE_ATTEMPTS, REGENERATE_TIMEOUT_SECONDS
@@ -11,7 +11,8 @@ from app.helpers.questions import normalize, readable, with_example
 from app.integrations import library, llm, usage
 from app.prompts.regenerate import (
     MULTI_ANSWER_KIND,
-    REGENERATE_PROMPT,
+    REGENERATE_REQUEST,
+    REGENERATE_SYSTEM,
     REPORT_GUIDANCE,
     REPORTS,
     SINGLE_ANSWER_KIND,
@@ -45,7 +46,7 @@ async def new_question(context: QuestionContext, reasons: list[str]) -> str | No
     taken = {normalize(text) for text in existing}
 
     for _ in range(REGENERATE_ATTEMPTS):
-        prompt = REGENERATE_PROMPT.format(
+        request = REGENERATE_REQUEST.format(
             kind=MULTI_ANSWER_KIND if context.multi else SINGLE_ANSWER_KIND,
             example=WITH_EXAMPLE if context.example else WITHOUT_EXAMPLE,
             reports=reported(reasons),
@@ -55,7 +56,9 @@ async def new_question(context: QuestionContext, reasons: list[str]) -> str | No
             existing=bullet_list(existing),
             language=language_name(context.language),
         )
-        result: NewQuestion = await structured_llm.ainvoke([HumanMessage(content=prompt)])
+        result: NewQuestion = await structured_llm.ainvoke(
+            [SystemMessage(content=REGENERATE_SYSTEM), HumanMessage(content=request)]
+        )
         text = with_example(result.question, result.example, result.example_language)
 
         if (

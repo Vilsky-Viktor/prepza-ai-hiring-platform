@@ -53,16 +53,17 @@ only on a difference beyond both intervals (every result prints its 95% interval
 
 | Metric | Last | Dataset, judge | Date |
 |---|---|---|---|
-| Questions: clarity / relevance / distractors | 4.96 / 4.15 / 2.88 | 53 subtopics × 8, `gpt-6.1-sol` high | 2026-10-17 |
-| Keys correct: single / multi-answer | 98.4% / 99% (multi set: 98.5%) | same; `multi_questions.json` | 2026-10-17 |
+| Questions: clarity / relevance / distractors | 4.97 / 4.24 / 2.88 | 53 subtopics × 6 (2 multi), `gpt-6.1-sol` high | 2026-10-20 |
+| Keys correct: single / multi-answer | 98.1% / 100% (multi set: 98.5%, 2026-10-17) | same; `multi_questions.json` | 2026-10-20 |
+| Price per question written (`build_questions.py`) | $0.0029 | 53 subtopics × 6 | 2026-10-20 |
 | Correct option the longest | 11% (multi: 57% against 75% by chance) | `questions.json` | 2026-10-04 |
 | Price and time per 100-question topic | $0.21–0.25, 49–61 s | full interviews | 2026-10-04 |
-| Other languages: keys / clarity / relevance / distractors | 100% (72) / 4.99 / 3.89 / 2.28 | `language_questions.json` | 2026-10-20 |
+| Other languages: keys / clarity / relevance / distractors | 100% (71) / 5.00 / 3.85 / 2.15 | `language_inputs.json` | 2026-10-20 |
 | Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-17 |
 | Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
 | Assistant page context: general correct with / without; page checks | 121/129 / 108/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-17 |
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
-| Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 100% / 3.38 ± 0.27 / 4.58 | 40 of `multi_questions.json` | 2026-10-20 |
+| Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 95–100% / 3.25 ± 0.27 / 4.47 | 40 of `multi_questions.json` | 2026-10-20 |
 | Help chat: passed / made up / sign-in marker | 90.7% (80.1–96.0) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-20 |
 
 ## Datasets
