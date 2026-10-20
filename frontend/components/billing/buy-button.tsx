@@ -2,7 +2,7 @@
 
 import { cn } from "cn"
 import { useRouter } from "next/navigation"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
 
@@ -36,6 +36,7 @@ export function BuyButton({
   className?: string
 }) {
   const t = useTranslations("billing")
+  const locale = useLocale()
   const signIn = useSignIn()
   const router = useRouter()
   const { user } = useAuth()
@@ -72,14 +73,20 @@ export function BuyButton({
         `/companies/companies/${companyId}/billing/checkout`,
         { method: "POST", body: JSON.stringify({ candidates }) }
       )
-      await openCheckout(catalog, { transactionId }, user.email, () => {
-        toast.success(t("paid"))
-        // Paddle's webhook usually lands within seconds, sometimes later: look again a few
-        // times, and the balances count up when it has.
-        rechecks.current = RECHECK_SECONDS.map((seconds) =>
-          window.setTimeout(() => router.refresh(), seconds * 1000)
-        )
-      })
+      await openCheckout(
+        catalog,
+        { transactionId },
+        user.email,
+        () => {
+          toast.success(t("paid"))
+          // Paddle's webhook usually lands within seconds, sometimes later: look again a few
+          // times, and the balances count up when it has.
+          rechecks.current = RECHECK_SECONDS.map((seconds) =>
+            window.setTimeout(() => router.refresh(), seconds * 1000)
+          )
+        },
+        locale
+      )
     } catch {
       toast.error(t("checkoutFailed"))
     } finally {

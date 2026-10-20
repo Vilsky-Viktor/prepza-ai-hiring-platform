@@ -115,7 +115,8 @@ export function AutoTopUpSetting({
               .catch(() => {})
             router.refresh()
           }, 4000)
-        }
+        },
+        locale
       )
     } catch (error) {
       toast.error(apiErrorMessage(error, t("failed")))
