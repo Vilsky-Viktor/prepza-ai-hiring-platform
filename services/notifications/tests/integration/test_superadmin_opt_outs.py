@@ -38,7 +38,10 @@ def acme(monkeypatch):
         http, "get_client", lambda: httpx.AsyncClient(transport=httpx.MockTransport(answer))
     )
     app.dependency_overrides[current_user] = lambda: User(
-        uid="sam", email="sam@prepza.dev", email_verified=True
+        uid="sam",
+        email="sam@prepza.dev",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
     yield company
 

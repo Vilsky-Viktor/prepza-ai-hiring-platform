@@ -11,7 +11,9 @@ from tests.integration.factories import api
 
 
 def as_user(uid: str, email: str) -> None:
-    app.dependency_overrides[current_user] = lambda: User(uid=uid, email=email, email_verified=True)
+    app.dependency_overrides[current_user] = lambda: User(
+        uid=uid, email=email, email_verified=True, sign_in_provider="google.com"
+    )
 
 
 def test_a_superadmin_sees_why_an_address_is_suppressed_and_takes_it_off(run, monkeypatch):

@@ -167,7 +167,10 @@ def test_a_news_post_becomes_a_product_update_with_a_button_to_it(run, quiet, mo
     news_id, gone_id = uuid.uuid4(), uuid.uuid4()
     monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="sam", email="sam@prepza.dev", email_verified=True
+        uid="sam",
+        email="sam@prepza.dev",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
 
     async def news_post(post_id):

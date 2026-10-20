@@ -18,8 +18,8 @@ from app.storage import limit_settings, usage
 # One limit no other service's integration tests touch, as they share Redis database 15.
 NAME = "REGISTRATIONS_PER_DAY"
 DEFAULT = LIMITS[NAME].default
-ANN = User(uid="ann", email="ann@example.com", email_verified=True)
-BOB = User(uid="bob", email="bob@example.com", email_verified=True)
+ANN = User(uid="ann", email="ann@example.com", email_verified=True, sign_in_provider="google.com")
+BOB = User(uid="bob", email="bob@example.com", email_verified=True, sign_in_provider="google.com")
 
 
 async def read(redis) -> int | float:

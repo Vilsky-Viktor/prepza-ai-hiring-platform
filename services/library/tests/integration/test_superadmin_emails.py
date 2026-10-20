@@ -20,7 +20,10 @@ def test_a_superadmin_turns_settings_off_once_logged_as_admin_with_their_id(run,
     monkeypatch.setattr(firebase_auth, "get_user_by_email", lambda email: ACCOUNT)
     monkeypatch.setattr(firebase_auth, "get_user", lambda uid: ACCOUNT)
     app.dependency_overrides[current_user] = lambda: User(
-        uid="sam", email="sam@prepza.dev", email_verified=True
+        uid="sam",
+        email="sam@prepza.dev",
+        email_verified=True,
+        sign_in_provider="google.com",
     )
     off = {"updates": False, "promotions": False, "reminders": False}
 
