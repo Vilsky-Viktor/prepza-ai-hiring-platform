@@ -215,10 +215,19 @@ resource "google_compute_url_map" "site" {
   }
 }
 
+# TLS 1.2 or later with modern ciphers only: without a policy Google's default profile still
+# offers TLS 1.0 and 1.1.
+resource "google_compute_ssl_policy" "modern" {
+  name            = "prepza-modern-tls"
+  profile         = "MODERN"
+  min_tls_version = "TLS_1_2"
+}
+
 resource "google_compute_target_https_proxy" "site" {
   name             = "prepza"
   url_map          = google_compute_url_map.site.id
   ssl_certificates = [google_compute_managed_ssl_certificate.site.id, google_compute_managed_ssl_certificate.www.id]
+  ssl_policy       = google_compute_ssl_policy.modern.id
 }
 
 resource "google_compute_global_forwarding_rule" "https" {
