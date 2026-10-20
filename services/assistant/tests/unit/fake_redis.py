@@ -17,6 +17,9 @@ class Pipeline:
     def incrby(self, key, amount):
         self.commands.append(self.redis.incrby(key, amount))
 
+    def ttl(self, key):
+        self.commands.append(self.redis.ttl(key))
+
     def sadd(self, *args):
         pass
 
@@ -52,6 +55,9 @@ class FakeRedis:
         self.values[key] = int(self.values.get(key, 0)) + amount
 
         return self.values[key]
+
+    async def ttl(self, key):
+        return self.expiry.get(key) or -2
 
     async def hgetall(self, key):
         return dict(self.limits) if key == "limits:values" else {}

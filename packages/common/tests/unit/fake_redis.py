@@ -34,6 +34,9 @@ class FakePipeline:
 
         self.commands.append(run)
 
+    def ttl(self, key):
+        self.commands.append(lambda: self.redis.expiries.get(key, -2))
+
     def expire(self, key, seconds):
         self.commands.append(lambda: self.redis.expiries.update({key: seconds}) or True)
 

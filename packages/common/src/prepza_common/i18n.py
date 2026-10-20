@@ -36,8 +36,15 @@ class TemplateError(RaisedHTTPException):
     translated first, then filled in with `values`. FastAPI's HTTPException, so code that lets
     those through (rate_limit.hit_or_skip) lets this one through too."""
 
-    def __init__(self, status_code: int, template: str, **values: object):
-        super().__init__(status_code, template.format(**values))
+    def __init__(
+        self,
+        status_code: int,
+        template: str,
+        *,
+        headers: dict[str, str] | None = None,
+        **values: object,
+    ):
+        super().__init__(status_code, template.format(**values), headers=headers)
         self.template = template
         self.values = values
 

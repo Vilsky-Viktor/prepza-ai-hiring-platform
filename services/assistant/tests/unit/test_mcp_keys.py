@@ -185,7 +185,12 @@ def test_the_api_answers_whether_a_key_works(monkeypatch, status, expected):
 def test_over_the_companys_api_limit_a_key_gets_a_429(monkeypatch):
     class Client:
         async def post(self, url, json, headers):
-            return httpx.Response(429, json={"detail": "Too many requests"})
+            return httpx.Response(
+                429,
+                json={"detail": "Too many requests"},
+                headers={"Retry-After": "17"},
+                request=httpx.Request("POST", url),
+            )
 
     monkeypatch.setattr(http, "get_client", Client)
 
@@ -193,6 +198,7 @@ def test_over_the_companys_api_limit_a_key_gets_a_429(monkeypatch):
         asyncio.run(api_keys.verify("pz_key"))
 
     assert (refused.value.status_code, refused.value.detail) == (429, "Too many requests")
+    assert refused.value.headers == {"Retry-After": "17"}
 
 
 def test_a_keys_use_counts_in_the_funnel_as_an_api_key(monkeypatch, redis):

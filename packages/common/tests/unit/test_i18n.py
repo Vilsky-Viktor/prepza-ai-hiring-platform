@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.testclient import TestClient
 from prepza_common.constants import RATE_LIMITED
-from prepza_common.i18n import add_localized_errors
+from prepza_common.i18n import TemplateError, add_localized_errors
 from pydantic import BaseModel, field_validator
 
 
@@ -26,6 +26,11 @@ def limited():
     raise HTTPException(429, RATE_LIMITED)
 
 
+@app.get("/templated")
+def templated():
+    raise TemplateError(429, "At most {limit} an hour.", headers={"Retry-After": "30"}, limit=5)
+
+
 @app.get("/unknown")
 def unknown():
     raise HTTPException(409, "Something only English has")
@@ -44,6 +49,14 @@ def test_errors_come_in_the_interface_language():
 
     assert response.status_code == 429
     assert response.json() == {"detail": "Слишком много запросов. Попробуйте позже."}
+
+
+def test_a_templated_error_keeps_its_values_and_headers():
+    response = client.get("/templated")
+
+    assert response.status_code == 429
+    assert response.json() == {"detail": "At most 5 an hour."}
+    assert response.headers["Retry-After"] == "30"
 
 
 def test_english_and_unknown_languages_keep_the_message():

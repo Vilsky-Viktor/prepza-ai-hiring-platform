@@ -89,7 +89,7 @@ console.log(candidate.invite_url)
 ## Rate limits and pagination
 
 Your company's keys together have a limit of requests per minute; further requests return
-`429` until the minute ends. List endpoints return the newest items first and accept `offset` and `limit` (up to 100
+`429` until the minute ends, with a `Retry-After` header giving the seconds left. List endpoints return the newest items first and accept `offset` and `limit` (up to 100
 items per request).
 
 ## Keeping your copy in sync

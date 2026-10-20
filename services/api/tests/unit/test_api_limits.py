@@ -87,7 +87,8 @@ def test_a_companys_requests_a_minute_are_limited(
     async def counted(redis, counter, amount, window):
         totals[counter] = totals.get(counter, 0) + amount
 
-        return totals[counter]
+        # The total, and 25 seconds left in the minute.
+        return totals[counter], 25
 
     if most:
         edited["API_REQUESTS_PER_MINUTE"] = most
@@ -101,5 +102,6 @@ def test_a_companys_requests_a_minute_are_limited(
     assert set(answered) == {200}
     assert refused.status_code == 429
     assert refused.json() == {"detail": TOO_MANY_REQUESTS}
+    assert refused.headers["Retry-After"] == "25"
     assert totals == {f"rate:api:{COMPANY}": most + 1}
     assert whose(limit_hits) == [("API_REQUESTS_PER_MINUTE", str(COMPANY), None)]

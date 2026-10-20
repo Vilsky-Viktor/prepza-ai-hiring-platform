@@ -48,6 +48,8 @@ def test_email_limits_count_in_real_redis(run, monkeypatch):
     assert (refusal.status_code, refusal.detail) == (429, TOO_MANY_REQUESTS)
     # Every counter expires, so a limit never sticks forever.
     assert 0 < ttl <= 24 * 60 * 60
+    # The refusal says when the window ends.
+    assert 0 < int(refusal.headers["Retry-After"]) <= 24 * 60 * 60
     assert [(hit["limit"], hit["company_id"], hit["user_id"]) for hit in hits] == [
         ("EMAIL_RECIPIENT_DAILY_LIMIT", str(company_id), sender)
     ]

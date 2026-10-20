@@ -1,5 +1,5 @@
 class FakePipeline:
-    """The SET NX + INCRBY transaction of prepza_common.rate_limit, in memory."""
+    """The SET NX + INCRBY + TTL transaction of prepza_common.rate_limit, in memory."""
 
     def __init__(self, redis):
         self.redis = redis
@@ -17,11 +17,15 @@ class FakePipeline:
     def incrby(self, key, amount):
         self.adds.append((key, amount))
 
+    def ttl(self, key):
+        pass
+
     async def execute(self):
         key, amount = self.adds.pop()
         self.redis.counts[key] += amount
 
-        return [True, self.redis.counts[key]]
+        # The seconds left in the window, which this fake doesn't keep, come last.
+        return [True, self.redis.counts[key], 60]
 
 
 class FakeRedis:

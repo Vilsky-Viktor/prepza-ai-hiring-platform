@@ -19,6 +19,25 @@ def test_a_refusal_asked_for_reaches_the_client_with_its_reason():
     assert (refused.value.status_code, refused.value.detail) == (402, "Not enough credits.")
 
 
+def test_a_rate_limits_refusal_keeps_its_retry_after():
+    limited = httpx.Response(
+        429,
+        json={"detail": "Too many requests."},
+        headers={"Retry-After": "42"},
+        request=httpx.Request("GET", "http://x"),
+    )
+
+    with pytest.raises(HTTPException) as refused:
+        passed_on(limited, {429})
+
+    assert refused.value.headers == {"Retry-After": "42"}
+
+    with pytest.raises(HTTPException) as other:
+        passed_on(answer(402, {"detail": "Not enough credits."}))
+
+    assert other.value.headers is None
+
+
 def test_any_refusal_passes_without_codes_and_others_raise_with_them():
     with pytest.raises(HTTPException):
         passed_on(answer(422, {"detail": "Invalid"}))

@@ -69,6 +69,27 @@ def test_a_refusal_says_the_current_value_and_is_recorded(published):
     ]
 
 
+def test_a_refusal_says_when_to_try_again(published):
+    redis = FakeRedis({HOURLY: 1})
+    asyncio.run(hit(redis, "key", HOURLY))
+    # 20 minutes left in the window.
+    redis.expiries["key"] = 1200
+
+    with pytest.raises(HTTPException) as refused:
+        asyncio.run(hit(redis, "key", HOURLY))
+
+    assert refused.value.headers == {"Retry-After": "1200"}
+
+
+def test_a_spent_budget_says_when_to_try_again(published):
+    redis = FakeRedis({TOKENS: 10})
+
+    with pytest.raises(HTTPException) as refused:
+        asyncio.run(spend(redis, "key", 11, TOKENS))
+
+    assert refused.value.headers == {"Retry-After": str(LIMITS[TOKENS].window)}
+
+
 @pytest.mark.parametrize("value", [-1, 0])
 def test_non_positive_limits_never_refuse(value, published):
     redis = FakeRedis({HOURLY: value})

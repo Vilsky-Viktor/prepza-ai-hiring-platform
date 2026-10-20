@@ -31,6 +31,9 @@ class FakePipeline:
 
         self.commands.append(run)
 
+    def ttl(self, key):
+        self.commands.append(lambda: self.redis.expiries.get(key, -2))
+
     async def execute(self):
         results = [command() for command in self.commands]
         self.commands = []

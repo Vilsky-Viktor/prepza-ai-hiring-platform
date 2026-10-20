@@ -5,7 +5,7 @@ the current one (limits.limit) and its window the list's. A refusal is recorded
 import logging
 
 from fastapi import HTTPException, status
-from prepza_common.constants import RATE_LIMITED
+from prepza_common.constants import RATE_LIMITED, RETRY_AFTER
 from prepza_common.i18n import TemplateError
 from prepza_common.limit_list import LIMITS
 from prepza_common.limits import limit, record_hit
@@ -13,21 +13,28 @@ from prepza_common.limits import limit, record_hit
 logger = logging.getLogger(__name__)
 
 
-async def counted(redis, key: str, amount: int, window: int) -> int:
-    """Adds `amount` to the window's total under `key`; the total."""
+async def counted(redis, key: str, amount: int, window: int) -> tuple[int, int]:
+    """Adds `amount` to the window's total under `key`; the total, and the seconds left until
+    the window ends."""
     # One transaction, so the counter never exists without its expiry.
     async with redis.pipeline(transaction=True) as pipe:
         pipe.set(key, 0, ex=window, nx=True)
         pipe.incrby(key, amount)
-        _, total = await pipe.execute()
+        pipe.ttl(key)
+        _, total, seconds = await pipe.execute()
 
-    return total
+    return total, seconds
 
 
-async def refuse(name: str, value: float, message: str, company_id, user_id) -> None:
+async def refuse(name: str, value: float, message: str, seconds: int, company_id, user_id) -> None:
+    """Records the refusal and answers 429, with Retry-After saying when the window ends."""
     await record_hit(name, company_id=company_id, user_id=user_id)
 
-    raise TemplateError(status.HTTP_429_TOO_MANY_REQUESTS, message, limit=value)
+    retry_after = {RETRY_AFTER: str(max(seconds, 1))}
+
+    raise TemplateError(
+        status.HTTP_429_TOO_MANY_REQUESTS, message, headers=retry_after, limit=value
+    )
 
 
 async def hit(
@@ -63,8 +70,10 @@ async def spend(
     if value <= 0:
         return
 
-    if await counted(redis, key, amount, LIMITS[name].window) > value:
-        await refuse(name, value, message, company_id, user_id)
+    total, seconds = await counted(redis, key, amount, LIMITS[name].window)
+
+    if total > value:
+        await refuse(name, value, message, seconds, company_id, user_id)
 
 
 async def hit_or_skip(

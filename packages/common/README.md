@@ -4,7 +4,8 @@ Code every prepza API service shares: sign-in, service tokens, logging, database
 the outbox and Pub/Sub, notifications, who may do what in a company (asked of companies; a
 company that's gone is no access), translated messages, a small in-memory cache, the admin zone's
 stats counting and the limits several services read (`rate_limit.hit` counts uses, `rate_limit.spend`
-adds up a cost such as tokens against a budget) and server-sent events (`sse`: the help chat's
+adds up a cost such as tokens against a budget; a refusal is a 429 whose `Retry-After` gives the
+seconds left in the limit's window, which `http.passed_on` keeps when it relays it) and server-sent events (`sse`: the help chat's
 and the assistant's answers, the bell's stream), secret tokens kept as their hashes (`tokens`: API
 keys, AI apps' access), a visitor's address behind the load balancer (`client_ip`) and
 "select all that apply" questions (`multi_answer`: which questions are, how many of a draw are,

@@ -8,6 +8,8 @@ HTTP_TIMEOUT_SECONDS = 30
 HTTP_RETRIES = 3
 
 RATE_LIMITED = "Too many requests. Try again later."
+# A 429 says in this header (RFC 9110) how many seconds are left until its limit's window ends.
+RETRY_AFTER = "Retry-After"
 # A request's body is refused past this many bytes (body_limit.py); a service that takes bigger
 # uploads (report PDFs, voice messages) passes its own limit.
 MAX_BODY_BYTES = 1_000_000
