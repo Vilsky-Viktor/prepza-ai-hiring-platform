@@ -41,7 +41,7 @@ def prepared(monkeypatch):
     """Actions prepared as the user, each a card waiting for Confirm."""
     made = []
 
-    async def prepare(tool, arguments, turn):
+    async def prepare(tool, arguments, turn, seen=None):
         made.append((tool.name, arguments, turn.token))
         block = {"kind": "action", "action_id": f"a-{len(made)}"}
 

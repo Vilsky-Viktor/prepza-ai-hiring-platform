@@ -129,3 +129,21 @@ def test_a_text_that_was_only_instructions_is_missing(redis):
     assert result.block is None
     assert result.content["error"] == 422
     assert result.content["detail"].startswith("text is empty: ask the user for it")
+
+
+def test_an_address_no_one_gave_gets_no_card(redis, monkeypatch):
+    async def get(service, path, query, token, language, via=None):
+        return httpx.Response(200, json={"name": "Acme"}, request=httpx.Request("GET", "http://x"))
+
+    monkeypatch.setattr(services, "get", get)
+    tool = tools()["invite_member"]
+    arguments = {"company_id": COMPANY, "email": "dummy@example.com", "role": "admin"}
+    made_up = asyncio.run(actions.prepare(tool, arguments, TURN, "Invite a new admin."))
+
+    assert made_up.block is None
+    assert made_up.content["detail"] == (
+        "dummy@example.com isn't an address the user gave or the data shows: ask the user for it"
+    )
+
+    given = asyncio.run(actions.prepare(tool, arguments, TURN, "Invite dummy@example.com."))
+    assert given.block["preview"]["email"] == "dummy@example.com"

@@ -33,7 +33,7 @@ def matches(expected, given, ids: dict) -> bool:
 
 # A call refused for a value the user hasn't given yet: the refusal tells the model to ask for
 # it, so it's the check working, not an action (whether it asked is the judge's).
-MISSING_VALUE = (" is required", " is empty")
+MISSING_VALUE = (" is required", " is empty", "ask the user for it")
 
 
 def missing_value(detail: str | None) -> bool:

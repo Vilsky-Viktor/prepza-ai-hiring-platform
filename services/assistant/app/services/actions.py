@@ -17,9 +17,11 @@ from app.constants.actions_flow import (
     PENDING,
     PENDING_FOR_MODEL,
     SUBJECT_NOT_FOUND,
+    UNKNOWN_EMAIL,
 )
 from app.constants.chat import SESSION_EXPIRED
 from app.helpers.arguments import fill_path, problems
+from app.helpers.given_emails import unknown_emails
 from app.helpers.untrusted_text import without_instructions
 from app.integrations import services
 from app.integrations.redis import get_redis
@@ -154,13 +156,20 @@ def cleaned(tool: Tool, arguments: dict) -> dict:
     }
 
 
-async def prepare(tool: Tool, arguments: dict, turn: Turn) -> ToolResult:
+async def prepare(tool: Tool, arguments: dict, turn: Turn, seen: str | None = None) -> ToolResult:
     """What the model asked for, its texts cleaned, kept (in Redis, for a short while) for the
     user to confirm: bound to them, the conversation and the company. Nothing runs yet; what
     it's about is read with the user's token to name it on the card, and must be theirs to
-    see."""
+    see. With `seen` (what the user wrote and the tools returned), an address in its texts
+    must be one of those: the model never invents one."""
     arguments = cleaned(tool, arguments)
     found = problems(arguments, tool.parameters)
+
+    if seen is not None:
+        found += [
+            UNKNOWN_EMAIL.format(address=address)
+            for address in unknown_emails(arguments, tool.body_params, seen)
+        ]
 
     if found:
         content = {"error": 422, "detail": "; ".join(found)}

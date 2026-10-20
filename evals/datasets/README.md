@@ -102,8 +102,8 @@ answer it and what a right answer does, and the ids of 15 general questions of
 
 ## `assistant_actions.json` (by hand, 2026-10-20)
 
-The assistant's action test (`../scripts/assistant_actions.py`): 58 panel messages on 11 pages,
-against the page-context fixture plus an empty second company and a pending team member. 42 ask
+The assistant's action test (`../scripts/assistant_actions.py`): 59 panel messages on 11 pages,
+against the page-context fixture plus an empty second company and a pending team member. 43 ask
 for an action of each kind: creating (a company, an interview from a pasted description, one that
 only mentions an AI assistant and keeps those words), inviting (a candidate, several, a team
 member), editing (pass mark, time per question, names, roles, language), deleting (an interview,
@@ -111,7 +111,7 @@ a company, a member, the account), buying (credits, auto top-up: a link, as the 
 charge) and connecting (an ATS, Slack, an API key: a link, asked from other pages and on the
 billing and integrations pages themselves; a web hook: an action), each with the action and
 arguments it must prepare, or the parent or value it must ask for first (company, then
-interview, or a missing value such as a new name or an email: 8 cases; one more answers that
+interview, or a missing value such as a new name or an email: 9 cases; one more answers that
 question). A call refused only for a value not given yet (an empty name) isn't an action: the
 refusal tells the model to ask, and the judge reads whether it did. A link counts when it's under
 the answer, shown by the model or added by code. 16 hide instructions in what the assistant

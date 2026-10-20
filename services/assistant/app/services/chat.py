@@ -102,6 +102,10 @@ async def converse(
     offered = {definition["function"]["name"] for definition in definitions}
     model = llm.get_chat_model()
 
+    # The conversation as the user wrote and read it (not the instructions), once per turn.
+    if domain is None:
+        answer.given = "\n".join(str(message.content) for message in messages[1:])
+
     for step in range(MAX_TOOL_STEPS + 1):
         last = step == MAX_TOOL_STEPS
         bound = model.bind_tools(definitions, tool_choice="none" if last else "auto")
@@ -196,10 +200,11 @@ def tool_event(name: str, state: ToolState, language: str) -> dict:
 
 
 async def step_results(
-    calls: list[tuple[str, dict]], turn: Turn, shown: set | None = None
+    calls: list[tuple[str, dict]], turn: Turn, shown: set | None = None, seen: str | None = None
 ) -> list[ToolResult]:
     """One step's results, in order: a call naming a company that isn't the user's is refused
-    before anything runs; an action is prepared for the user to confirm; reads are called."""
+    before anything runs; an action is prepared for the user to confirm (its addresses only
+    from `seen`, see prepare); reads are called."""
     results: list[ToolResult | None] = [None] * len(calls)
     reads = []
 
@@ -218,7 +223,7 @@ async def step_results(
             content = {"error": 404, "detail": translate(COMPANY_NOT_FOUND, turn.language)}
             results[index] = ToolResult(name, arguments, None, content, None, 0)
         elif tool is not None and tool.confirm:
-            results[index] = await prepare(tool, arguments, turn)
+            results[index] = await prepare(tool, arguments, turn, seen)
         elif name == GET_UPDATES:
             results[index] = await in_panel(arguments, turn)
         else:
@@ -244,8 +249,11 @@ async def run_tools(calls: list[dict], turn: Turn, answer: Answer, emit: Emit) -
         emit(tool_event(call["name"], ToolState.RUNNING, turn.language))
 
     valid = [call for call in calls if call.get("type") == "tool_call"]
+    # What the user wrote and what the tools returned in this turn.
+    data = [json.dumps(result.content, ensure_ascii=False) for result in answer.results]
+    seen = "\n".join([answer.given, *data])
     results = await step_results(
-        [(call["name"], call["args"]) for call in valid], turn, answer.shown
+        [(call["name"], call["args"]) for call in valid], turn, answer.shown, seen
     )
     replies = []
 

@@ -44,7 +44,7 @@ steps. Describe manual steps only when no tool does it.
 - An action needs every value it requires from the user's words, the page or your tools. When \
 one is missing (a new company's name, the email of someone to invite, a new title), ask for just \
 that in one short question and call no tool yet: never fill it with an empty, placeholder or \
-made-up value.
+made-up value. An email address must be one the user wrote or a tool returned.
 - Some things are done only on a page, never by a tool: buying credits and turning on auto \
 top-up (the page top_up), connecting an ATS (ats, or integrations), connecting Slack (slack) and \
 creating an API key (api). Asked for one, say in a sentence that it's done there and always link \

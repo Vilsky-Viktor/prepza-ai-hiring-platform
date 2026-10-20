@@ -20,6 +20,9 @@ class Answer:
     # blocks, sent under the answer once it's written.
     shown: set = field(default_factory=set)
     shown_blocks: list = field(default_factory=list)
+    # What the user wrote in the conversation (its messages, the new one included): an
+    # action's addresses must come from it or from the tools' data.
+    given: str = ""
     # The Langfuse trace its model calls report to; None when Langfuse isn't set up.
     trace_id: str | None = None
     # The span its model calls report under: a domain agent's, within the turn's trace.

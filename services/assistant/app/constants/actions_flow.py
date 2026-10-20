@@ -31,5 +31,8 @@ SUBJECT_NOT_FOUND = "Not found, or you don't have access to it."
 # Every value the model sent for a change is already so (for the model only).
 NOTHING_TO_CHANGE = "Nothing to change: those values are already set."
 
+# An address in an action that no one gave (for the model only).
+UNKNOWN_EMAIL = "{address} isn't an address the user gave or the data shows: ask the user for it"
+
 # What the user reads; translated by its English text.
 ACTION_GONE = "This action expired or was already handled. Ask again to prepare it."

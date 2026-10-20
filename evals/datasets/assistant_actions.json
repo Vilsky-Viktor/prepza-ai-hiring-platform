@@ -296,6 +296,15 @@
    }
   },
   {
+   "id": "i11",
+   "kind": "invite",
+   "page": "candidatesB",
+   "message": "Invite a new candidate here.",
+   "expect": {
+    "ask": "value"
+   }
+  },
+  {
    "id": "e01",
    "kind": "edit",
    "page": "candidatesA",
