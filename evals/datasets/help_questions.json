@@ -80,7 +80,7 @@
    "language": "en",
    "sign_in": null,
    "question": "Will prices go up next year?",
-   "expect": "Doesn't promise or predict anything the documents don't say; says it doesn't know and points to the contact page or email."
+   "expect": "Doesn't predict or promise future prices: says it can't say, and may add what the terms say about price changes (shown on the pricing page first, credits already bought kept) or point to the contact page or email."
   },
   {
    "id": "h10",

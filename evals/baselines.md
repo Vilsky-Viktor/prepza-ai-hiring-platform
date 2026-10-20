@@ -228,3 +228,16 @@ the full set (the ~2,500 tokens of rules are now a cached prefix) and by a third
 re-generation. The self-check dropped 5 of 106 multi-answer questions for an open condition (11
 of 104 before). Kept: cheaper, and the role and tagged data rule 19 asks for.
 
+## Help chat: a tighter rule for what the information doesn't say (2026-10-20, reverted)
+
+Tried: "never work out a rule, a limit or a number it doesn't state from nearby facts; if the
+answer isn't there, say so plainly and suggest {email} or the contact page". Passed 49 → 47 of
+54 (87.0%, 75.6–93.6); the invented attempt limit (h17) 0 → 1 of 3 right; two sign-in replies
+read as promising more. No gain beyond the noise: reverted. Reading the failures showed h09's
+expectation was wrong: the terms do say how price changes work, and the chat quoted them, so a
+right answer may do that instead of pointing to the contact page. With the case fixed, the
+baseline re-run: **passed 51 of 54, 94.4% (84.9–98.1)**, made up 5.6%, markers 54/54; every
+miss is h17 ("How many times can a candidate take the test?" in Japanese: it answers "once",
+which the platform guide doesn't state). That gap is the guide's: it should say whether a
+candidate can take a test again.
+
