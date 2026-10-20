@@ -62,6 +62,8 @@ export function TopicLimit({
       value={value}
       disabled={saving}
       aria-label={t("limit")}
+      // "What's next" focuses the first one.
+      data-topic-limit
       className="h-8 w-12 [appearance:textfield] border-0 bg-muted px-1 text-center text-sm text-foreground tabular-nums md:text-sm dark:bg-muted [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
       onChange={(event) => setValue(event.target.value)}
       onBlur={save}

@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# candidato não foi convidado} other {# candidatos não foram convidados}}: créditos esgotados. Recarregue para convidá-los.",
       "started": "{count, plural, one {# candidato já começou} other {# candidatos já começaram}}, então não receberam outro e-mail.",
       "failed": "{count, plural, one {# convite não pôde ser enviado} other {# convites não puderam ser enviados}}. Tente novamente."
+    },
+    "whatsNext": {
+      "title": "Parabéns, sua entrevista está pronta",
+      "text": "<name>{title}</name> está pronta para os candidatos. Veja os próximos passos:",
+      "limits": "Defina quantas questões cada candidato recebe por tema.",
+      "limitsAction": "Definir questões",
+      "time": "Ajuste o tempo por questão, se precisar.",
+      "timeAction": "Abrir configurações",
+      "invite": "Convide candidatos.",
+      "inviteAction": "Ir para candidatos",
+      "done": "Entendi"
     }
   },
   "invite": {

@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# kandidaati ei kutsutud} other {# kandidaati ei kutsutud}}: krediidid said otsa. Nende kutsumiseks laadi juurde.",
       "started": "{count, plural, one {# kandidaat on} other {# kandidaati on}} juba alustanud, seega neile uuesti ei kirjutatud.",
       "failed": "{count, plural, one {# kutset} other {# kutset}} ei õnnestunud saata. Proovi uuesti."
+    },
+    "whatsNext": {
+      "title": "Palju õnne, sinu intervjuu on valmis",
+      "text": "<name>{title}</name> on kandidaatide jaoks valmis. Edasi tee nii:",
+      "limits": "Määra, mitu küsimust iga kandidaat teema kohta saab.",
+      "limitsAction": "Määra küsimused",
+      "time": "Vajadusel muuda aega küsimuse kohta.",
+      "timeAction": "Ava seaded",
+      "invite": "Kutsu kandidaadid.",
+      "inviteAction": "Mine kandidaatide juurde",
+      "done": "Selge"
     }
   },
   "invite": {

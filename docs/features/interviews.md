@@ -37,6 +37,10 @@ A review takes at most 10 revisions in words; after that, topics are only chosen
 
 How generation works step by step is in [Generation](../generation.md).
 
+### What's next
+
+When a generated interview is ready, the generation page opens it marked as just generated (`?ready=1`), and owners and admins see a "What's next" dialog with three steps, each a button that takes them there: set how many questions each candidate gets per topic (it closes the dialog and puts the cursor in the first topic's count), adjust the time per question (the settings tab) and invite candidates (the candidates tab). Closing it takes the mark off the address, so a reload doesn't show it again. Viewers, and interviews copied from templates, don't get it.
+
 ## The interview page
 
 An interview's page has three tabs:

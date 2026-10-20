@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, other {# kandidat tidak diundang}}: kredit habis. Isi ulang untuk mengundang mereka.",
       "started": "{count, plural, other {# kandidat}} sudah mulai, jadi tidak dikirimi email lagi.",
       "failed": "{count, plural, other {# undangan}} tidak bisa dikirim. Coba lagi."
+    },
+    "whatsNext": {
+      "title": "Selamat, wawancaramu sudah siap",
+      "text": "<name>{title}</name> sudah siap untuk kandidat. Ini langkah berikutnya:",
+      "limits": "Atur berapa soal yang didapat setiap kandidat per topik.",
+      "limitsAction": "Atur soal",
+      "time": "Sesuaikan waktu per soal jika perlu.",
+      "timeAction": "Buka pengaturan",
+      "invite": "Undang kandidat.",
+      "inviteAction": "Ke kandidat",
+      "done": "Oke"
     }
   },
   "invite": {

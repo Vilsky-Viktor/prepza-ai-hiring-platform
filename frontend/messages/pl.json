@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# kandydat nie został zaproszony} few {# kandydaci nie zostali zaproszeni} many {# kandydatów nie zostało zaproszonych} other {# kandydata nie zostało zaproszone}}: brak kredytów. Doładuj, aby ich zaprosić.",
       "started": "{count, plural, one {# kandydat już zaczął} few {# kandydaci już zaczęli} many {# kandydatów już zaczęło} other {# kandydata już zaczęło}}, więc nie wysłano ponownie e-maila.",
       "failed": "{count, plural, one {# zaproszenia nie udało się wysłać} few {# zaproszeń nie udało się wysłać} many {# zaproszeń nie udało się wysłać} other {# zaproszenia nie udało się wysłać}}. Spróbuj ponownie."
+    },
+    "whatsNext": {
+      "title": "Gratulacje, Twoja rozmowa jest gotowa",
+      "text": "Rozmowa <name>{title}</name> czeka na kandydatów. Co dalej:",
+      "limits": "Ustal, ile pytań z każdego tematu dostaje każdy kandydat.",
+      "limitsAction": "Ustal pytania",
+      "time": "W razie potrzeby zmień czas na pytanie.",
+      "timeAction": "Otwórz ustawienia",
+      "invite": "Zaproś kandydatów.",
+      "inviteAction": "Przejdź do kandydatów",
+      "done": "Rozumiem"
     }
   },
   "invite": {

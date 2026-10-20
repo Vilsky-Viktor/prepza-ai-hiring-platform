@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# candidato no fue invitado} other {# candidatos no fueron invitados}}: sin créditos. Recarga para invitarlos.",
       "started": "{count, plural, one {# candidato ya empezó} other {# candidatos ya empezaron}}, así que no se les volvió a escribir.",
       "failed": "{count, plural, one {# invitación no se pudo enviar} other {# invitaciones no se pudieron enviar}}. Inténtalo de nuevo."
+    },
+    "whatsNext": {
+      "title": "Enhorabuena, tu entrevista está lista",
+      "text": "<name>{title}</name> está lista para los candidatos. Estos son los siguientes pasos:",
+      "limits": "Define cuántas preguntas recibe cada candidato por tema.",
+      "limitsAction": "Definir preguntas",
+      "time": "Ajusta el tiempo por pregunta si hace falta.",
+      "timeAction": "Abrir ajustes",
+      "invite": "Invita a candidatos.",
+      "inviteAction": "Ir a candidatos",
+      "done": "Entendido"
     }
   },
   "invite": {

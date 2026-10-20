@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# candidat n'a pas été invité} other {# candidats n'ont pas été invités}} : crédits épuisés. Rechargez pour les inviter.",
       "started": "{count, plural, one {# candidat a} other {# candidats ont}} déjà commencé : ils n'ont pas reçu de nouvel e-mail.",
       "failed": "{count, plural, one {# invitation n'a pas pu être envoyée} other {# invitations n'ont pas pu être envoyées}}. Réessayez."
+    },
+    "whatsNext": {
+      "title": "Félicitations, votre entretien est prêt",
+      "text": "<name>{title}</name> est prêt pour les candidats. Voici la suite :",
+      "limits": "Définissez le nombre de questions que chaque candidat reçoit par thème.",
+      "limitsAction": "Définir les questions",
+      "time": "Ajustez le temps par question si besoin.",
+      "timeAction": "Ouvrir les paramètres",
+      "invite": "Invitez des candidats.",
+      "inviteAction": "Aller aux candidats",
+      "done": "Compris"
     }
   },
   "invite": {

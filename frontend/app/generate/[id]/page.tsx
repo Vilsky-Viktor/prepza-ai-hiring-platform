@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server"
 
 import { GenerationView } from "@/components/generation/generation-view"
 import { SignInPage } from "@/components/sign-in-page"
+import { READY_PARAM } from "@/constants/interviews"
 import { signedIn } from "@/lib/server-api"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -54,7 +55,8 @@ export default async function GeneratePage({
       <GenerationView
         // Generations go through companies, so every admin can follow them.
         path={`/companies/interviews/${company[2]}/generation`}
-        next={next}
+        // Marked as just generated, so the interview shows what to do next.
+        next={`${next}${next.includes("?") ? "&" : "?"}${READY_PARAM}=1`}
         backHref={`/companies/${company[1]}/interviews`}
         backLabel={t("interviews")}
       />

@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, other {# ứng viên chưa được mời}}: hết credit. Hãy nạp thêm để mời họ.",
       "started": "{count, plural, other {# ứng viên}} đã bắt đầu nên không được gửi email lại.",
       "failed": "{count, plural, other {# lời mời}} không gửi được. Hãy thử lại."
+    },
+    "whatsNext": {
+      "title": "Chúc mừng, buổi phỏng vấn của bạn đã sẵn sàng",
+      "text": "<name>{title}</name> đã sẵn sàng cho ứng viên. Đây là việc cần làm tiếp:",
+      "limits": "Đặt số câu hỏi mỗi ứng viên nhận được cho từng chủ đề.",
+      "limitsAction": "Đặt câu hỏi",
+      "time": "Điều chỉnh thời gian mỗi câu nếu cần.",
+      "timeAction": "Mở cài đặt",
+      "invite": "Mời ứng viên.",
+      "inviteAction": "Đến ứng viên",
+      "done": "Đã hiểu"
     }
   },
   "invite": {

@@ -16,11 +16,12 @@ import { InterviewSettings } from "@/components/company/interview-settings"
 import { InterviewTopics } from "@/components/company/interview-topics"
 import { InterviewStatus } from "@/components/company/interview-status"
 import { InviteCandidate } from "@/components/company/invite-candidate"
+import { WhatsNext } from "@/components/company/whats-next"
 import { ShareLink } from "@/components/company/share-link"
 import { PageHeader } from "@/components/page-header"
 import { SignInPage } from "@/components/sign-in-page"
 import { Button } from "@/components/ui/button"
-import { CANDIDATE_SORTS } from "@/constants/interviews"
+import { CANDIDATE_SORTS, READY_PARAM } from "@/constants/interviews"
 import { PAGE_SIZE } from "@/constants/lists"
 import { INTERVIEW_TAB_HELP } from "@/constants/page-help"
 import { serverFetch, signedIn } from "@/lib/server-api"
@@ -44,6 +45,7 @@ export default async function InterviewPage({
     sort?: string
     q?: string
     status?: string
+    ready?: string
   }>
 }) {
   if (!(await signedIn())) {
@@ -51,7 +53,8 @@ export default async function InterviewPage({
   }
 
   const { companyId, id } = await params
-  const { tab, sort: asked, q, status: askedStatus } = await searchParams
+  const query = await searchParams
+  const { tab, sort: asked, q, status: askedStatus } = query
   const sort =
     CANDIDATE_SORTS.find((option) => option === asked) ?? CANDIDATE_SORTS[0]
   const t = await getTranslations("interviews")
@@ -116,6 +119,13 @@ export default async function InterviewPage({
 
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+      {/* Just generated: what to do next, for those who can do it. */}
+      {ready && canEdit && query[READY_PARAM] && (
+        <WhatsNext
+          title={interview.title ?? t("fallbackTitle")}
+          interviewHref={interviewHref}
+        />
+      )}
       <div className="space-y-6">
         <PageHeader
           back={

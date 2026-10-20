@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# candidate wasn't invited} other {# candidates weren't invited}}: out of credits. Top up to invite them.",
       "started": "{count, plural, one {# candidate has} other {# candidates have}} already started, so they weren't emailed again.",
       "failed": "{count, plural, one {# invite} other {# invites}} couldn't be sent. Try again."
+    },
+    "whatsNext": {
+      "title": "Congrats, your interview is ready",
+      "text": "<name>{title}</name> is ready for candidates. Here's what to do next:",
+      "limits": "Set how many questions each candidate gets per topic.",
+      "limitsAction": "Set questions",
+      "time": "Adjust the time per question if needed.",
+      "timeAction": "Open settings",
+      "invite": "Invite candidates.",
+      "inviteAction": "Go to candidates",
+      "done": "Got it"
     }
   },
   "invite": {

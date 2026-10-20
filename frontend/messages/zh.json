@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, other {# 位候选人未被邀请}}：点数不足。充值后即可邀请。",
       "started": "{count, plural, other {# 位候选人}}已经开始，因此没有再次发送邮件。",
       "failed": "{count, plural, other {# 份邀请}}无法发送。请重试。"
+    },
+    "whatsNext": {
+      "title": "恭喜，你的面试已准备就绪",
+      "text": "<name>{title}</name> 已可以发给候选人。接下来：",
+      "limits": "设置每位候选人在每个主题下的题目数量。",
+      "limitsAction": "设置题目",
+      "time": "如有需要，调整每题时间。",
+      "timeAction": "打开设置",
+      "invite": "邀请候选人。",
+      "inviteAction": "前往候选人",
+      "done": "知道了"
     }
   },
   "invite": {

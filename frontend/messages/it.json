@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# candidato non è stato invitato} other {# candidati non sono stati invitati}}: crediti esauriti. Ricarica per invitarli.",
       "started": "{count, plural, one {# candidato ha} other {# candidati hanno}} già iniziato, quindi non sono stati ricontattati.",
       "failed": "{count, plural, one {# invito non è stato inviato} other {# inviti non sono stati inviati}}. Riprova."
+    },
+    "whatsNext": {
+      "title": "Complimenti, il tuo colloquio è pronto",
+      "text": "<name>{title}</name> è pronto per i candidati. Ecco cosa fare ora:",
+      "limits": "Scegli quante domande riceve ogni candidato per argomento.",
+      "limitsAction": "Imposta domande",
+      "time": "Modifica il tempo per domanda, se serve.",
+      "timeAction": "Apri impostazioni",
+      "invite": "Invita i candidati.",
+      "inviteAction": "Vai ai candidati",
+      "done": "Ho capito"
     }
   },
   "invite": {

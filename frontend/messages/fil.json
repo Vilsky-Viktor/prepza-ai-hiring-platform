@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {Hindi naimbitahan ang # aplikante} other {Hindi naimbitahan ang # aplikante}}: ubos na ang credits. Mag-top up para maimbitahan sila.",
       "started": "{count, plural, one {# aplikante ang} other {# aplikante ang}} nakapagsimula na, kaya hindi na sila pinadalhan ulit ng email.",
       "failed": "{count, plural, one {Hindi maipadala ang # imbitasyon} other {Hindi maipadala ang # imbitasyon}}. Subukang muli."
+    },
+    "whatsNext": {
+      "title": "Congrats, handa na ang interview mo",
+      "text": "Handa na ang <name>{title}</name> para sa mga aplikante. Ito ang susunod na gagawin:",
+      "limits": "Itakda kung ilang tanong ang matatanggap ng bawat aplikante sa bawat topic.",
+      "limitsAction": "Itakda ang mga tanong",
+      "time": "Ayusin ang oras bawat tanong kung kailangan.",
+      "timeAction": "Buksan ang mga setting",
+      "invite": "Imbitahan ang mga aplikante.",
+      "inviteAction": "Pumunta sa mga aplikante",
+      "done": "Sige"
     }
   },
   "invite": {

@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# Kandidat wurde nicht eingeladen} other {# Kandidaten wurden nicht eingeladen}}: keine Credits mehr. Lade auf, um sie einzuladen.",
       "started": "{count, plural, one {# Kandidat hat} other {# Kandidaten haben}} schon begonnen und {count, plural, one {wurde} other {wurden}} nicht erneut angeschrieben.",
       "failed": "{count, plural, one {# Einladung konnte} other {# Einladungen konnten}} nicht gesendet werden. Versuche es erneut."
+    },
+    "whatsNext": {
+      "title": "Glückwunsch, dein Interview ist fertig",
+      "text": "<name>{title}</name> ist bereit für Kandidaten. So geht es weiter:",
+      "limits": "Lege fest, wie viele Fragen jeder Kandidat pro Thema bekommt.",
+      "limitsAction": "Fragen festlegen",
+      "time": "Passe bei Bedarf die Zeit pro Frage an.",
+      "timeAction": "Einstellungen öffnen",
+      "invite": "Lade Kandidaten ein.",
+      "inviteAction": "Zu den Kandidaten",
+      "done": "Verstanden"
     }
   },
   "invite": {

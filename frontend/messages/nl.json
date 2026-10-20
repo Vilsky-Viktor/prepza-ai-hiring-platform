@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# kandidaat is niet uitgenodigd} other {# kandidaten zijn niet uitgenodigd}}: credits op. Waardeer op om ze uit te nodigen.",
       "started": "{count, plural, one {# kandidaat is} other {# kandidaten zijn}} al begonnen en {count, plural, one {kreeg} other {kregen}} dus geen nieuwe e-mail.",
       "failed": "{count, plural, one {# uitnodiging kon} other {# uitnodigingen konden}} niet worden verzonden. Probeer het opnieuw."
+    },
+    "whatsNext": {
+      "title": "Gefeliciteerd, je interview staat klaar",
+      "text": "<name>{title}</name> staat klaar voor kandidaten. Dit is de volgende stap:",
+      "limits": "Stel in hoeveel vragen elke kandidaat per onderwerp krijgt.",
+      "limitsAction": "Vragen instellen",
+      "time": "Pas zo nodig de tijd per vraag aan.",
+      "timeAction": "Instellingen openen",
+      "invite": "Nodig kandidaten uit.",
+      "inviteAction": "Naar kandidaten",
+      "done": "Begrepen"
     }
   },
   "invite": {

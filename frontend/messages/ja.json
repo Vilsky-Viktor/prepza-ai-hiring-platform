@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, other {# 人の候補者を招待できませんでした}}: クレジットが不足しています。チャージすると招待できます。",
       "started": "{count, plural, other {# 人の候補者}}はすでに開始しているため、再度メールは送られませんでした。",
       "failed": "{count, plural, other {# 件の招待}}を送信できませんでした。もう一度お試しください。"
+    },
+    "whatsNext": {
+      "title": "おめでとうございます。面接の準備ができました",
+      "text": "<name>{title}</name> を候補者に送る準備ができました。次の手順に進みましょう：",
+      "limits": "各候補者にトピックごとに出す問題数を設定します。",
+      "limitsAction": "問題数を設定",
+      "time": "必要に応じて 1 問あたりの時間を調整します。",
+      "timeAction": "設定を開く",
+      "invite": "候補者を招待します。",
+      "inviteAction": "候補者へ移動",
+      "done": "OK"
     }
   },
   "invite": {

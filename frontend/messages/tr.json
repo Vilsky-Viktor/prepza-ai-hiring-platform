@@ -1035,6 +1035,17 @@
       "no_credits": "{count, plural, one {# aday davet edilmedi} other {# aday davet edilmedi}}: krediniz bitti. Onları davet etmek için kredi yükleyin.",
       "started": "{count, plural, other {# aday}} zaten başladığı için yeniden e-posta gönderilmedi.",
       "failed": "{count, plural, one {# davet} other {# davet}} gönderilemedi. Tekrar deneyin."
+    },
+    "whatsNext": {
+      "title": "Tebrikler, mülakatınız hazır",
+      "text": "<name>{title}</name> adaylar için hazır. Sıradaki adımlar:",
+      "limits": "Her adayın konu başına kaç soru alacağını belirleyin.",
+      "limitsAction": "Soruları belirle",
+      "time": "Gerekirse soru başına süreyi ayarlayın.",
+      "timeAction": "Ayarları aç",
+      "invite": "Adayları davet edin.",
+      "inviteAction": "Adaylara git",
+      "done": "Anladım"
     }
   },
   "invite": {
