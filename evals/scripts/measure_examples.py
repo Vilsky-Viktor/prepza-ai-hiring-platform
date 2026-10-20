@@ -145,8 +145,10 @@ def main(path: str, reviews_path: str | None, per_topic: bool) -> None:
 
     if reviews_path:
         by_id = {item["id"]: item for item in items}
+        data = json.loads((EVALS / reviews_path).read_text())
 
-        for review in json.loads((EVALS / reviews_path).read_text()):
+        # A list, or {"run", "reviews"} as review_questions.py saves.
+        for review in data["reviews"] if isinstance(data, dict) else data:
             item = by_id[review["id"]]
             reviews[(item["domain"], item["level"])].append({**review, "multi": is_multi(item)})
 

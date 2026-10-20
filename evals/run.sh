@@ -19,7 +19,14 @@ code="${service%-worker}"
 docker exec "$container" rm -rf /tmp/evals
 docker cp "$here" "$container:/tmp/evals"
 
-env_args=()
+# The commit a result was made on; "+changes" when the service or evals/ differ from it.
+commit="$(git -C "$here" rev-parse --short HEAD)"
+
+if [[ -n "$(git -C "$here" status --porcelain -- "../services/$code" .)" ]]; then
+  commit="$commit+changes"
+fi
+
+env_args=(-e "EVAL_COMMIT=$commit")
 
 for name in MODEL EFFORT JUDGE_MODEL JUDGE_EFFORT OVERSAMPLE; do
   if [[ -n "${!name:-}" ]]; then

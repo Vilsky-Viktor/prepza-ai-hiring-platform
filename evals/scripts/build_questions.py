@@ -19,7 +19,7 @@ import time
 from collections import Counter
 from datetime import UTC, datetime
 
-from common import DATASETS, RESULTS, cost, generation_models, is_multi, load, save
+from common import DATASETS, RESULTS, cost, generation_models, is_multi, load, run_record, save
 from langchain_core.callbacks import get_usage_metadata_callback
 from langchain_core.messages import HumanMessage
 from prepza_common.examples import example_count
@@ -126,6 +126,7 @@ async def main(per_subtopic: int, multi: int, label: str | None, level: str | No
             "key_traps.json.",
             "model": models,
             "built": datetime.now(UTC).date().isoformat(),
+            "run": run_record(model=models, cost=round(spent, 4), seconds=seconds),
             "items": items,
         },
     )

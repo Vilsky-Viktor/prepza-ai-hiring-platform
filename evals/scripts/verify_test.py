@@ -27,6 +27,8 @@ from common import (
     is_multi,
     load,
     model,
+    reviews_of,
+    run_record,
     save,
 )
 from langchain_core.messages import HumanMessage
@@ -49,10 +51,7 @@ def flawed_ids(multi: bool) -> set[str]:
     if not path.exists():
         return set()
 
-    data = load(path)
-    reviews = data["reviews"] if isinstance(data, dict) else data
-
-    return {r["id"] for r in reviews if not r["key_correct"] or not r["single_correct"]}
+    return {r["id"] for r in reviews_of(path) if not r["key_correct"] or not r["single_correct"]}
 
 
 def cases(multi: bool) -> list[dict]:
@@ -129,24 +128,31 @@ async def check(checker, case: dict) -> dict:
     }
 
 
-def report(setting: str, results: list[dict]) -> None:
+def report(setting: str, results: list[dict]) -> dict:
+    """Each kind's outcomes, the median time and the price of a check, printed and returned."""
+    found = {}
+
     for kind in ("trap", "real key"):
         rows = [r for r in results if r["kind"] == kind]
         counts = {
             o: sum(r["outcome"] == o for r in rows) for o in ("right", "replaced", "wrong key")
         }
+        found[kind] = {**counts, "of": len(rows)}
         print(
             f"{setting} {kind}s: {counts['right']} of {len(rows)} right, "
             f"{counts['replaced']} replaced, {counts['wrong key']} left with a wrong key"
         )
 
     times = sorted(r["seconds"] for r in results)
-    per_check = sum(r["cost"] for r in results) / len(results)
-    print(f"{setting}: median {times[len(times) // 2]:.1f}s; ${per_check:.4f} a check", flush=True)
+    found["median_seconds"] = round(times[len(times) // 2], 1)
+    found["per_check"] = round(sum(r["cost"] for r in results) / len(results), 5)
+    print(f"{setting}: median {found['median_seconds']}s; ${found['per_check']:.4f} a check")
 
     for r in results:
         if r["outcome"] != "right":
             print(f"  - {r['id']} ({r['kind']}): {r['outcome']}")
+
+    return found
 
 
 async def main(settings: list[str], multi: bool) -> None:
@@ -166,8 +172,11 @@ async def main(settings: list[str], multi: bool) -> None:
 
         results = await asyncio.gather(*(one(case) for case in found))
         prefix = "verify_multi" if multi else "verify"
-        save(RESULTS / f"{prefix}_{setting.replace('/', '_')}.json", results)
-        report(setting, results)
+        scores = report(setting, results)
+        spent = round(sum(r["cost"] for r in results), 4)
+        run = run_record(model=setting, multi=multi, scores=scores, cost=spent)
+        name = f"{prefix}_{setting.replace('/', '_')}.json"
+        save(RESULTS / name, {"run": run, "results": results})
 
 
 if __name__ == "__main__":

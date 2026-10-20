@@ -8,8 +8,9 @@
     JUDGE_MODEL=gpt-6-luna evals/run.sh generation review_questions.py datasets/questions.json \\
         --compare-reference                                                    # test a judge
 
-Measurements cost nothing; a review costs about $0.01-0.02 per question with Sol at high
-reasoning, the default judge (JUDGE_MODEL, JUDGE_EFFORT)."""
+Measurements cost nothing; a review costs about $0.004-0.005 per question with Sol at high
+reasoning, the default judge (JUDGE_MODEL, JUDGE_EFFORT). The result records the run, the scores
+with their 95% intervals and the judge's cost."""
 
 import argparse
 import asyncio
@@ -23,16 +24,20 @@ from common import (
     JUDGE_MODEL,
     RESULTS,
     correct_options,
+    cost,
     is_multi,
     judge,
     load,
     options_text,
     prompt,
     question_items,
+    reviews_of,
+    run_record,
     save,
 )
 from langchain_core.messages import HumanMessage
 from pydantic import BaseModel, Field
+from stats import mean, share
 
 
 class Review(BaseModel):
@@ -102,20 +107,22 @@ async def review(llm, item: dict) -> dict:
         options=options_text(item),
     )
     result = await llm.ainvoke([HumanMessage(content=text)])
+    spent = cost(JUDGE_MODEL, result["raw"].usage_metadata or {})
 
-    return {"id": item["id"], **result.model_dump()}
+    return {"id": item["id"], **result["parsed"].model_dump(), "judge_cost": spent}
 
 
 def summary(reviews: list[dict], items: dict[str, dict]) -> dict:
-    share = lambda rows, key: f"{100 * sum(r[key] for r in rows) / len(rows):.1f}%"
-    mean = lambda key: round(statistics.mean(r[key] for r in reviews), 2)
+    """Shares and means with their 95% intervals (stats.py)."""
+    counted = lambda rows, key: share(sum(r[key] for r in rows), len(rows))
+    scored = lambda key: mean([r[key] for r in reviews])
     result = {
         "reviewed": len(reviews),
-        "key_correct": share(reviews, "key_correct"),
-        "single_correct": share(reviews, "single_correct"),
-        "distractors": mean("distractors"),
-        "clarity": mean("clarity"),
-        "relevance": mean("relevance"),
+        "key_correct": counted(reviews, "key_correct"),
+        "single_correct": counted(reviews, "single_correct"),
+        "distractors": scored("distractors"),
+        "clarity": scored("clarity"),
+        "relevance": scored("relevance"),
     }
 
     # Each kind's key accuracy apart: multi-answer keys must reach the same target.
@@ -126,41 +133,63 @@ def summary(reviews: list[dict], items: dict[str, dict]) -> dict:
         if rows and len(rows) < len(reviews):
             result[f"{kind}_answer"] = {
                 "reviewed": len(rows),
-                "key_correct": share(rows, "key_correct"),
-                "unarguable_key": share(rows, "single_correct"),
+                "key_correct": counted(rows, "key_correct"),
+                "unarguable_key": counted(rows, "single_correct"),
             }
 
     return result
 
 
-def compare(reviews: list[dict], items: dict[str, dict]) -> None:
-    """Against what's known: the traps' expected keys, or the reference verdicts."""
+def kappa(pairs: list[tuple[bool, bool]]) -> float:
+    """Cohen's kappa of two judges' yes/no verdicts: agreement beyond what chance gives, which
+    plain agreement hides when nearly every key is right."""
+    seen = sum(a == b for a, b in pairs) / len(pairs)
+    yes_a = sum(a for a, _ in pairs) / len(pairs)
+    yes_b = sum(b for _, b in pairs) / len(pairs)
+    chance = yes_a * yes_b + (1 - yes_a) * (1 - yes_b)
+
+    return 1.0 if chance == 1 else round((seen - chance) / (1 - chance), 2)
+
+
+def compare(reviews: list[dict], items: dict[str, dict]) -> dict:
+    """Against what's known: the traps' expected keys, or the reference verdicts. Agreement with
+    the reference is split by its verdict, as wrong keys are rare."""
+    found = {}
     expected = [r for r in reviews if "expected_key_correct" in items[r["id"]]]
 
     if expected:
         caught = sum(r["key_correct"] == items[r["id"]]["expected_key_correct"] for r in expected)
-        print(f"traps caught: {caught} of {len(expected)}")
+        found["traps_caught"] = f"{caught} of {len(expected)}"
 
     reference_path = DATASETS / "reviews.json"
-
-    if not reference_path.exists():
-        return
-
-    reference = {r["id"]: r for r in load(reference_path)["reviews"]}
+    reference = {r["id"]: r for r in reviews_of(reference_path)} if reference_path.exists() else {}
     shared = [r for r in reviews if r["id"] in reference]
 
     if shared:
-        same = sum(r["key_correct"] == reference[r["id"]]["key_correct"] for r in shared)
-        print(f"agrees with the reference judge on the key: {same} of {len(shared)}")
+        pairs = [(reference[r["id"]]["key_correct"], r["key_correct"]) for r in shared]
+        right = [b for a, b in pairs if a]
+        wrong = [not b for a, b in pairs if not a]
+        found["reference_agreement"] = {
+            "key": f"{sum(a == b for a, b in pairs)} of {len(pairs)}",
+            "right_keys_kept": f"{sum(right)} of {len(right)}",
+            "wrong_keys_found": f"{sum(wrong)} of {len(wrong)}",
+            "kappa": kappa(pairs),
+        }
+
+    print(found)
+
+    return found
 
 
 async def main(
     path: str, sample: int | None, save_reference: bool, compare_reference: bool
 ) -> None:
+    data = load(EVALS / path)
     items = question_items(EVALS / path)
-    print("measured:", measure(items))
+    measured = measure(items)
+    print("measured:", measured)
     chosen = random.Random(7).sample(items, sample) if sample and sample < len(items) else items
-    llm = judge().with_structured_output(Review)
+    llm = judge().with_structured_output(Review, include_raw=True)
     limit = asyncio.Semaphore(8)
 
     async def one(item):
@@ -169,21 +198,29 @@ async def main(
 
     reviews = await asyncio.gather(*(one(item) for item in chosen))
     by_id = {item["id"]: item for item in items}
-    print(f"judged by {JUDGE_MODEL} ({JUDGE_EFFORT}):", summary(reviews, by_id))
+    scores = summary(reviews, by_id)
+    spent = round(sum(r["judge_cost"] for r in reviews), 4)
+    print(f"judged by {JUDGE_MODEL} ({JUDGE_EFFORT}), ${spent:.2f}:", scores)
+
+    if compare_reference or any("expected_key_correct" in item for item in chosen):
+        scores["checks"] = compare(reviews, by_id)
+
+    # How the questions were made (a dataset's model and date, a test's run), beside the review.
+    made = {k: data[k] for k in ("model", "built", "run") if isinstance(data, dict) and k in data}
+    run = run_record(questions=path, made=made, measured=measured, scores=scores, cost=spent)
     name = path.replace("/", "_").removesuffix(".json")
-    save(RESULTS / f"reviews_{name}_{JUDGE_MODEL}_{JUDGE_EFFORT}.json", reviews)
+    result = {"run": run, "reviews": reviews}
+    save(RESULTS / f"reviews_{name}_{JUDGE_MODEL}_{JUDGE_EFFORT}.json", result)
 
     if save_reference:
         save(
             DATASETS / "reviews.json",
             {
                 "about": f"Reference verdicts on {path} by {JUDGE_MODEL} ({JUDGE_EFFORT}).",
+                "run": run,
                 "reviews": reviews,
             },
         )
-
-    if compare_reference or any("expected_key_correct" in item for item in chosen):
-        compare(reviews, by_id)
 
     for r in reviews:
         if not r["key_correct"] or not r["single_correct"]:

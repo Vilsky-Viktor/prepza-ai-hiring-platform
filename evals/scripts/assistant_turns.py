@@ -18,6 +18,9 @@ from app.services import chat
 from app.services.registry import tools
 from app.services.tenancy import user_companies
 
+# What answers, for the results.
+MODEL = f"{settings.assistant_model} ({settings.assistant_reasoning_effort})"
+
 # The context line before the page context, which named the path alone.
 OLD_PAGE = "The user is on the page {page}."
 PAGE_TOOL = "get_page_guide"

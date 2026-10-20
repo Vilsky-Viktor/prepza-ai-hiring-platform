@@ -24,8 +24,8 @@ from contextlib import contextmanager
 
 import httpx
 from assistant_fixture import API, OWNER_NAME, Fixture
-from assistant_turns import ask, readable
-from common import DATASETS, JUDGE_EFFORT, JUDGE_MODEL, RESULTS, load, prompt, save
+from assistant_turns import MODEL, ask, readable
+from common import DATASETS, RESULTS, load, prompt, run_record, save
 from page_context import PairReview, judge_general, page_of, reviewed, share
 from pydantic import BaseModel, Field
 
@@ -212,10 +212,12 @@ async def main(label: str, only: str, repeat: int) -> None:
         for variant in VARIANTS
     }
     judged = [review["judge_cost"] for part in reviews.values() for review in part.values()]
+    scores = summary(guide_items, general_items, reviews, answers)
+    spent = {"assistant": spent, "judge": round(sum(judged), 4)}
     result = {
-        "judge": f"{JUDGE_MODEL} ({JUDGE_EFFORT})",
-        "summary": summary(guide_items, general_items, reviews, answers),
-        "cost": {"assistant": spent, "judge": round(sum(judged), 4)},
+        "run": run_record(model=MODEL, repeat=repeat, only=only, scores=scores, cost=spent),
+        "summary": scores,
+        "cost": spent,
         "facts": facts,
         "answers": answers,
         "reviews": reviews,

@@ -1,8 +1,10 @@
 """What every offline test shares: where the datasets live, model prices, the judge prompts, and
 one format for a question wherever it comes from."""
 
+import hashlib
 import json
 import os
+from datetime import UTC, datetime
 from pathlib import Path
 
 from langchain_openai import ChatOpenAI
@@ -25,6 +27,39 @@ def load(path: Path):
 def save(path: Path, data) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n")
+
+
+def prompts_version() -> str:
+    """A short hash of the service's prompts, its constants (tool descriptions, limits) and the
+    judge prompts, so a result names the exact wording it was made with, committed or not. Run
+    from the service's folder, as run.sh does."""
+    files = sorted(Path("app/prompts").glob("*.py")) + sorted(Path("app/constants").glob("*.py"))
+    files += sorted(JUDGES.glob("*.md"))
+    digest = hashlib.sha256()
+
+    for path in files:
+        digest.update(path.name.encode() + path.read_bytes())
+
+    return digest.hexdigest()[:10]
+
+
+def run_record(**fields) -> dict:
+    """What every result records (CLAUDE.md rule 20): when, the commit and the prompts it ran
+    with, the judge, and the caller's model, effort, scores and cost in `fields`."""
+    return {
+        "date": datetime.now(UTC).date().isoformat(),
+        "commit": os.environ.get("EVAL_COMMIT", "unknown"),
+        "prompts": prompts_version(),
+        "judge": f"{JUDGE_MODEL} ({JUDGE_EFFORT})",
+        **fields,
+    }
+
+
+def reviews_of(path: Path) -> list[dict]:
+    """A review file's verdicts: a list, or {"run", "reviews"} as review_questions.py saves."""
+    data = load(path)
+
+    return data["reviews"] if isinstance(data, dict) else data
 
 
 def prompt(name: str) -> str:

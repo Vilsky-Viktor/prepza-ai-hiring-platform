@@ -21,8 +21,18 @@ from typing import Literal
 
 import httpx
 from assistant_fixture import API, OWNER_NAME, Fixture
-from assistant_turns import PAGE_TOOL, ask, before_page_context, readable
-from common import DATASETS, JUDGE_EFFORT, JUDGE_MODEL, RESULTS, cost, judge, load, prompt, save
+from assistant_turns import MODEL, PAGE_TOOL, ask, before_page_context, readable
+from common import (
+    DATASETS,
+    JUDGE_MODEL,
+    RESULTS,
+    cost,
+    judge,
+    load,
+    prompt,
+    run_record,
+    save,
+)
 from langchain_core.messages import HumanMessage
 from pydantic import BaseModel, Field
 
@@ -252,10 +262,12 @@ async def main(label: str, only: str, repeat: int) -> None:
     }
     judged = [review["judge_cost"] for review in general.values()]
     judged += [review["judge_cost"] for found in pages.values() for review in found.values()]
+    scores = summary(data, general, pages)
+    spent = {"assistant": spent, "judge": round(sum(judged), 4)}
     result = {
-        "judge": f"{JUDGE_MODEL} ({JUDGE_EFFORT})",
-        "summary": summary(data, general, pages),
-        "cost": {"assistant": spent, "judge": round(sum(judged), 4)},
+        "run": run_record(model=MODEL, repeat=repeat, only=only, scores=scores, cost=spent),
+        "summary": scores,
+        "cost": spent,
         "facts": facts,
         "answers": answers,
         "general": general,

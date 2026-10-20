@@ -26,7 +26,7 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | **Assistant: guides** | Hiring-advice questions the guide articles answer, with the guide tools against without them: correct and complete against the article, blind wins/ties/losses; general questions as a guard | Judge (`judges/assistant_guide.md`, `judges/assistant_pair.md`) | With ≥ without on general questions; guide questions correct ≥ 95% |
 | | A guide question reads a guide that answers it (`get_guide`) and links it | Counted | ≥ 90% |
 | **Judge reliability** | Planted wrong keys it catches (`key_traps.json`) | `review_questions.py` | 100% |
-| | Agreement with the reference verdicts (`reviews.json`) | `review_questions.py --compare-reference` | ≥ 95% |
+| | Agreement with the reference verdicts (`reviews.json`): right keys kept, wrong keys found, Cohen's kappa | `review_questions.py --compare-reference` | ≥ 95%, every wrong key found |
 
 Questions also report their average length and the share that show an example (code, a query,
 a table's rows); on a topic about a notation a computer runs or reads, about a third (30–40%)
@@ -35,7 +35,12 @@ estimates the seconds a capable candidate needs to read and answer each question
 up to 90 s only for the hardest (hard level, several steps, select all that apply).
 
 **Judges have noise.** The same run's scores move by up to about 0.3 between judge runs, and a
-40-question sample can't separate small differences. Compare large differences, or review more.
+40-question sample can't separate small differences. Every share and mean comes with its 95%
+interval; compare large differences, or review more.
+
+**Every result records how it was made** (`common.run_record`): the date, the commit (with
+`+changes` when the service or `evals/` differ from it), a hash of the service's prompts and
+constants and of the judge prompts, the judge, the model and effort, the scores and the cost.
 
 ## Baselines (2026-10-04)
 
@@ -288,7 +293,7 @@ evals/run.sh library assistant_templates.py remove
 | A full interview, `gpt-6-luna` high, 70 questions a topic | $0.07–0.20 (4–9 topics) |
 | A full interview, `gpt-6-luna` low | about $0.05 at 100 questions a topic |
 | A verifier setting on 120 checks (`verify_test.py`) | about $0.11 on Sol |
-| Reviewing 40 questions (Sol judge, high) | about $0.50 |
+| Reviewing 40 questions (Sol judge, high) | about $0.20 (measured 2026-10-20: $0.88 for 240) |
 | The assistant's page-context test, 3 repeats | about $1.70 |
 | The assistant's guides test, 3 repeats | about $1.50 |
 | Code check, measurements, traps | free |
