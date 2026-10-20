@@ -43,6 +43,42 @@ def test_the_trace_comes_from_the_load_balancers_header(monkeypatch):
     assert trace_of("abc123/456;o=1") is None
 
 
+def test_a_requests_line_names_its_route_never_the_token_in_its_path():
+    lines = []
+
+    class Capture(logging.Handler):
+        def emit(self, item):
+            if item.name == "http":
+                lines.append(item.getMessage())
+
+    app = FastAPI()
+    app.add_middleware(RequestLogMiddleware)
+
+    @app.get("/invites/{token}")
+    def invite(token: str):
+        return {}
+
+    handler = Capture()
+    logging.getLogger().addHandler(handler)
+
+    try:
+        client = TestClient(app)
+        client.get("/invites/secret-token-123?x=1")
+        client.get("/nothing/secret-token-456")
+    finally:
+        logging.getLogger().removeHandler(handler)
+
+    assert lines[0].startswith("GET /invites/{token} 200 ")
+    assert lines[1].startswith("GET (no route) 404 ")
+    assert not any("secret-token" in line for line in lines)
+
+
+def test_uvicorns_access_log_is_off():
+    configure_logging()
+
+    assert logging.getLogger("uvicorn.access").disabled
+
+
 def test_lines_logged_during_a_request_carry_its_trace(monkeypatch):
     monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "prepza-prod")
     lines = []

@@ -19,6 +19,8 @@ BODY_TOO_LARGE = "The request is too large."
 # ("TRACE_ID/SPAN_ID;o=1"), so one request can be followed across services.
 TRACE_HEADER = "X-Cloud-Trace-Context"
 TRACE_FIELD = "logging.googleapis.com/trace"
+# What a request's log line names instead of a route's template when no route took it.
+UNMATCHED_ROUTE = "(no route)"
 
 # Logged when a provider's web hook (Paddle, Resend) fails its signature check: usually a wrong
 # secret, so every event is refused. The alert in infra/terraform/monitoring.tf matches it.

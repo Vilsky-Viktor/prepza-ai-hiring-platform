@@ -5,7 +5,7 @@ import time
 from contextvars import ContextVar
 from datetime import UTC, datetime
 
-from prepza_common.constants import TRACE_FIELD, TRACE_HEADER
+from prepza_common.constants import TRACE_FIELD, TRACE_HEADER, UNMATCHED_ROUTE
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 
@@ -47,6 +47,14 @@ def trace_of(header: str | None) -> str | None:
     return f"projects/{project}/traces/{trace_id}"
 
 
+def route_of(request: Request) -> str:
+    """The template of the route that served `request` (set once routing matched it), or
+    UNMATCHED_ROUTE for a request no route took."""
+    route = request.scope.get("route")
+
+    return getattr(route, "path", None) or UNMATCHED_ROUTE
+
+
 def configure_logging() -> None:
     handler = logging.StreamHandler()
     handler.setFormatter(JsonFormatter())
@@ -58,9 +66,16 @@ def configure_logging() -> None:
     for name in ("httpx", "httpcore"):
         logging.getLogger(name).setLevel(logging.WARNING)
 
+    # Uvicorn's access log prints every request's full path and query and the client's address:
+    # paths carry secret tokens (invite, guest and unsubscribe links) and an address is personal
+    # data. RequestLogMiddleware logs each request without them.
+    logging.getLogger("uvicorn.access").disabled = True
+
 
 class RequestLogMiddleware(BaseHTTPMiddleware):
-    """Logs each request's line, and ties every line logged while serving it to its trace."""
+    """Logs each request's line, and ties every line logged while serving it to its trace. The
+    line names the route's template (`/invites/{token}`), never the path itself, which can carry
+    a secret token."""
 
     async def dispatch(self, request: Request, call_next):
         token = current_trace.set(trace_of(request.headers.get(TRACE_HEADER)))
@@ -72,7 +87,7 @@ class RequestLogMiddleware(BaseHTTPMiddleware):
             logging.getLogger("http").info(
                 "%s %s %s %dms",
                 request.method,
-                request.url.path,
+                route_of(request),
                 response.status_code,
                 elapsed_ms,
             )
