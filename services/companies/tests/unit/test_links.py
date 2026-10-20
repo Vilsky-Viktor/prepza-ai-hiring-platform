@@ -13,6 +13,7 @@ from app.main import app
 from app.models.interviews import Interview
 from app.routers import links
 from app.schemas.invites import InviteStartOut
+from app.services import link_start
 from app.storage import companies, interviews, invites, link_invites
 from tests.unit.fake_redis import FakeRedis
 
@@ -82,10 +83,10 @@ def linked(monkeypatch):
     async def no_flush():
         pass
 
-    monkeypatch.setattr(links, "start_sessions", start)
-    monkeypatch.setattr(links, "get_redis", lambda: redis)
-    monkeypatch.setattr(links, "joined_details", details)
-    monkeypatch.setattr(links.outbox_service, "flush_quietly", no_flush)
+    monkeypatch.setattr(link_start, "start_sessions", start)
+    monkeypatch.setattr(link_start, "get_redis", lambda: redis)
+    monkeypatch.setattr(link_start, "joined_details", details)
+    monkeypatch.setattr(link_start.outbox_service, "flush_quietly", no_flush)
     app.dependency_overrides[current_user] = lambda: User(
         uid="cand", email="Cand@Example.com", email_verified=True
     )

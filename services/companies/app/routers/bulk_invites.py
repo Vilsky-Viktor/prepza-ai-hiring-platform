@@ -1,4 +1,3 @@
-import logging
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
@@ -10,21 +9,15 @@ from prepza_common.names import clean_name
 from app.constants.invites import (
     NAME_NEEDS_ONE_EMAIL,
     NO_EMAILS,
-    SKIP_REASONS,
-    STARTED,
     TOO_MANY_EMAILS,
-    SkipReason,
 )
 from app.helpers.candidate_lists import read_list
 from app.helpers.list_files import list_refusal
 from app.integrations.redis import get_redis
-from app.schemas.invites import BulkInviteIn, BulkInviteOut, LineProblemOut, SkippedInvite
-from app.services import candidate_invites
+from app.schemas.invites import BulkInviteIn, BulkInviteOut, LineProblemOut
+from app.services import bulk_invites
 from app.services import outbox as outbox_service
 from app.services.interview_access import interview_for, ready_for_invites
-from app.storage import invites
-
-logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/interviews", tags=["interviews"])
 
@@ -62,32 +55,7 @@ async def invite_many(interview_id: UUID, body: BulkInviteIn, user: CurrentUser)
 
         raise TemplateError(status.HTTP_422_UNPROCESSABLE_CONTENT, TOO_MANY_EMAILS, limit=most)
 
-    invited: list[str] = []
-    skipped: list[SkippedInvite] = []
-    out_of_credits = False
-
-    for email, name in found:
-        reason = None
-
-        if out_of_credits:
-            reason = SkipReason.NO_CREDITS
-        elif await invites.status_of(interview.id, email.lower()) in STARTED:
-            reason = SkipReason.STARTED
-        else:
-            try:
-                await candidate_invites.invite(interview, company, user, email, name)
-            except HTTPException as error:
-                out_of_credits = error.status_code == status.HTTP_402_PAYMENT_REQUIRED
-                reason = SKIP_REASONS.get(error.status_code, SkipReason.FAILED)
-            except Exception:
-                logger.exception("Couldn't invite a candidate from a list")
-                reason = SkipReason.FAILED
-
-        if reason:
-            skipped.append(SkippedInvite(email=email, reason=reason))
-        else:
-            invited.append(email)
-
+    invited, skipped = await bulk_invites.invite_each(interview, company, user, found)
     await outbox_service.flush_quietly()
 
     return BulkInviteOut(

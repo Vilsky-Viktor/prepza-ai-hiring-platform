@@ -3,7 +3,7 @@ import pytest
 
 from app.integrations import billing
 from app.routers import links
-from app.services import interview_access
+from app.services import interview_access, link_start
 from app.storage import invites
 from tests.unit.test_links import INTERVIEW, linked  # noqa: F401
 
@@ -43,7 +43,7 @@ def test_an_expired_invite_that_fails_to_start_gives_its_credits_back(
     async def rounds_down(invite, interview, user):
         raise httpx.ConnectError("rounds is down")
 
-    monkeypatch.setattr(links, "start_sessions", rounds_down)
+    monkeypatch.setattr(link_start, "start_sessions", rounds_down)
 
     with pytest.raises(httpx.HTTPError):
         client.post(URL)

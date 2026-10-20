@@ -2,9 +2,9 @@ import pytest
 
 import app.routers.companies as company_routes
 import app.routers.interview_generation as generation_routes
-import app.routers.links as link_routes
 from app.config.settings import settings
 from app.main import app
+from app.services import link_start
 from tests.unit.test_links import linked  # noqa: F401 (fixture)
 
 
@@ -18,7 +18,7 @@ def checks(monkeypatch):
 
     monkeypatch.setattr(settings, "turnstile_secret_key", "s3cret")
 
-    for module in (company_routes, generation_routes, link_routes):
+    for module in (company_routes, generation_routes, link_start):
         monkeypatch.setattr(module, "require_human", require_human)
 
     return asked

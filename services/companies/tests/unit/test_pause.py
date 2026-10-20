@@ -13,9 +13,9 @@ from app.models.companies import Company, Member
 from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
 from app.routers import invites as invite_routes
-from app.routers import links as link_routes
 from app.routers import pause as pause_routes
 from app.schemas.invites import InviteStartOut
+from app.services import link_start
 from app.storage import companies, interviews, invites, link_invites
 
 INTERVIEW = Interview(
@@ -50,7 +50,7 @@ def started(monkeypatch):
         return InviteStartOut(sessions=[])
 
     monkeypatch.setattr(invite_routes, "start_sessions", start)
-    monkeypatch.setattr(link_routes, "start_sessions", start)
+    monkeypatch.setattr(link_start, "start_sessions", start)
 
     return calls
 
