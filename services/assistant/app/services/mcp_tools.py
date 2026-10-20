@@ -102,20 +102,67 @@ async def checked_write(tool: Tool, arguments: dict, user: User, token: str) -> 
     return arguments
 
 
+def refusal(name: str, tool: Tool | None, access: Access) -> str | None:
+    """Why an app may not call this tool at all, or None."""
+    if name in MCP_EXCLUDED:
+        return EXCLUDED_TOOL
+
+    if tool is None:
+        return UNKNOWN_TOOL
+
+    if not key_may_use(access, name):
+        return key_refusal(name)
+
+    return None
+
+
+async def run(
+    name: str, tool: Tool, arguments: dict, access: Access, user: User, token: str
+) -> types.CallToolResult:
+    """The checked call itself: the result as the app reads it, with absolute links."""
+    if name == GET_UPDATES:
+        result = await updates.for_app(arguments, access, token, user.language)
+
+        if not result.succeeded:
+            return error_result(result.content["detail"])
+
+        return text_result(result.content, False)
+
+    result = await call_tool(
+        name,
+        arguments,
+        token,
+        user.language,
+        arguments.get("company_id"),
+        str(uuid.uuid4()) if tool.method != "GET" else None,
+        via=VIA_MCP,
+    )
+
+    if tool.method != "GET":
+        await track("mcp_action", user_id=user.uid, tool=name, ok=result.succeeded)
+
+    if name == UPDATE_LANGUAGE and result.succeeded:
+        firebase_tokens.forget(user.uid)
+
+    if not result.succeeded:
+        return error_result(result.content["detail"])
+
+    site = settings.site_url.rstrip("/")
+    links = [site + link for link in (result.block or {}).get("links", []) if link]
+    content = {**result.content, "links": links} if links else result.content
+
+    return text_result(content, False)
+
+
 async def call(name: str, arguments: dict, access: Access) -> types.CallToolResult:
     """One tool, called by an AI app as the user it acts for. A write runs at once: the app asked
     the user before calling it. Its result is the data as JSON, with links to prepza's pages;
     an error is a result too, which the app explains."""
     tool = tools().get(name) if name not in MCP_UNLISTED else None
+    refused = refusal(name, tool, access)
 
-    if name in MCP_EXCLUDED:
-        return error_result(EXCLUDED_TOOL)
-
-    if tool is None:
-        return error_result(UNKNOWN_TOOL)
-
-    if not key_may_use(access, name):
-        return error_result(key_refusal(name))
+    if refused:
+        return error_result(refused)
 
     signed_in = await firebase_tokens.sign_in(access.subject)
 
@@ -150,35 +197,4 @@ async def call(name: str, arguments: dict, access: Access) -> types.CallToolResu
     except HTTPException as error:
         return error_result(translate(str(error.detail), user.language))
 
-    if name == GET_UPDATES:
-        result = await updates.for_app(arguments, access, token, user.language)
-
-        if not result.succeeded:
-            return error_result(result.content["detail"])
-
-        return text_result(result.content, False)
-
-    result = await call_tool(
-        name,
-        arguments,
-        token,
-        user.language,
-        arguments.get("company_id"),
-        str(uuid.uuid4()) if tool.method != "GET" else None,
-        via=VIA_MCP,
-    )
-
-    if tool.method != "GET":
-        await track("mcp_action", user_id=user.uid, tool=name, ok=result.succeeded)
-
-    if name == UPDATE_LANGUAGE and result.succeeded:
-        firebase_tokens.forget(user.uid)
-
-    if not result.succeeded:
-        return error_result(result.content["detail"])
-
-    site = settings.site_url.rstrip("/")
-    links = [site + link for link in (result.block or {}).get("links", []) if link]
-    content = {**result.content, "links": links} if links else result.content
-
-    return text_result(content, False)
+    return await run(name, tool, arguments, access, user, token)
