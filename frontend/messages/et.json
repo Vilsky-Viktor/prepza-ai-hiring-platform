@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Testi kõiki\nPalka parimad",
-    "text": "Tehisaru teeb sinu töökuulutusest professionaalse ajapiiranguga intervjuu, igale kandidaadile oma juhuslike küsimustega. Vaid $2–5 kandidaadi kohta."
+    "text": "Tehisaru teeb sinu töökuulutusest professionaalse ajapiiranguga intervjuu.\nVaid $2–5 kandidaadi kohta."
   },
   "start": {
     "placeholder": "Kleebi töökuulutus või kirjelda rolli ja seda, mida kandidaat peaks teadma",
@@ -1214,6 +1214,7 @@
     "more": "Kuidas see töötab",
     "demos": "Video",
     "demosTooltip": "Vaata demosid YouTube'is",
+    "videoTooltip": "Vaata, kuidas prepza töötab",
     "askAgent": "küsi agendilt",
     "create": {
       "title": "Loo intervjuu mõne minutiga",

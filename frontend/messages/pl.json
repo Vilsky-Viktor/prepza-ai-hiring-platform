@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Sprawdź każdego\nZatrudniaj najlepszych",
-    "text": "AI zamienia Twój opis stanowiska w profesjonalną rozmowę na czas, z losowymi pytaniami dla każdego kandydata. Tylko $2–5 za kandydata."
+    "text": "AI zamienia Twój opis stanowiska w profesjonalną rozmowę na czas.\nTylko $2–5 za kandydata."
   },
   "start": {
     "placeholder": "Wklej opis stanowiska albo opisz rolę i to, co kandydat powinien wiedzieć",
@@ -1214,6 +1214,7 @@
     "more": "Jak to działa",
     "demos": "Wideo",
     "demosTooltip": "Obejrzyj dema na YouTube",
+    "videoTooltip": "Zobacz, jak działa prepza",
     "askAgent": "zapytaj agenta",
     "create": {
       "title": "Utwórz rozmowę w kilka minut",

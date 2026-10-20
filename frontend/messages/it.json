@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Metti alla prova tutti\nAssumi i migliori",
-    "text": "L'IA trasforma la tua descrizione del ruolo in un colloquio a tempo professionale, con domande casuali proprie per ogni candidato. Solo $2–5 per candidato."
+    "text": "L'IA trasforma la tua descrizione del ruolo in un colloquio a tempo professionale.\nSolo $2–5 per candidato."
   },
   "start": {
     "placeholder": "Incolla una descrizione del ruolo, oppure descrivi il ruolo e cosa dovrebbe sapere un candidato",
@@ -1214,6 +1214,7 @@
     "more": "Come funziona",
     "demos": "Video",
     "demosTooltip": "Guarda le demo su YouTube",
+    "videoTooltip": "Guarda come funziona prepza",
     "askAgent": "chiedi all'agente",
     "create": {
       "title": "Crea un colloquio in pochi minuti",

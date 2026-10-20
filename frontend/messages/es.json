@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Evalúa a todos\nContrata a los mejores",
-    "text": "La IA convierte tu descripción del puesto en una entrevista cronometrada profesional, con sus propias preguntas aleatorias para cada candidato. Solo $2–5 por candidato."
+    "text": "La IA convierte tu descripción del puesto en una entrevista cronometrada profesional.\nSolo $2–5 por candidato."
   },
   "start": {
     "placeholder": "Pega una descripción del puesto, o describe el puesto y lo que un candidato debería saber",
@@ -1214,6 +1214,7 @@
     "more": "Cómo funciona",
     "demos": "Vídeo",
     "demosTooltip": "Ver demos en YouTube",
+    "videoTooltip": "Mira cómo funciona prepza",
     "askAgent": "preguntar al agente",
     "create": {
       "title": "Crea una entrevista en minutos",

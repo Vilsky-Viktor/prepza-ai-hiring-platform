@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Test iedereen\nNeem de besten aan",
-    "text": "AI maakt van je functieomschrijving een professioneel interview met tijdslimiet, met eigen willekeurige vragen voor elke kandidaat. Slechts $2–5 per kandidaat."
+    "text": "AI maakt van je functieomschrijving een professioneel interview met tijdslimiet.\nSlechts $2–5 per kandidaat."
   },
   "start": {
     "placeholder": "Plak een functieomschrijving, of beschrijf de functie en wat een kandidaat moet weten",
@@ -1214,6 +1214,7 @@
     "more": "Hoe het werkt",
     "demos": "Video",
     "demosTooltip": "Demo's bekijken op YouTube",
+    "videoTooltip": "Bekijk hoe prepza werkt",
     "askAgent": "vraag de agent",
     "create": {
       "title": "Maak een interview in enkele minuten",

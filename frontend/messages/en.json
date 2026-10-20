@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Test everyone\nHire the best",
-    "text": "AI turns your job description into a professional timed interview, with its own random questions for every candidate. Just $2–5 per candidate."
+    "text": "AI turns your job description into a professional timed interview.\nJust $2–5 per candidate."
   },
   "start": {
     "placeholder": "Paste a job description, or describe the role and what a candidate should know",
@@ -1214,6 +1214,7 @@
     "more": "How it works",
     "demos": "Video",
     "demosTooltip": "Watch demos on YouTube",
+    "videoTooltip": "Watch how prepza works",
     "askAgent": "ask agent",
     "create": {
       "title": "Create an interview in minutes",

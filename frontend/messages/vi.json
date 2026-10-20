@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Kiểm tra mọi ứng viên\nTuyển người giỏi nhất",
-    "text": "AI biến mô tả công việc của bạn thành một buổi phỏng vấn có tính giờ chuyên nghiệp, với bộ câu hỏi ngẫu nhiên riêng cho mỗi ứng viên. Chỉ $2–5 mỗi ứng viên."
+    "text": "AI biến mô tả công việc của bạn thành một buổi phỏng vấn có tính giờ chuyên nghiệp.\nChỉ $2–5 mỗi ứng viên."
   },
   "start": {
     "placeholder": "Dán mô tả công việc, hoặc mô tả vị trí và những gì ứng viên cần biết",
@@ -1214,6 +1214,7 @@
     "more": "Cách hoạt động",
     "demos": "Video",
     "demosTooltip": "Xem demo trên YouTube",
+    "videoTooltip": "Xem prepza hoạt động thế nào",
     "askAgent": "hỏi trợ lý AI",
     "create": {
       "title": "Tạo buổi phỏng vấn trong vài phút",

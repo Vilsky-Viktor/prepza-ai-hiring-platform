@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Uji semua orang\nRekrut yang terbaik",
-    "text": "AI mengubah deskripsi pekerjaanmu menjadi wawancara berbatas waktu yang profesional, dengan soal acak tersendiri untuk setiap kandidat. Hanya $2–5 per kandidat."
+    "text": "AI mengubah deskripsi pekerjaanmu menjadi wawancara berbatas waktu yang profesional.\nHanya $2–5 per kandidat."
   },
   "start": {
     "placeholder": "Tempel deskripsi pekerjaan, atau jelaskan posisinya dan apa yang perlu diketahui kandidat",
@@ -1214,6 +1214,7 @@
     "more": "Cara kerjanya",
     "demos": "Video",
     "demosTooltip": "Tonton demo di YouTube",
+    "videoTooltip": "Lihat cara kerja prepza",
     "askAgent": "tanya agen",
     "create": {
       "title": "Buat wawancara dalam hitungan menit",

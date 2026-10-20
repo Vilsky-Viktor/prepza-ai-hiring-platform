@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "I-test ang lahat\nI-hire ang pinakamahusay",
-    "text": "Ginagawang propesyonal na timed interview ng AI ang iyong job description, na may sariling random na mga tanong para sa bawat aplikante. $2–5 lang bawat aplikante."
+    "text": "Ginagawang propesyonal na timed interview ng AI ang iyong job description.\n$2–5 lang bawat aplikante."
   },
   "start": {
     "placeholder": "Mag-paste ng job description, o ilarawan ang role at ang dapat malaman ng aplikante",
@@ -1214,6 +1214,7 @@
     "more": "Paano ito gumagana",
     "demos": "Video",
     "demosTooltip": "Panoorin ang mga demo sa YouTube",
+    "videoTooltip": "Panoorin kung paano gumagana ang prepza",
     "askAgent": "magtanong sa agent",
     "create": {
       "title": "Gumawa ng interview sa loob ng ilang minuto",

@@ -15,7 +15,7 @@ The pages anyone can open without signing in, and how search engines see them. E
 
 ## Home page
 
-The first screen: "Test everyone. Hire the best.", one sentence on what prepza does and its price per candidate, a "video" button with a play icon beside it (under the text on phones) that plays prepza's video in a window on the page (YouTube's no-cookie player, loaded only when the window opens), an info button next to it that explains in a dialog how prepza works, and the box to paste a job description. From tablets up, thin wires run from the window's edges into the box and out of it, with candidates moving along them. Under the box, a short line of facts: the number of languages, how long an interview takes to be ready, and no subscription. Submitting the box:
+The first screen: "Test everyone. Hire the best.", what prepza does and its price per candidate, each sentence on a line of its own, an info button that explains in a dialog how prepza works and a play icon under it (named in its tooltip, with a blue ring pulsing out of it, left out with reduced motion) that plays prepza's video in a window on the page (YouTube's no-cookie player, loaded only when the window opens): in the margin on the title's start side on wide screens, side by side above the title on narrower ones; then the box to paste a job description. From tablets up, thin wires run from the window's edges into the box and out of it, with candidates moving along them. Under the box, a short line of facts: the number of languages, how long an interview takes to be ready, and no subscription. Submitting the box:
 
 1. signs you in if needed,
 2. asks which company the interview is for (or its name, for a first company),

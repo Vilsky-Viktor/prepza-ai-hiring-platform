@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Teste todos\nContrate os melhores",
-    "text": "A IA transforma sua descrição de vaga em uma entrevista cronometrada profissional, com questões aleatórias próprias para cada candidato. Apenas $2–5 por candidato."
+    "text": "A IA transforma sua descrição de vaga em uma entrevista cronometrada profissional.\nApenas $2–5 por candidato."
   },
   "start": {
     "placeholder": "Cole uma descrição de vaga ou descreva o cargo e o que um candidato deve saber",
@@ -1214,6 +1214,7 @@
     "more": "Como funciona",
     "demos": "Vídeo",
     "demosTooltip": "Ver demos no YouTube",
+    "videoTooltip": "Veja como o prepza funciona",
     "askAgent": "perguntar ao agente",
     "create": {
       "title": "Crie uma entrevista em minutos",

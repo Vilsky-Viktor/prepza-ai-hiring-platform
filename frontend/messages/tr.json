@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Herkesi test edin\nEn iyisini işe alın",
-    "text": "Yapay zekâ, iş tanımınızı her adaya kendi rastgele sorularıyla profesyonel, süreli bir mülakata dönüştürür. Aday başına yalnızca $2–5."
+    "text": "Yapay zekâ, iş tanımınızı profesyonel, süreli bir mülakata dönüştürür.\nAday başına yalnızca $2–5."
   },
   "start": {
     "placeholder": "Bir iş tanımı yapıştırın ya da pozisyonu ve adayın bilmesi gerekenleri anlatın",
@@ -1214,6 +1214,7 @@
     "more": "Nasıl çalışır",
     "demos": "Video",
     "demosTooltip": "Demoları YouTube'da izle",
+    "videoTooltip": "prepza'nın nasıl çalıştığını izleyin",
     "askAgent": "asistana sor",
     "create": {
       "title": "Dakikalar içinde mülakat oluşturun",

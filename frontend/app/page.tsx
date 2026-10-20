@@ -58,8 +58,15 @@ export default async function HomePage() {
       <div className="relative flex min-h-[calc(100svh-3.5rem)] flex-col items-center justify-center pb-24 max-sm:pt-10">
         <div className="w-full max-w-176 space-y-10">
           <div className="space-y-4">
-            {/* The promise, with the demos beside it from tablets up. */}
-            <div className="flex items-start justify-between gap-6">
+            {/* The promise, with the video and the page's info button beside it as on other
+                pages' titles: in the margin on the start side from wide screens, the info button on
+                the title's first line and the video under it; on their own line above it on
+                narrower ones. */}
+            <div className="relative">
+              <div className="-ms-3 mb-2 flex items-center gap-1 xl:absolute xl:end-[calc(100%+0.75rem)] xl:top-2 xl:ms-0 xl:mb-0 xl:flex-col xl:gap-4">
+                <PageHelp page="landing" />
+                <VideoButton />
+              </div>
               {/* Two lines, each ending with the logo's blue dot; close together, with room for
                   marks above and below in Arabic, Persian, Hindi, Thai and Vietnamese. */}
               <h1 className="no-dot font-heading text-[min(3rem,10.5vw)] leading-none font-medium tracking-tight text-balance sm:text-6xl [:lang(ar)_&]:leading-tight [:lang(fa)_&]:leading-tight [:lang(hi)_&]:leading-tight [:lang(th)_&]:leading-tight [:lang(vi)_&]:leading-tight">
@@ -72,19 +79,20 @@ export default async function HomePage() {
                     </span>
                   ))}
               </h1>
-              <div className="mt-2 hidden shrink-0 items-center gap-1 sm:flex">
-                <VideoButton />
-                <PageHelp page="landing" className="size-12" />
-              </div>
             </div>
-            <p className="text-lg text-balance text-muted-foreground">
-              {t("text")}
+            {/* Each sentence on a line of its own. */}
+            <p
+              className="text-lg text-balance text-muted-foreground"
+              data-testid="hero-text"
+            >
+              {t("text")
+                .split("\n")
+                .map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
             </p>
-            {/* On phones the demos come under the promise. */}
-            <div className="flex items-center justify-center gap-1 sm:hidden">
-              <VideoButton />
-              <PageHelp page="landing" className="size-12" />
-            </div>
           </div>
           <div className="space-y-5">
             {/* The box with wires from both edges of the window. */}

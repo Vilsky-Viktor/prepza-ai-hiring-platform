@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Teste jeden\nStelle die Besten ein",
-    "text": "KI macht aus deiner Stellenbeschreibung ein professionelles Interview mit Zeitlimit, mit eigenen zufälligen Fragen für jeden Kandidaten. Nur $2–5 pro Kandidat."
+    "text": "KI macht aus deiner Stellenbeschreibung ein professionelles Interview mit Zeitlimit.\nNur $2–5 pro Kandidat."
   },
   "start": {
     "placeholder": "Füge eine Stellenbeschreibung ein oder beschreibe die Rolle und was ein Kandidat wissen sollte",
@@ -1214,6 +1214,7 @@
     "more": "So funktioniert's",
     "demos": "Video",
     "demosTooltip": "Demos auf YouTube ansehen",
+    "videoTooltip": "Sieh dir an, wie prepza funktioniert",
     "askAgent": "agent fragen",
     "create": {
       "title": "Ein Interview in Minuten erstellen",

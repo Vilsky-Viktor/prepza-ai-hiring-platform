@@ -136,7 +136,7 @@
   },
   "home": {
     "title": "Testez tout le monde\nRecrutez les meilleurs",
-    "text": "L'IA transforme votre fiche de poste en un entretien chronométré professionnel, avec ses propres questions aléatoires pour chaque candidat. Seulement 2–5 $ par candidat."
+    "text": "L'IA transforme votre fiche de poste en un entretien chronométré professionnel.\nSeulement 2–5 $ par candidat."
   },
   "start": {
     "placeholder": "Collez une fiche de poste, ou décrivez le poste et ce qu'un candidat doit savoir",
@@ -1214,6 +1214,7 @@
     "more": "Comment ça marche",
     "demos": "Vidéo",
     "demosTooltip": "Voir les démos sur YouTube",
+    "videoTooltip": "Découvrez comment fonctionne prepza",
     "askAgent": "demander à l'agent",
     "create": {
       "title": "Créez un entretien en quelques minutes",
