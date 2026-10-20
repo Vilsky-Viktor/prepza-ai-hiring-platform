@@ -86,6 +86,8 @@ class TopicOut(BaseModel):
 
 
 class InterviewDetail(InterviewOut):
+    # The company it belongs to, so a link to it can be built from the interview alone.
+    company_id: UUID
     topics: list[TopicOut]
     # The whole interview at its time per question, in minutes, as a candidate sees it before
     # starting; None while its questions aren't known.

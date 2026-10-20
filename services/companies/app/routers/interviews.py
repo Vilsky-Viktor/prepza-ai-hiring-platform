@@ -105,6 +105,7 @@ async def get_interview(interview_id: UUID, user: CurrentUser) -> InterviewDetai
 
     return InterviewDetail(
         **base.model_dump(),
+        company_id=interview.company_id,
         topics=topics,
         total_minutes=interview_minutes(found, interview.topic_limits, interview.question_seconds),
         total_questions=interview_questions(found, interview.topic_limits),

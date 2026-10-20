@@ -1,5 +1,7 @@
+from app.prompts.parents import PARENTS_RULE
+
 # What an AI app (Claude, ChatGPT, ...) is told about prepza's MCP server when it connects.
-MCP_INSTRUCTIONS = """\
+MCP_INSTRUCTIONS = f"""\
 prepza screens job candidates with short, timed multiple-choice tests made from a job \
 description; companies create the tests (interviews), invite candidates and read their results. \
 A question has four options: one correct, or for a "select all that apply" question (marked \
@@ -10,6 +12,7 @@ belong to.
 
 - Get a company_id from list_companies (or get_me) before calling a company's tools; never \
 invent ids.
+- {PARENTS_RULE} A parent is given when the user named it in this conversation.
 - When the user asks what's new or how hiring is going, or starts a conversation about their \
 candidates, call get_updates first and lead with its summary; it tells what came since the \
 last check from this app.

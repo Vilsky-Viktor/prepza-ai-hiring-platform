@@ -1,6 +1,7 @@
 import httpx
 
 from app.constants.show import (
+    ALL_PAGES,
     LINK_IDS,
     MAX_ROWS,
     NOTHING_TO_SHOW,
@@ -13,7 +14,7 @@ from app.constants.show import (
 from app.helpers.blocks import SAFE_ID, link
 from app.integrations import services
 from app.models.answers import Turn
-from app.services.live_blocks import items_for
+from app.services.live_blocks import fetch, items_for
 
 
 async def page_name(page: str, ids: dict, token: str, language: str) -> str | None:
@@ -51,9 +52,40 @@ def kept_ref(kind: str, ref: dict) -> dict:
     return ref
 
 
+def all_link(kind: str, chosen: list[dict], companies: dict, company_id: str | None) -> str | None:
+    """The page with all of a list's items, shown under its rows: the interview's candidates when
+    the rows are one interview's, the company's interviews; None when the rows have no one page."""
+    page = ALL_PAGES.get(kind)
+    interviews = {ref.get("interview_id") for ref in chosen}
+
+    if page is None or (kind == "candidate_rows" and len(interviews) != 1):
+        return None
+
+    interview_id = next(iter(interviews), None)
+    company = companies.get(interview_id, company_id) if kind == "candidate_rows" else company_id
+
+    return link(PAGES[page], {"company_id": company, "interview_id": interview_id})
+
+
+async def interview_companies(chosen: list[dict], company_id: str | None, turn: Turn) -> dict:
+    """Each chosen row's interview's company, read from the interview, when the model didn't
+    name the company and none is picked in the panel (its rows' links need one)."""
+    if company_id:
+        return {}
+
+    found = {}
+
+    for interview_id in dict.fromkeys(ref.get("interview_id") for ref in chosen):
+        if interview_id:
+            interview = await fetch(f"/interviews/{interview_id}", {}, turn.token, turn.language)
+            found[interview_id] = str(interview["company_id"]) if interview else None
+
+    return found
+
+
 async def rows_block(arguments: dict, turn: Turn) -> dict | None:
-    """The rows the model chose, as the user may see them now (read with their token); None
-    when none of them is."""
+    """The rows the model chose, as the user may see them now (read with their token), newest
+    first; None when none of them is."""
     kind, keys = ROW_KINDS[arguments["kind"]]
     chosen = [
         {key: str(row.get(key, "")) for key in keys}
@@ -61,20 +93,34 @@ async def rows_block(arguments: dict, turn: Turn) -> dict | None:
         if all(SAFE_ID.match(str(row.get(key, ""))) for key in keys)
     ]
     company_id = arguments.get("company_id") or (str(turn.company_id) if turn.company_id else None)
-    links = [row_link(kind, ref, company_id) for ref in chosen]
+    companies = await interview_companies(chosen, company_id, turn)
+    links = [
+        row_link(kind, ref, companies.get(ref.get("interview_id"), company_id)) for ref in chosen
+    ]
     refs = [kept_ref(kind, ref) for ref in chosen]
     block = {"kind": kind, "refs": refs, "links": links}
     found = await items_for(block, turn.token, turn.language)
-    kept = [(item, url) for item, url in zip(found, links, strict=True) if item]
+    kept = [(item, url, ref) for item, url, ref in zip(found, links, refs, strict=True) if item]
 
     if not kept:
         return None
 
+    # Newest first, whatever order the model chose them in.
+    kept.sort(key=lambda row: str(row[0].get("created_at") or ""), reverse=True)
+
+    every = all_link(kind, chosen, companies, company_id)
+
     return {
         "kind": kind,
-        "items": [item for item, _ in kept],
-        "links": [url for _, url in kept],
-        "ref": {**block, "refs": [r for r, item in zip(refs, found, strict=True) if item]},
+        "items": [item for item, _, _ in kept],
+        "links": [url for _, url, _ in kept],
+        "all": every,
+        "ref": {
+            **block,
+            "refs": [ref for _, _, ref in kept],
+            "links": [url for _, url, _ in kept],
+            "all": every,
+        },
     }
 
 

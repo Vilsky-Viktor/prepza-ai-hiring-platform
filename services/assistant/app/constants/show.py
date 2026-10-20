@@ -9,7 +9,11 @@ ROW_KINDS = {
     "interviews": ("interview", ("interview_id",)),
     "balances": ("credits", ("company_id",)),
 }
-MAX_ROWS = 20
+# The page with every item of a list, under its rows: an interview's candidates, a company's
+# interviews.
+ALL_PAGES = {"candidate_rows": "interview_candidates", "interview": "company"}
+# At most this many rows under an answer; a list of more links to the page with all of them.
+MAX_ROWS = 10
 
 # The app's pages a link may open, by name: their paths, filled only with ids (the model never
 # writes a URL), and what names the page on its button (read with the user's token).
@@ -54,7 +58,9 @@ SHOW_DEFINITION = {
             "not everyone's), as `rows` of ids. kind 'link': one link to the single most "
             "relevant, most specific page (`page` and its ids), e.g. the interview's page for a "
             "question about a position, the candidate's report for a candidate. At most one "
-            "rows and one link per answer; none for small talk."
+            "rows and one link per answer; none for small talk. Rows are at most 10: a list of "
+            "candidates or interviews gets a link to the page with all of them by itself, so add "
+            "no link of your own to that page."
         ),
         "parameters": {
             "type": "object",

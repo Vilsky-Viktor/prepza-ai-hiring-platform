@@ -5,15 +5,14 @@ import { ArrowRightIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import {
-  CandidateRow,
-  type CandidateRowData,
-} from "@/components/company/candidate-row"
-import {
   ActionCard,
   type CardActions,
 } from "@/components/assistant/action-card"
 import { BalanceTooltip } from "@/components/billing/balance-tooltip"
-import { InterviewSummary } from "@/components/company/interview-summary"
+import {
+  CandidateTable,
+  InterviewTable,
+} from "@/components/assistant/compact-rows"
 import { LocalizedLink } from "@/components/localized-link"
 import { SignInOptions } from "@/components/sign-in-options"
 import { buttonVariants } from "@/components/ui/button"
@@ -23,20 +22,6 @@ import type { AssistantBlock } from "@/types/assistant"
 import { WARNING_TONE } from "@/constants/tones"
 
 type Item = Record<string, unknown>
-
-/** An interview, as the interview list shows it. */
-function InterviewItem({ item }: { item: Item }) {
-  const t = useTranslations("interviews")
-
-  return (
-    <InterviewSummary
-      title={(item.title as string | null) ?? t("fallbackTitle")}
-      createdAt={item.created_at as string}
-      status={(item.status as string | null) ?? null}
-      candidateCount={(item.candidate_count as number | undefined) ?? 0}
-    />
-  )
-}
 
 /** A balance: the company's name when there are several, and its credits (amber when low), as
  * the company's header shows them. */
@@ -68,39 +53,22 @@ const ROW = "flex items-center justify-between gap-4 p-4"
 // The blocks showing candidates: a list, or one candidate's results.
 const CANDIDATE_KINDS = ["candidate_rows", "scorecard_summary"]
 
-/** One item of a block, opening its page when it has one. */
-function BlockRow({
-  kind,
+/** A balance's row, opening its page when it has one. */
+function CreditsRow({
   item,
   href,
   onNavigate,
 }: {
-  kind: AssistantBlock["kind"]
   item: Item
   href: string | null
   onNavigate: () => void
 }) {
-  if (CANDIDATE_KINDS.includes(kind)) {
-    return (
-      href && (
-        <CandidateRow
-          candidate={item as CandidateRowData}
-          href={href}
-          onClick={onNavigate}
-        />
-      )
-    )
-  }
-
-  const content =
-    kind === "interview" ? (
-      <InterviewItem item={item} />
-    ) : (
-      <CreditsItem item={item} />
-    )
-
   if (!href) {
-    return <div className={ROW}>{content}</div>
+    return (
+      <div className={ROW}>
+        <CreditsItem item={item} />
+      </div>
+    )
   }
 
   return (
@@ -112,13 +80,14 @@ function BlockRow({
         "transition-colors hover:bg-muted/50 active:bg-muted/50"
       )}
     >
-      {content}
+      <CreditsItem item={item} />
     </LocalizedLink>
   )
 }
 
-/** What an answer's tools found: candidates, interviews and balances in the lists the app's
- * pages use, each opening its page, then links to the pages the rest came from, and a
+/** What an answer's tools found: candidates and interviews as compact tables (at most 10 rows,
+ * with a link to the page with all of them), balances as the company header shows them, each
+ * opening its page; then links to the pages the rest came from, and a
  * sign-in card when a visitor asked to sign in. */
 export function AnswerBlocks({
   blocks,
@@ -139,21 +108,40 @@ export function AnswerBlocks({
       {rows.map(
         (block, index) =>
           block.items.length > 0 && (
-            <ul
-              key={index}
-              className="divide-y overflow-hidden rounded-2xl border"
-            >
-              {block.items.map(({ item, href }, row) => (
-                <li key={row}>
-                  <BlockRow
-                    kind={block.kind}
-                    item={item}
-                    href={href}
-                    onNavigate={onNavigate}
+            <div key={index} className="space-y-2">
+              {CANDIDATE_KINDS.includes(block.kind) ? (
+                <CandidateTable rows={block.items} onNavigate={onNavigate} />
+              ) : block.kind === "interview" ? (
+                <InterviewTable rows={block.items} onNavigate={onNavigate} />
+              ) : (
+                <ul className="divide-y overflow-hidden rounded-2xl border">
+                  {block.items.map(({ item, href }, row) => (
+                    <li key={row}>
+                      <CreditsRow
+                        item={item}
+                        href={href}
+                        onNavigate={onNavigate}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {/* The page with all of the list, when there's one. */}
+              {block.all && (
+                <LocalizedLink
+                  href={block.all}
+                  onClick={onNavigate}
+                  data-testid="see-all"
+                  className={buttonVariants({ variant: "outline", size: "sm" })}
+                >
+                  {card("seeAll")}
+                  <ArrowRightIcon
+                    data-icon="inline-end"
+                    className="rtl:-scale-x-100"
                   />
-                </li>
-              ))}
-            </ul>
+                </LocalizedLink>
+              )}
+            </div>
           )
       )}
       {cards.map((card) => (

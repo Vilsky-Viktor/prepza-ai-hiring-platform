@@ -125,3 +125,18 @@ def test_setting_the_last_topic_with_questions_to_0_is_refused(run, two_topics):
     assert refused.status_code == 422
     assert refused.detail == "An interview needs at least one topic with questions."
     assert limits == {str(GIT): 0}
+
+
+def test_an_interview_names_its_company(run, two_topics):
+    """So a link to it can be built from the interview alone (the assistant's rows)."""
+
+    async def scenario():
+        interview, owner = await an_interview()
+        detail = await get_interview(interview.id, owner)
+        await companies.delete(interview.company_id)
+
+        return detail.company_id, interview.company_id
+
+    found, expected = run(scenario())
+
+    assert found == expected

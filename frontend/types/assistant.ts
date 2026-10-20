@@ -17,6 +17,8 @@ export type AssistantBlock = {
     | "confirm"
   items: Record<string, unknown>[]
   links: (string | null)[]
+  // A list's page with all of its items, shown under its rows.
+  all?: string | null
   // A link's page (by the service's name for it) and what it opens (an interview's title).
   page?: string | null
   label?: string | null

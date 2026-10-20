@@ -154,6 +154,7 @@ export function answerParts(blocks: AssistantBlock[]) {
         item,
         href: inAppHref(block.links[index]),
       })),
+      all: inAppHref(block.all ?? null),
     }))
   // The answer's link (the service sends one at most): where it goes and what names it.
   const links = blocks

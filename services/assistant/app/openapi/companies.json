@@ -2325,7 +2325,7 @@
      "companies"
     ],
     "summary": "Search Candidates",
-    "description": "The company's candidates across its interviews, newest first, a page at a time; `q`\nnarrows them to an email or name containing it. Any member, viewers too.",
+    "description": "Finds candidates by name or email (`q`) across the company's interviews, newest first, a\npage at a time; to list an interview's candidates, use that interview's list instead. Any\nmember, viewers too.",
     "operationId": "search_candidates_companies__company_id__candidates_get",
     "security": [
      {
@@ -9347,6 +9347,11 @@
       ],
       "title": "Updated At"
      },
+     "company_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Company Id"
+     },
      "topics": {
       "items": {
        "$ref": "#/components/schemas/TopicOut"
@@ -9396,6 +9401,7 @@
      "link_token",
      "status",
      "created_at",
+     "company_id",
      "topics"
     ],
     "title": "InterviewDetail"

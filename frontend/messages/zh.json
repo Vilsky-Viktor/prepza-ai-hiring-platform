@@ -2120,6 +2120,7 @@
     "removed": "消息已删除：其中包含机密信息",
     "goodAnswer": "回答很好",
     "badAnswer": "回答不好",
+    "seeAll": "查看全部",
     "voteFailed": "无法保存你的评价，请重试。"
   },
   "pageHelp": {

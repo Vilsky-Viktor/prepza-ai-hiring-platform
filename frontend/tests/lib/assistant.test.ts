@@ -73,6 +73,7 @@ describe("answerParts", () => {
         kind: "candidate_rows",
         items: [{ email: "ann@example.com" }, { email: "bob@example.com" }],
         links: ["/companies/x/interviews/i/candidates/1", "https://evil"],
+        all: "/companies/x/interviews/i?tab=candidates",
       },
       { kind: "link", items: [], links: ["/settings", "//evil", null] },
     ]
@@ -88,6 +89,8 @@ describe("answerParts", () => {
             },
             { item: { email: "bob@example.com" }, href: null },
           ],
+          // The page with all of the list, in-app only too.
+          all: "/companies/x/interviews/i?tab=candidates",
         },
       ],
       // In-app pages only, as the service sent them.
@@ -98,6 +101,20 @@ describe("answerParts", () => {
       signIn: undefined,
       cards: [],
     })
+  })
+
+  it("drops a list's page with all of it when it isn't in the app", () => {
+    const blocks: AssistantBlock[] = [
+      {
+        kind: "interview",
+        items: [{ title: "Analyst" }],
+        links: ["/companies/x/interviews/i"],
+        all: "https://evil",
+      },
+      { kind: "interview", items: [{ title: "Analyst" }], links: [null] },
+    ]
+
+    expect(answerParts(blocks).rows.map((row) => row.all)).toEqual([null, null])
   })
 
   it("keeps a sign-in card apart from the rows and links", () => {

@@ -2120,6 +2120,7 @@
     "removed": "Message removed: it contained a secret",
     "goodAnswer": "Good answer",
     "badAnswer": "Bad answer",
+    "seeAll": "See all",
     "voteFailed": "Couldn't save your vote. Please try again."
   },
   "pageHelp": {

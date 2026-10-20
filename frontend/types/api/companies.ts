@@ -641,8 +641,9 @@ export interface paths {
     }
     /**
      * Search Candidates
-     * @description The company's candidates across its interviews, newest first, a page at a time; `q`
-     *     narrows them to an email or name containing it. Any member, viewers too.
+     * @description Finds candidates by name or email (`q`) across the company's interviews, newest first, a
+     *     page at a time; to list an interview's candidates, use that interview's list instead. Any
+     *     member, viewers too.
      */
     get: operations["search_candidates_companies__company_id__candidates_get"]
     put?: never
@@ -3178,6 +3179,11 @@ export interface components {
       created_at: string
       /** Updated At */
       updated_at?: string | null
+      /**
+       * Company Id
+       * Format: uuid
+       */
+      company_id: string
       /** Topics */
       topics: components["schemas"]["TopicOut"][]
       /** Total Minutes */

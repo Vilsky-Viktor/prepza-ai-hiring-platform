@@ -40,6 +40,7 @@ from app.prompts.assistant import (
     UNKNOWN_PAGE,
     USER_CONTEXT,
 )
+from app.prompts.parents import PARENTS_RULE
 from app.services.actions import prepare
 from app.services.registry import tools
 from app.services.show import show
@@ -72,6 +73,7 @@ def build_messages(
         company=company,
         page=CURRENT_PAGE.format(page=describe_page(page)) if page else UNKNOWN_PAGE,
         scope=SCOPE_RULE,
+        parents=PARENTS_RULE,
         user=USER_CONTEXT.format(name=json.dumps(turn.user_name))
         if turn.user_name
         else NO_USER_NAME,

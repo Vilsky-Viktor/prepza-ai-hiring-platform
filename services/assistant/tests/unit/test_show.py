@@ -11,9 +11,25 @@ from app.services.show import show
 COMPANY = "8c1d2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f"
 TURN = Turn(uuid.uuid4(), "ann", uuid.UUID(COMPANY), "t", "en", frozenset({COMPANY}))
 CANDIDATES = [
-    {"id": "c1", "email": "ann@example.com", "status": "finished", "grade": 91, "passed": True},
-    {"id": "c2", "email": "bob@example.com", "status": "finished", "grade": 40, "passed": False},
+    {
+        "id": "c1",
+        "email": "ann@example.com",
+        "status": "finished",
+        "grade": 91,
+        "passed": True,
+        "created_at": "2026-10-01T10:00:00Z",
+    },
+    {
+        "id": "c2",
+        "email": "bob@example.com",
+        "status": "finished",
+        "grade": 40,
+        "passed": False,
+        "created_at": "2026-10-02T10:00:00Z",
+    },
 ]
+# A turn with "all companies" picked in the panel.
+NO_COMPANY_TURN = Turn(uuid.uuid4(), "ann", None, "t", "en", frozenset({COMPANY}))
 
 
 @pytest.fixture
@@ -30,7 +46,9 @@ def companies(monkeypatch):
 
         if path == "/interviews/i1":
             return httpx.Response(
-                200, json={"id": "i1", "title": "Senior Backend"}, request=request
+                200,
+                json={"id": "i1", "title": "Senior Backend", "company_id": COMPANY},
+                request=request,
             )
 
         return httpx.Response(404, json={}, request=request)
@@ -40,8 +58,8 @@ def companies(monkeypatch):
     return asked
 
 
-def run(arguments, shown=None):
-    return asyncio.run(show(arguments, TURN, shown if shown is not None else set()))
+def run(arguments, shown=None, turn=TURN):
+    return asyncio.run(show(arguments, turn, shown if shown is not None else set()))
 
 
 def test_only_the_rows_the_model_chose_are_shown_and_kept_as_ids(companies):
@@ -178,3 +196,76 @@ def test_no_link_is_guessed_for_an_answer_about_several_interviews(companies):
     asyncio.run(finish(answer, TURN, emitted.append))
 
     assert emitted == []
+
+
+def test_rows_are_newest_first_with_the_page_of_all_of_them(companies):
+    rows = [
+        {"interview_id": "i1", "candidate_id": "c1"},
+        {"interview_id": "i1", "candidate_id": "c2"},
+    ]
+    _, block = run({"kind": "candidates", "rows": rows})
+
+    assert [item["email"] for item in block["items"]] == ["bob@example.com", "ann@example.com"]
+    assert block["links"] == [
+        f"/companies/{COMPANY}/interviews/i1/candidates/c2",
+        f"/companies/{COMPANY}/interviews/i1/candidates/c1",
+    ]
+    assert block["all"] == f"/companies/{COMPANY}/interviews/i1/candidates"
+    # Kept in the same order, so the conversation shows it again as it was.
+    assert block["ref"]["refs"] == [
+        {"id": "c2", "interview_id": "i1"},
+        {"id": "c1", "interview_id": "i1"},
+    ]
+    assert block["ref"]["all"] == block["all"]
+
+
+def test_interview_rows_link_to_the_companys_interviews(companies):
+    _, block = run({"kind": "interviews", "rows": [{"interview_id": "i1"}]})
+
+    assert block["all"] == f"/companies/{COMPANY}/interviews"
+
+
+def test_candidates_of_several_interviews_have_no_page_of_all_of_them(companies):
+    from app.services.show import all_link
+
+    chosen = [
+        {"interview_id": "i1", "candidate_id": "c1"},
+        {"interview_id": "i2", "candidate_id": "c3"},
+    ]
+
+    assert all_link("candidate_rows", chosen, {}, COMPANY) is None
+    assert all_link("credits", [{"company_id": COMPANY}], {}, COMPANY) is None
+
+
+def test_with_all_companies_picked_the_rows_links_take_the_interviews_company(companies):
+    _, block = run(
+        {"kind": "candidates", "rows": [{"interview_id": "i1", "candidate_id": "c1"}]},
+        turn=NO_COMPANY_TURN,
+    )
+
+    assert block["links"] == [f"/companies/{COMPANY}/interviews/i1/candidates/c1"]
+    assert block["all"] == f"/companies/{COMPANY}/interviews/i1/candidates"
+    assert "/interviews/i1" in companies
+
+
+def test_with_a_company_picked_the_interview_isnt_read_for_it(companies):
+    run({"kind": "candidates", "rows": [{"interview_id": "i1", "candidate_id": "c1"}]})
+
+    assert "/interviews/i1" not in companies
+
+
+def test_at_most_ten_rows_are_shown(companies, monkeypatch):
+    many = [
+        {**CANDIDATES[0], "id": f"c{index}", "created_at": f"2026-10-{index:02d}T10:00:00Z"}
+        for index in range(1, 13)
+    ]
+
+    async def get(service, path, query, token, language, via=None):
+        return httpx.Response(200, json=many, request=httpx.Request("GET", "http://x"))
+
+    monkeypatch.setattr(services, "get", get)
+    rows = [{"interview_id": "i1", "candidate_id": f"c{index}"} for index in range(1, 13)]
+    _, block = run({"kind": "candidates", "rows": rows})
+
+    # The first ten chosen, newest first.
+    assert [ref["id"] for ref in block["ref"]["refs"]] == [f"c{i}" for i in range(10, 0, -1)]

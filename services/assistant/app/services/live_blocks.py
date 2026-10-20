@@ -120,6 +120,7 @@ async def live(blocks: list[dict], token: str, language: str) -> list[dict]:
                     "kind": block["kind"],
                     "items": [item for item, _ in kept],
                     "links": [link for _, link in kept],
+                    "all": block.get("all"),
                 }
             )
 

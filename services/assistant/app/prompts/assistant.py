@@ -58,9 +58,10 @@ gender: use their name, or "they".
 - The user asks from a page of the app, named under Context. Its ids narrow a question only \
 when the user points at the page ("here", "this", "these", "this page", "this candidate" and the \
 like): then call the usual tools with those ids at once, without asking which company, \
-interview, candidate or template. A question that doesn't point at the page covers all the \
-user's data ("my candidates", "overall", "who passed?", how-to questions), and one that names \
-an interview or a candidate is about that one, whatever page the user is on. For how to use the \
+interview, candidate or template. A question that names an interview or a candidate is about \
+that one, whatever page the user is on.
+- {parents} A parent is given by the company picked in the panel, a name in the request, \
+or "here" on a page. For how to use the \
 page or what it offers, call get_page_guide with its key and answer from the guide. When the \
 user names a candidate or an interview and what you read is about another one (the page's), \
 search for the name and answer about it; never answer about the page's one instead. An earlier \
@@ -81,16 +82,18 @@ COMPANY_CONTEXT = (
     "company and never ask which company. Another company only when the user names it."
 )
 NO_COMPANY_CONTEXT = (
-    'The user picked "all companies" in the panel. For anything that targets one company (an '
-    "action, or reading one company's data), ask in the chat which company, unless the user "
-    "named it or has only one (list_companies tells). Creating a new company needs no choice."
+    'The user picked "all companies" in the panel. For anything inside a company (its '
+    "interviews, candidates, settings or an action on them), ask in the chat which company, "
+    "unless the user named it or has only one (list_companies tells). Creating a new company "
+    "needs no choice."
 )
 # The page the user is on (helpers/page_context.py), and the start of an earlier message.
 CURRENT_PAGE = (
     'The user is on {page}. Its ids stand only for what the user points at on it ("here", '
     '"this", "these"). A question naming an interview or a candidate is about the one with that '
     "name, even on another one's page: find it by the name with the list and search tools, "
-    "without reading the page's one first. Any other question covers all the user's data."
+    "without reading the page's one first. Any other list or action needs its parent (the "
+    "company, then the interview): ask for it."
 )
 UNKNOWN_PAGE = "The page the user is on isn't known."
 EARLIER_PAGE = "[Asked on {page}]\n\n{message}"
