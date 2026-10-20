@@ -80,12 +80,6 @@ and updates `docs/features/api.md` or `mcp.md` and the API description in the sa
 
 ## MCP
 
-- A tool mirrors an API operation: the same permission (`key_tools.py`), limits and audit. The
-  tool list is filtered by the caller's permissions.
-- Each tool has a `title`, a description of what it does and when to use it, a strict input
-  schema, and the annotations `readOnlyHint`, `destructiveHint`, `idempotentHint`,
-  `openWorldHint`. A business error is a result with `isError: true`, not a protocol error.
-- The server checks keys exactly as the API does and never passes a token through to another
-  service; OAuth 2.1 with PKCE and a resource check for user sign-in.
+- The MCP server, its OAuth server and its tools: `.claude/rules/mcp.md`.
 
 Research (local notes, git-ignored): `internal_docs/api-design-best-practices.md`.

@@ -96,7 +96,7 @@ prompts, schemas and settings apart (rule 3); every call is bounded, typed, trac
   confirmation card and runs only on Confirm; tools act as the user, authorization is enforced
   downstream, and actions are logged and rate-limited. Hand over to a human after repeated
   failures.
-- MCP tools carry the hints that tell the host what needs approval (`.claude/rules/api.md`).
+- MCP tools (titles, annotations, results, errors): `.claude/rules/mcp.md`.
 
 ## Help chat
 
