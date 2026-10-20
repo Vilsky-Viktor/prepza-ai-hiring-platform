@@ -25,6 +25,9 @@ NEAR_DUPLICATE = 0.9
 # product's own terms, quoted in prompts too, may.
 MIN_EXAMPLE_WORDS = 4
 PRODUCT_TERMS = {"select all that apply"}
+# Names, not examples: the titles AI apps show for the MCP server's tools (the in-app assistant's
+# model never reads them), so a dataset may say "set the pass mark".
+NOT_EXAMPLES = {"mcp_titles.py"}
 ACTION_KINDS = {"create", "invite", "edit", "delete", "buy", "connect", "injection"}
 
 
@@ -45,6 +48,9 @@ def prompt_examples() -> set[str]:
     found = set()
 
     for path in [*SERVICES.glob("*/app/prompts/*.py"), *SERVICES.glob("*/app/constants/*.py")]:
+        if path.name in NOT_EXAMPLES:
+            continue
+
         for quoted in re.findall(r'"([^"\n{}]+)"', path.read_text()):
             if len(quoted.split()) >= MIN_EXAMPLE_WORDS and normal(quoted) not in PRODUCT_TERMS:
                 found.add(normal(quoted))
