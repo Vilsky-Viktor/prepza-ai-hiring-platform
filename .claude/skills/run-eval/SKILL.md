@@ -52,9 +52,9 @@ hash.
 
 ## 6. Record
 
-For a change that ships, in the same commit: add the run to `evals/baselines.md` and update the
-Baselines table in `evals/README.md` (rule 9). A real failure found on the way becomes a made-up
-case in its dataset.
+For a change that ships, in the same commit: add the run to `evals/baselines.md` (the assistant's
+to `evals/baselines/assistant.md`) and update the Baselines table in `evals/README.md` (rule 9). A
+real failure found on the way becomes a made-up case in its dataset.
 
 ## Report
 
