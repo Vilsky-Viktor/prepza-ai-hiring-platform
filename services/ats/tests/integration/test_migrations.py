@@ -49,3 +49,16 @@ def test_a_migration_waits_only_so_long_for_a_lock():
         engine.dispose()
 
     assert waits == MIGRATION_LOCK_TIMEOUT
+
+
+def test_postgres_ends_a_transaction_left_idle(run):
+    from app.storage.db import engine
+
+    async def setting():
+        async with engine.connect() as connection:
+            query = text("SHOW idle_in_transaction_session_timeout")
+
+            return (await connection.execute(query)).scalar()
+
+    # IDLE_IN_TRANSACTION_TIMEOUT, as Postgres shows it.
+    assert run(setting()) == "1min"

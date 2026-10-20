@@ -1,7 +1,11 @@
 from unittest import mock
 
 from prepza_common import db
-from prepza_common.constants import DB_POOL_RECYCLE_SECONDS, MIGRATION_LOCK_TIMEOUT
+from prepza_common.constants import (
+    DB_POOL_RECYCLE_SECONDS,
+    IDLE_IN_TRANSACTION_TIMEOUT,
+    MIGRATION_LOCK_TIMEOUT,
+)
 
 
 def test_pooled_connections_are_replaced_by_age_not_pinged_on_every_use():
@@ -12,6 +16,9 @@ def test_pooled_connections_are_replaced_by_age_not_pinged_on_every_use():
     assert options["pool_recycle"] == DB_POOL_RECYCLE_SECONDS
     assert "pool_pre_ping" not in options
     assert (options["pool_size"], options["max_overflow"]) == (2, 1)
+    assert options["connect_args"] == {
+        "options": f"-c idle_in_transaction_session_timeout={IDLE_IN_TRANSACTION_TIMEOUT}"
+    }
 
 
 def test_a_database_url_connects_through_psycopg():

@@ -2,6 +2,7 @@ from prepza_common.constants import (
     DB_MAX_OVERFLOW,
     DB_POOL_RECYCLE_SECONDS,
     DB_POOL_SIZE,
+    IDLE_IN_TRANSACTION_TIMEOUT,
     MIGRATION_LOCK_TIMEOUT,
 )
 from sqlalchemy import Engine, create_engine, text
@@ -17,12 +18,16 @@ def database(
     url: str, pool_size: int = DB_POOL_SIZE, max_overflow: int = DB_MAX_OVERFLOW
 ) -> tuple[AsyncEngine, async_sessionmaker]:
     """The engine and session factory for a service's database; a service with few, short queries
-    takes a smaller pool, to stay within the database's connection budget."""
+    takes a smaller pool, to stay within the database's connection budget. A transaction left
+    idle past IDLE_IN_TRANSACTION_TIMEOUT is ended by Postgres."""
     engine = create_async_engine(
         sqlalchemy_url(url),
         pool_recycle=DB_POOL_RECYCLE_SECONDS,
         pool_size=pool_size,
         max_overflow=max_overflow,
+        connect_args={
+            "options": f"-c idle_in_transaction_session_timeout={IDLE_IN_TRANSACTION_TIMEOUT}"
+        },
     )
 
     return engine, async_sessionmaker(engine, expire_on_commit=False)

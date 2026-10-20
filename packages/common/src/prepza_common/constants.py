@@ -51,6 +51,10 @@ DB_MAX_OVERFLOW = 5
 # and the Cloud SQL connector none); one killed by a database restart fails one request, and
 # SQLAlchemy then replaces the whole pool.
 DB_POOL_RECYCLE_SECONDS = 1800
+# Postgres ends a session whose transaction sits idle this long: one left open by a hung await
+# would otherwise hold its pool slot and its row locks for good. No transaction waits on another
+# service or a model; the longest wait inside one is the outbox's publish call.
+IDLE_IN_TRANSACTION_TIMEOUT = "60s"
 # A migration's statement waits at most this long for a lock, then fails (and the deploy with
 # it, to be run again): the running version keeps serving during migrations, and an ALTER TABLE
 # queued behind a long transaction would hold every query on its table behind it.
