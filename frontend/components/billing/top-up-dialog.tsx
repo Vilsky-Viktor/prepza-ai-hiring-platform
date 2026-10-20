@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import type { ReactNode } from "react"
+import { useState, type ReactNode } from "react"
 
 import { AutoTopUpSetting } from "@/components/billing/auto-top-up"
 import { CustomTopUp } from "@/components/billing/custom-top-up"
@@ -33,9 +33,10 @@ export function TopUpDialog({
   card?: ReactNode
 }) {
   const t = useTranslations("billing")
+  const [open, setOpen] = useState(false)
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
         data-testid="top-up"
         render={
@@ -51,14 +52,22 @@ export function TopUpDialog({
       >
         {card ?? t("topUp")}
       </DialogTrigger>
-      <DialogContent showCloseButton={false} className="sm:max-w-2xl">
+      <DialogContent
+        showCloseButton={false}
+        className="sm:max-w-2xl"
+        data-testid="top-up-dialog"
+      >
         <DialogHeader>
           <DialogTitle>{t("topUpTitle", { name: title })}</DialogTitle>
           <DialogDescription className="text-base">
             {t("topUpNote")} {t("taxes")}
           </DialogDescription>
         </DialogHeader>
-        <CustomTopUp catalog={catalog} companyId={companyId} />
+        <CustomTopUp
+          catalog={catalog}
+          companyId={companyId}
+          onOpened={() => setOpen(false)}
+        />
         <AutoTopUpSetting catalog={catalog} companyId={companyId} card />
         <DialogFooter showCloseButton />
       </DialogContent>

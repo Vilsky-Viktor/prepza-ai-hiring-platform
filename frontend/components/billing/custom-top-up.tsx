@@ -31,9 +31,12 @@ const KEY_STEPS: Record<string, number> = {
 export function CustomTopUp({
   catalog,
   companyId,
+  onOpened,
 }: {
   catalog: Catalog
   companyId: string
+  // Called once the checkout is shown.
+  onOpened?: () => void
 }) {
   const t = useTranslations("billing")
   const locale = useLocale()
@@ -208,6 +211,7 @@ export function CustomTopUp({
           onSale={bought.onSale}
           companyId={companyId}
           className="h-14 px-12 text-lg"
+          onOpened={onOpened}
         />
       </div>
     </div>

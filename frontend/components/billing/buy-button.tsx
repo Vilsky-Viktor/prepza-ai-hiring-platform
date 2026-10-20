@@ -25,6 +25,7 @@ export function BuyButton({
   label,
   variant = "default",
   className,
+  onOpened,
 }: {
   catalog: Catalog
   candidates: number
@@ -34,6 +35,8 @@ export function BuyButton({
   label?: string
   variant?: "default" | "outline"
   className?: string
+  // Called once the checkout is shown (the top-up dialog closes then).
+  onOpened?: () => void
 }) {
   const t = useTranslations("billing")
   const locale = useLocale()
@@ -87,6 +90,7 @@ export function BuyButton({
         },
         locale
       )
+      onOpened?.()
     } catch {
       toast.error(t("checkoutFailed"))
     } finally {
