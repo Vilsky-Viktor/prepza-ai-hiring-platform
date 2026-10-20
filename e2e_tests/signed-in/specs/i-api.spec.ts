@@ -2,6 +2,7 @@ import { expect, test } from "../fixtures"
 import { API_URL } from "../constants"
 import { createCompany, createInterview } from "../helpers/api"
 import { markWebhookFailing, setWebhookMaker } from "../helpers/db-integrations"
+import { settled } from "../helpers/layout"
 import { openDialog, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { ownerEmail } from "../helpers/users"
@@ -30,7 +31,7 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   // The expiries in the API's order: 1, 3, 6 and 12 months, then never.
   const expiries = owner.getByRole("menu").getByRole("menuitemradio")
   await expect(create).toBeDisabled()
-  await owner.waitForTimeout(500)
+  await settled(owner.getByRole("dialog"))
   const closed = await owner.getByRole("dialog").boundingBox()
   await expiry.click()
   await expect(owner.getByRole("menu")).toBeVisible()

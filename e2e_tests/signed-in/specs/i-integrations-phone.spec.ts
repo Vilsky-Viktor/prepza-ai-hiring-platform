@@ -3,7 +3,7 @@ import type { Locator, Page } from "@playwright/test"
 import { expect, test } from "../fixtures"
 import { createCompany, createInterview } from "../helpers/api"
 import { addAtsConnection, addSlackConnection, markAtsBroken } from "../helpers/db-integrations"
-import { box, PHONE } from "../helpers/layout"
+import { box, PHONE, settled } from "../helpers/layout"
 import { integrationRow, openDialog, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { throwawayEmail } from "../helpers/users"
@@ -45,7 +45,7 @@ async function expectReconnectOwnLine(scope: Locator) {
 /** The Instructions dialog `button` opens fills the screen's height. */
 async function expectFullHeightDialog(page: Page, button: Locator) {
   await openDialog(page, button)
-  await page.waitForTimeout(400)
+  await settled(page.getByRole("dialog"))
   const dialog = await box(page.getByRole("dialog"))
   expect(Math.abs(dialog.height - PHONE.height)).toBeLessThanOrEqual(2)
   await page.keyboard.press("Escape")

@@ -12,10 +12,10 @@ export async function shot(page: Page, name: string, fullPage = true) {
   const spec = path.basename(test.info().file, ".spec.ts")
   const count = (counts.get(spec) ?? 0) + 1
   counts.set(spec, count)
-  // Dialogs and toasts finish animating first.
-  await page.waitForTimeout(400)
+  // Dialogs and toasts are shown as they end up: their animations are run to the end.
   await page.screenshot({
     path: `${SCREENSHOTS}/${spec}/${String(count).padStart(2, "0")}-${name}.png`,
     fullPage,
+    animations: "disabled",
   })
 }
