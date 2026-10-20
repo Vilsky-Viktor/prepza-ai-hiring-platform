@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from datetime import UTC, datetime
 
@@ -11,6 +12,7 @@ from app.constants.notifications import TOP_UP_LINK
 from app.constants.products import (
     AUTO_TOP_UP_FLAG,
     AUTO_TOP_UP_THRESHOLDS,
+    AUTO_TOP_UP_WAIT_SECONDS,
     NOT_YOUR_AUTO_TOP_UP,
     SUBSCRIPTION_ENDED_STATUS,
     TOP_UP_UNAVAILABLE,
@@ -162,6 +164,16 @@ async def owner(subscription_id: str) -> tuple[str, str] | None:
 async def ended(subscription_id: str) -> None:
     """Paddle ended the subscription (cancelled there, or after failed payments): it's off."""
     await auto_top_ups.remove_subscription(subscription_id)
+
+
+async def check_briefly(owner_type: str, owner_id: str) -> None:
+    """check(), waited for at most AUTO_TOP_UP_WAIT_SECONDS, so the request that used the credits
+    isn't held long and nothing runs after its answer. Cut off, the charge counts as one whose
+    answer was lost: its web hook adds the credits if Paddle took it."""
+    try:
+        await asyncio.wait_for(check(owner_type, owner_id), AUTO_TOP_UP_WAIT_SECONDS)
+    except TimeoutError:
+        logger.warning("Automatic top-up cut off for %s %s", owner_type, owner_id)
 
 
 async def check(owner_type: str, owner_id: str) -> None:

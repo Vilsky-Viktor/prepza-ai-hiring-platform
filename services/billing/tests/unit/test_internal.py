@@ -1,3 +1,4 @@
+import asyncio
 from types import SimpleNamespace
 
 from prepza_common.http import bearer
@@ -24,8 +25,11 @@ def test_a_candidate_without_enough_credits_is_refused_with_a_message(client, mo
     assert response.json() == {"detail": "Not enough credits. Top up to continue."}
 
 
-def test_a_candidate_holds_its_credits_and_a_top_up_is_checked_after_answering(client, monkeypatch):
-    """Paddle can take its time: the invite waiting on the hold doesn't wait for a top-up."""
+def test_a_candidate_holds_its_credits_and_a_top_up_is_checked_before_answering(
+    client, monkeypatch
+):
+    """Nothing runs after the answer (Cloud Run slows the CPU then): the top-up is checked
+    first."""
     done = []
 
     async def reserve(owner_type, owner_id, amount, key, reason):
@@ -46,6 +50,30 @@ def test_a_candidate_holds_its_credits_and_a_top_up_is_checked_after_answering(c
         ("held", "acme", CANDIDATE_CREDITS, "candidate:session-1"),
         ("top-up checked", "acme"),
     ]
+
+
+def test_a_slow_top_up_is_cut_off_and_the_hold_still_answers(client, monkeypatch):
+    """Paddle can take its time: the invite waiting on the hold waits for it only briefly."""
+    cut_off = []
+
+    async def reserve(owner_type, owner_id, amount, key, reason):
+        return True
+
+    async def never_answers(owner_type, owner_id):
+        try:
+            await asyncio.Event().wait()
+        except asyncio.CancelledError:
+            cut_off.append(owner_id)
+            raise
+
+    monkeypatch.setattr(ledger, "reserve", reserve)
+    monkeypatch.setattr(auto_top_ups, "check", never_answers)
+    monkeypatch.setattr(auto_top_ups, "AUTO_TOP_UP_WAIT_SECONDS", 0.01)
+
+    response = client.post("/internal/candidates/hold", params=HOLD, headers=AUTH)
+
+    assert response.status_code == 204
+    assert cut_off == ["acme"]
 
 
 def test_internal_routes_need_a_service_token(client):
