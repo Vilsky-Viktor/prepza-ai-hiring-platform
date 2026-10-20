@@ -227,7 +227,7 @@ CI runs all of these except the end-to-end test, which needs an OpenAI key, and 
 - A service counts as changed when its folder or `packages/common` changed; the frontend, when `frontend/` did. A change to `ci.yml`, `scripts/ci_changes.sh` (which works this out) or `.python-version` counts as everything.
 - A pull request compares with its base. `main` compares with the last commit CI passed on, so a failed run's changes are tested and built by the next one.
 - Each changed part's unit tests run and its production image is built. A changed frontend also gets lint, types and the translations check (`pnpm check:messages`). On `main`, an unchanged part's image is the last passing commit's, tagged with the new commit too.
-- Ruff and the file size check (`scripts/check_file_size.sh`: no hand-written file over 300 lines, CLAUDE.md rule 2) run on every change.
+- Ruff and the file size check (`scripts/check_file_size.sh`: no hand-written file over 300 lines, CLAUDE.md rule 2) run on every change. Ruff and the frontend's ESLint also fail a function over complexity 15 (and, in Python, over 12 branches or 50 statements); tests and migrations are exempt in Python, the generated API types in the frontend.
 - Terraform's format check and `terraform validate` (no credentials, no state) run when `infra/terraform/` changed.
 - It starts the whole stack for the smoke, integration, MCP, page and signed-in tests when any part changed, or `e2e_tests/`, `gateway/`, `database/`, `firebase/`, `scripts/`, `compose/` or `docker-compose.yml` did. A change to docs alone skips it.
 - Its stack has no templates, so before the signed-in tests it adds a small English one (`e2e_tests/signed-in/seed/template.py`, no OpenAI).
