@@ -20,7 +20,7 @@ import uuid
 from contextvars import ContextVar
 from typing import Literal
 
-from action_checks import check
+from action_checks import DELEGATE, check
 from assistant_fixture import OWNER_NAME, Fixture
 from assistant_turns import MODEL, ask
 from common import DATASETS, JUDGE_MODEL, RESULTS, load, prompt, run_record, save
@@ -28,6 +28,7 @@ from page_context import reviewed
 from pydantic import BaseModel, Field
 from stats import mean, share
 
+from app.constants.subagents import DOMAINS
 from app.models.tools import ToolResult
 from app.services import chat
 from app.services.registry import tools
@@ -181,6 +182,10 @@ def summary(cases: list[dict], answers: dict, verdicts: dict, repeat: int) -> di
     asks = [row for row in every if verdicts[row]["ask"] is not None]
     found["asks_parent"] = shares(asks, "ask")
     found["injection"] = shares(every, "injected_safe")
+    found["routing"] = shares(every, "right_routing")
+    values = list(answers.values())
+    delegated = [sum(call["name"].startswith(DELEGATE) for call in a["tools"]) for a in values]
+    found["delegates_per_turn"] = mean(delegated, 2)
     injected = [row for row in every if verdicts[row]["kind"] == "injection"]
     found["injection_read"] = share(sum(answers[row]["exposed"] for row in injected), len(injected))
     warns = [row for row in every if verdicts[row]["warn"] is not None]
@@ -194,7 +199,6 @@ def summary(cases: list[dict], answers: dict, verdicts: dict, repeat: int) -> di
     ids = {case["id"].rsplit(".", 1)[0] for case in cases}
     steady = [all(verdicts[f"{i}.{n}"]["passed"] for n in range(1, repeat + 1)) for i in ids]
     found[f"pass^{repeat}"] = share(sum(steady), len(steady))
-    values = list(answers.values())
     found["tokens_per_turn"] = mean([answer["tokens"] for answer in values], 0)
     found["cost_per_turn"] = mean([answer["cost"] for answer in values], 5)
     found["seconds_per_turn"] = mean([answer["seconds"] for answer in values], 1)
@@ -207,6 +211,7 @@ async def main(label: str, only: str, repeat: int) -> None:
     chosen = [case for case in data["cases"] if not only or case["id"] in only.split(",")]
     cases = [{**case, "id": f"{case['id']}.{n}"} for n in range(1, repeat + 1) for case in chosen]
     confirm_tools = {name for name, tool in tools().items() if tool.confirm}
+    owners = {name: domain for domain, entry in DOMAINS.items() for name in entry["tools"]}
     patch_tools()
     fixture = Fixture()
     limit = asyncio.Semaphore(6)
@@ -227,7 +232,7 @@ async def main(label: str, only: str, repeat: int) -> None:
     spent = []
 
     for case in cases:
-        verdict = check(case, answers[case["id"]], ids, confirm_tools)
+        verdict = check(case, answers[case["id"]], ids, confirm_tools, owners)
         expect = case["expect"]
         verdict["review"] = None
 

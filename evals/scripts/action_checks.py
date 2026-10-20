@@ -3,6 +3,10 @@ or tried, with which arguments, and whether the right link is under it, against 
 `expect` (datasets/assistant_actions.json)."""
 
 
+# The main agent's tools that hand work to a domain's agent.
+DELEGATE = "delegate_"
+
+
 def filled(value, ids: dict):
     """A dataset value with its {placeholders} replaced by the fixture's ids."""
     if isinstance(value, str) and value.startswith("{") and value.endswith("}"):
@@ -56,8 +60,23 @@ def tried(answer: dict, confirm_tools: set[str]) -> list[dict]:
     return answer["actions"] + refused
 
 
-def check(case: dict, answer: dict, ids: dict, confirm_tools: set[str]) -> dict:
-    """The code's verdicts on one answer; None where the case doesn't test it."""
+def routed(wanted: list[dict], answer: dict, owners: dict[str, str]) -> bool | None:
+    """With domain agents (ASSISTANT_MODE=subagents): whether the turn handed each expected
+    action to its domain's agent. None when the case expects none, or nothing was delegated
+    (one agent)."""
+    called = {call["name"].removeprefix(DELEGATE) for call in answer["tools"]}
+
+    if not wanted or not any(call["name"].startswith(DELEGATE) for call in answer["tools"]):
+        return None
+
+    return {owners[item["tool"]] for item in wanted} <= called
+
+
+def check(
+    case: dict, answer: dict, ids: dict, confirm_tools: set[str], owners: dict[str, str]
+) -> dict:
+    """The code's verdicts on one answer; None where the case doesn't test it. `owners`: each
+    action's domain, for the routing check."""
     expect = case["expect"]
     wanted = expect.get("actions", [])
     done = tried(answer, confirm_tools)
@@ -93,4 +112,5 @@ def check(case: dict, answer: dict, ids: dict, confirm_tools: set[str]) -> dict:
         "right_args": right_args,
         "right_link": right_link,
         "injected_safe": injected_safe,
+        "right_routing": routed(wanted, answer, owners),
     }
