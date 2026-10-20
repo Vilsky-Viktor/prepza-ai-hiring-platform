@@ -81,3 +81,10 @@ async def invoice_url(transaction_id: str) -> str:
     response = await _call("GET", f"/transactions/{transaction_id}/invoice")
 
     return response.json()["data"]["url"]
+
+
+async def transaction(transaction_id: str, timeout: float) -> dict:
+    """The transaction as Paddle has it now: its custom data and payment attempts."""
+    response = await _call("GET", f"/transactions/{transaction_id}", timeout=timeout)
+
+    return response.json()["data"]

@@ -51,3 +51,11 @@ class InvoiceOut(BaseModel):
     """A temporary link to the invoice PDF."""
 
     url: str
+
+
+class PaymentFailureOut(BaseModel):
+    """Why a checkout's latest payment failed, as billing decides it: one of card_declined,
+    insufficient_funds, expired_card, invalid_details, authentication_failed, card_not_supported,
+    payment_method_failed, try_later or other. The site says what the buyer can do for each."""
+
+    reason: str

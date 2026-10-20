@@ -90,6 +90,8 @@ LIMITS = {
         "MAX_INTERVIEWS_WITHOUT_CANDIDATES",
     ),
     "PREVIEWS_PER_USER_HOUR": Limit(COMPANIES, 20, "calls", HOUR_SECONDS, 1, 1_000, "user"),
+    # Checkouts made and failed payments looked up, each a call to Paddle's API.
+    "CHECKOUT_CALLS_PER_USER_HOUR": Limit(COMPANIES, 60, "calls", HOUR_SECONDS, 1, 1_000, "user"),
     "LINK_STARTS_PER_HOUR": Limit(COMPANIES, 30, "calls", HOUR_SECONDS, 1, 10_000, "company"),
     "LINK_STARTS_PER_IP_HOUR": Limit(COMPANIES, 10, "calls", HOUR_SECONDS, 1, 1_000, "ip"),
     "MAX_BULK_INVITES": Limit(COMPANIES, 100, "items", None, 1, 1_000, "company"),

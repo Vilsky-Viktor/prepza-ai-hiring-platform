@@ -18,6 +18,7 @@ from app.routers import (
     billing,
     events,
     internal,
+    payment_failures,
     schedules,
     superadmin,
     superadmin_ai,
@@ -59,6 +60,7 @@ app.add_middleware(BodyLimitMiddleware)
 app.include_router(billing.router)
 app.include_router(internal.router)
 app.include_router(auto_top_ups.internal)
+app.include_router(payment_failures.router)
 app.include_router(superadmin.router)
 app.include_router(superadmin_ai.router)
 app.include_router(superadmin_limits.router)

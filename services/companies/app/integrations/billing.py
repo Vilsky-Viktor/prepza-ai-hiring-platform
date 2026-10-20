@@ -8,7 +8,11 @@ from prepza_common.backoff import wait_seconds
 from prepza_common.http import bearer, passed_on
 
 from app.config.settings import settings
-from app.constants.billing import WELCOME_ATTEMPTS, WELCOME_FIRST_WAIT_SECONDS
+from app.constants.billing import (
+    PAYMENT_FAILURE_TIMEOUT_SECONDS,
+    WELCOME_ATTEMPTS,
+    WELCOME_FIRST_WAIT_SECONDS,
+)
 from app.service_auth import service_token
 
 
@@ -217,6 +221,21 @@ async def company_checkout(company_id: UUID, candidates: int, buyer_id: str) -> 
     )
 
     return passed_on(response, {status.HTTP_422_UNPROCESSABLE_CONTENT}).json()["transaction_id"]
+
+
+async def company_payment_failure(company_id: UUID, transaction_id: str, buyer_id: str) -> str:
+    """Why the latest payment of the buyer's checkout into the company failed; billing's 404 for
+    a transaction that isn't theirs, and its 422 for an id that isn't a transaction's, reach the
+    user unchanged."""
+    response = await http.get_client().get(
+        f"{settings.billing_url}/internal/companies/{company_id}/payment-failure",
+        params={"transaction_id": transaction_id, "buyer_id": buyer_id},
+        headers=_headers(),
+        timeout=PAYMENT_FAILURE_TIMEOUT_SECONDS,
+    )
+    refusals = {status.HTTP_404_NOT_FOUND, status.HTTP_422_UNPROCESSABLE_CONTENT}
+
+    return passed_on(response, refusals).json()["reason"]
 
 
 async def purchase_owner(transaction_id: str) -> dict | None:

@@ -4,6 +4,8 @@ from uuid import UUID
 from prepza_common.constants import MAX_ADJUSTMENT, MAX_ADJUSTMENT_NOTE, MAX_PAGE_SIZE
 from pydantic import BaseModel, Field
 
+from app.constants.payment_failures import PaymentFailure
+
 
 class TopUpOut(BaseModel):
     key: str
@@ -217,3 +219,10 @@ class HoldOut(BaseModel):
     """Credits set aside for one piece of work: open, charged or released."""
 
     status: str
+
+
+class PaymentFailureOut(BaseModel):
+    """Why a checkout's latest payment failed, as one of a fixed set; the site says what the buyer
+    can do for each."""
+
+    reason: PaymentFailure = Field(description="Why the payment failed, by what the buyer can do.")

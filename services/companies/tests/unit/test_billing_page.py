@@ -12,6 +12,7 @@ from app.main import app
 from app.models.companies import Company, Member
 from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
+from app.routers import billing as billing_routes
 from app.storage import companies, credit_invites
 
 COMPANY_ID = uuid.uuid4()
@@ -215,3 +216,61 @@ def test_an_admin_gets_a_checkout_billing_made_and_a_viewer_none(client, monkeyp
     assert admin.json() == {"transaction_id": "txn_new"}
     assert viewer.status_code == 403
     assert made == [(COMPANY_ID, 45, "bob")]
+
+
+def test_an_admin_learns_why_their_payment_failed_and_a_viewer_doesnt(client, monkeypatch):
+    """Billing decides the reason and refuses a transaction that isn't the buyer's (its 404
+    passes through); a viewer never reaches billing."""
+    asked = []
+
+    async def failure(company_id, transaction_id, buyer_id):
+        asked.append((company_id, transaction_id, buyer_id))
+
+        if transaction_id != "txn_ours":
+            raise HTTPException(404, "Not found")
+
+        return "card_declined"
+
+    monkeypatch.setattr(billing, "company_payment_failure", failure)
+    path = f"{COMPANY}/billing/payment-failure"
+    as_member(monkeypatch, "admin")
+    ours = client.get(path, params={"transaction_id": "txn_ours"})
+    theirs = client.get(path, params={"transaction_id": "txn_theirs"})
+    as_member(monkeypatch, "viewer")
+    viewer = client.get(path, params={"transaction_id": "txn_ours"})
+    app.dependency_overrides.clear()
+
+    assert ours.json() == {"reason": "card_declined"}
+    assert theirs.status_code == 404
+    assert viewer.status_code == 403
+    assert asked == [(COMPANY_ID, "txn_ours", "bob"), (COMPANY_ID, "txn_theirs", "bob")]
+
+
+@pytest.mark.parametrize(
+    ("method", "path", "body"),
+    [
+        ("POST", "checkout", {"candidates": 45}),
+        ("GET", "payment-failure?transaction_id=txn_ours", None),
+    ],
+)
+def test_calls_to_paddle_stop_at_the_users_hourly_limit(client, monkeypatch, method, path, body):
+    counted = []
+
+    async def over(redis, key, name, **whose):
+        counted.append((key, name))
+
+        raise HTTPException(429, "Too many requests. Try again later.")
+
+    async def never(*args):
+        raise AssertionError("billing was called past the limit")
+
+    monkeypatch.setattr(billing_routes, "hit_or_skip", over)
+    monkeypatch.setattr(billing, "company_checkout", never)
+    monkeypatch.setattr(billing, "company_payment_failure", never)
+    as_member(monkeypatch, "admin")
+
+    response = client.request(method, f"{COMPANY}/billing/{path}", json=body)
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 429
+    assert counted == [("rate:checkout-calls:bob", "CHECKOUT_CALLS_PER_USER_HOUR")]
