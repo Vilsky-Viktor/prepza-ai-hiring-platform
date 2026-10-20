@@ -695,7 +695,10 @@
     "warning": "Für eine genauere Passung erstelle ein Interview aus deiner Stellenbeschreibung."
   },
   "billing": {
-    "paid": "Zahlung erhalten. Sie erscheint gleich hier.",
+    "paidTitle": "Zahlung erhalten",
+    "paidText": "Deine Credits sind unterwegs. Sie erscheinen meist innerhalb weniger Sekunden, und das Guthaben hier aktualisiert sich von selbst.",
+    "autoTopUpOnTitle": "Automatisches Aufladen ist an",
+    "autoTopUpOnText": "Deine Karte ist gespeichert. Credits werden automatisch aufgeladen, sobald das Guthaben unter den gewählten Wert fällt.",
     "checkoutFailed": "Die Bezahlung konnte nicht geöffnet werden. Bitte versuche es erneut.",
     "topUp": "Aufladen",
     "low": "Bald aufgebraucht",
@@ -1184,7 +1187,6 @@
     "turnOff": "Ausschalten",
     "save": "Speichern",
     "saved": "Automatisches Aufladen aktualisiert.",
-    "turnedOn": "Karte gespeichert. Automatisches Aufladen ist an.",
     "turnedOff": "Automatisches Aufladen ist aus.",
     "failed": "Das automatische Aufladen konnte nicht geändert werden. Bitte versuche es erneut."
   },

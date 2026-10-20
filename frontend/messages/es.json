@@ -695,7 +695,10 @@
     "warning": "Para un mejor ajuste, crea una entrevista a partir de tu descripción del puesto."
   },
   "billing": {
-    "paid": "Pago recibido. Aparecerá aquí en un momento.",
+    "paidTitle": "Pago recibido",
+    "paidText": "Tus créditos están en camino. Suelen aparecer en unos segundos, y el saldo de aquí se actualiza solo.",
+    "autoTopUpOnTitle": "La recarga automática está activada",
+    "autoTopUpOnText": "Tu tarjeta está guardada. Los créditos se recargan solos cada vez que el saldo baja del nivel que elegiste.",
     "checkoutFailed": "No se pudo abrir el pago. Inténtalo de nuevo.",
     "topUp": "Recargar",
     "low": "Se están acabando",
@@ -1184,7 +1187,6 @@
     "turnOff": "Desactivar",
     "save": "Guardar",
     "saved": "Recarga automática actualizada.",
-    "turnedOn": "Tarjeta guardada. La recarga automática está activada.",
     "turnedOff": "La recarga automática está desactivada.",
     "failed": "No se pudo cambiar la recarga automática. Inténtalo de nuevo."
   },

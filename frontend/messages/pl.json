@@ -695,7 +695,10 @@
     "warning": "Aby lepiej dopasować pytania, utwórz rozmowę na podstawie swojego opisu stanowiska."
   },
   "billing": {
-    "paid": "Płatność otrzymana. Za chwilę pojawi się tutaj.",
+    "paidTitle": "Płatność otrzymana",
+    "paidText": "Twoje kredyty są w drodze. Zwykle pojawiają się w ciągu kilku sekund, a saldo tutaj odświeża się samo.",
+    "autoTopUpOnTitle": "Automatyczne doładowanie jest włączone",
+    "autoTopUpOnText": "Twoja karta jest zapisana. Kredyty doładowują się same, gdy tylko saldo spadnie poniżej wybranego poziomu.",
     "checkoutFailed": "Nie udało się otworzyć płatności. Spróbuj ponownie.",
     "topUp": "Doładuj",
     "low": "Kończą się",
@@ -1184,7 +1187,6 @@
     "turnOff": "Wyłącz",
     "save": "Zapisz",
     "saved": "Automatyczne doładowanie zaktualizowane.",
-    "turnedOn": "Karta zapisana. Automatyczne doładowanie jest włączone.",
     "turnedOff": "Automatyczne doładowanie jest wyłączone.",
     "failed": "Nie udało się zmienić automatycznego doładowania. Spróbuj ponownie."
   },

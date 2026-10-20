@@ -695,7 +695,10 @@
     "warning": "Agar lebih sesuai, buat wawancara dari deskripsi pekerjaanmu."
   },
   "billing": {
-    "paid": "Pembayaran diterima. Sebentar lagi akan muncul di sini.",
+    "paidTitle": "Pembayaran diterima",
+    "paidText": "Kredit kamu sedang dalam perjalanan. Biasanya muncul dalam beberapa detik, dan saldo di sini diperbarui sendiri.",
+    "autoTopUpOnTitle": "Isi ulang otomatis menyala",
+    "autoTopUpOnText": "Kartu kamu tersimpan. Kredit diisi ulang sendiri setiap kali saldo turun di bawah batas yang kamu pilih.",
     "checkoutFailed": "Halaman pembayaran tidak bisa dibuka. Coba lagi.",
     "topUp": "Isi ulang",
     "low": "Hampir habis",
@@ -1184,7 +1187,6 @@
     "turnOff": "Matikan",
     "save": "Simpan",
     "saved": "Isi ulang otomatis diperbarui.",
-    "turnedOn": "Kartu tersimpan. Isi ulang otomatis menyala.",
     "turnedOff": "Isi ulang otomatis mati.",
     "failed": "Isi ulang otomatis tidak bisa diubah. Coba lagi."
   },

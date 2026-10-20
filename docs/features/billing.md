@@ -55,12 +55,14 @@ The top-up dialog (on the top-up page and a company's billing tab and header) bu
 - Top up on the top-up page, for any company you belong to.
 - Billing makes each top-up's checkout (a Paddle transaction naming the company and the buyer), after companies checks the buyer is its owner or an admin (`POST /companies/{id}/billing/checkout`); the browser only opens it, so it can't send the money to another wallet or record someone else as the buyer. A paid transaction billing didn't make (its origin isn't `api`), or one into a company deleted meanwhile, adds no credits and is logged as an error, to refund.
 - Paddle's checkout doesn't offer a discount code field.
+- Paddle's checkout opens over the page the buyer is on, in the site's light or dark theme and language (English where Paddle doesn't have it), as one page.
 - Top up closes the top-up dialog once the checkout shows, so only the checkout is open.
+- When Paddle completes the payment (`checkout.completed` in Paddle.js), its checkout closes and a dialog on the same page says the payment went through: "Payment received" for a top-up, "Automatic top-up is on" for the card that turns it on. Nothing is added to the address, and one checkout shows it once.
 - The home and pricing pages show the prices, their range and the free candidates as billing's catalog (`/billing/catalog`) gives them, in its currency. Kept 5 minutes; when billing can't answer and nothing is kept, the pricing page shows its title, intro and Top up with "Prices aren't available right now" instead of the list, rather than an empty or error page.
 
 Balances follow a payment as it lands:
 
-- They are rechecked for 40 seconds after checkout.
+- They are rechecked for a minute after a completed payment.
 - They catch up when the tab is back in view (an automatic top-up, a payment in another tab).
 - A balance that goes up counts up to its new value, on the top-up page and on a company's interviews page.
 
@@ -177,3 +179,4 @@ In Google Cloud, the webhook secret and the API key go into the `paddle-webhook-
 - Until `PADDLE_PRODUCT_CANDIDATES` is set, the top-up dialog's button is disabled.
 - Until both automatic top-up values are set, its line on the top-up page is hidden.
 - Locally, Paddle reaches the webhook only through a tunnel, for example `cloudflared tunnel --url http://localhost:8090`.
+- In the sandbox, pay with Paddle's test cards (any name, a future expiry): `4242 4242 4242 4242` pays, `4000 0000 0000 0002` is declined, and `4000 0038 0000 0446` asks for 3-D Secure, which can be failed.

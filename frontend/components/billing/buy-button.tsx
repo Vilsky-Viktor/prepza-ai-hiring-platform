@@ -1,9 +1,9 @@
 "use client"
 
 import { cn } from "cn"
-import { useRouter } from "next/navigation"
 import { useLocale, useTranslations } from "next-intl"
-import { useEffect, useRef, useState } from "react"
+import { useTheme } from "next-themes"
+import { useState } from "react"
 import { toast } from "sonner"
 
 import { useSignIn } from "@/components/sign-in-dialog"
@@ -12,9 +12,6 @@ import { Button } from "@/components/ui/button"
 import { apiFetch } from "@/lib/api"
 import { openCheckout } from "@/lib/paddle"
 import type { Catalog, CheckoutData } from "@/types/billing"
-
-// When to look for the new balance after a payment, in seconds.
-const RECHECK_SECONDS = [2, 5, 10, 20, 40]
 
 /** Buys a top-up of `candidates` for `companyId`, at the price billing sets for the count. */
 export function BuyButton({
@@ -41,13 +38,9 @@ export function BuyButton({
   const t = useTranslations("billing")
   const locale = useLocale()
   const signIn = useSignIn()
-  const router = useRouter()
+  const { resolvedTheme } = useTheme()
   const { user } = useAuth()
   const [opening, setOpening] = useState(false)
-  // The balance rechecks after a payment, stopped when the button leaves the page.
-  const rechecks = useRef<number[]>([])
-
-  useEffect(() => () => rechecks.current.forEach(clearTimeout), [])
 
   if (!onSale) {
     return (
@@ -76,20 +69,15 @@ export function BuyButton({
         `/companies/companies/${companyId}/billing/checkout`,
         { method: "POST", body: JSON.stringify({ candidates }) }
       )
-      await openCheckout(
+      // It opens over this page; a completed payment shows the success dialog here.
+      await openCheckout({
         catalog,
-        { transactionId },
-        user.email,
-        () => {
-          toast.success(t("paid"))
-          // Paddle's webhook usually lands within seconds, sometimes later: look again a few
-          // times, and the balances count up when it has.
-          rechecks.current = RECHECK_SECONDS.map((seconds) =>
-            window.setTimeout(() => router.refresh(), seconds * 1000)
-          )
-        },
-        locale
-      )
+        checkout: { transactionId },
+        email: user.email,
+        theme: resolvedTheme === "dark" ? "dark" : "light",
+        paid: "top_up",
+        locale,
+      })
       onOpened?.()
     } catch {
       toast.error(t("checkoutFailed"))

@@ -695,7 +695,10 @@
     "warning": "Pour un meilleur ajustement, créez un entretien à partir de votre fiche de poste."
   },
   "billing": {
-    "paid": "Paiement reçu. Il apparaîtra ici dans un instant.",
+    "paidTitle": "Paiement reçu",
+    "paidText": "Vos crédits arrivent. Ils apparaissent généralement en quelques secondes, et le solde se met à jour ici tout seul.",
+    "autoTopUpOnTitle": "La recharge automatique est activée",
+    "autoTopUpOnText": "Votre carte est enregistrée. Les crédits sont rechargés automatiquement dès que le solde passe sous le montant choisi.",
     "checkoutFailed": "Impossible d'ouvrir le paiement. Veuillez réessayer.",
     "topUp": "Recharger",
     "low": "Bientôt épuisés",
@@ -1184,7 +1187,6 @@
     "turnOff": "Désactiver",
     "save": "Enregistrer",
     "saved": "Recharge automatique mise à jour.",
-    "turnedOn": "Carte enregistrée. La recharge automatique est activée.",
     "turnedOff": "La recharge automatique est désactivée.",
     "failed": "Impossible de modifier la recharge automatique. Veuillez réessayer."
   },

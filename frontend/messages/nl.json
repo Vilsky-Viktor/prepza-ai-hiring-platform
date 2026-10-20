@@ -695,7 +695,10 @@
     "warning": "Voor een betere match maak je een interview op basis van je functieomschrijving."
   },
   "billing": {
-    "paid": "Betaling ontvangen. Die verschijnt hier zo.",
+    "paidTitle": "Betaling ontvangen",
+    "paidText": "Je credits komen eraan. Ze verschijnen meestal binnen een paar seconden, en het saldo hier werkt zichzelf bij.",
+    "autoTopUpOnTitle": "Automatisch opwaarderen staat aan",
+    "autoTopUpOnText": "Je kaart is opgeslagen. Credits worden vanzelf opgewaardeerd zodra het saldo onder het gekozen niveau zakt.",
     "checkoutFailed": "De betaalpagina kon niet worden geopend. Probeer het opnieuw.",
     "topUp": "Opwaarderen",
     "low": "Bijna op",
@@ -1184,7 +1187,6 @@
     "turnOff": "Uitzetten",
     "save": "Opslaan",
     "saved": "Automatisch opwaarderen bijgewerkt.",
-    "turnedOn": "Kaart opgeslagen. Automatisch opwaarderen staat aan.",
     "turnedOff": "Automatisch opwaarderen staat uit.",
     "failed": "Automatisch opwaarderen kon niet worden gewijzigd. Probeer het opnieuw."
   },

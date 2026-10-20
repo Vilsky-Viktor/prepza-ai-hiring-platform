@@ -1,9 +1,9 @@
 "use client"
 
 import { RepeatIcon, SquarePenIcon } from "lucide-react"
-import { useRouter } from "next/navigation"
 import { useLocale, useTranslations } from "next-intl"
-import { useEffect, useRef, useState } from "react"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { useAuth } from "@/components/auth-provider"
@@ -39,7 +39,7 @@ export function AutoTopUpSetting({
   const common = useTranslations("common")
   const billing = useTranslations("billing")
   const locale = useLocale()
-  const router = useRouter()
+  const { resolvedTheme } = useTheme()
   const { user } = useAuth()
   const path = `/companies/companies/${companyId}/auto-top-up`
   const [setting, setSetting] = useState<AutoTopUp | null>(null)
@@ -47,16 +47,12 @@ export function AutoTopUpSetting({
   const [product, setProduct] = useState("")
   const [threshold, setThreshold] = useState("")
   const [saving, setSaving] = useState(false)
-  // The recheck after Paddle's checkout, stopped when the setting leaves the page.
-  const recheck = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     apiFetch<AutoTopUp>(path)
       .then(setSetting)
       .catch(() => {})
   }, [path])
-
-  useEffect(() => () => clearTimeout(recheck.current), [])
 
   if (!setting?.offered || !user) {
     return null
@@ -99,25 +95,18 @@ export function AutoTopUpSetting({
         return
       }
 
-      await openCheckout(
+      // It opens over this page; a completed payment shows the success dialog here.
+      await openCheckout({
         catalog,
-        {
+        checkout: {
           priceId: saved.checkout.price_id,
           customData: saved.checkout.custom_data,
         },
-        user!.email,
-        () => {
-          toast.success(t("turnedOn"))
-          // Paddle confirms the subscription within seconds.
-          recheck.current = window.setTimeout(() => {
-            apiFetch<AutoTopUp>(path)
-              .then(setSetting)
-              .catch(() => {})
-            router.refresh()
-          }, 4000)
-        },
-        locale
-      )
+        email: user!.email,
+        theme: resolvedTheme === "dark" ? "dark" : "light",
+        paid: "auto_top_up",
+        locale,
+      })
     } catch (error) {
       toast.error(apiErrorMessage(error, t("failed")))
     } finally {

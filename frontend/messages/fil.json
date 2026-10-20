@@ -695,7 +695,10 @@
     "warning": "Para mas tumugma, gumawa ng interview mula sa iyong job description."
   },
   "billing": {
-    "paid": "Natanggap ang bayad. Lalabas ito rito sa ilang sandali.",
+    "paidTitle": "Natanggap ang bayad",
+    "paidText": "Paparating na ang iyong credits. Karaniwang lumalabas ang mga ito sa loob ng ilang segundo, at kusang nag-a-update ang balanse rito.",
+    "autoTopUpOnTitle": "Naka-on ang awtomatikong top-up",
+    "autoTopUpOnText": "Naka-save ang iyong card. Kusang nadadagdagan ang credits tuwing bababa ang balanse sa antas na pinili mo.",
     "checkoutFailed": "Hindi mabuksan ang checkout. Pakisubukang muli.",
     "topUp": "Mag-top up",
     "low": "Paubos na",
@@ -1184,7 +1187,6 @@
     "turnOff": "I-off",
     "save": "I-save",
     "saved": "Na-update ang awtomatikong top-up.",
-    "turnedOn": "Na-save ang card. Naka-on ang awtomatikong top-up.",
     "turnedOff": "Naka-off ang awtomatikong top-up.",
     "failed": "Hindi mabago ang awtomatikong top-up. Pakisubukang muli."
   },

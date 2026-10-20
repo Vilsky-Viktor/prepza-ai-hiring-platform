@@ -695,7 +695,10 @@
     "warning": "Täpsema sobivuse jaoks loo intervjuu oma töökuulutuse põhjal."
   },
   "billing": {
-    "paid": "Makse laekus. See ilmub siia hetke pärast.",
+    "paidTitle": "Makse laekus",
+    "paidText": "Sinu krediidid on teel. Tavaliselt ilmuvad need mõne sekundiga ja saldo uueneb siin ise.",
+    "autoTopUpOnTitle": "Automaatne juurdelaadimine on sees",
+    "autoTopUpOnText": "Sinu kaart on salvestatud. Krediite laaditakse ise juurde alati, kui saldo langeb alla valitud taseme.",
     "checkoutFailed": "Makselehte ei õnnestunud avada. Proovi uuesti.",
     "topUp": "Laadi juurde",
     "low": "Hakkavad otsa saama",
@@ -1184,7 +1187,6 @@
     "turnOff": "Lülita välja",
     "save": "Salvesta",
     "saved": "Automaatne juurdelaadimine uuendatud.",
-    "turnedOn": "Kaart salvestatud. Automaatne juurdelaadimine on sees.",
     "turnedOff": "Automaatne juurdelaadimine on väljas.",
     "failed": "Automaatset juurdelaadimist ei õnnestunud muuta. Proovi uuesti."
   },

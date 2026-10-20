@@ -695,7 +695,10 @@
     "warning": "Để phù hợp hơn, hãy tạo buổi phỏng vấn từ mô tả công việc của bạn."
   },
   "billing": {
-    "paid": "Đã nhận thanh toán. Sẽ hiển thị ở đây trong giây lát.",
+    "paidTitle": "Đã nhận thanh toán",
+    "paidText": "Credit của bạn đang được cộng. Thường chỉ vài giây là hiển thị, và số dư ở đây sẽ tự cập nhật.",
+    "autoTopUpOnTitle": "Tự động nạp đang bật",
+    "autoTopUpOnText": "Thẻ của bạn đã được lưu. Credit sẽ tự động được nạp mỗi khi số dư xuống dưới mức bạn đã chọn.",
     "checkoutFailed": "Không thể mở trang thanh toán. Vui lòng thử lại.",
     "topUp": "Nạp credit",
     "low": "Sắp hết",
@@ -1184,7 +1187,6 @@
     "turnOff": "Tắt",
     "save": "Lưu",
     "saved": "Đã cập nhật tự động nạp.",
-    "turnedOn": "Đã lưu thẻ. Tự động nạp đang bật.",
     "turnedOff": "Tự động nạp đã tắt.",
     "failed": "Không thể thay đổi tự động nạp. Vui lòng thử lại."
   },

@@ -695,7 +695,10 @@
     "warning": "Per un risultato più mirato, crea un colloquio dalla tua descrizione del ruolo."
   },
   "billing": {
-    "paid": "Pagamento ricevuto. Comparirà qui tra un attimo.",
+    "paidTitle": "Pagamento ricevuto",
+    "paidText": "I tuoi crediti sono in arrivo. Di solito compaiono in pochi secondi, e il saldo qui si aggiorna da solo.",
+    "autoTopUpOnTitle": "La ricarica automatica è attiva",
+    "autoTopUpOnText": "La tua carta è salvata. I crediti vengono ricaricati da soli ogni volta che il saldo scende sotto il livello che hai scelto.",
     "checkoutFailed": "Impossibile aprire il pagamento. Riprova.",
     "topUp": "Ricarica",
     "low": "Stanno finendo",
@@ -1184,7 +1187,6 @@
     "turnOff": "Disattiva",
     "save": "Salva",
     "saved": "Ricarica automatica aggiornata.",
-    "turnedOn": "Carta salvata. La ricarica automatica è attiva.",
     "turnedOff": "La ricarica automatica è disattivata.",
     "failed": "Impossibile modificare la ricarica automatica. Riprova."
   },

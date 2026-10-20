@@ -695,7 +695,10 @@
     "warning": "For a closer fit, create an interview from your job description."
   },
   "billing": {
-    "paid": "Payment received. It shows up here in a moment.",
+    "paidTitle": "Payment received",
+    "paidText": "Your credits are on their way. They usually show up within a few seconds, and the balance here updates by itself.",
+    "autoTopUpOnTitle": "Automatic top-up is on",
+    "autoTopUpOnText": "Your card is saved. Credits are topped up by themselves whenever the balance falls under the level you chose.",
     "checkoutFailed": "Couldn't open the checkout. Please try again.",
     "topUp": "Top up",
     "low": "Running low",
@@ -1184,7 +1187,6 @@
     "turnOff": "Turn off",
     "save": "Save",
     "saved": "Automatic top-up updated.",
-    "turnedOn": "Card saved. Automatic top-up is on.",
     "turnedOff": "Automatic top-up is off.",
     "failed": "Couldn't change automatic top-up. Please try again."
   },

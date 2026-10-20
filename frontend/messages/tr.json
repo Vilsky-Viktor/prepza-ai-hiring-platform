@@ -695,7 +695,10 @@
     "warning": "Daha iyi bir uyum için iş tanımınızdan bir mülakat oluşturun."
   },
   "billing": {
-    "paid": "Ödeme alındı. Birazdan burada görünecek.",
+    "paidTitle": "Ödeme alındı",
+    "paidText": "Kredileriniz yolda. Genellikle birkaç saniye içinde görünür ve buradaki bakiye kendiliğinden güncellenir.",
+    "autoTopUpOnTitle": "Otomatik yükleme açık",
+    "autoTopUpOnText": "Kartınız kaydedildi. Bakiye seçtiğiniz seviyenin altına her düştüğünde krediler kendiliğinden yüklenir.",
     "checkoutFailed": "Ödeme açılamadı. Lütfen tekrar deneyin.",
     "topUp": "Kredi yükle",
     "low": "Azalıyor",
@@ -1184,7 +1187,6 @@
     "turnOff": "Kapat",
     "save": "Kaydet",
     "saved": "Otomatik yükleme güncellendi.",
-    "turnedOn": "Kart kaydedildi. Otomatik yükleme açık.",
     "turnedOff": "Otomatik yükleme kapalı.",
     "failed": "Otomatik yükleme değiştirilemedi. Lütfen tekrar deneyin."
   },
