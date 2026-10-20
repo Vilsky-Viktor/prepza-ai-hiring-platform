@@ -193,3 +193,11 @@ medium; 35 questions, 11 multi-answer, `gpt-6.1-sol` low, $0.12): keys 100% (90.
 defensible answer 100%, clarity 5.00, relevance 3.86 ± 0.27, distractors **1.83 ± 0.32**. The
 wrong options are far less tempting than in English (2.8–3.0): the gap to work on in other
 languages.
+
+**Help chat** (`help_chat.py`, new; `gpt-6-luna` at none, 18 messages × 3, judged by
+`gpt-6.1-sol` high): passed 49 of 54, 90.7% (80.1–96.0); made up 5.6%; sign-in markers 54 of
+54. By kind: typical 24/24, sign-in 6/6, off-topic 3/3, injection 6/6, page 3/3, unknown 4/6
+(a price question answered with a hedge instead of pointing to the contact page), language 3/6
+(asked in Japanese how many attempts a candidate has, it invented "one"). $1.06 a run. The first
+run (63%) judged against expectations that listed optional details as required, and without the
+page's guide; both fixed before this baseline.

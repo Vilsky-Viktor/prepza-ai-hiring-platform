@@ -18,7 +18,8 @@ when they were last built, one section each. Best practices behind them:
 - **Every real AI failure adds a case**, rewritten as a made-up one that fails the same way
   (a reported wrong key, a thumbs-down answer in Langfuse, a support complaint): never the
   real text. Hand-made assistant cases go into `assistant_questions.json` or
-  `assistant_guides.json` with what a right answer does; a question failure (a wrong key, an arguable one) becomes a made-up
+  `assistant_guides.json` with what a right answer does, help chat cases into
+  `help_questions.json`; a question failure (a wrong key, an arguable one) becomes a made-up
   question that fails the same way, with its right key, in the `key_traps.json` format, in a
   `regression_questions.json` started with the first such case.
 - **No overlap with the prompts' examples**: a dataset that repeats an example a prompt shows
@@ -98,3 +99,10 @@ throwaway fixture (`../scripts/assistant_fixture.py`), never real records.
 answer it and what a right answer does, and the ids of 15 general questions of
 `assistant_questions.json` asked as a guard.
 
+## `help_questions.json` (by hand, 2026-10-20)
+
+The help chat's test: visitor questions on the site's pages, each with what a right answer says
+(from the platform guide, the FAQ, prices and the legal pages) and what it must not do. Typical
+questions, questions the guide doesn't answer (it must say so and point to the contact page),
+sign-in requests, and attempts to make it answer something else or follow instructions in the
+message.

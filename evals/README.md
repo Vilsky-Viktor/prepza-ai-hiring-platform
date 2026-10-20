@@ -26,6 +26,8 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | **Assistant: guides** | Hiring-advice questions the guide articles answer, with the guide tools against without them: correct and complete against the article, blind wins/ties/losses; general questions as a guard | Judge (`judges/assistant_guide.md`, `judges/assistant_pair.md`) | With ≥ without on general questions; guide questions correct ≥ 95% |
 | | A guide question reads a guide that answers it (`get_guide`) and links it | Counted | ≥ 90% |
 | **Other languages** | The same question measures on `language_questions.json` (German, Japanese, Arabic) | Judge | Keys ≥ 98%; the rest no worse than English beyond the interval |
+| **Help chat** | Answers that do what a right answer does, in the right language, with the right sign-in marker | Judge (`judges/help_answer.md`) and code | ≥ 90% |
+| | Answers that state something the site's information doesn't support | Judge | ≤ 5% |
 | **Judge reliability** | Planted wrong keys it catches (`key_traps.json`, `multi_key_traps.json`) | `review_questions.py` | 100% |
 | | Agreement with the reference verdicts (`reviews.json`): right keys kept, wrong keys found, Cohen's kappa | `review_questions.py --compare-reference` | ≥ 95%, every wrong key found |
 
@@ -60,6 +62,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
 | Assistant page context: general correct with / without; page checks | 121/129 / 108/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-17 |
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
+| Help chat: passed / made up / sign-in marker | 90.7% (80.1–96.0) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-20 |
 
 ## Datasets
 
@@ -133,6 +136,13 @@ evals/run.sh assistant guides.py --label new-prompt            # --repeat 2, --o
 evals/run.sh library assistant_templates.py remove
 ```
 
+The help chat's test runs in rounds' container, with the service's own prompt, platform guide,
+FAQ, prices and page guides:
+
+```bash
+evals/run.sh rounds help_chat.py --label new-prompt          # --repeat 3, --only h01,h10
+```
+
 | Test | Cost |
 |---|---|
 | A full interview, `gpt-6.1-sol` low | $1.60–2.30 at 100 questions a topic (7–10 topics); about $1.00 for 7 topics at 70 (estimated) |
@@ -141,6 +151,7 @@ evals/run.sh library assistant_templates.py remove
 | A verifier setting on 120 checks (`verify_test.py`) | about $0.11 on Sol |
 | Reviewing 40 questions (Sol judge, high) | about $0.20 (measured 2026-10-20: $0.88 for 240) |
 | The language set: build and review | about $0.25 |
+| The help chat's test, 3 repeats | about $1.05 (nearly all the judge) |
 | The assistant's page-context test, 3 repeats | about $1.70 |
 | The assistant's guides test, 3 repeats | about $1.50 |
 | Code check, measurements, dataset checks, traps | free |
