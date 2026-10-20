@@ -2,7 +2,7 @@
 title: "Paano mag-screen ng 100 aplikante sa isang araw"
 seoTitle: "Paano Mag-screen ng 100 Aplikante sa Isang Araw"
 description: "Hakbang-hakbang na plano para patas na ma-screen ang 100 aplikante sa isang araw: mahigpit na requirement, maikling skills test, ranking at review ng tao."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # Paano mag-screen ng 100 aplikante sa isang araw
@@ -79,7 +79,7 @@ Hindi lahat ay makakatapos sa unang araw. Ayos lang iyon: i-review ang mga nakat
 
 Ngayon nagsisimula ang maingat na pagbasa, pero sa mas maliit at naka-rank na grupo.
 
-1. **I-sort ayon sa grade,** pinakamahusay muna. Iyon ang default.
+1. **I-sort ayon sa grade,** pinakamahusay muna, mula sa sort menu ng listahan: bumubukas ang listahan na nauuna ang pinakabagong aplikante.
 2. **Buksan ang bawat scorecard** sa nangungunang grupo. Tingnan ang mga sagot, hindi lang ang numero: aling mga topic ang malakas, alin ang mahina, gaano katagal ang bawat sagot.
 3. **I-check ang integrity flags.** Fina-flag ng prepza ang mga sagot na masyadong mabilis para mabasa pa ang tanong, ang mga pagkakataong umalis ang aplikante sa pahina, at ang mga pagtatangkang mag-copy. Ang flag ay dahilan para tumingin nang mas mabuti, hindi patunay ng pandaraya. Ang taong umalis sa pahina nang isang beses ay baka may lumabas lang na notification.
 4. **Tingnan ang mga nasa ibaba lang ng pass mark.** Hindi eksaktong maikukumpara ang mga score mula sa magkakaibang random na set ng tanong, kaya ang ilang puntos ay puwedeng dahil lang sa nabunot na tanong. Ang isang taong may 65% pero malalakas na sagot sa pinakamahahalagang topic ay baka sulit i-interview.

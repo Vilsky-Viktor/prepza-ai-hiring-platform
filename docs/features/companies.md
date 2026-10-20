@@ -6,6 +6,7 @@ A company is where a hiring team works: its interviews, candidates, credits and 
 
 - Company names are unique across prepza, ignoring case.
 - A company can be renamed.
+- A user's companies are listed by name, alphabetically, ignoring case.
 - One person can own at most 3 companies (`MAX_OWNED_COMPANIES`, by default; see [Admin zone](admin-zone.md#limits)).
 
 ## Team

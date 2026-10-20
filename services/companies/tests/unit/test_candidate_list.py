@@ -72,8 +72,15 @@ def listed_with(client, monkeypatch, url, scores=None, flagged=False):
     return asked, response.json()
 
 
-def test_candidates_are_sorted_by_grade_by_default(client, monkeypatch):
+def test_candidates_are_sorted_newest_first_by_default(client, monkeypatch):
     asked, _ = listed_with(client, monkeypatch, f"/interviews/{INTERVIEW_ID}/candidates")
+
+    assert asked == [(False, "", None, 70)]
+
+
+def test_candidates_can_be_sorted_by_grade(client, monkeypatch):
+    url = f"/interviews/{INTERVIEW_ID}/candidates?sort=grade"
+    asked, _ = listed_with(client, monkeypatch, url)
 
     assert asked == [(True, "", None, 70)]
 
@@ -98,7 +105,7 @@ def test_passed_and_flagged_are_filtered_in_storage_with_the_pass_mark(client, m
     url = f"/interviews/{INTERVIEW_ID}/candidates?status=flagged"
     asked, rows = listed_with(client, monkeypatch, url, totals)
 
-    assert asked == [(True, "", "flagged", 70)]
+    assert asked == [(False, "", "flagged", 70)]
     assert [(row["email"], row["passed"], row["tab_leaves"]) for row in rows] == [
         ("ada@example.com", True, 2)
     ]
@@ -111,7 +118,7 @@ def test_results_missing_on_finished_invites_are_stored_before_sorting(client, m
     monkeypatch.setattr(candidates, "unscored", unscored)
     totals = {str(INVITE_ID): {"progress": 100, "grade": 90, "finished": True, "copies": 1}}
     # The page reads what the backfill stored.
-    url = f"/interviews/{INTERVIEW_ID}/candidates"
+    url = f"/interviews/{INTERVIEW_ID}/candidates?sort=grade"
     listed_with(client, monkeypatch, url, totals, flagged=True)
 
     assert fake_candidates.SAVED == [(INVITE_ID, 90, True)]

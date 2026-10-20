@@ -127,8 +127,8 @@ A page leave is reported when the page loses focus, and how long it lasted when 
 
 ## The candidate list
 
-- Sorted by grade by default: best first, candidates without a grade yet last.
-- Can be sorted by invite date instead.
+- Sorted by invite date by default: newest first.
+- Can be sorted by grade instead: best first, candidates without a grade yet last.
 - Can be searched by email or name.
 - Can be filtered by status: invited, in process, finished, passed, flagged, not delivered, expired.
 

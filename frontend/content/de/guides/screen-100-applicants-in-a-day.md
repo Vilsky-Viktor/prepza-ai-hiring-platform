@@ -2,7 +2,7 @@
 title: "So sichtest du 100 Bewerbungen an einem Tag"
 seoTitle: "100 Bewerbungen an einem Tag sichten: ein Praxisplan"
 description: "Ein Plan, um 100 Bewerbungen an einem Arbeitstag fair zu sichten: harte Anforderungen, kurzer Fachtest, Rangliste und Prüfung durch Menschen."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # So sichtest du 100 Bewerbungen an einem Tag
@@ -79,7 +79,7 @@ Nicht alle werden am ersten Tag fertig. Das ist in Ordnung: Prüf, wer fertig is
 
 Jetzt beginnt das sorgfältige Lesen, aber bei einer kleineren, nach Rang sortierten Gruppe.
 
-1. **Nach Punktzahl sortieren,** die besten zuerst. Das ist die Standardeinstellung.
+1. **Nach Punktzahl sortieren,** die besten zuerst, über das Sortiermenü der Liste: Sie zeigt zuerst die neuesten Kandidaten.
 2. **Jede Auswertung öffnen** in der Spitzengruppe. Sieh dir die Antworten an, nicht nur die Zahl: welche Themen stark waren, welche schwach, wie lange jede Antwort gedauert hat.
 3. **Die Hinweise auf Auffälligkeiten prüfen.** prepza markiert Antworten, die zu schnell kamen, um die Frage gelesen zu haben, Momente, in denen der Kandidat die Seite verlassen hat, und Kopierversuche. Ein Hinweis ist ein Grund, genauer hinzusehen, kein Beweis für Schummeln. Wer die Seite einmal verlassen hat, hatte vielleicht nur eine Benachrichtigung auf dem Bildschirm.
 4. **Knapp unter die Bestehensgrenze schauen.** Punktzahlen aus unterschiedlichen zufälligen Fragensätzen sind nicht exakt vergleichbar; ein paar Punkte können also vom Zufall der Ziehung kommen. Jemand mit 65 % und starken Antworten in den wichtigsten Themen kann ein Interview wert sein.

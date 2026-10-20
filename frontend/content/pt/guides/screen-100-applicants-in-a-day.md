@@ -2,7 +2,7 @@
 title: "Como fazer a triagem de 100 candidatos em um dia"
 seoTitle: "Triagem de 100 candidatos em um dia: um plano prático"
 description: "Um plano passo a passo para triar 100 candidatos em um dia de trabalho, de forma justa: requisitos, teste curto, lista ordenada e revisão humana."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # Como fazer a triagem de 100 candidatos em um dia
@@ -79,7 +79,7 @@ Nem todos vão terminar no primeiro dia. Tudo bem: revise quem já terminou e ol
 
 Agora começa a leitura cuidadosa, mas de um grupo menor e ordenado.
 
-1. **Ordene por nota,** da maior para a menor. Essa é a ordem padrão.
+1. **Ordene por nota,** da maior para a menor, no menu de ordenação da lista: ela abre com os candidatos mais recentes primeiro.
 2. **Abra cada ficha de avaliação** do grupo de cima. Olhe as respostas, não só o número: quais tópicos foram fortes, quais foram fracos, quanto tempo levou cada resposta.
 3. **Verifique os alertas de integridade.** A prepza sinaliza respostas rápidas demais para a pergunta ter sido lida, as vezes em que o candidato saiu da página e as tentativas de cópia. Um alerta é um motivo para olhar com mais atenção, não prova de cola. Quem saiu da página uma vez pode ter recebido uma notificação.
 4. **Olhe logo abaixo da nota de aprovação.** Pontuações de conjuntos aleatórios de perguntas diferentes não são exatamente comparáveis, então alguns pontos podem vir do sorteio. Alguém com 65% e respostas fortes nos tópicos mais importantes pode valer uma entrevista.

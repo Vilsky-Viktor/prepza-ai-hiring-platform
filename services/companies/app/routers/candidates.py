@@ -64,7 +64,7 @@ async def list_candidates(
     interview_id: UUID,
     user: CurrentUser,
     page: PageParams,
-    sort: CandidateSort = CandidateSort.GRADE,
+    sort: CandidateSort = CandidateSort.DATE,
     q: Annotated[str, Query(max_length=MAX_SEARCH_LENGTH)] = "",
     filter_by: Annotated[CandidateFilter | None, Query(alias="status")] = None,
 ) -> list[CandidateOut]:

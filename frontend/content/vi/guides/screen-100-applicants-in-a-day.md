@@ -2,7 +2,7 @@
 title: "Cách sàng lọc 100 ứng viên trong một ngày"
 seoTitle: "Cách sàng lọc 100 hồ sơ ứng viên trong một ngày"
 description: "Kế hoạch sàng lọc công bằng 100 ứng viên trong một ngày làm việc: yêu cầu bắt buộc, bài kiểm tra kỹ năng ngắn, danh sách xếp hạng và người duyệt."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # Cách sàng lọc 100 ứng viên trong một ngày
@@ -79,7 +79,7 @@ Không phải ai cũng làm xong trong ngày đầu tiên. Không sao: hãy xem 
 
 Giờ là lúc đọc kỹ, nhưng với một nhóm nhỏ hơn, đã xếp hạng.
 
-1. **Sắp xếp theo điểm,** cao nhất trước. Đây là mặc định.
+1. **Sắp xếp theo điểm,** cao nhất trước, trong menu sắp xếp của danh sách: danh sách mở ra với ứng viên mới nhất trước.
 2. **Mở bảng điểm của từng người** trong nhóm dẫn đầu. Xem các câu trả lời, không chỉ con số: chủ đề nào mạnh, chủ đề nào yếu, mỗi câu mất bao lâu.
 3. **Kiểm tra các cảnh báo.** prepza đánh dấu các câu trả lời quá nhanh để kịp đọc câu hỏi, số lần ứng viên rời khỏi trang và các lần cố sao chép. Một cảnh báo là lý do để xem kỹ hơn, không phải bằng chứng gian lận. Người rời trang một lần có thể chỉ vì một thông báo bật lên.
 4. **Xem cả những người ngay dưới điểm đạt.** Điểm từ các bộ câu hỏi ngẫu nhiên khác nhau không hoàn toàn so sánh được, nên vài điểm chênh lệch có thể do may rủi khi chọn câu hỏi. Một người đạt 65% nhưng trả lời tốt ở các chủ đề quan trọng nhất có thể đáng được phỏng vấn.

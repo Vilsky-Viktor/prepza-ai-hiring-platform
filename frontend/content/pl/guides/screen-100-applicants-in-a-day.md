@@ -2,7 +2,7 @@
 title: "Jak przeprowadzić selekcję 100 kandydatów w jeden dzień"
 seoTitle: "Selekcja 100 kandydatów w jeden dzień: praktyczny plan"
 description: "Plan krok po kroku, jak uczciwie przeprowadzić selekcję 100 kandydatów w jeden dzień roboczy: wymogi, krótki test umiejętności, ranking i decyzja ludzi."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # Jak przeprowadzić selekcję 100 kandydatów w jeden dzień
@@ -79,7 +79,7 @@ Nie wszyscy skończą pierwszego dnia. To nic: przejrzyj tych, którzy skończyl
 
 Teraz zaczyna się uważna lektura, ale w mniejszej, uszeregowanej grupie.
 
-1. **Posortuj według wyniku,** od najlepszych. To ustawienie domyślne.
+1. **Posortuj według wyniku,** od najlepszych, w menu sortowania listy: lista otwiera się od najnowszych kandydatów.
 2. **Otwórz kartę wyników** każdej osoby z czołówki. Patrz na odpowiedzi, nie tylko na liczbę: które tematy wypadły mocno, które słabo, ile trwała każda odpowiedź.
 3. **Sprawdź oznaczenia dotyczące rzetelności.** prepza oznacza odpowiedzi udzielone zbyt szybko, by zdążyć przeczytać pytanie, sytuacje, w których kandydat opuścił stronę, oraz próby kopiowania. Oznaczenie to powód, by przyjrzeć się bliżej, a nie dowód oszustwa. Ktoś, kto raz opuścił stronę, mógł dostać wyskakujące powiadomienie.
 4. **Spójrz tuż poniżej progu zaliczenia.** Wyniki z różnych losowych zestawów pytań nie są w pełni porównywalne, więc kilka punktów może wynikać z losowania. Ktoś z wynikiem 65% i mocnymi odpowiedziami w najważniejszych tematach może zasługiwać na rozmowę kwalifikacyjną.

@@ -2,7 +2,7 @@
 title: "Kuidas sõeluda 100 kandidaati päevaga"
 seoTitle: "Kuidas sõeluda 100 kandidaati päevaga: praktiline plaan"
 description: "Samm-sammuline plaan, kuidas sõeluda 100 kandideerijat ühe tööpäevaga õiglaselt: kohustuslikud nõuded, lühike oskustest, pingerida ja inimese ülevaatus."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # Kuidas sõeluda 100 kandidaati päevaga
@@ -79,7 +79,7 @@ Kõik ei lõpeta esimesel päeval. See on korras: vaata üle need, kes on lõpet
 
 Nüüd algab hoolikas lugemine, kuid väiksema, järjestatud rühmaga.
 
-1. **Sorteeri hinde järgi,** parimad eespool. See on vaikimisi.
+1. **Sorteeri hinde järgi,** parimad eespool, nimekirja sortimismenüüst: nimekiri avaneb uusimate kandidaatidega eespool.
 2. **Ava iga hindamisleht** esirühmas. Vaata vastuseid, mitte ainult arvu: millised teemad olid tugevad, millised nõrgad, kui kaua iga vastus aega võttis.
 3. **Kontrolli aususe märkeid.** prepza märgib vastused, mis on liiga kiired, et küsimust lugeda jõuaks, korrad, kui kandidaat lehelt lahkus, ja kopeerimiskatsed. Märge on põhjus lähemalt vaadata, mitte spikerdamise tõend. Kellelgi, kes lahkus lehelt ühe korra, võis lihtsalt hüpata ette teavitus.
 4. **Vaata veidi allapoole läbimise läve.** Erinevate juhuslike küsimuste komplektide tulemused pole täpselt võrreldavad, nii et mõni punkt võib tulla loosist. Keegi, kellel on 65% ja tugevad vastused kõige olulisemates teemades, võib olla intervjuud väärt.

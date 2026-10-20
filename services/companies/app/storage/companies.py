@@ -94,14 +94,14 @@ async def list_for_user(
     roles: tuple[str, ...] = tuple(Role),
     only: str | None = None,
 ) -> list[Company]:
-    """The user's companies, only those where their role is one of `roles` (and with `only`,
-    that one company's id at most)."""
+    """The user's companies, by name (alphabetically, in any case), only those where their role is
+    one of `roles` (and with `only`, that one company's id at most)."""
     query = (
         select(Company)
         .join(Member, Member.company_id == Company.id)
         .where(Member.user_id == user_id, Member.role.in_(roles))
         .options(selectinload(Company.members))
-        .order_by(Company.created_at, Company.id)
+        .order_by(func.lower(Company.name), Company.id)
         .offset(offset)
         .limit(limit)
     )

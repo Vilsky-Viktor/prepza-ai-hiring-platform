@@ -2,7 +2,7 @@
 title: "Cara menyaring 100 pelamar dalam sehari"
 seoTitle: "Cara Seleksi 100 Pelamar Kerja dalam Sehari: Rencana Praktis"
 description: "Rencana langkah demi langkah menyeleksi 100 pelamar kerja dalam sehari secara adil: syarat wajib, tes keterampilan singkat, peringkat, tinjauan manusia."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # Cara menyaring 100 pelamar dalam sehari
@@ -79,7 +79,7 @@ Tidak semua orang akan selesai di hari pertama. Tidak apa-apa: tinjau yang sudah
 
 Sekarang pembacaan yang teliti dimulai, tetapi pada kelompok yang lebih kecil dan sudah berperingkat.
 
-1. **Urutkan berdasarkan nilai,** yang terbaik lebih dulu. Itu urutan default-nya.
+1. **Urutkan berdasarkan nilai,** yang terbaik lebih dulu, dari menu urutan daftar: daftar dibuka dengan kandidat terbaru di atas.
 2. **Buka setiap scorecard** di kelompok teratas. Lihat jawabannya, bukan hanya angkanya: topik mana yang kuat, mana yang lemah, berapa lama setiap jawaban.
 3. **Periksa tanda peringatannya.** prepza menandai jawaban yang terlalu cepat untuk sempat membaca soalnya, saat kandidat meninggalkan halaman, dan percobaan menyalin. Tanda adalah alasan untuk melihat lebih teliti, bukan bukti kecurangan. Orang yang meninggalkan halaman sekali mungkin saja terganggu notifikasi yang muncul.
 4. **Lihat yang sedikit di bawah nilai lulus.** Skor dari set soal acak yang berbeda tidak bisa dibandingkan secara persis, jadi selisih beberapa poin bisa berasal dari soal yang terambil. Seseorang dengan skor 65% yang jawabannya kuat di topik yang paling penting mungkin layak diwawancarai.

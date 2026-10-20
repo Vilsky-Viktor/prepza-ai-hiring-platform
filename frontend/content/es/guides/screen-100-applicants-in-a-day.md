@@ -2,7 +2,7 @@
 title: "Cómo filtrar 100 candidatos en un día"
 seoTitle: "Cómo filtrar 100 candidatos en un día: plan práctico"
 description: "Un plan paso a paso para filtrar 100 candidaturas en una jornada de forma justa: requisitos clave, una prueba breve, una lista ordenada y revisión humana."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # Cómo filtrar 100 candidatos en un día
@@ -79,7 +79,7 @@ No todos terminarán el primer día. No pasa nada: revisa a quienes hayan termin
 
 Ahora empieza la lectura atenta, pero sobre un grupo más pequeño y ordenado.
 
-1. **Ordena por nota,** de mejor a peor. Es el orden por defecto.
+1. **Ordena por nota,** de mejor a peor, desde el menú de orden de la lista: la lista se abre con los candidatos más recientes primero.
 2. **Abre cada ficha de evaluación** del grupo de cabeza. Mira las respuestas, no solo el número: qué temas fueron fuertes, cuáles débiles, cuánto tardó cada respuesta.
 3. **Revisa las alertas de integridad.** prepza marca las respuestas demasiado rápidas como para haber leído la pregunta, las veces que el candidato salió de la página y los intentos de copiar. Una alerta es un motivo para mirar con más atención, no una prueba de trampa. Alguien que salió de la página una vez puede haber recibido una notificación.
 4. **Mira justo por debajo de la nota de aprobado.** Las puntuaciones de distintos conjuntos aleatorios de preguntas no son exactamente comparables, así que unos pocos puntos pueden deberse al azar. Alguien con un 65 % y respuestas sólidas en los temas que más importan puede merecer una entrevista.

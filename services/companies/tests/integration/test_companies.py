@@ -60,3 +60,22 @@ def test_the_dpa_notice_goes_to_joined_owners_and_admins_only(run):
     found = run(scenario())
 
     assert owner in found and viewer not in found
+
+
+def test_a_users_companies_are_listed_by_name_in_any_case(run):
+    owner = f"abc-{uuid.uuid4()}"
+    suffix = uuid.uuid4()
+
+    async def scenario():
+        made = [
+            await companies.create(f"{name} {suffix}", owner, "own@example.com")
+            for name in ("beta", "Alpha", "Gamma")
+        ]
+        found = await companies.list_for_user(owner, 0, 10)
+
+        for company in made:
+            await companies.delete(company.id)
+
+        return [company.name for company in found]
+
+    assert run(scenario()) == [f"Alpha {suffix}", f"beta {suffix}", f"Gamma {suffix}"]

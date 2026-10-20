@@ -2030,7 +2030,7 @@
       "required": false,
       "schema": {
        "$ref": "#/components/schemas/CandidateSort",
-       "default": "grade"
+       "default": "date"
       }
      },
      {

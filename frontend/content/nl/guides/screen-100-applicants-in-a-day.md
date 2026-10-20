@@ -2,7 +2,7 @@
 title: "Zo screen je 100 sollicitanten in één dag"
 seoTitle: "100 sollicitanten screenen in één dag: een praktisch plan"
 description: "Een stappenplan om 100 sollicitanten eerlijk te screenen in één werkdag: harde eisen, een korte selectietest, een ranglijst en beoordeling door mensen."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # Zo screen je 100 sollicitanten in één dag
@@ -79,7 +79,7 @@ Niet iedereen rondt hem op dag één af. Dat is prima: bekijk wie klaar is en ki
 
 Nu begint het zorgvuldige lezen, maar bij een kleinere, gerangschikte groep.
 
-1. **Sorteer op score,** de beste eerst. Dat is de standaard.
+1. **Sorteer op score,** de beste eerst, via het sorteermenu van de lijst: de lijst opent met de nieuwste kandidaten bovenaan.
 2. **Open elke scorekaart** in de topgroep. Kijk naar de antwoorden, niet alleen naar het getal: welke onderwerpen sterk waren, welke zwak, hoe lang elk antwoord duurde.
 3. **Controleer de integriteitssignalen.** prepza markeert antwoorden die te snel waren om de vraag te hebben gelezen, momenten waarop de kandidaat de pagina verliet, en kopieerpogingen. Een signaal is een reden om beter te kijken, geen bewijs van valsspelen. Iemand die één keer de pagina verliet, kreeg misschien een melding.
 4. **Kijk net onder de slaaggrens.** Scores van verschillende willekeurige vragensets zijn niet precies vergelijkbaar, dus een paar punten kunnen van de trekking komen. Iemand met 65% en sterke antwoorden op de belangrijkste onderwerpen kan een gesprek waard zijn.

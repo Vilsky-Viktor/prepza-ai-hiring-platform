@@ -2,7 +2,7 @@
 title: "How to screen 100 applicants in a day"
 seoTitle: "How to Screen 100 Applicants in a Day: A Practical Plan"
 description: "A step-by-step plan to screen 100 job applicants in one working day, fairly: hard requirements, a short skills test, a ranked list and human review."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # How to screen 100 applicants in a day
@@ -79,7 +79,7 @@ Not everyone will finish on day one. That's fine: review whoever has finished an
 
 Now the careful reading starts, but on a smaller, ranked group.
 
-1. **Sort by grade,** best first. That's the default.
+1. **Sort by grade,** best first, from the list's sort menu: the list opens with the newest candidates first.
 2. **Open each scorecard** in the top group. Look at the answers, not just the number: which topics were strong, which were weak, how long each answer took.
 3. **Check the integrity flags.** prepza flags answers too fast to have read the question, times the candidate left the page, and copy attempts. A flag is a reason to look closer, not proof of cheating. Someone who left the page once might have had a notification pop up.
 4. **Look just below the pass mark.** Scores from different random question sets aren't exactly comparable, so a few points can come from the draw. Someone at 65% with strong answers in the topics that matter most may be worth an interview.

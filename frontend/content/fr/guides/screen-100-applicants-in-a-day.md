@@ -2,7 +2,7 @@
 title: "Comment présélectionner 100 candidats en une journée"
 seoTitle: "Trier 100 candidatures en une journée : méthode pratique"
 description: "Un plan étape par étape pour présélectionner 100 candidats en une journée, équitablement : critères impératifs, court test, liste classée et examen humain."
-updated: "2026-10-17"
+updated: "2026-10-20"
 ---
 
 # Comment présélectionner 100 candidats en une journée
@@ -79,7 +79,7 @@ Tout le monde ne terminera pas le premier jour. Ce n'est pas grave : examinez ce
 
 C'est maintenant que commence la lecture attentive, mais sur un groupe plus petit et classé.
 
-1. **Triez par note,** les meilleurs en premier. C'est le tri par défaut.
+1. **Triez par note,** les meilleurs en premier, depuis le menu de tri de la liste : elle s'ouvre sur les candidats les plus récents.
 2. **Ouvrez chaque fiche d'évaluation** du groupe de tête. Regardez les réponses, pas seulement le chiffre : quels thèmes étaient forts, lesquels étaient faibles, combien de temps chaque réponse a pris.
 3. **Vérifiez les alertes d'intégrité.** prepza signale les réponses trop rapides pour que la question ait été lue, les moments où le candidat a quitté la page et les tentatives de copie. Une alerte est une raison de regarder de plus près, pas une preuve de triche. Quelqu'un qui a quitté la page une fois a peut-être simplement reçu une notification.
 4. **Regardez juste en dessous du seuil.** Les scores issus de séries aléatoires différentes ne sont pas exactement comparables, quelques points peuvent donc tenir au tirage. Quelqu'un à 65 % avec de bonnes réponses sur les thèmes les plus importants peut mériter un entretien.

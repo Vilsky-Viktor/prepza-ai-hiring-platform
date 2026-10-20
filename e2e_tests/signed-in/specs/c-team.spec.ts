@@ -222,7 +222,7 @@ test("owner adds a viewer, who sees the company read-only", async ({
   ).toBeVisible();
   await expect(page.getByTestId("new-candidate")).toHaveCount(0);
   await shot(page, "viewer-candidates");
-  // A sort menu (the search's last menu: grade, then date) closes on the pick too.
+  // A sort menu (the search's last menu: date, then grade) closes on the pick too.
   // A click before the page is interactive is lost, so it's repeated until the menu opens.
   const sort = page.getByRole("main").locator('[aria-haspopup="menu"]').last();
   const sorts = page.getByRole("menu").getByRole("menuitemradio");
@@ -233,7 +233,7 @@ test("owner adds a viewer, who sees the company read-only", async ({
   await expect(sorts.first()).toHaveAttribute("aria-checked", "true");
   await sorts.nth(1).click();
   await expect(page.getByRole("menu")).toBeHidden();
-  await expect(page).toHaveURL(/sort=date/);
+  await expect(page).toHaveURL(/sort=grade/);
 
   // A candidate's name is read-only for them: no pencil to edit it, only a tooltip on when it
   // gets filled in.
