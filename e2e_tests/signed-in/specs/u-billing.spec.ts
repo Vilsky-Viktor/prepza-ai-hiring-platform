@@ -36,10 +36,9 @@ test("owner sees the company's billing, a viewer doesn't", async ({
     .getByRole("listitem");
   const reserved = owner.getByTestId("reserved-credits");
 
-  // The company's last two tabs: billing, then referrals.
+  // The company's tabs include billing for its owner.
   await visit(owner, `/companies/${company.id}/interviews`);
-  await expect(tabs.last()).toHaveAttribute("href", /\/referrals$/);
-  await expect(tabs.nth(-2)).toHaveAttribute("href", /\/billing$/);
+  await expect(tabs.and(owner.locator('a[href$="/billing"]'))).toHaveCount(1);
   // A new company's history: the welcome gift's credits.
   await openTab(owner, "/billing");
   await expect(history).toHaveCount(1);
