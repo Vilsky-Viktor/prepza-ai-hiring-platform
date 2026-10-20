@@ -7,7 +7,9 @@ stats counting and the limits several services read (`rate_limit.hit` counts use
 adds up a cost such as tokens against a budget; a refusal is a 429 whose `Retry-After` gives the
 seconds left in the limit's window, which `http.passed_on` keeps when it relays it; `rate_limit.recipient_key` is an address as the per-recipient email limit counts it, lowercased and without its `+tag`) and server-sent events (`sse`: the help chat's
 and the assistant's answers, the bell's stream), secret tokens kept as their hashes (`tokens`: API
-keys, AI apps' access), a visitor's address behind the load balancer (`client_ip`) and
+keys, AI apps' access), a visitor's address behind the load balancer (`client_ip`), requests to addresses someone gave
+(`public_urls`: `public_address` lets only HTTPS to the public internet through, `pinned` connects
+to that checked address: the api's web hooks) and
 "select all that apply" questions (`multi_answer`: which questions are, how many of a draw are,
 and the draw itself, by `MULTI_ANSWER_PERCENT`, a value in the admin zone's Controls).
 OpenAI chat models: `llm.chat_model` builds them one way for every service (a temperature only at

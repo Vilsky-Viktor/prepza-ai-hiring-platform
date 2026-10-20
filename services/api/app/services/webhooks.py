@@ -12,13 +12,14 @@ from fastapi import HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from prepza_common.encryption import decrypt
 from prepza_common.notifications import NotificationKind, Recipient, notification, publish_quietly
+from prepza_common.public_urls import public_address
 from pydantic import BaseModel
 
 from app.config.settings import settings
 from app.constants.api import API_PAGE, RETRY_BATCH, RETRY_GIVE_UP, RETRY_RUN_SECONDS
 from app.constants.events import CANDIDATE_REMOVED, INTERVIEW_READY, TEST_EVENT
 from app.helpers.public import candidate_of, interview_of
-from app.helpers.webhooks import body_of, public_address, retry_delay, signature
+from app.helpers.webhooks import body_of, retry_delay, signature
 from app.integrations import companies
 from app.integrations import webhooks as endpoints
 from app.models.api import Webhook, WebhookRetry

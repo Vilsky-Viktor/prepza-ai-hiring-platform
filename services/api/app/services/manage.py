@@ -7,6 +7,7 @@ from fastapi import HTTPException, status
 from prepza_common.encryption import encrypt
 from prepza_common.i18n import TemplateError
 from prepza_common.limits import limit, record_hit
+from prepza_common.public_urls import public_address
 
 from app.config.settings import settings
 from app.constants.api import KEY_EXPIRY_MONTHS, KeyExpiry
@@ -18,7 +19,7 @@ from app.constants.permissions import (
     Permission,
 )
 from app.helpers.keys import add_months, expired, new_key, with_implied
-from app.helpers.webhooks import masked, new_secret, public_address
+from app.helpers.webhooks import masked, new_secret
 from app.integrations import companies
 from app.integrations.redis import get_redis
 from app.models.api import ApiKey, Webhook

@@ -2,6 +2,7 @@ import asyncio
 from functools import cache
 
 import httpx
+from prepza_common.public_urls import pinned
 
 from app.constants.api import SIGNATURE_HEADER, WEBHOOK_TIMEOUT_SECONDS
 
@@ -22,20 +23,16 @@ async def post(url: str, address: str, body: bytes, signature: str) -> None:
     Only the answer's status is read, never its body, and the whole send has one time limit: an
     endpoint that answers gigabytes, or a byte at a time, can't hold the service.
     """
-    target = httpx.URL(url)
+    target, host, extensions = pinned(url, address)
 
     try:
         async with asyncio.timeout(WEBHOOK_TIMEOUT_SECONDS):
             async with get_client().stream(
                 "POST",
-                target.copy_with(host=address),
+                target,
                 content=body,
-                headers={
-                    "Host": target.netloc.decode(),
-                    "Content-Type": "application/json",
-                    SIGNATURE_HEADER: signature,
-                },
-                extensions={"sni_hostname": target.raw_host.decode()},
+                headers={**host, "Content-Type": "application/json", SIGNATURE_HEADER: signature},
+                extensions=extensions,
                 timeout=WEBHOOK_TIMEOUT_SECONDS,
             ) as response:
                 response.raise_for_status()
