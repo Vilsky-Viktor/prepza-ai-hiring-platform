@@ -1,7 +1,7 @@
 import { cn } from "cn"
 
 /** One message of a chat with the AI: the person's on the end side, the AI's on the start;
- * `after` (such as the answer's votes) sits right under it, as wide as the message. */
+ * `after` (such as the answer's votes) sits on its bottom edge, at its end. */
 export function ChatBubble({
   role,
   content,
@@ -22,10 +22,12 @@ export function ChatBubble({
   const place = cn("w-fit max-w-[85%]", role === "user" && "ms-auto")
 
   if (after) {
+    // `after` sits on the message's bottom edge, at its end, half over the border; the room
+    // under the message keeps it off the next one.
     return (
-      <li className={cn(place, "space-y-1")}>
+      <li className={cn(place, "relative pb-3")}>
         <div className={bubble}>{content}</div>
-        {after}
+        <div className="absolute end-3 bottom-0">{after}</div>
       </li>
     )
   }
