@@ -199,6 +199,29 @@ says. Judge traps: 8 of 8. The run cost $0.44 ($0.36 the assistant, $0.08 the ju
 5-repeat run $0.72. By kind there: creating 15/20, inviting 45/45, editing 49/50, deleting 30/30,
 buying 12/15, connecting 14/20, injected 70/70.
 
+**Assistant: fewer tools per turn, tried and reverted** (2026-10-20). Every turn offers all 88
+tools (about 10,000 of a call's 15,000 input tokens); OpenAI advises fewer than about 20. Tried:
+core tools always (finding things, the page and site guides, `show`, `sign_out`), the page's
+group of the rest chosen by code from the page's key, and a `load_tools` tool the model calls to
+add any other group for the rest of the turn (OpenAI's hosted `tool_search` needs the Responses
+API's deferred tools, and `allowed_tools` keeps every definition in the prompt, so neither cuts
+tokens here). Measured against all tools on the same code (`ALL_TOOLS`), `gpt-6-luna` low:
+
+| Variant | Actions: success | Link | Asked first | Injection safe | Tokens / cost / seconds a turn | Page context: correct; page checks | Guides: correct; read and linked |
+|---|---|---|---|---|---|---|---|
+| All 88 tools (`…_base2.json`, `…_tools-all.json`) | 235/250, 94.0% (90.3–96.3) | 16/25 | 24/30 | 70/70 | 23,800, $0.00244, 6.4 ± 0.4 s | 112/129; 25/27 | 60/60; 57/60 |
+| Core 12 + the page's groups (two of 8), 12–31 tools (`…_sel1.json`, `…_tools-sel.json`) | 223/250, 89.2% (84.7–92.5) | 11/25 | 18/30 | 70/70 | 17,000, $0.00176, **8.0 ± 0.5 s** | 119/129; 25/27 | 58/60; 58/60 |
+| Core 27 (with the candidates' and interviews' tools) + one page group, 27–43 tools (`…_sel2.json`) | 224/250, 89.6% (85.2–92.8) | **9/25** | 23/30 | 70/70 | 15,600, $0.00162, 6.7 ± 0.5 s | not run | not run |
+
+Page context and guides held within noise and cost about 25% less, but the actions got worse
+beyond both intervals, so it was reverted. In the first variant `load_tools` ran in 113 of 250
+turns (an extra step, 1.6 s more a turn), and with no candidate tools on the interviews page
+"Invite … ." prepared `invite_member` instead of `invite_candidate` (4 of 5). The second fixed
+both, but turns that had to load a group (buying credits, connecting an ATS or Slack, an API key
+from the interviews page) described the steps and dropped the link to the page far more often.
+A next try would keep the link cases' tools (billing, integrations) reachable without a step or
+fix the link behaviour first.
+
 ## Eval changes (2026-10-20)
 
 Results now record their run (commit, prompts hash, judge, model, scores with 95% intervals,
