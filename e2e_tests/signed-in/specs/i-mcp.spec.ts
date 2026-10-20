@@ -197,7 +197,10 @@ test("Allow on the consent page connects the AI app", async ({ signInAs }) => {
     await expect(main.getByRole("status")).toHaveCount(0)
     await shot(owner, "consent-local-app")
     await main.getByRole("button").last().click()
-    await expect(owner).toHaveURL(/^http:\/\/127\.0\.0\.1:53682\/callback\?code=[^&]+&state=e2e-state$/)
+    // The answer names its issuer (RFC 9207) after the code and the app's state.
+    await expect(owner).toHaveURL(
+      /^http:\/\/127\.0\.0\.1:53682\/callback\?code=[^&]+&state=e2e-state&iss=http%3A%2F%2Flocalhost%3A8090$/
+    )
     const code = new URL(owner.url()).searchParams.get("code") ?? ""
 
     // The app's side: the code buys its tokens, once.
