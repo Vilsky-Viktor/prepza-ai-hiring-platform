@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, one {kredi} other {kredi}}",
     "topUpTitle": "Kredi yükle: {name}",
     "topUpNote": "Her yükleme tam sayıda aday satın alır; büyük yüklemelerde aday başına maliyet düşer. Krediler hiç sona ermez.",
-    "taxes": "Fiyatlara, AB ve Birleşik Krallık'ta olduğu gibi bunun olağan olduğu yerlerde KDV dahildir; ABD gibi diğer yerlerde satış vergisi ödeme sırasında eklenir.",
+    "taxes": "Fiyatlara KDV veya satış vergisi dahil değildir: uygulandığı yerlerde ödeme sırasında eklenir ve ödeme yapmadan önce toplam tutarı görürsünüz.",
     "candidates": "{count, plural, one {# aday} other {# aday}}",
     "each": "tanesi {price}",
     "reserved": "{count, plural, one {# kredi ayrıldı} other {# kredi ayrıldı}}",

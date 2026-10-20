@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, other {点数}}",
     "topUpTitle": "充值：{name}",
     "topUpNote": "每次充值按整位候选人购买；充值越多，每位候选人越便宜。点数永不过期。",
-    "taxes": "在通常含增值税的地区（如欧盟和英国），价格已含增值税；在其他地区（如美国），销售税会在付款时加收。",
+    "taxes": "价格不含增值税或销售税：如适用，会在付款时加收，付款前会显示总金额。",
     "candidates": "{count, plural, other {# 位候选人}}",
     "each": "每位 {price}",
     "reserved": "{count, plural, other {已预留 # 点数}}",

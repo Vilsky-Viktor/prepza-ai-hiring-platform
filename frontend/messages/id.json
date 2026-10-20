@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, other {kredit}}",
     "topUpTitle": "Isi ulang: {name}",
     "topUpNote": "Setiap isi ulang dihitung untuk jumlah kandidat yang utuh; makin besar isi ulangnya, makin murah per kandidat. Kredit tidak pernah kedaluwarsa.",
-    "taxes": "Harga sudah termasuk PPN di tempat yang lazim, seperti di UE dan Inggris; di tempat lain, seperti di AS, pajak penjualan ditambahkan saat pembayaran.",
+    "taxes": "Harga belum termasuk PPN atau pajak penjualan: jika berlaku, pajak ditambahkan saat pembayaran, dan halaman pembayaran menampilkan totalnya sebelum kamu membayar.",
     "candidates": "{count, plural, other {# kandidat}}",
     "each": "{price} per kandidat",
     "reserved": "{count, plural, other {# kredit dicadangkan}}",

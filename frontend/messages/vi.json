@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, other {credit}}",
     "topUpTitle": "Nạp credit: {name}",
     "topUpNote": "Mỗi lần nạp mua trọn số ứng viên; nạp càng nhiều, giá mỗi ứng viên càng rẻ. Credit không bao giờ hết hạn.",
-    "taxes": "Giá đã bao gồm VAT ở những nơi đó là thông lệ, như EU và Vương quốc Anh; ở nơi khác, như Mỹ, thuế bán hàng được cộng thêm khi thanh toán.",
+    "taxes": "Giá chưa bao gồm VAT hoặc thuế bán hàng: ở nơi áp dụng, thuế được cộng thêm khi thanh toán, và bạn sẽ thấy tổng số tiền trước khi trả.",
     "candidates": "{count, plural, other {# ứng viên}}",
     "each": "{price} mỗi ứng viên",
     "reserved": "{count, plural, other {Đã giữ # credit}}",

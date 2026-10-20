@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, one {crédito} other {créditos}}",
     "topUpTitle": "Recarregar: {name}",
     "topUpNote": "Cada recarga compra candidatos inteiros; as maiores custam menos por candidato. Os créditos não expiram.",
-    "taxes": "Os preços incluem IVA onde isso é a norma, como na UE e no Reino Unido; em outros lugares, como nos EUA, o imposto sobre vendas é adicionado no pagamento.",
+    "taxes": "Os preços não incluem IVA nem imposto sobre vendas: onde se aplicar, ele é adicionado no pagamento, e a página de pagamento mostra o total antes de você pagar.",
     "candidates": "{count, plural, one {# candidato} other {# candidatos}}",
     "each": "{price} cada",
     "reserved": "{count, plural, one {# crédito reservado} other {# créditos reservados}}",

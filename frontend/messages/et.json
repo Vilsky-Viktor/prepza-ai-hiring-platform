@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, one {krediit} other {krediiti}}",
     "topUpTitle": "Laadi juurde: {name}",
     "topUpNote": "Iga juurdelaadimine ostab terve arvu kandidaate; suuremate puhul on kandidaat odavam. Krediidid ei aegu.",
-    "taxes": "Hinnad sisaldavad käibemaksu seal, kus see on tavaks, näiteks ELis ja Ühendkuningriigis; mujal, näiteks USAs, lisandub makselehel müügimaks.",
+    "taxes": "Hinnad ei sisalda käibemaksu ega müügimaksu: kus see kehtib, lisandub see makselehel, mis näitab enne maksmist kogusummat.",
     "candidates": "{count, plural, one {# kandidaat} other {# kandidaati}}",
     "each": "{price} kandidaadi kohta",
     "reserved": "{count, plural, one {# krediit broneeritud} other {# krediiti broneeritud}}",

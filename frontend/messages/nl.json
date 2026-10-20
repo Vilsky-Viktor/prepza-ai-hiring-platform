@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, one {credit} other {credits}}",
     "topUpTitle": "Opwaarderen: {name}",
     "topUpNote": "Je koopt altijd voor hele kandidaten; hoe groter de opwaardering, hoe lager de prijs per kandidaat. Credits verlopen nooit.",
-    "taxes": "Prijzen zijn inclusief btw waar dat gebruikelijk is, zoals in de EU en het VK; elders, zoals in de VS, wordt bij het afrekenen verkoopbelasting toegevoegd.",
+    "taxes": "Prijzen zijn exclusief btw of verkoopbelasting: waar die van toepassing is, wordt die bij het afrekenen toegevoegd, en je ziet het totaal voordat je betaalt.",
     "candidates": "{count, plural, one {# kandidaat} other {# kandidaten}}",
     "each": "{price} per stuk",
     "reserved": "{count, plural, one {# credit gereserveerd} other {# credits gereserveerd}}",

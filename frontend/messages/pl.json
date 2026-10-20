@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, one {kredyt} few {kredyty} many {kredytów} other {kredytu}}",
     "topUpTitle": "Doładowanie: {name}",
     "topUpNote": "Każde doładowanie starcza na pełną liczbę kandydatów; przy większych koszt jednego kandydata jest niższy. Kredyty nie wygasają.",
-    "taxes": "Ceny zawierają VAT tam, gdzie jest to normą, np. w UE i Wielkiej Brytanii; gdzie indziej, np. w USA, podatek od sprzedaży jest doliczany przy płatności.",
+    "taxes": "Ceny nie zawierają VAT ani podatku od sprzedaży: tam, gdzie obowiązuje, podatek jest doliczany przy płatności, a przed zapłatą widać łączną kwotę.",
     "candidates": "{count, plural, one {# kandydat} few {# kandydaci} many {# kandydatów} other {# kandydata}}",
     "each": "{price} za każdego",
     "reserved": "{count, plural, one {# kredyt zarezerwowany} few {# kredyty zarezerwowane} many {# kredytów zarezerwowanych} other {# kredytu zarezerwowanego}}",

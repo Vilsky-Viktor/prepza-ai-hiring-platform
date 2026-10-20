@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, one {Credit} other {Credits}}",
     "topUpTitle": "Aufladen: {name}",
     "topUpNote": "Jede Aufladung reicht für eine feste Zahl von Kandidaten; größere Aufladungen kosten weniger pro Kandidat. Credits verfallen nie.",
-    "taxes": "Die Preise enthalten die MwSt., wo das üblich ist, wie in der EU und im Vereinigten Königreich; anderswo, etwa in den USA, kommt bei der Bezahlung die Verkaufssteuer hinzu.",
+    "taxes": "Die Preise verstehen sich ohne MwSt. oder Sales Tax: Wo sie anfällt, kommt sie beim Bezahlen hinzu, und du siehst den Gesamtbetrag, bevor du bezahlst.",
     "candidates": "{count, plural, one {# Kandidat} other {# Kandidaten}}",
     "each": "je {price}",
     "reserved": "{count, plural, one {# Credit reserviert} other {# Credits reserviert}}",

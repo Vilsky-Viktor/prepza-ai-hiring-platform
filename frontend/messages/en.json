@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, one {credit} other {credits}}",
     "topUpTitle": "Top up: {name}",
     "topUpNote": "Each top-up buys whole candidates; larger ones cost less per candidate. Credits never expire.",
-    "taxes": "Prices include VAT where that's the norm, as in the EU and the UK; elsewhere, such as in the US, sales tax is added at checkout.",
+    "taxes": "Prices don't include VAT or sales tax: where it applies, it's added at checkout, which shows the total before you pay.",
     "candidates": "{count, plural, one {# candidate} other {# candidates}}",
     "each": "{price} each",
     "reserved": "{count, plural, one {# credit reserved} other {# credits reserved}}",

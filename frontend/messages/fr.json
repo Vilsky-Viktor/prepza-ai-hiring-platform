@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, one {crédit} other {crédits}}",
     "topUpTitle": "Recharger : {name}",
     "topUpNote": "Chaque recharge couvre un nombre entier de candidats ; les plus grosses coûtent moins cher par candidat. Les crédits n'expirent jamais.",
-    "taxes": "Les prix incluent la TVA là où c'est l'usage, comme dans l'UE et au Royaume-Uni ; ailleurs, par exemple aux États-Unis, la taxe de vente est ajoutée au moment du paiement.",
+    "taxes": "Les prix s'entendent hors TVA et hors taxe de vente : là où elle s'applique, elle est ajoutée au moment du paiement, et la page de paiement affiche le total avant que vous ne payiez.",
     "candidates": "{count, plural, one {# candidat} other {# candidats}}",
     "each": "{price} chacun",
     "reserved": "{count, plural, one {# crédit réservé} other {# crédits réservés}}",

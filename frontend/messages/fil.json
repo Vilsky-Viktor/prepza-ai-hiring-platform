@@ -702,7 +702,7 @@
     "creditsWord": "{count, plural, one {credit} other {credits}}",
     "topUpTitle": "Mag-top up: {name}",
     "topUpNote": "Bawat top-up ay bumibili ng buong bilang ng aplikante; mas mura bawat aplikante sa mas malalaking top-up. Hindi nag-e-expire ang credits.",
-    "taxes": "Kasama na sa mga presyo ang VAT kung saan ito ang karaniwan, gaya sa EU at UK; sa ibang lugar, gaya sa US, idinadagdag ang sales tax sa checkout.",
+    "taxes": "Hindi kasama sa mga presyo ang VAT o sales tax: kung saan ito naaangkop, idinadagdag ito sa checkout, na nagpapakita ng kabuuan bago ka magbayad.",
     "candidates": "{count, plural, one {# aplikante} other {# aplikante}}",
     "each": "{price} bawat isa",
     "reserved": "{count, plural, one {# credit ang naka-reserve} other {# credits ang naka-reserve}}",
