@@ -2,7 +2,7 @@
 
 The frozen inputs of the offline tests (`../README.md`). How they are made, what they cover and
 when they were last built, one section each. Best practices behind them:
-`internal_docs/eval-best-practices.md`.
+`internal_docs/best-practices/eval.md`.
 
 ## Rules for every dataset
 

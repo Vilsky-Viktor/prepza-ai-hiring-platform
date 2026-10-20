@@ -128,4 +128,4 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
   them; Playwright's WebKit doesn't apply Safari's tracking prevention anyway, so Safari and
   Firefox are checked by hand before a change to sign-in or storage in the frame.
 
-Research (local notes, git-ignored): `internal_docs/embed-sdk-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/embed-sdk.md`.

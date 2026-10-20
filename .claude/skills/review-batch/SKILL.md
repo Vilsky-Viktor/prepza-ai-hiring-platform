@@ -1,16 +1,16 @@
 ---
 name: review-batch
-description: Work through a platform review file (internal_docs/platform_reviews/*.md) in approved batches - propose, fix one item at a time, test, commit, mark done. Use when fixing review findings.
+description: Work through a platform review file (internal_docs/reviews/*.md) in approved batches - propose, fix one item at a time, test, commit, mark done. Use when fixing review findings.
 ---
 
 # Fix review findings in batches
 
-Review files live in `internal_docs/platform_reviews/` (git-ignored). Each finding is a table row
+Review files live in `internal_docs/reviews/` (git-ignored). Each finding is a table row
 ending in `⏳ |` while open and `✅ |` once done.
 
 ## Propose
 
-1. Count what's open: `grep -c "⏳ |$" internal_docs/platform_reviews/<file>.md`.
+1. Count what's open: `grep -c "⏳ |$" internal_docs/reviews/<file>.md`.
 2. Pick about six related open items and describe each in one line, in terms of what a user or
    the business sees (not internal service names).
 3. Give the open count and ask "Shall I go ahead?". Start only after the user approves.
@@ -33,7 +33,7 @@ For each item:
 
    ```bash
    python3 - <<'EOF'
-   p='internal_docs/platform_reviews/<file>.md'; s=open(p).read()
+   p='internal_docs/reviews/<file>.md'; s=open(p).read()
    lines=s.split('\n')
    for i,l in enumerate(lines):
        if l.startswith('| E15 |') and l.rstrip().endswith('⏳ |'):

@@ -76,4 +76,4 @@ Python tests: `testing-backend.md`; vitest and browser, load and smoke tests:
 - Slack: requests checked by `X-Slack-Signature`; stale requests refused.
 - LLMs: scripted fake chat models in unit tests; answer quality is the evals' job (rule 20).
 
-Research (local notes, git-ignored): `internal_docs/testing-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/testing.md`.

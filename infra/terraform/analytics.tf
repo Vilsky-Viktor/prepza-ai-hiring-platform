@@ -1,4 +1,4 @@
-# The business funnel (internal_docs/measurement.md): services publish funnel.* events to the events
+# The business funnel (internal_docs/business/measurement.md): services publish funnel.* events to the events
 # topic, and a BigQuery subscription writes them into a table, without code of ours.
 resource "google_bigquery_dataset" "analytics" {
   dataset_id = "analytics"

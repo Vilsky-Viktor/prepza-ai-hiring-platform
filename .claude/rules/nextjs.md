@@ -58,4 +58,4 @@ themselves: `.claude/rules/content-i18n.md`.
 - Locale choice: the URL prefix (public pages), then the saved setting, then `Accept-Language`;
   `zh-TW`, `zh-HK` and other Traditional Chinese never silently get Simplified.
 
-Research (local notes, git-ignored): `internal_docs/i18n-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/i18n.md`.

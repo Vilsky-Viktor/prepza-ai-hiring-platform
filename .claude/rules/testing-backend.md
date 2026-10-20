@@ -50,4 +50,4 @@ Shared test rules are in `testing.md`; CLAUDE.md wins on any conflict.
   (dead letter).
 - Wait for the event to arrive or the row to change; never sleep for it.
 
-Research (local notes, git-ignored): `internal_docs/testing-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/testing.md`.

@@ -86,4 +86,4 @@ runs older code on the newer schema.
 - Large deletes and backfills go in batches; paging, replicas and partitioning:
   `.claude/rules/scalability.md`.
 
-Research (local notes, git-ignored): `internal_docs/database-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/database.md`.

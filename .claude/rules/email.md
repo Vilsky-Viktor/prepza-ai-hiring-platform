@@ -81,4 +81,4 @@ reminders, campaigns) through Resend, to a global audience in each recipient's l
   customers with an opt-out every time; proof of consent is kept. US commercial mail (CAN-SPAM)
   needs honest headers, a postal address and an opt-out honoured within 10 business days.
 
-Research (local notes, git-ignored): `internal_docs/email-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/email.md`.

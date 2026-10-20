@@ -72,4 +72,4 @@ paths:
   run-to-run difference needs explaining.
 - Production feedback: votes are scores on the trace with a stable id, so a changed vote updates.
 
-Research (local notes, git-ignored): `internal_docs/eval-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/eval.md`.

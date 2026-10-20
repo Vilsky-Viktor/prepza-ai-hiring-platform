@@ -100,4 +100,4 @@ install it as an editable path dependency from the same commit: no releases, no 
   is logged as its route template (`.claude/rules/security.md`).
 - Sentry: `send_default_pii=False`, no local variables, users by internal id.
 
-Research (local notes, git-ignored): `internal_docs/architecture-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/architecture.md`.

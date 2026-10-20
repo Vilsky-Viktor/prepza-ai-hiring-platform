@@ -15,7 +15,7 @@ paths:
   LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1. Field data (Sentry's Web Vitals, Search Console's
   report) decides; Lighthouse only explains. No second vitals reporter beside Sentry (rule 10).
 - API latency targets in two grades (e.g. 90% under 100 ms, 99% under 400 ms); the services'
-  targets and costs are in `internal_docs/capacity-and-costs.md` (local).
+  targets and costs are in `internal_docs/operations/capacity-and-costs.md` (local).
 - Adding a client dependency: `pnpm next analyze --output` before and after, and compare.
 
 ## Rendering and data
@@ -62,6 +62,6 @@ paths:
 - Streaming passes through every hop unbuffered (nginx: `X-Accel-Buffering: no`).
 - HTTP/2 and HTTP/3 are left to the load balancer.
 - Cold starts: startup CPU boost, lazy initialisation, and minimum instances where the cost is
-  decided (`internal_docs/capacity-and-costs.md`).
+  decided (`internal_docs/operations/capacity-and-costs.md`).
 
-Research (local notes, git-ignored): `internal_docs/web-performance-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/web-performance.md`.

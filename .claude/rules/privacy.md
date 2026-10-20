@@ -97,4 +97,4 @@ line, a trace, a third-party call) does all of this in the same change:
   their law requires with exports they can keep (reports, audit exports), not by storing longer by
   default. A change to retention of candidates' results is checked against them first.
 
-Research (local notes, git-ignored): `internal_docs/privacy-data-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/privacy-data.md`.

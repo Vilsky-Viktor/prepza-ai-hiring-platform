@@ -56,4 +56,4 @@ CLAUDE.md rule 2 sets the limits; this is how to meet them.
   `paths:`, under about 150 lines (split rather than drop a practice); a SKILL.md under 500 lines,
   references one level deep; a doc or reference file past 100 lines starts with its contents.
 
-Research (local notes, git-ignored): `internal_docs/file-size-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/file-size.md`.

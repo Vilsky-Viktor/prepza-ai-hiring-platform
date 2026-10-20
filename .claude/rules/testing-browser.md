@@ -59,4 +59,4 @@ Shared test rules are in `testing.md`; CLAUDE.md wins on any conflict.
   else load tests decide: `.claude/rules/scalability.md`.
 - Smoke is minimal and read-only, run after each deploy and before heavier runs.
 
-Research (local notes, git-ignored): `internal_docs/testing-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/testing.md`.

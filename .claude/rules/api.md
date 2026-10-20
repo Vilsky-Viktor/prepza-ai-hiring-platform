@@ -88,4 +88,4 @@ and updates `docs/features/api.md` or `mcp.md` and the API description in the sa
 
 - The MCP server, its OAuth server and its tools: `.claude/rules/mcp.md`.
 
-Research (local notes, git-ignored): `internal_docs/api-design-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/api-design.md`.

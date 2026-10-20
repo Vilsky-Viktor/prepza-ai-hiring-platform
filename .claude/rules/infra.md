@@ -34,4 +34,4 @@ tools.
 - Operations (alerts, runbooks, backups): `.claude/rules/operations.md`; CI and images:
   `.claude/rules/ci.md`.
 
-Research (local notes, git-ignored): `internal_docs/best-practices-sources.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/sources.md`.

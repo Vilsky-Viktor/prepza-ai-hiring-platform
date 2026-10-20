@@ -69,7 +69,7 @@ one-page postmortem. No incident-commander roles, severity ladders or automatic 
 
 - Budgets alert below what can be afforded (their first alert can take hours; they never cap
   spending); the OpenAI hard limit and the emergency pause are the stops.
-- Instance sizes, connections and monthly costs: `internal_docs/capacity-and-costs.md` (local);
+- Instance sizes, connections and monthly costs: `internal_docs/operations/capacity-and-costs.md` (local);
   how to scale and what to watch first: `.claude/rules/scalability.md`.
 
-Research (local notes, git-ignored): `internal_docs/operations-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/operations.md`.

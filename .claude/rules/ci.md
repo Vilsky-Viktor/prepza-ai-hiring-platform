@@ -63,4 +63,4 @@ paths:
 - No SLSA L3, signing or Binary Authorization (rule 4): pinned inputs and deploys by digest give
   the integrity that matters here.
 
-Research (local notes, git-ignored): `internal_docs/ci-supply-chain-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/ci-supply-chain.md`.

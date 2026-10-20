@@ -127,8 +127,8 @@ Points other rule files already hold are only pointed at.
   end to end.
 - A change to a hot path (a candidate's answer, `start`, a list page) is load-tested before and
   after; numbers go to `e2e_tests/load/README.md`.
-- Estimates, first bottlenecks and costs per size: `internal_docs/capacity-and-costs.md` and
-  `internal_docs/scalability-best-practices.md` (local).
+- Estimates, first bottlenecks and costs per size: `internal_docs/operations/capacity-and-costs.md` and
+  `internal_docs/best-practices/scalability.md` (local).
 
 ## Regions
 
@@ -136,4 +136,4 @@ Points other rule files already hold are only pointed at.
   data residency per customer wait for a latency target or a customer who needs them: each costs
   money and is the user's decision. GDPR doesn't require EU storage; transfers rest on the SCCs.
 
-Research (local notes, git-ignored): `internal_docs/scalability-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/scalability.md`.

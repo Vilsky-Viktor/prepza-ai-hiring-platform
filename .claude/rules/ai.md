@@ -114,5 +114,5 @@ prompts, schemas and settings apart (rule 3); every call is bounded, typed, trac
   users' votes attach to the trace as scores.
 - Agent evals grade the outcome and the transcript over repeated trials (`.claude/rules/evals.md`).
 
-Research (local notes, git-ignored): `internal_docs/prompt-best-practices.md`,
-`internal_docs/ai-workflows-agents-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/prompt.md`,
+`internal_docs/best-practices/ai-workflows-agents.md`.

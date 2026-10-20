@@ -63,4 +63,4 @@ paths:
 - Tests check structure and data (a canonical equals the page's URL, hreflang sets are
   symmetric, lengths are within limits, private paths are `noindex`), never titles' wording.
 
-Research (local notes, git-ignored): `internal_docs/seo-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/seo.md`.

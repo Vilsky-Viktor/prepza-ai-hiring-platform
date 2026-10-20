@@ -29,7 +29,7 @@ async def track(
     company_id: object | None = None,
     **props: object,
 ) -> None:
-    """Records one funnel event (internal_docs/measurement.md). Best effort: it waits for Pub/Sub
+    """Records one funnel event (internal_docs/business/measurement.md). Best effort: it waits for Pub/Sub
     only as long as an in-request publish may, and a lost event is logged and never breaks the
     request. `props` hold counts and choices only, never text people wrote."""
     user = pseudonym(user_id) if user_id else None

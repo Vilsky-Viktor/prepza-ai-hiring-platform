@@ -95,5 +95,5 @@ the Top 10 for LLM applications 2025.
 - Outbound: back off with jitter, honour `Retry-After` as the minimum wait, retry at one layer
   only, and keep a provider-side spend cap (OpenAI's hard limit) as the last line.
 
-Research (local notes, git-ignored): `internal_docs/security-best-practices.md`,
-`internal_docs/rate-limiting-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/security.md`,
+`internal_docs/best-practices/rate-limiting.md`.

@@ -81,4 +81,4 @@ A change to the candidate's pages updates `internal_docs/compliance/accessibilit
 - Browser tests find elements by role and accessible name (rule 8), which checks roles and names
   as they go; an icon-only button's label is asserted.
 
-Research (local notes, git-ignored): `internal_docs/accessibility-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/accessibility.md`.

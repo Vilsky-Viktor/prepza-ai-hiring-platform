@@ -48,4 +48,4 @@ in `frontend/messages` (rules 9, 12, 14).
 - Content belongs to its language, not the viewer's: it's stored with its `language`, shown with
   that `lang`/`dir`, and a company's data is never machine-translated for display.
 
-Research (local notes, git-ignored): `internal_docs/i18n-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/i18n.md`.
