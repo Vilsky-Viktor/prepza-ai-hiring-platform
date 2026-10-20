@@ -12,7 +12,7 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.routing import Route
 from starlette.types import Receive, Scope, Send
 
-from app.constants.mcp import MCP_PATH, MCP_SCOPE
+from app.constants.mcp import MCP_PATH, MCP_REQUEST_HEADERS, MCP_SCOPE
 from app.helpers.oauth import auth_settings
 from app.prompts.mcp import MCP_INSTRUCTIONS
 from app.services import mcp_tools
@@ -64,7 +64,7 @@ def routes() -> list[Route]:
         authenticated,
         allow_origins=["*"],
         allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
-        allow_headers=["Authorization", "Content-Type", "Mcp-Protocol-Version", "Mcp-Session-Id"],
+        allow_headers=MCP_REQUEST_HEADERS,
         expose_headers=["WWW-Authenticate", "Mcp-Session-Id"],
     )
 

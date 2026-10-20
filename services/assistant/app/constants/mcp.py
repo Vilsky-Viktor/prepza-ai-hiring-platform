@@ -6,6 +6,17 @@ MCP_SCOPE = "prepza"
 # Where the MCP endpoint is, on the site (the resource the access is for), and where the user
 # allows or denies an app (the frontend's page).
 MCP_PATH = "/mcp"
+# The request headers a browser-based app (MCP Inspector) may send to it: every protocol
+# revision's, up to 2026-07-28's Mcp-Method and Mcp-Name, which its preflight must allow.
+MCP_REQUEST_HEADERS = [
+    "Authorization",
+    "Content-Type",
+    "Last-Event-ID",
+    "Mcp-Method",
+    "Mcp-Name",
+    "Mcp-Protocol-Version",
+    "Mcp-Session-Id",
+]
 CONNECT_PATH = "/connect"
 AUTHORIZATION_METADATA_PATH = "/.well-known/oauth-authorization-server"
 # Some apps look for the resource's metadata at the root, without the resource's path.

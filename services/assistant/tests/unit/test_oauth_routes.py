@@ -29,6 +29,24 @@ def test_the_mcp_endpoint_without_a_token_names_where_to_get_one(client):
     assert expected in response.headers["www-authenticate"]
 
 
+def test_a_browser_app_may_send_every_protocol_revisions_headers(client):
+    # 2026-07-28's requests carry Mcp-Method and Mcp-Name; a preflight refusing them would stop
+    # browser-based apps (MCP Inspector) at the first call.
+    headers = "authorization,content-type,mcp-protocol-version,mcp-method,mcp-name,last-event-id"
+    response = client.options(
+        "/mcp",
+        headers={
+            "Origin": "http://localhost:6274",
+            "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": headers,
+        },
+    )
+
+    assert response.status_code == 200
+    allowed = response.headers["access-control-allow-headers"].lower()
+    assert all(name in allowed for name in headers.split(","))
+
+
 def test_an_unknown_token_is_refused(client, monkeypatch):
     async def none(access_hash):
         return None
