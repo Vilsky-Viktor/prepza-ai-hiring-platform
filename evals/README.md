@@ -64,10 +64,10 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Other languages: keys / clarity / relevance / distractors | 100% (71) / 5.00 / 3.85 / 2.15 | `language_inputs.json` | 2026-10-20 |
 | Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-20 |
 | Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
-| Assistant page context: general correct with / without; page checks | 121/129 / 108/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-17 |
+| Assistant page context: general correct with / without; page checks | 112/129 / 116/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-20 |
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
 | Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 95–100% / 3.25 ± 0.27 / 4.47 | 40 of `multi_questions.json` | 2026-10-20 |
-| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 235/250 / 244/250 / 140/140 / 24/30 / 16/25 / 70/70; 23,800 tokens, $0.0024, 6.4 s a turn | `assistant_actions.json`, 5 repeats | 2026-10-20 |
+| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 240/250 / 246/250 / 140/140 / 27/30 / 19/25 / 70/70; 22,900 tokens, $0.0023, 7.2 s a turn | `assistant_actions.json`, 5 repeats | 2026-10-20 |
 | Help chat: passed / made up / sign-in marker | 94.4% (84.9–98.1) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-20 |
 
 ## Datasets

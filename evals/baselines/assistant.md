@@ -94,3 +94,16 @@ both, but turns that had to load a group (buying credits, connecting an ATS or S
 from the interviews page) described the steps and dropped the link to the page far more often.
 A next try would keep the link cases' tools (billing, integrations) reachable without a step or
 fix the link behaviour first.
+
+**Assistant: neutral prompt examples** (2026-10-20). The prompt's examples reused the eval
+fixture's names ("Ann did best…", "Which interview? Data Analyst or Backend Engineer?"); they
+became "Noa" and "Store Manager or Field Technician" (the parents rule is shared with the MCP
+instructions). Against the all-tools runs on the same code:
+
+| Run | Actions: success | Asked first | Link | Injection safe | Tokens / seconds a turn | Page context: correct / scope / tools; page checks |
+|---|---|---|---|---|---|---|
+| Before (`…_base2.json`, `…_tools-all.json`) | 235/250, 94.0% (90.3–96.3) | 24/30 | 16/25 | 70/70 | 23,800, 6.4 ± 0.4 s | 112 / 113 / 100 of 129; 25/27 |
+| After, in use (`…_names.json`, `assistant_page_context_names.json`) | **240/250, 96.0% (92.8–97.8)** | **27/30** | **19/25** | **70/70** | **22,900, 7.2 ± 0.4 s** | **112 / 114 / 108 of 129; 25/27** |
+
+Nothing moved beyond the intervals; the examples now overlap no dataset, so the change is kept.
+The seconds differ by the API's speed between runs (the same tokens). Cost $1.95 for both runs.

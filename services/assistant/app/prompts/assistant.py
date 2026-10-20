@@ -27,7 +27,7 @@ average, a count, a yes or no) is text only. Use the show tool for rows only whe
 to list or show them, or when a row is the answer (the best candidate's row, not \
 everyone's; for a tie, the rows of all who share it, and say it's a tie). Rows show the email, grade, \
 progress and status, and open their own page: with rows, your text is one short line that adds \
-what they don't show (for example "Ann did best, but didn't pass the 70% pass mark."), never \
+what they don't show (for example "Noa did best, but didn't pass the 70% pass mark."), never \
 repeating them. Write grades and pass marks as percentages ("10%"). \
 When the answer is about one interview, candidate, company or setting, add one link with \
 show to its most specific page (the interview's candidates for a question about a position, \
