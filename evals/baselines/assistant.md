@@ -240,3 +240,31 @@ check, not a weight. Page context and guides weren't run for the final pair: the
 it. The single arm's "Invite … and top up credits for 50" failed 5 of 5 (the card, no top-up link)
 until the prompt said to link a page beside a card for another part; it now passes 5 of 5. Spent
 about $4 on these runs.
+
+**Assistant: requests with several parts** (2026-10-21, `assistant_actions.py`, `gpt-6-luna` low,
+5 repeats, `results/assistant_actions_cross2.json`). The one agent's remaining misses after the
+domain agents were removed (cross 25/30, pass^5 95.5% in `…_final-single.json`) were all one case:
+"Turn off auto top-up and add a web hook …" prepared only the web hook (5 of 5), and "Turn off
+auto top-up here." once said it was already off. It hadn't dropped a part: it read the company's
+auto top-up, which is off in the fixture (it can't be turned on without a saved card), and rightly
+didn't turn it off. Every other two-part request kept both parts 25 of 25. The cases now answer
+that read with auto top-up on (`inject.results`), and a new case asks to turn it off while it is
+off (`b05`): the model then prepared the card anyway 5 of 5, a card that would change nothing,
+so an action can now name the state in which it changes nothing (`done_when`; turning auto
+top-up off reads whether it's on) and is refused with "nothing to change" instead of a card.
+
+| Run | Task success | Asked first | Link | Arguments | Cross | pass^5 | Tokens / seconds a turn |
+|---|---|---|---|---|---|---|---|
+| Before (`…_final-single.json`, 66 cases) | 323/330, 97.9% (95.7–99.0) | 44/45 | 45/45 | 184/184 | 25/30 | 95.5% | 23,700, 8.7 ± 0.5 s |
+| After (67 cases, in use) | 328/335, 97.9% (95.8–99.0) | 44/45 | 45/45 | 188/188 | **30/30** | 95.5% | 23,300, 6.4 ± 0.3 s |
+
+In that run the "already off" check read the fixture's real state, so `b03` and `m06` got their
+turn-off refused too and passed only because a refused call still counted as an action then; the
+eval now feeds the check the case's made-up state (the injected read of the same route) and counts
+a call refused for changing nothing like one refused for a missing value, the check working. `b05`
+passed 1 of 5 there, as its refused card still counted. A run with both eval fixes on the
+committed code alone (`…_cross3.json`) was still running when this was recorded. Some turns ran
+alongside another change's tool descriptions, then uncommitted ("Rename the Data Analyst
+interview …" prepared `rename_company` 2 of 5); nothing in this change touches renaming. Cost
+about $2.8.
+

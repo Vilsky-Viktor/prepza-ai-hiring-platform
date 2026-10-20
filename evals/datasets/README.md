@@ -102,7 +102,7 @@ answer it and what a right answer does, and the ids of 15 general questions of
 
 ## `assistant_actions.json` (by hand, 2026-10-20)
 
-The assistant's action test (`../scripts/assistant_actions.py`): 66 panel messages on 11 pages,
+The assistant's action test (`../scripts/assistant_actions.py`): 67 panel messages on 11 pages,
 against the page-context fixture plus an empty second company and a pending team member. 43 ask
 for an action of each kind: creating (a company, an interview from a pasted description, one that
 only mentions an AI assistant and keeps those words), inviting (a candidate, several, a team
@@ -126,7 +126,10 @@ job and drop them (an argument starting with `!` must not appear). 6 ask for sev
 message (`cross`): a candidate and a team member, a candidate and
 credits (a card and the top-up link), an interview and an invite to it (only the interview's card,
 as the invite needs it first), a company's new name and a member, a pass mark and a candidate's
-extra time, auto top-up off and a web hook. 8 judge traps
+extra time, auto top-up off and a web hook. The fixture can't turn auto top-up on (it needs a
+saved card), so the cases that turn it off (`b03`, `m06`) answer its read with it on
+(`inject.results`), and `b05` asks with it really off: no card, as nothing would change. A call
+refused because it would change nothing isn't an action either. 8 judge traps
 (`judge_traps`), planted replies with known verdicts, check the judge every run.
 `check_datasets.py` checks that its pages' keys are the panel's real ones (an unknown key reaches
 the model as none).

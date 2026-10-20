@@ -29,7 +29,7 @@ from pydantic import BaseModel, Field
 from stats import mean, share
 
 from app.models.tools import ToolResult
-from app.services import chat
+from app.services import actions, chat
 from app.services.registry import tools
 
 MEMBER_EMAIL = "noor.member@example.com"
@@ -72,7 +72,8 @@ def made_up(name: str, arguments: dict) -> ToolResult | None:
 
 
 def patch_tools() -> None:
-    """Reads and the panel's updates go through the case's injection."""
+    """Reads, the panel's updates and actions' "already so" checks go through the case's
+    injection."""
     real_calls, real_updates = chat.call_tools, chat.in_panel
 
     async def call_tools(calls, *args):
@@ -86,6 +87,20 @@ def patch_tools() -> None:
         return made_up("get_updates", arguments) or injected(await real_updates(arguments, turn))
 
     chat.call_tools, chat.in_panel = call_tools, in_panel
+    real_done = actions.already_done
+
+    async def already_done(tool, arguments, token, language):
+        """An action's "already so" check reads the case's made-up state too (auto top-up on,
+        which the fixture can't turn on): the injected read of the same route."""
+        entry = tool.done_when
+
+        for name, data in CASE.get().get("inject", {}).get("results", {}).items():
+            if entry and tools()[name].path == entry["path"]:
+                return data.get(entry["field"]) == entry["value"]
+
+        return await real_done(tool, arguments, token, language)
+
+    actions.already_done = already_done
 
 
 async def extras(fixture: Fixture, facts: dict) -> dict:

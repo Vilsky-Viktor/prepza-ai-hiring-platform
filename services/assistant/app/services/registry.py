@@ -57,6 +57,7 @@ def build(name: str, entry: dict) -> Tool:
         preview=tuple(entry.get("preview", entry.get("body", []))),
         subject=entry.get("subject"),
         credits=entry.get("credits", False),
+        done_when=entry.get("done_when"),
         result_label=entry.get("result_label"),
     )
 

@@ -20,7 +20,7 @@ from app.constants.actions_flow import (
     UNKNOWN_EMAIL,
 )
 from app.constants.chat import SESSION_EXPIRED
-from app.helpers.arguments import fill_path, problems
+from app.helpers.arguments import problems
 from app.helpers.given_emails import unknown_emails
 from app.helpers.untrusted_text import without_instructions
 from app.integrations import services
@@ -28,6 +28,7 @@ from app.integrations.redis import get_redis
 from app.models.answers import Turn
 from app.models.tools import Tool, ToolResult
 from app.services import limits
+from app.services.action_state import already_done, subject_of
 from app.services.conversations import open_conversation
 from app.services.registry import tools
 from app.services.tenancy import require_company, user_companies
@@ -52,37 +53,6 @@ def card(action_id: UUID, tool: Tool, arguments: dict, state: str, **more) -> di
         "state": state,
         **more,
     }
-
-
-async def subject_of(tool: Tool, arguments: dict, token: str, language: str) -> dict | None:
-    """What the action is about, as the user may see it now (a company, an interview), read
-    with their token; raises LookupError when it's not theirs or is gone."""
-    entry = tool.subject
-
-    if entry is None:
-        return None
-
-    path = fill_path(entry["path"], arguments)
-    query = {name: arguments[name] for name in entry.get("query", []) if name in arguments}
-
-    try:
-        response = await services.get(entry["service"], path, query, token, language)
-    except httpx.HTTPError:
-        return None
-
-    if not response.is_success:
-        raise LookupError
-
-    data = response.json()
-
-    if isinstance(data, list):
-        wanted = str(arguments[entry["match"]])
-        data = next((item for item in data if str(item.get("id")) == wanted), None)
-
-        if data is None:
-            raise LookupError
-
-    return data if isinstance(data, dict) else None
 
 
 def unchanged(tool: Tool, arguments: dict, current: dict | None) -> dict:
@@ -133,6 +103,9 @@ async def checked_arguments(
     arguments = unchanged(tool, arguments, current)
 
     if tool.body_params and not any(name in arguments for name in tool.body_params):
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, NOTHING_TO_CHANGE)
+
+    if await already_done(tool, arguments, token, language):
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, NOTHING_TO_CHANGE)
 
     return arguments, current

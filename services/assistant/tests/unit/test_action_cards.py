@@ -147,3 +147,26 @@ def test_an_address_no_one_gave_gets_no_card(redis, monkeypatch):
 
     given = asyncio.run(actions.prepare(tool, arguments, TURN, "Invite dummy@example.com."))
     assert given.block["preview"]["email"] == "dummy@example.com"
+
+
+def test_an_action_that_would_change_nothing_gets_no_card(redis, monkeypatch):
+    state = {"on": False}
+
+    async def get(service, path, query, token, language, via=None):
+        found = state if path.endswith("/auto-top-up") else {"name": "Acme"}
+
+        return httpx.Response(200, json=found, request=httpx.Request("GET", "http://x"))
+
+    monkeypatch.setattr(services, "get", get)
+    tool = tools()["turn_off_auto_top_up"]
+    off = asyncio.run(actions.prepare(tool, {"company_id": COMPANY}, TURN))
+
+    assert off.block is None
+    assert off.content == {
+        "error": 422,
+        "detail": "Nothing to change: those values are already set.",
+    }
+
+    state["on"] = True
+    on = asyncio.run(actions.prepare(tool, {"company_id": COMPANY}, TURN))
+    assert on.block["subject"] == "Acme"

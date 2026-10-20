@@ -10,6 +10,8 @@
 #   item it is (`match`);
 # - destructive: the card warns that it can't be undone; credits: it also says how many of the
 #   company's credits (and candidates they'd pay for) are lost, read with the user's token;
+# - done_when: the state in which it would change nothing: its service, path (filled from the
+#   arguments), `field` and `value`, read with the user's token; then it gets no card;
 # - render and link: the page the result opens (ids from the arguments and the result's data),
 #   and result_label: the result's field naming it.
 

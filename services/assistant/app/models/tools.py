@@ -29,6 +29,9 @@ class Tool:
     # field naming what it made.
     subject: dict | None = None
     credits: bool = False
+    # A state that makes the action change nothing (auto top-up already off): read with the
+    # user's token when it's prepared, it's refused instead of a card.
+    done_when: dict | None = None
     result_label: str | None = None
 
     @property

@@ -97,6 +97,12 @@ COMPANY_ACTIONS = {
         "confirm": True,
         "description": "Turn off the company's automatic top-up.",
         "subject": COMPANY_SUBJECT,
+        "done_when": {
+            "service": "companies",
+            "path": "/companies/{company_id}/auto-top-up",
+            "field": "on",
+            "value": False,
+        },
         "render": "link",
         "link": "/top-up",
     },
