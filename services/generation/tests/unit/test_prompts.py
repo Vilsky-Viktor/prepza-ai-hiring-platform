@@ -36,10 +36,10 @@ FIELD_TERMS = (
 
 
 def test_generation_prompts_name_no_technology_standard_or_field():
-    from app.prompts.question_rules import QUESTION_WRITER_ROLE
     from app.prompts.answers import ANSWERS_REQUEST, ANSWERS_SYSTEM, MULTI_ANSWER_KIND
     from app.prompts.code_languages import CODE_LANGUAGES_PROMPT
     from app.prompts.extraction import EXTRACTION_SYSTEM, TEMPLATE_TITLE_RULE
+    from app.prompts.question_rules import QUESTION_WRITER_ROLE
     from app.prompts.questions import QUESTIONS_REQUEST, QUESTIONS_SYSTEM
     from app.prompts.regenerate import (
         REGENERATE_REQUEST,
