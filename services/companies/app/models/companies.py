@@ -94,6 +94,13 @@ class Member(Base):
         UniqueConstraint("company_id", "invited_email"),
         # Invites to an address across companies (support's lookup).
         Index("ix_members_invited_email", "invited_email"),
+        # A company has one owner: a transfer demotes the owner before it promotes the admin.
+        Index(
+            "uq_members_one_owner",
+            "company_id",
+            unique=True,
+            postgresql_where=text("role = 'owner'"),
+        ),
         CheckConstraint(one_of("role", Role), name="ck_members_role"),
     )
 

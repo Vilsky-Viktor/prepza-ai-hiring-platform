@@ -167,3 +167,29 @@ def test_two_joins_at_once_tell_the_owner_once_and_a_removed_invite_joins_no_one
         return twice, both, removed, len(joined)
 
     assert run(scenario()) == (None, [True, True], False, 1)
+
+
+def test_the_database_refuses_a_second_owner(run):
+    from sqlalchemy.exc import IntegrityError
+
+    from app.models.companies import Member
+
+    async def scenario():
+        company = await companies.create(f"Owners {uuid.uuid4()}", "ann", "ann@example.com")
+
+        async with Session() as session:
+            session.add(
+                Member(
+                    company_id=company.id,
+                    user_id="bob",
+                    invited_email="bob@example.com",
+                    role="owner",
+                )
+            )
+
+            try:
+                await session.commit()
+            except IntegrityError as error:
+                return error.orig.diag.constraint_name
+
+    assert run(scenario()) == "uq_members_one_owner"

@@ -27,6 +27,7 @@ class Interview(Base):
         # The reminder emails' interviews, by when they got their questions or were started.
         Index("ix_interviews_ready_at", "ready_at"),
         Index("ix_interviews_created_at", "created_at"),
+        Index("uq_interviews_generation_id", "generation_id", unique=True),
         # Named before the naming convention (models/base.py).
         UniqueConstraint("link_token", name="uq_interviews_link_token"),
         CheckConstraint("pass_mark BETWEEN 0 AND 100", name="ck_interviews_pass_mark"),
@@ -39,7 +40,8 @@ class Interview(Base):
     # Copied from the generated set (and renames), so pages don't ask library for it.
     title: Mapped[str | None] = mapped_column(Text)
     # None for a test made from a template, which needs no generation.
-    generation_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
+    # One interview per generation (uq_interviews_generation_id).
+    generation_id: Mapped[uuid.UUID | None] = mapped_column()
     # Its generation failed (generation's generation.failed event); a retry or the questions
     # arriving clear it.
     generation_failed: Mapped[bool] = mapped_column(default=False, server_default="false")
