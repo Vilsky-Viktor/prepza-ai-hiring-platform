@@ -28,6 +28,9 @@ class Settings(ServiceSettings):
     # monthly price whose checkout saves it. Without both, it isn't offered.
     paddle_api_key: str = ""
     paddle_price_auto_top_up: str = ""
+    # Keys the hashes welcome gifts are kept by (prepza_common.person_hash), so nobody with a
+    # list of addresses can match them.
+    person_hash_key: str
 
     @model_validator(mode="after")
     def paddle_keys_match_the_environment(self) -> "Settings":

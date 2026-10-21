@@ -2,6 +2,7 @@ from sqlalchemy import exists, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.config.settings import settings
 from app.constants.credits import LOW_BALANCE, WELCOME_COMPANY, WELCOME_GIFT, HoldStatus, Reason
 from app.constants.products import OwnerType
 from app.helpers.gifts import gift_key, legacy_gift_key
@@ -51,10 +52,12 @@ async def welcome_company(company_id: str, owner_email: str) -> bool:
     the gift, now or in an earlier try whose answer was lost."""
     async with Session() as session:
         await ensure(session, OwnerType.COMPANY, company_id)
-        given_before = await session.get(Gift, legacy_gift_key(WELCOME_GIFT, owner_email))
+        given_before = await session.get(
+            Gift, legacy_gift_key(WELCOME_GIFT, owner_email, settings.person_hash_key)
+        )
         new = await session.scalar(
             insert(Gift)
-            .values(key=gift_key(WELCOME_GIFT, owner_email))
+            .values(key=gift_key(WELCOME_GIFT, owner_email, settings.person_hash_key))
             .on_conflict_do_nothing()
             .returning(Gift.key)
         )

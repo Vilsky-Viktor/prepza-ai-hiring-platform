@@ -2,6 +2,7 @@ import asyncio
 import uuid
 from datetime import UTC, datetime
 
+from app.config.settings import settings
 from app.constants.credits import REFERRAL_REWARD, WELCOME_COMPANY, WELCOME_GIFT
 from app.constants.products import OwnerType
 from app.helpers.gifts import legacy_gift_key
@@ -216,7 +217,8 @@ def test_an_owner_given_the_welcome_gift_under_the_old_key_isnt_given_it_again(r
 
     async def scenario():
         async with Session() as session:
-            session.add(Gift(key=legacy_gift_key(WELCOME_GIFT, "Ann.Lee+jobs@gmail.com")))
+            old = legacy_gift_key(WELCOME_GIFT, "Ann.Lee+jobs@gmail.com", settings.person_hash_key)
+            session.add(Gift(key=old))
             await session.commit()
 
         return await ledger.welcome_company(second, "ann.lee+jobs@gmail.com")
