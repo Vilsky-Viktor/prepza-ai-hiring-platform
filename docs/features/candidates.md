@@ -146,6 +146,8 @@ A report is a PDF, made in the browser, for one candidate or for all of an inter
 - emailed from prepza, with the PDF attached (it counts towards the member's email limits); owners and admins send it to any address, viewers only to one of the company's joined members (another address is refused with a 403 that says so),
 - shared as a short summary on WhatsApp, Telegram, Viber or LINE (Viber's button opens only where its app is installed).
 
+The home page offers both reports as samples (`frontend/public/samples/prepza-report-samples.zip`, cached for a day), made by the same reports and download buttons from made-up data (`frontend/constants/report-samples-fixture.ts`, company "Acme Hiring (example)"). When the reports' design changes, make them again with the stack running: `./scripts/report-samples.sh` opens the development-only page `/report-samples` (404 in production) in Playwright's Docker image, downloads both PDFs and zips them.
+
 ## Email limits
 
 Candidate invites, emailed reports and [team invites](companies.md) count towards the limits of the member who sends them, per user and per recipient; emailed reports also towards their company's. A superadmin can change each in the admin zone's Controls tab ([Admin zone](admin-zone.md#limits)):

@@ -3,6 +3,7 @@ import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 
 import { EMBED_SCRIPT_HEADERS } from "./constants/embed"
+import { REPORT_SAMPLES_HEADERS } from "./constants/report-samples"
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -50,7 +51,10 @@ const nextConfig: NextConfig = {
     ]
   },
   async headers() {
-    return [{ source: "/embed/:file*", headers: EMBED_SCRIPT_HEADERS }]
+    return [
+      { source: "/embed/:file*", headers: EMBED_SCRIPT_HEADERS },
+      { source: "/samples/:file*", headers: REPORT_SAMPLES_HEADERS },
+    ]
   },
   // In `pnpm dev` there is no gateway in front of Next, so proxy the API to it.
   async rewrites() {
