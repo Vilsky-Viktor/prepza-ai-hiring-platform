@@ -15,7 +15,7 @@ from prepza_common.user import Language, User
 from app.helpers.accounts import candidate_email
 from app.integrations import accounts as services
 from app.integrations.billing import remember_currency
-from app.storage import accounts, legal
+from app.storage import accounts, erasures, legal
 
 
 def delete_sign_in(user_id: str) -> None:
@@ -81,6 +81,8 @@ async def delete_account(user: User) -> None:
             raise
 
     await accounts.delete_user(user.uid)
+    # Run again after a restore from a backup (services/erasures.py).
+    await erasures.record(user.uid, candidate_email(user))
     await asyncio.to_thread(delete_sign_in, user.uid)
 
 

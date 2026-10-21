@@ -4,6 +4,7 @@ from alembic import context
 from prepza_common.db import migration_engine
 
 import app.models.emails  # registers the tables on Base.metadata
+import app.models.erasures
 import app.models.events
 import app.models.feedback
 import app.models.legal

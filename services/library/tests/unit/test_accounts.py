@@ -12,7 +12,7 @@ from app.integrations import accounts as account_services
 from app.main import app
 from app.routers import me as me_routes
 from app.services import accounts as account_service
-from app.storage import accounts
+from app.storage import accounts, erasures
 from tests.unit.fake_redis import FakeRedis
 
 USER = User(uid="ann", email="Ann@Example.com", email_verified=True, name="Ann")
@@ -29,8 +29,12 @@ def steps(monkeypatch):
     async def delete_library(user_id):
         done.append(("library", user_id))
 
+    async def remember(user_id, email):
+        done.append(("erasure", user_id, email))
+
     monkeypatch.setattr(account_services, "delete_user", delete_in)
     monkeypatch.setattr(accounts, "delete_user", delete_library)
+    monkeypatch.setattr(erasures, "record", remember)
     monkeypatch.setattr(
         account_service, "delete_sign_in", lambda uid: done.append(("sign-in", uid))
     )
@@ -51,6 +55,8 @@ def test_every_service_is_cleaned_before_the_sign_in_goes(steps):
         ("service", "api"),
         ("service", "assistant"),
         ("library", "ann"),
+        # Kept for the backups' life, to run again after a restore.
+        ("erasure", "ann", "Ann@Example.com"),
         ("sign-in", "ann"),
     ]
 
@@ -109,6 +115,11 @@ def test_candidate_data_is_matched_by_a_verified_email_only(monkeypatch, verifie
     monkeypatch.setattr(account_services, "export_user", export_from)
     monkeypatch.setattr(accounts, "delete_user", nothing)
     monkeypatch.setattr(accounts, "export", nothing)
+
+    async def remember(user_id, email):
+        pass
+
+    monkeypatch.setattr(erasures, "record", remember)
     monkeypatch.setattr(account_service, "delete_sign_in", lambda uid: None)
     user = USER.model_copy(update={"email_verified": verified})
 
