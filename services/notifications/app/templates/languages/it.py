@@ -281,6 +281,30 @@ TEXTS = {
             "azienda, quindi viene inviata indipendentemente dalle tue impostazioni email."
         ),
     },
+    "top_up_paused": {
+        "subject": "Ricarica automatica in pausa per {company}",
+        "preheader": (
+            "La carta è stata rifiutata. Aggiornala per riattivare la ricarica automatica."
+        ),
+        "heading": "La ricarica automatica è in pausa",
+        "lines": [
+            (
+                "La carta della ricarica automatica di {company} è stata rifiutata e riprovare "
+                "non servirebbe, quindi la ricarica automatica è in pausa e non la addebiterà."
+            ),
+            (
+                "Aggiorna la carta nella pagina Fatturazione per riattivare la ricarica "
+                "automatica. Nel frattempo, ricarica manualmente per continuare a invitare "
+                "candidati."
+            ),
+        ],
+        "button": "Aggiorna la carta",
+        "footer": (
+            "Questa email è stata inviata a {email} perché sei proprietario o "
+            "amministratore di {company} su prepza. Riguarda la fatturazione della tua "
+            "azienda, quindi viene inviata indipendentemente dalle tue impostazioni email."
+        ),
+    },
     "footer": "Questa email è stata inviata a {email} perché qualcuno ha invitato questo "
     "indirizzo su prepza. Se non te l'aspettavi, puoi ignorarla.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

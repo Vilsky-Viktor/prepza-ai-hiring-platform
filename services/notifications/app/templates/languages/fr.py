@@ -295,6 +295,31 @@ TEXTS = {
             " donc envoyé quels que soient vos réglages d'e-mails."
         ),
     },
+    "top_up_paused": {
+        "subject": "Recharge automatique en pause pour {company}",
+        "preheader": (
+            "La carte a été refusée. Mettez-la à jour pour réactiver la recharge automatique."
+        ),
+        "heading": "La recharge automatique est en pause",
+        "lines": [
+            (
+                "La carte de la recharge automatique de {company} a été refusée, et réessayer n'y "
+                "changerait rien : la recharge automatique est donc en pause et ne la débitera "
+                "pas."
+            ),
+            (
+                "Mettez la carte à jour sur la page Facturation pour réactiver la recharge "
+                "automatique. D'ici là, rechargez manuellement pour continuer à inviter des "
+                "candidats."
+            ),
+        ],
+        "button": "Mettre à jour la carte",
+        "footer": (
+            "Cet e-mail a été envoyé à {email} parce que vous êtes propriétaire ou admin de"
+            " {company} sur prepza. Il concerne la facturation de votre entreprise ; il est"
+            " donc envoyé quels que soient vos réglages d'e-mails."
+        ),
+    },
     "footer": "Cet e-mail a été envoyé à {email} parce que quelqu'un a invité cette adresse sur "
     "prepza. Si vous ne l'attendiez pas, vous pouvez l'ignorer.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

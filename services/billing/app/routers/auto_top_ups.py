@@ -2,9 +2,9 @@ from fastapi import APIRouter, status
 
 from app.constants.products import OwnerType
 from app.dependencies import Country
-from app.schemas.billing import AutoTopUpIn, AutoTopUpOut
+from app.schemas.billing import AutoTopUpIn, AutoTopUpOut, CheckoutOut
 from app.service_auth import ServiceCaller
-from app.services import auto_top_ups
+from app.services import auto_top_up_declines, auto_top_ups
 from app.services.currencies import decide
 
 # A company's automatic top-up; companies checks that the user is one of its members. Prices
@@ -41,3 +41,10 @@ async def turn_off_company(
 ) -> None:
     """With `buyer_id`, off only when that person's card pays for it."""
     await auto_top_ups.turn_off(OwnerType.COMPANY, company_id, buyer_id)
+
+
+@internal.post("/companies/{company_id}/auto-top-up/card")
+async def update_company_card(company_id: str, buyer_id: str, caller: ServiceCaller) -> CheckoutOut:
+    """The checkout that saves a new card for a running automatic top-up, for the person whose
+    card pays for it; a paused one resumes once Paddle has saved it."""
+    return await auto_top_up_declines.card_update(OwnerType.COMPANY, company_id, buyer_id)

@@ -3,11 +3,7 @@ from datetime import datetime
 from sqlalchemy import and_, case, delete, exists, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 
-from app.constants.products import (
-    AUTO_TOP_UP_COOLDOWN,
-    AUTO_TOP_UP_RETRY_AFTER,
-    AUTO_TOP_UP_UNCREDITED_WAIT,
-)
+from app.constants.products import AUTO_TOP_UP_COOLDOWN, AUTO_TOP_UP_UNCREDITED_WAIT
 from app.models.billing import AutoTopUp, Entry, Wallet
 from app.storage.db import Session
 
@@ -20,9 +16,9 @@ async def get(owner_type: str, owner_id: str) -> AutoTopUp | None:
 async def save(
     owner_type: str, owner_id: str, product: str, threshold: int, buyer_id: str
 ) -> AutoTopUp:
-    """Sets what to buy and when, and allows a declined charge to be tried again at once. A
-    running one keeps its subscription and the card it charges; one still waiting for its
-    checkout waits for this person's, whoever turned it on before."""
+    """Sets what to buy and when. A running one keeps its subscription and the card it charges
+    (a declined card isn't tried again sooner: its card is updated instead); one still waiting
+    for its checkout waits for this person's, whoever turned it on before."""
     values = {"product": product, "threshold": threshold}
     upsert = insert(AutoTopUp).values(
         owner_type=owner_type, owner_id=owner_id, buyer_id=buyer_id, **values
@@ -36,7 +32,6 @@ async def save(
                 set_={
                     **values,
                     "buyer_id": case((waiting, upsert.excluded.buyer_id), else_=AutoTopUp.buyer_id),
-                    "failed_at": None,
                 },
             )
         )
@@ -85,9 +80,9 @@ async def owner_of(subscription_id: str) -> tuple[str, str] | None:
 
 async def claim_charge(owner_type: str, owner_id: str, now: datetime) -> AutoTopUp | None:
     """The running automatic top-up, if the available balance is under its threshold, it
-    hasn't charged within the cooldown and the card hasn't declined within the retry wait;
-    marks it charged now. Atomic, so two requests at once charge once. The last charge's credits
-    must have come first, else it waits AUTO_TOP_UP_UNCREDITED_WAIT."""
+    hasn't charged within the cooldown, it isn't paused and a declined card's retry is due
+    (`retry_at`); marks it charged now. Atomic, so two requests at once charge once. The last
+    charge's credits must have come first, else it waits AUTO_TOP_UP_UNCREDITED_WAIT."""
     credited = exists().where(
         Entry.owner_type == AutoTopUp.owner_type,
         Entry.owner_id == AutoTopUp.owner_id,
@@ -107,10 +102,8 @@ async def claim_charge(owner_type: str, owner_id: str, now: datetime) -> AutoTop
                 and_(AutoTopUp.charged_at < now - AUTO_TOP_UP_COOLDOWN, credited),
                 AutoTopUp.charged_at < now - AUTO_TOP_UP_UNCREDITED_WAIT,
             ),
-            or_(
-                AutoTopUp.failed_at.is_(None),
-                AutoTopUp.failed_at < now - AUTO_TOP_UP_RETRY_AFTER,
-            ),
+            AutoTopUp.paused_at.is_(None),
+            or_(AutoTopUp.retry_at.is_(None), AutoTopUp.retry_at <= now),
             Wallet.owner_type == AutoTopUp.owner_type,
             Wallet.owner_id == AutoTopUp.owner_id,
             Wallet.balance - Wallet.reserved < AutoTopUp.threshold,
@@ -124,17 +117,6 @@ async def claim_charge(owner_type: str, owner_id: str, now: datetime) -> AutoTop
         await session.commit()
 
         return row
-
-
-async def failed(owner_type: str, owner_id: str, now: datetime) -> None:
-    """The card declined the charge: the next try waits (claim_charge)."""
-    async with Session() as session:
-        await session.execute(
-            update(AutoTopUp)
-            .where(AutoTopUp.owner_type == owner_type, AutoTopUp.owner_id == owner_id)
-            .values(failed_at=now)
-        )
-        await session.commit()
 
 
 async def remove(owner_type: str, owner_id: str, buyer_id: str | None = None) -> str | None:

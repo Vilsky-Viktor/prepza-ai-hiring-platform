@@ -6,6 +6,7 @@ from prepza_common.analytics import track
 from prepza_common.notifications import NotificationKind, notification, publish_quietly
 
 from app.config.settings import settings
+from app.constants.declines import PAYMENT_METHOD_CHANGE_ORIGIN
 from app.constants.notifications import TOP_UP_LINK
 from app.constants.products import PADDLE_API_ORIGIN, OwnerType
 from app.services import auto_top_ups, credit_events
@@ -25,6 +26,12 @@ async def handle_completed(data: dict) -> None:
     owner_id = custom.get("owner_id")
     owner_type = custom.get("owner_type")
     subscription_id = data.get("subscription_id")
+
+    # The checkout that saved a new card for automatic top-up: it buys nothing.
+    if subscription_id and data.get("origin") == PAYMENT_METHOD_CHANGE_ORIGIN:
+        await auto_top_ups.card_saved(subscription_id, datetime.fromisoformat(data["created_at"]))
+
+        return
 
     if subscription_id:
         # The checkout that turns automatic top-up on; its $0 price buys nothing.

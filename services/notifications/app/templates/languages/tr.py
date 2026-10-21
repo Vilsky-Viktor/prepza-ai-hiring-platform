@@ -281,6 +281,29 @@ TEXTS = {
             "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
     },
+    "top_up_paused": {
+        "subject": "{company} için otomatik yükleme duraklatıldı",
+        "preheader": "Kart reddedildi. Otomatik yüklemeyi yeniden açmak için kartı güncelleyin.",
+        "heading": "Otomatik yükleme duraklatıldı",
+        "lines": [
+            (
+                "{company} için otomatik yüklemenin kartı reddedildi ve yeniden denemek işe "
+                "yaramayacak; bu yüzden otomatik yükleme duraklatıldı ve bu karttan ödeme "
+                "almayacak."
+            ),
+            (
+                "Otomatik yüklemeyi yeniden açmak için faturalandırma sayfasında kartı "
+                "güncelleyin. O zamana kadar aday davet etmeye devam etmek için elle kredi "
+                "yükleyin."
+            ),
+        ],
+        "button": "Kartı güncelle",
+        "footer": (
+            "Bu e-posta {email} adresine, prepza'da {company} şirketinin sahibi veya "
+            "yöneticisi olduğunuz için gönderildi. Şirketinizin faturalandırmasıyla ilgili "
+            "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
+        ),
+    },
     "footer": "Bu e-posta {email} adresine, biri bu adresi prepza'ya davet ettiği için "
     "gönderildi. Beklemiyorsanız görmezden gelebilirsiniz.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

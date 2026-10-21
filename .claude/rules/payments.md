@@ -106,8 +106,12 @@ CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed a
   merchant-initiated. Before turning it on the buyer sees what it buys, when it charges, that a
   receipt follows each charge and that it can be turned off at any time.
 - One charge at a time per wallet (`claim_charge`, atomic): a cooldown between charges, none while
-  the last charge's credits haven't come, and a declined card waits `AUTO_TOP_UP_RETRY_AFTER`.
-  Never retry in a loop; Paddle's limit is 20 charges an hour per subscription.
+  the last charge's credits haven't come. Never retry in a loop; Paddle's limit is 20 charges an
+  hour per subscription.
+- A declined card is retried within card-network limits (Visa: at most 15 in 30 days):
+  `AUTO_TOP_UP_RETRY_WAITS` (1, 3, 7 days), then paused; a decline in `HARD_DECLINE_CODES`
+  pauses at once. Paused, nothing is charged until Paddle saves a new card (its card-update
+  checkout, by the card's owner only); owners and admins are told by bell and email.
 - Only the person whose card pays can change what it buys; anyone allowed can turn it off, which
   cancels the subscription first; so does deleting the account or company. Every charge
   notifies the owner (the bell; Paddle emails the receipt).
@@ -122,8 +126,9 @@ CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed a
 
 ## Abuse, observability, data
 
-- Creating checkouts, reading failures and invoice links count against
-  `CHECKOUT_CALLS_PER_USER_HOUR` after the role check (`.claude/rules/security.md`, Rate limiting); Paddle screens card testing.
+- Creating checkouts (card updates too), reading failures and invoice links count against
+  `CHECKOUT_CALLS_PER_USER_HOUR` after the role check (`.claude/rules/security.md`, Rate
+  limiting); Paddle screens card testing.
 - Paddle failing (no answer, 5xx) and Paddle refusing billing's key (401, 403: wrong, expired or
   missing permission) log "Paddle unavailable" for the alert; a declined card doesn't. Refused
   signatures alert, and so do "refund it" errors and what reconciliation had to apply or failed

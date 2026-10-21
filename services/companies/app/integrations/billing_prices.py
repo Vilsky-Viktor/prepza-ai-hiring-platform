@@ -94,6 +94,20 @@ async def turn_off_auto_top_up(company_id: UUID, buyer_id: str | None = None) ->
     response.raise_for_status()
 
 
+async def update_auto_top_up_card(company_id: UUID, buyer_id: str) -> str:
+    """The Paddle transaction of the checkout that saves a new card for the running automatic
+    top-up. Billing's refusals reach the user unchanged: someone else's card pays for it (403),
+    or it isn't running (409)."""
+    response = await http.get_client().post(
+        _company(company_id, "auto-top-up/card"),
+        params={"buyer_id": buyer_id},
+        headers=_headers(),
+    )
+    refusals = {status.HTTP_403_FORBIDDEN, status.HTTP_409_CONFLICT}
+
+    return passed_on(response, refusals).json()["transaction_id"]
+
+
 async def company_checkout(
     company_id: UUID, candidates: int, buyer_id: str, country: str | None
 ) -> str:

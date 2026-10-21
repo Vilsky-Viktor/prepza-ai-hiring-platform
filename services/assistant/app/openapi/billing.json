@@ -1595,6 +1595,63 @@
     }
    }
   },
+  "/internal/companies/{company_id}/auto-top-up/card": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Update Company Card",
+    "description": "The checkout that saves a new card for a running automatic top-up, for the person whose\ncard pays for it; a paused one resumes once Paddle has saved it.",
+    "operationId": "update_company_card_internal_companies__company_id__auto_top_up_card_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Company Id"
+      }
+     },
+     {
+      "name": "buyer_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Buyer Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CheckoutOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/companies/{company_id}/payment-failure": {
    "get": {
     "tags": [
@@ -2299,6 +2356,11 @@
      "waiting": {
       "type": "boolean",
       "title": "Waiting"
+     },
+     "paused": {
+      "type": "boolean",
+      "title": "Paused",
+      "default": false
      },
      "product": {
       "anyOf": [

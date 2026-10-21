@@ -296,6 +296,29 @@ TEXTS = {
             "ito anuman ang iyong email settings."
         ),
     },
+    "top_up_paused": {
+        "subject": "Naka-pause ang awtomatikong top-up para sa {company}",
+        "preheader": "Tinanggihan ang card. I-update ito para i-on ulit ang awtomatikong top-up.",
+        "heading": "Naka-pause ang awtomatikong top-up",
+        "lines": [
+            (
+                "Tinanggihan ang card para sa awtomatikong top-up ng {company}, at hindi "
+                "makakatulong ang pagsubok ulit, kaya naka-pause ang awtomatikong top-up at hindi "
+                "nito iti-charge ang card."
+            ),
+            (
+                "I-update ang card sa billing page para i-on ulit ang awtomatikong top-up. "
+                "Hanggang doon, mag-top up nang mano-mano para patuloy na makapag-imbita ng "
+                "aplikante."
+            ),
+        ],
+        "button": "I-update ang card",
+        "footer": (
+            "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng "
+            "{company} sa prepza. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala "
+            "ito anuman ang iyong email settings."
+        ),
+    },
     "footer": "Ipinadala ang email na ito sa {email} dahil may nag-imbita sa address na ito sa "
     "prepza. Kung hindi mo ito inaasahan, puwede mo itong balewalain.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

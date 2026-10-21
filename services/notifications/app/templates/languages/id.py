@@ -279,6 +279,27 @@ TEXTS = {
             "pengaturan emailmu."
         ),
     },
+    "top_up_paused": {
+        "subject": "Isi ulang otomatis untuk {company} dijeda",
+        "preheader": "Kartu ditolak. Perbarui kartu untuk menyalakan lagi isi ulang otomatis.",
+        "heading": "Isi ulang otomatis dijeda",
+        "lines": [
+            (
+                "Kartu untuk isi ulang otomatis {company} ditolak, dan mencoba lagi tidak akan "
+                "membantu, jadi isi ulang otomatis dijeda dan tidak akan menagih kartu itu."
+            ),
+            (
+                "Perbarui kartu di halaman tagihan untuk menyalakan lagi isi ulang otomatis. "
+                "Sementara itu, isi ulang secara manual untuk terus mengundang kandidat."
+            ),
+        ],
+        "button": "Perbarui kartu",
+        "footer": (
+            "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di "
+            "prepza. Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun "
+            "pengaturan emailmu."
+        ),
+    },
     "footer": "Email ini dikirim ke {email} karena seseorang mengundang alamat ini di prepza. "
     "Jika kamu tidak mengharapkannya, abaikan saja.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

@@ -290,6 +290,31 @@ TEXTS = {
             "daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
     },
+    "top_up_paused": {
+        "subject": "Automatisch opwaarderen gepauzeerd voor {company}",
+        "preheader": (
+            "De kaart is geweigerd. Werk hem bij om automatisch opwaarderen weer aan te zetten."
+        ),
+        "heading": "Automatisch opwaarderen is gepauzeerd",
+        "lines": [
+            (
+                "De kaart voor het automatisch opwaarderen van {company} is geweigerd, en opnieuw "
+                "proberen helpt niet. Daarom is automatisch opwaarderen gepauzeerd en wordt de "
+                "kaart niet belast."
+            ),
+            (
+                "Werk de kaart bij op de factureringspagina om automatisch opwaarderen weer aan "
+                "te zetten. Waardeer tot die tijd handmatig op om kandidaten te blijven "
+                "uitnodigen."
+            ),
+        ],
+        "button": "Kaart bijwerken",
+        "footer": (
+            "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van "
+            "{company} op prepza. Hij gaat over de facturering van je bedrijf en wordt "
+            "daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
+        ),
+    },
     "footer": "Deze e-mail is naar {email} gestuurd omdat iemand dit adres op prepza heeft "
     "uitgenodigd. Verwachtte je hem niet, dan kun je hem negeren.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

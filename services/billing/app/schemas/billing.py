@@ -191,6 +191,9 @@ class AutoTopUpOut(BaseModel):
     offered: bool
     on: bool
     waiting: bool
+    # Running, but the card declined for good or too often: nothing is charged until it's
+    # updated.
+    paused: bool = False
     product: str | None
     threshold: int | None
     products: list[str]

@@ -12,6 +12,7 @@ MESSAGES = {
     "This request was started in another browser. Start connecting again from your AI app.": "See päring alustati teises brauseris. Alusta ühendamist uuesti oma tehisintellekti rakendusest.",
     "Too many invites waiting. Remove some, or wait for them to join.": "Liiga palju ootel kutseid. Eemalda mõned või oota, kuni nad liituvad.",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Seda saab muuta ainult see, kelle kaardiga selle eest makstakse. Lülita see välja ja seejärel oma kaardiga uuesti sisse.",
+    "Automatic top-up isn't on": "Automaatne juurdelaadimine pole sisse lülitatud",
     "The request is too large.": "Päring on liiga suur.",
     "Too many requests. Try again later.": "Liiga palju päringuid. Proovi hiljem uuesti.",
     "Sign-in is temporarily unavailable. Please try again shortly.": (

@@ -190,6 +190,17 @@ TEXTS = {
         "button": "充值",
         "footer": "这封邮件发送到 {email}，因为你是 prepza 上 {company} 的所有者或管理员。它与你公司的账单有关，因此无论你的邮件设置如何都会发送。",
     },
+    "top_up_paused": {
+        "subject": "{company} 的自动充值已暂停",
+        "preheader": "银行卡被拒。请更新银行卡以重新开启自动充值。",
+        "heading": "自动充值已暂停",
+        "lines": [
+            "{company} 自动充值所用的银行卡被拒，重试也无济于事，因此自动充值已暂停，不会再从这张卡扣款。",
+            "请在账单页面更新银行卡，以重新开启自动充值。在此之前，请手动充值，以便继续邀请候选人。",
+        ],
+        "button": "更新银行卡",
+        "footer": "这封邮件发送到 {email}，因为你是 prepza 上 {company} 的所有者或管理员。它与你公司的账单有关，因此无论你的邮件设置如何都会发送。",
+    },
     "footer": "这封邮件发送到 {email}，因为有人在 prepza 上邀请了这个地址。如果这封邮件与你无关，可以忽略。",
     # An invite from a company prepza hasn't verified, at the end of the footer.
     "unverified": "prepza 尚未验证 {company}。",

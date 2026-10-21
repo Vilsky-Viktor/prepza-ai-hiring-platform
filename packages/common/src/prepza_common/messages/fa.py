@@ -12,6 +12,7 @@ MESSAGES = {
     "This request was started in another browser. Start connecting again from your AI app.": "این درخواست در مرورگر دیگری شروع شده است. اتصال را دوباره از برنامهٔ هوش مصنوعی‌تان شروع کنید.",
     "Too many invites waiting. Remove some, or wait for them to join.": "دعوت‌های در انتظار زیاد است. برخی را حذف کنید یا صبر کنید تا بپیوندند.",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "فقط کسی که با کارتش پرداخت می‌شود می‌تواند آن را تغییر دهد. آن را خاموش کنید، سپس با کارت خودتان روشن کنید.",
+    "Automatic top-up isn't on": "شارژ خودکار روشن نیست",
     "The request is too large.": "درخواست بیش از حد بزرگ است.",
     "Too many requests. Try again later.": "درخواست\u200cها بیش از حد زیاد است. بعداً دوباره امتحان کنید.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "ورود موقتاً در دسترس نیست. کمی بعد دوباره امتحان کنید.",

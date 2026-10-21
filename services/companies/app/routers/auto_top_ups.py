@@ -7,7 +7,7 @@ from prepza_common.visitor_country import VisitorCountry
 
 from app.integrations import billing_prices as billing
 from app.routers.billing import count_checkout_call
-from app.schemas.auto_top_ups import AutoTopUpIn, AutoTopUpOut
+from app.schemas.auto_top_ups import AutoTopUpIn, AutoTopUpOut, CheckoutOut
 from app.services.access import require_company, require_editor
 from app.storage import audit
 
@@ -51,3 +51,13 @@ async def turn_off(company_id: UUID, user: CurrentUser) -> None:
         company_id,
         target_kind=TargetKind.COMPANY,
     )
+
+
+@router.post("/card")
+async def update_card(company_id: UUID, user: CurrentUser) -> CheckoutOut:
+    """The checkout that saves a new card for the automatic top-up, for the person whose card
+    pays for it; a paused one starts again once the card is saved."""
+    await require_editor(user, company_id)
+    await count_checkout_call(user.uid, company_id)
+
+    return CheckoutOut(transaction_id=await billing.update_auto_top_up_card(company_id, user.uid))

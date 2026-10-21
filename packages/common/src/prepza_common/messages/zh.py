@@ -12,6 +12,7 @@ MESSAGES = {
     "This request was started in another browser. Start connecting again from your AI app.": "此请求是在另一个浏览器中发起的。请从你的 AI 应用重新开始连接。",
     "Too many invites waiting. Remove some, or wait for them to join.": "待接受的邀请太多。请删除一些，或等待对方加入。",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "只有付款卡的持有人才能更改。请先关闭，再用你自己的卡开启。",
+    "Automatic top-up isn't on": "自动充值未开启",
     "The request is too large.": "请求过大。",
     "Too many requests. Try again later.": "请求过多，请稍后再试。",
     "Sign-in is temporarily unavailable. Please try again shortly.": "登录暂时不可用，请稍后再试。",

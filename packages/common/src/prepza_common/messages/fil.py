@@ -12,6 +12,7 @@ MESSAGES = {
     "This request was started in another browser. Start connecting again from your AI app.": "Sinimulan ang request na ito sa ibang browser. Simulan ulit ang pagkonekta mula sa AI app mo.",
     "Too many invites waiting. Remove some, or wait for them to join.": "Masyadong maraming imbitasyong naghihintay. Alisin ang ilan, o hintaying sumali sila.",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Ang taong ang card ang nagbabayad lang ang puwedeng magbago nito. I-off ito, saka i-on gamit ang sarili mong card.",
+    "Automatic top-up isn't on": "Hindi naka-on ang awtomatikong top-up",
     "The request is too large.": "Masyadong malaki ang request.",
     "Too many requests. Try again later.": "Masyadong maraming request. Subukang muli mamaya.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Pansamantalang hindi available ang pag-sign in. Subukang muli maya-maya.",

@@ -282,6 +282,27 @@ TEXTS = {
             " luôn được gửi, bất kể cài đặt email của bạn."
         ),
     },
+    "top_up_paused": {
+        "subject": "Tự động nạp cho {company} đã tạm dừng",
+        "preheader": "Thẻ bị từ chối. Hãy cập nhật thẻ để bật lại tự động nạp.",
+        "heading": "Tự động nạp đã tạm dừng",
+        "lines": [
+            (
+                "Thẻ dùng cho tự động nạp của {company} bị từ chối và thử lại cũng không giúp "
+                "được, nên tự động nạp đã tạm dừng và sẽ không trừ tiền từ thẻ này."
+            ),
+            (
+                "Hãy cập nhật thẻ trên trang thanh toán để bật lại tự động nạp. Trong lúc đó, hãy "
+                "nạp thủ công để tiếp tục mời ứng viên."
+            ),
+        ],
+        "button": "Cập nhật thẻ",
+        "footer": (
+            "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của "
+            "{company} trên prepza. Email liên quan đến việc thanh toán của công ty bạn nên"
+            " luôn được gửi, bất kể cài đặt email của bạn."
+        ),
+    },
     "footer": "Email này được gửi đến {email} vì có người đã mời địa chỉ này trên prepza. Nếu "
     "bạn không mong đợi email này, bạn có thể bỏ qua.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

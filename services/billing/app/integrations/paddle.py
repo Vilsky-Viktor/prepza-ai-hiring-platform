@@ -52,6 +52,35 @@ async def charge(subscription_id: str, price: dict) -> None:
     )
 
 
+async def charge_error(subscription_id: str, since: datetime, timeout: float) -> str | None:
+    """Why the card declined the subscription's latest charge made since `since`: the last
+    failed payment's error code, None when Paddle shows none."""
+    params = {
+        "subscription_id": subscription_id,
+        "created_at[GTE]": since.astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "order_by": "created_at[DESC]",
+        "per_page": 1,
+    }
+    response = await _call("GET", "/transactions", params=params, timeout=timeout)
+    payments = [
+        payment
+        for transaction in response.json()["data"]
+        for payment in transaction.get("payments", [])
+        if payment.get("error_code")
+    ]
+
+    return payments[0]["error_code"] if payments else None
+
+
+async def card_update_transaction(subscription_id: str) -> str:
+    """The transaction whose checkout saves a new card for the subscription."""
+    response = await _call(
+        "GET", f"/subscriptions/{subscription_id}/update-payment-method-transaction"
+    )
+
+    return response.json()["data"]["id"]
+
+
 async def set_currency(subscription_id: str, currency: str) -> None:
     """Switches the subscription (the $0 one that keeps the card) to bill in `currency`, billing
     nothing for the change."""

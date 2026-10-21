@@ -12,6 +12,7 @@ MESSAGES = {
     "This request was started in another browser. Start connecting again from your AI app.": "Dit verzoek is in een andere browser gestart. Begin opnieuw met verbinden vanuit je AI-app.",
     "Too many invites waiting. Remove some, or wait for them to join.": "Te veel openstaande uitnodigingen. Verwijder er een paar of wacht tot ze lid worden.",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Alleen degene met wiens kaart het betaald wordt, kan het wijzigen. Zet het uit en daarna weer aan met je eigen kaart.",
+    "Automatic top-up isn't on": "Automatisch opwaarderen staat niet aan",
     "The request is too large.": "Het verzoek is te groot.",
     "Too many requests. Try again later.": "Te veel verzoeken. Probeer het later opnieuw.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Inloggen is tijdelijk niet beschikbaar. Probeer het zo meteen opnieuw.",

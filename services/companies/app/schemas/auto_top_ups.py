@@ -20,6 +20,8 @@ class AutoTopUpOut(BaseModel):
     offered: bool
     on: bool
     waiting: bool
+    # Running, but nothing is charged until the card is updated.
+    paused: bool = False
     product: str | None
     threshold: int | None
     products: list[str]

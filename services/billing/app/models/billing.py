@@ -68,6 +68,12 @@ class AutoTopUp(Base):
     currency: Mapped[str | None] = mapped_column(String(3))
     charged_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     failed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # Declines in a row since the last charge that went through; the next try waits until
+    # `retry_at`. Paused (`paused_at`) after a decline that can't pass later, or too many: no
+    # charge until the card is updated.
+    declines: Mapped[int] = mapped_column(default=0, server_default="0")
+    retry_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    paused_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
 
 class CurrencyChoice(Base):

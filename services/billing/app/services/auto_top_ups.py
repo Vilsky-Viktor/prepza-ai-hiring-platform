@@ -5,17 +5,14 @@ from datetime import UTC, datetime
 import httpx
 from fastapi import HTTPException, status
 from prepza_common.analytics import track
-from prepza_common.notifications import NotificationKind, notification, publish_quietly
 
 from app.config.settings import settings
 from app.constants.currencies import DEFAULT_CURRENCY, Currency
-from app.constants.notifications import TOP_UP_LINK
 from app.constants.products import (
     AUTO_TOP_UP_FLAG,
     AUTO_TOP_UP_THRESHOLDS,
     AUTO_TOP_UP_WAIT_SECONDS,
     NOT_YOUR_AUTO_TOP_UP,
-    PADDLE_REFUSES_BILLING,
     SUBSCRIPTION_ENDED_STATUS,
     TOP_UP_UNAVAILABLE,
     TOP_UPS,
@@ -24,9 +21,10 @@ from app.helpers.credits import candidate_price, top_up_price
 from app.integrations import paddle
 from app.models.billing import AutoTopUp
 from app.schemas.billing import AutoTopUpIn, AutoTopUpOut, CheckoutOut
+from app.services.auto_top_up_declines import declined, handle_decline
 from app.services.catalog import candidates_price
 from app.services.currencies import decide
-from app.storage import auto_top_ups
+from app.storage import auto_top_up_charges, auto_top_ups
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +53,7 @@ async def out(owner_type: str, owner_id: str, currency: Currency) -> AutoTopUpOu
         offered=offered(),
         on=started,
         waiting=row is not None and not started,
+        paused=started and row.paused_at is not None,
         product=row.product if row else None,
         threshold=row.threshold if row else None,
         products=sold,
@@ -188,6 +187,15 @@ async def ended(subscription_id: str) -> None:
     await auto_top_ups.remove_subscription(subscription_id)
 
 
+async def card_saved(subscription_id: str, saved_at: datetime) -> None:
+    """Paddle saved a new card for the subscription at `saved_at`: a pause from before then ends,
+    and a balance already under the threshold is topped up with the new card at once."""
+    owner = await auto_top_up_charges.resume(subscription_id, saved_at)
+
+    if owner:
+        await check_briefly(*owner)
+
+
 async def check_briefly(owner_type: str, owner_id: str) -> None:
     """check(), waited for at most AUTO_TOP_UP_WAIT_SECONDS, so the request that used the credits
     isn't held long and nothing runs after its answer. Cut off, the charge counts as one whose
@@ -219,23 +227,15 @@ async def charge(row: AutoTopUp, owner_id: str) -> None:
     await paddle.charge(row.subscription_id, top_up_item(row.product, currency))
 
 
-def declined(error: Exception) -> bool:
-    """Whether Paddle refused the charge itself (a declined card), not billing: its key or rate
-    limit failing is billing's problem, never told to the owner as their card's."""
-    return (
-        isinstance(error, httpx.HTTPStatusError)
-        and error.response.is_client_error
-        and error.response.status_code not in PADDLE_REFUSES_BILLING
-    )
-
-
 async def check(owner_type: str, owner_id: str) -> None:
     """After credits are used: if the balance is now under the threshold, buys the chosen
-    top-up with the saved card. Never fails the request that used the credits; a charge Paddle
-    refuses (a declined card) is told to the owner and tried again only after
-    AUTO_TOP_UP_RETRY_AFTER. After a timeout or Paddle's own error the charge may have gone
-    through: its transaction.completed web hook adds the credits. Until a charge's credits come,
-    none follows it, for at most AUTO_TOP_UP_UNCREDITED_WAIT (claim_charge)."""
+    top-up with the saved card. Never fails the request that used the credits. A charge Paddle
+    refuses (a declined card) is told to the company and tried again later, a few times at
+    most (AUTO_TOP_UP_RETRY_WAITS), or never, once the decline can't pass later: then it pauses
+    until the card is updated (auto_top_up_declines). After a timeout or Paddle's own error the
+    charge may have gone through: its transaction.completed web hook adds the credits. Until a
+    charge's credits come, none follows it, for at most AUTO_TOP_UP_UNCREDITED_WAIT
+    (claim_charge)."""
     row = None
     now = datetime.now(UTC)
 
@@ -249,8 +249,9 @@ async def check(owner_type: str, owner_id: str) -> None:
     except Exception as error:
         logger.exception("Automatic top-up failed for %s %s", owner_type, owner_id)
 
-        if declined(error):
-            await auto_top_ups.failed(owner_type, owner_id, now)
-            await publish_quietly(
-                notification(owner_type, owner_id, NotificationKind.AUTO_TOP_UP_FAILED, TOP_UP_LINK)
-            )
+        if row is not None and declined(error):
+            await handle_decline(row, owner_type, owner_id, now)
+
+        return
+
+    await auto_top_up_charges.charged(owner_type, owner_id)

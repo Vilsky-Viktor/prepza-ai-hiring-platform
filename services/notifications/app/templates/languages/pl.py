@@ -282,6 +282,31 @@ TEXTS = {
             " wysyłana niezależnie od Twoich ustawień e-maili."
         ),
     },
+    "top_up_paused": {
+        "subject": "Automatyczne doładowanie dla {company} wstrzymane",
+        "preheader": (
+            "Karta została odrzucona. Zaktualizuj ją, aby ponownie włączyć automatyczne "
+            "doładowanie."
+        ),
+        "heading": "Automatyczne doładowanie jest wstrzymane",
+        "lines": [
+            (
+                "Karta do automatycznego doładowania dla {company} została odrzucona, a ponowne "
+                "próby nie pomogą, więc automatyczne doładowanie jest wstrzymane i nie obciąży "
+                "tej karty."
+            ),
+            (
+                "Zaktualizuj kartę na stronie rozliczeń, aby ponownie włączyć automatyczne "
+                "doładowanie. Do tego czasu doładowuj ręcznie, aby dalej zapraszać kandydatów."
+            ),
+        ],
+        "button": "Zaktualizuj kartę",
+        "footer": (
+            "Ta wiadomość została wysłana na {email}, ponieważ masz rolę właściciela lub "
+            "administratora w {company} w prepza. Dotyczy rozliczeń Twojej firmy, więc jest"
+            " wysyłana niezależnie od Twoich ustawień e-maili."
+        ),
+    },
     "footer": "Ta wiadomość została wysłana na {email}, ponieważ ktoś zaprosił ten adres w "
     "prepza. Jeśli się jej nie spodziewasz, możesz ją zignorować.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

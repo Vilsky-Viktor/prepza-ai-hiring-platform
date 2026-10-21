@@ -89,9 +89,6 @@ AUTO_TOP_UP_COOLDOWN = timedelta(minutes=10)
 # charge whose answer was lost) holds off the next one this long, so the card isn't charged again
 # and again meanwhile.
 AUTO_TOP_UP_UNCREDITED_WAIT = timedelta(days=1)
-# After the card declines a charge, the next try (and its notice to the owner) waits this long,
-# unless the automatic top-up is saved again first (say, after updating the card).
-AUTO_TOP_UP_RETRY_AFTER = timedelta(days=1)
 # Using credits waits this long at most for an automatic top-up's charge: Cloud Run slows the CPU
 # once the answer is sent, so it can't run after it. A charge cut off is treated as one whose
 # answer was lost (AUTO_TOP_UP_UNCREDITED_WAIT).

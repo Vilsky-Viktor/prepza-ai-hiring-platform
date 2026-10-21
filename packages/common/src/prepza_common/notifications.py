@@ -18,9 +18,11 @@ class NotificationKind(StrEnum):
     QUESTION_FIXED = "question_fixed"
     # Someone who came through the owner's referral link topped up.
     REFERRAL_REWARDED = "referral_rewarded"
-    # An automatic top-up charged the card, or couldn't.
+    # An automatic top-up charged the card, or couldn't; paused, as the card won't pay until
+    # it's updated.
     AUTO_TOP_UP_CHARGED = "auto_top_up_charged"
     AUTO_TOP_UP_FAILED = "auto_top_up_failed"
+    AUTO_TOP_UP_PAUSED = "auto_top_up_paused"
     # Companies: a candidate finished, an invite bounced, an interview is ready or was cancelled.
     CANDIDATE_FINISHED = "candidate_finished"
     INVITE_UNDELIVERED = "invite_undelivered"

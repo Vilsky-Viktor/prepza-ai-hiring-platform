@@ -217,6 +217,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/companies/{company_id}/auto-top-up/card": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Update Card
+     * @description The checkout that saves a new card for the automatic top-up, for the person whose card
+     *     pays for it; a paused one starts again once the card is saved.
+     */
+    post: operations["update_card_companies__company_id__auto_top_up_card_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/companies/{company_id}/billing/history": {
     parameters: {
       query?: never
@@ -2488,6 +2509,11 @@ export interface components {
       on: boolean
       /** Waiting */
       waiting: boolean
+      /**
+       * Paused
+       * @default false
+       */
+      paused: boolean
       /** Product */
       product: string | null
       /** Threshold */
@@ -4946,6 +4972,37 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  update_card_companies__company_id__auto_top_up_card_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CheckoutOut"]
+        }
       }
       /** @description Validation Error */
       422: {

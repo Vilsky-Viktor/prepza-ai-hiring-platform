@@ -279,6 +279,27 @@ TEXTS = {
             " por isso é enviado independentemente das suas configurações de e-mail."
         ),
     },
+    "top_up_paused": {
+        "subject": "Recarga automática pausada para {company}",
+        "preheader": "O cartão foi recusado. Atualize-o para reativar a recarga automática.",
+        "heading": "A recarga automática está pausada",
+        "lines": [
+            (
+                "O cartão da recarga automática de {company} foi recusado, e tentar de novo não "
+                "vai adiantar, então a recarga automática está pausada e não vai cobrá-lo."
+            ),
+            (
+                "Atualize o cartão na página de faturamento para reativar a recarga automática. "
+                "Até lá, recarregue manualmente para continuar convidando candidatos."
+            ),
+        ],
+        "button": "Atualizar o cartão",
+        "footer": (
+            "Este e-mail foi enviado para {email} porque você é proprietário ou "
+            "administrador de {company} na prepza. Ele trata do faturamento da sua empresa,"
+            " por isso é enviado independentemente das suas configurações de e-mail."
+        ),
+    },
     "footer": "Este e-mail foi enviado para {email} porque alguém convidou este endereço no "
     "prepza. Se você não esperava por ele, pode ignorá-lo.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

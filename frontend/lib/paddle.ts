@@ -9,9 +9,9 @@ import type { Catalog } from "@/types/billing"
 
 let paddle: Promise<Paddle | undefined> | null = null
 
-// What a checkout pays for: a top-up, or the card that turns automatic top-up on. The success
-// dialog (components/billing/paid-notice.tsx) says which.
-export type PaidKind = "top_up" | "auto_top_up"
+// What a checkout pays for: a top-up, the card that turns automatic top-up on, or a new card
+// for it. The success dialog (components/billing/paid-notice.tsx) says which.
+export type PaidKind = "top_up" | "auto_top_up" | "card"
 
 export type CheckoutOptions = {
   catalog: Catalog

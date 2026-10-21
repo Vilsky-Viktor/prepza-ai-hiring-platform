@@ -881,6 +881,55 @@
     }
    }
   },
+  "/companies/{company_id}/auto-top-up/card": {
+   "post": {
+    "tags": [
+     "companies"
+    ],
+    "summary": "Update Card",
+    "description": "The checkout that saves a new card for the automatic top-up, for the person whose card\npays for it; a paused one starts again once the card is saved.",
+    "operationId": "update_card_companies__company_id__auto_top_up_card_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CheckoutOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/companies/{company_id}/billing/history": {
    "get": {
     "tags": [
@@ -7898,6 +7947,11 @@
      "waiting": {
       "type": "boolean",
       "title": "Waiting"
+     },
+     "paused": {
+      "type": "boolean",
+      "title": "Paused",
+      "default": false
      },
      "product": {
       "anyOf": [

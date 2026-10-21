@@ -7,7 +7,12 @@ from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
 
 from app.constants.email import AUTOMATED_HEADERS
 from app.constants.member_emails import MemberEmail
-from app.helpers.member_emails import digest_email, reminder_email, top_up_failed_email
+from app.helpers.member_emails import (
+    digest_email,
+    reminder_email,
+    top_up_failed_email,
+    top_up_paused_email,
+)
 from app.helpers.member_selection import (
     awaiting_review,
     digest_sections,
@@ -130,6 +135,27 @@ def test_a_failed_top_up_is_a_service_email_without_unsubscribe():
     assert "whatever your email settings" in email.text
     assert "Acme &lt;Co&gt;" in email.html
     assert f"{SITE}/top-up" in email.text
+
+
+BILLING = f"{SITE}/companies/c1/billing"
+
+
+@pytest.mark.parametrize(
+    "build",
+    [
+        lambda language: top_up_paused_email(recipient(language), "Acme <Co>", BILLING),
+    ],
+)
+@pytest.mark.parametrize("language", ["en", "de", "ar"])
+def test_a_paused_top_up_is_a_service_email_opening_the_billing_page(build, language):
+    email = build(language)
+
+    assert email.headers == AUTOMATED_HEADERS
+    assert "unsubscribe" not in email.html.lower()
+    assert BILLING in email.text
+    assert "Acme <Co>" in email.subject
+    assert "Acme &lt;Co&gt;" in email.html
+    assert f'<html lang="{language}"' in email.html
 
 
 def test_member_emails_come_in_the_users_language():

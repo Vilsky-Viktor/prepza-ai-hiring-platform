@@ -17,7 +17,12 @@ from app.helpers.emails import (
     render,
     report_email,
 )
-from app.helpers.member_emails import digest_email, reminder_email, top_up_failed_email
+from app.helpers.member_emails import (
+    digest_email,
+    reminder_email,
+    top_up_failed_email,
+    top_up_paused_email,
+)
 from app.integrations import resend, smtp
 from app.templates.emails import EMAILS
 
@@ -59,6 +64,7 @@ EMAILS_SENT = {
     "report": (lambda: report_email(REPORT, SITE), False),
     "contact": (lambda: contact_email(CONTACT, "hello@prepza.ai"), False),
     "top-up failed": (lambda: top_up_failed_email(RECIPIENT, "Acme", SITE), False),
+    "top-up paused": (lambda: top_up_paused_email(RECIPIENT, "Acme", f"{SITE}/b"), False),
     "digest": (
         lambda: digest_email(
             RECIPIENT, [("Acme", [("candidate_finished", ROW[1], ROW[0])])], SITE, SECRET

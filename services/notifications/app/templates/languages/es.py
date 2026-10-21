@@ -283,6 +283,31 @@ TEXTS = {
             "envía sin importar tu configuración de correo."
         ),
     },
+    "top_up_paused": {
+        "subject": "Recarga automática en pausa para {company}",
+        "preheader": (
+            "La tarjeta fue rechazada. Actualízala para volver a activar la recarga automática."
+        ),
+        "heading": "La recarga automática está en pausa",
+        "lines": [
+            (
+                "La tarjeta de la recarga automática de {company} fue rechazada y volver a "
+                "intentarlo no servirá, así que la recarga automática está en pausa y no hará "
+                "cargos en ella."
+            ),
+            (
+                "Actualiza la tarjeta en la página de facturación para volver a activar la "
+                "recarga automática. Mientras tanto, recarga manualmente para seguir invitando a "
+                "candidatos."
+            ),
+        ],
+        "button": "Actualizar la tarjeta",
+        "footer": (
+            "Este correo se envió a {email} porque eres propietario o administrador de "
+            "{company} en prepza. Trata sobre la facturación de tu empresa, así que se "
+            "envía sin importar tu configuración de correo."
+        ),
+    },
     "footer": "Este correo se envió a {email} porque alguien invitó a esta dirección en prepza. "
     "Si no lo esperabas, puedes ignorarlo.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

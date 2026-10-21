@@ -249,6 +249,27 @@ TEXTS = {
             " settings."
         ),
     },
+    "top_up_paused": {
+        "subject": "Automatic top-up paused for {company}",
+        "preheader": "The card was declined. Update it to turn automatic top-up back on.",
+        "heading": "Automatic top-up is paused",
+        "lines": [
+            (
+                "The card for {company}'s automatic top-up was declined, and trying it again "
+                "won't help, so automatic top-up is paused and won't charge it."
+            ),
+            (
+                "Update the card on the billing page to turn automatic top-up back on. Until "
+                "then, top up by hand to keep inviting candidates."
+            ),
+        ],
+        "button": "Update the card",
+        "footer": (
+            "This email was sent to {email} because you're an owner or admin of {company} "
+            "on prepza. It's about your company's billing, so it's sent whatever your email"
+            " settings."
+        ),
+    },
     "footer": "This email was sent to {email} because someone invited this address on prepza. If "
     "you weren't expecting it, you can ignore it.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

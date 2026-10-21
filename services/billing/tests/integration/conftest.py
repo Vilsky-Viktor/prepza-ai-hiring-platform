@@ -72,7 +72,8 @@ def run():
 def paddle_calls(monkeypatch):
     """Paddle's API, faked: what was charged and cancelled. A subscription whose id starts
     with sub_ended has ended in Paddle (cancelling it again is refused); one starting with
-    sub_declined has a declined card; one starting with sub_timeout times out; Paddle fails to
+    sub_declined has a declined card (sub_declined_hard, for good); one starting with
+    sub_timeout times out; Paddle fails to
     cancel one starting with sub_down."""
     import httpx
 
@@ -103,6 +104,11 @@ def paddle_calls(monkeypatch):
         if subscription_id.startswith("sub_timeout"):
             raise httpx.ReadTimeout("timed out")
 
+    async def charge_error(subscription_id, since, timeout):
+        """Why the card declined: one starting with sub_declined_hard was refused for fraud, a
+        decline that can't pass later; the others give no reason."""
+        return "fraud" if subscription_id.startswith("sub_declined_hard") else None
+
     async def cancel(subscription_id):
         calls.append(("cancel", subscription_id))
 
@@ -124,6 +130,7 @@ def paddle_calls(monkeypatch):
         return f"txn_{items[0]['price_id']}_{currency}_{custom_data['buyer_id']}"
 
     monkeypatch.setattr(paddle, "charge", charge)
+    monkeypatch.setattr(paddle, "charge_error", charge_error)
     monkeypatch.setattr(paddle, "cancel", cancel)
     monkeypatch.setattr(paddle, "subscription_status", subscription_status)
     monkeypatch.setattr(paddle, "set_currency", set_currency)

@@ -24,6 +24,7 @@ def running(monkeypatch):
         threshold=AUTO_TOP_UP_THRESHOLDS[0],
         failed_at=None,
         currency="USD",
+        paused_at=None,
     )
 
     async def get(owner_type, owner_id):

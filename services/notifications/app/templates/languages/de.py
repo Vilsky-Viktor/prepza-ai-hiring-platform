@@ -293,6 +293,32 @@ TEXTS = {
             " wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
     },
+    "top_up_paused": {
+        "subject": "Automatisches Aufladen für {company} pausiert",
+        "preheader": (
+            "Die Karte wurde abgelehnt. Aktualisiere sie, um das automatische Aufladen wieder "
+            "einzuschalten."
+        ),
+        "heading": "Automatisches Aufladen ist pausiert",
+        "lines": [
+            (
+                "Die Karte für das automatische Aufladen von {company} wurde abgelehnt, und ein "
+                "erneuter Versuch hilft nicht. Deshalb ist das automatische Aufladen pausiert und "
+                "belastet die Karte nicht."
+            ),
+            (
+                "Aktualisiere die Karte auf der Abrechnungsseite, um das automatische Aufladen "
+                "wieder einzuschalten. Lade bis dahin von Hand auf, um weiter Kandidaten "
+                "einzuladen."
+            ),
+        ],
+        "button": "Karte aktualisieren",
+        "footer": (
+            "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin von "
+            "{company} auf prepza bist. Sie betrifft die Abrechnung deines Unternehmens und"
+            " wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
+        ),
+    },
     "footer": "Diese E-Mail wurde an {email} gesendet, weil jemand diese Adresse auf prepza "
     "eingeladen hat. Wenn du sie nicht erwartet hast, kannst du sie ignorieren.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

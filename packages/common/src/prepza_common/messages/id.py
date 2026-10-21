@@ -12,6 +12,7 @@ MESSAGES = {
     "This request was started in another browser. Start connecting again from your AI app.": "Permintaan ini dimulai di browser lain. Mulai hubungkan lagi dari aplikasi AI-mu.",
     "Too many invites waiting. Remove some, or wait for them to join.": "Terlalu banyak undangan yang menunggu. Hapus beberapa, atau tunggu mereka bergabung.",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Hanya orang yang kartunya membayar yang dapat mengubahnya. Matikan, lalu aktifkan lagi dengan kartu Anda sendiri.",
+    "Automatic top-up isn't on": "Isi ulang otomatis tidak menyala",
     "The request is too large.": "Permintaan terlalu besar.",
     "Too many requests. Try again later.": "Terlalu banyak permintaan. Coba lagi nanti.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Masuk sedang tidak tersedia untuk sementara. Coba lagi sebentar lagi.",

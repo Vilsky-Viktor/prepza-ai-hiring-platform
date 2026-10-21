@@ -6,9 +6,9 @@ import pytest
 from prepza_common.notifications import notification
 
 from app.integrations import paddle
-from app.services import auto_top_ups, referrals, topups, webhooks
+from app.services import auto_top_up_declines, auto_top_ups, referrals, topups, webhooks
+from app.storage import auto_top_up_charges, purchases
 from app.storage import auto_top_ups as auto_top_ups_storage
-from app.storage import purchases
 from app.storage import referrals as referrals_storage
 from tests.unit.paddle_events import completed
 
@@ -20,7 +20,7 @@ def notified(monkeypatch):
     async def fake_publish(event):
         sent.append(event)
 
-    for module in (referrals, topups, auto_top_ups):
+    for module in (referrals, topups, auto_top_up_declines):
         monkeypatch.setattr(module, "publish_quietly", fake_publish)
 
     return sent
@@ -86,19 +86,35 @@ def charge_failing_with(monkeypatch, error):
     """Paddle's charge fails with `error`; the owners marked failed."""
 
     async def claimed(owner_type, owner_id, now):
-        return SimpleNamespace(subscription_id="sub_01", product="topup_50", currency="USD")
+        return SimpleNamespace(
+            subscription_id="sub_01",
+            product="topup_50",
+            currency="USD",
+            price=None,
+            price_currency=None,
+        )
 
     async def charge(subscription_id, price_id):
         raise error
 
+    async def no_reason(subscription_id, since, timeout):
+        return None
+
     marked = []
 
-    async def failed(owner_type, owner_id, now):
+    async def declined(owner_type, owner_id, now):
         marked.append(owner_id)
 
+        return False
+
+    async def usd(country, company_id=None):
+        return "USD"
+
     monkeypatch.setattr(auto_top_ups_storage, "claim_charge", claimed)
-    monkeypatch.setattr(auto_top_ups_storage, "failed", failed)
+    monkeypatch.setattr(auto_top_up_charges, "declined", declined)
     monkeypatch.setattr(paddle, "charge", charge)
+    monkeypatch.setattr(paddle, "charge_error", no_reason)
+    monkeypatch.setattr(auto_top_ups, "decide", usd)
 
     return marked
 

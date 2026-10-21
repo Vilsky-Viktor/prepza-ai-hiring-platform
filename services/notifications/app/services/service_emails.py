@@ -1,19 +1,34 @@
 from prepza_common.notifications import NotificationKind, Recipient
 
 from app.config.settings import settings
-from app.helpers.member_emails import top_up_failed_email
+from app.helpers.member_emails import top_up_failed_email, top_up_paused_email
 from app.integrations import companies, library
 from app.services import delivery
 
+# The bell's notifications about a company's billing that are emailed to its owners and admins
+# too.
+BILLING_KINDS = {
+    NotificationKind.AUTO_TOP_UP_FAILED,
+    NotificationKind.AUTO_TOP_UP_PAUSED,
+}
 
-async def top_up_failed(data: dict, key: str) -> None:
-    """A failed automatic top-up, emailed at once to the company's owners and admins, whatever
-    their email settings: it's about the company's billing. Keyed by the notification and the
-    user, so a retried event sends nobody a second email."""
-    if (
-        data["kind"] != NotificationKind.AUTO_TOP_UP_FAILED
-        or data["recipient"] != Recipient.COMPANY
-    ):
+
+def billing_email(data: dict, recipient: dict, company: str):
+    """The email for one of BILLING_KINDS, to one owner or admin."""
+    link = settings.site_url.rstrip("/") + data["link"]
+
+    if data["kind"] == NotificationKind.AUTO_TOP_UP_PAUSED:
+        return top_up_paused_email(recipient, company, link)
+
+    return top_up_failed_email(recipient, company, settings.site_url)
+
+
+async def billing_emails(data: dict, key: str) -> None:
+    """An automatic top-up that failed or paused, emailed at once to the
+    company's owners and admins, whatever their email settings: it's about the company's
+    billing. Keyed by the notification and the user, so a retried event sends nobody a second
+    email."""
+    if data["kind"] not in BILLING_KINDS or data["recipient"] != Recipient.COMPANY:
         return
 
     found = await companies.members([data["recipient_id"]])
@@ -25,5 +40,5 @@ async def top_up_failed(data: dict, key: str) -> None:
     editors = [member["user_id"] for member in company["members"] if member["editor"]]
 
     for recipient in await library.recipients(editors):
-        email = top_up_failed_email(recipient, company["name"], settings.site_url)
+        email = billing_email(data, recipient, company["name"])
         await delivery.send(email, f"events/{key}/{recipient['user_id']}")

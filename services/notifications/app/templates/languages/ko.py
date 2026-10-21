@@ -198,6 +198,20 @@ TEXTS = {
             "이메일 설정과 관계없이 발송됩니다."
         ),
     },
+    "top_up_paused": {
+        "subject": "{company}의 자동 충전이 일시 중지되었습니다",
+        "preheader": "카드가 거절되었습니다. 자동 충전을 다시 켜려면 카드를 업데이트하세요.",
+        "heading": "자동 충전 일시 중지",
+        "lines": [
+            "{company}의 자동 충전 카드가 거절되었고 다시 시도해도 해결되지 않아, 자동 충전을 일시 중지했으며 이 카드로 결제하지 않습니다.",
+            "자동 충전을 다시 켜려면 결제 페이지에서 카드를 업데이트하세요. 그때까지 지원자를 계속 초대하려면 직접 충전하세요.",
+        ],
+        "button": "카드 업데이트",
+        "footer": (
+            "prepza에서 {company}의 소유자 또는 관리자이므로 {email}(으)로 이 이메일이 발송되었습니다. 회사 결제에 관한 내용이므로 "
+            "이메일 설정과 관계없이 발송됩니다."
+        ),
+    },
     "footer": "prepza에서 누군가 이 주소를 초대하여 {email}(으)로 이 이메일이 발송되었습니다. 예상하지 못한 이메일이라면 무시하셔도 됩니다.",
     # An invite from a company prepza hasn't verified, at the end of the footer.
     "unverified": "prepza는 {company}을(를) 인증하지 않았습니다.",

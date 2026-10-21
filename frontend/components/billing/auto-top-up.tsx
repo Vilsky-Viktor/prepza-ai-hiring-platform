@@ -1,12 +1,12 @@
 "use client"
 
-import { RepeatIcon, SquarePenIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { useAuth } from "@/components/auth-provider"
+import { AutoTopUpStatus } from "@/components/billing/auto-top-up-status"
 import { Dotted } from "@/components/dot"
 import { PillSelect } from "@/components/pill-select"
 import { Button } from "@/components/ui/button"
@@ -17,9 +17,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
-import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { BILLING_REFRESHED } from "@/constants/billing"
+import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { formatPrice } from "@/lib/format"
 import { openCheckout } from "@/lib/paddle"
 import type { AutoTopUp, Catalog } from "@/types/billing"
@@ -49,10 +49,17 @@ export function AutoTopUpSetting({
   const [threshold, setThreshold] = useState("")
   const [saving, setSaving] = useState(false)
 
+  // Read again as the page refreshes after a payment: a card update resumes it once Paddle's
+  // web hook has come.
   useEffect(() => {
-    apiFetch<AutoTopUp>(path)
-      .then(setSetting)
-      .catch(() => {})
+    const load = () =>
+      apiFetch<AutoTopUp>(path)
+        .then(setSetting)
+        .catch(() => {})
+    load()
+    window.addEventListener(BILLING_REFRESHED, load)
+
+    return () => window.removeEventListener(BILLING_REFRESHED, load)
   }, [path])
 
   if (!setting?.offered || !user) {
@@ -71,6 +78,14 @@ export function AutoTopUpSetting({
     catalog.products.map((item) => [item.key, item.candidates])
   )
   const credits = (count: number) => count.toLocaleString(locale)
+  const checkoutFor = (transactionId: string) => ({
+    catalog,
+    checkout: { transactionId },
+    email: user!.email,
+    theme: resolvedTheme === "dark" ? ("dark" as const) : ("light" as const),
+    locale,
+    companyId,
+  })
 
   function handleOpen(next: boolean) {
     if (saving || !setting) {
@@ -103,16 +118,35 @@ export function AutoTopUpSetting({
       // It opens over this page; a completed payment shows the success dialog here, a failed
       // one the failure dialog.
       await openCheckout({
-        catalog,
-        checkout: { transactionId: saved.checkout.transaction_id },
-        email: user!.email,
-        theme: resolvedTheme === "dark" ? "dark" : "light",
+        ...checkoutFor(saved.checkout.transaction_id),
         paid: "auto_top_up",
-        locale,
-        companyId,
       })
     } catch (error) {
-      toast.error(apiErrorMessage(error, t("failed")))
+      // Billing's refusal says why: someone else's card pays for it (403).
+      toast.error(
+        serviceRefusal(error, [403]) ?? apiErrorMessage(error, t("failed"))
+      )
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  // Paddle's checkout that saves a new card for it; a paused one starts again once saved.
+  async function updateCard() {
+    setSaving(true)
+
+    try {
+      const { transaction_id } = await apiFetch<{ transaction_id: string }>(
+        `${path}/card`,
+        { method: "POST" }
+      )
+      await openCheckout({ ...checkoutFor(transaction_id), paid: "card" })
+    } catch (error) {
+      // Billing's refusal says why: someone else's card pays for it (403), or it isn't on (409).
+      toast.error(
+        serviceRefusal(error, [403, 409]) ??
+          apiErrorMessage(error, t("updateCardFailed"))
+      )
     } finally {
       setSaving(false)
     }
@@ -133,16 +167,6 @@ export function AutoTopUpSetting({
     }
   }
 
-  const summary =
-    setting.on && setting.product && setting.threshold
-      ? t("on", {
-          amount: titles[setting.product] ?? setting.product,
-          threshold: credits(setting.threshold),
-        })
-      : setting.waiting
-        ? t("waiting")
-        : null
-
   const set = setting.on || setting.waiting
   // Once on, saving needs a change; turning it on doesn't.
   const changed =
@@ -152,77 +176,13 @@ export function AutoTopUpSetting({
 
   return (
     <Dialog open={open} onOpenChange={handleOpen}>
-      {/* Off: a button that says what it does. On (or waiting for the card): the setting, with
-          the app's edit icon to change it. */}
-      {card ? (
-        <div
-          className="flex items-center gap-4 rounded-2xl border p-5 max-sm:flex-col max-sm:items-stretch"
-          data-testid="auto-top-up"
-        >
-          <div className="min-w-0 flex-1 space-y-1">
-            <p className="font-heading text-base font-medium lowercase">
-              {t("title")}
-              <span className="text-primary">.</span>
-            </p>
-            <p
-              className="text-sm text-muted-foreground"
-              data-testid={set ? "auto-top-up-on" : undefined}
-            >
-              {setting.on && setting.product && setting.threshold
-                ? t("cardOn", {
-                    amount: titles[setting.product] ?? setting.product,
-                    threshold: credits(setting.threshold),
-                  })
-                : setting.waiting
-                  ? t("cardWaiting")
-                  : t("cardOff")}
-            </p>
-          </div>
-          <DialogTrigger
-            data-testid={set ? undefined : "set-up-auto-top-up"}
-            render={
-              <Button type="button" variant="outline" className="h-10 px-5" />
-            }
-          >
-            {set ? t("changeShort") : t("setUpShort")}
-          </DialogTrigger>
-        </div>
-      ) : summary ? (
-        <p
-          className="text-sm text-muted-foreground"
-          data-testid="auto-top-up-on"
-        >
-          {summary}
-          <DialogTrigger
-            render={
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon-xs"
-                className="-my-1 ms-1 align-middle text-muted-foreground hover:text-foreground"
-                aria-label={t("change")}
-              />
-            }
-          >
-            <SquarePenIcon className="size-3.5" />
-          </DialogTrigger>
-        </p>
-      ) : (
-        <DialogTrigger
-          data-testid="set-up-auto-top-up"
-          render={
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="h-8 px-3 text-sm"
-            />
-          }
-        >
-          <RepeatIcon data-icon="inline-start" />
-          {t("setUp")}
-        </DialogTrigger>
-      )}
+      <AutoTopUpStatus
+        setting={setting}
+        titles={titles}
+        card={card}
+        updating={saving}
+        onUpdateCard={updateCard}
+      />
       <DialogContent showCloseButton={false} className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle>{t("title")}</DialogTitle>

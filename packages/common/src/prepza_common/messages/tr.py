@@ -12,6 +12,7 @@ MESSAGES = {
     "This request was started in another browser. Start connecting again from your AI app.": "Bu istek başka bir tarayıcıda başlatıldı. Bağlanmayı yapay zekâ uygulamanızdan yeniden başlatın.",
     "Too many invites waiting. Remove some, or wait for them to join.": "Bekleyen çok fazla davet var. Bazılarını kaldırın veya katılmalarını bekleyin.",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Bunu yalnızca kartıyla ödeme yapılan kişi değiştirebilir. Kapatın, ardından kendi kartınızla açın.",
+    "Automatic top-up isn't on": "Otomatik yükleme açık değil",
     "The request is too large.": "İstek çok büyük.",
     "Too many requests. Try again later.": "Çok fazla istek. Daha sonra tekrar deneyin.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Giriş geçici olarak kullanılamıyor. Lütfen birazdan tekrar deneyin.",

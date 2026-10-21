@@ -276,6 +276,31 @@ TEXTS = {
             "saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
     },
+    "top_up_paused": {
+        "subject": "Automaatne juurdelaadimine peatatud: {company}",
+        "preheader": (
+            "Kaart lükati tagasi. Uuenda kaarti, et automaatne juurdelaadimine uuesti sisse "
+            "lülitada."
+        ),
+        "heading": "Automaatne juurdelaadimine on peatatud",
+        "lines": [
+            (
+                "Ettevõtte {company} automaatse juurdelaadimise kaart lükati tagasi ja uus katse "
+                "ei aita, seega on automaatne juurdelaadimine peatatud ega võta sellelt kaardilt "
+                "makseid."
+            ),
+            (
+                "Uuenda kaarti arvelduse lehel, et automaatne juurdelaadimine uuesti sisse "
+                "lülitada. Seni laadi juurde käsitsi, et kandidaate edasi kutsuda."
+            ),
+        ],
+        "button": "Uuenda kaarti",
+        "footer": (
+            "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte {company} "
+            "omanik või administraator. See puudutab sinu ettevõtte arveldust, seega "
+            "saadetakse see sõltumata sinu e-kirjade seadetest."
+        ),
+    },
     "footer": "See e-kiri saadeti aadressile {email}, sest keegi kutsus selle aadressi "
     "prepzasse. Kui sa seda ei oodanud, võid selle tähelepanuta jätta.",
     # An invite from a company prepza hasn't verified, at the end of the footer.
