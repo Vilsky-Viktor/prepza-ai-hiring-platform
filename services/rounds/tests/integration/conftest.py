@@ -7,6 +7,7 @@ import os
 import pytest
 from alembic import command
 from alembic.config import Config
+from prepza_common.clean_start import start_clean, tables_left_empty
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
 
@@ -16,7 +17,8 @@ if not os.getenv("INTEGRATION_TESTS"):
 
 @pytest.fixture(scope="session", autouse=True)
 def database():
-    """Creates the test database from scratch, runs every migration, and drops it afterwards."""
+    """Creates the test database from scratch, runs every migration, and drops it afterwards;
+    gives the tables the migrations left empty, those the tests fill."""
     url = make_url(os.environ["DATABASE_URL"])
     admin = create_engine(
         url.set(drivername="postgresql+psycopg", database="postgres"),
@@ -29,12 +31,19 @@ def database():
 
     command.upgrade(Config("alembic.ini"), "head")
 
-    yield
+    yield tables_left_empty(os.environ["DATABASE_URL"])
 
     with admin.connect() as connection:
         connection.execute(text(f'DROP DATABASE IF EXISTS "{url.database}" WITH (FORCE)'))
 
     admin.dispose()
+
+
+@pytest.fixture(autouse=True)
+def clean_start(database):
+    """Every test starts clean: the tables the tests fill emptied and the tests' Redis database
+    flushed, whatever an earlier test left."""
+    start_clean(os.environ["DATABASE_URL"], database, os.environ["REDIS_URL"])
 
 
 @pytest.fixture

@@ -41,6 +41,9 @@ transaction left idle), `db.migration_engine` the migrations' one (a short lock 
 deletes old rows (retention, published events) `DELETE_BATCH` at a time, each batch its own
 transaction. `schema_rules.problems` lists the tables of a migrated database that break
 `.claude/rules/database.md`; each service's `test_migrations.py` asserts it finds none.
+Integration tests: `clean_start` gives every test in a service's `tests/integration` a clean start (the
+tables a fresh migration left empty truncated, the tests' Redis database 15 flushed, the shared HTTP
+client dropped); it refuses any database but a `_test` one and any Redis database but 15.
 Request bodies: `body_limit.BodyLimitMiddleware` refuses one over 1 MB (`MAX_BODY_BYTES`) with a
 translated 413, counting a streamed body as it arrives; companies (report PDFs) and the assistant
 (voice messages) pass larger limits.
