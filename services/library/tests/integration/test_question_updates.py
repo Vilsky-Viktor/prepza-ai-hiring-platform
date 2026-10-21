@@ -16,7 +16,7 @@ NEW = [{"answer": "Yes", "correct": True}, {"answer": "No", "correct": False}]
 
 
 def company():
-    return f"company-{uuid.uuid4()}"
+    return str(uuid.uuid4())
 
 
 async def questions(owner, title, count=2, template=False):

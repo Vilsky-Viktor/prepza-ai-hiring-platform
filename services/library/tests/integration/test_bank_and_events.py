@@ -16,7 +16,7 @@ from app.storage import (
     templates,
 )
 from app.storage.db import Session
-from tests.integration.factories import COPYABLE, direction, interview, set_pool
+from tests.integration.factories import COPYABLE, a_company, direction, interview, set_pool
 
 
 async def embedding_of(topic_id):
@@ -29,7 +29,7 @@ async def embedding_of(topic_id):
 def test_an_answer_is_counted_once_however_often_its_event_arrives(run):
     async def scenario():
         template = await interview("Welder", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, "company-11")
+        copy = await templates.copy_template(template, a_company("11"))
         question = (await preparations.get_content(copy.id)).topics[0].questions[0]
         event_id = str(uuid.uuid4())
         first = await answer_stats.record_answer(
@@ -101,7 +101,7 @@ def test_old_notes_of_processed_events_are_forgotten(run):
 def test_a_copy_made_before_the_pools_of_a_now_practice_question_is_not_served(run):
     async def scenario():
         template = await interview("Baker", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, "company-12")
+        copy = await templates.copy_template(template, a_company("12"))
         copied = (await preparations.get_content(copy.id)).topics[0].questions
         # The migration put a question revealed after it was copied into practice.
         await set_pool([copied[0].source_question_id], Pool.PRACTICE)
@@ -131,12 +131,12 @@ def test_thin_template_topics_are_left_out_of_a_copy_which_keeps_their_embedding
         # As an older template's topic can be, after the migration: with 4 company questions.
         company = [q.id for q in content.topics[1].questions if q.pool == Pool.COMPANY]
         await set_pool(company[:6], Pool.PRACTICE)
-        copy = await templates.copy_template(template, "company-13")
+        copy = await templates.copy_template(template, a_company("13"))
         topics = await preparations.get_topics(copy.id)
         await set_pool(
             [q.id for q in content.topics[0].questions if q.pool == Pool.COMPANY], Pool.PRACTICE
         )
-        nothing_left = await templates.copy_template(template, "company-13")
+        nothing_left = await templates.copy_template(template, a_company("13"))
 
         return (
             [(topic.title, count) for topic, count in topics],

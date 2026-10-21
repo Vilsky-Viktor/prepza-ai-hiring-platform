@@ -30,6 +30,10 @@ class QuestionSet(Base):
         Index("ix_sets_kind_level_language", "kind", "level", "language"),
         # Named before the naming convention (models/base.py).
         UniqueConstraint("generation_id", name="uq_sets_generation_id"),
+        # A company's set has its company; a platform template has none.
+        CheckConstraint(
+            "(owner_type = 'company') = (company_id IS NOT NULL)", name="ck_sets_company_id"
+        ),
         # Templates of the same title, any case, and language: near-duplicates.
         Index(
             "ix_sets_template_titles",
@@ -49,6 +53,9 @@ class QuestionSet(Base):
     kind: Mapped[str] = mapped_column(String(32))
     owner_type: Mapped[str] = mapped_column(String(32))
     owner_id: Mapped[str] = mapped_column(String(128), index=True)
+    # The company that owns it, filled by the database from owner_id (a trigger); None for a
+    # platform template.
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     title: Mapped[str] = mapped_column(Text())
     # A template's readable URL part, set once when it's saved and never changed, so its practice
     # page's URL stays the same after a rename; null for other sets.
@@ -72,13 +79,23 @@ class QuestionSet(Base):
 
 class Topic(Base):
     __tablename__ = "topics"
-    # The topics the embedding job hasn't reached (topics.embedding is outside the models).
     __table_args__ = (
+        # One topic per place in its set; deferred, so a reorder swaps places in one transaction.
+        UniqueConstraint(
+            "set_id",
+            "position",
+            name="uq_topics_set_position",
+            deferrable=True,
+            initially="DEFERRED",
+        ),
+        # The topics the embedding job hasn't reached (topics.embedding is outside the models).
         Index("ix_topics_without_embedding", "id", postgresql_where=text("embedding IS NULL")),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     set_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("sets.id", ondelete="CASCADE"), index=True)
+    # Its company, filled by the database from sets (a trigger; templates have none).
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     position: Mapped[int]
     title: Mapped[str] = mapped_column(Text)
     subtopics: Mapped[list] = mapped_column(JSONB)
@@ -90,12 +107,24 @@ class Topic(Base):
 
 class Question(Base):
     __tablename__ = "questions"
-    __table_args__ = (CheckConstraint(one_of("pool", Pool), name="ck_questions_pool"),)
+    __table_args__ = (
+        CheckConstraint(one_of("pool", Pool), name="ck_questions_pool"),
+        # One question per place in its topic; deferred, so a reorder swaps places.
+        UniqueConstraint(
+            "topic_id",
+            "position",
+            name="uq_questions_topic_position",
+            deferrable=True,
+            initially="DEFERRED",
+        ),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     topic_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("topics.id", ondelete="CASCADE"), index=True
     )
+    # Its company, filled by the database from topics (a trigger; templates have none).
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     position: Mapped[int]
     text: Mapped[str] = mapped_column(Text)
     options: Mapped[list] = mapped_column(JSONB)

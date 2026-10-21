@@ -13,12 +13,14 @@ from app.storage.db import Session
 from tests.integration.factories import interview
 
 COMMENT = "Private note from a candidate"
+# The company that owns these tests (sets.owner_id holds a company's uuid).
+OWNER = str(uuid.uuid4())
 
 
 async def questions(title, count):
     """A company's test of its own (its owner unique), and its questions; each question's text
     starts with the test's title."""
-    created = await interview(title, owner=f"company-{uuid.uuid4()}", questions=count)
+    created = await interview(title, owner=OWNER, questions=count)
 
     return created, (await preparations.get_content(created)).topics[0].questions
 
@@ -59,7 +61,7 @@ def test_a_flagged_question_comes_with_its_flag_answers_and_feedback(run):
     # Nothing that tells whose it is: no id, set, owner or report comment.
     sent = found.model_dump_json()
 
-    for kept_back in (str(question.id), str(set_id), "company-", COMMENT):
+    for kept_back in (str(question.id), str(set_id), OWNER, COMMENT):
         assert kept_back not in sent
 
     assert sent.count(title) == 1

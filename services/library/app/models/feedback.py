@@ -32,6 +32,8 @@ class QuestionRating(Base):
     question_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("questions.id", ondelete="CASCADE"), primary_key=True
     )
+    # Its company, filled by the database from questions (a trigger; templates have none).
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     user_id: Mapped[str] = mapped_column(String(128), primary_key=True)
     value: Mapped[int] = mapped_column(SmallInteger)
 
@@ -45,6 +47,8 @@ class QuestionReporter(Base):
     question_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("questions.id", ondelete="CASCADE"), primary_key=True
     )
+    # Its company, filled by the database from questions (a trigger; templates have none).
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     user_id: Mapped[str] = mapped_column(String(128), primary_key=True, index=True)
 
 
@@ -63,6 +67,8 @@ class QuestionReport(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     question_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("questions.id", ondelete="CASCADE"))
+    # Its company, filled by the database from questions (a trigger; templates have none).
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     user_id: Mapped[str] = mapped_column(String(128))
     reason: Mapped[str] = mapped_column(String(32))
     comment: Mapped[str] = mapped_column(Text, default="")

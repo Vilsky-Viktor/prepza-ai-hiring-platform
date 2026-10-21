@@ -39,6 +39,8 @@ class QuestionStats(Base):
     question_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("questions.id", ondelete="CASCADE"), primary_key=True
     )
+    # Its company, filled by the database from questions (a trigger; templates have none).
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     answers: Mapped[int] = mapped_column(default=0)
     # Points earned: 1 for a right answer, a share of 1 for a multi-answer one partly right.
     correct: Mapped[float] = mapped_column(Float, default=0)
@@ -80,6 +82,8 @@ class QuestionRevision(Base):
     question_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("questions.id", ondelete="CASCADE"), index=True
     )
+    # Its company, filled by the database from questions (a trigger; templates have none).
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     text: Mapped[str] = mapped_column(Text)
     options: Mapped[list] = mapped_column(JSONB)
     answers: Mapped[int]

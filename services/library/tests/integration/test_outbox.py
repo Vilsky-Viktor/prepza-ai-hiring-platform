@@ -6,11 +6,11 @@ from sqlalchemy import select
 from app.models.outbox import OutboxEvent
 from app.storage import quality
 from app.storage.db import Session
-from tests.integration.factories import interview, question_ids
+from tests.integration.factories import a_company, interview, question_ids
 
 
 def test_a_flag_and_its_notification_are_saved_together(run):
-    notice = {"recipient": "company", "recipient_id": "company-1", "marker": str(uuid.uuid4())}
+    notice = {"recipient": "company", "recipient_id": a_company("1"), "marker": str(uuid.uuid4())}
 
     async def scenario():
         [question_id, *_] = await question_ids(await interview())

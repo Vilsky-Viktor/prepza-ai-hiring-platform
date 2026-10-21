@@ -8,7 +8,7 @@ from sqlalchemy import text
 from app.constants.sets import Pool
 from app.storage import pools, preparations, templates
 from app.storage.db import Session
-from tests.integration.factories import COPYABLE, interview
+from tests.integration.factories import COPYABLE, a_company, interview
 
 OPTIONS = [{"answer": "right", "correct": True}, {"answer": "wrong", "correct": False}]
 
@@ -20,7 +20,7 @@ def new(*texts):
 def test_added_questions_go_after_the_last_into_their_pools_and_reach_only_new_copies(run):
     async def scenario():
         template = await interview("Addition", template=True, questions=COPYABLE)
-        older_copy = await templates.copy_template(template, "company-add")
+        older_copy = await templates.copy_template(template, a_company("add"))
         [topic] = (await preparations.get_content(template)).topics
         ids = await pools.add_questions(
             template,
@@ -30,7 +30,7 @@ def test_added_questions_go_after_the_last_into_their_pools_and_reach_only_new_c
             template, [TopicAdditionIn(topic_id=uuid.uuid4(), practice=new("X?"), company=[])]
         )
         after = (await preparations.get_content(template)).topics[0].questions
-        newer_copy = await templates.copy_template(template, "company-add")
+        newer_copy = await templates.copy_template(template, a_company("add"))
 
         return (
             ids,

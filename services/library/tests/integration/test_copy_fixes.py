@@ -4,7 +4,7 @@ from app.models.outbox import OutboxEvent
 from app.models.sets import Question
 from app.storage import preparations, quality, templates
 from app.storage.db import Session
-from tests.integration.factories import COPYABLE, interview
+from tests.integration.factories import COPYABLE, a_company, interview
 
 FIXED = [{"answer": "Right", "correct": True}, {"answer": "Wrong", "correct": False}]
 
@@ -29,8 +29,8 @@ async def notified_companies(question_ids) -> list[str]:
 def test_a_fixed_bank_question_fixes_its_unchanged_copies_in_companies_tests(run):
     async def scenario():
         template = await interview("Rigger", template=True, questions=COPYABLE)
-        acme = await templates.copy_template(template, "company-acme-fix")
-        globex = await templates.copy_template(template, "company-globex-fix")
+        acme = await templates.copy_template(template, a_company("acme-fix"))
+        globex = await templates.copy_template(template, a_company("globex-fix"))
         copy = await first_question(acme.id)
         changed = await first_question(globex.id)
 
@@ -47,7 +47,7 @@ def test_a_fixed_bank_question_fixes_its_unchanged_copies_in_companies_tests(run
         return (
             await first_question(acme.id),
             await first_question(globex.id),
-            await notified_companies(["company-acme-fix", "company-globex-fix"]),
+            await notified_companies([a_company("acme-fix"), a_company("globex-fix")]),
         )
 
     copy, changed, notified = run(scenario())
@@ -57,13 +57,13 @@ def test_a_fixed_bank_question_fixes_its_unchanged_copies_in_companies_tests(run
         ["Right", "Wrong"],
     )
     assert changed.text == "Globex's own?"
-    assert notified == ["company-acme-fix"]
+    assert notified == [a_company("acme-fix")]
 
 
 def test_a_bank_question_rewritten_without_a_flag_leaves_its_copies(run):
     async def scenario():
         template = await interview("Scaffolder", template=True, questions=COPYABLE)
-        acme = await templates.copy_template(template, "company-acme-nofix")
+        acme = await templates.copy_template(template, a_company("acme-nofix"))
         copy = await first_question(acme.id)
         await preparations.replace_question(copy.source_question_id, "Reworded?", FIXED)
 

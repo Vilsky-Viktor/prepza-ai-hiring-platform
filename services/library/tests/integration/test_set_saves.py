@@ -8,13 +8,14 @@ from prepza_common.sets import PreparationIn
 
 from app.services.set_saves import save_once
 from app.storage import preparations, templates
+from tests.integration.factories import a_company
 
 
 def payload(generation_id: uuid.UUID, title: str) -> PreparationIn:
     return PreparationIn.model_validate(
         {
             "generation_id": str(generation_id),
-            "owner_uid": "company-1",
+            "owner_uid": a_company("1"),
             "source_text": "job text",
             "title": title,
             "level": "medium",

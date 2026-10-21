@@ -3,7 +3,7 @@ import uuid
 from app.constants.reuse import MIN_REUSE_ANSWERS
 from app.constants.sets import Pool
 from app.storage import answer_stats, preparations, quality, reuse, templates
-from tests.integration.factories import COPYABLE, direction, interview
+from tests.integration.factories import COPYABLE, a_company, direction, interview
 
 
 def test_templates_are_searched_and_filtered_and_keep_their_embeddings(run):
@@ -66,8 +66,8 @@ def test_templates_are_found_by_a_topic_or_a_subtopic_too(run):
 def test_a_template_is_copied_into_a_company_test_and_stays_a_template(run):
     async def scenario():
         template = await interview("Bookkeeper", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, "company-9")
-        missing = await templates.copy_template(copy.id, "company-9")
+        copy = await templates.copy_template(template, a_company("9"))
+        missing = await templates.copy_template(copy.id, a_company("9"))
 
         return (
             await preparations.get(template),
@@ -79,7 +79,7 @@ def test_a_template_is_copied_into_a_company_test_and_stays_a_template(run):
     template, copy, topics, missing = run(scenario())
 
     assert template.kind == "template"
-    assert (copy.kind, copy.owner_type, copy.owner_id) == ("interview", "company", "company-9")
+    assert (copy.kind, copy.owner_type, copy.owner_id) == ("interview", "company", a_company("9"))
     assert copy.title == "Bookkeeper"
     # Of the template's 40 questions, 30 went to practice: its 10 company ones were copied.
     assert [count for _, count in topics] == [10]
@@ -101,8 +101,8 @@ def test_companies_see_only_the_templates_they_can_copy(run):
         return (
             titles(await templates.list_templates(word, None, [], 0, 10, copyable=True)),
             titles(await templates.list_templates(word, None, [], 0, 10)),
-            await templates.copy_template(full, "company-4") is not None,
-            await templates.copy_template(short, "company-4") is None,
+            await templates.copy_template(full, a_company("4")) is not None,
+            await templates.copy_template(short, a_company("4")) is None,
         )
 
     copyable, every, full_copied, short_refused = run(scenario())
@@ -116,7 +116,7 @@ def test_companies_see_only_the_templates_they_can_copy(run):
 def test_a_template_splits_its_questions_and_copies_take_only_company_ones(run):
     async def scenario():
         template = await interview("Nurse", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, "company-3")
+        copy = await templates.copy_template(template, a_company("3"))
         original = await preparations.get_content(template)
         copied = await preparations.get_content(copy.id)
 
@@ -163,7 +163,7 @@ def test_finished_topics_count_strong_weak_and_timeouts_for_copies_and_originals
 
     async def scenario():
         template = await interview("Chemist", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, "company-8")
+        copy = await templates.copy_template(template, a_company("8"))
         question = (await preparations.get_content(copy.id)).topics[0].questions[0]
         result = {
             "question_id": str(question.id),

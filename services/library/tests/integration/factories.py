@@ -10,6 +10,12 @@ DIMENSIONS = 256
 COPYABLE = 40
 
 
+def a_company(name: str) -> str:
+    """A company's id for a test's name of it: a uuid (sets.owner_id holds one), the same for the
+    same name."""
+    return str(uuid.uuid5(uuid.NAMESPACE_URL, f"company-{name}"))
+
+
 def direction(*values: float) -> list[float]:
     """A unit vector of the embedding's size, pointing along `values`."""
     length = sum(value * value for value in values) ** 0.5
@@ -25,12 +31,13 @@ async def interview(
     embedding=None,
     questions=3,
     language="en",
-    owner="company-1",
+    owner=None,
     template=False,
     topic_embeddings=None,
 ):
-    """A company's test set, or a template, with one topic of `questions` questions, or one
-    topic per embedding in `topic_embeddings`."""
+    """A company's test set (of `owner`, by default a_company("1")), or a template, with one topic
+    of `questions` questions, or one topic per embedding in `topic_embeddings`."""
+    owner = owner or a_company("1")
     payload = PreparationIn.model_validate(
         {
             "generation_id": str(uuid.uuid4()),
