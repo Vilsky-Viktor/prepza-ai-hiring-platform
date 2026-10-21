@@ -35,7 +35,7 @@ Il vous faut trois chiffres : le nombre de candidats que vous évaluez par an, l
 
 ### Les prix de prepza pour votre estimation
 
-prepza facture chaque candidat qui répond à au moins une question. Le prix par candidat dépend du montant de votre recharge : 5 $ pour la plus petite recharge, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Les 3 premiers candidats de votre première entreprise sont gratuits. Les prix sont en dollars américains, en euros en Europe (mêmes montants) et en livres sterling au Royaume-Uni (de 4 £ à 1,50 £) ; Paddle, qui traite les paiements, gère la TVA et la sales tax au moment du paiement. Voir les [tarifs](/pricing) pour les recharges actuelles.
+prepza facture chaque candidat qui répond à au moins une question. Le prix par candidat dépend du montant de votre recharge : 5 $ pour la plus petite recharge, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Les 3 premiers candidats de votre première entreprise sont gratuits. Les prix sont ici en dollars américains, et dans la devise locale au Canada, en Australie, en Israël, en Pologne, en Suisse, au Japon, en Corée du Sud, à Taïwan, à Hong Kong, en Thaïlande, à Singapour, en Inde, dans le reste de l'Europe et au Royaume-Uni ; Paddle, qui traite les paiements, gère la TVA et la sales tax au moment du paiement. Voir les [tarifs](/pricing) pour les recharges actuelles.
 
 ## Les coûts au-delà du prix affiché
 

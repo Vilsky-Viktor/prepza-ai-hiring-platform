@@ -52,7 +52,7 @@ prepza'da abonelik ve sözleşme yoktur. İhtiyaç duyduğunuzda kredi satın al
 - **Kullanıcı başı ücret yok.** Şirketinize ücretsiz olarak yönetici ve görüntüleyici ekleyin.
 - **Hoş geldin kredileri:** ilk şirketinizin ilk 3 adayı ücretsizdir.
 
-Fiyatlar ABD doları, Avrupa'da avro (aynı rakamlarla) ve Birleşik Krallık'ta sterlin (£4 ile £1,50 arası) cinsindendir. Ödemeler, KDV ve satış vergisini hesaplayan ve nihai tutarı ödeme adımında gösteren Paddle üzerinden yapılır; prepza kart bilgisi saklamaz. Bakiyeniz azaldığında onu dolduran otomatik yüklemeyi açabilirsiniz, ancak bu isteğe bağlıdır.
+Fiyatlar burada ABD doları, Kanada, Avustralya, İsrail, Polonya, İsviçre, Japonya, Güney Kore, Tayvan, Hong Kong, Tayland, Singapur, Hindistan, Avrupa'nın geri kalanı ve Birleşik Krallık'ta ise yerel para birimi cinsindendir (bkz. [fiyatlar](/pricing)). Ödemeler, KDV ve satış vergisini hesaplayan ve nihai tutarı ödeme adımında gösteren Paddle üzerinden yapılır; prepza kart bilgisi saklamaz. Bakiyeniz azaldığında onu dolduran otomatik yüklemeyi açabilirsiniz, ancak bu isteğe bağlıdır.
 
 ## Her aday için neler alırsınız
 

@@ -52,7 +52,7 @@ prepza non ha abbonamenti né contratti. Compri crediti quando ti servono e li s
 - **Nessun costo per postazione.** Aggiungi amministratori e visualizzatori alla tua azienda senza costi.
 - **Crediti di benvenuto:** i primi 3 candidati della tua prima azienda sono gratis.
 
-I prezzi sono in dollari statunitensi, in euro in Europa (stessi importi) e in sterline nel Regno Unito (da £4 a £1,50). I pagamenti passano da Paddle, che gestisce IVA e imposte sulle vendite e mostra l'importo finale al momento del pagamento; prepza non conserva i dati delle carte. Puoi attivare una ricarica automatica che rabbocca il saldo quando si sta esaurendo, ma è facoltativa.
+I prezzi sono qui in dollari statunitensi, e nella valuta locale in Canada, Australia, Israele, Polonia, Svizzera, Giappone, Corea del Sud, Taiwan, Hong Kong, Thailandia, Singapore, India, nel resto d'Europa e nel Regno Unito (vedi i [prezzi](/pricing)). I pagamenti passano da Paddle, che gestisce IVA e imposte sulle vendite e mostra l'importo finale al momento del pagamento; prepza non conserva i dati delle carte. Puoi attivare una ricarica automatica che rabbocca il saldo quando si sta esaurendo, ma è facoltativa.
 
 ## Cosa ottieni per ogni candidato
 

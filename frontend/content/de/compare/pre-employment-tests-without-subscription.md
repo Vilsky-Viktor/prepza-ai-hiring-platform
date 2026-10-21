@@ -52,7 +52,7 @@ prepza hat kein Abo und keinen Vertrag. Du kaufst Credits, wenn du sie brauchst,
 - **Keine Gebühren pro Nutzer.** Füge deinem Unternehmen kostenlos Admins und Betrachter hinzu.
 - **Willkommens-Credits:** Die ersten 3 Kandidaten deines ersten Unternehmens sind kostenlos.
 
-Die Preise sind in US-Dollar angegeben, in Europa in Euro (mit denselben Beträgen) und im Vereinigten Königreich in Pfund (4 £ bis 1,50 £). Zahlungen laufen über Paddle, das sich um Mehrwertsteuer und Sales Tax kümmert und den Endbetrag beim Bezahlen anzeigt; prepza speichert keine Kartendaten. Du kannst eine automatische Aufladung aktivieren, die dein Guthaben auffüllt, wenn es zur Neige geht, das ist aber optional.
+Die Preise sind hier in US-Dollar angegeben, in Kanada, Australien, Israel, Polen, der Schweiz, Japan, Südkorea, Taiwan, Hongkong, Thailand, Singapur, Indien, im übrigen Europa und im Vereinigten Königreich in der Landeswährung (siehe [Preise](/pricing)). Zahlungen laufen über Paddle, das sich um Mehrwertsteuer und Sales Tax kümmert und den Endbetrag beim Bezahlen anzeigt; prepza speichert keine Kartendaten. Du kannst eine automatische Aufladung aktivieren, die dein Guthaben auffüllt, wenn es zur Neige geht, das ist aber optional.
 
 ## Was du für jeden Kandidaten bekommst
 

@@ -52,7 +52,7 @@ Walang subscription at walang kontrata ang prepza. Bumibili ka ng credits kapag 
 - **Walang seat fees.** Magdagdag ng mga admin at viewer sa iyong kumpanya nang walang bayad.
 - **Welcome credits:** libre ang unang 3 aplikante ng iyong unang kumpanya.
 
-Nasa US dollars ang mga presyo, nasa euro sa Europe (parehong mga numero) at nasa pound sa UK (£4 hanggang £1.50). Dumaraan ang mga bayad sa Paddle, na humahawak sa VAT at sales tax at nagpapakita ng huling halaga sa checkout; walang iniimbak na card details ang prepza. Puwede mong i-on ang automatic top-up na nagre-refill ng balance mo kapag paubos na, pero opsyonal ito.
+Nasa US dollars ang mga presyo rito, at nasa lokal na currency sa Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, iba pang bahagi ng Europe at UK (tingnan ang [presyo](/pricing)). Dumaraan ang mga bayad sa Paddle, na humahawak sa VAT at sales tax at nagpapakita ng huling halaga sa checkout; walang iniimbak na card details ang prepza. Puwede mong i-on ang automatic top-up na nagre-refill ng balance mo kapag paubos na, pero opsyonal ito.
 
 ## Ang makukuha mo para sa bawat aplikante
 

@@ -52,7 +52,7 @@ prepza has no subscription and no contract. You buy credits when you need them a
 - **No seat fees.** Add admins and viewers to your company at no cost.
 - **Welcome credits:** your first company's first 3 candidates are free.
 
-Prices are in US dollars, in euros in Europe (same numbers) and in pounds in the UK (£4 to £1.50). Payments go through Paddle, which handles VAT and sales tax and shows the final amount at checkout; prepza stores no card details. You can turn on an automatic top-up that refills your balance when it runs low, but it's optional.
+Prices are in US dollars here, and in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, the rest of Europe and the UK (see [pricing](/pricing)). Payments go through Paddle, which handles VAT and sales tax and shows the final amount at checkout; prepza stores no card details. You can turn on an automatic top-up that refills your balance when it runs low, but it's optional.
 
 ## What you get for each candidate
 

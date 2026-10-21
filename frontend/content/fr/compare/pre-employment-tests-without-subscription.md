@@ -52,7 +52,7 @@ prepza n'a ni abonnement ni contrat. Vous achetez des crédits quand vous en ave
 - **Pas de frais par utilisateur.** Ajoutez gratuitement des admins et des lecteurs à votre entreprise.
 - **Crédits de bienvenue :** les 3 premiers candidats de votre première entreprise sont gratuits.
 
-Les prix sont en dollars américains, en euros en Europe (mêmes montants) et en livres sterling au Royaume-Uni (de 4 £ à 1,50 £). Les paiements passent par Paddle, qui gère la TVA et la sales tax et affiche le montant final au moment du paiement ; prepza ne conserve aucune donnée de carte. Vous pouvez activer une recharge automatique qui réapprovisionne votre solde quand il baisse, mais c'est facultatif.
+Les prix sont ici en dollars américains, et dans la devise locale au Canada, en Australie, en Israël, en Pologne, en Suisse, au Japon, en Corée du Sud, à Taïwan, à Hong Kong, en Thaïlande, à Singapour, en Inde, dans le reste de l'Europe et au Royaume-Uni (voir les [tarifs](/pricing)). Les paiements passent par Paddle, qui gère la TVA et la sales tax et affiche le montant final au moment du paiement ; prepza ne conserve aucune donnée de carte. Vous pouvez activer une recharge automatique qui réapprovisionne votre solde quand il baisse, mais c'est facultatif.
 
 ## Ce que vous obtenez pour chaque candidat
 

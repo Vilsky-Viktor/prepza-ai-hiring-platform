@@ -52,7 +52,7 @@ prepza heeft geen abonnement en geen contract. Je koopt credits wanneer je ze no
 - **Geen kosten per gebruiker.** Voeg zonder kosten beheerders en kijkers toe aan je bedrijf.
 - **Welkomstcredits:** de eerste 3 kandidaten van je eerste bedrijf zijn gratis.
 
-Prijzen zijn in US dollars, in Europa in euro's (dezelfde bedragen) en in het Verenigd Koninkrijk in ponden (£4 tot £1,50). Betalingen lopen via Paddle, dat btw en sales tax regelt en het eindbedrag bij het afrekenen toont; prepza slaat geen kaartgegevens op. Je kunt automatisch opwaarderen aanzetten, zodat je saldo wordt aangevuld als het bijna op is, maar dat is optioneel.
+Prijzen zijn hier in Amerikaanse dollars, en in de lokale valuta in Canada, Australië, Israël, Polen, Zwitserland, Japan, Zuid-Korea, Taiwan, Hongkong, Thailand, Singapore, India, de rest van Europa en het Verenigd Koninkrijk (zie [prijzen](/pricing)). Betalingen lopen via Paddle, dat btw en sales tax regelt en het eindbedrag bij het afrekenen toont; prepza slaat geen kaartgegevens op. Je kunt automatisch opwaarderen aanzetten, zodat je saldo wordt aangevuld als het bijna op is, maar dat is optioneel.
 
 ## Wat je per kandidaat krijgt
 

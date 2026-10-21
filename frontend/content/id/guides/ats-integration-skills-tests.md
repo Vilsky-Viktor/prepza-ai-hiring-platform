@@ -98,7 +98,7 @@ prepza terhubung dengan **Workable, Greenhouse, Teamtailor, Recruitee, dan Breez
 
 Beberapa ATS memerlukan satu langkah di sisi mereka. Greenhouse, Teamtailor, dan Recruitee memintamu menambahkan webhook secara manual; dialog Petunjuk di prepza menampilkan alamatnya dan tempat menempel secret-nya. prepza mengatur sendiri webhook Workable dan Breezy HR.
 
-Harganya per kandidat, tanpa langganan: kamu hanya membayar untuk kandidat yang menjawab setidaknya satu soal, $5 per kandidat pada isi ulang $50, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. Harga dalam dolar AS, dalam euro di Eropa (angka yang sama), dan dalam pound di Inggris Raya (£4 hingga £1,50); PPN (VAT) atau pajak penjualan ditangani saat checkout. Menghubungkan ATS dan membuat wawancara gratis, dan 3 kandidat pertama dari perusahaan pertamamu gratis. Lihat [harga](/pricing).
+Harganya per kandidat, tanpa langganan: kamu hanya membayar untuk kandidat yang menjawab setidaknya satu soal, $5 per kandidat pada isi ulang $50, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. Harga di sini dalam dolar AS, dan dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya; PPN (VAT) atau pajak penjualan ditangani saat checkout. Menghubungkan ATS dan membuat wawancara gratis, dan 3 kandidat pertama dari perusahaan pertamamu gratis. Lihat [harga](/pricing).
 
 ## Bacaan terkait
 

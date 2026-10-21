@@ -103,7 +103,7 @@ Tuliskan kenapa setiap orang masuk daftar. Hanya butuh satu menit per kandidat d
 
 ## Berapa biayanya
 
-Dengan prepza, kamu hanya membayar untuk kandidat yang menjawab setidaknya satu soal: $5 per kandidat pada isi ulang $50, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. Untuk 100 pelamar, itu $500 dengan harga $5 per kandidat, atau $400 dari dua kali isi ulang $200 dengan harga $4 per kandidat, tanpa langganan. Harga dalam dolar AS, dalam euro di Eropa (angka yang sama), dan dalam pound di Inggris Raya (£4 hingga £1,50); PPN (VAT) atau pajak penjualan ditangani saat checkout. Membuat tes gratis, dan 3 kandidat pertama dari perusahaan pertamamu gratis.
+Dengan prepza, kamu hanya membayar untuk kandidat yang menjawab setidaknya satu soal: $5 per kandidat pada isi ulang $50, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. Untuk 100 pelamar, itu $500 dengan harga $5 per kandidat, atau $400 dari dua kali isi ulang $200 dengan harga $4 per kandidat, tanpa langganan. Harga di sini dalam dolar AS, dan dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya (lihat [harga](/pricing)); PPN (VAT) atau pajak penjualan ditangani saat checkout. Membuat tes gratis, dan 3 kandidat pertama dari perusahaan pertamamu gratis.
 
 ## Bacaan terkait
 

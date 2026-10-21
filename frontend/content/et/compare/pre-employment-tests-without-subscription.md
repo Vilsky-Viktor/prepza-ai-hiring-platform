@@ -52,7 +52,7 @@ prepzal pole tellimust ega lepingut. Ostad krediite siis, kui neid vajad, ja kas
 - **Kasutajakohtade tasu pole.** Lisa ettevõttesse administraatoreid ja vaatajaid tasuta.
 - **Tervituskrediidid:** sinu esimese ettevõtte esimesed 3 kandidaati on tasuta.
 
-Hinnad on USA dollarites, Euroopas eurodes (samad summad) ja Ühendkuningriigis naelsterlingites (4 £ kuni 1,50 £). Maksed käivad läbi Paddle'i, mis arvestab käibemaksu ja müügimaksu ning näitab lõppsummat maksmise ajal; prepza ei hoia kaardiandmeid. Võid sisse lülitada automaatse juurdelaadimise, mis täiendab saldot, kui see väheneb, kuid see pole kohustuslik.
+Hinnad on siin USA dollarites, Kanadas, Austraalias, Iisraelis, Poolas, Šveitsis, Jaapanis, Lõuna-Koreas, Taiwanis, Hongkongis, Tais, Singapuris, Indias, ülejäänud Euroopas ja Ühendkuningriigis aga kohalikus valuutas (vaata [hindu](/pricing)). Maksed käivad läbi Paddle'i, mis arvestab käibemaksu ja müügimaksu ning näitab lõppsummat maksmise ajal; prepza ei hoia kaardiandmeid. Võid sisse lülitada automaatse juurdelaadimise, mis täiendab saldot, kui see väheneb, kuid see pole kohustuslik.
 
 ## Mida iga kandidaadi eest saad
 

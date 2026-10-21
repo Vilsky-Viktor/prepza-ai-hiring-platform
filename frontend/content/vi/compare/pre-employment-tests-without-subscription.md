@@ -52,7 +52,7 @@ prepza không có gói đăng ký và không có hợp đồng. Bạn mua credit
 - **Không tính phí theo người dùng.** Thêm quản trị viên và người xem vào công ty của bạn miễn phí.
 - **Credit chào mừng:** 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí.
 
-Giá tính bằng đô la Mỹ, bằng euro ở châu Âu (cùng con số) và bằng bảng Anh ở Vương quốc Anh (từ £4 đến £1,50). Thanh toán qua Paddle, đơn vị xử lý VAT và thuế bán hàng và hiển thị số tiền cuối cùng khi thanh toán; prepza không lưu thông tin thẻ. Bạn có thể bật tính năng tự động nạp để nạp thêm credit khi sắp hết, nhưng đó là tùy chọn.
+Giá ở đây tính bằng đô la Mỹ, và bằng đồng tiền địa phương ở Canada, Úc, Israel, Ba Lan, Thụy Sĩ, Nhật Bản, Hàn Quốc, Đài Loan, Hồng Kông, Thái Lan, Singapore, Ấn Độ, phần còn lại của châu Âu và Vương quốc Anh (xem [bảng giá](/pricing)). Thanh toán qua Paddle, đơn vị xử lý VAT và thuế bán hàng và hiển thị số tiền cuối cùng khi thanh toán; prepza không lưu thông tin thẻ. Bạn có thể bật tính năng tự động nạp để nạp thêm credit khi sắp hết, nhưng đó là tùy chọn.
 
 ## Bạn nhận được gì cho mỗi ứng viên
 

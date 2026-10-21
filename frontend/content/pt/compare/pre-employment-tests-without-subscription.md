@@ -52,7 +52,7 @@ A prepza não tem assinatura nem contrato. Você compra créditos quando precisa
 - **Sem cobrança por usuário.** Adicione administradores e visualizadores à sua empresa sem custo.
 - **Créditos de boas-vindas:** os 3 primeiros candidatos da sua primeira empresa são gratuitos.
 
-Os preços são em dólares americanos, em euros na Europa (com os mesmos valores) e em libras no Reino Unido (de £4 a £1,50). Os pagamentos passam pela Paddle, que cuida do IVA e dos impostos sobre vendas e mostra o valor final no checkout; a prepza não armazena dados de cartão. Você pode ativar uma recarga automática que repõe o saldo quando ele fica baixo, mas é opcional.
+Os preços aqui são em dólares americanos, e na moeda local no Canadá, na Austrália, em Israel, na Polônia, na Suíça, no Japão, na Coreia do Sul, em Taiwan, em Hong Kong, na Tailândia, em Singapura, na Índia, no restante da Europa e no Reino Unido (veja os [preços](/pricing)). Os pagamentos passam pela Paddle, que cuida do IVA e dos impostos sobre vendas e mostra o valor final no checkout; a prepza não armazena dados de cartão. Você pode ativar uma recarga automática que repõe o saldo quando ele fica baixo, mas é opcional.
 
 ## O que você recebe por candidato
 

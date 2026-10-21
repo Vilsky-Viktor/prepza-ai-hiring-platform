@@ -103,7 +103,7 @@ Isulat kung bakit napasama sa listahan ang bawat tao. Isang minuto lang ito bawa
 
 ## Magkano ito
 
-Sa prepza, nagbabayad ka lang para sa mga aplikanteng sumagot ng kahit isang tanong: $5 bawat isa sa $50 na top-up, $4 simula sa $200 na top-up, $3 simula sa $600 na top-up at $2 simula sa $1,000 na top-up. Para sa 100 aplikante, $500 iyon sa $5 bawat isa, o $400 sa dalawang $200 na top-up sa $4 bawat isa, walang subscription. Nasa US dollars ang mga presyo, nasa euro sa Europe (parehong mga numero) at nasa pound sa UK (£4 hanggang £1.50); hinahawakan sa checkout ang VAT o sales tax. Libre ang paggawa ng test, at libre ang unang 3 aplikante ng iyong unang kumpanya.
+Sa prepza, nagbabayad ka lang para sa mga aplikanteng sumagot ng kahit isang tanong: $5 bawat isa sa $50 na top-up, $4 simula sa $200 na top-up, $3 simula sa $600 na top-up at $2 simula sa $1,000 na top-up. Para sa 100 aplikante, $500 iyon sa $5 bawat isa, o $400 sa dalawang $200 na top-up sa $4 bawat isa, walang subscription. Nasa US dollars ang mga presyo rito, at nasa lokal na currency sa Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, iba pang bahagi ng Europe at UK (tingnan ang [presyo](/pricing)); hinahawakan sa checkout ang VAT o sales tax. Libre ang paggawa ng test, at libre ang unang 3 aplikante ng iyong unang kumpanya.
 
 ## Kaugnay na babasahin
 

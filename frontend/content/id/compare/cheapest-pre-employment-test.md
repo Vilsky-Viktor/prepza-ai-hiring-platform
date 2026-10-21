@@ -35,7 +35,7 @@ Kamu butuh tiga angka: berapa banyak kandidat yang kamu tes dalam setahun, harga
 
 ### Harga prepza untuk perkiraanmu
 
-prepza mengenakan biaya per kandidat yang menjawab setidaknya satu soal. Harga per kandidat tergantung besar isi ulangmu: $5 untuk isi ulang terkecil, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. 3 kandidat pertama dari perusahaan pertamamu gratis. Harga dalam dolar AS, dalam euro di Eropa (angka yang sama), dan dalam pound di Inggris Raya (£4 hingga £1,50); Paddle, yang memproses pembayaran, menangani PPN (VAT) dan pajak penjualan saat checkout. Lihat [harga](/pricing) untuk pilihan isi ulang terbaru.
+prepza mengenakan biaya per kandidat yang menjawab setidaknya satu soal. Harga per kandidat tergantung besar isi ulangmu: $5 untuk isi ulang terkecil, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. 3 kandidat pertama dari perusahaan pertamamu gratis. Harga di sini dalam dolar AS, dan dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya; Paddle, yang memproses pembayaran, menangani PPN (VAT) dan pajak penjualan saat checkout. Lihat [harga](/pricing) untuk pilihan isi ulang terbaru.
 
 ## Biaya di luar harga yang tercantum
 

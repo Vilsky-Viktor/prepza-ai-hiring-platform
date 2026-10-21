@@ -35,7 +35,7 @@ Potrzebujesz trzech liczb: ilu kandydatów testujesz w roku, ceny za kandydata w
 
 ### Ceny prepza do Twoich wyliczeń
 
-prepza pobiera opłatę za każdego kandydata, który odpowie na co najmniej jedno pytanie. Cena za kandydata zależy od wielkości doładowania: $5 przy najmniejszym doładowaniu, $4 od doładowania za $200, $3 od doładowania za $600 i $2 od doładowania za $1000. Pierwszych 3 kandydatów Twojej pierwszej firmy jest za darmo. Ceny są w dolarach amerykańskich, w Europie w euro (te same kwoty), a w Wielkiej Brytanii w funtach (od £4 do £1,50); Paddle, który obsługuje płatności, nalicza VAT i podatek od sprzedaży przy kasie. Aktualne doładowania znajdziesz w [cenniku](/pricing).
+prepza pobiera opłatę za każdego kandydata, który odpowie na co najmniej jedno pytanie. Cena za kandydata zależy od wielkości doładowania: $5 przy najmniejszym doładowaniu, $4 od doładowania za $200, $3 od doładowania za $600 i $2 od doładowania za $1000. Pierwszych 3 kandydatów Twojej pierwszej firmy jest za darmo. Ceny są tu w dolarach amerykańskich, a w Kanadzie, Australii, Izraelu, Polsce, Szwajcarii, Japonii, Korei Południowej, na Tajwanie, w Hongkongu, Tajlandii, Singapurze, Indiach, pozostałej części Europy i Wielkiej Brytanii w walucie lokalnej; Paddle, który obsługuje płatności, nalicza VAT i podatek od sprzedaży przy kasie. Aktualne doładowania znajdziesz w [cenniku](/pricing).
 
 ## Koszty poza ceną z cennika
 

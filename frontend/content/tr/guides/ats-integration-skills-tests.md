@@ -98,7 +98,7 @@ prepza **Workable, Greenhouse, Teamtailor, Recruitee ve Breezy HR**'a bağlanır
 
 Bazı ATS'ler kendi tarafında bir adım gerektirir. Greenhouse, Teamtailor ve Recruitee webhook'u elle eklemenizi ister; prepza'nın Talimatlar penceresi adresi ve gizli anahtarın nereye yapıştırılacağını gösterir. Workable ve Breezy HR'ın webhook'larını prepza kendisi kurar.
 
-Fiyatlandırma aday başınadır ve abonelik yoktur: yalnızca en az bir soruyu yanıtlayan adaylar için ödeme yaparsınız; $50'lık yüklemede aday başına $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. Fiyatlar ABD doları, Avrupa'da avro (aynı rakamlarla) ve Birleşik Krallık'ta sterlin (£4 ile £1,50 arası) cinsindendir; KDV veya satış vergisi ödeme adımında hesaplanır. ATS bağlamak ve mülakat oluşturmak ücretsizdir ve ilk şirketinizin ilk 3 adayı ücretsizdir. Bkz. [fiyatlar](/pricing).
+Fiyatlandırma aday başınadır ve abonelik yoktur: yalnızca en az bir soruyu yanıtlayan adaylar için ödeme yaparsınız; $50'lık yüklemede aday başına $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. Fiyatlar burada ABD doları, Kanada, Avustralya, İsrail, Polonya, İsviçre, Japonya, Güney Kore, Tayvan, Hong Kong, Tayland, Singapur, Hindistan, Avrupa'nın geri kalanı ve Birleşik Krallık'ta ise yerel para birimi cinsindendir; KDV veya satış vergisi ödeme adımında hesaplanır. ATS bağlamak ve mülakat oluşturmak ücretsizdir ve ilk şirketinizin ilk 3 adayı ücretsizdir. Bkz. [fiyatlar](/pricing).
 
 ## İlgili yazılar
 

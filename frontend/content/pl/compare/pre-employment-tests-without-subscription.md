@@ -52,7 +52,7 @@ prepza nie ma subskrypcji ani umowy. Kupujesz kredyty, kiedy ich potrzebujesz, i
 - **Bez opłat za użytkowników.** Dodawaj administratorów i obserwatorów do firmy bez kosztów.
 - **Kredyty powitalne:** pierwszych 3 kandydatów Twojej pierwszej firmy jest za darmo.
 
-Ceny są w dolarach amerykańskich, w Europie w euro (te same kwoty), a w Wielkiej Brytanii w funtach (od £4 do £1,50). Płatności obsługuje Paddle, który nalicza VAT i podatek od sprzedaży oraz pokazuje kwotę końcową przy kasie; prepza nie przechowuje danych kart. Możesz włączyć automatyczne doładowanie, które uzupełnia saldo, gdy się kończy, ale nie jest obowiązkowe.
+Ceny są tu w dolarach amerykańskich, a w Kanadzie, Australii, Izraelu, Polsce, Szwajcarii, Japonii, Korei Południowej, na Tajwanie, w Hongkongu, Tajlandii, Singapurze, Indiach, pozostałej części Europy i Wielkiej Brytanii w walucie lokalnej (zobacz [cennik](/pricing)). Płatności obsługuje Paddle, który nalicza VAT i podatek od sprzedaży oraz pokazuje kwotę końcową przy kasie; prepza nie przechowuje danych kart. Możesz włączyć automatyczne doładowanie, które uzupełnia saldo, gdy się kończy, ale nie jest obowiązkowe.
 
 ## Co dostajesz za każdego kandydata
 

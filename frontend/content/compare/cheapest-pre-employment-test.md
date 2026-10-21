@@ -35,7 +35,7 @@ You need three numbers: how many candidates you test in a year, the price per ca
 
 ### prepza's prices for your estimate
 
-prepza charges per candidate who answers at least one question. The price per candidate depends on your top-up size: $5 on the smallest top-up, $4 from a $200 top-up, $3 from a $600 top-up and $2 from a $1,000 top-up. Your first company's first 3 candidates are free. Prices are in US dollars, in euros in Europe (same numbers) and in pounds in the UK (£4 to £1.50); Paddle, which processes payments, handles VAT and sales tax at checkout. See [pricing](/pricing) for the current top-ups.
+prepza charges per candidate who answers at least one question. The price per candidate depends on your top-up size: $5 on the smallest top-up, $4 from a $200 top-up, $3 from a $600 top-up and $2 from a $1,000 top-up. Your first company's first 3 candidates are free. Prices are in US dollars here, and in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, the rest of Europe and the UK; Paddle, which processes payments, handles VAT and sales tax at checkout. See [pricing](/pricing) for the current top-ups.
 
 ## Costs beyond the sticker price
 

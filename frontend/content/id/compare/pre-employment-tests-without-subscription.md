@@ -52,7 +52,7 @@ prepza tidak memakai langganan dan tidak memakai kontrak. Kamu membeli kredit sa
 - **Tanpa biaya per kursi.** Tambahkan admin dan viewer ke perusahaanmu tanpa biaya.
 - **Kredit sambutan:** 3 kandidat pertama dari perusahaan pertamamu gratis.
 
-Harga dalam dolar AS, dalam euro di Eropa (angka yang sama), dan dalam pound di Inggris Raya (£4 hingga £1,50). Pembayaran diproses lewat Paddle, yang menangani PPN (VAT) dan pajak penjualan serta menampilkan jumlah akhir saat checkout; prepza tidak menyimpan detail kartu. Kamu bisa menyalakan isi ulang otomatis yang mengisi saldo saat hampir habis, tetapi ini opsional.
+Harga di sini dalam dolar AS, dan dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya (lihat [harga](/pricing)). Pembayaran diproses lewat Paddle, yang menangani PPN (VAT) dan pajak penjualan serta menampilkan jumlah akhir saat checkout; prepza tidak menyimpan detail kartu. Kamu bisa menyalakan isi ulang otomatis yang mengisi saldo saat hampir habis, tetapi ini opsional.
 
 ## Apa yang kamu dapat untuk setiap kandidat
 

@@ -35,7 +35,7 @@ Necesitas tres números: cuántos candidatos evalúas al año, el precio por can
 
 ### Los precios de prepza para tu estimación
 
-prepza cobra por candidato que responde al menos una pregunta. El precio por candidato depende del tamaño de tu recarga: $5 en la recarga más pequeña, $4 a partir de una recarga de $200, $3 a partir de una recarga de $600 y $2 a partir de una recarga de $1000. Los 3 primeros candidatos de tu primera empresa son gratis. Los precios están en dólares estadounidenses, en euros en Europa (con las mismas cifras) y en libras en el Reino Unido (de £4 a £1,50); Paddle, que procesa los pagos, gestiona el IVA y los impuestos sobre las ventas al pagar. Consulta los [precios](/pricing) para ver las recargas actuales.
+prepza cobra por candidato que responde al menos una pregunta. El precio por candidato depende del tamaño de tu recarga: $5 en la recarga más pequeña, $4 a partir de una recarga de $200, $3 a partir de una recarga de $600 y $2 a partir de una recarga de $1000. Los 3 primeros candidatos de tu primera empresa son gratis. Los precios están aquí en dólares estadounidenses, y en la moneda local en Canadá, Australia, Israel, Polonia, Suiza, Japón, Corea del Sur, Taiwán, Hong Kong, Tailandia, Singapur, India, el resto de Europa y el Reino Unido; Paddle, que procesa los pagos, gestiona el IVA y los impuestos sobre las ventas al pagar. Consulta los [precios](/pricing) para ver las recargas actuales.
 
 ## Costes más allá del precio de etiqueta
 

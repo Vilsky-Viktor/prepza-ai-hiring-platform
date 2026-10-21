@@ -98,7 +98,7 @@ prepza koppelt met **Workable, Greenhouse, Teamtailor, Recruitee en Breezy HR**.
 
 Sommige ATS'en vragen een stap aan hun kant. Bij Greenhouse, Teamtailor en Recruitee voeg je een webhook met de hand toe; het venster Instructies in prepza toont het adres en waar je het secret plakt. De webhooks van Workable en Breezy HR stelt prepza zelf in.
 
-Je betaalt per kandidaat, zonder abonnement: alleen voor kandidaten die minstens één vraag beantwoorden, $5 per kandidaat bij de opwaardering van $50, $4 vanaf een opwaardering van $200, $3 vanaf een opwaardering van $600 en $2 vanaf een opwaardering van $1.000. Prijzen zijn in Amerikaanse dollars, in Europa in euro's (dezelfde bedragen) en in het Verenigd Koninkrijk in ponden (£4 tot £1,50); btw of sales tax wordt bij het afrekenen geregeld. Een ATS koppelen en interviews maken is gratis, en de eerste 3 kandidaten van je eerste bedrijf zijn gratis. Zie [prijzen](/pricing).
+Je betaalt per kandidaat, zonder abonnement: alleen voor kandidaten die minstens één vraag beantwoorden, $5 per kandidaat bij de opwaardering van $50, $4 vanaf een opwaardering van $200, $3 vanaf een opwaardering van $600 en $2 vanaf een opwaardering van $1.000. Prijzen zijn hier in Amerikaanse dollars, en in de lokale valuta in Canada, Australië, Israël, Polen, Zwitserland, Japan, Zuid-Korea, Taiwan, Hongkong, Thailand, Singapore, India, de rest van Europa en het Verenigd Koninkrijk; btw of sales tax wordt bij het afrekenen geregeld. Een ATS koppelen en interviews maken is gratis, en de eerste 3 kandidaten van je eerste bedrijf zijn gratis. Zie [prijzen](/pricing).
 
 ## Verder lezen
 

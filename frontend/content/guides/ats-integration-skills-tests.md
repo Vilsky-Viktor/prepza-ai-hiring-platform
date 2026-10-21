@@ -98,7 +98,7 @@ prepza connects to **Workable, Greenhouse, Teamtailor, Recruitee and Breezy HR**
 
 Some ATSs need a step on their side. Greenhouse, Teamtailor and Recruitee ask you to add a web hook by hand; prepza's Instructions dialog shows the address and where to paste its secret. prepza sets up Workable's and Breezy HR's web hooks itself.
 
-Pricing is per candidate, with no subscription: you pay only for candidates who answer at least one question, $5 each on the $50 top-up, $4 from a $200 top-up, $3 from a $600 top-up and $2 from a $1,000 top-up. Prices are in US dollars, in euros in Europe (same numbers) and in pounds in the UK (£4 to £1.50); VAT or sales tax is handled at checkout. Connecting an ATS and making interviews is free, and your first company's first 3 candidates are free. See [pricing](/pricing).
+Pricing is per candidate, with no subscription: you pay only for candidates who answer at least one question, $5 each on the $50 top-up, $4 from a $200 top-up, $3 from a $600 top-up and $2 from a $1,000 top-up. Prices are in US dollars here, and in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, the rest of Europe and the UK; VAT or sales tax is handled at checkout. Connecting an ATS and making interviews is free, and your first company's first 3 candidates are free. See [pricing](/pricing).
 
 ## Related reading
 

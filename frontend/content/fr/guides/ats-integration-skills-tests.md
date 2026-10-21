@@ -98,7 +98,7 @@ prepza se connecte à **Workable, Greenhouse, Teamtailor, Recruitee et Breezy HR
 
 Certains ATS demandent une étape de leur côté. Greenhouse, Teamtailor et Recruitee vous demandent d'ajouter un webhook à la main ; la fenêtre Instructions de prepza indique l'adresse et où coller son secret. prepza configure lui-même les webhooks de Workable et de Breezy HR.
 
-La tarification se fait par candidat, sans abonnement : vous ne payez que pour les candidats qui répondent à au moins une question, 5 $ chacun avec la recharge de 50 $, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Les prix sont en dollars américains, en euros en Europe (mêmes montants) et en livres sterling au Royaume-Uni (de 4 £ à 1,50 £) ; la TVA ou la sales tax est gérée au moment du paiement. Connecter un ATS et créer des entretiens est gratuit, et les 3 premiers candidats de votre première entreprise sont gratuits. Voir les [tarifs](/pricing).
+La tarification se fait par candidat, sans abonnement : vous ne payez que pour les candidats qui répondent à au moins une question, 5 $ chacun avec la recharge de 50 $, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Les prix sont ici en dollars américains, et dans la devise locale au Canada, en Australie, en Israël, en Pologne, en Suisse, au Japon, en Corée du Sud, à Taïwan, à Hong Kong, en Thaïlande, à Singapour, en Inde, dans le reste de l'Europe et au Royaume-Uni ; la TVA ou la sales tax est gérée au moment du paiement. Connecter un ATS et créer des entretiens est gratuit, et les 3 premiers candidats de votre première entreprise sont gratuits. Voir les [tarifs](/pricing).
 
 ## À lire aussi
 

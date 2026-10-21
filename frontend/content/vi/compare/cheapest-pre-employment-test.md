@@ -35,7 +35,7 @@ Bạn cần ba con số: số ứng viên bạn kiểm tra trong một năm, gi�
 
 ### Giá của prepza để bạn ước tính
 
-prepza tính phí cho mỗi ứng viên trả lời ít nhất một câu hỏi. Giá mỗi ứng viên phụ thuộc vào mức nạp: $5 với mức nạp nhỏ nhất, $4 từ mức nạp $200, $3 từ mức nạp $600 và $2 từ mức nạp $1.000. 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí. Giá tính bằng đô la Mỹ, bằng euro ở châu Âu (cùng con số) và bằng bảng Anh ở Vương quốc Anh (từ £4 đến £1,50); Paddle, đơn vị xử lý thanh toán, xử lý VAT và thuế bán hàng khi thanh toán. Xem [bảng giá](/pricing) để biết các mức nạp hiện tại.
+prepza tính phí cho mỗi ứng viên trả lời ít nhất một câu hỏi. Giá mỗi ứng viên phụ thuộc vào mức nạp: $5 với mức nạp nhỏ nhất, $4 từ mức nạp $200, $3 từ mức nạp $600 và $2 từ mức nạp $1.000. 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí. Giá ở đây tính bằng đô la Mỹ, và bằng đồng tiền địa phương ở Canada, Úc, Israel, Ba Lan, Thụy Sĩ, Nhật Bản, Hàn Quốc, Đài Loan, Hồng Kông, Thái Lan, Singapore, Ấn Độ, phần còn lại của châu Âu và Vương quốc Anh; Paddle, đơn vị xử lý thanh toán, xử lý VAT và thuế bán hàng khi thanh toán. Xem [bảng giá](/pricing) để biết các mức nạp hiện tại.
 
 ## Chi phí ngoài giá niêm yết
 

@@ -35,7 +35,7 @@ Vajad kolme arvu: mitu kandidaati aastas testid, hind kandidaadi kohta kandidaad
 
 ### prepza hinnad sinu arvutuse jaoks
 
-prepza võtab tasu iga kandidaadi eest, kes vastab vähemalt ühele küsimusele. Hind kandidaadi kohta sõltub juurdelaadimise suurusest: väikseima juurdelaadimise puhul 5 $, alates 200 $ juurdelaadimisest 4 $, alates 600 $ juurdelaadimisest 3 $ ja alates 1000 $ juurdelaadimisest 2 $. Sinu esimese ettevõtte esimesed 3 kandidaati on tasuta. Hinnad on USA dollarites, Euroopas eurodes (samad summad) ja Ühendkuningriigis naelsterlingites (4 £ kuni 1,50 £); makseid töötlev Paddle arvestab käibemaksu ja müügimaksu maksmise ajal. Kehtivad juurdelaadimised leiad [hinnalehelt](/pricing).
+prepza võtab tasu iga kandidaadi eest, kes vastab vähemalt ühele küsimusele. Hind kandidaadi kohta sõltub juurdelaadimise suurusest: väikseima juurdelaadimise puhul 5 $, alates 200 $ juurdelaadimisest 4 $, alates 600 $ juurdelaadimisest 3 $ ja alates 1000 $ juurdelaadimisest 2 $. Sinu esimese ettevõtte esimesed 3 kandidaati on tasuta. Hinnad on siin USA dollarites, Kanadas, Austraalias, Iisraelis, Poolas, Šveitsis, Jaapanis, Lõuna-Koreas, Taiwanis, Hongkongis, Tais, Singapuris, Indias, ülejäänud Euroopas ja Ühendkuningriigis aga kohalikus valuutas; makseid töötlev Paddle arvestab käibemaksu ja müügimaksu maksmise ajal. Kehtivad juurdelaadimised leiad [hinnalehelt](/pricing).
 
 ## Kulud lisaks hinnasildile
 

@@ -35,7 +35,7 @@ Bu sayfa diğer sağlayıcıların fiyatlarını listelemez, çünkü sık deği
 
 ### Tahmininiz için prepza fiyatları
 
-prepza, en az bir soruyu yanıtlayan aday başına ücret alır. Aday başı fiyat, kredi yükleme tutarınıza bağlıdır: en küçük yüklemede $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. İlk şirketinizin ilk 3 adayı ücretsizdir. Fiyatlar ABD doları, Avrupa'da avro (aynı rakamlarla) ve Birleşik Krallık'ta sterlin (£4 ile £1,50 arası) cinsindendir; ödemeleri işleyen Paddle, KDV ve satış vergisini ödeme adımında hesaplar. Güncel yükleme seçenekleri için [fiyatlar](/pricing) sayfasına bakın.
+prepza, en az bir soruyu yanıtlayan aday başına ücret alır. Aday başı fiyat, kredi yükleme tutarınıza bağlıdır: en küçük yüklemede $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. İlk şirketinizin ilk 3 adayı ücretsizdir. Fiyatlar burada ABD doları, Kanada, Avustralya, İsrail, Polonya, İsviçre, Japonya, Güney Kore, Tayvan, Hong Kong, Tayland, Singapur, Hindistan, Avrupa'nın geri kalanı ve Birleşik Krallık'ta ise yerel para birimi cinsindendir; ödemeleri işleyen Paddle, KDV ve satış vergisini ödeme adımında hesaplar. Güncel yükleme seçenekleri için [fiyatlar](/pricing) sayfasına bakın.
 
 ## Etiket fiyatının ötesindeki maliyetler
 

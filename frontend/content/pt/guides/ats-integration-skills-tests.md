@@ -98,7 +98,7 @@ A prepza se integra com **Workable, Greenhouse, Teamtailor, Recruitee e Breezy H
 
 Alguns ATSs exigem uma etapa do lado deles. Greenhouse, Teamtailor e Recruitee pedem que você adicione um webhook manualmente; a janela Instruções da prepza mostra o endereço e onde colar o segredo. A prepza configura sozinha os webhooks do Workable e do Breezy HR.
 
-O preço é por candidato, sem assinatura: você paga só pelos candidatos que respondem pelo menos uma pergunta, $5 cada na recarga de $50, $4 a partir de uma recarga de $200, $3 a partir de uma recarga de $600 e $2 a partir de uma recarga de $1.000. Os preços são em dólares americanos, em euros na Europa (com os mesmos valores) e em libras no Reino Unido (de £4 a £1,50); IVA ou impostos sobre vendas são tratados no checkout. Conectar um ATS e criar entrevistas é gratuito, e os 3 primeiros candidatos da sua primeira empresa são gratuitos. Veja os [preços](/pricing).
+O preço é por candidato, sem assinatura: você paga só pelos candidatos que respondem pelo menos uma pergunta, $5 cada na recarga de $50, $4 a partir de uma recarga de $200, $3 a partir de uma recarga de $600 e $2 a partir de uma recarga de $1.000. Os preços aqui são em dólares americanos, e na moeda local no Canadá, na Austrália, em Israel, na Polônia, na Suíça, no Japão, na Coreia do Sul, em Taiwan, em Hong Kong, na Tailândia, em Singapura, na Índia, no restante da Europa e no Reino Unido; IVA ou impostos sobre vendas são tratados no checkout. Conectar um ATS e criar entrevistas é gratuito, e os 3 primeiros candidatos da sua primeira empresa são gratuitos. Veja os [preços](/pricing).
 
 ## Leitura relacionada
 
