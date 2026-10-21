@@ -187,23 +187,33 @@ test("a reload in the middle of a visitor's chat brings it back", async ({ page 
   const again = page.getByRole("dialog");
   await expect(again.getByRole("list").getByText(question)).toBeVisible();
   await expect(again.getByRole("list").getByText("A hiring test.")).toBeVisible();
+});
 
-  // A chat older than the service's window (GET /config) isn't brought back.
+// A chat older than the service's window (GET /config) isn't brought back; opened, it's a new
+// chat, and closed, it stays closed after a reload.
+test("an old visitor's chat isn't brought back, and a closed panel stays closed", async ({ page }) => {
+  await helpAnswers(page, [{ delta: "A hiring test." }]);
+  const panel = await openPanel(page);
+  await welcomeQuestions(panel).first().click();
+  await expect(panel.getByRole("list").getByText("A hiring test.")).toBeVisible();
+
+  const again = page.getByRole("dialog");
   await page.evaluate(() => {
     const kept = JSON.parse(sessionStorage.getItem("prepza:assistant:visitor") ?? "{}");
     kept.lastAt = new Date(Date.now() - 31 * 60_000).toISOString();
     sessionStorage.setItem("prepza:assistant:visitor", JSON.stringify(kept));
   });
   await page.reload();
+  await loaded(page);
   await expect(askAgent(page)).toBeVisible();
   await expect(again).toHaveCount(0);
 
-  // Opened, it's a new chat; closed, it stays closed after a reload.
   await askAgent(page).click();
   await expect(welcomeQuestions(again).first()).toBeVisible();
   await expect(again.getByRole("list").getByText("A hiring test.")).toHaveCount(0);
   await again.getByTestId("assistant-close").click();
   await page.reload();
+  await loaded(page);
   await expect(askAgent(page)).toBeVisible();
   await expect(again).toHaveCount(0);
 });
