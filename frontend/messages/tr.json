@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Adaysız bekleyen oluşturulmuş mülakatlar",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Adaysız bekleyen oluşturulmuş mülakatlar, ödeme yapmayan",
       "PREVIEWS_PER_USER_HOUR": "Kullanıcı başına saatlik mülakat önizlemesi",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "Kullanıcı başına saatlik ödeme ve ödeme kontrolü",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "Kullanıcı başına saatlik ödeme, ödeme kontrolü ve fatura",
       "TEMPLATE_COPIES_PER_HOUR": "Şirket başına saatlik şablondan kopyalanan mülakat",
       "LINK_STARTS_PER_HOUR": "Bir mülakatın bağlantısıyla saatlik başlatma",
       "LINK_STARTS_PER_IP_HOUR": "Adres başına saatlik bağlantıyla başlatma",

@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "ראיונות שנוצרו וממתינים בלי מועמדים",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "ראיונות שנוצרו וממתינים בלי מועמדים, בלי תשלום",
       "PREVIEWS_PER_USER_HOUR": "תצוגות מקדימות של ראיונות למשתמש בשעה",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "תשלומים ובדיקות תשלום למשתמש בשעה",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "תשלומים, בדיקות תשלום וחשבוניות למשתמש בשעה",
       "TEMPLATE_COPIES_PER_HOUR": "ראיונות שהועתקו מתבניות לחברה בשעה",
       "LINK_STARTS_PER_HOUR": "התחלות דרך הקישור של ראיון אחד בשעה",
       "LINK_STARTS_PER_IP_HOUR": "התחלות דרך קישור לכתובת IP בשעה",

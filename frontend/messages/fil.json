@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Mga nagawang interview na naghihintay nang walang aplikante",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Mga nagawang interview na naghihintay nang walang aplikante, hindi bayad",
       "PREVIEWS_PER_USER_HOUR": "Mga interview preview bawat user kada oras",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "Mga bayad at pagsusuri ng bayad bawat user kada oras",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "Mga bayad, pagsusuri ng bayad at invoice bawat user kada oras",
       "TEMPLATE_COPIES_PER_HOUR": "Mga interview na kinopya mula sa template bawat kumpanya kada oras",
       "LINK_STARTS_PER_HOUR": "Mga pagsisimula sa link ng isang interview kada oras",
       "LINK_STARTS_PER_IP_HOUR": "Mga pagsisimula sa link bawat address kada oras",

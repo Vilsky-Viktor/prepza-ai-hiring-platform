@@ -83,7 +83,7 @@ When a payment fails in Paddle's checkout (a declined card, a failed Google Pay,
 - Billing names the latest payment attempt's `error_code` by what the buyer can do (`app/constants/payment_failures.py`): `card_declined`, `insufficient_funds`, `expired_card`, `invalid_details`, `authentication_failed` (the bank's 3-D Secure check), `card_not_supported`, `payment_method_failed` (a wallet or PayPal without a clearer code), `try_later` (the bank or Paddle unreachable) or `other` (anything else, and Paddle slow or down: up to four reads 1.5 seconds apart, 4 seconds each, since Paddle can record the code a few seconds after the failure).
 - Then Paddle's checkout closes and a dialog says "Payment didn't go through" with that reason's advice (another card or payment method, check the card details, confirm in the banking app, try later, ask the bank), **Close** and **Try again**, which opens the same checkout again. A failure the buyer has already retried past in Paddle's checkout shows nothing.
 - The same holds for the checkout that turns automatic top-up on.
-- Making checkouts and looking up failed payments count together against `CHECKOUT_CALLS_PER_USER_HOUR` (60 a user an hour by default), as each calls Paddle's API.
+- Making checkouts, looking up failed payments and opening invoices count together against `CHECKOUT_CALLS_PER_USER_HOUR` (60 a user an hour by default), as each calls Paddle's API.
 
 Balances follow a payment as it lands:
 

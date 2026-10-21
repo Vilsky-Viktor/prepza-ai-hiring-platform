@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "候補者のいない待機中の生成済み面接数",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "候補者のいない待機中の生成済み面接数（無料）",
       "PREVIEWS_PER_USER_HOUR": "ユーザーごとの 1 時間あたりの面接プレビュー数",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "ユーザーごとの 1 時間あたりの決済と支払い確認の回数",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "ユーザーごとの 1 時間あたりの決済、支払い確認、請求書の回数",
       "TEMPLATE_COPIES_PER_HOUR": "会社ごとの 1 時間あたりのテンプレートからコピーした面接数",
       "LINK_STARTS_PER_HOUR": "1 つの面接リンクからの 1 時間あたりの開始数",
       "LINK_STARTS_PER_IP_HOUR": "IP アドレスごとの 1 時間あたりのリンクからの開始数",

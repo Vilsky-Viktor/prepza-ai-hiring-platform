@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "مصاحبه‌های ساخته‌شدهٔ منتظر بدون متقاضی",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "مصاحبه‌های ساخته‌شدهٔ منتظر بدون متقاضی، بدون پرداخت",
       "PREVIEWS_PER_USER_HOUR": "پیش‌نمایش‌های مصاحبه برای هر کاربر در ساعت",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "پرداخت‌ها و بررسی‌های پرداخت برای هر کاربر در ساعت",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "پرداخت‌ها، بررسی‌های پرداخت و فاکتورها برای هر کاربر در ساعت",
       "TEMPLATE_COPIES_PER_HOUR": "مصاحبه‌های کپی‌شده از قالب‌ها برای هر شرکت در ساعت",
       "LINK_STARTS_PER_HOUR": "شروع‌ها از طریق پیوند یک مصاحبه در ساعت",
       "LINK_STARTS_PER_IP_HOUR": "شروع‌ها از طریق پیوند از هر نشانی در ساعت",

@@ -63,6 +63,7 @@ async def get_reserved(
 async def get_invoice(company_id: UUID, transaction_id: str, user: CurrentUser) -> InvoiceOut:
     """A temporary link to the invoice of one of the company's top-ups."""
     await require_editor(user, company_id)
+    await count_checkout_call(user.uid, company_id)
 
     return InvoiceOut(url=await billing.company_invoice(company_id, transaction_id))
 

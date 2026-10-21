@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Erstellte Interviews, die ohne Kandidaten warten",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Erstellte Interviews, die ohne Kandidaten warten, nicht zahlend",
       "PREVIEWS_PER_USER_HOUR": "Interview-Vorschauen pro Nutzer und Stunde",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "Bezahlvorgänge und Zahlungsprüfungen pro Nutzer und Stunde",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "Bezahlvorgänge, Zahlungsprüfungen und Rechnungen pro Nutzer und Stunde",
       "TEMPLATE_COPIES_PER_HOUR": "Aus Vorlagen kopierte Interviews pro Unternehmen und Stunde",
       "LINK_STARTS_PER_HOUR": "Starts über den Link eines Interviews pro Stunde",
       "LINK_STARTS_PER_IP_HOUR": "Starts über Links pro Adresse und Stunde",

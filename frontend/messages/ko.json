@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "지원자 없이 대기 중인 생성된 면접",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "지원자 없이 대기 중인 생성된 면접, 무료",
       "PREVIEWS_PER_USER_HOUR": "사용자별 시간당 면접 미리보기",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "사용자별 시간당 결제 및 결제 확인 횟수",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "사용자별 시간당 결제, 결제 확인 및 인보이스 횟수",
       "TEMPLATE_COPIES_PER_HOUR": "회사별 시간당 템플릿에서 복사한 면접",
       "LINK_STARTS_PER_HOUR": "면접 링크 하나로 시간당 시작",
       "LINK_STARTS_PER_IP_HOUR": "IP 주소별 시간당 링크 시작",

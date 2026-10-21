@@ -122,8 +122,8 @@ CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed a
 
 ## Abuse, observability, data
 
-- Creating checkouts and reading failures count against `CHECKOUT_CALLS_PER_USER_HOUR` after the
-  role check (`.claude/rules/security.md`, Rate limiting); Paddle screens card testing.
+- Creating checkouts, reading failures and invoice links count against
+  `CHECKOUT_CALLS_PER_USER_HOUR` after the role check (`.claude/rules/security.md`, Rate limiting); Paddle screens card testing.
 - Paddle failing (no answer, 5xx) and Paddle refusing billing's key (401, 403: wrong, expired or
   missing permission) log "Paddle unavailable" for the alert; a declined card doesn't. Refused
   signatures alert. Runbook: `docs/runbooks.md` (Paddle down).

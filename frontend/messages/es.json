@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Entrevistas generadas en espera sin candidatos",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Entrevistas generadas en espera sin candidatos, empresas sin pagar",
       "PREVIEWS_PER_USER_HOUR": "Vistas previas de entrevistas por usuario y hora",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "Pagos y consultas de pagos por usuario y hora",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "Pagos, consultas de pagos y facturas por usuario y hora",
       "TEMPLATE_COPIES_PER_HOUR": "Entrevistas copiadas de plantillas por empresa y hora",
       "LINK_STARTS_PER_HOUR": "Inicios desde el enlace de una entrevista por hora",
       "LINK_STARTS_PER_IP_HOUR": "Inicios por enlace por dirección y hora",

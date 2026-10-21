@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Entretiens générés en attente sans candidats",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Entretiens générés en attente sans candidats, entreprises non payantes",
       "PREVIEWS_PER_USER_HOUR": "Aperçus d'entretiens par utilisateur et par heure",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "Paiements et vérifications de paiement par utilisateur et par heure",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "Paiements, vérifications de paiement et factures par utilisateur et par heure",
       "TEMPLATE_COPIES_PER_HOUR": "Entretiens copiés depuis des modèles par entreprise et par heure",
       "LINK_STARTS_PER_HOUR": "Démarrages via le lien d'un entretien par heure",
       "LINK_STARTS_PER_IP_HOUR": "Démarrages par lien par adresse et par heure",

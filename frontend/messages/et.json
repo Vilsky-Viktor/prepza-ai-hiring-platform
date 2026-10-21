@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Ilma kandidaatideta ootavad loodud intervjuud",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Ilma kandidaatideta ootavad loodud intervjuud, mittemaksvad",
       "PREVIEWS_PER_USER_HOUR": "Intervjuude eelvaated kasutaja kohta tunnis",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "Maksed ja maksekontrollid kasutaja kohta tunnis",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "Maksed, maksekontrollid ja arved kasutaja kohta tunnis",
       "TEMPLATE_COPIES_PER_HOUR": "Mallidest kopeeritud intervjuud ettevõtte kohta tunnis",
       "LINK_STARTS_PER_HOUR": "Alustamised ühe intervjuu lingi kaudu tunnis",
       "LINK_STARTS_PER_IP_HOUR": "Lingi kaudu alustamised aadressi kohta tunnis",

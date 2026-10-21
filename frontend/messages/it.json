@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Colloqui generati in attesa senza candidati",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Colloqui generati in attesa senza candidati, aziende non paganti",
       "PREVIEWS_PER_USER_HOUR": "Anteprime dei colloqui per utente all'ora",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "Pagamenti e verifiche dei pagamenti per utente all'ora",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "Pagamenti, verifiche dei pagamenti e fatture per utente all'ora",
       "TEMPLATE_COPIES_PER_HOUR": "Colloqui copiati da modelli per azienda all'ora",
       "LINK_STARTS_PER_HOUR": "Avvii tramite il link di un colloquio all'ora",
       "LINK_STARTS_PER_IP_HOUR": "Avvii tramite link per indirizzo all'ora",

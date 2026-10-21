@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "没有候选人而等待中的已生成面试数",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "没有候选人而等待中的已生成面试数，未付费",
       "PREVIEWS_PER_USER_HOUR": "每位用户每小时的面试预览数",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "每位用户每小时的结账和付款查询次数",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "每位用户每小时的结账、付款查询和发票次数",
       "TEMPLATE_COPIES_PER_HOUR": "每家公司每小时从模板复制的面试数",
       "LINK_STARTS_PER_HOUR": "每小时通过同一面试链接开始的次数",
       "LINK_STARTS_PER_IP_HOUR": "每个 IP 地址每小时通过链接开始的次数",

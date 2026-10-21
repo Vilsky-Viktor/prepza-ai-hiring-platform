@@ -572,7 +572,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Wygenerowane rozmowy czekające bez kandydatów",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Wygenerowane rozmowy czekające bez kandydatów, niepłacące",
       "PREVIEWS_PER_USER_HOUR": "Podglądy rozmów na użytkownika na godzinę",
-      "CHECKOUT_CALLS_PER_USER_HOUR": "Płatności i sprawdzenia płatności na użytkownika na godzinę",
+      "CHECKOUT_CALLS_PER_USER_HOUR": "Płatności, sprawdzenia płatności i faktury na użytkownika na godzinę",
       "TEMPLATE_COPIES_PER_HOUR": "Rozmowy skopiowane z szablonów na firmę na godzinę",
       "LINK_STARTS_PER_HOUR": "Rozpoczęcia przez link jednej rozmowy na godzinę",
       "LINK_STARTS_PER_IP_HOUR": "Rozpoczęcia przez link na adres na godzinę",

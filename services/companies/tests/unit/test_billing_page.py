@@ -251,6 +251,7 @@ def test_an_admin_learns_why_their_payment_failed_and_a_viewer_doesnt(client, mo
     [
         ("POST", "checkout", {"candidates": 45}),
         ("GET", "payment-failure?transaction_id=txn_ours", None),
+        ("GET", "invoice?transaction_id=txn_01", None),
     ],
 )
 def test_calls_to_paddle_stop_at_the_users_hourly_limit(client, monkeypatch, method, path, body):
@@ -267,6 +268,7 @@ def test_calls_to_paddle_stop_at_the_users_hourly_limit(client, monkeypatch, met
     monkeypatch.setattr(billing_routes, "hit_or_skip", over)
     monkeypatch.setattr(billing_prices, "company_checkout", never)
     monkeypatch.setattr(billing, "company_payment_failure", never)
+    monkeypatch.setattr(billing, "company_invoice", never)
     as_member(monkeypatch, "admin")
 
     response = client.request(method, f"{COMPANY}/billing/{path}", json=body)
