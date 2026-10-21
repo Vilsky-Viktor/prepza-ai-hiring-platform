@@ -8,7 +8,6 @@ from app.constants.credits import Reason
 from app.constants.currencies import Currency
 from app.models.billing import Entry, Purchase
 from app.storage.db import Session
-from app.storage.money import paid_minor
 
 
 async def stats(period: str | None) -> tuple[dict[str, int], dict[str, int]]:
@@ -20,7 +19,7 @@ async def stats(period: str | None) -> tuple[dict[str, int], dict[str, int]]:
         select(
             func.min(Purchase.created_at).label("created_at"),
             func.min(Purchase.currency).label("currency"),
-            func.max(paid_minor(Purchase)).label("paid"),
+            func.max(Purchase.total_minor).label("paid"),
         )
         .group_by(Purchase.transaction_id)
         .subquery()

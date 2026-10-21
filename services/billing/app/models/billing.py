@@ -126,10 +126,9 @@ class Entry(Base):
     owner_id: Mapped[str] = mapped_column(String(128), index=True)
     amount: Mapped[int]
     reason: Mapped[str] = mapped_column(String(64))
-    # In the currency's minor units, tax included, as Paddle gives it; None when not known.
-    # `total` is the old text copy, kept until no running version reads it (migration 0020).
+    # In the currency's minor units, tax included, as Paddle gives it; None for a movement that
+    # moved no money (a gift, a charge) or one from before it was kept.
     total_minor: Mapped[int | None] = mapped_column(BigInteger)
-    total: Mapped[str | None] = mapped_column(Text)
     currency: Mapped[str | None] = mapped_column(String(3))
     automatic: Mapped[bool] = mapped_column(default=False, server_default="false")
     # A superadmin's adjustment: why, as the company's history shows it.
@@ -156,10 +155,8 @@ class Purchase(Base):
     owner_id: Mapped[str] = mapped_column(String(128), index=True)
     # Who paid, when a company buys; the company is the owner.
     buyer_id: Mapped[str | None] = mapped_column(String(128))
-    # What the whole transaction cost, in minor units, tax included; `total` is the old text copy
-    # (migration 0020). Nullable until the text column goes.
-    total_minor: Mapped[int | None] = mapped_column(BigInteger)
-    total: Mapped[str] = mapped_column(Text)
+    # What the whole transaction cost, in minor units, tax included.
+    total_minor: Mapped[int] = mapped_column(BigInteger)
     currency: Mapped[str] = mapped_column(String(3))
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()

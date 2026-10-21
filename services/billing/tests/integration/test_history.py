@@ -56,13 +56,13 @@ def test_a_top_up_keeps_what_it_cost_and_whether_it_was_automatic(run):
 
     rows = {row.key.split(":")[0]: row for row in run(scenario())}
 
-    assert (rows[by_hand].total, rows[by_hand].currency, rows[by_hand].automatic) == (
-        "1000",
+    assert (rows[by_hand].total_minor, rows[by_hand].currency, rows[by_hand].automatic) == (
+        1000,
         "USD",
         False,
     )
-    assert (rows[automatic].total, rows[automatic].currency, rows[automatic].automatic) == (
-        "3000",
+    assert (rows[automatic].total_minor, rows[automatic].currency, rows[automatic].automatic) == (
+        3000,
         "EUR",
         True,
     )
@@ -80,9 +80,9 @@ def test_a_refund_keeps_the_money_it_returned(run):
 
     refund = next(row for row in run(scenario()) if row.reason == Reason.REFUND)
 
-    assert (refund.amount, refund.total, refund.currency, refund.automatic) == (
+    assert (refund.amount, refund.total_minor, refund.currency, refund.automatic) == (
         -250,
-        "250",
+        250,
         "USD",
         False,
     )

@@ -1,5 +1,4 @@
 from app.constants.credits import ADJUSTMENTS, CANDIDATE_PREFIX, Reason
-from app.helpers.money import row_minor
 from app.models.billing import Entry
 from app.schemas.billing import HistoryEntryOut
 
@@ -31,7 +30,7 @@ def history_entry_out(entry: Entry) -> HistoryEntryOut:
         amount=entry.amount,
         reason=entry.reason,
         created_at=entry.created_at,
-        total=None if (minor := row_minor(entry)) is None else str(minor),
+        total=None if entry.total_minor is None else str(entry.total_minor),
         currency=entry.currency,
         automatic=entry.automatic,
         note=entry.note,

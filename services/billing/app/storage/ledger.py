@@ -201,7 +201,6 @@ async def add(
             owner_id=owner_id,
             amount=amount,
             reason=reason,
-            total=total,
             total_minor=int(total) if total is not None else None,
             currency=currency,
             automatic=automatic,

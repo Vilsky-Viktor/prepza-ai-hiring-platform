@@ -20,7 +20,6 @@ from app.constants.products import (
     OwnerType,
 )
 from app.helpers.history import history_entry_out
-from app.helpers.money import row_minor
 from app.helpers.wallets import balance_out, candidates_for
 from app.integrations import paddle
 from app.schemas.billing import (
@@ -257,7 +256,7 @@ async def export_user(user_id: str, caller: ServiceCaller) -> dict:
                 {
                     "product": item.product,
                     "quantity": item.quantity,
-                    "total": str(row_minor(item)),
+                    "total": str(item.total_minor),
                     "currency": item.currency,
                     "at": item.created_at,
                 }
