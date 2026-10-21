@@ -17,7 +17,7 @@ def transfers(monkeypatch):
     made = []
     owned = {}
 
-    async def transfer(company, owner, member):
+    async def transfer(company, owner, member, most=None):
         made.append((owner.user_id, member.user_id))
 
         return True

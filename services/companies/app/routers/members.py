@@ -3,7 +3,7 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, status
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import CurrentUser, OptionalUser
-from prepza_common.limits import at_most
+from prepza_common.limits import at_most, limit
 from prepza_common.paging import PageParams
 from prepza_common.rate_limit import hit, hit_emails, recipient_key
 
@@ -14,6 +14,7 @@ from app.constants.roles import (
     TOO_MANY_PENDING,
     Role,
 )
+from app.core.exceptions import OverLimit
 from app.helpers.logos import logo_path
 from app.integrations import billing, billing_prices
 from app.integrations.redis import get_redis
@@ -69,14 +70,13 @@ async def invite_member(company_id: UUID, body: MemberIn, user: CurrentUser) -> 
 
     redis = get_redis()
     who = {"company_id": company.id, "user_id": user.uid}
-    await at_most(
-        redis,
-        "MAX_PENDING_INVITES",
-        sum(member.user_id is None for member in company.members),
-        status.HTTP_409_CONFLICT,
-        TOO_MANY_PENDING,
-        **who,
-    )
+
+    async def refuse_over(count: int) -> None:
+        await at_most(
+            redis, "MAX_PENDING_INVITES", count, status.HTTP_409_CONFLICT, TOO_MANY_PENDING, **who
+        )
+
+    await refuse_over(sum(member.user_id is None for member in company.members))
 
     if not await billing.company_paid(company.id):
         key = f"rate:member-invites:{company.id}"
@@ -92,7 +92,13 @@ async def invite_member(company_id: UUID, body: MemberIn, user: CurrentUser) -> 
         "language": user.language,
     }
 
-    member = await members.add(company.id, email, body.role, sender)
+    try:
+        most = await limit(redis, "MAX_PENDING_INVITES")
+        member = await members.add(company.id, email, body.role, sender, most)
+    except OverLimit as over:
+        # Another invite took the last place meanwhile: counted again under its lock.
+        await refuse_over(over.count)
+        raise
 
     # Invited by another request at the same moment.
     if member is None:
@@ -155,17 +161,29 @@ async def make_owner(company_id: UUID, member_id: UUID, user: CurrentUser, via: 
     if member.user_id is None or member.role != Role.ADMIN:
         raise HTTPException(status.HTTP_409_CONFLICT, ONLY_ADMINS_OWN)
 
-    await at_most(
-        get_redis(),
-        "MAX_OWNED_COMPANIES",
-        await companies.owned_count(member.user_id),
-        status.HTTP_409_CONFLICT,
-        OWNS_TOO_MANY,
-        company_id=company.id,
-        user_id=member.user_id,
-    )
+    async def refuse_over(count: int) -> None:
+        await at_most(
+            get_redis(),
+            "MAX_OWNED_COMPANIES",
+            count,
+            status.HTTP_409_CONFLICT,
+            OWNS_TOO_MANY,
+            company_id=company.id,
+            user_id=member.user_id,
+        )
 
-    if not await members.transfer_ownership(company, caller, member):
+    await refuse_over(await companies.owned_count(member.user_id))
+
+    most = await limit(get_redis(), "MAX_OWNED_COMPANIES")
+
+    try:
+        moved = await members.transfer_ownership(company, caller, member, most)
+    except OverLimit as over:
+        # They came to own another company meanwhile: counted again under its lock.
+        await refuse_over(over.count)
+        raise
+
+    if not moved:
         raise HTTPException(status.HTTP_409_CONFLICT, ONLY_ADMINS_OWN)
 
     await audit.record(

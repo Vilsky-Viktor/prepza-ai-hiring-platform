@@ -193,3 +193,40 @@ def test_the_database_refuses_a_second_owner(run):
                 return error.orig.diag.constraint_name
 
     assert run(scenario()) == "uq_members_one_owner"
+
+
+def test_two_invites_at_once_cant_both_take_the_last_pending_place(run):
+    from app.core.exceptions import OverLimit
+
+    async def scenario():
+        company = await companies.create(f"Pending {uuid.uuid4()}", "ann", "ann@example.com")
+        outcomes = await asyncio.gather(
+            *(
+                members.add(company.id, f"{name}@example.com", "viewer", {}, most=1)
+                for name in ("bob", "cid")
+            ),
+            return_exceptions=True,
+        )
+
+        return sorted(type(outcome).__name__ for outcome in outcomes)
+
+    assert run(scenario()) == sorted(["Member", OverLimit.__name__])
+
+
+def test_two_companies_at_once_cant_both_take_the_last_owned_place(run):
+    from app.core.exceptions import OverLimit
+
+    owner = f"owner-{uuid.uuid4()}"
+
+    async def scenario():
+        outcomes = await asyncio.gather(
+            *(
+                companies.create(f"{name} {uuid.uuid4()}", owner, "o@example.com", most=1)
+                for name in ("First", "Second")
+            ),
+            return_exceptions=True,
+        )
+
+        return sorted(type(outcome).__name__ for outcome in outcomes)
+
+    assert run(scenario()) == sorted(["Company", OverLimit.__name__])

@@ -68,7 +68,7 @@ def team(monkeypatch):
     async def fake_set_role(member_id, role):
         removed.append((member_id, role))
 
-    async def fake_add(company_id, email, role, sender):
+    async def fake_add(company_id, email, role, sender, most=None):
         removed.append((email, role))
         senders.append(sender)
 

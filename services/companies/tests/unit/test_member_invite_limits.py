@@ -126,7 +126,7 @@ def test_nobody_becomes_owner_of_more_companies_than_one_person_may(
     if edited:
         limits.limits["MAX_OWNED_COMPANIES"] = str(edited)
 
-    async def transfer(company, owner, member):
+    async def transfer(company, owner, member, most=None):
         made.append(member.user_id)
 
         return True

@@ -17,7 +17,7 @@ def test_nobody_creates_more_companies_than_one_person_may_own(
     async def owned_count(user_id):
         return owned["count"]
 
-    async def name_taken(name, user_id, email):
+    async def name_taken(name, user_id, email, most=None):
         return None
 
     async def no_track(*args, **kwargs):

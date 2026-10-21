@@ -3,22 +3,31 @@ import secrets
 from prepza_common import outbox
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.notifications import NOTIFICATION_REQUESTED
-from sqlalchemy import delete, select, update
+from sqlalchemy import delete, func, select, update
 from sqlalchemy.exc import IntegrityError
 
 from app.constants.events import MEMBER_INVITED
 from app.constants.roles import Role
+from app.core.exceptions import OverLimit
 from app.helpers.notifications import member_joined, ownership_received
 from app.models.companies import Company, Member
 from app.models.outbox import OutboxEvent
 from app.storage import audit
+from app.storage.companies import lock_owner
 from app.storage.db import Session
 
 
-async def add(company_id, email: str, role: str, sender: dict) -> Member | None:
+async def add(
+    company_id,
+    email: str,
+    role: str,
+    sender: dict,
+    most: int | None = None,
+) -> Member | None:
     """A pending invite; the role applies once it's accepted. Its email's event is saved with it:
     `sender` (the company, its logo, the inviter and their language) and the join link's token.
-    None when the email was invited meanwhile."""
+    None when the email was invited meanwhile; OverLimit when the company already has `most`
+    pending invites, counted under a lock (two invites at once can't both pass)."""
     member = Member(
         company_id=company_id,
         invited_email=email.lower(),
@@ -26,7 +35,20 @@ async def add(company_id, email: str, role: str, sender: dict) -> Member | None:
         token=secrets.token_urlsafe(32),
     )
 
+    pending = (
+        select(func.count())
+        .select_from(Member)
+        .where(Member.company_id == company_id, Member.user_id.is_(None))
+    )
+
     async with Session() as session:
+        lock = func.pg_advisory_xact_lock(func.hashtext(f"pending-invites:{company_id}"))
+        await session.execute(select(lock))
+        count = await session.scalar(pending)
+
+        if most is not None and count >= most:
+            raise OverLimit(count)
+
         session.add(member)
         outbox.add(
             session,
@@ -96,11 +118,22 @@ async def accept(member: Member, company: Company, user_id: str) -> bool:
     return True
 
 
-async def transfer_ownership(company: Company, owner: Member, member: Member) -> bool:
+async def transfer_ownership(
+    company: Company,
+    owner: Member,
+    member: Member,
+    most: int | None = None,
+) -> bool:
     """Makes `member`, a joined admin, the owner, and the owner an admin, in one transaction with
     the new owner's notification. False when either changed meanwhile (another transfer, a role
-    change): nothing changes then, so a company never has two owners or none."""
+    change): nothing changes then, so a company never has two owners or none. OverLimit when
+    `member` already owns `most` companies, counted under a lock."""
     async with Session() as session:
+        owned = await lock_owner(session, member.user_id)
+
+        if most is not None and owned >= most:
+            raise OverLimit(owned)
+
         stepped_down = await session.execute(
             update(Member)
             .where(Member.id == owner.id, Member.role == Role.OWNER)

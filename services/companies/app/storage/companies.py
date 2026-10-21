@@ -13,6 +13,7 @@ from sqlalchemy.orm import selectinload
 from app.constants.events import COMPANY_DELETED
 from app.constants.roles import Role
 from app.constants.verification import RENAME_REVIEWED, VerificationStatus
+from app.core.exceptions import OverLimit
 from app.models.companies import Company, Member
 from app.models.outbox import OutboxEvent
 from app.storage.db import Session
@@ -21,9 +22,26 @@ from app.storage.db import Session
 NAME_INDEX = "uq_companies_lower_name"
 
 
-async def create(name: str, user_id: str, email: str) -> Company | None:
+def owned_by(user_id: str):
+    return (
+        select(func.count())
+        .select_from(Member)
+        .where(Member.user_id == user_id, Member.role == Role.OWNER)
+    )
+
+
+async def lock_owner(session, user_id: str) -> int:
+    """Holds the person's companies still until the transaction ends, so two requests can't both
+    pass the count of what they own; returns that count."""
+    await session.execute(select(func.pg_advisory_xact_lock(func.hashtext(f"owned:{user_id}"))))
+
+    return await session.scalar(owned_by(user_id))
+
+
+async def create(name: str, user_id: str, email: str, most: int | None = None) -> Company | None:
     """None when another company already has the name, in any case; the database decides, so
-    two people creating the same name at once can't both get it."""
+    two people creating the same name at once can't both get it. OverLimit when the person
+    already owns `most` companies, counted under a lock (two creates at once can't both pass)."""
     company = Company(
         name=name,
         dpa_version=LEGAL_VERSIONS["dpa"],
@@ -31,6 +49,11 @@ async def create(name: str, user_id: str, email: str) -> Company | None:
     )
 
     async with Session() as session:
+        owned = await lock_owner(session, user_id)
+
+        if most is not None and owned >= most:
+            raise OverLimit(owned)
+
         session.add(company)
 
         try:
@@ -45,14 +68,8 @@ async def create(name: str, user_id: str, email: str) -> Company | None:
 
 
 async def owned_count(user_id: str) -> int:
-    query = (
-        select(func.count())
-        .select_from(Member)
-        .where(Member.user_id == user_id, Member.role == Role.OWNER)
-    )
-
     async with Session() as session:
-        return await session.scalar(query)
+        return await session.scalar(owned_by(user_id))
 
 
 async def ids_for_user(user_id: str) -> list[str]:

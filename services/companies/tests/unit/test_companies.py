@@ -164,7 +164,7 @@ def test_a_taken_company_name_is_refused(client, monkeypatch):
     async def none_owned(user_id):
         return 0
 
-    async def name_taken(name, user_id, email):
+    async def name_taken(name, user_id, email, most=None):
         return None
 
     monkeypatch.setattr(companies, "owned_count", none_owned)
@@ -182,7 +182,7 @@ def test_an_unverified_email_creates_no_company(client, monkeypatch):
     sign_in(verified=False)
     made = []
 
-    async def create(name, user_id, email):
+    async def create(name, user_id, email, most=None):
         made.append(name)
 
     monkeypatch.setattr(companies, "create", create)
@@ -210,7 +210,7 @@ def test_a_company_without_its_welcome_credits_is_removed_again(client, monkeypa
     async def none_owned(user_id):
         return 0
 
-    async def create(name, user_id, email):
+    async def create(name, user_id, email, most=None):
         return created
 
     async def no_ids(user_id):

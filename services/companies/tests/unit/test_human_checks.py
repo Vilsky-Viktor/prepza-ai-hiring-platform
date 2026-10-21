@@ -52,7 +52,7 @@ def test_only_a_persons_first_company_on_the_site_is_asked(
     async def owned_count(user_id):
         return owned
 
-    async def name_taken(name, user_id, email):
+    async def name_taken(name, user_id, email, most=None):
         return None
 
     monkeypatch.setattr(companies, "owned_count", owned_count)

@@ -111,7 +111,7 @@ def test_a_company_is_created_without_the_country_and_billing_gets_it_with_one(
     async def none_owned(user_id):
         return 0
 
-    async def create(name, user_id, email):
+    async def create(name, user_id, email, most=None):
         return created
 
     async def no_ids(user_id):

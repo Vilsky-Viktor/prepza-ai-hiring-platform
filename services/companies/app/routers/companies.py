@@ -6,7 +6,7 @@ from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import CurrentUser
 from prepza_common.constants import REFERRAL_COOKIE
 from prepza_common.human_check import require_human
-from prepza_common.limits import at_most
+from prepza_common.limits import at_most, limit
 from prepza_common.paging import PageParams
 from prepza_common.visitor_country import VisitorCountry
 
@@ -17,6 +17,7 @@ from app.constants.invites import (
     TOO_MANY_COMPANIES,
 )
 from app.constants.roles import EDITORS, Role
+from app.core.exceptions import OverLimit
 from app.helpers.brand import color_sets, style_of
 from app.helpers.logos import logo_path
 from app.integrations import billing
@@ -87,21 +88,30 @@ async def create_company(
     if owned == 0 and via is None:
         await require_human(request, settings.turnstile_secret_key)
 
-    try:
+    async def refuse_over(count: int) -> None:
         await at_most(
             get_redis(),
             "MAX_OWNED_COMPANIES",
-            owned,
+            count,
             # Waiting won't free one: a quota, not a rate limit.
             status.HTTP_409_CONFLICT,
             TOO_MANY_COMPANIES,
             user_id=user.uid,
         )
+
+    try:
+        await refuse_over(owned)
+        most = await limit(get_redis(), "MAX_OWNED_COMPANIES")
+
+        try:
+            company = await companies.create(body.name, user.uid, user.email, most)
+        except OverLimit as over:
+            # Another company of theirs was made meanwhile: counted again under its lock.
+            await refuse_over(over.count)
+            raise
     except HTTPException:
         await track("limit_hit", user_id=user.uid, which="companies_owned")
         raise
-
-    company = await companies.create(body.name, user.uid, user.email)
 
     if company is None:
         raise HTTPException(status.HTTP_409_CONFLICT, COMPANY_NAME_TAKEN)
