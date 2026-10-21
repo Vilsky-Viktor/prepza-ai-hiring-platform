@@ -58,6 +58,9 @@ client dropped); it refuses any database but a `_test` one and any Redis databas
 Request bodies: `body_limit.BodyLimitMiddleware` refuses one over 1 MB (`MAX_BODY_BYTES`) with a
 translated 413, counting a streamed body as it arrives; companies (report PDFs) and the assistant
 (voice messages) pass larger limits.
+Access checks: `route_guards.unguarded(app, public)` lists the routes that run no guard (a signed-in user,
+a superadmin, another service, Google's pushes): each service's `test_route_guards.py` fails on one
+that isn't listed as public on purpose.
 Logs: `logging.configure_logging` writes one JSON line per entry in the fields Cloud Logging reads
 (`severity`, `message`), and `RequestLogMiddleware` ties every line logged while serving a request
 to its trace (`logging.googleapis.com/trace`, from the load balancer's `X-Cloud-Trace-Context`),
