@@ -4,6 +4,7 @@ import time
 from collections.abc import AsyncIterator
 from datetime import datetime
 
+import anyio
 import httpx
 from fastapi import HTTPException, status
 from prepza_common import memory_cache
@@ -154,12 +155,14 @@ async def open_stream(user_id: str, fresh: bool = False) -> AsyncIterator[str]:
     key = f"streams:user:{user_id}"
     redis = get_redis()
     taken = await redis.incr(key)
-    await redis.expire(key, STREAM_SLOT_SECONDS)
 
+    # A refused tab doesn't keep the slots alive: only a granted one renews their expiry.
     if taken > MAX_STREAMS_PER_USER:
         await redis.decr(key)
 
         raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS, RATE_LIMITED)
+
+    await redis.expire(key, STREAM_SLOT_SECONDS)
 
     return in_slot(key, changes(user_id, fresh))
 
@@ -169,4 +172,6 @@ async def in_slot(key: str, stream: AsyncIterator[str]) -> AsyncIterator[str]:
         async for chunk in stream:
             yield chunk
     finally:
-        await get_redis().decr(key)
+        # A tab closing cancels the response; shielded, the slot is still given back.
+        with anyio.CancelScope(shield=True):
+            await get_redis().decr(key)
