@@ -811,6 +811,16 @@
      },
      "429": {
       "description": "Your company's keys exceeded 60 requests per minute"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
      }
     },
     "security": [

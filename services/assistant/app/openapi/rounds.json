@@ -3118,6 +3118,18 @@
       "type": "boolean",
       "title": "Preview",
       "default": false
+     },
+     "company_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Company Id"
      }
     },
     "type": "object",

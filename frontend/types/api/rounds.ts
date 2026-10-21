@@ -1303,6 +1303,8 @@ export interface components {
        * @default false
        */
       preview: boolean
+      /** Company Id */
+      company_id?: string | null
     }
     /** SetIdsIn */
     SetIdsIn: {

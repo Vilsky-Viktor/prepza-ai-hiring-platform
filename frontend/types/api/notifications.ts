@@ -895,7 +895,10 @@ export interface components {
     CandidateOptOutIn: {
       /** Email */
       email: string
-      /** Company Id */
+      /**
+       * Company Id
+       * Format: uuid
+       */
       company_id: string
       /** Stopped */
       stopped: boolean
@@ -1226,6 +1229,15 @@ export interface operations {
           "application/json": components["schemas"]["LegalChangeOut"][]
         }
       }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
     }
   }
   mark_seen_me_seen_post: {
@@ -1243,6 +1255,15 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
       }
     }
   }
@@ -1323,6 +1344,15 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
       }
     }
   }
@@ -1691,6 +1721,15 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["LegalNoticeOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
@@ -2358,6 +2397,15 @@ export interface operations {
         }
         content?: never
       }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
     }
   }
   reminders_internal_schedules_reminders_post: {
@@ -2375,6 +2423,15 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
       }
     }
   }
@@ -2394,6 +2451,15 @@ export interface operations {
         }
         content?: never
       }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
     }
   }
   flush_outbox_internal_schedules_outbox_post: {
@@ -2411,6 +2477,15 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
       }
     }
   }

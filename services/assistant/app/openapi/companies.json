@@ -4564,7 +4564,7 @@
      "internal"
     ],
     "summary": "Access",
-    "description": "What the user may do in the company: ats guards its pages with it. A company that\ndoesn't exist is 404.",
+    "description": "What the user may do in the company: ats, notifications and the api guard their pages\nwith it (prepza_common.company_access), refusing what companies' own routes refuse: the\ncaller passes on the assistant's X-Assistant header. A company that doesn't exist is 404.",
     "operationId": "access_internal_companies__company_id__access_get",
     "security": [
      {
@@ -5838,8 +5838,39 @@
      "internal"
     ],
     "summary": "Company Editors",
-    "description": "Notifications, for a notice about the data processing agreement: every owner and admin\nof a company.",
+    "description": "Notifications, for a notice about the data processing agreement: every owner and admin\nof a company, a page at a time.",
     "operationId": "company_editors_internal_companies_editors_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "description": "The last id of the previous page",
+       "default": "",
+       "title": "After"
+      },
+      "description": "The last id of the previous page"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 5000,
+       "minimum": 1,
+       "default": 5000,
+       "title": "Limit"
+      }
+     }
+    ],
     "responses": {
      "200": {
       "description": "Successful Response",
@@ -5861,12 +5892,7 @@
        }
       }
      }
-    },
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ]
+    }
    }
   },
   "/internal/events": {
@@ -7550,6 +7576,28 @@
      "editor": {
       "type": "boolean",
       "title": "Editor"
+     },
+     "refused": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Refused"
+     },
+     "read_only": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Read Only"
      }
     },
     "type": "object",

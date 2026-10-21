@@ -2534,7 +2534,7 @@
      "internal"
     ],
     "summary": "User Ids",
-    "description": "Notifications: every account, for a notice about the terms or the privacy policy; with a\n`setting`, the users who have it on (a campaign's product updates or offers).",
+    "description": "Notifications: every account, for a notice about the terms or the privacy policy; with a\n`setting`, the users who have it on (a campaign's product updates or offers), a page at a\ntime.",
     "operationId": "user_ids_internal_users_ids_get",
     "security": [
      {
@@ -2560,6 +2560,30 @@
         }
        ],
        "title": "Setting"
+      }
+     },
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "description": "The last id of the previous page",
+       "default": "",
+       "title": "After"
+      },
+      "description": "The last id of the previous page"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 5000,
+       "minimum": 1,
+       "default": 5000,
+       "title": "Limit"
       }
      }
     ],
