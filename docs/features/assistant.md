@@ -77,6 +77,26 @@ Destructive ones (deleting a company, an interview or the account, removing a me
 
 ## A conversation
 
+A turn, as `converse` in `app/services/chat.py` runs it. It isn't a LangGraph graph (one model
+with tools in a loop needs none), so this diagram is drawn by hand: change it with the loop.
+
+```mermaid
+flowchart TD
+    start([message, page, company]) --> build[instructions + page + recent history]
+    build --> ask[ask the model, streaming its text]
+    ask --> calls{tool calls?}
+    calls -- no --> done([answer saved, done])
+    calls -- yes --> run[run up to 4 tools at once, 20 s each]
+    run --> kind{tool}
+    kind -- read --> results[results to the model]
+    kind -- show --> rows[rows block to the panel] --> results
+    kind -- action --> card[confirmation card, nothing runs] --> results
+    results --> limit{6 steps used?}
+    limit -- no --> ask
+    limit -- yes --> final[ask once more, tools off] --> done
+    card -. user confirms .-> confirm[POST …/confirm runs it with a fresh token]
+```
+
 `POST /api/assistant/chat` with `{conversation_id?, company_id?, message, source?, page?, earlier?}` and the user's ID token. `company_id` is the company picked in the panel (one the user must be able to see), or none for all companies; it's the context of this message, and a new conversation is listed under it. `page` (`{key, path, company_id?, interview_id?, candidate_id?, template_id?, practice_round_id?}`) is only context for the model, stored with the message (see [the page the user is on](#the-page-the-user-is-on)). `earlier` (at most 20 messages, each cut to 2,000 characters) is the chat the user had before signing in, saved at the start of a new conversation and ignored in an existing one. The answer streams as server-sent events:
 
 ```
