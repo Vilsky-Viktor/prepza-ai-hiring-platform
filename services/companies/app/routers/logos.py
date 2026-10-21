@@ -10,7 +10,7 @@ from prepza_common.auth import CurrentUser
 from app.constants.brand import PREPZA_COLORS, Theme
 from app.constants.logos import LOGO_CACHE
 from app.helpers.brand import color_sets, style_of, unreadable
-from app.helpers.logos import for_email, logo_path, logo_type
+from app.helpers.logos import logo_path, logo_type, stored_logo
 from app.helpers.return_urls import with_invite
 from app.schemas.logos import (
     BrandColorSets,
@@ -42,8 +42,8 @@ async def set_logo(company_id: UUID, body: LogoIn, user: CurrentUser) -> LogoOut
 
     media_type = logo_type(content)
 
-    # Decoding a WebP is CPU work, kept off the event loop.
-    stored = await asyncio.to_thread(for_email, content, media_type) if media_type else None
+    # Decoding is CPU work, kept off the event loop.
+    stored = await asyncio.to_thread(stored_logo, content, media_type) if media_type else None
 
     if stored is None:
         raise HTTPException(

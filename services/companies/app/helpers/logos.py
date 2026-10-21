@@ -3,6 +3,8 @@ import io
 from PIL import Image
 
 from app.constants.logos import (
+    FORMATS,
+    JPEG_TYPE,
     LOGO_PATH,
     LOGO_SIGNATURES,
     MAX_LOGO_BYTES,
@@ -35,24 +37,28 @@ def logo_path(company: Company | None) -> str | None:
     return LOGO_PATH.format(company_id=company.id, version=company.logo_version)
 
 
-def for_email(content: bytes, media_type: str) -> tuple[bytes, str] | None:
-    """A WebP logo as PNG, transparency kept: classic Outlook shows no WebP, and the same logo
-    goes into emails. PNG and JPEG stay as they are. None for a WebP that can't be read or is
+def stored_logo(content: bytes, media_type: str) -> tuple[bytes, str] | None:
+    """The logo as it's kept, decoded to check it really is that image: a PNG as PNG, a JPEG as
+    JPEG (its quality kept), each without its metadata (a photo's camera and place); a WebP as
+    PNG, transparency kept, since classic Outlook shows no WebP and the same logo goes into
+    emails. None for an image that can't be read, isn't the type its first bytes claim, or is
     over MAX_LOGO_SIDE pixels a side, which is checked from its header before decoding. CPU
     work: call it in a thread."""
-    if media_type != WEBP_TYPE:
-        return content, media_type
-
     out = io.BytesIO()
 
     try:
         image = Image.open(io.BytesIO(content))
 
-        if max(image.size) > MAX_LOGO_SIDE:
+        if image.format != FORMATS[media_type] or max(image.size) > MAX_LOGO_SIDE:
             return None
 
+        if media_type == JPEG_TYPE:
+            image.save(out, "JPEG", quality="keep")
+
+            return out.getvalue(), JPEG_TYPE
+
         image.save(out, "PNG", optimize=True)
-    except (OSError, Image.DecompressionBombError):
+    except (OSError, ValueError, Image.DecompressionBombError):
         return None
 
     return out.getvalue(), PNG_TYPE

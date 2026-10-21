@@ -1,8 +1,10 @@
 import base64
+import io
 import uuid
 from datetime import UTC, datetime
 
 import pytest
+from PIL import Image
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import current_user
 from prepza_common.user import User
@@ -16,7 +18,16 @@ from app.models.invites import CandidateInvite
 from app.storage import companies, interviews, invites
 
 COMPANY_ID = uuid.uuid4()
-PNG = b"\x89PNG\r\n\x1a\n" + b"0" * 20
+
+
+def png() -> bytes:
+    out = io.BytesIO()
+    Image.new("RGB", (4, 4), (10, 20, 30)).save(out, "PNG")
+
+    return out.getvalue()
+
+
+PNG = png()
 
 
 def sign_in(uid):
@@ -62,7 +73,7 @@ def test_only_png_jpeg_and_webp_up_to_500_kb_are_logos():
     assert logo_type(b"\xff\xd8\xff\xe0rest") == "image/jpeg"
     assert logo_type(b"RIFF\x00\x00\x00\x00WEBPVP8 ") == "image/webp"
     assert logo_type(b"<svg onload=alert(1)>") is None
-    assert logo_type(b"\x89PNG\r\n\x1a\n" + b"0" * 500_001) is None
+    assert logo_type(PNG + b"0" * 500_001) is None
 
 
 def test_an_admin_uploads_a_logo_whose_address_changes_with_each_upload(client, company, audited):
@@ -73,7 +84,9 @@ def test_an_admin_uploads_a_logo_whose_address_changes_with_each_upload(client, 
     first = client.put(url, json={"image": base64.b64encode(PNG).decode()}).json()
     second = client.put(url, json={"image": base64.b64encode(PNG).decode()}).json()
 
-    assert saved["logo"] == (PNG, "image/png")
+    content, media_type = saved["logo"]
+    assert media_type == "image/png"
+    assert Image.open(io.BytesIO(content)).getpixel((0, 0)) == (10, 20, 30)
     assert first["logo_url"] == f"/api/companies/companies/{COMPANY_ID}/logo?v=1"
     assert second["logo_url"].endswith("?v=2")
     assert (
