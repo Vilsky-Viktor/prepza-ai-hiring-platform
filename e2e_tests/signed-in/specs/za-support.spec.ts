@@ -152,6 +152,11 @@ test("superadmin follows a company to its interview, a candidate and an account"
   const times = superadmin.getByRole("main").locator("dl time")
   const values = superadmin.getByRole("main").locator("dl dd")
   await supportLink(superadmin, "candidates", invited.id).click()
+  // The old page stays until the new one arrives, and the dev server may first compile it: wait
+  // for the candidate's address before reading the heading.
+  await expect(superadmin).toHaveURL(new RegExp(`/superadmin/support/candidates/${invited.id}$`), {
+    timeout: 90_000,
+  })
   await expect(superadmin.getByRole("heading", { level: 1 })).toHaveText(waiting)
   await expect(supportLink(superadmin, "companies", company.id)).toBeVisible()
   await expect(supportLink(superadmin, "interviews", interviewId)).toBeVisible()
