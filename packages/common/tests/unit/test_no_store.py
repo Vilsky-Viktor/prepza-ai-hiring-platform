@@ -16,6 +16,11 @@ def logo():
     return Response(b"png", headers={"Cache-Control": "public, max-age=60"})
 
 
+@app.get("/invites/{token}")
+def invite(token: str):
+    return {"email": "ann@example.com"}
+
+
 client = TestClient(app)
 SIGNED_IN = {"Authorization": "Bearer token"}
 
@@ -30,3 +35,7 @@ def test_a_routes_own_cache_control_stays():
 
 def test_an_anonymous_answer_is_left_to_its_route():
     assert "Cache-Control" not in client.get("/mine").headers
+
+
+def test_an_answer_to_a_secret_links_path_is_never_kept_though_anonymous():
+    assert client.get("/invites/abc").headers["Cache-Control"] == "no-store"

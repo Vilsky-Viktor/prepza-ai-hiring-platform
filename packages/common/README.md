@@ -68,8 +68,9 @@ Every line's message and error are scrubbed (`scrub.scrub`: emails, URLs cut to 
 database engine hides query values from its errors (`hide_parameters`).
 Retries: `backoff.wait_seconds(first, attempt)` is the wait before a retry, doubling from `first`
 with full jitter (the welcome credits, Langfuse votes).
-Caching: `no_store.NoStoreMiddleware` marks every answer to a signed-in request `Cache-Control:
-no-store`, unless its route set its own (a stream, a versioned logo).
+Caching: `no_store.NoStoreMiddleware` marks every answer to a signed-in request, or to a path that
+carries a secret token (`/invites/{token}`), `Cache-Control: no-store`, unless its route set its own
+(a versioned logo); streams (`sse`) are `no-store` too.
 Settings: `ServiceSettings` (`settings.py`) is the base of every service's `Settings`, with the
 sign-in settings they all read (`FIREBASE_PROJECT_ID`, and `FIREBASE_AUTH_EMULATOR_HOST`, refused
 unless the project is a `demo-` one). A refused setting's error names the setting, never the

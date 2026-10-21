@@ -16,7 +16,7 @@ def test_a_stream_is_unbuffered_server_sent_events():
 
     assert response.media_type == "text/event-stream"
     assert response.headers["X-Accel-Buffering"] == "no"
-    assert response.headers["Cache-Control"] == "no-cache"
+    assert response.headers["Cache-Control"] == "no-store"
 
     async def body():
         return [chunk async for chunk in response.body_iterator]

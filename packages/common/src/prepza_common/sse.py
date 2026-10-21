@@ -4,6 +4,7 @@ import json
 from collections.abc import AsyncIterator
 
 from fastapi.responses import StreamingResponse
+from prepza_common.constants import NO_STORE
 
 # A comment line: it keeps the connection open through proxies, and clients skip it.
 KEEP_ALIVE = ": keep-alive\n\n"
@@ -19,6 +20,6 @@ def event_stream(events: AsyncIterator[str]) -> StreamingResponse:
     return StreamingResponse(
         events,
         media_type="text/event-stream",
-        # Tells nginx not to buffer the stream.
-        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+        # Kept nowhere (the events are someone's), and nginx doesn't buffer the stream.
+        headers={"Cache-Control": NO_STORE, "X-Accel-Buffering": "no"},
     )
