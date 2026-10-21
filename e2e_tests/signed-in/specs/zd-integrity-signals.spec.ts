@@ -19,15 +19,26 @@ test("only a real page leave counts", async ({
   await inviteCandidate(owner, interviewId, email)
 
   const candidate = await signInAs(email)
+  // The page's clock is Playwright's, so time away passes at once.
+  await candidate.clock.install()
   await visit(candidate, `/invite/${await inviteToken(email)}`)
   await candidate.getByRole("main").getByRole("button").click()
   await expect(candidate).toHaveURL(/\/sessions\//)
   await expect(candidate.getByRole("main").locator("button[aria-pressed]").first()).toBeVisible()
 
+  // Each report is saved before the next is sent: time away passes at once, so without waiting
+  // the return could reach the server before the leave it closes.
+  const reported = () =>
+    candidate.waitForResponse((response) => response.url().endsWith("/signals"))
+
   async function leave(milliseconds: number) {
+    const left = reported()
     await candidate.evaluate(() => window.dispatchEvent(new Event("blur")))
-    await candidate.waitForTimeout(milliseconds)
+    await left
+    await candidate.clock.fastForward(milliseconds)
+    const back = reported()
     await candidate.evaluate(() => window.dispatchEvent(new Event("focus")))
+    await back
   }
 
   await leave(300)

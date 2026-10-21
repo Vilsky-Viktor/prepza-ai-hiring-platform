@@ -1,5 +1,6 @@
 import { expect, test } from "../fixtures"
 import { api, createCompany } from "../helpers/api"
+import { settled } from "../helpers/layout"
 import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { ownerEmail } from "../helpers/users"
@@ -40,7 +41,7 @@ test("an owner stops AI apps from using the company's data, and allows them agai
 
   for (const checked of [true, false]) {
     await expect(switchAr).toBeChecked({ checked })
-    await arabic.waitForTimeout(300)
+    await settled(switchAr)
     const track = (await switchAr.boundingBox())!
     const knob = (await switchAr.locator("[data-slot=switch-thumb]").boundingBox())!
     expect(knob.x).toBeGreaterThanOrEqual(track.x - 1)

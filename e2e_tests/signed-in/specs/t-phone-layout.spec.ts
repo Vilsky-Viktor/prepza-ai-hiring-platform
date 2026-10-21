@@ -8,7 +8,7 @@ import {
   deleteOwnCompanies,
   templatesBySize,
 } from "../helpers/api";
-import { box, PHONE } from "../helpers/layout";
+import { box, PHONE, settled } from "../helpers/layout";
 import { integrationRow, visit } from "../helpers/navigation";
 import { throwawayEmail } from "../helpers/users";
 
@@ -60,8 +60,7 @@ test("a company's pages on a phone", async ({ signInAs }) => {
     // the same font.
     await create.click();
     const dialog = user.getByRole("dialog");
-    await expect(dialog).toBeVisible();
-    await user.waitForTimeout(400);
+    await settled(dialog);
     expect((await box(dialog)).left).toBe(0);
     const footer = dialog.locator("[data-slot=dialog-footer]").getByRole("button");
     const cancel = await box(footer.first());
@@ -104,16 +103,18 @@ test("a company's pages on a phone", async ({ signInAs }) => {
     const role = await box(member.locator("[data-slot=badge]").first());
     expect(role.top).toBeGreaterThanOrEqual(email.bottom);
 
-    // The last tab, past the screen's edge, is scrolled into view in its row when it's open.
+    // The last tab, past the screen's edge, is scrolled into view in its row when it's open
+    // (once the page has hydrated, so it's polled).
     await visit(user, `/companies/${company.id}/referrals`);
-    const shown = await user.evaluate((id) => {
-      const tab = document.querySelector(`main nav a[href="/companies/${id}/referrals"]`);
-      const row = tab?.closest("nav")?.parentElement;
-      const [inner, outer] = [tab, row].map((element) => element!.getBoundingClientRect());
+    const shown = () =>
+      user.evaluate((id) => {
+        const tab = document.querySelector(`main nav a[href="/companies/${id}/referrals"]`);
+        const row = tab?.closest("nav")?.parentElement;
+        const [inner, outer] = [tab, row].map((element) => element!.getBoundingClientRect());
 
-      return inner.left >= outer.left - 1 && inner.right <= outer.right + 1;
-    }, company.id);
-    expect(shown).toBe(true);
+        return inner.left >= outer.left - 1 && inner.right <= outer.right + 1;
+      }, company.id);
+    await expect.poll(shown).toBe(true);
 
     // Integrations: a small logo beside the name, the buttons on the line under both.
     await visit(user, `/companies/${company.id}/integrations`);

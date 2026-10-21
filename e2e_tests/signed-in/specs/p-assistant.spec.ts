@@ -71,6 +71,8 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
   await expect(picker).not.toHaveText(company.name);
 
   // Voice from the keyboard: Enter starts, Enter stops; the transcript is sent as the message.
+  // The page's clock is Playwright's, so a long enough recording takes no time.
+  await owner.clock.install();
   await owner.route("**/api/assistant/transcribe", (route) => {
     expect(route.request().headers()["content-type"]).toMatch(/^audio\//);
 
@@ -82,7 +84,7 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
   await owner.keyboard.press("Enter");
   await expect(mic).toHaveAttribute("aria-pressed", "true");
   await shot(owner, "recording");
-  await owner.waitForTimeout(1_200);
+  await owner.clock.fastForward(1_200);
   await owner.keyboard.press("Enter");
   await expect(panel.getByRole("list").getByText("Who else passed?")).toBeVisible();
   expect(sent[1]).toMatchObject({ message: "Who else passed?", source: "voice", conversation_id: CONVERSATION });
