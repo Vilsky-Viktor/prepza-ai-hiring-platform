@@ -1,7 +1,10 @@
 import uuid
 from datetime import datetime
+from decimal import Decimal
 
-from sqlalchemy import BigInteger, DateTime, Float, Index, String
+from prepza_common.ai_constants import ACTIONS, Category, Outcome
+from prepza_common.db import one_of
+from sqlalchemy import BigInteger, CheckConstraint, DateTime, Float, Index, Numeric, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -14,7 +17,15 @@ class AiUsage(Base):
     the cost."""
 
     __tablename__ = "ai_usage"
-    __table_args__ = (Index("ix_ai_usage_occurred_at", "occurred_at"),)
+    __table_args__ = (
+        Index("ix_ai_usage_occurred_at", "occurred_at"),
+        CheckConstraint(one_of("action", sorted(ACTIONS)), name="ck_ai_usage_action"),
+        CheckConstraint(
+            one_of("service", sorted(set(ACTIONS.values()))), name="ck_ai_usage_service"
+        ),
+        CheckConstraint(one_of("outcome", Outcome), name="ck_ai_usage_outcome"),
+        CheckConstraint(one_of("category", Category), name="ck_ai_usage_category"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     # The event's id: a redelivered event finds it and adds nothing.
@@ -22,12 +33,16 @@ class AiUsage(Base):
     occurred_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     action: Mapped[str] = mapped_column(String(48))
     service: Mapped[str] = mapped_column(String(32))
-    model: Mapped[str] = mapped_column(String(64))
+    model: Mapped[str] = mapped_column(Text())
     input_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
     cached_input_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
     output_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
     audio_seconds: Mapped[float] = mapped_column(Float, default=0)
     cost_usd: Mapped[float] = mapped_column(Float, default=0)
+    # The same cost in USD, exact (a float's sums of fractions of a cent drift): written with
+    # cost_usd, read before it (migration 0024). cost_usd goes once no running version writes
+    # only it.
+    cost: Mapped[Decimal | None] = mapped_column(Numeric(20, 12))
     company_id: Mapped[str | None] = mapped_column(String(128), index=True)
     user_id: Mapped[str | None] = mapped_column(String(128), index=True)
     # The generation, conversation or question it was for.
@@ -53,4 +68,4 @@ class LimitHit(Base):
     company_id: Mapped[str | None] = mapped_column(String(128), index=True)
     user_id: Mapped[str | None] = mapped_column(String(128), index=True)
     # What was refused, when the limit says it (the pause's refusals).
-    what: Mapped[str | None] = mapped_column(String(64))
+    what: Mapped[str | None] = mapped_column(Text())

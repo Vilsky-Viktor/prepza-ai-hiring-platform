@@ -37,6 +37,9 @@ class Reason:
     ADJUSTMENT = "adjustment"
 
 
+# Every reason, for the database's check of entries.reason.
+REASONS = tuple(value for name, value in vars(Reason).items() if not name.startswith("_"))
+
 # Paddle's adjustments of a top-up.
 ADJUSTMENTS = (Reason.REFUND, Reason.CHARGEBACK, Reason.CHARGEBACK_REVERSED)
 
@@ -51,3 +54,6 @@ class HoldStatus:
     OPEN = "open"
     CHARGED = "charged"
     RELEASED = "released"
+
+
+HOLD_STATUSES = (HoldStatus.OPEN, HoldStatus.CHARGED, HoldStatus.RELEASED)
