@@ -70,6 +70,17 @@ STATEMENT_TIMEOUT = "60s"
 # short transaction: one DELETE of a month of rows would run long, hold its locks and write its
 # whole WAL at once.
 DELETE_BATCH = 1000
+# Names SQLAlchemy gives the indexes and constraints a model leaves unnamed, so a migration can
+# drop or rename one by a name it knows. They are the names Postgres itself gives (so the
+# constraints made before keep theirs, and old migrations make the same ones); a CHECK has no
+# column to name it by, so it's named where it's made (ck_<table>_<what>).
+NAMING_CONVENTION = {
+    "ix": "ix_%(column_0_label)s",
+    "uq": "%(table_name)s_%(column_0_N_name)s_key",
+    "ck": "%(constraint_name)s",
+    "fk": "%(table_name)s_%(column_0_N_name)s_fkey",
+    "pk": "%(table_name)s_pkey",
+}
 # A migration's statement waits at most this long for a lock, then fails (and the deploy with
 # it, to be run again): the running version keeps serving during migrations, and an ALTER TABLE
 # queued behind a long transaction would hold every query on its table behind it.

@@ -2,8 +2,15 @@
 service's tests/integration/test_migrations.py asserts that `problems` finds nothing, so a table
 that breaks a rule fails the tests instead of reaching production."""
 
+import importlib
+import pkgutil
+import re
+from types import ModuleType
+
 from prepza_common.db import sqlalchemy_url
 from sqlalchemy import create_engine, text
+from sqlalchemy.dialects import postgresql
+from sqlalchemy.schema import CreateIndex, CreateTable
 
 # Each rule: what breaks it, and a query naming every table or column that does.
 RULES = {
@@ -48,6 +55,13 @@ RULES = {
     """,
 }
 
+# Every constraint and index of the database, by table.
+NAMES = """
+    SELECT conrelid::regclass::text, conname FROM pg_constraint
+    WHERE connamespace = 'public'::regnamespace AND contype IN ('p', 'u', 'f', 'c')
+    UNION SELECT tablename, indexname FROM pg_indexes WHERE schemaname = 'public'
+"""
+
 
 def problems(database_url: str) -> list[str]:
     """Every rule broken in the database at `database_url`, as "rule: table[.column]"."""
@@ -62,3 +76,51 @@ def problems(database_url: str) -> list[str]:
             )
     finally:
         engine.dispose()
+
+
+def _model_names(models: ModuleType) -> set[tuple[str, str]]:
+    """The constraints and indexes the models in the package `models` (every module of it, and
+    its Base in models.base) would create, by table."""
+    for module in pkgutil.iter_modules(models.__path__):
+        importlib.import_module(f"{models.__name__}.{module.name}")
+
+    metadata = importlib.import_module(f"{models.__name__}.base").Base.metadata
+    dialect = postgresql.dialect()
+    names = set()
+
+    for table in metadata.tables.values():
+        ddl = str(CreateTable(table).compile(dialect=dialect))
+        names |= {(table.name, name) for name in re.findall(r"CONSTRAINT (\w+)", ddl)}
+        names |= {
+            (
+                table.name,
+                re.search(r"INDEX (\w+) ON", str(CreateIndex(index).compile(dialect=dialect)))[1],
+            )
+            for index in table.indexes
+        }
+
+    return names
+
+
+def misnamed(database_url: str, models: ModuleType) -> list[str]:
+    """The constraints and indexes whose names differ between the models (app.models, with the
+    naming convention) and the database: a migration dropping one by its model's name would
+    miss it. Tables outside the models are left out."""
+    named = _model_names(models)
+    tables = {table for table, _ in named}
+    engine = create_engine(sqlalchemy_url(database_url))
+
+    try:
+        with engine.connect() as connection:
+            found = {
+                (table, name)
+                for table, name in connection.execute(text(NAMES)).all()
+                if table in tables
+            }
+    finally:
+        engine.dispose()
+
+    return sorted(
+        [f"only in the models: {t}.{n}" for t, n in named - found]
+        + [f"only in the database: {t}.{n}" for t, n in found - named]
+    )

@@ -23,8 +23,9 @@ One Cloud SQL instance, a database per service. Adding a migration: the `migrati
 - `created_at` has `server_default=func.now()`, so rows written outside the ORM get it too.
 - A closed set of values is a string column with a `CHECK (col IN (...))`, not a native `ENUM`
   (values can't be removed from one).
-- New `Base` classes set `MetaData(naming_convention=...)` (`ix`, `uq`, `ck`, `fk`, `pk`) so
-  migrations can drop and rename constraints by name; existing names stay.
+- Every `Base` sets `MetaData(naming_convention=NAMING_CONVENTION)` (`prepza_common.constants`:
+  Postgres' own names for `uq`, `fk`, `pk`, so existing names stay) so migrations can drop and
+  rename constraints by name; a `CHECK` is named where it's made (`ck_<table>_<what>`).
 
 ## Constraints and indexes
 

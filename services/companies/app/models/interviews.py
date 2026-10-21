@@ -2,7 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 from prepza_common.constants import DEFAULT_LANGUAGE
-from sqlalchemy import DateTime, ForeignKey, Index, String, Text, func
+from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -13,7 +13,11 @@ from app.models.base import Base
 class Interview(Base):
     __tablename__ = "interviews"
     # A company's interviews by last change, for the public API's updated_since (migration 0045).
-    __table_args__ = (Index("ix_interviews_company_updated", "company_id", "updated_at", "id"),)
+    __table_args__ = (
+        Index("ix_interviews_company_updated", "company_id", "updated_at", "id"),
+        # Named before the naming convention (models/base.py).
+        UniqueConstraint("link_token", name="uq_interviews_link_token"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     company_id: Mapped[uuid.UUID] = mapped_column(
@@ -39,7 +43,7 @@ class Interview(Base):
         default=DEFAULT_PASS_MARK, server_default=str(DEFAULT_PASS_MARK)
     )
     # The shareable link's code while it's on: anyone who opens it can take the test.
-    link_token: Mapped[str | None] = mapped_column(String(64), unique=True)
+    link_token: Mapped[str | None] = mapped_column(String(64))
     # Every interview is timed: each question has question_seconds, and one left unanswered is
     # wrong. Candidates never see their scores. A new test gets its level's (storage/interviews.py);
     # the database's default is from before tests had them.

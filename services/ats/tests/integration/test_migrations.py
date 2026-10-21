@@ -53,6 +53,16 @@ def test_the_tables_follow_the_database_rules():
     assert problems(settings.database_url) == []
 
 
+def test_the_models_name_constraints_and_indexes_as_the_database_does():
+    """So a migration can drop or rename one by its name (the naming convention, models/base.py)."""
+    from prepza_common.schema_rules import misnamed
+
+    import app.models
+    from app.config.settings import settings
+
+    assert misnamed(settings.database_url, app.models) == []
+
+
 def test_a_migration_waits_only_so_long_for_a_lock_and_runs_only_so_long():
     from prepza_common.db import migration_engine
 

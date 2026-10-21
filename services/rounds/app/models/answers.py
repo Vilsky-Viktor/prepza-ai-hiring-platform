@@ -10,7 +10,9 @@ from app.models.base import Base
 
 class Answer(Base):
     __tablename__ = "answers"
-    __table_args__ = (UniqueConstraint("session_id", "question_id"),)
+    __table_args__ = (
+        UniqueConstraint("session_id", "question_id", name="uq_answers_session_question"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     session_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("sessions.id", ondelete="CASCADE"))

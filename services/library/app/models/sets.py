@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 
 from prepza_common.constants import DEFAULT_LANGUAGE
-from sqlalchemy import DateTime, ForeignKey, Index, String, Text, func
+from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -14,18 +14,23 @@ class QuestionSet(Base):
 
     __tablename__ = "sets"
     # The question bank looks up templates of one level and language (storage/reuse.py).
-    __table_args__ = (Index("ix_sets_kind_level_language", "kind", "level", "language"),)
+    __table_args__ = (
+        Index("ix_sets_kind_level_language", "kind", "level", "language"),
+        # Named before the naming convention (models/base.py).
+        UniqueConstraint("generation_id", name="uq_sets_generation_id"),
+        UniqueConstraint("slug", name="uq_sets_slug"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     # Null for sets saved before generations were tracked.
-    generation_id: Mapped[uuid.UUID | None] = mapped_column(unique=True)
+    generation_id: Mapped[uuid.UUID | None] = mapped_column()
     kind: Mapped[str] = mapped_column(String(32))
     owner_type: Mapped[str] = mapped_column(String(32))
     owner_id: Mapped[str] = mapped_column(String(128), index=True)
     title: Mapped[str] = mapped_column(String(200))
     # A template's readable URL part, set once when it's saved and never changed, so its practice
     # page's URL stays the same after a rename; null for other sets.
-    slug: Mapped[str | None] = mapped_column(String(120), unique=True)
+    slug: Mapped[str | None] = mapped_column(String(120))
     source_text: Mapped[str] = mapped_column(Text)
     level: Mapped[str] = mapped_column(String(32))
     # The language its content was generated in; reuse only mixes sets of one language.
