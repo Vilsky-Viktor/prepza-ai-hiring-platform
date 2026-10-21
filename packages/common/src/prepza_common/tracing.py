@@ -1,7 +1,10 @@
 """AI calls traced to Langfuse through its LangChain callback. On only when LANGFUSE_PUBLIC_KEY
 and LANGFUSE_SECRET_KEY are set (LANGFUSE_HOST: Langfuse's EU cloud unless set); nothing goes
-anywhere else (LangSmith isn't configured). Needs the package's `langfuse` extra."""
+anywhere else (LangSmith isn't configured). Personal data is masked before it's sent: emails,
+URLs' paths (tokens), `name` and `email` fields, and the names a caller hides (`hiding`). Needs
+the package's `langfuse` extra."""
 
+import json
 import os
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -12,12 +15,15 @@ from langchain_core.callbacks import BaseCallbackHandler
 from langchain_core.tracers.context import register_configure_hook
 from langfuse import Langfuse, propagate_attributes
 from langfuse.langchain import CallbackHandler
+from prepza_common.scrub import scrub_people
 
 EU_CLOUD = "https://cloud.langfuse.com"
 
 # The traced run's handler; every LangChain call made while it's set reports to it.
 _run_handler: ContextVar[BaseCallbackHandler | None] = ContextVar("langfuse_run", default=None)
 register_configure_hook(_run_handler, inheritable=True)
+# Words masked in what the current calls report (a user's own name in the instructions).
+_hidden: ContextVar[tuple[str, ...]] = ContextVar("langfuse_hidden", default=())
 
 
 def tracing_on() -> bool:
@@ -32,7 +38,26 @@ def client() -> Langfuse:
         host=os.getenv("LANGFUSE_HOST") or EU_CLOUD,
         # Which environment the traces are from, the same ENVIRONMENT Sentry reports.
         environment=os.getenv("ENVIRONMENT", "production"),
+        mask=mask,
     )
+
+
+def mask(*, data, **kwargs):
+    """What Langfuse sends of a call's input, output and metadata: without personal data."""
+    return scrub_people(data, _hidden.get())
+
+
+@contextmanager
+def hiding(*words: str | None) -> Iterator[None]:
+    """Masks `words` (empty ones skipped) in what the calls made inside report, also as JSON
+    writes them (non-ASCII letters escaped)."""
+    hidden = {form for word in words if word for form in (word, json.dumps(word)[1:-1])}
+    token = _hidden.set(tuple(hidden))
+
+    try:
+        yield
+    finally:
+        _hidden.reset(token)
 
 
 def new_trace_id(seed: str | None = None) -> str | None:

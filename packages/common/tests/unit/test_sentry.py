@@ -2,44 +2,7 @@ from unittest import mock
 
 import sentry_sdk
 from prepza_common import sentry
-from prepza_common.sentry import init_sentry, scrub, traces_sampler
-
-
-def test_emails_are_scrubbed_everywhere_in_an_event():
-    event = {
-        "message": "Invite to bob@example.com failed",
-        "exception": {"values": [{"value": "No inbox for Ann.Lee+jobs@mail.co.uk"}]},
-        "breadcrumbs": [{"data": {"email": "carol@example.org", "count": 3}}],
-    }
-
-    assert scrub(event) == {
-        "message": "Invite to [email] failed",
-        "exception": {"values": [{"value": "No inbox for [email]"}]},
-        "breadcrumbs": [{"data": {"email": "[email]", "count": 3}}],
-    }
-
-
-def test_urls_keep_only_their_scheme_and_host_and_queries_are_dropped():
-    hook = "https://hooks.slack.com/services/T0/B0/secret"
-    event = {
-        "request": {"url": "https://api.prepza.com/invites/token123", "query_string": "t=1"},
-        "breadcrumbs": [
-            {"category": "httplib", "data": {"url": hook, "http.query": "key=1"}},
-        ],
-        "spans": [{"description": f"POST {hook}", "data": {"url": "http://a:b@x.io:8080/p?q"}}],
-        "exception": {"values": [{"value": f"Client error '404 Not Found' for url '{hook}'"}]},
-    }
-
-    assert scrub(event) == {
-        "request": {"url": "https://api.prepza.com"},
-        "breadcrumbs": [{"category": "httplib", "data": {"url": "https://hooks.slack.com"}}],
-        "spans": [
-            {"description": "POST https://hooks.slack.com", "data": {"url": "http://x.io:8080"}}
-        ],
-        "exception": {
-            "values": [{"value": "Client error '404 Not Found' for url 'https://hooks.slack.com'"}]
-        },
-    }
+from prepza_common.sentry import init_sentry, traces_sampler
 
 
 def test_nothing_is_sent_without_a_dsn(monkeypatch):

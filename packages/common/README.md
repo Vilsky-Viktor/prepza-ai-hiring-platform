@@ -19,6 +19,9 @@ Tracing: `tracing` sends AI calls to Langfuse through its LangChain callback, on
 `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` are set (`LANGFUSE_HOST`: the EU cloud unless set).
 `traced_run(name, tags, seed)` makes every LangChain call inside it (LangGraph runs too) one trace,
 tagged with ids only; `new_trace_id` and `traced(trace_id)` give the chats' answers theirs.
+Personal data is masked before a trace leaves (`scrub.scrub_people`: emails, URLs cut to their host,
+`name` and `email` fields, and the names a caller hides with `hiding`, the assistant's user's).
+Sentry's events are scrubbed by `scrub.scrub` (emails and URLs).
 `answer_votes` mirrors the chats' thumbs up and down there as a score on the answer's trace. Both
 need the `langfuse` extra: `prepza-common[llm,langfuse]` (generation, the assistant, rounds).
 Limits: `limit_list.LIMITS` is every usage limit of ours (`limit_types.Limit`: its service, default,

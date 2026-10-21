@@ -176,3 +176,25 @@ def test_nothing_configures_langsmith():
     # The repo's files were found, so an empty list means none mention it.
     assert len(files) > 100
     assert found == []
+
+
+def test_traces_are_masked_before_they_leave(monkeypatch):
+    made = {}
+    monkeypatch.setenv("LANGFUSE_PUBLIC_KEY", "pk-lf-test")
+    monkeypatch.setenv("LANGFUSE_SECRET_KEY", "sk-lf-test")
+    monkeypatch.setattr(tracing, "Langfuse", lambda **kwargs: made.update(kwargs))
+    tracing.client.cache_clear()
+
+    try:
+        tracing.client()
+    finally:
+        tracing.client.cache_clear()
+
+    data = {"content": 'The user is "José", bo@example.com; {"name": "Bo"}'}
+
+    with tracing.hiding("José", None):
+        inside = made["mask"](data=data)
+
+    assert inside == {"content": 'The user is "[person]", [email]; {"name": "[person]"}'}
+    # Outside, the name is no longer hidden.
+    assert made["mask"](data="José") == "José"

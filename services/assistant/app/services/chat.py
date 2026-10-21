@@ -16,7 +16,7 @@ from prepza_common.constants import LANGUAGES
 from prepza_common.i18n import translate
 from prepza_common.llm import estimated_input, estimated_tokens
 from prepza_common.scope import SCOPE_RULE
-from prepza_common.tracing import new_trace_id, traced
+from prepza_common.tracing import hiding, new_trace_id, traced
 
 from app.config.settings import settings
 from app.constants.ai_usage import MESSAGE_ACTION
@@ -122,12 +122,14 @@ async def ask(
     answer.trace_id = answer.trace_id or new_trace_id()
 
     try:
-        async for chunk in model.astream(messages, traced(answer.trace_id)):
-            reply += chunk
+        # The user's name, in the instructions, isn't sent with the trace.
+        with hiding(turn.user_name):
+            async for chunk in model.astream(messages, traced(answer.trace_id)):
+                reply += chunk
 
-            if chunk.text:
-                answer.parts.append(chunk.text)
-                emit({"delta": chunk.text})
+                if chunk.text:
+                    answer.parts.append(chunk.text)
+                    emit({"delta": chunk.text})
     except asyncio.CancelledError:
         outcome = Outcome.CUT
 

@@ -1,31 +1,11 @@
 import os
-import re
 
 import sentry_sdk
 from prepza_common.constants import (
     DEFAULT_TRACES_SAMPLE_RATE,
-    EMAIL_PATTERN,
-    QUERY_FIELDS,
-    REDACTED_EMAIL,
     UNTRACED_PATHS,
-    URL_PATTERN,
-    URL_SCRUBBED,
 )
-
-
-def scrub(value):
-    """Replaces every email address in an event, however deep it sits, and cuts every URL to its
-    scheme and host, before it leaves us: outgoing calls' URLs (web hooks, Slack) are secrets."""
-    if isinstance(value, str):
-        return re.sub(EMAIL_PATTERN, REDACTED_EMAIL, re.sub(URL_PATTERN, URL_SCRUBBED, value))
-
-    if isinstance(value, dict):
-        return {key: scrub(item) for key, item in value.items() if key not in QUERY_FIELDS}
-
-    if isinstance(value, list):
-        return [scrub(item) for item in value]
-
-    return value
+from prepza_common.scrub import scrub
 
 
 def before_send(event, hint):
