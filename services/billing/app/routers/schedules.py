@@ -6,6 +6,7 @@ from prepza_common.google import Invoker
 from app.constants.usage import CHANGES_KEEP_DAYS, USAGE_KEEP_DAYS
 from app.services import limit_values
 from app.services import outbox as outbox_service
+from app.services.reconciliation import reconcile
 from app.storage import usage
 
 router = APIRouter(
@@ -33,3 +34,10 @@ async def flush_outbox() -> None:
     """Every minute, from Cloud Scheduler: publishes events that weren't published right after
     their change."""
     await outbox_service.flush()
+
+
+@router.post("/reconcile", status_code=status.HTTP_204_NO_CONTENT)
+async def reconcile_with_paddle() -> None:
+    """Daily: what Paddle's web hooks of the last week should have done, done again from Paddle's
+    records (services/reconciliation.py)."""
+    await reconcile(datetime.now(UTC))

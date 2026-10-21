@@ -154,6 +154,26 @@ async def take_back(
     return taken
 
 
+async def credited(transaction_ids: list[str]) -> set[str]:
+    """Which of these transactions have added their credits."""
+    query = select(Purchase.transaction_id).where(Purchase.transaction_id.in_(transaction_ids))
+
+    async with Session() as session:
+        return set(await session.scalars(query))
+
+
+async def counted(adjustments: list[tuple[str, str]]) -> set[str]:
+    """Which of these adjustments, as (transaction id, adjustment id), have moved credits."""
+    keys = {
+        f"adjustment:{transaction_id}:{adjustment_id}": adjustment_id
+        for transaction_id, adjustment_id in adjustments
+    }
+    query = select(Entry.key).where(Entry.key.in_(list(keys)))
+
+    async with Session() as session:
+        return {keys[key] for key in await session.scalars(query)}
+
+
 async def paid(owner_type: str, owner_id: str) -> bool:
     """Whether this wallet was ever topped up."""
     query = select(Purchase.id).where(

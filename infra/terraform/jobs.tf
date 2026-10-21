@@ -63,6 +63,9 @@ locals {
     # hits past 13 months, and limit changes past 24.
     billing-limits    = { service = "billing", path = "/internal/schedules/limits", cron = "*/5 * * * *" }
     billing-retention = { service = "billing", path = "/internal/schedules/retention", cron = "30 4 * * *" }
+    # What Paddle's web hooks of the last week should have done, done again from Paddle's own
+    # records: a payment's credits or a refund a web hook never delivered.
+    billing-reconcile = { service = "billing", path = "/internal/schedules/reconcile", cron = "15 5 * * *" }
     # Interviews whose time ran out after the candidate left.
     interview-expiry = { service = "rounds", path = "/internal/schedules/expire-interviews", cron = "* * * * *" }
   }

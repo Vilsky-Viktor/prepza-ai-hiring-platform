@@ -28,6 +28,9 @@
 * * * * * curl -s -X POST http://generation-worker:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://ats:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://billing:8000/internal/schedules/outbox
+# Paddle's payments and refunds of the last week that its web hooks never delivered (billing),
+# daily.
+15 5 * * * curl -s -X POST http://billing:8000/internal/schedules/reconcile
 * * * * * curl -s -X POST http://notifications:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://api:8000/internal/schedules/outbox
 # The edited limits written to Redis again (billing), every 5 minutes, and old AI usage, limit

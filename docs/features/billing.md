@@ -8,6 +8,7 @@ Companies pay per candidate from a wallet of credits. There's no paid subscripti
 - [Referrals](#referrals)
 - [A company's billing tab](#a-companys-billing-tab)
 - [Refunds and chargebacks](#refunds-and-chargebacks)
+- [Missed web hooks](#missed-web-hooks)
 - [Deleting a company](#deleting-a-company)
 - [AI usage and limit hits](#ai-usage-and-limit-hits)
 - [Currencies](#currencies)
@@ -135,6 +136,15 @@ Billing's history entries keep the money a top-up, refund or chargeback moved (`
 
 Refunds and chargebacks in Paddle take back the credits they bought, in proportion to the money returned (a top-up of any number of candidates too: $100 back of $200 takes back half its credits).
 
+## Missed web hooks
+
+Paddle retries a web hook for about two days (three tries in the sandbox). So that a payment's credits or a refund's take-back is never lost when it gives up (a wrong web hook secret, a long outage), billing reconciles with Paddle daily (`POST /internal/schedules/reconcile`, Cloud Scheduler's `billing-reconcile`; locally `scripts/local/crontab`):
+
+- It reads Paddle's completed transactions updated in the last week and its approved adjustments created in it (`RECONCILE_WINDOW`, `app/constants/reconciliation.py`), up to 10 pages of 200 each, the rest left to the next run.
+- Each one billing hasn't counted yet goes through the same handler as its web hook, so it counts once whichever comes first, and two runs at once change nothing twice. Payments go first, so a refund whose payment's web hook was lost counts too.
+- What it had to apply is logged as a warning ("Reconciliation credited transaction …", "Reconciliation counted adjustment …"): a sign that web hooks are failing. One item failing is logged and the rest go on.
+- It needs the API key's permission to read transactions and adjustments (see [Setting up Paddle](#setting-up-paddle)).
+
 ## Deleting a company
 
 Deleting a company deletes its credits: billing's internal `DELETE /internal/companies/{id}` removes the wallet, its holds and its history, and turns off automatic top-up. Purchases stay on record, and nothing is refunded; a refund Paddle makes later takes back only the referral reward the top-up paid. Before it's deleted, the owner sees how many credits are lost: the remove dialog, and the assistant's delete card, read the company's balance (`GET /companies/{id}/credits`, whose `candidates` is how many candidates the available credits pay for, worked out by billing) and add "Its 900 credits (about 3 candidates) will be lost and aren't refunded." when there are any.
@@ -169,6 +179,7 @@ GET    /superadmin/limits/changes
 POST   /internal/events                     # Pub/Sub
 POST   /internal/schedules/limits           # every 5 minutes
 POST   /internal/schedules/retention        # daily
+POST   /internal/schedules/reconcile        # daily: Paddle's payments and refunds of the last week
 ```
 
 To fill in the top lists' names, billing asks companies for companies' names and library for accounts' emails. `MONTHLY_BUDGET` (USD a month, set in the admin zone's Controls, see [Admin zone](admin-zone.md#limits)) is what the page compares the month's spend with; at 0 it shows the month's spend alone.
@@ -198,7 +209,7 @@ Every price is made by billing in the transaction itself, in one currency, with 
    | `adjustment.created`, `adjustment.updated` | Refunds and chargebacks, which take credits back |
    | `subscription.created`, `subscription.canceled` | Start and end automatic top-ups |
 
-3. Create a server-side API key with permission to read and write transactions (billing makes every top-up's checkout, and reads invoices for the billing tab) and to read and update subscriptions (automatic top-up's charges and currency). For automatic top-up, also create a $0 monthly price (its checkout saves the card); without it and the key, automatic top-up isn't offered.
+3. Create a server-side API key with permission to read and write transactions (billing makes every top-up's checkout, reads invoices for the billing tab and lists payments for the daily reconciliation), to read adjustments (the reconciliation's refunds and chargebacks) and to read and update subscriptions (automatic top-up's charges and currency). Paddle's keys expire (90 days by default, a year at most): note the date and replace the key before it (see [runbooks](../runbooks.md#paddle-down)). For automatic top-up, also create a $0 monthly price (its checkout saves the card); without it and the key, automatic top-up isn't offered.
 4. Set these in `.env`, then restart billing:
 
    | Setting | Value |

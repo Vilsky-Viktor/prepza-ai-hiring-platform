@@ -1,4 +1,5 @@
 import logging
+from datetime import UTC, datetime
 
 import httpx
 from prepza_common import http
@@ -6,6 +7,7 @@ from prepza_common.http import bearer
 
 from app.config.settings import settings
 from app.constants.products import PADDLE_API, PADDLE_API_VERSION, PADDLE_REFUSES_BILLING
+from app.constants.reconciliation import PADDLE_PAGE_SIZE, RECONCILE_MAX_PAGES
 
 logger = logging.getLogger(__name__)
 
@@ -100,3 +102,50 @@ async def transaction(transaction_id: str, timeout: float) -> dict:
     response = await _call("GET", f"/transactions/{transaction_id}", timeout=timeout)
 
     return response.json()["data"]
+
+
+async def completed_transactions(since: datetime) -> list[dict]:
+    """Paddle's completed transactions updated since `since`, oldest first, as its web hooks
+    send them; at most RECONCILE_MAX_PAGES pages."""
+    params = {
+        "status": "completed",
+        "updated_at[GTE]": since.astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "order_by": "updated_at[ASC]",
+        "per_page": PADDLE_PAGE_SIZE,
+    }
+
+    return await _pages("/transactions", params, lambda item: False)
+
+
+async def approved_adjustments(since: datetime) -> list[dict]:
+    """Paddle's approved adjustments (refunds, chargebacks and their reversals) created since
+    `since`, newest first, as its web hooks send them; at most RECONCILE_MAX_PAGES pages."""
+    params = {"status": "approved", "order_by": "id[DESC]", "per_page": PADDLE_PAGE_SIZE}
+
+    def older(item: dict) -> bool:
+        return datetime.fromisoformat(item["created_at"]) < since
+
+    return await _pages("/adjustments", params, older)
+
+
+async def _pages(path: str, params: dict, past_end) -> list[dict]:
+    """A list's items, page after page, up to the first for which `past_end` is true."""
+    found = []
+
+    for _ in range(RECONCILE_MAX_PAGES):
+        body = (await _call("GET", path, params=params)).json()
+
+        for item in body["data"]:
+            if past_end(item):
+                return found
+
+            found.append(item)
+
+        if not body["data"] or not body["meta"]["pagination"]["has_more"]:
+            return found
+
+        params = {**params, "after": body["data"][-1]["id"]}
+
+    logger.warning("Paddle's %s has over %d pages: the rest waits", path, RECONCILE_MAX_PAGES)
+
+    return found
