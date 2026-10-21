@@ -22,6 +22,16 @@ export async function openTab(page: Page, path: string) {
   }).toPass()
 }
 
+/** Hovers `trigger` until `tooltip` shows: a hover that came before the page was interactive
+ * (the local dev server hydrates late) is lost, as the mouse doesn't move again. */
+export async function hoverFor(page: Page, trigger: Locator, tooltip: Locator) {
+  await expect(async () => {
+    await page.mouse.move(0, 0)
+    await trigger.hover()
+    await expect(tooltip).toBeVisible({ timeout: 3_000 })
+  }).toPass({ timeout: 90_000 })
+}
+
 /** Opens `path`. The local frontend is a dev server that can restart (the gateway then answers
  * 502), so it's tried again until it's back. Other statuses count: maintenance mode is a 503. */
 export async function visit(page: Page, path: string) {

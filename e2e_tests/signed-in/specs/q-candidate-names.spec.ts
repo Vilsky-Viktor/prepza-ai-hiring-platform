@@ -1,7 +1,7 @@
 import { expect, test } from "../fixtures"
 import { api, createCompany, createInterview, inviteCandidate } from "../helpers/api"
 import { inviteToken } from "../helpers/db"
-import { visit } from "../helpers/navigation"
+import { hoverFor, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { ownerEmail, throwawayEmail } from "../helpers/users"
 
@@ -54,13 +54,8 @@ test("owner invites candidates with names three ways and finds one by name", asy
   const noName = plainRow.getByTestId("no-name")
   await expect(noName).toBeVisible()
   // Its tooltip says when it's filled in, and that an owner can enter it (the tooltip has no
-  // ARIA role). Hovered again until the page is interactive (the local dev server can still be
-  // compiling).
-  await expect(async () => {
-    await owner.mouse.move(0, 0)
-    await noName.hover()
-    await expect(owner.locator("[data-side][data-open]")).toBeVisible({ timeout: 3_000 })
-  }).toPass({ timeout: 90_000 })
+  // ARIA role).
+  await hoverFor(owner, noName, owner.locator("[data-side][data-open][tabindex]"))
   await shot(owner, "no-name-tooltip")
 
   // Upload from file: the example files download, and a CSV with a name column invites.

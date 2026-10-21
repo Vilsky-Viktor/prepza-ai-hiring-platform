@@ -1,6 +1,6 @@
 import { expect, test } from "../fixtures"
 import { createCompany } from "../helpers/api"
-import { visit } from "../helpers/navigation"
+import { hoverFor, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { ownerEmail } from "../helpers/users"
 
@@ -12,13 +12,13 @@ test("a balance shows its whole amount on hover", async ({ signInAs }) => {
 
   // In the company's header.
   await visit(owner, `/companies/${company.id}/interviews`)
-  await owner.locator("span.tabular-nums").first().hover()
+  await hoverFor(owner, owner.locator("span.tabular-nums").first(), tooltip)
   await expect(tooltip).toContainText("1,500")
   await shot(owner, "header")
 
   // On the billing page.
   await visit(owner, `/companies/${company.id}/billing`)
-  await owner.locator("span.font-heading.tabular-nums").first().hover()
+  await hoverFor(owner, owner.locator("span.font-heading.tabular-nums").first(), tooltip)
   await expect(tooltip).toContainText("1,500")
   await shot(owner, "billing")
 })
