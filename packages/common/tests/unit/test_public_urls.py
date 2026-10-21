@@ -1,7 +1,6 @@
 import socket
 
 import pytest
-
 from prepza_common import public_urls
 from prepza_common.public_urls import pinned, public_address
 
