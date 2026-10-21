@@ -1,5 +1,8 @@
 import uuid
+from datetime import UTC, datetime, timedelta
 
+from prepza_common import outbox
+from prepza_common.constants import OUTBOX_KEEP_DAYS, OUTBOX_MAX_ATTEMPTS
 from sqlalchemy import select
 
 from app.models.outbox import OutboxEvent
@@ -94,3 +97,36 @@ def test_an_invite_without_a_sign_in_is_a_guests_keeps_its_return_address_and_se
     assert invite.theme == "dark"
     # No reminder either: the platform that sent the candidate told them already.
     assert invite.reminded_at is not None
+
+
+def test_old_published_and_parked_events_are_deleted_and_waiting_ones_kept(run):
+    async def scenario():
+        old = datetime.now(UTC) - timedelta(days=OUTBOX_KEEP_DAYS + 1)
+        recent = datetime.now(UTC) - timedelta(days=OUTBOX_KEEP_DAYS - 1)
+        rows = {
+            "old published": {"created_at": old, "published_at": old},
+            "old parked": {"created_at": old, "attempts": OUTBOX_MAX_ATTEMPTS},
+            "recent parked": {"created_at": recent, "attempts": OUTBOX_MAX_ATTEMPTS},
+            # Still tried by every flush (e.g. during an outage): never dropped unsent.
+            "old waiting": {"created_at": old, "attempts": OUTBOX_MAX_ATTEMPTS - 1},
+            "recent published": {"created_at": recent, "published_at": recent},
+        }
+
+        async with Session() as session:
+            for name, columns in rows.items():
+                session.add(OutboxEvent(event_type="test.event", data={"name": name}, **columns))
+
+            await session.commit()
+
+        await outbox.delete_old(Session, OutboxEvent)
+
+        async with Session() as session:
+            kept = await session.scalars(
+                select(OutboxEvent.data["name"].astext).where(
+                    OutboxEvent.event_type == "test.event"
+                )
+            )
+
+            return set(kept)
+
+    assert run(scenario()) == {"recent parked", "old waiting", "recent published"}

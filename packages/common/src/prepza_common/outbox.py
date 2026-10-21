@@ -118,10 +118,24 @@ async def flush_batch(
     return sum(row.published_at is not None for row in rows), len(rows)
 
 
-async def delete_published(sessionmaker, model) -> None:
-    """Deletes events published more than OUTBOX_KEEP_DAYS ago, a batch at a time."""
+async def delete_old(sessionmaker, model) -> None:
+    """Deletes events published more than OUTBOX_KEEP_DAYS ago, a batch at a time, and parked
+    events saved that long ago: no flush sends those again, and their data (emails, reports)
+    must not outlive the retention."""
     before = datetime.now(UTC) - timedelta(days=OUTBOX_KEEP_DAYS)
     await delete_in_batches(sessionmaker, model, model.published_at < before)
+    parked = await delete_in_batches(
+        sessionmaker,
+        model,
+        model.published_at.is_(None),
+        model.attempts >= OUTBOX_MAX_ATTEMPTS,
+        model.created_at < before,
+    )
+
+    if parked:
+        logger.warning(
+            "Deleted %s parked outbox events older than %s days", parked, OUTBOX_KEEP_DAYS
+        )
 
 
 async def flush(
@@ -130,7 +144,7 @@ async def flush(
     """Publishes waiting events and returns how many; with `ids`, only those, in one batch. The
     scheduled flush (no `ids`) sends batch after batch until none wait, a batch has a row Pub/Sub
     rejected (it waits for the next run), or OUTBOX_FLUSH_SECONDS have passed; then it deletes
-    old published rows."""
+    old published and parked rows."""
     if ids is not None:
         published, _ = await flush_batch(sessionmaker, model, ids, timeout)
 
@@ -147,7 +161,7 @@ async def flush(
             if taken < OUTBOX_BATCH or published < taken or time.monotonic() >= deadline:
                 return total
     finally:
-        await delete_published(sessionmaker, model)
+        await delete_old(sessionmaker, model)
 
 
 async def flush_quietly(sessionmaker, model) -> None:

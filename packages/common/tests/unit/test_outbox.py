@@ -126,11 +126,11 @@ def batches(monkeypatch):
 
             return queue.pop(0)
 
-        async def delete_published(sessionmaker, model):
+        async def delete_old(sessionmaker, model):
             calls.append("delete")
 
         monkeypatch.setattr(outbox, "flush_batch", flush_batch)
-        monkeypatch.setattr(outbox, "delete_published", delete_published)
+        monkeypatch.setattr(outbox, "delete_old", delete_old)
 
         return asyncio.run(outbox.flush(None, None))
 
@@ -167,11 +167,11 @@ def test_an_outage_ends_the_run_and_still_deletes_old_events(monkeypatch):
     async def down(sessionmaker, model, ids, timeout):
         raise ConnectionError("Pub/Sub is down")
 
-    async def delete_published(sessionmaker, model):
+    async def delete_old(sessionmaker, model):
         deleted.append(True)
 
     monkeypatch.setattr(outbox, "flush_batch", down)
-    monkeypatch.setattr(outbox, "delete_published", delete_published)
+    monkeypatch.setattr(outbox, "delete_old", delete_old)
 
     with pytest.raises(ConnectionError):
         asyncio.run(outbox.flush(None, None))
