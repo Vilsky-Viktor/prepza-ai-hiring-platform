@@ -60,6 +60,7 @@ jobs:
           version: "0.12.24"
       - run: uvx ruff@${{ env.RUFF_VERSION }} check services packages evals
       - run: uvx ruff@${{ env.RUFF_VERSION }} format --check services packages evals
+      - run: scripts/check_migrations.py && uvx --with pytest pytest -q scripts/tests
 
   # Rule 2: no hand-written file over 300 lines.
   size:

@@ -49,6 +49,9 @@ Each service with a database has its own Alembic history in `services/<svc>/migr
        op.create_index("ix_t_col", "t", ["col"], postgresql_concurrently=True)
    ```
 
+   `scripts/check_migrations.py` (run in CI) fails on what this rules out; a statement the rule
+   allows anyway (a table known to hold a few rows) carries `# migration-check: <why>`.
+
 5. Change the model in `app/models/` to match: column types, `server_default`, `ondelete` and an
    index on every new foreign key as the database rule says.
 
