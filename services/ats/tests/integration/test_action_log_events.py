@@ -59,3 +59,19 @@ def test_a_members_ats_actions_are_logged_with_what_they_were_about(run):
         ("ats_disconnected", "ann", "Workable"),
     ]
     assert {row["target_kind"] for row in events} == {"integration"}
+
+
+def test_two_connects_at_once_log_one_connect_and_one_reconnect(run):
+    import asyncio
+
+    company = uuid.uuid4()
+
+    async def scenario():
+        await asyncio.gather(
+            ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann"),
+            ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed-2", "bob"),
+        )
+
+        return sorted(entry["action"] for entry in await logged(company))
+
+    assert run(scenario()) == ["ats_connected", "ats_reconnected"]

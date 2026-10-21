@@ -4,7 +4,7 @@ from prepza_common import audit, outbox
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.constants import DELETED_USER
 from prepza_common.notifications import NOTIFICATION_REQUESTED
-from sqlalchemy import delete, func, select, update
+from sqlalchemy import delete, func, literal_column, select, update
 from sqlalchemy.dialects.postgresql import insert
 
 from app.constants.ats import ATS_NAMES, ConnectionStatus
@@ -61,16 +61,14 @@ async def connect(
         insert(AtsConnection)
         .values(company_id=company_id, provider=provider, **values)
         .on_conflict_do_update(index_elements=["company_id", "provider"], set_=values)
+        # A row the insert made has no xmax; one it updated has: told by the same statement, so
+        # two connects at once log one connect and one reconnect.
+        .returning(literal_column("xmax = 0"))
     )
 
     async with Session() as session:
-        earlier = await session.scalar(
-            select(AtsConnection.id).where(
-                AtsConnection.company_id == company_id, AtsConnection.provider == provider
-            )
-        )
-        await session.execute(query)
-        action = AuditAction.ATS_RECONNECTED if earlier else AuditAction.ATS_CONNECTED
+        inserted = await session.scalar(query)
+        action = AuditAction.ATS_CONNECTED if inserted else AuditAction.ATS_RECONNECTED
         audit.add(
             session,
             OutboxEvent,

@@ -21,6 +21,7 @@ from app.schemas.templates import TemplateCopyIn, TemplateCopyOut
 from app.service_auth import ServiceCaller
 from app.services import outbox as outbox_service
 from app.services.questions import question_texts
+from app.services.set_saves import save_once
 from app.storage import feedback, preparations, templates
 
 router = APIRouter(prefix="/internal", tags=["internal"])
@@ -29,20 +30,21 @@ router = APIRouter(prefix="/internal", tags=["internal"])
 @router.post("/interviews", status_code=status.HTTP_201_CREATED)
 async def create_interview(body: PreparationIn, caller: ServiceCaller) -> CreatedOut:
     """A retried save from the same generation returns the set it already made."""
-    existing = await preparations.find_by_generation(body.generation_id)
 
-    return CreatedOut(id=existing or await preparations.create_interview(body))
+    async def create() -> UUID:
+        return await preparations.create_interview(body)
+
+    return CreatedOut(id=await save_once(body.generation_id, create))
 
 
 @router.post("/templates", status_code=status.HTTP_201_CREATED)
 async def create_template(body: PreparationIn, caller: ServiceCaller) -> CreatedOut:
     """A retried save from the same generation returns the template it already made."""
-    existing = await preparations.find_by_generation(body.generation_id)
 
-    if existing:
-        return CreatedOut(id=existing)
+    async def create() -> UUID:
+        return await templates.create_template(body, await multi_share(get_redis()))
 
-    return CreatedOut(id=await templates.create_template(body, await multi_share(get_redis())))
+    return CreatedOut(id=await save_once(body.generation_id, create))
 
 
 @router.post("/templates/{template_id}/copy", status_code=status.HTTP_201_CREATED)
