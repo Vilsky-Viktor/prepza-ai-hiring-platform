@@ -2,7 +2,7 @@ import json
 import logging
 import sys
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.testclient import TestClient
 from prepza_common.constants import TRACE_FIELD, TRACE_HEADER
 from prepza_common.logging import JsonFormatter, RequestLogMiddleware, configure_logging, trace_of
@@ -87,6 +87,33 @@ def test_a_requests_line_names_its_route_never_the_token_in_its_path():
     assert lines[0].startswith("GET /invites/{token} 200 ")
     assert lines[1].startswith("GET (no route) 404 ")
     assert not any("secret-token" in line for line in lines)
+
+
+def test_a_refused_sign_in_or_permission_is_a_warning():
+    levels = {}
+
+    class Capture(logging.Handler):
+        def emit(self, item):
+            if item.name == "http":
+                levels[item.getMessage().split()[2]] = item.levelname
+
+    app = FastAPI()
+    app.add_middleware(RequestLogMiddleware)
+
+    @app.get("/answer/{code}")
+    def answer(code: int):
+        return Response(status_code=code)
+
+    handler = Capture()
+    logging.getLogger().addHandler(handler)
+
+    try:
+        for code in (200, 401, 403, 404):
+            TestClient(app).get(f"/answer/{code}")
+    finally:
+        logging.getLogger().removeHandler(handler)
+
+    assert levels == {"200": "INFO", "401": "WARNING", "403": "WARNING", "404": "INFO"}
 
 
 def test_uvicorns_access_log_is_off():

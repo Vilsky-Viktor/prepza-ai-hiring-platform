@@ -5,7 +5,7 @@ import time
 from contextvars import ContextVar
 from datetime import UTC, datetime
 
-from prepza_common.constants import TRACE_FIELD, TRACE_HEADER, UNMATCHED_ROUTE
+from prepza_common.constants import REFUSED_STATUSES, TRACE_FIELD, TRACE_HEADER, UNMATCHED_ROUTE
 from prepza_common.scrub import scrub
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
@@ -92,7 +92,10 @@ class RequestLogMiddleware(BaseHTTPMiddleware):
         try:
             response = await call_next(request)
             elapsed_ms = round((time.perf_counter() - start) * 1000)
-            logging.getLogger("http").info(
+            # A refused sign-in or permission (401, 403) is a warning: log-based alerts count them.
+            level = logging.WARNING if response.status_code in REFUSED_STATUSES else logging.INFO
+            logging.getLogger("http").log(
+                level,
                 "%s %s %s %dms",
                 request.method,
                 route_of(request),

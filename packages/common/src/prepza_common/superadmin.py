@@ -2,6 +2,7 @@
 # bank, and are the verified addresses listed in SUPERADMIN_EMAILS, comma-separated, signed in
 # with Google (whose account security, two-step verification included, guards the admin zone):
 # the same address signed in another way isn't one. Every service reads the same setting.
+import logging
 import os
 from typing import Annotated
 
@@ -9,6 +10,8 @@ from fastapi import Depends, HTTPException, status
 from prepza_common.auth import fresh_user
 from prepza_common.constants import GOOGLE_SIGN_IN
 from prepza_common.user import User
+
+logger = logging.getLogger(__name__)
 
 
 def is_superadmin(user: User) -> bool:
@@ -25,6 +28,9 @@ def superadmin_user(user: Annotated[User, Depends(fresh_user)]) -> User:
     """Not found for everyone else, so superadmin routes don't show they exist. A revoked
     sign-in is refused at once, reads included: the admin zone shows everyone's data."""
     if not is_superadmin(user):
+        # Answered as not found, so it's logged here: someone tried the admin zone.
+        logger.warning("Admin zone refused to account %s", user.uid)
+
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Not found")
 
     return user

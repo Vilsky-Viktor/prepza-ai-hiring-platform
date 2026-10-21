@@ -34,6 +34,8 @@ NO_STORE = "no-store"
 SECRET_PATH_PARAMS = ("token",)
 # What a request's log line names instead of a route's template when no route took it.
 UNMATCHED_ROUTE = "(no route)"
+# Answers logged as warnings: a sign-in or a permission refused (logging.RequestLogMiddleware).
+REFUSED_STATUSES = (401, 403)
 
 # Logged when a provider's web hook (Paddle, Resend) fails its signature check: usually a wrong
 # secret, so every event is refused. The alert in infra/terraform/monitoring.tf matches it.

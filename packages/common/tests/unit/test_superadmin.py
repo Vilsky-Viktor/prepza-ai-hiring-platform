@@ -38,9 +38,14 @@ def test_no_admins_when_the_setting_is_empty(monkeypatch):
     assert not is_superadmin(user(""))
 
 
-def test_admin_routes_are_not_found_for_others():
+def test_admin_routes_are_not_found_for_others_and_the_try_is_logged(caplog):
     with pytest.raises(HTTPException) as refused:
         superadmin_user(user("eve@example.com"))
 
     assert refused.value.status_code == 404
+    [record] = caplog.records
+    assert (record.levelname, record.getMessage()) == (
+        "WARNING",
+        "Admin zone refused to account ann",
+    )
     assert superadmin_user(user()).uid == "ann"
