@@ -142,12 +142,13 @@ async def invite_all(rows: list[AtsCandidate], stop_at: float | None = None) -> 
     first, so a run again (a redelivered event) invites nobody twice."""
     found = await companies.interviews({row.interview_id for row in rows})
     ready = [row for row in rows if (found.get(row.interview_id) or {}).get("ready")]
+    connections = await ats.connections_by_ids({row.connection_id for row in ready})
 
     for row in ready if stop_at else ready[:INVITE_BATCH]:
         if stop_at and time.monotonic() >= stop_at:
             break
 
-        connection = await ats.connection_by_id(row.connection_id)
+        connection = connections.get(row.connection_id)
 
         if connection is not None:
             await invite(row, connection, found[row.interview_id])

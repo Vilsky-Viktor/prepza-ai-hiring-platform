@@ -35,6 +35,13 @@ async def connection_by_id(connection_id: UUID) -> AtsConnection | None:
         return await session.get(AtsConnection, connection_id)
 
 
+async def connections_by_ids(connection_ids: set[UUID]) -> dict[UUID, AtsConnection]:
+    query = select(AtsConnection).where(AtsConnection.id.in_(connection_ids))
+
+    async with Session() as session:
+        return {connection.id: connection for connection in await session.scalars(query)}
+
+
 async def connect(
     company_id: UUID,
     provider: str,

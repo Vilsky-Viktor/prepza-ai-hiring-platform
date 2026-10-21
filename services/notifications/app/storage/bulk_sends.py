@@ -2,7 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 from prepza_common.constants import DELETE_BATCH
-from sqlalchemy import case, exists, func, select, update
+from sqlalchemy import case, exists, func, select, tuple_, update
 from sqlalchemy.dialects.postgresql import insert
 
 from app.constants.bulk import RecipientStatus, SkipReason
@@ -37,6 +37,17 @@ async def get(kind: str, about: str) -> BulkSend | None:
         return await session.scalar(
             select(BulkSend).where(BulkSend.kind == kind, BulkSend.about == about)
         )
+
+
+async def of_campaigns(kind_abouts: list[tuple[str, str]]) -> dict[tuple[str, str], BulkSend]:
+    """The sends of these (kind, about) pairs, by pair."""
+    if not kind_abouts:
+        return {}
+
+    query = select(BulkSend).where(tuple_(BulkSend.kind, BulkSend.about).in_(kind_abouts))
+
+    async with Session() as session:
+        return {(send.kind, send.about): send for send in await session.scalars(query)}
 
 
 async def unprepared() -> list[BulkSend]:

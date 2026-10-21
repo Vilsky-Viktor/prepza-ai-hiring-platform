@@ -246,6 +246,13 @@ def test_waiting_candidates_are_invited_once_the_interview_is_ready(world, monke
 
     monkeypatch.setattr(ats_candidates, "waiting", waiting)
     monkeypatch.setattr(ats, "connection_by_id", connection_by_id)
+
+    async def connections_by_ids(connection_ids):
+        found = {item: await connection_by_id(item) for item in connection_ids}
+
+        return {item: connection for item, connection in found.items() if connection}
+
+    monkeypatch.setattr(ats, "connections_by_ids", connections_by_ids)
     asyncio.run(flow.invite_waiting(INTERVIEW_ID))
 
     assert state["api"]["sent"] == [("ann@example.com", "ann")]
@@ -269,6 +276,13 @@ def test_a_top_up_invites_the_candidates_kept_for_lack_of_credits(world, monkeyp
 
     monkeypatch.setattr(ats_candidates, "short_of_credits", short_of_credits)
     monkeypatch.setattr(ats, "connection_by_id", connection_by_id)
+
+    async def connections_by_ids(connection_ids):
+        found = {item: await connection_by_id(item) for item in connection_ids}
+
+        return {item: connection for item, connection in found.items() if connection}
+
+    monkeypatch.setattr(ats, "connections_by_ids", connections_by_ids)
     company_id = uuid.uuid4()
     asyncio.run(flow.topped_up(company_id))
 

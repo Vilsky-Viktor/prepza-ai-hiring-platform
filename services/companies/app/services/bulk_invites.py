@@ -22,13 +22,15 @@ async def invite_each(
     invited: list[str] = []
     skipped: list[SkippedInvite] = []
     out_of_credits = False
+    # Looked up at once: an invite the list starts below isn't started either.
+    statuses = await invites.statuses_of(interview.id, [email.lower() for email, _ in found])
 
     for email, name in found:
         reason = None
 
         if out_of_credits:
             reason = SkipReason.NO_CREDITS
-        elif await invites.status_of(interview.id, email.lower()) in STARTED:
+        elif statuses.get(email.lower()) in STARTED:
             reason = SkipReason.STARTED
         else:
             try:

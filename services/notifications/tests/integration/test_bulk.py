@@ -170,3 +170,17 @@ def test_a_run_that_dies_halfway_leaves_the_rest_for_the_next_without_double_sen
     assert crashed[0] in mine
     assert sorted(mine) == sorted(f"bulk/{send_ids[0]}/{user}" for user in users)
     assert (done["sent"], done["pending"]) == (4, 0)
+
+
+def test_campaigns_sends_are_found_at_once_by_kind_and_what_they_are_about(run):
+    about = str(uuid.uuid4())
+
+    async def scenario():
+        send_id = await bulk_sends.start("updates", about, "sam")
+        found = await bulk_sends.of_campaigns([("updates", about), ("promotions", about)])
+
+        return send_id, {key: send.id for key, send in found.items()}
+
+    send_id, found = run(scenario())
+
+    assert found == {("updates", about): send_id}

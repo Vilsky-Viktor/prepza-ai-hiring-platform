@@ -54,11 +54,18 @@ async def add_questions(
             return None
 
         saved = []
+        lasts = dict(
+            (
+                await session.execute(
+                    select(Question.topic_id, func.max(Question.position))
+                    .where(Question.topic_id.in_([topic.topic_id for topic in added]))
+                    .group_by(Question.topic_id)
+                )
+            ).all()
+        )
 
         for topic in added:
-            last = await session.scalar(
-                select(func.max(Question.position)).where(Question.topic_id == topic.topic_id)
-            )
+            last = lasts.get(topic.topic_id)
             pooled = [(Pool.PRACTICE, q) for q in topic.practice] + [
                 (Pool.COMPANY, q) for q in topic.company
             ]

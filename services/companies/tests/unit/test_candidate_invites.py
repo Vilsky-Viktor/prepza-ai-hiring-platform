@@ -83,6 +83,9 @@ def invite_setup(monkeypatch):
     async def fake_held(_interview_id, email):
         return ("invited", invite.hold_key) if email in invited else (None, None)
 
+    async def fake_statuses(_interview_id, emails):
+        return {email: "invited" for email in emails if email in invited}
+
     async def fake_hold(company_id, key):
         # Billing sets credits aside once per key, however often it's asked.
         if key not in used:
@@ -96,6 +99,7 @@ def invite_setup(monkeypatch):
     monkeypatch.setattr(invites, "upsert", fake_upsert)
     monkeypatch.setattr(invites, "held", fake_held)
     monkeypatch.setattr(invites, "status_of", fake_status)
+    monkeypatch.setattr(invites, "statuses_of", fake_statuses)
     monkeypatch.setattr(billing, "hold_candidate", fake_hold)
     monkeypatch.setattr(outbox_service, "flush_quietly", no_flush)
     redis = FakeRedis()

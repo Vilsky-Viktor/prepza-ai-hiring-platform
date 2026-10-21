@@ -132,6 +132,16 @@ async def status_of(interview_id, email: str) -> str | None:
     return (await held(interview_id, email))[0]
 
 
+async def statuses_of(interview_id, emails: list[str]) -> dict[str, str]:
+    """The statuses of those of `emails` (lowercase) invited to the interview, by email."""
+    query = select(CandidateInvite.email, CandidateInvite.status).where(
+        CandidateInvite.interview_id == interview_id, CandidateInvite.email.in_(emails)
+    )
+
+    async with Session() as session:
+        return dict((await session.execute(query)).all())
+
+
 async def unfinished(interview_id) -> list[CandidateInvite]:
     """The interview's invites not finished yet."""
     query = select(CandidateInvite).where(

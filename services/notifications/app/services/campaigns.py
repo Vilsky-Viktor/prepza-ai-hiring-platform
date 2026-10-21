@@ -15,6 +15,7 @@ from app.constants.campaigns import (
     NO_BUTTON_TEXT,
 )
 from app.integrations import generation, library
+from app.models.bulk import BulkSend
 from app.models.campaigns import Campaign
 from app.schemas.campaigns import CampaignIn, CampaignOut, CampaignRowOut, CampaignTexts
 from app.storage import bulk_sends, campaigns
@@ -73,10 +74,9 @@ def status_of(send) -> str:
     return "sent" if send.finished_at else "sending"
 
 
-async def row_out(campaign: Campaign, subject: str, languages: int) -> CampaignRowOut:
-    send = await bulk_sends.get(campaign.kind, str(campaign.id)) if campaign.sent_at else None
-    counts = (await bulk_sends.counts([send.id])).get(send.id) if send else None
-
+def row_of(
+    campaign: Campaign, subject: str, languages: int, send: BulkSend | None, counts: dict | None
+) -> CampaignRowOut:
     return CampaignRowOut(
         id=campaign.id,
         kind=campaign.kind,
@@ -89,10 +89,30 @@ async def row_out(campaign: Campaign, subject: str, languages: int) -> CampaignR
     )
 
 
-async def list_campaigns(offset: int, limit: int) -> list[CampaignRowOut]:
-    rows = await campaigns.list_campaigns(offset, limit)
+async def rows_out(rows: list[tuple[Campaign, str, int]]) -> list[CampaignRowOut]:
+    """Each campaign with its send and the send's counts, read for all of them at once."""
+    sent = [(campaign.kind, str(campaign.id)) for campaign, _, _ in rows if campaign.sent_at]
+    sends = await bulk_sends.of_campaigns(sent)
+    counts = await bulk_sends.counts([send.id for send in sends.values()]) if sends else {}
+    out = []
 
-    return [await row_out(campaign, subject, languages) for campaign, subject, languages in rows]
+    for campaign, subject, languages in rows:
+        send = sends.get((campaign.kind, str(campaign.id))) if campaign.sent_at else None
+        out.append(
+            row_of(campaign, subject, languages, send, counts.get(send.id) if send else None)
+        )
+
+    return out
+
+
+async def row_out(campaign: Campaign, subject: str, languages: int) -> CampaignRowOut:
+    [row] = await rows_out([(campaign, subject, languages)])
+
+    return row
+
+
+async def list_campaigns(offset: int, limit: int) -> list[CampaignRowOut]:
+    return await rows_out(await campaigns.list_campaigns(offset, limit))
 
 
 async def get(campaign_id: uuid.UUID) -> CampaignOut:

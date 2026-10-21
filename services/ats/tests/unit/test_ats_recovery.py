@@ -56,6 +56,13 @@ def world(monkeypatch, companies_api):
         return None
 
     monkeypatch.setattr(ats, "connection_by_id", connection_by_id)
+
+    async def connections_by_ids(connection_ids):
+        found = {item: await connection_by_id(item) for item in connection_ids}
+
+        return {item: connection for item, connection in found.items() if connection}
+
+    monkeypatch.setattr(ats, "connections_by_ids", connections_by_ids)
     monkeypatch.setattr(ats_candidates, "claim", claim)
     monkeypatch.setattr(ats_candidates, "settle", settle)
     monkeypatch.setattr(ats_candidates, "postpone", postpone)
