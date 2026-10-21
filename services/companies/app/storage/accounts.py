@@ -86,6 +86,18 @@ async def forget_candidate(user_id: str, email: str) -> None:
         await session.commit()
 
 
+async def forget_member_invites(email: str) -> None:
+    """Team invites to the address not yet accepted: the person who deleted their account is
+    no longer invited (their email goes with them). An empty (unverified) email matches none."""
+    async with Session() as session:
+        await session.execute(
+            delete(Member).where(
+                Member.user_id.is_(None), func.lower(Member.invited_email) == email.lower()
+            )
+        )
+        await session.commit()
+
+
 async def forget_verification_email(email: str) -> None:
     """A company keeps its verification, but not the email of a person who deleted their account
     as its proof."""
@@ -105,6 +117,11 @@ async def export(user_id: str, email: str) -> dict:
             .join(Member, Member.company_id == Company.id)
             .where(Member.user_id == user_id)
         )
+        pending = await session.execute(
+            select(Company.name, Member.role, Member.created_at)
+            .join(Member, Member.company_id == Company.id)
+            .where(Member.user_id.is_(None), func.lower(Member.invited_email) == email.lower())
+        )
         invites = await session.execute(
             select(
                 Interview.title,
@@ -112,6 +129,10 @@ async def export(user_id: str, email: str) -> dict:
                 CandidateInvite.status,
                 CandidateInvite.created_at,
                 CandidateInvite.pledged_at,
+                CandidateInvite.extra_time,
+                CandidateInvite.started_at,
+                CandidateInvite.finished_at,
+                CandidateInvite.undelivered_at,
             )
             .join(Interview, Interview.id == CandidateInvite.interview_id)
             .where(or_(CandidateInvite.user_id == user_id, CandidateInvite.email == email.lower()))
@@ -138,6 +159,10 @@ async def export(user_id: str, email: str) -> dict:
             "company_memberships": [
                 {"company": name, "role": role, "since": since} for name, role, since in companies
             ],
+            # Invitations to join a team, not accepted yet.
+            "company_invitations": [
+                {"company": name, "role": role, "invited_at": at} for name, role, at in pending
+            ],
             "interview_invites": [
                 {
                     "interview": title,
@@ -146,8 +171,14 @@ async def export(user_id: str, email: str) -> dict:
                     "invited_at": at,
                     # When they confirmed they'd answer on their own.
                     "pledged_at": pledged,
+                    # Extra seconds a question the company gave them.
+                    "extra_time": extra,
+                    "started_at": started,
+                    "finished_at": finished,
+                    # When their invite email couldn't be delivered.
+                    "undelivered_at": undelivered,
                 }
-                for title, name, status, at, pledged in invites
+                for title, name, status, at, pledged, extra, started, finished, undelivered in invites
             ],
             "company_verifications": [
                 {"company": name, "verification_email": proof} for name, proof in verifications

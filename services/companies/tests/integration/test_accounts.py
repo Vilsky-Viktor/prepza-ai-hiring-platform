@@ -94,3 +94,45 @@ def test_a_candidates_data_includes_when_they_pledged_to_answer_on_their_own(run
 
     assert [row["pledged_at"] for row in exported] == [stored.pledged_at]
     assert stored.pledged_at is not None
+
+
+def test_a_deleted_accounts_pending_team_invites_go_and_are_in_its_data_until_then(run):
+    from app.storage import members
+
+    async def scenario():
+        company = await companies.create(f"Acme {uuid.uuid4()}", "ann", "ann@example.com")
+        email = f"bo-{uuid.uuid4().hex[:8]}@example.com"
+        other = f"cy-{uuid.uuid4().hex[:8]}@example.com"
+        sender = {"company": company.name, "inviter": "ann@example.com", "language": "en"}
+        await members.add(company.id, email.upper(), "admin", sender)
+        await members.add(company.id, other, "viewer", sender)
+        exported = await accounts.export("bo", email)
+        # An unverified account's email is empty: it matches no one.
+        await accounts.forget_member_invites("")
+        await accounts.forget_member_invites(email)
+        left = await members.list_for_company(company.id, 0, 10)
+
+        return company.name, exported["company_invitations"], left, other
+
+    name, exported, left, other = run(scenario())
+
+    assert [(row["company"], row["role"]) for row in exported] == [(name, "admin")]
+    assert {row.invited_email for row in left if row.user_id is None} == {other}
+
+
+def test_a_candidates_data_includes_their_extra_time_and_when_they_started(run):
+    async def scenario():
+        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
+        email = f"time-{uuid.uuid4().hex[:8]}@example.com"
+        invite, _ = await invites.upsert(interview.id, email, "Backend", "Acme", "en")
+        await invites.set_extra_time(invite.id, 30)
+        await invite_progress.start(invite.id, f"u-{invite.id}")
+        [row] = (await accounts.export(f"u-{invite.id}", email))["interview_invites"]
+
+        return await invites.get(invite.id), row
+
+    stored, row = run(scenario())
+
+    assert (row["extra_time"], row["started_at"]) == (30, stored.started_at)
+    assert row["started_at"] is not None and row["finished_at"] is None

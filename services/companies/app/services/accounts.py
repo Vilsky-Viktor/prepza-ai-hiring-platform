@@ -40,7 +40,7 @@ async def deletion(user_id: str) -> dict:
 async def delete_user(user_id: str, email: str) -> None:
     """A company whose only owner leaves is deleted with them; other memberships just end.
     The user's candidate invites and their decisions in the audit log stay with the companies,
-    without their email or id. Safe to repeat. Refused (409), before anything is deleted, while
+    without their email or id; team invites to their email not yet accepted go. Safe to repeat. Refused (409), before anything is deleted, while
     the user owns a company others have joined: it would go with their access and its credits.
     Library asks companies first, so no other service has deleted anything then."""
     if any(shared for _, shared in await accounts.owned(user_id)):
@@ -56,5 +56,6 @@ async def delete_user(user_id: str, email: str) -> None:
     # come back. Rounds still has their answers, as library asks companies first.
     await candidate_billing.settle_removed(await accounts.unfinished_invites(user_id, email))
     await accounts.forget_candidate(user_id, email)
+    await accounts.forget_member_invites(email)
     await accounts.forget_verification_email(email)
     await audit.forget_user(user_id)
