@@ -1,6 +1,7 @@
+from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import CurrentUser
 from prepza_common.paging import PageParams
@@ -96,11 +97,16 @@ async def get_catalog(
 
 @router.get("/currency")
 async def get_currency(
-    company_id: UUID, user: CurrentUser, country: VisitorCountry = None
+    company_id: UUID,
+    user: CurrentUser,
+    country: VisitorCountry = None,
+    page_country: Annotated[str | None, Query(alias="country")] = None,
 ) -> CompanyCurrencyOut:
+    # `?country=` is the visitor's as a page's server passes it on, and wins over the header:
+    # the server's own calls through the load balancer carry the server's country.
     await require_company(user, company_id)
 
-    return CompanyCurrencyOut(**await billing_prices.currency(company_id, country))
+    return CompanyCurrencyOut(**await billing_prices.currency(company_id, page_country or country))
 
 
 @router.put("/currency")

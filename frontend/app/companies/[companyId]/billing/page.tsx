@@ -13,11 +13,15 @@ import { TabNav } from "@/components/tab-nav"
 import { InfoCard } from "@/components/warning-card"
 import { TOKEN_COOKIE } from "@/constants/auth"
 import { LIST_BOX, PAGE_SIZE } from "@/constants/lists"
-import { serverFetch } from "@/lib/server-api"
+import { optionalFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyHeaderProps } from "@/lib/company-header"
-import { visitorCatalog } from "@/lib/catalog"
-import type { Catalog, CompanyCredits } from "@/types/billing"
+import { companyCurrencyPath, visitorCatalog } from "@/lib/catalog"
+import type {
+  Catalog,
+  CompanyCredits,
+  CompanyCurrency,
+} from "@/types/billing"
 import type {
   Company,
   CreditCandidate,
@@ -44,12 +48,13 @@ export default async function BillingPage({
     : null
   const billing = `/companies/companies/${companyId}/billing`
   const href = `/companies/${companyId}/billing`
-  const [credits, catalog, reserved, history] = company?.can_edit
+  const [credits, catalog, currency, reserved, history] = company?.can_edit
     ? await Promise.all([
         serverFetch<CompanyCredits>(
           `/companies/companies/${companyId}/credits`
         ),
         visitorCatalog(),
+        optionalFetch<CompanyCurrency>(await companyCurrencyPath(companyId)),
         // Only the open tab's first page.
         tab === "reserved"
           ? serverFetch<CreditCandidate[]>(
@@ -62,7 +67,7 @@ export default async function BillingPage({
             )
           : null,
       ])
-    : [null, null, null, null]
+    : [null, null, null, null, null]
 
   if (!signedIn) {
     return (
@@ -92,6 +97,7 @@ export default async function BillingPage({
       <Balance
         credits={credits}
         catalog={catalog}
+        currency={currency}
         name={company.name}
         companyId={companyId}
         canEdit={company.can_edit}
@@ -150,12 +156,14 @@ async function ReservedTab({
 function Balance({
   credits,
   catalog,
+  currency,
   name,
   companyId,
   canEdit,
 }: {
   credits: CompanyCredits | null
   catalog: Catalog | null
+  currency: CompanyCurrency | null
   name: string
   companyId: string
   canEdit: boolean
@@ -174,7 +182,13 @@ function Balance({
         low={credits.low}
         companyId={companyId}
         currency={
-          <CompanyCurrencySetting companyId={companyId} canEdit={canEdit} />
+          currency && (
+            <CompanyCurrencySetting
+              companyId={companyId}
+              canEdit={canEdit}
+              initial={currency}
+            />
+          )
         }
       />
     </div>

@@ -5119,7 +5119,9 @@ export interface operations {
   }
   get_currency_companies__company_id__billing_currency_get: {
     parameters: {
-      query?: never
+      query?: {
+        country?: string | null
+      }
       header?: {
         "X-Client-Country"?: string | null
       }

@@ -15,6 +15,14 @@ async function fromCountry(page: Page, country: string) {
   ])
 }
 
+/** The currency on the company's pill in `path`'s HTML as the server sends it, before any of
+ * the page's scripts run; null without one. */
+async function servedPill(page: Page, path: string) {
+  const html = await (await page.request.get(path)).text()
+
+  return /data-testid="company-currency" data-currency="(\w+)"/.exec(html)?.[1] ?? null
+}
+
 /** Both themes of the page as it is now. */
 async function shots(page: Page, name: string, fullPage = false) {
   for (const scheme of ["light", "dark"] as const) {
@@ -63,6 +71,9 @@ test("a company's top-up is in the company's currency", async ({ signInAs }) => 
   await visit(owner, `/companies/${company.id}/billing`)
   const currency = owner.getByTestId("company-currency")
   await expect(currency).toHaveAttribute("data-currency", "EUR")
+  // The pill comes with the page, so nothing beside it moves later (the balance moved from
+  // under the pointer, closing its tooltip).
+  await expect(servedPill(owner, `/companies/${company.id}/billing`)).resolves.toBe("EUR")
   await currency.getByRole("combobox").click()
   await shots(owner, "company-currency-list")
   await owner.locator("input:focus").fill("USD")
@@ -82,6 +93,7 @@ test("a company's top-up is in the company's currency", async ({ signInAs }) => 
 
   // The top-up page has the same pill beside each company's Top up.
   await visit(owner, "/top-up")
+  await expect(servedPill(owner, "/top-up")).resolves.toBe("USD")
   await expect(owner.getByTestId("company-currency").first()).toHaveAttribute(
     "data-currency",
     "USD",

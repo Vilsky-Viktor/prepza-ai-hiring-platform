@@ -9,10 +9,10 @@ import { RefreshOnFocus } from "@/components/billing/refresh-on-focus"
 import { SignInPrompt } from "@/components/sign-in-prompt"
 import { Button } from "@/components/ui/button"
 import { TOKEN_COOKIE } from "@/constants/auth"
-import { serverFetch } from "@/lib/server-api"
+import { optionalFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
-import { visitorCatalog } from "@/lib/catalog"
-import type { Catalog } from "@/types/billing"
+import { companyCurrencyPath, visitorCatalog } from "@/lib/catalog"
+import type { CompanyCurrency } from "@/types/billing"
 import type { CompanyBalance } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
 
@@ -36,6 +36,12 @@ export default async function TopUpPage() {
         serverFetch<CompanyBalance[]>("/companies/companies/credits?limit=100"),
       ])
     : [null, null]
+  // Each company's currency, beside its Top up.
+  const currencies = await Promise.all(
+    (companies ?? []).map(async (company) =>
+      optionalFetch<CompanyCurrency>(await companyCurrencyPath(company.id))
+    )
+  )
 
   return (
     <main className="mx-auto max-w-5xl space-y-12 px-6 py-12">
@@ -85,7 +91,7 @@ export default async function TopUpPage() {
         <section className="space-y-4">
           <SectionTitle title={t("companies")} note={t("companiesNote")} />
           <div className={LIST_BOX}>
-            {companies.map((company) => (
+            {companies.map((company, index) => (
               <BalanceRow
                 key={company.id}
                 catalog={catalog}
@@ -95,7 +101,13 @@ export default async function TopUpPage() {
                 companyId={company.id}
                 // Only companies the user owns or administers are listed: each can change it.
                 currency={
-                  <CompanyCurrencySetting companyId={company.id} canEdit />
+                  currencies[index] && (
+                    <CompanyCurrencySetting
+                      companyId={company.id}
+                      canEdit
+                      initial={currencies[index]}
+                    />
+                  )
                 }
               />
             ))}

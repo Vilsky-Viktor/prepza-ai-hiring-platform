@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { toast } from "sonner"
 
 import { CurrencySelect } from "@/components/billing/currency-select"
@@ -10,28 +10,21 @@ import type { CompanyCurrency } from "@/types/billing"
 
 /** The currency the company's top-ups are priced and paid in, wherever the buyer is, as a small
  * pill beside its Top up button: owners and admins change it (saved at once), others see the
- * code. Automatic top-up follows it too. Read in the browser, so billing sees the visitor's country for a company with none saved yet. */
+ * code. Automatic top-up follows it too. Read by the page's server (`initial`), so it's there
+ * as the page shows and nothing beside it moves. */
 export function CompanyCurrencySetting({
   companyId,
   canEdit,
+  initial,
 }: {
   companyId: string
   canEdit: boolean
+  initial: CompanyCurrency
 }) {
   const t = useTranslations("companyBilling")
   const path = `/companies/companies/${companyId}/billing/currency`
-  const [setting, setSetting] = useState<CompanyCurrency | null>(null)
+  const [setting, setSetting] = useState(initial)
   const [saving, setSaving] = useState(false)
-
-  useEffect(() => {
-    apiFetch<CompanyCurrency>(path)
-      .then(setSetting)
-      .catch(() => {})
-  }, [path])
-
-  if (!setting) {
-    return null
-  }
 
   async function choose(currency: string) {
     setSaving(true)

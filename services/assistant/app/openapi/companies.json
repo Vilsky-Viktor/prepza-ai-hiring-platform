@@ -1263,6 +1263,22 @@
       }
      },
      {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     },
+     {
       "name": "X-Client-Country",
       "in": "header",
       "required": false,

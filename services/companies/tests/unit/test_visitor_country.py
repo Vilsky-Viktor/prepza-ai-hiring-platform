@@ -130,3 +130,11 @@ def test_a_company_is_created_without_the_country_and_billing_gets_it_with_one(
     app.dependency_overrides.clear()
 
     assert welcomed == [country]
+
+
+def test_a_pages_server_passes_the_visitors_country_over_its_own(client, passed):
+    # A page's server calls through the load balancer, which sets its own country in the header.
+    response = client.get(f"{COMPANY}/billing/currency?country=DE", headers={HEADER: "US"})
+
+    assert response.status_code == 200
+    assert passed == ["DE"]

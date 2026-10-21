@@ -25,6 +25,12 @@ export function currencyPath() {
   return withCountry("/billing/me/currency")
 }
 
+/** The currency a company pays in, and the ones it can choose: for a company with none saved
+ * yet, its visitor's country's. */
+export function companyCurrencyPath(companyId: string) {
+  return withCountry(`/companies/companies/${companyId}/billing/currency`)
+}
+
 /** Every price in the visitor's country's currency, the same for every visitor from there: for
  * what search engines read (page descriptions), not a signed-in person's own. */
 export async function countryCatalog() {
