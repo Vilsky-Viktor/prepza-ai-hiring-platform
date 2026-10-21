@@ -50,6 +50,8 @@ uvx ruff@0.16.10 check services packages evals && uvx ruff@0.16.10 format --chec
 cd frontend && pnpm install && pnpm lint && pnpm typecheck && pnpm check:messages && pnpm test
 ```
 
+Vitest runs files and tests in a random order and restores spies, stubbed globals and env after each test, so no test leans on another's leftovers; it prints the seed, and `pnpm test --sequence.seed=<seed>` repeats an order.
+
 ## Integration tests
 
 Each service's `tests/integration` runs against the running stack's real Postgres and Redis, in a `<service>_test` database created and dropped for the run.
