@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 
 from prepza_common.ai_constants import PREPZA_ACTIONS, Category
+from prepza_common.constants import DELETE_BATCH
 from prepza_common.db import delete_in_batches
 from sqlalchemy import exists, select, update
 from sqlalchemy.dialects.postgresql import insert
@@ -81,13 +82,21 @@ async def store_hit(event_id: str, occurred_at: datetime, data: dict) -> None:
 
 
 async def forget(column: str, value: str) -> None:
-    """Empties a deleted account's or company's id in both tables; the costs and hits stay."""
-    async with Session() as session:
-        for model in (AiUsage, LimitHit):
-            field = getattr(model, column)
-            await session.execute(update(model).where(field == value).values({column: None}))
+    """Empties a deleted account's or company's id in both tables, DELETE_BATCH rows at a time,
+    each batch its own transaction; the costs and hits stay."""
+    for model in (AiUsage, LimitHit):
+        field = getattr(model, column)
+        chosen = select(model.id).where(field == value).limit(DELETE_BATCH)
 
-        await session.commit()
+        while True:
+            async with Session() as session:
+                emptied = await session.execute(
+                    update(model).where(model.id.in_(chosen)).values({column: None})
+                )
+                await session.commit()
+
+            if emptied.rowcount < DELETE_BATCH:
+                break
 
 
 async def drop_old(now: datetime, usage_days: int, changes_days: int) -> None:
