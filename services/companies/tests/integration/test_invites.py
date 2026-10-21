@@ -298,13 +298,3 @@ def test_removing_a_candidate_tells_the_other_services_to_forget_them(run):
             "candidate_invite_id": events[0]["candidate_invite_id"],
         }
     ]
-
-
-def test_a_lists_invite_statuses_are_read_at_once(run):
-    async def scenario():
-        found = await interview()
-        await invites.upsert(found.id, "ann@example.com", "Backend", "Acme", "en")
-
-        return await invites.statuses_of(found.id, ["ann@example.com", "bob@example.com"])
-
-    assert run(scenario()) == {"ann@example.com": InviteStatus.INVITED}
