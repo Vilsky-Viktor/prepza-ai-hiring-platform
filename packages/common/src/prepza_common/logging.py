@@ -6,6 +6,7 @@ from contextvars import ContextVar
 from datetime import UTC, datetime
 
 from prepza_common.constants import TRACE_FIELD, TRACE_HEADER, UNMATCHED_ROUTE
+from prepza_common.scrub import scrub
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 
@@ -18,14 +19,16 @@ trace_header: ContextVar[str | None] = ContextVar("trace_header", default=None)
 
 class JsonFormatter(logging.Formatter):
     """One JSON object per line, in the fields Cloud Logging reads: its severity, so errors are
-    errors there, and the request's trace, when there is one."""
+    errors there, and the request's trace, when there is one. Emails and URLs' paths (a secret
+    web hook's, an invite's token) are scrubbed from the message and the error, whatever brought
+    them in (a database error's detail, a provider's reply)."""
 
     def format(self, record: logging.LogRecord) -> str:
         payload = {
             "ts": datetime.now(UTC).isoformat(),
             "severity": record.levelname,
             "logger": record.name,
-            "message": record.getMessage(),
+            "message": scrub(record.getMessage()),
         }
         trace = current_trace.get()
 
@@ -33,7 +36,7 @@ class JsonFormatter(logging.Formatter):
             payload[TRACE_FIELD] = trace
 
         if record.exc_info:
-            payload["exc"] = self.formatException(record.exc_info)
+            payload["exc"] = scrub(self.formatException(record.exc_info))
 
         return json.dumps(payload, default=str)
 

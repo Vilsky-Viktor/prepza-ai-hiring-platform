@@ -31,9 +31,11 @@ def database(
     """The engine and session factory for a service's database; a service with few, short queries
     takes a smaller pool, to stay within the database's connection budget. A transaction left
     idle past IDLE_IN_TRANSACTION_TIMEOUT, and a statement running past STATEMENT_TIMEOUT, are
-    ended by Postgres."""
+    ended by Postgres. A database error carries no query values (emails, names, answers) into
+    the logs or Sentry."""
     engine = create_async_engine(
         sqlalchemy_url(url),
+        hide_parameters=True,
         pool_recycle=DB_POOL_RECYCLE_SECONDS,
         pool_size=pool_size,
         max_overflow=max_overflow,

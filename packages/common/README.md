@@ -61,6 +61,8 @@ to its trace (`logging.googleapis.com/trace`, from the load balancer's `X-Cloud-
 which `http.get_client` passes on to the services a request calls, so their lines join the same trace.
 Each request's own line names its route's template (`/invites/{token}`), never the path, which can
 carry a secret token; uvicorn's access log, which prints paths and visitors' addresses, is off.
+Every line's message and error are scrubbed (`scrub.scrub`: emails, URLs cut to their host), and the
+database engine hides query values from its errors (`hide_parameters`).
 Retries: `backoff.wait_seconds(first, attempt)` is the wait before a retry, doubling from `first`
 with full jitter (the welcome credits, Langfuse votes).
 Caching: `no_store.NoStoreMiddleware` marks every answer to a signed-in request `Cache-Control:

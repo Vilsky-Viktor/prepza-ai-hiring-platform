@@ -1,5 +1,6 @@
 import json
 import logging
+import sys
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -32,6 +33,21 @@ def test_a_line_carries_the_fields_cloud_logging_reads():
         "billing",
     )
     assert TRACE_FIELD not in line
+
+
+def test_emails_and_url_paths_never_reach_a_line_even_from_an_error():
+    try:
+        raise ValueError('Key (email)=(ann@example.com) exists; url "https://hooks.slack.com/T/x"')
+    except ValueError:
+        error = sys.exc_info()
+
+    item = logging.LogRecord("x", logging.ERROR, __file__, 1, "for %s", ("bo@example.com",), error)
+    line = json.loads(JsonFormatter().format(item))
+
+    assert line["message"] == "for [email]"
+    assert "Key (email)=([email]) exists" in line["exc"]
+    assert '"https://hooks.slack.com"' in line["exc"]
+    assert "example.com" not in line["exc"]
 
 
 def test_the_trace_comes_from_the_load_balancers_header(monkeypatch):

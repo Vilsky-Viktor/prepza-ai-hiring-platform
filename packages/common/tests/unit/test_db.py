@@ -17,6 +17,8 @@ def test_pooled_connections_are_replaced_by_age_not_pinged_on_every_use():
     options = create.call_args.kwargs
     assert options["pool_recycle"] == DB_POOL_RECYCLE_SECONDS
     assert "pool_pre_ping" not in options
+    # A database error's text carries no query values (emails, names, answers).
+    assert options["hide_parameters"] is True
     assert (options["pool_size"], options["max_overflow"]) == (2, 1)
     assert options["connect_args"] == {
         "options": f"-c idle_in_transaction_session_timeout={IDLE_IN_TRANSACTION_TIMEOUT} "
