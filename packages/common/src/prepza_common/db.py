@@ -5,6 +5,7 @@ from prepza_common.constants import (
     DELETE_BATCH,
     IDLE_IN_TRANSACTION_TIMEOUT,
     MIGRATION_LOCK_TIMEOUT,
+    MIGRATION_STATEMENT_TIMEOUT,
     STATEMENT_TIMEOUT,
 )
 from sqlalchemy import Engine, create_engine, delete, inspect, select, text
@@ -41,8 +42,12 @@ def database(
 
 def migration_engine(database_url: str) -> Engine:
     """The engine a service's migrations (Alembic's env.py) run on: a statement waiting longer
-    than MIGRATION_LOCK_TIMEOUT for a lock fails rather than block its table."""
-    options = f"-c lock_timeout={MIGRATION_LOCK_TIMEOUT}"
+    than MIGRATION_LOCK_TIMEOUT for a lock fails rather than block its table, and one running
+    longer than MIGRATION_STATEMENT_TIMEOUT is stopped."""
+    options = (
+        f"-c lock_timeout={MIGRATION_LOCK_TIMEOUT} "
+        f"-c statement_timeout={MIGRATION_STATEMENT_TIMEOUT}"
+    )
 
     return create_engine(sqlalchemy_url(database_url), connect_args={"options": options})
 

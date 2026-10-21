@@ -35,8 +35,7 @@ def test_the_models_match_the_migrations():
     command.check(Config("alembic.ini"))
 
 
-def test_a_migration_waits_only_so_long_for_a_lock():
-    from prepza_common.constants import MIGRATION_LOCK_TIMEOUT
+def test_a_migration_waits_only_so_long_for_a_lock_and_runs_only_so_long():
     from prepza_common.db import migration_engine
 
     from app.config.settings import settings
@@ -46,10 +45,12 @@ def test_a_migration_waits_only_so_long_for_a_lock():
     try:
         with engine.connect() as connection:
             waits = connection.execute(text("SHOW lock_timeout")).scalar()
+            runs = connection.execute(text("SHOW statement_timeout")).scalar()
     finally:
         engine.dispose()
 
-    assert waits == MIGRATION_LOCK_TIMEOUT
+    # MIGRATION_LOCK_TIMEOUT and MIGRATION_STATEMENT_TIMEOUT, as Postgres shows them.
+    assert (waits, runs) == ("5s", "5min")
 
 
 def test_postgres_ends_a_transaction_left_idle(run):

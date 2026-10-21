@@ -37,7 +37,7 @@ and cost as an "AI used" log line (`prepza_ai_spend`) and an `ai.used` event bil
 daily AI spend cap (`AI_SPEND_UNPAID_DAY`): `refuse_if_capped` answers 503 once today's spend
 reached it (with `Retry-After` to the next UTC day, `rate_limit.until_tomorrow`), and `add_unpaid` (billing) adds to it. Only `ai_usage` needs the `llm` extra.
 Database: `db.database` builds a service's engine and sessions (its pool, and Postgres ending a
-transaction left idle), `db.migration_engine` the migrations' one, and `db.delete_in_batches`
+transaction left idle), `db.migration_engine` the migrations' one (a short lock and statement timeout), and `db.delete_in_batches`
 deletes old rows (retention, published events) `DELETE_BATCH` at a time, each batch its own
 transaction.
 Request bodies: `body_limit.BodyLimitMiddleware` refuses one over 1 MB (`MAX_BODY_BYTES`) with a

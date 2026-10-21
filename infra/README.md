@@ -190,7 +190,7 @@ What the emails do themselves: each has a plain-text part next to the HTML, `Aut
   ```bash
   git tag v1.4.0 && git push origin v1.4.0
   ```
-  [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) then checks that the tag is on `main` and CI passed on it, gives that commit's images the version as a tag (nothing is rebuilt), runs the `db-roles` job and then the 9 migration jobs (a migration's statement waits at most 10 seconds for a lock, `MIGRATION_LOCK_TIMEOUT`, so it never blocks a busy table behind a long transaction; if one fails for that, run the deploy again), moves all 12 services to the images, smoke-tests the site and creates a GitHub release with the changes since the last tag.
+  [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) then checks that the tag is on `main` and CI passed on it, gives that commit's images the version as a tag (nothing is rebuilt), runs the `db-roles` job and then the 9 migration jobs (a migration's statement waits at most 5 seconds for a lock, `MIGRATION_LOCK_TIMEOUT`, so it never blocks a busy table behind a long transaction, and runs at most 5 minutes, `MIGRATION_STATEMENT_TIMEOUT`; if one fails for that, run the deploy again), moves all 12 services to the images, smoke-tests the site and creates a GitHub release with the changes since the last tag.
 
 A failed step stops the deploy. Before the services step, nothing has changed for users. From the services step on, some or all services already run the new images, and nothing rolls back by itself: if the smoke test fails, roll back as below (the failed run says so). The smoke test checks the site, every API's `/ready` and the MCP paths.
 

@@ -73,7 +73,11 @@ DELETE_BATCH = 1000
 # A migration's statement waits at most this long for a lock, then fails (and the deploy with
 # it, to be run again): the running version keeps serving during migrations, and an ALTER TABLE
 # queued behind a long transaction would hold every query on its table behind it.
-MIGRATION_LOCK_TIMEOUT = "10s"
+MIGRATION_LOCK_TIMEOUT = "5s"
+# A migration's statement that runs this long is stopped (and the deploy with it): a backfill or
+# rewrite past it belongs in batches. A migration that must run longer (an index built
+# concurrently on a large table) raises it for itself with SET statement_timeout.
+MIGRATION_STATEMENT_TIMEOUT = "5min"
 # A Redis command whose connection dropped (Redis restarted, or the network blinked) is tried
 # again on a new one, up to this many times, instead of failing its request; a connection
 # idle this long is checked before use.

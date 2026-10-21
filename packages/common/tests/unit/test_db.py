@@ -5,6 +5,7 @@ from prepza_common.constants import (
     DB_POOL_RECYCLE_SECONDS,
     IDLE_IN_TRANSACTION_TIMEOUT,
     MIGRATION_LOCK_TIMEOUT,
+    MIGRATION_STATEMENT_TIMEOUT,
     STATEMENT_TIMEOUT,
 )
 
@@ -29,14 +30,15 @@ def test_a_database_url_connects_through_psycopg():
     assert db.sqlalchemy_url(url) == "postgresql+psycopg://user:pass@db:5432/companies"
 
 
-def test_migrations_wait_only_so_long_for_a_lock():
+def test_migrations_wait_only_so_long_for_a_lock_and_run_only_so_long():
     with mock.patch.object(db, "create_engine") as create:
         db.migration_engine("postgresql://user:pass@db:5432/companies")
 
     url = create.call_args.args[0]
     assert url == "postgresql+psycopg://user:pass@db:5432/companies"
     assert create.call_args.kwargs["connect_args"] == {
-        "options": f"-c lock_timeout={MIGRATION_LOCK_TIMEOUT}"
+        "options": f"-c lock_timeout={MIGRATION_LOCK_TIMEOUT} "
+        f"-c statement_timeout={MIGRATION_STATEMENT_TIMEOUT}"
     }
 
 
