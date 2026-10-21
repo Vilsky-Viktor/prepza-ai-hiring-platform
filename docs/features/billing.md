@@ -212,6 +212,7 @@ Every price is made by billing in the transaction itself, in one currency, with 
 
 In Google Cloud, the webhook secret and the API key go into the `paddle-webhook-secret` and `paddle-api-key` secrets (see [infra/README.md](../../infra/README.md)).
 
+- Every call to Paddle's API asks for version 1 (the `Paddle-Version` header, `PADDLE_API_VERSION`), so a newer default in Paddle's dashboard changes nothing until billing moves to it.
 - Until `PADDLE_PRODUCT_CANDIDATES` is set, the top-up dialog's button is disabled and automatic top-up isn't offered.
 - Until both automatic top-up values are set, its line on the top-up page is hidden.
 - Locally, Paddle reaches the webhook only through a tunnel, for example `cloudflared tunnel --url http://localhost:8090`.

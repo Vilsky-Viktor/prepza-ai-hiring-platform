@@ -110,3 +110,6 @@ NOT_YOUR_AUTO_TOP_UP = (
     "your own card."
 )
 PADDLE_API = {"sandbox": "https://sandbox-api.paddle.com", "production": "https://api.paddle.com"}
+# The version of Paddle's API every call asks for (its `Paddle-Version` header), so a new default
+# version in Paddle's dashboard can't change the answers billing reads.
+PADDLE_API_VERSION = "1"

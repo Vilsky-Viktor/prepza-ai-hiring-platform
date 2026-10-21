@@ -7,6 +7,7 @@ import httpx
 import pytest
 from prepza_common import http
 
+from app.constants.products import PADDLE_API_VERSION
 from app.integrations import paddle
 
 
@@ -56,3 +57,20 @@ def test_an_answer_is_read(monkeypatch):
     use(monkeypatch, answering(200))
 
     assert asyncio.run(paddle.subscription_status("sub_1")) == "active"
+
+
+def test_every_call_asks_for_the_api_version_billing_reads(monkeypatch):
+    seen = []
+
+    def answer(request: httpx.Request) -> httpx.Response:
+        seen.append(request.headers.get("Paddle-Version"))
+
+        return httpx.Response(200, json={"data": {"status": "active", "url": "u", "id": "t"}})
+
+    use(monkeypatch, answer)
+
+    asyncio.run(paddle.subscription_status("sub_1"))
+    asyncio.run(paddle.invoice_url("txn_1"))
+    asyncio.run(paddle.create_transaction([], "USD", {}))
+
+    assert seen == [PADDLE_API_VERSION] * 3

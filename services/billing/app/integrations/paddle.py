@@ -5,7 +5,7 @@ from prepza_common import http
 from prepza_common.http import bearer
 
 from app.config.settings import settings
-from app.constants.products import PADDLE_API
+from app.constants.products import PADDLE_API, PADDLE_API_VERSION
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ async def _call(method: str, path: str, **kwargs) -> httpx.Response:
         response = await http.get_client().request(
             method,
             f"{PADDLE_API[settings.paddle_environment]}{path}",
-            headers=bearer(settings.paddle_api_key),
+            headers={**bearer(settings.paddle_api_key), "Paddle-Version": PADDLE_API_VERSION},
             **kwargs,
         )
     except httpx.TransportError as error:
