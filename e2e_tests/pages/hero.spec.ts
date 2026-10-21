@@ -69,11 +69,14 @@ test("the play icon is named in its tooltip and its ring holds still with reduce
   await expect(video).toHaveAccessibleName(/.+/);
   const name = await video.evaluate((element) => element.getAttribute("aria-label"));
 
+  // The tooltip has no ARIA role (Base UI's popup): it's the open popup beside the trigger.
+  const tooltip = page.locator("[data-side][data-open][tabindex]");
   await expect(async () => {
+    await page.mouse.move(0, 0);
     await video.hover();
-    await expect(page.getByRole("tooltip")).toBeVisible({ timeout: 2_000 });
+    await expect(tooltip).toBeVisible({ timeout: 2_000 });
   }).toPass();
-  await expect(page.getByRole("tooltip")).toHaveText(name!);
+  await expect(tooltip).toHaveText(name!);
 
   // The ring pulses, and is gone with reduced motion.
   const ring = video.locator("span[aria-hidden]");
