@@ -2619,7 +2619,19 @@
       "default": [
        "USD",
        "EUR",
-       "GBP"
+       "GBP",
+       "CAD",
+       "AUD",
+       "ILS",
+       "PLN",
+       "JPY",
+       "KRW",
+       "TWD",
+       "HKD",
+       "CHF",
+       "THB",
+       "SGD",
+       "INR"
       ]
      }
     },
@@ -2635,10 +2647,22 @@
     "enum": [
      "USD",
      "EUR",
-     "GBP"
+     "GBP",
+     "CAD",
+     "AUD",
+     "ILS",
+     "PLN",
+     "JPY",
+     "KRW",
+     "TWD",
+     "HKD",
+     "CHF",
+     "THB",
+     "SGD",
+     "INR"
     ],
     "title": "Currency",
-    "description": "The currencies prices are in: EUR in the EU and nearby, GBP in the UK, USD elsewhere."
+    "description": "The currencies prices are in: a country's own where billing sells in it, USD elsewhere."
    },
    "CurrencyIn": {
     "properties": {
@@ -2666,7 +2690,19 @@
       "default": [
        "USD",
        "EUR",
-       "GBP"
+       "GBP",
+       "CAD",
+       "AUD",
+       "ILS",
+       "PLN",
+       "JPY",
+       "KRW",
+       "TWD",
+       "HKD",
+       "CHF",
+       "THB",
+       "SGD",
+       "INR"
       ]
      }
     },

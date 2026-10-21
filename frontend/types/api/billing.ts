@@ -911,17 +911,44 @@ export interface components {
        * @default [
        *       "USD",
        *       "EUR",
-       *       "GBP"
+       *       "GBP",
+       *       "CAD",
+       *       "AUD",
+       *       "ILS",
+       *       "PLN",
+       *       "JPY",
+       *       "KRW",
+       *       "TWD",
+       *       "HKD",
+       *       "CHF",
+       *       "THB",
+       *       "SGD",
+       *       "INR"
        *     ]
        */
       currencies: components["schemas"]["Currency"][]
     }
     /**
      * Currency
-     * @description The currencies prices are in: EUR in the EU and nearby, GBP in the UK, USD elsewhere.
+     * @description The currencies prices are in: a country's own where billing sells in it, USD elsewhere.
      * @enum {string}
      */
-    Currency: "USD" | "EUR" | "GBP"
+    Currency:
+      | "USD"
+      | "EUR"
+      | "GBP"
+      | "CAD"
+      | "AUD"
+      | "ILS"
+      | "PLN"
+      | "JPY"
+      | "KRW"
+      | "TWD"
+      | "HKD"
+      | "CHF"
+      | "THB"
+      | "SGD"
+      | "INR"
     /** CurrencyIn */
     CurrencyIn: {
       currency: components["schemas"]["Currency"]
@@ -937,7 +964,19 @@ export interface components {
        * @default [
        *       "USD",
        *       "EUR",
-       *       "GBP"
+       *       "GBP",
+       *       "CAD",
+       *       "AUD",
+       *       "ILS",
+       *       "PLN",
+       *       "JPY",
+       *       "KRW",
+       *       "TWD",
+       *       "HKD",
+       *       "CHF",
+       *       "THB",
+       *       "SGD",
+       *       "INR"
        *     ]
        */
       currencies: components["schemas"]["Currency"][]

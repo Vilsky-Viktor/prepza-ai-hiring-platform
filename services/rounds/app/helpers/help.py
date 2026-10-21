@@ -1,11 +1,11 @@
 import json
 
 from babel import Locale
-from babel.numbers import format_currency, format_decimal
+from babel.numbers import format_currency, format_decimal, get_currency_precision
 from prepza_common.constants import LANGUAGES
 
 from app.constants.faq import FAQS
-from app.constants.help import FAQ_EXAMPLE_CANDIDATES, WHOLE_DECIMALS
+from app.constants.help import CURRENCY_SPACING, FAQ_EXAMPLE_CANDIDATES, WHOLE_DECIMALS
 from app.constants.privacy import PRIVACY_INTRO, PRIVACY_SECTIONS
 from app.constants.terms import TERMS_INTRO, TERMS_SECTIONS
 from app.prompts.help import HELP_KNOWLEDGE, PLATFORM_GUIDE
@@ -24,22 +24,28 @@ def guide(limits: dict) -> str:
 
 
 def money(cents: int | None, currency: str, language: str) -> str:
-    """An amount in minor units as `language` writes it in `currency` ("$5", "5 €", "£2.25"),
-    without decimals when it's whole, as the site does; empty when billing didn't answer."""
+    """An amount in the currency's smallest unit (cents; yen and won themselves) as `language`
+    writes it in `currency` ("$5", "5 €", "£2.25", "¥750"), without decimals when it's whole, as
+    the site does; empty when billing didn't answer."""
     if cents is None:
         return ""
 
-    whole = cents % 100 == 0
+    units = 10 ** get_currency_precision(currency)
+    whole = cents % units == 0
     pattern = Locale.parse(language).currency_formats["standard"].pattern
 
-    return format_currency(
-        cents / 100,
+    written = format_currency(
+        cents / units,
         currency,
         format=WHOLE_DECIMALS.sub("", pattern) if whole else None,
         locale=language,
         currency_digits=not whole,
         numbering_system="latn",
     )
+
+    # A symbol in letters ("CHF") is kept apart from the number, as CLDR's currency spacing
+    # (and so the site) does; babel leaves it joined.
+    return CURRENCY_SPACING.sub("\u00a0", written)
 
 
 def grouped(number: int | str, language: str) -> str:

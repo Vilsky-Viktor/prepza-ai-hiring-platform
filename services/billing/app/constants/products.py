@@ -32,13 +32,25 @@ TOP_UPS = [
     TopUp("topup_1000", 500),
 ]
 
-# What a candidate costs (minor units) in a top-up of at least this many candidates, smallest
-# first, in each currency: volume prices, so larger top-ups buy candidates for less. Each
+# What a candidate costs in a top-up of at least this many candidates, smallest first, in each
+# currency, in its smallest unit as Paddle counts it (cents; yen and won themselves): volume prices, so larger top-ups buy candidates for less. Each
 # currency has round prices of its own, not a conversion.
 CANDIDATE_PRICES = {
     Currency.USD: [(10, 500), (50, 400), (200, 300), (500, 200)],
     Currency.EUR: [(10, 500), (50, 400), (200, 300), (500, 200)],
     Currency.GBP: [(10, 400), (50, 300), (200, 225), (500, 150)],
+    Currency.CAD: [(10, 700), (50, 550), (200, 400), (500, 275)],
+    Currency.AUD: [(10, 750), (50, 600), (200, 450), (500, 300)],
+    Currency.ILS: [(10, 1800), (50, 1500), (200, 1100), (500, 750)],
+    Currency.PLN: [(10, 1800), (50, 1500), (200, 1100), (500, 750)],
+    Currency.JPY: [(10, 750), (50, 600), (200, 450), (500, 300)],
+    Currency.KRW: [(10, 7000), (50, 5500), (200, 4000), (500, 2750)],
+    Currency.TWD: [(10, 16000), (50, 13000), (200, 9500), (500, 6500)],
+    Currency.HKD: [(10, 4000), (50, 3100), (200, 2300), (500, 1600)],
+    Currency.CHF: [(10, 450), (50, 350), (200, 260), (500, 175)],
+    Currency.THB: [(10, 17000), (50, 13500), (200, 10000), (500, 7000)],
+    Currency.SGD: [(10, 650), (50, 530), (200, 400), (500, 265)],
+    Currency.INR: [(10, 42000), (50, 34000), (200, 25000), (500, 17000)],
 }
 
 # A top-up of any number of candidates: from the smallest tier's candidates up to this many.

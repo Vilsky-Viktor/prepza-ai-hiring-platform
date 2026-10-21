@@ -7,6 +7,7 @@ from types import SimpleNamespace
 
 import pytest
 
+from app.constants.currencies import Currency
 from app.storage import auto_top_ups
 from tests.unit.test_internal import AUTH
 
@@ -46,7 +47,7 @@ def test_a_signed_in_persons_prices_are_in_their_saved_currency(
     assert client.get("/catalog", params=params).json()["currency"] == shown
     assert client.get("/me/currency", params=params).json() == {
         "currency": shown,
-        "currencies": ["USD", "EUR", "GBP"],
+        "currencies": [currency.value for currency in Currency],
     }
     assert saved_currencies.get(("user", "bob@example.com")) == kept
 
@@ -55,7 +56,7 @@ def test_a_person_changes_their_currency(client, signed_in, saved_currencies):
     signed_in("bob@example.com")
 
     response = client.put("/me/currency", json={"currency": "GBP"})
-    refused = client.put("/me/currency", json={"currency": "JPY"})
+    refused = client.put("/me/currency", json={"currency": "XYZ"})
 
     assert response.json()["currency"] == "GBP"
     assert refused.status_code == 422
@@ -113,7 +114,10 @@ def test_a_company_is_welcomed_with_or_without_its_owners_country(
 def test_a_company_changes_its_currency(client, saved_currencies):
     response = client.put(f"{COMPANY}/currency", json={"currency": "EUR"}, headers=AUTH)
 
-    assert response.json() == {"currency": "EUR", "currencies": ["USD", "EUR", "GBP"]}
+    assert response.json() == {
+        "currency": "EUR",
+        "currencies": [currency.value for currency in Currency],
+    }
     assert saved_currencies == {("company", "acme"): "EUR"}
 
 

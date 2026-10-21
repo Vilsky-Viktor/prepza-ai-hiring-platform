@@ -1,6 +1,7 @@
 import { FOUNDER } from "@/constants/about"
 import { OPERATOR } from "@/constants/operator"
 import { SITE_NAME } from "@/constants/seo"
+import { moneyAmount } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
 
 // schema.org structured data for search engines and AI answers: who makes prepza, what it is and
@@ -52,8 +53,8 @@ export function softwareData(
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: catalog.currency,
-      lowPrice: catalog.candidate_cents_min / 100,
-      highPrice: catalog.candidate_cents_max / 100,
+      lowPrice: moneyAmount(catalog.candidate_cents_min, catalog.currency),
+      highPrice: moneyAmount(catalog.candidate_cents_max, catalog.currency),
       unitText: "candidate",
     },
   }

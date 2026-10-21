@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Không. Credit không bao giờ hết hạn, và không có gói đăng ký trả phí. Nếu bạn bật tự động nạp (không bắt buộc), Paddle lưu thẻ của bạn dưới dạng một gói đăng ký {zero_price}; bạn chỉ trả cho những lần nạp thực tế.",
     },
     {
+        "key": "currency",
+        "question": "Tôi thanh toán bằng đồng tiền nào?",
+        "answer": "Giá được tính bằng đồng tiền địa phương tại Canada, Úc, Israel, Ba Lan, Thụy Sĩ, Nhật Bản, Hàn Quốc, Đài Loan, Hồng Kông, Thái Lan, Singapore và Ấn Độ; bằng euro tại các nước còn lại của EU và tại Iceland, Liechtenstein và Na Uy; bằng bảng Anh tại Vương quốc Anh; và bằng đô la Mỹ ở những nơi khác. Tài khoản của bạn và mỗi công ty giữ đồng tiền của quốc gia nơi chúng được tạo, dù bạn đi đâu: đổi đồng tiền của bạn trong Cài đặt, và của một công ty bên cạnh nút Nạp credit của công ty đó (chủ sở hữu và quản trị viên). Các lần nạp của một công ty, kể cả tự động nạp, luôn được tính bằng đồng tiền của công ty.",
+    },
+    {
         "key": "refunds",
         "question": "Tôi có được hoàn tiền không?",
         "answer": "Có, với credit bạn mua trong 14 ngày gần nhất và chưa dùng: qua Paddle hoặc bằng cách viết cho chúng tôi. Credit miễn phí, như quà chào mừng, không được hoàn. Chi tiết có trong [điều khoản](/terms).",

@@ -244,3 +244,10 @@ prompt change:
 
 No difference beyond the intervals; kept because the facts are needed for currency questions.
 The failures are the known h17 (an invented retake limit) and one h04 (viewers and billing).
+
+## Help chat: four more currencies (2026-10-21, kept)
+
+The guide's currency line now names CAD, AUD, ILS and PLN, and the FAQ gained "Which currency
+do I pay in?". Same test, dataset, model and judge as the run above: passed 94.4% (84.9–98.1),
+made up 5.6% (1.9–15.1), sign-in marker 100%; $0.013 help, $1.10 judge. No difference beyond
+the intervals; the only failures are the known h17 (an invented retake limit).

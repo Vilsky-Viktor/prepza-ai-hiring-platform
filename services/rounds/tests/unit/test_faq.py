@@ -160,3 +160,12 @@ def test_the_help_chat_reads_faq_links_as_their_text_and_page(client, monkeypatc
 
     assert "/pricing" in [path for _, path in LINK.findall(cost["answer"])]
     assert f"Q: {cost['question']}\nA: {cost['answer']}" in guide
+
+
+def test_faq_writes_whole_yen_as_paddle_counts_them():
+    """Yen and won have no smaller unit: billing's 750 is ¥750, not ¥7.50."""
+    from app.helpers.help import money
+
+    assert money(750, "JPY", "en") == "¥750"
+    assert money(1_375_000, "KRW", "en") == "₩1,375,000"
+    assert money(260, "CHF", "en") == "CHF\u00a02.60"

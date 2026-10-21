@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Tidak. Kredit tidak pernah kedaluwarsa, dan tidak ada langganan berbayar. Jika Anda menyalakan isi ulang otomatis yang opsional, Paddle menyimpan kartu Anda sebagai langganan {zero_price}; Anda hanya membayar isi ulang yang dilakukannya.",
     },
     {
+        "key": "currency",
+        "question": "Saya membayar dalam mata uang apa?",
+        "answer": "Harga dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, dan India; dalam euro di negara UE lainnya serta di Islandia, Liechtenstein, dan Norwegia; dalam pound di Inggris; dan dalam dolar AS di tempat lain. Akunmu dan setiap perusahaan tetap memakai mata uang negara tempat mereka dibuat, ke mana pun kamu bepergian: ubah mata uangmu di Pengaturan, dan mata uang perusahaan di samping tombol Isi ulang miliknya (pemilik dan admin). Isi ulang sebuah perusahaan, termasuk yang otomatis, selalu ditagih dalam mata uang perusahaan itu.",
+    },
+    {
         "key": "refunds",
         "question": "Bisakah aku mendapat pengembalian dana?",
         "answer": "Bisa, untuk kredit yang kamu beli dalam 14 hari terakhir dan belum dipakai: lewat Paddle atau dengan menulis kepada kami. Kredit gratis, seperti hadiah sambutan, tidak dikembalikan. Rinciannya ada di [ketentuan](/terms).",

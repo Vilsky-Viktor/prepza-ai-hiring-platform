@@ -53,6 +53,11 @@ FAQ = [
         "answer": "No. I crediti non scadono mai, e non ci sono abbonamenti a pagamento. Se attivi la ricarica automatica facoltativa, Paddle salva la tua carta come abbonamento da {zero_price}; paghi solo le ricariche che effettua.",
     },
     {
+        "key": "currency",
+        "question": "In che valuta pago?",
+        "answer": "I prezzi sono nella valuta locale in Canada, Australia, Israele, Polonia, Svizzera, Giappone, Corea del Sud, Taiwan, Hong Kong, Thailandia, Singapore e India; in euro nel resto dell'UE e in Islanda, nel Liechtenstein e in Norvegia; in sterline nel Regno Unito; e in dollari statunitensi altrove. Il tuo account e ogni azienda mantengono la valuta del paese in cui sono stati creati, ovunque tu viaggi: cambia la tua nelle Impostazioni e quella di un'azienda accanto al suo pulsante Ricarica (proprietari e amministratori). Le ricariche di un'azienda, anche quelle automatiche, vengono sempre addebitate nella valuta dell'azienda.",
+    },
+    {
         "key": "refunds",
         "question": "Posso avere un rimborso?",
         "answer": "Sì, per i crediti acquistati negli ultimi 14 giorni e non ancora spesi: tramite Paddle o scrivendoci. I crediti gratuiti, come il regalo di benvenuto, non sono rimborsabili. I [termini](/terms) riportano i dettagli.",

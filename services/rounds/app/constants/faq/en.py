@@ -52,6 +52,11 @@ FAQ = [
         "answer": "No. Credits never expire, and there are no paid subscriptions. If you turn on the optional automatic top-up, Paddle saves your card as a {zero_price} subscription; you pay only for the top-ups it makes.",
     },
     {
+        "key": "currency",
+        "question": "Which currency do I pay in?",
+        "answer": "Prices are in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore and India; in euros in the rest of the EU and in Iceland, Liechtenstein and Norway; in pounds in the UK; and in US dollars elsewhere. Your account and each company keep the currency of the country they were created in, wherever you travel: change yours in Settings, and a company's beside its Top up button (owners and admins). A company's top-ups, automatic ones too, are always charged in the company's currency.",
+    },
+    {
         "key": "refunds",
         "question": "Can I get a refund?",
         "answer": "Yes, for credits you bought in the last 14 days and haven't spent: through Paddle, or by writing to us. Free credits, such as the welcome gift, aren't refunded. The [terms](/terms) have the details.",

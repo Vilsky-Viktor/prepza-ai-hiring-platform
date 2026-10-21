@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Nie. Kredyty nigdy nie wygasają i nie ma płatnego abonamentu. Jeśli włączysz opcjonalne automatyczne doładowanie, Paddle zapisze Twoją kartę jako subskrypcję za {zero_price}; płacisz tylko za wykonane doładowania.",
     },
     {
+        "key": "currency",
+        "question": "W jakiej walucie płacę?",
+        "answer": "Ceny są w walucie lokalnej w Kanadzie, Australii, Izraelu, Polsce, Szwajcarii, Japonii, Korei Południowej, na Tajwanie, w Hongkongu, Tajlandii, Singapurze i Indiach; w euro w pozostałych krajach UE oraz w Islandii, Liechtensteinie i Norwegii; w funtach w Wielkiej Brytanii; a gdzie indziej w dolarach amerykańskich. Twoje konto i każda firma zachowują walutę kraju, w którym zostały utworzone, niezależnie od tego, dokąd podróżujesz: swoją zmienisz w Ustawieniach, a walutę firmy obok jej przycisku „Doładuj” (właściciele i administratorzy). Doładowania firmy, także automatyczne, są zawsze pobierane w walucie firmy.",
+    },
+    {
         "key": "refunds",
         "question": "Czy mogę dostać zwrot?",
         "answer": "Tak, za kredyty kupione w ciągu ostatnich 14 dni i jeszcze niewydane: przez Paddle lub pisząc do nas. Darmowe kredyty, takie jak prezent powitalny, nie podlegają zwrotowi. Szczegóły są w [regulaminie](/terms).",

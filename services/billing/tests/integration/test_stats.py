@@ -56,4 +56,7 @@ def test_a_transaction_counts_once_and_spent_credits_are_charges_only(run):
     counts, paid = run(scenario())
 
     assert counts == {"top_ups": 2, "credits_spent": CANDIDATE_CREDITS}
-    assert paid == {"USD": 4900, "EUR": 5950, "GBP": 0}
+    assert {currency: cents for currency, cents in paid.items() if cents} == {
+        "USD": 4900,
+        "EUR": 5950,
+    }

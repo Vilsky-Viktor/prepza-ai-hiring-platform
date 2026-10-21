@@ -3,11 +3,23 @@ from enum import StrEnum
 
 
 class Currency(StrEnum):
-    """The currencies prices are in: EUR in the EU and nearby, GBP in the UK, USD elsewhere."""
+    """The currencies prices are in: a country's own where billing sells in it, USD elsewhere."""
 
     USD = "USD"
     EUR = "EUR"
     GBP = "GBP"
+    CAD = "CAD"
+    AUD = "AUD"
+    ILS = "ILS"
+    PLN = "PLN"
+    JPY = "JPY"
+    KRW = "KRW"
+    TWD = "TWD"
+    HKD = "HKD"
+    CHF = "CHF"
+    THB = "THB"
+    SGD = "SGD"
+    INR = "INR"
 
 
 # A visitor's country: two letters, as Google's load balancer gives it ("XX" when it doesn't
@@ -15,20 +27,37 @@ class Currency(StrEnum):
 COUNTRY = re.compile(r"^[A-Za-z]{2}$")
 UNKNOWN_COUNTRY = "XX"
 
+# A row's currency must be one of these (the database checks it).
+CURRENCY_CHECK = "currency IN (" + ", ".join(f"'{code}'" for code in Currency) + ")"
+
 # Where the visitor's country isn't known, or is neither of those below.
 DEFAULT_CURRENCY = Currency.USD
 
-# The 27 EU states, plus Iceland, Liechtenstein, Norway and Switzerland: two-letter country codes,
-# as Google's load balancer and Paddle write them.
+# The EU states but Poland (which has its own), plus Iceland, Liechtenstein and Norway:
+# two-letter country codes, as Google's load balancer and Paddle write them.
 EUR_COUNTRIES = (
     "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE",
-    "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK",
-    "IS", "LI", "NO", "CH",
+    "IT", "LT", "LU", "LV", "MT", "NL", "PT", "RO", "SE", "SI", "SK",
+    "IS", "LI", "NO",
 )  # fmt: skip
-GBP_COUNTRIES = ("GB",)
 
 # Each currency but the default, and the countries whose visitors see it.
-COUNTRY_CURRENCIES = {Currency.EUR: EUR_COUNTRIES, Currency.GBP: GBP_COUNTRIES}
+COUNTRY_CURRENCIES = {
+    Currency.EUR: EUR_COUNTRIES,
+    Currency.GBP: ("GB",),
+    Currency.CAD: ("CA",),
+    Currency.AUD: ("AU",),
+    Currency.ILS: ("IL",),
+    Currency.PLN: ("PL",),
+    Currency.JPY: ("JP",),
+    Currency.KRW: ("KR",),
+    Currency.TWD: ("TW",),
+    Currency.HKD: ("HK",),
+    Currency.CHF: ("CH",),
+    Currency.THB: ("TH",),
+    Currency.SGD: ("SG",),
+    Currency.INR: ("IN",),
+}
 
 
 class ChoiceOwner(StrEnum):

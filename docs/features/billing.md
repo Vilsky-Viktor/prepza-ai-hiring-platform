@@ -16,7 +16,7 @@ Companies pay per candidate from a wallet of credits. There's no paid subscripti
 ## Credits
 
 - Credits never expire. Larger top-ups buy them for less money (see [Top-ups](#top-ups)), so a credit has no fixed price.
-- A company pays 500 credits ($5, €5 or £4) per candidate who answers at least one question: picks an answer, not lets its time run out.
+- A company pays 500 credits ($5, €5, £4 and so on: see [Top-ups](#top-ups)) per candidate who answers at least one question: picks an answer, not lets its time run out.
 - Generating an interview is free.
 - Only what works is charged: a candidate's credits are set aside on invite and given back if they never answer.
 - A candidate removed before finishing (revoked, with their interview deleted, or deleting their own account) is charged by the same rule, if they picked an answer to at least one question (rounds' `picked` count); otherwise their credits come back.
@@ -34,12 +34,27 @@ Until its first top-up, a company can have 1 generated interview waiting without
 
 Large top-ups buy candidates for less: each level has its own price per candidate in each currency (`CANDIDATE_PRICES` in `app/constants/products.py`), round prices of their own rather than a conversion (see [Currencies](#currencies)).
 
-| Top-up | Candidates | USD | EUR | GBP |
-|---|---|---|---|---|
-| Smallest | 10 | $50 ($5 each) | €50 (€5) | £40 (£4) |
-| Second | 50 | $200 ($4) | €200 (€4) | £150 (£3) |
-| Third | 200 | $600 ($3) | €600 (€3) | £450 (£2.25) |
-| Largest | 500 | $1,000 ($2) | €1,000 (€2) | £750 (£1.50) |
+Per candidate, in a top-up of 10–49 / 50–199 / 200–499 / 500–1,000 candidates; the fixed top-ups buy 10, 50, 200 and 500 (count × price):
+
+| Currency | Per candidate | Fixed top-ups | Next level from |
+|---|---|---|---|
+| USD | $5 / 4 / 3 / 2 | $50 / 200 / 600 / 1,000 | 40, 150, 334 |
+| EUR | €5 / 4 / 3 / 2 | €50 / 200 / 600 / 1,000 | 40, 150, 334 |
+| GBP | £4 / 3 / 2.25 / 1.50 | £40 / 150 / 450 / 750 | 38, 150, 334 |
+| CAD | CA$7 / 5.50 / 4 / 2.75 | CA$70 / 275 / 800 / 1,375 | 40, 146, 344 |
+| AUD | A$7.50 / 6 / 4.50 / 3 | A$75 / 300 / 900 / 1,500 | 40, 150, 334 |
+| ILS | ₪18 / 15 / 11 / 7.50 | ₪180 / 750 / 2,200 / 3,750 | 42, 147, 341 |
+| PLN | 18 / 15 / 11 / 7.50 zł | 180 / 750 / 2,200 / 3,750 zł | 42, 147, 341 |
+| CHF | CHF 4.50 / 3.50 / 2.60 / 1.75 | CHF 45 / 175 / 520 / 875 | 39, 149, 337 |
+| JPY | ¥750 / 600 / 450 / 300 | ¥7,500 / 30,000 / 90,000 / 150,000 | 40, 150, 334 |
+| KRW | ₩7,000 / 5,500 / 4,000 / 2,750 | ₩70,000 / 275,000 / 800,000 / 1,375,000 | 40, 146, 344 |
+| TWD | NT$160 / 130 / 95 / 65 | NT$1,600 / 6,500 / 19,000 / 32,500 | 41, 147, 343 |
+| HKD | HK$40 / 31 / 23 / 16 | HK$400 / 1,550 / 4,600 / 8,000 | 39, 149, 348 |
+| THB | ฿170 / 135 / 100 / 70 | ฿1,700 / 6,750 / 20,000 / 35,000 | 40, 149, 350 |
+| SGD | S$6.50 / 5.30 / 4 / 2.65 | S$65 / 265 / 800 / 1,325 | 41, 151, 332 |
+| INR | ₹420 / 340 / 250 / 170 | ₹4,200 / 17,000 / 50,000 / 85,000 | 41, 148, 340 |
+
+"Next level from": the counts from which a top-up buys the next level's smallest one instead (below), worked out from each currency's own prices.
 
 These fixed top-ups (keys `topup_50` to `topup_1000`, kept from when they were dollar amounts) are what automatic top-up buys; the pricing and home pages show their prices. Saved automatic top-ups were moved to them by billing's migration 0012, each threshold keeping its number of candidates.
 
@@ -47,7 +62,7 @@ The top-up dialog (on the top-up page and a company's billing tab and header) bu
 
 - A slider with one equal part per price level (10–49, 50–199, 200–499 and 500–1,000 candidates), each labelled with its price per candidate in the company's currency; the count shows over the knob. Arrow keys move one candidate, Page Up and Page Down ten, Home and End to the ends.
 - Under it, what the count costs, as three cards: the price, the credits (500 a candidate) and the candidates.
-- Never more than the next level: when the count at its level's price costs at least the next level's smallest top-up (50 for $200, 200 for $600, 500 for $1,000), it buys that instead, at that price, and the dialog says so ("50 candidates for the same price"). So in dollars and euros 40–49 buy 50, 150–199 buy 200 and 334–499 buy 500; in pounds the first step comes sooner, at 38.
+- Never more than the next level: when the count at its level's price costs at least the next level's smallest top-up (50 for $200, 200 for $600, 500 for $1,000), it buys that instead, at that price, and the dialog says so ("50 candidates for the same price"). In US dollars 40–49 buy 50, 150–199 buy 200 and 334–499 buy 500; other currencies' steps are in the table above.
 - Billing decides all of it (`custom_top_up` in `app/helpers/credits.py`), in the company's currency: its catalog (`custom`) gives the range, whether it's on sale (Paddle's product for it is set), and each level's first count, price per candidate and the count from which it buys the next level (`upgrade_from`). The dialog only displays and multiplies.
 - Top up sends the count (`POST /companies/{id}/billing/checkout` with `{"candidates": N}`); billing works out again what it buys in the company's currency, refuses a count out of the range ("Choose from 10 to 1,000 candidates.", 422) or a sale before the product is set ("This top-up isn't available", 422), and makes the checkout: one item ("50 candidates") with its price made in the transaction, under the `PADDLE_PRODUCT_CANDIDATES` product, in that currency only (and the transaction's `currency_code`), tax added on top (`tax_mode: external`), quantity fixed at 1, so the buyer can't change what they buy. What it buys goes in the price's custom data (`candidates`, or a fixed top-up's `top_up` key for automatic top-up), the wallet and the buyer in the transaction's.
 - The webhook grants those candidates (500 credits each) for a paid line of that product, the same in any currency, never anything the browser sent; a count out of the range grants nothing and is logged as an error, to refund. The money kept is what Paddle charged: the line's subtotal and the transaction's currency.
@@ -160,7 +175,7 @@ To fill in the top lists' names, billing asks companies for companies' names and
 
 ## Currencies
 
-Prices are in euros in the EU, Iceland, Liechtenstein, Norway and Switzerland, in pounds in the UK and in US dollars elsewhere (`app/constants/currencies.py`). Billing decides which, never the site:
+Prices are in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore and India; in euros in the rest of the EU and in Iceland, Liechtenstein and Norway; in pounds in the UK; and in US dollars elsewhere (`app/constants/currencies.py`; migration 0018 added all but USD, EUR and GBP, and Poland and Switzerland moved from euros to their own, saved currencies staying as they were). Each is a payment currency Paddle supports. Amounts are in each currency's smallest unit, as Paddle counts them: cents, but whole yen and won (Paddle's `decimal_places` 0); the site and the FAQ format them by the currency's own decimals. Billing decides which, never the site:
 
 - **The country:** Google's load balancer adds `X-Client-Country: {client_region}` to every request, replacing any the browser sent; the site's server-side calls pass it on as `?country=`. Locally the gateway takes it from a `test_country` cookie ("DE", "GB"). The header is optional everywhere: calls from AI apps, the public API, other services and tests have none.
 - **Saved currencies** (`currency_choices`, migration 0017): a person's is saved from their country at sign-up, a company's from its creator's country when it's created; one without (older accounts and companies) gets it the first time billing sees them with a known country, US dollars until then. Travelling later changes nothing. A person changes theirs in Settings (beside the language); owners and admins change a company's beside its Top up button, on its billing tab and the top-up page (`PUT /companies/{id}/billing/currency`, in the action log as "Changed the currency").

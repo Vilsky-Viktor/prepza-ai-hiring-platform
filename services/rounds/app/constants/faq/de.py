@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Nein. Credits verfallen nie, und es gibt keine kostenpflichtigen Abos. Wenn du das optionale automatische Aufladen einschaltest, speichert Paddle deine Karte als Abo für {zero_price}; du zahlst nur die Aufladungen, die es vornimmt.",
     },
     {
+        "key": "currency",
+        "question": "In welcher Währung zahle ich?",
+        "answer": "Die Preise sind in Kanada, Australien, Israel, Polen, der Schweiz, Japan, Südkorea, Taiwan, Hongkong, Thailand, Singapur und Indien in der Landeswährung; in der übrigen EU sowie in Island, Liechtenstein und Norwegen in Euro; im Vereinigten Königreich in Pfund; und anderswo in US-Dollar. Dein Konto und jedes Unternehmen behalten die Währung des Landes, in dem sie angelegt wurden, egal wohin du reist: Deine änderst du in den Einstellungen, die eines Unternehmens neben seinem Button „Aufladen“ (Inhaber und Admins). Die Aufladungen eines Unternehmens, auch die automatischen, werden immer in seiner Währung berechnet.",
+    },
+    {
         "key": "refunds",
         "question": "Kann ich mein Geld zurückbekommen?",
         "answer": "Ja, für Credits, die du in den letzten 14 Tagen gekauft und noch nicht ausgegeben hast: über Paddle oder indem du uns schreibst. Gratis-Credits wie das Willkommensgeschenk werden nicht erstattet. Details stehen in den [Bedingungen](/terms).",

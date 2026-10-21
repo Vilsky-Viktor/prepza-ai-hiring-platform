@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Non. Les crédits n'expirent jamais, et il n'y a aucun abonnement payant. Si vous activez la recharge automatique facultative, Paddle enregistre votre carte sous forme d'abonnement à {zero_price} ; vous ne payez que les recharges qu'elle effectue.",
     },
     {
+        "key": "currency",
+        "question": "Dans quelle devise est-ce que je paie ?",
+        "answer": "Les prix sont dans la devise locale au Canada, en Australie, en Israël, en Pologne, en Suisse, au Japon, en Corée du Sud, à Taïwan, à Hong Kong, en Thaïlande, à Singapour et en Inde ; en euros dans le reste de l'UE ainsi qu'en Islande, au Liechtenstein et en Norvège ; en livres au Royaume-Uni ; et en dollars américains ailleurs. Votre compte et chaque entreprise gardent la devise du pays où ils ont été créés, où que vous voyagiez : changez la vôtre dans les Paramètres, et celle d'une entreprise à côté de son bouton « Recharger » (propriétaires et administrateurs). Les recharges d'une entreprise, automatiques comprises, sont toujours facturées dans la devise de l'entreprise.",
+    },
+    {
         "key": "refunds",
         "question": "Puis-je être remboursé ?",
         "answer": "Oui, pour les crédits achetés au cours des 14 derniers jours et non dépensés : via Paddle ou en nous écrivant. Les crédits offerts, comme le cadeau de bienvenue, ne sont pas remboursés. Les [conditions](/terms) donnent les détails.",

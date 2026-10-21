@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Ei. Krediidid ei aegu kunagi ning tasulisi tellimusi pole. Kui lülitad sisse valikulise automaatse juurdelaadimise, salvestab Paddle sinu kaardi tellimusena hinnaga {zero_price}; maksad ainult selle tehtud juurdelaadimiste eest.",
     },
     {
+        "key": "currency",
+        "question": "Millises valuutas ma maksan?",
+        "answer": "Hinnad on kohalikus valuutas Kanadas, Austraalias, Iisraelis, Poolas, Šveitsis, Jaapanis, Lõuna-Koreas, Taiwanis, Hongkongis, Tais, Singapuris ja Indias; ülejäänud ELis ning Islandil, Liechtensteinis ja Norras eurodes; Ühendkuningriigis naelsterlingites; ja mujal USA dollarites. Sinu konto ja iga ettevõte jäävad selle riigi valuutale, kus need loodi, ükskõik kuhu sa reisid: enda oma muudad seadetes, ettevõtte oma tema nupu „Laadi juurde“ kõrval (omanikud ja administraatorid). Ettevõtte juurdelaadimised, ka automaatsed, võetakse alati ettevõtte valuutas.",
+    },
+    {
         "key": "refunds",
         "question": "Kas saan raha tagasi?",
         "answer": "Jah, viimase 14 päeva jooksul ostetud ja kulutamata krediitide eest: Paddle'i kaudu või meile kirjutades. Tasuta krediite, näiteks tervituskingitust, ei hüvitata. Üksikasjad on [tingimustes](/terms).",

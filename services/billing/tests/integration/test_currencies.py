@@ -14,9 +14,7 @@ def test_a_currency_is_saved_once_from_a_country_and_kept_until_changed(run):
         unknown = await decide(None, company_id=acme)
         none_saved = await currencies.chosen(ChoiceOwner.COMPANY, acme)
         # Two first requests at once from Germany: one is saved.
-        first = await asyncio.gather(
-            decide("DE", company_id=acme), decide("de", company_id=acme)
-        )
+        first = await asyncio.gather(decide("DE", company_id=acme), decide("de", company_id=acme))
         # Seen later from the UK, or from nowhere: still euros.
         travelled = await decide("GB", company_id=acme)
         no_country = await decide(None, company_id=acme)
@@ -39,9 +37,7 @@ def test_a_currency_is_saved_once_from_a_country_and_kept_until_changed(run):
             await currencies.chosen(ChoiceOwner.USER, ann),
         )
 
-    unknown, none_saved, first, travelled, no_country, changed, person, gone, kept = run(
-        scenario()
-    )
+    unknown, none_saved, first, travelled, no_country, changed, person, gone, kept = run(scenario())
 
     assert (unknown, none_saved) == ("USD", None)
     assert first == ["EUR", "EUR"]

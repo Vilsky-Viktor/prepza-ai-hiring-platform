@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Nee. Credits verlopen nooit, en er zijn geen betaalde abonnementen. Zet je het optionele automatisch opwaarderen aan, dan bewaart Paddle je kaart als abonnement van {zero_price}; je betaalt alleen de opwaarderingen die het doet.",
     },
     {
+        "key": "currency",
+        "question": "In welke valuta betaal ik?",
+        "answer": "Prijzen zijn in de lokale valuta in Canada, Australië, Israël, Polen, Zwitserland, Japan, Zuid-Korea, Taiwan, Hongkong, Thailand, Singapore en India; in euro in de rest van de EU en in IJsland, Liechtenstein en Noorwegen; in ponden in het Verenigd Koninkrijk; en elders in Amerikaanse dollars. Je account en elk bedrijf houden de valuta van het land waarin ze zijn aangemaakt, waar je ook naartoe reist: wijzig de jouwe in Instellingen, en die van een bedrijf naast de knop Opwaarderen ervan (eigenaren en beheerders). De opwaarderingen van een bedrijf, ook de automatische, worden altijd in de valuta van het bedrijf in rekening gebracht.",
+    },
+    {
         "key": "refunds",
         "question": "Kan ik mijn geld terugkrijgen?",
         "answer": "Ja, voor credits die je de afgelopen 14 dagen hebt gekocht en nog niet hebt besteed: via Paddle of door ons te schrijven. Gratis credits, zoals het welkomstcadeau, worden niet terugbetaald. De [voorwaarden](/terms) geven de details.",

@@ -44,13 +44,25 @@ export function dayStart(day: string, after = 0) {
   return new Date(year, month - 1, date + after).toISOString()
 }
 
-/** 2400 cents in USD: "$24". */
+/** An amount in a currency's smallest unit, as billing and Paddle count it (cents; yen and won
+ * themselves), in the currency's whole units: 2400 cents are 24 dollars, 750 yen are 750 yen. */
+export function moneyAmount(minor: number, currency: string) {
+  const digits =
+    new Intl.NumberFormat("en", {
+      style: "currency",
+      currency,
+    }).resolvedOptions().maximumFractionDigits ?? 2
+
+  return minor / 10 ** digits
+}
+
+/** 2400 cents in USD: "$24"; a whole amount without decimals, others with the currency's. */
 export function formatPrice(cents: number, currency: string, locale: string) {
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-    maximumFractionDigits: cents % 100 === 0 ? 0 : 2,
-  }).format(cents / 100)
+    trailingZeroDisplay: "stripIfInteger",
+  }).format(moneyAmount(cents, currency))
 }
 
 /** 100 to 300 cents in USD: "$1–$3", written as the locale writes a range; a whole amount
@@ -65,7 +77,10 @@ export function formatPriceRange(
     style: "currency",
     currency,
     trailingZeroDisplay: "stripIfInteger",
-  }).formatRange(minCents / 100, maxCents / 100)
+  }).formatRange(
+    moneyAmount(minCents, currency),
+    moneyAmount(maxCents, currency)
+  )
 }
 
 /** What a candidate costs in the catalog, cheapest to standard, as the locale writes a range
@@ -91,9 +106,11 @@ export function compactNumber(value: number, locale: string) {
   }).format(value)
 }
 
-/** Money short from $1,000 up ("$12.3K"); exact below it ("$66.60"). */
+/** Money short from 1,000 of the currency up ("$12.3K", "¥1.5M"); exact below it ("$66.60"). */
 export function compactPrice(cents: number, currency: string, locale: string) {
-  if (cents < 100_000) {
+  const amount = moneyAmount(cents, currency)
+
+  if (amount < 1_000) {
     return formatPrice(cents, currency, locale)
   }
 
@@ -102,7 +119,7 @@ export function compactPrice(cents: number, currency: string, locale: string) {
     currency,
     notation: "compact",
     maximumFractionDigits: 1,
-  }).format(cents / 100)
+  }).format(amount)
 }
 
 /** US dollars as AI costs come (not cents): to the cent from $1 up, and to three significant

@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Não. Os créditos nunca expiram, e não há assinaturas pagas. Se você ativar a recarga automática opcional, a Paddle salva seu cartão como uma assinatura de {zero_price}; você paga só pelas recargas que ela fizer.",
     },
     {
+        "key": "currency",
+        "question": "Em que moeda eu pago?",
+        "answer": "Os preços são na moeda local no Canadá, na Austrália, em Israel, na Polônia, na Suíça, no Japão, na Coreia do Sul, em Taiwan, em Hong Kong, na Tailândia, em Singapura e na Índia; em euros no restante da UE e na Islândia, em Liechtenstein e na Noruega; em libras no Reino Unido; e em dólares americanos nos demais lugares. Sua conta e cada empresa mantêm a moeda do país em que foram criadas, para onde quer que você viaje: altere a sua em Configurações, e a de uma empresa ao lado do botão Recarregar dela (proprietários e administradores). As recargas de uma empresa, inclusive as automáticas, são sempre cobradas na moeda da empresa.",
+    },
+    {
         "key": "refunds",
         "question": "Posso pedir reembolso?",
         "answer": "Sim, dos créditos que você comprou nos últimos 14 dias e ainda não gastou: pelo Paddle ou escrevendo para nós. Créditos grátis, como o presente de boas-vindas, não são reembolsados. Os [termos](/terms) têm os detalhes.",

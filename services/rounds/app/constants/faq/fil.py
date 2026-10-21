@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Hindi. Hindi kailanman nag-e-expire ang credits, at walang bayad na subscription. Kung bubuksan mo ang opsyonal na awtomatikong top-up, ise-save ng Paddle ang card mo bilang {zero_price} na subscription; ang mga top-up lang na ginagawa nito ang babayaran mo.",
     },
     {
+        "key": "currency",
+        "question": "Anong currency ang ibabayad ko?",
+        "answer": "Nasa lokal na currency ang mga presyo sa Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore at India; sa euro sa iba pang bahagi ng EU at sa Iceland, Liechtenstein at Norway; sa pound sa UK; at sa US dollars sa ibang lugar. Pinananatili ng account mo at ng bawat kumpanya ang currency ng bansa kung saan sila ginawa, saan ka man bumiyahe: palitan ang sa iyo sa Mga setting, at ang sa isang kumpanya sa tabi ng button nitong Mag-top up (mga owner at admin). Ang mga top-up ng isang kumpanya, pati ang mga awtomatiko, ay laging sinisingil sa currency ng kumpanya.",
+    },
+    {
         "key": "refunds",
         "question": "Puwede ba akong ma-refund?",
         "answer": "Oo, para sa credits na binili mo sa nakaraang 14 na araw at hindi pa nagagastos: sa Paddle o sa pagsulat sa amin. Hindi nire-refund ang libreng credits, gaya ng welcome gift. Nasa [terms](/terms) ang mga detalye.",

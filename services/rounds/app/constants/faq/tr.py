@@ -53,6 +53,11 @@ FAQ = [
         "answer": "Hayır. Kredilerin süresi asla dolmaz; ücretli abonelik yoktur. İsteğe bağlı otomatik yüklemeyi açarsanız Paddle kartınızı {zero_price} tutarında bir abonelik olarak kaydeder; yalnızca yapılan yüklemeler için ödersiniz.",
     },
     {
+        "key": "currency",
+        "question": "Hangi para biriminde öderim?",
+        "answer": "Fiyatlar Kanada, Avustralya, İsrail, Polonya, İsviçre, Japonya, Güney Kore, Tayvan, Hong Kong, Tayland, Singapur ve Hindistan'da yerel para birimi; AB'nin geri kalanında ve İzlanda, Lihtenştayn ve Norveç'te avro; Birleşik Krallık'ta sterlin; diğer yerlerde ise ABD doları cinsindendir. Hesabınız ve her şirket, nereye seyahat ederseniz edin, oluşturuldukları ülkenin para birimini korur: kendinizinkini Ayarlar'da, bir şirketinkini ise o şirketin Kredi yükle düğmesinin yanında değiştirebilirsiniz (sahipler ve yöneticiler). Bir şirketin yüklemeleri, otomatik olanlar da, her zaman şirketin para biriminde tahsil edilir.",
+    },
+    {
         "key": "refunds",
         "question": "Para iadesi alabilir miyim?",
         "answer": "Evet, son 14 gün içinde satın aldığınız ve harcamadığınız krediler için: Paddle üzerinden veya bize yazarak. Hoş geldin hediyesi gibi ücretsiz krediler iade edilmez. Ayrıntılar [koşullarda](/terms) yer alır.",

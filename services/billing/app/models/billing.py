@@ -4,6 +4,7 @@ from datetime import UTC, datetime
 from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, UniqueConstraint, text
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.currencies import CURRENCY_CHECK
 from app.models.base import Base
 
 
@@ -43,9 +44,7 @@ class AutoTopUp(Base):
     last automatic charge, `failed_at` the last one the card declined."""
 
     __tablename__ = "auto_top_ups"
-    __table_args__ = (
-        CheckConstraint("currency IN ('USD', 'EUR', 'GBP')", name="ck_auto_top_ups_currency"),
-    )
+    __table_args__ = (CheckConstraint(CURRENCY_CHECK, name="ck_auto_top_ups_currency"),)
 
     owner_type: Mapped[str] = mapped_column(String(16), primary_key=True)
     owner_id: Mapped[str] = mapped_column(String(128), primary_key=True)
@@ -66,9 +65,7 @@ class CurrencyChoice(Base):
     are; without a row, the visitor's country decides (helpers/currencies.py)."""
 
     __tablename__ = "currency_choices"
-    __table_args__ = (
-        CheckConstraint("currency IN ('USD', 'EUR', 'GBP')", name="ck_currency_choices_currency"),
-    )
+    __table_args__ = (CheckConstraint(CURRENCY_CHECK, name="ck_currency_choices_currency"),)
 
     owner_type: Mapped[str] = mapped_column(String(16), primary_key=True)
     owner_id: Mapped[str] = mapped_column(String(128), primary_key=True)

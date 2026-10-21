@@ -10,6 +10,7 @@ import {
   formatPrice,
   candidatePriceRange,
   formatPriceRange,
+  moneyAmount,
   formatSeconds,
   formatUsd,
   today,
@@ -96,6 +97,16 @@ describe("formatPriceRange", () => {
     expect(plain(formatPriceRange(50, 300, "USD", "en"))).toBe("$0.50 – $3")
     expect(plain(formatPriceRange(150, 400, "GBP", "en"))).toBe("£1.50 – £4")
     expect(plain(formatPriceRange(200, 500, "EUR", "fr"))).toBe("2–5 €")
+  })
+})
+
+describe("moneyAmount", () => {
+  it("reads billing's amounts in each currency's smallest unit, whole yen and won", () => {
+    expect(moneyAmount(2400, "USD")).toBe(24)
+    expect(moneyAmount(750, "JPY")).toBe(750)
+    expect(moneyAmount(7000, "KRW")).toBe(7000)
+    expect(plain(formatPrice(750, "JPY", "en"))).toBe("¥750")
+    expect(plain(formatPriceRange(300, 750, "JPY", "en"))).toBe("¥300 – ¥750")
   })
 })
 
