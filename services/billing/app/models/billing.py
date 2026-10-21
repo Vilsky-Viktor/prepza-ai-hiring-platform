@@ -1,7 +1,17 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, UniqueConstraint, func, text
+from sqlalchemy import (
+    BigInteger,
+    CheckConstraint,
+    DateTime,
+    Index,
+    String,
+    Text,
+    UniqueConstraint,
+    func,
+    text,
+)
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.constants.currencies import CURRENCY_CHECK
@@ -117,6 +127,8 @@ class Entry(Base):
     amount: Mapped[int]
     reason: Mapped[str] = mapped_column(String(64))
     # In the currency's minor units, tax included, as Paddle gives it; None when not known.
+    # `total` is the old text copy, kept until no running version reads it (migration 0020).
+    total_minor: Mapped[int | None] = mapped_column(BigInteger)
     total: Mapped[str | None] = mapped_column(Text)
     currency: Mapped[str | None] = mapped_column(String(3))
     automatic: Mapped[bool] = mapped_column(default=False, server_default="false")
@@ -144,6 +156,9 @@ class Purchase(Base):
     owner_id: Mapped[str] = mapped_column(String(128), index=True)
     # Who paid, when a company buys; the company is the owner.
     buyer_id: Mapped[str | None] = mapped_column(String(128))
+    # What the whole transaction cost, in minor units, tax included; `total` is the old text copy
+    # (migration 0020). Nullable until the text column goes.
+    total_minor: Mapped[int | None] = mapped_column(BigInteger)
     total: Mapped[str] = mapped_column(Text)
     currency: Mapped[str] = mapped_column(String(3))
     created_at: Mapped[datetime] = mapped_column(

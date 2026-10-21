@@ -7,11 +7,13 @@ from sqlalchemy.dialects.postgresql import insert
 
 from app.constants.credits import Reason
 from app.constants.products import OwnerType
+from app.helpers.money import row_minor
 from app.models.billing import Entry, Hold, Purchase, Wallet
 from app.models.outbox import OutboxEvent
 from app.storage import referrals
 from app.storage.db import Session
 from app.storage.ledger import add, ensure
+from app.storage.money import paid_minor
 
 
 async def grant(
@@ -40,6 +42,7 @@ async def grant(
                 owner_id=owner_id,
                 buyer_id=buyer_id,
                 total=total,
+                total_minor=int(total),
                 currency=currency,
                 created_at=now,
             )
@@ -82,7 +85,7 @@ async def grant(
         return True
 
 
-async def for_transaction(transaction_id: str) -> tuple[str, str, int, str] | None:
+async def for_transaction(transaction_id: str) -> tuple[str, str, int, int] | None:
     """Whose wallet a transaction topped up, the credits it bought, and what was paid."""
     async with Session() as session:
         rows = list(
@@ -100,7 +103,7 @@ async def for_transaction(transaction_id: str) -> tuple[str, str, int, str] | No
 
     first = rows[0]
 
-    return first.owner_type, first.owner_id, granted, first.total
+    return first.owner_type, first.owner_id, granted, row_minor(first)
 
 
 async def take_back(
@@ -210,12 +213,14 @@ async def bought_by(user_id: str, limit: int) -> list:
         select(
             Purchase.transaction_id,
             Purchase.owner_id,
-            Purchase.total,
+            paid_minor(Purchase).label("total"),
             Purchase.currency,
             func.min(Purchase.created_at).label("created_at"),
         )
         .where(Purchase.buyer_id == user_id, Purchase.owner_type == OwnerType.COMPANY)
-        .group_by(Purchase.transaction_id, Purchase.owner_id, Purchase.total, Purchase.currency)
+        .group_by(
+            Purchase.transaction_id, Purchase.owner_id, paid_minor(Purchase), Purchase.currency
+        )
         .order_by(func.min(Purchase.created_at).desc())
         .limit(limit)
     )

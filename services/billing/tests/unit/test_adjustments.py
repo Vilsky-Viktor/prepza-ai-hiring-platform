@@ -13,7 +13,7 @@ def moved(monkeypatch):
 
     async def bought(transaction_id):
         # $10 paid for 1,000 credits.
-        return ("company", "acme", 1_000, "1000")
+        return ("company", "acme", 1_000, 1000)
 
     taken = {}
 
@@ -50,7 +50,7 @@ def test_a_refund_keeps_the_money_it_returned(monkeypatch):
     kept = []
 
     async def bought(transaction_id):
-        return ("company", "acme", 1_000, "1000")
+        return ("company", "acme", 1_000, 1000)
 
     async def take_back_credits(owner_type, owner_id, amount, *rest):
         kept.append(rest[-2:])
@@ -105,5 +105,5 @@ def test_nothing_moves_for_pending_rejected_or_other_adjustments(moved, event):
 
 
 def test_never_more_than_was_paid():
-    assert adjustments.share(1_000, "5000", "1000") == 1_000
-    assert adjustments.share(26_250, "12500", "25000") == 13_125
+    assert adjustments.share(1_000, "5000", 1000) == 1_000
+    assert adjustments.share(26_250, "12500", 25000) == 13_125

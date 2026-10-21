@@ -36,8 +36,8 @@ def test_a_persons_top_ups_once_per_transaction_newest_first(run):
     found, limited = run(scenario())
 
     assert [tuple(row) for row in found] == [
-        (second, acme, "5000", "EUR", NOW + timedelta(days=1)),
-        (first, acme, "25000", "USD", NOW),
+        (second, acme, 5000, "EUR", NOW + timedelta(days=1)),
+        (first, acme, 25000, "USD", NOW),
     ]
     assert [row.transaction_id for row in limited] == [second]
 

@@ -20,6 +20,7 @@ from app.constants.products import (
     OwnerType,
 )
 from app.helpers.history import history_entry_out
+from app.helpers.money import row_minor
 from app.helpers.wallets import balance_out, candidates_for
 from app.integrations import paddle
 from app.schemas.billing import (
@@ -161,7 +162,7 @@ async def buyer_purchases(buyer_id: str, caller: ServiceCaller) -> list[BuyerPur
         BuyerPurchaseOut(
             transaction_id=row.transaction_id,
             company_id=row.owner_id,
-            total=row.total,
+            total=str(row.total),
             currency=row.currency,
             created_at=row.created_at,
         )
@@ -256,7 +257,7 @@ async def export_user(user_id: str, caller: ServiceCaller) -> dict:
                 {
                     "product": item.product,
                     "quantity": item.quantity,
-                    "total": item.total,
+                    "total": str(row_minor(item)),
                     "currency": item.currency,
                     "at": item.created_at,
                 }

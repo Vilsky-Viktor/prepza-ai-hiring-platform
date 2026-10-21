@@ -87,7 +87,7 @@ def test_a_failing_publish_still_adds_the_credits(top_up, monkeypatch):
 @pytest.fixture
 def adjusted(monkeypatch):
     async def bought(transaction_id):
-        return ("company", "acme", 1_000, "1000")
+        return ("company", "acme", 1_000, 1000)
 
     async def take_back_credits(*args):
         return 0

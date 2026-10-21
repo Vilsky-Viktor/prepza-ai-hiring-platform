@@ -135,7 +135,7 @@ def test_a_paid_custom_top_up_grants_its_candidates_in_any_currency(
 
 def test_a_refund_takes_back_its_share_of_the_candidates_credits():
     # 50 candidates for $200: $100 back takes back half.
-    assert adjustments.share(25_000, "10000", "20000") == 12_500
+    assert adjustments.share(25_000, "10000", 20000) == 12_500
 
 
 def test_the_refusal_names_the_range_sold():

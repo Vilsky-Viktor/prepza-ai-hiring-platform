@@ -85,7 +85,7 @@ def test_deleting_a_user_keeps_their_companys_purchases_without_them(run):
 
     assert [row.transaction_id for row in mine] == ["txn2"]
     assert after == []
-    assert bought == (COMPANY, acme, TOPUP_CREDITS, "1000")
+    assert bought == (COMPANY, acme, TOPUP_CREDITS, 1000)
 
 
 def test_a_new_company_by_the_same_person_doesnt_repeat_the_gift(run):

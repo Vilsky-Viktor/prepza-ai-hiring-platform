@@ -18,11 +18,9 @@ ACTIONS = {
 }
 
 
-def share(granted: int, adjusted_total: str, paid_total: str) -> int:
+def share(granted: int, adjusted_total: str, paid: int) -> int:
     """The part of the credits a payment bought that an adjustment of `adjusted_total` covers;
     a full refund is all of them."""
-    paid = int(paid_total)
-
     if paid <= 0:
         return 0
 
@@ -48,17 +46,17 @@ async def handle_adjustment(data: dict) -> None:
 
         return
 
-    owner_type, owner_id, granted, paid_total = bought
+    owner_type, owner_id, granted, paid = bought
 
     # Its company was deleted, credits and all: nothing to take back but the referral reward
     # the top-up paid, when it's all refunded, so deleting a referred company can't keep it.
     if owner_id not in await ledger.wallets(owner_type, [owner_id]):
-        if sign < 0 and int(data["totals"]["total"]) >= int(paid_total):
+        if sign < 0 and int(data["totals"]["total"]) >= paid:
             await take_back_reward(owner_id, data["transaction_id"])
 
         return
 
-    credits = share(granted, data["totals"]["total"], paid_total)
+    credits = share(granted, data["totals"]["total"], paid)
 
     if not credits:
         return
