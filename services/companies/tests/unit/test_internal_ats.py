@@ -1,4 +1,5 @@
 import uuid
+from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
@@ -6,8 +7,9 @@ from fastapi import HTTPException
 from prepza_common.http import bearer
 from prepza_common.service_auth import issue_token
 
+from app.constants.ai_apps import AI_APPS_OFF, KEY_OTHER_COMPANY
 from app.constants.audit import VIA_ATS
-from app.constants.invites import RETURN_URL_OFF_DOMAIN
+from app.constants.invites import COMPANY_SUSPENDED, RETURN_URL_OFF_DOMAIN
 from app.services import candidate_invites
 from app.services import outbox as outbox_service
 from app.storage import companies, interviews, invites
@@ -15,6 +17,8 @@ from app.storage import companies, interviews, invites
 COMPANY = SimpleNamespace(
     id=uuid.uuid4(),
     name="Acme",
+    suspended_at=None,
+    ai_apps_off_at=None,
     members=[
         SimpleNamespace(user_id="ann", role="owner"),
         SimpleNamespace(user_id="bob", role="admin"),
@@ -25,7 +29,8 @@ READY = SimpleNamespace(
     id=uuid.uuid4(), company_id=COMPANY.id, title="Backend", set_id=uuid.uuid4()
 )
 MAKING = SimpleNamespace(id=uuid.uuid4(), company_id=COMPANY.id, title=None, set_id=None)
-TOKEN = issue_token("ats", "companies", "test-secret-that-is-at-least-32-bytes")
+SECRET = "test-secret-that-is-at-least-32-bytes"
+TOKEN = issue_token("ats", "companies", SECRET)
 HEADERS = bearer(TOKEN)
 ACCESS = f"/internal/companies/{COMPANY.id}/access"
 
@@ -79,10 +84,10 @@ def stored(monkeypatch):
 @pytest.mark.parametrize(
     ("user_id", "expected"),
     [
-        ("ann", {"member": True, "editor": True}),
-        ("bob", {"member": True, "editor": True}),
-        ("vic", {"member": True, "editor": False}),
-        ("eve", {"member": False, "editor": False}),
+        ("ann", {"member": True, "editor": True, "refused": None, "read_only": None}),
+        ("bob", {"member": True, "editor": True, "refused": None, "read_only": None}),
+        ("vic", {"member": True, "editor": False, "refused": None, "read_only": None}),
+        ("eve", {"member": False, "editor": False, "refused": None, "read_only": None}),
     ],
 )
 def test_ats_asks_what_a_user_may_do_in_a_company(client, user_id, expected):
@@ -90,6 +95,39 @@ def test_ats_asks_what_a_user_may_do_in_a_company(client, user_id, expected):
 
     assert response.status_code == 200
     assert response.json() == expected
+
+
+@pytest.mark.parametrize(
+    ("via", "suspended", "ai_apps_off", "refused", "read_only"),
+    [
+        ("mcp", False, True, AI_APPS_OFF, None),
+        # The in-app assistant isn't an AI app.
+        ("assistant", False, True, None, None),
+        (None, True, False, None, COMPANY_SUSPENDED),
+    ],
+)
+def test_access_says_what_companies_own_routes_refuse(
+    client, monkeypatch, via, suspended, ai_apps_off, refused, read_only
+):
+    now = datetime.now(UTC)
+    monkeypatch.setattr(COMPANY, "suspended_at", now if suspended else None)
+    monkeypatch.setattr(COMPANY, "ai_apps_off_at", now if ai_apps_off else None)
+    headers = dict(HEADERS)
+
+    if via:
+        headers["X-Assistant"] = issue_token(via, "companies", SECRET)
+
+    found = client.get(f"{ACCESS}?user_id=ann", headers=headers).json()
+
+    assert (found["refused"], found["read_only"]) == (refused, read_only)
+
+
+def test_an_api_keys_agent_is_refused_another_company(client):
+    headers = {**HEADERS, "X-Assistant": issue_token("mcp", "companies", SECRET, {"company": "x"})}
+
+    found = client.get(f"{ACCESS}?user_id=ann", headers=headers).json()
+
+    assert found["refused"] == KEY_OTHER_COMPANY
 
 
 def test_a_company_that_doesnt_exist_is_not_found(client):

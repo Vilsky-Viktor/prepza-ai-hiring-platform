@@ -2,16 +2,11 @@ from contextvars import ContextVar
 
 import httpx
 from prepza_common import http
-from prepza_common.constants import REFERRAL_COOKIE, VIA_ASSISTANT
+from prepza_common.constants import ASSISTANT_HEADER, REFERRAL_COOKIE, VIA_ASSISTANT
 from prepza_common.http import bearer
 
 from app.config.settings import settings
-from app.constants.tool_calls import (
-    ASSISTANT_HEADER,
-    REFERRAL_CODE,
-    SERVICE_URLS,
-    TOOL_TIMEOUT_SECONDS,
-)
+from app.constants.tool_calls import REFERRAL_CODE, SERVICE_URLS, TOOL_TIMEOUT_SECONDS
 from app.service_auth import service_token
 
 # For the MCP call being handled when an AI agent signed in with an API key: the key's company
@@ -39,17 +34,17 @@ async def send(
     referral: str | None = None,
 ) -> httpx.Response:
     """A call to another service's user-facing route as the user, in their language: a read, or
-    a write the user confirmed. Companies also gets the assistant's signed header naming what it
-    came through (`via`: the assistant or an AI app), so it audits it as such."""
+    a write the user confirmed. Every call carries the assistant's header, signed for companies,
+    naming what it came through (`via`: the assistant or an AI app): companies audits it as such
+    and refuses an AI app the company doesn't allow; the other services pass it on to companies'
+    access check, which refuses alike."""
     headers = {**bearer(token), "Accept-Language": language}
+    headers[ASSISTANT_HEADER] = service_token("companies", via, KEY_CLAIMS.get())
 
-    if service == "companies":
-        headers[ASSISTANT_HEADER] = service_token("companies", via, KEY_CLAIMS.get())
-
-        # The referral link the user came through (their browser's cookie): a company the
-        # assistant creates for them counts for the referrer, as one made on the site does.
-        if referral and REFERRAL_CODE.fullmatch(referral):
-            headers["Cookie"] = f"{REFERRAL_COOKIE}={referral}"
+    # The referral link the user came through (their browser's cookie): a company the
+    # assistant creates for them counts for the referrer, as one made on the site does.
+    if service == "companies" and referral and REFERRAL_CODE.fullmatch(referral):
+        headers["Cookie"] = f"{REFERRAL_COOKIE}={referral}"
 
     # A confirmed action's id: a service that takes the header runs it at most once.
     if idempotency_key:

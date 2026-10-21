@@ -40,6 +40,25 @@ def test_access_asks_companies_for_the_users_role(answering):
     assert request.headers["Authorization"] == "Bearer token"
 
 
+def test_access_passes_on_the_assistants_header_of_the_request_being_served(answering):
+    seen = answering(200, {"member": True, "editor": True})
+
+    async def through_an_ai_app():
+        token = company_access.assistant_token.set("signed-for-companies")
+
+        try:
+            await company_access.access(URL, "token", "c1", "ann")
+        finally:
+            company_access.assistant_token.reset(token)
+
+        await company_access.access(URL, "token", "c1", "ann")
+
+    asyncio.run(through_an_ai_app())
+
+    assert seen[0].headers["X-Assistant"] == "signed-for-companies"
+    assert "X-Assistant" not in seen[1].headers
+
+
 def test_a_company_thats_gone_is_no_access(answering):
     answering(404, {"detail": "Company not found"})
 
@@ -68,6 +87,26 @@ def test_require_refuses_who_may_not(found, editor, status):
         company_access.require(found, editor)
 
     assert refused.value.status_code == status
+
+
+@pytest.mark.parametrize(
+    ("found", "editor", "reason"),
+    [
+        # An AI app the company doesn't allow: refused even a look.
+        ({"member": True, "editor": True, "refused": "No AI apps"}, False, "No AI apps"),
+        # A suspended company: read, never changed.
+        ({"member": True, "editor": True, "read_only": "Suspended"}, True, "Suspended"),
+    ],
+)
+def test_require_refuses_what_companies_refuses_with_its_reason(found, editor, reason):
+    with pytest.raises(HTTPException) as refused:
+        company_access.require(found, editor)
+
+    assert (refused.value.status_code, refused.value.detail) == (403, reason)
+
+
+def test_a_suspended_company_can_still_be_read():
+    company_access.require({"member": True, "editor": True, "read_only": "Suspended"}, False)
 
 
 @pytest.mark.parametrize(

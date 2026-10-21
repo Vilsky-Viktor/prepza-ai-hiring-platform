@@ -9,6 +9,11 @@ class AccessOut(BaseModel):
     # Any member (owner, admin or viewer); an editor is an owner or admin.
     member: bool
     editor: bool
+    # Why any request of theirs is refused (403), as companies' own routes refuse it: an AI app
+    # while the company doesn't allow them, an API key's agent in another company.
+    refused: str | None = None
+    # Why a change is refused (403) though they may read: the company is suspended.
+    read_only: str | None = None
 
 
 class InterviewBriefOut(BaseModel):

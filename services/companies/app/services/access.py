@@ -24,9 +24,7 @@ from app.storage import invites as invite_store
 async def require_company(user: CurrentUser, company_id: UUID) -> tuple[Company, Member]:
     """Any member: owners, admins and viewers. Enough for reading. An AI agent signed in with an
     API key reaches only the key's company (403)."""
-    key_company = REQUEST_COMPANY.get()
-
-    if key_company is not None and key_company != str(company_id):
+    if key_refusal(company_id):
         raise HTTPException(status.HTTP_403_FORBIDDEN, KEY_OTHER_COMPANY)
 
     company = await companies.get(company_id)
@@ -39,11 +37,33 @@ async def require_company(user: CurrentUser, company_id: UUID) -> tuple[Company,
     if member is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Company not found")
 
-    # An AI app a member connected, while its owners and admins don't allow them.
-    if REQUEST_VIA.get() == VIA_MCP and company.ai_apps_off_at is not None:
-        raise HTTPException(status.HTTP_403_FORBIDDEN, AI_APPS_OFF)
+    if refusal := ai_apps_refusal(company):
+        raise HTTPException(status.HTTP_403_FORBIDDEN, refusal)
 
     return company, member
+
+
+def key_refusal(company_id) -> str | None:
+    """An AI agent signed in with an API key asking about another company than the key's."""
+    key_company = REQUEST_COMPANY.get()
+
+    if key_company is not None and key_company != str(company_id):
+        return KEY_OTHER_COMPANY
+
+    return None
+
+
+def ai_apps_refusal(company: Company) -> str | None:
+    """An AI app a member connected, while its owners and admins don't allow them."""
+    if REQUEST_VIA.get() == VIA_MCP and company.ai_apps_off_at is not None:
+        return AI_APPS_OFF
+
+    return None
+
+
+def suspension_refusal(company: Company) -> str | None:
+    """Suspended by a superadmin: it can still be read (and deleted by its owner), not changed."""
+    return COMPANY_SUSPENDED if company.suspended_at is not None else None
 
 
 def member_of(company: Company, user_id: str) -> Member | None:
@@ -66,9 +86,8 @@ async def require_editor(user: CurrentUser, company_id: UUID) -> tuple[Company, 
     if not can_edit(member):
         raise HTTPException(status.HTTP_403_FORBIDDEN, "Viewers can't change anything here")
 
-    # Suspended by a superadmin: it can still be read (and deleted by its owner), not changed.
-    if company.suspended_at is not None:
-        raise HTTPException(status.HTTP_403_FORBIDDEN, COMPANY_SUSPENDED)
+    if refusal := suspension_refusal(company):
+        raise HTTPException(status.HTTP_403_FORBIDDEN, refusal)
 
     return company, member
 

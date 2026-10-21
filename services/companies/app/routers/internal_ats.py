@@ -13,7 +13,13 @@ from app.schemas.internal_ats import AccessOut, AtsInviteIn, AtsInviteOut, Inter
 from app.service_auth import ServiceCaller
 from app.services import candidate_invites
 from app.services import outbox as outbox_service
-from app.services.access import can_edit, member_of
+from app.services.access import (
+    ai_apps_refusal,
+    can_edit,
+    key_refusal,
+    member_of,
+    suspension_refusal,
+)
 from app.storage import companies, interviews, invites
 
 router = APIRouter(prefix="/internal", tags=["internal"])
@@ -21,8 +27,9 @@ router = APIRouter(prefix="/internal", tags=["internal"])
 
 @router.get("/companies/{company_id}/access")
 async def access(company_id: UUID, user_id: str, caller: ServiceCaller) -> AccessOut:
-    """What the user may do in the company: ats guards its pages with it. A company that
-    doesn't exist is 404."""
+    """What the user may do in the company: ats, notifications and the api guard their pages
+    with it (prepza_common.company_access), refusing what companies' own routes refuse: the
+    caller passes on the assistant's X-Assistant header. A company that doesn't exist is 404."""
     company = await companies.get(company_id)
 
     if company is None:
@@ -30,7 +37,12 @@ async def access(company_id: UUID, user_id: str, caller: ServiceCaller) -> Acces
 
     member = member_of(company, user_id)
 
-    return AccessOut(member=member is not None, editor=member is not None and can_edit(member))
+    return AccessOut(
+        member=member is not None,
+        editor=member is not None and can_edit(member),
+        refused=key_refusal(company_id) or ai_apps_refusal(company),
+        read_only=suspension_refusal(company),
+    )
 
 
 @router.get("/interviews")

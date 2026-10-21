@@ -12,9 +12,6 @@ MAX_STRING_LENGTH = 300
 WRITE_METHODS = ("POST", "PUT", "PATCH", "DELETE")
 # Routes the assistant never calls: other services' and prepza's own team's.
 FORBIDDEN_PATH_PREFIXES = ("/internal", "/superadmin")
-# The header that tells companies a read came through the assistant (audited as such), holding a
-# service token signed for companies, so it can't be forged.
-ASSISTANT_HEADER = "X-Assistant"
 # A referral code as billing makes them (URL-safe): only one that reads right is passed on, in
 # the cookie companies reads.
 REFERRAL_CODE = re.compile(r"[A-Za-z0-9_-]{1,64}")

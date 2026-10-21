@@ -19,7 +19,7 @@ class FakeClient:
         return httpx.Response(200, json={})
 
 
-def test_calls_go_as_the_user_and_companies_learns_its_the_assistant(monkeypatch):
+def test_calls_go_as_the_user_and_every_service_passes_on_that_its_the_assistant(monkeypatch):
     client = FakeClient()
     monkeypatch.setattr(http, "get_client", lambda: client)
 
@@ -38,7 +38,8 @@ def test_calls_go_as_the_user_and_companies_learns_its_the_assistant(monkeypatch
     # Signed for companies, by the assistant: companies audits the read as the assistant's.
     secret = "test-secret-that-is-at-least-32-bytes"
     assert token_caller(headers["X-Assistant"], secret, "companies") == "assistant"
-    assert "X-Assistant" not in other_headers
+    # Other services pass it on to companies' access check, which refuses as companies does.
+    assert token_caller(other_headers["X-Assistant"], secret, "companies") == "assistant"
 
 
 def test_a_confirmed_write_sends_its_method_and_body_as_the_user(monkeypatch):

@@ -41,6 +41,9 @@ NOT_READY = "Not ready"
 # ...) the member connected over MCP, which the assistant serves too. Audit events keep it.
 VIA_ASSISTANT = "assistant"
 VIA_MCP = "mcp"
+# That header: a service token signed for companies, so it can't be forged; other services pass
+# it on to companies' access check (prepza_common.company_access).
+ASSISTANT_HEADER = "X-Assistant"
 # The only service that may read the internal routes of what's new (its get_updates tool).
 UPDATES_CALLER = "assistant"
 NOT_ALLOWED = "Not allowed"
