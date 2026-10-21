@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Index, String, UniqueConstraint, func
+from sqlalchemy import DateTime, ForeignKey, Identity, Index, String, UniqueConstraint, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -43,7 +43,7 @@ class BulkRecipient(Base):
         Index("ix_bulk_recipients_status", "status", "send_id"),
     )
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     send_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("bulk_sends.id", ondelete="CASCADE"))
     user_id: Mapped[str] = mapped_column(String(128), index=True)
     status: Mapped[str] = mapped_column(String(8), default="pending")

@@ -19,6 +19,10 @@ RULES = {
         SELECT table_name || '.' || column_name FROM information_schema.columns
         WHERE table_schema = 'public' AND data_type IN ('json', 'character', 'money')
     """,
+    "a serial key instead of an identity column": """
+        SELECT table_name || '.' || column_name FROM information_schema.columns
+        WHERE table_schema = 'public' AND column_default LIKE 'nextval(%'
+    """,
     "a native enum instead of a CHECK": """
         SELECT typname::text FROM pg_type
         WHERE typtype = 'e' AND typnamespace = 'public'::regnamespace

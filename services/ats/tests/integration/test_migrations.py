@@ -106,7 +106,7 @@ def test_a_table_breaking_a_database_rule_is_named():
     engine = create_engine(sqlalchemy_url(settings.database_url))
     table = f"rule_check_{uuid.uuid4().hex}"
     columns = (
-        "id uuid PRIMARY KEY, created_at timestamp, data json,"
+        "id uuid PRIMARY KEY, created_at timestamp, data json, number serial,"
         f" parent_id uuid REFERENCES {table} (id)"
     )
 
@@ -121,10 +121,13 @@ def test_a_table_breaking_a_database_rule_is_named():
 
         engine.dispose()
 
-    assert found == [
-        f"a foreign key without ON DELETE: {table}.{table}_parent_id_fkey",
-        f"a foreign key without an index: {table}.{table}_parent_id_fkey",
-        f"created_at without a database default: {table}",
-        f"json instead of jsonb, char(n) or money: {table}.data",
-        f"timestamp without a time zone: {table}.created_at",
-    ]
+    assert found == sorted(
+        [
+            f"a foreign key without ON DELETE: {table}.{table}_parent_id_fkey",
+            f"a foreign key without an index: {table}.{table}_parent_id_fkey",
+            f"created_at without a database default: {table}",
+            f"a serial key instead of an identity column: {table}.number",
+            f"json instead of jsonb, char(n) or money: {table}.data",
+            f"timestamp without a time zone: {table}.created_at",
+        ]
+    )
