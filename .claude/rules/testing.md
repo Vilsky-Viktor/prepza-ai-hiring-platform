@@ -41,6 +41,11 @@ Python tests: `testing-backend.md`; vitest and browser, load and smoke tests:
 - Fix a flaky test at the cause; a retry or rerun is a stopgap, and a pass on retry counts as
   flaky. A test that needs quarantine is quarantined briefly, tracked and fixed.
 - Each test passes on its own and in any order; no test depends on another's leftovers.
+- This applies to every kind of test, everywhere: unit, integration, browser, load, evals and
+  scripted end-to-end checks. Unit tests: no module-level state shared between tests (caches such
+  as `lru_cache`, settings, singletons, fake stores and mocks reset or recreated per test; fake
+  timers and `vi` mocks restored); integration tests: their rows and keys created per test and
+  cleaned before and after; load runs and evals: their own throwaway accounts, removed at the end.
 - Every test starts absolutely clean: a fresh browser context (no cookies, storage or open
   streams), and its own users, companies, interviews and invites created for it (no shared fixture
   users or data, no `beforeAll` users shared across tests, nothing read that another test made);
