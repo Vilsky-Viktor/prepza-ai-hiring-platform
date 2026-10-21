@@ -9,10 +9,9 @@ class AutoTopUpIn(BaseModel):
 
 
 class CheckoutOut(BaseModel):
-    """The Paddle checkout to open: its price and the custom data to send with it."""
+    """The Paddle transaction the checkout opens, made by billing in the company's currency."""
 
-    price_id: str
-    custom_data: dict[str, str]
+    transaction_id: str
 
 
 class AutoTopUpOut(BaseModel):
@@ -25,4 +24,7 @@ class AutoTopUpOut(BaseModel):
     threshold: int | None
     products: list[str]
     thresholds: list[int]
+    # Each top-up's price (minor units) in `currency`: a running one's, or else the company's.
+    currency: str
+    prices: dict[str, int]
     checkout: CheckoutOut | None = None

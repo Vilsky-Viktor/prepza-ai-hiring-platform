@@ -4,6 +4,9 @@
     "language": "Wika",
     "languageNote": "Para sa interface at mga sagot ng help chat, at ang wikang unang gagamitin ng mga bagong interview. Puwede kang gumawa ng interview sa kahit anong suportadong wika.",
     "languageFailed": "Hindi mabago ang wika. Pakisubukang muli.",
+    "currency": "Currency",
+    "currencyNote": "Dito ipinapakita ang mga presyo, nasaan ka man. Ang top-up ng kumpanya ay nasa sariling currency ng kumpanya.",
+    "currencyFailed": "Hindi mapalitan ang currency. Pakisubukang muli.",
     "account": "Ang iyong account",
     "accountNote": "Ibigay ang ID na ito kapag sumulat ka sa amin tungkol sa iyong account.",
     "yourData": "Ang iyong data",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "I-test ang lahat\nI-hire ang pinakamahusay",
-    "text": "Ginagawang propesyonal na timed interview ng AI ang iyong job description.\n$2–5 lang bawat aplikante."
+    "text": "Ginagawang propesyonal na timed interview ng AI ang iyong job description.",
+    "price": "{price} lang bawat aplikante."
   },
   "start": {
     "placeholder": "Mag-paste ng job description, o ilarawan ang role at ang dapat malaman ng aplikante",
@@ -725,6 +729,8 @@
     "topUpTitle": "Mag-top up: {name}",
     "topUpNote": "Bawat top-up ay bumibili ng buong bilang ng aplikante; mas mura bawat aplikante sa mas malalaking top-up. Hindi nag-e-expire ang credits.",
     "taxes": "Hindi kasama sa mga presyo ang VAT o sales tax: kung saan ito naaangkop, idinadagdag ito sa checkout, na nagpapakita ng kabuuan bago ka magbayad.",
+    "paysIn": "Nagbabayad ang kumpanyang ito sa {currency}.",
+    "paysInChange": "Palitan ang currency",
     "candidates": "{count, plural, one {# aplikante} other {# aplikante}}",
     "perCandidate": "{price}<unit>/aplikante</unit>",
     "howMany": "Mga aplikanteng ito-top up",
@@ -1143,7 +1149,7 @@
     "topUp": "Mag-top up"
   },
   "site": {
-    "description": "Timed na skills test para sa mga aplikante, mula sa job description mo. Random na tanong bawat aplikante, may ranking at ulat. $2–5 bawat aplikante.",
+    "description": "Timed na skills test para sa mga aplikante, mula sa job description mo. Random na tanong bawat aplikante, may ranking at ulat.{priced, select, yes { {price} bawat aplikante.} other {}}",
     "homeTitle": "Pre-employment assessment mula sa job description mo"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Huling na-update",
     "englishOnly": "Nasa English lang ang page na ito.",
     "startTitle": "I-test ang mga aplikante mo",
-    "startText": "Gumawa ng timed skills test mula sa job description mo. $2–5 bawat aplikante, walang subscription.",
+    "startText": "Gumawa ng timed skills test mula sa job description mo.{priced, select, yes { {price} bawat aplikante, walang subscription.} other {}}",
     "startButton": "Gumawa ng test"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Mga handa nang timed skills test para sa mga karaniwang role. Gamitin ang isa nang ganoon lang, o gumawa ng test mula sa sarili mong job description.",
     "heading": "{role} skills test para sa pag-hire",
     "pageTitle": "{role} skills test para sa mga aplikante",
-    "pageDescription": "Isang timed {role} assessment test para sa mga aplikante mo, na may {count, plural, one {# topic} other {# topic}}. Bawat aplikante ay may sariling random na mga tanong. $2–5 bawat aplikante.",
-    "lead": "Isang timed multiple-choice test ng mga skill ng role na ito. Bawat aplikante ay may sariling random na set ng mga tanong at timer sa bawat isa, at makakakuha ka ng scorecard na may bawat sagot at oras nito. $2–5 bawat aplikante, walang subscription.",
+    "pageDescription": "Isang timed {role} assessment test para sa mga aplikante mo, na may {count, plural, one {# topic} other {# topic}}. Bawat aplikante ay may sariling random na mga tanong.{priced, select, yes { {price} bawat aplikante.} other {}}",
+    "lead": "Isang timed multiple-choice test ng mga skill ng role na ito. Bawat aplikante ay may sariling random na set ng mga tanong at timer sa bawat isa, at makakakuha ka ng scorecard na may bawat sagot at oras nito.{priced, select, yes { {price} bawat aplikante, walang subscription.} other {}}",
     "create": "Gumawa ng test para sa mga aplikante mo",
     "practise": "I-practice nang libre",
     "topics": "Ano ang tine-test nito",
@@ -2170,7 +2176,9 @@
     "automatic": "Awtomatikong top-up",
     "invoice": "Invoice",
     "invoiceFailed": "Hindi mabuksan ang invoice. Pakisubukan ulit.",
-    "deletedCandidate": "Isang na-delete na aplikante"
+    "deletedCandidate": "Isang na-delete na aplikante",
+    "currency": "Currency",
+    "currencyFailed": "Hindi mapalitan ang currency. Pakisubukang muli."
   },
   "aiApps": {
     "group": "Mga AI app",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Nag-set up ng awtomatikong top-up",
       "auto_top_up_changed": "Binago ang awtomatikong top-up",
       "auto_top_up_stopped": "Itinigil ang awtomatikong top-up",
+      "currency_changed": "Pinalitan ang currency",
       "ats_connected": "Nag-connect ng ATS",
       "ats_reconnected": "Nag-connect ulit ng ATS",
       "ats_disconnected": "Nag-disconnect ng ATS",

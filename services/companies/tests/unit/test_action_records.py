@@ -9,10 +9,11 @@ from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
-from app.integrations import billing, library
+from app.integrations import billing_prices, library
 from app.main import app
 from app.models.companies import Company, Member
 from app.models.interviews import Interview
+from app.routers import auto_top_ups as auto_top_ups_router
 from app.routers import links as links_router
 from app.storage import companies, interviews
 
@@ -26,6 +27,8 @@ OFF = {
     "threshold": None,
     "products": ["pack_10"],
     "thresholds": [5],
+    "currency": "USD",
+    "prices": {"topup_50": 5000},
 }
 
 
@@ -58,10 +61,10 @@ def company(monkeypatch):
     async def nothing(*args, **kwargs):
         return None
 
-    async def current(_company_id):
+    async def current(_company_id, country=None):
         return dict(top_up)
 
-    async def turn_on(_company_id, body, buyer_id):
+    async def turn_on(_company_id, body, buyer_id, country):
         top_up.update(on=True, **body)
 
         return dict(top_up)
@@ -74,12 +77,13 @@ def company(monkeypatch):
         (interviews, "set_title"),
         (interviews, "set_link"),
         (links_router, "ready_for_invites"),
-        (billing, "turn_off_auto_top_up"),
+        (billing_prices, "turn_off_auto_top_up"),
+        (auto_top_ups_router, "count_checkout_call"),
     ):
         monkeypatch.setattr(module, name, nothing)
 
-    monkeypatch.setattr(billing, "auto_top_up", current)
-    monkeypatch.setattr(billing, "turn_on_auto_top_up", turn_on)
+    monkeypatch.setattr(billing_prices, "auto_top_up", current)
+    monkeypatch.setattr(billing_prices, "turn_on_auto_top_up", turn_on)
     sign_in("ann")
 
     yield

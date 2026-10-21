@@ -85,7 +85,8 @@ COMPANY_TOOLS = {
         "method": "GET",
         "path": "/companies/{company_id}/auto-top-up",
         "params": ["company_id"],
-        "fields": ["offered", "on", "waiting", "product", "threshold"],
+        # Each pack's price in `currency`, the company's, which every charge is in.
+        "fields": ["offered", "on", "waiting", "product", "threshold", "currency", "prices"],
     },
     "list_members": {
         "service": "companies",

@@ -13,7 +13,7 @@ import { PAGE_SIZE } from "@/constants/lists"
 import { optionalFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyHeaderProps } from "@/lib/company-header"
-import type { Catalog, CompanyCredits } from "@/types/billing"
+import type { CompanyCredits } from "@/types/billing"
 import type { Company, Interview } from "@/types/company"
 
 export const generateMetadata = () => translatedTitle("interviews", "title")
@@ -29,7 +29,7 @@ export default async function InterviewsPage({
   const company = signedIn
     ? await serverFetch<Company>(`/companies/companies/${companyId}`)
     : null
-  const [interviews, credits, catalog] = company
+  const [interviews, credits] = company
     ? await Promise.all([
         serverFetch<Interview[]>(
           `/companies/interviews?company_id=${companyId}&limit=${PAGE_SIZE}`
@@ -37,9 +37,8 @@ export default async function InterviewsPage({
         optionalFetch<CompanyCredits>(
           `/companies/companies/${companyId}/credits`
         ),
-        optionalFetch<Catalog>("/billing/catalog"),
       ])
-    : [null, null, null]
+    : [null, null]
 
   if (!signedIn) {
     return (
@@ -61,13 +60,12 @@ export default async function InterviewsPage({
         current="interviews"
         action={
           <div className="flex shrink-0 items-center gap-6 max-sm:flex-col max-sm:items-stretch max-sm:gap-3">
-            {credits != null && catalog && (
+            {credits != null && (
               <CreditsPanel
                 companyId={companyId}
                 companyName={company.name}
                 credits={credits.available}
                 low={credits.low}
-                catalog={catalog}
                 canEdit={company.can_edit}
               />
             )}

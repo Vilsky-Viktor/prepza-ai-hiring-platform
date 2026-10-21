@@ -70,6 +70,11 @@ resource "google_compute_backend_service" "service" {
     each.key == "frontend" ? [] : ["X-Frame-Options: DENY"],
   )
 
+  # The visitor's country (a two-letter code), which prices follow where no currency is saved;
+  # it replaces any header of that name the visitor sent. gateway/nginx.conf has a stand-in
+  # locally.
+  custom_request_headers = ["X-Client-Country: {client_region}"]
+
   backend {
     group = google_compute_region_network_endpoint_group.service[each.key].id
   }

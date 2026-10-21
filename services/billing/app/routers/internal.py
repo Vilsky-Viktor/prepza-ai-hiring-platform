@@ -6,7 +6,6 @@ from prepza_common.analytics import track
 from prepza_common.constants import MAX_PAGE_SIZE
 from prepza_common.paging import PageParams
 
-from app.config.settings import settings
 from app.constants.credits import (
     ADJUSTMENT_BELOW_ZERO,
     ADJUSTMENT_ZERO,
@@ -15,14 +14,11 @@ from app.constants.credits import (
     NOT_ENOUGH,
     Reason,
 )
+from app.constants.currencies import ChoiceOwner
 from app.constants.products import (
-    CANDIDATES_OUT_OF_RANGE,
-    CUSTOM_TOP_UP_FLAG,
     MAX_BUYER_PURCHASES,
-    TOP_UP_UNAVAILABLE,
     OwnerType,
 )
-from app.helpers.credits import custom_top_up
 from app.helpers.history import history_entry_out
 from app.helpers.wallets import balance_out, candidates_for
 from app.integrations import paddle
@@ -39,16 +35,14 @@ from app.schemas.billing import (
     PaidOut,
     PurchaseOwnerOut,
     ReferralOut,
-    TopUpCheckoutIn,
-    TopUpCheckoutOut,
     WelcomeIn,
 )
 from app.service_auth import ServiceCaller
 from app.services import auto_top_ups
-from app.services.catalog import candidates_price
+from app.services.currencies import saved
 from app.services.referrals import referral_out
 from app.storage import auto_top_ups as auto_top_up_rows
-from app.storage import history, ledger, purchases, referrals, usage
+from app.storage import currencies, history, ledger, purchases, referrals, usage
 
 router = APIRouter(prefix="/internal", tags=["internal"])
 
@@ -105,34 +99,8 @@ async def welcome_company(company_id: str, body: WelcomeIn, caller: ServiceCalle
     if await ledger.welcome_company(company_id, body.owner_email) and body.referral:
         await referrals.record(body.referral, OwnerType.COMPANY, company_id, body.related)
 
-
-@router.post("/companies/{company_id}/checkout")
-async def company_checkout(
-    company_id: str, body: TopUpCheckoutIn, buyer_id: str, caller: ServiceCaller
-) -> TopUpCheckoutOut:
-    """A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies
-    has checked they're its owner or an admin. What it buys and its price are set here from the
-    count (helpers/credits.py), and the candidates go in its custom data, which the webhook
-    grants; a count outside the range, or before Paddle's product is set, is refused (422)."""
-    bought = custom_top_up(body.candidates)
-
-    if bought is None:
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, CANDIDATES_OUT_OF_RANGE)
-
-    if not settings.paddle_product_candidates:
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, TOP_UP_UNAVAILABLE)
-
-    candidates, cents = bought
-    custom = {
-        "owner_type": OwnerType.COMPANY,
-        "owner_id": company_id,
-        "buyer_id": buyer_id,
-        CUSTOM_TOP_UP_FLAG: candidates,
-    }
-
-    return TopUpCheckoutOut(
-        transaction_id=await paddle.create_transaction(candidates_price(candidates, cents), custom)
-    )
+    # It pays in the currency of the country it's created in, until changed.
+    await saved(ChoiceOwner.COMPANY, company_id, body.country)
 
 
 @router.get("/companies/{company_id}/paid")
@@ -251,6 +219,7 @@ async def low_companies(
 async def delete_company(company_id: str, caller: ServiceCaller) -> None:
     await auto_top_ups.turn_off(OwnerType.COMPANY, company_id)
     await purchases.delete_company(company_id)
+    await currencies.forget(ChoiceOwner.COMPANY, company_id)
     # Its AI costs and limit hits stay, without the company.
     await usage.forget("company_id", company_id)
 
@@ -261,15 +230,17 @@ async def delete_user(user_id: str, caller: ServiceCaller) -> None:
     do their AI costs and limit hits; any automatic top-up paid with their card goes off."""
     await auto_top_ups.forget_buyer(user_id)
     await purchases.forget_buyer(user_id)
+    await currencies.forget(ChoiceOwner.USER, user_id)
     await usage.forget("user_id", user_id)
 
 
 @router.post("/users/{user_id}/export")
 async def export_user(user_id: str, caller: ServiceCaller) -> dict:
-    """What the user bought for their companies, and the automatic top-ups they turned on
-    (charged to their card once started)."""
+    """What the user bought for their companies, the automatic top-ups they turned on (charged
+    to their card once started), and the currency they see prices in."""
     return jsonable_encoder(
         {
+            "currency": await currencies.chosen(ChoiceOwner.USER, user_id),
             "auto_top_ups": [
                 {
                     "company_id": row.owner_id,

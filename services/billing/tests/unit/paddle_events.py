@@ -6,17 +6,44 @@ import time
 SECRET = "pdl_ntfset_test_secret"
 
 
-def completed(price_id="pri_topup_50", owner_type="company", owner_id="acme", quantity=1):
+# The Paddle product billing sells every top-up under (tests/conftest.py).
+PRODUCT = "pro_candidates"
+
+
+def completed(
+    owner_type="company",
+    owner_id="acme",
+    quantity=1,
+    *,
+    top_up="topup_50",
+    candidates=None,
+    currency="USD",
+    subtotal="5000",
+    product_id=PRODUCT,
+):
+    """Paddle's transaction.completed of a checkout billing made: one price made in the
+    transaction under `product_id`, buying a fixed top-up (`top_up`) or `candidates`, paid
+    `subtotal` before tax in `currency`."""
+    bought = {"candidates": str(candidates)} if candidates is not None else {"top_up": top_up}
+
     return {
         "event_type": "transaction.completed",
         "data": {
             "id": "txn_01",
             # Billing created its checkout.
             "origin": "api",
-            "currency_code": "USD",
+            "currency_code": currency,
             "custom_data": {"owner_type": owner_type, "owner_id": owner_id, "buyer_id": "ann"},
-            "items": [{"price": {"id": price_id}, "quantity": quantity}],
-            "details": {"totals": {"grand_total": "5000"}},
+            "items": [
+                {
+                    "price": {"id": "pri_made", "product_id": product_id, "custom_data": bought},
+                    "quantity": quantity,
+                }
+            ],
+            "details": {
+                "totals": {"grand_total": "5000"},
+                "line_items": [{"price_id": "pri_made", "totals": {"subtotal": subtotal}}],
+            },
         },
     }
 

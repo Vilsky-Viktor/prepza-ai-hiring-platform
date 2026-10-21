@@ -2232,8 +2232,10 @@ export interface components {
       counts: {
         [key: string]: number
       }
-      /** Currency */
-      currency?: string | null
+      /** Paid */
+      paid?: {
+        [key: string]: number
+      } | null
     }
     /** TemplateCopyIn */
     TemplateCopyIn: {
@@ -2500,7 +2502,9 @@ export interface operations {
   update_settings_me_settings_put: {
     parameters: {
       query?: never
-      header?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
       path?: never
       cookie?: never
     }

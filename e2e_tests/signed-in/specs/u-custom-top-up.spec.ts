@@ -82,6 +82,8 @@ const AUTO_TOP_UP = {
   waiting: false,
   products: ["topup_50", "topup_200"],
   thresholds: [500, 2000],
+  currency: "USD",
+  prices: { topup_50: 5000, topup_200: 20000 },
 }
 
 // Under the button, the automatic top-up as a card; its dialog saves only a change.

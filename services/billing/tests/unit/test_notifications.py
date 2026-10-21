@@ -86,7 +86,7 @@ def charge_failing_with(monkeypatch, error):
     """Paddle's charge fails with `error`; the owners marked failed."""
 
     async def claimed(owner_type, owner_id, now):
-        return SimpleNamespace(subscription_id="sub_01", product="topup_50")
+        return SimpleNamespace(subscription_id="sub_01", product="topup_50", currency="USD")
 
     async def charge(subscription_id, price_id):
         raise error

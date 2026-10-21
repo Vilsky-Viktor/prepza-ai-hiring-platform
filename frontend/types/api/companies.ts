@@ -202,7 +202,10 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    /** Get Auto Top Up */
+    /**
+     * Get Auto Top Up
+     * @description Priced in the currency it charges in: a running one's, or else the company's.
+     */
     get: operations["get_auto_top_up_companies__company_id__auto_top_up_get"]
     /** Turn On */
     put: operations["turn_on_companies__company_id__auto_top_up_put"]
@@ -286,10 +289,52 @@ export interface paths {
     /**
      * Create Checkout
      * @description A Paddle checkout for a top-up of some number of candidates, paid by the user into the
-     *     company: billing checks the count and makes it at its price, so neither the price nor whose
-     *     wallet it pays into can be changed in the browser.
+     *     company: billing checks the count and makes it at its price, in the company's currency, so
+     *     neither the price, the currency nor whose wallet it pays into can be changed in the
+     *     browser.
      */
     post: operations["create_checkout_companies__company_id__billing_checkout_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/companies/{company_id}/billing/catalog": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get Catalog
+     * @description Every price in the currency the company pays in, for its top-up.
+     */
+    get: operations["get_catalog_companies__company_id__billing_catalog_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/companies/{company_id}/billing/currency": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Get Currency */
+    get: operations["get_currency_companies__company_id__billing_currency_get"]
+    /**
+     * Choose Currency
+     * @description What the company's top-ups are priced and charged in from now on, automatic ones too.
+     */
+    put: operations["choose_currency_companies__company_id__billing_currency_put"]
+    post?: never
     delete?: never
     options?: never
     head?: never
@@ -1001,8 +1046,9 @@ export interface paths {
     }
     /**
      * Get Link
-     * @description Shown to anyone with the link, signed in or not, before they start. Signed in, it also
-     *     says how far they got, so a finished test is never offered again.
+     * @description Shown to anyone with the link, signed in or not, before they start. Signed in with a
+     *     verified email, it also says how far they got, so a finished test is never offered again;
+     *     an unverified one could claim anyone's address, so it learns nothing about that person.
      */
     get: operations["get_link_links__token__get"]
     put?: never
@@ -1155,8 +1201,8 @@ export interface paths {
     /**
      * Email Report
      * @description Emails the candidate's PDF report, made on their page, to someone such as a hiring
-     *     manager. A reply goes to the member who sent it. Counts towards the member's email limits
-     *     and the company's daily reports.
+     *     manager (a viewer: only to one of the company's members). A reply goes to the member who sent
+     *     it. Counts towards the member's email limits and the company's daily reports.
      */
     post: operations["email_report_interviews__interview_id__candidates__invite_id__report_email_post"]
     delete?: never
@@ -1332,7 +1378,7 @@ export interface paths {
      *     during the emergency pause, 402 without credits and 429 over the email limits; 404 when the
      *     interview is gone, 409 while it has no questions yet, and 403 when that member is no longer
      *     an owner or admin (a removed member's connection invites no one). A candidate who already
-     *     finished is returned as they are.
+     *     finished is returned as they are, and so is one still invited when `resend` is false.
      */
     post: operations["invite_internal_interviews__interview_id__invites_post"]
     delete?: never
@@ -2372,6 +2418,11 @@ export interface components {
        * @default true
        */
       sign_in: boolean
+      /**
+       * Resend
+       * @default true
+       */
+      resend: boolean
     }
     /** AtsInviteOut */
     AtsInviteOut: {
@@ -2380,6 +2431,11 @@ export interface components {
        * Format: uuid
        */
       invite_id: string
+      /**
+       * Created
+       * @default true
+       */
+      created: boolean
     }
     /** AuditEventOut */
     AuditEventOut: {
@@ -2437,6 +2493,12 @@ export interface components {
       products: string[]
       /** Thresholds */
       thresholds: number[]
+      /** Currency */
+      currency: string
+      /** Prices */
+      prices: {
+        [key: string]: number
+      }
       checkout?: components["schemas"]["CheckoutOut"] | null
     }
     /**
@@ -2745,16 +2807,22 @@ export interface components {
       items: components["schemas"]["CandidateUpdateOut"][]
     }
     /**
+     * CatalogOut
+     * @description Billing's prices, as billing gives them, in `currency`.
+     */
+    CatalogOut: {
+      /** Currency */
+      currency: string
+    } & {
+      [key: string]: unknown
+    }
+    /**
      * CheckoutOut
-     * @description The Paddle checkout to open: its price and the custom data to send with it.
+     * @description The Paddle transaction the checkout opens, made by billing in the company's currency.
      */
     CheckoutOut: {
-      /** Price Id */
-      price_id: string
-      /** Custom Data */
-      custom_data: {
-        [key: string]: string
-      }
+      /** Transaction Id */
+      transaction_id: string
     }
     /** CompaniesMembersOut */
     CompaniesMembersOut: {
@@ -2888,6 +2956,16 @@ export interface components {
        */
       candidates: number
     }
+    /**
+     * CompanyCurrencyOut
+     * @description The currency the company pays in, automatic top-ups included.
+     */
+    CompanyCurrencyOut: {
+      /** Currency */
+      currency: string
+      /** Currencies */
+      currencies: string[]
+    }
     /** CompanyIdsIn */
     CompanyIdsIn: {
       /** Company Ids */
@@ -2992,6 +3070,11 @@ export interface components {
       name: string | null
       /** Interview Title */
       interview_title: string | null
+    }
+    /** CurrencyIn */
+    CurrencyIn: {
+      /** Currency */
+      currency: string
     }
     /** DeclineIn */
     DeclineIn: {
@@ -3909,8 +3992,10 @@ export interface components {
       counts: {
         [key: string]: number
       }
-      /** Currency */
-      currency?: string | null
+      /** Paid */
+      paid?: {
+        [key: string]: number
+      } | null
     }
     /** SuperadminCompanyOut */
     SuperadminCompanyOut: {
@@ -4432,7 +4517,9 @@ export interface operations {
   create_company_companies_post: {
     parameters: {
       query?: never
-      header?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
       path?: never
       cookie?: never
     }
@@ -4759,7 +4846,9 @@ export interface operations {
   get_auto_top_up_companies__company_id__auto_top_up_get: {
     parameters: {
       query?: never
-      header?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
       path: {
         company_id: string
       }
@@ -4790,7 +4879,9 @@ export interface operations {
   turn_on_companies__company_id__auto_top_up_put: {
     parameters: {
       query?: never
-      header?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
       path: {
         company_id: string
       }
@@ -4959,7 +5050,9 @@ export interface operations {
   create_checkout_companies__company_id__billing_checkout_post: {
     parameters: {
       query?: never
-      header?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
       path: {
         company_id: string
       }
@@ -4978,6 +5071,107 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["TopUpCheckoutOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_catalog_companies__company_id__billing_catalog_get: {
+    parameters: {
+      query?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CatalogOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_currency_companies__company_id__billing_currency_get: {
+    parameters: {
+      query?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CompanyCurrencyOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  choose_currency_companies__company_id__billing_currency_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CurrencyIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CompanyCurrencyOut"]
         }
       }
       /** @description Validation Error */

@@ -45,10 +45,12 @@ async def save(
         return await session.get(AutoTopUp, (owner_type, owner_id))
 
 
-async def start(owner_type: str, owner_id: str, buyer_id: str, subscription_id: str) -> bool:
-    """Attaches the subscription from the checkout of whoever turned it on; once only. Paddle's
-    two events for one checkout can arrive together, so finding it already attached counts as
-    started too."""
+async def start(
+    owner_type: str, owner_id: str, buyer_id: str, subscription_id: str, currency: str
+) -> bool:
+    """Attaches the subscription, and its currency, from the checkout of whoever turned it on;
+    once only. Paddle's two events for one checkout can arrive together, so finding it already
+    attached counts as started too."""
     async with Session() as session:
         started = await session.scalar(
             update(AutoTopUp)
@@ -61,7 +63,7 @@ async def start(owner_type: str, owner_id: str, buyer_id: str, subscription_id: 
                     AutoTopUp.subscription_id == subscription_id,
                 ),
             )
-            .values(subscription_id=subscription_id)
+            .values(subscription_id=subscription_id, currency=currency)
             .returning(AutoTopUp.owner_id)
         )
         await session.commit()
@@ -171,6 +173,17 @@ async def remove_for_buyer(buyer_id: str) -> list[str]:
         await session.commit()
 
         return subscriptions
+
+
+async def set_currency(subscription_id: str, currency: str) -> None:
+    """The currency Paddle now charges the subscription in."""
+    async with Session() as session:
+        await session.execute(
+            update(AutoTopUp)
+            .where(AutoTopUp.subscription_id == subscription_id)
+            .values(currency=currency)
+        )
+        await session.commit()
 
 
 async def remove_subscription(subscription_id: str) -> None:

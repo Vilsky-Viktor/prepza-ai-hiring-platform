@@ -23,7 +23,7 @@ import { SITE_NAME } from "@/constants/seo"
 import { publicFetch } from "@/lib/server-api"
 import { pageMetadata, siteUrl } from "@/lib/site"
 import { organizationData } from "@/lib/structured-data"
-import type { Catalog } from "@/types/billing"
+import { countryCatalog, priceValues, visitorCatalog } from "@/lib/catalog"
 import type { Sizes } from "@/types/generation"
 
 export async function generateMetadata() {
@@ -32,7 +32,7 @@ export async function generateMetadata() {
   // The layout's title template doesn't reach its own segment's page: the brand is added here.
   return pageMetadata(
     `${t("homeTitle")} · ${SITE_NAME}`,
-    t("description"),
+    t("description", await priceValues(await countryCatalog())),
     "/",
     true
   )
@@ -43,16 +43,20 @@ export default async function HomePage() {
   const site = await getTranslations("site")
   const landing = await getTranslations("landing")
   // Without prices (billing is slow or down) the page still shows, without the free offer.
-  const catalog = await publicFetch<Catalog>("/billing/catalog").catch(
-    () => null
-  )
+  const catalog = await visitorCatalog()
   const freeCandidates = catalog?.free_candidates ?? null
+  const { price } = await priceValues(catalog)
   // Without it, the create section shows without its questions-per-topic fact.
   const sizes = await publicFetch<Sizes>("/generate/sizes").catch(() => null)
 
   return (
     <main className="mx-auto max-w-5xl px-6">
-      <JsonLd data={organizationData(siteUrl(), site("description"))} />
+      <JsonLd
+        data={organizationData(
+          siteUrl(),
+          site("description", await priceValues(await countryCatalog()))
+        )}
+      />
       {/* The promise and the box to start in fill the first screen, under the 3.5rem header; on a
           short phone, with some room above the title. */}
       <div className="relative flex min-h-[calc(100svh-3.5rem)] flex-col items-center justify-center pb-24 max-sm:pt-10">
@@ -80,18 +84,19 @@ export default async function HomePage() {
                   ))}
               </h1>
             </div>
-            {/* Each sentence on a line of its own. */}
+            {/* Each sentence on a line of its own; the price, in the visitor's currency, once
+                billing answers. A little wider than the column on its end side, so the first
+                sentence fits one line in every language. */}
             <p
-              className="text-lg text-balance text-muted-foreground"
+              className="text-lg text-balance text-muted-foreground sm:-me-16"
               data-testid="hero-text"
             >
-              {t("text")
-                .split("\n")
-                .map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
+              <span className="block">{t("text")}</span>
+              {price && (
+                <span className="block" data-testid="hero-price">
+                  {t("price", { price })}
+                </span>
+              )}
             </p>
           </div>
           <div className="space-y-5">

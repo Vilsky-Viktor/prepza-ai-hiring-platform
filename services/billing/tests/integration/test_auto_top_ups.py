@@ -3,14 +3,15 @@ from datetime import UTC, datetime
 
 from fastapi import HTTPException
 
-from app.constants.credits import WELCOME_COMPANY, Reason
+from app.constants.credits import CANDIDATE_CREDITS, WELCOME_COMPANY, Reason
+from app.constants.currencies import Currency
 from app.constants.products import AUTO_TOP_UP_COOLDOWN, OwnerType
-from app.helpers.credits import credits_for
 from app.schemas.billing import AutoTopUpIn
 from app.services import auto_top_ups
 from app.services.topups import handle_completed
 from app.storage import auto_top_ups as rows
 from app.storage import ledger
+from tests.integration.conftest import charged
 
 COMPANY = OwnerType.COMPANY
 
@@ -27,13 +28,13 @@ def test_turning_on_waits_for_the_checkout_then_refills_under_the_threshold_once
     async def scenario():
         await ledger.welcome_company(acme, f"{acme}@example.com")
         waiting = await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann
+            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
         )
         # Someone else's checkout can't start it; the owner's does, once.
-        await auto_top_ups.start(checkout_data(acme, "mallory"), "sub_other")
-        await auto_top_ups.start(checkout_data(acme, ann), sub)
-        await auto_top_ups.start(checkout_data(acme, ann), sub)
-        started = await auto_top_ups.out(COMPANY, acme)
+        await auto_top_ups.start(checkout_data(acme, "mallory"), "sub_other", "USD")
+        await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
+        await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
+        started = await auto_top_ups.out(COMPANY, acme, Currency.USD)
         # The welcome credits aren't under 500, so nothing is charged. Inviting candidates takes
         # them under: one charge, however often it's checked, while its credits haven't come.
         await auto_top_ups.check(COMPANY, acme)
@@ -46,10 +47,14 @@ def test_turning_on_waits_for_the_checkout_then_refills_under_the_threshold_once
 
     waiting, started, later = run(scenario())
 
-    assert waiting.checkout.price_id == "pri_plan" and not waiting.on and waiting.waiting
-    assert waiting.checkout.custom_data == checkout_data(acme, ann)
+    # The card's checkout is a transaction billing made, in the company's currency.
+    assert waiting.checkout.transaction_id == f"txn_pri_plan_USD_{ann}"
+    assert not waiting.on and waiting.waiting
     assert started.on and started.product == "topup_50" and started.threshold == 500
-    assert paddle_calls == [("cancel", "sub_other"), ("charge", sub, "pri_50")]
+    assert paddle_calls == [
+        ("cancel", "sub_other"),
+        ("charge", sub, "topup_50", "5000", "USD"),
+    ]
     assert later is None
 
 
@@ -60,22 +65,22 @@ def test_turning_off_cancels_the_subscription_and_choices_are_checked(run, paddl
 
     async def scenario():
         await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann
+            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
         )
-        await auto_top_ups.start(checkout_data(acme, ann), sub)
+        await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
         await auto_top_ups.turn_off(COMPANY, acme)
         refused = []
 
         for body in (
             AutoTopUpIn(product="topup_50", threshold=123),
-            AutoTopUpIn(product="topup_200", threshold=500),
+            AutoTopUpIn(product="topup_7", threshold=500),
         ):
             try:
-                await auto_top_ups.turn_on(COMPANY, acme, body, ann)
+                await auto_top_ups.turn_on(COMPANY, acme, body, ann, Currency.USD)
             except HTTPException as error:
                 refused.append(error.status_code)
 
-        return await auto_top_ups.out(COMPANY, acme), refused
+        return await auto_top_ups.out(COMPANY, acme, Currency.USD), refused
 
     after, refused = run(scenario())
 
@@ -89,31 +94,31 @@ def test_an_automatic_charge_credits_the_wallet_its_subscription_belongs_to(run,
     acme = str(uuid.uuid4())
     sub = f"sub_{uuid.uuid4().hex[:12]}"
 
-    def transaction(price_id, custom_data):
-        return {
-            "id": f"txn_{uuid.uuid4().hex[:12]}",
-            "subscription_id": sub,
-            "currency_code": "USD",
-            "custom_data": custom_data,
-            "items": [{"price": {"id": price_id}, "quantity": 1}],
-            "details": {"totals": {"grand_total": "5000"}},
-        }
+    card = {
+        "id": f"txn_{uuid.uuid4().hex[:12]}",
+        "subscription_id": sub,
+        "currency_code": "GBP",
+        "custom_data": checkout_data(acme, ann),
+        "items": [{"price": {"id": "pri_plan"}, "quantity": 1}],
+        "details": {"totals": {"grand_total": "0"}},
+    }
 
     async def scenario():
         await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann
+            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
         )
         # The $0 checkout starts it and buys nothing; the charge carries no custom data.
-        await handle_completed(transaction("pri_plan", checkout_data(acme, ann)))
+        await handle_completed(card)
         opened = await ledger.wallet(COMPANY, acme)
-        await handle_completed(transaction("pri_50", None))
+        # Charged in pounds: the same 10 candidates as in dollars.
+        await handle_completed(charged(sub, currency="GBP", subtotal="4000"))
 
         return opened.balance, (await ledger.wallet(COMPANY, acme)).balance
 
     opened, after = run(scenario())
 
     assert opened == 0
-    assert after == credits_for(5_000)
+    assert after == 10 * CANDIDATE_CREDITS
 
 
 def test_the_same_subscription_twice_stays_attached_and_a_deleted_buyer_turns_it_off(
@@ -125,15 +130,15 @@ def test_the_same_subscription_twice_stays_attached_and_a_deleted_buyer_turns_it
 
     async def scenario():
         await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann
+            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
         )
         # Paddle's two events for one checkout, handled at the same moment.
-        first = await rows.start(COMPANY, acme, ann, sub)
-        second = await rows.start(COMPANY, acme, ann, sub)
+        first = await rows.start(COMPANY, acme, ann, sub, "USD")
+        second = await rows.start(COMPANY, acme, ann, sub, "USD")
         # The buyer deletes their account: their card is never charged again.
         await auto_top_ups.forget_buyer(ann)
 
-        return first, second, await auto_top_ups.out(COMPANY, acme)
+        return first, second, await auto_top_ups.out(COMPANY, acme, Currency.USD)
 
     first, second, after = run(scenario())
 
@@ -150,15 +155,15 @@ def test_a_removed_member_turns_it_off_only_when_their_card_pays(run, paddle_cal
 
     async def scenario():
         await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann
+            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
         )
-        await auto_top_ups.start(checkout_data(acme, ann), sub)
+        await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
         # Bob didn't turn it on: removing him leaves it running.
         await auto_top_ups.turn_off(COMPANY, acme, bob)
-        kept = await auto_top_ups.out(COMPANY, acme)
+        kept = await auto_top_ups.out(COMPANY, acme, Currency.USD)
         await auto_top_ups.turn_off(COMPANY, acme, ann)
 
-        return kept, await auto_top_ups.out(COMPANY, acme)
+        return kept, await auto_top_ups.out(COMPANY, acme, Currency.USD)
 
     kept, after = run(scenario())
 

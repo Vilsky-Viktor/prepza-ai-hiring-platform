@@ -4,7 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server"
 
 import { LandingSection, MoreLink } from "@/components/landing/section"
 import { COMPARED } from "@/constants/comparison"
-import { formatPriceRange } from "@/lib/format"
+import { candidatePriceRange } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
 
 const ICONS: Record<
@@ -21,12 +21,7 @@ const ICONS: Record<
 export async function ComparisonSection({ catalog }: { catalog: Catalog }) {
   const t = await getTranslations("landing.comparison")
   const locale = await getLocale()
-  const price = formatPriceRange(
-    catalog.candidate_cents_min,
-    catalog.candidate_cents_max,
-    catalog.currency,
-    locale
-  )
+  const price = candidatePriceRange(catalog, locale)
 
   return (
     <LandingSection id="compare" title={t("title")} text={t("text")}>

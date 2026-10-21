@@ -4,6 +4,9 @@
     "language": "Język",
     "languageNote": "Dla interfejsu i odpowiedzi czatu pomocy oraz język, w którym zaczynają się nowe rozmowy. Rozmowę możesz utworzyć w każdym obsługiwanym języku.",
     "languageFailed": "Nie udało się zmienić języka. Spróbuj ponownie.",
+    "currency": "Waluta",
+    "currencyNote": "Ceny są pokazywane w tej walucie, gdziekolwiek jesteś. Doładowania firmy są w walucie tej firmy.",
+    "currencyFailed": "Nie udało się zmienić waluty. Spróbuj ponownie.",
     "account": "Twoje konto",
     "accountNote": "Podaj to ID, gdy piszesz do nas w sprawie swojego konta.",
     "yourData": "Twoje dane",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Sprawdź każdego\nZatrudniaj najlepszych",
-    "text": "AI zamienia Twój opis stanowiska w profesjonalną rozmowę na czas.\nTylko $2–5 za kandydata."
+    "text": "AI zamienia Twój opis stanowiska w profesjonalną rozmowę na czas.",
+    "price": "Tylko {price} za kandydata."
   },
   "start": {
     "placeholder": "Wklej opis stanowiska albo opisz rolę i to, co kandydat powinien wiedzieć",
@@ -725,6 +729,8 @@
     "topUpTitle": "Doładowanie: {name}",
     "topUpNote": "Każde doładowanie starcza na pełną liczbę kandydatów; przy większych koszt jednego kandydata jest niższy. Kredyty nie wygasają.",
     "taxes": "Ceny nie zawierają VAT ani podatku od sprzedaży: tam, gdzie obowiązuje, podatek jest doliczany przy płatności, a przed zapłatą widać łączną kwotę.",
+    "paysIn": "Ta firma płaci w {currency}.",
+    "paysInChange": "Zmień walutę",
     "candidates": "{count, plural, one {# kandydat} few {# kandydaci} many {# kandydatów} other {# kandydata}}",
     "perCandidate": "{price}<unit>/kandydat</unit>",
     "howMany": "Liczba kandydatów do doładowania",
@@ -1143,7 +1149,7 @@
     "topUp": "Doładuj"
   },
   "site": {
-    "description": "Wklej opis stanowiska i wyślij kandydatom test umiejętności na czas. Każdy dostaje własne losowe pytania, Ty ranking i raporty. $2–5 za kandydata.",
+    "description": "Wklej opis stanowiska i wyślij kandydatom test umiejętności na czas. Każdy dostaje własne losowe pytania, Ty ranking i raporty.{priced, select, yes { {price} za kandydata.} other {}}",
     "homeTitle": "Testy rekrutacyjne online z Twojego opisu stanowiska"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Ostatnia aktualizacja",
     "englishOnly": "Ta strona jest dostępna tylko po angielsku.",
     "startTitle": "Sprawdź swoich kandydatów",
-    "startText": "Utwórz test umiejętności na czas na podstawie swojego opisu stanowiska. $2–5 za kandydata, bez abonamentu.",
+    "startText": "Utwórz test umiejętności na czas na podstawie swojego opisu stanowiska.{priced, select, yes { {price} za kandydata, bez abonamentu.} other {}}",
     "startButton": "Utwórz test"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Gotowe testy umiejętności na czas dla popularnych ról. Użyj jednego bez zmian albo utwórz test na podstawie własnego opisu stanowiska.",
     "heading": "Test umiejętności do rekrutacji: {role}",
     "pageTitle": "Test rekrutacyjny: {role}",
-    "pageDescription": "Test rekrutacyjny na czas dla kandydatów: {role}, obejmujący {count, plural, one {# temat} few {# tematy} many {# tematów} other {# tematu}}. Każdy kandydat dostaje własne losowe pytania. $2–5 za kandydata.",
-    "lead": "Test jednokrotnego wyboru na czas sprawdzający umiejętności potrzebne na tym stanowisku. Każdy kandydat dostaje własny losowy zestaw pytań z limitem czasu na każde, a Ty dostajesz kartę wyników z każdą odpowiedzią i jej czasem. $2–5 za kandydata, bez abonamentu.",
+    "pageDescription": "Test rekrutacyjny na czas dla kandydatów: {role}, obejmujący {count, plural, one {# temat} few {# tematy} many {# tematów} other {# tematu}}. Każdy kandydat dostaje własne losowe pytania.{priced, select, yes { {price} za kandydata.} other {}}",
+    "lead": "Test jednokrotnego wyboru na czas sprawdzający umiejętności potrzebne na tym stanowisku. Każdy kandydat dostaje własny losowy zestaw pytań z limitem czasu na każde, a Ty dostajesz kartę wyników z każdą odpowiedzią i jej czasem.{priced, select, yes { {price} za kandydata, bez abonamentu.} other {}}",
     "create": "Utwórz test dla swoich kandydatów",
     "practise": "Poćwicz za darmo",
     "topics": "Co sprawdza",
@@ -2170,7 +2176,9 @@
     "automatic": "Automatyczne doładowanie",
     "invoice": "Faktura",
     "invoiceFailed": "Nie udało się otworzyć faktury. Spróbuj ponownie.",
-    "deletedCandidate": "Usunięty kandydat"
+    "deletedCandidate": "Usunięty kandydat",
+    "currency": "Waluta",
+    "currencyFailed": "Nie udało się zmienić waluty. Spróbuj ponownie."
   },
   "aiApps": {
     "group": "Aplikacje AI",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Ustawił(a) automatyczne doładowanie",
       "auto_top_up_changed": "Zmienił(a) automatyczne doładowanie",
       "auto_top_up_stopped": "Wyłączył(a) automatyczne doładowanie",
+      "currency_changed": "Zmienił(a) walutę",
       "ats_connected": "Połączył(a) ATS",
       "ats_reconnected": "Ponownie połączył(a) ATS",
       "ats_disconnected": "Odłączył(a) ATS",

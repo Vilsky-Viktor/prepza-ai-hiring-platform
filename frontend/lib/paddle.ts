@@ -15,10 +15,9 @@ export type PaidKind = "top_up" | "auto_top_up"
 
 export type CheckoutOptions = {
   catalog: Catalog
-  // A top-up's transaction, or the automatic top-up's price with its custom data.
-  checkout:
-    | { transactionId: string }
-    | { priceId: string; customData: Record<string, string> }
+  // The transaction billing made: a top-up's, or the one that saves the card for automatic
+  // top-up, in the company's currency.
+  checkout: { transactionId: string }
   email: string | null
   theme: "light" | "dark"
   paid: PaidKind
@@ -112,9 +111,9 @@ function load(catalog: Catalog) {
 }
 
 /**
- * Opens Paddle's checkout: a top-up's transaction, which the backend made with whose wallet it
- * pays into, or the automatic top-up's price with the custom data the backend gave. What it
- * grants is decided by the backend from Paddle's price, once the payment has gone through. It
+ * Opens Paddle's checkout on a transaction the backend made, with whose wallet it pays into and
+ * its currency: a top-up's, or the one that saves the card for automatic top-up. What it grants
+ * is decided by the backend from the price it made, once the payment has gone through. It
  * follows the site's light or dark theme and language (`locale`, English where Paddle hasn't
  * it). The buyer stays on the page: a completed payment is told to `whenPaid`, with what it
  * paid for (`paid`), and a failed one to `whenPaymentFails`.
@@ -125,12 +124,7 @@ export async function openCheckout(options: CheckoutOptions) {
   opened = options
 
   instance?.Checkout.open({
-    ...("transactionId" in checkout
-      ? { transactionId: checkout.transactionId }
-      : {
-          items: [{ priceId: checkout.priceId, quantity: 1 }],
-          customData: checkout.customData,
-        }),
+    transactionId: checkout.transactionId,
     ...(email ? { customer: { email } } : {}),
     // No discount codes are issued for now, so checkout doesn't offer to enter one.
     settings: {

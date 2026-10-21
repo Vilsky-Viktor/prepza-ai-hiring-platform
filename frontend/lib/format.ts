@@ -1,3 +1,5 @@
+import type { Catalog } from "@/types/billing"
+
 /** A moment as a medium date in the language asked, in `timeZone` (the runtime's when none).
  * Pages show moments through useLocalTime or LocalDate, in the visitor's own time zone. */
 export function formatDate(iso: string, locale: string, timeZone?: string) {
@@ -51,7 +53,8 @@ export function formatPrice(cents: number, currency: string, locale: string) {
   }).format(cents / 100)
 }
 
-/** 100 to 300 cents in USD: "$1–$3", written as the locale writes a range. */
+/** 100 to 300 cents in USD: "$1–$3", written as the locale writes a range; a whole amount
+ * without decimals, as formatPrice ("£1.50–£4"). */
 export function formatPriceRange(
   minCents: number,
   maxCents: number,
@@ -61,8 +64,23 @@ export function formatPriceRange(
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-    maximumFractionDigits: minCents % 100 === 0 && maxCents % 100 === 0 ? 0 : 2,
+    trailingZeroDisplay: "stripIfInteger",
   }).formatRange(minCents / 100, maxCents / 100)
+}
+
+/** What a candidate costs in the catalog, cheapest to standard, as the locale writes a range
+ * ("$2–5"); empty without the catalog, which the messages then leave out. */
+export function candidatePriceRange(catalog: Catalog | null, locale: string) {
+  if (!catalog) {
+    return ""
+  }
+
+  return formatPriceRange(
+    catalog.candidate_cents_min,
+    catalog.candidate_cents_max,
+    catalog.currency,
+    locale
+  )
 }
 
 /** A count as the locale writes it short: 950, "1.5K", "250K", "1.2M". */

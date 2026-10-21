@@ -23,6 +23,10 @@ def test_a_transaction_counts_once_and_spent_credits_are_charges_only(run):
                 COMPANY, acme, 10_000, 1, transaction, top_up.key, None, "4900", "USD", now
             )
 
+        # One in euros this month, counted apart.
+        await purchases.grant(
+            COMPANY, acme, 100, 1, f"txn_{uuid.uuid4().hex}", "topup_50", None, "5950", "EUR", now
+        )
         # One paid last month.
         last_month = now.replace(day=1) - timedelta(days=1)
         await purchases.grant(
@@ -47,10 +51,9 @@ def test_a_transaction_counts_once_and_spent_credits_are_charges_only(run):
         await ledger.release(released)
         after = await stats.stats(month)
 
-        return {name: after[name] - before[name] for name in after}
+        return [{name: now[name] - then[name] for name in now} for now, then in zip(after, before)]
 
-    assert run(scenario()) == {
-        "top_ups": 1,
-        "paid": 4900,
-        "credits_spent": CANDIDATE_CREDITS,
-    }
+    counts, paid = run(scenario())
+
+    assert counts == {"top_ups": 2, "credits_spent": CANDIDATE_CREDITS}
+    assert paid == {"USD": 4900, "EUR": 5950, "GBP": 0}

@@ -4,6 +4,9 @@
     "language": "Ngôn ngữ",
     "languageNote": "Dùng cho giao diện và câu trả lời của chat hỗ trợ, cùng ngôn ngữ mặc định của buổi phỏng vấn mới. Bạn có thể tạo buổi phỏng vấn bằng bất kỳ ngôn ngữ nào được hỗ trợ.",
     "languageFailed": "Không thể đổi ngôn ngữ. Vui lòng thử lại.",
+    "currency": "Tiền tệ",
+    "currencyNote": "Giá được hiển thị bằng tiền tệ này, dù bạn ở đâu. Việc nạp credit cho công ty dùng tiền tệ của chính công ty.",
+    "currencyFailed": "Không thể đổi tiền tệ. Vui lòng thử lại.",
     "account": "Tài khoản của bạn",
     "accountNote": "Hãy ghi ID này khi bạn viết cho chúng tôi về tài khoản của mình.",
     "yourData": "Dữ liệu của bạn",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Kiểm tra mọi ứng viên\nTuyển người giỏi nhất",
-    "text": "AI biến mô tả công việc của bạn thành một buổi phỏng vấn có tính giờ chuyên nghiệp.\nChỉ $2–5 mỗi ứng viên."
+    "text": "AI biến mô tả công việc của bạn thành một buổi phỏng vấn có tính giờ chuyên nghiệp.",
+    "price": "Chỉ {price} mỗi ứng viên."
   },
   "start": {
     "placeholder": "Dán mô tả công việc, hoặc mô tả vị trí và những gì ứng viên cần biết",
@@ -725,6 +729,8 @@
     "topUpTitle": "Nạp credit: {name}",
     "topUpNote": "Mỗi lần nạp mua trọn số ứng viên; nạp càng nhiều, giá mỗi ứng viên càng rẻ. Credit không bao giờ hết hạn.",
     "taxes": "Giá chưa bao gồm VAT hoặc thuế bán hàng: ở nơi áp dụng, thuế được cộng thêm khi thanh toán, và bạn sẽ thấy tổng số tiền trước khi trả.",
+    "paysIn": "Công ty này thanh toán bằng {currency}.",
+    "paysInChange": "Đổi tiền tệ",
     "candidates": "{count, plural, other {# ứng viên}}",
     "perCandidate": "{price}<unit>/ứng viên</unit>",
     "howMany": "Số ứng viên cần nạp",
@@ -1143,7 +1149,7 @@
     "topUp": "Nạp credit"
   },
   "site": {
-    "description": "Bài kiểm tra tuyển dụng có tính giờ, tạo từ mô tả công việc của bạn: mỗi ứng viên nhận câu hỏi ngẫu nhiên riêng, kèm bảng điểm và báo cáo. $2–5 mỗi ứng viên.",
+    "description": "Bài kiểm tra tuyển dụng có tính giờ, tạo từ mô tả công việc của bạn: mỗi ứng viên nhận câu hỏi ngẫu nhiên riêng, kèm bảng điểm và báo cáo.{priced, select, yes { {price} mỗi ứng viên.} other {}}",
     "homeTitle": "Bài kiểm tra tuyển dụng tạo từ mô tả công việc của bạn"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Cập nhật lần cuối",
     "englishOnly": "Trang này chỉ có bằng tiếng Anh.",
     "startTitle": "Kiểm tra ứng viên của bạn",
-    "startText": "Tạo bài kiểm tra kỹ năng có giới hạn thời gian từ mô tả công việc của bạn. $2–5 mỗi ứng viên, không cần gói đăng ký.",
+    "startText": "Tạo bài kiểm tra kỹ năng có giới hạn thời gian từ mô tả công việc của bạn.{priced, select, yes { {price} mỗi ứng viên, không cần gói đăng ký.} other {}}",
     "startButton": "Tạo bài kiểm tra"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Bài kiểm tra kỹ năng có giới hạn thời gian, dựng sẵn cho các vị trí phổ biến. Dùng nguyên bản hoặc tạo bài kiểm tra từ mô tả công việc của riêng bạn.",
     "heading": "Bài kiểm tra kỹ năng {role} để tuyển dụng",
     "pageTitle": "Bài kiểm tra tuyển dụng {role}",
-    "pageDescription": "Bài kiểm tra tuyển dụng {role} có tính giờ để đánh giá năng lực ứng viên, gồm {count, plural, other {# chủ đề}}. Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng. $2–5 mỗi ứng viên.",
-    "lead": "Bài kiểm tra trắc nghiệm có giới hạn thời gian về kỹ năng của vị trí này. Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng, có tính giờ cho từng câu, và bạn nhận bảng điểm với mọi câu trả lời cùng thời gian làm. $2–5 mỗi ứng viên, không cần gói đăng ký.",
+    "pageDescription": "Bài kiểm tra tuyển dụng {role} có tính giờ để đánh giá năng lực ứng viên, gồm {count, plural, other {# chủ đề}}. Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng.{priced, select, yes { {price} mỗi ứng viên.} other {}}",
+    "lead": "Bài kiểm tra trắc nghiệm có giới hạn thời gian về kỹ năng của vị trí này. Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng, có tính giờ cho từng câu, và bạn nhận bảng điểm với mọi câu trả lời cùng thời gian làm.{priced, select, yes { {price} mỗi ứng viên, không cần gói đăng ký.} other {}}",
     "create": "Tạo bài kiểm tra cho ứng viên của bạn",
     "practise": "Luyện tập miễn phí",
     "topics": "Nội dung kiểm tra",
@@ -2170,7 +2176,9 @@
     "automatic": "Tự động nạp",
     "invoice": "Hóa đơn",
     "invoiceFailed": "Không mở được hóa đơn. Vui lòng thử lại.",
-    "deletedCandidate": "Ứng viên đã bị xóa"
+    "deletedCandidate": "Ứng viên đã bị xóa",
+    "currency": "Tiền tệ",
+    "currencyFailed": "Không thể đổi tiền tệ. Vui lòng thử lại."
   },
   "aiApps": {
     "group": "Ứng dụng AI",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Đã thiết lập tự động nạp",
       "auto_top_up_changed": "Đã thay đổi tự động nạp",
       "auto_top_up_stopped": "Đã dừng tự động nạp",
+      "currency_changed": "Đã đổi tiền tệ",
       "ats_connected": "Đã kết nối một ATS",
       "ats_reconnected": "Đã kết nối lại một ATS",
       "ats_disconnected": "Đã ngắt kết nối một ATS",

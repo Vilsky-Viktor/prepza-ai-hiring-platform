@@ -1,3 +1,5 @@
+import uuid
+
 """Integration tests run against a real, freshly migrated database. They run only with
 INTEGRATION_TESTS set (see scripts/integration.sh); plain `pytest` skips them."""
 
@@ -70,8 +72,18 @@ def paddle_calls(monkeypatch):
 
     calls = []
 
-    async def charge(subscription_id, price_id):
-        calls.append(("charge", subscription_id, price_id))
+    async def charge(subscription_id, price):
+        """Records what it charged: the fixed top-up's key and its price."""
+        amount = price["unit_price"]
+        calls.append(
+            (
+                "charge",
+                subscription_id,
+                price["custom_data"]["top_up"],
+                amount["amount"],
+                amount["currency_code"],
+            )
+        )
 
         if subscription_id.startswith("sub_declined"):
             request = httpx.Request("POST", "https://paddle.test")
@@ -95,16 +107,21 @@ def paddle_calls(monkeypatch):
     async def subscription_status(subscription_id):
         return "canceled" if subscription_id.startswith("sub_ended") else "active"
 
+    async def set_currency(subscription_id, currency):
+        calls.append(("currency", subscription_id, currency))
+
+    async def create_transaction(items, currency, custom_data):
+        """The card's checkout: its id says the $0 price, the currency and whose card it saves."""
+        return f"txn_{items[0]['price_id']}_{currency}_{custom_data['buyer_id']}"
+
     monkeypatch.setattr(paddle, "charge", charge)
     monkeypatch.setattr(paddle, "cancel", cancel)
     monkeypatch.setattr(paddle, "subscription_status", subscription_status)
+    monkeypatch.setattr(paddle, "set_currency", set_currency)
+    monkeypatch.setattr(paddle, "create_transaction", create_transaction)
     monkeypatch.setattr(settings, "paddle_api_key", "key")
     monkeypatch.setattr(settings, "paddle_price_auto_top_up", "pri_plan")
-    monkeypatch.setattr(settings, "paddle_price_topup_50", "pri_50")
-
-    # Only the $30 top-up is on sale, whatever the local settings have.
-    for product in ("topup_200", "topup_600", "topup_1000"):
-        monkeypatch.setattr(settings, f"paddle_price_{product}", "")
+    monkeypatch.setattr(settings, "paddle_product_candidates", "pro_candidates")
 
     return calls
 
@@ -120,3 +137,28 @@ def redis(monkeypatch):
     monkeypatch.setattr(memory_cache, "_entries", {})
 
     return get_redis
+
+
+def charged(subscription_id, top_up="topup_50", currency="USD", subtotal="5000"):
+    """Paddle's transaction.completed of an automatic top-up's charge: a price billing made under
+    its product, buying `top_up`, paid `subtotal` in `currency`."""
+    return {
+        "id": f"txn_{uuid.uuid4().hex[:12]}",
+        "subscription_id": subscription_id,
+        "currency_code": currency,
+        "custom_data": None,
+        "items": [
+            {
+                "price": {
+                    "id": "pri_made",
+                    "product_id": "pro_candidates",
+                    "custom_data": {"top_up": top_up},
+                },
+                "quantity": 1,
+            }
+        ],
+        "details": {
+            "totals": {"grand_total": subtotal},
+            "line_items": [{"price_id": "pri_made", "totals": {"subtotal": subtotal}}],
+        },
+    }

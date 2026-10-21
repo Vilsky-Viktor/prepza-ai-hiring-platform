@@ -1,11 +1,13 @@
 from uuid import UUID
 
 from fastapi import APIRouter
+from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import CurrentUser
 from prepza_common.paging import PageParams
 from prepza_common.rate_limit import hit_or_skip
+from prepza_common.visitor_country import VisitorCountry
 
-from app.integrations import billing
+from app.integrations import billing, billing_prices
 from app.integrations.redis import get_redis
 from app.schemas.billing import (
     CreditCandidateOut,
@@ -15,8 +17,10 @@ from app.schemas.billing import (
     TopUpCheckoutIn,
     TopUpCheckoutOut,
 )
+from app.schemas.currencies import CatalogOut, CompanyCurrencyOut, CurrencyIn
 from app.services import credit_history
-from app.services.access import require_editor
+from app.services.access import require_company, require_editor
+from app.storage import audit
 
 # Owners and admins, who top up, see where the credits went; viewers don't.
 router = APIRouter(prefix="/companies/{company_id}/billing", tags=["companies"])
@@ -64,17 +68,57 @@ async def get_invoice(company_id: UUID, transaction_id: str, user: CurrentUser) 
 
 @router.post("/checkout")
 async def create_checkout(
-    company_id: UUID, body: TopUpCheckoutIn, user: CurrentUser
+    company_id: UUID, body: TopUpCheckoutIn, user: CurrentUser, country: VisitorCountry = None
 ) -> TopUpCheckoutOut:
     """A Paddle checkout for a top-up of some number of candidates, paid by the user into the
-    company: billing checks the count and makes it at its price, so neither the price nor whose
-    wallet it pays into can be changed in the browser."""
+    company: billing checks the count and makes it at its price, in the company's currency, so
+    neither the price, the currency nor whose wallet it pays into can be changed in the
+    browser."""
     await require_editor(user, company_id)
     await count_checkout_call(user.uid, company_id)
 
     return TopUpCheckoutOut(
-        transaction_id=await billing.company_checkout(company_id, body.candidates, user.uid)
+        transaction_id=await billing_prices.company_checkout(
+            company_id, body.candidates, user.uid, country
+        )
     )
+
+
+@router.get("/catalog")
+async def get_catalog(
+    company_id: UUID, user: CurrentUser, country: VisitorCountry = None
+) -> CatalogOut:
+    """Every price in the currency the company pays in, for its top-up."""
+    await require_editor(user, company_id)
+
+    return CatalogOut(**await billing_prices.catalog(company_id, country))
+
+
+@router.get("/currency")
+async def get_currency(
+    company_id: UUID, user: CurrentUser, country: VisitorCountry = None
+) -> CompanyCurrencyOut:
+    await require_company(user, company_id)
+
+    return CompanyCurrencyOut(**await billing_prices.currency(company_id, country))
+
+
+@router.put("/currency")
+async def choose_currency(
+    company_id: UUID, body: CurrencyIn, user: CurrentUser
+) -> CompanyCurrencyOut:
+    """What the company's top-ups are priced and charged in from now on, automatic ones too."""
+    await require_editor(user, company_id)
+    chosen = await billing_prices.choose_currency(company_id, body.currency)
+    await audit.record(
+        company_id,
+        user.uid,
+        AuditAction.CURRENCY_CHANGED,
+        company_id,
+        target_kind=TargetKind.COMPANY,
+    )
+
+    return CompanyCurrencyOut(**chosen)
 
 
 @router.get("/payment-failure")

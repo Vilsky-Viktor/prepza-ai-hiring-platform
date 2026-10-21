@@ -10,7 +10,7 @@ from app.constants.notifications import TOP_UP_LINK
 from app.constants.products import PADDLE_API_ORIGIN, OwnerType
 from app.services import auto_top_ups, credit_events
 from app.services import outbox as outbox_service
-from app.services.catalog import bought_for, custom_bought
+from app.services.catalog import bought
 from app.services.referrals import reward_after_top_up
 from app.storage import ledger, purchases
 
@@ -19,8 +19,8 @@ logger = logging.getLogger(__name__)
 
 async def handle_completed(data: dict) -> None:
     """Adds the credits a completed top-up bought. Whose wallet they go to comes from the
-    checkout billing created, or for an automatic top-up from its subscription; the amount comes
-    from Paddle's price id."""
+    checkout billing created, or for an automatic top-up from its subscription; the candidates come
+    from the price billing made, the same whatever the currency paid in."""
     custom = data.get("custom_data") or {}
     owner_id = custom.get("owner_id")
     owner_type = custom.get("owner_type")
@@ -28,7 +28,7 @@ async def handle_completed(data: dict) -> None:
 
     if subscription_id:
         # The checkout that turns automatic top-up on; its $0 price buys nothing.
-        await auto_top_ups.start(custom, subscription_id)
+        await auto_top_ups.start(custom, subscription_id, data["currency_code"])
         owner_type, owner_id = await auto_top_ups.owner(subscription_id) or (
             owner_type,
             owner_id,
@@ -52,12 +52,12 @@ async def handle_completed(data: dict) -> None:
 
         return
 
-    for item in data.get("items", []):
+    for index, item in enumerate(data.get("items", [])):
         if item["price"]["id"] == settings.paddle_price_auto_top_up:
             continue
 
         quantity = item.get("quantity", 1)
-        found = bought_for(item["price"]["id"], quantity) or custom_bought(item, custom)
+        found = bought(index, item, data)
 
         if found is None:
             logger.error(

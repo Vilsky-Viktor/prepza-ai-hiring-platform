@@ -1,5 +1,5 @@
 // The admin zone's stats tab: each card in order, the service whose stats it comes from (its
-// API path) and the metric there. Paid is in cents, in the currency billing gives.
+// API path) and the metric there. Paid comes apart, in cents per currency.
 export const STATS_CARDS = [
   { source: "library", metric: "users" },
   { source: "companies", metric: "companies" },

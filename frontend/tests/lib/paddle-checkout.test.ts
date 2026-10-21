@@ -94,7 +94,8 @@ describe("a failed payment in Paddle's checkout", () => {
     paddle.whenPaymentFails(failed)
     await paddle.openCheckout({
       catalog,
-      checkout: { priceId: "pri_auto", customData: { owner_id: "company-1" } },
+      // The card's checkout for automatic top-up: a transaction billing made.
+      checkout: { transactionId: "txn_card" },
       email: null,
       theme: "light",
       paid: "auto_top_up",

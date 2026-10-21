@@ -7,7 +7,6 @@ import { BalanceTooltip } from "@/components/billing/balance-tooltip"
 import { RefreshOnFocus } from "@/components/billing/refresh-on-focus"
 import { TopUpDialog } from "@/components/billing/top-up-dialog"
 import { useCountUp } from "@/hooks/use-count-up"
-import type { Catalog } from "@/types/billing"
 import { WARNING_TONE } from "@/constants/tones"
 
 /** The company's credits for candidates, with a top-up next to them, in the page header.
@@ -17,14 +16,12 @@ export function CompanyCredits({
   companyName,
   credits,
   low,
-  catalog,
   canEdit,
 }: {
   companyId: string
   companyName: string
   credits: number
   low: boolean
-  catalog: Catalog
   canEdit: boolean
 }) {
   const t = useTranslations("company")
@@ -53,7 +50,6 @@ export function CompanyCredits({
     <>
       {canEdit ? (
         <TopUpDialog
-          catalog={catalog}
           title={companyName}
           companyId={companyId}
           card={card}

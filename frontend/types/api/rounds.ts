@@ -241,7 +241,8 @@ export interface paths {
     }
     /**
      * Get Faq
-     * @description The FAQ in the page's language, with today's prices; public. Without prices (billing not
+     * @description The FAQ in the page's language, with today's prices in the currency of the visitor's
+     *     `country` (the site passes it on; US dollars without one); public. Without prices (billing not
      *     answering) it's refused rather than built with blanks: the site keeps its last good page.
      */
     get: operations["get_faq_help_faq_get"]
@@ -374,7 +375,8 @@ export interface paths {
      * Help Chat
      * @description Answers questions about prepza, for visitors too. Streams server-sent events:
      *     {"delta"}... (and a {"block"} sign-in card when a visitor asks to sign in or sign up), then
-     *     {"done"} or {"error"}. Refused during the emergency pause, as it's AI. A conversation with a
+     *     {"done"} or {"error"}. Prices are in the visitor's country's currency (US dollars without
+     *     one). Refused during the emergency pause, as it's AI. A conversation with a
      *     secret in it (a key, a token, a password) is answered at once, before anything else, with a
      *     fixed reply ({"removed"} first: the panel drops that message), and nothing of it is used.
      */
@@ -1319,8 +1321,10 @@ export interface components {
       counts: {
         [key: string]: number
       }
-      /** Currency */
-      currency?: string | null
+      /** Paid */
+      paid?: {
+        [key: string]: number
+      } | null
     }
     /** TopicQuestions */
     TopicQuestions: {
@@ -1789,7 +1793,9 @@ export interface operations {
   }
   get_faq_help_faq_get: {
     parameters: {
-      query?: never
+      query?: {
+        country?: string | null
+      }
       header?: never
       path?: never
       cookie?: never
@@ -1803,6 +1809,15 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["FaqItemOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
@@ -1969,7 +1984,9 @@ export interface operations {
   help_chat_help_chat_post: {
     parameters: {
       query?: never
-      header?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
       path?: never
       cookie?: never
     }

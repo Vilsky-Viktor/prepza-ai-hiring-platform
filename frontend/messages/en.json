@@ -4,6 +4,9 @@
     "language": "Language",
     "languageNote": "For the interface and the help chat's replies, and the language new interviews start in. You can create an interview in any supported language.",
     "languageFailed": "Couldn't change the language. Please try again.",
+    "currency": "Currency",
+    "currencyNote": "Prices show in it, wherever you are. A company's top-ups are in the company's own currency.",
+    "currencyFailed": "Couldn't change the currency. Please try again.",
     "account": "Your account",
     "accountNote": "Quote this ID when you write to us about your account.",
     "yourData": "Your data",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Test everyone\nHire the best",
-    "text": "AI turns your job description into a professional timed interview.\nJust $2–5 per candidate."
+    "text": "AI turns your job description into a professional timed interview.",
+    "price": "Just {price} per candidate."
   },
   "start": {
     "placeholder": "Paste a job description, or describe the role and what a candidate should know",
@@ -725,6 +729,8 @@
     "topUpTitle": "Top up: {name}",
     "topUpNote": "Each top-up buys whole candidates; larger ones cost less per candidate. Credits never expire.",
     "taxes": "Prices don't include VAT or sales tax: where it applies, it's added at checkout, which shows the total before you pay.",
+    "paysIn": "This company pays in {currency}.",
+    "paysInChange": "Change currency",
     "candidates": "{count, plural, one {# candidate} other {# candidates}}",
     "perCandidate": "{price}<unit>/candidate</unit>",
     "howMany": "Candidates to top up",
@@ -1143,7 +1149,7 @@
     "topUp": "Top up"
   },
   "site": {
-    "description": "Timed skills tests for hiring, made from your job description. Each candidate gets their own random questions, plus scorecards and reports. $2–5 per candidate.",
+    "description": "Timed skills tests for hiring, made from your job description. Each candidate gets their own random questions, plus scorecards and reports.{priced, select, yes { {price} per candidate.} other {}}",
     "homeTitle": "Skills tests for hiring, made from your job description"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Last updated",
     "englishOnly": "This page is in English only.",
     "startTitle": "Test your candidates",
-    "startText": "Create a timed skills test from your job description. $2–5 per candidate, no subscription.",
+    "startText": "Create a timed skills test from your job description.{priced, select, yes { {price} per candidate, no subscription.} other {}}",
     "startButton": "Create a test"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Ready-made timed skills tests for common roles. Use one as it is, or create a test from your own job description.",
     "heading": "{role} skills test for hiring",
     "pageTitle": "{role} skills test for hiring",
-    "pageDescription": "A timed {role} skills test for your candidates, covering {count, plural, one {# topic} other {# topics}}. Each candidate gets their own random questions. $2–5 per candidate.",
-    "lead": "A timed multiple-choice test of this role's skills. Every candidate gets their own random set of questions and a timer on each, and you get a scorecard with every answer and its timing. $2–5 per candidate, no subscription.",
+    "pageDescription": "A timed {role} skills test for your candidates, covering {count, plural, one {# topic} other {# topics}}. Each candidate gets their own random questions.{priced, select, yes { {price} per candidate.} other {}}",
+    "lead": "A timed multiple-choice test of this role's skills. Every candidate gets their own random set of questions and a timer on each, and you get a scorecard with every answer and its timing.{priced, select, yes { {price} per candidate, no subscription.} other {}}",
     "create": "Create a test for your candidates",
     "practise": "Practise it free",
     "topics": "What it tests",
@@ -2170,7 +2176,9 @@
     "automatic": "Automatic top-up",
     "invoice": "Invoice",
     "invoiceFailed": "Couldn't open the invoice. Please try again.",
-    "deletedCandidate": "A deleted candidate"
+    "deletedCandidate": "A deleted candidate",
+    "currency": "Currency",
+    "currencyFailed": "Couldn't change the currency. Please try again."
   },
   "aiApps": {
     "group": "AI apps",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Set up automatic top-up",
       "auto_top_up_changed": "Changed automatic top-up",
       "auto_top_up_stopped": "Stopped automatic top-up",
+      "currency_changed": "Changed the currency",
       "ats_connected": "Connected an ATS",
       "ats_reconnected": "Reconnected an ATS",
       "ats_disconnected": "Disconnected an ATS",

@@ -21,13 +21,9 @@ monthly_budget  = 300
 # "production" for the live site, with the production prices below (sandbox ones don't charge).
 paddle_environment  = "sandbox"
 paddle_client_token = ""
-# The product a top-up of any number of candidates is sold under; billing prices each one.
+# The product every top-up is sold under; billing prices each one, in the company's currency.
 paddle_product_candidates = ""
 paddle_prices = {
-  topup_50   = ""
-  topup_200  = ""
-  topup_600  = ""
-  topup_1000 = ""
   # A $0 monthly price: its checkout saves the card for automatic top-ups.
   auto_top_up = ""
 }

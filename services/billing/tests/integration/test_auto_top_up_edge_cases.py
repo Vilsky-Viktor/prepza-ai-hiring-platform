@@ -5,6 +5,7 @@ import pytest
 from fastapi import HTTPException
 
 from app.constants.credits import WELCOME_COMPANY, Reason
+from app.constants.currencies import Currency
 from app.constants.products import (
     AUTO_TOP_UP_COOLDOWN,
     AUTO_TOP_UP_RETRY_AFTER,
@@ -29,24 +30,24 @@ def test_a_second_member_turning_it_on_before_the_first_checkout_starts_it_with_
     sub = f"sub_{uuid.uuid4().hex[:12]}"
 
     async def scenario():
-        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann)
-        waiting = await auto_top_ups.turn_on(COMPANY, acme, CHOICE, bob)
-        await auto_top_ups.start(checkout_data(acme, bob), sub)
+        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD)
+        waiting = await auto_top_ups.turn_on(COMPANY, acme, CHOICE, bob, Currency.USD)
+        await auto_top_ups.start(checkout_data(acme, bob), sub, "USD")
 
         # Once running on Bob's card, only Bob changes it: Ann is refused, and it runs as before.
         with pytest.raises(HTTPException) as refused:
-            await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann)
+            await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD)
 
         return (
             waiting,
             refused.value.status_code,
-            await auto_top_ups.out(COMPANY, acme),
+            await auto_top_ups.out(COMPANY, acme, Currency.USD),
             await rows.get(COMPANY, acme),
         )
 
     waiting, refused, after, row = run(scenario())
 
-    assert waiting.checkout.custom_data["buyer_id"] == bob
+    assert waiting.checkout.transaction_id.endswith(bob)
     assert refused == 403
     assert after.on
     assert row.buyer_id == bob
@@ -59,12 +60,12 @@ def test_a_subscription_that_ended_before_its_checkout_arrived_isnt_started(run,
     sub = f"sub_ended_{uuid.uuid4().hex[:12]}"
 
     async def scenario():
-        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann)
+        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD)
         # subscription.canceled came first and found nothing to turn off.
         await auto_top_ups.ended(sub)
-        await auto_top_ups.start(checkout_data(acme, ann), sub)
+        await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
 
-        return await auto_top_ups.out(COMPANY, acme)
+        return await auto_top_ups.out(COMPANY, acme, Currency.USD)
 
     after = run(scenario())
 
@@ -78,8 +79,8 @@ def test_a_declined_card_is_tried_again_only_after_a_day_or_a_new_save(run, padd
 
     async def scenario():
         await ledger.welcome_company(acme, f"{acme}@example.com")
-        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann)
-        await auto_top_ups.start(checkout_data(acme, ann), sub)
+        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD)
+        await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
         await ledger.reserve(
             COMPANY, acme, WELCOME_COMPANY - 1, f"candidate:{acme}", Reason.CANDIDATE
         )
@@ -90,7 +91,7 @@ def test_a_declined_card_is_tried_again_only_after_a_day_or_a_new_save(run, padd
         next_day = await rows.claim_charge(
             COMPANY, acme, datetime.now(UTC) + AUTO_TOP_UP_RETRY_AFTER * 2
         )
-        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann)
+        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD)
         saved = await rows.get(COMPANY, acme)
 
         return soon, next_day, saved
@@ -110,8 +111,8 @@ def test_a_charge_that_timed_out_isnt_failed_and_is_tried_again_only_after_a_day
 
     async def scenario():
         await ledger.welcome_company(acme, f"{acme}@example.com")
-        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann)
-        await auto_top_ups.start(checkout_data(acme, ann), sub)
+        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD)
+        await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
         await ledger.reserve(
             COMPANY, acme, WELCOME_COMPANY - 1, f"candidate:{acme}", Reason.CANDIDATE
         )

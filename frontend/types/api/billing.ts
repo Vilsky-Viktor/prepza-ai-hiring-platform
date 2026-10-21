@@ -11,9 +11,34 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    /** Catalog */
+    /**
+     * Catalog
+     * @description Every price: in the signed-in person's currency (their country's until they have one
+     *     saved), or the signed-out visitor's country's.
+     */
     get: operations["catalog_catalog_get"]
     put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/me/currency": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** My Currency */
+    get: operations["my_currency_me_currency_get"]
+    /**
+     * Choose My Currency
+     * @description Where prices outside a company's billing show in; travelling doesn't change it.
+     */
+    put: operations["choose_my_currency_me_currency_put"]
     post?: never
     delete?: never
     options?: never
@@ -58,8 +83,8 @@ export interface paths {
     /**
      * Hold Candidate
      * @description Set aside on invite. Charged once the interview finishes with at least one answer. An
-     *     automatic top-up the balance now calls for is charged after answering: Paddle can take its
-     *     time, and the invite waiting on this answer mustn't.
+     *     automatic top-up the balance now calls for is charged before answering, waited for only
+     *     briefly: Paddle can take its time, and the invite waiting on this answer mustn't.
      */
     post: operations["hold_candidate_internal_candidates_hold_post"]
     delete?: never
@@ -117,29 +142,6 @@ export interface paths {
      *     in that sense can be referred by another, unrelated one.
      */
     post: operations["welcome_company_internal_companies__company_id__welcome_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/companies/{company_id}/checkout": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /**
-     * Company Checkout
-     * @description A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies
-     *     has checked they're its owner or an admin. What it buys and its price are set here from the
-     *     count (helpers/credits.py), and the candidates go in its custom data, which the webhook
-     *     grants; a count outside the range, or before Paddle's product is set, is refused (422).
-     */
-    post: operations["company_checkout_internal_companies__company_id__checkout_post"]
     delete?: never
     options?: never
     head?: never
@@ -390,10 +392,95 @@ export interface paths {
     put?: never
     /**
      * Export User
-     * @description What the user bought for their companies, and the automatic top-ups they turned on
-     *     (charged to their card once started).
+     * @description What the user bought for their companies, the automatic top-ups they turned on (charged
+     *     to their card once started), and the currency they see prices in.
      */
     post: operations["export_user_internal_users__user_id__export_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/companies/{company_id}/catalog": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Company Catalog
+     * @description Every price in the currency the company pays in, wherever the buyer is.
+     */
+    get: operations["company_catalog_internal_companies__company_id__catalog_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/companies/{company_id}/currency": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Get Company Currency */
+    get: operations["get_company_currency_internal_companies__company_id__currency_get"]
+    /**
+     * Choose Company Currency
+     * @description From now on its top-ups are priced and charged in it, automatic ones too (their next
+     *     charge switches the subscription over).
+     */
+    put: operations["choose_company_currency_internal_companies__company_id__currency_put"]
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/users/{user_id}/currency": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Remember User Currency
+     * @description On sign-up: the new account sees prices in its country's currency, until changed.
+     */
+    post: operations["remember_user_currency_internal_users__user_id__currency_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/companies/{company_id}/checkout": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Company Checkout
+     * @description A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies
+     *     has checked they're its owner or an admin. What it buys and its price are set here from the
+     *     count, in the company's currency, which Paddle then charges wherever the buyer is; a count
+     *     outside the range, or before Paddle's product is set, is refused (422).
+     */
+    post: operations["company_checkout_internal_companies__company_id__checkout_post"]
     delete?: never
     options?: never
     head?: never
@@ -452,7 +539,7 @@ export interface paths {
     }
     /**
      * Get Stats
-     * @description Top-ups, what they paid and the credits spent, all time or in one year or
+     * @description Top-ups, what they paid in each currency and the credits spent, all time or in one year or
      *     month, for the stats tab.
      */
     get: operations["get_stats_superadmin_stats_get"]
@@ -699,6 +786,11 @@ export interface components {
       products: string[]
       /** Thresholds */
       thresholds: number[]
+      currency: components["schemas"]["Currency"]
+      /** Prices */
+      prices: {
+        [key: string]: number
+      }
       checkout?: components["schemas"]["CheckoutOut"] | null
     }
     /** BalanceOut */
@@ -738,11 +830,12 @@ export interface components {
     }
     /**
      * CandidatePriceOut
-     * @description A candidate's price when credits are bought in a top-up from this many dollars.
+     * @description A candidate's price when credits are bought in a top-up from this amount (minor units of
+     *     the catalog's currency).
      */
     CandidatePriceOut: {
-      /** From Dollars */
-      from_dollars: number
+      /** From Cents */
+      from_cents: number
       /** Cents */
       cents: number
     }
@@ -769,8 +862,7 @@ export interface components {
       environment: string
       /** Client Token */
       client_token: string
-      /** Currency */
-      currency: string
+      currency: components["schemas"]["Currency"]
       /** Candidate Credits */
       candidate_credits: number
       /** Candidate Prices */
@@ -802,15 +894,53 @@ export interface components {
     }
     /**
      * CheckoutOut
-     * @description The Paddle checkout to open: its price and the custom data to send with it.
+     * @description The Paddle transaction the checkout opens, made by billing in the company's currency.
      */
     CheckoutOut: {
-      /** Price Id */
-      price_id: string
-      /** Custom Data */
-      custom_data: {
-        [key: string]: string
-      }
+      /** Transaction Id */
+      transaction_id: string
+    }
+    /**
+     * CompanyCurrencyOut
+     * @description The currency a company pays in, automatic top-ups included, and the ones to choose.
+     */
+    CompanyCurrencyOut: {
+      currency: components["schemas"]["Currency"]
+      /**
+       * Currencies
+       * @default [
+       *       "USD",
+       *       "EUR",
+       *       "GBP"
+       *     ]
+       */
+      currencies: components["schemas"]["Currency"][]
+    }
+    /**
+     * Currency
+     * @description The currencies prices are in: EUR in the EU and nearby, GBP in the UK, USD elsewhere.
+     * @enum {string}
+     */
+    Currency: "USD" | "EUR" | "GBP"
+    /** CurrencyIn */
+    CurrencyIn: {
+      currency: components["schemas"]["Currency"]
+    }
+    /**
+     * CurrencyOut
+     * @description The currency someone sees prices in, and the ones they can choose.
+     */
+    CurrencyOut: {
+      currency: components["schemas"]["Currency"]
+      /**
+       * Currencies
+       * @default [
+       *       "USD",
+       *       "EUR",
+       *       "GBP"
+       *     ]
+       */
+      currencies: components["schemas"]["Currency"][]
     }
     /**
      * CustomTopUpOut
@@ -1160,12 +1290,15 @@ export interface components {
       counts: {
         [key: string]: number
       }
-      /** Currency */
-      currency?: string | null
+      /** Paid */
+      paid?: {
+        [key: string]: number
+      } | null
     }
     /**
      * TopUpCheckoutIn
-     * @description A top-up of this many candidates; billing checks the count and sets the price.
+     * @description A top-up of this many candidates; billing checks the count and sets the price, in the
+     *     company's currency.
      */
     TopUpCheckoutIn: {
       /** Candidates */
@@ -1179,12 +1312,14 @@ export interface components {
       /** Transaction Id */
       transaction_id: string
     }
-    /** TopUpOut */
+    /**
+     * TopUpOut
+     * @description A fixed top-up, as automatic top-up buys it: its price in the catalog's currency (minor
+     *     units).
+     */
     TopUpOut: {
       /** Key */
       key: string
-      /** Title */
-      title: string
       /** Price Cents */
       price_cents: number
       /** Credits */
@@ -1193,8 +1328,6 @@ export interface components {
       candidates: number
       /** Candidate Cents */
       candidate_cents: number
-      /** Price Id */
-      price_id: string | null
     }
     /** TotalsOut */
     TotalsOut: {
@@ -1235,6 +1368,8 @@ export interface components {
     WelcomeIn: {
       /** Owner Email */
       owner_email: string
+      /** Country */
+      country?: string | null
       /** Referral */
       referral?: string | null
       /**
@@ -1254,7 +1389,9 @@ export type $defs = Record<string, never>
 export interface operations {
   catalog_catalog_get: {
     parameters: {
-      query?: never
+      query?: {
+        country?: string | null
+      }
       header?: never
       path?: never
       cookie?: never
@@ -1268,6 +1405,79 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["CatalogOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  my_currency_me_currency_get: {
+    parameters: {
+      query?: {
+        country?: string | null
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CurrencyOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  choose_my_currency_me_currency_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CurrencyIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CurrencyOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
@@ -1434,43 +1644,6 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  company_checkout_internal_companies__company_id__checkout_post: {
-    parameters: {
-      query: {
-        buyer_id: string
-      }
-      header?: never
-      path: {
-        company_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["TopUpCheckoutIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["TopUpCheckoutOut"]
-        }
       }
       /** @description Validation Error */
       422: {
@@ -1897,9 +2070,181 @@ export interface operations {
       }
     }
   }
-  company_auto_top_up_internal_companies__company_id__auto_top_up_get: {
+  company_catalog_internal_companies__company_id__catalog_get: {
+    parameters: {
+      query?: {
+        country?: string | null
+      }
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CatalogOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_company_currency_internal_companies__company_id__currency_get: {
+    parameters: {
+      query?: {
+        country?: string | null
+      }
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CompanyCurrencyOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  choose_company_currency_internal_companies__company_id__currency_put: {
     parameters: {
       query?: never
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CurrencyIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CompanyCurrencyOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  remember_user_currency_internal_users__user_id__currency_post: {
+    parameters: {
+      query?: {
+        country?: string | null
+      }
+      header?: never
+      path: {
+        user_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  company_checkout_internal_companies__company_id__checkout_post: {
+    parameters: {
+      query: {
+        buyer_id: string
+        country?: string | null
+      }
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TopUpCheckoutIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["TopUpCheckoutOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  company_auto_top_up_internal_companies__company_id__auto_top_up_get: {
+    parameters: {
+      query?: {
+        country?: string | null
+      }
       header?: never
       path: {
         company_id: string
@@ -1932,6 +2277,7 @@ export interface operations {
     parameters: {
       query: {
         buyer_id: string
+        country?: string | null
       }
       header?: never
       path: {

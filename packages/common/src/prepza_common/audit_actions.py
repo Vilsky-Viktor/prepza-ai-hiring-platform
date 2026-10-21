@@ -68,6 +68,7 @@ class AuditAction(StrEnum):
     AUTO_TOP_UP_SET = "auto_top_up_set"
     AUTO_TOP_UP_CHANGED = "auto_top_up_changed"
     AUTO_TOP_UP_STOPPED = "auto_top_up_stopped"
+    CURRENCY_CHANGED = "currency_changed"
     # Integrations.
     ATS_CONNECTED = "ats_connected"
     ATS_RECONNECTED = "ats_reconnected"
@@ -128,6 +129,7 @@ _GROUPS = {
         AuditAction.AUTO_TOP_UP_SET,
         AuditAction.AUTO_TOP_UP_CHANGED,
         AuditAction.AUTO_TOP_UP_STOPPED,
+        AuditAction.CURRENCY_CHANGED,
     ),
     AuditGroup.INTEGRATIONS: (
         AuditAction.ATS_CONNECTED,

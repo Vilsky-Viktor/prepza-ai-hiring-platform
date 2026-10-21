@@ -15,7 +15,7 @@ from app.constants.roles import (
     Role,
 )
 from app.helpers.logos import logo_path
-from app.integrations import billing
+from app.integrations import billing, billing_prices
 from app.integrations.redis import get_redis
 from app.models.companies import Member
 from app.schemas.companies import AdminInviteOut, MemberIn, MemberOut, MemberRoleIn
@@ -132,7 +132,7 @@ async def change_role(
     member = await owned_member(user, company_id, member_id)
 
     if body.role == Role.VIEWER and member.user_id is not None:
-        await billing.turn_off_auto_top_up(company_id, member.user_id)
+        await billing_prices.turn_off_auto_top_up(company_id, member.user_id)
 
     await members.set_role(member.id, body.role)
     await audit.record(
@@ -186,7 +186,7 @@ async def remove_member(company_id: UUID, member_id: UUID, user: CurrentUser) ->
     member = await owned_member(user, company_id, member_id)
 
     if member.user_id is not None:
-        await billing.turn_off_auto_top_up(company_id, member.user_id)
+        await billing_prices.turn_off_auto_top_up(company_id, member.user_id)
 
     await members.remove(member.id)
     await audit.record(

@@ -4,6 +4,9 @@
     "language": "Lingua",
     "languageNote": "Per l'interfaccia e le risposte della chat di assistenza, e la lingua in cui partono i nuovi colloqui. Puoi creare un colloquio in qualsiasi lingua supportata.",
     "languageFailed": "Impossibile cambiare la lingua. Riprova.",
+    "currency": "Valuta",
+    "currencyNote": "I prezzi sono mostrati in questa valuta, ovunque tu sia. Le ricariche di un'azienda sono nella valuta dell'azienda.",
+    "currencyFailed": "Impossibile cambiare la valuta. Riprova.",
     "account": "Il tuo account",
     "accountNote": "Indica questo ID quando ci scrivi riguardo al tuo account.",
     "yourData": "I tuoi dati",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Metti alla prova tutti\nAssumi i migliori",
-    "text": "L'IA trasforma la tua descrizione del ruolo in un colloquio a tempo professionale.\nSolo $2–5 per candidato."
+    "text": "L'IA trasforma la tua descrizione del ruolo in un colloquio a tempo professionale.",
+    "price": "Solo {price} per candidato."
   },
   "start": {
     "placeholder": "Incolla una descrizione del ruolo, oppure descrivi il ruolo e cosa dovrebbe sapere un candidato",
@@ -725,6 +729,8 @@
     "topUpTitle": "Ricarica: {name}",
     "topUpNote": "Ogni ricarica copre un numero intero di candidati; quelle più grandi costano meno per candidato. I crediti non scadono.",
     "taxes": "I prezzi non includono l'IVA né l'imposta sulle vendite: dove si applica, viene aggiunta al momento del pagamento, e la pagina di pagamento mostra il totale prima che tu paghi.",
+    "paysIn": "Questa azienda paga in {currency}.",
+    "paysInChange": "Cambia valuta",
     "candidates": "{count, plural, one {# candidato} other {# candidati}}",
     "perCandidate": "{price}<unit>/candidato</unit>",
     "howMany": "Candidati da ricaricare",
@@ -1143,7 +1149,7 @@
     "topUp": "Ricarica"
   },
   "site": {
-    "description": "Test di selezione del personale a tempo, creati dal tuo annuncio. Domande casuali diverse per ogni candidato, classifica e report. $2–5 per candidato.",
+    "description": "Test di selezione del personale a tempo, creati dal tuo annuncio. Domande casuali diverse per ogni candidato, classifica e report.{priced, select, yes { {price} per candidato.} other {}}",
     "homeTitle": "Test di selezione del personale creati dal tuo annuncio"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Ultimo aggiornamento",
     "englishOnly": "Questa pagina è solo in inglese.",
     "startTitle": "Metti alla prova i tuoi candidati",
-    "startText": "Crea un test di competenze a tempo dalla tua descrizione del ruolo. $2–5 per candidato, senza abbonamento.",
+    "startText": "Crea un test di competenze a tempo dalla tua descrizione del ruolo.{priced, select, yes { {price} per candidato, senza abbonamento.} other {}}",
     "startButton": "Crea un test"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Test di competenze a tempo già pronti per i ruoli più comuni. Usane uno così com'è o crea un test dalla tua descrizione del ruolo.",
     "heading": "Test di competenze {role} per le assunzioni",
     "pageTitle": "Test di selezione per {role}",
-    "pageDescription": "Test per l'assunzione di {role}, a tempo, con {count, plural, one {# argomento} other {# argomenti}}. Ogni candidato riceve le proprie domande casuali. $2–5 per candidato.",
-    "lead": "Un test a scelta multipla a tempo sulle competenze di questo ruolo. Ogni candidato riceve un proprio set casuale di domande con un timer su ognuna, e tu ricevi una scheda di valutazione con ogni risposta e i suoi tempi. $2–5 per candidato, senza abbonamento.",
+    "pageDescription": "Test per l'assunzione di {role}, a tempo, con {count, plural, one {# argomento} other {# argomenti}}. Ogni candidato riceve le proprie domande casuali.{priced, select, yes { {price} per candidato.} other {}}",
+    "lead": "Un test a scelta multipla a tempo sulle competenze di questo ruolo. Ogni candidato riceve un proprio set casuale di domande con un timer su ognuna, e tu ricevi una scheda di valutazione con ogni risposta e i suoi tempi.{priced, select, yes { {price} per candidato, senza abbonamento.} other {}}",
     "create": "Crea un test per i tuoi candidati",
     "practise": "Esercitati gratis",
     "topics": "Cosa verifica",
@@ -2170,7 +2176,9 @@
     "automatic": "Ricarica automatica",
     "invoice": "Fattura",
     "invoiceFailed": "Impossibile aprire la fattura. Riprova.",
-    "deletedCandidate": "Un candidato eliminato"
+    "deletedCandidate": "Un candidato eliminato",
+    "currency": "Valuta",
+    "currencyFailed": "Impossibile cambiare la valuta. Riprova."
   },
   "aiApps": {
     "group": "App IA",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Ha impostato la ricarica automatica",
       "auto_top_up_changed": "Ha modificato la ricarica automatica",
       "auto_top_up_stopped": "Ha interrotto la ricarica automatica",
+      "currency_changed": "Ha cambiato la valuta",
       "ats_connected": "Ha collegato un ATS",
       "ats_reconnected": "Ha ricollegato un ATS",
       "ats_disconnected": "Ha scollegato un ATS",

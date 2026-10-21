@@ -34,27 +34,38 @@ async def _call(method: str, path: str, **kwargs) -> httpx.Response:
     return response
 
 
-async def charge(subscription_id: str, price_id: str) -> None:
-    """Bills one top-up to the subscription's saved card now. Its transaction.completed webhook
-    adds the credits; a declined card raises and changes nothing."""
+async def charge(subscription_id: str, price: dict) -> None:
+    """Bills one top-up, at a `price` made here in the subscription's currency, to its saved
+    card now. Its transaction.completed webhook adds the credits; a declined card raises and
+    changes nothing."""
     await _call(
         "POST",
         f"/subscriptions/{subscription_id}/charge",
         json={
             "effective_from": "immediately",
-            "items": [{"price_id": price_id, "quantity": 1}],
+            "items": [{"price": price, "quantity": 1}],
             "on_payment_failure": "prevent_change",
         },
     )
 
 
-async def create_transaction(price: dict, custom_data: dict) -> str:
-    """A checkout's transaction for one top-up, one item at a `price` made here, with whose
-    wallet it's for set here, not in the browser; Paddle.js opens it by its id."""
+async def set_currency(subscription_id: str, currency: str) -> None:
+    """Switches the subscription (the $0 one that keeps the card) to bill in `currency`, billing
+    nothing for the change."""
+    await _call(
+        "PATCH",
+        f"/subscriptions/{subscription_id}",
+        json={"currency_code": currency, "proration_billing_mode": "do_not_bill"},
+    )
+
+
+async def create_transaction(items: list[dict], currency: str, custom_data: dict) -> str:
+    """A checkout's transaction, with whose wallet it's for set here, not in the browser, in
+    `currency`, which Paddle then charges wherever the buyer is; Paddle.js opens it by its id."""
     response = await _call(
         "POST",
         "/transactions",
-        json={"items": [{"price": price, "quantity": 1}], "custom_data": custom_data},
+        json={"items": items, "currency_code": currency, "custom_data": custom_data},
     )
 
     return response.json()["data"]["id"]

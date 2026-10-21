@@ -16,23 +16,24 @@ def test_a_custom_top_up_grants_its_candidates_once_and_a_half_refund_takes_half
         "id": f"txn_{uuid.uuid4().hex[:12]}",
         "origin": "api",
         "currency_code": "USD",
-        "custom_data": {
-            "owner_type": COMPANY,
-            "owner_id": acme,
-            "buyer_id": "ann",
-            "candidates": 50,
-        },
+        "custom_data": {"owner_type": COMPANY, "owner_id": acme, "buyer_id": "ann"},
         "items": [
             {
                 "price": {
                     "id": "pri_made_in_the_transaction",
                     "product_id": "pro_candidates",
                     "unit_price": {"amount": "20000", "currency_code": "USD"},
+                    "custom_data": {"candidates": "50"},
                 },
                 "quantity": 1,
             }
         ],
-        "details": {"totals": {"grand_total": "20000"}},
+        "details": {
+            "totals": {"grand_total": "20000"},
+            "line_items": [
+                {"price_id": "pri_made_in_the_transaction", "totals": {"subtotal": "20000"}}
+            ],
+        },
     }
 
     async def balance():

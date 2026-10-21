@@ -3,24 +3,39 @@ import { getLocale, getTranslations } from "next-intl/server"
 import { AccountData } from "@/components/settings/account-data"
 import { AccountId } from "@/components/settings/account-id"
 import { EmailPreferencesSetting } from "@/components/settings/email-preferences"
+import { CurrencySetting } from "@/components/settings/currency-setting"
 import { LanguageSetting } from "@/components/settings/language-setting"
 import { SettingsSection } from "@/components/settings/settings-section"
 import type { Locale } from "@/constants/i18n"
+import { currencyPath } from "@/lib/catalog"
 import { serverFetch } from "@/lib/server-api"
+import type { CurrencyChoice } from "@/types/billing"
 import type { EmailPreferences } from "@/types/emails"
 
 export default async function GeneralSettingsPage() {
   const t = await getTranslations("settings")
   const locale = (await getLocale()) as Locale
-  const emails = await serverFetch<EmailPreferences>(
-    "/library/me/email-preferences"
-  )
+  const [emails, currency] = await Promise.all([
+    serverFetch<EmailPreferences>("/library/me/email-preferences"),
+    serverFetch<CurrencyChoice>(await currencyPath()),
+  ])
 
   return (
     <>
-      <SettingsSection title={t("language")} description={t("languageNote")}>
-        <LanguageSetting current={locale} />
-      </SettingsSection>
+      {/* Side by side on desktop, one under the other otherwise. */}
+      <div className="grid gap-8 lg:grid-cols-2">
+        <SettingsSection title={t("language")} description={t("languageNote")}>
+          <LanguageSetting current={locale} />
+        </SettingsSection>
+        {currency && (
+          <SettingsSection
+            title={t("currency")}
+            description={t("currencyNote")}
+          >
+            <CurrencySetting initial={currency} />
+          </SettingsSection>
+        )}
+      </div>
       {emails && (
         <SettingsSection
           title={t("emails.title")}

@@ -73,8 +73,15 @@ def granted(monkeypatch):
     return calls
 
 
-def test_a_completed_transaction_grants_what_its_prices_bought(granted):
-    asyncio.run(webhooks.handle(completed(quantity=2)))
+@pytest.mark.parametrize(
+    ("currency", "subtotal"), [("USD", "5000"), ("EUR", "5000"), ("GBP", "4000")]
+)
+def test_a_completed_transaction_grants_the_same_candidates_in_any_currency(
+    granted, currency, subtotal
+):
+    event = completed(quantity=2, currency=currency, subtotal=subtotal)
+
+    asyncio.run(webhooks.handle(event))
 
     assert granted == [("txn_01", "topup_50", 2, 10_000, "acme", "ann")]
 
@@ -102,24 +109,33 @@ def money(monkeypatch):
     return kept
 
 
-def test_a_top_up_keeps_what_it_cost_and_an_automatic_one_says_so(money):
-    automatic = completed()
+def test_a_top_up_keeps_what_it_cost_and_an_automatic_one_says_so(money, monkeypatch):
+    automatic = completed(currency="GBP")
     automatic["data"]["subscription_id"] = "sub_01"
+    automatic["data"]["details"]["totals"]["grand_total"] = "4800"
+
+    async def started(custom, subscription_id, currency):
+        return None
+
+    monkeypatch.setattr(webhooks.auto_top_ups, "start", started)
 
     asyncio.run(webhooks.handle(completed()))
     asyncio.run(webhooks.handle(automatic))
 
-    assert money == [("5000", "USD", False), ("5000", "USD", True)]
+    assert money == [("5000", "USD", False), ("4800", "GBP", True)]
 
 
 @pytest.mark.parametrize(
     "event",
     [
-        completed(price_id="pri_unknown"),
+        completed(product_id="pro_other"),
+        completed(top_up="topup_7"),
+        completed(candidates=9),
+        completed(candidates=1_001),
         {**completed(), "event_type": "transaction.created"},
         completed(owner_id=None),
     ],
-    ids=["unknown price", "other event", "no owner"],
+    ids=["another product", "unknown top-up", "too few", "too many", "other event", "no owner"],
 )
 def test_anything_else_grants_nothing(granted, event):
     asyncio.run(webhooks.handle(event))
@@ -142,15 +158,6 @@ def test_the_webhook_route_checks_the_signature(client, granted, caplog):
     assert [r.levelname for r in caplog.records if WEBHOOK_SIGNATURE_REFUSED in r.message] == [
         "ERROR"
     ]
-
-
-def test_the_catalog_lists_every_product_and_which_are_on_sale(client):
-    products = client.get("/catalog").json()["products"]
-
-    assert {product["key"]: product["price_id"] for product in products}[
-        "topup_50"
-    ] == "pri_topup_50"
-    assert products[1]["price_id"] is None
 
 
 def test_a_signature_beyond_ascii_is_refused_not_an_error():

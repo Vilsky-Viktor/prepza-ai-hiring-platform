@@ -6,10 +6,9 @@ import { JsonLd } from "@/components/json-ld"
 import { Button } from "@/components/ui/button"
 import { InfoCard } from "@/components/warning-card"
 import { formatPrice } from "@/lib/format"
-import { publicFetch } from "@/lib/server-api"
 import { pageMetadata, siteUrl } from "@/lib/site"
 import { softwareData } from "@/lib/structured-data"
-import type { Catalog } from "@/types/billing"
+import { visitorCatalog } from "@/lib/catalog"
 import { PageKey } from "@/components/page-key"
 
 export async function generateMetadata() {
@@ -38,9 +37,7 @@ export default async function PricingPage() {
   const locale = await getLocale()
   // Billing not answering (starting up, or failing): the page says so instead of its prices,
   // rather than showing nothing or the error page.
-  const catalog = await publicFetch<Catalog>("/billing/catalog").catch(
-    () => null
-  )
+  const catalog = await visitorCatalog()
   const header = (
     <div className="space-y-2">
       <div className="flex items-center justify-between gap-4">
@@ -90,16 +87,12 @@ export default async function PricingPage() {
               price: formatPrice(standard.cents, catalog.currency, locale),
             })}
           />
-          {/* Volume prices: large top-ups buy more credits per dollar (billing decides). */}
+          {/* Volume prices: large top-ups buy candidates for less (billing decides). */}
           {volume.map((tier) => (
             <PriceRow
-              key={tier.from_dollars}
+              key={tier.from_cents}
               what={t("candidateVolume", {
-                from: formatPrice(
-                  tier.from_dollars * 100,
-                  catalog.currency,
-                  locale
-                ),
+                from: formatPrice(tier.from_cents, catalog.currency, locale),
               })}
               price={t("perCandidate", {
                 price: formatPrice(tier.cents, catalog.currency, locale),

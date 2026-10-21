@@ -7,6 +7,10 @@ export type Catalog = Schemas["CatalogOut"]
 export type Product = Schemas["TopUpOut"]
 export type Referral = Schemas["ReferralOut"]
 export type AutoTopUp = Schemas["AutoTopUpOut"]
+// The currency someone sees prices in, or a company pays in (and its running automatic
+// top-up's), with the ones to choose from.
+export type CurrencyChoice = Schemas["CurrencyOut"]
+export type CompanyCurrency = Schemas["CompanyCurrencyOut"]
 // The Paddle transaction a top-up's checkout opens, made by the backend.
 export type CheckoutData = companies["schemas"]["TopUpCheckoutOut"]
 // A company's credits: available, set aside for candidates who haven't finished (and how many

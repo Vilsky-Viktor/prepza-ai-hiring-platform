@@ -3,6 +3,7 @@ import uuid
 import httpx
 import pytest
 
+from app.constants.currencies import Currency
 from app.constants.products import OwnerType
 from app.schemas.billing import AutoTopUpIn
 from app.services import auto_top_ups
@@ -18,8 +19,8 @@ def running(run, subscription: str) -> tuple[str, str]:
     ann, acme = f"user-{uuid.uuid4()}", str(uuid.uuid4())
 
     async def scenario():
-        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann)
-        await auto_top_ups.start(checkout_data(acme, ann), subscription)
+        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD)
+        await auto_top_ups.start(checkout_data(acme, ann), subscription, "USD")
 
     run(scenario())
 

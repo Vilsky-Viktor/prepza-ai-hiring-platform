@@ -2,6 +2,7 @@
 
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
+import type { ReactNode } from "react"
 
 import { BalanceTooltip } from "@/components/billing/balance-tooltip"
 import { AutoTopUpSetting } from "@/components/billing/auto-top-up"
@@ -19,6 +20,7 @@ export function BalanceRow({
   low,
   companyId,
   reserved,
+  currency,
 }: {
   catalog: Catalog
   name: string
@@ -26,6 +28,8 @@ export function BalanceRow({
   low: boolean
   companyId: string
   reserved?: number
+  // The company's currency, beside Top up (the billing page).
+  currency?: ReactNode
 }) {
   const t = useTranslations("billing")
   // A top-up arriving counts up, as in the header.
@@ -52,8 +56,8 @@ export function BalanceRow({
         )}
         <AutoTopUpSetting catalog={catalog} companyId={companyId} />
       </div>
-      {/* On phones the name and, on their own line, the balance and Top up are centered. */}
-      <div className="flex items-center gap-6 max-sm:basis-full max-sm:justify-center">
+      {/* On phones the balance has its line, and the currency and Top up go under it, together. */}
+      <div className="flex items-center gap-6 max-sm:basis-full max-sm:flex-col max-sm:gap-5">
         <p className="text-end">
           <BalanceTooltip
             className={cn(
@@ -67,7 +71,11 @@ export function BalanceRow({
             {t("creditsWord", { count: available })}
           </span>
         </p>
-        <TopUpDialog catalog={catalog} title={name} companyId={companyId} />
+        {/* The currency, then Top up, together on phones too. */}
+        <div className="flex items-center gap-2 max-sm:gap-3">
+          {currency}
+          <TopUpDialog title={name} companyId={companyId} />
+        </div>
       </div>
     </div>
   )

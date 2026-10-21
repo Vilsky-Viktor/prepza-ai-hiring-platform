@@ -14,6 +14,7 @@ from prepza_common.user import Language, User
 
 from app.helpers.accounts import candidate_email
 from app.integrations import accounts as services
+from app.integrations.billing import remember_currency
 from app.storage import accounts, legal
 
 
@@ -44,9 +45,10 @@ async def account_by_id(user_id: str) -> firebase_auth.UserRecord | None:
         return None
 
 
-async def set_language(user: User, language: Language) -> None:
+async def set_language(user: User, language: Language, country: str | None = None) -> None:
     """Stored on the sign-in, so every service reads it from the user's next ID token. A new
-    account sets it on its first sign-in (the frontend does), which counts as signing up."""
+    account sets it on its first sign-in (the frontend does), which counts as signing up; it
+    then sees prices in its `country`'s currency."""
     record = await asyncio.to_thread(firebase_auth.get_user, user.uid)
     await asyncio.to_thread(
         firebase_auth.set_custom_user_claims, user.uid, {LANGUAGE_CLAIM: language}
@@ -59,6 +61,7 @@ async def set_language(user: User, language: Language) -> None:
         # A company's guest candidate has no account of their own: not a sign-up.
         if not user.uid.startswith(GUEST_UID_PREFIX):
             await track("signed_up", user_id=user.uid, language=language)
+            await remember_currency(user.uid, country)
 
 
 async def delete_account(user: User) -> None:

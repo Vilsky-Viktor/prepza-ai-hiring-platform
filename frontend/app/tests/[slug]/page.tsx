@@ -17,6 +17,12 @@ import { textDirection } from "@/lib/locale"
 import { localizedPath, templateLocales } from "@/lib/locale-path"
 import { pageMetadata, siteUrl, urlLocale } from "@/lib/site"
 import { breadcrumbData } from "@/lib/structured-data"
+import {
+  countryCatalog,
+  faqPath,
+  priceValues,
+  visitorCatalog,
+} from "@/lib/catalog"
 import type { FaqItem } from "@/types/help"
 import type { SampleQuestion, Template } from "@/types/superadmin"
 import { LIST_BOX } from "@/constants/lists"
@@ -39,6 +45,7 @@ export async function generateMetadata({ params }: Params) {
       t("pageDescription", {
         role: template.title,
         count: template.topic_count,
+        ...(await priceValues(await countryCatalog())),
       }),
       `/tests/${template.slug ?? template.id}`,
       templateLocales(template.language)
@@ -72,13 +79,15 @@ export default async function RoleTestPage({ params }: Params) {
   }
 
   const slug = template.slug ?? template.id
+  // The price per candidate, in the visitor's currency.
+  const prices = await priceValues(await visitorCatalog())
   const questions =
     (await publicFetch<SampleQuestion[]>(
       `/library/templates/${slug}/sample`
     )) ?? []
   // The site FAQ's answers to what companies ask before testing candidates, in the page's
   // language and with today's prices; left out while prices can't be read (rounds refuses).
-  const answers = await publicFetch<FaqItem[]>("/rounds/help/faq").catch(
+  const answers = await publicFetch<FaqItem[]>(await faqPath()).catch(
     () => null
   )
   const faq = (answers ?? []).filter((item) => ROLE_PAGE_FAQ.includes(item.key))
@@ -115,7 +124,9 @@ export default async function RoleTestPage({ params }: Params) {
         }
       />
       <div className="space-y-6">
-        <p className="text-lg text-muted-foreground">{t("lead")}</p>
+        <p className="text-lg text-muted-foreground">
+          {t("lead", prices)}
+        </p>
         <div className="flex flex-wrap items-center gap-3">
           <Button
             className="h-12 px-6 text-base"

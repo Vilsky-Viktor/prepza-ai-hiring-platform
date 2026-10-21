@@ -26,7 +26,7 @@ def test_running_low_lists_companies_short_of_a_candidate_unless_a_top_up_refill
         enough = await wallet(CANDIDATE_CREDITS)
         refilled = await wallet(0)
         await rows.save(COMPANY, refilled, "topup_50", 500, "ann")
-        await rows.start(COMPANY, refilled, "ann", f"sub_{uuid.uuid4().hex[:12]}")
+        await rows.start(COMPANY, refilled, "ann", f"sub_{uuid.uuid4().hex[:12]}", "USD")
         found = {row.owner_id for row in await ledger.running_low(COMPANY)}
 
         return found & {low, enough, refilled}, low
@@ -67,7 +67,7 @@ def test_running_low_leaves_out_an_asked_owner_with_an_active_automatic_top_up(r
     async def scenario():
         refilled = await wallet(0)
         await rows.save(COMPANY, refilled, "topup_50", 500, "ann")
-        await rows.start(COMPANY, refilled, "ann", f"sub_{uuid.uuid4().hex[:12]}")
+        await rows.start(COMPANY, refilled, "ann", f"sub_{uuid.uuid4().hex[:12]}", "USD")
 
         return await ledger.running_low(COMPANY, [refilled])
 

@@ -1,5 +1,6 @@
 from types import SimpleNamespace
 
+import pytest
 from firebase_admin import auth as firebase_auth
 from prepza_common.constants import LEGAL_VERSIONS
 
@@ -74,6 +75,9 @@ def settings_with(monkeypatch, claims):
     async def accept_terms(user_id, version):
         tracked.append(("terms", {"user_id": user_id, "version": version}))
 
+    async def remember_currency(user_id, country):
+        tracked.append(("currency", {"user_id": user_id, "country": country}))
+
     monkeypatch.setattr(firebase_auth, "verify_id_token", fake_verify)
     monkeypatch.setattr(
         firebase_auth, "get_user", lambda uid: SimpleNamespace(custom_claims=claims)
@@ -83,6 +87,7 @@ def settings_with(monkeypatch, claims):
     )
     monkeypatch.setattr(accounts, "track", track)
     monkeypatch.setattr(legal, "accept_terms", accept_terms)
+    monkeypatch.setattr(accounts, "remember_currency", remember_currency)
 
     return stored, tracked
 
@@ -97,15 +102,20 @@ def test_settings_store_the_language_on_the_sign_in(client, monkeypatch):
     assert tracked == []
 
 
-def test_a_new_accounts_first_language_counts_as_signing_up(client, monkeypatch):
+@pytest.mark.parametrize("country", [None, "FR"])
+def test_a_new_accounts_first_language_counts_as_signing_up(client, monkeypatch, country):
+    """Its currency is saved from the visitor's country, which calls without a browser (and
+    tests) don't have: billing then saves none until it sees one."""
     _, tracked = settings_with(monkeypatch, None)
+    headers = {**AUTH, "X-Client-Country": country} if country else AUTH
 
-    client.put("/me/settings", json={"language": "de"}, headers=AUTH)
+    assert client.put("/me/settings", json={"language": "de"}, headers=headers).status_code == 204
 
     # Signing up accepts the terms in force: their version is kept.
     assert tracked == [
         ("terms", {"user_id": "user-1", "version": LEGAL_VERSIONS["terms"]}),
         ("signed_up", {"user_id": "user-1", "language": "de"}),
+        ("currency", {"user_id": "user-1", "country": country}),
     ]
 
 

@@ -80,13 +80,13 @@ variable "paddle_client_token" {
 }
 
 variable "paddle_product_candidates" {
-  description = "The Paddle product a top-up of any number of candidates is sold under (docs/features/billing.md); empty: not sold."
+  description = "The Paddle product every top-up is sold under (docs/features/billing.md); empty: nothing is sold."
   type        = string
   default     = ""
 }
 
 variable "paddle_prices" {
-  description = "Paddle price id of each product (services/billing/app/constants/products.py)."
+  description = "Paddle price ids by name: auto_top_up, the $0 monthly price whose checkout saves the card (docs/features/billing.md)."
   type        = map(string)
   default     = {}
 }

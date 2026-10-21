@@ -43,15 +43,38 @@
     "summary": "Update Settings",
     "description": "Takes effect once the frontend refreshes the user's ID token.",
     "operationId": "update_settings_me_settings_put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "X-Client-Country",
+      "in": "header",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "X-Client-Country"
+      }
+     }
+    ],
     "requestBody": {
+     "required": true,
      "content": {
       "application/json": {
        "schema": {
         "$ref": "#/components/schemas/SettingsIn"
        }
       }
-     },
-     "required": true
+     }
     },
     "responses": {
      "204": {
@@ -67,12 +90,7 @@
        }
       }
      }
-    },
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ]
+    }
    }
   },
   "/me/email-preferences": {
@@ -5825,16 +5843,19 @@
       "type": "object",
       "title": "Counts"
      },
-     "currency": {
+     "paid": {
       "anyOf": [
        {
-        "type": "string"
+        "additionalProperties": {
+         "type": "integer"
+        },
+        "type": "object"
        },
        {
         "type": "null"
        }
       ],
-      "title": "Currency"
+      "title": "Paid"
      }
     },
     "type": "object",

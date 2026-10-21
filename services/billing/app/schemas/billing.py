@@ -4,24 +4,27 @@ from uuid import UUID
 from prepza_common.constants import MAX_ADJUSTMENT, MAX_ADJUSTMENT_NOTE, MAX_PAGE_SIZE
 from pydantic import BaseModel, Field
 
+from app.constants.currencies import Currency
 from app.constants.payment_failures import PaymentFailure
 
 
 class TopUpOut(BaseModel):
+    """A fixed top-up, as automatic top-up buys it: its price in the catalog's currency (minor
+    units)."""
+
     key: str
-    title: str
     price_cents: int
     credits: int
     # The whole candidates it buys, and what each costs at its volume price.
     candidates: int
     candidate_cents: int
-    price_id: str | None
 
 
 class CandidatePriceOut(BaseModel):
-    """A candidate's price when credits are bought in a top-up from this many dollars."""
+    """A candidate's price when credits are bought in a top-up from this amount (minor units of
+    the catalog's currency)."""
 
-    from_dollars: int
+    from_cents: int
     cents: int
 
 
@@ -51,7 +54,9 @@ class CatalogOut(BaseModel):
 
     environment: str
     client_token: str
-    currency: str
+    # The currency billing decided on (the company's, the person's or their country's); every
+    # amount here is in its minor units.
+    currency: Currency
     candidate_credits: int
     # A candidate's price at each volume tier, cheapest last.
     candidate_prices: list[CandidatePriceOut]
@@ -107,9 +112,28 @@ class OwnersIn(BaseModel):
 
 
 class TopUpCheckoutIn(BaseModel):
-    """A top-up of this many candidates; billing checks the count and sets the price."""
+    """A top-up of this many candidates; billing checks the count and sets the price, in the
+    company's currency."""
 
     candidates: int
+
+
+class CurrencyIn(BaseModel):
+    currency: Currency
+
+
+class CurrencyOut(BaseModel):
+    """The currency someone sees prices in, and the ones they can choose."""
+
+    currency: Currency
+    currencies: list[Currency] = list(Currency)
+
+
+class CompanyCurrencyOut(BaseModel):
+    """The currency a company pays in, automatic top-ups included, and the ones to choose."""
+
+    currency: Currency
+    currencies: list[Currency] = list(Currency)
 
 
 class TopUpCheckoutOut(BaseModel):
@@ -120,6 +144,8 @@ class TopUpCheckoutOut(BaseModel):
 
 class WelcomeIn(BaseModel):
     owner_email: str
+    # Where the owner is as they create it: the company's currency is that country's.
+    country: str | None = None
     # The code of the link the owner came through, and their other companies, which can't
     # refer this one.
     referral: str | None = None
@@ -153,10 +179,9 @@ class AutoTopUpIn(BaseModel):
 
 
 class CheckoutOut(BaseModel):
-    """The Paddle checkout to open: its price and the custom data to send with it."""
+    """The Paddle transaction the checkout opens, made by billing in the company's currency."""
 
-    price_id: str
-    custom_data: dict[str, str]
+    transaction_id: str
 
 
 class AutoTopUpOut(BaseModel):
@@ -170,6 +195,9 @@ class AutoTopUpOut(BaseModel):
     threshold: int | None
     products: list[str]
     thresholds: list[int]
+    # What each top-up costs (minor units) in `currency`, the company's.
+    currency: Currency
+    prices: dict[str, int]
     # Only when turning it on still needs the checkout that saves the card.
     checkout: CheckoutOut | None = None
 

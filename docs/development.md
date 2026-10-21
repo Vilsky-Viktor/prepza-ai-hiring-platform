@@ -100,6 +100,8 @@ The frontend keeps its `node_modules` in a volume. After a frontend dependency c
 
 Paddle and Resend reach local webhooks only through a tunnel, for example `cloudflared tunnel --url http://localhost:8090`.
 
+Prices follow the visitor's country, which the load balancer gives in production. Locally, set a `test_country` cookie on `localhost:8090` (`document.cookie = "test_country=DE"`, or `GB`; none means US dollars) and the gateway passes it on as that country ([Currencies](features/billing.md#currencies)). A person's and a company's currency are saved the first time billing sees them with a country, so use a new account or company to see another country's default.
+
 ## Everyday commands
 
 ```bash

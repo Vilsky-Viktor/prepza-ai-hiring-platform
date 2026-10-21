@@ -15,14 +15,29 @@ export function StatsCards({ stats }: { stats: Record<Source, Stats | null> }) {
 
   function value(card: (typeof STATS_CARDS)[number]) {
     const source = stats[card.source]
+
+    // What top-ups paid, in each currency billing sells in that took any ("$12.3K, €4K"), or
+    // none in the first.
+    if (card.metric === "paid") {
+      const paid = Object.entries(source?.paid ?? {})
+
+      if (!paid.length) {
+        return "—"
+      }
+
+      const taken = paid.filter(([, cents]) => cents > 0)
+
+      return new Intl.ListFormat(locale, { style: "narrow", type: "unit" }).format(
+        (taken.length ? taken : paid.slice(0, 1)).map(([currency, cents]) =>
+          compactPrice(cents, currency, locale)
+        )
+      )
+    }
+
     const amount = source?.counts[card.metric]
 
     if (amount === undefined) {
       return "—"
-    }
-
-    if (card.metric === "paid" && source?.currency) {
-      return compactPrice(amount, source.currency, locale)
     }
 
     return compactNumber(amount, locale)

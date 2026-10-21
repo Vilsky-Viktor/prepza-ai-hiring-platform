@@ -12,6 +12,8 @@ export const DECLINED_CARD = "4000000000000002";
 export async function openTopUpCheckout(page: Page, companyId: string) {
   await visit(page, `/companies/${companyId}/billing`);
   await page.getByTestId("top-up").first().click();
+  // Its prices come as it opens: the slider shows once they have.
+  await expect(page.getByTestId("top-up-dialog").getByRole("slider")).toBeVisible();
   // The Top up button, for the slider's first count (it comes before the dialog's other buttons).
   const buy = page.getByTestId("top-up-dialog").getByRole("button").first();
   test.skip(await buy.isDisabled(), "Paddle's prices aren't set");

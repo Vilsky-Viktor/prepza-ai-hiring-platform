@@ -25,6 +25,7 @@ import { FONT_VARIABLES } from "@/constants/fonts"
 import { CJK_LOCALES, type Locale } from "@/constants/i18n"
 import { SITE_NAME } from "@/constants/seo"
 import { textDirection } from "@/lib/locale"
+import { countryCatalog, priceValues } from "@/lib/catalog"
 import { clientMessages } from "@/lib/messages"
 import { previewImage, siteUrl, urlLocale } from "@/lib/site"
 import { cn } from "cn"
@@ -36,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
     // Absolute links for shared pages' previews and canonical addresses.
     metadataBase: new URL(siteUrl()),
     title: { default: SITE_NAME, template: `%s · ${SITE_NAME}` },
-    description: t("description"),
+    description: t("description", await priceValues(await countryCatalog())),
     openGraph: { siteName: SITE_NAME, type: "website", images: previewImage() },
     twitter: { card: "summary_large_image" },
     // Ownership checks for Google Search Console and Bing Webmaster Tools, when set.

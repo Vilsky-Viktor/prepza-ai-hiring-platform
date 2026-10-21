@@ -4,6 +4,9 @@
     "language": "Idioma",
     "languageNote": "Para la interfaz y las respuestas del chat de ayuda, y el idioma en que empiezan las nuevas entrevistas. Puedes crear una entrevista en cualquier idioma disponible.",
     "languageFailed": "No se pudo cambiar el idioma. Inténtalo de nuevo.",
+    "currency": "Moneda",
+    "currencyNote": "Los precios se muestran en ella, estés donde estés. Las recargas de una empresa van en la moneda de la empresa.",
+    "currencyFailed": "No se pudo cambiar la moneda. Inténtalo de nuevo.",
     "account": "Tu cuenta",
     "accountNote": "Indica este ID cuando nos escribas sobre tu cuenta.",
     "yourData": "Tus datos",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Evalúa a todos\nContrata a los mejores",
-    "text": "La IA convierte tu descripción del puesto en una entrevista cronometrada profesional.\nSolo $2–5 por candidato."
+    "text": "La IA convierte tu descripción del puesto en una entrevista cronometrada profesional.",
+    "price": "Solo {price} por candidato."
   },
   "start": {
     "placeholder": "Pega una descripción del puesto, o describe el puesto y lo que un candidato debería saber",
@@ -725,6 +729,8 @@
     "topUpTitle": "Recargar: {name}",
     "topUpNote": "Cada recarga compra candidatos completos; las más grandes cuestan menos por candidato. Los créditos no caducan.",
     "taxes": "Los precios no incluyen el IVA ni el impuesto sobre las ventas: donde corresponda, se añade al pagar, y la página de pago muestra el total antes de que pagues.",
+    "paysIn": "Esta empresa paga en {currency}.",
+    "paysInChange": "Cambiar la moneda",
     "candidates": "{count, plural, one {# candidato} other {# candidatos}}",
     "perCandidate": "{price}<unit>/candidato</unit>",
     "howMany": "Candidatos a recargar",
@@ -1143,7 +1149,7 @@
     "topUp": "Recargar"
   },
   "site": {
-    "description": "Pega la descripción del puesto y obtén una prueba de selección cronometrada. Preguntas aleatorias por candidato, ranking e informes. $2–5 por candidato.",
+    "description": "Pega la descripción del puesto y obtén una prueba de selección cronometrada. Preguntas aleatorias por candidato, ranking e informes.{priced, select, yes { {price} por candidato.} other {}}",
     "homeTitle": "Pruebas de selección de personal desde tu oferta de empleo"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Última actualización",
     "englishOnly": "Esta página solo está en inglés.",
     "startTitle": "Evalúa a tus candidatos",
-    "startText": "Crea una prueba de habilidades cronometrada a partir de tu descripción del puesto. $2–5 por candidato, sin suscripción.",
+    "startText": "Crea una prueba de habilidades cronometrada a partir de tu descripción del puesto.{priced, select, yes { {price} por candidato, sin suscripción.} other {}}",
     "startButton": "Crear una prueba"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Pruebas de habilidades cronometradas listas para puestos comunes. Usa una tal cual o crea una prueba a partir de tu propia descripción del puesto.",
     "heading": "Prueba de habilidades de {role} para contratar",
     "pageTitle": "Prueba de {role} para selección de personal",
-    "pageDescription": "Prueba de {role} cronometrada para selección de personal, con {count, plural, one {# tema} other {# temas}}. Cada candidato recibe sus propias preguntas aleatorias. $2–5 por candidato.",
-    "lead": "Una prueba cronometrada de opción múltiple sobre las habilidades de este puesto. Cada candidato recibe su propio conjunto aleatorio de preguntas con un temporizador en cada una, y tú recibes una ficha de evaluación con cada respuesta y su tiempo. $2–5 por candidato, sin suscripción.",
+    "pageDescription": "Prueba de {role} cronometrada para selección de personal, con {count, plural, one {# tema} other {# temas}}. Cada candidato recibe sus propias preguntas aleatorias.{priced, select, yes { {price} por candidato.} other {}}",
+    "lead": "Una prueba cronometrada de opción múltiple sobre las habilidades de este puesto. Cada candidato recibe su propio conjunto aleatorio de preguntas con un temporizador en cada una, y tú recibes una ficha de evaluación con cada respuesta y su tiempo.{priced, select, yes { {price} por candidato, sin suscripción.} other {}}",
     "create": "Crear una prueba para tus candidatos",
     "practise": "Practícala gratis",
     "topics": "Qué evalúa",
@@ -2170,7 +2176,9 @@
     "automatic": "Recarga automática",
     "invoice": "Factura",
     "invoiceFailed": "No se pudo abrir la factura. Inténtalo de nuevo.",
-    "deletedCandidate": "Un candidato eliminado"
+    "deletedCandidate": "Un candidato eliminado",
+    "currency": "Moneda",
+    "currencyFailed": "No se pudo cambiar la moneda. Inténtalo de nuevo."
   },
   "aiApps": {
     "group": "Apps de IA",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Configuró la recarga automática",
       "auto_top_up_changed": "Cambió la recarga automática",
       "auto_top_up_stopped": "Detuvo la recarga automática",
+      "currency_changed": "Cambió la moneda",
       "ats_connected": "Conectó un ATS",
       "ats_reconnected": "Volvió a conectar un ATS",
       "ats_disconnected": "Desconectó un ATS",

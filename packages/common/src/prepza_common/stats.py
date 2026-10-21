@@ -15,8 +15,8 @@ Period = Annotated[str | None, Query(pattern=r"^\d{4}(-(0[1-9]|1[0-2]))?$")]
 
 class StatsOut(BaseModel):
     counts: dict[str, int]
-    # The currency of amounts in cents, for the service that has any.
-    currency: str | None = None
+    # What was paid, in minor units by currency, for the service that takes payments.
+    paid: dict[str, int] | None = None
 
 
 def period_range(period: str) -> tuple[datetime, datetime]:

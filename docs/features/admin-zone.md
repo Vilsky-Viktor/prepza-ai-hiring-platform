@@ -97,7 +97,7 @@ General has ten numbers as cards:
 6. candidates finished (also in the month they were invited),
 7. talents' practice rounds,
 8. top-ups,
-9. what they paid (tax included, refunds not taken off; a transaction counts once),
+9. what they paid, in each currency apart ("$12.3K, €4K"; tax included, refunds not taken off; a transaction counts once),
 10. the credits spent on candidates.
 
 Numbers show short from a thousand up, in the language's own way ("1.5K", "$12.3K"); money under $1,000 is exact.

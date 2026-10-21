@@ -4,6 +4,9 @@
     "language": "Dil",
     "languageNote": "Arayüz ve yardım sohbetinin yanıtları için, ayrıca yeni mülakatların başladığı dil. Mülakatı desteklenen herhangi bir dilde oluşturabilirsiniz.",
     "languageFailed": "Dil değiştirilemedi. Lütfen tekrar deneyin.",
+    "currency": "Para birimi",
+    "currencyNote": "Nerede olursanız olun fiyatlar bu para biriminde gösterilir. Bir şirketin kredi yüklemeleri şirketin kendi para birimindedir.",
+    "currencyFailed": "Para birimi değiştirilemedi. Lütfen tekrar deneyin.",
     "account": "Hesabınız",
     "accountNote": "Hesabınızla ilgili bize yazarken bu ID'yi belirtin.",
     "yourData": "Verileriniz",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Herkesi test edin\nEn iyisini işe alın",
-    "text": "Yapay zekâ, iş tanımınızı profesyonel, süreli bir mülakata dönüştürür.\nAday başına yalnızca $2–5."
+    "text": "Yapay zekâ, iş tanımınızı profesyonel, süreli bir mülakata dönüştürür.",
+    "price": "Aday başına yalnızca {price}."
   },
   "start": {
     "placeholder": "Bir iş tanımı yapıştırın ya da pozisyonu ve adayın bilmesi gerekenleri anlatın",
@@ -725,6 +729,8 @@
     "topUpTitle": "Kredi yükle: {name}",
     "topUpNote": "Her yükleme tam sayıda aday satın alır; büyük yüklemelerde aday başına maliyet düşer. Krediler hiç sona ermez.",
     "taxes": "Fiyatlara KDV veya satış vergisi dahil değildir: uygulandığı yerlerde ödeme sırasında eklenir ve ödeme yapmadan önce toplam tutarı görürsünüz.",
+    "paysIn": "Bu şirket {currency} ile ödüyor.",
+    "paysInChange": "Para birimini değiştir",
     "candidates": "{count, plural, one {# aday} other {# aday}}",
     "perCandidate": "{price}<unit>/aday</unit>",
     "howMany": "Yüklenecek aday sayısı",
@@ -1143,7 +1149,7 @@
     "topUp": "Kredi yükle"
   },
   "site": {
-    "description": "İş tanımınızdan süreli işe alım testleri. Her aday kendi rastgele sorularını alır; aday sıralaması, değerlendirme kartları ve raporlar. Aday başına $2–5.",
+    "description": "İş tanımınızdan süreli işe alım testleri. Her aday kendi rastgele sorularını alır; aday sıralaması, değerlendirme kartları ve raporlar.{priced, select, yes { Aday başına {price}.} other {}}",
     "homeTitle": "İş tanımınızdan işe alım testleri oluşturun"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Son güncelleme",
     "englishOnly": "Bu sayfa yalnızca İngilizcedir.",
     "startTitle": "Adaylarınızı test edin",
-    "startText": "İş tanımınızdan süreli bir beceri testi oluşturun. Aday başına $2–5, abonelik yok.",
+    "startText": "İş tanımınızdan süreli bir beceri testi oluşturun.{priced, select, yes { Aday başına {price}, abonelik yok.} other {}}",
     "startButton": "Test oluştur"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Yaygın pozisyonlar için hazır süreli beceri testleri. Birini olduğu gibi kullanın ya da kendi iş tanımınızdan bir test oluşturun.",
     "heading": "İşe alım için {role} beceri testi",
     "pageTitle": "{role} işe alım testi",
-    "pageDescription": "Adaylarınız için süreli {role} işe alım testi; {count, plural, one {# konu} other {# konu}} içerir. Her aday kendi rastgele sorularını alır. Aday başına $2–5.",
-    "lead": "Bu pozisyonun becerilerini ölçen süreli, çoktan seçmeli bir test. Her aday kendi rastgele soru setini alır ve her soruda bir süre vardır; siz de her cevabı ve süresini gösteren bir değerlendirme kartı alırsınız. Aday başına $2–5, abonelik yok.",
+    "pageDescription": "Adaylarınız için süreli {role} işe alım testi; {count, plural, one {# konu} other {# konu}} içerir. Her aday kendi rastgele sorularını alır.{priced, select, yes { Aday başına {price}.} other {}}",
+    "lead": "Bu pozisyonun becerilerini ölçen süreli, çoktan seçmeli bir test. Her aday kendi rastgele soru setini alır ve her soruda bir süre vardır; siz de her cevabı ve süresini gösteren bir değerlendirme kartı alırsınız.{priced, select, yes { Aday başına {price}, abonelik yok.} other {}}",
     "create": "Adaylarınız için test oluşturun",
     "practise": "Ücretsiz pratik yapın",
     "topics": "Neyi ölçer",
@@ -2170,7 +2176,9 @@
     "automatic": "Otomatik yükleme",
     "invoice": "Fatura",
     "invoiceFailed": "Fatura açılamadı. Lütfen tekrar deneyin.",
-    "deletedCandidate": "Silinmiş bir aday"
+    "deletedCandidate": "Silinmiş bir aday",
+    "currency": "Para birimi",
+    "currencyFailed": "Para birimi değiştirilemedi. Lütfen tekrar deneyin."
   },
   "aiApps": {
     "group": "Yapay zekâ uygulamaları",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Otomatik yüklemeyi ayarladı",
       "auto_top_up_changed": "Otomatik yüklemeyi değiştirdi",
       "auto_top_up_stopped": "Otomatik yüklemeyi durdurdu",
+      "currency_changed": "Para birimini değiştirdi",
       "ats_connected": "Bir ATS bağladı",
       "ats_reconnected": "Bir ATS'yi yeniden bağladı",
       "ats_disconnected": "Bir ATS'nin bağlantısını kesti",

@@ -4,6 +4,9 @@
     "language": "Sprache",
     "languageNote": "Für die Oberfläche und die Antworten im Hilfe-Chat sowie die Sprache, in der neue Interviews starten. Du kannst ein Interview in jeder unterstützten Sprache erstellen.",
     "languageFailed": "Die Sprache konnte nicht geändert werden. Bitte versuche es erneut.",
+    "currency": "Währung",
+    "currencyNote": "Preise werden in ihr angezeigt, egal wo du bist. Das Aufladen für ein Unternehmen läuft in dessen eigener Währung.",
+    "currencyFailed": "Die Währung konnte nicht geändert werden. Bitte versuche es erneut.",
     "account": "Dein Konto",
     "accountNote": "Gib diese ID an, wenn du uns wegen deines Kontos schreibst.",
     "yourData": "Deine Daten",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Teste jeden\nStelle die Besten ein",
-    "text": "KI macht aus deiner Stellenbeschreibung ein professionelles Interview mit Zeitlimit.\nNur $2–5 pro Kandidat."
+    "text": "KI macht aus deiner Stellenbeschreibung ein professionelles Interview mit Zeitlimit.",
+    "price": "Nur {price} pro Kandidat."
   },
   "start": {
     "placeholder": "Füge eine Stellenbeschreibung ein oder beschreibe die Rolle und was ein Kandidat wissen sollte",
@@ -725,6 +729,8 @@
     "topUpTitle": "Aufladen: {name}",
     "topUpNote": "Jede Aufladung reicht für eine feste Zahl von Kandidaten; größere Aufladungen kosten weniger pro Kandidat. Credits verfallen nie.",
     "taxes": "Die Preise verstehen sich ohne MwSt. oder Sales Tax: Wo sie anfällt, kommt sie beim Bezahlen hinzu, und du siehst den Gesamtbetrag, bevor du bezahlst.",
+    "paysIn": "Dieses Unternehmen zahlt in {currency}.",
+    "paysInChange": "Währung ändern",
     "candidates": "{count, plural, one {# Kandidat} other {# Kandidaten}}",
     "perCandidate": "{price}<unit>/Kandidat</unit>",
     "howMany": "Kandidaten zum Aufladen",
@@ -1143,7 +1149,7 @@
     "topUp": "Aufladen"
   },
   "site": {
-    "description": "Einstellungstest mit Zeitlimit aus deiner Stellenbeschreibung: eigene, zufällige Fragen je Bewerber, dazu Ranking und Berichte. $2–5 pro Kandidat.",
+    "description": "Einstellungstest mit Zeitlimit aus deiner Stellenbeschreibung: eigene, zufällige Fragen je Bewerber, dazu Ranking und Berichte.{priced, select, yes { {price} pro Kandidat.} other {}}",
     "homeTitle": "Einstellungstest aus deiner Stellenbeschreibung erstellen"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Zuletzt aktualisiert",
     "englishOnly": "Diese Seite gibt es nur auf Englisch.",
     "startTitle": "Teste deine Kandidaten",
-    "startText": "Erstelle einen Einstellungstest mit Zeitlimit aus deiner Stellenbeschreibung. $2–5 pro Kandidat, ohne Abo.",
+    "startText": "Erstelle einen Einstellungstest mit Zeitlimit aus deiner Stellenbeschreibung.{priced, select, yes { {price} pro Kandidat, ohne Abo.} other {}}",
     "startButton": "Test erstellen"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Fertige Einstellungstests mit Zeitlimit für gängige Rollen. Nutze einen direkt oder erstelle einen Test aus deiner eigenen Stellenbeschreibung.",
     "heading": "{role} Test für Bewerber",
     "pageTitle": "{role} Test für Bewerber",
-    "pageDescription": "Einstellungstest für {role} mit Zeitlimit, mit {count, plural, one {# Thema} other {# Themen}}. Jeder Bewerber bekommt eigene, zufällige Fragen. $2–5 pro Kandidat.",
-    "lead": "Ein Multiple-Choice-Test mit Zeitlimit zu den Kompetenzen dieser Rolle. Jeder Kandidat bekommt eigene, zufällige Fragen mit einem Zeitlimit für jede, und du bekommst eine Auswertung mit jeder Antwort und ihrer Dauer. $2–5 pro Kandidat, ohne Abo.",
+    "pageDescription": "Einstellungstest für {role} mit Zeitlimit, mit {count, plural, one {# Thema} other {# Themen}}. Jeder Bewerber bekommt eigene, zufällige Fragen.{priced, select, yes { {price} pro Kandidat.} other {}}",
+    "lead": "Ein Multiple-Choice-Test mit Zeitlimit zu den Kompetenzen dieser Rolle. Jeder Kandidat bekommt eigene, zufällige Fragen mit einem Zeitlimit für jede, und du bekommst eine Auswertung mit jeder Antwort und ihrer Dauer.{priced, select, yes { {price} pro Kandidat, ohne Abo.} other {}}",
     "create": "Test für deine Kandidaten erstellen",
     "practise": "Kostenlos üben",
     "topics": "Was getestet wird",
@@ -2170,7 +2176,9 @@
     "automatic": "Automatisches Aufladen",
     "invoice": "Rechnung",
     "invoiceFailed": "Die Rechnung konnte nicht geöffnet werden. Bitte versuche es erneut.",
-    "deletedCandidate": "Ein gelöschter Kandidat"
+    "deletedCandidate": "Ein gelöschter Kandidat",
+    "currency": "Währung",
+    "currencyFailed": "Die Währung konnte nicht geändert werden. Bitte versuche es erneut."
   },
   "aiApps": {
     "group": "KI-Apps",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Hat automatisches Aufladen eingerichtet",
       "auto_top_up_changed": "Hat das automatische Aufladen geändert",
       "auto_top_up_stopped": "Hat das automatische Aufladen beendet",
+      "currency_changed": "Hat die Währung geändert",
       "ats_connected": "Hat ein ATS verbunden",
       "ats_reconnected": "Hat ein ATS erneut verbunden",
       "ats_disconnected": "Hat ein ATS getrennt",

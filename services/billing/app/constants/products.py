@@ -3,6 +3,7 @@ from datetime import timedelta
 from enum import StrEnum
 
 from app.constants.credits import CANDIDATE_CREDITS
+from app.constants.currencies import Currency
 
 # The admin zone's support tab lists at most this many of a person's top-ups, newest first.
 MAX_BUYER_PURCHASES = 100
@@ -16,35 +17,41 @@ class OwnerType(StrEnum):
 
 @dataclass(frozen=True)
 class TopUp:
+    # Kept as they were when each cost that many dollars: purchases and automatic top-ups store
+    # them.
     key: str
-    title: str
-    price_cents: int
+    candidates: int
 
 
-# Fixed amounts; what each buys comes from helpers/credits.py.
-# Each buys whole candidates at its own price: 10 at $5, 50 at $4, 200 at $3, 500 at $2.
+# The fixed top-ups automatic top-up buys: the smallest of each volume price, at that price
+# (helpers/credits.py), in the buyer's currency.
 TOP_UPS = [
-    TopUp("topup_50", "$50", 5_000),
-    TopUp("topup_200", "$200", 20_000),
-    TopUp("topup_600", "$600", 60_000),
-    TopUp("topup_1000", "$1,000", 100_000),
+    TopUp("topup_50", 10),
+    TopUp("topup_200", 50),
+    TopUp("topup_600", 200),
+    TopUp("topup_1000", 500),
 ]
 
-# What a candidate costs (in cents) when bought in a top-up from these amounts up (in cents),
-# largest first: volume prices. Below them, a candidate costs CANDIDATE_CREDITS at
-# CREDITS_PER_DOLLAR, $5; so larger top-ups buy more credits per dollar.
-CANDIDATE_PRICE_TIERS = [(100_000, 200), (60_000, 300), (20_000, 400)]
+# What a candidate costs (minor units) in a top-up of at least this many candidates, smallest
+# first, in each currency: volume prices, so larger top-ups buy candidates for less. Each
+# currency has round prices of its own, not a conversion.
+CANDIDATE_PRICES = {
+    Currency.USD: [(10, 500), (50, 400), (200, 300), (500, 200)],
+    Currency.EUR: [(10, 500), (50, 400), (200, 300), (500, 200)],
+    Currency.GBP: [(10, 400), (50, 300), (200, 225), (500, 150)],
+}
 
-# A top-up of any number of candidates: from the smallest top-up's candidates up to this many.
-# Each candidate costs what it does in the largest top-up the count reaches (helpers/credits.py).
-# Billing sells it as one item priced in the transaction itself (quantity 1, which the buyer
-# can't change), with the candidates in its custom data under CUSTOM_TOP_UP_FLAG; the purchase
-# is recorded as CUSTOM_TOP_UP_KEY.
+# A top-up of any number of candidates: from the smallest tier's candidates up to this many.
+# Each candidate costs its tier's price (helpers/credits.py).
+# Billing sells every top-up as one item priced in the transaction itself (quantity 1, which the
+# buyer can't change), in one currency, with what it buys in the price's custom data: a fixed
+# top-up's key under TOP_UP_FLAG, or the candidates under CUSTOM_TOP_UP_FLAG, recorded as
+# CUSTOM_TOP_UP_KEY.
 CUSTOM_TOP_UP_MAX = 1_000
+TOP_UP_FLAG = "top_up"
 CUSTOM_TOP_UP_FLAG = "candidates"
 CUSTOM_TOP_UP_KEY = "candidates"
 
-CURRENCY = "USD"
 # Paddle signs each webhook with a timestamp; older ones are refused, so a captured one can't be
 # replayed later.
 WEBHOOK_TOLERANCE_SECONDS = 5 * 60

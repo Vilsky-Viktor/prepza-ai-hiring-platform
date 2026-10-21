@@ -19,6 +19,8 @@ test("an owner picks the automatic top-up's amount and level", async ({ signInAs
         threshold: null,
         products: ["topup_50", "topup_200"],
         thresholds: [500, 2000],
+        currency: "USD",
+        prices: { topup_50: 5000, topup_200: 20000 },
       },
     })
   )
@@ -63,6 +65,8 @@ test("an automatic top-up that's on shows its setting and changes from the edit 
         threshold: 500,
         products: ["topup_50", "topup_200"],
         thresholds: [500, 2000],
+        currency: "USD",
+        prices: { topup_50: 5000, topup_200: 20000 },
       },
     })
   )

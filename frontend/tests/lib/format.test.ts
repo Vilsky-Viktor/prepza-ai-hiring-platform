@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest"
+import type { Catalog } from "@/types/billing"
 
 import {
   dayStart,
@@ -7,6 +8,7 @@ import {
   formatDay,
   formatPercent,
   formatPrice,
+  candidatePriceRange,
   formatPriceRange,
   formatSeconds,
   formatUsd,
@@ -90,8 +92,23 @@ describe("formatPriceRange", () => {
     expect(plain(formatPriceRange(100, 300, "USD", "de"))).toBe("1–3 $")
   })
 
-  it("shows cents when either end has them", () => {
-    expect(plain(formatPriceRange(50, 300, "USD", "en"))).toBe("$0.50 – $3.00")
+  it("shows cents only where an end has them, as each currency writes them", () => {
+    expect(plain(formatPriceRange(50, 300, "USD", "en"))).toBe("$0.50 – $3")
+    expect(plain(formatPriceRange(150, 400, "GBP", "en"))).toBe("£1.50 – £4")
+    expect(plain(formatPriceRange(200, 500, "EUR", "fr"))).toBe("2–5 €")
+  })
+})
+
+describe("candidatePriceRange", () => {
+  it("is the catalog's cheapest to standard price in its currency, or empty without one", () => {
+    const catalog = {
+      currency: "GBP",
+      candidate_cents_min: 150,
+      candidate_cents_max: 400,
+    } as Catalog
+
+    expect(plain(candidatePriceRange(catalog, "en"))).toBe("£1.50 – £4")
+    expect(candidatePriceRange(null, "en")).toBe("")
   })
 })
 

@@ -10,12 +10,13 @@ Companies pay per candidate from a wallet of credits. There's no paid subscripti
 - [Refunds and chargebacks](#refunds-and-chargebacks)
 - [Deleting a company](#deleting-a-company)
 - [AI usage and limit hits](#ai-usage-and-limit-hits)
+- [Currencies](#currencies)
 - [Setting up Paddle](#setting-up-paddle)
 
 ## Credits
 
-- Credits never expire. Larger top-ups buy them for less money (see [Top-ups](#top-ups)), so a credit has no fixed price in dollars.
-- A company pays 500 credits ($5) per candidate who answers at least one question: picks an answer, not lets its time run out.
+- Credits never expire. Larger top-ups buy them for less money (see [Top-ups](#top-ups)), so a credit has no fixed price.
+- A company pays 500 credits ($5, €5 or £4) per candidate who answers at least one question: picks an answer, not lets its time run out.
 - Generating an interview is free.
 - Only what works is charged: a candidate's credits are set aside on invite and given back if they never answer.
 - A candidate removed before finishing (revoked, with their interview deleted, or deleting their own account) is charged by the same rule, if they picked an answer to at least one question (rounds' `picked` count); otherwise their credits come back.
@@ -31,26 +32,26 @@ Until its first top-up, a company can have 1 generated interview waiting without
 
 ## Top-ups
 
-Large top-ups buy more credits per dollar: each top-up has its own price per candidate (`CANDIDATE_PRICE_TIERS`), and buys whole candidates at it.
+Large top-ups buy candidates for less: each level has its own price per candidate in each currency (`CANDIDATE_PRICES` in `app/constants/products.py`), round prices of their own rather than a conversion (see [Currencies](#currencies)).
 
-| Top-up | Candidates | Per candidate |
-|---|---|---|
-| $50 | 10 | $5 |
-| $200 | 50 | $4 |
-| $600 | 200 | $3 |
-| $1,000 | 500 | $2 |
+| Top-up | Candidates | USD | EUR | GBP |
+|---|---|---|---|---|
+| Smallest | 10 | $50 ($5 each) | €50 (€5) | £40 (£4) |
+| Second | 50 | $200 ($4) | €200 (€4) | £150 (£3) |
+| Third | 200 | $600 ($3) | €600 (€3) | £450 (£2.25) |
+| Largest | 500 | $1,000 ($2) | €1,000 (€2) | £750 (£1.50) |
 
-Saved automatic top-ups were moved to these by billing's migration 0012 ($30 to $50, $150 to $200, $250 to $600), each threshold keeping its number of candidates. These fixed amounts are what automatic top-up buys, and what the pricing and home pages show.
+These fixed top-ups (keys `topup_50` to `topup_1000`, kept from when they were dollar amounts) are what automatic top-up buys; the pricing and home pages show their prices. Saved automatic top-ups were moved to them by billing's migration 0012, each threshold keeping its number of candidates.
 
 The top-up dialog (on the top-up page and a company's billing tab and header) buys any number of candidates from 10 to 1,000 instead:
 
-- A slider with one equal part per price level, 10–49 at $5, 50–199 at $4, 200–499 at $3 and 500–1,000 at $2 a candidate, each labelled with its price; the count shows over the knob. Arrow keys move one candidate, Page Up and Page Down ten, Home and End to the ends.
+- A slider with one equal part per price level (10–49, 50–199, 200–499 and 500–1,000 candidates), each labelled with its price per candidate in the company's currency; the count shows over the knob. Arrow keys move one candidate, Page Up and Page Down ten, Home and End to the ends.
 - Under it, what the count costs, as three cards: the price, the credits (500 a candidate) and the candidates.
-- Never more than the next level: when the count at its level's price costs at least the next level's smallest top-up (50 for $200, 200 for $600, 500 for $1,000), it buys that instead, at that price, and the dialog says so ("50 candidates for the same price"). So 40–49 buy 50 for $200, 150–199 buy 200 for $600 and 334–499 buy 500 for $1,000.
-- Billing decides all of it (`custom_top_up` in `app/helpers/credits.py`): the levels come from the fixed top-ups, and its catalog (`custom`) gives the range, whether it's on sale (Paddle's product for it is set), and each level's first count, price per candidate and the count from which it buys the next level (`upgrade_from`). The dialog only displays and multiplies.
-- Top up sends the count (`POST /companies/{id}/billing/checkout` with `{"candidates": N}`); billing works out again what it buys, refuses a count out of the range ("Choose from 10 to 1,000 candidates.", 422) or a sale before the product is set ("This top-up isn't available", 422), and makes the checkout: one item ("50 candidates") with its price made in the transaction, under the `PADDLE_PRODUCT_CANDIDATES` product, at the total billing worked out, tax added on top (`tax_mode: external`), quantity fixed at 1, so the buyer can't change what they buy. The candidates go in the transaction's custom data, beside the wallet.
-- The webhook grants those candidates (500 credits each) for a paid line of that product, never anything the browser sent; a count billing doesn't sell grants nothing and is logged as an error, to refund.
-- Under the button, the automatic top-up as a card: what it does or is set to, and **Set up** or **Change**.
+- Never more than the next level: when the count at its level's price costs at least the next level's smallest top-up (50 for $200, 200 for $600, 500 for $1,000), it buys that instead, at that price, and the dialog says so ("50 candidates for the same price"). So in dollars and euros 40–49 buy 50, 150–199 buy 200 and 334–499 buy 500; in pounds the first step comes sooner, at 38.
+- Billing decides all of it (`custom_top_up` in `app/helpers/credits.py`), in the company's currency: its catalog (`custom`) gives the range, whether it's on sale (Paddle's product for it is set), and each level's first count, price per candidate and the count from which it buys the next level (`upgrade_from`). The dialog only displays and multiplies.
+- Top up sends the count (`POST /companies/{id}/billing/checkout` with `{"candidates": N}`); billing works out again what it buys in the company's currency, refuses a count out of the range ("Choose from 10 to 1,000 candidates.", 422) or a sale before the product is set ("This top-up isn't available", 422), and makes the checkout: one item ("50 candidates") with its price made in the transaction, under the `PADDLE_PRODUCT_CANDIDATES` product, in that currency only (and the transaction's `currency_code`), tax added on top (`tax_mode: external`), quantity fixed at 1, so the buyer can't change what they buy. What it buys goes in the price's custom data (`candidates`, or a fixed top-up's `top_up` key for automatic top-up), the wallet and the buyer in the transaction's.
+- The webhook grants those candidates (500 credits each) for a paid line of that product, the same in any currency, never anything the browser sent; a count out of the range grants nothing and is logged as an error, to refund. The money kept is what Paddle charged: the line's subtotal and the transaction's currency.
+- Under the slider, the automatic top-up as a card, then "This company pays in USD. **Change**" (the company's currency, linking to its billing tab).
 
 - Top up on the top-up page, for any company you belong to.
 - Billing makes each top-up's checkout (a Paddle transaction naming the company and the buyer), after companies checks the buyer is its owner or an admin (`POST /companies/{id}/billing/checkout`); the browser only opens it, so it can't send the money to another wallet or record someone else as the buyer. A paid transaction billing didn't make (its origin isn't `api`), or one into a company deleted meanwhile, adds no credits and is logged as an error, to refund.
@@ -58,7 +59,7 @@ The top-up dialog (on the top-up page and a company's billing tab and header) bu
 - Paddle's checkout opens over the page the buyer is on, in the site's light or dark theme and language (English where Paddle doesn't have it), as one page.
 - Top up closes the top-up dialog once the checkout shows, so only the checkout is open.
 - When Paddle completes the payment (`checkout.completed` in Paddle.js), its checkout closes and a dialog on the same page says the payment went through: "Payment received" for a top-up, "Automatic top-up is on" for the card that turns it on. Nothing is added to the address, and one checkout shows it once.
-- The home and pricing pages show the prices, their range and the free candidates as billing's catalog (`/billing/catalog`) gives them, in its currency. Kept 5 minutes; when billing can't answer and nothing is kept, the pricing page shows its title, intro and Top up with "Prices aren't available right now" instead of the list, rather than an empty or error page.
+- The home and pricing pages show the prices, their range and the free candidates as billing's catalog (`/billing/catalog`) gives them, in the visitor's currency (see [Currencies](#currencies)). Kept 5 minutes; when billing can't answer and nothing is kept, the pricing page shows its title, intro and Top up with "Prices aren't available right now" instead of the list, rather than an empty or error page.
 
 When a payment fails in Paddle's checkout (a declined card, a failed Google Pay, Apple Pay or PayPal payment, and so on), the site says why and what to do:
 
@@ -81,7 +82,8 @@ On the top-up page, under each balance, "Set up automatic top-up" opens the choi
 - Each amount shows the candidates it buys, in the list and in the chosen amount, from billing's catalog.
 - The dialog's buttons: **Turn off** (when it's on), **Close**, and **Save**, which needs a change once it's on (turning it on needs none).
 
-- The card is saved through Paddle once.
+- The card is saved through Paddle once, with a $0 subscription whose checkout billing makes in the company's currency.
+- Every charge is in the company's currency, at that currency's price for the fixed top-up: if the company's currency changed since the subscription started, billing first switches the subscription to it (Paddle's `currency_code`, nothing billed for the switch), as Paddle charges a subscription in its own currency and would otherwise convert. The amounts it shows are in the company's currency too.
 - Running, it charges the card of whoever set it up: only they change what it buys or when. Any other owner or admin may turn it off, then turn it on with their own card (`NOT_YOUR_AUTO_TOP_UP`, a 403, otherwise).
 - Turning it off (by a member, by removing or demoting the member whose card pays, or by deleting the company or that member's account) cancels its Paddle subscription first and only then forgets it; a subscription Paddle already ended counts as cancelled. If Paddle can't cancel it, it stays on and the action fails, to be tried again, so the card is never left saved with nothing pointing at it.
 - A user's data export ("Download my data") lists the automatic top-ups they turned on, as their card pays for them, with what each buys and when it last charged or was declined, beside what they bought for their companies.
@@ -103,7 +105,7 @@ A balance shows short from a thousand credits up ("3.5K", in the language's own 
 
 Owners and admins see a company's **billing** tab, before referrals; viewers don't, and its API answers them with 403.
 
-- At the top: the available credits, the credits reserved for candidates who haven't finished, the automatic top-up setting and the top-up button.
+- At the top: the available credits, the credits reserved for candidates who haven't finished, the automatic top-up setting, the company's currency (a USD / EUR / GBP pill beside the top-up button, which owners and admins change at once) and the top-up button. On phones the currency and the button go together under the balance.
 - Two tabs under it, **history** first and **reserved (N)** beside it (`?tab=reserved`), so a long list of reserved candidates never pushes the history out of sight; only the open tab's list is loaded.
 - **Reserved**: an info card on what reserved credits are, then the candidates invited who haven't finished (invited, undelivered or in progress), each opening the candidate's page. Their count comes with the company's credits (`reserved_candidates`).
 - **History**: every movement of the company's credits, newest first, loading more as you scroll. Each shows the credits it moved (+5,000, −500), what it was and when:
@@ -156,11 +158,23 @@ POST   /internal/schedules/retention        # daily
 
 To fill in the top lists' names, billing asks companies for companies' names and library for accounts' emails. `MONTHLY_BUDGET` (USD a month, set in the admin zone's Controls, see [Admin zone](admin-zone.md#limits)) is what the page compares the month's spend with; at 0 it shows the month's spend alone.
 
+## Currencies
+
+Prices are in euros in the EU, Iceland, Liechtenstein, Norway and Switzerland, in pounds in the UK and in US dollars elsewhere (`app/constants/currencies.py`). Billing decides which, never the site:
+
+- **The country:** Google's load balancer adds `X-Client-Country: {client_region}` to every request, replacing any the browser sent; the site's server-side calls pass it on as `?country=`. Locally the gateway takes it from a `test_country` cookie ("DE", "GB"). The header is optional everywhere: calls from AI apps, the public API, other services and tests have none.
+- **Saved currencies** (`currency_choices`, migration 0017): a person's is saved from their country at sign-up, a company's from its creator's country when it's created; one without (older accounts and companies) gets it the first time billing sees them with a known country, US dollars until then. Travelling later changes nothing. A person changes theirs in Settings (beside the language); owners and admins change a company's beside its Top up button, on its billing tab and the top-up page (`PUT /companies/{id}/billing/currency`, in the action log as "Changed the currency").
+- **Which applies:** a company's billing (its catalog `GET /companies/{id}/billing/catalog`, the top-up dialog, automatic top-up, checkouts) uses the company's; elsewhere a signed-in person sees their own (`GET /billing/catalog` with their token), and a signed-out visitor their country's, not saved.
+- The FAQ and the help chat name prices in the visitor's country's currency; the admin zone's stats show what was paid in each currency apart.
+- Deleting an account or a company deletes its saved currency; a user's data export includes theirs.
+
 ## Setting up Paddle
 
-`billing` sells through [Paddle](https://www.paddle.com), which is the merchant of record: it handles VAT and sales tax. Businesses and consumers can both buy; prices don't include VAT or sales tax: where it applies, Paddle adds it at checkout, on top of the listed price, and the checkout shows the total before the buyer pays. Prices are in US dollars, and buyers pay in US dollars; a card in another currency may be converted by its bank or card issuer.
+`billing` sells through [Paddle](https://www.paddle.com), which is the merchant of record: it handles VAT and sales tax. Businesses and consumers can both buy; prices don't include VAT or sales tax: where it applies, Paddle adds it at checkout, on top of the listed price, and the checkout shows the total before the buyer pays. A company pays in its own currency (see [Currencies](#currencies)); a card in another currency may be converted by its bank or card issuer.
 
-1. In Paddle (start with the sandbox), create a product with a USD price for each top-up in `services/billing/app/constants/products.py` ($50, $200, $600, $1,000), each with its **Tax** set to **Exclusive** (`tax_mode: external`): VAT or sales tax, where it applies, is added on top of the price at checkout, as the pricing page and the terms say. For the top-up of any number of candidates, also create one product (say, "Candidates"), with no price: billing prices each top-up in its transaction, tax Exclusive. Also create a client-side token. Under Settings → Currencies, keep automatic currency conversion off for every currency: otherwise Paddle's checkout shows and charges a converted local amount, and the terms say buyers pay in US dollars.
+Every price is made by billing in the transaction itself, in one currency, with the transaction's `currency_code`: Paddle then charges that currency from any country (a price with country overrides is instead charged in the buyer's country's currency, converting when the transaction's differs, so overrides aren't used).
+
+1. In Paddle (start with the sandbox), create one product (say, "Candidates"), with no price: billing prices each top-up under it, tax **Exclusive** (`tax_mode: external`), so VAT or sales tax is added on top at checkout, as the pricing page and the terms say. Also create a client-side token. Under Settings → Currencies, keep automatic currency conversion off.
 2. Under Developer tools → Notifications, add a webhook destination at `https://<your domain>/api/billing/webhooks/paddle` for these events, then copy its secret key:
 
    | Event | Why |
@@ -169,7 +183,7 @@ To fill in the top lists' names, billing asks companies for companies' names and
    | `adjustment.created`, `adjustment.updated` | Refunds and chargebacks, which take credits back |
    | `subscription.created`, `subscription.canceled` | Start and end automatic top-ups |
 
-3. Create a server-side API key with permission to read and write transactions (billing makes every top-up's checkout, and reads invoices for the billing tab) and to read and update subscriptions (automatic top-up). For automatic top-up, also create a $0 monthly price (its checkout saves the card); without it and the key, automatic top-up isn't offered.
+3. Create a server-side API key with permission to read and write transactions (billing makes every top-up's checkout, and reads invoices for the billing tab) and to read and update subscriptions (automatic top-up's charges and currency). For automatic top-up, also create a $0 monthly price (its checkout saves the card); without it and the key, automatic top-up isn't offered.
 4. Set these in `.env`, then restart billing:
 
    | Setting | Value |
@@ -177,14 +191,13 @@ To fill in the top lists' names, billing asks companies for companies' names and
    | `PADDLE_ENVIRONMENT` | The Paddle environment |
    | `PADDLE_CLIENT_TOKEN` | The client-side token |
    | `PADDLE_WEBHOOK_SECRET` | The webhook's secret key |
-   | `PADDLE_PRICE_TOPUP_50`, `PADDLE_PRICE_TOPUP_200`, `PADDLE_PRICE_TOPUP_600`, `PADDLE_PRICE_TOPUP_1000` | The top-up prices |
-   | `PADDLE_PRODUCT_CANDIDATES` | The product for a top-up of any number of candidates |
+   | `PADDLE_PRODUCT_CANDIDATES` | The product every top-up is sold under |
    | `PADDLE_PRICE_AUTO_TOP_UP` | The $0 monthly price |
    | `PADDLE_API_KEY` | The server-side API key |
 
 In Google Cloud, the webhook secret and the API key go into the `paddle-webhook-secret` and `paddle-api-key` secrets (see [infra/README.md](../../infra/README.md)).
 
-- Until `PADDLE_PRODUCT_CANDIDATES` is set, the top-up dialog's button is disabled.
+- Until `PADDLE_PRODUCT_CANDIDATES` is set, the top-up dialog's button is disabled and automatic top-up isn't offered.
 - Until both automatic top-up values are set, its line on the top-up page is hidden.
 - Locally, Paddle reaches the webhook only through a tunnel, for example `cloudflared tunnel --url http://localhost:8090`.
 - In the sandbox, pay with Paddle's test cards (any name, a future expiry): `4242 4242 4242 4242` pays, `4000 0000 0000 0002` is declined, and `4000 0038 0000 0446` asks for 3-D Secure, which can be failed.

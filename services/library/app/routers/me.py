@@ -3,6 +3,7 @@ from fastapi.encoders import jsonable_encoder
 from prepza_common.auth import CurrentUser
 from prepza_common.rate_limit import hit_or_skip
 from prepza_common.superadmin import is_superadmin
+from prepza_common.visitor_country import VisitorCountry
 
 from app.integrations.redis import get_redis
 from app.schemas.emails import EmailPreferencesIn, EmailPreferencesOut
@@ -19,9 +20,11 @@ def me(user: CurrentUser) -> MeOut:
 
 
 @router.put("/me/settings", status_code=status.HTTP_204_NO_CONTENT)
-async def update_settings(body: SettingsIn, user: CurrentUser) -> None:
+async def update_settings(
+    body: SettingsIn, user: CurrentUser, country: VisitorCountry = None
+) -> None:
     """Takes effect once the frontend refreshes the user's ID token."""
-    await set_language(user, body.language)
+    await set_language(user, body.language, country)
 
 
 @router.get("/me/email-preferences")

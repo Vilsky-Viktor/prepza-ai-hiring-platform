@@ -2,84 +2,42 @@ import logging
 import time
 
 from fastapi import APIRouter, HTTPException, Request, status
+from prepza_common.auth import CurrentUser, OptionalUser
 from prepza_common.constants import WEBHOOK_SIGNATURE_REFUSED
 
 from app.config.settings import settings
-from app.constants.credits import (
-    CANDIDATE_CREDITS,
-    REFERRAL_REWARD,
-    WELCOME_COMPANY,
-)
-from app.constants.products import (
-    CURRENCY,
-    CUSTOM_TOP_UP_MAX,
-    TOP_UPS,
-    WEBHOOK_TOLERANCE_SECONDS,
-)
-from app.helpers.credits import candidate_prices, candidate_tiers, credits_for, upgrade_from
+from app.constants.currencies import ChoiceOwner
+from app.constants.products import WEBHOOK_TOLERANCE_SECONDS
+from app.dependencies import Country
 from app.helpers.paddle import signature_valid
-from app.schemas.billing import (
-    CandidatePriceOut,
-    CandidateTierOut,
-    CatalogOut,
-    CustomTopUpOut,
-    TopUpOut,
-)
-from app.services.catalog import price_ids
+from app.schemas.billing import CatalogOut, CurrencyIn, CurrencyOut
+from app.services.catalog import catalog_out
+from app.services.currencies import decide, saved
 from app.services.webhooks import handle
+from app.storage import currencies
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["billing"])
 
 
 @router.get("/catalog")
-def catalog() -> CatalogOut:
-    prices = price_ids()
-    custom_tiers = candidate_tiers()
-    tiers = candidate_prices()
-    cents = [price for _, price in tiers]
+async def catalog(user: OptionalUser, country: Country = None) -> CatalogOut:
+    """Every price: in the signed-in person's currency (their country's until they have one
+    saved), or the signed-out visitor's country's."""
+    return catalog_out(await decide(country, user.uid if user else None))
 
-    return CatalogOut(
-        environment=settings.paddle_environment,
-        client_token=settings.paddle_client_token,
-        currency=CURRENCY,
-        candidate_credits=CANDIDATE_CREDITS,
-        candidate_prices=[
-            CandidatePriceOut(from_dollars=floor, cents=price) for floor, price in tiers
-        ],
-        candidate_cents_min=min(cents),
-        candidate_cents_max=max(cents),
-        welcome_company=WELCOME_COMPANY,
-        free_candidates=WELCOME_COMPANY // CANDIDATE_CREDITS,
-        referral_company=REFERRAL_REWARD,
-        products=[
-            TopUpOut(
-                key=product.key,
-                title=product.title,
-                price_cents=product.price_cents,
-                credits=credits_for(product.price_cents),
-                candidates=credits_for(product.price_cents) // CANDIDATE_CREDITS,
-                candidate_cents=product.price_cents
-                * CANDIDATE_CREDITS
-                // credits_for(product.price_cents),
-                price_id=prices[product.key] or None,
-            )
-            for product in TOP_UPS
-        ],
-        custom=CustomTopUpOut(
-            min_candidates=custom_tiers[0][0],
-            max_candidates=CUSTOM_TOP_UP_MAX,
-            on_sale=bool(settings.paddle_product_candidates),
-            tiers=[
-                CandidateTierOut(
-                    from_candidates=count,
-                    cents=cents,
-                    upgrade_from=upgrade_from(index),
-                )
-                for index, (count, cents) in enumerate(custom_tiers)
-            ],
-        ),
-    )
+
+@router.get("/me/currency")
+async def my_currency(user: CurrentUser, country: Country = None) -> CurrencyOut:
+    return CurrencyOut(currency=await saved(ChoiceOwner.USER, user.uid, country))
+
+
+@router.put("/me/currency")
+async def choose_my_currency(body: CurrencyIn, user: CurrentUser) -> CurrencyOut:
+    """Where prices outside a company's billing show in; travelling doesn't change it."""
+    await currencies.choose(ChoiceOwner.USER, user.uid, body.currency)
+
+    return CurrencyOut(currency=body.currency)
 
 
 @router.post("/webhooks/paddle", status_code=status.HTTP_200_OK)

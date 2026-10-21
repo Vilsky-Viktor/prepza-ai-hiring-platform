@@ -4,6 +4,9 @@
     "language": "Bahasa",
     "languageNote": "Untuk antarmuka dan balasan chat bantuan, serta bahasa awal wawancara baru. Kamu bisa membuat wawancara dalam bahasa apa pun yang didukung.",
     "languageFailed": "Bahasa tidak bisa diubah. Coba lagi.",
+    "currency": "Mata uang",
+    "currencyNote": "Harga ditampilkan dalam mata uang ini, di mana pun Anda berada. Isi ulang perusahaan memakai mata uang perusahaan itu sendiri.",
+    "currencyFailed": "Tidak dapat mengubah mata uang. Silakan coba lagi.",
     "account": "Akunmu",
     "accountNote": "Sebutkan ID ini saat kamu menulis kepada kami tentang akunmu.",
     "yourData": "Datamu",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Uji semua orang\nRekrut yang terbaik",
-    "text": "AI mengubah deskripsi pekerjaanmu menjadi wawancara berbatas waktu yang profesional.\nHanya $2–5 per kandidat."
+    "text": "AI mengubah deskripsi pekerjaanmu menjadi wawancara berbatas waktu yang profesional.",
+    "price": "Hanya {price} per kandidat."
   },
   "start": {
     "placeholder": "Tempel deskripsi pekerjaan, atau jelaskan posisinya dan apa yang perlu diketahui kandidat",
@@ -725,6 +729,8 @@
     "topUpTitle": "Isi ulang: {name}",
     "topUpNote": "Setiap isi ulang dihitung untuk jumlah kandidat yang utuh; makin besar isi ulangnya, makin murah per kandidat. Kredit tidak pernah kedaluwarsa.",
     "taxes": "Harga belum termasuk PPN atau pajak penjualan: jika berlaku, pajak ditambahkan saat pembayaran, dan halaman pembayaran menampilkan totalnya sebelum kamu membayar.",
+    "paysIn": "Perusahaan ini membayar dalam {currency}.",
+    "paysInChange": "Ubah mata uang",
     "candidates": "{count, plural, other {# kandidat}}",
     "perCandidate": "{price}<unit>/kandidat</unit>",
     "howMany": "Kandidat yang diisi ulang",
@@ -1143,7 +1149,7 @@
     "topUp": "Isi ulang"
   },
   "site": {
-    "description": "Tes seleksi karyawan berbatas waktu dari deskripsi pekerjaanmu. Tiap kandidat dapat soal acak sendiri, plus scorecard dan laporan. $2–5 per kandidat.",
+    "description": "Tes seleksi karyawan berbatas waktu dari deskripsi pekerjaanmu. Tiap kandidat dapat soal acak sendiri, plus scorecard dan laporan.{priced, select, yes { {price} per kandidat.} other {}}",
     "homeTitle": "Tes seleksi karyawan, dibuat dari deskripsi pekerjaan"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Terakhir diperbarui",
     "englishOnly": "Halaman ini hanya tersedia dalam bahasa Inggris.",
     "startTitle": "Uji kandidatmu",
-    "startText": "Buat tes keterampilan berbatas waktu dari deskripsi pekerjaanmu. $2–5 per kandidat, tanpa langganan.",
+    "startText": "Buat tes keterampilan berbatas waktu dari deskripsi pekerjaanmu.{priced, select, yes { {price} per kandidat, tanpa langganan.} other {}}",
     "startButton": "Buat tes"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Tes keterampilan berbatas waktu yang siap pakai untuk posisi umum. Pakai apa adanya, atau buat tes dari deskripsi pekerjaanmu sendiri.",
     "heading": "Tes keterampilan {role} untuk rekrutmen",
     "pageTitle": "Tes {role} untuk calon karyawan",
-    "pageDescription": "Tes {role} berbatas waktu untuk calon karyawanmu, mencakup {count, plural, other {# topik}}. Setiap kandidat mendapat soal acak sendiri. $2–5 per kandidat.",
-    "lead": "Tes pilihan ganda berbatas waktu untuk keterampilan posisi ini. Setiap kandidat mendapat set soal acak sendiri dengan batas waktu di tiap soal, dan kamu mendapat scorecard berisi setiap jawaban dan waktunya. $2–5 per kandidat, tanpa langganan.",
+    "pageDescription": "Tes {role} berbatas waktu untuk calon karyawanmu, mencakup {count, plural, other {# topik}}. Setiap kandidat mendapat soal acak sendiri.{priced, select, yes { {price} per kandidat.} other {}}",
+    "lead": "Tes pilihan ganda berbatas waktu untuk keterampilan posisi ini. Setiap kandidat mendapat set soal acak sendiri dengan batas waktu di tiap soal, dan kamu mendapat scorecard berisi setiap jawaban dan waktunya.{priced, select, yes { {price} per kandidat, tanpa langganan.} other {}}",
     "create": "Buat tes untuk kandidatmu",
     "practise": "Latihan gratis",
     "topics": "Yang diuji",
@@ -2170,7 +2176,9 @@
     "automatic": "Isi ulang otomatis",
     "invoice": "Faktur",
     "invoiceFailed": "Tidak bisa membuka faktur. Silakan coba lagi.",
-    "deletedCandidate": "Kandidat yang dihapus"
+    "deletedCandidate": "Kandidat yang dihapus",
+    "currency": "Mata uang",
+    "currencyFailed": "Tidak dapat mengubah mata uang. Silakan coba lagi."
   },
   "aiApps": {
     "group": "Aplikasi AI",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Mengatur isi ulang otomatis",
       "auto_top_up_changed": "Mengubah isi ulang otomatis",
       "auto_top_up_stopped": "Menghentikan isi ulang otomatis",
+      "currency_changed": "Mengubah mata uang",
       "ats_connected": "Menghubungkan ATS",
       "ats_reconnected": "Menghubungkan ulang ATS",
       "ats_disconnected": "Memutuskan ATS",

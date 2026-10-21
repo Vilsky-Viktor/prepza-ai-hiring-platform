@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, Index, String, Text, UniqueConstraint, text
+from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, UniqueConstraint, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -43,6 +43,9 @@ class AutoTopUp(Base):
     last automatic charge, `failed_at` the last one the card declined."""
 
     __tablename__ = "auto_top_ups"
+    __table_args__ = (
+        CheckConstraint("currency IN ('USD', 'EUR', 'GBP')", name="ck_auto_top_ups_currency"),
+    )
 
     owner_type: Mapped[str] = mapped_column(String(16), primary_key=True)
     owner_id: Mapped[str] = mapped_column(String(128), primary_key=True)
@@ -51,8 +54,25 @@ class AutoTopUp(Base):
     # Who turned it on; only their checkout can start it.
     buyer_id: Mapped[str] = mapped_column(String(128))
     subscription_id: Mapped[str | None] = mapped_column(String(64), unique=True)
+    # The currency Paddle bills the subscription in: set when it starts, and switched to the
+    # company's before a charge when that changed.
+    currency: Mapped[str | None] = mapped_column(String(3))
     charged_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     failed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class CurrencyChoice(Base):
+    """The currency a company pays in, or a person sees prices in, whoever and wherever they
+    are; without a row, the visitor's country decides (helpers/currencies.py)."""
+
+    __tablename__ = "currency_choices"
+    __table_args__ = (
+        CheckConstraint("currency IN ('USD', 'EUR', 'GBP')", name="ck_currency_choices_currency"),
+    )
+
+    owner_type: Mapped[str] = mapped_column(String(16), primary_key=True)
+    owner_id: Mapped[str] = mapped_column(String(128), primary_key=True)
+    currency: Mapped[str] = mapped_column(String(3))
 
 
 class Gift(Base):

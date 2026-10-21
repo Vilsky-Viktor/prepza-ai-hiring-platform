@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { BalanceRow } from "@/components/billing/balance-row"
+import { CompanyCurrencySetting } from "@/components/billing/company-currency"
 import { CreditHistory } from "@/components/billing/credit-history"
 import { RefreshOnFocus } from "@/components/billing/refresh-on-focus"
 import { ReservedList } from "@/components/billing/reserved-list"
@@ -15,6 +16,7 @@ import { LIST_BOX, PAGE_SIZE } from "@/constants/lists"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyHeaderProps } from "@/lib/company-header"
+import { visitorCatalog } from "@/lib/catalog"
 import type { Catalog, CompanyCredits } from "@/types/billing"
 import type {
   Company,
@@ -47,7 +49,7 @@ export default async function BillingPage({
         serverFetch<CompanyCredits>(
           `/companies/companies/${companyId}/credits`
         ),
-        serverFetch<Catalog>("/billing/catalog"),
+        visitorCatalog(),
         // Only the open tab's first page.
         tab === "reserved"
           ? serverFetch<CreditCandidate[]>(
@@ -92,6 +94,7 @@ export default async function BillingPage({
         catalog={catalog}
         name={company.name}
         companyId={companyId}
+        canEdit={company.can_edit}
       />
       <div className="space-y-6">
         <TabNav
@@ -149,11 +152,13 @@ function Balance({
   catalog,
   name,
   companyId,
+  canEdit,
 }: {
   credits: CompanyCredits | null
   catalog: Catalog | null
   name: string
   companyId: string
+  canEdit: boolean
 }) {
   if (!credits || !catalog) {
     return null
@@ -168,6 +173,9 @@ function Balance({
         reserved={credits.reserved}
         low={credits.low}
         companyId={companyId}
+        currency={
+          <CompanyCurrencySetting companyId={companyId} canEdit={canEdit} />
+        }
       />
     </div>
   )

@@ -4,6 +4,9 @@
     "language": "Idioma",
     "languageNote": "Para a interface e as respostas do chat de ajuda, e o idioma em que novas entrevistas começam. Você pode criar uma entrevista em qualquer idioma disponível.",
     "languageFailed": "Não foi possível alterar o idioma. Tente novamente.",
+    "currency": "Moeda",
+    "currencyNote": "Os preços aparecem nessa moeda, onde quer que você esteja. As recargas de uma empresa são na moeda da própria empresa.",
+    "currencyFailed": "Não foi possível mudar a moeda. Tente novamente.",
     "account": "Sua conta",
     "accountNote": "Informe este ID quando nos escrever sobre sua conta.",
     "yourData": "Seus dados",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Teste todos\nContrate os melhores",
-    "text": "A IA transforma sua descrição de vaga em uma entrevista cronometrada profissional.\nApenas $2–5 por candidato."
+    "text": "A IA transforma sua descrição de vaga em uma entrevista cronometrada profissional.",
+    "price": "Apenas {price} por candidato."
   },
   "start": {
     "placeholder": "Cole uma descrição de vaga ou descreva o cargo e o que um candidato deve saber",
@@ -725,6 +729,8 @@
     "topUpTitle": "Recarregar: {name}",
     "topUpNote": "Cada recarga compra candidatos inteiros; as maiores custam menos por candidato. Os créditos não expiram.",
     "taxes": "Os preços não incluem IVA nem imposto sobre vendas: onde se aplicar, ele é adicionado no pagamento, e a página de pagamento mostra o total antes de você pagar.",
+    "paysIn": "Esta empresa paga em {currency}.",
+    "paysInChange": "Mudar a moeda",
     "candidates": "{count, plural, one {# candidato} other {# candidatos}}",
     "perCandidate": "{price}<unit>/candidato</unit>",
     "howMany": "Candidatos a recarregar",
@@ -1143,7 +1149,7 @@
     "topUp": "Recarregar"
   },
   "site": {
-    "description": "Testes de recrutamento e seleção com tempo, criados da descrição da vaga. Perguntas aleatórias por candidato, ranking e relatórios. $2–5 por candidato.",
+    "description": "Testes de recrutamento e seleção com tempo, criados da descrição da vaga. Perguntas aleatórias por candidato, ranking e relatórios.{priced, select, yes { {price} por candidato.} other {}}",
     "homeTitle": "Testes de recrutamento e seleção criados da sua vaga"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Última atualização",
     "englishOnly": "Esta página está disponível só em inglês.",
     "startTitle": "Avalie seus candidatos",
-    "startText": "Crie um teste de habilidades cronometrado a partir da sua descrição da vaga. $2–5 por candidato, sem assinatura.",
+    "startText": "Crie um teste de habilidades cronometrado a partir da sua descrição da vaga.{priced, select, yes { {price} por candidato, sem assinatura.} other {}}",
     "startButton": "Criar um teste"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Testes de habilidades cronometrados e prontos para cargos comuns. Use um como está ou crie um teste a partir da sua própria descrição da vaga.",
     "heading": "Teste de habilidades de {role} para contratação",
     "pageTitle": "Teste para contratação de {role}",
-    "pageDescription": "Teste de recrutamento e seleção para {role}, cronometrado, com {count, plural, one {# tópico} other {# tópicos}}. Cada candidato recebe as próprias perguntas aleatórias. $2–5 por candidato.",
-    "lead": "Um teste cronometrado de múltipla escolha sobre as habilidades deste cargo. Cada candidato recebe o próprio conjunto aleatório de perguntas, com um cronômetro em cada uma, e você recebe uma ficha de avaliação com cada resposta e seu tempo. $2–5 por candidato, sem assinatura.",
+    "pageDescription": "Teste de recrutamento e seleção para {role}, cronometrado, com {count, plural, one {# tópico} other {# tópicos}}. Cada candidato recebe as próprias perguntas aleatórias.{priced, select, yes { {price} por candidato.} other {}}",
+    "lead": "Um teste cronometrado de múltipla escolha sobre as habilidades deste cargo. Cada candidato recebe o próprio conjunto aleatório de perguntas, com um cronômetro em cada uma, e você recebe uma ficha de avaliação com cada resposta e seu tempo.{priced, select, yes { {price} por candidato, sem assinatura.} other {}}",
     "create": "Criar um teste para seus candidatos",
     "practise": "Pratique de graça",
     "topics": "O que ele avalia",
@@ -2170,7 +2176,9 @@
     "automatic": "Recarga automática",
     "invoice": "Fatura",
     "invoiceFailed": "Não foi possível abrir a fatura. Tente novamente.",
-    "deletedCandidate": "Um candidato excluído"
+    "deletedCandidate": "Um candidato excluído",
+    "currency": "Moeda",
+    "currencyFailed": "Não foi possível mudar a moeda. Tente novamente."
   },
   "aiApps": {
     "group": "Apps de IA",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Configurou a recarga automática",
       "auto_top_up_changed": "Alterou a recarga automática",
       "auto_top_up_stopped": "Interrompeu a recarga automática",
+      "currency_changed": "Mudou a moeda",
       "ats_connected": "Conectou um ATS",
       "ats_reconnected": "Reconectou um ATS",
       "ats_disconnected": "Desconectou um ATS",

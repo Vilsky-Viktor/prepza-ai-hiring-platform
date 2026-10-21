@@ -6,7 +6,31 @@
      "billing"
     ],
     "summary": "Catalog",
+    "description": "Every price: in the signed-in person's currency (their country's until they have one\nsaved), or the signed-out visitor's country's.",
     "operationId": "catalog_catalog_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     }
+    ],
     "responses": {
      "200": {
       "description": "Successful Response",
@@ -14,6 +38,115 @@
        "application/json": {
         "schema": {
          "$ref": "#/components/schemas/CatalogOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/me/currency": {
+   "get": {
+    "tags": [
+     "billing"
+    ],
+    "summary": "My Currency",
+    "operationId": "my_currency_me_currency_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CurrencyOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "put": {
+    "tags": [
+     "billing"
+    ],
+    "summary": "Choose My Currency",
+    "description": "Where prices outside a company's billing show in; travelling doesn't change it.",
+    "operationId": "choose_my_currency_me_currency_put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CurrencyIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CurrencyOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
         }
        }
       }
@@ -51,7 +184,7 @@
      "internal"
     ],
     "summary": "Hold Candidate",
-    "description": "Set aside on invite. Charged once the interview finishes with at least one answer. An\nautomatic top-up the balance now calls for is charged after answering: Paddle can take its\ntime, and the invite waiting on this answer mustn't.",
+    "description": "Set aside on invite. Charged once the interview finishes with at least one answer. An\nautomatic top-up the balance now calls for is charged before answering, waited for only\nbriefly: Paddle can take its time, and the invite waiting on this answer mustn't.",
     "operationId": "hold_candidate_internal_candidates_hold_post",
     "security": [
      {
@@ -258,73 +391,6 @@
     "responses": {
      "204": {
       "description": "Successful Response"
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
-  "/internal/companies/{company_id}/checkout": {
-   "post": {
-    "tags": [
-     "internal"
-    ],
-    "summary": "Company Checkout",
-    "description": "A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies\nhas checked they're its owner or an admin. What it buys and its price are set here from the\ncount (helpers/credits.py), and the candidates go in its custom data, which the webhook\ngrants; a count outside the range, or before Paddle's product is set, is refused (422).",
-    "operationId": "company_checkout_internal_companies__company_id__checkout_post",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "company_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "title": "Company Id"
-      }
-     },
-     {
-      "name": "buyer_id",
-      "in": "query",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "title": "Buyer Id"
-      }
-     }
-    ],
-    "requestBody": {
-     "required": true,
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/TopUpCheckoutIn"
-       }
-      }
-     }
-    },
-    "responses": {
-     "200": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/TopUpCheckoutOut"
-        }
-       }
-      }
      },
      "422": {
       "description": "Validation Error",
@@ -964,7 +1030,7 @@
      "internal"
     ],
     "summary": "Export User",
-    "description": "What the user bought for their companies, and the automatic top-ups they turned on\n(charged to their card once started).",
+    "description": "What the user bought for their companies, the automatic top-ups they turned on (charged\nto their card once started), and the currency they see prices in.",
     "operationId": "export_user_internal_users__user_id__export_post",
     "security": [
      {
@@ -1008,6 +1074,329 @@
     }
    }
   },
+  "/internal/companies/{company_id}/catalog": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Company Catalog",
+    "description": "Every price in the currency the company pays in, wherever the buyer is.",
+    "operationId": "company_catalog_internal_companies__company_id__catalog_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Company Id"
+      }
+     },
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CatalogOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/companies/{company_id}/currency": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Get Company Currency",
+    "operationId": "get_company_currency_internal_companies__company_id__currency_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Company Id"
+      }
+     },
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CompanyCurrencyOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "put": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Choose Company Currency",
+    "description": "From now on its top-ups are priced and charged in it, automatic ones too (their next\ncharge switches the subscription over).",
+    "operationId": "choose_company_currency_internal_companies__company_id__currency_put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Company Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CurrencyIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CompanyCurrencyOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/users/{user_id}/currency": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Remember User Currency",
+    "description": "On sign-up: the new account sees prices in its country's currency, until changed.",
+    "operationId": "remember_user_currency_internal_users__user_id__currency_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     },
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/companies/{company_id}/checkout": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Company Checkout",
+    "description": "A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies\nhas checked they're its owner or an admin. What it buys and its price are set here from the\ncount, in the company's currency, which Paddle then charges wherever the buyer is; a count\noutside the range, or before Paddle's product is set, is refused (422).",
+    "operationId": "company_checkout_internal_companies__company_id__checkout_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Company Id"
+      }
+     },
+     {
+      "name": "buyer_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Buyer Id"
+      }
+     },
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TopUpCheckoutIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TopUpCheckoutOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/companies/{company_id}/auto-top-up": {
    "get": {
     "tags": [
@@ -1028,6 +1417,22 @@
       "schema": {
        "type": "string",
        "title": "Company Id"
+      }
+     },
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
       }
      }
     ],
@@ -1082,6 +1487,22 @@
       "schema": {
        "type": "string",
        "title": "Buyer Id"
+      }
+     },
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
       }
      }
     ],
@@ -1174,13 +1595,80 @@
     }
    }
   },
+  "/internal/companies/{company_id}/payment-failure": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Company Payment Failure",
+    "description": "Why the latest payment of `buyer_id`'s checkout into the company failed; 404 for any\ntransaction that isn't theirs, so its id alone reveals nothing.",
+    "operationId": "company_payment_failure_internal_companies__company_id__payment_failure_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Company Id"
+      }
+     },
+     {
+      "name": "transaction_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "pattern": "^txn_[a-z0-9]{26}$",
+       "title": "Transaction Id"
+      }
+     },
+     {
+      "name": "buyer_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Buyer Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentFailureOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/superadmin/stats": {
    "get": {
     "tags": [
      "superadmin"
     ],
     "summary": "Get Stats",
-    "description": "Top-ups, what they paid and the credits spent, all time or in one year or\nmonth, for the stats tab.",
+    "description": "Top-ups, what they paid in each currency and the credits spent, all time or in one year or\nmonth, for the stats tab.",
     "operationId": "get_stats_superadmin_stats_get",
     "security": [
      {
@@ -1848,6 +2336,16 @@
       "type": "array",
       "title": "Thresholds"
      },
+     "currency": {
+      "$ref": "#/components/schemas/Currency"
+     },
+     "prices": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Prices"
+     },
      "checkout": {
       "anyOf": [
        {
@@ -1867,7 +2365,9 @@
      "product",
      "threshold",
      "products",
-     "thresholds"
+     "thresholds",
+     "currency",
+     "prices"
     ],
     "title": "AutoTopUpOut",
     "description": "A wallet's automatic top-up: whether it's offered at all, running, or waiting for its\ncheckout, what it buys and when, and the choices."
@@ -1942,9 +2442,9 @@
    },
    "CandidatePriceOut": {
     "properties": {
-     "from_dollars": {
+     "from_cents": {
       "type": "integer",
-      "title": "From Dollars"
+      "title": "From Cents"
      },
      "cents": {
       "type": "integer",
@@ -1953,11 +2453,11 @@
     },
     "type": "object",
     "required": [
-     "from_dollars",
+     "from_cents",
      "cents"
     ],
     "title": "CandidatePriceOut",
-    "description": "A candidate's price when credits are bought in a top-up from this many dollars."
+    "description": "A candidate's price when credits are bought in a top-up from this amount (minor units of\nthe catalog's currency)."
    },
    "CandidateTierOut": {
     "properties": {
@@ -2001,8 +2501,7 @@
       "title": "Client Token"
      },
      "currency": {
-      "type": "string",
-      "title": "Currency"
+      "$ref": "#/components/schemas/Currency"
      },
      "candidate_credits": {
       "type": "integer",
@@ -2094,25 +2593,89 @@
    },
    "CheckoutOut": {
     "properties": {
-     "price_id": {
+     "transaction_id": {
       "type": "string",
-      "title": "Price Id"
-     },
-     "custom_data": {
-      "additionalProperties": {
-       "type": "string"
-      },
-      "type": "object",
-      "title": "Custom Data"
+      "title": "Transaction Id"
      }
     },
     "type": "object",
     "required": [
-     "price_id",
-     "custom_data"
+     "transaction_id"
     ],
     "title": "CheckoutOut",
-    "description": "The Paddle checkout to open: its price and the custom data to send with it."
+    "description": "The Paddle transaction the checkout opens, made by billing in the company's currency."
+   },
+   "CompanyCurrencyOut": {
+    "properties": {
+     "currency": {
+      "$ref": "#/components/schemas/Currency"
+     },
+     "currencies": {
+      "items": {
+       "$ref": "#/components/schemas/Currency"
+      },
+      "type": "array",
+      "title": "Currencies",
+      "default": [
+       "USD",
+       "EUR",
+       "GBP"
+      ]
+     }
+    },
+    "type": "object",
+    "required": [
+     "currency"
+    ],
+    "title": "CompanyCurrencyOut",
+    "description": "The currency a company pays in, automatic top-ups included, and the ones to choose."
+   },
+   "Currency": {
+    "type": "string",
+    "enum": [
+     "USD",
+     "EUR",
+     "GBP"
+    ],
+    "title": "Currency",
+    "description": "The currencies prices are in: EUR in the EU and nearby, GBP in the UK, USD elsewhere."
+   },
+   "CurrencyIn": {
+    "properties": {
+     "currency": {
+      "$ref": "#/components/schemas/Currency"
+     }
+    },
+    "type": "object",
+    "required": [
+     "currency"
+    ],
+    "title": "CurrencyIn"
+   },
+   "CurrencyOut": {
+    "properties": {
+     "currency": {
+      "$ref": "#/components/schemas/Currency"
+     },
+     "currencies": {
+      "items": {
+       "$ref": "#/components/schemas/Currency"
+      },
+      "type": "array",
+      "title": "Currencies",
+      "default": [
+       "USD",
+       "EUR",
+       "GBP"
+      ]
+     }
+    },
+    "type": "object",
+    "required": [
+     "currency"
+    ],
+    "title": "CurrencyOut",
+    "description": "The currency someone sees prices in, and the ones they can choose."
    },
    "CustomTopUpOut": {
     "properties": {
@@ -2758,6 +3321,36 @@
     ],
     "title": "PaidOut"
    },
+   "PaymentFailure": {
+    "type": "string",
+    "enum": [
+     "card_declined",
+     "insufficient_funds",
+     "expired_card",
+     "invalid_details",
+     "authentication_failed",
+     "card_not_supported",
+     "payment_method_failed",
+     "try_later",
+     "other"
+    ],
+    "title": "PaymentFailure",
+    "description": "Why a checkout's payment failed, as the buyer can act on it; the site says what to do for\neach."
+   },
+   "PaymentFailureOut": {
+    "properties": {
+     "reason": {
+      "$ref": "#/components/schemas/PaymentFailure",
+      "description": "Why the payment failed, by what the buyer can do."
+     }
+    },
+    "type": "object",
+    "required": [
+     "reason"
+    ],
+    "title": "PaymentFailureOut",
+    "description": "Why a checkout's latest payment failed, as one of a fixed set; the site says what the buyer\ncan do for each."
+   },
    "ProviderLimitOut": {
     "properties": {
      "name": {
@@ -2956,16 +3549,19 @@
       "type": "object",
       "title": "Counts"
      },
-     "currency": {
+     "paid": {
       "anyOf": [
        {
-        "type": "string"
+        "additionalProperties": {
+         "type": "integer"
+        },
+        "type": "object"
        },
        {
         "type": "null"
        }
       ],
-      "title": "Currency"
+      "title": "Paid"
      }
     },
     "type": "object",
@@ -2986,7 +3582,7 @@
      "candidates"
     ],
     "title": "TopUpCheckoutIn",
-    "description": "A top-up of this many candidates; billing checks the count and sets the price."
+    "description": "A top-up of this many candidates; billing checks the count and sets the price, in the\ncompany's currency."
    },
    "TopUpCheckoutOut": {
     "properties": {
@@ -3008,10 +3604,6 @@
       "type": "string",
       "title": "Key"
      },
-     "title": {
-      "type": "string",
-      "title": "Title"
-     },
      "price_cents": {
       "type": "integer",
       "title": "Price Cents"
@@ -3027,30 +3619,18 @@
      "candidate_cents": {
       "type": "integer",
       "title": "Candidate Cents"
-     },
-     "price_id": {
-      "anyOf": [
-       {
-        "type": "string"
-       },
-       {
-        "type": "null"
-       }
-      ],
-      "title": "Price Id"
      }
     },
     "type": "object",
     "required": [
      "key",
-     "title",
      "price_cents",
      "credits",
      "candidates",
-     "candidate_cents",
-     "price_id"
+     "candidate_cents"
     ],
-    "title": "TopUpOut"
+    "title": "TopUpOut",
+    "description": "A fixed top-up, as automatic top-up buys it: its price in the catalog's currency (minor\nunits)."
    },
    "TotalsOut": {
     "properties": {
@@ -3153,6 +3733,17 @@
      "owner_email": {
       "type": "string",
       "title": "Owner Email"
+     },
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
      },
      "referral": {
       "anyOf": [

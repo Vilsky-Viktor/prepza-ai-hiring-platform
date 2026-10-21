@@ -3,6 +3,7 @@ import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 
 import { BalanceRow } from "@/components/billing/balance-row"
+import { CompanyCurrencySetting } from "@/components/billing/company-currency"
 import { PageHeader } from "@/components/page-header"
 import { RefreshOnFocus } from "@/components/billing/refresh-on-focus"
 import { SignInPrompt } from "@/components/sign-in-prompt"
@@ -10,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { TOKEN_COOKIE } from "@/constants/auth"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
+import { visitorCatalog } from "@/lib/catalog"
 import type { Catalog } from "@/types/billing"
 import type { CompanyBalance } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
@@ -30,7 +32,7 @@ export default async function TopUpPage() {
   const t = await getTranslations("topUp")
   const [catalog, companies] = signedIn
     ? await Promise.all([
-        serverFetch<Catalog>("/billing/catalog"),
+        visitorCatalog(),
         serverFetch<CompanyBalance[]>("/companies/companies/credits?limit=100"),
       ])
     : [null, null]
@@ -91,6 +93,10 @@ export default async function TopUpPage() {
                 available={company.available}
                 low={company.low}
                 companyId={company.id}
+                // Only companies the user owns or administers are listed: each can change it.
+                currency={
+                  <CompanyCurrencySetting companyId={company.id} canEdit />
+                }
               />
             ))}
           </div>

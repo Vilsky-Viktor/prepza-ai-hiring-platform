@@ -4,6 +4,9 @@
     "language": "Keel",
     "languageNote": "Liidese ja abivestluse vastuste jaoks ning keel, milles uued intervjuud algavad. Intervjuu saad luua igas toetatud keeles.",
     "languageFailed": "Keelt ei õnnestunud muuta. Proovi uuesti.",
+    "currency": "Valuuta",
+    "currencyNote": "Hinnad näidatakse selles, kus iganes sa oled. Ettevõtte juurdelaadimised on ettevõtte enda valuutas.",
+    "currencyFailed": "Valuutat ei õnnestunud muuta. Proovi uuesti.",
     "account": "Sinu konto",
     "accountNote": "Lisa see ID, kui kirjutad meile oma konto kohta.",
     "yourData": "Sinu andmed",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Testi kõiki\nPalka parimad",
-    "text": "Tehisaru teeb sinu töökuulutusest professionaalse ajapiiranguga intervjuu.\nVaid $2–5 kandidaadi kohta."
+    "text": "Tehisaru teeb sinu töökuulutusest professionaalse ajapiiranguga intervjuu.",
+    "price": "Vaid {price} kandidaadi kohta."
   },
   "start": {
     "placeholder": "Kleebi töökuulutus või kirjelda rolli ja seda, mida kandidaat peaks teadma",
@@ -725,6 +729,8 @@
     "topUpTitle": "Laadi juurde: {name}",
     "topUpNote": "Iga juurdelaadimine ostab terve arvu kandidaate; suuremate puhul on kandidaat odavam. Krediidid ei aegu.",
     "taxes": "Hinnad ei sisalda käibemaksu ega müügimaksu: kus see kehtib, lisandub see makselehel, mis näitab enne maksmist kogusummat.",
+    "paysIn": "See ettevõte maksab valuutas {currency}.",
+    "paysInChange": "Muuda valuutat",
     "candidates": "{count, plural, one {# kandidaat} other {# kandidaati}}",
     "perCandidate": "{price}<unit>/kandidaat</unit>",
     "howMany": "Juurde laaditavad kandidaadid",
@@ -1143,7 +1149,7 @@
     "topUp": "Laadi juurde"
   },
   "site": {
-    "description": "Ajapiiranguga värbamistestid sinu töökuulutusest: igal kandidaadil oma juhuslikud küsimused, sulle pingerida ja aruanded. $2–5 kandidaadi kohta.",
+    "description": "Ajapiiranguga värbamistestid sinu töökuulutusest: igal kandidaadil oma juhuslikud küsimused, sulle pingerida ja aruanded.{priced, select, yes { {price} kandidaadi kohta.} other {}}",
     "homeTitle": "Värbamistestid kandidaatidele sinu töökuulutusest"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Viimati uuendatud",
     "englishOnly": "See leht on ainult inglise keeles.",
     "startTitle": "Testi oma kandidaate",
-    "startText": "Loo oma töökuulutuse põhjal ajapiiranguga oskustest. $2–5 kandidaadi kohta, ilma tellimuseta.",
+    "startText": "Loo oma töökuulutuse põhjal ajapiiranguga oskustest.{priced, select, yes { {price} kandidaadi kohta, ilma tellimuseta.} other {}}",
     "startButton": "Loo test"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Valmis ajapiiranguga oskustestid levinud rollidele. Kasuta testi nii, nagu see on, või loo test oma töökuulutuse põhjal.",
     "heading": "Rolli {role} oskustest värbamiseks",
     "pageTitle": "{role}: värbamistest kandidaatidele",
-    "pageDescription": "Ajapiiranguga värbamistest ametikohale {role}: {count, plural, one {# teema} other {# teemat}}. Iga kandidaat saab oma juhuslikud küsimused. $2–5 kandidaadi kohta.",
-    "lead": "Ajapiiranguga valikvastustega test selle rolli oskustest. Iga kandidaat saab oma juhusliku küsimustekomplekti ja igal küsimusel on taimer ning sina saad hindamislehe iga vastuse ja selle ajaga. $2–5 kandidaadi kohta, ilma tellimuseta.",
+    "pageDescription": "Ajapiiranguga värbamistest ametikohale {role}: {count, plural, one {# teema} other {# teemat}}. Iga kandidaat saab oma juhuslikud küsimused.{priced, select, yes { {price} kandidaadi kohta.} other {}}",
+    "lead": "Ajapiiranguga valikvastustega test selle rolli oskustest. Iga kandidaat saab oma juhusliku küsimustekomplekti ja igal küsimusel on taimer ning sina saad hindamislehe iga vastuse ja selle ajaga.{priced, select, yes { {price} kandidaadi kohta, ilma tellimuseta.} other {}}",
     "create": "Loo test oma kandidaatidele",
     "practise": "Harjuta tasuta",
     "topics": "Mida see testib",
@@ -2170,7 +2176,9 @@
     "automatic": "Automaatne juurdelaadimine",
     "invoice": "Arve",
     "invoiceFailed": "Arvet ei õnnestunud avada. Proovi uuesti.",
-    "deletedCandidate": "Kustutatud kandidaat"
+    "deletedCandidate": "Kustutatud kandidaat",
+    "currency": "Valuuta",
+    "currencyFailed": "Valuutat ei õnnestunud muuta. Proovi uuesti."
   },
   "aiApps": {
     "group": "AI-rakendused",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Seadistas automaatse juurdelaadimise",
       "auto_top_up_changed": "Muutis automaatset juurdelaadimist",
       "auto_top_up_stopped": "Peatas automaatse juurdelaadimise",
+      "currency_changed": "Muutis valuutat",
       "ats_connected": "Ühendas ATS-i",
       "ats_reconnected": "Ühendas ATS-i uuesti",
       "ats_disconnected": "Katkestas ATS-i ühenduse",

@@ -7,7 +7,7 @@ from prepza_common.auth import current_user
 from prepza_common.constants import MAX_PAGE_SIZE
 from prepza_common.user import User
 
-from app.integrations import billing
+from app.integrations import billing, billing_prices
 from app.main import app
 from app.models.companies import Company, Member
 from app.models.interviews import Interview
@@ -201,12 +201,12 @@ def test_the_credits_say_how_many_candidates_hold_the_reserved_ones(client, monk
 def test_an_admin_gets_a_checkout_billing_made_and_a_viewer_none(client, monkeypatch):
     made = []
 
-    async def checkout(company_id, candidates, buyer_id):
+    async def checkout(company_id, candidates, buyer_id, country):
         made.append((company_id, candidates, buyer_id))
 
         return "txn_new"
 
-    monkeypatch.setattr(billing, "company_checkout", checkout)
+    monkeypatch.setattr(billing_prices, "company_checkout", checkout)
     as_member(monkeypatch, "admin")
     admin = client.post(f"{COMPANY}/billing/checkout", json={"candidates": 45})
     as_member(monkeypatch, "viewer")
@@ -265,7 +265,7 @@ def test_calls_to_paddle_stop_at_the_users_hourly_limit(client, monkeypatch, met
         raise AssertionError("billing was called past the limit")
 
     monkeypatch.setattr(billing_routes, "hit_or_skip", over)
-    monkeypatch.setattr(billing, "company_checkout", never)
+    monkeypatch.setattr(billing_prices, "company_checkout", never)
     monkeypatch.setattr(billing, "company_payment_failure", never)
     as_member(monkeypatch, "admin")
 

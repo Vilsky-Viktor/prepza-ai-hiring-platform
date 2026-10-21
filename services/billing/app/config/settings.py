@@ -16,13 +16,8 @@ class Settings(ServiceSettings):
     paddle_environment: str = "sandbox"
     paddle_client_token: str = ""
     paddle_webhook_secret: str = ""
-    # Paddle's price id of each top-up (see constants/products.py); one without an id isn't sold.
-    paddle_price_topup_50: str = ""
-    paddle_price_topup_200: str = ""
-    paddle_price_topup_600: str = ""
-    paddle_price_topup_1000: str = ""
-    # The Paddle product a top-up of any number of candidates is sold under, at the price billing
-    # works out (helpers/credits.py); without it, that top-up isn't sold.
+    # The Paddle product every top-up is sold under, at the price billing works out in the
+    # buyer's currency (helpers/credits.py); without it, nothing is sold.
     paddle_product_candidates: str = ""
     # Automatic top-up: the server-side API key that charges the saved card, and the $0
     # monthly price whose checkout saves it. Without both, it isn't offered.

@@ -1,0 +1,52 @@
+from sqlalchemy import delete
+from sqlalchemy.dialects.postgresql import insert
+
+from app.constants.currencies import ChoiceOwner
+from app.models.billing import CurrencyChoice
+from app.storage.db import Session
+
+
+async def chosen(owner_type: ChoiceOwner, owner_id: str) -> str | None:
+    async with Session() as session:
+        row = await session.get(CurrencyChoice, (owner_type, owner_id))
+
+    return row.currency if row else None
+
+
+async def choose(owner_type: ChoiceOwner, owner_id: str, currency: str) -> None:
+    upsert = insert(CurrencyChoice).values(
+        owner_type=owner_type, owner_id=owner_id, currency=currency
+    )
+
+    async with Session() as session:
+        await session.execute(
+            upsert.on_conflict_do_update(
+                index_elements=["owner_type", "owner_id"], set_={"currency": currency}
+            )
+        )
+        await session.commit()
+
+
+async def remember(owner_type: ChoiceOwner, owner_id: str, currency: str) -> str:
+    """Saves `currency` unless the owner has one already; the one saved either way. Two first
+    requests at once save one."""
+    upsert = insert(CurrencyChoice).values(
+        owner_type=owner_type, owner_id=owner_id, currency=currency
+    )
+
+    async with Session() as session:
+        await session.execute(upsert.on_conflict_do_nothing())
+        await session.commit()
+        row = await session.get(CurrencyChoice, (owner_type, owner_id), populate_existing=True)
+
+    return row.currency
+
+
+async def forget(owner_type: ChoiceOwner, owner_id: str) -> None:
+    async with Session() as session:
+        await session.execute(
+            delete(CurrencyChoice).where(
+                CurrencyChoice.owner_type == owner_type, CurrencyChoice.owner_id == owner_id
+            )
+        )
+        await session.commit()

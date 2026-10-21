@@ -277,3 +277,12 @@ was off and left the decision to the service (the card was prepared); in the fif
 and the call was refused with "nothing to change", as it should. Cost about $3.7 in all.
 
 
+
+## Price fields in the user's currency (2026-10-21, kept)
+
+The price catalog's fields changed with currencies (`from_dollars` became `from_cents`, a pack's
+`title` went; amounts are in the user's saved currency), and `get_auto_top_up` gained `currency`
+and `prices`. `page_context.py --only g23,g26` (the two price questions), 3 repeats, before and
+after: correct 6/6 and 6/6 with and without the page context both times, right scope 6/6, no
+wins or losses; $0.03 a run plus $0.04 judging. No difference; kept, as the old field names no
+longer exist.

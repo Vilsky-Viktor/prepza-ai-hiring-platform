@@ -9,7 +9,7 @@ def test_superadmin_gets_the_counts_of_the_month_asked(client, monkeypatch, sign
     async def counts(period):
         asked.append(period)
 
-        return {"paid": 5}
+        return {"top_ups": 3}, {"USD": 5_000, "EUR": 4_000, "GBP": 0}
 
     monkeypatch.setattr(stats, "stats", counts)
     signed_in("ann@example.com")
@@ -17,8 +17,9 @@ def test_superadmin_gets_the_counts_of_the_month_asked(client, monkeypatch, sign
     body = client.get("/superadmin/stats?period=2026-10").json()
 
     assert asked == ["2026-10"]
-    assert body["counts"] == {"paid": 5}
-    assert body["currency"] == "USD"
+    assert body["counts"] == {"top_ups": 3}
+    # What top-ups paid, in each currency apart.
+    assert body["paid"] == {"USD": 5_000, "EUR": 4_000, "GBP": 0}
 
 
 def test_without_a_month_the_counts_are_all_time(client, monkeypatch, signed_in):
@@ -27,7 +28,7 @@ def test_without_a_month_the_counts_are_all_time(client, monkeypatch, signed_in)
     async def counts(period):
         asked.append(period)
 
-        return {}
+        return {}, {}
 
     monkeypatch.setattr(stats, "stats", counts)
     signed_in("ann@example.com")
@@ -42,7 +43,7 @@ def test_a_year_is_a_period_too(client, monkeypatch, signed_in):
     async def counts(period):
         asked.append(period)
 
-        return {}
+        return {}, {}
 
     monkeypatch.setattr(stats, "stats", counts)
     signed_in("ann@example.com")

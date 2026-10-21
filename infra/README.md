@@ -137,7 +137,7 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
     - **Rules:** restrict creations, restrict updates and restrict deletions.
     - **Bypass list:** Repository admin, so you can still create them.
 14. **Optionally, require an approval for deploys.** Deploys run in the `production` environment, which GitHub creates on the first deploy. In **Settings → Environments → production**, add yourself under **Required reviewers**; each deploy then waits for your click. Rulesets and required reviewers on a private repository need a paid GitHub plan.
-15. **Announce the 2026-11-08 legal version.** The terms, privacy policy and DPA of 2026-11-08 (the licence to reuse generated questions, the question quality patterns, Langfuse as a sub-processor, local-currency prices) need a notice at least 14 days ahead: in the admin zone's Controls, ask for the terms, privacy and DPA notices by 2026-10-25 (see [docs/features/admin-zone.md](../docs/features/admin-zone.md#legal-notices)). From 2026-11-08, add the Langfuse settings (see [Notes](#notes)) and resume `quality-patterns` (see Cloud Scheduler above).
+15. **Announce the 2026-11-08 legal version.** The terms, privacy policy and DPA of 2026-11-08 (the licence to reuse generated questions, the question quality patterns, Langfuse as a sub-processor, prices in euros, pounds and US dollars by country) need a notice at least 14 days ahead: in the admin zone's Controls, ask for the terms, privacy and DPA notices by 2026-10-25 (see [docs/features/admin-zone.md](../docs/features/admin-zone.md#legal-notices)). From 2026-11-08, add the Langfuse settings (see [Notes](#notes)) and resume `quality-patterns` (see Cloud Scheduler above).
 
 ## Email deliverability
 

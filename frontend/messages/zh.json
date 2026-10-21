@@ -4,6 +4,9 @@
     "language": "语言",
     "languageNote": "用于界面和帮助聊天的回复，以及新面试的默认语言。你可以用任何支持的语言创建面试。",
     "languageFailed": "无法更改语言，请重试。",
+    "currency": "货币",
+    "currencyNote": "无论你身在何处，价格都以此货币显示。公司的充值使用公司自己的货币。",
+    "currencyFailed": "无法更改货币，请重试。",
     "account": "你的账户",
     "accountNote": "就账户问题联系我们时，请提供这个 ID。",
     "yourData": "你的数据",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "测试每一位候选人\n招到最优秀的人才",
-    "text": "AI 根据你的职位描述生成专业的限时面试。\n每位候选人仅需 $2–5。"
+    "text": "AI 根据你的职位描述生成专业的限时面试。",
+    "price": "每位候选人仅需 {price}。"
   },
   "start": {
     "placeholder": "粘贴职位描述，或描述这个职位以及候选人应该掌握的内容",
@@ -725,6 +729,8 @@
     "topUpTitle": "充值：{name}",
     "topUpNote": "每次充值按整位候选人购买；充值越多，每位候选人越便宜。点数永不过期。",
     "taxes": "价格不含增值税或销售税：如适用，会在付款时加收，付款前会显示总金额。",
+    "paysIn": "此公司以 {currency} 付款。",
+    "paysInChange": "更改货币",
     "candidates": "{count, plural, other {# 位候选人}}",
     "perCandidate": "{price}<unit>/人</unit>",
     "howMany": "充值的候选人数",
@@ -1143,7 +1149,7 @@
     "topUp": "充值"
   },
   "site": {
-    "description": "根据你的职位描述生成限时招聘测评（在线笔试）。每位候选人都有自己的随机题目，并附评分卡和报告。每位候选人 $2–5。",
+    "description": "根据你的职位描述生成限时招聘测评（在线笔试）。每位候选人都有自己的随机题目，并附评分卡和报告。{priced, select, yes {每位候选人 {price}。} other {}}",
     "homeTitle": "根据职位描述生成招聘测评与在线笔试"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "最后更新",
     "englishOnly": "本页面仅提供英文版。",
     "startTitle": "测试你的候选人",
-    "startText": "根据你的职位描述创建限时技能测试。每位候选人 $2–5，无需订阅。",
+    "startText": "根据你的职位描述创建限时技能测试。{priced, select, yes {每位候选人 {price}，无需订阅。} other {}}",
     "startButton": "创建测试"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "为常见职位准备的现成限时技能测试。可以直接使用，也可以根据你自己的职位描述创建测试。",
     "heading": "{role} 招聘技能测试",
     "pageTitle": "{role} 招聘测评（在线笔试）",
-    "pageDescription": "为你的候选人准备的限时 {role} 招聘测评（在线笔试），涵盖 {count, plural, other {# 个主题}}。每位候选人都会拿到自己的随机题目。每位候选人 $2–5。",
-    "lead": "针对该职位技能的限时选择题测试。每位候选人都会拿到一套自己的随机题目，每道题都有计时；你会收到一份评分卡，包含每个答案及其用时。每位候选人 $2–5，无需订阅。",
+    "pageDescription": "为你的候选人准备的限时 {role} 招聘测评（在线笔试），涵盖 {count, plural, other {# 个主题}}。每位候选人都会拿到自己的随机题目。{priced, select, yes {每位候选人 {price}。} other {}}",
+    "lead": "针对该职位技能的限时选择题测试。每位候选人都会拿到一套自己的随机题目，每道题都有计时；你会收到一份评分卡，包含每个答案及其用时。{priced, select, yes {每位候选人 {price}，无需订阅。} other {}}",
     "create": "为你的候选人创建测试",
     "practise": "免费练习",
     "topics": "测试内容",
@@ -2170,7 +2176,9 @@
     "automatic": "自动充值",
     "invoice": "发票",
     "invoiceFailed": "无法打开发票，请重试。",
-    "deletedCandidate": "已删除的候选人"
+    "deletedCandidate": "已删除的候选人",
+    "currency": "货币",
+    "currencyFailed": "无法更改货币，请重试。"
   },
   "aiApps": {
     "group": "AI 应用",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "设置了自动充值",
       "auto_top_up_changed": "更改了自动充值",
       "auto_top_up_stopped": "停止了自动充值",
+      "currency_changed": "更改了货币",
       "ats_connected": "连接了 ATS",
       "ats_reconnected": "重新连接了 ATS",
       "ats_disconnected": "断开了 ATS",

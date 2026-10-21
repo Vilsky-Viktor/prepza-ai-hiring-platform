@@ -20,6 +20,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { formatPrice } from "@/lib/format"
 import { openCheckout } from "@/lib/paddle"
 import type { AutoTopUp, Catalog } from "@/types/billing"
 
@@ -58,8 +59,12 @@ export function AutoTopUpSetting({
     return null
   }
 
+  // Each amount in the currency Paddle charges it in, as billing says.
   const titles = Object.fromEntries(
-    catalog.products.map((item) => [item.key, item.title])
+    Object.entries(setting.prices).map(([key, cents]) => [
+      key,
+      formatPrice(cents, setting.currency, locale),
+    ])
   )
   // The candidates each amount buys, as billing's catalog says.
   const buys = Object.fromEntries(
@@ -99,10 +104,7 @@ export function AutoTopUpSetting({
       // one the failure dialog.
       await openCheckout({
         catalog,
-        checkout: {
-          priceId: saved.checkout.price_id,
-          customData: saved.checkout.custom_data,
-        },
+        checkout: { transactionId: saved.checkout.transaction_id },
         email: user!.email,
         theme: resolvedTheme === "dark" ? "dark" : "light",
         paid: "auto_top_up",

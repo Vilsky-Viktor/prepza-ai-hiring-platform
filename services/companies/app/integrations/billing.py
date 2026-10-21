@@ -55,17 +55,27 @@ async def release_candidate(key: str) -> None:
 
 
 async def welcome_company(
-    company_id: UUID, owner_email: str, referral: str | None, related: list[str]
+    company_id: UUID,
+    owner_email: str,
+    referral: str | None,
+    related: list[str],
+    country: str | None,
 ) -> None:
     """The welcome credits come once per owner's email; billing keeps only a hash of it. A
-    referral code counts unless it's from one of the owner's other companies (`related`).
+    referral code counts unless it's from one of the owner's other companies (`related`). The
+    company pays in the currency of the owner's `country` until changed.
     Billing gives it once per company, so a failed try is repeated: its answer may have been
     lost after the gift was given."""
     for attempt in range(WELCOME_ATTEMPTS):
         try:
             response = await http.get_client().post(
                 f"{settings.billing_url}/internal/companies/{company_id}/welcome",
-                json={"owner_email": owner_email, "referral": referral, "related": related},
+                json={
+                    "owner_email": owner_email,
+                    "referral": referral,
+                    "related": related,
+                    "country": country,
+                },
                 headers=_headers(),
             )
             response.raise_for_status()
@@ -140,45 +150,6 @@ async def companies_credits(company_ids: list[UUID]) -> dict[str, dict]:
     return response.json()
 
 
-def _auto_top_up_url(company_id: UUID) -> str:
-    return f"{settings.billing_url}/internal/companies/{company_id}/auto-top-up"
-
-
-async def auto_top_up(company_id: UUID) -> dict:
-    """The company's automatic top-up and its choices."""
-    response = await http.get_client().get(_auto_top_up_url(company_id), headers=_headers())
-
-    response.raise_for_status()
-
-    return response.json()
-
-
-async def turn_on_auto_top_up(company_id: UUID, body: dict, buyer_id: str) -> dict:
-    """Saves the choice; billing's answer carries the checkout when the card isn't saved yet.
-    Its refusals reach the user unchanged: a choice it doesn't offer (422), or a running one
-    paid by someone else's card (403)."""
-    response = await http.get_client().put(
-        _auto_top_up_url(company_id),
-        json=body,
-        params={"buyer_id": buyer_id},
-        headers=_headers(),
-    )
-
-    refusals = {status.HTTP_403_FORBIDDEN, status.HTTP_422_UNPROCESSABLE_CONTENT}
-
-    return passed_on(response, refusals).json()
-
-
-async def turn_off_auto_top_up(company_id: UUID, buyer_id: str | None = None) -> None:
-    """With `buyer_id`, off only when that person's card pays for it."""
-    params = {"buyer_id": buyer_id} if buyer_id else None
-    response = await http.get_client().delete(
-        _auto_top_up_url(company_id), params=params, headers=_headers()
-    )
-
-    response.raise_for_status()
-
-
 async def company_history(company_id: UUID, offset: int, limit: int) -> list[dict]:
     """A page of the company's credit movements, newest first."""
     response = await http.get_client().get(
@@ -207,20 +178,6 @@ async def company_invoice(company_id: UUID, transaction_id: str) -> str:
     response.raise_for_status()
 
     return response.json()["url"]
-
-
-async def company_checkout(company_id: UUID, candidates: int, buyer_id: str) -> str:
-    """The Paddle transaction of a checkout for a top-up of `candidates` into the company, made
-    by billing; its refusal of a count or a price it doesn't sell (422) reaches the user
-    unchanged."""
-    response = await http.get_client().post(
-        f"{settings.billing_url}/internal/companies/{company_id}/checkout",
-        params={"buyer_id": buyer_id},
-        json={"candidates": candidates},
-        headers=_headers(),
-    )
-
-    return passed_on(response, {status.HTTP_422_UNPROCESSABLE_CONTENT}).json()["transaction_id"]
 
 
 async def company_payment_failure(company_id: UUID, transaction_id: str, buyer_id: str) -> str:

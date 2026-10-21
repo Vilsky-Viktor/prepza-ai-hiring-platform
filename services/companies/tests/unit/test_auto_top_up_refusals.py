@@ -6,7 +6,7 @@ import pytest
 from fastapi import HTTPException
 from prepza_common import http
 
-from app.integrations import billing
+from app.integrations import billing_prices as billing
 
 
 @pytest.mark.parametrize("code", [403, 422])
@@ -19,7 +19,7 @@ def test_billings_refusal_reaches_the_user_unchanged(monkeypatch, code):
     monkeypatch.setattr(http, "get_client", lambda: client)
 
     with pytest.raises(HTTPException) as refused:
-        asyncio.run(billing.turn_on_auto_top_up(uuid.uuid4(), {}, "bob"))
+        asyncio.run(billing.turn_on_auto_top_up(uuid.uuid4(), {}, "bob", None))
 
     assert (refused.value.status_code, refused.value.detail) == (code, detail)
 
@@ -37,7 +37,7 @@ def test_a_checkout_sends_the_count_and_billings_refusal_reaches_the_user(monkey
     monkeypatch.setattr(http, "get_client", lambda: client)
 
     with pytest.raises(HTTPException) as refused:
-        asyncio.run(billing.company_checkout(uuid.uuid4(), 1_001, "bob"))
+        asyncio.run(billing.company_checkout(uuid.uuid4(), 1_001, "bob", None))
 
     assert (refused.value.status_code, refused.value.detail) == (422, detail)
     assert sent == [b'{"candidates":1001}']

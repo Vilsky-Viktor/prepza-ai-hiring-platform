@@ -23,6 +23,7 @@ def running(monkeypatch):
         product="topup_50",
         threshold=AUTO_TOP_UP_THRESHOLDS[0],
         failed_at=None,
+        currency="USD",
     )
 
     async def get(owner_type, owner_id):

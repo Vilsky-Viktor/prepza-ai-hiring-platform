@@ -8,6 +8,7 @@ from prepza_common.constants import REFERRAL_COOKIE
 from prepza_common.human_check import require_human
 from prepza_common.limits import at_most
 from prepza_common.paging import PageParams
+from prepza_common.visitor_country import VisitorCountry
 
 from app.config.settings import settings
 from app.constants.invites import (
@@ -68,7 +69,11 @@ def company_out(company: Company, user_id: str, interview_count: int = 0) -> Com
 
 @router.post("", status_code=status.HTTP_201_CREATED)
 async def create_company(
-    body: CompanyCreate, user: CurrentUser, request: Request, via: Via
+    body: CompanyCreate,
+    user: CurrentUser,
+    request: Request,
+    via: Via,
+    country: VisitorCountry = None,
 ) -> CompanyOut:
     """A company needs its owner's verified email, as the welcome credits come once per email. A
     person's first company, which gets them, needs them to show they're a person, on the site;
@@ -109,6 +114,7 @@ async def create_company(
             user.email,
             request.cookies.get(REFERRAL_COOKIE),
             await companies.ids_for_user(user.uid),
+            country,
         )
     except Exception:
         await companies.delete(company.id)

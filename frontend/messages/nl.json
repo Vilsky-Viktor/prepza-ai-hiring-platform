@@ -4,6 +4,9 @@
     "language": "Taal",
     "languageNote": "Voor de interface en de antwoorden van de hulpchat, en de taal waarin nieuwe interviews starten. Je kunt een interview in elke ondersteunde taal maken.",
     "languageFailed": "De taal kon niet worden gewijzigd. Probeer het opnieuw.",
+    "currency": "Valuta",
+    "currencyNote": "Prijzen worden in deze valuta getoond, waar je ook bent. Opwaarderingen van een bedrijf gaan in de eigen valuta van het bedrijf.",
+    "currencyFailed": "Kon de valuta niet wijzigen. Probeer het opnieuw.",
     "account": "Je account",
     "accountNote": "Vermeld deze ID als je ons over je account schrijft.",
     "yourData": "Je gegevens",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Test iedereen\nNeem de besten aan",
-    "text": "AI maakt van je functieomschrijving een professioneel interview met tijdslimiet.\nSlechts $2–5 per kandidaat."
+    "text": "AI maakt van je functieomschrijving een professioneel interview met tijdslimiet.",
+    "price": "Slechts {price} per kandidaat."
   },
   "start": {
     "placeholder": "Plak een functieomschrijving, of beschrijf de functie en wat een kandidaat moet weten",
@@ -725,6 +729,8 @@
     "topUpTitle": "Opwaarderen: {name}",
     "topUpNote": "Je koopt altijd voor hele kandidaten; hoe groter de opwaardering, hoe lager de prijs per kandidaat. Credits verlopen nooit.",
     "taxes": "Prijzen zijn exclusief btw of verkoopbelasting: waar die van toepassing is, wordt die bij het afrekenen toegevoegd, en je ziet het totaal voordat je betaalt.",
+    "paysIn": "Dit bedrijf betaalt in {currency}.",
+    "paysInChange": "Valuta wijzigen",
     "candidates": "{count, plural, one {# kandidaat} other {# kandidaten}}",
     "perCandidate": "{price}<unit>/kandidaat</unit>",
     "howMany": "Kandidaten om op te waarderen",
@@ -1143,7 +1149,7 @@
     "topUp": "Opwaarderen"
   },
   "site": {
-    "description": "Online assessment met tijdslimiet uit je vacaturetekst. Elke kandidaat krijgt eigen willekeurige vragen; jij scorekaarten en rapporten. $2–5 per kandidaat.",
+    "description": "Online assessment met tijdslimiet uit je vacaturetekst. Elke kandidaat krijgt eigen willekeurige vragen; jij scorekaarten en rapporten.{priced, select, yes { {price} per kandidaat.} other {}}",
     "homeTitle": "Online assessment voor werving, uit je vacaturetekst"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Laatst bijgewerkt",
     "englishOnly": "Deze pagina is alleen in het Engels.",
     "startTitle": "Test je kandidaten",
-    "startText": "Maak een selectietest met tijdslimiet op basis van je vacaturetekst. $2–5 per kandidaat, zonder abonnement.",
+    "startText": "Maak een selectietest met tijdslimiet op basis van je vacaturetekst.{priced, select, yes { {price} per kandidaat, zonder abonnement.} other {}}",
     "startButton": "Test maken"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Kant-en-klare selectietesten met tijdslimiet voor veelvoorkomende functies. Gebruik er een zoals hij is, of maak een test op basis van je eigen vacaturetekst.",
     "heading": "{role} test voor sollicitanten",
     "pageTitle": "{role} test voor sollicitanten",
-    "pageDescription": "Getimede {role} test voor sollicitanten, over {count, plural, one {# onderwerp} other {# onderwerpen}}. Elke kandidaat krijgt eigen willekeurige vragen. $2–5 per kandidaat.",
-    "lead": "Een meerkeuzetest met tijdslimiet over de vaardigheden voor deze functie. Elke kandidaat krijgt een eigen willekeurige set vragen met een timer bij elke vraag, en jij krijgt een scorekaart met elk antwoord en de tijd ervan. $2–5 per kandidaat, zonder abonnement.",
+    "pageDescription": "Getimede {role} test voor sollicitanten, over {count, plural, one {# onderwerp} other {# onderwerpen}}. Elke kandidaat krijgt eigen willekeurige vragen.{priced, select, yes { {price} per kandidaat.} other {}}",
+    "lead": "Een meerkeuzetest met tijdslimiet over de vaardigheden voor deze functie. Elke kandidaat krijgt een eigen willekeurige set vragen met een timer bij elke vraag, en jij krijgt een scorekaart met elk antwoord en de tijd ervan.{priced, select, yes { {price} per kandidaat, zonder abonnement.} other {}}",
     "create": "Maak een test voor je kandidaten",
     "practise": "Gratis oefenen",
     "topics": "Wat er getest wordt",
@@ -2170,7 +2176,9 @@
     "automatic": "Automatisch opwaarderen",
     "invoice": "Factuur",
     "invoiceFailed": "De factuur kon niet worden geopend. Probeer het opnieuw.",
-    "deletedCandidate": "Een verwijderde kandidaat"
+    "deletedCandidate": "Een verwijderde kandidaat",
+    "currency": "Valuta",
+    "currencyFailed": "Kon de valuta niet wijzigen. Probeer het opnieuw."
   },
   "aiApps": {
     "group": "AI-apps",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "Stelde automatisch opwaarderen in",
       "auto_top_up_changed": "Wijzigde automatisch opwaarderen",
       "auto_top_up_stopped": "Stopte automatisch opwaarderen",
+      "currency_changed": "Wijzigde de valuta",
       "ats_connected": "Koppelde een ATS",
       "ats_reconnected": "Koppelde een ATS opnieuw",
       "ats_disconnected": "Ontkoppelde een ATS",

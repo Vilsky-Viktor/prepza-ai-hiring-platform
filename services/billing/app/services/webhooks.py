@@ -19,6 +19,7 @@ async def handle(event: dict) -> None:
     elif event_type in ADJUSTMENT_EVENTS:
         await handle_adjustment(event["data"])
     elif event_type == SUBSCRIPTION_CREATED:
-        await auto_top_ups.start(event["data"].get("custom_data") or {}, event["data"]["id"])
+        data = event["data"]
+        await auto_top_ups.start(data.get("custom_data") or {}, data["id"], data["currency_code"])
     elif event_type == SUBSCRIPTION_CANCELED:
         await auto_top_ups.ended(event["data"]["id"])

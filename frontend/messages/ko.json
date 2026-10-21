@@ -4,6 +4,9 @@
     "language": "언어",
     "languageNote": "화면과 도움말 채팅의 답변, 새 면접의 기본 언어에 사용됩니다. 면접은 지원되는 모든 언어로 만들 수 있습니다.",
     "languageFailed": "언어를 변경하지 못했습니다. 다시 시도해 주세요.",
+    "currency": "통화",
+    "currencyNote": "어디에 있든 가격이 이 통화로 표시됩니다. 회사 충전은 회사의 통화로 이루어집니다.",
+    "currencyFailed": "통화를 변경하지 못했습니다. 다시 시도해 주세요.",
     "account": "내 계정",
     "accountNote": "계정에 관해 문의할 때 이 ID를 알려 주세요.",
     "yourData": "내 데이터",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "모두 테스트하고\n최고의 인재를 채용하세요",
-    "text": "AI가 채용 공고를 전문적인 시간 제한 면접으로 만들어 드립니다.\n지원자당 단 $2–5."
+    "text": "AI가 채용 공고를 전문적인 시간 제한 면접으로 만들어 드립니다.",
+    "price": "지원자당 단 {price}."
   },
   "start": {
     "placeholder": "채용 공고를 붙여 넣거나, 직무와 지원자가 알아야 할 내용을 설명하세요",
@@ -725,6 +729,8 @@
     "topUpTitle": "충전: {name}",
     "topUpNote": "충전은 지원자 단위로 구매하며, 금액이 클수록 지원자당 비용이 낮아집니다. 크레딧은 만료되지 않습니다.",
     "taxes": "가격에는 부가가치세(VAT)나 판매세가 포함되어 있지 않습니다. 해당되는 경우 결제 시 추가되며, 결제하기 전에 총액이 표시됩니다.",
+    "paysIn": "이 회사는 {currency}(으)로 결제합니다.",
+    "paysInChange": "통화 변경",
     "candidates": "{count, plural, other {지원자 #명}}",
     "perCandidate": "{price}<unit>/명</unit>",
     "howMany": "충전할 지원자 수",
@@ -1143,7 +1149,7 @@
     "topUp": "충전"
   },
   "site": {
-    "description": "채용 공고로 만드는 시간 제한 직무 역량 테스트. 지원자마다 다른 무작위 문제, 평가표와 보고서. 지원자당 $2–5.",
+    "description": "채용 공고로 만드는 시간 제한 직무 역량 테스트. 지원자마다 다른 무작위 문제, 평가표와 보고서.{priced, select, yes { 지원자당 {price}.} other {}}",
     "homeTitle": "채용 공고로 만드는 직무 역량 테스트"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "최종 업데이트",
     "englishOnly": "이 페이지는 영어로만 제공됩니다.",
     "startTitle": "지원자를 테스트하세요",
-    "startText": "채용 공고로 시간 제한 역량 테스트를 만드세요. 지원자당 $2–5, 구독 없음.",
+    "startText": "채용 공고로 시간 제한 역량 테스트를 만드세요.{priced, select, yes { 지원자당 {price}, 구독 없음.} other {}}",
     "startButton": "테스트 만들기"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "자주 찾는 직무를 위한 시간 제한 역량 테스트. 그대로 쓰거나 내 채용 공고로 테스트를 만드세요.",
     "heading": "채용을 위한 {role} 역량 테스트",
     "pageTitle": "{role} 직무 테스트: 채용용 역량 평가",
-    "pageDescription": "지원자를 위한 시간 제한 {role} 직무 역량 테스트, {count, plural, other {주제 #개}} 포함. 지원자마다 무작위 문제가 따로 주어집니다. 지원자당 $2–5.",
-    "lead": "이 직무의 역량을 묻는 시간 제한 객관식 테스트입니다. 지원자마다 무작위 문제 세트가 따로 주어지고 문제마다 타이머가 있으며, 모든 답변과 소요 시간이 담긴 평가표를 받습니다. 지원자당 $2–5, 구독 없음.",
+    "pageDescription": "지원자를 위한 시간 제한 {role} 직무 역량 테스트, {count, plural, other {주제 #개}} 포함. 지원자마다 무작위 문제가 따로 주어집니다.{priced, select, yes { 지원자당 {price}.} other {}}",
+    "lead": "이 직무의 역량을 묻는 시간 제한 객관식 테스트입니다. 지원자마다 무작위 문제 세트가 따로 주어지고 문제마다 타이머가 있으며, 모든 답변과 소요 시간이 담긴 평가표를 받습니다.{priced, select, yes { 지원자당 {price}, 구독 없음.} other {}}",
     "create": "지원자용 테스트 만들기",
     "practise": "무료로 연습하기",
     "topics": "평가 항목",
@@ -2170,7 +2176,9 @@
     "automatic": "자동 충전",
     "invoice": "인보이스",
     "invoiceFailed": "인보이스를 열지 못했습니다. 다시 시도해 주세요.",
-    "deletedCandidate": "삭제된 지원자"
+    "deletedCandidate": "삭제된 지원자",
+    "currency": "통화",
+    "currencyFailed": "통화를 변경하지 못했습니다. 다시 시도해 주세요."
   },
   "aiApps": {
     "group": "AI 앱",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "자동 충전을 설정함",
       "auto_top_up_changed": "자동 충전을 변경함",
       "auto_top_up_stopped": "자동 충전을 중지함",
+      "currency_changed": "통화를 변경함",
       "ats_connected": "ATS를 연동함",
       "ats_reconnected": "ATS를 다시 연동함",
       "ats_disconnected": "ATS 연동을 해제함",

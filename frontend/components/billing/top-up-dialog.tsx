@@ -1,7 +1,9 @@
 "use client"
 
+import { SquarePenIcon } from "lucide-react"
+import Link from "next/link"
 import { useTranslations } from "next-intl"
-import { useState, type ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 
 import { AutoTopUpSetting } from "@/components/billing/auto-top-up"
 import { CustomTopUp } from "@/components/billing/custom-top-up"
@@ -15,17 +17,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { apiFetch } from "@/lib/api"
 import type { Catalog } from "@/types/billing"
 
 /** The top-up button and its dialog: any number of candidates, and the automatic top-up, for
- * `companyId`'s credits. */
+ * `companyId`'s credits, priced in the currency the company pays in (billing's catalog for it,
+ * read as the dialog opens), which it names, with a link to change it. */
 export function TopUpDialog({
-  catalog,
   title,
   companyId,
   card,
 }: {
-  catalog: Catalog
   // Whose credits: "Your credits" or the company's name.
   title: string
   companyId: string
@@ -34,6 +36,15 @@ export function TopUpDialog({
 }) {
   const t = useTranslations("billing")
   const [open, setOpen] = useState(false)
+  const [catalog, setCatalog] = useState<Catalog | null>(null)
+
+  useEffect(() => {
+    if (open) {
+      apiFetch<Catalog>(`/companies/companies/${companyId}/billing/catalog`)
+        .then(setCatalog)
+        .catch(() => {})
+    }
+  }, [open, companyId])
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -63,12 +74,36 @@ export function TopUpDialog({
             {t("topUpNote")} {t("taxes")}
           </DialogDescription>
         </DialogHeader>
-        <CustomTopUp
-          catalog={catalog}
-          companyId={companyId}
-          onOpened={() => setOpen(false)}
-        />
-        <AutoTopUpSetting catalog={catalog} companyId={companyId} card />
+        {catalog && (
+          <>
+            <CustomTopUp
+              catalog={catalog}
+              companyId={companyId}
+              onOpened={() => setOpen(false)}
+            />
+            <AutoTopUpSetting catalog={catalog} companyId={companyId} card />
+            {/* Which currency it's charged in, before paying, with the way to change it. */}
+            <p
+              className="text-center text-sm text-muted-foreground"
+              data-testid="pays-in"
+              data-currency={catalog.currency}
+            >
+              {t("paysIn", { currency: catalog.currency })}
+              <Button
+                variant="ghost"
+                size="icon-xs"
+                className="-my-1 ms-1 align-middle text-muted-foreground hover:text-foreground"
+                aria-label={t("paysInChange")}
+                tooltip={t("paysInChange")}
+                render={<Link href={`/companies/${companyId}/billing`} />}
+                nativeButton={false}
+                onClick={() => setOpen(false)}
+              >
+                <SquarePenIcon className="size-3.5" />
+              </Button>
+            </p>
+          </>
+        )}
         <DialogFooter showCloseButton />
       </DialogContent>
     </Dialog>

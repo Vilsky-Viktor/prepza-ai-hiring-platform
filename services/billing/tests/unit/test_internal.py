@@ -137,6 +137,8 @@ def test_library_exports_a_users_purchases_and_automatic_top_ups_with_a_post(cli
     response = client.post("/internal/users/ann/export", headers=AUTH)
 
     assert response.json() == {
+        # Never chosen nor seen with a country: none saved.
+        "currency": None,
         "auto_top_ups": [
             {
                 "company_id": "acme",

@@ -42,7 +42,7 @@ def test_a_welcome_whose_answer_was_lost_is_asked_again_for_the_same_company(mon
     monkeypatch.setattr(http, "get_client", lambda: client)
     company_id = uuid.uuid4()
 
-    asyncio.run(welcome_company(company_id, "ann@example.com", None, []))
+    asyncio.run(welcome_company(company_id, "ann@example.com", None, [], None))
 
     assert calls == [f"/internal/companies/{company_id}/welcome"] * 2
     # It waited before asking again, not at once.
@@ -54,6 +54,6 @@ def test_a_welcome_failing_every_time_fails_after_its_tries(monkeypatch):
     monkeypatch.setattr(http, "get_client", lambda: client)
 
     with pytest.raises(httpx.HTTPStatusError):
-        asyncio.run(welcome_company(uuid.uuid4(), "ann@example.com", None, []))
+        asyncio.run(welcome_company(uuid.uuid4(), "ann@example.com", None, [], None))
 
     assert len(calls) == WELCOME_ATTEMPTS

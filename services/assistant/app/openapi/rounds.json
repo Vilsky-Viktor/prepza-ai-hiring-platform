@@ -729,19 +729,47 @@
      "help"
     ],
     "summary": "Get Faq",
-    "description": "The FAQ in the page's language, with today's prices; public. Without prices (billing not\nanswering) it's refused rather than built with blanks: the site keeps its last good page.",
+    "description": "The FAQ in the page's language, with today's prices in the currency of the visitor's\n`country` (the site passes it on; US dollars without one); public. Without prices (billing not\nanswering) it's refused rather than built with blanks: the site keeps its last good page.",
     "operationId": "get_faq_help_faq_get",
+    "parameters": [
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     }
+    ],
     "responses": {
      "200": {
       "description": "Successful Response",
       "content": {
        "application/json": {
         "schema": {
+         "type": "array",
          "items": {
           "$ref": "#/components/schemas/FaqItemOut"
          },
-         "type": "array",
          "title": "Response Get Faq Help Faq Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
         }
        }
       }
@@ -985,17 +1013,40 @@
      "help"
     ],
     "summary": "Help Chat",
-    "description": "Answers questions about prepza, for visitors too. Streams server-sent events:\n{\"delta\"}... (and a {\"block\"} sign-in card when a visitor asks to sign in or sign up), then\n{\"done\"} or {\"error\"}. Refused during the emergency pause, as it's AI. A conversation with a\nsecret in it (a key, a token, a password) is answered at once, before anything else, with a\nfixed reply ({\"removed\"} first: the panel drops that message), and nothing of it is used.",
+    "description": "Answers questions about prepza, for visitors too. Streams server-sent events:\n{\"delta\"}... (and a {\"block\"} sign-in card when a visitor asks to sign in or sign up), then\n{\"done\"} or {\"error\"}. Prices are in the visitor's country's currency (US dollars without\none). Refused during the emergency pause, as it's AI. A conversation with a\nsecret in it (a key, a token, a password) is answered at once, before anything else, with a\nfixed reply ({\"removed\"} first: the panel drops that message), and nothing of it is used.",
     "operationId": "help_chat_help_chat_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "X-Client-Country",
+      "in": "header",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "X-Client-Country"
+      }
+     }
+    ],
     "requestBody": {
+     "required": true,
      "content": {
       "application/json": {
        "schema": {
         "$ref": "#/components/schemas/HelpChatRequest"
        }
       }
-     },
-     "required": true
+     }
     },
     "responses": {
      "200": {
@@ -1016,12 +1067,7 @@
        }
       }
      }
-    },
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ]
+    }
    }
   },
   "/help/contact": {
@@ -3134,16 +3180,19 @@
       "type": "object",
       "title": "Counts"
      },
-     "currency": {
+     "paid": {
       "anyOf": [
        {
-        "type": "string"
+        "additionalProperties": {
+         "type": "integer"
+        },
+        "type": "object"
        },
        {
         "type": "null"
        }
       ],
-      "title": "Currency"
+      "title": "Paid"
      }
     },
     "type": "object",

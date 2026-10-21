@@ -4,6 +4,9 @@
     "language": "Langue",
     "languageNote": "Pour l'interface et les réponses du chat d'aide, et la langue de départ des nouveaux entretiens. Vous pouvez créer un entretien dans toute langue prise en charge.",
     "languageFailed": "Impossible de changer la langue. Veuillez réessayer.",
+    "currency": "Devise",
+    "currencyNote": "Les prix s'affichent dans cette devise, où que vous soyez. Les recharges d'une entreprise se font dans sa propre devise.",
+    "currencyFailed": "Impossible de changer la devise. Veuillez réessayer.",
     "account": "Votre compte",
     "accountNote": "Indiquez cet ID quand vous nous écrivez au sujet de votre compte.",
     "yourData": "Vos données",
@@ -136,7 +139,8 @@
   },
   "home": {
     "title": "Testez tout le monde\nRecrutez les meilleurs",
-    "text": "L'IA transforme votre fiche de poste en un entretien chronométré professionnel.\nSeulement 2–5 $ par candidat."
+    "text": "L'IA transforme votre fiche de poste en un entretien chronométré professionnel.",
+    "price": "Seulement {price} par candidat."
   },
   "start": {
     "placeholder": "Collez une fiche de poste, ou décrivez le poste et ce qu'un candidat doit savoir",
@@ -725,6 +729,8 @@
     "topUpTitle": "Recharger : {name}",
     "topUpNote": "Chaque recharge couvre un nombre entier de candidats ; les plus grosses coûtent moins cher par candidat. Les crédits n'expirent jamais.",
     "taxes": "Les prix s'entendent hors TVA et hors taxe de vente : là où elle s'applique, elle est ajoutée au moment du paiement, et la page de paiement affiche le total avant que vous ne payiez.",
+    "paysIn": "Cette entreprise paie en {currency}.",
+    "paysInChange": "Changer de devise",
     "candidates": "{count, plural, one {# candidat} other {# candidats}}",
     "perCandidate": "{price}<unit>/candidat</unit>",
     "howMany": "Candidats à recharger",
@@ -1143,7 +1149,7 @@
     "topUp": "Recharger"
   },
   "site": {
-    "description": "Tests de recrutement chronométrés, créés à partir de votre offre d'emploi. Questions aléatoires par candidat, classement, rapports PDF. 2–5 $ par candidat.",
+    "description": "Tests de recrutement chronométrés, créés à partir de votre offre d'emploi. Questions aléatoires par candidat, classement, rapports PDF.{priced, select, yes { {price} par candidat.} other {}}",
     "homeTitle": "Test de recrutement créé à partir de votre offre d'emploi"
   },
   "legal": {
@@ -1606,7 +1612,7 @@
     "updated": "Dernière mise à jour",
     "englishOnly": "Cette page est uniquement en anglais.",
     "startTitle": "Testez vos candidats",
-    "startText": "Créez un test de compétences chronométré à partir de votre fiche de poste. 2–5 $ par candidat, sans abonnement.",
+    "startText": "Créez un test de compétences chronométré à partir de votre fiche de poste.{priced, select, yes { {price} par candidat, sans abonnement.} other {}}",
     "startButton": "Créer un test"
   },
   "compare": {
@@ -1623,8 +1629,8 @@
     "intro": "Des tests de compétences chronométrés prêts à l'emploi pour les postes courants. Utilisez-en un tel quel ou créez un test à partir de votre propre fiche de poste.",
     "heading": "Test de compétences {role} pour recruter",
     "pageTitle": "Test de recrutement {role}",
-    "pageDescription": "Test de recrutement {role} chronométré, couvrant {count, plural, one {# thème} other {# thèmes}}. Chaque candidat reçoit ses propres questions aléatoires. 2–5 $ par candidat.",
-    "lead": "Un test chronométré à choix multiples sur les compétences de ce poste. Chaque candidat reçoit sa propre série aléatoire de questions avec un minuteur sur chacune, et vous recevez une fiche d'évaluation avec chaque réponse et son temps. 2–5 $ par candidat, sans abonnement.",
+    "pageDescription": "Test de recrutement {role} chronométré, couvrant {count, plural, one {# thème} other {# thèmes}}. Chaque candidat reçoit ses propres questions aléatoires.{priced, select, yes { {price} par candidat.} other {}}",
+    "lead": "Un test chronométré à choix multiples sur les compétences de ce poste. Chaque candidat reçoit sa propre série aléatoire de questions avec un minuteur sur chacune, et vous recevez une fiche d'évaluation avec chaque réponse et son temps.{priced, select, yes { {price} par candidat, sans abonnement.} other {}}",
     "create": "Créer un test pour vos candidats",
     "practise": "S'entraîner gratuitement",
     "topics": "Ce qu'il évalue",
@@ -2170,7 +2176,9 @@
     "automatic": "Recharge automatique",
     "invoice": "Facture",
     "invoiceFailed": "Impossible d'ouvrir la facture. Veuillez réessayer.",
-    "deletedCandidate": "Un candidat supprimé"
+    "deletedCandidate": "Un candidat supprimé",
+    "currency": "Devise",
+    "currencyFailed": "Impossible de changer la devise. Veuillez réessayer."
   },
   "aiApps": {
     "group": "Apps IA",
@@ -2307,6 +2315,7 @@
       "auto_top_up_set": "A configuré la recharge automatique",
       "auto_top_up_changed": "A modifié la recharge automatique",
       "auto_top_up_stopped": "A arrêté la recharge automatique",
+      "currency_changed": "A changé la devise",
       "ats_connected": "A connecté un ATS",
       "ats_reconnected": "A reconnecté un ATS",
       "ats_disconnected": "A déconnecté un ATS",
