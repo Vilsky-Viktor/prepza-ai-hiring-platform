@@ -10,6 +10,11 @@ export default defineConfig({
   reporter: "list",
   // A test.only left in fails the run instead of quietly skipping every other test.
   forbidOnly: true,
+  // The local frontend is a dev server: with every worker's browser at once, a page or a lazily
+  // loaded part (the assistant's panel) can take well over the defaults (30 s, 5 s) to come.
+  // The same waits as the signed-in suite's; what is checked doesn't change.
+  timeout: 60_000,
+  expect: { timeout: 15_000 },
   use: {
     baseURL: process.env.SITE_URL ?? "http://localhost:8090",
     // What happened in a failed test, step by step: npx playwright show-trace <trace.zip>.

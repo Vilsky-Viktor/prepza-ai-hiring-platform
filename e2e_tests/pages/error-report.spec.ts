@@ -50,11 +50,15 @@ test("Retry on the error page shows the page once it can be shown", async ({ pag
   await expect(error).toBeVisible();
   broken = false;
   // Retry is the page's first button. A click before the page is interactive is lost, so it's
-  // repeated until the invite's page (here, a gone invite) shows.
+  // repeated, while the error page still shows, until the invite's page (here, a gone invite)
+  // does; a click that worked may take a while to load it on a busy dev server.
   await expect(async () => {
-    await error.getByRole("button").first().click({ timeout: 2000 });
+    if (await error.isVisible()) {
+      await error.getByRole("button").first().click({ timeout: 2000 });
+    }
+
     await expect(page.getByTestId("link-invalid")).toHaveText("This invite isn't valid anymore.", {
-      timeout: 2000,
+      timeout: 5000,
     });
   }).toPass();
 });
