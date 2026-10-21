@@ -280,22 +280,3 @@ test("the automation section links to the developer docs", async ({ page }) => {
   // The local dev server compiles the docs on first open.
   await expect(page).toHaveURL(/\/api-docs$/, { timeout: 30_000 });
 });
-
-// "create an interview" under the reports, beside the prices and on the closing screen: each
-// goes back up to the job description box, ready to type.
-for (const id of ["reports", "pricing", "help"]) {
-  test(`create an interview in #${id} goes to the job description box`, async ({ page }) => {
-    test.setTimeout(120_000);
-    await page.goto("/");
-    await page.waitForLoadState("networkidle");
-    const button = page.locator(`#${id}`).getByTestId("start-button");
-    await expect(button).toHaveCount(1);
-    await button.scrollIntoViewIfNeeded();
-    await button.click();
-
-    const box = page.locator("main textarea").first();
-    await expect(box).toBeFocused();
-    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
-    await expect(box).toBeInViewport();
-  });
-}

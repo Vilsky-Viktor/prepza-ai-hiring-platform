@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
 import { REQUEST_URL } from "./helpers/env";
+import { loaded } from "./helpers/waits";
 
 // The home page's "create an interview" section: three panels (the description, the topics and
 // the interview made from them), and under them short facts, the first being how many questions
@@ -61,3 +62,22 @@ test("on a 375 px phone the notes are one a row, and nothing scrolls sideways", 
   }));
   expect(widths.scrollWidth).toBeLessThanOrEqual(widths.clientWidth);
 });
+
+// "create an interview" under the reports, beside the prices and on the closing screen: each
+// goes back up to the job description box, ready to type.
+for (const id of ["reports", "pricing", "help"]) {
+  test(`create an interview in #${id} goes to the job description box`, async ({ page }) => {
+    test.setTimeout(120_000);
+    await page.goto("/");
+    await loaded(page);
+    const button = page.locator(`#${id}`).getByTestId("start-button");
+    await expect(button).toHaveCount(1);
+    await button.scrollIntoViewIfNeeded();
+    await button.click();
+
+    const box = page.locator("main textarea").first();
+    await expect(box).toBeFocused();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    await expect(box).toBeInViewport();
+  });
+}
