@@ -22,6 +22,20 @@ class Generation(Base):
                 "kind = 'template_questions' AND status IN ('queued', 'running')"
             ),
         ),
+        # A template's latest addition; the stuck and waiting ones the schedules fail or expire;
+        # the finished ones whose pasted text is still kept.
+        Index(
+            "ix_generations_template_additions",
+            "preparation_id",
+            "created_at",
+            postgresql_where=text("kind = 'template_questions'"),
+        ),
+        Index(
+            "ix_generations_unsettled",
+            "updated_at",
+            postgresql_where=text("status IN ('queued', 'running', 'awaiting_review')"),
+        ),
+        Index("ix_generations_text_kept", "updated_at", postgresql_where=text("text <> ''")),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

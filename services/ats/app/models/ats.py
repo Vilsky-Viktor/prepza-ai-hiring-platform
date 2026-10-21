@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func
+from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -17,7 +17,8 @@ class AtsConnection(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     # The company, in the companies service.
-    company_id: Mapped[uuid.UUID] = mapped_column(index=True)
+    # Indexed by the unique (company_id, provider).
+    company_id: Mapped[uuid.UUID] = mapped_column()
     provider: Mapped[str] = mapped_column(String(32))
     # What the company sees it connected as (Workable's subdomain).
     account: Mapped[str] = mapped_column(Text())
@@ -43,11 +44,12 @@ class AtsJobLink(Base):
     the interview."""
 
     __tablename__ = "ats_job_links"
+    # Its connection's links are found by this unique constraint's first column.
     __table_args__ = (UniqueConstraint("connection_id", "job_id"),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     connection_id: Mapped[uuid.UUID] = mapped_column(
-        ForeignKey("ats_connections.id", ondelete="CASCADE"), index=True
+        ForeignKey("ats_connections.id", ondelete="CASCADE")
     )
     # The interview, in the companies service: its interview.deleted event removes this row.
     interview_id: Mapped[uuid.UUID] = mapped_column(index=True)
@@ -73,11 +75,32 @@ class AtsCandidate(Base):
         UniqueConstraint("connection_id", "candidate_id", "interview_id"),
         # A linked job's candidates, oldest first; deleting a job link finds its rows by it too.
         Index("ix_ats_candidates_link_id_created_at", "link_id", "created_at"),
+        # The recovery job's candidates still to invite, its kept results not yet written back,
+        # and the companies' candidates who couldn't be invited, each by connection.
+        Index(
+            "ix_ats_candidates_waiting",
+            "connection_id",
+            "created_at",
+            postgresql_where=text("status IN ('waiting', 'inviting')"),
+        ),
+        Index(
+            "ix_ats_candidates_unreported",
+            "connection_id",
+            "kept_at",
+            postgresql_where=text("result IS NOT NULL AND reported_at IS NULL"),
+        ),
+        Index(
+            "ix_ats_candidates_failed",
+            "connection_id",
+            "failed_at",
+            postgresql_where=text("status = 'failed'"),
+        ),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    # Indexed by the unique (connection_id, candidate_id, interview_id).
     connection_id: Mapped[uuid.UUID] = mapped_column(
-        ForeignKey("ats_connections.id", ondelete="CASCADE"), index=True
+        ForeignKey("ats_connections.id", ondelete="CASCADE")
     )
     # The interview, in the companies service: its interview.deleted event removes this row.
     interview_id: Mapped[uuid.UUID] = mapped_column(index=True)

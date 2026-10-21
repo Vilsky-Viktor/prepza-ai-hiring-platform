@@ -75,7 +75,11 @@ class Member(Base):
     """A company owner or admin. Invited admins bind to a user_id when they accept."""
 
     __tablename__ = "members"
-    __table_args__ = (UniqueConstraint("company_id", "invited_email"),)
+    __table_args__ = (
+        UniqueConstraint("company_id", "invited_email"),
+        # Invites to an address across companies (support's lookup).
+        Index("ix_members_invited_email", "invited_email"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     company_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("companies.id", ondelete="CASCADE"))

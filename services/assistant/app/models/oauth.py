@@ -24,8 +24,9 @@ class OAuthClient(Base):
     client_id: Mapped[str] = mapped_column(Text(), primary_key=True)
     # The MCP SDK's OAuthClientInformationFull, as JSON.
     info: Mapped[dict] = mapped_column(JSONB)
+    # Indexed for the retention, which deletes old ones without a connection.
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=now, server_default=func.now()
+        DateTime(timezone=True), default=now, server_default=func.now(), index=True
     )
 
 

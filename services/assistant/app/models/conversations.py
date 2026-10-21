@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Integer, SmallInteger, String, Text, func
+from sqlalchemy import DateTime, ForeignKey, Index, Integer, SmallInteger, String, Text, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -16,9 +16,13 @@ class Conversation(Base):
     """A user's chat with the assistant, about one company (or none)."""
 
     __tablename__ = "conversations"
+    # A user's conversations, the latest first.
+    __table_args__ = (
+        Index("ix_conversations_user_latest", "user_id", text("updated_at DESC"), "id"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
-    user_id: Mapped[str] = mapped_column(String(128), index=True)
+    user_id: Mapped[str] = mapped_column(String(128))
     company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     # The first 80 characters of the first message.
     title: Mapped[str] = mapped_column(String(80))
@@ -33,10 +37,14 @@ class Message(Base):
     """One message: the user's (typed or spoken) or the assistant's answer with its blocks."""
 
     __tablename__ = "messages"
+    # A conversation's messages in order (and its foreign key's index).
+    __table_args__ = (
+        Index("ix_messages_conversation_order", "conversation_id", "created_at", "id"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     conversation_id: Mapped[uuid.UUID] = mapped_column(
-        ForeignKey("conversations.id", ondelete="CASCADE"), index=True
+        ForeignKey("conversations.id", ondelete="CASCADE")
     )
     # "user" or "assistant".
     role: Mapped[str] = mapped_column(String(16))

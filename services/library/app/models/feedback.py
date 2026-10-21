@@ -1,7 +1,16 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, SmallInteger, String, Text, UniqueConstraint, func
+from sqlalchemy import (
+    DateTime,
+    ForeignKey,
+    Index,
+    SmallInteger,
+    String,
+    Text,
+    UniqueConstraint,
+    func,
+)
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.constants.feedback import ReportStatus
@@ -12,6 +21,8 @@ class QuestionRating(Base):
     """A thumbs up (1) or down (-1) per user and question."""
 
     __tablename__ = "question_ratings"
+    # A person's votes (their account's deletion and export).
+    __table_args__ = (Index("ix_question_ratings_user_id", "user_id"),)
 
     question_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("questions.id", ondelete="CASCADE"), primary_key=True
@@ -37,13 +48,14 @@ class QuestionReport(Base):
 
     __tablename__ = "question_reports"
     __table_args__ = (
+        # Also a question's reports, by its first column.
         UniqueConstraint("question_id", "user_id", name="uq_question_reports_question_user"),
+        # A person's reports (their account's deletion and export).
+        Index("ix_question_reports_user_id", "user_id"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
-    question_id: Mapped[uuid.UUID] = mapped_column(
-        ForeignKey("questions.id", ondelete="CASCADE"), index=True
-    )
+    question_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("questions.id", ondelete="CASCADE"))
     user_id: Mapped[str] = mapped_column(String(128))
     reason: Mapped[str] = mapped_column(String(32))
     comment: Mapped[str] = mapped_column(Text, default="")

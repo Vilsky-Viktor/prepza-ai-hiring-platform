@@ -32,7 +32,8 @@ class Session(Base):
     user_id: Mapped[str] = mapped_column(String(128), index=True)
     topic_id: Mapped[uuid.UUID] = mapped_column(index=True)
     interview_set_id: Mapped[uuid.UUID] = mapped_column(index=True)
-    candidate_invite_id: Mapped[uuid.UUID] = mapped_column(index=True)
+    # Indexed by uq_sessions_invite_topic's first column.
+    candidate_invite_id: Mapped[uuid.UUID] = mapped_column()
     topic_title: Mapped[str] = mapped_column(Text)
     status: Mapped[str] = mapped_column(String(32), default=RoundStatus.IN_PROGRESS)
     questions: Mapped[list] = mapped_column(JSONB)

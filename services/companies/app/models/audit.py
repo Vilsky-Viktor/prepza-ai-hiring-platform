@@ -20,6 +20,8 @@ class AuditEvent(Base):
             "ix_audit_events_company_id_user_id_created_at", "company_id", "user_id", "created_at"
         ),
         Index("ix_audit_events_company_id_group_created_at", "company_id", "group", "created_at"),
+        # A person's entries (their account's export and deletion).
+        Index("ix_audit_events_user_id", "user_id"),
         # A member's views of a candidate's results: one row a day (UTC), the latest view's.
         Index(
             "uq_audit_events_results_viewed_day",

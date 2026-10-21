@@ -53,6 +53,8 @@ class QuestionRevision(Base):
     """A question's previous content and everything learned about it, kept when it's replaced."""
 
     __tablename__ = "question_revisions"
+    # Revisions newest first (the quality report, the digests).
+    __table_args__ = (Index("ix_question_revisions_replaced_at", text("replaced_at DESC"), "id"),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     question_id: Mapped[uuid.UUID] = mapped_column(

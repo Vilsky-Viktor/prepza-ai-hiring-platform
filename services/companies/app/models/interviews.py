@@ -15,14 +15,15 @@ class Interview(Base):
     # A company's interviews by last change, for the public API's updated_since (migration 0045).
     __table_args__ = (
         Index("ix_interviews_company_updated", "company_id", "updated_at", "id"),
+        # The reminder emails' interviews, by when they got their questions or were started.
+        Index("ix_interviews_ready_at", "ready_at"),
+        Index("ix_interviews_created_at", "created_at"),
         # Named before the naming convention (models/base.py).
         UniqueConstraint("link_token", name="uq_interviews_link_token"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
-    company_id: Mapped[uuid.UUID] = mapped_column(
-        ForeignKey("companies.id", ondelete="CASCADE"), index=True
-    )
+    company_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("companies.id", ondelete="CASCADE"))
     set_id: Mapped[uuid.UUID | None]
     # Copied from the generated set (and renames), so pages don't ask library for it.
     title: Mapped[str | None] = mapped_column(Text)

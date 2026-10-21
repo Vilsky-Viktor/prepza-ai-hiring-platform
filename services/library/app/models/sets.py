@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 
 from prepza_common.constants import DEFAULT_LANGUAGE
-from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func
+from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -18,6 +18,13 @@ class QuestionSet(Base):
         Index("ix_sets_kind_level_language", "kind", "level", "language"),
         # Named before the naming convention (models/base.py).
         UniqueConstraint("generation_id", name="uq_sets_generation_id"),
+        # Templates of the same title, any case, and language: near-duplicates.
+        Index(
+            "ix_sets_template_titles",
+            "language",
+            text("lower(title)"),
+            postgresql_where=text("kind = 'template'"),
+        ),
         UniqueConstraint("slug", name="uq_sets_slug"),
     )
 
@@ -50,6 +57,10 @@ class QuestionSet(Base):
 
 class Topic(Base):
     __tablename__ = "topics"
+    # The topics the embedding job hasn't reached (topics.embedding is outside the models).
+    __table_args__ = (
+        Index("ix_topics_without_embedding", "id", postgresql_where=text("embedding IS NULL")),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     set_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("sets.id", ondelete="CASCADE"), index=True)

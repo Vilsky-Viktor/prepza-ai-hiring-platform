@@ -15,12 +15,16 @@ class CandidateInvite(Base):
         # An interview's invites by last change, for the public API's updated_since (migration
         # 0045).
         Index("ix_candidate_invites_interview_updated", "interview_id", "updated_at", "id"),
+        # An interview's candidates, newest first.
+        Index("ix_candidate_invites_interview_created", "interview_id", "created_at", "id"),
+        # A person's invites (their account's deletion and export), and the invites sent before
+        # a time (expiry, reminders, retention).
+        Index("ix_candidate_invites_email", "email"),
+        Index("ix_candidate_invites_sent_at", "sent_at"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
-    interview_id: Mapped[uuid.UUID] = mapped_column(
-        ForeignKey("interviews.id", ondelete="CASCADE"), index=True
-    )
+    interview_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("interviews.id", ondelete="CASCADE"))
     email: Mapped[str] = mapped_column(String(320))
     # The candidate's name from their verified sign-in, filled once when they start; None until
     # then, or when their sign-in has none.

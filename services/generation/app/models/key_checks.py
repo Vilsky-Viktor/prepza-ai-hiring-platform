@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, Text, func
+from sqlalchemy import DateTime, Index, Text, func, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -11,6 +11,10 @@ class KeyCheck(Base):
     """A flagged question waiting for its key check in an OpenAI batch."""
 
     __tablename__ = "key_checks"
+    # The checks waiting to be sent, oldest first.
+    __table_args__ = (
+        Index("ix_key_checks_unsent", "created_at", postgresql_where=text("batch_id IS NULL")),
+    )
 
     question_id: Mapped[uuid.UUID] = mapped_column(primary_key=True)
     # The text that was flagged; a result for a question changed since then is dropped.
