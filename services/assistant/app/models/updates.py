@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import DateTime, String
+from sqlalchemy import DateTime, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -13,5 +13,5 @@ class UpdateCheck(Base):
 
     __tablename__ = "update_checks"
 
-    connection_id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    connection_id: Mapped[str] = mapped_column(Text(), primary_key=True)
     checked_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)

@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Index, String, UniqueConstraint, func
+from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.constants.invites import MAX_CANDIDATE_NAME_LENGTH, InviteStatus
@@ -51,7 +51,7 @@ class CandidateInvite(Base):
     flagged: Mapped[bool] = mapped_column(default=False, server_default="false")
     # The key of the credits billing set aside for this invite, without the candidate's email:
     # its own, so an email invited again after its invite was removed is held and charged anew.
-    hold_key: Mapped[str] = mapped_column(String(200), index=True)
+    hold_key: Mapped[str] = mapped_column(Text(), index=True)
     # Where the company's own platform takes the candidate back once they've finished (the
     # public API's return_url, on the company's website domain); None for everyone else.
     return_url: Mapped[str | None] = mapped_column(String(2048))

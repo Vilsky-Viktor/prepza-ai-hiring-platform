@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, func
+from sqlalchemy import DateTime, ForeignKey, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -21,7 +21,7 @@ class OAuthClient(Base):
 
     __tablename__ = "oauth_clients"
 
-    client_id: Mapped[str] = mapped_column(String(512), primary_key=True)
+    client_id: Mapped[str] = mapped_column(Text(), primary_key=True)
     # The MCP SDK's OAuthClientInformationFull, as JSON.
     info: Mapped[dict] = mapped_column(JSONB)
     created_at: Mapped[datetime] = mapped_column(
@@ -38,7 +38,7 @@ class McpGrant(Base):
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     user_id: Mapped[str] = mapped_column(String(128), index=True)
     client_id: Mapped[str] = mapped_column(
-        String(512), ForeignKey("oauth_clients.client_id", ondelete="CASCADE"), index=True
+        Text(), ForeignKey("oauth_clients.client_id", ondelete="CASCADE"), index=True
     )
     # What the user saw when they allowed it: the app's name and the site it returns to.
     client_name: Mapped[str] = mapped_column(String(80))

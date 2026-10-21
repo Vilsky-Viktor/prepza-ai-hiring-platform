@@ -20,12 +20,12 @@ class AtsConnection(Base):
     company_id: Mapped[uuid.UUID] = mapped_column(index=True)
     provider: Mapped[str] = mapped_column(String(32))
     # What the company sees it connected as (Workable's subdomain).
-    account: Mapped[str] = mapped_column(String(200))
+    account: Mapped[str] = mapped_column(Text())
     # The ATS key, encrypted (helpers/encryption.py); never returned to the browser.
     credentials: Mapped[str] = mapped_column(Text)
     status: Mapped[str] = mapped_column(String(16), default=ConnectionStatus.CONNECTED)
     # The Workable member results are written back as (comments need an author).
-    member_id: Mapped[str | None] = mapped_column(String(100))
+    member_id: Mapped[str | None] = mapped_column(Text())
     # Who connected it: their invites and limits apply to candidates the ATS sends.
     created_by: Mapped[str] = mapped_column(String(128))
     created_at: Mapped[datetime] = mapped_column(
@@ -53,11 +53,11 @@ class AtsJobLink(Base):
     interview_id: Mapped[uuid.UUID] = mapped_column(index=True)
     # The ATS's own ids, and their names as they were when linked.
     job_id: Mapped[str] = mapped_column(String(100))
-    job_name: Mapped[str] = mapped_column(String(300))
+    job_name: Mapped[str] = mapped_column(Text())
     stage_id: Mapped[str] = mapped_column(String(100))
-    stage_name: Mapped[str] = mapped_column(String(200))
+    stage_name: Mapped[str] = mapped_column(Text())
     # The ATS's notification for this job and stage, cancelled when the link goes.
-    subscription_id: Mapped[str | None] = mapped_column(String(100))
+    subscription_id: Mapped[str | None] = mapped_column(Text())
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
@@ -85,7 +85,7 @@ class AtsCandidate(Base):
         ForeignKey("ats_job_links.id", ondelete="SET NULL")
     )
     # The ATS's own candidate id, and who they are.
-    candidate_id: Mapped[str] = mapped_column(String(100))
+    candidate_id: Mapped[str] = mapped_column(Text())
     email: Mapped[str] = mapped_column(String(320), index=True)
     # Their name as the ATS sent it, passed on with the invite; None when it sent none.
     name: Mapped[str | None] = mapped_column(String(200))

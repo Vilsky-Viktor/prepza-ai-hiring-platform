@@ -1,6 +1,6 @@
 from datetime import date
 
-from sqlalchemy import Date, Identity, String, UniqueConstraint
+from sqlalchemy import Date, Identity, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -18,5 +18,5 @@ class SentEmail(Base):
     id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     user_id: Mapped[str] = mapped_column(String(128))
     kind: Mapped[str] = mapped_column(String(32))
-    key: Mapped[str] = mapped_column(String(160))
+    key: Mapped[str] = mapped_column(Text())
     sent_on: Mapped[date] = mapped_column(Date, index=True)

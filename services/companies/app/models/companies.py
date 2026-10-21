@@ -8,6 +8,7 @@ from sqlalchemy import (
     LargeBinary,
     SmallInteger,
     String,
+    Text,
     UniqueConstraint,
     func,
     text,
@@ -26,7 +27,7 @@ class Company(Base):
     __table_args__ = (Index("uq_companies_lower_name", text("lower(name)"), unique=True),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
-    name: Mapped[str] = mapped_column(String(200))
+    name: Mapped[str] = mapped_column(Text())
     # The company's logo on candidates' pages, emails and reports: the image itself (small,
     # loaded only when served), its media type, and a version that changes with every upload so
     # its address can be cached for good.
@@ -50,7 +51,7 @@ class Company(Base):
         String(16), default=VerificationStatus.NONE, server_default=VerificationStatus.NONE
     )
     verification_email: Mapped[str | None] = mapped_column(String(320))
-    verification_name: Mapped[str | None] = mapped_column(String(200))
+    verification_name: Mapped[str | None] = mapped_column(Text())
     verification_submitted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     decline_reason: Mapped[str | None] = mapped_column(String(MAX_DECLINE_REASON_LENGTH))
     verification_decided_by: Mapped[str | None] = mapped_column(String(128))

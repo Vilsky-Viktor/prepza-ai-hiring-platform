@@ -14,8 +14,8 @@ class SlackConnection(Base):
 
     company_id: Mapped[str] = mapped_column(String(128), primary_key=True)
     # The workspace and channel, as Slack names them, to show.
-    team: Mapped[str] = mapped_column(String(200))
-    channel: Mapped[str] = mapped_column(String(200))
+    team: Mapped[str] = mapped_column(Text())
+    channel: Mapped[str] = mapped_column(Text())
     # The channel's web hook and the app's token (to revoke it), sealed with SLACK_ENCRYPTION_KEY.
     webhook: Mapped[str] = mapped_column(Text)
     token: Mapped[str] = mapped_column(Text)
