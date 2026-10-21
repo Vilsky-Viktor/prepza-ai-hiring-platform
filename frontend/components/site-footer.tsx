@@ -17,7 +17,7 @@ export async function SiteFooter() {
   return (
     <footer className="border-t">
       {/* On phones: everything centered in one column, with bigger icons, button and links. */}
-      <div className="mx-auto flex max-w-5xl flex-wrap justify-between gap-8 px-6 py-8 text-sm text-muted-foreground max-sm:flex-col max-sm:items-center max-sm:gap-10 max-sm:py-12 max-sm:text-center">
+      <div className="mx-auto flex max-w-5xl flex-wrap justify-between gap-8 px-6 py-8 text-sm text-muted-foreground max-sm:flex-col max-sm:items-center max-sm:gap-10 max-sm:py-12 max-sm:text-center sm:gap-x-16">
         <div className="space-y-6 max-sm:flex max-sm:flex-col max-sm:items-center">
           {/* The legal operator, as EU rules want it within reach of every page. */}
           <span className="block">
@@ -44,7 +44,7 @@ export async function SiteFooter() {
         <nav
           data-slot="footer-nav"
           aria-label={t("footer")}
-          className="grid grid-cols-3 gap-x-6 [overflow-wrap:anywhere] hyphens-auto max-sm:grid-cols-1 max-sm:gap-y-3 max-sm:text-lg sm:gap-x-16"
+          className="grid grid-cols-3 gap-x-6 [overflow-wrap:anywhere] hyphens-auto max-sm:grid-cols-1 max-sm:gap-y-3 max-sm:text-lg sm:max-w-3xl sm:min-w-0 sm:flex-1 sm:grid-cols-[repeat(3,auto)] sm:justify-between sm:gap-x-6 lg:gap-x-10"
         >
           {FOOTER_COLUMNS.map((column) => (
             <ul key={column[0].href} className="space-y-2 max-sm:space-y-3">
