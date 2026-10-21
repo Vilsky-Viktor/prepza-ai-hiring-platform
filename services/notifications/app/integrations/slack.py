@@ -7,6 +7,7 @@ from app.constants.slack import (
     SLACK_ACCESS_URL,
     SLACK_CALLBACK,
     SLACK_GONE,
+    SLACK_HOOKS,
     SLACK_REVOKE_URL,
     SLACK_TIMEOUT_SECONDS,
 )
@@ -49,6 +50,10 @@ async def exchange(code: str) -> dict:
         raise SlackRefused(body.get("error", "unknown"))
 
     hook = body.get("incoming_webhook") or {}
+
+    # Posted to with company news later: only ever Slack's own address.
+    if not str(hook.get("url", "")).startswith(SLACK_HOOKS):
+        raise SlackRefused("invalid_webhook")
 
     return {
         "team": (body.get("team") or {}).get("name", ""),

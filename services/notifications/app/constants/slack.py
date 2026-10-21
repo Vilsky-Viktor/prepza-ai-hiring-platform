@@ -7,6 +7,8 @@ SLACK_ACCESS_URL = "https://slack.com/api/oauth.v2.access"
 SLACK_REVOKE_URL = "https://slack.com/api/auth.revoke"
 # Only to post to the one channel the company picks while approving.
 SLACK_SCOPE = "incoming-webhook"
+# Where Slack's incoming web hooks live: a web hook anywhere else is refused, never posted to.
+SLACK_HOOKS = "https://hooks.slack.com/"
 # Where Slack sends the company back, and the page that then opens.
 SLACK_CALLBACK = "{site}/api/notifications/slack/callback"
 SLACK_PAGE = "{site}/companies/{company_id}/integrations/slack"

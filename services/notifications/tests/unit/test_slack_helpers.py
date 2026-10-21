@@ -185,6 +185,15 @@ def test_an_approved_code_becomes_the_channels_web_hook(monkeypatch):
     }
 
 
+@pytest.mark.parametrize("url", ["https://attacker.example/x", "http://hooks.slack.com/x", None])
+def test_a_web_hook_off_slacks_address_is_refused(monkeypatch, url):
+    body = {"ok": True, "access_token": "xoxb-1", "incoming_webhook": {"url": url}}
+    monkeypatch.setattr(slack.http, "get_client", lambda: client(httpx.Response(200, json=body)))
+
+    with pytest.raises(slack.SlackRefused, match="invalid_webhook"):
+        asyncio.run(slack.exchange("code"))
+
+
 def test_a_refused_code_says_why(monkeypatch):
     answer = httpx.Response(200, json={"ok": False, "error": "invalid_code"})
     monkeypatch.setattr(slack.http, "get_client", lambda: client(answer))
