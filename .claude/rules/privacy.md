@@ -41,9 +41,9 @@ line, a trace, a third-party call) does all of this in the same change:
 
 - Pseudonymised data is still personal data: it needs a retention and a place in erasure and in
   the records.
-- A hash that stands for a person (an email, an id) is keyed (HMAC with a secret in Secret
-  Manager, as `prepza_common.analytics` does), never a plain SHA-256 anyone can recompute. The
-  key lives apart from the data.
+- A hash that stands for a person (an email, an id) is keyed (`prepza_common.person_hash` with
+  `PERSON_HASH_KEY`, or `analytics` with its salt; both in Secret Manager), never a plain SHA-256
+  anyone can recompute. The key lives apart from the data.
 
 ## Deletion and export
 
@@ -64,8 +64,9 @@ line, a trace, a third-party call) does all of this in the same change:
 
 - Erased data in backups is put beyond use: never restored for use, read or shared, and gone when
   the backups roll off (14 days).
-- A restore or clone replays the erasures made since the backup (a short list of erased ids, kept
-  as long as the backups); dumps and clones made for a recovery are deleted when it's done.
+- A restore or clone replays the erasures made since the backup (library's `erasures`, kept as
+  long as the backups; the `erasures` job); dumps and clones made for a recovery are deleted when
+  it's done.
 - An on-demand backup is deleted once automated backups work again, so the policy's period stays
   true.
 

@@ -22,6 +22,8 @@ the Top 10 for LLM applications 2025.
 - Every route resolves its object and checks the caller's company and role on it (`interview_for`,
   `candidate_for`, `require_company`, `require_editor`); an unguessable id never replaces the
   check. Test access with a second account that must be refused.
+- Each service's `test_route_guards.py` (`prepza_common.route_guards`) fails on a route that runs
+  no guard; a route public on purpose is listed there with why.
 - Superadmin routes answer 404 to everyone else.
 - Service-to-service calls carry short-lived (60 s), audience-bound tokens with one key per
   callee (`service_auth`); Google-signed pushes have their audience and account checked;
@@ -67,6 +69,8 @@ the Top 10 for LLM applications 2025.
   tfvars or compose beyond local placeholders.
 - Never log tokens, keys, session ids, a URL path that carries a secret token (log the route
   template) or unneeded personal data; log authentication and authorization failures.
+- `packages/common/tests/unit/test_log_calls.py` fails on a log call passing an email, a name, a
+  token or a key; every log line is scrubbed of emails and URL paths (`prepza_common.scrub`).
 
 ## AI
 
