@@ -34,19 +34,31 @@ async def pending(limit: int, skip: list[int]) -> list[tuple[int, uuid.UUID, str
 
 @asynccontextmanager
 async def claimed(row_id: int) -> AsyncIterator[BulkRecipient | None]:
-    """The recipient's row, locked while its email is sent, and saved as the caller left it;
-    None when another run holds it, or it's no longer pending (sent, or its send stopped). An
-    error inside leaves it as it was, pending, for the next run."""
+    """The recipient's row while its email is sent, saved as the caller left it; None when it's
+    no longer pending (sent, or its send stopped). No transaction stays open while the email
+    goes: one bulk run works at a time (services/bulk.py), and Resend's idempotency key keeps a
+    run cut off after sending from sending twice. An error inside leaves it as it was, pending,
+    for the next run."""
     async with Session() as session:
         row = await session.scalar(
             select(BulkRecipient)
             .join(BulkSend, BulkSend.id == BulkRecipient.send_id)
             .where(BulkRecipient.id == row_id, *OPEN)
-            .with_for_update(of=BulkRecipient, skip_locked=True)
         )
 
-        yield row
+    yield row
 
+    if row is None:
+        return
+
+    async with Session() as session:
+        await session.execute(
+            update(BulkRecipient)
+            .where(BulkRecipient.id == row_id)
+            .values(
+                status=row.status, reason=row.reason, attempts=row.attempts, sent_at=row.sent_at
+            )
+        )
         await session.commit()
 
 

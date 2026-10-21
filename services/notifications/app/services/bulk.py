@@ -79,9 +79,9 @@ def skip_reason(kind: str, person: dict | None, suppressed_hashes: set[str]) -> 
 
 
 async def send_one(row: tuple, person: dict | None, hashes: set[str], campaign) -> bool:
-    """Sends one recipient's email under its row's lock; whether it went out. A failure is tried
-    again in a later run, up to MAX_ATTEMPTS; one Resend refuses for good fails at once. Over
-    Resend's limit, ResendBusy stops the run and the row stays pending."""
+    """Sends one recipient's email (bulk_recipients.claimed); whether it went out. A failure is
+    tried again in a later run, up to MAX_ATTEMPTS; one Resend refuses for good fails at once.
+    Over Resend's limit, ResendBusy stops the run and the row stays pending."""
     row_id, send_id, user_id, kind, about = row
 
     async with bulk_recipients.claimed(row_id) as claimed:
