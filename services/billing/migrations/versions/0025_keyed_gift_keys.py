@@ -34,4 +34,5 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    raise NotImplementedError("a keyed hash can't be turned back into the plain one")
+    # A keyed hash can't be turned back into the plain one; the rows stay keyed.
+    pass
