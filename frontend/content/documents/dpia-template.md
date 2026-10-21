@@ -59,6 +59,7 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
 | Assessment | Questions shown, answers (every option ticked), right/wrong or points, time per answer, timeouts, topic and overall grades, pass/fail against your passing grade, rank |
 | Accommodations | Extra time you give a candidate (the amount only, never a reason) |
 | Integrity signals | Times the candidate left the page, copy attempts, answers under 3 seconds, each with the question on screen |
+| Pledge | When the candidate confirmed, before starting, that they'd answer on their own, without AI tools or other people |
 | Feedback | Candidate's ratings and reports of questions (reports may include a free-text comment) |
 | Reports | PDFs made in your browser; if emailed through prepza, kept at most 7 days to send |
 | Email opt-outs | A one-way hash of the email address of a candidate who stops your emails (or one interview's reminders) through the link in prepza's invites and reminders |
