@@ -11,16 +11,36 @@ How prepza turns a job description into an interview, how questions are reused a
 
 ## Generation pipeline
 
-```
-job text -> extract requirements and level -> draft topics          (both cached per input)
-         -> human review loop (checkboxes, inline edits, or free-text revision)
-         -> reuse proven questions from similar templates          (pgvector)
-         -> questions with their options, in parallel calls per subtopic
-         -> drop duplicates by meaning                             (embeddings)
-         -> top up any topic short of its size -> save to the library
-```
+The pipeline is a LangGraph graph (`app/services/graph.py`); the diagram below is drawn from the compiled graph by `scripts/graph-diagrams.sh`, and a unit test fails when it no longer matches the code. Dotted arrows are conditional edges.
 
-- The pipeline is a LangGraph graph, run by the generation worker (`app/worker_main.py`) as Cloud Tasks jobs.
+<!-- graph:generation -->
+```mermaid
+graph TD;
+	__start__ --> extract_info;
+	collect_results --> fill_topics;
+	extract_info --> generate_topics;
+	find_reused -.-> collect_results;
+	find_reused -.-> generate_questions;
+	generate_questions --> merge_questions;
+	generate_topics --> human_review;
+	human_review -.-> find_reused;
+	human_review -.-> revise_topics;
+	merge_questions --> collect_results;
+	revise_topics --> human_review;
+	fill_topics --> __end__;
+```
+<!-- /graph:generation -->
+
+- `extract_info`: reads the job text for its title, requirements and level (cached per input).
+- `generate_topics`: drafts the topics and their subtopics (cached per input).
+- `human_review`: pauses (`interrupt`) until the company keeps topics, edits them inline or asks for a revision in free text; `revise_topics` rewrites the draft and sends it back to review, and approval moves on.
+- `find_reused`: takes proven questions from similar public templates (pgvector).
+- `generate_questions`: one parallel branch (`Send`) per call of each subtopic writes questions with their options, for what reuse left; with nothing left to write, the run goes straight to `collect_results`.
+- `merge_questions`: waits for every branch and keeps, per topic, one list of distinct questions (duplicates by meaning dropped with embeddings).
+- `collect_results`: each topic's questions, reused ones first.
+- `fill_topics`: tops up any topic short of its size, of each kind; the questions are then saved to the library.
+
+- The graph is run by the generation worker (`app/worker_main.py`) as Cloud Tasks jobs.
 - The graph is checkpointed in Postgres, so a failed run can be retried from where it stopped.
 - Companies hears how an interview's generation ends through events: `generation.completed` stores its questions and title, `generation.failed` (a failed run, or one the sweeper finds stuck) marks it as failed until a retry, and `generation.cancelled` removes it. Interview lists read only what these stored and never ask generation; an interview's own page asks once, in case an event hasn't come yet, and shows what companies knows when generation can't answer.
 - The title the model gives is cut to 70 characters (`MAX_TITLE_LENGTH`), what editing a title allows, so saving the questions never fails on it.

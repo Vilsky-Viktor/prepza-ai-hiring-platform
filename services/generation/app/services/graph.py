@@ -33,10 +33,12 @@ def build_graph(checkpointer: BaseCheckpointSaver):
     graph.add_edge("extract_info", "generate_topics")
     graph.add_edge("generate_topics", "human_review")
     # Revise loop, or on to reuse.
-    graph.add_conditional_edges("human_review", review_router)
+    graph.add_conditional_edges("human_review", review_router, ["revise_topics", "find_reused"])
     graph.add_edge("revise_topics", "human_review")
     # Stage 1 fan-out.
-    graph.add_conditional_edges("find_reused", fan_out_questions)
+    graph.add_conditional_edges(
+        "find_reused", fan_out_questions, ["generate_questions", "collect_results"]
+    )
     # Barrier: merge waits for every question branch.
     graph.add_edge("generate_questions", "merge_questions")
     graph.add_edge("merge_questions", "collect_results")

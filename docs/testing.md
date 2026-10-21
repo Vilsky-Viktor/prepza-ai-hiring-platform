@@ -66,6 +66,14 @@ The assistant builds its tools from snapshots of the other services' OpenAPI des
 ./scripts/assistant-openapi.sh
 ```
 
+## The generation graph's diagram
+
+The diagram of the generation graph in [Generation and question quality](generation.md#generation-pipeline) is drawn from the compiled LangGraph graph. After changing the graph (`services/generation/app/services/graph.py`), redraw it and commit the result; generation's unit test `test_graph_diagrams.py` fails while the doc differs. It needs nothing running and sends the graph nowhere (the diagram is Mermaid text, which GitHub draws).
+
+```bash
+./scripts/graph-diagrams.sh
+```
+
 ## Smoke test
 
 A smoke test against a running stack:
