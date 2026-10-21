@@ -1,6 +1,12 @@
-"""SQL for one-off migrations that took candidates' emails out of the keys of their credits:
-companies (an invite's hold_key) and billing (its holds and entries) rewrite their own copies of
-a key, and must arrive at the same new one. Both get it here."""
+"""One-off migrations of the keys of candidates' credits: companies (an invite's hold_key) and
+billing (its holds and entries) rewrite their own copies of a key, and must arrive at the same
+new one. Both get it here. The first took the email out of the keys, as a plain hash; the second
+keys that hash, as anyone with the email and the interview could match it."""
+
+from prepza_common.person_hash import keyed
+
+# The hex digits of a key's hash, as the first migration left them.
+KEY_HASH_LENGTH = 32
 
 
 def hashed(old: str) -> str:
@@ -19,3 +25,11 @@ def ledger_key(key: str) -> str:
     old = f"substr({key}, 11)"
 
     return f"'candidate:' || split_part({old}, ':', 1) || ':' || {hashed(old)}"
+
+
+def rekeyed(hold_key: str, secret: str) -> str:
+    """An invite's hold key "{interview_id}:{hash}" with its hash keyed (PERSON_HASH_KEY): what
+    both services' second migration makes of every candidate's key."""
+    interview_id, _, rest = hold_key.partition(":")
+
+    return f"{interview_id}:{keyed(rest, secret)[:KEY_HASH_LENGTH]}"

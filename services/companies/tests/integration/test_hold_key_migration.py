@@ -1,6 +1,7 @@
-from prepza_common.credit_keys import invite_key, ledger_key
+from prepza_common.credit_keys import invite_key, ledger_key, rekeyed
 from sqlalchemy import text
 
+from app.config.settings import settings
 from app.storage.db import Session
 
 INTERVIEW = "1b4e28ba-2fa1-11d2-883f-0016d3cca427"
@@ -43,3 +44,15 @@ def test_companies_and_billing_rewrite_old_keys_to_the_same_new_key_without_the_
         assert billing == f"candidate:{companies}"
         assert companies.startswith(f"{INTERVIEW}:")
         assert "@" not in companies
+
+
+def test_both_services_key_a_hold_keys_hash_the_same_way_without_the_plain_hash():
+    """Companies' migration 0057 and billing's 0026 key every candidate's key alike."""
+    plain = f"{INTERVIEW}:0f1e2d3c4b5a69788796a5b4c3d2e1f0"
+    companies = rekeyed(plain, settings.person_hash_key)
+    billing = "candidate:" + rekeyed(plain, settings.person_hash_key)
+
+    assert billing == f"candidate:{companies}"
+    assert companies.startswith(f"{INTERVIEW}:")
+    assert companies != plain
+    assert len(companies) == len(plain)
