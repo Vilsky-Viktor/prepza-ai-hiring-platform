@@ -1,7 +1,7 @@
 import logging
 
 from langchain_core.messages import HumanMessage
-from prepza_common import pause
+from prepza_common import pause, redis_lock
 
 from app.constants.actions import QUALITY_PATTERNS
 from app.constants.patterns import (
@@ -27,7 +27,7 @@ from app.integrations.redis import get_redis
 from app.integrations.usage import ai_run
 from app.prompts.patterns import FLAG_MEANINGS, PATTERNS_PROMPT
 from app.schemas.patterns import ProposedPattern, ProposedPatterns, QualitySignal
-from app.storage import locks, patterns
+from app.storage import patterns
 
 logger = logging.getLogger(__name__)
 
@@ -110,7 +110,7 @@ async def run() -> None:
 
         return
 
-    token = await locks.acquire(redis, PATTERN_LOCK_KEY, PATTERN_LOCK_SECONDS)
+    token = await redis_lock.acquire(redis, PATTERN_LOCK_KEY, PATTERN_LOCK_SECONDS)
 
     if token is None:
         logger.warning("Quality patterns are still running from the last time; skipped")
@@ -132,4 +132,4 @@ async def run() -> None:
             await propose(flag, signals[:MAX_PATTERN_QUESTIONS])
             await redis.set(done, 1, ex=PATTERN_DONE_SECONDS)
     finally:
-        await locks.release(redis, PATTERN_LOCK_KEY, token)
+        await redis_lock.release(redis, PATTERN_LOCK_KEY, token)

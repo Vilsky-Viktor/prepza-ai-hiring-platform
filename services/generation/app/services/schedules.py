@@ -1,7 +1,7 @@
 import logging
 from datetime import UTC, datetime, timedelta
 
-from prepza_common import pause
+from prepza_common import pause, redis_lock
 
 from app.constants.accounts import TEXT_RETENTION_DAYS
 from app.constants.generation import (
@@ -14,7 +14,7 @@ from app.constants.quality import KEY_CHECK_LOCK_KEY, KEY_CHECK_LOCK_SECONDS
 from app.integrations.redis import get_redis
 from app.services import outbox as outbox_service
 from app.services.key_check_batches import collect_finished, submit_pending
-from app.storage import accounts, generations, locks
+from app.storage import accounts, generations
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +32,7 @@ async def key_check_batches() -> None:
 
         return
 
-    token = await locks.acquire(redis, KEY_CHECK_LOCK_KEY, KEY_CHECK_LOCK_SECONDS)
+    token = await redis_lock.acquire(redis, KEY_CHECK_LOCK_KEY, KEY_CHECK_LOCK_SECONDS)
 
     if token is None:
         logger.warning("Key checks are still running from the last time; skipped")
@@ -43,7 +43,7 @@ async def key_check_batches() -> None:
         await collect_finished()
         await submit_pending()
     finally:
-        await locks.release(redis, KEY_CHECK_LOCK_KEY, token)
+        await redis_lock.release(redis, KEY_CHECK_LOCK_KEY, token)
 
 
 async def expire_reviews() -> None:

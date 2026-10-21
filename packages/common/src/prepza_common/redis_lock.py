@@ -1,3 +1,6 @@
+"""A lock in Redis for a scheduled run, so two runs at once (a slow one and the next) don't both
+work: taken with SET NX and a time it lasts, released only by the run that holds it."""
+
 import uuid
 
 # Deletes the lock only while it still holds this run's token: a run that outlived its lock

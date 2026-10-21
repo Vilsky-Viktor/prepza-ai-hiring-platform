@@ -124,7 +124,8 @@ def store(monkeypatch):
 
 
 def run():
-    return asyncio.run(bulk.send_bulk(datetime.now(UTC)))
+    """One run's sending, without the lock that keeps runs apart (tested on its own below)."""
+    return asyncio.run(bulk.send_run(datetime.now(UTC)))
 
 
 def statuses(store):
@@ -253,3 +254,16 @@ def test_a_campaign_deleted_while_sending_is_stopped_for_the_rest(store, monkeyp
     assert run() == 0
     assert statuses(store) == {"ann": ("skipped", "stopped")}
     assert store.sent == []
+
+
+def test_a_run_that_finds_another_still_going_sends_nothing(store, monkeypatch):
+    class Held:
+        async def set(self, key, value, nx, ex):
+            return None
+
+    store.people = {"a": person("a")}
+    store.add("a")
+    monkeypatch.setattr(bulk, "get_redis", lambda: Held())
+
+    assert asyncio.run(bulk.send_bulk(datetime.now(UTC))) == 0
+    assert statuses(store) == {"a": ("pending", None)}

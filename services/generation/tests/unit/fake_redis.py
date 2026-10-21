@@ -88,7 +88,7 @@ class FakeRedis:
         return int(key in self.counts)
 
     async def eval(self, script, numkeys, key, token):
-        """Only the lock's release (storage/locks.py): deletes the key while it holds `token`."""
+        """Only the lock's release (prepza_common.redis_lock): deletes the key while it holds `token`."""
         self.check()
 
         if self.counts.get(key) == token:

@@ -6,10 +6,13 @@ import logging
 import time
 from datetime import UTC, datetime
 
+from prepza_common import redis_lock
 from prepza_common.limits import limit, record_hit
 
 from app.constants.bulk import (
     BULK_BATCH,
+    BULK_LOCK_KEY,
+    BULK_LOCK_SECONDS,
     CAMPAIGN_KINDS,
     LEGAL_KINDS,
     MAX_ATTEMPTS,
@@ -118,10 +121,25 @@ async def send_one(row: tuple, person: dict | None, hashes: set[str], campaign) 
 
 
 async def send_bulk(now: datetime) -> int:
-    """One run: prepares the sends that need it, then sends the next pending recipients, a batch
-    at a time, until its time is up or the day's quota is used. Each batch's addresses,
-    languages and settings are read just before sending, so a changed address or a deleted
-    account counts. Returns how many were sent."""
+    """One run at a time (two at once would each spend the day's whole quota): a run that finds
+    another still going sends nothing. Returns how many were sent."""
+    redis = get_redis()
+    token = await redis_lock.acquire(redis, BULK_LOCK_KEY, BULK_LOCK_SECONDS)
+
+    if token is None:
+        return 0
+
+    try:
+        return await send_run(now)
+    finally:
+        await redis_lock.release(redis, BULK_LOCK_KEY, token)
+
+
+async def send_run(now: datetime) -> int:
+    """Prepares the sends that need it, then sends the next pending recipients, a batch at a
+    time, until its time is up or the day's quota is used. Each batch's addresses, languages
+    and settings are read just before sending, so a changed address or a deleted account
+    counts. Returns how many were sent."""
     stop = deadline()
 
     for send in await bulk_sends.unprepared():
