@@ -1,9 +1,13 @@
 from pydantic import model_validator
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class ServiceSettings(BaseSettings):
     """What every API service reads about sign-in. Each service's Settings adds its own."""
+
+    # A refused setting's error names the setting, never the values given: they include keys
+    # and secrets, and the error goes to the start-up log.
+    model_config = SettingsConfigDict(hide_input_in_errors=True)
 
     firebase_project_id: str
     firebase_auth_emulator_host: str = ""

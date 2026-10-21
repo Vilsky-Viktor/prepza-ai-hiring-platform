@@ -2,15 +2,11 @@ from typing import Literal
 
 from prepza_common.settings import ServiceSettings
 from pydantic import model_validator
-from pydantic_settings import SettingsConfigDict
 
 from app.constants.products import PADDLE_KEY_PREFIXES, PADDLE_TOKEN_PREFIXES
 
 
 class Settings(ServiceSettings):
-    # A refused setting's error never repeats the values given, keys and secrets among them.
-    model_config = SettingsConfigDict(hide_input_in_errors=True)
-
     # The API description lists every route, internal ones too: development only.
     api_docs: bool = False
     database_url: str

@@ -59,7 +59,8 @@ Caching: `no_store.NoStoreMiddleware` marks every answer to a signed-in request 
 no-store`, unless its route set its own (a stream, a versioned logo).
 Settings: `ServiceSettings` (`settings.py`) is the base of every service's `Settings`, with the
 sign-in settings they all read (`FIREBASE_PROJECT_ID`, and `FIREBASE_AUTH_EMULATOR_HOST`, refused
-unless the project is a `demo-` one). Each service's own settings live in its
+unless the project is a `demo-` one). A refused setting's error names the setting, never the
+values given, so no key or secret reaches the start-up log. Each service's own settings live in its
 `app/config/settings.py`, and it passes in what differs (its name, its database URL). Otherwise the
 package reads only environment variables every service has: `BACKEND_SENTRY_DSN`,
 `ENVIRONMENT`, `SENTRY_RELEASE` and `SENTRY_TRACES_SAMPLE_RATE`, `GOOGLE_CLOUD_PROJECT`,
