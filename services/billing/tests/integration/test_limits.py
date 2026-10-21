@@ -11,9 +11,10 @@ from prepza_common import limits, memory_cache
 from prepza_common.limit_list import LIMITS, LIMITS_KEY
 from prepza_common.user import User
 
+from app.models.usage import LimitHit
 from app.routers import schedules
 from app.services import limit_hit_lists, limit_values
-from app.storage import limit_settings, usage
+from app.storage import limit_hits, limit_settings, usage
 
 # One limit no other service's integration tests touch, as they share Redis database 15.
 NAME = "REGISTRATIONS_PER_DAY"
@@ -152,3 +153,22 @@ def test_a_limits_hits_of_the_last_7_days_and_who_hit_it_most(run, redis, reset,
     assert shown.value == DEFAULT
     assert (shown.companies[0].id, shown.companies[0].name) == (acme, "Acme")
     assert (shown.users[0].id, shown.users[0].name) == (ann, "ann@example.com")
+
+
+def test_only_each_limits_top_hitters_are_read(run):
+    name = f"TEST_{uuid.uuid4().hex}"
+    companies = [str(uuid.uuid4()) for _ in range(4)]
+    now = datetime.now(UTC)
+
+    async def scenario():
+        for times, company in enumerate(companies, start=1):
+            for _ in range(times):
+                data = {"limit": name, "kind": "ours", "scope": "company", "company_id": company}
+                await usage.store_hit(uuid.uuid4().hex, now, data)
+
+        rows = await limit_hits.hitters(LimitHit.company_id, [LimitHit.limit == name], 2)
+
+        return [(key, hits) for _, key, hits in rows]
+
+    # The two that hit it most, most first; the rest aren't read.
+    assert run(scenario()) == [(companies[3], 4), (companies[2], 3)]

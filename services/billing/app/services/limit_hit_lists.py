@@ -31,8 +31,8 @@ def hitters_out(found: list[tuple[str, int]], known: dict[str, str]) -> list[Hit
 
 async def limit_hits_out(period: str | None) -> LimitHitListsOut:
     where = limit_hits.since(period)
-    companies = top_by_limit(await limit_hits.hitters(LimitHit.company_id, where))
-    users = top_by_limit(await limit_hits.hitters(LimitHit.user_id, where))
+    companies = top_by_limit(await limit_hits.hitters(LimitHit.company_id, where, TOP_HITTERS))
+    users = top_by_limit(await limit_hits.hitters(LimitHit.user_id, where, TOP_HITTERS))
     company_ids = {key for found in companies.values() for key, _ in found}
     user_ids = {key for found in users.values() for key, _ in found}
     company_known = await company_names(list(company_ids))

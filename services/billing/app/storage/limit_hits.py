@@ -33,13 +33,19 @@ async def counts(where: list) -> list:
         return list((await session.execute(query)).all())
 
 
-async def hitters(column, where: list) -> list:
-    """(limit, company or user, hits) for every one that hit a limit, most first."""
-    query = (
-        select(LimitHit.limit, column, HITS)
+async def hitters(column, where: list, top: int) -> list:
+    """(limit, company or user, hits): each limit's `top` that hit it most, most first."""
+    rank = func.row_number().over(partition_by=LimitHit.limit, order_by=(HITS.desc(), column))
+    counted = (
+        select(LimitHit.limit, column.label("key"), HITS.label("hits"), rank.label("rank"))
         .where(column.is_not(None), *where)
         .group_by(LimitHit.limit, column)
-        .order_by(HITS.desc())
+        .subquery()
+    )
+    query = (
+        select(counted.c.limit, counted.c.key, counted.c.hits)
+        .where(counted.c.rank <= top)
+        .order_by(counted.c.hits.desc(), counted.c.key)
     )
 
     async with Session() as session:
