@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { loaded } from "./helpers/waits";
+
 // The page an AI app sends a user to, to allow it the use of their account, signed out. Without
 // a request it says the link expired; with one it asks to sign in first. It's never
 // indexed.
@@ -21,6 +23,7 @@ test("the AI app consent page asks to sign in first", async ({ page }) => {
   expect(response?.headers()["x-robots-tag"]).toBe("noindex");
   const main = page.getByRole("main");
   await expect(main.getByRole("heading", { level: 1 })).toBeVisible();
+  await loaded(page);
   await main.getByRole("button").click();
   await expect(page.getByRole("dialog").getByTestId("sign-in-google")).toBeVisible();
 });
@@ -36,6 +39,7 @@ test("the AI app consent page signed out doesn't read the request", async ({ pag
 
   await page.goto("/connect?request=e2e-request");
   await expect(page.getByRole("main").getByRole("button")).toBeVisible();
-  await page.waitForLoadState("networkidle");
+  // Loaded and knowing the visitor is signed out: whatever it reads on load, it has asked for.
+  await loaded(page);
   expect(reads).toEqual([]);
 });

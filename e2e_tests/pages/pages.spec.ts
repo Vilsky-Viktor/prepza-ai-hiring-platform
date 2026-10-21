@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { loaded } from "./helpers/waits";
+
 // The signed-out pages. Signed-in ones are checked by hand: sign-in isn't automated.
 const PAGES = [
   "/",
@@ -45,7 +47,7 @@ for (const path of PAGES) {
     page.on("pageerror", (error) => errors.push(error.message));
 
     const response = await page.goto(path);
-    await page.waitForLoadState("networkidle");
+    await loaded(page);
 
     expect(response?.status()).toBe(200);
     expect(errors).toEqual([]);
