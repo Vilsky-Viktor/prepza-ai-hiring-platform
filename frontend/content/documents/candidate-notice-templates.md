@@ -35,7 +35,9 @@ your audit summary is published (see prepza's instructions for companies).
 > apply" question you earn part of it for each right option ticked, and nothing if you tick a
 > wrong one. The tool also records how long each answer
 > took, when you left the test page or copied text during it, and answers given too fast to have
-> read the question; [Company] may give you extra time, which is recorded without a reason.
+> read the question. Before you start, you confirm that you'll answer on your own, without AI tools
+> or other people, and when you did is recorded. [Company] may give you extra time, which is
+> recorded without a reason.
 >
 > **How it is used.** Your score is compared with a passing grade of [N]% and with other
 > candidates' scores. [Name or role at Company] reviews every result before any decision, together
@@ -43,8 +45,8 @@ your audit summary is published (see prepza's instructions for companies).
 >
 > **Data.** The tool uses your email address, your name (from your application or your sign-in),
 > the account id from your sign-in, and your answers in the test, with how long each took, page
-> leaves, copy attempts, answers too fast to have read the question, and any extra time you were
-> given. The questions were written with AI from the job description,
+> leaves, copy attempts, answers too fast to have read the question, when you confirmed answering
+> on your own, and any extra time you were given. The questions were written with AI from the job description,
 > on topics [Company] chose. Your test data is kept by prepza for 12 months after your invitation, then
 > deleted. [Company's own retention policy: ...]. More information about the data collected, its
 > source and retention policy is available on request at [contact], within 30 days of a written
@@ -77,8 +79,8 @@ your audit summary is published (see prepza's instructions for companies).
 >
 > **What is recorded.** Your answers (every option ticked), whether each was right or the points
 > it earned, how long each took, when you left the test page or copied text, and answers given
-> too fast to have read the question. If we give you extra time, that is recorded too, without a
-> reason. You won't see your score.
+> too fast to have read the question, and when you confirmed, before starting, that you'd answer
+> on your own. If we give you extra time, that is recorded too, without a reason. You won't see your score.
 >
 > **How we use it.** Your result is one part of our assessment, alongside [your CV / interviews].
 > A person at [Company] reviews it; no decision is made automatically. You can ask us for a human

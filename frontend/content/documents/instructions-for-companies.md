@@ -155,7 +155,8 @@ on signals alone; follow up in a conversation, and let the candidate explain.
 ## 9. Telling candidates
 
 Before you invite, tell candidates that they will take a timed AI-generated knowledge test, what it
-covers, how the result is used, that page leaves and copies are recorded, how long data is kept, and
+covers, how the result is used, that page leaves and copies are recorded, that they confirm answering
+on their own before they start, how long data is kept, and
 how to ask for an accommodation, an alternative or a human review. prepza's candidate notice
 templates (at prepza.ai/documents) are a starting point. prepza's invite page also tells candidates
 what to expect and links prepza's privacy policy, but the notice about **your** use of the results
@@ -182,7 +183,8 @@ is yours to give.
 
 **Records (logs).** For each candidate prepza records every question shown and when, the picks,
 right or wrong (or the points of a "select all that apply" question), the time taken, timeouts, page leaves and copy attempts, start and finish: the
-scorecard and its PDF report show them, and the API returns the results. Your company's action
+scorecard and its PDF report show them, and the API returns the results. It also records when the
+candidate confirmed, before starting, that they'd answer on their own, which the scorecard shows. Your company's action
 log records every action your members take: on interviews (created, renamed, settings, shareable
 link, topics approved, passing grade), on candidates (invited, revoked, deleted, renamed, extra
 time, results viewed, reports emailed), on the team, the company, billing and integrations (ATS,
