@@ -58,7 +58,7 @@ def test_requests_to_connect_are_counted_per_address(client, counted, monkeypatc
 
 def test_too_many_requests_to_connect_from_one_address_are_refused(client, monkeypatch):
     async def over(redis, key, name):
-        raise HTTPException(429, "Too many requests. Try again later.")
+        raise HTTPException(429, "Too many requests. Try again later.", {"Retry-After": "120"})
 
     monkeypatch.setattr(oauth_limits, "hit_or_skip", over)
 
@@ -66,6 +66,8 @@ def test_too_many_requests_to_connect_from_one_address_are_refused(client, monke
 
     assert response.status_code == 429
     assert response.json()["error"] == "invalid_request"
+    # When the limit's window frees up.
+    assert response.headers["Retry-After"] == "120"
 
 
 def test_a_state_too_long_to_keep_is_refused():

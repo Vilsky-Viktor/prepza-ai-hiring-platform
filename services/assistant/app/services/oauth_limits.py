@@ -12,7 +12,8 @@ from app.integrations.redis import get_redis
 class Limited:
     """An endpoint of the OAuth server counted per address against the limit named
     `per_ip`, and with `everyone`, against that limit for everyone; over a limit, refused (429)
-    with an OAuth `error`. With Redis down, not counted rather than refused."""
+    with an OAuth `error` and the limit's Retry-After. With Redis down, not counted rather than
+    refused."""
 
     def __init__(
         self, app: ASGIApp, name: str, error: str, per_ip: str, everyone: str | None = None
@@ -36,7 +37,8 @@ class Limited:
                     await hit_or_skip(redis, key, self.everyone)
             except HTTPException as error:
                 body = {"error": self.error, "error_description": error.detail}
-                await JSONResponse(body, status_code=error.status_code)(scope, receive, send)
+                refused = JSONResponse(body, status_code=error.status_code, headers=error.headers)
+                await refused(scope, receive, send)
 
                 return
 
