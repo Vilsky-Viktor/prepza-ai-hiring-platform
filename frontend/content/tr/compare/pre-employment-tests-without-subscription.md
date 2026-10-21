@@ -2,7 +2,7 @@
 title: "Abonelik gerektirmeyen işe alım öncesi testler"
 seoTitle: "Aboneliksiz İşe Alım Öncesi Test: Aday Başına Ödeme"
 description: "Aylık plan veya yıllık sözleşme olmadan aday değerlendirme. Aday başına ödeme aboneliklerle nasıl karşılaştırılır, satın almadan önce neye bakılır."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Abonelik gerektirmeyen işe alım öncesi testler
@@ -47,12 +47,12 @@ prepza'da abonelik ve sözleşme yoktur. İhtiyaç duyduğunuzda kredi satın al
 
 - **Krediler süresiz geçerlidir.**
 - **Bir aday 500 kredidir;** yalnızca en az bir soruyu yanıtladığında düşülür. Davet edilen bir aday hiç başlamazsa krediler geri gelir. 30 gün içinde başlanmayan bir davetin süresi dolar ve kredileri iade edilir.
-- **Daha büyük yüklemeler dolar başına daha fazla kredi sağlar;** yani yükleme tutarı arttıkça aday başı fiyat düşer. Yükleme seçenekleri için [fiyatlar](/pricing) sayfasına bakın.
+- **Daha büyük yüklemeler daha avantajlıdır;** yani yükleme tutarı arttıkça aday başı fiyat düşer. Yükleme seçenekleri için [fiyatlar](/pricing) sayfasına bakın.
 - **Mülakat oluşturmak ücretsizdir;** mülakatınızı aday gözüyle önizlemek de öyle.
 - **Kullanıcı başı ücret yok.** Şirketinize ücretsiz olarak yönetici ve görüntüleyici ekleyin.
 - **Hoş geldin kredileri:** ilk şirketinizin ilk 3 adayı ücretsizdir.
 
-Fiyatlar ABD doları cinsindendir. Ödemeler, KDV ve satış vergisini hesaplayan ve nihai tutarı ödeme adımında gösteren Paddle üzerinden yapılır; prepza kart bilgisi saklamaz. Bakiyeniz azaldığında onu dolduran otomatik yüklemeyi açabilirsiniz, ancak bu isteğe bağlıdır.
+Fiyatlar ABD doları, Avrupa'da avro (aynı rakamlarla) ve Birleşik Krallık'ta sterlin (£4 ile £1,50 arası) cinsindendir. Ödemeler, KDV ve satış vergisini hesaplayan ve nihai tutarı ödeme adımında gösteren Paddle üzerinden yapılır; prepza kart bilgisi saklamaz. Bakiyeniz azaldığında onu dolduran otomatik yüklemeyi açabilirsiniz, ancak bu isteğe bağlıdır.
 
 ## Her aday için neler alırsınız
 

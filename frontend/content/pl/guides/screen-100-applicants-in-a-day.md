@@ -2,7 +2,7 @@
 title: "Jak przeprowadzić selekcję 100 kandydatów w jeden dzień"
 seoTitle: "Selekcja 100 kandydatów w jeden dzień: praktyczny plan"
 description: "Plan krok po kroku, jak uczciwie przeprowadzić selekcję 100 kandydatów w jeden dzień roboczy: wymogi, krótki test umiejętności, ranking i decyzja ludzi."
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # Jak przeprowadzić selekcję 100 kandydatów w jeden dzień
@@ -103,7 +103,7 @@ Zapisz, dlaczego każda osoba trafiła na listę. Zajmuje to minutę na kandydat
 
 ## Ile to kosztuje
 
-W prepza płacisz tylko za kandydatów, którzy odpowiedzą na co najmniej jedno pytanie: $5 za kandydata przy doładowaniu $50, $4 od doładowania $200, $3 od doładowania $600 i $2 od doładowania $1000. Przy 100 kandydatach to $500 po $5 za kandydata albo $400 z dwóch doładowań po $200, po $4 za kandydata, bez subskrypcji. Ceny są w dolarach amerykańskich; VAT lub podatek od sprzedaży jest naliczany przy płatności. Wygenerowanie testu jest bezpłatne, a pierwszych 3 kandydatów Twojej pierwszej firmy jest za darmo.
+W prepza płacisz tylko za kandydatów, którzy odpowiedzą na co najmniej jedno pytanie: $5 za kandydata przy doładowaniu $50, $4 od doładowania $200, $3 od doładowania $600 i $2 od doładowania $1000. Przy 100 kandydatach to $500 po $5 za kandydata albo $400 z dwóch doładowań po $200, po $4 za kandydata, bez subskrypcji. Ceny są w dolarach amerykańskich, w Europie w euro (te same kwoty), a w Wielkiej Brytanii w funtach (od £4 do £1,50); VAT lub podatek od sprzedaży jest naliczany przy płatności. Wygenerowanie testu jest bezpłatne, a pierwszych 3 kandydatów Twojej pierwszej firmy jest za darmo.
 
 ## Przeczytaj też
 

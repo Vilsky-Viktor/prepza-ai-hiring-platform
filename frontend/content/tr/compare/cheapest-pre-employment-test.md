@@ -2,7 +2,7 @@
 title: "İşe alım öncesi test maliyetleri nasıl karşılaştırılır"
 seoTitle: "En Ucuz İşe Alım Öncesi Test? Maliyetleri Karşılaştırın"
 description: "Ücretsiz plan, abonelik, aday başına ödeme ve özel teklif: her fiyatlandırma modeli nasıl işler, işe alım öncesi test maliyetinizi nasıl tahmin edersiniz."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # İşe alım öncesi test maliyetleri nasıl karşılaştırılır
@@ -35,7 +35,7 @@ Bu sayfa diğer sağlayıcıların fiyatlarını listelemez, çünkü sık deği
 
 ### Tahmininiz için prepza fiyatları
 
-prepza, en az bir soruyu yanıtlayan aday başına ücret alır. Aday başı fiyat, kredi yükleme tutarınıza bağlıdır: en küçük yüklemede $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. İlk şirketinizin ilk 3 adayı ücretsizdir. Fiyatlar ABD doları cinsindendir; ödemeleri işleyen Paddle, KDV ve satış vergisini ödeme adımında hesaplar. Güncel yükleme seçenekleri için [fiyatlar](/pricing) sayfasına bakın.
+prepza, en az bir soruyu yanıtlayan aday başına ücret alır. Aday başı fiyat, kredi yükleme tutarınıza bağlıdır: en küçük yüklemede $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. İlk şirketinizin ilk 3 adayı ücretsizdir. Fiyatlar ABD doları, Avrupa'da avro (aynı rakamlarla) ve Birleşik Krallık'ta sterlin (£4 ile £1,50 arası) cinsindendir; ödemeleri işleyen Paddle, KDV ve satış vergisini ödeme adımında hesaplar. Güncel yükleme seçenekleri için [fiyatlar](/pricing) sayfasına bakın.
 
 ## Etiket fiyatının ötesindeki maliyetler
 

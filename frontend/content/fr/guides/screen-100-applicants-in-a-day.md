@@ -2,7 +2,7 @@
 title: "Comment présélectionner 100 candidats en une journée"
 seoTitle: "Trier 100 candidatures en une journée : méthode pratique"
 description: "Un plan étape par étape pour présélectionner 100 candidats en une journée, équitablement : critères impératifs, court test, liste classée et examen humain."
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # Comment présélectionner 100 candidats en une journée
@@ -103,7 +103,7 @@ Notez pourquoi chaque personne figure sur la liste. Cela prend une minute par ca
 
 ## Combien ça coûte
 
-Avec prepza, vous ne payez que pour les candidats qui répondent à au moins une question : 5 $ chacun avec la recharge de 50 $, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Pour 100 candidats, cela fait 500 $ à 5 $ l'unité, ou 400 $ en deux recharges de 200 $ à 4 $ l'unité, sans abonnement. Les prix sont en dollars américains ; la TVA ou la sales tax est gérée au moment du paiement. Générer le test est gratuit, et les 3 premiers candidats de votre première entreprise sont gratuits.
+Avec prepza, vous ne payez que pour les candidats qui répondent à au moins une question : 5 $ chacun avec la recharge de 50 $, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Pour 100 candidats, cela fait 500 $ à 5 $ l'unité, ou 400 $ en deux recharges de 200 $ à 4 $ l'unité, sans abonnement. Les prix sont en dollars américains, en euros en Europe (mêmes montants) et en livres sterling au Royaume-Uni (de 4 £ à 1,50 £) ; la TVA ou la sales tax est gérée au moment du paiement. Générer le test est gratuit, et les 3 premiers candidats de votre première entreprise sont gratuits.
 
 ## À lire aussi
 

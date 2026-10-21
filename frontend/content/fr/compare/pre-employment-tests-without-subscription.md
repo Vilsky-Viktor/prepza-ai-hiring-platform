@@ -2,7 +2,7 @@
 title: "Tests de recrutement sans abonnement"
 seoTitle: "Tests de recrutement sans abonnement"
 description: "Évaluez vos candidats sans abonnement mensuel ni contrat annuel. Paiement par candidat ou abonnement : comparaison, et points à vérifier avant d'acheter."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Tests de recrutement sans abonnement
@@ -47,12 +47,12 @@ prepza n'a ni abonnement ni contrat. Vous achetez des crédits quand vous en ave
 
 - **Les crédits n'expirent pas.**
 - **Un candidat coûte 500 crédits,** débités uniquement s'il répond à au moins une question. Si un candidat invité ne commence jamais, les crédits vous sont rendus. Une invitation non commencée sous 30 jours expire et restitue ses crédits.
-- **Les recharges plus importantes donnent plus de crédits par dollar,** si bien que le prix par candidat baisse quand la recharge augmente. Voir les [tarifs](/pricing) pour les recharges.
+- **Les recharges plus importantes reviennent moins cher,** si bien que le prix par candidat baisse quand la recharge augmente. Voir les [tarifs](/pricing) pour les recharges.
 - **Générer des entretiens est gratuit,** tout comme essayer votre entretien en tant que candidat.
 - **Pas de frais par utilisateur.** Ajoutez gratuitement des admins et des lecteurs à votre entreprise.
 - **Crédits de bienvenue :** les 3 premiers candidats de votre première entreprise sont gratuits.
 
-Les prix sont en dollars américains. Les paiements passent par Paddle, qui gère la TVA et la sales tax et affiche le montant final au moment du paiement ; prepza ne conserve aucune donnée de carte. Vous pouvez activer une recharge automatique qui réapprovisionne votre solde quand il baisse, mais c'est facultatif.
+Les prix sont en dollars américains, en euros en Europe (mêmes montants) et en livres sterling au Royaume-Uni (de 4 £ à 1,50 £). Les paiements passent par Paddle, qui gère la TVA et la sales tax et affiche le montant final au moment du paiement ; prepza ne conserve aucune donnée de carte. Vous pouvez activer une recharge automatique qui réapprovisionne votre solde quand il baisse, mais c'est facultatif.
 
 ## Ce que vous obtenez pour chaque candidat
 

@@ -2,7 +2,7 @@
 title: "Cómo conectar las pruebas de habilidades a tu ATS"
 seoTitle: "Cómo conectar pruebas de habilidades a tu ATS: guía práctica"
 description: "Envía pruebas de habilidades y recibe los resultados en tu ATS de forma automática, deja las decisiones en manos de personas y sabe qué revisar primero."
-updated: "2026-10-15"
+updated: "2026-10-21"
 ---
 
 # Cómo conectar las pruebas de habilidades a tu ATS
@@ -98,7 +98,7 @@ prepza se conecta con **Workable, Greenhouse, Teamtailor, Recruitee y Breezy HR*
 
 Algunos ATS necesitan un paso por su lado. Greenhouse, Teamtailor y Recruitee te piden añadir un webhook a mano; el diálogo Instrucciones de prepza muestra la dirección y dónde pegar su secreto. prepza configura por sí mismo los webhooks de Workable y Breezy HR.
 
-El precio es por candidato, sin suscripción: solo pagas por los candidatos que responden al menos una pregunta, $5 cada uno con la recarga de $50, $4 a partir de una recarga de $200, $3 a partir de una recarga de $600 y $2 a partir de una recarga de $1000. Los precios están en dólares estadounidenses; el IVA o los impuestos sobre las ventas se gestionan al pagar. Conectar un ATS y crear entrevistas es gratis, y los 3 primeros candidatos de tu primera empresa son gratis. Consulta los [precios](/pricing).
+El precio es por candidato, sin suscripción: solo pagas por los candidatos que responden al menos una pregunta, $5 cada uno con la recarga de $50, $4 a partir de una recarga de $200, $3 a partir de una recarga de $600 y $2 a partir de una recarga de $1000. Los precios están en dólares estadounidenses, en euros en Europa (con las mismas cifras) y en libras en el Reino Unido (de £4 a £1,50); el IVA o los impuestos sobre las ventas se gestionan al pagar. Conectar un ATS y crear entrevistas es gratis, y los 3 primeros candidatos de tu primera empresa son gratis. Consulta los [precios](/pricing).
 
 ## Lecturas relacionadas
 

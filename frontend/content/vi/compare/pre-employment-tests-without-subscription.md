@@ -2,7 +2,7 @@
 title: "Bài kiểm tra trước tuyển dụng không cần gói đăng ký"
 seoTitle: "Bài kiểm tra trước tuyển dụng không cần gói đăng ký"
 description: "Đánh giá ứng viên mà không cần gói tháng hay hợp đồng năm. So sánh trả tiền theo ứng viên với gói đăng ký, và những gì cần kiểm tra trước khi mua."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Bài kiểm tra trước tuyển dụng không cần gói đăng ký
@@ -47,12 +47,12 @@ prepza không có gói đăng ký và không có hợp đồng. Bạn mua credit
 
 - **Credit không hết hạn.**
 - **Một ứng viên tốn 500 credit,** chỉ bị trừ khi họ trả lời ít nhất một câu hỏi. Nếu một ứng viên được mời không bao giờ bắt đầu, credit sẽ được hoàn lại. Lời mời không được bắt đầu trong 30 ngày sẽ hết hạn và hoàn lại credit.
-- **Mức nạp lớn hơn mua được nhiều credit hơn trên mỗi đô la,** nên giá mỗi ứng viên giảm khi mức nạp tăng. Xem [bảng giá](/pricing) để biết các mức nạp.
+- **Mức nạp lớn hơn thì có lợi hơn,** nên giá mỗi ứng viên giảm khi mức nạp tăng. Xem [bảng giá](/pricing) để biết các mức nạp.
 - **Tạo buổi phỏng vấn là miễn phí,** xem trước buổi phỏng vấn với tư cách ứng viên cũng vậy.
 - **Không tính phí theo người dùng.** Thêm quản trị viên và người xem vào công ty của bạn miễn phí.
 - **Credit chào mừng:** 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí.
 
-Giá tính bằng đô la Mỹ. Thanh toán qua Paddle, đơn vị xử lý VAT và thuế bán hàng và hiển thị số tiền cuối cùng khi thanh toán; prepza không lưu thông tin thẻ. Bạn có thể bật tính năng tự động nạp để nạp thêm credit khi sắp hết, nhưng đó là tùy chọn.
+Giá tính bằng đô la Mỹ, bằng euro ở châu Âu (cùng con số) và bằng bảng Anh ở Vương quốc Anh (từ £4 đến £1,50). Thanh toán qua Paddle, đơn vị xử lý VAT và thuế bán hàng và hiển thị số tiền cuối cùng khi thanh toán; prepza không lưu thông tin thẻ. Bạn có thể bật tính năng tự động nạp để nạp thêm credit khi sắp hết, nhưng đó là tùy chọn.
 
 ## Bạn nhận được gì cho mỗi ứng viên
 

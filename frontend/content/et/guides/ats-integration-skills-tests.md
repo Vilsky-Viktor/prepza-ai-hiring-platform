@@ -2,7 +2,7 @@
 title: "Kuidas ühendada oskustestid oma ATS-süsteemiga"
 seoTitle: "Oskustestide ühendamine ATS-süsteemiga: praktiline juhend"
 description: "Saada oskustestid ja saa tulemused automaatselt oma ATS-süsteemi kaudu, jäta värbamisotsused inimestele ja tea, mida kõigepealt kontrollida."
-updated: "2026-10-15"
+updated: "2026-10-21"
 ---
 
 # Kuidas ühendada oskustestid oma ATS-süsteemiga
@@ -98,7 +98,7 @@ prepza ühendub süsteemidega **Workable, Greenhouse, Teamtailor, Recruitee ja B
 
 Mõni ATS vajab sammu enda poolel. Greenhouse, Teamtailor ja Recruitee paluvad lisada webhooki käsitsi; prepza dialoog Juhised näitab aadressi ja kuhu selle saladus kleepida. Workable'i ja Breezy HR-i webhookid seadistab prepza ise.
 
-Hind on kandidaadipõhine, ilma tellimuseta: maksad ainult kandidaatide eest, kes vastavad vähemalt ühele küsimusele, 50 $ juurdelaadimise puhul 5 $ kandidaadi kohta, alates 200 $ juurdelaadimisest 4 $, alates 600 $ juurdelaadimisest 3 $ ja alates 1000 $ juurdelaadimisest 2 $. Hinnad on USA dollarites; käibemaksu või müügimaksu arvestatakse maksmise ajal. ATS-i ühendamine ja intervjuude loomine on tasuta ning sinu esimese ettevõtte esimesed 3 kandidaati on tasuta. Vaata [hindu](/pricing).
+Hind on kandidaadipõhine, ilma tellimuseta: maksad ainult kandidaatide eest, kes vastavad vähemalt ühele küsimusele, 50 $ juurdelaadimise puhul 5 $ kandidaadi kohta, alates 200 $ juurdelaadimisest 4 $, alates 600 $ juurdelaadimisest 3 $ ja alates 1000 $ juurdelaadimisest 2 $. Hinnad on USA dollarites, Euroopas eurodes (samad summad) ja Ühendkuningriigis naelsterlingites (4 £ kuni 1,50 £); käibemaksu või müügimaksu arvestatakse maksmise ajal. ATS-i ühendamine ja intervjuude loomine on tasuta ning sinu esimese ettevõtte esimesed 3 kandidaati on tasuta. Vaata [hindu](/pricing).
 
 ## Loe ka
 

@@ -2,7 +2,7 @@
 title: "Cách so sánh chi phí bài kiểm tra trước tuyển dụng"
 seoTitle: "Bài kiểm tra trước tuyển dụng giá rẻ? Cách so sánh chi phí"
 description: "Gói miễn phí, gói đăng ký, trả tiền theo ứng viên và báo giá riêng: cách từng mô hình giá hoạt động và cách ước tính chi phí kiểm tra trước tuyển dụng."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Cách so sánh chi phí bài kiểm tra trước tuyển dụng
@@ -35,7 +35,7 @@ Bạn cần ba con số: số ứng viên bạn kiểm tra trong một năm, gi�
 
 ### Giá của prepza để bạn ước tính
 
-prepza tính phí cho mỗi ứng viên trả lời ít nhất một câu hỏi. Giá mỗi ứng viên phụ thuộc vào mức nạp: $5 với mức nạp nhỏ nhất, $4 từ mức nạp $200, $3 từ mức nạp $600 và $2 từ mức nạp $1.000. 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí. Giá tính bằng đô la Mỹ; Paddle, đơn vị xử lý thanh toán, xử lý VAT và thuế bán hàng khi thanh toán. Xem [bảng giá](/pricing) để biết các mức nạp hiện tại.
+prepza tính phí cho mỗi ứng viên trả lời ít nhất một câu hỏi. Giá mỗi ứng viên phụ thuộc vào mức nạp: $5 với mức nạp nhỏ nhất, $4 từ mức nạp $200, $3 từ mức nạp $600 và $2 từ mức nạp $1.000. 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí. Giá tính bằng đô la Mỹ, bằng euro ở châu Âu (cùng con số) và bằng bảng Anh ở Vương quốc Anh (từ £4 đến £1,50); Paddle, đơn vị xử lý thanh toán, xử lý VAT và thuế bán hàng khi thanh toán. Xem [bảng giá](/pricing) để biết các mức nạp hiện tại.
 
 ## Chi phí ngoài giá niêm yết
 

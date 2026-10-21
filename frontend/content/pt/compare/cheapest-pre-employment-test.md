@@ -2,7 +2,7 @@
 title: "Como comparar o custo de testes de seleção"
 seoTitle: "Teste de seleção mais barato? Como comparar custos"
 description: "Planos gratuitos, assinaturas, pagamento por candidato e orçamentos sob medida: como funciona cada modelo de preço e como estimar o custo dos seus testes."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Como comparar o custo de testes de seleção
@@ -35,7 +35,7 @@ Você precisa de três números: quantos candidatos avalia por ano, o preço por
 
 ### Os preços da prepza para a sua estimativa
 
-A prepza cobra por candidato que responde pelo menos uma pergunta. O preço por candidato depende do tamanho da recarga: $5 na menor recarga, $4 a partir de uma recarga de $200, $3 a partir de uma recarga de $600 e $2 a partir de uma recarga de $1.000. Os 3 primeiros candidatos da sua primeira empresa são gratuitos. Os preços são em dólares americanos; a Paddle, que processa os pagamentos, cuida do IVA e dos impostos sobre vendas no checkout. Veja os [preços](/pricing) para as recargas atuais.
+A prepza cobra por candidato que responde pelo menos uma pergunta. O preço por candidato depende do tamanho da recarga: $5 na menor recarga, $4 a partir de uma recarga de $200, $3 a partir de uma recarga de $600 e $2 a partir de uma recarga de $1.000. Os 3 primeiros candidatos da sua primeira empresa são gratuitos. Os preços são em dólares americanos, em euros na Europa (com os mesmos valores) e em libras no Reino Unido (de £4 a £1,50); a Paddle, que processa os pagamentos, cuida do IVA e dos impostos sobre vendas no checkout. Veja os [preços](/pricing) para as recargas atuais.
 
 ## Custos além do preço de vitrine
 

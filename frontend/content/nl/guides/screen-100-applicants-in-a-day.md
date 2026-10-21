@@ -2,7 +2,7 @@
 title: "Zo screen je 100 sollicitanten in één dag"
 seoTitle: "100 sollicitanten screenen in één dag: een praktisch plan"
 description: "Een stappenplan om 100 sollicitanten eerlijk te screenen in één werkdag: harde eisen, een korte selectietest, een ranglijst en beoordeling door mensen."
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # Zo screen je 100 sollicitanten in één dag
@@ -103,7 +103,7 @@ Schrijf op waarom elke persoon op de lijst staat. Dat kost een minuut per kandid
 
 ## Wat het kost
 
-Met prepza betaal je alleen voor kandidaten die minstens één vraag beantwoorden: $5 per kandidaat bij de opwaardering van $50, $4 vanaf een opwaardering van $200, $3 vanaf een opwaardering van $600 en $2 vanaf een opwaardering van $1.000. Voor 100 sollicitanten is dat $500 tegen $5 per kandidaat, of $400 in twee opwaarderingen van $200 tegen $4 per kandidaat, zonder abonnement. Prijzen zijn in Amerikaanse dollars; btw of sales tax wordt bij het afrekenen geregeld. De test genereren is gratis, en de eerste 3 kandidaten van je eerste bedrijf zijn gratis.
+Met prepza betaal je alleen voor kandidaten die minstens één vraag beantwoorden: $5 per kandidaat bij de opwaardering van $50, $4 vanaf een opwaardering van $200, $3 vanaf een opwaardering van $600 en $2 vanaf een opwaardering van $1.000. Voor 100 sollicitanten is dat $500 tegen $5 per kandidaat, of $400 in twee opwaarderingen van $200 tegen $4 per kandidaat, zonder abonnement. Prijzen zijn in Amerikaanse dollars, in Europa in euro's (dezelfde bedragen) en in het Verenigd Koninkrijk in ponden (£4 tot £1,50); btw of sales tax wordt bij het afrekenen geregeld. De test genereren is gratis, en de eerste 3 kandidaten van je eerste bedrijf zijn gratis.
 
 ## Verder lezen
 

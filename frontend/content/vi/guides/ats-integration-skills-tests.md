@@ -2,7 +2,7 @@
 title: "Cách kết nối bài kiểm tra kỹ năng với ATS"
 seoTitle: "Kết nối bài kiểm tra kỹ năng với ATS: hướng dẫn thực tế"
 description: "Tự động gửi bài kiểm tra kỹ năng và nhận kết quả qua ATS, để con người giữ quyền quyết định tuyển dụng và biết cần kiểm tra điều gì trước."
-updated: "2026-10-15"
+updated: "2026-10-21"
 ---
 
 # Cách kết nối bài kiểm tra kỹ năng với ATS
@@ -98,7 +98,7 @@ prepza kết nối với **Workable, Greenhouse, Teamtailor, Recruitee và Breez
 
 Một số ATS cần một bước ở phía họ. Greenhouse, Teamtailor và Recruitee yêu cầu bạn thêm webhook thủ công; hộp thoại Hướng dẫn của prepza hiển thị địa chỉ và chỗ dán khóa bí mật. prepza tự thiết lập webhook cho Workable và Breezy HR.
 
-Giá tính theo ứng viên, không có gói đăng ký: bạn chỉ trả tiền cho những ứng viên trả lời ít nhất một câu hỏi, $5 mỗi người với gói nạp $50, $4 từ gói nạp $200, $3 từ gói nạp $600 và $2 từ gói nạp $1.000. Giá tính bằng đô la Mỹ; VAT hoặc thuế bán hàng được xử lý khi thanh toán. Kết nối ATS và tạo buổi phỏng vấn là miễn phí, và 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí. Xem [bảng giá](/pricing).
+Giá tính theo ứng viên, không có gói đăng ký: bạn chỉ trả tiền cho những ứng viên trả lời ít nhất một câu hỏi, $5 mỗi người với gói nạp $50, $4 từ gói nạp $200, $3 từ gói nạp $600 và $2 từ gói nạp $1.000. Giá tính bằng đô la Mỹ, bằng euro ở châu Âu (cùng con số) và bằng bảng Anh ở Vương quốc Anh (từ £4 đến £1,50); VAT hoặc thuế bán hàng được xử lý khi thanh toán. Kết nối ATS và tạo buổi phỏng vấn là miễn phí, và 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí. Xem [bảng giá](/pricing).
 
 ## Đọc thêm
 

@@ -2,7 +2,7 @@
 title: "Kuidas võrrelda värbamistestide hindu"
 seoTitle: "Odavaim värbamistest? Kuidas testide hindu võrrelda"
 description: "Tasuta paketid, tellimused, tasu kandidaadi kohta ja hinnapakkumised: kuidas iga hinnamudel toimib ja kuidas hinnata oma kandidaatide testimise kulu."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Kuidas võrrelda värbamistestide hindu
@@ -35,7 +35,7 @@ Vajad kolme arvu: mitu kandidaati aastas testid, hind kandidaadi kohta kandidaad
 
 ### prepza hinnad sinu arvutuse jaoks
 
-prepza võtab tasu iga kandidaadi eest, kes vastab vähemalt ühele küsimusele. Hind kandidaadi kohta sõltub juurdelaadimise suurusest: väikseima juurdelaadimise puhul 5 $, alates 200 $ juurdelaadimisest 4 $, alates 600 $ juurdelaadimisest 3 $ ja alates 1000 $ juurdelaadimisest 2 $. Sinu esimese ettevõtte esimesed 3 kandidaati on tasuta. Hinnad on USA dollarites; makseid töötlev Paddle arvestab käibemaksu ja müügimaksu maksmise ajal. Kehtivad juurdelaadimised leiad [hinnalehelt](/pricing).
+prepza võtab tasu iga kandidaadi eest, kes vastab vähemalt ühele küsimusele. Hind kandidaadi kohta sõltub juurdelaadimise suurusest: väikseima juurdelaadimise puhul 5 $, alates 200 $ juurdelaadimisest 4 $, alates 600 $ juurdelaadimisest 3 $ ja alates 1000 $ juurdelaadimisest 2 $. Sinu esimese ettevõtte esimesed 3 kandidaati on tasuta. Hinnad on USA dollarites, Euroopas eurodes (samad summad) ja Ühendkuningriigis naelsterlingites (4 £ kuni 1,50 £); makseid töötlev Paddle arvestab käibemaksu ja müügimaksu maksmise ajal. Kehtivad juurdelaadimised leiad [hinnalehelt](/pricing).
 
 ## Kulud lisaks hinnasildile
 

@@ -2,7 +2,7 @@
 title: "Cara menghubungkan tes keterampilan ke ATS-mu"
 seoTitle: "Cara Menghubungkan Tes Keterampilan ke ATS: Panduan Praktis"
 description: "Kirim tes keterampilan dan terima hasilnya lewat ATS-mu secara otomatis, biarkan manusia yang memutuskan, dan ketahui apa yang perlu dicek dulu."
-updated: "2026-10-15"
+updated: "2026-10-21"
 ---
 
 # Cara menghubungkan tes keterampilan ke ATS-mu
@@ -98,7 +98,7 @@ prepza terhubung dengan **Workable, Greenhouse, Teamtailor, Recruitee, dan Breez
 
 Beberapa ATS memerlukan satu langkah di sisi mereka. Greenhouse, Teamtailor, dan Recruitee memintamu menambahkan webhook secara manual; dialog Petunjuk di prepza menampilkan alamatnya dan tempat menempel secret-nya. prepza mengatur sendiri webhook Workable dan Breezy HR.
 
-Harganya per kandidat, tanpa langganan: kamu hanya membayar untuk kandidat yang menjawab setidaknya satu soal, $5 per kandidat pada isi ulang $50, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. Harga dalam dolar AS; PPN (VAT) atau pajak penjualan ditangani saat checkout. Menghubungkan ATS dan membuat wawancara gratis, dan 3 kandidat pertama dari perusahaan pertamamu gratis. Lihat [harga](/pricing).
+Harganya per kandidat, tanpa langganan: kamu hanya membayar untuk kandidat yang menjawab setidaknya satu soal, $5 per kandidat pada isi ulang $50, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. Harga dalam dolar AS, dalam euro di Eropa (angka yang sama), dan dalam pound di Inggris Raya (£4 hingga £1,50); PPN (VAT) atau pajak penjualan ditangani saat checkout. Menghubungkan ATS dan membuat wawancara gratis, dan 3 kandidat pertama dari perusahaan pertamamu gratis. Lihat [harga](/pricing).
 
 ## Bacaan terkait
 

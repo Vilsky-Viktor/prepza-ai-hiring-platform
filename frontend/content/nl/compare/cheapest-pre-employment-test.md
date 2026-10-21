@@ -2,7 +2,7 @@
 title: "Hoe je de kosten van selectietests vergelijkt"
 seoTitle: "Goedkoopste pre-employment test? Zo vergelijk je kosten"
 description: "Gratis plannen, abonnementen, betalen per kandidaat en offertes: hoe elk prijsmodel werkt en hoe je de kosten van je selectietests inschat."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Hoe je de kosten van selectietests vergelijkt
@@ -35,7 +35,7 @@ Je hebt drie getallen nodig: hoeveel kandidaten je per jaar test, de prijs per k
 
 ### De prijzen van prepza voor je berekening
 
-prepza rekent per kandidaat die minstens één vraag beantwoordt. De prijs per kandidaat hangt af van de grootte van je opwaardering: $5 bij de kleinste opwaardering, $4 vanaf een opwaardering van $200, $3 vanaf een opwaardering van $600 en $2 vanaf een opwaardering van $1.000. De eerste 3 kandidaten van je eerste bedrijf zijn gratis. Prijzen zijn in US dollars; Paddle, dat de betalingen verwerkt, regelt btw en sales tax bij het afrekenen. Zie [prijzen](/pricing) voor de huidige opwaarderingen.
+prepza rekent per kandidaat die minstens één vraag beantwoordt. De prijs per kandidaat hangt af van de grootte van je opwaardering: $5 bij de kleinste opwaardering, $4 vanaf een opwaardering van $200, $3 vanaf een opwaardering van $600 en $2 vanaf een opwaardering van $1.000. De eerste 3 kandidaten van je eerste bedrijf zijn gratis. Prijzen zijn in US dollars, in Europa in euro's (dezelfde bedragen) en in het Verenigd Koninkrijk in ponden (£4 tot £1,50); Paddle, dat de betalingen verwerkt, regelt btw en sales tax bij het afrekenen. Zie [prijzen](/pricing) voor de huidige opwaarderingen.
 
 ## Kosten bovenop de vermelde prijs
 

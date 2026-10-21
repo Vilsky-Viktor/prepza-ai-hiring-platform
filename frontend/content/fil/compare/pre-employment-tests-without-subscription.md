@@ -2,7 +2,7 @@
 title: "Pre-employment tests na walang subscription"
 seoTitle: "Pre-Employment Test na Walang Subscription"
 description: "Mag-test ng aplikante nang walang buwanang plan o taunang kontrata. Paano ikinukumpara ang pay-per-candidate sa subscription, at ano ang dapat suriin."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Pre-employment tests na walang subscription
@@ -47,12 +47,12 @@ Walang subscription at walang kontrata ang prepza. Bumibili ka ng credits kapag 
 
 - **Hindi nag-e-expire ang credits.**
 - **500 credits ang bawat aplikante,** na sinisingil lang kapag sumagot sila ng kahit isang tanong. Kung hindi nagsimula ang inimbitahang aplikante, bumabalik ang credits. Nag-e-expire ang imbitasyong hindi nasimulan sa loob ng 30 araw at ibinabalik ang credits nito.
-- **Mas maraming credits bawat dolyar sa mas malalaking top-up,** kaya bumababa ang presyo bawat aplikante habang lumalaki ang top-up. Tingnan ang [presyo](/pricing) para sa mga top-up.
+- **Mas sulit ang mas malalaking top-up,** kaya bumababa ang presyo bawat aplikante habang lumalaki ang top-up. Tingnan ang [presyo](/pricing) para sa mga top-up.
 - **Libre ang paggawa ng interview,** pati ang pag-preview ng iyong interview bilang aplikante.
 - **Walang seat fees.** Magdagdag ng mga admin at viewer sa iyong kumpanya nang walang bayad.
 - **Welcome credits:** libre ang unang 3 aplikante ng iyong unang kumpanya.
 
-Nasa US dollars ang mga presyo. Dumaraan ang mga bayad sa Paddle, na humahawak sa VAT at sales tax at nagpapakita ng huling halaga sa checkout; walang iniimbak na card details ang prepza. Puwede mong i-on ang automatic top-up na nagre-refill ng balance mo kapag paubos na, pero opsyonal ito.
+Nasa US dollars ang mga presyo, nasa euro sa Europe (parehong mga numero) at nasa pound sa UK (£4 hanggang £1.50). Dumaraan ang mga bayad sa Paddle, na humahawak sa VAT at sales tax at nagpapakita ng huling halaga sa checkout; walang iniimbak na card details ang prepza. Puwede mong i-on ang automatic top-up na nagre-refill ng balance mo kapag paubos na, pero opsyonal ito.
 
 ## Ang makukuha mo para sa bawat aplikante
 

@@ -2,7 +2,7 @@
 title: "Paano ikumpara ang gastos ng mga pre-employment test"
 seoTitle: "Pinakamurang Pre-Employment Test? Paano Ikumpara ang Gastos"
 description: "Libreng plan, subscription, bayad bawat aplikante at custom quote: paano gumagana ang bawat pricing model at paano tantiyahin ang gastos ng iyong testing."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Paano ikumpara ang gastos ng mga pre-employment test
@@ -35,7 +35,7 @@ Tatlong numero ang kailangan mo: kung ilang aplikante ang tine-test mo sa isang 
 
 ### Mga presyo ng prepza para sa iyong tantiya
 
-Naniningil ang prepza bawat aplikanteng sumagot ng kahit isang tanong. Nakadepende ang presyo bawat aplikante sa laki ng iyong top-up: $5 sa pinakamaliit na top-up, $4 simula sa $200 na top-up, $3 simula sa $600 na top-up at $2 simula sa $1,000 na top-up. Libre ang unang 3 aplikante ng iyong unang kumpanya. Nasa US dollars ang mga presyo; ang Paddle, na nagpoproseso ng mga bayad, ang humahawak sa VAT at sales tax sa checkout. Tingnan ang [presyo](/pricing) para sa kasalukuyang mga top-up.
+Naniningil ang prepza bawat aplikanteng sumagot ng kahit isang tanong. Nakadepende ang presyo bawat aplikante sa laki ng iyong top-up: $5 sa pinakamaliit na top-up, $4 simula sa $200 na top-up, $3 simula sa $600 na top-up at $2 simula sa $1,000 na top-up. Libre ang unang 3 aplikante ng iyong unang kumpanya. Nasa US dollars ang mga presyo, nasa euro sa Europe (parehong mga numero) at nasa pound sa UK (£4 hanggang £1.50); ang Paddle, na nagpoproseso ng mga bayad, ang humahawak sa VAT at sales tax sa checkout. Tingnan ang [presyo](/pricing) para sa kasalukuyang mga top-up.
 
 ## Mga gastos bukod sa nakalistang presyo
 

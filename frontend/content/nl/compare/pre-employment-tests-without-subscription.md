@@ -2,7 +2,7 @@
 title: "Selectietests zonder abonnement"
 seoTitle: "Pre-employment tests zonder abonnement"
 description: "Kandidaten screenen zonder maandplan of jaarcontract. Hoe betalen per kandidaat zich verhoudt tot abonnementen, en wat je checkt voordat je koopt."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Selectietests zonder abonnement
@@ -47,12 +47,12 @@ prepza heeft geen abonnement en geen contract. Je koopt credits wanneer je ze no
 
 - **Credits verlopen niet.**
 - **Een kandidaat kost 500 credits,** alleen gerekend als hij of zij minstens één vraag beantwoordt. Begint een uitgenodigde kandidaat nooit, dan komen de credits terug. Een uitnodiging die niet binnen 30 dagen is gestart, verloopt en geeft haar credits terug.
-- **Grotere opwaarderingen geven meer credits per dollar,** dus de prijs per kandidaat daalt naarmate de opwaardering groter wordt. Zie [prijzen](/pricing) voor de opwaarderingen.
+- **Grotere opwaarderingen zijn voordeliger,** dus de prijs per kandidaat daalt naarmate de opwaardering groter wordt. Zie [prijzen](/pricing) voor de opwaarderingen.
 - **Interviews genereren is gratis,** en je interview als kandidaat proberen ook.
 - **Geen kosten per gebruiker.** Voeg zonder kosten beheerders en kijkers toe aan je bedrijf.
 - **Welkomstcredits:** de eerste 3 kandidaten van je eerste bedrijf zijn gratis.
 
-Prijzen zijn in US dollars. Betalingen lopen via Paddle, dat btw en sales tax regelt en het eindbedrag bij het afrekenen toont; prepza slaat geen kaartgegevens op. Je kunt automatisch opwaarderen aanzetten, zodat je saldo wordt aangevuld als het bijna op is, maar dat is optioneel.
+Prijzen zijn in US dollars, in Europa in euro's (dezelfde bedragen) en in het Verenigd Koninkrijk in ponden (£4 tot £1,50). Betalingen lopen via Paddle, dat btw en sales tax regelt en het eindbedrag bij het afrekenen toont; prepza slaat geen kaartgegevens op. Je kunt automatisch opwaarderen aanzetten, zodat je saldo wordt aangevuld als het bijna op is, maar dat is optioneel.
 
 ## Wat je per kandidaat krijgt
 

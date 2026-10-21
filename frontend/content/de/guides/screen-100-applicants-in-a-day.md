@@ -2,7 +2,7 @@
 title: "So sichtest du 100 Bewerbungen an einem Tag"
 seoTitle: "100 Bewerbungen an einem Tag sichten: ein Praxisplan"
 description: "Ein Plan, um 100 Bewerbungen an einem Arbeitstag fair zu sichten: harte Anforderungen, kurzer Fachtest, Rangliste und Prüfung durch Menschen."
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # So sichtest du 100 Bewerbungen an einem Tag
@@ -103,7 +103,7 @@ Halte fest, warum jede Person auf die Liste gekommen ist. Das dauert eine Minute
 
 ## Was es kostet
 
-Mit prepza zahlst du nur für Kandidaten, die mindestens eine Frage beantworten: 5 $ pro Kandidat bei der Aufladung über 50 $, 4 $ ab einer Aufladung von 200 $, 3 $ ab einer Aufladung von 600 $ und 2 $ ab einer Aufladung von 1.000 $. Für 100 Bewerber sind das 500 $ bei 5 $ pro Kandidat oder 400 $ in zwei Aufladungen von je 200 $ bei 4 $ pro Kandidat, ohne Abo. Die Preise sind in US-Dollar angegeben; Mehrwertsteuer oder Sales Tax werden beim Bezahlen berechnet. Den Test zu generieren ist kostenlos, und die ersten 3 Kandidaten deines ersten Unternehmens sind kostenlos.
+Mit prepza zahlst du nur für Kandidaten, die mindestens eine Frage beantworten: 5 $ pro Kandidat bei der Aufladung über 50 $, 4 $ ab einer Aufladung von 200 $, 3 $ ab einer Aufladung von 600 $ und 2 $ ab einer Aufladung von 1.000 $. Für 100 Bewerber sind das 500 $ bei 5 $ pro Kandidat oder 400 $ in zwei Aufladungen von je 200 $ bei 4 $ pro Kandidat, ohne Abo. Die Preise sind in US-Dollar angegeben, in Europa in Euro (mit denselben Beträgen) und im Vereinigten Königreich in Pfund (4 £ bis 1,50 £); Mehrwertsteuer oder Sales Tax werden beim Bezahlen berechnet. Den Test zu generieren ist kostenlos, und die ersten 3 Kandidaten deines ersten Unternehmens sind kostenlos.
 
 ## Weiterlesen
 

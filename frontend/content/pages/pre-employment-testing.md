@@ -2,7 +2,7 @@
 title: "Pre-employment testing: a practical guide for small and mid-size teams"
 seoTitle: "Pre-Employment Testing: Types, Fairness and Tools"
 description: "What pre-employment tests are, which types exist, when to use them, the fairness and legal basics, and how to choose a tool. Plain guide for hiring teams."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Pre-employment testing: a practical guide for small and mid-size teams
@@ -101,6 +101,6 @@ prepza turns a job description into a timed multiple-choice skills interview.
 - **Answers are marked against an answer key** that AI writes; a sample of each topic's keys is checked before release, the rest when a question is flagged. No AI reads or judges a candidate's answer. A PDF report covers one candidate or the whole list.
 - **Works with your tools:** candidates you move to a stage in Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR get the interview, and their results go back to the ATS. Slack hears when a candidate finishes, and the [API](/api-docs) connects your own platform. See [how to connect skills tests to your ATS](/guides/ats-integration-skills-tests).
 
-Pricing is per candidate who answers, with no subscription: $2–5 per candidate depending on your top-up size, in US dollars, and your first 3 candidates are free. Data is hosted in the EU (some sub-processors are in the US; see the [privacy policy](/privacy)), and the data processing agreement and instructions for companies are included.
+Pricing is per candidate who answers, with no subscription: $2–5 per candidate depending on your top-up size (€2–5 in Europe, £1.50–4 in the UK), and your first 3 candidates are free. Data is hosted in the EU (some sub-processors are in the US; see the [privacy policy](/privacy)), and the data processing agreement and instructions for companies are included.
 
 prepza is not a psychometric suite, a platform for writing and running code, or a video interview tool, and it works alongside them. For how it compares with other AI hiring tools, read [AI interviews](/ai-interviews). For engineering roles, see [How to hire engineers](/guides/hiring-engineers).

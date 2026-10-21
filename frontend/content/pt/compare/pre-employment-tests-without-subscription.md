@@ -2,7 +2,7 @@
 title: "Testes de seleção sem assinatura"
 seoTitle: "Testes de seleção sem assinatura"
 description: "Avalie candidatos sem plano mensal nem contrato anual. Como o pagamento por candidato se compara às assinaturas e o que verificar antes de comprar."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Testes de seleção sem assinatura
@@ -47,12 +47,12 @@ A prepza não tem assinatura nem contrato. Você compra créditos quando precisa
 
 - **Os créditos não expiram.**
 - **Um candidato custa 500 créditos,** cobrados só quando ele responde pelo menos uma pergunta. Se um candidato convidado nunca começar, os créditos voltam para você. Um convite não iniciado em 30 dias expira e devolve os créditos.
-- **Recargas maiores compram mais créditos por dólar,** então o preço por candidato cai à medida que a recarga aumenta. Veja os [preços](/pricing) para as recargas.
+- **Recargas maiores saem mais em conta,** então o preço por candidato cai à medida que a recarga aumenta. Veja os [preços](/pricing) para as recargas.
 - **Gerar entrevistas é gratuito,** assim como testar a sua entrevista como candidato.
 - **Sem cobrança por usuário.** Adicione administradores e visualizadores à sua empresa sem custo.
 - **Créditos de boas-vindas:** os 3 primeiros candidatos da sua primeira empresa são gratuitos.
 
-Os preços são em dólares americanos. Os pagamentos passam pela Paddle, que cuida do IVA e dos impostos sobre vendas e mostra o valor final no checkout; a prepza não armazena dados de cartão. Você pode ativar uma recarga automática que repõe o saldo quando ele fica baixo, mas é opcional.
+Os preços são em dólares americanos, em euros na Europa (com os mesmos valores) e em libras no Reino Unido (de £4 a £1,50). Os pagamentos passam pela Paddle, que cuida do IVA e dos impostos sobre vendas e mostra o valor final no checkout; a prepza não armazena dados de cartão. Você pode ativar uma recarga automática que repõe o saldo quando ele fica baixo, mas é opcional.
 
 ## O que você recebe por candidato
 

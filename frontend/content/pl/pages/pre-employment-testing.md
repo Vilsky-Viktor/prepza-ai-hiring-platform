@@ -2,7 +2,7 @@
 title: "Testy rekrutacyjne: praktyczny przewodnik dla małych i średnich zespołów"
 seoTitle: "Testy rekrutacyjne: rodzaje, uczciwość i wybór narzędzia"
 description: "Czym są testy rekrutacyjne i testy kompetencji, jakie są ich rodzaje, kiedy ich używać, jak zadbać o uczciwość i zgodność z prawem i jak wybrać narzędzie."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Testy rekrutacyjne: praktyczny przewodnik dla małych i średnich zespołów
@@ -101,6 +101,6 @@ prepza zamienia opis stanowiska w rozmowę sprawdzającą umiejętności z pytan
 - **Odpowiedzi są oceniane według klucza odpowiedzi**, który pisze AI; próbka kluczy z każdego tematu jest sprawdzana przed udostępnieniem, a pozostałe, gdy pytanie zostanie oznaczone. Żadna AI nie czyta ani nie ocenia odpowiedzi kandydata. Raport PDF obejmuje jednego kandydata lub całą listę.
 - **Współpracuje z Twoimi narzędziami:** kandydaci, których przenosisz na etap w Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR, dostają rozmowę, a ich wyniki wracają do ATS. Slack powiadamia, gdy kandydat skończy test, a [API](/api-docs) łączy prepza z Twoją własną platformą. Zobacz [Jak połączyć testy umiejętności z ATS](/guides/ats-integration-skills-tests).
 
-Cena naliczana jest za kandydata, który odpowiada, bez subskrypcji: $2–5 za kandydata w zależności od wielkości doładowania, w dolarach amerykańskich, a pierwszych 3 kandydatów masz za darmo. Dane są hostowane w UE (niektórzy podprzetwarzający są w USA; zobacz [politykę prywatności](/privacy)), a umowa powierzenia przetwarzania danych i instrukcje dla firm są w cenie.
+Cena naliczana jest za kandydata, który odpowiada, bez subskrypcji: $2–5 za kandydata w zależności od wielkości doładowania (€2–5 w Europie, £1,50–4 w Wielkiej Brytanii), a pierwszych 3 kandydatów masz za darmo. Dane są hostowane w UE (niektórzy podprzetwarzający są w USA; zobacz [politykę prywatności](/privacy)), a umowa powierzenia przetwarzania danych i instrukcje dla firm są w cenie.
 
 prepza nie jest pakietem testów psychometrycznych, platformą do pisania i uruchamiania kodu ani narzędziem do rozmów wideo i działa obok nich. Jak wypada na tle innych narzędzi rekrutacyjnych z AI, przeczytasz w artykule [Rozmowy rekrutacyjne z AI](/ai-interviews). W przypadku stanowisk inżynierskich zobacz [Jak zatrudniać inżynierów](/guides/hiring-engineers).

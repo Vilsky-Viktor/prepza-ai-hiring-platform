@@ -2,7 +2,7 @@
 title: "Kosten von Einstellungstests vergleichen"
 seoTitle: "Günstiger Einstellungstest? So vergleichst du Kosten"
 description: "Gratis-Tarife, Abos, Abrechnung pro Kandidat, individuelle Angebote: So funktionieren die Preismodelle, so schätzt du deine Kosten für Einstellungstests."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Kosten von Einstellungstests vergleichen
@@ -35,7 +35,7 @@ Du brauchst drei Zahlen: wie viele Kandidaten du pro Jahr testest, den Preis pro
 
 ### Die Preise von prepza für deine Schätzung
 
-prepza berechnet pro Kandidat, der mindestens eine Frage beantwortet. Der Preis pro Kandidat hängt von der Höhe deiner Aufladung ab: 5 $ bei der kleinsten Aufladung, 4 $ ab einer Aufladung von 200 $, 3 $ ab einer Aufladung von 600 $ und 2 $ ab einer Aufladung von 1.000 $. Die ersten 3 Kandidaten deines ersten Unternehmens sind kostenlos. Die Preise sind in US-Dollar angegeben; Paddle, das die Zahlungen abwickelt, kümmert sich beim Bezahlen um Mehrwertsteuer und Sales Tax. Die aktuellen Aufladungen findest du unter [Preise](/pricing).
+prepza berechnet pro Kandidat, der mindestens eine Frage beantwortet. Der Preis pro Kandidat hängt von der Höhe deiner Aufladung ab: 5 $ bei der kleinsten Aufladung, 4 $ ab einer Aufladung von 200 $, 3 $ ab einer Aufladung von 600 $ und 2 $ ab einer Aufladung von 1.000 $. Die ersten 3 Kandidaten deines ersten Unternehmens sind kostenlos. Die Preise sind in US-Dollar angegeben, in Europa in Euro (mit denselben Beträgen) und im Vereinigten Königreich in Pfund (4 £ bis 1,50 £); Paddle, das die Zahlungen abwickelt, kümmert sich beim Bezahlen um Mehrwertsteuer und Sales Tax. Die aktuellen Aufladungen findest du unter [Preise](/pricing).
 
 ## Kosten jenseits des Listenpreises
 

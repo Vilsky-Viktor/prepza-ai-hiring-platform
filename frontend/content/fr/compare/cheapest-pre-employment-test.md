@@ -2,7 +2,7 @@
 title: "Comment comparer le coût des tests de recrutement"
 seoTitle: "Test de recrutement pas cher ? Comparer les coûts"
 description: "Offres gratuites, abonnements, paiement par candidat, devis : le fonctionnement de chaque modèle de prix et comment estimer le coût de vos tests."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Comment comparer le coût des tests de recrutement
@@ -35,7 +35,7 @@ Il vous faut trois chiffres : le nombre de candidats que vous évaluez par an, l
 
 ### Les prix de prepza pour votre estimation
 
-prepza facture chaque candidat qui répond à au moins une question. Le prix par candidat dépend du montant de votre recharge : 5 $ pour la plus petite recharge, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Les 3 premiers candidats de votre première entreprise sont gratuits. Les prix sont en dollars américains ; Paddle, qui traite les paiements, gère la TVA et la sales tax au moment du paiement. Voir les [tarifs](/pricing) pour les recharges actuelles.
+prepza facture chaque candidat qui répond à au moins une question. Le prix par candidat dépend du montant de votre recharge : 5 $ pour la plus petite recharge, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Les 3 premiers candidats de votre première entreprise sont gratuits. Les prix sont en dollars américains, en euros en Europe (mêmes montants) et en livres sterling au Royaume-Uni (de 4 £ à 1,50 £) ; Paddle, qui traite les paiements, gère la TVA et la sales tax au moment du paiement. Voir les [tarifs](/pricing) pour les recharges actuelles.
 
 ## Les coûts au-delà du prix affiché
 

@@ -2,7 +2,7 @@
 title: "Bir günde 100 başvuru nasıl elenir"
 seoTitle: "Bir Günde 100 Başvuru Nasıl Elenir: Pratik Bir Plan"
 description: "100 başvuruyu bir iş gününde adil şekilde elemek için adım adım plan: kesin gereklilikler, kısa bir beceri testi, sıralı liste ve insan değerlendirmesi."
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # Bir günde 100 başvuru nasıl elenir
@@ -103,7 +103,7 @@ Her kişinin listeye neden girdiğini not edin. Aday başına bir dakika sürer 
 
 ## Maliyeti ne kadar
 
-prepza ile yalnızca en az bir soruyu yanıtlayan adaylar için ödeme yaparsınız: $50'lık yüklemede aday başına $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. 100 başvuru sahibi için bu, aday başı $5 ile $500 ya da aday başı $4 ile iki adet $200'lık yüklemeyle $400 demektir; abonelik yoktur. Fiyatlar ABD doları cinsindendir; KDV veya satış vergisi ödeme adımında hesaplanır. Testi oluşturmak ücretsizdir ve ilk şirketinizin ilk 3 adayı ücretsizdir.
+prepza ile yalnızca en az bir soruyu yanıtlayan adaylar için ödeme yaparsınız: $50'lık yüklemede aday başına $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. 100 başvuru sahibi için bu, aday başı $5 ile $500 ya da aday başı $4 ile iki adet $200'lık yüklemeyle $400 demektir; abonelik yoktur. Fiyatlar ABD doları, Avrupa'da avro (aynı rakamlarla) ve Birleşik Krallık'ta sterlin (£4 ile £1,50 arası) cinsindendir; KDV veya satış vergisi ödeme adımında hesaplanır. Testi oluşturmak ücretsizdir ve ilk şirketinizin ilk 3 adayı ücretsizdir.
 
 ## İlgili yazılar
 

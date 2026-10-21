@@ -2,7 +2,7 @@
 title: "Come confrontare i costi dei test pre-assunzione"
 seoTitle: "Test pre-assunzione più economico? Come confrontare i costi"
 description: "Piani gratuiti, abbonamenti, pagamento per candidato e preventivi: come funziona ogni modello di prezzo e come stimare il costo dei test pre-assunzione."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Come confrontare i costi dei test pre-assunzione
@@ -35,7 +35,7 @@ Ti servono tre numeri: quanti candidati valuti in un anno, il prezzo per candida
 
 ### I prezzi di prepza per la tua stima
 
-prepza addebita per ogni candidato che risponde ad almeno una domanda. Il prezzo per candidato dipende dall'importo della ricarica: $5 con la ricarica più piccola, $4 da una ricarica di $200, $3 da una ricarica di $600 e $2 da una ricarica di $1.000. I primi 3 candidati della tua prima azienda sono gratis. I prezzi sono in dollari statunitensi; Paddle, che elabora i pagamenti, gestisce IVA e imposte sulle vendite al momento del pagamento. Vedi i [prezzi](/pricing) per le ricariche attuali.
+prepza addebita per ogni candidato che risponde ad almeno una domanda. Il prezzo per candidato dipende dall'importo della ricarica: $5 con la ricarica più piccola, $4 da una ricarica di $200, $3 da una ricarica di $600 e $2 da una ricarica di $1.000. I primi 3 candidati della tua prima azienda sono gratis. I prezzi sono in dollari statunitensi, in euro in Europa (stessi importi) e in sterline nel Regno Unito (da £4 a £1,50); Paddle, che elabora i pagamenti, gestisce IVA e imposte sulle vendite al momento del pagamento. Vedi i [prezzi](/pricing) per le ricariche attuali.
 
 ## Costi oltre il prezzo di listino
 

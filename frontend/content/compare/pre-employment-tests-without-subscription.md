@@ -2,7 +2,7 @@
 title: "Pre-employment tests without a subscription"
 seoTitle: "Pre-Employment Tests Without a Subscription"
 description: "Test candidates without a monthly plan or annual contract. How pay-per-candidate testing compares with subscriptions, and what to check before you buy."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Pre-employment tests without a subscription
@@ -47,12 +47,12 @@ prepza has no subscription and no contract. You buy credits when you need them a
 
 - **Credits don't expire.**
 - **A candidate costs 500 credits,** charged only when they answer at least one question. If an invited candidate never starts, the credits come back. An invite not started within 30 days expires and returns its credits.
-- **Bigger top-ups buy more credits per dollar,** so the price per candidate goes down as the top-up goes up. See [pricing](/pricing) for the top-ups.
+- **Bigger top-ups buy candidates for less,** so the price per candidate goes down as the top-up goes up. See [pricing](/pricing) for the top-ups.
 - **Generating interviews is free,** and so is previewing your interview as a candidate.
 - **No seat fees.** Add admins and viewers to your company at no cost.
 - **Welcome credits:** your first company's first 3 candidates are free.
 
-Prices are in US dollars. Payments go through Paddle, which handles VAT and sales tax and shows the final amount at checkout; prepza stores no card details. You can turn on an automatic top-up that refills your balance when it runs low, but it's optional.
+Prices are in US dollars, in euros in Europe (same numbers) and in pounds in the UK (£4 to £1.50). Payments go through Paddle, which handles VAT and sales tax and shows the final amount at checkout; prepza stores no card details. You can turn on an automatic top-up that refills your balance when it runs low, but it's optional.
 
 ## What you get for each candidate
 

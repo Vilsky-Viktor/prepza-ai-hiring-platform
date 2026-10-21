@@ -2,7 +2,7 @@
 title: "İşe alım öncesi testler: küçük ve orta ölçekli ekipler için pratik rehber"
 seoTitle: "İşe Alım Testleri: Türleri, Adillik ve Araç Seçimi"
 description: "İşe alım testleri nedir, hangi türleri vardır, ne zaman kullanılır, adillik ve yasal esaslar, araç nasıl seçilir. İşe alım ekipleri için kısa rehber."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # İşe alım öncesi testler: küçük ve orta ölçekli ekipler için pratik rehber
@@ -101,6 +101,6 @@ prepza bir iş tanımını süreli, çoktan seçmeli bir beceri mülakatına dö
 - **Yanıtlar, yapay zekânın yazdığı bir cevap anahtarına göre değerlendirilir;** her konudaki anahtarlardan bir örneklem yayından önce kontrol edilir, diğerleri bir soru bildirildiğinde; hiçbir yapay zekâ adayın yanıtını okumaz veya yargılamaz. PDF rapor tek bir adayı veya tüm listeyi kapsar.
 - **Araçlarınızla çalışır:** Workable, Greenhouse, Teamtailor, Recruitee veya Breezy HR'da bir aşamaya taşıdığınız adaylar mülakatı alır ve sonuçları ATS'ye geri döner. Bir aday bitirdiğinde Slack haberdar olur ve [API](/api-docs) kendi platformunuzu bağlar. Bkz. [Beceri testleri ATS'nize nasıl bağlanır](/guides/ats-integration-skills-tests).
 
-Fiyatlandırma yanıt veren aday başınadır ve abonelik yoktur: kredi yükleme tutarınıza göre aday başına $2–5, ABD doları cinsinden; ilk 3 adayınız ücretsizdir. Veriler AB'de barındırılır (bazı alt işleyenler ABD'dedir; bkz. [gizlilik politikası](/privacy)); veri işleme sözleşmesi ve şirketler için talimatlar dahildir.
+Fiyatlandırma yanıt veren aday başınadır ve abonelik yoktur: kredi yükleme tutarınıza göre aday başına $2–5 (Avrupa'da €2–5, Birleşik Krallık'ta £1,50–4); ilk 3 adayınız ücretsizdir. Veriler AB'de barındırılır (bazı alt işleyenler ABD'dedir; bkz. [gizlilik politikası](/privacy)); veri işleme sözleşmesi ve şirketler için talimatlar dahildir.
 
 prepza bir psikometri paketi, kod yazma ve çalıştırma platformu veya video mülakat aracı değildir; bunlarla birlikte çalışır. Diğer yapay zekâ destekli işe alım araçlarıyla karşılaştırması için [Yapay zekâ mülakatları](/ai-interviews) sayfasını okuyun. Mühendislik pozisyonları için [Mühendis işe alımı nasıl yapılır](/guides/hiring-engineers) rehberine bakın.

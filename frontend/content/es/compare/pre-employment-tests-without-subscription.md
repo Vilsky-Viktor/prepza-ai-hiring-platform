@@ -2,7 +2,7 @@
 title: "Pruebas de selección de personal sin suscripción"
 seoTitle: "Pruebas de selección de personal sin suscripción"
 description: "Evalúa candidatos sin plan mensual ni contrato anual. Cómo se compara el pago por candidato con las suscripciones y qué revisar antes de comprar."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Pruebas de selección de personal sin suscripción
@@ -47,12 +47,12 @@ prepza no tiene suscripción ni contrato. Compras créditos cuando los necesitas
 
 - **Los créditos no caducan.**
 - **Un candidato cuesta 500 créditos,** que se cobran solo cuando responde al menos una pregunta. Si un candidato invitado nunca empieza, los créditos se devuelven. Una invitación no iniciada en 30 días caduca y devuelve sus créditos.
-- **Las recargas más grandes dan más créditos por dólar,** así que el precio por candidato baja a medida que sube la recarga. Consulta los [precios](/pricing) para ver las recargas.
+- **Las recargas más grandes salen más baratas,** así que el precio por candidato baja a medida que sube la recarga. Consulta los [precios](/pricing) para ver las recargas.
 - **Generar entrevistas es gratis,** y también lo es probar tu entrevista como candidato.
 - **Sin cargos por usuario.** Añade administradores y lectores a tu empresa sin coste.
 - **Créditos de bienvenida:** los 3 primeros candidatos de tu primera empresa son gratis.
 
-Los precios están en dólares estadounidenses. Los pagos se procesan a través de Paddle, que gestiona el IVA y los impuestos sobre las ventas y muestra el importe final al pagar; prepza no almacena datos de tarjetas. Puedes activar una recarga automática que repone tu saldo cuando se agota, pero es opcional.
+Los precios están en dólares estadounidenses, en euros en Europa (con las mismas cifras) y en libras en el Reino Unido (de £4 a £1,50). Los pagos se procesan a través de Paddle, que gestiona el IVA y los impuestos sobre las ventas y muestra el importe final al pagar; prepza no almacena datos de tarjetas. Puedes activar una recarga automática que repone tu saldo cuando se agota, pero es opcional.
 
 ## Qué obtienes por cada candidato
 

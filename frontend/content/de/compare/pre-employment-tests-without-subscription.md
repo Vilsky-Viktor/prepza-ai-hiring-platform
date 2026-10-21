@@ -2,7 +2,7 @@
 title: "Einstellungstests ohne Abo"
 seoTitle: "Einstellungstests ohne Abo: Bezahlung pro Kandidat"
 description: "Teste Bewerber ohne Monatsabo oder Jahresvertrag. Wie sich die Abrechnung pro Kandidat von Abos unterscheidet und was du vor dem Kauf prüfen solltest."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Einstellungstests ohne Abo
@@ -47,12 +47,12 @@ prepza hat kein Abo und keinen Vertrag. Du kaufst Credits, wenn du sie brauchst,
 
 - **Credits verfallen nicht.**
 - **Ein Kandidat kostet 500 Credits,** berechnet nur, wenn er mindestens eine Frage beantwortet. Fängt ein eingeladener Kandidat nie an, kommen die Credits zurück. Eine Einladung, die nicht innerhalb von 30 Tagen begonnen wird, läuft ab und gibt ihre Credits zurück.
-- **Größere Aufladungen bringen mehr Credits pro Dollar,** sodass der Preis pro Kandidat sinkt, je höher die Aufladung ist. Die Aufladungen findest du unter [Preise](/pricing).
+- **Größere Aufladungen lohnen sich mehr,** sodass der Preis pro Kandidat sinkt, je höher die Aufladung ist. Die Aufladungen findest du unter [Preise](/pricing).
 - **Interviews zu generieren ist kostenlos,** ebenso, dein Interview vorab als Kandidat auszuprobieren.
 - **Keine Gebühren pro Nutzer.** Füge deinem Unternehmen kostenlos Admins und Betrachter hinzu.
 - **Willkommens-Credits:** Die ersten 3 Kandidaten deines ersten Unternehmens sind kostenlos.
 
-Die Preise sind in US-Dollar angegeben. Zahlungen laufen über Paddle, das sich um Mehrwertsteuer und Sales Tax kümmert und den Endbetrag beim Bezahlen anzeigt; prepza speichert keine Kartendaten. Du kannst eine automatische Aufladung aktivieren, die dein Guthaben auffüllt, wenn es zur Neige geht, das ist aber optional.
+Die Preise sind in US-Dollar angegeben, in Europa in Euro (mit denselben Beträgen) und im Vereinigten Königreich in Pfund (4 £ bis 1,50 £). Zahlungen laufen über Paddle, das sich um Mehrwertsteuer und Sales Tax kümmert und den Endbetrag beim Bezahlen anzeigt; prepza speichert keine Kartendaten. Du kannst eine automatische Aufladung aktivieren, die dein Guthaben auffüllt, wenn es zur Neige geht, das ist aber optional.
 
 ## Was du für jeden Kandidaten bekommst
 

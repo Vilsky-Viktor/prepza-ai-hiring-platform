@@ -2,7 +2,7 @@
 title: "Cómo filtrar 100 candidatos en un día"
 seoTitle: "Cómo filtrar 100 candidatos en un día: plan práctico"
 description: "Un plan paso a paso para filtrar 100 candidaturas en una jornada de forma justa: requisitos clave, una prueba breve, una lista ordenada y revisión humana."
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # Cómo filtrar 100 candidatos en un día
@@ -103,7 +103,7 @@ Anota por qué cada persona entró en la lista. Lleva un minuto por candidato y 
 
 ## Cuánto cuesta
 
-Con prepza, solo pagas por los candidatos que responden al menos una pregunta: $5 cada uno con la recarga de $50, $4 a partir de una recarga de $200, $3 a partir de una recarga de $600 y $2 a partir de una recarga de $1000. Para 100 candidatos son $500 a $5 cada uno, o $400 en dos recargas de $200 a $4 cada uno, sin suscripción. Los precios están en dólares estadounidenses; el IVA o los impuestos sobre las ventas se gestionan al pagar. Generar la prueba es gratis, y los 3 primeros candidatos de tu primera empresa son gratis.
+Con prepza, solo pagas por los candidatos que responden al menos una pregunta: $5 cada uno con la recarga de $50, $4 a partir de una recarga de $200, $3 a partir de una recarga de $600 y $2 a partir de una recarga de $1000. Para 100 candidatos son $500 a $5 cada uno, o $400 en dos recargas de $200 a $4 cada uno, sin suscripción. Los precios están en dólares estadounidenses, en euros en Europa (con las mismas cifras) y en libras en el Reino Unido (de £4 a £1,50); el IVA o los impuestos sobre las ventas se gestionan al pagar. Generar la prueba es gratis, y los 3 primeros candidatos de tu primera empresa son gratis.
 
 ## Lecturas relacionadas
 

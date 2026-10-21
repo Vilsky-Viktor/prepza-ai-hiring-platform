@@ -2,7 +2,7 @@
 title: "Pre-employment testing: praktikal na gabay para sa maliliit at katamtamang team"
 seoTitle: "Pre-Employment Assessment Test: Mga Uri, Pagkapatas at Tools"
 description: "Ano ang pre-employment assessment test, mga uri nito, kailan gagamitin, basics ng pagkapatas at batas, at paano pumili ng tool para sa hiring team."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Pre-employment testing: praktikal na gabay para sa maliliit at katamtamang team
@@ -101,6 +101,6 @@ Ginagawang timed multiple-choice skills interview ng prepza ang isang job descri
 - **Mina-mark ang mga sagot ayon sa answer key** na isinusulat ng AI; chine-check ang ilan sa bawat topic bago i-release, at ang iba kapag na-flag ang tanong. Walang AI na bumabasa o humuhusga sa sagot ng aplikante. Sinasaklaw ng isang PDF report ang isang aplikante o ang buong listahan.
 - **Gumagana sa mga tool mo:** natatanggap ang interview ng mga aplikanteng inililipat mo sa isang stage sa Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR, at bumabalik sa ATS ang kanilang mga resulta. Nalalaman ng Slack kapag may aplikanteng natapos, at ikinokonekta ng [API](/api-docs) ang sarili mong platform. Tingnan ang [paano ikonekta ang skills tests sa iyong ATS](/guides/ats-integration-skills-tests).
 
-Bawat aplikanteng sumasagot ang presyo, walang subscription: $2–5 bawat aplikante depende sa laki ng iyong top-up, sa US dollars, at libre ang unang 3 aplikante mo. Naka-host ang data sa EU (may ilang sub-processor sa US; tingnan ang [privacy policy](/privacy)), at kasama ang data processing agreement at ang mga instruksyon para sa mga kumpanya.
+Bawat aplikanteng sumasagot ang presyo, walang subscription: $2–5 bawat aplikante depende sa laki ng iyong top-up (€2–5 sa Europe, £1.50–4 sa UK), at libre ang unang 3 aplikante mo. Naka-host ang data sa EU (may ilang sub-processor sa US; tingnan ang [privacy policy](/privacy)), at kasama ang data processing agreement at ang mga instruksyon para sa mga kumpanya.
 
 Ang prepza ay hindi psychometric suite, hindi platform para sa pagsulat at pagpapatakbo ng code, at hindi video interview tool, at gumagana ito kasabay ng mga iyon. Para sa paghahambing nito sa ibang AI hiring tools, basahin ang [AI interviews](/ai-interviews). Para sa mga engineering role, tingnan ang [Paano mag-hire ng mga engineer](/guides/hiring-engineers).

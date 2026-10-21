@@ -2,7 +2,7 @@
 title: "How to screen 100 applicants in a day"
 seoTitle: "How to Screen 100 Applicants in a Day: A Practical Plan"
 description: "A step-by-step plan to screen 100 job applicants in one working day, fairly: hard requirements, a short skills test, a ranked list and human review."
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # How to screen 100 applicants in a day
@@ -103,7 +103,7 @@ Write down why each person made the list. It takes a minute per candidate and he
 
 ## What it costs
 
-With prepza, you pay only for candidates who answer at least one question: $5 each on the $50 top-up, $4 from a $200 top-up, $3 from a $600 top-up and $2 from a $1,000 top-up. For 100 applicants that's $500 at $5 each, or $400 in two $200 top-ups at $4 each, with no subscription. Prices are in US dollars; VAT or sales tax is handled at checkout. Generating the test is free, and your first company's first 3 candidates are free.
+With prepza, you pay only for candidates who answer at least one question: $5 each on the $50 top-up, $4 from a $200 top-up, $3 from a $600 top-up and $2 from a $1,000 top-up. For 100 applicants that's $500 at $5 each, or $400 in two $200 top-ups at $4 each, with no subscription. Prices are in US dollars, in euros in Europe (same numbers) and in pounds in the UK (£4 to £1.50); VAT or sales tax is handled at checkout. Generating the test is free, and your first company's first 3 candidates are free.
 
 ## Related reading
 

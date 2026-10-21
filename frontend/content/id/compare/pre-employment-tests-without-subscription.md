@@ -2,7 +2,7 @@
 title: "Tes seleksi karyawan tanpa langganan"
 seoTitle: "Tes Seleksi Karyawan Tanpa Langganan: Bayar per Kandidat"
 description: "Tes kandidat tanpa paket bulanan atau kontrak tahunan. Perbandingan tes bayar per kandidat dengan langganan, dan apa yang perlu dicek sebelum membeli."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Tes seleksi karyawan tanpa langganan
@@ -47,12 +47,12 @@ prepza tidak memakai langganan dan tidak memakai kontrak. Kamu membeli kredit sa
 
 - **Kredit tidak kedaluwarsa.**
 - **Satu kandidat memakai 500 kredit,** yang hanya ditagih saat kandidat menjawab setidaknya satu soal. Kalau kandidat yang diundang tidak pernah mulai, kreditnya kembali. Undangan yang tidak dimulai dalam 30 hari kedaluwarsa dan kreditnya dikembalikan.
-- **Isi ulang yang lebih besar memberi lebih banyak kredit per dolar,** jadi harga per kandidat turun seiring naiknya isi ulang. Lihat [harga](/pricing) untuk pilihan isi ulang.
+- **Isi ulang yang lebih besar lebih hemat,** jadi harga per kandidat turun seiring naiknya isi ulang. Lihat [harga](/pricing) untuk pilihan isi ulang.
 - **Membuat wawancara gratis,** begitu juga melihat pratinjau wawancaramu sebagai kandidat.
 - **Tanpa biaya per kursi.** Tambahkan admin dan viewer ke perusahaanmu tanpa biaya.
 - **Kredit sambutan:** 3 kandidat pertama dari perusahaan pertamamu gratis.
 
-Harga dalam dolar AS. Pembayaran diproses lewat Paddle, yang menangani PPN (VAT) dan pajak penjualan serta menampilkan jumlah akhir saat checkout; prepza tidak menyimpan detail kartu. Kamu bisa menyalakan isi ulang otomatis yang mengisi saldo saat hampir habis, tetapi ini opsional.
+Harga dalam dolar AS, dalam euro di Eropa (angka yang sama), dan dalam pound di Inggris Raya (£4 hingga £1,50). Pembayaran diproses lewat Paddle, yang menangani PPN (VAT) dan pajak penjualan serta menampilkan jumlah akhir saat checkout; prepza tidak menyimpan detail kartu. Kamu bisa menyalakan isi ulang otomatis yang mengisi saldo saat hampir habis, tetapi ini opsional.
 
 ## Apa yang kamu dapat untuk setiap kandidat
 

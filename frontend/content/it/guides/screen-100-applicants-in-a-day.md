@@ -2,7 +2,7 @@
 title: "Come fare lo screening di 100 candidati in un giorno"
 seoTitle: "Screening di 100 candidati in un giorno: piano pratico"
 description: "Un piano passo per passo per lo screening equo di 100 candidati in una giornata: requisiti indispensabili, un breve test, una classifica e revisione umana."
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # Come fare lo screening di 100 candidati in un giorno
@@ -103,7 +103,7 @@ Annota perché ogni persona è entrata nella rosa. Richiede un minuto per candid
 
 ## Quanto costa
 
-Con prepza paghi solo per i candidati che rispondono ad almeno una domanda: $5 ciascuno con la ricarica da $50, $4 da una ricarica di $200, $3 da una ricarica di $600 e $2 da una ricarica di $1.000. Per 100 candidati sono $500 a $5 ciascuno, oppure $400 con due ricariche da $200 a $4 ciascuno, senza abbonamento. I prezzi sono in dollari USA; IVA o sales tax vengono gestite al pagamento. Generare il test è gratuito, e i primi 3 candidati della tua prima azienda sono gratis.
+Con prepza paghi solo per i candidati che rispondono ad almeno una domanda: $5 ciascuno con la ricarica da $50, $4 da una ricarica di $200, $3 da una ricarica di $600 e $2 da una ricarica di $1.000. Per 100 candidati sono $500 a $5 ciascuno, oppure $400 con due ricariche da $200 a $4 ciascuno, senza abbonamento. I prezzi sono in dollari USA, in euro in Europa (stessi importi) e in sterline nel Regno Unito (da £4 a £1,50); IVA o sales tax vengono gestite al pagamento. Generare il test è gratuito, e i primi 3 candidati della tua prima azienda sono gratis.
 
 ## Letture correlate
 

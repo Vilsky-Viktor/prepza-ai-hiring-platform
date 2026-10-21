@@ -2,7 +2,7 @@
 title: "Teste de seleção: guia prático para pequenas e médias empresas"
 seoTitle: "Testes de recrutamento e seleção: tipos e ferramentas"
 description: "O que são testes de recrutamento e seleção, quais tipos existem, quando usar, imparcialidade e legislação, e como escolher uma ferramenta para o seu RH."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Teste de seleção: guia prático para pequenas e médias empresas
@@ -101,6 +101,6 @@ A prepza transforma uma descrição da vaga em uma entrevista de habilidades de 
 - **As respostas são corrigidas com base em um gabarito** que a IA escreve; uma amostra dos gabaritos de cada tópico é verificada antes da liberação, e os demais quando uma pergunta é sinalizada. Nenhuma IA lê ou julga a resposta de um candidato. Um relatório em PDF cobre um candidato ou a lista inteira.
 - **Funciona com as suas ferramentas:** os candidatos que você move para uma etapa no Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR recebem a entrevista, e os resultados deles voltam para o ATS. O Slack avisa quando um candidato termina, e a [API](/api-docs) conecta a sua própria plataforma. Veja [Como integrar testes de habilidades ao seu ATS](/guides/ats-integration-skills-tests).
 
-A cobrança é por candidato que responde, sem assinatura: $2–5 por candidato, dependendo do tamanho da recarga, em dólares americanos, e os seus 3 primeiros candidatos são gratuitos. Os dados ficam hospedados na UE (alguns suboperadores estão nos EUA; veja a [política de privacidade](/privacy)), e o acordo de tratamento de dados e as instruções para empresas estão incluídos.
+A cobrança é por candidato que responde, sem assinatura: $2–5 por candidato, dependendo do tamanho da recarga (€2–5 na Europa, £1,50–4 no Reino Unido), e os seus 3 primeiros candidatos são gratuitos. Os dados ficam hospedados na UE (alguns suboperadores estão nos EUA; veja a [política de privacidade](/privacy)), e o acordo de tratamento de dados e as instruções para empresas estão incluídos.
 
 A prepza não é uma suíte psicométrica, nem uma plataforma para escrever e executar código, nem uma ferramenta de entrevista em vídeo, e funciona junto com elas. Para ver como ela se compara a outras ferramentas de contratação com IA, leia [Entrevistas com IA](/ai-interviews). Para vagas de engenharia, veja [Como contratar engenheiros](/guides/hiring-engineers).

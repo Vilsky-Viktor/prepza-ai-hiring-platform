@@ -2,7 +2,7 @@
 title: "Como fazer a triagem de 100 candidatos em um dia"
 seoTitle: "Triagem de 100 candidatos em um dia: um plano prático"
 description: "Um plano passo a passo para triar 100 candidatos em um dia de trabalho, de forma justa: requisitos, teste curto, lista ordenada e revisão humana."
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # Como fazer a triagem de 100 candidatos em um dia
@@ -103,7 +103,7 @@ Anote por que cada pessoa entrou na lista. Leva um minuto por candidato e ajuda 
 
 ## Quanto custa
 
-Com a prepza, você paga só pelos candidatos que respondem pelo menos uma pergunta: $5 cada na recarga de $50, $4 a partir de uma recarga de $200, $3 a partir de uma recarga de $600 e $2 a partir de uma recarga de $1.000. Para 100 candidatos, são $500 a $5 cada, ou $400 em duas recargas de $200 a $4 cada, sem assinatura. Os preços são em dólares americanos; IVA ou impostos sobre vendas são tratados no checkout. Gerar o teste é gratuito, e os 3 primeiros candidatos da sua primeira empresa são gratuitos.
+Com a prepza, você paga só pelos candidatos que respondem pelo menos uma pergunta: $5 cada na recarga de $50, $4 a partir de uma recarga de $200, $3 a partir de uma recarga de $600 e $2 a partir de uma recarga de $1.000. Para 100 candidatos, são $500 a $5 cada, ou $400 em duas recargas de $200 a $4 cada, sem assinatura. Os preços são em dólares americanos, em euros na Europa (com os mesmos valores) e em libras no Reino Unido (de £4 a £1,50); IVA ou impostos sobre vendas são tratados no checkout. Gerar o teste é gratuito, e os 3 primeiros candidatos da sua primeira empresa são gratuitos.
 
 ## Leitura relacionada
 

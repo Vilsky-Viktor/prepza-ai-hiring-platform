@@ -2,7 +2,7 @@
 title: "Comment connecter vos tests de compétences à votre ATS"
 seoTitle: "Connecter ses tests de compétences à son ATS : le guide"
 description: "Envoyez les tests de compétences et recevez les résultats dans votre ATS automatiquement, laissez décider les humains et sachez quoi vérifier d'abord."
-updated: "2026-10-15"
+updated: "2026-10-21"
 ---
 
 # Comment connecter vos tests de compétences à votre ATS
@@ -98,7 +98,7 @@ prepza se connecte à **Workable, Greenhouse, Teamtailor, Recruitee et Breezy HR
 
 Certains ATS demandent une étape de leur côté. Greenhouse, Teamtailor et Recruitee vous demandent d'ajouter un webhook à la main ; la fenêtre Instructions de prepza indique l'adresse et où coller son secret. prepza configure lui-même les webhooks de Workable et de Breezy HR.
 
-La tarification se fait par candidat, sans abonnement : vous ne payez que pour les candidats qui répondent à au moins une question, 5 $ chacun avec la recharge de 50 $, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Les prix sont en dollars américains ; la TVA ou la sales tax est gérée au moment du paiement. Connecter un ATS et créer des entretiens est gratuit, et les 3 premiers candidats de votre première entreprise sont gratuits. Voir les [tarifs](/pricing).
+La tarification se fait par candidat, sans abonnement : vous ne payez que pour les candidats qui répondent à au moins une question, 5 $ chacun avec la recharge de 50 $, 4 $ à partir d'une recharge de 200 $, 3 $ à partir d'une recharge de 600 $ et 2 $ à partir d'une recharge de 1 000 $. Les prix sont en dollars américains, en euros en Europe (mêmes montants) et en livres sterling au Royaume-Uni (de 4 £ à 1,50 £) ; la TVA ou la sales tax est gérée au moment du paiement. Connecter un ATS et créer des entretiens est gratuit, et les 3 premiers candidats de votre première entreprise sont gratuits. Voir les [tarifs](/pricing).
 
 ## À lire aussi
 

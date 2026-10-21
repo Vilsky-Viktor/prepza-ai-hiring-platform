@@ -2,7 +2,7 @@
 title: "Selectietests: een praktische gids voor kleine en middelgrote teams"
 seoTitle: "Selectietesten en assessments: soorten, eerlijkheid en tools"
 description: "Wat een selectietest of assessment is, welke soorten er zijn, wanneer je ze inzet bij werving en selectie, eerlijkheid, wetgeving en hoe je een tool kiest."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Selectietests: een praktische gids voor kleine en middelgrote teams
@@ -101,6 +101,6 @@ prepza maakt van een functieomschrijving een interview over vaardigheden, met ti
 - **Antwoorden worden nagekeken met een antwoordsleutel** die AI schrijft; een steekproef van de sleutels van elk onderwerp wordt vóór vrijgave gecontroleerd, de rest zodra een vraag wordt gemarkeerd. Geen AI leest of beoordeelt het antwoord van een kandidaat. Een pdf-rapport behandelt één kandidaat of de hele lijst.
 - **Werkt met je tools:** kandidaten die je in Workable, Greenhouse, Teamtailor, Recruitee of Breezy HR naar een fase verplaatst, krijgen het interview, en hun resultaten gaan terug naar het ATS. Slack laat weten wanneer een kandidaat klaar is, en de [API](/api-docs) koppelt je eigen platform. Zie [Zo koppel je vaardigheidstests aan je ATS](/guides/ats-integration-skills-tests).
 
-Je betaalt per kandidaat die antwoordt, zonder abonnement: $2–5 per kandidaat, afhankelijk van de grootte van je opwaardering, in US dollars, en je eerste 3 kandidaten zijn gratis. Gegevens worden gehost in de EU (sommige subverwerkers zitten in de VS; zie het [privacybeleid](/privacy)), en de verwerkersovereenkomst en instructies voor bedrijven zijn inbegrepen.
+Je betaalt per kandidaat die antwoordt, zonder abonnement: $2–5 per kandidaat, afhankelijk van de grootte van je opwaardering (€2–5 in Europa, £1,50–4 in het Verenigd Koninkrijk), en je eerste 3 kandidaten zijn gratis. Gegevens worden gehost in de EU (sommige subverwerkers zitten in de VS; zie het [privacybeleid](/privacy)), en de verwerkersovereenkomst en instructies voor bedrijven zijn inbegrepen.
 
 prepza is geen psychometrische suite, geen platform om code te schrijven en te draaien, en geen tool voor video-interviews, en werkt er wel naast. Hoe het zich verhoudt tot andere AI-tools voor werving lees je in [AI-interviews](/ai-interviews). Voor technische functies, zie [Developers werven](/guides/hiring-engineers).

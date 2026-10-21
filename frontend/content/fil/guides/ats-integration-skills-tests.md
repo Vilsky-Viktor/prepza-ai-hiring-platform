@@ -2,7 +2,7 @@
 title: "Paano ikonekta ang skills tests sa iyong ATS"
 seoTitle: "Paano Ikonekta ang Skills Tests sa ATS: Praktikal na Gabay"
 description: "Awtomatikong magpadala ng skills tests at tumanggap ng resulta sa iyong ATS, hayaang tao ang magpasya, at alamin kung ano ang unang dapat i-check."
-updated: "2026-10-15"
+updated: "2026-10-21"
 ---
 
 # Paano ikonekta ang skills tests sa iyong ATS
@@ -98,7 +98,7 @@ Kumokonekta ang prepza sa **Workable, Greenhouse, Teamtailor, Recruitee at Breez
 
 May mga ATS na nangangailangan ng hakbang sa kanilang panig. Hinihiling ng Greenhouse, Teamtailor at Recruitee na magdagdag ka ng webhook nang mano-mano; ipinapakita ng dialog na Mga tagubilin ng prepza ang address at kung saan ipe-paste ang secret nito. Ang prepza mismo ang nagse-set up ng webhooks ng Workable at Breezy HR.
 
-Per aplikante ang presyo, walang subscription: nagbabayad ka lang para sa mga aplikanteng sumagot ng kahit isang tanong, $5 bawat isa sa $50 na top-up, $4 simula sa $200 na top-up, $3 simula sa $600 na top-up at $2 simula sa $1,000 na top-up. Nasa US dollars ang mga presyo; hinahawakan sa checkout ang VAT o sales tax. Libre ang pagkonekta ng ATS at paggawa ng interviews, at libre ang unang 3 aplikante ng iyong unang kumpanya. Tingnan ang [pricing](/pricing).
+Per aplikante ang presyo, walang subscription: nagbabayad ka lang para sa mga aplikanteng sumagot ng kahit isang tanong, $5 bawat isa sa $50 na top-up, $4 simula sa $200 na top-up, $3 simula sa $600 na top-up at $2 simula sa $1,000 na top-up. Nasa US dollars ang mga presyo, nasa euro sa Europe (parehong mga numero) at nasa pound sa UK (£4 hanggang £1.50); hinahawakan sa checkout ang VAT o sales tax. Libre ang pagkonekta ng ATS at paggawa ng interviews, at libre ang unang 3 aplikante ng iyong unang kumpanya. Tingnan ang [pricing](/pricing).
 
 ## Kaugnay na babasahin
 

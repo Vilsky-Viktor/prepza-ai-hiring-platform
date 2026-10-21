@@ -2,7 +2,7 @@
 title: "Värbamistestid ilma tellimuseta"
 seoTitle: "Värbamistestid ilma tellimuseta: maksa kandidaadi eest"
 description: "Testi kandidaate ilma kuupaketi ja aastalepinguta. Kuidas kandidaadipõhine tasu erineb tellimusest ja mida enne ostmist kontrollida."
-updated: "2026-10-14"
+updated: "2026-10-21"
 ---
 
 # Värbamistestid ilma tellimuseta
@@ -47,12 +47,12 @@ prepzal pole tellimust ega lepingut. Ostad krediite siis, kui neid vajad, ja kas
 
 - **Krediidid ei aegu.**
 - **Kandidaat maksab 500 krediiti,** mis võetakse alles siis, kui ta vastab vähemalt ühele küsimusele. Kui kutsutud kandidaat ei alusta, tulevad krediidid tagasi. Kutse, mida 30 päeva jooksul ei alustata, aegub ja selle krediidid tulevad tagasi.
-- **Suuremad juurdelaadimised annavad dollari kohta rohkem krediite,** nii et kandidaadi hind langeb juurdelaadimise kasvades. Juurdelaadimised leiad [hinnalehelt](/pricing).
+- **Suuremad juurdelaadimised tulevad soodsamad,** nii et kandidaadi hind langeb juurdelaadimise kasvades. Juurdelaadimised leiad [hinnalehelt](/pricing).
 - **Intervjuude loomine on tasuta,** samuti oma intervjuu eelvaade kandidaadina.
 - **Kasutajakohtade tasu pole.** Lisa ettevõttesse administraatoreid ja vaatajaid tasuta.
 - **Tervituskrediidid:** sinu esimese ettevõtte esimesed 3 kandidaati on tasuta.
 
-Hinnad on USA dollarites. Maksed käivad läbi Paddle'i, mis arvestab käibemaksu ja müügimaksu ning näitab lõppsummat maksmise ajal; prepza ei hoia kaardiandmeid. Võid sisse lülitada automaatse juurdelaadimise, mis täiendab saldot, kui see väheneb, kuid see pole kohustuslik.
+Hinnad on USA dollarites, Euroopas eurodes (samad summad) ja Ühendkuningriigis naelsterlingites (4 £ kuni 1,50 £). Maksed käivad läbi Paddle'i, mis arvestab käibemaksu ja müügimaksu ning näitab lõppsummat maksmise ajal; prepza ei hoia kaardiandmeid. Võid sisse lülitada automaatse juurdelaadimise, mis täiendab saldot, kui see väheneb, kuid see pole kohustuslik.
 
 ## Mida iga kandidaadi eest saad
 
