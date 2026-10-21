@@ -3,8 +3,9 @@ import { expect, test } from "@playwright/test";
 // The footer's developer docs open the reference, read from the API itself, in five tabs: the
 // API (how to get a key, every route with what it returns), its web hooks, the SDK that embeds
 // the interview, the MCP server and the objects. Names the API defines (routes, events, headers, fields) are
-// its data, so they're matched; the page's own wording isn't.
-test("the developer docs show the API, web hooks, the SDK and the objects", async ({ page }) => {
+// its data, so they're matched; the page's own wording isn't. One test per tab, each opening its
+// own pages, so none runs out of time behind another's.
+test("the developer docs show the API with its routes", async ({ page }) => {
   await page.goto("/");
   // The footer's link leads to the page; opened directly, so a click before the page is ready
   // can't miss it.
@@ -33,10 +34,15 @@ test("the developer docs show the API, web hooks, the SDK and the objects", asyn
   ).toBeVisible();
   await page.screenshot({ path: test.info().outputPath("api.png"), fullPage: true });
 
-  // Links are checked, then opened directly, so a click before the page is ready can't miss.
-  // A mention of the web hook, in the API's text, opens its tab: how to check a request, and its
-  // events.
+  // Links are checked, then opened directly (in the tests below), so a click before the page is
+  // ready can't miss: a mention of the web hook, in the API's text, opens its tab, and a type
+  // its object on the objects tab.
   await expect(page.locator('main div[lang] a[href="/api-docs?tab=webhooks"]').first()).toBeVisible();
+  await expect(page.locator('main a[href="/api-docs?tab=objects#Candidate"]').first()).toBeVisible();
+});
+
+// How to check a request, and the events.
+test("the developer docs show the web hooks and their events", async ({ page }) => {
   await page.goto("/api-docs?tab=webhooks");
   await expect(page.locator("main nav a").nth(1)).toHaveAttribute("aria-current", "page");
   const code = page.locator("main code");
@@ -47,14 +53,15 @@ test("the developer docs show the API, web hooks, the SDK and the objects", asyn
   // Each event's body is shown as it's sent: its id, type and time around the data.
   await expect(page.locator("main").getByText("occurred_at", { exact: true }).first()).toBeVisible();
   await page.screenshot({ path: test.info().outputPath("webhooks.png"), fullPage: true });
+});
 
-  // The SDK: the script and how to embed the interview.
+// The script and how to embed the interview.
+test("the developer docs show the SDK", async ({ page }) => {
   await page.goto("/api-docs?tab=sdk");
   await expect(page.locator("main pre").first()).toContainText("Prepza.embed(");
+});
 
-  // A type opens its object on the objects tab.
-  await page.goto("/api-docs");
-  await expect(page.locator('main a[href="/api-docs?tab=objects#Candidate"]').first()).toBeVisible();
+test("the developer docs show the objects", async ({ page }) => {
   await page.goto("/api-docs?tab=objects#Candidate");
   await expect(page.locator("#Candidate")).toContainText("results_url");
   await page.screenshot({ path: test.info().outputPath("objects.png"), fullPage: true });
