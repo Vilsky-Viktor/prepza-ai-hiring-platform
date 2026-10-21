@@ -10,6 +10,8 @@ import { ownerEmail, throwawayEmail } from "../helpers/users"
 // The company's own site, at an address of its verified website's domain: it embeds the interview with
 // the hosted script and hears when the candidate has finished. It calls Prepza.embed before the
 // script has loaded (the documented stub queues it) and includes the script twice by mistake.
+// The dev server compiles a page on its first request in each browser; a poll waits that long.
+const LOADED = { timeout: 60_000 }
 const DOMAIN = "acme-embed.com"
 const SITE = `http://jobs.${DOMAIN}`
 
@@ -19,7 +21,10 @@ function sitePage(siteUrl: string, inviteUrl: string) {
     <script>
       window.events = []
       window.messages = []
-      window.addEventListener("message", (event) => window.messages.push(event.data))
+      // prepza's messages only: a browser or its dev tools may post others.
+      window.addEventListener("message", (event) => {
+        if (event.data && event.data.source === "prepza") window.messages.push(event.data)
+      })
       window.Prepza = window.Prepza || { q: [], embed: function (o) { this.q.push(o) } }
       Prepza.embed({
         element: "#interview",
@@ -80,18 +85,19 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
     const token = new URL(inviteUrl).pathname.split("/").pop()
     const page = await owner.request.get(`${FRONTEND_URL}/embedded/${token}`)
 
-    return page.headers()["content-security-policy"].match(/frame-ancestors ([^;]+)/)?.[1]
+    // No policy: the busy dev server answered with an error page; polled again.
+    return page.headers()["content-security-policy"]?.match(/frame-ancestors ([^;]+)/)?.[1]
   }
 
   const candidate = await invite(throwawayEmail("embedded"), false)
   // Not before the company is verified; then only its own site; an invite by email, no site.
   await api(owner, "PUT", `/companies/companies/${company.id}/website`, { website: DOMAIN })
-  expect(await framers(candidate.invite_url)).toBe("'none'")
+  await expect.poll(() => framers(candidate.invite_url), LOADED).toBe("'none'")
   await verifyCompany(company.id, DOMAIN)
   // Polled: the page gives up on a slow lookup (3 s) and refuses framing, as it should.
-  await expect.poll(() => framers(candidate.invite_url)).toBe(`${DOMAIN} *.${DOMAIN}`)
+  await expect.poll(() => framers(candidate.invite_url), LOADED).toBe(`${DOMAIN} *.${DOMAIN}`)
   const byEmail = await invite(throwawayEmail("by-email"), true)
-  expect(await framers(byEmail.invite_url)).toBe("'none'")
+  await expect.poll(() => framers(byEmail.invite_url), LOADED).toBe("'none'")
 
   const { context, site } = await openSite(browser, baseURL!, candidate.invite_url)
   await site.goto(`${SITE}/apply`)
@@ -129,7 +135,10 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   // One frame (the second copy of the script did nothing), each event once, in order; every
   // message names its version.
   await expect(site.locator("iframe")).toHaveCount(1)
-  await expect.poll(() => events(site)).toEqual(["ready", "started", `finished:${candidate.id}`])
+  // A dev server compiling the frame can take longer than the 20 s the script allows before
+  // its timeout; that one is left out here and tested below.
+  const loaded = async () => (await events(site)).filter((name) => name !== "error:timeout")
+  await expect.poll(loaded, LOADED).toEqual(["ready", "started", `finished:${candidate.id}`])
   const versions = await site.evaluate(() =>
     (window as unknown as SiteWindow).messages.map((message) => message.version)
   )
@@ -145,7 +154,7 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   await refused.site.goto(`${SITE}/apply`)
   await expect(refused.site.locator("iframe")).toHaveCount(1)
   await refused.site.clock.runFor(21_000)
-  await expect.poll(() => events(refused.site)).toEqual(["error:timeout"])
+  await expect.poll(() => events(refused.site), LOADED).toEqual(["error:timeout"])
   await refused.context.close()
 
   // A link that's gone by the time the frame reads it: the frame tells the site why.
@@ -155,7 +164,7 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
     route.fulfill({ status: 404, json: { detail: "Not found" } })
   )
   await gone.site.goto(`${SITE}/apply`)
-  await expect.poll(() => events(gone.site)).toEqual(["ready", "error:invite_unavailable"])
+  await expect.poll(() => events(gone.site), LOADED).toEqual(["ready", "error:invite_unavailable"])
   await gone.context.close()
 })
 

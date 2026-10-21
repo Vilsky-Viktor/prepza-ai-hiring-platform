@@ -6,7 +6,8 @@ import { defineConfig, devices } from "@playwright/test"
 // so the specs run one after another, in file order.
 export default defineConfig({
   testDir: "specs",
-  globalSetup: "./warm-up.ts",
+  // forward.ts maps the local addresses for Firefox and WebKit; warm-up.ts compiles the pages.
+  globalSetup: ["./forward.ts", "./warm-up.ts"],
   // Deletes every throwaway account and its companies after each run (teardown.ts).
   globalTeardown: "./teardown.ts",
   reporter: "list",
@@ -36,4 +37,19 @@ export default defineConfig({
       ],
     },
   },
+  // Every spec in Chromium; the embedded interview also in Firefox and WebKit, where a company's
+  // site gets the frame's storage partitioned and no third-party cookies (Playwright starts
+  // Chromium with its storage partitioning off).
+  projects: [
+    { name: "chromium" },
+    ...(["firefox", "webkit"] as const).map((name) => ({
+      name,
+      testMatch: /i-api-embed\.spec\.ts/,
+      use: {
+        ...devices[name === "firefox" ? "Desktop Firefox" : "Desktop Safari"],
+        viewport: { width: 1280, height: 800 },
+        launchOptions: {},
+      },
+    })),
+  ],
 })

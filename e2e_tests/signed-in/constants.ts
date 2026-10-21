@@ -33,6 +33,8 @@ export const WARM_UP_PATHS = [
   `/join/${SOME_ID}`,
   "/unsubscribe",
   `/sessions/${SOME_ID}`,
+  // A company's site frames it (i-api-embed, in three browsers).
+  "/embedded/warm-up",
   "/maintenance",
   "/superadmin/pass-rates",
   "/superadmin/verification",

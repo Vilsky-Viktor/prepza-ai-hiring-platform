@@ -123,10 +123,10 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
   partitioning and `SameSite` apply as in production: framing refused before verification and
   for email invites, the full interview in the frame, the callbacks in order, the script's
   headers. Unit tests cover `embedAncestors` and `originOf`.
-- Chromium only today, and Playwright launches it with `ThirdPartyStoragePartitioning` off, so
-  the spec doesn't see partitioned storage. WebKit and Firefox are in the test image, but the
-  frontend's emulator and site addresses are `localhost` ones the containers can't map for
-  them; Playwright's WebKit doesn't apply Safari's tracking prevention anyway, so Safari and
-  Firefox are checked by hand before a change to sign-in or storage in the frame.
+- The embed spec runs in Chromium, Firefox and WebKit (`playwright.config.ts` projects): Firefox
+  and WebKit partition the frame's storage and refuse third-party cookies, as browsers do, while
+  Playwright starts Chromium with partitioning off. `forward.ts` maps the local site and emulator
+  addresses for them. Playwright's WebKit doesn't apply Safari's tracking prevention, so Safari
+  itself is checked by hand before a change to sign-in or storage in the frame.
 
 Research (local notes, git-ignored): `internal_docs/best-practices/embed-sdk.md`.
