@@ -16,6 +16,8 @@ branch_labels = None
 depends_on = None
 
 TABLES = ("entries", "purchases")
+# Proves every purchase has its total, so SET NOT NULL needn't scan the table under its lock.
+FILLED = "ck_purchases_total_minor_filled"
 
 
 def upgrade() -> None:
@@ -28,7 +30,18 @@ def upgrade() -> None:
         )
         op.drop_column(table, "total")
 
-    op.alter_column("purchases", "total_minor", nullable=False)
+    op.create_check_constraint(
+        FILLED, "purchases", "total_minor IS NOT NULL", postgresql_not_valid=True
+    )
+
+    # Each step its own transaction: validating scans the table with only a light lock, and
+    # SET NOT NULL then trusts the validated check instead of scanning under an exclusive one.
+    with op.get_context().autocommit_block():
+        op.execute("SET lock_timeout = '5s'")
+        op.execute(f"ALTER TABLE purchases VALIDATE CONSTRAINT {FILLED}")
+        # migration-check: the validated CHECK above proves it, so this doesn't scan the table
+        op.execute("ALTER TABLE purchases ALTER COLUMN total_minor SET NOT NULL")
+        op.drop_constraint(FILLED, "purchases")
 
 
 def downgrade() -> None:
