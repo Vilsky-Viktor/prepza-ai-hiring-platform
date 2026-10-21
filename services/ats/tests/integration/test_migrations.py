@@ -183,3 +183,35 @@ def test_a_value_outside_its_closed_set_is_refused(run):
                 return error.orig.diag.constraint_name
 
     assert run(scenario()) == "ck_ats_connections_provider"
+
+
+def test_a_tenants_child_table_without_its_company_is_named():
+    from prepza_common.schema_rules import problems
+
+    from app.config.settings import settings
+
+    engine = create_engine(sqlalchemy_url(settings.database_url))
+    parent, child = (f"rule_{name}_{uuid.uuid4().hex[:8]}" for name in ("parent", "child"))
+    tables = (
+        f"CREATE TABLE {parent} (id uuid PRIMARY KEY, company_id uuid NOT NULL)",
+        (
+            f"CREATE TABLE {child} (id uuid PRIMARY KEY, "
+            f"parent_id uuid REFERENCES {parent} ON DELETE CASCADE, "
+            "created_at timestamptz DEFAULT now())"
+        ),
+        f"CREATE INDEX ON {child} (parent_id)",
+    )
+
+    try:
+        with engine.begin() as connection:
+            for statement in tables:
+                connection.execute(text(statement))
+
+        found = problems(settings.database_url)
+    finally:
+        with engine.begin() as connection:
+            connection.execute(text(f"DROP TABLE IF EXISTS {child}, {parent}"))
+
+        engine.dispose()
+
+    assert found == [f"a tenant's child table without company_id: {child}"]

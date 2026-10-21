@@ -48,6 +48,17 @@ RULES = {
             AND (i.indkey::int2[])[0:cardinality(c.conkey) - 1] <@ c.conkey
         )
     """,
+    # A child of a table whose rows always belong to a company: it carries the company too.
+    "a tenant's child table without company_id": """
+        SELECT DISTINCT c.conrelid::regclass::text FROM pg_constraint c
+        JOIN pg_attribute parent ON parent.attrelid = c.confrelid
+            AND parent.attname = 'company_id' AND parent.attnotnull
+        WHERE c.contype = 'f' AND c.connamespace = 'public'::regnamespace AND NOT EXISTS (
+            SELECT FROM pg_attribute child
+            WHERE child.attrelid = c.conrelid AND child.attname = 'company_id'
+            AND NOT child.attisdropped
+        )
+    """,
     # A concurrent build that failed: it slows writes and serves no query.
     "an invalid index": """
         SELECT indexrelid::regclass::text FROM pg_index i JOIN pg_class t ON t.oid = i.indrelid
