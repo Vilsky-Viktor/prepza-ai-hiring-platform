@@ -170,5 +170,5 @@ def test_anyone_else_gets_not_found(client, signed_in):
     assert (signed_in.asked, signed_in.changes) == ([], [])
 
 
-def test_signed_out_gets_401(client):
-    assert client.post("/superadmin/emails/lookup", json={"email": "a@b.c"}).status_code == 401
+def test_signed_out_gets_404_as_everyone_else(client):
+    assert client.post("/superadmin/emails/lookup", json={"email": "a@b.c"}).status_code == 404

@@ -11,6 +11,7 @@ from prepza_common.constants import (
     LANGUAGES,
     READ_METHODS,
     SIGN_IN_UNAVAILABLE,
+    SUPERADMIN_PREFIX,
 )
 from prepza_common.user import User
 
@@ -63,11 +64,16 @@ def writes(request: Request) -> bool:
 
 def current_user(
     request: Request,
-    credentials: Annotated[HTTPAuthorizationCredentials, Depends(bearer)],
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(optional_bearer)],
 ) -> User:
-    user = verify(credentials.credentials, check_revoked=writes(request))
+    """The signed-in user; 401 without a valid token, except on the admin zone's routes, which
+    answer 404 to everyone else, signed out included, so they don't show they exist."""
+    user = verify(credentials.credentials, check_revoked=writes(request)) if credentials else None
 
     if user is None:
+        if request.scope.get("path", "").startswith(SUPERADMIN_PREFIX):
+            raise HTTPException(status.HTTP_404_NOT_FOUND, "Not found")
+
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid token")
 
     # Errors from this request name the account by id only, never by email.

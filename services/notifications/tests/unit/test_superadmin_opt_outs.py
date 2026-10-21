@@ -143,4 +143,5 @@ def test_anyone_else_gets_not_found(client, signed_in):
 
 
 def test_signed_out_gets_401(client):
-    assert client.post(f"{URL}/lookup", json={"email": "a@b.c"}).status_code == 401
+    # Signed out, as everyone else: the admin zone isn't there.
+    assert client.post(f"{URL}/lookup", json={"email": "a@b.c"}).status_code == 404

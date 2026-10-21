@@ -128,3 +128,20 @@ def test_a_read_by_a_live_sign_in_goes_through():
 def verify_claims():
     with mock.patch.object(firebase_auth, "verify_id_token", return_value=CLAIMS):
         return verify("token")
+
+
+def test_a_signed_out_or_bad_request_is_401_but_404_in_the_admin_zone():
+    def at(path):
+        return Request({"type": "http", "method": "GET", "path": path, "headers": []})
+
+    for path, code in (("/companies", 401), ("/superadmin/stats", 404)):
+        with pytest.raises(HTTPException) as signed_out:
+            current_user(at(path), None)
+
+        with (
+            mock.patch.object(firebase_auth, "verify_id_token", side_effect=ValueError("bad")),
+            pytest.raises(HTTPException) as bad,
+        ):
+            current_user(at(path), CREDENTIALS)
+
+        assert signed_out.value.status_code == bad.value.status_code == code

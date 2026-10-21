@@ -52,4 +52,5 @@ def test_the_budgets_are_hidden_from_everyone_else(client, sign_in, monkeypatch)
 
 
 def test_the_budgets_are_refused_signed_out(client):
-    assert client.get("/superadmin/budgets").status_code in (401, 403)
+    # Not found, as for everyone else: the admin zone doesn't show it's there.
+    assert client.get("/superadmin/budgets").status_code == 404

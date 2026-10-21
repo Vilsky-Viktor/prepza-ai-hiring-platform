@@ -34,6 +34,8 @@ NO_STORE = "no-store"
 SECRET_PATH_PARAMS = ("token",)
 # What a request's log line names instead of a route's template when no route took it.
 UNMATCHED_ROUTE = "(no route)"
+# The admin zone's routes: refused as not found, signed out too (auth.current_user).
+SUPERADMIN_PREFIX = "/superadmin"
 # Answers logged as warnings: a sign-in or a permission refused (logging.RequestLogMiddleware).
 REFUSED_STATUSES = (401, 403)
 
