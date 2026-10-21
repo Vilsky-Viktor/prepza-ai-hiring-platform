@@ -73,5 +73,20 @@ def checked(
     return response
 
 
+def next_page(url: str | None, api: str, unavailable: str) -> str | None:
+    """A list's next page as the ATS's answer names it, only when it's on the ATS's own API
+    (`api`: HTTPS, the same host): the call carries the key, so a link anywhere else is a 502
+    with `unavailable`, never followed. None on the last page."""
+    if not url:
+        return None
+
+    given, own = httpx.URL(url), httpx.URL(api)
+
+    if given.scheme != "https" or (given.host, given.port) != (own.host, own.port):
+        raise HTTPException(status.HTTP_502_BAD_GATEWAY, unavailable)
+
+    return url
+
+
 def json_of(response: httpx.Response) -> dict:
     return response.json() if response.content else {}

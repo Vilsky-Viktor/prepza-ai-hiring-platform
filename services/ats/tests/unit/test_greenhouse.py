@@ -164,6 +164,17 @@ def test_open_jobs_are_read_page_by_page_following_the_link_header(harvest):
     ]
 
 
+def test_a_next_page_off_greenhouses_api_is_never_called_with_the_token(harvest):
+    elsewhere = "https://attacker.example/v3/jobs?cursor=2"
+    harvest["answers"]["/v3/jobs"] = (200, [], {"Link": f'<{elsewhere}>; rel="next"'})
+
+    with pytest.raises(HTTPException) as refused:
+        asyncio.run(greenhouse.jobs("id", "secret"))
+
+    assert refused.value.status_code == 502
+    assert "attacker.example" not in {request.url.host for request in harvest["requests"]}
+
+
 def test_a_jobs_stages_and_text_come_from_greenhouse(harvest):
     harvest["answers"]["/v3/job_interview_stages"] = (
         200,

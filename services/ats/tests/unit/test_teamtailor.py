@@ -128,6 +128,20 @@ def test_jobs_are_read_page_by_page_and_archived_ones_left_out(api):
     assert str(api["requests"][1].url) == NEXT
 
 
+@pytest.mark.parametrize(
+    "elsewhere",
+    ["https://attacker.example/v1/jobs?page=2", HOST.replace("https", "http") + "/v1/jobs?page=2"],
+)
+def test_a_next_page_off_teamtailors_api_is_never_called_with_the_key(api, elsewhere):
+    api["answers"]["/v1/jobs"] = {"data": [], "links": {"next": elsewhere}}
+
+    with pytest.raises(HTTPException) as refused:
+        asyncio.run(teamtailor.jobs(HOST, "key"))
+
+    assert refused.value.status_code == 502
+    assert [str(request.url.host) for request in api["requests"]] == ["api.teamtailor.com"]
+
+
 def test_stages_come_in_their_order(api):
     api["answers"]["/v1/jobs/1/stages"] = {
         "data": [

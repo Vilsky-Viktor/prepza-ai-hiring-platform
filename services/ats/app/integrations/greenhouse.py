@@ -17,7 +17,7 @@ from app.constants.ats import (
     GREENHOUSE_TOKEN_URL,
     AtsProvider,
 )
-from app.integrations.ats_http import REJECTED, checked, note_busy, send
+from app.integrations.ats_http import REJECTED, checked, next_page, note_busy, send
 
 # The credentials this client takes (a connection also keeps its web hook's secret key).
 KEYS = ("client_id", "client_secret")
@@ -99,7 +99,7 @@ async def _list(client_id: str, client_secret: str, path: str, params: dict) -> 
     for _ in range(GREENHOUSE_MAX_PAGES):
         response = await _call("GET", client_id, client_secret, url, query)
         found += _items(response)
-        url = response.links.get("next", {}).get("url")
+        url = next_page(response.links.get("next", {}).get("url"), GREENHOUSE_API, UNAVAILABLE)
         # The next page's address carries its own query.
         query = None
 

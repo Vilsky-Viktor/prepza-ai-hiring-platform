@@ -9,7 +9,7 @@ from app.constants.ats import (
     TEAMTAILOR_PAGE,
     AtsProvider,
 )
-from app.integrations.ats_http import checked, json_of, send
+from app.integrations.ats_http import checked, json_of, next_page, send
 from app.integrations.errors import KeyRejected
 
 # The credentials this client takes: the API (its company's region) and the API key.
@@ -44,7 +44,7 @@ async def _list(host: str, key: str, path: str, params: dict | None = None) -> l
     for _ in range(TEAMTAILOR_MAX_PAGES):
         answer = await _call("GET", host, key, url, query)
         found += answer.get("data", [])
-        url = (answer.get("links") or {}).get("next")
+        url = next_page((answer.get("links") or {}).get("next"), host, UNAVAILABLE)
         # The next page's address carries its own query.
         query = None
 
