@@ -29,7 +29,7 @@ class CandidateInvite(Base):
     user_id: Mapped[str | None] = mapped_column(String(128), index=True)
     status: Mapped[str] = mapped_column(String(32), default=InviteStatus.INVITED)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
     # When the row last changed: a trigger sets it on every update (migration 0045), so the
     # public API's lists can be synced with updated_since.

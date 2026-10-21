@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Integer, SmallInteger, String, Text
+from sqlalchemy import DateTime, ForeignKey, Integer, SmallInteger, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -22,7 +22,9 @@ class Conversation(Base):
     company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     # The first 80 characters of the first message.
     title: Mapped[str] = mapped_column(String(80))
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now()
+    )
     # The last message's time: conversations idle longer than the retention are deleted.
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now, index=True)
 
@@ -55,7 +57,9 @@ class Message(Base):
     trace_id: Mapped[str | None] = mapped_column(String(32))
     # The user's thumbs up (1) or down (-1) on an answer; None when there's none.
     vote: Mapped[int | None] = mapped_column(SmallInteger)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now()
+    )
 
 
 class ToolCall(Base):
@@ -77,4 +81,6 @@ class ToolCall(Base):
     result: Mapped[dict | None] = mapped_column(JSONB)
     # "done" or "failed".
     state: Mapped[str] = mapped_column(String(32), default="done")
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now()
+    )

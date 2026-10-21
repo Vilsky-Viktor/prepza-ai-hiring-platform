@@ -39,7 +39,8 @@ reached it (with `Retry-After` to the next UTC day, `rate_limit.until_tomorrow`)
 Database: `db.database` builds a service's engine and sessions (its pool, and Postgres ending a
 transaction left idle), `db.migration_engine` the migrations' one (a short lock and statement timeout), and `db.delete_in_batches`
 deletes old rows (retention, published events) `DELETE_BATCH` at a time, each batch its own
-transaction.
+transaction. `schema_rules.problems` lists the tables of a migrated database that break
+`.claude/rules/database.md`; each service's `test_migrations.py` asserts it finds none.
 Request bodies: `body_limit.BodyLimitMiddleware` refuses one over 1 MB (`MAX_BODY_BYTES`) with a
 translated 413, counting a streamed body as it arrives; companies (report PDFs) and the assistant
 (voice messages) pass larger limits.

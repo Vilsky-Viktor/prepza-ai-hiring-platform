@@ -3,7 +3,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, String
+from sqlalchemy import DateTime, String, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -18,7 +18,9 @@ class OutboxColumns:
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     event_type: Mapped[str] = mapped_column(String(64))
     data: Mapped[dict] = mapped_column(JSONB)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now()
+    )
     published_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), index=True)
     # Times Pub/Sub refused it; parked past OUTBOX_MAX_ATTEMPTS.
     attempts: Mapped[int] = mapped_column(default=0, server_default="0")

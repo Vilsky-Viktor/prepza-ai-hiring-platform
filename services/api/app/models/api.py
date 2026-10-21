@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, Text, Uuid, false
+from sqlalchemy import DateTime, ForeignKey, String, Text, Uuid, false, func
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -25,7 +25,9 @@ class ApiKey(Base):
     # The owner or admin who made it: the API acts as them (their email limits), while they
     # still are one.
     created_by: Mapped[str] = mapped_column(String(128), index=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now()
+    )
     # None: it never expires.
     expires_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
@@ -43,7 +45,9 @@ class Webhook(Base):
     url: Mapped[str] = mapped_column(String(500))
     secret: Mapped[str] = mapped_column(Text)
     created_by: Mapped[str] = mapped_column(String(128), index=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now()
+    )
     # An event it didn't take for RETRY_GIVE_UP was dropped; it took none since.
     failing: Mapped[bool] = mapped_column(default=False, server_default=false())
     # An event found the member who added it no longer an owner or admin: the company was told,
@@ -77,7 +81,9 @@ class WebhookRetry(Base):
     # Sends that failed so far.
     attempts: Mapped[int]
     next_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now()
+    )
 
 
 class WebhookAttempt(Base):

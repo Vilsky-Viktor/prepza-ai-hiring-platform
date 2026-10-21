@@ -46,7 +46,7 @@ class Interview(Base):
     question_seconds: Mapped[int] = mapped_column(server_default="60")
     topic_limits: Mapped[dict[str, int]] = mapped_column(JSONB, default=dict, server_default="{}")
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
     # When the row last changed: a trigger sets it on every update (migration 0045), so the
     # public API's lists can be synced with updated_since.

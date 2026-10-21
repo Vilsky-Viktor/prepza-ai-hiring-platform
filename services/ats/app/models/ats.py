@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, Text, UniqueConstraint
+from sqlalchemy import DateTime, ForeignKey, String, Text, UniqueConstraint, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -29,7 +29,7 @@ class AtsConnection(Base):
     # Who connected it: their invites and limits apply to candidates the ATS sends.
     created_by: Mapped[str] = mapped_column(String(128))
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
     # When the ATS first refused the results written back while the key still read: the company
     # was told once. Cleared by a reconnect or a write that goes through.
@@ -59,7 +59,7 @@ class AtsJobLink(Base):
     # The ATS's notification for this job and stage, cancelled when the link goes.
     subscription_id: Mapped[str | None] = mapped_column(String(100))
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
 
 
@@ -109,5 +109,8 @@ class AtsCandidate(Base):
     # (the server stopped mid-write), and the recovery job writes them again.
     report_claimed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC), index=True
+        DateTime(timezone=True),
+        default=lambda: datetime.now(UTC),
+        server_default=func.now(),
+        index=True,
     )

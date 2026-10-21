@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from sqlalchemy import Boolean, DateTime, Index, String, false
+from sqlalchemy import Boolean, DateTime, Index, String, false, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -33,5 +33,5 @@ class CandidateOptOut(Base):
     # Made by a superadmin for someone who asked prepza; only those are lifted again there.
     by_admin: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )

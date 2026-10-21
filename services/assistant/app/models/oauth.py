@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, String
+from sqlalchemy import DateTime, ForeignKey, String, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -24,7 +24,9 @@ class OAuthClient(Base):
     client_id: Mapped[str] = mapped_column(String(512), primary_key=True)
     # The MCP SDK's OAuthClientInformationFull, as JSON.
     info: Mapped[dict] = mapped_column(JSONB)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now()
+    )
 
 
 class McpGrant(Base):
@@ -41,7 +43,9 @@ class McpGrant(Base):
     # What the user saw when they allowed it: the app's name and the site it returns to.
     client_name: Mapped[str] = mapped_column(String(80))
     redirect_host: Mapped[str] = mapped_column(String(255))
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now()
+    )
     last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     access_hash: Mapped[str] = mapped_column(String(64), unique=True)
     access_expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))

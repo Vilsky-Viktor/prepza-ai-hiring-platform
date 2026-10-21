@@ -2,7 +2,7 @@ import uuid
 from datetime import UTC, date, datetime
 
 from prepza_common.audit_actions import MAX_TARGET_LABEL
-from sqlalchemy import Date, DateTime, ForeignKey, Index, String, text
+from sqlalchemy import Date, DateTime, ForeignKey, Index, String, func, text
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -61,5 +61,5 @@ class AuditEvent(Base):
     # one row a member, candidate and day while created_at moves to the latest view.
     day: Mapped[date | None] = mapped_column(Date)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )

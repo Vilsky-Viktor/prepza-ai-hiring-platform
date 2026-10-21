@@ -9,6 +9,7 @@ from sqlalchemy import (
     SmallInteger,
     String,
     UniqueConstraint,
+    func,
     text,
 )
 from sqlalchemy.dialects.postgresql import JSONB
@@ -55,7 +56,7 @@ class Company(Base):
     verification_decided_by: Mapped[str | None] = mapped_column(String(128))
     verification_decided_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
     # A superadmin suspended it (impersonation, abuse): nothing new happens until it's lifted.
     suspended_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
@@ -82,5 +83,5 @@ class Member(Base):
     token: Mapped[str | None] = mapped_column(String(64), unique=True)
     role: Mapped[str] = mapped_column(String(32), default=Role.ADMIN)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )

@@ -2,7 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 from prepza_common.constants import MAX_CAMPAIGN_BUTTON_LENGTH, MAX_CAMPAIGN_SUBJECT_LENGTH
-from sqlalchemy import DateTime, ForeignKey, String, Text
+from sqlalchemy import DateTime, ForeignKey, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -24,7 +24,9 @@ class Campaign(Base):
     # The button's page on the site ("/news#…"); without one, the button opens the site.
     link: Mapped[str | None] = mapped_column(String(300))
     created_by: Mapped[str] = mapped_column(String(128))
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now, index=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=now, server_default=func.now(), index=True
+    )
     sent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
 

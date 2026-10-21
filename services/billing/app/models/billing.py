@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, UniqueConstraint, text
+from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, UniqueConstraint, func, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.constants.currencies import CURRENCY_CHECK
@@ -32,7 +32,7 @@ class Referral(Base):
     owner_id: Mapped[str] = mapped_column(String(128), primary_key=True)
     referrer_id: Mapped[str] = mapped_column(String(128), index=True)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
     rewarded_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     rewarded_by: Mapped[str | None] = mapped_column(String(64), index=True)
@@ -80,7 +80,7 @@ class Gift(Base):
 
     key: Mapped[str] = mapped_column(String(160), primary_key=True)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
 
 
@@ -123,7 +123,7 @@ class Entry(Base):
     # A superadmin's adjustment: why, as the company's history shows it.
     note: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
 
 
@@ -147,5 +147,5 @@ class Purchase(Base):
     total: Mapped[str] = mapped_column(Text)
     currency: Mapped[str] = mapped_column(String(3))
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=lambda: datetime.now(UTC)
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
