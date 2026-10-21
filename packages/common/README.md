@@ -48,6 +48,8 @@ transaction. `schema_rules.problems` lists the tables of a migrated database tha
 `schema_rules.misnamed` and `schema_rules.stale_checks` find no constraint named otherwise than its
 model and no CHECK allowing other values than its enum (`db.one_of` builds a closed set's CHECK).
 `redis_lock` keeps a scheduled run from overlapping the next (SET NX with a time it lasts).
+`tenant_columns.add_company_id` is the migration step that gives a tenant's child table its
+company_id: filled from the parent in batches, indexed concurrently, NOT NULL through a validated check.
 `paging` gives a route its page (`PageParams`, at most `MAX_PAGE_SIZE`) or a page of ids by key
 (`IdPageParams`, after the last one), and `every_id` reads such a list a page at a time.
 Integration tests: `clean_start` gives every test in a service's `tests/integration` a clean start (the

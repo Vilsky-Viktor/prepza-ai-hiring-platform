@@ -5,6 +5,7 @@ from sqlalchemy import delete, select
 from app.constants.api import WEBHOOK_LOG_KEPT
 from app.models.api import WebhookAttempt
 from app.storage.db import Session
+from app.storage.webhooks import company_of
 
 
 async def add(webhook_id: uuid.UUID, event_id: str, event_type: str, ok: bool, result: str) -> None:
@@ -14,6 +15,7 @@ async def add(webhook_id: uuid.UUID, event_id: str, event_type: str, ok: bool, r
             WebhookAttempt(
                 webhook_id=webhook_id,
                 event_id=event_id,
+                company_id=company_of(webhook_id),
                 event_type=event_type,
                 ok=ok,
                 result=result,

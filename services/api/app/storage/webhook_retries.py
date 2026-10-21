@@ -7,13 +7,21 @@ from sqlalchemy.dialects.postgresql import JSONB, insert
 from app.constants.api import RETRY_LEASE
 from app.models.api import Webhook, WebhookRetry
 from app.storage.db import Session
+from app.storage.webhooks import company_of
 
 
 async def add(webhook_id: uuid.UUID, event_id: str, body: str, next_at: datetime) -> None:
     """Once per web hook and event: a redelivered event keeps the retry it has."""
     query = (
         insert(WebhookRetry)
-        .values(webhook_id=webhook_id, event_id=event_id, body=body, attempts=1, next_at=next_at)
+        .values(
+            webhook_id=webhook_id,
+            event_id=event_id,
+            company_id=company_of(webhook_id),
+            body=body,
+            attempts=1,
+            next_at=next_at,
+        )
         .on_conflict_do_nothing()
     )
 

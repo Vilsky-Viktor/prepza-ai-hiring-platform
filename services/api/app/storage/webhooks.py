@@ -14,6 +14,11 @@ from app.models.outbox import OutboxEvent
 from app.storage.db import Session
 
 
+def company_of(webhook_id: uuid.UUID):
+    """The web hook's company, read by the statement that saves its row."""
+    return select(Webhook.company_id).where(Webhook.id == webhook_id).scalar_subquery()
+
+
 async def of_company(company_id: uuid.UUID) -> list[Webhook]:
     """Oldest first."""
     query = select(Webhook).where(Webhook.company_id == company_id).order_by(Webhook.created_at)
@@ -155,7 +160,7 @@ async def mark_delivered(webhook_id: uuid.UUID, event_id: str) -> None:
     )
     query = (
         insert(WebhookDelivery)
-        .values(webhook_id=webhook_id, event_id=event_id)
+        .values(webhook_id=webhook_id, event_id=event_id, company_id=company_of(webhook_id))
         .on_conflict_do_nothing()
     )
 

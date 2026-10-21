@@ -1,5 +1,6 @@
 import asyncio
 import uuid
+from datetime import UTC, datetime
 
 from prepza_common.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import select
@@ -51,3 +52,29 @@ def test_the_web_hooks_that_got_an_event_are_found_at_once(run):
         return got == {first.id}
 
     assert run(scenario())
+
+
+def test_a_web_hooks_rows_carry_its_company(run):
+    from app.models.api import WebhookAttempt, WebhookDelivery, WebhookRetry
+    from app.storage import webhook_log, webhook_retries
+
+    async def scenario():
+        company = uuid.uuid4()
+        hook = await webhooks.add(company, "https://a.example/x", "sealed", "u1", 10)
+        await webhooks.mark_delivered(hook.id, "e1")
+        await webhook_retries.add(hook.id, "e2", "{}", datetime.now(UTC))
+        await webhook_log.add(hook.id, "e1", "test", True, "delivered")
+
+        async with Session() as session:
+            found = [
+                await session.scalar(select(model.company_id).where(model.webhook_id == hook.id))
+                for model in (WebhookDelivery, WebhookRetry, WebhookAttempt)
+            ]
+
+        await webhooks.remove_company(company)
+
+        return company, found
+
+    company, found = run(scenario())
+
+    assert found == [company, company, company]

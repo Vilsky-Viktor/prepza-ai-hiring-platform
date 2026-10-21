@@ -64,6 +64,8 @@ class WebhookDelivery(Base):
         Uuid, ForeignKey("webhooks.id", ondelete="CASCADE"), primary_key=True
     )
     event_id: Mapped[str] = mapped_column(String(128), primary_key=True)
+    # The web hook's company, kept on the row too (every tenant's row carries it).
+    company_id: Mapped[uuid.UUID] = mapped_column(Uuid, index=True)
     delivered_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
@@ -77,6 +79,8 @@ class WebhookRetry(Base):
         Uuid, ForeignKey("webhooks.id", ondelete="CASCADE"), primary_key=True
     )
     event_id: Mapped[str] = mapped_column(String(128), primary_key=True)
+    # The web hook's company, kept on the row too (every tenant's row carries it).
+    company_id: Mapped[uuid.UUID] = mapped_column(Uuid, index=True)
     # What the web hook gets, the same each time (the signature is made at sending).
     body: Mapped[str] = mapped_column(Text)
     # Sends that failed so far.
@@ -98,6 +102,8 @@ class WebhookAttempt(Base):
         Uuid, ForeignKey("webhooks.id", ondelete="CASCADE"), index=True
     )
     event_id: Mapped[str] = mapped_column(String(128))
+    # The web hook's company, kept on the row too (every tenant's row carries it).
+    company_id: Mapped[uuid.UUID] = mapped_column(Uuid, index=True)
     event_type: Mapped[str] = mapped_column(String(64))
     # Whether it took it, and what happened: "delivered", the status it answered, the error, or
     # why it was skipped.
