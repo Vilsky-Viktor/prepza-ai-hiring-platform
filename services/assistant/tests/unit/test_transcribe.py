@@ -13,6 +13,9 @@ from app.services import transcribe
 
 ANN = User(uid="ann", email="ann@example.com", email_verified=True)
 WEBM = {"Content-Type": "audio/webm;codecs=opus"}
+# A recording as browsers make it starts with its container's signature.
+OPUS = b"\x1a\x45\xdf\xa3opus"
+AAC = b"\x00\x00\x00\x18ftypM4A aac"
 
 
 @pytest.fixture
@@ -52,13 +55,11 @@ def openai(monkeypatch):
 
 
 def test_a_recording_is_heard_in_the_interface_language_and_its_tokens_count(client, openai):
-    response = client.post(
-        "/transcribe", content=b"opus", headers={**WEBM, "Accept-Language": "de"}
-    )
+    response = client.post("/transcribe", content=OPUS, headers={**WEBM, "Accept-Language": "de"})
 
     assert response.json() == {"text": "Who passed?"}
     [call] = openai.calls
-    assert call["file"] == ("audio.webm", b"opus", "audio/webm")
+    assert call["file"] == ("audio.webm", OPUS, "audio/webm")
     assert call["language"] == "de"
     assert call["model"] == "gpt-4o-mini-transcribe"
     assert openai.recorded == [("ann", None, 42)]
@@ -66,10 +67,20 @@ def test_a_recording_is_heard_in_the_interface_language_and_its_tokens_count(cli
 
 def test_filipino_is_heard_as_tagalog(client, openai):
     headers = {"Content-Type": "audio/mp4", "Accept-Language": "fil"}
-    client.post("/transcribe", content=b"aac", headers=headers)
+    client.post("/transcribe", content=AAC, headers=headers)
 
     assert openai.calls[0]["language"] == "tl"
     assert openai.calls[0]["file"][0] == "audio.mp4"
+
+
+@pytest.mark.parametrize("body", [b"<html>not audio", b"OggS but said webm"])
+def test_a_body_that_isnt_the_recording_its_type_claims_is_refused_before_openai(
+    client, openai, body
+):
+    response = client.post("/transcribe", content=body, headers=WEBM)
+
+    assert response.status_code == 415
+    assert openai.calls == []
 
 
 def test_another_format_or_a_larger_recording_is_refused_before_openai(client, openai):
@@ -88,9 +99,7 @@ def test_another_format_or_a_larger_recording_is_refused_before_openai(client, o
 @pytest.mark.parametrize("text", ["", "  "])
 def test_nothing_heard_is_a_422_in_the_users_language(client, openai, text):
     openai.answer.text = text
-    response = client.post(
-        "/transcribe", content=b"opus", headers={**WEBM, "Accept-Language": "de"}
-    )
+    response = client.post("/transcribe", content=OPUS, headers={**WEBM, "Accept-Language": "de"})
 
     assert response.status_code == 422
     assert response.json()["detail"] == "Es war nichts zu hören. Versuche es erneut."
@@ -98,7 +107,7 @@ def test_nothing_heard_is_a_422_in_the_users_language(client, openai, text):
 
 def test_openai_failing_is_a_502_and_nothing_is_logged_of_the_recording(client, openai, caplog):
     openai.answer.text = APIConnectionError(request=httpx.Request("POST", "https://api.openai.com"))
-    response = client.post("/transcribe", content=b"secret-audio", headers=WEBM)
+    response = client.post("/transcribe", content=OPUS + b"secret-audio", headers=WEBM)
 
     assert response.status_code == 502
     assert "secret-audio" not in caplog.text
@@ -106,7 +115,7 @@ def test_openai_failing_is_a_502_and_nothing_is_logged_of_the_recording(client, 
 
 def test_a_transcription_is_recorded_with_its_audio_seconds(client, openai, published):
     openai.answer.usage = SimpleNamespace(total_tokens=42, seconds=7.5)
-    client.post("/transcribe", content=b"opus", headers=WEBM)
+    client.post("/transcribe", content=OPUS, headers=WEBM)
 
     [(kind, data)] = published
     assert kind == "ai.used"
@@ -128,7 +137,7 @@ def test_openai_out_of_money_is_recorded_as_its_limit_and_the_call_as_failed(
         response=httpx.Response(429, request=request),
         body={"code": "insufficient_quota"},
     )
-    response = client.post("/transcribe", content=b"opus", headers=WEBM)
+    response = client.post("/transcribe", content=OPUS, headers=WEBM)
 
     assert response.status_code == 502
     hits = [data for kind, data in published if kind == "limit.hit"]
@@ -145,15 +154,15 @@ def test_paused_or_over_a_limit_is_refused_before_openai(client, openai, monkeyp
         raise HTTPException(429, "over")
 
     monkeypatch.setattr(transcribe.limits, "check_transcription", over)
-    assert client.post("/transcribe", content=b"opus", headers=WEBM).status_code == 429
+    assert client.post("/transcribe", content=OPUS, headers=WEBM).status_code == 429
 
     async def paused(redis, what, company_id=None, user_id=None):
         raise HTTPException(503, "paused")
 
     monkeypatch.setattr(transcribe, "refuse_if_paused", paused)
-    assert client.post("/transcribe", content=b"opus", headers=WEBM).status_code == 503
+    assert client.post("/transcribe", content=OPUS, headers=WEBM).status_code == 503
     assert openai.calls == []
 
 
 def test_signed_out_is_refused(client):
-    assert client.post("/transcribe", content=b"opus", headers=WEBM).status_code in (401, 403)
+    assert client.post("/transcribe", content=OPUS, headers=WEBM).status_code in (401, 403)

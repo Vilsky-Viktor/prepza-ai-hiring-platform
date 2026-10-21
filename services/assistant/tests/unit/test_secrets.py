@@ -90,7 +90,9 @@ def test_a_secret_said_aloud_never_comes_back_as_text(client, monkeypatch):
     monkeypatch.setattr(transcribe, "refuse_if_paused", nothing)
     monkeypatch.setattr(transcribe.limits, "check_transcription", nothing)
     monkeypatch.setattr(transcribe.limits, "record", nothing)
-    response = client.post("/transcribe", content=b"opus", headers={"Content-Type": "audio/webm"})
+    response = client.post(
+        "/transcribe", content=b"\x1a\x45\xdf\xa3opus", headers={"Content-Type": "audio/webm"}
+    )
     app.dependency_overrides.clear()
 
     assert response.status_code == 422

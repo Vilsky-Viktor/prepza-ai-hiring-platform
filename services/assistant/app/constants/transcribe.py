@@ -11,6 +11,13 @@ AUDIO_FILES = {
     "audio/mp4": "audio.mp4",
     "audio/ogg": "audio.ogg",
 }
+# How each format's file starts (its container's magic bytes), checked before OpenAI reads it: a
+# body that isn't the recording its Content-Type claims is refused (415). (offset, bytes)
+AUDIO_SIGNATURES = {
+    "audio/webm": (0, b"\x1a\x45\xdf\xa3"),
+    "audio/mp4": (4, b"ftyp"),
+    "audio/ogg": (0, b"OggS"),
+}
 # The interface's language codes OpenAI knows by another code.
 TRANSCRIBE_LANGUAGES = {"fil": "tl"}
 # OpenAI's call: how long it may take and how often it's retried.

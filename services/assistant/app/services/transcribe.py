@@ -11,6 +11,7 @@ from app.config.settings import settings
 from app.constants.ai_usage import TRANSCRIPTION_ACTION
 from app.constants.transcribe import (
     AUDIO_FILES,
+    AUDIO_SIGNATURES,
     AUDIO_NOT_SUPPORTED,
     AUDIO_TOO_LARGE,
     MAX_AUDIO_BYTES,
@@ -61,6 +62,11 @@ async def transcribe(request: Request, user_id: str, language: str) -> str:
 
     if not audio:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, NOTHING_HEARD)
+
+    offset, signature = AUDIO_SIGNATURES[content_type]
+
+    if audio[offset : offset + len(signature)] != signature:
+        raise HTTPException(status.HTTP_415_UNSUPPORTED_MEDIA_TYPE, AUDIO_NOT_SUPPORTED)
 
     await limits.check_transcription(redis, user_id, await user_companies(user_id))
     model = settings.transcribe_model
