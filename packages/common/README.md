@@ -40,7 +40,10 @@ Database: `db.database` builds a service's engine and sessions (its pool, and Po
 transaction left idle), `db.migration_engine` the migrations' one (a short lock and statement timeout), and `db.delete_in_batches`
 deletes old rows (retention, published events) `DELETE_BATCH` at a time, each batch its own
 transaction. `schema_rules.problems` lists the tables of a migrated database that break
-`.claude/rules/database.md`; each service's `test_migrations.py` asserts it finds none.
+`.claude/rules/database.md`; each service's `test_migrations.py` asserts it finds none, and that
+`schema_rules.misnamed` and `schema_rules.stale_checks` find no constraint named otherwise than its
+model and no CHECK allowing other values than its enum (`db.one_of` builds a closed set's CHECK).
+`redis_lock` keeps a scheduled run from overlapping the next (SET NX with a time it lasts).
 Integration tests: `clean_start` gives every test in a service's `tests/integration` a clean start (the
 tables a fresh migration left empty truncated, the tests' Redis database 15 flushed, the shared HTTP
 client dropped); it refuses any database but a `_test` one and any Redis database but 15.
