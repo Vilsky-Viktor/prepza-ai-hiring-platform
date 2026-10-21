@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from prepza_common.constants import DELETED_USER
+from prepza_common.constants import DELETE_BATCH, DELETED_USER
 from sqlalchemy import select, update
 
 from app.constants.statuses import Status
@@ -40,22 +40,33 @@ async def export(user_id: str) -> list[dict]:
 
 async def forget_texts(before: datetime, checkpointer) -> int:
     """Blanks the pasted texts of generations finished before `before`, and deletes the
-    checkpoints still holding them; the saved tests stay. Returns how many."""
-    async with Session() as session:
-        ids = list(
-            await session.scalars(
-                update(Generation)
-                .where(
-                    Generation.status.in_(FINISHED),
-                    Generation.updated_at < before,
-                    Generation.text != "",
-                )
-                .values(text="")
-                .returning(Generation.id)
-            )
+    checkpoints still holding them; the saved tests stay. DELETE_BATCH at a time, each batch its
+    own transaction, so a long backlog never holds one long lock. Returns how many."""
+    chosen = (
+        select(Generation.id)
+        .where(
+            Generation.status.in_(FINISHED),
+            Generation.updated_at < before,
+            Generation.text != "",
         )
-        await session.commit()
+        .limit(DELETE_BATCH)
+    )
+    total = 0
 
-    await delete_threads([str(item) for item in ids], checkpointer)
+    while True:
+        async with Session() as session:
+            ids = list(
+                await session.scalars(
+                    update(Generation)
+                    .where(Generation.id.in_(chosen))
+                    .values(text="")
+                    .returning(Generation.id)
+                )
+            )
+            await session.commit()
 
-    return len(ids)
+        await delete_threads([str(item) for item in ids], checkpointer)
+        total += len(ids)
+
+        if len(ids) < DELETE_BATCH:
+            return total

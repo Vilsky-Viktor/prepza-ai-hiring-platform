@@ -1,6 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import delete, select
+from prepza_common.db import delete_in_batches
+from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 
 from app.models.updates import UpdateCheck
@@ -30,9 +31,6 @@ async def save(connection_id: str, at: datetime) -> None:
 
 
 async def delete_before(before: datetime) -> int:
-    """Checks older than `before` (connections or keys long unused, or gone): how many went."""
-    async with Session() as session:
-        deleted = await session.execute(delete(UpdateCheck).where(UpdateCheck.checked_at < before))
-        await session.commit()
-
-        return deleted.rowcount
+    """Checks older than `before` (connections or keys long unused, or gone): how many went, in
+    batches."""
+    return await delete_in_batches(Session, UpdateCheck, UpdateCheck.checked_at < before)

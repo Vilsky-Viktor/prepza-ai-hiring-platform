@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from uuid import UUID
 
+from prepza_common.db import delete_in_batches
 from sqlalchemy import delete, exists, func, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 
@@ -147,14 +148,11 @@ async def delete_user(user_id: str) -> None:
 
 async def delete_expired(now: datetime, idle_before: datetime) -> tuple[int, int]:
     """Connections whose refresh token expired, then apps registered before `idle_before` that
-    have no connection: how many of each went."""
+    have no connection: how many of each went, in batches (delete_in_batches)."""
     no_grant = ~exists().where(McpGrant.client_id == OAuthClient.client_id)
+    grants = await delete_in_batches(Session, McpGrant, McpGrant.refresh_expires_at < now)
+    clients = await delete_in_batches(
+        Session, OAuthClient, OAuthClient.created_at < idle_before, no_grant
+    )
 
-    async with Session() as session:
-        grants = await session.execute(delete(McpGrant).where(McpGrant.refresh_expires_at < now))
-        clients = await session.execute(
-            delete(OAuthClient).where(OAuthClient.created_at < idle_before, no_grant)
-        )
-        await session.commit()
-
-        return grants.rowcount, clients.rowcount
+    return grants, clients

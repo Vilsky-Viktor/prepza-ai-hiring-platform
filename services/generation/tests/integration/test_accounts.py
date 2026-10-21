@@ -40,3 +40,22 @@ def test_old_finished_generations_lose_their_pasted_text_only(run):
     assert count >= 1
     assert (finished.text, finished.status) == ("", Status.DONE)
     assert running.text == "still running"
+
+
+def test_texts_are_blanked_a_batch_at_a_time_until_none_is_left(run, monkeypatch):
+    monkeypatch.setattr(accounts, "DELETE_BATCH", 1)
+
+    async def scenario():
+        made = [await generations.create("ann", f"old text {n}") for n in range(3)]
+
+        for generation in made:
+            await generations.update(generation.id, status=Status.DONE)
+
+        count = await accounts.forget_texts(datetime.now(UTC) + timedelta(seconds=1), None)
+
+        return count, [(await generations.get(item.id)).text for item in made]
+
+    count, texts = run(scenario())
+
+    assert count >= 3
+    assert texts == ["", "", ""]

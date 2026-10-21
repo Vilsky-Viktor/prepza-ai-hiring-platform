@@ -81,7 +81,10 @@ def test_recipients_are_worked_out_once_and_two_runs_at_once_send_each_one_email
     assert counts["sent"] == 6 and counts["pending"] == 0
 
 
-def test_stopping_skips_the_rest_and_keeps_what_was_sent(run, sending):
+@pytest.mark.parametrize("batch", [1000, 2])
+def test_stopping_skips_the_rest_and_keeps_what_was_sent(run, sending, monkeypatch, batch):
+    """Whether the rest fit in one batch or take several."""
+    monkeypatch.setattr(bulk_sends, "DELETE_BATCH", batch)
     users = [f"u-{uuid.uuid4()}" for _ in range(3)]
 
     async def scenario():

@@ -1,5 +1,6 @@
 from datetime import date, timedelta
 
+from prepza_common.db import delete_in_batches
 from sqlalchemy import delete, exists, func, select
 
 from app.models.sent_emails import SentEmail
@@ -72,10 +73,8 @@ async def release(user_id: str, kind: str, today: date, items: list[str]) -> Non
 
 
 async def forget(before: date) -> None:
-    """Rows older than every window that reads them go."""
-    async with Session() as session:
-        await session.execute(delete(SentEmail).where(SentEmail.sent_on < before))
-        await session.commit()
+    """Rows older than every window that reads them go, in batches."""
+    await delete_in_batches(Session, SentEmail, SentEmail.sent_on < before)
 
 
 async def remove_user(user_id: str) -> None:

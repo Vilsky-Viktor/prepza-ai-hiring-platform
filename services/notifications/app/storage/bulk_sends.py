@@ -1,6 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
+from prepza_common.constants import DELETE_BATCH
 from sqlalchemy import case, exists, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 
@@ -102,21 +103,33 @@ async def stop(send_id: uuid.UUID) -> None:
     right now finishes that one first (its row is locked). Safe to repeat."""
     now = datetime.now(UTC)
 
+    chosen = (
+        select(BulkRecipient.id)
+        .where(BulkRecipient.send_id == send_id, BulkRecipient.status == RecipientStatus.PENDING)
+        .limit(DELETE_BATCH)
+    )
+
     async with Session() as session:
         await session.execute(
             update(BulkSend)
             .where(BulkSend.id == send_id, BulkSend.finished_at.is_(None))
             .values(finished_at=now, stopped_at=now)
         )
-        await session.execute(
-            update(BulkRecipient)
-            .where(
-                BulkRecipient.send_id == send_id,
-                BulkRecipient.status == RecipientStatus.PENDING,
-            )
-            .values(status=RecipientStatus.SKIPPED, reason=SkipReason.STOPPED)
-        )
         await session.commit()
+
+    # Finished, the send gives no run another recipient; they're marked skipped a batch at a
+    # time, as a send can go to every user.
+    while True:
+        async with Session() as session:
+            skipped = await session.execute(
+                update(BulkRecipient)
+                .where(BulkRecipient.id.in_(chosen))
+                .values(status=RecipientStatus.SKIPPED, reason=SkipReason.STOPPED)
+            )
+            await session.commit()
+
+        if skipped.rowcount < DELETE_BATCH:
+            return
 
 
 def counted(condition):

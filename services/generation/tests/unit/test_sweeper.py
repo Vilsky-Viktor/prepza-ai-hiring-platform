@@ -126,6 +126,8 @@ def test_only_done_and_cancelled_checkpoints_are_deleted(monkeypatch):
     sql = compiled(statements[0])
     assert "IN ('done', 'cancelled')" in sql
     assert "failed" not in sql and "awaiting_review" not in sql
+    # A run deletes a bounded batch; the next run takes the rest.
+    assert "LIMIT 1000" in sql
 
 
 def test_the_worker_runs_schedules_and_jobs_through_its_routes(monkeypatch):

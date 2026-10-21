@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 
 from prepza_common import outbox
-from prepza_common.constants import DEFAULT_LANGUAGE
+from prepza_common.constants import DEFAULT_LANGUAGE, DELETE_BATCH
 from sqlalchemy import String, and_, bindparam, or_, select, text
 from sqlalchemy import update as sql_update
 from sqlalchemy.exc import IntegrityError
@@ -204,12 +204,16 @@ async def expire_reviews(before: datetime) -> list[Generation]:
 
 
 async def finished_threads() -> list[str]:
-    """Checkpoint threads of done or cancelled generations; nothing resumes them."""
+    """Up to DELETE_BATCH checkpoint threads of done or cancelled generations, which nothing
+    resumes; the next run takes the rest."""
     query = text(
         "SELECT DISTINCT c.thread_id FROM checkpoints c "
         "JOIN generations g ON c.thread_id = g.id::text "
-        "WHERE g.status IN :statuses"
-    ).bindparams(bindparam("statuses", list(FINISHED), expanding=True, type_=String()))
+        "WHERE g.status IN :statuses LIMIT :most"
+    ).bindparams(
+        bindparam("statuses", list(FINISHED), expanding=True, type_=String()),
+        most=DELETE_BATCH,
+    )
 
     async with Session() as session:
         return list(await session.scalars(query))
