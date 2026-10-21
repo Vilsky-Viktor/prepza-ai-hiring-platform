@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
 
-import { scrollAtRest } from "./helpers/waits";
+import { loaded, scrollAtRest } from "./helpers/waits";
 
 // Signed out, "ask agent" opens the assistant with FAQ answers only: the welcome for visitors,
 // an answer from the help chat (stubbed here: no OpenAI in tests), and a sign-in card when the
@@ -23,6 +23,7 @@ function askAgent(page: Page) {
 
 async function openPanel(page: Page) {
   await page.goto("/");
+  await loaded(page);
   await askAgent(page).click();
   const panel = page.getByRole("dialog");
   await expect(panel).toBeVisible();
@@ -214,6 +215,7 @@ for (const reducedMotion of ["no-preference", "reduce"] as const) {
   test(`the panel and a dialog open and close fully (${reducedMotion} motion)`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion });
     await page.goto("/");
+    await loaded(page);
     const toggle = askAgent(page);
     await toggle.click();
     const panel = page.getByRole("dialog");

@@ -1,13 +1,13 @@
 import { expect, test } from "@playwright/test";
 
-import { scrollAtRest } from "./helpers/waits";
+import { loaded, scrollAtRest } from "./helpers/waits";
 
 // The home page's "how it works" link scrolls smoothly to its section, not in one jump.
 
 test("how it works scrolls smoothly", async ({ page }, info) => {
   test.skip(info.project.name === "phone")
   await page.goto("/")
-  await page.waitForLoadState("networkidle")
+  await loaded(page)
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("smooth")
   // Every place the page scrolls through on its way.
   await page.evaluate(() => {
@@ -27,6 +27,7 @@ test("how it works scrolls smoothly", async ({ page }, info) => {
 // On a long page, "back to top" shows once it's scrolled down, and goes back to the top.
 test("back to top shows on a long page and returns to its top", async ({ page }) => {
   await page.goto("/")
+  await loaded(page)
   const button = page.getByTestId("back-to-top")
   await expect(button).toHaveCount(0)
   await page.mouse.wheel(0, 2500)

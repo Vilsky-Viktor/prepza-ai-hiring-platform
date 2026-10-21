@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
 import { REQUEST_URL } from "./helpers/env";
+import { loaded } from "./helpers/waits";
 
 // The news page and its RSS feed, whatever posts exist: what search engines and feed readers
 // read, and the footer's link. Posts themselves are checked by the signed-in news spec.
@@ -140,6 +141,7 @@ test("the sitemap lists the news page in every language but not its feed", async
 
 test("the footer links to the news page", async ({ page }) => {
   await page.goto("/");
+  await loaded(page);
   const link = page.locator('footer nav a[href="/news"]');
 
   await expect(link).toHaveCount(1);

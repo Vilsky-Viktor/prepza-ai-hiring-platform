@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 import { REQUEST_URL } from "./helpers/env";
+import { loaded } from "./helpers/waits";
 
 // Every published version of a legal document stays readable at its own address, and each says
 // whether it applies, with a link to the one in force when it doesn't. Versions are checked by
@@ -17,6 +18,7 @@ test("the terms show when they apply and keep every earlier version", async ({ p
     await page.request.get(`${REQUEST_URL}/api/rounds/help/legal/terms`)
   ).json();
   await page.goto("/terms");
+  await loaded(page);
   const header = page.locator("main header");
   // Dates as the language writes them, not as the API names them.
   await expect(header).toContainText(/[A-Z][a-z]{2} \d{1,2}, \d{4}/);
@@ -53,6 +55,7 @@ test("the terms show when they apply and keep every earlier version", async ({ p
 test("the terms show in the page's language with a link to the binding English", async ({ page, baseURL }) => {
   await page.context().addCookies([{ name: "prepza_locale", value: "de", url: baseURL! }]);
   await page.goto("/terms");
+  await loaded(page);
   const text = page.locator("main div[lang]");
   await expect(text).toHaveAttribute("lang", "de");
   // Dates as German writes them.

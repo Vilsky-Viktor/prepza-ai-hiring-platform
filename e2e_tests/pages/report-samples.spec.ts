@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises"
 import { expect, test } from "@playwright/test"
 
 import { zipEntries } from "./helpers/zip"
+import { loaded } from "./helpers/waits"
 
 // The landing's report samples, beside "create an interview" under the reports: a ZIP of the
 // two PDF reports, the candidates' and one candidate's, saved when clicked.
@@ -10,6 +11,7 @@ test("the report samples download a ZIP of the two PDF reports", async ({ page }
   // The local dev server compiles the home page on first open.
   test.setTimeout(120_000)
   await page.goto("/")
+  await loaded(page)
   const link = page.locator("#reports").getByTestId("report-samples")
   await expect(link).toHaveCount(1)
   await expect(link).toHaveAttribute("download", "")

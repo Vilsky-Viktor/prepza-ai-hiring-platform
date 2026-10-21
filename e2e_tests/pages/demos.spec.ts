@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { loaded } from "./helpers/waits";
+
 const DEMOS = "https://www.youtube.com/@prepza";
 
 // The home page's closing screen links to prepza's demo videos on YouTube, in a new tab, with a
@@ -26,6 +28,7 @@ test("the home page links to the demo videos", async ({ page }) => {
 // Every page's footer has "ask agent" under the social icons; it opens the assistant's panel.
 test("the footer's ask agent opens the assistant", async ({ page }) => {
   await page.goto("/faq");
+  await loaded(page);
   await page.getByRole("contentinfo").locator("[data-assistant-toggle]").click();
   await expect(page.getByRole("dialog")).toBeVisible();
 });

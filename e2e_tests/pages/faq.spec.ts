@@ -1,10 +1,13 @@
 import { expect, test } from "@playwright/test";
 
+import { loaded } from "./helpers/waits";
+
 // FAQ answers link to the site's own pages: a link opens its page in the same tab, in the
 // language of the address it's on.
 
 test("an answer's link opens its page in the same tab", async ({ page }) => {
   await page.goto("/faq");
+  await loaded(page);
   const answer = page
     .getByRole("main")
     .locator("details")
@@ -21,6 +24,7 @@ test("an answer's link opens its page in the same tab", async ({ page }) => {
 
 test("an answer's links stay in the address's language", async ({ page }) => {
   await page.goto("/de/faq");
+  await loaded(page);
   // Every answer's links, closed answers' too.
   const links = page
     .getByRole("main")

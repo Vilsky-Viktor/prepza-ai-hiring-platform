@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
 import { REQUEST_URL } from "./helpers/env";
+import { loaded } from "./helpers/waits";
 
 // The home page: the hero, then its sections in the order of a company's hiring, and the
 // closing screen. Every section fits the window on a desktop and on a phone, its pictures hold
@@ -163,6 +164,7 @@ test("the hero's video button plays the video in a window", async ({ page }) => 
     route.fulfill({ status: 200, body: "" }),
   );
   await page.goto("/");
+  await loaded(page);
   const button = page.getByTestId("video-button").filter({ visible: true });
   await expect(button).toHaveCount(1);
 
@@ -245,6 +247,7 @@ test("the closing buttons lead to the agent, the videos, the FAQ and the guides"
 }) => {
   test.setTimeout(120_000);
   await page.goto("/");
+  await loaded(page);
   const closing = page.locator("#help");
   await closing.scrollIntoViewIfNeeded();
   const buttons = closing.locator("div:has(> a[href='/faq']) > *");
@@ -263,6 +266,7 @@ test("the closing buttons lead to the agent, the videos, the FAQ and the guides"
 test("the guides button opens the guides", async ({ page }) => {
   test.setTimeout(120_000);
   await page.goto("/");
+  await loaded(page);
   await page.locator("#help a[href='/guides']").click();
   // The local dev server compiles the guides on first open.
   await expect(page).toHaveURL(/\/guides$/, { timeout: 30_000 });
@@ -271,6 +275,7 @@ test("the guides button opens the guides", async ({ page }) => {
 test("the automation section links to the developer docs", async ({ page }) => {
   test.setTimeout(120_000);
   await page.goto("/");
+  await loaded(page);
   await page.locator("#automate a[href='/api-docs']").click();
   // The local dev server compiles the docs on first open.
   await expect(page).toHaveURL(/\/api-docs$/, { timeout: 30_000 });
