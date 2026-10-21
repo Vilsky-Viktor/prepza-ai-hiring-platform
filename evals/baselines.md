@@ -228,3 +228,19 @@ condition (5 before); keys 98.4% (96.3–99.3) against 98.7%, multi-answer 98.0%
 against 100%, distractors 2.95, clarity 4.97, relevance 4.22: within the intervals. Kept for
 rule 19 and the strict batch schema.
 
+
+## Help chat: currencies in its guide (2026-10-21, kept)
+
+Prices became EUR in the EU and nearby, GBP in the UK and USD elsewhere, per person and per
+company. The guide gained one fact line about currencies and lost "$0 subscription"; the FAQ it
+reads names prices in the visitor's currency. `help_chat.py`, `help_questions.json`, 18 messages
+× 3, `gpt-6-luna` at none, same judge; both runs on the same working tree, before and after the
+prompt change:
+
+| Run | Passed | Made up | Sign-in marker | Price (help / judge) |
+|---|---|---|---|---|
+| Before | 88.9% (77.8–94.8) | 7.4% (2.9–17.6) | 100% | $0.013 / $1.08 |
+| After | 94.4% (84.9–98.1) | 7.4% (2.9–17.6) | 100% | $0.012 / $1.06 |
+
+No difference beyond the intervals; kept because the facts are needed for currency questions.
+The failures are the known h17 (an invented retake limit) and one h04 (viewers and billing).

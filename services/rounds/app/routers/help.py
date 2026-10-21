@@ -19,6 +19,7 @@ from prepza_common.secrets_check import secret_in
 from prepza_common.sse import event_stream, sse_event
 from prepza_common.tracing import new_trace_id
 from prepza_common.user import Language
+from prepza_common.visitor_country import VisitorCountry
 
 from app.config.settings import settings
 from app.constants.help import (
@@ -63,10 +64,11 @@ router = APIRouter(prefix="/help", tags=["help"])
 
 
 @router.get("/faq")
-async def get_faq(request: Request) -> list[FaqItemOut]:
-    """The FAQ in the page's language, with today's prices; public. Without prices (billing not
+async def get_faq(request: Request, country: str | None = None) -> list[FaqItemOut]:
+    """The FAQ in the page's language, with today's prices in the currency of the visitor's
+    `country` (the site passes it on; US dollars without one); public. Without prices (billing not
     answering) it's refused rather than built with blanks: the site keeps its last good page."""
-    catalog = await billing.catalog()
+    catalog = await billing.catalog(country)
 
     if catalog is None:
         raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, PRICES_UNAVAILABLE)
@@ -154,11 +156,12 @@ async def get_legal(
 
 @router.post("/chat")
 async def help_chat(
-    body: HelpChatRequest, request: Request, user: OptionalUser
+    body: HelpChatRequest, request: Request, user: OptionalUser, country: VisitorCountry = None
 ) -> StreamingResponse:
     """Answers questions about prepza, for visitors too. Streams server-sent events:
     {"delta"}... (and a {"block"} sign-in card when a visitor asks to sign in or sign up), then
-    {"done"} or {"error"}. Refused during the emergency pause, as it's AI. A conversation with a
+    {"done"} or {"error"}. Prices are in the visitor's country's currency (US dollars without
+    one). Refused during the emergency pause, as it's AI. A conversation with a
     secret in it (a key, a token, a password) is answered at once, before anything else, with a
     fixed reply ({"removed"} first: the panel drops that message), and nothing of it is used."""
     language = request_language(request)
@@ -186,7 +189,8 @@ async def help_chat(
     # The help chat is never a paid company's, so the unpaid AI spend cap always applies.
     await ai_cap.refuse_if_capped(redis, user_id=user_id)
 
-    messages = await build_messages(conversation, language, await billing.catalog(), body.page)
+    catalog = await billing.catalog(country)
+    messages = await build_messages(conversation, language, catalog, body.page)
     used: dict = {}
     # The answer's id, which a vote on it names, and its Langfuse trace when that's set up.
     answer_id = uuid.uuid4()

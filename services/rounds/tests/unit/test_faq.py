@@ -44,16 +44,38 @@ def test_a_question_not_translated_yet_shows_in_english(client, monkeypatch):
     assert "500" in items["cost"]["answer"] and "{" not in items["cost"]["answer"]
 
 
-def test_faq_names_prices_in_dollars_from_billing(client, monkeypatch):
-    monkeypatch.setattr("app.routers.help.billing.catalog", fake_catalog(CATALOG))
+def test_faq_names_prices_from_billing(client, monkeypatch):
+    """Without the visitor's country (a call from another service, a test), billing's prices
+    as it gives them: US dollars."""
+    asked = []
+    monkeypatch.setattr("app.routers.help.billing.catalog", fake_catalog(CATALOG, asked))
 
     items = {item["key"]: item["answer"] for item in client.get("/help/faq").json()}
 
+    assert asked == [None]
     # 500 credits a candidate is $5, and 5 candidates a month are $300 a year.
     assert "500 credits ($5)" in items["compare_hiring"]
     assert "$300 a year" in items["compare_hiring"]
+    assert "down to $2" in items["cost"]
+    assert "$0 subscription" in items["expire"]
     # 1,500 welcome credits cover 3 candidates.
     assert "1,500 free credits, enough for its first 3 candidates" in items["cost"]
+
+
+def test_faq_names_prices_in_the_visitors_currency(client, monkeypatch):
+    asked = []
+    pounds = {**CATALOG, "currency": "GBP", "candidate_cents_min": 150, "candidate_cents_max": 400}
+    monkeypatch.setattr("app.routers.help.billing.catalog", fake_catalog(pounds, asked))
+
+    items = {
+        item["key"]: item["answer"]
+        for item in client.get("/help/faq", params={"country": "GB"}).json()
+    }
+
+    assert asked == ["GB"]
+    assert "500 credits (£4)" in items["compare_hiring"]
+    assert "£240 a year" in items["compare_hiring"]
+    assert "down to £1.50" in items["cost"]
 
 
 def test_faq_names_no_competitor_prices():

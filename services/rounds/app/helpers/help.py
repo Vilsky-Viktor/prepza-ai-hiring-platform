@@ -1,10 +1,11 @@
 import json
 
-from babel.numbers import format_decimal
-from prepza_common.constants import CREDITS_PER_DOLLAR, LANGUAGES
+from babel import Locale
+from babel.numbers import format_currency, format_decimal
+from prepza_common.constants import LANGUAGES
 
 from app.constants.faq import FAQS
-from app.constants.help import FAQ_EXAMPLE_CANDIDATES
+from app.constants.help import FAQ_EXAMPLE_CANDIDATES, WHOLE_DECIMALS
 from app.constants.privacy import PRIVACY_INTRO, PRIVACY_SECTIONS
 from app.constants.terms import TERMS_INTRO, TERMS_SECTIONS
 from app.prompts.help import HELP_KNOWLEDGE, PLATFORM_GUIDE
@@ -22,12 +23,23 @@ def guide(limits: dict) -> str:
     )
 
 
-def dollars(credits: int | str) -> str:
-    """A price in credits as whole dollars ("8"), or empty when billing didn't answer."""
-    if credits == "":
+def money(cents: int | None, currency: str, language: str) -> str:
+    """An amount in minor units as `language` writes it in `currency` ("$5", "5 €", "£2.25"),
+    without decimals when it's whole, as the site does; empty when billing didn't answer."""
+    if cents is None:
         return ""
 
-    return f"{credits / CREDITS_PER_DOLLAR:g}"
+    whole = cents % 100 == 0
+    pattern = Locale.parse(language).currency_formats["standard"].pattern
+
+    return format_currency(
+        cents / 100,
+        currency,
+        format=WHOLE_DECIMALS.sub("", pattern) if whole else None,
+        locale=language,
+        currency_digits=not whole,
+        numbering_system="latn",
+    )
 
 
 def grouped(number: int | str, language: str) -> str:
@@ -43,15 +55,21 @@ def faq_values(catalog: dict | None, language: str) -> dict:
     """What the FAQ's answers name: prices from billing, and the number of languages."""
     prices = catalog or {}
     candidate = prices.get("candidate_credits", "")
+    currency = prices.get("currency", "USD")
+    standard = prices.get("candidate_cents_max")
 
     return {
         "count": len(LANGUAGES),
         "candidate": grouped(candidate, language),
-        "candidate_dollars": dollars(candidate),
-        "example_candidates": FAQ_EXAMPLE_CANDIDATES,
-        "example_year_dollars": dollars(
-            candidate * FAQ_EXAMPLE_CANDIDATES * 12 if candidate else ""
+        # In the catalog's currency: the standard and the cheapest price of a candidate, what
+        # the example company pays a year, and nothing (automatic top-up's subscription).
+        "candidate_price": money(standard, currency, language),
+        "cheapest_price": money(prices.get("candidate_cents_min"), currency, language),
+        "example_year_price": money(
+            standard * FAQ_EXAMPLE_CANDIDATES * 12 if standard else None, currency, language
         ),
+        "zero_price": money(0, currency, language),
+        "example_candidates": FAQ_EXAMPLE_CANDIDATES,
         "company": grouped(prices.get("welcome_company", ""), language),
         # The candidates a new company's welcome credits cover.
         "company_candidates": (

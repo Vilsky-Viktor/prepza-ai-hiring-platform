@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "Quanto costa?",
-        "answer": "Generare colloqui è gratis. Ogni candidato che risponde ad almeno una domanda costa {candidate} crediti ({candidate_dollars} $), e meno con i crediti di ricariche più grandi, fino a 2 $. La tua prima azienda riceve {company} crediti gratuiti, sufficienti per i suoi primi {company_candidates} candidati. La [pagina dei prezzi](/pricing) elenca ogni prezzo.",
+        "answer": "Generare colloqui è gratis. Ogni candidato che risponde ad almeno una domanda costa {candidate} crediti ({candidate_price}), e meno con i crediti di ricariche più grandi, fino a {cheapest_price}. La tua prima azienda riceve {company} crediti gratuiti, sufficienti per i suoi primi {company_candidates} candidati. La [pagina dei prezzi](/pricing) elenca ogni prezzo.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Come si confronta il prezzo con altri strumenti di valutazione?",
-        "answer": "Molti strumenti di valutazione sono venduti in abbonamento mensile o annuale, che paghi anche se non valuti nessuno. Con prepza paghi solo per candidato: {candidate} crediti ({candidate_dollars} $), senza contratto, senza costi per utente e senza pagare per generare un colloquio. Un’azienda che invita {example_candidates} candidati al mese paga circa {example_year_dollars} $ all’anno. Se valuti molti candidati ogni mese, un abbonamento può costare meno, quindi confronta con i tuoi numeri.",
+        "answer": "Molti strumenti di valutazione sono venduti in abbonamento mensile o annuale, che paghi anche se non valuti nessuno. Con prepza paghi solo per candidato: {candidate} crediti ({candidate_price}), senza contratto, senza costi per utente e senza pagare per generare un colloquio. Un’azienda che invita {example_candidates} candidati al mese paga circa {example_year_price} all’anno. Se valuti molti candidati ogni mese, un abbonamento può costare meno, quindi confronta con i tuoi numeri.",
     },
     {
         "key": "expire",
         "question": "I crediti scadono?",
-        "answer": "No. I crediti non scadono mai, e non ci sono abbonamenti a pagamento. Se attivi la ricarica automatica facoltativa, Paddle salva la tua carta come abbonamento da 0 $; paghi solo le ricariche che effettua.",
+        "answer": "No. I crediti non scadono mai, e non ci sono abbonamenti a pagamento. Se attivi la ricarica automatica facoltativa, Paddle salva la tua carta come abbonamento da {zero_price}; paghi solo le ricariche che effettua.",
     },
     {
         "key": "refunds",

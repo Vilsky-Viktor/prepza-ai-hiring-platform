@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "Was kostet es?",
-        "answer": "Interviews zu generieren ist kostenlos. Jeder Kandidat, der mindestens eine Frage beantwortet, kostet {candidate} Credits ({candidate_dollars} $), mit Credits aus größeren Aufladungen weniger, bis hinunter auf 2 $. Dein erstes Unternehmen bekommt {company} kostenlose Credits, genug für seine ersten {company_candidates} Kandidaten. Auf der [Preisseite](/pricing) stehen alle Preise.",
+        "answer": "Interviews zu generieren ist kostenlos. Jeder Kandidat, der mindestens eine Frage beantwortet, kostet {candidate} Credits ({candidate_price}), mit Credits aus größeren Aufladungen weniger, bis hinunter auf {cheapest_price}. Dein erstes Unternehmen bekommt {company} kostenlose Credits, genug für seine ersten {company_candidates} Kandidaten. Auf der [Preisseite](/pricing) stehen alle Preise.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Wie ist der Preis im Vergleich zu anderen Bewertungstools?",
-        "answer": "Viele Tools für Eignungstests werden als Monats- oder Jahresabo verkauft, das du zahlst, auch wenn du niemanden testest. Bei prepza zahlst du nur pro Kandidat: {candidate} Credits ({candidate_dollars} $), ohne Vertrag, ohne Gebühren pro Nutzer und ohne Kosten für das Generieren eines Interviews. Ein Unternehmen, das {example_candidates} Kandidaten im Monat einlädt, zahlt etwa {example_year_dollars} $ im Jahr. Wenn du jeden Monat viele Kandidaten testest, kann ein Abo günstiger sein, also vergleiche mit deinen eigenen Zahlen.",
+        "answer": "Viele Tools für Eignungstests werden als Monats- oder Jahresabo verkauft, das du zahlst, auch wenn du niemanden testest. Bei prepza zahlst du nur pro Kandidat: {candidate} Credits ({candidate_price}), ohne Vertrag, ohne Gebühren pro Nutzer und ohne Kosten für das Generieren eines Interviews. Ein Unternehmen, das {example_candidates} Kandidaten im Monat einlädt, zahlt etwa {example_year_price} im Jahr. Wenn du jeden Monat viele Kandidaten testest, kann ein Abo günstiger sein, also vergleiche mit deinen eigenen Zahlen.",
     },
     {
         "key": "expire",
         "question": "Verfallen Credits?",
-        "answer": "Nein. Credits verfallen nie, und es gibt keine kostenpflichtigen Abos. Wenn du das optionale automatische Aufladen einschaltest, speichert Paddle deine Karte als Abo für 0 $; du zahlst nur die Aufladungen, die es vornimmt.",
+        "answer": "Nein. Credits verfallen nie, und es gibt keine kostenpflichtigen Abos. Wenn du das optionale automatische Aufladen einschaltest, speichert Paddle deine Karte als Abo für {zero_price}; du zahlst nur die Aufladungen, die es vornimmt.",
     },
     {
         "key": "refunds",

@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "Quanto custa?",
-        "answer": "Gerar entrevistas é grátis. Cada candidato que responde pelo menos uma questão custa {candidate} créditos (US$ {candidate_dollars}), e menos com créditos de recargas maiores, até US$ 2. Sua primeira empresa recebe {company} créditos grátis, o suficiente para os primeiros {company_candidates} candidatos. A [página de preços](/pricing) lista todos os valores.",
+        "answer": "Gerar entrevistas é grátis. Cada candidato que responde pelo menos uma questão custa {candidate} créditos ({candidate_price}), e menos com créditos de recargas maiores, até {cheapest_price}. Sua primeira empresa recebe {company} créditos grátis, o suficiente para os primeiros {company_candidates} candidatos. A [página de preços](/pricing) lista todos os valores.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Como o preço se compara a outras ferramentas de avaliação?",
-        "answer": "Muitas ferramentas de avaliação são vendidas como assinatura mensal ou anual, paga mesmo que você não avalie ninguém. Na prepza você paga só por candidato: {candidate} créditos (US$ {candidate_dollars}), sem contrato, sem taxa por usuário e sem pagar para gerar uma entrevista. Uma empresa que convida {example_candidates} candidatos por mês paga cerca de US$ {example_year_dollars} por ano. Se você avalia muitos candidatos todo mês, uma assinatura pode custar menos, então compare com os seus números.",
+        "answer": "Muitas ferramentas de avaliação são vendidas como assinatura mensal ou anual, paga mesmo que você não avalie ninguém. Na prepza você paga só por candidato: {candidate} créditos ({candidate_price}), sem contrato, sem taxa por usuário e sem pagar para gerar uma entrevista. Uma empresa que convida {example_candidates} candidatos por mês paga cerca de {example_year_price} por ano. Se você avalia muitos candidatos todo mês, uma assinatura pode custar menos, então compare com os seus números.",
     },
     {
         "key": "expire",
         "question": "Os créditos expiram?",
-        "answer": "Não. Os créditos nunca expiram, e não há assinaturas pagas. Se você ativar a recarga automática opcional, a Paddle salva seu cartão como uma assinatura de US$ 0; você paga só pelas recargas que ela fizer.",
+        "answer": "Não. Os créditos nunca expiram, e não há assinaturas pagas. Se você ativar a recarga automática opcional, a Paddle salva seu cartão como uma assinatura de {zero_price}; você paga só pelas recargas que ela fizer.",
     },
     {
         "key": "refunds",

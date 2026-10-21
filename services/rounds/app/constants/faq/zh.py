@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "费用是多少？",
-        "answer": "生成面试免费。每位至少回答一道题的候选人花费 {candidate} 点数（{candidate_dollars} 美元），使用更大额充值所得的点数会更便宜，最低 2 美元。你的第一家公司可获得 {company} 免费点数，足够支付前 {company_candidates} 位候选人。[价格页面](/pricing)列出了所有价格。",
+        "answer": "生成面试免费。每位至少回答一道题的候选人花费 {candidate} 点数（{candidate_price}），使用更大额充值所得的点数会更便宜，最低 {cheapest_price}。你的第一家公司可获得 {company} 免费点数，足够支付前 {company_candidates} 位候选人。[价格页面](/pricing)列出了所有价格。",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "和其他测评工具相比，价格如何？",
-        "answer": "许多测评工具按月或按年订阅收费，即使不测任何人也要付费。在 prepza 只按候选人付费：每位 {candidate} 点数（{candidate_dollars} 美元），无需签约，不按用户收费，生成面试也不收费。每月邀请 {example_candidates} 位候选人的公司每年约支付 {example_year_dollars} 美元。如果每月要测很多候选人，订阅可能更便宜，请按你自己的数量比较。",
+        "answer": "许多测评工具按月或按年订阅收费，即使不测任何人也要付费。在 prepza 只按候选人付费：每位 {candidate} 点数（{candidate_price}），无需签约，不按用户收费，生成面试也不收费。每月邀请 {example_candidates} 位候选人的公司每年约支付 {example_year_price}。如果每月要测很多候选人，订阅可能更便宜，请按你自己的数量比较。",
     },
     {
         "key": "expire",
         "question": "点数会过期吗？",
-        "answer": "不会。点数永不过期，也没有付费订阅。如果你开启可选的自动充值，Paddle 会以 0 美元订阅的形式保存你的银行卡；你只需为实际发生的充值付费。",
+        "answer": "不会。点数永不过期，也没有付费订阅。如果你开启可选的自动充值，Paddle 会以 {zero_price} 订阅的形式保存你的银行卡；你只需为实际发生的充值付费。",
     },
     {
         "key": "refunds",

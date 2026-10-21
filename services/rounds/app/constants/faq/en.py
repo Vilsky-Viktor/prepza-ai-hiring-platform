@@ -34,7 +34,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "How much does it cost?",
-        "answer": "Generating interviews is free. Each candidate who answers at least one question costs {candidate} credits (${candidate_dollars}), and less with credits from larger top-ups, down to $2. Your first company gets {company} free credits, enough for its first {company_candidates} candidates. The [pricing page](/pricing) lists every price.",
+        "answer": "Generating interviews is free. Each candidate who answers at least one question costs {candidate} credits ({candidate_price}), and less with credits from larger top-ups, down to {cheapest_price}. Your first company gets {company} free credits, enough for its first {company_candidates} candidates. The [pricing page](/pricing) lists every price.",
     },
     {
         "key": "charged",
@@ -44,12 +44,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "How does the price compare with other assessment tools?",
-        "answer": "Many assessment tools are sold as monthly or annual subscriptions, paid whether or not you test anyone. With prepza you pay only per candidate: {candidate} credits (${candidate_dollars}), with no contract, no seat fees and nothing to pay for generating an interview. A company inviting {example_candidates} candidates a month pays about ${example_year_dollars} a year. If you test many candidates every month, a subscription can cost less, so compare with your own numbers.",
+        "answer": "Many assessment tools are sold as monthly or annual subscriptions, paid whether or not you test anyone. With prepza you pay only per candidate: {candidate} credits ({candidate_price}), with no contract, no seat fees and nothing to pay for generating an interview. A company inviting {example_candidates} candidates a month pays about {example_year_price} a year. If you test many candidates every month, a subscription can cost less, so compare with your own numbers.",
     },
     {
         "key": "expire",
         "question": "Do credits expire?",
-        "answer": "No. Credits never expire, and there are no paid subscriptions. If you turn on the optional automatic top-up, Paddle saves your card as a $0 subscription; you pay only for the top-ups it makes.",
+        "answer": "No. Credits never expire, and there are no paid subscriptions. If you turn on the optional automatic top-up, Paddle saves your card as a {zero_price} subscription; you pay only for the top-ups it makes.",
     },
     {
         "key": "refunds",

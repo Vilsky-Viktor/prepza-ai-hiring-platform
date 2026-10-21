@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "Magkano ito?",
-        "answer": "Libre ang paggawa ng interview. Bawat aplikanteng sumagot ng kahit isang tanong ay {candidate} credits (${candidate_dollars}), at mas mura gamit ang credits mula sa mas malalaking top-up, hanggang $2. Makakatanggap ang iyong unang kumpanya ng {company} libreng credits, sapat para sa unang {company_candidates} aplikante nito. Nakalista sa [pricing page](/pricing) ang bawat presyo.",
+        "answer": "Libre ang paggawa ng interview. Bawat aplikanteng sumagot ng kahit isang tanong ay {candidate} credits ({candidate_price}), at mas mura gamit ang credits mula sa mas malalaking top-up, hanggang {cheapest_price}. Makakatanggap ang iyong unang kumpanya ng {company} libreng credits, sapat para sa unang {company_candidates} aplikante nito. Nakalista sa [pricing page](/pricing) ang bawat presyo.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Paano maihahambing ang presyo sa ibang assessment tool?",
-        "answer": "Maraming assessment tool ang ibinebenta bilang buwanan o taunang subscription na binabayaran kahit wala kang tine-test. Sa prepza, nagbabayad ka lang kada aplikante: {candidate} credits (${candidate_dollars}), walang kontrata, walang bayad kada user, at walang bayad sa paggawa ng interview. Ang kumpanyang nag-iimbita ng {example_candidates} aplikante kada buwan ay nagbabayad ng mga ${example_year_dollars} kada taon. Kung maraming aplikante ang tine-test mo buwan-buwan, maaaring mas mura ang subscription, kaya ihambing sa sarili mong mga numero.",
+        "answer": "Maraming assessment tool ang ibinebenta bilang buwanan o taunang subscription na binabayaran kahit wala kang tine-test. Sa prepza, nagbabayad ka lang kada aplikante: {candidate} credits ({candidate_price}), walang kontrata, walang bayad kada user, at walang bayad sa paggawa ng interview. Ang kumpanyang nag-iimbita ng {example_candidates} aplikante kada buwan ay nagbabayad ng mga {example_year_price} kada taon. Kung maraming aplikante ang tine-test mo buwan-buwan, maaaring mas mura ang subscription, kaya ihambing sa sarili mong mga numero.",
     },
     {
         "key": "expire",
         "question": "Nag-e-expire ba ang credits?",
-        "answer": "Hindi. Hindi kailanman nag-e-expire ang credits, at walang bayad na subscription. Kung bubuksan mo ang opsyonal na awtomatikong top-up, ise-save ng Paddle ang card mo bilang $0 na subscription; ang mga top-up lang na ginagawa nito ang babayaran mo.",
+        "answer": "Hindi. Hindi kailanman nag-e-expire ang credits, at walang bayad na subscription. Kung bubuksan mo ang opsyonal na awtomatikong top-up, ise-save ng Paddle ang card mo bilang {zero_price} na subscription; ang mga top-up lang na ginagawa nito ang babayaran mo.",
     },
     {
         "key": "refunds",

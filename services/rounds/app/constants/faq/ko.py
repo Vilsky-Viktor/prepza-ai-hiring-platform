@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "비용은 얼마인가요?",
-        "answer": "면접 생성은 무료입니다. 문제에 하나 이상 답한 지원자 한 명당 {candidate} 크레딧({candidate_dollars}달러)이 들며, 더 큰 금액을 충전한 크레딧이면 최저 2달러까지 저렴해집니다. 첫 회사에는 무료 크레딧 {company}이 제공되며, 처음 지원자 {company_candidates}명에 충분합니다. 모든 가격은 [요금 페이지](/pricing)에서 확인할 수 있습니다.",
+        "answer": "면접 생성은 무료입니다. 문제에 하나 이상 답한 지원자 한 명당 {candidate} 크레딧({candidate_price})이 들며, 더 큰 금액을 충전한 크레딧이면 최저 {cheapest_price}까지 저렴해집니다. 첫 회사에는 무료 크레딧 {company}이 제공되며, 처음 지원자 {company_candidates}명에 충분합니다. 모든 가격은 [요금 페이지](/pricing)에서 확인할 수 있습니다.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "다른 평가 도구와 비교하면 가격이 어떤가요?",
-        "answer": "많은 평가 도구는 아무도 테스트하지 않아도 내야 하는 월간 또는 연간 구독으로 판매됩니다. prepza에서는 지원자별로만 결제합니다. 지원자 한 명당 {candidate} 크레딧({candidate_dollars}달러)이며, 계약도, 사용자별 요금도, 면접 생성 비용도 없습니다. 매달 지원자 {example_candidates}명을 초대하는 회사는 1년에 약 {example_year_dollars}달러를 냅니다. 매달 많은 지원자를 테스트한다면 구독이 더 저렴할 수 있으니 직접 숫자로 비교해 보세요.",
+        "answer": "많은 평가 도구는 아무도 테스트하지 않아도 내야 하는 월간 또는 연간 구독으로 판매됩니다. prepza에서는 지원자별로만 결제합니다. 지원자 한 명당 {candidate} 크레딧({candidate_price})이며, 계약도, 사용자별 요금도, 면접 생성 비용도 없습니다. 매달 지원자 {example_candidates}명을 초대하는 회사는 1년에 약 {example_year_price}를 냅니다. 매달 많은 지원자를 테스트한다면 구독이 더 저렴할 수 있으니 직접 숫자로 비교해 보세요.",
     },
     {
         "key": "expire",
         "question": "크레딧에 유효기간이 있나요?",
-        "answer": "아니요. 크레딧은 만료되지 않으며, 유료 구독도 없습니다. 선택 사항인 자동 충전을 켜면 Paddle이 카드를 0달러 구독으로 저장하며, 실제로 충전된 금액만 결제됩니다.",
+        "answer": "아니요. 크레딧은 만료되지 않으며, 유료 구독도 없습니다. 선택 사항인 자동 충전을 켜면 Paddle이 카드를 {zero_price} 구독으로 저장하며, 실제로 충전된 금액만 결제됩니다.",
     },
     {
         "key": "refunds",

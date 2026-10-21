@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "Chi phí bao nhiêu?",
-        "answer": "Tạo buổi phỏng vấn là miễn phí. Mỗi ứng viên trả lời ít nhất một câu hỏi tốn {candidate} credit ({candidate_dollars} $), và rẻ hơn với credit từ các lần nạp lớn hơn, xuống tới 2 $. Công ty đầu tiên của bạn nhận {company} credit miễn phí, đủ cho {company_candidates} ứng viên đầu tiên. [Trang bảng giá](/pricing) liệt kê mọi mức giá.",
+        "answer": "Tạo buổi phỏng vấn là miễn phí. Mỗi ứng viên trả lời ít nhất một câu hỏi tốn {candidate} credit ({candidate_price}), và rẻ hơn với credit từ các lần nạp lớn hơn, xuống tới {cheapest_price}. Công ty đầu tiên của bạn nhận {company} credit miễn phí, đủ cho {company_candidates} ứng viên đầu tiên. [Trang bảng giá](/pricing) liệt kê mọi mức giá.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Giá so với các công cụ đánh giá khác thế nào?",
-        "answer": "Nhiều công cụ đánh giá được bán theo gói đăng ký theo tháng hoặc năm, phải trả dù bạn không kiểm tra ai. Với prepza, bạn chỉ trả theo ứng viên: {candidate} credit ({candidate_dollars} $) mỗi ứng viên, không hợp đồng, không phí theo người dùng và không tốn phí tạo buổi phỏng vấn. Một công ty mời {example_candidates} ứng viên mỗi tháng trả khoảng {example_year_dollars} $ mỗi năm. Nếu bạn kiểm tra nhiều ứng viên mỗi tháng, gói đăng ký có thể rẻ hơn, nên hãy so sánh với số liệu của bạn.",
+        "answer": "Nhiều công cụ đánh giá được bán theo gói đăng ký theo tháng hoặc năm, phải trả dù bạn không kiểm tra ai. Với prepza, bạn chỉ trả theo ứng viên: {candidate} credit ({candidate_price}) mỗi ứng viên, không hợp đồng, không phí theo người dùng và không tốn phí tạo buổi phỏng vấn. Một công ty mời {example_candidates} ứng viên mỗi tháng trả khoảng {example_year_price} mỗi năm. Nếu bạn kiểm tra nhiều ứng viên mỗi tháng, gói đăng ký có thể rẻ hơn, nên hãy so sánh với số liệu của bạn.",
     },
     {
         "key": "expire",
         "question": "Credit có hết hạn không?",
-        "answer": "Không. Credit không bao giờ hết hạn, và không có gói đăng ký trả phí. Nếu bạn bật tự động nạp (không bắt buộc), Paddle lưu thẻ của bạn dưới dạng một gói đăng ký 0 $; bạn chỉ trả cho những lần nạp thực tế.",
+        "answer": "Không. Credit không bao giờ hết hạn, và không có gói đăng ký trả phí. Nếu bạn bật tự động nạp (không bắt buộc), Paddle lưu thẻ của bạn dưới dạng một gói đăng ký {zero_price}; bạn chỉ trả cho những lần nạp thực tế.",
     },
     {
         "key": "refunds",

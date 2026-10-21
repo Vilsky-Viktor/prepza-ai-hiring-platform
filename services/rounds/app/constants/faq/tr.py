@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "Ücreti ne kadar?",
-        "answer": "Mülakat oluşturmak ücretsizdir. En az bir soruyu cevaplayan her aday {candidate} kredi ({candidate_dollars} $) tutar; daha büyük yüklemelerden gelen kredilerle daha az, 2 $'a kadar. İlk şirketiniz {company} ücretsiz kredi alır; bu, ilk {company_candidates} adayı için yeterlidir. [Fiyatlar sayfasında](/pricing) tüm fiyatlar yer alır.",
+        "answer": "Mülakat oluşturmak ücretsizdir. En az bir soruyu cevaplayan her aday {candidate} kredi ({candidate_price}) tutar; daha büyük yüklemelerden gelen kredilerle daha az, {cheapest_price} seviyesine kadar. İlk şirketiniz {company} ücretsiz kredi alır; bu, ilk {company_candidates} adayı için yeterlidir. [Fiyatlar sayfasında](/pricing) tüm fiyatlar yer alır.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Fiyat, diğer değerlendirme araçlarıyla nasıl karşılaştırılır?",
-        "answer": "Birçok değerlendirme aracı, kimseyi test etmeseniz bile ödediğiniz aylık veya yıllık abonelikle satılır. prepza'da yalnızca aday başına ödersiniz: {candidate} kredi ({candidate_dollars} $); sözleşme, kullanıcı başı ücret ve mülakat oluşturma ücreti yoktur. Ayda {example_candidates} aday davet eden bir şirket yılda yaklaşık {example_year_dollars} $ öder. Her ay çok sayıda aday test ediyorsanız bir abonelik daha ucuz olabilir; kendi rakamlarınızla karşılaştırın.",
+        "answer": "Birçok değerlendirme aracı, kimseyi test etmeseniz bile ödediğiniz aylık veya yıllık abonelikle satılır. prepza'da yalnızca aday başına ödersiniz: {candidate} kredi ({candidate_price}); sözleşme, kullanıcı başı ücret ve mülakat oluşturma ücreti yoktur. Ayda {example_candidates} aday davet eden bir şirket yılda yaklaşık {example_year_price} öder. Her ay çok sayıda aday test ediyorsanız bir abonelik daha ucuz olabilir; kendi rakamlarınızla karşılaştırın.",
     },
     {
         "key": "expire",
         "question": "Kredilerin süresi dolar mı?",
-        "answer": "Hayır. Kredilerin süresi asla dolmaz; ücretli abonelik yoktur. İsteğe bağlı otomatik yüklemeyi açarsanız Paddle kartınızı 0 $'lık bir abonelik olarak kaydeder; yalnızca yapılan yüklemeler için ödersiniz.",
+        "answer": "Hayır. Kredilerin süresi asla dolmaz; ücretli abonelik yoktur. İsteğe bağlı otomatik yüklemeyi açarsanız Paddle kartınızı {zero_price} tutarında bir abonelik olarak kaydeder; yalnızca yapılan yüklemeler için ödersiniz.",
     },
     {
         "key": "refunds",

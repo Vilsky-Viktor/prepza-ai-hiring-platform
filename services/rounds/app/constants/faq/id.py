@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "Berapa biayanya?",
-        "answer": "Membuat wawancara gratis. Setiap kandidat yang menjawab setidaknya satu soal seharga {candidate} kredit (${candidate_dollars}), dan lebih murah dengan kredit dari isi ulang yang lebih besar, hingga $2. Perusahaan pertamamu mendapat {company} kredit gratis, cukup untuk {company_candidates} kandidat pertamanya. [Halaman harga](/pricing) mencantumkan semua harga.",
+        "answer": "Membuat wawancara gratis. Setiap kandidat yang menjawab setidaknya satu soal seharga {candidate} kredit ({candidate_price}), dan lebih murah dengan kredit dari isi ulang yang lebih besar, hingga {cheapest_price}. Perusahaan pertamamu mendapat {company} kredit gratis, cukup untuk {company_candidates} kandidat pertamanya. [Halaman harga](/pricing) mencantumkan semua harga.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Bagaimana harganya dibanding alat asesmen lain?",
-        "answer": "Banyak alat asesmen dijual sebagai langganan bulanan atau tahunan yang tetap dibayar meski kamu tidak menguji siapa pun. Di prepza kamu hanya membayar per kandidat: {candidate} kredit (${candidate_dollars}), tanpa kontrak, tanpa biaya per pengguna, dan tanpa biaya untuk membuat wawancara. Perusahaan yang mengundang {example_candidates} kandidat per bulan membayar sekitar ${example_year_dollars} per tahun. Jika kamu menguji banyak kandidat setiap bulan, langganan bisa lebih murah, jadi bandingkan dengan angkamu sendiri.",
+        "answer": "Banyak alat asesmen dijual sebagai langganan bulanan atau tahunan yang tetap dibayar meski kamu tidak menguji siapa pun. Di prepza kamu hanya membayar per kandidat: {candidate} kredit ({candidate_price}), tanpa kontrak, tanpa biaya per pengguna, dan tanpa biaya untuk membuat wawancara. Perusahaan yang mengundang {example_candidates} kandidat per bulan membayar sekitar {example_year_price} per tahun. Jika kamu menguji banyak kandidat setiap bulan, langganan bisa lebih murah, jadi bandingkan dengan angkamu sendiri.",
     },
     {
         "key": "expire",
         "question": "Apakah kredit bisa kedaluwarsa?",
-        "answer": "Tidak. Kredit tidak pernah kedaluwarsa, dan tidak ada langganan berbayar. Jika Anda menyalakan isi ulang otomatis yang opsional, Paddle menyimpan kartu Anda sebagai langganan $0; Anda hanya membayar isi ulang yang dilakukannya.",
+        "answer": "Tidak. Kredit tidak pernah kedaluwarsa, dan tidak ada langganan berbayar. Jika Anda menyalakan isi ulang otomatis yang opsional, Paddle menyimpan kartu Anda sebagai langganan {zero_price}; Anda hanya membayar isi ulang yang dilakukannya.",
     },
     {
         "key": "refunds",

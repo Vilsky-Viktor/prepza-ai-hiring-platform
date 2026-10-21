@@ -131,8 +131,14 @@ money buys the next level's first count instead. It shows the price, the credits
 candidates before checkout. Payments go through Paddle, which issues the receipt.
 - Automatic top-up, optional, on the top-up page and under the top-up dialog's button: choose \
 one of the fixed top-ups ("products" in the prices) and a balance to refill \
-under. Turning it on saves the card through Paddle as a $0 subscription; only the top-ups it \
-makes are charged.
+under. Turning it on saves the card through Paddle as a subscription that costs nothing; only \
+the top-ups it makes are charged.
+- Currencies: prices are in euros in the EU, Iceland, Liechtenstein, Norway and Switzerland, \
+pounds in the UK and US dollars elsewhere (the prices below are in the visitor's). Each person \
+and each company has its own currency, detected from the country and kept when travelling: a \
+person changes theirs in Settings; owners and admins change a company's beside its Top up \
+button (its billing tab, the top-up page). A company's top-ups, automatic ones too, are \
+charged in the company's currency, whoever pays and wherever they are.
 - A company's Billing tab (owners and admins): the balance, the credits reserved for \
 candidates who haven't finished (listed under "reserved"), the history of every credit \
 movement with each top-up's invoice, and the automatic top-up setting.

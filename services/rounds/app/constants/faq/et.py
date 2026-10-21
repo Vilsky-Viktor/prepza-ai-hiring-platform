@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "Kui palju see maksab?",
-        "answer": "Intervjuude loomine on tasuta. Iga kandidaat, kes vastab vähemalt ühele küsimusele, maksab {candidate} krediiti ({candidate_dollars} $), ja suuremate juurdelaadimiste krediitidega vähem, kuni 2 $. Sinu esimene ettevõte saab {company} tasuta krediiti, millest piisab tema esimese {company_candidates} kandidaadi jaoks. [Hinnalehel](/pricing) on kõik hinnad.",
+        "answer": "Intervjuude loomine on tasuta. Iga kandidaat, kes vastab vähemalt ühele küsimusele, maksab {candidate} krediiti ({candidate_price}), ja suuremate juurdelaadimiste krediitidega vähem, kuni {cheapest_price}. Sinu esimene ettevõte saab {company} tasuta krediiti, millest piisab tema esimese {company_candidates} kandidaadi jaoks. [Hinnalehel](/pricing) on kõik hinnad.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Milline on hind võrreldes teiste hindamisvahenditega?",
-        "answer": "Paljusid hindamisvahendeid müüakse kuu- või aastatellimusena, mille eest maksad ka siis, kui kedagi ei testi. prepzas maksad ainult kandidaatide eest: {candidate} krediiti ({candidate_dollars} $) kandidaadi kohta, ilma lepingu, kasutajatasude ja intervjuu loomise tasuta. Ettevõte, kes kutsub {example_candidates} kandidaati kuus, maksab umbes {example_year_dollars} $ aastas. Kui testid igal kuul palju kandidaate, võib tellimus olla odavam, nii et võrdle oma numbritega.",
+        "answer": "Paljusid hindamisvahendeid müüakse kuu- või aastatellimusena, mille eest maksad ka siis, kui kedagi ei testi. prepzas maksad ainult kandidaatide eest: {candidate} krediiti ({candidate_price}) kandidaadi kohta, ilma lepingu, kasutajatasude ja intervjuu loomise tasuta. Ettevõte, kes kutsub {example_candidates} kandidaati kuus, maksab umbes {example_year_price} aastas. Kui testid igal kuul palju kandidaate, võib tellimus olla odavam, nii et võrdle oma numbritega.",
     },
     {
         "key": "expire",
         "question": "Kas krediidid aeguvad?",
-        "answer": "Ei. Krediidid ei aegu kunagi ning tasulisi tellimusi pole. Kui lülitad sisse valikulise automaatse juurdelaadimise, salvestab Paddle sinu kaardi 0-dollarise tellimusena; maksad ainult selle tehtud juurdelaadimiste eest.",
+        "answer": "Ei. Krediidid ei aegu kunagi ning tasulisi tellimusi pole. Kui lülitad sisse valikulise automaatse juurdelaadimise, salvestab Paddle sinu kaardi tellimusena hinnaga {zero_price}; maksad ainult selle tehtud juurdelaadimiste eest.",
     },
     {
         "key": "refunds",

@@ -35,7 +35,7 @@ FAQ = [
     {
         "key": "cost",
         "question": "¿Cuánto cuesta?",
-        "answer": "Generar entrevistas es gratis. Cada candidato que responde al menos una pregunta cuesta {candidate} créditos ({candidate_dollars} $), y menos con créditos de recargas más grandes, hasta 2 $. Tu primera empresa recibe {company} créditos gratis, suficientes para sus primeros {company_candidates} candidatos. La [página de precios](/pricing) muestra todos los precios.",
+        "answer": "Generar entrevistas es gratis. Cada candidato que responde al menos una pregunta cuesta {candidate} créditos ({candidate_price}), y menos con créditos de recargas más grandes, hasta {cheapest_price}. Tu primera empresa recibe {company} créditos gratis, suficientes para sus primeros {company_candidates} candidatos. La [página de precios](/pricing) muestra todos los precios.",
     },
     {
         "key": "charged",
@@ -45,12 +45,12 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "¿Cómo se compara el precio con otras herramientas de evaluación?",
-        "answer": "Muchas herramientas de evaluación se venden como suscripción mensual o anual, que pagas aunque no evalúes a nadie. Con prepza pagas solo por candidato: {candidate} créditos ({candidate_dollars} $), sin contrato, sin cuotas por usuario y sin pagar por generar una entrevista. Una empresa que invita a {example_candidates} candidatos al mes paga unos {example_year_dollars} $ al año. Si evalúas a muchos candidatos cada mes, una suscripción puede salir más barata, así que compara con tus propias cifras.",
+        "answer": "Muchas herramientas de evaluación se venden como suscripción mensual o anual, que pagas aunque no evalúes a nadie. Con prepza pagas solo por candidato: {candidate} créditos ({candidate_price}), sin contrato, sin cuotas por usuario y sin pagar por generar una entrevista. Una empresa que invita a {example_candidates} candidatos al mes paga unos {example_year_price} al año. Si evalúas a muchos candidatos cada mes, una suscripción puede salir más barata, así que compara con tus propias cifras.",
     },
     {
         "key": "expire",
         "question": "¿Caducan los créditos?",
-        "answer": "No. Los créditos nunca caducan y no hay suscripciones de pago. Si activas la recarga automática opcional, Paddle guarda tu tarjeta como una suscripción de 0 $; solo pagas las recargas que haga.",
+        "answer": "No. Los créditos nunca caducan y no hay suscripciones de pago. Si activas la recarga automática opcional, Paddle guarda tu tarjeta como una suscripción de {zero_price}; solo pagas las recargas que haga.",
     },
     {
         "key": "refunds",
