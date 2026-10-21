@@ -129,7 +129,7 @@ prepza sets up Breezy HR's web hook itself, so the company only pastes the key:
 - Connecting creates a web hook in Breezy (`candidateStatusUpdated`) at the connection's own address, `/api/ats/webhooks/breezy/<connection id>`, and keeps the signing secret Breezy gives then, once. Breezy refuses web hooks without its Pro plan; connecting then fails with that reason, and nothing is saved.
 - Reconnecting replaces the web hook; disconnecting, or deleting the company, deletes it in Breezy, as far as Breezy answers. If the new web hook can't be made, the earlier connection stays, with its linked jobs and candidates, marked for reconnecting.
 - A key's person in several Breezy companies connects the first one.
-- An event counts only when its `X-Hook-Signature` is the HMAC-SHA256 hex digest of the body with that secret (of the raw body, or the JSON written compactly: Breezy's docs say both).
+- An event counts only when its `X-Hook-Signature` is the HMAC-SHA256 hex digest of the raw body, as received, with that secret.
 - The event carries the position, the new stage and the candidate's email: a candidate moved into a linked position's stage is saved and invited exactly as from Workable, as `<position id>:<candidate id>`.
 
 ## Results back to the ATS

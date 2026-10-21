@@ -1,7 +1,6 @@
 import base64
 import hashlib
 import hmac
-import json
 import re
 import time
 from html.parser import HTMLParser
@@ -121,19 +120,11 @@ def recruitee_signed(secret: str, body: bytes, signature: str) -> bool:
 
 def breezy_signed(secret: str, body: bytes, signature: str) -> bool:
     """Whether a Breezy HR web hook is Breezy's: its X-Hook-Signature is the HMAC-SHA256 hex
-    digest of the body with the web hook's secret. Breezy's docs sign the raw body in one place and
-    the JSON written compactly in another, so either counts."""
-    try:
-        compact = json.dumps(json.loads(body), separators=(",", ":")).encode()
-    except ValueError:
-        compact = body
+    digest of the raw body with the web hook's secret. Only the bytes received are signed: a
+    body rewritten (its JSON re-serialised) to match a signature doesn't count."""
+    expected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
 
-    given = signature.strip().lower()
-
-    return any(
-        same_secret(given, hmac.new(secret.encode(), signed, hashlib.sha256).hexdigest())
-        for signed in (body, compact)
-    )
+    return same_secret(signature.strip().lower(), expected)
 
 
 def result_comment(

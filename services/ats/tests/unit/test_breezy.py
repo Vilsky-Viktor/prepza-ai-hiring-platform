@@ -170,12 +170,13 @@ def signature(secret: str, body: bytes) -> str:
     return hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
 
 
-def test_the_raw_body_or_its_compact_json_signed_with_the_secret_counts():
+def test_only_the_raw_body_signed_with_the_secret_counts():
     body = b'{"type": "candidateStatusUpdated", "object": {"a": 1}}'
     compact = b'{"type":"candidateStatusUpdated","object":{"a":1}}'
 
     assert breezy_signed("secret", body, signature("secret", body))
-    assert breezy_signed("secret", body, signature("secret", compact))
+    # The same JSON written another way isn't what was received.
+    assert not breezy_signed("secret", body, signature("secret", compact))
     assert breezy_signed("secret", body, f" {signature('secret', body).upper()}\n")
     assert not breezy_signed("other", body, signature("secret", body))
     assert not breezy_signed("secret", body, signature("secret", body + b"x"))
