@@ -56,9 +56,14 @@ def not_paused(monkeypatch):
 
 
 @pytest.fixture(autouse=True)
-def fresh_limits(monkeypatch):
-    """Each test reads the limits afresh, not a value an earlier test cached."""
+def clean_process(monkeypatch):
+    """Every test starts clean: nothing an earlier test kept in this process's memory cache, and
+    no route override left behind."""
     monkeypatch.setattr(memory_cache, "_entries", {})
+
+    yield
+
+    app.dependency_overrides.clear()
 
 
 @pytest.fixture

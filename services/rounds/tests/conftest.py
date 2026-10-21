@@ -22,6 +22,7 @@ os.environ.setdefault("BILLING_SERVICE_SECRET", "test-secret-that-is-at-least-32
 
 import pytest
 from fastapi.testclient import TestClient
+from prepza_common import memory_cache
 
 from app.main import app
 
@@ -30,6 +31,17 @@ from app.main import app
 def client():
     with TestClient(app) as client:
         yield client
+
+
+@pytest.fixture(autouse=True)
+def clean_process(monkeypatch):
+    """Every test starts clean: nothing an earlier test kept in this process's memory cache, and
+    no route override left behind."""
+    monkeypatch.setattr(memory_cache, "_entries", {})
+
+    yield
+
+    app.dependency_overrides.clear()
 
 
 @pytest.fixture(autouse=True)
