@@ -4,7 +4,7 @@ and filtered in SQL by the grade and flag stored on each invite when the candida
 import uuid
 from datetime import datetime
 
-from sqlalchemy import func, or_, select, update
+from sqlalchemy import bindparam, func, or_, select, update
 
 from app.constants.invites import CandidateFilter, InviteStatus
 from app.helpers.search import escape_like
@@ -194,15 +194,18 @@ async def save_results(results: dict[uuid.UUID, tuple[int | None, bool]]) -> Non
     if not results:
         return
 
-    async with Session() as session:
-        for invite_id, (grade, flagged) in results.items():
-            await session.execute(
-                update(CandidateInvite)
-                .where(
-                    CandidateInvite.id == invite_id,
-                    CandidateInvite.status != InviteStatus.DELETED,
-                )
-                .values(grade=grade, flagged=flagged)
-            )
+    table = CandidateInvite.__table__
+    query = (
+        update(table)
+        .where(table.c.id == bindparam("invite_id"), table.c.status != InviteStatus.DELETED)
+        .values(grade=bindparam("grade"), flagged=bindparam("flagged"))
+    )
+    rows = [
+        {"invite_id": invite_id, "grade": grade, "flagged": flagged}
+        for invite_id, (grade, flagged) in results.items()
+    ]
 
+    # One statement sent for every row at once (executemany), not a round trip each.
+    async with Session() as session:
+        await session.execute(query, rows)
         await session.commit()

@@ -43,11 +43,15 @@ def as_vector(embedding: list[float]) -> str:
 async def save_embeddings(
     session: AsyncSession, topic_ids: list[uuid.UUID], embeddings: list[list[float] | None]
 ) -> None:
-    for topic_id, embedding in zip(topic_ids, embeddings):
-        if embedding is not None:
-            await session.execute(
-                SAVE_EMBEDDING_SQL, {"id": topic_id, "embedding": as_vector(embedding)}
-            )
+    rows = [
+        {"id": topic_id, "embedding": as_vector(embedding)}
+        for topic_id, embedding in zip(topic_ids, embeddings)
+        if embedding is not None
+    ]
+
+    # One statement sent for every topic at once (executemany).
+    if rows:
+        await session.execute(SAVE_EMBEDDING_SQL, rows)
 
 
 MISSING_SQL = text(

@@ -38,16 +38,15 @@ async def untagged(
 
 async def tag(languages: dict[uuid.UUID, str], fence: str = UNTAGGED_FENCE) -> None:
     """Each question's example, opening with `fence`, gets its language."""
-    async with Session() as session:
-        for question_id, language in languages.items():
-            await session.execute(
-                TAG_SQL,
-                {
-                    "id": question_id,
-                    "fence": fence,
-                    "tagged": f"```{language}\n",
-                    "length": len(fence),
-                },
-            )
+    rows = [
+        {"id": question_id, "fence": fence, "tagged": f"```{language}\n", "length": len(fence)}
+        for question_id, language in languages.items()
+    ]
 
+    if not rows:
+        return
+
+    # One statement sent for every question at once (executemany).
+    async with Session() as session:
+        await session.execute(TAG_SQL, rows)
         await session.commit()

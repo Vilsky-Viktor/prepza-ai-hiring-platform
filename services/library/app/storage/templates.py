@@ -175,8 +175,10 @@ async def copy_template(template_id: uuid.UUID, company_id: str) -> QuestionSet 
         session.add(copy)
         await session.flush()
 
-        for new, (topic, _) in zip(copy.topics, kept):
-            await session.execute(COPY_EMBEDDING_SQL, {"id": new.id, "source": topic.id})
+        copied = [{"id": new.id, "source": topic.id} for new, (topic, _) in zip(copy.topics, kept)]
+
+        if copied:
+            await session.execute(COPY_EMBEDDING_SQL, copied)
 
         await session.commit()
 
