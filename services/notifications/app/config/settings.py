@@ -28,6 +28,9 @@ class Settings(ServiceSettings):
     site_url: str
     # Signs the unsubscribe links in emails, so nobody can make one for someone else.
     email_link_secret: str
+    # Keys the hashes candidates' opted-out and suppressed addresses are kept as
+    # (prepza_common.person_hash), so nobody with a list of addresses can match them.
+    person_hash_key: str
     # Companies owns the invites, told when an invite's email wasn't delivered, and says which
     # companies a user belongs to, whose notifications they see.
     companies_url: str

@@ -10,7 +10,7 @@ from app.models.base import Base
 
 class SuppressedAddress(Base):
     """An address that bounced for good or marked an email as spam: bulk sends skip it. Kept as
-    its SHA-256 (helpers/unsubscribe.py address_hash), never in the clear, until a superadmin
+    its keyed hash (helpers/unsubscribe.py address_hash), never in the clear, until a superadmin
     removes it."""
 
     __tablename__ = "suppressed_addresses"

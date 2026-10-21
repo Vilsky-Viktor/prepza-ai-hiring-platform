@@ -4,8 +4,10 @@ import hashlib
 import hmac
 import json
 
+from prepza_common.person_hash import keyed, person_hash
 from prepza_common.tokens import same_secret
 
+from app.config.settings import settings
 from app.constants.unsubscribe import (
     CANDIDATE_FIELDS,
     ONE_CLICK_BODY,
@@ -42,8 +44,18 @@ def user_token(user_id: str, kind: UnsubscribeType, secret: str) -> str:
 
 
 def address_hash(email: str) -> str:
-    """A candidate's address as links and opt-outs name it: never the address itself."""
-    return hashlib.sha256(email.strip().lower().encode()).hexdigest()
+    """A candidate's address as links, opt-outs and suppressions name it: a keyed hash, never the
+    address itself, nor a plain hash anyone with the address could make."""
+    return person_hash(email.strip().lower(), settings.person_hash_key)
+
+
+def token_address(payload: dict) -> str:
+    """The address a candidate's checked token names, as opt-outs keep it. Links in emails sent
+    before the hashes were keyed carry the plain SHA-256; it's keyed the same way here."""
+    if payload.get("keyed"):
+        return payload["address"]
+
+    return keyed(payload["address"], settings.person_hash_key)
 
 
 def candidate_token(data: dict, kind: UnsubscribeType, secret: str) -> str:
@@ -52,6 +64,7 @@ def candidate_token(data: dict, kind: UnsubscribeType, secret: str) -> str:
     payload = {
         "type": kind,
         "address": address_hash(data["email"]),
+        "keyed": True,
         "company_id": data["company_id"],
         "company": data["company"],
     }

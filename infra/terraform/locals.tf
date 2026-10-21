@@ -96,8 +96,8 @@ locals {
     rounds               = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
     companies            = { redis-url = "REDIS_URL", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
     billing              = { redis-url = "REDIS_URL", paddle-webhook-secret = "PADDLE_WEBHOOK_SECRET", paddle-api-key = "PADDLE_API_KEY" }
-    notifications        = { redis-url = "REDIS_URL", email-link-secret = "EMAIL_LINK_SECRET", resend-api-key = "RESEND_API_KEY", resend-webhook-secret = "RESEND_WEBHOOK_SECRET", slack-client-id = "SLACK_CLIENT_ID", slack-client-secret = "SLACK_CLIENT_SECRET", slack-encryption-key = "SLACK_ENCRYPTION_KEY" }
-    notifications-stream = { redis-url = "REDIS_URL", email-link-secret = "EMAIL_LINK_SECRET" }
+    notifications        = { redis-url = "REDIS_URL", email-link-secret = "EMAIL_LINK_SECRET", person-hash-key = "PERSON_HASH_KEY", resend-api-key = "RESEND_API_KEY", resend-webhook-secret = "RESEND_WEBHOOK_SECRET", slack-client-id = "SLACK_CLIENT_ID", slack-client-secret = "SLACK_CLIENT_SECRET", slack-encryption-key = "SLACK_ENCRYPTION_KEY" }
+    notifications-stream = { redis-url = "REDIS_URL", email-link-secret = "EMAIL_LINK_SECRET", person-hash-key = "PERSON_HASH_KEY" }
     ats                  = { redis-url = "REDIS_URL", ats-encryption-key = "ATS_ENCRYPTION_KEY" }
     api                  = { redis-url = "REDIS_URL", api-encryption-key = "API_ENCRYPTION_KEY" }
     assistant            = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY" }

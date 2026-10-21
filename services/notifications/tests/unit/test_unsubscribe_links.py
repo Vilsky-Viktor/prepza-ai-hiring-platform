@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import json
 import re
 from html import unescape
@@ -40,12 +41,15 @@ def test_a_candidates_tokens_name_the_address_the_company_and_for_reminders_the_
 
     assert company == {
         "type": "company",
-        # Links end up in request logs: the address only as its hash.
+        # Links end up in request logs: the address only as its keyed hash.
         "address": address_hash("Ann@Example.com "),
+        "keyed": True,
         "company_id": "c-1",
         "company": "Acme & Co",
     }
     assert "ann@example.com" not in json.dumps(company)
+    # Not the plain SHA-256 anyone with the address could make.
+    assert company["address"] != hashlib.sha256(b"ann@example.com").hexdigest()
     assert reminders == {**company, "type": "invite_reminders", "invite_id": INVITE["invite_id"]}
 
 

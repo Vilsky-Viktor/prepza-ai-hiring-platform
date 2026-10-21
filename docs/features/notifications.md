@@ -147,7 +147,7 @@ Every change is logged and never edited (`email_consents`): the setting, on or o
 Emails carry signed unsubscribe links (`EMAIL_LINK_SECRET`, an HMAC-SHA256; `services/notifications/app/helpers/unsubscribe.py`). A link names what it stops and whom, never expires, and can't be made for anyone else:
 
 - optional emails to a prepza user (the activity digest or one of its kinds, reminders, updates, offers) name the user and the email; they show "Unsubscribe" and "Change your email settings" (Settings) under the footer, and carry the one-click headers (`List-Unsubscribe`, `List-Unsubscribe-Post: List-Unsubscribe=One-Click`) that mail clients show as their own unsubscribe button. `optional_email` in `services/notifications/app/helpers/emails.py` builds such an email from a template and the type,
-- a candidate's invite links to "Don't email me for <company>"; a reminder to that and to "Don't send me reminders for this interview", and its one-click headers stop that interview's reminders. These links name the candidate's address as its SHA-256 (links end up in request logs), the company, and for reminders the invite.
+- a candidate's invite links to "Don't email me for <company>"; a reminder to that and to "Don't send me reminders for this interview", and its one-click headers stop that interview's reminders. These links name the candidate's address as its keyed hash (HMAC with `PERSON_HASH_KEY`, `prepza_common.person_hash`; links end up in request logs), the company, and for reminders the invite. Opt-outs keep the same keyed hash; a link sent before the hashes were keyed carries the plain SHA-256, keyed when it's used.
 
 A link opens `/unsubscribe?token=…` (no sign-in, not indexed): it says what stops ("You won't get the activity digest anymore", "You won't get reminders for this interview anymore", "You won't get emails from Acme anymore") and changes nothing until "Confirm", since mail scanners open links. Then it says "You're unsubscribed", with "Email settings" for a signed-in user. The page reads the link at `GET /api/notifications/unsubscribe/{token}` and confirms with a `POST` there; mail clients' one-click `POST` (body `List-Unsubscribe=One-Click`) goes to the same address and needs nothing more. Repeating either changes nothing.
 
@@ -198,7 +198,7 @@ Product updates and offers, written by a superadmin in the admin zone (see [Camp
 
 #### The suppression list
 
-Resend's `email.bounced` and `email.complained` for any email to a user (not a candidate's invite, which is the company's) put the address on prepza's own suppression list (`suppressed_addresses`), kept as its SHA-256 with the reason and the date, never in the clear. Bulk sends skip those addresses. A complaint also turns that email's setting off, as before. A superadmin sees it, and takes it off the list, on the account's support page.
+Resend's `email.bounced` and `email.complained` for any email to a user (not a candidate's invite, which is the company's) put the address on prepza's own suppression list (`suppressed_addresses`), kept as its keyed hash with the reason and the date, never in the clear. Bulk sends skip those addresses. A complaint also turns that email's setting off, as before. A superadmin sees it, and takes it off the list, on the account's support page.
 
 ### Failed sends
 

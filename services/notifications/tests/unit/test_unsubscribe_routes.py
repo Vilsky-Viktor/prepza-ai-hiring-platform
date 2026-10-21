@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import json
 
 import pytest
@@ -6,7 +7,7 @@ import pytest
 from app.config.settings import settings
 from app.constants.unsubscribe import UnsubscribeType
 from app.helpers.emails import candidate_reminder_email
-from app.helpers.unsubscribe import address_hash, candidate_token, user_token
+from app.helpers.unsubscribe import address_hash, candidate_token, sign, user_token
 from app.integrations import library, smtp
 from app.services import events
 from app.storage import bulk_recipients, opt_outs
@@ -102,6 +103,16 @@ def test_confirming_applies_the_link(client, applied, kind, expected):
     assert client.post(f"/unsubscribe/{token(kind)}").status_code == 204
     # A campaign's setting is also counted against the campaign (tested below).
     assert [call for call in applied if call[0] != "campaign"] == [expected]
+
+
+def test_a_link_sent_before_the_hashes_were_keyed_opts_out_the_same_address(client, applied):
+    """Its token names the plain SHA-256; the opt-out keeps the keyed hash events look up."""
+    plain = hashlib.sha256(b"ann@example.com").hexdigest()
+    payload = {"type": "company", "address": plain, "company_id": "c-1", "company": "Acme"}
+    old = sign(payload, settings.email_link_secret)
+
+    assert client.post(f"/unsubscribe/{old}").status_code == 204
+    assert applied == [("opt_out", ANN, "c-1", None)]
 
 
 def test_a_mail_clients_one_click_post_applies_it_without_the_page(client, applied):

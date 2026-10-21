@@ -101,7 +101,7 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
    printf '%s' "$TURNSTILE_SECRET_KEY" | gcloud secrets versions add turnstile-secret-key --data-file=-
    ```
 
-   Terraform makes the generated ones itself: each service's secret for internal calls (a service gets the keys of the services it calls, `locals.calls` in `locals.tf`; the assistant's include notifications', ats' and library's, whose internal routes its `get_updates` tool reads, so it needs an `apply` before a deploy that adds such a call), the database passwords, `analytics-salt`, `preview-secret` (signs the frontend's link-preview titles) and `email-link-secret` (signs the unsubscribe links in emails; replacing it breaks the links in emails already sent).
+   Terraform makes the generated ones itself: each service's secret for internal calls (a service gets the keys of the services it calls, `locals.calls` in `locals.tf`; the assistant's include notifications', ats' and library's, whose internal routes its `get_updates` tool reads, so it needs an `apply` before a deploy that adds such a call), the database passwords, `analytics-salt`, `preview-secret` (signs the frontend's link-preview titles) `email-link-secret` (signs the unsubscribe links in emails; replacing it breaks the links in emails already sent) and `person-hash-key` (keys the hashes that stand for a person, such as candidates' opted-out addresses; replacing it orphans them, so opt-outs stop working).
 
    Services read `latest` when they start, so redeploy (step 9) after setting secrets.
 

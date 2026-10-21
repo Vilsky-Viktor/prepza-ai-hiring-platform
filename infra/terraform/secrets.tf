@@ -92,6 +92,29 @@ resource "google_secret_manager_secret_version" "email_link_secret" {
   secret_data = random_password.email_link_secret.result
 }
 
+# Keys the hashes that stand for a person (a candidate's opted-out or suppressed address, a
+# welcome gift's inbox), so nobody with a list of addresses can match them. Replacing it orphans
+# every stored hash (opt-outs would stop working): never rotate it without moving them.
+resource "random_password" "person_hash_key" {
+  length  = 48
+  special = false
+}
+
+resource "google_secret_manager_secret" "person_hash_key" {
+  secret_id = "person-hash-key"
+
+  replication {
+    auto {}
+  }
+
+  depends_on = [google_project_service.apis]
+}
+
+resource "google_secret_manager_secret_version" "person_hash_key" {
+  secret      = google_secret_manager_secret.person_hash_key.id
+  secret_data = random_password.person_hash_key.result
+}
+
 locals {
   secret_ids = merge(
     { for name, secret in google_secret_manager_secret.manual : name => secret.secret_id },
@@ -99,5 +122,6 @@ locals {
     { analytics-salt = google_secret_manager_secret.analytics_salt.secret_id },
     { preview-secret = google_secret_manager_secret.preview_secret.secret_id },
     { email-link-secret = google_secret_manager_secret.email_link_secret.secret_id },
+    { person-hash-key = google_secret_manager_secret.person_hash_key.secret_id },
   )
 }

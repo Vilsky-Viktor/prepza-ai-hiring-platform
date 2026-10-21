@@ -36,8 +36,9 @@ USER_SETTINGS = {
     UnsubscribeType.PROMOTIONS: ["promotions"],
 }
 
-# What a candidate's token names: their address (as its SHA-256, since links end up in request
-# logs), the company, and for reminders the invite.
+# What a candidate's token names: their address (as its keyed hash, since links end up in request
+# logs; a plain SHA-256 in links sent before, without "keyed"), the company, and for reminders the
+# invite.
 CANDIDATE_FIELDS = {
     UnsubscribeType.INVITE_REMINDERS: ("address", "company_id", "company", "invite_id"),
     UnsubscribeType.COMPANY: ("address", "company_id", "company"),

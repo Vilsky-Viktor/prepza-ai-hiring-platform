@@ -1,4 +1,5 @@
 from app.constants.unsubscribe import USER_SETTINGS, UnsubscribeType
+from app.helpers.unsubscribe import token_address
 from app.integrations import library
 from app.storage import bulk_recipients, opt_outs
 
@@ -18,4 +19,4 @@ async def apply(payload: dict) -> None:
         return
 
     invite_id = payload["invite_id"] if kind == UnsubscribeType.INVITE_REMINDERS else None
-    await opt_outs.add(payload["address"], payload["company_id"], invite_id)
+    await opt_outs.add(token_address(payload), payload["company_id"], invite_id)

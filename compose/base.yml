@@ -12,6 +12,9 @@ x-firebase-env: &firebase-env
   SUPERADMIN_EMAILS: ${SUPERADMIN_EMAILS:-}
   # Salts user ids in funnel events; in Google Cloud it's a secret.
   ANALYTICS_SALT: ${ANALYTICS_SALT:-local-analytics-salt}
+  # Keys the hashes that stand for a person (opted-out addresses, welcome gifts); in Google Cloud
+  # it's a secret.
+  PERSON_HASH_KEY: ${PERSON_HASH_KEY:-local-person-hash-key}
   # The key of each service, for tokens calling it; in Google Cloud each service has its own.
   LIBRARY_SERVICE_SECRET: ${SERVICE_SECRET}
   GENERATION_SERVICE_SECRET: ${SERVICE_SECRET}

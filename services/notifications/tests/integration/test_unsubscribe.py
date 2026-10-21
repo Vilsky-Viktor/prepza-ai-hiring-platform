@@ -1,3 +1,4 @@
+import hashlib
 import json
 import uuid
 
@@ -8,7 +9,7 @@ from sqlalchemy import func, select
 
 from app.config.settings import settings
 from app.constants.unsubscribe import UnsubscribeType
-from app.helpers.unsubscribe import address_hash, candidate_token, user_token
+from app.helpers.unsubscribe import address_hash, candidate_token, sign, user_token
 from app.models.opt_outs import CandidateOptOut
 from app.storage import opt_outs
 from app.storage.db import Session
@@ -82,6 +83,33 @@ def test_opting_out_of_a_company_twice_stores_it_once_and_stops_its_invites_and_
     # The company sees the invite as undelivered, as with a bounce.
     undelivered = [str(item.url) for item in outside if item.url.host == "companies"]
     assert undelivered == [f"http://companies/internal/invites/{data['invite_id']}/undelivered"]
+
+
+def test_a_link_sent_before_the_hashes_were_keyed_still_stops_the_companys_invites(run, outside):
+    company = f"c-{uuid.uuid4()}"
+    data = invite(company, "old@example.com")
+    plain = hashlib.sha256(b"old@example.com").hexdigest()
+    payload = {"type": "company", "address": plain, "company_id": company, "company": "Acme"}
+    link = sign(payload, settings.email_link_secret)
+
+    async def scenario():
+        async with api() as client:
+            code = (await client.post(f"/unsubscribe/{link}")).status_code
+            await client.post("/internal/events", json=push("candidate.invited", data, "o-1"))
+
+        async with Session() as session:
+            stored = await session.scalar(
+                select(CandidateOptOut.address).where(CandidateOptOut.company_id == company)
+            )
+
+        return code, stored
+
+    code, stored = run(scenario())
+
+    assert code == 204
+    # Kept as the keyed hash, never the plain one the old link carried.
+    assert stored == address_hash("old@example.com") != plain
+    assert sent(outside) == []
 
 
 def test_stopping_one_invites_reminders_leaves_its_invite_and_other_invites(run, outside):
