@@ -1,4 +1,6 @@
-from sqlalchemy import func, select
+import uuid
+
+from sqlalchemy import func, literal, select, tuple_
 
 from app.models.feedback import QuestionReport
 from app.models.quality import QuestionRevision, QuestionStats
@@ -26,19 +28,24 @@ async def flagged(offset: int, limit: int) -> list:
         return list(await session.execute(query))
 
 
-async def replaced(offset: int, limit: int) -> list:
-    """Questions the verifier or an owner replaced, newest first: the old content, its set, and
+async def replaced(after: uuid.UUID | None, limit: int) -> list:
+    """Questions the verifier or an owner replaced, newest first, `limit` after the revision
+    `after` (paged by key: the list grows across every company): the old content, its set, and
     what replaced it — the question's next kept revision, or its current content if it hasn't
     been replaced again since."""
+    order = (QuestionRevision.replaced_at, QuestionRevision.id)
     query = (
         select(QuestionRevision, QuestionSet, Question)
         .join(Question, Question.id == QuestionRevision.question_id)
         .join(Topic, Topic.id == Question.topic_id)
         .join(QuestionSet, QuestionSet.id == Topic.set_id)
-        .order_by(QuestionRevision.replaced_at.desc(), QuestionRevision.id)
-        .offset(offset)
+        .order_by(*(column.desc() for column in order))
         .limit(limit)
     )
+
+    if after is not None:
+        at = select(QuestionRevision.replaced_at).where(QuestionRevision.id == after)
+        query = query.where(tuple_(*order) < tuple_(at.scalar_subquery(), literal(after)))
 
     async with Session() as session:
         rows = list(await session.execute(query))

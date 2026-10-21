@@ -21,7 +21,7 @@ def test_the_quality_tab_lists_flagged_and_replaced_questions(run):
 
         return (
             await quality_report.flagged(0, 100),
-            await quality_report.replaced(0, 100),
+            await quality_report.replaced(None, 100),
             flagged.id,
             kept,
         )
@@ -47,3 +47,26 @@ def test_the_quality_tab_lists_flagged_and_replaced_questions(run):
     assert first[2][0] == "A clearer question?"
     assert second[0].text == "A clearer question?"
     assert second[2][0] == "The clearest question?"
+
+
+def test_replaced_questions_page_by_key_after_the_last_one_shown(run):
+    async def scenario():
+        template = await interview("Paged template", template=True, questions=1)
+        [question] = (await preparations.get_content(template)).topics[0].questions
+
+        for text in ("Second?", "Third?", "Fourth?"):
+            await preparations.replace_question(
+                question.id, text, [{"answer": "Yes", "correct": True}]
+            )
+
+        first = await quality_report.replaced(None, 2)
+        rest = await quality_report.replaced(first[-1][0].id, 100)
+        mine = [row[0].text for row in first + rest if row[0].question_id == question.id]
+
+        return [row[0].id for row in first], [row[0].id for row in rest], mine
+
+    first, rest, mine = run(scenario())
+
+    # Newest first, no row twice.
+    assert not set(first) & set(rest)
+    assert mine == ["Third?", "Second?", "Paged template question 0?"]

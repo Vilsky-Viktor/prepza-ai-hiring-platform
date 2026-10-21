@@ -29,6 +29,7 @@ export default async function ReplacedPage() {
         path="/library/superadmin/quality/replaced"
         initial={first}
         empty={t("noReplaced")}
+        byKey
       />
     </main>
   )

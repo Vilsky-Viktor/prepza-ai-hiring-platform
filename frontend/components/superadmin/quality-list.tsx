@@ -30,14 +30,22 @@ export function QualityList({
   path,
   initial,
   empty,
+  byKey = false,
 }: {
   path: string
   initial: QualityRow[]
   empty: string
+  /** The API pages this list by key (the replaced questions). */
+  byKey?: boolean
 }) {
   const t = useTranslations("superadmin")
   const localTime = useLocalTime()
-  const { items, loadMore } = usePagedList<QualityRow>(path, rowKey, initial)
+  const { items, loadMore } = usePagedList<QualityRow>(
+    path,
+    rowKey,
+    initial,
+    byKey
+  )
   // Dismissed here, so gone from the list; sent to the verifier, so waiting.
   const [dismissed, setDismissed] = useState<string[]>([])
   const [sent, setSent] = useState<string[]>([])

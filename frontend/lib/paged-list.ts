@@ -6,6 +6,22 @@ export function pagePath(path: string, offset: number) {
   return `${path}${separator}offset=${offset}&limit=${PAGE_SIZE}`
 }
 
+/** The page after `items`: by offset, or for a list the API pages by key (`byKey`), also after
+the last row's key. */
+export function nextPagePath<T>(
+  path: string,
+  items: T[],
+  getKey: (item: T) => string,
+  byKey: boolean
+) {
+  const next = pagePath(path, items.length)
+  const last = items.at(-1)
+
+  return byKey && last
+    ? `${next}&after=${encodeURIComponent(getKey(last))}`
+    : next
+}
+
 /** `first` followed by the items of `rest` it doesn't have yet: rows shift between pages when
 one is added or removed, so a page can repeat a row already shown. */
 export function mergePages<T>(

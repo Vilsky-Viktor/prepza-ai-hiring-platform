@@ -6,16 +6,18 @@ import { toast } from "sonner"
 
 import { PAGE_SIZE } from "@/constants/lists"
 import { apiFetch } from "@/lib/api"
-import { mergePages, pagePath } from "@/lib/paged-list"
+import { mergePages, nextPagePath, pagePath } from "@/lib/paged-list"
 
 /** A list the API serves a page at a time, its rows told apart by `getKey`. `initial` is the
 first page the server already rendered; without it, the first page loads on mount, and if that
 fails, `failed` says so (not an empty list) until `retry()`. A later page that fails says so in
-a toast with Retry, and the list can still load more. */
+a toast with Retry, and the list can still load more. With `byKey`, a later page is asked for
+after the last row's key (`after=`), for a list the API pages by key. */
 export function usePagedList<T>(
   path: string,
   getKey: (item: T) => string,
-  initial?: T[]
+  initial?: T[],
+  byKey = false
 ) {
   const t = useTranslations("common")
   const [items, setItems] = useState<T[]>(initial ?? [])
@@ -87,7 +89,7 @@ export function usePagedList<T>(
     loading.current = true
 
     try {
-      const page = await apiFetch<T[]>(pagePath(path, items.length))
+      const page = await apiFetch<T[]>(nextPagePath(path, items, getKey, byKey))
 
       if (currentPath.current !== path) {
         return
@@ -107,7 +109,7 @@ export function usePagedList<T>(
     } finally {
       loading.current = false
     }
-  }, [path, items.length, hasMore, loaded, getKey, t])
+  }, [path, items, byKey, hasMore, loaded, getKey, t])
 
   useEffect(() => {
     loadMoreLatest.current = loadMore

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 
 import { PAGE_SIZE } from "@/constants/lists"
-import { byId, mergePages, pagePath } from "@/lib/paged-list"
+import { byId, mergePages, nextPagePath, pagePath } from "@/lib/paged-list"
 
 describe("pagePath", () => {
   it("starts the query when the path has none", () => {
@@ -43,5 +43,21 @@ describe("mergePages", () => {
     expect(mergePages(["A"], ["a", "B"], key)).toEqual(["A", "B"])
     expect(mergePages([], ["x"], key)).toEqual(["x"])
     expect(mergePages(["x"], [], key)).toEqual(["x"])
+  })
+})
+
+describe("nextPagePath", () => {
+  const rows = [{ id: "a" }, { id: "b/c" }]
+
+  it("asks for the next page by offset", () => {
+    expect(nextPagePath("/x", rows, byId, false)).toBe(
+      `/x?offset=2&limit=${PAGE_SIZE}`
+    )
+  })
+
+  it("asks for the page after the last row's key for a list paged by key", () => {
+    expect(nextPagePath("/x", rows, byId, true)).toBe(
+      `/x?offset=2&limit=${PAGE_SIZE}&after=b%2Fc`
+    )
   })
 })

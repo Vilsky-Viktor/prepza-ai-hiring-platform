@@ -39,7 +39,11 @@ async def list_flagged(superadmin: SuperadminUser, page: PageParams) -> list[Fla
 
 
 @router.get("/replaced")
-async def list_replaced(superadmin: SuperadminUser, page: PageParams) -> list[ReplacedQuestionOut]:
+async def list_replaced(
+    superadmin: SuperadminUser, page: PageParams, after: UUID | None = None
+) -> list[ReplacedQuestionOut]:
+    """Newest first, a page after the revision `after` (the last one shown): paged by key, as the
+    list grows across every company."""
     return [
         ReplacedQuestionOut(
             revision_id=revision.id,
@@ -56,7 +60,7 @@ async def list_replaced(superadmin: SuperadminUser, page: PageParams) -> list[Re
             new_options=new_options,
         )
         for revision, question_set, (new_text, new_options) in await quality_report.replaced(
-            page.offset, page.limit
+            after, page.limit
         )
     ]
 
