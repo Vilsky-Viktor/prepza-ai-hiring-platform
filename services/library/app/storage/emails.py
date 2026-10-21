@@ -37,12 +37,19 @@ async def preferences_of(user_ids: list[str]) -> dict[str, dict[str, bool]]:
     return {user_id: as_dict(found.get(user_id)) for user_id in user_ids}
 
 
-async def ids_with(setting: EmailSetting) -> list[str]:
-    """The users who have the setting on, never a company's guest candidate. Only users with
-    stored preferences: product updates and offers are off by default."""
-    query = select(EmailPreferences.user_id).where(
-        getattr(EmailPreferences, setting).is_(True),
-        EmailPreferences.user_id.not_like(f"{GUEST_UID_PREFIX}%"),
+async def ids_with(setting: EmailSetting, after: str, limit: int) -> list[str]:
+    """The users who have the setting on, never a company's guest candidate, in order: up to
+    `limit` after `after`. Only users with stored preferences: product updates and offers are
+    off by default."""
+    query = (
+        select(EmailPreferences.user_id)
+        .where(
+            getattr(EmailPreferences, setting).is_(True),
+            EmailPreferences.user_id.not_like(f"{GUEST_UID_PREFIX}%"),
+            EmailPreferences.user_id > after,
+        )
+        .order_by(EmailPreferences.user_id)
+        .limit(limit)
     )
 
     async with Session() as session:

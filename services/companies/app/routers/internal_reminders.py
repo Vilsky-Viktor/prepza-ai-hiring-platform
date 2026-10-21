@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from fastapi import APIRouter
+from prepza_common.paging import IdPageParams
 
 from app.schemas.internal_reminders import (
     CompaniesMembersOut,
@@ -65,7 +66,7 @@ async def waiting_interviews(
 
 
 @router.get("/companies/editors")
-async def company_editors(caller: ServiceCaller) -> UserIdsOut:
+async def company_editors(caller: ServiceCaller, page: IdPageParams) -> UserIdsOut:
     """Notifications, for a notice about the data processing agreement: every owner and admin
-    of a company."""
-    return UserIdsOut(user_ids=await email_reminders.editor_ids())
+    of a company, a page at a time."""
+    return UserIdsOut(user_ids=await email_reminders.editor_ids(page.after, page.limit))

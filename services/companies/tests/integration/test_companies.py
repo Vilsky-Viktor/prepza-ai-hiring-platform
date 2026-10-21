@@ -52,14 +52,17 @@ def test_the_dpa_notice_goes_to_joined_owners_and_admins_only(run):
             )
             await session.commit()
 
-        found = await email_reminders.editor_ids()
+        found = await email_reminders.editor_ids("", 5000)
+        # The next page starts after the owner.
+        after = await email_reminders.editor_ids(owner, 5000)
         await companies.delete(made.id)
 
-        return found
+        return found, after
 
-    found = run(scenario())
+    found, after = run(scenario())
 
     assert owner in found and viewer not in found
+    assert owner not in after
 
 
 def test_a_users_companies_are_listed_by_name_in_any_case(run):

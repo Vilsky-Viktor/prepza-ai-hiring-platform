@@ -91,16 +91,20 @@ def test_every_account_is_listed_for_a_notice_to_everyone(client, monkeypatch):
 def test_a_campaign_asks_only_for_the_users_with_its_setting_on(client, monkeypatch):
     asked = []
 
-    async def ids_with(setting):
-        asked.append(setting)
+    async def ids_with(setting, after, limit):
+        asked.append((setting, after, limit))
 
         return ["ann"]
 
     monkeypatch.setattr(emails, "ids_with", ids_with)
 
     response = client.get("/internal/users/ids", params={"setting": "promotions"}, headers=HEADERS)
+    later = client.get(
+        "/internal/users/ids", params={"setting": "promotions", "after": "ann"}, headers=HEADERS
+    )
 
-    assert response.json() == {"user_ids": ["ann"]}
-    assert asked == ["promotions"]
+    assert response.json() == later.json() == {"user_ids": ["ann"]}
+    # A page at a time, after the last id of the one before.
+    assert asked == [("promotions", "", 5000), ("promotions", "ann", 5000)]
     # Only the marketing settings, which are off until the user turns them on.
     assert client.get("/internal/users/ids?setting=reminders", headers=HEADERS).status_code == 422

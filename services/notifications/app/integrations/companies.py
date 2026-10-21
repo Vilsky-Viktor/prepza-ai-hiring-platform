@@ -2,6 +2,7 @@ from datetime import datetime
 
 from prepza_common import company_access, http
 from prepza_common.http import bearer
+from prepza_common.paging import every_id
 
 from app.config.settings import settings
 from app.integrations.batches import post_ids
@@ -84,12 +85,17 @@ async def waiting_interviews(ready: tuple[datetime, datetime], started: tuple[da
 
 
 async def editor_ids() -> list[str]:
-    """Every owner and admin of a company, for a notice about the data processing agreement."""
-    response = await http.get_client().get(
-        f"{settings.companies_url}/internal/companies/editors",
-        headers=bearer(service_token("companies")),
-    )
+    """Every owner and admin of a company, for a notice about the data processing agreement,
+    read a page at a time."""
 
-    response.raise_for_status()
+    async def read_page(after: str) -> list[str]:
+        response = await http.get_client().get(
+            f"{settings.companies_url}/internal/companies/editors",
+            params={"after": after},
+            headers=bearer(service_token("companies")),
+        )
+        response.raise_for_status()
 
-    return response.json()["user_ids"]
+        return response.json()["user_ids"]
+
+    return await every_id(read_page)

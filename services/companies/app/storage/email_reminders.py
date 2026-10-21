@@ -53,13 +53,16 @@ async def being_generated(started_after: datetime, started_before: datetime) -> 
         return list(await session.scalars(query))
 
 
-async def editor_ids() -> list[str]:
-    """Everyone who owns or runs a company (a joined owner or admin), once each."""
+async def editor_ids(after: str, limit: int) -> list[str]:
+    """Everyone who owns or runs a company (a joined owner or admin), once each, in order: up to
+    `limit` after `after`."""
     async with Session() as session:
         rows = await session.scalars(
             select(Member.user_id)
-            .where(Member.role.in_(EDITORS), Member.user_id.is_not(None))
+            .where(Member.role.in_(EDITORS), Member.user_id > after)
             .distinct()
+            .order_by(Member.user_id)
+            .limit(limit)
         )
 
         return list(rows)

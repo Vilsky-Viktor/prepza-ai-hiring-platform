@@ -44,6 +44,8 @@ transaction. `schema_rules.problems` lists the tables of a migrated database tha
 `schema_rules.misnamed` and `schema_rules.stale_checks` find no constraint named otherwise than its
 model and no CHECK allowing other values than its enum (`db.one_of` builds a closed set's CHECK).
 `redis_lock` keeps a scheduled run from overlapping the next (SET NX with a time it lasts).
+`paging` gives a route its page (`PageParams`, at most `MAX_PAGE_SIZE`) or a page of ids by key
+(`IdPageParams`, after the last one), and `every_id` reads such a list a page at a time.
 Integration tests: `clean_start` gives every test in a service's `tests/integration` a clean start (the
 tables a fresh migration left empty truncated, the tests' Redis database 15 flushed, the shared HTTP
 client dropped); it refuses any database but a `_test` one and any Redis database but 15.
