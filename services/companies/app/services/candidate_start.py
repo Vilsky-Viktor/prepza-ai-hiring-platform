@@ -36,6 +36,7 @@ async def start_sessions(
     created = await rounds.create_sessions(
         {
             "user_id": user.uid,
+            "company_id": str(interview.company_id),
             "candidate_invite_id": str(invite.id),
             "question_seconds": candidate_seconds(interview.question_seconds, invite.extra_time),
             "topics": session_topics(interview, content, await multi_share(get_redis())),

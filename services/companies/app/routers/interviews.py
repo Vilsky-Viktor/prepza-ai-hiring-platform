@@ -198,6 +198,7 @@ async def preview_interview(
     created = await rounds.create_sessions(
         {
             "user_id": user.uid,
+            "company_id": str(interview.company_id),
             "candidate_invite_id": str(uuid4()),
             "question_seconds": interview.question_seconds,
             "topics": session_topics(interview, content, await multi_share(get_redis())),

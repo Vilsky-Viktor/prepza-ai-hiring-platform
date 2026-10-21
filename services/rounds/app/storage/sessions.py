@@ -33,6 +33,7 @@ async def create_many(
     question_seconds: int,
     preview: bool = False,
     practice: bool = False,
+    company_id: uuid.UUID | None = None,
 ) -> list[Session]:
     # Each section starts a microsecond after the one before, so the sections keep the topics'
     # order wherever they're listed (see list_for_invite).
@@ -43,6 +44,7 @@ async def create_many(
             topic_id=topic.id,
             interview_set_id=topic.preparation_id,
             candidate_invite_id=candidate_invite_id,
+            company_id=company_id,
             topic_title=topic.title,
             status=RoundStatus.IN_PROGRESS,
             questions=shuffled([question.model_dump(mode="json") for question in topic.questions]),

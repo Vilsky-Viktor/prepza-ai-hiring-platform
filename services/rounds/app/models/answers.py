@@ -26,6 +26,8 @@ class Answer(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     session_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("sessions.id", ondelete="CASCADE"))
+    # The section's company, filled by the database from sessions (a trigger).
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     question_id: Mapped[uuid.UUID]
     # The option picked on a single-answer question; None for a multi-answer one, and when the
     # time ran out.

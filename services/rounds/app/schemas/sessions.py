@@ -29,6 +29,8 @@ class SessionsCreate(BaseModel):
     question_seconds: int = Field(ge=1)
     # A company member trying their own test (see models/sessions.py).
     preview: bool = False
+    # The interview's company, kept on each section.
+    company_id: UUID | None = None
 
 
 class SessionTopicOut(BaseModel):

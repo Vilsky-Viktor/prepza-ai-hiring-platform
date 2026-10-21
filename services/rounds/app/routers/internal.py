@@ -35,6 +35,7 @@ async def create_sessions(body: SessionsCreate, caller: ServiceCaller) -> list[S
             body.topics,
             body.question_seconds,
             body.preview,
+            company_id=body.company_id,
         )
     except IntegrityError:
         # Another start for the same invite got there first: theirs are the sections.

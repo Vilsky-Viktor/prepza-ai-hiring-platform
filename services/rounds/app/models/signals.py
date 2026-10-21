@@ -19,6 +19,8 @@ class Signal(Base):
     session_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("sessions.id", ondelete="CASCADE"), index=True
     )
+    # The section's company, filled by the database from sessions (a trigger).
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     # None when no question was open, e.g. on an answer's result.
     question_id: Mapped[uuid.UUID | None]
     kind: Mapped[str] = mapped_column(String(32))

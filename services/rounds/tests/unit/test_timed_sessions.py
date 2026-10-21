@@ -54,7 +54,7 @@ def test_starting_a_timed_interview_passes_the_seconds_per_question(client, monk
     async def no_sessions(invite_id):
         return []
 
-    async def fake_create(user_id, invite_id, topics, question_seconds, preview):
+    async def fake_create(user_id, invite_id, topics, question_seconds, preview, company_id=None):
         created["question_seconds"] = question_seconds
         created["preview"] = preview
 

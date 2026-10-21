@@ -40,6 +40,9 @@ class Session(Base):
     interview_set_id: Mapped[uuid.UUID] = mapped_column(index=True)
     # Indexed by uq_sessions_invite_topic's first column.
     candidate_invite_id: Mapped[uuid.UUID] = mapped_column()
+    # The interview's company (companies sends it); None for practice, and for sections started
+    # before it was kept.
+    company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     topic_title: Mapped[str] = mapped_column(Text)
     status: Mapped[str] = mapped_column(String(32), default=RoundStatus.IN_PROGRESS)
     questions: Mapped[list] = mapped_column(JSONB)
