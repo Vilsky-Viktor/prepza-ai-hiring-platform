@@ -26,7 +26,7 @@ FROM base AS dev
 # .pyc that a reloading container then fails to import. Polling sees changes from the host.
 ENV PYTHONPYCACHEPREFIX=/tmp/pycache WATCHFILES_FORCE_POLLING=true
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", \
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
     "--reload", "--reload-dir", "app", "--reload-dir", "/packages/common/src"]
 
 # Production: the source is part of the image. Migrations run in a one-off container
@@ -48,5 +48,5 @@ USER app
 
 # Cloud Run kills the container 10 seconds after asking it to stop: requests still running
 # after 8 are dropped, so the app's shutdown (and Sentry's last reports) still run.
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", \
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
     "--timeout-graceful-shutdown", "8"]

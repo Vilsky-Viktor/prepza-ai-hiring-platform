@@ -28,7 +28,7 @@ ENV PYTHONPYCACHEPREFIX=/tmp/pycache WATCHFILES_FORCE_POLLING=true
 
 # Open chat streams would hold a reload or a shutdown forever: after 5 seconds they're closed,
 # and the answer being streamed stops there.
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", \
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
     "--timeout-graceful-shutdown", "5", \
     "--reload", "--reload-dir", "app", "--reload-dir", "/packages/common/src"]
 
@@ -49,5 +49,5 @@ ARG SENTRY_RELEASE
 ENV SENTRY_RELEASE=$SENTRY_RELEASE
 USER app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", \
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
     "--timeout-graceful-shutdown", "5"]
