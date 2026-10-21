@@ -5,6 +5,7 @@ import httpx
 import pytest
 from fastapi import HTTPException
 from prepza_common import http
+from prepza_common.user import User
 
 from app.constants.ats import (
     TEAMTAILOR_API_VERSION,
@@ -12,6 +13,7 @@ from app.constants.ats import (
     TEAMTAILOR_MEDIA_TYPE,
     TEAMTAILOR_PAGE,
 )
+from app.helpers.ats import verified_email
 from app.integrations import ats_clients, teamtailor
 from app.integrations.errors import KeyRejected
 
@@ -238,6 +240,19 @@ def test_results_are_written_as_who_connected_else_an_admin_else_any_user(
     api["answers"]["/v1/users"] = users(by_email, everyone)
 
     assert asyncio.run(teamtailor.member_id(HOST, "key", "ann@example.com")) == chosen
+
+
+def test_without_a_verified_email_no_one_is_looked_up_by_it(api):
+    """The connecting user's email wasn't verified: an admin is chosen, never a user it names."""
+    api["answers"]["/v1/users"] = users([item(5, role="user")], [item(2, role="admin")])
+
+    assert asyncio.run(teamtailor.member_id(HOST, "key", "")) == "2"
+    assert all("filter[email]" not in request.url.params for request in api["requests"])
+
+
+def test_only_a_verified_email_names_the_connecting_user():
+    assert verified_email(User(uid="a", email="a@x.com", email_verified=True)) == "a@x.com"
+    assert verified_email(User(uid="a", email="a@x.com", email_verified=False)) == ""
 
 
 def test_a_note_goes_on_the_candidate_as_the_user(api):

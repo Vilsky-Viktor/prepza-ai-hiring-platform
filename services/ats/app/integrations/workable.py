@@ -86,8 +86,13 @@ async def job(subdomain: str, token: str, job_id: str) -> dict:
 
 async def member_id(subdomain: str, token: str, email: str) -> str | None:
     """The Workable member results are written back as: the one with `email` (who connected),
-    else the account's first admin, else its first member."""
-    found = (await _get(subdomain, token, "/members", {"email": email})).get("members", [])
+    else the account's first admin, else its first member. No email (one not verified) looks
+    no one up by it."""
+    found = (
+        (await _get(subdomain, token, "/members", {"email": email})).get("members", [])
+        if email
+        else []
+    )
 
     if found:
         return found[0]["id"]

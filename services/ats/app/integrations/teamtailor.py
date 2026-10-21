@@ -137,8 +137,9 @@ async def application(host: str, key: str, application_id: str) -> dict:
 
 async def member_id(host: str, key: str, email: str) -> str | None:
     """The Teamtailor user results are written back as: the one with `email` (who connected),
-    else the company's first admin, else its first user."""
-    found = await _call("GET", host, key, "/v1/users", {"filter[email]": email})
+    else the company's first admin, else its first user. No email (one not verified) looks no
+    one up by it."""
+    found = await _call("GET", host, key, "/v1/users", {"filter[email]": email}) if email else {}
 
     if found.get("data"):
         return str(found["data"][0]["id"])

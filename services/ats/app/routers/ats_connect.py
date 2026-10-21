@@ -15,7 +15,7 @@ from app.constants.ats import (
     WEBHOOKS,
     AtsProvider,
 )
-from app.helpers.ats import subdomain
+from app.helpers.ats import subdomain, verified_email
 from app.integrations import breezy, companies, greenhouse, recruitee, teamtailor, workable
 from app.integrations.ats_http import calling_company
 from app.integrations.errors import KeyRejected
@@ -73,7 +73,7 @@ async def connect_workable(company_id: UUID, body: WorkableIn, user: CurrentUser
 
     credentials = integrations.seal({"subdomain": account, "token": token})
     # Who results are written back as: the connecting user's Workable member, or an admin.
-    member = await workable.member_id(account, token, user.email)
+    member = await workable.member_id(account, token, verified_email(user))
     await ats.connect(
         company_id, AtsProvider.WORKABLE, account, credentials, user.uid, member, user.language
     )
@@ -143,7 +143,7 @@ async def connect_teamtailor(company_id: UUID, body: TeamtailorIn, user: Current
         credentials["webhook_secret"] = kept
 
     # Who results are written back as: the connecting user's Teamtailor user, or an admin.
-    member = await teamtailor.member_id(host, key, user.email)
+    member = await teamtailor.member_id(host, key, verified_email(user))
     sealed = integrations.seal(credentials)
     await ats.connect(
         company_id, AtsProvider.TEAMTAILOR, company, sealed, user.uid, member, user.language

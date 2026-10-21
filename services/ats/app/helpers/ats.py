@@ -162,3 +162,9 @@ def result_comment(
     lines.append(texts["scorecard"].format(link=link))
 
     return "\n".join(lines)
+
+
+def verified_email(user) -> str:
+    """The connecting user's email when verified: an unverified one could name someone else's
+    ATS account, whom results would then be written back as."""
+    return user.email if user.email_verified else ""
