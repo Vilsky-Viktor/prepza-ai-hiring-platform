@@ -3,6 +3,7 @@ the AI costs tab's sums, and what is forgotten and dropped."""
 
 import uuid
 from datetime import UTC, datetime, timedelta
+from decimal import Decimal
 
 import pytest
 from prepza_common.ai_cap import spent_today
@@ -58,7 +59,7 @@ def test_a_redelivered_call_is_stored_and_counted_toward_the_cap_once(run, redis
 
     stored, added = run(scenario())
 
-    assert [(row.event_id, row.category, row.cost_usd) for row in stored] == [
+    assert [(row.event_id, row.category, float(row.cost)) for row in stored] == [
         (event_id, Category.UNPAID, 0.5)
     ]
     assert added == pytest.approx(0.5)
@@ -145,7 +146,9 @@ def test_the_ai_costs_tab_sums_a_month(run, redis, monkeypatch):
             for day, (category, data) in enumerate(calls):
                 at = month + timedelta(days=day % 2)
                 kept = {"event_id": uuid.uuid4().hex, "occurred_at": at, "category": category}
-                session.add(AiUsage(**data, **kept))
+                fields = {key: value for key, value in data.items() if key != "cost_usd"}
+                cost = Decimal(str(data["cost_usd"]))
+                session.add(AiUsage(**fields, **kept, cost=cost))
 
             await session.commit()
 
@@ -227,7 +230,7 @@ def test_a_deleted_user_or_company_is_forgotten_and_its_costs_stay(run):
 
     stored, hits = run(scenario())
 
-    assert (stored.company_id, stored.user_id, stored.cost_usd) == (None, None, 0.5)
+    assert (stored.company_id, stored.user_id, float(stored.cost)) == (None, None, 0.5)
     assert hits == 0
 
 

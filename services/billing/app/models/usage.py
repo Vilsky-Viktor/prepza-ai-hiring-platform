@@ -4,7 +4,17 @@ from decimal import Decimal
 
 from prepza_common.ai_constants import ACTIONS, Category, Outcome
 from prepza_common.db import one_of
-from sqlalchemy import BigInteger, CheckConstraint, DateTime, Float, Index, Numeric, String, Text
+from sqlalchemy import (
+    BigInteger,
+    CheckConstraint,
+    DateTime,
+    Float,
+    Index,
+    Numeric,
+    String,
+    Text,
+    Uuid,
+)
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -38,12 +48,10 @@ class AiUsage(Base):
     cached_input_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
     output_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
     audio_seconds: Mapped[float] = mapped_column(Float, default=0)
-    cost_usd: Mapped[float] = mapped_column(Float, default=0)
-    # The same cost in USD, exact (a float's sums of fractions of a cent drift): written with
-    # cost_usd, read before it (migration 0024). cost_usd goes once no running version writes
-    # only it.
-    cost: Mapped[Decimal | None] = mapped_column(Numeric(20, 12))
-    company_id: Mapped[str | None] = mapped_column(String(128), index=True)
+    # What it cost in USD, exact: a float's sums of fractions of a cent drift.
+    cost: Mapped[Decimal] = mapped_column(Numeric(20, 12), default=0)
+    # The company (its uuid, read as text like the services send it).
+    company_id: Mapped[str | None] = mapped_column(Uuid(as_uuid=False), index=True)
     user_id: Mapped[str | None] = mapped_column(String(128), index=True)
     # The generation, conversation or question it was for.
     subject_id: Mapped[str | None] = mapped_column(String(128))
@@ -65,7 +73,7 @@ class LimitHit(Base):
     kind: Mapped[str] = mapped_column(String(48))
     # user, company, ip or everyone.
     scope: Mapped[str] = mapped_column(String(16))
-    company_id: Mapped[str | None] = mapped_column(String(128), index=True)
+    company_id: Mapped[str | None] = mapped_column(Uuid(as_uuid=False), index=True)
     user_id: Mapped[str | None] = mapped_column(String(128), index=True)
     # What was refused, when the limit says it (the pause's refusals).
     what: Mapped[str | None] = mapped_column(Text())

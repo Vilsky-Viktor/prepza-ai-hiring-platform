@@ -28,4 +28,4 @@ def test_a_deleted_companys_id_is_emptied_batch_after_batch(run, monkeypatch):
     rows = run(scenario())
 
     assert [row.company_id for row in rows] == [None, None, None]
-    assert sum(row.cost_usd for row in rows) == 1.5
+    assert sum(row.cost for row in rows) == 1.5

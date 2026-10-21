@@ -4,16 +4,14 @@ from datetime import datetime
 
 from prepza_common.ai_constants import Category
 from prepza_common.stats import period_range
-from sqlalchemy import ColumnElement, Float, Numeric, String, cast, func, select
+from sqlalchemy import ColumnElement, Float, String, cast, func, select
 
 from app.constants.usage import TRANSCRIPTION
 from app.models.usage import AiUsage
 from app.storage.db import Session
 
-# Summed exactly (numeric), then read as a float: the exact cost, or the float one for a row
-# stored before it was kept.
-EXACT = func.coalesce(AiUsage.cost, cast(AiUsage.cost_usd, Numeric))
-SPEND = func.coalesce(cast(func.sum(EXACT), Float), 0.0)
+# Summed exactly (numeric), then read as a float.
+SPEND = func.coalesce(cast(func.sum(AiUsage.cost), Float), 0.0)
 CALLS = func.count(AiUsage.id)
 TOKENS = (
     func.coalesce(func.sum(AiUsage.input_tokens), 0),
@@ -37,7 +35,7 @@ def between(start: datetime, end: datetime) -> list[ColumnElement]:
 
 
 def spend_where(*where) -> ColumnElement:
-    return func.coalesce(cast(func.sum(EXACT).filter(*where), Float), 0.0)
+    return func.coalesce(cast(func.sum(AiUsage.cost).filter(*where), Float), 0.0)
 
 
 async def rows(query) -> list:

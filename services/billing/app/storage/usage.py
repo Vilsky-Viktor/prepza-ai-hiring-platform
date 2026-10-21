@@ -23,7 +23,6 @@ USAGE_FIELDS = (
     "cached_input_tokens",
     "output_tokens",
     "audio_seconds",
-    "cost_usd",
     "company_id",
     "user_id",
     "subject_id",
@@ -43,8 +42,8 @@ async def store_usage(event_id: str, occurred_at: datetime, data: dict) -> Categ
     """Stores one AI call, deciding who it was for: a company that had topped up by the call's
     time is paid. None when the event was stored before."""
     values = {field: data.get(field) for field in USAGE_FIELDS}
-    # The float as the event carried it, exactly: its shortest decimal form.
-    values["cost"] = Decimal(str(values["cost_usd"] or 0))
+    # The event's float cost, exactly: its shortest decimal form.
+    values["cost"] = Decimal(str(data.get("cost_usd") or 0))
     company_id = values["company_id"]
 
     async with Session() as session:
