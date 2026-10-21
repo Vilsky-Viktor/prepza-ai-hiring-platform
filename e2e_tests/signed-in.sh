@@ -2,8 +2,9 @@
 # Browser tests of the signed-in pages (e2e_tests/signed-in), in Playwright's Docker image,
 # against the running local stack. Users sign in through the Firebase Auth emulator's own sign-in
 # page, so this runs only where the emulator is set up (NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL).
-# Every test makes its own throwaway users, companies and interviews. Screenshots land in
-# e2e_tests/signed-in/test-results/screenshots. Usage: e2e_tests/signed-in.sh [playwright args]
+# Every test makes its own throwaway users, companies and interviews. Results land in
+# e2e_tests/signed-in/test-results/<run> (screenshots in its screenshots/), one folder per run.
+# Usage: e2e_tests/signed-in.sh [playwright args]
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -26,14 +27,19 @@ if [ -z "$emulator" ]; then
 fi
 
 tests="$PWD/e2e_tests/signed-in"
-mkdir -p "$tests/test-results"
+# Each run's results (traces, screenshots) in a folder of its own: Playwright empties its results
+# folder when a run starts, so runs at the same time would delete each other's. A week's are kept.
+run="$(date +%Y%m%d-%H%M%S)-$$"
+results="$tests/test-results/$run"
+mkdir -p "$results"
+find "$tests/test-results" -mindepth 1 -maxdepth 1 -type d -mtime +7 -exec rm -rf {} +
 
 # The specs go in through a tar stream rather than a mount: Docker Desktop's file sharing can
 # serve a file edited moments before as it was. Results and screenshots come back through a mount.
 # --ipc=host: Chromium's shared memory, as Playwright advises for Docker (pages crash without it).
 COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude test-results -cf - . |
   docker run -i --rm --ipc=host --network "$network" \
-    -v "$tests/test-results:/tests/test-results" \
+    -v "$results:/tests/test-results" \
     -v "$PWD/.env:/env/.env:ro" \
     -w /tests \
     -e SITE_URL=http://localhost:8090 \
@@ -41,4 +47,8 @@ COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude 
     -e HOST_RULES="MAP localhost:8090 gateway:80, MAP $emulator firebase-auth:9199" \
     -e FORWARDS="8090=gateway:80,${emulator##*:}=firebase-auth:9199" \
     mcr.microsoft.com/playwright:v1.63.0-noble \
-    sh -c "tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test $*"
+    sh -c "tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test $*" ||
+  status=$?
+
+echo "Results: ${results#"$PWD"/}"
+exit "${status:-0}"

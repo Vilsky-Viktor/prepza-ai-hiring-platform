@@ -170,7 +170,7 @@ Playwright tests of the signed-in pages, in the same Docker image, against the r
 
 **Cleanup.** Every throwaway address carries its run's tag (the run's container id, `RUN` in `helpers/users.ts`). After a run, `teardown.ts` deletes that run's throwaway accounts, and so their companies and data, and leftovers of stopped runs once they're over 6 hours old; another run's accounts are left alone while it may still be running, so runs at the same time don't delete each other's users (a deleted account is signed out at its next change). It fails if any of its own is left.
 
-Screenshots land in `e2e_tests/signed-in/test-results/screenshots`.
+Each run's traces and screenshots land in a folder of their own, `e2e_tests/signed-in/test-results/<run>` (screenshots under its `screenshots/`; the script prints the folder at the end), so runs at the same time don't empty each other's; folders older than a week are deleted at the next run.
 
 ```bash
 ./e2e_tests/signed-in.sh            # or: ./e2e_tests/signed-in.sh specs/b-candidate.spec.ts
