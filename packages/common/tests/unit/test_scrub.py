@@ -43,10 +43,11 @@ def test_urls_keep_only_their_scheme_and_host_and_queries_are_dropped():
 
 
 def test_names_and_emails_in_a_tools_json_result_are_masked():
-    result = '{"id": "c1", "name": "Ann Lee", "email": "ann@example.com", "grade": 70}'
+    result = '{"id": "c1", "name": "Ann Lee", "email": "ann@example.com", "candidate_name": "Bo"}'
 
     assert (
-        scrub_people(result) == '{"id": "c1", "name": "[person]", "email": "[person]", "grade": 70}'
+        scrub_people(result)
+        == '{"id": "c1", "name": "[person]", "email": "[person]", "candidate_name": "[person]"}'
     )
 
 
@@ -61,6 +62,7 @@ def test_name_fields_of_data_and_hidden_names_are_masked_and_the_rest_kept():
             {"role": "user", "content": "Send José Ruiz's link https://prepza.com/i/tok3n"},
         ],
         "candidate": Candidate(name="Bo", grade=3),
+        "update": {"candidate_name": "Cy", "title": "Backend"},
         "steps": ("a", 2, None, True),
     }
 
@@ -70,6 +72,7 @@ def test_name_fields_of_data_and_hidden_names_are_masked_and_the_rest_kept():
             {"role": "user", "content": "Send [person]'s link https://prepza.com"},
         ],
         "candidate": {"name": "[person]", "grade": 3},
+        "update": {"candidate_name": "[person]", "title": "Backend"},
         "steps": ["a", 2, None, True],
     }
 

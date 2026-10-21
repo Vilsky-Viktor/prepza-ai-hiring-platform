@@ -4,8 +4,8 @@ import re
 
 from prepza_common.constants import (
     EMAIL_PATTERN,
+    PERSON_FIELD_ENDINGS,
     PERSON_FIELD_PATTERN,
-    PERSON_FIELDS,
     QUERY_FIELDS,
     REDACTED_EMAIL,
     REDACTED_PERSON,
@@ -31,7 +31,7 @@ def scrub(value):
 
 
 def scrub_people(value, hidden: tuple[str, ...] = ()):
-    """`scrub`, and also people's names: a `name` or `email` field's value, in data or in JSON
+    """`scrub`, and also people's names: the value of a field named `name` or `email` or ending so (`candidate_name`), in data or in JSON
     text (a tool's result), and each of `hidden` (a name the caller knows is in the text). Any
     other object is scrubbed as its JSON form or its text."""
     if hasattr(value, "model_dump"):
@@ -48,7 +48,7 @@ def scrub_people(value, hidden: tuple[str, ...] = ()):
     if isinstance(value, dict):
         return {
             key: REDACTED_PERSON
-            if key in PERSON_FIELDS and isinstance(item, str)
+            if isinstance(key, str) and key.endswith(PERSON_FIELD_ENDINGS) and isinstance(item, str)
             else scrub_people(item, hidden)
             for key, item in value.items()
             if key not in QUERY_FIELDS

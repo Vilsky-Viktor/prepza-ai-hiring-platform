@@ -123,9 +123,9 @@ URL_PATTERN = r"(https?://)(?:[^\s/?#@'\"]*@)?([^\s/?#'\"]+)[^\s'\"]*"
 URL_SCRUBBED = r"\1\2"
 QUERY_FIELDS = {"query_string", "http.query", "http.fragment"}
 # Langfuse: a person's name or email in a field of data or of JSON text (an assistant tool's
-# result) is masked too (group 1 keeps the key).
-PERSON_FIELDS = {"name", "email"}
-PERSON_FIELD_PATTERN = r'("(?:name|email)"\s*:\s*)"(?:[^"\\]|\\.)*"'
+# result) is masked too: any field whose name ends so (`candidate_name`); group 1 keeps the key.
+PERSON_FIELD_ENDINGS = ("name", "email")
+PERSON_FIELD_PATTERN = r'("[a-z_]*(?:name|email)"\s*:\s*)"(?:[^"\\]|\\.)*"'
 REDACTED_PERSON = "[person]"
 
 # Pub/Sub: the one topic every domain event goes to, and its REST API.
