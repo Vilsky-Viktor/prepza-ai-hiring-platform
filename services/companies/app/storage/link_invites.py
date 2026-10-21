@@ -13,6 +13,7 @@ from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
 from app.models.outbox import OutboxEvent
 from app.storage.db import Session
+from app.storage.interviews import company_of
 
 
 async def for_link(
@@ -28,6 +29,7 @@ async def for_link(
         .values(
             id=uuid.uuid4(),
             interview_id=interview_id,
+            company_id=company_of(interview_id),
             email=email,
             token=secrets.token_urlsafe(32),
             status=InviteStatus.INVITED,

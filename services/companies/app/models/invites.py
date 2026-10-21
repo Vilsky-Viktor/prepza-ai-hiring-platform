@@ -40,6 +40,10 @@ class CandidateInvite(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     interview_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("interviews.id", ondelete="CASCADE"))
+    # The interview's company, kept on the row too (every tenant's row carries it).
+    company_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("companies.id", ondelete="CASCADE"), index=True
+    )
     email: Mapped[str] = mapped_column(String(320))
     # The candidate's name from their verified sign-in, filled once when they start; None until
     # then, or when their sign-in has none.

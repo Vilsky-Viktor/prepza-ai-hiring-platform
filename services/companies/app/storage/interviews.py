@@ -17,6 +17,11 @@ from app.storage import guests
 from app.storage.db import Session
 
 
+def company_of(interview_id):
+    """The interview's company, read by the statement that saves a row of it."""
+    return select(Interview.company_id).where(Interview.id == interview_id).scalar_subquery()
+
+
 async def create(company_id, generation_id, language: str, seconds: int) -> Interview:
     """A generated test, waiting for its questions: `seconds` a question until its level is
     known (interview_generations.set_generated)."""

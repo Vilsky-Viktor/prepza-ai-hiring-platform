@@ -94,6 +94,14 @@ class Member(Base):
         UniqueConstraint("company_id", "invited_email"),
         # Invites to an address across companies (support's lookup).
         Index("ix_members_invited_email", "invited_email"),
+        # A person is a member of a company once.
+        Index(
+            "uq_members_company_user",
+            "company_id",
+            "user_id",
+            unique=True,
+            postgresql_where=text("user_id IS NOT NULL"),
+        ),
         # A company has one owner: a transfer demotes the owner before it promotes the admin.
         Index(
             "uq_members_one_owner",
