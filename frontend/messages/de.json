@@ -7,6 +7,8 @@
     "currency": "Währung",
     "currencyNote": "Preise werden in ihr angezeigt, egal wo du bist. Das Aufladen für ein Unternehmen läuft in dessen eigener Währung.",
     "currencyFailed": "Die Währung konnte nicht geändert werden. Bitte versuche es erneut.",
+    "searchCurrency": "Währung suchen",
+    "noCurrency": "Keine Währung gefunden",
     "account": "Dein Konto",
     "accountNote": "Gib diese ID an, wenn du uns wegen deines Kontos schreibst.",
     "yourData": "Deine Daten",

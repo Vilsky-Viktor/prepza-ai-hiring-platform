@@ -7,6 +7,8 @@
     "currency": "Para birimi",
     "currencyNote": "Nerede olursanız olun fiyatlar bu para biriminde gösterilir. Bir şirketin kredi yüklemeleri şirketin kendi para birimindedir.",
     "currencyFailed": "Para birimi değiştirilemedi. Lütfen tekrar deneyin.",
+    "searchCurrency": "Para birimi ara",
+    "noCurrency": "Para birimi bulunamadı",
     "account": "Hesabınız",
     "accountNote": "Hesabınızla ilgili bize yazarken bu ID'yi belirtin.",
     "yourData": "Verileriniz",

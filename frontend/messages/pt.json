@@ -7,6 +7,8 @@
     "currency": "Moeda",
     "currencyNote": "Os preços aparecem nessa moeda, onde quer que você esteja. As recargas de uma empresa são na moeda da própria empresa.",
     "currencyFailed": "Não foi possível mudar a moeda. Tente novamente.",
+    "searchCurrency": "Pesquisar moeda",
+    "noCurrency": "Nenhuma moeda encontrada",
     "account": "Sua conta",
     "accountNote": "Informe este ID quando nos escrever sobre sua conta.",
     "yourData": "Seus dados",

@@ -7,6 +7,8 @@
     "currency": "Waluta",
     "currencyNote": "Ceny są pokazywane w tej walucie, gdziekolwiek jesteś. Doładowania firmy są w walucie tej firmy.",
     "currencyFailed": "Nie udało się zmienić waluty. Spróbuj ponownie.",
+    "searchCurrency": "Szukaj waluty",
+    "noCurrency": "Nie znaleziono waluty",
     "account": "Twoje konto",
     "accountNote": "Podaj to ID, gdy piszesz do nas w sprawie swojego konta.",
     "yourData": "Twoje dane",

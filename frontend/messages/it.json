@@ -7,6 +7,8 @@
     "currency": "Valuta",
     "currencyNote": "I prezzi sono mostrati in questa valuta, ovunque tu sia. Le ricariche di un'azienda sono nella valuta dell'azienda.",
     "currencyFailed": "Impossibile cambiare la valuta. Riprova.",
+    "searchCurrency": "Cerca valuta",
+    "noCurrency": "Nessuna valuta trovata",
     "account": "Il tuo account",
     "accountNote": "Indica questo ID quando ci scrivi riguardo al tuo account.",
     "yourData": "I tuoi dati",

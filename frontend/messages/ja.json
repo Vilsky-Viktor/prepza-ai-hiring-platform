@@ -7,6 +7,8 @@
     "currency": "通貨",
     "currencyNote": "どこにいても、価格はこの通貨で表示されます。会社のチャージはその会社の通貨で行われます。",
     "currencyFailed": "通貨を変更できませんでした。もう一度お試しください。",
+    "searchCurrency": "通貨を検索",
+    "noCurrency": "通貨が見つかりません",
     "account": "あなたのアカウント",
     "accountNote": "アカウントについてお問い合わせの際は、このIDをお伝えください。",
     "yourData": "あなたのデータ",

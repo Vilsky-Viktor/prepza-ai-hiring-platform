@@ -7,6 +7,8 @@
     "currency": "Tiền tệ",
     "currencyNote": "Giá được hiển thị bằng tiền tệ này, dù bạn ở đâu. Việc nạp credit cho công ty dùng tiền tệ của chính công ty.",
     "currencyFailed": "Không thể đổi tiền tệ. Vui lòng thử lại.",
+    "searchCurrency": "Tìm tiền tệ",
+    "noCurrency": "Không tìm thấy tiền tệ",
     "account": "Tài khoản của bạn",
     "accountNote": "Hãy ghi ID này khi bạn viết cho chúng tôi về tài khoản của mình.",
     "yourData": "Dữ liệu của bạn",

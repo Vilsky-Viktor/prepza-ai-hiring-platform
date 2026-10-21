@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
-import { PillSelect } from "@/components/pill-select"
+import { CurrencySelect } from "@/components/billing/currency-select"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { CompanyCurrency } from "@/types/billing"
 
@@ -53,16 +53,14 @@ export function CompanyCurrencySetting({
   return (
     <div data-testid="company-currency" data-currency={setting.currency}>
       {canEdit ? (
-        <PillSelect
-          ariaLabel={t("currency")}
+        <CurrencySelect
+          label={t("currency")}
           value={setting.currency}
+          currencies={setting.currencies}
           onChange={choose}
           disabled={saving}
-          pillClassName="h-10 px-5 pe-11 text-base [&>svg]:end-3 [&>svg]:size-4"
-          options={setting.currencies.map((currency) => ({
-            value: currency,
-            label: currency,
-          }))}
+          triggerClassName="h-10 w-auto max-w-none gap-2 px-5"
+          short
         />
       ) : (
         <span className="text-sm text-muted-foreground">

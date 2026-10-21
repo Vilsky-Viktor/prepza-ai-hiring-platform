@@ -7,6 +7,8 @@
     "currency": "货币",
     "currencyNote": "无论你身在何处，价格都以此货币显示。公司的充值使用公司自己的货币。",
     "currencyFailed": "无法更改货币，请重试。",
+    "searchCurrency": "搜索货币",
+    "noCurrency": "未找到货币",
     "account": "你的账户",
     "accountNote": "就账户问题联系我们时，请提供这个 ID。",
     "yourData": "你的数据",

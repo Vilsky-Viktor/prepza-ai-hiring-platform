@@ -7,6 +7,8 @@
     "currency": "Currency",
     "currencyNote": "Dito ipinapakita ang mga presyo, nasaan ka man. Ang top-up ng kumpanya ay nasa sariling currency ng kumpanya.",
     "currencyFailed": "Hindi mapalitan ang currency. Pakisubukang muli.",
+    "searchCurrency": "Maghanap ng currency",
+    "noCurrency": "Walang nahanap na currency",
     "account": "Ang iyong account",
     "accountNote": "Ibigay ang ID na ito kapag sumulat ka sa amin tungkol sa iyong account.",
     "yourData": "Ang iyong data",

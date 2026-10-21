@@ -7,6 +7,8 @@
     "currency": "Mata uang",
     "currencyNote": "Harga ditampilkan dalam mata uang ini, di mana pun Anda berada. Isi ulang perusahaan memakai mata uang perusahaan itu sendiri.",
     "currencyFailed": "Tidak dapat mengubah mata uang. Silakan coba lagi.",
+    "searchCurrency": "Cari mata uang",
+    "noCurrency": "Mata uang tidak ditemukan",
     "account": "Akunmu",
     "accountNote": "Sebutkan ID ini saat kamu menulis kepada kami tentang akunmu.",
     "yourData": "Datamu",

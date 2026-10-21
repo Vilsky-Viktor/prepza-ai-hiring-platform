@@ -34,11 +34,17 @@ test("a person sees prices in their own saved currency", async ({ signInAs }) =>
   await visit(page, "/settings")
   await shots(page, "settings-eur", true)
 
-  // In the EU, changed to US dollars.
+  // In the EU, changed to US dollars; the list is searched by name or code.
   const mine = page.getByTestId("user-currency")
   await expect(mine).toHaveAttribute("data-currency", "EUR")
-  await mine.getByRole("button").click()
-  await page.getByRole("menuitemradio", { name: /USD/ }).click()
+  // The search field takes the focus as the list opens.
+  await mine.getByRole("combobox").click()
+  await page.locator("input:focus").fill("yen")
+  await expect(page.getByRole("option")).toHaveCount(1)
+  await expect(page.getByRole("option")).toContainText("JPY")
+  await shots(page, "settings-search-yen")
+  await page.locator("input:focus").fill("USD")
+  await page.getByRole("option").first().click()
   await expect(mine).toHaveAttribute("data-currency", "USD")
 
   await visit(page, "/")
@@ -57,8 +63,10 @@ test("a company's top-up is in the company's currency", async ({ signInAs }) => 
   await visit(owner, `/companies/${company.id}/billing`)
   const currency = owner.getByTestId("company-currency")
   await expect(currency).toHaveAttribute("data-currency", "EUR")
-  await currency.getByRole("button").click()
-  await owner.getByRole("menuitemradio", { name: /USD/ }).click()
+  await currency.getByRole("combobox").click()
+  await shots(owner, "company-currency-list")
+  await owner.locator("input:focus").fill("USD")
+  await owner.getByRole("option").first().click()
   await expect(currency).toHaveAttribute("data-currency", "USD")
   await shots(owner, "billing-usd-company", true)
 
@@ -110,4 +118,31 @@ test("a company in pounds is charged in pounds", async ({ signInAs }) => {
   const checkout = owner.frameLocator("iframe[name=paddle_frame]")
   await expect(checkout.getByText(/£/).first()).toBeVisible({ timeout: 30_000 })
   await shot(owner, "paddle-checkout-gbp", false)
+})
+
+// A company created from Canada pays in Canadian dollars: its billing page and top-up dialog.
+test("a company in Canadian dollars is priced in them", async ({ signInAs }) => {
+  const owner = await signInAs(throwawayEmail("currency-cad"))
+  await fromCountry(owner, "CA")
+  const company = await createCompany(owner)
+  await visit(owner, `/companies/${company.id}/billing`)
+  await expect(owner.getByTestId("company-currency")).toHaveAttribute("data-currency", "CAD")
+
+  await openDialog(owner, owner.getByTestId("top-up").first())
+  await expect(owner.getByTestId("pays-in")).toHaveAttribute("data-currency", "CAD")
+  await expect(owner.getByRole("dialog").getByTestId("custom-quote")).toContainText("CA$70")
+  await shots(owner, "top-up-cad", true)
+})
+
+// A company created from Japan pays in yen, whole yen as Paddle counts them.
+test("a company in yen is priced in whole yen", async ({ signInAs }) => {
+  const owner = await signInAs(throwawayEmail("currency-jpy"))
+  await fromCountry(owner, "JP")
+  const company = await createCompany(owner)
+  await visit(owner, `/companies/${company.id}/billing`)
+  await expect(owner.getByTestId("company-currency")).toHaveAttribute("data-currency", "JPY")
+
+  await openDialog(owner, owner.getByTestId("top-up").first())
+  await expect(owner.getByRole("dialog").getByTestId("custom-quote")).toContainText("¥7,500")
+  await shots(owner, "top-up-jpy", true)
 })

@@ -7,6 +7,8 @@
     "currency": "통화",
     "currencyNote": "어디에 있든 가격이 이 통화로 표시됩니다. 회사 충전은 회사의 통화로 이루어집니다.",
     "currencyFailed": "통화를 변경하지 못했습니다. 다시 시도해 주세요.",
+    "searchCurrency": "통화 검색",
+    "noCurrency": "통화를 찾을 수 없습니다",
     "account": "내 계정",
     "accountNote": "계정에 관해 문의할 때 이 ID를 알려 주세요.",
     "yourData": "내 데이터",

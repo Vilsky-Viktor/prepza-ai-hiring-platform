@@ -7,6 +7,8 @@
     "currency": "Currency",
     "currencyNote": "Prices show in it, wherever you are. A company's top-ups are in the company's own currency.",
     "currencyFailed": "Couldn't change the currency. Please try again.",
+    "searchCurrency": "Search currencies",
+    "noCurrency": "No currency found",
     "account": "Your account",
     "accountNote": "Quote this ID when you write to us about your account.",
     "yourData": "Your data",

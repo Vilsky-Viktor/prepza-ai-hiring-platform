@@ -7,6 +7,8 @@
     "currency": "Valuuta",
     "currencyNote": "Hinnad näidatakse selles, kus iganes sa oled. Ettevõtte juurdelaadimised on ettevõtte enda valuutas.",
     "currencyFailed": "Valuutat ei õnnestunud muuta. Proovi uuesti.",
+    "searchCurrency": "Otsi valuutat",
+    "noCurrency": "Valuutat ei leitud",
     "account": "Sinu konto",
     "accountNote": "Lisa see ID, kui kirjutad meile oma konto kohta.",
     "yourData": "Sinu andmed",

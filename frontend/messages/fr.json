@@ -7,6 +7,8 @@
     "currency": "Devise",
     "currencyNote": "Les prix s'affichent dans cette devise, où que vous soyez. Les recharges d'une entreprise se font dans sa propre devise.",
     "currencyFailed": "Impossible de changer la devise. Veuillez réessayer.",
+    "searchCurrency": "Rechercher une devise",
+    "noCurrency": "Aucune devise trouvée",
     "account": "Votre compte",
     "accountNote": "Indiquez cet ID quand vous nous écrivez au sujet de votre compte.",
     "yourData": "Vos données",

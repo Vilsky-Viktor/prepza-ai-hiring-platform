@@ -7,6 +7,8 @@
     "currency": "Valuta",
     "currencyNote": "Prijzen worden in deze valuta getoond, waar je ook bent. Opwaarderingen van een bedrijf gaan in de eigen valuta van het bedrijf.",
     "currencyFailed": "Kon de valuta niet wijzigen. Probeer het opnieuw.",
+    "searchCurrency": "Valuta zoeken",
+    "noCurrency": "Geen valuta gevonden",
     "account": "Je account",
     "accountNote": "Vermeld deze ID als je ons over je account schrijft.",
     "yourData": "Je gegevens",

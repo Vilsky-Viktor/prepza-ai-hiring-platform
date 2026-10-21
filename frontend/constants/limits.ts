@@ -25,8 +25,9 @@ export const MAX_HELP_QUESTION_LENGTH = 1000
 // rounds MAX_CONTACT_NAME_LENGTH and MAX_CONTACT_MESSAGE_LENGTH: the contact form.
 export const MAX_CONTACT_NAME_LENGTH = 100
 export const MAX_CONTACT_MESSAGE_LENGTH = 5000
-// The language picker's search: it only filters the list in the browser, and names are short.
-export const MAX_LANGUAGE_SEARCH_LENGTH = 50
+// A picker's search (languages, currencies): it only filters the list in the browser, and names
+// are short.
+export const MAX_PICKER_SEARCH_LENGTH = 50
 // The longest email address there can be (RFC 5321); the services check every address.
 export const MAX_EMAIL_LENGTH = 254
 // companies MAX_SEARCH_LENGTH: a search through candidates' emails.
