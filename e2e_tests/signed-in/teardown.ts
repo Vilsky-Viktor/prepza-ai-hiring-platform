@@ -111,12 +111,16 @@ export default async function teardown() {
     }
   }
 
-  // An account's deletion reaches its sign-in through an event: count what's left once it has.
-  let left = (await throwawayUsers(project)).length
+  // An account's deletion reaches its sign-in through an event: count what's left of these
+  // accounts once it has. Only these: another account may have aged past STALE_MS meanwhile.
+  const ids = new Set(users.map((user) => user.localId))
+  const remaining = async () =>
+    (await throwawayUsers(project)).filter((user) => ids.has(user.localId)).length
+  let left = await remaining()
 
   for (let tries = 0; left > 0 && tries < LEFT_CHECKS; tries++) {
     await new Promise((resolve) => setTimeout(resolve, LEFT_CHECK_MS))
-    left = (await throwawayUsers(project)).length
+    left = await remaining()
   }
 
   console.log(`clean-up: ${users.length - left} throwaway accounts deleted, ${left} left`)
