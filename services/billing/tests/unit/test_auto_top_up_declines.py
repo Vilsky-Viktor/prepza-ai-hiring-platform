@@ -53,8 +53,11 @@ def charging(monkeypatch):
 
         return setup["code"]
 
-    async def publish_quietly(event):
+    async def tell(event):
         seen["told"].append(event)
+
+    async def nothing():
+        pass
 
     def answer(status):
         async def charge(row, owner_id, now):
@@ -66,7 +69,8 @@ def charging(monkeypatch):
     monkeypatch.setattr(auto_top_up_charges, "declined", declined)
     monkeypatch.setattr(auto_top_up_charges, "pause", pause)
     monkeypatch.setattr(paddle, "charge_error", charge_error)
-    monkeypatch.setattr(auto_top_up_declines, "publish_quietly", publish_quietly)
+    monkeypatch.setattr(auto_top_up_declines, "tell", tell)
+    monkeypatch.setattr(auto_top_up_declines.outbox_service, "flush_quietly", nothing)
 
     return answer, setup, seen
 

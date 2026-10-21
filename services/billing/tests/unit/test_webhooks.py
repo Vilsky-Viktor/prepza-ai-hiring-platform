@@ -59,12 +59,13 @@ def granted(monkeypatch):
         currency,
         now,
         automatic=False,
+        events=(),
     ):
         calls.append((transaction_id, product, quantity, credits, owner_id, buyer_id))
 
         return True
 
-    async def no_referral(owner_type, owner_id, transaction_id):
+    async def no_referral(owner_type, owner_id, transaction_id, events_for=None):
         return None
 
     monkeypatch.setattr(purchases, "grant", fake_grant)
@@ -92,11 +93,11 @@ def money(monkeypatch):
     kept = []
 
     async def fake_grant(*args):
-        kept.append(args[7:9] + args[10:])
+        kept.append(args[7:9] + args[10:11])
 
         return True
 
-    async def no_referral(owner_type, owner_id, transaction_id):
+    async def no_referral(owner_type, owner_id, transaction_id, events_for=None):
         return None
 
     async def owner_of(subscription_id):

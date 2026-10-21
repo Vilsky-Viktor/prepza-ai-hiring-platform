@@ -1,6 +1,6 @@
 from prepza_common.analytics import track
 from prepza_common.constants import MAX_PAGE_SIZE
-from prepza_common.notifications import NotificationKind, notification, publish_quietly
+from prepza_common.notifications import NOTIFICATION_REQUESTED, NotificationKind, notification
 
 from app.constants.credits import REFERRAL_REWARD
 from app.constants.notifications import REFERRAL_LINK
@@ -24,21 +24,26 @@ async def referral_out(owner_type: str, owner_id: str) -> ReferralOut:
 async def reward_after_top_up(owner_type: str, owner_id: str, transaction_id: str) -> None:
     """The first top-up pays the referral its company came through, once, and tells the
     referrer."""
-    referrer_id = await referrals.reward(owner_type, owner_id, transaction_id)
+
+    def told(referrer_id: str) -> list[tuple[str, dict]]:
+        # The referrer got the reward too (the company that topped up hears of its top-up).
+        notice = notification(
+            owner_type,
+            referrer_id,
+            NotificationKind.REFERRAL_REWARDED,
+            REFERRAL_LINK.format(owner_id=referrer_id),
+            credits=REFERRAL_REWARD,
+        )
+
+        return [
+            credit_events.credits_added(owner_type, referrer_id),
+            (NOTIFICATION_REQUESTED, notice),
+        ]
+
+    referrer_id = await referrals.reward(owner_type, owner_id, transaction_id, told)
 
     if referrer_id is not None:
-        # The referrer got the reward too (the company that topped up hears of its top-up).
-        await credit_events.credits_added(owner_type, referrer_id)
         await track("referral_rewarded", company_id=owner_id)
-        await publish_quietly(
-            notification(
-                owner_type,
-                referrer_id,
-                NotificationKind.REFERRAL_REWARDED,
-                REFERRAL_LINK.format(owner_id=referrer_id),
-                credits=REFERRAL_REWARD,
-            )
-        )
 
 
 async def take_back_reward(owner_id: str, transaction_id: str) -> None:

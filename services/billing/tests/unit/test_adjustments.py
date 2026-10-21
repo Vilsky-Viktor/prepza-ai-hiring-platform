@@ -18,7 +18,15 @@ def moved(monkeypatch):
     taken = {}
 
     async def take_back_credits(
-        owner_type, owner_id, amount, transaction_id, adjustment_id, reason, total, currency
+        owner_type,
+        owner_id,
+        amount,
+        transaction_id,
+        adjustment_id,
+        reason,
+        total,
+        currency,
+        events=(),
     ):
         calls.append((owner_id, amount, f"adjustment:{transaction_id}:{adjustment_id}", reason))
         taken[transaction_id] = taken.get(transaction_id, 0) - amount
@@ -53,7 +61,7 @@ def test_a_refund_keeps_the_money_it_returned(monkeypatch):
         return ("company", "acme", 1_000, 1000)
 
     async def take_back_credits(owner_type, owner_id, amount, *rest):
-        kept.append(rest[-2:])
+        kept.append(rest[-3:-1])
 
         return 0
 

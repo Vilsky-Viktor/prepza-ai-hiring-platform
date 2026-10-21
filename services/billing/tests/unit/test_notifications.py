@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common.notifications import notification
+from prepza_common.notifications import NOTIFICATION_REQUESTED, notification
 
 from app.integrations import paddle
 from app.services import auto_top_up_declines, auto_top_ups, referrals, topups, webhooks
@@ -15,19 +15,30 @@ from tests.unit.paddle_events import completed
 
 @pytest.fixture
 def notified(monkeypatch):
+    """The bell's notifications billing saves through its outbox."""
     sent = []
 
-    async def fake_publish(event):
+    async def tell(event):
         sent.append(event)
 
-    for module in (referrals, topups, auto_top_up_declines):
-        monkeypatch.setattr(module, "publish_quietly", fake_publish)
+    async def nothing():
+        pass
+
+    monkeypatch.setattr(auto_top_up_declines, "tell", tell)
+    monkeypatch.setattr(auto_top_up_declines.outbox_service, "flush_quietly", nothing)
+    monkeypatch.setattr(topups.outbox_service, "flush_quietly", nothing)
 
     return sent
 
 
+def bells(events) -> list[dict]:
+    return [data for kind, data in events if kind == NOTIFICATION_REQUESTED]
+
+
 def test_a_rewarded_referrer_is_told_with_the_reward(monkeypatch, notified):
-    async def rewarded(owner_type, owner_id, transaction_id):
+    async def rewarded(owner_type, owner_id, transaction_id, events_for):
+        notified.extend(bells(events_for("bob")))
+
         return "bob"
 
     monkeypatch.setattr(referrals_storage, "reward", rewarded)
@@ -42,11 +53,13 @@ def test_a_rewarded_referrer_is_told_with_the_reward(monkeypatch, notified):
 
 
 @pytest.fixture
-def granted(monkeypatch):
+def granted(monkeypatch, notified):
     async def fake_grant(*args):
+        notified.extend(bells(args[11]))
+
         return True
 
-    async def no_referral(owner_type, owner_id, transaction_id):
+    async def no_referral(owner_type, owner_id, transaction_id, events_for=None):
         return None
 
     async def owner(subscription_id):

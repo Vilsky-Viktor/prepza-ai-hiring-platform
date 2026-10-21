@@ -3,7 +3,7 @@ from datetime import datetime
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.notifications import NotificationKind, notification, publish_quietly
+from prepza_common.notifications import NotificationKind, notification
 
 from app.constants.declines import DECLINE_READ_TIMEOUT_SECONDS, HARD_DECLINE_CODES
 from app.constants.notifications import COMPANY_BILLING_LINK, TOP_UP_LINK
@@ -11,7 +11,9 @@ from app.constants.products import NOT_YOUR_AUTO_TOP_UP, PADDLE_REFUSES_BILLING
 from app.integrations import paddle
 from app.models.billing import AutoTopUp
 from app.schemas.billing import CheckoutOut
+from app.services import outbox as outbox_service
 from app.storage import auto_top_up_charges, auto_top_ups
+from app.storage.events import tell
 
 logger = logging.getLogger(__name__)
 
@@ -62,7 +64,9 @@ async def handle_decline(row: AutoTopUp, owner_type: str, owner_id: str, now: da
     else:
         event = notification(owner_type, owner_id, NotificationKind.AUTO_TOP_UP_FAILED, TOP_UP_LINK)
 
-    await publish_quietly(event)
+    # Through the outbox, so a Pub/Sub failure doesn't lose it; sent now if Pub/Sub takes it.
+    await tell(event)
+    await outbox_service.flush_quietly()
 
 
 async def card_update(owner_type: str, owner_id: str, buyer_id: str) -> CheckoutOut:

@@ -11,6 +11,7 @@ from app.models.billing import Entry, Hold, Purchase, Wallet
 from app.models.outbox import OutboxEvent
 from app.storage import referrals
 from app.storage.db import Session
+from app.storage.events import save
 from app.storage.ledger import add, ensure
 
 
@@ -26,9 +27,11 @@ async def grant(
     currency: str,
     now: datetime,
     automatic: bool = False,
+    events: list[tuple[str, dict]] = (),
 ) -> bool:
-    """Adds a paid top-up once per product of a transaction, however often Paddle retries.
-    `credits` is what the whole line buys; `quantity` is kept for the accounts."""
+    """Adds a paid top-up once per product of a transaction, however often Paddle retries, with
+    `events` (type, data) for the outbox in the same transaction. `credits` is what the whole
+    line buys; `quantity` is kept for the accounts."""
     async with Session() as session:
         new = await session.scalar(
             insert(Purchase)
@@ -77,6 +80,7 @@ async def grant(
                 owner_id,
             )
 
+        save(session, events)
         await session.commit()
 
         return True
@@ -112,10 +116,11 @@ async def take_back(
     reason: str,
     total: str | None = None,
     currency: str | None = None,
+    events: list[tuple[str, dict]] = (),
 ) -> int:
     """Moves an adjustment's credits once, whatever the balance (a refund or chargeback may leave
-    it negative), and returns how many credits the transaction's adjustments have taken back so
-    far, less what reversals returned. The transaction's lines are locked, so adjustments of one
+    it negative), with `events` for the outbox when it moves them, and returns how many credits
+    the transaction's adjustments have taken back so far, less what reversals returned. The transaction's lines are locked, so adjustments of one
     transaction arriving together are counted one after the other."""
     prefix = f"adjustment:{transaction_id}:"
 
@@ -143,6 +148,7 @@ async def take_back(
                 total,
                 currency,
             )
+            save(session, events)
 
         taken = await session.scalar(
             select(func.coalesce(-func.sum(Entry.amount), 0)).where(

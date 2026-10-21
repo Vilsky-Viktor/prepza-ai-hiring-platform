@@ -1,4 +1,5 @@
 import secrets
+from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
 
 from prepza_common.constants import DELETED_USER
@@ -14,6 +15,7 @@ from app.constants.credits import (
 )
 from app.models.billing import Entry, Referral, Wallet
 from app.storage.db import Session
+from app.storage.events import save
 from app.storage.ledger import add, ensure
 
 
@@ -59,10 +61,16 @@ def reward_key(owner_type: str, owner_id: str, transaction_id: str) -> str:
     return f"referral:{owner_type}:{owner_id}:{transaction_id}"
 
 
-async def reward(owner_type: str, owner_id: str, transaction_id: str) -> str | None:
+async def reward(
+    owner_type: str,
+    owner_id: str,
+    transaction_id: str,
+    events_for: Callable[[str], list[tuple[str, dict]]] = lambda referrer_id: [],
+) -> str | None:
     """Pays a referral once its new company has topped up (`transaction_id`): both sides get
-    the reward, the referrer only within their yearly limit and while their wallet exists.
-    The referrer's id when it was paid."""
+    the reward, the referrer only within their yearly limit and while their wallet exists, with
+    `events_for(referrer)` for the outbox in the same transaction. The referrer's id when it was
+    paid."""
     amount = REFERRAL_REWARD
     now = datetime.now(UTC)
     key = reward_key(owner_type, owner_id, transaction_id)
@@ -103,6 +111,7 @@ async def reward(owner_type: str, owner_id: str, transaction_id: str) -> str | N
 
         if paid:
             await add(session, owner_type, referrer_id, amount, f"{key}:referrer", Reason.REFERRAL)
+            save(session, events_for(referrer_id))
 
         await session.commit()
 

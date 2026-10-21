@@ -3,7 +3,7 @@ import logging
 from datetime import UTC, datetime
 
 from prepza_common.analytics import track
-from prepza_common.notifications import NotificationKind, notification, publish_quietly
+from prepza_common.notifications import NOTIFICATION_REQUESTED, NotificationKind, notification
 
 from app.config.settings import settings
 from app.constants.declines import PAYMENT_METHOD_CHANGE_ORIGIN
@@ -76,6 +76,20 @@ async def handle_completed(data: dict) -> None:
             continue
 
         key, paid_cents, credits = found
+        # With the credits: the services waiting for them hear of it, and for an automatic
+        # top-up the owner's bell.
+        events = [credit_events.credits_added(owner_type, owner_id)]
+
+        if subscription_id:
+            notice = notification(
+                owner_type,
+                owner_id,
+                NotificationKind.AUTO_TOP_UP_CHARGED,
+                TOP_UP_LINK,
+                credits=credits,
+            )
+            events.append((NOTIFICATION_REQUESTED, notice))
+
         granted = await purchases.grant(
             owner_type,
             owner_id,
@@ -88,6 +102,7 @@ async def handle_completed(data: dict) -> None:
             data["currency_code"],
             datetime.now(UTC),
             subscription_id is not None,
+            events,
         )
 
         # Paid once (it's idempotent), also on Paddle's retry after a failure right after the
@@ -95,21 +110,17 @@ async def handle_completed(data: dict) -> None:
         await reward_after_top_up(owner_type, owner_id, data["id"])
 
         if granted:
-            await announce_top_up(
-                owner_type, owner_id, paid_cents, key, credits, data, subscription_id
-            )
+            await announce_top_up(owner_id, paid_cents, key, data, subscription_id)
 
 
-async def announce_top_up(
-    owner_type, owner_id, paid_cents, key, credits, data, subscription_id
-) -> None:
-    """Tells everyone of a new top-up: the action log, the services waiting for credits, the
-    funnel and, for an automatic one, the owner's bell. All at once, never one after another:
-    each waits at most PUBLISH_IN_REQUEST_TIMEOUT_SECONDS and none raises, so Paddle gets its
-    answer within its 5 seconds even when Pub/Sub is slow, instead of retrying."""
+async def announce_top_up(owner_id, paid_cents, key, data, subscription_id) -> None:
+    """Tells everyone of a new top-up: the outbox's events saved with it (the action log, the
+    services waiting for credits, an automatic one's bell) and the funnel. At once, never one
+    after another: each waits at most PUBLISH_IN_REQUEST_TIMEOUT_SECONDS and none raises, so
+    Paddle gets its answer within its 5 seconds even when Pub/Sub is slow, instead of
+    retrying; the outbox's next run publishes what this one couldn't."""
     steps = [
         outbox_service.flush_quietly(),
-        credit_events.credits_added(owner_type, owner_id),
         track(
             "topped_up",
             company_id=owner_id,
@@ -119,18 +130,5 @@ async def announce_top_up(
             automatic=subscription_id is not None,
         ),
     ]
-
-    if subscription_id:
-        steps.append(
-            publish_quietly(
-                notification(
-                    owner_type,
-                    owner_id,
-                    NotificationKind.AUTO_TOP_UP_CHARGED,
-                    TOP_UP_LINK,
-                    credits=credits,
-                )
-            )
-        )
 
     await asyncio.gather(*steps)

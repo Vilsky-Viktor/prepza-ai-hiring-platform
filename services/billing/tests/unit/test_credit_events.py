@@ -1,50 +1,54 @@
+"""credits.added, which tells other services an owner got credits: saved through the outbox with
+the credits it announces (a top-up, a referral reward, a chargeback reversed), never for
+credits taken back or for Paddle's repeat."""
+
 import asyncio
 
 import pytest
-from prepza_common.constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
 
-from app.services import credit_events, referrals, webhooks
+from app.services import topups, webhooks
 from app.storage import purchases
 from app.storage import referrals as referrals_storage
 from tests.unit.paddle_events import adjustment, completed
 
-
-@pytest.fixture
-def published(monkeypatch):
-    """The credits.added events billing publishes, as (type, data, timeout)."""
-    sent = []
-
-    async def fake_publish(event_type, data, timeout):
-        sent.append((event_type, data, timeout))
-
-    async def quietly(event):
-        pass
-
-    monkeypatch.setattr(credit_events.pubsub, "publish", fake_publish)
-    monkeypatch.setattr(referrals, "publish_quietly", quietly)
-
-    return sent
+CREDITS_ADDED = "credits.added"
 
 
 def added(owner_id):
-    return (
-        "credits.added",
-        {"owner_type": "company", "owner_id": owner_id},
-        PUBLISH_IN_REQUEST_TIMEOUT_SECONDS,
-    )
+    return (CREDITS_ADDED, {"owner_type": "company", "owner_id": owner_id})
 
 
 @pytest.fixture
-def top_up(monkeypatch):
+def saved(monkeypatch):
+    """The credits.added events saved with the changes, as (type, data)."""
+    found = []
+
+    async def nothing(*args, **kwargs):
+        pass
+
+    monkeypatch.setattr(topups.outbox_service, "flush_quietly", nothing)
+    monkeypatch.setattr(topups, "track", nothing)
+
+    return found
+
+
+@pytest.fixture
+def top_up(monkeypatch, saved):
     """A top-up whose grant is new (or Paddle's repeat) and whose referral pays `referrer`."""
-    state = {"granted": True, "referrer": None, "grants": 0}
+    state = {"granted": True, "referrer": None}
 
     async def grant(*args):
-        state["grants"] += 1
+        if state["granted"]:
+            saved.extend(event for event in args[11] if event[0] == CREDITS_ADDED)
 
         return state["granted"]
 
-    async def reward(owner_type, owner_id, transaction_id):
+    async def reward(owner_type, owner_id, transaction_id, events_for=lambda _: []):
+        if state["referrer"] is None:
+            return None
+
+        saved.extend(e for e in events_for(state["referrer"]) if e[0] == CREDITS_ADDED)
+
         return state["referrer"]
 
     monkeypatch.setattr(purchases, "grant", grant)
@@ -53,43 +57,35 @@ def top_up(monkeypatch):
     return state
 
 
-def test_a_new_top_up_tells_that_the_company_got_credits(top_up, published):
+def test_a_new_top_up_saves_that_the_company_got_credits(top_up, saved):
     asyncio.run(webhooks.handle(completed()))
 
-    assert published == [added("acme")]
+    assert saved == [added("acme")]
 
 
-def test_paddles_repeat_of_a_top_up_tells_nobody_again(top_up, published):
+def test_paddles_repeat_of_a_top_up_saves_nothing_again(top_up, saved):
     top_up["granted"] = False
     asyncio.run(webhooks.handle(completed()))
 
-    assert published == []
+    assert saved == []
 
 
-def test_a_referral_reward_tells_both_companies_once_each(top_up, published):
+def test_a_referral_reward_tells_both_companies_once_each(top_up, saved):
     top_up["referrer"] = "bob"
     asyncio.run(webhooks.handle(completed()))
 
     # The referrer for its reward; the company that topped up for its top-up, once.
-    assert sorted(event[1]["owner_id"] for event in published) == ["acme", "bob"]
-
-
-def test_a_failing_publish_still_adds_the_credits(top_up, monkeypatch):
-    async def down(*args):
-        raise RuntimeError("Pub/Sub down")
-
-    monkeypatch.setattr(credit_events.pubsub, "publish", down)
-    asyncio.run(webhooks.handle(completed()))
-
-    assert top_up["grants"] == 1
+    assert sorted(event[1]["owner_id"] for event in saved) == ["acme", "bob"]
 
 
 @pytest.fixture
-def adjusted(monkeypatch):
+def adjusted(monkeypatch, saved):
     async def bought(transaction_id):
         return ("company", "acme", 1_000, 1000)
 
     async def take_back_credits(*args):
+        saved.extend(args[8])
+
         return 0
 
     async def take_back(transaction_id):
@@ -100,32 +96,29 @@ def adjusted(monkeypatch):
     monkeypatch.setattr(referrals_storage, "take_back", take_back)
 
 
-def test_a_reversed_chargeback_tells_that_the_company_got_credits(adjusted, published):
+def test_a_reversed_chargeback_saves_that_the_company_got_credits(adjusted, saved):
     asyncio.run(webhooks.handle(adjustment(action="chargeback_reverse")))
 
-    assert published == [added("acme")]
+    assert saved == [added("acme")]
 
 
 @pytest.mark.parametrize("action", ["refund", "chargeback"])
-def test_credits_taken_back_tell_nobody(adjusted, published, action):
+def test_credits_taken_back_tell_nobody(adjusted, saved, action):
     asyncio.run(webhooks.handle(adjustment(action=action)))
 
-    assert published == []
+    assert saved == []
 
 
 def test_a_slow_pub_sub_delays_paddles_answer_once_not_once_a_message(top_up, monkeypatch):
     import time
 
-    from app.services import topups
-
     async def slow(*args, **kwargs):
         await asyncio.sleep(0.3)
 
-    monkeypatch.setattr(credit_events.pubsub, "publish", slow)
     monkeypatch.setattr(topups, "track", slow)
     monkeypatch.setattr(topups.outbox_service, "flush_quietly", slow)
     started = time.monotonic()
     asyncio.run(webhooks.handle(completed()))
 
-    # Three messages of 0.3 s each: sent together, not one after another (0.9 s).
-    assert time.monotonic() - started < 0.6
+    # Two waits of 0.3 s each: together, not one after another (0.6 s).
+    assert time.monotonic() - started < 0.5
