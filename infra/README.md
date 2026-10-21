@@ -225,7 +225,7 @@ The services stay on the main instance (each mounts only its socket), so the clo
    pg_restore -h 127.0.0.1 -p 6543 -U prepza -d companies --clean --if-exists --no-owner \
      --role=companies companies.dump
    ```
-3. Turn maintenance mode off, then delete the clone (`gcloud sql instances delete prepza-recovered`).
+3. Turn maintenance mode off, then delete the clone (`gcloud sql instances delete prepza-recovered`) and the dump (`rm companies.dump`): erased people must not outlive the backups' 14 days in a copy.
 
 To restore everything, restore the instance from a backup instead (`gcloud sql backups restore`), which overwrites all nine databases.
 

@@ -11,11 +11,12 @@ resource "google_bigquery_table" "funnel_events" {
   dataset_id = google_bigquery_dataset.analytics.dataset_id
   table_id   = "funnel_events"
 
-  # A day per partition, each kept 25 months: enough to compare a year with the one before.
+  # A day per partition, each kept 25 months (761 days, never more, as the privacy policy says):
+  # enough to compare a year with the one before.
   time_partitioning {
     type          = "DAY"
     field         = "publish_time"
-    expiration_ms = 25 * 31 * 24 * 60 * 60 * 1000
+    expiration_ms = 761 * 24 * 60 * 60 * 1000
   }
 
   # The columns a BigQuery subscription writes with its metadata; `data` is the event's JSON

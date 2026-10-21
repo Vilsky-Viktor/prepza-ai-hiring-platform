@@ -142,7 +142,7 @@ resource "google_monitoring_alert_policy" "database_backup_failed" {
   }
 
   documentation {
-    content   = "A database backup failed. Check the instance's backups in Cloud SQL and start one by hand (gcloud sql backups create --instance=prepza)."
+    content   = "A database backup failed. Check the instance's backups in Cloud SQL and start one by hand (gcloud sql backups create --instance=prepza). Google keeps a backup made by hand until someone deletes it: once the automated backups work again, delete it (gcloud sql backups delete <id> --instance=prepza), at most 14 days later, so backups last no longer than the privacy policy says."
     mime_type = "text/markdown"
   }
 
