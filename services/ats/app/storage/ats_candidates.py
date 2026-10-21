@@ -8,6 +8,7 @@ from sqlalchemy import and_, delete, func, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 
 from app.constants.ats import (
+    INVITE_BATCH,
     STALE_CLAIM_MINUTES,
     TOPPED_UP_DAYS,
     CandidateStatus,
@@ -109,10 +110,12 @@ async def not_invited(company_id: UUID, link_id: UUID) -> list[AtsCandidate]:
         .where(*mine, AtsCandidate.status == CandidateStatus.FAILED)
         .values(status=CandidateStatus.WAITING, reason=None, attempts=0)
     )
+    # One batch is invited now (invite_all), the rest by the recovery job.
     query = (
         select(AtsCandidate)
         .where(*mine, or_(AtsCandidate.status == CandidateStatus.WAITING, _stale()))
         .order_by(AtsCandidate.created_at)
+        .limit(INVITE_BATCH)
     )
 
     async with Session() as session:
@@ -190,7 +193,8 @@ async def settle(
 
 
 async def waiting(interview_id: UUID) -> list[AtsCandidate]:
-    """The candidates waiting for an interview to be ready, oldest first."""
+    """The first INVITE_BATCH candidates waiting for an interview to be ready, oldest first: one
+    batch is invited now, the rest by the recovery job."""
     query = (
         select(AtsCandidate)
         .where(
@@ -198,6 +202,7 @@ async def waiting(interview_id: UUID) -> list[AtsCandidate]:
             AtsCandidate.interview_id == interview_id,
         )
         .order_by(AtsCandidate.created_at)
+        .limit(INVITE_BATCH)
     )
 
     async with Session() as session:
