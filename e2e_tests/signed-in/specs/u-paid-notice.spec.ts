@@ -1,12 +1,13 @@
 import { expect, test } from "../fixtures";
 import { createCompany } from "../helpers/api";
-import { openTopUpCheckout, PAYING_CARD, payWith } from "../helpers/paddle";
+import { openTopUpCheckout, payWithPayingCard } from "../helpers/paddle";
 import { shot } from "../helpers/screenshots";
 import { ownerEmail } from "../helpers/users";
 
 // A top-up paid in Paddle's sandbox checkout: once Paddle completes the payment, its checkout
 // closes and the success dialog shows on the same page, with nothing added to the address, and
-// the checkout doesn't come back. Needs Paddle's sandbox keys and prices in .env.
+// the checkout doesn't come back. Needs Paddle's sandbox keys and prices in .env. Paddle's
+// sandbox processor now and then fails an attempt on its side; that one is paid again.
 test("a completed payment shows the success dialog in place", async ({
   signInAs,
 }) => {
@@ -15,8 +16,9 @@ test("a completed payment shows the success dialog in place", async ({
   const checkout = owner.locator("iframe.paddle-frame");
   const paid = owner.getByTestId("paid-notice");
 
-  await openTopUpCheckout(owner, company.id);
-  await payWith(owner, PAYING_CARD);
+  test.setTimeout(300_000);
+  const transaction = await openTopUpCheckout(owner, company.id);
+  await payWithPayingCard(owner, transaction);
 
   await expect(paid).toBeVisible({ timeout: 60_000 });
   await expect(paid).toHaveAttribute("data-paid", "top_up");
