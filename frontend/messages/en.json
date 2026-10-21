@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Answers marked wrong per company a day",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Interview generations run again per company a day",
       "HELP_VOTES_PER_IP_HOUR": "Help chat answer votes per address an hour",
+      "STREAMS_PER_USER": "Open bell streams per user at once",
       "ATS_CONNECTS_PER_HOUR": "ATS connections per company an hour",
       "RESEND_DAILY_LIMIT": "Emails a day through Resend",
       "RESEND_RESERVE_PERCENT": "Share of the Resend emails a day kept from bulk sends",

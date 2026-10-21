@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Ответы, отмеченные как неверные, на компанию в день",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Повторные запуски создания интервью на компанию в день",
       "HELP_VOTES_PER_IP_HOUR": "Оценки ответов чата помощи с одного адреса в час",
+      "STREAMS_PER_USER": "Одновременно открытые потоки колокольчика на пользователя",
       "ATS_CONNECTS_PER_HOUR": "Подключения ATS на компанию в час",
       "RESEND_DAILY_LIMIT": "Письма через Resend в день",
       "RESEND_RESERVE_PERCENT": "Доля дневных писем через Resend, закрытая для массовой отправки",

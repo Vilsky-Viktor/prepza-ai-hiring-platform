@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Als falsch markierte Antworten pro Unternehmen und Tag",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Erneut gestartete Interview-Erstellungen pro Unternehmen und Tag",
       "HELP_VOTES_PER_IP_HOUR": "Bewertungen von Hilfe-Chat-Antworten pro Adresse und Stunde",
+      "STREAMS_PER_USER": "Gleichzeitig offene Glocken-Streams pro Nutzer",
       "ATS_CONNECTS_PER_HOUR": "ATS-Verbindungen pro Unternehmen und Stunde",
       "RESEND_DAILY_LIMIT": "E-Mails pro Tag über Resend",
       "RESEND_RESERVE_PERCENT": "Anteil der täglichen E-Mails über Resend, der für Massenversand gesperrt bleibt",

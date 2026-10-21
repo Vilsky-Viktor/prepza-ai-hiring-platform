@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Jawaban yang ditandai salah per perusahaan per hari",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Pembuatan wawancara yang dijalankan ulang per perusahaan per hari",
       "HELP_VOTES_PER_IP_HOUR": "Suara untuk jawaban chat bantuan per alamat per jam",
+      "STREAMS_PER_USER": "Aliran lonceng yang terbuka bersamaan per pengguna",
       "ATS_CONNECTS_PER_HOUR": "Koneksi ATS per perusahaan per jam",
       "RESEND_DAILY_LIMIT": "Email per hari lewat Resend",
       "RESEND_RESERVE_PERCENT": "Porsi email per hari lewat Resend yang disisihkan dari pengiriman massal",

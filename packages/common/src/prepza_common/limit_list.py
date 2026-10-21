@@ -204,6 +204,8 @@ LIMITS = {
     "MAX_WEBHOOKS": Limit("api", 5, "items", None, 1, 100, "company"),
     "API_REQUESTS_PER_MINUTE": Limit("api", 60, "calls", MINUTE_SECONDS, 1, 10_000, "company"),
     # Test events sent to a company's web hooks, each a request to the company's server.
+    # The bell's open streams (a tab each) one user may hold at once.
+    "STREAMS_PER_USER": Limit("notifications", 10, "items", None, 1, 100, "user"),
     "WEBHOOK_TESTS_PER_HOUR": Limit("api", 30, "calls", HOUR_SECONDS, 1, 1_000, "company"),
     # ATS connections made or replaced, each checked with a call to the ATS.
     "ATS_CONNECTS_PER_HOUR": Limit("ats", 20, "calls", HOUR_SECONDS, 1, 1_000, "company"),

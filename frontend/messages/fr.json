@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Réponses signalées comme fausses par entreprise et par jour",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Générations d'entretiens relancées par entreprise et par jour",
       "HELP_VOTES_PER_IP_HOUR": "Votes sur les réponses du chat d'aide par adresse et par heure",
+      "STREAMS_PER_USER": "Flux de la cloche ouverts en même temps par utilisateur",
       "ATS_CONNECTS_PER_HOUR": "Connexions d'ATS par entreprise et par heure",
       "RESEND_DAILY_LIMIT": "E-mails par jour via Resend",
       "RESEND_RESERVE_PERCENT": "Part des e-mails quotidiens via Resend réservée hors envois groupés",

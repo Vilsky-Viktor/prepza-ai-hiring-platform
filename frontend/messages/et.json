@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Valeks märgitud vastused ettevõtte kohta päevas",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Uuesti käivitatud intervjuude koostamised ettevõtte kohta päevas",
       "HELP_VOTES_PER_IP_HOUR": "Abivestluse vastuste hinnangud aadressi kohta tunnis",
+      "STREAMS_PER_USER": "Korraga avatud kellavood kasutaja kohta",
       "ATS_CONNECTS_PER_HOUR": "ATS-i ühendused ettevõtte kohta tunnis",
       "RESEND_DAILY_LIMIT": "E-kirjad päevas Resendi kaudu",
       "RESEND_RESERVE_PERCENT": "Osa Resendi kaudu saadetavatest päevastest e-kirjadest, mis hoitakse massiliste saadetiste eest kõrvale",

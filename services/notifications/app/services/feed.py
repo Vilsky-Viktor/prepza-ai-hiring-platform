@@ -8,8 +8,10 @@ import anyio
 import httpx
 from fastapi import HTTPException, status
 from prepza_common import memory_cache
-from prepza_common.constants import RATE_LIMITED
+from prepza_common.constants import RATE_LIMITED, RETRY_AFTER
+from prepza_common.limits import limit, record_hit
 from prepza_common.notifications import EVERYONE, NotificationKind, Recipient
+from prepza_common.rate_limit import counted
 from prepza_common.sse import sse_event
 
 from app.constants.notifications import (
@@ -20,10 +22,10 @@ from app.constants.notifications import (
     COMPANY_IDS_SECONDS,
     DROPDOWN_LIMIT,
     HEARTBEAT_SECONDS,
-    MAX_STREAMS_PER_USER,
     STREAM_REFRESH_SECONDS,
     STREAM_RETRY_SECONDS,
     STREAM_SLOT_SECONDS,
+    STREAMS_LIMIT,
 )
 from app.integrations import companies, library
 from app.integrations.redis import get_redis
@@ -150,19 +152,25 @@ async def changes(user_id: str, fresh: bool = False) -> AsyncIterator[str]:
 
 
 async def open_stream(user_id: str, fresh: bool = False) -> AsyncIterator[str]:
-    """One open tab's stream, in one of the user's MAX_STREAMS_PER_USER slots; refused (429)
-    when they're all taken. The slot is given back when the stream ends."""
+    """One open tab's stream, in one of the user's STREAMS_PER_USER slots (a limit edited in the
+    Controls); refused (429, Retry-After the bell's own retry) when they're all taken, and
+    recorded. The slot is given back when the stream ends. The count and its expiry are set in
+    one transaction (rate_limit.counted), so a crash never leaves it without one; slots a crash
+    left free themselves after STREAM_SLOT_SECONDS."""
     key = f"streams:user:{user_id}"
     redis = get_redis()
-    taken = await redis.incr(key)
+    most = await limit(redis, STREAMS_LIMIT)
+    taken, _ = await counted(redis, key, 1, STREAM_SLOT_SECONDS)
 
-    # A refused tab doesn't keep the slots alive: only a granted one renews their expiry.
-    if taken > MAX_STREAMS_PER_USER:
-        await redis.decr(key)
+    if taken > most:
+        await counted(redis, key, -1, STREAM_SLOT_SECONDS)
+        await record_hit(STREAMS_LIMIT, user_id=user_id)
 
-        raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS, RATE_LIMITED)
-
-    await redis.expire(key, STREAM_SLOT_SECONDS)
+        raise HTTPException(
+            status.HTTP_429_TOO_MANY_REQUESTS,
+            RATE_LIMITED,
+            headers={RETRY_AFTER: str(STREAM_RETRY_SECONDS)},
+        )
 
     return in_slot(key, changes(user_id, fresh))
 
@@ -174,4 +182,4 @@ async def in_slot(key: str, stream: AsyncIterator[str]) -> AsyncIterator[str]:
     finally:
         # A tab closing cancels the response; shielded, the slot is still given back.
         with anyio.CancelScope(shield=True):
-            await get_redis().decr(key)
+            await counted(get_redis(), key, -1, STREAM_SLOT_SECONDS)

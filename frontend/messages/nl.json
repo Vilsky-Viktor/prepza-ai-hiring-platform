@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Als fout gemarkeerde antwoorden per bedrijf per dag",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Opnieuw gestarte interviewgeneraties per bedrijf per dag",
       "HELP_VOTES_PER_IP_HOUR": "Stemmen op antwoorden van de helpchat per adres per uur",
+      "STREAMS_PER_USER": "Tegelijk open belstreams per gebruiker",
       "ATS_CONNECTS_PER_HOUR": "ATS-koppelingen per bedrijf per uur",
       "RESEND_DAILY_LIMIT": "E-mails per dag via Resend",
       "RESEND_RESERVE_PERCENT": "Deel van de e-mails per dag via Resend dat buiten bulkverzendingen blijft",

@@ -3,28 +3,60 @@ import asyncio
 import anyio
 import pytest
 from fastapi import HTTPException
+from prepza_common import memory_cache
+from prepza_common.limit_list import LIMITS
 
-from app.constants.notifications import MAX_STREAMS_PER_USER
 from app.services import feed
+
+MOST = LIMITS["STREAMS_PER_USER"].default
 
 
 class FakeRedis:
-    def __init__(self):
+    """Counters and their expiries, set in transactions as rate_limit.counted does."""
+
+    def __init__(self, limits=None):
         self.counts = {}
-        self.expiries = []
+        self.expiries = {}
+        self.limits = limits or {}
 
-    async def incr(self, key):
-        self.counts[key] = self.counts.get(key, 0) + 1
+    def pipeline(self, transaction):
+        return Pipeline(self)
 
-        return self.counts[key]
+    async def hgetall(self, key):
+        return {name.encode(): str(value).encode() for name, value in self.limits.items()}
 
-    async def decr(self, key):
+
+class Pipeline:
+    def __init__(self, redis):
+        self.redis, self.steps = redis, []
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, *args):
+        return False
+
+    def set(self, key, value, ex, nx):
+        if key not in self.redis.counts:
+            self.steps.append(lambda: self.redis.counts.setdefault(key, value))
+            self.redis.expiries[key] = ex
+
+    def incrby(self, key, amount):
+        def run():
+            self.redis.counts[key] = self.redis.counts.get(key, 0) + amount
+
+            return self.redis.counts[key]
+
+        self.steps.append(run)
+
+    def ttl(self, key):
+        self.steps.append(lambda: self.redis.expiries.get(key, -2))
+
+    async def execute(self):
         # A round trip, as the real client's: a cancelled caller stops here.
         await asyncio.sleep(0)
-        self.counts[key] -= 1
 
-    async def expire(self, key, seconds):
-        self.expiries.append(key)
+        return [None] * (3 - len(self.steps)) + [step() for step in self.steps]
 
 
 @pytest.fixture
@@ -34,8 +66,13 @@ def redis(monkeypatch):
     async def changes(user_id, fresh=False):
         yield ": connected\n\n"
 
+    async def record_hit(name, **who):
+        fake.hits = [*getattr(fake, "hits", []), (name, who)]
+
+    monkeypatch.setattr(memory_cache, "_entries", {})
     monkeypatch.setattr(feed, "get_redis", lambda: fake)
     monkeypatch.setattr(feed, "changes", changes)
+    monkeypatch.setattr(feed, "record_hit", record_hit)
 
     return fake
 
@@ -46,12 +83,15 @@ async def read(stream):
 
 def test_a_user_holds_a_limited_number_of_streams_and_a_closed_one_frees_its_slot(redis):
     async def scenario():
-        streams = [await feed.open_stream("ann") for _ in range(MAX_STREAMS_PER_USER)]
+        streams = [await feed.open_stream("ann") for _ in range(MOST)]
 
         with pytest.raises(HTTPException) as refused:
             await feed.open_stream("ann")
 
+        # Refused with when the bell tries again, and recorded.
         assert refused.value.status_code == 429
+        assert int(refused.value.headers["Retry-After"]) > 0
+        assert redis.hits == [("STREAMS_PER_USER", {"user_id": "ann"})]
         # Another user isn't held back by Ann's tabs.
         await read(await feed.open_stream("bob"))
         # One of Ann's streams ends: its slot is free again.
@@ -61,7 +101,21 @@ def test_a_user_holds_a_limited_number_of_streams_and_a_closed_one_frees_its_slo
 
     asyncio.run(scenario())
 
-    assert redis.counts["streams:user:ann"] == MAX_STREAMS_PER_USER
+    assert redis.counts["streams:user:ann"] == MOST
+    # The count never exists without its expiry.
+    assert set(redis.expiries) == {"streams:user:ann", "streams:user:bob"}
+
+
+def test_the_number_of_streams_is_as_edited_in_controls(redis):
+    redis.limits["STREAMS_PER_USER"] = 1
+
+    async def scenario():
+        await feed.open_stream("ann")
+
+        with pytest.raises(HTTPException):
+            await feed.open_stream("ann")
+
+    asyncio.run(scenario())
 
 
 def test_a_tab_closed_mid_stream_frees_its_slot(redis, monkeypatch):
@@ -89,16 +143,3 @@ def test_a_tab_closed_mid_stream_frees_its_slot(redis, monkeypatch):
     asyncio.run(scenario())
 
     assert redis.counts["streams:user:ann"] == 0
-
-
-def test_a_refused_tab_does_not_renew_the_slots(redis):
-    async def scenario():
-        for _ in range(MAX_STREAMS_PER_USER):
-            await feed.open_stream("ann")
-
-        with pytest.raises(HTTPException):
-            await feed.open_stream("ann")
-
-    asyncio.run(scenario())
-
-    assert len(redis.expiries) == MAX_STREAMS_PER_USER

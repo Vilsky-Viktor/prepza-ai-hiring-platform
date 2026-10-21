@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "每家公司每天被标记为错误的答案数",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "每家公司每天重新运行的面试生成次数",
       "HELP_VOTES_PER_IP_HOUR": "每个 IP 地址每小时对帮助聊天回答的评价次数",
+      "STREAMS_PER_USER": "每位用户同时打开的通知铃数据流数",
       "ATS_CONNECTS_PER_HOUR": "每家公司每小时的 ATS 连接数",
       "RESEND_DAILY_LIMIT": "每天通过 Resend 发送的邮件数",
       "RESEND_RESERVE_PERCENT": "每天通过 Resend 发送的邮件中不供群发使用的保留比例",

@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Câu trả lời bị đánh dấu sai mỗi công ty mỗi ngày",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Lượt tạo lại phỏng vấn mỗi công ty mỗi ngày",
       "HELP_VOTES_PER_IP_HOUR": "Lượt bình chọn câu trả lời trò chuyện trợ giúp mỗi địa chỉ mỗi giờ",
+      "STREAMS_PER_USER": "Luồng chuông mở cùng lúc mỗi người dùng",
       "ATS_CONNECTS_PER_HOUR": "Kết nối ATS mỗi công ty mỗi giờ",
       "RESEND_DAILY_LIMIT": "Email mỗi ngày qua Resend",
       "RESEND_RESERVE_PERCENT": "Phần email mỗi ngày qua Resend được giữ lại, không dùng cho gửi hàng loạt",

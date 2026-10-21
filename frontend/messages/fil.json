@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Mga sagot na minarkahang mali bawat kumpanya kada araw",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Mga muling pagbuo ng interview bawat kumpanya kada araw",
       "HELP_VOTES_PER_IP_HOUR": "Mga boto sa sagot ng help chat bawat address kada oras",
+      "STREAMS_PER_USER": "Mga sabay na bukas na stream ng bell bawat user",
       "ATS_CONNECTS_PER_HOUR": "Mga koneksyon sa ATS bawat kumpanya kada oras",
       "RESEND_DAILY_LIMIT": "Mga email kada araw sa pamamagitan ng Resend",
       "RESEND_RESERVE_PERCENT": "Bahagi ng mga email kada araw sa Resend na nakalaan at hindi para sa maramihang pagpapadala",

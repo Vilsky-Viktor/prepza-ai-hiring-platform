@@ -30,9 +30,10 @@ RESUBSCRIBE_SECONDS = 1
 # idle.
 HEARTBEAT_SECONDS = 20
 
-# Open bell streams one user may hold (a tab each), so one account can't take every slot the
-# stream service has; a slot left by a crash frees itself after the longest a stream lives.
-MAX_STREAMS_PER_USER = 10
+# Open bell streams one user may hold (a tab each; limit_list.LIMITS), so one account can't take
+# every slot the stream service has; a slot left by a crash frees itself after the longest a
+# stream lives.
+STREAMS_LIMIT = "STREAMS_PER_USER"
 STREAM_SLOT_SECONDS = 3600
 # A user's companies are kept this long, so every tab's (re)connect doesn't ask companies.
 COMPANY_IDS_SECONDS = 60

@@ -608,6 +608,7 @@
       "WRONG_MARKS_PER_COMPANY_DAY": "Odpowiedzi oznaczone jako błędne na firmę dziennie",
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Ponowione generowania rozmów na firmę dziennie",
       "HELP_VOTES_PER_IP_HOUR": "Oceny odpowiedzi czatu pomocy z jednego adresu na godzinę",
+      "STREAMS_PER_USER": "Jednocześnie otwarte strumienie dzwonka na użytkownika",
       "ATS_CONNECTS_PER_HOUR": "Połączenia z ATS na firmę na godzinę",
       "RESEND_DAILY_LIMIT": "E-maile dziennie przez Resend",
       "RESEND_RESERVE_PERCENT": "Część dziennych e-maili przez Resend zachowana poza wysyłkami masowymi",
