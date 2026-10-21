@@ -17,6 +17,9 @@ const IDENTITY = `${AUTH_URL}/identitytoolkit.googleapis.com/v1`
 // The emulator takes "owner" as an admin's token.
 const ADMIN = { Authorization: "Bearer owner", "Content-Type": "application/json" }
 const PASSWORD = "e2e-cleanup"
+// How often, and how long apart, what's left is counted again while deletions land.
+const LEFT_CHECKS = 10
+const LEFT_CHECK_MS = 3_000
 
 type EmulatorUser = { localId: string; email?: string; createdAt?: string }
 
@@ -33,7 +36,7 @@ async function identity(path: string, body: object, admin = false) {
   })
 
   if (!response.ok) {
-    throw new Error(`emulator ${path} -> ${response.status}`)
+    throw new Error(`emulator ${path} -> ${response.status}`, { cause: await response.text() })
   }
 
   return response.json()
@@ -82,7 +85,14 @@ async function deleteUser(project: string, user: EmulatorUser) {
     throw new Error(`deleting ${user.email} -> ${deleted.status}`)
   }
 
-  await identity(`projects/${project}/accounts:delete`, { localId: user.localId }, true)
+  // Deleting the account through the API may already have removed its sign-in.
+  await identity(`projects/${project}/accounts:delete`, { localId: user.localId }, true).catch(
+    (error: Error) => {
+      if (!String(error.cause ?? "").includes("USER_NOT_FOUND")) {
+        throw error
+      }
+    }
+  )
 }
 
 export default async function teardown() {
@@ -101,7 +111,14 @@ export default async function teardown() {
     }
   }
 
-  const left = (await throwawayUsers(project)).length
+  // An account's deletion reaches its sign-in through an event: count what's left once it has.
+  let left = (await throwawayUsers(project)).length
+
+  for (let tries = 0; left > 0 && tries < LEFT_CHECKS; tries++) {
+    await new Promise((resolve) => setTimeout(resolve, LEFT_CHECK_MS))
+    left = (await throwawayUsers(project)).length
+  }
+
   console.log(`clean-up: ${users.length - left} throwaway accounts deleted, ${left} left`)
 
   if (left > 0) {
