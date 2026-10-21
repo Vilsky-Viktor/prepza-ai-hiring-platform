@@ -1458,7 +1458,8 @@
         "subscription": "tanpa langganan",
         "unanswered": "undangan yang tidak dijawab gratis",
         "expire": "kredit tidak pernah kedaluwarsa",
-        "refund": "kredit berbayar sisa bisa di-refund 14 hari"
+        "refund": "kredit berbayar sisa bisa di-refund 14 hari",
+        "tax": "harga belum termasuk PPN atau pajak penjualan"
       }
     }
   },

@@ -1458,7 +1458,8 @@
         "subscription": "sin suscripción",
         "unanswered": "las invitaciones sin respuesta no cuestan nada",
         "expire": "los créditos no caducan",
-        "refund": "créditos pagados sin usar reembolsables durante 14 días"
+        "refund": "créditos pagados sin usar reembolsables durante 14 días",
+        "tax": "precios sin IVA ni impuesto sobre las ventas"
       }
     }
   },

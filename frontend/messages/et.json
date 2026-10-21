@@ -1458,7 +1458,8 @@
         "subscription": "tellimust pole",
         "unanswered": "vastamata kutsed ei maksa midagi",
         "expire": "krediidid ei aegu",
-        "refund": "kasutamata ostetud krediidid saab 14 päeva jooksul tagasi"
+        "refund": "kasutamata ostetud krediidid saab 14 päeva jooksul tagasi",
+        "tax": "hindadele lisandub käibemaks või müügimaks"
       }
     }
   },

@@ -1458,7 +1458,8 @@
         "subscription": "abonelik yok",
         "unanswered": "yanıtlanmayan davetler ücretsizdir",
         "expire": "krediler hiç sona ermez",
-        "refund": "kullanılmayan ücretli krediler 14 gün içinde iade edilebilir"
+        "refund": "kullanılmayan ücretli krediler 14 gün içinde iade edilebilir",
+        "tax": "fiyatlara KDV veya satış vergisi eklenir"
       }
     }
   },

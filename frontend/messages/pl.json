@@ -1458,7 +1458,8 @@
         "subscription": "bez abonamentu",
         "unanswered": "zaproszenia bez odpowiedzi nic nie kosztują",
         "expire": "kredyty nie wygasają",
-        "refund": "zwrot niewykorzystanych kredytów do 14 dni"
+        "refund": "zwrot niewykorzystanych kredytów do 14 dni",
+        "tax": "ceny bez VAT ani podatku od sprzedaży"
       }
     }
   },

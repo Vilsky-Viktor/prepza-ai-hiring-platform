@@ -1458,7 +1458,8 @@
         "subscription": "kein abo",
         "unanswered": "unbeantwortete einladungen kosten nichts",
         "expire": "credits verfallen nie",
-        "refund": "ungenutzte bezahlte credits 14 tage lang erstattbar"
+        "refund": "ungenutzte bezahlte credits 14 tage lang erstattbar",
+        "tax": "preise zzgl. MwSt. oder sales tax"
       }
     }
   },

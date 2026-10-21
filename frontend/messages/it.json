@@ -1458,7 +1458,8 @@
         "subscription": "nessun abbonamento",
         "unanswered": "gli inviti senza risposta non costano nulla",
         "expire": "i crediti non scadono",
-        "refund": "crediti pagati non usati rimborsabili per 14 giorni"
+        "refund": "crediti pagati non usati rimborsabili per 14 giorni",
+        "tax": "prezzi al netto di IVA o imposta sulle vendite"
       }
     }
   },

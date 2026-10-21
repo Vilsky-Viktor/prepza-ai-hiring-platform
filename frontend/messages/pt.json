@@ -1458,7 +1458,8 @@
         "subscription": "sem assinatura",
         "unanswered": "convites não respondidos não custam nada",
         "expire": "os créditos não expiram",
-        "refund": "créditos pagos não usados reembolsáveis por 14 dias"
+        "refund": "créditos pagos não usados reembolsáveis por 14 dias",
+        "tax": "preços sem IVA nem imposto sobre vendas"
       }
     }
   },

@@ -1458,7 +1458,8 @@
         "subscription": "không có gói đăng ký",
         "unanswered": "lời mời chưa được trả lời không mất phí",
         "expire": "credit không bao giờ hết hạn",
-        "refund": "credit đã mua chưa dùng được hoàn tiền trong 14 ngày"
+        "refund": "credit đã mua chưa dùng được hoàn tiền trong 14 ngày",
+        "tax": "giá chưa gồm VAT hoặc thuế bán hàng"
       }
     }
   },

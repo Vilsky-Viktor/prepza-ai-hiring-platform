@@ -1458,7 +1458,8 @@
         "subscription": "no subscription",
         "unanswered": "unanswered invites cost nothing",
         "expire": "credits never expire",
-        "refund": "unused paid credits refundable for 14 days"
+        "refund": "unused paid credits refundable for 14 days",
+        "tax": "prices plus VAT or sales tax"
       }
     }
   },

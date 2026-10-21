@@ -1458,7 +1458,8 @@
         "subscription": "sans abonnement",
         "unanswered": "les invitations sans réponse ne coûtent rien",
         "expire": "les crédits n'expirent jamais",
-        "refund": "crédits payés non utilisés remboursables pendant 14 jours"
+        "refund": "crédits payés non utilisés remboursables pendant 14 jours",
+        "tax": "prix hors TVA ou taxe de vente"
       }
     }
   },

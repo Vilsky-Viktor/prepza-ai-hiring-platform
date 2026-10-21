@@ -226,7 +226,9 @@ export function AutoTopUpSetting({
       <DialogContent showCloseButton={false} className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle>{t("title")}</DialogTitle>
-          <DialogDescription>{t("text")}</DialogDescription>
+          <DialogDescription>
+            {t("text")} {billing("taxes")}
+          </DialogDescription>
         </DialogHeader>
         <form id="auto-top-up-form" onSubmit={save} className="space-y-4">
           <PillSelect
