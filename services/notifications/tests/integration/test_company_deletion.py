@@ -100,3 +100,42 @@ def test_a_deleted_account_takes_the_owners_notice_that_it_joined(run):
         return [item.data["email"] for item in left]
 
     assert run(scenario()) == ["stays@x.com"]
+
+
+def test_a_deleted_interviews_candidates_leave_the_bell_and_its_other_news_stays(run):
+    company_id, interview_id = company(), str(uuid.uuid4())
+    page = f"/companies/{company_id}/interviews/{interview_id}"
+    other_page = f"/companies/{company_id}/interviews/{uuid.uuid4()}"
+    deleted = push(
+        "candidate.interview_deleted",
+        {"company_id": company_id, "interview_id": interview_id},
+        message_id=f"m-{uuid.uuid4()}",
+    )
+
+    def about(kind, link, **data):
+        return notification(
+            Recipient.COMPANY, company_id, kind, link, key=str(uuid.uuid4()), **data
+        )
+
+    async def scenario():
+        for item in (
+            about(NotificationKind.CANDIDATE_FINISHED, page, email="gone@x.com", grade=70),
+            about(NotificationKind.INVITE_UNDELIVERED, page, email="lost@x.com"),
+            about(NotificationKind.INTERVIEW_CANCELLED, page, title="Backend"),
+            about(NotificationKind.CANDIDATE_FINISHED, other_page, email="stays@x.com"),
+        ):
+            await notifications.add(str(uuid.uuid4()), item)
+
+        async with api() as client:
+            codes = [
+                (await client.post("/internal/events", json=deleted)).status_code for _ in "ab"
+            ]
+
+        left = await notifications.latest([(Recipient.COMPANY, company_id)], limit=None)
+
+        return codes, sorted(item.data.get("email") or item.kind for item in left)
+
+    codes, left = run(scenario())
+
+    assert codes == [204, 204]
+    assert left == ["interview_cancelled", "stays@x.com"]

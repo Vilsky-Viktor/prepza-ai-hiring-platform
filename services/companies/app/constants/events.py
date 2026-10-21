@@ -39,3 +39,7 @@ CANDIDATE_REMOVED = "candidate.removed"
 # Guest invites (signed in by the company's own platform, no account of their own) were deleted:
 # library deletes each guest's sign-in and what it stored under it (terms, ratings, reports).
 GUESTS_DELETED = "guests.deleted"
+# An interview was deleted, its candidates with it: notifications removes the company's
+# notifications about them, and the api their results waiting to be sent to web hooks. Named
+# under "candidate." so both get it within their subscriptions' filters (pubsub.tf).
+CANDIDATE_INTERVIEW_DELETED = "candidate.interview_deleted"

@@ -4,6 +4,7 @@ from prepza_common.notifications import NotificationKind, Recipient
 from sqlalchemy import and_, delete, func, or_, select, tuple_
 from sqlalchemy.dialects.postgresql import insert
 
+from app.constants.member_emails import INTERVIEW_LINK
 from app.constants.notifications import (
     EXPIRED_PER_PRUNE,
     GROUP_HOURS,
@@ -220,6 +221,24 @@ async def remove_candidate(email: str, company_id: str | None = None) -> None:
 
     async with Session() as session:
         await session.execute(query)
+        await session.commit()
+
+
+async def remove_interview_candidates(company_id: str, interview_id: str) -> None:
+    """A deleted interview's candidates: the company's notifications about them (their email,
+    name and grade; those opening the interview's pages) go. Its other notifications (ready,
+    cancelled) name only the interview and stay. Safe to repeat."""
+    link = INTERVIEW_LINK.format(company_id=company_id, interview_id=interview_id)
+
+    async with Session() as session:
+        await session.execute(
+            delete(Notification).where(
+                Notification.recipient == Recipient.COMPANY,
+                Notification.recipient_id == company_id,
+                Notification.link.startswith(link, autoescape=True),
+                Notification.data.has_key("email"),
+            )
+        )
         await session.commit()
 
 

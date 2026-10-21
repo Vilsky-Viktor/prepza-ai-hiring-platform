@@ -5,7 +5,7 @@ from datetime import UTC, datetime
 from prepza_common import outbox
 from sqlalchemy import delete, func, select, update
 
-from app.constants.events import INTERVIEW_DELETED
+from app.constants.events import CANDIDATE_INTERVIEW_DELETED, INTERVIEW_DELETED
 from app.constants.invites import InviteStatus
 from app.helpers.search import escape_like
 from app.helpers.sync import changed_since
@@ -214,9 +214,11 @@ async def remove(interview_id) -> list[tuple]:
 
 
 def add_deleted(session, interview_id, company_id) -> None:
-    """ats removes the deleted interview's job links and candidates."""
+    """ats removes the deleted interview's job links and candidates; notifications and the api
+    forget its candidates."""
     data = {"interview_id": str(interview_id), "company_id": str(company_id)}
     outbox.add(session, OutboxEvent, INTERVIEW_DELETED, data)
+    outbox.add(session, OutboxEvent, CANDIDATE_INTERVIEW_DELETED, data)
 
 
 async def set_title(interview_id, title: str) -> None:

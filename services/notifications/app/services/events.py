@@ -2,6 +2,7 @@ import logging
 
 from app.config.settings import settings
 from app.constants.events import (
+    CANDIDATE_INTERVIEW_DELETED,
     CANDIDATE_INVITED,
     CANDIDATE_JOINED,
     CANDIDATE_REMINDED,
@@ -127,6 +128,9 @@ async def handle(event_type: str, data: dict, event_id: str) -> None:
 
     if event_type == CANDIDATE_REMOVED:
         await notifications.remove_candidate(data["email"], data["company_id"])
+
+    if event_type == CANDIDATE_INTERVIEW_DELETED:
+        await notifications.remove_interview_candidates(data["company_id"], data["interview_id"])
 
     if event_type == NEWS_DELETED:
         await notifications.remove_news(data["news_id"])

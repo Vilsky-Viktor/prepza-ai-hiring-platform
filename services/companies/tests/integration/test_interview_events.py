@@ -153,3 +153,15 @@ def test_a_removed_invite_says_its_status_as_it_was_deleted(run):
 
     # Started since it was read: revoking it erases the sessions that start made.
     assert run(scenario()) == ("in_process", None)
+
+
+def test_a_deleted_interview_tells_the_services_that_keep_its_candidates(run):
+    async def scenario():
+        found = await interview()
+        await interviews.remove(found.id)
+
+        return found, await events("candidate.interview_deleted", "interview_id", str(found.id))
+
+    found, saved = run(scenario())
+
+    assert saved == [{"interview_id": str(found.id), "company_id": str(found.company_id)}]
