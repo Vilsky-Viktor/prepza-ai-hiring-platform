@@ -49,6 +49,11 @@ def calls(monkeypatch):
 
     monkeypatch.setattr(accounts, "forget_verification_email", forget_verification)
 
+    async def forget_member_invites(email):
+        done.append(("team invites", email))
+
+    monkeypatch.setattr(accounts, "forget_member_invites", forget_member_invites)
+
     async def forget_decisions(user_id):
         done.append(("audit", user_id))
 
@@ -80,6 +85,7 @@ def test_a_company_goes_with_its_only_owner_other_memberships_just_end(calls, mo
         ("member", shared[0].id),
         ("member", admin[0].id),
         ("candidate", "ann", "ann@example.com"),
+        ("team invites", "ann@example.com"),
         ("verification", "ann@example.com"),
         ("audit", "ann"),
     ]
