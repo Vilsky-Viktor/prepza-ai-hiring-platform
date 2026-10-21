@@ -7,6 +7,7 @@ from prepza_common import http
 
 from app.helpers.ats import html_to_text, job_text, subdomain
 from app.integrations import workable
+from app.integrations.ats_http import checked
 from app.integrations.errors import KeyRejected
 
 
@@ -130,3 +131,12 @@ def test_a_job_deleted_in_workable_is_a_404_and_an_unknown_account_a_refused_key
 
     with pytest.raises(KeyRejected):
         asyncio.run(workable.check("nobody", "token"))
+
+
+def test_an_atss_rate_limit_is_passed_on_with_its_wait():
+    busy = httpx.Response(429, headers={"Retry-After": "30"})
+
+    with pytest.raises(HTTPException) as refused:
+        checked(busy, "Teamtailor didn't answer", passes_429=True)
+
+    assert (refused.value.status_code, refused.value.headers) == (429, {"Retry-After": "30"})
