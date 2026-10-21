@@ -61,7 +61,7 @@ TERMS_SECTIONS = [
         "heading": "Credits and payments",
         "items": [
             "prepza is paid with credits: each top-up buys the number of credits shown before you pay, and larger top-ups buy more credits for the money. What each thing costs in credits is on the pricing page and is shown before you use it.",
-            "Top-ups are sold by Paddle, who acts as the reseller (merchant of record): Paddle takes the payment, charges any VAT or sales tax, and issues the receipt or invoice. Businesses and consumers can both buy them. The prices on the pricing page don't include VAT or sales tax: where it applies, Paddle adds it at checkout, on top of the listed price. Prices are in euros in the European Union, Iceland, Liechtenstein, Norway and Switzerland, in pounds sterling in the United Kingdom and in US dollars elsewhere. A company pays in its own currency, first set from the country it was created in and changeable by its owners and admins; the checkout shows the final amount, with any tax, before you pay. If your card is in another currency, your bank or card issuer may convert the amount.",
+            "Top-ups are sold by Paddle, who acts as the reseller (merchant of record): Paddle takes the payment, charges any VAT or sales tax, and issues the receipt or invoice. Businesses and consumers can both buy them. The prices on the pricing page don't include VAT or sales tax: where it applies, Paddle adds it at checkout, on top of the listed price. Prices are in the local currency in Canada (Canadian dollars), Australia (Australian dollars), Israel (shekels), Poland (zlotys), Switzerland (Swiss francs), Japan (yen), South Korea (won), Taiwan (New Taiwan dollars), Hong Kong (Hong Kong dollars), Thailand (baht), Singapore (Singapore dollars) and India (rupees); in euros in the rest of the European Union and in Iceland, Liechtenstein and Norway; in pounds sterling in the United Kingdom; and in US dollars elsewhere. A company pays in its own currency, first set from the country it was created in and changeable by its owners and admins; the checkout shows the final amount, with any tax, before you pay. If your card is in another currency, your bank or card issuer may convert the amount.",
             "Credits belong to a company and are used for its candidates; its owner and admins can top them up. Credits can't be transferred between accounts or companies, sold, or paid out as money.",
             "Automatic top-up is optional and off unless you turn it on. When you turn it on, you authorise Paddle to save your card and to charge it the top-up amount you chose each time the available balance falls under the level you chose, without asking again. Paddle emails a receipt for every charge. You can change or turn it off at any time on the top-up page, which also cancels the saved card's authorisation; charges already made follow the refund rules below.",
             "Credits don't expire. Deleting a company deletes its credits, and they aren't refunded: ask for any refund you're due before deleting it.",
@@ -70,7 +70,7 @@ TERMS_SECTIONS = [
             "Credits are only charged for what works: a candidate who never starts or answers nothing costs nothing, and the credits set aside for them come back. Generating interviews is free.",
             "Refunds: you can ask for a refund of credits you bought in the last 14 days and haven't spent, through Paddle or by writing to us. Once you start using credits you bought, you agree that the service begins at once, and spent credits can't be refunded.",
             "If a payment is refunded or reversed by your bank, the credits it bought are removed. If they were already spent, your balance can go below zero, and credits can't be used until a top-up brings it back up.",
-            "We may change prices in credits or the top-up amounts. Changes apply from when they are shown on the pricing page and never take away credits you already have.",
+            "We may change prices, in money or in credits, and the top-up amounts, for future purchases. Changes apply from when they are shown on the pricing page and never take away credits you already have. If a change affects the amount an automatic top-up charges, we email the company's owner and admins at least 30 days before it applies, and they can change or turn off automatic top-up before then.",
         ],
     },
     {
@@ -82,7 +82,7 @@ TERMS_SECTIONS = [
     {
         "heading": "Liability",
         "paragraphs": [
-            "prepza is provided as it is. As far as the law allows, we are not liable for indirect losses, and our total liability is limited to what you paid for credits in the last 12 months, or 100 US dollars if you paid nothing. Nothing here limits rights you have as a consumer under the law of your country.",
+            "prepza is provided as it is. As far as the law allows, we are not liable for indirect losses, and our total liability is limited to what you paid for credits in the last 12 months, or 100 US dollars (or the equivalent in your currency) if you paid nothing. Nothing here limits rights you have as a consumer under the law of your country.",
         ],
     },
     {
