@@ -7,11 +7,13 @@ from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
+import app.routers.interview_generation as generation_routes
 from app.integrations import generation
 from app.main import app
 from app.models.companies import Company, Member
 from app.models.interviews import Interview
 from app.storage import companies, interview_generations, interviews
+from tests.unit.fake_redis import FakeRedis
 
 COMPANY_ID = uuid.uuid4()
 INTERVIEW_ID = uuid.uuid4()
@@ -182,6 +184,8 @@ def test_only_managers_retry_and_a_retry_clears_the_failure(client, monkeypatch)
         )
 
     monkeypatch.setattr(generation, "retry", fake_retry)
+    redis = FakeRedis({"GENERATION_RETRIES_PER_COMPANY_DAY": 1})
+    monkeypatch.setattr(generation_routes, "get_redis", lambda: redis)
     url = f"/interviews/{INTERVIEW_ID}/generation/retry"
 
     for role, expected in (("viewer", 403), ("admin", 200)):
@@ -192,6 +196,9 @@ def test_only_managers_retry_and_a_retry_clears_the_failure(client, monkeypatch)
 
     assert calls == [GENERATION_ID]
     assert cleared == [(INTERVIEW_ID, False)]
+    # The company's runs again a day: the next is refused before generation hears of it.
+    assert client.post(url).status_code == 429
+    assert calls == [GENERATION_ID]
 
     app.dependency_overrides.clear()
 

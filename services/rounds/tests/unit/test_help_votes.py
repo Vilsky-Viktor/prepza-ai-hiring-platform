@@ -11,6 +11,7 @@ from app.config.settings import settings
 from app.helpers.help_replies import help_signing_key, vote_signature
 from app.routers import help_votes as routes
 from app.storage import help_votes
+from tests.unit.fake_redis import FakeRedis
 from tests.unit.test_help import CATALOG, fake_catalog
 
 ANSWER = uuid.uuid4()
@@ -34,6 +35,7 @@ def stored(monkeypatch):
 
     monkeypatch.setattr(help_votes, "save", save)
     monkeypatch.setattr(routes, "mirror_vote", mirror)
+    monkeypatch.setattr(routes, "get_redis", lambda: FakeRedis())
 
     return votes, mirrored
 
@@ -124,3 +126,13 @@ def test_with_langfuse_the_answer_names_the_trace_its_model_call_reports_to(clie
         uuid.UUID(done["answer"]["id"]), TRACE, help_signing_key(settings.service_secret)
     )
     assert done["answer"]["signature"] == expected
+
+
+def test_votes_past_an_addresss_hourly_limit_are_refused(client, stored, monkeypatch):
+    votes, _ = stored
+    redis = FakeRedis()
+    redis.limits["HELP_VOTES_PER_IP_HOUR"] = 2
+    monkeypatch.setattr(routes, "get_redis", lambda: redis)
+
+    assert [vote(client, 1).status_code for _ in range(3)] == [204, 204, 429]
+    assert votes == {ANSWER: (TRACE, 1)}

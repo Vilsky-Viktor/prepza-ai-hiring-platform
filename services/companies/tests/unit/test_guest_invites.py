@@ -8,6 +8,7 @@ from prepza_common.user import User
 import app.routers.invites as routes
 from app.constants.invites import INVITE_EXPIRED, NOT_THE_GUEST, InviteStatus
 from app.main import app
+from tests.unit.fake_redis import FakeRedis
 from tests.unit.test_invites import INVITE_ID, invite_page, stored_invite  # noqa: F401 (fixtures)
 
 GUEST = f"guest-{INVITE_ID}"
@@ -117,3 +118,14 @@ def test_only_a_guest_invitation_may_be_embedded_and_only_on_the_companys_verifi
     verified["domain"] = "acme.com"
 
     assert client.get("/invites/token-1").json()["embed_domain"] == "acme.com"
+
+
+def test_guest_sign_ins_past_the_hourly_limit_of_an_address_are_refused(
+    client, guest_invite, monkeypatch
+):
+    redis = FakeRedis({"GUEST_SIGN_INS_PER_IP_HOUR": 2})
+    monkeypatch.setattr(routes, "get_redis", lambda: redis)
+
+    codes = [client.post("/invites/token-1/guest").status_code for _ in range(3)]
+
+    assert codes == [200, 200, 429]

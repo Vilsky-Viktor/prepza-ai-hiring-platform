@@ -1,6 +1,8 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, Request, status
 from prepza_common.auth import CurrentUser, OptionalUser
+from prepza_common.client_ip import client_ip
 from prepza_common.pause import refuse_if_paused
+from prepza_common.rate_limit import hit_or_skip
 
 from app.constants.invites import EMAIL_NOT_VERIFIED, NOT_THE_GUEST, InviteStatus
 from app.helpers.brand import color_sets, style_of
@@ -52,12 +54,16 @@ async def get_invite(token: str, user: OptionalUser) -> InviteView:
 
 
 @router.post("/{token}/guest")
-async def sign_in_guest(token: str) -> GuestTokenOut:
+async def sign_in_guest(token: str, request: Request) -> GuestTokenOut:
     """A sign-in for the candidate a company's own platform sent: the link is all they need."""
     invite, _ = await open_invite(token)
 
     if not invite.guest:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Invite not found")
+
+    # Each sign-in has Google sign a token: counted per address once the link proved real.
+    key = f"rate:guest-sign-ins:{client_ip(request)}"
+    await hit_or_skip(get_redis(), key, "GUEST_SIGN_INS_PER_IP_HOUR")
 
     return GuestTokenOut(token=await guest_token(invite.id))
 

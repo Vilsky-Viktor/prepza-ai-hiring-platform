@@ -6,11 +6,13 @@ from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
+import app.routers.interview_questions as question_routes
 from app.integrations import billing, generation, library
 from app.main import app
 from app.models.companies import Company, Member
 from app.models.interviews import Interview
 from app.storage import companies, interviews
+from tests.unit.fake_redis import FakeRedis
 
 COMPANY_ID = uuid.uuid4()
 INTERVIEW_ID = uuid.uuid4()
@@ -184,6 +186,7 @@ def test_a_manager_marks_a_questions_answer_wrong_in_one_click(client, monkeypat
         marked.append(question_id)
 
     monkeypatch.setattr(library, "mark_wrong", mark_wrong)
+    monkeypatch.setattr(question_routes, "get_redis", lambda: FakeRedis())
     url = f"/interviews/{INTERVIEW_ID}/questions/{QUESTION_ID}/wrong"
 
     for role, expected in (("viewer", 403), ("admin", 204)):
@@ -216,5 +219,38 @@ def test_a_manager_marks_a_questions_answer_wrong_in_one_click(client, monkeypat
     monkeypatch.setattr(library, "get_question_context", elsewhere)
 
     assert client.post(url).status_code == 404
+
+    app.dependency_overrides.clear()
+
+
+def test_marks_past_the_companys_daily_limit_are_refused_before_the_verifier(
+    client, monkeypatch, audited
+):
+    sign_in()
+    marked = []
+    interview, company = interview_and_company("admin")
+    redis = FakeRedis({"WRONG_MARKS_PER_COMPANY_DAY": 1})
+
+    async def fake_interview(_interview_id):
+        return interview
+
+    async def fake_company(_company_id):
+        return company
+
+    async def fake_context(_question_id):
+        return {"set_id": str(interview.set_id)}
+
+    async def mark_wrong(question_id):
+        marked.append(question_id)
+
+    monkeypatch.setattr(interviews, "get", fake_interview)
+    monkeypatch.setattr(companies, "get", fake_company)
+    monkeypatch.setattr(library, "get_question_context", fake_context)
+    monkeypatch.setattr(library, "mark_wrong", mark_wrong)
+    monkeypatch.setattr(question_routes, "get_redis", lambda: redis)
+    url = f"/interviews/{INTERVIEW_ID}/questions/{QUESTION_ID}/wrong"
+
+    assert [client.post(url).status_code for _ in range(2)] == [204, 429]
+    assert marked == [QUESTION_ID]
 
     app.dependency_overrides.clear()

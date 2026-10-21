@@ -7,6 +7,7 @@ from prepza_common.auth import CurrentUser
 from prepza_common.http import passed_on
 from prepza_common.human_check import require_human
 from prepza_common.pause import refuse_if_paused
+from prepza_common.rate_limit import hit
 
 from app.config.settings import settings
 from app.constants.generation import GENERATION_REFUSALS
@@ -81,6 +82,10 @@ async def retry_generation(interview_id: UUID, user: CurrentUser) -> dict:
     if not await billing.company_paid(interview.company_id):
         await ai_cap.refuse_if_capped(get_redis(), interview.company_id, user.uid)
 
+    # A run again is AI work as the first was.
+    key = f"rate:generation-retries:{interview.company_id}"
+    company_id = interview.company_id
+    await hit(get_redis(), key, "GENERATION_RETRIES_PER_COMPANY_DAY", company_id=company_id)
     retried = passed_on(
         await generation_api.retry(interview.generation_id, interview.company_id),
         GENERATION_REFUSALS,

@@ -6,6 +6,7 @@ from prepza_common.auth import CurrentUser
 from prepza_common.http import passed_on
 from prepza_common.paging import PageParams
 from prepza_common.pause import refuse_if_paused
+from prepza_common.rate_limit import hit
 
 from app.constants.interviews import NO_QUESTIONS_LEFT
 from app.helpers.interviews import interview_questions
@@ -99,6 +100,9 @@ async def mark_wrong(interview_id: UUID, question_id: UUID, user: CurrentUser) -
     if context is None or str(context["set_id"]) != str(interview.set_id):
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Question not found")
 
+    # Each mark starts the AI verifier: a company can't use up everyone's day of it.
+    key = f"rate:wrong-marks:{interview.company_id}"
+    await hit(get_redis(), key, "WRONG_MARKS_PER_COMPANY_DAY", company_id=interview.company_id)
     await library.mark_wrong(question_id)
     await audit.record_interview(interview, user.uid, AuditAction.ANSWER_KEY_REPORTED)
 

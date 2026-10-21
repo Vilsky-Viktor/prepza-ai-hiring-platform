@@ -94,6 +94,13 @@ LIMITS = {
     "CHECKOUT_CALLS_PER_USER_HOUR": Limit(COMPANIES, 60, "calls", HOUR_SECONDS, 1, 1_000, "user"),
     # Interviews copied from templates (each copies a whole question bank in library).
     "TEMPLATE_COPIES_PER_HOUR": Limit(COMPANIES, 30, "calls", HOUR_SECONDS, 1, 1_000, "company"),
+    # A company's platform's candidates signed in by their link alone (each a signed token).
+    "GUEST_SIGN_INS_PER_IP_HOUR": Limit(COMPANIES, 60, "calls", HOUR_SECONDS, 1, 10_000, "ip"),
+    # Answers marked wrong (each starts the AI verifier) and failed generations run again.
+    "WRONG_MARKS_PER_COMPANY_DAY": Limit(COMPANIES, 50, "calls", DAY_SECONDS, 1, 1_000, "company"),
+    "GENERATION_RETRIES_PER_COMPANY_DAY": Limit(
+        COMPANIES, 20, "calls", DAY_SECONDS, 1, 1_000, "company"
+    ),
     "LINK_STARTS_PER_HOUR": Limit(COMPANIES, 30, "calls", HOUR_SECONDS, 1, 10_000, "company"),
     "LINK_STARTS_PER_IP_HOUR": Limit(COMPANIES, 10, "calls", HOUR_SECONDS, 1, 1_000, "ip"),
     "MAX_BULK_INVITES": Limit(COMPANIES, 100, "items", None, 1, 1_000, "company"),
@@ -178,6 +185,8 @@ LIMITS = {
     "SIGNALS_PER_MINUTE": Limit(ROUNDS, 60, "calls", SIGNALS_WINDOW, 1, 1_000, "user"),
     "MAX_SIGNALS_PER_QUESTION": Limit(ROUNDS, 50, "items", None, 1, 1_000, "user"),
     "HELP_USER_LIMIT": Limit(ROUNDS, 30, "calls", HOUR_SECONDS, 1, 1_000, "user"),
+    # Thumbs up or down on the help chat's answers (each may tell Langfuse).
+    "HELP_VOTES_PER_IP_HOUR": Limit(ROUNDS, 120, "calls", HOUR_SECONDS, 1, 10_000, "ip"),
     "HELP_IP_LIMIT": Limit(ROUNDS, 60, "calls", HOUR_SECONDS, 1, 1_000, "ip"),
     "HELP_DAILY_LIMIT": Limit(ROUNDS, 5_000, "calls", DAY_SECONDS, 1, 1_000_000, "everyone"),
     "HELP_TOKENS_PER_DAY": Limit(
