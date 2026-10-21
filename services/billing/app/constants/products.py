@@ -113,3 +113,7 @@ PADDLE_API = {"sandbox": "https://sandbox-api.paddle.com", "production": "https:
 # The version of Paddle's API every call asks for (its `Paddle-Version` header), so a new default
 # version in Paddle's dashboard can't change the answers billing reads.
 PADDLE_API_VERSION = "1"
+# How Paddle starts each environment's server-side API keys and client-side tokens: a key or
+# token of the other environment stops billing from starting, so sandbox and live never mix.
+PADDLE_KEY_PREFIXES = {"sandbox": "pdl_sdbx_", "production": "pdl_live_"}
+PADDLE_TOKEN_PREFIXES = {"sandbox": "test_", "production": "live_"}

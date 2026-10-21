@@ -68,9 +68,14 @@ variable "firebase_web_api_key" {
 }
 
 variable "paddle_environment" {
-  description = "sandbox or production."
+  description = "sandbox or production: the Paddle account billing's key and client token must belong to."
   type        = string
   default     = "sandbox"
+
+  validation {
+    condition     = contains(["sandbox", "production"], var.paddle_environment)
+    error_message = "paddle_environment is sandbox or production."
+  }
 }
 
 variable "paddle_client_token" {
