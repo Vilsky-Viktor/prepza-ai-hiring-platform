@@ -48,7 +48,7 @@ test("the company, interview and candidate pages copy their IDs", async ({ signI
   await shot(owner, "candidate-phone")
 })
 
-// The account's ID: a button in Settings, and a small one under the email in the account menu.
+// The account's ID: a button in Settings, and an icon beside the name in the account menu.
 test("Settings and the account menu copy the account's ID", async ({ signInAs }) => {
   const owner = await signInAs(ownerEmail())
   await owner.context().grantPermissions(["clipboard-read", "clipboard-write"])
@@ -62,6 +62,9 @@ test("Settings and the account menu copy the account's ID", async ({ signInAs })
 
   await owner.getByTestId("account-menu").click()
   const item = owner.getByRole("menu").getByTestId("copy-id")
+  // Only an icon, named for screen readers (and by its tooltip).
+  await expect(item).toHaveText("")
+  await expect(item).toHaveAccessibleName("Copy ID")
   await item.click()
   // The menu stays open to show the check mark.
   await expect(item).toHaveAttribute("data-copied", "true")

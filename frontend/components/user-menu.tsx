@@ -92,15 +92,17 @@ export function UserMenu() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56 p-2">
         <DropdownMenuGroup>
-          <DropdownMenuLabel className="px-3 py-2">
-            <p className="truncate text-sm text-foreground">
-              {user.displayName}
-            </p>
-            <p className="truncate font-normal">{user.email}</p>
-          </DropdownMenuLabel>
-          {/* The account's id, to quote when writing to prepza: a menu item, reached with the
-              arrow keys too, that stays open to show it copied. */}
-          <CopyIdItem id={user.uid} />
+          <div className="flex items-start gap-1">
+            <DropdownMenuLabel className="min-w-0 flex-1 px-3 py-2">
+              <p className="truncate text-sm text-foreground">
+                {user.displayName}
+              </p>
+              <p className="truncate font-normal">{user.email}</p>
+            </DropdownMenuLabel>
+            {/* The account's id, to quote when writing to prepza: an icon at the name's right, a
+                menu item reached with the arrow keys too, that stays open to show it copied. */}
+            <CopyIdItem id={user.uid} />
+          </div>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem
