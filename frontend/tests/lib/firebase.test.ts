@@ -1,10 +1,27 @@
-import { expect, it, vi } from "vitest"
+import { afterEach, beforeEach, expect, it, vi } from "vitest"
 
 const getAuth = vi.fn(() => ({ name: "auth" }))
+const initializeAuth = vi.fn(() => ({ name: "framed" }))
+const inMemoryPersistence = { type: "NONE" }
 const connectAuthEmulator = vi.fn()
 
 vi.mock("firebase/app", () => ({ initializeApp: vi.fn(() => ({})) }))
-vi.mock("firebase/auth", () => ({ getAuth, connectAuthEmulator }))
+vi.mock("firebase/auth", () => ({
+  getAuth,
+  initializeAuth,
+  inMemoryPersistence,
+  connectAuthEmulator,
+}))
+
+beforeEach(() => {
+  vi.resetModules()
+  vi.clearAllMocks()
+})
+
+afterEach(() => {
+  vi.unstubAllGlobals()
+  vi.unstubAllEnvs()
+})
 
 // The emulator is reached on the host the page was opened from: a phone on the local network
 // reaches the computer's emulator, not its own.
@@ -24,4 +41,23 @@ it("loads Firebase Auth once, on first use, against the emulator when set", asyn
     "http://192.168.1.25:9099",
     { disableWarnings: true }
   )
+})
+
+// In a company's site's frame, the guest's sign-in stays in memory, not in the frame's
+// partitioned storage.
+it("keeps a framed page's sign-in in memory", async () => {
+  const top = {}
+  vi.stubGlobal("window", {
+    top,
+    self: {},
+    location: { hostname: "localhost" },
+  })
+  const { firebaseAuth } = await import("@/lib/firebase")
+
+  expect(await firebaseAuth()).toEqual({ name: "framed" })
+  expect(initializeAuth).toHaveBeenCalledWith(
+    {},
+    { persistence: inMemoryPersistence }
+  )
+  expect(getAuth).not.toHaveBeenCalled()
 })

@@ -92,8 +92,9 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
 - Assume no third-party cookies (Safari and Firefox block or partition them; Chrome lets users
   block them; CHIPS and the Storage Access API exist but a guest has never visited prepza first)
   and partitioned, wipeable storage (Chrome 115+, Firefox, Safari).
-- The guest signs in with a custom token from the API (`signInWithCustomToken`), kept in the
-  frame's partitioned storage or memory; never `signInWithRedirect` or popups in the frame.
+- The guest signs in with a custom token from the API (`signInWithCustomToken`), kept in memory
+  in a frame (`lib/firebase.ts`: partitioned storage stalled WebKit's sign-in); never
+  `signInWithRedirect` or popups in the frame.
   Calls send the ID token in a header; the `SameSite=Lax` token cookie isn't relied on there.
 - Reloading the frame resumes from the server by the invite's token, never from local state.
 
