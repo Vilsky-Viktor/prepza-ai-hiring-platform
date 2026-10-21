@@ -43,9 +43,11 @@ CARD_METHOD = "card"
 
 # Paddle.js reports the failure as it happens; the attempt's code may reach Paddle's API a moment
 # later. So the transaction is read up to this many times, this far apart, each read bounded, so
-# the buyer isn't kept waiting long; Paddle not answering is OTHER.
-FAILURE_READS = 2
-FAILURE_READ_WAIT_SECONDS = 1
+# the buyer isn't kept waiting long (about 5 s at most); Paddle not answering is OTHER. During a
+# processor incident Paddle recorded the code after more than a second, so two reads a second apart
+# showed the generic advice instead of "try later".
+FAILURE_READS = 4
+FAILURE_READ_WAIT_SECONDS = 1.5
 FAILURE_READ_TIMEOUT_SECONDS = 4
 # A Paddle transaction id, checked before it goes into Paddle's address.
 TRANSACTION_ID_PATTERN = r"^txn_[a-z0-9]{26}$"
