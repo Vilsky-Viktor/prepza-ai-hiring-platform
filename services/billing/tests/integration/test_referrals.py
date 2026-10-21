@@ -230,7 +230,7 @@ def test_a_welcome_asked_again_counts_once_and_still_records_the_referral(run):
 
     async def scenario():
         await ledger.welcome_company(acme, f"{acme}@example.com")
-        code = (await ledger.wallet(COMPANY, acme)).referral_code
+        code = await referrals.code_of(COMPANY, acme)
         # The first answer was lost: companies asks again for the same company.
         first = await ledger.welcome_company(newco, f"{newco}@example.com")
         again = await ledger.welcome_company(newco, f"{newco}@example.com")
