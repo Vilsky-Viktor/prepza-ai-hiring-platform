@@ -6,7 +6,7 @@ import logging
 import os
 from typing import Annotated
 
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, Request, status
 from prepza_common.auth import fresh_user
 from prepza_common.constants import GOOGLE_SIGN_IN
 from prepza_common.user import User
@@ -24,14 +24,20 @@ def is_superadmin(user: User) -> bool:
     )
 
 
-def superadmin_user(user: Annotated[User, Depends(fresh_user)]) -> User:
+def superadmin_user(request: Request, user: Annotated[User, Depends(fresh_user)]) -> User:
     """Not found for everyone else, so superadmin routes don't show they exist. A revoked
-    sign-in is refused at once, reads included: the admin zone shows everyone's data."""
+    sign-in is refused at once, reads included: the admin zone shows everyone's data. Every
+    request is logged, by the account's id and the route's template (never what it looked up),
+    which a log sink keeps in a locked bucket (infra/terraform/logging.tf)."""
+    route = getattr(request.scope.get("route"), "path", request.url.path)
+
     if not is_superadmin(user):
         # Answered as not found, so it's logged here: someone tried the admin zone.
-        logger.warning("Admin zone refused to account %s", user.uid)
+        logger.warning("Admin zone refused to account %s: %s %s", user.uid, request.method, route)
 
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Not found")
+
+    logger.info("Admin zone used by account %s: %s %s", user.uid, request.method, route)
 
     return user
 
