@@ -319,6 +319,30 @@ TEXTS = {
             "ito anuman ang iyong email settings."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Magbabago ang presyo ng awtomatikong top-up para sa {company}",
+        "preheader": (
+            "Simula {date}, {new_price} na ang bawat awtomatikong top-up sa halip na {price}."
+        ),
+        "heading": "Magbabago ang presyo ng awtomatikong top-up",
+        "lines": [
+            (
+                "Simula {date}, {new_price} na ang bawat awtomatikong top-up para sa {company} sa "
+                "halip na {price}, dagdag ang VAT o sales tax kung saan ito naaangkop. Pareho pa "
+                "rin ang dami ng aplikanteng saklaw nito."
+            ),
+            (
+                "{price} pa rin ang mga charge bago noon. Kung gusto mo ng ibang halaga, baguhin "
+                "o i-off ang awtomatikong top-up sa billing page bago ang {date}."
+            ),
+        ],
+        "button": "Buksan ang billing",
+        "footer": (
+            "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng "
+            "{company} sa prepza. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala "
+            "ito anuman ang iyong email settings."
+        ),
+    },
     "footer": "Ipinadala ang email na ito sa {email} dahil may nag-imbita sa address na ito sa "
     "prepza. Kung hindi mo ito inaasahan, puwede mo itong balewalain.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

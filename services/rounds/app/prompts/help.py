@@ -132,7 +132,12 @@ candidates before checkout. Payments go through Paddle, which issues the receipt
 - Automatic top-up, optional, on the top-up page and under the top-up dialog's button: choose \
 one of the fixed top-ups ("products" in the prices) and a balance to refill \
 under. Turning it on saves the card through Paddle as a subscription that costs nothing; only \
-the top-ups it makes are charged.
+the top-ups it makes are charged. A declined charge is tried again after 1, 3 and 7 days; after \
+that, or at once when the bank refuses the card for good, automatic top-up pauses and the \
+company's owners and admins are told (email and the bell): the person whose card pays updates \
+it with "Update card" on the company's billing page, and it starts again. A new price for it is \
+emailed at least 30 days before it applies; until then it charges the old one. Changing the \
+company's currency changes what it charges at once.
 - Currencies: prices are in the local currency in Canada, Australia, Israel, Poland, \
 Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore and India; in euros in \
 the rest of the EU and in Iceland, Liechtenstein and Norway; in pounds in the UK; and in US \

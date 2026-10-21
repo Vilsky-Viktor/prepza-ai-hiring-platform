@@ -888,6 +888,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "babel", marker = "extra == 'money'", specifier = ">=2.17" },
     { name = "cryptography", specifier = ">=46.0.0" },
     { name = "fastapi", specifier = ">=0.141.1" },
     { name = "firebase-admin", specifier = ">=7.7.0" },
@@ -901,11 +902,11 @@ requires-dist = [
     { name = "sentry-sdk", extras = ["fastapi"], specifier = ">=2.71.0" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.1.1" },
 ]
-provides-extras = ["llm", "langfuse"]
+provides-extras = ["llm", "langfuse", "money"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "prepza-common", extras = ["llm", "langfuse"] },
+    { name = "prepza-common", extras = ["llm", "langfuse", "money"] },
     { name = "pytest", specifier = ">=9.1.1" },
 ]
 

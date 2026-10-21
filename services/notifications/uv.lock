@@ -48,6 +48,15 @@ wheels = [
 ]
 
 [[package]]
+name = "babel"
+version = "2.18.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/7d/b2/51899539b6ceeeb420d40ed3cd4b7a40519404f9baf3d4ac99dc413a834b/babel-2.18.0.tar.gz", hash = "sha256:b80b99a14bd085fcacfa15c9165f651fbb3406e66cc603abf11c5750937c992d", size = 9959554, upload-time = "2026-02-01T12:30:56.078Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/77/f5/21d2de20e8b8b0408f0681956ca2c69f1320a3848ac50e6e7f39c6159675/babel-2.18.0-py3-none-any.whl", hash = "sha256:e2b422b277c2b9a9630c1d7903c2a00d0830c409c59ac8cae9081c92f1aeba35", size = 10196845, upload-time = "2026-02-01T12:30:53.445Z" },
+]
+
+[[package]]
 name = "cachecontrol"
 version = "0.14.4"
 source = { registry = "https://pypi.org/simple" }
@@ -863,7 +872,7 @@ dependencies = [
     { name = "firebase-admin" },
     { name = "httpx" },
     { name = "markdown-it-py" },
-    { name = "prepza-common" },
+    { name = "prepza-common", extra = ["money"] },
     { name = "psycopg", extra = ["binary"] },
     { name = "pydantic-settings" },
     { name = "redis" },
@@ -884,7 +893,7 @@ requires-dist = [
     { name = "firebase-admin", specifier = ">=7.7.0" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "markdown-it-py", specifier = ">=4" },
-    { name = "prepza-common", editable = "../../packages/common" },
+    { name = "prepza-common", extras = ["money"], editable = "../../packages/common" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.6" },
     { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "redis", specifier = ">=8.1.0" },
@@ -945,8 +954,14 @@ dependencies = [
     { name = "sqlalchemy", extra = ["asyncio"] },
 ]
 
+[package.optional-dependencies]
+money = [
+    { name = "babel" },
+]
+
 [package.metadata]
 requires-dist = [
+    { name = "babel", marker = "extra == 'money'", specifier = ">=2.17" },
     { name = "cryptography", specifier = ">=46.0.0" },
     { name = "fastapi", specifier = ">=0.141.1" },
     { name = "firebase-admin", specifier = ">=7.7.0" },
@@ -960,11 +975,11 @@ requires-dist = [
     { name = "sentry-sdk", extras = ["fastapi"], specifier = ">=2.71.0" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.1.1" },
 ]
-provides-extras = ["llm", "langfuse"]
+provides-extras = ["llm", "langfuse", "money"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "prepza-common", extras = ["llm", "langfuse"] },
+    { name = "prepza-common", extras = ["llm", "langfuse", "money"] },
     { name = "pytest", specifier = ">=9.1.1" },
 ]
 

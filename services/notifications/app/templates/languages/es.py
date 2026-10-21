@@ -308,6 +308,31 @@ TEXTS = {
             "envía sin importar tu configuración de correo."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Cambia el precio de la recarga automática de {company}",
+        "preheader": (
+            "Desde el {date}, cada recarga automática cuesta {new_price} en lugar de {price}."
+        ),
+        "heading": "Cambia el precio de la recarga automática",
+        "lines": [
+            (
+                "Desde el {date}, cada recarga automática de {company} cuesta {new_price} en "
+                "lugar de {price}, más el IVA o el impuesto sobre las ventas donde corresponda. "
+                "Incluye el mismo número de candidatos."
+            ),
+            (
+                "Los cargos anteriores a esa fecha siguen costando {price}. Si prefieres otro "
+                "importe, cambia o desactiva la recarga automática en la página de facturación "
+                "antes del {date}."
+            ),
+        ],
+        "button": "Abrir facturación",
+        "footer": (
+            "Este correo se envió a {email} porque eres propietario o administrador de "
+            "{company} en prepza. Trata sobre la facturación de tu empresa, así que se "
+            "envía sin importar tu configuración de correo."
+        ),
+    },
     "footer": "Este correo se envió a {email} porque alguien invitó a esta dirección en prepza. "
     "Si no lo esperabas, puedes ignorarlo.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

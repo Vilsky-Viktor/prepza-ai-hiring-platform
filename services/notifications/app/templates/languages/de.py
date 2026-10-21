@@ -319,6 +319,29 @@ TEXTS = {
             " wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Preis des automatischen Aufladens für {company} ändert sich",
+        "preheader": "Ab {date} kostet jedes automatische Aufladen {new_price} statt {price}.",
+        "heading": "Der Preis des automatischen Aufladens ändert sich",
+        "lines": [
+            (
+                "Ab {date} kostet jedes automatische Aufladen für {company} {new_price} statt "
+                "{price}, zuzüglich MwSt. oder Sales Tax, wo sie anfällt. Die Anzahl der "
+                "Kandidaten bleibt gleich."
+            ),
+            (
+                "Abbuchungen davor kosten weiterhin {price}. Wenn du einen anderen Betrag "
+                "möchtest, ändere das automatische Aufladen vor dem {date} auf der "
+                "Abrechnungsseite oder schalte es aus."
+            ),
+        ],
+        "button": "Abrechnung öffnen",
+        "footer": (
+            "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin von "
+            "{company} auf prepza bist. Sie betrifft die Abrechnung deines Unternehmens und"
+            " wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
+        ),
+    },
     "footer": "Diese E-Mail wurde an {email} gesendet, weil jemand diese Adresse auf prepza "
     "eingeladen hat. Wenn du sie nicht erwartet hast, kannst du sie ignorieren.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

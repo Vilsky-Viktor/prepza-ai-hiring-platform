@@ -251,3 +251,12 @@ The guide's currency line now names CAD, AUD, ILS and PLN, and the FAQ gained "W
 do I pay in?". Same test, dataset, model and judge as the run above: passed 94.4% (84.9–98.1),
 made up 5.6% (1.9–15.1), sign-in marker 100%; $0.013 help, $1.10 judge. No difference beyond
 the intervals; the only failures are the known h17 (an invented retake limit).
+
+## Help chat: automatic top-up's pause and price notice (2026-10-21, kept)
+
+The guide's automatic top-up line now says a declined charge is tried again after 1, 3 and 7
+days, then pauses until the card's owner updates it ("Update card" on the billing page), that a
+new price is emailed at least 30 days ahead, and that a currency change applies at once. Same
+test, dataset, model and judge as the run above: passed 94.4% (84.9–98.1), made up 5.6%
+(1.9–15.1), sign-in marker 100%; $0.013 help, $1.13 judge. No difference beyond the intervals;
+the only failures are the known h17 (an invented retake limit).

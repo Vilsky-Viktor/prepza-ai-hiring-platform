@@ -307,6 +307,30 @@ TEXTS = {
             " wysyłana niezależnie od Twoich ustawień e-maili."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Zmienia się cena automatycznego doładowania dla {company}",
+        "preheader": (
+            "Od {date} każde automatyczne doładowanie kosztuje {new_price} zamiast {price}."
+        ),
+        "heading": "Zmienia się cena automatycznego doładowania",
+        "lines": [
+            (
+                "Od {date} każde automatyczne doładowanie dla {company} kosztuje {new_price} "
+                "zamiast {price}, plus VAT lub podatek od sprzedaży tam, gdzie obowiązuje. Liczba "
+                "kandydatów pozostaje ta sama."
+            ),
+            (
+                "Obciążenia przed tą datą nadal kosztują {price}. Jeśli wolisz inną kwotę, zmień "
+                "lub wyłącz automatyczne doładowanie na stronie rozliczeń przed {date}."
+            ),
+        ],
+        "button": "Otwórz rozliczenia",
+        "footer": (
+            "Ta wiadomość została wysłana na {email}, ponieważ masz rolę właściciela lub "
+            "administratora w {company} w prepza. Dotyczy rozliczeń Twojej firmy, więc jest"
+            " wysyłana niezależnie od Twoich ustawień e-maili."
+        ),
+    },
     "footer": "Ta wiadomość została wysłana na {email}, ponieważ ktoś zaprosił ten adres w "
     "prepza. Jeśli się jej nie spodziewasz, możesz ją zignorować.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

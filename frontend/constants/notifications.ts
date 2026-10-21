@@ -37,6 +37,7 @@ export const NOTIFICATION_LOOKS: Record<
   auto_top_up_charged: { icon: DollarSignIcon, alert: false },
   auto_top_up_failed: { icon: DollarSignIcon, alert: true },
   auto_top_up_paused: { icon: CreditCardIcon, alert: true },
+  auto_top_up_price_change: { icon: DollarSignIcon, alert: false },
   candidate_finished: { icon: UserCheckIcon, alert: false },
   invite_undelivered: { icon: MailWarningIcon, alert: true },
   interview_ready: { icon: PackageCheckIcon, alert: false },

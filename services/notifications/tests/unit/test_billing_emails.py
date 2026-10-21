@@ -1,4 +1,4 @@
-"""An automatic top-up that failed or paused is emailed to the company's
+"""An automatic top-up that failed, paused or will cost a new price is emailed to the company's
 owners and admins, whatever their email settings; nothing else is, and nobody else gets it."""
 
 import asyncio
@@ -15,6 +15,7 @@ COMPANY = {
     "name": "Acme",
     "members": [{"user_id": "ann", "editor": True}, {"user_id": "vic", "editor": False}],
 }
+NOTICE = {"price": 4500, "new_price": 5000, "currency": "USD", "date": "2026-11-21"}
 
 
 @pytest.fixture
@@ -48,6 +49,7 @@ def sent(monkeypatch):
     [
         ("auto_top_up_failed", {}, "https://prepza.ai/top-up"),
         ("auto_top_up_paused", {}, "https://prepza.ai/companies/c1/billing"),
+        ("auto_top_up_price_change", NOTICE, "https://prepza.ai/companies/c1/billing"),
     ],
 )
 def test_each_billing_notice_is_emailed_once_to_each_owner_and_admin(sent, kind, data, opens):

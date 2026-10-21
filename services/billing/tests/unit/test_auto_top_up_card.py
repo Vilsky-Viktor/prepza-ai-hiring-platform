@@ -109,10 +109,30 @@ def test_paddle_saving_the_new_card_resumes_it_and_grants_nothing(monkeypatch, r
     assert granted == []
 
 
-def test_the_company_sees_whether_its_paused(client, stored, monkeypatch):
-    stored["row"] = running()
+@pytest.mark.parametrize(
+    ("row", "paused", "price", "coming"),
+    [
+        # Paused: said so, at the price agreed.
+        (running(), True, 4500, (None, None)),
+        # Running with a new price announced: the agreed one now, the new one and its day.
+        (
+            running(
+                paused_at=None, next_price=5000, next_price_from=datetime(2026, 11, 21, tzinfo=UTC)
+            ),
+            False,
+            4500,
+            (5000, "2026-11-21T00:00:00Z"),
+        ),
+    ],
+)
+def test_the_company_sees_whether_its_paused_and_what_each_charge_costs(
+    client, stored, monkeypatch, row, paused, price, coming
+):
+    stored["row"] = row
     monkeypatch.setattr(auto_top_ups, "offered", lambda: True)
 
     body = client.get("/internal/companies/acme/auto-top-up", headers=AUTH).json()
 
-    assert body["paused"] is True
+    assert body["paused"] is paused
+    assert body["prices"]["topup_50"] == price
+    assert (body["next_price"], body["next_price_from"]) == coming

@@ -1,3 +1,4 @@
+import re
 from datetime import timedelta
 
 # Service tokens live this long; each call between services signs a new one.
@@ -279,3 +280,9 @@ LEGAL_VERSIONS = {
 # The sign-in a company's own platform gives its candidate with the invite link (no email, no
 # account of their own): companies signs it in, library counts it as no sign-up.
 GUEST_UID_PREFIX = "guest-"
+
+# Money as people read it (money.py): a currency pattern's decimals, left out of a whole amount
+# ("$5", not "$5.00"), and where letters of a currency's symbol meet its number ("CHF2.60"),
+# which gets a space.
+WHOLE_DECIMALS = re.compile(r"\.0+")
+CURRENCY_SPACING = re.compile(r"(?<=[A-Za-z])(?=\d)|(?<=\d)(?=[A-Za-z])")

@@ -303,6 +303,27 @@ TEXTS = {
             " luôn được gửi, bất kể cài đặt email của bạn."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Giá tự động nạp cho {company} sẽ thay đổi",
+        "preheader": "Từ {date}, mỗi lần tự động nạp có giá {new_price} thay vì {price}.",
+        "heading": "Giá tự động nạp sẽ thay đổi",
+        "lines": [
+            (
+                "Từ {date}, mỗi lần tự động nạp cho {company} có giá {new_price} thay vì {price}, "
+                "cộng thêm VAT hoặc thuế bán hàng nếu có. Số ứng viên vẫn như cũ."
+            ),
+            (
+                "Các lần trừ tiền trước ngày đó vẫn có giá {price}. Nếu bạn muốn số tiền khác, "
+                "hãy thay đổi hoặc tắt tự động nạp trên trang thanh toán trước {date}."
+            ),
+        ],
+        "button": "Mở trang thanh toán",
+        "footer": (
+            "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của "
+            "{company} trên prepza. Email liên quan đến việc thanh toán của công ty bạn nên"
+            " luôn được gửi, bất kể cài đặt email của bạn."
+        ),
+    },
     "footer": "Email này được gửi đến {email} vì có người đã mời địa chỉ này trên prepza. Nếu "
     "bạn không mong đợi email này, bạn có thể bỏ qua.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

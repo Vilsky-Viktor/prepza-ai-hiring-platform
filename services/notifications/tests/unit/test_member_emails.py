@@ -9,6 +9,7 @@ from app.constants.email import AUTOMATED_HEADERS
 from app.constants.member_emails import MemberEmail
 from app.helpers.member_emails import (
     digest_email,
+    price_change_email,
     reminder_email,
     top_up_failed_email,
     top_up_paused_email,
@@ -138,16 +139,18 @@ def test_a_failed_top_up_is_a_service_email_without_unsubscribe():
 
 
 BILLING = f"{SITE}/companies/c1/billing"
+NOTICE = {"price": 4500, "new_price": 5000, "currency": "USD", "date": "2026-11-21"}
 
 
 @pytest.mark.parametrize(
     "build",
     [
         lambda language: top_up_paused_email(recipient(language), "Acme <Co>", BILLING),
+        lambda language: price_change_email(recipient(language), "Acme <Co>", NOTICE, BILLING),
     ],
 )
 @pytest.mark.parametrize("language", ["en", "de", "ar"])
-def test_a_paused_top_up_is_a_service_email_opening_the_billing_page(build, language):
+def test_a_paused_or_repriced_top_up_is_a_service_email_opening_the_billing_page(build, language):
     email = build(language)
 
     assert email.headers == AUTOMATED_HEADERS
@@ -156,6 +159,25 @@ def test_a_paused_top_up_is_a_service_email_opening_the_billing_page(build, lang
     assert "Acme <Co>" in email.subject
     assert "Acme &lt;Co&gt;" in email.html
     assert f'<html lang="{language}"' in email.html
+
+
+@pytest.mark.parametrize(
+    ("language", "notice", "old", "new", "day"),
+    [
+        ("en", NOTICE, "$45", "$50", "November 21, 2026"),
+        ("de", {**NOTICE, "currency": "EUR"}, "45\u00a0€", "50\u00a0€", "21. November 2026"),
+        # Yen have no smaller unit: 4,500 is ¥4,500.
+        ("en", {**NOTICE, "currency": "JPY"}, "¥4,500", "¥5,000", "November 21, 2026"),
+    ],
+)
+def test_a_price_notice_gives_both_prices_and_the_day_as_the_recipient_reads_them(
+    language, notice, old, new, day
+):
+    email = price_change_email(recipient(language), "Acme", notice, BILLING)
+
+    assert old in email.text
+    assert new in email.text
+    assert day in email.text
 
 
 def test_member_emails_come_in_the_users_language():

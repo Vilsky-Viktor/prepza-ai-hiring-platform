@@ -1,5 +1,10 @@
 # The emails to prepza's users about their companies: the activity digest and reminders, which
 # they may turn off, and the failed automatic top-up, a service email that always goes out.
+from datetime import date
+
+from babel.dates import format_date
+from prepza_common.money import money
+
 from app.constants.member_emails import COMPANIES_LINK, TOP_UP_LINK, MemberEmail
 from app.constants.unsubscribe import UnsubscribeType
 from app.helpers.emails import Section, optional_email, render
@@ -62,6 +67,21 @@ def top_up_paused_email(recipient: dict, company: str, link: str) -> Email:
     data = {**recipient_data(recipient), "company": company}
 
     return render("top_up_paused", data, link)
+
+
+def price_change_email(recipient: dict, company: str, notice: dict, link: str) -> Email:
+    """A service email: an automatic top-up's new price and the day it applies from, in the
+    recipient's language; its button opens the company's billing page."""
+    language = recipient["language"]
+    data = {
+        **recipient_data(recipient),
+        "company": company,
+        "price": money(notice["price"], notice["currency"], language),
+        "new_price": money(notice["new_price"], notice["currency"], language),
+        "date": format_date(date.fromisoformat(notice["date"]), "long", locale=language),
+    }
+
+    return render("top_up_price_change", data, link)
 
 
 def legal_email(recipient: dict, document: str, version: str, site_url: str) -> Email:

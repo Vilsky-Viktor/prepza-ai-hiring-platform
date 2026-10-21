@@ -320,6 +320,31 @@ TEXTS = {
             " donc envoyé quels que soient vos réglages d'e-mails."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Le prix de la recharge automatique change pour {company}",
+        "preheader": (
+            "À partir du {date}, chaque recharge automatique coûte {new_price} au lieu de {price}."
+        ),
+        "heading": "Le prix de la recharge automatique change",
+        "lines": [
+            (
+                "À partir du {date}, chaque recharge automatique pour {company} coûte {new_price} "
+                "au lieu de {price}, hors TVA ou taxe de vente là où elle s'applique. Elle couvre "
+                "toujours le même nombre de candidats."
+            ),
+            (
+                "Les débits d'ici là coûtent toujours {price}. Si vous souhaitez un autre "
+                "montant, modifiez ou désactivez la recharge automatique sur la page Facturation "
+                "avant le {date}."
+            ),
+        ],
+        "button": "Ouvrir la facturation",
+        "footer": (
+            "Cet e-mail a été envoyé à {email} parce que vous êtes propriétaire ou admin de"
+            " {company} sur prepza. Il concerne la facturation de votre entreprise ; il est"
+            " donc envoyé quels que soient vos réglages d'e-mails."
+        ),
+    },
     "footer": "Cet e-mail a été envoyé à {email} parce que quelqu'un a invité cette adresse sur "
     "prepza. Si vous ne l'attendiez pas, vous pouvez l'ignorer.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

@@ -6,6 +6,7 @@ from prepza_common.google import Invoker
 from app.constants.usage import CHANGES_KEEP_DAYS, USAGE_KEEP_DAYS
 from app.services import limit_values
 from app.services import outbox as outbox_service
+from app.services.auto_top_up_prices import check_prices
 from app.services.reconciliation import reconcile
 from app.storage import usage
 
@@ -41,3 +42,10 @@ async def reconcile_with_paddle() -> None:
     """Daily: what Paddle's web hooks of the last week should have done, done again from Paddle's
     records (services/reconciliation.py)."""
     await reconcile(datetime.now(UTC))
+
+
+@router.post("/auto-top-up-prices", status_code=status.HTTP_204_NO_CONTENT)
+async def check_auto_top_up_prices() -> None:
+    """Daily: a new price for an automatic top-up is announced to its company at least 30 days
+    before charges cost it (services/auto_top_up_prices.py)."""
+    await check_prices(datetime.now(UTC))

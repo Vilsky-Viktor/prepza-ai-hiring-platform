@@ -206,6 +206,17 @@ TEXTS = {
         "button": "カードを更新する",
         "footer": "このメールは、prepza で {company} の所有者または管理者であるため {email} に送信されました。会社の請求に関する内容のため、メール設定にかかわらず送信されます。",
     },
+    "top_up_price_change": {
+        "subject": "{company} の自動チャージの料金が変わります",
+        "preheader": "{date} から、自動チャージ 1 回あたりの料金は {price} から {new_price} に変わります。",
+        "heading": "自動チャージの料金が変わります",
+        "lines": [
+            "{date} から、{company} の自動チャージ 1 回あたりの料金は {price} から {new_price} に変わります（課税される場合は付加価値税（VAT）または売上税が加算されます）。チャージで招待できる候補者数は変わりません。",
+            "それまでの請求は引き続き {price} です。別の金額をご希望の場合は、{date} より前に請求ページで自動チャージを変更するか、オフにしてください。",
+        ],
+        "button": "請求ページを開く",
+        "footer": "このメールは、prepza で {company} の所有者または管理者であるため {email} に送信されました。会社の請求に関する内容のため、メール設定にかかわらず送信されます。",
+    },
     "footer": "このメールは、prepza で誰かがこのアドレスを招待したため {email} に送信されました。心当たりがない場合は無視してください。",
     # An invite from a company prepza hasn't verified, at the end of the footer.
     "unverified": "prepza は {company} を確認していません。",

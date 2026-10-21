@@ -1,3 +1,5 @@
+from datetime import UTC, datetime
+
 from fastapi import APIRouter, HTTPException, status
 
 from app.config.settings import settings
@@ -14,9 +16,10 @@ from app.schemas.billing import (
     TopUpCheckoutOut,
 )
 from app.service_auth import ServiceCaller
+from app.services.auto_top_up_prices import charge_price
 from app.services.catalog import candidates_price, catalog_out
 from app.services.currencies import decide, saved
-from app.storage import currencies
+from app.storage import auto_top_ups, currencies
 
 # A company's prices and currency, and its top-up's checkout; companies checks the caller's role.
 # `country` is the visitor's, which companies passes on.
@@ -46,11 +49,17 @@ async def get_company_currency(
 async def choose_company_currency(
     company_id: str, body: CurrencyIn, caller: ServiceCaller
 ) -> CompanyCurrencyOut:
-    """From now on its top-ups are priced and charged in it, automatic ones too (their next
-    charge switches the subscription over)."""
+    """From now on its top-ups are priced and charged in it, automatic ones too, at once and at
+    the price list's price in it (their next charge switches the subscription over), which the
+    answer says for a running one."""
     await currencies.choose(ChoiceOwner.COMPANY, company_id, body.currency)
+    row = await auto_top_ups.get(OwnerType.COMPANY, company_id)
+    chosen = company_currency(body.currency)
 
-    return company_currency(body.currency)
+    if row is not None and row.subscription_id is not None:
+        chosen.auto_top_up_price = charge_price(row, body.currency, datetime.now(UTC))
+
+    return chosen
 
 
 @router.post("/users/{user_id}/currency", status_code=status.HTTP_204_NO_CONTENT)

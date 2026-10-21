@@ -3,7 +3,7 @@ name = "notifications"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
-    "prepza-common",
+    "prepza-common[money]",
     "fastapi>=0.141.1",
     "httpx>=0.28.1",
     "pydantic-settings>=2.15.0",

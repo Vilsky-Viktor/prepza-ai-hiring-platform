@@ -1,11 +1,13 @@
 "use client"
 
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
 import { CurrencySelect } from "@/components/billing/currency-select"
+import { BILLING_REFRESHED } from "@/constants/billing"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { formatPrice } from "@/lib/format"
 import type { CompanyCurrency } from "@/types/billing"
 
 /** The currency the company's top-ups are priced and paid in, wherever the buyer is, as a small
@@ -22,6 +24,8 @@ export function CompanyCurrencySetting({
   initial: CompanyCurrency
 }) {
   const t = useTranslations("companyBilling")
+  const autoTopUp = useTranslations("autoTopUp")
+  const locale = useLocale()
   const path = `/companies/companies/${companyId}/billing/currency`
   const [setting, setSetting] = useState(initial)
   const [saving, setSaving] = useState(false)
@@ -30,12 +34,27 @@ export function CompanyCurrencySetting({
     setSaving(true)
 
     try {
-      setSetting(
-        await apiFetch<CompanyCurrency>(path, {
-          method: "PUT",
-          body: JSON.stringify({ currency }),
-        })
-      )
+      const chosen = await apiFetch<CompanyCurrency>(path, {
+        method: "PUT",
+        body: JSON.stringify({ currency }),
+      })
+      setSetting(chosen)
+      // What reads its own billing data (the automatic top-up) reads it again, in the new
+      // currency.
+      window.dispatchEvent(new Event(BILLING_REFRESHED))
+
+      // A running automatic top-up charges in it at once, at the price billing says.
+      if (chosen.auto_top_up_price != null) {
+        toast.success(
+          autoTopUp("currencyApplied", {
+            amount: formatPrice(
+              chosen.auto_top_up_price,
+              chosen.currency,
+              locale
+            ),
+          })
+        )
+      }
     } catch (error) {
       toast.error(apiErrorMessage(error, t("currencyFailed")))
     } finally {

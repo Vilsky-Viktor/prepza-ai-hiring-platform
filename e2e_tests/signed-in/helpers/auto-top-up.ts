@@ -3,25 +3,39 @@ import { withDatabase } from "./db";
 
 /** What a throwaway company's running automatic top-up is set to, written as billing keeps it
  * (services/billing/app/models/billing.py AutoTopUp): $50 under 500 credits on `buyerId`'s card,
- * paused when asked. Its subscription
+ * agreed at `price` cents, and paused or with a new price announced when asked. Its subscription
  * is made up, so Paddle never charges it: the test deletes the row before the company goes
  * (removeAutoTopUp), as deleting the company would ask Paddle to cancel it. */
 export async function setAutoTopUp(
   companyId: string,
   buyerId: string,
-  { paused = false }: { paused?: boolean },
+  {
+    paused = false,
+    price = 5000,
+    nextPrice = null,
+    nextFrom = null,
+  }: {
+    paused?: boolean;
+    price?: number;
+    nextPrice?: number | null;
+    nextFrom?: string | null;
+  },
 ) {
   await withDatabase("billing", (client) =>
     client.query(
       `INSERT INTO auto_top_ups (owner_type, owner_id, product, threshold, buyer_id,
-         subscription_id, currency, declines, paused_at)
-       VALUES ('company', $1, 'topup_50', 500, $2, $3, 'USD', $4, $5)`,
+         subscription_id, currency, declines, paused_at, price, price_currency, next_price,
+         next_price_from)
+       VALUES ('company', $1, 'topup_50', 500, $2, $3, 'USD', $4, $5, $6, 'USD', $7, $8)`,
       [
         companyId,
         buyerId,
         `sub_e2e_${companyId}`,
         paused ? 4 : 0,
         paused ? new Date() : null,
+        price,
+        nextPrice,
+        nextFrom,
       ],
     ),
   );

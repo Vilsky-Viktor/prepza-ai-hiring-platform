@@ -21,9 +21,22 @@ import {
   NOTIFICATION_LOOKS,
 } from "@/constants/notifications"
 import { apiFetch } from "@/lib/api"
-import { formatDay } from "@/lib/format"
+import { formatDay, formatPrice } from "@/lib/format"
 import { watchNotifications } from "@/lib/notifications"
 import type { AppNotification, NotificationFeed } from "@/types/notifications"
+
+/** An automatic top-up's price change as the bell writes it: what it costs and will cost. */
+function prices(
+  data: Record<string, string | number | undefined>,
+  locale: string
+) {
+  const money = (cents: unknown) =>
+    typeof cents === "number" && typeof data.currency === "string"
+      ? formatPrice(cents, data.currency, locale)
+      : ""
+
+  return { price: money(data.price), newPrice: money(data.new_price) }
+}
 
 /** One notification's text: its kind's message, filled with what the service sent. Missing
  * values become "none", which the messages' selects read as "leave it out". */
@@ -49,8 +62,10 @@ function useNotificationText() {
       count: typeof data.count === "number" ? data.count : 1,
       credits:
         typeof data.credits === "number" ? format.number(data.credits) : "",
-      // The day a legal document's new version applies.
+      // The day a legal document's new version applies, or an automatic top-up's new price.
       date: typeof data.date === "string" ? formatDay(data.date, locale) : "",
+      // An automatic top-up's price and its new one, in their currency.
+      ...prices(data, locale),
     }
 
     return t.has(item.kind) ? t(item.kind, values) : null

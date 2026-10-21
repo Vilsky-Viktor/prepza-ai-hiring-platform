@@ -1196,9 +1196,13 @@ langfuse = [
 llm = [
     { name = "langchain-openai" },
 ]
+money = [
+    { name = "babel" },
+]
 
 [package.metadata]
 requires-dist = [
+    { name = "babel", marker = "extra == 'money'", specifier = ">=2.17" },
     { name = "cryptography", specifier = ">=46.0.0" },
     { name = "fastapi", specifier = ">=0.141.1" },
     { name = "firebase-admin", specifier = ">=7.7.0" },
@@ -1212,11 +1216,11 @@ requires-dist = [
     { name = "sentry-sdk", extras = ["fastapi"], specifier = ">=2.71.0" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.1.1" },
 ]
-provides-extras = ["llm", "langfuse"]
+provides-extras = ["llm", "langfuse", "money"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "prepza-common", extras = ["llm", "langfuse"] },
+    { name = "prepza-common", extras = ["llm", "langfuse", "money"] },
     { name = "pytest", specifier = ">=9.1.1" },
 ]
 
@@ -1588,7 +1592,7 @@ dependencies = [
     { name = "httpx" },
     { name = "langchain-core" },
     { name = "langchain-openai" },
-    { name = "prepza-common", extra = ["langfuse", "llm"] },
+    { name = "prepza-common", extra = ["langfuse", "llm", "money"] },
     { name = "psycopg", extra = ["binary"] },
     { name = "pydantic-settings" },
     { name = "pyjwt" },
@@ -1613,7 +1617,7 @@ requires-dist = [
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "langchain-core", specifier = ">=1.6.5" },
     { name = "langchain-openai", specifier = ">=1.6.6" },
-    { name = "prepza-common", extras = ["llm", "langfuse"], editable = "../../packages/common" },
+    { name = "prepza-common", extras = ["llm", "langfuse", "money"], editable = "../../packages/common" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.6" },
     { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "pyjwt", specifier = ">=2.15.1" },

@@ -167,3 +167,26 @@ def test_results_are_claimed_once_until_kept(run):
     # Two events at once: one writes. Results kept free the claim, for the recovery job.
     assert claims == [True, False, True]
     assert kept == [{"name": "kept"}]
+
+
+def test_an_interviews_waiting_candidates_come_one_batch_at_a_time(run, monkeypatch):
+    monkeypatch.setattr(ats_candidates, "INVITE_BATCH", 2)
+
+    async def scenario():
+        company = uuid.uuid4()
+        interview = uuid.uuid4()
+        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1")
+        connection = await ats.connection(company, AtsProvider.WORKABLE)
+        link_id = await ats_links.add_link(
+            connection.company_id, connection.id, interview, JOB, STAGE, "ann"
+        )
+
+        for number in range(3):
+            await ats_candidates.add(
+                connection.id, link_id, interview, f"c-{number}", f"c{number}@x.com"
+            )
+
+        return [row.candidate_id for row in await ats_candidates.waiting(interview)]
+
+    # The oldest first; the third is left for the recovery job.
+    assert run(scenario()) == ["c-0", "c-1"]

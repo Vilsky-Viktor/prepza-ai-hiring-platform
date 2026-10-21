@@ -301,6 +301,32 @@ TEXTS = {
             "saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Automaatse juurdelaadimise hind muutub: {company}",
+        "preheader": (
+            "Alates kuupäevast {date} maksab iga automaatne juurdelaadimine {price} asemel "
+            "{new_price}."
+        ),
+        "heading": "Automaatse juurdelaadimise hind muutub",
+        "lines": [
+            (
+                "Alates kuupäevast {date} maksab iga ettevõtte {company} automaatne "
+                "juurdelaadimine {price} asemel {new_price}, millele lisandub käibemaks või "
+                "müügimaks, kus see kehtib. Kandidaatide arv jääb samaks."
+            ),
+            (
+                "Seni maksavad maksed endiselt {price}. Kui soovid teist summat, muuda "
+                "automaatset juurdelaadimist arvelduse lehel või lülita see välja enne kuupäeva "
+                "{date}."
+            ),
+        ],
+        "button": "Ava arveldus",
+        "footer": (
+            "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte {company} "
+            "omanik või administraator. See puudutab sinu ettevõtte arveldust, seega "
+            "saadetakse see sõltumata sinu e-kirjade seadetest."
+        ),
+    },
     "footer": "See e-kiri saadeti aadressile {email}, sest keegi kutsus selle aadressi "
     "prepzasse. Kui sa seda ei oodanud, võid selle tähelepanuta jätta.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

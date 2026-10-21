@@ -2528,6 +2528,10 @@ export interface components {
       prices: {
         [key: string]: number
       }
+      /** Next Price */
+      next_price?: number | null
+      /** Next Price From */
+      next_price_from?: string | null
       checkout?: components["schemas"]["CheckoutOut"] | null
     }
     /**
@@ -2994,6 +2998,8 @@ export interface components {
       currency: string
       /** Currencies */
       currencies: string[]
+      /** Auto Top Up Price */
+      auto_top_up_price?: number | null
     }
     /** CompanyIdsIn */
     CompanyIdsIn: {

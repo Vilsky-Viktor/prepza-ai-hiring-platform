@@ -14,6 +14,8 @@ class CompanyCurrencyOut(BaseModel):
     currency: str
     # The ones it can choose.
     currencies: list[str]
+    # Once chosen: what each running automatic top-up charges in it from now on (minor units).
+    auto_top_up_price: int | None = None
 
 
 class CatalogOut(BaseModel):

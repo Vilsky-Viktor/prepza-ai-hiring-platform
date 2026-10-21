@@ -17,11 +17,12 @@ from app.constants.products import (
     TOP_UP_UNAVAILABLE,
     TOP_UPS,
 )
-from app.helpers.credits import candidate_price, top_up_price
+from app.helpers.credits import top_up_price
 from app.integrations import paddle
 from app.models.billing import AutoTopUp
 from app.schemas.billing import AutoTopUpIn, AutoTopUpOut, CheckoutOut
 from app.services.auto_top_up_declines import declined, handle_decline
+from app.services.auto_top_up_prices import charge_price, listed
 from app.services.catalog import candidates_price
 from app.services.currencies import decide
 from app.storage import auto_top_up_charges, auto_top_ups
@@ -43,11 +44,21 @@ def products() -> list[str]:
 
 
 async def out(owner_type: str, owner_id: str, currency: Currency) -> AutoTopUpOut:
-    """With each top-up's price in `currency`, the company's, which every charge is in."""
+    """With each top-up's price in `currency`, the company's, which every charge is in; the
+    chosen one at what it charges now (its agreed price), with a new price announced and its
+    day."""
     row = await auto_top_ups.get(owner_type, owner_id)
     started = row is not None and row.subscription_id is not None
-    shown = currency
     sold = products()
+    prices = {
+        product.key: top_up_price(product, currency) for product in TOP_UPS if product.key in sold
+    }
+    coming = None
+
+    if row is not None and row.product in prices:
+        prices[row.product] = charge_price(row, currency, datetime.now(UTC))
+        announced = row.price_currency == currency and row.next_price is not None
+        coming = row if announced and prices[row.product] != row.next_price else None
 
     return AutoTopUpOut(
         offered=offered(),
@@ -58,10 +69,10 @@ async def out(owner_type: str, owner_id: str, currency: Currency) -> AutoTopUpOu
         threshold=row.threshold if row else None,
         products=sold,
         thresholds=AUTO_TOP_UP_THRESHOLDS,
-        currency=shown,
-        prices={
-            product.key: top_up_price(product, shown) for product in TOP_UPS if product.key in sold
-        },
+        currency=currency,
+        prices=prices,
+        next_price=coming.next_price if coming else None,
+        next_price_from=coming.next_price_from if coming else None,
     )
 
 
@@ -82,7 +93,15 @@ async def turn_on(
     if current and current.subscription_id and current.buyer_id != buyer_id:
         raise HTTPException(status.HTTP_403_FORBIDDEN, NOT_YOUR_AUTO_TOP_UP)
 
-    row = await auto_top_ups.save(owner_type, owner_id, body.product, body.threshold, buyer_id)
+    row = await auto_top_ups.save(
+        owner_type,
+        owner_id,
+        body.product,
+        body.threshold,
+        buyer_id,
+        listed(body.product, currency),
+        currency,
+    )
     result = await out(owner_type, owner_id, currency)
 
     # The $0 subscription that saves the card, in the company's currency, which every top-up
@@ -206,25 +225,28 @@ async def check_briefly(owner_type: str, owner_id: str) -> None:
         logger.warning("Automatic top-up cut off for %s %s", owner_type, owner_id)
 
 
-def top_up_item(product_key: str, currency: Currency) -> dict:
-    """The fixed top-up the automatic top-up buys, priced in `currency`."""
+def top_up_item(product_key: str, price: int, currency: Currency) -> dict:
+    """The fixed top-up the automatic top-up buys, at `price` (minor units) in `currency`."""
     product = next(product for product in TOP_UPS if product.key == product_key)
-    cents = candidate_price(product.candidates, currency)
 
-    return candidates_price(product.candidates, cents, currency, product.key)
+    return candidates_price(product.candidates, price // product.candidates, currency, product.key)
 
 
-async def charge(row: AutoTopUp, owner_id: str) -> None:
-    """Charges the chosen top-up in the company's currency now. Paddle charges a subscription in
-    its own currency (converting a price in another), so one set up in another currency is
-    switched to the company's first, nothing billed for the switch."""
+async def charge(row: AutoTopUp, owner_id: str, now: datetime) -> tuple[int, Currency]:
+    """Charges the chosen top-up in the company's currency now, at its agreed price
+    (charge_price); what it charged. Paddle charges a subscription in its own currency
+    (converting a price in another), so one set up in another currency is switched to the
+    company's first, nothing billed for the switch."""
     currency = await decide(None, company_id=owner_id)
+    price = charge_price(row, currency, now)
 
     if (row.currency or DEFAULT_CURRENCY) != currency:
         await paddle.set_currency(row.subscription_id, currency)
         await auto_top_ups.set_currency(row.subscription_id, currency)
 
-    await paddle.charge(row.subscription_id, top_up_item(row.product, currency))
+    await paddle.charge(row.subscription_id, top_up_item(row.product, price, currency))
+
+    return price, currency
 
 
 async def check(owner_type: str, owner_id: str) -> None:
@@ -245,7 +267,7 @@ async def check(owner_type: str, owner_id: str) -> None:
         if row is None:
             return
 
-        await charge(row, owner_id)
+        price, currency = await charge(row, owner_id, now)
     except Exception as error:
         logger.exception("Automatic top-up failed for %s %s", owner_type, owner_id)
 
@@ -254,4 +276,4 @@ async def check(owner_type: str, owner_id: str) -> None:
 
         return
 
-    await auto_top_up_charges.charged(owner_type, owner_id)
+    await auto_top_up_charges.charged(owner_type, owner_id, price, currency, now)

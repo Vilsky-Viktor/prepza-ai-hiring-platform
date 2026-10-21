@@ -201,6 +201,17 @@ TEXTS = {
         "button": "更新银行卡",
         "footer": "这封邮件发送到 {email}，因为你是 prepza 上 {company} 的所有者或管理员。它与你公司的账单有关，因此无论你的邮件设置如何都会发送。",
     },
+    "top_up_price_change": {
+        "subject": "{company} 的自动充值价格即将调整",
+        "preheader": "自 {date} 起，每次自动充值的价格从 {price} 调整为 {new_price}。",
+        "heading": "自动充值价格即将调整",
+        "lines": [
+            "自 {date} 起，{company} 每次自动充值的价格从 {price} 调整为 {new_price}，如适用，另加增值税或销售税。每次充值包含的候选人数量不变。",
+            "在此之前的扣款仍为 {price}。如果你想要其他金额，请在 {date} 之前到账单页面更改或关闭自动充值。",
+        ],
+        "button": "打开账单",
+        "footer": "这封邮件发送到 {email}，因为你是 prepza 上 {company} 的所有者或管理员。它与你公司的账单有关，因此无论你的邮件设置如何都会发送。",
+    },
     "footer": "这封邮件发送到 {email}，因为有人在 prepza 上邀请了这个地址。如果这封邮件与你无关，可以忽略。",
     # An invite from a company prepza hasn't verified, at the end of the footer.
     "unverified": "prepza 尚未验证 {company}。",

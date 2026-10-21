@@ -300,6 +300,28 @@ TEXTS = {
             "pengaturan emailmu."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Harga isi ulang otomatis untuk {company} berubah",
+        "preheader": "Mulai {date}, setiap isi ulang otomatis berharga {new_price}, bukan {price}.",
+        "heading": "Harga isi ulang otomatis berubah",
+        "lines": [
+            (
+                "Mulai {date}, setiap isi ulang otomatis untuk {company} berharga {new_price}, "
+                "bukan {price}, ditambah PPN atau pajak penjualan jika berlaku. Jumlah "
+                "kandidatnya tetap sama."
+            ),
+            (
+                "Tagihan sebelum tanggal itu tetap {price}. Jika kamu ingin jumlah lain, ubah "
+                "atau matikan isi ulang otomatis di halaman tagihan sebelum {date}."
+            ),
+        ],
+        "button": "Buka tagihan",
+        "footer": (
+            "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di "
+            "prepza. Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun "
+            "pengaturan emailmu."
+        ),
+    },
     "footer": "Email ini dikirim ke {email} karena seseorang mengundang alamat ini di prepza. "
     "Jika kamu tidak mengharapkannya, abaikan saja.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

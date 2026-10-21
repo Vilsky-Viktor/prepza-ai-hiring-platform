@@ -14,7 +14,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.constants.currencies import CURRENCY_CHECK
+from app.constants.currencies import CURRENCY_CHECK, PRICE_CURRENCY_CHECK
 from app.models.base import Base
 
 
@@ -54,7 +54,10 @@ class AutoTopUp(Base):
     last automatic charge, `failed_at` the last one the card declined."""
 
     __tablename__ = "auto_top_ups"
-    __table_args__ = (CheckConstraint(CURRENCY_CHECK, name="ck_auto_top_ups_currency"),)
+    __table_args__ = (
+        CheckConstraint(CURRENCY_CHECK, name="ck_auto_top_ups_currency"),
+        CheckConstraint(PRICE_CURRENCY_CHECK, name="ck_auto_top_ups_price_currency"),
+    )
 
     owner_type: Mapped[str] = mapped_column(String(16), primary_key=True)
     owner_id: Mapped[str] = mapped_column(String(128), primary_key=True)
@@ -74,6 +77,13 @@ class AutoTopUp(Base):
     declines: Mapped[int] = mapped_column(default=0, server_default="0")
     retry_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     paused_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # What each charge costs (minor units, in `price_currency`), as agreed: the price when it was
+    # set up, until a new price is announced (`next_price`) and its day (`next_price_from`)
+    # comes. None until the first charge or the first daily check.
+    price: Mapped[int | None] = mapped_column(BigInteger)
+    price_currency: Mapped[str | None] = mapped_column(String(3))
+    next_price: Mapped[int | None] = mapped_column(BigInteger)
+    next_price_from: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
 
 class CurrencyChoice(Base):

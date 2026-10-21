@@ -25,13 +25,17 @@ def running(monkeypatch):
         failed_at=None,
         currency="USD",
         paused_at=None,
+        price=5000,
+        price_currency="USD",
+        next_price=None,
+        next_price_from=None,
     )
 
     async def get(owner_type, owner_id):
         return row
 
-    async def save(owner_type, owner_id, product, threshold, buyer_id):
-        saved.append((product, threshold, buyer_id))
+    async def save(owner_type, owner_id, product, threshold, buyer_id, price, currency):
+        saved.append((product, threshold, buyer_id, price, currency))
 
         return row
 
@@ -55,4 +59,5 @@ def test_the_cards_owner_changes_it(client, running):
     response = client.put(URL, json=CHOICE, params={"buyer_id": "ann"}, headers=AUTH)
 
     assert response.status_code == 200
-    assert running == [("topup_1000", AUTO_TOP_UP_THRESHOLDS[-1], "ann")]
+    # At the price list's price for the top-up chosen, in the company's currency.
+    assert running == [("topup_1000", AUTO_TOP_UP_THRESHOLDS[-1], "ann", 100_000, "USD")]

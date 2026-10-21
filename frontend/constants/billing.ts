@@ -2,6 +2,7 @@
 // (the local gateway from a `test_country` cookie); billing's prices follow it.
 export const COUNTRY_HEADER = "x-client-country"
 
-// Sent on the window each time the page reads its billing again after a payment, so what reads
-// its own data (the automatic top-up) reads it again too.
+// Sent on the window when the company's billing changed (the page reads it again after a
+// payment, or its currency was changed), so what reads its own data (the automatic top-up)
+// reads it again too.
 export const BILLING_REFRESHED = "prepza:billing-refreshed"

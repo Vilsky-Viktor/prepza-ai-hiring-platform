@@ -22,6 +22,8 @@ llm = ["langchain-openai>=1.6.6"]
 # Tracing AI calls to Langfuse (prepza_common.tracing) and the chats' votes there
 # (prepza_common.answer_votes): the services that call AI (with `llm`).
 langfuse = ["langfuse>=5.0.2"]
+# Money as a language writes it (prepza_common.money): rounds and notifications.
+money = ["babel>=2.17"]
 
 [build-system]
 requires = ["uv_build>=0.12,<0.13"]
@@ -29,7 +31,7 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
-    "prepza-common[llm,langfuse]",
+    "prepza-common[llm,langfuse,money]",
     "pytest>=9.1.1",
 ]
 

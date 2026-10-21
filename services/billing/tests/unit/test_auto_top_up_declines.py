@@ -57,7 +57,7 @@ def charging(monkeypatch):
         seen["told"].append(event)
 
     def answer(status):
-        async def charge(row, owner_id):
+        async def charge(row, owner_id, now):
             raise refused(status)
 
         monkeypatch.setattr(auto_top_ups, "charge", charge)

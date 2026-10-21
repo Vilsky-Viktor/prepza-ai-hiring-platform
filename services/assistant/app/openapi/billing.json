@@ -1205,7 +1205,7 @@
      "internal"
     ],
     "summary": "Choose Company Currency",
-    "description": "From now on its top-ups are priced and charged in it, automatic ones too (their next\ncharge switches the subscription over).",
+    "description": "From now on its top-ups are priced and charged in it, automatic ones too, at once and at\nthe price list's price in it (their next charge switches the subscription over), which the\nanswer says for a running one.",
     "operationId": "choose_company_currency_internal_companies__company_id__currency_put",
     "security": [
      {
@@ -2408,6 +2408,29 @@
       "type": "object",
       "title": "Prices"
      },
+     "next_price": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Next Price"
+     },
+     "next_price_from": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Next Price From"
+     },
      "checkout": {
       "anyOf": [
        {
@@ -2695,6 +2718,17 @@
        "SGD",
        "INR"
       ]
+     },
+     "auto_top_up_price": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Auto Top Up Price"
      }
     },
     "type": "object",

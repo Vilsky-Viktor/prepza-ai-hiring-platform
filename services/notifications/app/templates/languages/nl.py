@@ -315,6 +315,31 @@ TEXTS = {
             "daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Prijs van automatisch opwaarderen voor {company} verandert",
+        "preheader": (
+            "Vanaf {date} kost elke automatische opwaardering {new_price} in plaats van {price}."
+        ),
+        "heading": "De prijs van automatisch opwaarderen verandert",
+        "lines": [
+            (
+                "Vanaf {date} kost elke automatische opwaardering voor {company} {new_price} in "
+                "plaats van {price}, plus btw of verkoopbelasting waar die van toepassing is. Je "
+                "krijgt er evenveel kandidaten voor."
+            ),
+            (
+                "Afschrijvingen vóór die datum kosten nog {price}. Wil je een ander bedrag, "
+                "wijzig automatisch opwaarderen dan vóór {date} op de factureringspagina of zet "
+                "het uit."
+            ),
+        ],
+        "button": "Facturering openen",
+        "footer": (
+            "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van "
+            "{company} op prepza. Hij gaat over de facturering van je bedrijf en wordt "
+            "daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
+        ),
+    },
     "footer": "Deze e-mail is naar {email} gestuurd omdat iemand dit adres op prepza heeft "
     "uitgenodigd. Verwachtte je hem niet, dan kun je hem negeren.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

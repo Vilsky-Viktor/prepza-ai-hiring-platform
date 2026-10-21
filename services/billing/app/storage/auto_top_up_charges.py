@@ -51,11 +51,25 @@ async def pause(owner_type: str, owner_id: str, now: datetime) -> bool:
     return paused is not None
 
 
-async def charged(owner_type: str, owner_id: str) -> None:
-    """A charge went through: no declines in a row."""
+async def charged(owner_type: str, owner_id: str, price: int, currency: str, now: datetime) -> None:
+    """A charge of `price` in `currency` went through: no declines in a row, and that price is
+    the one agreed. A new price announced counts from now on once its day has come; in another
+    currency (one the company chose since) it no longer applies."""
+    due = AutoTopUp.next_price_from <= now
+    stale = AutoTopUp.price_currency != currency
+
     async with Session() as session:
         await session.execute(
-            update(AutoTopUp).where(*_of(owner_type, owner_id)).values(declines=0, retry_at=None)
+            update(AutoTopUp)
+            .where(*_of(owner_type, owner_id))
+            .values(
+                declines=0,
+                retry_at=None,
+                price=price,
+                price_currency=currency,
+                next_price=case((due | stale, None), else_=AutoTopUp.next_price),
+                next_price_from=case((due | stale, None), else_=AutoTopUp.next_price_from),
+            )
         )
         await session.commit()
 

@@ -134,6 +134,9 @@ class CompanyCurrencyOut(BaseModel):
 
     currency: Currency
     currencies: list[Currency] = list(Currency)
+    # Once chosen: what each automatic top-up charges in it from now on (minor units), when one
+    # is running; choosing applies at once, without the notice a new price list gets.
+    auto_top_up_price: int | None = None
 
 
 class TopUpCheckoutOut(BaseModel):
@@ -198,9 +201,13 @@ class AutoTopUpOut(BaseModel):
     threshold: int | None
     products: list[str]
     thresholds: list[int]
-    # What each top-up costs (minor units) in `currency`, the company's.
+    # What each top-up costs (minor units) in `currency`, the company's; the chosen one at what
+    # each charge costs now.
     currency: Currency
     prices: dict[str, int]
+    # A new price announced for the chosen top-up, and the day from which charges cost it.
+    next_price: int | None = None
+    next_price_from: datetime | None = None
     # Only when turning it on still needs the checkout that saves the card.
     checkout: CheckoutOut | None = None
 

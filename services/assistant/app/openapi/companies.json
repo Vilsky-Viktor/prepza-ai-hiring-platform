@@ -8000,6 +8000,29 @@
       "type": "object",
       "title": "Prices"
      },
+     "next_price": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Next Price"
+     },
+     "next_price_from": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Next Price From"
+     },
      "checkout": {
       "anyOf": [
        {
@@ -9036,6 +9059,17 @@
       },
       "type": "array",
       "title": "Currencies"
+     },
+     "auto_top_up_price": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Auto Top Up Price"
      }
     },
     "type": "object",

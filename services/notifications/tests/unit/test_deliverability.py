@@ -19,6 +19,7 @@ from app.helpers.emails import (
 )
 from app.helpers.member_emails import (
     digest_email,
+    price_change_email,
     reminder_email,
     top_up_failed_email,
     top_up_paused_email,
@@ -65,6 +66,15 @@ EMAILS_SENT = {
     "contact": (lambda: contact_email(CONTACT, "hello@prepza.ai"), False),
     "top-up failed": (lambda: top_up_failed_email(RECIPIENT, "Acme", SITE), False),
     "top-up paused": (lambda: top_up_paused_email(RECIPIENT, "Acme", f"{SITE}/b"), False),
+    "top-up price change": (
+        lambda: price_change_email(
+            RECIPIENT,
+            "Acme",
+            {"price": 4500, "new_price": 5000, "currency": "USD", "date": "2026-11-21"},
+            f"{SITE}/b",
+        ),
+        False,
+    ),
     "digest": (
         lambda: digest_email(
             RECIPIENT, [("Acme", [("candidate_finished", ROW[1], ROW[0])])], SITE, SECRET
@@ -184,6 +194,9 @@ def placeholders(language: str) -> dict:
         "ats": "Greenhouse",
         "available": 5,
         "days": 3,
+        # An automatic top-up's price and its new one, as the price notice writes them.
+        "price": "$45",
+        "new_price": "$50",
         # A campaign's own texts.
         "subject": "Code questions",
         "preheader": "Now with code.",

@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/button"
 import { DialogTrigger } from "@/components/ui/dialog"
+import { formatDay, formatPrice } from "@/lib/format"
 import type { AutoTopUp } from "@/types/billing"
 
 type State = "off" | "on" | "waiting" | "paused"
@@ -43,14 +44,24 @@ function stateOf(setting: AutoTopUp): State {
   return setting.waiting ? "waiting" : "off"
 }
 
-/** The amount and level a running one is set to, as written. */
+/** The amount and level a running one is set to, and the new price billing announced with its
+ * day, as written. */
 function useValues(setting: AutoTopUp, titles: Record<string, string>) {
+  const t = useTranslations("autoTopUp")
   const locale = useLocale()
-
-  return {
+  const values = {
     amount: titles[setting.product ?? ""] ?? setting.product ?? "",
     threshold: (setting.threshold ?? 0).toLocaleString(locale),
   }
+  const next =
+    setting.next_price != null && setting.next_price_from && !setting.paused
+      ? t("nextPrice", {
+          date: formatDay(setting.next_price_from, locale),
+          amount: formatPrice(setting.next_price, setting.currency, locale),
+        })
+      : null
+
+  return { values, next }
 }
 
 function UpdateCard({
@@ -76,12 +87,31 @@ function UpdateCard({
   )
 }
 
+function NextPrice({
+  text,
+  className,
+}: {
+  text: string | null
+  className?: string
+}) {
+  return (
+    text && (
+      <p
+        className={cn("text-sm text-muted-foreground", className)}
+        data-testid="next-price"
+      >
+        {text}
+      </p>
+    )
+  )
+}
+
 /** In the top-up dialog: a card with its title, what it is now and its buttons. */
 function StatusCard(props: Props) {
   const t = useTranslations("autoTopUp")
   const { setting, titles } = props
   const state = stateOf(setting)
-  const values = useValues(setting, titles)
+  const { values, next } = useValues(setting, titles)
   const set = state !== "off"
 
   return (
@@ -104,6 +134,7 @@ function StatusCard(props: Props) {
         >
           {t(CARD_TEXTS[state], values)}
         </p>
+        <NextPrice text={next} />
       </div>
       {setting.paused && <UpdateCard {...props} />}
       <DialogTrigger
@@ -119,15 +150,15 @@ function StatusCard(props: Props) {
 }
 
 /** What an automatic top-up is now, beside the dialog that changes it: off, a button that says
- * what it does; on (or waiting for the card), the setting with the edit icon; paused, why, with
- * the button that updates the card. As a
+ * what it does; on (or waiting for the card), the setting with the edit icon, and a new price
+ * billing announced with its day; paused, why, with the button that updates the card. As a
  * `card`, it has a title and its button to set it up or change it. `titles` are the amounts as
  * written. */
 export function AutoTopUpStatus(props: Props) {
   const t = useTranslations("autoTopUp")
   const { setting, titles } = props
   const state = stateOf(setting)
-  const values = useValues(setting, titles)
+  const { values, next } = useValues(setting, titles)
 
   if (props.card) {
     return <StatusCard {...props} />
@@ -178,6 +209,7 @@ export function AutoTopUpStatus(props: Props) {
         </DialogTrigger>
       </p>
       {setting.paused && <UpdateCard {...props} />}
+      <NextPrice text={next} className="basis-full" />
     </div>
   )
 }

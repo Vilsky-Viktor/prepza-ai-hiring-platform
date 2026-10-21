@@ -31,6 +31,8 @@
 # Paddle's payments and refunds of the last week that its web hooks never delivered (billing),
 # daily.
 15 5 * * * curl -s -X POST http://billing:8000/internal/schedules/reconcile
+# A new price for an automatic top-up, announced 30 days before it applies (billing), daily.
+45 5 * * * curl -s -X POST http://billing:8000/internal/schedules/auto-top-up-prices
 * * * * * curl -s -X POST http://notifications:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://api:8000/internal/schedules/outbox
 # The edited limits written to Redis again (billing), every 5 minutes, and old AI usage, limit

@@ -25,7 +25,7 @@ def test_running_low_lists_companies_short_of_a_candidate_unless_a_top_up_refill
         low = await wallet(CANDIDATE_CREDITS - 1)
         enough = await wallet(CANDIDATE_CREDITS)
         refilled = await wallet(0)
-        await rows.save(COMPANY, refilled, "topup_50", 500, "ann")
+        await rows.save(COMPANY, refilled, "topup_50", 500, "ann", 5000, "USD")
         await rows.start(COMPANY, refilled, "ann", f"sub_{uuid.uuid4().hex[:12]}", "USD")
         found = {row.owner_id for row in await ledger.running_low(COMPANY)}
 
@@ -53,7 +53,7 @@ def test_running_low_with_owner_ids_lists_only_those_owners(run):
 def test_running_low_counts_an_automatic_top_up_waiting_for_its_checkout(run):
     async def scenario():
         waiting = await wallet(0)
-        await rows.save(COMPANY, waiting, "topup_50", 500, "ann")
+        await rows.save(COMPANY, waiting, "topup_50", 500, "ann", 5000, "USD")
         found = await ledger.running_low(COMPANY, [waiting])
 
         return [row.owner_id for row in found], waiting
@@ -66,7 +66,7 @@ def test_running_low_counts_an_automatic_top_up_waiting_for_its_checkout(run):
 def test_running_low_leaves_out_an_asked_owner_with_an_active_automatic_top_up(run):
     async def scenario():
         refilled = await wallet(0)
-        await rows.save(COMPANY, refilled, "topup_50", 500, "ann")
+        await rows.save(COMPANY, refilled, "topup_50", 500, "ann", 5000, "USD")
         await rows.start(COMPANY, refilled, "ann", f"sub_{uuid.uuid4().hex[:12]}", "USD")
 
         return await ledger.running_low(COMPANY, [refilled])

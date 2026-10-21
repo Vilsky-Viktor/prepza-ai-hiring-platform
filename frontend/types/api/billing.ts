@@ -433,8 +433,9 @@ export interface paths {
     get: operations["get_company_currency_internal_companies__company_id__currency_get"]
     /**
      * Choose Company Currency
-     * @description From now on its top-ups are priced and charged in it, automatic ones too (their next
-     *     charge switches the subscription over).
+     * @description From now on its top-ups are priced and charged in it, automatic ones too, at once and at
+     *     the price list's price in it (their next charge switches the subscription over), which the
+     *     answer says for a running one.
      */
     put: operations["choose_company_currency_internal_companies__company_id__currency_put"]
     post?: never
@@ -817,6 +818,10 @@ export interface components {
       prices: {
         [key: string]: number
       }
+      /** Next Price */
+      next_price?: number | null
+      /** Next Price From */
+      next_price_from?: string | null
       checkout?: components["schemas"]["CheckoutOut"] | null
     }
     /** BalanceOut */
@@ -953,6 +958,8 @@ export interface components {
        *     ]
        */
       currencies: components["schemas"]["Currency"][]
+      /** Auto Top Up Price */
+      auto_top_up_price?: number | null
     }
     /**
      * Currency

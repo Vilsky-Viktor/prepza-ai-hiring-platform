@@ -29,6 +29,8 @@ UNKNOWN_COUNTRY = "XX"
 
 # A row's currency must be one of these (the database checks it).
 CURRENCY_CHECK = "currency IN (" + ", ".join(f"'{code}'" for code in Currency) + ")"
+# The same for an automatic top-up's agreed price.
+PRICE_CURRENCY_CHECK = "price_" + CURRENCY_CHECK
 
 # Where the visitor's country isn't known, or is neither of those below.
 DEFAULT_CURRENCY = Currency.USD

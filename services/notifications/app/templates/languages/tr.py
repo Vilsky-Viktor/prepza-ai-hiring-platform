@@ -304,6 +304,31 @@ TEXTS = {
             "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
     },
+    "top_up_price_change": {
+        "subject": "{company} için otomatik yükleme fiyatı değişiyor",
+        "preheader": (
+            "{date} itibarıyla her otomatik yüklemenin ücreti {price} yerine {new_price} olacak."
+        ),
+        "heading": "Otomatik yükleme fiyatı değişiyor",
+        "lines": [
+            (
+                "{date} itibarıyla {company} için her otomatik yüklemenin ücreti {price} yerine "
+                "{new_price} olacak; geçerli olduğu yerlerde KDV veya satış vergisi eklenir. Aday "
+                "sayısı aynı kalır."
+            ),
+            (
+                "O tarihe kadarki tahsilatlar yine {price} olur. Farklı bir tutar isterseniz "
+                "{date} tarihinden önce faturalandırma sayfasında otomatik yüklemeyi değiştirin "
+                "veya kapatın."
+            ),
+        ],
+        "button": "Faturalandırmayı aç",
+        "footer": (
+            "Bu e-posta {email} adresine, prepza'da {company} şirketinin sahibi veya "
+            "yöneticisi olduğunuz için gönderildi. Şirketinizin faturalandırmasıyla ilgili "
+            "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
+        ),
+    },
     "footer": "Bu e-posta {email} adresine, biri bu adresi prepza'ya davet ettiği için "
     "gönderildi. Beklemiyorsanız görmezden gelebilirsiniz.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

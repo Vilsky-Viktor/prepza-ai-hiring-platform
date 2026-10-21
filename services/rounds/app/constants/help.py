@@ -39,10 +39,6 @@ HELP_ALL_KEY = "rate:help:all"
 HELP_CHAT = "help_chat"
 # How long billing's prices are kept for the FAQ and the chat before they're asked again.
 CATALOG_KEY = "billing-catalog"
-# A currency pattern's decimals, left out of a whole amount ("$5", not "$5.00").
-WHOLE_DECIMALS = re.compile(r"\.0+")
-# Where letters of a currency's symbol meet its number ("CHF2.60"): a space goes there.
-CURRENCY_SPACING = re.compile(r"(?<=[A-Za-z])(?=\d)|(?<=\d)(?=[A-Za-z])")
 CATALOG_CACHE_SECONDS = 5 * 60
 LAST_NOT_QUESTION = "The conversation must end with a question."
 QUESTION_TOO_LONG = "The question is too long."

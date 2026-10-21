@@ -270,6 +270,27 @@ TEXTS = {
             " settings."
         ),
     },
+    "top_up_price_change": {
+        "subject": "Automatic top-up price for {company} changes",
+        "preheader": "From {date}, each automatic top-up costs {new_price} instead of {price}.",
+        "heading": "Automatic top-up's price changes",
+        "lines": [
+            (
+                "From {date}, each automatic top-up for {company} costs {new_price} instead of "
+                "{price}, plus VAT or sales tax where it applies. It buys the same candidates."
+            ),
+            (
+                "Charges before then still cost {price}. If you'd like a different amount, "
+                "change or turn off automatic top-up on the billing page before {date}."
+            ),
+        ],
+        "button": "Open billing",
+        "footer": (
+            "This email was sent to {email} because you're an owner or admin of {company} "
+            "on prepza. It's about your company's billing, so it's sent whatever your email"
+            " settings."
+        ),
+    },
     "footer": "This email was sent to {email} because someone invited this address on prepza. If "
     "you weren't expecting it, you can ignore it.",
     # An invite from a company prepza hasn't verified, at the end of the footer.

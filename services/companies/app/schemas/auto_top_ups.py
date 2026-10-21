@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 
 
@@ -26,7 +28,11 @@ class AutoTopUpOut(BaseModel):
     threshold: int | None
     products: list[str]
     thresholds: list[int]
-    # Each top-up's price (minor units) in `currency`: a running one's, or else the company's.
+    # Each top-up's price (minor units) in `currency`, the company's; the chosen one at what
+    # each charge costs now.
     currency: str
     prices: dict[str, int]
+    # A new price announced for the chosen top-up, and the day charges cost it from.
+    next_price: int | None = None
+    next_price_from: datetime | None = None
     checkout: CheckoutOut | None = None

@@ -212,6 +212,23 @@ TEXTS = {
             "이메일 설정과 관계없이 발송됩니다."
         ),
     },
+    "top_up_price_change": {
+        "subject": "{company}의 자동 충전 가격이 바뀝니다",
+        "preheader": "{date}부터 자동 충전 1회 가격이 {price}에서 {new_price}(으)로 바뀝니다.",
+        "heading": "자동 충전 가격 변경 안내",
+        "lines": [
+            (
+                "{date}부터 {company}의 자동 충전 1회 가격이 {price}에서 {new_price}(으)로 바뀌며, 해당되는 경우 "
+                "부가가치세(VAT) 또는 판매세가 추가됩니다. 충전으로 초대할 수 있는 지원자 수는 같습니다."
+            ),
+            "그 전의 결제는 계속 {price}입니다. 다른 금액을 원하시면 {date} 전에 결제 페이지에서 자동 충전을 변경하거나 끄세요.",
+        ],
+        "button": "결제 페이지 열기",
+        "footer": (
+            "prepza에서 {company}의 소유자 또는 관리자이므로 {email}(으)로 이 이메일이 발송되었습니다. 회사 결제에 관한 내용이므로 "
+            "이메일 설정과 관계없이 발송됩니다."
+        ),
+    },
     "footer": "prepza에서 누군가 이 주소를 초대하여 {email}(으)로 이 이메일이 발송되었습니다. 예상하지 못한 이메일이라면 무시하셔도 됩니다.",
     # An invite from a company prepza hasn't verified, at the end of the footer.
     "unverified": "prepza는 {company}을(를) 인증하지 않았습니다.",
