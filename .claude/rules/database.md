@@ -22,7 +22,8 @@ One Cloud SQL instance, a database per service. Adding a migration: the `migrati
   `uuid` in one and `varchar` in another). New integer keys use `Identity()`, not `serial`.
 - `created_at` has `server_default=func.now()`, so rows written outside the ORM get it too.
 - A closed set of values is a string column with a `CHECK (col IN (...))`, not a native `ENUM`
-  (values can't be removed from one).
+  (values can't be removed from one), built from its enum (`prepza_common.db.one_of`); a value
+  added to the enum changes the CHECK in a migration (`test_migrations.py` compares them).
 - Every `Base` sets `MetaData(naming_convention=NAMING_CONVENTION)` (`prepza_common.constants`:
   Postgres' own names for `uq`, `fk`, `pk`, so existing names stay) so migrations can drop and
   rename constraints by name; a `CHECK` is named where it's made (`ck_<table>_<what>`).

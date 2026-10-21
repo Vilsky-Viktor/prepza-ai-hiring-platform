@@ -1,7 +1,9 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, Index, String, Text, func, text
+from prepza_common.db import one_of
+from prepza_common.notifications import NotificationKind, Recipient
+from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -17,6 +19,8 @@ class Notification(Base):
         Index("ix_notifications_recipient", "recipient", "recipient_id", "created_at"),
         # The notifications about a person, found by their email when they're erased.
         Index("ix_notifications_email", text("(data ->> 'email')")),
+        CheckConstraint(one_of("recipient", Recipient), name="ck_notifications_recipient"),
+        CheckConstraint(one_of("kind", NotificationKind), name="ck_notifications_kind"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

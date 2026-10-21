@@ -46,3 +46,13 @@ def test_the_models_name_constraints_and_indexes_as_the_database_does():
     from app.config.settings import settings
 
     assert misnamed(settings.database_url, app.models) == []
+
+
+def test_every_check_allows_what_its_model_allows():
+    """A value added to a closed set in the code changes its CHECK in a migration too."""
+    from prepza_common.schema_rules import stale_checks
+
+    import app.models
+    from app.config.settings import settings
+
+    assert stale_checks(settings.database_url, app.models) == []

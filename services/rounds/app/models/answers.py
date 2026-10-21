@@ -1,10 +1,19 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, ForeignKey, SmallInteger, UniqueConstraint, false, func
+from sqlalchemy import (
+    CheckConstraint,
+    DateTime,
+    ForeignKey,
+    SmallInteger,
+    UniqueConstraint,
+    false,
+    func,
+)
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.rounds import CORRECT_SCORE
 from app.models.base import Base
 
 
@@ -12,6 +21,7 @@ class Answer(Base):
     __tablename__ = "answers"
     __table_args__ = (
         UniqueConstraint("session_id", "question_id", name="uq_answers_session_question"),
+        CheckConstraint(f"score BETWEEN 0 AND {CORRECT_SCORE}", name="ck_answers_score"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

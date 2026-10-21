@@ -1,9 +1,20 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func
+from prepza_common.db import one_of
+from sqlalchemy import (
+    CheckConstraint,
+    DateTime,
+    ForeignKey,
+    Index,
+    String,
+    Text,
+    UniqueConstraint,
+    func,
+)
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.brand import Theme
 from app.constants.invites import MAX_CANDIDATE_NAME_LENGTH, InviteStatus
 from app.models.base import Base
 
@@ -21,6 +32,10 @@ class CandidateInvite(Base):
         # a time (expiry, reminders, retention).
         Index("ix_candidate_invites_email", "email"),
         Index("ix_candidate_invites_sent_at", "sent_at"),
+        CheckConstraint(one_of("status", InviteStatus), name="ck_candidate_invites_status"),
+        CheckConstraint(one_of("theme", Theme), name="ck_candidate_invites_theme"),
+        CheckConstraint("grade BETWEEN 0 AND 100", name="ck_candidate_invites_grade"),
+        CheckConstraint("extra_time >= 0", name="ck_candidate_invites_extra_time"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

@@ -52,7 +52,9 @@ Each service with a database has its own Alembic history in `services/<svc>/migr
    `scripts/check_migrations.py` (run in CI) fails on what this rules out; a statement the rule
    allows anyway (a table known to hold a few rows) carries `# migration-check: <why>`.
 
-5. Change the model in `app/models/` to match: column types, `server_default`, `ondelete` and an
+5. A value added to a closed set (an enum a `CHECK` is built from) needs a migration that drops
+   and adds that `CHECK` with the new list (`NOT VALID`, then validated).
+6. Change the model in `app/models/` to match: column types, `server_default`, `ondelete` and an
    index on every new foreign key as the database rule says.
 
 ## Run and check

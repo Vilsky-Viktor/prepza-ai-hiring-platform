@@ -1,9 +1,11 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, func
+from prepza_common.db import one_of
+from sqlalchemy import CheckConstraint, DateTime, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.integrity import IntegritySignal
 from app.models.base import Base
 
 
@@ -11,6 +13,7 @@ class Signal(Base):
     """One page leave or copy reported by a candidate's browser, with the question on screen."""
 
     __tablename__ = "signals"
+    __table_args__ = (CheckConstraint(one_of("kind", IntegritySignal), name="ck_signals_kind"),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     session_id: Mapped[uuid.UUID] = mapped_column(

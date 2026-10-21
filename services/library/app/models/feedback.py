@@ -1,7 +1,9 @@
 import uuid
 from datetime import UTC, datetime
 
+from prepza_common.db import one_of
 from sqlalchemy import (
+    CheckConstraint,
     DateTime,
     ForeignKey,
     Index,
@@ -13,7 +15,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.constants.feedback import ReportStatus
+from app.constants.feedback import ReportReason, ReportStatus
 from app.models.base import Base
 
 
@@ -22,7 +24,10 @@ class QuestionRating(Base):
 
     __tablename__ = "question_ratings"
     # A person's votes (their account's deletion and export).
-    __table_args__ = (Index("ix_question_ratings_user_id", "user_id"),)
+    __table_args__ = (
+        Index("ix_question_ratings_user_id", "user_id"),
+        CheckConstraint("value IN (-1, 1)", name="ck_question_ratings_value"),
+    )
 
     question_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("questions.id", ondelete="CASCADE"), primary_key=True
@@ -52,6 +57,8 @@ class QuestionReport(Base):
         UniqueConstraint("question_id", "user_id", name="uq_question_reports_question_user"),
         # A person's reports (their account's deletion and export).
         Index("ix_question_reports_user_id", "user_id"),
+        CheckConstraint(one_of("reason", ReportReason), name="ck_question_reports_reason"),
+        CheckConstraint(one_of("status", ReportStatus), name="ck_question_reports_status"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

@@ -1,10 +1,12 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, Integer, String, Text, func
+from prepza_common.db import one_of
+from sqlalchemy import CheckConstraint, DateTime, Integer, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.constants.patterns import PatternStatus
+from app.constants.quality import QualityFlag
 from app.models.base import Base
 
 
@@ -14,6 +16,11 @@ class QualityPattern(Base):
     their ids or text."""
 
     __tablename__ = "quality_patterns"
+    __table_args__ = (
+        CheckConstraint(one_of("flag", QualityFlag), name="ck_quality_patterns_flag"),
+        CheckConstraint(one_of("status", PatternStatus), name="ck_quality_patterns_status"),
+        CheckConstraint("question_count >= 0", name="ck_quality_patterns_question_count"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     text: Mapped[str] = mapped_column(Text)

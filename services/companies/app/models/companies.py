@@ -1,7 +1,9 @@
 import uuid
 from datetime import UTC, datetime
 
+from prepza_common.db import one_of
 from sqlalchemy import (
+    CheckConstraint,
     DateTime,
     ForeignKey,
     Index,
@@ -16,6 +18,8 @@ from sqlalchemy import (
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from app.constants.brand import BrandFont
+from app.constants.logos import LOGO_SIGNATURES
 from app.constants.roles import Role
 from app.constants.verification import MAX_DECLINE_REASON_LENGTH, VerificationStatus
 from app.models.base import Base
@@ -24,7 +28,18 @@ from app.models.base import Base
 class Company(Base):
     __tablename__ = "companies"
     # Names are unique across prepza, ignoring case (migration 0012).
-    __table_args__ = (Index("uq_companies_lower_name", text("lower(name)"), unique=True),)
+    __table_args__ = (
+        Index("uq_companies_lower_name", text("lower(name)"), unique=True),
+        CheckConstraint(one_of("brand_font", BrandFont), name="ck_companies_brand_font"),
+        CheckConstraint(
+            one_of("verification_status", VerificationStatus),
+            name="ck_companies_verification_status",
+        ),
+        CheckConstraint(
+            one_of("logo_type", sorted({kind for _, kind in LOGO_SIGNATURES})),
+            name="ck_companies_logo_type",
+        ),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     name: Mapped[str] = mapped_column(Text())
@@ -79,6 +94,7 @@ class Member(Base):
         UniqueConstraint("company_id", "invited_email"),
         # Invites to an address across companies (support's lookup).
         Index("ix_members_invited_email", "invited_email"),
+        CheckConstraint(one_of("role", Role), name="ck_members_role"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

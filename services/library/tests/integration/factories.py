@@ -21,7 +21,7 @@ async def interview(
     title="Backend",
     topic="Python",
     subtopics=(),
-    level="mid",
+    level="medium",
     embedding=None,
     questions=3,
     language="en",

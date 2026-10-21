@@ -63,6 +63,16 @@ def test_the_models_name_constraints_and_indexes_as_the_database_does():
     assert misnamed(settings.database_url, app.models) == []
 
 
+def test_every_check_allows_what_its_model_allows():
+    """A value added to a closed set in the code changes its CHECK in a migration too."""
+    from prepza_common.schema_rules import stale_checks
+
+    import app.models
+    from app.config.settings import settings
+
+    assert stale_checks(settings.database_url, app.models) == []
+
+
 def test_a_migration_waits_only_so_long_for_a_lock_and_runs_only_so_long():
     from prepza_common.db import migration_engine
 
@@ -147,3 +157,29 @@ def test_a_table_breaking_a_database_rule_is_named():
             f"timestamp without a time zone: {table}.created_at",
         ]
     )
+
+
+def test_a_value_outside_its_closed_set_is_refused(run):
+    from sqlalchemy.exc import IntegrityError
+
+    from app.models.ats import AtsConnection
+    from app.storage.db import Session
+
+    async def scenario():
+        async with Session() as session:
+            session.add(
+                AtsConnection(
+                    company_id=uuid.uuid4(),
+                    provider="nobody",
+                    account="a",
+                    credentials="sealed",
+                    created_by="u1",
+                )
+            )
+
+            try:
+                await session.commit()
+            except IntegrityError as error:
+                return error.orig.diag.constraint_name
+
+    assert run(scenario()) == "ck_ats_connections_provider"

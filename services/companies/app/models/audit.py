@@ -1,11 +1,13 @@
 import uuid
 from datetime import UTC, date, datetime
 
-from prepza_common.audit_actions import MAX_TARGET_LABEL
-from sqlalchemy import Date, DateTime, ForeignKey, Index, String, func, text
+from prepza_common.audit_actions import MAX_TARGET_LABEL, AuditAction, AuditGroup, TargetKind
+from prepza_common.db import one_of
+from sqlalchemy import CheckConstraint, Date, DateTime, ForeignKey, Index, String, func, text
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.audit import VIA_API, VIA_ATS, VIAS
 from app.models.base import Base
 
 
@@ -32,6 +34,10 @@ class AuditEvent(Base):
             unique=True,
             postgresql_where=text("action = 'results_viewed'"),
         ),
+        CheckConstraint(one_of("action", AuditAction), name="ck_audit_events_action"),
+        CheckConstraint(one_of('"group"', AuditGroup), name="ck_audit_events_group"),
+        CheckConstraint(one_of("target_kind", TargetKind), name="ck_audit_events_target_kind"),
+        CheckConstraint(one_of("via", (*VIAS, VIA_API, VIA_ATS)), name="ck_audit_events_via"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

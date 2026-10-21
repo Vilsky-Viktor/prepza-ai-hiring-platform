@@ -1,9 +1,21 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Identity, Index, String, Text, UniqueConstraint, func
+from prepza_common.db import one_of
+from sqlalchemy import (
+    CheckConstraint,
+    DateTime,
+    ForeignKey,
+    Identity,
+    Index,
+    String,
+    Text,
+    UniqueConstraint,
+    func,
+)
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.bulk import BulkKind, RecipientStatus
 from app.models.base import Base
 
 
@@ -17,7 +29,10 @@ class BulkSend(Base):
     worked out once (`prepared_at`); it's finished when none is pending, or when it was stopped."""
 
     __tablename__ = "bulk_sends"
-    __table_args__ = (UniqueConstraint("kind", "about"),)
+    __table_args__ = (
+        UniqueConstraint("kind", "about"),
+        CheckConstraint(one_of("kind", BulkKind), name="ck_bulk_sends_kind"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     kind: Mapped[str] = mapped_column(String(16))
@@ -41,6 +56,7 @@ class BulkRecipient(Base):
     __table_args__ = (
         UniqueConstraint("send_id", "user_id"),
         Index("ix_bulk_recipients_status", "status", "send_id"),
+        CheckConstraint(one_of("status", RecipientStatus), name="ck_bulk_recipients_status"),
     )
 
     id: Mapped[int] = mapped_column(Identity(), primary_key=True)

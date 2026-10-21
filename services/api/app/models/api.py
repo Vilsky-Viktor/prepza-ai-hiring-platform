@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, Text, Uuid, false, func
+from sqlalchemy import CheckConstraint, DateTime, ForeignKey, String, Text, Uuid, false, func
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -71,6 +71,7 @@ class WebhookRetry(Base):
     """An event a web hook didn't take: the retry job sends it again, with backoff."""
 
     __tablename__ = "webhook_retries"
+    __table_args__ = (CheckConstraint("attempts >= 0", name="ck_webhook_retries_attempts"),)
 
     webhook_id: Mapped[uuid.UUID] = mapped_column(
         Uuid, ForeignKey("webhooks.id", ondelete="CASCADE"), primary_key=True

@@ -2,11 +2,12 @@ import uuid
 from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import DateTime, Index, String, Text, UniqueConstraint, func
+from prepza_common.db import one_of
+from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, UniqueConstraint, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.constants.rounds import RoundStatus
+from app.constants.rounds import CORRECT_SCORE, RoundStatus
 from app.models.base import Base
 from app.models.signals import Signal
 
@@ -26,6 +27,11 @@ class Session(Base):
             "candidate_invite_id",
             postgresql_where="status = 'in_progress'",
         ),
+        CheckConstraint(one_of("status", RoundStatus), name="ck_sessions_status"),
+        CheckConstraint(
+            f"final_score BETWEEN 0 AND {CORRECT_SCORE}", name="ck_sessions_final_score"
+        ),
+        CheckConstraint("question_seconds > 0", name="ck_sessions_question_seconds"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

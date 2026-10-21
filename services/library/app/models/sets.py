@@ -1,11 +1,23 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.constants import DEFAULT_LANGUAGE
-from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func, text
+from prepza_common.constants import DEFAULT_LANGUAGE, LEVELS
+from prepza_common.db import one_of
+from sqlalchemy import (
+    CheckConstraint,
+    DateTime,
+    ForeignKey,
+    Index,
+    String,
+    Text,
+    UniqueConstraint,
+    func,
+    text,
+)
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from app.constants.sets import OwnerType, Pool, SetKind
 from app.models.base import Base
 
 
@@ -26,6 +38,9 @@ class QuestionSet(Base):
             postgresql_where=text("kind = 'template'"),
         ),
         UniqueConstraint("slug", name="uq_sets_slug"),
+        CheckConstraint(one_of("kind", SetKind), name="ck_sets_kind"),
+        CheckConstraint(one_of("owner_type", OwnerType), name="ck_sets_owner_type"),
+        CheckConstraint(one_of("level", LEVELS), name="ck_sets_level"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
@@ -75,6 +90,7 @@ class Topic(Base):
 
 class Question(Base):
     __tablename__ = "questions"
+    __table_args__ = (CheckConstraint(one_of("pool", Pool), name="ck_questions_pool"),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     topic_id: Mapped[uuid.UUID] = mapped_column(

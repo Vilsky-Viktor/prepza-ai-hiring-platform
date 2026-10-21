@@ -1,10 +1,12 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, Text, func
+from prepza_common.db import one_of
+from sqlalchemy import CheckConstraint, DateTime, ForeignKey, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.mcp import MCP_SCOPES
 from app.models.base import Base
 
 
@@ -35,6 +37,7 @@ class McpGrant(Base):
     hashes only; deleting the row disconnects the app."""
 
     __tablename__ = "mcp_grants"
+    __table_args__ = (CheckConstraint(one_of("scope", MCP_SCOPES), name="ck_mcp_grants_scope"),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     user_id: Mapped[str] = mapped_column(String(128), index=True)

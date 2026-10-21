@@ -1,11 +1,14 @@
 import uuid
 from datetime import UTC, datetime
+from typing import get_args
 
 from prepza_common.constants import MAX_CAMPAIGN_BUTTON_LENGTH, MAX_CAMPAIGN_SUBJECT_LENGTH
-from sqlalchemy import DateTime, ForeignKey, String, Text, func
+from prepza_common.db import one_of
+from sqlalchemy import CheckConstraint, DateTime, ForeignKey, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
+from app.schemas.campaigns import CampaignKind
 
 
 def now() -> datetime:
@@ -18,6 +21,9 @@ class Campaign(Base):
     bulk send (about its id) goes out."""
 
     __tablename__ = "campaigns"
+    __table_args__ = (
+        CheckConstraint(one_of("kind", get_args(CampaignKind)), name="ck_campaigns_kind"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     kind: Mapped[str] = mapped_column(String(16))

@@ -2,7 +2,16 @@ import uuid
 from datetime import UTC, datetime
 
 from prepza_common.constants import DEFAULT_LANGUAGE
-from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func
+from sqlalchemy import (
+    CheckConstraint,
+    DateTime,
+    ForeignKey,
+    Index,
+    String,
+    Text,
+    UniqueConstraint,
+    func,
+)
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -20,6 +29,8 @@ class Interview(Base):
         Index("ix_interviews_created_at", "created_at"),
         # Named before the naming convention (models/base.py).
         UniqueConstraint("link_token", name="uq_interviews_link_token"),
+        CheckConstraint("pass_mark BETWEEN 0 AND 100", name="ck_interviews_pass_mark"),
+        CheckConstraint("question_seconds > 0", name="ck_interviews_question_seconds"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

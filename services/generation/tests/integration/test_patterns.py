@@ -1,13 +1,12 @@
 """The weekly pattern job and the patterns tab against the real database and Redis (database 15):
 what a run stores, a second run in the same week, and a superadmin's review."""
 
-import uuid
-
 import pytest
 from prepza_common import pubsub
 from sqlalchemy import delete, inspect
 
 from app.constants.patterns import PATTERN_DONE_KEY, PatternStatus
+from app.constants.quality import QualityFlag
 from app.integrations import library, llm
 from app.integrations.redis import get_redis
 from app.models.patterns import QualityPattern
@@ -29,9 +28,10 @@ def no_events(monkeypatch):
     get_redis.cache_clear()
 
 
-def flag_name():
-    """A flag of the test's own, so no other row or Redis key is touched."""
-    return f"test-{uuid.uuid4().hex[:8]}"
+def flag_name(flag: QualityFlag) -> str:
+    """A flag of the test's own (each test takes another), so no other test's row or Redis key
+    is touched; the database allows only real flags."""
+    return str(flag)
 
 
 async def cleanup(flag):
@@ -83,7 +83,7 @@ def test_the_table_holds_no_question_id_or_text(run):
 def test_a_run_stores_a_proposed_pattern_and_a_second_run_that_week_counts_nothing(
     run, monkeypatch
 ):
-    flag = flag_name()
+    flag = flag_name(QualityFlag.WRONG_KEY)
     rule = "Two options say the same thing in different words."
     model = given(monkeypatch, flag, [found(rule, [1, 2])], [found(rule, [1, 2, 3])])
 
@@ -110,7 +110,7 @@ def test_a_run_stores_a_proposed_pattern_and_a_second_run_that_week_counts_nothi
 
 
 def test_a_pattern_found_again_next_week_adds_to_its_count_and_last_seen(run, monkeypatch):
-    flag = flag_name()
+    flag = flag_name(QualityFlag.REWRITE)
     rule = "Two options say the same thing in different words."
     given(monkeypatch, flag, [found(rule, [1, 2])], [found("Reworded", [1, 2, 3], same_as=1)])
 
@@ -132,7 +132,7 @@ def test_a_pattern_found_again_next_week_adds_to_its_count_and_last_seen(run, mo
 
 
 def test_a_superadmins_review_is_kept_with_who_and_when_once(run):
-    flag = flag_name()
+    flag = flag_name(QualityFlag.WEAK_OPTIONS)
 
     async def scenario():
         try:

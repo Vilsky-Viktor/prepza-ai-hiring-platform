@@ -209,7 +209,7 @@ def test_a_new_template_never_puts_questions_reused_from_the_bank_in_practice(ru
                     "owner_uid": "prepza",
                     "source_text": "job text",
                     "title": "Newer template",
-                    "level": "mid",
+                    "level": "medium",
                     "language": "en",
                     "requirements": [],
                     "topics": [{"title": "Python", "subtopics": [], "questions": reused + fresh}],

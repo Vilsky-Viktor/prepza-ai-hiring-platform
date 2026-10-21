@@ -75,3 +75,13 @@ def test_old_rows_are_deleted_batch_after_batch_until_one_comes_up_short():
     # Each batch is its own transaction; the short one is the last.
     assert deleted == 7
     assert len(commits) == 3
+
+
+def test_a_closed_set_becomes_a_check_condition_with_each_value_quoted():
+    from enum import StrEnum
+
+    class Status(StrEnum):
+        OPEN = "open"
+        SHUT = "it's shut"
+
+    assert db.one_of("status", Status) == "status IN ('open', 'it''s shut')"

@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, SmallInteger, String, func
+from sqlalchemy import CheckConstraint, DateTime, SmallInteger, String, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -12,6 +12,7 @@ class HelpVote(Base):
     so only the vote is kept, by the answer's id: never its text, the question or who voted."""
 
     __tablename__ = "help_votes"
+    __table_args__ = (CheckConstraint("vote IN (-1, 1)", name="ck_help_votes_vote"),)
 
     answer_id: Mapped[uuid.UUID] = mapped_column(primary_key=True)
     # The answer's Langfuse trace; None when Langfuse wasn't set up.

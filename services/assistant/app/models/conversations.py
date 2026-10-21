@@ -1,10 +1,23 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Index, Integer, SmallInteger, String, Text, func, text
+from prepza_common.db import one_of
+from sqlalchemy import (
+    CheckConstraint,
+    DateTime,
+    ForeignKey,
+    Index,
+    Integer,
+    SmallInteger,
+    String,
+    Text,
+    func,
+    text,
+)
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.chat import Role, Source, Status, ToolState
 from app.models.base import Base
 
 
@@ -40,6 +53,10 @@ class Message(Base):
     # A conversation's messages in order (and its foreign key's index).
     __table_args__ = (
         Index("ix_messages_conversation_order", "conversation_id", "created_at", "id"),
+        CheckConstraint(one_of("role", Role), name="ck_messages_role"),
+        CheckConstraint(one_of("source", Source), name="ck_messages_source"),
+        CheckConstraint(one_of("status", Status), name="ck_messages_status"),
+        CheckConstraint("vote IN (-1, 1)", name="ck_messages_vote"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
@@ -74,6 +91,7 @@ class ToolCall(Base):
     """A tool an answer used: which, how long it took and how it ended; never its data."""
 
     __tablename__ = "tool_calls"
+    __table_args__ = (CheckConstraint(one_of("state", ToolState), name="ck_tool_calls_state"),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     message_id: Mapped[uuid.UUID] = mapped_column(

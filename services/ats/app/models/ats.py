@@ -1,11 +1,22 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func, text
+from prepza_common.db import one_of
+from sqlalchemy import (
+    CheckConstraint,
+    DateTime,
+    ForeignKey,
+    Index,
+    String,
+    Text,
+    UniqueConstraint,
+    func,
+    text,
+)
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.constants.ats import CandidateStatus, ConnectionStatus
+from app.constants.ats import AtsProvider, CandidateStatus, ConnectionStatus, FailReason
 from app.models.base import Base
 
 
@@ -13,7 +24,11 @@ class AtsConnection(Base):
     """A company's connection to its applicant tracking system: one per company and ATS."""
 
     __tablename__ = "ats_connections"
-    __table_args__ = (UniqueConstraint("company_id", "provider"),)
+    __table_args__ = (
+        UniqueConstraint("company_id", "provider"),
+        CheckConstraint(one_of("provider", AtsProvider), name="ck_ats_connections_provider"),
+        CheckConstraint(one_of("status", ConnectionStatus), name="ck_ats_connections_status"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     # The company, in the companies service.
@@ -95,6 +110,9 @@ class AtsCandidate(Base):
             "failed_at",
             postgresql_where=text("status = 'failed'"),
         ),
+        CheckConstraint(one_of("status", CandidateStatus), name="ck_ats_candidates_status"),
+        CheckConstraint(one_of("reason", FailReason), name="ck_ats_candidates_reason"),
+        CheckConstraint("attempts >= 0", name="ck_ats_candidates_attempts"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

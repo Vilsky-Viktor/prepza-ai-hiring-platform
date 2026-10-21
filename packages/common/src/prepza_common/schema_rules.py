@@ -8,7 +8,7 @@ import re
 from types import ModuleType
 
 from prepza_common.db import sqlalchemy_url
-from sqlalchemy import create_engine, text
+from sqlalchemy import CheckConstraint, create_engine, text
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.schema import CreateIndex, CreateTable
 
@@ -123,4 +123,48 @@ def misnamed(database_url: str, models: ModuleType) -> list[str]:
     return sorted(
         [f"only in the models: {t}.{n}" for t, n in named - found]
         + [f"only in the database: {t}.{n}" for t, n in found - named]
+    )
+
+
+def _literals(condition: str) -> set[str]:
+    """The quoted values and the numbers in a CHECK's condition, however Postgres rewrote it."""
+    quoted = set(re.findall(r"'((?:[^']|'')*)'", condition))
+    numbers = set(
+        re.findall(r"(?<![\w'.])-?\d+(?![\w'])", re.sub(r"'(?:[^']|'')*'", "", condition))
+    )
+
+    return quoted | numbers
+
+
+def stale_checks(database_url: str, models: ModuleType) -> list[str]:
+    """The models' CHECKs (by name) missing from the database or allowing other values there: a
+    value added to a closed set in the code needs a migration that changes its CHECK, or the
+    database refuses it."""
+    _model_names(models)
+    metadata = importlib.import_module(f"{models.__name__}.base").Base.metadata
+    wanted = {
+        constraint.name: str(constraint.sqltext)
+        for table in metadata.tables.values()
+        for constraint in table.constraints
+        if isinstance(constraint, CheckConstraint)
+    }
+    engine = create_engine(sqlalchemy_url(database_url))
+
+    try:
+        with engine.connect() as connection:
+            found = dict(
+                connection.execute(
+                    text(
+                        "SELECT conname, pg_get_constraintdef(oid) FROM pg_constraint"
+                        " WHERE contype = 'c' AND connamespace = 'public'::regnamespace"
+                    )
+                ).all()
+            )
+    finally:
+        engine.dispose()
+
+    return sorted(
+        f"{name}: " + ("missing" if name not in found else "allows other values")
+        for name, condition in wanted.items()
+        if name not in found or _literals(condition) != _literals(found[name])
     )

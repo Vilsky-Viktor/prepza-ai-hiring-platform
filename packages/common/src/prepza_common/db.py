@@ -12,6 +12,14 @@ from sqlalchemy import Engine, create_engine, delete, inspect, select, text
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, create_async_engine
 
 
+def one_of(column: str, values) -> str:
+    """A CHECK's condition that `column` holds one of `values` (an enum's members, a tuple): the
+    database refuses any other, so the closed set lives in one place, the code."""
+    listed = ", ".join("'" + str(value).replace("'", "''") + "'" for value in values)
+
+    return f"{column} IN ({listed})"
+
+
 def sqlalchemy_url(database_url: str) -> str:
     """A service's postgresql:// URL, with the psycopg driver SQLAlchemy connects through."""
     return database_url.replace("postgresql://", "postgresql+psycopg://", 1)

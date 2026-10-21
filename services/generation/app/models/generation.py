@@ -2,10 +2,12 @@ import uuid
 from datetime import datetime
 
 from prepza_common.constants import DEFAULT_LANGUAGE
-from sqlalchemy import DateTime, Index, String, Text, func, text
+from prepza_common.db import one_of
+from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.kinds import GenerationKind
 from app.constants.statuses import Status
 from app.models.base import Base
 
@@ -36,6 +38,8 @@ class Generation(Base):
             postgresql_where=text("status IN ('queued', 'running', 'awaiting_review')"),
         ),
         Index("ix_generations_text_kept", "updated_at", postgresql_where=text("text <> ''")),
+        CheckConstraint(one_of("kind", GenerationKind), name="ck_generations_kind"),
+        CheckConstraint(one_of("status", Status), name="ck_generations_status"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)

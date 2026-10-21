@@ -1,10 +1,22 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, Float, ForeignKey, Index, String, Text, false, text
+from prepza_common.db import one_of
+from sqlalchemy import (
+    CheckConstraint,
+    DateTime,
+    Float,
+    ForeignKey,
+    Index,
+    String,
+    Text,
+    false,
+    text,
+)
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.quality import QualityFlag
 from app.models.base import Base
 
 
@@ -16,6 +28,11 @@ class QuestionStats(Base):
     __table_args__ = (
         Index(
             "ix_question_stats_flagged_at", "flagged_at", postgresql_where=text("flag IS NOT NULL")
+        ),
+        CheckConstraint(one_of("flag", QualityFlag), name="ck_question_stats_flag"),
+        CheckConstraint(
+            "answers >= 0 AND strong_answers >= 0 AND weak_answers >= 0 AND timeouts >= 0",
+            name="ck_question_stats_counts",
         ),
     )
 
@@ -54,7 +71,10 @@ class QuestionRevision(Base):
 
     __tablename__ = "question_revisions"
     # Revisions newest first (the quality report, the digests).
-    __table_args__ = (Index("ix_question_revisions_replaced_at", text("replaced_at DESC"), "id"),)
+    __table_args__ = (
+        Index("ix_question_revisions_replaced_at", text("replaced_at DESC"), "id"),
+        CheckConstraint(one_of("flag", QualityFlag), name="ck_question_revisions_flag"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     question_id: Mapped[uuid.UUID] = mapped_column(

@@ -1,9 +1,11 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, String, func
+from prepza_common.db import one_of
+from sqlalchemy import CheckConstraint, DateTime, String, func
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.constants.emails import ConsentBasis, ConsentSource, EmailSetting
 from app.models.base import Base
 
 
@@ -33,6 +35,11 @@ class EmailConsent(Base):
     where, under which wording and when, or which superadmin changed it on their behalf."""
 
     __tablename__ = "email_consents"
+    __table_args__ = (
+        CheckConstraint(one_of("setting", EmailSetting), name="ck_email_consents_setting"),
+        CheckConstraint(one_of("source", ConsentSource), name="ck_email_consents_source"),
+        CheckConstraint(one_of("basis", ConsentBasis), name="ck_email_consents_basis"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     user_id: Mapped[str] = mapped_column(String(128), index=True)
