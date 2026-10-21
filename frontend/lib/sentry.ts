@@ -3,13 +3,19 @@ import type { ErrorEvent } from "@sentry/nextjs"
 import { SENTRY_TRACES_SAMPLE_RATE } from "@/constants/security"
 
 const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g
-// The secret in invite, job-ad and admin-invite links, on pages and in API paths.
-const LINK_TOKEN = /(\/(?:invite|invites|apply|links|join)\/)[^/?#\s"']+/g
+// The secret in invite, job-ad, admin-invite, embedded and unsubscribe links, on pages and in API
+// paths, and in a query's token (the unsubscribe page's).
+const LINK_TOKEN =
+  /(\/(?:invite|invites|apply|links|join|embedded|unsubscribe)\/)[^/?#\s"']+/g
+const QUERY_TOKEN = /([?&]token=)[^&#\s"']+/g
 
 /** Replaces every email address and link token in an event, however deep it sits. */
 function scrub<T>(value: T): T {
   if (typeof value === "string") {
-    return value.replace(EMAIL, "[email]").replace(LINK_TOKEN, "$1[token]") as T
+    return value
+      .replace(EMAIL, "[email]")
+      .replace(LINK_TOKEN, "$1[token]")
+      .replace(QUERY_TOKEN, "$1[token]") as T
   }
 
   if (Array.isArray(value)) {
