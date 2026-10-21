@@ -12,6 +12,7 @@ from app.constants.invites import (
     TOO_MANY_WITHOUT_CANDIDATES,
     TOO_MANY_WITHOUT_CANDIDATES_UNPAID,
 )
+from app.core.exceptions import OverLimit
 from app.main import app
 from app.routers import interviews as route
 from app.services import interview_creation as creation
@@ -39,7 +40,7 @@ def signed_in_manager(monkeypatch):
     app.dependency_overrides.clear()
 
 
-def generate(client, monkeypatch, waiting, paid=False, redis=None, refusal=None):
+def generate(client, monkeypatch, waiting, paid=False, redis=None, refusal=None, taken=None):
     """Asks for a new interview while `waiting` generated interviews have no candidate, for a
     company that topped up (`paid`) or not, with the limits and counters in `redis`; generation
     answers `refusal` (a response) when given. Returns the response and whether generation was
@@ -61,8 +62,15 @@ def generate(client, monkeypatch, waiting, paid=False, redis=None, refusal=None)
     async def fake_paid(company_id):
         return paid
 
-    async def fake_create(company_id, generation_id, language, seconds):
+    async def fake_create(company_id, generation_id, language, seconds, most=None):
+        # Another made meanwhile took the last place: `taken` is the count under the lock.
+        if taken is not None:
+            raise OverLimit(taken)
+
         return SimpleNamespace(id=uuid.uuid4())
+
+    async def fake_cancel(generation_id, company_id):
+        reached.append("cancelled")
 
     async def fake_out(interview):
         return {
@@ -88,6 +96,7 @@ def generate(client, monkeypatch, waiting, paid=False, redis=None, refusal=None)
     monkeypatch.setattr(creation.generation_api, "create", fake_generation)
     monkeypatch.setattr(creation.billing, "company_paid", fake_paid)
     monkeypatch.setattr(interviews, "create", fake_create)
+    monkeypatch.setattr(creation.generation_api, "cancel", fake_cancel)
     monkeypatch.setattr(creation, "interview_out", fake_out)
     monkeypatch.setattr(creation.audit, "record_interview", nothing)
     response = client.post(
@@ -123,6 +132,19 @@ DAY_UNPAID = (
     "Try again tomorrow."
 )
 DAY_PAID = "Your company's daily limit of generated interviews is {}. Try again tomorrow."
+
+
+def test_one_made_meanwhile_taking_the_last_place_refuses_and_stops_this_generation(
+    client, monkeypatch, limit_hits
+):
+    redis = FakeRedis()
+    response, reached = generate(client, monkeypatch, waiting=0, redis=redis, taken=1)
+
+    assert response.status_code == 409
+    assert response.json()["detail"] == WAITING_UNPAID.format(1)
+    # Generation was reached, then its job stopped; the day's count is given back.
+    assert reached == [False, "cancelled"]
+    assert redis.counts == {f"rate:interviews:{COMPANY_ID}": 0}
 
 
 def test_an_unpaid_company_generates_another_only_once_its_one_waiting_has_a_candidate(

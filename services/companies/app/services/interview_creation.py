@@ -4,7 +4,7 @@ from prepza_common.analytics import track
 from prepza_common.audit_actions import AuditAction
 from prepza_common.http import passed_on
 from prepza_common.limit_list import LIMITS
-from prepza_common.limits import at_most, question_seconds
+from prepza_common.limits import at_most, limit, question_seconds
 from prepza_common.rate_limit import counted, hit
 
 from app.constants.generation import GENERATION_REFUSALS
@@ -15,6 +15,7 @@ from app.constants.invites import (
     TOO_MANY_WITHOUT_CANDIDATES,
     TOO_MANY_WITHOUT_CANDIDATES_UNPAID,
 )
+from app.core.exceptions import OverLimit
 from app.helpers.interviews import interview_out
 from app.integrations import billing
 from app.integrations import generation as generation_api
@@ -40,22 +41,27 @@ async def create(
     redis = get_redis()
     who = {"company_id": company.id, "user_id": user_id}
 
+    quota = (
+        "MAX_INTERVIEWS_WITHOUT_CANDIDATES" if paid else "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID"
+    )
+
+    async def refuse_over(count: int) -> None:
+        try:
+            await at_most(
+                redis,
+                quota,
+                count,
+                # Waiting won't free one, inviting a candidate will: a quota, not a rate limit.
+                status.HTTP_409_CONFLICT,
+                TOO_MANY_WITHOUT_CANDIDATES if paid else TOO_MANY_WITHOUT_CANDIDATES_UNPAID,
+                **who,
+            )
+        except HTTPException:
+            await track("limit_hit", which="interviews_without_candidates", **who)
+            raise
+
     # Checked first, so a refused attempt doesn't count towards the day's limit.
-    try:
-        await at_most(
-            redis,
-            "MAX_INTERVIEWS_WITHOUT_CANDIDATES"
-            if paid
-            else "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID",
-            await interviews.without_candidates(company.id),
-            # Waiting won't free one, inviting a candidate will: a quota, not a rate limit.
-            status.HTTP_409_CONFLICT,
-            TOO_MANY_WITHOUT_CANDIDATES if paid else TOO_MANY_WITHOUT_CANDIDATES_UNPAID,
-            **who,
-        )
-    except HTTPException:
-        await track("limit_hit", which="interviews_without_candidates", **who)
-        raise
+    await refuse_over(await interviews.without_candidates(company.id))
 
     daily = "INTERVIEWS_PER_DAY" if paid else "INTERVIEWS_PER_DAY_UNPAID"
     daily_key = f"rate:interviews:{company.id}"
@@ -88,7 +94,17 @@ async def create(
 
     # Generation picks the language from the job description, not from the recruiter's interface.
     seconds = await question_seconds(redis, UNKNOWN_LEVEL)
-    interview = await interviews.create(company.id, created["id"], created["language"], seconds)
+    # Counted again under a lock as it's saved: another made meanwhile may have taken the last
+    # place. No lock is held across the generation call; the refused one's generation stops.
+    try:
+        interview = await interviews.create(
+            company.id, created["id"], created["language"], seconds, await limit(redis, quota)
+        )
+    except OverLimit as over:
+        await generation_api.cancel(created["id"], company.id)
+        await counted(redis, daily_key, -1, LIMITS[daily].window)
+        await refuse_over(over.count)
+        raise
     await audit.record_interview(interview, user_id, AuditAction.INTERVIEW_CREATED, via)
 
     return await interview_out(interview)

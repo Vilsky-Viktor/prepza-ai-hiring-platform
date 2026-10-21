@@ -7,6 +7,7 @@ from sqlalchemy import delete, func, select, update
 
 from app.constants.events import CANDIDATE_INTERVIEW_DELETED, INTERVIEW_DELETED
 from app.constants.invites import InviteStatus
+from app.core.exceptions import OverLimit
 from app.helpers.search import escape_like
 from app.helpers.sync import changed_since
 from app.models.interviews import Interview
@@ -22,9 +23,13 @@ def company_of(interview_id):
     return select(Interview.company_id).where(Interview.id == interview_id).scalar_subquery()
 
 
-async def create(company_id, generation_id, language: str, seconds: int) -> Interview:
+async def create(
+    company_id, generation_id, language: str, seconds: int, most: int | None = None
+) -> Interview:
     """A generated test, waiting for its questions: `seconds` a question until its level is
-    known (interview_generations.set_generated)."""
+    known (interview_generations.set_generated). OverLimit when the company already has `most`
+    interviews without candidates, counted under a lock with the insert, so two made at once
+    can't both pass."""
     interview = Interview(
         company_id=company_id,
         generation_id=generation_id,
@@ -34,6 +39,15 @@ async def create(company_id, generation_id, language: str, seconds: int) -> Inte
     )
 
     async with Session() as session:
+        lock = func.pg_advisory_xact_lock(func.hashtext(f"interviews:{company_id}"))
+        await session.execute(select(lock))
+
+        if most is not None:
+            count = await session.scalar(without_candidates_query(company_id))
+
+            if count >= most:
+                raise OverLimit(count)
+
         session.add(interview)
         await session.commit()
 
@@ -98,11 +112,10 @@ async def counts(company_ids: list) -> dict:
     return {company_id: count for company_id, count in rows}
 
 
-async def without_candidates(company_id) -> int:
-    """The company's generated interviews no candidate is invited to (yet, or any more); copies
-    of templates cost nothing and aren't counted."""
+def without_candidates_query(company_id):
     invited = select(CandidateInvite.id).where(CandidateInvite.interview_id == Interview.id)
-    query = (
+
+    return (
         select(func.count())
         .select_from(Interview)
         .where(
@@ -112,8 +125,12 @@ async def without_candidates(company_id) -> int:
         )
     )
 
+
+async def without_candidates(company_id) -> int:
+    """The company's generated interviews no candidate is invited to (yet, or any more); copies
+    of templates cost nothing and aren't counted."""
     async with Session() as session:
-        return await session.scalar(query) or 0
+        return await session.scalar(without_candidates_query(company_id)) or 0
 
 
 async def list_for_company(
