@@ -33,6 +33,10 @@ def use(monkeypatch, handler) -> None:
     [
         (answering(503), "Paddle unavailable: 503"),
         (unreachable, "Paddle unavailable: ConnectError"),
+        # The API key wrong or expired, short of a permission, or over Paddle's rate limit.
+        (answering(401), "Paddle unavailable: 401"),
+        (answering(403), "Paddle unavailable: 403"),
+        (answering(429), "Paddle unavailable: 429"),
     ],
 )
 def test_paddle_failing_raises_and_is_logged_for_the_alert(monkeypatch, caplog, handler, logged):
@@ -44,8 +48,9 @@ def test_paddle_failing_raises_and_is_logged_for_the_alert(monkeypatch, caplog, 
     assert logged in caplog.text
 
 
-def test_a_refusal_such_as_a_declined_card_isnt_an_outage(monkeypatch, caplog):
-    use(monkeypatch, answering(402))
+@pytest.mark.parametrize("status", [400, 402, 404, 422])
+def test_a_refusal_such_as_a_declined_card_isnt_an_outage(monkeypatch, caplog, status):
+    use(monkeypatch, answering(status))
 
     with caplog.at_level(logging.ERROR), pytest.raises(httpx.HTTPStatusError):
         asyncio.run(paddle.charge("sub_1", "pri_1"))

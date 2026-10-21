@@ -103,7 +103,7 @@ On the top-up page, under each balance, "Set up automatic top-up" opens the choi
 - Turning it off (by a member, by removing or demoting the member whose card pays, or by deleting the company or that member's account) cancels its Paddle subscription first and only then forgets it; a subscription Paddle already ended counts as cancelled. If Paddle can't cancel it, it stays on and the action fails, to be tried again, so the card is never left saved with nothing pointing at it.
 - A user's data export ("Download my data") lists the automatic top-ups they turned on, as their card pays for them, with what each buys and when it last charged or was declined, beside what they bought for their companies.
 - It is shown only when Paddle's API key and the $0 price are set (see [Setting up Paddle](#setting-up-paddle)).
-- A card that declines an automatic top-up is tried again at most once a day (`AUTO_TOP_UP_RETRY_AFTER`), and the owner is told.
+- A card that declines an automatic top-up is tried again at most once a day (`AUTO_TOP_UP_RETRY_AFTER`), and the owner is told. Paddle refusing billing itself (its API key wrong, expired or short of a permission, or its rate limit: `401`, `403`, `429`) isn't the card's fault: the owner isn't told, and it alerts as Paddle failing does ([runbooks](../runbooks.md#paddle-down)).
 - A charge Paddle doesn't answer (a timeout or an error on its side) isn't counted as declined: if it went through, Paddle's webhook adds the credits; either way no other charge follows until a charge's credits have come, for at most a day (`AUTO_TOP_UP_UNCREDITED_WAIT`), so a late or failing webhook never charges the card again and again. Once they've come, the next charge waits at least 10 minutes (`AUTO_TOP_UP_COOLDOWN`).
 
 ## Referrals

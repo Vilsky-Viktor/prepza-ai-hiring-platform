@@ -15,6 +15,7 @@ from app.constants.products import (
     AUTO_TOP_UP_THRESHOLDS,
     AUTO_TOP_UP_WAIT_SECONDS,
     NOT_YOUR_AUTO_TOP_UP,
+    PADDLE_REFUSES_BILLING,
     SUBSCRIPTION_ENDED_STATUS,
     TOP_UP_UNAVAILABLE,
     TOP_UPS,
@@ -218,6 +219,16 @@ async def charge(row: AutoTopUp, owner_id: str) -> None:
     await paddle.charge(row.subscription_id, top_up_item(row.product, currency))
 
 
+def declined(error: Exception) -> bool:
+    """Whether Paddle refused the charge itself (a declined card), not billing: its key or rate
+    limit failing is billing's problem, never told to the owner as their card's."""
+    return (
+        isinstance(error, httpx.HTTPStatusError)
+        and error.response.is_client_error
+        and error.response.status_code not in PADDLE_REFUSES_BILLING
+    )
+
+
 async def check(owner_type: str, owner_id: str) -> None:
     """After credits are used: if the balance is now under the threshold, buys the chosen
     top-up with the saved card. Never fails the request that used the credits; a charge Paddle
@@ -238,7 +249,7 @@ async def check(owner_type: str, owner_id: str) -> None:
     except Exception as error:
         logger.exception("Automatic top-up failed for %s %s", owner_type, owner_id)
 
-        if isinstance(error, httpx.HTTPStatusError) and error.response.is_client_error:
+        if declined(error):
             await auto_top_ups.failed(owner_type, owner_id, now)
             await publish_quietly(
                 notification(owner_type, owner_id, NotificationKind.AUTO_TOP_UP_FAILED, TOP_UP_LINK)

@@ -5,15 +5,16 @@ from prepza_common import http
 from prepza_common.http import bearer
 
 from app.config.settings import settings
-from app.constants.products import PADDLE_API, PADDLE_API_VERSION
+from app.constants.products import PADDLE_API, PADDLE_API_VERSION, PADDLE_REFUSES_BILLING
 
 logger = logging.getLogger(__name__)
 
 
 async def _call(method: str, path: str, **kwargs) -> httpx.Response:
-    """One call to Paddle's API; a refusal raises. Paddle itself failing (no answer, or a 5xx) is
-    logged as "Paddle unavailable", which the "prepza Paddle failing" alert counts; a refusal,
-    such as a declined card, isn't."""
+    """One call to Paddle's API; a refusal raises. Paddle failing (no answer, or a 5xx) or
+    refusing billing itself (its key wrong, expired or short of a permission; rate-limited) is
+    logged as "Paddle unavailable", which the "prepza Paddle failing" alert counts; a refusal of
+    the request, such as a declined card, isn't."""
     try:
         response = await http.get_client().request(
             method,
@@ -26,7 +27,7 @@ async def _call(method: str, path: str, **kwargs) -> httpx.Response:
 
         raise
 
-    if response.status_code >= 500:
+    if response.status_code >= 500 or response.status_code in PADDLE_REFUSES_BILLING:
         logger.error("Paddle unavailable: %d", response.status_code)
 
     response.raise_for_status()

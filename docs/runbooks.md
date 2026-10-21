@@ -30,7 +30,7 @@ What to do when a provider fails, a generation hangs, a deploy's migration fails
 
 **How you notice**
 
-- **prepza Paddle failing:** over 3 calls to Paddle's API failed in 15 minutes: no answer, or a 5xx. billing logs each as "Paddle unavailable"; a refusal such as a declined card doesn't count ([paddle.py](../services/billing/app/integrations/paddle.py), [monitoring_logs.tf](../infra/terraform/monitoring_logs.tf)). **prepza server errors** may fire too, once failed checkouts and invoices pass 5% of a service's requests ([monitoring.tf](../infra/terraform/monitoring.tf)).
+- **prepza Paddle failing:** over 3 calls to Paddle's API failed in 15 minutes: no answer, a 5xx, or Paddle refusing billing itself (`401` or `403`: the API key wrong, expired or short of a permission; `429`: over Paddle's rate limit). billing logs each as "Paddle unavailable"; a refusal of the request, such as a declined card, doesn't count ([paddle.py](../services/billing/app/integrations/paddle.py), [monitoring_logs.tf](../infra/terraform/monitoring_logs.tf)). **prepza server errors** may fire too, once failed checkouts and invoices pass 5% of a service's requests ([monitoring.tf](../infra/terraform/monitoring.tf)).
 - **prepza web hook signature refused** means our secret is wrong, not that Paddle is down (see the last step).
 - Users: **Top up** says "Couldn't open the checkout. Please try again." ([buy-button.tsx](../frontend/components/billing/buy-button.tsx)); invoice downloads fail; turning automatic top-up off, or deleting a company or an account with one, fails and can be tried again ([auto_top_ups.py](../services/billing/app/services/auto_top_ups.py)). Prices still show: the catalog comes from billing's settings, not from Paddle ([billing.py](../services/billing/app/routers/billing.py)).
 
@@ -38,12 +38,12 @@ What to do when a provider fails, a generation hangs, a deploy's migration fails
 
 - Billing never retries a call to Paddle beyond the shared client's connection retries (3, with a 30-second timeout, [http.py](../packages/common/src/prepza_common/http.py)). A checkout that fails is simply not created; nothing is charged.
 - **Paddle's web hooks:** Paddle retries a web hook until it gets a 2xx, and granting credits is idempotent, so a late or repeated `transaction.completed` adds the credits once ([billing.py](../services/billing/app/routers/billing.py), [topups.py](../services/billing/app/services/topups.py)). Payments made during the outage get their credits when Paddle delivers.
-- **Automatic top-ups:** a charge Paddle doesn't answer (a timeout or a 5xx) isn't counted as declined; if it went through, the web hook adds the credits, and no other charge follows until they come, for at most a day (`AUTO_TOP_UP_UNCREDITED_WAIT`). A refusal (4xx) tells the owner and is tried again after a day ([auto_top_ups.py](../services/billing/app/services/auto_top_ups.py), [Credits and payments](features/billing.md)).
+- **Automatic top-ups:** a charge Paddle doesn't answer (a timeout or a 5xx) isn't counted as declined; if it went through, the web hook adds the credits, and no other charge follows until they come, for at most a day (`AUTO_TOP_UP_UNCREDITED_WAIT`). A declined card (any other 4xx) tells the owner and is tried again after a day; Paddle refusing billing's key or rate limit isn't told to the owner as their card's, and waits like a charge Paddle didn't answer ([auto_top_ups.py](../services/billing/app/services/auto_top_ups.py), [Credits and payments](features/billing.md)).
 
 **What to do**
 
 1. Check Paddle's status page. If Paddle is down, there's nothing to switch: wait. Maintenance mode wouldn't help, as it leaves billing open.
-2. If Paddle is up, read billing's errors (command above). A `401` or `403` from Paddle means the API key: check `paddle-api-key` against Paddle's dashboard (its permissions are in [Credits and payments](features/billing.md#setting-up-paddle)), add the right one and restart billing:
+2. If Paddle is up, read billing's errors (command above). A `401` or `403` from Paddle means the API key: Paddle's keys expire (90 days by default, a year at most), so check its expiry and permissions in Paddle's dashboard against `paddle-api-key` (its permissions are in [Credits and payments](features/billing.md#setting-up-paddle)), add the right one and restart billing:
    ```bash
    printf '%s' "$PADDLE_API_KEY" | gcloud secrets versions add paddle-api-key --data-file=-
    gcloud run services update billing --region=europe-west1 --update-labels=restarted=$(date +%s)

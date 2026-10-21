@@ -175,7 +175,7 @@ locals {
       aligner   = "ALIGN_DELTA"
       threshold = 3
       window    = "900s"
-      text      = "Paddle's API doesn't answer: checkouts don't open, automatic top-ups and invoices fail. Check Paddle's status page and the paddle-api-key secret. See docs/runbooks.md (Paddle down)."
+      text      = "Paddle's API doesn't answer, or refuses billing's key (expired, wrong or short of a permission): checkouts don't open, automatic top-ups and invoices fail. Check Paddle's status page and the paddle-api-key secret's expiry and permissions. See docs/runbooks.md (Paddle down)."
     }
     migrations = {
       name      = "prepza migration failed"

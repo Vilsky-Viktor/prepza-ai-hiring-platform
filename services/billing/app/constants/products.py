@@ -113,6 +113,10 @@ PADDLE_API = {"sandbox": "https://sandbox-api.paddle.com", "production": "https:
 # The version of Paddle's API every call asks for (its `Paddle-Version` header), so a new default
 # version in Paddle's dashboard can't change the answers billing reads.
 PADDLE_API_VERSION = "1"
+# Paddle's answers that refuse billing itself rather than the request: its API key is wrong,
+# expired or lacks a permission, or billing is over Paddle's rate limit. Every call fails until
+# fixed, so they count towards the "prepza Paddle failing" alert as an outage does.
+PADDLE_REFUSES_BILLING = {401, 403, 429}
 # How Paddle starts each environment's server-side API keys and client-side tokens: a key or
 # token of the other environment stops billing from starting, so sandbox and live never mix.
 PADDLE_KEY_PREFIXES = {"sandbox": "pdl_sdbx_", "production": "pdl_live_"}
