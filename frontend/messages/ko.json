@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "누가 가장 잘했는지 한눈에\n몇 초 만에 공유",
       "text": "모든 지원자의 답변과 점수를 이메일이나 채팅으로 공유하세요.",
-      "chatQuestion": "혹시 합격한 사람 벌써 있어요?"
+      "chatQuestion": "혹시 합격한 사람 벌써 있어요?",
+      "samples": "보고서 샘플"
     },
     "automate": {
       "title": "채용 자동화",

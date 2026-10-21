@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "Mira quién es el mejor\nCompártelo en segundos",
       "text": "Las respuestas y la nota de cada candidato, compartidas por correo o chat.",
-      "chatQuestion": "Oye, ¿ya aprobó alguien?"
+      "chatQuestion": "Oye, ¿ya aprobó alguien?",
+      "samples": "Informes de ejemplo"
     },
     "automate": {
       "title": "Automatiza tu contratación",

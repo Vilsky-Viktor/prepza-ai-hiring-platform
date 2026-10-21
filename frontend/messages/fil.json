@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "Tingnan kung sino ang pinakamagaling\nI-share sa loob ng ilang segundo",
       "text": "Ang mga sagot at grade ng bawat aplikante, ishine-share sa email o chat.",
-      "chatQuestion": "Uy, may pumasa na ba?"
+      "chatQuestion": "Uy, may pumasa na ba?",
+      "samples": "Mga halimbawang ulat"
     },
     "automate": {
       "title": "I-automate ang iyong hiring",

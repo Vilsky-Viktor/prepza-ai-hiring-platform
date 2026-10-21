@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "誰が一番かがわかる\n数秒で共有",
       "text": "すべての候補者の回答とスコアを、メールやチャットで共有。",
-      "chatQuestion": "ねえ、もう誰か合格した？"
+      "chatQuestion": "ねえ、もう誰か合格した？",
+      "samples": "レポートのサンプル"
     },
     "automate": {
       "title": "採用を自動化",

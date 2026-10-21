@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "Zobacz, kto jest najlepszy\nUdostępnij w kilka sekund",
       "text": "Odpowiedzi i wynik każdego kandydata, udostępniane e-mailem lub na czacie.",
-      "chatQuestion": "Hej, czy ktoś już zdał?"
+      "chatQuestion": "Hej, czy ktoś już zdał?",
+      "samples": "Przykładowe raporty"
     },
     "automate": {
       "title": "Zautomatyzuj rekrutację",

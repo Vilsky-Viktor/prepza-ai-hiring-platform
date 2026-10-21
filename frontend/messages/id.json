@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "Lihat siapa yang terbaik\nBagikan dalam hitungan detik",
       "text": "Jawaban dan nilai setiap kandidat, dibagikan lewat email atau chat.",
-      "chatQuestion": "Hai, sudah ada yang lulus belum?"
+      "chatQuestion": "Hai, sudah ada yang lulus belum?",
+      "samples": "Contoh laporan"
     },
     "automate": {
       "title": "Otomatiskan rekrutmenmu",

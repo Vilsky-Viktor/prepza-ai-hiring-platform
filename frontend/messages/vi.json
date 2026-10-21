@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "Biết ngay ai giỏi nhất\nChia sẻ trong vài giây",
       "text": "Câu trả lời và điểm của mọi ứng viên, chia sẻ qua email hoặc chat.",
-      "chatQuestion": "Này, đã có ai đạt chưa?"
+      "chatQuestion": "Này, đã có ai đạt chưa?",
+      "samples": "Báo cáo mẫu"
     },
     "automate": {
       "title": "Tự động hóa tuyển dụng",

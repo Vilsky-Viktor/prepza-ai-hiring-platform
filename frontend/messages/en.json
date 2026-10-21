@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "See who's best\nShare it in seconds",
       "text": "Every candidate's answers and grade, shared by email or chat.",
-      "chatQuestion": "Hey, has anyone passed yet?"
+      "chatQuestion": "Hey, has anyone passed yet?",
+      "samples": "Report samples"
     },
     "automate": {
       "title": "Automate your hiring",

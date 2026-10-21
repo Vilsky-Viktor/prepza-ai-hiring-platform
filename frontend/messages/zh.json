@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "看清谁最优秀\n几秒内即可分享",
       "text": "每位候选人的答案和成绩，通过邮件或聊天分享。",
-      "chatQuestion": "嘿，有人通过了吗？"
+      "chatQuestion": "嘿，有人通过了吗？",
+      "samples": "报告示例"
     },
     "automate": {
       "title": "让招聘自动化",

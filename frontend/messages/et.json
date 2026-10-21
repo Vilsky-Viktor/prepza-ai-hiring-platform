@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "Vaata, kes on parim\nJaga sekunditega",
       "text": "Iga kandidaadi vastused ja hinne, jagatud e-kirja või vestluse kaudu.",
-      "chatQuestion": "Hei, kas keegi juba läbis?"
+      "chatQuestion": "Hei, kas keegi juba läbis?",
+      "samples": "Näidisaruanded"
     },
     "automate": {
       "title": "Automatiseeri värbamine",

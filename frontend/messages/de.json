@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "Sieh, wer am besten ist\nTeile es in Sekunden",
       "text": "Die Antworten und das Ergebnis jedes Kandidaten, geteilt per E-Mail oder Chat.",
-      "chatQuestion": "Hey, hat schon jemand bestanden?"
+      "chatQuestion": "Hey, hat schon jemand bestanden?",
+      "samples": "Beispielberichte"
     },
     "automate": {
       "title": "Automatisiere dein Recruiting",

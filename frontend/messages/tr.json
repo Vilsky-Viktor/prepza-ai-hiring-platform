@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "En iyisini görün\nSaniyeler içinde paylaşın",
       "text": "Her adayın cevapları ve notu, e-postayla ya da sohbette paylaşılır.",
-      "chatQuestion": "Selam, geçen oldu mu?"
+      "chatQuestion": "Selam, geçen oldu mu?",
+      "samples": "Örnek raporlar"
     },
     "automate": {
       "title": "İşe alımınızı otomatikleştirin",

@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "Scopri chi è il migliore\nCondividilo in pochi secondi",
       "text": "Le risposte e il punteggio di ogni candidato, condivisi via email o in chat.",
-      "chatQuestion": "Ehi, qualcuno l'ha già superato?"
+      "chatQuestion": "Ehi, qualcuno l'ha già superato?",
+      "samples": "Report di esempio"
     },
     "automate": {
       "title": "Automatizza le tue assunzioni",

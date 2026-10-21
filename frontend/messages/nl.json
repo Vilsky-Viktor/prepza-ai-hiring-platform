@@ -1296,7 +1296,8 @@
     "shareReports": {
       "title": "Zie wie de beste is\nDeel het in seconden",
       "text": "De antwoorden en score van elke kandidaat, gedeeld per e-mail of chat.",
-      "chatQuestion": "Hé, is er al iemand geslaagd?"
+      "chatQuestion": "Hé, is er al iemand geslaagd?",
+      "samples": "Voorbeeldrapporten"
     },
     "automate": {
       "title": "Automatiseer je werving",
