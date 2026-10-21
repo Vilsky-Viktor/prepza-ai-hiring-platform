@@ -72,17 +72,18 @@ def upgrade() -> None:
         # migration-check: varchar to text is binary coercible: no rewrite, no index rebuild
         op.execute(f"ALTER TABLE {table} ALTER COLUMN {column} TYPE text")
 
-    for table, name, condition in CHECKS:
-        op.execute(f"ALTER TABLE {table} ADD CONSTRAINT {name} CHECK ({condition}) NOT VALID")
-
     with op.get_context().autocommit_block():
+        # Each batch its own transaction (autocommit), until none is left. Before the checks: a
+        # NOT VALID check still refuses an update to a row it doesn't allow (a test's old row).
+        while op.get_bind().exec_driver_sql(BACKFILL).rowcount:
+            pass
+
+        for table, name, condition in CHECKS:
+            op.execute(f"ALTER TABLE {table} ADD CONSTRAINT {name} CHECK ({condition}) NOT VALID")
+
         for table, name, _ in CHECKS:
             if name not in NOT_YET:
                 op.execute(f"ALTER TABLE {table} VALIDATE CONSTRAINT {name}")
-
-        # Each batch its own transaction (autocommit), until none is left.
-        while op.get_bind().exec_driver_sql(BACKFILL).rowcount:
-            pass
 
         op.execute("DROP INDEX CONCURRENTLY IF EXISTS ix_purchases_buyer_id")
         op.execute(
