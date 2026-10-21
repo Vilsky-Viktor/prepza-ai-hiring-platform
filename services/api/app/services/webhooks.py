@@ -11,7 +11,7 @@ import httpx
 from fastapi import HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from prepza_common.encryption import decrypt
-from prepza_common.notifications import NotificationKind, Recipient, notification, publish_quietly
+from prepza_common.notifications import NotificationKind, Recipient, notification
 from prepza_common.public_urls import public_address
 from pydantic import BaseModel
 
@@ -43,11 +43,9 @@ async def send(
     that failed. A web hook that doesn't take it is left to the retry job, and the event is
     done: a company's failing endpoint doesn't hold up Pub/Sub for everyone. A paused one
     (`failing`) gets nothing until a test event goes through."""
-    hooks = [
-        hook
-        for hook in await webhooks.of_company(company_id)
-        if not hook.failing and not await webhooks.delivered(hook.id, event_id)
-    ]
+    working = [hook for hook in await webhooks.of_company(company_id) if not hook.failing]
+    got = await webhooks.delivered_to([hook.id for hook in working], event_id)
+    hooks = [hook for hook in working if hook.id not in got]
     # A web hook works while whoever added it is still an owner or admin, like an API key.
     editors = {
         maker: (await companies.access(company_id, maker))["editor"]
@@ -185,19 +183,17 @@ async def mark_stopped(hook: Webhook, stopped: bool) -> None:
     """A web hook whose member is no longer an owner or admin stops, and the company is told,
     once; it works again once its member is an editor again. A lost notification is better than
     a failed delivery."""
-    if hook.stopped == stopped or not await webhooks.set_stopped(hook.id, stopped):
+    if hook.stopped == stopped:
         return
 
-    if stopped:
-        await publish_quietly(
-            notification(
-                Recipient.COMPANY,
-                hook.company_id,
-                NotificationKind.WEBHOOK_STOPPED,
-                API_PAGE.format(company_id=hook.company_id),
-                url=hook.url,
-            )
-        )
+    notice = notification(
+        Recipient.COMPANY,
+        hook.company_id,
+        NotificationKind.WEBHOOK_STOPPED,
+        API_PAGE.format(company_id=hook.company_id),
+        url=hook.url,
+    )
+    await webhooks.set_stopped(hook.id, stopped, notice if stopped else None)
 
 
 async def resend(row: WebhookRetry, hook: Webhook, editor: bool) -> None:

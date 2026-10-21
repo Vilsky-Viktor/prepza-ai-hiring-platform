@@ -48,21 +48,24 @@ def endpoints(monkeypatch, companies_api):
     async def delivered(webhook_id, event_id):
         return (webhook_id, event_id) in state["delivered"]
 
+    async def delivered_to(webhook_ids, event_id):
+        return {item for item in webhook_ids if (item, event_id) in state["delivered"]}
+
     async def mark_delivered(webhook_id, event_id):
         state["delivered"].add((webhook_id, event_id))
 
     async def set_failing(webhook_id, failing):
         next(item for item in state["hooks"] if item.id == webhook_id).failing = failing
 
-    async def set_stopped(webhook_id, stopped):
+    async def set_stopped(webhook_id, stopped, notice=None):
         found = next(item for item in state["hooks"] if item.id == webhook_id)
         changed = found.stopped != stopped
         found.stopped = stopped
 
-        return changed
+        if changed and notice is not None:
+            state["told"].append(notice)
 
-    async def tell(event):
-        state["told"].append(event)
+        return changed
 
     async def post(url, address, body, signature):
         if url in state["failing"]:
@@ -106,10 +109,10 @@ def endpoints(monkeypatch, companies_api):
     monkeypatch.setattr(delivery.webhook_log, "add", log)
     monkeypatch.setattr(delivery.webhooks, "of_company", of_company)
     monkeypatch.setattr(delivery.webhooks, "delivered", delivered)
+    monkeypatch.setattr(delivery.webhooks, "delivered_to", delivered_to)
     monkeypatch.setattr(delivery.webhooks, "mark_delivered", mark_delivered)
     monkeypatch.setattr(delivery.webhooks, "set_failing", set_failing)
     monkeypatch.setattr(delivery.webhooks, "set_stopped", set_stopped)
-    monkeypatch.setattr(delivery, "publish_quietly", tell)
     monkeypatch.setattr(delivery.endpoints, "post", post)
     monkeypatch.setattr(delivery.retries, "add", add_retry)
     monkeypatch.setattr(delivery.retries, "claim", claim)

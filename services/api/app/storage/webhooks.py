@@ -1,8 +1,9 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common import audit
+from prepza_common import audit, outbox
 from prepza_common.audit_actions import AuditAction, TargetKind
+from prepza_common.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 
@@ -126,6 +127,16 @@ async def remove_user(user_id: str) -> None:
         await session.commit()
 
 
+async def delivered_to(webhook_ids: list[uuid.UUID], event_id: str) -> set[uuid.UUID]:
+    """Those of the web hooks that already got the event."""
+    query = select(WebhookDelivery.webhook_id).where(
+        WebhookDelivery.webhook_id.in_(webhook_ids), WebhookDelivery.event_id == event_id
+    )
+
+    async with Session() as session:
+        return set(await session.scalars(query))
+
+
 async def delivered(webhook_id: uuid.UUID, event_id: str) -> bool:
     query = select(WebhookDelivery).where(
         WebhookDelivery.webhook_id == webhook_id, WebhookDelivery.event_id == event_id
@@ -168,8 +179,9 @@ async def set_failing(webhook_id: uuid.UUID, failing: bool) -> None:
         await session.commit()
 
 
-async def set_stopped(webhook_id: uuid.UUID, stopped: bool) -> bool:
-    """True when it changed just now: of several events at once, only one tells the company."""
+async def set_stopped(webhook_id: uuid.UUID, stopped: bool, notice: dict | None = None) -> bool:
+    """True when it changed just now: of several events at once, only one tells the company,
+    with `notice` (a notification's data), sent through the outbox with the change."""
     query = (
         update(Webhook)
         .where(Webhook.id == webhook_id, Webhook.stopped.is_not(stopped))
@@ -179,6 +191,10 @@ async def set_stopped(webhook_id: uuid.UUID, stopped: bool) -> bool:
 
     async with Session() as session:
         changed = await session.scalar(query)
+
+        if changed is not None and notice is not None:
+            outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
+
         await session.commit()
 
     return changed is not None
