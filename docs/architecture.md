@@ -148,7 +148,7 @@ Delivery:
 
 | Consumer | Event types |
 |---|---|
-| library | `answer.recorded`, `session.scored` |
+| library | `answer.recorded`, `session.scored`, `guests.deleted` (companies deleted guest invites, by removal, retention or with their interview or company: library deletes each guest's sign-in, terms, ratings and reports; deleting again deletes nothing more) |
 | companies | `generation.completed`, `generation.failed`, `generation.cancelled`, `interview.finished` |
 | notifications | `notification.requested`, every `candidate.*` (it handles `candidate.invited`, `candidate.joined`, `candidate.reminded` and `candidate.removed`), `member.invited`, `report.shared`, `contact.sent`, `company.deleted` |
 | ats | `candidate.finished`, `candidate.removed`, `interview.ready`, `interview.deleted`, `company.deleted`, `credits.added` |

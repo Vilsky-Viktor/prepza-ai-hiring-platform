@@ -13,6 +13,7 @@ from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
 from app.models.outbox import OutboxEvent
 from app.schemas.interviews import InterviewSettings
+from app.storage import guests
 from app.storage.db import Session
 
 
@@ -184,6 +185,8 @@ async def remove(interview_id) -> list[tuple]:
         await session.scalar(
             select(Interview.id).where(Interview.id == interview_id).with_for_update()
         )
+        # Finished invites go too, with the interview (cascade).
+        await guests.announce_deleted(session, CandidateInvite.interview_id == interview_id)
         removed = await session.execute(
             delete(CandidateInvite)
             .where(

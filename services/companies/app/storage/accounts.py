@@ -9,6 +9,7 @@ from app.models.audit import AuditEvent
 from app.models.companies import Company, Member
 from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
+from app.storage import guests
 from app.storage.db import Session
 
 
@@ -184,5 +185,6 @@ async def delete_invites(invite_ids: list) -> None:
         return
 
     async with Session() as session:
+        await guests.announce_deleted(session, CandidateInvite.id.in_(invite_ids))
         await session.execute(delete(CandidateInvite).where(CandidateInvite.id.in_(invite_ids)))
         await session.commit()

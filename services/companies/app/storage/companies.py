@@ -15,7 +15,10 @@ from app.constants.roles import Role
 from app.constants.verification import RENAME_REVIEWED, VerificationStatus
 from app.core.exceptions import OverLimit
 from app.models.companies import Company, Member
+from app.models.interviews import Interview
+from app.models.invites import CandidateInvite
 from app.models.outbox import OutboxEvent
+from app.storage import guests
 from app.storage.db import Session
 
 # The unique index on company names (see models/companies.py).
@@ -99,6 +102,13 @@ async def names(company_ids: list) -> dict:
 async def delete(company_id) -> None:
     """With the company.deleted event, which the outbox publishes until notifications has it."""
     async with Session() as session:
+        # Its interviews' invites go with it (cascade).
+        await guests.announce_deleted(
+            session,
+            CandidateInvite.interview_id.in_(
+                select(Interview.id).where(Interview.company_id == company_id)
+            ),
+        )
         await session.execute(sql_delete(Company).where(Company.id == company_id))
         outbox.add(session, OutboxEvent, COMPANY_DELETED, {"company_id": str(company_id)})
         await session.commit()

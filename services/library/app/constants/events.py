@@ -6,3 +6,5 @@ SESSION_SCORED = "session.scored"
 NEWS_DELETED = "news.deleted"
 # Processed events are remembered this long: past Pub/Sub's 7 days of redeliveries.
 PROCESSED_EVENT_DAYS = 8
+# Companies deleted guest invites: each guest's sign-in and what library kept under it go.
+GUESTS_DELETED = "guests.deleted"
