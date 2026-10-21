@@ -12,7 +12,10 @@ How to run prepza locally, the settings it reads, and the everyday commands.
 
 ## Running locally
 
-Requirements: Docker with Compose, and an OpenAI API key.
+Requirements: Docker with Compose (on a Mac, Docker Desktop with VirtioFS file sharing and at
+least 12 GB of memory), and an OpenAI API key. The frontend runs Next.js's dev server with
+Turbopack and picks up file changes from the bind mount through VirtioFS's file events, without
+polling.
 
 ```bash
 cp .env.example .env

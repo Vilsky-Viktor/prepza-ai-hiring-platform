@@ -61,8 +61,8 @@ time out on cold pages. These are not code failures:
 - A failure at a different step on each run is timing; the same failure twice is real.
 - When the frontend container passes about 6 GB (`docker stats --no-stream`), restart it:
   `/opt/homebrew/bin/docker-compose restart frontend`, then warm pages again.
-- A run with no output for many minutes may be stuck on a colima `chmod` of `test-results`:
-  find it with `ps aux | grep signed-in.sh`, kill it, and run again.
+- A run with no output for many minutes may be stuck: find it with
+  `ps aux | grep signed-in.sh`, kill it, and run again.
 - `pages.sh -g "a|b"` breaks on the pipe: run each name separately.
 
 ## Report
