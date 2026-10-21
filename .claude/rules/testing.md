@@ -41,6 +41,11 @@ Python tests: `testing-backend.md`; vitest and browser, load and smoke tests:
 - Fix a flaky test at the cause; a retry or rerun is a stopgap, and a pass on retry counts as
   flaky. A test that needs quarantine is quarantined briefly, tracked and fixed.
 - Each test passes on its own and in any order; no test depends on another's leftovers.
+- Every test starts clean: a fresh browser context (no cookies, storage or open streams), its
+  own throwaway user and data where it changes state, shared fixture users reset before each
+  test, and server-side state it can trip (rate-limit counters, open streams) isolated per test.
+  Cleanup runs before each test as well as after, and a global setup removes leftovers of crashed
+  runs.
 - A test that fails in the full run but passes alone is an order dependency until proven
   otherwise, never "flaky under load" by default: rerun it after the tests that preceded it and
   in reverse order, find the shared state (data, saved settings on shared users, cookies, caches,
