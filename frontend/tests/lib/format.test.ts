@@ -108,6 +108,30 @@ describe("moneyAmount", () => {
     expect(plain(formatPrice(750, "JPY", "en"))).toBe("¥750")
     expect(plain(formatPriceRange(300, 750, "JPY", "en"))).toBe("¥300 – ¥750")
   })
+
+  // Paddle's decimal places for every currency billing sells in (its API's GET /currencies,
+  // 2026-10-21): the site must read billing's minor units the way Paddle counts them.
+  it.each([
+    ["USD", 2],
+    ["EUR", 2],
+    ["GBP", 2],
+    ["CAD", 2],
+    ["AUD", 2],
+    ["ILS", 2],
+    ["PLN", 2],
+    ["JPY", 0],
+    ["KRW", 0],
+    ["TWD", 2],
+    ["HKD", 2],
+    ["CHF", 2],
+    ["THB", 2],
+    ["SGD", 2],
+    ["INR", 2],
+  ])("reads %s with Paddle's %i decimal places", (currency, decimals) => {
+    expect(moneyAmount(12345, currency as string)).toBe(
+      12345 / 10 ** (decimals as number)
+    )
+  })
 })
 
 describe("candidatePriceRange", () => {
