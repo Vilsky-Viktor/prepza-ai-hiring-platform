@@ -159,6 +159,7 @@
     ],
     "tips": [
       "Điểm hỗ trợ quyết định của bạn chứ không thay bạn quyết định. Nếu ứng viên yêu cầu, hãy để một người xem xét lại kết quả của họ.",
+      "Dấu tích dưới điểm cho thấy ứng viên đã xác nhận trước khi bắt đầu rằng sẽ tự trả lời, không dùng công cụ AI hay nhờ người khác.",
       "Điểm là tỷ lệ phần trăm điểm đạt được: mỗi câu hỏi có một điểm, câu \"chọn tất cả đáp án đúng\" được một phần điểm cho mỗi đáp án đúng đã chọn, và không được điểm nào nếu chọn một đáp án sai."
     ]
   },

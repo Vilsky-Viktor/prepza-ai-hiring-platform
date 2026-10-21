@@ -27,6 +27,7 @@ test("a candidate whose email isn't confirmed is told to confirm it", async ({ s
   )
 
   await visit(candidate, `/invite/${token}`)
+  await candidate.getByTestId("start-pledge").click()
   await candidate.getByRole("main").getByRole("button").click()
   await expect(candidate.getByText(refusal)).toBeVisible()
   await expect(candidate.getByText("This invite was sent to a different email address.")).toHaveCount(0)

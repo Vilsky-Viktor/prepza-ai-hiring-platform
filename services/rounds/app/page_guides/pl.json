@@ -159,6 +159,7 @@
     ],
     "tips": [
       "Wynik wspiera Twoją decyzję, ale jej nie podejmuje. Jeśli kandydat o to poprosi, niech jego wynik sprawdzi człowiek.",
+      "Znacznik pod oceną pokazuje, że kandydat przed startem potwierdził, że odpowie samodzielnie, bez narzędzi AI i pomocy innych osób.",
       "Wynik to odsetek zdobytych punktów: każde pytanie jest warte jeden punkt, a pytanie wielokrotnego wyboru („zaznacz wszystkie poprawne”) daje jego część za każdą zaznaczoną poprawną odpowiedź i nic, jeśli zaznaczono błędną."
     ]
   },

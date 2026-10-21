@@ -1099,6 +1099,7 @@
     "finished": "Esta entrevista já foi concluída.",
     "continue": "Continuar",
     "start": "Aceitar e começar",
+    "pledge": "Vou responder por conta própria, sem ferramentas de IA nem ajuda de outras pessoas.",
     "mismatch": "O e-mail não confere. Entre com o e-mail do convite para começar.",
     "title": "Convite para entrevista",
     "theCompany": "empresa",
@@ -1560,6 +1561,7 @@
     "passMark": "nota de aprovação {mark}%",
     "progressOf": "{progress}% concluído",
     "humanReview": "A pontuação apoia sua decisão; ela não decide por você. Leia as respostas e, se o candidato pedir, peça a uma pessoa que revise o resultado dele.",
+    "pledged": "Confirmou que responderia por conta própria.",
     "signalsNote": "Saídas da página, cópias e respostas rápidas são relatadas pelo navegador do candidato: um motivo para olhar com mais atenção, não uma prova."
   },
   "practice": {

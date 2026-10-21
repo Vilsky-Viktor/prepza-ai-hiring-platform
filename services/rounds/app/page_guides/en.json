@@ -159,6 +159,7 @@
     ],
     "tips": [
       "The score supports your decision; it doesn't make it. If the candidate asks, have a person review their result.",
+      "A check mark under the grade shows the candidate confirmed, before starting, that they'd answer on their own, without AI tools or other people.",
       "A grade is the percentage of points earned: each question is worth one point, and a \"select all that apply\" question earns part of it for each right option ticked, and nothing if a wrong one is ticked."
     ]
   },

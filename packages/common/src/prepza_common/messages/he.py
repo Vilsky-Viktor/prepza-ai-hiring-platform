@@ -251,4 +251,5 @@ MESSAGES = {
     "Not allowed": "אין הרשאה",
     "There's no such answer.": "אין תשובה כזו.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "רק בעלים או מנהל יכולים לשלוח דוח באימייל אל מחוץ לחברה. שלחו אותו לאחד מחברי הצוות בחברה שלכם.",
+    "Confirm you'll answer on your own, without AI tools or other people, to start.": "כדי להתחיל, יש לאשר שתענו בעצמכם, בלי כלי AI ובלי עזרה מאנשים אחרים.",
 }

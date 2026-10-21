@@ -29,9 +29,9 @@ def test_a_new_candidate_through_a_job_ads_link_is_asked_one_coming_back_isnt(
     checks,
     linked,  # noqa: F811
 ):
-    client.post("/links/abc/start")
+    client.post("/links/abc/start", json={"pledged": True})
     linked["status"] = "in_process"
-    client.post("/links/abc/start")
+    client.post("/links/abc/start", json={"pledged": True})
 
     assert checks == ["/links/abc/start"]
 

@@ -159,6 +159,7 @@
     ],
     "tips": [
       "Tumutulong ang score sa iyong desisyon; hindi ito ang nagdedesisyon. Kung hilingin ng aplikante, ipa-review sa isang tao ang kanyang resulta.",
+      "Ipinapakita ng check mark sa ilalim ng grade na kinumpirma ng aplikante, bago magsimula, na sasagot siya nang mag-isa, nang walang AI tool o tulong ng ibang tao.",
       "Ang grade ay ang porsiyento ng puntos na nakuha: bawat tanong ay isang puntos, at ang tanong na \"piliin ang lahat ng tama\" ay nagbibigay ng bahagi nito sa bawat tamang opsyong na-check, at wala kung may na-check na mali."
     ]
   },

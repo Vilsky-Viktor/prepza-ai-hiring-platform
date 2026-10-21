@@ -159,6 +159,7 @@
     ],
     "tips": [
       "Punktid toetavad sinu otsust, kuid ei tee seda sinu eest. Kui kandidaat palub, lase tema tulemus inimesel üle vaadata.",
+      "Linnuke hinde all näitab, et kandidaat kinnitas enne alustamist, et vastab ise, ilma tehisaru tööriistade ja teiste inimeste abita.",
       "Hinne on teenitud punktide protsent: iga küsimus annab ühe punkti ja „vali kõik õiged“ küsimus annab osa sellest iga märgitud õige variandi eest, kuid mitte midagi, kui märgitud on vale variant."
     ]
   },

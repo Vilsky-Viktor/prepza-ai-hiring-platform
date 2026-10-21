@@ -159,6 +159,7 @@
     ],
     "tips": [
       "Le score éclaire votre décision ; il ne la prend pas. Si le candidat le demande, faites examiner son résultat par une personne.",
+      "Une coche sous la note indique que le candidat a confirmé, avant de commencer, qu'il répondrait par lui-même, sans outils d'IA ni l'aide d'autres personnes.",
       "La note est le pourcentage de points obtenus : chaque question vaut un point, et une question où il faut cocher toutes les bonnes réponses en rapporte une part pour chaque bonne réponse cochée, et rien si une mauvaise est cochée."
     ]
   },

@@ -65,5 +65,8 @@ class CandidateInvite(Base):
     # from before these were kept).
     started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # When the candidate confirmed they'd answer on their own, without AI tools or other people:
+    # starting requires it. None before they start (and for candidates from before it was asked).
+    pledged_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     # When the invite email last bounced or was marked as spam; None when it never did.
     undelivered_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))

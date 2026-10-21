@@ -32,6 +32,8 @@ async def start(invite_id: uuid.UUID, user_id: str, name: str | None = None) -> 
         if stored.status in NOT_STARTED:
             stored.status = InviteStatus.IN_PROCESS
             stored.started_at = stored.started_at or datetime.now(UTC)
+            # A first start always carries the candidate's pledge (access.refuse_without_pledge).
+            stored.pledged_at = stored.pledged_at or datetime.now(UTC)
             await candidate_events.add(session, CANDIDATE_STARTED, stored.id, stored.interview_id)
 
         await session.commit()

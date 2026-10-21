@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Os candidatos podem usar IA ou procurar as respostas?",
-        "answer": "Cada candidato recebe suas próprias questões aleatórias, em sua própria ordem, com [um cronômetro em cada questão](/guides/skills-test-timing-and-extra-time) controlado pelo nosso servidor, então sobra pouco tempo para procurar respostas ou perguntar a uma IA. Os resultados também mostram quando um candidato saiu da página, copiou texto ou respondeu rápido demais para ter lido a questão.",
+        "answer": "Cada candidato recebe suas próprias questões aleatórias, em sua própria ordem, com [um cronômetro em cada questão](/guides/skills-test-timing-and-extra-time) controlado pelo nosso servidor, então sobra pouco tempo para procurar respostas ou perguntar a uma IA. Os resultados também mostram quando um candidato saiu da página, copiou texto ou respondeu rápido demais para ter lido a questão. Antes de começar, cada candidato também confirma que vai responder por conta própria, sem ferramentas de IA nem ajuda de outras pessoas, e os resultados mostram isso.",
     },
     {
         "key": "cost",

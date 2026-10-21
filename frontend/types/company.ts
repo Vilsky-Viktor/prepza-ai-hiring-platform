@@ -103,6 +103,9 @@ export type Scorecard = {
   grade: number | null
   passed: boolean | null
   pass_mark: number
+  // When the candidate confirmed they'd answer on their own; null before they start (and for
+  // candidates from before it was asked).
+  pledged_at: string | null
   sessions: {
     id: string
     topic_title: string

@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Bisakah kandidat memakai AI atau mencari jawabannya?",
-        "answer": "Setiap kandidat mendapat soal acak sendiri dengan urutan sendiri, dengan [batas waktu di tiap soal](/guides/skills-test-timing-and-extra-time) yang dijaga server kami, jadi hanya ada sedikit waktu untuk mencari jawaban atau bertanya ke AI. Scorecard juga menunjukkan saat kandidat meninggalkan halaman, menyalin teks, atau menjawab terlalu cepat untuk sempat membaca soal.",
+        "answer": "Setiap kandidat mendapat soal acak sendiri dengan urutan sendiri, dengan [batas waktu di tiap soal](/guides/skills-test-timing-and-extra-time) yang dijaga server kami, jadi hanya ada sedikit waktu untuk mencari jawaban atau bertanya ke AI. Scorecard juga menunjukkan saat kandidat meninggalkan halaman, menyalin teks, atau menjawab terlalu cepat untuk sempat membaca soal. Sebelum mulai, setiap kandidat juga mengonfirmasi akan menjawab sendiri, tanpa alat AI atau bantuan orang lain, dan scorecard-nya menunjukkan hal itu.",
     },
     {
         "key": "cost",

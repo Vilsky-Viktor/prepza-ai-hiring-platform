@@ -261,4 +261,5 @@ MESSAGES = {
     "Not allowed": "Pole lubatud",
     "There's no such answer.": "Sellist vastust pole.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Aruannet saab väljapoole ettevõtet saata ainult omanik või administraator. Saada see mõnele oma ettevõtte liikmele.",
+    "Confirm you'll answer on your own, without AI tools or other people, to start.": "Alustamiseks kinnita, et vastad ise, ilma tehisaru tööriistade ja teiste inimeste abita.",
 }

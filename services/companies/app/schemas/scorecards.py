@@ -1,6 +1,7 @@
 """A candidate's scorecard: their invite and overall result from companies, and each section
 with its questions and answers from rounds."""
 
+from datetime import datetime
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -84,4 +85,7 @@ class ScorecardOut(BaseModel):
     # None until the candidate finishes.
     passed: bool | None
     pass_mark: int
+    # When the candidate confirmed they'd answer on their own, without AI tools or other people;
+    # None before they start (and for candidates from before it was asked).
+    pledged_at: datetime | None = None
     sessions: list[ScorecardSection]

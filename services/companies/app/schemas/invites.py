@@ -97,6 +97,13 @@ class SessionSummary(BaseModel):
     status: str
 
 
+class StartIn(BaseModel):
+    """Starting an interview (an invite, a shareable link or a member's preview)."""
+
+    # The candidate confirmed they'll answer on their own, without AI tools or other people.
+    pledged: bool = False
+
+
 class InviteStartOut(BaseModel):
     sessions: list[SessionSummary]
 

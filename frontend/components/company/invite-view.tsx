@@ -17,6 +17,7 @@ import { useBrandColors } from "@/hooks/use-brand-colors"
 import { useLinkData } from "@/hooks/use-link-data"
 import type { InviteView as Invite, SessionSummary } from "@/types/company"
 import { START_BUTTON } from "@/constants/start-page"
+import { StartPledge } from "@/features/company/components/start-pledge"
 
 /** The invitation. Embedded in a company's site, `onStarted` opens the interview in place
  * instead of going to its page, and `onUnavailable` hears when the link can't be read. */
@@ -57,7 +58,7 @@ export function InviteView({
   // A theme the address asks for goes on with the candidate to the questions.
   const asked = useSearchParams().get("theme")
 
-  async function start() {
+  async function start(pledged: boolean) {
     setStarting(true)
 
     try {
@@ -74,7 +75,7 @@ export function InviteView({
 
       const result = await apiFetch<{ sessions: SessionSummary[] }>(
         `/companies/invites/${token}/start`,
-        { method: "POST" }
+        { method: "POST", body: JSON.stringify({ pledged }) }
       )
 
       const next =
@@ -160,7 +161,7 @@ function InviteAction({
   inProcess: boolean
   starting: boolean
   onSignIn: () => void
-  onStart: () => void
+  onStart: (pledged: boolean) => void
 }) {
   const t = useTranslations("invite")
 
@@ -174,9 +175,12 @@ function InviteAction({
 
   if (guest || matches) {
     return (
-      <Button className={START_BUTTON} disabled={starting} onClick={onStart}>
-        {inProcess ? t("continue") : t("start")}
-      </Button>
+      <StartPledge
+        label={inProcess ? t("continue") : t("start")}
+        pledge={!inProcess}
+        busy={starting}
+        onStart={onStart}
+      />
     )
   }
 

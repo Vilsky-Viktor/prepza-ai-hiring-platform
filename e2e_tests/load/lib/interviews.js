@@ -56,7 +56,7 @@ export function createCompany(run, index) {
  * the interview finished. */
 export function takeInterview(token, link, think = THINK_SECONDS) {
   api("GET", `/companies/links/${link}`, token, undefined, "link")
-  const started = api("POST", `/companies/links/${link}/start`, token, undefined, "start")
+  const started = api("POST", `/companies/links/${link}/start`, token, { pledged: true }, "start")
 
   if (!started) {
     return false

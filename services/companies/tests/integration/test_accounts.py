@@ -77,3 +77,20 @@ def test_a_deleted_accounts_verification_email_goes_and_is_in_its_data_until_the
     assert exported == [{"company": name, "verification_email": email}]
     assert after.verification_email is None
     assert after.website_domain == "acme.com"
+
+
+def test_a_candidates_data_includes_when_they_pledged_to_answer_on_their_own(run):
+    async def scenario():
+        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
+        email = f"pledge-{uuid.uuid4().hex[:8]}@example.com"
+        invite, _ = await invites.upsert(interview.id, email, "Backend", "Acme", "en")
+        await invite_progress.start(invite.id, f"u-{invite.id}")
+        exported = await accounts.export(f"u-{invite.id}", email)
+
+        return await invites.get(invite.id), exported["interview_invites"]
+
+    stored, exported = run(scenario())
+
+    assert [row["pledged_at"] for row in exported] == [stored.pledged_at]
+    assert stored.pledged_at is not None

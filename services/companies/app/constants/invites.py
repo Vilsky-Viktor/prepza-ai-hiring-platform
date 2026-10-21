@@ -127,6 +127,8 @@ NOT_THE_GUEST = "Open the interview from the link the company gave you."
 # An invite not started within INVITE_EXPIRY_DAYS; sending it again makes the link work again.
 INVITE_EXPIRED = "This invite has expired. Ask the company to send it again."
 EMAIL_NOT_VERIFIED = "Confirm your email first: open the link we sent you, then try again."
+# A first start without the candidate's pledge to answer on their own.
+NO_PLEDGE = "Confirm you'll answer on your own, without AI tools or other people, to start."
 # A company a superadmin suspended: its members see why, and candidates that the interview isn't
 # available (one already in it may finish).
 COMPANY_SUSPENDED = "This company is suspended. Contact hello@prepza.ai to find out more."

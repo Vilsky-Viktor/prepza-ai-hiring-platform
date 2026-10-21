@@ -1099,6 +1099,7 @@
     "finished": "Ta rozmowa jest już zakończona.",
     "continue": "Kontynuuj",
     "start": "Akceptuj i rozpocznij",
+    "pledge": "Odpowiem samodzielnie, bez narzędzi AI i pomocy innych osób.",
     "mismatch": "Adres e-mail się nie zgadza. Zaloguj się adresem z zaproszenia, aby rozpocząć.",
     "title": "Zaproszenie na rozmowę",
     "theCompany": "firma",
@@ -1560,6 +1561,7 @@
     "passMark": "próg zaliczenia {mark}%",
     "progressOf": "ukończono {progress}%",
     "humanReview": "Wynik wspiera Twoją decyzję, ale jej nie podejmuje. Przeczytaj odpowiedzi, a jeśli kandydat poprosi, zleć sprawdzenie jego wyniku człowiekowi.",
+    "pledged": "Potwierdzono samodzielne odpowiadanie.",
     "signalsNote": "Opuszczenia strony, kopiowania i szybkie odpowiedzi zgłasza przeglądarka kandydata: to powód, by przyjrzeć się bliżej, a nie dowód."
   },
   "practice": {

@@ -57,6 +57,7 @@ test("a candidate invited through the API goes back to the company's platform", 
   // Its one button starts the interview, with no sign-in asked for.
   await expect(candidate.getByText(company.name).first()).toBeVisible()
   await shot(candidate, "invitation")
+  await candidate.getByTestId("start-pledge").click()
   await candidate.getByRole("main").getByRole("button").click()
   await expect(candidate).toHaveURL(/\/sessions\//)
   await expect(candidate.getByRole("dialog")).toHaveCount(0)

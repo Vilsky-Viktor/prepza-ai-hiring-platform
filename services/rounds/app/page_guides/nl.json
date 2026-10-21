@@ -159,6 +159,7 @@
     ],
     "tips": [
       "De score ondersteunt je beslissing, maar neemt die niet. Als de kandidaat erom vraagt, laat dan een mens het resultaat beoordelen.",
+      "Een vinkje onder het cijfer laat zien dat de kandidaat voor het begin heeft bevestigd de vragen zelf te beantwoorden, zonder AI-tools of hulp van anderen.",
       "De score is het percentage behaalde punten: elke vraag is één punt waard, en een vraag waarbij je alle juiste opties aanvinkt levert een deel daarvan op voor elke aangevinkte juiste optie, en niets als er een foute is aangevinkt."
     ]
   },

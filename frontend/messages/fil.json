@@ -1099,6 +1099,7 @@
     "finished": "Tapos na ang interview na ito.",
     "continue": "Magpatuloy",
     "start": "Tanggapin at simulan",
+    "pledge": "Sasagot ako nang mag-isa, nang walang AI tool o tulong ng ibang tao.",
     "mismatch": "Hindi tugma ang email. Mag-sign in gamit ang email ng imbitasyon para magsimula.",
     "title": "Imbitasyon sa interview",
     "theCompany": "kumpanya",
@@ -1560,6 +1561,7 @@
     "passMark": "passing grade {mark}%",
     "progressOf": "{progress}% tapos",
     "humanReview": "Tumutulong ang score sa iyong desisyon; hindi ito ang nagpapasya. Basahin ang mga sagot, at kung hihilingin ng aplikante, ipa-review sa isang tao ang kanyang resulta.",
+    "pledged": "Kinumpirmang sasagot nang mag-isa.",
     "signalsNote": "Ang pag-alis sa page, pagkopya at mabibilis na sagot ay iniuulat ng browser ng aplikante: dahilan para tingnan nang mas mabuti, hindi patunay."
   },
   "practice": {

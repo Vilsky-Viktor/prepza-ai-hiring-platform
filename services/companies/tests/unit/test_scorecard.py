@@ -74,6 +74,9 @@ def tracked(monkeypatch):
     return events
 
 
+PLEDGED_AT = datetime(2026, 10, 21, 9, 30, tzinfo=UTC)
+
+
 def open_scorecard(client, monkeypatch, headers=None, status=InviteStatus.FINISHED, role="owner"):
     sign_in()
     fake_candidates.add(
@@ -86,6 +89,7 @@ def open_scorecard(client, monkeypatch, headers=None, status=InviteStatus.FINISH
             status=status,
             extra_time=0,
             created_at=datetime.now(UTC),
+            pledged_at=PLEDGED_AT if status == InviteStatus.FINISHED else None,
         )
     )
     interview = Interview(
@@ -136,6 +140,8 @@ def test_the_scorecard_carries_the_overall_result_for_the_pdf(client, monkeypatc
     )
     assert card["sessions"] == [{**SECTION, "passed": True}]
     assert card["name"] == "Ann Lee"
+    # When they pledged to answer on their own, for the report's line.
+    assert datetime.fromisoformat(card["pledged_at"]) == PLEDGED_AT
 
 
 @pytest.mark.parametrize(

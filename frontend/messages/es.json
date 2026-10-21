@@ -1099,6 +1099,7 @@
     "finished": "Esta entrevista ya terminó.",
     "continue": "Continuar",
     "start": "Aceptar y empezar",
+    "pledge": "Responderé por mi cuenta, sin herramientas de IA ni ayuda de otras personas.",
     "mismatch": "El correo no coincide. Inicia sesión con el correo de la invitación para empezar.",
     "title": "Invitación a entrevista",
     "theCompany": "la empresa",
@@ -1560,6 +1561,7 @@
     "passMark": "nota de aprobado {mark} %",
     "progressOf": "{progress} % completado",
     "humanReview": "La puntuación apoya tu decisión, no la toma por ti. Lee las respuestas y, si el candidato lo pide, haz que una persona revise su resultado.",
+    "pledged": "Confirmó que respondería por su cuenta.",
     "signalsNote": "Las salidas de la página, las copias y las respuestas rápidas las informa el navegador del candidato: un motivo para mirar con más atención, no una prueba."
   },
   "practice": {

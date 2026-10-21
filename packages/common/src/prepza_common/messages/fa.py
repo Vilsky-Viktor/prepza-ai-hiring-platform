@@ -251,4 +251,5 @@ MESSAGES = {
     "Not allowed": "مجاز نیست",
     "There's no such answer.": "چنین پاسخی وجود ندارد.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "فقط مالک یا مدیر می‌تواند گزارش را به نشانی‌ای بیرون از شرکت ایمیل کند. آن را برای یکی از اعضای شرکتتان بفرستید.",
+    "Confirm you'll answer on your own, without AI tools or other people, to start.": "برای شروع، تأیید کنید که خودتان پاسخ می‌دهید، بدون ابزارهای هوش مصنوعی یا کمک افراد دیگر.",
 }

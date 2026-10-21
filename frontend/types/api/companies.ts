@@ -603,7 +603,8 @@ export interface paths {
     /**
      * Preview Interview
      * @description A company member takes their own test as a candidate would: free, kept out of the
-     *     candidate list, and its answers out of the questions' statistics. Each preview is new.
+     *     candidate list, and its answers out of the questions' statistics. Each preview is new, and
+     *     starts with the pledge a candidate gives.
      */
     post: operations["preview_interview_interviews__interview_id__preview_post"]
     delete?: never
@@ -986,7 +987,8 @@ export interface paths {
     /**
      * Start Invite
      * @description Only the invited, verified email can start, so a forwarded link is useless to anyone else;
-     *     a guest invite, only its guest (its link signs them in).
+     *     a guest invite, only its guest (its link signs them in). A first start takes the candidate's
+     *     pledge to answer on their own.
      */
     post: operations["start_invite_invites__token__start_post"]
     delete?: never
@@ -1071,7 +1073,8 @@ export interface paths {
     /**
      * Start Link
      * @description The signed-in person becomes a candidate (their verified email, one attempt each) and
-     *     starts, with credits set aside as for an email invite.
+     *     starts, with credits set aside as for an email invite. A first start takes their pledge to
+     *     answer on their own.
      */
     post: operations["start_link_links__token__start_post"]
     delete?: never
@@ -3896,6 +3899,8 @@ export interface components {
       passed: boolean | null
       /** Pass Mark */
       pass_mark: number
+      /** Pledged At */
+      pledged_at?: string | null
       /** Sessions */
       sessions: components["schemas"]["ScorecardSection"][]
     }
@@ -3985,6 +3990,17 @@ export interface components {
       email: string
       /** Reason */
       reason: string
+    }
+    /**
+     * StartIn
+     * @description Starting an interview (an invite, a shareable link or a member's preview).
+     */
+    StartIn: {
+      /**
+       * Pledged
+       * @default false
+       */
+      pledged: boolean
     }
     /** StatsOut */
     StatsOut: {
@@ -5688,7 +5704,11 @@ export interface operations {
       }
       cookie?: never
     }
-    requestBody?: never
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["StartIn"] | null
+      }
+    }
     responses: {
       /** @description Successful Response */
       201: {
@@ -6387,7 +6407,11 @@ export interface operations {
       }
       cookie?: never
     }
-    requestBody?: never
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["StartIn"] | null
+      }
+    }
     responses: {
       /** @description Successful Response */
       200: {
@@ -6513,7 +6537,11 @@ export interface operations {
       }
       cookie?: never
     }
-    requestBody?: never
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["StartIn"] | null
+      }
+    }
     responses: {
       /** @description Successful Response */
       200: {

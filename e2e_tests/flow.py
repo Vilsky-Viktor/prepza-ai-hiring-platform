@@ -221,7 +221,7 @@ def company() -> None:
     step(f"candidate invited; {CANDIDATE_CREDITS} credits set aside")
 
     token = invite_token(invite["id"])
-    sessions = api("POST", f"/companies/invites/{token}/start", candidate)["sessions"]
+    sessions = api("POST", f"/companies/invites/{token}/start", candidate, {"pledged": True})["sessions"]
     answered = take_interview(sessions[0]["id"], candidate)
 
     step(f"candidate took the interview from the invite link: {answered} answers")

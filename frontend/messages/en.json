@@ -1099,6 +1099,7 @@
     "finished": "This interview is already finished.",
     "continue": "Continue",
     "start": "Accept & Start",
+    "pledge": "I'll answer on my own, without AI tools or other people.",
     "mismatch": "The email does not match. Sign in with the invitation email to start.",
     "title": "Interview invite",
     "theCompany": "the company",
@@ -1560,6 +1561,7 @@
     "passMark": "passing grade {mark}%",
     "progressOf": "{progress}% done",
     "humanReview": "The score supports your decision; it doesn't make it. Read the answers, and if the candidate asks, have a person review their result.",
+    "pledged": "Confirmed answering on their own.",
     "signalsNote": "Page leaves, copies and fast answers are reported by the candidate's browser: a reason to look closer, not proof."
   },
   "practice": {

@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Czy kandydaci mogą korzystać z AI albo szukać odpowiedzi?",
-        "answer": "Każdy kandydat dostaje własne losowe pytania we własnej kolejności, z [limitem czasu na każde pytanie](/guides/skills-test-timing-and-extra-time) pilnowanym przez nasz serwer, więc zostaje niewiele czasu na szukanie odpowiedzi czy pytanie AI. Wyniki pokazują też, kiedy kandydat opuścił stronę, skopiował tekst albo odpowiedział zbyt szybko, by przeczytać pytanie.",
+        "answer": "Każdy kandydat dostaje własne losowe pytania we własnej kolejności, z [limitem czasu na każde pytanie](/guides/skills-test-timing-and-extra-time) pilnowanym przez nasz serwer, więc zostaje niewiele czasu na szukanie odpowiedzi czy pytanie AI. Wyniki pokazują też, kiedy kandydat opuścił stronę, skopiował tekst albo odpowiedział zbyt szybko, by przeczytać pytanie. Przed startem każdy kandydat potwierdza też, że odpowie samodzielnie, bez narzędzi AI i pomocy innych osób, a jego wyniki to pokazują.",
     },
     {
         "key": "cost",

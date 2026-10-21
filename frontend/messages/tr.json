@@ -1099,6 +1099,7 @@
     "finished": "Bu mülakat zaten bitti.",
     "continue": "Devam et",
     "start": "Kabul et ve başla",
+    "pledge": "Soruları yapay zekâ araçları veya başkalarının yardımı olmadan kendim yanıtlayacağım.",
     "mismatch": "E-posta eşleşmiyor. Başlamak için davetteki e-postayla giriş yapın.",
     "title": "Mülakat daveti",
     "theCompany": "şirketin",
@@ -1560,6 +1561,7 @@
     "passMark": "geçme notu %{mark}",
     "progressOf": "%{progress} tamamlandı",
     "humanReview": "Puan kararınızı destekler, kararı sizin yerinize vermez. Cevapları okuyun ve aday isterse sonucunu bir kişiye inceletin.",
+    "pledged": "Soruları kendisinin yanıtlayacağını onayladı.",
     "signalsNote": "Sayfadan ayrılmalar, kopyalamalar ve hızlı yanıtlar adayın tarayıcısı tarafından bildirilir: daha yakından bakmak için bir neden, kanıt değil."
   },
   "practice": {

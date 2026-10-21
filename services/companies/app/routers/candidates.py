@@ -144,6 +144,7 @@ async def candidate_scorecard(
         grade=totals.get("grade"),
         passed=passed(totals, interview.pass_mark),
         pass_mark=interview.pass_mark,
+        pledged_at=invite.pledged_at,
         sessions=[
             {**section, "passed": section_passed(section, interview.pass_mark)} for section in card
         ],

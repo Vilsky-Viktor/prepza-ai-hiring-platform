@@ -93,14 +93,14 @@ def test_paused_no_candidate_starts_by_invite_but_one_in_the_interview_continues
     client, monkeypatch, started
 ):
     stored_invite(monkeypatch, InviteStatus.INVITED)
-    refused = client.post("/invites/t/start")
+    refused = client.post("/invites/t/start", json={"pledged": True})
 
     assert refused.status_code == 503
     assert refused.json()["detail"] == PAUSED
 
     stored_invite(monkeypatch, InviteStatus.IN_PROCESS)
 
-    assert client.post("/invites/t/start").status_code == 200
+    assert client.post("/invites/t/start", json={"pledged": True}).status_code == 200
     assert len(started) == 1
 
 
@@ -109,11 +109,11 @@ def test_paused_no_candidate_starts_by_link_but_one_in_the_interview_continues(
 ):
     linked(monkeypatch, None)
 
-    assert client.post("/links/abc/start").status_code == 503
+    assert client.post("/links/abc/start", json={"pledged": True}).status_code == 503
 
     linked(monkeypatch, InviteStatus.IN_PROCESS)
 
-    assert client.post("/links/abc/start").status_code == 200
+    assert client.post("/links/abc/start", json={"pledged": True}).status_code == 200
     assert len(started) == 1
 
 

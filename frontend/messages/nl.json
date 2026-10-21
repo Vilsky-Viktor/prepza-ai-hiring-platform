@@ -1099,6 +1099,7 @@
     "finished": "Dit interview is al afgerond.",
     "continue": "Doorgaan",
     "start": "Accepteren en starten",
+    "pledge": "Ik beantwoord de vragen zelf, zonder AI-tools of hulp van anderen.",
     "mismatch": "Het e-mailadres komt niet overeen. Log in met het adres van de uitnodiging om te starten.",
     "title": "Uitnodiging voor een interview",
     "theCompany": "het bedrijf",
@@ -1560,6 +1561,7 @@
     "passMark": "slaaggrens {mark}%",
     "progressOf": "{progress}% afgerond",
     "humanReview": "De score ondersteunt je beslissing, maar neemt die niet. Lees de antwoorden, en laat een mens het resultaat beoordelen als de kandidaat daarom vraagt.",
+    "pledged": "Heeft bevestigd zelf te antwoorden.",
     "signalsNote": "Pagina verlaten, kopiëren en snelle antwoorden meldt de browser van de kandidaat: een reden om beter te kijken, geen bewijs."
   },
   "practice": {

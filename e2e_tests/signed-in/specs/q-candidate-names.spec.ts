@@ -112,7 +112,7 @@ test("the sign-in fills a name once and an owner's correction stays", async ({ s
 
   const candidate = await signInAs(email, {}, "Maria Kowalska")
   const start = `/companies/invites/${await inviteToken(email)}/start`
-  await api(candidate, "POST", start)
+  await api(candidate, "POST", start, { pledged: true })
 
   await visit(owner, list)
   await owner.getByText("Maria Kowalska", { exact: true }).click()
@@ -132,7 +132,7 @@ test("the sign-in fills a name once and an owner's correction stays", async ({ s
   await shot(owner, "report-name-edited")
 
   // Starting again (reopening the invite) keeps the corrected name.
-  await api(candidate, "POST", start)
+  await api(candidate, "POST", start, { pledged: true })
   await owner.reload()
   await expect(nameLine).toContainText("Maria Nowak")
   await expect(owner.getByText("Maria Kowalska")).toHaveCount(0)

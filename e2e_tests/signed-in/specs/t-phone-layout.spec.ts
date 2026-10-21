@@ -150,6 +150,7 @@ test("timed questions on their own, with nothing around them", async ({
     await expect(start).toBeVisible();
     await expect(user.getByRole("banner")).toHaveCount(0);
     await expect(user.getByRole("contentinfo")).toHaveCount(0);
+    await user.getByTestId("start-pledge").click();
     await start.click();
     await expect(user).toHaveURL(/\/sessions\//, { timeout: 90_000 });
     const finish = user.getByTestId("finish-interview");

@@ -7,7 +7,7 @@ from fastapi import HTTPException
 from prepza_common.auth import current_user, optional_user
 from prepza_common.user import User
 
-from app.constants.invites import EMAIL_NOT_VERIFIED, InviteStatus
+from app.constants.invites import EMAIL_NOT_VERIFIED, NO_PLEDGE, InviteStatus
 from app.integrations import billing
 from app.main import app
 from app.models.interviews import Interview
@@ -97,12 +97,29 @@ def linked(monkeypatch):
 
 
 def test_anyone_signed_in_starts_through_the_link_and_is_charged_like_an_invite(client, linked):
-    assert client.post("/links/abc/start").status_code == 200
+    assert client.post("/links/abc/start", json={"pledged": True}).status_code == 200
     # Set aside under the new invite's own key.
     (key,) = linked["held"]
     # A new key of its own, without the candidate's email.
     assert re.fullmatch(rf"{INTERVIEW.id}:[0-9a-f]{{32}}", key)
     assert [invite.email for invite in linked["started"]] == ["Cand@Example.com"]
+
+
+def test_a_new_candidate_through_the_link_needs_the_pledge_and_uses_nothing_up(client, linked):
+    response = client.post("/links/abc/start", json={"pledged": False})
+
+    assert response.status_code == 422
+    assert response.json()["detail"] == NO_PLEDGE
+    assert linked["held"] == []
+    assert linked["started"] == []
+    assert linked["counts"] == {}
+
+
+def test_a_candidate_back_through_the_link_continues_without_pledging_again(client, linked):
+    linked["status"] = InviteStatus.IN_PROCESS
+
+    assert client.post("/links/abc/start").status_code == 200
+    assert len(linked["started"]) == 1
 
 
 def test_a_new_invite_that_cant_be_saved_gives_its_credits_back(client, linked, monkeypatch):
@@ -119,7 +136,7 @@ def test_a_new_invite_that_cant_be_saved_gives_its_credits_back(client, linked, 
     monkeypatch.setattr(billing, "release_candidate", release)
 
     with pytest.raises(RuntimeError):
-        client.post("/links/abc/start")
+        client.post("/links/abc/start", json={"pledged": True})
 
     assert released == linked["held"] and len(released) == 1
 
@@ -127,7 +144,7 @@ def test_a_new_invite_that_cant_be_saved_gives_its_credits_back(client, linked, 
 def test_coming_back_continues_without_charging_again(client, linked):
     linked["status"] = "in_process"
 
-    client.post("/links/abc/start")
+    client.post("/links/abc/start", json={"pledged": True})
 
     assert linked["held"] == []
     assert len(linked["started"]) == 1
@@ -135,14 +152,14 @@ def test_coming_back_continues_without_charging_again(client, linked):
 
 def test_one_attempt_each_and_a_closed_or_broke_link_says_so(client, linked):
     linked["status"] = "finished"
-    assert client.post("/links/abc/start").status_code == 409
+    assert client.post("/links/abc/start", json={"pledged": True}).status_code == 409
 
     linked["status"], linked["broke"] = None, True
-    refused = client.post("/links/abc/start")
+    refused = client.post("/links/abc/start", json={"pledged": True})
     assert refused.status_code == 409
     assert refused.json()["detail"] == "This interview isn't taking new candidates right now."
 
-    assert client.post("/links/nope/start").status_code == 404
+    assert client.post("/links/nope/start", json={"pledged": True}).status_code == 404
     assert linked["started"] == []
 
 
@@ -151,7 +168,7 @@ def test_an_unverified_email_cant_start(client, linked):
         uid="x", email="x@example.com", email_verified=False
     )
 
-    response = client.post("/links/abc/start")
+    response = client.post("/links/abc/start", json={"pledged": True})
 
     assert response.status_code == 403
     assert response.json()["detail"] == EMAIL_NOT_VERIFIED
@@ -188,7 +205,7 @@ def test_the_link_says_when_the_signed_in_person_already_finished(client, linked
 
 def test_a_link_takes_a_limited_number_of_new_candidates_an_hour(client, linked, limit_hits):
     linked["counts"][f"rate:link-starts:{INTERVIEW.id}"] = LINK_STARTS_PER_HOUR
-    refused = client.post("/links/abc/start")
+    refused = client.post("/links/abc/start", json={"pledged": True})
 
     assert refused.status_code == 429
     assert refused.json() == {"detail": TOO_MANY_REQUESTS}
@@ -200,7 +217,7 @@ def test_a_link_takes_a_limited_number_of_new_candidates_an_hour(client, linked,
 
 def test_a_links_hourly_limit_is_as_edited(client, linked):
     linked["limits"]["LINK_STARTS_PER_HOUR"] = "2"
-    starts = [client.post("/links/abc/start").status_code for _ in range(3)]
+    starts = [client.post("/links/abc/start", json={"pledged": True}).status_code for _ in range(3)]
 
     assert starts == [200, 200, 429]
     assert len(linked["held"]) == 2
@@ -208,9 +225,9 @@ def test_a_links_hourly_limit_is_as_edited(client, linked):
 
 def test_one_address_starts_a_limited_number_of_new_candidates_an_hour(client, linked):
     for _ in range(LINK_STARTS_PER_IP_HOUR):
-        assert client.post("/links/abc/start").status_code == 200
+        assert client.post("/links/abc/start", json={"pledged": True}).status_code == 200
 
-    refused = client.post("/links/abc/start")
+    refused = client.post("/links/abc/start", json={"pledged": True})
 
     assert refused.status_code == 429
     assert refused.json() == {"detail": TOO_MANY_REQUESTS}
@@ -219,7 +236,7 @@ def test_one_address_starts_a_limited_number_of_new_candidates_an_hour(client, l
 
 def test_one_addresss_hourly_limit_is_as_edited(client, linked, limit_hits):
     linked["limits"]["LINK_STARTS_PER_IP_HOUR"] = "1"
-    starts = [client.post("/links/abc/start").status_code for _ in range(2)]
+    starts = [client.post("/links/abc/start", json={"pledged": True}).status_code for _ in range(2)]
 
     assert starts == [200, 429]
     assert [hit["limit"] for hit in limit_hits] == ["LINK_STARTS_PER_IP_HOUR"]
@@ -227,7 +244,7 @@ def test_one_addresss_hourly_limit_is_as_edited(client, linked, limit_hits):
 
 def test_an_address_over_its_limit_uses_up_nothing_of_the_links(client, linked):
     linked["limits"]["LINK_STARTS_PER_IP_HOUR"] = "1"
-    starts = [client.post("/links/abc/start").status_code for _ in range(5)]
+    starts = [client.post("/links/abc/start", json={"pledged": True}).status_code for _ in range(5)]
 
     assert starts == [200] + [429] * 4
     # Only the one start that went through counts toward the link.
@@ -238,7 +255,7 @@ def test_a_candidate_already_invited_is_never_held_back_by_the_limits(client, li
     linked["status"] = InviteStatus.IN_PROCESS
     linked["counts"][f"rate:link-starts:{INTERVIEW.id}"] = LINK_STARTS_PER_HOUR
 
-    assert client.post("/links/abc/start").status_code == 200
+    assert client.post("/links/abc/start", json={"pledged": True}).status_code == 200
     assert linked["counts"] == {f"rate:link-starts:{INTERVIEW.id}": LINK_STARTS_PER_HOUR}
 
 

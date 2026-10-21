@@ -2228,7 +2228,7 @@
      "interviews"
     ],
     "summary": "Preview Interview",
-    "description": "A company member takes their own test as a candidate would: free, kept out of the\ncandidate list, and its answers out of the questions' statistics. Each preview is new.",
+    "description": "A company member takes their own test as a candidate would: free, kept out of the\ncandidate list, and its answers out of the questions' statistics. Each preview is new, and\nstarts with the pledge a candidate gives.",
     "operationId": "preview_interview_interviews__interview_id__preview_post",
     "security": [
      {
@@ -2247,6 +2247,23 @@
       }
      }
     ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "anyOf": [
+         {
+          "$ref": "#/components/schemas/StartIn"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Body"
+       }
+      }
+     }
+    },
     "responses": {
      "201": {
       "description": "Successful Response",
@@ -3491,7 +3508,7 @@
      "invites"
     ],
     "summary": "Start Invite",
-    "description": "Only the invited, verified email can start, so a forwarded link is useless to anyone else;\na guest invite, only its guest (its link signs them in).",
+    "description": "Only the invited, verified email can start, so a forwarded link is useless to anyone else;\na guest invite, only its guest (its link signs them in). A first start takes the candidate's\npledge to answer on their own.",
     "operationId": "start_invite_invites__token__start_post",
     "security": [
      {
@@ -3509,6 +3526,23 @@
       }
      }
     ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "anyOf": [
+         {
+          "$ref": "#/components/schemas/StartIn"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Body"
+       }
+      }
+     }
+    },
     "responses": {
      "200": {
       "description": "Successful Response",
@@ -3683,7 +3717,7 @@
      "links"
     ],
     "summary": "Start Link",
-    "description": "The signed-in person becomes a candidate (their verified email, one attempt each) and\nstarts, with credits set aside as for an email invite.",
+    "description": "The signed-in person becomes a candidate (their verified email, one attempt each) and\nstarts, with credits set aside as for an email invite. A first start takes their pledge to\nanswer on their own.",
     "operationId": "start_link_links__token__start_post",
     "security": [
      {
@@ -3701,6 +3735,23 @@
       }
      }
     ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "anyOf": [
+         {
+          "$ref": "#/components/schemas/StartIn"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Body"
+       }
+      }
+     }
+    },
     "responses": {
      "200": {
       "description": "Successful Response",
@@ -11303,6 +11354,18 @@
       "type": "integer",
       "title": "Pass Mark"
      },
+     "pledged_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Pledged At"
+     },
      "sessions": {
       "items": {
        "$ref": "#/components/schemas/ScorecardSection"
@@ -11551,6 +11614,18 @@
      "reason"
     ],
     "title": "SkippedInvite"
+   },
+   "StartIn": {
+    "properties": {
+     "pledged": {
+      "type": "boolean",
+      "title": "Pledged",
+      "default": false
+     }
+    },
+    "type": "object",
+    "title": "StartIn",
+    "description": "Starting an interview (an invite, a shareable link or a member's preview)."
    },
    "StatsOut": {
     "properties": {

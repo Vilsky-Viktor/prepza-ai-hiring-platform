@@ -1,4 +1,4 @@
-import { InfoIcon, LinkIcon } from "lucide-react"
+import { CheckIcon, InfoIcon, LinkIcon } from "lucide-react"
 import { notFound } from "next/navigation"
 import { getLocale, getTranslations } from "next-intl/server"
 import { cn } from "cn"
@@ -269,8 +269,18 @@ async function ScorecardSummary({ card }: { card: Scorecard }) {
               : gradeTone(card.passed)
           }
         />
-        <div className="flex items-center px-8 py-6 text-base">
+        {/* Whether it passed and, under it, small, that they confirmed answering on their own. */}
+        <div className="flex flex-col justify-center gap-1 px-8 py-6 text-base max-sm:items-center">
           <PassStatus passed={card.passed} passMark={card.pass_mark} />
+          {card.pledged_at && (
+            <p
+              data-testid="pledged"
+              className="flex items-center gap-1.5 text-sm text-muted-foreground"
+            >
+              <CheckIcon aria-hidden className="size-4 shrink-0" />
+              {reportT("pledged")}
+            </p>
+          )}
         </div>
       </GradeCard>
       <div

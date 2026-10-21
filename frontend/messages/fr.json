@@ -1099,6 +1099,7 @@
     "finished": "Cet entretien est déjà terminé.",
     "continue": "Continuer",
     "start": "Accepter et commencer",
+    "pledge": "Je répondrai par moi-même, sans outils d'IA ni l'aide d'autres personnes.",
     "mismatch": "L'adresse ne correspond pas. Connectez-vous avec l'adresse de l'invitation pour commencer.",
     "title": "Invitation à un entretien",
     "theCompany": "l'entreprise",
@@ -1560,6 +1561,7 @@
     "passMark": "seuil de réussite {mark} %",
     "progressOf": "{progress} % effectué",
     "humanReview": "Le score appuie votre décision, il ne la prend pas. Lisez les réponses et, si le candidat le demande, faites examiner son résultat par une personne.",
+    "pledged": "A confirmé répondre sans aide extérieure.",
     "signalsNote": "Les sorties de page, les copies et les réponses rapides sont signalées par le navigateur du candidat : une raison de regarder de plus près, pas une preuve."
   },
   "practice": {

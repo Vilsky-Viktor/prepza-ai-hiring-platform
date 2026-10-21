@@ -1099,6 +1099,7 @@
     "finished": "Wawancara ini sudah selesai.",
     "continue": "Lanjutkan",
     "start": "Terima dan mulai",
+    "pledge": "Saya akan menjawab sendiri, tanpa alat AI atau bantuan orang lain.",
     "mismatch": "Email tidak cocok. Masuk dengan email undangan untuk memulai.",
     "title": "Undangan wawancara",
     "theCompany": "perusahaan",
@@ -1560,6 +1561,7 @@
     "passMark": "nilai lulus {mark}%",
     "progressOf": "{progress}% selesai",
     "humanReview": "Skor mendukung keputusanmu, bukan menggantikannya. Baca jawabannya, dan jika kandidat meminta, minta seseorang meninjau hasilnya.",
+    "pledged": "Sudah mengonfirmasi akan menjawab sendiri.",
     "signalsNote": "Keluar halaman, menyalin, dan jawaban cepat dilaporkan oleh browser kandidat: alasan untuk melihat lebih teliti, bukan bukti."
   },
   "practice": {

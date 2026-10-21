@@ -33,9 +33,15 @@ from app.schemas.interviews import (
     PreviewOut,
     TitleIn,
 )
+from app.schemas.invites import StartIn
 from app.service_auth import Via
 from app.services import interview_creation, set_cache
-from app.services.access import can_edit, require_company, require_editor
+from app.services.access import (
+    can_edit,
+    refuse_without_pledge,
+    require_company,
+    require_editor,
+)
 from app.services.candidate_billing import release_unfinished, settle_removed
 from app.services.interview_access import interview_for
 from app.storage import audit, candidates, interviews, invites
@@ -166,11 +172,15 @@ async def delete_interview(interview_id: UUID, user: CurrentUser) -> None:
 
 
 @router.post("/{interview_id}/preview", status_code=status.HTTP_201_CREATED)
-async def preview_interview(interview_id: UUID, user: CurrentUser) -> PreviewOut:
+async def preview_interview(
+    interview_id: UUID, user: CurrentUser, body: StartIn | None = None
+) -> PreviewOut:
     """A company member takes their own test as a candidate would: free, kept out of the
-    candidate list, and its answers out of the questions' statistics. Each preview is new."""
+    candidate list, and its answers out of the questions' statistics. Each preview is new, and
+    starts with the pledge a candidate gives."""
     await refuse_if_paused(get_redis(), "preview", user_id=user.uid)
     interview, _, _ = await interview_for(user, interview_id)
+    refuse_without_pledge(body is not None and body.pledged, None)
     await hit(
         get_redis(),
         f"rate:previews:{user.uid}",

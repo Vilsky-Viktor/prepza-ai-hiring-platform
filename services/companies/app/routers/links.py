@@ -15,10 +15,10 @@ from app.helpers.brand import color_sets, style_of
 from app.helpers.candidates import new_hold_key
 from app.helpers.interviews import attach_set, interview_minutes, interview_title
 from app.helpers.logos import logo_path
-from app.schemas.invites import InviteStartOut, LinkIn, LinkOut, LinkView
+from app.schemas.invites import InviteStartOut, LinkIn, LinkOut, LinkView, StartIn
 from app.schemas.logos import BrandColorSets, BrandStyle
 from app.services import link_start, set_cache
-from app.services.access import refuse_if_suspended
+from app.services.access import refuse_if_suspended, refuse_without_pledge
 from app.services.interview_access import interview_for, ready_for_invites
 from app.storage import audit, companies, interviews, invites
 
@@ -80,9 +80,12 @@ async def get_link(token: str, user: OptionalUser) -> LinkView:
 
 
 @router.post("/links/{token}/start")
-async def start_link(token: str, user: CurrentUser, request: Request) -> InviteStartOut:
+async def start_link(
+    token: str, user: CurrentUser, request: Request, body: StartIn | None = None
+) -> InviteStartOut:
     """The signed-in person becomes a candidate (their verified email, one attempt each) and
-    starts, with credits set aside as for an email invite."""
+    starts, with credits set aside as for an email invite. A first start takes their pledge to
+    answer on their own."""
     interview = await linked_interview(token)
 
     if not user.email_verified:
@@ -95,6 +98,7 @@ async def start_link(token: str, user: CurrentUser, request: Request) -> InviteS
         raise HTTPException(status.HTTP_409_CONFLICT, INTERVIEW_NOT_READY)
 
     current, stored = await invites.held(interview.id, user.email)
+    refuse_without_pledge(body is not None and body.pledged, current)
     key = stored if current else new_hold_key(interview.id)
     await link_start.admit(interview, user, current, request)
     # Credits set aside just now: a new candidate's, or an expired invite's (expiry gave them

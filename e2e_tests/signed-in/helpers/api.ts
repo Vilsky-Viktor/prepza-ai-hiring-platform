@@ -72,7 +72,8 @@ export async function finishOneAnswer(candidate: Page, email: string) {
   const { sessions } = await api<{ sessions: { id: string }[] }>(
     candidate,
     "POST",
-    `/companies/invites/${await inviteToken(email)}/start`
+    `/companies/invites/${await inviteToken(email)}/start`,
+    { pledged: true }
   )
   const step = await api<{ session: { id: string }; question: { question_id: string } }>(
     candidate,

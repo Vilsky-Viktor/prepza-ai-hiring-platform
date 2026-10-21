@@ -9,10 +9,10 @@ from app.helpers.interviews import attach_set, interview_minutes, interview_titl
 from app.helpers.logos import logo_path
 from app.integrations.firebase_tokens import guest_token, guest_uid
 from app.integrations.redis import get_redis
-from app.schemas.invites import GuestTokenOut, InviteStartOut, InviteView
+from app.schemas.invites import GuestTokenOut, InviteStartOut, InviteView, StartIn
 from app.schemas.logos import BrandColorSets, BrandStyle
 from app.services import set_cache
-from app.services.access import open_invite, refuse_if_suspended
+from app.services.access import open_invite, refuse_if_suspended, refuse_without_pledge
 from app.services.candidate_start import start_sessions
 from app.storage import companies
 
@@ -63,9 +63,12 @@ async def sign_in_guest(token: str) -> GuestTokenOut:
 
 
 @router.post("/{token}/start")
-async def start_invite(token: str, user: CurrentUser) -> InviteStartOut:
+async def start_invite(
+    token: str, user: CurrentUser, body: StartIn | None = None
+) -> InviteStartOut:
     """Only the invited, verified email can start, so a forwarded link is useless to anyone else;
-    a guest invite, only its guest (its link signs them in)."""
+    a guest invite, only its guest (its link signs them in). A first start takes the candidate's
+    pledge to answer on their own."""
     invite, interview = await open_invite(token)
 
     if invite.guest:
@@ -82,6 +85,7 @@ async def start_invite(token: str, user: CurrentUser) -> InviteStartOut:
         raise HTTPException(status.HTTP_409_CONFLICT, "This interview is already finished")
 
     refuse_if_suspended(await companies.get(interview.company_id), invite.status)
+    refuse_without_pledge(body is not None and body.pledged, invite.status)
 
     # Paused, nobody starts; a candidate already in the interview may finish it.
     if invite.status != InviteStatus.IN_PROCESS:

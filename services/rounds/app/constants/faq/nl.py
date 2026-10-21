@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Kunnen kandidaten AI gebruiken of de antwoorden opzoeken?",
-        "answer": "Elke kandidaat krijgt eigen willekeurige vragen in een eigen volgorde, met [een timer bij elke vraag](/guides/skills-test-timing-and-extra-time) die onze server bijhoudt, dus er is weinig tijd om antwoorden op te zoeken of het een AI te vragen. De resultaten laten ook zien wanneer een kandidaat de pagina verliet, tekst kopieerde of te snel antwoordde om de vraag te hebben gelezen.",
+        "answer": "Elke kandidaat krijgt eigen willekeurige vragen in een eigen volgorde, met [een timer bij elke vraag](/guides/skills-test-timing-and-extra-time) die onze server bijhoudt, dus er is weinig tijd om antwoorden op te zoeken of het een AI te vragen. De resultaten laten ook zien wanneer een kandidaat de pagina verliet, tekst kopieerde of te snel antwoordde om de vraag te hebben gelezen. Voordat ze beginnen, bevestigt elke kandidaat ook dat die de vragen zelf beantwoordt, zonder AI-tools of hulp van anderen, en de resultaten laten dat zien.",
     },
     {
         "key": "cost",

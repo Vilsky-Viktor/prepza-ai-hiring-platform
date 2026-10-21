@@ -9,6 +9,7 @@ from app.constants.invites import (
     COMPANY_SUSPENDED,
     INTERVIEW_UNAVAILABLE,
     INVITE_EXPIRED,
+    NO_PLEDGE,
     InviteStatus,
 )
 from app.constants.roles import EDITORS, Role
@@ -79,6 +80,13 @@ def refuse_if_suspended(company: Company | None, invite_status: str | None) -> N
 
     if suspended and invite_status != InviteStatus.IN_PROCESS:
         raise HTTPException(status.HTTP_410_GONE, INTERVIEW_UNAVAILABLE)
+
+
+def refuse_without_pledge(pledged: bool, invite_status: str | None) -> None:
+    """Starting takes the candidate's pledge to answer on their own (422); one already in the
+    interview gave it and continues without."""
+    if not pledged and invite_status != InviteStatus.IN_PROCESS:
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, NO_PLEDGE)
 
 
 async def open_invite(token: str) -> tuple[CandidateInvite, Interview]:

@@ -1099,6 +1099,7 @@
     "finished": "Buổi phỏng vấn này đã kết thúc.",
     "continue": "Tiếp tục",
     "start": "Chấp nhận và bắt đầu",
+    "pledge": "Tôi sẽ tự trả lời, không dùng công cụ AI hay nhờ người khác.",
     "mismatch": "Email không khớp. Đăng nhập bằng email được mời để bắt đầu.",
     "title": "Lời mời phỏng vấn",
     "theCompany": "công ty",
@@ -1560,6 +1561,7 @@
     "passMark": "điểm đạt {mark}%",
     "progressOf": "Đã làm {progress}%",
     "humanReview": "Điểm số hỗ trợ quyết định của bạn, chứ không thay bạn quyết định. Hãy đọc các câu trả lời, và nếu ứng viên yêu cầu, hãy để một người xem xét kết quả của họ.",
+    "pledged": "Đã xác nhận tự trả lời.",
     "signalsNote": "Việc rời trang, sao chép và trả lời quá nhanh do trình duyệt của ứng viên báo cáo: là lý do để xem xét kỹ hơn, không phải bằng chứng."
   },
   "practice": {

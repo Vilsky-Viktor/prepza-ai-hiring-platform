@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Puwede bang gumamit ng AI ang mga aplikante o hanapin ang mga sagot?",
-        "answer": "Bawat aplikante ay may sariling random na mga tanong sa sarili nilang pagkakasunod-sunod, may [timer sa bawat tanong](/guides/skills-test-timing-and-extra-time) na binabantayan ng aming server, kaya kaunti lang ang oras para maghanap ng sagot o magtanong sa AI. Ipinapakita rin ng scorecard ng aplikante kung kailan siya umalis sa page, kumopya ng text, o sumagot nang masyadong mabilis para nabasa ang tanong.",
+        "answer": "Bawat aplikante ay may sariling random na mga tanong sa sarili nilang pagkakasunod-sunod, may [timer sa bawat tanong](/guides/skills-test-timing-and-extra-time) na binabantayan ng aming server, kaya kaunti lang ang oras para maghanap ng sagot o magtanong sa AI. Ipinapakita rin ng scorecard ng aplikante kung kailan siya umalis sa page, kumopya ng text, o sumagot nang masyadong mabilis para nabasa ang tanong. Bago magsimula, kinukumpirma rin ng bawat aplikante na sasagot siya nang mag-isa, nang walang AI tool o tulong ng ibang tao, at ipinapakita ito ng kanyang scorecard.",
     },
     {
         "key": "cost",

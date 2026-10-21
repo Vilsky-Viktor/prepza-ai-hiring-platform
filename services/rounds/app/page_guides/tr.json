@@ -159,6 +159,7 @@
     ],
     "tips": [
       "Puan kararınızı destekler, kararı sizin yerinize vermez. Aday isterse sonucunu bir insana inceletin.",
+      "Notun altındaki onay işareti, adayın başlamadan önce soruları yapay zekâ araçları veya başkalarının yardımı olmadan kendisinin yanıtlayacağını onayladığını gösterir.",
       "Not, kazanılan puanların yüzdesidir: her soru bir puan değerindedir; \"doğru olanların hepsini seçin\" sorusu işaretlenen her doğru seçenek için bu puanın bir kısmını verir, yanlış bir seçenek işaretlenirse hiç puan vermez."
     ]
   },

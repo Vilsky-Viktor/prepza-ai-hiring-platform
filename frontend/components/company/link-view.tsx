@@ -9,14 +9,13 @@ import { useSignIn } from "@/components/sign-in-dialog"
 import { useAuth } from "@/components/auth-provider"
 import { InviteIntro } from "@/components/company/invite-intro"
 import { LinkStatus } from "@/components/link-status"
-import { Button } from "@/components/ui/button"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { humanHeaders } from "@/lib/human-check"
 import { refreshVerification } from "@/lib/auth"
 import { useBrandColors } from "@/hooks/use-brand-colors"
 import { useLinkData } from "@/hooks/use-link-data"
 import type { JobLink, SessionSummary } from "@/types/company"
-import { START_BUTTON } from "@/constants/start-page"
+import { StartPledge } from "@/features/company/components/start-pledge"
 
 /** What someone sees from a test's shareable link: the same intro as an invite; starting signs
  * them in with Google first, which gives their name and verified email. */
@@ -41,7 +40,7 @@ export function LinkView({ token }: { token: string }) {
   )
   useBrandColors(link?.brand_colors, null, link?.brand_style)
 
-  async function start() {
+  async function start(pledged: boolean) {
     setStarting(true)
 
     if (!user && !(await signIn())) {
@@ -56,7 +55,11 @@ export function LinkView({ token }: { token: string }) {
       const result = await apiFetch<{ sessions: SessionSummary[] }>(
         `/companies/links/${token}/start`,
         // A new candidate shows they're a person.
-        { method: "POST", headers: await humanHeaders() }
+        {
+          method: "POST",
+          headers: await humanHeaders(),
+          body: JSON.stringify({ pledged }),
+        }
       )
       const next =
         result.sessions.find((item) => item.status !== "finished") ??
@@ -100,9 +103,12 @@ export function LinkView({ token }: { token: string }) {
       finished={link.status === "finished"}
       viaLink
       action={
-        <Button className={START_BUTTON} disabled={starting} onClick={start}>
-          {link.status === "in_process" ? t("continue") : t("start")}
-        </Button>
+        <StartPledge
+          label={link.status === "in_process" ? t("continue") : t("start")}
+          pledge={link.status !== "in_process"}
+          busy={starting}
+          onStart={start}
+        />
       }
     />
   )

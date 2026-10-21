@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Ứng viên có thể dùng AI hoặc tra cứu đáp án không?",
-        "answer": "Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng theo thứ tự riêng, với [thời gian giới hạn cho từng câu](/guides/skills-test-timing-and-extra-time) do máy chủ của chúng tôi theo dõi, nên có rất ít thời gian để tra cứu đáp án hay hỏi AI. Bảng điểm cũng cho thấy khi ứng viên rời trang, sao chép văn bản hoặc trả lời quá nhanh để kịp đọc câu hỏi.",
+        "answer": "Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng theo thứ tự riêng, với [thời gian giới hạn cho từng câu](/guides/skills-test-timing-and-extra-time) do máy chủ của chúng tôi theo dõi, nên có rất ít thời gian để tra cứu đáp án hay hỏi AI. Bảng điểm cũng cho thấy khi ứng viên rời trang, sao chép văn bản hoặc trả lời quá nhanh để kịp đọc câu hỏi. Trước khi bắt đầu, mỗi ứng viên cũng xác nhận sẽ tự trả lời, không dùng công cụ AI hay nhờ người khác, và bảng điểm sẽ cho thấy điều đó.",
     },
     {
         "key": "cost",

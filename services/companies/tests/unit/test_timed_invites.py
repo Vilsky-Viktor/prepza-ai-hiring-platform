@@ -69,7 +69,7 @@ def start(client, monkeypatch):
     monkeypatch.setattr(invite_progress, "start", fake_start)
     monkeypatch.setattr(rounds, "create_sessions", fake_create)
 
-    assert client.post("/invites/token-1/start").status_code == 200
+    assert client.post("/invites/token-1/start", json={"pledged": True}).status_code == 200
 
     return sent
 

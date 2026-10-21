@@ -5,9 +5,8 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { Button } from "@/components/ui/button"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
-import { START_BUTTON } from "@/constants/start-page"
+import { StartPledge } from "@/features/company/components/start-pledge"
 
 /** The preview's "accept & start": a free run of the test as a candidate, kept out of the
  * candidate list; the player links back to the test it came from. */
@@ -23,13 +22,13 @@ export function StartPreview({
   const router = useRouter()
   const [starting, setStarting] = useState(false)
 
-  async function start() {
+  async function start(pledged: boolean) {
     setStarting(true)
 
     try {
       const preview = await apiFetch<{ session_id: string }>(
         `/companies/interviews/${interviewId}/preview`,
-        { method: "POST" }
+        { method: "POST", body: JSON.stringify({ pledged }) }
       )
       router.push(
         `/sessions/${preview.session_id}?from=/companies/${companyId}/interviews/${interviewId}`
@@ -41,13 +40,12 @@ export function StartPreview({
   }
 
   return (
-    <Button
-      className={START_BUTTON}
-      disabled={starting}
-      onClick={start}
-      data-testid="accept-start"
-    >
-      {t("start")}
-    </Button>
+    <StartPledge
+      label={t("start")}
+      pledge
+      busy={starting}
+      onStart={start}
+      testId="accept-start"
+    />
   )
 }

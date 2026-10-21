@@ -251,4 +251,5 @@ MESSAGES = {
     "Not allowed": "ไม่ได้รับอนุญาต",
     "There's no such answer.": "ไม่มีคำตอบนี้",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "เฉพาะเจ้าของหรือผู้ดูแลเท่านั้นที่ส่งรายงานทางอีเมลไปนอกบริษัทได้ โปรดส่งถึงสมาชิกคนใดคนหนึ่งของบริษัทคุณ",
+    "Confirm you'll answer on your own, without AI tools or other people, to start.": "หากต้องการเริ่ม โปรดยืนยันว่าคุณจะตอบด้วยตัวเอง โดยไม่ใช้เครื่องมือ AI หรือความช่วยเหลือจากผู้อื่น",
 }

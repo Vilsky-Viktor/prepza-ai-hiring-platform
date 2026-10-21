@@ -6,6 +6,7 @@ from fastapi import HTTPException
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
+from app.constants.invites import NO_PLEDGE
 from app.integrations import library, rounds
 from app.main import app
 from app.models.companies import Company, Member
@@ -78,7 +79,7 @@ def started(monkeypatch):
 
 
 def test_any_member_previews_a_test_as_a_candidate_would_for_free(client, started):
-    response = client.post(f"/interviews/{uuid.uuid4()}/preview")
+    response = client.post(f"/interviews/{uuid.uuid4()}/preview", json={"pledged": True})
 
     assert response.status_code == 201
     assert response.json() == {"session_id": str(SESSION_ID)}
@@ -91,12 +92,24 @@ def test_any_member_previews_a_test_as_a_candidate_would_for_free(client, starte
     assert len(payload["topics"][0]["questions"]) == 3
 
 
+def test_a_preview_starts_with_the_pledge_as_a_candidates_start_does(client, started):
+    response = client.post(f"/interviews/{uuid.uuid4()}/preview")
+
+    assert response.status_code == 422
+    assert response.json()["detail"] == NO_PLEDGE
+    # Neither counted toward the hourly limit nor started.
+    assert started == []
+
+
 def test_someone_outside_the_company_cant(client, started):
     app.dependency_overrides[current_user] = lambda: User(
         uid="eve", email="eve@example.com", email_verified=True
     )
 
-    assert client.post(f"/interviews/{uuid.uuid4()}/preview").status_code == 404
+    assert (
+        client.post(f"/interviews/{uuid.uuid4()}/preview", json={"pledged": True}).status_code
+        == 404
+    )
     assert started == []
 
 
@@ -106,5 +119,8 @@ def test_previews_over_the_hourly_limit_are_refused(client, started, monkeypatch
 
     monkeypatch.setattr(interview_routes, "hit", over)
 
-    assert client.post(f"/interviews/{uuid.uuid4()}/preview").status_code == 429
+    assert (
+        client.post(f"/interviews/{uuid.uuid4()}/preview", json={"pledged": True}).status_code
+        == 429
+    )
     assert started == []

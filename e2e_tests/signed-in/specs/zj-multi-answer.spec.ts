@@ -87,6 +87,7 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
       candidate,
       "POST",
       `/companies/invites/${await inviteToken(email)}/start`,
+      { pledged: true },
     )
     const main = candidate.getByRole("main")
 

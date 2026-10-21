@@ -46,7 +46,7 @@ def test_an_expired_invite_that_fails_to_start_gives_its_credits_back(
     monkeypatch.setattr(link_start, "start_sessions", rounds_down)
 
     with pytest.raises(httpx.HTTPError):
-        client.post(URL)
+        client.post(URL, json={"pledged": True})
 
     assert linked["held"] == ["stored-key"]
     assert released == ["stored-key"]
@@ -72,7 +72,7 @@ def test_a_lost_answer_from_billing_gives_back_only_a_hold_made_just_now(
     monkeypatch.setattr(billing, "hold_candidate", lost)
 
     with pytest.raises(httpx.HTTPError):
-        client.post(URL)
+        client.post(URL, json={"pledged": True})
 
     assert released == (linked["held"] if given_back else [])
 
@@ -111,7 +111,7 @@ def test_a_link_to_an_interview_without_questions_holds_nothing(
     """Turned on too early (before that was refused), it says it's not ready yet."""
     not_ready(monkeypatch)
 
-    assert client.post(URL).status_code == 409
+    assert client.post(URL, json={"pledged": True}).status_code == 409
     assert linked["held"] == []
 
 

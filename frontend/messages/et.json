@@ -1099,6 +1099,7 @@
     "finished": "See intervjuu on juba lõppenud.",
     "continue": "Jätka",
     "start": "Nõustu ja alusta",
+    "pledge": "Vastan ise, ilma tehisaru tööriistade ja teiste inimeste abita.",
     "mismatch": "E-posti aadress ei ühti. Alustamiseks logi sisse kutses olnud aadressiga.",
     "title": "Intervjuu kutse",
     "theCompany": "ettevõte",
@@ -1560,6 +1561,7 @@
     "passMark": "läbimise lävi {mark}%",
     "progressOf": "{progress}% tehtud",
     "humanReview": "Tulemus toetab sinu otsust, aga ei tee seda sinu eest. Loe vastused läbi ja kui kandidaat palub, lase tema tulemus inimesel üle vaadata.",
+    "pledged": "Kinnitas, et vastab ise.",
     "signalsNote": "Lehelt lahkumisi, kopeerimisi ja kiireid vastuseid teatab kandidaadi brauser: põhjus lähemalt vaadata, mitte tõend."
   },
   "practice": {

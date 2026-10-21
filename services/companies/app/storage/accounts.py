@@ -110,6 +110,7 @@ async def export(user_id: str, email: str) -> dict:
                 CandidateInvite.name,
                 CandidateInvite.status,
                 CandidateInvite.created_at,
+                CandidateInvite.pledged_at,
             )
             .join(Interview, Interview.id == CandidateInvite.interview_id)
             .where(or_(CandidateInvite.user_id == user_id, CandidateInvite.email == email.lower()))
@@ -137,8 +138,15 @@ async def export(user_id: str, email: str) -> dict:
                 {"company": name, "role": role, "since": since} for name, role, since in companies
             ],
             "interview_invites": [
-                {"interview": title, "name": name, "status": status, "invited_at": at}
-                for title, name, status, at in invites
+                {
+                    "interview": title,
+                    "name": name,
+                    "status": status,
+                    "invited_at": at,
+                    # When they confirmed they'd answer on their own.
+                    "pledged_at": pledged,
+                }
+                for title, name, status, at, pledged in invites
             ],
             "company_verifications": [
                 {"company": name, "verification_email": proof} for name, proof in verifications

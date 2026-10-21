@@ -85,7 +85,7 @@ def test_an_interview_ready_says_whose_it_is(run):
     ) in told
 
 
-def test_a_candidates_start_and_finish_times_are_kept_from_the_first_time(run):
+def test_a_candidates_start_pledge_and_finish_times_are_kept_from_the_first_time(run):
     async def scenario():
         company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
         interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
@@ -97,9 +97,11 @@ def test_a_candidates_start_and_finish_times_are_kept_from_the_first_time(run):
         await invite_progress.finish(invite.id, 80, False, None)
         await invite_progress.finish(invite.id, 80, False, None)
 
-        return first.started_at, await invites.get(invite.id)
+        return first.started_at, first.pledged_at, await invites.get(invite.id)
 
-    started_at, done = run(scenario())
+    started_at, pledged_at, done = run(scenario())
 
     assert started_at is not None and done.started_at == started_at
+    # The pledge every first start carries, kept from that start too.
+    assert pledged_at is not None and done.pledged_at == pledged_at
     assert done.finished_at is not None and done.finished_at >= started_at

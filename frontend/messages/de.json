@@ -1099,6 +1099,7 @@
     "finished": "Dieses Interview ist bereits beendet.",
     "continue": "Fortsetzen",
     "start": "Annehmen und starten",
+    "pledge": "Ich beantworte die Fragen selbst, ohne KI-Tools oder andere Personen.",
     "mismatch": "Die E-Mail-Adresse stimmt nicht überein. Melde dich mit der Adresse aus der Einladung an, um zu starten.",
     "title": "Einladung zum Interview",
     "theCompany": "das Unternehmen",
@@ -1560,6 +1561,7 @@
     "passMark": "Bestehensgrenze {mark} %",
     "progressOf": "{progress} % erledigt",
     "humanReview": "Das Ergebnis unterstützt deine Entscheidung, es trifft sie nicht. Lies die Antworten, und wenn der Kandidat darum bittet, lass sein Ergebnis von einem Menschen prüfen.",
+    "pledged": "Hat bestätigt, selbst zu antworten.",
     "signalsNote": "Seitenwechsel, Kopiervorgänge und schnelle Antworten meldet der Browser des Kandidaten: ein Grund, genauer hinzusehen, kein Beweis."
   },
   "practice": {

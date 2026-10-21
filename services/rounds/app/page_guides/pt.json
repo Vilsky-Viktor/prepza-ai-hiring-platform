@@ -159,6 +159,7 @@
     ],
     "tips": [
       "A pontuação apoia sua decisão, mas não decide por você. Se o candidato pedir, peça que uma pessoa revise o resultado dele.",
+      "Uma marca de seleção abaixo da nota mostra que o candidato confirmou, antes de começar, que responderia por conta própria, sem ferramentas de IA nem ajuda de outras pessoas.",
       "A nota é a porcentagem de pontos obtidos: cada pergunta vale um ponto, e uma de \"selecionar todas as corretas\" dá uma parte dele por opção correta marcada, e nada se uma errada for marcada."
     ]
   },

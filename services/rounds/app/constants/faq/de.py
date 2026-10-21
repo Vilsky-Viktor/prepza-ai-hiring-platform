@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Können Kandidaten KI nutzen oder die Antworten nachschlagen?",
-        "answer": "Jeder Kandidat bekommt eigene, zufällige Fragen in eigener Reihenfolge, mit [einem Zeitlimit für jede Frage](/guides/skills-test-timing-and-extra-time), das unser Server überwacht, also bleibt wenig Zeit, Antworten nachzuschlagen oder eine KI zu fragen. Die Auswertung zeigt außerdem, wann ein Kandidat die Seite verlassen, Text kopiert oder zu schnell geantwortet hat, um die Frage gelesen zu haben.",
+        "answer": "Jeder Kandidat bekommt eigene, zufällige Fragen in eigener Reihenfolge, mit [einem Zeitlimit für jede Frage](/guides/skills-test-timing-and-extra-time), das unser Server überwacht, also bleibt wenig Zeit, Antworten nachzuschlagen oder eine KI zu fragen. Die Auswertung zeigt außerdem, wann ein Kandidat die Seite verlassen, Text kopiert oder zu schnell geantwortet hat, um die Frage gelesen zu haben. Vor dem Start bestätigt außerdem jeder Kandidat, dass er die Fragen selbst beantwortet, ohne KI-Tools oder andere Personen, und die Auswertung zeigt das.",
     },
     {
         "key": "cost",

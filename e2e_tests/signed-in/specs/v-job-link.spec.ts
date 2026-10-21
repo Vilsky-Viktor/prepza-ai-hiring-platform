@@ -27,6 +27,7 @@ test("a candidate starts from the job link and continues from their own link", a
   await visit(candidate, `/apply/${token}`);
   await expect(start).toBeVisible();
   await shot(candidate, "job-link");
+  await candidate.getByTestId("start-pledge").click();
   await start.click();
   await expect(candidate).toHaveURL(/\/sessions\//);
   await expect.poll(() => joinedEmails(email)).toBe(1);
@@ -36,6 +37,8 @@ test("a candidate starts from the job link and continues from their own link", a
     on: false,
   });
   await visit(candidate, `/invite/${await inviteToken(email)}`);
+  // Continuing: pledged already, so no box to tick.
+  await expect(candidate.getByTestId("start-pledge")).toHaveCount(0);
   await start.click();
   await expect(candidate).toHaveURL(/\/sessions\//);
   // Starting again sends no second email.

@@ -251,4 +251,5 @@ MESSAGES = {
     "Not allowed": "Нет доступа",
     "There's no such answer.": "Такого ответа нет.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Отправить отчёт по email за пределы компании может только владелец или администратор. Отправьте его одному из участников вашей компании.",
+    "Confirm you'll answer on your own, without AI tools or other people, to start.": "Чтобы начать, подтвердите, что будете отвечать самостоятельно, без ИИ-инструментов и помощи других людей.",
 }

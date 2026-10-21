@@ -159,6 +159,7 @@
     ],
     "tips": [
       "Das Ergebnis unterstützt deine Entscheidung, es trifft sie nicht. Wenn der Kandidat darum bittet, lass sein Ergebnis von einer Person prüfen.",
+      "Ein Häkchen unter der Note zeigt, dass der Kandidat vor dem Start bestätigt hat, die Fragen selbst zu beantworten, ohne KI-Tools oder andere Personen.",
       "Das Ergebnis ist der Anteil der erreichten Punkte: Jede Frage zählt einen Punkt, und eine Frage mit Mehrfachauswahl bringt einen Teil davon für jede angekreuzte richtige Option, aber nichts, wenn eine falsche angekreuzt ist."
     ]
   },

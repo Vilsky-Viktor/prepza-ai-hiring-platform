@@ -251,4 +251,5 @@ MESSAGES = {
     "Not allowed": "Não permitido",
     "There's no such answer.": "Essa resposta não existe.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Só um proprietário ou administrador pode enviar um relatório por e-mail para fora da empresa. Envie-o para um dos membros da sua empresa.",
+    "Confirm you'll answer on your own, without AI tools or other people, to start.": "Para começar, confirme que você vai responder por conta própria, sem ferramentas de IA nem ajuda de outras pessoas.",
 }

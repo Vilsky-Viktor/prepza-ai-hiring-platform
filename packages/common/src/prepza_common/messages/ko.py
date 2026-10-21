@@ -251,4 +251,5 @@ MESSAGES = {
     "Not allowed": "허용되지 않습니다",
     "There's no such answer.": "그런 답변은 없습니다.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "회사 외부로 보고서를 이메일로 보낼 수 있는 사람은 소유자나 관리자뿐입니다. 회사 멤버에게 보내 주세요.",
+    "Confirm you'll answer on your own, without AI tools or other people, to start.": "시작하려면 AI 도구나 다른 사람의 도움 없이 직접 답하겠다고 확인하세요.",
 }

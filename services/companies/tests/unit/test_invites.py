@@ -5,7 +5,7 @@ import pytest
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
-from app.constants.invites import EMAIL_NOT_VERIFIED, InviteStatus
+from app.constants.invites import EMAIL_NOT_VERIFIED, NO_PLEDGE, InviteStatus
 from app.main import app
 from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
@@ -68,6 +68,52 @@ def test_other_or_unverified_email_is_rejected(client, stored_invite, email, ver
 
     assert response.status_code == 403
     assert response.json()["detail"] == detail
+
+
+@pytest.fixture
+def starts(monkeypatch, stored_invite):
+    """The candidates whose sessions were started."""
+    import app.routers.invites as routes
+
+    started = []
+
+    async def start(invite, interview, user):
+        started.append(user.uid)
+
+        return {"sessions": []}
+
+    monkeypatch.setattr(routes, "start_sessions", start)
+
+    return started
+
+
+@pytest.mark.parametrize("body", [None, {}, {"pledged": False}])
+def test_a_first_start_needs_the_candidates_pledge(client, starts, body):
+    """To answer on their own, without AI tools or other people: the page asks for it, and the
+    API holds every other client to it."""
+    sign_in("bob@example.com")
+    response = client.post("/invites/token-1/start", json=body)
+
+    assert response.status_code == 422
+    assert response.json()["detail"] == NO_PLEDGE
+    assert starts == []
+
+
+def test_a_pledged_candidate_starts(client, starts):
+    sign_in("bob@example.com")
+
+    assert client.post("/invites/token-1/start", json={"pledged": True}).status_code == 200
+    assert starts == ["cand"]
+
+
+def test_a_candidate_already_in_the_interview_continues_without_pledging_again(
+    client, starts, stored_invite
+):
+    stored_invite.status = InviteStatus.IN_PROCESS
+    sign_in("bob@example.com")
+
+    assert client.post("/invites/token-1/start").status_code == 200
+    assert starts == ["cand"]
 
 
 def test_unknown_token(client, stored_invite):

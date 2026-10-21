@@ -159,6 +159,7 @@
     ],
     "tips": [
       "Il punteggio supporta la tua decisione, non la prende al posto tuo. Se il candidato lo chiede, fai rivedere il suo risultato da una persona.",
+      "Un segno di spunta sotto il voto indica che il candidato ha confermato, prima di iniziare, che avrebbe risposto in autonomia, senza strumenti di IA né l'aiuto di altre persone.",
       "Il punteggio è la percentuale di punti ottenuti: ogni domanda vale un punto, e una domanda in cui selezionare tutte le risposte corrette ne dà una parte per ogni opzione corretta selezionata, e niente se ne è selezionata una sbagliata."
     ]
   },

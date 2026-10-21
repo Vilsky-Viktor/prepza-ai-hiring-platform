@@ -251,4 +251,5 @@ MESSAGES = {
     "Not allowed": "Niet toegestaan",
     "There's no such answer.": "Dit antwoord bestaat niet.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Alleen een eigenaar of beheerder kan een rapport mailen naar iemand buiten het bedrijf. Stuur het naar een van de leden van je bedrijf.",
+    "Confirm you'll answer on your own, without AI tools or other people, to start.": "Bevestig om te beginnen dat je de vragen zelf beantwoordt, zonder AI-tools of hulp van anderen.",
 }

@@ -159,6 +159,7 @@
     ],
     "tips": [
       "La puntuación apoya tu decisión; no la toma por ti. Si el candidato lo pide, haz que una persona revise su resultado.",
+      "Una marca bajo la nota indica que el candidato confirmó, antes de empezar, que respondería por su cuenta, sin herramientas de IA ni ayuda de otras personas.",
       "La nota es el porcentaje de puntos obtenidos: cada pregunta vale un punto, y una de «selecciona todas las correctas» da una parte por cada opción correcta marcada, y nada si se marca una incorrecta."
     ]
   },

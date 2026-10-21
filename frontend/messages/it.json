@@ -1099,6 +1099,7 @@
     "finished": "Questo colloquio è già terminato.",
     "continue": "Continua",
     "start": "Accetta e inizia",
+    "pledge": "Risponderò in autonomia, senza strumenti di IA né l'aiuto di altre persone.",
     "mismatch": "L'email non corrisponde. Accedi con l'email dell'invito per iniziare.",
     "title": "Invito al colloquio",
     "theCompany": "l'azienda",
@@ -1560,6 +1561,7 @@
     "passMark": "soglia {mark}%",
     "progressOf": "{progress}% completato",
     "humanReview": "Il punteggio supporta la tua decisione, non la prende al posto tuo. Leggi le risposte e, se il candidato lo chiede, fai esaminare il suo risultato da una persona.",
+    "pledged": "Ha confermato di rispondere in autonomia.",
     "signalsNote": "Le uscite dalla pagina, le copie e le risposte rapide sono segnalate dal browser del candidato: un motivo per guardare meglio, non una prova."
   },
   "practice": {
