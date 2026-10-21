@@ -115,11 +115,12 @@ async function maintenanceOn(page: Page) {
   return (await api<{ on: boolean }>(page, "GET", "/companies/superadmin/maintenance")).on
 }
 
-// Both switches are global: they're turned on only when found off, and always turned off again,
-// even when a step fails.
+// Both switches are global: they're turned on only when found off, and always turned off again
+// when the test ends, even when a step fails or it runs out of time (switchesOffAfter).
 test("superadmin turns the pause and maintenance mode on and off", async ({
   signInAs,
   signInSuperadmin,
+  switchesOffAfter,
 }) => {
   const owner = await signInAs(ownerEmail())
   const company = await createCompany(owner)
@@ -128,66 +129,62 @@ test("superadmin turns the pause and maintenance mode on and off", async ({
     (await paused(superadmin)) || (await maintenanceOn(superadmin)),
     "The pause or maintenance mode is already on: left as it is"
   )
+  await switchesOffAfter(superadmin)
 
-  try {
-    await visit(superadmin, "/superadmin/controls")
-    await shot(superadmin, "controls")
-    await flip(superadmin, PAUSE, true)
-    await expect.poll(() => paused(superadmin)).toBe(true)
-    await shot(superadmin, "pause-on")
+  await visit(superadmin, "/superadmin/controls")
+  await shot(superadmin, "controls")
+  await flip(superadmin, PAUSE, true)
+  await expect.poll(() => paused(superadmin)).toBe(true)
+  await shot(superadmin, "pause-on")
 
-    const newInterview = `/companies/${company.id}/interviews/new`
-    const description = owner.getByRole("main").getByRole("textbox")
-    await visit(owner, newInterview)
-    await expect(owner.getByTestId("paused-notice")).toBeVisible()
-    // The start box is there but off, so it's clearly unavailable.
-    await expect(description).toBeDisabled()
-    await shot(owner, "new-interview-paused")
-    // A job ad's link says so too, as an invite does: no new candidate can start.
-    await visit(owner, "/apply/e2e-paused-link")
-    await expect(owner.getByTestId("paused-notice")).toBeVisible()
-    await shot(owner, "job-link-paused")
-    await flip(superadmin, PAUSE, false)
-    await expect.poll(() => paused(superadmin)).toBe(false)
-    await visit(owner, newInterview)
-    await expect(description).toBeEnabled()
-    await expect(owner.getByTestId("paused-notice")).toHaveCount(0)
+  const newInterview = `/companies/${company.id}/interviews/new`
+  const description = owner.getByRole("main").getByRole("textbox")
+  await visit(owner, newInterview)
+  await expect(owner.getByTestId("paused-notice")).toBeVisible()
+  // The start box is there but off, so it's clearly unavailable.
+  await expect(description).toBeDisabled()
+  await shot(owner, "new-interview-paused")
+  // A job ad's link says so too, as an invite does: no new candidate can start.
+  await visit(owner, "/apply/e2e-paused-link")
+  await expect(owner.getByTestId("paused-notice")).toBeVisible()
+  await shot(owner, "job-link-paused")
+  await flip(superadmin, PAUSE, false)
+  await expect.poll(() => paused(superadmin)).toBe(false)
+  await visit(owner, newInterview)
+  await expect(description).toBeEnabled()
+  await expect(owner.getByTestId("paused-notice")).toHaveCount(0)
 
-    // Maintenance asks first.
-    await visit(superadmin, "/superadmin/controls")
-    await control(superadmin, MAINTENANCE).click()
-    const dialog = superadmin.getByRole("dialog")
-    await expect(dialog).toBeVisible()
-    // Not on until confirmed.
-    expect(await maintenanceOn(superadmin)).toBe(false)
-    await shot(superadmin, "maintenance-confirm")
-    await dialog.getByRole("button").last().click()
-    await expect(dialog).toBeHidden()
-    await expect.poll(() => maintenanceOn(superadmin)).toBe(true)
+  // Maintenance asks first.
+  await visit(superadmin, "/superadmin/controls")
+  await control(superadmin, MAINTENANCE).click()
+  const dialog = superadmin.getByRole("dialog")
+  await expect(dialog).toBeVisible()
+  // Not on until confirmed.
+  expect(await maintenanceOn(superadmin)).toBe(false)
+  await shot(superadmin, "maintenance-confirm")
+  await dialog.getByRole("button").last().click()
+  await expect(dialog).toBeHidden()
+  await expect.poll(() => maintenanceOn(superadmin)).toBe(true)
 
-    // Everyone else gets the maintenance screen; superadmins the site, with a warning card.
-    await visitUntil(owner, "/companies", 503)
-    await expect(owner.getByText(company.name)).toHaveCount(0)
-    await shot(owner, "maintenance-screen")
-    // The legal texts stay readable.
-    await visitUntil(owner, "/privacy", 200)
-    await expect(owner.getByRole("heading", { level: 1 })).toBeVisible()
-    await shot(owner, "maintenance-privacy")
-    // Superadmins keep the site, with the warning card above it.
-    await expect(async () => {
-      await visit(superadmin, "/companies")
-      await expect(superadmin.getByTestId("maintenance-notice")).toBeVisible({ timeout: 2_000 })
-    }).toPass({ timeout: 60_000 })
-    await shot(superadmin, "maintenance-superadmin")
+  // Everyone else gets the maintenance screen; superadmins the site, with a warning card.
+  await visitUntil(owner, "/companies", 503)
+  await expect(owner.getByText(company.name)).toHaveCount(0)
+  await shot(owner, "maintenance-screen")
+  // The legal texts stay readable.
+  await visitUntil(owner, "/privacy", 200)
+  await expect(owner.getByRole("heading", { level: 1 })).toBeVisible()
+  await shot(owner, "maintenance-privacy")
+  // Superadmins keep the site, with the warning card above it.
+  await expect(async () => {
+    await visit(superadmin, "/companies")
+    await expect(superadmin.getByTestId("maintenance-notice")).toBeVisible({ timeout: 2_000 })
+  }).toPass({ timeout: 60_000 })
+  await shot(superadmin, "maintenance-superadmin")
 
-    await flip(superadmin, MAINTENANCE, false)
-    await expect.poll(() => maintenanceOn(superadmin)).toBe(false)
-    await visitUntil(owner, "/companies", 200)
-    await expect(owner.getByText(company.name)).toBeVisible()
-  } finally {
-    await api(superadmin, "PUT", "/companies/superadmin/maintenance", { on: false })
-    await api(superadmin, "PUT", "/companies/superadmin/pause", { paused: false })
-  }
+  await flip(superadmin, MAINTENANCE, false)
+  await expect.poll(() => maintenanceOn(superadmin)).toBe(false)
+  await visitUntil(owner, "/companies", 200)
+  await expect(owner.getByText(company.name)).toBeVisible()
 })
 
 // A replaced question shows, behind its "replaced with" button, the question that took its place.

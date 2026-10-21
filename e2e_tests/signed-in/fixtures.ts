@@ -1,8 +1,9 @@
 import { test as base, type Page } from "@playwright/test"
 
+import { API_URL } from "./constants"
 import { deleteOwnCompanies } from "./helpers/api"
 import { env } from "./helpers/env"
-import { signIn, type SignInEmails } from "./helpers/sign-in"
+import { signIn, tokenOf, type SignInEmails } from "./helpers/sign-in"
 
 type Fixtures = {
   // Signs in through a new browser; a throwaway user's companies are deleted when the test ends,
@@ -19,6 +20,10 @@ type Fixtures = {
   // A new browser signed in as the first superadmin in SUPERADMIN_EMAILS (emulator only). Nothing
   // of theirs is deleted.
   signInSuperadmin: () => Promise<Page>
+  // Turns the global pause and maintenance mode off when the test ends, however it ends (a
+  // timeout too): given the superadmin's page, it keeps their token and calls the API itself,
+  // as the page may be closed by then.
+  switchesOffAfter: (superadmin: Page) => Promise<void>
 }
 
 export const test = base.extend<Fixtures>({
@@ -46,6 +51,23 @@ export const test = base.extend<Fixtures>({
   signInSuperadmin: async ({ signInWith }, use) => {
     const email = env("SUPERADMIN_EMAILS").split(",")[0].trim().toLowerCase()
     await use(() => signInWith(email, false))
+  },
+  switchesOffAfter: async ({ playwright }, use) => {
+    let token = ""
+
+    await use(async (superadmin) => {
+      token = await tokenOf(superadmin)
+    })
+
+    if (!token) {
+      return
+    }
+
+    const request = await playwright.request.newContext()
+    const headers = { Authorization: `Bearer ${token}` }
+    await request.put(`${API_URL}/companies/superadmin/maintenance`, { headers, data: { on: false } })
+    await request.put(`${API_URL}/companies/superadmin/pause`, { headers, data: { paused: false } })
+    await request.dispose()
   },
 })
 
