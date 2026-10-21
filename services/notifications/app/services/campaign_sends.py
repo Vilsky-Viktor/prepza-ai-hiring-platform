@@ -5,6 +5,7 @@ import uuid
 from fastapi import HTTPException, status
 from prepza_common.i18n import TemplateError
 from prepza_common.limits import limit, record_hit
+from prepza_common.rate_limit import until_tomorrow
 from prepza_common.user import User
 
 from app.config.settings import settings
@@ -82,7 +83,10 @@ async def send(campaign_id: uuid.UUID, user_id: str) -> CampaignOut:
     if outcome == ONE_A_DAY:
         await record_hit("CAMPAIGNS_PER_KIND_DAY", user_id=user_id)
 
-        raise TemplateError(status.HTTP_409_CONFLICT, ONE_A_DAY, limit=per_day)
+        # The day's limit: waiting until tomorrow frees it.
+        raise TemplateError(
+            status.HTTP_429_TOO_MANY_REQUESTS, ONE_A_DAY, headers=until_tomorrow(), limit=per_day
+        )
 
     campaign, _ = await found(campaign_id)
     await prepare_now(campaign.kind, str(campaign_id))

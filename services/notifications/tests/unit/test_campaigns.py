@@ -122,23 +122,25 @@ class EditedLimits:
 
 
 @pytest.mark.parametrize(
-    ("outcome", "edited", "detail"),
+    ("outcome", "edited", "code", "detail"),
     [
-        (ALREADY_SENT, {}, "This campaign was already sent, so it can't be changed."),
+        (ALREADY_SENT, {}, 409, "This campaign was already sent, so it can't be changed."),
         (
             ONE_A_DAY,
             {},
+            429,
             "Today's limit of campaigns of this kind (1) is reached. Send the next one tomorrow.",
         ),
         (
             ONE_A_DAY,
             {"CAMPAIGNS_PER_KIND_DAY": 3},
+            429,
             "Today's limit of campaigns of this kind (3) is reached. Send the next one tomorrow.",
         ),
     ],
 )
 def test_a_second_send_or_one_over_the_kinds_limit_today_is_refused(
-    monkeypatch, outcome, edited, detail
+    monkeypatch, outcome, edited, code, detail
 ):
     """The day's limit of a kind is as edited in Controls, and a refusal over it is recorded."""
     asked, hits = [], []
@@ -159,7 +161,9 @@ def test_a_second_send_or_one_over_the_kinds_limit_today_is_refused(
     with pytest.raises(HTTPException) as refused:
         asyncio.run(campaign_sends.send(uuid.uuid4(), "sam"))
 
-    assert (refused.value.status_code, refused.value.detail) == (409, detail)
+    assert (refused.value.status_code, refused.value.detail) == (code, detail)
+    # The day's limit says when it frees up; a campaign sent already never does.
+    assert ("Retry-After" in (refused.value.headers or {})) == (outcome == ONE_A_DAY)
     assert asked == [edited.get("CAMPAIGNS_PER_KIND_DAY", 1)]
     assert hits == (
         [("CAMPAIGNS_PER_KIND_DAY", {"user_id": "sam"})] if outcome == ONE_A_DAY else []
