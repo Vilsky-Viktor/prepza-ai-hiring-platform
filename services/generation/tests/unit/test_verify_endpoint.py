@@ -86,6 +86,8 @@ def test_verify_jobs_past_the_daily_caps_edited_value_are_refused_but_fix_now_is
 
     assert refused.status_code == 503
     assert refused.json()["detail"] == VERIFY_PAUSED
+    # Waits until the UTC day's reset, when the budget is free again.
+    assert 0 < int(refused.headers["Retry-After"]) <= 24 * 60 * 60
     assert len(queued) == 1
     assert (
         client.post(url, json={"flag": "rewrite", "now": True}, headers=headers).status_code == 202

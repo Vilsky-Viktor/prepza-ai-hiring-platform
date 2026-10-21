@@ -53,7 +53,9 @@ async def use_verify_budget() -> None:
     if await count_today(VERIFY_BUDGET_KEY) > await limit(get_redis(), name):
         await record_hit(name)
 
-        raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, VERIFY_PAUSED)
+        raise HTTPException(
+            status.HTTP_503_SERVICE_UNAVAILABLE, VERIFY_PAUSED, headers=until_tomorrow()
+        )
 
 
 async def budgets() -> list[BudgetOut]:
