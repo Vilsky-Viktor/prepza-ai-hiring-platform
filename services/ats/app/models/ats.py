@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, Text, UniqueConstraint, func
+from sqlalchemy import DateTime, ForeignKey, Index, String, Text, UniqueConstraint, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -69,7 +69,11 @@ class AtsCandidate(Base):
     results back."""
 
     __tablename__ = "ats_candidates"
-    __table_args__ = (UniqueConstraint("connection_id", "candidate_id", "interview_id"),)
+    __table_args__ = (
+        UniqueConstraint("connection_id", "candidate_id", "interview_id"),
+        # A linked job's candidates, oldest first; deleting a job link finds its rows by it too.
+        Index("ix_ats_candidates_link_id_created_at", "link_id", "created_at"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     connection_id: Mapped[uuid.UUID] = mapped_column(

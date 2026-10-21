@@ -105,10 +105,14 @@ def test_a_table_breaking_a_database_rule_is_named():
 
     engine = create_engine(sqlalchemy_url(settings.database_url))
     table = f"rule_check_{uuid.uuid4().hex}"
+    columns = (
+        "id uuid PRIMARY KEY, created_at timestamp, data json,"
+        f" parent_id uuid REFERENCES {table} (id)"
+    )
 
     try:
         with engine.begin() as connection:
-            connection.execute(text(f"CREATE TABLE {table} (created_at timestamptz)"))
+            connection.execute(text(f"CREATE TABLE {table} ({columns})"))
 
         found = problems(settings.database_url)
     finally:
@@ -117,4 +121,10 @@ def test_a_table_breaking_a_database_rule_is_named():
 
         engine.dispose()
 
-    assert found == [f"created_at without a database default: {table}"]
+    assert found == [
+        f"a foreign key without ON DELETE: {table}.{table}_parent_id_fkey",
+        f"a foreign key without an index: {table}.{table}_parent_id_fkey",
+        f"created_at without a database default: {table}",
+        f"json instead of jsonb, char(n) or money: {table}.data",
+        f"timestamp without a time zone: {table}.created_at",
+    ]
