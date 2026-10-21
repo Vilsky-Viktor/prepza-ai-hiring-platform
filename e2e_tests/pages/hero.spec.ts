@@ -86,7 +86,8 @@ for (const locale of LOCALES) {
   test(`the hero's sentences are each on a line of their own in ${locale}`, async ({ page }) => {
     test.skip(test.info().project.name !== "desktop", "once per language");
     test.setTimeout(120_000);
-    await page.goto(`/${locale}`);
+    // English is the plain address; /en is not a page (one URL per language).
+    await page.goto(locale === "en" ? "/" : `/${locale}`);
     const lines = page.getByTestId("hero-text").locator("span");
     await expect(lines).toHaveCount(2);
     const [first, second] = [
