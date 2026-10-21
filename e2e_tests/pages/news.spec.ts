@@ -82,8 +82,10 @@ for (const [path, language] of [
       expect(post.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
 
-    // The German page is German, not the English one.
+    // The German page is German, not the English one. The English page as a new visitor sees it:
+    // coming in through /de keeps German on plain addresses (the language cookie).
     if (language === "de") {
+      await page.context().clearCookies();
       await page.goto("/news");
       await expect(page.getByRole("heading", { level: 1 })).not.toHaveText(heading);
     }
