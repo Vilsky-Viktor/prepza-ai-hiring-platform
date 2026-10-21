@@ -111,8 +111,9 @@ async def company_page(
         return [tuple(row) for row in await session.execute(query)]
 
 
-async def for_report(interview_id) -> list[CandidateInvite]:
-    """Every candidate but deleted ones (they have no email to show), best grade first."""
+async def for_report(interview_id, offset: int, limit: int) -> list[CandidateInvite]:
+    """A batch of the candidates but deleted ones (they have no email to show), best grade
+    first: the report reads them `limit` at a time."""
     query = (
         select(CandidateInvite)
         .where(
@@ -120,6 +121,8 @@ async def for_report(interview_id) -> list[CandidateInvite]:
             CandidateInvite.status != InviteStatus.DELETED,
         )
         .order_by(*candidate_order(True))
+        .offset(offset)
+        .limit(limit)
     )
 
     async with Session() as session:

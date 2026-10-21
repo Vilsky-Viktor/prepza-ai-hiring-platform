@@ -6,6 +6,7 @@ from prepza_common.auth import CurrentUser
 from prepza_common.rate_limit import recipient_key
 
 from app.constants.invites import InviteStatus
+from app.constants.reports import READ_BATCH
 from app.helpers.candidates import candidate_label, candidate_out
 from app.helpers.interviews import interview_title
 from app.helpers.logos import logo_path
@@ -64,8 +65,16 @@ async def email_report(
 async def interview_report(interview_id: UUID, user: CurrentUser) -> InterviewReportOut:
     interview, company, _ = await interview_for(user, interview_id)
     await candidate_results.backfill(interview.id)
-    every = await candidates.for_report(interview.id)
-    totals = await rounds.invite_scores([invite.id for invite in every])
+    every, totals = [], {}
+
+    # A batch at a time, with its candidates' scores, until one comes up short.
+    while True:
+        batch = await candidates.for_report(interview.id, len(every), READ_BATCH)
+        every += batch
+        totals |= await rounds.invite_scores([invite.id for invite in batch])
+
+        if len(batch) < READ_BATCH:
+            break
 
     return InterviewReportOut(
         title=await interview_title(interview),

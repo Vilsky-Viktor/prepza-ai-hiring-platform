@@ -42,7 +42,11 @@ def calls(monkeypatch):
     async def fake_company(_company_id):
         return company
 
-    async def fake_list(_company_id):
+    async def fake_list(_company_id, after, limit):
+        # One page, then none.
+        if after is not None:
+            return []
+
         return [
             interview(uuid.uuid4(), READY_SET_ID),
             interview(GENERATING_ID, None),
@@ -73,7 +77,7 @@ def calls(monkeypatch):
         recorded.append(("billing", company_id))
 
     monkeypatch.setattr(companies, "get", fake_company)
-    monkeypatch.setattr(interviews, "list_for_company", fake_list)
+    monkeypatch.setattr(interviews, "page_by_id", fake_list)
     monkeypatch.setattr(generation, "cancel", fake_cancel)
     monkeypatch.setattr(generation, "get", fake_get)
     monkeypatch.setattr(interview_generations, "set_set_id", fake_set_id)

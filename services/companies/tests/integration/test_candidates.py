@@ -106,7 +106,7 @@ def test_lookups_count_find_one_candidate_and_leave_out_deleted_ones(run):
             before_finish,
             await candidates.any_finished(found.id),
             await candidates.unscored(found.id),
-            emails(await candidates.for_report(found.id)),
+            emails(await candidates.for_report(found.id, 0, 1000)),
             found.id,
             ann.id,
         )

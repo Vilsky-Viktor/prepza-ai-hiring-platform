@@ -111,11 +111,11 @@ def test_owner_removes_company(client, two_companies, monkeypatch):
     async def fake_delete(company_id):
         removed.append(company_id)
 
-    async def no_interviews(_company_id):
+    async def no_interviews(_company_id, after, limit):
         return []
 
     monkeypatch.setattr(companies, "delete", fake_delete)
-    monkeypatch.setattr(interviews, "list_for_company", no_interviews)
+    monkeypatch.setattr(interviews, "page_by_id", no_interviews)
     sign_in()
     response = client.delete(f"/companies/{OWNED_ID}")
 

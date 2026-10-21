@@ -141,7 +141,7 @@ async def list_for_company(
     after: uuid.UUID | None = None,
     q: str = "",
 ) -> list[Interview]:
-    """Newest first; without a limit, all of them (deleting a company goes through each). With
+    """Newest first, at most `limit`. With
     `since`, those changed since, oldest change first (changed_since); with `q`, those whose
     title contains it as typed, in any case."""
     filters = [Interview.company_id == company_id]
@@ -158,6 +158,18 @@ async def list_for_company(
 
     async with Session() as session:
         return list(await session.scalars(query))
+
+
+async def page_by_id(company_id, after: uuid.UUID | None, limit: int) -> list[Interview]:
+    """Up to `limit` of the company's interviews, by id, after `after`: all of them, a page at a
+    time (a company's deletion)."""
+    query = select(Interview).where(Interview.company_id == company_id)
+
+    if after is not None:
+        query = query.where(Interview.id > after)
+
+    async with Session() as session:
+        return list(await session.scalars(query.order_by(Interview.id).limit(limit)))
 
 
 async def update_settings(interview_id, settings: InterviewSettings) -> None:

@@ -41,9 +41,11 @@ async def save_results(results):
     SAVED.extend((invite_id, *result) for invite_id, result in results.items())
 
 
-async def for_report(interview_id):
-    return [
+async def for_report(interview_id, offset, limit):
+    found = [
         row
         for row in ROWS
         if row.interview_id == interview_id and row.status != InviteStatus.DELETED
     ]
+
+    return found[offset : offset + limit]

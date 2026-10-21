@@ -51,8 +51,9 @@ def record_calls(monkeypatch, listed, fail_library=False):
     """Records every cleanup call in order; the still-generating interview has no set."""
     calls = []
 
-    async def fake_list(_company_id):
-        return listed
+    async def fake_list(_company_id, after, limit):
+        # One page, then none.
+        return listed if after is None else []
 
     async def fake_cancel(generation_id, company_id):
         calls.append(("cancel", generation_id))
@@ -74,7 +75,7 @@ def record_calls(monkeypatch, listed, fail_library=False):
     async def fake_delete(company_id):
         calls.append(("company", company_id))
 
-    monkeypatch.setattr(interviews, "list_for_company", fake_list)
+    monkeypatch.setattr(interviews, "page_by_id", fake_list)
     monkeypatch.setattr(generation, "cancel", fake_cancel)
     monkeypatch.setattr(company_deletion, "attach_set", fake_attach)
     monkeypatch.setattr(rounds, "delete_interview_data", fake_rounds)

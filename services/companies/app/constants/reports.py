@@ -15,3 +15,6 @@ OUTSIDE_COMPANY = (
     "Only an owner or admin can email a report outside the company. Send it to one of your "
     "company's members."
 )
+
+# A report's candidates, and a deleted company's interviews, are read this many at a time.
+READ_BATCH = 500
