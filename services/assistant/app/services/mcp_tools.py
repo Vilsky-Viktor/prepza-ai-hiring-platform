@@ -21,7 +21,9 @@ from app.constants.mcp import (
     EXCLUDED_TOOL,
     KEY_FUNNEL_CLIENT,
     MCP_EXCLUDED,
+    MCP_SCOPE,
     MCP_UNLISTED,
+    READ_ONLY,
     UPDATE_LANGUAGE,
 )
 from app.constants.tool_calls import UNKNOWN_TOOL
@@ -44,12 +46,22 @@ from app.storage import oauth
 logger = logging.getLogger(__name__)
 
 
+def writes_allowed(access: Access) -> bool:
+    """Whether the connection may change things: a read-only one (MCP_READ_SCOPE) may not."""
+    return MCP_SCOPE in access.scopes
+
+
 def listed(access: Access | None = None) -> list[types.Tool]:
-    """Every tool an AI app may call; for an API key, those its permissions allow."""
+    """Every tool an AI app may call; for an API key, those its permissions allow; for a
+    read-only connection, the reads."""
     return [
         mcp_tool(tool)
         for name, tool in tools().items()
-        if name not in MCP_EXCLUDED | MCP_UNLISTED and (access is None or key_may_use(access, name))
+        if name not in MCP_EXCLUDED | MCP_UNLISTED
+        and (
+            access is None
+            or (key_may_use(access, name) and (tool.method == "GET" or writes_allowed(access)))
+        )
     ]
 
 
@@ -117,6 +129,9 @@ def refusal(name: str, tool: Tool | None, access: Access) -> str | None:
 
     if not key_may_use(access, name):
         return key_refusal(name)
+
+    if tool.method != "GET" and not writes_allowed(access):
+        return READ_ONLY
 
     return None
 

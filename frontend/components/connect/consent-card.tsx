@@ -1,17 +1,19 @@
 "use client"
 
+import { PencilLineIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
+import { Switch } from "@/components/ui/switch"
 import { WarningCard } from "@/components/warning-card"
 import { ApiError, apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import type { ConnectAnswer, ConnectRequest } from "@/types/connections"
 
 /** Asks the signed-in user whether an AI app may use their account: who asks, what it can and
- * can't do, a warning for an app prepza doesn't know, and Deny or Allow; either answer goes back
- * to the app. */
+ * can't do, whether it may make changes (on unless the app asked only to read), a warning for an
+ * app prepza doesn't know, and Deny or Allow; either answer goes back to the app. */
 export function ConsentCard({
   requestId,
   request,
@@ -27,7 +29,18 @@ export function ConsentCard({
   const t = useTranslations("connect")
   const common = useTranslations("common")
   const [busy, setBusy] = useState(false)
+  const [changes, setChanges] = useState(!request.read_only)
   const client = request.client_name
+  const can = [
+    t("canRead"),
+    ...(changes ? [t("canChange")] : []),
+    t("canShare"),
+  ]
+  const cant = [
+    ...(changes ? [] : [t("cantChange")]),
+    t("cantSecrets"),
+    t("cantDelete"),
+  ]
 
   async function answer(choice: "approve" | "deny") {
     setBusy(true)
@@ -35,7 +48,9 @@ export function ConsentCard({
     try {
       const { redirect_url } = await apiFetch<ConnectAnswer>(
         `/assistant/connect/${encodeURIComponent(requestId)}/${choice}`,
-        { method: "POST" }
+        choice === "approve"
+          ? { method: "POST", body: JSON.stringify({ read_only: !changes }) }
+          : { method: "POST" }
       )
       window.location.assign(redirect_url)
     } catch (error) {
@@ -66,8 +81,29 @@ export function ConsentCard({
           {t("who", { client, host: request.redirect_host, email })}
         </p>
       </div>
-      <List title={t("canTitle")} items={t.raw("can") as string[]} />
-      <List title={t("cantTitle")} items={t.raw("cant") as string[]} />
+      <List title={t("canTitle")} items={can} />
+      <List title={t("cantTitle")} items={cant} />
+      {!request.read_only && (
+        <label className="flex cursor-pointer items-center gap-4 rounded-2xl border p-5 text-base">
+          <PencilLineIcon
+            aria-hidden
+            className="size-7 shrink-0 text-primary"
+          />
+          <span className="min-w-0 flex-1 space-y-1">
+            <span className="block font-medium lowercase">
+              {t("changesTitle")}
+            </span>
+            <span className="block text-sm text-muted-foreground">
+              {t("changesText")}
+            </span>
+          </span>
+          <Switch
+            checked={changes}
+            disabled={busy}
+            onCheckedChange={setChanges}
+          />
+        </label>
+      )}
       {!request.known_client && <WarningCard>{t("unknown")}</WarningCard>}
       <div className="flex gap-3 max-sm:*:flex-1 sm:justify-end">
         <Button

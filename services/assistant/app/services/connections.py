@@ -8,8 +8,8 @@ from prepza_common.rate_limit import hit
 from prepza_common.tokens import new_token
 from prepza_common.user import User
 
-from app.constants.mcp import CODE_BYTES, CODE_SECONDS, NOT_FOUND, OTHER_BROWSER
-from app.helpers.oauth import auth_settings
+from app.constants.mcp import CODE_BYTES, CODE_SECONDS, MCP_SCOPE, NOT_FOUND, OTHER_BROWSER
+from app.helpers.oauth import auth_settings, granted_scope
 from app.integrations.redis import get_redis
 from app.models.oauth import McpGrant
 from app.storage import oauth, oauth_requests
@@ -23,11 +23,14 @@ async def describe(request_id: str) -> dict:
     if found is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, NOT_FOUND)
 
-    return {key: found[key] for key in ("client_name", "redirect_host", "known_client")}
+    described = {key: found[key] for key in ("client_name", "redirect_host", "known_client")}
+
+    return {**described, "read_only": MCP_SCOPE not in found["scopes"]}
 
 
-async def approve(request_id: str, user: User, marked: str | None) -> str:
-    """The user allows the app: a single-use code bound to them, which the app exchanges for
+async def approve(request_id: str, user: User, marked: str | None, read_only: bool = False) -> str:
+    """The user allows the app: a single-use code bound to them and to what they allowed (only
+    reading when the app asked for no more, or the user chose it), which the app exchanges for
     its tokens. Where the browser goes next: back to the app, with the code. Only from the
     browser that asked (`marked`, its connect cookie): a link someone else started is refused,
     and the request stays for its own browser."""
@@ -38,7 +41,13 @@ async def approve(request_id: str, user: User, marked: str | None) -> str:
     await hit(get_redis(), key, "APPROVALS_PER_USER_HOUR", user_id=user.uid)
     found = await taken(request_id)
     code, code_hash = new_token("", CODE_BYTES)
-    kept = {**found, "user_id": user.uid, "expires_at": time.time() + CODE_SECONDS}
+    scope = granted_scope(found["scopes"], read_only)
+    kept = {
+        **found,
+        "scopes": [scope],
+        "user_id": user.uid,
+        "expires_at": time.time() + CODE_SECONDS,
+    }
     await oauth_requests.save_code(code_hash, kept)
 
     return construct_redirect_uri(

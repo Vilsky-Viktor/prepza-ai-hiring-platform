@@ -122,7 +122,12 @@ test("the consent page asks before an AI app may use the account", async ({ sign
 
   await user.route("**/assistant/connect/e2e-request", (route) =>
     route.fulfill({
-      json: { client_name: "E2E App", redirect_host: "e2e.example.com", known_client: false },
+      json: {
+        client_name: "E2E App",
+        redirect_host: "e2e.example.com",
+        known_client: false,
+        read_only: false,
+      },
     })
   )
   await user.route("**/assistant/connect/e2e-request/deny", (route) =>
@@ -137,13 +142,55 @@ test("the consent page asks before an AI app may use the account", async ({ sign
   await expect(main.getByRole("status")).toBeVisible()
   await expect(main.getByRole("button")).toHaveCount(2)
   await shot(user, "consent")
+  // Changes off: the app may only read.
+  await main.getByRole("switch").click()
+  await expect(main.getByRole("switch")).not.toBeChecked()
+  await shot(user, "consent-read-only")
+  await user.emulateMedia({ colorScheme: "dark" })
+  await shot(user, "consent-read-only-dark")
+  await main.getByRole("switch").click()
+  await shot(user, "consent-dark")
+  await user.emulateMedia({ colorScheme: "light" })
   await main.getByRole("button").first().click()
   await expect(user).toHaveURL(/\/\?error=access_denied$/)
+
+  // Allowed with changes off: the approval asks for read only.
+  const approvals: unknown[] = []
+  await user.route("**/assistant/connect/e2e-request/approve", (route) => {
+    approvals.push(route.request().postDataJSON())
+
+    return route.fulfill({ json: { redirect_url: "/?code=e2e" } })
+  })
+  await visit(user, "/connect?request=e2e-request")
+  await main.getByRole("switch").click()
+  await main.getByRole("button").last().click()
+  await expect(user).toHaveURL(/\/\?code=e2e$/)
+  expect(approvals).toEqual([{ read_only: true }])
+
+  // An app that asked only to read: no switch to turn changes on.
+  await user.route("**/assistant/connect/e2e-reader", (route) =>
+    route.fulfill({
+      json: {
+        client_name: "E2E Reader",
+        redirect_host: "e2e.example.com",
+        known_client: true,
+        read_only: true,
+      },
+    })
+  )
+  await visit(user, "/connect?request=e2e-reader")
+  await expect(main.getByRole("button")).toHaveCount(2)
+  await expect(main.getByRole("switch")).toHaveCount(0)
 
   // A request that runs out while the card is open says it expired, not "something went wrong".
   await user.route("**/assistant/connect/e2e-expiring", (route) =>
     route.fulfill({
-      json: { client_name: "E2E App", redirect_host: "e2e.example.com", known_client: false },
+      json: {
+        client_name: "E2E App",
+        redirect_host: "e2e.example.com",
+        known_client: false,
+        read_only: false,
+      },
     })
   )
   await user.route("**/assistant/connect/e2e-expiring/approve", (route) =>
@@ -216,7 +263,10 @@ test("Allow on the consent page connects the AI app", async ({ signInAs }) => {
       })
     const tokens = await exchange()
     expect(tokens.status()).toBe(200)
-    expect((await tokens.json()).access_token).toMatch(/^pzm_/)
+    const granted = await tokens.json()
+    expect(granted.access_token).toMatch(/^pzm_/)
+    // Allowed with changes on (the default): everything.
+    expect(granted.scope).toBe("prepza")
     expect((await exchange()).status()).toBe(400)
 
     // The user sees the app connected.

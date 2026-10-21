@@ -23,7 +23,7 @@ from app.constants.mcp import (
     REFRESH_REUSE_GRACE_SECONDS,
 )
 from app.helpers.mcp_clients import describe_client, is_document_id, refused_redirect
-from app.helpers.oauth import funnel_client, new_tokens, resource_url
+from app.helpers.oauth import funnel_client, new_tokens, resource_url, scopes_of
 from app.models.oauth import McpGrant
 from app.models.oauth_tokens import Access, Client, Code, Refresh
 from app.services import client_documents
@@ -135,8 +135,10 @@ class Provider:
         if await oauth_requests.take_code(hashed(authorization_code.code)) is None:
             raise TokenError("invalid_grant", "authorization code does not exist")
 
-        token, kept = new_tokens()
+        scope = authorization_code.scopes[0]
+        token, kept = new_tokens(scope)
         grant = McpGrant(
+            scope=scope,
             user_id=authorization_code.subject,
             client_id=client.client_id,
             client_name=authorization_code.client_name,
@@ -165,7 +167,7 @@ class Provider:
         return Refresh(
             token=refresh_token,
             client_id=grant.client_id,
-            scopes=[MCP_SCOPE],
+            scopes=scopes_of(grant.scope),
             expires_at=int(grant.refresh_expires_at.timestamp()),
             resource=resource_url(),
             subject=grant.user_id,
@@ -178,7 +180,8 @@ class Provider:
         """New tokens for the connection; the old ones stop working. Of two refreshes with the
         same token, the second is refused."""
         await limit_tokens(client.client_id)
-        token, kept = new_tokens()
+        scope = MCP_SCOPE if MCP_SCOPE in refresh_token.scopes else refresh_token.scopes[0]
+        token, kept = new_tokens(scope)
 
         if not await oauth.rotate(UUID(refresh_token.grant_id), hashed(refresh_token.token), kept):
             raise TokenError("invalid_grant", "refresh token does not exist")
@@ -198,7 +201,7 @@ class Provider:
         return Access(
             token=token,
             client_id=grant.client_id,
-            scopes=[MCP_SCOPE],
+            scopes=scopes_of(grant.scope),
             expires_at=int(grant.access_expires_at.timestamp()),
             resource=resource_url(),
             subject=grant.user_id,

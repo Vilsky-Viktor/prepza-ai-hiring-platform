@@ -2205,16 +2205,15 @@
     "signIn": "Masuk untuk melanjutkan",
     "who": "{client} ({host}) ingin memakai akun prepza-mu, {email}.",
     "canTitle": "Aplikasi ini bisa",
-    "can": [
-      "Membaca perusahaan, wawancara, dan hasil kandidatmu.",
-      "Membuat perubahan yang kamu minta. Sebagian besar aplikasi AI meminta konfirmasimu dulu.",
-      "Meneruskan apa yang dibacanya ke penyedia aplikasi, sesuai ketentuan aplikasi tersebut."
-    ],
+    "canRead": "Membaca perusahaan, wawancara, dan hasil kandidatmu.",
+    "canChange": "Membuat perubahan yang kamu minta. Sebagian besar aplikasi AI meminta konfirmasimu dulu.",
+    "canShare": "Meneruskan apa yang dibacanya ke penyedia aplikasi, sesuai ketentuan aplikasi tersebut.",
     "cantTitle": "Aplikasi ini tidak bisa",
-    "cant": [
-      "Melihat kata sandi atau kunci API-mu.",
-      "Menghapus akunmu atau perusahaan."
-    ],
+    "cantChange": "Mengubah apa pun di prepza.",
+    "cantSecrets": "Melihat kata sandi atau kunci API-mu.",
+    "cantDelete": "Menghapus akunmu atau perusahaan.",
+    "changesTitle": "Izinkan perubahan",
+    "changesText": "Matikan agar aplikasi ini hanya bisa membaca.",
     "unknown": "prepza tidak mengenal aplikasi ini. Izinkan hanya jika kamu sendiri yang mulai menghubungkannya.",
     "deny": "Tolak",
     "allow": "Izinkan",

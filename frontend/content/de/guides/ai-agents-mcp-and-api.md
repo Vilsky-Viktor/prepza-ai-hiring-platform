@@ -2,7 +2,7 @@
 title: "KI-Agenten, MCP und APIs: was sie sind und wie du sie im Recruiting nutzt"
 seoTitle: "KI-Agenten, MCP und APIs im Recruiting: was sie sind und wie du sie nutzt"
 description: "Was ein KI-Agent ist, was MCP und eine API leisten, wie du sie im Recruiting sicher einsetzt und wie du prepza über seinen Agenten, aus Claude und ChatGPT oder von deiner eigenen Plattform aus steuerst."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # KI-Agenten, MCP und APIs: was sie sind und wie du sie im Recruiting nutzt
@@ -97,7 +97,7 @@ Wenn dein Team schon in Claude oder ChatGPT arbeitet, kannst du prepza dorthin h
 
 1. Öffne in prepza den Tab **Integrationen** eines Unternehmens und wähle **KI-Apps**. Kopiere die Serveradresse: `https://prepza.ai/mcp`.
 2. **In Claude:** Öffne die Einstellungen, dann Konnektoren, und füge einen eigenen Konnektor mit dieser Adresse hinzu. **In Claude Code:** Führe `claude mcp add --transport http prepza https://prepza.ai/mcp` aus. **In ChatGPT:** Füge ihn als eigenen Konnektor in den Einstellungen für Apps und Konnektoren hinzu.
-3. Deine KI-App öffnet die Anmeldung von prepza. Melde dich an, prüfe, welche App anfragt, und wähle **Zulassen**.
+3. Deine KI-App öffnet die Anmeldung von prepza. Melde dich an, prüfe, welche App anfragt, und wähle **Zulassen**. Soll sie nur lesen können, schalte vorher **Änderungen erlauben** aus.
 
 Ab dann fragst du in deinem Chat so, wie du einen Kollegen fragen würdest: „Wer sind in prepza die drei besten Kandidaten für Product designer?“ Die meisten KI-Apps fragen dich vor einer Änderung und warnen dich vor allem, was sich nicht rückgängig machen lässt: prepza teilt ihnen mit, welche Aktionen etwas ändern oder löschen.
 

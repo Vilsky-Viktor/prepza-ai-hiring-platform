@@ -2,7 +2,7 @@
 title: "Agenti IA, MCP e API: cosa sono e come usarli nella selezione del personale"
 seoTitle: "Agenti IA, MCP e API nella selezione del personale: cosa sono e come usarli"
 description: "Cos'è un agente IA, a cosa servono MCP e un'API, come usarli in sicurezza nella selezione del personale e come gestire prepza dal suo agente, da Claude e ChatGPT o dalla tua piattaforma."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # Agenti IA, MCP e API: cosa sono e come usarli nella selezione del personale
@@ -97,7 +97,7 @@ Se il tuo team lavora già in Claude o ChatGPT, puoi portare lì prepza. Il serv
 
 1. In prepza, apri la scheda **Integrazioni** di un'azienda e seleziona **App IA**. Copia l'indirizzo del server: `https://prepza.ai/mcp`.
 2. **In Claude:** apri Impostazioni, poi Connettori, e aggiungi un connettore personalizzato con quell'indirizzo. **In Claude Code:** esegui `claude mcp add --transport http prepza https://prepza.ai/mcp`. **In ChatGPT:** aggiungilo come connettore personalizzato nelle impostazioni di app e connettori.
-3. La tua app di IA apre la pagina di accesso di prepza. Accedi, controlla quale app sta facendo la richiesta e seleziona **Consenti**.
+3. La tua app di IA apre la pagina di accesso di prepza. Accedi, controlla quale app sta facendo la richiesta e seleziona **Consenti**. Perché possa solo leggere, disattiva prima **Consenti modifiche**.
 
 Da quel momento, chiedi nella chat come faresti con un collega: «In prepza, chi sono i tre migliori candidati per Product designer?» La maggior parte delle app di IA ti chiede conferma prima di una modifica e ti avvisa prima di qualsiasi operazione che non si può annullare: prepza indica loro quali azioni modificano o eliminano qualcosa.
 

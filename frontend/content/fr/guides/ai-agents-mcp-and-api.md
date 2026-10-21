@@ -2,7 +2,7 @@
 title: "Agents IA, MCP et API : ce que c'est et comment s'en servir dans le recrutement"
 seoTitle: "Agents IA, MCP et API dans le recrutement : définition et usages"
 description: "Ce qu'est un agent IA, à quoi servent MCP et une API, comment les utiliser en toute sécurité dans le recrutement, et comment piloter prepza depuis son agent, depuis Claude et ChatGPT ou depuis votre propre plateforme."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # Agents IA, MCP et API : ce que c'est et comment s'en servir dans le recrutement
@@ -97,7 +97,7 @@ Si votre équipe travaille déjà dans Claude ou ChatGPT, vous pouvez y faire ve
 
 1. Dans prepza, ouvrez l'onglet **Intégrations** d'une entreprise et sélectionnez **Apps IA**. Copiez l'adresse du serveur : `https://prepza.ai/mcp`.
 2. **Dans Claude :** ouvrez les paramètres, puis Connecteurs, et ajoutez un connecteur personnalisé avec cette adresse. **Dans Claude Code :** exécutez `claude mcp add --transport http prepza https://prepza.ai/mcp`. **Dans ChatGPT :** ajoutez-le comme connecteur personnalisé dans ses paramètres d'applications et de connecteurs.
-3. Votre application d'IA ouvre la page de connexion de prepza. Connectez-vous, vérifiez quelle application fait la demande et sélectionnez **Autoriser**.
+3. Votre application d'IA ouvre la page de connexion de prepza. Connectez-vous, vérifiez quelle application fait la demande et sélectionnez **Autoriser**. Pour qu'elle puisse seulement lire, désactivez d'abord **Autoriser les modifications**.
 
 Ensuite, posez vos questions dans la conversation comme vous le feriez à un collègue : « Dans prepza, quels sont les trois meilleurs candidats pour Product designer ? » La plupart des applications d'IA vous demandent votre accord avant une modification et vous avertissent avant toute action irréversible : prepza leur indique quelles actions modifient ou suppriment quelque chose.
 

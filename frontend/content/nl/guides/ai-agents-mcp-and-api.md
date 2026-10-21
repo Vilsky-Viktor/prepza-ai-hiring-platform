@@ -2,7 +2,7 @@
 title: "AI-agents, MCP en API's: wat het zijn en hoe je ze inzet bij werving en selectie"
 seoTitle: "AI-agents, MCP en API's bij werving: wat het zijn en hoe je ze inzet"
 description: "Wat een AI-agent is, wat MCP en een API doen, hoe je ze veilig inzet bij werving en selectie, en hoe je prepza bedient via de eigen agent, vanuit Claude en ChatGPT of vanuit je eigen platform."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # AI-agents, MCP en API's: wat het zijn en hoe je ze inzet bij werving en selectie
@@ -97,7 +97,7 @@ Werkt je team al in Claude of ChatGPT, dan kun je prepza daarheen halen. De MCP-
 
 1. Open in prepza het tabblad **Integraties** van een bedrijf en kies **AI-apps**. Kopieer het serveradres: `https://prepza.ai/mcp`.
 2. **In Claude:** open Instellingen, dan Connectors, en voeg een aangepaste connector toe met dat adres. **In Claude Code:** voer `claude mcp add --transport http prepza https://prepza.ai/mcp` uit. **In ChatGPT:** voeg het toe als aangepaste connector in de instellingen voor apps en connectors.
-3. Je AI-app opent de aanmelding van prepza. Meld je aan, controleer welke app erom vraagt, en kies **Toestaan**.
+3. Je AI-app opent de aanmelding van prepza. Meld je aan, controleer welke app erom vraagt, en kies **Toestaan**. Mag de app alleen lezen, zet dan eerst **Wijzigingen toestaan** uit.
 
 Vanaf dan vraag je in je chat wat je ook een collega zou vragen: "Wie zijn in prepza de drie beste kandidaten voor Product designer?" De meeste AI-apps vragen je om toestemming voor een wijziging en waarschuwen je voor alles wat niet ongedaan kan worden gemaakt: prepza vertelt ze welke acties iets wijzigen of verwijderen.
 

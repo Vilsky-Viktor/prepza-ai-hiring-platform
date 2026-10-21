@@ -1,8 +1,13 @@
 # AI apps (Claude, ChatGPT, ...) connected over MCP: they call the assistant's tools as the user,
 # with an access token prepza issued once the user allowed them (OAuth 2.1 with PKCE).
 
-# The one scope an app is given: everything the user may do, as they would in the app.
+# What an app may do: everything the user may do, as they would in the app (MCP_SCOPE, which
+# includes reading), or only read (MCP_READ_SCOPE). An app asks for one; the user can allow a
+# full request as read only on the consent page. Connections made before scopes existed keep
+# MCP_SCOPE (the column's default).
 MCP_SCOPE = "prepza"
+MCP_READ_SCOPE = "prepza:read"
+MCP_SCOPES = [MCP_SCOPE, MCP_READ_SCOPE]
 # Where the MCP endpoint is, on the site (the resource the access is for), and where the user
 # allows or denies an app (the frontend's page).
 MCP_PATH = "/mcp"
@@ -113,6 +118,11 @@ OTHER_BROWSER = (
     "This request was started in another browser. Start connecting again from your AI app."
 )
 
+# A read-only connection's write.
+READ_ONLY = (
+    "This connection can only read. To let the app make changes, connect it again and allow "
+    "changes."
+)
 # Tools an app never gets: deleting the account or a company (with its paid credits) is done in
 # the app only. The panel's own tools (show, sign_out) aren't tools of the registry at all.
 MCP_EXCLUDED = frozenset({"delete_account", "delete_company"})

@@ -79,6 +79,7 @@ def grant(user_id: str) -> SimpleNamespace:
         redirect_host="chatgpt.com",
         created_at=datetime(2026, 10, 1, tzinfo=UTC),
         last_used_at=None,
+        scope="prepza",
     )
 
 
@@ -89,6 +90,7 @@ def test_the_consent_page_reads_what_the_app_asks(client, kept):
         "client_name": "Claude",
         "redirect_host": "claude.ai",
         "known_client": True,
+        "read_only": False,
     }
     assert client.get("/connect/gone").status_code == 404
 
@@ -127,6 +129,28 @@ def test_a_consent_link_opened_in_another_browser_connects_nothing(client, kept,
     assert response.json()["detail"] == OTHER_BROWSER
     assert kept.codes == {}
     assert client.get("/connect/r1").status_code == 200
+
+
+@pytest.mark.parametrize(
+    ("asked", "body", "scope"),
+    [
+        (["prepza"], None, "prepza"),
+        (["prepza"], {"read_only": True}, "prepza:read"),
+        (["prepza:read"], None, "prepza:read"),
+        # An app that asked only to read can't be given more.
+        (["prepza:read"], {"read_only": False}, "prepza:read"),
+    ],
+)
+def test_the_code_carries_what_the_user_allowed(client, kept, asked, body, scope):
+    kept.requests["r1"]["scopes"] = asked
+    client.cookies.set(CONNECT_COOKIE, "r1")
+
+    assert client.get("/connect/r1").json()["read_only"] is (asked == ["prepza:read"])
+
+    response = client.post("/connect/r1/approve", json=body)
+
+    code = parse_qs(urlparse(response.json()["redirect_url"]).query)["code"][0]
+    assert kept.codes[hashed(code)]["scopes"] == [scope]
 
 
 def test_denying_tells_the_app_and_gives_no_code(client, kept):

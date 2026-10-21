@@ -2205,16 +2205,15 @@
     "signIn": "Logi sisse, et jätkata",
     "who": "{client} ({host}) soovib kasutada sinu prepza kontot {email}.",
     "canTitle": "See saab",
-    "can": [
-      "Lugeda sinu ettevõtteid, intervjuusid ja kandidaatide tulemusi.",
-      "Teha muudatusi, mida palud. Enamik AI-rakendusi palub sul enne kinnitada.",
-      "Edastada loetu rakenduse pakkujale selle rakenduse tingimuste alusel."
-    ],
+    "canRead": "Lugeda sinu ettevõtteid, intervjuusid ja kandidaatide tulemusi.",
+    "canChange": "Teha muudatusi, mida palud. Enamik AI-rakendusi palub sul enne kinnitada.",
+    "canShare": "Edastada loetu rakenduse pakkujale selle rakenduse tingimuste alusel.",
     "cantTitle": "See ei saa",
-    "cant": [
-      "Näha sinu parooli ega API-võtmeid.",
-      "Kustutada sinu kontot ega ettevõtet."
-    ],
+    "cantChange": "Muuta prepzas midagi.",
+    "cantSecrets": "Näha sinu parooli ega API-võtmeid.",
+    "cantDelete": "Kustutada sinu kontot ega ettevõtet.",
+    "changesTitle": "Luba muudatused",
+    "changesText": "Lülita välja, et see saaks ainult lugeda.",
     "unknown": "prepza ei tunne seda rakendust. Luba see ainult siis, kui alustasid ühendamist ise.",
     "deny": "Keeldu",
     "allow": "Luba",

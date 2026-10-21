@@ -2205,16 +2205,15 @@
     "signIn": "Zaloguj się, aby kontynuować",
     "who": "{client} ({host}) chce korzystać z Twojego konta prepza, {email}.",
     "canTitle": "Może",
-    "can": [
-      "Odczytywać Twoje firmy, rozmowy i wyniki kandydatów.",
-      "Wprowadzać zmiany, o które poprosisz. Większość aplikacji AI najpierw prosi Cię o potwierdzenie.",
-      "Przekazywać to, co odczyta, dostawcy aplikacji na warunkach tej aplikacji."
-    ],
+    "canRead": "Odczytywać Twoje firmy, rozmowy i wyniki kandydatów.",
+    "canChange": "Wprowadzać zmiany, o które poprosisz. Większość aplikacji AI najpierw prosi Cię o potwierdzenie.",
+    "canShare": "Przekazywać to, co odczyta, dostawcy aplikacji na warunkach tej aplikacji.",
     "cantTitle": "Nie może",
-    "cant": [
-      "Widzieć Twojego hasła ani kluczy API.",
-      "Usunąć Twojego konta ani firmy."
-    ],
+    "cantChange": "Zmienić niczego w prepza.",
+    "cantSecrets": "Widzieć Twojego hasła ani kluczy API.",
+    "cantDelete": "Usunąć Twojego konta ani firmy.",
+    "changesTitle": "Zezwól na zmiany",
+    "changesText": "Wyłącz, aby aplikacja mogła tylko odczytywać.",
     "unknown": "prepza nie zna tej aplikacji. Zezwól tylko wtedy, gdy to Ty rozpoczynasz jej łączenie.",
     "deny": "Odmów",
     "allow": "Zezwól",

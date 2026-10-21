@@ -12,7 +12,7 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.routing import Route
 from starlette.types import Receive, Scope, Send
 
-from app.constants.mcp import MCP_PATH, MCP_REQUEST_HEADERS, MCP_SCOPE
+from app.constants.mcp import MCP_PATH, MCP_READ_SCOPE, MCP_REQUEST_HEADERS
 from app.helpers.oauth import auth_settings
 from app.prompts.mcp import MCP_INSTRUCTIONS
 from app.services import mcp_tools
@@ -56,7 +56,9 @@ def routes() -> list[Route]:
     401 naming where to learn how to get one. Browser-based apps (MCP Inspector) may call it."""
     resource = auth_settings().resource_server_url
     verifier = ProviderTokenVerifier(Provider())
-    required = RequireAuthMiddleware(handle, [MCP_SCOPE], build_resource_metadata_url(resource))
+    required = RequireAuthMiddleware(
+        handle, [MCP_READ_SCOPE], build_resource_metadata_url(resource)
+    )
     authenticated = AuthenticationMiddleware(
         required, backend=BearerAuthBackend(verifier, resource_server_url=resource)
     )

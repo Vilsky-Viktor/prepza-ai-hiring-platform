@@ -150,6 +150,32 @@ def test_a_code_is_exchanged_once_for_the_users_tokens(kept):
         asyncio.run(provider.exchange_authorization_code(CLIENT, code))
 
 
+def test_a_read_only_connection_stays_read_only_after_a_refresh(kept):
+    provider = Provider()
+    asyncio.run(provider.authorize(CLIENT, params()))
+    code_id = allowed(kept)
+    kept.codes[hashed(code_id)]["scopes"] = ["prepza:read"]
+    code = asyncio.run(provider.load_authorization_code(CLIENT, code_id))
+    first = asyncio.run(provider.exchange_authorization_code(CLIENT, code))
+    refresh = asyncio.run(provider.load_refresh_token(CLIENT, first.refresh_token))
+    second = asyncio.run(provider.exchange_refresh_token(CLIENT, refresh, []))
+
+    [grant] = kept.grants.values()
+    assert grant.scope == first.scope == second.scope == "prepza:read"
+    assert asyncio.run(provider.load_access_token(second.access_token)).scopes == ["prepza:read"]
+
+
+def test_a_full_connection_can_also_read(kept):
+    provider = Provider()
+    asyncio.run(provider.authorize(CLIENT, params()))
+    code = asyncio.run(provider.load_authorization_code(CLIENT, allowed(kept)))
+    tokens = asyncio.run(provider.exchange_authorization_code(CLIENT, code))
+
+    assert tokens.scope == "prepza"
+    access = asyncio.run(provider.load_access_token(tokens.access_token))
+    assert set(access.scopes) == {"prepza", "prepza:read"}
+
+
 def test_another_apps_code_isnt_found(kept):
     provider = Provider()
     asyncio.run(provider.authorize(CLIENT, params()))

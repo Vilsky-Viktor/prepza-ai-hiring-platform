@@ -2205,16 +2205,15 @@
     "signIn": "Devam etmek için giriş yap",
     "who": "{client} ({host}), {email} prepza hesabınızı kullanmak istiyor.",
     "canTitle": "Yapabilecekleri",
-    "can": [
-      "Şirketlerinizi, mülakatlarınızı ve adayların sonuçlarını okumak.",
-      "İstediğiniz değişiklikleri yapmak. Çoğu yapay zekâ uygulaması önce onayınızı ister.",
-      "Okuduklarını, o uygulamanın koşullarına göre uygulamanın sağlayıcısına iletmek."
-    ],
+    "canRead": "Şirketlerinizi, mülakatlarınızı ve adayların sonuçlarını okumak.",
+    "canChange": "İstediğiniz değişiklikleri yapmak. Çoğu yapay zekâ uygulaması önce onayınızı ister.",
+    "canShare": "Okuduklarını, o uygulamanın koşullarına göre uygulamanın sağlayıcısına iletmek.",
     "cantTitle": "Yapamayacakları",
-    "cant": [
-      "Şifrenizi veya API anahtarlarınızı görmek.",
-      "Hesabınızı veya bir şirketi silmek."
-    ],
+    "cantChange": "prepza'da herhangi bir şeyi değiştirmek.",
+    "cantSecrets": "Şifrenizi veya API anahtarlarınızı görmek.",
+    "cantDelete": "Hesabınızı veya bir şirketi silmek.",
+    "changesTitle": "Değişikliklere izin ver",
+    "changesText": "Yalnızca okuyabilmesi için kapatın.",
     "unknown": "prepza bu uygulamayı tanımıyor. Yalnızca bağlamayı kendiniz başlattıysanız izin verin.",
     "deny": "Reddet",
     "allow": "İzin ver",

@@ -2205,16 +2205,15 @@
     "signIn": "Log in om verder te gaan",
     "who": "{client} ({host}) wil je prepza-account gebruiken, {email}.",
     "canTitle": "De app kan",
-    "can": [
-      "Je bedrijven, interviews en de resultaten van kandidaten lezen.",
-      "De wijzigingen doen die je vraagt. De meeste AI-apps vragen je eerst om te bevestigen.",
-      "Wat hij leest doorgeven aan de aanbieder van de app, onder de voorwaarden van die app."
-    ],
+    "canRead": "Je bedrijven, interviews en de resultaten van kandidaten lezen.",
+    "canChange": "De wijzigingen doen die je vraagt. De meeste AI-apps vragen je eerst om te bevestigen.",
+    "canShare": "Wat hij leest doorgeven aan de aanbieder van de app, onder de voorwaarden van die app.",
     "cantTitle": "De app kan niet",
-    "cant": [
-      "Je wachtwoord of API-sleutels zien.",
-      "Je account of een bedrijf verwijderen."
-    ],
+    "cantChange": "Iets in prepza wijzigen.",
+    "cantSecrets": "Je wachtwoord of API-sleutels zien.",
+    "cantDelete": "Je account of een bedrijf verwijderen.",
+    "changesTitle": "Wijzigingen toestaan",
+    "changesText": "Zet dit uit zodat de app alleen kan lezen.",
     "unknown": "prepza kent deze app niet. Sta hem alleen toe als je zelf bent begonnen met koppelen.",
     "deny": "Weigeren",
     "allow": "Toestaan",

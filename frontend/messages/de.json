@@ -2205,16 +2205,15 @@
     "signIn": "Anmelden und fortfahren",
     "who": "{client} ({host}) möchte dein prepza-Konto {email} nutzen.",
     "canTitle": "Sie kann",
-    "can": [
-      "Deine Unternehmen, Interviews und die Ergebnisse der Kandidaten lesen.",
-      "Die Änderungen vornehmen, um die du bittest. Die meisten KI-Apps bitten dich vorher um Bestätigung.",
-      "Was sie liest, nach den Bedingungen der App an deren Anbieter weitergeben."
-    ],
+    "canRead": "Deine Unternehmen, Interviews und die Ergebnisse der Kandidaten lesen.",
+    "canChange": "Die Änderungen vornehmen, um die du bittest. Die meisten KI-Apps bitten dich vorher um Bestätigung.",
+    "canShare": "Was sie liest, nach den Bedingungen der App an deren Anbieter weitergeben.",
     "cantTitle": "Sie kann nicht",
-    "cant": [
-      "Dein Passwort oder deine API-Schlüssel sehen.",
-      "Dein Konto oder ein Unternehmen löschen."
-    ],
+    "cantChange": "Etwas in prepza ändern.",
+    "cantSecrets": "Dein Passwort oder deine API-Schlüssel sehen.",
+    "cantDelete": "Dein Konto oder ein Unternehmen löschen.",
+    "changesTitle": "Änderungen erlauben",
+    "changesText": "Schalte es aus, damit die App nur lesen kann.",
     "unknown": "prepza kennt diese App nicht. Lass sie nur zu, wenn du die Verbindung selbst gestartet hast.",
     "deny": "Ablehnen",
     "allow": "Zulassen",

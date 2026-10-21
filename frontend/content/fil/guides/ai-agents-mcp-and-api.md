@@ -2,7 +2,7 @@
 title: "AI agents, MCP at APIs: ano ang mga ito at paano gamitin sa hiring"
 seoTitle: "AI Agents, MCP at APIs sa Hiring: Ano ang Mga Ito at Paano Gamitin"
 description: "Ano ang AI agent, ano ang ginagawa ng MCP at ng API, paano gamitin nang ligtas ang mga ito sa hiring, at paano patakbuhin ang prepza mula sa agent nito, mula sa Claude at ChatGPT, o mula sa sarili mong platform."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # AI agents, MCP at APIs: ano ang mga ito at paano gamitin sa hiring
@@ -97,7 +97,7 @@ Kung nagtatrabaho ka na sa Claude o ChatGPT, puwede mong dalhin doon ang prepza.
 
 1. Sa prepza, buksan ang tab na **Mga integration** ng isang kumpanya at piliin ang **Mga AI app**. Kopyahin ang address ng server: `https://prepza.ai/mcp`.
 2. **Sa Claude:** buksan ang Settings, pagkatapos ang Connectors, at magdagdag ng custom connector gamit ang address na iyon. **Sa Claude Code:** patakbuhin ang `claude mcp add --transport http prepza https://prepza.ai/mcp`. **Sa ChatGPT:** idagdag ito bilang custom connector sa settings nito para sa apps at connectors.
-3. Bubuksan ng AI app mo ang sign-in ng prepza. Mag-sign in, i-check kung aling app ang humihingi ng access, at piliin ang **Payagan**.
+3. Bubuksan ng AI app mo ang sign-in ng prepza. Mag-sign in, i-check kung aling app ang humihingi ng access, at piliin ang **Payagan**. Para makapagbasa lang ito, i-off muna ang **Payagan ang mga pagbabago**.
 
 Mula noon, magtanong sa chat mo gaya ng pagtatanong mo sa isang katrabaho: "Sa prepza, sino ang top three na aplikante para sa Product designer?" Karamihan sa mga AI app ay nagtatanong muna sa iyo bago ang isang pagbabago, at nagbababala bago ang anumang hindi na maibabalik: sinasabi sa kanila ng prepza kung aling mga aksyon ang nagbabago o nagbubura ng isang bagay.
 

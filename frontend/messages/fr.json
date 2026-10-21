@@ -2205,16 +2205,15 @@
     "signIn": "Se connecter pour continuer",
     "who": "{client} ({host}) souhaite utiliser votre compte prepza, {email}.",
     "canTitle": "Elle peut",
-    "can": [
-      "Lire vos entreprises, vos entretiens et les résultats des candidats.",
-      "Faire les modifications que vous demandez. La plupart des applications d'IA vous demandent d'abord de confirmer.",
-      "Transmettre ce qu'elle lit au fournisseur de l'application, selon les conditions de cette application."
-    ],
+    "canRead": "Lire vos entreprises, vos entretiens et les résultats des candidats.",
+    "canChange": "Faire les modifications que vous demandez. La plupart des applications d'IA vous demandent d'abord de confirmer.",
+    "canShare": "Transmettre ce qu'elle lit au fournisseur de l'application, selon les conditions de cette application.",
     "cantTitle": "Elle ne peut pas",
-    "cant": [
-      "Voir votre mot de passe ou vos clés API.",
-      "Supprimer votre compte ou une entreprise."
-    ],
+    "cantChange": "Modifier quoi que ce soit dans prepza.",
+    "cantSecrets": "Voir votre mot de passe ou vos clés API.",
+    "cantDelete": "Supprimer votre compte ou une entreprise.",
+    "changesTitle": "Autoriser les modifications",
+    "changesText": "Désactivez-le pour qu'elle puisse seulement lire.",
     "unknown": "prepza ne connaît pas cette application. Autorisez-la seulement si c'est vous qui avez commencé à la connecter.",
     "deny": "Refuser",
     "allow": "Autoriser",

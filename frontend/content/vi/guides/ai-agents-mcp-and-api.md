@@ -2,7 +2,7 @@
 title: "Agent AI, MCP và API: là gì và cách dùng trong tuyển dụng"
 seoTitle: "Agent AI, MCP và API trong tuyển dụng: là gì và cách dùng"
 description: "Agent AI là gì, MCP và API làm gì, cách dùng chúng an toàn trong tuyển dụng, và cách vận hành prepza từ trợ lý AI của nó, từ Claude và ChatGPT, hoặc từ nền tảng riêng của bạn."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # Agent AI, MCP và API: là gì và cách dùng trong tuyển dụng
@@ -97,7 +97,7 @@ Nếu bạn đã làm việc trong Claude hoặc ChatGPT, bạn có thể đưa 
 
 1. Trong prepza, mở tab **Tích hợp** của một công ty và chọn **Ứng dụng AI**. Sao chép địa chỉ máy chủ: `https://prepza.ai/mcp`.
 2. **Trong Claude:** mở Settings, rồi Connectors, và thêm một custom connector với địa chỉ đó. **Trong Claude Code:** chạy `claude mcp add --transport http prepza https://prepza.ai/mcp`. **Trong ChatGPT:** thêm nó dưới dạng custom connector trong phần cài đặt ứng dụng và connector.
-3. Ứng dụng AI của bạn mở trang đăng nhập của prepza. Đăng nhập, kiểm tra ứng dụng nào đang yêu cầu, rồi chọn **Cho phép**.
+3. Ứng dụng AI của bạn mở trang đăng nhập của prepza. Đăng nhập, kiểm tra ứng dụng nào đang yêu cầu, rồi chọn **Cho phép**. Để ứng dụng chỉ có thể đọc, hãy tắt **Cho phép thay đổi** trước.
 
 Từ đó trở đi, hãy hỏi trong chat như khi hỏi một đồng nghiệp: "Trong prepza, ba ứng viên hàng đầu cho Product designer là ai?" Hầu hết ứng dụng AI sẽ hỏi bạn trước khi thay đổi, và cảnh báo trước bất kỳ thao tác nào không thể hoàn tác: prepza cho chúng biết thao tác nào thay đổi hoặc xóa dữ liệu.
 

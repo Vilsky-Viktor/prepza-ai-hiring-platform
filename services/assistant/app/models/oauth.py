@@ -52,3 +52,5 @@ class McpGrant(Base):
     # likely stolen, and the connection goes (services/oauth_provider.py load_refresh_token).
     previous_refresh_hash: Mapped[str | None] = mapped_column(String(64), index=True)
     refreshed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # What the user allowed: MCP_SCOPE (everything) or MCP_READ_SCOPE (only reading).
+    scope: Mapped[str] = mapped_column(String(32), server_default="prepza")

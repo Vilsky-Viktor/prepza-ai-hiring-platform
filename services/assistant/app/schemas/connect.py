@@ -11,6 +11,14 @@ class ConnectRequestOut(BaseModel):
     redirect_host: str
     # False: prepza doesn't know the site the app returns to, and the page warns about it.
     known_client: bool
+    # The app asked only to read: the page offers no choice.
+    read_only: bool
+
+
+class ApproveIn(BaseModel):
+    """The user's choice: let the app only read (an app that asked for more)."""
+
+    read_only: bool = False
 
 
 class RedirectOut(BaseModel):
@@ -29,3 +37,5 @@ class ConnectionOut(BaseModel):
     redirect_host: str
     created_at: datetime
     last_used_at: datetime | None
+    # What the user allowed: MCP_SCOPE (everything) or MCP_READ_SCOPE (only reading).
+    scope: str

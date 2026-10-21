@@ -2,7 +2,7 @@
 title: "Agen AI, MCP, dan API: apa itu dan cara memakainya dalam rekrutmen"
 seoTitle: "Agen AI, MCP, dan API dalam Rekrutmen: Apa Itu dan Cara Memakainya"
 description: "Apa itu agen AI, apa fungsi MCP dan API, cara memakainya dengan aman dalam rekrutmen, dan cara menjalankan prepza dari agennya, dari Claude dan ChatGPT, atau dari platformmu sendiri."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # Agen AI, MCP, dan API: apa itu dan cara memakainya dalam rekrutmen
@@ -97,7 +97,7 @@ Kalau kamu sudah bekerja di Claude atau ChatGPT, kamu bisa membawa prepza ke san
 
 1. Di prepza, buka tab **Integrasi** sebuah perusahaan dan pilih **Aplikasi AI**. Salin alamat servernya: `https://prepza.ai/mcp`.
 2. **Di Claude:** buka Settings, lalu Connectors, dan tambahkan custom connector dengan alamat itu. **Di Claude Code:** jalankan `claude mcp add --transport http prepza https://prepza.ai/mcp`. **Di ChatGPT:** tambahkan sebagai custom connector di pengaturan aplikasi dan konektornya.
-3. Aplikasi AI-mu membuka halaman masuk prepza. Masuk, cek aplikasi mana yang meminta akses, lalu pilih **Izinkan**.
+3. Aplikasi AI-mu membuka halaman masuk prepza. Masuk, cek aplikasi mana yang meminta akses, lalu pilih **Izinkan**. Agar aplikasi ini hanya bisa membaca, matikan dulu **Izinkan perubahan**.
 
 Setelah itu, bertanyalah di chat seperti kamu bertanya kepada rekan kerja: "Di prepza, siapa tiga kandidat teratas untuk Product designer?" Sebagian besar aplikasi AI bertanya kepadamu sebelum melakukan perubahan, dan memperingatkanmu sebelum melakukan apa pun yang tidak bisa dibatalkan: prepza memberi tahu aplikasi tersebut tindakan mana yang mengubah atau menghapus sesuatu.
 

@@ -4,6 +4,8 @@ export type ConnectRequest = {
   client_name: string
   redirect_host: string
   known_client: boolean
+  // The app asked only to read: no choice to offer.
+  read_only: boolean
 }
 
 // Where the AI app goes back to after Allow or Deny.

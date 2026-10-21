@@ -2,7 +2,7 @@
 title: "AI-agendid, MCP ja API-d: mis need on ja kuidas neid värbamisel kasutada"
 seoTitle: "AI-agendid, MCP ja API-d värbamisel: mis need on ja kuidas neid kasutada"
 description: "Mis on AI-agent, mida teevad MCP ja API, kuidas neid värbamisel turvaliselt kasutada ja kuidas juhtida prepzat selle agendi kaudu, Claude'ist ja ChatGPT-st või oma platvormilt."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # AI-agendid, MCP ja API-d: mis need on ja kuidas neid värbamisel kasutada
@@ -97,7 +97,7 @@ Kui sinu meeskond juba töötab Claude'is või ChatGPT-s, saad prepza sinna tuua
 
 1. Ava prepzas ettevõtte vahekaart **Integratsioonid** ja vali **AI-rakendused**. Kopeeri serveri aadress: `https://prepza.ai/mcp`.
 2. **Claude'is:** ava Seaded, siis Konnektorid, ja lisa selle aadressiga kohandatud konnektor. **Claude Code'is:** käivita `claude mcp add --transport http prepza https://prepza.ai/mcp`. **ChatGPT-s:** lisa see kohandatud konnektorina rakenduste ja konnektorite seadetes.
-3. Sinu AI-rakendus avab prepza sisselogimise. Logi sisse, kontrolli, milline rakendus luba küsib, ja vali **Luba**.
+3. Sinu AI-rakendus avab prepza sisselogimise. Logi sisse, kontrolli, milline rakendus luba küsib, ja vali **Luba**. Kui see tohib ainult lugeda, lülita enne välja **Luba muudatused**.
 
 Edaspidi küsi oma vestluses nii, nagu küsiksid kolleegilt: „Kes on prepzas kolm parimat kandidaati Product designeri ametikohale?“ Enamik AI-rakendusi küsib sinult enne muudatust ja hoiatab enne kõike, mida ei saa tagasi võtta: prepza ütleb neile, millised toimingud midagi muudavad või kustutavad.
 

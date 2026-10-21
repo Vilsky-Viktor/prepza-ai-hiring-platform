@@ -78,15 +78,15 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   can't be framed. This is the confused-deputy defence.
 - Every authorization answer names the issuer (`iss`, RFC 9207), advertised as
   `authorization_response_iss_parameter_supported` (the SDK's client then requires it).
-- Scopes: one scope, `prepza`, is everything the user may do. Least privilege would split read
-  from write with step-up (`403 insufficient_scope` naming every scope needed in one challenge);
-  that changes what connected apps must ask for, so it waits for approval. Never change a
-  scope's meaning silently; `offline_access` is not listed.
+- Scopes: `prepza` (everything, reading included) and `prepza:read`; the user may allow a full
+  request as read only. Read-only connections list only reads; a write is an `isError` result.
+  Connections from before keep `prepza`. Not adopted: a `403 insufficient_scope` step-up inside
+  a tool call (hosts don't re-authorize mid-call; reconnecting does it). Never change a scope's
+  meaning silently; `offline_access` is not listed.
 - Non-interactive agents use a company API key with the `mcp` permission (`api.md` keys); it
   acts as its maker in its company, with only its permissions' tools (`key_tools.py`). ChatGPT
   supports no API keys; Claude's static headers are a beta.
-- Every OAuth endpoint is rate-limited (`oauth_limits.py`) and answers within the clients'
-  timeouts (Claude: 10 s, 30 s for refresh).
+- Every OAuth endpoint is rate-limited (`oauth_limits.py`) and answers in clients' timeouts.
 
 ## Tools
 
@@ -135,7 +135,7 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   minutes), company membership and the AI apps switch checked by companies, secrets refused in
   arguments, calls and writes rate-limited per user, writes audited `via: "mcp"`.
 - Never log tokens, codes, request ids or arguments; log refusals with ids.
-- Not adopted: allowlisting Anthropic's or OpenAI's ranges (API-key agents call from anywhere).
+- Not adopted: allowlisting Anthropic's or OpenAI's ranges: API-key agents call from anywhere.
 
 ## Testing
 
@@ -147,4 +147,4 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   rebinding refusal applies; `e2e_tests/mcp.py` covers the protocol instead. Check new tools in
   MCP Inspector (`--cli --method tools/list` with a token), Claude and ChatGPT themselves.
 
-Research (local notes, git-ignored): `internal_docs/mcp-best-practices.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/mcp.md`.

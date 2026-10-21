@@ -2205,16 +2205,15 @@
     "signIn": "Mag-sign in para magpatuloy",
     "who": "Gustong gamitin ng {client} ({host}) ang prepza account mo, {email}.",
     "canTitle": "Kaya nitong",
-    "can": [
-      "Basahin ang mga kumpanya, interview at resulta ng mga aplikante mo.",
-      "Gawin ang mga pagbabagong hinihiling mo. Karamihan sa mga AI app ay humihingi muna ng kumpirmasyon mo.",
-      "Ipasa ang nababasa nito sa provider ng app, ayon sa mga tuntunin ng app na iyon."
-    ],
+    "canRead": "Basahin ang mga kumpanya, interview at resulta ng mga aplikante mo.",
+    "canChange": "Gawin ang mga pagbabagong hinihiling mo. Karamihan sa mga AI app ay humihingi muna ng kumpirmasyon mo.",
+    "canShare": "Ipasa ang nababasa nito sa provider ng app, ayon sa mga tuntunin ng app na iyon.",
     "cantTitle": "Hindi nito kayang",
-    "cant": [
-      "Makita ang password o mga API key mo.",
-      "Burahin ang account mo o ang isang kumpanya."
-    ],
+    "cantChange": "Baguhin ang anuman sa prepza.",
+    "cantSecrets": "Makita ang password o mga API key mo.",
+    "cantDelete": "Burahin ang account mo o ang isang kumpanya.",
+    "changesTitle": "Payagan ang mga pagbabago",
+    "changesText": "I-off para makapagbasa lang ito.",
     "unknown": "Hindi kilala ng prepza ang app na ito. Payagan lang ito kung ikaw mismo ang nagsimulang mag-connect nito.",
     "deny": "Tanggihan",
     "allow": "Payagan",

@@ -170,7 +170,8 @@ docs" page, linked in the footer.
 - AI apps: Claude, ChatGPT and other apps that support MCP connect to prepza; any member can \
 connect one (Integrations → AI apps → Instructions has the address and the steps). Connected, an app acts as the person who \
 connected it, in every company they're in, with their role there: it reads tests, candidates \
-and results, and makes changes they ask for; it can't delete an account or a company. \
+and results, and makes changes they ask for; it can't delete an account or a company. Turning \
+off "Allow changes" when connecting lets an app only read. \
 The company's action log marks what an app did as done through an AI app. A company's owners and \
 admins can stop AI apps from using that company's data with "Allow AI apps" on its AI apps page. \
 The developer docs' MCP tab has the steps for other apps (Gemini CLI, Cursor, VS Code, Le Chat) \

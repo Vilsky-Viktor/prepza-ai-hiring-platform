@@ -2205,16 +2205,15 @@
     "signIn": "Sign in to continue",
     "who": "{client} ({host}) wants to use your prepza account, {email}.",
     "canTitle": "It can",
-    "can": [
-      "Read your companies, interviews and candidates' results.",
-      "Make the changes you ask for. Most AI apps ask you to confirm first.",
-      "Pass what it reads to the app's provider, under that app's terms."
-    ],
+    "canRead": "Read your companies, interviews and candidates' results.",
+    "canChange": "Make the changes you ask for. Most AI apps ask you to confirm first.",
+    "canShare": "Pass what it reads to the app's provider, under that app's terms.",
     "cantTitle": "It can't",
-    "cant": [
-      "See your password or API keys.",
-      "Delete your account or a company."
-    ],
+    "cantChange": "Change anything in prepza.",
+    "cantSecrets": "See your password or API keys.",
+    "cantDelete": "Delete your account or a company.",
+    "changesTitle": "Allow changes",
+    "changesText": "Turn off to let it only read.",
     "unknown": "prepza doesn't know this app. Allow it only if you started connecting it yourself.",
     "deny": "Deny",
     "allow": "Allow",

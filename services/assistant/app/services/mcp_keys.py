@@ -3,7 +3,7 @@ from app.constants.mcp import (
     KEY_CLIENT_NAME,
     KEY_MCP_PERMISSION,
     KEY_MISSING_PERMISSION,
-    MCP_SCOPE,
+    MCP_SCOPES,
 )
 from app.constants.tool_calls import UNKNOWN_TOOL
 from app.helpers.oauth import resource_url
@@ -23,7 +23,7 @@ async def key_access(key: str) -> Access | None:
     return Access(
         token=key,
         client_id=found["id"],
-        scopes=[MCP_SCOPE],
+        scopes=MCP_SCOPES,
         expires_at=None,
         resource=resource_url(),
         subject=found["created_by"],

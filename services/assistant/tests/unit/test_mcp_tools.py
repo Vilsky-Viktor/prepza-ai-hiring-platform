@@ -10,7 +10,7 @@ from prepza_common.user import User
 
 from app.constants.actions_flow import NOTHING_TO_CHANGE, SUBJECT_NOT_FOUND
 from app.constants.chat import COMPANY_NOT_FOUND
-from app.constants.mcp import ACCOUNT_GONE, EXCLUDED_TOOL
+from app.constants.mcp import ACCOUNT_GONE, EXCLUDED_TOOL, READ_ONLY
 from app.constants.mcp_descriptions import MCP_DESCRIPTIONS
 from app.constants.tool_calls import UNKNOWN_TOOL
 from app.helpers.mcp_schema import mcp_tool
@@ -24,7 +24,7 @@ ANN = User(uid="ann", email="ann@example.com", email_verified=True, language="de
 ACCESS = Access(
     token="pzm_x",
     client_id="c1",
-    scopes=["prepza"],
+    scopes=["prepza", "prepza:read"],
     subject="ann",
     grant_id="6f1c2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f",
     client_name="Claude",
@@ -221,6 +221,19 @@ def test_a_company_that_isnt_the_users_isnt_called_through_mcp(calls):
 
     assert (error, content) == (True, {"error": translate(COMPANY_NOT_FOUND, "de")})
     assert calls == []
+
+
+def test_a_read_only_connection_lists_and_calls_only_reads(calls):
+    reader = ACCESS.model_copy(update={"scopes": ["prepza:read"]})
+    names = {tool.name for tool in mcp_tools.listed(reader)}
+    result = asyncio.run(mcp_tools.call("create_company", {"name": "Acme"}, reader))
+
+    assert "get_company" in names and "create_company" not in names
+    assert result.is_error and json.loads(result.content[0].text) == {"error": READ_ONLY}
+    assert calls == []
+    # A full connection still lists the writes.
+    assert "create_company" in {tool.name for tool in mcp_tools.listed(ACCESS)}
+
 
 def test_an_app_reads_a_fuller_description_where_the_panels_is_short():
     listed = {tool.name: tool.description for tool in mcp_tools.listed()}

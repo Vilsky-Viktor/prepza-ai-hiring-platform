@@ -2,7 +2,7 @@
 title: "AI 智能体、MCP 和 API：是什么，以及如何用于招聘"
 seoTitle: "招聘中的 AI 智能体、MCP 和 API：概念与用法"
 description: "什么是 AI 智能体，MCP 和 API 能做什么，如何在招聘中安全地使用它们，以及如何通过 prepza 的智能助手、Claude 和 ChatGPT 或你自己的平台来使用 prepza。"
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # AI 智能体、MCP 和 API：是什么，以及如何用于招聘
@@ -97,7 +97,7 @@ API（应用程序编程接口）是一个程序可以向另一个程序发送�
 
 1. 在 prepza 中打开公司的 **集成** 标签页，选择 **AI 应用**。复制服务器地址：`https://prepza.ai/mcp`。
 2. **在 Claude 中：** 打开“设置”，进入“连接器”，用这个地址添加一个自定义连接器。**在 Claude Code 中：** 运行 `claude mcp add --transport http prepza https://prepza.ai/mcp`。**在 ChatGPT 中：** 在应用与连接器的设置中，把它添加为自定义连接器。
-3. 你的 AI 应用会打开 prepza 的登录页面。登录后，确认是哪个应用在请求访问，然后选择 **允许**。
+3. 你的 AI 应用会打开 prepza 的登录页面。登录后，确认是哪个应用在请求访问，然后选择 **允许**。如果只想让它读取，请先关闭 **允许更改**。
 
 之后，像问同事一样在聊天里提问即可：“在 prepza 中，Product designer 排名前三的候选人是谁？”大多数 AI 应用会在更改前先征求你的同意，并在任何无法撤销的操作前提醒你：prepza 会告诉它们哪些操作会更改或删除内容。
 

@@ -2205,16 +2205,15 @@
     "signIn": "Đăng nhập để tiếp tục",
     "who": "{client} ({host}) muốn dùng tài khoản prepza của bạn, {email}.",
     "canTitle": "Ứng dụng có thể",
-    "can": [
-      "Đọc các công ty, buổi phỏng vấn và kết quả ứng viên của bạn.",
-      "Thực hiện các thay đổi bạn yêu cầu. Hầu hết ứng dụng AI sẽ đề nghị bạn xác nhận trước.",
-      "Chuyển những gì nó đọc được đến nhà cung cấp của ứng dụng, theo điều khoản của ứng dụng đó."
-    ],
+    "canRead": "Đọc các công ty, buổi phỏng vấn và kết quả ứng viên của bạn.",
+    "canChange": "Thực hiện các thay đổi bạn yêu cầu. Hầu hết ứng dụng AI sẽ đề nghị bạn xác nhận trước.",
+    "canShare": "Chuyển những gì nó đọc được đến nhà cung cấp của ứng dụng, theo điều khoản của ứng dụng đó.",
     "cantTitle": "Ứng dụng không thể",
-    "cant": [
-      "Xem mật khẩu hay khóa API của bạn.",
-      "Xóa tài khoản của bạn hay một công ty."
-    ],
+    "cantChange": "Thay đổi bất cứ điều gì trong prepza.",
+    "cantSecrets": "Xem mật khẩu hay khóa API của bạn.",
+    "cantDelete": "Xóa tài khoản của bạn hay một công ty.",
+    "changesTitle": "Cho phép thay đổi",
+    "changesText": "Tắt để ứng dụng chỉ có thể đọc.",
     "unknown": "prepza không biết ứng dụng này. Chỉ cho phép nếu chính bạn bắt đầu kết nối nó.",
     "deny": "Từ chối",
     "allow": "Cho phép",

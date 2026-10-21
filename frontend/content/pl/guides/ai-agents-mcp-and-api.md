@@ -2,7 +2,7 @@
 title: "Agenci AI, MCP i API: czym są i jak wykorzystać je w rekrutacji"
 seoTitle: "Agenci AI, MCP i API w rekrutacji: czym są i jak z nich korzystać"
 description: "Czym jest agent AI, do czego służą MCP i API, jak bezpiecznie korzystać z nich w rekrutacji i jak obsługiwać prepza przez jej agenta, z Claude i ChatGPT albo z własnej platformy."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # Agenci AI, MCP i API: czym są i jak wykorzystać je w rekrutacji
@@ -97,7 +97,7 @@ Jeśli Twój zespół już pracuje w Claude lub ChatGPT, możesz przenieść tam
 
 1. W prepza otwórz zakładkę **Integracje** firmy i wybierz **Aplikacje AI**. Skopiuj adres serwera: `https://prepza.ai/mcp`.
 2. **W Claude:** otwórz Ustawienia, potem Konektory, i dodaj własny konektor z tym adresem. **W Claude Code:** uruchom `claude mcp add --transport http prepza https://prepza.ai/mcp`. **W ChatGPT:** dodaj go jako własny konektor w ustawieniach aplikacji i konektorów.
-3. Twoja aplikacja AI otworzy logowanie do prepza. Zaloguj się, sprawdź, która aplikacja prosi o dostęp, i wybierz **Zezwól**.
+3. Twoja aplikacja AI otworzy logowanie do prepza. Zaloguj się, sprawdź, która aplikacja prosi o dostęp, i wybierz **Zezwól**. Aby aplikacja mogła tylko odczytywać, najpierw wyłącz **Zezwól na zmiany**.
 
 Od tej chwili pytaj w czacie tak, jak pytasz współpracownika: „Kto w prepza jest w pierwszej trójce kandydatów na Product designer?” Większość aplikacji AI pyta Cię przed zmianą i ostrzega przed wszystkim, czego nie da się cofnąć: prepza informuje je, które działania coś zmieniają lub usuwają.
 

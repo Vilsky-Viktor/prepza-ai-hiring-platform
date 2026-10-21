@@ -9,6 +9,7 @@ from app.constants.mcp import (
     ACCESS_SECONDS,
     FUNNEL_CLIENTS,
     MCP_PATH,
+    MCP_READ_SCOPE,
     MCP_SCOPE,
     REFRESH_SECONDS,
     TOKEN_BYTES,
@@ -35,7 +36,18 @@ def funnel_client(client_name: str) -> str:
     return FUNNEL_CLIENTS.get(client_name, "other")
 
 
-def new_tokens() -> tuple[OAuthToken, dict]:
+def scopes_of(scope: str) -> list[str]:
+    """What a connection's scope lets it do: the full scope includes reading."""
+    return [MCP_SCOPE, MCP_READ_SCOPE] if scope == MCP_SCOPE else [MCP_READ_SCOPE]
+
+
+def granted_scope(asked: list[str], read_only: bool) -> str:
+    """The scope a connection gets: read only when the app asked for nothing more, or the user
+    chose it on the consent page."""
+    return MCP_SCOPE if MCP_SCOPE in asked and not read_only else MCP_READ_SCOPE
+
+
+def new_tokens(scope: str = MCP_SCOPE) -> tuple[OAuthToken, dict]:
     """A new access and refresh token for the app, and what the connection keeps of them."""
     access, access_hash = new_token(TOKEN_PREFIX, TOKEN_BYTES)
     refresh, refresh_hash = new_token(TOKEN_PREFIX, TOKEN_BYTES)
@@ -47,7 +59,7 @@ def new_tokens() -> tuple[OAuthToken, dict]:
         "refresh_expires_at": now + timedelta(seconds=REFRESH_SECONDS),
     }
     token = OAuthToken(
-        access_token=access, expires_in=ACCESS_SECONDS, scope=MCP_SCOPE, refresh_token=refresh
+        access_token=access, expires_in=ACCESS_SECONDS, scope=scope, refresh_token=refresh
     )
 
     return token, kept

@@ -18,6 +18,7 @@ from app.constants.mcp import (
     AUTH_METHODS,
     AUTHORIZATION_METADATA_PATH,
     MCP_SCOPE,
+    MCP_SCOPES,
     ROOT_RESOURCE_METADATA_PATH,
 )
 from app.helpers.authorize_guard import GuardAuthorize
@@ -61,7 +62,7 @@ def routes() -> list[Route]:
     urls = auth_settings()
     issuer = urls.issuer_url
     registration = ClientRegistrationOptions(
-        enabled=True, valid_scopes=[MCP_SCOPE], default_scopes=[MCP_SCOPE]
+        enabled=True, valid_scopes=MCP_SCOPES, default_scopes=[MCP_SCOPE]
     )
     revocation = RevocationOptions(enabled=True)
     metadata = build_metadata(issuer, None, registration, revocation)
@@ -98,7 +99,7 @@ def routes() -> list[Route]:
         found.append(route)
 
     resource = create_protected_resource_routes(
-        urls.resource_server_url, [issuer], scopes_supported=[MCP_SCOPE], resource_name="prepza"
+        urls.resource_server_url, [issuer], scopes_supported=MCP_SCOPES, resource_name="prepza"
     )
     root = Route(ROOT_RESOURCE_METADATA_PATH, endpoint=resource[0].app, methods=["GET", "OPTIONS"])
 

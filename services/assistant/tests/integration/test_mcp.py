@@ -117,6 +117,7 @@ def test_an_app_connects_with_oauth_and_calls_tools_as_the_user(run, user):
         "client_name": "Integration app",
         "redirect_host": "127.0.0.1",
         "known_client": True,
+        "read_only": False,
     }
     names = {tool.name for tool in listed.tools}
     assert "get_me" in names and not names & {"delete_account", "delete_company"}

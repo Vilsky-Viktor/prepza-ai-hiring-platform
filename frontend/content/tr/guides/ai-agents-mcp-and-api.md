@@ -2,7 +2,7 @@
 title: "Yapay zekâ ajanları, MCP ve API'ler: nedir ve işe alımda nasıl kullanılır"
 seoTitle: "İşe Alımda Yapay Zekâ Ajanları, MCP ve API'ler: Nedir, Nasıl Kullanılır"
 description: "Yapay zekâ ajanı nedir, MCP ve API ne işe yarar, işe alımda güvenle nasıl kullanılır ve prepza'yı kendi asistanından, Claude ve ChatGPT'den ya da kendi platformunuzdan nasıl kullanırsınız."
-updated: "2026-10-17"
+updated: "2026-10-21"
 ---
 
 # Yapay zekâ ajanları, MCP ve API'ler: nedir ve işe alımda nasıl kullanılır
@@ -97,7 +97,7 @@ Ekibiniz zaten Claude veya ChatGPT'de çalışıyorsa prepza'yı oraya taşıyab
 
 1. prepza'da bir şirketin **Entegrasyonlar** sekmesini açın ve **Yapay zekâ uygulamaları**'nı seçin. Sunucu adresini kopyalayın: `https://prepza.ai/mcp`.
 2. **Claude'da:** Ayarlar'ı, ardından Bağlayıcılar'ı açın ve bu adresle özel bir bağlayıcı ekleyin. **Claude Code'da:** `claude mcp add --transport http prepza https://prepza.ai/mcp` komutunu çalıştırın. **ChatGPT'de:** uygulama ve bağlayıcı ayarlarında özel bir bağlayıcı olarak ekleyin.
-3. Yapay zekâ uygulamanız prepza'nın giriş sayfasını açar. Giriş yapın, hangi uygulamanın izin istediğini kontrol edin ve **İzin ver**'i seçin.
+3. Yapay zekâ uygulamanız prepza'nın giriş sayfasını açar. Giriş yapın, hangi uygulamanın izin istediğini kontrol edin ve **İzin ver**'i seçin. Yalnızca okuyabilmesi için önce **Değişikliklere izin ver** seçeneğini kapatın.
 
 Bundan sonra sohbetinizde bir iş arkadaşınıza sorar gibi sorun: "prepza'da Ürün tasarımcısı için en iyi üç aday kim?" Çoğu yapay zekâ uygulaması bir değişiklikten önce size sorar ve geri alınamayacak her şeyden önce uyarır: prepza onlara hangi işlemlerin bir şeyi değiştirdiğini veya sildiğini bildirir.
 
