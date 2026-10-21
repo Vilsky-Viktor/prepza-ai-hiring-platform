@@ -5,6 +5,8 @@ import { defineConfig, devices } from "@playwright/test"
 // network.
 export default defineConfig({
   testDir: ".",
+  // Deletes what stopped runs left behind (helpers/db.ts).
+  globalSetup: "./global-setup.ts",
   reporter: "list",
   // A test.only left in fails the run instead of quietly skipping every other test.
   forbidOnly: true,

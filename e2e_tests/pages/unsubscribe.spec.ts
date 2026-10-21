@@ -1,6 +1,9 @@
 import { createHash, createHmac, randomBytes } from "node:crypto";
 
-import { expect, test } from "@playwright/test";
+import { expect, test as base } from "@playwright/test";
+
+import { deleteOptOuts } from "./helpers/db";
+import { loaded } from "./helpers/waits";
 
 // The page an email's unsubscribe link opens, signed out. Links are signed the way notifications
 // signs them (services/notifications/app/helpers/unsubscribe.py) with EMAIL_LINK_SECRET, which
@@ -16,6 +19,16 @@ function companyLink(email: string, companyId: string, company: string): string 
   return `/unsubscribe?token=${body}.${signature}`;
 }
 
+// A made-up company of the test's own (e2e-<id>, never a real id); its opt-outs are deleted when
+// the test ends.
+const test = base.extend<{ companyId: string }>({
+  companyId: async ({}, use) => {
+    const companyId = `e2e-${randomBytes(4).toString("hex")}`;
+    await use(companyId);
+    await deleteOptOuts(companyId);
+  },
+});
+
 test("an invalid unsubscribe link says so and isn't indexed", async ({ page }) => {
   const response = await page.goto("/unsubscribe?token=not-a-real-link");
 
@@ -24,9 +37,9 @@ test("an invalid unsubscribe link says so and isn't indexed", async ({ page }) =
   await expect(page.getByRole("main").getByRole("button")).toHaveCount(0);
 });
 
-test("a candidate confirms stopping a company's emails", async ({ page }) => {
-  // A made-up company and address of this run's own: nothing real is changed.
-  const id = randomBytes(4).toString("hex");
+test("a candidate confirms stopping a company's emails", async ({ page, companyId }) => {
+  // A made-up company and address of this test's own: nothing real is changed.
+  const id = companyId.slice("e2e-".length);
   const posts: string[] = [];
   page.on("request", (request) => {
     if (request.method() === "POST" && request.url().includes("/unsubscribe/")) {
@@ -40,7 +53,7 @@ test("a candidate confirms stopping a company's emails", async ({ page }) => {
   await expect(main).toContainText(`Acme ${id}`);
   const title = await main.getByRole("heading", { level: 1 }).textContent();
   // Opening the link changes nothing, as mail scanners open links too: only Confirm does.
-  await page.waitForLoadState("networkidle");
+  await loaded(page);
   expect(posts).toEqual([]);
 
   // Confirmed: the title says it's done, and nothing is left to confirm (signed out, no settings).

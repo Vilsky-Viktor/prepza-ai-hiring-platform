@@ -9,13 +9,17 @@ const POSTGRES_HOST = "postgres";
 
 export type Template = { id: string; slug: string; title: string; language: string };
 
-/** Runs `work` on a fresh connection to the library database. */
-async function withLibrary<T>(work: (client: pg.Client) => Promise<T>) {
+// What a stopped run left behind goes once it's older than this, longer than a whole run takes,
+// so runs at the same time keep each other's.
+const STALE = "6 hours";
+
+/** Runs `work` on a fresh connection to one of the stack's databases. */
+async function withDatabase<T>(database: string, work: (client: pg.Client) => Promise<T>) {
   const client = new pg.Client({
     host: POSTGRES_HOST,
     user: "prepza",
     password: env("POSTGRES_PASSWORD"),
-    database: "library",
+    database,
   });
   await client.connect();
 
@@ -35,7 +39,7 @@ export async function addTemplate(language: string, topics: number): Promise<Tem
   const title = `E2E role ${key}`;
   const slug = `e2e-${key}`;
 
-  return withLibrary(async (client) => {
+  return withDatabase("library", async (client) => {
     const set = await client.query(
       `INSERT INTO sets (id, kind, owner_type, owner_id, title, slug, source_text, level,
          language, requirements, topic_count, created_at)
@@ -72,5 +76,29 @@ export async function addTemplate(language: string, topics: number): Promise<Tem
 
 /** Deletes a template addTemplate made; its topics and questions go with it. */
 export async function deleteTemplate(id: string) {
-  await withLibrary((client) => client.query("DELETE FROM sets WHERE id = $1", [id]));
+  await withDatabase("library", (client) => client.query("DELETE FROM sets WHERE id = $1", [id]));
+}
+
+/** Deletes the opt-outs a made-up company's unsubscribe link left (e2e-<id>, never a real id). */
+export async function deleteOptOuts(companyId: string) {
+  await withDatabase("notifications", (client) =>
+    client.query("DELETE FROM candidate_opt_outs WHERE company_id = $1", [companyId]),
+  );
+}
+
+/** Deletes what stopped runs left: their templates and their made-up companies' opt-outs. */
+export async function deleteLeftovers() {
+  await withDatabase("library", (client) =>
+    client.query(
+      `DELETE FROM sets WHERE kind = 'template' AND owner_type = 'platform'
+         AND slug LIKE 'e2e-%' AND source_text = 'E2E' AND created_at < now() - $1::interval`,
+      [STALE],
+    ),
+  );
+  await withDatabase("notifications", (client) =>
+    client.query(
+      "DELETE FROM candidate_opt_outs WHERE company_id LIKE 'e2e-%' AND created_at < now() - $1::interval",
+      [STALE],
+    ),
+  );
 }
