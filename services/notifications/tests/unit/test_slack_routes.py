@@ -126,7 +126,7 @@ def state(expires_in=60):
     nonce = f"n{time.time_ns()}"
     service.get_redis().nonces[f"slack:state:{nonce}"] = 1
 
-    return signed_state(settings.service_secret, C1, "u1", int(time.time()) + expires_in, nonce)
+    return signed_state(service.state_key(), C1, "u1", int(time.time()) + expires_in, nonce)
 
 
 @pytest.fixture

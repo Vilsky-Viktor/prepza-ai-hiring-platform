@@ -7,6 +7,7 @@ import httpx
 from fastapi import HTTPException, status
 from prepza_common.encryption import decrypt, encrypt
 from prepza_common.notifications import NotificationKind, Recipient, notification
+from prepza_common.tokens import purpose_key
 
 from app.config.settings import settings
 from app.constants.slack import (
@@ -18,6 +19,7 @@ from app.constants.slack import (
     SLACK_PAGE,
     SLACK_SCOPE,
     SLACK_STATE_KEY,
+    SLACK_STATE_PURPOSE,
     SLACK_STATE_SECONDS,
 )
 from app.helpers.slack import message, read_state, signed_state
@@ -55,6 +57,11 @@ async def overview(company_id: str) -> SlackOut:
     )
 
 
+def state_key() -> str:
+    """Signs the "Add to Slack" trip's state: a key of its own, made from the service's."""
+    return purpose_key(settings.service_secret, SLACK_STATE_PURPOSE)
+
+
 async def start(company_id: str, user_id: str) -> str:
     """Slack's approval page, for the company's editor who pressed "Add to Slack"."""
     if not available():
@@ -63,7 +70,7 @@ async def start(company_id: str, user_id: str) -> str:
     nonce = secrets.token_urlsafe(16)
     await get_redis().set(SLACK_STATE_KEY.format(nonce=nonce), 1, ex=SLACK_STATE_SECONDS)
     expires = int(time.time()) + SLACK_STATE_SECONDS
-    state = signed_state(settings.service_secret, company_id, user_id, expires, nonce)
+    state = signed_state(state_key(), company_id, user_id, expires, nonce)
     query = urlencode(
         {
             "client_id": settings.slack_client_id,
@@ -81,7 +88,7 @@ async def finish(code: str | None, state: str, error: str | None) -> str:
     removed unless a company still uses it). Each state works once, and only while whoever
     started the trip is still an editor. Where to send the browser: the company's Slack page,
     saying how it went."""
-    found = read_state(settings.service_secret, state, int(time.time()))
+    found = read_state(state_key(), state, int(time.time()))
 
     # Deleting the nonce takes the state: a second callback with it finds nothing.
     if found is None or not await get_redis().delete(SLACK_STATE_KEY.format(nonce=found[2])):

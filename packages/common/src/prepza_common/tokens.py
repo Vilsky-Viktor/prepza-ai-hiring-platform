@@ -22,3 +22,10 @@ def same_secret(given: str, expected: str) -> bool:
     bytes: hmac.compare_digest refuses text that isn't ASCII with an error, which anyone could
     send to make a server error."""
     return hmac.compare_digest(given.encode(), expected.encode())
+
+
+def purpose_key(secret: str, purpose: str) -> str:
+    """A key of its own for one use of `secret` (a service's key signing a Slack trip's state or
+    the help chat's replies): whoever holds the service key to call the service can't make
+    those signatures with it."""
+    return hmac.new(secret.encode(), b"purpose:" + purpose.encode(), hashlib.sha256).hexdigest()

@@ -40,7 +40,7 @@ from app.constants.rounds import CHAT_FAILED
 from app.helpers import legal
 from app.helpers.guide_articles import guide_article, guide_articles
 from app.helpers.help import faq_items
-from app.helpers.help_replies import reply_signature, trusted, vote_signature
+from app.helpers.help_replies import help_signing_key, reply_signature, trusted, vote_signature
 from app.helpers.page_guides import page_guide
 from app.helpers.sign_in import secret_reply, with_sign_in
 from app.integrations import billing
@@ -172,7 +172,7 @@ async def help_chat(
     redis = get_redis()
     user_id = user.uid if user else None
     await refuse_if_paused(redis, HELP_CHAT, user_id=user_id)
-    conversation = trusted(body.messages, settings.service_secret)
+    conversation = trusted(body.messages, help_signing_key(settings.service_secret))
 
     # A visitor shows they're a person once, until the chat has a reply: the chat has no id to
     # remember it by, a signed reply came only after the check, and it shows nothing to most.
@@ -227,11 +227,13 @@ async def help_chat(
         yield sse_event(
             {
                 "done": True,
-                "signature": reply_signature(reply, settings.service_secret),
+                "signature": reply_signature(reply, help_signing_key(settings.service_secret)),
                 "answer": {
                     "id": str(answer_id),
                     "trace_id": trace_id,
-                    "signature": vote_signature(answer_id, trace_id, settings.service_secret),
+                    "signature": vote_signature(
+                        answer_id, trace_id, help_signing_key(settings.service_secret)
+                    ),
                 },
             }
         )

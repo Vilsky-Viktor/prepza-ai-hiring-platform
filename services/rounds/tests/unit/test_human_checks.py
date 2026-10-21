@@ -3,7 +3,7 @@ from fastapi import HTTPException
 
 import app.routers.help as help_routes
 from app.config.settings import settings
-from app.helpers.help_replies import reply_signature
+from app.helpers.help_replies import help_signing_key, reply_signature
 from tests.unit.test_help import CATALOG, fake_catalog
 
 QUESTION = {"role": "user", "content": "How do I start?"}
@@ -41,7 +41,10 @@ def test_a_visitor_is_asked_until_their_chat_has_a_reply(client, checks):
     """A reply is signed only after the check, so a made-up one doesn't skip it."""
     client.post("/help/chat", json={"messages": [QUESTION]})
     reply = {"role": "assistant", "content": "Paste it."}
-    signed = {**reply, "signature": reply_signature("Paste it.", settings.service_secret)}
+    signed = {
+        **reply,
+        "signature": reply_signature("Paste it.", help_signing_key(settings.service_secret)),
+    }
     client.post("/help/chat", json={"messages": [QUESTION, signed, QUESTION]})
 
     assert checks["asked"] == ["/help/chat"]

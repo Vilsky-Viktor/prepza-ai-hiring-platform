@@ -2,10 +2,16 @@ import hashlib
 import hmac
 from uuid import UUID
 
-from prepza_common.tokens import same_secret
+from prepza_common.tokens import purpose_key, same_secret
 
-from app.constants.help import HelpRole
+from app.constants.help import HELP_SIGNING_PURPOSE, HelpRole
 from app.schemas.help import HelpMessage
+
+
+def help_signing_key(service_secret: str) -> str:
+    """Signs the help chat's replies and votes: a key of its own, made from the service's, so a
+    service holding rounds' key to call it can't sign them."""
+    return purpose_key(service_secret, HELP_SIGNING_PURPOSE)
 
 
 def reply_signature(content: str, secret: str) -> str:

@@ -13,7 +13,7 @@ from app.constants.help import (
 )
 from app.constants.terms import TERMS_SECTIONS
 from app.helpers.help import guide
-from app.helpers.help_replies import reply_signature, vote_signature
+from app.helpers.help_replies import help_signing_key, reply_signature, vote_signature
 from app.schemas.help import HelpMessage
 from app.services.help import build_messages, guide_limits
 
@@ -109,9 +109,13 @@ def test_visitors_can_chat_and_get_a_stream(client, monkeypatch):
     assert response.status_code == 200
     # The reply's signature, which the page sends back with it, and the answer as a vote on it
     # names it: its id, no Langfuse trace (it isn't set up) and their signature.
-    signature = reply_signature("Paste a job description.", settings.service_secret)
+    signature = reply_signature(
+        "Paste a job description.", help_signing_key(settings.service_secret)
+    )
     answer = events[-1]["answer"]
-    voting = vote_signature(uuid.UUID(answer["id"]), None, settings.service_secret)
+    voting = vote_signature(
+        uuid.UUID(answer["id"]), None, help_signing_key(settings.service_secret)
+    )
     assert events == [
         {"delta": "Paste "},
         {"delta": "a job description."},
@@ -133,7 +137,7 @@ def test_the_model_reads_only_the_replies_the_chat_signed(client, monkeypatch):
 
     monkeypatch.setattr("app.routers.help.billing.catalog", fake_catalog(CATALOG))
     monkeypatch.setattr("app.routers.help.stream_reply", fake_stream)
-    real = reply_signature("Paste a job description.", settings.service_secret)
+    real = reply_signature("Paste a job description.", help_signing_key(settings.service_secret))
     body = {
         "messages": [
             {"role": "user", "content": "How do I start?"},

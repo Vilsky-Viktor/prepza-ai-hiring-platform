@@ -6,7 +6,7 @@ from prepza_common.tokens import same_secret
 
 from app.config.settings import settings
 from app.constants.help import NO_SUCH_ANSWER
-from app.helpers.help_replies import vote_signature
+from app.helpers.help_replies import help_signing_key, vote_signature
 from app.schemas.help import HelpVoteIn
 from app.storage import help_votes
 
@@ -19,7 +19,7 @@ async def vote(answer_id: UUID, body: HelpVoteIn) -> None:
     new vote replaces it, null clears it. The help chat keeps no conversation, so the answer's
     signature (from its last event) shows the vote comes from the page that got it. Sent on to
     Langfuse as a score on the answer's trace when that's set up."""
-    expected = vote_signature(answer_id, body.trace_id, settings.service_secret)
+    expected = vote_signature(answer_id, body.trace_id, help_signing_key(settings.service_secret))
 
     if not same_secret(body.signature, expected):
         raise HTTPException(status.HTTP_404_NOT_FOUND, NO_SUCH_ANSWER)

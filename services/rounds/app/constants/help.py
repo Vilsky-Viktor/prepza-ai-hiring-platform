@@ -19,6 +19,8 @@ class LegalDocument(StrEnum):
 # length, the bounds on what's sent, and the earlier messages the model sees with a question.
 MAX_HELP_QUESTION_LENGTH = 1_000
 MAX_HELP_MESSAGE_LENGTH = 10_000
+# What the help chat's signing key is made for (prepza_common.tokens.purpose_key).
+HELP_SIGNING_PURPOSE = "help-signatures"
 # A reply's signature: SHA-256, in hex.
 SIGNATURE_LENGTH = 64
 # A Langfuse trace id: 32 hex characters.

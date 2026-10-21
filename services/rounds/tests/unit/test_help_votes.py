@@ -8,7 +8,7 @@ import uuid
 import pytest
 
 from app.config.settings import settings
-from app.helpers.help_replies import vote_signature
+from app.helpers.help_replies import help_signing_key, vote_signature
 from app.routers import help_votes as routes
 from app.storage import help_votes
 from tests.unit.test_help import CATALOG, fake_catalog
@@ -41,7 +41,8 @@ def stored(monkeypatch):
 def vote(client, value, answer=ANSWER, trace=TRACE, signature=None):
     body = {
         "trace_id": trace,
-        "signature": signature or vote_signature(answer, trace, settings.service_secret),
+        "signature": signature
+        or vote_signature(answer, trace, help_signing_key(settings.service_secret)),
         "value": value,
     }
 
@@ -74,15 +75,21 @@ def test_an_answer_without_a_trace_keeps_its_vote_and_sends_nothing_on(client, s
     [
         {"signature": "0" * 64},
         # Another answer's signature, or another trace's.
-        {"signature": vote_signature(uuid.uuid4(), TRACE, settings.service_secret)},
-        {"signature": vote_signature(ANSWER, "b" * 32, settings.service_secret)},
+        {
+            "signature": vote_signature(
+                uuid.uuid4(), TRACE, help_signing_key(settings.service_secret)
+            )
+        },
+        {"signature": vote_signature(ANSWER, "b" * 32, help_signing_key(settings.service_secret))},
         {"trace": "b" * 32},
         {"trace": None},
     ],
 )
 def test_a_vote_without_the_answers_own_signature_is_refused(client, stored, change):
     votes, mirrored = stored
-    signature = change.get("signature") or vote_signature(ANSWER, TRACE, settings.service_secret)
+    signature = change.get("signature") or vote_signature(
+        ANSWER, TRACE, help_signing_key(settings.service_secret)
+    )
 
     refused = vote(client, 1, trace=change.get("trace", TRACE), signature=signature)
 
@@ -113,5 +120,7 @@ def test_with_langfuse_the_answer_names_the_trace_its_model_call_reports_to(clie
 
     assert trace_ids == [TRACE]
     assert done["answer"]["trace_id"] == TRACE
-    expected = vote_signature(uuid.UUID(done["answer"]["id"]), TRACE, settings.service_secret)
+    expected = vote_signature(
+        uuid.UUID(done["answer"]["id"]), TRACE, help_signing_key(settings.service_secret)
+    )
     assert done["answer"]["signature"] == expected
