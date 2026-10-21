@@ -31,6 +31,10 @@ const REGISTERS: [RegExp, string][] = [
   [/<GenerationProgress\b/, "components/generation/generation-progress.tsx"],
 ]
 
+// A page that is not found outside development.
+const DEVELOPMENT_ONLY =
+  /if \(process\.env\.NODE_ENV !== "development"\) \{\s*notFound\(\)/
+
 /** Every page file under app/, as its route ("/companies/[companyId]/billing"). */
 function pages(dir = "app"): string[] {
   return readdirSync(join(root, dir), { withFileTypes: true }).flatMap(
@@ -108,14 +112,16 @@ describe("page help", () => {
         "/" + relative("app", dirname(page)).replace(/\[[^\]]+\]/g, "x")
       const source = sources(page)
       // The admin zone, pages without the header (and so without the panel), the maintenance
-      // page shown in place of any page, and pages that only redirect.
+      // page shown in place of any page, pages that only redirect, and development-only pages
+      // (not found anywhere else, so no visitor opens the panel there).
       const exempt =
         route.startsWith("/superadmin") ||
         TIMED_PAGE.test(route + "/") ||
         COMPANY_INTERVIEW_PAGE.test(route + "/") ||
         COMPANY_INTERVIEW_PAGE.test(route) ||
         route === "/maintenance" ||
-        /\bredirect\(/.test(read(page))
+        /\bredirect\(/.test(read(page)) ||
+        DEVELOPMENT_ONLY.test(read(page))
 
       return !exempt && !REGISTERS.some(([marker]) => marker.test(source))
     })
