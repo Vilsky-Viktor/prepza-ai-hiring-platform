@@ -42,7 +42,12 @@ async def add_signal(
         Signal.session_id == session_id, Signal.question_id.is_not_distinct_from(question_id)
     )
 
+    # The question's signals are counted under a lock, so two at once can't both pass the count.
+    lock = func.pg_advisory_xact_lock(func.hashtext(f"signals:{session_id}:{question_id}"))
+
     async with Db() as session:
+        await session.execute(select(lock))
+
         if await session.scalar(kept) >= most:
             return
 

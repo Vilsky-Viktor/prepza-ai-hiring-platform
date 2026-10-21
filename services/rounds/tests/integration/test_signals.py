@@ -81,3 +81,22 @@ def test_a_returns_length_times_the_latest_leave_and_a_short_one_isnt_counted(ru
 
     assert sorted(signal.away_seconds or -1 for signal in found.signals) == [-1, 0.5, 5]
     assert scores[invite_id]["tab_leaves"] == 2
+
+
+def test_signals_sent_at_once_still_stop_at_the_limit(run):
+    import asyncio
+
+    invite_id = uuid.uuid4()
+    most = LIMITS["MAX_SIGNALS_PER_QUESTION"].default
+
+    async def scenario():
+        [row] = await sessions.create_many("cand", invite_id, [topic()], 30)
+        question_id = uuid.UUID(row.questions[0]["id"])
+        await asyncio.gather(
+            *(signals.add_signal(row.id, question_id, "tab_leave") for _ in range(most + 5))
+        )
+        [found] = await sessions.list_for_invite(invite_id, signals=True)
+
+        return len(found.signals)
+
+    assert run(scenario()) == most
