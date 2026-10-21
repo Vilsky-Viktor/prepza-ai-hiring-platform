@@ -4,6 +4,7 @@ What to do when a provider fails, a generation hangs, a deploy's migration fails
 
 - [Before you start](#before-you-start)
 - [Paddle down](#paddle-down)
+- [A payment not credited](#a-payment-not-credited)
 - [OpenAI down](#openai-down)
 - [Resend down](#resend-down)
 - [A stuck generation](#a-stuck-generation)
@@ -52,6 +53,33 @@ What to do when a provider fails, a generation hangs, a deploy's migration fails
 4. **prepza web hook signature refused** with `paddle` in the log: compare `paddle-webhook-secret` with the destination's secret key in Paddle, add the right one as above (`paddle-webhook-secret`), restart billing, then resend the refused events from Paddle's dashboard. Until then, paid top-ups get no credits.
 
 **Resolved when** a top-up's checkout opens again, billing logs no new Paddle errors, Paddle's dashboard shows the web hooks delivered, and the alert closes.
+
+## A payment not credited
+
+**How you notice:** **prepza payment not credited**, on the first of these lines in billing's logs ([monitoring_billing.tf](../infra/terraform/monitoring_billing.tf)):
+
+- **"… : refund it"** (an error): billing refused to credit a paid transaction it can't give credits for: one it didn't create ("wasn't created by billing"), one for a company deleted after the checkout ("pays into a wallet that's gone"), or an item it doesn't sell ("isn't one we sell") ([topups.py](../services/billing/app/services/topups.py));
+- **"Transaction … has no valid owner"**: a payment with no company in its custom data, so nobody was credited;
+- **"Reconciliation credited transaction …"** or **"Reconciliation counted adjustment …"**: the daily reconciliation applied a payment or a refund whose web hook never came; the company now has the right credits, but web hooks are failing ([reconciliation.py](../services/billing/app/services/reconciliation.py), [Missed web hooks](features/billing.md#missed-web-hooks));
+- **"Reconciling … failed"**: reconciling one transaction or adjustment raised an error; it stays uncredited until a run succeeds.
+
+**What the system does by itself:** nothing is credited for a "refund it" or "no valid owner" line; billing answers Paddle 200, so it isn't retried. Reconciliation runs daily and tries a failed item again the next day.
+
+**What to do**
+
+1. Read the lines (the ids are Paddle's transaction and adjustment ids):
+   ```bash
+   gcloud logging read 'resource.type="cloud_run_revision" AND resource.labels.service_name="billing" AND (jsonPayload.message:"refund it" OR jsonPayload.message:"has no valid owner" OR jsonPayload.message:"Reconciliation" OR jsonPayload.message:"Reconciling")' --freshness=2d --limit=50
+   ```
+2. **"refund it":** open the transaction in Paddle's dashboard (**Transactions**, search by its id) and refund it in full (or the item named), with a note. The refund's web hook takes back nothing, as nothing was credited.
+3. **"no valid owner":** find the buyer from the transaction's customer in Paddle. If they meant to top up a company, give its credits in the admin zone (**Support → the company → Adjust credits**, with the transaction id in the note, [Admin zone](features/admin-support.md)); otherwise refund it as above.
+4. **"Reconciliation credited / counted":** the credits are right now. Find why the web hook didn't arrive: **prepza web hook signature refused** or **prepza Paddle failing** around that time ([Paddle down](#paddle-down)), or Paddle's dashboard → **Developer tools → Notifications** showing failed deliveries.
+5. **"Reconciling … failed":** read the traceback under the line and Sentry, fix the cause; the next daily run applies it, or run the job now:
+   ```bash
+   gcloud scheduler jobs run billing-reconcile --location=europe-west1
+   ```
+
+**Resolved when** every transaction named is refunded or credited, the reason web hooks were missed is fixed, and the alert closes.
 
 ## OpenAI down
 

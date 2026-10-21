@@ -126,7 +126,9 @@ CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed a
   `CHECKOUT_CALLS_PER_USER_HOUR` after the role check (`.claude/rules/security.md`, Rate limiting); Paddle screens card testing.
 - Paddle failing (no answer, 5xx) and Paddle refusing billing's key (401, 403: wrong, expired or
   missing permission) log "Paddle unavailable" for the alert; a declined card doesn't. Refused
-  signatures alert. Runbook: `docs/runbooks.md` (Paddle down).
+  signatures alert, and so do "refund it" errors and what reconciliation had to apply or failed
+  on (`monitoring_billing.tf`). Runbooks: `docs/runbooks.md` (Paddle down, A payment not
+  credited).
 - Keep only Paddle's ids, amounts, currency, status and the buyer's prepza id; never card data,
   addresses or tax ids (Paddle holds them as controller). Send Paddle the buyer's email only;
   logs carry transaction and adjustment ids, never emails or tokens.

@@ -142,7 +142,7 @@ Paddle retries a web hook for about two days (three tries in the sandbox). So th
 
 - It reads Paddle's completed transactions updated in the last week and its approved adjustments created in it (`RECONCILE_WINDOW`, `app/constants/reconciliation.py`), up to 10 pages of 200 each, the rest left to the next run.
 - Each one billing hasn't counted yet goes through the same handler as its web hook, so it counts once whichever comes first, and two runs at once change nothing twice. Payments go first, so a refund whose payment's web hook was lost counts too.
-- What it had to apply is logged as a warning ("Reconciliation credited transaction …", "Reconciliation counted adjustment …"): a sign that web hooks are failing. One item failing is logged and the rest go on.
+- What it had to apply is logged as a warning ("Reconciliation credited transaction …", "Reconciliation counted adjustment …"): a sign that web hooks are failing. One item failing is logged and the rest go on. Each of these lines, and each paid transaction billing refuses to credit ("refund it"), fires the **prepza payment not credited** alert ([runbook](../runbooks.md#a-payment-not-credited)).
 - It needs the API key's permission to read transactions and adjustments (see [Setting up Paddle](#setting-up-paddle)).
 
 ## Deleting a company
