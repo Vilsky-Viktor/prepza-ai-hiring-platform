@@ -32,9 +32,12 @@ async def approve(
 
 
 @router.post("/connect/{request_id}/deny")
-async def deny(request_id: str, user: CurrentUser) -> RedirectOut:
-    """The user refuses: back to the app, which learns it was denied."""
-    return RedirectOut(redirect_url=await connections.deny(request_id))
+async def deny(request_id: str, user: CurrentUser, request: Request) -> RedirectOut:
+    """The user refuses: back to the app, which learns it was denied. Only from the browser that
+    asked to connect, as approving; a 403 from any other."""
+    marked = request.cookies.get(CONNECT_COOKIE)
+
+    return RedirectOut(redirect_url=await connections.deny(request_id, marked))
 
 
 @router.get("/connections")

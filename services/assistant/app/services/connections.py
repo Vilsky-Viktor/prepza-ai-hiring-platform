@@ -55,8 +55,12 @@ async def approve(request_id: str, user: User, marked: str | None, read_only: bo
     )
 
 
-async def deny(request_id: str) -> str:
-    """The user refuses: back to the app, which learns it was denied."""
+async def deny(request_id: str, marked: str | None) -> str:
+    """The user refuses: back to the app, which learns it was denied. Only from the browser that
+    asked (`marked`), so someone else holding the request's id can't end it."""
+    if marked != request_id:
+        raise HTTPException(status.HTTP_403_FORBIDDEN, OTHER_BROWSER)
+
     found = await taken(request_id)
 
     return construct_redirect_uri(

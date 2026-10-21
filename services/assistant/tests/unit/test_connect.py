@@ -116,18 +116,20 @@ def test_allowing_gives_the_app_a_code_bound_to_the_user_once(client, kept):
 
 @pytest.mark.parametrize("marked", [None, "another-request"])
 def test_a_consent_link_opened_in_another_browser_connects_nothing(client, kept, marked):
-    """Someone started connecting their own app and sent the link: allowing it is refused, and
-    the request stays for the browser that started it."""
+    """Someone started connecting their own app and sent the link: allowing or refusing it is
+    refused, and the request stays for the browser that started it."""
     client.cookies.clear()
 
     if marked:
         client.cookies.set(CONNECT_COOKIE, marked)
 
     response = client.post("/connect/r1/approve")
+    denied = client.post("/connect/r1/deny")
 
-    assert response.status_code == 403
-    assert response.json()["detail"] == OTHER_BROWSER
+    assert (response.status_code, denied.status_code) == (403, 403)
+    assert response.json()["detail"] == denied.json()["detail"] == OTHER_BROWSER
     assert kept.codes == {}
+    # Neither answer ends it: it stays for its own browser.
     assert client.get("/connect/r1").status_code == 200
 
 
@@ -154,6 +156,7 @@ def test_the_code_carries_what_the_user_allowed(client, kept, asked, body, scope
 
 
 def test_denying_tells_the_app_and_gives_no_code(client, kept):
+    client.cookies.set(CONNECT_COOKIE, "r1")
     response = client.post("/connect/r1/deny")
 
     query = parse_qs(urlparse(response.json()["redirect_url"]).query)
