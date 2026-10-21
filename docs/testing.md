@@ -168,7 +168,7 @@ Playwright tests of the signed-in pages, in the same Docker image, against the r
 - email settings: the defaults, each kind saved as it changes, the activity digest's box (all, none, some), and what the sign-in's email boxes turn on, at a first sign-in and a later one,
 - unsubscribing: a user's activity digest link turns its four kinds off in Settings, and after a candidate's "Don't email me for <company>" link, the company's next invite to that address shows as undelivered. Links are signed with `EMAIL_LINK_SECRET` from `.env`.
 
-**Cleanup.** After every run, `teardown.ts` deletes every throwaway account, and so their companies and data, leftovers of stopped runs included. It fails if any is left.
+**Cleanup.** Every throwaway address carries its run's tag (the run's container id, `RUN` in `helpers/users.ts`). After a run, `teardown.ts` deletes that run's throwaway accounts, and so their companies and data, and leftovers of stopped runs once they're over 6 hours old; another run's accounts are left alone while it may still be running, so runs at the same time don't delete each other's users (a deleted account is signed out at its next change). It fails if any of its own is left.
 
 Screenshots land in `e2e_tests/signed-in/test-results/screenshots`.
 

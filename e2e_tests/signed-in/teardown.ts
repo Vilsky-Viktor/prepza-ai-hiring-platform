@@ -1,19 +1,29 @@
 import { API_URL } from "./constants"
 import { env } from "./helpers/env"
+import { RUN } from "./helpers/users"
 
-// After every run, the tests' throwaway accounts are deleted the way a user deletes theirs in
-// settings, which also deletes the companies they alone own and their data in every service.
-// It catches what a stopped or failed run left behind too. Only the tests' own addresses match:
-// owners on reserved domains that receive no mail, invitees on Resend's test domain.
+// After every run, the run's throwaway accounts (tagged with RUN, helpers/users.ts) are deleted
+// the way a user deletes theirs in settings, which also deletes the companies they alone own and
+// their data in every service. Another run's are left alone while it may still be running, so
+// runs at the same time don't delete each other's users; what a stopped run left behind goes once
+// it's older than STALE_MS. Only the tests' own addresses match: owners on reserved domains that
+// receive no mail, invitees on Resend's test domain.
 const THROWAWAY =
-  /^(e2e-owner-[0-9a-f]+@(example\.com|e2e-[0-9a-f]+\.test)|delivered\+e2e-[a-z0-9-]+@resend\.dev)$/
+  /^(e2e-owner-[0-9a-f-]+@(example\.com|e2e-[0-9a-f]+\.test)|delivered\+e2e-[a-z0-9-]+@resend\.dev)$/
+// Longer than a whole run of the suite takes.
+const STALE_MS = 6 * 60 * 60 * 1000
 const AUTH_URL = process.env.AUTH_URL ?? "http://firebase-auth:9199"
 const IDENTITY = `${AUTH_URL}/identitytoolkit.googleapis.com/v1`
 // The emulator takes "owner" as an admin's token.
 const ADMIN = { Authorization: "Bearer owner", "Content-Type": "application/json" }
 const PASSWORD = "e2e-cleanup"
 
-type EmulatorUser = { localId: string; email?: string }
+type EmulatorUser = { localId: string; email?: string; createdAt?: string }
+
+/** This run's account, or one a stopped run left behind long enough ago. */
+function ours(user: EmulatorUser, now: number) {
+  return (user.email ?? "").includes(`-${RUN}-`) || now - Number(user.createdAt ?? 0) > STALE_MS
+}
 
 async function identity(path: string, body: object, admin = false) {
   const response = await fetch(`${IDENTITY}/${path}`, {
@@ -40,7 +50,9 @@ async function throwawayUsers(project: string): Promise<EmulatorUser[]> {
     )
     const body = await response.json()
     users.push(
-      ...(body.users ?? []).filter((user: EmulatorUser) => THROWAWAY.test(user.email ?? ""))
+      ...(body.users ?? []).filter(
+        (user: EmulatorUser) => THROWAWAY.test(user.email ?? "") && ours(user, Date.now())
+      )
     )
     page = body.nextPageToken ? `&nextPageToken=${body.nextPageToken}` : ""
   } while (page)
