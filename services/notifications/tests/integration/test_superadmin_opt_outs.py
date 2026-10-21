@@ -20,7 +20,7 @@ from tests.integration.factories import api
 @pytest.fixture
 def acme(monkeypatch):
     """Companies at the HTTP boundary: Acme invited the address; the superadmin Sam signs in."""
-    company = f"c-{uuid.uuid4()}"
+    company = str(uuid.uuid4())
     monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
     monkeypatch.setattr(settings, "companies_url", "http://companies")
 
@@ -64,7 +64,7 @@ def test_stopping_twice_stores_one_stop_and_lifting_it_keeps_the_candidates_own(
 
     async def scenario():
         # One invite's reminders, stopped from an email's link.
-        await opt_outs.add(address, acme, "invite-1")
+        await opt_outs.add(address, acme, str(uuid.uuid4()))
 
         async with api() as client:
             body = {"email": email.upper(), "company_id": acme, "stopped": True}

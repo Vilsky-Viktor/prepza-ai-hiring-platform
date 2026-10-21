@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from pydantic import BaseModel
 
 from app.constants.unsubscribe import UnsubscribeType
@@ -31,5 +33,5 @@ class CandidateOptOutIn(BaseModel):
     """A superadmin stops a company's emails to the address, or lets them through again."""
 
     email: str
-    company_id: str
+    company_id: UUID
     stopped: bool

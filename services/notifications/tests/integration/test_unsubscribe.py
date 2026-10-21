@@ -58,7 +58,7 @@ def sent(requests) -> list[dict]:
 def test_opting_out_of_a_company_twice_stores_it_once_and_stops_its_invites_and_reminders(
     run, outside
 ):
-    company = f"c-{uuid.uuid4()}"
+    company = str(uuid.uuid4())
     data = invite(company)
     link = candidate_token(data, UnsubscribeType.COMPANY, settings.email_link_secret)
 
@@ -68,7 +68,7 @@ def test_opting_out_of_a_company_twice_stores_it_once_and_stops_its_invites_and_
             await client.post("/internal/events", json=push("candidate.invited", data, "o-1"))
             await client.post("/internal/events", json=push("candidate.reminded", data, "o-2"))
             # Another company still reaches the same address.
-            other = invite(f"c-{uuid.uuid4()}", "ANN@example.com")
+            other = invite(str(uuid.uuid4()), "ANN@example.com")
             await client.post("/internal/events", json=push("candidate.invited", other, "o-3"))
 
         async with Session() as session:
@@ -86,7 +86,7 @@ def test_opting_out_of_a_company_twice_stores_it_once_and_stops_its_invites_and_
 
 
 def test_a_link_sent_before_the_hashes_were_keyed_still_stops_the_companys_invites(run, outside):
-    company = f"c-{uuid.uuid4()}"
+    company = str(uuid.uuid4())
     data = invite(company, "old@example.com")
     plain = hashlib.sha256(b"old@example.com").hexdigest()
     payload = {"type": "company", "address": plain, "company_id": company, "company": "Acme"}
@@ -113,7 +113,7 @@ def test_a_link_sent_before_the_hashes_were_keyed_still_stops_the_companys_invit
 
 
 def test_stopping_one_invites_reminders_leaves_its_invite_and_other_invites(run, outside):
-    company = f"c-{uuid.uuid4()}"
+    company = str(uuid.uuid4())
     first, second = invite(company), invite(company)
     link = candidate_token(first, UnsubscribeType.INVITE_REMINDERS, settings.email_link_secret)
 
@@ -162,7 +162,7 @@ def test_a_users_one_click_unsubscribe_turns_library_settings_off(run, outside):
 
 
 def test_a_deleted_company_takes_its_opt_outs_with_it(run):
-    company = f"c-{uuid.uuid4()}"
+    company = str(uuid.uuid4())
 
     async def scenario():
         await opt_outs.add(address_hash("ann@example.com"), company)

@@ -72,7 +72,7 @@ def test_a_released_claim_is_sent_by_the_next_run(run):
 def outside(monkeypatch):
     """Companies, library, billing and generation answer; SMTP records what's sent."""
     state = {"sent": [], "people": []}
-    company_id = f"c-{uuid.uuid4()}"
+    company_id = str(uuid.uuid4())
 
     def answer(request: httpx.Request) -> httpx.Response:
         path = request.url.path

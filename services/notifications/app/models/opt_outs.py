@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from sqlalchemy import Boolean, DateTime, Identity, Index, String, false, func
+from sqlalchemy import Boolean, DateTime, Identity, Index, String, Uuid, false, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import Base
@@ -28,8 +28,8 @@ class CandidateOptOut(Base):
 
     id: Mapped[int] = mapped_column(Identity(), primary_key=True)
     address: Mapped[str] = mapped_column(String(64))
-    company_id: Mapped[str] = mapped_column(String(128), index=True)
-    invite_id: Mapped[str | None] = mapped_column(String(64))
+    company_id: Mapped[str] = mapped_column(Uuid(as_uuid=False), index=True)
+    invite_id: Mapped[str | None] = mapped_column(Uuid(as_uuid=False))
     # Made by a superadmin for someone who asked prepza; only those are lifted again there.
     by_admin: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
     created_at: Mapped[datetime] = mapped_column(

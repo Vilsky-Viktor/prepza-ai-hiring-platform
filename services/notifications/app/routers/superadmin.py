@@ -27,6 +27,6 @@ async def look_up(body: UserEmailIn, superadmin: SuperadminUser) -> CandidateOpt
 async def change(body: CandidateOptOutIn, superadmin: SuperadminUser) -> CandidateOptOutsOut:
     """Stops a company's emails to the address (only a company that invited it), or lets them
     through again; answers with the companies as the lookup does."""
-    await set_stopped(body.email, body.company_id, body.stopped, superadmin.uid)
+    await set_stopped(body.email, str(body.company_id), body.stopped, superadmin.uid)
 
     return await answer(body.email)

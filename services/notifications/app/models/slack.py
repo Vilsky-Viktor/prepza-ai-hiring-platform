@@ -1,7 +1,7 @@
 from datetime import UTC, datetime
 
 from prepza_common.db import one_of
-from sqlalchemy import CheckConstraint, DateTime, String, Text, func
+from sqlalchemy import CheckConstraint, DateTime, String, Text, Uuid, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -20,7 +20,7 @@ class SlackConnection(Base):
         ),
     )
 
-    company_id: Mapped[str] = mapped_column(String(128), primary_key=True)
+    company_id: Mapped[str] = mapped_column(Uuid(as_uuid=False), primary_key=True)
     # The workspace and channel, as Slack names them, to show.
     team: Mapped[str] = mapped_column(Text())
     channel: Mapped[str] = mapped_column(Text())

@@ -12,6 +12,8 @@ from app.storage import opt_outs
 
 ANN = address_hash("ann@example.com")
 URL = "/superadmin/candidate-opt-outs"
+# Companies' ids, in this order when sorted.
+ACME, BOLT, COLD, ZETA = (f"00000000-0000-0000-0000-00000000000{end}" for end in "abcf")
 
 
 @pytest.fixture
@@ -21,9 +23,9 @@ def signed_in(monkeypatch):
     Sam, or as `email`."""
     monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
     rows = [
-        SimpleNamespace(company_id="acme", invite_id=None, by_admin=False),
-        SimpleNamespace(company_id="bolt", invite_id="i-1", by_admin=False),
-        SimpleNamespace(company_id="cold", invite_id=None, by_admin=True),
+        SimpleNamespace(company_id=ACME, invite_id=None, by_admin=False),
+        SimpleNamespace(company_id=BOLT, invite_id="i-1", by_admin=False),
+        SimpleNamespace(company_id=COLD, invite_id=None, by_admin=True),
     ]
     calls = SimpleNamespace(added=[], removed=[], invited=[], names=[])
 
@@ -39,11 +41,11 @@ def signed_in(monkeypatch):
     async def invited_company_ids(email):
         calls.invited.append(email)
 
-        return ["bolt", "acme"]
+        return [BOLT, ACME]
 
     async def members(company_ids):
         calls.names.append(company_ids)
-        names = {"acme": "acme", "bolt": "Bolt", "cold": "Cold"}
+        names = {ACME: "acme", BOLT: "Bolt", COLD: "Cold"}
 
         return [{"id": id, "name": names[id], "members": []} for id in company_ids]
 
@@ -77,21 +79,21 @@ def test_the_lookup_lists_invited_and_opted_out_companies_by_name_whatever_the_c
     assert response.json() == {
         "companies": [
             {
-                "company_id": "acme",
+                "company_id": ACME,
                 "name": "acme",
                 "stopped": True,
                 "stopped_by_admin": False,
                 "stopped_reminders": 0,
             },
             {
-                "company_id": "bolt",
+                "company_id": BOLT,
                 "name": "Bolt",
                 "stopped": False,
                 "stopped_by_admin": False,
                 "stopped_reminders": 1,
             },
             {
-                "company_id": "cold",
+                "company_id": COLD,
                 "name": "Cold",
                 "stopped": True,
                 "stopped_by_admin": True,
@@ -100,38 +102,38 @@ def test_the_lookup_lists_invited_and_opted_out_companies_by_name_whatever_the_c
         ]
     }
     # Every name in one call to companies.
-    assert signed_in.names == [["acme", "bolt", "cold"]]
+    assert signed_in.names == [[ACME, BOLT, COLD]]
 
 
 def test_a_superadmin_stops_an_inviting_companys_emails_and_it_is_logged(client, signed_in, caplog):
-    body = {"email": "ann@example.com", "company_id": "bolt", "stopped": True}
+    body = {"email": "ann@example.com", "company_id": BOLT, "stopped": True}
 
     with caplog.at_level(logging.WARNING):
         response = client.put(URL, json=body)
 
     assert response.status_code == 200
-    assert signed_in.added == [(ANN, "bolt", None, True)]
+    assert signed_in.added == [(ANN, BOLT, None, True)]
     assert "by superadmin sam" in caplog.text
     assert "ann@example.com" not in caplog.text
 
 
 def test_only_a_company_that_invited_the_address_can_be_stopped(client, signed_in):
-    body = {"email": "ann@example.com", "company_id": "zeta", "stopped": True}
+    body = {"email": "ann@example.com", "company_id": ZETA, "stopped": True}
 
     assert client.put(URL, json=body).status_code == 404
     assert signed_in.added == []
 
 
 def test_a_superadmin_lifts_a_superadmins_stop(client, signed_in):
-    body = {"email": "ANN@example.com", "company_id": "cold", "stopped": False}
+    body = {"email": "ANN@example.com", "company_id": COLD, "stopped": False}
 
     assert client.put(URL, json=body).status_code == 200
-    assert signed_in.removed == [(ANN, "cold")]
+    assert signed_in.removed == [(ANN, COLD)]
 
 
 def test_anyone_else_gets_not_found(client, signed_in):
     signed_in.sign_in("bob@example.com")
-    body = {"email": "ann@example.com", "company_id": "bolt", "stopped": True}
+    body = {"email": "ann@example.com", "company_id": BOLT, "stopped": True}
 
     lookup = client.post(f"{URL}/lookup", json={"email": "ann@example.com"})
     change = client.put(URL, json=body)
