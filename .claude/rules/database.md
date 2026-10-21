@@ -16,7 +16,8 @@ One Cloud SQL instance, a database per service. Adding a migration: the `migrati
 - Timestamps are `timestamptz` (`DateTime(timezone=True)`); JSON documents `jsonb`; text is
   `text`, or `varchar(n)` only where the limit is a real rule; never `char(n)` or `money`.
 - Money is an integer in minor units (credits, cents); fractional amounts (AI spend in fractions
-  of a cent) are `numeric`; never a float.
+  of a cent) are `numeric`; never a float. Payments and the credit ledger:
+  `.claude/rules/payments.md`.
 - Ids that leave the service are `uuid`, the same type in every service (a `company_id` is never
   `uuid` in one and `varchar` in another). New integer keys use `Identity()`, not `serial`.
 - `created_at` has `server_default=func.now()`, so rows written outside the ORM get it too.

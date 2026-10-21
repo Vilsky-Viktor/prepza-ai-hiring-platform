@@ -94,7 +94,7 @@ Python tests: `testing-backend.md`; vitest and browser, load and smoke tests:
 - Fakes in unit tests; recorded responses or a self-initialising fake (RESPX, VCR.py) in
   medium tests; the provider's live sandbox for a few large ones only.
 - Paddle: sandbox account and keys, the webhook simulator, and signature checks on the raw
-  body, including tampered and expired signatures.
+  body, including tampered and expired signatures (`.claude/rules/payments.md`, Tests).
 - Resend: only `delivered@`, `bounced@` and `complained@resend.dev` (with `+label`), or
   Mailpit locally; never a real address.
 - Slack: requests checked by `X-Slack-Signature`; stale requests refused.

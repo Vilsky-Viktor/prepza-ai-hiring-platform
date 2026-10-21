@@ -87,7 +87,8 @@ Points other rule files already hold are only pointed at.
 
 - A received web hook is verified, recorded idempotently and answered within the provider's
   deadline (Paddle 5 s, Svix/Resend about 30 s); follow-up work goes through the outbox, not more
-  synchronous calls before the answer. Signatures and ids: `.claude/rules/security.md`.
+  synchronous calls before the answer. Signatures and ids: `.claude/rules/security.md`; Paddle's:
+  `.claude/rules/payments.md`.
 - Server-sent events: a heartbeat comment within 20 s, a cap per user, a maximum life, one shared
   Redis subscription per instance; the client reconnects with backoff. HTTP/2 at the load balancer
   lifts the browser's six connections per host.

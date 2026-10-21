@@ -31,7 +31,8 @@ the Top 10 for LLM applications 2025.
 ## Web hooks we receive
 
 - Verify the HMAC over the raw body in constant time (`tokens.same_secret`), reject old
-  timestamps, and make the handler idempotent on the event id (providers redeliver).
+  timestamps, and make the handler idempotent on the event id (providers redeliver). Paddle's
+  (window, idempotency on Paddle's object ids, reconciliation): `.claude/rules/payments.md`.
 
 ## Requests to addresses users give
 
