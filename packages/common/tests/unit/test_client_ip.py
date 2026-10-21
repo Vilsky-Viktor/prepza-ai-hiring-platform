@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.client_ip import client_ip
+from prepza_common.client_ip import client_ip, limit_address
 from starlette.requests import Request
 
 
@@ -22,3 +22,18 @@ def request(forwarded: str | None) -> Request:
 )
 def test_the_visitor_is_the_address_the_load_balancer_saw(forwarded, expected):
     assert client_ip(request(forwarded)) == expected
+
+
+@pytest.mark.parametrize(
+    ("address", "counted"),
+    [
+        ("203.0.113.7", "203.0.113.7"),
+        ("2001:db8:1:2:aaaa::1", "2001:db8:1:2::/64"),
+        ("2001:db8:1:2:ffff::9", "2001:db8:1:2::/64"),
+        ("unknown", "unknown"),
+    ],
+)
+def test_an_ipv6_visitor_is_counted_by_its_64_network(address, counted):
+    request = Request({"type": "http", "headers": [], "client": (address, 1)})
+
+    assert limit_address(request) == counted

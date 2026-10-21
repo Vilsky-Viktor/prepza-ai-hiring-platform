@@ -2,7 +2,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, status
 from prepza_common.answer_votes import mirror_vote
-from prepza_common.client_ip import client_ip
+from prepza_common.client_ip import limit_address
 from prepza_common.rate_limit import hit_or_skip
 from prepza_common.tokens import same_secret
 
@@ -28,7 +28,7 @@ async def vote(answer_id: UUID, body: HelpVoteIn, request: Request) -> None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, NO_SUCH_ANSWER)
 
     # A signed vote can be sent again and again: counted per address once it's proved real.
-    key = f"rate:help-votes:{client_ip(request)}"
+    key = f"rate:help-votes:{limit_address(request)}"
     await hit_or_skip(get_redis(), key, "HELP_VOTES_PER_IP_HOUR")
 
     await help_votes.save(answer_id, body.trace_id, body.value)

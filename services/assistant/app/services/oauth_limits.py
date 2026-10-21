@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from mcp.server.auth.provider import TokenError
-from prepza_common.client_ip import client_ip
+from prepza_common.client_ip import limit_address
 from prepza_common.rate_limit import hit_or_skip
 from starlette.requests import Request
 from starlette.responses import JSONResponse
@@ -30,7 +30,7 @@ class Limited:
             key = f"rate:assistant:mcp:{self.name}"
 
             try:
-                address = client_ip(Request(scope))
+                address = limit_address(Request(scope))
                 await hit_or_skip(redis, f"{key}:{address}", self.per_ip)
 
                 if self.everyone is not None:

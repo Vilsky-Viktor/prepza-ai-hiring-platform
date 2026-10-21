@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Request, status
 from prepza_common.auth import CurrentUser, OptionalUser
-from prepza_common.client_ip import client_ip
+from prepza_common.client_ip import limit_address
 from prepza_common.pause import refuse_if_paused
 from prepza_common.rate_limit import hit_or_skip
 
@@ -62,7 +62,7 @@ async def sign_in_guest(token: str, request: Request) -> GuestTokenOut:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Invite not found")
 
     # Each sign-in has Google sign a token: counted per address once the link proved real.
-    key = f"rate:guest-sign-ins:{client_ip(request)}"
+    key = f"rate:guest-sign-ins:{limit_address(request)}"
     await hit_or_skip(get_redis(), key, "GUEST_SIGN_INS_PER_IP_HOUR")
 
     return GuestTokenOut(token=await guest_token(invite.id))

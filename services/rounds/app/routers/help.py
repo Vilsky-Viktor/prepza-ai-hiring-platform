@@ -9,7 +9,7 @@ from prepza_common.ai_constants import Outcome
 from prepza_common.ai_usage import provider_refused
 from prepza_common.analytics import track
 from prepza_common.auth import OptionalUser
-from prepza_common.client_ip import client_ip
+from prepza_common.client_ip import limit_address
 from prepza_common.constants import DEFAULT_LANGUAGE, LEGAL_VERSIONS
 from prepza_common.human_check import require_human
 from prepza_common.i18n import request_language, translate
@@ -182,7 +182,7 @@ async def help_chat(
     if user:
         await hit(redis, f"rate:help:{user.uid}", "HELP_USER_LIMIT", user_id=user_id)
 
-    await hit(redis, f"rate:help:ip:{client_ip(request)}", "HELP_IP_LIMIT")
+    await hit(redis, f"rate:help:ip:{limit_address(request)}", "HELP_IP_LIMIT")
     await hit(redis, HELP_ALL_KEY, "HELP_DAILY_LIMIT", user_id=user_id)
     # The day's token budget, checked before the answer and counted after it.
     await spend(redis, HELP_SPEND_KEY, 0, "HELP_TOKENS_PER_DAY", user_id=user_id)
@@ -247,7 +247,7 @@ async def contact(body: ContactRequest, request: Request) -> None:
     sender shows they're a person."""
     await require_human(request, settings.turnstile_secret_key)
     redis = get_redis()
-    await hit(redis, f"rate:contact:ip:{client_ip(request)}", "CONTACT_IP_LIMIT")
+    await hit(redis, f"rate:contact:ip:{limit_address(request)}", "CONTACT_IP_LIMIT")
     await hit(redis, "rate:contact:all", "CONTACT_DAILY_LIMIT")
     await contact_store.save({**body.model_dump(), "language": request_language(request)})
     await outbox_service.flush_quietly()

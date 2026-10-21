@@ -3,7 +3,7 @@ candidate, their invite and the start itself (routers/links.py's start_link)."""
 
 from fastapi import HTTPException, Request, status
 from prepza_common.analytics import track
-from prepza_common.client_ip import client_ip
+from prepza_common.client_ip import limit_address
 from prepza_common.human_check import require_human
 from prepza_common.pause import refuse_if_paused
 from prepza_common.rate_limit import hit
@@ -53,7 +53,7 @@ async def admit(interview, user: User, current: str | None, request: Request) ->
         await require_human(request, settings.turnstile_secret_key)
         redis = get_redis()
         who = {"company_id": interview.company_id, "user_id": user.uid}
-        address = client_ip(request)
+        address = limit_address(request)
         await hit(redis, f"rate:link-starts:ip:{address}", "LINK_STARTS_PER_IP_HOUR", **who)
         await hit(redis, f"rate:link-starts:{interview.id}", "LINK_STARTS_PER_HOUR", **who)
 
