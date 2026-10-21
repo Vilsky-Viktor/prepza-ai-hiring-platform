@@ -7,7 +7,8 @@ from prepza_common.limit_list import LIMITS
 from prepza_common.limits import at_most, question_seconds
 from prepza_common.rate_limit import counted, hit
 
-from app.constants.interviews import GENERATION_REFUSALS, UNKNOWN_LEVEL
+from app.constants.generation import GENERATION_REFUSALS
+from app.constants.interviews import UNKNOWN_LEVEL
 from app.constants.invites import (
     TOO_MANY_INTERVIEWS,
     TOO_MANY_INTERVIEWS_UNPAID,

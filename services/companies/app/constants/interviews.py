@@ -34,6 +34,3 @@ NO_QUESTIONS_LEFT = "An interview needs at least one topic with questions."
 # instance for the test's page: a count that changes (a question revealed in practice is no
 # longer served) shows within it. Candidates starting always read the questions afresh.
 SET_CACHE_SECONDS = 30
-# Generation's refusals of a new interview that reach the user as generation said them: its limit
-# per person (429) and the day's AI budget or a pause (503), each with its Retry-After.
-GENERATION_REFUSALS = {429, 503}

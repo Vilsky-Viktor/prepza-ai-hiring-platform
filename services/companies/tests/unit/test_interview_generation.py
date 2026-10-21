@@ -2,6 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 import httpx
+import pytest
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import current_user
 from prepza_common.user import User
@@ -135,6 +136,29 @@ def test_second_review_passes_the_conflict_through(client, monkeypatch, audited)
 
     assert response.status_code == 409
     assert response.json()["detail"] == "Generation is not awaiting review"
+    assert audited == []
+
+    app.dependency_overrides.clear()
+
+
+@pytest.mark.parametrize(("code", "retry_after"), [(429, "3600"), (503, "7200")])
+def test_a_review_generation_refuses_reaches_the_user_with_its_wait(
+    client, monkeypatch, audited, code, retry_after
+):
+    """Its topic revisions used up (429) or the day's AI budget (503): never a 500."""
+    setup(monkeypatch, "admin")
+    sign_in("bob")
+
+    async def fake_review(generation_id, company_id, body):
+        headers = {"Retry-After": retry_after}
+
+        return httpx.Response(code, json={"detail": "Not now"}, headers=headers)
+
+    monkeypatch.setattr(generation, "review", fake_review)
+    response = client.post(f"/interviews/{INTERVIEW_ID}/generation/review", json={"selected": [0]})
+
+    assert (response.status_code, response.json()["detail"]) == (code, "Not now")
+    assert response.headers["Retry-After"] == retry_after
     assert audited == []
 
     app.dependency_overrides.clear()
