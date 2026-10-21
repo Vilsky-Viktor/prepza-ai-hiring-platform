@@ -61,7 +61,10 @@
    (`services/<svc>/tests/integration`, run with `scripts/integration.sh`), and a
    browser test for every user-facing flow or screen (`e2e_tests/pages` signed out,
    `e2e_tests/signed-in` signed in). A bug fix adds a test that fails without it.
-   Run the affected suites before calling the work done.
+   Run the affected suites before calling the work done. Every test of every kind (unit,
+   integration, browser, load, evals, scripted end-to-end) starts absolutely clean: its own data
+   and users, a fresh browser, no state left by another test, and passes alone and in any order
+   (details in `.claude/rules/testing.md`).
 
    Tests check what the product does, never fixed wording. The line: does the text depend on
    what happened, or would it read the same whatever happened?

@@ -4,6 +4,11 @@ paths:
   - "packages/common/tests/**"
   - "frontend/tests/**"
   - "e2e_tests/**"
+  - "evals/**"
+  - "scripts/integration.sh"
+  - "**/conftest.py"
+  - "**/playwright.config.ts"
+  - "frontend/vitest.config.*"
 ---
 
 # Tests
