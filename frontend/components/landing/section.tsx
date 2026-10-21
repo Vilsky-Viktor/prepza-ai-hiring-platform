@@ -17,7 +17,8 @@ export function LandingSection({
 }: {
   id?: string
   title: string
-  text: string
+  // Usually plain text; a section may end it with a link.
+  text: React.ReactNode
   extra?: React.ReactNode
   children?: React.ReactNode
 }) {

@@ -35,6 +35,10 @@ export const AUTOMATE_DELAYS = {
 
 // The distance between two wires where they meet the prepza card, and between a pair of wires
 // side by side (the AI app's and the MCP server's), in pixels.
+// The bell's speed to Slack, pixels a second: slower than the others, since its wire is short
+// and at their speed the bell only flashes past.
+export const AUTOMATE_NOTIFY_SPEED = 40
+
 export const AUTOMATE_WIRE_GAP = 16
 
 // How far into a card its wire starts, in pixels.

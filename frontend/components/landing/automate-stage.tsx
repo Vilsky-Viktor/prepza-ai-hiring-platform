@@ -22,6 +22,7 @@ import { MCP_MARK } from "@/constants/ai-apps"
 import {
   AUTOMATE_CARDS,
   AUTOMATE_DELAYS,
+  AUTOMATE_NOTIFY_SPEED,
   AUTOMATE_WIRE_GAP,
   AUTOMATE_WIRE_INSET,
   type AutomateCard,
@@ -43,20 +44,21 @@ const ICONS = {
 
 // Where each card sits: on phones and tablets the ways in are two rows of a five-column grid
 // above prepza and Slack; from laptops up they are two columns on the left, then prepza, then
-// Slack, in five rows.
+// Slack, in five rows: the two left columns wide enough for their labels, with flexible gaps
+// around them for the wires, and prepza close to Slack.
 const PLACES: Record<AutomateCard | "prepza", string> = {
   platform: "col-span-3 col-start-1 row-start-1 lg:col-span-1 lg:row-span-3",
   aiApp: "col-start-4 row-start-1 lg:col-start-1 lg:row-start-4",
   jobBoard: "col-start-5 row-start-1 lg:col-start-1 lg:row-start-5",
-  api: "col-start-1 row-start-2 lg:col-start-2 lg:row-start-1",
-  sdk: "col-start-2 row-start-2 lg:col-start-2 lg:row-start-2",
-  webhook: "col-start-3 row-start-2 lg:col-start-2 lg:row-start-3",
-  mcp: "col-start-4 row-start-2 lg:col-start-2 lg:row-start-4",
-  link: "col-start-5 row-start-2 lg:col-start-2 lg:row-start-5",
+  api: "col-start-1 row-start-2 lg:col-start-3 lg:row-start-1",
+  sdk: "col-start-2 row-start-2 lg:col-start-3 lg:row-start-2",
+  webhook: "col-start-3 row-start-2 lg:col-start-3 lg:row-start-3",
+  mcp: "col-start-4 row-start-2 lg:col-start-3 lg:row-start-4",
+  link: "col-start-5 row-start-2 lg:col-start-3 lg:row-start-5",
   prepza:
-    "col-span-5 row-start-3 lg:col-span-1 lg:col-start-3 lg:row-span-5 lg:row-start-1",
+    "col-span-5 row-start-3 lg:col-span-1 lg:col-start-5 lg:row-span-5 lg:row-start-1",
   slack:
-    "col-span-5 row-start-4 lg:col-span-1 lg:col-start-4 lg:row-span-5 lg:row-start-1",
+    "col-span-5 row-start-4 lg:col-span-1 lg:col-start-6 lg:row-span-5 lg:row-start-1 lg:ms-12",
 }
 
 type Traveller = React.ComponentProps<typeof Wire>["traveller"]
@@ -76,7 +78,7 @@ export function AutomateStage({
     {}
   )
   const [wires, setWires] = useState<
-    { key: string; d: string; traveller: Traveller }[]
+    { key: string; d: string; traveller: Traveller; speed?: number }[]
   >([])
 
   // The wires, from where the cards are laid out, again whenever one of them changes size.
@@ -146,6 +148,7 @@ export function AutomateStage({
           key: "notify",
           d: wire(box("prepza"), box("slack")),
           traveller: [BellIcon],
+          speed: AUTOMATE_NOTIFY_SPEED,
         },
       ])
     }
@@ -163,7 +166,7 @@ export function AutomateStage({
     <div
       ref={ref}
       aria-hidden
-      className="relative grid grid-cols-[repeat(5,minmax(0,1fr))] gap-x-1.5 gap-y-12 lg:grid-cols-[11rem_11rem_12rem_9rem] lg:justify-between lg:gap-y-5"
+      className="relative grid grid-cols-[repeat(5,minmax(0,1fr))] gap-x-1.5 gap-y-12 lg:grid-cols-[13rem_minmax(0,1fr)_13rem_minmax(0,1fr)_12rem_auto] lg:gap-x-0 lg:gap-y-5"
     >
       {/* Drawn anew as it starts playing, so the travellers start then, each after its delay. */}
       <svg
@@ -177,7 +180,7 @@ export function AutomateStage({
             delay={AUTOMATE_DELAYS[wire.key as keyof typeof AUTOMATE_DELAYS]}
             fired={playing ? undefined : 0}
             traveller={wire.traveller}
-            speed={INVITE_SPEED}
+            speed={wire.speed ?? INVITE_SPEED}
           />
         ))}
       </svg>
@@ -215,19 +218,26 @@ export function AutomateStage({
   )
 }
 
-/** A card's icon, or its logo: the MCP mark, Slack's. */
+/** A card's icon, or its logo: Slack's in its colours; the MCP mark, one colour, in the
+ * icons' blue like the other cards. */
 function CardMark({ card }: { card: AutomateCard }) {
-  if (card === "mcp" || card === "slack") {
+  if (card === "mcp") {
+    return (
+      <span
+        aria-hidden
+        className="size-6 shrink-0 bg-primary"
+        style={{
+          mask: `url(${MCP_MARK}) center / contain no-repeat`,
+          WebkitMask: `url(${MCP_MARK}) center / contain no-repeat`,
+        }}
+      />
+    )
+  }
+
+  if (card === "slack") {
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={card === "mcp" ? MCP_MARK : SLACK.logo}
-        alt=""
-        className={cn(
-          "size-6 shrink-0 object-contain",
-          card === "mcp" && "dark:brightness-0 dark:invert"
-        )}
-      />
+      <img src={SLACK.logo} alt="" className="size-6 shrink-0 object-contain" />
     )
   }
 

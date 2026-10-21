@@ -268,6 +268,14 @@ test("the guides button opens the guides", async ({ page }) => {
   await expect(page).toHaveURL(/\/guides$/, { timeout: 30_000 });
 });
 
+test("the automation section links to the developer docs", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.goto("/");
+  await page.locator("#automate a[href='/api-docs']").click();
+  // The local dev server compiles the docs on first open.
+  await expect(page).toHaveURL(/\/api-docs$/, { timeout: 30_000 });
+});
+
 // "create an interview" under the reports, beside the prices and on the closing screen: each
 // goes back up to the job description box, ready to type.
 for (const id of ["reports", "pricing", "help"]) {
