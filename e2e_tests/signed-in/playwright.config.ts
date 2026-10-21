@@ -6,10 +6,10 @@ import { defineConfig, devices } from "@playwright/test"
 // so the specs run one after another, in file order.
 export default defineConfig({
   testDir: "specs",
-  // forward.ts maps the local addresses for Firefox and WebKit; teardown.ts first deletes what
-  // stopped runs left (accounts older than its STALE_MS), so no test meets them; warm-up.ts
-  // compiles the pages.
-  globalSetup: ["./forward.ts", "./teardown.ts", "./warm-up.ts"],
+  // forward.ts maps the local addresses for Firefox and WebKit; clean-before.ts first deletes
+  // what stopped runs left (accounts older than teardown.ts's STALE_MS), so no test meets them;
+  // warm-up.ts compiles the pages.
+  globalSetup: ["./forward.ts", "./clean-before.ts", "./warm-up.ts"],
   // Deletes every throwaway account and its companies after each run (teardown.ts).
   globalTeardown: "./teardown.ts",
   reporter: "list",
