@@ -116,25 +116,13 @@ MAX_ADJUSTMENT_NOTE = 200
 # Slack connection, an audit entry): the row stays for its company, without their id.
 DELETED_USER = "deleted-user"
 
-# Sentry: share of requests traced for performance, and emails scrubbed from every event.
+# Sentry: share of requests traced for performance; what's scrubbed: scrub_patterns.py.
 DEFAULT_TRACES_SAMPLE_RATE = "0.1"
 # Requests never traced unless part of a traced one: uptime checks (/ready every minute per
 # service), and scheduled jobs and Pub/Sub pushes (/internal/), thousands a day with no user
 # waiting. Their errors are still reported.
 UNTRACED_PATHS = ("/ready", "/health", "/internal/")
 EMAIL_PATTERN = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
-REDACTED_EMAIL = "[email]"
-# A URL's path, query and user info can carry credentials (a Slack web hook's path, a customer's
-# web hook secret, an invite token): only its scheme and host (group 1) reach Sentry, and the
-# fields that hold a query alone are dropped.
-URL_PATTERN = r"(https?://)(?:[^\s/?#@'\"]*@)?([^\s/?#'\"]+)[^\s'\"]*"
-URL_SCRUBBED = r"\1\2"
-QUERY_FIELDS = {"query_string", "http.query", "http.fragment"}
-# Langfuse: a person's name or email in a field of data or of JSON text (an assistant tool's
-# result) is masked too: any field whose name ends so (`candidate_name`); group 1 keeps the key.
-PERSON_FIELD_ENDINGS = ("name", "email")
-PERSON_FIELD_PATTERN = r'("[a-z_]*(?:name|email)"\s*:\s*)"(?:[^"\\]|\\.)*"'
-REDACTED_PERSON = "[person]"
 
 # Pub/Sub: the one topic every domain event goes to, and its REST API.
 EVENTS_TOPIC = "events"

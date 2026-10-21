@@ -2,8 +2,8 @@
 
 import re
 
-from prepza_common.constants import (
-    EMAIL_PATTERN,
+from prepza_common.constants import EMAIL_PATTERN
+from prepza_common.scrub_patterns import (
     PERSON_FIELD_ENDINGS,
     PERSON_FIELD_PATTERN,
     QUERY_FIELDS,

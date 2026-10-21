@@ -109,13 +109,10 @@ def test_visitors_can_chat_and_get_a_stream(client, monkeypatch):
     assert response.status_code == 200
     # The reply's signature, which the page sends back with it, and the answer as a vote on it
     # names it: its id, no Langfuse trace (it isn't set up) and their signature.
-    signature = reply_signature(
-        "Paste a job description.", help_signing_key(settings.service_secret)
-    )
+    key = help_signing_key(settings.service_secret)
+    signature = reply_signature("Paste a job description.", key)
     answer = events[-1]["answer"]
-    voting = vote_signature(
-        uuid.UUID(answer["id"]), None, help_signing_key(settings.service_secret)
-    )
+    voting = vote_signature(uuid.UUID(answer["id"]), None, key)
     assert events == [
         {"delta": "Paste "},
         {"delta": "a job description."},
