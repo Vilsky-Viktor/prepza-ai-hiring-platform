@@ -6,6 +6,7 @@ from prepza_common.db import delete_in_batches
 from prepza_common.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import and_, delete, func, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.exc import IntegrityError
 
 from app.constants.ats import (
     INVITE_BATCH,
@@ -17,6 +18,7 @@ from app.constants.ats import (
 )
 from app.models.ats import AtsCandidate, AtsConnection
 from app.models.outbox import OutboxEvent
+from app.storage.ats import company_of
 from app.storage.db import Session
 from app.storage.turns import in_turns
 
@@ -35,6 +37,7 @@ async def add(
         insert(AtsCandidate)
         .values(
             connection_id=connection_id,
+            company_id=company_of(connection_id),
             link_id=link_id,
             interview_id=interview_id,
             candidate_id=candidate_id,
@@ -184,7 +187,13 @@ async def settle(
         query = query.values(failed_at=func.coalesce(AtsCandidate.failed_at, func.now()))
 
     async with Session() as session:
-        await session.execute(query)
+        try:
+            await session.execute(query)
+        except IntegrityError:
+            # The invite is another ATS row's already (the same person sent by two
+            # connections): this one is settled without it, and the other's results go back.
+            await session.rollback()
+            await session.execute(query.values(invite_id=None))
 
         if notice:
             outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)

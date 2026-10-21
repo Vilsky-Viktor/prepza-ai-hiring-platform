@@ -1,0 +1,70 @@
+"""ATS rows carry their connection's company, and an invite belongs to one ATS row."""
+
+import uuid
+
+from sqlalchemy import select
+
+from app.constants.ats import AtsProvider, CandidateStatus
+from app.models.ats import AtsCandidate, AtsJobLink
+from app.storage import ats, ats_candidates, ats_links
+from app.storage.db import Session
+
+JOB = {"id": "A1", "name": "Accountant"}
+STAGE = {"id": "assessment", "name": "Assessment"}
+
+
+async def connected(company, provider):
+    await ats.connect(company, provider, "acme", "sealed", "ann", "m-1")
+
+    return await ats.connection(company, provider)
+
+
+def test_links_and_candidates_carry_their_company(run):
+    company, interview = uuid.uuid4(), uuid.uuid4()
+
+    async def scenario():
+        connection = await connected(company, AtsProvider.WORKABLE)
+        link_id = await ats_links.add_link(company, connection.id, interview, JOB, STAGE, "ann")
+        row = await ats_candidates.add(connection.id, link_id, interview, "c-1", "a@x.com")
+
+        async with Session() as session:
+            link = await session.get(AtsJobLink, link_id)
+
+        return link.company_id, row.id
+
+    link_company, row_id = run(scenario())
+
+    async def stored():
+        async with Session() as session:
+            return await session.scalar(
+                select(AtsCandidate.company_id).where(AtsCandidate.id == row_id)
+            )
+
+    assert (link_company, run(stored())) == (company, company)
+
+
+def test_a_person_two_atss_sent_keeps_the_invite_on_the_first_row(run):
+    company, interview, invite = uuid.uuid4(), uuid.uuid4(), uuid.uuid4()
+
+    async def scenario():
+        rows = []
+
+        for provider in (AtsProvider.WORKABLE, AtsProvider.GREENHOUSE):
+            connection = await connected(company, provider)
+            link_id = await ats_links.add_link(company, connection.id, interview, JOB, STAGE, "ann")
+            rows.append(
+                await ats_candidates.add(connection.id, link_id, interview, "c-1", "a@x.com")
+            )
+
+        for row in rows:
+            await ats_candidates.settle(row.id, CandidateStatus.INVITED, invite_id=invite)
+
+        async with Session() as session:
+            return [
+                await session.scalar(
+                    select(AtsCandidate.invite_id).where(AtsCandidate.id == row.id)
+                )
+                for row in rows
+            ]
+
+    assert run(scenario()) == [invite, None]

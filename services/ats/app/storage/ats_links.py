@@ -8,6 +8,7 @@ from sqlalchemy.dialects.postgresql import insert
 from app.constants.ats import CandidateStatus
 from app.models.ats import AtsCandidate, AtsConnection, AtsJobLink
 from app.models.outbox import OutboxEvent
+from app.storage.ats import company_of
 from app.storage.db import Session
 
 
@@ -38,6 +39,7 @@ async def add_link(
         insert(AtsJobLink)
         .values(
             connection_id=connection_id,
+            company_id=company_of(connection_id),
             interview_id=interview_id,
             job_id=job["id"],
             job_name=job["name"],

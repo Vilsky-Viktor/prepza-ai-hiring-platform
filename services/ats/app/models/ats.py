@@ -66,6 +66,8 @@ class AtsJobLink(Base):
     connection_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("ats_connections.id", ondelete="CASCADE")
     )
+    # The connection's company, kept on the row too (every tenant's row carries it).
+    company_id: Mapped[uuid.UUID] = mapped_column(index=True)
     # The interview, in the companies service: its interview.deleted event removes this row.
     interview_id: Mapped[uuid.UUID] = mapped_column(index=True)
     # The ATS's own ids, and their names as they were when linked.
@@ -90,6 +92,7 @@ class AtsCandidate(Base):
         UniqueConstraint("connection_id", "candidate_id", "interview_id"),
         # A linked job's candidates, oldest first; deleting a job link finds its rows by it too.
         Index("ix_ats_candidates_link_id_created_at", "link_id", "created_at"),
+        Index("uq_ats_candidates_invite_id", "invite_id", unique=True),
         # The recovery job's candidates still to invite, its kept results not yet written back,
         # and the companies' candidates who couldn't be invited, each by connection.
         Index(
@@ -120,6 +123,8 @@ class AtsCandidate(Base):
     connection_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("ats_connections.id", ondelete="CASCADE")
     )
+    # The connection's company, kept on the row too (every tenant's row carries it).
+    company_id: Mapped[uuid.UUID] = mapped_column(index=True)
     # The interview, in the companies service: its interview.deleted event removes this row.
     interview_id: Mapped[uuid.UUID] = mapped_column(index=True)
     link_id: Mapped[uuid.UUID | None] = mapped_column(
@@ -141,7 +146,8 @@ class AtsCandidate(Base):
     # MAX_INVITE_ATTEMPTS.
     attempts: Mapped[int] = mapped_column(default=0, server_default="0")
     # The candidate's invite, in the companies service.
-    invite_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
+    # One ATS row per invite (uq_ats_candidates_invite_id): the one whose results go back.
+    invite_id: Mapped[uuid.UUID | None] = mapped_column()
     # When their results went back to the ATS: once.
     reported_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     # Their results (companies' candidate.finished event) while the connection is broken or the

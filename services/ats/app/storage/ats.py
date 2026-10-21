@@ -14,6 +14,13 @@ from app.models.outbox import OutboxEvent
 from app.storage.db import Session
 
 
+def company_of(connection_id: UUID):
+    """The connection's company, read by the statement that saves a row of it."""
+    return (
+        select(AtsConnection.company_id).where(AtsConnection.id == connection_id).scalar_subquery()
+    )
+
+
 async def connections(company_id: UUID) -> list[AtsConnection]:
     query = select(AtsConnection).where(AtsConnection.company_id == company_id)
 
