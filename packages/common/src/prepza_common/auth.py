@@ -87,5 +87,22 @@ def optional_user(
     return verify(credentials.credentials, check_revoked=writes(request))
 
 
+def fresh_user(
+    request: Request,
+    user: Annotated[User, Depends(current_user)],
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(optional_bearer)],
+) -> User:
+    """The signed-in user, refused (401) once their sign-in was revoked (a deleted account, a
+    signed-out session) even for a read: for reads that hand over a lot of personal data (a
+    data export, the admin zone, a long-lived stream). A write's token was checked already."""
+    revocable = credentials is not None and not writes(request)
+
+    if revocable and verify(credentials.credentials, check_revoked=True) is None:
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid token")
+
+    return user
+
+
 CurrentUser = Annotated[User, Depends(current_user)]
+FreshUser = Annotated[User, Depends(fresh_user)]
 OptionalUser = Annotated[User | None, Depends(optional_user)]

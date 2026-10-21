@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Response, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.auth import CurrentUser
+from prepza_common.auth import CurrentUser, FreshUser
 from prepza_common.rate_limit import hit_or_skip
 from prepza_common.superadmin import is_superadmin
 from prepza_common.visitor_country import VisitorCountry
@@ -47,7 +47,7 @@ async def delete_me(user: CurrentUser) -> None:
 
 
 @router.get("/me/export")
-async def export_me(user: CurrentUser, response: Response) -> dict:
+async def export_me(user: FreshUser, response: Response) -> dict:
     """Everything prepza holds about the user, as one JSON file to download."""
     # Each export asks every service for the account's data.
     key = f"rate:data-exports:{user.uid}"

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import StreamingResponse
-from prepza_common.auth import CurrentUser
+from prepza_common.auth import CurrentUser, FreshUser
 from prepza_common.i18n import request_language
 from prepza_common.sse import event_stream
 
@@ -35,7 +35,7 @@ async def mark_seen(user: CurrentUser) -> None:
 
 
 @router.get("/stream")
-async def stream(user: CurrentUser, fresh: bool = False) -> StreamingResponse:
+async def stream(user: FreshUser, fresh: bool = False) -> StreamingResponse:
     """Server-sent events while a tab is open: {"new": true} as soon as a notification comes,
     so the bell reloads; heartbeat comments in between. At most MAX_STREAMS_PER_USER at once;
     the bell refreshes on its own without one."""

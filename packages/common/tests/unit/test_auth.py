@@ -4,7 +4,7 @@ import pytest
 from fastapi import HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth import current_user, optional_user, verify
+from prepza_common.auth import current_user, fresh_user, optional_user, verify
 from prepza_common.constants import SIGN_IN_UNAVAILABLE
 
 CLAIMS = {"uid": "ann", "email": "ann@example.com", "email_verified": True, "name": "Ann"}
@@ -101,3 +101,30 @@ def test_firebase_unreachable_while_checking_revocation_is_a_503():
 
     assert raised.value.status_code == 503
     assert raised.value.detail == SIGN_IN_UNAVAILABLE
+
+
+def test_a_read_that_hands_over_a_lot_is_refused_once_the_sign_in_was_revoked():
+    """A data export, the admin zone, the bell's stream: a revoked token is refused for reads."""
+    user = verify_claims()
+    revoked = firebase_auth.RevokedIdTokenError("revoked")
+
+    with (
+        mock.patch.object(firebase_auth, "verify_id_token", side_effect=revoked) as verified,
+        pytest.raises(HTTPException) as raised,
+    ):
+        fresh_user(request("GET"), user, CREDENTIALS)
+
+    assert raised.value.status_code == 401
+    assert verified.call_args.kwargs["check_revoked"] is True
+
+
+def test_a_read_by_a_live_sign_in_goes_through():
+    user = verify_claims()
+
+    with mock.patch.object(firebase_auth, "verify_id_token", return_value=CLAIMS):
+        assert fresh_user(request("GET"), user, CREDENTIALS) == user
+
+
+def verify_claims():
+    with mock.patch.object(firebase_auth, "verify_id_token", return_value=CLAIMS):
+        return verify("token")

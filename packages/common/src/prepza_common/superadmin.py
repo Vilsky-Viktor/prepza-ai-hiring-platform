@@ -6,7 +6,7 @@ import os
 from typing import Annotated
 
 from fastapi import Depends, HTTPException, status
-from prepza_common.auth import current_user
+from prepza_common.auth import fresh_user
 from prepza_common.constants import GOOGLE_SIGN_IN
 from prepza_common.user import User
 
@@ -21,8 +21,9 @@ def is_superadmin(user: User) -> bool:
     )
 
 
-def superadmin_user(user: Annotated[User, Depends(current_user)]) -> User:
-    """Not found for everyone else, so superadmin routes don't show they exist."""
+def superadmin_user(user: Annotated[User, Depends(fresh_user)]) -> User:
+    """Not found for everyone else, so superadmin routes don't show they exist. A revoked
+    sign-in is refused at once, reads included: the admin zone shows everyone's data."""
     if not is_superadmin(user):
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Not found")
 
