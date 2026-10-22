@@ -12,6 +12,7 @@ from app.schemas.manage import (
     KeyOut,
     KeyPermissionsIn,
     NewKeyOut,
+    NewSecretOut,
     NewWebhookOut,
     WebhookAttemptOut,
     WebhookIn,
@@ -82,6 +83,18 @@ async def remove_webhook(company_id: UUID, webhook_id: UUID, user: CurrentUser) 
     await companies.require(company_id, user.uid, editor=True)
     await manage.remove_webhook(company_id, webhook_id, user.uid)
     await outbox_service.flush_quietly()
+
+
+@router.post("/webhooks/{webhook_id}/secret")
+async def rotate_secret(company_id: UUID, webhook_id: UUID, user: CurrentUser) -> NewSecretOut:
+    """Owners and admins give a web hook a new signing secret, shown once; the old one keeps
+    signing too for a day, so its receiver can switch over."""
+    await companies.require(company_id, user.uid, editor=True)
+
+    rotated = await manage.rotate_secret(company_id, webhook_id, user.uid)
+    await outbox_service.flush_quietly()
+
+    return rotated
 
 
 @router.post("/webhooks/{webhook_id}/test")

@@ -84,6 +84,7 @@ class AuditAction(StrEnum):
     WEBHOOK_ADDED = "webhook_added"
     WEBHOOK_TESTED = "webhook_tested"
     WEBHOOK_DELETED = "webhook_deleted"
+    WEBHOOK_SECRET_ROTATED = "webhook_secret_rotated"
 
 
 _GROUPS = {
@@ -146,6 +147,7 @@ _GROUPS = {
         AuditAction.WEBHOOK_ADDED,
         AuditAction.WEBHOOK_TESTED,
         AuditAction.WEBHOOK_DELETED,
+        AuditAction.WEBHOOK_SECRET_ROTATED,
     ),
 }
 

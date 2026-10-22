@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Usalo per verificare la firma di ogni richiesta (vedi la documentazione per sviluppatori). Copialo ora: non verrà più mostrato.",
     "copySecret": "Copia secret",
     "secretCopied": "Secret copiato",
+    "rollSecret": "Rinnova secret",
+    "rollSecretTitle": "Rinnovare il secret di questo webhook?",
+    "rollSecretText": "Riceverà un nuovo secret di firma. Per le prossime 24 ore entrambi i secret firmano ogni richiesta, così il tuo endpoint continua a funzionare mentre passi a quello nuovo.",
+    "rollSecretFailed": "Impossibile rinnovare il secret.",
+    "newSecretTitle": "Il nuovo secret del tuo webhook",
+    "newSecretText": "Le richieste sono firmate con questo e, fino al {until}, anche con quello vecchio. Copialo ora: non verrà più mostrato.",
     "added": "aggiunto il {date}",
     "sendTest": "Invia evento di test",
     "testSent": "L'evento di test è stato consegnato.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Ha ridotto i permessi di una chiave API",
       "webhook_added": "Ha aggiunto un webhook",
       "webhook_tested": "Ha testato un webhook",
-      "webhook_deleted": "Ha eliminato un webhook"
+      "webhook_deleted": "Ha eliminato un webhook",
+      "webhook_secret_rotated": "Ha rinnovato il secret di firma di un webhook"
     },
     "removed": "rimossi: {permissions}",
     "permissions": {

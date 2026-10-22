@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Dùng nó để kiểm tra chữ ký của mỗi yêu cầu (xem tài liệu cho nhà phát triển). Hãy sao chép ngay: khóa bí mật sẽ không được hiển thị lại.",
     "copySecret": "Sao chép khóa bí mật",
     "secretCopied": "Đã sao chép khóa bí mật",
+    "rollSecret": "Đổi khóa bí mật",
+    "rollSecretTitle": "Đổi khóa bí mật của webhook này?",
+    "rollSecretText": "Webhook sẽ có khóa bí mật ký mới. Trong 24 giờ tới, cả hai khóa đều ký mỗi yêu cầu, nên endpoint của bạn vẫn hoạt động trong lúc bạn chuyển sang khóa mới.",
+    "rollSecretFailed": "Không thể đổi khóa bí mật.",
+    "newSecretTitle": "Khóa bí mật mới của webhook",
+    "newSecretText": "Các yêu cầu được ký bằng khóa này và, cho đến {until}, cả bằng khóa cũ. Hãy sao chép ngay: khóa bí mật sẽ không được hiển thị lại.",
     "added": "thêm ngày {date}",
     "sendTest": "Gửi sự kiện thử nghiệm",
     "testSent": "Sự kiện thử nghiệm đã được gửi tới nơi.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Đã thu hẹp quyền của một khóa API",
       "webhook_added": "Đã thêm một webhook",
       "webhook_tested": "Đã thử một webhook",
-      "webhook_deleted": "Đã xóa một webhook"
+      "webhook_deleted": "Đã xóa một webhook",
+      "webhook_secret_rotated": "Đã đổi khóa bí mật ký của một webhook"
     },
     "removed": "đã bỏ: {permissions}",
     "permissions": {

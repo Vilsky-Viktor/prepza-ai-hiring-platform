@@ -1838,6 +1838,65 @@
     }
    }
   },
+  "/manage/webhooks/{webhook_id}/secret": {
+   "post": {
+    "tags": [
+     "manage"
+    ],
+    "summary": "Rotate Secret",
+    "description": "Owners and admins give a web hook a new signing secret, shown once; the old one keeps\nsigning too for a day, so its receiver can switch over.",
+    "operationId": "rotate_secret",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "webhook_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Webhook Id"
+      }
+     },
+     {
+      "name": "company_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NewSecretOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/manage/webhooks/{webhook_id}/test": {
    "post": {
     "tags": [
@@ -2930,6 +2989,25 @@
      "key"
     ],
     "title": "NewKeyOut"
+   },
+   "NewSecretOut": {
+    "properties": {
+     "secret": {
+      "type": "string",
+      "title": "Secret"
+     },
+     "previous_until": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Previous Until"
+     }
+    },
+    "type": "object",
+    "required": [
+     "secret",
+     "previous_until"
+    ],
+    "title": "NewSecretOut"
    },
    "NewWebhookOut": {
     "properties": {

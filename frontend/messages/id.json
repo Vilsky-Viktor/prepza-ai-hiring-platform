@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Gunakan untuk memeriksa tanda tangan setiap permintaan (lihat dokumentasi pengembang). Salin sekarang: secret ini tidak akan ditampilkan lagi.",
     "copySecret": "Salin secret",
     "secretCopied": "Secret disalin",
+    "rollSecret": "Ganti secret",
+    "rollSecretTitle": "Ganti secret webhook ini?",
+    "rollSecretText": "Webhook ini akan mendapat secret penanda tangan baru. Selama 24 jam ke depan, kedua secret menandatangani setiap permintaan, jadi endpoint-mu tetap berfungsi selagi kamu beralih ke yang baru.",
+    "rollSecretFailed": "Secret tidak dapat diganti.",
+    "newSecretTitle": "Secret baru webhook-mu",
+    "newSecretText": "Permintaan ditandatangani dengan secret ini dan, hingga {until}, juga dengan yang lama. Salin sekarang: secret ini tidak akan ditampilkan lagi.",
     "added": "ditambahkan {date}",
     "sendTest": "Kirim event uji",
     "testSent": "Event uji berhasil terkirim.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Mempersempit hak akses kunci API",
       "webhook_added": "Menambahkan webhook",
       "webhook_tested": "Menguji webhook",
-      "webhook_deleted": "Menghapus webhook"
+      "webhook_deleted": "Menghapus webhook",
+      "webhook_secret_rotated": "Mengganti secret penanda tangan webhook"
     },
     "removed": "dihapus: {permissions}",
     "permissions": {

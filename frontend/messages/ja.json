@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "各リクエストの署名の検証に使います（開発者向けドキュメントを参照）。今すぐコピーしてください。今後は表示されません。",
     "copySecret": "シークレットをコピー",
     "secretCopied": "シークレットをコピーしました",
+    "rollSecret": "シークレットを更新",
+    "rollSecretTitle": "この Webhook のシークレットを更新しますか？",
+    "rollSecretText": "新しい署名シークレットが発行されます。今後 24 時間は両方のシークレットで各リクエストに署名するため、新しいシークレットに切り替えるまでエンドポイントはそのまま動作します。",
+    "rollSecretFailed": "シークレットを更新できませんでした。",
+    "newSecretTitle": "Webhook の新しいシークレット",
+    "newSecretText": "リクエストはこのシークレットで署名され、{until} までは古いシークレットでも署名されます。今すぐコピーしてください。今後は表示されません。",
     "added": "{date} に追加",
     "sendTest": "テストイベントを送信",
     "testSent": "テストイベントが配信されました。",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "API キーの権限を絞りました",
       "webhook_added": "Webhook を追加しました",
       "webhook_tested": "Webhook をテストしました",
-      "webhook_deleted": "Webhook を削除しました"
+      "webhook_deleted": "Webhook を削除しました",
+      "webhook_secret_rotated": "Webhook の署名シークレットを更新しました"
     },
     "removed": "削除した権限: {permissions}",
     "permissions": {

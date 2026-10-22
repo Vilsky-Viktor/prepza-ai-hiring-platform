@@ -7,6 +7,7 @@ import { toast } from "sonner"
 
 import { useLocalTime } from "@/hooks/use-local-time"
 import { IconButton } from "@/components/icon-button"
+import { RollSecret } from "@/components/company/webhook-secret"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -18,10 +19,11 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { ApiWebhook, WebhookAttempt } from "@/types/api-access"
 
-/** A web hook's own actions on the API page: owners and admins send it a signed test event;
- * anyone sees its delivery log, its latest sends and how they went. */
+/** A web hook's own actions on the API page: owners and admins send it a signed test event and
+ * roll its signing secret; anyone sees its delivery log, its latest sends and how they went. */
 export function WebhookActions({
   companyId,
   hook,
@@ -62,6 +64,9 @@ export function WebhookActions({
         <IconButton label={t("sendTest")} disabled={testing} onClick={test}>
           <SendIcon className="size-6 rtl:-scale-x-100" />
         </IconButton>
+      )}
+      {canEdit && (
+        <RollSecret path={`${path}/secret?company_id=${companyId}`} />
       )}
       <WebhookLog path={`${path}/log?company_id=${companyId}`} url={hook.url} />
     </>
@@ -114,7 +119,7 @@ function WebhookLog({ path, url }: { path: string; url: string }) {
           <DialogHeader>
             <DialogTitle>{t("log")}</DialogTitle>
             <DialogDescription className="break-all">
-              {t("logText", { url })}
+              {t.rich("logText", { url, ...bdi })}
             </DialogDescription>
           </DialogHeader>
           {attempts?.length === 0 && (

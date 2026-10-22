@@ -9,7 +9,7 @@ from prepza_common.limits import limit, record_hit
 from prepza_common.public_urls import resolved_address
 
 from app.config.settings import settings
-from app.constants.api import KEY_EXPIRY_MONTHS, KeyExpiry
+from app.constants.api import KEY_EXPIRY_MONTHS, SECRET_OVERLAP, KeyExpiry
 from app.constants.permissions import (
     DEFAULT_PERMISSIONS,
     IMPLIED,
@@ -26,6 +26,7 @@ from app.schemas.manage import (
     ApiSettingsOut,
     KeyOut,
     NewKeyOut,
+    NewSecretOut,
     NewWebhookOut,
     WebhookAttemptOut,
     WebhookOut,
@@ -155,6 +156,19 @@ async def create_webhook(company_id: UUID, url: str, user_id: str) -> NewWebhook
     return NewWebhookOut(
         **WebhookOut.model_validate(row, from_attributes=True).model_dump(), secret=secret
     )
+
+
+async def rotate_secret(company_id: UUID, webhook_id: UUID, user_id: str) -> NewSecretOut:
+    """A new signing secret for the web hook, shown once; the old one signs too for
+    SECRET_OVERLAP, so the receiver switches over without missing an event."""
+    secret = new_secret()
+    until = datetime.now(UTC) + SECRET_OVERLAP
+    sealed = encrypt(settings.api_encryption_key, secret)
+
+    if await webhooks.rotate(company_id, webhook_id, sealed, until, user_id) is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Web hook not found")
+
+    return NewSecretOut(secret=secret, previous_until=until)
 
 
 async def remove_webhook(company_id: UUID, webhook_id: UUID, user_id: str) -> None:

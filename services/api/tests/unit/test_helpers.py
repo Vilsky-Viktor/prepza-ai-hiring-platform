@@ -52,7 +52,19 @@ def test_a_web_hook_is_signed_over_its_time_and_raw_body():
         "timestamp": "2026-10-15T08:00:00+00:00",
         "data": {"a": 1},
     }
-    assert signature("whsec_x", 1760000000, body) == f"t=1760000000,v1={expected}"
+    assert signature(["whsec_x"], 1760000000, body) == f"t=1760000000,v1={expected}"
+
+
+def test_while_a_rolled_secret_overlaps_both_sign_the_new_one_first():
+    body = b'{"type":"test"}'
+    new, old = (
+        hmac.new(secret, b"1760000000." + body, hashlib.sha256).hexdigest()
+        for secret in (b"whsec_new", b"whsec_old")
+    )
+
+    assert signature(["whsec_new", "whsec_old"], 1760000000, body) == (
+        f"t=1760000000,v1={new},v1={old}"
+    )
 
 
 def test_a_masked_web_hook_address_keeps_only_its_site():

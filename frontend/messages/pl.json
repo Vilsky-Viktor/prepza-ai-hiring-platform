@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Użyj go do sprawdzania podpisu każdego żądania (zobacz dokumentację dla deweloperów). Skopiuj go teraz: nie zostanie pokazany ponownie.",
     "copySecret": "Kopiuj sekret",
     "secretCopied": "Skopiowano sekret",
+    "rollSecret": "Zmień sekret",
+    "rollSecretTitle": "Zmienić sekret tego webhooka?",
+    "rollSecretText": "Otrzyma nowy sekret do podpisywania. Przez najbliższe 24 godziny oba sekrety podpisują każde żądanie, więc Twój endpoint działa dalej, gdy przełączasz go na nowy.",
+    "rollSecretFailed": "Nie udało się zmienić sekretu.",
+    "newSecretTitle": "Nowy sekret Twojego webhooka",
+    "newSecretText": "Żądania są nim podpisywane, a do {until} także starym. Skopiuj go teraz: nie zostanie pokazany ponownie.",
     "added": "dodany {date}",
     "sendTest": "Wyślij zdarzenie testowe",
     "testSent": "Zdarzenie testowe zostało dostarczone.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Ograniczył(a) uprawnienia klucza API",
       "webhook_added": "Dodał(a) webhook",
       "webhook_tested": "Przetestował(a) webhook",
-      "webhook_deleted": "Usunął(-ęła) webhook"
+      "webhook_deleted": "Usunął(-ęła) webhook",
+      "webhook_secret_rotated": "Zmienił(a) sekret podpisu webhooka"
     },
     "removed": "usunięto: {permissions}",
     "permissions": {

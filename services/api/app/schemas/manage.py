@@ -54,6 +54,13 @@ class NewWebhookOut(WebhookOut):
     secret: str
 
 
+class NewSecretOut(BaseModel):
+    # The web hook's new signing secret, shown this once.
+    secret: str
+    # Until when the old secret signs too.
+    previous_until: datetime
+
+
 class WebhookIn(BaseModel):
     url: str = Field(min_length=1, max_length=MAX_URL_LENGTH)
 

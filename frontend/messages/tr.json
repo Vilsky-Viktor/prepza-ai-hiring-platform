@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Her isteğin imzasını doğrulamak için kullanın (geliştirici belgelerine bakın). Şimdi kopyalayın: bir daha gösterilmeyecek.",
     "copySecret": "Gizli anahtarı kopyala",
     "secretCopied": "Gizli anahtar kopyalandı",
+    "rollSecret": "Gizli anahtarı yenile",
+    "rollSecretTitle": "Bu webhook'un gizli anahtarı yenilensin mi?",
+    "rollSecretText": "Yeni bir imzalama anahtarı alır. Önümüzdeki 24 saat boyunca her isteği iki anahtar da imzalar; böylece uç noktanızı yenisine geçirirken çalışmaya devam eder.",
+    "rollSecretFailed": "Gizli anahtar yenilenemedi.",
+    "newSecretTitle": "Webhook'unuzun yeni gizli anahtarı",
+    "newSecretText": "İstekler bununla ve {until} tarihine kadar eskisiyle de imzalanır. Şimdi kopyalayın: bir daha gösterilmeyecek.",
     "added": "eklenme: {date}",
     "sendTest": "Test olayı gönder",
     "testSent": "Test olayı teslim edildi.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Bir API anahtarının yetkilerini daralttı",
       "webhook_added": "Bir webhook ekledi",
       "webhook_tested": "Bir webhook'u test etti",
-      "webhook_deleted": "Bir webhook'u sildi"
+      "webhook_deleted": "Bir webhook'u sildi",
+      "webhook_secret_rotated": "Bir webhook'un imzalama anahtarını yeniledi"
     },
     "removed": "kaldırılan: {permissions}",
     "permissions": {

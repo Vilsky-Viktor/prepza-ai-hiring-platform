@@ -229,6 +229,9 @@ async def deliver(hook: Webhook, event_id: str, body: bytes) -> bool:
     (API_ENCRYPTION_KEY lost the key that sealed it), is a failure, retried like a refused send,
     so the web hook shows as failing rather than missing events unseen."""
     secret = decrypt(settings.api_encryption_key, hook.secret)
+    # A rolled secret's old one, while it still signs too.
+    overlapping = hook.previous_secret and hook.previous_until > datetime.now(UTC)
+    previous = decrypt(settings.api_encryption_key, hook.previous_secret) if overlapping else None
 
     try:
         address = await resolved_address(hook.url)
@@ -253,7 +256,8 @@ async def deliver(hook: Webhook, event_id: str, body: bytes) -> bool:
         return True
 
     try:
-        await endpoints.post(hook.url, address, body, signature(secret, int(time.time()), body))
+        secrets = [secret, previous] if previous else [secret]
+        await endpoints.post(hook.url, address, body, signature(secrets, int(time.time()), body))
     except httpx.HTTPError as error:
         # Not the error's text: it can carry the web hook's URL, and a URL can carry a secret.
         reason = (

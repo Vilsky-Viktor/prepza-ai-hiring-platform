@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "用它校验每个请求的签名（参见开发者文档）。请立即复制：它不会再次显示。",
     "copySecret": "复制签名密钥",
     "secretCopied": "签名密钥已复制",
+    "rollSecret": "更换签名密钥",
+    "rollSecretTitle": "更换此 Webhook 的签名密钥？",
+    "rollSecretText": "它会获得一个新的签名密钥。接下来 24 小时内，两个密钥都会为每个请求签名，因此在你把端点切换到新密钥期间，它仍能正常工作。",
+    "rollSecretFailed": "无法更换签名密钥。",
+    "newSecretTitle": "你的 Webhook 的新签名密钥",
+    "newSecretText": "请求会用它签名，在 {until} 之前也会用旧密钥签名。请立即复制：它不会再次显示。",
     "added": "添加于 {date}",
     "sendTest": "发送测试事件",
     "testSent": "测试事件已送达。",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "缩小了 API 密钥的权限",
       "webhook_added": "添加了 Webhook",
       "webhook_tested": "测试了 Webhook",
-      "webhook_deleted": "删除了 Webhook"
+      "webhook_deleted": "删除了 Webhook",
+      "webhook_secret_rotated": "更换了 Webhook 的签名密钥"
     },
     "removed": "已移除：{permissions}",
     "permissions": {

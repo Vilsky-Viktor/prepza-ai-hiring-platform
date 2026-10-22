@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Gamitin ito para i-check ang signature ng bawat request (tingnan ang dokumentasyon para sa mga developer). Kopyahin ito ngayon: hindi na ito ipapakita ulit.",
     "copySecret": "Kopyahin ang secret",
     "secretCopied": "Nakopya ang secret",
+    "rollSecret": "Palitan ang secret",
+    "rollSecretTitle": "Palitan ang secret ng webhook na ito?",
+    "rollSecretText": "Magkakaroon ito ng bagong signing secret. Sa susunod na 24 na oras, parehong secret ang pipirma sa bawat request, kaya gagana pa rin ang endpoint mo habang inililipat mo ito sa bago.",
+    "rollSecretFailed": "Hindi napalitan ang secret.",
+    "newSecretTitle": "Ang bagong secret ng webhook mo",
+    "newSecretText": "Pinipirmahan ang mga request gamit ito at, hanggang {until}, pati ng luma. Kopyahin ito ngayon: hindi na ito ipapakita ulit.",
     "added": "idinagdag noong {date}",
     "sendTest": "Magpadala ng test event",
     "testSent": "Naipadala ang test event.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Binawasan ang mga pahintulot ng isang API key",
       "webhook_added": "Nagdagdag ng webhook",
       "webhook_tested": "Sinubukan ang isang webhook",
-      "webhook_deleted": "Nag-delete ng webhook"
+      "webhook_deleted": "Nag-delete ng webhook",
+      "webhook_secret_rotated": "Pinalitan ang signing secret ng isang webhook"
     },
     "removed": "inalis: {permissions}",
     "permissions": {

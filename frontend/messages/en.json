@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Use it to check each request's signature (see the developer docs). Copy it now: it won't be shown again.",
     "copySecret": "Copy secret",
     "secretCopied": "Secret copied",
+    "rollSecret": "Roll secret",
+    "rollSecretTitle": "Roll this web hook's secret?",
+    "rollSecretText": "It gets a new signing secret. For the next 24 hours both secrets sign each request, so your endpoint keeps working while you switch it to the new one.",
+    "rollSecretFailed": "Couldn't roll the secret.",
+    "newSecretTitle": "Your web hook's new secret",
+    "newSecretText": "Requests are signed with it and, until {until}, with the old one too. Copy it now: it won't be shown again.",
     "added": "added {date}",
     "sendTest": "Send test event",
     "testSent": "The test event was delivered.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Narrowed an API key's permissions",
       "webhook_added": "Added a web hook",
       "webhook_tested": "Tested a web hook",
-      "webhook_deleted": "Deleted a web hook"
+      "webhook_deleted": "Deleted a web hook",
+      "webhook_secret_rotated": "Rolled a web hook's signing secret"
     },
     "removed": "removed: {permissions}",
     "permissions": {

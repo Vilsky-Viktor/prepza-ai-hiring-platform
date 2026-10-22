@@ -183,5 +183,7 @@ added. Anything retired first answers with `Deprecation` and `Sunset` headers an
   `GET /candidates?email=` is deprecated, as it puts an email in the URL: it keeps working until
   1 May 2027 and answers with `Deprecation`, `Sunset` and `Link` (`rel="deprecation"`) headers.
 - 2026-10-22: web hook bodies carry `timestamp`, the same as `occurred_at`.
+- 2026-10-22: a web hook's secret can be rolled; for 24 hours both secrets sign, so
+  `Prepza-Signature` carries a `v1=` for each.
 
 """

@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "각 요청의 서명을 확인하는 데 사용하세요(개발자 문서 참고). 지금 복사하세요. 다시 표시되지 않습니다.",
     "copySecret": "시크릿 복사",
     "secretCopied": "시크릿을 복사했습니다",
+    "rollSecret": "시크릿 교체",
+    "rollSecretTitle": "이 웹훅의 시크릿을 교체할까요?",
+    "rollSecretText": "새 서명 시크릿이 발급됩니다. 앞으로 24시간 동안은 두 시크릿이 모두 각 요청에 서명하므로, 엔드포인트를 새 시크릿으로 바꾸는 동안에도 계속 작동합니다.",
+    "rollSecretFailed": "시크릿을 교체하지 못했습니다.",
+    "newSecretTitle": "웹훅의 새 시크릿",
+    "newSecretText": "요청은 이 시크릿으로 서명되며, {until}까지는 이전 시크릿으로도 서명됩니다. 지금 복사하세요. 다시 표시되지 않습니다.",
     "added": "{date}에 추가",
     "sendTest": "테스트 이벤트 보내기",
     "testSent": "테스트 이벤트가 전달되었습니다.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "API 키의 권한을 줄임",
       "webhook_added": "웹훅을 추가함",
       "webhook_tested": "웹훅을 테스트함",
-      "webhook_deleted": "웹훅을 삭제함"
+      "webhook_deleted": "웹훅을 삭제함",
+      "webhook_secret_rotated": "웹훅의 서명 시크릿을 교체함"
     },
     "removed": "제거된 권한: {permissions}",
     "permissions": {

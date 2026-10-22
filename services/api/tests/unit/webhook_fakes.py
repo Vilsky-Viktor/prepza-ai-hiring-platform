@@ -38,6 +38,8 @@ def endpoints(monkeypatch, companies_api):
             created_by=maker,
             failing=False,
             stopped=False,
+            previous_secret=None,
+            previous_until=None,
         )
         state["hooks"].append(found)
 

@@ -99,6 +99,39 @@ async def remove(company_id: uuid.UUID, webhook_id: uuid.UUID, user_id: str) -> 
     return url is not None
 
 
+async def rotate(
+    company_id: uuid.UUID, webhook_id: uuid.UUID, sealed_secret: str, until: datetime, user_id: str
+) -> Webhook | None:
+    """Gives the company's web hook a new secret; the current one keeps signing too until
+    `until` (a secret rolled again meanwhile ends the older one's overlap). The company's action
+    log gets it as `user_id`'s, in the same transaction. None when there's no such web hook."""
+    query = (
+        update(Webhook)
+        .where(Webhook.company_id == company_id, Webhook.id == webhook_id)
+        .values(previous_secret=Webhook.secret, previous_until=until, secret=sealed_secret)
+        .returning(Webhook)
+    )
+
+    async with Session() as session:
+        hook = await session.scalar(query)
+
+        if hook is not None:
+            audit.add(
+                session,
+                OutboxEvent,
+                company_id,
+                user_id,
+                AuditAction.WEBHOOK_SECRET_ROTATED,
+                TargetKind.WEBHOOK,
+                webhook_id,
+                masked(hook.url),
+            )
+
+        await session.commit()
+
+    return hook
+
+
 async def tested(hook: Webhook, user_id: str) -> None:
     """A member sent the web hook a test event: the company's action log gets it."""
     async with Session() as session:

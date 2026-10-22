@@ -18,6 +18,11 @@ web hook's signing secret, which is shown once when the web hook is added. Verif
 and reject requests whose timestamp is more than a few minutes old, before processing an event.
 Pass the raw request body, as received, before any JSON parsing.
 
+To change a web hook's secret, select **roll secret** next to it on the API page: the new secret
+is shown once, and for the next 24 hours requests are signed with both, so the header carries two
+`v1=` values (the new secret's first). Accept a request when any `v1` matches a secret you hold,
+switch your endpoint to the new secret, and the old one stops signing when the 24 hours end.
+
 ```python
 import hashlib
 import hmac
@@ -26,15 +31,17 @@ import time
 
 def verify(secret: str, header: str, body: bytes, tolerance: int = 300) -> bool:
     # Whether a request came from prepza: its Prepza-Signature header and raw body.
-    parts = dict(part.split("=", 1) for part in header.split(","))
-    timestamp = int(parts["t"])
+    parts = [part.split("=", 1) for part in header.split(",")]
+    timestamp = int(next(value for name, value in parts if name == "t"))
     expected = hmac.new(
         secret.encode(), f"{timestamp}.".encode() + body, hashlib.sha256
     ).hexdigest()
-
-    return abs(time.time() - timestamp) <= tolerance and hmac.compare_digest(
-        expected, parts["v1"]
+    # While a rolled secret overlaps, there's a v1 for each secret.
+    signed = any(
+        hmac.compare_digest(expected, value) for name, value in parts if name == "v1"
     )
+
+    return abs(time.time() - timestamp) <= tolerance and signed
 ```
 
 ```typescript
@@ -47,20 +54,21 @@ export function verify(
   body: string,
   tolerance = 300,
 ): boolean {
-  const parts = Object.fromEntries(
-    header.split(",").map((part) => part.split("=", 2)),
-  )
-  const timestamp = Number(parts.t)
+  const parts = header.split(",").map((part) => part.split("=", 2))
+  const timestamp = Number(parts.find(([name]) => name === "t")?.[1])
   const expected = createHmac("sha256", secret)
     .update(`${timestamp}.${body}`)
     .digest("hex")
   const fresh = Math.abs(Date.now() / 1000 - timestamp) <= tolerance
-
-  return (
-    fresh &&
-    parts.v1?.length === expected.length &&
-    timingSafeEqual(Buffer.from(expected), Buffer.from(parts.v1))
+  // While a rolled secret overlaps, there's a v1 for each secret.
+  const signed = parts.some(
+    ([name, value]) =>
+      name === "v1" &&
+      value.length === expected.length &&
+      timingSafeEqual(Buffer.from(expected), Buffer.from(value)),
   )
+
+  return fresh && signed
 }
 ```
 

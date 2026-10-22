@@ -33,11 +33,13 @@ def body_of(event_id: str, event_type: str, data: dict, occurred_at: datetime) -
     return json.dumps(event, separators=(",", ":")).encode()
 
 
-def signature(secret: str, timestamp: int, body: bytes) -> str:
-    """The signature header: HMAC-SHA256 of "<timestamp>.<body>" with the web hook's secret."""
-    digest = hmac.new(secret.encode(), f"{timestamp}.".encode() + body, hashlib.sha256)
+def signature(secrets: list[str], timestamp: int, body: bytes) -> str:
+    """The signature header: HMAC-SHA256 of "<timestamp>.<body>" with each of the web hook's
+    secrets (the new one first, and the old one while a rolled secret overlaps), one v1= each."""
+    signed = f"{timestamp}.".encode() + body
+    digests = [hmac.new(secret.encode(), signed, hashlib.sha256).hexdigest() for secret in secrets]
 
-    return f"t={timestamp},v1={digest.hexdigest()}"
+    return ",".join([f"t={timestamp}", *(f"v1={digest}" for digest in digests)])
 
 
 def retry_delay(attempts: int, share: float | None = None) -> timedelta:

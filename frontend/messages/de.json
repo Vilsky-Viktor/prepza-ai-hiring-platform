@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Prüfe damit die Signatur jeder Anfrage (siehe Entwicklerdokumentation). Kopiere es jetzt: Es wird nicht noch einmal angezeigt.",
     "copySecret": "Secret kopieren",
     "secretCopied": "Secret kopiert",
+    "rollSecret": "Secret erneuern",
+    "rollSecretTitle": "Secret dieses Webhooks erneuern?",
+    "rollSecretText": "Er bekommt ein neues Signatur-Secret. In den nächsten 24 Stunden signieren beide Secrets jede Anfrage, sodass dein Endpunkt weiter funktioniert, während du ihn auf das neue umstellst.",
+    "rollSecretFailed": "Das Secret konnte nicht erneuert werden.",
+    "newSecretTitle": "Das neue Secret deines Webhooks",
+    "newSecretText": "Anfragen werden damit signiert und bis {until} auch mit dem alten. Kopiere es jetzt: Es wird nicht noch einmal angezeigt.",
     "added": "hinzugefügt {date}",
     "sendTest": "Testereignis senden",
     "testSent": "Das Testereignis wurde zugestellt.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Hat die Berechtigungen eines API-Schlüssels eingeschränkt",
       "webhook_added": "Hat einen Webhook hinzugefügt",
       "webhook_tested": "Hat einen Webhook getestet",
-      "webhook_deleted": "Hat einen Webhook gelöscht"
+      "webhook_deleted": "Hat einen Webhook gelöscht",
+      "webhook_secret_rotated": "Hat das Signatur-Secret eines Webhooks erneuert"
     },
     "removed": "entfernt: {permissions}",
     "permissions": {

@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Use-o para verificar a assinatura de cada requisição (veja a documentação para desenvolvedores). Copie-o agora: ele não será mostrado novamente.",
     "copySecret": "Copiar segredo",
     "secretCopied": "Segredo copiado",
+    "rollSecret": "Renovar segredo",
+    "rollSecretTitle": "Renovar o segredo deste webhook?",
+    "rollSecretText": "Ele recebe um novo segredo de assinatura. Nas próximas 24 horas, os dois segredos assinam cada requisição, então seu endpoint continua funcionando enquanto você muda para o novo.",
+    "rollSecretFailed": "Não foi possível renovar o segredo.",
+    "newSecretTitle": "O novo segredo do seu webhook",
+    "newSecretText": "As requisições são assinadas com ele e, até {until}, também com o antigo. Copie-o agora: ele não será mostrado novamente.",
     "added": "adicionado em {date}",
     "sendTest": "Enviar evento de teste",
     "testSent": "O evento de teste foi entregue.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Reduziu as permissões de uma chave de API",
       "webhook_added": "Adicionou um webhook",
       "webhook_tested": "Testou um webhook",
-      "webhook_deleted": "Excluiu um webhook"
+      "webhook_deleted": "Excluiu um webhook",
+      "webhook_secret_rotated": "Renovou o segredo de assinatura de um webhook"
     },
     "removed": "removido: {permissions}",
     "permissions": {

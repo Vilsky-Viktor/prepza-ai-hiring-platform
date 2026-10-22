@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Kasuta seda iga päringu allkirja kontrollimiseks (vt arendajate dokumentatsiooni). Kopeeri see kohe: seda ei näidata uuesti.",
     "copySecret": "Kopeeri saladus",
     "secretCopied": "Saladus kopeeritud",
+    "rollSecret": "Uuenda saladus",
+    "rollSecretTitle": "Kas uuendada selle webhooki saladust?",
+    "rollSecretText": "Webhook saab uue allkirjastamise saladuse. Järgmise 24 tunni jooksul allkirjastavad iga päringut mõlemad saladused, nii et sinu otspunkt töötab edasi, kuni lülitad selle uuele.",
+    "rollSecretFailed": "Saladust ei õnnestunud uuendada.",
+    "newSecretTitle": "Sinu webhooki uus saladus",
+    "newSecretText": "Päringud allkirjastatakse sellega ja kuni {until} ka vanaga. Kopeeri see kohe: seda ei näidata uuesti.",
     "added": "lisatud {date}",
     "sendTest": "Saada testsündmus",
     "testSent": "Testsündmus jõudis kohale.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Kitsendas API-võtme õigusi",
       "webhook_added": "Lisas webhooki",
       "webhook_tested": "Testis webhooki",
-      "webhook_deleted": "Kustutas webhooki"
+      "webhook_deleted": "Kustutas webhooki",
+      "webhook_secret_rotated": "Uuendas webhooki allkirjastamise saladust"
     },
     "removed": "eemaldatud: {permissions}",
     "permissions": {

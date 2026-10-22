@@ -44,6 +44,10 @@ class Webhook(Base):
     company_id: Mapped[uuid.UUID] = mapped_column(Uuid, index=True)
     url: Mapped[str] = mapped_column(String(500))
     secret: Mapped[str] = mapped_column(Text)
+    # The secret a new one replaced (encrypted), which still signs too until `previous_until`, so
+    # the receiver can switch to the new one without missing events.
+    previous_secret: Mapped[str | None] = mapped_column(Text)
+    previous_until: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     created_by: Mapped[str] = mapped_column(String(128), index=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=now, server_default=func.now()

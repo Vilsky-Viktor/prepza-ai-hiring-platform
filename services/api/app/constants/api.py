@@ -32,7 +32,11 @@ ACCESS_CACHE_SECONDS = 60
 LAST_USED_EVERY = timedelta(minutes=1)
 # How long a web hook's endpoint may take to answer, its whole answer included.
 WEBHOOK_TIMEOUT_SECONDS = 10
-# The header that carries a web hook's signature: t=<unix seconds>,v1=<hex HMAC-SHA256>.
+# After a web hook's secret is rolled, the old one keeps signing too this long: the header then
+# carries a v1= for each, and the receiver switches over meanwhile.
+SECRET_OVERLAP = timedelta(hours=24)
+# The header that carries a web hook's signature: t=<unix seconds>,v1=<hex HMAC-SHA256>, one v1=
+# for each secret that signs.
 SIGNATURE_HEADER = "Prepza-Signature"
 # How long a web hook's deliveries are remembered: past Pub/Sub's redelivery of an event.
 DELIVERIES_KEPT = timedelta(days=30)

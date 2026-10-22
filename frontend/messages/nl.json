@@ -1820,6 +1820,12 @@
     "webhookCreatedText": "Gebruik het om de handtekening van elk verzoek te controleren (zie de ontwikkelaarsdocumentatie). Kopieer het nu: het wordt niet opnieuw getoond.",
     "copySecret": "Secret kopiëren",
     "secretCopied": "Secret gekopieerd",
+    "rollSecret": "Secret vernieuwen",
+    "rollSecretTitle": "Het secret van deze webhook vernieuwen?",
+    "rollSecretText": "Hij krijgt een nieuw ondertekeningssecret. De komende 24 uur ondertekenen beide secrets elk verzoek, zodat je endpoint blijft werken terwijl je het overzet naar het nieuwe.",
+    "rollSecretFailed": "Het secret kon niet worden vernieuwd.",
+    "newSecretTitle": "Het nieuwe secret van je webhook",
+    "newSecretText": "Verzoeken worden ermee ondertekend en tot {until} ook met het oude. Kopieer het nu: het wordt niet opnieuw getoond.",
     "added": "toegevoegd op {date}",
     "sendTest": "Testgebeurtenis versturen",
     "testSent": "De testgebeurtenis is afgeleverd.",
@@ -2352,7 +2358,8 @@
       "api_key_narrowed": "Beperkte de rechten van een API-sleutel",
       "webhook_added": "Voegde een webhook toe",
       "webhook_tested": "Testte een webhook",
-      "webhook_deleted": "Verwijderde een webhook"
+      "webhook_deleted": "Verwijderde een webhook",
+      "webhook_secret_rotated": "Vernieuwde het ondertekeningssecret van een webhook"
     },
     "removed": "verwijderd: {permissions}",
     "permissions": {
