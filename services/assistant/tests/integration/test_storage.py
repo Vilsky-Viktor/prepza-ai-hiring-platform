@@ -152,3 +152,38 @@ def test_a_visitors_chat_starts_the_new_conversation_in_its_order(run):
         *[(turn.role, turn.content) for turn in turns],
         ("user", "Create a company"),
     ]
+
+
+def test_an_erased_candidates_or_deleted_interviews_conversations_go_and_the_rest_stay(run):
+    company, other = uuid.uuid4(), uuid.uuid4()
+    user = f"members-{uuid.uuid4().hex[:8]}"
+    interview = str(uuid.uuid4())
+
+    async def say(company_id, title, content):
+        conversation = await conversations.create(user, company_id, title)
+        await messages.add_question(conversation.id, content, "text")
+
+    async def scenario():
+        await say(company, "Asked about Ann", "How did ANN@example.com do?")
+        await say(company, "About the interview", f"Open /interviews/{interview}")
+        await say(company, "About Bo", "How did bo@example.com do?")
+        # Another company's conversation about the same address isn't this company's to erase.
+        await say(other, "Ann elsewhere", "ann@example.com")
+        removed = push(
+            "candidate.removed",
+            {"company_id": str(company), "interview_id": interview, "email": "ann@example.com"},
+        )
+        deleted = push(
+            "candidate.interview_deleted",
+            {"company_id": str(company), "interview_id": interview},
+        )
+
+        async with client() as api:
+            for event in (removed, removed, deleted):
+                assert (await api.post("/internal/events", json=event)).status_code == 204
+
+        return await conversations.of_user(user, None, 0, 100)
+
+    left = run(scenario())
+
+    assert sorted(item.title for item in left) == ["About Bo", "Ann elsewhere"]

@@ -30,7 +30,7 @@ resource "google_pubsub_subscription" "dead_letter" {
 # matches every type with that prefix (hasPrefix): notifications and api take all "candidate."
 # events that way, as listing them one by one outgrew the cap, and ignore the ones they don't
 # handle. notifications' filter is 236 bytes, ats' 235, companies' 205, api's 118, the
-# assistant's 35, billing's 66, library's 111. Companies takes `audit.recorded`, members' actions in billing, ats,
+# assistant's 127, billing's 66, library's 111. Companies takes `audit.recorded`, members' actions in billing, ats,
 # notifications and api, for the company's action log. A
 # new consumer's subscription is created on apply and gets only the events published after that.
 locals {
@@ -40,7 +40,7 @@ locals {
     notifications = ["notification.requested", "candidate.*", "member.invited", "report.shared", "contact.sent", "company.deleted"]
     ats           = ["candidate.finished", "candidate.removed", "interview.ready", "interview.deleted", "company.deleted", "credits.added"]
     api           = ["candidate.*", "interview.ready", "company.deleted"]
-    assistant     = ["company.deleted"]
+    assistant     = ["company.deleted", "candidate.removed", "candidate.interview_deleted"]
     # Every AI call and limit hit, stored for the admin zone's AI costs tab.
     billing = ["ai.used", "limit.hit"]
   }

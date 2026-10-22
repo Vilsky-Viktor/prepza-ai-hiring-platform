@@ -1,9 +1,9 @@
 from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
-from sqlalchemy import delete, select, update
+from sqlalchemy import Text, cast, delete, func, or_, select, update
 
-from app.models.conversations import Conversation
+from app.models.conversations import Conversation, Message, ToolCall
 from app.storage.db import Session
 
 
@@ -66,6 +66,43 @@ async def delete_company(company_id: UUID) -> int:
     async with Session() as session:
         result = await session.execute(
             delete(Conversation).where(Conversation.company_id == company_id)
+        )
+        await session.commit()
+
+        return result.rowcount
+
+
+def mentions(text, needle: str):
+    return func.strpos(func.lower(text), needle.lower()) > 0
+
+
+async def delete_mentioning(company_id: UUID, needles: list[str]) -> int:
+    """The company's conversations whose messages or tools' results mention any of `needles`
+    (an erased candidate's email or invite, a deleted interview): they go whole, as what's left
+    of one would still read as about that person. How many went (none when run again)."""
+    needles = [needle for needle in needles if needle]
+
+    if not needles:
+        return 0
+
+    said = select(Message.conversation_id).where(
+        or_(
+            *(mentions(Message.content, needle) for needle in needles),
+            *(mentions(cast(Message.blocks, Text), needle) for needle in needles),
+        )
+    )
+    read = (
+        select(Message.conversation_id)
+        .join(ToolCall, ToolCall.message_id == Message.id)
+        .where(or_(*(mentions(cast(ToolCall.result, Text), needle) for needle in needles)))
+    )
+
+    async with Session() as session:
+        result = await session.execute(
+            delete(Conversation).where(
+                Conversation.company_id == company_id,
+                or_(Conversation.id.in_(said), Conversation.id.in_(read)),
+            )
         )
         await session.commit()
 
