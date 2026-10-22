@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, status
-from prepza_common.constants import UPDATES_CALLER
+from prepza_common.constants import MAX_UPDATES, UPDATES_CALLER
 from prepza_common.service_auth import only_from
 
 from app.constants.quality import COMPANY_INTERVIEWS_LINK, PATTERN_SIGNALS_CALLER
@@ -38,9 +38,11 @@ async def company_question_updates(
     body: QuestionUpdatesIn, caller: ServiceCaller
 ) -> QuestionUpdatesOut:
     """The assistant, for its get_updates tool: each question of these companies' interviews
-    newly flagged or fixed after `since` and up to `until`, named by its topic."""
+    newly flagged or fixed after `since` and up to `until`, named by its topic: the newest
+    MAX_UPDATES of each kind, and how many of each in all."""
     only_from(caller, UPDATES_CALLER)
-    rows = await question_updates.between(body.company_ids, body.since, body.until)
+    window = (body.company_ids, body.since, body.until)
+    rows = await question_updates.between(*window, MAX_UPDATES)
 
     return QuestionUpdatesOut(
         items=[
@@ -53,7 +55,8 @@ async def company_question_updates(
                 link=COMPANY_INTERVIEWS_LINK.format(company_id=company_id),
             )
             for kind, at, company_id, title, topic in rows
-        ]
+        ],
+        counts=await question_updates.counts(*window),
     )
 
 

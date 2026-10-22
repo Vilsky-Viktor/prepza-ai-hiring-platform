@@ -50,3 +50,8 @@ def candidate_updates(
             )
 
     return sorted(found, key=lambda item: item.at, reverse=True)
+
+
+def update_counts(started: int, finished: int, passed: int, undelivered: int) -> dict[str, int]:
+    """Every step's count by kind, and how many of the finished passed."""
+    return {STARTED: started, FINISHED: finished, "passed": passed, UNDELIVERED: undelivered}

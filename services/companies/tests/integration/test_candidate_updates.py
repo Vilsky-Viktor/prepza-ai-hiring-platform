@@ -40,7 +40,7 @@ def test_changed_finds_the_company_invites_with_a_step_in_the_window(run):
         await invited(found, "eve@example.com", finished_at=UNTIL + timedelta(seconds=1))
         await invited(found, "fay@example.com", started_at=inside, status=InviteStatus.DELETED)
         await invited(other, "gil@example.com", started_at=inside)
-        rows = await candidate_updates.changed([found.company_id], SINCE, UNTIL)
+        rows = await candidate_updates.changed([found.company_id], SINCE, UNTIL, 50)
 
         return rows, expected, found
 
@@ -48,6 +48,38 @@ def test_changed_finds_the_company_invites_with_a_step_in_the_window(run):
 
     assert sorted(invite.id for invite, _ in rows) == sorted(invite.id for invite in expected)
     assert {interview_row.id for _, interview_row in rows} == {found.id}
+
+
+def test_only_the_newest_are_listed_and_every_one_is_counted(run):
+    async def scenario():
+        found = await interview()
+
+        async with Session() as session:
+            await session.execute(
+                update(type(found)).where(type(found).id == found.id).values(pass_mark=50)
+            )
+            await session.commit()
+
+        for minute, grade in ((10, 80), (20, 30), (30, 90)):
+            await invited(
+                found,
+                f"c{minute}@example.com",
+                started_at=SINCE + timedelta(minutes=minute),
+                finished_at=SINCE + timedelta(minutes=minute + 1),
+                grade=grade,
+            )
+
+        await invited(found, "late@example.com", undelivered_at=SINCE + timedelta(minutes=40))
+        newest = await candidate_updates.changed([found.company_id], SINCE, UNTIL, 2)
+        counts = await candidate_updates.counts([found.company_id], SINCE, UNTIL)
+
+        return [invite.email for invite, _ in newest], counts
+
+    newest, counts = run(scenario())
+
+    assert newest == ["late@example.com", "c30@example.com"]
+    # Started, finished, passed (80 and 90 of a pass mark of 50), undelivered.
+    assert counts == (3, 3, 2, 1)
 
 
 def test_marking_an_invite_undelivered_records_when(run):

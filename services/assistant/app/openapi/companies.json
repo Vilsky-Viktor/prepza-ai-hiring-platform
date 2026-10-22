@@ -5585,7 +5585,7 @@
      "internal"
     ],
     "summary": "Company Candidate Updates",
-    "description": "The assistant, for its get_updates tool: each candidate of these companies who started,\nfinished or whose invite wasn't delivered after `since` and up to `until`, newest first.",
+    "description": "The assistant, for its get_updates tool: each candidate of these companies who started,\nfinished or whose invite wasn't delivered after `since` and up to `until`: the newest\nMAX_UPDATES, newest first, and the counts of all.",
     "operationId": "company_candidate_updates_internal_candidates_updates_post",
     "requestBody": {
      "content": {
@@ -8795,13 +8795,22 @@
       },
       "type": "array",
       "title": "Items"
+     },
+     "counts": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Counts"
      }
     },
     "type": "object",
     "required": [
-     "items"
+     "items",
+     "counts"
     ],
-    "title": "CandidateUpdatesOut"
+    "title": "CandidateUpdatesOut",
+    "description": "The newest MAX_UPDATES steps, and how many of each kind there were in all (`passed`:\nthe finished who passed)."
    },
    "CatalogOut": {
     "properties": {

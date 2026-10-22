@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 
 from app.constants.sets import OwnerType
 from app.models.quality import QuestionRevision, QuestionStats
@@ -26,16 +26,40 @@ def of_companies(model, at, company_ids: list[str], since: datetime, until: date
     )
 
 
-async def between(company_ids: list[str], since: datetime, until: datetime) -> list[tuple]:
-    """Each question of the companies' interviews newly flagged, and each fixed (replaced as
-    flagged), after `since` and up to `until`: (kind, at, company id, interview, topic)."""
+def kinds(company_ids: list[str], since: datetime, until: datetime) -> dict:
+    """Each kind of update: the questions of the companies' interviews newly flagged, and those
+    fixed (replaced as flagged), after `since` and up to `until`, with when each came."""
     flagged = of_companies(QuestionStats, QuestionStats.flag_raised_at, company_ids, since, until)
     fixed = of_companies(
         QuestionRevision, QuestionRevision.replaced_at, company_ids, since, until
     ).where(QuestionRevision.fixed)
 
-    async with Session() as session:
-        found = [("question_flagged", *row) for row in await session.execute(flagged)]
-        found += [("question_fixed", *row) for row in await session.execute(fixed)]
+    return {
+        "question_flagged": (flagged, QuestionStats.flag_raised_at),
+        "question_fixed": (fixed, QuestionRevision.replaced_at),
+    }
 
-        return found
+
+async def between(
+    company_ids: list[str], since: datetime, until: datetime, limit: int
+) -> list[tuple]:
+    """The newest `limit` of each kind (kinds): (kind, at, company id, interview, topic)."""
+    found = []
+
+    async with Session() as session:
+        for kind, (query, at) in kinds(company_ids, since, until).items():
+            rows = await session.execute(query.order_by(at.desc()).limit(limit))
+            found += [(kind, *row) for row in rows]
+
+    return found
+
+
+async def counts(company_ids: list[str], since: datetime, until: datetime) -> dict[str, int]:
+    """How many of each kind (kinds) there are in all."""
+    found = {}
+
+    async with Session() as session:
+        for kind, (query, _) in kinds(company_ids, since, until).items():
+            found[kind] = await session.scalar(select(func.count()).select_from(query.subquery()))
+
+    return found

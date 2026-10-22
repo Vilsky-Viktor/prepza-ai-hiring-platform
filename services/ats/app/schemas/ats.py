@@ -118,4 +118,7 @@ class NotInvitedOut(BaseModel):
 
 
 class NotInvitedListOut(BaseModel):
+    """The newest MAX_UPDATES, and how many there are in all."""
+
     items: list[NotInvitedOut]
+    total: int

@@ -30,4 +30,8 @@ class CandidateUpdateOut(BaseModel):
 
 
 class CandidateUpdatesOut(BaseModel):
+    """The newest MAX_UPDATES steps, and how many of each kind there were in all (`passed`:
+    the finished who passed)."""
+
     items: list[CandidateUpdateOut]
+    counts: dict[str, int]

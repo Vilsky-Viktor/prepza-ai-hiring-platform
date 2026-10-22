@@ -81,16 +81,20 @@ def test_between_lists_the_companies_candidates_first_failed_in_the_window_newes
         await ats_candidates.settle(invited.id, CandidateStatus.FAILED, FailReason.LIMIT)
         await set_failed_at(invited.id, SINCE + timedelta(days=3))
         await ats_candidates.settle(invited.id, CandidateStatus.INVITED, invite_id=uuid.uuid4())
-        rows = await not_invited.between([company], SINCE, UNTIL)
+        rows = await not_invited.between([company], SINCE, UNTIL, 2)
+        total = await not_invited.count_between([company], SINCE, UNTIL)
         await ats.delete_company(company)
         await ats.delete_company(other)
 
-        return [(row.candidate_id, row.failed_at, conn.company_id) for row, conn in rows], company
+        listed = [(row.candidate_id, row.failed_at, conn.company_id) for row, conn in rows]
 
-    found, company = run(scenario())
+        return listed, total, company
+
+    found, total, company = run(scenario())
 
     assert found == [
         ("at until", UNTIL, company),
         ("newer", UNTIL - timedelta(days=1), company),
-        ("older", SINCE + timedelta(days=1), company),
     ]
+    # Only the newest are listed; every one is counted.
+    assert total == 3

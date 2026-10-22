@@ -41,4 +41,7 @@ class QuestionUpdateOut(BaseModel):
 
 
 class QuestionUpdatesOut(BaseModel):
+    """The newest MAX_UPDATES of each kind, and how many of each there are in all."""
+
     items: list[QuestionUpdateOut]
+    counts: dict[str, int]

@@ -1291,7 +1291,7 @@
      "internal"
     ],
     "summary": "Candidates Not Invited",
-    "description": "The assistant, for its get_updates tool: each candidate of these companies' ATSs who first\ncouldn't be invited after `since` and up to `until`, and still isn't.",
+    "description": "The assistant, for its get_updates tool: each candidate of these companies' ATSs who first\ncouldn't be invited after `since` and up to `until`, and still isn't: the newest\nMAX_UPDATES, and how many in all.",
     "operationId": "candidates_not_invited_internal_candidates_not_invited_post",
     "requestBody": {
      "content": {
@@ -1618,13 +1618,19 @@
       },
       "type": "array",
       "title": "Items"
+     },
+     "total": {
+      "type": "integer",
+      "title": "Total"
      }
     },
     "type": "object",
     "required": [
-     "items"
+     "items",
+     "total"
     ],
-    "title": "NotInvitedListOut"
+    "title": "NotInvitedListOut",
+    "description": "The newest MAX_UPDATES, and how many there are in all."
    },
    "NotInvitedOut": {
     "properties": {

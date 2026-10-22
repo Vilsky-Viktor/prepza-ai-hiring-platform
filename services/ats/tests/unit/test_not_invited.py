@@ -2,6 +2,7 @@ import asyncio
 import uuid
 from datetime import UTC, datetime
 
+from prepza_common.constants import MAX_UPDATES
 from prepza_common.http import bearer
 from prepza_common.service_auth import issue_token
 
@@ -50,8 +51,8 @@ def fake(monkeypatch):
         ),
     ]
 
-    async def between(company_ids, since, until):
-        asked["between"] = (company_ids, since, until)
+    async def between(company_ids, since, until, limit):
+        asked["between"] = (company_ids, since, until, limit)
 
         return rows
 
@@ -70,7 +71,10 @@ def test_each_candidate_not_invited_comes_with_its_interview_ats_link_and_reason
     asked = fake(monkeypatch)
     items = asyncio.run(not_invited_between([COMPANY], SINCE, UNTIL))
 
-    assert asked == {"between": ([COMPANY], SINCE, UNTIL), "interviews": {KNOWN, UNKNOWN}}
+    assert asked == {
+        "between": ([COMPANY], SINCE, UNTIL, MAX_UPDATES),
+        "interviews": {KNOWN, UNKNOWN},
+    }
     assert [item.model_dump() for item in items] == [
         {
             "at": datetime(2026, 10, 17, tzinfo=UTC),
@@ -107,6 +111,11 @@ def post(client, caller=None):
 
 def test_the_assistant_gets_the_candidates_not_invited(client, monkeypatch):
     fake(monkeypatch)
+
+    async def count_between(company_ids, since, until):
+        return 7
+
+    monkeypatch.setattr(not_invited, "count_between", count_between)
     response = post(client, "assistant")
 
     assert response.status_code == 200
@@ -114,6 +123,8 @@ def test_the_assistant_gets_the_candidates_not_invited(client, monkeypatch):
         ("ann@example.com", "Accountant", "Breezy HR"),
         ("bob@example.com", None, "Workable"),
     ]
+    # How many in all, not only those listed.
+    assert response.json()["total"] == 7
 
 
 def test_another_service_is_refused_and_a_call_without_a_token_is_unauthorized(client, monkeypatch):

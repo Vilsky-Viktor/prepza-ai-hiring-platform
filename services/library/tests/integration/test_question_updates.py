@@ -109,13 +109,15 @@ def test_updates_are_the_given_companies_flagged_and_fixed_questions_in_the_wind
             await session.commit()
 
         since, until = window()
-        found = await question_updates.between([mine], since, until)
-        everyone = await question_updates.between([mine, other], since, until)
-        later = await question_updates.between([mine], until, until + timedelta(hours=1))
+        found = await question_updates.between([mine], since, until, 50)
+        everyone = await question_updates.between([mine, other], since, until, 50)
+        later = await question_updates.between([mine], until, until + timedelta(hours=1), 50)
+        one_each = await question_updates.between([mine, other], since, until, 1)
+        counts = await question_updates.counts([mine, other], since, until)
 
-        return found, everyone, later
+        return found, everyone, later, one_each, counts
 
-    found, everyone, later = run(scenario())
+    found, everyone, later, one_each, counts = run(scenario())
 
     kinds = sorted((kind, owner, interview_title) for kind, _, owner, interview_title, _ in found)
     assert kinds == [
@@ -125,3 +127,6 @@ def test_updates_are_the_given_companies_flagged_and_fixed_questions_in_the_wind
     assert {topic for *_, topic in found} == {"Python"}
     assert sorted(owner for _, _, owner, _, _ in everyone) == sorted([mine, mine, other])
     assert later == []
+    # The newest of each kind listed; every one counted.
+    assert sorted(kind for kind, *_ in one_each) == ["question_fixed", "question_flagged"]
+    assert counts == {"question_flagged": 2, "question_fixed": 1}

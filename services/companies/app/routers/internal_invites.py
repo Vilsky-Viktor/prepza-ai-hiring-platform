@@ -1,12 +1,12 @@
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.constants import UPDATES_CALLER
+from prepza_common.constants import MAX_UPDATES, UPDATES_CALLER
 from prepza_common.service_auth import only_from
 from prepza_common.user import UserEmailIn
 
 from app.helpers import notifications
-from app.helpers.candidate_updates import candidate_updates
+from app.helpers.candidate_updates import candidate_updates, update_counts
 from app.schemas.candidate_updates import CandidateUpdatesIn, CandidateUpdatesOut
 from app.schemas.invites import InvitedCompaniesOut
 from app.service_auth import ServiceCaller
@@ -47,8 +47,13 @@ async def company_candidate_updates(
     body: CandidateUpdatesIn, caller: ServiceCaller
 ) -> CandidateUpdatesOut:
     """The assistant, for its get_updates tool: each candidate of these companies who started,
-    finished or whose invite wasn't delivered after `since` and up to `until`, newest first."""
+    finished or whose invite wasn't delivered after `since` and up to `until`: the newest
+    MAX_UPDATES, newest first, and the counts of all."""
     only_from(caller, UPDATES_CALLER)
-    rows = await updates_storage.changed(body.company_ids, body.since, body.until)
+    window = (body.company_ids, body.since, body.until)
+    rows = await updates_storage.changed(*window, MAX_UPDATES)
+    items = candidate_updates(rows, body.since, body.until)[:MAX_UPDATES]
 
-    return CandidateUpdatesOut(items=candidate_updates(rows, body.since, body.until))
+    return CandidateUpdatesOut(
+        items=items, counts=update_counts(*await updates_storage.counts(*window))
+    )

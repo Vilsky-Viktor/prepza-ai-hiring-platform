@@ -58,8 +58,10 @@ VIA_MCP = "mcp"
 # That header: a service token signed for companies, so it can't be forged; other services pass
 # it on to companies' access check (prepza_common.company_access).
 ASSISTANT_HEADER = "X-Assistant"
-# The only service that may read the internal routes of what's new (its get_updates tool).
+# The only service that may read the internal routes of what's new (its get_updates tool), and
+# the most updates one lists, newest first (with the counts of all).
 UPDATES_CALLER = "assistant"
+MAX_UPDATES = 50
 NOT_ALLOWED = "Not allowed"
 SIGN_IN_UNAVAILABLE = "Sign-in is temporarily unavailable. Please try again shortly."
 MINUTE_SECONDS = 60

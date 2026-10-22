@@ -1617,7 +1617,8 @@ export interface paths {
     /**
      * Company Candidate Updates
      * @description The assistant, for its get_updates tool: each candidate of these companies who started,
-     *     finished or whose invite wasn't delivered after `since` and up to `until`, newest first.
+     *     finished or whose invite wasn't delivered after `since` and up to `until`: the newest
+     *     MAX_UPDATES, newest first, and the counts of all.
      */
     post: operations["company_candidate_updates_internal_candidates_updates_post"]
     delete?: never
@@ -2868,10 +2869,18 @@ export interface components {
        */
       until: string
     }
-    /** CandidateUpdatesOut */
+    /**
+     * CandidateUpdatesOut
+     * @description The newest MAX_UPDATES steps, and how many of each kind there were in all (`passed`:
+     *     the finished who passed).
+     */
     CandidateUpdatesOut: {
       /** Items */
       items: components["schemas"]["CandidateUpdateOut"][]
+      /** Counts */
+      counts: {
+        [key: string]: number
+      }
     }
     /**
      * CatalogOut

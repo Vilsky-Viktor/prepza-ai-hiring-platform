@@ -1,12 +1,14 @@
 from datetime import UTC, datetime
 
+from prepza_common.constants import MAX_UPDATES
+
 from app.constants.tool_calls import MAX_STRING_LENGTH
 from app.constants.updates import (
     ATS_NOT_INVITED,
     BELL_FIELDS,
     CREDITS_LOW,
     FROM_SOURCES,
-    MAX_UPDATES,
+    PASSED,
     SOURCE_FIELDS,
     TOP_UP_PATH,
 )
@@ -71,21 +73,28 @@ def credits_low(company: dict) -> dict:
     }
 
 
-def summary(events: list[dict], low: list[dict]) -> dict:
-    """How many of each kind came, how many finished
-    candidates passed, and how many companies run low on credits."""
-    counts: dict[str, int] = {}
+def counts_of(candidates: dict, not_invited: dict, questions: dict, events: list[dict]) -> dict:
+    """How many of each kind came in all: the services count their own (they list only the
+    newest), the bell's other notifications, few, are counted here from `events`."""
+    counts = {**candidates["counts"], ATS_NOT_INVITED: not_invited["total"], **questions["counts"]}
+    sourced = set(counts)
 
     for event in events:
-        counts[event["kind"]] = counts.get(event["kind"], 0) + 1
-
-        if event.get("passed"):
-            counts["passed"] = counts.get("passed", 0) + 1
-
-    if low:
-        counts[CREDITS_LOW] = len(low)
+        if event["kind"] not in sourced:
+            counts[event["kind"]] = counts.get(event["kind"], 0) + 1
 
     return counts
+
+
+def summary(counts: dict[str, int], low: list[dict]) -> dict:
+    """How many of each kind came (the kinds that did), how many finished candidates passed,
+    and how many companies run low on credits."""
+    found = {kind: count for kind, count in counts.items() if count}
+
+    if low:
+        found[CREDITS_LOW] = len(low)
+
+    return found
 
 
 def shown(update: dict, site: str) -> dict:
@@ -120,19 +129,24 @@ def grouped(updates: list[dict], names: dict[str, str], site: str) -> list[dict]
 
 
 def updates_result(
-    events: list[dict], low: list[dict], names: dict[str, str], since: datetime, site: str
+    events: list[dict],
+    counts: dict[str, int],
+    low: list[dict],
+    names: dict[str, str],
+    since: datetime,
+    site: str,
 ) -> dict:
-    """What get_updates answers: since when, the summary of every update, then the companies
-    running low on credits and the newest MAX_UPDATES events, grouped (with `shown` and `more`
-    when there were more events), trimmed like other tools' data."""
+    """What get_updates answers: since when, the summary of every update (`counts`), then the
+    companies running low on credits and the newest MAX_UPDATES events, grouped (with `shown`
+    and `more` when there were more), trimmed like other tools' data."""
     listed = events[:MAX_UPDATES]
     result = {
         "since": since.isoformat(),
-        "summary": summary(events, low),
+        "summary": summary(counts, low),
         "companies": grouped(low + listed, names, site),
     }
 
-    if len(events) > len(listed):
+    if sum(count for kind, count in counts.items() if kind != PASSED) > len(listed):
         result |= {"shown": len(listed), "more": True}
 
     # Every listed update stays: none of its lists is longer than these.

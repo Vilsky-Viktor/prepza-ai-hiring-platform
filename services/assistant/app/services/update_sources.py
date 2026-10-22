@@ -12,7 +12,7 @@ from app.constants.updates import (
     QUESTION_UPDATES_PATH,
     UPDATES_PATH,
 )
-from app.helpers.updates import credits_low, events_of, updates_result
+from app.helpers.updates import counts_of, credits_low, events_of, updates_result
 from app.integrations import billing, services
 from app.integrations import update_sources as sources
 from app.services.tool_calls import error_content
@@ -66,7 +66,7 @@ async def read(
     editors = [key for key, company in found.items() if company["can_edit"] and sees_credits]
 
     if not ids:
-        return updates_result([], [], {}, period[0], site)
+        return updates_result([], {}, [], {}, period[0], site)
 
     calls = [
         sources.updates("companies", CANDIDATE_UPDATES_PATH, ids, period),
@@ -86,6 +86,7 @@ async def read(
     candidates, not_invited, questions, bell = answers[:4]
     low = [credits_low(company) for company in (answers[4] if editors else [])]
     names = {key: company["name"] for key, company in found.items()}
-    events = events_of(candidates, not_invited, questions, bell)
+    events = events_of(candidates["items"], not_invited["items"], questions["items"], bell["items"])
+    counts = counts_of(candidates, not_invited, questions, events)
 
-    return updates_result(events, low, names, period[0], site)
+    return updates_result(events, counts, low, names, period[0], site)

@@ -3503,7 +3503,7 @@
      "internal"
     ],
     "summary": "Company Question Updates",
-    "description": "The assistant, for its get_updates tool: each question of these companies' interviews\nnewly flagged or fixed after `since` and up to `until`, named by its topic.",
+    "description": "The assistant, for its get_updates tool: each question of these companies' interviews\nnewly flagged or fixed after `since` and up to `until`, named by its topic: the newest\nMAX_UPDATES of each kind, and how many of each in all.",
     "operationId": "company_question_updates_internal_questions_updates_post",
     "requestBody": {
      "content": {
@@ -5447,13 +5447,22 @@
       },
       "type": "array",
       "title": "Items"
+     },
+     "counts": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Counts"
      }
     },
     "type": "object",
     "required": [
-     "items"
+     "items",
+     "counts"
     ],
-    "title": "QuestionUpdatesOut"
+    "title": "QuestionUpdatesOut",
+    "description": "The newest MAX_UPDATES of each kind, and how many of each there are in all."
    },
    "RecipientOut": {
     "properties": {

@@ -2,8 +2,10 @@
 
 from datetime import UTC, datetime, timedelta
 
-from app.constants.updates import MAX_UPDATES
+from prepza_common.constants import MAX_UPDATES
+
 from app.helpers.updates import (
+    counts_of,
     credits_low,
     events_of,
     grouped,
@@ -105,24 +107,30 @@ def test_the_bell_never_tells_what_a_service_tells_one_by_one():
 
 
 def test_the_summary_counts_each_kind_the_passed_and_the_companies_low_on_credits():
-    events = events_of(
-        [
-            candidate("candidate_finished", 3, grade=80, passed=True),
-            candidate("candidate_finished", 2, grade=40, passed=False),
-            candidate("candidate_started", 1),
-            candidate("invite_undelivered", 0),
-        ],
-        [],
-        [],
-        [],
-    )
+    """The services count their own updates (they list only the newest); the bell's other
+    notifications are counted from the list."""
+    candidates = {
+        "items": [],
+        "counts": {
+            "candidate_started": 1,
+            "candidate_finished": 2,
+            "passed": 1,
+            "invite_undelivered": 1,
+        },
+    }
+    questions = {"items": [], "counts": {"question_flagged": 3, "question_fixed": 0}}
+    events = events_of([], [], [], [bell("auto_top_up", 0), bell("auto_top_up", 1)])
+    counts = counts_of(candidates, {"items": [], "total": 4}, questions, events)
     low = [credits_low({"company_id": GLOBEX, "candidates": 0})]
 
-    assert summary(events, low) == {
+    assert summary(counts, low) == {
+        "candidate_started": 1,
         "candidate_finished": 2,
         "passed": 1,
-        "candidate_started": 1,
         "invite_undelivered": 1,
+        "ats_not_invited": 4,
+        "question_flagged": 3,
+        "auto_top_up": 2,
         "credits_low": 1,
     }
 
@@ -165,11 +173,13 @@ def test_updates_are_grouped_by_company_then_interview_with_links_on_the_site():
 
 def test_at_most_the_cap_is_listed_but_the_summary_counts_them_all():
     events = events_of(
-        [candidate("candidate_started", minutes) for minutes in range(MAX_UPDATES + 10)], [], [], []
+        [candidate("candidate_started", minutes) for minutes in range(MAX_UPDATES)], [], [], []
     )
     low = [credits_low({"company_id": ACME, "candidates": 0})]
+    # Companies listed its newest MAX_UPDATES and counted every one.
+    counts = {"candidate_started": MAX_UPDATES + 10, "passed": 0}
 
-    result = updates_result(events, low, NAMES, START, SITE)
+    result = updates_result(events, counts, low, NAMES, START, SITE)
     acme = result["companies"][0]
     listed = acme["interviews"][0]["updates"]
 
@@ -177,13 +187,13 @@ def test_at_most_the_cap_is_listed_but_the_summary_counts_them_all():
     assert result["summary"] == {"candidate_started": MAX_UPDATES + 10, "credits_low": 1}
     assert (result["shown"], result["more"]) == (MAX_UPDATES, True)
     assert len(listed) == MAX_UPDATES
-    assert listed[0]["at"] == at(MAX_UPDATES + 9)
+    assert listed[0]["at"] == at(MAX_UPDATES - 1)
     assert acme["other"] == [
         {"kind": "credits_low", "candidates_left": 0, "link": f"{SITE}/top-up"}
     ]
 
 
 def test_under_the_cap_nothing_says_there_are_more():
-    result = updates_result([], [], {}, START, SITE)
+    result = updates_result([], {}, [], {}, START, SITE)
 
     assert result == {"since": START.isoformat(), "summary": {}, "companies": []}

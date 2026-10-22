@@ -33,10 +33,14 @@ def asked(monkeypatch):
     async def updates(service, path, company_ids, period):
         made[service] = (company_ids, period)
 
-        if service != "companies":
-            return []
+        # Each service's answer: its newest updates, and how many in all where it counts.
+        if service == "ats":
+            return {"items": [], "total": 0}
 
-        return [
+        if service != "companies":
+            return {"items": [], "counts": {}}
+
+        items = [
             {
                 "kind": "candidate_finished",
                 "at": UNTIL.isoformat(),
@@ -47,6 +51,8 @@ def asked(monkeypatch):
             }
             for company_id in company_ids
         ]
+
+        return {"items": items, "counts": {"candidate_finished": len(items)}}
 
     async def low_companies(company_ids):
         made["low"].append(company_ids)

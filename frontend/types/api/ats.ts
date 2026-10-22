@@ -523,7 +523,8 @@ export interface paths {
     /**
      * Candidates Not Invited
      * @description The assistant, for its get_updates tool: each candidate of these companies' ATSs who first
-     *     couldn't be invited after `since` and up to `until`, and still isn't.
+     *     couldn't be invited after `since` and up to `until`, and still isn't: the newest
+     *     MAX_UPDATES, and how many in all.
      */
     post: operations["candidates_not_invited_internal_candidates_not_invited_post"]
     delete?: never
@@ -668,10 +669,15 @@ export interface components {
        */
       until: string
     }
-    /** NotInvitedListOut */
+    /**
+     * NotInvitedListOut
+     * @description The newest MAX_UPDATES, and how many there are in all.
+     */
     NotInvitedListOut: {
       /** Items */
       items: components["schemas"]["NotInvitedOut"][]
+      /** Total */
+      total: number
     }
     /**
      * NotInvitedOut

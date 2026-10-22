@@ -1157,7 +1157,8 @@ export interface paths {
     /**
      * Company Question Updates
      * @description The assistant, for its get_updates tool: each question of these companies' interviews
-     *     newly flagged or fixed after `since` and up to `until`, named by its topic.
+     *     newly flagged or fixed after `since` and up to `until`, named by its topic: the newest
+     *     MAX_UPDATES of each kind, and how many of each in all.
      */
     post: operations["company_question_updates_internal_questions_updates_post"]
     delete?: never
@@ -2033,10 +2034,17 @@ export interface components {
        */
       until: string
     }
-    /** QuestionUpdatesOut */
+    /**
+     * QuestionUpdatesOut
+     * @description The newest MAX_UPDATES of each kind, and how many of each there are in all.
+     */
     QuestionUpdatesOut: {
       /** Items */
       items: components["schemas"]["QuestionUpdateOut"][]
+      /** Counts */
+      counts: {
+        [key: string]: number
+      }
     }
     /** RecipientOut */
     RecipientOut: {

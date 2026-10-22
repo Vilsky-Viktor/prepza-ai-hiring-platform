@@ -52,8 +52,8 @@ FIRST_CHECK_DAYS = 7
 KEEP_DAYS = 90
 # A check of a connection covers up to this long before it's made (see services/updates.py).
 SETTLE_SECONDS = 30
-# The most updates one call lists (newest first); the summary counts them all.
-MAX_UPDATES = 50
+# The summary's count of the finished candidates who passed (not a kind of update).
+PASSED = "passed"
 # Each update comes from the service that holds it, one per candidate or question: candidates'
 # steps from companies, ATS candidates not invited from ats, questions flagged or fixed from
 # library (their internal routes). The bell's own notifications of those kinds, which it groups,

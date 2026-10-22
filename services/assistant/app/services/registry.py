@@ -2,9 +2,11 @@ import json
 from functools import cache
 from pathlib import Path
 
+from prepza_common.constants import MAX_UPDATES
+
 from app.constants.tool_calls import DEFAULT_MAX_ITEMS, MAX_STRING_LENGTH, SERVICE_URLS
 from app.constants.tools import TOOLS
-from app.constants.updates import GET_UPDATES, GET_UPDATES_DEFINITION, MAX_UPDATES, UPDATES_PATH
+from app.constants.updates import GET_UPDATES, GET_UPDATES_DEFINITION, UPDATES_PATH
 from app.helpers.tool_schema import check_route, definition
 from app.models.tools import Tool
 

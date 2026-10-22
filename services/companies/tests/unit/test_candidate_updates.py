@@ -2,6 +2,7 @@ import uuid
 from datetime import UTC, datetime, timedelta
 from types import SimpleNamespace
 
+from prepza_common.constants import MAX_UPDATES
 from prepza_common.http import bearer
 from prepza_common.service_auth import issue_token
 
@@ -119,12 +120,16 @@ def test_the_assistant_gets_the_updates(client, monkeypatch):
     asked = []
     row = invite("kim@example.com", finished=at(1), grade=90)
 
-    async def fake_changed(company_ids, since, until):
-        asked.append((company_ids, since, until))
+    async def fake_changed(company_ids, since, until, limit):
+        asked.append((company_ids, since, until, limit))
 
         return [(row, INTERVIEW)]
 
+    async def fake_counts(company_ids, since, until):
+        return 3, 2, 1, 0
+
     monkeypatch.setattr(updates_storage, "changed", fake_changed)
+    monkeypatch.setattr(updates_storage, "counts", fake_counts)
     token = issue_token("assistant", "companies", SECRET)
 
     response = client.post(URL, json=body(), headers=bearer(token))
@@ -138,11 +143,18 @@ def test_the_assistant_gets_the_updates(client, monkeypatch):
         True,
     )
     assert item["invite_id"] == str(row.id)
-    assert asked == [([INTERVIEW.company_id], SINCE, UNTIL)]
+    assert asked == [([INTERVIEW.company_id], SINCE, UNTIL, MAX_UPDATES)]
+    # The counts cover every update, not only those listed.
+    assert response.json()["counts"] == {
+        "candidate_started": 3,
+        "candidate_finished": 2,
+        "passed": 1,
+        "invite_undelivered": 0,
+    }
 
 
 def test_another_service_is_not_allowed(client, monkeypatch):
-    async def fake_changed(company_ids, since, until):
+    async def fake_changed(company_ids, since, until, limit):
         raise AssertionError("not reached")
 
     monkeypatch.setattr(updates_storage, "changed", fake_changed)

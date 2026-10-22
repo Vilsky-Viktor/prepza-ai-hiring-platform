@@ -1,6 +1,8 @@
 from datetime import datetime
 from uuid import UUID
 
+from prepza_common.constants import MAX_UPDATES
+
 from app.constants.ats import ATS_NAMES
 from app.constants.notifications import ATS_LINK
 from app.integrations import companies
@@ -12,8 +14,9 @@ async def not_invited_between(
     company_ids: list[UUID], since: datetime, until: datetime
 ) -> list[NotInvitedOut]:
     """Each candidate of these companies' ATSs who first couldn't be invited between the two
-    times and still isn't, newest first, with their interview's title (from companies)."""
-    rows = await not_invited.between(company_ids, since, until)
+    times and still isn't, the newest MAX_UPDATES, newest first, with their interview's title
+    (from companies)."""
+    rows = await not_invited.between(company_ids, since, until, MAX_UPDATES)
     interviews = await companies.interviews({row.interview_id for row, _ in rows})
 
     return [
