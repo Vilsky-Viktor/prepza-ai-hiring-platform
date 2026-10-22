@@ -550,7 +550,8 @@
       "assistant_title": "助手对话标题",
       "transcription": "语音消息",
       "help_chat": "帮助聊天",
-      "quality_patterns": "题目质量模式"
+      "quality_patterns": "题目质量模式",
+      "code_tags": "示例记法标签"
     },
     "aiUnitCost": {
       "interview_generation": "每场面试 {cost}",
@@ -567,7 +568,8 @@
       "assistant_title": "每次对话 {cost}",
       "transcription": "每分钟 {cost}",
       "help_chat": "每次调用 {cost}",
-      "quality_patterns": "每次运行 {cost}"
+      "quality_patterns": "每次运行 {cost}",
+      "code_tags": "每次运行 {cost}"
     },
     "aiPaid": "付费 {spend}",
     "aiUnpaid": "未付费 {spend}",

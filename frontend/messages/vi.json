@@ -550,7 +550,8 @@
       "assistant_title": "Tiêu đề cuộc trò chuyện với trợ lý",
       "transcription": "Tin nhắn thoại",
       "help_chat": "Chat hỗ trợ",
-      "quality_patterns": "Lỗi lặp lại trong câu hỏi"
+      "quality_patterns": "Lỗi lặp lại trong câu hỏi",
+      "code_tags": "Gắn nhãn ký hiệu ví dụ"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} mỗi buổi phỏng vấn",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} mỗi cuộc trò chuyện",
       "transcription": "{cost} mỗi phút",
       "help_chat": "{cost} mỗi lượt gọi",
-      "quality_patterns": "{cost} mỗi lần chạy"
+      "quality_patterns": "{cost} mỗi lần chạy",
+      "code_tags": "{cost} mỗi lần chạy"
     },
     "aiPaid": "đã thanh toán {spend}",
     "aiUnpaid": "chưa thanh toán {spend}",

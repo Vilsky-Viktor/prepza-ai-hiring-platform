@@ -550,7 +550,8 @@
       "assistant_title": "Назви чатів асистента",
       "transcription": "Голосові повідомлення",
       "help_chat": "Чат допомоги",
-      "quality_patterns": "Закономірності якості питань"
+      "quality_patterns": "Закономірності якості питань",
+      "code_tags": "Мітки нотації прикладів"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} за співбесіду",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} за чат",
       "transcription": "{cost} за хвилину",
       "help_chat": "{cost} за виклик",
-      "quality_patterns": "{cost} за запуск"
+      "quality_patterns": "{cost} за запуск",
+      "code_tags": "{cost} за запуск"
     },
     "aiPaid": "платні {spend}",
     "aiUnpaid": "неплатні {spend}",

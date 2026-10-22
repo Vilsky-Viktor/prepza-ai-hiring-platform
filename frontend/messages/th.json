@@ -550,7 +550,8 @@
       "assistant_title": "ชื่อแชตของผู้ช่วย",
       "transcription": "ข้อความเสียง",
       "help_chat": "แชตช่วยเหลือ",
-      "quality_patterns": "รูปแบบคุณภาพของคำถาม"
+      "quality_patterns": "รูปแบบคุณภาพของคำถาม",
+      "code_tags": "แท็กรูปแบบการเขียนของตัวอย่าง"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} ต่อการสัมภาษณ์",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} ต่อบทสนทนา",
       "transcription": "{cost} ต่อนาที",
       "help_chat": "{cost} ต่อการเรียกใช้",
-      "quality_patterns": "{cost} ต่อการรันหนึ่งครั้ง"
+      "quality_patterns": "{cost} ต่อการรันหนึ่งครั้ง",
+      "code_tags": "{cost} ต่อการรันหนึ่งครั้ง"
     },
     "aiPaid": "ชำระเงินแล้ว {spend}",
     "aiUnpaid": "ยังไม่ชำระเงิน {spend}",

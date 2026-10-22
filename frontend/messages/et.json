@@ -550,7 +550,8 @@
       "assistant_title": "Assistendi vestluste pealkirjad",
       "transcription": "Häälsõnumid",
       "help_chat": "Abivestlus",
-      "quality_patterns": "Küsimuste kvaliteedimustrid"
+      "quality_patterns": "Küsimuste kvaliteedimustrid",
+      "code_tags": "Näidete notatsiooni sildid"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} intervjuu kohta",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} vestluse kohta",
       "transcription": "{cost} minuti kohta",
       "help_chat": "{cost} päringu kohta",
-      "quality_patterns": "{cost} käivituse kohta"
+      "quality_patterns": "{cost} käivituse kohta",
+      "code_tags": "{cost} käivituse kohta"
     },
     "aiPaid": "maksvad {spend}",
     "aiUnpaid": "mittemaksvad {spend}",

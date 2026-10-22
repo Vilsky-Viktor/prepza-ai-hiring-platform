@@ -550,7 +550,8 @@
       "assistant_title": "Judul obrolan asisten",
       "transcription": "Pesan suara",
       "help_chat": "Chat bantuan",
-      "quality_patterns": "Pola kualitas soal"
+      "quality_patterns": "Pola kualitas soal",
+      "code_tags": "Tag notasi contoh"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} per wawancara",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} per percakapan",
       "transcription": "{cost} per menit",
       "help_chat": "{cost} per panggilan",
-      "quality_patterns": "{cost} per eksekusi"
+      "quality_patterns": "{cost} per eksekusi",
+      "code_tags": "{cost} per eksekusi"
     },
     "aiPaid": "sudah membayar {spend}",
     "aiUnpaid": "belum membayar {spend}",

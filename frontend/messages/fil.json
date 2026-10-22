@@ -550,7 +550,8 @@
       "assistant_title": "Mga pamagat ng chat sa assistant",
       "transcription": "Mga voice message",
       "help_chat": "Help chat",
-      "quality_patterns": "Mga pattern sa kalidad ng tanong"
+      "quality_patterns": "Mga pattern sa kalidad ng tanong",
+      "code_tags": "Mga tag ng notation ng halimbawa"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} bawat interview",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} bawat usapan",
       "transcription": "{cost} bawat minuto",
       "help_chat": "{cost} bawat call",
-      "quality_patterns": "{cost} bawat pagpapatakbo"
+      "quality_patterns": "{cost} bawat pagpapatakbo",
+      "code_tags": "{cost} bawat pagpapatakbo"
     },
     "aiPaid": "bayad {spend}",
     "aiUnpaid": "hindi bayad {spend}",

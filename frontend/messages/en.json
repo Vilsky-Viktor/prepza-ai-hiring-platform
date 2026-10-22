@@ -550,7 +550,8 @@
       "assistant_title": "Assistant chat titles",
       "transcription": "Voice messages",
       "help_chat": "Help chat",
-      "quality_patterns": "Question quality patterns"
+      "quality_patterns": "Question quality patterns",
+      "code_tags": "Example notation tags"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} an interview",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} a conversation",
       "transcription": "{cost} a minute",
       "help_chat": "{cost} a call",
-      "quality_patterns": "{cost} a run"
+      "quality_patterns": "{cost} a run",
+      "code_tags": "{cost} a run"
     },
     "aiPaid": "paid {spend}",
     "aiUnpaid": "unpaid {spend}",

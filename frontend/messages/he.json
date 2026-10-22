@@ -550,7 +550,8 @@
       "assistant_title": "כותרות שיחות עם העוזר",
       "transcription": "הודעות קוליות",
       "help_chat": "צ׳אט העזרה",
-      "quality_patterns": "דפוסי איכות של שאלות"
+      "quality_patterns": "דפוסי איכות של שאלות",
+      "code_tags": "תיוג סימון הדוגמאות"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} לראיון",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} לשיחה",
       "transcription": "{cost} לדקה",
       "help_chat": "{cost} לקריאה",
-      "quality_patterns": "{cost} להרצה"
+      "quality_patterns": "{cost} להרצה",
+      "code_tags": "{cost} להרצה"
     },
     "aiPaid": "משלמים {spend}",
     "aiUnpaid": "לא משלמים {spend}",

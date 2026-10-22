@@ -550,7 +550,8 @@
       "assistant_title": "Títulos das conversas com o assistente",
       "transcription": "Mensagens de voz",
       "help_chat": "Chat de ajuda",
-      "quality_patterns": "Padrões de qualidade das questões"
+      "quality_patterns": "Padrões de qualidade das questões",
+      "code_tags": "Marcação da notação dos exemplos"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} por entrevista",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} por conversa",
       "transcription": "{cost} por minuto",
       "help_chat": "{cost} por chamada",
-      "quality_patterns": "{cost} por execução"
+      "quality_patterns": "{cost} por execução",
+      "code_tags": "{cost} por execução"
     },
     "aiPaid": "pagantes {spend}",
     "aiUnpaid": "não pagantes {spend}",

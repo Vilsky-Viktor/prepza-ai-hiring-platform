@@ -550,7 +550,8 @@
       "assistant_title": "어시스턴트 채팅 제목",
       "transcription": "음성 메시지",
       "help_chat": "도움말 채팅",
-      "quality_patterns": "문제 품질 패턴"
+      "quality_patterns": "문제 품질 패턴",
+      "code_tags": "예시 표기법 태그"
     },
     "aiUnitCost": {
       "interview_generation": "면접당 {cost}",
@@ -567,7 +568,8 @@
       "assistant_title": "대화당 {cost}",
       "transcription": "분당 {cost}",
       "help_chat": "호출당 {cost}",
-      "quality_patterns": "실행 1회당 {cost}"
+      "quality_patterns": "실행 1회당 {cost}",
+      "code_tags": "실행 1회당 {cost}"
     },
     "aiPaid": "유료 {spend}",
     "aiUnpaid": "무료 {spend}",

@@ -550,7 +550,8 @@
       "assistant_title": "عناوين محادثات المساعد",
       "transcription": "الرسائل الصوتية",
       "help_chat": "دردشة المساعدة",
-      "quality_patterns": "أنماط جودة الأسئلة"
+      "quality_patterns": "أنماط جودة الأسئلة",
+      "code_tags": "وسوم ترميز الأمثلة"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} لكل مقابلة",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} لكل محادثة",
       "transcription": "{cost} لكل دقيقة",
       "help_chat": "{cost} لكل طلب",
-      "quality_patterns": "{cost} لكل تشغيل"
+      "quality_patterns": "{cost} لكل تشغيل",
+      "code_tags": "{cost} لكل تشغيل"
     },
     "aiPaid": "الدافعون {spend}",
     "aiUnpaid": "غير الدافعين {spend}",

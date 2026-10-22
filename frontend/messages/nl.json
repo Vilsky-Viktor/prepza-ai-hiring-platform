@@ -550,7 +550,8 @@
       "assistant_title": "Titels van assistentchats",
       "transcription": "Spraakberichten",
       "help_chat": "Helpchat",
-      "quality_patterns": "Kwaliteitspatronen van vragen"
+      "quality_patterns": "Kwaliteitspatronen van vragen",
+      "code_tags": "Notatie van voorbeelden"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} per interview",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} per gesprek",
       "transcription": "{cost} per minuut",
       "help_chat": "{cost} per aanroep",
-      "quality_patterns": "{cost} per run"
+      "quality_patterns": "{cost} per run",
+      "code_tags": "{cost} per run"
     },
     "aiPaid": "betalend {spend}",
     "aiUnpaid": "niet-betalend {spend}",

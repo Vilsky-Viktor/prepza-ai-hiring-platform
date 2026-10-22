@@ -550,7 +550,8 @@
       "assistant_title": "असिस्टेंट चैट के शीर्षक",
       "transcription": "वॉइस संदेश",
       "help_chat": "हेल्प चैट",
-      "quality_patterns": "सवालों की गुणवत्ता के पैटर्न"
+      "quality_patterns": "सवालों की गुणवत्ता के पैटर्न",
+      "code_tags": "उदाहरणों के नोटेशन टैग"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} प्रति इंटरव्यू",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} प्रति बातचीत",
       "transcription": "{cost} प्रति मिनट",
       "help_chat": "{cost} प्रति कॉल",
-      "quality_patterns": "{cost} प्रति रन"
+      "quality_patterns": "{cost} प्रति रन",
+      "code_tags": "{cost} प्रति रन"
     },
     "aiPaid": "भुगतान वाले {spend}",
     "aiUnpaid": "बिना भुगतान वाले {spend}",

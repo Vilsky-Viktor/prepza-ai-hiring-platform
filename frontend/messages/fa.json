@@ -550,7 +550,8 @@
       "assistant_title": "عنوان گفت‌وگوهای دستیار",
       "transcription": "پیام‌های صوتی",
       "help_chat": "گفت‌وگوی راهنما",
-      "quality_patterns": "الگوهای کیفیت پرسش‌ها"
+      "quality_patterns": "الگوهای کیفیت پرسش‌ها",
+      "code_tags": "برچسب نماد مثال‌ها"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} برای هر مصاحبه",
@@ -567,7 +568,8 @@
       "assistant_title": "{cost} برای هر گفت‌وگو",
       "transcription": "{cost} برای هر دقیقه",
       "help_chat": "{cost} برای هر فراخوانی",
-      "quality_patterns": "{cost} برای هر اجرا"
+      "quality_patterns": "{cost} برای هر اجرا",
+      "code_tags": "{cost} برای هر اجرا"
     },
     "aiPaid": "پرداخت‌کننده {spend}",
     "aiUnpaid": "بدون پرداخت {spend}",

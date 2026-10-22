@@ -550,7 +550,8 @@
       "assistant_title": "アシスタントのチャットタイトル",
       "transcription": "音声メッセージ",
       "help_chat": "ヘルプチャット",
-      "quality_patterns": "問題の品質パターン"
+      "quality_patterns": "問題の品質パターン",
+      "code_tags": "例の記法タグ"
     },
     "aiUnitCost": {
       "interview_generation": "面接 1 件あたり {cost}",
@@ -567,7 +568,8 @@
       "assistant_title": "会話 1 件あたり {cost}",
       "transcription": "1 分あたり {cost}",
       "help_chat": "呼び出し 1 回あたり {cost}",
-      "quality_patterns": "実行 1 回あたり {cost}"
+      "quality_patterns": "実行 1 回あたり {cost}",
+      "code_tags": "実行 1 回あたり {cost}"
     },
     "aiPaid": "有料 {spend}",
     "aiUnpaid": "無料 {spend}",
