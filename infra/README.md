@@ -45,7 +45,7 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
    gcloud storage buckets update gs://prepza-prod-terraform --versioning --public-access-prevention
    ```
    The state holds secrets in plain text (the generated passwords and keys, the sign-in apps' client secrets): treat the bucket as one. Only you (the project's owner) can read it; never grant anyone else access to it or copy the state elsewhere.
-4. **Create Redis on Upstash.** Pick the Google Cloud region `europe-west1` and a paid plan (pay as you go, or a fixed plan once traffic grows): every request reads the pause and its rate limits, so the free plan's monthly command limit runs out in days, and Redis then refuses every command until the month ends. Copy its `rediss://` URL. Services retry a command whose connection dropped, and the Redis alert (below) fires when commands keep failing.
+4. **Create Redis on Upstash.** Pick the Google Cloud region `europe-west1` (the services' own, so a command takes milliseconds) and a paid plan (pay as you go, or a fixed plan once traffic grows): requests count against their rate limits in it, so the free plan's monthly command limit runs out in days, and Redis then refuses every command until the month ends. Leave eviction off (Upstash's default): an evicted rate-limit counter would let a caller past its limit early. Copy its `rediss://` URL. Services retry a command whose connection dropped, and the Redis alert (below) fires when commands keep failing.
 5. **Set your variables.**
    ```bash
    cd infra/terraform
