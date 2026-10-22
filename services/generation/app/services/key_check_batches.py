@@ -1,6 +1,7 @@
 import logging
 
-from prepza_common import ai_usage
+from prepza_common import ai_usage, tracing
+from prepza_common.llm import call_cost
 from pydantic import ValidationError
 
 from app.config.settings import settings
@@ -124,15 +125,27 @@ async def apply_reply(check: KeyCheckRow, reply: str | None) -> None:
         await apply_key_check(check.question_id, question, context, result)
 
 
-async def record_batch(batch_id: str, used: list[tuple[str, dict]]) -> None:
-    """Each request's usage, once a batch."""
+async def record_batch(
+    batch_id: str, used: list[tuple[str, str, dict]], replies: dict[str, str | None]
+) -> None:
+    """Each request's usage, once a batch: priced for its question, and traced to the question's
+    verify trace (the one its direct checks use)."""
     key = f"{BATCH_RECORDED_KEY}:{batch_id}"
 
     if not used or not await get_redis().set(key, 1, nx=True, ex=BATCH_RECORDED_SECONDS):
         return
 
-    for model, usage in used:
-        await ai_usage.record(KEY_CHECK_BATCH, model, usage, batch=True)
+    for question_id, model, usage in used:
+        await ai_usage.record(KEY_CHECK_BATCH, model, usage, batch=True, subject_id=question_id)
+        tracing.traced_call(
+            KEY_CHECK_BATCH,
+            [KEY_CHECK_BATCH, question_id],
+            f"{QUESTION_VERIFY}:{question_id}",
+            model,
+            usage,
+            call_cost(model, usage, batch=True),
+            replies.get(question_id),
+        )
 
 
 async def collect_finished() -> None:
@@ -150,7 +163,7 @@ async def collect_finished() -> None:
 
         checks = await key_checks.in_batch(batch_id)
         replies, used = await openai_batch.results(output_file_id) if output_file_id else ({}, [])
-        await record_batch(batch_id, used)
+        await record_batch(batch_id, used, replies)
 
         for check in checks:
             reply = replies.get(str(check.question_id))

@@ -21,12 +21,16 @@ def test_a_finished_batchs_usage_is_recorded_once_at_batch_price(events, monkeyp
         return "completed", "file-1"
 
     async def results(file_id):
-        return {str(KEPT): '{"correct_indexes": [1]}'}, [(MODEL, {"input_tokens": 1_000_000})]
+        reply = '{"correct_indexes": [1]}'
+
+        return {str(KEPT): reply}, [(str(KEPT), MODEL, {"input_tokens": 1_000_000})]
 
     async def applied(*args):
         pass
 
+    traced = []
     redis = FakeRedis()
+    monkeypatch.setattr(key_check_batches.tracing, "traced_call", lambda *a: traced.append(a))
     monkeypatch.setattr(key_check_batches, "get_redis", lambda: redis)
     monkeypatch.setattr(openai_batch, "status", status)
     monkeypatch.setattr(openai_batch, "results", results)
@@ -38,13 +42,23 @@ def test_a_finished_batchs_usage_is_recorded_once_at_batch_price(events, monkeyp
     asyncio.run(key_check_batches.collect_finished())
 
     [data] = [data for kind, data in events if kind == AI_USED]
-    assert (data["action"], data["model"], data["input_tokens"]) == (
+    assert (data["action"], data["model"], data["input_tokens"], data["subject_id"]) == (
         KEY_CHECK_BATCH,
         MODEL,
         1_000_000,
+        str(KEPT),
     )
     # A million tokens in at $2, at half price.
     assert data["cost_usd"] == pytest.approx(1.0)
+    # Traced once, to the question's verify trace, with its cost and reply.
+    [(name, tags, seed, model, _usage, cost, output)] = traced
+    assert (name, tags, seed, model) == (
+        KEY_CHECK_BATCH,
+        [KEY_CHECK_BATCH, str(KEPT)],
+        f"question_verify:{KEPT}",
+        MODEL,
+    )
+    assert (cost, output) == (pytest.approx(1.0), '{"correct_indexes": [1]}')
 
 
 def test_openai_refusing_a_batch_is_recorded_as_its_limit_hit(events, monkeypatch):

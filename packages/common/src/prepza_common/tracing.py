@@ -86,6 +86,36 @@ def traced(trace_id: str | None) -> dict | None:
     return {"callbacks": [handler(trace_id)]}
 
 
+def traced_call(
+    name: str, tags: list[str], seed: str, model: str, usage: dict, cost: float | None, output
+) -> None:
+    """Reports one model call made outside LangChain (a Batch API request) to the trace of
+    `seed`, named `name` and tagged with `tags` (ids only), with its tokens (cached input apart)
+    and its cost. Nothing without Langfuse."""
+    trace_id = new_trace_id(seed)
+
+    if trace_id is None:
+        return
+
+    cached = (usage.get("input_token_details") or {}).get("cache_read", 0) or 0
+    tokens = {
+        "input": usage.get("input_tokens", 0) - cached,
+        "input_cache_read": cached,
+        "output": usage.get("output_tokens", 0),
+    }
+
+    with propagate_attributes(trace_name=name, tags=tags):
+        client().start_observation(
+            trace_context={"trace_id": trace_id},
+            name=name,
+            as_type="generation",
+            model=model,
+            output=output,
+            usage_details=tokens,
+            cost_details=None if cost is None else {"total": cost},
+        ).end()
+
+
 @contextmanager
 def traced_run(name: str, tags: list[str], seed: str | None = None) -> Iterator[str | None]:
     """Every LangChain call made inside (LangGraph runs too) reports to one trace named `name`,

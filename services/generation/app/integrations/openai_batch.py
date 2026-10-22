@@ -49,9 +49,9 @@ def usage_of(body: dict) -> dict:
     }
 
 
-async def results(file_id: str) -> tuple[dict[str, str | None], list[tuple[str, dict]]]:
-    """The reply text per custom id, None for a request that failed; and the model and usage of
-    each request that reported one."""
+async def results(file_id: str) -> tuple[dict[str, str | None], list[tuple[str, str, dict]]]:
+    """The reply text per custom id, None for a request that failed; and the custom id, model
+    and usage of each request that reported one."""
     content = await get_client().files.content(file_id)
     replies = {}
     used = []
@@ -68,6 +68,6 @@ async def results(file_id: str) -> tuple[dict[str, str | None], list[tuple[str, 
         replies[item["custom_id"]] = reply if response.get("status_code") == 200 else None
 
         if body.get("usage"):
-            used.append((body.get("model", ""), usage_of(body)))
+            used.append((item["custom_id"], body.get("model", ""), usage_of(body)))
 
     return replies, used

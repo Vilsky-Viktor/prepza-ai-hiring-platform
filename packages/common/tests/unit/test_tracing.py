@@ -198,3 +198,43 @@ def test_traces_are_masked_before_they_leave(monkeypatch):
     assert inside == {"content": 'The user is "[person]", [email]; {"name": "[person]"}'}
     # Outside, the name is no longer hidden.
     assert made["mask"](data="José") == "José"
+
+
+def test_a_call_made_outside_langchain_is_one_generation_on_its_seeds_trace(langfuse, monkeypatch):
+    made = []
+
+    class Observation:
+        def end(self):
+            made[-1]["ended"] = True
+
+    class Client:
+        def start_observation(self, **kwargs):
+            made.append(kwargs)
+
+            return Observation()
+
+    monkeypatch.setattr(tracing, "client", Client)
+    usage = {"input_tokens": 100, "output_tokens": 7, "input_token_details": {"cache_read": 40}}
+
+    tracing.traced_call(
+        "key_check_batch", ["key_check_batch", "q-1"], "verify:q-1", "m", usage, 0.5, "ok"
+    )
+
+    [call] = made
+    assert call["trace_context"]["trace_id"] == tracing.new_trace_id("verify:q-1")
+    assert (call["as_type"], call["model"], call["output"], call["ended"]) == (
+        "generation",
+        "m",
+        "ok",
+        True,
+    )
+    assert call["usage_details"] == {"input": 60, "input_cache_read": 40, "output": 7}
+    assert call["cost_details"] == {"total": 0.5}
+    assert langfuse == [{"trace_name": "key_check_batch", "tags": ["key_check_batch", "q-1"]}]
+
+
+def test_nothing_is_traced_without_langfuse(monkeypatch):
+    monkeypatch.delenv("LANGFUSE_PUBLIC_KEY", raising=False)
+    monkeypatch.setattr(tracing, "client", lambda: pytest.fail("traced"))
+
+    tracing.traced_call("key_check_batch", [], "seed", "m", {}, None, None)
