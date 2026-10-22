@@ -8,6 +8,7 @@ from sqlalchemy import update as sql_update
 from sqlalchemy.exc import IntegrityError
 
 from app.constants.events import GENERATION_CANCELLED
+from app.constants.generation import SWEEP_BATCH
 from app.constants.kinds import GenerationKind
 from app.constants.statuses import FINISHED, Status
 from app.helpers.events import failed_event
@@ -144,21 +145,28 @@ async def cancel(generation_id: uuid.UUID) -> bool:
         return result.rowcount == 1
 
 
+def batch_of(condition):
+    """The ids of up to SWEEP_BATCH generations matching `condition`, locked for the update that
+    uses them; rows another sweep holds are skipped."""
+    return (
+        select(Generation.id).where(condition).limit(SWEEP_BATCH).with_for_update(skip_locked=True)
+    )
+
+
 async def fail_stuck(running_before: datetime, queued_before: datetime, error: str) -> list:
-    """Marks generations running untouched since `running_before`, or queued since
-    `queued_before`, as failed, with the event that tells companies of each interview's
-    failure; returns them. A queued one may only be waiting for the queue, so it gets longer."""
+    """Marks up to SWEEP_BATCH generations running untouched since `running_before`, or queued
+    since `queued_before`, as failed, with the event that tells companies of each interview's
+    failure; returns them. A queued one may only be waiting for the queue, so it gets longer.
+    Two sweeps at once take different ones."""
+    stuck = or_(
+        and_(Generation.status == Status.RUNNING, Generation.updated_at < running_before),
+        and_(Generation.status == Status.QUEUED, Generation.updated_at < queued_before),
+    )
+
     async with Session() as session:
         failed = await session.scalars(
             sql_update(Generation)
-            .where(
-                or_(
-                    and_(
-                        Generation.status == Status.RUNNING, Generation.updated_at < running_before
-                    ),
-                    and_(Generation.status == Status.QUEUED, Generation.updated_at < queued_before),
-                )
-            )
+            .where(Generation.id.in_(batch_of(stuck)))
             .values(status=Status.FAILED, error=error)
             .returning(Generation)
         )
@@ -176,11 +184,14 @@ async def fail_stuck(running_before: datetime, queued_before: datetime, error: s
 
 
 async def expire_reviews(before: datetime) -> list[Generation]:
-    """Cancels generations awaiting review since before `before`; returns them."""
+    """Cancels up to SWEEP_BATCH generations awaiting review since before `before`; returns
+    them."""
+    waiting = and_(Generation.status == Status.AWAITING_REVIEW, Generation.updated_at < before)
+
     async with Session() as session:
         expired = await session.scalars(
             sql_update(Generation)
-            .where(Generation.status == Status.AWAITING_REVIEW, Generation.updated_at < before)
+            .where(Generation.id.in_(batch_of(waiting)))
             .values(status=Status.CANCELLED)
             .returning(Generation)
         )

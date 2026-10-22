@@ -81,3 +81,23 @@ def test_generations_are_found_by_their_ids(run):
     created, found = run(scenario())
 
     assert [row.id for row in found] == [created]
+
+
+def test_a_sweep_fails_at_most_a_batch_and_the_next_takes_the_rest(run, monkeypatch):
+    monkeypatch.setattr(generations, "SWEEP_BATCH", 1)
+
+    async def scenario():
+        now = datetime.now(UTC)
+        made = [await generations.create("ann", f"queued {index}") for index in range(2)]
+        ours = {row.id for row in made}
+        sweeps = []
+
+        # Other tests' generations may be stuck too: sweep until ours are both failed.
+        while ours - {row.id for sweep in sweeps for row in sweep}:
+            sweeps.append(await generations.fail_stuck(now, now + timedelta(seconds=1), "stopped"))
+
+        return sweeps
+
+    sweeps = run(scenario())
+
+    assert all(len(sweep) == 1 for sweep in sweeps)

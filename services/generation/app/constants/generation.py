@@ -100,6 +100,9 @@ GENERATION_FAILED = "Generation failed. Please try again."
 GENERATION_STOPPED = "Generation stopped unexpectedly. Please try again."
 # Topics left waiting for review this long are cancelled; nothing has been generated yet.
 REVIEW_EXPIRY_DAYS = 14
+# The most generations one sweep (every 5 minutes) fails as stuck, or cancels as reviews left
+# open, each in one statement; the next sweep takes the rest.
+SWEEP_BATCH = 100
 
 # Extraction and drafted topics are reused for the same prompt and input for this long.
 DRAFT_CACHE_SECONDS = 30 * 24 * 60 * 60
