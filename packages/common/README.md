@@ -64,7 +64,9 @@ and every service's unit tests import (`from fake_redis import FakeRedis`; each 
 `pythonpath` includes `../../packages/common/tests`), never a copy of it.
 Integration tests: `clean_start` gives every test in a service's `tests/integration` a clean start (the
 tables a fresh migration left empty truncated, the tests' Redis database 15 flushed, the shared HTTP
-client dropped); it refuses any database but a `_test` one and any Redis database but 15.
+client dropped); it refuses any database but a `_test` one and any Redis database but 15. A race
+test uses `lock_waits.race`: the first call's transaction stays open at its commit until the second
+call is seen waiting on its lock (`pg_stat_activity`), so the test proves the two overlapped.
 Shutdown: `shutdown.close_shared(engine, redis, *clients)` ends every service's lifespan, closing the
 shared HTTP client, the service's own clients, Redis and the database pool (its connections given
 back to Postgres at once), each even when another fails.
@@ -150,6 +152,8 @@ One line each, by name (`tests/unit/test_readme_modules.py` fails on one left ou
 - `limit_types`: a limit's definition (`Limit`).
 - `limits`: limits' current values, cached per instance, and the record of every refusal.
 - `llm`: OpenAI chat models built one way, prices and token estimates.
+- `lock_waits`: integration tests' races: the first call's commit held (`HeldCommit`) until the
+  second is seen waiting on its lock in Postgres (`race`).
 - `logging`: one-line JSON logs with severity and trace, and each request's line.
 - `maintenance`: the maintenance switch every service reads.
 - `memory_cache`: a per-instance cache of values that may be stale for their TTL.

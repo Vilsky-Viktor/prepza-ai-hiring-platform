@@ -1,7 +1,9 @@
+import os
 import uuid
 
 import pytest
 from prepza_common.limit_list import LIMITS, LIMITS_KEY
+from prepza_common.lock_waits import hold_first_commit, race
 
 from app.integrations.redis import get_redis
 from app.storage import sessions, signals
@@ -89,9 +91,7 @@ def test_a_returns_length_times_the_latest_leave_and_a_short_one_isnt_counted(ru
     assert scores[invite_id]["tab_leaves"] == 2
 
 
-def test_signals_sent_at_once_still_stop_at_the_limit(run):
-    import asyncio
-
+def test_signals_sent_at_once_still_stop_at_the_limit(run, monkeypatch):
     invite_id = uuid.uuid4()
     most = LIMITS["MAX_SIGNALS_PER_QUESTION"].default
 
@@ -100,8 +100,16 @@ def test_signals_sent_at_once_still_stop_at_the_limit(run):
             "cand", invite_id, [topic()], 30, company_id=uuid.uuid4()
         )
         question_id = uuid.UUID(row.questions[0]["id"])
-        await asyncio.gather(
-            *(signals.add_signal(row.id, question_id, "tab_leave") for _ in range(most + 5))
+
+        for _ in range(most - 1):
+            await signals.add_signal(row.id, question_id, "tab_leave")
+
+        # The last place: the second waits on the question's lock until the first commits.
+        held = hold_first_commit(monkeypatch, signals, "Db")
+        await race(
+            os.environ["DATABASE_URL"],
+            held,
+            *(signals.add_signal(row.id, question_id, "tab_leave") for _ in range(2)),
         )
         [found] = await sessions.list_for_invite(invite_id, signals=True)
 

@@ -1,11 +1,12 @@
-import asyncio
 import json
+import os
 import uuid
 from datetime import UTC, date, datetime, timedelta
 
 import httpx
 import pytest
 from prepza_common import http
+from prepza_common.lock_waits import hold_first_commit, race
 from prepza_common.notifications import NotificationKind, Recipient, notification
 
 from app.config.settings import settings
@@ -23,18 +24,25 @@ def user() -> str:
     return f"u-{uuid.uuid4()}"
 
 
-def test_a_claim_is_taken_once_even_by_two_runs_at_once(run):
+def test_a_claim_is_taken_once_even_by_two_runs_at_once(run, monkeypatch):
     ann = user()
 
     async def scenario():
-        both = await asyncio.gather(*[sent_emails.claim(ann, "digest", TODAY, 1) for _ in range(5)])
+        # The second waits on the user's claim lock until the first commits.
+        held = hold_first_commit(monkeypatch, sent_emails)
+        both = await race(
+            os.environ["DATABASE_URL"],
+            held,
+            sent_emails.claim(ann, "digest", TODAY, 1),
+            sent_emails.claim(ann, "digest", TODAY, 1),
+        )
         tomorrow = await sent_emails.claim(ann, "digest", TODAY + timedelta(days=1), 1)
 
         return both, tomorrow
 
     both, tomorrow = run(scenario())
 
-    assert sorted(both, key=lambda found: found is None) == [[], None, None, None, None]
+    assert both == ([], None)
     assert tomorrow == []
 
 

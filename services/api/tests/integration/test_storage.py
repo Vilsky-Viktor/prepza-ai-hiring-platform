@@ -1,15 +1,16 @@
-import asyncio
 import base64
 import json
+import os
 import uuid
 from datetime import UTC, datetime, timedelta
 
 import httpx
-from sqlalchemy import func, select, update
+from prepza_common.lock_waits import hold_first_commit, race
+from sqlalchemy import select, update
 
 from app.constants.api import DELIVERIES_KEPT, LAST_USED_EVERY
 from app.main import app
-from app.models.api import ApiKey, Webhook, WebhookDelivery
+from app.models.api import ApiKey, WebhookDelivery
 from app.storage import keys, webhooks
 from app.storage.db import Session
 
@@ -159,9 +160,9 @@ def test_a_deleted_account_loses_the_keys_and_web_hooks_it_made(run):
     assert hooks == []
 
 
-def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run):
-    """Another add for the same company, still uncommitted (held open here as `add` holds it),
-    makes a new one wait for it and then see the limit reached."""
+def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run, monkeypatch):
+    """The second add waits on the company's lock the first holds until it commits, then sees
+    the limit reached."""
     company = uuid.uuid4()
 
     def new_key():
@@ -170,16 +171,11 @@ def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run):
     def new_hook():
         return webhooks.add(company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS)
 
-    async def at_the_same_time(lock, row, add):
-        async with Session() as session:
-            await session.execute(select(func.pg_advisory_xact_lock(func.hashtext(lock))))
-            session.add(row)
-            await session.flush()
-            waiting = asyncio.create_task(add())
-            await asyncio.sleep(0.3)
-            await session.commit()
+    async def at_the_same_time(module, add):
+        held = hold_first_commit(monkeypatch, module)
+        _, second = await race(os.environ["DATABASE_URL"], held, add(), add())
 
-        return await waiting
+        return second
 
     async def scenario():
         for _ in range(MAX_KEYS - 1):
@@ -188,19 +184,9 @@ def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run):
         for _ in range(MAX_WEBHOOKS - 1):
             await new_hook()
 
-        key = ApiKey(
-            company_id=company,
-            name="Site",
-            shown="pz_y",
-            hash=uuid.uuid4().hex * 2,
-            created_by="u1",
-            permissions=READS,
-        )
-        hook = Webhook(company_id=company, url="https://example.com/y", secret="s", created_by="u1")
-
         return (
-            await at_the_same_time(f"api_keys:{company}", key, new_key),
-            await at_the_same_time(f"webhooks:{company}", hook, new_hook),
+            await at_the_same_time(keys, new_key),
+            await at_the_same_time(webhooks, new_hook),
             len(await keys.of_company(company)),
             len(await webhooks.of_company(company)),
         )

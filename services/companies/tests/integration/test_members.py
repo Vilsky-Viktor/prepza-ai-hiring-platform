@@ -1,7 +1,8 @@
-import asyncio
+import os
 import uuid
 
 from prepza_common.audit_actions import AuditAction, TargetKind
+from prepza_common.lock_waits import hold_first_commit, race
 from sqlalchemy import select
 
 from app.constants.roles import EDITORS
@@ -141,14 +142,18 @@ def test_the_owner_hears_once_that_a_member_joined(run):
     ]
 
 
-def test_two_joins_at_once_tell_the_owner_once_and_a_removed_invite_joins_no_one(run):
+def test_two_joins_at_once_tell_the_owner_once_and_a_removed_invite_joins_no_one(run, monkeypatch):
     async def scenario():
         company = await companies.create(f"Members {uuid.uuid4()}", "ann", "ann@example.com")
         bob = await members.add(company.id, "bob@example.com", "admin", {})
         cid = await members.add(company.id, "cid@example.com", "admin", {})
         twice = await members.add(company.id, "cid@example.com", "admin", {})
-        both = await asyncio.gather(
-            members.accept(bob, company, "bob"), members.accept(bob, company, "bob")
+        held = hold_first_commit(monkeypatch, members)
+        both = await race(
+            os.environ["DATABASE_URL"],
+            held,
+            members.accept(bob, company, "bob"),
+            members.accept(bob, company, "bob"),
         )
         await members.remove(cid.id)
         removed = await members.accept(cid, company, "cid")
@@ -166,7 +171,7 @@ def test_two_joins_at_once_tell_the_owner_once_and_a_removed_invite_joins_no_one
 
         return twice, both, removed, len(joined)
 
-    assert run(scenario()) == (None, [True, True], False, 1)
+    assert run(scenario()) == (None, (True, True), False, 1)
 
 
 def test_the_database_refuses_a_second_owner(run):
@@ -195,38 +200,42 @@ def test_the_database_refuses_a_second_owner(run):
     assert run(scenario()) == "uq_members_one_owner"
 
 
-def test_two_invites_at_once_cant_both_take_the_last_pending_place(run):
+def test_two_invites_at_once_cant_both_take_the_last_pending_place(run, monkeypatch):
     from app.core.exceptions import OverLimit
 
     async def scenario():
         company = await companies.create(f"Pending {uuid.uuid4()}", "ann", "ann@example.com")
-        outcomes = await asyncio.gather(
+        held = hold_first_commit(monkeypatch, members)
+        outcomes = await race(
+            os.environ["DATABASE_URL"],
+            held,
             *(
                 members.add(company.id, f"{name}@example.com", "viewer", {}, most=1)
                 for name in ("bob", "cid")
             ),
-            return_exceptions=True,
         )
 
-        return sorted(type(outcome).__name__ for outcome in outcomes)
+        return [type(outcome).__name__ for outcome in outcomes]
 
-    assert run(scenario()) == sorted(["Member", OverLimit.__name__])
+    assert run(scenario()) == ["Member", OverLimit.__name__]
 
 
-def test_two_companies_at_once_cant_both_take_the_last_owned_place(run):
+def test_two_companies_at_once_cant_both_take_the_last_owned_place(run, monkeypatch):
     from app.core.exceptions import OverLimit
 
     owner = f"owner-{uuid.uuid4()}"
 
     async def scenario():
-        outcomes = await asyncio.gather(
+        held = hold_first_commit(monkeypatch, companies)
+        outcomes = await race(
+            os.environ["DATABASE_URL"],
+            held,
             *(
                 companies.create(f"{name} {uuid.uuid4()}", owner, "o@example.com", most=1)
                 for name in ("First", "Second")
             ),
-            return_exceptions=True,
         )
 
-        return sorted(type(outcome).__name__ for outcome in outcomes)
+        return [type(outcome).__name__ for outcome in outcomes]
 
-    assert run(scenario()) == sorted(["Company", OverLimit.__name__])
+    assert run(scenario()) == ["Company", OverLimit.__name__]

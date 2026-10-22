@@ -1,7 +1,9 @@
 import asyncio
+import os
 import uuid
 from datetime import UTC, datetime
 
+from prepza_common.lock_waits import wait_for_lock_wait
 from sqlalchemy import delete
 
 from app.constants.credits import CANDIDATE_CREDITS, WELCOME_COMPANY, Reason
@@ -157,7 +159,8 @@ def test_charging_a_hold_while_its_company_is_deleted_doesnt_deadlock(run):
             # As deleting the company does: the wallet goes first, then its holds.
             await session.execute(delete(Wallet).filter_by(owner_type=COMPANY, owner_id=acme))
             charging = asyncio.create_task(ledger.charge(key))
-            await asyncio.sleep(0.5)
+            # The charge waits on the wallet this transaction is deleting.
+            await wait_for_lock_wait(os.environ["DATABASE_URL"])
             await session.execute(delete(Hold).filter_by(key=key))
             await session.commit()
 

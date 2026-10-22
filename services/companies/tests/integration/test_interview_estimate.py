@@ -2,22 +2,20 @@
 real database: the page's three numbers follow each change, and the last topic with questions
 can't be set to 0, even by two changes at once."""
 
-import asyncio
+import os
 import uuid
 
 import pytest
 from fastapi import HTTPException
+from prepza_common.lock_waits import hold_first_commit, race
 from prepza_common.user import User
-from sqlalchemy import select
 
 from app.integrations import library
-from app.models.interviews import Interview
 from app.routers.interview_questions import set_topic_limit
 from app.routers.interviews import get_interview
 from app.schemas.interviews import InterviewSettings, TopicLimitIn
 from app.services import set_cache
 from app.storage import companies, interviews
-from app.storage.db import Session
 
 SQL = uuid.uuid4()
 GIT = uuid.uuid4()
@@ -79,9 +77,9 @@ def test_the_three_numbers_follow_each_topic_and_time_change(run, two_topics):
     ]
 
 
-def test_the_last_two_topics_set_to_0_at_once_leave_one_with_questions(run):
-    """Both changes come while the row is busy, so without the row lock both would read the
-    numbers before either saves."""
+def test_the_last_two_topics_set_to_0_at_once_leave_one_with_questions(run, monkeypatch):
+    """The second change waits on the row the first holds, so without the row lock both would
+    read the numbers before either saves."""
 
     def keeps(limits: dict[str, int]) -> bool:
         return any(limits.get(str(topic), 10) > 0 for topic in (SQL, GIT))
@@ -89,24 +87,18 @@ def test_the_last_two_topics_set_to_0_at_once_leave_one_with_questions(run):
     async def scenario():
         interview, _ = await an_interview()
 
-        async with Session() as busy:
-            await busy.scalar(
-                select(Interview).where(Interview.id == interview.id).with_for_update()
-            )
-            changes = [
-                asyncio.create_task(interviews.set_topic_limit(interview.id, topic, 0, keeps))
-                for topic in (SQL, GIT)
-            ]
-            await asyncio.sleep(0.5)
-            await busy.commit()
-
-        results = await asyncio.gather(*changes)
+        held = hold_first_commit(monkeypatch, interviews)
+        results = await race(
+            os.environ["DATABASE_URL"],
+            held,
+            *(interviews.set_topic_limit(interview.id, topic, 0, keeps) for topic in (SQL, GIT)),
+        )
 
         return results, (await interviews.get(interview.id)).topic_limits
 
     results, limits = run(scenario())
 
-    assert sorted(results) == [False, True]
+    assert results == (True, False)
     assert list(limits.values()) == [0]
 
 

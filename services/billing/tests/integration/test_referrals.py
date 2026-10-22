@@ -1,6 +1,8 @@
-import asyncio
+import os
 import uuid
 from datetime import UTC, datetime
+
+from prepza_common.lock_waits import hold_first_commit, race
 
 from app.config.settings import settings
 from app.constants.credits import REFERRAL_REWARD, WELCOME_COMPANY, WELCOME_GIFT
@@ -124,13 +126,6 @@ def test_a_referrer_over_the_yearly_limit_is_neither_paid_nor_told(run, monkeypa
 def test_two_rewards_at_once_dont_pass_the_referrers_yearly_limit(run, monkeypatch):
     acme, first, second = company(), company(), company()
     monkeypatch.setattr(referrals, "REFERRALS_PER_YEAR", 1)
-    add = referrals.add
-
-    async def slow_add(*args):
-        # Both rewards reach the count before either is saved.
-        await asyncio.sleep(0.3)
-
-        return await add(*args)
 
     async def scenario():
         await ledger.welcome_company(acme, f"{acme}@example.com")
@@ -140,16 +135,20 @@ def test_two_rewards_at_once_dont_pass_the_referrers_yearly_limit(run, monkeypat
             await ledger.welcome_company(newco, f"{newco}@example.com")
             await referrals.record(code, COMPANY, newco, [])
 
-        monkeypatch.setattr(referrals, "add", slow_add)
-        paid = await asyncio.gather(
-            *(referrals.reward(COMPANY, newco, f"txn_{newco}") for newco in (first, second))
+        # The second reward waits on the referrer's wallet the first holds until it commits.
+        held = hold_first_commit(monkeypatch, referrals)
+        paid = await race(
+            os.environ["DATABASE_URL"],
+            held,
+            referrals.reward(COMPANY, first, f"txn_{first}"),
+            referrals.reward(COMPANY, second, f"txn_{second}"),
         )
 
         return paid, await available(COMPANY, acme)
 
     paid, acme_credits = run(scenario())
 
-    assert sorted(paid, key=bool) == [None, acme]
+    assert paid == (acme, None)
     assert acme_credits == WELCOME_COMPANY + REFERRAL_REWARD
 
 

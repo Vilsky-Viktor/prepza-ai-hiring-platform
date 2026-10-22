@@ -1,4 +1,3 @@
-import asyncio
 import json
 import os
 import uuid
@@ -7,6 +6,7 @@ from datetime import UTC, datetime
 import httpx
 import pytest
 from prepza_common.auth import current_user
+from prepza_common.lock_waits import hold_first_commit, race
 from prepza_common.user import User
 
 from app.config.settings import settings
@@ -97,21 +97,26 @@ def test_a_campaign_goes_from_start_to_mailpit_once_and_only_to_who_chose_it(
     assert [message["Subject"] for message in found["messages"]] == [ENGLISH["subject"]]
 
 
-def test_a_kinds_campaigns_a_day_stay_within_the_limit_even_sent_at_once(run, quiet):
-    """At a limit of 2 a day (CAMPAIGNS_PER_KIND_DAY as edited), three sent at once: two go.
-    No other test sends an "updates" campaign, in a database of their own."""
+def test_a_kinds_campaigns_a_day_stay_within_the_limit_even_sent_at_once(run, quiet, monkeypatch):
+    """At a limit of 2 a day (CAMPAIGNS_PER_KIND_DAY as edited), one sent, then two at once: the
+    second waits on the kind's lock until the first commits, and only the first goes. No other
+    test sends an "updates" campaign, in a database of their own."""
 
     async def scenario():
         drafts = [await campaigns_store.create(fields("updates"), "sam", ENGLISH) for _ in range(3)]
+        await campaigns_store.mark_sent(drafts[0].id, "updates", "sam", 2)
+        held = hold_first_commit(monkeypatch, campaigns_store)
 
-        return await asyncio.gather(
-            *(campaigns_store.mark_sent(draft.id, "updates", "sam", 2) for draft in drafts)
+        return await race(
+            os.environ["DATABASE_URL"],
+            held,
+            *(campaigns_store.mark_sent(draft.id, "updates", "sam", 2) for draft in drafts[1:]),
         )
 
-    outcomes = run(scenario())
+    first, second = run(scenario())
 
-    assert sorted(map(str, outcomes)).count(ONE_A_DAY) == 1
-    assert len([one for one in outcomes if isinstance(one, uuid.UUID)]) == 2
+    assert isinstance(first, uuid.UUID)
+    assert second == ONE_A_DAY
 
 
 def test_a_changed_english_drops_the_translations_but_a_hand_edit_survives_a_late_job(run):
