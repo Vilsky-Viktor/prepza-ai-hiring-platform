@@ -3,6 +3,7 @@ from uuid import UUID
 
 from app.constants.events import (
     CANDIDATE_EVENTS,
+    CANDIDATE_INTERVIEW_DELETED,
     CANDIDATE_REMOVED,
     COMPANY_DELETED,
     INTERVIEW_READY,
@@ -28,6 +29,8 @@ async def handle(
         # Sent from companies' newer events only, which say which candidate it was.
         if "candidate_invite_id" in data:
             await webhook_events.removed(data, event_id, when)
+    elif event_type == CANDIDATE_INTERVIEW_DELETED:
+        await webhook_retries.remove_interview(UUID(data["company_id"]), data["interview_id"])
     elif event_type == INTERVIEW_READY:
         # Sent from companies' newer events only, which say whose interview it is.
         if "company_id" in data:

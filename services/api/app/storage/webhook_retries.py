@@ -90,3 +90,28 @@ async def remove_candidate(company_id: uuid.UUID, interview_id: str, email: str)
     async with Session() as session:
         await session.execute(query)
         await session.commit()
+
+
+async def remove_matching(*conditions) -> None:
+    async with Session() as session:
+        await session.execute(delete(WebhookRetry).where(*conditions))
+        await session.commit()
+
+
+async def remove_email(email: str) -> None:
+    """A candidate who deleted their prepza account: their results waiting to be sent again go,
+    from every company's web hooks. An empty (unverified) email matches none."""
+    if not email:
+        return
+
+    body = cast(WebhookRetry.body, JSONB)["data"]
+    await remove_matching(func.lower(body["candidate"]["email"].astext) == email.lower())
+
+
+async def remove_interview(company_id: uuid.UUID, interview_id: str) -> None:
+    """A deleted interview: its candidates' results waiting to be sent again go."""
+    body = cast(WebhookRetry.body, JSONB)["data"]
+    await remove_matching(
+        WebhookRetry.webhook_id.in_(select(Webhook.id).where(Webhook.company_id == company_id)),
+        body["interview"]["id"].astext == interview_id,
+    )

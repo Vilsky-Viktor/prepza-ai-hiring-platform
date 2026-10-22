@@ -1,6 +1,6 @@
 from prepza_common.service_auth import issue_token
 
-from app.storage import keys, webhooks
+from app.storage import keys, webhook_retries, webhooks
 
 HEADERS = {
     "Authorization": "Bearer "
@@ -12,7 +12,9 @@ async def nothing(user_id):
     return []
 
 
-def test_library_deletes_and_exports_a_users_keys_and_web_hooks_by_id_alone(client, monkeypatch):
+def test_library_deletes_and_exports_a_users_keys_web_hooks_and_waiting_results(
+    client, monkeypatch
+):
     removed = []
 
     async def remove_user(user_id):
@@ -23,6 +25,11 @@ def test_library_deletes_and_exports_a_users_keys_and_web_hooks_by_id_alone(clie
     monkeypatch.setattr(keys, "of_user", nothing)
     monkeypatch.setattr(webhooks, "of_user", nothing)
 
+    async def remove_email(email):
+        removed.append(email)
+
+    monkeypatch.setattr(webhook_retries, "remove_email", remove_email)
+
     deleted = client.request(
         "DELETE", "/internal/users/ann", json={"email": "ann@example.com"}, headers=HEADERS
     )
@@ -31,5 +38,6 @@ def test_library_deletes_and_exports_a_users_keys_and_web_hooks_by_id_alone(clie
     )
 
     assert deleted.status_code == 204
-    assert removed == ["ann", "ann"]
+    # Their keys and web hooks, and their results as a candidate waiting to be sent again.
+    assert removed == ["ann", "ann", "ann@example.com"]
     assert exported.json() == {"api_keys": [], "webhooks": []}

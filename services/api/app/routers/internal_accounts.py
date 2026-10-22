@@ -1,17 +1,22 @@
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
 
+from app.schemas.accounts import UserEmailIn
 from app.service_auth import ServiceCaller
-from app.storage import keys, webhooks
+from app.storage import keys, webhook_retries, webhooks
 
 router = APIRouter(prefix="/internal", tags=["internal"], include_in_schema=False)
 
 
 @router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_user(user_id: str, caller: ServiceCaller) -> None:
-    """Library, deleting an account: the keys and web hooks they made go."""
+async def delete_user(user_id: str, caller: ServiceCaller, body: UserEmailIn | None = None) -> None:
+    """Library, deleting an account: the keys and web hooks they made go, and their results as a
+    candidate waiting to be sent again to companies' web hooks."""
     await keys.remove_user(user_id)
     await webhooks.remove_user(user_id)
+
+    if body is not None:
+        await webhook_retries.remove_email(body.email)
 
 
 @router.post("/users/{user_id}/export")

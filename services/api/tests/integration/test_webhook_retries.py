@@ -114,3 +114,33 @@ def test_an_erased_candidates_results_waiting_to_be_sent_again_go(run):
         return sorted(row.event_id for row, _ in await retries.claim(25))
 
     assert run(scenario()) == ["elsewhere", "other", "theirs"]
+
+
+def test_a_deleted_account_or_interview_takes_its_waiting_results_with_it(run):
+    company = uuid.uuid4()
+    future = datetime.now(UTC) + timedelta(hours=1)
+    interview, other = str(uuid.uuid4()), str(uuid.uuid4())
+
+    def body(email, interview_id):
+        data = {"candidate": {"email": email}, "interview": {"id": interview_id}}
+
+        return json.dumps({"data": data})
+
+    async def scenario():
+        hook = await webhooks.add(company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS)
+        await retries.add(hook.id, "gone", body("Gone@Example.com", other), future)
+        await retries.add(hook.id, "in-deleted", body("cy@example.com", interview), future)
+        await retries.add(hook.id, "stays", body("bo@example.com", other), future)
+        await retries.remove_email("gone@example.com")
+        # An unverified account's email is empty: it matches no one.
+        await retries.remove_email("")
+        await handle(
+            "candidate.interview_deleted",
+            {"company_id": str(company), "interview_id": interview},
+            "ev-1",
+        )
+        await retries.postpone(hook.id, "stays", 2, datetime.now(UTC) - timedelta(seconds=1))
+
+        return [row.event_id for row, _ in await retries.claim(25)]
+
+    assert run(scenario()) == ["stays"]
