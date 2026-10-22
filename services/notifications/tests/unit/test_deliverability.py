@@ -12,6 +12,7 @@ from app.constants.unsubscribe import UnsubscribeType
 from app.helpers.campaign_emails import campaign_email
 from app.helpers.emails import (
     candidate_invite_email,
+    candidate_joined_email,
     candidate_reminder_email,
     contact_email,
     report_email,
@@ -60,7 +61,8 @@ ROW = (
 # Every email the service sends, and whether it's one the recipient may stop with their mail
 # client's unsubscribe button.
 EMAILS_SENT = {
-    "invite": (lambda: candidate_invite_email(INVITE, SITE, SECRET), False),
+    "invite": (lambda: candidate_invite_email(INVITE, SITE, SECRET), True),
+    "joined": (lambda: candidate_joined_email(INVITE, SITE, SECRET), True),
     "candidate reminder": (lambda: candidate_reminder_email(INVITE, SITE, SECRET), True),
     "report": (lambda: report_email(REPORT, SITE), False),
     "contact": (lambda: contact_email(CONTACT, "hello@prepza.ai"), False),
@@ -176,7 +178,7 @@ def test_smtp_sends_from_the_streams_address_with_a_date_and_a_message_id(monkey
     assert parseaddr(invite["From"]) == parseaddr(settings.mail_from)
     assert invite["Reply-To"] == settings.contact_email
     assert invite["Auto-Submitted"] == "auto-generated"
-    assert invite["List-Unsubscribe"] is None
+    assert invite["List-Unsubscribe-Post"] == "List-Unsubscribe=One-Click"
     assert invite["Date"] and invite["Message-ID"]
     assert invite.get_body(("plain",)).get_content().strip()
 

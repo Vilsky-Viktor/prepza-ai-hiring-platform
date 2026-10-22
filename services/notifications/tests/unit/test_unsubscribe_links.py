@@ -96,8 +96,12 @@ def test_the_invite_links_to_stopping_the_companys_emails():
     assert verify(token, SECRET)["type"] == "company"
     assert ">Don't email me for Acme &amp; Co</a>" in email.html
     assert f"Don't email me for Acme & Co: {SITE}/unsubscribe?token={token}" in email.text
-    # Not a mail client's unsubscribe button: the invite is the company's one email.
-    assert email.headers == AUTOMATED_HEADERS
+    # A mail client's own button stops the company's emails, at once.
+    assert email.headers == {
+        **AUTOMATED_HEADERS,
+        "List-Unsubscribe": f"<{SITE}/api/notifications/unsubscribe/{token}>",
+        "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+    }
 
 
 def test_the_reminder_links_to_stopping_its_reminders_or_the_companys_emails():

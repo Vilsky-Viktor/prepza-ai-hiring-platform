@@ -32,21 +32,21 @@ def with_logo(data: dict, site_url: str) -> dict:
 
 
 def candidate_invite_email(data: dict, site_url: str, secret: str) -> Email:
-    """The invite, with a link that stops the company's emails to this address (events saved
-    before invites carried the company's id have none)."""
+    """The invite, with a link that stops the company's emails to this address, which a mail
+    client's own unsubscribe button does too (events saved before invites carried the company's
+    id have neither)."""
     data = with_logo(data, site_url)
-    links = (
-        [
-            (
-                "stop_company",
-                page_url(site_url, candidate_token(data, UnsubscribeType.COMPANY, secret)),
-            )
-        ]
-        if data.get("company_id")
-        else []
-    )
+    links = []
+    headers = {}
+
+    if data.get("company_id"):
+        company = candidate_token(data, UnsubscribeType.COMPANY, secret)
+        links = [("stop_company", page_url(site_url, company))]
+        headers = one_click_headers(site_url, company)
+
     email = render("candidate", data, f"{site_url.rstrip('/')}/invite/{data['token']}", links)
     email.tags = invite_tags(CANDIDATE_INVITE_KIND, data.get("invite_id"))
+    email.headers.update(headers)
     email.candidate = True
 
     return email
@@ -55,16 +55,16 @@ def candidate_invite_email(data: dict, site_url: str, secret: str) -> Email:
 def candidate_joined_email(data: dict, site_url: str, secret: str) -> Email:
     """For someone who started through a test's shareable link: their own invite link, to
     continue if they leave. Untagged: a bounce leaves the invite as it is, as they're already
-    taking the test."""
+    taking the test. Its link, and a mail client's own unsubscribe, stop the company's emails."""
     data = with_logo(data, site_url)
     company = candidate_token(data, UnsubscribeType.COMPANY, secret)
-
     email = render(
         "joined",
         data,
         f"{site_url.rstrip('/')}/invite/{data['token']}",
         [("stop_company", page_url(site_url, company))],
     )
+    email.headers.update(one_click_headers(site_url, company))
     email.candidate = True
 
     return email
