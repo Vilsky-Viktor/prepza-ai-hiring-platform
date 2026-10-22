@@ -2396,6 +2396,15 @@
        "2026-10-15T08:30:00+00:00"
       ]
      },
+     "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Timestamp",
+      "description": "The same as `occurred_at`, under the name most web hook libraries read",
+      "examples": [
+       "2026-10-15T08:30:00+00:00"
+      ]
+     },
      "type": {
       "type": "string",
       "enum": [
@@ -2415,6 +2424,7 @@
     "required": [
      "id",
      "occurred_at",
+     "timestamp",
      "type",
      "data"
     ],
@@ -2694,6 +2704,15 @@
        "2026-10-15T08:30:00+00:00"
       ]
      },
+     "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Timestamp",
+      "description": "The same as `occurred_at`, under the name most web hook libraries read",
+      "examples": [
+       "2026-10-15T08:30:00+00:00"
+      ]
+     },
      "type": {
       "type": "string",
       "const": "interview.ready",
@@ -2708,6 +2727,7 @@
     "required": [
      "id",
      "occurred_at",
+     "timestamp",
      "type",
      "data"
     ],
@@ -3013,6 +3033,15 @@
        "2026-10-15T08:30:00+00:00"
       ]
      },
+     "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Timestamp",
+      "description": "The same as `occurred_at`, under the name most web hook libraries read",
+      "examples": [
+       "2026-10-15T08:30:00+00:00"
+      ]
+     },
      "type": {
       "type": "string",
       "const": "candidate.removed",
@@ -3027,6 +3056,7 @@
     "required": [
      "id",
      "occurred_at",
+     "timestamp",
      "type",
      "data"
     ],
@@ -3111,6 +3141,15 @@
        "2026-10-15T08:30:00+00:00"
       ]
      },
+     "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Timestamp",
+      "description": "The same as `occurred_at`, under the name most web hook libraries read",
+      "examples": [
+       "2026-10-15T08:30:00+00:00"
+      ]
+     },
      "type": {
       "type": "string",
       "const": "test",
@@ -3125,6 +3164,7 @@
     "required": [
      "id",
      "occurred_at",
+     "timestamp",
      "type",
      "data"
     ],

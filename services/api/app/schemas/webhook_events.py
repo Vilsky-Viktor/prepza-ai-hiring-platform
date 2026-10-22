@@ -20,6 +20,10 @@ class WebhookEvent(BaseModel):
         "arrive after a later one",
         examples=[EXAMPLE_AT],
     )
+    timestamp: datetime = Field(
+        description="The same as `occurred_at`, under the name most web hook libraries read",
+        examples=[EXAMPLE_AT],
+    )
 
 
 class CandidateWebhook(WebhookEvent):

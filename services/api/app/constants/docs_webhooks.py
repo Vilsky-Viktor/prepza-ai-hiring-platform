@@ -71,7 +71,8 @@ sent from there goes through. An event can occasionally arrive more than once; u
 ignore duplicates.
 
 Each request body is a JSON object with the event's `id`, its `type`, `occurred_at` (when the
-change happened, in ISO 8601) and its `data`. A retried event can arrive after a later one, so
+change happened, in ISO 8601), `timestamp` (the same time, under the name many web hook tools
+read) and its `data`. A retried event can arrive after a later one, so
 order a candidate's events by `occurred_at`, not by when they arrive.
 
 """

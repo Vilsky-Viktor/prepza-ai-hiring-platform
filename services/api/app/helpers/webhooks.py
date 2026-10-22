@@ -25,13 +25,10 @@ def masked(url: str) -> str:
 
 def body_of(event_id: str, event_type: str, data: dict, occurred_at: datetime) -> bytes:
     """What a web hook gets: the event's id (the same on a repeat), its type, when the change
-    happened (to put events in order: a retried event can arrive after a later one) and data."""
-    event = {
-        "id": event_id,
-        "type": event_type,
-        "occurred_at": occurred_at.isoformat(),
-        "data": data,
-    }
+    happened (to put events in order: a retried event can arrive after a later one), as
+    `occurred_at` and, the same, `timestamp`, and data."""
+    at = occurred_at.isoformat()
+    event = {"id": event_id, "type": event_type, "occurred_at": at, "timestamp": at, "data": data}
 
     return json.dumps(event, separators=(",", ":")).encode()
 
