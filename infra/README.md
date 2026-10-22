@@ -249,6 +249,7 @@ To restore everything, restore the instance from a backup instead (`gcloud sql b
 
 ## Notes
 
+- **Probes:** an API's new instance takes traffic once `/ready` answers (its database is reachable); a running one that stops answering `/health` (the process alone, never a dependency) for 90 s is restarted (`services.tf`). The frontend's starts on its port.
 - **Service addresses:** services reach each other at their Cloud Run addresses, which are known in advance (`https://<service>-<project number>.europe-west1.run.app`).
 - **Who can call what:**
   - Public services take outside traffic only through the load balancer (ingress "internal and Cloud Load Balancing"), so Cloud Armor's rules always apply; their `run.app` addresses refuse the internet. The generation worker takes only Google's calls.

@@ -107,7 +107,8 @@ resource "google_cloud_run_v2_service" "service" {
       }
 
       # The APIs answer /ready once their database does; the frontend only needs its port, as
-      # its pages call the API through the load balancer.
+      # its pages call the API through the load balancer. A cold start's first connection to the
+      # database takes longer than the probe's default second.
       dynamic "startup_probe" {
         for_each = each.key == "frontend" ? [] : [1]
 
@@ -115,8 +116,25 @@ resource "google_cloud_run_v2_service" "service" {
           http_get {
             path = "/ready"
           }
+          timeout_seconds   = 4
           period_seconds    = 5
           failure_threshold = 24
+        }
+      }
+
+      # Once started, an API that stops answering /health (the process alone, never the database,
+      # or a database outage would restart every instance) for 90 s is restarted. Generous, so a
+      # worker busy with generations isn't cut off.
+      dynamic "liveness_probe" {
+        for_each = each.key == "frontend" ? [] : [1]
+
+        content {
+          http_get {
+            path = "/health"
+          }
+          timeout_seconds   = 5
+          period_seconds    = 30
+          failure_threshold = 3
         }
       }
 
