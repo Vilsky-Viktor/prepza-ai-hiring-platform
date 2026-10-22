@@ -4,6 +4,7 @@ from uuid import UUID
 # Aliased: this module's own delete() would otherwise shadow it.
 from prepza_common import outbox
 from prepza_common.constants import LEGAL_VERSIONS
+from prepza_common.db import delete_in_batches
 from sqlalchemy import String, and_, cast, func, literal, or_, select, update
 from sqlalchemy import delete as sql_delete
 from sqlalchemy.dialects.postgresql import JSONB
@@ -14,11 +15,11 @@ from app.constants.events import COMPANY_DELETED
 from app.constants.roles import Role
 from app.constants.verification import RENAME_REVIEWED, VerificationStatus
 from app.core.exceptions import OverLimit
+from app.models.audit import AuditEvent
 from app.models.companies import Company, Member
-from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
 from app.models.outbox import OutboxEvent
-from app.storage import guests
+from app.storage import batch_deletion, guests
 from app.storage.db import Session
 
 # The unique index on company names (see models/companies.py).
@@ -100,15 +101,16 @@ async def names(company_ids: list) -> dict:
 
 
 async def delete(company_id) -> None:
-    """With the company.deleted event, which the outbox publishes until notifications has it."""
+    """Its invites, action log and interviews go first, a batch at a time, so a deletion cut off
+    midway goes on when run again; then the company, with its members and the company.deleted
+    event, which the outbox publishes until notifications has it."""
+    await batch_deletion.delete_invites(CandidateInvite.company_id == company_id)
+    await delete_in_batches(Session, AuditEvent, AuditEvent.company_id == company_id)
+    await batch_deletion.delete_interviews(company_id)
+
     async with Session() as session:
-        # Its interviews' invites go with it (cascade).
-        await guests.announce_deleted(
-            session,
-            CandidateInvite.interview_id.in_(
-                select(Interview.id).where(Interview.company_id == company_id)
-            ),
-        )
+        # An invite made meanwhile goes with the company (cascade).
+        await guests.announce_deleted(session, CandidateInvite.company_id == company_id)
         await session.execute(sql_delete(Company).where(Company.id == company_id))
         outbox.add(session, OutboxEvent, COMPANY_DELETED, {"company_id": str(company_id)})
         await session.commit()

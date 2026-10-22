@@ -14,7 +14,7 @@ from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
 from app.models.outbox import OutboxEvent
 from app.schemas.interviews import InterviewSettings
-from app.storage import guests
+from app.storage import batch_deletion, guests
 from app.storage.db import Session
 
 
@@ -226,17 +226,21 @@ async def set_topic_limit(
 
 
 async def remove(interview_id) -> list[tuple]:
-    """Deletes the interview, with the interview.deleted event when one is removed, and returns
+    """Deletes the interview, its invites first a batch at a time (cut off midway, it goes on
+    when run again), with the interview.deleted event when one is removed, and returns
     (interview id, email, status, hold key) of its invites not finished, deleted with it."""
+    removed = await batch_deletion.delete_invites(CandidateInvite.interview_id == interview_id)
+
     async with Session() as session:
         # Locked first: an invite being saved now is saved before and returned, or waits and
         # then fails, as its interview is gone.
         await session.scalar(
             select(Interview.id).where(Interview.id == interview_id).with_for_update()
         )
-        # Finished invites go too, with the interview (cascade).
+        # Invites made meanwhile: those not finished are returned, the others go with the
+        # interview (cascade).
         await guests.announce_deleted(session, CandidateInvite.interview_id == interview_id)
-        removed = await session.execute(
+        late = await session.execute(
             delete(CandidateInvite)
             .where(
                 CandidateInvite.interview_id == interview_id,
@@ -249,7 +253,7 @@ async def remove(interview_id) -> list[tuple]:
                 CandidateInvite.hold_key,
             )
         )
-        removed = [tuple(row) for row in removed]
+        removed += [tuple(row) for row in late]
         company_id = await session.scalar(
             delete(Interview).where(Interview.id == interview_id).returning(Interview.company_id)
         )
