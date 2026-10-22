@@ -1,5 +1,7 @@
 # prepza-common
 
+Contents: what the package covers, by topic (below), then [Modules](#modules), one line each.
+
 Code every prepza API service shares: sign-in, service tokens, logging, database and HTTP setup,
 the outbox and Pub/Sub, notifications, who may do what in a company (`company_access`, asked of companies,
 with the assistant's `X-Assistant` header passed on: a company that's gone is no access, an AI app

@@ -17,6 +17,12 @@ Terraform for prepza on Google Cloud, in one region (`europe-west1`, Belgium) be
 
 Outside Google Cloud: Redis on **Upstash** (rate limits and the current value of each limit edited in the admin zone, which billing writes back within 5 minutes after a flush, the unpaid users' daily AI spend, the LLM limiter, the draft cache, live notifications, and the emergency pause, maintenance mode and the daily generation cap: a flushed or replaced database lifts them, so turn them on again after one), **Firebase Authentication** (same project), **Resend**, **Sentry** and **Paddle**.
 
+- [Bootstrap (once)](#bootstrap-once)
+- [Email deliverability](#email-deliverability)
+- [Deploys](#deploys)
+- [Restore drill](#restore-drill)
+- [Notes](#notes)
+
 ## Bootstrap (once)
 
 You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform`).
