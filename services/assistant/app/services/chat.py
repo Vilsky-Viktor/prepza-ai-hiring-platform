@@ -49,6 +49,7 @@ from app.services.registry import tools
 from app.services.show import show
 from app.services.tenancy import foreign_company
 from app.services.tool_calls import call_tools
+from app.services.tool_routing import routed_tools
 from app.services.updates import in_panel
 
 # Each event the turn sends the panel goes through one of these.
@@ -93,7 +94,11 @@ async def converse(messages: list[BaseMessage], turn: Turn, answer: Answer, emit
     """Asks the model, runs the tools it calls and asks again with their results, streaming its
     text, until it answers without tools. After MAX_TOOL_STEPS steps with tools, it must answer
     with what it has."""
-    definitions = [tool.definition for tool in tools().values()]
+    # The core tools and the groups the message needs (every tool when routing failed).
+    names = await routed_tools(messages, turn, answer)
+    definitions = [
+        tool.definition for name, tool in tools().items() if names is None or name in names
+    ]
     definitions += [SIGN_OUT_DEFINITION, SHOW_DEFINITION]
     # Strict: the model can only send arguments the schema allows.
     definitions = [strict_definition(definition) for definition in definitions]

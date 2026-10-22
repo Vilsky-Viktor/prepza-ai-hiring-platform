@@ -12,6 +12,11 @@ from app.constants.chat import (
     MODEL_TIMEOUT_SECONDS,
 )
 from app.constants.titles import TITLE_MAX_TOKENS
+from app.constants.tool_groups import (
+    ROUTING_MAX_TOKENS,
+    ROUTING_RETRIES,
+    ROUTING_TIMEOUT_SECONDS,
+)
 from app.constants.transcribe import TRANSCRIBE_RETRIES, TRANSCRIBE_TIMEOUT_SECONDS
 
 
@@ -36,6 +41,18 @@ def get_openai() -> AsyncOpenAI:
         api_key=settings.openai_api_key or None,
         timeout=TRANSCRIBE_TIMEOUT_SECONDS,
         max_retries=TRANSCRIBE_RETRIES,
+    )
+
+
+@cache
+def get_routing_model() -> ChatOpenAI:
+    """The groups of tools a turn is offered: a few tokens."""
+    return chat_model(
+        settings.routing_model,
+        settings.routing_reasoning_effort,
+        max_tokens=ROUTING_MAX_TOKENS,
+        timeout=ROUTING_TIMEOUT_SECONDS,
+        max_retries=ROUTING_RETRIES,
     )
 
 

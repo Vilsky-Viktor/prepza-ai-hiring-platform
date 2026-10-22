@@ -2,9 +2,11 @@ import httpx
 import pytest
 from fake_redis import FakeRedis
 
-from app.integrations import services
+from app.constants.tool_groups import ToolGroup
+from app.integrations import llm, services
 from app.services import actions
 from app.storage import actions as store
+from tests.fake_model import FakeRoutingModel
 from tests.unit.actions_setup import COMPANY
 
 
@@ -87,3 +89,13 @@ def users_companies(monkeypatch):
 
     monkeypatch.setattr(companies, "company_ids", company_ids)
     monkeypatch.setattr(memory_cache, "_entries", {})
+
+
+@pytest.fixture(autouse=True)
+def routing(monkeypatch):
+    """The routing call, faked to pick every group (every tool offered, no OpenAI); a test
+    sets `groups` or `error` to check routing itself."""
+    fake = FakeRoutingModel(list(ToolGroup))
+    monkeypatch.setattr(llm, "get_routing_model", lambda: fake)
+
+    return fake

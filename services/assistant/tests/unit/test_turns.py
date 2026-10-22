@@ -7,6 +7,7 @@ import httpx
 import openai
 import pytest
 from fastapi import HTTPException
+from langchain_core.messages import HumanMessage
 from prepza_common.sse import KEEP_ALIVE
 from prepza_common.user import User
 
@@ -69,7 +70,7 @@ def events_of(chunks: list[str]) -> list:
 
 def collect() -> list[str]:
     async def read():
-        return [chunk async for chunk in turns.stream(TURN, [])]
+        return [chunk async for chunk in turns.stream(TURN, [HumanMessage(content="Who am I?")])]
 
     return asyncio.run(read())
 
@@ -86,7 +87,8 @@ def test_a_turns_events_come_in_order_and_end_with_the_saved_message(monkeypatch
         {"done": {"message_id": str(MESSAGE_ID)}},
     ]
     assert saved == [(Status.COMPLETE, "You're Ann.", ["get_me"])]
-    assert saved.tokens == [("ann", 30)]
+    # The two model calls' tokens and the routing call's (tests/fake_model.py).
+    assert saved.tokens == [("ann", 30 + 10)]
 
 
 def test_a_quiet_stream_sends_keep_alives(monkeypatch, saved):
@@ -159,7 +161,7 @@ def test_a_stopped_turn_is_saved_cancelled_with_its_text_so_far(monkeypatch, sav
     script(monkeypatch, text("Half an answer", sleep=5))
 
     async def scenario():
-        stream = turns.stream(TURN, [])
+        stream = turns.stream(TURN, [HumanMessage(content="Who am I?")])
 
         if how == "close":
             async for chunk in stream:
@@ -203,7 +205,7 @@ def test_a_turn_counts_against_the_instances_turns_while_it_streams(monkeypatch,
     seen = []
 
     async def read():
-        async for _ in turns.stream(TURN, []):
+        async for _ in turns.stream(TURN, [HumanMessage(content="Who am I?")]):
             seen.append(turns.running["turns"])
 
     asyncio.run(read())

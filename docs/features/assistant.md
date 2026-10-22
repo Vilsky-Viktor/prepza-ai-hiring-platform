@@ -111,6 +111,7 @@ data: {"done": {"message_id": "a93e…"}}
 ```
 
 - Before anything streams, plain HTTP errors: sign-in (`401`), the emergency pause (`503`), maintenance, a company that isn't one of the user's (companies' internal list of them, however many) or a conversation they can't see (`404`), the limits (`429`), a message over 2,000 characters (`422`).
+- Before a turn, one cheap call (`ROUTING_MODEL`, `app/services/tool_routing.py`) reads the new message with the conversation's last 4 messages and the page, and picks at most two groups of tools (`app/constants/tool_groups.py`: candidates, interview setup, templates and practice, team and company, billing, integrations, account); the turn is offered the 13 core tools (finding companies, interviews and candidates, a scorecard, the guides, updates, `get_me`), `show`, `sign_out` and those groups, about 15 to 47 tools instead of all 88, which reads about 40% fewer tokens. Its tokens count with the answer's; a slow (over 5 s) or failed routing call offers every tool. Measured in `evals/` (`assistant_actions.py`, `page_context.py`, `guides.py`).
 - A turn asks the model, runs the tools it calls (up to 4 at once, 20 s each) and asks again with their results, at most 6 times; then the model must answer with what it has. A turn takes at most 90 s. A comment (`: keep-alive`) goes out every 15 s without events. An instance streams at most 40 turns at once (`TURNS_AT_ONCE`, about half its requests, so short requests, MCP calls and Pub/Sub's pushes keep theirs); one more message or confirmed action is refused before anything runs or counts (503 with `Retry-After`, the panel's usual error to try again).
 - A tool's error (a `403` for the user's role, `402` without credits, a service that didn't answer) goes to the model, which explains it.
 - The model failing or the turn running out of time ends with `{"error": "Couldn't get a reply right now. Please try again."}` (translated). A service refusing the user's token mid-turn ends with `{"error": …, "code": "session_expired"}`: the panel refreshes the token and sends the message again, once.
@@ -200,6 +201,7 @@ An action is the same in `app/constants/company_actions.py`, `interview_actions.
 |---|---|---|
 | `ASSISTANT_MODEL`, `ASSISTANT_REASONING_EFFORT` | `gpt-6-luna`, `low` | The chat model |
 | `TITLE_MODEL`, `TITLE_REASONING_EFFORT` | `gpt-6-luna`, `none` | The conversations' titles |
+| `ROUTING_MODEL`, `ROUTING_REASONING_EFFORT` | `gpt-6-luna`, `none` | Which groups of tools a turn is offered |
 | `TRANSCRIBE_MODEL` | `gpt-4o-mini-transcribe` | Voice input |
 | `ASSISTANT_RETENTION_DAYS` | 90 | Days a conversation is kept after its last message |
 | `OPENAI_API_KEY` | | OpenAI's key |

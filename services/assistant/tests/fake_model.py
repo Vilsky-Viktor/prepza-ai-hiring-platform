@@ -80,3 +80,33 @@ class FakeTitleModel:
         raw = AIMessage(content=self.title, usage_metadata=usage)
 
         return {"raw": raw, "parsed": self.schema(title=self.title)}
+
+
+class FakeRoutingModel:
+    """The routing call's model, picking `groups` (or failing with `error`), with the raw
+    message beside it (no OpenAI); `prompts` are the messages it was asked."""
+
+    def __init__(self, groups=(), error: Exception | None = None):
+        self.groups = list(groups)
+        self.error = error
+        self.prompts = []
+
+    def with_structured_output(self, schema, include_raw=False):
+        self.schema = schema
+
+        return self
+
+    async def ainvoke(self, messages, config=None):
+        from langchain_core.messages import AIMessage
+
+        self.prompts.append(messages)
+
+        if self.error is not None:
+            raise self.error
+
+        usage = {"input_tokens": 7, "output_tokens": 3, "total_tokens": 10}
+
+        return {
+            "raw": AIMessage(content="", usage_metadata=usage),
+            "parsed": self.schema(groups=self.groups),
+        }

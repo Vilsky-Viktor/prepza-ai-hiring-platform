@@ -18,6 +18,9 @@ class Settings(ServiceSettings):
     # Writes the conversations' titles in the history: a short summary, no reasoning needed.
     title_model: str = "gpt-6-luna"
     title_reasoning_effort: str = "none"
+    # Picks the groups of tools a turn is offered (services/tool_routing.py): a few tokens.
+    routing_model: str = "gpt-6-luna"
+    routing_reasoning_effort: str = "none"
     # Turns a held voice message into text.
     transcribe_model: str = "gpt-4o-mini-transcribe"
     # Conversations nobody has added to for this many days are deleted.

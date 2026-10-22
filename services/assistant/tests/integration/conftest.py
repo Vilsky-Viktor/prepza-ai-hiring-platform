@@ -110,8 +110,11 @@ def token(user):
 
 @pytest.fixture(autouse=True)
 def no_openai_titles(monkeypatch):
-    """Titles come from a fake model: integration tests never call OpenAI."""
+    """Titles and the routing of a turn's tools come from fake models: integration tests never
+    call OpenAI."""
+    from app.constants.tool_groups import ToolGroup
     from app.integrations import llm
-    from tests.fake_model import FakeTitleModel
+    from tests.fake_model import FakeRoutingModel, FakeTitleModel
 
     monkeypatch.setattr(llm, "get_title_model", lambda: FakeTitleModel("Your companies"))
+    monkeypatch.setattr(llm, "get_routing_model", lambda: FakeRoutingModel(list(ToolGroup)))

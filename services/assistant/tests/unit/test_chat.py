@@ -67,7 +67,8 @@ def test_an_answer_streams_as_deltas_and_its_tokens_count(model):
 
     assert events == [{"delta": "Two"}, {"delta": " candidates"}, {"delta": " passed."}]
     assert answer.content == "Two candidates passed."
-    assert (answer.input_tokens, answer.output_tokens, answer.results) == (10, 5, [])
+    # The model's call's, and the routing call's (tests/fake_model.py).
+    assert (answer.input_tokens, answer.output_tokens, answer.results) == (10 + 7, 5 + 3, [])
 
 
 def test_parallel_calls_run_in_one_step_and_the_model_reads_every_result(model, monkeypatch):
@@ -107,7 +108,7 @@ def test_parallel_calls_run_in_one_step_and_the_model_reads_every_result(model, 
     assert json.loads(results[0].content) == {"data": {"paused": False}, "source": "get_pause"}
     assert [result.tool for result in answer.results] == ["get_pause", "get_me"]
     assert answer.blocks == []
-    assert (answer.input_tokens, answer.output_tokens) == (20, 10)
+    assert (answer.input_tokens, answer.output_tokens) == (20 + 7, 10 + 3)
 
 
 def test_after_six_steps_with_tools_the_model_must_answer(model, gets):

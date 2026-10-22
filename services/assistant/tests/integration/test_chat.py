@@ -96,7 +96,8 @@ def test_a_conversation_is_streamed_saved_listed_exported_and_deleted(run, user,
         ("assistant", "Still none.", "complete"),
     ]
     answer = stored[1]
-    assert (answer.input_tokens, answer.output_tokens) == (20, 10)
+    # The two model calls' and the routing call's (tests/fake_model.py).
+    assert (answer.input_tokens, answer.output_tokens) == (20 + 7, 10 + 3)
     # Which tool, how it ended: never its arguments' values or its result.
     [call] = await_calls
     assert (call.tool, call.status_code, call.state, call.arguments, call.result) == (

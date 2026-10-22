@@ -15,7 +15,8 @@ Contents: [Actions](#actions-2026-10-20) ·
 [A topic's question limit](#a-topics-question-limit-isnt-a-page-size-2026-10-22-kept) ·
 [The turn's context](#the-turns-context-out-of-the-instructions-2026-10-22-kept) ·
 [Strict tool schemas](#strict-tool-schemas-2026-10-22-kept) ·
-[How to narrow a list](#how-to-narrow-a-list-cut-short-2026-10-22-kept)
+[How to narrow a list](#how-to-narrow-a-list-cut-short-2026-10-22-kept) ·
+[Fewer tools a turn](#fewer-tools-a-turn-chosen-by-a-routing-call-2026-10-23-kept)
 
 ## Actions (2026-10-20)
 
@@ -244,3 +245,29 @@ success 99.3% → 97.1% (92.7–98.9), within the intervals; arguments, links an
 100% both; $0.0022 a turn. No list in the eval's fixtures is long enough to be cut, so no turn
 read the hint: the four failures (a service that didn't answer, a topic not found, two asked
 which company) passed 12 of 12 when run again (`…_narrow-recheck.json`). $0.43.
+
+## Fewer tools a turn, chosen by a routing call (2026-10-23, kept)
+
+Every turn offered all 88 tools (about 10,000 of a call's input tokens). Now one cheap call
+(`ROUTING_MODEL`, `gpt-6-luna` at none) reads the new message with the conversation's last 4
+messages and the page, and picks at most two of seven groups; the turn is offered the 13 core
+tools, `show`, `sign_out` and those groups (15 to 47 tools). Unlike the 2026-10-20 trial
+(`assistant-tried.md`) no `load_tools` step is needed: a turn has its group from its first call.
+`assistant_actions.py`, 2 repeats, against `…_strict.json`, `…_narrow.json` and `…_handover.json`
+(98.5–99.3%, 21,400–21,900 tokens, $0.0022 a turn):
+
+| Run | Task success | Link | Asked first | Injection safe / read | Tokens, cost, seconds a turn |
+|---|---|---|---|---|---|
+| Routing on the message alone (`…_routed.json`) | 97.1% (92.7–98.9) | 17/18 | 18/18 | 100% / 85.3% | 12,800, $0.0013, 13.1 s |
+| With the conversation (`…_routed2.json`) | 98.5% (94.8–99.6) | 18/18 | 18/18 | 100% / 85.3% | 12,600, $0.0013, 15.2 s |
+| In the service (`…_routed-prod.json`) | 97.1% (92.7–98.9) | 16/18 | 18/18 | 100% / 85.3% | 12,700, $0.0013, 9.4 s |
+| Groups named sharper (in use, `…_routed-prod2.json`) | **97.8% (93.7–99.2)** | **17/18** | **18/18** | **100% / 91.2%** | **12,500, $0.0013, 11.4 s** |
+
+The message alone lost short replies ("The data analyst one.") to the wrong group; in the
+service, "Create an API key" and question reports were missed until the groups named them. With
+the routing call's tokens counted, a turn costs about 41% less, beyond the intervals; success
+stays within them. `page_context.py` and `guides.py`, 2 repeats (`…_routed.json`), against
+`…_ctx.json`: general correct with the page 88 → 84/102, scope 92 → 88, tools 78 → 84, page
+checks 16/18 both, the guide called 10/10 both, $0.33 → $0.19 for the run; guides correct 39 →
+39/40, complete 26 → 24, read the right one 38 → 40, linked 37 → 38, general correct 28 → 25/30,
+$0.27 → $0.17. All within the judge's noise. $4.30 for the runs.
