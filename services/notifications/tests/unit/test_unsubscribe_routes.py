@@ -169,7 +169,7 @@ def test_a_reminder_stopped_for_its_invite_isnt_sent_and_the_company_isnt_told(c
     # The invite itself still goes, when the company sends it again.
     client.post("/internal/events", json=push("candidate.invited", INVITE))
 
-    assert [email.subject for email in outbox["sent"]] == ["Acme invited you to an interview"]
+    assert [email.tags["kind"] for email in outbox["sent"]] == ["candidate_invite"]
     assert outbox["undelivered"] == []
 
 

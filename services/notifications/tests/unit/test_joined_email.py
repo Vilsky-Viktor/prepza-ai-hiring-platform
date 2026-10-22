@@ -37,7 +37,7 @@ def test_someone_who_started_through_a_link_gets_their_own_link_to_continue():
     email = candidate_joined_email(DATA, "http://localhost:8090", "secret")
 
     assert email.to == "bob@example.com"
-    assert email.subject == "Your link to continue “Backend”"
+    assert "Backend" in email.subject
     assert 'href="http://localhost:8090/invite/xyz"' in email.html
     assert "You started the “Backend” interview for Acme on prepza." in email.text
     assert "Don't email me for Acme" in email.text

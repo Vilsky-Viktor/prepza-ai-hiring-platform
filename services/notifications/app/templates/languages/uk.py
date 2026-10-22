@@ -7,7 +7,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} запрошує вас на співбесіду",
+        "subject": "Запрошення на співбесіду від {company}",
         "preheader": "Пройдіть «{title}» на prepza. Увійдіть з адресою {email}, щоб почати.",
         "heading": "Запрошення на співбесіду",
         "lines": [
@@ -20,7 +20,7 @@ TEXTS = {
         "button": "Відкрити запрошення",
     },
     "joined": {
-        "subject": "Ваше посилання, щоб продовжити «{title}»",
+        "subject": "Ваше посилання на «{title}»",
         "preheader": (
             "Якщо ви вийдете зі співбесіди, продовжте за цим посиланням. Увійдіть з адресою {email}."
         ),
@@ -37,7 +37,7 @@ TEXTS = {
         "footer": "Цей лист надіслано на {email}, тому що з цією адресою почали співбесіду на prepza.",
     },
     "reminder": {
-        "subject": "Нагадування: {company} чекає на вашу співбесіду",
+        "subject": "Нагадування: співбесіда в {company}",
         "preheader": "«{title}» досі відкрита. Увійдіть з адресою {email}, щоб почати.",
         "heading": "Ваша співбесіда чекає",
         "lines": [
@@ -53,7 +53,7 @@ TEXTS = {
         "button": "Відкрити запрошення",
     },
     "member": {
-        "subject": "{inviter} запрошує вас до команди {company} на prepza",
+        "subject": "Приєднуйтеся до {company} на prepza",
         "preheader": (
             "Приєднуйтеся до команди {company} у ролі {role}. Увійдіть з адресою {email}, щоб "
             "прийняти запрошення."
@@ -71,7 +71,7 @@ TEXTS = {
         "roles": {"admin": "адміністратора", "viewer": "спостерігача"},
     },
     "report": {
-        "subject": "Звіт про кандидата: {candidate}",
+        "subject": "Звіт: {candidate}",
         "preheader": "{candidate} пройшов «{title}» у {company}. Звіт у вкладенні.",
         "heading": "Звіт про кандидата",
         "lines": [
@@ -87,7 +87,7 @@ TEXTS = {
         "з цією адресою на prepza. Якщо ви його не чекали, просто проігноруйте його.",
     },
     "candidates": {
-        "subject": "Звіт про всіх кандидатів: {title}",
+        "subject": "Усі кандидати: {title}",
         "preheader": "Усі кандидати на «{title}» у {company}. Звіт у вкладенні.",
         "heading": "Звіт про кандидатів",
         "lines": [
@@ -175,7 +175,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza оновлює умови використання з {date}",
+        "subject": "Нові умови використання з {date}",
         "preheader": "Нові умови використання діють з {date}.",
         "heading": "Ми оновлюємо умови використання",
         "lines": [
@@ -196,7 +196,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "prepza оновлює політику конфіденційності з {date}",
+        "subject": "Нова політика конфіденційності з {date}",
         "preheader": "Нова політика конфіденційності діє з {date}.",
         "heading": "Ми оновлюємо політику конфіденційності",
         "lines": [
@@ -214,7 +214,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "prepza оновлює договір про обробку даних з {date}",
+        "subject": "Новий договір про обробку даних з {date}",
         "preheader": "Новий договір діє для вашої компанії з {date}.",
         "heading": "Ми оновлюємо договір про обробку даних",
         "lines": [
@@ -261,7 +261,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "Автопоповнення для {company} не вдалося",
+        "subject": "Автопоповнення не вдалося: {company}",
         "preheader": (
             "Не вдалося списати кошти з картки. Поповніть баланс, щоб і далі запрошувати "
             "кандидатів."
@@ -285,7 +285,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "Автопоповнення для {company} призупинено",
+        "subject": "Автопоповнення призупинено: {company}",
         "preheader": "Картку відхилено. Оновіть її, щоб знову ввімкнути автопоповнення.",
         "heading": "Автопоповнення призупинено",
         "lines": [
@@ -306,7 +306,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "Ціна автопоповнення для {company} змінюється",
+        "subject": "Нова ціна автопоповнення для {company}",
         "preheader": "З {date} кожне автопоповнення коштує {new_price} замість {price}.",
         "heading": "Ціна автопоповнення змінюється",
         "lines": [

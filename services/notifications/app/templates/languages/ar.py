@@ -5,7 +5,7 @@ MEMBER_FOOTER = "أُرسلت هذه الرسالة إلى {email} لأنك ما
 
 TEXTS = {
     "candidate": {
-        "subject": "تلقيت دعوة من {company} إلى مقابلة",
+        "subject": "دعوة لمقابلة من {company}",
         "preheader": "أجرِ «{title}» على prepza. سجّل الدخول باستخدام {email} للبدء.",
         "heading": "دعوة إلى مقابلة",
         "lines": [
@@ -18,7 +18,7 @@ TEXTS = {
         "button": "افتح الدعوة",
     },
     "joined": {
-        "subject": "رابطك لمتابعة «{title}»",
+        "subject": "رابطك إلى «{title}»",
         "preheader": "إذا غادرت المقابلة، تابعها بهذا الرابط. سجّل الدخول باستخدام {email}.",
         "heading": "رابط مقابلتك",
         "lines": [
@@ -32,7 +32,7 @@ TEXTS = {
         "footer": "أُرسلت هذه الرسالة إلى {email} لأن مقابلة بدأت على prepza بهذا العنوان.",
     },
     "reminder": {
-        "subject": "تذكير: {company} بانتظار مقابلتك",
+        "subject": "تذكير: مقابلتك مع {company}",
         "preheader": "«{title}» لا تزال متاحة. سجّل الدخول باستخدام {email} للبدء.",
         "heading": "مقابلتك بانتظارك",
         "lines": [
@@ -45,7 +45,7 @@ TEXTS = {
         "button": "افتح الدعوة",
     },
     "member": {
-        "subject": "تلقيت دعوة من {inviter} للانضمام إلى فريق {company} على prepza",
+        "subject": "انضم إلى {company} على prepza",
         "preheader": (
             "انضم إلى فريق {company} بصفة {role}. سجّل الدخول باستخدام {email} لقبول الدعوة."
         ),
@@ -59,7 +59,7 @@ TEXTS = {
         "roles": {"admin": "مسؤول", "viewer": "مشاهد"},
     },
     "report": {
-        "subject": "تقرير مرشح: {candidate}",
+        "subject": "تقرير: {candidate}",
         "preheader": "أجرى {candidate} «{title}» لدى {company}. التقرير مرفق.",
         "heading": "تقرير المرشح",
         "lines": [
@@ -74,7 +74,7 @@ TEXTS = {
         "العنوان على prepza. إذا لم تكن تتوقعها، فيمكنك تجاهلها.",
     },
     "candidates": {
-        "subject": "تقرير جميع المرشحين: {title}",
+        "subject": "جميع المرشحين: {title}",
         "preheader": "جميع مرشحي «{title}» لدى {company}. التقرير مرفق.",
         "heading": "تقرير المرشحين",
         "lines": [
@@ -152,7 +152,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "نحدّث شروط استخدام prepza في {date}",
+        "subject": "شروط استخدام جديدة من {date}",
         "preheader": "تسري شروط الاستخدام الجديدة اعتبارًا من {date}.",
         "heading": "نحدّث شروط الاستخدام",
         "lines": [
@@ -172,7 +172,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "نحدّث سياسة خصوصية prepza في {date}",
+        "subject": "سياسة خصوصية جديدة من {date}",
         "preheader": "تسري سياسة الخصوصية الجديدة اعتبارًا من {date}.",
         "heading": "نحدّث سياسة الخصوصية",
         "lines": [
@@ -189,7 +189,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "نحدّث اتفاقية معالجة البيانات لدى prepza في {date}",
+        "subject": "اتفاقية معالجة بيانات جديدة من {date}",
         "preheader": "تسري الاتفاقية الجديدة على شركتك اعتبارًا من {date}.",
         "heading": "نحدّث اتفاقية معالجة البيانات",
         "lines": [
@@ -229,7 +229,7 @@ TEXTS = {
         "footer": "أُرسلت هذه الرسالة إلى {email} لأنك اخترت تلقي العروض والتخفيضات من prepza.",
     },
     "top_up_failed": {
-        "subject": "فشل الشحن التلقائي لـ {company}",
+        "subject": "فشل الشحن التلقائي: {company}",
         "preheader": "تعذّر الخصم من البطاقة. اشحن رصيدك لمواصلة دعوة المرشحين.",
         "heading": "فشل الشحن التلقائي",
         "lines": [
@@ -246,7 +246,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "إيقاف الشحن التلقائي مؤقتًا لـ {company}",
+        "subject": "الشحن التلقائي متوقف مؤقتًا: {company}",
         "preheader": "رُفضت البطاقة. حدّثها لإعادة تشغيل الشحن التلقائي.",
         "heading": "الشحن التلقائي متوقف مؤقتًا",
         "lines": [
@@ -266,7 +266,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "سعر الشحن التلقائي لـ {company} سيتغير",
+        "subject": "سعر جديد للشحن التلقائي لـ {company}",
         "preheader": "اعتبارًا من {date}، تكلّف كل عملية شحن تلقائي {new_price} بدلًا من {price}.",
         "heading": "سعر الشحن التلقائي سيتغير",
         "lines": [

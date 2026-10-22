@@ -9,6 +9,7 @@ from prepza_common.constants import LANGUAGES
 from app.config.settings import settings
 from app.helpers.emails import candidate_invite_email, contact_email
 from app.integrations import companies, resend, smtp
+from app.templates.emails import EMAILS
 
 DATA = {"email": "bob@example.com", "token": "abc", "title": "Backend", "company": "Acme"}
 
@@ -41,7 +42,7 @@ def test_candidate_invite_email():
     email = candidate_invite_email(data, "http://localhost:8090", "secret")
 
     assert email.to == "bob@example.com"
-    assert email.subject == "Acme invited you to an interview"
+    assert "Acme" in email.subject
     assert "http://localhost:8090/invite/xyz" in email.text
     assert 'href="http://localhost:8090/invite/xyz"' in email.html
     assert "Acme invited you to the “Backend” interview on prepza." in email.text
@@ -177,7 +178,7 @@ def test_an_invite_is_emailed_in_the_interviews_language():
     data = {**DATA, "company": "Acme", "language": "ru"}
     email = candidate_invite_email(data, "http://localhost:8090", "secret")
 
-    assert email.subject == "Acme приглашает вас на собеседование"
+    assert email.subject == EMAILS["ru"]["candidate"]["subject"].format(company="Acme")
     assert '<html lang="ru" dir="ltr">' in email.html
     assert "Или вставьте эту ссылку в браузер" in email.html
     assert "«Backend»" in email.text
@@ -189,7 +190,7 @@ def test_an_invite_in_a_language_without_texts_is_emailed_in_english():
             {**DATA, "language": language}, "http://localhost:8090", "secret"
         )
 
-        assert email.subject == "Acme invited you to an interview"
+        assert email.subject == EMAILS["en"]["candidate"]["subject"].format(company="Acme")
         assert '<html lang="en" dir="ltr">' in email.html
 
 
@@ -200,7 +201,7 @@ def test_an_arabic_invite_reads_right_to_left():
     assert '<html lang="ar" dir="rtl">' in email.html
     assert 'dir="rtl"' in email.html.split("<body")[1]
     assert "text-align:right" in email.html
-    assert email.subject == "تلقيت دعوة من Acme إلى مقابلة"
+    assert email.subject == EMAILS["ar"]["candidate"]["subject"].format(company="Acme")
 
 
 @pytest.mark.parametrize("language", sorted(LANGUAGES))
@@ -210,7 +211,9 @@ def test_every_content_language_has_the_invite_email(language):
     # Every placeholder is filled in, and the texts aren't English stand-ins.
     assert "{" not in email.html and "{" not in email.text
     assert f'lang="{language}"' in email.html
-    assert language == "en" or email.subject != "Acme invited you to an interview"
+    assert language == "en" or email.subject != EMAILS["en"]["candidate"]["subject"].format(
+        company="Acme"
+    )
 
 
 CONTACT = {

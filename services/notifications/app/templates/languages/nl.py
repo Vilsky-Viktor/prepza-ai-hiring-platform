@@ -8,7 +8,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} nodigt je uit voor een interview",
+        "subject": "Uitnodiging voor een interview van {company}",
         "preheader": "Doe “{title}” op prepza. Log in met {email} om te beginnen.",
         "heading": "Uitnodiging voor een interview",
         "lines": [
@@ -21,7 +21,7 @@ TEXTS = {
         "button": "Uitnodiging openen",
     },
     "joined": {
-        "subject": "Je link om “{title}” voort te zetten",
+        "subject": "Je link naar “{title}”",
         "preheader": "Als je het interview verlaat, ga dan verder met deze link. Log in met {email}.",
         "heading": "Je link naar het interview",
         "lines": [
@@ -39,7 +39,7 @@ TEXTS = {
         ),
     },
     "reminder": {
-        "subject": "Herinnering: {company} wacht op je interview",
+        "subject": "Herinnering: je interview bij {company}",
         "preheader": "“{title}” staat nog open. Log in met {email} om te beginnen.",
         "heading": "Je interview wacht op je",
         "lines": [
@@ -55,7 +55,7 @@ TEXTS = {
         "button": "Uitnodiging openen",
     },
     "member": {
-        "subject": "{inviter} nodigt je uit voor het team van {company} op prepza",
+        "subject": "Word lid van {company} op prepza",
         "preheader": (
             "Word als {role} lid van het team van {company}. Log in met {email} om de uitnodiging "
             "te accepteren."
@@ -76,7 +76,7 @@ TEXTS = {
         "roles": {"admin": "beheerder", "viewer": "kijker"},
     },
     "report": {
-        "subject": "Kandidaatrapport: {candidate}",
+        "subject": "Rapport: {candidate}",
         "preheader": "{candidate} deed “{title}” bij {company}. Het rapport zit in de bijlage.",
         "heading": "Kandidaatrapport",
         "lines": [
@@ -93,7 +93,7 @@ TEXTS = {
         "negeren.",
     },
     "candidates": {
-        "subject": "Rapport van alle kandidaten: {title}",
+        "subject": "Alle kandidaten: {title}",
         "preheader": "Alle kandidaten voor “{title}” bij {company}. Het rapport zit in de bijlage.",
         "heading": "Kandidatenrapport",
         "lines": [
@@ -180,7 +180,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza werkt de gebruiksvoorwaarden bij op {date}",
+        "subject": "Nieuwe gebruiksvoorwaarden vanaf {date}",
         "preheader": "De nieuwe gebruiksvoorwaarden gelden vanaf {date}.",
         "heading": "We werken onze gebruiksvoorwaarden bij",
         "lines": [
@@ -201,7 +201,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "prepza werkt het privacybeleid bij op {date}",
+        "subject": "Nieuw privacybeleid vanaf {date}",
         "preheader": "Het nieuwe privacybeleid geldt vanaf {date}.",
         "heading": "We werken ons privacybeleid bij",
         "lines": [
@@ -220,7 +220,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "prepza werkt de verwerkersovereenkomst bij op {date}",
+        "subject": "Nieuwe verwerkersovereenkomst vanaf {date}",
         "preheader": "De nieuwe overeenkomst geldt voor je bedrijf vanaf {date}.",
         "heading": "We werken onze verwerkersovereenkomst bij",
         "lines": [
@@ -268,7 +268,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "Automatisch opwaarderen mislukt voor {company}",
+        "subject": "Opwaarderen mislukt: {company}",
         "preheader": (
             "De kaart kon niet worden belast. Waardeer op om kandidaten te blijven uitnodigen."
         ),
@@ -291,7 +291,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "Automatisch opwaarderen gepauzeerd voor {company}",
+        "subject": "Opwaarderen gepauzeerd: {company}",
         "preheader": (
             "De kaart is geweigerd. Werk hem bij om automatisch opwaarderen weer aan te zetten."
         ),
@@ -316,7 +316,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "Prijs van automatisch opwaarderen voor {company} verandert",
+        "subject": "Nieuwe opwaardeerprijs voor {company}",
         "preheader": (
             "Vanaf {date} kost elke automatische opwaardering {new_price} in plaats van {price}."
         ),

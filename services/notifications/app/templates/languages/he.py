@@ -6,7 +6,7 @@ MEMBER_FOOTER = "הודעה זו נשלחה אל {email} כי יש לכם תפק
 
 TEXTS = {
     "candidate": {
-        "subject": "קיבלת הזמנה לראיון מ-{company}",
+        "subject": "הזמנה לראיון מ-{company}",
         "preheader": 'ראיון "{title}" ב-prepza. יש להתחבר עם {email} כדי להתחיל.',
         "heading": "הזמנה לראיון",
         "lines": [
@@ -16,7 +16,7 @@ TEXTS = {
         "button": "פתיחת ההזמנה",
     },
     "joined": {
-        "subject": 'הקישור שלך להמשך "{title}"',
+        "subject": 'הקישור שלך אל "{title}"',
         "preheader": "אם יוצאים מהראיון, אפשר להמשיך בקישור הזה. יש להתחבר עם {email}.",
         "heading": "הקישור לראיון שלך",
         "lines": [
@@ -30,7 +30,7 @@ TEXTS = {
         "footer": "הודעה זו נשלחה אל {email} כי ראיון ב-prepza התחיל עם הכתובת הזו.",
     },
     "reminder": {
-        "subject": "תזכורת: {company} מחכה לראיון שלך",
+        "subject": "תזכורת: הראיון שלך ב-{company}",
         "preheader": 'ראיון "{title}" עדיין פתוח. יש להתחבר עם {email} כדי להתחיל.',
         "heading": "הראיון שלך מחכה",
         "lines": [
@@ -46,7 +46,7 @@ TEXTS = {
         "button": "פתיחת ההזמנה",
     },
     "member": {
-        "subject": "קיבלת הזמנה מ-{inviter} להצטרף לצוות של {company} ב-prepza",
+        "subject": "הצטרפות ל-{company} ב-prepza",
         "preheader": (
             "הצטרפות לצוות של {company} בתפקיד {role}. יש להתחבר עם {email} כדי לקבל את ההזמנה."
         ),
@@ -60,7 +60,7 @@ TEXTS = {
         "roles": {"admin": "מנהל", "viewer": "צופה"},
     },
     "report": {
-        "subject": "דוח מועמד: {candidate}",
+        "subject": "דוח: {candidate}",
         "preheader": '{candidate} ניגש/ה ל-"{title}" ב-{company}. הדוח מצורף.',
         "heading": "דוח מועמד",
         "lines": [
@@ -75,7 +75,7 @@ TEXTS = {
         "ב-prepza. אם לא ציפית לה, אפשר להתעלם ממנה.",
     },
     "candidates": {
-        "subject": "דוח של כל המועמדים: {title}",
+        "subject": "כל המועמדים: {title}",
         "preheader": 'כל המועמדים ל-"{title}" ב-{company}. הדוח מצורף.',
         "heading": "דוח מועמדים",
         "lines": [
@@ -155,7 +155,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "אנחנו מעדכנים את תנאי השימוש של prepza ב-{date}",
+        "subject": "תנאי שימוש חדשים מ-{date}",
         "preheader": "תנאי השימוש החדשים חלים מ-{date}.",
         "heading": "אנחנו מעדכנים את תנאי השימוש",
         "lines": [
@@ -175,7 +175,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "אנחנו מעדכנים את מדיניות הפרטיות של prepza ב-{date}",
+        "subject": "מדיניות פרטיות חדשה מ-{date}",
         "preheader": "מדיניות הפרטיות החדשה חלה מ-{date}.",
         "heading": "אנחנו מעדכנים את מדיניות הפרטיות",
         "lines": [
@@ -192,7 +192,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "אנחנו מעדכנים את הסכם עיבוד הנתונים של prepza ב-{date}",
+        "subject": "הסכם עיבוד נתונים חדש מ-{date}",
         "preheader": "ההסכם החדש חל על החברה שלכם מ-{date}.",
         "heading": "אנחנו מעדכנים את הסכם עיבוד הנתונים",
         "lines": [
@@ -232,7 +232,7 @@ TEXTS = {
         "footer": "הודעה זו נשלחה אל {email} כי בחרתם לקבל מ-prepza מבצעים והטבות.",
     },
     "top_up_failed": {
-        "subject": "הטעינה האוטומטית נכשלה עבור {company}",
+        "subject": "הטעינה האוטומטית נכשלה: {company}",
         "preheader": "לא ניתן היה לחייב את הכרטיס. טענו כדי להמשיך להזמין מועמדים.",
         "heading": "הטעינה האוטומטית נכשלה",
         "lines": [
@@ -247,7 +247,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "הטעינה האוטומטית הושהתה עבור {company}",
+        "subject": "הטעינה האוטומטית הושהתה: {company}",
         "preheader": "הכרטיס נדחה. עדכנו אותו כדי להפעיל מחדש את הטעינה האוטומטית.",
         "heading": "הטעינה האוטומטית מושהית",
         "lines": [
@@ -268,7 +268,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "המחיר של הטעינה האוטומטית עבור {company} משתנה",
+        "subject": "מחיר חדש לטעינה האוטומטית של {company}",
         "preheader": "החל מ-{date}, כל טעינה אוטומטית תעלה {new_price} במקום {price}.",
         "heading": "המחיר של הטעינה האוטומטית משתנה",
         "lines": [

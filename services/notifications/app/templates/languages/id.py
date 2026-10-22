@@ -7,7 +7,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} mengundangmu mengikuti wawancara",
+        "subject": "Undangan wawancara dari {company}",
         "preheader": "Ikuti “{title}” di prepza. Masuk dengan {email} untuk mulai.",
         "heading": "Undangan wawancara",
         "lines": [
@@ -20,7 +20,7 @@ TEXTS = {
         "button": "Buka undangan",
     },
     "joined": {
-        "subject": "Tautanmu untuk melanjutkan “{title}”",
+        "subject": "Tautanmu ke “{title}”",
         "preheader": "Jika kamu meninggalkan wawancara, lanjutkan dengan tautan ini. Masuk dengan {email}.",
         "heading": "Tautan wawancaramu",
         "lines": [
@@ -38,7 +38,7 @@ TEXTS = {
         ),
     },
     "reminder": {
-        "subject": "Pengingat: {company} menunggu wawancaramu",
+        "subject": "Pengingat: wawancaramu dengan {company}",
         "preheader": "“{title}” masih terbuka. Masuk dengan {email} untuk mulai.",
         "heading": "Wawancaramu sedang menunggu",
         "lines": [
@@ -54,7 +54,7 @@ TEXTS = {
         "button": "Buka undangan",
     },
     "member": {
-        "subject": "{inviter} mengundangmu bergabung dengan tim {company} di prepza",
+        "subject": "Bergabung dengan {company} di prepza",
         "preheader": (
             "Bergabunglah dengan tim {company} sebagai {role}. Masuk dengan {email} untuk menerima "
             "undangan."
@@ -72,7 +72,7 @@ TEXTS = {
         "roles": {"admin": "admin", "viewer": "pelihat"},
     },
     "report": {
-        "subject": "Laporan kandidat: {candidate}",
+        "subject": "Laporan: {candidate}",
         "preheader": "{candidate} mengikuti “{title}” di {company}. Laporannya terlampir.",
         "heading": "Laporan kandidat",
         "lines": [
@@ -87,7 +87,7 @@ TEXTS = {
         "dengan alamat ini di prepza. Jika kamu tidak mengharapkannya, abaikan saja.",
     },
     "candidates": {
-        "subject": "Laporan semua kandidat: {title}",
+        "subject": "Semua kandidat: {title}",
         "preheader": "Semua kandidat untuk “{title}” di {company}. Laporannya terlampir.",
         "heading": "Laporan kandidat",
         "lines": [
@@ -172,7 +172,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza memperbarui ketentuan layanannya pada {date}",
+        "subject": "Ketentuan layanan baru mulai {date}",
         "preheader": "Ketentuan layanan yang baru berlaku mulai {date}.",
         "heading": "Kami memperbarui ketentuan layanan kami",
         "lines": [
@@ -192,7 +192,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "prepza memperbarui kebijakan privasinya pada {date}",
+        "subject": "Kebijakan privasi baru mulai {date}",
         "preheader": "Kebijakan privasi yang baru berlaku mulai {date}.",
         "heading": "Kami memperbarui kebijakan privasi kami",
         "lines": [
@@ -211,7 +211,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "prepza memperbarui perjanjian pemrosesan datanya pada {date}",
+        "subject": "Perjanjian pemrosesan data baru mulai {date}",
         "preheader": "Perjanjian yang baru berlaku untuk perusahaanmu mulai {date}.",
         "heading": "Kami memperbarui perjanjian pemrosesan data kami",
         "lines": [
@@ -259,7 +259,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "Isi ulang otomatis untuk {company} gagal",
+        "subject": "Isi ulang otomatis gagal: {company}",
         "preheader": "Kartu tidak dapat ditagih. Isi ulang untuk terus mengundang kandidat.",
         "heading": "Isi ulang otomatis gagal",
         "lines": [
@@ -280,7 +280,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "Isi ulang otomatis untuk {company} dijeda",
+        "subject": "Isi ulang otomatis dijeda: {company}",
         "preheader": "Kartu ditolak. Perbarui kartu untuk menyalakan lagi isi ulang otomatis.",
         "heading": "Isi ulang otomatis dijeda",
         "lines": [
@@ -301,7 +301,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "Harga isi ulang otomatis untuk {company} berubah",
+        "subject": "Harga isi ulang baru untuk {company}",
         "preheader": "Mulai {date}, setiap isi ulang otomatis berharga {new_price}, bukan {price}.",
         "heading": "Harga isi ulang otomatis berubah",
         "lines": [

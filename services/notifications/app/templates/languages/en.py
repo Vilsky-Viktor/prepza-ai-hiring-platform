@@ -7,7 +7,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} invited you to an interview",
+        "subject": "Interview invite from {company}",
         "preheader": "Take “{title}” on prepza. Sign in with {email} to start.",
         "heading": "Interview invitation",
         "lines": [
@@ -20,7 +20,7 @@ TEXTS = {
         "button": "Open the invite",
     },
     "joined": {
-        "subject": "Your link to continue “{title}”",
+        "subject": "Your link to “{title}”",
         "preheader": "If you leave the interview, continue with this link. Sign in with {email}.",
         "heading": "Your interview link",
         "lines": [
@@ -38,7 +38,7 @@ TEXTS = {
         ),
     },
     "reminder": {
-        "subject": "Reminder: {company} is waiting for your interview",
+        "subject": "Reminder: your {company} interview",
         "preheader": "“{title}” is still open. Sign in with {email} to start.",
         "heading": "Your interview is waiting",
         "lines": [
@@ -54,7 +54,7 @@ TEXTS = {
         "button": "Open the invite",
     },
     "member": {
-        "subject": "{inviter} invited you to join {company} on prepza",
+        "subject": "Join {company} on prepza",
         "preheader": "Join {company} as {role}. Sign in with {email} to accept.",
         "heading": "Team invitation",
         "lines": [
@@ -66,7 +66,7 @@ TEXTS = {
         "roles": {"admin": "an admin", "viewer": "a viewer"},
     },
     "report": {
-        "subject": "Candidate report: {candidate}",
+        "subject": "Report: {candidate}",
         "preheader": "{candidate} took “{title}” at {company}. The report is attached.",
         "heading": "Candidate report",
         "lines": [
@@ -81,7 +81,7 @@ TEXTS = {
         "with this address on prepza. If you weren't expecting it, you can ignore it.",
     },
     "candidates": {
-        "subject": "Report of all candidates: {title}",
+        "subject": "All candidates: {title}",
         "preheader": "Every candidate for “{title}” at {company}. The report is attached.",
         "heading": "Candidates report",
         "lines": [
@@ -166,7 +166,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "We're updating prepza's terms on {date}",
+        "subject": "Terms update on {date}",
         "preheader": "The new terms apply from {date}.",
         "heading": "We're updating our terms",
         "lines": [
@@ -180,7 +180,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "We're updating prepza's privacy policy on {date}",
+        "subject": "Privacy policy update on {date}",
         "preheader": "The new privacy policy applies from {date}.",
         "heading": "We're updating our privacy policy",
         "lines": [
@@ -194,7 +194,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "We're updating prepza's data processing agreement on {date}",
+        "subject": "DPA update on {date}",
         "preheader": "The new agreement applies to your company from {date}.",
         "heading": "We're updating our data processing agreement",
         "lines": [
@@ -235,7 +235,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "Automatic top-up failed for {company}",
+        "subject": "Top-up failed: {company}",
         "preheader": "The card couldn't be charged. Top up to keep inviting candidates.",
         "heading": "Automatic top-up failed",
         "lines": [
@@ -250,7 +250,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "Automatic top-up paused for {company}",
+        "subject": "Top-up paused: {company}",
         "preheader": "The card was declined. Update it to turn automatic top-up back on.",
         "heading": "Automatic top-up is paused",
         "lines": [
@@ -271,7 +271,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "Automatic top-up price for {company} changes",
+        "subject": "New top-up price for {company}",
         "preheader": "From {date}, each automatic top-up costs {new_price} instead of {price}.",
         "heading": "Automatic top-up's price changes",
         "lines": [

@@ -8,7 +8,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} convida você para uma entrevista",
+        "subject": "Convite para entrevista de {company}",
         "preheader": "Faça “{title}” na prepza. Entre com {email} para começar.",
         "heading": "Convite para entrevista",
         "lines": [
@@ -21,7 +21,7 @@ TEXTS = {
         "button": "Abrir o convite",
     },
     "joined": {
-        "subject": "Seu link para continuar “{title}”",
+        "subject": "Seu link para “{title}”",
         "preheader": "Se você sair da entrevista, continue com este link. Entre com {email}.",
         "heading": "Seu link da entrevista",
         "lines": [
@@ -39,7 +39,7 @@ TEXTS = {
         ),
     },
     "reminder": {
-        "subject": "Lembrete: {company} está esperando sua entrevista",
+        "subject": "Lembrete: sua entrevista com {company}",
         "preheader": "“{title}” ainda está aberta. Entre com {email} para começar.",
         "heading": "Sua entrevista está esperando",
         "lines": [
@@ -55,7 +55,7 @@ TEXTS = {
         "button": "Abrir o convite",
     },
     "member": {
-        "subject": "{inviter} convida você para a equipe de {company} na prepza",
+        "subject": "Entre na equipe de {company} na prepza",
         "preheader": (
             "Faça parte da equipe de {company} como {role}. Entre com {email} para aceitar."
         ),
@@ -69,7 +69,7 @@ TEXTS = {
         "roles": {"admin": "administrador", "viewer": "visualizador"},
     },
     "report": {
-        "subject": "Relatório do candidato: {candidate}",
+        "subject": "Relatório: {candidate}",
         "preheader": "{candidate} fez “{title}” na {company}. O relatório está anexado.",
         "heading": "Relatório do candidato",
         "lines": [
@@ -85,7 +85,7 @@ TEXTS = {
         "de candidato com este endereço na prepza. Se você não esperava por ele, pode ignorá-lo.",
     },
     "candidates": {
-        "subject": "Relatório de todos os candidatos: {title}",
+        "subject": "Todos os candidatos: {title}",
         "preheader": "Todos os candidatos de “{title}” na {company}. O relatório está anexado.",
         "heading": "Relatório de candidatos",
         "lines": [
@@ -170,7 +170,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "A prepza vai atualizar os termos de uso em {date}",
+        "subject": "Novos termos de uso em {date}",
         "preheader": "Os novos termos de uso valem a partir de {date}.",
         "heading": "Estamos atualizando nossos termos de uso",
         "lines": [
@@ -191,7 +191,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "A prepza vai atualizar a política de privacidade em {date}",
+        "subject": "Nova política de privacidade em {date}",
         "preheader": "A nova política de privacidade vale a partir de {date}.",
         "heading": "Estamos atualizando nossa política de privacidade",
         "lines": [
@@ -209,7 +209,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "A prepza vai atualizar o acordo de tratamento de dados em {date}",
+        "subject": "Novo acordo de tratamento de dados em {date}",
         "preheader": "O novo acordo vale para sua empresa a partir de {date}.",
         "heading": "Estamos atualizando nosso acordo de tratamento de dados",
         "lines": [
@@ -257,7 +257,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "A recarga automática de {company} falhou",
+        "subject": "Recarga automática falhou: {company}",
         "preheader": (
             "Não foi possível cobrar o cartão. Recarregue para continuar convidando candidatos."
         ),
@@ -280,7 +280,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "Recarga automática pausada para {company}",
+        "subject": "Recarga automática pausada: {company}",
         "preheader": "O cartão foi recusado. Atualize-o para reativar a recarga automática.",
         "heading": "A recarga automática está pausada",
         "lines": [
@@ -301,7 +301,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "O preço da recarga automática de {company} vai mudar",
+        "subject": "Novo preço de recarga para {company}",
         "preheader": (
             "A partir de {date}, cada recarga automática custa {new_price} em vez de {price}."
         ),

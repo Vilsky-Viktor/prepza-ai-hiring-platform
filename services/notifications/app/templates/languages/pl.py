@@ -8,7 +8,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} zaprasza Cię na rozmowę kwalifikacyjną",
+        "subject": "Zaproszenie na rozmowę od {company}",
         "preheader": "Weź udział w „{title}” w prepza. Zaloguj się adresem {email}, aby zacząć.",
         "heading": "Zaproszenie na rozmowę",
         "lines": [
@@ -21,7 +21,7 @@ TEXTS = {
         "button": "Otwórz zaproszenie",
     },
     "joined": {
-        "subject": "Twój link, aby kontynuować „{title}”",
+        "subject": "Twój link do „{title}”",
         "preheader": "Jeśli opuścisz rozmowę, wróć do niej tym linkiem. Zaloguj się adresem {email}.",
         "heading": "Twój link do rozmowy",
         "lines": [
@@ -39,7 +39,7 @@ TEXTS = {
         ),
     },
     "reminder": {
-        "subject": "Przypomnienie: {company} czeka na Twoją rozmowę",
+        "subject": "Przypomnienie: Twoja rozmowa z {company}",
         "preheader": "Rozmowa „{title}” jest nadal otwarta. Zaloguj się adresem {email}, aby zacząć.",
         "heading": "Twoja rozmowa czeka",
         "lines": [
@@ -55,7 +55,7 @@ TEXTS = {
         "button": "Otwórz zaproszenie",
     },
     "member": {
-        "subject": "{inviter} zaprasza Cię do zespołu {company} w prepza",
+        "subject": "Dołącz do {company} w prepza",
         "preheader": (
             "Dołącz do zespołu {company} jako {role}. Zaloguj się adresem {email}, aby przyjąć "
             "zaproszenie."
@@ -73,7 +73,7 @@ TEXTS = {
         "roles": {"admin": "administrator", "viewer": "obserwator"},
     },
     "report": {
-        "subject": "Raport kandydata: {candidate}",
+        "subject": "Raport: {candidate}",
         "preheader": "Kandydat {candidate} ukończył rozmowę „{title}” w firmie {company}. Raport jest w załączniku.",
         "heading": "Raport kandydata",
         "lines": [
@@ -89,7 +89,7 @@ TEXTS = {
         "adresowi raport kandydata w prepza. Jeśli się jej nie spodziewasz, możesz ją zignorować.",
     },
     "candidates": {
-        "subject": "Raport wszystkich kandydatów: {title}",
+        "subject": "Wszyscy kandydaci: {title}",
         "preheader": "Wszyscy kandydaci z rozmowy „{title}” w firmie {company}. Raport jest w załączniku.",
         "heading": "Raport kandydatów",
         "lines": [
@@ -174,7 +174,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "Zmieniamy regulamin prepza od {date}",
+        "subject": "Nowy regulamin od {date}",
         "preheader": "Nowy regulamin obowiązuje od {date}.",
         "heading": "Zmieniamy nasz regulamin",
         "lines": [
@@ -195,7 +195,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "Zmieniamy politykę prywatności prepza od {date}",
+        "subject": "Nowa polityka prywatności od {date}",
         "preheader": "Nowa polityka prywatności obowiązuje od {date}.",
         "heading": "Zmieniamy naszą politykę prywatności",
         "lines": [
@@ -214,7 +214,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "Zmieniamy umowę powierzenia przetwarzania danych prepza od {date}",
+        "subject": "Nowa umowa powierzenia danych od {date}",
         "preheader": "Nowa umowa obowiązuje Twoją firmę od {date}.",
         "heading": "Zmieniamy naszą umowę powierzenia przetwarzania danych",
         "lines": [
@@ -262,7 +262,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "Automatyczne doładowanie dla {company} nie powiodło się",
+        "subject": "Doładowanie nieudane: {company}",
         "preheader": "Nie udało się obciążyć karty. Doładuj, aby dalej zapraszać kandydatów.",
         "heading": "Automatyczne doładowanie nie powiodło się",
         "lines": [
@@ -283,7 +283,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "Automatyczne doładowanie dla {company} wstrzymane",
+        "subject": "Doładowanie wstrzymane: {company}",
         "preheader": (
             "Karta została odrzucona. Zaktualizuj ją, aby ponownie włączyć automatyczne "
             "doładowanie."
@@ -308,7 +308,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "Zmienia się cena automatycznego doładowania dla {company}",
+        "subject": "Nowa cena doładowania dla {company}",
         "preheader": (
             "Od {date} każde automatyczne doładowanie kosztuje {new_price} zamiast {price}."
         ),

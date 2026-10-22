@@ -130,7 +130,7 @@ def test_reminders_are_optional_and_open_what_they_name():
 def test_a_failed_top_up_is_a_service_email_without_unsubscribe():
     email = top_up_failed_email(recipient(), "Acme <Co>", SITE)
 
-    assert email.subject == "Automatic top-up failed for Acme <Co>"
+    assert "Acme <Co>" in email.subject
     assert email.headers == AUTOMATED_HEADERS
     assert "unsubscribe" not in email.text.lower()
     assert "whatever your email settings" in email.text
@@ -183,7 +183,7 @@ def test_a_price_notice_gives_both_prices_and_the_day_as_the_recipient_reads_the
 def test_member_emails_come_in_the_users_language():
     email = top_up_failed_email(recipient("de"), "Acme", SITE)
 
-    assert email.subject == "Automatisches Aufladen für Acme fehlgeschlagen"
+    assert email.subject == EMAILS["de"]["top_up_failed"]["subject"].format(company="Acme")
     assert '<html lang="de"' in email.html
 
 

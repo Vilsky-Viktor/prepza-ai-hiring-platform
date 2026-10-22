@@ -8,7 +8,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} mời bạn tham gia phỏng vấn",
+        "subject": "Lời mời phỏng vấn từ {company}",
         "preheader": "Tham gia phỏng vấn “{title}” trên prepza. Đăng nhập bằng {email} để bắt đầu.",
         "heading": "Lời mời phỏng vấn",
         "lines": [
@@ -21,7 +21,7 @@ TEXTS = {
         "button": "Mở lời mời",
     },
     "joined": {
-        "subject": "Liên kết để tiếp tục “{title}”",
+        "subject": "Liên kết của bạn tới “{title}”",
         "preheader": "Nếu rời buổi phỏng vấn, hãy tiếp tục bằng liên kết này. Đăng nhập bằng {email}.",
         "heading": "Liên kết phỏng vấn của bạn",
         "lines": [
@@ -39,7 +39,7 @@ TEXTS = {
         ),
     },
     "reminder": {
-        "subject": "Nhắc nhở: {company} đang chờ bạn làm bài phỏng vấn",
+        "subject": "Nhắc nhở: buổi phỏng vấn với {company}",
         "preheader": "“{title}” vẫn đang mở. Đăng nhập bằng {email} để bắt đầu.",
         "heading": "Buổi phỏng vấn đang chờ bạn",
         "lines": [
@@ -55,7 +55,7 @@ TEXTS = {
         "button": "Mở lời mời",
     },
     "member": {
-        "subject": "{inviter} mời bạn tham gia nhóm {company} trên prepza",
+        "subject": "Tham gia {company} trên prepza",
         "preheader": (
             "Tham gia nhóm {company} với vai trò {role}. Đăng nhập bằng {email} để chấp nhận lời "
             "mời."
@@ -73,7 +73,7 @@ TEXTS = {
         "roles": {"admin": "quản trị viên", "viewer": "người xem"},
     },
     "report": {
-        "subject": "Báo cáo ứng viên: {candidate}",
+        "subject": "Báo cáo: {candidate}",
         "preheader": "{candidate} đã tham gia phỏng vấn “{title}” tại {company}. Báo cáo được đính kèm.",
         "heading": "Báo cáo ứng viên",
         "lines": [
@@ -91,7 +91,7 @@ TEXTS = {
         "với địa chỉ này trên prepza. Nếu bạn không mong đợi email này, bạn có thể bỏ qua.",
     },
     "candidates": {
-        "subject": "Báo cáo tất cả ứng viên: {title}",
+        "subject": "Tất cả ứng viên: {title}",
         "preheader": "Tất cả ứng viên của buổi phỏng vấn “{title}” tại {company}. Báo cáo được đính kèm.",
         "heading": "Báo cáo ứng viên",
         "lines": [
@@ -180,7 +180,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza cập nhật điều khoản sử dụng vào {date}",
+        "subject": "Điều khoản sử dụng mới từ {date}",
         "preheader": "Điều khoản sử dụng mới có hiệu lực từ {date}.",
         "heading": "Chúng tôi cập nhật điều khoản sử dụng",
         "lines": [
@@ -201,7 +201,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "prepza cập nhật chính sách quyền riêng tư vào {date}",
+        "subject": "Chính sách quyền riêng tư mới từ {date}",
         "preheader": "Chính sách quyền riêng tư mới có hiệu lực từ {date}.",
         "heading": "Chúng tôi cập nhật chính sách quyền riêng tư",
         "lines": [
@@ -220,7 +220,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "prepza cập nhật thỏa thuận xử lý dữ liệu vào {date}",
+        "subject": "Thỏa thuận xử lý dữ liệu mới từ {date}",
         "preheader": "Thỏa thuận mới áp dụng cho công ty bạn từ {date}.",
         "heading": "Chúng tôi cập nhật thỏa thuận xử lý dữ liệu",
         "lines": [
@@ -265,7 +265,7 @@ TEXTS = {
         "footer": "Email này được gửi đến {email} vì bạn đã chọn nhận ưu đãi và khuyến mãi từ prepza.",
     },
     "top_up_failed": {
-        "subject": "Tự động nạp cho {company} không thành công",
+        "subject": "Tự động nạp thất bại: {company}",
         "preheader": "Không trừ tiền được từ thẻ. Hãy nạp thêm để tiếp tục mời ứng viên.",
         "heading": "Tự động nạp không thành công",
         "lines": [
@@ -283,7 +283,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "Tự động nạp cho {company} đã tạm dừng",
+        "subject": "Tự động nạp đã tạm dừng: {company}",
         "preheader": "Thẻ bị từ chối. Hãy cập nhật thẻ để bật lại tự động nạp.",
         "heading": "Tự động nạp đã tạm dừng",
         "lines": [
@@ -304,7 +304,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "Giá tự động nạp cho {company} sẽ thay đổi",
+        "subject": "Giá tự động nạp mới cho {company}",
         "preheader": "Từ {date}, mỗi lần tự động nạp có giá {new_price} thay vì {price}.",
         "heading": "Giá tự động nạp sẽ thay đổi",
         "lines": [

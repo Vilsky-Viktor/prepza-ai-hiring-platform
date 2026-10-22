@@ -7,7 +7,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company}から面接の招待が届いています",
+        "subject": "{company}から面接の招待",
         "preheader": "prepza で「{title}」を受けてください。開始するには {email} でサインインしてください。",
         "heading": "面接のご案内",
         "lines": [
@@ -17,7 +17,7 @@ TEXTS = {
         "button": "招待を開く",
     },
     "joined": {
-        "subject": "「{title}」を続けるためのリンク",
+        "subject": "「{title}」へのリンク",
         "preheader": "面接を離れた場合は、このリンクから続けてください。{email} でサインインしてください。",
         "heading": "面接のリンク",
         "lines": [
@@ -31,7 +31,7 @@ TEXTS = {
         "footer": "このメールは、このアドレスで prepza の面接が開始されたため {email} に送信されました。",
     },
     "reminder": {
-        "subject": "リマインダー: {company}の面接が未受験です",
+        "subject": "リマインダー: {company}の面接",
         "preheader": "「{title}」はまだ受けられます。開始するには {email} でサインインしてください。",
         "heading": "未受験の面接があります",
         "lines": [
@@ -41,7 +41,7 @@ TEXTS = {
         "button": "招待を開く",
     },
     "member": {
-        "subject": "{inviter}から prepza の{company}のチームへの招待が届いています",
+        "subject": "prepza で{company}に参加",
         "preheader": "{role}として{company}のチームに参加できます。承諾するには {email} でサインインしてください。",
         "heading": "チームへの招待",
         "lines": [
@@ -53,7 +53,7 @@ TEXTS = {
         "roles": {"admin": "管理者", "viewer": "閲覧者"},
     },
     "report": {
-        "subject": "候補者レポート: {candidate}",
+        "subject": "レポート: {candidate}",
         "preheader": "{candidate}さんが{company}の面接「{title}」を受けました。レポートを添付しています。",
         "heading": "候補者レポート",
         "lines": [
@@ -64,7 +64,7 @@ TEXTS = {
         "footer": "このメールは、{sender}さんが prepza でこのアドレスに候補者レポートを共有したため {email} に送信されました。心当たりがない場合は無視してください。",
     },
     "candidates": {
-        "subject": "全候補者のレポート: {title}",
+        "subject": "全候補者: {title}",
         "preheader": "{company}の「{title}」の全候補者です。レポートを添付しています。",
         "heading": "全候補者レポート",
         "lines": [
@@ -132,7 +132,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza の利用規約を {date} に改定します",
+        "subject": "{date} から利用規約を改定",
         "preheader": "新しい利用規約は {date} から適用されます。",
         "heading": "利用規約を改定します",
         "lines": [
@@ -143,7 +143,7 @@ TEXTS = {
         "footer": "このメールは、prepza のアカウントをお持ちのため {email} に送信されました。利用規約に関するお知らせのため、メール設定にかかわらず送信されます。",
     },
     "legal_privacy": {
-        "subject": "prepza のプライバシーポリシーを {date} に改定します",
+        "subject": "{date} からプライバシーポリシーを改定",
         "preheader": "新しいプライバシーポリシーは {date} から適用されます。",
         "heading": "プライバシーポリシーを改定します",
         "lines": [
@@ -154,7 +154,7 @@ TEXTS = {
         "footer": "このメールは、prepza のアカウントをお持ちのため {email} に送信されました。データの利用方法に関するお知らせのため、メール設定にかかわらず送信されます。",
     },
     "legal_dpa": {
-        "subject": "prepza のデータ処理契約を {date} に改定します",
+        "subject": "{date} からデータ処理契約を改定",
         "preheader": "新しい契約は {date} から会社に適用されます。",
         "heading": "データ処理契約を改定します",
         "lines": [
@@ -185,7 +185,7 @@ TEXTS = {
         "footer": "このメールは、prepza からキャンペーンとお得な情報を受け取る設定にしているため {email} に送信されました。",
     },
     "top_up_failed": {
-        "subject": "{company} の自動チャージに失敗しました",
+        "subject": "自動チャージ失敗: {company}",
         "preheader": "カードに請求できませんでした。候補者の招待を続けるにはチャージしてください。",
         "heading": "自動チャージに失敗しました",
         "lines": [
@@ -196,7 +196,7 @@ TEXTS = {
         "footer": "このメールは、prepza で {company} の所有者または管理者であるため {email} に送信されました。会社の請求に関する内容のため、メール設定にかかわらず送信されます。",
     },
     "top_up_paused": {
-        "subject": "{company} の自動チャージを一時停止しました",
+        "subject": "自動チャージ一時停止: {company}",
         "preheader": "カードが承認されませんでした。自動チャージを再開するには、カードを更新してください。",
         "heading": "自動チャージは一時停止中です",
         "lines": [
@@ -207,7 +207,7 @@ TEXTS = {
         "footer": "このメールは、prepza で {company} の所有者または管理者であるため {email} に送信されました。会社の請求に関する内容のため、メール設定にかかわらず送信されます。",
     },
     "top_up_price_change": {
-        "subject": "{company} の自動チャージの料金が変わります",
+        "subject": "{company} の自動チャージ料金を変更",
         "preheader": "{date} から、自動チャージ 1 回あたりの料金は {price} から {new_price} に変わります。",
         "heading": "自動チャージの料金が変わります",
         "lines": [

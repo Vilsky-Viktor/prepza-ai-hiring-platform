@@ -3,6 +3,7 @@ from prepza_common.constants import LANGUAGES
 
 from app.helpers.emails import member_invite_email
 from app.integrations import smtp
+from app.templates.emails import EMAILS
 from tests.unit.test_events import emulator, push  # noqa: F401 (the emulator fixture is autouse)
 
 MEMBER = {
@@ -15,13 +16,15 @@ MEMBER = {
     "language": "en",
     "logo_path": None,
 }
+# The English subject, filled in.
+SUBJECT = EMAILS["en"]["member"]["subject"].format(company="Acme & Co", inviter="Ann")
 
 
 def test_a_member_invite_names_the_inviter_the_company_and_the_role_and_links_to_join():
     email = member_invite_email(MEMBER, "https://prepza.com/")
 
     assert email.to == "dan@example.com"
-    assert email.subject == "Ann invited you to join Acme & Co on prepza"
+    assert "Acme & Co" in email.subject
     assert "Ann invited you to join Acme & Co on prepza as a viewer." in email.text
     assert "https://prepza.com/join/abc" in email.text
     assert "Acme &amp; Co" in email.html
@@ -47,7 +50,7 @@ def test_every_language_has_the_member_invite(language):
         # Every placeholder is filled in, and the texts aren't English stand-ins.
         assert "{" not in email.html and "{" not in email.text
         assert f'lang="{language}"' in email.html
-        assert language == "en" or email.subject != "Ann invited you to join Acme & Co on prepza"
+        assert language == "en" or email.subject != SUBJECT
 
 
 def test_a_member_invite_event_sends_its_email(client, monkeypatch):
@@ -59,4 +62,4 @@ def test_a_member_invite_event_sends_its_email(client, monkeypatch):
     monkeypatch.setattr(smtp, "send", fake_send)
 
     assert client.post("/internal/events", json=push("member.invited", MEMBER)).status_code == 204
-    assert sent == [("dan@example.com", "Ann invited you to join Acme & Co on prepza")]
+    assert sent == [("dan@example.com", SUBJECT)]

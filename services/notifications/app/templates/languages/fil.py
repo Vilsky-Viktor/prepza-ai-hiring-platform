@@ -8,7 +8,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "Iniimbitahan ka ng {company} sa isang interview",
+        "subject": "Imbitasyon sa interview mula sa {company}",
         "preheader": "Sagutan ang “{title}” sa prepza. Mag-sign in gamit ang {email} "
         "para magsimula.",
         "heading": "Imbitasyon sa interview",
@@ -23,7 +23,7 @@ TEXTS = {
         "button": "Buksan ang imbitasyon",
     },
     "joined": {
-        "subject": "Ang link mo para ituloy ang “{title}”",
+        "subject": "Ang link mo sa “{title}”",
         "preheader": (
             "Kung aalis ka sa interview, ituloy ito gamit ang link na ito. Mag-sign in gamit "
             "ang {email}."
@@ -44,7 +44,7 @@ TEXTS = {
         ),
     },
     "reminder": {
-        "subject": "Paalala: hinihintay ng {company} ang iyong interview",
+        "subject": "Paalala: ang interview mo sa {company}",
         "preheader": "Bukas pa ang “{title}”. Mag-sign in gamit ang {email} para magsimula.",
         "heading": "Naghihintay ang iyong interview",
         "lines": [
@@ -61,7 +61,7 @@ TEXTS = {
         "button": "Buksan ang imbitasyon",
     },
     "member": {
-        "subject": "Iniimbitahan ka ni {inviter} na sumali sa team ng {company} sa prepza",
+        "subject": "Sumali sa {company} sa prepza",
         "preheader": (
             "Sumali sa team ng {company} bilang {role}. Mag-sign in gamit ang {email} para "
             "tanggapin."
@@ -79,7 +79,7 @@ TEXTS = {
         "roles": {"admin": "admin", "viewer": "viewer"},
     },
     "report": {
-        "subject": "Report ng aplikante: {candidate}",
+        "subject": "Report: {candidate}",
         "preheader": "Sinagutan ni {candidate} ang “{title}” sa {company}. Naka-attach ang report.",
         "heading": "Report ng aplikante",
         "lines": [
@@ -96,7 +96,7 @@ TEXTS = {
         "balewalain.",
     },
     "candidates": {
-        "subject": "Report ng lahat ng aplikante: {title}",
+        "subject": "Lahat ng aplikante: {title}",
         "preheader": "Lahat ng aplikante para sa “{title}” sa {company}. Naka-attach ang report.",
         "heading": "Report ng mga aplikante",
         "lines": [
@@ -184,7 +184,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "Ia-update ng prepza ang mga tuntunin nito sa {date}",
+        "subject": "Bagong mga tuntunin simula {date}",
         "preheader": "Ipapatupad ang bagong mga tuntunin simula {date}.",
         "heading": "Ina-update namin ang aming mga tuntunin",
         "lines": [
@@ -206,7 +206,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "Ia-update ng prepza ang patakaran nito sa privacy sa {date}",
+        "subject": "Bagong patakaran sa privacy simula {date}",
         "preheader": "Ipapatupad ang bagong patakaran sa privacy simula {date}.",
         "heading": "Ina-update namin ang aming patakaran sa privacy",
         "lines": [
@@ -225,7 +225,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "Ia-update ng prepza ang data processing agreement nito sa {date}",
+        "subject": "Bagong data processing agreement simula {date}",
         "preheader": "Ipapatupad sa kumpanya mo ang bagong kasunduan simula {date}.",
         "heading": "Ina-update namin ang aming data processing agreement",
         "lines": [
@@ -274,7 +274,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "Pumalya ang awtomatikong top-up para sa {company}",
+        "subject": "Pumalya ang top-up: {company}",
         "preheader": (
             "Hindi ma-charge ang card. Mag-top up para patuloy na makapag-imbita ng aplikante."
         ),
@@ -297,7 +297,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "Naka-pause ang awtomatikong top-up para sa {company}",
+        "subject": "Naka-pause ang top-up: {company}",
         "preheader": "Tinanggihan ang card. I-update ito para i-on ulit ang awtomatikong top-up.",
         "heading": "Naka-pause ang awtomatikong top-up",
         "lines": [
@@ -320,7 +320,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "Magbabago ang presyo ng awtomatikong top-up para sa {company}",
+        "subject": "Bagong presyo ng top-up para sa {company}",
         "preheader": (
             "Simula {date}, {new_price} na ang bawat awtomatikong top-up sa halip na {price}."
         ),

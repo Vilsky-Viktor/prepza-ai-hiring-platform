@@ -7,7 +7,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company}에서 면접에 초대했습니다",
+        "subject": "{company} 면접 초대",
         "preheader": "prepza에서 “{title}” 면접을 보세요. {email}(으)로 로그인하면 시작할 수 있습니다.",
         "heading": "면접 초대",
         "lines": [
@@ -17,7 +17,7 @@ TEXTS = {
         "button": "초대 열기",
     },
     "joined": {
-        "subject": "“{title}” 면접을 이어서 볼 수 있는 링크",
+        "subject": "“{title}” 면접 링크",
         "preheader": "면접을 떠나면 이 링크로 이어서 보세요. {email}(으)로 로그인하세요.",
         "heading": "면접 링크",
         "lines": [
@@ -31,7 +31,7 @@ TEXTS = {
         "footer": "이 주소로 prepza에서 면접이 시작되어 {email}(으)로 이 이메일이 발송되었습니다.",
     },
     "reminder": {
-        "subject": "알림: {company}에서 면접을 기다리고 있습니다",
+        "subject": "알림: {company} 면접",
         "preheader": "“{title}” 면접이 아직 열려 있습니다. {email}(으)로 로그인하면 시작할 수 있습니다.",
         "heading": "아직 응시하지 않은 면접이 있습니다",
         "lines": [
@@ -41,7 +41,7 @@ TEXTS = {
         "button": "초대 열기",
     },
     "member": {
-        "subject": "{inviter}에게서 prepza의 {company} 팀 초대가 도착했습니다",
+        "subject": "prepza에서 {company} 팀에 참여하세요",
         "preheader": "{role}로 {company} 팀에 참여하세요. {email}(으)로 로그인하면 초대를 수락할 수 있습니다.",
         "heading": "팀 초대",
         "lines": [
@@ -53,7 +53,7 @@ TEXTS = {
         "roles": {"admin": "관리자", "viewer": "뷰어"},
     },
     "report": {
-        "subject": "지원자 보고서: {candidate}",
+        "subject": "보고서: {candidate}",
         "preheader": "{candidate} 님이 {company}의 “{title}” 면접을 봤습니다. 보고서가 첨부되어 있습니다.",
         "heading": "지원자 보고서",
         "lines": [
@@ -64,7 +64,7 @@ TEXTS = {
         "footer": "{sender} 님이 prepza에서 이 주소로 지원자 보고서를 공유하여 {email}(으)로 이 이메일이 발송되었습니다. 예상하지 못한 이메일이라면 무시하셔도 됩니다.",
     },
     "candidates": {
-        "subject": "전체 지원자 보고서: {title}",
+        "subject": "전체 지원자: {title}",
         "preheader": "{company}의 “{title}” 면접 전체 지원자입니다. 보고서가 첨부되어 있습니다.",
         "heading": "전체 지원자 보고서",
         "lines": [
@@ -132,7 +132,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza 이용약관이 {date}에 변경됩니다",
+        "subject": "{date}부터 이용약관 변경",
         "preheader": "새 이용약관은 {date}부터 적용됩니다.",
         "heading": "이용약관이 변경됩니다",
         "lines": [
@@ -143,7 +143,7 @@ TEXTS = {
         "footer": "prepza 계정이 있으므로 {email}(으)로 이 이메일이 발송되었습니다. 이용약관에 관한 안내이므로 이메일 설정과 관계없이 발송됩니다.",
     },
     "legal_privacy": {
-        "subject": "prepza 개인정보처리방침이 {date}에 변경됩니다",
+        "subject": "{date}부터 개인정보처리방침 변경",
         "preheader": "새 개인정보처리방침은 {date}부터 적용됩니다.",
         "heading": "개인정보처리방침이 변경됩니다",
         "lines": [
@@ -154,7 +154,7 @@ TEXTS = {
         "footer": "prepza 계정이 있으므로 {email}(으)로 이 이메일이 발송되었습니다. 데이터 이용 방식에 관한 안내이므로 이메일 설정과 관계없이 발송됩니다.",
     },
     "legal_dpa": {
-        "subject": "prepza 데이터 처리 계약이 {date}에 변경됩니다",
+        "subject": "{date}부터 데이터 처리 계약 변경",
         "preheader": "새 계약은 {date}부터 회사에 적용됩니다.",
         "heading": "데이터 처리 계약이 변경됩니다",
         "lines": [
@@ -185,7 +185,7 @@ TEXTS = {
         "footer": "prepza의 혜택 및 프로모션을 받기로 선택하셨으므로 {email}(으)로 이 이메일이 발송되었습니다.",
     },
     "top_up_failed": {
-        "subject": "{company}의 자동 충전에 실패했습니다",
+        "subject": "자동 충전 실패: {company}",
         "preheader": "카드 결제에 실패했습니다. 지원자를 계속 초대하려면 충전하세요.",
         "heading": "자동 충전 실패",
         "lines": [
@@ -199,7 +199,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "{company}의 자동 충전이 일시 중지되었습니다",
+        "subject": "자동 충전 일시 중지: {company}",
         "preheader": "카드가 거절되었습니다. 자동 충전을 다시 켜려면 카드를 업데이트하세요.",
         "heading": "자동 충전 일시 중지",
         "lines": [
@@ -213,7 +213,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "{company}의 자동 충전 가격이 바뀝니다",
+        "subject": "{company} 자동 충전 가격 변경",
         "preheader": "{date}부터 자동 충전 1회 가격이 {price}에서 {new_price}(으)로 바뀝니다.",
         "heading": "자동 충전 가격 변경 안내",
         "lines": [

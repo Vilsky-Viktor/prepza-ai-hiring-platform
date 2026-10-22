@@ -5,7 +5,7 @@ MEMBER_FOOTER = "这封邮件发送到 {email}，因为你是 prepza 上某家�
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} 邀请你参加面试",
+        "subject": "{company} 的面试邀请",
         "preheader": "在 prepza 上完成“{title}”。使用 {email} 登录即可开始。",
         "heading": "面试邀请",
         "lines": [
@@ -15,7 +15,7 @@ TEXTS = {
         "button": "打开邀请",
     },
     "joined": {
-        "subject": "继续“{title}”的链接",
+        "subject": "“{title}”的链接",
         "preheader": "如果离开面试，请用这个链接继续。使用 {email} 登录。",
         "heading": "你的面试链接",
         "lines": [
@@ -26,7 +26,7 @@ TEXTS = {
         "footer": "这封邮件发送到 {email}，因为有人用这个地址在 prepza 上开始了面试。",
     },
     "reminder": {
-        "subject": "提醒：{company} 正在等你参加面试",
+        "subject": "提醒：你在 {company} 的面试",
         "preheader": "“{title}”仍然开放。使用 {email} 登录即可开始。",
         "heading": "你的面试尚未开始",
         "lines": [
@@ -36,7 +36,7 @@ TEXTS = {
         "button": "打开邀请",
     },
     "member": {
-        "subject": "{inviter} 邀请你加入 prepza 上的 {company} 团队",
+        "subject": "加入 prepza 上的 {company}",
         "preheader": "以{role}身份加入 {company} 团队。使用 {email} 登录即可接受邀请。",
         "heading": "团队邀请",
         "lines": [
@@ -48,7 +48,7 @@ TEXTS = {
         "roles": {"admin": "管理员", "viewer": "查看者"},
     },
     "report": {
-        "subject": "候选人报告：{candidate}",
+        "subject": "报告：{candidate}",
         "preheader": "{candidate} 参加了 {company} 的“{title}”。报告已附上。",
         "heading": "候选人报告",
         "lines": [
@@ -59,7 +59,7 @@ TEXTS = {
         "footer": "这封邮件发送到 {email}，因为 {sender} 在 prepza 上与这个地址分享了一份候选人报告。如果这封邮件与你无关，可以忽略。",
     },
     "candidates": {
-        "subject": "全部候选人报告：{title}",
+        "subject": "全部候选人：{title}",
         "preheader": "{company} 的“{title}”的全部候选人。报告已附上。",
         "heading": "全部候选人报告",
         "lines": [
@@ -127,7 +127,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza 将于 {date} 更新服务条款",
+        "subject": "服务条款将于 {date} 更新",
         "preheader": "新的服务条款自 {date} 起生效。",
         "heading": "我们正在更新服务条款",
         "lines": [
@@ -138,7 +138,7 @@ TEXTS = {
         "footer": "这封邮件发送到 {email}，因为你有 prepza 账户。这是关于我们服务条款的通知，因此无论你的邮件设置如何都会发送。",
     },
     "legal_privacy": {
-        "subject": "prepza 将于 {date} 更新隐私政策",
+        "subject": "隐私政策将于 {date} 更新",
         "preheader": "新的隐私政策自 {date} 起生效。",
         "heading": "我们正在更新隐私政策",
         "lines": [
@@ -149,7 +149,7 @@ TEXTS = {
         "footer": "这封邮件发送到 {email}，因为你有 prepza 账户。这是关于我们如何使用你的数据的通知，因此无论你的邮件设置如何都会发送。",
     },
     "legal_dpa": {
-        "subject": "prepza 将于 {date} 更新数据处理协议",
+        "subject": "数据处理协议将于 {date} 更新",
         "preheader": "新协议自 {date} 起适用于你的公司。",
         "heading": "我们正在更新数据处理协议",
         "lines": [
@@ -180,7 +180,7 @@ TEXTS = {
         "footer": "这封邮件发送到 {email}，因为你选择了接收 prepza 的优惠与促销。",
     },
     "top_up_failed": {
-        "subject": "{company} 的自动充值失败",
+        "subject": "自动充值失败：{company}",
         "preheader": "无法从银行卡扣款。充值后才能继续邀请候选人。",
         "heading": "自动充值失败",
         "lines": [
@@ -191,7 +191,7 @@ TEXTS = {
         "footer": "这封邮件发送到 {email}，因为你是 prepza 上 {company} 的所有者或管理员。它与你公司的账单有关，因此无论你的邮件设置如何都会发送。",
     },
     "top_up_paused": {
-        "subject": "{company} 的自动充值已暂停",
+        "subject": "自动充值已暂停：{company}",
         "preheader": "银行卡被拒。请更新银行卡以重新开启自动充值。",
         "heading": "自动充值已暂停",
         "lines": [
@@ -202,7 +202,7 @@ TEXTS = {
         "footer": "这封邮件发送到 {email}，因为你是 prepza 上 {company} 的所有者或管理员。它与你公司的账单有关，因此无论你的邮件设置如何都会发送。",
     },
     "top_up_price_change": {
-        "subject": "{company} 的自动充值价格即将调整",
+        "subject": "{company} 的自动充值新价格",
         "preheader": "自 {date} 起，每次自动充值的价格从 {price} 调整为 {new_price}。",
         "heading": "自动充值价格即将调整",
         "lines": [

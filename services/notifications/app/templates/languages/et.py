@@ -7,7 +7,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} kutsub sind intervjuule",
+        "subject": "Intervjuukutse ettevõttelt {company}",
         "preheader": "Tee prepzas intervjuu „{title}“. Alustamiseks logi sisse aadressiga {email}.",
         "heading": "Kutse intervjuule",
         "lines": [
@@ -20,7 +20,7 @@ TEXTS = {
         "button": "Ava kutse",
     },
     "joined": {
-        "subject": "Sinu link, et jätkata intervjuud „{title}“",
+        "subject": "Sinu link: „{title}“",
         "preheader": "Kui lahkud intervjuult, jätka selle lingiga. Logi sisse aadressiga {email}.",
         "heading": "Sinu intervjuu link",
         "lines": [
@@ -37,7 +37,7 @@ TEXTS = {
         ),
     },
     "reminder": {
-        "subject": "Meeldetuletus: {company} ootab sinu intervjuud",
+        "subject": "Meeldetuletus: {company} intervjuu",
         "preheader": "„{title}“ on endiselt avatud. Alustamiseks logi sisse aadressiga {email}.",
         "heading": "Sinu intervjuu ootab",
         "lines": [
@@ -53,7 +53,7 @@ TEXTS = {
         "button": "Ava kutse",
     },
     "member": {
-        "subject": "{inviter} kutsub sind prepzas ettevõtte {company} meeskonda",
+        "subject": "Liitu prepzas ettevõttega {company}",
         "preheader": (
             "Liitu ettevõtte {company} meeskonnaga {role}. Kutse vastuvõtmiseks logi sisse "
             "aadressiga {email}."
@@ -71,7 +71,7 @@ TEXTS = {
         "roles": {"admin": "administraatorina", "viewer": "vaatajana"},
     },
     "report": {
-        "subject": "Kandidaadi aruanne: {candidate}",
+        "subject": "Aruanne: {candidate}",
         "preheader": "{candidate} tegi ettevõttes {company} intervjuu „{title}“. Aruanne on manuses.",
         "heading": "Kandidaadi aruanne",
         "lines": [
@@ -87,7 +87,7 @@ TEXTS = {
         "aadressiga kandidaadi aruannet. Kui sa seda ei oodanud, võid selle tähelepanuta jätta.",
     },
     "candidates": {
-        "subject": "Kõigi kandidaatide aruanne: {title}",
+        "subject": "Kõik kandidaadid: {title}",
         "preheader": "Kõik intervjuu „{title}“ kandidaadid ettevõttes {company}. Aruanne on manuses.",
         "heading": "Kandidaatide aruanne",
         "lines": [
@@ -172,7 +172,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza uuendab kasutustingimusi alates {date}",
+        "subject": "Uued kasutustingimused alates {date}",
         "preheader": "Uued kasutustingimused kehtivad alates {date}.",
         "heading": "Uuendame oma kasutustingimusi",
         "lines": [
@@ -193,7 +193,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "prepza uuendab privaatsuspoliitikat alates {date}",
+        "subject": "Uus privaatsuspoliitika alates {date}",
         "preheader": "Uus privaatsuspoliitika kehtib alates {date}.",
         "heading": "Uuendame oma privaatsuspoliitikat",
         "lines": [
@@ -211,7 +211,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "prepza uuendab andmetöötluslepingut alates {date}",
+        "subject": "Uus andmetöötlusleping alates {date}",
         "preheader": "Uus leping kehtib sinu ettevõttele alates {date}.",
         "heading": "Uuendame oma andmetöötluslepingut",
         "lines": [
@@ -256,7 +256,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "Automaatne juurdelaadimine ebaõnnestus: {company}",
+        "subject": "Juurdelaadimine ebaõnnestus: {company}",
         "preheader": "Kaardilt ei saanud makset võtta. Laadi juurde, et kandidaate edasi kutsuda.",
         "heading": "Automaatne juurdelaadimine ebaõnnestus",
         "lines": [
@@ -277,7 +277,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "Automaatne juurdelaadimine peatatud: {company}",
+        "subject": "Juurdelaadimine peatatud: {company}",
         "preheader": (
             "Kaart lükati tagasi. Uuenda kaarti, et automaatne juurdelaadimine uuesti sisse "
             "lülitada."
@@ -302,7 +302,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "Automaatse juurdelaadimise hind muutub: {company}",
+        "subject": "Uus juurdelaadimise hind: {company}",
         "preheader": (
             "Alates kuupäevast {date} maksab iga automaatne juurdelaadimine {price} asemel "
             "{new_price}."

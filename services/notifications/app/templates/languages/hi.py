@@ -5,7 +5,7 @@ MEMBER_FOOTER = "यह ईमेल {email} पर भेजा गया क�
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} ने आपको इंटरव्यू के लिए इनवाइट किया है",
+        "subject": "{company} से इंटरव्यू का इनवाइट",
         "preheader": "prepza पर “{title}” दें। शुरू करने के लिए {email} से साइन इन करें।",
         "heading": "इंटरव्यू इनवाइट",
         "lines": [
@@ -18,7 +18,7 @@ TEXTS = {
         "button": "इनवाइट खोलें",
     },
     "joined": {
-        "subject": "“{title}” जारी रखने के लिए आपका लिंक",
+        "subject": "“{title}” के लिए आपका लिंक",
         "preheader": "अगर आप इंटरव्यू छोड़ते हैं, तो इस लिंक से जारी रखें। {email} से साइन इन करें।",
         "heading": "आपका इंटरव्यू लिंक",
         "lines": [
@@ -33,7 +33,7 @@ TEXTS = {
         "footer": "यह ईमेल {email} पर भेजा गया क्योंकि इस पते से prepza पर एक इंटरव्यू शुरू किया गया।",
     },
     "reminder": {
-        "subject": "रिमाइंडर: {company} आपके इंटरव्यू का इंतज़ार कर रही है",
+        "subject": "रिमाइंडर: {company} के साथ आपका इंटरव्यू",
         "preheader": "“{title}” अभी भी खुला है। शुरू करने के लिए {email} से साइन इन करें।",
         "heading": "आपका इंटरव्यू इंतज़ार कर रहा है",
         "lines": [
@@ -49,7 +49,7 @@ TEXTS = {
         "button": "इनवाइट खोलें",
     },
     "member": {
-        "subject": "{inviter} ने आपको prepza पर {company} की टीम में शामिल होने के लिए इनवाइट किया है",
+        "subject": "prepza पर {company} से जुड़ें",
         "preheader": (
             "{company} की टीम में {role} के तौर पर शामिल हों। इनवाइट स्वीकार करने के लिए {email} "
             "से साइन इन करें।"
@@ -70,7 +70,7 @@ TEXTS = {
         "roles": {"admin": "एडमिन", "viewer": "व्यूअर"},
     },
     "report": {
-        "subject": "उम्मीदवार की रिपोर्ट: {candidate}",
+        "subject": "रिपोर्ट: {candidate}",
         "preheader": "{candidate} ने {company} में “{title}” दिया। रिपोर्ट संलग्न है।",
         "heading": "उम्मीदवार की रिपोर्ट",
         "lines": [
@@ -85,7 +85,7 @@ TEXTS = {
         "उम्मीदवार की रिपोर्ट शेयर की। अगर आपको इसकी उम्मीद नहीं थी, तो आप इसे अनदेखा कर सकते हैं।",
     },
     "candidates": {
-        "subject": "सभी उम्मीदवारों की रिपोर्ट: {title}",
+        "subject": "सभी उम्मीदवार: {title}",
         "preheader": "{company} में “{title}” के सभी उम्मीदवार। रिपोर्ट संलग्न है।",
         "heading": "उम्मीदवारों की रिपोर्ट",
         "lines": [
@@ -169,7 +169,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza {date} को अपनी सेवा की शर्तें अपडेट कर रहा है",
+        "subject": "{date} से नई सेवा की शर्तें",
         "preheader": "सेवा की नई शर्तें {date} से लागू होंगी।",
         "heading": "हम अपनी सेवा की शर्तें अपडेट कर रहे हैं",
         "lines": [
@@ -191,7 +191,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "prepza {date} को अपनी गोपनीयता नीति अपडेट कर रहा है",
+        "subject": "{date} से नई गोपनीयता नीति",
         "preheader": "नई गोपनीयता नीति {date} से लागू होगी।",
         "heading": "हम अपनी गोपनीयता नीति अपडेट कर रहे हैं",
         "lines": [
@@ -210,7 +210,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "prepza {date} को अपना डेटा प्रोसेसिंग समझौता अपडेट कर रहा है",
+        "subject": "{date} से नया डेटा प्रोसेसिंग समझौता",
         "preheader": "नया समझौता आपकी कंपनी पर {date} से लागू होगा।",
         "heading": "हम अपना डेटा प्रोसेसिंग समझौता अपडेट कर रहे हैं",
         "lines": [
@@ -252,7 +252,7 @@ TEXTS = {
         "footer": "यह ईमेल {email} पर भेजा गया क्योंकि आपने prepza से ऑफ़र और प्रमोशन पाना चुना है।",
     },
     "top_up_failed": {
-        "subject": "{company} का ऑटो टॉप अप नहीं हो सका",
+        "subject": "ऑटो टॉप अप नहीं हुआ: {company}",
         "preheader": ("कार्ड से भुगतान नहीं लिया जा सका। उम्मीदवारों को इनवाइट करते रहने के लिए टॉप अप करें।"),
         "heading": "ऑटो टॉप अप नहीं हो सका",
         "lines": [
@@ -270,7 +270,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "{company} का ऑटो टॉप अप रोका गया",
+        "subject": "ऑटो टॉप अप रुका: {company}",
         "preheader": "कार्ड अस्वीकार हो गया। ऑटो टॉप अप फिर से चालू करने के लिए कार्ड अपडेट करें।",
         "heading": "ऑटो टॉप अप रुका हुआ है",
         "lines": [
@@ -292,7 +292,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "{company} के ऑटो टॉप अप की कीमत बदल रही है",
+        "subject": "{company} के ऑटो टॉप अप की नई कीमत",
         "preheader": "{date} से हर ऑटो टॉप अप की कीमत {price} की जगह {new_price} होगी।",
         "heading": "ऑटो टॉप अप की कीमत बदल रही है",
         "lines": [

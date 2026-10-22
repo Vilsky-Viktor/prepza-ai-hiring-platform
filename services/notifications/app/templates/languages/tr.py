@@ -8,7 +8,7 @@ MEMBER_FOOTER = (
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} sizi bir mülakata davet ediyor",
+        "subject": "{company} mülakat daveti",
         "preheader": "prepza'da “{title}” mülakatına katılın. Başlamak için {email} "
         "ile giriş yapın.",
         "heading": "Mülakat daveti",
@@ -22,7 +22,7 @@ TEXTS = {
         "button": "Daveti aç",
     },
     "joined": {
-        "subject": "“{title}” mülakatına devam etme bağlantınız",
+        "subject": "“{title}” bağlantınız",
         "preheader": "Mülakattan ayrılırsanız bu bağlantıyla devam edin. {email} ile giriş yapın.",
         "heading": "Mülakat bağlantınız",
         "lines": [
@@ -39,7 +39,7 @@ TEXTS = {
         ),
     },
     "reminder": {
-        "subject": "Hatırlatma: {company} mülakatınızı bekliyor",
+        "subject": "Hatırlatma: {company} mülakatınız",
         "preheader": "“{title}” hâlâ açık. Başlamak için {email} ile giriş yapın.",
         "heading": "Mülakatınız sizi bekliyor",
         "lines": [
@@ -55,7 +55,7 @@ TEXTS = {
         "button": "Daveti aç",
     },
     "member": {
-        "subject": "{inviter} sizi prepza'da {company} ekibine davet ediyor",
+        "subject": "prepza'da {company} ekibine katılın",
         "preheader": (
             "{company} ekibine {role} olarak katılın. Daveti kabul etmek için {email} ile giriş "
             "yapın."
@@ -73,7 +73,7 @@ TEXTS = {
         "roles": {"admin": "yönetici", "viewer": "görüntüleyici"},
     },
     "report": {
-        "subject": "Aday raporu: {candidate}",
+        "subject": "Rapor: {candidate}",
         "preheader": "{candidate}, {company} şirketinde “{title}” mülakatına girdi. Rapor ektedir.",
         "heading": "Aday raporu",
         "lines": [
@@ -89,7 +89,7 @@ TEXTS = {
         "paylaştığı için gönderildi. Beklemiyorsanız görmezden gelebilirsiniz.",
     },
     "candidates": {
-        "subject": "Tüm adayların raporu: {title}",
+        "subject": "Tüm adaylar: {title}",
         "preheader": "{company} şirketinde “{title}” için tüm adaylar. Rapor ektedir.",
         "heading": "Adaylar raporu",
         "lines": [
@@ -174,7 +174,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza kullanım koşullarını {date} tarihinde güncelliyor",
+        "subject": "{date} itibarıyla yeni kullanım koşulları",
         "preheader": "Yeni kullanım koşulları {date} tarihinden itibaren geçerli.",
         "heading": "Kullanım koşullarımızı güncelliyoruz",
         "lines": [
@@ -197,7 +197,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "prepza gizlilik politikasını {date} tarihinde güncelliyor",
+        "subject": "{date} itibarıyla yeni gizlilik politikası",
         "preheader": "Yeni gizlilik politikası {date} tarihinden itibaren geçerli.",
         "heading": "Gizlilik politikamızı güncelliyoruz",
         "lines": [
@@ -216,7 +216,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "prepza veri işleme sözleşmesini {date} tarihinde güncelliyor",
+        "subject": "{date} itibarıyla yeni veri işleme sözleşmesi",
         "preheader": "Yeni sözleşme şirketiniz için {date} tarihinden itibaren geçerli.",
         "heading": "Veri işleme sözleşmemizi güncelliyoruz",
         "lines": [
@@ -264,7 +264,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "{company} için otomatik yükleme başarısız oldu",
+        "subject": "Otomatik yükleme başarısız: {company}",
         "preheader": "Karttan ödeme alınamadı. Aday davet etmeye devam etmek için kredi yükleyin.",
         "heading": "Otomatik yükleme başarısız oldu",
         "lines": [
@@ -282,7 +282,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "{company} için otomatik yükleme duraklatıldı",
+        "subject": "Otomatik yükleme duraklatıldı: {company}",
         "preheader": "Kart reddedildi. Otomatik yüklemeyi yeniden açmak için kartı güncelleyin.",
         "heading": "Otomatik yükleme duraklatıldı",
         "lines": [
@@ -305,7 +305,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "{company} için otomatik yükleme fiyatı değişiyor",
+        "subject": "{company} için yeni otomatik yükleme fiyatı",
         "preheader": (
             "{date} itibarıyla her otomatik yüklemenin ücreti {price} yerine {new_price} olacak."
         ),

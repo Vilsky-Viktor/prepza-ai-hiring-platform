@@ -126,11 +126,11 @@ def test_stopping_one_invites_reminders_leaves_its_invite_and_other_invites(run,
 
     run(scenario())
 
-    subjects = [email["subject"] for email in sent(outside)]
-    assert subjects == [
-        "Acme invited you to an interview",
-        "Reminder: Acme is waiting for your interview",
+    kinds = [
+        next(tag["value"] for tag in email["tags"] if tag["name"] == "kind")
+        for email in sent(outside)
     ]
+    assert kinds == ["candidate_invite", "candidate_reminder"]
     # The reminder that went out carries the one-click unsubscribe for its own reminders.
     headers = sent(outside)[1]["headers"]
     assert headers["List-Unsubscribe-Post"] == "List-Unsubscribe=One-Click"

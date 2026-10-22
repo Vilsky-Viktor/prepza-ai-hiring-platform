@@ -5,7 +5,7 @@ MEMBER_FOOTER = "این ایمیل به {email} فرستاده شد چون شم�
 
 TEXTS = {
     "candidate": {
-        "subject": "{company} شما را به مصاحبه دعوت می\u200cکند",
+        "subject": "دعوت به مصاحبه از {company}",
         "preheader": "مصاحبهٔ «{title}» را در prepza انجام دهید. برای شروع با {email} وارد شوید.",
         "heading": "دعوت به مصاحبه",
         "lines": [
@@ -18,7 +18,7 @@ TEXTS = {
         "button": "باز کردن دعوت",
     },
     "joined": {
-        "subject": "پیوند شما برای ادامهٔ «{title}»",
+        "subject": "پیوند شما به «{title}»",
         "preheader": "اگر از مصاحبه خارج شوید، با این پیوند ادامه دهید. با {email} وارد شوید.",
         "heading": "پیوند مصاحبهٔ شما",
         "lines": [
@@ -33,7 +33,7 @@ TEXTS = {
         "footer": "این ایمیل به {email} فرستاده شد چون با این نشانی مصاحبه‌ای در prepza شروع شده است.",
     },
     "reminder": {
-        "subject": "یادآوری: {company} منتظر مصاحبهٔ شماست",
+        "subject": "یادآوری: مصاحبهٔ شما با {company}",
         "preheader": "مصاحبهٔ «{title}» هنوز باز است. برای شروع با {email} وارد شوید.",
         "heading": "مصاحبهٔ شما منتظر است",
         "lines": [
@@ -49,7 +49,7 @@ TEXTS = {
         "button": "باز کردن دعوت",
     },
     "member": {
-        "subject": "{inviter} شما را به تیم {company} در prepza دعوت می\u200cکند",
+        "subject": "به {company} در prepza بپیوندید",
         "preheader": (
             "به\u200cعنوان {role} به تیم {company} بپیوندید. برای پذیرفتن دعوت با {email} وارد شوید."
         ),
@@ -66,7 +66,7 @@ TEXTS = {
         "roles": {"admin": "مدیر", "viewer": "بیننده"},
     },
     "report": {
-        "subject": "گزارش متقاضی: {candidate}",
+        "subject": "گزارش: {candidate}",
         "preheader": "{candidate} در مصاحبهٔ «{title}» از {company} شرکت کرد. گزارش پیوست است.",
         "heading": "گزارش متقاضی",
         "lines": [
@@ -81,7 +81,7 @@ TEXTS = {
         "در prepza به اشتراک گذاشت. اگر انتظارش را نداشتید، می\u200cتوانید آن را نادیده بگیرید.",
     },
     "candidates": {
-        "subject": "گزارش همهٔ متقاضیان: {title}",
+        "subject": "همهٔ متقاضیان: {title}",
         "preheader": "همهٔ متقاضیان «{title}» در {company}. گزارش پیوست است.",
         "heading": "گزارش متقاضیان",
         "lines": [
@@ -165,7 +165,7 @@ TEXTS = {
     # Notices of a significant change to a legal document, sent at least 14 days before it
     # applies; service emails, whatever the email settings.
     "legal_terms": {
-        "subject": "prepza شرایط استفاده خود را در {date} به‌روزرسانی می‌کند",
+        "subject": "شرایط استفادهٔ جدید از {date}",
         "preheader": "شرایط استفاده جدید از {date} اعمال می‌شود.",
         "heading": "شرایط استفاده را به‌روزرسانی می‌کنیم",
         "lines": [
@@ -186,7 +186,7 @@ TEXTS = {
         ),
     },
     "legal_privacy": {
-        "subject": "prepza سیاست حریم خصوصی خود را در {date} به‌روزرسانی می‌کند",
+        "subject": "سیاست حریم خصوصی جدید از {date}",
         "preheader": "سیاست حریم خصوصی جدید از {date} اعمال می‌شود.",
         "heading": "سیاست حریم خصوصی را به‌روزرسانی می‌کنیم",
         "lines": [
@@ -205,7 +205,7 @@ TEXTS = {
         ),
     },
     "legal_dpa": {
-        "subject": "prepza توافق‌نامه پردازش داده خود را در {date} به‌روزرسانی می‌کند",
+        "subject": "توافق‌نامهٔ پردازش دادهٔ جدید از {date}",
         "preheader": "توافق‌نامه جدید از {date} برای شرکت شما اعمال می‌شود.",
         "heading": "توافق‌نامه پردازش داده را به‌روزرسانی می‌کنیم",
         "lines": [
@@ -253,7 +253,7 @@ TEXTS = {
         ),
     },
     "top_up_failed": {
-        "subject": "شارژ خودکار برای {company} ناموفق بود",
+        "subject": "شارژ خودکار ناموفق: {company}",
         "preheader": "برداشت از کارت ممکن نشد. برای ادامه دعوت از متقاضیان شارژ کنید.",
         "heading": "شارژ خودکار ناموفق بود",
         "lines": [
@@ -271,7 +271,7 @@ TEXTS = {
         ),
     },
     "top_up_paused": {
-        "subject": "شارژ خودکار برای {company} متوقف شد",
+        "subject": "شارژ خودکار متوقف شد: {company}",
         "preheader": "کارت رد شد. برای روشن کردن دوباره شارژ خودکار، کارت را به‌روز کنید.",
         "heading": "شارژ خودکار متوقف شده است",
         "lines": [
@@ -292,7 +292,7 @@ TEXTS = {
         ),
     },
     "top_up_price_change": {
-        "subject": "قیمت شارژ خودکار برای {company} تغییر می‌کند",
+        "subject": "قیمت جدید شارژ خودکار برای {company}",
         "preheader": "از {date}، هزینهٔ هر شارژ خودکار به‌جای {price}، {new_price} است.",
         "heading": "قیمت شارژ خودکار تغییر می‌کند",
         "lines": [
