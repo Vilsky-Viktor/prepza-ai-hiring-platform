@@ -116,7 +116,13 @@ variable "alert_email" {
 }
 
 variable "alert_sms" {
-  description = "A phone number in international format (+372...) that also gets every alert by text message. Empty: email only."
+  description = "A phone number in international format (+372...) that also gets every page (a CRITICAL alert) by text message, as a backup to the app. Empty: no text messages."
+  type        = string
+  default     = ""
+}
+
+variable "alert_app_channel" {
+  description = "The Cloud Monitoring app's notification channel (projects/<project>/notificationChannels/<id>), which the app makes when you sign in to it on your phone; pages go to it. Empty: pages by email and SMS only."
   type        = string
   default     = ""
 }
@@ -165,6 +171,12 @@ variable "bing_site_verification" {
   description = "The token from Bing Webmaster Tools' meta-tag check for the domain; empty skips it."
   type        = string
   default     = ""
+}
+
+variable "ai_spend_alert_daily" {
+  description = "Alert (a ticket) when all AI calls' OpenAI spend over a day is above this, in USD: about twice a day's share of the admin zone's MONTHLY_BUDGET."
+  type        = number
+  default     = 20
 }
 
 variable "ai_spend_alert_hourly" {

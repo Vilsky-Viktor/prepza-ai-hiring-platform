@@ -1,5 +1,6 @@
-# Cost: a monthly budget on the billing account, scoped to this project. Emails at 50%, 90% and
-# 100% of it, and when the month's forecast passes it. It only alerts; nothing is stopped.
+# Cost: a monthly budget on the billing account, scoped to this project. Emails (tickets, as
+# monitoring.tf) at 50%, 90% and 100% of it, and when the month's forecast passes it. It only
+# alerts; nothing is stopped.
 resource "google_billing_budget" "monthly" {
   billing_account = var.billing_account
   display_name    = "prepza monthly"
@@ -32,7 +33,7 @@ resource "google_billing_budget" "monthly" {
   }
 
   all_updates_rule {
-    monitoring_notification_channels = local.alert_channels
+    monitoring_notification_channels = local.ticket_channels
     disable_default_iam_recipients   = false
   }
 

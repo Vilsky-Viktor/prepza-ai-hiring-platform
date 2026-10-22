@@ -5,7 +5,7 @@
 resource "google_monitoring_alert_policy" "payments_not_credited" {
   display_name = "prepza payment not credited"
   combiner     = "OR"
-  severity     = "ERROR"
+  severity     = "CRITICAL"
 
   conditions {
     display_name = "billing refused a payment or reconciliation repaired one"
@@ -28,14 +28,14 @@ resource "google_monitoring_alert_policy" "payments_not_credited" {
   }
 
   documentation {
-    content   = "billing refused to credit a paid transaction (\"refund it\", \"has no valid owner\"), or the daily reconciliation applied a payment or refund its web hook missed (\"Reconciliation credited\", \"Reconciliation counted\") or failed to (\"Reconciling … failed\"). See docs/runbooks.md (A payment not credited)."
+    content   = "billing refused to credit a paid transaction (\"refund it\", \"has no valid owner\"), or the daily reconciliation applied a payment or refund its web hook missed (\"Reconciliation credited\", \"Reconciliation counted\") or failed to (\"Reconciling … failed\"). See the runbook below."
     mime_type = "text/markdown"
 
     links {
       display_name = "Runbook: a payment not credited"
-      url          = "https://github.com/${var.github_repository}/blob/main/docs/runbooks.md#a-payment-not-credited"
+      url          = "${local.runbooks}/providers.md#a-payment-not-credited"
     }
   }
 
-  notification_channels = local.alert_channels
+  notification_channels = local.page_channels
 }

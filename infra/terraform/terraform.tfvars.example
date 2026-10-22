@@ -12,9 +12,11 @@ backend_sentry_dsn = ""
 # sign the user in with it.
 firebase_web_api_key = ""
 
-# Outage and budget alerts (monitoring*.tf, budget.tf).
-alert_email     = "you@example.com"
-# alert_sms     = "+3725550000"   # optional: every alert by text message too
+# Outage and budget alerts (monitoring*.tf, budget.tf): pages to email, the Cloud Monitoring app
+# and SMS; tickets to email only.
+alert_email = "you@example.com"
+# alert_app_channel = "projects/prepza-prod/notificationChannels/123"   # optional: the app's channel
+# alert_sms         = "+3725550000"   # optional: pages by text message too, as a backup
 billing_account = "XXXXXX-XXXXXX-XXXXXX"
 monthly_budget  = 300
 

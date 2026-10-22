@@ -1,12 +1,16 @@
-# Outage and error alerts, by email to var.alert_email.
+# Outage and error alerts. Two severities: a page (CRITICAL) is a symptom users feel now, sent to
+# the phone (the Cloud Monitoring app, SMS as a backup) and by email; a ticket (WARNING) is a cause
+# or a slow drift, by email only. Each alert links its runbook section (docs/runbooks/).
 #
 # Uptime: Google checks the site and each API's /ready through the load balancer every minute,
-# from several regions; an alert fires when a check fails from more than one of them.
+# from three regions, and that the right page answered; an alert fires when a check fails from
+# more than one of them.
 locals {
   uptime_paths = merge(
     { site = "/" },
     { for name, service in local.public_services : name => "/api/${service.path}/ready" if service.path != null },
   )
+  runbooks = "https://github.com/${var.github_repository}/blob/main/docs/runbooks"
 }
 
 resource "google_monitoring_notification_channel" "email" {
@@ -17,8 +21,8 @@ resource "google_monitoring_notification_channel" "email" {
   depends_on = [google_project_service.apis]
 }
 
-# A second way to be reached, as an email can sit unread: every alert also goes by text message to
-# alert_sms when it's set.
+# A second way to be paged, as an email can sit unread: pages also go by text message to
+# alert_sms when it's set, besides the Cloud Monitoring app (alert_app_channel).
 resource "google_monitoring_notification_channel" "sms" {
   count        = var.alert_sms == "" ? 0 : 1
   display_name = "prepza alerts (SMS)"
@@ -29,9 +33,11 @@ resource "google_monitoring_notification_channel" "sms" {
 }
 
 locals {
-  alert_channels = concat(
-    [google_monitoring_notification_channel.email.id],
+  ticket_channels = [google_monitoring_notification_channel.email.id]
+  page_channels = concat(
+    local.ticket_channels,
     google_monitoring_notification_channel.sms[*].id,
+    var.alert_app_channel == "" ? [] : [var.alert_app_channel],
   )
 }
 
@@ -40,6 +46,8 @@ resource "google_monitoring_uptime_check_config" "check" {
   display_name = "prepza ${each.key}"
   timeout      = "10s"
   period       = "60s"
+
+  selected_regions = ["EUROPE", "USA", "ASIA_PACIFIC"]
 
   http_check {
     path         = each.value
@@ -50,6 +58,13 @@ resource "google_monitoring_uptime_check_config" "check" {
     accepted_response_status_codes {
       status_class = "STATUS_CLASS_2XX"
     }
+  }
+
+  # The right page answered, not just something: the site's name on the site, an API's ready
+  # status on /ready.
+  content_matchers {
+    content = each.key == "site" ? "prepza" : "\"status\":\"ready\""
+    matcher = "CONTAINS_STRING"
   }
 
   monitored_resource {
@@ -64,6 +79,7 @@ resource "google_monitoring_alert_policy" "down" {
   for_each     = google_monitoring_uptime_check_config.check
   display_name = "prepza ${each.key} is down"
   combiner     = "OR"
+  severity     = "CRITICAL"
 
   conditions {
     display_name = "${each.key} fails its uptime check"
@@ -86,9 +102,14 @@ resource "google_monitoring_alert_policy" "down" {
   documentation {
     content   = "https://${var.domain}${local.uptime_paths[each.key]} stopped answering. Check the service's Cloud Run logs and Sentry."
     mime_type = "text/markdown"
+
+    links {
+      display_name = "Runbook: site or API down"
+      url          = "${local.runbooks}/platform.md#site-or-api-down"
+    }
   }
 
-  notification_channels = local.alert_channels
+  notification_channels = local.page_channels
 }
 
 # Dead letters: an event a consumer kept failing on for hours (pubsub.tf). Fires while any wait
@@ -96,6 +117,7 @@ resource "google_monitoring_alert_policy" "down" {
 resource "google_monitoring_alert_policy" "dead_letters" {
   display_name = "prepza events dead-lettered"
   combiner     = "OR"
+  severity     = "CRITICAL"
 
   conditions {
     display_name = "events-dead-letter has messages"
@@ -116,15 +138,21 @@ resource "google_monitoring_alert_policy" "dead_letters" {
   documentation {
     content   = "Events failed 50 deliveries and wait in the events-dead-letter subscription. Fix the consumer (Cloud Run logs, Sentry), then replay them as infra/README.md (Notes) shows."
     mime_type = "text/markdown"
+
+    links {
+      display_name = "Runbook: events waiting or dead-lettered"
+      url          = "${local.runbooks}/platform.md#events-waiting-or-dead-lettered"
+    }
   }
 
-  notification_channels = local.alert_channels
+  notification_channels = local.page_channels
 }
 
 # Scheduler: a periodic job (jobs.tf) whose run failed, from Cloud Scheduler's own error logs.
 resource "google_monitoring_alert_policy" "scheduler_failed" {
   display_name = "prepza scheduled job failed"
   combiner     = "OR"
+  severity     = "WARNING"
 
   conditions {
     display_name = "Cloud Scheduler logged a failed run"
@@ -149,9 +177,14 @@ resource "google_monitoring_alert_policy" "scheduler_failed" {
   documentation {
     content   = "A scheduled job failed. Check the job in Cloud Scheduler and its service's Cloud Run logs."
     mime_type = "text/markdown"
+
+    links {
+      display_name = "Runbook: a scheduled job failed"
+      url          = "${local.runbooks}/platform.md#a-scheduled-job-failed"
+    }
   }
 
-  notification_channels = local.alert_channels
+  notification_channels = local.ticket_channels
 }
 
 # Web hooks refused: Paddle's or Resend's signature check failed (WEBHOOK_SIGNATURE_REFUSED in
@@ -160,6 +193,7 @@ resource "google_monitoring_alert_policy" "scheduler_failed" {
 resource "google_monitoring_alert_policy" "webhook_signature_refused" {
   display_name = "prepza web hook signature refused"
   combiner     = "OR"
+  severity     = "CRITICAL"
 
   conditions {
     display_name = "A provider's web hook failed its signature check"
@@ -184,16 +218,22 @@ resource "google_monitoring_alert_policy" "webhook_signature_refused" {
   documentation {
     content   = "Paddle's or Resend's web hook was refused for its signature. If it keeps happening, the secret is wrong: compare `paddle-webhook-secret` or `resend-webhook-secret` (Secret Manager) with the provider's dashboard, then resend the failed events from there. Paid top-ups get their credits only once it's fixed."
     mime_type = "text/markdown"
+
+    links {
+      display_name = "Runbook: a web hook signature refused"
+      url          = "${local.runbooks}/platform.md#a-web-hook-signature-refused"
+    }
   }
 
-  notification_channels = local.alert_channels
+  notification_channels = local.page_channels
 }
 
 # Server errors: a Cloud Run service answering more than 5% of its requests with a 5xx for ten
-# minutes.
+# minutes. A ticket: the API availability SLO (monitoring_slo.tf) pages when users feel it.
 resource "google_monitoring_alert_policy" "server_errors" {
   display_name = "prepza server errors"
   combiner     = "OR"
+  severity     = "WARNING"
 
   conditions {
     display_name = "5xx share of requests above 5%"
@@ -224,38 +264,12 @@ resource "google_monitoring_alert_policy" "server_errors" {
   documentation {
     content   = "A service answers many requests with server errors. Check its Cloud Run logs and Sentry."
     mime_type = "text/markdown"
-  }
 
-  notification_channels = local.alert_channels
-}
-
-# Candidates' answers: the interview service (rounds) slow to answer for ten minutes, which a
-# candidate feels at every question.
-resource "google_monitoring_alert_policy" "rounds_latency" {
-  display_name = "prepza candidate answers slow"
-  combiner     = "OR"
-
-  conditions {
-    display_name = "rounds' p95 response time above 2 s for 10 minutes"
-
-    condition_threshold {
-      filter          = "metric.type=\"run.googleapis.com/request_latencies\" AND resource.type=\"cloud_run_revision\" AND resource.label.service_name=\"rounds\""
-      duration        = "600s"
-      comparison      = "COMPARISON_GT"
-      threshold_value = 2000
-
-      aggregations {
-        alignment_period     = "60s"
-        per_series_aligner   = "ALIGN_PERCENTILE_95"
-        cross_series_reducer = "REDUCE_MAX"
-      }
+    links {
+      display_name = "Runbook: server errors"
+      url          = "${local.runbooks}/platform.md#server-errors"
     }
   }
 
-  documentation {
-    content   = "Candidates wait over 2 s for their answers to save. Check rounds' Cloud Run logs and instance count (locals.tf), and the database alerts."
-    mime_type = "text/markdown"
-  }
-
-  notification_channels = local.alert_channels
+  notification_channels = local.ticket_channels
 }
