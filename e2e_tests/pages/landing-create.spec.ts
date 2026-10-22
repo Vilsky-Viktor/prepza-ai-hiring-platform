@@ -84,6 +84,25 @@ test("the create demo's later panels wait for the earlier steps", async ({ page 
   await expect(ready.getByTestId("demo-writing")).toBeVisible();
 });
 
+// The finished interview's topic rows each show how many questions were written for the topic:
+// DEMO_INTERVIEW.topicQuestions (frontend/constants/create-demo.ts), not what one candidate gets.
+test("the create demo's topics show each topic's question count", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const interview = page.locator("#how").getByTestId("demo-interview");
+  await interview.scrollIntoViewIfNeeded();
+
+  // The topics are the interview's last list, after its estimate (the demo is hidden from
+  // screen readers, so it has no roles to find it by).
+  const rows = interview.locator("ul").last().locator("li");
+  await expect(rows).not.toHaveCount(0);
+
+  for (const row of await rows.all()) {
+    await expect(row.locator("span").last()).toHaveText(/^70\D/);
+  }
+});
+
 test("on a 375 px phone the notes are one a row, and nothing scrolls sideways", async ({
   page,
 }) => {

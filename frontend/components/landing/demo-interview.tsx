@@ -10,7 +10,7 @@ import { DEMO_INTERVIEW } from "@/constants/create-demo"
 
 /** A new interview's page (app/companies/[companyId]/interviews/[id]), small: its title, its
  * `status` and size, what it adds up to for each candidate, its topics with how many questions
- * each candidate gets of each, and right under them the button to invite candidates
+ * were written for each, and right under them the button to invite candidates
  * (`inviteRef`), ringed while `pressed`. */
 export function DemoInterview({
   topics,
@@ -52,7 +52,7 @@ export function DemoInterview({
           >
             <span className="min-w-0 truncate font-medium">{topic}</span>
             <span className="shrink-0 text-xs whitespace-nowrap text-muted-foreground tabular-nums">
-              {perCandidate} {t("count", { count: perCandidate })}
+              {topicQuestions} {t("count", { count: topicQuestions })}
             </span>
           </li>
         ))}
