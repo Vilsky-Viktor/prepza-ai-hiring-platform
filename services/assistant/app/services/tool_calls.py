@@ -1,7 +1,7 @@
-import asyncio
 import time
 
 import httpx
+from prepza_common.capped import gather_capped
 from prepza_common.constants import VIA_ASSISTANT
 from prepza_common.i18n import translate
 
@@ -25,13 +25,10 @@ async def call_tools(
     calls: list[tuple[str, dict]], token: str, language: str, company_id: str | None
 ) -> list[ToolResult]:
     """One step's tool calls, at most MAX_PARALLEL_TOOL_CALLS at a time, in the given order."""
-    gate = asyncio.Semaphore(MAX_PARALLEL_TOOL_CALLS)
-
-    async def one(name: str, arguments: dict) -> ToolResult:
-        async with gate:
-            return await call_tool(name, arguments, token, language, company_id)
-
-    return list(await asyncio.gather(*(one(name, arguments) for name, arguments in calls)))
+    return await gather_capped(
+        MAX_PARALLEL_TOOL_CALLS,
+        (call_tool(name, arguments, token, language, company_id) for name, arguments in calls),
+    )
 
 
 async def call_tool(

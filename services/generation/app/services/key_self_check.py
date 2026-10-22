@@ -1,12 +1,14 @@
-import asyncio
 import logging
 import random
 from collections import Counter
 
+from prepza_common.capped import gather_capped
+from prepza_common.limits import limit
 from prepza_common.multi_answer import is_multi
 
 from app.helpers.prompts import checker_messages
 from app.integrations import llm
+from app.integrations.redis import get_redis
 from app.prompts.verify import MULTI_ANSWER_KEY, SELF_CHECK_PROMPT
 from app.schemas.regenerate import RegeneratedOption
 from app.schemas.verify import SelfCheck
@@ -61,7 +63,10 @@ async def keys_that_hold(questions: list[dict], topic: str, level: str) -> list[
     """New questions ({"text", "options"}) without the multi-answer ones the self-check drops:
     each of their options must be clearly right or wrong under the conditions the question
     states. Fill-ups make up for the ones dropped."""
-    reasons = await asyncio.gather(*(self_check(question, topic, level) for question in questions))
+    reasons = await gather_capped(
+        await limit(get_redis(), "GENERATION_CALLS_AT_ONCE"),
+        (self_check(question, topic, level) for question in questions),
+    )
     dropped = Counter(reason for reason in reasons if reason)
 
     if dropped:

@@ -1,12 +1,15 @@
-import asyncio
 import logging
 import random
 from uuid import UUID
+
+from prepza_common.capped import gather_capped
+from prepza_common.limits import limit
 
 from app.constants.actions import SAMPLE_KEY_CHECK
 from app.constants.quality import KEY_CHECKS_PER_TOPIC
 from app.helpers.questions import set_company
 from app.integrations import library
+from app.integrations.redis import get_redis
 from app.integrations.usage import ai_run
 from app.services.verify import check_key
 
@@ -49,8 +52,10 @@ async def check_topics(topics: list[list[UUID]]) -> None:
                 question_ids, min(KEY_CHECKS_PER_TOPIC, len(question_ids))
             )
         ]
-        results = await asyncio.gather(
-            *(check_one(question_id) for question_id in sample), return_exceptions=True
+        results = await gather_capped(
+            await limit(get_redis(), "GENERATION_CALLS_AT_ONCE"),
+            (check_one(question_id) for question_id in sample),
+            return_exceptions=True,
         )
     except Exception:
         logger.exception("Couldn't check the answer keys")

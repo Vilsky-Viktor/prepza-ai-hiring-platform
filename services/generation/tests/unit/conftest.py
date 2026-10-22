@@ -8,7 +8,16 @@ from prepza_common import memory_cache, pubsub
 
 from app.integrations import library, llm
 from app.routers import internal, superadmin, superadmin_additions
-from app.services import additions, budget, pipeline, review, topic_caps
+from app.services import (
+    additions,
+    budget,
+    key_self_check,
+    pipeline,
+    review,
+    sample_checks,
+    topic_caps,
+    translations,
+)
 from app.services.nodes import fill, reuse
 from app.storage import generations
 from tests.unit.fake_redis import FakeRedis
@@ -39,6 +48,9 @@ def redis(monkeypatch):
         reuse,
         pipeline,
         topic_caps,
+        translations,
+        sample_checks,
+        key_self_check,
     ):
         monkeypatch.setattr(module, "get_redis", lambda: fake)
 

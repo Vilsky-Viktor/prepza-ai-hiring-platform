@@ -1,13 +1,15 @@
 # Translating prepza's own texts (news posts, campaigns) into every language they lack, with the
 # generation model; each kind gives its prompt, its fields' limits and where it's saved.
-import asyncio
 import logging
 from collections.abc import Awaitable, Callable
 
 from langchain_core.messages import HumanMessage
+from prepza_common.capped import gather_capped
+from prepza_common.limits import limit
 from pydantic import BaseModel
 
 from app.integrations import llm
+from app.integrations.redis import get_redis
 
 logger = logging.getLogger(__name__)
 
@@ -24,11 +26,11 @@ async def translate_fields[T: BaseModel](
         for name, value in result.model_dump().items()
     }
 
-    for name, limit in limits.items():
+    for name, longest in limits.items():
         if not values[name]:
             raise ValueError(f"Empty {language} translation")
 
-        if len(values[name]) > limit:
+        if len(values[name]) > longest:
             raise ValueError(f"The {language} translation is too long")
 
     return schema(**values)
@@ -40,11 +42,14 @@ async def translate_missing[T](
     translate: Callable[[str], Awaitable[T]],
     save: Callable[[dict[str, T]], Awaitable[None]],
 ) -> None:
-    """Translates into each missing language at once and saves those that worked. Raises when a
+    """Translates into each missing language, GENERATION_CALLS_AT_ONCE at a time, and saves
+    those that worked. Raises when a
     language failed, so Cloud Tasks runs the job again for the ones still missing; until then
     those languages show the English. Safe to repeat."""
-    results = await asyncio.gather(
-        *(translate(language) for language in missing), return_exceptions=True
+    results = await gather_capped(
+        await limit(get_redis(), "GENERATION_CALLS_AT_ONCE"),
+        (translate(language) for language in missing),
+        return_exceptions=True,
     )
     done = {}
 
