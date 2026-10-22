@@ -20,8 +20,10 @@ SHOUTED |= {"ONLY", "NOT", "YES", "NO", "DO", "DON'T"}
 # Modules that send messages to a model with the system message made elsewhere: the retry of a
 # topic draft adds to the conversation the draft started.
 SYSTEM_ELSEWHERE = {"services/generation/app/services/topic_planning.py"}
-# Helpers that take the schema as an argument (by its parameter's name there).
-SCHEMA_HELPERS = {"translate_fields": "schema"}
+# Helpers that send a schema as structured output (the Batch API's request bodies): the
+# position of the schema among their arguments, and its parameter's name there.
+SCHEMA_HELPERS = {"request_body": 3, "translation_body": 1, "writing_body": 1}
+SCHEMA_PARAMETER = "schema"
 
 
 def constants(path: Path) -> dict[str, ast.expr]:
@@ -102,7 +104,8 @@ def test_every_model_call_sends_a_system_message():
 
 
 def structured_schemas() -> set[str]:
-    """The classes passed to with_structured_output anywhere in the services."""
+    """The classes the services send as structured output: to with_structured_output, or in
+    a Batch API request."""
     found = set()
 
     for path in APP:
@@ -116,11 +119,23 @@ def structured_schemas() -> set[str]:
                 assert not {k.arg for k in node.keywords} & {"method"}, f"{path}: default method"
                 found.add(node.args[0].id)
 
-            # A schema handed to a shared helper that calls with_structured_output with it.
-            if isinstance(node, ast.Call) and getattr(node.func, "id", None) in SCHEMA_HELPERS:
-                found.add(node.args[0].id)
+            # A schema handed to a helper that sends it as structured output.
+            found |= helper_schema(node)
 
-    return found - set(SCHEMA_HELPERS.values())
+    return found - {SCHEMA_PARAMETER}
+
+
+def helper_schema(node: ast.AST) -> set[str]:
+    func = getattr(node, "func", None)
+    name = getattr(func, "id", None) or getattr(func, "attr", None)
+    position = SCHEMA_HELPERS.get(name)
+
+    if position is None or len(node.args) <= position:
+        return set()
+
+    schema = node.args[position]
+
+    return {schema.id} if isinstance(schema, ast.Name) else set()
 
 
 def test_structured_output_is_a_schema_with_a_description_on_every_field():
@@ -180,11 +195,7 @@ def constants_dict(source: str, name: str) -> list[str]:
 
 def test_every_judge_has_a_role():
     judges = sorted((ROOT / "evals/judges").glob("*.md"))
-    missing = [
-        path.name
-        for path in judges
-        if not path.read_text().startswith("You are")
-    ]
+    missing = [path.name for path in judges if not path.read_text().startswith("You are")]
 
     assert len(judges) >= 10
     assert missing == []
