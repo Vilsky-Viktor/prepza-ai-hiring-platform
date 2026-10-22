@@ -59,8 +59,10 @@ export async function signIn(
   await expect
     .poll(async () => (await context.cookies()).some((c) => c.name === TOKEN_COOKIE))
     .toBe(true)
-  // The companies page, in whatever language the account uses.
+  // The companies page, in whatever language the account uses, rendered again as signed in: its
+  // sign-in options gone (the dev server may take a while to render it the first time).
   await expect(page.locator("main h1")).toBeVisible()
+  await expect(page.getByTestId(`sign-in-${provider}`)).toHaveCount(0, { timeout: 90_000 })
 
   return page
 }
