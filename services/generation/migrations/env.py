@@ -1,6 +1,7 @@
 from logging.config import fileConfig
 
 from alembic import context
+from langgraph.checkpoint.postgres import PostgresSaver
 from prepza_common.db import migration_engine
 
 import app.models.generation  # registers the tables on Base.metadata
@@ -12,8 +13,8 @@ from app.models.base import Base
 
 fileConfig(context.config.config_file_name)
 
-# LangGraph's checkpointer creates and migrates these itself (AsyncPostgresSaver.setup() in
-# storage/checkpointer.py), so they have no models: autogenerate leaves them alone.
+# LangGraph's checkpointer creates and migrates these itself (PostgresSaver.setup(), below), so
+# they have no models: autogenerate leaves them alone.
 CHECKPOINT_TABLES = {
     "checkpoints",
     "checkpoint_blobs",
@@ -37,3 +38,8 @@ with engine.connect() as connection:
 
     with context.begin_transaction():
         context.run_migrations()
+
+# LangGraph's own tables are created and migrated here, with ours, before a release serves: not
+# at each start of the worker, which would run DDL on every cold start.
+with PostgresSaver.from_conn_string(settings.database_url) as saver:
+    saver.setup()

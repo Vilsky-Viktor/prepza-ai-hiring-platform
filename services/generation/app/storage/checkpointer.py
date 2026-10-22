@@ -7,6 +7,8 @@ from app.constants.generation import CHECKPOINTER_POOL_SIZE
 
 
 async def open_checkpointer() -> tuple[AsyncConnectionPool, AsyncPostgresSaver]:
+    """LangGraph's checkpointer on a pool of its own. Its tables are set up by the migrations
+    (migrations/env.py), not here."""
     pool = AsyncConnectionPool(
         settings.database_url,
         min_size=CHECKPOINTER_POOL_SIZE,
@@ -15,10 +17,8 @@ async def open_checkpointer() -> tuple[AsyncConnectionPool, AsyncPostgresSaver]:
         kwargs={"autocommit": True, "prepare_threshold": 0, "row_factory": dict_row},
     )
     await pool.open()
-    checkpointer = AsyncPostgresSaver(pool)
-    await checkpointer.setup()
 
-    return pool, checkpointer
+    return pool, AsyncPostgresSaver(pool)
 
 
 async def delete_threads(thread_ids: list[str], checkpointer=None) -> None:
