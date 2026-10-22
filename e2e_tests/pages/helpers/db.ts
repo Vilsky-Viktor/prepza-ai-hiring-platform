@@ -97,7 +97,7 @@ export async function deleteLeftovers() {
   );
   await withDatabase("notifications", (client) =>
     client.query(
-      "DELETE FROM candidate_opt_outs WHERE company_id LIKE 'e2e-%' AND created_at < now() - $1::interval",
+      "DELETE FROM candidate_opt_outs WHERE company_id::text LIKE 'e2e-%' AND created_at < now() - $1::interval",
       [STALE],
     ),
   );
