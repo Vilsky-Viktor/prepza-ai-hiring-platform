@@ -58,6 +58,9 @@ company_id: filled from the parent in batches, indexed concurrently, NOT NULL th
 Integration tests: `clean_start` gives every test in a service's `tests/integration` a clean start (the
 tables a fresh migration left empty truncated, the tests' Redis database 15 flushed, the shared HTTP
 client dropped); it refuses any database but a `_test` one and any Redis database but 15.
+Shutdown: `shutdown.close_shared(engine, redis, *clients)` ends every service's lifespan, closing the
+shared HTTP client, the service's own clients, Redis and the database pool (its connections given
+back to Postgres at once), each even when another fails.
 Request bodies: `body_limit.BodyLimitMiddleware` refuses one over 1 MB (`MAX_BODY_BYTES`) with a
 translated 413, counting a streamed body as it arrives; companies (report PDFs) and the assistant
 (voice messages) pass larger limits.

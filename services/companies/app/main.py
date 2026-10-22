@@ -2,7 +2,6 @@ from contextlib import asynccontextmanager
 
 import firebase_admin
 from fastapi import Depends, FastAPI
-from prepza_common import http
 from prepza_common.body_limit import BodyLimitMiddleware
 from prepza_common.health import health_router
 from prepza_common.i18n import add_localized_errors
@@ -10,6 +9,7 @@ from prepza_common.logging import RequestLogMiddleware, configure_logging
 from prepza_common.maintenance import MaintenanceMiddleware
 from prepza_common.no_store import NoStoreMiddleware
 from prepza_common.sentry import init_sentry
+from prepza_common.shutdown import close_shared
 
 from app.config.settings import settings
 from app.constants.reports import MAX_BODY_BYTES
@@ -62,8 +62,7 @@ async def lifespan(app: FastAPI):
     firebase_admin.initialize_app(options={"projectId": settings.firebase_project_id})
     yield
 
-    await get_redis().aclose()
-    await http.get_client().aclose()
+    await close_shared(engine, get_redis())
 
 
 app = FastAPI(

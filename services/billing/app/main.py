@@ -3,13 +3,13 @@ from contextlib import asynccontextmanager
 
 import firebase_admin
 from fastapi import FastAPI
-from prepza_common import http
 from prepza_common.body_limit import BodyLimitMiddleware
 from prepza_common.health import health_router
 from prepza_common.i18n import add_localized_errors
 from prepza_common.logging import RequestLogMiddleware, configure_logging
 from prepza_common.no_store import NoStoreMiddleware
 from prepza_common.sentry import init_sentry
+from prepza_common.shutdown import close_shared
 
 from app.config.settings import settings
 from app.integrations.redis import get_redis
@@ -45,8 +45,7 @@ async def lifespan(app: FastAPI):
 
     yield
 
-    await http.get_client().aclose()
-    await get_redis().aclose()
+    await close_shared(engine, get_redis())
 
 
 app = FastAPI(

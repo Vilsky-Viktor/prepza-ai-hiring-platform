@@ -1,10 +1,10 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from prepza_common import http
 from prepza_common.health import health_router
 from prepza_common.logging import RequestLogMiddleware, configure_logging
 from prepza_common.sentry import init_sentry
+from prepza_common.shutdown import close_shared
 
 from app.integrations.redis import get_redis
 from app.routers import jobs, schedules
@@ -25,8 +25,7 @@ async def lifespan(app: FastAPI):
     yield
 
     await app.state.pool.close()
-    await get_redis().aclose()
-    await http.get_client().aclose()
+    await close_shared(engine, get_redis())
 
 
 # Only Google calls it, so there's no API description to serve.
