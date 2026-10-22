@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { apiFetch } from "@/lib/api"
 import { signOut } from "@/lib/auth"
+import { firstGrapheme } from "@/lib/graphemes"
 
 export function UserMenu() {
   const t = useTranslations("userMenu")
@@ -70,7 +71,9 @@ export function UserMenu() {
     )
   }
 
-  const initial = (user.displayName ?? user.email ?? "?")[0].toUpperCase()
+  const initial = firstGrapheme(
+    user.displayName ?? user.email ?? "?"
+  ).toUpperCase()
 
   return (
     <DropdownMenu>

@@ -1,5 +1,6 @@
 import { LOCALES, type Locale } from "@/constants/i18n"
 import { PREVIEW_TITLE_MAX } from "@/constants/preview-image"
+import { sliceGraphemes } from "@/lib/graphemes"
 import { drawPreview } from "@/lib/preview-image"
 import { validPreviewSignature } from "@/lib/preview-signature"
 
@@ -10,7 +11,7 @@ import { validPreviewSignature } from "@/lib/preview-signature"
  * LinkedIn's follow robots.txt and would show no picture. */
 export async function GET(request: Request) {
   const query = new URL(request.url).searchParams
-  const title = (query.get("title") ?? "").slice(0, PREVIEW_TITLE_MAX)
+  const title = sliceGraphemes(query.get("title") ?? "", PREVIEW_TITLE_MAX)
   const lang = query.get("lang") ?? ""
   const locale = LOCALES.includes(lang as Locale) ? (lang as Locale) : "en"
 

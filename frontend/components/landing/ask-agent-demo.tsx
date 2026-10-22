@@ -21,6 +21,7 @@ import {
   type AskAgentQuestion,
 } from "@/constants/ask-agent-demo"
 import { type DemoStep, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
+import { graphemes, sliceGraphemes } from "@/lib/graphemes"
 
 // A step and what it shows: how many of the chat's items (each question, its answer, and the
 // action card before the last answer), the question in the input, the tool at work, the action
@@ -118,9 +119,9 @@ export function AskAgentDemo() {
   // Made once, so the demo plays on as it renders.
   const [steps] = useState(() =>
     demoSteps({
-      stats: stats.length,
-      help: help.length,
-      invite: invite.length,
+      stats: graphemes(stats).length,
+      help: graphemes(help).length,
+      invite: graphemes(invite).length,
     })
   )
   const { ref, index, n } = useDemoSteps<HTMLDivElement>(steps)
@@ -133,7 +134,7 @@ export function AskAgentDemo() {
   const point = pointedAt(steps, index)
   const asking = step.asking ? questions[step.asking] : null
   const typed = step.name.startsWith("type-")
-    ? asking!.slice(0, n)
+    ? sliceGraphemes(asking!, n)
     : step.name.startsWith("focus-")
       ? ""
       : asking

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/tooltip"
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
+import { firstGrapheme } from "@/lib/graphemes"
 import { byId } from "@/lib/paged-list"
 import type { Company } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
@@ -75,7 +76,7 @@ export function CompanyList({
                   />
                 ) : (
                   <span className="font-heading text-2xl font-medium text-muted-foreground uppercase">
-                    {company.name.slice(0, 1)}
+                    {firstGrapheme(company.name)}
                   </span>
                 )}
               </span>

@@ -9,6 +9,7 @@ import {
 } from "@/constants/preview-image"
 import { CATEGORY_PAGES } from "@/constants/content"
 import { LOCALE_HEADER, LOCALIZED_ARTICLE, SITE_NAME } from "@/constants/seo"
+import { sliceGraphemes } from "@/lib/graphemes"
 import { hreflang, languageAlternates, localizedPath } from "@/lib/locale-path"
 import { previewSignature } from "@/lib/preview-signature"
 
@@ -23,7 +24,7 @@ export function siteUrl() {
  * language the picture can't draw. */
 export function previewImage(title?: string, locale: string = DEFAULT_LOCALE) {
   const drawn = title && !PREVIEW_UNSUPPORTED.includes(locale as Locale)
-  const shown = (title ?? "").slice(0, PREVIEW_TITLE_MAX)
+  const shown = sliceGraphemes(title ?? "", PREVIEW_TITLE_MAX)
   // Signed, so the picture route draws only titles our own pages name.
   const query = new URLSearchParams({
     title: shown,

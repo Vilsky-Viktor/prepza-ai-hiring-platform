@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/tooltip"
 import { apiFetch, serviceRefusal } from "@/lib/api"
 import { fileBase64 } from "@/lib/files"
+import { firstGrapheme } from "@/lib/graphemes"
 
 const BOX =
   "flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-muted"
@@ -97,7 +98,7 @@ export function LogoPicker({
         large && "text-4xl"
       )}
     >
-      {name.slice(0, 1)}
+      {firstGrapheme(name)}
     </span>
   )
 
