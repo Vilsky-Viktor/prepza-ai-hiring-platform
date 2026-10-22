@@ -93,7 +93,7 @@ def test_every_tool_but_the_deletions_the_bell_and_the_page_guide_is_listed():
 
 def test_a_tool_is_listed_with_its_parameters_and_hints():
     read = mcp_tool(tools()["get_company"])
-    write = mcp_tool(tools()["rename_company"])
+    write = mcp_tool(tools()["create_company"])
 
     assert read.input_schema == tools()["get_company"].parameters
     assert read.annotations.read_only_hint is True and read.annotations.open_world_hint is False
@@ -121,6 +121,19 @@ def test_a_destructive_write_is_hinted_as_such():
     hints = [mcp_tool(tool).annotations for tool in destructive]
 
     assert hints and all(hint.destructive_hint for hint in hints)
+
+
+def test_partial_updates_are_safe_to_repeat_and_a_removed_logo_cant_be_undone():
+    hints = {name: mcp_tool(tools()[name]).annotations for name in tools()}
+
+    for name in ("rename_company", "rename_candidate", "set_pass_mark", "mark_hired"):
+        assert hints[name].idempotent_hint is True and hints[name].destructive_hint is False
+
+    assert hints["remove_company_logo"].destructive_hint is True
+    # Inviting again sends another email: not safe to repeat.
+    assert hints["invite_candidate"].idempotent_hint is False
+    # The panel's own warnings are unchanged.
+    assert tools()["remove_company_logo"].destructive is False
 
 
 def test_a_read_goes_as_the_user_through_mcp(calls):

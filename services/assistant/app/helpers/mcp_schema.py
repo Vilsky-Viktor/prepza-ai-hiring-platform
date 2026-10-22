@@ -4,8 +4,13 @@ from app.constants.mcp_descriptions import MCP_DESCRIPTIONS
 from app.constants.mcp_titles import MCP_TITLES
 from app.models.tools import Tool
 
-# Writes that leave the same result when repeated.
-IDEMPOTENT_METHODS = ("PUT", "DELETE")
+# Writes that leave the same result when repeated. A PATCH here sets fields to the values given
+# (a name, a pass mark, hired or not), never adds to them, so repeating it changes nothing more.
+IDEMPOTENT_METHODS = ("PUT", "PATCH", "DELETE")
+# Writes that can't be undone though the panel doesn't warn about them (its `destructive` asks
+# for a confirmation the panel's card already gives every write): a removed logo is gone, and
+# only uploading the file again brings it back. For MCP only, where hosts decide from the hint.
+MCP_DESTRUCTIVE = frozenset({"remove_company_logo"})
 
 
 def mcp_tool(tool: Tool) -> types.Tool:
@@ -17,7 +22,7 @@ def mcp_tool(tool: Tool) -> types.Tool:
     read_only = tool.method == "GET"
     annotations = types.ToolAnnotations(
         read_only_hint=read_only,
-        destructive_hint=not read_only and tool.destructive,
+        destructive_hint=not read_only and (tool.destructive or tool.name in MCP_DESTRUCTIVE),
         idempotent_hint=read_only or tool.method in IDEMPOTENT_METHODS,
         open_world_hint=False,
     )
