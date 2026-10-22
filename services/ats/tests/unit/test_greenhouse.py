@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common import http
+from prepza_common import http, memory_cache
 
 from app.constants.ats import GREENHOUSE_API, GREENHOUSE_TOKEN_URL, AtsProvider
 from app.helpers.ats import greenhouse_signed
@@ -20,7 +20,7 @@ NEXT = GREENHOUSE_API + "/jobs?cursor=2"
 @pytest.fixture(autouse=True)
 def no_tokens(monkeypatch):
     """Tokens are kept per credential across calls: each test starts without any."""
-    monkeypatch.setattr(greenhouse, "_tokens", {})
+    monkeypatch.setattr(memory_cache, "_entries", {})
 
 
 @pytest.fixture
@@ -94,7 +94,7 @@ def test_a_kept_token_never_passes_a_check_with_another_secret(harvest):
 
 def test_a_token_near_its_expiry_is_renewed(harvest, monkeypatch):
     now = [1000.0]
-    monkeypatch.setattr(greenhouse, "time", SimpleNamespace(monotonic=lambda: now[0]))
+    monkeypatch.setattr(memory_cache, "time", SimpleNamespace(monotonic=lambda: now[0]))
     asyncio.run(greenhouse.check("id", "secret"))
     now[0] += 3600
     asyncio.run(greenhouse.check("id", "secret"))

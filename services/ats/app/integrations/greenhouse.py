@@ -1,9 +1,8 @@
 import hashlib
-import time
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common import http
+from prepza_common import http, memory_cache
 from prepza_common.http import bearer
 
 from app.constants.ats import (
@@ -26,19 +25,20 @@ UNAVAILABLE = "Greenhouse didn't answer"
 # Its token endpoint (OAuth) answers a wrong or revoked credential with 400 too. On any other
 # call a 400 is a request it didn't take (one note, one candidate), not a refused key.
 TOKEN_REJECTED = REJECTED | {status.HTTP_400_BAD_REQUEST}
-# Access tokens by credential (client id and a hash of its secret, so another company's cached
-# token is never used for a wrong secret), with when each stops being used: about an hour.
-_tokens: dict[tuple[str, str], tuple[str, float]] = {}
+# Access tokens are kept in the instance's memory (memory_cache) by credential: its client id and a
+# hash of its secret, so another company's kept token is never used for a wrong secret.
+TOKEN_KEY = "greenhouse:token:{client_id}:{secret_hash}"
 
 
 async def _token(client_id: str, client_secret: str, fresh: bool = False) -> str:
     """An access token for the credential (client credentials grant), kept until shortly before
     it expires."""
-    credential = (client_id, hashlib.sha256(client_secret.encode()).hexdigest())
-    kept = _tokens.get(credential)
+    secret_hash = hashlib.sha256(client_secret.encode()).hexdigest()
+    key = TOKEN_KEY.format(client_id=client_id, secret_hash=secret_hash)
+    kept = None if fresh else memory_cache.get(key)
 
-    if kept and not fresh and kept[1] > time.monotonic():
-        return kept[0]
+    if kept:
+        return kept
 
     try:
         response = await http.get_client().post(
@@ -53,8 +53,8 @@ async def _token(client_id: str, client_secret: str, fresh: bool = False) -> str
     await note_busy(response, AtsProvider.GREENHOUSE)
     checked(response, UNAVAILABLE, TOKEN_REJECTED)
     body = response.json()
-    expires = time.monotonic() + body.get("expires_in", 3600) - GREENHOUSE_TOKEN_MARGIN_SECONDS
-    _tokens[credential] = (body["access_token"], expires)
+    seconds = int(body.get("expires_in", 3600)) - GREENHOUSE_TOKEN_MARGIN_SECONDS
+    memory_cache.put(key, body["access_token"], max(seconds, 0))
 
     return body["access_token"]
 
