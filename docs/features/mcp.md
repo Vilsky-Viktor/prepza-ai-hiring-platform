@@ -90,7 +90,7 @@ Counted in Redis; with Redis down they're skipped rather than refusing everythin
 | Calls of a user's apps | 60 a minute, 3,000 a day |
 | Writes (with the panel's actions) | 30 a user an hour |
 | Registrations | 300 an address an hour, 20,000 a day for everyone, above what one address can reach (Claude and ChatGPT register from their own servers); one over 4,000 bytes is refused (`invalid_client_metadata`) |
-| Requests to connect (`/authorize`) | 120 an address an hour (429, `invalid_request`); a `state` over 512 characters is refused |
+| Requests to connect (`/authorize`) | 120 an address an hour (429, `invalid_request`); a `state` over 512 characters is refused. The same limit counts, each on its own, the consent page's reads of a request (`GET /connect/{id}`) and its refusals (`…/deny`), so request ids can't be tried in bulk |
 | Token requests (`/token` and `/revoke`) | 30 an app from one address a minute (429, `invalid_request`), counting failed exchanges (a bad code or refresh token) too; counted per address as well, so naming a well-known app's public id can't use up its limit for everyone |
 | Connections a user allows | 20 an hour |
 

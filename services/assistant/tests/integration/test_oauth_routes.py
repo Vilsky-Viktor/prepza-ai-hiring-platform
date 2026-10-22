@@ -1,5 +1,6 @@
-"""The OAuth routes against the real database and Redis: an app revoking a token, and the
-user's hourly limit on allowing apps."""
+"""The OAuth routes against the real database and Redis: an app revoking a token, the user's
+hourly limit on allowing apps, and the hourly limit per address on viewing and refusing
+requests."""
 
 import uuid
 from urllib.parse import parse_qs, urlparse
@@ -120,4 +121,43 @@ def test_allowing_apps_over_the_hourly_limit_is_refused_and_the_request_stays(ru
     assert last.status_code == 200
     assert over.status_code == 429 and over.json()["detail"] == RATE_LIMITED
     # Refused before the request was answered: it's still there for later.
+    assert waiting == REQUEST
+
+
+@pytest.mark.parametrize("step", ["consent", "deny"])
+def test_viewing_or_refusing_requests_over_the_hourly_limit_is_refused(run, ann, step):
+    """Over the limit per address, the consent page's request is refused before it's read or
+    answered: it's still there for later."""
+    address = f"203.0.113.{uuid.uuid4().int % 250 + 1}"
+    key = f"rate:assistant:mcp:{step}:{address}"
+    request_id = f"r-{uuid.uuid4().hex}"
+    # The load balancer's X-Forwarded-For: the visitor, then the balancer.
+    headers = {
+        "Cookie": f"{CONNECT_COOKIE}={request_id}",
+        "X-Forwarded-For": f"{address}, 10.0.0.1",
+    }
+
+    async def ask(site):
+        if step == "consent":
+            return await site.get(f"/connect/{request_id}", headers=headers)
+
+        return await site.post(f"/connect/{request_id}/deny", headers=headers)
+
+    async def scenario():
+        await get_redis().delete(key)
+        await oauth_requests.save_request(request_id, REQUEST)
+        await get_redis().set(key, LIMITS["AUTHORIZATIONS_PER_IP_HOUR"].default, ex=HOUR_SECONDS)
+
+        async with site_client() as site:
+            over = await ask(site)
+
+        waiting = await oauth_requests.take_request(request_id)
+        await get_redis().delete(key)
+
+        return over, waiting
+
+    over, waiting = run(scenario())
+
+    assert over.status_code == 429 and over.json()["detail"] == RATE_LIMITED
+    assert int(over.headers["Retry-After"]) > 0
     assert waiting == REQUEST

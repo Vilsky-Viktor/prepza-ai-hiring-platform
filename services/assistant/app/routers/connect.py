@@ -2,6 +2,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, Request, status
 from prepza_common.auth import CurrentUser
+from prepza_common.client_ip import limit_address
 
 from app.constants.mcp import CONNECT_COOKIE
 from app.schemas.connect import ApproveIn, ConnectionOut, ConnectRequestOut, RedirectOut
@@ -11,10 +12,15 @@ router = APIRouter(tags=["connect"])
 
 
 @router.get("/connect/{request_id}")
-async def connect_request(request_id: str, user: CurrentUser) -> ConnectRequestOut:
+async def connect_request(
+    request_id: str, user: CurrentUser, request: Request
+) -> ConnectRequestOut:
     """An AI app's request to connect to the signed-in user's account, for the consent page; a
-    404 once it's answered or expired."""
-    return ConnectRequestOut(**await connections.describe(request_id))
+    404 once it's answered or expired. Counted per address, so request ids can't be tried in
+    bulk (429)."""
+    described = await connections.describe(request_id, limit_address(request), user.uid)
+
+    return ConnectRequestOut(**described)
 
 
 @router.post("/connect/{request_id}/approve")
@@ -34,10 +40,11 @@ async def approve(
 @router.post("/connect/{request_id}/deny")
 async def deny(request_id: str, user: CurrentUser, request: Request) -> RedirectOut:
     """The user refuses: back to the app, which learns it was denied. Only from the browser that
-    asked to connect, as approving; a 403 from any other."""
+    asked to connect, as approving; a 403 from any other. Counted per address (429)."""
     marked = request.cookies.get(CONNECT_COOKIE)
+    url = await connections.deny(request_id, marked, limit_address(request), user.uid)
 
-    return RedirectOut(redirect_url=await connections.deny(request_id, marked))
+    return RedirectOut(redirect_url=url)
 
 
 @router.get("/connections")

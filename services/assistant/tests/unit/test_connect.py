@@ -168,6 +168,24 @@ def test_denying_tells_the_app_and_gives_no_code(client, kept):
     assert kept.codes == {}
 
 
+def test_viewing_and_refusing_a_request_are_counted_per_address(client, kept, monkeypatch):
+    counted = []
+
+    async def hit(redis, key, name, **whose):
+        counted.append((key, name, whose["user_id"]))
+
+    monkeypatch.setattr(connections, "hit_or_skip", hit)
+    client.cookies.set(CONNECT_COOKIE, "r1")
+
+    client.get("/connect/r1")
+    client.post("/connect/r1/deny")
+
+    assert counted == [
+        ("rate:assistant:mcp:consent:testclient", "AUTHORIZATIONS_PER_IP_HOUR", "ann"),
+        ("rate:assistant:mcp:deny:testclient", "AUTHORIZATIONS_PER_IP_HOUR", "ann"),
+    ]
+
+
 def test_the_user_lists_and_disconnects_only_their_own_apps(client, kept):
     mine, theirs = grant("ann"), grant("bob")
     kept.grants = {mine.id: mine, theirs.id: theirs}

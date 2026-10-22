@@ -15,9 +15,11 @@ from app.models.oauth import McpGrant
 from app.storage import oauth, oauth_requests
 
 
-async def describe(request_id: str) -> dict:
+async def describe(request_id: str, address: str, user_id: str) -> dict:
     """What the consent page shows of an app's request: its name, the site it returns to and
-    whether prepza knows it; a 404 once it's answered or expired."""
+    whether prepza knows it; a 404 once it's answered or expired. Counted per `address`
+    against the connection requests' limit, so request ids can't be tried in bulk."""
+    await count_consent("consent", address, user_id)
     found = await oauth_requests.peek_request(request_id)
 
     if found is None:
@@ -56,17 +58,27 @@ async def approve(request_id: str, user: User, marked: str | None, read_only: bo
     )
 
 
-async def deny(request_id: str, marked: str | None) -> str:
+async def deny(request_id: str, marked: str | None, address: str, user_id: str) -> str:
     """The user refuses: back to the app, which learns it was denied. Only from the browser that
-    asked (`marked`), so someone else holding the request's id can't end it."""
+    asked (`marked`), so someone else holding the request's id can't end it. Counted per
+    `address`, as viewing the request is."""
     if marked != request_id:
         raise HTTPException(status.HTTP_403_FORBIDDEN, OTHER_BROWSER)
 
+    await count_consent("deny", address, user_id)
     found = await taken(request_id)
 
     return construct_redirect_uri(
         found["redirect_uri"], error="access_denied", state=found["state"], iss=issuer()
     )
+
+
+async def count_consent(step: str, address: str, user_id: str) -> None:
+    """Counts one step of the consent page (`step`) from `address` against the connection
+    requests' limit per address, as /authorize is; over it, refused (429). Against floods: with
+    Redis down, not counted rather than refused."""
+    key = f"rate:assistant:mcp:{step}:{address}"
+    await hit_or_skip(get_redis(), key, "AUTHORIZATIONS_PER_IP_HOUR", user_id=user_id)
 
 
 def issuer() -> str:
