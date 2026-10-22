@@ -140,7 +140,7 @@
       "paragraphs": [
         "prepza uses only the cookies and browser storage it needs to work or that remember your own choices. There are no advertising or analytics cookies.",
         "To keep you signed in: a cookie (prepza_token, until you sign out) and the browser storage of our sign-in provider, Google Firebase. While you connect an AI app, a cookie (prepza_connect) lasts the few minutes it takes.",
-        "To remember your choices: your language (a cookie, prepza_locale, for a year), your light or dark theme, the width of the assistant's panel, how you last invited candidates, that you signed in on this browser before, and your conversation with the assistant (until you sign in, only in this tab). They stay in your browser until you clear them.",
+        "To remember your choices: your language (a cookie, prepza_locale, for a year), your light or dark theme, the width of the assistant's panel, how you last invited candidates, that you signed in on this browser before, the period you last chose for statistics, the notices about a changed legal document you closed, and your conversation with the assistant (until you sign in, only in this tab). They stay in your browser until you clear them.",
         "A referral link: only if you choose to keep it, a cookie (prepza_ref) remembers the link you came through for 30 days, so the credits reach both companies.",
         "The \"I'm not a robot\" check runs in a small frame from Cloudflare when a form needs it, and sets no tracking cookies."
       ]

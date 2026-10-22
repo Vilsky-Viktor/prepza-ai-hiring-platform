@@ -140,7 +140,7 @@
       "paragraphs": [
         "prepza yalnızca çalışmak için ihtiyaç duyduğu veya kendi seçimlerinizi hatırlayan çerezleri ve tarayıcı depolamasını kullanır. Reklam veya analiz çerezi yoktur.",
         "Oturumunuzu açık tutmak için: bir çerez (prepza_token, çıkış yapana kadar) ve giriş sağlayıcımız Google Firebase'in tarayıcı depolaması. Bir yapay zekâ uygulamasını bağlarken bir çerez (prepza_connect) bunun sürdüğü birkaç dakika boyunca kalır.",
-        "Seçimlerinizi hatırlamak için: diliniz (bir çerez, prepza_locale, bir yıl boyunca), açık veya koyu temanız, asistan panelinin genişliği, adayları en son nasıl davet ettiğiniz, bu tarayıcıda daha önce giriş yaptığınız ve asistanla konuşmanız (giriş yapana kadar, yalnızca bu sekmede). Bunlar siz temizleyene kadar tarayıcınızda kalır.",
+        "Seçimlerinizi hatırlamak için: diliniz (bir çerez, prepza_locale, bir yıl boyunca), açık veya koyu temanız, asistan panelinin genişliği, adayları en son nasıl davet ettiğiniz, bu tarayıcıda daha önce giriş yaptığınız, istatistikler için en son seçtiğiniz dönem, kapattığınız değişen yasal belge bildirimleri ve asistanla konuşmanız (giriş yapana kadar, yalnızca bu sekmede). Bunlar siz temizleyene kadar tarayıcınızda kalır.",
         "Davet bağlantısı: yalnızca saklamayı seçerseniz, bir çerez (prepza_ref) kredilerin her iki şirkete de ulaşması için geldiğiniz bağlantıyı 30 gün boyunca hatırlar.",
         "\"Ben robot değilim\" doğrulaması, bir form gerektirdiğinde Cloudflare'in küçük bir çerçevesinde çalışır ve izleme çerezi yerleştirmez."
       ]

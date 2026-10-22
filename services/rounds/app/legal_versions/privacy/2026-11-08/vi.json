@@ -140,7 +140,7 @@
       "paragraphs": [
         "prepza chỉ sử dụng các cookie và bộ nhớ trình duyệt cần thiết để hoạt động hoặc để ghi nhớ các lựa chọn của chính bạn. Không có cookie quảng cáo hay cookie phân tích.",
         "Để duy trì trạng thái đăng nhập: một cookie (prepza_token, cho đến khi bạn đăng xuất) và bộ nhớ trình duyệt của nhà cung cấp đăng nhập của chúng tôi, Google Firebase. Trong lúc bạn kết nối một ứng dụng AI, một cookie (prepza_connect) tồn tại trong vài phút cần thiết.",
-        "Để ghi nhớ các lựa chọn của bạn: ngôn ngữ của bạn (một cookie, prepza_locale, trong một năm), giao diện sáng hoặc tối, độ rộng bảng điều khiển của trợ lý, cách bạn mời ứng viên lần gần nhất, việc bạn đã từng đăng nhập trên trình duyệt này, và cuộc trò chuyện của bạn với trợ lý (cho đến khi bạn đăng nhập, chỉ trong thẻ này). Chúng ở lại trong trình duyệt của bạn cho đến khi bạn xóa chúng.",
+        "Để ghi nhớ các lựa chọn của bạn: ngôn ngữ của bạn (một cookie, prepza_locale, trong một năm), giao diện sáng hoặc tối, độ rộng bảng điều khiển của trợ lý, cách bạn mời ứng viên lần gần nhất, việc bạn đã từng đăng nhập trên trình duyệt này, khoảng thời gian bạn chọn gần nhất cho thống kê, các thông báo về tài liệu pháp lý đã thay đổi mà bạn đã đóng, và cuộc trò chuyện của bạn với trợ lý (cho đến khi bạn đăng nhập, chỉ trong thẻ này). Chúng ở lại trong trình duyệt của bạn cho đến khi bạn xóa chúng.",
         "Liên kết giới thiệu: chỉ khi bạn chọn giữ lại, một cookie (prepza_ref) ghi nhớ liên kết mà bạn đã dùng để đến trong 30 ngày, để credit đến được cả hai công ty.",
         "Bước kiểm tra \"Tôi không phải là người máy\" chạy trong một khung nhỏ của Cloudflare khi một biểu mẫu cần đến, và không đặt cookie theo dõi nào."
       ]

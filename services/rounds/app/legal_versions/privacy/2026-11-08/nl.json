@@ -140,7 +140,7 @@
       "paragraphs": [
         "prepza gebruikt alleen de cookies en browseropslag die het nodig heeft om te werken of die je eigen keuzes onthouden. Er zijn geen advertentie- of analysecookies.",
         "Om je ingelogd te houden: een cookie (prepza_token, totdat je uitlogt) en de browseropslag van onze inlogaanbieder, Google Firebase. Terwijl je een AI-app koppelt, blijft een cookie (prepza_connect) de paar minuten bestaan die dat duurt.",
-        "Om je keuzes te onthouden: je taal (een cookie, prepza_locale, voor een jaar), je lichte of donkere thema, de breedte van het paneel van de assistent, hoe je de laatste keer kandidaten hebt uitgenodigd, dat je eerder in deze browser hebt ingelogd, en je gesprek met de assistent (totdat je inlogt, alleen in dit tabblad). Ze blijven in je browser totdat je ze wist.",
+        "Om je keuzes te onthouden: je taal (een cookie, prepza_locale, voor een jaar), je lichte of donkere thema, de breedte van het paneel van de assistent, hoe je de laatste keer kandidaten hebt uitgenodigd, dat je eerder in deze browser hebt ingelogd, de periode die je het laatst koos voor statistieken, de meldingen over een gewijzigd juridisch document die je hebt gesloten, en je gesprek met de assistent (totdat je inlogt, alleen in dit tabblad). Ze blijven in je browser totdat je ze wist.",
         "Een doorverwijslink: alleen als je ervoor kiest die te bewaren, onthoudt een cookie (prepza_ref) de link waarlangs je binnenkwam gedurende 30 dagen, zodat de credits bij beide bedrijven terechtkomen.",
         "De controle 'Ik ben geen robot' draait in een klein kader van Cloudflare wanneer een formulier die nodig heeft, en plaatst geen trackingcookies."
       ]

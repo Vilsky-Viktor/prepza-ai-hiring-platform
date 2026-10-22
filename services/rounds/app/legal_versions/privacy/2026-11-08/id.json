@@ -140,7 +140,7 @@
       "paragraphs": [
         "prepza hanya menggunakan cookie dan penyimpanan browser yang diperlukan agar berfungsi atau yang mengingat pilihanmu sendiri. Tidak ada cookie iklan atau analitik.",
         "Agar kamu tetap masuk: sebuah cookie (prepza_token, sampai kamu keluar) dan penyimpanan browser milik penyedia proses masuk kami, Google Firebase. Saat kamu menghubungkan aplikasi AI, sebuah cookie (prepza_connect) bertahan selama beberapa menit yang diperlukan.",
-        "Untuk mengingat pilihanmu: bahasamu (sebuah cookie, prepza_locale, selama setahun), tema terang atau gelapmu, lebar panel asisten, cara terakhir kamu mengundang kandidat, bahwa kamu pernah masuk di browser ini sebelumnya, dan percakapanmu dengan asisten (sampai kamu masuk, hanya di tab ini). Semuanya tetap ada di browser-mu sampai kamu menghapusnya.",
+        "Untuk mengingat pilihanmu: bahasamu (sebuah cookie, prepza_locale, selama setahun), tema terang atau gelapmu, lebar panel asisten, cara terakhir kamu mengundang kandidat, bahwa kamu pernah masuk di browser ini sebelumnya, periode yang terakhir kamu pilih untuk statistik, pemberitahuan perubahan dokumen hukum yang sudah kamu tutup, dan percakapanmu dengan asisten (sampai kamu masuk, hanya di tab ini). Semuanya tetap ada di browser-mu sampai kamu menghapusnya.",
         "Tautan referal: hanya jika kamu memilih untuk menyimpannya, sebuah cookie (prepza_ref) mengingat tautan yang kamu gunakan untuk datang selama 30 hari, agar kredit sampai ke kedua perusahaan.",
         "Pemeriksaan \"Saya bukan robot\" berjalan dalam bingkai kecil dari Cloudflare saat sebuah formulir memerlukannya, dan tidak memasang cookie pelacakan."
       ]

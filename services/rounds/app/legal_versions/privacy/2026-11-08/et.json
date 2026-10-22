@@ -140,7 +140,7 @@
       "paragraphs": [
         "prepza kasutab ainult neid küpsiseid ja brauseri salvestusruumi, mida on vaja toimimiseks või mis jätavad meelde sinu enda valikud. Reklaami- ega analüütikaküpsiseid ei ole.",
         "Sisselogituna hoidmiseks: küpsis (prepza_token, kuni logid välja) ja meie sisselogimisteenuse pakkuja Google Firebase'i brauseri salvestusruum. AI-rakenduse ühendamise ajal kestab küpsis (prepza_connect) need mõned minutid, mis selleks kuluvad.",
-        "Sinu valikute meeldejätmiseks: sinu keel (küpsis prepza_locale, üheks aastaks), hele või tume teema, assistendi paneeli laius, see, kuidas sa viimati kandidaate kutsusid, see, et oled selles brauseris varem sisse loginud, ning sinu vestlus assistendiga (kuni sisse logid, ainult selles vahekaardis). Need jäävad sinu brauserisse, kuni need kustutad.",
+        "Sinu valikute meeldejätmiseks: sinu keel (küpsis prepza_locale, üheks aastaks), hele või tume teema, assistendi paneeli laius, see, kuidas sa viimati kandidaate kutsusid, see, et oled selles brauseris varem sisse loginud, statistika jaoks viimati valitud periood, sinu suletud teated muudetud õigusdokumendi kohta ning sinu vestlus assistendiga (kuni sisse logid, ainult selles vahekaardis). Need jäävad sinu brauserisse, kuni need kustutad.",
         "Soovituslink: ainult siis, kui otsustad selle alles jätta, jätab küpsis (prepza_ref) 30 päevaks meelde lingi, mille kaudu tulid, et krediidid jõuaksid mõlema ettevõtteni.",
         "Kontroll „Ma ei ole robot“ töötab Cloudflare'i väikeses raamis, kui vorm seda vajab, ega sea jälgimisküpsiseid."
       ]

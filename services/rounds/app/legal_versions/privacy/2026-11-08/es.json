@@ -140,7 +140,7 @@
       "paragraphs": [
         "prepza solo usa las cookies y el almacenamiento del navegador que necesita para funcionar o que recuerdan tus propias elecciones. No hay cookies publicitarias ni analíticas.",
         "Para mantener tu sesión iniciada: una cookie (prepza_token, hasta que cierres sesión) y el almacenamiento del navegador de nuestro proveedor de inicio de sesión, Google Firebase. Mientras conectas una app de IA, una cookie (prepza_connect) dura los pocos minutos que lleva.",
-        "Para recordar tus elecciones: tu idioma (una cookie, prepza_locale, durante un año), tu tema claro u oscuro, el ancho del panel del asistente, cómo invitaste a candidatos la última vez, que ya iniciaste sesión antes en este navegador, y tu conversación con el asistente (hasta que inicies sesión, solo en esta pestaña). Permanecen en tu navegador hasta que los borres.",
+        "Para recordar tus elecciones: tu idioma (una cookie, prepza_locale, durante un año), tu tema claro u oscuro, el ancho del panel del asistente, cómo invitaste a candidatos la última vez, que ya iniciaste sesión antes en este navegador, el periodo que elegiste por última vez para las estadísticas, los avisos de un documento legal modificado que cerraste, y tu conversación con el asistente (hasta que inicies sesión, solo en esta pestaña). Permanecen en tu navegador hasta que los borres.",
         "Un enlace de recomendación: solo si eliges conservarlo, una cookie (prepza_ref) recuerda durante 30 días el enlace por el que llegaste, para que los créditos lleguen a ambas empresas.",
         "La verificación «No soy un robot» se ejecuta en un pequeño marco de Cloudflare cuando un formulario la necesita y no instala cookies de seguimiento."
       ]

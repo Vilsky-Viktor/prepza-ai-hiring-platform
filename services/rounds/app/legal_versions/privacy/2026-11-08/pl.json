@@ -140,7 +140,7 @@
       "paragraphs": [
         "prepza używa wyłącznie plików cookie i pamięci przeglądarki niezbędnych do działania lub zapamiętujących Twoje własne wybory. Nie ma plików cookie reklamowych ani analitycznych.",
         "Aby utrzymać Cię w stanie zalogowania: plik cookie (prepza_token, do momentu wylogowania) oraz pamięć przeglądarki naszego dostawcy logowania, Google Firebase. Podczas podłączania aplikacji AI plik cookie (prepza_connect) istnieje przez kilka minut, które to zajmuje.",
-        "Aby zapamiętać Twoje wybory: Twój język (plik cookie prepza_locale, przez rok), jasny lub ciemny motyw, szerokość panelu asystenta, sposób, w jaki ostatnio zapraszałeś kandydatów, to, że logowałeś się już wcześniej w tej przeglądarce, oraz Twoją rozmowę z asystentem (do momentu zalogowania, tylko w tej karcie). Pozostają one w Twojej przeglądarce, dopóki ich nie wyczyścisz.",
+        "Aby zapamiętać Twoje wybory: Twój język (plik cookie prepza_locale, przez rok), jasny lub ciemny motyw, szerokość panelu asystenta, sposób, w jaki ostatnio zapraszałeś kandydatów, to, że logowałeś się już wcześniej w tej przeglądarce, okres ostatnio wybrany dla statystyk, zamknięte przez Ciebie powiadomienia o zmianie dokumentu prawnego, oraz Twoją rozmowę z asystentem (do momentu zalogowania, tylko w tej karcie). Pozostają one w Twojej przeglądarce, dopóki ich nie wyczyścisz.",
         "Link polecający: tylko jeśli zdecydujesz się go zachować, plik cookie (prepza_ref) zapamiętuje link, przez który do nas trafiłeś, przez 30 dni, aby kredyty trafiły do obu firm.",
         "Weryfikacja „Nie jestem robotem” działa w niewielkiej ramce od Cloudflare, gdy wymaga jej formularz, i nie zapisuje śledzących plików cookie."
       ]
