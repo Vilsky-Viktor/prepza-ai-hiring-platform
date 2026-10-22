@@ -477,8 +477,10 @@
     "sendAsCampaign": "Kirim sebagai kampanye",
     "removeSuppression": "Keluarkan dari daftar",
     "suppressed": {
-      "bounced": "Email ke alamat ini terpental pada {date}, jadi email produk dan pemberitahuan tidak dikirim ke alamat ini.",
-      "complained": "Alamat ini menandai email sebagai spam pada {date}, jadi email produk dan pemberitahuan tidak dikirim ke alamat ini."
+      "bounced": "Email ke alamat ini terpental pada {date}, jadi tidak ada email yang dikirim ke alamat ini.",
+      "complained": "Alamat ini menandai email sebagai spam pada {date}, jadi tidak ada email yang dikirim ke alamat ini.",
+      "suppressed": "Resend berhenti mengirim ke alamat ini pada {date} setelah email terpental atau laporan spam sebelumnya, jadi tidak ada email yang dikirim ke alamat ini.",
+      "soft_bounced": "Email ke alamat ini terus terpental hingga {date}, jadi tidak ada email yang dikirim ke alamat ini."
     },
     "aiCosts": "Biaya AI",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "Kredit OpenAI habis",
       "OPENAI_THROTTLED": "Menunggu batas permintaan OpenAI kami",
       "RESEND_RATE_LIMIT": "Batas laju Resend",
-      "RESEND_DAILY_QUOTA": "Kuota harian Resend",
+      "RESEND_DAILY_QUOTA": "Kuota pengiriman Resend (harian atau bulanan)",
       "ATS_RATE_LIMIT": "Batas laju ATS",
       "FIREBASE_TOKEN_REFUSED": "Firebase menolak proses masuk"
     },

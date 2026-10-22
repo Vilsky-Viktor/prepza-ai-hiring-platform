@@ -477,8 +477,10 @@
     "sendAsCampaign": "作为群发邮件发送",
     "removeSuppression": "移出列表",
     "suppressed": {
-      "bounced": "发往此地址的邮件于 {date} 被退回，因此产品邮件和通知会跳过此地址。",
-      "complained": "此地址于 {date} 将一封邮件标记为垃圾邮件，因此产品邮件和通知会跳过此地址。"
+      "bounced": "发往此地址的邮件于 {date} 被退回，因此不会再向此地址发送任何邮件。",
+      "complained": "此地址于 {date} 将一封邮件标记为垃圾邮件，因此不会再向此地址发送任何邮件。",
+      "suppressed": "由于此前的退信或垃圾邮件举报，Resend 于 {date} 停止向此地址发送，因此不会再向此地址发送任何邮件。",
+      "soft_bounced": "发往此地址的邮件直到 {date} 一再被退回，因此不会再向此地址发送任何邮件。"
     },
     "aiCosts": "AI 成本",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "OpenAI 余额用尽",
       "OPENAI_THROTTLED": "等待我方 OpenAI 请求限额",
       "RESEND_RATE_LIMIT": "Resend 速率限制",
-      "RESEND_DAILY_QUOTA": "Resend 每日配额",
+      "RESEND_DAILY_QUOTA": "Resend 发送配额（每日或每月）",
       "ATS_RATE_LIMIT": "ATS 速率限制",
       "FIREBASE_TOKEN_REFUSED": "Firebase 登录被拒绝"
     },

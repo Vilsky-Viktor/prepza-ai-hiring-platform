@@ -477,8 +477,10 @@
     "sendAsCampaign": "שליחה כקמפיין",
     "removeSuppression": "הסרה מהרשימה",
     "suppressed": {
-      "bounced": "אימייל לכתובת הזו חזר ב-{date}, ולכן אימיילים על המוצר והודעות לא נשלחים אליה.",
-      "complained": "הכתובת הזו סימנה אימייל כספאם ב-{date}, ולכן אימיילים על המוצר והודעות לא נשלחים אליה."
+      "bounced": "אימייל לכתובת הזו חזר ב-{date}, ולכן לא נשלח אליה שום אימייל.",
+      "complained": "הכתובת הזו סימנה אימייל כספאם ב-{date}, ולכן לא נשלח אליה שום אימייל.",
+      "suppressed": "Resend הפסיקה לשלוח לכתובת הזו ב-{date} אחרי החזרה או דיווח ספאם קודמים, ולכן לא נשלח אליה שום אימייל.",
+      "soft_bounced": "אימיילים לכתובת הזו חזרו שוב ושוב עד {date}, ולכן לא נשלח אליה שום אימייל."
     },
     "aiCosts": "עלויות AI",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "נגמר הקרדיט ב-OpenAI",
       "OPENAI_THROTTLED": "המתנה למגבלת הבקשות שלנו ב-OpenAI",
       "RESEND_RATE_LIMIT": "מגבלת קצב של Resend",
-      "RESEND_DAILY_QUOTA": "המכסה היומית של Resend",
+      "RESEND_DAILY_QUOTA": "מכסת השליחה של Resend (יומית או חודשית)",
       "ATS_RATE_LIMIT": "מגבלת קצב של ATS",
       "FIREBASE_TOKEN_REFUSED": "Firebase דחה כניסה"
     },

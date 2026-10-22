@@ -477,8 +477,10 @@
     "sendAsCampaign": "Saada kampaaniana",
     "removeSuppression": "Eemalda nimekirjast",
     "suppressed": {
-      "bounced": "E-kiri sellele aadressile põrkus {date} tagasi, seega tootekirju ja teateid sellele enam ei saadeta.",
-      "complained": "See aadress märkis {date} e-kirja rämpspostiks, seega tootekirju ja teateid sellele enam ei saadeta."
+      "bounced": "E-kiri sellele aadressile põrkus {date} tagasi, seega sellele ei saadeta enam ühtegi e-kirja.",
+      "complained": "See aadress märkis {date} e-kirja rämpspostiks, seega sellele ei saadeta enam ühtegi e-kirja.",
+      "suppressed": "Resend lõpetas {date} sellele aadressile saatmise varasema tagasipõrke või rämpspostiteate tõttu, seega sellele ei saadeta enam ühtegi e-kirja.",
+      "soft_bounced": "E-kirjad sellele aadressile põrkusid kuni {date} korduvalt tagasi, seega sellele ei saadeta enam ühtegi e-kirja."
     },
     "aiCosts": "AI-kulud",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "OpenAI krediit otsas",
       "OPENAI_THROTTLED": "Ootab meie OpenAI päringulimiiti",
       "RESEND_RATE_LIMIT": "Resendi päringusageduse limiit",
-      "RESEND_DAILY_QUOTA": "Resendi päevakvoot",
+      "RESEND_DAILY_QUOTA": "Resendi saatmiskvoot (päeva- või kuupõhine)",
       "ATS_RATE_LIMIT": "ATS-i päringusageduse limiit",
       "FIREBASE_TOKEN_REFUSED": "Firebase'i sisselogimine lükati tagasi"
     },

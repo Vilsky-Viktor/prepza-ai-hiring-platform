@@ -477,8 +477,10 @@
     "sendAsCampaign": "Envoyer comme campagne",
     "removeSuppression": "Retirer de la liste",
     "suppressed": {
-      "bounced": "Un e-mail envoyé à cette adresse a été rejeté le {date} : les e-mails sur le produit et les avis ne lui sont donc plus envoyés.",
-      "complained": "Cette adresse a signalé un e-mail comme spam le {date} : les e-mails sur le produit et les avis ne lui sont donc plus envoyés."
+      "bounced": "Un e-mail envoyé à cette adresse a été rejeté le {date} : aucun e-mail ne lui est donc plus envoyé.",
+      "complained": "Cette adresse a signalé un e-mail comme spam le {date} : aucun e-mail ne lui est donc plus envoyé.",
+      "suppressed": "Resend a cessé d'envoyer à cette adresse le {date} après un rejet ou un signalement de spam antérieur : aucun e-mail ne lui est donc plus envoyé.",
+      "soft_bounced": "Les e-mails envoyés à cette adresse ont été rejetés à plusieurs reprises jusqu'au {date} : aucun e-mail ne lui est donc plus envoyé."
     },
     "aiCosts": "Coûts de l'IA",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "Crédit OpenAI épuisé",
       "OPENAI_THROTTLED": "En attente de notre limite de requêtes OpenAI",
       "RESEND_RATE_LIMIT": "Limite de débit Resend",
-      "RESEND_DAILY_QUOTA": "Quota journalier Resend",
+      "RESEND_DAILY_QUOTA": "Quota d'envoi Resend (journalier ou mensuel)",
       "ATS_RATE_LIMIT": "Limite de débit ATS",
       "FIREBASE_TOKEN_REFUSED": "Connexion Firebase refusée"
     },

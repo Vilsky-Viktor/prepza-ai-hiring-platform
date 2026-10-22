@@ -477,8 +477,10 @@
     "sendAsCampaign": "Kampanya olarak gönder",
     "removeSuppression": "Listeden çıkar",
     "suppressed": {
-      "bounced": "Bu adrese gönderilen bir e-posta {date} tarihinde geri döndü; bu yüzden ürün e-postaları ve bildirimler bu adrese gönderilmez.",
-      "complained": "Bu adres {date} tarihinde bir e-postayı spam olarak işaretledi; bu yüzden ürün e-postaları ve bildirimler bu adrese gönderilmez."
+      "bounced": "Bu adrese gönderilen bir e-posta {date} tarihinde geri döndü; bu yüzden bu adrese hiçbir e-posta gönderilmez.",
+      "complained": "Bu adres {date} tarihinde bir e-postayı spam olarak işaretledi; bu yüzden bu adrese hiçbir e-posta gönderilmez.",
+      "suppressed": "Resend, daha önceki bir geri dönme veya spam bildirimi nedeniyle {date} tarihinde bu adrese göndermeyi durdurdu; bu yüzden bu adrese hiçbir e-posta gönderilmez.",
+      "soft_bounced": "Bu adrese gönderilen e-postalar {date} tarihine kadar tekrar tekrar geri döndü; bu yüzden bu adrese hiçbir e-posta gönderilmez."
     },
     "aiCosts": "Yapay zekâ maliyetleri",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "OpenAI kredisi bitti",
       "OPENAI_THROTTLED": "OpenAI istek sınırımız için bekleme",
       "RESEND_RATE_LIMIT": "Resend hız sınırı",
-      "RESEND_DAILY_QUOTA": "Resend günlük kotası",
+      "RESEND_DAILY_QUOTA": "Resend gönderim kotası (günlük veya aylık)",
       "ATS_RATE_LIMIT": "ATS hız sınırı",
       "FIREBASE_TOKEN_REFUSED": "Firebase girişi reddetti"
     },

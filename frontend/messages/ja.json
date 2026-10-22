@@ -477,8 +477,10 @@
     "sendAsCampaign": "メール配信として送る",
     "removeSuppression": "リストから外す",
     "suppressed": {
-      "bounced": "このアドレスへのメールが {date} に届かずに戻ってきたため、製品のメールとお知らせは送信されません。",
-      "complained": "このアドレスは {date} にメールを迷惑メールとして報告したため、製品のメールとお知らせは送信されません。"
+      "bounced": "このアドレスへのメールが {date} に届かずに戻ってきたため、メールは一切送信されません。",
+      "complained": "このアドレスは {date} にメールを迷惑メールとして報告したため、メールは一切送信されません。",
+      "suppressed": "以前の不達または迷惑メール報告により、Resend が {date} にこのアドレスへの送信を停止したため、メールは一切送信されません。",
+      "soft_bounced": "このアドレスへのメールが {date} まで繰り返し届かずに戻ってきたため、メールは一切送信されません。"
     },
     "aiCosts": "AI コスト",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "OpenAI のクレジット不足",
       "OPENAI_THROTTLED": "当社の OpenAI リクエスト上限による待機",
       "RESEND_RATE_LIMIT": "Resend のレート制限",
-      "RESEND_DAILY_QUOTA": "Resend の 1 日の送信枠",
+      "RESEND_DAILY_QUOTA": "Resend の送信枠（1 日または 1 か月）",
       "ATS_RATE_LIMIT": "ATS のレート制限",
       "FIREBASE_TOKEN_REFUSED": "Firebase のサインイン拒否"
     },

@@ -477,8 +477,10 @@
     "sendAsCampaign": "Als Kampagne senden",
     "removeSuppression": "Von der Liste nehmen",
     "suppressed": {
-      "bounced": "Eine E-Mail an diese Adresse kam am {date} als unzustellbar zurück, daher werden ihr keine Produkt-E-Mails und Hinweise mehr gesendet.",
-      "complained": "Diese Adresse hat am {date} eine E-Mail als Spam markiert, daher werden ihr keine Produkt-E-Mails und Hinweise mehr gesendet."
+      "bounced": "Eine E-Mail an diese Adresse kam am {date} als unzustellbar zurück, daher wird ihr keine E-Mail mehr gesendet.",
+      "complained": "Diese Adresse hat am {date} eine E-Mail als Spam markiert, daher wird ihr keine E-Mail mehr gesendet.",
+      "suppressed": "Resend sendet seit dem {date} nicht mehr an diese Adresse, nach einer früheren Unzustellbarkeit oder Spam-Meldung; daher wird ihr keine E-Mail mehr gesendet.",
+      "soft_bounced": "E-Mails an diese Adresse kamen bis zum {date} wiederholt als unzustellbar zurück, daher wird ihr keine E-Mail mehr gesendet."
     },
     "aiCosts": "KI-Kosten",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "OpenAI-Guthaben aufgebraucht",
       "OPENAI_THROTTLED": "Warten auf unser OpenAI-Anfragelimit",
       "RESEND_RATE_LIMIT": "Resend-Ratenlimit",
-      "RESEND_DAILY_QUOTA": "Resend-Tageskontingent",
+      "RESEND_DAILY_QUOTA": "Resend-Sendekontingent (täglich oder monatlich)",
       "ATS_RATE_LIMIT": "ATS-Ratenlimit",
       "FIREBASE_TOKEN_REFUSED": "Firebase-Anmeldung abgelehnt"
     },

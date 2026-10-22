@@ -477,8 +477,10 @@
     "sendAsCampaign": "Gửi dưới dạng chiến dịch",
     "removeSuppression": "Gỡ khỏi danh sách",
     "suppressed": {
-      "bounced": "Email gửi đến địa chỉ này bị trả lại vào {date}, nên email về sản phẩm và thông báo sẽ bỏ qua địa chỉ này.",
-      "complained": "Địa chỉ này đã đánh dấu một email là spam vào {date}, nên email về sản phẩm và thông báo sẽ bỏ qua địa chỉ này."
+      "bounced": "Email gửi đến địa chỉ này bị trả lại vào {date}, nên không có email nào được gửi đến địa chỉ này.",
+      "complained": "Địa chỉ này đã đánh dấu một email là spam vào {date}, nên không có email nào được gửi đến địa chỉ này.",
+      "suppressed": "Resend đã ngừng gửi đến địa chỉ này vào {date} sau một lần bị trả lại hoặc báo cáo spam trước đó, nên không có email nào được gửi đến địa chỉ này.",
+      "soft_bounced": "Email gửi đến địa chỉ này liên tục bị trả lại cho đến {date}, nên không có email nào được gửi đến địa chỉ này."
     },
     "aiCosts": "Chi phí AI",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "OpenAI hết credit",
       "OPENAI_THROTTLED": "Chờ giới hạn yêu cầu OpenAI của chúng tôi",
       "RESEND_RATE_LIMIT": "Giới hạn tốc độ của Resend",
-      "RESEND_DAILY_QUOTA": "Hạn mức hằng ngày của Resend",
+      "RESEND_DAILY_QUOTA": "Hạn mức gửi của Resend (hằng ngày hoặc hằng tháng)",
       "ATS_RATE_LIMIT": "Giới hạn tốc độ của ATS",
       "FIREBASE_TOKEN_REFUSED": "Firebase từ chối đăng nhập"
     },

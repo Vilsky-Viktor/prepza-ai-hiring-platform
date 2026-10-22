@@ -477,8 +477,10 @@
     "sendAsCampaign": "캠페인으로 보내기",
     "removeSuppression": "목록에서 제거",
     "suppressed": {
-      "bounced": "이 주소로 보낸 이메일이 {date}에 반송되어 제품 이메일과 안내가 이 주소를 건너뜁니다.",
-      "complained": "이 주소가 {date}에 이메일을 스팸으로 신고하여 제품 이메일과 안내가 이 주소를 건너뜁니다."
+      "bounced": "이 주소로 보낸 이메일이 {date}에 반송되어 이 주소로는 어떤 이메일도 보내지 않습니다.",
+      "complained": "이 주소가 {date}에 이메일을 스팸으로 신고하여 이 주소로는 어떤 이메일도 보내지 않습니다.",
+      "suppressed": "이전 반송 또는 스팸 신고로 Resend가 {date}에 이 주소로의 발송을 중단하여 이 주소로는 어떤 이메일도 보내지 않습니다.",
+      "soft_bounced": "이 주소로 보낸 이메일이 {date}까지 계속 반송되어 이 주소로는 어떤 이메일도 보내지 않습니다."
     },
     "aiCosts": "AI 비용",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "OpenAI 크레딧 소진",
       "OPENAI_THROTTLED": "자체 OpenAI 요청 한도로 대기",
       "RESEND_RATE_LIMIT": "Resend 속도 제한",
-      "RESEND_DAILY_QUOTA": "Resend 일일 할당량",
+      "RESEND_DAILY_QUOTA": "Resend 발송 할당량(일별 또는 월별)",
       "ATS_RATE_LIMIT": "ATS 속도 제한",
       "FIREBASE_TOKEN_REFUSED": "Firebase 로그인 거부"
     },

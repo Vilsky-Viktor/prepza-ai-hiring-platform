@@ -14,10 +14,10 @@ type Suppression = components["schemas"]["SuppressionOut"]
 
 const PATH = "/notifications/superadmin/suppressed"
 
-/** On an account's page, when its address is on prepza's suppression list (it bounced, or
- * marked an email as spam): since when and why, as a warning, and taking it off the list so
- * product emails and notices reach it again. Nothing while it isn't on the list. The address
- * goes in the body. */
+/** On an account's or a candidate's page, when the address is on prepza's suppression list
+ * (it bounced, marked an email as spam, or Resend stopped sending to it): since when and why, as
+ * a warning, and taking it off the list (Resend's too) so emails reach it again. Nothing while
+ * it isn't on the list. The address goes in the body. */
 export function AddressSuppression({ email }: { email: string }) {
   const t = useTranslations("superadmin")
   const locale = useLocale()

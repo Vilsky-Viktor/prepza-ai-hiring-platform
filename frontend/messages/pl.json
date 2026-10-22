@@ -477,8 +477,10 @@
     "sendAsCampaign": "Wyślij jako kampanię",
     "removeSuppression": "Usuń z listy",
     "suppressed": {
-      "bounced": "E-mail na ten adres wrócił jako niedoręczony {date}, więc e-maile o produkcie i powiadomienia go pomijają.",
-      "complained": "Ten adres oznaczył e-mail jako spam {date}, więc e-maile o produkcie i powiadomienia go pomijają."
+      "bounced": "E-mail na ten adres wrócił jako niedoręczony {date}, więc nie wysyłamy na niego żadnych e-maili.",
+      "complained": "Ten adres oznaczył e-mail jako spam {date}, więc nie wysyłamy na niego żadnych e-maili.",
+      "suppressed": "Resend przestał wysyłać na ten adres {date} po wcześniejszym niedoręczeniu lub zgłoszeniu spamu, więc nie wysyłamy na niego żadnych e-maili.",
+      "soft_bounced": "E-maile na ten adres wielokrotnie wracały jako niedoręczone aż do {date}, więc nie wysyłamy na niego żadnych e-maili."
     },
     "aiCosts": "Koszty AI",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "Brak środków w OpenAI",
       "OPENAI_THROTTLED": "Oczekiwanie na nasz limit żądań w OpenAI",
       "RESEND_RATE_LIMIT": "Limit szybkości Resend",
-      "RESEND_DAILY_QUOTA": "Dzienny limit Resend",
+      "RESEND_DAILY_QUOTA": "Limit wysyłki Resend (dzienny lub miesięczny)",
       "ATS_RATE_LIMIT": "Limit szybkości ATS",
       "FIREBASE_TOKEN_REFUSED": "Logowanie przez Firebase odrzucone"
     },

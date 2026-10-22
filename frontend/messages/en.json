@@ -477,8 +477,10 @@
     "sendAsCampaign": "Send as a campaign",
     "removeSuppression": "Take off the list",
     "suppressed": {
-      "bounced": "This address bounced on {date}, so product emails and notices skip it.",
-      "complained": "This address marked an email as spam on {date}, so product emails and notices skip it."
+      "bounced": "This address bounced on {date}, so no email is sent to it.",
+      "complained": "This address marked an email as spam on {date}, so no email is sent to it.",
+      "suppressed": "Resend stopped sending to this address on {date} after an earlier bounce or spam report, so no email is sent to it.",
+      "soft_bounced": "This address kept bouncing until {date}, so no email is sent to it."
     },
     "aiCosts": "AI costs",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "OpenAI out of credit",
       "OPENAI_THROTTLED": "Waiting for our OpenAI request limit",
       "RESEND_RATE_LIMIT": "Resend rate limit",
-      "RESEND_DAILY_QUOTA": "Resend daily quota",
+      "RESEND_DAILY_QUOTA": "Resend sending quota (daily or monthly)",
       "ATS_RATE_LIMIT": "ATS rate limit",
       "FIREBASE_TOKEN_REFUSED": "Firebase sign-in refused"
     },

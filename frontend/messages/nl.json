@@ -477,8 +477,10 @@
     "sendAsCampaign": "Verzenden als campagne",
     "removeSuppression": "Van de lijst halen",
     "suppressed": {
-      "bounced": "Een e-mail aan dit adres kwam op {date} onbestelbaar terug, dus productmails en mededelingen slaan het over.",
-      "complained": "Dit adres heeft op {date} een e-mail als spam gemarkeerd, dus productmails en mededelingen slaan het over."
+      "bounced": "Een e-mail aan dit adres kwam op {date} onbestelbaar terug, dus er wordt geen e-mail meer naar gestuurd.",
+      "complained": "Dit adres heeft op {date} een e-mail als spam gemarkeerd, dus er wordt geen e-mail meer naar gestuurd.",
+      "suppressed": "Resend stopte op {date} met verzenden naar dit adres na een eerdere onbestelbare e-mail of spammelding, dus er wordt geen e-mail meer naar gestuurd.",
+      "soft_bounced": "E-mails aan dit adres kwamen tot {date} steeds onbestelbaar terug, dus er wordt geen e-mail meer naar gestuurd."
     },
     "aiCosts": "AI-kosten",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "OpenAI-tegoed op",
       "OPENAI_THROTTLED": "Wachten op onze verzoeklimiet bij OpenAI",
       "RESEND_RATE_LIMIT": "Snelheidslimiet van Resend",
-      "RESEND_DAILY_QUOTA": "Dagquotum van Resend",
+      "RESEND_DAILY_QUOTA": "Verzendquotum van Resend (per dag of per maand)",
       "ATS_RATE_LIMIT": "Snelheidslimiet van ATS",
       "FIREBASE_TOKEN_REFUSED": "Firebase-aanmelding geweigerd"
     },

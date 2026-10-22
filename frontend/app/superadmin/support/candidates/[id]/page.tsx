@@ -6,6 +6,7 @@ import { BackLink } from "@/components/back-link"
 import { EntityId } from "@/components/entity-id"
 import { LocalDate } from "@/components/local-date"
 import { PageHeader } from "@/components/page-header"
+import { AddressSuppression } from "@/components/superadmin/address-suppression"
 import { CandidateEmailStops } from "@/components/superadmin/candidate-email-stops"
 import { SupportFacts } from "@/components/superadmin/support-facts"
 import { Badge } from "@/components/ui/badge"
@@ -125,6 +126,7 @@ export default async function SupportCandidatePage({
         ]}
       />
 
+      <AddressSuppression email={candidate.email} />
       <CandidateEmailStops email={candidate.email} />
     </main>
   )

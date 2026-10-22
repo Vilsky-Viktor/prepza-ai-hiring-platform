@@ -1,7 +1,7 @@
 import type { Page } from "@playwright/test"
 
 import { expect, test } from "../fixtures"
-import { api } from "../helpers/api"
+import { api, createCompany, createInterview } from "../helpers/api"
 import { deleteNotice, isSuppressed, sentDpaNotice, suppress } from "../helpers/db-notifications"
 import { env } from "../helpers/env"
 import { deleteMails, mailHtml, mails } from "../helpers/mailpit"
@@ -9,7 +9,7 @@ import { openDialog, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { uidOf } from "../helpers/sign-in"
 import { supportId, supportSearch } from "../helpers/support"
-import { randomId, throwawayEmail } from "../helpers/users"
+import { ownerEmail, randomId, throwawayEmail } from "../helpers/users"
 
 type Campaign = { id: string; kind: string; subject: string; status: string }
 type Notice = { document: string; version: string }
@@ -140,6 +140,57 @@ test("superadmin sees a suppressed address and takes it off the list", async ({
     await expect.poll(() => isSuppressed(address)).toBe(false)
   } finally {
     await isSuppressed(address, true)
+  }
+})
+
+// A candidate's address that bounced: their support page warns too, and the superadmin takes it
+// off the list. Each other reason shows as a warning on an account's page.
+test("superadmin sees a suppressed candidate address and takes it off the list", async ({
+  signInAs,
+  signInSuperadmin,
+}) => {
+  const owner = await signInAs(ownerEmail())
+  const company = await createCompany(owner)
+  const interviewId = await createInterview(owner, company.id)
+  const candidate = throwawayEmail("bounced-candidate")
+  const invited = await api<{ id: string }>(
+    owner,
+    "POST",
+    `/companies/interviews/${interviewId}/candidates`,
+    { email: candidate }
+  )
+  const others = ["suppressed", "soft_bounced", "complained"].map((reason) => ({
+    reason,
+    address: throwawayEmail(`suppressed-${reason}`),
+  }))
+
+  try {
+    await suppress(candidate)
+    const superadmin = await signInSuperadmin()
+    await visit(superadmin, `/superadmin/support/candidates/${invited.id}`)
+
+    const remove = superadmin.getByTestId("remove-suppression")
+    await expect(remove).toBeVisible()
+    await shot(superadmin, "candidate-suppressed")
+    await remove.click()
+    await expect(remove).toHaveCount(0)
+    await expect.poll(() => isSuppressed(candidate)).toBe(false)
+
+    for (const { reason, address } of others) {
+      const person = await signInAs(address)
+      await person.context().close()
+      await suppress(address, reason)
+      const userId = await supportId((await supportSearch(superadmin, address)).first())
+      await visit(superadmin, `/superadmin/support/users/${userId}`)
+      await expect(superadmin.getByTestId("remove-suppression")).toBeVisible()
+      await shot(superadmin, `account-${reason}`)
+    }
+  } finally {
+    await isSuppressed(candidate, true)
+
+    for (const { address } of others) {
+      await isSuppressed(address, true)
+    }
   }
 })
 

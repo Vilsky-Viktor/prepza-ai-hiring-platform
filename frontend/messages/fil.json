@@ -477,8 +477,10 @@
     "sendAsCampaign": "Ipadala bilang campaign",
     "removeSuppression": "Alisin sa listahan",
     "suppressed": {
-      "bounced": "Nag-bounce ang email sa address na ito noong {date}, kaya nilalaktawan ito ng mga email tungkol sa produkto at mga abiso.",
-      "complained": "Minarkahan ng address na ito ang isang email bilang spam noong {date}, kaya nilalaktawan ito ng mga email tungkol sa produkto at mga abiso."
+      "bounced": "Nag-bounce ang email sa address na ito noong {date}, kaya walang email na ipinapadala rito.",
+      "complained": "Minarkahan ng address na ito ang isang email bilang spam noong {date}, kaya walang email na ipinapadala rito.",
+      "suppressed": "Itinigil ng Resend ang pagpapadala sa address na ito noong {date} dahil sa naunang bounce o ulat ng spam, kaya walang email na ipinapadala rito.",
+      "soft_bounced": "Paulit-ulit na nag-bounce ang mga email sa address na ito hanggang {date}, kaya walang email na ipinapadala rito."
     },
     "aiCosts": "Gastos sa AI",
     "aiCards": {
@@ -632,7 +634,7 @@
       "OPENAI_QUOTA": "Naubusan ng credit sa OpenAI",
       "OPENAI_THROTTLED": "Naghihintay sa OpenAI request limit namin",
       "RESEND_RATE_LIMIT": "Rate limit ng Resend",
-      "RESEND_DAILY_QUOTA": "Pang-araw-araw na quota ng Resend",
+      "RESEND_DAILY_QUOTA": "Quota sa pagpapadala ng Resend (araw-araw o buwanan)",
       "ATS_RATE_LIMIT": "Rate limit ng ATS",
       "FIREBASE_TOKEN_REFUSED": "Tinanggihan ng Firebase ang sign-in"
     },
