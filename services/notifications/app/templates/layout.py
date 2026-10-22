@@ -30,9 +30,10 @@ HTML_SECTION = (
     'style="margin:0 0 16px;border:1px solid #e5e5e5;border-radius:12px;">'
     '<tr><td style="padding:16px 20px;">{heading}{rows}</td></tr></table>\n'
 )
+# A list's heading: the email's sections under its one <h1>.
 HTML_SECTION_HEADING = (
-    '<p style="margin:0 0 4px;font-size:16px;line-height:24px;font-weight:600;color:#0a0a0a;">'
-    "{heading}</p>"
+    '<h2 style="margin:0 0 4px;font-size:16px;line-height:24px;font-weight:600;color:#0a0a0a;">'
+    "{heading}</h2>"
 )
 HTML_ROW = (
     '<p style="margin:4px 0 0;font-size:15px;line-height:22px;"><a href="{url}" target="_blank" '
