@@ -69,16 +69,30 @@ async def delete_account(user: User) -> None:
 
     Each step is safe to repeat and raises on failure, so a failed deletion is retried whole and
     the sign-in, which lets the user retry, goes last. Companies goes first: it refuses (409)
-    while the user owns a company others have joined, before any service deleted anything.
+    while the user owns a company others have joined, before any service deleted anything. The
+    other services then delete at once, so the whole request takes two calls' time, not eight,
+    within library's own request timeout.
     """
-    for service in services.services():
-        try:
-            await services.delete_user(service, user.uid, candidate_email(user))
-        except httpx.HTTPStatusError as error:
-            if error.response.status_code == status.HTTP_409_CONFLICT:
-                raise HTTPException(status.HTTP_409_CONFLICT, ACCOUNT_OWNS_SHARED) from error
+    first, *others = services.services()
+    email = candidate_email(user)
 
-            raise
+    try:
+        await services.delete_user(first, user.uid, email)
+    except httpx.HTTPStatusError as error:
+        if error.response.status_code == status.HTTP_409_CONFLICT:
+            raise HTTPException(status.HTTP_409_CONFLICT, ACCOUNT_OWNS_SHARED) from error
+
+        raise
+
+    # Every one is awaited, failed or not, so none is left running after the answer.
+    results = await asyncio.gather(
+        *(services.delete_user(service, user.uid, email) for service in others),
+        return_exceptions=True,
+    )
+    failed = [result for result in results if isinstance(result, BaseException)]
+
+    if failed:
+        raise failed[0]
 
     await accounts.delete_user(user.uid)
     # Run again after a restore from a backup (services/erasures.py).

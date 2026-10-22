@@ -1,13 +1,16 @@
 import asyncio
+import re
+from pathlib import Path
 
 import httpx
 import pytest
 from fastapi import HTTPException
 from prepza_common import http
 from prepza_common.auth import current_user
-from prepza_common.constants import ACCOUNT_OWNS_SHARED
+from prepza_common.constants import ACCOUNT_OWNS_SHARED, GOOGLE_TIMEOUT_SECONDS
 from prepza_common.user import User
 
+from app.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
 from app.integrations import accounts as account_services
 from app.main import app
 from app.routers import me as me_routes
@@ -45,20 +48,39 @@ def steps(monkeypatch):
 def test_every_service_is_cleaned_before_the_sign_in_goes(steps):
     asyncio.run(account_service.delete_account(USER))
 
-    assert steps == [
-        ("service", "companies"),
-        ("service", "rounds"),
-        ("service", "generation"),
-        ("service", "billing"),
-        ("service", "notifications"),
-        ("service", "ats"),
+    # Companies first (it may refuse), then the others together.
+    assert steps[0] == ("service", "companies")
+    assert sorted(steps[1:8]) == [
         ("service", "api"),
         ("service", "assistant"),
+        ("service", "ats"),
+        ("service", "billing"),
+        ("service", "generation"),
+        ("service", "notifications"),
+        ("service", "rounds"),
+    ]
+    assert steps[8:] == [
         ("library", "ann"),
         # Kept for the backups' life, to run again after a restore.
         ("erasure", "ann", "Ann@Example.com"),
         ("sign-in", "ann"),
     ]
+
+
+def test_after_companies_the_other_services_delete_at_once(steps, monkeypatch):
+    running, most = [0], [0]
+
+    async def delete_in(service, user_id, email):
+        running[0] += 1
+        most[0] = max(most[0], running[0])
+        await asyncio.sleep(0)
+        running[0] -= 1
+
+    monkeypatch.setattr(account_services, "delete_user", delete_in)
+
+    asyncio.run(account_service.delete_account(USER))
+
+    assert most[0] == len(account_services.services()) - 1
 
 
 def test_a_failing_service_keeps_the_sign_in_so_the_user_can_retry(steps, monkeypatch):
@@ -266,3 +288,13 @@ def test_data_downloads_past_the_hourly_limit_are_refused_before_asking_anyone(c
 
     assert (first.status_code, second.status_code) == (200, 429)
     assert len(asked) == asked_once
+
+
+def test_a_deletion_fits_librarys_own_request_timeout():
+    """Companies, then the others together, then the sign-in's revocation and deletion."""
+    services_tf = (Path(__file__).resolve().parents[4] / "infra/terraform/locals.tf").read_text()
+    library = int(
+        re.search(r"^\s+library\s+= \{.*?timeout = (\d+)", services_tf, re.MULTILINE).group(1)
+    )
+
+    assert 2 * ACCOUNT_CALL_TIMEOUT_SECONDS + 2 * GOOGLE_TIMEOUT_SECONDS < library
