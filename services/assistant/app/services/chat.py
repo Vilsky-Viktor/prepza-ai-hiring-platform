@@ -124,7 +124,9 @@ async def ask(
     try:
         # The user's name, in the instructions, isn't sent with the trace.
         with hiding(turn.user_name):
-            async for chunk in model.astream(messages, traced(answer.trace_id)):
+            config = traced(answer.trace_id, str(turn.conversation_id))
+
+            async for chunk in model.astream(messages, config):
                 reply += chunk
 
                 if chunk.text:

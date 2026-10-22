@@ -47,7 +47,9 @@ async def refresh(turn: Turn) -> str | None:
 
     try:
         # Its own trace in Langfuse when that's set up.
-        with traced_run(TITLE_ACTION, [TITLE_ACTION, str(turn.conversation_id)]):
+        conversation = str(turn.conversation_id)
+
+        with traced_run(TITLE_ACTION, [TITLE_ACTION, conversation], session_id=conversation):
             text, usage = await write_title(prompt)
     except Exception as failure:  # noqa: BLE001 - logged by its type only
         logger.error("A conversation's title failed: %s", type(failure).__name__)

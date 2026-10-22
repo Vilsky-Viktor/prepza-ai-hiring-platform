@@ -156,15 +156,15 @@ def test_a_title_is_its_own_trace_tagged_with_the_conversation_only(stored, monk
     runs = []
 
     @contextmanager
-    def traced_run(name, tags):
-        runs.append((name, tags, "open"))
+    def traced_run(name, tags, session_id):
+        runs.append((name, tags, session_id, "open"))
         yield "a" * 32
-        runs.append((name, tags, "closed"))
+        runs.append((name, tags, session_id, "closed"))
 
     class Model(TitleModel):
         async def ainvoke(self, messages):
             # The call is made inside the trace.
-            assert runs[-1][2] == "open"
+            assert runs[-1][3] == "open"
 
             return await super().ainvoke(messages)
 
@@ -173,8 +173,13 @@ def test_a_title_is_its_own_trace_tagged_with_the_conversation_only(stored, monk
     monkeypatch.setattr(titles.llm, "get_title_model", lambda: Model(reply))
     asyncio.run(titles.refresh(TURN))
 
-    tags = [TITLE_ACTION, str(TURN.conversation_id)]
-    assert runs == [(TITLE_ACTION, tags, "open"), (TITLE_ACTION, tags, "closed")]
+    # In the conversation's session, with its answers' traces.
+    conversation = str(TURN.conversation_id)
+    tags = [TITLE_ACTION, conversation]
+    assert runs == [
+        (TITLE_ACTION, tags, conversation, "open"),
+        (TITLE_ACTION, tags, conversation, "closed"),
+    ]
 
 
 def test_the_conversation_is_data_in_the_users_message_after_the_role(stored, monkeypatch):

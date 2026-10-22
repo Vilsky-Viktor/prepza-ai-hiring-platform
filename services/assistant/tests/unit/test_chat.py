@@ -256,11 +256,15 @@ def test_a_call_cut_short_still_counts_its_tokens_estimated():
 def test_with_langfuse_every_call_of_an_answer_reports_to_its_one_trace(model, gets, monkeypatch):
     traces = iter(["a" * 32, "b" * 32])
     monkeypatch.setattr(chat, "new_trace_id", lambda: next(traces))
-    monkeypatch.setattr(chat, "traced", lambda trace_id: {"trace": trace_id})
+    monkeypatch.setattr(
+        chat, "traced", lambda trace_id, session: {"trace": trace_id, "in": session}
+    )
 
     _, answer = run(model, calls(("list_interviews", {})), text("One interview."))
 
-    assert model.configs == [{"trace": "a" * 32}, {"trace": "a" * 32}]
+    # In the conversation's session, as its title's trace is.
+    seen = {"trace": "a" * 32, "in": str(TURN.conversation_id)}
+    assert model.configs == [seen, seen]
     assert answer.trace_id == "a" * 32
 
 

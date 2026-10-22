@@ -78,12 +78,18 @@ def handler(trace_id: str) -> CallbackHandler:
     )
 
 
-def traced(trace_id: str | None) -> dict | None:
-    """The config a model call reports to the trace with; None without one."""
+def traced(trace_id: str | None, session_id: str | None = None) -> dict | None:
+    """The config a model call reports to the trace with, in the session `session_id` (a
+    conversation's id: its traces are grouped there); None without a trace."""
     if trace_id is None:
         return None
 
-    return {"callbacks": [handler(trace_id)]}
+    config = {"callbacks": [handler(trace_id)]}
+
+    if session_id:
+        config["metadata"] = {"langfuse_session_id": session_id}
+
+    return config
 
 
 def traced_call(
@@ -117,10 +123,13 @@ def traced_call(
 
 
 @contextmanager
-def traced_run(name: str, tags: list[str], seed: str | None = None) -> Iterator[str | None]:
+def traced_run(
+    name: str, tags: list[str], seed: str | None = None, session_id: str | None = None
+) -> Iterator[str | None]:
     """Every LangChain call made inside (LangGraph runs too) reports to one trace named `name`,
-    tagged with `tags`: ids only, never names, emails or a job's text. The same seed gives the
-    same trace. Yields its id; None when Langfuse isn't set up."""
+    tagged with `tags`: ids only, never names, emails or a job's text, in the session
+    `session_id` when given (a conversation's id). The same seed gives the same trace. Yields
+    its id; None when Langfuse isn't set up."""
     trace_id = new_trace_id(seed)
 
     if trace_id is None:
@@ -131,7 +140,7 @@ def traced_run(name: str, tags: list[str], seed: str | None = None) -> Iterator[
     token = _run_handler.set(handler(trace_id))
 
     try:
-        with propagate_attributes(trace_name=name, tags=tags):
+        with propagate_attributes(trace_name=name, tags=tags, session_id=session_id):
             yield trace_id
     finally:
         _run_handler.reset(token)

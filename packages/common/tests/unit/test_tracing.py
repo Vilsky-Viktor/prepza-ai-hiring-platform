@@ -79,7 +79,11 @@ def test_a_traced_run_reports_every_call_to_its_one_trace_with_its_name_and_tags
     assert seen == [[handler], [handler]]
     assert (handler.trace_id, handler.runs) == (trace, [0, 1])
     assert langfuse == [
-        {"trace_name": "interview_generation", "tags": ["interview_generation", "gen-1"]}
+        {
+            "trace_name": "interview_generation",
+            "tags": ["interview_generation", "gen-1"],
+            "session_id": None,
+        }
     ]
     # Calls after the run report to nothing.
     assert callbacks_seen(1) == [[]]
@@ -238,3 +242,15 @@ def test_nothing_is_traced_without_langfuse(monkeypatch):
     monkeypatch.setattr(tracing, "client", lambda: pytest.fail("traced"))
 
     tracing.traced_call("key_check_batch", [], "seed", "m", {}, None, None)
+
+
+def test_a_conversations_traces_share_its_session(langfuse):
+    with tracing.traced_run("assistant_title", ["assistant_title"], session_id="conv-1"):
+        pass
+
+    config = tracing.traced("a" * 32, "conv-1")
+
+    assert langfuse[-1]["session_id"] == "conv-1"
+    assert config["metadata"] == {"langfuse_session_id": "conv-1"}
+    assert "metadata" not in tracing.traced("a" * 32)
+    assert tracing.traced(None, "conv-1") is None
