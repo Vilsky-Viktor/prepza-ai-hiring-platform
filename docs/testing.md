@@ -222,7 +222,7 @@ The assistant's integration tests also connect an app in-process with the MCP SD
 
 ## Load tests
 
-Load tests with k6, in its Docker image, against the local stack only: never production, and not in CI.
+Load tests with k6, in its Docker image, against a local stack only: never production. Besides a run by hand, `.github/workflows/load.yml` runs every scenario with its default settings each Monday (and by hand from Actions) on a stack started on the runner, as CI's smoke job starts it.
 
 - Scenarios: many candidates taking a test, owners on the dashboard, the public pages.
 - Throwaway users, companies and tests from local templates, all deleted and counted afterwards.

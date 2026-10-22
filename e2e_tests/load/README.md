@@ -2,6 +2,8 @@
 
 [k6](https://k6.io) scripts, run in k6's Docker image (`grafana/k6:2.3.0`; nothing to install) against the running local stack. k6 joins the stack's Docker network and calls the gateway by name on its inner port (`http://gateway:8081`, which skips the per-IP limit every visitor gets, as all of k6's users share one address), so it loads the same nginx, services, Postgres, Redis and Pub/Sub emulator the app uses.
 
+Each Monday, `.github/workflows/load.yml` runs `public`, `candidates` and `dashboard` with the defaults on a stack started on the GitHub runner; a crossed threshold or a leftover fails it.
+
 **Never run this against production.** The signed-in scenarios make users in the Firebase Auth emulator, so they run only locally; `load.sh` refuses them for any other host. Only `public` may be pointed at a test environment, with `BASE_URL=... e2e_tests/load.sh public --i-mean-it`.
 
 ## Running

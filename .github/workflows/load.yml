@@ -1,0 +1,47 @@
+name: Load tests
+
+# The slow suite, weekly and by hand: the whole stack started on the runner as CI's smoke job
+# starts it, then each load scenario (e2e_tests/load) with its default, modest settings and k6
+# thresholds; every throwaway account is deleted after, and a leftover fails the run. Never
+# production: the stack is the runner's own, with the Auth emulator and no OpenAI key.
+on:
+  schedule:
+    - cron: "0 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  load:
+    name: load tests (local stack)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: cp .env.example .env
+      - run: docker compose up --build -d
+      - name: Wait for the stack
+        run: |
+          for _ in $(seq 1 40); do
+            if ./e2e_tests/smoke.sh; then
+              exit 0
+            fi
+
+            sleep 15
+          done
+
+          exit 1
+      # Interviews are copied from a local template, and the stack has none (no OpenAI).
+      - name: A template to make interviews from
+        run: docker compose exec -T library uv run --no-sync python - < e2e_tests/signed-in/seed/template.py
+      - run: ./e2e_tests/load.sh public
+      - run: ./e2e_tests/load.sh candidates
+      - run: ./e2e_tests/load.sh dashboard
+      - name: Logs on failure
+        if: failure()
+        run: docker compose logs --tail 100
+      - if: always()
+        run: docker compose down -v
