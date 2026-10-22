@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
   output: "standalone",
   // No X-Powered-By header: it only tells attackers what the site runs on.
   poweredByHeader: false,
+  // Responses go out uncompressed: Cloud CDN compresses them, with Brotli for browsers that take
+  // it, which it can't do for a response already gzipped here (the gateway, locally).
+  compress: false,
   // Version skew protection: the commit CI builds the image from (a build argument). A page left
   // open across a deploy then reloads in full on its next navigation instead of asking the new
   // server for the old build's files. Unset in development, where it does nothing.
