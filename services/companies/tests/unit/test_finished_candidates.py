@@ -49,7 +49,13 @@ def test_an_interview_without_its_title_sends_no_invite_and_keeps_no_credits(cli
     async def release(key):
         released.append(key)
 
+    counted = []
+
+    async def count(*args):
+        counted.append(args)
+
     monkeypatch.setattr(candidate_invites, "interview_title", no_title)
+    monkeypatch.setattr(candidate_invites, "hit_emails", count)
     monkeypatch.setattr(billing, "release_candidate", release)
 
     response = client.post(URL, json={"email": "carol@example.com"})
@@ -58,3 +64,5 @@ def test_an_interview_without_its_title_sends_no_invite_and_keeps_no_credits(cli
     assert (response.status_code, response.json()["detail"]) == (409, INTERVIEW_NOT_READY)
     assert response.json()["code"] == "interview_not_ready"
     assert sent == [] and released == used
+    # No email went, so none counts against the email limits.
+    assert counted == []

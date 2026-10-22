@@ -62,15 +62,17 @@ async def invite(
         if current is None or current in NOT_STARTED:
             await billing.hold_candidate(company.id, key)
 
-        recipient = f"{interview.id}:{recipient_key(email)}"
-        await hit_emails(get_redis(), user.uid, recipient, company.id)
         title = await interview_title(interview)
 
-        # A ready interview has its title; without one, no email names it wrongly.
+        # A ready interview has its title; without one, no email names it wrongly. Refused
+        # before the email limits, which an email never sent mustn't use up.
         if not title:
             raise CodedError(
                 status.HTTP_409_CONFLICT, INTERVIEW_NOT_READY, error_codes.INTERVIEW_NOT_READY
             )
+
+        recipient = f"{interview.id}:{recipient_key(email)}"
+        await hit_emails(get_redis(), user.uid, recipient, company.id)
 
         invite, revived = await invites.upsert(
             interview.id,
