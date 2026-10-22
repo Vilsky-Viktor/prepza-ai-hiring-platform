@@ -6,7 +6,8 @@ resource "google_cloud_tasks_queue" "generation" {
   location = var.region
 
   rate_limits {
-    max_concurrent_dispatches = 20
+    # The worker's one instance takes 10 jobs at once (locals.tf).
+    max_concurrent_dispatches = 10
     max_dispatches_per_second = 5
   }
 

@@ -102,7 +102,7 @@ LLM_RATE_KEY = "rate:llm"
 # don't all ask again at the same instant (and collide again, each ask a paid Redis command).
 LLM_WAIT_JITTER_SECONDS = 0.3
 # Connections of the checkpointer's own pool, on top of the SQLAlchemy pool.
-CHECKPOINTER_POOL_SIZE = 4
+CHECKPOINTER_POOL_SIZE = 2
 
 # The daily generation budget: its counter, kept a little over a day, and the refusal.
 BUDGET_KEY = "budget:generations"

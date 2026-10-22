@@ -62,8 +62,8 @@ DAY_SECONDS = 24 * HOUR_SECONDS
 # Database connections per process: at most DB_POOL_SIZE + DB_MAX_OVERFLOW. Services with few,
 # short queries pass smaller ones. Every instance's total must fit the database's connection
 # budget (infra/terraform/database.tf).
-DB_POOL_SIZE = 5
-DB_MAX_OVERFLOW = 5
+DB_POOL_SIZE = 2
+DB_MAX_OVERFLOW = 1
 # A pooled connection is replaced once it's this old, instead of pinged before each use (a
 # SELECT 1 per checkout). Nothing drops idle ones on the way (Postgres has no idle timeout set,
 # and the Cloud SQL connector none); one killed by a database restart fails one request, and

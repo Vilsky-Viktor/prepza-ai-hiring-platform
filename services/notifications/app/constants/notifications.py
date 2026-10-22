@@ -1,7 +1,7 @@
-# A few short queries per request (streams hold no connection), so a small pool: 4 per instance,
+# A few short queries per request (streams hold no connection), so a small pool: 2 per instance,
 # as infra/terraform/locals.tf budgets it.
-DB_POOL_SIZE = 2
-DB_MAX_OVERFLOW = 2
+DB_POOL_SIZE = 1
+DB_MAX_OVERFLOW = 1
 # The bell shows the latest few. A recipient keeps at most MAX_PER_RECIPIENT, none older than
 # KEEP_DAYS.
 DROPDOWN_LIMIT = 10

@@ -115,9 +115,12 @@ resource "google_secret_manager_secret_version" "database_url" {
 }
 
 locals {
-  db_max_connections = 200
-  # Kept free for migrations, Query Insights and an admin's session.
-  db_reserved_connections = 20
+  # What db-g1-small's memory (1.7 GB) supports, as Cloud SQL sets by default for it; a larger
+  # tier comes with its own (and room for more instances).
+  db_max_connections = 50
+  # Kept free for the migrations and db-roles jobs (one connection each, one job at a time),
+  # Cloud SQL's own superuser connections, Query Insights and an admin's session.
+  db_reserved_connections = 10
   db_connections_at_peak  = sum([for service in local.services : service.max * service.connections])
   # A deploy (.github/workflows/deploy.yml) moves the services one at a time, after the migrations,
   # and each one's old instances run until their requests end. So on top of the peak: the old

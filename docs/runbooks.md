@@ -155,7 +155,7 @@ What to do when a provider fails, a generation hangs, a deploy's migration fails
 
 **What the system does by itself**
 
-- **Delivery:** the `generation` queue tries a task up to 3 times (10 to 120 seconds apart), 20 at once at most ([jobs.tf](../infra/terraform/jobs.tf)). A job first moves its generation from queued to running in one step, so a repeated delivery does nothing ([jobs.py](../services/generation/app/services/jobs.py)).
+- **Delivery:** the `generation` queue tries a task up to 3 times (10 to 120 seconds apart), 10 at once at most ([jobs.tf](../infra/terraform/jobs.tf)). A job first moves its generation from queued to running in one step, so a repeated delivery does nothing ([jobs.py](../services/generation/app/services/jobs.py)).
 - **Time limit:** a run stops after 25 minutes and is saved as failed ([generation.py](../services/generation/app/constants/generation.py)).
 - **The sweep** (Cloud Scheduler job `sweep`, every 5 minutes) marks as failed, "Generation stopped unexpectedly. Please try again.", a generation running untouched for 35 minutes (its worker died) or queued for 2 hours (its task never came). The `generation.failed` event tells companies, and the user can **Retry**; a task that comes after all finds it no longer queued and does nothing ([schedules.py](../services/generation/app/services/schedules.py), [generations.py](../services/generation/app/storage/generations.py)).
 
