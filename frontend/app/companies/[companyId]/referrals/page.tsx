@@ -24,14 +24,15 @@ export default async function ReferralsPage({
   const { companyId } = await params
   const referralText = await getTranslations("referral")
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
-  const company = signedIn
-    ? await serverFetch<Company>(`/companies/companies/${companyId}`)
-    : null
-  const referral = company
-    ? await serverFetch<CompanyReferral>(
-        `/companies/companies/${companyId}/referral`
-      )
-    : null
+  // Asked together: the API refuses the referral on its own when the company isn't theirs.
+  const [company, referral] = signedIn
+    ? await Promise.all([
+        serverFetch<Company>(`/companies/companies/${companyId}`),
+        serverFetch<CompanyReferral>(
+          `/companies/companies/${companyId}/referral`
+        ),
+      ])
+    : [null, null]
 
   if (!signedIn) {
     return (

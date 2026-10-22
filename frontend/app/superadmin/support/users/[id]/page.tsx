@@ -13,7 +13,7 @@ import { WrappedEmail } from "@/components/wrapped-email"
 import { Dot } from "@/components/dot"
 import { LIST_BOX } from "@/constants/lists"
 import { formatPrice } from "@/lib/format"
-import { AiSpendLine } from "@/components/superadmin/ai-spend-line"
+import { aiSpend, AiSpendLine } from "@/components/superadmin/ai-spend-line"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { EmailLookup, SupportUser } from "@/types/superadmin"
@@ -34,11 +34,12 @@ export default async function SupportUserPage({
   const t = await getTranslations("superadmin")
   const roles = await getTranslations("roles")
   const locale = await getLocale()
-  const [user, account] = await Promise.all([
+  const [user, account, spend] = await Promise.all([
     serverFetch<SupportUser>(`/companies/superadmin/support/users/${id}`),
     serverFetch<NonNullable<EmailLookup["account"]>>(
       `/library/superadmin/emails/accounts/${id}`
     ),
+    aiSpend(`user_id=${encodeURIComponent(id)}`),
   ])
 
   if (!user) {
@@ -70,7 +71,7 @@ export default async function SupportUserPage({
         }
       />
 
-      <AiSpendLine query={`user_id=${encodeURIComponent(user.user_id)}`} />
+      <AiSpendLine spend={spend} />
       <AccountEmails account={account} />
       {account?.email && <AddressSuppression email={account.email} />}
 

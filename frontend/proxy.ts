@@ -22,18 +22,20 @@ import { maintenanceState } from "@/lib/maintenance"
 export async function proxy(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64")
   const embedded = EMBED_PAGE.exec(request.nextUrl.pathname)
+  // Asked together: who may frame an embedded interview, and whether maintenance is on.
+  const [ancestors, maintenance] = await Promise.all([
+    embedded ? embedAncestors(embedded[1]) : undefined,
+    maintenanceState(request.cookies.get(TOKEN_COOKIE)?.value),
+  ])
   const policy = contentSecurityPolicy(
     nonce,
     process.env.NODE_ENV === "development",
-    embedded ? await embedAncestors(embedded[1]) : undefined
+    ancestors
   )
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set("x-nonce", nonce)
   requestHeaders.set("Content-Security-Policy", policy)
 
-  const maintenance = await maintenanceState(
-    request.cookies.get(TOKEN_COOKIE)?.value
-  )
   requestHeaders.set(MAINTENANCE_HEADER, maintenance)
   const localized = splitLocale(request.nextUrl.pathname)
 

@@ -43,14 +43,21 @@ export default async function ApiDocsPage({
 }) {
   const t = await getTranslations("apiDocs")
   const locale = await getLocale()
-  const spec = await publicFetch<OpenApi>("/v1/openapi.json", { locale: "en" })
+  const { tab } = await searchParams
+  const current = DOC_TABS.find((item) => item === tab) ?? "api"
+  // Asked together: the spec, and on the MCP tab its examples and the tools' list.
+  const [spec, examples, tools] = await Promise.all([
+    publicFetch<OpenApi>("/v1/openapi.json", { locale: "en" }),
+    current === "mcp" ? mcpExamples() : null,
+    current === "mcp"
+      ? publicFetch<McpTools>(MCP_TOOLS_PATH, { locale: "en" })
+      : null,
+  ])
 
   if (!spec) {
     notFound()
   }
 
-  const { tab } = await searchParams
-  const current = DOC_TABS.find((item) => item === tab) ?? "api"
   const texts = descriptionTabs(spec.info.description ?? "")
   const tabs = DOC_TABS.map((id) => ({
     id,
@@ -94,14 +101,8 @@ export default async function ApiDocsPage({
           <WebhooksTab spec={spec} text={texts.webhooks} />
         )}
         {current === "sdk" && texts.sdk && <RichText text={texts.sdk} />}
-        {current === "mcp" && (
-          <McpTab
-            site={site}
-            examples={await mcpExamples()}
-            tools={await publicFetch<McpTools>(MCP_TOOLS_PATH, {
-              locale: "en",
-            })}
-          />
+        {current === "mcp" && examples && (
+          <McpTab site={site} examples={examples} tools={tools} />
         )}
         {current === "objects" &&
           schemasOf(spec).map(([name, schema]) => (

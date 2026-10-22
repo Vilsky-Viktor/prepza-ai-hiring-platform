@@ -31,12 +31,11 @@ export default async function IntegrationsPage({
   const { companyId } = await params
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
   const t = await getTranslations("ats")
-  const company = signedIn
-    ? await serverFetch<Company>(`/companies/companies/${companyId}`)
-    : null
   const ai = await getTranslations("aiApps")
-  const [integrations, slack, api, connections] = company
+  // Asked together: the API refuses each on its own when the company isn't theirs.
+  const [company, integrations, slack, api, connections] = signedIn
     ? await Promise.all([
+        serverFetch<Company>(`/companies/companies/${companyId}`),
         optionalFetch<AtsIntegrations>(
           `/ats/connections?company_id=${companyId}`
         ),
@@ -46,7 +45,7 @@ export default async function IntegrationsPage({
         optionalFetch<ApiSettings>(`/v1/manage?company_id=${companyId}`),
         optionalFetch<AiConnection[]>("/assistant/connections"),
       ])
-    : [null, null, null, null]
+    : [null, null, null, null, null]
 
   if (!signedIn) {
     return (

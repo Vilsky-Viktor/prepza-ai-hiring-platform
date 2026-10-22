@@ -21,14 +21,15 @@ export default async function MembersPage({
 }) {
   const { companyId } = await params
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
-  const company = signedIn
-    ? await serverFetch<Company>(`/companies/companies/${companyId}`)
-    : null
-  const members = company
-    ? await serverFetch<CompanyMember[]>(
-        `/companies/members?company_id=${companyId}&limit=${PAGE_SIZE}`
-      )
-    : null
+  // Asked together: the API refuses the list on its own when the company isn't theirs.
+  const [company, members] = signedIn
+    ? await Promise.all([
+        serverFetch<Company>(`/companies/companies/${companyId}`),
+        serverFetch<CompanyMember[]>(
+          `/companies/members?company_id=${companyId}&limit=${PAGE_SIZE}`
+        ),
+      ])
+    : [null, null]
 
   if (!signedIn) {
     return (

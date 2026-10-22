@@ -45,11 +45,10 @@ export default async function AtsPage({ params }: { params: Params }) {
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
   const t = await getTranslations("company")
   const ats = await getTranslations("ats")
-  const company = signedIn
-    ? await serverFetch<Company>(`/companies/companies/${companyId}`)
-    : null
-  const [integrations, links, interviews] = company
+  // Asked together: the API refuses each on its own when the company isn't theirs.
+  const [company, integrations, links, interviews] = signedIn
     ? await Promise.all([
+        serverFetch<Company>(`/companies/companies/${companyId}`),
         serverFetch<AtsIntegrations>(
           `/ats/connections?company_id=${companyId}`
         ),
@@ -58,7 +57,7 @@ export default async function AtsPage({ params }: { params: Params }) {
           `/companies/interviews?company_id=${companyId}&limit=100`
         ),
       ])
-    : [null, null, null]
+    : [null, null, null, null]
 
   if (!signedIn) {
     return (

@@ -32,12 +32,15 @@ export default async function AiAppsPage({
   const t = await getTranslations("company")
   const ai = await getTranslations("aiApps")
   const ats = await getTranslations("ats")
-  const company = signedIn
-    ? await serverFetch<Company>(`/companies/companies/${companyId}`)
-    : null
-  const connections = company
-    ? ((await serverFetch<AiConnection[]>("/assistant/connections")) ?? [])
-    : []
+  // Asked together: the connections are the person's own.
+  const [company, connections] = signedIn
+    ? await Promise.all([
+        serverFetch<Company>(`/companies/companies/${companyId}`),
+        serverFetch<AiConnection[]>("/assistant/connections").then(
+          (rows) => rows ?? []
+        ),
+      ])
+    : [null, []]
 
   if (!signedIn) {
     return (

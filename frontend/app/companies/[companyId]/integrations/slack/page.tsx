@@ -33,14 +33,15 @@ export default async function SlackPage({
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
   const t = await getTranslations("company")
   const slackText = await getTranslations("slack")
-  const company = signedIn
-    ? await serverFetch<Company>(`/companies/companies/${companyId}`)
-    : null
-  const slack = company
-    ? await serverFetch<SlackOverview>(
-        `/notifications/slack?company_id=${companyId}`
-      )
-    : null
+  // Asked together: the API refuses Slack's state on its own when the company isn't theirs.
+  const [company, slack] = signedIn
+    ? await Promise.all([
+        serverFetch<Company>(`/companies/companies/${companyId}`),
+        serverFetch<SlackOverview>(
+          `/notifications/slack?company_id=${companyId}`
+        ),
+      ])
+    : [null, null]
 
   if (!signedIn) {
     return (

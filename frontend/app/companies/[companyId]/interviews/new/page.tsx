@@ -23,16 +23,16 @@ export default async function NewInterviewPage({
 
   const { companyId } = await params
   const t = await getTranslations("interviews")
-  const company = await serverFetch<Company>(
-    `/companies/companies/${companyId}`
-  )
+  // Asked together: the pause is the platform's, not the company's.
+  const [company, paused] = await Promise.all([
+    serverFetch<Company>(`/companies/companies/${companyId}`),
+    isPaused(),
+  ])
 
   // Viewers don't create tests: back to the company's tests.
   if (company && !company.can_edit) {
     redirect(`/companies/${companyId}/interviews`)
   }
-
-  const paused = await isPaused()
 
   // Laid out like the home page's start: a title and the box, nothing else.
   return (

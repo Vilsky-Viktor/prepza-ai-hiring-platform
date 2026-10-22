@@ -40,12 +40,13 @@ export default async function ApiPage({
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
   const t = await getTranslations("company")
   const api = await getTranslations("api")
-  const company = signedIn
-    ? await serverFetch<Company>(`/companies/companies/${companyId}`)
-    : null
-  const settings = company
-    ? await serverFetch<ApiSettings>(`/v1/manage?company_id=${companyId}`)
-    : null
+  // Asked together: the API refuses the settings on its own when the company isn't theirs.
+  const [company, settings] = signedIn
+    ? await Promise.all([
+        serverFetch<Company>(`/companies/companies/${companyId}`),
+        serverFetch<ApiSettings>(`/v1/manage?company_id=${companyId}`),
+      ])
+    : [null, null]
 
   if (!signedIn) {
     return (

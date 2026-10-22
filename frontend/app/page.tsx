@@ -42,20 +42,20 @@ export default async function HomePage() {
   const t = await getTranslations("home")
   const site = await getTranslations("site")
   const landing = await getTranslations("landing")
-  // Without prices (billing is slow or down) the page still shows, without the free offer.
-  const catalog = await visitorCatalog()
+  // Asked together. Without prices (billing is slow or down) the page still shows, without the
+  // free offer; without the sizes, the create section shows without its questions-per-topic fact.
+  const [catalog, sizes, countryPrices] = await Promise.all([
+    visitorCatalog(),
+    publicFetch<Sizes>("/generate/sizes").catch(() => null),
+    countryCatalog().then(priceValues),
+  ])
   const freeCandidates = catalog?.free_candidates ?? null
   const { price } = await priceValues(catalog)
-  // Without it, the create section shows without its questions-per-topic fact.
-  const sizes = await publicFetch<Sizes>("/generate/sizes").catch(() => null)
 
   return (
     <main className="mx-auto max-w-5xl px-6">
       <JsonLd
-        data={organizationData(
-          siteUrl(),
-          site("description", await priceValues(await countryCatalog()))
-        )}
+        data={organizationData(siteUrl(), site("description", countryPrices))}
       />
       {/* The promise and the box to start in fill the first screen, under the 3.5rem header; on a
           short phone, with some room above the title. */}

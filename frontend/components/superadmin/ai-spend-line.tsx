@@ -1,14 +1,18 @@
 import { getLocale, getTranslations } from "next-intl/server"
 
 import { formatUsd } from "@/lib/format"
-import { serverFetch } from "@/lib/server-api"
+import { optionalFetch } from "@/lib/server-api"
 import type { AiSpend } from "@/types/superadmin"
 
-/** A support page's line about what AI cost for the company or user (`query`, the API's
- * company_id= or user_id=) over the last days the API counts; nothing when it doesn't answer. */
-export async function AiSpendLine({ query }: { query: string }) {
-  const [spend, t, locale] = await Promise.all([
-    serverFetch<AiSpend>(`/billing/superadmin/ai-spend?${query}`),
+/** What AI cost for the company or user (`query`, the API's company_id= or user_id=) over the
+ * last days the API counts; null when it doesn't answer. Asked by the page with its own data. */
+export function aiSpend(query: string) {
+  return optionalFetch<AiSpend>(`/billing/superadmin/ai-spend?${query}`)
+}
+
+/** A support page's line about what AI cost (aiSpend); nothing without it. */
+export async function AiSpendLine({ spend }: { spend: AiSpend | null }) {
+  const [t, locale] = await Promise.all([
     getTranslations("superadmin"),
     getLocale(),
   ])

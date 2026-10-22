@@ -33,7 +33,10 @@ type Params = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Params) {
   const { slug } = await params
   const t = await getTranslations("tests")
-  const template = await publicFetch<Template>(`/library/templates/${slug}`)
+  const [template, catalog] = await Promise.all([
+    publicFetch<Template>(`/library/templates/${slug}`),
+    countryCatalog(),
+  ])
 
   if (!template) {
     return {}
@@ -45,7 +48,7 @@ export async function generateMetadata({ params }: Params) {
       t("pageDescription", {
         role: template.title,
         count: template.topic_count,
-        ...(await priceValues(await countryCatalog())),
+        ...(await priceValues(catalog)),
       }),
       `/tests/${template.slug ?? template.id}`,
       templateLocales(template.language)
@@ -62,7 +65,16 @@ export default async function RoleTestPage({ params }: Params) {
   const { slug: key } = await params
   const t = await getTranslations("tests")
   const tLevel = await getTranslations("templates.levels")
-  const template = await publicFetch<Template>(`/library/templates/${key}`)
+  // Asked together: the template, the price per candidate in the visitor's currency, and the
+  // site FAQ's answers to what companies ask before testing candidates, in the page's language
+  // and with today's prices (left out while prices can't be read: rounds refuses).
+  const [template, catalog, answers] = await Promise.all([
+    publicFetch<Template>(`/library/templates/${key}`),
+    visitorCatalog(),
+    faqPath()
+      .then((path) => publicFetch<FaqItem[]>(path))
+      .catch(() => null),
+  ])
 
   const locale = await urlLocale()
 
@@ -79,17 +91,11 @@ export default async function RoleTestPage({ params }: Params) {
   }
 
   const slug = template.slug ?? template.id
-  // The price per candidate, in the visitor's currency.
-  const prices = await priceValues(await visitorCatalog())
+  const prices = await priceValues(catalog)
   const questions =
     (await publicFetch<SampleQuestion[]>(
       `/library/templates/${slug}/sample`
     )) ?? []
-  // The site FAQ's answers to what companies ask before testing candidates, in the page's
-  // language and with today's prices; left out while prices can't be read (rounds refuses).
-  const answers = await publicFetch<FaqItem[]>(await faqPath()).catch(
-    () => null
-  )
   const faq = (answers ?? []).filter((item) => ROLE_PAGE_FAQ.includes(item.key))
 
   return (
@@ -124,9 +130,7 @@ export default async function RoleTestPage({ params }: Params) {
         }
       />
       <div className="space-y-6">
-        <p className="text-lg text-muted-foreground">
-          {t("lead", prices)}
-        </p>
+        <p className="text-lg text-muted-foreground">{t("lead", prices)}</p>
         <div className="flex flex-wrap items-center gap-3">
           <Button
             className="h-12 px-6 text-base"

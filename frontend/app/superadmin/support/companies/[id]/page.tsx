@@ -11,7 +11,7 @@ import { EntityId } from "@/components/entity-id"
 import { LocalDate } from "@/components/local-date"
 import { PageHeader } from "@/components/page-header"
 import { AdjustCredits } from "@/components/superadmin/adjust-credits"
-import { AiSpendLine } from "@/components/superadmin/ai-spend-line"
+import { aiSpend, AiSpendLine } from "@/components/superadmin/ai-spend-line"
 import { CompanyActions } from "@/components/superadmin/company-actions"
 import { SupportInterviews } from "@/components/superadmin/support-lists"
 import { TabNav } from "@/components/tab-nav"
@@ -73,21 +73,23 @@ export default async function SupportCompanyPage({
   const roles = await getTranslations("roles")
   const format = await getFormatter()
   const api = `/companies/superadmin/support/companies/${id}`
-  const company = await serverFetch<SupportCompany>(api)
+  // Only the open tab's first page, asked with the company and its AI spend.
+  const first = <T,>(path: string) =>
+    serverFetch<T[]>(`${api}/${path}?limit=${PAGE_SIZE}`)
+  const [company, spend, history, reserved, interviews, audit] =
+    await Promise.all([
+      serverFetch<SupportCompany>(api),
+      aiSpend(`company_id=${encodeURIComponent(id)}`),
+      tab === "money" ? first<CreditHistoryEntry>("history") : null,
+      tab === "reserved" ? first<CreditCandidate>("reserved") : null,
+      tab === "interviews" ? first<Interview>("interviews") : null,
+      tab === "audit" ? first<CompanyAction>("audit") : null,
+    ])
 
   if (!company) {
     notFound()
   }
 
-  // Only the open tab's first page.
-  const first = <T,>(path: string) =>
-    serverFetch<T[]>(`${api}/${path}?limit=${PAGE_SIZE}`)
-  const [history, reserved, interviews, audit] = await Promise.all([
-    tab === "money" ? first<CreditHistoryEntry>("history") : null,
-    tab === "reserved" ? first<CreditCandidate>("reserved") : null,
-    tab === "interviews" ? first<Interview>("interviews") : null,
-    tab === "audit" ? first<CompanyAction>("audit") : null,
-  ])
   const href = `/superadmin/support/companies/${id}`
 
   return (
@@ -143,7 +145,7 @@ export default async function SupportCompanyPage({
         </span>
       </p>
 
-      <AiSpendLine query={`company_id=${company.id}`} />
+      <AiSpendLine spend={spend} />
 
       <div className="space-y-6">
         <TabNav

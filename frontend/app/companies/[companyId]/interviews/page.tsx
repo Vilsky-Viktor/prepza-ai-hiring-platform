@@ -26,11 +26,10 @@ export default async function InterviewsPage({
   const { companyId } = await params
   const t = await getTranslations("interviews")
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
-  const company = signedIn
-    ? await serverFetch<Company>(`/companies/companies/${companyId}`)
-    : null
-  const [interviews, credits] = company
+  // Asked together: the API refuses each on its own when the company isn't theirs.
+  const [company, interviews, credits] = signedIn
     ? await Promise.all([
+        serverFetch<Company>(`/companies/companies/${companyId}`),
         serverFetch<Interview[]>(
           `/companies/interviews?company_id=${companyId}&limit=${PAGE_SIZE}`
         ),
@@ -38,7 +37,7 @@ export default async function InterviewsPage({
           `/companies/companies/${companyId}/credits`
         ),
       ])
-    : [null, null]
+    : [null, null, null]
 
   if (!signedIn) {
     return (
