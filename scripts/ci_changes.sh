@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 # What changed, for CI's `changes` job (.github/workflows/ci.yml): the parts to test and build,
-# whether the whole-stack tests, Terraform's and the workflows' checks run, and the commit compared
-# with.
+# whether the whole-stack tests run, and the commit compared with.
 # A pull request compares with its base (PR_BASE); main with the last commit CI passed on
 # (through `gh api`, GH_TOKEN and GITHUB_REPOSITORY). Each service also depends on
 # packages/common; a change to CI itself or the Python version counts as everything.
-# Writes changed, stack, infra, workflows and base to $GITHUB_OUTPUT (stdout when it isn't set).
+# Writes changed, stack and base to $GITHUB_OUTPUT (stdout when it isn't set).
 # Locally: PR_BASE=origin/main scripts/ci_changes.sh
 set -euo pipefail
 
@@ -57,25 +56,9 @@ if [[ -n "$changed" ]] || grep -qE '^(e2e_tests|gateway|database|firebase|script
   stack=true
 fi
 
-# Terraform is checked when it changed, or when there's nothing to compare with.
-infra=false
-
-if [[ -z "$base" ]] || grep -q '^infra/terraform/' <<< "$files"; then
-  infra=true
-fi
-
-# The workflows are linted when they changed, or when there's nothing to compare with.
-workflows=false
-
-if [[ -z "$base" ]] || grep -q '^\.github/' <<< "$files"; then
-  workflows=true
-fi
-
 echo "Since ${base:-the start}: ${changed:-nothing}" >&2
 {
   echo "changed=$(jq -nc --arg names "$changed" '$names | split(" ") | map(select(. != ""))')"
   echo "stack=$stack"
-  echo "infra=$infra"
-  echo "workflows=$workflows"
   echo "base=$base"
 } >> "${GITHUB_OUTPUT:-/dev/stdout}"

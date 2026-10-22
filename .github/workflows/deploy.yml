@@ -51,7 +51,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - id: commit
-        name: The version is a tag on main that passed CI
+        name: The version is a tag on main that passed CI and the checks
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -69,14 +69,17 @@ jobs:
             exit 1
           fi
 
-          # CI pushes images only for the commit a push to main ends on, so that's what to tag.
-          passed="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs?head_sha=$sha&event=push&status=success" --jq .total_count)"
+          # CI pushes images only for the commit a push to main ends on, so that's what to tag. The
+          # repo's fast checks (checks.yml) must have passed on it too.
+          for workflow in ci.yml checks.yml; do
+            passed="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/$workflow/runs?head_sha=$sha&event=push&status=success" --jq .total_count)"
 
-          if [[ "$passed" == "0" ]]; then
-            echo "CI didn't pass on $sha (it failed, or a later push replaced its run): tag the latest commit it passed on" >&2
+            if [[ "$passed" == "0" ]]; then
+              echo "$workflow didn't pass on $sha (it failed, or a later push replaced its run): tag the latest commit it passed on" >&2
 
-            exit 1
-          fi
+              exit 1
+            fi
+          done
 
           echo "sha=$sha" >> "$GITHUB_OUTPUT"
 
