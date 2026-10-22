@@ -1,4 +1,4 @@
-from app.helpers.arguments import fill_path, problems
+from app.helpers.arguments import fill_path, problems, texts_in
 
 PARAMETERS = {
     "type": "object",
@@ -66,3 +66,9 @@ def test_an_empty_required_text_is_missing_and_the_model_is_told_to_ask():
         "name is empty: ask the user for it"
     ]
     assert problems({"name": "Acme"}, parameters) == []
+
+
+def test_every_string_in_the_arguments_is_found_however_deep():
+    arguments = {"a": "one", "b": [1, "two", {"c": ["three"]}], "d": None, "e": True}
+
+    assert sorted(texts_in(arguments)) == sorted(["a", "one", "b", "two", "c", "three", "d", "e"])

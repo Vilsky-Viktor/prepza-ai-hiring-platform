@@ -74,3 +74,17 @@ def fill_path(path: str, values: dict) -> str:
         path = path.replace(f"{{{name}}}", quote(str(value), safe=""))
 
     return path
+
+
+def texts_in(value) -> list[str]:
+    """Every string in arguments, however deep in lists and objects (keys too)."""
+    if isinstance(value, str):
+        return [value]
+
+    if isinstance(value, dict):
+        return [text for key, item in value.items() for text in [*texts_in(key), *texts_in(item)]]
+
+    if isinstance(value, list):
+        return [text for item in value for text in texts_in(item)]
+
+    return []

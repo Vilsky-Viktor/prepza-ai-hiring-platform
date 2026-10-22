@@ -29,6 +29,7 @@ from app.constants.mcp import (
 )
 from app.constants.tool_calls import UNKNOWN_TOOL
 from app.constants.updates import GET_UPDATES
+from app.helpers.arguments import texts_in
 from app.helpers.mcp_schema import mcp_tool
 from app.helpers.oauth import funnel_client
 from app.integrations import firebase_tokens
@@ -195,21 +196,27 @@ async def call(name: str, arguments: dict, access: Access) -> types.CallToolResu
     the user before calling it. Its result is the data as JSON, with links to prepza's pages;
     an error is a result too, which the app explains."""
     tool = tools().get(name) if name not in MCP_UNLISTED else None
-    refused = refusal(name, tool, access)
-
-    if refused:
-        return refused
-
     signed_in = await firebase_tokens.sign_in(access.subject)
 
     if signed_in is None:
         return logged("account gone", name, access, ACCOUNT_GONE)
 
     user, token = signed_in
-    texts = [value for value in arguments.values() if isinstance(value, str)]
 
-    # Secrets are never sent through an AI app: entered in prepza itself only.
-    if secret_in(texts) is not None:
+    try:
+        # Refused calls count too, so probing for tools or slipping secrets in is limited.
+        await count_call(user.uid)
+    except HTTPException as error:
+        return error_result(translate(str(error.detail), user.language))
+
+    refused = refusal(name, tool, access)
+
+    if refused:
+        return refused
+
+    # Secrets are never sent through an AI app: entered in prepza itself only. Any string
+    # counts, however deep in a list or an object.
+    if secret_in(texts_in(arguments)) is not None:
         return logged("secret in arguments", name, access, translate(SECRET_REMOVED, user.language))
 
     # An API key's company: companies refuses any other one (the X-Assistant header).
@@ -217,7 +224,6 @@ async def call(name: str, arguments: dict, access: Access) -> types.CallToolResu
         KEY_CLAIMS.set({"company": access.company_id, "key": access.key_id})
 
     try:
-        await count_call(user.uid)
         await mark_active(access)
         companies = (
             frozenset({access.company_id}) if access.key_id else await user_companies(user.uid)

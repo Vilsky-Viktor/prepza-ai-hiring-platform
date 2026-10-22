@@ -5,6 +5,9 @@ import asyncio
 import logging
 
 import pytest
+from fastapi import HTTPException
+from prepza_common.i18n import translate
+from prepza_common.secrets_check import SECRET_REMOVED
 
 from app.integrations import firebase_tokens
 from app.services import mcp_tools
@@ -78,3 +81,47 @@ def test_an_unknown_tools_name_is_logged_only_in_part(logged):
 
     [line] = lines(logged)
     assert "x" * 64 in line and "x" * 65 not in line
+
+
+@pytest.mark.parametrize(
+    "arguments",
+    [
+        {"tags": ["Backend", f"note {FAKE_KEY}"]},
+        {"settings": {"notes": [{"text": f"key {FAKE_KEY}"}]}},
+    ],
+)
+def test_a_secret_deep_in_the_arguments_is_never_sent_on(arguments):
+    error, content = called("create_company", {"name": "Acme", **arguments})
+
+    assert (error, content) == (True, {"error": translate(SECRET_REMOVED, "de")})
+
+
+@pytest.mark.parametrize(
+    ("name", "arguments"),
+    [
+        ("no_such_tool", {}),
+        ("delete_company", {"company_id": COMPANY}),
+        ("create_company", {"name": f"Acme {FAKE_KEY}"}),
+    ],
+)
+def test_a_refused_call_counts_against_the_users_limit(monkeypatch, name, arguments):
+    counted = []
+
+    async def count_call(user_id):
+        counted.append(user_id)
+
+    monkeypatch.setattr(mcp_tools, "count_call", count_call)
+
+    assert called(name, arguments)[0] is True
+    assert counted == ["ann"]
+
+
+def test_over_the_limit_a_call_is_refused_before_anything_else(monkeypatch):
+    async def over(user_id):
+        raise HTTPException(429, "Too many requests. Try again later.")
+
+    monkeypatch.setattr(mcp_tools, "count_call", over)
+
+    error, content = called("no_such_tool", {})
+
+    assert error and content == {"error": translate("Too many requests. Try again later.", "de")}
