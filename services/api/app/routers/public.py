@@ -141,7 +141,8 @@ async def invite_candidate(
     open invite again, use the resend endpoint."""
     await companies.interview(key.company_id, interview_id)
 
-    created = True
+    # A replay of an earlier request (its Idempotency-Key) invites no one: 200.
+    created = False
 
     async def invite() -> str:
         nonlocal created
@@ -179,6 +180,10 @@ async def invite_candidate(
     status_code=status.HTTP_201_CREATED,
     summary="Create an interview",
     responses={
+        200: {
+            "model": Interview,
+            "description": "A retry within 15 minutes: the interview the first request made",
+        },
         409: refusal(
             "The same request is still running (`request_in_progress`), or your company has as "
             "many interviews without candidates as it may (`interview_quota_reached`)"
@@ -199,22 +204,31 @@ async def invite_candidate(
 async def create_interview(
     body: InterviewIn,
     key: Annotated[ApiKey, needs(Permission.INTERVIEWS_CREATE)],
+    response: Response,
     idempotency_key: IdempotencyKey = None,
 ) -> Interview:
     """Makes an interview from a job description, as the key's creator would. Its questions take
     a few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web
     hook event says when it is. Retrying is safe: the same request from the same key within 15
-    minutes returns the interview the first one made."""
+    minutes returns the interview the first one made, with `200`."""
+
+    created = False
 
     async def create() -> str:
+        nonlocal created
         made = await companies.create_interview(
             key.company_id, body.job_description, body.language, key.created_by
         )
+        created = True
 
         return made["id"]
 
     request = fingerprint("interview", body.model_dump(mode="json"))
     name, seconds = slot(key.company_id, key.id, idempotency_key, request)
     interview_id = UUID(await once(name, seconds, request, create))
+
+    # A retry returns the interview the first request made: nothing new, 200.
+    if not created:
+        response.status_code = status.HTTP_200_OK
 
     return interview_of(await companies.interview(key.company_id, interview_id))

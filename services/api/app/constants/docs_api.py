@@ -101,7 +101,8 @@ Every request can be retried as it is, with nothing extra to send. Inviting an a
 already invited, or has finished, returns that candidate as they are (`200` instead of `201`),
 without another email or credits; an expired invite is sent again. Creating an interview with
 the same request from the same key within 15 minutes returns the interview the first request
-made. A retry while the first request is still running returns `409`: wait a moment and retry.
+made, with `200`: `201` only ever means something new was made. A retry while the first request
+is still running returns `409` (`request_in_progress`): wait a moment and retry.
 
 ## Errors
 
@@ -177,5 +178,6 @@ added. Anything retired first answers with `Deprecation` and `Sunset` headers an
 - 2026-10-22: every error carries a machine-readable `code` beside its `detail` (see Errors).
 - 2026-10-22: a full page of a list sends a `Link` header to the next one; candidates carry
   their `interview_id`.
+- 2026-10-22: a retried request that made nothing new answers `200`, not `201`.
 
 """

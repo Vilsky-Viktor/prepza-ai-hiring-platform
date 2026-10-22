@@ -59,7 +59,8 @@ def test_a_key_makes_an_interview_as_its_creator_once_per_idempotency_key(
     first = post(client, "/interviews", body, "abc")
     again = post(client, "/interviews", body, "abc")
 
-    assert first.status_code == again.status_code == 201
+    # The retry made nothing new.
+    assert (first.status_code, again.status_code) == (201, 200)
     assert first.json()["id"] == str(INTERVIEW)
     assert changes == [("create_interview", COMPANY, "Backend developer", "de", "u1")]
 
@@ -71,9 +72,12 @@ def test_an_invite_retried_with_its_idempotency_key_goes_out_once(
     changes,
 ):
     body = {"email": "bob@example.com"}
-    for _ in range(2):
-        response = post(client, f"/interviews/{INTERVIEW}/candidates", body, "invite-1")
-        assert response.status_code == 201
+    first = post(client, f"/interviews/{INTERVIEW}/candidates", body, "invite-1")
+    again = post(client, f"/interviews/{INTERVIEW}/candidates", body, "invite-1")
+
+    # The retry invited no one: 200, as a retry without the key.
+    assert (first.status_code, again.status_code) == (201, 200)
+    assert first.json()["id"] == again.json()["id"]
 
     assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", "u1")]
 
@@ -86,7 +90,7 @@ def test_a_retried_interview_without_a_key_is_made_once_and_another_one_again(cl
     again = post(client, "/interviews", body)
     other = post(client, "/interviews", {**body, "job_description": "Data engineer"})
 
-    assert first.status_code == again.status_code == other.status_code == 201
+    assert (first.status_code, again.status_code, other.status_code) == (201, 200, 201)
     assert [change[2] for change in changes] == ["Backend developer", "Data engineer"]
 
 

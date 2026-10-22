@@ -168,7 +168,7 @@
      "Interviews"
     ],
     "summary": "Create an interview",
-    "description": "Makes an interview from a job description, as the key's creator would. Its questions take\na few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web\nhook event says when it is. Retrying is safe: the same request from the same key within 15\nminutes returns the interview the first one made.\n\nNeeds the `interviews:create` permission.",
+    "description": "Makes an interview from a job description, as the key's creator would. Its questions take\na few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web\nhook event says when it is. Retrying is safe: the same request from the same key within 15\nminutes returns the interview the first one made, with `200`.\n\nNeeds the `interviews:create` permission.",
     "operationId": "create_interview",
     "security": [
      {
@@ -240,6 +240,16 @@
        "application/json": {
         "schema": {
          "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "200": {
+      "description": "A retry within 15 minutes: the interview the first request made",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Interview"
         }
        }
       }
