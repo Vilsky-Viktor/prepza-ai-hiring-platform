@@ -1,6 +1,8 @@
-from sqlalchemy import delete, select
+from prepza_common.db import delete_in_batches
+from sqlalchemy import select
 from sqlalchemy.orm import selectinload
 
+from app.constants.rounds import SESSION_DELETE_BATCH
 from app.helpers.export import answer_export
 from app.models.sessions import Session
 from app.storage.db import Session as Db
@@ -8,10 +10,9 @@ from app.storage.db import Session as Db
 
 async def delete_user(user_id: str) -> None:
     """Everything rounds holds about a user: interview and practice sessions with their answers
-    and signals. Safe to repeat."""
-    async with Db() as session:
-        await session.execute(delete(Session).where(Session.user_id == user_id))
-        await session.commit()
+    and signals, SESSION_DELETE_BATCH sessions at a time, each batch its own transaction. Safe to
+    repeat."""
+    await delete_in_batches(Db, Session, Session.user_id == user_id, batch=SESSION_DELETE_BATCH)
 
 
 async def export(user_id: str) -> dict:
