@@ -15,7 +15,7 @@ NOW = datetime(2026, 10, 22, tzinfo=UTC)
 def langfuse(monkeypatch):
     """Langfuse set up, answering two pages of old root observations (a trace seen twice),
     a rate limit once, and recording what it was asked to delete."""
-    state = {"deleted": [], "asked": [], "busy": 1, "slept": []}
+    state = {"deleted": [], "asked": [], "busy": 1, "slept": [], "retry_after": "7"}
     pages = {
         None: {"data": [{"traceId": "t1"}, {"traceId": "t2"}], "meta": {"cursor": "c2"}},
         "c2": {"data": [{"traceId": "t2"}, {"traceId": "t3"}], "meta": {}},
@@ -31,7 +31,7 @@ def langfuse(monkeypatch):
         if state["busy"]:
             state["busy"] -= 1
 
-            return httpx.Response(429, headers={"Retry-After": "7"})
+            return httpx.Response(429, headers={"Retry-After": state["retry_after"]})
 
         state["deleted"].append(json.loads(request.content)["traceIds"])
 
@@ -58,7 +58,26 @@ def test_traces_a_day_short_of_30_days_old_are_found_page_by_page_and_deleted(la
     assert first["toStartTime"] == (NOW - timedelta(days=29)).isoformat()
     # Langfuse's rate limit was waited out, at least as long as it asked.
     assert langfuse["slept"] == [7]
-    assert langfuse["deleted"] == [["t1", "t2", "t3"]]
+    # Each page's go before the next page is read, a trace seen twice once.
+    assert langfuse["deleted"] == [["t1", "t2"], ["t3"]]
+
+
+def test_a_run_past_its_time_leaves_the_next_pages_to_the_next_run(langfuse, monkeypatch):
+    monkeypatch.setattr(trace_retention, "TRACE_RUN_SECONDS", -1)
+    langfuse["busy"] = 0
+
+    assert asyncio.run(trace_retention.delete_old_traces(NOW)) == 2
+    assert langfuse["deleted"] == [["t1", "t2"]]
+
+
+def test_a_rate_limit_asking_for_too_long_a_wait_gives_up_rather_than_waits(langfuse):
+    langfuse["busy"] = 1
+    langfuse["retry_after"] = "3600"
+
+    with pytest.raises(httpx.HTTPStatusError):
+        asyncio.run(trace_retention.delete_traces(["a"]))
+
+    assert langfuse["slept"] == []
 
 
 def test_an_accounts_traces_go_in_batches_and_none_is_no_call(langfuse, monkeypatch):

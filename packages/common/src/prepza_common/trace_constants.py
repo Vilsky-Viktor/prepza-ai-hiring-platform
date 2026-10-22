@@ -10,7 +10,13 @@ TRACES_PATH = "/api/public/traces"
 TRACE_PAGE = 1000
 TRACE_DELETE_BATCH = 1000
 # Calls to Langfuse: a timeout, and tries on its rate limit (429) or an outage, the wait at least
-# its Retry-After, otherwise doubling with jitter from TRACE_FIRST_WAIT_SECONDS.
-TRACE_TIMEOUT_SECONDS = 30
-TRACE_ATTEMPTS = 5
+# its Retry-After, otherwise doubling with jitter from TRACE_FIRST_WAIT_SECONDS; a Retry-After
+# past TRACE_MAX_WAIT_SECONDS gives up instead. An account's deletion waits on these inside the
+# account service's call (60 s), so tries and waits stay well under it.
+TRACE_TIMEOUT_SECONDS = 10
+TRACE_ATTEMPTS = 3
 TRACE_FIRST_WAIT_SECONDS = 2
+TRACE_MAX_WAIT_SECONDS = 10
+# The daily job deletes page by page and starts no new page after this long, inside the
+# assistant's 300 s request timeout: what's left goes in the next day's run.
+TRACE_RUN_SECONDS = 240

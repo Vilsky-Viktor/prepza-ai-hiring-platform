@@ -24,8 +24,9 @@ Personal data is masked before a trace leaves (`scrub.scrub_people`: emails, URL
 `name` and `email` fields, and the names a caller hides with `hiding`, the assistant's user's).
 Sentry's events are scrubbed by `scrub.scrub` (emails and URLs).
 Retention: `trace_retention.delete_old_traces` deletes every trace a day short of 30 days (root
-observations found through `/api/public/v2/observations`, deleted through `/api/public/traces`, its
-rate limit waited out), and `delete_traces(ids)` a deleted account's (the assistant's answers' trace ids).
+observations found through `/api/public/v2/observations` and deleted through `/api/public/traces` a
+page at a time, its rate limit waited out up to 10 s, no page started after 240 s, the rest left to
+the next day's run), and `delete_traces(ids)` a deleted account's (the assistant's answers' trace ids).
 `answer_votes` mirrors the chats' thumbs up and down there as a score on the answer's trace. Both
 need the `langfuse` extra: `prepza-common[llm,langfuse]` (generation, the assistant, rounds).
 Limits: `limit_list.LIMITS` is every usage limit of ours (`limit_types.Limit`: its service, default,
