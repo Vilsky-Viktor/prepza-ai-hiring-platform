@@ -41,8 +41,8 @@ MCP_DESCRIPTIONS = {
     "get_email_preferences": (
         "Which emails the signed-in user gets from prepza, each on or off: a candidate "
         "finished, an invite undelivered, an ATS candidate not invited, an interview ready, "
-        "reminders, product updates and promotions. Use it before changing them with "
-        "update_email_preferences, or when the user asks what emails they get."
+        "reminders, product updates and promotions. It reads the current choices, which "
+        "update_email_preferences changes, and answers what emails the user gets."
     ),
     "list_ats_stages": (
         "The stages of one job in a connected applicant tracking system, by provider, job_id "
@@ -104,7 +104,12 @@ MCP_DESCRIPTIONS = {
         " list_template_filters gives the levels and languages to filter by."
     ),
     "list_template_filters": (
-        "The levels and languages the interview templates can be filtered by. Use it before "
-        "search_templates when the user wants templates of a level or language."
+        "The levels and languages the interview templates can be filtered by: the values "
+        "search_templates takes when the user wants templates of a level or language."
+    ),
+    # The panel's names its `show` tool, which AI apps don't have.
+    "get_guide": (
+        "One guide article on hiring or on how prepza works, by its slug from list_guides, in "
+        "the user's language: its title and full text. Answer from it and offer its link."
     ),
 }

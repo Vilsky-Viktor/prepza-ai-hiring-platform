@@ -1,5 +1,6 @@
 import asyncio
 import json
+import re
 
 import httpx
 import pytest
@@ -10,7 +11,7 @@ from prepza_common.user import User
 
 from app.constants.actions_flow import NOTHING_TO_CHANGE, SUBJECT_NOT_FOUND
 from app.constants.chat import OTHER_COMPANY
-from app.constants.mcp import ACCOUNT_GONE, EXCLUDED_TOOL, READ_ONLY
+from app.constants.mcp import ACCOUNT_GONE, EXCLUDED_TOOL, MCP_UNLISTED, READ_ONLY
 from app.constants.mcp_descriptions import MCP_DESCRIPTIONS
 from app.constants.tool_calls import UNKNOWN_TOOL
 from app.helpers.mcp_schema import mcp_tool
@@ -255,3 +256,15 @@ def test_an_app_reads_a_fuller_description_where_the_panels_is_short():
     assert tools()["get_me"].definition["function"]["description"] != listed["get_me"]
     # Every fuller description is of a tool that's listed.
     assert set(MCP_DESCRIPTIONS) <= set(listed)
+
+
+def test_no_description_an_app_reads_names_a_tool_only_the_panel_has():
+    panel_only = {"show", "sign_out", *MCP_UNLISTED}
+    named = [
+        (tool.name, name)
+        for tool in mcp_tools.listed()
+        for name in panel_only
+        if re.search(rf"\b{name}\b", tool.description)
+    ]
+
+    assert named == []
