@@ -1,5 +1,6 @@
 terraform {
-  required_version = ">= 1.9"
+  # Terraform 1.x from 1.9 on; CI runs the version pinned in .github/workflows/ci.yml.
+  required_version = "~> 1.9"
 
   required_providers {
     google = {

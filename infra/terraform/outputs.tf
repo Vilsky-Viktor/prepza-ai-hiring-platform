@@ -9,11 +9,13 @@ output "registry" {
 }
 
 output "service_urls" {
-  value = local.run_url
+  description = "Each Cloud Run service's own run.app address (the load balancer serves the site)."
+  value       = local.run_url
 }
 
 output "service_accounts" {
-  value = { for name, account in google_service_account.service : name => account.email }
+  description = "Each service's own service account, by service."
+  value       = { for name, account in google_service_account.service : name => account.email }
 }
 
 output "github_variables" {

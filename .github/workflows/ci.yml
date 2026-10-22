@@ -120,8 +120,8 @@ jobs:
         name: zizmor
         run: uvx "zizmor@$ZIZMOR_VERSION" --offline .github
 
-  # Terraform's format and configuration, without credentials or state (no backend), so it runs
-  # on pull requests too. It always reports; unchanged, it skips its steps.
+  # Terraform's format, configuration and lint, without credentials or state (no backend), so it
+  # runs on pull requests too. It always reports; unchanged, it skips its steps.
   terraform:
     name: terraform format and validate
     needs: changes
@@ -137,10 +137,24 @@ jobs:
           persist-credentials: false
       - if: needs.changes.outputs.infra == 'true'
         uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_version: "1.17.0"
       - if: needs.changes.outputs.infra == 'true'
         run: terraform fmt -check -recursive
       - if: needs.changes.outputs.infra == 'true'
         run: terraform init -backend=false -input=false && terraform validate
+      # TFLint (.tflint.hcl): Terraform's recommended rules, typed and described variables, described
+      # outputs. Pinned, the download checked against its checksum.
+      - if: needs.changes.outputs.infra == 'true'
+        name: TFLint
+        env:
+          TFLINT_VERSION: "0.64.0"
+          TFLINT_SHA256: cca9d13e2e1d7a2c627af60ff899a3c9b74212899416aeb96ec764d2ef954537
+        run: |
+          curl -sSfL -o /tmp/tflint.zip "https://github.com/terraform-linters/tflint/releases/download/v$TFLINT_VERSION/tflint_linux_amd64.zip"
+          echo "$TFLINT_SHA256  /tmp/tflint.zip" | sha256sum -c -
+          unzip -q /tmp/tflint.zip -d /tmp
+          /tmp/tflint --format compact
 
   # Every part keeps its job, so required checks always report; an unchanged part skips its steps.
   tests:
