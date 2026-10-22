@@ -195,6 +195,13 @@ def test_a_companys_keys_share_one_rate_limit(client, companies_api, key, stored
     assert stored["counted"] == [f"rate:api:{COMPANY}"] * 2
 
 
+def test_a_key_whose_creator_lost_access_isnt_counted(client, companies_api, key, stored):
+    companies_api["roles"]["u1"] = "viewer"
+
+    assert call(client, "GET", "/interviews").status_code == 401
+    assert stored["counted"] == []
+
+
 def test_with_redis_down_requests_go_through_unlimited(client, companies_api, key, monkeypatch):
     async def down(*args, **kwargs):
         raise RedisConnectionError("down")
@@ -241,6 +248,7 @@ def test_the_public_reference_lists_only_the_public_api(client):
         "/interviews/{interview_id}/candidates/{candidate_id}",
         "/interviews/{interview_id}/candidates/{candidate_id}/resend",
         "/candidates",
+        "/candidates/search",
         "/credits",
     }
     assert list(spec["webhooks"]) == [

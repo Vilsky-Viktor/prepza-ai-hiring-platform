@@ -43,14 +43,15 @@ async def checked_key(raw: str | None) -> ApiKey:
     if expired(found.expires_at, now):
         raise CodedError(status.HTTP_401_UNAUTHORIZED, "This API key has expired", API_KEY_EXPIRED)
 
-    await limit(found.company_id)
-
     if not await editor(found.company_id, found.created_by):
         raise CodedError(
             status.HTTP_401_UNAUTHORIZED,
             "This key's creator is no longer an owner or admin of the company",
             KEY_CREATOR_LOST_ACCESS,
         )
+
+    # Counted once the key works: a refused one doesn't use up its company's requests.
+    await limit(found.company_id)
 
     if found.last_used_at is None or now - found.last_used_at >= LAST_USED_EVERY:
         await keys.used(found.id)
