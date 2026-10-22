@@ -10,7 +10,7 @@ export function LoadingSpinner({ label }: { label: string }) {
     >
       <LoaderCircleIcon
         aria-label={label}
-        className="size-8 animate-spin text-muted-foreground"
+        className="size-14 animate-spin text-primary"
       />
     </div>
   )
