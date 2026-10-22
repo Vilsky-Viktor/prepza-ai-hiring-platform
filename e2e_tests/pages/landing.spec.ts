@@ -116,6 +116,9 @@ test("with reduced motion every picture is a still frame", async ({ page }) => {
   // The page's timers run on Playwright's clock, so a second and a half passes at once.
   await page.clock.install();
   await page.goto("/");
+  await loaded(page);
+  // The invite picture's wires are drawn once its cards are laid out, after the page loads.
+  await expect(page.locator("#invite svg > g > path").first()).toBeAttached();
 
   for (const id of SECTIONS) {
     const section = page.locator(`#${id}`);
