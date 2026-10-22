@@ -322,7 +322,11 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    /** List Replaced */
+    /**
+     * List Replaced
+     * @description Newest first, a page after the revision `after` (the last one shown): paged by key, as the
+     *     list grows across every company.
+     */
     get: operations["list_replaced_superadmin_quality_replaced_get"]
     put?: never
     post?: never
@@ -761,7 +765,8 @@ export interface paths {
     /**
      * User Ids
      * @description Notifications: every account, for a notice about the terms or the privacy policy; with a
-     *     `setting`, the users who have it on (a campaign's product updates or offers).
+     *     `setting`, the users who have it on (a campaign's product updates or offers), a page at a
+     *     time.
      */
     get: operations["user_ids_internal_users_ids_get"]
     put?: never
@@ -916,6 +921,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/schedules/erasures": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Replay Erasures
+     * @description Daily, from Cloud Scheduler, and by hand right after a database restore or clone: the
+     *     accounts deleted in the backups' life are deleted again everywhere (safe to repeat).
+     */
+    post: operations["replay_erasures_internal_schedules_erasures_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/schedules/bank": {
     parameters: {
       query?: never
@@ -1008,7 +1034,8 @@ export interface paths {
     put?: never
     /**
      * Report
-     * @description One report per user and question, whatever its revision.
+     * @description One report per user and question, whatever its revision. One already made is refused
+     *     before it's counted; the count is against floods (with Redis down, not counted).
      */
     post: operations["report_internal_questions__question_id__reports_post"]
     delete?: never
@@ -3129,6 +3156,7 @@ export interface operations {
   list_replaced_superadmin_quality_replaced_get: {
     parameters: {
       query?: {
+        after?: string | null
         /** @description Number of items to skip */
         offset?: number
         /** @description Number of items to return, up to 100 */
@@ -3927,6 +3955,9 @@ export interface operations {
     parameters: {
       query?: {
         setting?: ("updates" | "promotions") | null
+        /** @description The last id of the previous page */
+        after?: string
+        limit?: number
       }
       header?: never
       path?: never
@@ -4153,6 +4184,24 @@ export interface operations {
     }
   }
   flush_outbox_internal_schedules_outbox_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  replay_erasures_internal_schedules_erasures_post: {
     parameters: {
       query?: never
       header?: never

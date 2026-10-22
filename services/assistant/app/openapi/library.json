@@ -1110,6 +1110,7 @@
      "superadmin"
     ],
     "summary": "List Replaced",
+    "description": "Newest first, a page after the revision `after` (the last one shown): paged by key, as the\nlist grows across every company.",
     "operationId": "list_replaced_superadmin_quality_replaced_get",
     "security": [
      {
@@ -1117,6 +1118,23 @@
      }
     ],
     "parameters": [
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "uuid"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "After"
+      }
+     },
      {
       "name": "offset",
       "in": "query",
@@ -2942,6 +2960,21 @@
     }
    }
   },
+  "/internal/schedules/erasures": {
+   "post": {
+    "tags": [
+     "schedules"
+    ],
+    "summary": "Replay Erasures",
+    "description": "Daily, from Cloud Scheduler, and by hand right after a database restore or clone: the\naccounts deleted in the backups' life are deleted again everywhere (safe to repeat).",
+    "operationId": "replay_erasures_internal_schedules_erasures_post",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     }
+    }
+   }
+  },
   "/internal/schedules/bank": {
    "post": {
     "tags": [
@@ -3162,7 +3195,7 @@
      "internal"
     ],
     "summary": "Report",
-    "description": "One report per user and question, whatever its revision.",
+    "description": "One report per user and question, whatever its revision. One already made is refused\nbefore it's counted; the count is against floods (with Redis down, not counted).",
     "operationId": "report_internal_questions__question_id__reports_post",
     "security": [
      {
