@@ -1,5 +1,6 @@
 import base64
 import json
+import uuid
 
 import httpx
 import pytest
@@ -145,6 +146,26 @@ def test_a_signed_bounce_marks_the_invite_undelivered(run, outside):
     assert response.status_code == 204
     assert str(request.url) == f"http://companies/internal/invites/{INVITE_ID}/undelivered"
     assert request.headers["Authorization"].startswith("Bearer ")
+
+
+def test_after_a_hard_bounce_no_invite_goes_to_the_address_and_it_shows_undelivered(run, outside):
+    address = f"b{uuid.uuid4().hex[:12]}@example.com"
+    tags = {"kind": "candidate_invite", "id": INVITE_ID}
+    body = json.dumps(
+        {"type": "email.bounced", "data": {"to": [address], "tags": tags, "bounce": {}}}
+    ).encode()
+
+    async def scenario():
+        async with api() as client:
+            await client.post("/webhooks/resend", content=body, headers=signed(body, SECRET))
+
+    run(scenario())
+    codes = post_events(run, push("candidate.invited", {**INVITE, "email": address}))
+    undelivered = f"http://companies/internal/invites/{INVITE_ID}/undelivered"
+
+    assert codes == [204]
+    # The bounce's report, then the next invite's: Resend is never asked to send it.
+    assert [str(request.url) for request in outside["requests"]] == [undelivered, undelivered]
 
 
 def test_a_webhook_with_a_wrong_signature_is_refused(run, outside):

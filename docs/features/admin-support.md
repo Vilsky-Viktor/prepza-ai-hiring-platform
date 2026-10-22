@@ -23,7 +23,7 @@ An account is titled by its address (by its id when it has none: a company's gue
 - the top-ups it paid for, newest first (at most 100): each with its company, what it cost (tax included) and when, from billing,
 - what its AI calls cost in the last 30 days, and how many there were, from billing (`GET /billing/superadmin/ai-spend?user_id=`; the line is left out when billing doesn't answer),
 - its email settings (below),
-- when its address is on the suppression list (it bounced, or marked an email as spam), since when and why, with **Take off the list**, so product emails and notices reach it again (`POST /notifications/superadmin/suppressed/lookup` and `/remove`, the address in the body).
+- when its address is on the suppression list (it bounced, marked an email as spam, or Resend suppressed it), on which nothing is sent to it, since when and why, with **Take off the list**, so emails reach it again (`POST /notifications/superadmin/suppressed/lookup` and `/remove`, the address in the body).
 
 There's a page for an id with an account or a membership; any other is "not found".
 

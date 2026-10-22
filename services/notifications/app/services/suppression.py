@@ -1,5 +1,6 @@
 # prepza's own suppression list: addresses that bounced for good, again and again for a while, or
-# marked an email as spam, which bulk sends skip. Kept as hashes; a superadmin sees and removes one on an account's page.
+# marked an email as spam, which every email skips (prepza's own inbox aside). Kept as hashes; a
+# superadmin sees and removes one on an account's page.
 import logging
 import uuid
 from datetime import UTC, datetime, timedelta
@@ -8,10 +9,8 @@ from app.constants.bulk import SEND_TAG, SuppressionReason
 from app.constants.suppression import PERMANENT_BOUNCE, SOFT_BOUNCE_DAYS, SOFT_BOUNCES
 from app.constants.webhooks import (
     BOUNCED_EVENT,
-    CANDIDATE_INVITE_KIND,
     COMPLAINED_EVENT,
     ID_TAG,
-    KIND_TAG,
     SUPPRESSED_EVENT,
 )
 from app.helpers.unsubscribe import address_hash
@@ -27,15 +26,16 @@ REASONS = {
 
 
 async def from_webhook(event: dict) -> None:
-    """A permanent bounce, a spam complaint or Resend's own suppression of an email to a member
-    (not a candidate's invite, which is a company's) suppresses its addresses, and so do
-    SOFT_BOUNCES temporary bounces within SOFT_BOUNCE_DAYS; a complaint about a campaign counts
-    against it. Safe to repeat: Resend may send the web hook again."""
+    """A permanent bounce, a spam complaint or Resend's own suppression of any email (a
+    candidate's invite too: an address that bounced or complained does so whichever company
+    writes) suppresses its addresses, and so do SOFT_BOUNCES temporary bounces within
+    SOFT_BOUNCE_DAYS; a complaint about a campaign counts against it. Safe to repeat: Resend may
+    send the web hook again."""
     reason = REASONS.get(event.get("type"))
     data = event.get("data") or {}
     tags = data.get("tags") or {}
 
-    if reason is None or tags.get(KIND_TAG) == CANDIDATE_INVITE_KIND:
+    if reason is None:
         return
 
     if reason == SuppressionReason.BOUNCED and not permanent(data):
@@ -70,6 +70,11 @@ async def soft_bounced(data: dict) -> None:
             await suppressed.add(hashed, SuppressionReason.SOFT_BOUNCED)
 
 
+async def skipped(email: str) -> bool:
+    """Whether the address is on the list, so nothing may be sent to it."""
+    return await suppressed.get(address_hash(email)) is not None
+
+
 async def lookup(email: str) -> dict | None:
     """Whether the address is suppressed: why and since when."""
     row = await suppressed.get(address_hash(email))
@@ -78,7 +83,7 @@ async def lookup(email: str) -> dict | None:
 
 
 async def remove(email: str, superadmin_id: str) -> None:
-    """Bulk sends reach the address again; logged with its hash, never the address."""
+    """Emails reach the address again; logged with its hash, never the address."""
     address = address_hash(email)
     await suppressed.remove(address)
     logger.warning("Superadmin %s removed %s from the suppression list", superadmin_id, address)

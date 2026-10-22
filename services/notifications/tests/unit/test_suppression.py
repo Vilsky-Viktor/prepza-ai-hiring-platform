@@ -3,9 +3,15 @@ import uuid
 
 import pytest
 
+from app.config.settings import settings
+from app.helpers.emails import contact_email
 from app.helpers.unsubscribe import address_hash
-from app.services import suppression
+from app.integrations import companies
+from app.models.email import Email
+from app.services import delivery, suppression
 from app.storage import bulk_recipients, soft_bounces, suppressed
+
+CONTACT = {"name": "Eve", "email": "eve@example.com", "message": "Hi", "language": "en"}
 
 
 @pytest.fixture
@@ -51,17 +57,53 @@ def test_a_bounce_or_complaint_suppresses_a_members_address(suppressing):
     assert suppressing["complained"] == [(send, "ann")]
 
 
-def test_a_candidates_invite_or_another_event_suppresses_nothing(suppressing):
+def test_a_candidates_bounce_suppresses_and_another_event_nothing(suppressing):
     invite = {
         "type": "email.bounced",
         "data": {"to": ["cat@example.com"], "tags": {"kind": "candidate_invite", "id": "i"}},
     }
-    delivered = {"type": "email.delivered", "data": {"to": ["cat@example.com"]}}
+    delivered = {"type": "email.delivered", "data": {"to": ["cy@example.com"]}}
 
     asyncio.run(suppression.from_webhook(invite))
     asyncio.run(suppression.from_webhook(delivered))
 
-    assert suppressing["added"] == []
+    assert suppressing["added"] == [(address_hash("cat@example.com"), "bounced")]
+
+
+@pytest.fixture
+def outbox(monkeypatch):
+    """What delivery hands to Resend, the invites reported undelivered, and the addresses on
+    the list."""
+    state = {"sent": [], "undelivered": [], "listed": set()}
+
+    async def transmit(email, key):
+        state["sent"].append(email.to)
+
+    async def get(address):
+        return object() if address in state["listed"] else None
+
+    async def undelivered(invite_id):
+        state["undelivered"].append(invite_id)
+
+    monkeypatch.setattr(delivery, "transmit", transmit)
+    monkeypatch.setattr(suppressed, "get", get)
+    monkeypatch.setattr(companies, "invite_undelivered", undelivered)
+
+    return state
+
+
+def test_nothing_goes_to_a_suppressed_address_and_an_invite_shows_undelivered(outbox):
+    outbox["listed"] = {address_hash("cat@example.com"), address_hash(settings.contact_email)}
+    invite = Email(to="Cat@example.com", subject="s", html="h", text="t")
+    invite.tags = {"kind": "candidate_invite", "id": "i-1"}
+
+    asyncio.run(delivery.send(invite, "k1"))
+    asyncio.run(delivery.send(Email(to="dan@example.com", subject="s", html="h", text="t"), "k2"))
+    # The contact page's messages reach prepza's own inbox whatever the list says.
+    asyncio.run(delivery.send(contact_email(CONTACT, settings.contact_email), "k3"))
+
+    assert outbox["sent"] == ["dan@example.com", settings.contact_email]
+    assert outbox["undelivered"] == ["i-1"]
 
 
 def bounce(kind, email_id="e-1", to="dan@example.com"):

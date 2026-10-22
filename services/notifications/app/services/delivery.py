@@ -3,6 +3,7 @@ import logging
 from app.config.settings import settings
 from app.integrations import resend, smtp
 from app.models.email import Email
+from app.services import suppression
 from app.services.webhooks import report_undelivered
 
 logger = logging.getLogger(__name__)
@@ -22,8 +23,16 @@ async def transmit(email: Email, idempotency_key: str) -> None:
 
 
 async def send(email: Email, idempotency_key: str) -> None:
-    """As transmit, but an email Resend refuses for good isn't retried: like a bounce, an
-    invite shows as undelivered, and any other email is logged."""
+    """As transmit, but nothing goes to an address on prepza's suppression list (prepza's own
+    inbox aside: the contact page's messages), and an email Resend refuses for good isn't
+    retried. Either way, like a bounce, an invite shows as undelivered, and any other email is
+    logged."""
+    if email.to != settings.contact_email and await suppression.skipped(email.to):
+        logger.info("Email for %s not sent: the address is suppressed", email.tags or "untagged")
+        await report_undelivered(email.tags)
+
+        return
+
     try:
         await transmit(email, idempotency_key)
     except resend.EmailRefused:
