@@ -71,10 +71,24 @@ async def once(name: str, seconds: int, request: str, run: Callable[[], Awaitabl
     try:
         result = await run()
     except Exception:
-        await redis.delete(name)
+        await _forget(name)
 
         raise
 
-    await redis.set(name, f"{request}:{result}", ex=seconds)
+    try:
+        await redis.set(name, f"{request}:{result}", ex=seconds)
+    except RedisError as error:
+        # Made all the same, so it's answered; until the claim expires, a retry is told the first
+        # still runs (409) rather than making it twice.
+        logger.warning("Idempotency result not kept, Redis failed: %s", error)
 
     return result
+
+
+async def _forget(name: str) -> None:
+    """Frees a failed run's claim, so a retry runs again; with Redis down, it expires instead
+    and the run's own error is what the client gets."""
+    try:
+        await get_redis().delete(name)
+    except RedisError as error:
+        logger.warning("Idempotency claim not freed, Redis failed: %s", error)
