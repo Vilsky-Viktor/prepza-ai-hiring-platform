@@ -29,12 +29,12 @@ case "$host" in
   gateway | localhost | 127.0.0.1 | host.docker.internal) ;;
   *)
     # Users come from the local Auth emulator: elsewhere only signed-out visitors can be loaded.
-    if [ "$scenario" != "public" ]; then
+    if [[ "$scenario" != "public" ]]; then
       echo "only the public scenario runs against another host than the local stack" >&2
       exit 2
     fi
 
-    if [ "${2:-}" != "--i-mean-it" ]; then
+    if [[ "${2:-}" != "--i-mean-it" ]]; then
       echo "$base_url isn't the local stack: add --i-mean-it if it really is a test environment" >&2
       echo "(never production: the run makes users and companies and loads every service)" >&2
       exit 2
@@ -66,11 +66,11 @@ k6() {
 
 status=0
 
-if [ "$scenario" != "clean" ]; then
+if [[ "$scenario" != "clean" ]]; then
   k6 "$scenario.js" || status=$?
 fi
 
-if [ "$scenario" != "public" ]; then
+if [[ "$scenario" != "public" ]]; then
   # Events still on their way (a candidate finished...) land before the clean-up.
   sleep 5
   ids="$(e2e_tests/load/leftovers.sh ids)"

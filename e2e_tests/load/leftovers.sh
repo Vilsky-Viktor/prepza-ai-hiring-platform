@@ -21,7 +21,7 @@ list() {
   echo "${rows:-''}"
 }
 
-if [ "$1" = "ids" ]; then
+if [[ "${1:?usage: leftovers.sh ids | count IDS}" == "ids" ]]; then
   company_ids="$(list companies "SELECT id FROM companies WHERE $companies")"
   echo "$company_ids"
   list companies "SELECT user_id FROM members WHERE company_id::text IN ($company_ids)
@@ -56,7 +56,7 @@ check api api_keys "company_id::text IN ($company_ids)"
 check notifications notifications "(recipient = 'user' AND recipient_id::text IN ($user_ids))
   OR (recipient = 'company' AND recipient_id::text IN ($company_ids))"
 
-if [ "$left" -gt 0 ]; then
+if [[ "$left" -gt 0 ]]; then
   echo "FAIL $left rows of throwaway companies and users left" >&2
 
   exit 1

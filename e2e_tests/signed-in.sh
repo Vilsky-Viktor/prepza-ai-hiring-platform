@@ -21,7 +21,7 @@ network="$(docker inspect -f '{{range $name, $_ := .NetworkSettings.Networks}}{{
 # The emulator's host and port as the browser knows them, read without printing the setting.
 emulator="$(sed -n 's/^NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL=//p' .env | sed -E 's#^[a-z]+://##; s#/.*$##')"
 
-if [ -z "$emulator" ]; then
+if [[ -z "$emulator" ]]; then
   echo "NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL isn't set: these tests sign in through the emulator" >&2
   exit 1
 fi
@@ -47,7 +47,7 @@ COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude 
     -e HOST_RULES="MAP localhost:8090 gateway:80, MAP $emulator firebase-auth:9199" \
     -e FORWARDS="8090=gateway:80,${emulator##*:}=firebase-auth:9199" \
     mcr.microsoft.com/playwright:v1.63.0-noble \
-    sh -c "tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test $*" ||
+    sh -c 'tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test "$@"' sh "$@" ||
   status=$?
 
 echo "Results: ${results#"$PWD"/}"

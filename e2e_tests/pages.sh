@@ -44,7 +44,7 @@ COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude 
     -e HOST_RULES="MAP localhost:8090 gateway:80" \
     -e REQUEST_URL=http://gateway \
     mcr.microsoft.com/playwright:v1.63.0-noble \
-    sh -c "tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test $*" ||
+    sh -c 'tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test "$@"' sh "$@" ||
   status=$?
 
 echo "Results: ${results#"$PWD"/}"

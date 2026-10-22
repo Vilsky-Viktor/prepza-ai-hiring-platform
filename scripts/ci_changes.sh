@@ -15,7 +15,7 @@ base="${PR_BASE:-}"
 files=""
 
 if [[ -z "$base" ]]; then
-  base="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs?branch=main&event=push&status=success&per_page=1" --jq '.workflow_runs[0].head_sha // ""')"
+  base="$(gh api "repos/${GITHUB_REPOSITORY:?set GITHUB_REPOSITORY (owner/name) or PR_BASE}/actions/workflows/ci.yml/runs?branch=main&event=push&status=success&per_page=1" --jq '.workflow_runs[0].head_sha // ""')"
 fi
 
 # No earlier passing commit to build on: everything.
