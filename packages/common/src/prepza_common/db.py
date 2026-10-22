@@ -92,7 +92,8 @@ async def update_in_batches(sessionmaker, model, values: dict, *conditions) -> i
     """Sets `values` on `model`'s rows matching `conditions`, DELETE_BATCH at a time, each batch
     committed on its own, and returns how many changed. `values` must take a row out of
     `conditions` (an id emptied, a status moved on), so each batch takes new rows and the loop
-    ends; a run cut off midway keeps what it changed, and running it again goes on."""
+    ends; a run cut off midway keeps what it changed, and running it again goes on. A row that
+    stopped matching while its batch waited for it (another writer's change) is left as it is."""
     (key,) = inspect(model).primary_key
     total = 0
 
@@ -100,7 +101,9 @@ async def update_in_batches(sessionmaker, model, values: dict, *conditions) -> i
         chosen = select(key).where(*conditions).limit(DELETE_BATCH)
 
         async with sessionmaker() as session:
-            result = await session.execute(update(model).where(key.in_(chosen)).values(values))
+            # The conditions again: a row another writer changed meanwhile is checked anew.
+            changed = update(model).where(key.in_(chosen), *conditions).values(values)
+            result = await session.execute(changed)
             await session.commit()
 
         total += result.rowcount

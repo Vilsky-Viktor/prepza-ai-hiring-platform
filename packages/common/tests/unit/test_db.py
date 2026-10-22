@@ -22,9 +22,9 @@ class Old(Row):
     flag = Column(Integer)
 
 
-def fake_sessions(counts: list[int], commits: list):
+def fake_sessions(counts: list[int], commits: list, statements: list | None = None):
     """A session factory whose statements report the next of `counts` rows, noting each
-    commit in `commits`."""
+    commit in `commits` and each statement in `statements`."""
     rowcounts = iter(counts)
 
     class FakeSession:
@@ -35,6 +35,9 @@ def fake_sessions(counts: list[int], commits: list):
             return False
 
         async def execute(self, statement):
+            if statements is not None:
+                statements.append(statement)
+
             return mock.Mock(rowcount=next(rowcounts))
 
         async def commit(self):
@@ -104,6 +107,17 @@ def test_a_deadline_stops_further_batches_and_the_next_run_goes_on(monkeypatch):
     done = asyncio.run(db.delete_in_batches(fake_sessions([3, 3, 1], commits), Old, until=0))
 
     assert (done, len(commits)) == (3, 1)
+
+
+def test_an_update_checks_its_conditions_again_on_the_rows_it_changes():
+    statements = []
+    sessions = fake_sessions([0], [], statements)
+
+    asyncio.run(db.update_in_batches(sessions, Old, {"flag": None}, Old.flag == 1))
+
+    # Once to choose the batch, once more on each row as it's changed: a row another writer
+    # moved on while this one waited for its lock is left alone.
+    assert str(statements[0]).count('"old".flag = :flag_1') == 2
 
 
 def test_a_closed_set_becomes_a_check_condition_with_each_value_quoted():
