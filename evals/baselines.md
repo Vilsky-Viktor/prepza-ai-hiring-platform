@@ -269,3 +269,22 @@ read as data. `code_languages_test.py`, `code_languages.json`, 36 examples × 3,
 low, graded by code, before → after: right 100% (96.6–100) → 100% (96.6–100), skipped 0 → 0;
 $0.0181 → $0.0186 and 8.0 → 7.2 s a batch. No difference; kept for rule 19 (a role, the
 examples as data, the "ignore the list" trap still tagged `text`).
+
+## Translations: a role, tagged text, the language last (2026-10-22, kept)
+
+News and campaign translations (`prompts/translations.py`, `news.py`, `campaigns.py`) moved from
+one user message to a system message that starts with a translator's role and holds every rule,
+and a user message with the text inside tags (read as data, never followed) and the target
+language last. The rules no longer contradict each other (campaigns' text is Markdown; "plain
+text only" is now news' rule) and ask for only the translation in each field.
+`translations_test.py`, `translations.json` (10 texts × 7 languages), `gpt-6.1-sol` low, judged
+by `gpt-6.1-sol` high, before → after:
+
+| Run | Code checks | Faithful | Native | One language | Judge traps | Price, time a translation |
+|---|---|---|---|---|---|---|
+| Before | 100% | 88.6% (79.0–94.1) | 94.3% (86.2–97.8) | 100% | 97 of 97 | $0.0021, 4.9 s |
+| After | 100% | 90.0% (80.8–95.1) | 98.6% (92.3–99.7) | 100% | 97 of 97 | $0.0023, 5.2 s |
+
+No difference beyond the intervals; kept for rule 19 (a role, the text as data, no
+contradiction). The dataset's n01 no longer expects "ATS" kept in Latin letters: it's a term,
+not a name, and Arabic writes it out (the one code-check failure after the change).

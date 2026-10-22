@@ -3,7 +3,7 @@
 import logging
 from collections.abc import Awaitable, Callable
 
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from prepza_common.capped import gather_capped
 from prepza_common.limits import limit
 from pydantic import BaseModel
@@ -15,12 +15,14 @@ logger = logging.getLogger(__name__)
 
 
 async def translate_fields[T: BaseModel](
-    schema: type[T], prompt: str, limits: dict[str, int], language: str
+    schema: type[T], system: str, request: str, limits: dict[str, int], language: str
 ) -> T:
-    """The model's translation, trimmed; raises when a field in `limits` is empty or longer than
-    its limit."""
+    """The model's translation of `request` (the text, tagged, and the language) under the
+    kind's `system` rules, trimmed; raises when a field in `limits` is empty or longer than its
+    limit."""
     structured_llm = llm.get_translation_llm().with_structured_output(schema)
-    result = await structured_llm.ainvoke([HumanMessage(content=prompt)])
+    messages = [SystemMessage(content=system), HumanMessage(content=request)]
+    result = await structured_llm.ainvoke(messages)
     values = {
         name: value.strip() if isinstance(value, str) else value
         for name, value in result.model_dump().items()

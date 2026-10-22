@@ -31,8 +31,8 @@ class FakeLLM:
         return self
 
     async def ainvoke(self, messages):
-        prompt = messages[0].content
-        self.prompts.append(prompt)
+        self.prompts.append(messages)
+        prompt = messages[-1].content
         language = prompt.split(" into ", 1)[1].split(".", 1)[0]
         problem = self.bad.get(language)
 
@@ -74,7 +74,11 @@ def test_each_missing_language_is_translated_and_saved(monkeypatch, saved):
         "de": ("German", "German"),
         "fr": ("French", "French"),
     }
-    assert all("One.\n\nTwo." in prompt for prompt in model.prompts)
+    # The role and rules first, the text as data and the language last in the user's message.
+    for system, user in model.prompts:
+        assert system.type == "system" and system.content.startswith("You are")
+        assert "One.\n\nTwo." in user.content and "One.\n\nTwo." not in system.content
+        assert user.content.rstrip().endswith(("German.", "French."))
 
 
 def test_a_campaign_without_a_button_gets_none(monkeypatch, saved):

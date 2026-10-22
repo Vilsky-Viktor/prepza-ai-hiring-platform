@@ -9,7 +9,7 @@
    "kind": "typical",
    "title": "Invite candidates from Workable and Greenhouse",
    "text": "You can now connect Workable or Greenhouse to prepza. Pick a job, choose the interview, and every new candidate who reaches the chosen stage gets an invitation by email.\n\nResults go back to the candidate's profile in your ATS.",
-   "keep": ["Workable", "Greenhouse", "prepza", "ATS"]
+   "keep": ["Workable", "Greenhouse", "prepza"]
   },
   {
    "id": "n02",

@@ -10,7 +10,7 @@ from app.constants.actions import CAMPAIGN_TRANSLATION
 from app.helpers.prompts import language_name
 from app.integrations import notifications
 from app.integrations.usage import ai_run
-from app.prompts.campaigns import CAMPAIGN_TRANSLATION_PROMPT
+from app.prompts.campaigns import CAMPAIGN_TRANSLATION_INPUT, CAMPAIGN_TRANSLATION_SYSTEM
 from app.schemas.campaigns import CampaignSource, TranslatedCampaign
 from app.services.translations import translate_fields, translate_missing
 
@@ -20,14 +20,16 @@ LIMITS = {"subject": MAX_CAMPAIGN_SUBJECT_LENGTH, "text": MAX_CAMPAIGN_TEXT_LENG
 async def translate_one(source: CampaignSource, language: str) -> TranslatedCampaign:
     """The campaign in `language`; raises when the model fails or writes past its limits. A
     campaign without a button gets none."""
-    prompt = CAMPAIGN_TRANSLATION_PROMPT.format(
+    request = CAMPAIGN_TRANSLATION_INPUT.format(
         language=language_name(language),
         subject=source.subject,
         text=source.text,
         button=source.button or "",
     )
     limits = {**LIMITS, "button": MAX_CAMPAIGN_BUTTON_LENGTH} if source.button else LIMITS
-    translated = await translate_fields(TranslatedCampaign, prompt, limits, language)
+    translated = await translate_fields(
+        TranslatedCampaign, CAMPAIGN_TRANSLATION_SYSTEM, request, limits, language
+    )
 
     return translated if source.button else translated.model_copy(update={"button": ""})
 
