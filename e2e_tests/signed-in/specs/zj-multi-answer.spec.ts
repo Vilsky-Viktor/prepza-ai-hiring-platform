@@ -151,7 +151,10 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
     const points = owner.getByTestId("answer-points")
     await expect(points).toHaveCount(1)
     await expect(points).toContainText("0.67")
-    await points.scrollIntoViewIfNeeded()
+    // The scorecard may render once more as its data settles: scrolled to whichever is current.
+    await expect(async () => {
+      await points.scrollIntoViewIfNeeded({ timeout: 2_000 })
+    }).toPass()
     await shots(owner, "scorecard")
 
     // Practice: the same partial point in the review, with every right option shown.
@@ -180,7 +183,10 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
     const practicePoints = learner.getByTestId("answer-points")
     await expect(practicePoints).toHaveCount(1)
     await expect(practicePoints).toContainText("0.67")
-    await practicePoints.scrollIntoViewIfNeeded()
+    // The review may render once more as its data settles: scrolled to whichever is current.
+    await expect(async () => {
+      await practicePoints.scrollIntoViewIfNeeded({ timeout: 2_000 })
+    }).toPass()
     await shots(learner, "practice-review")
   } finally {
     await deleteTemplate(template)
