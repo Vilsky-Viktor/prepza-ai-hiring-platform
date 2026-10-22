@@ -66,6 +66,13 @@ should have one, never more than 40% anywhere (`measure_examples.py`, below). Th
 estimates the seconds a capable candidate needs to read and answer each question: within 60 s,
 up to 90 s only for the hardest (hard level, several steps, select all that apply).
 
+**Regression or capability.** Regression evals sit near 100% and guard against backsliding:
+the verifier's traps and confirmation, the judges' traps, the code-language tags, kept distinct
+questions, translations' and titles' code checks. Capability evals have room to grow and show
+where to work: distractors, relevance, topic revisions, dropping reworded repeats, the
+assistant's page and action tests. A regression eval that stays saturated and guards nothing a
+change could touch is retired.
+
 **Judges have noise.** The same run's scores move by up to about 0.3 between judge runs, and a
 40-question sample can't separate small differences. Every share and mean comes with its 95%
 interval; compare large differences, or review more.
