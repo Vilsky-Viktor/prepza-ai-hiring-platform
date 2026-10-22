@@ -6,10 +6,11 @@ import remarkGfm from "remark-gfm"
 import { LocalizedLink } from "@/components/localized-link"
 import { HighlightedCode } from "@/components/highlighted-code"
 import { markdownCode } from "@/components/markdown-code"
+import { TEXT_LINK } from "@/constants/links"
 import { endsWithQuestionMark } from "@/lib/question-mark"
 
 /** A link in the site's text: the site's own pages open in place, in the address's language;
- * others in a new tab. */
+ * others in a new tab; styled as an in-text link (constants/links.ts). */
 export function SiteLink({
   href = "",
   children,
@@ -18,7 +19,7 @@ export function SiteLink({
   children?: ReactNode
 }) {
   return href.startsWith("/") ? (
-    <LocalizedLink href={href} className="text-primary hover:underline">
+    <LocalizedLink href={href} className={TEXT_LINK}>
       {children}
     </LocalizedLink>
   ) : (
@@ -26,7 +27,7 @@ export function SiteLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-primary hover:underline"
+      className={TEXT_LINK}
     >
       {children}
     </a>

@@ -10,8 +10,7 @@ import {
   type QualityStep,
   TRUST_CARDS,
 } from "@/constants/trust-quality-demo"
-
-const DOCUMENT_LINK = "text-foreground underline underline-offset-4"
+import { TEXT_LINK } from "@/constants/links"
 
 /** Trust, quality and compliance: the loop that keeps questions good, and what keeps the
  * hiring fair and lawful under it, with links to the documents. */
@@ -24,7 +23,7 @@ export async function TrustQualitySection() {
   const link = (href: string) =>
     function DocumentLink(chunks: React.ReactNode) {
       return (
-        <LocalizedLink href={href} className={DOCUMENT_LINK}>
+        <LocalizedLink href={href} className={TEXT_LINK}>
           {chunks}
         </LocalizedLink>
       )
