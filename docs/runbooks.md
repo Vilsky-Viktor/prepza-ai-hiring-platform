@@ -57,7 +57,7 @@ A new alert ships with its section, and `scripts/tests/test_alert_runbooks.py` f
 
 - **Declare one early:** when customers see the problem, when you need someone's help (a provider's support), or when an hour of work hasn't solved it. When unsure how bad it is, treat it as the worse case.
 - **Keep a timeline** as you go, in UTC: what you saw, what you did, what changed. It becomes the postmortem's.
-- **Tell customers** on the status page (not set up yet, see [infra/README.md](../infra/README.md#notes)) when they see it, and again when it's over. For a long outage or one affecting candidates, maintenance mode shows everyone a clear page ([Before you start](#before-you-start)).
+- **Tell customers** on the status page (Better Stack, set up at launch, see [infra/README.md](../infra/README.md#notes)) when they see it, and again when it's over. For a long outage or one affecting candidates, maintenance mode shows everyone a clear page ([Before you start](#before-you-start)).
 - **A personal data breach** also follows the breach response plan and its clocks (`internal_docs/compliance/breach-response-plan.md`, local), from the moment you become aware of it.
 
 ## Postmortems
