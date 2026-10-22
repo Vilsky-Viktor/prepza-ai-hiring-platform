@@ -18,14 +18,16 @@ locals {
   # notifications' image only for the bell's live stream (load_balancer.tf routes it there),
   # where each open tab holds one request for up to an hour, so those tabs never take the
   # capacity Pub/Sub's pushes need. The worker runs 10 generation jobs at once on its one
-  # instance: the 10 Cloud Tasks dispatches at once (jobs.tf).
+  # instance: the 10 Cloud Tasks dispatches at once (jobs.tf). Services that pages ask on most
+  # visits (frontend, rounds, companies, library, billing, generation) keep one warm instance,
+  # so no visitor waits for a 3-6 s cold start; an idle one costs about $10 a month.
   services = {
     frontend             = { image = "frontend", public = true, path = null, port = 3000, min = 1, max = 10, connections = 0, cpu = "1", memory = "1Gi", timeout = 60, concurrency = 80, database = null, command = null }
-    library              = { image = "library", public = true, path = "library", port = 8000, min = 0, max = 1, connections = 3, cpu = "1", memory = "512Mi", timeout = 150, concurrency = 40, database = "library", command = null }
-    generation           = { image = "generation", public = true, path = "generate", port = 8000, min = 0, max = 1, connections = 4, cpu = "1", memory = "1Gi", timeout = 150, concurrency = 40, database = "generation", command = null }
+    library              = { image = "library", public = true, path = "library", port = 8000, min = 1, max = 1, connections = 3, cpu = "1", memory = "512Mi", timeout = 150, concurrency = 40, database = "library", command = null }
+    generation           = { image = "generation", public = true, path = "generate", port = 8000, min = 1, max = 1, connections = 4, cpu = "1", memory = "1Gi", timeout = 150, concurrency = 40, database = "generation", command = null }
     rounds               = { image = "rounds", public = true, path = "rounds", port = 8000, min = 1, max = 2, connections = 3, cpu = "1", memory = "512Mi", timeout = 60, concurrency = 40, database = "rounds", command = null }
-    companies            = { image = "companies", public = true, path = "companies", port = 8000, min = 0, max = 2, connections = 3, cpu = "1", memory = "512Mi", timeout = 150, concurrency = 40, database = "companies", command = null }
-    billing              = { image = "billing", public = true, path = "billing", port = 8000, min = 0, max = 1, connections = 3, cpu = "1", memory = "512Mi", timeout = 60, concurrency = 40, database = "billing", command = null }
+    companies            = { image = "companies", public = true, path = "companies", port = 8000, min = 1, max = 2, connections = 3, cpu = "1", memory = "512Mi", timeout = 150, concurrency = 40, database = "companies", command = null }
+    billing              = { image = "billing", public = true, path = "billing", port = 8000, min = 1, max = 1, connections = 3, cpu = "1", memory = "512Mi", timeout = 60, concurrency = 40, database = "billing", command = null }
     notifications        = { image = "notifications", public = true, path = "notifications", port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 60, concurrency = 80, database = "notifications", command = null }
     notifications-stream = { image = "notifications", public = true, path = null, port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 3600, concurrency = 500, database = "notifications", command = null }
     ats                  = { image = "ats", public = true, path = "ats", port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 60, concurrency = 80, database = "ats", command = null }

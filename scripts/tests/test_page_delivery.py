@@ -1,6 +1,7 @@
 """How pages reach browsers (.claude/rules/performance.md, Delivery): compressed once, at Cloud
 CDN in production (Brotli where the browser takes it) and at the gateway locally, never by the
-frontend itself, and streamed through the gateway unbuffered."""
+frontend itself, streamed through the gateway unbuffered, and never held by a cold start
+of a service pages ask."""
 
 import re
 from pathlib import Path
@@ -31,3 +32,12 @@ def test_the_gateway_streams_and_compresses_pages_as_production_does():
 
     assert "proxy_buffering off;" in block
     assert "gzip on;" in block
+
+
+def test_the_services_pages_ask_keep_a_warm_instance():
+    services = (ROOT / "infra/terraform/locals.tf").read_text()
+
+    for name in ["frontend", "rounds", "companies", "library", "billing", "generation"]:
+        line = re.search(rf"^\s+{name}\s+=\s*\{{.*$", services, re.MULTILINE)
+
+        assert line and "min = 1," in line.group(0), name
