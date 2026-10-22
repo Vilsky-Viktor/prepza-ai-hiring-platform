@@ -20,7 +20,12 @@ const geist = Geist({
   variable: "--font-geist",
 })
 
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
+// Code and the API docs only, never on a first screen: not preloaded.
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  preload: false,
+})
 
 const poppins = Poppins({
   subsets: ["latin"],
