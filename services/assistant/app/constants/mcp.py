@@ -26,6 +26,8 @@ CONNECT_PATH = "/connect"
 AUTHORIZATION_METADATA_PATH = "/.well-known/oauth-authorization-server"
 # Some apps look for the resource's metadata at the root, without the resource's path.
 ROOT_RESOURCE_METADATA_PATH = "/.well-known/oauth-protected-resource"
+# What /authorize and /token answer a request for another resource (RFC 8707, invalid_target).
+OTHER_RESOURCE = "prepza only grants access to its MCP server."
 # Apps registered without a secret (most do: Claude Code, MCP Inspector) are welcome too.
 AUTH_METHODS = ["none", "client_secret_post", "client_secret_basic"]
 

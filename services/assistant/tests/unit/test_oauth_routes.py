@@ -125,3 +125,64 @@ def test_an_app_without_a_secret_revokes_its_token(client, monkeypatch):
     response = client.post("/revoke", data={"token": "pzm_a", "client_id": "c1"})
 
     assert response.status_code == 200 and revoked == [access]
+
+
+def app_without_a_secret(monkeypatch):
+    app_client = OAuthClientInformationFull(
+        client_id="c1", redirect_uris=["http://localhost/cb"], token_endpoint_auth_method="none"
+    )
+
+    async def get_client(self, client_id):
+        return app_client if client_id == "c1" else None
+
+    monkeypatch.setattr(oauth_provider.Provider, "get_client", get_client)
+
+
+def test_a_token_request_for_another_resource_is_refused(client, monkeypatch):
+    app_without_a_secret(monkeypatch)
+    loaded = []
+
+    async def load_refresh_token(self, app_client, token):
+        loaded.append(token)
+
+    monkeypatch.setattr(oauth_provider.Provider, "load_refresh_token", load_refresh_token)
+    body = {"grant_type": "refresh_token", "refresh_token": "pzm_r", "client_id": "c1"}
+
+    response = client.post("/token", data={**body, "resource": "https://other.example/mcp"})
+
+    assert response.status_code == 400
+    assert response.json()["error"] == "invalid_target"
+    assert loaded == []
+
+
+def test_a_token_request_for_the_mcp_server_or_none_goes_on(client, monkeypatch):
+    app_without_a_secret(monkeypatch)
+    loaded = []
+
+    async def load_refresh_token(self, app_client, token):
+        loaded.append(token)
+
+    monkeypatch.setattr(oauth_provider.Provider, "load_refresh_token", load_refresh_token)
+    body = {"grant_type": "refresh_token", "refresh_token": "pzm_r", "client_id": "c1"}
+
+    named = client.post("/token", data={**body, "resource": f"{SITE}/mcp/"})
+    unnamed = client.post("/token", data=body)
+
+    # Past the resource check: the SDK's handler looked the token up (and found none).
+    assert named.json()["error"] == unnamed.json()["error"] == "invalid_grant"
+    assert loaded == ["pzm_r", "pzm_r"]
+
+
+def test_a_code_exchange_for_another_resource_is_refused(client, monkeypatch):
+    app_without_a_secret(monkeypatch)
+    body = {
+        "grant_type": "authorization_code",
+        "code": "code",
+        "code_verifier": "v" * 43,
+        "client_id": "c1",
+        "resource": "https://other.example/",
+    }
+
+    response = client.post("/token", data=body)
+
+    assert response.status_code == 400 and response.json()["error"] == "invalid_target"

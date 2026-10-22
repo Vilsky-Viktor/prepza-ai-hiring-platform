@@ -22,6 +22,12 @@ def resource_url() -> str:
     return settings.site_url.rstrip("/") + MCP_PATH
 
 
+def other_resource(resource: str | None) -> bool:
+    """A request naming a resource other than the MCP endpoint (RFC 8707); one naming none is
+    for the MCP endpoint, the only one."""
+    return resource is not None and resource.rstrip("/") != resource_url()
+
+
 def auth_settings() -> AuthSettings:
     """The site as the authorization server (its root is the issuer) and the MCP endpoint as
     the resource, as URLs the SDK writes without a trailing slash."""

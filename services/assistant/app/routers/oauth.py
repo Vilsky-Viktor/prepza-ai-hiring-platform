@@ -1,28 +1,35 @@
 from mcp.server.auth.handlers.metadata import MetadataHandler
+from mcp.server.auth.handlers.token import TokenHandler
 from mcp.server.auth.middleware.client_auth import AuthenticationError, ClientAuthenticator
 from mcp.server.auth.routes import (
     AUTHORIZATION_PATH,
     REGISTRATION_PATH,
     REVOCATION_PATH,
+    TOKEN_PATH,
     build_metadata,
     cors_middleware,
     create_auth_routes,
     create_protected_resource_routes,
 )
 from mcp.server.auth.settings import ClientRegistrationOptions, RevocationOptions
+from mcp.server.transport_security import DEFAULT_MAX_REQUEST_BODY_SIZE, RequestBodyLimitMiddleware
+from mcp.shared.inbound import MCP_PROTOCOL_VERSION_HEADER
+from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
-from starlette.routing import Route
+from starlette.routing import Route, request_response
+from starlette.types import ASGIApp
 
 from app.constants.mcp import (
     AUTH_METHODS,
     AUTHORIZATION_METADATA_PATH,
     MCP_SCOPE,
     MCP_SCOPES,
+    OTHER_RESOURCE,
     ROOT_RESOURCE_METADATA_PATH,
 )
 from app.helpers.authorize_guard import GuardAuthorize
-from app.helpers.oauth import auth_settings
+from app.helpers.oauth import auth_settings, other_resource
 from app.services.oauth_limits import Limited
 from app.services.oauth_provider import Provider
 
@@ -53,6 +60,35 @@ async def revoke(request: Request) -> Response:
         await provider.revoke_token(found)
 
     return Response(status_code=200, headers={"Cache-Control": "no-store"})
+
+
+def token_endpoint() -> ASGIApp:
+    """/token, the SDK's handler behind a resource check: a request naming another resource
+    than the MCP endpoint is refused (invalid_target, RFC 8707), as /authorize refuses it; the
+    SDK's handler doesn't pass `resource` on. One naming none is for the MCP endpoint. The form
+    read here is the one the handler reads (Starlette keeps it on the request). Wrapped as the
+    SDK wraps its own: CORS outermost, the body's size limited."""
+    provider = Provider()
+    handler = TokenHandler(provider, ClientAuthenticator(provider))
+
+    async def token(request: Request) -> Response:
+        resource = (await request.form()).get("resource")
+
+        if isinstance(resource, str) and other_resource(resource):
+            body = {"error": "invalid_target", "error_description": OTHER_RESOURCE}
+
+            return JSONResponse(body, status_code=400, headers={"Cache-Control": "no-store"})
+
+        return await handler.handle(request)
+
+    limited = RequestBodyLimitMiddleware(request_response(token), DEFAULT_MAX_REQUEST_BODY_SIZE)
+
+    return CORSMiddleware(
+        limited,
+        allow_origins="*",
+        allow_methods=["POST", "OPTIONS"],
+        allow_headers=[MCP_PROTOCOL_VERSION_HEADER],
+    )
 
 
 def routes() -> list[Route]:
@@ -92,6 +128,8 @@ def routes() -> list[Route]:
                 route.app, "authorize", "invalid_request", "AUTHORIZATIONS_PER_IP_HOUR"
             )
             route = Route(route.path, endpoint=GuardAuthorize(limited), methods=["GET", "POST"])
+        elif route.path == TOKEN_PATH:
+            route = Route(route.path, endpoint=token_endpoint(), methods=["POST", "OPTIONS"])
         elif route.path == REVOCATION_PATH:
             handler = cors_middleware(revoke, ["POST", "OPTIONS"])
             route = Route(route.path, endpoint=handler, methods=["POST", "OPTIONS"])

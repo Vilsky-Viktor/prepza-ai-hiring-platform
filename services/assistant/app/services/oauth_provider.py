@@ -20,10 +20,17 @@ from app.constants.mcp import (
     API_KEY_PREFIX,
     CONNECT_PATH,
     MCP_SCOPE,
+    OTHER_RESOURCE,
     REFRESH_REUSE_GRACE_SECONDS,
 )
 from app.helpers.mcp_clients import describe_client, is_document_id, refused_redirect
-from app.helpers.oauth import funnel_client, new_tokens, resource_url, scopes_of
+from app.helpers.oauth import (
+    funnel_client,
+    new_tokens,
+    other_resource,
+    resource_url,
+    scopes_of,
+)
 from app.models.oauth import McpGrant
 from app.models.oauth_tokens import Access, Client, Code, Refresh
 from app.services import client_documents
@@ -80,8 +87,8 @@ class Provider:
         self, client: OAuthClientInformationFull, params: AuthorizationParams
     ) -> str:
         """Keeps the request for the user to answer, and sends them to the consent page."""
-        if params.resource is not None and params.resource.rstrip("/") != resource_url():
-            raise AuthorizeError("invalid_target", "prepza only grants access to its MCP server.")
+        if other_resource(params.resource):
+            raise AuthorizeError("invalid_target", OTHER_RESOURCE)
 
         # Kept with the request until the user answers.
         if params.state is not None and len(params.state) > MAX_STATE_LENGTH:
