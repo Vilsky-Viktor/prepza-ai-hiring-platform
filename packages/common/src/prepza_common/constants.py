@@ -238,6 +238,8 @@ MAX_CAMPAIGN_BUTTON_LENGTH = 40
 # with while it's on.
 PAUSE_KEY = "pause:on"
 PAUSED = "New interviews and AI features are paused for now. Please try again later."
+# Each instance reads the pause at most this often; turning it takes that long to reach them all.
+PAUSE_CACHE_SECONDS = 5
 
 # Maintenance mode (maintenance.py): one Redis key every service reads, the message every refused
 # request gets while it's on, and what stays open: health checks, the switch itself, calls

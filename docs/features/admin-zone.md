@@ -165,7 +165,7 @@ Also while it's on:
 - The scheduled answer-key checks and invite reminders wait until it's off.
 - Candidates already in an interview can finish.
 
-The switch is one Redis key (`pause:on`, no expiry) that every service reads. With Redis down, it counts as off. Who turned it and when goes to companies' logs.
+The switch is one Redis key (`pause:on`, no expiry) that every service reads, at most every 5 seconds, so a change reaches every instance within 5 seconds. With Redis down, each instance keeps the state it last read (off if it never read one). Who turned it and when goes to companies' logs.
 
 ### Maintenance mode
 
@@ -190,7 +190,7 @@ Turning it on first asks to confirm, showing the number of candidates in an inte
 
 Candidates lose no interview time to it. While it's on, rounds' expiry job finishes no interview. Turning it off first has rounds move every running interview's clocks on by the time it was on: each section's start (the interview's deadline counts from the first) and the shown time of the question on screen. Only then does it turn off. If rounds can't do it, the switch stays on and says so, and turning it off again gives the time back. A double turn-off gives it back once. The answer times recorded leave out the time it was on.
 
-It's one Redis key (`maintenance:on`), with a second (`maintenance:started`) holding when it was turned on, which turning it off takes and removes at once. With Redis down, it counts as off. Each service reads it at most every 5 seconds, so a change reaches every instance within 5 seconds. Who turned it goes to the logs.
+It's one Redis key (`maintenance:on`), with a second (`maintenance:started`) holding when it was turned on, which turning it off takes and removes at once. With Redis down, each instance keeps the state it last read (off if it never read one). Each service reads it at most every 5 seconds, so a change reaches every instance within 5 seconds. Who turned it goes to the logs.
 
 ### Legal notices
 

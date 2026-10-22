@@ -14,7 +14,7 @@ What to do when an alert fires, how to run an incident and how to learn from it.
 ## Before you start
 
 - **The switches** are in the admin zone: **Admin zone → Controls** (`/superadmin/controls`). The emergency pause answers new interviews, invites, practice, previews, generations, the help chat and the assistant with a 503; maintenance mode closes the whole site but keeps `/internal/` and `/webhooks/` open, so no event, job or payment is lost ([Admin zone](features/admin-zone.md#controls)).
-- **Both switches live in Redis.** With Redis down they count as off and can't be turned on ([Admin zone](features/admin-zone.md#emergency-pause)).
+- **Both switches live in Redis.** With Redis down each instance keeps the state it last read (off if it never read one), and they can't be turned on or off ([Admin zone](features/admin-zone.md#emergency-pause)).
 - **Billing isn't switched** by maintenance mode ([Admin zone](features/admin-zone.md#maintenance-mode)).
 - **The limits** are in **Admin zone → Controls → Limits**: each one's value, its default and its hits in the last 7 days; a change is in effect within 30 seconds ([Admin zone](features/admin-zone.md#limits)). **Admin zone → Stats → AI costs** (`/superadmin/stats/ai-costs`) shows what AI cost, by action, model, company and user, today's shared budgets and the limits hit ([Admin zone](features/admin-zone.md#ai-costs)).
 - **Logs:** every command below assumes `gcloud config set project prepza-prod` and the region `europe-west1`. A service's recent errors:

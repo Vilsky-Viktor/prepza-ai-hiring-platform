@@ -179,6 +179,7 @@ One line each, by name (`tests/unit/test_readme_modules.py` fails on one left ou
 - `sse`: server-sent events: framing, keep-alives, no-store.
 - `stats`: the admin zone's counts, all time or by period.
 - `superadmin`: prepza's own team, signed in with Google, for the admin zone.
+- `switches`: switches every service reads (pause, maintenance), cached, keeping their last state.
 - `tenant_columns`: the migration step that gives a tenant's child table its company_id.
 - `titles`: an edited name's or title's check.
 - `tokens`: secret tokens kept as their hashes, compared in constant time.

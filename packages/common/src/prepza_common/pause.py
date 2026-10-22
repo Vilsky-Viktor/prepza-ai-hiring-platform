@@ -6,8 +6,8 @@
 import logging
 
 from fastapi import status
-from prepza_common import error_codes
-from prepza_common.constants import PAUSE_KEY, PAUSED
+from prepza_common import error_codes, switches
+from prepza_common.constants import PAUSE_CACHE_SECONDS, PAUSE_KEY, PAUSED
 from prepza_common.i18n import CodedError
 from prepza_common.limit_list import PAUSED_LIMIT
 from prepza_common.limits import EVERYONE, record_hit
@@ -16,13 +16,9 @@ logger = logging.getLogger(__name__)
 
 
 async def is_paused(redis) -> bool:
-    """With Redis down, not paused: the switch must never stop the service by itself."""
-    try:
-        return bool(await redis.exists(PAUSE_KEY))
-    except Exception:
-        logger.warning("Couldn't read the pause switch; treating it as off", exc_info=True)
-
-        return False
+    """Read at most every PAUSE_CACHE_SECONDS per instance; with Redis down, the last state this
+    instance read (switches.is_on)."""
+    return await switches.is_on(redis, PAUSE_KEY, PAUSE_CACHE_SECONDS)
 
 
 async def refuse_if_paused(
@@ -44,4 +40,5 @@ async def set_paused(redis, paused: bool, user_id: str) -> None:
     else:
         await redis.delete(PAUSE_KEY)
 
+    switches.remember(PAUSE_KEY, paused, PAUSE_CACHE_SECONDS)
     logger.warning("Emergency pause turned %s by superadmin %s", "on" if paused else "off", user_id)
