@@ -20,7 +20,7 @@ def test_an_action_about_something_the_user_cant_see_gets_no_card(redis, writes,
 
     assert result.block is None
     assert result.content["error"] == 404
-    assert redis.values == {}
+    assert redis.counts == {}
 
 
 def test_a_list_subject_is_the_matching_item(monkeypatch):

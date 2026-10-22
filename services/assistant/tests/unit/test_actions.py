@@ -16,7 +16,7 @@ from tests.unit.actions_setup import ANN, BOB, COMPANY, CONVERSATION, TURN, prep
 
 def test_preparing_runs_nothing_and_keeps_the_action_in_redis_for_ten_minutes(redis, writes):
     action_id = prepared(redis)
-    kept = json.loads(redis.values[store.key(action_id)])
+    kept = json.loads(redis.counts[store.key(action_id)])
 
     assert writes == []
     assert {key: kept[key] for key in ("user_id", "conversation_id", "company_id", "tool")} == {
@@ -27,7 +27,7 @@ def test_preparing_runs_nothing_and_keeps_the_action_in_redis_for_ten_minutes(re
     }
     assert kept["arguments"] == {"name": "Acme"}
     assert kept["card"]["preview"] == {"name": "Acme"}
-    assert redis.expiry[store.key(action_id)] == ACTION_TTL_SECONDS == 600
+    assert redis.expiries[store.key(action_id)] == ACTION_TTL_SECONDS == 600
 
 
 def test_a_card_shows_exactly_what_runs():
@@ -49,7 +49,7 @@ def test_a_confirmed_action_runs_once_as_the_user_and_a_second_confirm_finds_it_
         ("companies", "POST", "/companies", {"name": "Acme"}, "fresh", str(action_id))
     ]
     assert (block["state"], block["links"]) == ("done", [f"/companies/{COMPANY}/interviews"])
-    assert store.key(action_id) not in redis.values
+    assert store.key(action_id) not in redis.counts
 
     with pytest.raises(HTTPException) as again:
         asyncio.run(actions.run(CONVERSATION, action_id, ANN, "fresh", "en"))
@@ -84,7 +84,7 @@ def test_only_its_user_in_its_conversation_may_confirm_it(redis, writes, user, c
     assert refused.value.status_code == 404
     assert writes == []
     # Still there for its own user.
-    assert store.key(action_id) in redis.values
+    assert store.key(action_id) in redis.counts
 
 
 def test_a_company_no_longer_the_users_is_refused_on_confirm(redis, writes, monkeypatch):
@@ -117,7 +117,7 @@ def test_an_expired_or_cancelled_action_is_gone(redis, writes):
 
     expired = prepared(redis)
     # Redis drops it after ACTION_TTL_SECONDS.
-    redis.values.pop(store.key(expired))
+    redis.counts.pop(store.key(expired))
 
     with pytest.raises(HTTPException) as gone:
         asyncio.run(actions.run(CONVERSATION, expired, ANN, "t", "en"))
@@ -134,7 +134,7 @@ def test_a_refused_token_runs_nothing_and_keeps_the_action_for_a_fresh_one(redis
         asyncio.run(actions.run(CONVERSATION, action_id, ANN, "stale", "en"))
 
     assert refused.value.status_code == 401
-    assert store.key(action_id) in redis.values
+    assert store.key(action_id) in redis.counts
 
 
 def test_a_tool_naming_another_company_is_refused_before_anything_is_called(monkeypatch):

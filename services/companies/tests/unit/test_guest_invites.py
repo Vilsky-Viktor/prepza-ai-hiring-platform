@@ -1,6 +1,7 @@
 from types import SimpleNamespace
 
 import pytest
+from fake_redis import FakeRedis
 from firebase_admin import auth as firebase_auth
 from prepza_common.auth import current_user
 from prepza_common.user import User
@@ -8,7 +9,6 @@ from prepza_common.user import User
 import app.routers.invites as routes
 from app.constants.invites import INVITE_EXPIRED, NOT_THE_GUEST, InviteStatus
 from app.main import app
-from tests.unit.fake_redis import FakeRedis
 from tests.unit.test_invites import INVITE_ID, invite_page, stored_invite  # noqa: F401 (fixtures)
 
 GUEST = f"guest-{INVITE_ID}"

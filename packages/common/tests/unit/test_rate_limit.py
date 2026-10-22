@@ -2,6 +2,7 @@ import asyncio
 from datetime import UTC, datetime
 
 import pytest
+from fake_redis import DownRedis, FakeRedis
 from fastapi import HTTPException
 from prepza_common import rate_limit
 from prepza_common.ai_constants import LIMIT_HIT
@@ -15,8 +16,6 @@ from prepza_common.rate_limit import (
     spend,
     until_tomorrow,
 )
-
-from tests.unit.fake_redis import DownRedis, FakeRedis
 
 # A limit counted an hour, and one in tokens a day.
 HOURLY = "PRACTICE_ROUNDS_PER_HOUR"

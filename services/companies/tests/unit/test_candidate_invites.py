@@ -2,6 +2,7 @@ import re
 import uuid
 from datetime import UTC, datetime
 
+from fake_redis import FakeRedis
 from fastapi import HTTPException
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import current_user
@@ -15,7 +16,6 @@ from app.models.invites import CandidateInvite
 from app.services import candidate_invites
 from app.services import outbox as outbox_service
 from app.storage import companies, interviews, invites
-from tests.unit.fake_redis import FakeRedis
 
 COMPANY_ID = uuid.uuid4()
 INTERVIEW_ID = uuid.uuid4()

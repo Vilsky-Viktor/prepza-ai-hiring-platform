@@ -1,12 +1,12 @@
 import asyncio
 
+from fake_redis import FakeRedis
 from prepza_common import pacing
 from prepza_common.ai_constants import LIMIT_HIT
 
 from app.constants.generation import LLM_RATE_KEY, LLM_WAIT_JITTER_SECONDS
 from app.integrations import llm_limiter
 from app.integrations.llm_limiter import SharedRateLimiter
-from tests.unit.fake_redis import FakeRedis
 
 
 def test_requests_over_the_limit_wait_for_the_next_second(monkeypatch):

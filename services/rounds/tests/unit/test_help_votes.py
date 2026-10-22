@@ -6,12 +6,12 @@ import json
 import uuid
 
 import pytest
+from fake_redis import FakeRedis
 
 from app.config.settings import settings
 from app.helpers.help_replies import help_signing_key, vote_signature
 from app.routers import help_votes as routes
 from app.storage import help_votes
-from tests.unit.fake_redis import FakeRedis
 from tests.unit.test_help import CATALOG, fake_catalog
 
 ANSWER = uuid.uuid4()

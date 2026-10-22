@@ -6,10 +6,10 @@ import asyncio
 from datetime import UTC, datetime
 
 import pytest
+from fake_redis import FakeRedis
 from fastapi import HTTPException
 
 from app.services import limits
-from tests.unit.fake_redis import FakeRedis
 
 COMPANY = "8c1d2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f"
 PAID = "1c1d2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f"
@@ -56,7 +56,7 @@ def hits(published) -> list[tuple]:
 )
 def test_a_message_limit_refuses_at_its_default(name, key, default, published):
     redis = FakeRedis()
-    redis.values[key] = default - 1
+    redis.counts[key] = default - 1
     asyncio.run(limits.check(redis, "ann", COMPANY))
 
     error = refused(redis)
@@ -110,9 +110,9 @@ def test_a_token_budget_refuses_once_spent_at_its_default(published):
 
 def test_the_companys_token_budget_refuses_its_members_at_its_default(published):
     redis = FakeRedis()
-    redis.values[f"spend:assistant:company:{COMPANY}"] = 6_000_000
+    redis.counts[f"spend:assistant:company:{COMPANY}"] = 6_000_000
     asyncio.run(limits.check(redis, "bob", COMPANY))
-    redis.values[f"spend:assistant:company:{COMPANY}"] = 6_000_001
+    redis.counts[f"spend:assistant:company:{COMPANY}"] = 6_000_001
 
     assert refused(redis, "bob").status_code == 429
     assert hits(published) == [("TOKENS_PER_COMPANY_DAY", "bob", COMPANY)]
@@ -130,7 +130,7 @@ def test_a_voice_message_limit_refuses_at_its_edited_value(published):
 
 
 def spent_today(redis, usd: float) -> None:
-    redis.values[f"spend:ai:unpaid:{datetime.now(UTC).date().isoformat()}"] = round(usd * 1e6)
+    redis.counts[f"spend:ai:unpaid:{datetime.now(UTC).date().isoformat()}"] = round(usd * 1e6)
 
 
 @pytest.mark.parametrize("company_id", [COMPANY, None])
@@ -170,7 +170,7 @@ def test_a_voice_message_is_capped_unless_one_of_the_users_companies_paid(publis
 
 def test_the_shared_budgets_are_read_from_redis_with_their_current_limits():
     redis = FakeRedis({"MESSAGES_PER_DAY": 500})
-    redis.values.update({"spend:assistant:all": 1_500_000, "rate:assistant:all": 125})
+    redis.counts.update({"spend:assistant:all": 1_500_000, "rate:assistant:all": 125})
 
     found = asyncio.run(limits.shared_budgets(redis))
 

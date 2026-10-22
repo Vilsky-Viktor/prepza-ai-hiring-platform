@@ -4,6 +4,7 @@ from pathlib import Path
 
 import httpx
 import pytest
+from fake_redis import FakeRedis
 from fastapi import HTTPException
 from prepza_common import http
 from prepza_common.auth import current_user
@@ -16,7 +17,6 @@ from app.main import app
 from app.routers import me as me_routes
 from app.services import accounts as account_service
 from app.storage import accounts, erasures
-from tests.unit.fake_redis import FakeRedis
 
 USER = User(uid="ann", email="Ann@Example.com", email_verified=True, name="Ann")
 

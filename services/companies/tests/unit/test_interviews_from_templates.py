@@ -2,6 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
+from fake_redis import FakeRedis
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import current_user
 from prepza_common.user import User
@@ -12,7 +13,6 @@ from app.models.companies import Company, Member
 from app.models.interviews import Interview
 from app.routers import interviews as routes
 from app.storage import companies, interviews
-from tests.unit.fake_redis import FakeRedis
 
 COMPANY_ID = uuid.uuid4()
 TEMPLATE_ID = uuid.uuid4()

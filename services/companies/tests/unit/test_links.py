@@ -3,6 +3,7 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
+from fake_redis import FakeRedis
 from fastapi import HTTPException
 from prepza_common.auth import current_user, optional_user
 from prepza_common.user import User
@@ -15,7 +16,6 @@ from app.routers import links
 from app.schemas.invites import InviteStartOut
 from app.services import link_start
 from app.storage import companies, interviews, invites, link_invites
-from tests.unit.fake_redis import FakeRedis
 
 # The limits' defaults: new candidates one link takes, and one address starts, an hour.
 LINK_STARTS_PER_HOUR = 30

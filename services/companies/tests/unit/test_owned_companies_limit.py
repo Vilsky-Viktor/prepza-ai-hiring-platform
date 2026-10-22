@@ -1,9 +1,9 @@
 import pytest
+from fake_redis import FakeRedis
 
 from app.constants.invites import COMPANY_NAME_TAKEN
 from app.routers import companies as company_routes
 from app.storage import companies
-from tests.unit.fake_redis import FakeRedis
 from tests.unit.test_companies import sign_in
 
 

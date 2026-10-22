@@ -3,6 +3,7 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
+from fake_redis import FakeRedis
 from prepza_common.auth import current_user
 from prepza_common.translations import TRANSLATIONS
 from prepza_common.user import User
@@ -17,7 +18,6 @@ from app.main import app
 from app.routers import interviews as route
 from app.services import interview_creation as creation
 from app.storage import interviews
-from tests.unit.fake_redis import FakeRedis
 
 COMPANY_ID = uuid.uuid4()
 

@@ -57,6 +57,9 @@ model and no CHECK allowing other values than its enum (`db.one_of` builds a clo
 company_id: filled from the parent in batches, indexed concurrently, NOT NULL through a validated check.
 `paging` gives a route its page (`PageParams`, at most `MAX_PAGE_SIZE`) or a page of ids by key
 (`IdPageParams`, after the last one), and `every_id` reads such a list a page at a time.
+Unit tests: `tests/fake_redis.py` is the one fake Redis (`FakeRedis`, `DownRedis`) that this package's
+and every service's unit tests import (`from fake_redis import FakeRedis`; each service's pytest
+`pythonpath` includes `../../packages/common/tests`), never a copy of it.
 Integration tests: `clean_start` gives every test in a service's `tests/integration` a clean start (the
 tables a fresh migration left empty truncated, the tests' Redis database 15 flushed, the shared HTTP
 client dropped); it refuses any database but a `_test` one and any Redis database but 15.

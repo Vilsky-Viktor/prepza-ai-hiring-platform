@@ -1,12 +1,12 @@
 import uuid
 
 import pytest
+from fake_redis import FakeRedis
 from prepza_common.ai_constants import LIMIT_HIT
 from prepza_common.http import bearer
 from prepza_common.limit_list import LIMITS
 
 from app.storage import feedback
-from tests.unit.fake_redis import FakeRedis
 from tests.unit.test_internal import token
 
 QUESTION_ID = uuid.uuid4()

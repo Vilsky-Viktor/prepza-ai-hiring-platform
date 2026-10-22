@@ -1,9 +1,9 @@
 import asyncio
 
 import pytest
+from fake_redis import FakeRedis
 
 from app.services import limits
-from tests.unit.fake_redis import FakeRedis
 
 COMPANY = "8c1d2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f"
 
@@ -91,7 +91,7 @@ def test_a_turns_tokens_are_added_to_every_budget(monkeypatch):
     redis = FakeRedis()
     asyncio.run(limits.record(redis, "ann", COMPANY, 1_234))
 
-    assert redis.values == {
+    assert redis.counts == {
         "spend:assistant:user:ann": 1_234,
         f"spend:assistant:company:{COMPANY}": 1_234,
         "spend:assistant:all": 1_234,
@@ -108,12 +108,12 @@ def test_going_over_a_budget_or_redis_down_never_fails_the_turn(monkeypatch):
 
     monkeypatch.setattr(limits, "company_paid", unpaid)
     over = FakeRedis({"TOKENS_PER_USER_DAY": 10_000})
-    over.values["spend:assistant:user:ann"] = 10_000
+    over.counts["spend:assistant:user:ann"] = 10_000
 
     asyncio.run(limits.record(over, "ann", COMPANY, 5_000))
     asyncio.run(limits.record(Down(), "ann", COMPANY, 5_000))
 
-    assert over.values["spend:assistant:user:ann"] == 15_000
+    assert over.counts["spend:assistant:user:ann"] == 15_000
 
 
 def test_a_voice_message_checks_the_cap_the_users_and_everyones_budgets_and_its_own_limit(

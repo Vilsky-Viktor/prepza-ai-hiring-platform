@@ -4,6 +4,7 @@ from datetime import UTC, datetime
 
 import httpx
 import pytest
+from fake_redis import FakeRedis
 from fastapi import HTTPException
 from prepza_common.user import User
 
@@ -17,7 +18,6 @@ from app.routers import conversations as conversations_router
 from app.services import conversations as conversation_service
 from app.services import events, turns
 from app.storage import conversations, messages
-from tests.unit.fake_redis import FakeRedis
 
 COMPANY = uuid.UUID("8c1d2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f")
 ANN = User(uid="ann", email="ann@example.com", email_verified=True)

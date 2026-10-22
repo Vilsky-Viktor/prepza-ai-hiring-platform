@@ -1,10 +1,10 @@
 import pytest
+from fake_redis import FakeRedis
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
 from app.main import app
 from app.routers import superadmin
-from tests.unit.fake_redis import FakeRedis
 
 
 @pytest.fixture
@@ -25,7 +25,7 @@ def test_a_superadmin_reads_how_much_of_the_shared_budgets_is_used_today(
     client, sign_in, monkeypatch
 ):
     redis = FakeRedis({"TOKENS_PER_DAY": 5_000_000})
-    redis.values.update({"spend:assistant:all": 1_250_000, "rate:assistant:all": 40})
+    redis.counts.update({"spend:assistant:all": 1_250_000, "rate:assistant:all": 40})
     monkeypatch.setattr(superadmin, "get_redis", lambda: redis)
     sign_in("ann@example.com")
 

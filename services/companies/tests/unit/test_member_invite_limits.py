@@ -2,6 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
+from fake_redis import FakeRedis
 from fastapi import HTTPException
 
 from app.constants.roles import TOO_MANY_PENDING
@@ -9,7 +10,6 @@ from app.integrations import billing
 from app.models.companies import Member
 from app.routers import members as members_router
 from app.storage import audit, companies, members
-from tests.unit.fake_redis import FakeRedis
 from tests.unit.test_members import COMPANY_ID, sign_in
 from tests.unit.test_team_members import team  # noqa: F401
 

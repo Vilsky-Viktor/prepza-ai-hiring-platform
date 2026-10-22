@@ -2,13 +2,13 @@ import asyncio
 
 import openai
 import pytest
+from fake_redis import FakeRedis
 from prepza_common.ai_constants import AI_USED, LIMIT_HIT
 
 from app.constants.actions import KEY_CHECK_BATCH
 from app.integrations import openai_batch
 from app.services import key_check_batches
 from tests.unit.fake_ai import MODEL, refused
-from tests.unit.fake_redis import FakeRedis
 from tests.unit.test_key_check_batches import KEPT, FakeStore, library_with
 
 

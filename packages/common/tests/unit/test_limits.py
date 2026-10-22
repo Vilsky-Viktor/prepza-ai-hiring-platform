@@ -2,14 +2,13 @@ import asyncio
 import time
 
 import pytest
+from fake_redis import DownRedis, FakeRedis
 from fastapi import HTTPException
 from prepza_common import memory_cache, pubsub
 from prepza_common.ai_constants import LIMIT_HIT
 from prepza_common.constants import EVENT_ID_ATTRIBUTE
 from prepza_common.limit_list import LIMITS, LIMITS_CACHE_SECONDS
 from prepza_common.limits import at_most, limit, question_seconds, record_hit
-
-from tests.unit.fake_redis import DownRedis, FakeRedis
 
 
 def test_every_default_is_within_its_bounds_and_every_pair_is_a_limit():

@@ -3,6 +3,7 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
+from fake_redis import FakeRedis
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
@@ -16,7 +17,6 @@ from app.services import outbox as outbox_service
 from app.services import report_emails
 from app.storage import audit, companies, interviews, reports
 from tests.unit import fake_candidates
-from tests.unit.fake_redis import FakeRedis
 
 COMPANY_ID = uuid.uuid4()
 INTERVIEW_ID = uuid.uuid4()

@@ -1,11 +1,11 @@
 import httpx
 import pytest
+from fake_redis import FakeRedis
 
 from app.integrations import services
 from app.services import actions
 from app.storage import actions as store
 from tests.unit.actions_setup import COMPANY
-from tests.unit.fake_redis import FakeRedis
 
 
 class Writes(list):

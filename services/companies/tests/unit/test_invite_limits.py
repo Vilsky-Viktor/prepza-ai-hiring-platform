@@ -1,4 +1,5 @@
 import pytest
+from fake_redis import FakeRedis
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
@@ -7,7 +8,6 @@ from app.routers import bulk_invites
 from app.routers import limits as limits_route
 from app.services import candidate_invites
 from app.storage import audit
-from tests.unit.fake_redis import FakeRedis
 from tests.unit.test_candidate_invites import COMPANY_ID, INTERVIEW_ID, URL, invite_setup
 
 TOO_MANY_REQUESTS = "Too many requests. Try again later."

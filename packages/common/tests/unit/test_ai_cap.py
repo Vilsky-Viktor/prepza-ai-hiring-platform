@@ -3,13 +3,12 @@ import logging
 from datetime import UTC, datetime
 
 import pytest
+from fake_redis import DownRedis, FakeRedis
 from fastapi import HTTPException
 from prepza_common import ai_cap, memory_cache
 from prepza_common.ai_cap import CAP, add_unpaid, refuse_if_capped, spent_today
 from prepza_common.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT
 from prepza_common.translations import TRANSLATIONS
-
-from tests.unit.fake_redis import DownRedis, FakeRedis
 
 
 def on(monkeypatch, moment: datetime):

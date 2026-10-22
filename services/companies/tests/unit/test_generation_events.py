@@ -4,12 +4,12 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
+from fake_redis import FakeRedis
 from prepza_common.notifications import notification
 
 from app.services import generation_events
 from app.services import outbox as outbox_service
 from app.storage import interview_generations
-from tests.unit.fake_redis import FakeRedis
 
 GENERATION_ID = uuid.uuid4()
 SET_ID = uuid.uuid4()

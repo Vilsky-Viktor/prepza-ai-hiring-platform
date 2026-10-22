@@ -4,6 +4,7 @@ import json
 import uuid
 
 import pytest
+from fake_redis import FakeRedis
 from prepza_common import memory_cache, pubsub
 
 from app.integrations import library, llm
@@ -20,7 +21,6 @@ from app.services import (
 )
 from app.services.nodes import fill, reuse
 from app.storage import generations
-from tests.unit.fake_redis import FakeRedis
 from tests.unit.fakes import EXAMPLE, MULTI_OPTIONS, OPTIONS
 
 
