@@ -13,11 +13,18 @@ from starlette.exceptions import HTTPException
 VALUE_ERROR = "Value error, "
 
 
+# Traditional Chinese (Taiwan's, Hong Kong's, Macau's, or the Hant script): never given the
+# Simplified Chinese that "zh" is.
+TRADITIONAL_CHINESE = ("zh-tw", "zh-hk", "zh-mo", "zh-hant")
 def language_of(accept_language: str) -> str:
     """The interface language in an Accept-Language header: its first tag, without its region
-    ("fil-PH" is Filipino, "pt-BR" Portuguese)."""
-    value = accept_language.split(",")[0].split(";")[0]
-    value = value.split("-")[0].strip().lower()
+    ("fil-PH" is Filipino, "pt-BR" Portuguese); Traditional Chinese gets the default."""
+    tag = accept_language.split(",")[0].split(";")[0].strip().lower()
+
+    if tag.startswith(TRADITIONAL_CHINESE):
+        return DEFAULT_LANGUAGE
+
+    value = tag.split("-")[0]
 
     return value if value in LANGUAGES else DEFAULT_LANGUAGE
 

@@ -28,17 +28,22 @@ export function writeLocaleCookie(locale: Locale) {
 }
 
 /** The first supported language in an Accept-Language header, by preference ("uk-UA,
- * ru;q=0.8" gives uk), or none. */
+ * ru;q=0.8" gives uk), or none; Traditional Chinese is not supported. */
 export function preferredLocale(header: string | null) {
   const tags = (header ?? "").split(",").map((part) => {
     const [tag, ...params] = part.trim().split(";")
     const quality = params.find((param) => param.trim().startsWith("q="))
+// Traditional Chinese (Taiwan's, Hong Kong's, Macau's, or the Hant script): never given the
+// Simplified Chinese that "zh" is.
+const TRADITIONAL_CHINESE = /^zh-(?:tw|hk|mo|hant)\b/
+
 
     return {
-      code: tag.split("-")[0].toLowerCase(),
+      code: TRADITIONAL_CHINESE.test(lower) ? lower : lower.split("-")[0],
       quality: quality ? Number(quality.trim().slice(2)) : 1,
     }
   })
+    const lower = tag.toLowerCase()
 
   return tags
     .filter((item) => item.quality > 0)

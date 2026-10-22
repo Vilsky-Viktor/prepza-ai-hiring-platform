@@ -38,6 +38,13 @@ describe("preferredLocale", () => {
     expect(preferredLocale("de;q=0, es;q=0.1")).toBe("es")
   })
 
+  it("never gives Traditional Chinese the Simplified", () => {
+    expect(preferredLocale("zh-TW,zh;q=0.9")).toBe("zh")
+    expect(preferredLocale("zh-TW, ja;q=0.5")).toBe("ja")
+    expect(preferredLocale("zh-Hant-HK")).toBeUndefined()
+    expect(preferredLocale("zh-CN")).toBe("zh")
+  })
+
   it("reads region and case alike", () => {
     expect(preferredLocale("PT-br")).toBe("pt")
   })

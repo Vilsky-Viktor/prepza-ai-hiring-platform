@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.testclient import TestClient
 from prepza_common.constants import RATE_LIMITED
-from prepza_common.i18n import TemplateError, add_localized_errors
+from prepza_common.i18n import TemplateError, add_localized_errors, language_of
 from pydantic import BaseModel, field_validator
 
 
@@ -122,3 +122,11 @@ def test_raised_messages_finds_literals_and_constants_but_not_f_strings(tmp_path
     monkeypatch.syspath_prepend(str(tmp_path))
 
     assert raised_messages(package) == {"Not here", "It is gone"}
+def test_traditional_chinese_never_gets_simplified():
+    assert language_of("zh-TW,zh;q=0.9") == "en"
+    assert language_of("zh-Hant-HK") == "en"
+    assert language_of("zh-HK") == "en"
+    assert language_of("zh-CN") == "zh"
+    assert language_of("zh") == "zh"
+
+
