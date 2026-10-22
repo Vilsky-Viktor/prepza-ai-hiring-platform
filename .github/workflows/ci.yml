@@ -70,9 +70,11 @@ jobs:
           - { name: ats, path: services/ats }
           - { name: api, path: services/api }
           - { name: assistant, path: services/assistant }
-          - { name: common, path: packages/common }
+          - { name: common, path: packages/common, code: src }
     env:
       CHANGED: ${{ contains(fromJSON(needs.changes.outputs.changed), matrix.name) }}
+      CODE: ${{ matrix.code || 'app' }}
+      BASE: ${{ needs.changes.outputs.base }}
     defaults:
       run:
         working-directory: ${{ matrix.path }}
@@ -81,6 +83,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 0
       - if: env.CHANGED == 'true'
         uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
@@ -89,7 +92,10 @@ jobs:
       - if: env.CHANGED == 'true'
         run: uv sync --locked
       - if: env.CHANGED == 'true'
-        run: uv run pytest -q
+        run: uv run pytest -q --cov="$CODE" --cov-report=xml
+      # The share of the changed lines the unit tests run, in the job's summary (docs/testing.md).
+      - if: env.CHANGED == 'true'
+        run: ../../scripts/changed_lines_coverage.sh coverage.xml
 
   frontend:
     name: frontend lint and types
@@ -97,6 +103,8 @@ jobs:
     if: contains(fromJSON(needs.changes.outputs.changed), 'frontend')
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      BASE: ${{ needs.changes.outputs.base }}
     defaults:
       run:
         working-directory: frontend
@@ -104,6 +112,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
         with:
           package_json_file: frontend/package.json
@@ -117,7 +126,8 @@ jobs:
       - run: pnpm typecheck
       # Every translation has en.json's keys, arguments and tags, in valid ICU syntax.
       - run: pnpm check:messages
-      - run: pnpm test
+      - run: pnpm test --coverage
+      - run: ../scripts/changed_lines_coverage.sh coverage/cobertura-coverage.xml
 
   # A changed part's image is built (and, on main, pushed). On main, an unchanged one is the image
   # of the last commit CI passed on, tagged with this commit too, so every image exists for every

@@ -68,8 +68,10 @@ Python tests: `testing-backend.md`; vitest and browser, load and smoke tests:
 
 ## Coverage and CI
 
-- Coverage finds untested code; it is a report (on changed lines at most), never a target or
-  a gate. Mutation testing (mutmut, StrykerJS) finds tests that run code without checking it;
+- Coverage finds untested code; it is reported on changed lines only, never as a target for
+  the whole code: CI's unit jobs run `scripts/changed_lines_coverage.sh` (diff-cover against
+  the commit CI compares with) and fail under 60% of the changed lines run by unit tests
+  (storage code is covered by the integration suites, which it doesn't count). Mutation testing (mutmut, StrykerJS) finds tests that run code without checking it;
   not set up (rule 4), added only on the user's approval.
 - CI: the commit build runs the fast unit suites; a second stage runs real databases and
   browsers.

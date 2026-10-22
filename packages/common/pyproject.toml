@@ -33,6 +33,7 @@ build-backend = "uv_build"
 dev = [
     "prepza-common[llm,langfuse,money]",
     "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
     "pytest-randomly>=5.0.0",
 ]
 
