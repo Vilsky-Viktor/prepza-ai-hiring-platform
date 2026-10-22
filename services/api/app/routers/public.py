@@ -1,15 +1,15 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Response, status
+from fastapi import APIRouter, Request, Response, status
 from prepza_common.paging import PageParams
 
 from app.auth import needs
 from app.config.settings import settings
 from app.constants.permissions import Permission
-from app.constants.responses import COMMON, NOT_FOUND, RETRY_AFTER
+from app.constants.responses import COMMON, LISTED, NOT_FOUND, RETRY_AFTER
 from app.helpers.docs import refusal
-from app.helpers.public import candidate_of, interview_of
+from app.helpers.public import candidate_of, interview_of, link_next
 from app.integrations import companies
 from app.models.api import ApiKey
 from app.schemas.changes import InterviewIn
@@ -21,20 +21,25 @@ from app.services.idempotency import fingerprint, once, slot
 router = APIRouter(prefix="/interviews", tags=["Interviews"], responses=COMMON)
 
 
-@router.get("", summary="List interviews")
+@router.get("", summary="List interviews", responses={200: LISTED})
 async def list_interviews(
     key: Annotated[ApiKey, needs(Permission.INTERVIEWS_READ)],
     page: PageParams,
+    request: Request,
+    response: Response,
     updated_since: UpdatedSince = None,
     after: After = None,
 ) -> list[Interview]:
     """Returns your company's interviews, newest first; with `updated_since`, the ones that
-    changed since, oldest change first."""
+    changed since, oldest change first. A full page comes with a `Link` header to the next one
+    (`rel="next"`)."""
     found = await companies.interviews(
         key.company_id, page.offset, page.limit, updated_since, after
     )
+    listed = [interview_of(item) for item in found]
+    link_next(request, response, page.offset, page.limit, listed, updated_since is not None)
 
-    return [interview_of(item) for item in found]
+    return listed
 
 
 @router.get("/{interview_id}", summary="Get an interview", responses=NOT_FOUND)
@@ -49,22 +54,27 @@ async def get_interview(
     "/{interview_id}/candidates",
     summary="List candidates",
     tags=["Candidates"],
-    responses=NOT_FOUND,
+    responses={200: LISTED, **NOT_FOUND},
 )
 async def list_candidates(
     interview_id: UUID,
     key: Annotated[ApiKey, needs(Permission.CANDIDATES_READ)],
     page: PageParams,
+    request: Request,
+    response: Response,
     updated_since: UpdatedSince = None,
     after: After = None,
 ) -> list[Candidate]:
     """Returns the interview's candidates with their progress and results, newest first; with
-    `updated_since`, the ones that changed since, oldest change first."""
+    `updated_since`, the ones that changed since, oldest change first. A full page comes with a
+    `Link` header to the next one (`rel="next"`)."""
     found = await companies.candidates(
         key.company_id, interview_id, page.offset, page.limit, updated_since, after
     )
+    listed = [candidate_of(item, key.company_id, interview_id, settings.site_url) for item in found]
+    link_next(request, response, page.offset, page.limit, listed, updated_since is not None)
 
-    return [candidate_of(item, key.company_id, interview_id, settings.site_url) for item in found]
+    return listed
 
 
 @router.get(

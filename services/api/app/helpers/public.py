@@ -1,4 +1,9 @@
-from app.constants.api import CANDIDATE_LINK, INVITE_LINK
+from urllib.parse import urlencode
+
+from fastapi import Request, Response
+
+from app.config.settings import settings
+from app.constants.api import API_BASE, CANDIDATE_LINK, INVITE_LINK
 from app.schemas.public import Candidate, Interview, Signals
 
 
@@ -47,3 +52,29 @@ def candidate_of(found: dict, company_id, interview_id, site: str) -> Candidate:
         started_at=found.get("started_at"),
         finished_at=found.get("finished_at"),
     )
+
+
+def next_link(site: str, path: str, offset: int, limit: int, found: list, syncing: bool):
+    """A list's `Link` header when there may be a next page (this one is full; the next can come
+    back empty): the next page's address, by `offset`, or when syncing (`updated_since`), from
+    the last item's `updated_at` and `id`. None on the last page."""
+    if len(found) < limit:
+        return None
+
+    if syncing:
+        last = found[-1]
+        query = {"limit": limit, "updated_since": last.updated_at.isoformat(), "after": last.id}
+    else:
+        query = {"offset": offset + limit, "limit": limit}
+
+    return f'<{API_BASE.format(site=site)}{path}?{urlencode(query)}>; rel="next"'
+
+
+def link_next(
+    request: Request, response: Response, offset: int, limit: int, listed: list, syncing: bool
+) -> None:
+    """Puts the next page's address in the list's `Link` header, when there may be one."""
+    link = next_link(settings.site_url, request.url.path, offset, limit, listed, syncing)
+
+    if link:
+        response.headers["Link"] = link

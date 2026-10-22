@@ -80,14 +80,17 @@ console.log(candidate.invite_url)
 
 Your company's keys together have a limit of requests per minute; further requests return
 `429` until the minute ends, with a `Retry-After` header giving the seconds left. List endpoints return the newest items first and accept `offset` and `limit` (up to 100
-items per request).
+items per request). A full page comes with a `Link` header to the next one,
+`Link: <https://prepza.ai/api/v1/...>; rel="next"`; follow it until a response has none (the
+page after a full one can be empty).
 
 ## Keeping your copy in sync
 
 Interviews and candidates carry `updated_at`, when they last changed. To fetch only what changed,
 pass `updated_since` to a list: it returns the items changed at that time or later, oldest
 change first. For the next page, pass the last item's `updated_at` as `updated_since` and its
-`id` as `after`, so items changed at the same moment are neither repeated nor missed. Keep the
+`id` as `after`, so items changed at the same moment are neither repeated nor missed (the
+`Link` header's next page does this for you). Keep the
 last pair and start from it next time. A candidate's progress while they answer doesn't change
 `updated_at`; a removed candidate leaves the list, and the `candidate.removed` web hook event
 says so.
@@ -172,5 +175,7 @@ Within `v1`, fields, optional parameters, error codes, enum values and event typ
 added. Anything retired first answers with `Deprecation` and `Sunset` headers and is listed here.
 
 - 2026-10-22: every error carries a machine-readable `code` beside its `detail` (see Errors).
+- 2026-10-22: a full page of a list sends a `Link` header to the next one; candidates carry
+  their `interview_id`.
 
 """

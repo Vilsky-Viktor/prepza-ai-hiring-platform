@@ -6,7 +6,7 @@
      "Interviews"
     ],
     "summary": "List interviews",
-    "description": "Returns your company's interviews, newest first; with `updated_since`, the ones that\nchanged since, oldest change first.\n\nNeeds the `interviews:read` permission.",
+    "description": "Returns your company's interviews, newest first; with `updated_since`, the ones that\nchanged since, oldest change first. A full page comes with a `Link` header to the next one\n(`rel=\"next\"`).\n\nNeeds the `interviews:read` permission.",
     "operationId": "list_interviews",
     "security": [
      {
@@ -91,6 +91,14 @@
           "$ref": "#/components/schemas/Interview"
          },
          "title": "Response List Interviews"
+        }
+       }
+      },
+      "headers": {
+       "Link": {
+        "description": "The next page's address, as `<url>; rel=\"next\"`, when this page is full; absent on the last page",
+        "schema": {
+         "type": "string"
         }
        }
       }
@@ -373,7 +381,7 @@
      "Candidates"
     ],
     "summary": "List candidates",
-    "description": "Returns the interview's candidates with their progress and results, newest first; with\n`updated_since`, the ones that changed since, oldest change first.\n\nNeeds the `candidates:read` permission.",
+    "description": "Returns the interview's candidates with their progress and results, newest first; with\n`updated_since`, the ones that changed since, oldest change first. A full page comes with a\n`Link` header to the next one (`rel=\"next\"`).\n\nNeeds the `candidates:read` permission.",
     "operationId": "list_candidates",
     "security": [
      {
@@ -468,6 +476,14 @@
           "$ref": "#/components/schemas/Candidate"
          },
          "title": "Response List Candidates"
+        }
+       }
+      },
+      "headers": {
+       "Link": {
+        "description": "The next page's address, as `<url>; rel=\"next\"`, when this page is full; absent on the last page",
+        "schema": {
+         "type": "string"
         }
        }
       }

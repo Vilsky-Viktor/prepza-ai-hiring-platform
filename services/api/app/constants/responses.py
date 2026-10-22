@@ -8,6 +8,17 @@ RETRY_AFTER = {
         "schema": {"type": "integer"},
     }
 }
+LINK_NEXT = {
+    "Link": {
+        "description": (
+            'The next page\'s address, as `<url>; rel="next"`, when this page is full; absent '
+            "on the last page"
+        ),
+        "schema": {"type": "string"},
+    }
+}
+# A list's success: the page, and the next one's address.
+LISTED = {"description": "Successful Response", "headers": LINK_NEXT}
 # Every public route can answer these.
 COMMON = {
     401: refusal(
