@@ -1,4 +1,4 @@
-from prepza_common.constants import (
+from prepza_common.redis_constants import (
     REDIS_HEALTH_CHECK_SECONDS,
     REDIS_RETRIES,
     REDIS_TIMEOUT_SECONDS,

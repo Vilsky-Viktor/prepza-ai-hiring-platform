@@ -1,9 +1,9 @@
-from prepza_common.constants import (
+from prepza_common.redis_client import redis_client
+from prepza_common.redis_constants import (
     REDIS_HEALTH_CHECK_SECONDS,
     REDIS_RETRIES,
     REDIS_TIMEOUT_SECONDS,
 )
-from prepza_common.redis_client import redis_client
 from redis.exceptions import ConnectionError, TimeoutError
 
 

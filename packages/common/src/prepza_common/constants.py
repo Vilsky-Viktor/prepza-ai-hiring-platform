@@ -104,14 +104,6 @@ MIGRATION_LOCK_TIMEOUT = "5s"
 # rewrite past it belongs in batches. A migration that must run longer (an index built
 # concurrently on a large table) raises it for itself with SET statement_timeout.
 MIGRATION_STATEMENT_TIMEOUT = "5min"
-# A Redis command whose connection dropped (Redis restarted, or the network blinked) is tried
-# again on a new one, up to this many times, instead of failing its request; a connection
-# idle this long is checked before use.
-REDIS_RETRIES = 3
-REDIS_HEALTH_CHECK_SECONDS = 30
-# Connecting to Redis, and each command, gives up after this long (Upstash answers in
-# milliseconds from the same region), so a Redis outage costs a request seconds, not its deadline.
-REDIS_TIMEOUT_SECONDS = 2
 
 # Lists are served a page at a time; a page holds at most this many items.
 MAX_PAGE_SIZE = 100
