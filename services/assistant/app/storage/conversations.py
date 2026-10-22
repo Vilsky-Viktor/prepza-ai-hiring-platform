@@ -1,6 +1,7 @@
 from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
+from prepza_common.db import delete_in_batches
 from sqlalchemy import Text, cast, delete, func, or_, select, update
 
 from app.models.conversations import Conversation, Message, ToolCall
@@ -62,14 +63,9 @@ async def delete_idle(before: datetime, limit: int) -> int:
 
 
 async def delete_company(company_id: UUID) -> int:
-    """Every conversation about the company; how many went (none when run again)."""
-    async with Session() as session:
-        result = await session.execute(
-            delete(Conversation).where(Conversation.company_id == company_id)
-        )
-        await session.commit()
-
-        return result.rowcount
+    """Every conversation about the company, with its messages, a batch at a time; how many
+    went (none when run again)."""
+    return await delete_in_batches(Session, Conversation, Conversation.company_id == company_id)
 
 
 def mentions(text, needle: str):
@@ -79,34 +75,38 @@ def mentions(text, needle: str):
 async def delete_mentioning(company_id: UUID, needles: list[str]) -> int:
     """The company's conversations whose messages or tools' results mention any of `needles`
     (an erased candidate's email or invite, a deleted interview): they go whole, as what's left
-    of one would still read as about that person. How many went (none when run again)."""
+    of one would still read as about that person. A batch at a time; how many went (none when
+    run again)."""
     needles = [needle for needle in needles if needle]
 
     if not needles:
         return 0
 
+    # Only the company's own messages are read, never every tenant's.
+    of_company = Message.conversation_id.in_(
+        select(Conversation.id).where(Conversation.company_id == company_id)
+    )
     said = select(Message.conversation_id).where(
+        of_company,
         or_(
             *(mentions(Message.content, needle) for needle in needles),
             *(mentions(cast(Message.blocks, Text), needle) for needle in needles),
-        )
+        ),
     )
     read = (
         select(Message.conversation_id)
         .join(ToolCall, ToolCall.message_id == Message.id)
-        .where(or_(*(mentions(cast(ToolCall.result, Text), needle) for needle in needles)))
+        .where(
+            of_company, or_(*(mentions(cast(ToolCall.result, Text), needle) for needle in needles))
+        )
     )
 
-    async with Session() as session:
-        result = await session.execute(
-            delete(Conversation).where(
-                Conversation.company_id == company_id,
-                or_(Conversation.id.in_(said), Conversation.id.in_(read)),
-            )
-        )
-        await session.commit()
-
-        return result.rowcount
+    return await delete_in_batches(
+        Session,
+        Conversation,
+        Conversation.company_id == company_id,
+        or_(Conversation.id.in_(said), Conversation.id.in_(read)),
+    )
 
 
 async def trace_ids_of_user(user_id: str) -> list[str]:

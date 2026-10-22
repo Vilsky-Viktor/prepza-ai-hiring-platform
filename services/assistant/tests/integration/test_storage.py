@@ -208,3 +208,36 @@ def test_an_accounts_answers_traces_are_found_to_delete_with_it(run):
         return await conversations.trace_ids_of_user(user)
 
     assert run(scenario()) == ["a" * 32]
+
+
+def test_a_companys_conversations_go_batch_after_batch(run, monkeypatch):
+    from prepza_common import db
+
+    monkeypatch.setattr(db, "DELETE_BATCH", 2)
+    company, other = uuid.uuid4(), uuid.uuid4()
+    user = f"members-{uuid.uuid4().hex[:8]}"
+
+    async def scenario():
+        for number in range(3):
+            about = await conversations.create(user, company, f"Ann {number}")
+            await messages.add_question(about.id, "How did ann@example.com do?", "text")
+
+        for number in range(3):
+            await conversations.create(user, company, f"Bo {number}")
+
+        await conversations.create(user, other, "Elsewhere")
+        mentioned = await conversations.delete_mentioning(company, ["ann@example.com"])
+        after_mentions = await conversations.of_user(user, None, 0, 100)
+        deleted = await conversations.delete_company(company)
+        left = await conversations.of_user(user, None, 0, 100)
+        await conversations.delete_user(user)
+
+        return mentioned, after_mentions, deleted, left
+
+    mentioned, after_mentions, deleted, left = run(scenario())
+
+    # More than a batch each time, all gone; another company's stays.
+    assert mentioned == 3
+    assert sorted(item.title for item in after_mentions) == ["Bo 0", "Bo 1", "Bo 2", "Elsewhere"]
+    assert deleted == 3
+    assert [item.title for item in left] == ["Elsewhere"]
