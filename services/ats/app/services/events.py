@@ -2,6 +2,7 @@ import logging
 from uuid import UUID
 
 from app.constants.events import (
+    ATS_CANDIDATE_ARRIVED,
     CANDIDATE_FINISHED,
     CANDIDATE_REMOVED,
     COMPANY_DELETED,
@@ -40,10 +41,12 @@ async def company_deleted(company_id: UUID) -> None:
 
 
 async def handle(event_type: str, data: dict) -> None:
-    """Companies' and billing's events. Each is safe to run again on a redelivery: a report goes
+    """Companies' and billing's events, and ats' own. Each is safe to run again on a redelivery: a report goes
     back once (reported_at), a candidate is invited once (the claim), and deleting twice deletes
     nothing more. Other events are ignored."""
-    if event_type == CANDIDATE_FINISHED:
+    if event_type == ATS_CANDIDATE_ARRIVED:
+        await ats_candidates.invite_arrived(data)
+    elif event_type == CANDIDATE_FINISHED:
         await ats_candidates.report(data)
     elif event_type == INTERVIEW_READY:
         await ats_candidates.invite_waiting(UUID(data["interview_id"]))

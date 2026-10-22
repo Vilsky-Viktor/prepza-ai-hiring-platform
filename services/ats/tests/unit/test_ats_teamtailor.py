@@ -11,6 +11,7 @@ from app.services import ats as integrations
 from app.services import ats_candidates as flow
 from app.services import ats_webhooks as hooks
 from app.storage import ats, ats_candidates, ats_links, ats_results
+from tests.unit.arrivals import deliver_arrivals
 from tests.unit.conftest import interview
 from tests.unit.test_teamtailor_signatures import signature
 
@@ -85,6 +86,7 @@ def world(monkeypatch, companies_api):
             candidate_id,
             AtsCandidate(
                 id=uuid.uuid4(),
+                connection_id=connection_id,
                 interview_id=interview_id,
                 candidate_id=candidate_id,
                 email=email,
@@ -107,6 +109,7 @@ def world(monkeypatch, companies_api):
     monkeypatch.setattr(ats_candidates, "claim", claim)
     monkeypatch.setattr(ats_candidates, "settle", nothing)
     monkeypatch.setattr(flow.outbox_service, "flush_quietly", nothing)
+    deliver_arrivals(monkeypatch, state["rows"])
 
     return state
 

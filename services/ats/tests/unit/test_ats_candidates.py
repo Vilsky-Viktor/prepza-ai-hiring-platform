@@ -14,6 +14,7 @@ from app.services import ats as integrations
 from app.services import ats_candidates as flow
 from app.services import ats_webhooks as hooks
 from app.storage import ats, ats_candidates, ats_links
+from tests.unit.arrivals import deliver_arrivals
 from tests.unit.conftest import interview
 
 TOKEN = "account-token"
@@ -115,6 +116,12 @@ def world(monkeypatch, companies_api):
     monkeypatch.setattr(ats_candidates, "claim", claim)
     monkeypatch.setattr(ats_candidates, "settle", settle)
     monkeypatch.setattr(flow.outbox_service, "flush_quietly", flush)
+    deliver_arrivals(monkeypatch, state["rows"], then=flush)
+
+    async def connection_by_id(connection_id):
+        return connection
+
+    monkeypatch.setattr(flow.ats, "connection_by_id", connection_by_id)
 
     return state, companies_api["interviews"][INTERVIEW_ID]
 
@@ -194,7 +201,8 @@ def test_a_refused_invite_is_kept_with_its_reason_to_retry(world, refusal, reaso
         "reason": reason,
     }
     assert notice["link"].endswith("/integrations/workable")
-    assert state["flushed"] == 1
+    # Once by the web hook (its arrival), once by the arrival's handler (the notice).
+    assert state["flushed"] == 2
 
 
 def test_a_connection_whose_maker_is_no_longer_an_editor_asks_for_reconnecting(world, monkeypatch):

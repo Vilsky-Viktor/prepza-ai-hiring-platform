@@ -13,3 +13,6 @@ CREDITS_ADDED = "credits.added"
 COMPANY_OWNER = "company"
 # A company erased a candidate: its ATS record of them goes.
 CANDIDATE_REMOVED = "candidate.removed"
+# Its own: an ATS's web hook sent a new candidate, saved; inviting them runs from this event, so
+# the web hook is answered at once (ats' `ats` family, infra/terraform/pubsub.tf).
+ATS_CANDIDATE_ARRIVED = "ats.candidate_arrived"

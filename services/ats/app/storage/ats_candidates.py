@@ -16,11 +16,17 @@ from app.constants.ats import (
     ConnectionStatus,
     FailReason,
 )
+from app.constants.events import ATS_CANDIDATE_ARRIVED
 from app.models.ats import AtsCandidate, AtsConnection
 from app.models.outbox import OutboxEvent
 from app.storage.ats import company_of
 from app.storage.db import Session
 from app.storage.turns import in_turns
+
+
+async def get(row_id: UUID) -> AtsCandidate | None:
+    async with Session() as session:
+        return await session.get(AtsCandidate, row_id)
 
 
 async def add(
@@ -31,8 +37,9 @@ async def add(
     email: str,
     name: str | None = None,
 ) -> AtsCandidate:
-    """The ATS's candidate for the interview: saved waiting the first time, the same row when
-    the event comes again (or twice at once: the unique key keeps one, with its first name)."""
+    """The ATS's candidate for the interview: saved waiting the first time, with the
+    ats.candidate_arrived event that invites them; the same row, and no new event, when the
+    web hook comes again (or twice at once: the unique key keeps one, with its first name)."""
     query = (
         insert(AtsCandidate)
         .values(
@@ -46,6 +53,7 @@ async def add(
             status=CandidateStatus.WAITING,
         )
         .on_conflict_do_nothing(index_elements=["connection_id", "candidate_id", "interview_id"])
+        .returning(AtsCandidate.id)
     )
     existing = select(AtsCandidate).where(
         AtsCandidate.connection_id == connection_id,
@@ -54,7 +62,11 @@ async def add(
     )
 
     async with Session() as session:
-        await session.execute(query)
+        made = await session.scalar(query)
+
+        if made is not None:
+            outbox.add(session, OutboxEvent, ATS_CANDIDATE_ARRIVED, {"ats_candidate_id": str(made)})
+
         await session.commit()
 
         return await session.scalar(existing)

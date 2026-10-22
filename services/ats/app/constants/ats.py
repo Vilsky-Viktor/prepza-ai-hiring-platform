@@ -65,9 +65,6 @@ INVITE_BATCH = 50
 # when an ATS doesn't answer (each call has ATS_TIMEOUT_SECONDS). It reads at most RECOVER_LIMIT
 # of each, every connection's in turn; the rest wait for the next run.
 RECOVER_INVITE_SECONDS = 20
-# A candidate an ATS's web hook sends is saved at once, then invited within this long, so the
-# web hook is answered well within the ATS's deadline; past it, the recovery job invites them.
-HOOK_INVITE_SECONDS = 8
 REPORT_SECONDS = 35
 RECOVER_LIMIT = 500
 # Invites that failed in passing are tried again by the recovery job this many times in all

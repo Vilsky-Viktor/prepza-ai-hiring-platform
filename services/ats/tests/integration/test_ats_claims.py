@@ -3,10 +3,12 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from sqlalchemy import update
+from sqlalchemy import select, update
 
 from app.constants.ats import AtsProvider, CandidateStatus, FailReason
+from app.constants.events import ATS_CANDIDATE_ARRIVED
 from app.models.ats import AtsCandidate
+from app.models.outbox import OutboxEvent
 from app.storage import ats, ats_candidates, ats_links, ats_results
 from app.storage.db import Session
 
@@ -190,3 +192,28 @@ def test_an_interviews_waiting_candidates_come_one_batch_at_a_time(run, monkeypa
 
     # The oldest first; the third is left for the recovery job.
     assert run(scenario()) == ["c-0", "c-1"]
+
+
+def test_a_new_candidate_is_saved_with_one_arrival_event_and_a_repeat_adds_none(run):
+    async def scenario():
+        company, interview = uuid.uuid4(), uuid.uuid4()
+        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1")
+        connection = await ats.connection(company, AtsProvider.WORKABLE)
+        link_id = await ats_links.add_link(
+            connection.company_id, connection.id, interview, JOB, STAGE, "ann"
+        )
+        row = await ats_candidates.add(connection.id, link_id, interview, "c-9", "z@x.com")
+        # The web hook comes again: the same row, and no second event.
+        await ats_candidates.add(connection.id, link_id, interview, "c-9", "z@x.com")
+
+        async with Session() as session:
+            events = await session.scalars(
+                select(OutboxEvent.data).where(OutboxEvent.event_type == ATS_CANDIDATE_ARRIVED)
+            )
+            mine = [data for data in events if data["ats_candidate_id"] == str(row.id)]
+
+        await ats.delete_company(company)
+
+        return mine
+
+    assert len(run(scenario())) == 1

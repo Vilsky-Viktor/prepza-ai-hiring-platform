@@ -1,4 +1,3 @@
-import asyncio
 import logging
 import time
 from uuid import UUID
@@ -9,7 +8,6 @@ from fastapi import HTTPException, status
 from app.config.settings import settings
 from app.constants.ats import (
     ATS_NAMES,
-    HOOK_INVITE_SECONDS,
     INVITE_BATCH,
     MAX_INVITE_ATTEMPTS,
     NEEDS_AUTHOR,
@@ -54,20 +52,26 @@ async def arrived(
     link, connection: AtsConnection, candidate_id: str, email: str, name: str | None = None
 ) -> None:
     """A candidate the ATS sent for a linked job (with their name, if it sent one): saved once,
-    then invited within HOOK_INVITE_SECONDS, so the web hook is answered in time. When companies
-    doesn't answer, or not in time, they wait for the recovery job."""
-    row = await ats_candidates.add(
-        connection.id, link.id, link.interview_id, candidate_id, email, name
-    )
+    with the event that invites them (invite_arrived), so the web hook is answered at once."""
+    await ats_candidates.add(connection.id, link.id, link.interview_id, candidate_id, email, name)
+    await outbox_service.flush_quietly()
 
-    try:
-        async with asyncio.timeout(HOOK_INVITE_SECONDS):
-            found = await companies.interviews([row.interview_id])
-            await invite(row, connection, found.get(row.interview_id))
-    except TimeoutError:
-        logger.warning("Inviting ATS candidate %s took too long; left to recovery", row.id)
-    except Exception:
-        logger.exception("Couldn't read the interview of ATS candidate %s", row.id)
+
+async def invite_arrived(data: dict) -> None:
+    """ats.candidate_arrived: invites the candidate an ATS's web hook sent, once (invite claims
+    them). Companies not answering raises, so Pub/Sub delivers the event again."""
+    row = await ats_candidates.get(UUID(data["ats_candidate_id"]))
+
+    if row is None:
+        return
+
+    connection = await ats.connection_by_id(row.connection_id)
+
+    if connection is None:
+        return
+
+    found = await companies.interviews([row.interview_id])
+    await invite(row, connection, found.get(row.interview_id))
 
 
 async def invite(row: AtsCandidate, connection: AtsConnection, interview: dict | None) -> None:
