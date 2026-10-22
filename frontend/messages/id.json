@@ -2171,7 +2171,8 @@
     "goodAnswer": "Jawaban bagus",
     "badAnswer": "Jawaban buruk",
     "seeAll": "Lihat semua",
-    "voteFailed": "Penilaianmu tidak bisa disimpan. Coba lagi."
+    "voteFailed": "Penilaianmu tidak bisa disimpan. Coba lagi.",
+    "earlierMessages": "Tampilkan pesan sebelumnya"
   },
   "pageHelp": {
     "label": "Tentang halaman ini",

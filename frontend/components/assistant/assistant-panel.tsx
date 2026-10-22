@@ -225,6 +225,8 @@ export function AssistantPanel({
           ) : (
             <AssistantMessages
               messages={chat.messages}
+              earlier={chat.earlier}
+              onEarlier={chat.loadEarlier}
               streaming={chat.streaming}
               signedIn={signedIn}
               stage={signedIn ? stage : "signed_out"}

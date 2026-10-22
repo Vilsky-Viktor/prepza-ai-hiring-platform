@@ -2171,7 +2171,8 @@
     "goodAnswer": "Good answer",
     "badAnswer": "Bad answer",
     "seeAll": "See all",
-    "voteFailed": "Couldn't save your vote. Please try again."
+    "voteFailed": "Couldn't save your vote. Please try again.",
+    "earlierMessages": "Show earlier messages"
   },
   "pageHelp": {
     "label": "About this page",

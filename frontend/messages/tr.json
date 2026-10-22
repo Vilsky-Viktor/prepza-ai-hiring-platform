@@ -2171,7 +2171,8 @@
     "goodAnswer": "İyi yanıt",
     "badAnswer": "Kötü yanıt",
     "seeAll": "Tümünü gör",
-    "voteFailed": "Oyunuz kaydedilemedi. Lütfen tekrar deneyin."
+    "voteFailed": "Oyunuz kaydedilemedi. Lütfen tekrar deneyin.",
+    "earlierMessages": "Önceki mesajları göster"
   },
   "pageHelp": {
     "label": "Bu sayfa hakkında",

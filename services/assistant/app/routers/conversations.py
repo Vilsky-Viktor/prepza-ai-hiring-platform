@@ -10,12 +10,12 @@ from app.constants.chat import NOT_FOUND, RESTORE_MINUTES
 from app.schemas.conversations import (
     ConversationDetailOut,
     ConversationOut,
-    MessageOut,
+    MessagesOut,
     VoteIn,
 )
+from app.services.conversation_pages import messages_page
 from app.services.conversations import open_conversation
-from app.services.live_blocks import live
-from app.storage import actions, conversations, messages
+from app.storage import conversations, messages
 
 router = APIRouter(prefix="/conversations", tags=["conversations"])
 
@@ -52,35 +52,29 @@ async def active_conversation(auth: UserWithToken) -> ConversationOut | Response
 async def get_conversation(
     conversation_id: UUID, request: Request, auth: UserWithToken
 ) -> ConversationDetailOut:
-    """One of the user's conversations with its messages; their blocks are fetched again with
-    the user's token, so they show what the user may see now. One about a company they can no
-    longer see is deleted, and is a 404."""
+    """One of the user's conversations with its latest messages, and whether earlier ones are
+    left (GET .../messages). One about a company they can no longer see is deleted, and is a
+    404."""
     user, token = auth
     language = request_language(request)
     conversation = await open_conversation(conversation_id, user.uid, token, language)
-    found = await messages.of_conversation(conversation.id)
-    # Cards still waiting for the user's confirmation (in Redis for a while), by their answer.
-    cards: dict[str, list] = {}
-
-    for pending in await actions.of_conversation(conversation.id):
-        if pending["user_id"] == user.uid and pending.get("message_id"):
-            cards.setdefault(pending["message_id"], []).append(pending["card"])
-
-    shown = [
-        MessageOut.model_validate(item).model_copy(
-            update={
-                "blocks": [
-                    *await live(item.blocks, token, language),
-                    *cards.get(str(item.id), []),
-                ]
-            }
-        )
-        for item in found
-    ]
+    page = await messages_page(conversation.id, user.uid, token, language, None)
 
     return ConversationDetailOut(
-        **ConversationOut.model_validate(conversation).model_dump(), messages=shown
+        **ConversationOut.model_validate(conversation).model_dump(), **page.model_dump()
     )
+
+
+@router.get("/{conversation_id}/messages")
+async def earlier_messages(
+    conversation_id: UUID, before: UUID, request: Request, auth: UserWithToken
+) -> MessagesOut:
+    """The messages before the message `before` (the earliest shown), a page at a time."""
+    user, token = auth
+    language = request_language(request)
+    conversation = await open_conversation(conversation_id, user.uid, token, language)
+
+    return await messages_page(conversation.id, user.uid, token, language, before)
 
 
 @router.delete("/{conversation_id}", status_code=status.HTTP_204_NO_CONTENT)

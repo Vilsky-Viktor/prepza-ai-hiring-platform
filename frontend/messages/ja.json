@@ -2171,7 +2171,8 @@
     "goodAnswer": "良い回答",
     "badAnswer": "悪い回答",
     "seeAll": "すべて表示",
-    "voteFailed": "評価を保存できませんでした。もう一度お試しください。"
+    "voteFailed": "評価を保存できませんでした。もう一度お試しください。",
+    "earlierMessages": "以前のメッセージを表示"
   },
   "pageHelp": {
     "label": "このページについて",

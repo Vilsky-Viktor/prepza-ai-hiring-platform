@@ -2171,7 +2171,8 @@
     "goodAnswer": "Gute Antwort",
     "badAnswer": "Schlechte Antwort",
     "seeAll": "Alle ansehen",
-    "voteFailed": "Deine Bewertung konnte nicht gespeichert werden. Bitte versuche es erneut."
+    "voteFailed": "Deine Bewertung konnte nicht gespeichert werden. Bitte versuche es erneut.",
+    "earlierMessages": "Frühere Nachrichten anzeigen"
   },
   "pageHelp": {
     "label": "Über diese Seite",

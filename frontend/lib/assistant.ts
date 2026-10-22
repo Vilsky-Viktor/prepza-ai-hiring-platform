@@ -4,11 +4,13 @@ import { streamEvents } from "@/lib/chat"
 import { firebaseAuth } from "@/lib/firebase"
 import type {
   AssistantBlock,
+  AssistantMessage,
   ChatMessage,
   AssistantConfig,
   AssistantEvent,
   Conversation,
   ConversationDetail,
+  MessagesPage,
   PageContext,
   Vote,
 } from "@/types/assistant"
@@ -79,6 +81,25 @@ export function listConversations() {
 
 export function getConversation(id: string) {
   return apiFetch<ConversationDetail>(`${BASE}/conversations/${id}`)
+}
+
+/** The page of messages before the message `before` (the earliest shown). */
+export function getEarlierMessages(id: string, before: string) {
+  return apiFetch<MessagesPage>(
+    `${BASE}/conversations/${id}/messages?before=${before}`
+  )
+}
+
+/** A stored message, as the panel shows it. */
+export function shownMessage(message: AssistantMessage): ChatMessage {
+  return {
+    role: message.role,
+    content: message.content,
+    blocks: message.blocks,
+    source: message.source,
+    id: message.id,
+    vote: message.vote,
+  }
 }
 
 export function deleteConversation(id: string) {

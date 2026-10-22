@@ -2171,7 +2171,8 @@
     "goodAnswer": "回答很好",
     "badAnswer": "回答不好",
     "seeAll": "查看全部",
-    "voteFailed": "无法保存你的评价，请重试。"
+    "voteFailed": "无法保存你的评价，请重试。",
+    "earlierMessages": "显示更早的消息"
   },
   "pageHelp": {
     "label": "关于此页面",

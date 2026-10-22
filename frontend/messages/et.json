@@ -2171,7 +2171,8 @@
     "goodAnswer": "Hea vastus",
     "badAnswer": "Halb vastus",
     "seeAll": "Vaata kõiki",
-    "voteFailed": "Hinnangut ei õnnestunud salvestada. Proovi uuesti."
+    "voteFailed": "Hinnangut ei õnnestunud salvestada. Proovi uuesti.",
+    "earlierMessages": "Näita varasemaid sõnumeid"
   },
   "pageHelp": {
     "label": "Selle lehe kohta",

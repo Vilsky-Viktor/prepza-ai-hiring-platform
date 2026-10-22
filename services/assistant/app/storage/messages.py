@@ -1,7 +1,7 @@
 from datetime import timedelta
 from uuid import UUID
 
-from sqlalchemy import func, select, update
+from sqlalchemy import func, literal, select, tuple_, update
 
 from app.constants.chat import Role, Source, Status, ToolState
 from app.models.answers import Answer
@@ -106,15 +106,23 @@ async def recent(conversation_id: UUID, limit: int) -> list[Message]:
     return list(reversed(messages))
 
 
-async def of_conversation(conversation_id: UUID) -> list[Message]:
+async def page_before(
+    conversation_id: UUID, before: UUID | None, limit: int
+) -> tuple[list[Message], bool]:
+    """The `limit` messages before the message `before` (the latest without it), oldest first,
+    and whether earlier ones are left."""
+    query = select(Message).where(Message.conversation_id == conversation_id)
+
+    if before is not None:
+        at = select(Message.created_at).where(Message.id == before).scalar_subquery()
+        query = query.where(tuple_(Message.created_at, Message.id) < tuple_(at, literal(before)))
+
+    query = query.order_by(Message.created_at.desc(), Message.id.desc()).limit(limit + 1)
+
     async with Session() as session:
-        return list(
-            await session.scalars(
-                select(Message)
-                .where(Message.conversation_id == conversation_id)
-                .order_by(Message.created_at, Message.id)
-            )
-        )
+        found = list(await session.scalars(query))
+
+    return list(reversed(found[:limit])), len(found) > limit
 
 
 async def export(user_id: str) -> list[dict]:

@@ -9,6 +9,7 @@ import { apiErrorMessage } from "@/lib/api"
 import {
   getConversation,
   helpConversation,
+  shownMessage,
   withoutSecret,
   refreshToken,
   streamAssistant,
@@ -23,6 +24,7 @@ import { pageContext } from "@/lib/page-context"
 import { pageKey } from "@/lib/page-key"
 import { useActionCards } from "@/hooks/use-action-cards"
 import { useChatRestore } from "@/hooks/use-chat-restore"
+import { useEarlierMessages } from "@/hooks/use-earlier-messages"
 import type { AssistantEvent, ChatMessage, Vote } from "@/types/assistant"
 
 // The service's error code for a token it stopped taking mid-answer.
@@ -45,6 +47,11 @@ export function useAssistantChat(
   const params = useParams()
   const [conversationId, setConversationId] = useState<string | null>(null)
   const [messages, setMessages] = useState<ChatMessage[]>([])
+  const { earlier, setEarlier, loadEarlier } = useEarlierMessages(
+    conversationId,
+    messages,
+    setMessages
+  )
   const [streaming, setStreaming] = useState(false)
   const stream = useRef<AbortController | null>(null)
 
@@ -242,6 +249,7 @@ export function useAssistantChat(
     stop()
     setConversationId(null)
     setMessages([])
+    setEarlier(false)
     clearChat(false)
   }
 
@@ -257,16 +265,8 @@ export function useAssistantChat(
     try {
       const found = await getConversation(id)
       setConversationId(found.id)
-      setMessages(
-        found.messages.map((message) => ({
-          role: message.role,
-          content: message.content,
-          blocks: message.blocks,
-          source: message.source,
-          id: message.id,
-          vote: message.vote,
-        }))
-      )
+      setMessages(found.messages.map(shownMessage))
+      setEarlier(found.earlier)
       return found.company_id
     } catch (error) {
       if (!quietly) {
@@ -290,5 +290,7 @@ export function useAssistantChat(
     stop,
     startNew,
     open,
+    earlier,
+    loadEarlier,
   }
 }

@@ -2171,7 +2171,8 @@
     "goodAnswer": "Câu trả lời tốt",
     "badAnswer": "Câu trả lời không tốt",
     "seeAll": "Xem tất cả",
-    "voteFailed": "Không thể lưu đánh giá của bạn. Vui lòng thử lại."
+    "voteFailed": "Không thể lưu đánh giá của bạn. Vui lòng thử lại.",
+    "earlierMessages": "Hiện các tin nhắn trước"
   },
   "pageHelp": {
     "label": "Về trang này",

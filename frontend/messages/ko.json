@@ -2171,7 +2171,8 @@
     "goodAnswer": "좋은 답변",
     "badAnswer": "나쁜 답변",
     "seeAll": "모두 보기",
-    "voteFailed": "평가를 저장하지 못했습니다. 다시 시도해 주세요."
+    "voteFailed": "평가를 저장하지 못했습니다. 다시 시도해 주세요.",
+    "earlierMessages": "이전 메시지 보기"
   },
   "pageHelp": {
     "label": "이 페이지 정보",

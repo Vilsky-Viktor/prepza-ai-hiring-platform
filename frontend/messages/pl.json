@@ -2171,7 +2171,8 @@
     "goodAnswer": "Dobra odpowiedź",
     "badAnswer": "Zła odpowiedź",
     "seeAll": "Zobacz wszystkie",
-    "voteFailed": "Nie udało się zapisać oceny. Spróbuj ponownie."
+    "voteFailed": "Nie udało się zapisać oceny. Spróbuj ponownie.",
+    "earlierMessages": "Pokaż wcześniejsze wiadomości"
   },
   "pageHelp": {
     "label": "O tej stronie",

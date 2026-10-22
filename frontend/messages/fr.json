@@ -2171,7 +2171,8 @@
     "goodAnswer": "Bonne réponse",
     "badAnswer": "Mauvaise réponse",
     "seeAll": "Tout voir",
-    "voteFailed": "Impossible d'enregistrer votre vote. Veuillez réessayer."
+    "voteFailed": "Impossible d'enregistrer votre vote. Veuillez réessayer.",
+    "earlierMessages": "Afficher les messages précédents"
   },
   "pageHelp": {
     "label": "À propos de cette page",

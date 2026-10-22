@@ -27,6 +27,8 @@ export function AssistantMessages({
   onVote,
   onNavigate,
   actions,
+  earlier = false,
+  onEarlier,
 }: {
   messages: ChatMessage[]
   streaming: boolean
@@ -40,6 +42,9 @@ export function AssistantMessages({
   onVote: (index: number, value: Vote | null) => void
   onNavigate: () => void
   actions: CardActions
+  // Earlier messages of the conversation are left to show (onEarlier loads them).
+  earlier?: boolean
+  onEarlier?: () => void
 }) {
   const t = useTranslations("assistant")
 
@@ -83,6 +88,18 @@ export function AssistantMessages({
 
   return (
     <>
+      {earlier && onEarlier && (
+        <div className="flex justify-center pb-3">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onEarlier}
+            data-testid="earlier-messages"
+          >
+            {t("earlierMessages")}
+          </Button>
+        </div>
+      )}
       <ul className="space-y-3">
         {messages.map((message, index) => {
           if (message.removed) {

@@ -31,8 +31,18 @@ class MessageOut(BaseModel):
     created_at: datetime
 
 
-class ConversationDetailOut(ConversationOut):
+class MessagesOut(BaseModel):
+    """A page of a conversation's messages, oldest first, and whether earlier ones are left."""
+
     messages: list[MessageOut]
+    earlier: bool
+
+
+class ConversationDetailOut(ConversationOut):
+    """The conversation with its latest messages (MESSAGES_SHOWN)."""
+
+    messages: list[MessageOut]
+    earlier: bool
 
 
 class VoteIn(BaseModel):

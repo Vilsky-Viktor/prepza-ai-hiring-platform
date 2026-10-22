@@ -2171,7 +2171,8 @@
     "goodAnswer": "Boa resposta",
     "badAnswer": "Resposta ruim",
     "seeAll": "Ver tudo",
-    "voteFailed": "Não foi possível salvar seu voto. Tente novamente."
+    "voteFailed": "Não foi possível salvar seu voto. Tente novamente.",
+    "earlierMessages": "Mostrar mensagens anteriores"
   },
   "pageHelp": {
     "label": "Sobre esta página",

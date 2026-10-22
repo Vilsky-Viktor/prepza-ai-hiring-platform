@@ -32,6 +32,8 @@ PAGE_ID_PATTERN = r"^[A-Za-z0-9_-]{1,64}$"
 # A chat the panel brings back after a reload: one whose last message is at most this old;
 # an older one stays in the history and the panel starts a new chat.
 RESTORE_MINUTES = 30
+# An opened conversation shows its latest messages, this many; earlier ones load on asking.
+MESSAGES_SHOWN = 50
 # A conversation's title until the model writes one: the start of its first message.
 TITLE_LENGTH = 80
 

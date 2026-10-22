@@ -2171,7 +2171,8 @@
     "goodAnswer": "Magandang sagot",
     "badAnswer": "Hindi magandang sagot",
     "seeAll": "Tingnan lahat",
-    "voteFailed": "Hindi ma-save ang iyong boto. Pakisubukang muli."
+    "voteFailed": "Hindi ma-save ang iyong boto. Pakisubukang muli.",
+    "earlierMessages": "Ipakita ang mga naunang mensahe"
   },
   "pageHelp": {
     "label": "Tungkol sa page na ito",

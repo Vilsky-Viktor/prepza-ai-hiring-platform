@@ -104,6 +104,14 @@ export type Conversation = {
 
 export type ConversationDetail = Conversation & {
   messages: AssistantMessage[]
+  // Earlier messages are left to load (GET .../messages?before=).
+  earlier: boolean
+}
+
+/** A page of a conversation's earlier messages, oldest first. */
+export type MessagesPage = {
+  messages: AssistantMessage[]
+  earlier: boolean
 }
 
 /** The limits the panel keeps to (GET /config). */
