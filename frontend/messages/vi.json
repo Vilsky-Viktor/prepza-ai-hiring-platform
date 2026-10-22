@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Luyện phỏng vấn miễn phí theo vị trí",
     "intro": "Luyện tập cho một vị trí với buổi phỏng vấn có tính giờ, rồi xem điểm và mọi đáp án đúng. Hoàn toàn miễn phí.",
-    "about": "Phỏng vấn luyện tập có tính giờ. Khi làm xong, bạn xem được điểm và mọi đáp án đúng. Riêng tư và miễn phí.",
+    "about": "Phỏng vấn luyện tập có tính giờ, trừ khi bạn chọn không giới hạn thời gian. Khi làm xong, bạn xem được điểm và mọi đáp án đúng. Riêng tư và miễn phí.",
     "pageTitle": "Luyện phỏng vấn {title} miễn phí",
     "pageDescription": "Luyện phỏng vấn {title} ({level}) miễn phí: câu hỏi phỏng vấn trắc nghiệm về {count, plural, other {# chủ đề}}, tính giờ, kèm điểm và mọi đáp án đúng sau khi làm. Đây là luyện tập, không phải phỏng vấn tuyển dụng thật.",
     "start": "Bắt đầu luyện tập",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "câu đã trả lời",
     "hireTitle": "Bạn đang tuyển vị trí này?",
     "hireText": "Dùng buổi phỏng vấn này với ứng viên của bạn, hoặc tạo một buổi phỏng vấn từ mô tả công việc của bạn.",
-    "hireButton": "Tạo buổi phỏng vấn"
+    "hireButton": "Tạo buổi phỏng vấn",
+    "timingPerQuestion": "{time} mỗi câu hỏi",
+    "timingNone": "Không giới hạn thời gian",
+    "timingNote": "Bài luyện tập không được so sánh với ai, nên nếu cần, bạn có thể dùng thêm thời gian hoặc bỏ giới hạn."
   },
   "verify": {
     "verify": "Xác minh",

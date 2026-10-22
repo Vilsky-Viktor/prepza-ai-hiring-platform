@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Simulazione colloquio di lavoro per ruolo",
     "intro": "Esercitati per un ruolo con un colloquio a tempo, poi vedi il tuo punteggio e tutte le risposte corrette. Gratis.",
-    "about": "Simulazione di colloquio a tempo. Alla fine vedi il tuo punteggio e tutte le risposte corrette. Privato e gratuito.",
+    "about": "Simulazione di colloquio a tempo, a meno che tu non scelga senza limite di tempo. Alla fine vedi il tuo punteggio e tutte le risposte corrette. Privato e gratuito.",
     "pageTitle": "{title}: simulazione colloquio di lavoro gratis",
     "pageDescription": "Simulazione gratuita di colloquio di lavoro per {title}, livello {level}: {count, plural, one {# argomento} other {# argomenti}}, a tempo, con il tuo punteggio e tutte le risposte corrette alla fine. È una simulazione, non un vero colloquio.",
     "start": "Inizia la simulazione",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "domande risposte",
     "hireTitle": "Assumi per questo ruolo?",
     "hireText": "Usa questo colloquio con i tuoi candidati o generane uno per la tua descrizione del ruolo.",
-    "hireButton": "Crea un colloquio"
+    "hireButton": "Crea un colloquio",
+    "timingPerQuestion": "{time} per domanda",
+    "timingNone": "Senza limite di tempo",
+    "timingNote": "La simulazione non viene confrontata con nessuno: prenditi più tempo, o nessun limite, se ti serve."
   },
   "verify": {
     "verify": "Verifica",

@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Simulador de entrevista de emprego por cargo",
     "intro": "Pratique para um cargo com uma entrevista cronometrada e depois veja sua nota e todas as respostas certas. Sem custo.",
-    "about": "Simulação de entrevista cronometrada. Ao terminar, veja sua nota e todas as respostas certas. Privada e gratuita.",
+    "about": "Simulação de entrevista cronometrada, a menos que você escolha sem limite de tempo. Ao terminar, veja sua nota e todas as respostas certas. Privada e gratuita.",
     "pageTitle": "{title}: simulador de entrevista grátis",
     "pageDescription": "Simulador de entrevista grátis para {title}, nível {level}: {count, plural, one {# tópico} other {# tópicos}}, cronometrado, com sua nota e todas as respostas certas no final. É um teste de prática, não uma entrevista de emprego real.",
     "start": "Começar a prática",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "questões respondidas",
     "hireTitle": "Contratando para este cargo?",
     "hireText": "Use esta entrevista com seus candidatos ou gere uma para a sua descrição de vaga.",
-    "hireButton": "Criar uma entrevista"
+    "hireButton": "Criar uma entrevista",
+    "timingPerQuestion": "{time} por pergunta",
+    "timingNone": "Sem limite de tempo",
+    "timingNote": "A prática não é comparada com ninguém: use mais tempo, ou nenhum limite, se precisar."
   },
   "verify": {
     "verify": "Verificar",

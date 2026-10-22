@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Tasuta harjutustestid tööintervjuuks",
     "intro": "Harjuta rolli jaoks ajapiiranguga intervjuuga ning vaata siis oma hinnet ja kõiki õigeid vastuseid. Tasuta.",
-    "about": "Ajapiiranguga harjutusintervjuu. Kui oled valmis, näed oma hinnet ja kõiki õigeid vastuseid. Privaatne ja tasuta.",
+    "about": "Ajapiiranguga harjutusintervjuu, kui sa ei vali ajapiiranguta. Kui oled valmis, näed oma hinnet ja kõiki õigeid vastuseid. Privaatne ja tasuta.",
     "pageTitle": "{title}: tasuta harjutustest tööintervjuuks",
     "pageDescription": "Tasuta harjutustest tööintervjuuks valmistumiseks ({level}), roll {title}: {count, plural, one {# teema} other {# teemat}}, ajapiiranguga, lõpus hinne ja kõik õiged vastused. Harjutus, mitte päris töövestlus.",
     "start": "Alusta harjutamist",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "küsimust vastatud",
     "hireTitle": "Värbad sellesse rolli?",
     "hireText": "Kasuta seda intervjuud oma kandidaatidega või loo intervjuu oma töökuulutuse põhjal.",
-    "hireButton": "Loo intervjuu"
+    "hireButton": "Loo intervjuu",
+    "timingPerQuestion": "{time} küsimuse kohta",
+    "timingNone": "Ajapiiranguta",
+    "timingNote": "Harjutust ei võrrelda kellegagi, nii et võta vajadusel rohkem aega või ajapiirang üldse ära."
   },
   "verify": {
     "verify": "Kinnita",

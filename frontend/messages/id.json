@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Latihan interview kerja gratis per posisi",
     "intro": "Berlatih untuk suatu posisi dengan wawancara berbatas waktu, lalu lihat nilaimu dan semua jawaban yang benar. Gratis.",
-    "about": "Wawancara latihan berbatas waktu. Setelah selesai, lihat nilaimu dan semua jawaban yang benar. Privat dan gratis.",
+    "about": "Wawancara latihan berbatas waktu, kecuali kamu memilih tanpa batas waktu. Setelah selesai, lihat nilaimu dan semua jawaban yang benar. Privat dan gratis.",
     "pageTitle": "{title}: latihan interview kerja gratis",
     "pageDescription": "Latihan interview kerja {level} gratis untuk {title}: {count, plural, other {# topik}}, berbatas waktu, dengan nilai dan semua jawaban yang benar setelahnya. Latihan, bukan wawancara kerja sungguhan.",
     "start": "Mulai latihan",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "soal dijawab",
     "hireTitle": "Sedang merekrut untuk posisi ini?",
     "hireText": "Gunakan wawancara ini untuk kandidatmu, atau buat wawancara dari deskripsi pekerjaanmu.",
-    "hireButton": "Buat wawancara"
+    "hireButton": "Buat wawancara",
+    "timingPerQuestion": "{time} per pertanyaan",
+    "timingNone": "Tanpa batas waktu",
+    "timingNote": "Latihan tidak dibandingkan dengan siapa pun, jadi ambil waktu lebih lama, atau tanpa batas, jika perlu."
   },
   "verify": {
     "verify": "Verifikasi",

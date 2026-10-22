@@ -7,9 +7,9 @@ import { PracticeRoundList } from "@/components/practice/practice-round-list"
 import { StartPractice } from "@/components/practice/start-practice"
 import { SignInPrompt } from "@/components/sign-in-prompt"
 import { TOKEN_COOKIE } from "@/constants/auth"
-import { serverFetch } from "@/lib/server-api"
+import { publicFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
-import type { PracticeRoundSummary } from "@/types/round"
+import type { PracticeRoundSummary, PracticeSize } from "@/types/round"
 import type { Template } from "@/types/superadmin"
 import { PAGE_SIZE } from "@/constants/lists"
 import { PageKey } from "@/components/page-key"
@@ -35,11 +35,12 @@ export default async function PracticeHistoryPage({
     )
   }
 
-  const [template, rounds] = await Promise.all([
+  const [template, rounds, size] = await Promise.all([
     serverFetch<Template>(`/library/templates/${templateId}`),
     serverFetch<PracticeRoundSummary[]>(
       `/rounds/practice/${templateId}/rounds?limit=${PAGE_SIZE}`
     ),
+    publicFetch<PracticeSize>(`/rounds/practice/${templateId}/size`),
   ])
 
   return (
@@ -63,7 +64,11 @@ export default async function PracticeHistoryPage({
               )}
             </div>
             <div className="max-sm:py-4 max-sm:*:w-full">
-              <StartPractice templateId={templateId} label={t("again")} />
+              <StartPractice
+                templateId={templateId}
+                label={t("again")}
+                timings={size?.timings ?? []}
+              />
             </div>
           </div>
         }

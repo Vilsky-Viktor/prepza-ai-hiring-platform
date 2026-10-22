@@ -2,7 +2,7 @@ from itertools import groupby
 
 from prepza_common.multi_answer import draw
 
-from app.constants.practice import PRACTICE_TOPIC_QUESTIONS
+from app.constants.practice import PRACTICE_TIMINGS, PRACTICE_TOPIC_QUESTIONS
 from app.constants.rounds import RoundStatus
 from app.helpers.review import build_review
 from app.helpers.scores import final_score, interview_finished
@@ -10,6 +10,7 @@ from app.schemas.library import TopicQuestions
 from app.schemas.practice import (
     PracticeRoundOut,
     PracticeRoundSummary,
+    PracticeTimingOut,
     PracticeTopicProgress,
     PracticeTopicResult,
 )
@@ -36,6 +37,21 @@ def round_size(content: dict) -> int:
     )
 
 
+def timing_seconds(base: int, timing: str) -> int | None:
+    """The seconds each question has with `timing`, from the level's `base`; None is untimed."""
+    factor = PRACTICE_TIMINGS[timing]
+
+    return None if factor is None else base * factor
+
+
+def practice_timings(base: int) -> list[PracticeTimingOut]:
+    """Every time per question a talent can choose, from the level's `base` seconds."""
+    return [
+        PracticeTimingOut(id=timing, seconds=timing_seconds(base, timing))
+        for timing in PRACTICE_TIMINGS
+    ]
+
+
 def round_grade(rows: list) -> tuple[bool, int | None]:
     """Whether every section of the round is finished, and then its grade over every question
     (unanswered ones count as wrong)."""
@@ -46,7 +62,7 @@ def round_grade(rows: list) -> tuple[bool, int | None]:
     return finished, final_score(scores, total) if finished else None
 
 
-def round_out(rows: list, title: str | None) -> PracticeRoundOut:
+def round_out(rows: list, title: str | None, language: str | None = None) -> PracticeRoundOut:
     """A round's results; the questions and right answers only once it's finished."""
     finished, grade = round_grade(rows)
     open_row = next((row for row in rows if row.status != RoundStatus.FINISHED), None)
@@ -55,6 +71,7 @@ def round_out(rows: list, title: str | None) -> PracticeRoundOut:
         round_id=rows[0].candidate_invite_id,
         template_id=rows[0].interview_set_id,
         title=title,
+        language=language,
         finished=finished,
         grade=grade,
         answered=sum(1 for row in rows for answer in row.answers if not answer.timed_out),

@@ -231,6 +231,23 @@
       }
      }
     ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "anyOf": [
+         {
+          "$ref": "#/components/schemas/PracticeStartIn"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Body"
+       }
+      }
+     }
+    },
     "responses": {
      "201": {
       "description": "Successful Response",
@@ -261,7 +278,7 @@
      "practice"
     ],
     "summary": "Practice Size",
-    "description": "Public, for the test's page: how many questions a round has, kept for a few minutes.",
+    "description": "Public, for the test's page: how many questions a round has (with its level, kept for a\nfew minutes), and the times per question to choose from.",
     "operationId": "practice_size_practice__template_id__size_get",
     "parameters": [
      {
@@ -2537,6 +2554,17 @@
       ],
       "title": "Title"
      },
+     "language": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Language"
+     },
      "finished": {
       "type": "boolean",
       "title": "Finished"
@@ -2648,14 +2676,40 @@
      "questions": {
       "type": "integer",
       "title": "Questions"
+     },
+     "timings": {
+      "items": {
+       "$ref": "#/components/schemas/PracticeTimingOut"
+      },
+      "type": "array",
+      "title": "Timings"
      }
     },
     "type": "object",
     "required": [
-     "questions"
+     "questions",
+     "timings"
     ],
     "title": "PracticeSizeOut",
-    "description": "How many questions a practice round on the template has."
+    "description": "How many questions a practice round on the template has, and the times per question to\nchoose from, standard first."
+   },
+   "PracticeStartIn": {
+    "properties": {
+     "timing": {
+      "type": "string",
+      "enum": [
+       "standard",
+       "double",
+       "untimed"
+      ],
+      "title": "Timing",
+      "description": "The time per question: standard, double, or no time limit.",
+      "default": "standard"
+     }
+    },
+    "type": "object",
+    "title": "PracticeStartIn",
+    "description": "How a new practice round is timed: one of PRACTICE_TIMINGS (constants/practice.py)."
    },
    "PracticeStartOut": {
     "properties": {
@@ -2677,6 +2731,32 @@
     ],
     "title": "PracticeStartOut",
     "description": "A new practice round: its id, and the first section to open."
+   },
+   "PracticeTimingOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "seconds": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Seconds"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "seconds"
+    ],
+    "title": "PracticeTimingOut",
+    "description": "A time per question the talent can choose before a round."
    },
    "PracticeTopicProgress": {
     "properties": {

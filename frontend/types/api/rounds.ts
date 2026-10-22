@@ -108,7 +108,8 @@ export interface paths {
     }
     /**
      * Practice Size
-     * @description Public, for the test's page: how many questions a round has, kept for a few minutes.
+     * @description Public, for the test's page: how many questions a round has (with its level, kept for a
+     *     few minutes), and the times per question to choose from.
      */
     get: operations["practice_size_practice__template_id__size_get"]
     put?: never
@@ -1043,6 +1044,8 @@ export interface components {
       template_id: string
       /** Title */
       title: string | null
+      /** Language */
+      language?: string | null
       /** Finished */
       finished: boolean
       /** Grade */
@@ -1082,11 +1085,27 @@ export interface components {
     }
     /**
      * PracticeSizeOut
-     * @description How many questions a practice round on the template has.
+     * @description How many questions a practice round on the template has, and the times per question to
+     *     choose from, standard first.
      */
     PracticeSizeOut: {
       /** Questions */
       questions: number
+      /** Timings */
+      timings: components["schemas"]["PracticeTimingOut"][]
+    }
+    /**
+     * PracticeStartIn
+     * @description How a new practice round is timed: one of PRACTICE_TIMINGS (constants/practice.py).
+     */
+    PracticeStartIn: {
+      /**
+       * Timing
+       * @description The time per question: standard, double, or no time limit.
+       * @default standard
+       * @enum {string}
+       */
+      timing: "standard" | "double" | "untimed"
     }
     /**
      * PracticeStartOut
@@ -1103,6 +1122,16 @@ export interface components {
        * Format: uuid
        */
       session_id: string
+    }
+    /**
+     * PracticeTimingOut
+     * @description A time per question the talent can choose before a round.
+     */
+    PracticeTimingOut: {
+      /** Id */
+      id: string
+      /** Seconds */
+      seconds: number | null
     }
     /**
      * PracticeTopicProgress
@@ -1540,7 +1569,11 @@ export interface operations {
       }
       cookie?: never
     }
-    requestBody?: never
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PracticeStartIn"] | null
+      }
+    }
     responses: {
       /** @description Successful Response */
       201: {

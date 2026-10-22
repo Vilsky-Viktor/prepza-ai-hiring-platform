@@ -1,9 +1,18 @@
 from datetime import datetime
+from typing import Literal
 from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.schemas.review import ReviewItem
+
+
+class PracticeStartIn(BaseModel):
+    """How a new practice round is timed: one of PRACTICE_TIMINGS (constants/practice.py)."""
+
+    timing: Literal["standard", "double", "untimed"] = Field(
+        "standard", description="The time per question: standard, double, or no time limit."
+    )
 
 
 class PracticeStartOut(BaseModel):
@@ -28,6 +37,8 @@ class PracticeRoundOut(BaseModel):
     round_id: UUID
     template_id: UUID
     title: str | None
+    # The language the questions are written in, which can differ from the page's.
+    language: str | None = None
     finished: bool
     # The share of the round's questions answered right; None until it's finished.
     grade: int | None
@@ -57,7 +68,17 @@ class PracticeTopicProgress(BaseModel):
     total: int
 
 
+class PracticeTimingOut(BaseModel):
+    """A time per question the talent can choose before a round."""
+
+    id: str
+    # The seconds each question has; None for no time limit.
+    seconds: int | None
+
+
 class PracticeSizeOut(BaseModel):
-    """How many questions a practice round on the template has."""
+    """How many questions a practice round on the template has, and the times per question to
+    choose from, standard first."""
 
     questions: int
+    timings: list[PracticeTimingOut]

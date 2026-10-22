@@ -136,7 +136,11 @@ export default async function PracticeTestPage({
               </div>
             </div>
             <div className="max-sm:flex max-sm:basis-full max-sm:justify-center max-sm:pt-2">
-              <PracticeActions templateId={id} startLabel={t("start")} />
+              <PracticeActions
+                templateId={id}
+                startLabel={t("start")}
+                timings={size?.timings ?? []}
+              />
             </div>
           </div>
         }

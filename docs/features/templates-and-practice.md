@@ -53,9 +53,10 @@ Each template has a readable slug made from its title when it's saved: `backend-
 
 ## Free practice
 
-Free practice (`/practice`) gives people preparing for a role timed practice interviews on the templates' practice questions.
+Free practice (`/practice`) gives people preparing for a role practice interviews on the templates' practice questions, timed unless they choose otherwise.
 
 - 10 questions a topic, about 1 in 10 of them "select all that apply" (scored as in [Interviews](interviews.md#questions)), each with the seconds a company's new test of the template's level starts with (60 for basic and medium, 75 for hard, by default).
+- Before a round, beside its start button, the person picks the time per question: the standard seconds, double, or no time limit (WCAG 2.2.1: practice measures nothing, so whoever needs it gets more time or none). Rounds decides the options (`PRACTICE_TIMINGS` in `services/rounds/app/constants/practice.py`), sends them with the round's size (`GET /rounds/practice/{template_id}/size`, worked out from the level's current seconds) and takes the choice when the round starts (`POST /rounds/practice/{template_id}` with `{"timing": "standard" | "double" | "untimed"}`; anything else is a 422). A round with double time or none doesn't count in the questions' statistics, as repeat rounds don't.
 - At the end: the grade and every right answer; for a "select all that apply" question, also the options ticked, which were right, and its points ("2 of 3 right options · 0.67 of 1 point").
 - Each template keeps the person's rounds and progress. Their rounds (`/practice/history/<template id>`) are listed newest first, 20 at a time, and more load as the list scrolls (`GET /rounds/practice/{template_id}/rounds?offset=&limit=`).
 - At most 20 rounds an hour per person (`PRACTICE_ROUNDS_PER_HOUR`, by default).

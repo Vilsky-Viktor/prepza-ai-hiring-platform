@@ -12,9 +12,9 @@ import { PracticeReview } from "@/components/practice/practice-review"
 import { SignInPrompt } from "@/components/sign-in-prompt"
 import { Button } from "@/components/ui/button"
 import { TOKEN_COOKIE } from "@/constants/auth"
-import { serverFetch } from "@/lib/server-api"
+import { publicFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
-import type { PracticeRound } from "@/types/round"
+import type { PracticeRound, PracticeSize } from "@/types/round"
 import { formatPercent } from "@/lib/format"
 import { PageKey } from "@/components/page-key"
 
@@ -48,6 +48,13 @@ export default async function PracticeRoundPage({
     notFound()
   }
 
+  // The times per question to choose from for another round.
+  const size = round.finished
+    ? await publicFetch<PracticeSize>(
+        `/rounds/practice/${round.template_id}/size`
+      )
+    : null
+
   return (
     <main className="mx-auto max-w-5xl space-y-10 px-6 py-12">
       <PageKey page="practiceRound" />
@@ -68,6 +75,7 @@ export default async function PracticeRoundPage({
                 <PracticeActions
                   templateId={round.template_id}
                   startLabel={t("again")}
+                  timings={size?.timings ?? []}
                 />
               </div>
             )}
@@ -124,6 +132,7 @@ export default async function PracticeRoundPage({
               <PracticeReview
                 sessionId={topic.session_id}
                 items={topic.review}
+                language={round.language}
               />
             </section>
           ))}

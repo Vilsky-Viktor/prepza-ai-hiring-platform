@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Sollicitatiegesprek gratis oefenen",
     "intro": "Oefen voor een functie met een interview met tijdslimiet en bekijk daarna je score en elk juist antwoord. Kosteloos.",
-    "about": "Oefeninterview met tijdslimiet. Als je klaar bent, zie je je score en elk juist antwoord. Privé en gratis.",
+    "about": "Oefeninterview met tijdslimiet, tenzij je kiest voor geen tijdslimiet. Als je klaar bent, zie je je score en elk juist antwoord. Privé en gratis.",
     "pageTitle": "{title}: sollicitatiegesprek gratis oefenen",
     "pageDescription": "Sollicitatiegesprek gratis oefenen (niveau: {level}) voor {title}: {count, plural, one {# onderwerp} other {# onderwerpen}}, met tijdslimiet, met je score en elk juist antwoord achteraf. Oefening, geen echt sollicitatiegesprek.",
     "start": "Oefenen starten",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "vragen beantwoord",
     "hireTitle": "Werf je voor deze functie?",
     "hireText": "Gebruik dit interview voor je kandidaten of genereer er een op basis van je functieomschrijving.",
-    "hireButton": "Interview maken"
+    "hireButton": "Interview maken",
+    "timingPerQuestion": "{time} per vraag",
+    "timingNone": "Geen tijdslimiet",
+    "timingNote": "Oefenen wordt met niemand vergeleken: neem meer tijd, of geen limiet, als je dat nodig hebt."
   },
   "verify": {
     "verify": "Verifiëren",

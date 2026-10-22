@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Simulation d'entretien d'embauche gratuite",
     "intro": "Entraînez-vous pour un poste avec un entretien chronométré, puis voyez votre note et toutes les bonnes réponses. Gratuitement.",
-    "about": "Entretien d'entraînement chronométré. Une fois terminé, voyez votre note et toutes les bonnes réponses. Privé et gratuit.",
+    "about": "Entretien d'entraînement chronométré, sauf si vous choisissez sans limite de temps. Une fois terminé, voyez votre note et toutes les bonnes réponses. Privé et gratuit.",
     "pageTitle": "{title} : simulation d'entretien d'embauche gratuite",
     "pageDescription": "Simulation d'entretien d'embauche gratuite de niveau {level} pour {title} : {count, plural, one {# thème} other {# thèmes}}, chronométrée, avec votre note et toutes les bonnes réponses ensuite. Un entraînement, pas un vrai entretien d'embauche.",
     "start": "Commencer l'entraînement",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "questions avec réponse",
     "hireTitle": "Vous recrutez pour ce poste ?",
     "hireText": "Utilisez cet entretien avec vos candidats ou générez-en un pour votre fiche de poste.",
-    "hireButton": "Créer un entretien"
+    "hireButton": "Créer un entretien",
+    "timingPerQuestion": "{time} par question",
+    "timingNone": "Sans limite de temps",
+    "timingNote": "L'entraînement n'est comparé à personne : prenez plus de temps, ou aucune limite, si vous en avez besoin."
   },
   "verify": {
     "verify": "Vérifier",

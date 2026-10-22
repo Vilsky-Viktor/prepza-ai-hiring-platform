@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Libreng mock interview practice ayon sa role",
     "intro": "Mag-practice para sa isang role gamit ang timed interview, saka tingnan ang iyong grade at bawat tamang sagot. Libre.",
-    "about": "Timed na practice interview. Pagkatapos mo, makikita mo ang iyong grade at bawat tamang sagot. Pribado at libre.",
+    "about": "Timed na practice interview, maliban kung pipiliin mong walang time limit. Pagkatapos mo, makikita mo ang iyong grade at bawat tamang sagot. Pribado at libre.",
     "pageTitle": "{title}: libreng mock interview practice",
     "pageDescription": "Libreng {level} mock interview practice para sa {title}: {count, plural, one {# topic} other {# topic}}, timed, kasama ang grade mo at bawat tamang sagot pagkatapos. Practice, hindi totoong job interview.",
     "start": "Simulan ang practice",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "tanong ang nasagot",
     "hireTitle": "Nagha-hire para sa role na ito?",
     "hireText": "Gamitin ang interview na ito sa iyong mga aplikante o gumawa ng isa para sa iyong job description.",
-    "hireButton": "Gumawa ng interview"
+    "hireButton": "Gumawa ng interview",
+    "timingPerQuestion": "{time} bawat tanong",
+    "timingNone": "Walang time limit",
+    "timingNote": "Hindi ikinukumpara sa iba ang practice, kaya kumuha ng mas maraming oras, o alisin ang limit, kung kailangan mo."
   },
   "verify": {
     "verify": "I-verify",

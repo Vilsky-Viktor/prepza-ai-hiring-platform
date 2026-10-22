@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Pozisyona göre ücretsiz mülakat simülasyonu",
     "intro": "Bir pozisyon için süreli bir mülakatla pratik yapın, sonra notunuzu ve tüm doğru cevapları görün. Ücretsiz.",
-    "about": "Süreli pratik mülakat. Bitirdiğinizde notunuzu ve tüm doğru cevapları görün. Gizli ve ücretsiz.",
+    "about": "Süre sınırı yok seçmediğiniz sürece süreli pratik mülakat. Bitirdiğinizde notunuzu ve tüm doğru cevapları görün. Gizli ve ücretsiz.",
     "pageTitle": "{title}: ücretsiz mülakat simülasyonu",
     "pageDescription": "{title} için ücretsiz {level} seviye mülakat simülasyonu: {count, plural, one {# konu} other {# konu}}, süreli, sonunda notunuz ve tüm doğru cevaplarla. Gerçek bir iş mülakatı değil, pratik.",
     "start": "Pratiğe başla",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "cevaplanan soru",
     "hireTitle": "Bu pozisyon için işe alım mı yapıyorsunuz?",
     "hireText": "Bu mülakatı adaylarınızla kullanın ya da iş tanımınız için yeni bir mülakat oluşturun.",
-    "hireButton": "Mülakat oluştur"
+    "hireButton": "Mülakat oluştur",
+    "timingPerQuestion": "Soru başına {time}",
+    "timingNone": "Süre sınırı yok",
+    "timingNote": "Pratik kimseyle karşılaştırılmaz; gerekirse daha fazla süre alın ya da süre sınırını kaldırın."
   },
   "verify": {
     "verify": "Doğrula",

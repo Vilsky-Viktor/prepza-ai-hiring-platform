@@ -31,7 +31,7 @@ async def create_many(
     user_id: str,
     candidate_invite_id: uuid.UUID,
     topics: list[TopicQuestions],
-    question_seconds: int,
+    question_seconds: int | None,
     preview: bool = False,
     practice: bool = False,
     company_id: uuid.UUID | None = None,

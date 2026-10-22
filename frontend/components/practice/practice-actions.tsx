@@ -7,15 +7,18 @@ import { useTranslations } from "next-intl"
 import { useAuth } from "@/components/auth-provider"
 import { StartPractice } from "@/components/practice/start-practice"
 import { Button } from "@/components/ui/button"
+import type { PracticeTiming } from "@/types/round"
 
 /** A practice test's actions beside its title: the talent's past rounds (signed in), and
- * starting a new round. */
+ * starting a new round with the time per question they choose. */
 export function PracticeActions({
   templateId,
   startLabel,
+  timings,
 }: {
   templateId: string
   startLabel: string
+  timings: PracticeTiming[]
 }) {
   const t = useTranslations("practice")
   const { user } = useAuth()
@@ -34,7 +37,11 @@ export function PracticeActions({
           <HistoryIcon className="size-6" />
         </Button>
       )}
-      <StartPractice templateId={templateId} label={startLabel} />
+      <StartPractice
+        templateId={templateId}
+        label={startLabel}
+        timings={timings}
+      />
     </div>
   )
 }

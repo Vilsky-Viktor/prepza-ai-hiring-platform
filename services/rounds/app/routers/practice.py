@@ -13,12 +13,15 @@ from prepza_common.rate_limit import hit_or_skip
 from app.constants.practice import (
     NO_PRACTICE_QUESTIONS,
     PRACTICE_SIZE_CACHE_SECONDS,
+    STANDARD_TIMING,
 )
 from app.helpers.practice import (
+    practice_timings,
     practice_topics,
     round_out,
     round_size,
     round_summaries,
+    timing_seconds,
     topic_progress,
 )
 from app.integrations import library
@@ -27,18 +30,22 @@ from app.schemas.practice import (
     PracticeRoundOut,
     PracticeRoundSummary,
     PracticeSizeOut,
+    PracticeStartIn,
     PracticeStartOut,
     PracticeTopicProgress,
 )
 from app.storage import practice_sessions, sessions
 
-# Free practice for talents: timed rounds on a template's revealed questions, up to
-# the PRACTICE_ROUNDS_PER_HOUR limit, each with fresh random questions and every right answer shown after.
+# Free practice for talents: rounds on a template's revealed questions, timed as the talent
+# chooses (standard, double or untimed), up to the PRACTICE_ROUNDS_PER_HOUR limit, each with
+# fresh random questions and every right answer shown after.
 router = APIRouter(prefix="/practice", tags=["practice"])
 
 
 @router.post("/{template_id}", status_code=status.HTTP_201_CREATED)
-async def start_practice(template_id: UUID, user: CurrentUser) -> PracticeStartOut:
+async def start_practice(
+    template_id: UUID, user: CurrentUser, body: PracticeStartIn | None = None
+) -> PracticeStartOut:
     redis = get_redis()
     await refuse_if_paused(redis, "practice", user_id=user.uid)
     content = await library.practice_content(template_id)
@@ -56,13 +63,15 @@ async def start_practice(template_id: UUID, user: CurrentUser) -> PracticeStartO
     round_id = uuid.uuid4()
     # Only a talent's first round counts in the questions' statistics: later rounds repeat
     # questions whose answers were shown, so they measure memory, not knowledge.
+    # A round with more time or none doesn't count either: it no longer measures the same thing.
+    timing = body.timing if body else STANDARD_TIMING
     repeat = await practice_sessions.practiced(user.uid, template_id)
     rows = await sessions.create_many(
         user.uid,
         round_id,
         practice_topics(content, await multi_share(redis)),
-        await question_seconds(redis, content["level"]),
-        preview=repeat,
+        timing_seconds(await question_seconds(redis, content["level"]), timing),
+        preview=repeat or timing != STANDARD_TIMING,
         practice=True,
     )
 
@@ -71,20 +80,24 @@ async def start_practice(template_id: UUID, user: CurrentUser) -> PracticeStartO
 
 @router.get("/{template_id}/size")
 async def practice_size(template_id: UUID) -> PracticeSizeOut:
-    """Public, for the test's page: how many questions a round has, kept for a few minutes."""
+    """Public, for the test's page: how many questions a round has (with its level, kept for a
+    few minutes), and the times per question to choose from."""
     key = f"practice-size:{template_id}"
-    size = memory_cache.get(key)
+    cached = memory_cache.get(key)
 
-    if size is None:
+    if cached is None:
         content = await library.practice_content(template_id)
 
         if content is None:
             raise HTTPException(status.HTTP_404_NOT_FOUND, "Test not found")
 
-        size = round_size(content)
-        memory_cache.put(key, size, PRACTICE_SIZE_CACHE_SECONDS)
+        cached = (round_size(content), content["level"])
+        memory_cache.put(key, cached, PRACTICE_SIZE_CACHE_SECONDS)
 
-    return PracticeSizeOut(questions=size)
+    size, level = cached
+    base = await question_seconds(get_redis(), level)
+
+    return PracticeSizeOut(questions=size, timings=practice_timings(base))
 
 
 @router.get("/rounds/{round_id}")
@@ -101,7 +114,9 @@ async def get_round(round_id: UUID, user: CurrentUser) -> PracticeRoundOut:
 
     found = await library.get_set(rows[0].interview_set_id)
 
-    return round_out(rows, found["title"] if found else None)
+    title, language = (found["title"], found.get("language")) if found else (None, None)
+
+    return round_out(rows, title, language)
 
 
 @router.get("/{template_id}/rounds")

@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "按职位分类的免费模拟面试",
     "intro": "通过限时面试为职位做练习，然后查看你的成绩和所有正确答案。完全免费。",
-    "about": "限时练习面试。完成后可查看你的成绩和所有正确答案。私密且免费。",
+    "about": "限时练习面试，除非你选择不限时。完成后可查看你的成绩和所有正确答案。私密且免费。",
     "pageTitle": "{title}：免费模拟面试",
     "pageDescription": "{title} 的免费 {level} 模拟面试：{count, plural, other {# 个主题}}，限时选择题，结束后查看你的成绩和所有正确答案。这是练习，不是真正的求职面试。",
     "start": "开始练习",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "道题已作答",
     "hireTitle": "正在招聘这个职位？",
     "hireText": "把这个面试用于你的候选人，或根据你的职位描述生成一个面试。",
-    "hireButton": "创建面试"
+    "hireButton": "创建面试",
+    "timingPerQuestion": "每题 {time}",
+    "timingNone": "不限时",
+    "timingNote": "练习不与任何人比较，如有需要，可以延长时间或不限时。"
   },
   "verify": {
     "verify": "验证",

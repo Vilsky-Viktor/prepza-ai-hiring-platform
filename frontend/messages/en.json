@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Free mock interviews by role",
     "intro": "Practise for a role with a timed interview, then see your grade and every right answer. Free of charge.",
-    "about": "Timed practice interview. Once you're done, see your grade and every right answer. Private and free.",
+    "about": "A practice interview, timed unless you choose no time limit. Once you're done, see your grade and every right answer. Private and free.",
     "pageTitle": "{title}: free practice interview",
     "pageDescription": "A free {level} practice interview for {title}: {count, plural, one {# topic} other {# topics}}, timed, with your grade and every right answer after. Practice, not a real job interview.",
     "start": "Start practice",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "questions answered",
     "hireTitle": "Hiring for this role?",
     "hireText": "Use this interview with your candidates or generate one for your job description.",
-    "hireButton": "Create interview"
+    "hireButton": "Create interview",
+    "timingPerQuestion": "{time} per question",
+    "timingNone": "No time limit",
+    "timingNote": "Practice isn't compared with anyone, so take more time, or none, if you need it."
   },
   "verify": {
     "verify": "Verify",

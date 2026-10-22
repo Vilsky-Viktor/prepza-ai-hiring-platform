@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Vorstellungsgespräch kostenlos üben",
     "intro": "Übe für eine Rolle mit einem Interview mit Zeitlimit und sieh dann dein Ergebnis und jede richtige Antwort. Kostenlos.",
-    "about": "Übungsinterview mit Zeitlimit. Wenn du fertig bist, siehst du dein Ergebnis und jede richtige Antwort. Privat und kostenlos.",
+    "about": "Übungsinterview mit Zeitlimit, außer du wählst „Ohne Zeitlimit“. Wenn du fertig bist, siehst du dein Ergebnis und jede richtige Antwort. Privat und kostenlos.",
     "pageTitle": "{title}: Vorstellungsgespräch kostenlos üben",
     "pageDescription": "Vorstellungsgespräch für {title} kostenlos üben ({level}): {count, plural, one {# Thema} other {# Themen}}, mit Zeitlimit, danach dein Ergebnis und jede richtige Antwort. Übung, kein echtes Vorstellungsgespräch.",
     "start": "Übung starten",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "Fragen beantwortet",
     "hireTitle": "Du stellst für diese Rolle ein?",
     "hireText": "Nutze dieses Interview mit deinen Kandidaten oder generiere eines für deine Stellenbeschreibung.",
-    "hireButton": "Interview erstellen"
+    "hireButton": "Interview erstellen",
+    "timingPerQuestion": "{time} pro Frage",
+    "timingNone": "Ohne Zeitlimit",
+    "timingNote": "Übungen werden mit niemandem verglichen: Nimm dir mehr Zeit oder gar kein Limit, wenn du es brauchst."
   },
   "verify": {
     "verify": "Verifizieren",

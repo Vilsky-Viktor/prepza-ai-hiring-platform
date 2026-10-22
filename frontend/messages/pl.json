@@ -1590,7 +1590,7 @@
   "practice": {
     "title": "Darmowa symulacja rozmowy kwalifikacyjnej",
     "intro": "Poćwicz pod daną rolę w rozmowie na czas, a potem zobacz swój wynik i wszystkie poprawne odpowiedzi. Bezpłatnie.",
-    "about": "Próbna rozmowa na czas. Po zakończeniu zobaczysz swój wynik i wszystkie poprawne odpowiedzi. Prywatnie i za darmo.",
+    "about": "Próbna rozmowa na czas, chyba że wybierzesz brak limitu czasu. Po zakończeniu zobaczysz swój wynik i wszystkie poprawne odpowiedzi. Prywatnie i za darmo.",
     "pageTitle": "{title}: darmowa symulacja rozmowy kwalifikacyjnej",
     "pageDescription": "Darmowa symulacja rozmowy kwalifikacyjnej (poziom: {level}) dla roli {title}: {count, plural, one {# temat} few {# tematy} many {# tematów} other {# tematu}}, na czas, z oceną i wszystkimi poprawnymi odpowiedziami na końcu. To ćwiczenie, nie prawdziwa rozmowa o pracę.",
     "start": "Zacznij ćwiczyć",
@@ -1608,7 +1608,10 @@
     "answeredLabel": "pytań z odpowiedzią",
     "hireTitle": "Rekrutujesz na to stanowisko?",
     "hireText": "Użyj tej rozmowy ze swoimi kandydatami albo wygeneruj własną z opisu stanowiska.",
-    "hireButton": "Utwórz rozmowę"
+    "hireButton": "Utwórz rozmowę",
+    "timingPerQuestion": "{time} na pytanie",
+    "timingNone": "Bez limitu czasu",
+    "timingNote": "Ćwiczenie nie jest z nikim porównywane, więc jeśli potrzebujesz, weź więcej czasu albo zrezygnuj z limitu."
   },
   "verify": {
     "verify": "Zweryfikuj",
