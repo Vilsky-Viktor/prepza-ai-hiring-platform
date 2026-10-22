@@ -3,6 +3,8 @@ import logging
 from collections.abc import AsyncIterator
 
 import anyio
+from fastapi import HTTPException, status
+from prepza_common.constants import RETRY_AFTER
 from prepza_common.i18n import translate
 from prepza_common.pause import refuse_if_paused
 from prepza_common.secrets_check import secret_in
@@ -19,6 +21,8 @@ from app.constants.chat import (
     SESSION_EXPIRED_CODE,
     TITLE_LENGTH,
     TURN_SECONDS,
+    TURNS_AT_ONCE,
+    TURNS_BUSY_RETRY_SECONDS,
     Status,
 )
 from app.integrations.redis import get_redis
@@ -36,6 +40,19 @@ logger = logging.getLogger(__name__)
 
 # What the turn puts last on its queue: nothing more comes.
 END = object()
+# Turns streaming on this instance now (stream); at most TURNS_AT_ONCE.
+running = {"turns": 0}
+
+
+def refuse_if_busy() -> None:
+    """Refuses a new turn (503, with Retry-After) while this instance streams TURNS_AT_ONCE; the
+    panel shows the error to try again."""
+    if running["turns"] >= TURNS_AT_ONCE:
+        raise HTTPException(
+            status.HTTP_503_SERVICE_UNAVAILABLE,
+            CHAT_FAILED,
+            headers={RETRY_AFTER: str(TURNS_BUSY_RETRY_SECONDS)},
+        )
 
 
 async def start(body: ChatRequest, user: User, token: str, language: str) -> AsyncIterator[str]:
@@ -48,6 +65,7 @@ async def start(body: ChatRequest, user: User, token: str, language: str) -> Asy
     if secret is not None:
         return secret_reply(secret, body, language)
 
+    refuse_if_busy()
     redis = get_redis()
     await refuse_if_paused(redis, MESSAGE_ACTION, user_id=user.uid)
     conversation = None
@@ -82,6 +100,7 @@ async def stream(turn: Turn, prompt: list, first: dict | None = None) -> AsyncIt
     user stopped it, or closed the tab), it's cancelled and saves what it had."""
     queue: asyncio.Queue = asyncio.Queue()
     task = asyncio.create_task(run_turn(turn, prompt, queue.put_nowait))
+    running["turns"] += 1
 
     try:
         yield sse_event({"conversation": {"id": str(turn.conversation_id)}})
@@ -107,6 +126,8 @@ async def stream(turn: Turn, prompt: list, first: dict | None = None) -> AsyncIt
         # The request may be cancelled itself: waiting for the turn to save must not be.
         with anyio.CancelScope(shield=True):
             await asyncio.wait({task})
+
+        running["turns"] -= 1
 
 
 async def run_turn(turn: Turn, prompt: list, emit: Emit) -> None:

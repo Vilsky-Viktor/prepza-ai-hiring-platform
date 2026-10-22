@@ -11,7 +11,7 @@ from app.models.answers import Turn
 from app.services import actions
 from app.services.chat import build_messages
 from app.services.tenancy import user_companies
-from app.services.turns import stream
+from app.services.turns import refuse_if_busy, stream
 from app.storage import messages
 
 
@@ -25,7 +25,9 @@ async def confirm(
 ) -> AsyncIterator[str]:
     """Runs a confirmed action (actions.run), then streams like a message: the card's new state
     ({"action"}), and the assistant telling the user what happened. The result reaches the model
-    only in this turn's prompt; it's never stored."""
+    only in this turn's prompt; it's never stored. Refused before the action runs while the
+    instance is busy with turns."""
+    refuse_if_busy()
     tool, pending, result, block = await actions.run(
         conversation_id, action_id, user, token, language, referral
     )

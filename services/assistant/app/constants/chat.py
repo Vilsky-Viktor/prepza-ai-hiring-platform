@@ -45,6 +45,12 @@ MODEL_INCLUDE = ["reasoning.encrypted_content"]
 MAX_TOOL_STEPS = 6
 # A whole turn, tools included.
 TURN_SECONDS = 90
+# Turns streaming on one instance at once, each holding its request up to TURN_SECONDS: about half
+# the instance's 80 requests (infra/terraform/locals.tf), so turns never take the slots that short
+# requests, AI apps' MCP calls and Pub/Sub's pushes need. One more is refused (503) to be tried
+# again after TURNS_BUSY_RETRY_SECONDS.
+TURNS_AT_ONCE = 40
+TURNS_BUSY_RETRY_SECONDS = 10
 # A comment goes out after this long without an event, so proxies keep the stream open.
 KEEP_ALIVE_SECONDS = 15
 # The earlier messages the model reads with a new one: the latest this many, within this many

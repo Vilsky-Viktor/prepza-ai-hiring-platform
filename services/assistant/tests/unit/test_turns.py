@@ -6,11 +6,14 @@ import anyio
 import httpx
 import openai
 import pytest
+from fastapi import HTTPException
 from prepza_common.sse import KEEP_ALIVE
+from prepza_common.user import User
 
-from app.constants.chat import CHAT_FAILED, Status
+from app.constants.chat import CHAT_FAILED, TURNS_AT_ONCE, TURNS_BUSY_RETRY_SECONDS, Status
 from app.integrations import llm, services
 from app.models.answers import Turn
+from app.schemas.chat import ChatRequest
 from app.services import turns
 from tests.fake_model import FakeModel, calls, text
 
@@ -193,3 +196,36 @@ def test_a_stopped_turn_is_saved_cancelled_with_its_text_so_far(monkeypatch, sav
     # Cut short, the call reported no tokens: what it read and wrote is estimated and counted.
     [(user, tokens)] = saved.tokens
     assert user == "ann" and tokens > 0
+
+
+def test_a_turn_counts_against_the_instances_turns_while_it_streams(monkeypatch, saved):
+    script(monkeypatch, text("Hello."))
+    seen = []
+
+    async def read():
+        async for _ in turns.stream(TURN, []):
+            seen.append(turns.running["turns"])
+
+    asyncio.run(read())
+
+    assert set(seen) == {1}
+    assert turns.running["turns"] == 0
+
+
+def test_a_new_message_is_refused_to_try_again_while_the_instance_is_full(monkeypatch):
+    monkeypatch.setitem(turns.running, "turns", TURNS_AT_ONCE)
+    counted = []
+
+    async def check(*args):
+        counted.append(args)
+
+    monkeypatch.setattr(turns.limits, "check", check)
+    user = User(uid="ann", email="ann@example.com", email_verified=True)
+
+    with pytest.raises(HTTPException) as refused:
+        asyncio.run(turns.start(ChatRequest(message="Hello"), user, "user-token", "en"))
+
+    assert refused.value.status_code == 503
+    assert refused.value.detail == CHAT_FAILED
+    assert refused.value.headers == {"Retry-After": str(TURNS_BUSY_RETRY_SECONDS)}
+    assert counted == []
