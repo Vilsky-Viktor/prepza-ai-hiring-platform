@@ -30,7 +30,7 @@ def stored(monkeypatch):
         else:
             votes[answer_id] = (trace_id, vote)
 
-    def mirror(trace_id, current):
+    async def mirror(trace_id, current):
         mirrored.append(trace_id)
 
     monkeypatch.setattr(help_votes, "save", save)

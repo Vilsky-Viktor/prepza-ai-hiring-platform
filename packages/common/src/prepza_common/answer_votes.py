@@ -18,15 +18,14 @@ logger = logging.getLogger(__name__)
 VOTE_SCORE = "user_vote"
 UP = 1
 DOWN = -1
-# Tries to send a vote, waiting twice as long after each failure.
-SEND_ATTEMPTS = 4
-FIRST_WAIT_SECONDS = 2
-
-# Votes being sent, kept so they aren't collected mid-send; one at a time an answer (its lock,
-# kept for the process's life: votes are few), so a quick change of mind can't be overtaken by
-# the vote before it.
-_sending: set[asyncio.Task] = set()
-_locks: dict[str, asyncio.Lock] = {}
+# A vote is mirrored inside its own request, which waits for it at most SEND_SECONDS: nothing runs
+# after the answer (Cloud Run throttles the CPU then, so a background send stalls or is lost), and
+# a slow Langfuse never holds the request longer. Tried SEND_ATTEMPTS times, after a jittered wait
+# from FIRST_WAIT_SECONDS; Langfuse's client doesn't retry on its own (one layer of retries).
+SEND_ATTEMPTS = 2
+FIRST_WAIT_SECONDS = 0.5
+SEND_SECONDS = 3
+ONE_TRY = {"max_retries": 0, "timeout_in_seconds": SEND_SECONDS}
 
 
 def score_id(trace_id: str) -> str:
@@ -40,7 +39,7 @@ def _mirror(trace_id: str, vote: int | None) -> None:
 
     if vote is None:
         try:
-            scores.delete(found)
+            scores.delete(found, request_options=ONE_TRY)
         except ApiError as error:
             if error.status_code != 404:
                 raise
@@ -54,39 +53,49 @@ def _mirror(trace_id: str, vote: int | None) -> None:
         value=1 if vote == UP else 0,
         data_type="NUMERIC",
     )
-    result = scores.create(request=[score])
+    result = scores.create(request=[score], request_options=ONE_TRY)
 
     if getattr(result, "errors", None):
         raise RuntimeError("Langfuse refused the score")
 
 
 async def send_vote(trace_id: str, current: Callable[[], Awaitable[int | None]]) -> None:
-    """Mirrors the answer's vote as it is when sent (`current` reads it), so retries and quick
-    changes end with the latest; retried with backoff, then logged and dropped (the vote stays
-    saved by the service)."""
-    async with _locks.setdefault(trace_id, asyncio.Lock()):
-        for attempt in range(SEND_ATTEMPTS):
-            try:
-                await asyncio.to_thread(_mirror, trace_id, await current())
+    """Mirrors the answer's vote as it is when sent (`current` reads it), and again if it changed
+    meanwhile, so quick changes on any instance end with the latest; retried, then logged and
+    dropped (the vote stays saved by the service)."""
+    sent = object()
 
+    for attempt in range(SEND_ATTEMPTS):
+        try:
+            vote = await current()
+
+            if vote == sent:
                 return
-            except Exception as error:  # noqa: BLE001 - logged by its type only
-                logger.warning(
-                    "Couldn't send a vote to Langfuse (try %d): %s",
-                    attempt + 1,
-                    type(error).__name__,
-                )
 
-                if attempt + 1 < SEND_ATTEMPTS:
-                    await asyncio.sleep(wait_seconds(FIRST_WAIT_SECONDS, attempt))
+            await asyncio.to_thread(_mirror, trace_id, vote)
+            sent = vote
+
+            if await current() == vote:
+                return
+        except Exception as error:  # noqa: BLE001 - logged by its type only
+            logger.warning(
+                "Couldn't send a vote to Langfuse (try %d): %s",
+                attempt + 1,
+                type(error).__name__,
+            )
+
+            if attempt + 1 < SEND_ATTEMPTS:
+                await asyncio.sleep(wait_seconds(FIRST_WAIT_SECONDS, attempt))
 
 
-def mirror_vote(trace_id: str | None, current: Callable[[], Awaitable[int | None]]) -> None:
-    """Sends the vote in the background; nothing when the answer has no trace or Langfuse isn't
+async def mirror_vote(trace_id: str | None, current: Callable[[], Awaitable[int | None]]) -> None:
+    """Sends the vote within SEND_SECONDS; nothing when the answer has no trace or Langfuse isn't
     set up."""
     if trace_id is None or not tracing.tracing_on():
         return
 
-    task = asyncio.create_task(send_vote(trace_id, current))
-    _sending.add(task)
-    task.add_done_callback(_sending.discard)
+    try:
+        async with asyncio.timeout(SEND_SECONDS):
+            await send_vote(trace_id, current)
+    except TimeoutError:
+        logger.warning("Couldn't send a vote to Langfuse in time")

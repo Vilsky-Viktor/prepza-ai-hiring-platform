@@ -104,4 +104,4 @@ async def vote(conversation_id: UUID, message_id: UUID, body: VoteIn, auth: User
     if not found:
         raise HTTPException(status.HTTP_404_NOT_FOUND, NOT_FOUND)
 
-    mirror_vote(trace_id, lambda: messages.vote_of(message_id))
+    await mirror_vote(trace_id, lambda: messages.vote_of(message_id))

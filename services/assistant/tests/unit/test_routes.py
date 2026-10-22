@@ -238,9 +238,11 @@ def voted(monkeypatch):
         return state["owned"], state["trace"] if state["owned"] else None
 
     monkeypatch.setattr(messages, "set_vote", set_vote)
-    monkeypatch.setattr(
-        conversations_router, "mirror_vote", lambda trace_id, current: mirrored.append(trace_id)
-    )
+
+    async def mirror_vote(trace_id, current):
+        mirrored.append(trace_id)
+
+    monkeypatch.setattr(conversations_router, "mirror_vote", mirror_vote)
 
     return saved, mirrored, state
 

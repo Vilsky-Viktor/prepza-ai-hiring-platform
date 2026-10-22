@@ -1,7 +1,9 @@
 """Votes on the chats' answers sent to Langfuse (prepza_common.answer_votes): one score a trace, created or replaced to match the vote as it is when sent, deleted when cleared,
-retried, and nothing at all without Langfuse's keys. Langfuse itself is a fake here."""
+retried, sent within the vote's own request, and nothing at all without Langfuse's keys.
+Langfuse itself is a fake here."""
 
 import asyncio
+import threading
 
 import pytest
 from langfuse.api.core.api_error import ApiError
@@ -18,21 +20,29 @@ class FakeScores:
         self.kept = {}
         self.failures = 0
         self.calls = []
+        self.options = []
+        self.release = None
 
     def fail(self):
+        if self.release is not None:
+            # Langfuse hanging until the test lets it go.
+            self.release.wait()
+
         if self.failures:
             self.failures -= 1
 
             raise ConnectionError("Langfuse is down")
 
-    def create(self, request):
+    def create(self, request, request_options=None):
+        self.options.append(request_options)
         self.fail()
         self.calls.append("create")
 
         for score in request:
             self.kept[score.id] = score
 
-    def delete(self, score_id):
+    def delete(self, score_id, request_options=None):
+        self.options.append(request_options)
         self.fail()
         self.calls.append("delete")
 
@@ -52,7 +62,6 @@ def langfuse(monkeypatch):
     monkeypatch.setenv("LANGFUSE_SECRET_KEY", "sk-lf-test")
     monkeypatch.setattr(tracing, "client", lambda: fake)
     monkeypatch.setattr(answer_votes, "FIRST_WAIT_SECONDS", 0)
-    monkeypatch.setattr(answer_votes, "_locks", {})
 
     return fake.api.scores
 
@@ -93,8 +102,8 @@ def test_a_changed_vote_replaces_the_same_score_and_a_cleared_one_deletes_it(lan
 
 
 def test_a_failed_send_is_retried_and_sends_the_vote_as_it_is_then(langfuse):
-    langfuse.failures = 2
-    votes = iter([answer_votes.UP, answer_votes.UP, answer_votes.DOWN])
+    langfuse.failures = 1
+    votes = iter([answer_votes.UP, answer_votes.DOWN, answer_votes.DOWN])
 
     async def current():
         return next(votes)
@@ -103,6 +112,8 @@ def test_a_failed_send_is_retried_and_sends_the_vote_as_it_is_then(langfuse):
 
     [score] = langfuse.kept.values()
     assert score.value == 0
+    # Langfuse's client doesn't retry on its own: the retries are ours alone.
+    assert {option["max_retries"] for option in langfuse.options} == {0}
 
 
 def test_after_the_last_try_the_vote_is_given_up_quietly(langfuse, caplog):
@@ -116,35 +127,46 @@ def test_after_the_last_try_the_vote_is_given_up_quietly(langfuse, caplog):
     )
 
 
-def test_quick_changes_are_sent_one_after_another_ending_with_the_latest(langfuse):
-    state = {"vote": answer_votes.UP}
+def test_a_vote_changed_while_it_was_sent_is_sent_again_ending_with_the_latest(langfuse):
+    votes = iter([answer_votes.UP, answer_votes.DOWN, answer_votes.DOWN, answer_votes.DOWN])
 
     async def current():
-        return state["vote"]
+        return next(votes)
 
-    async def both():
-        first = asyncio.create_task(answer_votes.send_vote(TRACE, current))
-        state["vote"] = answer_votes.DOWN
-        second = asyncio.create_task(answer_votes.send_vote(TRACE, current))
-        await asyncio.gather(first, second)
-
-    asyncio.run(both())
+    asyncio.run(answer_votes.send_vote(TRACE, current))
 
     [score] = langfuse.kept.values()
     assert score.value == 0
+    assert langfuse.calls == ["create", "create"]
 
 
-def test_with_langfuse_a_vote_goes_in_the_background(langfuse):
+def test_with_langfuse_a_vote_is_sent_before_the_request_ends(langfuse):
     async def current():
         return answer_votes.DOWN
 
-    async def scenario():
-        answer_votes.mirror_vote(TRACE, current)
-        await asyncio.gather(*answer_votes._sending)
-
-    asyncio.run(scenario())
+    asyncio.run(answer_votes.mirror_vote(TRACE, current))
 
     assert [score.value for score in langfuse.kept.values()] == [0]
+
+
+def test_a_hanging_langfuse_holds_the_request_no_longer_than_its_time(langfuse, monkeypatch):
+    monkeypatch.setattr(answer_votes, "SEND_SECONDS", 0.05)
+    langfuse.release = threading.Event()
+
+    async def current():
+        return answer_votes.UP
+
+    async def scenario():
+        try:
+            await answer_votes.mirror_vote(TRACE, current)
+
+            # Back while Langfuse still hasn't answered.
+            return list(langfuse.calls)
+        finally:
+            # Let the hanging call go, or the test's loop would wait for its thread.
+            langfuse.release.set()
+
+    assert asyncio.run(scenario()) == []
 
 
 def test_without_langfuses_keys_or_a_trace_nothing_is_sent(langfuse, monkeypatch):
@@ -152,10 +174,9 @@ def test_without_langfuses_keys_or_a_trace_nothing_is_sent(langfuse, monkeypatch
         return answer_votes.UP
 
     async def scenario():
-        answer_votes.mirror_vote(None, current)
+        await answer_votes.mirror_vote(None, current)
         monkeypatch.delenv("LANGFUSE_SECRET_KEY")
-        answer_votes.mirror_vote(TRACE, current)
-        await asyncio.sleep(0)
+        await answer_votes.mirror_vote(TRACE, current)
 
     asyncio.run(scenario())
 

@@ -28,7 +28,11 @@ def test_the_owner_votes_changes_and_clears_and_sees_it_when_opening(run, user, 
     uid, token = user
     headers = bearer(token)
     mirrored = []
-    monkeypatch.setattr(routes, "mirror_vote", lambda trace_id, current: mirrored.append(trace_id))
+
+    async def mirror_vote(trace_id, current):
+        mirrored.append(trace_id)
+
+    monkeypatch.setattr(routes, "mirror_vote", mirror_vote)
 
     async def scenario():
         conversation_id, _, answer_id = await answered(uid)
@@ -56,7 +60,11 @@ def test_the_owner_votes_changes_and_clears_and_sees_it_when_opening(run, user, 
 def test_no_vote_on_someone_elses_answer_or_on_a_question(run, user, monkeypatch):
     _, token = user
     headers = bearer(token)
-    monkeypatch.setattr(routes, "mirror_vote", lambda trace_id, current: None)
+
+    async def mirror_vote(trace_id, current):
+        return None
+
+    monkeypatch.setattr(routes, "mirror_vote", mirror_vote)
 
     async def scenario():
         theirs, _, their_answer = await answered("someone-else")

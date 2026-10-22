@@ -32,4 +32,4 @@ async def vote(answer_id: UUID, body: HelpVoteIn, request: Request) -> None:
     await hit_or_skip(get_redis(), key, "HELP_VOTES_PER_IP_HOUR")
 
     await help_votes.save(answer_id, body.trace_id, body.value)
-    mirror_vote(body.trace_id, lambda: help_votes.vote_of(answer_id))
+    await mirror_vote(body.trace_id, lambda: help_votes.vote_of(answer_id))
