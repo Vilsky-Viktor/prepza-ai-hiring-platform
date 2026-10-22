@@ -16,6 +16,7 @@ from app.constants.generation import (
     QUESTION_OVERSAMPLE,
 )
 from app.constants.kinds import GenerationKind
+from app.models.state import State
 from app.schemas.regenerate import QuestionContext
 
 # A line starting with "A." or "A)" begins choices the model listed in the question itself.
@@ -173,3 +174,9 @@ def shifted(examples: tuple[int, int], held: int) -> tuple[int, int]:
 def set_company(context: QuestionContext) -> str | None:
     """The company a question's set belongs to; None for a template."""
     return context.owner_id if context.kind == GenerationKind.INTERVIEW else None
+
+
+def reused_questions(state: State, topic_index: int) -> list[dict]:
+    reused = state.get("reused") or []
+
+    return reused[topic_index] if reused else []

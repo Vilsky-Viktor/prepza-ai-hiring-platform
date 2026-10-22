@@ -4,8 +4,9 @@ import pytest
 from prepza_common.examples import pick
 
 from app.helpers.questions import build_options, count_examples, count_multi, missing_kinds
-from app.services.nodes import questions as questions_node
-from app.services.nodes.questions import fan_out_questions, merge_questions
+from app.services.nodes import merge as merge_node
+from app.services.nodes.fan_out import fan_out_questions
+from app.services.nodes.merge import merge_questions
 from tests.unit.fakes import EXAMPLE, MULTI_OPTIONS, OPTIONS
 
 
@@ -119,7 +120,7 @@ def test_merging_takes_each_kind_up_to_what_the_topic_lacks(monkeypatch):
     async def all_distinct(texts, keep_first=0):
         return list(range(len(texts)))
 
-    monkeypatch.setattr(questions_node, "distinct_by_meaning", all_distinct)
+    monkeypatch.setattr(merge_node, "distinct_by_meaning", all_distinct)
     singles = [question(f"S{i}") for i in range(12)]
     multis = [question(f"M{i}", True) for i in range(5)]
     pool = [
@@ -158,7 +159,7 @@ def test_merging_holds_a_topics_examples_to_its_range(monkeypatch, language, low
     async def all_distinct(texts, keep_first=0):
         return list(range(len(texts)))
 
-    monkeypatch.setattr(questions_node, "distinct_by_meaning", all_distinct)
+    monkeypatch.setattr(merge_node, "distinct_by_meaning", all_distinct)
     shown = [question(f"E{i}\n```{language}\nx\n```") for i in range(8)]
     plain = [question(f"P{i}") for i in range(12)]
     pool = [{"topic_index": 0, "subtopic_index": 0, "questions": shown + plain}]

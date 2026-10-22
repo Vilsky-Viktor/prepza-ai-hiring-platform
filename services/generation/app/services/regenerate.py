@@ -21,8 +21,8 @@ from app.prompts.regenerate import (
 )
 from app.schemas.questions import NewQuestion
 from app.schemas.regenerate import QuestionContext, RegeneratedOut, RegeneratedQuestion
+from app.services.answers import generate_answers
 from app.services.dedupe import distinct_by_meaning
-from app.services.nodes.answers import generate_answers
 
 logger = logging.getLogger(__name__)
 

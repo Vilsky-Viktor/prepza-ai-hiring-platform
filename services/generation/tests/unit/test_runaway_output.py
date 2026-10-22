@@ -5,7 +5,7 @@ from openai import LengthFinishReasonError
 
 from app.integrations import llm
 from app.schemas.questions import AnswerItem, AnswerList, QuestionItem, QuestionItemList
-from app.services.nodes.answers import generate_answers
+from app.services.answers import generate_answers
 from app.services.nodes.questions import generate_questions
 
 

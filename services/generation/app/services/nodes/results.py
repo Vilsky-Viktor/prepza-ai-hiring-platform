@@ -1,5 +1,5 @@
+from app.helpers.questions import reused_questions
 from app.models.state import State
-from app.services.nodes.questions import reused_questions
 
 
 def collect_results(state: State) -> dict:

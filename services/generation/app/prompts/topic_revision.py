@@ -1,4 +1,4 @@
-# The topics re-planned on a reviewer's instructions (services/nodes/topics.py revise_topics).
+# The topics re-planned on a reviewer's instructions (services/nodes/revision.py revise_topics).
 from app.prompts.topic_rules import TOPICS_ROLE
 
 REVISION_SYSTEM = (

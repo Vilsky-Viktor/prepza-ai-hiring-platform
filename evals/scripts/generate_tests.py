@@ -26,8 +26,8 @@ from prepza_common.multi_answer import multi_share
 
 import app.helpers.questions as question_helpers
 import app.services.graph as graph_module
-import app.services.nodes.fill as fill_node
-import app.services.nodes.questions as questions_node
+import app.services.nodes.fan_out as fan_out_node
+import app.services.top_up as top_up_module
 from app.config.settings import settings
 from app.constants.generation import RECURSION_LIMIT
 from app.integrations.redis import get_redis
@@ -48,17 +48,17 @@ def tune(fill_calls: list) -> None:
     """OVERSAMPLE replaces QUESTION_OVERSAMPLE everywhere it's read, and every call that tops up a
     short topic is counted: what a lower oversample saves, the fill-ups pay back, one at a time."""
     if "OVERSAMPLE" in os.environ:
-        for module in (questions_node, fill_node, question_helpers):
+        for module in (fan_out_node, question_helpers):
             module.QUESTION_OVERSAMPLE = float(os.environ["OVERSAMPLE"])
 
-    generate_questions = fill_node.generate_questions
+    generate_questions = top_up_module.generate_questions
 
     async def counted(task):
         fill_calls.append(task["topic"])
 
         return await generate_questions(task)
 
-    fill_node.generate_questions = counted
+    top_up_module.generate_questions = counted
 
 
 async def generate(domain: dict, fill_calls: list, template: bool) -> tuple[list[dict], dict]:
@@ -134,7 +134,7 @@ async def main(domain_ids: list[str], label: str, template: bool) -> None:
         fill_calls.clear()
         items, run = await generate(domains[domain_id], fill_calls, template)
         run = {**run_record(model=models), **run}
-        run["oversample"] = questions_node.QUESTION_OVERSAMPLE
+        run["oversample"] = fan_out_node.QUESTION_OVERSAMPLE
         save(RESULTS / f"test_{domain_id}_{label}.json", {"run": run, "items": items})
         print(
             f"{domain_id}: {run['topics']} topics, {run['questions']} questions, {run['seconds']}s, "

@@ -6,7 +6,8 @@ from prepza_common.multi_answer import is_multi
 
 from app.helpers.payload import build_preparation
 from app.integrations import llm
-from app.services.nodes.fill import TopicShortError, fill_topics
+from app.services.nodes.fill import fill_topics
+from app.services.top_up import TopicShortError
 from tests.unit.fakes import EXAMPLE, OPTIONS, FakeVerifier, asked_examples, asked_multi, items
 
 

@@ -153,7 +153,7 @@ def test_about_a_third_of_the_questions_on_formal_material_come_with_a_short_exa
 def test_company_and_reviewer_text_reach_the_topic_planner_tagged_in_the_request(monkeypatch):
     import asyncio
 
-    from app.services.nodes import topics as node
+    from app.services.nodes import revision as node
 
     asked = []
 

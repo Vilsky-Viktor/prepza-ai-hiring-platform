@@ -5,7 +5,7 @@ import pytest
 from app.integrations import llm
 from app.prompts.topics import TOPICS_SYSTEM
 from app.schemas.topics import TopicList, TopicStructure
-from app.services.nodes.topics import revise_topics
+from app.services.nodes.revision import revise_topics
 
 
 def topic_list(count: int, subtopics: int) -> TopicList:

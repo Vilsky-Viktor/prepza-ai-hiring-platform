@@ -4,7 +4,7 @@ from app.constants.generation import MAX_OPTION_CHARS
 from app.integrations import llm
 from app.prompts.answers import MULTI_ANSWER_KIND, SINGLE_ANSWER_KIND
 from app.schemas.questions import AnswerItem, AnswerList
-from app.services.nodes.answers import generate_answers
+from app.services.answers import generate_answers
 
 TOO_LONG = "x" * (MAX_OPTION_CHARS + 1)
 

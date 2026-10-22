@@ -1,47 +1,23 @@
 import logging
-import math
 
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
-from langgraph.types import Send
 from openai import LengthFinishReasonError
-from prepza_common.examples import example_count, example_range, is_formal, pick
-from prepza_common.multi_answer import multi_count
 
 from app.constants.generation import (
     MAX_OPTION_CHARS,
     OPTIONS,
     QUESTION_ATTEMPTS,
     QUESTION_FOCUSES,
-    QUESTION_OVERSAMPLE,
 )
 from app.helpers.prompts import bullet_list, language_name
-from app.helpers.questions import (
-    build_options,
-    count_examples,
-    count_multi,
-    merge_buckets,
-    normalize,
-    question_calls,
-    readable,
-    shifted,
-    split_count,
-    topic_size,
-    with_example,
-)
+from app.helpers.questions import build_options, readable, with_example
 from app.integrations import llm
-from app.models.state import QuestionTask, State
+from app.models.state import QuestionTask
 from app.prompts.questions import QUESTIONS_REQUEST, QUESTIONS_SYSTEM
 from app.schemas.questions import QuestionItemList
-from app.services.dedupe import distinct_by_meaning
 from app.services.key_self_check import keys_that_hold
 
 logger = logging.getLogger(__name__)
-
-
-def reused_questions(state: State, topic_index: int) -> list[dict]:
-    reused = state.get("reused") or []
-
-    return reused[topic_index] if reused else []
 
 
 def focus_for(call: int, calls: int) -> str:
@@ -49,47 +25,6 @@ def focus_for(call: int, calls: int) -> str:
         return "a mix of " + "; ".join(QUESTION_FOCUSES)
 
     return QUESTION_FOCUSES[call % len(QUESTION_FOCUSES)]
-
-
-def fan_out_questions(state: State):
-    """Conditional edge: one branch per call of each (topic, subtopic), for what reuse left; the
-    multi-answer questions the topic still lacks, and the examples it would have on material in
-    a formal notation, are spread over its calls."""
-    sends = []
-
-    for ti, topic in enumerate(state["topics"]):
-        subtopics = topic["subtopics"] or [topic["main_topic"]]
-        reused = reused_questions(state, ti)
-        size = topic_size(state)
-        missing = max(size - len(reused), 0)
-        multi = min(missing, max(multi_count(size, state["multi_share"]) - count_multi(reused), 0))
-        examples = min(missing, max(example_count(size) - count_examples(reused), 0))
-        per_subtopic = math.ceil(missing * QUESTION_OVERSAMPLE / len(subtopics))
-        calls = question_calls(len(subtopics), size)
-        counts = [count for _ in subtopics for count in split_count(per_subtopic, calls)]
-        multis = split_count(multi, len(counts))
-        shown = split_count(examples, len(counts))
-        bucket = 0
-
-        for subtopic in subtopics:
-            for call in range(calls):
-                task: QuestionTask = {
-                    "topic_index": ti,
-                    "topic": topic["main_topic"],
-                    "subtopic_index": bucket,
-                    "subtopic": subtopic,
-                    "count": counts[bucket],
-                    "multi": min(multis[bucket], counts[bucket]),
-                    "examples": min(shown[bucket], counts[bucket]),
-                    "level": state["level"],
-                    "existing": [question["text"] for question in reused],
-                    "focus": focus_for(call, calls),
-                    "language": state.get("language"),
-                }
-                sends.append(Send("generate_questions", task))
-                bucket += 1
-
-    return sends or "collect_results"
 
 
 def question_messages(task: QuestionTask) -> list[BaseMessage]:
@@ -155,32 +90,3 @@ async def generate_questions(task: QuestionTask) -> dict:
             }
         ]
     }
-
-
-async def merge_questions(state: State) -> dict:
-    """Barrier node: per topic, one list of distinct questions, up to what reuse left to fill: of
-    multi-answer ones up to what the topic lacks, and of ones with an example within the
-    topic's range (prepza_common.examples), less what the reused ones hold."""
-    topic_questions: list[list[dict]] = []
-
-    for ti in range(len(state["topics"])):
-        entries = [entry for entry in state.get("question_pool", []) if entry["topic_index"] == ti]
-        entries.sort(key=lambda entry: entry["subtopic_index"])
-        reused = reused_questions(state, ti)
-        taken = {normalize(question["text"]) for question in reused}
-        merged = [
-            question
-            for question in merge_buckets([entry["questions"] for entry in entries])
-            if normalize(question["text"]) not in taken
-        ]
-        texts = [question["text"] for question in reused + merged]
-        kept = await distinct_by_meaning(texts, keep_first=len(reused))
-        distinct = [merged[index - len(reused)] for index in kept if index >= len(reused)]
-        size = topic_size(state)
-        missing = max(size - len(reused), 0)
-        multi = min(missing, max(multi_count(size, state["multi_share"]) - count_multi(reused), 0))
-        formal = is_formal([question["text"] for question in reused + distinct])
-        examples = shifted(example_range(size, formal), count_examples(reused))
-        topic_questions.append(pick(distinct, missing, multi, examples)[0])
-
-    return {"topic_questions": topic_questions}

@@ -12,7 +12,7 @@ from app.integrations import library
 from app.main import app
 from app.models.generation import Generation
 from app.services import additions, jobs
-from app.services.nodes.fill import TopicShortError
+from app.services.top_up import TopicShortError
 from app.storage import generations
 from tests.unit.fakes import OPTIONS
 

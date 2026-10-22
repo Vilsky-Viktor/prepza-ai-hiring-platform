@@ -33,6 +33,7 @@ from text_checks import in_script
 from app.config.settings import settings
 from app.constants.generation import MAX_TOPIC_NAME_LENGTH
 from app.services.nodes import extraction, topics
+from app.services.nodes.revision import revise_topics
 from app.services.topic_caps import topic_caps
 from app.storage import draft_cache
 
@@ -116,7 +117,7 @@ async def plan(case: dict, caps: dict) -> dict:
 
 async def revise(revision: dict, planned: dict, caps: dict) -> dict:
     state = planned["state"] | {"feedback": revision["instructions"]}
-    revised, spent = await measured(topics.revise_topics(state))
+    revised, spent = await measured(revise_topics(state))
     before = json.dumps(state["topics"], ensure_ascii=False, indent=1)
     review, judge_cost = await judged(
         RevisionReview,

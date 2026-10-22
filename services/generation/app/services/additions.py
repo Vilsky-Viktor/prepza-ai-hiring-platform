@@ -33,10 +33,10 @@ from app.integrations.usage import ai_run, embed
 from app.models.generation import Generation
 from app.schemas.library import ReuseIn
 from app.services.dedupe import distinct_by_meaning
-from app.services.nodes.fill import TopicShortError, top_up
 from app.services.nodes.questions import focus_for, generate_questions
 from app.services.nodes.reuse import topic_text
 from app.services.sample_checks import check_topics
+from app.services.top_up import TopicShortError, top_up
 from app.storage import generations
 
 logger = logging.getLogger(__name__)

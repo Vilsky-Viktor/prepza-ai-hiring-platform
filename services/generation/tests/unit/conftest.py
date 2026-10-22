@@ -16,10 +16,11 @@ from app.services import (
     pipeline,
     review,
     sample_checks,
+    top_up,
     topic_caps,
     translations,
 )
-from app.services.nodes import fill, reuse
+from app.services.nodes import reuse
 from app.storage import generations
 from tests.unit.fakes import EXAMPLE, MULTI_OPTIONS, OPTIONS
 
@@ -134,7 +135,7 @@ def writer(monkeypatch):
 
     monkeypatch.setattr(additions, "generate_questions", generate_questions)
     monkeypatch.setattr(additions, "distinct_by_meaning", distinct_by_meaning)
-    monkeypatch.setattr(fill, "new_questions", new_questions)
+    monkeypatch.setattr(top_up, "new_questions", new_questions)
     monkeypatch.setattr(additions, "check_topics", check_topics)
     monkeypatch.setattr(llm, "get_embeddings", lambda: Embeddings())
     monkeypatch.setattr(library, "find_reusable", find_reusable)

@@ -3,16 +3,15 @@ from langgraph.graph import END, START, StateGraph
 
 from app.models.state import State
 from app.services.nodes.extraction import extract_info
+from app.services.nodes.fan_out import fan_out_questions
 from app.services.nodes.fill import fill_topics
-from app.services.nodes.questions import fan_out_questions, generate_questions, merge_questions
+from app.services.nodes.merge import merge_questions
+from app.services.nodes.questions import generate_questions
 from app.services.nodes.results import collect_results
 from app.services.nodes.reuse import find_reused
-from app.services.nodes.topics import (
-    generate_topics,
-    human_review,
-    review_router,
-    revise_topics,
-)
+from app.services.nodes.review import human_review, review_router
+from app.services.nodes.revision import revise_topics
+from app.services.nodes.topics import generate_topics
 
 
 def build_graph(checkpointer: BaseCheckpointSaver):

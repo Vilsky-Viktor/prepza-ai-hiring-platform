@@ -16,7 +16,7 @@ from app.prompts.confirm import CONFIRM_PROMPT
 from app.prompts.verify import VERIFY_PROMPT
 from app.schemas.regenerate import QuestionContext, RegeneratedOption, RegeneratedQuestion
 from app.schemas.verify import KeyCheck, QuestionQuality
-from app.services.nodes.answers import generate_answers
+from app.services.answers import generate_answers
 from app.services.regenerate import regenerate
 from app.storage import key_checks
 
