@@ -42,7 +42,8 @@ test("owner adds a viewer, who sees the company read-only", async ({
 }) => {
   // Four browsers and many pages on the slow local dev server.
   test.setTimeout(300_000);
-  const owner = await signInAs(ownerEmail());
+  const ownerAddress = ownerEmail();
+  const owner = await signInAs(ownerAddress);
   const company = await createCompany(owner);
   const interviewId = await createInterview(owner, company.id);
   // A candidate, so the candidates tab has reports to download and share.
@@ -106,7 +107,7 @@ test("owner adds a viewer, who sees the company read-only", async ({
   await owner
     .getByRole("dialog")
     .locator('input[type="email"]')
-    .fill(ownerEmail());
+    .fill(ownerAddress);
   await owner.getByRole("dialog").locator('button[type="submit"]').click();
   await expect(
     owner.locator('[data-sonner-toast][data-type="error"]'),
