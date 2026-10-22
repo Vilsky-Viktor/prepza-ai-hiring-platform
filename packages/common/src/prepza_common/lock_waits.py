@@ -58,7 +58,12 @@ async def wait_for_lock_wait(database_url: str, timeout: float = LOCK_WAIT_TIMEO
     """Returns once a connection to this database waits on a lock (a row, a unique key being
     inserted, an advisory lock); fails when none does within `timeout` seconds."""
     deadline = time.monotonic() + timeout
-    engine = create_async_engine(sqlalchemy_url(database_url), poolclass=NullPool)
+    # Each check in its own transaction: Postgres lists pg_stat_activity's connections once per
+    # transaction, so one open transaction never sees a connection opened after its first check
+    # (the race's second call, when it's slow to connect).
+    engine = create_async_engine(
+        sqlalchemy_url(database_url), poolclass=NullPool, isolation_level="AUTOCOMMIT"
+    )
     waiting = text(
         "SELECT count(*) FROM pg_stat_activity"
         " WHERE datname = current_database() AND wait_event_type = 'Lock'"
