@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from prepza_common.auth import start_firebase
 from prepza_common.body_limit import BodyLimitMiddleware
+from prepza_common.compression import compress_answers
 from prepza_common.health import health_router
 from prepza_common.i18n import add_localized_errors
 from prepza_common.logging import RequestLogMiddleware, configure_logging
@@ -63,6 +64,7 @@ app.add_middleware(MaintenanceMiddleware, get_redis=get_redis)
 app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware, max_bytes=MAX_BODY_BYTES)
+compress_answers(app)
 app.include_router(chat.router)
 app.include_router(transcribe.router)
 app.include_router(conversations.router)

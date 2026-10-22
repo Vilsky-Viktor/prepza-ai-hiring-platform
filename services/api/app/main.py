@@ -5,6 +5,7 @@ from fastapi import Depends, FastAPI
 from prepza_common.auth import start_firebase
 from prepza_common.body_limit import BodyLimitMiddleware
 from prepza_common.company_access import remember_assistant
+from prepza_common.compression import compress_answers
 from prepza_common.health import health_router
 from prepza_common.i18n import add_localized_errors
 from prepza_common.logging import RequestLogMiddleware, configure_logging
@@ -71,6 +72,7 @@ app.add_middleware(MaintenanceMiddleware, get_redis=get_redis)
 app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
+compress_answers(app)
 # The public routes' docs name the permission each needs.
 name_permissions([*public.router.routes, *public_candidates.router.routes, *company.router.routes])
 app.include_router(public.router)

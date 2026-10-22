@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from prepza_common.auth import start_firebase
 from prepza_common.body_limit import BodyLimitMiddleware
+from prepza_common.compression import compress_answers
 from prepza_common.health import health_router
 from prepza_common.i18n import add_localized_errors
 from prepza_common.logging import RequestLogMiddleware, configure_logging
@@ -48,6 +49,7 @@ add_localized_errors(app)
 app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
+compress_answers(app)
 app.include_router(billing.router)
 app.include_router(internal.router)
 app.include_router(prices.router)

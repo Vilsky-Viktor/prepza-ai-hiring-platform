@@ -69,6 +69,9 @@ back to Postgres at once), each even when another fails.
 Request bodies: `body_limit.BodyLimitMiddleware` refuses one over 1 MB (`MAX_BODY_BYTES`) with a
 translated 413, counting a streamed body as it arrives; companies (report PDFs) and the assistant
 (voice messages) pass larger limits.
+Compression: `compression.compress_answers(app)` gzips every service's answers of 1 KB or more
+(`MIN_BYTES`) for clients that take gzip, as only the frontend has Cloud CDN to compress for it;
+server-sent event streams stay uncompressed, so each event goes out as it comes.
 Access checks: `route_guards.unguarded(app, public)` lists the routes that run no guard (a signed-in user,
 a superadmin, another service, Google's pushes): each service's `test_route_guards.py` fails on one
 that isn't listed as public on purpose.
@@ -126,6 +129,7 @@ One line each, by name (`tests/unit/test_readme_modules.py` fails on one left ou
 - `client_ip`: the visitor's address behind the load balancer, and its rate-limit key.
 - `company_access`: who may do what in a company, asked of companies.
 - `company_invites`: inviting a candidate through companies' internal route (api, ats).
+- `compression`: gzip for the services' answers, streams left alone (`compress_answers`).
 - `constants`: the values every service shares: timeouts, pools, limits, languages, keys.
 - `credit_keys`: one-off migrations of candidates' credit keys.
 - `db`: engines, sessions, timeouts, the migrations' engine and `delete_in_batches`.
