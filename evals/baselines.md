@@ -301,3 +301,16 @@ wrong", which tells a writer nothing (a rule must say what in the writing caused
 (79.6–100) both; kept rules supported 85.2% (67.5–94.1) → 100% (84.5–100); no rule when none 3 of
 3 both; known named 3 of 3 both; nothing from the hidden instruction; judge traps 10 of 10 both;
 $0.018 → $0.016 and 34 → 30 s a run. Kept: cheaper, and the useless rule is gone.
+
+## Assistant titles: a role, the conversation as data, structured output (2026-10-22, kept)
+
+The title prompt (`assistant/app/prompts/titles.py`) gained an editor's role and says why names
+stay out (others in the company see the history); the conversation goes in the user's message
+inside `<conversation>`, read as data; the title comes back as structured output
+(`ConversationTitle`, 60 tokens at most instead of 40 for its JSON); and code cuts a long title at
+a word's end. `titles_test.py`, `titles.json` (14 × 3), `gpt-6-luna` at none, judged by
+`gpt-6.1-sol` high, before → after: code checks 88.1% (75.0–94.8) → 97.6% (87.7–99.6), the
+Arabic title naming the candidate (2 of 3) gone; sums up 90.5% (77.9–96.2) → 88.1% (75.0–94.8);
+right language 100% both; natural 95.2% → 100%; judge traps 11 of 11 both; $0.00002 → $0.00003
+and 2.1 → 2.8 s a title. Kept: the privacy failure is gone, nothing worse beyond the intervals
+(the remaining misses are a greeting titled "Hiring Assistance" and one partial summary).

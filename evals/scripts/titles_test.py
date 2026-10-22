@@ -1,5 +1,5 @@
 """Tests the assistant's conversation titles on datasets/titles.json: each conversation goes
-through the service's own title_prompt and title model, its reply through clean_title, then code
+through the service's own title_prompt and write_title, its title through clean_title, then code
 checks it (length before cutting, one line, nothing forbidden, the language's script) and
 judges/title.md grades it. The judge is checked every run on traps made by code: another
 conversation's title, and a generic one, must not pass.
@@ -25,7 +25,7 @@ from text_checks import in_script
 from app.config.settings import settings
 from app.constants.titles import MAX_TITLE_LENGTH
 from app.helpers.titles import clean_title, title_prompt
-from app.integrations import llm
+from app.services.titles import write_title
 
 PHONE = re.compile(r"\+?\d[\d ()-]{7,}\d")
 EMAIL = re.compile(r"\S+@\S+")
@@ -47,15 +47,14 @@ def chat_of(item: dict) -> list:
 
 async def write(item: dict) -> dict:
     started = time.monotonic()
-    reply = await llm.get_title_model().ainvoke(title_prompt(chat_of(item), item["language"]))
-    raw = reply.text.strip()
+    raw, usage = await write_title(title_prompt(chat_of(item), item["language"]))
     title = clean_title(raw)
 
     return {
         "raw": raw,
         "title": title,
-        "cost": cost(settings.title_model, reply.usage_metadata or {}),
-        "tokens": (reply.usage_metadata or {}).get("total_tokens", 0),
+        "cost": cost(settings.title_model, usage),
+        "tokens": usage.get("total_tokens", 0),
         "seconds": time.monotonic() - started,
     }
 

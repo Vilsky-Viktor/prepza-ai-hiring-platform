@@ -83,7 +83,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 328/335 / 328/335 / 188/188 / 44/45 / 45/45 / 85/85; 23,300 tokens, $0.0024, 6.4 s a turn | `assistant_actions.json` (67 cases), 5 repeats | 2026-10-21 |
 | Translations: code checks / faithful / native / one language; judge traps | 100% / 90.0% (80.8–95.1) / 98.6% (92.3–99.7) / 100%; 97 of 97; $0.0023 and 5.2 s a translation | `translations.json`, 10 texts × 7 languages | 2026-10-22 |
 | Quality patterns: planted found / kept supported / no rule when none / known named; judge traps | 100% (79.6–100) / 100% (84.5–100) / 3 of 3 / 3 of 3; 10 of 10; $0.016 and 30 s a run | `patterns.json`, 4 groups × 3 | 2026-10-22 |
-| Assistant titles: code checks / sums up / right language / natural; judge traps | 88.1% (75.0–94.8) / 90.5% (77.9–96.2) / 100% / 95.2% (84.2–98.7); 11 of 11; $0.00002 and 2.1 s a title | `titles.json`, 14 × 3 | 2026-10-22 |
+| Assistant titles: code checks / sums up / right language / natural; judge traps | 97.6% (87.7–99.6) / 88.1% (75.0–94.8) / 100% / 100%; 11 of 11; $0.00003 and 2.8 s a title | `titles.json`, 14 × 3 | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
 | Help chat: passed / made up / sign-in marker | 94.4% (84.9–98.1) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-21 |
 

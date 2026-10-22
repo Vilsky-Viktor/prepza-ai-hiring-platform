@@ -4,5 +4,5 @@ TITLE_EVERY = 5
 MAX_TITLE_LENGTH = 60
 # The cheap call (its model and effort are settings): a few output tokens, and at most this
 # much of the chat.
-TITLE_MAX_TOKENS = 40
+TITLE_MAX_TOKENS = 60
 TITLE_SOURCE_CHARACTERS = 4_000
