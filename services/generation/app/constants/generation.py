@@ -37,6 +37,10 @@ LLM_TIMEOUT_SECONDS = 300
 # Retries of a failed AI call: quick failures (a rate limit, a dropped connection) recover, and a
 # stuck call gives up after at most (1 + this) * LLM_TIMEOUT_SECONDS, within a run's time.
 LLM_MAX_RETRIES = 2
+# The Batch API's calls aren't retried by OpenAI's client: creating a file or a batch carries no
+# idempotency key, so a retry after a lost answer would make (and bill) a second batch. The next
+# scheduled run sends what didn't go and reads what wasn't read.
+BATCH_MAX_RETRIES = 0
 # What OpenAI accepts for a reasoning model's effort; the settings pick one (see config).
 ReasoningEffort = Literal["none", "minimal", "low", "medium", "high"]
 # Every question has this many options: one correct, or for a multi-answer ("select all that

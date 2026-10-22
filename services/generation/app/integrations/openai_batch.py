@@ -4,14 +4,14 @@ from functools import cache
 
 from openai import AsyncOpenAI
 
-from app.constants.generation import LLM_TIMEOUT_SECONDS
+from app.constants.generation import BATCH_MAX_RETRIES, LLM_TIMEOUT_SECONDS
 
 COMPLETIONS = "/v1/chat/completions"
 
 
 @cache
 def get_client() -> AsyncOpenAI:
-    return AsyncOpenAI(timeout=LLM_TIMEOUT_SECONDS)
+    return AsyncOpenAI(timeout=LLM_TIMEOUT_SECONDS, max_retries=BATCH_MAX_RETRIES)
 
 
 async def submit(requests: dict[str, dict]) -> str:

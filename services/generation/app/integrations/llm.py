@@ -37,5 +37,8 @@ def get_rate_limiter() -> SharedRateLimiter:
 @cache
 def get_embeddings() -> OpenAIEmbeddings:
     return OpenAIEmbeddings(
-        model=EMBEDDING_MODEL, dimensions=EMBEDDING_DIMENSIONS, timeout=LLM_TIMEOUT_SECONDS
+        model=EMBEDDING_MODEL,
+        dimensions=EMBEDDING_DIMENSIONS,
+        timeout=LLM_TIMEOUT_SECONDS,
+        max_retries=LLM_MAX_RETRIES,
     )
