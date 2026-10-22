@@ -9,6 +9,10 @@ service's own key_check_prompt and option order. Costs about
 $0.001 a check on gpt-6.1-sol (120 checks a setting, about $0.11); the service's batched checks
 cost half.
 
+With --confirm, the blind confirmation a moved key needs (no option marked, a shuffled order)
+on each question once: it must name the question's real key.
+    evals/run.sh generation verify_test.py --confirm gpt-6.1-sol/medium
+
 With --multi, the same on datasets/multi_key_traps.json and the multi-answer questions of
 datasets/multi_questions.json (a key is a set of options); questions the judge's review of that
 dataset found flawed (results/reviews_datasets_multi_questions_*.json) are left out:
@@ -16,6 +20,7 @@ dataset found flawed (results/reviews_datasets_multi_questions_*.json) are left 
 
 import argparse
 import asyncio
+import random
 import time
 import uuid
 
@@ -33,11 +38,12 @@ from common import (
     run_record,
     save,
 )
+from stats import share
 
 from app.helpers.prompts import checker_messages
 from app.schemas.regenerate import QuestionContext, RegeneratedOption
 from app.schemas.verify import KeyCheck, QuestionQuality, ReportNote
-from app.services.verify import key_check_prompt, option_order
+from app.services.verify import confirm_prompt, key_check_prompt, option_order
 
 
 def flawed_ids(multi: bool) -> set[str]:
@@ -76,6 +82,15 @@ def cases(multi: bool) -> list[dict]:
     return found
 
 
+def confirm_for(item: dict) -> tuple[str, list[str]]:
+    """The blind confirmation's prompt (no mark, a shuffled order), and the options as shown."""
+    options = [RegeneratedOption(**o) for o in item["options"]]
+    order = random.Random(f"confirm:{item['id']}").sample(range(len(options)), len(options))
+    text = confirm_prompt(item["question"], options, item["level"], item["topic"], order)
+
+    return text, [options[i].answer for i in order]
+
+
 def prompt_for(item: dict) -> tuple[str, list[str]]:
     """The service's own prompt after two "wrong answer" reports, and the options in the order
     it shows them (option_order, a shuffle by the question's id)."""
@@ -102,7 +117,7 @@ def prompt_for(item: dict) -> tuple[str, list[str]]:
 
 
 async def check(checker, case: dict) -> dict:
-    text, shown = prompt_for(case["item"])
+    text, shown = (confirm_for if case["kind"] == "confirm" else prompt_for)(case["item"])
     started = time.monotonic()
     result = await checker.ainvoke(checker_messages(text))
     seconds = time.monotonic() - started
@@ -141,12 +156,12 @@ def report(setting: str, results: list[dict]) -> dict:
     """Each kind's outcomes, the median time and the price of a check, printed and returned."""
     found = {}
 
-    for kind in ("trap", "real key"):
+    for kind in sorted({r["kind"] for r in results}):
         rows = [r for r in results if r["kind"] == kind]
         counts = {
             o: sum(r["outcome"] == o for r in rows) for o in ("right", "replaced", "wrong key")
         }
-        found[kind] = {**counts, "of": len(rows)}
+        found[kind] = {**counts, "of": len(rows), "right_share": share(counts["right"], len(rows))}
         print(
             f"{setting} {kind}s: {counts['right']} of {len(rows)} right, "
             f"{counts['replaced']} replaced, {counts['wrong key']} left with a wrong key"
@@ -164,11 +179,15 @@ def report(setting: str, results: list[dict]) -> dict:
     return found
 
 
-async def main(settings: list[str], multi: bool) -> None:
+async def main(settings: list[str], multi: bool, confirm: bool) -> None:
     found = cases(multi)
-    print(
-        f"{len(found)} checks: {len(found) // 2} traps and the same questions with their real key"
-    )
+
+    if confirm:
+        # The confirmation sees no mark, so a trap and its question read the same: one each.
+        found = [{**case, "kind": "confirm"} for case in found if case["kind"] == "real key"]
+        print(f"{len(found)} blind confirmations, one a question")
+    else:
+        print(f"{len(found)} checks: {len(found) // 2} traps and the same questions with their key")
 
     for setting in settings:
         name, effort = setting.split("/")
@@ -180,7 +199,7 @@ async def main(settings: list[str], multi: bool) -> None:
                 return await check(checker, case)
 
         results = await asyncio.gather(*(one(case) for case in found))
-        prefix = "verify_multi" if multi else "verify"
+        prefix = ("confirm" if confirm else "verify") + ("_multi" if multi else "")
         scores = report(setting, results)
         spent = round(sum(r["cost"] for r in results), 4)
         run = run_record(model=setting, multi=multi, scores=scores, cost=spent)
@@ -192,5 +211,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("settings", nargs="+", help="model/effort")
     parser.add_argument("--multi", action="store_true")
+    parser.add_argument("--confirm", action="store_true", help="the blind confirmation instead")
     args = parser.parse_args()
-    asyncio.run(main(args.settings, args.multi))
+    asyncio.run(main(args.settings, args.multi, args.confirm))

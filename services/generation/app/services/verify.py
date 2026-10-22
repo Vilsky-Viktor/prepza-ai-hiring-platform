@@ -87,16 +87,21 @@ def checked_key(options: list, result: KeyCheck, order: list[int]) -> set[int] |
     return correct
 
 
-async def blind_key(text: str, options: list, level: str, topic: str) -> set[int] | None:
-    """The options a check that sees no mark, in a new order, names as correct (checked_key)."""
-    order = random.sample(range(len(options)), len(options))
-    prompt = CONFIRM_PROMPT.format(
+def confirm_prompt(text: str, options: list, level: str, topic: str, order: list[int]) -> str:
+    """The blind confirmation's prompt: no option marked, the options in `order`."""
+    return CONFIRM_PROMPT.format(
         kind=MULTI_ANSWER_KEY if is_multi(options) else SINGLE_ANSWER_KEY,
         level=level,
         topic=topic,
         question=text,
         options="\n".join(f"{number}. {options[i].answer}" for number, i in enumerate(order)),
     )
+
+
+async def blind_key(text: str, options: list, level: str, topic: str) -> set[int] | None:
+    """The options a check that sees no mark, in a new order, names as correct (checked_key)."""
+    order = random.sample(range(len(options)), len(options))
+    prompt = confirm_prompt(text, options, level, topic, order)
     result: KeyCheck = (
         await llm.get_verifier_llm()
         .with_structured_output(KeyCheck)

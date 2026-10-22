@@ -47,6 +47,8 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | | Price and time per title | Measured | ≤ $0.0001, ≤ 3 s |
 | **Code-language tags** | Examples tagged with the notation expected (`code_languages.json`: look-alike notations, plain-text traps, several files) | Code | ≥ 98% (regression: near 100%) |
 | | Price and time per batch of 20 | Measured | ≤ $0.01, ≤ 15 s |
+| **Verifier** | Planted wrong keys fixed, real keys kept, and the blind confirmation naming the real key (`verify_test.py`, `--confirm`) | Code | 100% (regression) |
+| | Price and time per check | Measured | ≤ $0.002, ≤ 10 s |
 | **Judge reliability** | Planted broken translations it fails (a sentence left out, a number changed) | `translations_test.py` | 100% |
 | | Planted wrong keys it catches (`key_traps.json`, `multi_key_traps.json`) | `review_questions.py` | 100% |
 | | Agreement with the reference verdicts (`reviews.json`): right keys kept, wrong keys found, Cohen's kappa | `review_questions.py --compare-reference` | ≥ 95%, every wrong key found |
@@ -80,7 +82,8 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Correct option the longest | 11% (multi: 57% against 75% by chance) | `questions.json` | 2026-10-04 |
 | Price and time per 100-question topic | $0.21–0.25, 49–61 s | full interviews | 2026-10-04 |
 | Other languages: keys / clarity / relevance / distractors | 100% (72) / 4.99 / 3.67 / 2.25 | `language_inputs.json` | 2026-10-22 |
-| Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-20 |
+| Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-22 |
+| Blind confirmation before a key moves: real key named | 60/60; multi 263/263; $0.0009–0.0010 a check | the same questions | 2026-10-22 |
 | Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
 | Assistant page context: general correct with / without; page checks | 112/129 / 116/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-20 |
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
@@ -130,8 +133,10 @@ OVERSAMPLE=1.1 evals/run.sh generation-worker generate_tests.py python_backend -
 evals/run.sh generation regenerate_test.py --label x
 evals/run.sh generation review_questions.py results/regenerated_x.json
 
-# Verifier settings, on the traps and the same questions with their real key
+# Verifier settings, on the traps and the same questions with their real key; --confirm for the
+# blind confirmation a moved key needs
 evals/run.sh generation verify_test.py gpt-6.1-sol/low gpt-6.1-sol/medium
+evals/run.sh generation verify_test.py --confirm gpt-6.1-sol/medium
 
 # Examples, their notation, length and reading time, per domain (free; --per-topic for a test)
 evals/run.sh generation measure_examples.py results/questions_x.json \
