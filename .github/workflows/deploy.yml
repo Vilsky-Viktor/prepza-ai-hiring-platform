@@ -1,12 +1,12 @@
 name: Deploy
 
 # Releases a version: a v* tag on a commit of main that passed CI. CI already built and pushed that
-# commit's images, so nothing is rebuilt: the images get the version as a tag and ship. Running it
-# by hand with an earlier tag redeploys that version, which is how to roll back: a manual run skips
-# migrations unless asked, as an older version's `alembic upgrade head` fails on a database a newer
-# one migrated. So migrations only add (columns, tables) and the previous version keeps working on
-# the new schema; dropping or renaming comes in a later release. Infrastructure changes go through
-# Terraform (infra/); this only runs migrations and moves services to images.
+# commit's images, so nothing is rebuilt: the images get the version as a tag and ship by digest.
+# Running it by hand with an earlier tag redeploys that version, which is how to roll back: a manual
+# run skips migrations unless asked, as an older version's `alembic upgrade head` fails on a
+# database a newer one migrated. So migrations only add (columns, tables) and the previous version
+# keeps working on the new schema; dropping or renaming comes in a later release. Infrastructure
+# changes go through Terraform (infra/); this only runs migrations and moves services to images.
 on:
   push:
     tags: ["v*"]
@@ -103,30 +103,44 @@ jobs:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}
       - uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3.0.1
-      # The images CI built for the commit also get the version's name; adding it again is harmless.
-      - name: Version the images
+      # The images CI built for the commit also get the version's name, as a label; adding it again
+      # is harmless. Each image's digest is read once from the commit's tag, and every step below
+      # deploys image@sha256:…, so what ships is exactly what CI built and tested, whatever a tag
+      # points to later. IMAGE_LIBRARY, IMAGE_FRONTEND and so on hold them.
+      - name: Version the images and read their digests
         run: |
           for name in $SERVICES; do
             gcloud artifacts docker tags add "$REGISTRY/$name:$SHA" "$REGISTRY/$name:$VERSION" --quiet
+            digest="$(gcloud artifacts docker images describe "$REGISTRY/$name:$SHA" --format='value(image_summary.digest)')"
+
+            if [[ "$digest" != sha256:* ]]; then
+              echo "No digest for $name:$SHA" >&2
+
+              exit 1
+            fi
+
+            echo "IMAGE_${name^^}=$REGISTRY/$name@$digest" >> "$GITHUB_ENV"
           done
       # Each service's own database user, owning only its database; safe to repeat. Runs before
       # migrations, which connect as those users.
       - name: Database users
         run: |
-          gcloud run jobs update db-roles --image="$REGISTRY/library:$VERSION" --region="$REGION" --quiet
+          gcloud run jobs update db-roles --image="$IMAGE_LIBRARY" --region="$REGION" --quiet
           gcloud run jobs execute db-roles --region="$REGION" --wait --quiet
       # Migrations run before any service moves, so new code never meets an old schema.
       - name: Migrations
         if: github.event_name == 'push' || inputs.migrate
         run: |
           for db in library generation rounds companies billing notifications ats api assistant; do
-            gcloud run jobs update "$db-migrate" --image="$REGISTRY/$db:$VERSION" --region="$REGION" --quiet
+            image="IMAGE_${db^^}"
+            gcloud run jobs update "$db-migrate" --image="${!image}" --region="$REGION" --quiet
             gcloud run jobs execute "$db-migrate" --region="$REGION" --wait --quiet
           done
       - name: Services
         run: |
           deploy() {
-            gcloud run services update "$1" --image="$REGISTRY/$2:$VERSION" --region="$REGION" --quiet
+            local image="IMAGE_${2^^}"
+            gcloud run services update "$1" --image="${!image}" --region="$REGION" --quiet
           }
 
           deploy library library

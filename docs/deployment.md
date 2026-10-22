@@ -56,7 +56,7 @@ Events carry user ids only, with emails scrubbed.
 |---|---|
 | A push to a pull request | CI ([`ci.yml`](../.github/workflows/ci.yml)); a newer push cancels the run for the previous one |
 | A merge to `main` | CI again on the merged code, then the production images are pushed, tagged with the commit: the changed ones are built, the others are the last passing commit's images with this commit's tag added. Nothing is deployed |
-| A `v*` tag on such a commit | [`deploy.yml`](../.github/workflows/deploy.yml): checks the tag is on `main` and CI passed on it, tags that commit's images with the version (no rebuild), runs the migrations, deploys every service, smoke-tests the site and creates a GitHub release |
+| A `v*` tag on such a commit | [`deploy.yml`](../.github/workflows/deploy.yml): checks the tag is on `main` and CI passed on it, tags that commit's images with the version (no rebuild), runs the migrations, deploys every service by the images' digests, smoke-tests the site and creates a GitHub release |
 | Actions → Deploy → Run workflow with an earlier tag | Redeploys that version: a rollback. Migrations run only when **Run migrations** (`migrate`) is ticked |
 
 What CI tests is in [Testing](testing.md#ci).
