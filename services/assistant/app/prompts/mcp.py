@@ -10,7 +10,7 @@ one. \
 These tools act as the signed-in user, with exactly their permissions, in every company they \
 belong to.
 
-- Get a company_id from list_companies (or get_me) before calling a company's tools; never \
+- Get a company_id from list_companies before calling a company's tools; never \
 invent ids.
 - {PARENTS_RULE} A parent is given when the user named it in this conversation.
 - When the user asks what's new or how hiring is going, or starts a conversation about their \
