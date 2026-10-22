@@ -1,5 +1,5 @@
 import { FOUNDER } from "@/constants/about"
-import { OPERATOR } from "@/constants/operator"
+import { OPERATOR, OPERATOR_POSTAL_ADDRESS } from "@/constants/operator"
 import { SITE_NAME } from "@/constants/seo"
 import { moneyAmount } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
@@ -19,7 +19,7 @@ export function organizationData(site: string, description: string) {
       name: BRAND,
       legalName: OPERATOR.name,
       email: OPERATOR.email,
-      address: { "@type": "PostalAddress", name: OPERATOR.address },
+      address: { "@type": "PostalAddress", ...OPERATOR_POSTAL_ADDRESS },
       url: site,
       logo: `${site}/icon.png`,
       founder: { "@type": "Person", name: FOUNDER.name },
@@ -36,7 +36,8 @@ export function organizationData(site: string, description: string) {
 }
 
 /** prepza as a product with its price per candidate, cheapest to dearest, for the pricing
- * page. */
+ * page: only properties schema.org defines for an AggregateOffer, and no rating until real
+ * reviews exist. */
 export function softwareData(
   site: string,
   description: string,
@@ -55,7 +56,6 @@ export function softwareData(
       priceCurrency: catalog.currency,
       lowPrice: moneyAmount(catalog.candidate_cents_min, catalog.currency),
       highPrice: moneyAmount(catalog.candidate_cents_max, catalog.currency),
-      unitText: "candidate",
     },
   }
 }

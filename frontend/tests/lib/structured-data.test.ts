@@ -26,7 +26,6 @@ describe("softwareData", () => {
       priceCurrency: "USD",
       lowPrice: 1,
       highPrice: 3,
-      unitText: "candidate",
     })
   })
 })
@@ -62,7 +61,14 @@ describe("organizationData", () => {
     const [organization] = organizationData(SITE, "Tests.")
 
     expect(organization.legalName).toBe(OPERATOR.name)
-    expect(organization.address?.name).toBe(OPERATOR.address)
+    expect(organization.address).toEqual({
+      "@type": "PostalAddress",
+      streetAddress: "Sepapaja tn 6",
+      postalCode: "15551",
+      addressLocality: "Tallinn",
+      addressRegion: "Harju maakond",
+      addressCountry: "EE",
+    })
     expect(organization.email).toBe(OPERATOR.email)
   })
 })

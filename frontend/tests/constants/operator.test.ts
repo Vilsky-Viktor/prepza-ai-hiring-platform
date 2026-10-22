@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs"
 
 import { describe, expect, it } from "vitest"
 
-import { OPERATOR } from "@/constants/operator"
+import { OPERATOR, OPERATOR_POSTAL_ADDRESS } from "@/constants/operator"
 
 // The legal texts and the emails take the operator from the shared Python constants; the site's
 // footer, contact page and structured data from this mirror. They must say the same.
@@ -26,5 +26,14 @@ describe("OPERATOR", () => {
       address: shared("address"),
       email: shared("email"),
     })
+  })
+
+  it("has the same address in its parts as in one line", () => {
+    const parts = OPERATOR_POSTAL_ADDRESS
+
+    expect(OPERATOR.address).toBe(
+      `${parts.streetAddress}, ${parts.postalCode} ${parts.addressLocality}, ${parts.addressRegion}, Estonia`
+    )
+    expect(parts.addressCountry).toBe("EE")
   })
 })

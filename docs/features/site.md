@@ -193,7 +193,7 @@ Every public page has its title, description, canonical address and link-preview
 - The logo over the page's own title in its language, drawn by `app/preview/route.tsx` in the site's dark theme and Poppins (`frontend/assets/fonts`). Other scripts' letters come from Google Fonts. The picture is sent with `X-Robots-Tag: noindex`, so search engines don't list it while link-preview bots still fetch it. Each page's picture address carries a signature of its title and language (`PREVIEW_SECRET`), and any other title gets a 404, so nobody can put their own text under the logo.
 - The home page uses the home page's promise instead (`app/opengraph-image.tsx`). So do Arabic, Persian, Hebrew and Hindi, which the renderer can't draw.
 
-**Structured data:** organization, product and price range, founder, articles (with their picture and language), the developer docs as a technical article in English, breadcrumbs (role and practice pages, the API docs), FAQ (left out when there are no questions).
+**Structured data:** organization (with its postal address in parts), product and price range (no rating until real reviews exist), founder, articles (with their picture and language), the developer docs as a technical article in English, breadcrumbs (role and practice pages, the API docs), FAQ (left out when there are no questions).
 
 **Sitemap:** every language version, article, and the pages of each indexable template, dated by the template's last change; each language of an article by its own file's `updated`. Its calls to the API give up after 5 seconds. The news page is dated by its newest post, and the privacy policy, terms and DPA by their last update.
 
