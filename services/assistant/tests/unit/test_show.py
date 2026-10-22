@@ -114,6 +114,13 @@ def test_nothing_is_shown_for_an_unknown_page_bad_ids_or_what_the_user_cant_see(
     assert content["error"] == 404
 
 
+def test_the_contact_page_is_a_link_for_handing_over_to_a_person(companies):
+    content, block = run({"kind": "link", "page": "contact"}, set())
+
+    assert "error" not in content
+    assert block["links"] == ["/contact"]
+
+
 def test_one_list_and_one_link_an_answer(companies):
     shown = set()
     run({"kind": "link", "page": "pricing"}, shown)

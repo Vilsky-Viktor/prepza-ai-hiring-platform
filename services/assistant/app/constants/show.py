@@ -34,6 +34,7 @@ PAGES = {
     "pricing": "/pricing",
     "settings": "/settings",
     "faq": "/faq",
+    "contact": "/contact",
     "news": "/news",
     "guide": "/guides/{slug}",
 }

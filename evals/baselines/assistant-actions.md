@@ -16,7 +16,8 @@ Contents: [Actions](#actions-2026-10-20) ·
 [The turn's context](#the-turns-context-out-of-the-instructions-2026-10-22-kept) ·
 [Strict tool schemas](#strict-tool-schemas-2026-10-22-kept) ·
 [How to narrow a list](#how-to-narrow-a-list-cut-short-2026-10-22-kept) ·
-[Fewer tools a turn](#fewer-tools-a-turn-chosen-by-a-routing-call-2026-10-23-kept)
+[Fewer tools a turn](#fewer-tools-a-turn-chosen-by-a-routing-call-2026-10-23-kept) ·
+[Handing over to a person](#handing-over-to-a-person-when-a-call-fails-2026-10-22-kept)
 
 ## Actions (2026-10-20)
 
@@ -245,6 +246,20 @@ success 99.3% → 97.1% (92.7–98.9), within the intervals; arguments, links an
 100% both; $0.0022 a turn. No list in the eval's fixtures is long enough to be cut, so no turn
 read the hint: the four failures (a service that didn't answer, a topic not found, two asked
 which company) passed 12 of 12 when run again (`…_narrow-recheck.json`). $0.43.
+
+## Handing over to a person when a call fails (2026-10-22, kept)
+
+A call that fails on prepza's side now tells the model, once a turn, not to retry, to say what
+didn't work and to link the contact page (`show`, page `contact`). The model already stopped
+after one failed call (0.8 a turn), so a second failure, the first threshold tried, never came:
+the handover comes with the first. `assistant_handover.py` (new, 8 questions, 2 repeats, every
+service down), with and without it (`results/assistant_handover_h4.json`): contact page linked
+after a failure 0% (0–22.8) → 100% (75.7–100), never without one; no link written in the text
+100% both (the first wording, "link the contact page", led to `[…](contact)` in the text in 5 of
+16 answers, `…_h3.json`); stopped retrying and answered 100% both; $0.0017 → $0.0023 a turn.
+`assistant_actions.py`, 2 repeats (`…_handover.json`): task success 98.5% (94.8–99.6), links,
+arguments, asked first and injection safe 100%; its one failure was a local service that didn't
+answer, which the handover answered as meant. $0.66 in all.
 
 ## Fewer tools a turn, chosen by a routing call (2026-10-23, kept)
 

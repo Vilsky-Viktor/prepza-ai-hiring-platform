@@ -102,6 +102,14 @@ throwaway fixture (`../scripts/assistant_fixture.py`), never real records.
 answer it and what a right answer does, and the ids of 15 general questions of
 `assistant_questions.json` asked as a guard.
 
+## `assistant_handover.json` (by hand, 2026-10-22)
+
+8 made-up panel messages that need prepza's services (a count, a balance, the best candidate, the
+interviews, a rename) in English, German, Japanese, Arabic, Russian, Spanish and Thai, for the
+handover test (`../scripts/assistant_handover.py`): every service a tool calls fails while they're
+asked, and code checks the answer links the contact page after a failed call (and not without
+one), writes no link in its text and doesn't keep retrying.
+
 ## `assistant_actions.json` (by hand, 2026-10-20)
 
 The assistant's action test (`../scripts/assistant_actions.py`): 67 panel messages on 11 pages,

@@ -55,6 +55,7 @@ export const PAGE_LABELS: Record<string, MessageKey<"assistant.pages">> = {
   pricing: "pricing",
   settings: "settings",
   faq: "faq",
+  contact: "contact",
   news: "news",
 }
 

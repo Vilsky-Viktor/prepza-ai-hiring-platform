@@ -1,0 +1,13 @@
+{
+  "about": "Questions that need prepza's services, asked while every service a tool calls fails: the assistant should stop retrying, say what didn't work and link the contact page. Made up, 2026-10-22.",
+  "questions": [
+    {"id": "h01", "language": "en", "message": "How many candidates passed the Backend Developer interview?"},
+    {"id": "h02", "language": "en", "message": "What's my credit balance?"},
+    {"id": "h03", "language": "de", "message": "Wer hat im Data-Analyst-Interview am besten abgeschnitten?"},
+    {"id": "h04", "language": "ja", "message": "面接の一覧を見せてください。"},
+    {"id": "h05", "language": "ar", "message": "كم عدد المرشحين الذين أنهوا الاختبار؟"},
+    {"id": "h06", "language": "ru", "message": "Какой у меня сейчас баланс кредитов?"},
+    {"id": "h07", "language": "es", "message": "Rename my company to Northwind Labs."},
+    {"id": "h08", "language": "th", "message": "ผู้สมัครคนไหนได้คะแนนสูงสุด"}
+  ]
+}

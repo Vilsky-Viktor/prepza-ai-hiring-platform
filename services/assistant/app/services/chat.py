@@ -27,6 +27,7 @@ from app.constants.tool_calls import INVALID_ARGUMENTS
 from app.constants.tool_labels import ACTION_LABEL, TOOL_LABELS, UNKNOWN_TOOL_LABEL
 from app.constants.updates import GET_UPDATES
 from app.helpers.company_note import with_company_note
+from app.helpers.handover import with_handover
 from app.helpers.history import history
 from app.helpers.page_context import describe_page
 from app.helpers.strict_schema import strict_definition
@@ -231,6 +232,7 @@ async def run_tools(calls: list[dict], turn: Turn, answer: Answer, emit: Emit) -
     # What the user wrote and what the tools returned in this turn.
     data = [json.dumps(result.content, ensure_ascii=False) for result in answer.results]
     seen = "\n".join([answer.given, *data])
+    before = list(answer.results)
     results = await step_results(
         [(call["name"], call["args"]) for call in valid], turn, answer.shown, seen
     )
@@ -272,4 +274,4 @@ async def run_tools(calls: list[dict], turn: Turn, answer: Answer, emit: Emit) -
     if any(result.status_code == 401 for result in results):
         raise SessionExpired
 
-    return replies
+    return with_handover(replies, before, results)
