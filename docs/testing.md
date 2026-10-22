@@ -111,7 +111,7 @@ Tests that need a template never use the platform's own: each adds its own throw
 
 Extra arguments go to Playwright, for example `--workers=2` when the dev server is slow to compile. Before the tests, the global setup compiles every kind of page they open; a test may take 60 seconds and an assertion waits up to 15, as in the signed-in suite, since the dev server serving every worker at once is slow.
 
-Only one browser run uses the local stack at a time, whoever starts it: `pages.sh` and `signed-in.sh` take a slot (`e2e_tests/browser-lock.sh`, a directory under `$TMPDIR/prepza-browser-runs` holding the run's pid), and a later run prints "waiting for another browser run" and starts once one frees. `BROWSER_RUNS=2` allows two; a slot left by a killed run is taken over once its process is gone.
+Only one browser run uses the local stack at a time, whoever starts it: `pages.sh` and `signed-in.sh` take a slot (`e2e_tests/browser-lock.sh`, a directory under `.git/prepza-browser-runs`, shared by every worktree, holding the run's pid), and a later run prints "waiting for another browser run" and starts once one frees. `BROWSER_RUNS=2` allows two; a slot left by a killed run is taken over once its process is gone.
 
 Each run copies the specs into its container (a tar stream, as the signed-in suite does) and installs its own packages there, so runs at the same time don't share `node_modules` or see a file half-edited. Its traces and screenshots land in a folder of their own, `e2e_tests/pages/test-results/<run>` (the script prints it at the end): Playwright empties its results folder when a run starts, so a shared one would lose another run's traces. Folders older than a week are deleted at the next run.
 

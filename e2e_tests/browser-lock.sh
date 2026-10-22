@@ -1,10 +1,11 @@
 # Sourced by pages.sh and signed-in.sh: at most BROWSER_RUNS browser runs (default 1) use the
 # local stack at once, whoever starts them; the dev frontend can't serve more without pages
-# timing out. A run takes a free slot, a directory under /tmp holding its pid, or waits for one;
+# timing out. A run takes a free slot, a directory in the repo's git folder (shared by every
+# worktree and every agent's shell, whatever its TMPDIR) holding its pid, or waits for one;
 # a slot whose run is gone (killed, crashed) is taken over. The slot is freed when the run exits.
 # mkdir is atomic, so this needs no flock (which macOS lacks).
 
-browser_slots="${TMPDIR:-/tmp}/prepza-browser-runs"
+browser_slots="$(cd "$(git rev-parse --git-common-dir)" && pwd)/prepza-browser-runs"
 browser_slot=""
 
 release_browser_slot() {
