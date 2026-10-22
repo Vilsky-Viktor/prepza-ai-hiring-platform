@@ -1,22 +1,17 @@
-import asyncio
-import logging
-import random
-import time
-
 from langchain_core.rate_limiters import BaseRateLimiter
 from prepza_common.limits import EVERYONE, limit, record_hit
+from prepza_common.pacing import take_turn, wait_turn
 
 from app.constants.generation import LLM_RATE_KEY, LLM_WAIT_JITTER_SECONDS
 from app.integrations.redis import get_redis
-
-logger = logging.getLogger(__name__)
 
 
 class SharedRateLimiter(BaseRateLimiter):
     """At most GENERATION_CALLS_PER_SECOND LLM requests a second (as set in the Controls tab)
     across every generation process.
 
-    Counted in Redis per second, so the API and all workers share one budget. Chat (rounds)
+    Counted in Redis per second (prepza_common.pacing), so the API and all workers share one
+    budget; without Redis, generation goes on unlimited rather than stopping. Chat (rounds)
     isn't limited here, which keeps it ahead of bulk generation.
     """
 
@@ -25,34 +20,14 @@ class SharedRateLimiter(BaseRateLimiter):
         return True
 
     async def aacquire(self, *, blocking: bool = True) -> bool:
-        waited = False
+        redis = get_redis()
+        per_second = await limit(redis, "GENERATION_CALLS_PER_SECOND")
 
-        while True:
-            second = int(time.time())
+        if not blocking:
+            return await take_turn(redis, LLM_RATE_KEY, per_second)
 
-            try:
-                per_second = await limit(get_redis(), "GENERATION_CALLS_PER_SECOND")
+        # Waiting for our own limit on OpenAI's requests, recorded once a request.
+        if await wait_turn(redis, LLM_RATE_KEY, per_second, LLM_WAIT_JITTER_SECONDS):
+            await record_hit("OPENAI_THROTTLED", kind="provider:openai", scope=EVERYONE)
 
-                async with get_redis().pipeline(transaction=True) as pipe:
-                    pipe.incr(f"{LLM_RATE_KEY}:{second}")
-                    pipe.expire(f"{LLM_RATE_KEY}:{second}", 2)
-                    count, _ = await pipe.execute()
-            except Exception:
-                # Without Redis, generation goes on unlimited rather than stopping.
-                logger.exception("Couldn't check the LLM rate limit")
-
-                return True
-
-            if count <= per_second:
-                return True
-
-            if not blocking:
-                return False
-
-            # Waiting for our own limit on OpenAI's requests, recorded once a request.
-            if not waited:
-                waited = True
-                await record_hit("OPENAI_THROTTLED", kind="provider:openai", scope=EVERYONE)
-
-            until_next = max(0.0, second + 1 - time.time())
-            await asyncio.sleep(until_next + random.uniform(0, LLM_WAIT_JITTER_SECONDS))
+        return True

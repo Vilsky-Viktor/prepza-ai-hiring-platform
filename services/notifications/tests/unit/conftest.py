@@ -1,6 +1,6 @@
 import pytest
 
-from app.services import pacing
+from app.services import delivery
 from app.storage import suppressed
 
 
@@ -20,7 +20,7 @@ def unpaced(monkeypatch):
     """Every request to Resend fits its second, counted nowhere: unit tests have no Redis
     (tests/integration paces against a real one)."""
 
-    async def counted(redis, key, amount, window):
-        return 1, window
+    async def wait_turn(redis, key, per_second):
+        return False
 
-    monkeypatch.setattr(pacing, "counted", counted)
+    monkeypatch.setattr(delivery, "wait_turn", wait_turn)

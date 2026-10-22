@@ -74,6 +74,9 @@ Every line's message and error are scrubbed (`scrub.scrub`: emails, URLs cut to 
 database engine hides query values from its errors (`hide_parameters`).
 Retries: `backoff.wait_seconds(first, attempt)` is the wait before a retry, doubling from `first`
 with full jitter (the welcome credits, Langfuse votes).
+Pacing: `pacing.wait_turn(redis, key, per_second, jitter)` holds a request until it fits a
+second's share counted in Redis, so every instance takes turns from one budget (Resend's sends,
+generation's OpenAI calls); `pacing.take_turn` only asks. With Redis down, requests go unpaced.
 Caching: `no_store.NoStoreMiddleware` marks every answer to a signed-in request, or to a path that
 carries a secret token (`/invites/{token}`), `Cache-Control: no-store`, unless its route set its own
 (a versioned logo); streams (`sse`) are `no-store` too.

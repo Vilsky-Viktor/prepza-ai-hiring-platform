@@ -1,9 +1,13 @@
 import logging
 
+from prepza_common.pacing import wait_turn
+
 from app.config.settings import settings
+from app.constants.email import RESEND_PACE_KEY, RESEND_PER_SECOND
 from app.integrations import resend, smtp
+from app.integrations.redis import get_redis
 from app.models.email import Email
-from app.services import pacing, suppression
+from app.services import suppression
 from app.services.webhooks import report_undelivered
 
 logger = logging.getLogger(__name__)
@@ -11,11 +15,13 @@ logger = logging.getLogger(__name__)
 
 async def transmit(email: Email, idempotency_key: str) -> None:
     """Through Resend when it's set up, paced under its per-second limit, else to the SMTP
-    server (Mailpit). Resend never sends the same key twice within 24 hours, so a retry is safe.
+    server (Mailpit). Every instance and run takes turns from one RESEND_PER_SECOND, counted in
+    Redis (unpaced with Redis down: a 429 is still retried). Resend never sends the same key
+    twice within 24 hours, so a retry is safe.
     Raises resend.ResendBusy over its per-second limit, resend.EmailRefused when it won't ever
     send it, and on any failure a retry may fix."""
     if settings.resend_api_key:
-        await pacing.wait_turn()
+        await wait_turn(get_redis(), RESEND_PACE_KEY, RESEND_PER_SECOND)
         await resend.send(email, idempotency_key)
 
         return
