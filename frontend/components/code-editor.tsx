@@ -3,7 +3,7 @@
 import { CheckIcon, ChevronDownIcon, CopyIcon } from "lucide-react"
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
-import { useSyncExternalStore } from "react"
+import { useId, useSyncExternalStore } from "react"
 
 import { IconButton } from "@/components/icon-button"
 import {
@@ -155,14 +155,22 @@ function LanguageMenu({
   chosen: number
   onChange: (index: number) => void
 }) {
+  const labelId = useId()
+  const valueId = useId()
+
   return (
     <div>
       <DropdownMenu>
+        {/* Named by its label and the language it shows, so the visible text is in its name
+            (WCAG 2.5.3). */}
+        <span id={labelId} className="sr-only">
+          {label}
+        </span>
         <DropdownMenuTrigger
-          aria-label={label}
+          aria-labelledby={`${labelId} ${valueId}`}
           className="-ms-3 flex h-8 items-center gap-1.5 rounded-full px-3 font-mono text-sm text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
         >
-          {languages[chosen]}
+          <span id={valueId}>{languages[chosen]}</span>
           <ChevronDownIcon aria-hidden className="size-4" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-48 p-2">
