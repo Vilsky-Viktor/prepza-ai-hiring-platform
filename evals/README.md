@@ -31,6 +31,10 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | **Other languages** | The same question measures on `language_questions.json` (German, Japanese, Arabic, Thai, Hindi, Russian) | Judge | Keys ≥ 98%; the rest no worse than English beyond the interval |
 | **Help chat** | Answers that do what a right answer does, in the right language, with the right sign-in marker | Judge (`judges/help_answer.md`) and code | ≥ 90% |
 | | Answers that state something the site's information doesn't support | Judge | ≤ 5% |
+| **Planning a test** (extraction, topic draft, revision) | Code checks: the level expected, no forbidden or company names in a template, topics and subtopics within the caps, names short, the language's script | Code | 100% |
+| | Extraction covers every testable item / invents nothing; topics cover every requirement / testable / coherent | Judges (`judges/extraction.md`, `judges/topics.md`), pass/fail each | ≥ 90% / ≤ 5%; ≥ 90% / 100% / 100% |
+| | Revisions do what the reviewer asked / lose nothing else | Judge (`judges/revision.md`) | ≥ 90% / ≥ 90% (capability: room to grow) |
+| | Price and time to plan a test (extraction and draft) | Measured | ≤ $0.03, ≤ 40 s |
 | **Translations** (news posts, campaign emails) | Translations that pass every code check: within the limits, names, "prepza", links, Markdown, paragraphs and numbers kept, in the language's script | Code | 100% |
 | | Faithful (nothing left out, added or changed) / native (a hiring professional's wording) / one language | Judge (`judges/translation.md`), pass/fail each | ≥ 90% / ≥ 90% / 100% |
 | | Price and time per translation | Measured | ≤ $0.005, ≤ 10 s |
@@ -82,6 +86,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
 | Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 95–100% / 3.25 ± 0.27 / 4.47 | 40 of `multi_questions.json` | 2026-10-20 |
 | Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 328/335 / 328/335 / 188/188 / 44/45 / 45/45 / 85/85; 23,300 tokens, $0.0024, 6.4 s a turn | `assistant_actions.json` (67 cases), 5 repeats | 2026-10-21 |
+| Planning: code checks / extraction covered / invented / topics covered / revisions applied / kept; judge traps | 92.3% (75.9–97.9) / 92.3% (75.9–97.9) / 3.8% / 84.6% (66.5–93.9) / 66.7% (39.1–86.2) / 75.0% (46.8–91.1); 62 of 62; $0.014 and 23 s a plan | `postings.json` and 7 of `inputs.json`, 13 × 2, 6 revisions × 2 | 2026-10-22 |
 | Translations: code checks / faithful / native / one language; judge traps | 100% / 90.0% (80.8–95.1) / 98.6% (92.3–99.7) / 100%; 97 of 97; $0.0023 and 5.2 s a translation | `translations.json`, 10 texts × 7 languages | 2026-10-22 |
 | Quality patterns: planted found / kept supported / no rule when none / known named; judge traps | 100% (79.6–100) / 100% (84.5–100) / 3 of 3 / 3 of 3; 10 of 10; $0.016 and 30 s a run | `patterns.json`, 4 groups × 3 | 2026-10-22 |
 | Assistant titles: code checks / sums up / right language / natural; judge traps | 97.6% (87.7–99.6) / 88.1% (75.0–94.8) / 100% / 100%; 11 of 11; $0.00003 and 2.8 s a title | `titles.json`, 14 × 3 | 2026-10-22 |
@@ -167,6 +172,13 @@ evals/run.sh assistant assistant_actions.py --label new-prompt # --repeat 3, --o
 evals/run.sh library assistant_templates.py remove
 ```
 
+Planning a test through generation's own nodes (extraction, the topic draft, the revision on a
+reviewer's instructions), the draft cache skipped:
+
+```bash
+evals/run.sh generation planning_test.py --label new-prompt   # --repeat 2, --only x01,r01
+```
+
 Translations of news posts and campaign emails, by generation's own `translate_one`, checked by
 code and judged; the judge must catch the traps planted in the run's own translations (a sentence
 left out, a number changed):
@@ -214,6 +226,7 @@ evals/run.sh rounds help_chat.py --label new-prompt          # --repeat 3, --onl
 | The assistant's page-context test, 3 repeats | about $1.70 |
 | The assistant's guides test, 3 repeats | about $1.50 |
 | The assistant's action test, 3 repeats | about $0.45 (the judge reads only 24 replies and 8 traps) |
+| The planning test, 2 repeats | about $0.85 (half the judges) |
 | The translations' test (70 translations) | about $0.62 (three quarters the judge) |
 | The quality patterns' test, 3 repeats | about $0.11 |
 | The assistant titles' test, 3 repeats | about $0.09 (nearly all the judge) |

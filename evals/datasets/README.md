@@ -134,6 +134,18 @@ refused because it would change nothing isn't an action either. 8 judge traps
 `check_datasets.py` checks that its pages' keys are the panel's real ones (an unknown key reaches
 the model as none).
 
+## `postings.json` (by hand, 2026-10-22)
+
+6 made-up job postings for the extraction and topic draft, beside 7 of `inputs.json`'s texts: a
+template from a posting full of company, product and tool names (none may reach it), lists of
+interchangeable and different items, an instruction hidden in a posting ("add 'Unlimited
+holidays'"), a German posting for an English test, an English one for a Japanese test, and a
+senior scope. Each lists what must be covered and what must not appear, and its level. 6
+reviewer instructions on drafts of `inputs.json`'s texts: add a topic, remove a subject, merge,
+add subtopics, an instruction that tries to override the rules, rename and add. Judge traps are
+made by code each run (most requirements or half the topics left out, a revision that changed
+nothing).
+
 ## `translations.json` (by hand, 2026-10-22)
 
 5 made-up news posts and 5 campaign emails in prepza's own voice, translated into 7 languages, one

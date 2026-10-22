@@ -12,7 +12,13 @@ from collections import Counter
 from difflib import SequenceMatcher
 from pathlib import Path
 
-from small_datasets import check_code_languages, check_patterns, check_titles, check_translations
+from small_datasets import (
+    check_code_languages,
+    check_patterns,
+    check_postings,
+    check_titles,
+    check_translations,
+)
 
 EVALS = Path(__file__).resolve().parents[1]
 DATASETS = EVALS / "datasets"
@@ -192,6 +198,7 @@ def main() -> None:
     texts += [("translations", text) for text in check_translations(problems)]
     texts += [("patterns", text) for text in check_patterns(problems)]
     texts += [("titles", text) for text in check_titles(problems)]
+    texts += [("postings", text) for text in check_postings(problems)]
 
     for where, text in texts:
         for example in examples:

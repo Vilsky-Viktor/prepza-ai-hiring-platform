@@ -1,0 +1,316 @@
+"""Tests how generation plans a test, through its own nodes: the extraction (title, requirements,
+level) of datasets/postings.json's postings and inputs.json's texts, the topics drafted from
+it, and the topics revised on reviewers' instructions. Code checks limits, levels, kept-out
+names and script; judges/extraction.md, topics.md and revision.md grade coverage and the rest.
+The judges are checked every run on traps made by code from the run's own results (requirements
+or a topic dropped, a revision that changed nothing): they must fail them.
+
+    evals/run.sh generation planning_test.py --label base   # --repeat 2, --only x01,python_backend,r01
+
+The draft cache is skipped, so every call is made. Costs about $0.30 for the model and $1.00 for
+the judges at 2 repeats."""
+
+import argparse
+import asyncio
+import json
+import time
+
+from common import (
+    DATASETS,
+    JUDGE_MODEL,
+    RESULTS,
+    cost,
+    generation_models,
+    judge,
+    load,
+    prompt,
+    run_record,
+    save,
+)
+from langchain_core.callbacks import get_usage_metadata_callback
+from langchain_core.messages import HumanMessage
+from prepza_common.constants import LANGUAGES
+from pydantic import BaseModel, Field
+from stats import share
+from text_checks import in_script
+
+from app.config.settings import settings
+from app.constants.generation import MAX_TOPIC_NAME_LENGTH
+from app.services.nodes import extraction, topics
+from app.services.topic_caps import topic_caps
+from app.storage import draft_cache
+
+
+class ExtractionReview(BaseModel):
+    covered: bool = Field(description="Every testable item is among the requirements")
+    missing: list[str] = Field(description="Items missing, a few words each")
+    invented: bool = Field(description="Something the posting doesn't say")
+    title_ok: bool = Field(description="The title names the role briefly")
+    language_ok: bool = Field(description="Everything in the language asked for")
+
+
+class TopicsReview(BaseModel):
+    covered: bool = Field(description="Every requirement's skill has a subtopic")
+    missing: list[str] = Field(description="Requirements left out")
+    testable: bool = Field(description="Subtopics are testable knowledge")
+    coherent: bool = Field(description="Each topic covers one subject")
+    language_ok: bool = Field(description="Every name in the language asked for")
+
+
+class RevisionReview(BaseModel):
+    applied: bool = Field(description="Does what a right result does")
+    kept: bool = Field(description="Nothing untouched was lost")
+    issue: str = Field(description="The main problem, or empty")
+
+
+async def judged(schema, name: str, **fields) -> tuple[dict, float]:
+    result = (
+        await judge()
+        .with_structured_output(schema, include_raw=True)
+        .ainvoke([HumanMessage(content=prompt(name).format(**fields))])
+    )
+
+    return result["parsed"].model_dump(), cost(JUDGE_MODEL, result["raw"].usage_metadata or {})
+
+
+async def measured(call):
+    """The node's result, its cost, tokens and seconds."""
+    started = time.monotonic()
+
+    with get_usage_metadata_callback() as usage:
+        result = await call
+
+    spent = sum(cost(m.split("-20")[0], u) for m, u in usage.usage_metadata.items())
+    tokens = sum(u.get("total_tokens", 0) for u in usage.usage_metadata.values())
+
+    return result, {"cost": spent, "tokens": tokens, "seconds": time.monotonic() - started}
+
+
+def topics_ok(found: list[dict], caps: dict, language: str) -> dict:
+    names = [t["main_topic"] for t in found] + [s for t in found for s in t["subtopics"]]
+
+    return {
+        "topics_within_cap": len(found) <= caps["max_topics"],
+        "subtopics_within_cap": all(len(t["subtopics"]) <= caps["max_subtopics"] for t in found),
+        "names_short": all(len(name) <= MAX_TOPIC_NAME_LENGTH for name in names),
+        "topics_script": in_script(" ".join(names), language),
+    }
+
+
+async def plan(case: dict, caps: dict) -> dict:
+    """Extraction then topics for one posting, checked and judged."""
+    language = case.get("language", "en")
+    state = {"input_text": case["text"], "language": language, "template": case["template"]}
+    extracted, spent = await measured(extraction.extract_info(state))
+    forbidden = case.get("forbidden", []) + (
+        case.get("forbidden_in_template", []) if case["template"] else []
+    )
+    written = " ".join([extracted["title"], *extracted["requirements"]])
+    checks = {
+        "level": extracted["level"] == case["level"],
+        "nothing_forbidden": not any(word.lower() in written.lower() for word in forbidden),
+        "extraction_script": in_script(written, language, case.get("keep", [])),
+    }
+    template_note = (
+        "This is a public template: the title and requirements must not name the company, its "
+        "products or its internal tools; a generic description of them counts as covered."
+    )
+    review, judge_cost = await judged(
+        ExtractionReview,
+        "extraction",
+        posting=case["text"],
+        must_cover=", ".join(case.get("must_cover", [])) or "every item of the posting",
+        extraction=json.dumps(extracted, ensure_ascii=False, indent=1),
+        template_note=template_note if case["template"] else "",
+        language=LANGUAGES[language],
+    )
+    state |= {"requirements": extracted["requirements"], "level": extracted["level"]}
+    drafted, topic_spent = await measured(topics.generate_topics(state))
+    checks |= topics_ok(drafted["topics"], caps, language)
+    topic_review, topic_judge = await judged(
+        TopicsReview,
+        "topics",
+        requirements="\n".join(f"- {r}" for r in extracted["requirements"]),
+        topics=json.dumps(drafted["topics"], ensure_ascii=False, indent=1),
+        language=LANGUAGES[language],
+    )
+
+    return {
+        "id": case["id"],
+        "extraction": extracted,
+        "topics": drafted["topics"],
+        "checks": checks,
+        "review": review,
+        "topic_review": topic_review,
+        "cost": spent["cost"] + topic_spent["cost"],
+        "tokens": spent["tokens"] + topic_spent["tokens"],
+        "seconds": spent["seconds"] + topic_spent["seconds"],
+        "judge_cost": judge_cost + topic_judge,
+        "state": state | {"topics": drafted["topics"]},
+    }
+
+
+async def revise(revision: dict, planned: dict, caps: dict) -> dict:
+    state = planned["state"] | {"feedback": revision["instructions"]}
+    revised, spent = await measured(topics.revise_topics(state))
+    before = json.dumps(state["topics"], ensure_ascii=False, indent=1)
+    review, judge_cost = await judged(
+        RevisionReview,
+        "revision",
+        before=before,
+        instructions=revision["instructions"],
+        expect=revision["expect"],
+        after=json.dumps(revised["topics"], ensure_ascii=False, indent=1),
+    )
+
+    return {
+        "id": revision["id"],
+        "topics": revised["topics"],
+        "checks": topics_ok(revised["topics"], caps, state["language"]),
+        "review": review,
+        **spent,
+        "judge_cost": judge_cost,
+        "before": state["topics"],
+    }
+
+
+async def traps(plans: list[dict], revisions: list[dict], cases: dict) -> tuple[dict, float]:
+    """The judges on broken copies of this run's results, each a failure: most requirements or
+    half the topics left out, a revision that changed nothing."""
+    jobs = []
+
+    for p in plans:
+        # Two thirds of the requirements, and half the topics, left out: clearly not covered.
+        kept = p["extraction"]["requirements"][: len(p["extraction"]["requirements"]) // 3]
+        extracted = {**p["extraction"], "requirements": kept}
+        jobs.append(
+            judged(
+                ExtractionReview,
+                "extraction",
+                posting=cases[p["id"]]["text"],
+                must_cover="every item of the posting",
+                extraction=json.dumps(extracted, ensure_ascii=False),
+                template_note="",
+                language=LANGUAGES[cases[p["id"]].get("language", "en")],
+            )
+        )
+        jobs.append(
+            judged(
+                TopicsReview,
+                "topics",
+                requirements="\n".join(f"- {r}" for r in p["extraction"]["requirements"]),
+                topics=json.dumps(p["topics"][: len(p["topics"]) // 2], ensure_ascii=False),
+                language=LANGUAGES[cases[p["id"]].get("language", "en")],
+            )
+        )
+
+    for r in revisions:
+        jobs.append(
+            judged(
+                RevisionReview,
+                "revision",
+                before=json.dumps(r["before"], ensure_ascii=False),
+                instructions=r["instructions"],
+                expect=r["expect"],
+                after=json.dumps(r["before"], ensure_ascii=False),
+            )
+        )
+
+    results = await asyncio.gather(*jobs)
+    failed = [not (v.get("covered", True) and v.get("applied", True)) for v, _ in results]
+
+    return {"caught": f"{sum(failed)} of {len(failed)}"}, sum(c for _, c in results)
+
+
+async def main(args) -> None:
+    data = load(DATASETS / "postings.json")
+    inputs = {d["id"]: d for d in load(DATASETS / "inputs.json")["domains"]}
+    cases = {p["id"]: p for p in data["postings"]}
+    cases |= {i: {**inputs[i], "template": False} for i in data["from_inputs"]}
+    only = set(args.only.split(",")) if args.only else None
+    chosen = [c for i, c in cases.items() if not only or i in only]
+    # Every call is made: the draft cache would answer from an earlier run.
+    draft_cache.get = lambda *a: asyncio.sleep(0)
+    draft_cache.put = lambda *a: asyncio.sleep(0)
+    caps = await topic_caps()
+    plans = await asyncio.gather(*(plan(c, caps) for c in chosen for _ in range(args.repeat)))
+    by_id = {p["id"]: p for p in plans}
+    wanted = [r for r in data["revisions"] if r["from"] in by_id and (not only or r["id"] in only)]
+    wanted = [r for r in wanted for _ in range(args.repeat)]
+    revisions = await asyncio.gather(*(revise(r, by_id[r["from"]], caps) for r in wanted))
+    revisions = [{**r, **w} for r, w in zip(revisions, wanted, strict=True)]
+    caught, trap_cost = await traps(plans, [r for r in revisions if r["id"] != "r05"], cases)
+    report(plans, revisions, caught, trap_cost, args)
+
+
+def report(plans, revisions, caught, trap_cost, args) -> None:
+    def rate(rows, key, field):
+        return share(sum(r[key][field] for r in rows), len(rows))
+
+    scores = {
+        "plans": len(plans),
+        "code_checks": share(sum(all(p["checks"].values()) for p in plans), len(plans)),
+        "failed_checks": {
+            name: sum(not p["checks"][name] for p in plans)
+            for name in plans[0]["checks"]
+            if any(not p["checks"][name] for p in plans)
+        }
+        if plans
+        else {},
+        "extraction_covered": rate(plans, "review", "covered"),
+        "extraction_invented": rate(plans, "review", "invented"),
+        "title_ok": rate(plans, "review", "title_ok"),
+        "topics_covered": rate(plans, "topic_review", "covered"),
+        "topics_testable": rate(plans, "topic_review", "testable"),
+        "topics_coherent": rate(plans, "topic_review", "coherent"),
+        "language_ok": share(
+            sum(p["review"]["language_ok"] and p["topic_review"]["language_ok"] for p in plans),
+            len(plans),
+        ),
+        "revisions_applied": rate(revisions, "review", "applied"),
+        "revisions_kept": rate(revisions, "review", "kept"),
+        "revision_checks": share(sum(all(r["checks"].values()) for r in revisions), len(revisions)),
+        "judge_traps": caught,
+    }
+    rows = plans + revisions
+    spent = {
+        "model": round(sum(r["cost"] for r in rows), 4),
+        "judge": round(sum(r["judge_cost"] for r in rows) + trap_cost, 4),
+    }
+    seconds = sorted(r["seconds"] for r in plans)
+    measured_run = {
+        "tokens": sum(r["tokens"] for r in rows),
+        "median_seconds_a_plan": round(seconds[len(seconds) // 2], 1) if seconds else 0,
+    }
+    models = generation_models(settings)
+    run = run_record(model=models, scores=scores, cost=spent, **measured_run)
+
+    for p in plans:
+        p.pop("state")
+
+    save(
+        RESULTS / f"planning_{args.label}.json",
+        {"run": run, "plans": plans, "revisions": revisions},
+    )
+    print(
+        json.dumps({"scores": scores, "cost": spent, **measured_run}, indent=1, ensure_ascii=False)
+    )
+
+    for p in plans:
+        bad = [name for name, ok in p["checks"].items() if not ok]
+        notes = p["review"]["missing"] + p["topic_review"]["missing"]
+
+        if bad or notes or p["review"]["invented"]:
+            print(f"- {p['id']}: {bad} invented={p['review']['invented']} missing={notes}")
+
+    for r in revisions:
+        if not (r["review"]["applied"] and r["review"]["kept"]):
+            print(f"- {r['id']}: {r['review']['issue']}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--label", default="run")
+    parser.add_argument("--only", default="")
+    parser.add_argument("--repeat", type=int, default=2)
+    asyncio.run(main(parser.parse_args()))

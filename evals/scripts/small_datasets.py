@@ -111,3 +111,33 @@ def check_titles(problems: list[str]) -> list[str]:
         ]
 
     return [m["text"] for item in data["items"] for m in item["messages"]]
+
+
+def check_postings(problems: list[str]) -> list[str]:
+    """Each posting has its expectations, and each revision a planned posting to start from."""
+    data = load("postings.json")
+    inputs = {d["id"] for d in load("inputs.json")["domains"]}
+    check_described("postings.json", data, problems)
+    unique_ids("postings.json", data["postings"] + data["revisions"], problems)
+    planned = {p["id"] for p in data["postings"]} | set(data["from_inputs"])
+    problems += [
+        f"postings.json: {i} isn't in inputs.json" for i in data["from_inputs"] if i not in inputs
+    ]
+
+    for posting in data["postings"]:
+        if not posting.get("must_cover") or posting.get("level") not in ("basic", "medium", "hard"):
+            problems.append(f"postings.json: {posting['id']} lacks what it must cover or a level")
+
+        problems += [
+            f"postings.json: {posting['id']} forbids {word!r}, which it never says"
+            for word in posting.get("forbidden_in_template", [])
+            if word not in posting["text"]
+        ]
+
+    problems += [
+        f"postings.json: {r['id']} starts from {r['from']}, which isn't planned"
+        for r in data["revisions"]
+        if r["from"] not in planned
+    ]
+
+    return [p["text"] for p in data["postings"]] + [r["instructions"] for r in data["revisions"]]
