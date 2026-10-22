@@ -65,9 +65,9 @@ A change to the candidate's pages updates `internal_docs/compliance/accessibilit
 - Motion respects `prefers-reduced-motion`: non-essential motion stops, and the global reset
   sets `animation-iteration-count: 1` so infinite loops stop too. Nothing moves on its own for
   more than 5 seconds next to other content (a badge carries a state, not a looping animation).
-  User-decided exception (2026-10-22): the landing page's moving pictures and the hero's play
-  button's pulsing ring keep looping with no pause button; reduced motion still stops them. Don't
-  re-raise it in audits.
+  User-decided exception (2026-10-22): the landing page's moving pictures, the hero's play
+  button's pulsing ring and the "ask Mira" button's circling arc and sparkles keep looping with
+  no pause button; reduced motion still stops them. Don't re-raise it in audits.
 - `<html lang dir>` per locale; text in another language (a language's own name in a picker, an
   interview's questions) carries its own `lang`; direction-neutral classes (`.claude/rules/nextjs.md`).
 
