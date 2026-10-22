@@ -121,9 +121,9 @@ export async function sealWebhookSecretsElsewhere(companyId: string) {
 export async function addTopUp(companyId: string, credits: number, totalCents: number) {
   await withDatabase("billing", async (client) => {
     await client.query(
-      `INSERT INTO entries (id, key, owner_type, owner_id, amount, reason, total, currency)
+      `INSERT INTO entries (id, key, owner_type, owner_id, amount, reason, total_minor, currency)
        VALUES (gen_random_uuid(), $1, 'company', $2, $3, 'topup', $4, 'USD')`,
-      [`txn_e2e${randomUUID().replaceAll("-", "")}:topup_50`, companyId, credits, String(totalCents)],
+      [`txn_e2e${randomUUID().replaceAll("-", "")}:topup_50`, companyId, credits, totalCents],
     );
     await client.query(
       "UPDATE wallets SET balance = balance + $2 WHERE owner_type = 'company' AND owner_id = $1",
