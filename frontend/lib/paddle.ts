@@ -1,8 +1,4 @@
-import {
-  CheckoutEventNames,
-  initializePaddle,
-  type Paddle,
-} from "@paddle/paddle-js"
+import type { Paddle } from "@paddle/paddle-js"
 
 import { PADDLE_FALLBACK_LOCALE, PADDLE_LOCALES } from "@/constants/paddle"
 import type { Catalog } from "@/types/billing"
@@ -76,36 +72,41 @@ export function paddleLocale(locale: string) {
   return PADDLE_LOCALES[locale] ?? PADDLE_FALLBACK_LOCALE
 }
 
-/** Paddle.js, loaded once on the first purchase. */
+/** Paddle.js, loaded once on the first purchase; its loader too, so no other page carries it
+ * (the paid and failed dialogs, in the root layout, import this file). */
 function load(catalog: Catalog) {
-  paddle ??= initializePaddle({
-    environment:
-      catalog.environment === "production" ? "production" : "sandbox",
-    token: catalog.client_token,
-    eventCallback: (event) => {
-      const transactionId = event.data?.transaction_id
+  paddle ??= import("@paddle/paddle-js").then(
+    ({ CheckoutEventNames, initializePaddle }) =>
+      initializePaddle({
+        environment:
+          catalog.environment === "production" ? "production" : "sandbox",
+        token: catalog.client_token,
+        eventCallback: (event) => {
+          const transactionId = event.data?.transaction_id
 
-      if (event.name === CheckoutEventNames.CHECKOUT_PAYMENT_INITIATED) {
-        attempt += 1
-      }
+          if (event.name === CheckoutEventNames.CHECKOUT_PAYMENT_INITIATED) {
+            attempt += 1
+          }
 
-      // Paid: the checkout closes and the success dialog shows on the page, once per checkout.
-      if (event.name === CheckoutEventNames.CHECKOUT_COMPLETED && opened) {
-        const { paid } = opened
-        opened = null
-        void closeCheckout()
-        onPaid?.(paid)
-      }
+          // Paid: the checkout closes and the success dialog shows on the page, once per
+          // checkout.
+          if (event.name === CheckoutEventNames.CHECKOUT_COMPLETED && opened) {
+            const { paid } = opened
+            opened = null
+            void closeCheckout()
+            onPaid?.(paid)
+          }
 
-      if (
-        event.name === CheckoutEventNames.CHECKOUT_PAYMENT_FAILED &&
-        opened &&
-        transactionId
-      ) {
-        onFailed?.({ companyId: opened.companyId, transactionId, attempt })
-      }
-    },
-  })
+          if (
+            event.name === CheckoutEventNames.CHECKOUT_PAYMENT_FAILED &&
+            opened &&
+            transactionId
+          ) {
+            onFailed?.({ companyId: opened.companyId, transactionId, attempt })
+          }
+        },
+      })
+  )
 
   return paddle
 }
