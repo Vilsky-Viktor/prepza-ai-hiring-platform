@@ -1,11 +1,11 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
 import { PillSelect } from "@/components/pill-select"
-import { TextEditor } from "@/components/text-editor"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -27,6 +27,12 @@ import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { campaignForm } from "@/lib/campaigns"
 import type { Campaign } from "@/types/campaigns"
 import { GRAY_FIELD } from "@/constants/fields"
+
+// The rich text editor (TipTap) is large and only this dialog uses it: loaded when it opens.
+const TextEditor = dynamic(
+  () => import("@/components/text-editor").then((module) => module.TextEditor),
+  { ssr: false }
+)
 
 const KINDS = ["updates", "promotions"] as const
 const PATH = "/notifications/superadmin/campaigns"
