@@ -11,6 +11,8 @@ class AtsClient(Protocol):
     the credentials it takes: a connection may keep others (a web hook's secret key)."""
 
     KEYS: tuple[str, ...]
+    # What a 502 says when the ATS doesn't answer.
+    UNAVAILABLE: str
 
     async def check(self, **credentials) -> None: ...
 

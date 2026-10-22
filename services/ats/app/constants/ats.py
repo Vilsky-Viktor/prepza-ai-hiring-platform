@@ -38,6 +38,10 @@ WORKABLE_PAGE = 100
 WORKABLE_MAX_PAGES = 10
 # Seconds to wait for an ATS's answer.
 ATS_TIMEOUT_SECONDS = 15
+# One action of an ATS's client, all its calls and pages together (a job list reads up to 20
+# pages): it ends within this, inside this service's 60 s request timeout and Pub/Sub's 60 s ack
+# deadline, rather than at the most pages × ATS_TIMEOUT_SECONDS.
+ATS_ACTION_SECONDS = 45
 
 
 class CandidateStatus(StrEnum):

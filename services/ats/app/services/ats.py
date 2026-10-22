@@ -1,3 +1,4 @@
+import asyncio
 import json
 import logging
 
@@ -7,7 +8,13 @@ from prepza_common.encryption import decrypt, encrypt
 from prepza_common.rate_limit import hit_or_skip
 
 from app.config.settings import settings
-from app.constants.ats import ATS_NAMES, WORKABLE_WEBHOOK, WRITES, AtsProvider
+from app.constants.ats import (
+    ATS_ACTION_SECONDS,
+    ATS_NAMES,
+    WORKABLE_WEBHOOK,
+    WRITES,
+    AtsProvider,
+)
 from app.integrations import breezy, workable
 from app.integrations.ats_clients import client
 from app.integrations.ats_http import calling_company
@@ -98,13 +105,17 @@ async def call(connection: AtsConnection, action: str, **arguments):
     """One action of the connection's ATS client (integrations/ats_clients.py), with its
     credentials; a refused key marks the connection broken. A refused write (WRITES) while the
     key still reads is a key without write access: WriteRefused, and the connection keeps
-    inviting. An ATS doesn't always say which it is (Workable answers 401 to both)."""
+    inviting. An ATS doesn't always say which it is (Workable answers 401 to both). The whole
+    action ends within ATS_ACTION_SECONDS: past it, the ATS didn't answer (502)."""
     found = await credentials(connection)
     used = client(connection.provider)
     keys = {key: found[key] for key in used.KEYS}
 
     try:
-        return await getattr(used, action)(**keys, **arguments)
+        async with asyncio.timeout(ATS_ACTION_SECONDS):
+            return await getattr(used, action)(**keys, **arguments)
+    except TimeoutError:
+        raise HTTPException(status.HTTP_502_BAD_GATEWAY, used.UNAVAILABLE) from None
     except KeyRejected:
         if action in WRITES and await still_reads(used, keys):
             raise WriteRefused from None
