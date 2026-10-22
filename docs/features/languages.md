@@ -6,7 +6,7 @@ prepza works in 23 languages: the interface, error messages, generated interview
 
 English, Russian, Ukrainian, Spanish, Portuguese, German, French, Italian, Polish, Dutch, Turkish, Arabic, Hebrew, Persian, Japanese, Chinese, Korean, Hindi, Indonesian, Thai, Vietnamese, Filipino and Estonian.
 
-Arabic, Hebrew and Persian read right to left, on the site and in emails.
+Arabic, Hebrew and Persian read right to left, on the site and in emails. In an email every table states the direction, lists are indented on the right, and addresses and links inside the text keep reading left to right.
 
 ## The interface language
 

@@ -27,7 +27,7 @@ TEXT_SECTION_HEADING = "\n{heading}"
 TEXT_ROW = "\n- {text}\n  {url}"
 HTML_SECTION = (
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" '
-    'style="margin:0 0 16px;border:1px solid #e5e5e5;border-radius:12px;">'
+    'dir="{direction}" style="margin:0 0 16px;border:1px solid #e5e5e5;border-radius:12px;">'
     '<tr><td style="padding:16px 20px;">{heading}{rows}</td></tr></table>\n'
 )
 # A list's heading: the email's sections under its one <h1>.
@@ -49,6 +49,8 @@ HTML_LOGO = (
     'max-width:200px;border:0;border-radius:12px;"></td>'
 )
 HTML_NAME = '<strong style="font-weight:600;color:#0a0a0a;">{name}</strong>'
+# An address or a link inside the text: kept left to right in a right-to-left language.
+HTML_LTR = '<span dir="ltr">{text}</span>'
 
 HTML_PARAGRAPH = (
     '<p style="margin:0 0 16px;font-size:16px;line-height:24px;color:#404040;">{text}</p>'
@@ -82,11 +84,12 @@ letter-spacing:-0.5px;color:#0a0a0a;">prepza<span style="color:#0071e0;">.</span
 border-radius:16px;text-align:{align};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,\
 sans-serif;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" \
-style="margin:0 0 24px;"><tr><td style="vertical-align:middle;">\
+dir="{direction}" style="margin:0 0 24px;"><tr><td style="vertical-align:middle;">\
 <h1 style="margin:0;font-size:24px;line-height:32px;font-weight:600;color:#0a0a0a;">\
 {heading}<span style="color:#0071e0;">.</span></h1></td>{logo}</tr></table>
 {lines}
-{sections}<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 32px;">
+{sections}<table role="presentation" cellpadding="0" cellspacing="0" border="0" dir="{direction}" \
+style="margin:8px 0 32px;">
 <tr><td style="border-radius:10px;background-color:#0071e0;">\
 <a href="{link}" target="_blank" style="display:inline-block;padding:14px 28px;\
 font-size:16px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;\
@@ -94,7 +97,7 @@ border-radius:10px;">{button}</a></td></tr>
 </table>
 <p style="margin:0;font-size:14px;line-height:20px;color:#737373;">\
 {paste_link}:<br>\
-<a href="{link}" target="_blank" style="color:#0071e0;word-break:break-all;">{link}</a></p>
+<a href="{link}" target="_blank" dir="ltr" style="color:#0071e0;word-break:break-all;">{link}</a></p>
 </td></tr>
 <tr><td style="padding:24px 8px 0;text-align:{align};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',\
 Helvetica,Arial,sans-serif;font-size:13px;line-height:20px;color:#6b6b6b;">{footer}{links}<br><br>{operator}</td></tr>

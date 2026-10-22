@@ -1,7 +1,9 @@
+import re
 from html import escape
 
 from prepza_common.constants import DEFAULT_LANGUAGE, OPERATOR, RTL_LANGUAGES
 
+from app.constants.email import LTR_VALUE
 from app.helpers.markdown import markdown_html
 from app.models.email import Email
 from app.templates.emails import EMAILS
@@ -9,6 +11,7 @@ from app.templates.layout import (
     HTML_FOOTER_LINK,
     HTML_LAYOUT,
     HTML_LOGO,
+    HTML_LTR,
     HTML_NAME,
     HTML_PARAGRAPH,
     HTML_ROW,
@@ -54,8 +57,15 @@ def render(
     # An invite from a company prepza hasn't verified says so, quietly, in the footer.
     if data.get("verified") is False:
         footer = f"{footer} {texts['unverified']}"
+
     rtl = language in RTL_LANGUAGES
-    safe = {key: escape(str(value)) for key, value in data.items()}
+    # Addresses and links keep reading left to right in a right-to-left text.
+    safe = {
+        key: HTML_LTR.format(text=escape(str(value)))
+        if isinstance(value, str) and re.fullmatch(LTR_VALUE, value)
+        else escape(str(value))
+        for key, value in data.items()
+    }
     emphasized = {
         **safe,
         **{
@@ -110,11 +120,12 @@ def render(
                     HTML_PARAGRAPH.format(text=line.format(**emphasized))
                     for line in template["lines"]
                 ),
-                *([markdown_html(markdown)] if markdown else []),
+                *([markdown_html(markdown, rtl)] if markdown else []),
             ]
         ),
         sections="".join(
             HTML_SECTION.format(
+                direction="rtl" if rtl else "ltr",
                 heading=HTML_SECTION_HEADING.format(heading=escape(heading)) if heading else "",
                 rows="".join(
                     HTML_ROW.format(text=escape(text), url=escape(url)) for text, url in rows

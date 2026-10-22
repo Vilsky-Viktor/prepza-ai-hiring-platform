@@ -17,6 +17,8 @@ RESEND_QUOTA_ERRORS = ("daily_quota_exceeded", "monthly_quota_exceeded")
 # already went out (never retried); or the same key still in progress (retried, nothing sent yet).
 RESEND_ALREADY_SENT = "invalid_idempotent_request"
 RESEND_IN_PROGRESS = "concurrent_idempotent_requests"
+# A value shown left to right inside a right-to-left text: an email address or a link.
+LTR_VALUE = r"[^\s@]+@[^\s@]+|https?://\S+"
 # On every email (RFC 3834): sent by a program, so mail servers and clients send it no
 # out-of-office or other automatic replies.
 AUTOMATED_HEADERS = {"Auto-Submitted": "auto-generated"}
