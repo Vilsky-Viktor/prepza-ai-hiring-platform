@@ -79,12 +79,13 @@ async def invite_member(company_id: UUID, body: MemberIn, user: CurrentUser) -> 
 
     await refuse_over(sum(member.user_id is None for member in company.members))
 
+    # The invite emails the member, so it counts toward the owner's email limits: the narrower
+    # ones (the owner, this address) first, so one refused address doesn't use up the company's.
+    await hit_emails(redis, user.uid, f"member:{company.id}:{recipient_key(email)}", company.id)
+
     if not await billing.company_paid(company.id):
         key = f"rate:member-invites:{company.id}"
         await hit(redis, key, "MEMBER_INVITES_PER_UNPAID_DAY", **who)
-
-    # The invite emails the member, so it counts toward the owner's email limits.
-    await hit_emails(redis, user.uid, f"member:{company.id}:{recipient_key(email)}", company.id)
     sender = {
         "company": company.name,
         "company_id": str(company.id),

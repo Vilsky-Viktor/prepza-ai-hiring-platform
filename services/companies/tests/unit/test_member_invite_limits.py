@@ -2,6 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
+from fastapi import HTTPException
 
 from app.constants.roles import TOO_MANY_PENDING
 from app.integrations import billing
@@ -101,7 +102,7 @@ def test_a_company_that_never_paid_sends_a_limited_number_of_invites_a_day(
     refused = client.post(URL, json={"email": "one-more@example.com"})
 
     assert refused.status_code == 429
-    assert refused.json() == {"detail": TOO_MANY_REQUESTS}
+    assert refused.json() == {"detail": TOO_MANY_REQUESTS, "code": "rate_limited"}
     assert limits.counts[f"rate:member-invites:{COMPANY_ID}"] == most + 1
     assert len(added) == most
     assert [(hit["limit"], hit["company_id"], hit["user_id"]) for hit in limit_hits] == [
@@ -160,3 +161,24 @@ def test_the_owner_inviting_their_own_email_is_a_conflict(client, team, limits):
 
     assert (response.status_code, response.json()["detail"]) == (409, "You're already a member")
     assert added == []
+
+
+def test_an_address_over_its_email_limit_doesnt_use_up_the_companys_invites(
+    client,
+    team,  # noqa: F811
+    limits,
+    monkeypatch,
+):
+    async def unpaid(_company_id):
+        return False
+
+    async def over(redis, sender, recipient, company_id=None):
+        raise HTTPException(429, TOO_MANY_REQUESTS)
+
+    monkeypatch.setattr(billing, "company_paid", unpaid)
+    # The owner's or this address's email limit refuses it first.
+    monkeypatch.setattr(members_router, "hit_emails", over)
+    sign_in("ann@example.com", uid="ann")
+
+    assert client.post(URL, json={"email": "bo@example.com"}).status_code == 429
+    assert f"rate:member-invites:{COMPANY_ID}" not in limits.counts
