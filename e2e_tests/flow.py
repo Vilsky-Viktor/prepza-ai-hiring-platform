@@ -151,7 +151,9 @@ def clean_up() -> None:
                 body={"localId": local_id},
                 headers={"Authorization": "Bearer owner"},
             )
-        except SystemExit as error:
+        # A refusal (SystemExit from call) or no answer in time (OSError): the next account is
+        # still deleted, and this one is left for the browser suite's clean-up of stale ones.
+        except (SystemExit, OSError) as error:
             # Deleting the account removed its sign-in already.
             if "USER_NOT_FOUND" not in str(error):
                 print(f"clean-up: couldn't delete a user: {error}")
