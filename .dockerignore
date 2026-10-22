@@ -16,3 +16,6 @@
 **/__pycache__
 **/.pytest_cache
 services/*/tests
+# Local settings and secrets never go into an image.
+**/.env
+**/.env.*
