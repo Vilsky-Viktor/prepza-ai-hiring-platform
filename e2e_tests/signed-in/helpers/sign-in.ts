@@ -1,4 +1,4 @@
-import { type Browser, expect, type Page } from "@playwright/test"
+import { type Browser, expect, type Locator, type Page } from "@playwright/test"
 
 import { TOKEN_COOKIE } from "../constants"
 import { env } from "./env"
@@ -45,16 +45,17 @@ export async function signIn(
   const claim = encodeURIComponent(`"email":"${email}"`)
   const existing = popup.locator(`li.js-reuse-account[data-id-token*="${claim}"]`)
 
-  if ((await existing.count()) > 0) {
-    await existing.first().click()
-  } else {
+  const reuse = (await existing.count()) > 0
+  const submit = reuse ? existing.first() : popup.locator("#sign-in")
+
+  if (!reuse) {
     await popup.getByText(/add new account/i).click()
     await popup.locator("#email-input").fill(email)
     await popup.locator("#display-name-input").fill(displayName)
-    await popup.locator("#sign-in").click()
   }
 
-  await popup.waitForEvent("close")
+  await submit.click()
+  await waitForPopupClose(popup, submit)
   // Signed in once the frontend writes the token cookie and re-renders the page with it.
   await expect
     .poll(async () => (await context.cookies()).some((c) => c.name === TOKEN_COOKIE))
@@ -65,6 +66,24 @@ export async function signIn(
   await expect(page.getByTestId(`sign-in-${provider}`)).toHaveCount(0, { timeout: 90_000 })
 
   return page
+}
+
+/** Waits for the emulator's page to close once its account is chosen. A click that lands before
+ * the page's script is ready does nothing and the page stays open, so if it's still open after a
+ * while and the button is still there, it's clicked once more; never an endless wait. */
+async function waitForPopupClose(popup: Page, submit: Locator) {
+  // Both listen from now on, so a close between the two steps is never missed.
+  const closed = popup.waitForEvent("close", { timeout: 60_000 })
+  const soon = await popup
+    .waitForEvent("close", { timeout: 15_000 })
+    .then(() => true)
+    .catch(() => false)
+
+  if (!soon && !popup.isClosed() && (await submit.isVisible().catch(() => false))) {
+    await submit.click()
+  }
+
+  await closed
 }
 
 /** Clicks the provider's button until the emulator's page opens: a click before the page is
