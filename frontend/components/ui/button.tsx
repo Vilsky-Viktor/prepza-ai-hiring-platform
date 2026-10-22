@@ -62,6 +62,9 @@ function Button({
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      // Rendered as something else than a <button> (`nativeButton={false}`), it's always a link
+      // here: it stays a link to assistive tech, not the button role Base UI gives it.
+      {...(props.nativeButton === false && { role: "link" })}
       {...props}
     />
   )
