@@ -49,6 +49,12 @@ the Top 10 for LLM applications 2025.
 - No CORS (same origin; exact origins only if one is ever needed); writes need a bearer token in
   a header, never a cookie alone (a cookie used for writes would need SameSite plus a token or
   Fetch Metadata checks).
+- The only exceptions answer any origin without credentials (`allow_origins=["*"]`, never
+  `allow_credentials`, no cookie read): the MCP endpoint (bearer only; its methods, the MCP
+  headers, exposing `WWW-Authenticate` and `Mcp-Session-Id`), the OAuth metadata, token,
+  registration and revocation endpoints (the MCP SDK's `cors_middleware`), and the public embed
+  script (`EMBED_SCRIPT_HEADERS`, read-only). A new one needs the same: bearer or public, no
+  cookies, the fewest methods and headers.
 - HSTS gains `includeSubDomains` only once every subdomain serves HTTPS; a
   `Cross-Origin-Opener-Policy` must keep the sign-in providers' popups working
   (`same-origin-allow-popups`).
