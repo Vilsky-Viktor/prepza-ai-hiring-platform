@@ -9,8 +9,9 @@ SERVICE_TOKEN_LIFETIME = timedelta(seconds=60)
 # holds its callers' requests and pool slots for 15 s, not 30, so its trouble spreads less under
 # load. Calls known to take longer (deletions, starting a generation) pass their own timeout.
 HTTP_TIMEOUT_SECONDS = 15
-# Retries only connection attempts that failed, so a request is never sent twice.
-HTTP_RETRIES = 3
+# The shared client doesn't retry, not even a failed connection: each call has one layer of
+# retries, its caller's (Pub/Sub's or Cloud Tasks' redelivery, the outbox's flush, a jittered loop
+# around it, or the person), so a call is never retried both underneath and above, nor at once.
 # Google's token-signing certificates and Firebase Admin's calls (a revocation check, an account's
 # deletion) give up after this long; their libraries' own default, 120 s, outlasts every request.
 GOOGLE_TIMEOUT_SECONDS = 10
