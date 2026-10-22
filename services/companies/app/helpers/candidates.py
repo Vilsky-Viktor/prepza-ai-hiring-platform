@@ -95,10 +95,12 @@ def candidate_out(invite, totals: dict, interview, with_link: bool = False) -> C
     )
 
 
-def company_candidate_out(invite, totals: dict, interview) -> CompanyCandidateOut:
+def company_candidate_out(
+    invite, totals: dict, interview, with_link: bool = False
+) -> CompanyCandidateOut:
     """A candidate row of the company's search: the candidate row, with its interview."""
     return CompanyCandidateOut(
-        **candidate_out(invite, totals, interview).model_dump(),
+        **candidate_out(invite, totals, interview, with_link).model_dump(),
         interview_id=interview.id,
         interview_title=interview.title,
     )

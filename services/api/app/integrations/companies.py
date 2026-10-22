@@ -170,7 +170,8 @@ async def resend(company_id: UUID, interview_id: UUID, invite_id: UUID, user_id:
 
 
 async def find_candidates(company_id: UUID, email: str) -> list[dict]:
-    """The company's candidates invited with this email: their interview and candidate ids."""
+    """The company's candidates invited with this email, in full, each with its
+    `interview_id`: one call, however many there are (at most a page)."""
     return await _get(f"/internal/companies/{company_id}/candidates", {"email": email})
 
 

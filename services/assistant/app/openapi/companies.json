@@ -5384,7 +5384,7 @@
      "internal"
     ],
     "summary": "Find Candidates",
-    "description": "The company's candidates invited with this email, in any of its interviews, newest\nfirst.",
+    "description": "The company's candidates invited with this email, in any of its interviews, newest\nfirst, with their results and invite links: at most a page, in one answer.",
     "operationId": "find_candidates_internal_companies__company_id__candidates_get",
     "security": [
      {
@@ -5421,7 +5421,7 @@
         "schema": {
          "type": "array",
          "items": {
-          "$ref": "#/components/schemas/FoundCandidateOut"
+          "$ref": "#/components/schemas/CompanyCandidateOut"
          },
          "title": "Response Find Candidates Internal Companies  Company Id  Candidates Get"
         }
@@ -9404,27 +9404,6 @@
     ],
     "title": "ExtraTimeIn",
     "description": "Extra time for a candidate who needs it, in percent of each question's time."
-   },
-   "FoundCandidateOut": {
-    "properties": {
-     "interview_id": {
-      "type": "string",
-      "format": "uuid",
-      "title": "Interview Id"
-     },
-     "candidate_id": {
-      "type": "string",
-      "format": "uuid",
-      "title": "Candidate Id"
-     }
-    },
-    "type": "object",
-    "required": [
-     "interview_id",
-     "candidate_id"
-    ],
-    "title": "FoundCandidateOut",
-    "description": "A candidate found by email, for the api service, which reads them in full."
    },
    "GenerationOut": {
     "properties": {

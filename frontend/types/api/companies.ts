@@ -1527,7 +1527,7 @@ export interface paths {
     /**
      * Find Candidates
      * @description The company's candidates invited with this email, in any of its interviews, newest
-     *     first.
+     *     first, with their results and invite links: at most a page, in one answer.
      */
     get: operations["find_candidates_internal_companies__company_id__candidates_get"]
     put?: never
@@ -1725,6 +1725,7 @@ export interface paths {
     patch?: never
     trace?: never
   }
+
   "/internal/schedules/invite-expiry": {
     parameters: {
       query?: never
@@ -3119,22 +3120,6 @@ export interface components {
     ExtraTimeIn: {
       /** Extra Time */
       extra_time: number
-    }
-    /**
-     * FoundCandidateOut
-     * @description A candidate found by email, for the api service, which reads them in full.
-     */
-    FoundCandidateOut: {
-      /**
-       * Interview Id
-       * Format: uuid
-       */
-      interview_id: string
-      /**
-       * Candidate Id
-       * Format: uuid
-       */
-      candidate_id: string
     }
     /** GenerationOut */
     GenerationOut: {
@@ -7476,7 +7461,7 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          "application/json": components["schemas"]["FoundCandidateOut"][]
+          "application/json": components["schemas"]["CompanyCandidateOut"][]
         }
       }
       /** @description Validation Error */
@@ -7774,6 +7759,7 @@ export interface operations {
       }
     }
   }
+
   invite_expiry_internal_schedules_invite_expiry_post: {
     parameters: {
       query?: never

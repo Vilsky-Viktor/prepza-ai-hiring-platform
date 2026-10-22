@@ -78,15 +78,18 @@ async def page(
     ]
 
 
-async def company_page(company_id, offset: int, limit: int, q: str = "") -> list:
+async def company_page(
+    company_id, offset: int, limit: int, q: str = "", email: str = "", with_link: bool = False
+) -> list:
     """A page of the company's candidates across its interviews, newest first, narrowed to an
-    email containing `q`; progress and signals come from rounds for this page only, as in page."""
-    listed = await candidates.company_page(company_id, offset, limit, q)
+    email containing `q`, or to exactly `email`; progress and signals come from rounds for this
+    page only, as in page. `with_link` adds the invite link's token (the public API)."""
+    listed = await candidates.company_page(company_id, offset, limit, q, email)
     found = [invite for invite, _ in listed]
     totals = await rounds.invite_scores([invite.id for invite in found])
     await sync(found, totals)
 
     return [
-        company_candidate_out(invite, totals.get(str(invite.id)) or {}, interview)
+        company_candidate_out(invite, totals.get(str(invite.id)) or {}, interview, with_link)
         for invite, interview in listed
     ]

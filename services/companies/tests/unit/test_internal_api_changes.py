@@ -1,12 +1,14 @@
 import uuid
+from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
+from prepza_common.constants import MAX_PAGE_SIZE
 
 from app.constants.audit import VIA_API
 from app.constants.invites import EXTRA_TIME_STARTED, NO_EMAILS_FOR_GUEST
 from app.routers import internal_api_changes
-from app.services import candidate_changes, candidate_invites, credits
+from app.services import candidate_changes, candidate_invites, candidate_results, credits
 from app.storage import candidates, companies, interviews, invites
 from tests.unit.test_internal_api import COMPANY_ID, HEADERS, INTERVIEW, OTHER_ID
 
@@ -156,27 +158,48 @@ def test_a_reminder_goes_out_again_but_not_to_a_guest(client, world):
     assert (name, interview, sender.uid, email) == ("invite", INTERVIEW, "ann", "anna@example.com")
 
 
-def test_a_candidate_is_found_by_exact_email_and_credits_are_read(client, world, monkeypatch):
+def test_a_candidate_is_found_by_exact_email_in_full_and_credits_are_read(
+    client, world, monkeypatch
+):
     asked = []
+    invite = SimpleNamespace(
+        **vars(world["invite"]),
+        name="Anna Lee",
+        token="tok-1",
+        flagged=False,
+        extra_time=0,
+        grade=None,
+        created_at=datetime.now(UTC),
+        updated_at=None,
+        started_at=None,
+        finished_at=None,
+    )
 
     async def company_page(company_id, offset, limit, q="", email=""):
-        asked.append(email)
+        asked.append((email, limit))
 
-        return [(world["invite"], INTERVIEW)]
+        return [(invite, SimpleNamespace(**vars(INTERVIEW), title="Backend"))]
+
+    async def invite_scores(invite_ids):
+        asked.append(("scores", invite_ids))
+
+        return {str(invite.id): {"progress": 40}}
 
     async def credits_of(company_id):
         return {"available": 1500, "low": False}
 
     monkeypatch.setattr(candidates, "company_page", company_page)
+    monkeypatch.setattr(candidate_results.rounds, "invite_scores", invite_scores)
     monkeypatch.setattr(credits, "credits_of", credits_of)
 
     found = client.get(f"{BASE}/candidates", params={"email": "anna@example.com"}, headers=HEADERS)
     balance = client.get(f"{BASE}/credits", headers=HEADERS)
 
-    assert found.json() == [
-        {"interview_id": str(INTERVIEW.id), "candidate_id": str(world["invite"].id)}
-    ]
-    assert asked == ["anna@example.com"]
+    [row] = found.json()
+    assert (row["id"], row["interview_id"]) == (str(invite.id), str(INTERVIEW.id))
+    assert (row["name"], row["progress"], row["invite_token"]) == ("Anna Lee", 40, "tok-1")
+    # One page of matches, their results asked of rounds at once.
+    assert asked == [("anna@example.com", MAX_PAGE_SIZE), ("scores", [invite.id])]
     assert balance.json()["available"] == 1500
 
 

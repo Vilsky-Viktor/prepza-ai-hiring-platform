@@ -40,16 +40,9 @@ async def find_candidates(
     first, each with its interview's `interview_id`."""
     found = await companies.find_candidates(key.company_id, str(email))
 
-    rows = [(UUID(row["interview_id"]), UUID(row["candidate_id"])) for row in found]
-
     return [
-        candidate_of(
-            await companies.candidate(key.company_id, interview_id, candidate_id),
-            key.company_id,
-            interview_id,
-            settings.site_url,
-        )
-        for interview_id, candidate_id in rows
+        candidate_of(row, key.company_id, UUID(row["interview_id"]), settings.site_url)
+        for row in found
     ]
 
 

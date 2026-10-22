@@ -8,7 +8,7 @@ from fastapi import HTTPException
 from app.constants.api import IDEMPOTENCY_KEY_REUSED
 from app.integrations import companies
 from app.services import idempotency
-from tests.unit.conftest import CANDIDATE, COMPANY, INTERVIEW, interview
+from tests.unit.conftest import CANDIDATE, COMPANY, INTERVIEW, candidate, interview
 from tests.unit.test_public_routes import KEY, call, key  # noqa: F401 (fixture)
 
 CANDIDATE_PATH = f"/interviews/{INTERVIEW}/candidates/{CANDIDATE}"
@@ -185,19 +185,24 @@ def test_a_candidate_is_found_by_email_across_interviews_and_credits_are_read(
     monkeypatch,
 ):
     async def find(company_id, email):
-        return [{"interview_id": str(INTERVIEW), "candidate_id": str(CANDIDATE)}]
+        return [candidate(interview_id=str(INTERVIEW), name="Bob Lee")]
+
+    async def read_one(*args):
+        raise AssertionError("A match is read in the search's one call, not one by one")
 
     async def credits(company_id):
         return {"available": 1500, "reserved": 500, "candidates": 3, "low": False, "x": 1}
 
     monkeypatch.setattr(companies, "find_candidates", find)
+    monkeypatch.setattr(companies, "candidate", read_one)
     monkeypatch.setattr(companies, "credits", credits)
 
     found = call(client, "GET", "/candidates", params={"email": "bob@example.com"})
     bad = call(client, "GET", "/candidates", params={"email": "not-an-email"})
     balance = call(client, "GET", "/credits")
 
-    assert [row["id"] for row in found.json()] == [str(CANDIDATE)]
+    assert [(row["id"], row["name"]) for row in found.json()] == [(str(CANDIDATE), "Bob Lee")]
+    assert f"/interviews/{INTERVIEW}/candidates/{CANDIDATE}" in found.json()[0]["results_url"]
     assert bad.status_code == 422
     assert balance.json() == {"available": 1500, "reserved": 500, "candidates": 3, "low": False}
     assert interview()["id"]

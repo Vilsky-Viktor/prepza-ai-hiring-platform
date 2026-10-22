@@ -12,9 +12,15 @@ from app.integrations.redis import get_redis
 from app.routers.internal_api import company_interview
 from app.schemas.companies import CompanyCreditsOut
 from app.schemas.interviews import InterviewCreate, InterviewOut
-from app.schemas.invites import CandidateChangesIn, FoundCandidateOut
+from app.schemas.invites import CandidateChangesIn, CompanyCandidateOut
 from app.service_auth import ServiceCaller
-from app.services import candidate_changes, candidate_invites, credits, interview_creation
+from app.services import (
+    candidate_changes,
+    candidate_invites,
+    candidate_results,
+    credits,
+    interview_creation,
+)
 from app.services import outbox as outbox_service
 from app.storage import candidates, companies
 
@@ -107,15 +113,12 @@ async def resend_invite(
 @router.get("/candidates")
 async def find_candidates(
     company_id: UUID, email: EmailStr, caller: ServiceCaller
-) -> list[FoundCandidateOut]:
+) -> list[CompanyCandidateOut]:
     """The company's candidates invited with this email, in any of its interviews, newest
-    first."""
-    rows = await candidates.company_page(company_id, 0, MAX_PAGE_SIZE, email=str(email))
-
-    return [
-        FoundCandidateOut(interview_id=interview.id, candidate_id=invite.id)
-        for invite, interview in rows
-    ]
+    first, with their results and invite links: at most a page, in one answer."""
+    return await candidate_results.company_page(
+        company_id, 0, MAX_PAGE_SIZE, email=str(email), with_link=True
+    )
 
 
 @router.get("/credits")
