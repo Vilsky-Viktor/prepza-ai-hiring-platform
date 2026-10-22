@@ -43,6 +43,9 @@ CANDIDATE_RETENTION_DAYS = 365
 REMOVAL_KEEP_DAYS = 14
 # Invites deleted per batch of the daily retention run.
 RETENTION_BATCH = 200
+# The daily candidate jobs (retention, invite expiry, removals) start no new batch this long
+# into a run, so it ends within companies' 150-second request timeout; the next run goes on.
+JOB_RUN_SECONDS = 100
 # An invite never started this long after it was last sent expires, and its credits come back.
 INVITE_EXPIRY_DAYS = 30
 # Inviting many at once: refused over the most emails one list may hold (the MAX_BULK_INVITES

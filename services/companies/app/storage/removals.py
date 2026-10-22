@@ -1,17 +1,26 @@
 from datetime import datetime
+from uuid import UUID
 
 from prepza_common.db import delete_in_batches
 from sqlalchemy import select
 
+from app.models.invites import CandidateInvite
 from app.models.removals import RemovedInvite
 from app.storage.db import Session
 
 
-async def since(after: datetime) -> list[RemovedInvite]:
-    async with Session() as session:
-        query = select(RemovedInvite).where(RemovedInvite.removed_at >= after)
+async def restored(after: datetime, limit: int) -> list[tuple[CandidateInvite, UUID]]:
+    """Up to `limit` invites erased since `after` that are back (a restored backup), each with
+    its company; erasing one again takes it out of the next read."""
+    query = (
+        select(CandidateInvite, RemovedInvite.company_id)
+        .join(RemovedInvite, RemovedInvite.invite_id == CandidateInvite.id)
+        .where(RemovedInvite.removed_at >= after)
+        .limit(limit)
+    )
 
-        return list(await session.scalars(query))
+    async with Session() as session:
+        return [tuple(row) for row in await session.execute(query)]
 
 
 async def forget(before: datetime) -> int:

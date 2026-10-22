@@ -175,3 +175,5 @@ A company emails a candidate's report only once that candidate has finished the 
 | A candidate an ATS sent (email and ATS ids), with any results waiting to go back | 365 days | The ats `recover` job (every 10 minutes); see [ATS integrations](ats.md) |
 
 Both go earlier with their interview, their company, or when the company revokes the candidate.
+
+Companies' daily candidate jobs (retention, invite expiry and `candidate-removals`) go a batch at a time and start no batch 100 seconds into a run (`JOB_RUN_SECONDS`), so each ends within the service's 150-second timeout; whatever is left goes in the next run.

@@ -90,3 +90,49 @@ def test_a_row_a_deleted_account_once_left_blanked_goes_with_the_daily_job(run, 
     gone, kept = run(scenario())
 
     assert gone is None and kept is not None
+
+
+def test_more_restored_candidates_than_a_batch_are_all_erased_again(run, monkeypatch):
+    monkeypatch.setattr(removal_replay, "RETENTION_BATCH", 2)
+    monkeypatch.setattr(rounds, "delete_invite_sessions", lambda invite_ids: nothing())
+
+    async def scenario():
+        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
+        erased = []
+
+        for number in range(3):
+            invite, _ = await invites.upsert(
+                interview.id, f"c{number}-{uuid.uuid4()}@example.com", "Backend", "Acme", "en"
+            )
+            await invites.remove(invite, company.id)
+            erased.append(invite)
+
+        async with Session() as session:
+            # The backup's copies: the invites as they were before their removal.
+            for invite in erased:
+                await session.execute(
+                    insert(CandidateInvite).values(
+                        {
+                            column.key: getattr(invite, column.key)
+                            for column in CandidateInvite.__table__.columns
+                        }
+                    )
+                )
+
+            await session.commit()
+
+        count = await removal_replay.replay()
+        found = [await invites.get(invite.id) for invite in erased]
+        await companies.delete(company.id)
+
+        return count, found
+
+    count, found = run(scenario())
+
+    assert count == 3
+    assert found == [None, None, None]
+
+
+async def nothing():
+    pass

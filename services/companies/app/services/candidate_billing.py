@@ -1,11 +1,18 @@
 import logging
 import uuid
 from datetime import UTC, datetime, timedelta
+from time import monotonic
 
 from prepza_common.analytics import track
 
 from app.constants.events import INTERVIEW_FINISHED
-from app.constants.invites import EXPIRIES_PER_BATCH, INVITE_EXPIRY_DAYS, NOT_STARTED, InviteStatus
+from app.constants.invites import (
+    EXPIRIES_PER_BATCH,
+    INVITE_EXPIRY_DAYS,
+    JOB_RUN_SECONDS,
+    NOT_STARTED,
+    InviteStatus,
+)
 from app.helpers.candidates import finished_result, stored_results
 from app.helpers.notifications import candidate_finished
 from app.integrations import billing, rounds
@@ -62,13 +69,16 @@ async def handle(event_type: str, data: dict, event_id: str) -> None:
 
 async def expire_unstarted() -> int:
     """Daily: invites never started within INVITE_EXPIRY_DAYS of being sent expire, and their
-    credits come back."""
+    credits come back. No batch starts JOB_RUN_SECONDS into the run: the rest the next day."""
     before = datetime.now(UTC) - timedelta(days=INVITE_EXPIRY_DAYS)
+    stop_at = monotonic() + JOB_RUN_SECONDS
     count = 0
 
     # Each invite's credits are released before it's marked expired: if billing fails, the
     # rest stay unexpired and the next run tries them again, so no hold is left open.
-    while rows := await invite_expiry.expiring(before, EXPIRIES_PER_BATCH):
+    while monotonic() < stop_at and (
+        rows := await invite_expiry.expiring(before, EXPIRIES_PER_BATCH)
+    ):
         for invite in rows:
             key = invite.hold_key
             await billing.release_candidate(key)
