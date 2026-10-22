@@ -1,3 +1,5 @@
+import type { Locale } from "@/constants/i18n"
+
 export const SITE_NAME = "prepza."
 
 // Private areas: signed-in pages and personal links. They're served with "noindex" (proxy.ts),
@@ -77,3 +79,11 @@ export const NEWS_FEED = "/news/rss.xml"
 // Set by proxy.ts on a request that came in under a language prefix: that language, which the
 // page then renders in and names as its canonical address.
 export const LOCALE_HEADER = "x-prepza-locale"
+
+// hreflang codes where a language's own code isn't the one search engines read: Filipino has no
+// two-letter code (Tagalog's stands for it), and Chinese names its script. Addresses keep their
+// own prefix (/fil/, /zh/).
+export const HREFLANG_CODES: Partial<Record<Locale, string>> = {
+  fil: "tl",
+  zh: "zh-Hans",
+}

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest"
 
 import {
   isLocalizedPath,
+  hreflang,
   isPrivatePath,
   languageAlternates,
   localizeHref,
@@ -39,6 +40,29 @@ describe("languageAlternates", () => {
     expect(links["x-default"]).toBe("/faq")
     // 23 languages and the default.
     expect(Object.keys(links)).toHaveLength(24)
+  })
+
+  it("names Filipino and Chinese by the codes search engines read, at their own addresses", () => {
+    const links = languageAlternates("/faq")
+
+    expect(links.tl).toBe("/fil/faq")
+    expect(links["zh-Hans"]).toBe("/zh/faq")
+    expect(links.fil).toBeUndefined()
+    expect(links.zh).toBeUndefined()
+    // Every code is two letters, with a script where one is named.
+    expect(
+      Object.keys(links).every((code) =>
+        /^([a-z]{2}(-[A-Z][a-z]{3})?|x-default)$/.test(code)
+      )
+    ).toBe(true)
+  })
+})
+
+describe("hreflang", () => {
+  it("keeps a two-letter code and maps the others", () => {
+    expect(hreflang("de")).toBe("de")
+    expect(hreflang("fil")).toBe("tl")
+    expect(hreflang("zh")).toBe("zh-Hans")
   })
 })
 

@@ -1,5 +1,6 @@
-import { DEFAULT_LOCALE, LOCALES } from "@/constants/i18n"
+import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/constants/i18n"
 import {
+  HREFLANG_CODES,
   LOCALIZED_ARTICLE,
   LOCALIZED_PATHS,
   NEWS_FEED,
@@ -35,15 +36,20 @@ export function localizeHref(locale: string | null, href: string) {
     : href
 }
 
+/** A language's hreflang code: its own, or the one search engines read for it (fil is tl). */
+export function hreflang(locale: string) {
+  return HREFLANG_CODES[locale as Locale] ?? locale
+}
+
 /** A localized page's address in every language (or in `locales`, the ones it's written in),
- * and English as the default, for hreflang. */
+ * and English as the default, by hreflang code. */
 export function languageAlternates(
   path: string,
   locales: readonly string[] = LOCALES
 ): Record<string, string> {
   return {
     ...Object.fromEntries(
-      locales.map((locale) => [locale, localizedPath(locale, path)])
+      locales.map((locale) => [hreflang(locale), localizedPath(locale, path)])
     ),
     "x-default": path,
   }

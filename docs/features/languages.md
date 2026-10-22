@@ -21,7 +21,7 @@ The public pages have an address in every other language: home, pricing, FAQ, ab
 
 - A prefixed address carries the language: `/de/pricing`, or `/fr` for the home page.
 - English keeps the plain address.
-- The language versions are linked with hreflang.
+- The language versions are linked with hreflang, in the head and the sitemap alike. hreflang uses the codes search engines read: Filipino is `tl` and Simplified Chinese `zh-Hans`, while their addresses stay `/fil/` and `/zh/` (`HREFLANG_CODES` in `constants/seo.ts`).
 - `proxy.ts` serves a prefixed address from its page in that language.
 - A first visit through a prefixed address keeps that language on the next pages.
 - Links between such pages stay in the address's language (`components/localized-link.tsx`, `lib/locale-path.ts`).
