@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from fastapi import APIRouter
 from prepza_common.paging import PageParams
 from prepza_common.stats import Period, StatsOut
@@ -16,9 +18,14 @@ router = APIRouter(prefix="/superadmin", tags=["superadmin"])
 
 @router.get("/pass-rates")
 async def list_pass_rates(
-    superadmin: SuperadminUser, page: PageParams, sort: PassRateSort = PassRateSort.PASS_RATE
+    superadmin: SuperadminUser,
+    page: PageParams,
+    sort: PassRateSort = PassRateSort.PASS_RATE,
+    after: UUID | None = None,
 ) -> list[PassRateOut]:
-    rows = await pass_rates.page(sort == PassRateSort.FINISHED, page.offset, page.limit)
+    """A page after the interview `after` (the last one shown): paged by key, as the list grows
+    across every company."""
+    rows = await pass_rates.page(sort == PassRateSort.FINISHED, after, page.limit)
     answers = await rounds.answer_counts([row.set_id for row in rows if row.set_id])
 
     return [

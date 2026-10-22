@@ -13,7 +13,8 @@ function rowKey(row: PassRate) {
   return row.interview_id
 }
 
-/** Company interviews with finished candidates, a page at a time in the API's order: the
+/** Company interviews with finished candidates, a page at a time in the API's order (paged by
+ * key): the
  * interview and its company, how many finished, and how they did. The API marks those outside
  * the monitoring plan's triggers. */
 export function PassRateList({
@@ -25,7 +26,12 @@ export function PassRateList({
 }) {
   const t = useTranslations("superadmin")
   const interviews = useTranslations("interviews")
-  const { items, loadMore } = usePagedList<PassRate>(path, rowKey, initial)
+  const { items, loadMore } = usePagedList<PassRate>(
+    path,
+    rowKey,
+    initial,
+    true
+  )
 
   if (items.length === 0) {
     return (

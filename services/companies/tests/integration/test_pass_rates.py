@@ -34,8 +34,8 @@ def test_rates_count_only_finished_candidates_against_each_pass_mark_sorted_in_s
         ids = [most, half, none, never]
 
         return (
-            mine(await pass_rates.page(False, 0, 1000), ids),
-            mine(await pass_rates.page(True, 0, 1000), ids),
+            mine(await pass_rates.page(False, None, 1000), ids),
+            mine(await pass_rates.page(True, None, 1000), ids),
         )
 
     by_rate, by_finished = run(scenario())
@@ -44,3 +44,67 @@ def test_rates_count_only_finished_candidates_against_each_pass_mark_sorted_in_s
     assert by_rate == [(1, 0, 10.0), (2, 1, 45.0), (3, 2, 69.66666666666667)]
     # Most finished first.
     assert [row[0] for row in by_finished] == [3, 2, 1]
+
+
+async def session_company(interview_id):
+    from app.storage.interviews import get
+
+    return (await get(interview_id)).company_id
+
+
+def test_the_counters_match_a_recount_after_finishes_grades_removals_and_a_new_mark(run):
+    from sqlalchemy import func, select
+
+    from app.constants.invites import InviteStatus
+    from app.models.interview_results import InterviewResult
+    from app.models.interviews import Interview
+    from app.models.invites import CandidateInvite
+    from app.storage import candidates, invites
+    from app.storage.db import Session
+
+    async def scenario():
+        found = await interview([60, 59, 90], unfinished=1)
+        [first, *_] = await candidates.for_report(found, 0, 10)
+        # A grade written again, a candidate removed, the pass mark changed.
+        await candidates.save_results({first.id: (95, False)})
+        [removed] = [row for row in await candidates.for_report(found, 0, 10) if row.grade == 59]
+        company_id = await session_company(found)
+        await invites.remove(removed, company_id)
+        await interviews.update_settings(found, InterviewSettings(pass_mark=80))
+
+        async with Session() as session:
+            kept = await session.get(InterviewResult, found)
+            mark = await session.scalar(select(Interview.pass_mark).where(Interview.id == found))
+            recount = (
+                await session.execute(
+                    select(
+                        func.count(),
+                        func.count().filter(CandidateInvite.grade >= mark),
+                        func.sum(CandidateInvite.grade),
+                    ).where(
+                        CandidateInvite.interview_id == found,
+                        CandidateInvite.status == InviteStatus.FINISHED,
+                        CandidateInvite.grade.is_not(None),
+                    )
+                )
+            ).one()
+
+        return (kept.finished, kept.passed, kept.grade_total), tuple(recount)
+
+    kept, recount = run(scenario())
+
+    assert kept == recount
+
+
+def test_pass_rates_page_by_key_after_the_last_one_shown(run):
+    async def scenario():
+        ids = [await interview([grade]) for grade in (10, 20, 30)]
+        first = [row for row in await pass_rates.page(False, None, 1000) if row.id in ids][:2]
+        rest = await pass_rates.page(False, first[-1].id, 1000)
+
+        return ids, [row.id for row in first], [row.id for row in rest if row.id in ids]
+
+    ids, first, rest = run(scenario())
+
+    # Lowest pass rate first (all 0 of 1, then by id); the page after the second has the third.
+    assert first + rest == sorted(ids)

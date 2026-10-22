@@ -1,23 +1,33 @@
 """Pass rates per company interview for the superadmin's monitoring (internal_docs/compliance/
-post-market-monitoring-plan.md): counted, averaged, sorted and paged in SQL from the grade stored
-on each finished invite."""
+post-market-monitoring-plan.md): read from each interview's counters (interview_results, kept by
+triggers as invites finish), sorted and paged by key in SQL."""
 
-from sqlalchemy import Row, func, select
+import uuid
 
-from app.constants.invites import InviteStatus
+from sqlalchemy import Float, Row, cast, literal, select, tuple_
+
 from app.models.companies import Company
+from app.models.interview_results import InterviewResult
 from app.models.interviews import Interview
-from app.models.invites import CandidateInvite
 from app.storage.db import Session
 
 
-async def page(by_finished: bool, offset: int, limit: int) -> list[Row]:
-    """Interviews with finished candidates: lowest pass rate first, or most finished first.
-    Each row has the interview's id, title, set_id, pass_mark, the company's name, and the
-    finished, passed and average (grade) of its candidates."""
-    finished = func.count(CandidateInvite.id)
-    passed = func.count(CandidateInvite.id).filter(CandidateInvite.grade >= Interview.pass_mark)
-    order = [finished.desc()] if by_finished else [passed * 1.0 / finished, finished.desc()]
+def sort_key(by_finished: bool) -> tuple:
+    """The list's order as one ascending tuple: most finished first, or lowest pass rate first
+    (then most finished); the interview's id breaks ties."""
+    finished = InterviewResult.finished
+
+    if by_finished:
+        return (-finished, InterviewResult.interview_id)
+
+    return (cast(InterviewResult.passed, Float) / finished, -finished, InterviewResult.interview_id)
+
+
+async def page(by_finished: bool, after: uuid.UUID | None, limit: int) -> list[Row]:
+    """Interviews with finished candidates, `limit` after the interview `after` (the last one
+    shown). Each row has the interview's id, title, set_id, pass_mark, the company's name, and
+    the finished, passed and average (grade) of its candidates."""
+    key = sort_key(by_finished)
     query = (
         select(
             Interview.id,
@@ -25,18 +35,22 @@ async def page(by_finished: bool, offset: int, limit: int) -> list[Row]:
             Interview.set_id,
             Interview.pass_mark,
             Company.name.label("company"),
-            finished.label("finished"),
-            passed.label("passed"),
-            func.avg(CandidateInvite.grade).label("average"),
+            InterviewResult.finished,
+            InterviewResult.passed,
+            (cast(InterviewResult.grade_total, Float) / InterviewResult.finished).label("average"),
         )
-        .join(CandidateInvite, CandidateInvite.interview_id == Interview.id)
+        .join(Interview, Interview.id == InterviewResult.interview_id)
         .join(Company, Company.id == Interview.company_id)
-        .where(CandidateInvite.status == InviteStatus.FINISHED, CandidateInvite.grade.is_not(None))
-        .group_by(Interview.id, Company.id)
-        .order_by(*order, Interview.id)
-        .offset(offset)
+        .where(InterviewResult.finished > 0)
+        .order_by(*key)
         .limit(limit)
     )
+
+    if after is not None:
+        # The last row's own place in that order: the rows after it.
+        mine = InterviewResult.interview_id == after
+        place = [select(column).where(mine).scalar_subquery() for column in key[:-1]]
+        query = query.where(tuple_(*key) > tuple_(*place, literal(after)))
 
     async with Session() as session:
         return list(await session.execute(query))

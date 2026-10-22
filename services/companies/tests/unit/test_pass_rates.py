@@ -48,8 +48,8 @@ def superadmin(monkeypatch):
 def test_superadmin_sees_each_interviews_rates_with_its_timeouts(client, monkeypatch, superadmin):
     asked = {}
 
-    async def page(by_finished, offset, limit):
-        asked["page"] = (by_finished, offset, limit)
+    async def page(by_finished, after, limit):
+        asked["page"] = (by_finished, after, limit)
         row = SimpleNamespace(
             id=uuid.uuid4(),
             title="Backend",
@@ -71,9 +71,10 @@ def test_superadmin_sees_each_interviews_rates_with_its_timeouts(client, monkeyp
     monkeypatch.setattr(pass_rates, "page", page)
     monkeypatch.setattr(rounds, "answer_counts", answer_counts)
 
-    [row] = client.get("/superadmin/pass-rates?sort=finished&limit=10").json()
+    after = uuid.uuid4()
+    [row] = client.get(f"/superadmin/pass-rates?sort=finished&limit=10&after={after}").json()
 
-    assert asked == {"page": (True, 0, 10), "sets": [SET_ID]}
+    assert asked == {"page": (True, after, 10), "sets": [SET_ID]}
     assert row["finished"] == 20
     assert row["pass_rate"] == 5
     assert row["average_grade"] == 42
