@@ -107,6 +107,7 @@ export function PageHelp({
           </>
         ) : (
           <p
+            role="status"
             className={cn(
               "text-base",
               error ? "text-destructive" : "text-muted-foreground"

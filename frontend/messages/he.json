@@ -893,7 +893,8 @@
     "changes": "שינויים בנושאים",
     "tooMany": "בחרו לכל היותר {max} נושאים, או תארו איך לאחד אותם.",
     "apply": "החלת השינויים",
-    "approve": "אישור ויצירה"
+    "approve": "אישור ויצירה",
+    "topicNameNeeded": "תנו שם לנושא."
   },
   "candidateStatus": {
     "invited": "הוזמן",

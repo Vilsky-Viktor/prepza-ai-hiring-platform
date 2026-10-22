@@ -893,7 +893,8 @@
     "changes": "Teemade muudatused",
     "tooMany": "Vali kuni {max} teemat või kirjelda, kuidas neid ühendada.",
     "apply": "Rakenda muudatused",
-    "approve": "Kinnita ja loo"
+    "approve": "Kinnita ja loo",
+    "topicNameNeeded": "Anna teemale nimi."
   },
   "candidateStatus": {
     "invited": "kutsutud",

@@ -893,7 +893,8 @@
     "changes": "Zmiany w tematach",
     "tooMany": "Wybierz najwyżej {max} tematów albo opisz, jak je połączyć.",
     "apply": "Zastosuj zmiany",
-    "approve": "Zatwierdź i wygeneruj"
+    "approve": "Zatwierdź i wygeneruj",
+    "topicNameNeeded": "Nadaj tematowi nazwę."
   },
   "candidateStatus": {
     "invited": "zaproszono",

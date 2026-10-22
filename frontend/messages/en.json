@@ -893,7 +893,8 @@
     "changes": "Changes to the topics",
     "tooMany": "Choose at most {max} topics, or describe how to merge them.",
     "apply": "Apply changes",
-    "approve": "Approve and generate"
+    "approve": "Approve and generate",
+    "topicNameNeeded": "Give the topic a name."
   },
   "candidateStatus": {
     "invited": "invited",

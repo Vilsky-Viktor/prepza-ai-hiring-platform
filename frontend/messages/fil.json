@@ -893,7 +893,8 @@
     "changes": "Mga pagbabago sa topic",
     "tooMany": "Pumili ng hanggang {max} topic, o ilarawan kung paano sila pagsasamahin.",
     "apply": "Ilapat ang mga pagbabago",
-    "approve": "Aprubahan at gawin"
+    "approve": "Aprubahan at gawin",
+    "topicNameNeeded": "Bigyan ng pangalan ang topic."
   },
   "candidateStatus": {
     "invited": "inimbitahan",

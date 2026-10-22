@@ -893,7 +893,8 @@
     "changes": "Changements des thèmes",
     "tooMany": "Choisissez au plus {max} thèmes, ou décrivez comment les regrouper.",
     "apply": "Appliquer les changements",
-    "approve": "Valider et générer"
+    "approve": "Valider et générer",
+    "topicNameNeeded": "Donnez un nom au thème."
   },
   "candidateStatus": {
     "invited": "invité",

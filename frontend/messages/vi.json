@@ -893,7 +893,8 @@
     "changes": "Thay đổi chủ đề",
     "tooMany": "Chọn tối đa {max} chủ đề, hoặc mô tả cách gộp chúng.",
     "apply": "Áp dụng thay đổi",
-    "approve": "Duyệt và tạo"
+    "approve": "Duyệt và tạo",
+    "topicNameNeeded": "Hãy đặt tên cho chủ đề."
   },
   "candidateStatus": {
     "invited": "đã mời",

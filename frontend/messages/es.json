@@ -893,7 +893,8 @@
     "changes": "Cambios en los temas",
     "tooMany": "Elige como máximo {max} temas o describe cómo combinarlos.",
     "apply": "Aplicar cambios",
-    "approve": "Aprobar y generar"
+    "approve": "Aprobar y generar",
+    "topicNameNeeded": "Ponle un nombre al tema."
   },
   "candidateStatus": {
     "invited": "invitado",

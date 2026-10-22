@@ -178,6 +178,10 @@ test("the invite dialog says what it couldn't read", async ({ signInAs }) => {
   })
   await invite.click()
   await expect(dialog.getByText("No email found: John Smith,")).toBeVisible()
+  // In a live region, so screen readers hear them as they appear.
+  await expect(
+    dialog.getByRole("status").filter({ hasText: "No email found: John Smith," })
+  ).toBeVisible()
   await expect(dialog.getByText("Email isn't valid: bob@example,Bob")).toBeVisible()
   await shot(owner, "file-unusable-lines")
 

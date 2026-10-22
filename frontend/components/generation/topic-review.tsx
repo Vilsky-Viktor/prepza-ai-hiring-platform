@@ -151,11 +151,10 @@ export function TopicReview({
       <RoundFooter>
         <div>{cancel}</div>
         <div className="flex items-center gap-4">
-          {tooMany && (
-            <p className="text-sm text-destructive">
-              {t("tooMany", { max: maxTopics })}
-            </p>
-          )}
+          {/* Always there, so a screen reader hears why Approve stopped working. */}
+          <p role="status" className="text-sm text-destructive">
+            {tooMany && t("tooMany", { max: maxTopics })}
+          </p>
           <Button
             type="submit"
             className="h-12 px-6 text-base"

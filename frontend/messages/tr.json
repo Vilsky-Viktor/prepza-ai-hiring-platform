@@ -893,7 +893,8 @@
     "changes": "Konulardaki değişiklikler",
     "tooMany": "En fazla {max} konu seçin veya nasıl birleştirileceklerini anlatın.",
     "apply": "Değişiklikleri uygula",
-    "approve": "Onayla ve oluştur"
+    "approve": "Onayla ve oluştur",
+    "topicNameNeeded": "Konuya bir ad verin."
   },
   "candidateStatus": {
     "invited": "davet edildi",

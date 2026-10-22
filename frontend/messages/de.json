@@ -893,7 +893,8 @@
     "changes": "Änderungen an den Themen",
     "tooMany": "Wähle höchstens {max} Themen oder beschreibe, wie sie zusammengefasst werden sollen.",
     "apply": "Änderungen übernehmen",
-    "approve": "Freigeben und generieren"
+    "approve": "Freigeben und generieren",
+    "topicNameNeeded": "Gib dem Thema einen Namen."
   },
   "candidateStatus": {
     "invited": "eingeladen",

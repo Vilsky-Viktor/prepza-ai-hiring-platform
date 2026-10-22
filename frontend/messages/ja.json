@@ -893,7 +893,8 @@
     "changes": "トピックの変更",
     "tooMany": "トピックは最大 {max} 件まで選ぶか、まとめ方を書いてください。",
     "apply": "変更を反映",
-    "approve": "承認して作成"
+    "approve": "承認して作成",
+    "topicNameNeeded": "トピックに名前を付けてください。"
   },
   "candidateStatus": {
     "invited": "招待済み",

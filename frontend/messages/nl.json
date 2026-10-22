@@ -893,7 +893,8 @@
     "changes": "Wijzigingen in de onderwerpen",
     "tooMany": "Kies maximaal {max} onderwerpen of beschrijf hoe ze samengevoegd moeten worden.",
     "apply": "Wijzigingen toepassen",
-    "approve": "Goedkeuren en genereren"
+    "approve": "Goedkeuren en genereren",
+    "topicNameNeeded": "Geef het onderwerp een naam."
   },
   "candidateStatus": {
     "invited": "uitgenodigd",

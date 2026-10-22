@@ -893,7 +893,8 @@
     "changes": "주제 변경 사항",
     "tooMany": "주제는 최대 {max}개까지 선택하거나, 합치는 방법을 적어 주세요.",
     "apply": "변경 사항 적용",
-    "approve": "승인하고 생성"
+    "approve": "승인하고 생성",
+    "topicNameNeeded": "주제 이름을 입력하세요."
   },
   "candidateStatus": {
     "invited": "초대됨",

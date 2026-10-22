@@ -893,7 +893,8 @@
     "changes": "主题修改",
     "tooMany": "最多选择 {max} 个主题，或描述如何合并它们。",
     "apply": "应用修改",
-    "approve": "确认并生成"
+    "approve": "确认并生成",
+    "topicNameNeeded": "请为主题命名。"
   },
   "candidateStatus": {
     "invited": "已邀请",

@@ -1,8 +1,9 @@
 "use client"
 
+import { cn } from "cn"
 import { PlusIcon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useId, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -24,6 +25,7 @@ export function TopicEditor({
   onDone,
 }: TopicEditorProps) {
   const t = useTranslations("generation")
+  const nameError = useId()
   const [newSubtopic, setNewSubtopic] = useState("")
   const name = topic.main_topic.trim()
   const full = topic.subtopics.length >= maxSubtopics
@@ -47,17 +49,28 @@ export function TopicEditor({
 
   return (
     <div className="space-y-4 p-6">
-      <Input
-        maxLength={MAX_TOPIC_NAME_LENGTH}
-        value={topic.main_topic}
-        onChange={(event) =>
-          onChange({ ...topic, main_topic: event.target.value })
-        }
-        aria-label={t("topicName")}
-        aria-invalid={!name}
-        className="h-10 font-medium"
-        autoFocus
-      />
+      <div>
+        <Input
+          maxLength={MAX_TOPIC_NAME_LENGTH}
+          value={topic.main_topic}
+          onChange={(event) =>
+            onChange({ ...topic, main_topic: event.target.value })
+          }
+          aria-label={t("topicName")}
+          aria-invalid={!name}
+          aria-describedby={name ? undefined : nameError}
+          className="h-10 font-medium"
+          autoFocus
+        />
+        {/* Always there, so a screen reader hears it as the name is cleared. */}
+        <p
+          id={nameError}
+          role="status"
+          className={cn("text-sm text-destructive", !name && "mt-2")}
+        >
+          {!name && t("topicNameNeeded")}
+        </p>
+      </div>
 
       <ul className="flex flex-wrap gap-2">
         {topic.subtopics.map((subtopic, index) => (
