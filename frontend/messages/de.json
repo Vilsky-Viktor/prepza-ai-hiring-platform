@@ -1513,8 +1513,7 @@
         "refund": "ungenutzte bezahlte credits 14 tage lang erstattbar",
         "tax": "preise zzgl. MwSt. oder sales tax"
       }
-    },
-    "pauseMotion": "Animationen anhalten"
+    }
   },
   "faq": {
     "title": "Häufige Fragen",

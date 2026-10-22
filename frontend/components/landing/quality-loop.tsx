@@ -12,7 +12,7 @@ import {
 import { useEffect, useRef, useState } from "react"
 
 import { SOURCE_CARD } from "@/components/landing/demo-panel"
-import { useStill } from "@/components/landing/motion-pause"
+import { useStill } from "@/hooks/use-still"
 import { Wire, wireLength } from "@/components/landing/wire"
 import { INVITE_SPEED } from "@/constants/invite-demo"
 import {

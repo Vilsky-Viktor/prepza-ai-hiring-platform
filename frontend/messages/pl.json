@@ -1513,8 +1513,7 @@
         "refund": "zwrot niewykorzystanych kredytów do 14 dni",
         "tax": "ceny bez VAT ani podatku od sprzedaży"
       }
-    },
-    "pauseMotion": "Wstrzymaj animacje"
+    }
   },
   "faq": {
     "title": "Często zadawane pytania",

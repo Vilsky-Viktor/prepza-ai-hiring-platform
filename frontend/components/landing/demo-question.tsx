@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 
 import { CodeEditor } from "@/components/code-editor"
 import { DemoLogo } from "@/components/landing/demo-logo"
-import { useStill } from "@/components/landing/motion-pause"
+import { useStill } from "@/hooks/use-still"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { buttonVariants } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"

@@ -1513,8 +1513,7 @@
         "refund": "ongebruikte betaalde credits 14 dagen lang terug te krijgen",
         "tax": "prijzen excl. btw of verkoopbelasting"
       }
-    },
-    "pauseMotion": "Animaties pauzeren"
+    }
   },
   "faq": {
     "title": "Veelgestelde vragen",

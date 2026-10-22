@@ -59,8 +59,7 @@
 }
 
 /* Reduced motion: everything ends at once, and an endless loop runs once instead of cycling every
-   0.01 ms; smooth scrolling jumps. The landing's paused pictures (components/landing/
-   motion-pause.tsx) stand still the same way. */
+   0.01 ms; smooth scrolling jumps. */
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
@@ -70,12 +69,4 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-[data-motion="paused"] *,
-[data-motion="paused"] ::before,
-[data-motion="paused"] ::after {
-  animation-duration: 0.01ms !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: 0.01ms !important;
 }

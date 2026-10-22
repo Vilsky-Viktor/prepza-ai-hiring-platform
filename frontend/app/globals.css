@@ -9,23 +9,6 @@
 
 /* Dark, except inside .light-scope: the candidate PDF report keeps the light design. */
 @custom-variant dark (&:is(.dark *):not(.light-scope *));
-/* Motion variants that also hold inside the landing's paused pictures (components/landing/
-   motion-pause.tsx), so pausing them looks like reduced motion. */
-@custom-variant motion-safe {
-  @media (prefers-reduced-motion: no-preference) {
-    &:not([data-motion="paused"] *) {
-      @slot;
-    }
-  }
-}
-@custom-variant motion-reduce {
-  @media (prefers-reduced-motion: reduce) {
-    @slot;
-  }
-  &:where([data-motion="paused"] *) {
-    @slot;
-  }
-}
 
 /* The script fonts in fallback order. The CJK fonts are only on Chinese, Japanese and Korean
    pages (constants/cjk-fonts.ts), and :lang() puts each one's own font first. */

@@ -3,7 +3,7 @@
 import { type LucideIcon, UserRoundIcon } from "lucide-react"
 import { useEffect, useRef } from "react"
 
-import { useStill } from "@/components/landing/motion-pause"
+import { useStill } from "@/hooks/use-still"
 import { PULSE_SECONDS, SPARK_SPEED } from "@/constants/landing"
 
 /** One wire of the landing page, for an SVG in the focused border's colour (`text-ring`): the

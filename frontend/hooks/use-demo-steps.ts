@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 
-import { useStill } from "@/components/landing/motion-pause"
+import { useStill } from "@/hooks/use-still"
 
 /** A demo's step: how long it shows, in milliseconds; one that `repeat`s counts up to it, a
  * count each `ms` (a letter typed, a row shown). For a demo with a pointer, `point` names what
@@ -29,7 +29,7 @@ const STEPS_SEEN = Array.from({ length: 21 }, (_, i) => i / 20)
  * element whose coming into view starts it. It rests on its first step until then, plays the
  * steps over and over while in view, and starts again from the first when it's back; `skipTo`
  * moves it on to a later step. Without
- * scripts, with reduced motion and paused (useStill) it rests on the last step, a complete frame. */
+ * scripts and with reduced motion (useStill) it rests on the last step, a complete frame. */
 export function useDemoSteps<T extends Element>(steps: readonly DemoStep[]) {
   const ref = useRef<T>(null)
   // Set while it plays: moves it on to a later step.

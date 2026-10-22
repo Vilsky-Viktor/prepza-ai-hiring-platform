@@ -20,8 +20,8 @@ import { HERO_VIDEO_ID } from "@/constants/landing"
 
 /** A play icon, named in its tooltip, that opens prepza's video in a window on the page, played
  * by YouTube's no-cookie player, which loads only once the window opens. The size of the page's
- * info button beside it; a blue ring pulses out of it twice to draw the eye, then rests (hidden
- * with reduced motion). */
+ * info button beside it; a blue ring keeps pulsing out of it to draw the eye (hidden with reduced
+ * motion). */
 export function VideoButton() {
   const t = useTranslations("landing")
   const common = useTranslations("common")
@@ -45,7 +45,7 @@ export function VideoButton() {
         >
           <span
             aria-hidden
-            className="absolute inset-1 animate-ping rounded-full border-2 border-primary/60 [animation-duration:2s] [animation-iteration-count:2] motion-reduce:hidden"
+            className="absolute inset-1 animate-ping rounded-full border-2 border-primary/60 [animation-duration:2s] motion-reduce:hidden"
           />
           <PlayIcon aria-hidden className="size-6 fill-current" />
         </TooltipTrigger>

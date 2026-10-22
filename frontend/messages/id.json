@@ -1513,8 +1513,7 @@
         "refund": "kredit berbayar sisa bisa di-refund 14 hari",
         "tax": "harga belum termasuk PPN atau pajak penjualan"
       }
-    },
-    "pauseMotion": "Jeda animasi"
+    }
   },
   "faq": {
     "title": "Pertanyaan yang sering diajukan",

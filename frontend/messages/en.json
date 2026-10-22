@@ -1513,8 +1513,7 @@
         "refund": "unused paid credits refundable for 14 days",
         "tax": "prices plus VAT or sales tax"
       }
-    },
-    "pauseMotion": "Pause animations"
+    }
   },
   "faq": {
     "title": "Frequently asked questions",

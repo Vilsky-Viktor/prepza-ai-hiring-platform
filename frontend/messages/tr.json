@@ -1513,8 +1513,7 @@
         "refund": "kullanılmayan ücretli krediler 14 gün içinde iade edilebilir",
         "tax": "fiyatlara KDV veya satış vergisi eklenir"
       }
-    },
-    "pauseMotion": "Animasyonları duraklat"
+    }
   },
   "faq": {
     "title": "Sıkça sorulan sorular",
