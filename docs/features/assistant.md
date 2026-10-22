@@ -183,7 +183,7 @@ With `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` set (local only for now: no
 
 ## Tools
 
-Each read is a user-facing GET route of companies, billing, library, notifications, ats, api or rounds, listed in `app/constants/tools.py`, `company_tools.py` and `detail_tools.py`. One isn't: `get_updates` (`app/constants/updates.py`) reads several services' internal routes, so the registry adds it by hand and `app/services/updates.py` carries it out. Its function, as the model sees it, is built at startup from committed OpenAPI snapshots of those services (`app/openapi/`).
+Each read is a user-facing GET route of companies, billing, library, notifications, ats, api or rounds, listed in `app/constants/tools.py`, `company_tools.py` and `detail_tools.py`. One isn't: `get_updates` (`app/constants/updates.py`) reads several services' internal routes, so the registry adds it by hand and `app/services/updates.py` carries it out. Its function, as the model sees it, is built at startup from committed OpenAPI snapshots of those services (`app/openapi/`), and is given to the chat model strict (`app/helpers/strict_schema.py`): every parameter is required, an optional one as nullable (a null counts as left out), so the model can send only what the schema allows; length limits stay with the code's own check, and a tool with a free map of values (`update_email_preferences`) is given as it is.
 
 To add one:
 

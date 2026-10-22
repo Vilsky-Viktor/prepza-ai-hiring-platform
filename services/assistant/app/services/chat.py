@@ -29,6 +29,7 @@ from app.constants.updates import GET_UPDATES
 from app.helpers.company_note import with_company_note
 from app.helpers.history import history
 from app.helpers.page_context import describe_page
+from app.helpers.strict_schema import strict_definition
 from app.integrations import llm
 from app.models.answers import Answer, Turn
 from app.models.tools import ToolResult
@@ -94,6 +95,8 @@ async def converse(messages: list[BaseMessage], turn: Turn, answer: Answer, emit
     with what it has."""
     definitions = [tool.definition for tool in tools().values()]
     definitions += [SIGN_OUT_DEFINITION, SHOW_DEFINITION]
+    # Strict: the model can only send arguments the schema allows.
+    definitions = [strict_definition(definition) for definition in definitions]
     model = llm.get_chat_model()
     # The conversation as the user wrote and read it (not the instructions), once per turn.
     answer.given = "\n".join(str(message.content) for message in messages[1:])

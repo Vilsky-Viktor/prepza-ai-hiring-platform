@@ -13,7 +13,8 @@ Contents: [Actions](#actions-2026-10-20) ·
 [Requests with several parts](#requests-with-several-parts-2026-10-21) ·
 [Mira](#mira-an-ai-assistant-that-says-so-2026-10-22-kept) ·
 [A topic's question limit](#a-topics-question-limit-isnt-a-page-size-2026-10-22-kept) ·
-[The turn's context](#the-turns-context-out-of-the-instructions-2026-10-22-kept)
+[The turn's context](#the-turns-context-out-of-the-instructions-2026-10-22-kept) ·
+[Strict tool schemas](#strict-tool-schemas-2026-10-22-kept)
 
 ## Actions (2026-10-20)
 
@@ -222,3 +223,13 @@ The user's name, the date, the company and the page moved from the system messag
 99.3% (96.0–99.9) both, arguments 100% both, asked for the parent 94.4% → 100% (82.4–100),
 injection safe 100% both, judge traps 8 of 8; 21,900 tokens and $0.0022 a turn, 8.8 s. No
 difference beyond the intervals; $0.37.
+
+## Strict tool schemas (2026-10-22, kept)
+
+Every tool goes to the model strict (each parameter required, an optional one as nullable; length
+limits left to the code's check), but `update_email_preferences`, whose free map of values can't
+be. `assistant_actions.py`, 2 repeats, against `results/assistant_actions_ctx.json`
+(`…_strict.json`): task success 99.3% (96.0–99.9) both, arguments 100% both, links 100% both, asked
+for the parent 100% → 94.4% (one turn of 18, its case still passing), injection safe 100% both,
+judge traps 8 of 8; 21,600 tokens and $0.0022 a turn. The one failure (c04, a company named after
+the user) passed 6 of 6 alone (`…_strict-c04.json`). No difference beyond the intervals; $0.39.
