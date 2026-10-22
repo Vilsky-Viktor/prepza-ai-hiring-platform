@@ -1,0 +1,30 @@
+/* Typography per script (.claude/rules/nextjs.md). Unlayered, so it wins over Tailwind's
+   tracking-*, leading-* and text-* utilities wherever the text is in that language: the page's,
+   or a block's own lang (an interview's questions). */
+
+/* Arabic and Persian letters join: spacing them out breaks the words. */
+:lang(ar),
+:lang(fa) {
+  letter-spacing: normal;
+}
+
+/* Arabic, Persian, Hindi, Thai and Vietnamese carry marks above and below their letters: headings
+   get room for them on every line. */
+:is(h1, h2, h3, [role="heading"]):is(
+    :lang(ar),
+    :lang(fa),
+    :lang(hi),
+    :lang(th),
+    :lang(vi)
+  ) {
+  line-height: 1.4;
+}
+
+/* Chinese, Japanese and Korean characters are dense: the two smallest text sizes a step larger. */
+:is(:lang(ja), :lang(zh), :lang(ko)) .text-xs {
+  font-size: 0.8125rem;
+}
+
+:is(:lang(ja), :lang(zh), :lang(ko)) .text-sm {
+  font-size: 0.9375rem;
+}

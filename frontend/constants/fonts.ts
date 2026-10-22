@@ -27,8 +27,9 @@ const geistMono = Geist_Mono({
   preload: false,
 })
 
+// latin-ext for Polish, Turkish and Estonian headings; Vietnamese's letters fall back to Noto.
 const poppins = Poppins({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   weight: ["500", "600"],
   variable: "--font-poppins",
 })

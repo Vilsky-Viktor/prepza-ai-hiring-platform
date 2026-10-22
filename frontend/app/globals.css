@@ -5,6 +5,7 @@
 @import "./agent-border.css";
 @import "./bell.css";
 @import "./animations.css";
+@import "./scripts.css";
 
 /* Dark, except inside .light-scope: the candidate PDF report keeps the light design. */
 @custom-variant dark (&:is(.dark *):not(.light-scope *));
