@@ -30,7 +30,25 @@ test("the developer docs show the API with its routes", async ({ page }) => {
   // The base URL to copy and the routes, each with its method.
   await expect(page.getByRole("main").getByRole("textbox").first()).toHaveValue(/\/api\/v1$/);
   const routes = page.locator("main article").filter({ has: page.getByText(/^(GET|POST|PATCH|DELETE)$/) });
-  await expect(routes).toHaveCount(11);
+  // Every operation the public API defines, in its order: the spec is the source of truth.
+  const spec = (await page.evaluate(() =>
+    fetch("/api/v1/openapi.json").then((response) => response.json()),
+  )) as { paths: Record<string, Record<string, unknown>> };
+  const operations = Object.entries(spec.paths).flatMap(([path, methods]) =>
+    Object.keys(methods).map((method) => `${method.toUpperCase()} ${path}`),
+  );
+  expect(operations.length).toBeGreaterThan(0);
+  await expect(routes).toHaveCount(operations.length);
+  const shown = await routes.evaluateAll((articles) =>
+    articles.map((article) => {
+      const method = [...article.querySelectorAll("header *")].find((part) =>
+        /^(GET|POST|PATCH|DELETE)$/.test(part.textContent?.trim() ?? ""),
+      );
+
+      return `${method?.textContent?.trim()} ${article.querySelector("header code")?.textContent?.trim()}`;
+    }),
+  );
+  expect(shown).toEqual(operations);
   await expect(
     routes.locator("header code").filter({ hasText: /^\/interviews\/\{interview_id\}\/candidates$/ }).first(),
   ).toBeVisible();
