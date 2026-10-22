@@ -11,6 +11,7 @@ from prepza_common.backoff import wait_seconds
 from prepza_common.constants import (
     EVENT_ID_ATTRIBUTE,
     EVENTS_TOPIC,
+    FAMILY_ATTRIBUTE,
     HTTP_TIMEOUT_SECONDS,
     OCCURRED_AT_ATTRIBUTE,
     PUBLISH_RETRY_FIRST_WAIT,
@@ -34,6 +35,7 @@ def message(
     handled and be dropped."""
     attributes = {
         "type": event_type,
+        FAMILY_ATTRIBUTE: event_type.split(".", 1)[0],
         EVENT_ID_ATTRIBUTE: event_id or uuid.uuid4().hex,
         OCCURRED_AT_ATTRIBUTE: (occurred_at or datetime.now(UTC)).isoformat(),
     }

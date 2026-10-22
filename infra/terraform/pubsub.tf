@@ -26,19 +26,21 @@ resource "google_pubsub_subscription" "dead_letter" {
 # candidate_results.py). A consumer that starts handling a new type needs it added here. Changing
 # a filter replaces the subscription, dropping the messages it still holds: apply when its backlog
 # is empty. Funnel events go only to BigQuery (analytics.tf).
-# Pub/Sub caps a filter at 256 bytes: each type adds 24 bytes plus its name. A type ending in ".*"
-# matches every type with that prefix (hasPrefix): notifications and api take all "candidate."
-# events that way, as listing them one by one outgrew the cap, and ignore the ones they don't
-# handle. notifications' filter is 236 bytes, ats' 235, companies' 205, api's 118, the
-# assistant's 127, billing's 66, library's 149. Companies takes `audit.recorded`, members' actions in billing, ats,
-# notifications and api, for the company's action log. A
-# new consumer's subscription is created on apply and gets only the events published after that.
+# Pub/Sub caps a filter at 256 bytes (scripts/tests/test_pubsub_filters.py checks each): a type
+# adds 24 bytes plus its name. An entry ending in ".*" is a whole family, every type up to its
+# first dot, matched on the event's `family` attribute (prepza_common.pubsub) in 25 bytes plus the
+# family's name: notifications and api take all "candidate." events that way, as listing them one
+# by one outgrew the cap, and ignore the ones they don't handle. A family of one type today
+# (company, contact, member, report, credits) is taken whole to save bytes; a consumer ignores any
+# type of it it doesn't handle. Companies takes `audit.recorded`, members' actions in billing,
+# ats, notifications and api, for the company's action log. A new consumer's subscription is
+# created on apply and gets only the events published after that.
 locals {
   consumes = {
     library       = ["answer.recorded", "session.scored", "guests.deleted", "question.fixed"]
     companies     = ["generation.completed", "generation.failed", "generation.cancelled", "interview.finished", "audit.recorded"]
-    notifications = ["notification.requested", "candidate.*", "member.invited", "report.shared", "contact.sent", "company.deleted"]
-    ats           = ["candidate.finished", "candidate.removed", "interview.ready", "interview.deleted", "company.deleted", "credits.added"]
+    notifications = ["notification.requested", "candidate.*", "member.*", "report.*", "contact.*", "company.*"]
+    ats           = ["candidate.finished", "candidate.removed", "interview.ready", "interview.deleted", "company.*", "credits.*"]
     api           = ["candidate.*", "interview.ready", "company.deleted"]
     assistant     = ["company.deleted", "candidate.removed", "candidate.interview_deleted"]
     # Every AI call and limit hit, stored for the admin zone's AI costs tab.
@@ -53,7 +55,7 @@ resource "google_pubsub_subscription" "push" {
   topic    = google_pubsub_topic.events.id
   filter = join(" OR ", [
     for type in each.value : endswith(type, ".*")
-    ? "hasPrefix(attributes.type, \"${trimsuffix(type, "*")}\")"
+    ? "attributes.family = \"${trimsuffix(type, ".*")}\""
     : "attributes.type = \"${type}\""
   ])
 

@@ -136,9 +136,10 @@ PUBLISH_RETRY_FIRST_WAIT = 0.2
 # Pub/Sub: the one topic every domain event goes to, and its REST API.
 EVENTS_TOPIC = "events"
 PUBSUB_URL = "https://pubsub.googleapis.com"
-# The attribute that carries an event's own id (its outbox row's), the same on every re-send, so
-# consumers can handle it once; events sent without an outbox go without it.
+# An event's own id (its outbox row's, the same on every re-send, so consumers handle it once),
+# and its family (its type up to the first dot), which subscriptions filter on in few bytes.
 EVENT_ID_ATTRIBUTE = "event_id"
+FAMILY_ATTRIBUTE = "family"
 # When the change behind an event happened (ISO 8601): the outbox row's time, the same however
 # often it's published, so a consumer can put events in order.
 OCCURRED_AT_ATTRIBUTE = "occurred_at"

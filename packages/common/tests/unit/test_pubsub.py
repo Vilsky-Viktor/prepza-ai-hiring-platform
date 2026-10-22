@@ -37,6 +37,8 @@ def test_publishing_to_the_emulator_sends_the_event_without_a_token(client, monk
     [message] = body["messages"]
     assert url == "http://pubsub:8085/v1/projects/demo-prepza/topics/events:publish"
     assert message["attributes"]["type"] == "candidate.invited"
+    # Its family, which subscriptions filter on (infra/terraform/pubsub.tf).
+    assert message["attributes"]["family"] == "candidate"
     assert json.loads(base64.b64decode(message["data"])) == {"email": "bob@example.com"}
     assert headers == {}
 
@@ -86,6 +88,7 @@ def test_a_batch_goes_in_one_call_with_each_events_own_id(client, monkeypatch):
     # With when it happened, the same on a re-send.
     assert given == {
         "type": "a.done",
+        "family": "a",
         "event_id": "id-1",
         "occurred_at": "2026-10-15T00:00:00+00:00",
     }
