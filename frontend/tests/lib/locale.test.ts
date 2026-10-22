@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest"
 
-import { isLocale, preferredLocale, textDirection } from "@/lib/locale"
+import {
+  isLocale,
+  languageOf,
+  preferredLocale,
+  textDirection,
+} from "@/lib/locale"
 
 describe("isLocale", () => {
   it("knows the supported languages only", () => {
@@ -8,6 +13,18 @@ describe("isLocale", () => {
     expect(isLocale("fil")).toBe(true)
     expect(isLocale("xx")).toBe(false)
     expect(isLocale("EN")).toBe(false)
+  })
+})
+
+describe("languageOf", () => {
+  it("marks text with its language and direction", () => {
+    expect(languageOf("ar")).toEqual({ lang: "ar", dir: "rtl" })
+    expect(languageOf("de")).toEqual({ lang: "de", dir: "ltr" })
+  })
+
+  it("marks nothing when the language isn't known", () => {
+    expect(languageOf(null)).toEqual({})
+    expect(languageOf(undefined)).toEqual({})
   })
 })
 
