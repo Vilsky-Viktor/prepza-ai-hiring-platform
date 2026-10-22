@@ -1,6 +1,6 @@
 import logging
 
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from prepza_common import pause, redis_lock
 
 from app.constants.actions import QUALITY_PATTERNS
@@ -25,7 +25,7 @@ from app.helpers.patterns import (
 from app.integrations import library, llm
 from app.integrations.redis import get_redis
 from app.integrations.usage import ai_run
-from app.prompts.patterns import FLAG_MEANINGS, PATTERNS_PROMPT
+from app.prompts.patterns import FLAG_MEANINGS, PATTERNS_INPUT, PATTERNS_SYSTEM
 from app.schemas.patterns import ProposedPattern, ProposedPatterns, QualitySignal
 from app.storage import patterns
 
@@ -48,10 +48,11 @@ async def find_patterns(
 ) -> ProposedPatterns:
     """The model's recurring mistakes in one flag's questions, `known` being the patterns it
     may name by number instead."""
-    prompt = PATTERNS_PROMPT.format(
+    system = PATTERNS_SYSTEM.format(
+        min_questions=MIN_PATTERN_QUESTIONS, max_chars=MAX_PATTERN_CHARS
+    )
+    request = PATTERNS_INPUT.format(
         meaning=FLAG_MEANINGS.get(flag, ""),
-        min_questions=MIN_PATTERN_QUESTIONS,
-        max_chars=MAX_PATTERN_CHARS,
         known=known_block(known),
         questions="\n\n".join(
             question_block(number, signal) for number, signal in enumerate(signals, 1)
@@ -61,7 +62,7 @@ async def find_patterns(
     return (
         await llm.get_patterns_llm()
         .with_structured_output(ProposedPatterns)
-        .ainvoke([HumanMessage(content=prompt)])
+        .ainvoke([SystemMessage(content=system), HumanMessage(content=request)])
     )
 
 

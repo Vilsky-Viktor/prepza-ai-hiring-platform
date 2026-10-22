@@ -33,7 +33,9 @@ class ProposedPattern(BaseModel):
 
 
 class ProposedPatterns(BaseModel):
-    patterns: list[ProposedPattern]
+    patterns: list[ProposedPattern] = Field(
+        description="Each recurring mistake as a general rule; empty when none recurs."
+    )
 
 
 class PatternOut(BaseModel):

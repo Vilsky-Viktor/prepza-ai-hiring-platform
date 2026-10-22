@@ -288,3 +288,16 @@ by `gpt-6.1-sol` high, before → after:
 No difference beyond the intervals; kept for rule 19 (a role, the text as data, no
 contradiction). The dataset's n01 no longer expects "ATS" kept in Latin letters: it's a term,
 not a name, and Arabic writes it out (the one code-check failure after the change).
+
+## Quality patterns: a role, tagged questions, a rule for useless rules (2026-10-22, kept)
+
+The weekly pattern job's prompt (`prompts/patterns.py`) moved from one user message to a system
+message that starts with a reviewer's role and holds the task (fixed, so it caches), and a user
+message with the flag's meaning, the known patterns and the questions inside tags, read as data.
+One rule was added for a measured failure: every wrong-key run proposed "the marked answer is
+wrong", which tells a writer nothing (a rule must say what in the writing caused it).
+`ProposedPatterns.patterns` got its description. `patterns_test.py`, `patterns.json` (4 groups
+× 3), `gpt-6.1-sol` medium, judged by `gpt-6.1-sol` high, before → after: planted found 100%
+(79.6–100) both; kept rules supported 85.2% (67.5–94.1) → 100% (84.5–100); no rule when none 3 of
+3 both; known named 3 of 3 both; nothing from the hidden instruction; judge traps 10 of 10 both;
+$0.018 → $0.016 and 34 → 30 s a run. Kept: cheaper, and the useless rule is gone.

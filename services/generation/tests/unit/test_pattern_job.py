@@ -40,7 +40,7 @@ class Model:
         return self
 
     async def ainvoke(self, messages):
-        self.prompts.append(messages[0].content)
+        self.prompts.append(messages[-1].content)
         await self.chat.ainvoke(messages)
 
         return ProposedPatterns(patterns=self.answers.pop(0))
@@ -190,7 +190,7 @@ def test_a_dismissed_pattern_is_never_proposed_again_or_counted(monkeypatch, sto
     [row] = stored
     assert (row.status, row.question_count, row.seen_again) == (PatternStatus.DISMISSED, 2, 0)
     # The model is told it's known, so it can point to it rather than reword it.
-    assert f"Known patterns:\n1. {RULE}" in model.prompts[1]
+    assert f"<known_patterns>\n1. {RULE}\n</known_patterns>" in model.prompts[1]
 
 
 @pytest.mark.parametrize(
@@ -289,3 +289,23 @@ def test_the_runs_ai_cost_is_recorded_under_its_own_line(monkeypatch, stored, re
         (QUALITY_PATTERNS, None, None)
     ]
     assert used[0]["outcome"] == "ok"
+
+
+def test_the_questions_are_data_in_the_users_message_after_the_role(monkeypatch, stored, redis):
+    asked = []
+    model = given(monkeypatch, flagged(2), [found(RULE, [1, 2])])
+    ainvoke = model.ainvoke
+
+    async def recorded(messages):
+        asked.extend(messages)
+
+        return await ainvoke(messages)
+
+    monkeypatch.setattr(model, "ainvoke", recorded)
+
+    asyncio.run(job.run())
+
+    system, user = asked
+    assert system.type == "system" and system.content.startswith("You are")
+    assert "Question number" not in system.content
+    assert "<questions>\n1. Question number 0?" in user.content
