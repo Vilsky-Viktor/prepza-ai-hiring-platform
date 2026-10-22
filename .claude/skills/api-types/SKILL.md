@@ -20,18 +20,12 @@ The local stack must be running with the change loaded (the services reload on s
 scripts/assistant-openapi.sh
 
 cd frontend
-for svc in ats billing companies library notifications rounds; do
-  npx openapi-typescript http://127.0.0.1:8090/api/$svc/openapi.json -o types/api/$svc.ts
-done
-# Generation is served at /api/generate, not /api/generation.
-npx openapi-typescript http://127.0.0.1:8090/api/generate/openapi.json -o types/api/generation.ts
-npx prettier --write types/api
-npx tsc --noEmit -p .
+pnpm api-types   # every service's types from the gateway, then prettier over types/api
+pnpm typecheck
 ```
 
-Regenerate only the services that changed when you know which. Prettier run over wider paths
-may rewrite `components/superadmin/decline-verification.tsx` and `components/ui/switch.tsx`;
-revert those (`git checkout --`) unless you meant to change them.
+CI's stack job runs both scripts and fails when a snapshot or a type file differs from what
+the code generates.
 
 ## Check
 

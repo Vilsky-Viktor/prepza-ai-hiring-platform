@@ -76,8 +76,9 @@ Python tests: `testing-backend.md`; vitest and browser, load and smoke tests:
 
 ## Contracts between services
 
-- Generated frontend API types are checked for drift (`openapi-typescript … --check`), as
-  the assistant's OpenAPI snapshots are; refresh both with the `api-types` skill.
+- Generated frontend API types are checked for drift (CI's stack job runs `pnpm api-types`
+  and fails on a diff), as the assistant's OpenAPI snapshots are; refresh both with the
+  `api-types` skill.
 - A fake of another service is checked against the real one now and then (a contract test),
   so the fake doesn't drift from what the service returns.
 - Fuzzing the OpenAPI spec (Schemathesis) finds 5xx and schema violations; not set up,
