@@ -62,6 +62,8 @@ for (const path of PAGES) {
         viewport: window.innerWidth,
         scrollWidth: root.scrollWidth,
         clientWidth: root.clientWidth,
+        // The page's room: the window less the scroll bar's gutter, which stays reserved.
+        bodyWidth: document.body.getBoundingClientRect().width,
         scrollHeight: root.scrollHeight,
         innerHeight: window.innerHeight,
         footerBottom: footer.bottom + window.scrollY,
@@ -76,8 +78,8 @@ for (const path of PAGES) {
 
     // Nothing wider than the window, on a phone too.
     expect(layout.scrollWidth).toBeLessThanOrEqual(layout.clientWidth);
-    // Every page is as wide as the header: its full width, or the window's beside the scroll bar.
-    expect(layout.mainWidth).toBe(Math.min(MAIN_MAX_WIDTH, layout.clientWidth));
+    // Every page is as wide as the header: its full width, or all the room beside the scroll bar.
+    expect(layout.mainWidth).toBe(Math.min(MAIN_MAX_WIDTH, layout.bodyWidth));
     // The footer ends the page.
     expect(
       Math.abs(layout.footerBottom - layout.scrollHeight),
