@@ -3,10 +3,30 @@ import logging
 import sys
 from datetime import datetime
 
+import pytest
 from fastapi import FastAPI, Response
 from fastapi.testclient import TestClient
 from prepza_common.constants import TRACE_FIELD, TRACE_HEADER
 from prepza_common.logging import JsonFormatter, RequestLogMiddleware, configure_logging, trace_of
+
+# The loggers configure_logging changes, besides the root.
+CONFIGURED = ("httpx", "httpcore", "uvicorn", "uvicorn.error", "uvicorn.access")
+
+
+@pytest.fixture(autouse=True)
+def restore_logging():
+    """configure_logging changes the process's loggers: each test gets them back as they were, so
+    none depends on whether another configured them first."""
+    loggers = [logging.getLogger()] + [logging.getLogger(name) for name in CONFIGURED]
+    saved = [(item, item.handlers[:], item.level, item.propagate, item.disabled) for item in loggers]
+
+    yield
+
+    for item, handlers, level, propagate, disabled in saved:
+        item.handlers = handlers
+        item.setLevel(level)
+        item.propagate = propagate
+        item.disabled = disabled
 
 
 def test_outgoing_request_addresses_are_not_logged(caplog):
@@ -90,7 +110,8 @@ def test_the_trace_comes_from_the_load_balancers_header(monkeypatch):
     assert trace_of("abc123/456;o=1") is None
 
 
-def test_a_requests_line_names_its_route_never_the_token_in_its_path():
+def test_a_requests_line_names_its_route_never_the_token_in_its_path(caplog):
+    caplog.set_level(logging.INFO)
     lines = []
 
     class Capture(logging.Handler):
@@ -120,7 +141,8 @@ def test_a_requests_line_names_its_route_never_the_token_in_its_path():
     assert not any("secret-token" in line for line in lines)
 
 
-def test_a_refused_sign_in_or_permission_is_a_warning():
+def test_a_refused_sign_in_or_permission_is_a_warning(caplog):
+    caplog.set_level(logging.INFO)
     levels = {}
 
     class Capture(logging.Handler):

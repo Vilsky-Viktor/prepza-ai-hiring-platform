@@ -16,8 +16,11 @@ Shared test rules are in `testing.md`; CLAUDE.md wins on any conflict.
 - Tables of cases with `@pytest.mark.parametrize`, not loops or copied tests.
 - Time and randomness are deterministic: pass times in (most storage functions take
   `before`/`since`) rather than reading `datetime.now` inside the code under test.
-- Not adopted (rule 4, no test plugins): pytest-asyncio (coroutines run with `asyncio.run`),
-  pytest-randomly, pytest-rerunfailures, time-machine/freezegun, pytest-alembic.
+- Unit suites run in a random order (pytest-randomly, in every project's dev group): the seed
+  is printed, `--randomly-seed=<seed>` repeats an order and `-p no:randomly` turns it off while
+  hunting an order dependency.
+- Not adopted (rule 4): pytest-asyncio (coroutines run with `asyncio.run`),
+  pytest-rerunfailures, time-machine/freezegun, pytest-alembic.
 
 ## FastAPI
 
