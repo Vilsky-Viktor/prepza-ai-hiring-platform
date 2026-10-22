@@ -2,6 +2,7 @@ from uuid import UUID
 
 from prepza_common import audit
 from prepza_common.audit_actions import AuditAction, TargetKind
+from prepza_common.db import delete_in_batches
 from sqlalchemy import delete, select, update
 from sqlalchemy.dialects.postgresql import insert
 
@@ -176,8 +177,10 @@ async def remove_link(company_id: UUID, link_id: UUID, user_id: str) -> bool:
 
 
 async def delete_interview(interview_id: UUID) -> None:
-    """An interview was deleted: its linked jobs and the candidates sent for it go."""
+    """An interview was deleted: the candidates sent for it go, DELETE_BATCH at a time, each
+    batch its own transaction, then its linked jobs. Safe to repeat."""
+    await delete_in_batches(Session, AtsCandidate, AtsCandidate.interview_id == interview_id)
+
     async with Session() as session:
-        await session.execute(delete(AtsCandidate).where(AtsCandidate.interview_id == interview_id))
         await session.execute(delete(AtsJobLink).where(AtsJobLink.interview_id == interview_id))
         await session.commit()

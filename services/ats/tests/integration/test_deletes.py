@@ -33,6 +33,27 @@ async def rows_of(model, column, value) -> list:
         return list((await session.scalars(select(model).where(column == value))).all())
 
 
+def test_a_deleted_interviews_candidates_go_in_batches(run, monkeypatch):
+    monkeypatch.setattr("prepza_common.db.DELETE_BATCH", 1)
+
+    async def scenario():
+        company, deleted = uuid.uuid4(), uuid.uuid4()
+        connection, link_id, _ = await linked(company, deleted)
+
+        for index in range(2, 4):
+            await ats_candidates.add(
+                connection.id, link_id, deleted, f"c-{index}", f"c{index}@x.com"
+            )
+
+        await ats_links.delete_interview(deleted)
+        left = await rows_of(AtsCandidate, AtsCandidate.connection_id, connection.id)
+        await ats.delete_company(company)
+
+        return left
+
+    assert run(scenario()) == []
+
+
 def test_a_deleted_interview_takes_its_links_and_candidates_even_when_delivered_twice(run):
     async def scenario():
         company, deleted, kept = uuid.uuid4(), uuid.uuid4(), uuid.uuid4()
