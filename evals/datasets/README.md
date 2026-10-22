@@ -178,6 +178,13 @@ title it a certain way; and a user writing Spanish where the code chose English.
 right title does (`expect`). The judge's traps are made by code each run: another
 conversation's title, and a generic "Conversation".
 
+## `duplicates.json` (by hand, 2026-10-22)
+
+22 made-up pairs of questions for the embeddings that drop a repeated question: 11 that ask the
+same (reworded, reordered) and 11 traps that share most words but ask something else (first vs
+last, opens vs closes, signs vs drafts), in English, German, Japanese, Arabic, Russian, Hindi
+and Thai. Graded by code (`duplicates_test.py`).
+
 ## `code_languages.json` (by hand, 2026-10-22)
 
 36 made-up examples as questions show them, each with the notation the site should color it in

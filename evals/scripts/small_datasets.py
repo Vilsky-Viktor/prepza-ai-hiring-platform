@@ -141,3 +141,21 @@ def check_postings(problems: list[str]) -> list[str]:
     ]
 
     return [p["text"] for p in data["postings"]] + [r["instructions"] for r in data["revisions"]]
+
+
+def check_duplicates(problems: list[str]) -> list[str]:
+    """Pairs of both kinds, each pair two different texts."""
+    data = load("duplicates.json")
+    check_described("duplicates.json", data, problems)
+    unique_ids("duplicates.json", data["items"], problems)
+
+    if {item["same"] for item in data["items"]} != {True, False}:
+        problems.append("duplicates.json: needs pairs that ask the same and pairs that don't")
+
+    problems += [
+        f"duplicates.json: {item['id']} pairs a text with itself"
+        for item in data["items"]
+        if item["a"] == item["b"]
+    ]
+
+    return [text for item in data["items"] for text in (item["a"], item["b"])]

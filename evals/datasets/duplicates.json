@@ -1,0 +1,183 @@
+{
+ "about": "Made-up pairs of questions for the embeddings that drop a new question asking what an earlier one asks (generation's distinct_by_meaning, DUPLICATE_DISTANCE): the same ask reworded or reordered, and traps that share most words but ask something else (first vs last, opens vs closes), in English and six other languages, one per script family. Graded by code. Hand-written.",
+ "built": "2026-10-22",
+ "model": "by hand",
+ "items": [
+  {
+   "id": "d01",
+   "language": "en",
+   "a": "What does a VLOOKUP-style lookup return when no row matches the key?",
+   "b": "Which result does a lookup over a table give when none of its rows has the key?",
+   "same": true,
+   "kind": "reworded"
+  },
+  {
+   "id": "d02",
+   "language": "en",
+   "a": "Which entry records a customer paying in cash for goods?",
+   "b": "A customer pays cash for goods: which entry is recorded?",
+   "same": true,
+   "kind": "reordered"
+  },
+  {
+   "id": "d03",
+   "language": "en",
+   "a": "How long can cooked rice stay at room temperature before it must be chilled?",
+   "b": "What is the longest cooked rice may sit out before refrigeration?",
+   "same": true,
+   "kind": "reworded"
+  },
+  {
+   "id": "d04",
+   "language": "en",
+   "a": "Which document proves a car's ownership?",
+   "b": "Which document proves a car is insured?",
+   "same": false,
+   "kind": "trap: one word apart, another ask"
+  },
+  {
+   "id": "d05",
+   "language": "en",
+   "a": "What is the first step when a patient falls?",
+   "b": "What is the last step when a patient falls?",
+   "same": false,
+   "kind": "trap: first vs last"
+  },
+  {
+   "id": "d06",
+   "language": "en",
+   "a": "Which chart compares the sales of five products best?",
+   "b": "Which chart shows how one product's sales changed over a year best?",
+   "same": false,
+   "kind": "same topic, another ask"
+  },
+  {
+   "id": "d07",
+   "language": "en",
+   "a": "What does a project's critical path determine?",
+   "b": "Which activities make up a project's critical path?",
+   "same": false,
+   "kind": "same subject, another ask"
+  },
+  {
+   "id": "d08",
+   "language": "en",
+   "a": "Why does a sauce thickened with flour turn lumpy?",
+   "b": "What makes a flour-thickened sauce go lumpy?",
+   "same": true,
+   "kind": "reworded"
+  },
+  {
+   "id": "d09",
+   "language": "en",
+   "a": "Which status code means a resource was created?",
+   "b": "Which status code means a resource was not found?",
+   "same": false,
+   "kind": "trap: one word apart"
+  },
+  {
+   "id": "d10",
+   "language": "en",
+   "a": "In Spanish, how do you ask where the station is?",
+   "b": "How would you ask for the station's location in Spanish?",
+   "same": true,
+   "kind": "reworded"
+  },
+  {
+   "id": "d11",
+   "language": "de",
+   "a": "Wie viele Tage hat eine Woche?",
+   "b": "Aus wie vielen Tagen besteht eine Woche?",
+   "same": true,
+   "kind": "reworded, German"
+  },
+  {
+   "id": "d12",
+   "language": "de",
+   "a": "Welche Unterlagen braucht man für die Anmeldung einer Wohnung?",
+   "b": "Welche Unterlagen braucht man für die Kündigung einer Wohnung?",
+   "same": false,
+   "kind": "trap: one word apart, German"
+  },
+  {
+   "id": "d13",
+   "language": "ja",
+   "a": "会議の決定事項を記録する文書は何ですか？",
+   "b": "会議で決まったことを残す書類はどれですか？",
+   "same": true,
+   "kind": "reworded, Japanese"
+  },
+  {
+   "id": "d14",
+   "language": "ja",
+   "a": "在庫が足りないとき最初に何をしますか？",
+   "b": "在庫が多すぎるとき最初に何をしますか？",
+   "same": false,
+   "kind": "trap: too few vs too many, Japanese"
+  },
+  {
+   "id": "d15",
+   "language": "ar",
+   "a": "ما هي عاصمة البرتغال؟",
+   "b": "أي مدينة هي عاصمة البرتغال؟",
+   "same": true,
+   "kind": "reworded, Arabic"
+  },
+  {
+   "id": "d16",
+   "language": "ar",
+   "a": "كم ساعة يجب أن يعمل الموظف يوميًا؟",
+   "b": "كم يومًا يجب أن يعمل الموظف أسبوعيًا؟",
+   "same": false,
+   "kind": "trap: hours a day vs days a week, Arabic"
+  },
+  {
+   "id": "d17",
+   "language": "ru",
+   "a": "Как часто нужно проверять батарейку дымового извещателя?",
+   "b": "С какой периодичностью следует проверять батарейку в датчике дыма?",
+   "same": true,
+   "kind": "reworded, Russian"
+  },
+  {
+   "id": "d18",
+   "language": "ru",
+   "a": "Кто подписывает акт приёмки работ?",
+   "b": "Кто составляет акт приёмки работ?",
+   "same": false,
+   "kind": "trap: signs vs drafts, Russian"
+  },
+  {
+   "id": "d19",
+   "language": "hi",
+   "a": "टीम मीटिंग का एजेंडा कौन तैयार करता है?",
+   "b": "टीम बैठक का कार्यसूची कौन बनाता है?",
+   "same": true,
+   "kind": "reworded, Hindi"
+  },
+  {
+   "id": "d20",
+   "language": "hi",
+   "a": "ग्राहक को रिफंड कब दिया जाता है?",
+   "b": "ग्राहक को बदला हुआ सामान कब दिया जाता है?",
+   "same": false,
+   "kind": "trap: refund vs replacement, Hindi"
+  },
+  {
+   "id": "d21",
+   "language": "th",
+   "a": "พนักงานต้องล้างมือก่อนทำอาหารเมื่อใด",
+   "b": "ควรล้างมือเมื่อไหร่ก่อนเริ่มเตรียมอาหาร",
+   "same": true,
+   "kind": "reworded, Thai"
+  },
+  {
+   "id": "d22",
+   "language": "th",
+   "a": "ร้านเปิดกี่โมงในวันเสาร์",
+   "b": "ร้านปิดกี่โมงในวันเสาร์",
+   "same": false,
+   "kind": "trap: opens vs closes, Thai"
+  }
+ ]
+}

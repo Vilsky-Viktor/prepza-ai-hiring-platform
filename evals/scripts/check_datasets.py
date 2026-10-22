@@ -14,6 +14,7 @@ from pathlib import Path
 
 from small_datasets import (
     check_code_languages,
+    check_duplicates,
     check_patterns,
     check_postings,
     check_titles,
@@ -199,6 +200,7 @@ def main() -> None:
     texts += [("patterns", text) for text in check_patterns(problems)]
     texts += [("titles", text) for text in check_titles(problems)]
     texts += [("postings", text) for text in check_postings(problems)]
+    texts += [("duplicates", text) for text in check_duplicates(problems)]
 
     for where, text in texts:
         for example in examples:
