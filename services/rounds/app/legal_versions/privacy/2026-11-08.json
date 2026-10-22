@@ -25,7 +25,7 @@
         "Tools a company connects: the keys or tokens its owner or admin creates in its applicant tracking system (Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR) or Slack, stored encrypted; a one-way hash of each prepza API key and the addresses of its web hooks; and, from its applicant tracking system, the email, name and id of each candidate it sends to prepza.",
         "Email settings: which optional emails you get, and a log of every change to them: which email, on or off, when, where (signing in, Settings, or an unsubscribe link or spam report) and which version of the checkboxes' wording you saw.",
         "Emails to company members: a record of the activity digests and reminders we sent you, and what each reminder was about, so none is sent twice.",
-        "Emails to many users (notices of changes to our terms, product updates, offers): whether each was sent to you, skipped or failed, and whether you unsubscribed from it or marked it as spam, so none is sent twice and we can see how each was received.",
+        "Emails to many users (notices of changes to our terms, important notices about the service, product updates, offers): whether each was sent to you, skipped or failed, and whether you unsubscribed from it or marked it as spam, so none is sent twice and we can see how each was received.",
         "Addresses we no longer email: if an email to an address bounces for good or is marked as spam, a one-way hash of the address, why and when. It can't be turned back into the email.",
         "Candidates who stop a company's emails: a one-way hash of their email address, with the company and, if they stopped only an interview's reminders, that invite. It can't be turned back into the email.",
         "Referrals: whose referral link you or your company came through, and whether it has been rewarded.",
@@ -40,10 +40,11 @@
       "heading": "Why we use it",
       "items": [
         "To provide prepza: generating interviews, running them for invited candidates, showing companies the results and sending the emails you ask for (contract).",
-        "Service emails, such as invites, reports, billing problems and changes to our terms, which are always sent (contract).",
+        "Service emails, such as invites, reports, billing problems, changes to our terms and important notices about the service (a security incident, planned downtime or a change to how it works), which are always sent (contract).",
         "The activity digest and reminders about your companies, such as low credits or an interview with no candidates (our legitimate interest in helping you use prepza). They are on until you turn them off.",
         "Product updates and news: for our own users who didn't tick \"Don't send me product updates and news\" the first time signing in offered it (article 13(2) of the ePrivacy Directive and § 103¹ of the Estonian Electronic Communications Act). You can stop them at any time, free of charge.",
         "Offers and promotions: only if you agree, by ticking the box when you sign in or in Settings (consent). You can withdraw it at any time.",
+        "Choosing whom an email to many users goes to: whether your account is on a company's team (and whether as an owner or admin), has taken a company's interview or has used free practice, so a product update, an offer or an important notice can go only to those it concerns. Only that your account did so is used, never your answers, results or what a company holds about you (our legitimate interest in sending only relevant emails). Product updates and offers still go only to those who get them under the two points above.",
         "Remembering that a candidate stopped a company's emails, so prepza doesn't email them for that company again (respecting their objection).",
         "To keep prepza secure and working: preventing abuse, rate limits, error reports, and statistics that improve question quality (our legitimate interest).",
         "Question quality: we analyse how questions are answered and reported to find general, anonymised patterns of question quality that improve question generation for everyone; these patterns contain no personal data (our legitimate interest).",
@@ -90,7 +91,7 @@
     {
       "heading": "Emails and unsubscribing",
       "paragraphs": [
-        "Service emails, such as invites, reports, billing problems and changes to our terms, are always sent. You choose the others in Settings, under Emails: the activity digest, reminders, product updates and news, and offers and promotions. Every optional email has an unsubscribe link that works without signing in, and marking an optional email as spam turns it off too. If an email to you bounces for good, or you mark one of ours as spam, we stop sending product emails and notices to that address until you ask us to start again.",
+        "Service emails, such as invites, reports, billing problems, changes to our terms and important notices about the service, are always sent. You choose the others in Settings, under Emails: the activity digest, reminders, product updates and news, and offers and promotions. Every optional email has an unsubscribe link that works without signing in, and marking an optional email as spam turns it off too. If an email to you bounces for good, or you mark one of ours as spam, we stop sending product emails and notices to that address until you ask us to start again.",
         "Invites and reminders a company sends to candidates through prepza have links to stop that company's emails, or that interview's reminders. prepza then doesn't email that address for the company again, and the company sees the invite as not delivered."
       ]
     },
