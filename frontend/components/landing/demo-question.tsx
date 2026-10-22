@@ -16,6 +16,7 @@ import {
   DEMO_SECTIONS,
   type DemoQuestion as Question,
 } from "@/constants/candidates-demo"
+import type { CodeToken } from "@/lib/code-tokens"
 import { clock } from "@/lib/countdown"
 import { Dot } from "@/components/dot"
 
@@ -25,6 +26,7 @@ import { Dot } from "@/components/dot"
  * clock runs while `active`. */
 export function DemoQuestion({
   question,
+  exampleColors,
   picked,
   active,
   optionRefs,
@@ -32,6 +34,7 @@ export function DemoQuestion({
   pressed,
 }: {
   question: Question
+  exampleColors: CodeToken[][] | null
   picked: number[]
   active: boolean
   optionRefs: React.RefObject<HTMLLIElement | null>[]
@@ -78,6 +81,7 @@ export function DemoQuestion({
           <CodeEditor
             code={question.example.code}
             language={question.example.language}
+            tokens={[exampleColors]}
             header={false}
             // Compact, so the example doesn't make the picture tall.
             className="[&_pre]:py-2.5 [&_pre]:text-xs [&_pre]:leading-normal"

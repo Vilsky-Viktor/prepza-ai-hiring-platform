@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { CodeEditor } from "@/components/code-editor"
+import { HighlightedCode } from "@/components/highlighted-code"
 import { KeepAcronyms } from "@/components/keep-acronyms"
 import { richText } from "@/lib/openapi"
 
@@ -31,7 +31,7 @@ function Blocks({ blocks }: { blocks: Section["blocks"] }) {
     <div className="space-y-4">
       {blocks.map((block, index) =>
         block.code !== undefined ? (
-          <CodeEditor key={index} variants={block.code} className="my-8" />
+          <HighlightedCode key={index} variants={block.code} className="my-8" />
         ) : block.steps ? (
           <ol key={index} className={`list-decimal space-y-2 ps-5 ${TEXT}`}>
             {block.steps.map((step, at) => (

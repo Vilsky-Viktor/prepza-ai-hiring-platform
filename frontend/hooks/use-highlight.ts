@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from "react"
 
-import { CODE_THEMES } from "@/constants/code"
+import { type CodeToken, codeTokens } from "@/lib/code-tokens"
 
-export type CodeToken = { content: string; style?: Record<string, string> }
-
-/** The code's lines as colored tokens, once shiki has loaded the language; null until then, or
- * for a language it doesn't know, so the code shows plain meanwhile. */
+/** The code's lines as colored tokens, once shiki has loaded the language in the browser; null
+ * until then, without a language, or for one it doesn't know, so the code shows plain meanwhile.
+ * For code that arrives in the browser; a page's own code comes colored from the server. */
 export function useHighlight(code: string, language?: string) {
   // The lines with the code and language they were made for, so a change shows plain at once.
   const [result, setResult] = useState<{
@@ -23,28 +22,9 @@ export function useHighlight(code: string, language?: string) {
       return
     }
 
-    import("shiki").then(async ({ bundledLanguages, codeToTokens }) => {
-      if (!(language in bundledLanguages)) {
-        return
-      }
-
-      const { tokens } = await codeToTokens(code, {
-        lang: language as keyof typeof bundledLanguages,
-        themes: CODE_THEMES,
-        defaultColor: false,
-      })
-
-      if (current) {
-        setResult({
-          code,
-          language,
-          lines: tokens.map((line) =>
-            line.map((token) => ({
-              content: token.content,
-              style: token.htmlStyle as Record<string, string> | undefined,
-            }))
-          ),
-        })
+    void codeTokens(code, language).then((lines) => {
+      if (current && lines) {
+        setResult({ code, language, lines })
       }
     })
 

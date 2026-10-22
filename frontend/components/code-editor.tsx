@@ -14,7 +14,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useCopyId } from "@/hooks/use-copy-id"
-import { type CodeToken, useHighlight } from "@/hooks/use-highlight"
+import { useHighlight } from "@/hooks/use-highlight"
+import { type CodeToken, editorText } from "@/lib/code-tokens"
 import {
   chooseCodeLanguage,
   chosenCodeLanguage,
@@ -27,19 +28,22 @@ export type CodeVariant = { code: string; language?: string }
  * the language's colors (plain until they load). The same example in several languages
  * (`variants`) gets a language menu in the header instead; picking one switches every editor on
  * the page that has it. `header={false}` leaves the header
- * out, as in an interview's or practice's question. */
+ * out, as in an interview's or practice's question. `tokens`, each option's colors made on the
+ * server (components/highlighted-code.tsx), spare the browser shiki. */
 export function CodeEditor({
   code = "",
   language,
   variants,
   header = true,
   className,
+  tokens,
 }: {
   code?: string
   language?: string
   variants?: CodeVariant[]
   header?: boolean
   className?: string
+  tokens?: (CodeToken[][] | null)[]
 }) {
   const t = useTranslations("common")
   const options = variants ?? [{ code, language }]
@@ -54,12 +58,14 @@ export function CodeEditor({
     options.findIndex((option) => option.language === picked)
   )
   const shown = options[chosen]
-  // A file's last new line would show as an empty numbered line.
-  const text = shown.code.replace(/\n+$/, "")
+  const text = editorText(shown.code)
   const { copied, copy } = useCopyId(shown.code)
-  const colored = useHighlight(text, shown.language)
+  // Colored in the browser only when the server didn't.
+  const colored = useHighlight(text, tokens ? undefined : shown.language)
   const lines: CodeToken[][] =
-    colored ?? text.split("\n").map((line) => [{ content: line }])
+    tokens?.[chosen] ??
+    colored ??
+    text.split("\n").map((line) => [{ content: line }])
 
   return (
     <div

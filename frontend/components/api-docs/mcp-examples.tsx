@@ -1,4 +1,4 @@
-import { CodeEditor } from "@/components/code-editor"
+import { HighlightedCode } from "@/components/highlighted-code"
 import { SetupSection } from "@/components/company/ai-apps-setup"
 import { TabPanels } from "@/components/tab-panels"
 import { MCP_LANGUAGES } from "@/constants/mcp-docs"
@@ -37,7 +37,7 @@ export function McpExamples({ examples }: { examples: McpExample[] }) {
 
 function Editor({ example }: { example: McpExample }) {
   return (
-    <CodeEditor
+    <HighlightedCode
       variants={MCP_LANGUAGES.map((language) => ({
         code: example.code[language],
         language,

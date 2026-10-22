@@ -12,6 +12,7 @@ import {
   type DemoQuestion as Question,
 } from "@/constants/candidates-demo"
 import { type DemoStep, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
+import type { CodeToken } from "@/lib/code-tokens"
 
 // A step and what it shows: the screen (0 the invitation, then each question) and the options
 // picked on it so far.
@@ -82,7 +83,12 @@ const STEPS: Step[] = [
  * single-answer question, a multi-answer one and a practical one, each answered. The screens
  * lie on top of each other, so the panel is as tall as the tallest and never changes size; one
  * fades out and the next in. With reduced motion, the last question, answered. */
-export function CandidatesDemo() {
+export function CandidatesDemo({
+  exampleColors,
+}: {
+  // Each question's example in its colors, made on the server.
+  exampleColors: (CodeToken[][] | null)[]
+}) {
   const { ref, index } = useDemoSteps<HTMLDivElement>(STEPS)
   const step = STEPS[index]
   const titleRef = useRef<HTMLParagraphElement>(null)
@@ -148,6 +154,7 @@ export function CandidatesDemo() {
               at + 1,
               <DemoQuestion
                 question={question}
+                exampleColors={exampleColors[at]}
                 // Unseen, a question keeps all its picks, so it fades out as it was left.
                 picked={step.screen === at + 1 ? step.picked : question.picks}
                 active={step.screen === at + 1}

@@ -1,4 +1,4 @@
-import { CodeEditor } from "@/components/code-editor"
+import { HighlightedCode } from "@/components/highlighted-code"
 import { DocSection } from "@/components/api-docs/doc-section"
 import { McpExamples } from "@/components/api-docs/mcp-examples"
 import { RichText } from "@/components/api-docs/rich-text"
@@ -67,7 +67,7 @@ export function McpTab({
                 <div className="space-y-4">
                   <RichText text={app.text} />
                   {app.code && (
-                    <CodeEditor
+                    <HighlightedCode
                       code={app.code.replace("{url}", url)}
                       language="json"
                     />

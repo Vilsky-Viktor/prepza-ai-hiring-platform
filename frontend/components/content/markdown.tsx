@@ -4,7 +4,8 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 
 import { LocalizedLink } from "@/components/localized-link"
-import { MarkdownCode } from "@/components/markdown-code"
+import { HighlightedCode } from "@/components/highlighted-code"
+import { markdownCode } from "@/components/markdown-code"
 import { endsWithQuestionMark } from "@/lib/question-mark"
 
 /** A link in the site's text: the site's own pages open in place, in the address's language;
@@ -68,7 +69,16 @@ const ELEMENTS: ComponentProps<typeof ReactMarkdown>["components"] = {
     <strong className="font-medium text-foreground">{children}</strong>
   ),
   a: SiteLink,
-  pre: ({ children }) => <MarkdownCode>{children}</MarkdownCode>,
+  // Colored on the server, so an article doesn't load shiki.
+  pre: ({ children }) => {
+    const block = markdownCode(children)
+
+    return block ? (
+      <HighlightedCode {...block} className="my-2" />
+    ) : (
+      <pre>{children}</pre>
+    )
+  },
   table: ({ children }) => (
     <div className="overflow-x-auto rounded-2xl border">
       <table className="w-full text-sm">{children}</table>
