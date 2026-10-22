@@ -2,6 +2,15 @@
 
 A company is where a hiring team works: its interviews, candidates, credits and team live under it. Companies' pages live under `/companies`; old `/company` links redirect.
 
+- [Names](#names)
+- [Team](#team)
+- [Brand](#brand)
+- [Verification](#verification)
+- [Suspension](#suspension)
+- [Action log](#action-log)
+- [Page guides](#page-guides)
+- [Related pages](#related-pages)
+
 ## Names
 
 - Company names are unique across prepza, ignoring case.

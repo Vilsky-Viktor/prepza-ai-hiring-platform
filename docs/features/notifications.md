@@ -2,6 +2,10 @@
 
 The `notifications` service sends prepza's emails and keeps the bell's notifications. Both are driven by events (see [Architecture](../architecture.md#events)).
 
+- [The bell](#the-bell)
+- [Slack](#slack)
+- [Emails](#emails)
+
 ## The bell
 
 A bell next to the account menu shows notifications live: it updates within a second, without reloading. Each open tab holds a stream; one user may hold 10 at once (`MAX_STREAMS_PER_USER`), so one account can't take every slot. A tab past that is refused, and keeps trying (at most once a minute) until a slot frees. A closed tab gives its slot back at once; a slot left by a crash frees itself an hour after the user's last stream opened (`STREAM_SLOT_SECONDS`), and refused tabs don't extend that. A user's companies are kept for a minute (`COMPANY_IDS_SECONDS`), so tabs reconnecting don't each ask companies; a stream ends after 5 minutes and reconnects, to hear a company joined meanwhile, and joining or creating one reconnects the bell at once with the companies read fresh (`?fresh=true`). While companies doesn't answer, a stream still opens with the user's own notifications and tries again after a minute. Tabs reconnect at spread-out times, so a deploy doesn't bring them all back at once.

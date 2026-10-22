@@ -6,6 +6,12 @@ Each Monday, `.github/workflows/load.yml` runs `public`, `candidates` and `dashb
 
 **Never run this against production.** The signed-in scenarios make users in the Firebase Auth emulator, so they run only locally; `load.sh` refuses them for any other host. Only `public` may be pointed at a test environment, with `BASE_URL=... e2e_tests/load.sh public --i-mean-it`.
 
+- [Running](#running)
+- [Scenarios](#scenarios)
+- [Thresholds](#thresholds)
+- [Clean-up](#clean-up)
+- [Results](#results)
+
 ## Running
 
 ```bash

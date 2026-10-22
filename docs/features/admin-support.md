@@ -4,6 +4,14 @@ The Support tab of the [Admin zone](admin-zone.md).
 
 For a complaint about an account, a company's top-ups or spending, an interview or a candidate, for someone who asks prepza to stop its emails, and for a company that impersonates another or abuses prepza. A search finds what the complaint is about; its page shows what support needs, and puts a company's credits right. A candidate's questions and answers are never shown: only facts about them.
 
+- [Search](#search)
+- [An account's page](#an-accounts-page)
+- [A company's page](#a-companys-page)
+- [An interview's page](#an-interviews-page)
+- [A candidate's page](#a-candidates-page)
+- [Emails](#emails)
+- [Logs](#logs)
+
 ## Search
 
 One box takes whatever the complaint gives (at most 300 characters), sent in the request body. It finds at most 20 results, each a prepza account, or a company, an interview or a candidate (an invite) with the company it belongs to:
