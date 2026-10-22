@@ -99,6 +99,9 @@ VERIFY_KEY_PATH = "/internal/keys/verify"
 KEY_CLIENT_NAME = "API key"
 KEY_FUNNEL_CLIENT = "api_key"
 KEY_MISSING_PERMISSION = "This API key doesn't have the {permission} permission."
+# How long an app may reuse tools/list and server/discover (their ttlMs), short so a changed
+# tool or a key's new permissions reach it soon.
+CACHE_TTL_MS = 5 * 60 * 1000
 # The developer docs' list of the tools (routers/mcp_docs.py) is cached this long.
 TOOLS_CACHE_SECONDS = 60 * 60
 

@@ -5,6 +5,7 @@ import mcp_types as types
 from mcp.server.auth.middleware.bearer_auth import BearerAuthBackend, RequireAuthMiddleware
 from mcp.server.auth.provider import ProviderTokenVerifier
 from mcp.server.auth.routes import build_resource_metadata_url
+from mcp.server.caching import CacheHint
 from mcp.server.lowlevel import Server
 from mcp.server.streamable_http_manager import StreamableHTTPSessionManager
 from starlette.middleware.authentication import AuthenticationMiddleware
@@ -12,7 +13,7 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.routing import Route
 from starlette.types import Receive, Scope, Send
 
-from app.constants.mcp import MCP_PATH, MCP_READ_SCOPE, MCP_REQUEST_HEADERS
+from app.constants.mcp import CACHE_TTL_MS, MCP_PATH, MCP_READ_SCOPE, MCP_REQUEST_HEADERS
 from app.helpers.oauth import auth_settings
 from app.prompts.mcp import MCP_INSTRUCTIONS
 from app.services import mcp_tools
@@ -30,8 +31,19 @@ async def call_tool(ctx, params: types.CallToolRequestParams) -> types.CallToolR
     return await mcp_tools.call(params.name, params.arguments or {}, access)
 
 
+# How long an app may reuse the tools and the server's description (2026-07-28). The tools vary
+# by caller (an API key's permissions, a read-only connection), so their cache is private; the
+# description is the same for everyone.
+CACHE_HINTS = {
+    "tools/list": CacheHint(ttl_ms=CACHE_TTL_MS, scope="private"),
+    "server/discover": CacheHint(ttl_ms=CACHE_TTL_MS, scope="public"),
+}
 server = Server(
-    "prepza", instructions=MCP_INSTRUCTIONS, on_list_tools=list_tools, on_call_tool=call_tool
+    "prepza",
+    instructions=MCP_INSTRUCTIONS,
+    on_list_tools=list_tools,
+    on_call_tool=call_tool,
+    cache_hints=CACHE_HINTS,
 )
 # Stateless, with plain JSON answers: any instance answers any request, with no sessions to keep
 # and no streams held open. A manager runs once, so each start of the app makes its own.
