@@ -3,6 +3,7 @@ paths:
   - "infra/**"
   - "scripts/ops/**"
   - "docs/runbooks.md"
+  - "docs/runbooks/**"
   - "docs/deployment.md"
   - "packages/common/src/prepza_common/logging.py"
   - "packages/common/src/prepza_common/health.py"
@@ -29,7 +30,7 @@ one-page postmortem. No incident-commander roles, severity ladders or automatic 
 - SLO alerts use the burn rate over two windows at once: a fast burn pages (about 14× over 1 h
   and 5 min), a slow burn is a ticket (about 1–2× over a day or more).
 - Every alert policy sets its `severity` and its documentation's `links` to its section in
-  `docs/runbooks.md`; a new alert ships with that section. Pages go to the phone (the Cloud
+  `docs/runbooks.md` or its pages under `docs/runbooks/`; a new alert ships with that section. Pages go to the phone (the Cloud
   Monitoring app, SMS as a backup, never SMS alone) and email; tickets to email only.
 - AI spend alerts on the day's total as well as on spikes, beside the provider's hard limit.
 - Uptime checks: at least three checker regions, content matching to prove the right page
@@ -37,7 +38,7 @@ one-page postmortem. No incident-commander roles, severity ladders or automatic 
 
 ## Runbooks and incidents
 
-- `docs/runbooks.md` sections keep their format: how you notice, what the system does itself,
+- Runbook sections (`docs/runbooks.md` and `docs/runbooks/*.md`) keep their format: how you notice, what the system does itself,
   what to do, when it's resolved. Short; a recurring manual step becomes automation.
 - Declare an incident early: customers see it, help is needed, or an hour of work hasn't solved
   it. Keep a timeline, post on the status page; when unsure of severity, take the higher one. A
