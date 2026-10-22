@@ -1,7 +1,7 @@
 import asyncio
 
 from app.integrations import llm
-from app.prompts.verify import MULTI_ANSWER_KEY
+from app.prompts.checker import MULTI_ANSWER_KEY
 from app.schemas.verify import SelfCheck
 from app.services.key_self_check import (
     NOT_CHECKED,

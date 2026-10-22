@@ -35,7 +35,7 @@ class KeyCheck(BaseModel):
 
 class SelfCheck(KeyCheck):
     """A new multi-answer question's self-check: its key, found blind, and any condition left
-    open that decides an option (prompts/verify.py SELF_CHECK_PROMPT)."""
+    open that decides an option (prompts/self_check.py)."""
 
     open_condition: str | None = Field(
         description="A few words naming an unstated condition that decides whether some option "

@@ -38,6 +38,7 @@ FIELD_TERMS = (
 def test_generation_prompts_name_no_technology_standard_or_field():
     from app.prompts.answers import ANSWERS_REQUEST, ANSWERS_SYSTEM, MULTI_ANSWER_KIND
     from app.prompts.code_languages import CODE_LANGUAGES_SYSTEM
+    from app.prompts.confirm import CONFIRM_PROMPT
     from app.prompts.extraction import EXTRACTION_INPUT, EXTRACTION_SYSTEM
     from app.prompts.question_rules import QUESTION_WRITER_ROLE
     from app.prompts.questions import QUESTIONS_REQUEST, QUESTIONS_SYSTEM
@@ -47,13 +48,10 @@ def test_generation_prompts_name_no_technology_standard_or_field():
         REPORT_GUIDANCE,
         REPORTS,
     )
-    from app.prompts.topics import (
-        REVISION_REQUEST,
-        REVISION_SYSTEM,
-        TOPICS_REQUEST,
-        TOPICS_SYSTEM,
-    )
-    from app.prompts.verify import CONFIRM_PROMPT, SELF_CHECK_PROMPT, VERIFY_PROMPT
+    from app.prompts.self_check import SELF_CHECK_PROMPT
+    from app.prompts.topic_revision import REVISION_REQUEST, REVISION_SYSTEM
+    from app.prompts.topics import TOPICS_REQUEST, TOPICS_SYSTEM
+    from app.prompts.verify import VERIFY_PROMPT
     from app.schemas.questions import EXAMPLE, EXAMPLE_LANGUAGE
 
     prompts = [

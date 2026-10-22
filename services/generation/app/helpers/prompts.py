@@ -1,7 +1,7 @@
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
 
-from app.prompts.verify import VERIFIER_ROLE
+from app.prompts.checker import VERIFIER_ROLE
 
 
 def bullet_list(items: list[str]) -> str:

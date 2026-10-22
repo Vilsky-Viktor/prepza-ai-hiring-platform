@@ -9,7 +9,8 @@ from prepza_common.multi_answer import is_multi
 from app.helpers.prompts import checker_messages
 from app.integrations import llm
 from app.integrations.redis import get_redis
-from app.prompts.verify import MULTI_ANSWER_KEY, SELF_CHECK_PROMPT
+from app.prompts.checker import MULTI_ANSWER_KEY
+from app.prompts.self_check import SELF_CHECK_PROMPT
 from app.schemas.regenerate import RegeneratedOption
 from app.schemas.verify import SelfCheck
 from app.services.verify import checked_key

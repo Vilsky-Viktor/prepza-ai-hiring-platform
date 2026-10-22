@@ -5,7 +5,7 @@ import pytest
 from app.constants.quality import QualityFlag
 from app.integrations import llm
 from app.prompts.answers import MULTI_ANSWER_KIND
-from app.prompts.verify import MULTI_ANSWER_KEY, SINGLE_ANSWER_KEY
+from app.prompts.checker import MULTI_ANSWER_KEY, SINGLE_ANSWER_KEY
 from app.schemas.questions import AnswerItem, AnswerList
 from app.schemas.regenerate import RegeneratedOption
 from app.schemas.verify import KeyCheck, QuestionQuality

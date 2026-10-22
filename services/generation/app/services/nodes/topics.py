@@ -8,13 +8,9 @@ from app.helpers.prompts import bullet_list, language_name
 from app.helpers.topics import fit_topics
 from app.integrations import llm
 from app.models.state import State
-from app.prompts.topics import (
-    REVISION_REQUEST,
-    REVISION_SYSTEM,
-    TOO_MANY_TOPICS,
-    TOPICS_REQUEST,
-    TOPICS_SYSTEM,
-)
+from app.prompts.topic_revision import REVISION_REQUEST, REVISION_SYSTEM
+from app.prompts.topic_rules import TOO_MANY_TOPICS
+from app.prompts.topics import TOPICS_REQUEST, TOPICS_SYSTEM
 from app.schemas.topics import TopicList
 from app.services.topic_caps import topic_caps
 from app.storage import draft_cache

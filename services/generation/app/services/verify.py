@@ -11,12 +11,9 @@ from app.constants.quality import QualityFlag
 from app.helpers.prompts import bullet_list, checker_messages
 from app.integrations import library, llm
 from app.integrations.usage import ai_run
-from app.prompts.verify import (
-    CONFIRM_PROMPT,
-    MULTI_ANSWER_KEY,
-    SINGLE_ANSWER_KEY,
-    VERIFY_PROMPT,
-)
+from app.prompts.checker import MULTI_ANSWER_KEY, SINGLE_ANSWER_KEY
+from app.prompts.confirm import CONFIRM_PROMPT
+from app.prompts.verify import VERIFY_PROMPT
 from app.schemas.regenerate import QuestionContext, RegeneratedOption, RegeneratedQuestion
 from app.schemas.verify import KeyCheck, QuestionQuality
 from app.services.nodes.answers import generate_answers

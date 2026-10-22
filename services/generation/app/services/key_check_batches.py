@@ -19,7 +19,7 @@ from app.integrations import library, openai_batch
 from app.integrations.redis import get_redis
 from app.integrations.usage import ai_run
 from app.models.key_checks import KeyCheck as KeyCheckRow
-from app.prompts.verify import VERIFIER_ROLE
+from app.prompts.checker import VERIFIER_ROLE
 from app.schemas.verify import KeyCheck
 from app.services.verify import apply_key_check, check_key, key_check_prompt, marked_answer
 from app.storage import key_checks
