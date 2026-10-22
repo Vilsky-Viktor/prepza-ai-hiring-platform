@@ -22,9 +22,23 @@ variable "image_tag" {
 }
 
 variable "github_repository" {
-  description = "The repository whose main branch may deploy (owner/name)."
+  description = "The repository (owner/name), for links to its files such as the runbooks."
   type        = string
-  default     = "Vilsky-Viktor/ai-interview-prep-platform"
+  default     = "Vilsky-Viktor/prepza-ai-hiring-platform"
+}
+
+# Google trusts GitHub's tokens by these numbers, not by the names, which can be registered again
+# by someone else after a rename or a deletion: gh api repos/<owner>/<name> --jq '.id, .owner.id'.
+variable "github_repository_id" {
+  description = "The numeric id of the repository whose main branch and version tags may reach Google Cloud."
+  type        = number
+  default     = 1397666435
+}
+
+variable "github_repository_owner_id" {
+  description = "The numeric id of that repository's owner."
+  type        = number
+  default     = 28306769
 }
 
 variable "db_tier" {

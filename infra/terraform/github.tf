@@ -1,7 +1,9 @@
 # GitHub Actions reach Google Cloud without a stored key: GitHub's signed token for main or a
-# version tag of this repository is exchanged for an account's (Workload Identity Federation):
-# the deploy account only for the deploy workflow in the production environment (which needs the
-# founder's approval), and an account that can only push images for every other job (CI).
+# version tag of this repository (checked by its numeric id) is exchanged for an account's (Workload
+# Identity Federation): the deploy account only for the deploy workflow in the production
+# environment (which needs the founder's approval), and an account that can only push images for
+# every other job (CI).
+
 resource "google_iam_workload_identity_pool" "github" {
   workload_identity_pool_id = "github"
   display_name              = "GitHub Actions"
@@ -19,12 +21,14 @@ resource "google_iam_workload_identity_pool_provider" "github" {
     "attribute.repository" = "assertion.repository"
     "attribute.ref"        = "assertion.ref"
     # "production" only for deploy.yml running in the production environment; "ci" otherwise.
-    "attribute.deployer" = "('environment' in assertion && assertion.environment == 'production' && assertion.workflow_ref.startsWith('${var.github_repository}/.github/workflows/deploy.yml@')) ? 'production' : 'ci'"
+    "attribute.deployer" = "('environment' in assertion && assertion.environment == 'production' && assertion.workflow_ref.startsWith(assertion.repository + '/.github/workflows/deploy.yml@')) ? 'production' : 'ci'"
   }
 
   # Only this repository's main branch (CI pushes images, a manual run rolls back) and its version
-  # tags (deploys). Version tags are protected by a ruleset, so only admins can make them.
-  attribute_condition = "assertion.repository == '${var.github_repository}' && (assertion.ref == 'refs/heads/main' || assertion.ref.startsWith('refs/tags/v'))"
+  # tags (deploys). Version tags are protected by a ruleset, so only admins can make them. The
+  # repository and its owner are checked by their numeric ids, which a rename doesn't change and
+  # nobody else can take over.
+  attribute_condition = "assertion.repository_id == '${var.github_repository_id}' && assertion.repository_owner_id == '${var.github_repository_owner_id}' && (assertion.ref == 'refs/heads/main' || assertion.ref.startsWith('refs/tags/v'))"
 
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
