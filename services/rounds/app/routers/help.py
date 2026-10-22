@@ -104,7 +104,7 @@ async def get_page_guide(
 
 
 @router.get("/guides")
-async def list_guides(request: Request) -> list[GuideItemOut]:
+def list_guides(request: Request) -> list[GuideItemOut]:
     """The site's guide articles (hiring advice and how-tos: hiring engineers, interviewing in
     the age of AI, AI hiring and the law, ATS integration, MCP and the API, ...), by title, in
     the page's language where translated; public."""
@@ -112,7 +112,7 @@ async def list_guides(request: Request) -> list[GuideItemOut]:
 
 
 @router.get("/guides/{slug}")
-async def get_guide_article(
+def get_guide_article(
     request: Request, slug: str = Path(max_length=MAX_GUIDE_SLUG_LENGTH)
 ) -> GuideOut:
     """One guide article, by its slug, with its Markdown text, in the page's language (English
@@ -126,7 +126,7 @@ async def get_guide_article(
 
 
 @router.get("/legal/{document}")
-async def get_legal(
+def get_legal(
     document: LegalDocument,
     version: str | None = Query(default=None, max_length=10),
     language: Language = DEFAULT_LANGUAGE,

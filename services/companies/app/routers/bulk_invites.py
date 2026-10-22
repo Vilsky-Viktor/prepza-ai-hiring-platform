@@ -1,3 +1,4 @@
+import asyncio
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
@@ -35,7 +36,8 @@ async def invite_many(interview_id: UUID, body: BulkInviteIn, user: CurrentUser)
     if refusal:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, refusal)
 
-    found, problems = read_list(body.text)
+    # Up to 200,000 characters of parsing: off the event loop.
+    found, problems = await asyncio.to_thread(read_list, body.text)
     name = clean_name(body.name)
 
     if not found and not problems:

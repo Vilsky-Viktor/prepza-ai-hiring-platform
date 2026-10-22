@@ -2,6 +2,7 @@ from fastapi import HTTPException
 
 from app.helpers.email_lists import emails_in
 from app.integrations import billing
+from app.routers import bulk_invites
 from app.services import candidate_invites
 from app.storage import invites
 from tests.unit.test_candidate_invites import INTERVIEW_ID, invite_setup
@@ -87,3 +88,19 @@ def test_a_candidate_who_already_started_is_skipped_not_emailed_again(client, mo
     assert result["invited"] == ["bob@example.com"]
     assert result["skipped"] == [{"email": "ann@example.com", "reason": "started"}]
     assert sent == ["bob@example.com"]
+
+
+def test_a_list_is_read_off_the_event_loop(client, monkeypatch):
+    invite_setup(monkeypatch)
+    threads = []
+    run_in_thread = bulk_invites.asyncio.to_thread
+
+    async def to_thread(function, *args):
+        threads.append(function.__name__)
+
+        return await run_in_thread(function, *args)
+
+    monkeypatch.setattr(bulk_invites.asyncio, "to_thread", to_thread)
+
+    assert client.post(URL, json={"text": "ann@example.com"}).status_code == 200
+    assert "read_list" in threads
