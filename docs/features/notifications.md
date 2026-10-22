@@ -218,4 +218,4 @@ To show invites whose email bounced, was marked as spam or couldn't be sent ("Em
 2. Put its signing secret (`whsec_...`) in `.env` as `RESEND_WEBHOOK_SECRET`.
 3. Restart notifications.
 
-Without the secret, every webhook is refused. Locally, Resend reaches the webhook only through a tunnel, as with Paddle (see [Credits and payments](billing.md#setting-up-paddle)).
+Without the secret, every webhook is refused. A webhook's work (the suppression list, telling companies and library) is done within 20 seconds (`RESEND_HOOK_SECONDS`), inside Resend's deadline; past it the answer is a 503 and Resend sends the event again, which changes nothing twice. Locally, Resend reaches the webhook only through a tunnel, as with Paddle (see [Credits and payments](billing.md#setting-up-paddle)).

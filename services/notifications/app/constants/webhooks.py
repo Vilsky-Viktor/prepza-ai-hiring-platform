@@ -11,6 +11,10 @@ UNDELIVERED_EVENTS = {BOUNCED_EVENT, COMPLAINED_EVENT, SUPPRESSED_EVENT, FAILED_
 # Resend signs each webhook with a timestamp; older ones are refused, so a captured one can't
 # be replayed.
 WEBHOOK_TOLERANCE_SECONDS = 5 * 60
+# A web hook's work (the suppression list, telling companies and library) is done within this
+# long, inside Resend's deadline of about 30 s; past it the answer is a 503, and Resend sends the
+# event again: every step is safe to repeat.
+RESEND_HOOK_SECONDS = 20
 
 # Tags Resend's webhooks carry back: what the email is and its id. A candidate's invite:
 # "candidate_invite" and the invite's id; their reminder: "candidate_reminder", the invite's id

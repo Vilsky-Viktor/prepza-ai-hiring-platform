@@ -1,3 +1,4 @@
+import asyncio
 import base64
 import hashlib
 import hmac
@@ -12,6 +13,7 @@ from app.helpers.emails import candidate_invite_email
 from app.helpers.unsubscribe import address_hash
 from app.helpers.webhooks import signature_valid
 from app.integrations import companies, library
+from app.routers import webhooks as webhook_routes
 from app.storage import opt_outs, suppressed
 
 # Svix's published example (docs.svix.com, "Verifying Webhooks Manually"), not a real secret. Put
@@ -184,3 +186,13 @@ def test_a_signature_beyond_ascii_is_refused_not_an_error():
     secret = "whsec_" + base64.b64encode(b"key").decode()
 
     assert signature_valid("m1", "1000", "v1,ä", b"{}", secret, 1000, 300) is False
+
+
+def test_a_web_hook_whose_work_takes_too_long_comes_back(client, reported, monkeypatch):
+    async def slow(invite_id):
+        await asyncio.Event().wait()
+
+    monkeypatch.setattr(companies, "invite_undelivered", slow)
+    monkeypatch.setattr(webhook_routes, "RESEND_HOOK_SECONDS", 0.01)
+
+    assert signed_post(client, event("email.bounced", "candidate_invite")).status_code == 503
