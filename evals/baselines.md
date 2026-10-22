@@ -12,7 +12,8 @@ Contents: [Baselines (2026-10-04)](#baselines-2026-10-04) ·
 [Help chat: currencies](#help-chat-currencies-in-its-guide-2026-10-21-kept) ·
 [Help chat: four more currencies](#help-chat-four-more-currencies-2026-10-21-kept) ·
 [Help chat: automatic top-up](#help-chat-automatic-top-ups-pause-and-price-notice-2026-10-21-kept) ·
-[Help chat: Mira](#help-chat-mira-an-ai-assistant-that-says-so-2026-10-22-kept)
+[Help chat: Mira](#help-chat-mira-an-ai-assistant-that-says-so-2026-10-22-kept) ·
+[The scope rule's language](#the-scope-rule-names-no-language-of-its-own-2026-10-22-kept)
 
 ## Baselines (2026-10-04)
 
@@ -246,3 +247,14 @@ Each of the visitor's messages comes inside `<visitor_message>`, read as data. `
 after: passed 93.1% (84.8–97.0) → 97.2% (90.4–99.2); made up 4.2% → 2.8%; sign-in marker 100%
 both; language cases 3 → 4 of 6 (the misses are h17's invented retake limit); $0.024 help, $1.27
 judge. Kept: better, nothing worse.
+
+## The scope rule names no language of its own (2026-10-22, kept)
+
+The scope rule both chats share (`prepza_common.scope`) asked to decline "in the user's
+language", a language the model would infer, while each prompt names the reply's language chosen
+by code; it now says "in the language you answer in". `help_chat.py`, 24 × 3, against
+`results/help_chat_h1.json` (`…_scope.json`): passed 97.2% → 95.8% (88.5–98.6), one answer;
+off-topic 3 of 3 and injection 6 of 6 both; language cases 4 → 3 of 6, the misses h17's known
+invented retake limit. `assistant_actions.py`, 2 repeats (`results/assistant_actions_scope.json`):
+task success 97.1% (92.7–98.9), injection safe 100%, its failures (c04, e12, m05, m06) cases that
+failed before. Within the noise; kept so no prompt leaves a language to inference. $1.89.
