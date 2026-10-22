@@ -22,6 +22,7 @@ const REGISTERS: [RegExp, string][] = [
   [/<PageKey\b/, "components/page-key.tsx"],
   [/\bhelp=/, "components/back-link.tsx"],
   [/<CompanyHeader\b/, "components/company/company-header.tsx"],
+  [/<InterviewHeader\b/, "components/company/interview-header.tsx"],
   [/<LegalPage\b/, "components/legal-page.tsx"],
   [
     /\b(categoryRoute|hubArticleRoute)\(/,
