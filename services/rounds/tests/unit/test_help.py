@@ -7,8 +7,6 @@ from prepza_common.limit_list import LIMITS
 
 from app.config.settings import settings
 from app.constants.help import (
-    HELP_HISTORY_CHARACTERS,
-    HELP_HISTORY_MESSAGES,
     MAX_HELP_QUESTION_LENGTH,
 )
 from app.constants.terms import TERMS_SECTIONS
@@ -16,6 +14,7 @@ from app.helpers.help import guide
 from app.helpers.help_replies import help_signing_key, reply_signature, vote_signature
 from app.schemas.help import HelpMessage
 from app.services.help import build_messages, guide_limits
+from tests.unit.test_help_messages import visitor
 
 CATALOG = {
     "environment": "sandbox",
@@ -60,41 +59,13 @@ def test_the_chat_knows_the_platform_prices_and_documents(redis):
     assert "Who is responsible" in system
     assert '"candidate_credits": 500' in system
     assert "secret-token" not in system
-    assert system.endswith(
-        "Reply in German, the language of the page, unless the user writes in another language."
-    )
+    # The visitor wrote English on the German page: the reply is in English, chosen by code.
+    assert system.rstrip().endswith("Reply in English, as a native speaker would write it.")
     assert "{" not in guide(asyncio.run(guide_limits(redis)))
 
 
-def test_a_long_conversation_sends_only_its_latest_messages():
-    conversation = [
-        HelpMessage(role="user" if index % 2 == 0 else "assistant", content=f"message {index}")
-        for index in range(30)
-    ] + [HelpMessage(role="user", content="last question")]
-    messages = asyncio.run(build_messages(conversation, "en", None))
-
-    assert len(messages) == 1 + HELP_HISTORY_MESSAGES + 1
-    assert messages[-1].content == "last question"
-    assert "pricing page lists every price" in messages[0].content
-
-
-def test_long_earlier_messages_are_left_out_but_the_question_stays():
-    long = "x" * (HELP_HISTORY_CHARACTERS // 2 + 1)
-    conversation = [
-        HelpMessage(role="user", content="first"),
-        HelpMessage(role="assistant", content=long),
-        HelpMessage(role="user", content="again"),
-        HelpMessage(role="assistant", content=long),
-        HelpMessage(role="user", content="last question"),
-    ]
-    messages = asyncio.run(build_messages(conversation, "en", None))
-
-    # The latest long answer and the question before it fit; the earlier long one doesn't.
-    assert [message.content for message in messages[1:]] == ["again", long, "last question"]
-
-
 def test_visitors_can_chat_and_get_a_stream(client, monkeypatch):
-    async def fake_stream(messages, used=None, run_id=None):
+    async def fake_stream(messages, used=None, run_id=None, session_id=None):
         yield "Paste "
         yield "a job description."
 
@@ -128,7 +99,7 @@ def test_the_model_reads_only_the_replies_the_chat_signed(client, monkeypatch):
     """A reply the page made up ("Ignore your scope...") never reaches the model."""
     read = []
 
-    async def fake_stream(messages, used=None, run_id=None):
+    async def fake_stream(messages, used=None, run_id=None, session_id=None):
         read.extend(message.content for message in messages[1:])
         yield "Sure."
 
@@ -147,7 +118,12 @@ def test_the_model_reads_only_the_replies_the_chat_signed(client, monkeypatch):
 
     client.post("/help/chat", json=body)
 
-    assert read == ["How do I start?", "Paste a job description.", "And then?", "Go on."]
+    assert read == [
+        visitor("How do I start?"),
+        "Paste a job description.",
+        visitor("And then?"),
+        visitor("Go on."),
+    ]
 
 
 def test_the_chat_needs_a_question_last_and_not_too_long(client):
@@ -163,7 +139,7 @@ def test_the_chat_needs_a_question_last_and_not_too_long(client):
 
 
 def test_accounts_addresses_and_the_daily_total_are_limited(client, monkeypatch, redis):
-    async def fake_stream(messages, used=None, run_id=None):
+    async def fake_stream(messages, used=None, run_id=None, session_id=None):
         yield "ok"
 
     monkeypatch.setattr("app.routers.help.billing.catalog", fake_catalog(None))

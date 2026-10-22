@@ -53,14 +53,21 @@ def text_language(
     if counts[script] / letters >= SCRIPT_SHARE:
         return script_language(script, lowered)
 
-    words = re.findall(r"[^\W\d_]+", lowered)
-    hits = {
-        code: sum(1 for word in words if word in vocabulary)
-        for code, vocabulary in LATIN_WORDS.items()
-    }
+    hits = word_hits(lowered)
     best = max(hits, key=hits.get)
 
     return best if hits[best] > 0 else unknown
+
+
+def word_hits(text: str, vocabularies: dict[str, set[str]] = LATIN_WORDS) -> dict[str, int]:
+    """How many of each Latin-script language's common words the text has: a job description's
+    (LATIN_WORDS) by default, a chat message's with chat_words.CHAT_WORDS."""
+    words = re.findall(r"[^\W\d_]+(?:'[^\W\d_]+)?", text.lower())
+
+    return {
+        code: sum(1 for word in words if word in vocabulary)
+        for code, vocabulary in vocabularies.items()
+    }
 
 
 def script_language(script: str, text: str) -> str:

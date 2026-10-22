@@ -202,7 +202,9 @@ async def help_chat(
         outcome = Outcome.CUT
 
         try:
-            async for event in with_sign_in(stream_reply(messages, used, trace_id)):
+            async for event in with_sign_in(
+                stream_reply(messages, used, trace_id, str(body.chat_id) if body.chat_id else None)
+            ):
                 reply += event.get("delta", "")
                 yield sse_event(event)
 

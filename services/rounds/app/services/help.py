@@ -4,12 +4,14 @@ from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from langchain_core.messages.ai import add_usage
 from prepza_common import ai_usage, memory_cache
 from prepza_common.ai_constants import Outcome
+from prepza_common.chat_words import CHAT_WORDS
 from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
 from prepza_common.limit_schemas import BudgetOut
 from prepza_common.limits import limit, question_seconds
 from prepza_common.llm import estimated_input, estimated_tokens, latest_messages
 from prepza_common.rate_limit import add_spent
 from prepza_common.scope import SCOPE_RULE
+from prepza_common.text_language import text_language, word_hits
 from prepza_common.tracing import traced
 
 from app.config.settings import settings
@@ -19,6 +21,7 @@ from app.constants.help import (
     HELP_CHAT,
     HELP_HISTORY_CHARACTERS,
     HELP_HISTORY_MESSAGES,
+    HELP_LANGUAGE_WORDS,
     HELP_SPEND_KEY,
     HelpRole,
 )
@@ -27,7 +30,7 @@ from app.helpers.help import knowledge
 from app.helpers.page_guides import guide_text, page_guide
 from app.integrations import billing, llm
 from app.integrations.redis import get_redis
-from app.prompts.help import HELP_SYSTEM, PAGE_CONTEXT
+from app.prompts.help import HELP_SYSTEM, PAGE_CONTEXT, VISITOR_MESSAGE
 from app.schemas.help import HelpMessage
 
 
@@ -49,15 +52,16 @@ async def build_messages(
     conversation: list[HelpMessage], language: str, catalog: dict | None, page: str | None = None
 ) -> list[BaseMessage]:
     """The system prompt holds everything the chat may answer from, in English, with the guide
-    of the page the visitor asks on (`page`, its key) when it's a known one; it replies in the
-    page's language."""
+    of the page the visitor asks on (`page`, its key) when it's a known one. The reply's
+    language is chosen here: the visitor's question's own, else the page's. Each of the
+    visitor's messages is tagged as data."""
     limits = await guide_limits(get_redis())
     guide = page_guide(page, DEFAULT_LANGUAGE) if page else None
     system = HELP_SYSTEM.format(
         page=PAGE_CONTEXT.format(key=page, guide=guide_text(guide)) if guide else "",
         email=COMPANY["email"],
         knowledge=knowledge(DEFAULT_LANGUAGE, catalog, limits),
-        language=LANGUAGES[language],
+        language=LANGUAGES[reply_language(conversation[-1].content, language)],
         scope=SCOPE_RULE,
     )
     # The latest messages before the question (the last one, the user's), while they fit.
@@ -65,16 +69,45 @@ async def build_messages(
     earlier = latest_messages(
         [(item.role == HelpRole.USER, item.content) for item in before], HELP_HISTORY_CHARACTERS
     )
+    earlier = [
+        HumanMessage(content=VISITOR_MESSAGE.format(message=item.content))
+        if isinstance(item, HumanMessage)
+        else item
+        for item in earlier
+    ]
+    question = HumanMessage(content=VISITOR_MESSAGE.format(message=conversation[-1].content))
 
-    return [SystemMessage(content=system), *earlier, HumanMessage(content=conversation[-1].content)]
+    return [SystemMessage(content=system), *earlier, question]
+
+
+def reply_language(question: str, page_language: str) -> str:
+    """The language a reply is written in, chosen here, never by the model: the question's own
+    when it clearly shows one (its script, or at least HELP_LANGUAGE_WORDS of a Latin-script
+    language's chat words, more than of any other's and of the page's), else the page's."""
+    found = text_language(question, fallback=page_language, unknown=page_language)
+
+    if found not in CHAT_WORDS:
+        return found
+
+    hits = word_hits(question, CHAT_WORDS)
+    best = max(hits, key=hits.get)
+    others = [count for code, count in hits.items() if code != best]
+
+    if hits[best] >= HELP_LANGUAGE_WORDS and hits[best] > max(others):
+        return best
+
+    return page_language
 
 
 async def stream_reply(
-    messages: list[BaseMessage], used: dict, trace_id: str | None = None
+    messages: list[BaseMessage],
+    used: dict,
+    trace_id: str | None = None,
+    session_id: str | None = None,
 ) -> AsyncIterator[str]:
     """The answer's text as it comes; its usage metadata is kept in `used["usage"]`. `trace_id`:
-    its Langfuse trace, when that's set up."""
-    async for chunk in llm.get_help_llm().astream(messages, traced(trace_id)):
+    its Langfuse trace, when that's set up, in the chat's session (`session_id`)."""
+    async for chunk in llm.get_help_llm().astream(messages, traced(trace_id, session_id)):
         if chunk.usage_metadata:
             used["usage"] = add_usage(used.get("usage"), chunk.usage_metadata)
 

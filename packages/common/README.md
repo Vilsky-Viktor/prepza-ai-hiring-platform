@@ -129,6 +129,7 @@ One line each, by name (`tests/unit/test_readme_modules.py` fails on one left ou
 - `backoff`: the jittered, doubling wait before a retry (`wait_seconds`).
 - `body_limit`: refuses a request body over its size (413), counted as it streams.
 - `capped`: `gather_capped`: calls run together, at most so many at a time.
+- `chat_words`: the common words of chat messages per Latin-script language, for the help chat's reply language.
 - `clean_start`: a clean start for every integration test (a `_test` database, Redis database 15).
 - `client_ip`: the visitor's address behind the load balancer, and its rate-limit key.
 - `company_access`: who may do what in a company, asked of companies.

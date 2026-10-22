@@ -1,4 +1,5 @@
 from typing import Literal
+from uuid import UUID
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -29,6 +30,8 @@ class HelpChatRequest(BaseModel):
 
     messages: list[HelpMessage] = Field(min_length=1, max_length=MAX_HELP_MESSAGES)
     page: str | None = Field(default=None, max_length=MAX_PAGE_KEY_LENGTH)
+    # The conversation's own id, made by the page: its answers' traces share a session.
+    chat_id: UUID | None = None
 
     @model_validator(mode="after")
     def ends_with_question(self):

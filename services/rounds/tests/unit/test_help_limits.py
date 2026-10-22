@@ -19,7 +19,7 @@ def model(monkeypatch):
     """The model's answers, counted; a signed-in user u1 for requests that send a token."""
     asked = []
 
-    async def answer(messages, used, run_id=None):
+    async def answer(messages, used, run_id=None, session_id=None):
         asked.append(1)
         yield "Paste a job description."
 

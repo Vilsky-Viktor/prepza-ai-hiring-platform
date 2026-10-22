@@ -235,3 +235,14 @@ passed 72.2% (61.0–81.2), identity 1 of 18, the rest 51 of 54, made up 6.9%; a
 4.2% (1.4–11.5), sign-in marker 100% both times. A first wording that also told it to offer help
 made an off-topic refusal two sentences long (h12, 1 of 3), so it was dropped. The remaining
 failures are the known h17 (an invented retake limit) and one h12.
+
+## Help chat: the reply's language chosen by code, the visitor's messages as data (2026-10-22, kept)
+
+The help chat let the model infer the reply's language ("the page's, unless the user writes in
+another"); now code chooses it (the question's own when its script or at least two of a
+Latin-script language's common chat words show it, else the page's) and the prompt names it.
+Each of the visitor's messages comes inside `<visitor_message>`, read as data. `help_chat.py`,
+`help_questions.json`, 24 × 3, `gpt-6-luna` at none, judged by `gpt-6.1-sol` high, before →
+after: passed 93.1% (84.8–97.0) → 97.2% (90.4–99.2); made up 4.2% → 2.8%; sign-in marker 100%
+both; language cases 3 → 4 of 6 (the misses are h17's invented retake limit); $0.024 help, $1.27
+judge. Kept: better, nothing worse.

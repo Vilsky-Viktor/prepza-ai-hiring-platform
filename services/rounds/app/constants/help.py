@@ -81,3 +81,7 @@ PAGE_ARTICLES = {
 
 # A vote on a help chat answer whose signature doesn't match its id and run.
 NO_SUCH_ANSWER = "There's no such answer."
+# A visitor's question in a Latin-script language is answered in it only with at least this many
+# of its common words (prepza_common.language_words), more than of the page's language; a short
+# one is answered in the page's.
+HELP_LANGUAGE_WORDS = 2

@@ -19,7 +19,7 @@ import {
 } from "@/lib/assistant"
 import { clearChat } from "@/lib/assistant-storage"
 import { signOut } from "@/lib/auth"
-import { StreamError, streamHelp } from "@/lib/chat"
+import { StreamError, startHelpChat, streamHelp } from "@/lib/chat"
 import { useHumanCheck } from "@/hooks/use-human-check"
 import { pageContext } from "@/lib/page-context"
 import { pageKey } from "@/lib/page-key"
@@ -254,6 +254,7 @@ export function useAssistantChat(
     setMessages([])
     setEarlier(false)
     clearChat(false)
+    startHelpChat()
   }
 
   /** Opens one of the user's conversations, and gives its company (undefined when it couldn't);

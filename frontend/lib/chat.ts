@@ -83,6 +83,15 @@ export async function streamEvents<T>(
   }
 }
 
+// The help chat's current conversation, so its answers' traces read as one; a new chat gets
+// a new id (startHelpChat).
+let helpChat = crypto.randomUUID()
+
+/** Starts a new help chat conversation, with its own id. */
+export function startHelpChat() {
+  helpChat = crypto.randomUUID()
+}
+
 /** Asks prepza's help chat (signed-out visitors' assistant); the panel keeps the conversation
 and sends it whole, each reply with the signature the chat gave it (the chat reads no reply
 without one). Its events: {"delta"}, a {"block"} sign-in card when the visitor asks to sign in,
@@ -107,7 +116,7 @@ export function streamHelp(
   return humanHeaders(first).then((headers) =>
     streamEvents(
       "/rounds/help/chat",
-      { messages, ...(page && { page }) },
+      { messages, chat_id: helpChat, ...(page && { page }) },
       onEvent,
       signal,
       headers

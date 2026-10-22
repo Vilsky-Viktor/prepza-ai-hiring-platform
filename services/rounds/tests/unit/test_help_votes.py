@@ -109,7 +109,7 @@ def test_only_a_thumbs_up_or_down_is_taken(client, stored, value):
 def test_with_langfuse_the_answer_names_the_trace_its_model_call_reports_to(client, monkeypatch):
     trace_ids = []
 
-    async def fake_stream(messages, used=None, trace_id=None):
+    async def fake_stream(messages, used=None, trace_id=None, session_id=None):
         trace_ids.append(trace_id)
         yield "Paste it."
 

@@ -54,7 +54,7 @@ Every message carries the page it's asked on (`page`): its guide's key (`prepza_
 - The prompt's context line names the page, its quoted path and each id ("the interview with id …"), and says the ids stand only for what the user points at ("here", "this", "these"): a question naming an interview or a candidate is about that one (found by its name, even on another one's page), and any other covers all the user's data. A question about using the page calls `get_page_guide` (rounds' `GET /help/pages/{key}`, in the user's language); one about its data calls the usual tools with its ids, without asking which.
 - Each message is stored with its page (`messages.page`), and the model reads an earlier question with the page it was asked on ("[Asked on …]"), so "here" means where the user was when they asked, also after moving between pages.
 - `get_page_guide` is the panel's only: AI apps over MCP have no page, so they're never offered it.
-- Signed out, the help chat gets the page's key and answers about the page from its guide (English, replying in the page's language).
+- Signed out, the help chat gets the page's key and answers about the page from its guide (English, replying in the language code chooses: the question's own when it clearly shows one, else the page's).
 - Measured in `evals/` (`page_context.py`): with the page context, general questions are answered at least as well as without it, and page questions much better (see the evals README).
 
 ## Actions

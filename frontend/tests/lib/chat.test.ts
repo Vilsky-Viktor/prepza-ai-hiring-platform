@@ -1,7 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
 import { ApiError } from "@/lib/api"
-import { StreamError, streamEvents, streamHelp } from "@/lib/chat"
+import {
+  StreamError,
+  startHelpChat,
+  streamEvents,
+  streamHelp,
+} from "@/lib/chat"
 
 // No Firebase in a unit test: nobody is signed in.
 vi.mock("@/lib/firebase", () => ({
@@ -58,7 +63,24 @@ describe("streamHelp", () => {
     const [url, init] = vi.mocked(fetch).mock.calls[0]
     expect(url).toBe("/api/rounds/help/chat")
     expect(init?.method).toBe("POST")
-    expect(JSON.parse(String(init?.body))).toEqual({ messages: [] })
+    expect(JSON.parse(String(init?.body))).toMatchObject({ messages: [] })
+  })
+
+  it("names the conversation, and a new chat with a new id", async () => {
+    const chatIds = async () => {
+      vi.mocked(fetch).mockResolvedValue(streamed([]))
+      await streamHelp([], () => {}, new AbortController().signal)
+
+      return JSON.parse(String(vi.mocked(fetch).mock.lastCall?.[1]?.body))
+        .chat_id
+    }
+    const first = await chatIds()
+    const again = await chatIds()
+    startHelpChat()
+    const next = await chatIds()
+
+    expect(first).toBe(again)
+    expect(next).not.toBe(first)
   })
 
   it("passes each event's delta on, in order", async () => {
