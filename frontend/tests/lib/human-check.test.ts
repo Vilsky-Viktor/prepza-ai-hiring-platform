@@ -14,7 +14,7 @@ function fakePage() {
     ),
     execute: vi.fn(() => turnstile.answer("token")),
     reset: vi.fn(),
-    answer: (_token: string) => {},
+    answer: (() => {}) as (token: string) => void,
   }
   const window: { turnstile?: typeof turnstile } = {}
   const element = () => ({ className: "" })
