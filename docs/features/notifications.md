@@ -198,7 +198,7 @@ Product updates and offers, written by a superadmin in the admin zone (see [Camp
 
 #### The suppression list
 
-Resend's `email.bounced`, `email.complained` and `email.suppressed` (Resend's own list holds the address after an earlier bounce or complaint) for any email to a user (not a candidate's invite, which is the company's) put the address on prepza's own suppression list (`suppressed_addresses`), kept as its keyed hash with the reason and the date, never in the clear. Bulk sends skip those addresses. A complaint also turns that email's setting off, as before. A superadmin sees it, and takes it off the list, on the account's support page.
+Resend's `email.bounced`, `email.complained` and `email.suppressed` (Resend's own list holds the address after an earlier bounce or complaint) for any email to a user (not a candidate's invite, which is the company's) put the address on prepza's own suppression list (`suppressed_addresses`), kept as its keyed hash with the reason and the date, never in the clear. Only a permanent bounce (Resend's `bounce.type` `Permanent`) suppresses at once; a temporary one (a full mailbox, a server down) is counted (`soft_bounces`, once per email, kept 14 days), and the third within 14 days suppresses the address too (`soft_bounced`). Bulk sends skip those addresses. A complaint also turns that email's setting off, as before. A superadmin sees it, and takes it off the list, on the account's support page.
 
 ### Failed sends
 

@@ -5,12 +5,12 @@ import pytest
 
 from app.helpers.unsubscribe import address_hash
 from app.services import suppression
-from app.storage import bulk_recipients, suppressed
+from app.storage import bulk_recipients, soft_bounces, suppressed
 
 
 @pytest.fixture
 def suppressing(monkeypatch):
-    state = {"added": [], "complained": []}
+    state = {"added": [], "complained": [], "soft": {}}
 
     async def add(address, reason):
         state["added"].append((address, reason))
@@ -18,8 +18,14 @@ def suppressing(monkeypatch):
     async def mark_complained(send_id, user_id):
         state["complained"].append((str(send_id), user_id))
 
+    async def add_soft(address, email_id, since):
+        state["soft"].setdefault(address, set()).add(email_id)
+
+        return len(state["soft"][address])
+
     monkeypatch.setattr(suppressed, "add", add)
     monkeypatch.setattr(bulk_recipients, "mark_complained", mark_complained)
+    monkeypatch.setattr(soft_bounces, "add", add_soft)
 
     return state
 
@@ -56,3 +62,29 @@ def test_a_candidates_invite_or_another_event_suppresses_nothing(suppressing):
     asyncio.run(suppression.from_webhook(delivered))
 
     assert suppressing["added"] == []
+
+
+def bounce(kind, email_id="e-1", to="dan@example.com"):
+    return {
+        "type": "email.bounced",
+        "data": {"to": [to], "email_id": email_id, "bounce": {"type": kind}, "tags": {}},
+    }
+
+
+def test_a_permanent_bounce_suppresses_at_once_a_temporary_one_only_counts(suppressing):
+    asyncio.run(suppression.from_webhook(bounce("Permanent", to="eve@example.com")))
+    asyncio.run(suppression.from_webhook(bounce("Temporary")))
+
+    assert suppressing["added"] == [(address_hash("eve@example.com"), "bounced")]
+    assert suppressing["soft"] == {address_hash("dan@example.com"): {"e-1"}}
+
+
+def test_repeated_soft_bounces_suppress_and_a_repeated_web_hook_counts_once(suppressing):
+    for email_id in ("e-1", "e-1", "e-2"):
+        asyncio.run(suppression.from_webhook(bounce("Temporary", email_id)))
+
+    assert suppressing["added"] == []
+
+    asyncio.run(suppression.from_webhook(bounce("Temporary", "e-3")))
+
+    assert suppressing["added"] == [(address_hash("dan@example.com"), "soft_bounced")]

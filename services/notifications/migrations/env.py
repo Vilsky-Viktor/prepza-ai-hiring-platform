@@ -10,6 +10,7 @@ import app.models.opt_outs
 import app.models.outbox
 import app.models.sent_emails
 import app.models.slack
+import app.models.soft_bounces
 import app.models.suppressed  # noqa: F401
 from app.config.settings import settings
 from app.models.base import Base
