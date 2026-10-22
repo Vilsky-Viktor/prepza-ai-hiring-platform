@@ -46,6 +46,8 @@ def test_a_refused_token_or_a_wrong_address_isnt_saved(client, stored, key):
     assert connect(client, token="bad").status_code == 422
     assert connect(client, account="not an address").status_code == 422
     assert stored["connection"] is None
+    # A mistyped address isn't counted against the hourly connects; a refused token is.
+    assert len(stored["connects"]) == 1
 
 
 def test_a_viewer_sees_the_connection_but_changes_nothing(client, stored, key):

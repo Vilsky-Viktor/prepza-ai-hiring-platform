@@ -53,14 +53,17 @@ async def connect_workable(company_id: UUID, body: WorkableIn, user: CurrentUser
     second connect replaces the key."""
     await companies.require(company_id, user.uid, editor=True)
     integrations.require_available()
-    await integrations.count_connect(company_id, user.uid)
-    calling_company.set(company_id)
     account = subdomain(body.account, ".workable.com")
 
     if account is None:
         raise HTTPException(
-            status.HTTP_422_UNPROCESSABLE_CONTENT, "Enter your Workable address, like acme.workable.com"
+            status.HTTP_422_UNPROCESSABLE_CONTENT,
+            "Enter your Workable address, like acme.workable.com",
         )
+
+    # Counted once the address could be right: a mistyped one is refused before.
+    await integrations.count_connect(company_id, user.uid)
+    calling_company.set(company_id)
 
     token = body.token.strip()
 
@@ -68,7 +71,8 @@ async def connect_workable(company_id: UUID, body: WorkableIn, user: CurrentUser
         await workable.check(account, token)
     except KeyRejected:
         raise HTTPException(
-            status.HTTP_422_UNPROCESSABLE_CONTENT, "Workable didn't accept this token for that account"
+            status.HTTP_422_UNPROCESSABLE_CONTENT,
+            "Workable didn't accept this token for that account",
         ) from None
 
     credentials = integrations.seal({"subdomain": account, "token": token})
@@ -95,7 +99,8 @@ async def connect_greenhouse(company_id: UUID, body: GreenhouseIn, user: Current
         await greenhouse.check(client_id, client_secret)
     except KeyRejected:
         raise HTTPException(
-            status.HTTP_422_UNPROCESSABLE_CONTENT, "Greenhouse didn't accept this client ID and secret"
+            status.HTTP_422_UNPROCESSABLE_CONTENT,
+            "Greenhouse didn't accept this client ID and secret",
         ) from None
 
     if not await greenhouse.can_write(client_id, client_secret):
@@ -158,14 +163,17 @@ async def connect_recruitee(company_id: UUID, body: RecruiteeIn, user: CurrentUs
     (Recruitee shows it); a reconnect keeps it."""
     await companies.require(company_id, user.uid, editor=True)
     integrations.require_available()
-    await integrations.count_connect(company_id, user.uid)
-    calling_company.set(company_id)
     account = subdomain(body.account, RECRUITEE_DOMAIN)
 
     if account is None:
         raise HTTPException(
-            status.HTTP_422_UNPROCESSABLE_CONTENT, "Enter your Recruitee address, like acme.recruitee.com"
+            status.HTTP_422_UNPROCESSABLE_CONTENT,
+            "Enter your Recruitee address, like acme.recruitee.com",
         )
+
+    # Counted once the address could be right: a mistyped one is refused before.
+    await integrations.count_connect(company_id, user.uid)
+    calling_company.set(company_id)
 
     token = body.token.strip()
 
@@ -173,7 +181,8 @@ async def connect_recruitee(company_id: UUID, body: RecruiteeIn, user: CurrentUs
         await recruitee.check(account, token)
     except KeyRejected:
         raise HTTPException(
-            status.HTTP_422_UNPROCESSABLE_CONTENT, "Recruitee didn't accept this token for that company"
+            status.HTTP_422_UNPROCESSABLE_CONTENT,
+            "Recruitee didn't accept this token for that company",
         ) from None
 
     credentials = {"company": account, "token": token}
