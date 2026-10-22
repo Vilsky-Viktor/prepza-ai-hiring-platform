@@ -4,9 +4,8 @@ from prepza_common.google import Invoker
 from app.schemas.campaigns import TranslateCampaign
 from app.schemas.jobs import RunGeneration, VerifyQuestion
 from app.schemas.news import TranslateNews
-from app.services.campaigns import translate_campaign
 from app.services.jobs import run_generation
-from app.services.news import translate_news
+from app.services.translation_jobs import translate_campaign, translate_news
 from app.services.verify import verify
 
 router = APIRouter(prefix="/internal/jobs", tags=["jobs"], dependencies=[Invoker])

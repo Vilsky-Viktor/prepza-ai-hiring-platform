@@ -56,3 +56,14 @@ Arabic title naming the candidate (2 of 3) gone; sums up 90.5% (77.9–96.2) →
 right language 100% both; natural 95.2% → 100%; judge traps 11 of 11 both; $0.00002 → $0.00003
 and 2.1 → 2.8 s a title. Kept: the privacy failure is gone, nothing worse beyond the intervals
 (the remaining misses are a greeting titled "Hiring Assistance" and one partial summary).
+
+## Translations through the Batch API (2026-10-22, kept)
+
+Translations of news posts and campaigns no longer call the model at once: each language goes in
+the next OpenAI batch at half price, with the same prompt, a strict schema built as the direct
+call builds it, and the same limits checked on the reply. `translations_test.py` now sends those
+batch requests at once (`batch_direct.py`); `translations.json`, 70 translations, `gpt-6.1-sol`
+low, judged by `gpt-6.1-sol` high, direct call → batch request: code checks 100% both; faithful
+90.0% (80.8–95.1) → 88.6% (79.0–94.1); native 98.6% (92.3–99.7) → 97.1% (90.2–99.2); one
+language 100% both; judge traps 97 of 97 both; $0.158 both at once, so $0.079 in a batch. Within
+the intervals; kept for the price (the user approved the wait: up to a day, usually an hour).

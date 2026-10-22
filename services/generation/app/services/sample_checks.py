@@ -24,7 +24,8 @@ async def check_one(question_id: UUID) -> None:
         return
 
     async with ai_run(SAMPLE_KEY_CHECK, set_company(context), subject_id=question_id):
-        await check_key(question_id, question, context)
+        # Before the test is ready: a broken question is replaced at once, not in a batch.
+        await check_key(question_id, question, context, now=True)
 
 
 async def check_sample(set_id: UUID) -> None:

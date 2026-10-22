@@ -11,6 +11,7 @@ from app.integrations import library, llm
 from app.routers import internal, superadmin, superadmin_additions
 from app.services import (
     additions,
+    batch_usage,
     budget,
     key_self_check,
     pipeline,
@@ -19,10 +20,10 @@ from app.services import (
     screen,
     top_up,
     topic_caps,
-    translations,
 )
 from app.services.nodes import reuse
 from app.storage import generations
+from tests.unit.batch_fakes import FakeStore
 from tests.unit.fakes import EXAMPLE, MULTI_OPTIONS, OPTIONS
 
 
@@ -46,6 +47,15 @@ def texts_name_something(request, monkeypatch):
 
 
 @pytest.fixture(autouse=True)
+def batch_store(monkeypatch):
+    """Batch work's table in memory: no unit test reaches a database."""
+    store = FakeStore()
+    store.install(monkeypatch)
+
+    return store
+
+
+@pytest.fixture(autouse=True)
 def redis(monkeypatch):
     """Redis in memory for the requests' limits and budgets: unit tests have none. Each test
     reads the limits afresh, not values an earlier test cached."""
@@ -53,6 +63,7 @@ def redis(monkeypatch):
     monkeypatch.setattr(memory_cache, "_entries", {})
 
     for module in (
+        batch_usage,
         internal,
         superadmin,
         superadmin_additions,
@@ -62,7 +73,6 @@ def redis(monkeypatch):
         reuse,
         pipeline,
         topic_caps,
-        translations,
         sample_checks,
         key_self_check,
     ):

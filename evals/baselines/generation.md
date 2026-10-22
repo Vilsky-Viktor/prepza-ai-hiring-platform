@@ -96,3 +96,15 @@ translated from English; "Write ONE" lost its capitals. `gpt-6.1-sol` low, judge
 
 Every metric within its interval; kept for rule 19 (company text tagged, native wording asked
 for).
+
+## The verifier's rewrites and new options through the Batch API (2026-10-22, kept)
+
+A flagged question's rewrite and new options (and a broken key's replacement) now go through
+OpenAI's Batch API at half price: the new question, then its options, each a batch request with
+the same prompts, schemas and checks as the direct calls. `regenerate_test.py --mode rewrite`
+and `--mode new-options` send those requests at once, on the fixed 40 of
+`multi_questions.json`, judged by `gpt-6.1-sol` high. Rewrite, direct (2026-10-22) → batch
+requests: written 40 → 40, keys 97.5% → 100% (91.2–100), clarity 4.97 → 4.97, relevance 4.53 →
+4.53, distractors 3.23 → 3.27 (± 0.27); $0.35 → $0.33 at once, half that in a batch. New options
+(no eval before; its first run): 40 written, keys 100%, distractors 2.85 ± 0.30, relevance 4.08.
+Within the intervals; kept for the price.

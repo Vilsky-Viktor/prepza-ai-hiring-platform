@@ -8,11 +8,9 @@ from prepza_common.auth import current_user
 from prepza_common.user import User
 
 from app.constants.actions import (
-    CAMPAIGN_TRANSLATION,
     CODE_TAGS,
     EMBEDDINGS,
     INTERVIEW_GENERATION,
-    NEWS_TRANSLATION,
     QUESTION_REGENERATION,
     QUESTION_VERIFY,
     SAMPLE_KEY_CHECK,
@@ -20,15 +18,13 @@ from app.constants.actions import (
     TEMPLATE_QUESTION_REGENERATION,
 )
 from app.constants.quality import QualityFlag
-from app.integrations import library, llm, notifications
+from app.integrations import library, llm
 from app.jobs import tag_code_languages as tag_job
 from app.jobs.embed_templates import embed_templates
 from app.main import app
 from app.models.generation import Generation
-from app.schemas.campaigns import CampaignSource
-from app.schemas.news import NewsSource
 from app.schemas.regenerate import QuestionContext
-from app.services import campaigns, news, pipeline, sample_checks
+from app.services import pipeline, sample_checks
 from app.services import regenerate as regenerate_module
 from app.services import verify as verify_service
 from app.storage import generations
@@ -198,7 +194,7 @@ def test_a_flagged_questions_check_and_a_sample_key_check_are_recorded(events, m
     async def quality(question_id):
         return flagged
 
-    async def called(*args):
+    async def called(*args, **options):
         await chat.ainvoke("Check the question")
 
     monkeypatch.setattr(library, "get_question_context", context)
@@ -213,39 +209,6 @@ def test_a_flagged_questions_check_and_a_sample_key_check_are_recorded(events, m
     assert recorded(events) == [
         (QUESTION_VERIFY, None, None, "ok"),
         (SAMPLE_KEY_CHECK, str(COMPANY_ID), None, "ok"),
-    ]
-
-
-def test_news_and_campaign_translations_are_recorded(events, monkeypatch):
-    chat = Chat(replies=[reply(100, 10), reply(100, 10)])
-
-    async def translated(source, language):
-        await chat.ainvoke("Translate")
-
-        return source
-
-    async def news_source(news_id):
-        return NewsSource(title="News", text="Text", missing=["de"])
-
-    async def campaign_source(campaign_id):
-        return CampaignSource(subject="News", text="Text", button=None, missing=["de"])
-
-    async def saved(*args):
-        pass
-
-    monkeypatch.setattr(library, "get_news_source", news_source)
-    monkeypatch.setattr(library, "save_news_translations", saved)
-    monkeypatch.setattr(notifications, "get_campaign_source", campaign_source)
-    monkeypatch.setattr(notifications, "save_campaign_translations", saved)
-    monkeypatch.setattr(news, "translate_one", translated)
-    monkeypatch.setattr(campaigns, "translate_one", translated)
-
-    asyncio.run(news.translate_news(uuid.uuid4()))
-    asyncio.run(campaigns.translate_campaign(uuid.uuid4()))
-
-    assert recorded(events) == [
-        (NEWS_TRANSLATION, None, None, "ok"),
-        (CAMPAIGN_TRANSLATION, None, None, "ok"),
     ]
 
 

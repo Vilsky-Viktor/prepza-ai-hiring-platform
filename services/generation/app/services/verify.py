@@ -16,7 +16,7 @@ from app.prompts.confirm import CONFIRM_PROMPT
 from app.prompts.verify import VERIFY_PROMPT
 from app.schemas.regenerate import QuestionContext, RegeneratedOption, RegeneratedQuestion
 from app.schemas.verify import KeyCheck, QuestionQuality
-from app.services.answers import generate_answers
+from app.services import batch_work
 from app.services.regenerate import regenerate
 from app.storage import key_checks
 
@@ -24,10 +24,17 @@ logger = logging.getLogger(__name__)
 
 
 async def replace(
-    question_id: UUID, context: QuestionContext, question: QuestionQuality | None = None
+    question_id: UUID, context: QuestionContext, question: QuestionQuality, now: bool = False
 ) -> None:
-    """A new question in its place, written to avoid what users reported about it."""
-    reasons = [report.reason for report in question.reports] if question else []
+    """A new question in its place, written to avoid what users reported about it: through the
+    next OpenAI batch at half price, as nobody waits on it, or at once for a superadmin's "Fix
+    now"."""
+    reasons = [report.reason for report in question.reports]
+
+    if not now:
+        await batch_work.queue_rewrite(question_id, context, question.text, reasons)
+
+        return
 
     if await regenerate(question_id, context, reasons) is None:
         logger.warning("Couldn't write a replacement for question %s", question_id)
@@ -119,7 +126,11 @@ async def confirmed(question: QuestionQuality, context: QuestionContext, correct
 
 
 async def apply_key_check(
-    question_id: UUID, question: QuestionQuality, context: QuestionContext, result: KeyCheck
+    question_id: UUID,
+    question: QuestionQuality,
+    context: QuestionContext,
+    result: KeyCheck,
+    now: bool = False,
 ) -> None:
     """Keeps the question, moves the key to the right options, or replaces a broken question. A
     key moves only when a second, blind check agrees: a moved key marks every future candidate's
@@ -128,7 +139,7 @@ async def apply_key_check(
     correct = checked_key(question.options, result, order)
 
     if correct is None:
-        await replace(question_id, context, question)
+        await replace(question_id, context, question, now)
 
         return
 
@@ -138,7 +149,7 @@ async def apply_key_check(
         return
 
     if not await confirmed(question, context, correct):
-        await replace(question_id, context, question)
+        await replace(question_id, context, question, now)
 
         return
 
@@ -151,41 +162,27 @@ async def apply_key_check(
     )
 
 
-async def check_key(question_id: UUID, question: QuestionQuality, context: QuestionContext) -> None:
-    """The key check right away; used when a batched check came back unusable."""
+async def check_key(
+    question_id: UUID, question: QuestionQuality, context: QuestionContext, now: bool = False
+) -> None:
+    """The key check right away: a superadmin's "Fix now" (`now`, which also replaces a broken
+    question at once), or a batched check that came back unusable."""
     result: KeyCheck = (
         await llm.get_verifier_llm()
         .with_structured_output(KeyCheck)
         .ainvoke(checker_messages(key_check_prompt(question_id, question, context)))
     )
-    await apply_key_check(question_id, question, context, result)
+    await apply_key_check(question_id, question, context, result, now)
 
 
 async def new_options(
     question_id: UUID, question: QuestionQuality, context: QuestionContext
 ) -> None:
-    """The same question with new options; one that turns out ambiguous is replaced."""
-    result = await generate_answers(
-        {
-            "topic_index": 0,
-            "topic": context.topic,
-            "start": 0,
-            "questions": [question.text],
-            "level": context.level,
-            "language": context.language,
-            "multi": is_multi(question.options),
-        }
-    )
-    options = result["answer_pool"][0]["options"][0]
-
-    if not options:
-        await replace(question_id, context, question)
-
-        return
-
-    await library.replace_question(
-        question_id, RegeneratedQuestion(text=question.text, options=options)
-    )
+    """The same question with new options, through the next OpenAI batch; one that turns out
+    ambiguous is replaced."""
+    reasons = [report.reason for report in question.reports]
+    context = context.model_copy(update={"multi": is_multi(question.options)})
+    await batch_work.queue_new_options(question_id, context, question.text, reasons)
 
 
 async def verify(question_id: UUID, flag: QualityFlag, now: bool = False) -> None:
@@ -204,7 +201,7 @@ async def verify(question_id: UUID, flag: QualityFlag, now: bool = False) -> Non
             # Checked now, so a check still waiting in a batch is dropped: its result would
             # come after this one's.
             await key_checks.remove([question_id])
-            await check_key(question_id, question, context)
+            await check_key(question_id, question, context, now=True)
         elif question.flag == QualityFlag.WRONG_KEY:
             # Nobody waits on it, so it goes in the next OpenAI batch at half price.
             await key_checks.add(question_id, question.text, marked_answer(question))

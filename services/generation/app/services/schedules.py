@@ -12,6 +12,7 @@ from app.constants.generation import (
 )
 from app.constants.quality import KEY_CHECK_LOCK_KEY, KEY_CHECK_LOCK_SECONDS
 from app.integrations.redis import get_redis
+from app.services import batch_work
 from app.services import outbox as outbox_service
 from app.services.key_check_batches import collect_finished, submit_pending
 from app.storage import accounts, generations
@@ -23,7 +24,8 @@ logger = logging.getLogger(__name__)
 
 
 async def key_check_batches() -> None:
-    """Applies finished OpenAI batches of key checks, then sends the waiting ones; skipped while
+    """Applies finished OpenAI batches of key checks and of other work that waits on nobody
+    (translations, new options, rewritten questions), then sends the waiting ones; skipped while
     an earlier run is still going, and during the emergency pause (they're AI)."""
     redis = get_redis()
 
@@ -42,6 +44,8 @@ async def key_check_batches() -> None:
     try:
         await collect_finished()
         await submit_pending()
+        await batch_work.collect_finished()
+        await batch_work.submit_pending()
     finally:
         await redis_lock.release(redis, KEY_CHECK_LOCK_KEY, token)
 

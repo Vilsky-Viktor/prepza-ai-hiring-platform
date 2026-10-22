@@ -33,8 +33,10 @@ MODEL=gpt-6-luna EFFORT=low evals/run.sh generation generate_tests.py --all --la
 OVERSAMPLE=1.1 evals/run.sh generation-worker generate_tests.py python_backend --label os-1.1
 
 # Re-generation (a company replacing a question; the verifier replacing one it can't fix): the
-# service's own write of a new question and its options, on a fixed 40 of multi_questions.json
+# service's own write of a new question and its options, on a fixed 40 of multi_questions.json;
+# --mode rewrite or new-options for the verifier's work as its batch requests ask for it
 evals/run.sh generation regenerate_test.py --label x
+evals/run.sh generation regenerate_test.py --label x --mode new-options
 evals/run.sh generation review_questions.py results/regenerated_x.json
 
 # Verifier settings, on the traps and the same questions with their real key; --confirm for the

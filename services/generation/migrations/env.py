@@ -4,7 +4,8 @@ from alembic import context
 from langgraph.checkpoint.postgres import PostgresSaver
 from prepza_common.db import migration_engine
 
-import app.models.generation  # registers the tables on Base.metadata
+import app.models.batch_work  # registers the tables on Base.metadata
+import app.models.generation
 import app.models.key_checks
 import app.models.outbox
 import app.models.patterns  # noqa: F401

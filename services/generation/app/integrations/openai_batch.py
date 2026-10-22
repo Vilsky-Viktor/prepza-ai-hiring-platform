@@ -2,9 +2,12 @@ import io
 import json
 from functools import cache
 
+from langchain_core.messages import BaseMessage
 from openai import AsyncOpenAI
+from openai.lib._parsing._completions import type_to_response_format_param
+from pydantic import BaseModel
 
-from app.constants.generation import BATCH_MAX_RETRIES, LLM_TIMEOUT_SECONDS
+from app.constants.generation import BATCH_MAX_RETRIES, LLM_TIMEOUT_SECONDS, MAX_OUTPUT_TOKENS
 
 COMPLETIONS = "/v1/chat/completions"
 
@@ -12,6 +15,22 @@ COMPLETIONS = "/v1/chat/completions"
 @cache
 def get_client() -> AsyncOpenAI:
     return AsyncOpenAI(timeout=LLM_TIMEOUT_SECONDS, max_retries=BATCH_MAX_RETRIES)
+
+
+def request_body(
+    model: str, effort: str, messages: list[BaseMessage], schema: type[BaseModel]
+) -> dict:
+    """A chat completion's body for a batch: the call with_structured_output would make, its
+    schema strict (the OpenAI SDK builds it as it does for a direct call)."""
+    roles = {"system": "system", "human": "user"}
+
+    return {
+        "model": model,
+        "reasoning_effort": effort,
+        "max_completion_tokens": MAX_OUTPUT_TOKENS,
+        "messages": [{"role": roles[m.type], "content": m.content} for m in messages],
+        "response_format": type_to_response_format_param(schema),
+    }
 
 
 async def submit(requests: dict[str, dict]) -> str:

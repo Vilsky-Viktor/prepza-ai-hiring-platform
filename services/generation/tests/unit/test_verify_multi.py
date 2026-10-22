@@ -3,7 +3,6 @@ import asyncio
 import pytest
 
 from app.constants.quality import QualityFlag
-from app.integrations import llm
 from app.prompts.answers import MULTI_ANSWER_KIND
 from app.prompts.checker import MULTI_ANSWER_KEY, SINGLE_ANSWER_KEY
 from app.schemas.questions import AnswerItem, AnswerList
@@ -11,7 +10,8 @@ from app.schemas.regenerate import RegeneratedOption
 from app.schemas.verify import KeyCheck, QuestionQuality
 from app.services.verify import check_key, verify
 from app.storage import key_checks
-from tests.unit.test_verify import QUESTION_ID, FakeLLM, context, question, record
+from tests.unit.batch_fakes import run_batches
+from tests.unit.test_verify import QUESTION_ID, context, question, record
 
 TEXT = "A shop sells goods for cash. Which entries are recorded?"
 
@@ -62,14 +62,14 @@ def test_a_wrong_set_is_moved_once_a_blind_second_check_names_the_same_set(monke
 def test_a_set_the_second_check_doesnt_name_replaces_the_question(monkeypatch):
     calls, _ = checked(monkeypatch, [0, 2], KeyCheck(correct_indexes=[0, 1, 2]))
 
-    assert calls == [("regenerate", QUESTION_ID)]
+    assert calls == [("rewrite", QUESTION_ID)]
 
 
 @pytest.mark.parametrize("verdict", [[2], [0, 1, 2, 3], [0, 7]])
 def test_a_key_of_the_other_kind_every_option_or_one_not_there_replaces_it(monkeypatch, verdict):
     calls, _ = checked(monkeypatch, verdict)
 
-    assert calls == [("regenerate", QUESTION_ID)]
+    assert calls == [("rewrite", QUESTION_ID)]
 
 
 def test_a_single_answer_question_checked_with_several_right_is_replaced(monkeypatch):
@@ -77,7 +77,7 @@ def test_a_single_answer_question_checked_with_several_right_is_replaced(monkeyp
 
     asyncio.run(check_key(QUESTION_ID, question(), context()))
 
-    assert calls == [("regenerate", QUESTION_ID)]
+    assert calls == [("rewrite", QUESTION_ID)]
     assert SINGLE_ANSWER_KEY in fake_llm.prompts[0]
 
 
@@ -107,11 +107,12 @@ def test_new_options_for_a_multi_answer_question_keep_its_kind(monkeypatch):
             )
         ]
     )
-    writer = FakeLLM(answers)
-    monkeypatch.setattr(llm, "get_generation_llm", lambda *_: writer)
 
     asyncio.run(verify(QUESTION_ID, QualityFlag.WEAK_OPTIONS))
+    batches = run_batches(monkeypatch, lambda body: answers.model_dump_json())
 
     assert calls[0][:2] == ("replace", TEXT)
     assert sorted(calls[0][2]) == [False, False, True, True]
-    assert MULTI_ANSWER_KIND in writer.prompts[0]
+    [sent] = batches.sent.values()
+    [body] = sent.values()
+    assert MULTI_ANSWER_KIND in body["messages"][0]["content"]

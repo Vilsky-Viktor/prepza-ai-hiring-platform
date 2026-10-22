@@ -9,6 +9,7 @@ from app.schemas.verify import KeyCheck, QuestionQuality, ReportNote
 from app.services import verify as verify_service
 from app.services.verify import check_key, verify
 from app.storage import key_checks
+from tests.unit.batch_fakes import run_batches
 
 QUESTION_ID = uuid.uuid4()
 TEXT = "A customer pays cash. Which entry is recorded?"
@@ -77,6 +78,9 @@ def record(monkeypatch, verdict=None, flag=None, confirmation=None, quality=ques
     async def fake_regenerate(question_id, _context, reasons=None):
         calls.append(("regenerate", question_id))
 
+    async def fake_rewrite(question_id, _context, text, reasons):
+        calls.append(("rewrite", question_id))
+
     fake_llm = FakeLLM(verdict, *([confirmation] if confirmation else []))
     # Both checks list the options in their own order (the real order is a shuffle).
     monkeypatch.setattr(verify_service.random, "sample", lambda items, count: list(items))
@@ -86,6 +90,8 @@ def record(monkeypatch, verdict=None, flag=None, confirmation=None, quality=ques
     monkeypatch.setattr(library, "keep_question", fake_keep)
     monkeypatch.setattr(library, "replace_question", fake_replace)
     monkeypatch.setattr(verify_service, "regenerate", fake_regenerate)
+    # Nobody waits on a rewrite: it goes in the next batch (test_batch_questions.py).
+    monkeypatch.setattr(verify_service.batch_work, "queue_rewrite", fake_rewrite)
     monkeypatch.setattr(llm, "get_verifier_llm", lambda: fake_llm)
 
     return calls, fake_llm
@@ -120,7 +126,7 @@ def test_a_key_the_second_check_doesnt_agree_on_replaces_the_question(monkeypatc
 
     asyncio.run(check_key(QUESTION_ID, question(), context()))
 
-    assert calls == [("regenerate", QUESTION_ID)]
+    assert calls == [("rewrite", QUESTION_ID)]
 
 
 def test_a_confirmed_key_keeps_the_question(monkeypatch):
@@ -136,7 +142,7 @@ def test_a_question_without_one_right_option_is_replaced(monkeypatch):
 
     asyncio.run(check_key(QUESTION_ID, question(), context()))
 
-    assert calls == [("regenerate", QUESTION_ID)]
+    assert calls == [("rewrite", QUESTION_ID)]
 
 
 def test_a_wrong_key_waits_for_the_next_batch(monkeypatch):
@@ -161,24 +167,24 @@ def test_a_flagged_rewrite_replaces_the_question(monkeypatch):
 
     asyncio.run(verify(QUESTION_ID, QualityFlag.REWRITE))
 
-    assert calls == [("regenerate", QUESTION_ID)]
+    assert calls == [("rewrite", QUESTION_ID)]
 
 
 def test_a_rewrite_hands_the_reported_reasons_to_the_new_question(monkeypatch):
     record(monkeypatch, flag=QualityFlag.REWRITE)
     handed = []
 
-    async def fake_regenerate(question_id, _context, reasons=None):
+    async def fake_rewrite(question_id, _context, text, reasons):
         handed.append(reasons)
 
-    monkeypatch.setattr(verify_service, "regenerate", fake_regenerate)
+    monkeypatch.setattr(verify_service.batch_work, "queue_rewrite", fake_rewrite)
 
     asyncio.run(verify(QUESTION_ID, QualityFlag.REWRITE))
 
     assert handed == [["wrong_answer"]]
 
 
-def test_weak_options_are_written_again_for_the_same_question(monkeypatch):
+def test_weak_options_are_written_again_for_the_same_question_in_a_batch(monkeypatch):
     calls, _ = record(monkeypatch, flag=QualityFlag.WEAK_OPTIONS)
     answers = AnswerList(
         answers=[
@@ -190,9 +196,9 @@ def test_weak_options_are_written_again_for_the_same_question(monkeypatch):
             )
         ]
     )
-    monkeypatch.setattr(llm, "get_generation_llm", lambda *_: FakeLLM(answers))
 
     asyncio.run(verify(QUESTION_ID, QualityFlag.WEAK_OPTIONS))
+    run_batches(monkeypatch, lambda body: answers.model_dump_json())
 
     assert len(calls) == 1
     assert calls[0][:2] == ("replace", TEXT)
@@ -212,7 +218,7 @@ def test_the_librarys_current_flag_wins_over_the_one_sent(monkeypatch):
 
     asyncio.run(verify(QUESTION_ID, QualityFlag.WRONG_KEY))
 
-    assert calls == [("regenerate", QUESTION_ID)]
+    assert calls == [("rewrite", QUESTION_ID)]
 
 
 def test_a_deleted_question_is_skipped(monkeypatch):

@@ -52,8 +52,8 @@ def test_fix_now_checks_a_wrong_key_at_once_instead_of_batching(monkeypatch):
 
         return SimpleNamespace(text="Q?", flag=QualityFlag.WRONG_KEY, options=options)
 
-    async def check_key(question_id, question, found_context):
-        calls.append("now")
+    async def check_key(question_id, question, found_context, now=False):
+        calls.append("now" if now else "not now")
 
     async def add(question_id, text, marked):
         calls.append("batch")

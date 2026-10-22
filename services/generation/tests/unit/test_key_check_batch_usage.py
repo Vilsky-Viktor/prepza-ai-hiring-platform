@@ -7,7 +7,7 @@ from prepza_common.ai_constants import AI_USED, LIMIT_HIT
 
 from app.constants.actions import KEY_CHECK_BATCH
 from app.integrations import openai_batch
-from app.services import key_check_batches
+from app.services import batch_usage, key_check_batches
 from tests.unit.fake_ai import MODEL, refused
 from tests.unit.test_key_check_batches import KEPT, FakeStore, library_with
 
@@ -30,8 +30,8 @@ def test_a_finished_batchs_usage_is_recorded_once_at_batch_price(events, monkeyp
 
     traced = []
     redis = FakeRedis()
-    monkeypatch.setattr(key_check_batches.tracing, "traced_call", lambda *a: traced.append(a))
-    monkeypatch.setattr(key_check_batches, "get_redis", lambda: redis)
+    monkeypatch.setattr(batch_usage.tracing, "traced_call", lambda *a: traced.append(a))
+    monkeypatch.setattr(batch_usage, "get_redis", lambda: redis)
     monkeypatch.setattr(openai_batch, "status", status)
     monkeypatch.setattr(openai_batch, "results", results)
     monkeypatch.setattr(key_check_batches, "apply_key_check", applied)

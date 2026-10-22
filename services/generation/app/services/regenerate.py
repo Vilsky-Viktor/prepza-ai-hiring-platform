@@ -2,7 +2,7 @@ import asyncio
 import logging
 from uuid import UUID
 
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from prepza_common.examples import has_example
 
 from app.constants.generation import REGENERATE_ATTEMPTS, REGENERATE_TIMEOUT_SECONDS
@@ -37,6 +37,45 @@ def reported(reasons: list[str]) -> str:
     return REPORTS.format(reports=bullet_list(guidance)) + "\n" if guidance else ""
 
 
+def question_messages(
+    context: QuestionContext, reasons: list[str], existing: list[str]
+) -> list[BaseMessage]:
+    """The call for a new question of the replaced one's kind, unlike every one in `existing`."""
+    request = REGENERATE_REQUEST.format(
+        kind=MULTI_ANSWER_KIND if context.multi else SINGLE_ANSWER_KIND,
+        example=WITH_EXAMPLE if context.example else WITHOUT_EXAMPLE,
+        reports=reported(reasons),
+        level=context.level,
+        topic=context.topic,
+        subtopics=", ".join(context.subtopics) or context.topic,
+        existing=bullet_list(existing),
+        language=language_name(context.language),
+    )
+
+    return [SystemMessage(content=REGENERATE_SYSTEM), HumanMessage(content=request)]
+
+
+async def accepted(context: QuestionContext, result: NewQuestion, taken: set[str]) -> str:
+    """The new question's text when it can replace the old one (readable, an example exactly
+    when the old one had one, unlike every question in the topic in words and in meaning);
+    otherwise an empty string."""
+    text = with_example(result.question, result.example, result.example_language)
+
+    if (
+        text
+        and readable(result.question, result.example)
+        and has_example(text) == context.example
+        and normalize(text) not in taken
+    ):
+        texts = [*context.existing, text]
+        kept = await distinct_by_meaning(texts, keep_first=len(context.existing))
+
+        if len(kept) == len(texts):
+            return text
+
+    return ""
+
+
 async def new_question(context: QuestionContext, reasons: list[str]) -> str | None:
     """A question of the replaced one's kind, with an example when it had one, that neither
     repeats nor rephrases any existing one in the topic; written to avoid what users reported
@@ -46,34 +85,15 @@ async def new_question(context: QuestionContext, reasons: list[str]) -> str | No
     taken = {normalize(text) for text in existing}
 
     for _ in range(REGENERATE_ATTEMPTS):
-        request = REGENERATE_REQUEST.format(
-            kind=MULTI_ANSWER_KIND if context.multi else SINGLE_ANSWER_KIND,
-            example=WITH_EXAMPLE if context.example else WITHOUT_EXAMPLE,
-            reports=reported(reasons),
-            level=context.level,
-            topic=context.topic,
-            subtopics=", ".join(context.subtopics) or context.topic,
-            existing=bullet_list(existing),
-            language=language_name(context.language),
-        )
         result: NewQuestion = await structured_llm.ainvoke(
-            [SystemMessage(content=REGENERATE_SYSTEM), HumanMessage(content=request)]
+            question_messages(context, reasons, existing)
         )
-        text = with_example(result.question, result.example, result.example_language)
+        text = await accepted(context, result, taken)
 
-        if (
-            text
-            and readable(result.question, result.example)
-            and has_example(text) == context.example
-            and normalize(text) not in taken
-        ):
-            texts = [*context.existing, text]
-            kept = await distinct_by_meaning(texts, keep_first=len(context.existing))
+        if text:
+            return text
 
-            if len(kept) == len(texts):
-                return text
-
-        existing.append(text)
+        existing.append(with_example(result.question, result.example, result.example_language))
 
     return None
 

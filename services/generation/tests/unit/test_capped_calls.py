@@ -1,9 +1,9 @@
 """A job's fan-out of model calls runs GENERATION_CALLS_AT_ONCE at a time (as set in the Controls
-tab), not all at once: translations into the missing languages, and the key self-checks."""
+tab), not all at once: the key self-checks."""
 
 import asyncio
 
-from app.services import key_self_check, translations
+from app.services import key_self_check
 
 
 def counting():
@@ -17,20 +17,6 @@ def counting():
         state["running"] -= 1
 
     return call, state
-
-
-def test_translations_into_missing_languages_run_capped(redis):
-    redis.limits["GENERATION_CALLS_AT_ONCE"] = "2"
-    translate, state = counting()
-    saved = []
-
-    async def save(done):
-        saved.append(sorted(done))
-
-    asyncio.run(translations.translate_missing("news", ["de", "fr", "it", "es"], translate, save))
-
-    assert state["most"] == 2
-    assert saved == [["de", "es", "fr", "it"]]
 
 
 def test_key_self_checks_run_capped(redis, monkeypatch):

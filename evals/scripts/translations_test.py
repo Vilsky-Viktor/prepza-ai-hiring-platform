@@ -1,7 +1,8 @@
 """Tests the translation of prepza's own texts (news posts and campaign emails) on
-datasets/translations.json: each source translated into each language by generation's own
-translate_one, checked by code (limits, kept names and links, Markdown, paragraphs, script) and
-judged by judges/translation.md. The judge is checked on traps planted by code in this run's
+datasets/translations.json: each source translated into each language by generation's own batch
+request (sent at once, batch_direct.py) and checked as the service checks a reply, then checked
+by code (limits, kept names and links, Markdown, paragraphs, script) and judged by
+judges/translation.md. The judge is checked on traps planted by code in this run's
 own translations (a statement left out, a number changed): it must catch every one.
 
     evals/run.sh generation translations_test.py --label base     # --repeat 2, --only n01,c02,
@@ -16,6 +17,7 @@ import random
 import re
 import time
 
+from batch_direct import run_direct
 from common import (
     DATASETS,
     JUDGE_MODEL,
@@ -28,7 +30,6 @@ from common import (
     run_record,
     save,
 )
-from langchain_core.callbacks import get_usage_metadata_callback
 from langchain_core.messages import HumanMessage
 from prepza_common.constants import LANGUAGES
 from pydantic import BaseModel, Field
@@ -36,9 +37,9 @@ from stats import share
 from text_checks import in_script, keeps, paragraphs
 
 from app.config.settings import settings
+from app.constants.batch_work import BatchKind, BatchStep
 from app.schemas.campaigns import CampaignSource
 from app.schemas.news import NewsSource
-from app.services import campaigns, news
 
 SEED = 7
 LINK = re.compile(r"\]\((\S+?)\)")
@@ -59,38 +60,25 @@ def fields_of(case: dict) -> dict:
 
 
 async def translate(case: dict, language: str) -> dict:
-    """The service's translation and what it used; `error` when it raised (empty or too long)."""
+    """The service's translation as its batch request asks for it (batch_direct.py) and what it
+    used; `error` when it gave up (empty or too long every time)."""
     started = time.monotonic()
-
-    with get_usage_metadata_callback() as usage:
-        try:
-            if case["kind_of"] == "news":
-                source = NewsSource(title=case["title"], text=case["text"], missing=[language])
-                found = (await news.translate_one(source, language)).model_dump()
-            else:
-                source = CampaignSource(
-                    subject=case["subject"],
-                    text=case["text"],
-                    button=case["button"],
-                    missing=[language],
-                )
-                found = (await campaigns.translate_one(source, language)).model_dump()
-
-            error = None
-        except Exception as failure:  # noqa: BLE001 - counted as a failed translation
-            found, error = None, str(failure)
-
-    spent = sum(cost(model.split("-20")[0], used) for model, used in usage.usage_metadata.items())
-    tokens = sum(
-        used.get("input_tokens", 0) + used.get("output_tokens", 0)
-        for used in usage.usage_metadata.values()
+    kind = BatchKind.NEWS if case["kind_of"] == "news" else BatchKind.CAMPAIGN
+    source = (
+        NewsSource(title=case["title"], text=case["text"], missing=[language])
+        if kind == BatchKind.NEWS
+        else CampaignSource(
+            subject=case["subject"], text=case["text"], button=case["button"], missing=[language]
+        )
     )
+    payload = {"source": source.model_dump(), "language": language}
+    result, used = await run_direct(kind, BatchStep.TRANSLATE, payload)
 
     return {
-        "fields": found,
-        "error": error,
-        "cost": spent,
-        "tokens": tokens,
+        "fields": result.model_dump() if result else None,
+        "error": None if result else "gave up",
+        "cost": sum(cost(model.split("-20")[0], usage) for model, usage in used),
+        "tokens": sum(u.get("input_tokens", 0) + u.get("output_tokens", 0) for _, u in used),
         "seconds": time.monotonic() - started,
     }
 

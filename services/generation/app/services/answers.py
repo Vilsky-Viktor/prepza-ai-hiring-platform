@@ -1,6 +1,6 @@
 import logging
 
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from openai import LengthFinishReasonError
 
 from app.constants.generation import ANSWER_ATTEMPTS, MAX_OPTION_CHARS, OPTIONS
@@ -19,6 +19,51 @@ from app.schemas.questions import AnswerList
 logger = logging.getLogger(__name__)
 
 
+def answers_system(multi: bool) -> SystemMessage:
+    return SystemMessage(
+        content=ANSWERS_SYSTEM.format(
+            options=OPTIONS,
+            max_chars=MAX_OPTION_CHARS,
+            kind=MULTI_ANSWER_KIND if multi else SINGLE_ANSWER_KIND,
+        )
+    )
+
+
+def answers_messages(task: AnswerTask, pending: list[int]) -> list[BaseMessage]:
+    """The options call for the questions in `pending` (their indexes in the task)."""
+    request = ANSWERS_REQUEST.format(
+        level=task["level"],
+        topic=task["topic"],
+        language=language_name(task.get("language")),
+        questions="\n".join(f"[{i}] {task['questions'][i]}" for i in pending),
+    )
+
+    return [answers_system(task.get("multi", False)), HumanMessage(content=request)]
+
+
+def options_of(result: AnswerList, pending: list[int], multi: bool) -> dict[int, list]:
+    """Each answered question's options: none for one the model found ambiguous (it's dropped);
+    an incomplete or invalid answer is left out, so it can be asked again."""
+    done: dict[int, list] = {}
+
+    for item in result.answers:
+        if item.id not in pending:
+            continue
+
+        if item.ambiguous:
+            # More than one defensible answer: drop it (no options) rather than retry.
+            done[item.id] = []
+
+            continue
+
+        options = build_options(item.correct_options, item.distractors, multi)
+
+        if options:
+            done[item.id] = options
+
+    return done
+
+
 async def generate_answers(task: AnswerTask) -> dict:
     """Options for questions that already exist: a re-generated question, or new options for one,
     of the kind the task asks for (`multi`: select-all-that-apply)."""
@@ -27,51 +72,21 @@ async def generate_answers(task: AnswerTask) -> dict:
     multi = task.get("multi", False)
     done: dict = {}
     pending = list(range(len(questions)))
-    system = SystemMessage(
-        content=ANSWERS_SYSTEM.format(
-            options=OPTIONS,
-            max_chars=MAX_OPTION_CHARS,
-            kind=MULTI_ANSWER_KIND if multi else SINGLE_ANSWER_KIND,
-        )
-    )
 
     # Retry only the questions the model skipped or returned incomplete/invalid.
     for _ in range(ANSWER_ATTEMPTS):
         if not pending:
             break
 
-        request = ANSWERS_REQUEST.format(
-            level=task["level"],
-            topic=task["topic"],
-            language=language_name(task.get("language")),
-            questions="\n".join(f"[{i}] {questions[i]}" for i in pending),
-        )
         try:
-            result: AnswerList = await structured_llm.ainvoke(
-                [system, HumanMessage(content=request)]
-            )
+            result: AnswerList = await structured_llm.ainvoke(answers_messages(task, pending))
         except LengthFinishReasonError:
             # The model looped until the output cap; the next attempt retries the same questions.
             logger.warning("Options for %r ran too long", task["topic"])
 
             continue
 
-        for item in result.answers:
-            if item.id not in pending:
-                continue
-
-            if item.ambiguous:
-                # More than one defensible answer: drop it (no options) rather than retry.
-                done[item.id] = []
-
-                continue
-
-            options = build_options(item.correct_options, item.distractors, multi)
-
-            # Options that don't qualify count as incomplete, so the next attempt retries them.
-            if options:
-                done[item.id] = options
-
+        done |= options_of(result, pending, multi)
         pending = [i for i in pending if i not in done]
 
     return {
