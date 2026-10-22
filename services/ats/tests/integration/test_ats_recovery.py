@@ -230,3 +230,55 @@ def test_the_recovery_job_takes_each_connections_candidates_in_turn(run):
         return [item for item in found if item in ours]
 
     assert run(scenario()) == ["busy-1", "quiet-1", "busy-2", "busy-3"]
+
+
+def test_more_not_invited_candidates_than_a_batch_all_wait_again(run, monkeypatch):
+    from prepza_common import db
+    from sqlalchemy import select
+
+    from app.models.ats import AtsCandidate
+    from app.storage.db import Session
+
+    monkeypatch.setattr(db, "DELETE_BATCH", 2)
+    monkeypatch.setattr(ats_candidates, "INVITE_BATCH", 2)
+
+    async def statuses(connection_id) -> list[str]:
+        async with Session() as session:
+            query = select(AtsCandidate.status).where(AtsCandidate.connection_id == connection_id)
+
+            return list(await session.scalars(query))
+
+    async def scenario():
+        company = uuid.uuid4()
+        interview = uuid.uuid4()
+        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
+        connection = await ats.connection(company, AtsProvider.WORKABLE)
+        link_id = await ats_links.add_link(
+            connection.company_id, connection.id, interview, JOB, STAGE, "ann"
+        )
+        rows = [
+            await ats_candidates.add(connection.id, link_id, interview, f"c-{n}", f"{n}@x.com")
+            for n in range(5)
+        ]
+
+        async def fail_all():
+            for row in rows:
+                await ats_candidates.settle(row.id, CandidateStatus.FAILED, FailReason.CREDITS)
+
+        await fail_all()
+        topped_up = await ats_candidates.short_of_credits(company)
+        after_top_up = await statuses(connection.id)
+        await fail_all()
+        retried = await ats_candidates.not_invited(company, link_id)
+        after_retry = await statuses(connection.id)
+        await ats.delete_company(company)
+
+        return rows, topped_up, after_top_up, retried, after_retry
+
+    rows, topped_up, after_top_up, retried, after_retry = run(scenario())
+
+    # The oldest batch is invited now; every one waits again, the rest for the recovery job.
+    assert [row.id for row in topped_up] == [row.id for row in rows[:2]]
+    assert after_top_up == ["waiting"] * 5
+    assert len(retried) == 2
+    assert after_retry == ["waiting"] * 5

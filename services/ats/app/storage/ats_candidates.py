@@ -2,7 +2,7 @@ from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
 from prepza_common import outbox
-from prepza_common.db import delete_in_batches
+from prepza_common.db import delete_in_batches, update_in_batches
 from prepza_common.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import and_, delete, func, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
@@ -102,17 +102,18 @@ async def recoverable() -> list[AtsCandidate]:
         return list((await session.scalars(query)).all())
 
 
+# A candidate not invited, put back to waiting with its attempts reset.
+REQUEUED = {"status": CandidateStatus.WAITING, "reason": None, "attempts": 0}
+
+
 async def not_invited(company_id: UUID, link_id: UUID) -> list[AtsCandidate]:
-    """A linked job's candidates that weren't invited, put back to waiting (with their attempts
-    reset), with the ones still waiting or whose invite was cut off midway, oldest first; only
-    the company's own."""
+    """A linked job's candidates that weren't invited, put back to waiting a batch at a time,
+    with the ones still waiting or whose invite was cut off midway, oldest first; only the
+    company's own."""
     owned = select(AtsConnection.id).where(AtsConnection.company_id == company_id)
     mine = (AtsCandidate.link_id == link_id, AtsCandidate.connection_id.in_(owned))
-    requeue = (
-        update(AtsCandidate)
-        .where(*mine, AtsCandidate.status == CandidateStatus.FAILED)
-        .values(status=CandidateStatus.WAITING, reason=None, attempts=0)
-    )
+    failed = AtsCandidate.status == CandidateStatus.FAILED
+    await update_in_batches(Session, AtsCandidate, REQUEUED, *mine, failed)
     # One batch is invited now (invite_all), the rest by the recovery job.
     query = (
         select(AtsCandidate)
@@ -122,34 +123,36 @@ async def not_invited(company_id: UUID, link_id: UUID) -> list[AtsCandidate]:
     )
 
     async with Session() as session:
-        await session.execute(requeue)
-        await session.commit()
-
         return list((await session.scalars(query)).all())
 
 
 async def short_of_credits(company_id: UUID) -> list[AtsCandidate]:
     """The company's candidates, from any ATS, that weren't invited for lack of credits: those
     the ATS sent in the last TOPPED_UP_DAYS, for a job still linked, put back to waiting (with
-    their attempts reset), oldest first. An unlinked job's (no longer shown) and older ones stay
+    their attempts reset), a batch at a time. Returns the oldest INVITE_BATCH, to invite now;
+    the recovery job invites the rest. An unlinked job's (no longer shown) and older ones stay
     as they are."""
     owned = select(AtsConnection.id).where(AtsConnection.company_id == company_id)
-    query = (
+    short = (
+        AtsCandidate.connection_id.in_(owned),
+        AtsCandidate.link_id.is_not(None),
+        AtsCandidate.created_at >= datetime.now(UTC) - timedelta(days=TOPPED_UP_DAYS),
+        AtsCandidate.status == CandidateStatus.FAILED,
+        AtsCandidate.reason == FailReason.CREDITS,
+    )
+    oldest = select(AtsCandidate.id).where(*short).order_by(AtsCandidate.created_at)
+    first = (
         update(AtsCandidate)
-        .where(
-            AtsCandidate.connection_id.in_(owned),
-            AtsCandidate.link_id.is_not(None),
-            AtsCandidate.created_at >= datetime.now(UTC) - timedelta(days=TOPPED_UP_DAYS),
-            AtsCandidate.status == CandidateStatus.FAILED,
-            AtsCandidate.reason == FailReason.CREDITS,
-        )
-        .values(status=CandidateStatus.WAITING, reason=None, attempts=0)
+        .where(AtsCandidate.id.in_(oldest.limit(INVITE_BATCH)), *short)
+        .values(REQUEUED)
         .returning(AtsCandidate)
     )
 
     async with Session() as session:
-        found = list((await session.scalars(query)).all())
+        found = list((await session.scalars(first)).all())
         await session.commit()
+
+    await update_in_batches(Session, AtsCandidate, REQUEUED, *short)
 
     return sorted(found, key=lambda row: row.created_at)
 
