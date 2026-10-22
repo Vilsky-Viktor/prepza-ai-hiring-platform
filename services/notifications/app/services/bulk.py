@@ -16,8 +16,8 @@ from app.constants.bulk import (
     CAMPAIGN_KINDS,
     LEGAL_KINDS,
     MAX_ATTEMPTS,
-    OPTIONAL_KINDS,
     MAX_REASON_LENGTH,
+    OPTIONAL_KINDS,
     RecipientStatus,
     SkipReason,
 )
