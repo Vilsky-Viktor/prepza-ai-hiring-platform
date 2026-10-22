@@ -3,9 +3,13 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
+from prepza_common.constants import GUEST_UID_PREFIX
+from sqlalchemy import select
 
+from app.models.bulk import BulkRecipient
 from app.services import bulk, delivery
 from app.storage import bulk_recipients, bulk_sends
+from app.storage.db import Session
 
 
 async def large_resend_quota(redis):
@@ -56,8 +60,8 @@ def legal_send(user_ids):
         # A day far ahead, as a version is; each test starts with no sends.
         version = "2099-01-01"
         send_id = await bulk_sends.start("legal_terms", version, "sam")
-        first = await bulk_sends.prepare(send_id, user_ids)
-        again = await bulk_sends.prepare(send_id, [*user_ids, "late"])
+        first = await bulk_sends.save_page(send_id, "", user_ids[-1], user_ids, True)
+        again = await bulk_sends.save_page(send_id, "", "late", [*user_ids, "late"], True)
 
         return send_id, first, again
 
@@ -106,7 +110,7 @@ def test_unsubscribes_count_against_the_last_campaign_and_a_deleted_account_leav
 
     async def scenario():
         send_id = await bulk_sends.start("updates", str(uuid.uuid4()), "sam")
-        await bulk_sends.prepare(send_id, [user])
+        await bulk_sends.save_page(send_id, "", user, [user], True)
 
         [row_id] = [row[0] for row in await bulk_recipients.pending(10_000, []) if row[2] == user]
 
@@ -185,3 +189,89 @@ def test_campaigns_sends_are_found_at_once_by_kind_and_what_they_are_about(run):
     send_id, found = run(scenario())
 
     assert found == {("updates", about): send_id}
+
+
+@pytest.fixture
+def audience(monkeypatch):
+    """An audience of three users and a guest candidate, read two ids a page; the pages asked."""
+    users = sorted([f"u-{uuid.uuid4()}" for _ in range(3)] + [f"{GUEST_UID_PREFIX}{uuid.uuid4()}"])
+    asked = []
+
+    async def user_ids(after, setting=None):
+        asked.append(after)
+
+        return [user for user in users if user > after][:2]
+
+    monkeypatch.setattr("app.services.bulk_content.library.user_ids", user_ids)
+    monkeypatch.setattr(bulk, "ID_PAGE_SIZE", 2)
+
+    return users, asked
+
+
+def campaign_send():
+    """A started campaign send, its recipients not worked out; (kind, about)."""
+    about = str(uuid.uuid4())
+
+    async def scenario():
+        await bulk_sends.start("updates", about, "sam")
+
+        return "updates", about
+
+    return scenario()
+
+
+async def recipients_of(kind, about):
+    """The send and the users saved as its recipients so far (sent only once it's prepared)."""
+    send = await bulk_sends.get(kind, about)
+
+    async with Session() as session:
+        rows = await session.scalars(
+            select(BulkRecipient.user_id).where(BulkRecipient.send_id == send.id)
+        )
+
+        return send, sorted(rows)
+
+
+def test_an_audience_is_worked_out_a_page_a_run_each_going_on_where_the_last_stopped(run, audience):
+    users, asked = audience
+
+    async def scenario():
+        kind, about = await campaign_send()
+        pages = []
+
+        # A run out of time works out one page; the next goes on after its last id.
+        for _ in range(3):
+            await bulk.prepare(await bulk_sends.get(kind, about), until=0)
+            send, saved = await recipients_of(kind, about)
+            pages.append((saved, send.prepared_at is not None))
+
+        return pages
+
+    pages = run(scenario())
+    people = [user for user in users if not user.startswith(GUEST_UID_PREFIX)]
+
+    assert [saved for saved, _ in pages] == [
+        [user for user in users[:2] if user in people],
+        people,
+        people,
+    ]
+    assert [prepared for _, prepared in pages] == [False, False, True]
+    assert asked == ["", users[1], users[3]]
+
+
+def test_two_runs_working_out_one_audience_at_once_save_each_user_once(run, audience):
+    users, _ = audience
+
+    async def scenario():
+        kind, about = await campaign_send()
+        send = await bulk_sends.get(kind, about)
+        await asyncio.gather(bulk.prepare(send, until=1e12), bulk.prepare(send, until=1e12))
+        # Whichever stopped first, a later run finishes what's left.
+        await bulk.prepare(await bulk_sends.get(kind, about), until=1e12)
+
+        return await recipients_of(kind, about)
+
+    send, saved = run(scenario())
+
+    assert send.prepared_at is not None
+    assert saved == [user for user in users if not user.startswith(GUEST_UID_PREFIX)]

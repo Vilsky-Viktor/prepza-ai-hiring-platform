@@ -1,4 +1,5 @@
 import asyncio
+import itertools
 
 from firebase_admin import auth as firebase_auth
 from prepza_common.auth import claims_language
@@ -32,6 +33,10 @@ async def recipients(user_ids: list[str]) -> list[dict]:
     ]
 
 
-def all_user_ids() -> list[str]:
-    """Every account's id, read from Firebase page by page (blocking: run it in a thread)."""
-    return [account.uid for account in firebase_auth.list_users().iterate_all()]
+def user_ids_after(after: str, limit: int) -> list[str]:
+    """Up to `limit` account ids after `after`, in Firebase's order (by id), which reads them a
+    page at a time; its page token is the last id of the page before (blocking: run it in a
+    thread)."""
+    accounts = firebase_auth.list_users(page_token=after or None).iterate_all()
+
+    return [account.uid for account in itertools.islice(accounts, limit)]

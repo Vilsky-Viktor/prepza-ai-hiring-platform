@@ -30,7 +30,7 @@ def terms(monkeypatch):
     ann, bob = f"u-{uuid.uuid4()}", f"u-{uuid.uuid4()}"
     sent = []
 
-    async def user_ids(setting=None):
+    async def user_ids(after, setting=None):
         return [ann, bob, "guest-1"]
 
     async def recipients(ids):

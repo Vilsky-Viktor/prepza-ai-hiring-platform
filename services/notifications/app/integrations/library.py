@@ -3,7 +3,6 @@ from datetime import datetime
 from fastapi import status
 from prepza_common import http
 from prepza_common.http import bearer
-from prepza_common.paging import every_id
 
 from app.config.settings import settings
 from app.integrations.batches import post_ids
@@ -29,25 +28,19 @@ async def recipients(user_ids: list[str]) -> list[dict]:
     return await post_ids(url, service_token("library"), "user_ids", user_ids, "recipients")
 
 
-async def user_ids(setting: str | None = None) -> list[str]:
-    """Every account, for a notice about the terms or the privacy policy; with a `setting`
-    ("updates", "promotions"), the users who have it on, for a campaign, read a page at a
-    time."""
+async def user_ids(after: str, setting: str | None = None) -> list[str]:
+    """A page of account ids after `after`, in order (prepza_common.paging): every account, for
+    a notice about the terms or the privacy policy; with a `setting` ("updates", "promotions"),
+    the users who have it on, for a campaign."""
+    params = {"after": after, "setting": setting} if setting else {"after": after}
+    response = await http.get_client().get(
+        f"{settings.library_url}/internal/users/ids",
+        params=params,
+        headers=bearer(service_token("library")),
+    )
+    response.raise_for_status()
 
-    async def read_page(after: str) -> list[str]:
-        response = await http.get_client().get(
-            f"{settings.library_url}/internal/users/ids",
-            params={"setting": setting, "after": after} if setting else None,
-            headers=bearer(service_token("library")),
-        )
-        response.raise_for_status()
-
-        return response.json()["user_ids"]
-
-    if setting is None:
-        return await read_page("")
-
-    return await every_id(read_page)
+    return response.json()["user_ids"]
 
 
 async def account_created(user_id: str) -> datetime | None:

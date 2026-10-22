@@ -50,7 +50,7 @@ def test_a_campaign_goes_from_start_to_mailpit_once_and_only_to_who_chose_it(
     user = f"c{uuid.uuid4().hex[:12]}"
     address = f"{user}@example.com"
 
-    async def user_ids(setting=None):
+    async def user_ids(after, setting=None):
         return [user, "guest-x"] if setting == "promotions" else []
 
     async def recipients(ids):
@@ -74,7 +74,7 @@ def test_a_campaign_goes_from_start_to_mailpit_once_and_only_to_who_chose_it(
         campaign = await campaigns_store.create("promotions", None, "sam", ENGLISH)
         send_id = await campaigns_store.mark_sent(campaign.id, "sam", 1)
         again = await campaigns_store.mark_sent(campaign.id, "sam", 1)
-        await bulk.prepare(await bulk_sends.get("promotions", str(campaign.id)))
+        await bulk.prepare(await bulk_sends.get("promotions", str(campaign.id)), until=0)
         await bulk.send_bulk(datetime.now(UTC))
         counts = (await bulk_sends.counts([send_id]))[send_id]
 

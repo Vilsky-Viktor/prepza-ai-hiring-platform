@@ -13,7 +13,7 @@ from app.schemas.emails import (
     UserIdsOut,
 )
 from app.service_auth import ServiceCaller
-from app.services.email_recipients import all_user_ids, recipients
+from app.services.email_recipients import recipients, user_ids_after
 from app.storage import emails
 
 router = APIRouter(prefix="/internal/users", tags=["internal"])
@@ -25,15 +25,15 @@ async def user_ids(
     page: IdPageParams,
     setting: Literal["updates", "promotions"] | None = None,
 ) -> UserIdsOut:
-    """Notifications: every account, for a notice about the terms or the privacy policy; with a
-    `setting`, the users who have it on (a campaign's product updates or offers), a page at a
-    time."""
+    """Notifications, a page at a time: every account, for a notice about the terms or the
+    privacy policy; with a `setting`, the users who have it on (a campaign's product updates or
+    offers)."""
     if setting is not None:
         found = await emails.ids_with(EmailSetting(setting), page.after, page.limit)
 
         return UserIdsOut(user_ids=found)
 
-    return UserIdsOut(user_ids=await asyncio.to_thread(all_user_ids))
+    return UserIdsOut(user_ids=await asyncio.to_thread(user_ids_after, page.after, page.limit))
 
 
 @router.post("/{user_id}/unsubscribe")

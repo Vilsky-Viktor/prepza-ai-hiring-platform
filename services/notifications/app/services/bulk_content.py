@@ -4,6 +4,7 @@ import uuid
 
 from prepza_common.constants import GUEST_UID_PREFIX
 from prepza_common.notifications import EVERYONE, Recipient
+from prepza_common.paging import every_id
 
 from app.config.settings import settings
 from app.constants.bulk import CAMPAIGN_KINDS, BulkKind
@@ -20,18 +21,28 @@ def document_of(kind: str) -> str:
     return kind.removeprefix("legal_")
 
 
-async def audience(kind: str) -> list[str]:
-    """Who a send of `kind` goes to: every account for the terms and the privacy policy, every
-    company's owner and admin for the DPA, and for a campaign the users with its setting on
-    (library leaves candidates out). Never a company's guest candidate."""
+async def audience_page(kind: str, after: str) -> list[str]:
+    """A page of who a send of `kind` goes to, the ids after `after` in order
+    (prepza_common.paging): every account for the terms and the privacy policy, every company's
+    owner and admin for the DPA, and for a campaign the users with its setting on (library leaves
+    candidates out). Guest candidates are among them: without_guests() leaves them out."""
     if kind == BulkKind.LEGAL_DPA:
-        ids = await companies.editor_ids()
-    elif kind in CAMPAIGN_KINDS:
-        ids = await library.user_ids(kind)
-    else:
-        ids = await library.user_ids()
+        return await companies.editor_ids(after)
 
-    return [user_id for user_id in dict.fromkeys(ids) if not user_id.startswith(GUEST_UID_PREFIX)]
+    if kind in CAMPAIGN_KINDS:
+        return await library.user_ids(after, kind)
+
+    return await library.user_ids(after)
+
+
+def without_guests(user_ids: list[str]) -> list[str]:
+    """Never a company's guest candidate."""
+    return [user_id for user_id in user_ids if not user_id.startswith(GUEST_UID_PREFIX)]
+
+
+async def audience(kind: str) -> list[str]:
+    """Everyone a send of `kind` goes to, every page of them."""
+    return without_guests(await every_id(lambda after: audience_page(kind, after)))
 
 
 async def legal_in_bell(kind: str, version: str, user_ids: list[str]) -> None:

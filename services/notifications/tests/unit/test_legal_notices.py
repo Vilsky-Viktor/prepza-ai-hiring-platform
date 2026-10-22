@@ -31,7 +31,7 @@ def notices(monkeypatch):
             return None
 
         state.sends[(kind, about)] = SimpleNamespace(
-            id=f"{kind}-{about}", kind=kind, about=about, finished_at=None
+            id=f"{kind}-{about}", kind=kind, about=about, prepared_after=None, finished_at=None
         )
 
         return state.sends[(kind, about)].id
@@ -42,7 +42,7 @@ def notices(monkeypatch):
     async def get(kind, about):
         return state.sends.get((kind, about))
 
-    async def prepare(send_id, user_ids):
+    async def save_page(send_id, after, last, user_ids, done):
         state.prepared[send_id] = user_ids
 
         return True
@@ -50,10 +50,10 @@ def notices(monkeypatch):
     async def is_recipient(send_id, user_id):
         return user_id in state.prepared.get(send_id, [])
 
-    async def user_ids(setting=None):
+    async def user_ids(after, setting=None):
         return ["ann", "bob", "guest-1"]
 
-    async def editor_ids():
+    async def editor_ids(after):
         return ["ann"]
 
     async def add(event_id, event):
@@ -70,7 +70,7 @@ def notices(monkeypatch):
     monkeypatch.setattr(bulk_sends, "start", start)
     monkeypatch.setattr(bulk_sends, "of_kinds", of_kinds)
     monkeypatch.setattr(bulk_sends, "get", get)
-    monkeypatch.setattr(bulk_sends, "prepare", prepare)
+    monkeypatch.setattr(bulk_sends, "save_page", save_page)
     monkeypatch.setattr(bulk_recipients, "is_recipient", is_recipient)
     monkeypatch.setattr(bulk_content.library, "user_ids", user_ids)
     monkeypatch.setattr(bulk_content.companies, "editor_ids", editor_ids)
@@ -118,7 +118,7 @@ def test_the_terms_go_to_every_account_once_and_in_everyones_bell(notices):
 
     # Working them out again (a run after a failed start) adds nothing to the bell.
     send = notices.sends[("legal_terms", LATER)]
-    asyncio.run(bulk.prepare(send))
+    asyncio.run(bulk.prepare(send, until=0))
 
     assert len(notices.bell) == 1
 

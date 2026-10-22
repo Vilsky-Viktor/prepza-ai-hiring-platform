@@ -1,5 +1,5 @@
 # The bulk sender: legal notices and campaigns, to many users at once. A send's recipients are
-# worked out once (prepare) and saved; each run then sends the next pending ones, each claimed
+# worked out a page at a time (prepare) and saved; each run then sends the next pending ones, each claimed
 # under a lock, paced under Resend's per-second limit and within its daily quota.
 import asyncio
 import logging
@@ -8,6 +8,7 @@ from datetime import UTC, datetime
 
 from prepza_common import redis_lock
 from prepza_common.limits import limit, record_hit
+from prepza_common.paging import ID_PAGE_SIZE
 
 from app.constants.bulk import (
     BULK_BATCH,
@@ -27,30 +28,57 @@ from app.integrations.redis import get_redis
 from app.integrations.resend import EmailRefused, ResendBusy
 from app.models.bulk import BulkSend
 from app.services import delivery
-from app.services.bulk_content import audience, campaign_texts, email_for, legal_in_bell
+from app.services.bulk_content import (
+    audience_page,
+    campaign_texts,
+    email_for,
+    legal_in_bell,
+    without_guests,
+)
 from app.services.member_sends import deadline
 from app.storage import bulk_recipients, bulk_sends, suppressed
 
 logger = logging.getLogger(__name__)
 
 
-async def prepare(send: BulkSend) -> None:
-    """Works out the send's recipients and saves them, once. A legal notice goes in the bell
-    first (safe to repeat), so a failure in between leaves nothing missing for the next try."""
-    user_ids = await audience(send.kind)
+async def prepare(send: BulkSend, until: float) -> None:
+    """Works out the send's recipients and saves them a page at a time, from where the last run
+    stopped, until the audience ends or `until` (time.monotonic()) passes; at least one page, and
+    the next run goes on. A legal notice goes in each page's bell first (safe to repeat), so a
+    failure in between leaves nothing missing for the next try."""
+    after = send.prepared_after or ""
 
-    if send.kind in LEGAL_KINDS:
-        await legal_in_bell(send.kind, send.about, user_ids)
+    while True:
+        page = await audience_page(send.kind, after)
+        user_ids = without_guests(page)
+        done = len(page) < ID_PAGE_SIZE
 
-    if await bulk_sends.prepare(send.id, user_ids):
-        logger.info("Bulk send %s (%s) goes to %d users", send.id, send.kind, len(user_ids))
+        if send.kind in LEGAL_KINDS:
+            await legal_in_bell(send.kind, send.about, user_ids)
+
+        # Another run saved this page already: it goes on with the rest.
+        if not await bulk_sends.save_page(
+            send.id, after, page[-1] if page else after, user_ids, done
+        ):
+            return
+
+        if done:
+            logger.info("Bulk send %s (%s) has all its recipients", send.id, send.kind)
+
+            return
+
+        after = page[-1]
+
+        if time.monotonic() > until:
+            return
 
 
 async def prepare_now(kind: str, about: str) -> None:
-    """Right after a send starts, so its counts show at once. Never raises: the next run prepares
-    a send this couldn't."""
+    """Right after a send starts, its first page of recipients, so its counts show at once (all of
+    them for an audience of one page); the runs work out the rest. Never raises: the next run
+    prepares a send this couldn't."""
     try:
-        await prepare(await bulk_sends.get(kind, about))
+        await prepare(await bulk_sends.get(kind, about), until=0)
     except Exception:
         logger.exception("Couldn't work out the recipients of %s %s yet", kind, about)
 
@@ -136,14 +164,17 @@ async def send_bulk(now: datetime) -> int:
 
 
 async def send_run(now: datetime) -> int:
-    """Prepares the sends that need it, then sends the next pending recipients, a batch at a
-    time, until its time is up or the day's quota is used. Each batch's addresses, languages
-    and settings are read just before sending, so a changed address or a deleted account
-    counts. Returns how many were sent."""
+    """Prepares the sends that need it (a page at a time, until its time is up), then sends the
+    next pending recipients, a batch at a time, until its time is up or the day's quota is used.
+    Each batch's addresses, languages and settings are read just before sending, so a changed
+    address or a deleted account counts. Returns how many were sent."""
     stop = deadline()
 
     for send in await bulk_sends.unprepared():
-        await prepare(send)
+        if time.monotonic() > stop:
+            break
+
+        await prepare(send, stop)
 
     midnight = now.replace(hour=0, minute=0, second=0, microsecond=0)
     left = await quota_left(await bulk_recipients.sent_since(midnight))

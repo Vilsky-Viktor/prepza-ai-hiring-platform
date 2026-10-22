@@ -51,8 +51,8 @@ async def of_campaigns(kind_abouts: list[tuple[str, str]]) -> dict[tuple[str, st
 
 
 async def unprepared() -> list[BulkSend]:
-    """Sends whose recipients aren't worked out yet: one whose start couldn't, or a legal notice
-    asked for before the bulk sender."""
+    """Sends whose recipients aren't all worked out yet: one being worked out a page at a time,
+    one whose start couldn't, or a legal notice asked for before the bulk sender."""
     async with Session() as session:
         return list(
             await session.scalars(
@@ -63,9 +63,13 @@ async def unprepared() -> list[BulkSend]:
         )
 
 
-async def prepare(send_id: uuid.UUID, user_ids: list[str]) -> bool:
-    """Saves the send's recipients, once: the send's row is locked, and one prepared already (by
-    a run at the same time) is left alone. False when it was."""
+async def save_page(
+    send_id: uuid.UUID, after: str, last: str, user_ids: list[str], done: bool
+) -> bool:
+    """Saves one page of the send's recipients, the audience read after `after`, and moves its
+    cursor on to `last` (the page's last id); with `done`, the audience has ended and the send is
+    prepared. The send's row is locked, and a page saved already (by a run at the same time: the
+    cursor moved on) is left alone. False when it was."""
     async with Session() as session:
         send = await session.scalar(
             select(BulkSend)
@@ -73,7 +77,7 @@ async def prepare(send_id: uuid.UUID, user_ids: list[str]) -> bool:
             .with_for_update(skip_locked=True)
         )
 
-        if send is None:
+        if send is None or (send.prepared_after or "") != after:
             return False
 
         for start in range(0, len(user_ids), INSERT_CHUNK):
@@ -88,7 +92,11 @@ async def prepare(send_id: uuid.UUID, user_ids: list[str]) -> bool:
                 .on_conflict_do_nothing()
             )
 
-        send.prepared_at = datetime.now(UTC)
+        send.prepared_after = last
+
+        if done:
+            send.prepared_at = datetime.now(UTC)
+
         await session.commit()
 
     return True

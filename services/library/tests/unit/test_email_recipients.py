@@ -76,15 +76,25 @@ def test_firebase_is_asked_at_most_a_hundred_at_a_time(client, monkeypatch):
     assert sizes == [100, 100, 50]
 
 
-def test_every_account_is_listed_for_a_notice_to_everyone(client, monkeypatch):
-    accounts = SimpleNamespace(
-        iterate_all=lambda: iter([account("ann", "a@x.io"), account("bob", None)])
-    )
-    monkeypatch.setattr(firebase_auth, "list_users", lambda: accounts)
+def test_every_account_is_listed_a_page_at_a_time_for_a_notice_to_everyone(client, monkeypatch):
+    everyone = [account(uid, f"{uid}@x.io") for uid in ["ann", "bob", "cy"]]
+    asked = []
 
-    response = client.get("/internal/users/ids", headers=HEADERS)
+    def list_users(page_token=None):
+        asked.append(page_token)
+        later = [found for found in everyone if page_token is None or found.uid > page_token]
 
-    assert response.json() == {"user_ids": ["ann", "bob"]}
+        return SimpleNamespace(iterate_all=lambda: iter(later))
+
+    monkeypatch.setattr(firebase_auth, "list_users", list_users)
+
+    first = client.get("/internal/users/ids", params={"limit": 2}, headers=HEADERS)
+    rest = client.get("/internal/users/ids", params={"after": "bob", "limit": 2}, headers=HEADERS)
+
+    assert first.json() == {"user_ids": ["ann", "bob"]}
+    assert rest.json() == {"user_ids": ["cy"]}
+    # Firebase goes on after the last id of the page before.
+    assert asked == [None, "bob"]
     assert client.get("/internal/users/ids").status_code in (401, 403)
 
 

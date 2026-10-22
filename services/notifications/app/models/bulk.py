@@ -26,7 +26,9 @@ def now() -> datetime:
 class BulkSend(Base):
     """One email to many users (constants/bulk.py BulkKind): a legal notice, about a document's
     version, or a campaign, about its id. Once each: (kind, about) is unique. Its recipients are
-    worked out once (`prepared_at`); it's finished when none is pending, or when it was stopped."""
+    worked out a page at a time, each run going on after the last id read (`prepared_after`),
+    until the audience ends (`prepared_at`); it's finished when none is pending, or when it was
+    stopped."""
 
     __tablename__ = "bulk_sends"
     __table_args__ = (
@@ -41,6 +43,7 @@ class BulkSend(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=now, server_default=func.now()
     )
+    prepared_after: Mapped[str | None] = mapped_column(Text())
     prepared_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     stopped_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))

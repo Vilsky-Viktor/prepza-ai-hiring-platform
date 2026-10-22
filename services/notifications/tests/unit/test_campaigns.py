@@ -89,7 +89,7 @@ def test_the_recipients_are_users_with_the_setting_on_with_an_address_not_suppre
     async def get(campaign_id):
         return SimpleNamespace(kind="promotions"), TEXTS
 
-    async def user_ids(setting=None):
+    async def user_ids(after, setting=None):
         asked.append(setting)
 
         return ["ann", "bob", "cat", "guest-1"]
