@@ -16,11 +16,14 @@ here="$(cd "$(dirname "$0")" && pwd)"
 container="prepza-${service}-1"
 code="${service%-worker}"
 
-docker exec "$container" rm -rf /tmp/evals
-docker cp "$here" "$container:/tmp/evals"
+# Each run gets its own copy, so two runs in one container (two agents, two tests) never delete
+# or mix each other's files; it's removed when the run ends.
+copy="/tmp/evals-$(date +%s)-$$"
+docker cp "$here" "$container:$copy"
+trap 'docker exec "$container" rm -rf "$copy"' EXIT
 # What this run writes is copied back alone: copying all of datasets/ and results/ would undo
 # changes made here while it ran (a concurrent run's results, a dataset edited meanwhile).
-docker exec "$container" touch /tmp/evals/.started
+docker exec "$container" touch "$copy/.started"
 
 # The commit a result was made on; "+changes" when the service or evals/ differ from it.
 commit="$(git -C "$here" rev-parse --short HEAD)"
@@ -38,15 +41,15 @@ for name in MODEL EFFORT JUDGE_MODEL JUDGE_EFFORT OVERSAMPLE; do
 done
 
 # Langfuse tracing off (its keys emptied): test runs would fill it with eval traffic.
-docker exec -w "/services/$code" -e "PYTHONPATH=/services/$code:/tmp/evals/scripts" \
+docker exec -w "/services/$code" -e "PYTHONPATH=/services/$code:$copy/scripts" \
   -e LANGFUSE_PUBLIC_KEY= -e LANGFUSE_SECRET_KEY= \
   "${env_args[@]+"${env_args[@]}"}" "$container" \
-  uv run --no-sync python "/tmp/evals/scripts/$script" "$@"
+  uv run --no-sync python "$copy/scripts/$script" "$@"
 
 # Build scripts write datasets/; every script writes results/.
-docker exec "$container" find /tmp/evals/datasets /tmp/evals/results -type f \
-  -newer /tmp/evals/.started |
+docker exec "$container" find "$copy/datasets" "$copy/results" -type f \
+  -newer "$copy/.started" |
   while read -r path; do
-    mkdir -p "$(dirname "$here/${path#/tmp/evals/}")"
-    docker cp "$container:$path" "$here/${path#/tmp/evals/}"
+    mkdir -p "$(dirname "$here/${path#"$copy"/}")"
+    docker cp "$container:$path" "$here/${path#"$copy"/}"
   done
