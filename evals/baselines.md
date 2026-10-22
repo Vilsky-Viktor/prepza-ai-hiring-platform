@@ -260,3 +260,12 @@ new price is emailed at least 30 days ahead, and that a currency change applies 
 test, dataset, model and judge as the run above: passed 94.4% (84.9–98.1), made up 5.6%
 (1.9–15.1), sign-in marker 100%; $0.013 help, $1.13 judge. No difference beyond the intervals;
 the only failures are the known h17 (an invented retake limit).
+
+## Code-language tags: a role and tagged examples (2026-10-22, kept)
+
+The tagging job's prompt (`prompts/code_languages.py`) moved its task into a system message that
+starts with a role, and the examples (tests' text) into the user's message inside `<examples>`,
+read as data. `code_languages_test.py`, `code_languages.json`, 36 examples × 3, `gpt-6.1-sol`
+low, graded by code, before → after: right 100% (96.6–100) → 100% (96.6–100), skipped 0 → 0;
+$0.0181 → $0.0186 and 8.0 → 7.2 s a batch. No difference; kept for rule 19 (a role, the
+examples as data, the "ignore the list" trap still tagged `text`).
