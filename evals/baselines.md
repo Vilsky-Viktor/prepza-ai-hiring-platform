@@ -288,3 +288,20 @@ revisions × 2), `gpt-6.1-sol` low, judged by `gpt-6.1-sol` high, before → aft
 topics covered 84.6% → 92.3%, coherent 100% → 96.2%; revisions (unchanged prompt) applied 66.7%
 → 83.3%, kept 75.0% both; judge traps 62 of 62 both; $0.014 a plan both, 23 → 27 s. All within
 the intervals; kept for rule 19.
+
+## Question prompts: the topic tagged, native wording (2026-10-22, kept)
+
+The question, option and re-generation requests now put the topic and subtopic (from the
+company's posting or a reviewer) inside `<topic>`, marked as data like the existing questions,
+and their system messages ask for wording a native speaker in the field would use, never
+translated from English; "Write ONE" lost its capitals. `gpt-6.1-sol` low, judged by
+`gpt-6.1-sol` high, against the 2026-10-20 runs (prompts unchanged since):
+
+| Set | Keys | One defensible answer | Clarity | Relevance | Distractors | Price |
+|---|---|---|---|---|---|---|
+| 53 subtopics × 6, 2 multi (312 → 307) | 98.7% → 99.0% (97.2–99.7); multi 100% → 100% | 98.4% → 98.7% | 4.97 → 4.97 | 4.24 → 4.25 ± 0.11 | 2.88 → 2.93 ± 0.11 | $0.0029 → $0.0031 a question |
+| Re-generation, 40 | 95–100% → 97.5% | 95–100% → 97.5% | 4.92–5.00 → 4.97 | 4.47–4.50 → 4.53 | 3.25–3.27 → 3.23 ± 0.27 | $0.25–0.33 → $0.35 |
+| Other languages (71 → 72) | 100% → 100% | 100% → 98.6% | 5.00 → 4.99 | 3.85 → 3.67 ± 0.22 | 2.15 → 2.25 ± 0.24 | $0.23 → $0.21 |
+
+Every metric within its interval; kept for rule 19 (company text tagged, native wording asked
+for).

@@ -124,6 +124,8 @@ def test_question_instructions_change_with_no_call_so_the_provider_caches_them()
     assert "<existing_questions>\n- Q1\n</existing_questions>" in first[1].content
     assert "Q1" not in first[0].content
     assert "German" in first[1].content and "Japanese" in second[1].content
+    # So are the topic and subtopic, which come from the company's posting or a reviewer.
+    assert "<topic>\nMain topic: T\nSubtopic: S\n" in first[1].content
 
 
 def test_about_a_third_of_the_questions_on_formal_material_come_with_a_short_example():

@@ -74,17 +74,17 @@ only on a difference beyond both intervals (every result prints its 95% interval
 
 | Metric | Last | Dataset, judge | Date |
 |---|---|---|---|
-| Questions: clarity / relevance / distractors | 4.97 / 4.24 / 2.88 | 53 subtopics × 6 (2 multi), `gpt-6.1-sol` high | 2026-10-20 |
-| Keys correct: single / multi-answer | 98.1% / 100% (multi set: 98.5%, 2026-10-17) | same; `multi_questions.json` | 2026-10-20 |
-| Price per question written (`build_questions.py`) | $0.0029 | 53 subtopics × 6 | 2026-10-20 |
+| Questions: clarity / relevance / distractors | 4.97 / 4.25 / 2.93 | 53 subtopics × 6 (2 multi), `gpt-6.1-sol` high | 2026-10-22 |
+| Keys correct: single / multi-answer | 98.6% / 100% (multi set: 98.5%, 2026-10-17) | same; `multi_questions.json` | 2026-10-22 |
+| Price per question written (`build_questions.py`) | $0.0031 | 53 subtopics × 6 | 2026-10-22 |
 | Correct option the longest | 11% (multi: 57% against 75% by chance) | `questions.json` | 2026-10-04 |
 | Price and time per 100-question topic | $0.21–0.25, 49–61 s | full interviews | 2026-10-04 |
-| Other languages: keys / clarity / relevance / distractors | 100% (71) / 5.00 / 3.85 / 2.15 | `language_inputs.json` | 2026-10-20 |
+| Other languages: keys / clarity / relevance / distractors | 100% (72) / 4.99 / 3.67 / 2.25 | `language_inputs.json` | 2026-10-22 |
 | Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-20 |
 | Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
 | Assistant page context: general correct with / without; page checks | 112/129 / 116/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-20 |
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
-| Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 95–100% / 3.25 ± 0.27 / 4.47 | 40 of `multi_questions.json` | 2026-10-20 |
+| Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 97.5% / 3.23 ± 0.27 / 4.53 | 40 of `multi_questions.json` | 2026-10-22 |
 | Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 328/335 / 328/335 / 188/188 / 44/45 / 45/45 / 85/85; 23,300 tokens, $0.0024, 6.4 s a turn | `assistant_actions.json` (67 cases), 5 repeats | 2026-10-21 |
 | Planning: code checks / extraction covered / invented / topics covered / revisions applied / kept; judge traps | 96.2% (81.1–99.3) / 92.3% (75.9–97.9) / 3.8% / 92.3% (75.9–97.9) / 83.3% (55.2–95.3) / 75.0% (46.8–91.1); 62 of 62; $0.014 and 27 s a plan | `postings.json` and 7 of `inputs.json`, 13 × 2, 6 revisions × 2 | 2026-10-22 |
 | Translations: code checks / faithful / native / one language; judge traps | 100% / 90.0% (80.8–95.1) / 98.6% (92.3–99.7) / 100%; 97 of 97; $0.0023 and 5.2 s a translation | `translations.json`, 10 texts × 7 languages | 2026-10-22 |
