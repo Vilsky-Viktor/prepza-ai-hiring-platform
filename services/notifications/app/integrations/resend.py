@@ -8,9 +8,9 @@ from prepza_common.limits import record_hit
 from app.config.settings import settings
 from app.constants.email import (
     RESEND_ALREADY_SENT,
-    RESEND_DAILY_QUOTA_ERROR,
     RESEND_EMAILS_URL,
     RESEND_IN_PROGRESS,
+    RESEND_QUOTA_ERRORS,
     RESEND_REFUSED,
     SEND_TIMEOUT_S,
 )
@@ -24,7 +24,7 @@ class EmailRefused(Exception):
 
 
 class ResendBusy(Exception):
-    """Over Resend's per-second limit (a burst of invites) or its daily quota, or the same
+    """Over Resend's per-second limit (a burst of invites) or its quota, or the same
     email still being sent by another try: nothing was sent yet, a retry will."""
 
 
@@ -39,9 +39,9 @@ def error_name(response) -> str | None:
 
 
 def quota_used(response) -> bool:
-    """Whether Resend's 429 is for its daily quota rather than its per-second limit: its error's
-    name says so."""
-    return error_name(response) == RESEND_DAILY_QUOTA_ERROR
+    """Whether Resend's 429 is for its daily or monthly quota rather than its per-second limit:
+    its error's name says so."""
+    return error_name(response) in RESEND_QUOTA_ERRORS
 
 
 async def send(email: Email, idempotency_key: str) -> None:

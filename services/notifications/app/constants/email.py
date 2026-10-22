@@ -3,9 +3,9 @@ SEND_TIMEOUT_S = 10
 # Resend's answers that no retry can change: a malformed request or an address it won't send to.
 # Rate limits (resend.ResendBusy), outages and a wrong API key are retried instead.
 RESEND_REFUSED = (400, 422)
-# The name in Resend's 429 error once the account's daily sending quota is used up (other 429s
-# are its per-second limit).
-RESEND_DAILY_QUOTA_ERROR = "daily_quota_exceeded"
+# The names in Resend's 429 error once the account's daily or monthly sending quota is used up
+# (other 429s are its per-second limit): both are counted as its quota (RESEND_DAILY_QUOTA).
+RESEND_QUOTA_ERRORS = ("daily_quota_exceeded", "monthly_quota_exceeded")
 # Resend's 409s about the idempotency key: used within 24 hours with a changed body, so the email
 # already went out (never retried); or the same key still in progress (retried, nothing sent yet).
 RESEND_ALREADY_SENT = "invalid_idempotent_request"

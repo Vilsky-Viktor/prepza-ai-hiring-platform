@@ -37,6 +37,7 @@ def hits(published) -> list[tuple]:
     [
         ({"name": "rate_limit_exceeded"}, "RESEND_RATE_LIMIT"),
         ({"name": "daily_quota_exceeded"}, "RESEND_DAILY_QUOTA"),
+        ({"name": "monthly_quota_exceeded"}, "RESEND_DAILY_QUOTA"),
     ],
 )
 def test_resends_limits_are_recorded_as_its_own_and_retried(monkeypatch, published, body, limit):
