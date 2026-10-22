@@ -46,7 +46,17 @@ test("superadmin writes, previews, tests, edits and deletes a campaign", async (
     // italic, link): without words selected, the link shows its address.
     const editor = dialog.locator("[contenteditable=true]")
     await editor.click()
-    await superadmin.keyboard.press("ControlOrMeta+b")
+    // The shortcut reaches the editor only once it has the focus.
+    await expect(editor).toBeFocused()
+    // Bold on: its toggle (the toolbar's first) says so before the words are typed.
+    const bold = dialog.locator("button[aria-pressed]").first()
+    await expect(async () => {
+      if ((await bold.getAttribute("aria-pressed")) !== "true") {
+        await superadmin.keyboard.press("ControlOrMeta+b")
+      }
+
+      await expect(bold).toHaveAttribute("aria-pressed", "true", { timeout: 2_000 })
+    }).toPass()
     await superadmin.keyboard.type("Bold words")
     await superadmin.keyboard.press("ControlOrMeta+b")
     await superadmin.keyboard.type(" and ")
