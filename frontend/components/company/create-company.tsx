@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { MAX_COMPANY_NAME_LENGTH } from "@/constants/limits"
+import { useHumanCheck } from "@/hooks/use-human-check"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { refreshVerification } from "@/lib/auth"
 import { humanHeaders } from "@/lib/human-check"
@@ -28,6 +29,8 @@ export function CreateCompany({ templateId }: { templateId?: string }) {
   const common = useTranslations("common")
   const router = useRouter()
   const [open, setOpen] = useState(false)
+  // Ready once the dialog with its form opens.
+  useHumanCheck(open)
   const [name, setName] = useState("")
   const [saving, setSaving] = useState(false)
   // The server's reason the name can't be used (it's taken), shown under the field.

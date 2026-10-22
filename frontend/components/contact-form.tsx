@@ -14,6 +14,7 @@ import {
   MAX_EMAIL_LENGTH,
 } from "@/constants/limits"
 import { useOneAtATime } from "@/hooks/use-one-at-a-time"
+import { useHumanCheck } from "@/hooks/use-human-check"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { humanHeaders } from "@/lib/human-check"
 import { isSubmitShortcut } from "@/lib/keys"
@@ -26,6 +27,7 @@ const FIELD = `h-14 px-6 text-lg md:text-lg ${BORDERLESS}`
 /** The contact page's form; the rounds service emails it to prepza's inbox. */
 export function ContactForm() {
   const t = useTranslations("contact")
+  useHumanCheck()
   const common = useTranslations("common")
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")

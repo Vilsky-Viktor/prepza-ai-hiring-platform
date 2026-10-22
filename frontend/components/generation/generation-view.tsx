@@ -14,6 +14,7 @@ import { TopicReview } from "@/components/generation/topic-review"
 import { SignInPrompt } from "@/components/sign-in-prompt"
 import { Button } from "@/components/ui/button"
 import { useGenerationPoll } from "@/hooks/use-generation-poll"
+import { useHumanCheck } from "@/hooks/use-human-check"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { humanHeaders } from "@/lib/human-check"
 import { topUpAction } from "@/lib/credits"
@@ -32,6 +33,7 @@ export function GenerationView({
   backLabel: string
 }) {
   const t = useTranslations("generation")
+  useHumanCheck()
   const billing = useTranslations("billing")
   const { user, loading } = useAuth()
   const router = useRouter()

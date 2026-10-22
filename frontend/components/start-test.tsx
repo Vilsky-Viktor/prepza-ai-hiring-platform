@@ -13,6 +13,7 @@ import { GenerateIn } from "@/components/generate-in"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { useHumanCheck } from "@/hooks/use-human-check"
 import type { Locale } from "@/constants/i18n"
 import { MAX_COMPANY_NAME_LENGTH, MAX_GOAL_LENGTH } from "@/constants/limits"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
@@ -33,6 +34,7 @@ export function StartTest({
   freeCandidates: number | null
 }) {
   const t = useTranslations("start")
+  useHumanCheck()
   const common = useTranslations("common")
   const signIn = useSignIn()
   const router = useRouter()

@@ -9,6 +9,7 @@ import { useSignIn } from "@/components/sign-in-dialog"
 import { useAuth } from "@/components/auth-provider"
 import { InviteIntro } from "@/components/company/invite-intro"
 import { LinkStatus } from "@/components/link-status"
+import { useHumanCheck } from "@/hooks/use-human-check"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { humanHeaders } from "@/lib/human-check"
 import { refreshVerification } from "@/lib/auth"
@@ -21,6 +22,7 @@ import { StartPledge } from "@/features/company/components/start-pledge"
  * them in with Google first, which gives their name and verified email. */
 export function LinkView({ token }: { token: string }) {
   const t = useTranslations("invite")
+  useHumanCheck()
   const share = useTranslations("share")
   const session = useTranslations("session")
   const signIn = useSignIn()

@@ -20,6 +20,7 @@ import {
 import { clearChat } from "@/lib/assistant-storage"
 import { signOut } from "@/lib/auth"
 import { StreamError, streamHelp } from "@/lib/chat"
+import { useHumanCheck } from "@/hooks/use-human-check"
 import { pageContext } from "@/lib/page-context"
 import { pageKey } from "@/lib/page-key"
 import { useActionCards } from "@/hooks/use-action-cards"
@@ -54,6 +55,8 @@ export function useAssistantChat(
   )
   const [streaming, setStreaming] = useState(false)
   const stream = useRef<AbortController | null>(null)
+  // The help chat's first message passes Turnstile's check (lib/chat.ts streamHelp).
+  useHumanCheck(!signedIn)
 
   useEffect(() => () => stream.current?.abort(), [])
 
