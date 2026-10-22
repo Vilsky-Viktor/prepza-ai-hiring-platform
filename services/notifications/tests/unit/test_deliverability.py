@@ -14,7 +14,6 @@ from app.helpers.emails import (
     candidate_invite_email,
     candidate_reminder_email,
     contact_email,
-    render,
     report_email,
 )
 from app.helpers.member_emails import (
@@ -24,6 +23,7 @@ from app.helpers.member_emails import (
     top_up_failed_email,
     top_up_paused_email,
 )
+from app.helpers.rendering import render
 from app.integrations import resend, smtp
 from app.templates.emails import EMAILS
 

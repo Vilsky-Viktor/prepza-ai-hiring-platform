@@ -7,7 +7,8 @@ from prepza_common.money import money
 
 from app.constants.member_emails import COMPANIES_LINK, TOP_UP_LINK, MemberEmail
 from app.constants.unsubscribe import UnsubscribeType
-from app.helpers.emails import Section, optional_email, render
+from app.helpers.emails import optional_email
+from app.helpers.rendering import Section, render
 from app.models.email import Email
 
 

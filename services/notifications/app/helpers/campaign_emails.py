@@ -4,9 +4,10 @@ from prepza_common.constants import DEFAULT_LANGUAGE
 
 from app.constants.bulk import SEND_TAG
 from app.constants.unsubscribe import UnsubscribeType
-from app.helpers.emails import email_language, optional_email
+from app.helpers.emails import optional_email
 from app.helpers.markdown import markdown_plain
 from app.helpers.member_emails import recipient_data
+from app.helpers.rendering import email_language
 from app.models.email import Email
 from app.templates.emails import EMAILS
 
