@@ -8,7 +8,7 @@ from prepza_common.encryption import encrypt
 from prepza_common.user import User
 
 from app.config.settings import settings
-from app.helpers.slack import signed_state
+from app.helpers.slack import signed_state, token_hash
 from app.integrations import companies
 from app.integrations import slack as slack_api
 from app.main import app
@@ -141,15 +141,15 @@ def saved(monkeypatch):
     async def connect(*args):
         found["saved"] = args
 
-    async def tokens():
-        return [found["saved"][4]] if found["saved"] else []
+    async def token_in_use(token_hash):
+        return bool(found["saved"]) and found["saved"][5] == token_hash
 
     async def revoke(token):
         found["revoked"].append(token)
 
     monkeypatch.setattr(storage, "get", get)
     monkeypatch.setattr(storage, "connect", connect)
-    monkeypatch.setattr(storage, "tokens", tokens)
+    monkeypatch.setattr(storage, "token_in_use", token_in_use)
     monkeypatch.setattr(slack_api, "revoke", revoke)
 
     return found
@@ -167,7 +167,7 @@ def test_back_from_slack_the_channel_is_saved_sealed_with_the_default_kinds(
 
     monkeypatch.setattr(slack_api, "exchange", exchange)
     response = callback(client, f"code=ok&state={state()}")
-    company_id, team, channel, webhook, token, kinds, user_id = saved["saved"]
+    company_id, team, channel, webhook, token, hashed, kinds, user_id = saved["saved"]
 
     assert response.status_code == 303
     assert response.headers["location"].endswith(
@@ -175,6 +175,9 @@ def test_back_from_slack_the_channel_is_saved_sealed_with_the_default_kinds(
     )
     assert (company_id, team, channel, user_id) == (C1, "Acme", "#hiring", "u1")
     assert "https://hooks/x" not in webhook and token != "t"
+    # The same token always has the same hash, whatever its seal: how other companies on the
+    # workspace are found.
+    assert hashed == token_hash("t") != token_hash("t2")
     assert "candidate_finished" in kinds and "interview_ready" not in kinds
 
 
@@ -186,7 +189,7 @@ def test_reconnecting_keeps_the_kinds_and_removes_the_earlier_app(client, monkey
     monkeypatch.setattr(slack_api, "exchange", exchange)
     callback(client, f"code=ok&state={state()}")
 
-    assert saved["saved"][5] == ["interview_ready"]
+    assert saved["saved"][6] == ["interview_ready"]
     assert saved["revoked"] == ["t1"]
 
 

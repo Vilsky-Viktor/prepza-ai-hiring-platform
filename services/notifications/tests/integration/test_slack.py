@@ -12,6 +12,7 @@ from prepza_common.user import User
 from app.config.settings import settings
 from app.constants.notifications import KEEP_DAYS
 from app.constants.slack import SlackStatus
+from app.helpers.slack import token_hash
 from app.integrations import companies
 from app.integrations import slack as slack_api
 from app.main import app
@@ -64,6 +65,7 @@ async def connect(
         channel,
         encrypt(KEY, f"https://hooks/{channel}"),
         encrypt(KEY, token or f"token-{company_id}"),
+        token_hash(token or f"token-{company_id}"),
         list(kinds),
         user_id,
     )

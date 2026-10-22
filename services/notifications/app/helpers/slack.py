@@ -24,6 +24,13 @@ def escaped(text: str) -> str:
     return re.sub(LINKABLE_DOT, "." + ZERO_WIDTH_SPACE, text)
 
 
+def token_hash(token: str) -> str:
+    """A workspace's token as stored to find who else uses it: sealed tokens differ each time,
+    while this is the same for the same token. A plain SHA-256 suffices, as Slack's tokens are
+    long and random."""
+    return hashlib.sha256(token.encode()).hexdigest()
+
+
 def signed_state(secret: str, company_id: str, user_id: str, expires: int, nonce: str) -> str:
     """The "Add to Slack" trip's state: the company and who started it, until `expires` (Unix
     seconds), signed so the callback can trust it; `nonce` lets the callback take it once."""

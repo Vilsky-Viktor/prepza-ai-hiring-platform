@@ -3,7 +3,7 @@ from datetime import UTC, datetime, timedelta
 from prepza_common import audit
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.constants import DELETED_USER
-from sqlalchemy import delete, select, update
+from sqlalchemy import delete, exists, select, update
 from sqlalchemy.dialects.postgresql import insert
 
 from app.constants.notifications import EXPIRED_PER_PRUNE, KEEP_DAYS
@@ -18,14 +18,24 @@ async def get(company_id: str) -> SlackConnection | None:
         return await session.get(SlackConnection, company_id)
 
 
-async def tokens() -> list[str]:
-    """Every company's sealed token: companies on one workspace share it."""
+async def token_in_use(token_hash: str) -> bool:
+    """Whether a company still has the workspace token of that hash (helpers/slack.py
+    token_hash): companies on one workspace share it."""
     async with Session() as session:
-        return list(await session.scalars(select(SlackConnection.token)))
+        return bool(
+            await session.scalar(select(exists().where(SlackConnection.token_hash == token_hash)))
+        )
 
 
 async def connect(
-    company_id: str, team: str, channel: str, webhook: str, token: str, kinds: list, user_id: str
+    company_id: str,
+    team: str,
+    channel: str,
+    webhook: str,
+    token: str,
+    token_hash: str,
+    kinds: list,
+    user_id: str,
 ) -> None:
     """Saves the company's channel, replacing an earlier one; the kinds it chose stay. The
     company's action log gets it as `user_id`'s."""
@@ -34,6 +44,7 @@ async def connect(
         "channel": channel,
         "webhook": webhook,
         "token": token,
+        "token_hash": token_hash,
         "status": SlackStatus.CONNECTED,
         "created_by": user_id,
     }

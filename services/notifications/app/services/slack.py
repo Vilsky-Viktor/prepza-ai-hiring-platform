@@ -22,7 +22,7 @@ from app.constants.slack import (
     SLACK_STATE_PURPOSE,
     SLACK_STATE_SECONDS,
 )
-from app.helpers.slack import message, read_state, signed_state
+from app.helpers.slack import message, read_state, signed_state, token_hash
 from app.integrations import companies, slack
 from app.integrations.redis import get_redis
 from app.schemas.slack import SlackOut
@@ -118,6 +118,7 @@ async def finish(code: str | None, state: str, error: str | None) -> str:
         hook["channel"],
         encrypt(key, hook["url"]),
         encrypt(key, hook["token"]),
+        token_hash(hook["token"]),
         earlier.kinds if earlier else [str(kind) for kind in SLACK_DEFAULT_KINDS],
         user_id,
     )
@@ -142,10 +143,9 @@ async def set_kinds(company_id: str, kinds: list[str], user_id: str) -> None:
 async def remove_app(sealed_token: str) -> None:
     """Revokes a token no company uses any more. Slack gives every company on a workspace (and a
     company reconnecting to it) the same token, and revoking it removes the app for all of them."""
-    key = settings.slack_encryption_key
-    token = decrypt(key, sealed_token)
+    token = decrypt(settings.slack_encryption_key, sealed_token)
 
-    if token and token not in [decrypt(key, sealed) for sealed in await storage.tokens()]:
+    if token and not await storage.token_in_use(token_hash(token)):
         await slack.revoke(token)
 
 

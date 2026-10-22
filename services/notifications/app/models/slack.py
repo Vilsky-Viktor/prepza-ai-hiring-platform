@@ -27,6 +27,9 @@ class SlackConnection(Base):
     # The channel's web hook and the app's token (to revoke it), sealed with SLACK_ENCRYPTION_KEY.
     webhook: Mapped[str] = mapped_column(Text)
     token: Mapped[str] = mapped_column(Text)
+    # The token's SHA-256, to find the other companies on its workspace without unsealing every
+    # token; empty only for a token sealed with a key no longer set.
+    token_hash: Mapped[str | None] = mapped_column(String(64), index=True)
     kinds: Mapped[list] = mapped_column(JSONB)
     status: Mapped[str] = mapped_column(String(16))
     created_by: Mapped[str] = mapped_column(String(128))
