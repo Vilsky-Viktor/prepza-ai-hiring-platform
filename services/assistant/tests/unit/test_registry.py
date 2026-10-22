@@ -108,3 +108,10 @@ def test_candidates_are_read_with_their_names_and_invited_with_one():
 
     assert set(invite["properties"]) >= {"email", "name"}
     assert "name" not in invite["required"]
+
+
+def test_a_topics_question_limit_isnt_capped_as_a_page_size():
+    limit = tools()["set_topic_limit"].parameters["properties"]["limit"]
+
+    assert limit.get("maximum", 1000) > 20
+    assert "items to return" not in limit.get("description", "")

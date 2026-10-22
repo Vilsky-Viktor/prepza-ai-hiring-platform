@@ -110,7 +110,8 @@ def definition(name: str, entry: dict, operation: dict, components: dict, max_it
 
         properties[param] = parameter_schema(declared[param], components)
 
-    if "limit" in properties:
+    # A list's page size; a write's body field named `limit` (a topic's questions) is its own.
+    if "limit" in entry["params"]:
         properties["limit"]["maximum"] = min(
             properties["limit"].get("maximum", max_items), max_items
         )

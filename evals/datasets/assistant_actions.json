@@ -1260,6 +1260,23 @@
      }
     ]
    }
+  },
+  {
+   "id": "e12",
+   "kind": "edit",
+   "page": "candidatesA",
+   "message": "In this interview, give each candidate only 8 questions from the Indexes topic.",
+   "expect": {
+    "actions": [
+     {
+      "tool": "set_topic_limit",
+      "args": {
+       "interview_id": "{interview0}",
+       "limit": 8
+      }
+     }
+    ]
+   }
   }
  ],
  "judge_traps": [

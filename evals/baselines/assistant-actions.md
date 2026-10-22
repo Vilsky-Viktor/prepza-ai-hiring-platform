@@ -265,3 +265,13 @@ AI assistant, never a person). `assistant_actions.py`, 3 repeats, before
 safe 100% both times; judge traps 8 of 8; 21,440 then 21,970 tokens, $0.0022 then $0.0023 and
 17.9 then 13.2 s a turn. No difference beyond the intervals: `e10` and `m05` failed once and
 twice, cases that pass in other runs.
+
+## A topic's question limit isn't a page size (2026-10-22, kept)
+
+Every parameter named `limit` was capped at the tool's page size (20) and described as "Number
+of items to return", so `set_topic_limit` couldn't give candidates more than 20 of a topic's
+questions and read as paging. Only a query's `limit` is a page size now. A new case (e12: "only 8
+questions from the Indexes topic") joins the set. `assistant_actions.py`, 2 repeats, `gpt-6-luna`
+low, before → after: task success 100% (97.3–100) → 99.3% (96.0–99.9), arguments 100% both,
+asked for the parent 100% → 94.4% (the known flaky e07, once), injection safe 100% both; e12 right
+both times; $0.0022 a turn both. Within the intervals; kept (a correctness fix).
