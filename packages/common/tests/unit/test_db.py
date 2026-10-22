@@ -1,5 +1,7 @@
+import asyncio
 from unittest import mock
 
+import pytest
 from prepza_common import db
 from prepza_common.constants import (
     DB_POOL_RECYCLE_SECONDS,
@@ -8,6 +10,37 @@ from prepza_common.constants import (
     MIGRATION_STATEMENT_TIMEOUT,
     STATEMENT_TIMEOUT,
 )
+from sqlalchemy import Column, Integer
+from sqlalchemy.orm import declarative_base
+
+Row = declarative_base()
+
+
+class Old(Row):
+    __tablename__ = "old"
+    id = Column(Integer, primary_key=True)
+    flag = Column(Integer)
+
+
+def fake_sessions(counts: list[int], commits: list):
+    """A session factory whose statements report the next of `counts` rows, noting each
+    commit in `commits`."""
+    rowcounts = iter(counts)
+
+    class FakeSession:
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *exc):
+            return False
+
+        async def execute(self, statement):
+            return mock.Mock(rowcount=next(rowcounts))
+
+        async def commit(self):
+            commits.append(True)
+
+    return FakeSession
 
 
 def test_pooled_connections_are_replaced_by_age_not_pinged_on_every_use():
@@ -44,38 +77,22 @@ def test_migrations_wait_only_so_long_for_a_lock_and_run_only_so_long():
     }
 
 
-def test_old_rows_are_deleted_batch_after_batch_until_one_comes_up_short():
-    import asyncio
-
-    from sqlalchemy import Column, Integer
-    from sqlalchemy.orm import declarative_base
-
-    Row = declarative_base()
-
-    class Old(Row):
-        __tablename__ = "old"
-        id = Column(Integer, primary_key=True)
-
-    counts = iter([3, 3, 1])
+@pytest.mark.parametrize(
+    "run",
+    [
+        lambda sessions: db.delete_in_batches(sessions, Old, Old.id < 10),
+        lambda sessions: db.update_in_batches(sessions, Old, {"flag": None}, Old.id < 10),
+    ],
+    ids=["delete", "update"],
+)
+def test_rows_go_batch_after_batch_until_one_comes_up_short(monkeypatch, run):
+    monkeypatch.setattr(db, "DELETE_BATCH", 3)
     commits = []
 
-    class FakeSession:
-        async def __aenter__(self):
-            return self
-
-        async def __aexit__(self, *exc):
-            return False
-
-        async def execute(self, statement):
-            return mock.Mock(rowcount=next(counts))
-
-        async def commit(self):
-            commits.append(True)
-
-    deleted = asyncio.run(db.delete_in_batches(FakeSession, Old, Old.id < 10, batch=3))
+    done = asyncio.run(run(fake_sessions([3, 3, 1], commits)))
 
     # Each batch is its own transaction; the short one is the last.
-    assert deleted == 7
+    assert done == 7
     assert len(commits) == 3
 
 

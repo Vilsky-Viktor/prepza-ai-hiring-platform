@@ -3,6 +3,8 @@
 import uuid
 from datetime import UTC, datetime
 
+from prepza_common import db
+
 from app.models.usage import AiUsage
 from app.storage import usage
 from tests.integration.test_ai_usage import call, rows_of
@@ -11,7 +13,7 @@ NOW = datetime(2026, 10, 10, 12, tzinfo=UTC)
 
 
 def test_a_deleted_companys_id_is_emptied_batch_after_batch(run, monkeypatch):
-    monkeypatch.setattr(usage, "DELETE_BATCH", 2)
+    monkeypatch.setattr(db, "DELETE_BATCH", 2)
     acme = str(uuid.uuid4())
     subject = str(uuid.uuid4())
 

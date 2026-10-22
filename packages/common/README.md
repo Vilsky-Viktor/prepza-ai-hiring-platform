@@ -46,8 +46,9 @@ daily AI spend cap (`AI_SPEND_UNPAID_DAY`): `refuse_if_capped` answers 503 once 
 reached it (with `Retry-After` to the next UTC day, `rate_limit.until_tomorrow`), and `add_unpaid` (billing) adds to it. Only `ai_usage` needs the `llm` extra.
 Database: `db.database` builds a service's engine and sessions (its pool, and Postgres ending a
 transaction left idle), `db.migration_engine` the migrations' one (a short lock and statement timeout), and `db.delete_in_batches`
-deletes old rows (retention, published events) `DELETE_BATCH` at a time, each batch its own
-transaction. `schema_rules.problems` lists the tables of a migrated database that break
+deletes old rows (retention, published events) and a deleted tenant's `DELETE_BATCH` at a time,
+each batch its own transaction; `db.update_in_batches` changes rows the same way (a deleted
+account's id emptied). `schema_rules.problems` lists the tables of a migrated database that break
 `.claude/rules/database.md`; each service's `test_migrations.py` asserts it finds none, and that
 `schema_rules.misnamed` and `schema_rules.stale_checks` find no constraint named otherwise than its
 model and no CHECK allowing other values than its enum (`db.one_of` builds a closed set's CHECK).

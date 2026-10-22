@@ -8,7 +8,7 @@ from prepza_common.constants import (
     MIGRATION_STATEMENT_TIMEOUT,
     STATEMENT_TIMEOUT,
 )
-from sqlalchemy import Engine, create_engine, delete, inspect, select, text
+from sqlalchemy import Engine, create_engine, delete, inspect, select, text, update
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, create_async_engine
 
 
@@ -62,11 +62,12 @@ def migration_engine(database_url: str) -> Engine:
     return create_engine(sqlalchemy_url(database_url), connect_args={"options": options})
 
 
-async def delete_in_batches(sessionmaker, model, *conditions, batch: int = DELETE_BATCH) -> int:
-    """Deletes `model`'s rows matching `conditions`, `batch` at a time, each batch committed on
-    its own, and returns how many went. For old rows (retention): a run cut off midway keeps what
-    it deleted, and the next run goes on."""
+async def delete_in_batches(sessionmaker, model, *conditions, batch: int | None = None) -> int:
+    """Deletes `model`'s rows matching `conditions`, `batch` (DELETE_BATCH) at a time, each batch
+    committed on its own, and returns how many went. For old rows (retention) and a deleted
+    tenant's: a run cut off midway keeps what it deleted, and the next run goes on."""
     (key,) = inspect(model).primary_key
+    batch = batch or DELETE_BATCH
     total = 0
 
     while True:
@@ -79,6 +80,27 @@ async def delete_in_batches(sessionmaker, model, *conditions, batch: int = DELET
         total += result.rowcount
 
         if result.rowcount < batch:
+            return total
+
+
+async def update_in_batches(sessionmaker, model, values: dict, *conditions) -> int:
+    """Sets `values` on `model`'s rows matching `conditions`, DELETE_BATCH at a time, each batch
+    committed on its own, and returns how many changed. `values` must take a row out of
+    `conditions` (an id emptied, a status moved on), so each batch takes new rows and the loop
+    ends; a run cut off midway keeps what it changed, and running it again goes on."""
+    (key,) = inspect(model).primary_key
+    total = 0
+
+    while True:
+        chosen = select(key).where(*conditions).limit(DELETE_BATCH)
+
+        async with sessionmaker() as session:
+            result = await session.execute(update(model).where(key.in_(chosen)).values(values))
+            await session.commit()
+
+        total += result.rowcount
+
+        if result.rowcount < DELETE_BATCH:
             return total
 
 
