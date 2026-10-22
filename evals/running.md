@@ -89,7 +89,7 @@ Planning a test through generation's own nodes (extraction, the topic draft, the
 reviewer's instructions), the draft cache skipped:
 
 ```bash
-evals/run.sh generation planning_test.py --label new-prompt   # --repeat 2, --only x01,r01
+evals/run.sh generation planning_test.py --label new-prompt   # --repeat 2, --only x01,r01, --sample 4
 ```
 
 ## Small utility prompts
@@ -125,7 +125,7 @@ evals/run.sh generation code_languages_test.py --label new-prompt   # --repeat 3
 The assistant's conversation titles, with its own title prompt and model:
 
 ```bash
-evals/run.sh assistant titles_test.py --label new-prompt   # --repeat 3, --only t02,t09
+evals/run.sh assistant titles_test.py --label new-prompt   # --repeat 3, --only t02,t09, --sample 6
 ```
 
 The assistant's speech to text, on recordings made once by text-to-speech (`build_audio.py`):

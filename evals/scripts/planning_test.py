@@ -5,7 +5,7 @@ names and script; judges/extraction.md, topics.md and revision.md grade coverage
 The judges are checked every run on traps made by code from the run's own results (requirements
 or a topic dropped, a revision that changed nothing): they must fail them.
 
-    evals/run.sh generation planning_test.py --label base   # --repeat 2, --only x01,python_backend,r01
+    evals/run.sh generation planning_test.py --label base   # --repeat 2, --only x01,r01, --sample 4
 
 The draft cache is skipped, so every call is made. Costs about $0.30 for the model and $1.00 for
 the judges at 2 repeats."""
@@ -13,6 +13,7 @@ the judges at 2 repeats."""
 import argparse
 import asyncio
 import json
+import random
 import time
 
 from common import (
@@ -36,6 +37,8 @@ from app.services.nodes import extraction, topics
 from app.services.nodes.revision import revise_topics
 from app.services.topic_caps import topic_caps
 from app.storage import draft_cache
+
+SEED = 7
 
 
 async def measured(call):
@@ -146,6 +149,9 @@ async def main(args) -> None:
     cases |= {i: {**inputs[i], "template": False} for i in data["from_inputs"]}
     only = set(args.only.split(",")) if args.only else None
     chosen = [c for i, c in cases.items() if not only or i in only]
+
+    if args.sample:
+        chosen = random.Random(SEED).sample(chosen, min(args.sample, len(chosen)))
     # Every call is made: the draft cache would answer from an earlier run.
     draft_cache.get = lambda *a: asyncio.sleep(0)
     draft_cache.put = lambda *a: asyncio.sleep(0)
@@ -230,4 +236,5 @@ if __name__ == "__main__":
     parser.add_argument("--label", default="run")
     parser.add_argument("--only", default="")
     parser.add_argument("--repeat", type=int, default=2)
+    parser.add_argument("--sample", type=int, default=0, help="a fixed fast set of this many")
     asyncio.run(main(parser.parse_args()))

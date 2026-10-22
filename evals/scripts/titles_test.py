@@ -4,13 +4,14 @@ checks it (length before cutting, one line, nothing forbidden, the language's sc
 judges/title.md grades it. The judge is checked every run on traps made by code: another
 conversation's title, and a generic one, must not pass.
 
-    evals/run.sh assistant titles_test.py --label base     # --repeat 3, --only t01,t09
+    evals/run.sh assistant titles_test.py --label base     # --repeat 3, --only t01,t09, --sample 6
 
 Costs about $0.01 for the titles and $0.30 for the judge at 3 repeats."""
 
 import argparse
 import asyncio
 import json
+import random
 import re
 import time
 from itertools import pairwise
@@ -30,6 +31,7 @@ from app.services.titles import write_title
 PHONE = re.compile(r"\+?\d[\d ()-]{7,}\d")
 EMAIL = re.compile(r"\S+@\S+")
 GENERIC = "Conversation"
+SEED = 7
 
 
 class TitleReview(BaseModel):
@@ -95,6 +97,9 @@ async def review(item: dict, title: str) -> dict:
 async def main(args) -> None:
     items = load(DATASETS / "titles.json")["items"]
     items = [i for i in items if not args.only or i["id"] in args.only.split(",")]
+
+    if args.sample:
+        items = random.Random(SEED).sample(items, min(args.sample, len(items)))
     limit = asyncio.Semaphore(6)
 
     async def one(item: dict, turn: int) -> dict:
@@ -161,4 +166,5 @@ if __name__ == "__main__":
     parser.add_argument("--label", default="run")
     parser.add_argument("--only", default="")
     parser.add_argument("--repeat", type=int, default=3)
+    parser.add_argument("--sample", type=int, default=0, help="a fixed fast set of this many")
     asyncio.run(main(parser.parse_args()))
