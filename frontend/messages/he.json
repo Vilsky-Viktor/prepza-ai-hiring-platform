@@ -1311,7 +1311,8 @@
       "ask": "בקשו מה-AI לשנות את הנושאים",
       "ready": "הראיון שלכם מוכן",
       "status": "מוכן",
-      "invite": "הזמנת מועמדים"
+      "invite": "הזמנת מועמדים",
+      "waiting": "ממתין…"
     },
     "proof": {
       "languages": "{count, plural, one {שפה אחת} two {# שפות} other {# שפות}}",

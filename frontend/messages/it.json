@@ -1311,7 +1311,8 @@
       "ask": "Chiedi all'IA di cambiare gli argomenti",
       "ready": "Il tuo colloquio è pronto",
       "status": "Pronto",
-      "invite": "Invita candidati"
+      "invite": "Invita candidati",
+      "waiting": "in attesa…"
     },
     "proof": {
       "languages": "{count, plural, one {# lingua} other {# lingue}}",

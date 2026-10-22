@@ -1311,7 +1311,8 @@
       "ask": "Nhờ AI thay đổi chủ đề",
       "ready": "Buổi phỏng vấn của bạn đã sẵn sàng",
       "status": "Sẵn sàng",
-      "invite": "Mời ứng viên"
+      "invite": "Mời ứng viên",
+      "waiting": "đang chờ…"
     },
     "proof": {
       "languages": "{count, number} ngôn ngữ",

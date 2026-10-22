@@ -1311,7 +1311,8 @@
       "ask": "AI에게 주제 변경 요청",
       "ready": "면접이 준비되었습니다",
       "status": "준비 완료",
-      "invite": "지원자 초대"
+      "invite": "지원자 초대",
+      "waiting": "대기 중…"
     },
     "proof": {
       "languages": "{count, number}개 언어",

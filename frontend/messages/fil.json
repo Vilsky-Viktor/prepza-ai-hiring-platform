@@ -1311,7 +1311,8 @@
       "ask": "Hilingin sa AI na baguhin ang mga topic",
       "ready": "Handa na ang interview mo",
       "status": "Handa na",
-      "invite": "Mag-imbita ng mga aplikante"
+      "invite": "Mag-imbita ng mga aplikante",
+      "waiting": "naghihintay…"
     },
     "proof": {
       "languages": "{count, number} wika",

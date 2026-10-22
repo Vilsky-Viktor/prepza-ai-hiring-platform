@@ -1311,7 +1311,8 @@
       "ask": "让 AI 修改主题",
       "ready": "你的面试已就绪",
       "status": "就绪",
-      "invite": "邀请候选人"
+      "invite": "邀请候选人",
+      "waiting": "等待中…"
     },
     "proof": {
       "languages": "{count, number} 种语言",

@@ -37,6 +37,53 @@ test("with reduced motion the create section rests on the finished interview", a
   await expect(section.getByTestId("demo-writing")).toBeHidden();
 });
 
+// Once the section comes into view, the topics and the interview panels wait for the steps
+// before them: the topics' panel until its first topic shows, the interview's until the
+// questions are being written.
+test("the create demo's later panels wait for the earlier steps", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.clock.install();
+  await page.goto("/");
+  await loaded(page);
+  // Time stands still from here on, moving only as the test runs it.
+  const now = await page.evaluate(() => Date.now());
+  await page.clock.pauseAt(now + 1_000);
+  const section = page.locator("#how");
+  await section.scrollIntoViewIfNeeded();
+  const panels = section.getByTestId("demo-panel");
+  const [describe, topics, ready] = [panels.nth(0), panels.nth(1), panels.nth(2)];
+
+  await expect(topics.getByTestId("demo-waiting")).toBeVisible();
+  await expect(ready.getByTestId("demo-waiting")).toBeVisible();
+  await expect(describe.getByTestId("demo-waiting")).toHaveCount(0);
+
+  // The topics show first, while the interview's panel still waits.
+  await expect
+    .poll(
+      async () => {
+        await page.clock.runFor(250);
+
+        return topics.getByTestId("demo-waiting").count();
+      },
+      { timeout: 60_000 },
+    )
+    .toBe(0);
+  await expect(ready.getByTestId("demo-waiting")).toBeVisible();
+
+  // Then the interview's panel stops waiting, its questions being written.
+  await expect
+    .poll(
+      async () => {
+        await page.clock.runFor(250);
+
+        return ready.getByTestId("demo-waiting").count();
+      },
+      { timeout: 60_000 },
+    )
+    .toBe(0);
+  await expect(ready.getByTestId("demo-writing")).toBeVisible();
+});
+
 test("on a 375 px phone the notes are one a row, and nothing scrolls sideways", async ({
   page,
 }) => {

@@ -1311,7 +1311,8 @@
       "ask": "Palu tehisarul teemasid muuta",
       "ready": "Sinu intervjuu on valmis",
       "status": "Valmis",
-      "invite": "Kutsu kandidaadid"
+      "invite": "Kutsu kandidaadid",
+      "waiting": "ootab…"
     },
     "proof": {
       "languages": "{count, plural, one {# keel} other {# keelt}}",

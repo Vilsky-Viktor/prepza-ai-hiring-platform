@@ -1311,7 +1311,8 @@
       "ask": "AI にトピックの変更を依頼",
       "ready": "面接が完成しました",
       "status": "準備完了",
-      "invite": "候補者を招待"
+      "invite": "候補者を招待",
+      "waiting": "待機中…"
     },
     "proof": {
       "languages": "{count, number} 言語",

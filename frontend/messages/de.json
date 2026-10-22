@@ -1311,7 +1311,8 @@
       "ask": "Themen von der KI ändern lassen",
       "ready": "Dein Interview ist fertig",
       "status": "Bereit",
-      "invite": "Kandidaten einladen"
+      "invite": "Kandidaten einladen",
+      "waiting": "wartet…"
     },
     "proof": {
       "languages": "{count, plural, one {# Sprache} other {# Sprachen}}",

@@ -1311,7 +1311,8 @@
       "ask": "Minta AI mengubah topiknya",
       "ready": "Wawancaramu sudah siap",
       "status": "Siap",
-      "invite": "Undang kandidat"
+      "invite": "Undang kandidat",
+      "waiting": "menunggu…"
     },
     "proof": {
       "languages": "{count, number} bahasa",

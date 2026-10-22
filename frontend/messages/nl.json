@@ -1311,7 +1311,8 @@
       "ask": "Laat AI de onderwerpen aanpassen",
       "ready": "Je interview is klaar",
       "status": "Klaar",
-      "invite": "Kandidaten uitnodigen"
+      "invite": "Kandidaten uitnodigen",
+      "waiting": "wachten…"
     },
     "proof": {
       "languages": "{count, plural, one {# taal} other {# talen}}",

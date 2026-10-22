@@ -10,6 +10,7 @@ import { DemoInvitePopup } from "@/components/landing/demo-invite-popup"
 import { DemoPanel } from "@/components/landing/demo-panel"
 import { DemoPointer } from "@/components/landing/demo-pointer"
 import { DemoSentNotice } from "@/components/landing/demo-popup"
+import { Waiting } from "@/components/landing/demo-waiting"
 import { DemoWriting } from "@/components/landing/demo-writing"
 import { FlowArrows } from "@/components/landing/flow-arrows"
 import { SubtopicChip, TopicCard } from "@/components/landing/topic-card"
@@ -56,6 +57,7 @@ export function CreateFlow({
     ready: string
     status: string
     invite: string
+    waiting: string
   }
 }) {
   const start = useTranslations("start")
@@ -151,49 +153,53 @@ export function CreateFlow({
       <DemoPanel label={labels.adjust}>
         {pointer(ADJUST)}
         <div className="flex flex-1 flex-col gap-3">
-          <ul className="flex-1 space-y-2">
-            {DEMO_TOPICS.map((topic, position) => {
-              const edited = topic.name === DEMO_EDITED
+          {/* Until the first topic shows, "waiting…" in the middle of the list's place. */}
+          <div className="relative flex-1">
+            {shown === 0 && <Waiting text={labels.waiting} />}
+            <ul className="space-y-2">
+              {DEMO_TOPICS.map((topic, position) => {
+                const edited = topic.name === DEMO_EDITED
 
-              return (
-                <TopicCard
-                  key={topic.name}
-                  name={topic.name}
-                  hidden={position >= shown}
-                  highlighted={edited && adding}
-                >
-                  {topic.subtopics.map((subtopic) => (
-                    <SubtopicChip key={subtopic}>{subtopic}</SubtopicChip>
-                  ))}
-                  {/* The added subtopic keeps its place, unseen, until it's typed; sized by
+                return (
+                  <TopicCard
+                    key={topic.name}
+                    name={topic.name}
+                    hidden={position >= shown}
+                    highlighted={edited && adding}
+                  >
+                    {topic.subtopics.map((subtopic) => (
+                      <SubtopicChip key={subtopic}>{subtopic}</SubtopicChip>
+                    ))}
+                    {/* The added subtopic keeps its place, unseen, until it's typed; sized by
                       the whole word (and caret) all along, so nothing moves as it's typed. */}
-                  {edited && (
-                    <SubtopicChip
-                      ref={topicRef}
-                      typing={adding}
-                      hidden={!adding && added === 0}
-                    >
-                      <span className="grid *:[grid-area:1/1]">
-                        {/* The caret's width as padding. */}
-                        <span className="invisible pe-0.5">
-                          {DEMO_ADDED_SUBTOPIC}
+                    {edited && (
+                      <SubtopicChip
+                        ref={topicRef}
+                        typing={adding}
+                        hidden={!adding && added === 0}
+                      >
+                        <span className="grid *:[grid-area:1/1]">
+                          {/* The caret's width as padding. */}
+                          <span className="invisible pe-0.5">
+                            {DEMO_ADDED_SUBTOPIC}
+                          </span>
+                          <span className="flex h-4 items-center">
+                            {DEMO_ADDED_SUBTOPIC.slice(0, added)}
+                            {adding && <Caret />}
+                          </span>
                         </span>
-                        <span className="flex h-4 items-center">
-                          {DEMO_ADDED_SUBTOPIC.slice(0, added)}
-                          {adding && <Caret />}
-                        </span>
-                      </span>
-                    </SubtopicChip>
-                  )}
-                </TopicCard>
-              )
-            })}
-            <TopicCard name={DEMO_NEW_TOPIC.name} hidden={at.index < APPLIED}>
-              {DEMO_NEW_TOPIC.subtopics.map((subtopic) => (
-                <SubtopicChip key={subtopic}>{subtopic}</SubtopicChip>
-              ))}
-            </TopicCard>
-          </ul>
+                      </SubtopicChip>
+                    )}
+                  </TopicCard>
+                )
+              })}
+              <TopicCard name={DEMO_NEW_TOPIC.name} hidden={at.index < APPLIED}>
+                {DEMO_NEW_TOPIC.subtopics.map((subtopic) => (
+                  <SubtopicChip key={subtopic}>{subtopic}</SubtopicChip>
+                ))}
+              </TopicCard>
+            </ul>
+          </div>
           {/* The request for changes, as the review's box, and its button. */}
           <div
             ref={askRef}
@@ -232,9 +238,10 @@ export function CreateFlow({
       <FlowArrows />
       <DemoPanel ref={readyRef} label={labels.ready}>
         {pointer(RESULT)}
-        {/* Nothing until the topics are approved, then the questions being written, then the
+        {/* "waiting…" until the topics are approved, then the questions being written, then the
             interview in their place. */}
-        <div className="grid flex-1 *:[grid-area:1/1]">
+        <div className="relative grid flex-1 *:[grid-area:1/1]">
+          {at.index < WRITING && <Waiting text={labels.waiting} />}
           <div
             data-testid="demo-writing"
             className={cn(

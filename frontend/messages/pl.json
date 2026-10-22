@@ -1311,7 +1311,8 @@
       "ask": "Poproś AI o zmianę tematów",
       "ready": "Twoja rozmowa jest gotowa",
       "status": "Gotowa",
-      "invite": "Zaproś kandydatów"
+      "invite": "Zaproś kandydatów",
+      "waiting": "oczekiwanie…"
     },
     "proof": {
       "languages": "{count, plural, one {# język} few {# języki} many {# języków} other {# języka}}",

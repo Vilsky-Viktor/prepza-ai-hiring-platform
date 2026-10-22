@@ -29,6 +29,7 @@ export async function CreateSection({
               ready: t("ready"),
               status: t("status"),
               invite: t("invite"),
+              waiting: t("waiting"),
             }}
           />
         </div>
