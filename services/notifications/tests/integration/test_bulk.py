@@ -53,7 +53,8 @@ def legal_send(user_ids):
     """A started legal notice, its recipients worked out; its id."""
 
     async def scenario():
-        version = f"2099-{uuid.uuid4().hex[:5]}"
+        # A day far ahead, as a version is; each test starts with no sends.
+        version = "2099-01-01"
         send_id = await bulk_sends.start("legal_terms", version, "sam")
         first = await bulk_sends.prepare(send_id, user_ids)
         again = await bulk_sends.prepare(send_id, [*user_ids, "late"])

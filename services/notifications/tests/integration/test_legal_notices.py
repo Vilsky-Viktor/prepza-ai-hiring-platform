@@ -1,8 +1,9 @@
 import asyncio
 import uuid
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 
 import pytest
+from babel.dates import format_date
 from fastapi import HTTPException
 from prepza_common.auth import current_user
 from prepza_common.notifications import EVERYONE, Recipient
@@ -105,6 +106,8 @@ def test_a_notice_is_asked_once_goes_in_everyones_bell_and_emails_each_account_o
     assert [(to, key) for to, _, key in mine] == sorted(
         [(f"{user}@example.com", f"bulk/{send.id}/{user}") for user in (ann, bob)]
     )
-    assert all(LATER in subject for _, subject, _ in mine)
+    # The day it applies, as English writes it.
+    day = format_date(date.fromisoformat(LATER), "long", locale="en")
+    assert all(day in subject for _, subject, _ in mine)
     assert states["terms"] == "sent"
     assert {"document": "terms", "version": LATER} in banner
