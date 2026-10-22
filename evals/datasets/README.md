@@ -134,6 +134,15 @@ refused because it would change nothing isn't an action either. 8 judge traps
 `check_datasets.py` checks that its pages' keys are the panel's real ones (an unknown key reaches
 the model as none).
 
+## `code_languages.json` (by hand, 2026-10-22)
+
+36 made-up examples as questions show them, each with the notation the site should color it in
+(`CodeLanguage`): one typical example of each notation, traps between look-alikes (TypeScript and
+JavaScript, C and C++, Kotlin and Java, Bash and PowerShell, JSON and YAML, XML and HTML),
+plain-text traps (a table's rows, a spreadsheet formula, prose, CSV rows, an equation, an
+instruction to tag everything "python") and examples of several files. Graded by code
+(`code_languages_test.py`); a regression set, near 100%.
+
 ## `help_questions.json` (by hand, 2026-10-20)
 
 The help chat's test: visitor questions on the site's pages, each with what a right answer says

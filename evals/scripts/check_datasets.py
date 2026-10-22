@@ -152,6 +152,33 @@ def check_actions(problems: list[str]) -> list[str]:
     return [case["message"] for case in cases]
 
 
+def check_described(name: str, data: dict, problems: list[str]) -> None:
+    """A hand-made or built set says what it is, when and with what it was made."""
+    for key in ("about", "built", "model"):
+        if key not in data:
+            problems.append(f"{name}: no {key!r} (what it is, when and with what it was built)")
+
+
+def unique_ids(name: str, rows: list[dict], problems: list[str]) -> None:
+    ids = Counter(row["id"] for row in rows)
+    problems += [f"{name}: id {i} appears {n} times" for i, n in ids.items() if n > 1]
+
+
+def check_code_languages(problems: list[str]) -> list[str]:
+    """Every expected notation is one the site colors; returns the examples."""
+    data = load("code_languages.json")
+    known = set(re.findall(r'"(\w+)"', (SERVICES / "generation/app/constants/code.py").read_text()))
+    check_described("code_languages.json", data, problems)
+    unique_ids("code_languages.json", data["items"], problems)
+    problems += [
+        f"code_languages.json: {item['id']} expects an unknown notation {item['expect']!r}"
+        for item in data["items"]
+        if item["expect"] not in known
+    ]
+
+    return [item["example"] for item in data["items"]]
+
+
 def main() -> None:
     problems: list[str] = []
     examples = prompt_examples()
@@ -186,6 +213,7 @@ def main() -> None:
 
     texts += [("assistant", text) for text in check_assistant(problems)]
     texts += [("assistant_actions", text) for text in check_actions(problems)]
+    texts += [("code_languages", text) for text in check_code_languages(problems)]
 
     for where, text in texts:
         for example in examples:

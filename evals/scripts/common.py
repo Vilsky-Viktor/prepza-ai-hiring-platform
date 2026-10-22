@@ -77,10 +77,10 @@ def model(name: str, effort: str, timeout: int = 300) -> ChatOpenAI:
     return ChatOpenAI(model=name, reasoning_effort=effort, max_retries=3, timeout=timeout)
 
 
-def generation_models(settings) -> str:
-    """With MODEL and EFFORT set, the model under test writes the tests; without them the
-    service's own setting is tested. Returns what writes them, for the results."""
-    names = ("interview",)
+def generation_models(settings, names: tuple[str, ...] = ("interview",)) -> str:
+    """With MODEL and EFFORT set, the model under test does the task (each setting in `names`,
+    e.g. "interview" for interview_model); without them the service's own setting is tested.
+    Returns what does it, for the results."""
 
     for name in names:
         if "MODEL" in os.environ:
