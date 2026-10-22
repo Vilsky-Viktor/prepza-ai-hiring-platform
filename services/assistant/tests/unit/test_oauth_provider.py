@@ -243,17 +243,3 @@ def test_revoking_deletes_the_connection(kept):
 
     assert kept.grants == {}
     assert kept.tracked[-1] == ("mcp_disconnected", {"user_id": "ann", "by": "client"})
-
-
-def test_too_many_token_requests_are_refused(kept, monkeypatch):
-    from fastapi import HTTPException
-
-    async def over(*args, **kwargs):
-        raise HTTPException(429, "Too many")
-
-    monkeypatch.setattr(oauth_limits, "hit_or_skip", over)
-
-    with pytest.raises(TokenError) as refused:
-        asyncio.run(oauth_limits.limit_tokens("c1"))
-
-    assert refused.value.error == "invalid_request"

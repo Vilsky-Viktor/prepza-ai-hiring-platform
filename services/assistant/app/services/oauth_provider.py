@@ -35,7 +35,6 @@ from app.models.oauth import McpGrant
 from app.models.oauth_tokens import Access, Client, Code, Refresh
 from app.services import client_documents
 from app.services.mcp_keys import key_access
-from app.services.oauth_limits import limit_tokens
 from app.storage import oauth, oauth_requests
 
 logger = logging.getLogger(__name__)
@@ -137,8 +136,6 @@ class Provider:
         self, client: OAuthClientInformationFull, authorization_code: Code
     ) -> OAuthToken:
         """The code, once, for the connection's first tokens."""
-        await limit_tokens(client.client_id)
-
         if await oauth_requests.take_code(hashed(authorization_code.code)) is None:
             raise TokenError("invalid_grant", "authorization code does not exist")
 
@@ -186,7 +183,6 @@ class Provider:
     ) -> OAuthToken:
         """New tokens for the connection; the old ones stop working. Of two refreshes with the
         same token, the second is refused."""
-        await limit_tokens(client.client_id)
         scope = MCP_SCOPE if MCP_SCOPE in refresh_token.scopes else refresh_token.scopes[0]
         token, kept = new_tokens(scope)
 

@@ -5,6 +5,7 @@ import asyncio
 
 import pytest
 from fake_redis import DownRedis
+from starlette.requests import Request
 
 from app.services import mcp_tools, oauth_limits
 from app.storage import oauth
@@ -34,7 +35,9 @@ def test_an_app_registers_with_redis_down(client, down, monkeypatch):
 
 
 def test_an_app_gets_its_tokens_with_redis_down(down):
-    assert asyncio.run(oauth_limits.limit_tokens("c1")) is None
+    request = Request({"type": "http", "headers": [], "client": ("1.2.3.4", 1)})
+
+    assert asyncio.run(oauth_limits.token_refusal(request, "c1")) is None
 
 
 def test_an_apps_calls_go_on_with_redis_down(down):

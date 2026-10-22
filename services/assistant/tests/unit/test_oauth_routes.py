@@ -186,3 +186,69 @@ def test_a_code_exchange_for_another_resource_is_refused(client, monkeypatch):
     response = client.post("/token", data=body)
 
     assert response.status_code == 400 and response.json()["error"] == "invalid_target"
+
+
+def test_a_failed_token_exchange_is_counted_too(client, monkeypatch):
+    app_without_a_secret(monkeypatch)
+    counted = []
+
+    async def hit(redis, key, name):
+        counted.append((key, name))
+
+    async def load_refresh_token(self, app_client, token):
+        return None
+
+    monkeypatch.setattr(oauth_limits, "hit_or_skip", hit)
+    monkeypatch.setattr(oauth_provider.Provider, "load_refresh_token", load_refresh_token)
+    body = {"grant_type": "refresh_token", "refresh_token": "pzm_wrong", "client_id": "c1"}
+
+    response = client.post("/token", data=body)
+
+    assert response.json()["error"] == "invalid_grant"
+    assert counted == [
+        ("rate:assistant:mcp:token:c1:testclient", "TOKEN_REQUESTS_PER_CLIENT_MINUTE")
+    ]
+
+
+def test_too_many_token_requests_are_refused_before_the_lookup(client, monkeypatch):
+    app_without_a_secret(monkeypatch)
+    loaded = []
+
+    async def over(redis, key, name):
+        raise HTTPException(429, "Too many requests.", headers={"Retry-After": "30"})
+
+    async def load_refresh_token(self, app_client, token):
+        loaded.append(token)
+
+    monkeypatch.setattr(oauth_limits, "hit_or_skip", over)
+    monkeypatch.setattr(oauth_provider.Provider, "load_refresh_token", load_refresh_token)
+    body = {"grant_type": "refresh_token", "refresh_token": "pzm_r", "client_id": "c1"}
+
+    response = client.post("/token", data=body)
+
+    assert response.status_code == 429 and response.headers["retry-after"] == "30"
+    assert response.json()["error"] == "invalid_request"
+    assert loaded == []
+
+
+def test_revoking_is_counted_and_refused_over_the_limit(client, monkeypatch):
+    app_without_a_secret(monkeypatch)
+    revoked = []
+
+    async def over(redis, key, name):
+        assert (key, name) == (
+            "rate:assistant:mcp:token:c1:testclient",
+            "TOKEN_REQUESTS_PER_CLIENT_MINUTE",
+        )
+
+        raise HTTPException(429, "Too many requests.", headers={"Retry-After": "30"})
+
+    async def revoke_token(self, token):
+        revoked.append(token)
+
+    monkeypatch.setattr(oauth_limits, "hit_or_skip", over)
+    monkeypatch.setattr(oauth_provider.Provider, "revoke_token", revoke_token)
+
+    response = client.post("/revoke", data={"token": "pzm_a", "client_id": "c1"})
+
+    assert response.status_code == 429 and revoked == []

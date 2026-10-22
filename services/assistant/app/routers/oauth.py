@@ -30,15 +30,24 @@ from app.constants.mcp import (
 )
 from app.helpers.authorize_guard import GuardAuthorize
 from app.helpers.oauth import auth_settings, other_resource
-from app.services.oauth_limits import Limited
+from app.services.oauth_limits import Limited, token_refusal
 from app.services.oauth_provider import Provider
 
 
 async def revoke(request: Request) -> Response:
     """An app revoking its access or refresh token (RFC 7009): the connection goes. Answered
     here rather than by the SDK's handler, which requires a client_secret field that apps
-    registered without a secret don't send. An unknown token is a 200 too."""
+    registered without a secret don't send. An unknown token is a 200 too. Counted against the
+    app's token limit, as /token is."""
     provider = Provider()
+    form = await request.form()
+    client_id = form.get("client_id")
+
+    if isinstance(client_id, str):
+        refused = await token_refusal(request, client_id)
+
+        if refused is not None:
+            return refused
 
     try:
         client = await ClientAuthenticator(provider).authenticate_request(request)
@@ -47,7 +56,7 @@ async def revoke(request: Request) -> Response:
 
         return JSONResponse(body, status_code=401)
 
-    token = (await request.form()).get("token")
+    token = form.get("token")
 
     if not isinstance(token, str) or not token:
         return JSONResponse({"error": "invalid_request"}, status_code=400)
@@ -65,19 +74,29 @@ async def revoke(request: Request) -> Response:
 def token_endpoint() -> ASGIApp:
     """/token, the SDK's handler behind a resource check: a request naming another resource
     than the MCP endpoint is refused (invalid_target, RFC 8707), as /authorize refuses it; the
-    SDK's handler doesn't pass `resource` on. One naming none is for the MCP endpoint. The form
-    read here is the one the handler reads (Starlette keeps it on the request). Wrapped as the
-    SDK wraps its own: CORS outermost, the body's size limited."""
+    SDK's handler doesn't pass `resource` on. One naming none is for the MCP endpoint. Every
+    other request is counted against the app's token limit before the handler looks its code or
+    token up. The form read here is the one the handler reads (Starlette keeps it on the
+    request). Wrapped as the SDK wraps its own: CORS outermost, the body's size limited."""
     provider = Provider()
     handler = TokenHandler(provider, ClientAuthenticator(provider))
 
     async def token(request: Request) -> Response:
-        resource = (await request.form()).get("resource")
+        form = await request.form()
+        resource = form.get("resource")
 
         if isinstance(resource, str) and other_resource(resource):
             body = {"error": "invalid_target", "error_description": OTHER_RESOURCE}
 
             return JSONResponse(body, status_code=400, headers={"Cache-Control": "no-store"})
+
+        client_id = form.get("client_id")
+
+        if isinstance(client_id, str):
+            refused = await token_refusal(request, client_id)
+
+            if refused is not None:
+                return refused
 
         return await handler.handle(request)
 

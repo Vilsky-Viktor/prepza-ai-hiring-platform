@@ -1,5 +1,4 @@
 from fastapi import HTTPException
-from mcp.server.auth.provider import TokenError
 from prepza_common.client_ip import limit_address
 from prepza_common.rate_limit import hit_or_skip
 from starlette.requests import Request
@@ -7,6 +6,13 @@ from starlette.responses import JSONResponse
 from starlette.types import ASGIApp, Receive, Scope, Send
 
 from app.integrations.redis import get_redis
+
+
+def refusal(error: str, limited: HTTPException) -> JSONResponse:
+    """A limit's refusal as an OAuth error: its status (429) and Retry-After kept."""
+    body = {"error": error, "error_description": limited.detail}
+
+    return JSONResponse(body, status_code=limited.status_code, headers=limited.headers)
 
 
 class Limited:
@@ -36,21 +42,24 @@ class Limited:
                 if self.everyone is not None:
                     await hit_or_skip(redis, key, self.everyone)
             except HTTPException as error:
-                body = {"error": self.error, "error_description": error.detail}
-                refused = JSONResponse(body, status_code=error.status_code, headers=error.headers)
-                await refused(scope, receive, send)
+                await refusal(self.error, error)(scope, receive, send)
 
                 return
 
         await self.app(scope, receive, send)
 
 
-async def limit_tokens(client_id: str) -> None:
-    """Counts one token request of the app; over the limit, refused. With Redis down, not
-    counted rather than refused."""
-    key = f"rate:assistant:mcp:token:{client_id}"
+async def token_refusal(request: Request, client_id: str) -> JSONResponse | None:
+    """Counts one token request of the app (a code exchange, a refresh or a revocation, whether
+    its code or token turns out good or not, so guessing them is counted too) from the
+    request's address; over the limit, the refusal. Counted per app and address, so someone
+    naming a well-known app's public id can't use up its limit for everyone. With Redis down,
+    not counted rather than refused."""
+    key = f"rate:assistant:mcp:token:{client_id}:{limit_address(request)}"
 
     try:
         await hit_or_skip(get_redis(), key, "TOKEN_REQUESTS_PER_CLIENT_MINUTE")
-    except HTTPException:
-        raise TokenError("invalid_request", "Too many token requests; try again in a minute.")
+    except HTTPException as error:
+        return refusal("invalid_request", error)
+
+    return None
