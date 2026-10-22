@@ -1,6 +1,7 @@
 # Weekly pull requests that update the pinned images (tag and digest: base images and the local
 # stack's), GitHub Actions (pinned by commit) and the frontend's and services' packages (their lock
-# files). Merge after CI passes; close to skip a version.
+# files). A new version waits a week (cooldown), so a hijacked release is usually pulled before it's
+# proposed; security updates don't wait. Merge after CI passes; close to skip a version.
 version: 2
 updates:
   - package-ecosystem: docker
@@ -19,6 +20,8 @@ updates:
       - /services/rounds
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     groups:
       base-images:
         patterns: ["*"]
@@ -32,6 +35,8 @@ updates:
     directory: /compose
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     groups:
       compose-images:
         patterns: ["*"]
@@ -43,6 +48,8 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     groups:
       actions:
         patterns: ["*"]
@@ -51,6 +58,8 @@ updates:
     directory: /frontend
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     groups:
       frontend:
         patterns: ["*"]
@@ -72,6 +81,8 @@ updates:
       - /services/rounds
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     groups:
       python:
         patterns: ["*"]

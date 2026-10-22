@@ -29,6 +29,7 @@ permissions:
   contents: read
 
 env:
+  REGION: ${{ vars.GCP_REGION }}
   REGISTRY: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/prepza
   VERSION: ${{ inputs.tag || github.ref_name }}
   SERVICES: library generation rounds companies billing notifications ats api assistant frontend
@@ -37,6 +38,7 @@ jobs:
   verify:
     name: check the version
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: read
       # Reads CI's runs for the commit.
@@ -47,6 +49,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
       - id: commit
         name: The version is a tag on main that passed CI
         env:
@@ -81,6 +84,7 @@ jobs:
     name: migrate and deploy
     needs: verify
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     # Settings → Environments → production can require an approval before this runs.
     environment: production
     permissions:
@@ -92,6 +96,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           ref: ${{ env.VERSION }}
       - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
         with:
@@ -108,20 +113,20 @@ jobs:
       # migrations, which connect as those users.
       - name: Database users
         run: |
-          gcloud run jobs update db-roles --image="$REGISTRY/library:$VERSION" --region="${{ vars.GCP_REGION }}" --quiet
-          gcloud run jobs execute db-roles --region="${{ vars.GCP_REGION }}" --wait --quiet
+          gcloud run jobs update db-roles --image="$REGISTRY/library:$VERSION" --region="$REGION" --quiet
+          gcloud run jobs execute db-roles --region="$REGION" --wait --quiet
       # Migrations run before any service moves, so new code never meets an old schema.
       - name: Migrations
         if: github.event_name == 'push' || inputs.migrate
         run: |
           for db in library generation rounds companies billing notifications ats api assistant; do
-            gcloud run jobs update "$db-migrate" --image="$REGISTRY/$db:$VERSION" --region="${{ vars.GCP_REGION }}" --quiet
-            gcloud run jobs execute "$db-migrate" --region="${{ vars.GCP_REGION }}" --wait --quiet
+            gcloud run jobs update "$db-migrate" --image="$REGISTRY/$db:$VERSION" --region="$REGION" --quiet
+            gcloud run jobs execute "$db-migrate" --region="$REGION" --wait --quiet
           done
       - name: Services
         run: |
           deploy() {
-            gcloud run services update "$1" --image="$REGISTRY/$2:$VERSION" --region="${{ vars.GCP_REGION }}" --quiet
+            gcloud run services update "$1" --image="$REGISTRY/$2:$VERSION" --region="$REGION" --quiet
           }
 
           deploy library library
@@ -137,13 +142,15 @@ jobs:
           deploy assistant assistant
           deploy frontend frontend
       - name: Smoke test
-        run: ./e2e_tests/smoke.sh "${{ vars.SITE_URL }}"
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: ./e2e_tests/smoke.sh "$SITE_URL"
 
       # The services already run the new images: nothing rolls back by itself.
       - name: How to roll back
         if: failure()
         run: |
-          echo "::error::The deploy failed after its first step, so services may run the new images. If the site is broken, roll back: Actions → Deploy → Run workflow with the previous version (the last v* tag before ${{ github.ref_name }}), Run migrations off. See infra/README.md (Rolling back)."
+          echo "::error::The deploy failed after its first step, so services may run the new images. If the site is broken, roll back: Actions → Deploy → Run workflow with the previous version (the last v* tag before $VERSION), Run migrations off. See infra/README.md (Rolling back)."
 
   release:
     name: GitHub release
@@ -151,6 +158,7 @@ jobs:
     # A new tag gets its release notes; redeploying an earlier version (a rollback) doesn't.
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: write
     steps:
