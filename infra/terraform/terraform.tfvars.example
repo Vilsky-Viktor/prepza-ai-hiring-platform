@@ -6,6 +6,8 @@ image_tag  = "first"
 
 mail_from         = "prepza. <no-reply@prepza.ai>"
 mail_from_updates = "prepza. <updates@mail.prepza.ai>"
+# Candidates' emails from a subdomain of their own, once it's verified in Resend (empty: mail_from).
+# mail_from_candidates = "prepza. <invites@candidates.prepza.ai>"
 # Resend's daily quota for your plan; bulk emails use at most 80% of it.
 backend_sentry_dsn = ""
 # The Firebase web app's apiKey (public), as the frontend's build has it: AI apps' calls over MCP

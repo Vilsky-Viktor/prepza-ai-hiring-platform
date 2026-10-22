@@ -19,5 +19,7 @@ class Email:
     headers: dict[str, str] = field(default_factory=lambda: dict(AUTOMATED_HEADERS))
     # An email the user may turn off (the digest, reminders): sent from MAIL_FROM_UPDATES.
     optional: bool = False
+    # An email to a candidate, sent for a company: from MAIL_FROM_CANDIDATES (helpers/senders.py).
+    candidate: bool = False
     # Files sent with it: (file name, base64 content).
     attachments: list[tuple[str, str]] = field(default_factory=list)

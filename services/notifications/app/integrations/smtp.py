@@ -6,12 +6,13 @@ from email.utils import formatdate, make_msgid
 
 from app.config.settings import settings
 from app.constants.email import SEND_TIMEOUT_S
+from app.helpers.senders import sender
 from app.models.email import Email
 
 
 def send_sync(email: Email) -> None:
     message = EmailMessage()
-    message["From"] = settings.mail_from_updates if email.optional else settings.mail_from
+    message["From"] = sender(email)
     message["To"] = email.to
     message["Subject"] = email.subject
     message["Reply-To"] = email.reply_to or settings.contact_email

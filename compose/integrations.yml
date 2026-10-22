@@ -25,6 +25,8 @@ x-notifications-env: &notifications-env
   MAIL_FROM: ${MAIL_FROM:-prepza. <no-reply@prepza.local>}
   # The digest and reminders: their own sender, so complaints about them can't hurt the others.
   MAIL_FROM_UPDATES: ${MAIL_FROM_UPDATES:-prepza. <updates@mail.prepza.local>}
+  # Candidates' emails, watched apart; empty: MAIL_FROM.
+  MAIL_FROM_CANDIDATES: ${MAIL_FROM_CANDIDATES:-}
   COMPANIES_URL: http://companies:8000
   LIBRARY_URL: http://library:8000
   # The reminders ask billing for low credits and generation for topics waiting for review.

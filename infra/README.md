@@ -143,12 +143,17 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
 
 ## Email deliverability
 
-Emails go out through Resend in two streams, each from its own domain, so spam complaints about the optional ones can't hurt the reputation of the service ones:
+Emails go out through Resend in streams, each from its own sender, so spam complaints about the optional ones can't hurt the reputation of the service ones, and candidates' emails can be watched apart:
 
 | Stream | Emails | Sender (`terraform.tfvars`) |
 | --- | --- | --- |
-| Service | candidate invites and reminders, team invites, shared reports, failed automatic top-ups, contact messages | `mail_from = "prepza. <no-reply@prepza.ai>"` |
+| Service | team invites, shared reports, billing emails, legal notices, contact messages | `mail_from = "prepza. <no-reply@prepza.ai>"` |
 | Optional | the activity digest and reminders (later product updates and offers) | `mail_from_updates = "prepza. <updates@mail.prepza.ai>"` |
+| Candidates | candidate invites, their reminders, a shareable link's own link | `mail_from_candidates`, empty: sent from `mail_from` (see below) |
+
+**Not set up yet: a candidates' subdomain.** Candidate invites go to addresses companies supply, so one company's bad list could hurt every email on that sender. `mail_from_candidates` lets them go from their own subdomain, watched apart; until it's set they come from `mail_from`. Setting it up needs, for `candidates.prepza.ai` (say): the domain added in Resend in the EU region; its `send.candidates` and `rsend.candidates` CNAMEs and its `resend._domainkey.candidates` TXT, as in steps 2 and 3 below; DMARC is already covered by `prepza.ai`'s record; then `mail_from_candidates = "prepza. <invites@candidates.prepza.ai>"` in `terraform.tfvars`, warmed up as below. Service emails still go from the apex domain `prepza.ai`, not a subdomain of their own: moving them is a DNS change for later.
+
+**Warming up a new sender.** A new sending domain, or a much larger volume on one, starts low: cap it at a few hundred emails a day the first week (`RESEND_DAILY_LIMIT` caps bulk sends; send invites from the new sender for a share of companies first), then raise the cap each week over about six weeks. Each week, before raising it, check deferrals, bounces and complaints per mailbox provider (Google Postmaster Tools for Gmail, SNDS for Outlook, Resend's dashboard for the rest): hold the cap while the spam rate is over 0.1% or bounces over 2%.
 
 The DNS records below are what Gmail, Yahoo (their 2024 rules for bulk senders) and Outlook check. Add them in GoDaddy's DNS, where a record's name is relative to `prepza.ai` (`send` means `send.prepza.ai`):
 

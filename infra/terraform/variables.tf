@@ -65,6 +65,12 @@ variable "mail_from_updates" {
   default     = "prepza. <updates@mail.prepza.ai>"
 }
 
+variable "mail_from_candidates" {
+  description = "Sender of the emails to candidates (invites, reminders, a shareable link's own link), sent for many companies to addresses they supply, so it can be watched apart; empty sends them from mail_from until a subdomain of its own is verified in Resend."
+  type        = string
+  default     = ""
+}
+
 variable "backend_sentry_dsn" {
   description = "Backend Sentry DSN; empty sends nothing. Not secret: it only allows sending events."
   type        = string

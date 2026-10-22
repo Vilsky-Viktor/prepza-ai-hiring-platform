@@ -16,6 +16,7 @@ from app.constants.email import (
     RESEND_SUPPRESSION_URL,
     SEND_TIMEOUT_S,
 )
+from app.helpers.senders import sender
 from app.models.email import Email
 
 logger = logging.getLogger(__name__)
@@ -54,7 +55,7 @@ async def send(email: Email, idempotency_key: str) -> None:
         RESEND_EMAILS_URL,
         headers={**bearer(settings.resend_api_key), "Idempotency-Key": idempotency_key},
         json={
-            "from": settings.mail_from_updates if email.optional else settings.mail_from,
+            "from": sender(email),
             "to": [email.to],
             "subject": email.subject,
             "html": email.html,

@@ -21,6 +21,10 @@ class Settings(ServiceSettings):
     # hurt the service emails' reputation.
     mail_from: str = "prepza. <no-reply@prepza.local>"
     mail_from_updates: str = "prepza. <updates@mail.prepza.local>"
+    # Candidates' emails (invites, reminders, a shareable link's own link), sent for many
+    # companies to addresses they supply: their own sender, so one company's bad list can be
+    # watched and kept apart. Empty: mail_from, until a subdomain of its own is verified.
+    mail_from_candidates: str = ""
     # prepza's inbox: the contact page's messages go here, and replies to emails that have no
     # one else to answer (rather than to an unread no-reply address).
     contact_email: str = "hello@prepza.ai"

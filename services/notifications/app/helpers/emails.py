@@ -47,6 +47,7 @@ def candidate_invite_email(data: dict, site_url: str, secret: str) -> Email:
     )
     email = render("candidate", data, f"{site_url.rstrip('/')}/invite/{data['token']}", links)
     email.tags = invite_tags(CANDIDATE_INVITE_KIND, data.get("invite_id"))
+    email.candidate = True
 
     return email
 
@@ -58,12 +59,15 @@ def candidate_joined_email(data: dict, site_url: str, secret: str) -> Email:
     data = with_logo(data, site_url)
     company = candidate_token(data, UnsubscribeType.COMPANY, secret)
 
-    return render(
+    email = render(
         "joined",
         data,
         f"{site_url.rstrip('/')}/invite/{data['token']}",
         [("stop_company", page_url(site_url, company))],
     )
+    email.candidate = True
+
+    return email
 
 
 def candidate_reminder_email(data: dict, site_url: str, secret: str) -> Email:
@@ -86,6 +90,7 @@ def candidate_reminder_email(data: dict, site_url: str, secret: str) -> Email:
 
     email = render("reminder", data, f"{site_url.rstrip('/')}/invite/{data['token']}", links)
     email.tags = invite_tags(CANDIDATE_REMINDER_KIND, data.get("invite_id"))
+    email.candidate = True
 
     if email.tags and data.get("company_id"):
         email.tags[COMPANY_TAG] = data["company_id"]
