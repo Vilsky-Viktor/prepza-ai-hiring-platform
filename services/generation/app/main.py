@@ -10,6 +10,7 @@ from prepza_common.maintenance import MaintenanceMiddleware
 from prepza_common.no_store import NoStoreMiddleware
 from prepza_common.sentry import init_sentry
 from prepza_common.shutdown import close_shared
+from prepza_common.trace_prices import sync_model_prices
 
 from app.config.settings import settings
 from app.integrations.redis import get_redis
@@ -31,6 +32,7 @@ init_sentry("generation")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     start_firebase(settings.firebase_project_id)
+    await sync_model_prices()
 
     yield
 

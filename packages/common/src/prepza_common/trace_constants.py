@@ -20,3 +20,8 @@ TRACE_MAX_WAIT_SECONDS = 10
 # The daily job deletes page by page and starts no new page after this long, inside the
 # assistant's 300 s request timeout: what's left goes in the next day's run.
 TRACE_RUN_SECONDS = 240
+# Our models' prices are set in Langfuse when a service starts (trace_prices.py), within this
+# long, so a slow Langfuse never holds up a start.
+PRICE_SYNC_SECONDS = 5
+# Langfuse's model definitions, read this many a page.
+MODELS_PAGE = 100

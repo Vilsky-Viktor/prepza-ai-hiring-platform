@@ -186,6 +186,7 @@ One line each, by name (`tests/unit/test_readme_modules.py` fails on one left ou
 - `trace_constants`: Langfuse's retention and its API's settings.
 - `trace_retention`: Langfuse's traces deleted on time, page by page.
 - `tracing`: AI calls traced to Langfuse, with personal data masked.
+- `trace_prices`: our models' prices set in Langfuse at start-up, so traced calls carry their cost.
 - `translations`: the messages users read, by language, and the check that each is translated.
 - `user`: the signed-in user (`User`).
 - `visitor_country`: the visitor's country from the load balancer.

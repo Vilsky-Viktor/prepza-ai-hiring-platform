@@ -5,6 +5,7 @@ from prepza_common.health import health_router
 from prepza_common.logging import RequestLogMiddleware, configure_logging
 from prepza_common.sentry import init_sentry
 from prepza_common.shutdown import close_shared
+from prepza_common.trace_prices import sync_model_prices
 
 from app.integrations.redis import get_redis
 from app.routers import jobs, schedules
@@ -21,6 +22,7 @@ async def lifespan(app: FastAPI):
     """The worker: Cloud Tasks runs jobs and Cloud Scheduler runs schedules through it."""
     app.state.pool, app.state.checkpointer = await open_checkpointer()
     app.state.graph = build_graph(app.state.checkpointer)
+    await sync_model_prices()
 
     yield
 
