@@ -10,9 +10,10 @@ from prepza_common.ai_constants import LIMIT_HIT
 from app.config.settings import settings
 from app.helpers.member_emails import digest_email
 from app.helpers.unsubscribe import address_hash
+from app.routers import webhooks as webhook_routes
 from app.services import delivery
 from app.storage import opt_outs
-from tests.integration.factories import api, push, signed
+from tests.integration.factories import api, push, receive, signed
 
 SECRET = "whsec_" + base64.b64encode(b"test-webhook-key").decode()
 INVITE_ID = "6f1c2c1e-0000-4000-8000-000000000001"
@@ -60,6 +61,17 @@ def outside(monkeypatch):
     )
 
     return calls
+
+
+@pytest.fixture
+def pushed_back(monkeypatch):
+    """Pub/Sub, for Resend's web hooks: nothing is published; a test pushes the recorded event
+    back itself (receive)."""
+
+    async def unpublished():
+        return None
+
+    monkeypatch.setattr(webhook_routes.outbox_service, "flush_quietly", unpublished)
 
 
 def post_events(run, *pushes) -> list[int]:
@@ -135,22 +147,33 @@ def bounce() -> bytes:
     return json.dumps({"type": "email.bounced", "data": {"tags": tags}}).encode()
 
 
-def test_a_signed_bounce_marks_the_invite_undelivered(run, outside):
+def test_a_signed_bounce_is_recorded_once_and_its_event_marks_the_invite_undelivered(
+    run, outside, pushed_back
+):
+    delivery = f"msg_{uuid.uuid4().hex}"
+
     async def scenario():
         async with api() as client:
-            return await client.post(
-                "/webhooks/resend", content=bounce(), headers=signed(bounce(), SECRET)
-            )
+            first = await receive(client, SECRET, bounce(), delivery)
+            # Resend sends it again: the web hook is answered, and nothing new is recorded.
+            headers = signed(bounce(), SECRET, delivery)
+            again = await client.post("/webhooks/resend", content=bounce(), headers=headers)
 
-    response = run(scenario())
+        return first, again.status_code
+
+    first, again = run(scenario())
     [request] = outside["requests"]
 
-    assert response.status_code == 204
+    assert first == (204, 204)
+    # The repeat did no work of its own: one call to companies, the event's.
+    assert again == 204
     assert str(request.url) == f"http://companies/internal/invites/{INVITE_ID}/undelivered"
     assert request.headers["Authorization"].startswith("Bearer ")
 
 
-def test_after_a_hard_bounce_no_invite_goes_to_the_address_and_it_shows_undelivered(run, outside):
+def test_after_a_hard_bounce_no_invite_goes_to_the_address_and_it_shows_undelivered(
+    run, outside, pushed_back
+):
     address = f"b{uuid.uuid4().hex[:12]}@example.com"
     tags = {"kind": "candidate_invite", "id": INVITE_ID}
     body = json.dumps(
@@ -159,9 +182,9 @@ def test_after_a_hard_bounce_no_invite_goes_to_the_address_and_it_shows_undelive
 
     async def scenario():
         async with api() as client:
-            await client.post("/webhooks/resend", content=body, headers=signed(body, SECRET))
+            return await receive(client, SECRET, body)
 
-    run(scenario())
+    assert run(scenario()) == (204, 204)
     codes = post_events(run, push("candidate.invited", {**INVITE, "email": address}))
     undelivered = f"http://companies/internal/invites/{INVITE_ID}/undelivered"
 
@@ -170,7 +193,9 @@ def test_after_a_hard_bounce_no_invite_goes_to_the_address_and_it_shows_undelive
     assert [str(request.url) for request in outside["requests"]] == [undelivered, undelivered]
 
 
-def test_a_spam_complaint_on_a_reminder_stops_only_that_invites_reminders(run, outside):
+def test_a_spam_complaint_on_a_reminder_stops_only_that_invites_reminders(
+    run, outside, pushed_back
+):
     address = f"c{uuid.uuid4().hex[:12]}@example.com"
     company = str(uuid.uuid4())
     tags = {"kind": "candidate_reminder", "id": INVITE_ID, "company": company}
@@ -178,9 +203,7 @@ def test_a_spam_complaint_on_a_reminder_stops_only_that_invites_reminders(run, o
 
     async def scenario():
         async with api() as client:
-            await client.post(
-                "/webhooks/resend", content=body, headers=signed(body.encode(), SECRET)
-            )
+            await receive(client, SECRET, body.encode())
 
         hashed = address_hash(address)
 
@@ -203,7 +226,9 @@ def test_a_webhook_with_a_wrong_signature_is_refused(run, outside):
     assert outside["requests"] == []
 
 
-def test_a_spam_complaint_on_a_sent_digest_turns_the_digest_off_in_library(run, outside):
+def test_a_spam_complaint_on_a_sent_digest_turns_the_digest_off_in_library(
+    run, outside, pushed_back
+):
     recipient = {"user_id": "ann", "email": "ann@example.com", "language": "en"}
     email = digest_email(recipient, [], "http://localhost:8090", settings.email_link_secret)
 
@@ -216,17 +241,15 @@ def test_a_spam_complaint_on_a_sent_digest_turns_the_digest_off_in_library(run, 
         body = json.dumps({"type": "email.complained", "data": {"tags": tags}}).encode()
 
         async with api() as client:
-            response = await client.post(
-                "/webhooks/resend", content=body, headers=signed(body, SECRET)
-            )
+            answers = await receive(client, SECRET, body)
 
-        return sent, response
+        return sent, answers
 
-    sent, response = run(scenario())
+    sent, answers = run(scenario())
     unsubscribe = outside["requests"][1]
 
     assert sent["from"] == settings.mail_from_updates
-    assert response.status_code == 204
+    assert answers == (204, 204)
     assert str(unsubscribe.url) == "http://library/internal/users/ann/unsubscribe"
     assert json.loads(unsubscribe.content) == {
         "settings": [

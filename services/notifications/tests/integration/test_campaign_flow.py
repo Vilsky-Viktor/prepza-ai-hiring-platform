@@ -13,10 +13,11 @@ from app.config.settings import settings
 from app.constants.campaigns import ALREADY_SENT, ONE_A_DAY
 from app.helpers.unsubscribe import address_hash
 from app.main import app
+from app.routers import webhooks as webhook_routes
 from app.services import bulk, campaigns
 from app.storage import bulk_sends, suppressed
 from app.storage import campaigns as campaigns_store
-from tests.integration.factories import api, signed
+from tests.integration.factories import api, receive
 
 MAILPIT = os.getenv("MAILPIT_URL", "http://mailpit:8025")
 SECRET = "whsec_dGVzdC13ZWJob29rLWtleQ=="
@@ -146,20 +147,24 @@ def test_a_signed_complaint_puts_the_address_on_the_suppression_list(run, monkey
     event = {"type": "email.complained", "data": {"to": [address], "tags": {"kind": "updates"}}}
     body = json.dumps(event).encode()
 
+    async def unpublished():
+        return None
+
+    # The test pushes the recorded event back itself, as Pub/Sub would (receive).
+    monkeypatch.setattr(webhook_routes.outbox_service, "flush_quietly", unpublished)
+
     async def scenario():
         async with api() as client:
-            response = await client.post(
-                "/webhooks/resend", content=body, headers=signed(body, SECRET)
-            )
+            answers = await receive(client, SECRET, body)
 
         found = await suppressed.among([address_hash(address)])
         await suppressed.remove(address_hash(address))
 
-        return response, found
+        return answers, found
 
-    response, found = run(scenario())
+    answers, found = run(scenario())
 
-    assert response.status_code == 204
+    assert answers == (204, 204)
     assert found == {address_hash(address)}
 
 
