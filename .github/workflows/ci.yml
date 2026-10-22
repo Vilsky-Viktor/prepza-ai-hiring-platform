@@ -125,7 +125,7 @@ jobs:
           version: "0.12.24"
           working-directory: ${{ matrix.path }}
       - if: env.CHANGED == 'true'
-        run: uv sync --frozen
+        run: uv sync --locked
       - if: env.CHANGED == 'true'
         run: uv run pytest -q
 

@@ -27,7 +27,7 @@ Terraform passes none of generation's settings to Google Cloud; production runs 
 
 ## Migrations
 
-- Run each API's migrations once before it starts: `uv run --no-sync alembic upgrade head`.
+- Run each API's migrations once before it starts: `alembic upgrade head` (production images have no `uv`).
 - Each of the 9 API services has them (library, generation, rounds, companies, billing, notifications, ats, api, assistant); the generation worker and the bell stream share generation's and notifications' databases. In Google Cloud, each runs as a `<service>-migrate` job, after the `db-roles` job that gives each service its own database user.
 - Migrations only go forward, so keep them additive for rollbacks to stay safe.
 - **Waiting to be dropped:** a table a migration replaced stays until no version that reads it can be rolled back to; then a later migration drops it.
@@ -79,8 +79,8 @@ Run Actions → Deploy → Run workflow with an earlier tag. It redeploys that v
 
 - Workflow actions are pinned by commit, and CI's `uv` by version.
 - Dockerfile base images, the `uv` image the services copy, and the local and CI stack's images (`compose/`) are pinned by version and digest; the Auth emulator's `firebase-tools` is pinned by version and updated by hand (Dependabot doesn't see it).
-- The frontend's and the services' packages are locked (`pnpm-lock.yaml`, each `uv.lock`).
+- The frontend's and the services' packages are locked (`pnpm-lock.yaml`, each `uv.lock`) and installed only from the lock: CI and the images use `uv sync --locked`, which fails when a lock no longer matches its `pyproject.toml`, and `pnpm install --frozen-lockfile`.
 - Dependabot ([`.github/dependabot.yml`](../.github/dependabot.yml)) opens weekly pull requests to update all of them, grouped, with minor and patch versions only; a major version is planned by hand.
 - The dependency audit ([`.github/workflows/audit.yml`](../.github/workflows/audit.yml)) fails when a package the frontend or a service ships has a known high-severity vulnerability (`pnpm audit`, `pip-audit`), on every push and every Monday.
 - Each production image CI builds is scanned by Trivy (pinned by commit and version, settings in [`trivy.yaml`](../trivy.yaml)): a high or critical vulnerability with a fix in its OS packages fails the run. Images of unchanged parts aren't built, so aren't scanned again until they change.
-- The containers run their commands (`uvicorn`, `alembic`, `python`) directly from the service's environment, not through `uv`, so the server gets the container's signals.
+- The containers run their commands (`uvicorn`, `alembic`, `python`) directly from the service's environment, so the server gets the container's signals. `uv` installs the packages in a build stage and stays out of the production image, which gets only Python, the environment and the code.
