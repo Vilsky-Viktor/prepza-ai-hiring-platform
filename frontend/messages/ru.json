@@ -73,7 +73,8 @@
     "guides": "Руководства",
     "apiDocs": "Документация для разработчиков",
     "news": "Новости",
-    "accessibility": "Доступность"
+    "accessibility": "Доступность",
+    "language": "Язык"
   },
   "signIn": {
     "title": "Вход",

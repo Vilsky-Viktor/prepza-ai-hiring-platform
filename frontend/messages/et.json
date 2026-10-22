@@ -73,7 +73,8 @@
     "guides": "Juhendid",
     "apiDocs": "Arendajate dokumentatsioon",
     "news": "Uudised",
-    "accessibility": "Ligipääsetavus"
+    "accessibility": "Ligipääsetavus",
+    "language": "Keel"
   },
   "signIn": {
     "title": "Logi sisse",

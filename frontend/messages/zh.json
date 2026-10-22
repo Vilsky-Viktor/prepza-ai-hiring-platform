@@ -73,7 +73,8 @@
     "guides": "指南",
     "apiDocs": "开发者文档",
     "news": "新闻",
-    "accessibility": "无障碍"
+    "accessibility": "无障碍",
+    "language": "语言"
   },
   "signIn": {
     "title": "登录",

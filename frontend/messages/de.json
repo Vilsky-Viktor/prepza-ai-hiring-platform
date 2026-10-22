@@ -73,7 +73,8 @@
     "guides": "Ratgeber",
     "apiDocs": "Entwicklerdokumentation",
     "news": "Neuigkeiten",
-    "accessibility": "Barrierefreiheit"
+    "accessibility": "Barrierefreiheit",
+    "language": "Sprache"
   },
   "signIn": {
     "title": "Anmelden",

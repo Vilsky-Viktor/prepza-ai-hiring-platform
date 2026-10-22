@@ -15,7 +15,8 @@ import {
 /** The site's select pill (as components/pill-select.tsx looks) opening the site's menu, not the
  * browser's: one choice among `options`, each with an optional line under it. Shows
  * `placeholder` until something is chosen. Labels are lowercase like the site's; `keepCase` keeps
- * a name's capitals (an ATS job, an interview's title); `fontFamily` draws one in a font. */
+ * a name's capitals (an ATS job, an interview's title); `fontFamily` draws one in a font; `href`
+ * makes one a plain link. */
 export function MenuPill({
   ariaLabel,
   value,
@@ -34,6 +35,8 @@ export function MenuPill({
     keepCase?: boolean
     // Draws the label in this font: a font's name in itself.
     fontFamily?: string
+    // A link instead of a choice: the option opens this address (another language's page).
+    href?: string
     // Shown in the pill instead of the label once chosen.
     display?: ReactNode
   }[]
@@ -75,6 +78,7 @@ export function MenuPill({
               <DropdownMenuRadioItem
                 key={option.value}
                 value={option.value}
+                render={option.href ? <a href={option.href} /> : undefined}
                 className="items-start px-3 py-2"
               >
                 <span className="space-y-0.5">

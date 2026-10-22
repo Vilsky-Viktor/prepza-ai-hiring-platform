@@ -73,7 +73,8 @@
     "guides": "Guide",
     "apiDocs": "Documentazione per sviluppatori",
     "news": "Novità",
-    "accessibility": "Accessibilità"
+    "accessibility": "Accessibilità",
+    "language": "Lingua"
   },
   "signIn": {
     "title": "Accedi",

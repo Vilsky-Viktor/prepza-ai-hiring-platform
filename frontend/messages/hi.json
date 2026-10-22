@@ -73,7 +73,8 @@
     "guides": "गाइड",
     "apiDocs": "डेवलपर डॉक्स",
     "news": "समाचार",
-    "accessibility": "सुगम्यता"
+    "accessibility": "सुगम्यता",
+    "language": "भाषा"
   },
   "signIn": {
     "title": "साइन इन करें",

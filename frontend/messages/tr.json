@@ -73,7 +73,8 @@
     "guides": "Rehberler",
     "apiDocs": "Geliştirici belgeleri",
     "news": "Haberler",
-    "accessibility": "Erişilebilirlik"
+    "accessibility": "Erişilebilirlik",
+    "language": "Dil"
   },
   "signIn": {
     "title": "Giriş yap",

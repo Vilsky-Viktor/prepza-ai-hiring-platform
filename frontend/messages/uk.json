@@ -73,7 +73,8 @@
     "guides": "Посібники",
     "apiDocs": "Документація для розробників",
     "news": "Новини",
-    "accessibility": "Доступність"
+    "accessibility": "Доступність",
+    "language": "Мова"
   },
   "signIn": {
     "title": "Вхід",

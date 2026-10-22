@@ -7,6 +7,7 @@ import {
   YouTubeIcon,
 } from "@/components/brand-icons"
 import { AskAgentButton } from "@/components/landing/ask-agent-button"
+import { LanguageSwitch } from "@/components/language-switch"
 import { LocalizedLink } from "@/components/localized-link"
 import { FOOTER_COLUMNS } from "@/constants/navigation"
 import { OPERATOR } from "@/constants/operator"
@@ -39,6 +40,7 @@ export async function SiteFooter() {
             </span>
           </div>
           <AskAgentButton className="h-10 px-5 text-sm max-sm:h-12 max-sm:px-6 max-sm:text-base" />
+          <LanguageSwitch />
         </div>
         {/* Lowercase with the blue dot, like the header's menu (globals.css, by data-slot). */}
         <nav

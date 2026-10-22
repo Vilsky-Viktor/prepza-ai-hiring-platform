@@ -73,7 +73,8 @@
     "guides": "أدلة",
     "apiDocs": "توثيق المطورين",
     "news": "الأخبار",
-    "accessibility": "إمكانية الوصول"
+    "accessibility": "إمكانية الوصول",
+    "language": "اللغة"
   },
   "signIn": {
     "title": "تسجيل الدخول",

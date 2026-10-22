@@ -73,7 +73,8 @@
     "guides": "Panduan",
     "apiDocs": "Dokumentasi pengembang",
     "news": "Berita",
-    "accessibility": "Aksesibilitas"
+    "accessibility": "Aksesibilitas",
+    "language": "Bahasa"
   },
   "signIn": {
     "title": "Masuk",

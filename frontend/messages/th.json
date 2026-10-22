@@ -73,7 +73,8 @@
     "guides": "คู่มือ",
     "apiDocs": "เอกสารสำหรับนักพัฒนา",
     "news": "ข่าวสาร",
-    "accessibility": "การเข้าถึงได้"
+    "accessibility": "การเข้าถึงได้",
+    "language": "ภาษา"
   },
   "signIn": {
     "title": "ลงชื่อเข้าใช้",

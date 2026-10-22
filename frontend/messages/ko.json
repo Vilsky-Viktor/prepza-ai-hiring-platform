@@ -73,7 +73,8 @@
     "guides": "가이드",
     "apiDocs": "개발자 문서",
     "news": "소식",
-    "accessibility": "접근성"
+    "accessibility": "접근성",
+    "language": "언어"
   },
   "signIn": {
     "title": "로그인",

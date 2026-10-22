@@ -73,7 +73,8 @@
     "guides": "ガイド",
     "apiDocs": "開発者向けドキュメント",
     "news": "お知らせ",
-    "accessibility": "アクセシビリティ"
+    "accessibility": "アクセシビリティ",
+    "language": "言語"
   },
   "signIn": {
     "title": "サインイン",
