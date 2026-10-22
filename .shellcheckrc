@@ -1,0 +1,4 @@
+# ShellCheck's settings for every script (CI's workflows job): besides its defaults, [[ ]] in bash
+# and quotes around every variable (.claude/rules/infra.md).
+enable=require-double-brackets
+enable=quote-safe-variables
