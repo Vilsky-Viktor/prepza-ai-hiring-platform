@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next"
 
+import { PUBLIC_TIMEOUT_MS } from "@/constants/api"
 import { CATEGORY_PAGES } from "@/constants/content"
 import { DEFAULT_LOCALE, LOCALES } from "@/constants/i18n"
 import { LOCALIZED_PATHS, PUBLIC_PATHS } from "@/constants/seo"
-import { contentLanguages, contentPages } from "@/lib/content"
+import { contentLanguages, contentPage, contentPages } from "@/lib/content"
 import {
   languageAlternates,
   localizedPath,
@@ -55,7 +56,7 @@ async function templates(): Promise<Template[]> {
 async function latestNews(): Promise<string | undefined> {
   const response = await fetch(
     `${process.env.API_URL}/api/library/news?offset=0&limit=1`,
-    { cache: "no-store" }
+    { cache: "no-store", signal: AbortSignal.timeout(PUBLIC_TIMEOUT_MS) }
   ).catch(() => null)
 
   if (!response?.ok) {
@@ -76,7 +77,7 @@ async function legalUpdated(): Promise<Record<string, string | undefined>> {
     LEGAL_PATHS.map(async (path) => {
       const response = await fetch(
         `${process.env.API_URL}/api/rounds/help/legal${path}`,
-        { cache: "no-store" }
+        { cache: "no-store", signal: AbortSignal.timeout(PUBLIC_TIMEOUT_MS) }
       ).catch(() => null)
 
       if (!response?.ok) {
@@ -101,7 +102,7 @@ const ARTICLES = [
 ] as const
 
 /** Every article in each language it's written in, each naming its translations, with the
- * date it was last updated. */
+ * date that language's text was last updated. */
 async function articles(site: string) {
   const absolute = (links: Record<string, string>) =>
     Object.fromEntries(
@@ -115,10 +116,17 @@ async function articles(site: string) {
         pages.map(async (page) => {
           const path = `${base}/${page.slug}`
           const languages = await contentLanguages(folder, page.slug)
+          // Each language's own date: a translation may be updated apart from the English.
+          const dates = await Promise.all(
+            languages.map(
+              async (locale) =>
+                (await contentPage(folder, page.slug, locale))?.updated
+            )
+          )
 
-          return languages.map((locale) => ({
+          return languages.map((locale, index) => ({
             url: `${site}${localizedPath(locale, path)}`,
-            lastModified: page.updated || undefined,
+            lastModified: dates[index] || undefined,
             alternates: {
               languages: absolute(languageAlternates(path, languages)),
             },

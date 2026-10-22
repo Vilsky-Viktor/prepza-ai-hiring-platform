@@ -195,7 +195,7 @@ Every public page has its title, description, canonical address and link-preview
 
 **Structured data:** organization, product and price range, founder, articles (with their picture and language), the developer docs as a technical article in English, breadcrumbs (role and practice pages, the API docs), FAQ (left out when there are no questions).
 
-**Sitemap:** every language version, article, and the pages of each indexable template, dated by the template's last change. The news page is dated by its newest post, and the privacy policy, terms and DPA by their last update.
+**Sitemap:** every language version, article, and the pages of each indexable template, dated by the template's last change; each language of an article by its own file's `updated`. Its calls to the API give up after 5 seconds. The news page is dated by its newest post, and the privacy policy, terms and DPA by their last update.
 
 **Indexing:**
 
