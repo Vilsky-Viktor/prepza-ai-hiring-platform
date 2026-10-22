@@ -26,24 +26,28 @@ services:
       timeout: 3s
       retries: 10
 
-  # Google's Pub/Sub emulator: events between services, pushed like in Google Cloud.
+  # Google's Pub/Sub emulator: events between services, pushed like in Google Cloud. It keeps
+  # nothing over a restart, so each start creates the topic and push subscriptions again; it's
+  # healthy once they exist, and the container stops when the emulator does.
   pubsub:
     restart: unless-stopped
     image: google/cloud-sdk:589.0.0-emulators@sha256:c90e4a90a79d363c2aea51824f00bd6c3932c74927a4ab120f33775cbb48a762
-    command: gcloud beta emulators pubsub start --host-port=0.0.0.0:8085 --project=${FIREBASE_PROJECT_ID}
-
-  # Creates the topic and push subscriptions before the services start.
-  pubsub-setup:
-    restart: "no"
-    image: curlimages/curl:8.17.0@sha256:935d9100e9ba842cdb060de42472c7ca90cfe9a7c96e4dacb55e79e560b3ff40
-    entrypoint: ["sh", "/pubsub-setup.sh"]
+    command:
+      - sh
+      - -c
+      - >-
+        gcloud beta emulators pubsub start --host-port=0.0.0.0:8085 --project=${FIREBASE_PROJECT_ID} &
+        sh /pubsub-setup.sh && wait
     volumes:
       - ./scripts/local/pubsub-setup.sh:/pubsub-setup.sh:ro
     environment:
-      PUBSUB_EMULATOR_HOST: pubsub:8085
+      PUBSUB_EMULATOR_HOST: localhost:8085
       GOOGLE_CLOUD_PROJECT: ${FIREBASE_PROJECT_ID}
-    depends_on:
-      - pubsub
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8085/v1/projects/${FIREBASE_PROJECT_ID}/subscriptions/billing-events"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
 
   mailpit:
     restart: unless-stopped

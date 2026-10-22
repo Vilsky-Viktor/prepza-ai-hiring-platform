@@ -1,6 +1,7 @@
 #!/bin/sh
 # Creates the local Pub/Sub topic and its push subscriptions in the emulator, as Terraform does in
-# Google Cloud. Safe to repeat: existing ones answer 409 and are left as they are. Funnel events
+# Google Cloud. The emulator's container runs it at every start, as a restart empties the emulator.
+# Safe to repeat: existing ones answer 409 and are left as they are. Funnel events
 # aren't pushed; locally nothing stores them (in Google Cloud they go to BigQuery).
 set -eu
 

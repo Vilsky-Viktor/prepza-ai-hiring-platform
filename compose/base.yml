@@ -60,5 +60,5 @@ services:
       postgres:
         condition: service_healthy
       # Every API publishes events, so the topic must exist before any of them starts.
-      pubsub-setup:
-        condition: service_completed_successfully
+      pubsub:
+        condition: service_healthy
