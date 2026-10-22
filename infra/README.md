@@ -80,6 +80,7 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
    ```bash
    printf '%s' "$OPENAI_API_KEY" | gcloud secrets versions add openai-api-key --data-file=-
    printf '%s' "rediss://...upstash.io:6379" | gcloud secrets versions add redis-url --data-file=-
+   # A Resend key with full access: a sending-only one can't take an address off Resend's suppression list.
    printf '%s' "$RESEND_API_KEY" | gcloud secrets versions add resend-api-key --data-file=-
    printf '%s' "$RESEND_WEBHOOK_SECRET" | gcloud secrets versions add resend-webhook-secret --data-file=-
    # Resend's daily quota isn't a secret: set it in the admin zone's Controls (RESEND_DAILY_LIMIT, default 100,

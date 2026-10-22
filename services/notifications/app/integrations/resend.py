@@ -1,4 +1,5 @@
 import logging
+from urllib.parse import quote
 
 from fastapi import status
 from prepza_common import http
@@ -12,6 +13,7 @@ from app.constants.email import (
     RESEND_IN_PROGRESS,
     RESEND_QUOTA_ERRORS,
     RESEND_REFUSED,
+    RESEND_SUPPRESSION_URL,
     SEND_TIMEOUT_S,
 )
 from app.models.email import Email
@@ -96,3 +98,16 @@ async def send(email: Email, idempotency_key: str) -> None:
 
     if response.is_error:
         raise RuntimeError(f"Resend refused the email ({response.status_code}): {response.text}")
+
+
+async def unsuppress(address: str) -> None:
+    """Takes the address off Resend's own suppression list, so Resend sends to it again; one
+    that isn't on it (404) is fine. Raises on any other failure."""
+    response = await http.get_client().delete(
+        RESEND_SUPPRESSION_URL.format(address=quote(address.strip().lower(), safe="@")),
+        headers=bearer(settings.resend_api_key),
+        timeout=SEND_TIMEOUT_S,
+    )
+
+    if response.is_error and response.status_code != status.HTTP_404_NOT_FOUND:
+        raise RuntimeError(f"Resend kept the address on its list ({response.status_code})")

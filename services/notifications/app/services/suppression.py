@@ -5,8 +5,15 @@ import logging
 import uuid
 from datetime import UTC, datetime, timedelta
 
+from fastapi import HTTPException, status
+
+from app.config.settings import settings
 from app.constants.bulk import SEND_TAG, SuppressionReason
-from app.constants.suppression import PERMANENT_BOUNCE, SOFT_BOUNCE_DAYS, SOFT_BOUNCES
+from app.constants.suppression import (
+    PERMANENT_BOUNCE,
+    SOFT_BOUNCE_DAYS,
+    SOFT_BOUNCES,
+)
 from app.constants.webhooks import (
     BOUNCED_EVENT,
     COMPLAINED_EVENT,
@@ -14,6 +21,7 @@ from app.constants.webhooks import (
     SUPPRESSED_EVENT,
 )
 from app.helpers.unsubscribe import address_hash
+from app.integrations import resend
 from app.storage import bulk_recipients, soft_bounces, suppressed
 
 logger = logging.getLogger(__name__)
@@ -83,7 +91,18 @@ async def lookup(email: str) -> dict | None:
 
 
 async def remove(email: str, superadmin_id: str) -> None:
-    """Emails reach the address again; logged with its hash, never the address."""
+    """Emails reach the address again: taken off Resend's own list first (when Resend sends),
+    then off prepza's, so a failure leaves it on both and the superadmin tries again (502).
+    Logged with its hash, never the address."""
     address = address_hash(email)
+
+    if settings.resend_api_key:
+        try:
+            await resend.unsuppress(email)
+        except Exception:
+            logger.warning("Resend kept %s on its suppression list", address, exc_info=True)
+
+            raise HTTPException(status.HTTP_502_BAD_GATEWAY) from None
+
     await suppressed.remove(address)
     logger.warning("Superadmin %s removed %s from the suppression list", superadmin_id, address)

@@ -1,9 +1,12 @@
 import uuid
 
+import httpx
 import pytest
+from prepza_common import http
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
+from app.config.settings import settings
 from app.constants.bulk import SuppressionReason
 from app.helpers.unsubscribe import address_hash
 from app.main import app
@@ -61,3 +64,36 @@ def test_every_reason_is_kept(run, reason):
         return await suppressed.get(address)
 
     assert run(scenario()).reason == reason
+
+
+@pytest.mark.parametrize(("answer", "status_code", "left"), [(200, 200, False), (401, 502, True)])
+def test_taking_an_address_off_takes_it_off_resends_list_first(
+    run, monkeypatch, answer, status_code, left
+):
+    address = f"s{uuid.uuid4().hex[:12]}@example.com"
+    asked = []
+
+    def resend(request):
+        asked.append((request.method, request.url.path))
+
+        return httpx.Response(answer, json={})
+
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setattr(settings, "resend_api_key", "re_test")
+    monkeypatch.setattr(
+        http, "get_client", lambda: httpx.AsyncClient(transport=httpx.MockTransport(resend))
+    )
+
+    async def scenario():
+        await suppressed.add(address_hash(address), SuppressionReason.BOUNCED)
+
+        async with api() as client:
+            as_user("sam", "sam@prepza.dev")
+            response = await client.post("/superadmin/suppressed/remove", json={"email": address})
+
+        return response.status_code, await suppressed.among([address_hash(address)])
+
+    code, found = run(scenario())
+
+    assert asked == [("DELETE", f"/suppressions/{address}")]
+    assert (code, bool(found)) == (status_code, left)

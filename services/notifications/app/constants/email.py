@@ -1,4 +1,7 @@
 RESEND_EMAILS_URL = "https://api.resend.com/emails"
+# Resend's own suppression list, one address (or its id) at a time; taking one off needs a key
+# with full access, not a sending-only one.
+RESEND_SUPPRESSION_URL = "https://api.resend.com/suppressions/{address}"
 SEND_TIMEOUT_S = 10
 # Resend's answers that no retry can change: a malformed request or an address it won't send to.
 # Rate limits (resend.ResendBusy), outages and a wrong API key are retried instead.
