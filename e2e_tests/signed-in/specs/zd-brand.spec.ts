@@ -7,7 +7,8 @@ import { ownerEmail, throwawayEmail } from "../helpers/users"
 
 // What the brand tab saves, as the company's API returns it.
 type Saved = {
-  brand_colors: { light: { background: string } | null; dark: unknown }
+  // None until colors are saved.
+  brand_colors: { light: { background: string } | null; dark: unknown } | null
   brand_style: { font: string; radius: number; button_radius: number }
 }
 
@@ -64,7 +65,7 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   await field("page", 1).fill("#202428")
   await save.click()
   await expect(owner.getByText("The page's text is too hard to read on its background.")).toBeVisible()
-  expect((await saved()).brand_colors.light).toBeNull()
+  expect((await saved()).brand_colors?.light ?? null).toBeNull()
   await shot(owner, "unreadable")
   await field("page", 1).fill("#f4f1ea")
   await save.click()
@@ -72,7 +73,7 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
     .poll(async () => {
       const current = await saved()
 
-      return [current.brand_colors.light?.background, current.brand_style]
+      return [current.brand_colors?.light?.background, current.brand_style]
     })
     .toEqual(["#101418", { font: "inter", radius: 4, button_radius: 8 }])
   // Saved colors of its own: the way back to prepza's shows, reset waits for a change.
@@ -85,8 +86,12 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   // Back to prepza's defaults and saved again: colors, font and rounding.
   await resetToPrepza.click()
   await expect
-    .poll(async () => (await saved()).brand_colors)
-    .toEqual({ light: null, dark: null })
+    .poll(async () => {
+      const colors = (await saved()).brand_colors
+
+      return [colors?.light ?? null, colors?.dark ?? null]
+    })
+    .toEqual([null, null])
   await expect(resetToPrepza).toHaveCount(0)
   await fillDark()
   await save.click()
