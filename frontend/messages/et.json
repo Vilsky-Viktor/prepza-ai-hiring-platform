@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "loodud",
-          "lines": "Tehisaru kirjutab küsimused."
+          "lines": "Tehisaru kirjutab iga küsimuse, selle õige vastuse ja veenvad valed vastused."
         },
         "checked": {
           "labels": "kontrollitud",

@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "已生成",
-          "lines": "AI 编写题目。"
+          "lines": "AI 编写每道题目，以及正确答案和具有迷惑性的错误选项。"
         },
         "checked": {
           "labels": "已检查",

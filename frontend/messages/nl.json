@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "gegenereerd",
-          "lines": "AI schrijft de vragen."
+          "lines": "AI schrijft elke vraag, het juiste antwoord en overtuigende foute antwoorden."
         },
         "checked": {
           "labels": "gecontroleerd",

@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "ginawa",
-          "lines": "Isinusulat ng AI ang mga tanong."
+          "lines": "Isinusulat ng AI ang bawat tanong, ang tamang sagot nito at mga kapani-paniwalang maling sagot."
         },
         "checked": {
           "labels": "sinuri",

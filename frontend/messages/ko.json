@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "생성됨",
-          "lines": "AI가 문제를 작성합니다."
+          "lines": "AI가 각 문제와 정답, 그럴듯한 오답을 작성합니다."
         },
         "checked": {
           "labels": "검증됨",

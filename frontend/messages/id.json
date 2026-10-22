@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "dibuat",
-          "lines": "AI menulis soal-soalnya."
+          "lines": "AI menulis setiap soal, jawaban benarnya, dan jawaban salah yang meyakinkan."
         },
         "checked": {
           "labels": "diperiksa",

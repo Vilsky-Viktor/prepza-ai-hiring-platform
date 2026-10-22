@@ -66,7 +66,7 @@ A change to the candidate's pages updates `internal_docs/compliance/accessibilit
   sets `animation-iteration-count: 1` so infinite loops stop too. Nothing moves on its own for
   more than 5 seconds next to other content (a badge carries a state, not a looping animation).
   User-decided exception (2026-10-22): the landing page's moving pictures, the hero's play
-  button's pulsing ring, the "ask Mira" button's circling arc and sparkles, and the bell's
+  button's pulsing ring, the "ask Mira" button's circling arc and sparkles, the quality loop's brain, and the bell's
   swing while anything is unread keep looping with no pause button; reduced motion still stops them. Don't re-raise it in audits.
 - `<html lang dir>` per locale; text in another language (a language's own name in a picker, an
   interview's questions) carries its own `lang`; direction-neutral classes (`.claude/rules/nextjs.md`).

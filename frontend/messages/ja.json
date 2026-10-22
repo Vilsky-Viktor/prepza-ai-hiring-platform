@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "生成済み",
-          "lines": "AI が問題を作成します。"
+          "lines": "AI が各問題と、その正解、もっともらしい誤答を作成します。"
         },
         "checked": {
           "labels": "確認済み",

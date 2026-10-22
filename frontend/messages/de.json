@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "generiert",
-          "lines": "KI schreibt die Fragen."
+          "lines": "KI schreibt jede Frage, ihre richtige Antwort und überzeugende falsche."
         },
         "checked": {
           "labels": "geprüft",

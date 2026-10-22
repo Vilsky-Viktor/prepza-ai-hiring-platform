@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "oluşturuldu",
-          "lines": "Yapay zekâ soruları yazar."
+          "lines": "Yapay zekâ her soruyu, doğru cevabını ve ikna edici yanlış cevapları yazar."
         },
         "checked": {
           "labels": "denetlendi",

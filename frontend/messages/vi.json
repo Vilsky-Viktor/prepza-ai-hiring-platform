@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "đã tạo",
-          "lines": "AI viết câu hỏi."
+          "lines": "AI viết từng câu hỏi, đáp án đúng và các đáp án sai thuyết phục."
         },
         "checked": {
           "labels": "đã kiểm tra",

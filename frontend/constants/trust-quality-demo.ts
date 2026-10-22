@@ -12,17 +12,10 @@ export const QUALITY_STEPS = [
 
 export type QualityStep = (typeof QUALITY_STEPS)[number]
 
-// Where each step sits on the ring, in a three-column grid on phones and a five-column one from
-// laptops up: the first at the top, then clockwise. From laptops up the side steps overlap the
-// rows above and below, so the top step sits closer to the bottom ones,
-// and the two bottom steps move toward each other.
-export const QUALITY_PLACES: Record<QualityStep, string> = {
-  generated: "col-start-2 row-start-1 lg:col-start-3",
-  checked: "col-start-3 row-start-2 lg:col-start-5 lg:-my-10",
-  answered: "col-start-3 row-start-3 lg:relative lg:-left-14 lg:col-start-4",
-  flagged: "col-start-1 row-start-3 lg:relative lg:left-14 lg:col-start-2",
-  rewritten: "col-start-1 row-start-2 lg:-my-10",
-}
+// The ellipse the steps sit on, centred on the stage: its radii, in percent of the stage's width
+// and height. The steps sit evenly round it, the first at the top, then clockwise, so left and
+// right mirror each other.
+export const QUALITY_ELLIPSE = { x: 36, y: 34 }
 
 // How long the question rests on a step before it moves on, in milliseconds.
 export const QUALITY_PAUSE_MS = 900

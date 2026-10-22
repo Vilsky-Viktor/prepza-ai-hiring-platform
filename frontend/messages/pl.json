@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "wygenerowane",
-          "lines": "AI pisze pytania."
+          "lines": "AI pisze każde pytanie, poprawną odpowiedź i przekonujące błędne odpowiedzi."
         },
         "checked": {
           "labels": "sprawdzone",

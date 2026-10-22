@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "générée",
-          "lines": "L'IA rédige les questions."
+          "lines": "L'IA rédige chaque question, sa bonne réponse et des mauvaises réponses crédibles."
         },
         "checked": {
           "labels": "vérifiée",

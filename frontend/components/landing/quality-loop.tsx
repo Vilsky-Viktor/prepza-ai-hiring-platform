@@ -2,6 +2,7 @@
 
 import { cn } from "cn"
 import {
+  BrainIcon,
   ShieldQuestionMarkIcon,
   FlagIcon,
   ListChecksIcon,
@@ -9,21 +10,20 @@ import {
   ScanSearchIcon,
   SparklesIcon,
 } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 
-import { SOURCE_CARD } from "@/components/landing/demo-panel"
 import { useStill } from "@/hooks/use-still"
 import { Wire, wireLength } from "@/components/landing/wire"
 import { INVITE_SPEED } from "@/constants/invite-demo"
 import {
+  QUALITY_ELLIPSE,
   QUALITY_PAUSE_MS,
-  QUALITY_PLACES,
   QUALITY_STEPS,
   type QualityStep,
   QUESTION_SIZE,
 } from "@/constants/trust-quality-demo"
 import { ON_SCREEN, useDemoSteps } from "@/hooks/use-demo-steps"
-import { loopWires } from "@/lib/loop-wires"
+import { ellipsePoints, ellipseWires } from "@/lib/ellipse-wires"
 
 const ICONS = {
   generated: SparklesIcon,
@@ -33,9 +33,22 @@ const ICONS = {
   rewritten: PenLineIcon,
 }
 
-/** How a question gets better: written, checked, answered, flagged and rewritten, on a ring of
- * steps wired one to the next, the last back to the first. While on screen a question runs
- * round it, resting on each step, which lights up; with reduced motion, the ring alone. */
+// A card's padding and border from laptops up, top and bottom together, in pixels (p-5, border).
+const CARD_PADDING = 42
+// The net's mesh, in pixels.
+const NET_CELL = 22
+
+// Each step's centre on the ellipse, in percent of the stage.
+const PLACES = ellipsePoints(
+  QUALITY_STEPS.length,
+  QUALITY_ELLIPSE.x,
+  QUALITY_ELLIPSE.y
+)
+
+/** How a question gets better: written, checked, answered, flagged and rewritten, five cards of
+ * one size spaced evenly round an ellipse, wired one to the next along it, the last back to the
+ * first. While on screen a question runs round it, resting on each step, which lights up; with
+ * reduced motion, the ring alone. Right to left, the ring mirrors. */
 export function QualityLoop({
   labels,
   lines,
@@ -45,40 +58,53 @@ export function QualityLoop({
 }) {
   const { ref, index } = useDemoSteps<HTMLDivElement>(ON_SCREEN)
   const playing = ON_SCREEN[index].name === "playing"
-  const cards = useRef<Partial<Record<QualityStep, HTMLElement>>>({})
+  const contents = useRef<HTMLElement[]>([])
+  // The net pattern's id, letters and digits only, for an SVG url().
+  const net = `net-${useId().replace(/[^a-zA-Z0-9]/g, "")}`
   const [wires, setWires] = useState<string[]>([])
+  // The stage's size, in pixels, for the net inside the ellipse.
+  const [size, setSize] = useState<{ width: number; height: number } | null>(
+    null
+  )
   // The step the question is on, and how many times each wire has sent it on.
   const [lit, setLit] = useState<number | null>(null)
   const still = useStill()
   const [fired, setFired] = useState<number[]>(QUALITY_STEPS.map(() => 0))
 
-  // The wires through the cards' middles, again whenever one of them changes size.
+  // The ellipse's arcs through the cards' centres and the cards' one height, the tallest card's
+  // content and its padding, again whenever the stage or a card's content changes size.
   useEffect(() => {
     const stage = ref.current
-    const elements = cards.current
 
     if (!stage) {
       return
     }
 
     function draw() {
+      const { offsetWidth: width, offsetHeight: height } = stage!
+      const tallest = Math.max(
+        ...contents.current.map((content) => content.offsetHeight)
+      )
+      stage!.style.setProperty("--card-h", `${tallest + CARD_PADDING}px`)
+      setSize({ width, height })
+      const mirrored = getComputedStyle(stage!).direction === "rtl"
+      const points = PLACES.map(({ x, y }) => ({
+        x: ((mirrored ? 100 - x : x) * width) / 100,
+        y: (y * height) / 100,
+      }))
       setWires(
-        loopWires(
-          QUALITY_STEPS.map((key) => {
-            const card = elements[key]!
-
-            return {
-              x: card.offsetLeft + card.offsetWidth / 2,
-              y: card.offsetTop + card.offsetHeight / 2,
-            }
-          })
+        ellipseWires(
+          points,
+          { x: width / 2, y: height / 2 },
+          (QUALITY_ELLIPSE.x * width) / 100,
+          (QUALITY_ELLIPSE.y * height) / 100
         )
       )
     }
 
     const observer = new ResizeObserver(draw)
 
-    for (const element of [stage, ...Object.values(elements)]) {
+    for (const element of [stage, ...contents.current]) {
       observer.observe(element)
     }
 
@@ -119,9 +145,35 @@ export function QualityLoop({
     <div
       ref={ref}
       aria-hidden
-      className="relative mx-auto grid w-full max-w-md grid-cols-3 gap-x-3 gap-y-12 lg:max-w-4xl lg:grid-cols-5 lg:gap-x-4 lg:gap-y-6"
+      className="relative mx-auto h-[26rem] w-full max-w-md lg:h-[44rem] lg:max-w-6xl"
     >
       <svg className="pointer-events-none absolute inset-0 size-full overflow-visible text-ring">
+        {/* The net: a fine diamond mesh in the primary colour, inside the ellipse. */}
+        <defs>
+          <pattern
+            id={net}
+            width={NET_CELL}
+            height={NET_CELL}
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(45)"
+          >
+            <path
+              d={`M 0 0 H ${NET_CELL} M 0 0 V ${NET_CELL}`}
+              fill="none"
+              strokeWidth={1}
+              className="stroke-primary/15 dark:stroke-primary/25"
+            />
+          </pattern>
+        </defs>
+        {size && (
+          <ellipse
+            cx={size.width / 2}
+            cy={size.height / 2}
+            rx={(QUALITY_ELLIPSE.x * size.width) / 100}
+            ry={(QUALITY_ELLIPSE.y * size.height) / 100}
+            fill={`url(#${net})`}
+          />
+        )}
         {wires.map((d, at) => (
           <Wire
             key={at}
@@ -129,31 +181,57 @@ export function QualityLoop({
             fired={fired[at]}
             traveller={[ShieldQuestionMarkIcon]}
             size={QUESTION_SIZE}
+            thickness={1.5}
             speed={INVITE_SPEED}
           />
         ))}
       </svg>
+      {/* The brain at the ellipse's centre, a ring pulsing out of it. */}
+      <span className="absolute top-1/2 left-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-primary lg:size-36">
+        <span
+          data-testid="brain-pulse"
+          className="absolute inset-2 animate-ping rounded-full border-2 border-primary/40 [animation-duration:2.5s] motion-reduce:hidden"
+        />
+        <BrainIcon className="size-16 lg:size-24" strokeWidth={1.5} />
+      </span>
       {QUALITY_STEPS.map((key, at) => {
         const Icon = ICONS[key]
 
         return (
           <div
             key={key}
-            ref={(element) => {
-              cards.current[key] = element ?? undefined
-            }}
+            data-testid="quality-step"
             data-lit={lit === at || undefined}
+            style={
+              {
+                "--x": `${PLACES[at].x}%`,
+                "--y": `${PLACES[at].y}%`,
+              } as React.CSSProperties
+            }
             className={cn(
-              SOURCE_CARD,
-              QUALITY_PLACES[key],
-              "transition-shadow duration-300 lg:flex-col lg:gap-1 lg:py-4 lg:whitespace-normal",
+              "absolute start-(--x) top-(--y) z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 overflow-hidden rounded-2xl border bg-background p-1.5 text-center lowercase transition-shadow duration-300 lg:h-(--card-h) lg:w-60 lg:justify-start lg:p-5 rtl:translate-x-1/2",
               lit === at && "ring-2 ring-primary"
             )}
           >
-            <Icon className="size-6 shrink-0 text-primary" />
-            <span>{labels[key]}</span>
-            <span className="hidden text-xs leading-snug font-normal text-muted-foreground normal-case lg:block">
-              {lines[key]}
+            <span
+              ref={(element) => {
+                if (element) {
+                  contents.current[at] = element
+                }
+              }}
+              className="flex flex-col items-center gap-2 lg:gap-3"
+            >
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted text-primary lg:size-12 [&_svg]:size-5 lg:[&_svg]:size-6">
+                <Icon />
+              </span>
+              <span className="flex min-w-0 flex-col gap-1">
+                <span className="font-heading text-sm font-medium break-words lg:text-lg">
+                  {labels[key]}
+                </span>
+                <span className="hidden text-sm leading-snug text-muted-foreground normal-case lg:block">
+                  {lines[key]}
+                </span>
+              </span>
             </span>
           </div>
         )

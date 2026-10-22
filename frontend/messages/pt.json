@@ -1402,7 +1402,7 @@
       "steps": {
         "generated": {
           "labels": "gerada",
-          "lines": "A IA escreve as questões."
+          "lines": "A IA escreve cada questão, a resposta certa e alternativas erradas convincentes."
         },
         "checked": {
           "labels": "verificada",
