@@ -202,12 +202,17 @@ A failed step stops the deploy. Before the services step, nothing has changed fo
 
 ## Restore drill
 
-A backup is only proven by restoring it. Run `scripts/ops/restore-drill.sh prepza-prod` before launch, and then every quarter. It needs `gcloud`, `cloud-sql-proxy` and `psql`, and it:
+A backup is only proven by restoring it. Run `scripts/ops/restore-drill.sh prepza-prod` before launch, and then every quarter. It needs `gcloud`, `cloud-sql-proxy`, `psql` and `pg_isready`, and it:
 1. Restores the latest backup into a temporary instance.
 2. Reads each service's main tables through the Cloud SQL Auth Proxy.
 3. Deletes the temporary instance, even if a step fails.
+4. Prints how many minutes the restore took, to compare with the recovery target below.
 
-It costs a few cents: the temporary instance runs for about 15 minutes.
+It costs a few cents: the temporary instance runs for about 15 minutes. Each drill's date, minutes and result go in the drill log, kept with the quarterly review ([docs/runbooks.md](../docs/runbooks.md#reviews)):
+
+| Date | Minutes | Result |
+|---|---|---|
+| (none yet) | | |
 
 For an actual recovery, Cloud SQL can also restore to any second of the last 7 days (point-in-time recovery), for example to just before a bad deploy:
 
@@ -233,6 +238,8 @@ To restore everything, restore the instance from a backup instead (`gcloud sql b
 **After any restore or clone used for data,** run the account deletions of the last 14 days again, so nobody who deleted their account since the backup comes back: `gcloud scheduler jobs run erasures --location=europe-west1` (it also runs daily; library keeps the deleted accounts' ids and emails 14 days for it, `erasures`). Then `gcloud scheduler jobs run candidate-removals --location=europe-west1`: the candidates companies erased since come back too, and are erased again (companies keeps their invite ids 14 days, `removed_invites`).
 
 **Recovery targets.** At most a few seconds of data is lost (point-in-time recovery, 7 days back), and a restore takes about an hour (cloning or restoring takes 15–30 minutes, plus the copy). The instance is zonal (`db_high_availability` off): if its zone fails, Cloud SQL brings it back in another zone of the region with its data, after some downtime; `db_high_availability = true` makes that failover automatic, at twice the database cost. If the whole region fails, prepza is down until it returns: restoring elsewhere would mean recreating the infrastructure in another region from a backup (backups are kept in a multi-region location by default), which isn't scripted.
+
+**Accepted trade-offs.** The database tier, `db-g1-small`, is shared-core, and the instance is zonal: Cloud SQL's SLA covers neither, so an outage of either kind has no promised recovery time. Backups are Cloud SQL's standard ones, kept by the project: losing the project (deleted, or its account taken over) loses them too; enhanced backups in a vault in a separate project would survive that, at a cost. Both are accepted until paying companies depend on the site; then move to a dedicated-core tier with `db_high_availability` and add the backup vault.
 
 ## Notes
 
