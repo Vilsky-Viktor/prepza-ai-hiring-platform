@@ -4,6 +4,11 @@ import { withDatabase } from "./db";
 
 // Every row these helpers add has an event id starting with this, so it's found and removed.
 const PREFIX = "e2e-";
+// The service that makes each kind of call the tests add (billing accepts only real services).
+const SERVICE: Record<string, string> = {
+  assistant_message: "assistant",
+  interview_generation: "generation",
+};
 
 export type AiCall = {
   action: string;
@@ -24,9 +29,9 @@ export async function addAiCalls(calls: AiCall[]) {
     for (const call of calls) {
       await client.query(
         `INSERT INTO ai_usage (id, event_id, occurred_at, action, service, model, input_tokens,
-           cached_input_tokens, output_tokens, audio_seconds, cost_usd, company_id, user_id,
+           cached_input_tokens, output_tokens, audio_seconds, cost, company_id, user_id,
            subject_id, outcome, category)
-         VALUES (gen_random_uuid(), $1, $2, $3, 'e2e', 'gpt-6-luna', 1000, 0, 100, 0, $4, $5,
+         VALUES (gen_random_uuid(), $1, $2, $3, $9, 'gpt-6-luna', 1000, 0, 100, 0, $4, $5,
            $6, $7, 'ok', $8)`,
         [
           `${PREFIX}${randomUUID()}`,
@@ -37,6 +42,7 @@ export async function addAiCalls(calls: AiCall[]) {
           call.userId ?? null,
           call.subjectId ?? null,
           call.category,
+          SERVICE[call.action] ?? "generation",
         ],
       );
     }
