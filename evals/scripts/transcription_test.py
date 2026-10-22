@@ -1,0 +1,103 @@
+"""Tests the assistant's speech to text (the microphone's voice messages) on datasets/voice.json
+and its audio (build_audio.py): each recording is sent as the service sends it (its model, the
+interface's language, Ogg Opus), and the text graded by code: the character error rate against
+what was said (case and punctuation aside) and the language's script.
+
+    evals/run.sh assistant transcription_test.py --label base     # --repeat 2
+
+Costs about a cent."""
+
+import argparse
+import asyncio
+import json
+import re
+import time
+import unicodedata
+
+from common import DATASETS, RESULTS, load, run_record, save
+from prepza_common.llm import transcription_cost
+from stats import mean, share
+from text_checks import in_script
+
+from app.config.settings import settings
+from app.constants.transcribe import TRANSCRIBE_LANGUAGES
+from app.helpers.audio import audio_seconds
+from app.integrations.llm import get_openai
+
+# A message is heard right when at most this share of its characters is wrong.
+MAX_ERROR_RATE = 0.1
+
+
+def plain(text: str) -> str:
+    text = unicodedata.normalize("NFKC", text).lower()
+
+    return re.sub(r"[^\w]+", "", text)
+
+
+def error_rate(said: str, heard: str) -> float:
+    """Levenshtein distance between the two, case, spaces and punctuation aside, over the
+    length of what was said."""
+    a, b = plain(said), plain(heard)
+    row = list(range(len(b) + 1))
+
+    for i, x in enumerate(a, 1):
+        previous, row[0] = row[0], i
+
+        for j, y in enumerate(b, 1):
+            previous, row[j] = row[j], min(row[j] + 1, row[j - 1] + 1, previous + (x != y))
+
+    return row[-1] / max(len(a), 1)
+
+
+async def hear(item: dict) -> dict:
+    audio = (DATASETS / "audio" / f"{item['id']}.ogg").read_bytes()
+    started = time.monotonic()
+    result = await get_openai().audio.transcriptions.create(
+        model=settings.transcribe_model,
+        file=("audio.ogg", audio, "audio/ogg"),
+        language=TRANSCRIBE_LANGUAGES.get(item["language"], item["language"]),
+    )
+    seconds = audio_seconds(getattr(result, "usage", None), len(audio))
+    rate = min(error_rate(said, result.text) for said in [item["text"], *item.get("also", [])])
+
+    return {
+        "id": item["id"],
+        "heard": result.text,
+        "error_rate": round(rate, 3),
+        "script": in_script(result.text, item["language"]),
+        "cost": transcription_cost(settings.transcribe_model, seconds) or 0.0,
+        "seconds": time.monotonic() - started,
+    }
+
+
+async def main(label: str, repeat: int) -> None:
+    items = load(DATASETS / "voice.json")["items"]
+    rows = await asyncio.gather(*(hear(item) for item in items for _ in range(repeat)))
+    scores = {
+        "heard_right": share(sum(r["error_rate"] <= MAX_ERROR_RATE for r in rows), len(rows)),
+        "error_rate": mean([r["error_rate"] for r in rows], 3),
+        "script": share(sum(r["script"] for r in rows), len(rows)),
+    }
+    times = sorted(r["seconds"] for r in rows)
+    spent = round(sum(r["cost"] for r in rows), 4)
+    run = run_record(
+        model=settings.transcribe_model,
+        repeat=repeat,
+        scores=scores,
+        cost=spent,
+        median_seconds=round(times[len(times) // 2], 1),
+    )
+    save(RESULTS / f"transcription_{label}.json", {"run": run, "rows": rows})
+    print(json.dumps({"scores": scores, "cost": spent}, indent=1))
+
+    for r in rows:
+        if r["error_rate"] > MAX_ERROR_RATE or not r["script"]:
+            print(f"- {r['id']}: {r['error_rate']} {r['heard']!r}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--label", default="run")
+    parser.add_argument("--repeat", type=int, default=2)
+    args = parser.parse_args()
+    asyncio.run(main(args.label, args.repeat))

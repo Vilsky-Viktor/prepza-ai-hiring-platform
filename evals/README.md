@@ -46,6 +46,8 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | | Sums up the whole conversation / in the right language / natural | Judge (`judges/title.md`), pass/fail each | ≥ 95% / 100% / ≥ 95% |
 | | Price and time per title | Measured | ≤ $0.0001, ≤ 3 s |
 | **Dropping repeated questions** (embeddings, `DUPLICATE_DISTANCE`) | Pairs that ask something else both kept / pairs that ask the same, the second dropped | Code | 100% (regression) / report (capability: the threshold sits below the closest trap, so only near-verbatim repeats go) |
+| **Assistant: voice messages** (speech to text) | Messages heard right (at most 10% of characters wrong, case and punctuation aside) / in the language's script | Code | ≥ 95% / 100% |
+| | Price and time per message | Measured | ≤ $0.001, ≤ 5 s |
 | **Code-language tags** | Examples tagged with the notation expected (`code_languages.json`: look-alike notations, plain-text traps, several files) | Code | ≥ 98% (regression: near 100%) |
 | | Price and time per batch of 20 | Measured | ≤ $0.01, ≤ 15 s |
 | **Verifier** | Planted wrong keys fixed, real keys kept, and the blind confirmation naming the real key (`verify_test.py`, `--confirm`) | Code | 100% (regression) |
@@ -95,6 +97,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Quality patterns: planted found / kept supported / no rule when none / known named; judge traps | 100% (79.6–100) / 100% (84.5–100) / 3 of 3 / 3 of 3; 10 of 10; $0.016 and 30 s a run | `patterns.json`, 4 groups × 3 | 2026-10-22 |
 | Assistant titles: code checks / sums up / right language / natural; judge traps | 97.6% (87.7–99.6) / 88.1% (75.0–94.8) / 100% / 100%; 11 of 11; $0.00003 and 2.8 s a title | `titles.json`, 14 × 3 | 2026-10-22 |
 | Repeated questions: distinct kept / repeats dropped | 100% (74.1–100) / 18.2% (5.1–47.7); the closest distinct pair at 0.084, the threshold 0.08 | `duplicates.json`, 22 pairs | 2026-10-22 |
+| Voice messages: heard right / character errors / script | 95.8% (79.8–99.3) / 1.6% ± 1.3 / 100%; $0.0006 a message | `voice.json`, 12 × 2 | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
 | Help chat: passed / made up / sign-in marker | 94.4% (84.9–98.1) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-21 |
 
@@ -218,6 +221,12 @@ The assistant's conversation titles, with its own title prompt and model:
 
 ```bash
 evals/run.sh assistant titles_test.py --label new-prompt   # --repeat 3, --only t02,t09
+```
+
+The assistant's speech to text, on recordings made once by text-to-speech (`build_audio.py`):
+
+```bash
+evals/run.sh assistant transcription_test.py --label new-model   # --repeat 2
 ```
 
 The help chat's test runs in rounds' container, with the service's own prompt, platform guide,

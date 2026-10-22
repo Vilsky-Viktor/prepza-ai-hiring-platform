@@ -185,6 +185,14 @@ same (reworded, reordered) and 11 traps that share most words but ask something 
 last, opens vs closes, signs vs drafts), in English, German, Japanese, Arabic, Russian, Hindi
 and Thai. Graded by code (`duplicates_test.py`).
 
+## `voice.json` and `audio/` (by hand, 2026-10-22; audio by `gpt-4o-mini-tts`)
+
+12 made-up voice messages to the assistant (invites, results, settings, a company's new name) in
+English, German, Japanese, Arabic, Russian, Hindi, Thai, Persian and Spanish, spoken once by
+OpenAI's text-to-speech into `audio/<id>.ogg` (Ogg Opus, as browsers record; `build_audio.py`,
+rebuilt only on purpose). `also` lists other right ways to write a message (digits for a
+number). Graded by code (`transcription_test.py`).
+
 ## `code_languages.json` (by hand, 2026-10-22)
 
 36 made-up examples as questions show them, each with the notation the site should color it in

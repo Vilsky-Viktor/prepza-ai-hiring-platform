@@ -19,6 +19,7 @@ from small_datasets import (
     check_postings,
     check_titles,
     check_translations,
+    check_voice,
 )
 
 EVALS = Path(__file__).resolve().parents[1]
@@ -201,6 +202,7 @@ def main() -> None:
     texts += [("titles", text) for text in check_titles(problems)]
     texts += [("postings", text) for text in check_postings(problems)]
     texts += [("duplicates", text) for text in check_duplicates(problems)]
+    texts += [("voice", text) for text in check_voice(problems)]
 
     for where, text in texts:
         for example in examples:
