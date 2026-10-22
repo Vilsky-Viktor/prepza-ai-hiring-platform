@@ -5,9 +5,10 @@ import { useTranslations } from "next-intl"
 
 import { useAssistant } from "@/components/assistant/assistant-provider"
 import { useAuth } from "@/components/auth-provider"
+import { KeepAcronyms } from "@/components/keep-acronyms"
 import { Button } from "@/components/ui/button"
 
-/** "ask agent" in the header: an outline pill the size of Sign in, a bright arc
+/** "ask Mira" in the header: an outline pill the size of Sign in, a bright arc
  * circling its brand-blue border, that opens the assistant, signed in or not. Below md, where
  * the header is too narrow for its label, the icon alone, with the label as its name. */
 export function AssistantButton() {
@@ -29,7 +30,7 @@ export function AssistantButton() {
     >
       <SparklesIcon aria-hidden className="size-4 text-primary" />
       <span aria-hidden className="max-md:hidden">
-        {t("askAgent")}
+        <KeepAcronyms text={t("askAgent")} />
       </span>
     </Button>
   )

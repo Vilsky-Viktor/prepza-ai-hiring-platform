@@ -4,9 +4,9 @@
     "text": "prepza turns your job description into a timed interview, with its own random questions for every candidate. This page walks through it, from creating an interview to sharing the results.",
     "actions": [
       "Paste the job description in the box at the top, or pick a ready template; adjust the topics, and the questions are written and checked for you.",
-      "Invite candidates by email, from a file, with a share link in your job ad, or from your ATS, your own platform or an AI agent.",
+      "Invite candidates by email, from a file, with a share link in your job ad, or from your ATS, your own platform or an AI assistant.",
       "Read the reports: every candidate's answers and grade, shared by email or chat in a click.",
-      "Connect your platform, AI app and job boards, get updates in Slack, or ask the agent to do the work for you."
+      "Connect your platform, AI app and job boards, get updates in Slack, or ask Mira, the AI assistant, to do the work for you."
     ],
     "tips": [
       "Creating interviews is free. You pay per candidate who answers, at the price under the title, in your currency, and your first candidates are free.",
@@ -553,7 +553,7 @@
       "Click a question to open its answer."
     ],
     "tips": [
-      "Didn't find your answer? Ask the AI assistant at the top of the page, or write to us from the contact page.",
+      "Didn't find your answer? Ask Mira, the AI assistant, at the top of the page, or write to us from the contact page.",
       "Prices in the answers are always today's."
     ]
   },

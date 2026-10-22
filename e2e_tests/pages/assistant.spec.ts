@@ -2,7 +2,7 @@ import { expect, type Locator, type Page, test } from "@playwright/test";
 
 import { loaded, scrollAtRest } from "./helpers/waits";
 
-// Signed out, "ask agent" opens the assistant with FAQ answers only: the welcome for visitors,
+// Signed out, "ask Mira" opens the assistant with FAQ answers only: the welcome for visitors,
 // an answer from the help chat (stubbed here: no OpenAI in tests), and a sign-in card when the
 // visitor asks to sign in. No history, company or voice.
 
@@ -16,7 +16,7 @@ async function helpAnswers(page: Page, events: object[]) {
   );
 }
 
-/** The header's "ask agent". */
+/** The header's "ask Mira". */
 function askAgent(page: Page) {
   return page.getByRole("banner").locator("[data-assistant-toggle]");
 }
@@ -249,3 +249,39 @@ for (const reducedMotion of ["no-preference", "reduce"] as const) {
     await expect(signIn).toBeFocused();
   });
 }
+
+// Titles and buttons are lowercase, but the assistant's name keeps its capital, in every case
+// form a language gives it (Russian "Миру" in the button, "Мира" in the welcome).
+for (const path of ["/", "/ru"]) {
+  test(`the assistant's name keeps its capital in its buttons and welcome at ${path}`, async ({ page }) => {
+    await page.goto(path);
+    await loaded(page);
+    const name = (place: Locator) => place.locator(".normal-case").first();
+    const kept = (place: Locator) =>
+      name(place).evaluate((element) => getComputedStyle(element).textTransform);
+
+    // The footer's button shows its label on every screen; the header's only on wide ones.
+    const places = test.info().project.name === "phone" ? ["contentinfo"] : ["contentinfo", "banner"];
+
+    for (const place of places as ("contentinfo" | "banner")[]) {
+      const button = page.getByRole(place).locator("[data-assistant-toggle]");
+      await expect(name(button)).toBeVisible();
+      expect(await kept(button)).toBe("none");
+    }
+
+    const panel = await openPanel(page);
+    const welcome = panel.getByTestId("welcome-signed_out").getByRole("heading");
+    await expect(name(welcome)).toBeVisible();
+    expect(await kept(welcome)).toBe("none");
+  });
+}
+
+// On a phone the header's button is the icon alone: its name is the footer button's label.
+test("the header's icon-only assistant button is named like the footer's", async ({ page }) => {
+  test.skip(test.info().project.name !== "phone", "the label shows on wider screens");
+  await page.goto("/");
+  await loaded(page);
+  const label = await page.getByRole("contentinfo").locator("[data-assistant-toggle]").innerText();
+
+  await expect(askAgent(page)).toHaveAccessibleName(label.trim());
+});

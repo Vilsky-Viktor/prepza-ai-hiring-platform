@@ -4,9 +4,9 @@
     "text": "Ginagawa ng prepza ang iyong job description na isang interview na may oras, na may sariling random na mga tanong para sa bawat aplikante. Ipinapakita ng page na ito ang buong proseso, mula sa paggawa ng interview hanggang sa pag-share ng mga resulta.",
     "actions": [
       "I-paste ang job description sa box sa itaas, o pumili ng handang template; ayusin ang mga topic, at isusulat at susuriin ang mga tanong para sa iyo.",
-      "Mag-imbita ng mga aplikante sa email, mula sa file, gamit ang share link sa iyong job ad, o mula sa iyong ATS, sarili mong platform o isang AI agent.",
+      "Mag-imbita ng mga aplikante sa email, mula sa file, gamit ang share link sa iyong job ad, o mula sa iyong ATS, sarili mong platform o isang AI assistant.",
       "Basahin ang mga report: ang mga sagot at grade ng bawat aplikante, ishine-share sa email o chat sa isang click.",
-      "Ikonekta ang iyong platform, AI app at mga job board, makatanggap ng mga update sa Slack, o ipagawa sa agent ang trabaho para sa iyo."
+      "Ikonekta ang iyong platform, AI app at mga job board, makatanggap ng mga update sa Slack, o ipagawa kay Mira, ang AI assistant, ang trabaho para sa iyo."
     ],
     "tips": [
       "Libre ang paggawa ng interview. Magbabayad ka bawat aplikanteng sumasagot, sa presyong nasa ilalim ng pamagat at sa iyong currency, at libre ang mga una mong aplikante.",
@@ -553,7 +553,7 @@
       "I-click ang isang tanong para buksan ang sagot nito."
     ],
     "tips": [
-      "Hindi mo nakita ang sagot? Magtanong sa AI assistant sa itaas ng page, o sumulat sa amin mula sa page na Makipag-ugnayan.",
+      "Hindi mo nakita ang sagot? Magtanong kay Mira, ang AI assistant sa itaas ng page, o sumulat sa amin mula sa page na Makipag-ugnayan.",
       "Laging kasalukuyan ang mga presyo sa mga sagot."
     ]
   },

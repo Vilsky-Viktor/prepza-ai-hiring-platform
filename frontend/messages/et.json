@@ -1298,7 +1298,7 @@
     "demos": "Video",
     "demosTooltip": "Vaata demosid YouTube'is",
     "videoTooltip": "Vaata, kuidas prepza töötab",
-    "askAgent": "küsi agendilt",
+    "askAgent": "küsi Miralt",
     "create": {
       "title": "Loo intervjuu mõne minutiga",
       "text": "Kleebi töökuulutus, kohanda teemasid ja intervjuu on mõne minutiga valmis.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Kutsu kandidaate igalt poolt",
-      "text": "Saada neile e-kiri, avalda jagamislink, impordi fail või lase neid saata oma ATS-il, oma platvormil või AI-agendil.",
+      "text": "Saada neile e-kiri, avalda jagamislink, impordi fail või lase neid saata oma ATS-il, oma platvormil või AI-assistendil.",
       "labels": {
         "ats": "Sinu ATS",
         "email": "E-posti kutsed",
@@ -1331,7 +1331,7 @@
         "link": "Link töökuulutuses",
         "api": "API",
         "sdk": "SDK manustamine",
-        "agent": "AI-agent",
+        "agent": "AI-assistent",
         "apps": "AI-rakendused (MCP)"
       },
       "automate": "Automatiseeri värbamine",
@@ -1366,9 +1366,9 @@
       "samples": "Näidisaruanded"
     },
     "justAsk": {
-      "title": "Lihtsalt küsi agendilt",
+      "title": "Lihtsalt küsi Miralt",
       "text": "Küsi tavaliste sõnadega: agent loeb sinu andmeid, vastab „kuidas teha“ küsimustele ja teeb töö ära pärast sinu kinnitust.",
-      "welcome": "Kuidas saan täna aidata?",
+      "welcome": "Tere, mina olen Mira, sinu tehisaru assistent. Kuidas saan täna aidata?",
       "questions": {
         "stats": "Mitu kandidaati läbis intervjuu <bdi>{interview}</bdi>?",
         "help": "Kuidas anda kandidaadile lisaaega?",
@@ -1487,7 +1487,7 @@
         "review": "vaata teemad AI-ga üle",
         "invite": "kutsu {count, plural, one {# kandidaat} other {# kandidaati}}",
         "reports": "aruanded ja jagamine",
-        "connect": "ATS, API, Slack, AI-agent",
+        "connect": "ATS, API, Slack, AI-assistent",
         "answered": "{count, plural, one {# kandidaat vastas} other {# kandidaati vastas}}"
       },
       "total": "kokku",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Korduma kippuvad küsimused",
-    "intro": "Ei leidnud vastust? Küsi tehisaru assistendilt (nupp lehe ülaosas) või kirjuta meile privaatsuspoliitikas toodud aadressil.",
+    "intro": "Ei leidnud vastust? Küsi Miralt, tehisaru assistendilt (nupp lehe ülaosas), või kirjuta meile privaatsuspoliitikas toodud aadressil.",
     "description": "Vastused prepza kohta: kuidas intervjuud töökuulutusest luuakse, mida kandidaadid näevad, hinnad ja krediidid, tulemused, ATS-i liidesed, keeled ja sinu andmed."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Assistent",
+    "title": "Mira · tehisaru assistent",
     "company": "Ettevõte",
     "allCompanies": "Kõik ettevõtted",
     "newChat": "Uus vestlus",
@@ -2026,9 +2026,9 @@
     "deleteChat": "Kustuta „<bdi>{title}</bdi>”",
     "deleteTitle": "Kas kustutada see vestlus?",
     "deleteText": "Vestlus ja selle vastused kustutatakse jäädavalt.",
-    "emptyTitle": "Küsi oma värbamise kohta",
+    "emptyTitle": "Tere, mina olen Mira, sinu tehisaru assistent",
     "emptyText": "Kandidaadid, intervjuud, krediit, integratsioonid ja prepza toimimine – selle põhjal, mida sa oma ettevõtetes näed. Tehisintellekt võib eksida; kehtivad lehed, millele see viitab.",
-    "emptyTitleFaq": "Küsi prepza kohta",
+    "emptyTitleFaq": "Tere, mina olen Mira, prepza tehisaru assistent",
     "pageQuestion": "Mida ma sellel lehel teha saan?",
     "pages": {
       "open": "Ava",

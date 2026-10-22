@@ -4,9 +4,9 @@
     "text": "prepza zamienia opis stanowiska w rozmowę na czas, z osobnym losowym zestawem pytań dla każdego kandydata. Ta strona pokazuje cały proces, od utworzenia rozmowy po udostępnienie wyników.",
     "actions": [
       "Wklej opis stanowiska w polu na górze albo wybierz gotowy szablon; dopasuj tematy, a pytania zostaną za Ciebie napisane i sprawdzone.",
-      "Zaproś kandydatów e-mailem, z pliku, linkiem w ogłoszeniu o pracę albo przez swój ATS, swoją platformę lub agenta AI.",
+      "Zaproś kandydatów e-mailem, z pliku, linkiem w ogłoszeniu o pracę albo przez swój ATS, swoją platformę lub asystenta AI.",
       "Czytaj raporty: odpowiedzi i wynik każdego kandydata, udostępniane jednym kliknięciem e-mailem lub na czacie.",
-      "Połącz swoją platformę, aplikację AI i portale z ofertami pracy, otrzymuj powiadomienia na Slacku albo poproś agenta, by zrobił to za Ciebie."
+      "Połącz swoją platformę, aplikację AI i portale z ofertami pracy, otrzymuj powiadomienia na Slacku albo poproś Mirę, asystentkę AI, by zrobiła to za Ciebie."
     ],
     "tips": [
       "Tworzenie rozmów jest bezpłatne. Płacisz za każdego kandydata, który odpowiada, według ceny pod tytułem w swojej walucie, a pierwsi kandydaci są za darmo.",
@@ -553,7 +553,7 @@
       "Kliknij pytanie, by otworzyć odpowiedź."
     ],
     "tips": [
-      "Nie ma tu Twojej odpowiedzi? Zapytaj asystenta AI na górze strony albo napisz do nas ze strony kontaktowej.",
+      "Nie ma tu Twojej odpowiedzi? Zapytaj Mirę, asystentkę AI, na górze strony albo napisz do nas ze strony kontaktowej.",
       "Ceny w odpowiedziach są zawsze aktualne."
     ]
   },

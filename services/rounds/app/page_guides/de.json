@@ -4,9 +4,9 @@
     "text": "prepza macht aus deiner Stellenbeschreibung ein Interview mit Zeitlimit, mit eigenen zufälligen Fragen für jeden Kandidaten. Diese Seite zeigt den ganzen Weg, vom Erstellen eines Interviews bis zum Teilen der Ergebnisse.",
     "actions": [
       "Füge die Stellenbeschreibung oben in das Feld ein oder wähle eine fertige Vorlage; passe die Themen an, und die Fragen werden für dich geschrieben und geprüft.",
-      "Lade Kandidaten per E-Mail, aus einer Datei, mit einem teilbaren Link in deiner Stellenanzeige oder über dein ATS, deine eigene Plattform oder einen KI-Agenten ein.",
+      "Lade Kandidaten per E-Mail, aus einer Datei, mit einem teilbaren Link in deiner Stellenanzeige oder über dein ATS, deine eigene Plattform oder einen KI-Assistenten ein.",
       "Lies die Berichte: die Antworten und das Ergebnis jedes Kandidaten, mit einem Klick per E-Mail oder Chat geteilt.",
-      "Verbinde deine Plattform, deine KI-App und Jobbörsen, erhalte Updates in Slack oder bitte den Agenten, die Arbeit für dich zu erledigen."
+      "Verbinde deine Plattform, deine KI-App und Jobbörsen, erhalte Updates in Slack oder bitte Mira, die KI-Assistentin, die Arbeit für dich zu erledigen."
     ],
     "tips": [
       "Interviews zu erstellen ist kostenlos. Du zahlst pro Kandidat, der antwortet, zum Preis unter dem Titel in deiner Währung, und deine ersten Kandidaten sind kostenlos.",
@@ -553,7 +553,7 @@
       "Klicke auf eine Frage, um ihre Antwort zu öffnen."
     ],
     "tips": [
-      "Keine Antwort gefunden? Frag den KI-Assistenten oben auf der Seite oder schreib uns über die Kontaktseite.",
+      "Keine Antwort gefunden? Frag Mira, die KI-Assistentin, oben auf der Seite oder schreib uns über die Kontaktseite.",
       "Die Preise in den Antworten sind immer die aktuellen."
     ]
   },

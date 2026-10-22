@@ -4,9 +4,9 @@
     "text": "prepza convierte tu descripción del puesto en una entrevista cronometrada, con preguntas aleatorias propias para cada candidato. Esta página recorre todo el proceso, desde crear una entrevista hasta compartir los resultados.",
     "actions": [
       "Pega la descripción del puesto en el cuadro de arriba o elige una plantilla lista; ajusta los temas, y las preguntas se escriben y revisan por ti.",
-      "Invita a candidatos por correo, desde un archivo, con un enlace para compartir en tu oferta de empleo, o desde tu ATS, tu propia plataforma o un agente de IA.",
+      "Invita a candidatos por correo, desde un archivo, con un enlace para compartir en tu oferta de empleo, o desde tu ATS, tu propia plataforma o un asistente de IA.",
       "Lee los informes: las respuestas y la nota de cada candidato, compartidas por correo o chat con un clic.",
-      "Conecta tu plataforma, tu app de IA y los portales de empleo, recibe novedades en Slack o pide al agente que haga el trabajo por ti."
+      "Conecta tu plataforma, tu app de IA y los portales de empleo, recibe novedades en Slack o pide a Mira, la asistente de IA, que haga el trabajo por ti."
     ],
     "tips": [
       "Crear entrevistas es gratis. Pagas por cada candidato que responde, al precio que aparece bajo el título y en tu moneda, y tus primeros candidatos son gratis.",
@@ -553,7 +553,7 @@
       "Haz clic en una pregunta para abrir su respuesta."
     ],
     "tips": [
-      "¿No encontraste tu respuesta? Pregunta al asistente de IA en la parte superior de la página, o escríbenos desde la página de contacto.",
+      "¿No encontraste tu respuesta? Pregunta a Mira, la asistente de IA, en la parte superior de la página, o escríbenos desde la página de contacto.",
       "Los precios de las respuestas son siempre los actuales."
     ]
   },

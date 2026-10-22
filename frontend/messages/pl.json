@@ -1298,7 +1298,7 @@
     "demos": "Wideo",
     "demosTooltip": "Obejrzyj dema na YouTube",
     "videoTooltip": "Zobacz, jak działa prepza",
-    "askAgent": "zapytaj agenta",
+    "askAgent": "zapytaj Mirę",
     "create": {
       "title": "Utwórz rozmowę w kilka minut",
       "text": "Wklej opis stanowiska, dopasuj tematy, a rozmowa będzie gotowa w kilka minut.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Zapraszaj kandydatów zewsząd",
-      "text": "Wyślij im e-mail, opublikuj link, zaimportuj plik albo pozwól, by zrobił to Twój ATS, Twoja platforma lub agent AI.",
+      "text": "Wyślij im e-mail, opublikuj link, zaimportuj plik albo pozwól, by zrobił to Twój ATS, Twoja platforma lub asystent AI.",
       "labels": {
         "ats": "Twój ATS",
         "email": "Zaproszenia e-mail",
@@ -1331,7 +1331,7 @@
         "link": "Link w ogłoszeniu",
         "api": "API",
         "sdk": "Osadzenie SDK",
-        "agent": "Agent AI",
+        "agent": "Asystent AI",
         "apps": "Aplikacje AI (MCP)"
       },
       "automate": "Zautomatyzuj rekrutację za pomocą",
@@ -1366,9 +1366,9 @@
       "samples": "Przykładowe raporty"
     },
     "justAsk": {
-      "title": "Po prostu zapytaj agenta",
+      "title": "Po prostu zapytaj Mirę",
       "text": "Pytaj zwykłymi słowami: agent czyta Twoje dane, odpowiada na pytania „jak to zrobić” i wykonuje pracę, gdy ją potwierdzisz.",
-      "welcome": "W czym mogę Ci dziś pomóc?",
+      "welcome": "Cześć, jestem Mira, Twoja asystentka AI. W czym mogę Ci dziś pomóc?",
       "questions": {
         "stats": "Ilu kandydatów zaliczyło rozmowę <bdi>{interview}</bdi>?",
         "help": "Jak dać kandydatowi dodatkowy czas?",
@@ -1487,7 +1487,7 @@
         "review": "przejrzyj tematy z AI",
         "invite": "zaproś {count, plural, one {# kandydata} few {# kandydatów} many {# kandydatów} other {# kandydata}}",
         "reports": "raporty i udostępnianie",
-        "connect": "ATS, API, Slack, agent AI",
+        "connect": "ATS, API, Slack, asystent AI",
         "answered": "{count, plural, one {# kandydat odpowiedział} few {# kandydatów odpowiedziało} many {# kandydatów odpowiedziało} other {# kandydata odpowiedziało}}"
       },
       "total": "razem",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Często zadawane pytania",
-    "intro": "Nie ma tu Twojej odpowiedzi? Zapytaj asystenta AI (przycisk u góry strony) albo napisz do nas na adres z polityki prywatności.",
+    "intro": "Nie ma tu Twojej odpowiedzi? Zapytaj Mirę, asystentkę AI (przycisk u góry strony), albo napisz do nas na adres z polityki prywatności.",
     "description": "Odpowiedzi o prepza: jak rozmowa powstaje z opisu stanowiska, co widzą kandydaci, ceny i kredyty, wyniki, integracje z ATS, języki i Twoje dane."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Asystent",
+    "title": "Mira · asystentka AI",
     "company": "Firma",
     "allCompanies": "Wszystkie firmy",
     "newChat": "Nowy czat",
@@ -2026,9 +2026,9 @@
     "deleteChat": "Usuń „<bdi>{title}</bdi>”",
     "deleteTitle": "Usunąć ten czat?",
     "deleteText": "Czat i jego odpowiedzi zostaną usunięte na zawsze.",
-    "emptyTitle": "Zapytaj o swoją rekrutację",
+    "emptyTitle": "Cześć, jestem Mira, Twoja asystentka AI",
     "emptyText": "Kandydaci, rozmowy, kredyty, integracje i to, jak działa prepza, na podstawie tego, co widzisz w swoich firmach. AI może się mylić; wiążące są strony, do których odsyła.",
-    "emptyTitleFaq": "Zapytaj o prepza",
+    "emptyTitleFaq": "Cześć, jestem Mira, asystentka AI prepza",
     "pageQuestion": "Co mogę zrobić na tej stronie?",
     "pages": {
       "open": "Otwórz",

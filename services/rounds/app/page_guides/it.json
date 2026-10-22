@@ -4,9 +4,9 @@
     "text": "prepza trasforma la descrizione del ruolo in un colloquio a tempo, con domande casuali diverse per ogni candidato. Questa pagina mostra tutto il percorso, dalla creazione di un colloquio alla condivisione dei risultati.",
     "actions": [
       "Incolla la descrizione del ruolo nel riquadro in alto, oppure scegli un modello pronto; regola gli argomenti, e le domande vengono scritte e verificate per te.",
-      "Invita i candidati via email, da un file, con un link condivisibile nel tuo annuncio di lavoro, oppure dal tuo ATS, dalla tua piattaforma o da un agente IA.",
+      "Invita i candidati via email, da un file, con un link condivisibile nel tuo annuncio di lavoro, oppure dal tuo ATS, dalla tua piattaforma o da un assistente IA.",
       "Leggi i report: le risposte e il punteggio di ogni candidato, condivisi via email o in chat con un clic.",
-      "Collega la tua piattaforma, la tua app IA e i siti di annunci di lavoro, ricevi aggiornamenti in Slack o chiedi all'agente di fare il lavoro per te."
+      "Collega la tua piattaforma, la tua app IA e i siti di annunci di lavoro, ricevi aggiornamenti in Slack o chiedi a Mira, l'assistente IA, di fare il lavoro per te."
     ],
     "tips": [
       "Creare colloqui è gratis. Paghi per ogni candidato che risponde, al prezzo indicato sotto il titolo e nella tua valuta, e i tuoi primi candidati sono gratis.",
@@ -553,7 +553,7 @@
       "Fai clic su una domanda per aprirne la risposta."
     ],
     "tips": [
-      "Non hai trovato la risposta? Chiedi all'assistente IA in cima alla pagina, o scrivici dalla pagina dei contatti.",
+      "Non hai trovato la risposta? Chiedi a Mira, l'assistente IA, in cima alla pagina, o scrivici dalla pagina dei contatti.",
       "I prezzi nelle risposte sono sempre quelli attuali."
     ]
   },

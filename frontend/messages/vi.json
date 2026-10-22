@@ -1298,7 +1298,7 @@
     "demos": "Video",
     "demosTooltip": "Xem demo trên YouTube",
     "videoTooltip": "Xem prepza hoạt động thế nào",
-    "askAgent": "hỏi trợ lý AI",
+    "askAgent": "hỏi Mira",
     "create": {
       "title": "Tạo buổi phỏng vấn trong vài phút",
       "text": "Dán mô tả công việc, điều chỉnh các chủ đề, và buổi phỏng vấn của bạn sẵn sàng sau vài phút.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Mời ứng viên từ mọi nơi",
-      "text": "Gửi email, đăng liên kết chia sẻ, nhập tệp, hoặc để ATS, nền tảng của riêng bạn hay agent AI gửi lời mời.",
+      "text": "Gửi email, đăng liên kết chia sẻ, nhập tệp, hoặc để ATS, nền tảng của riêng bạn hay trợ lý AI gửi lời mời.",
       "labels": {
         "ats": "ATS của bạn",
         "email": "Mời qua email",
@@ -1331,7 +1331,7 @@
         "link": "Liên kết trong tin tuyển dụng",
         "api": "API",
         "sdk": "Nhúng SDK",
-        "agent": "Agent AI",
+        "agent": "Trợ lý AI",
         "apps": "Ứng dụng AI (MCP)"
       },
       "automate": "Tự động hóa tuyển dụng với",
@@ -1366,9 +1366,9 @@
       "samples": "Báo cáo mẫu"
     },
     "justAsk": {
-      "title": "Chỉ cần hỏi trợ lý AI",
+      "title": "Chỉ cần hỏi Mira",
       "text": "Hỏi bằng lời thường: trợ lý đọc dữ liệu của bạn, trả lời câu hỏi cách làm và thực hiện công việc sau khi bạn xác nhận.",
-      "welcome": "Hôm nay tôi có thể giúp gì cho bạn?",
+      "welcome": "Xin chào, tôi là Mira, trợ lý AI của bạn. Hôm nay tôi có thể giúp gì cho bạn?",
       "questions": {
         "stats": "Có bao nhiêu ứng viên đạt <bdi>{interview}</bdi>?",
         "help": "Làm sao để cho ứng viên thêm thời gian?",
@@ -1487,7 +1487,7 @@
         "review": "xem xét chủ đề cùng AI",
         "invite": "mời {count, number} ứng viên",
         "reports": "báo cáo và chia sẻ",
-        "connect": "ATS, API, Slack, agent AI",
+        "connect": "ATS, API, Slack, trợ lý AI",
         "answered": "{count, number} ứng viên đã trả lời"
       },
       "total": "tổng cộng",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Câu hỏi thường gặp",
-    "intro": "Không tìm thấy câu trả lời? Hãy hỏi trợ lý AI (nút ở đầu trang), hoặc viết cho chúng tôi theo địa chỉ trong chính sách quyền riêng tư.",
+    "intro": "Không tìm thấy câu trả lời? Hãy hỏi Mira, trợ lý AI (nút ở đầu trang), hoặc viết cho chúng tôi theo địa chỉ trong chính sách quyền riêng tư.",
     "description": "Giải đáp về prepza: cách tạo buổi phỏng vấn từ mô tả công việc, ứng viên thấy gì, giá và credit, kết quả, tích hợp ATS, ngôn ngữ và dữ liệu của bạn."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Trợ lý",
+    "title": "Mira · trợ lý AI",
     "company": "Công ty",
     "allCompanies": "Tất cả công ty",
     "newChat": "Cuộc trò chuyện mới",
@@ -2026,9 +2026,9 @@
     "deleteChat": "Xóa “<bdi>{title}</bdi>”",
     "deleteTitle": "Xóa cuộc trò chuyện này?",
     "deleteText": "Cuộc trò chuyện và các câu trả lời sẽ bị xóa vĩnh viễn.",
-    "emptyTitle": "Hỏi về việc tuyển dụng của bạn",
+    "emptyTitle": "Xin chào, tôi là Mira, trợ lý AI của bạn",
     "emptyText": "Ứng viên, phỏng vấn, credit, tích hợp và cách prepza hoạt động, dựa trên những gì bạn thấy trong các công ty của mình. AI có thể sai; các trang mà nó liên kết mới là chính xác.",
-    "emptyTitleFaq": "Hỏi về prepza",
+    "emptyTitleFaq": "Xin chào, tôi là Mira, trợ lý AI của prepza",
     "pageQuestion": "Tôi có thể làm gì trên trang này?",
     "pages": {
       "open": "Mở",

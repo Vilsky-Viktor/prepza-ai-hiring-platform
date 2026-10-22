@@ -1298,7 +1298,7 @@
     "demos": "Video",
     "demosTooltip": "Tonton demo di YouTube",
     "videoTooltip": "Lihat cara kerja prepza",
-    "askAgent": "tanya agen",
+    "askAgent": "tanya Mira",
     "create": {
       "title": "Buat wawancara dalam hitungan menit",
       "text": "Tempel deskripsi pekerjaan, sesuaikan topiknya, dan wawancaramu siap dalam hitungan menit.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Undang kandidat dari mana saja",
-      "text": "Kirimi mereka email, publikasikan tautan berbagi, impor file, atau biarkan ATS-mu, platformmu sendiri, atau agen AI yang mengirim mereka.",
+      "text": "Kirimi mereka email, publikasikan tautan berbagi, impor file, atau biarkan ATS-mu, platformmu sendiri, atau asisten AI yang mengirim mereka.",
       "labels": {
         "ats": "ATS-mu",
         "email": "Undangan email",
@@ -1331,7 +1331,7 @@
         "link": "Tautan di iklan lowongan",
         "api": "API",
         "sdk": "Sematan SDK",
-        "agent": "Agen AI",
+        "agent": "Asisten AI",
         "apps": "Aplikasi AI (MCP)"
       },
       "automate": "Otomatiskan rekrutmenmu dengan",
@@ -1366,9 +1366,9 @@
       "samples": "Contoh laporan"
     },
     "justAsk": {
-      "title": "Tanya saja agennya",
+      "title": "Tanya saja Mira",
       "text": "Tanyakan dengan kata-kata biasa: agen membaca datamu, menjawab pertanyaan cara melakukan sesuatu, dan mengerjakannya setelah kamu konfirmasi.",
-      "welcome": "Ada yang bisa saya bantu hari ini?",
+      "welcome": "Hai, saya Mira, asisten AI-mu. Ada yang bisa saya bantu hari ini?",
       "questions": {
         "stats": "Berapa kandidat yang lulus <bdi>{interview}</bdi>?",
         "help": "Bagaimana cara memberi kandidat waktu tambahan?",
@@ -1487,7 +1487,7 @@
         "review": "tinjau topik dengan AI",
         "invite": "undang {count, number} kandidat",
         "reports": "laporan dan berbagi",
-        "connect": "ATS, API, Slack, agen AI",
+        "connect": "ATS, API, Slack, asisten AI",
         "answered": "{count, number} kandidat menjawab"
       },
       "total": "total",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Pertanyaan yang sering diajukan",
-    "intro": "Tidak menemukan jawabannya? Tanyakan ke asisten AI (tombol di bagian atas halaman), atau kirim pesan ke alamat di kebijakan privasi.",
+    "intro": "Tidak menemukan jawabannya? Tanyakan ke Mira, asisten AI (tombol di bagian atas halaman), atau kirim pesan ke alamat di kebijakan privasi.",
     "description": "Jawaban tentang prepza: cara wawancara dibuat dari deskripsi pekerjaan, apa yang dilihat kandidat, harga dan kredit, hasil, integrasi ATS, bahasa, dan data Anda."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Asisten",
+    "title": "Mira · asisten AI",
     "company": "Perusahaan",
     "allCompanies": "Semua perusahaan",
     "newChat": "Obrolan baru",
@@ -2026,9 +2026,9 @@
     "deleteChat": "Hapus “<bdi>{title}</bdi>”",
     "deleteTitle": "Hapus obrolan ini?",
     "deleteText": "Obrolan dan jawabannya dihapus permanen.",
-    "emptyTitle": "Tanyakan tentang rekrutmenmu",
+    "emptyTitle": "Hai, saya Mira, asisten AI-mu",
     "emptyText": "Kandidat, wawancara, kredit, integrasi, dan cara kerja prepza, dari apa yang bisa kamu lihat di perusahaanmu. AI bisa keliru; yang berlaku adalah halaman yang ditautkannya.",
-    "emptyTitleFaq": "Tanyakan tentang prepza",
+    "emptyTitleFaq": "Hai, saya Mira, asisten AI prepza",
     "pageQuestion": "Apa yang bisa saya lakukan di halaman ini?",
     "pages": {
       "open": "Buka",

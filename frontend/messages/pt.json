@@ -1298,7 +1298,7 @@
     "demos": "Vídeo",
     "demosTooltip": "Ver demos no YouTube",
     "videoTooltip": "Veja como o prepza funciona",
-    "askAgent": "perguntar ao agente",
+    "askAgent": "perguntar à Mira",
     "create": {
       "title": "Crie uma entrevista em minutos",
       "text": "Cole uma descrição de vaga, ajuste os tópicos e sua entrevista fica pronta em minutos.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Convide candidatos de qualquer lugar",
-      "text": "Envie um e-mail, publique um link compartilhável, importe um arquivo ou deixe seu ATS, sua própria plataforma ou um agente de IA convidá-los.",
+      "text": "Envie um e-mail, publique um link compartilhável, importe um arquivo ou deixe seu ATS, sua própria plataforma ou um assistente de IA convidá-los.",
       "labels": {
         "ats": "Seu ATS",
         "email": "Convites por e-mail",
@@ -1331,7 +1331,7 @@
         "link": "Link no anúncio",
         "api": "API",
         "sdk": "SDK incorporado",
-        "agent": "Agente de IA",
+        "agent": "Assistente de IA",
         "apps": "Apps de IA (MCP)"
       },
       "automate": "Automatize suas contratações com",
@@ -1366,9 +1366,9 @@
       "samples": "Relatórios de exemplo"
     },
     "justAsk": {
-      "title": "É só perguntar ao agente",
+      "title": "É só perguntar à Mira",
       "text": "Pergunte com suas palavras: ele lê seus dados, responde dúvidas sobre como fazer e faz o trabalho depois que você confirma.",
-      "welcome": "Como posso ajudar você hoje?",
+      "welcome": "Olá, sou a Mira, sua assistente de IA. Como posso ajudar você hoje?",
       "questions": {
         "stats": "Quantos candidatos foram aprovados em <bdi>{interview}</bdi>?",
         "help": "Como dou tempo extra a um candidato?",
@@ -1487,7 +1487,7 @@
         "review": "revisar os tópicos com IA",
         "invite": "convidar {count, plural, one {# candidato} other {# candidatos}}",
         "reports": "relatórios e compartilhamento",
-        "connect": "ATS, API, Slack, agente de IA",
+        "connect": "ATS, API, Slack, assistente de IA",
         "answered": "{count, plural, one {# candidato respondeu} other {# candidatos responderam}}"
       },
       "total": "total",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Perguntas frequentes",
-    "intro": "Não encontrou sua resposta? Pergunte ao assistente de IA (o botão no topo da página) ou escreva para o endereço da política de privacidade.",
+    "intro": "Não encontrou sua resposta? Pergunte à Mira, a assistente de IA (o botão no topo da página), ou escreva para o endereço da política de privacidade.",
     "description": "Respostas sobre a prepza: como as entrevistas são criadas a partir de uma descrição de vaga, o que os candidatos veem, preços e créditos, resultados, integrações com ATS, idiomas e seus dados."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Assistente",
+    "title": "Mira · assistente de IA",
     "company": "Empresa",
     "allCompanies": "Todas as empresas",
     "newChat": "Nova conversa",
@@ -2026,9 +2026,9 @@
     "deleteChat": "Excluir “<bdi>{title}</bdi>”",
     "deleteTitle": "Excluir esta conversa?",
     "deleteText": "A conversa e as respostas são excluídas para sempre.",
-    "emptyTitle": "Pergunte sobre suas contratações",
+    "emptyTitle": "Olá, sou a Mira, sua assistente de IA",
     "emptyText": "Candidatos, entrevistas, créditos, integrações e como a prepza funciona, a partir do que você vê nas suas empresas. A IA pode errar; o que vale são as páginas para as quais ela aponta.",
-    "emptyTitleFaq": "Pergunte sobre a prepza",
+    "emptyTitleFaq": "Olá, sou a Mira, a assistente de IA da prepza",
     "pageQuestion": "O que posso fazer nesta página?",
     "pages": {
       "open": "Abrir",

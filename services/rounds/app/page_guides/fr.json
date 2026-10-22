@@ -4,9 +4,9 @@
     "text": "prepza transforme votre description de poste en un entretien chronométré, avec des questions aléatoires propres à chaque candidat. Cette page présente tout le parcours, de la création d'un entretien au partage des résultats.",
     "actions": [
       "Collez la description du poste dans le champ en haut, ou choisissez un modèle prêt à l'emploi ; ajustez les thèmes, et les questions sont rédigées et vérifiées pour vous.",
-      "Invitez des candidats par e-mail, à partir d'un fichier, avec un lien à partager dans votre annonce, ou depuis votre ATS, votre propre plateforme ou un agent IA.",
+      "Invitez des candidats par e-mail, à partir d'un fichier, avec un lien à partager dans votre annonce, ou depuis votre ATS, votre propre plateforme ou un assistant IA.",
       "Lisez les rapports : les réponses et la note de chaque candidat, partagées par e-mail ou par chat en un clic.",
-      "Connectez votre plateforme, votre app IA et les sites d'emploi, recevez les nouvelles dans Slack, ou demandez à l'agent de faire le travail pour vous."
+      "Connectez votre plateforme, votre app IA et les sites d'emploi, recevez les nouvelles dans Slack, ou demandez à Mira, l'assistante IA, de faire le travail pour vous."
     ],
     "tips": [
       "Créer des entretiens est gratuit. Vous payez par candidat qui répond, au prix indiqué sous le titre et dans votre devise, et vos premiers candidats sont gratuits.",
@@ -553,7 +553,7 @@
       "Cliquez sur une question pour afficher sa réponse."
     ],
     "tips": [
-      "Vous n'avez pas trouvé votre réponse ? Demandez à l'assistant IA en haut de la page, ou écrivez-nous depuis la page de contact.",
+      "Vous n'avez pas trouvé votre réponse ? Demandez à Mira, l'assistante IA, en haut de la page, ou écrivez-nous depuis la page de contact.",
       "Les prix indiqués dans les réponses sont toujours ceux d'aujourd'hui."
     ]
   },

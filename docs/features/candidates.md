@@ -105,7 +105,7 @@ Every interview is timed. Each question has its own countdown.
 - At zero, the pick on screen counts. If nothing is picked, the question counts as wrong.
 - An answer can't be changed. The same pick sent again (its reply lost on the way) is answered as before, even after it finished the section, so the candidate isn't told it failed.
 
-While the questions run, the page shows only them: no header, footer or "ask agent", nothing to leave the page through by accident (a page leave is recorded, and the clock keeps running). The same goes for practice rounds and a company's preview. A company's interview keeps them away for good: its invitation, its shared test link and its finished page show the company only, never prepza's header or footer. A practice round's results have them again.
+While the questions run, the page shows only them: no header, footer or "ask Mira", nothing to leave the page through by accident (a page leave is recorded, and the clock keeps running). The same goes for practice rounds and a company's preview. A company's interview keeps them away for good: its invitation, its shared test link and its finished page show the company only, never prepza's header or footer. A practice round's results have them again.
 
 ### Extra time
 

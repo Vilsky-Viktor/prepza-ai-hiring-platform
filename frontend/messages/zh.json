@@ -1298,7 +1298,7 @@
     "demos": "视频",
     "demosTooltip": "在 YouTube 上观看演示",
     "videoTooltip": "了解 prepza 如何运作",
-    "askAgent": "问问智能助手",
+    "askAgent": "问问米拉",
     "create": {
       "title": "几分钟创建一场面试",
       "text": "粘贴职位描述并调整主题，几分钟内即可完成面试。",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "从任何渠道邀请候选人",
-      "text": "发送邮件、发布分享链接、导入文件，或让你的 ATS、自有平台或 AI 智能体帮你邀请。",
+      "text": "发送邮件、发布分享链接、导入文件，或让你的 ATS、自有平台或 AI 助手帮你邀请。",
       "labels": {
         "ats": "你的 ATS",
         "email": "邮件邀请",
@@ -1331,7 +1331,7 @@
         "link": "招聘广告链接",
         "api": "API",
         "sdk": "SDK 嵌入",
-        "agent": "AI 智能体",
+        "agent": "AI 助手",
         "apps": "AI 应用 (MCP)"
       },
       "automate": "让招聘自动化",
@@ -1366,9 +1366,9 @@
       "samples": "报告示例"
     },
     "justAsk": {
-      "title": "问问智能助手就行",
+      "title": "问问米拉就行",
       "text": "用日常语言提问：它会读取你的数据、解答操作问题，并在你确认后替你完成工作。",
-      "welcome": "今天有什么可以帮你的？",
+      "welcome": "你好，我是米拉，你的 AI 助手。今天有什么可以帮你的？",
       "questions": {
         "stats": "有多少候选人通过了 <bdi>{interview}</bdi>？",
         "help": "如何给候选人额外时间？",
@@ -1487,7 +1487,7 @@
         "review": "与 AI 一起审核主题",
         "invite": "邀请 {count, number} 位候选人",
         "reports": "报告与分享",
-        "connect": "ATS、API、Slack、AI 智能体",
+        "connect": "ATS、API、Slack、AI 助手",
         "answered": "{count, number} 位候选人已作答"
       },
       "total": "合计",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "常见问题",
-    "intro": "没找到答案？问问 AI 助手（页面顶部的按钮），或发邮件到隐私政策中列出的地址。",
+    "intro": "没找到答案？问问 AI 助手米拉（页面顶部的按钮），或发邮件到隐私政策中列出的地址。",
     "description": "关于 prepza 的解答：如何根据职位描述生成面试、候选人会看到什么、价格与点数、结果、ATS 集成、支持的语言以及你的数据。"
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "助手",
+    "title": "米拉 · AI 助手",
     "company": "公司",
     "allCompanies": "所有公司",
     "newChat": "新对话",
@@ -2026,9 +2026,9 @@
     "deleteChat": "删除“<bdi>{title}</bdi>”",
     "deleteTitle": "删除此对话？",
     "deleteText": "此对话及其回答将被永久删除。",
-    "emptyTitle": "询问你的招聘",
+    "emptyTitle": "你好，我是米拉，你的 AI 助手",
     "emptyText": "候选人、面试、点数、集成以及 prepza 的使用方式，依据你在公司中能看到的内容作答。AI 可能出错；以其链接的页面为准。",
-    "emptyTitleFaq": "询问 prepza",
+    "emptyTitleFaq": "你好，我是米拉，prepza 的 AI 助手",
     "pageQuestion": "我在这个页面上能做什么？",
     "pages": {
       "open": "打开",

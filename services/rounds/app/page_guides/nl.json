@@ -4,9 +4,9 @@
     "text": "prepza maakt van je functieomschrijving een interview met tijdslimiet, met eigen willekeurige vragen voor elke kandidaat. Deze pagina laat het hele proces zien, van het maken van een interview tot het delen van de resultaten.",
     "actions": [
       "Plak de functieomschrijving in het vak bovenaan of kies een kant-en-klaar sjabloon; pas de onderwerpen aan, en de vragen worden voor je geschreven en gecontroleerd.",
-      "Nodig kandidaten uit per e-mail, vanuit een bestand, met een deelbare link in je vacature, of vanuit je ATS, je eigen platform of een AI-agent.",
+      "Nodig kandidaten uit per e-mail, vanuit een bestand, met een deelbare link in je vacature, of vanuit je ATS, je eigen platform of een AI-assistent.",
       "Lees de rapporten: de antwoorden en score van elke kandidaat, met één klik gedeeld per e-mail of chat.",
-      "Koppel je platform, je AI-app en vacaturesites, krijg updates in Slack, of vraag de agent om het werk voor je te doen."
+      "Koppel je platform, je AI-app en vacaturesites, krijg updates in Slack, of vraag Mira, de AI-assistent, om het werk voor je te doen."
     ],
     "tips": [
       "Interviews maken is gratis. Je betaalt per kandidaat die antwoordt, tegen de prijs onder de titel in jouw valuta, en je eerste kandidaten zijn gratis.",
@@ -553,7 +553,7 @@
       "Klik op een vraag om het antwoord te openen."
     ],
     "tips": [
-      "Je antwoord niet gevonden? Vraag het de AI-assistent bovenaan de pagina, of schrijf ons via de contactpagina.",
+      "Je antwoord niet gevonden? Vraag het Mira, de AI-assistent bovenaan de pagina, of schrijf ons via de contactpagina.",
       "De prijzen in de antwoorden zijn altijd die van vandaag."
     ]
   },

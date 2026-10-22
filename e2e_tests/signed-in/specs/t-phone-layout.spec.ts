@@ -133,7 +133,7 @@ test("a company's pages on a phone", async ({ signInAs }) => {
 });
 
 // While questions run against the clock there's only the question: no header, footer or
-// "ask agent"; nor on a member's preview of its invitation before. A company's interview,
+// "ask Mira"; nor on a member's preview of its invitation before. A company's interview,
 // finished, shows the company only, with its button back to the interviews.
 test("timed questions on their own, with nothing around them", async ({
   signInAs,

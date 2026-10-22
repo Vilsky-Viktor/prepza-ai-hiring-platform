@@ -1298,7 +1298,7 @@
     "demos": "Video",
     "demosTooltip": "Panoorin ang mga demo sa YouTube",
     "videoTooltip": "Panoorin kung paano gumagana ang prepza",
-    "askAgent": "magtanong sa agent",
+    "askAgent": "magtanong kay Mira",
     "create": {
       "title": "Gumawa ng interview sa loob ng ilang minuto",
       "text": "I-paste ang job description, ayusin ang mga topic, at handa na ang interview mo sa loob ng ilang minuto.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Mag-imbita ng mga aplikante mula kahit saan",
-      "text": "I-email sila, mag-publish ng shareable link, mag-import ng file, o hayaang ang iyong ATS, sarili mong platform o isang AI agent ang magpadala sa kanila.",
+      "text": "I-email sila, mag-publish ng shareable link, mag-import ng file, o hayaang ang iyong ATS, sarili mong platform o isang AI assistant ang magpadala sa kanila.",
       "labels": {
         "ats": "Iyong ATS",
         "email": "Imbitasyon sa email",
@@ -1331,7 +1331,7 @@
         "link": "Link sa job ad",
         "api": "API",
         "sdk": "SDK embed",
-        "agent": "AI agent",
+        "agent": "AI assistant",
         "apps": "Mga AI app (MCP)"
       },
       "automate": "I-automate ang hiring gamit ang",
@@ -1366,9 +1366,9 @@
       "samples": "Mga halimbawang ulat"
     },
     "justAsk": {
-      "title": "Itanong lang sa agent",
+      "title": "Itanong lang kay Mira",
       "text": "Magtanong sa simpleng salita: binabasa nito ang iyong data, sinasagot ang mga tanong kung paano gawin ang isang bagay, at ginagawa ang trabaho pagkatapos mong kumpirmahin.",
-      "welcome": "Paano kita matutulungan ngayon?",
+      "welcome": "Hi, ako si Mira, ang iyong AI assistant. Paano kita matutulungan ngayon?",
       "questions": {
         "stats": "Ilang aplikante ang pumasa sa <bdi>{interview}</bdi>?",
         "help": "Paano ko bibigyan ng dagdag na oras ang isang aplikante?",
@@ -1487,7 +1487,7 @@
         "review": "i-review ang mga topic kasama ang AI",
         "invite": "mag-imbita ng {count, number} aplikante",
         "reports": "mga report at pag-share",
-        "connect": "ATS, API, Slack, AI agent",
+        "connect": "ATS, API, Slack, AI assistant",
         "answered": "{count, number} aplikante ang sumagot"
       },
       "total": "kabuuan",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Mga madalas itanong",
-    "intro": "Hindi mo makita ang sagot? Itanong sa AI assistant (ang button sa itaas ng page), o sumulat sa amin sa address na nasa privacy policy.",
+    "intro": "Hindi mo makita ang sagot? Itanong kay Mira, ang AI assistant (ang button sa itaas ng page), o sumulat sa amin sa address na nasa privacy policy.",
     "description": "Mga sagot tungkol sa prepza: paano ginagawa ang interview mula sa job description, ano ang nakikita ng mga aplikante, presyo at credits, resulta, ATS integration, mga wika at ang data mo."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Assistant",
+    "title": "Mira · AI assistant",
     "company": "Kumpanya",
     "allCompanies": "Lahat ng kumpanya",
     "newChat": "Bagong chat",
@@ -2026,9 +2026,9 @@
     "deleteChat": "Burahin ang “<bdi>{title}</bdi>”",
     "deleteTitle": "Burahin ang chat na ito?",
     "deleteText": "Permanenteng mabubura ang chat at ang mga sagot nito.",
-    "emptyTitle": "Magtanong tungkol sa hiring mo",
+    "emptyTitle": "Hi, ako si Mira, ang iyong AI assistant",
     "emptyText": "Mga aplikante, interview, credits, integration at kung paano gumagana ang prepza, mula sa nakikita mo sa mga kumpanya mo. Puwedeng magkamali ang AI; ang mga page na ini-link nito ang masusunod.",
-    "emptyTitleFaq": "Magtanong tungkol sa prepza",
+    "emptyTitleFaq": "Hi, ako si Mira, ang AI assistant ng prepza",
     "pageQuestion": "Ano ang magagawa ko sa page na ito?",
     "pages": {
       "open": "Buksan",

@@ -55,7 +55,7 @@ Then open the app at http://localhost:8090. Sign-in uses the Firebase Auth emula
 | [ATS integrations](docs/features/ats.md) | Connecting Workable, Greenhouse, Teamtailor, Recruitee and Breezy HR, linked jobs, results back to the ATS |
 | [Public API](docs/features/api.md) | API keys, their expiry and permissions, the routes, invites without sign-in, return addresses and themes, signed web hooks, the SDK that embeds the interview, the API page and the developer docs |
 | [Notifications and emails](docs/features/notifications.md) | The bell, emails, legal notices and campaigns, Slack, setting up Resend and Slack |
-| [In-app assistant](docs/features/assistant.md) | The "ask agent" panel: answers about a user's companies and about prepza (FAQ answers when signed out), voice input, its limits, retention and tools |
+| [In-app assistant](docs/features/assistant.md) | Mira, the "ask Mira" panel: answers about a user's companies and about prepza (FAQ answers when signed out), voice input, its limits, retention and tools |
 | [AI apps over MCP](docs/features/mcp.md) | Connecting Claude, ChatGPT and other AI apps, and agents with an API key: the consent page, OAuth, the tools, what's new since the last check, connections, limits, the developer docs' MCP tab |
 | [Admin zone](docs/features/admin-zone.md) | Superadmins' templates, news, campaigns, quality, support, pass rates, stats, AI costs, pause and maintenance mode, limits |
 | [Admin zone: Support](docs/features/admin-support.md) | Finding an account, company, interview or candidate from a complaint, their support pages, credits, suspension, stopping emails, logs |

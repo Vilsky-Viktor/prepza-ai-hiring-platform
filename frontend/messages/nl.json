@@ -1298,7 +1298,7 @@
     "demos": "Video",
     "demosTooltip": "Demo's bekijken op YouTube",
     "videoTooltip": "Bekijk hoe prepza werkt",
-    "askAgent": "vraag de agent",
+    "askAgent": "vraag Mira",
     "create": {
       "title": "Maak een interview in enkele minuten",
       "text": "Plak een functieomschrijving, pas de onderwerpen aan en je interview is binnen enkele minuten klaar.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Nodig kandidaten overal vandaan uit",
-      "text": "Mail ze, publiceer een deelbare link, importeer een bestand, of laat je ATS, je eigen platform of een AI-agent ze uitnodigen.",
+      "text": "Mail ze, publiceer een deelbare link, importeer een bestand, of laat je ATS, je eigen platform of een AI-assistent ze uitnodigen.",
       "labels": {
         "ats": "Je ATS",
         "email": "Uitnodigingen per e-mail",
@@ -1331,7 +1331,7 @@
         "link": "Link in de vacature",
         "api": "API",
         "sdk": "SDK-integratie",
-        "agent": "AI-agent",
+        "agent": "AI-assistent",
         "apps": "AI-apps (MCP)"
       },
       "automate": "Automatiseer je werving met",
@@ -1366,9 +1366,9 @@
       "samples": "Voorbeeldrapporten"
     },
     "justAsk": {
-      "title": "Vraag het gewoon de agent",
+      "title": "Vraag het gewoon Mira",
       "text": "Vraag het in gewone woorden: hij leest je gegevens, beantwoordt vragen over hoe iets werkt en doet het werk zodra jij bevestigt.",
-      "welcome": "Waarmee kan ik je vandaag helpen?",
+      "welcome": "Hoi, ik ben Mira, je AI-assistent. Waarmee kan ik je vandaag helpen?",
       "questions": {
         "stats": "Hoeveel kandidaten zijn geslaagd voor <bdi>{interview}</bdi>?",
         "help": "Hoe geef ik een kandidaat extra tijd?",
@@ -1487,7 +1487,7 @@
         "review": "onderwerpen nakijken met AI",
         "invite": "{count, plural, one {# kandidaat} other {# kandidaten}} uitnodigen",
         "reports": "rapporten en delen",
-        "connect": "ATS, API, Slack, AI-agent",
+        "connect": "ATS, API, Slack, AI-assistent",
         "answered": "{count, plural, one {# kandidaat heeft geantwoord} other {# kandidaten hebben geantwoord}}"
       },
       "total": "totaal",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Veelgestelde vragen",
-    "intro": "Staat je antwoord er niet bij? Vraag het de AI-assistent (de knop bovenaan de pagina), of schrijf ons op het adres in het privacybeleid.",
+    "intro": "Staat je antwoord er niet bij? Vraag het Mira, de AI-assistent (de knop bovenaan de pagina), of schrijf ons op het adres in het privacybeleid.",
     "description": "Antwoorden over prepza: hoe interviews uit een vacaturetekst ontstaan, wat kandidaten zien, prijzen en credits, resultaten, ATS-koppelingen, talen en je gegevens."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Assistent",
+    "title": "Mira · AI-assistent",
     "company": "Bedrijf",
     "allCompanies": "Alle bedrijven",
     "newChat": "Nieuwe chat",
@@ -2026,9 +2026,9 @@
     "deleteChat": "‘<bdi>{title}</bdi>’ verwijderen",
     "deleteTitle": "Deze chat verwijderen?",
     "deleteText": "De chat en de antwoorden worden definitief verwijderd.",
-    "emptyTitle": "Vraag iets over je werving",
+    "emptyTitle": "Hoi, ik ben Mira, je AI-assistent",
     "emptyText": "Kandidaten, interviews, credits, koppelingen en hoe prepza werkt, op basis van wat je in je bedrijven ziet. De AI kan zich vergissen; de pagina's waarnaar hij linkt zijn leidend.",
-    "emptyTitleFaq": "Vraag iets over prepza",
+    "emptyTitleFaq": "Hoi, ik ben Mira, de AI-assistent van prepza",
     "pageQuestion": "Wat kan ik op deze pagina doen?",
     "pages": {
       "open": "Openen",

@@ -6,7 +6,7 @@ import { visit } from "../helpers/navigation";
 import { shot } from "../helpers/screenshots";
 import { ownerEmail } from "../helpers/users";
 
-// Thumbs up and down under the agent's answers, signed in (the assistant) and signed out (the
+// Thumbs up and down under Mira's answers, signed in (the assistant) and signed out (the
 // help chat). Answers are stubbed in the browser (no OpenAI in tests), and so are the votes'
 // saves, which the services' own tests cover against the database; here: what's sent, what
 // the buttons show, a failed save, and a saved vote shown again after a reload.

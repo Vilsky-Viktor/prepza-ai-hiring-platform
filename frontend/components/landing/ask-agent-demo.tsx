@@ -110,7 +110,6 @@ function demoSteps(letters: Record<AskAgentQuestion, number>): Step[] {
  * reduced motion, the whole conversation, still. */
 export function AskAgentDemo() {
   const t = useTranslations("landing.justAsk")
-  const landing = useTranslations("landing")
   const locale = useLocale()
   const assistant = useTranslations("assistant")
   const common = useTranslations("common")
@@ -211,8 +210,8 @@ export function AskAgentDemo() {
         <div className="flex min-h-0 flex-1 flex-col">
           <div className="flex h-14 shrink-0 items-center gap-3 border-b px-4 text-muted-foreground">
             <SparklesIcon className="size-4 shrink-0 text-primary" />
-            <p className="flex-1 truncate font-heading text-lg font-medium text-foreground lowercase">
-              {landing("askAgent")}
+            <p className="flex-1 truncate font-heading text-lg font-medium text-foreground">
+              {assistant("title")}
             </p>
             <SquarePenIcon className="size-5" />
             <HistoryIcon className="size-5" />
@@ -223,7 +222,7 @@ export function AskAgentDemo() {
             className="flex-1 overflow-hidden px-4 pt-4 pb-6 text-start"
           >
             <ul className="space-y-3 *:animate-in *:fade-in">
-              {/* The agent's welcome, there from the start. */}
+              {/* Mira's welcome, there from the start. */}
               {answer(t("welcome"))}
               {items.slice(0, step.upTo).map((item, at) => (
                 <Fragment key={at}>{item}</Fragment>

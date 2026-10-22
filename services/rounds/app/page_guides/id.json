@@ -4,9 +4,9 @@
     "text": "prepza mengubah deskripsi pekerjaanmu menjadi wawancara berbatas waktu, dengan soal acak tersendiri untuk setiap kandidat. Halaman ini menunjukkan semua langkahnya, dari membuat wawancara sampai membagikan hasilnya.",
     "actions": [
       "Tempel deskripsi pekerjaan di kotak paling atas, atau pilih templat siap pakai; sesuaikan topiknya, dan soalnya ditulis serta diperiksa untukmu.",
-      "Undang kandidat lewat email, dari file, dengan tautan berbagi di iklan lowonganmu, atau dari ATS-mu, platformmu sendiri, atau agen AI.",
+      "Undang kandidat lewat email, dari file, dengan tautan berbagi di iklan lowonganmu, atau dari ATS-mu, platformmu sendiri, atau asisten AI.",
       "Baca laporannya: jawaban dan nilai setiap kandidat, dibagikan lewat email atau chat dengan sekali klik.",
-      "Hubungkan platformmu, aplikasi AI, dan situs lowongan kerja, dapatkan kabar terbaru di Slack, atau minta agen mengerjakannya untukmu."
+      "Hubungkan platformmu, aplikasi AI, dan situs lowongan kerja, dapatkan kabar terbaru di Slack, atau minta Mira, asisten AI, mengerjakannya untukmu."
     ],
     "tips": [
       "Membuat wawancara gratis. Kamu membayar per kandidat yang menjawab, dengan harga di bawah judul dalam mata uangmu, dan kandidat pertamamu gratis.",
@@ -553,7 +553,7 @@
       "Klik pertanyaan untuk membuka jawabannya."
     ],
     "tips": [
-      "Tidak menemukan jawabannya? Tanyakan ke asisten AI di bagian atas halaman, atau kirim pesan kepada kami dari halaman kontak.",
+      "Tidak menemukan jawabannya? Tanyakan ke Mira, asisten AI di bagian atas halaman, atau kirim pesan kepada kami dari halaman kontak.",
       "Harga dalam jawaban selalu harga saat ini."
     ]
   },

@@ -5,9 +5,10 @@ import { SparklesIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { useAssistant } from "@/components/assistant/assistant-provider"
+import { KeepAcronyms } from "@/components/keep-acronyms"
 import { Button } from "@/components/ui/button"
 
-/** "ask agent": opens the assistant's panel, signed in or not. The size of the demos button,
+/** "ask Mira": opens the assistant's panel, signed in or not. The size of the demos button,
  * its brand-blue border circled by a bright arc, like the header's. */
 export function AskAgentButton({ className }: { className?: string }) {
   const t = useTranslations("landing")
@@ -24,7 +25,10 @@ export function AskAgentButton({ className }: { className?: string }) {
       data-assistant-toggle
     >
       <SparklesIcon aria-hidden className="size-5 text-primary" />
-      {t("askAgent")}
+      {/* One flex item, so the name sits a single space from "ask". */}
+      <span>
+        <KeepAcronyms text={t("askAgent")} />
+      </span>
     </Button>
   )
 }

@@ -1298,7 +1298,7 @@
     "demos": "Video",
     "demosTooltip": "Demos auf YouTube ansehen",
     "videoTooltip": "Sieh dir an, wie prepza funktioniert",
-    "askAgent": "agent fragen",
+    "askAgent": "Mira fragen",
     "create": {
       "title": "Ein Interview in Minuten erstellen",
       "text": "Füge eine Stellenbeschreibung ein, passe die Themen an, und dein Interview ist in Minuten fertig.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Kandidaten von überall einladen",
-      "text": "Lade sie per E-Mail ein, veröffentliche einen teilbaren Link, importiere eine Datei oder lass dein ATS, deine eigene Plattform oder einen KI-Agenten sie einladen.",
+      "text": "Lade sie per E-Mail ein, veröffentliche einen teilbaren Link, importiere eine Datei oder lass dein ATS, deine eigene Plattform oder einen KI-Assistenten sie einladen.",
       "labels": {
         "ats": "Dein ATS",
         "email": "E-Mail-Einladungen",
@@ -1331,7 +1331,7 @@
         "link": "Link in der Anzeige",
         "api": "API",
         "sdk": "SDK-Einbindung",
-        "agent": "KI-Agent",
+        "agent": "KI-Assistent",
         "apps": "KI-Apps (MCP)"
       },
       "automate": "Automatisiere dein Recruiting mit",
@@ -1366,9 +1366,9 @@
       "samples": "Beispielberichte"
     },
     "justAsk": {
-      "title": "Frag einfach den Agenten",
+      "title": "Frag einfach Mira",
       "text": "Frag in einfachen Worten: Er liest deine Daten, beantwortet Fragen zur Bedienung und erledigt die Arbeit, sobald du bestätigst.",
-      "welcome": "Wie kann ich dir heute helfen?",
+      "welcome": "Hi, ich bin Mira, deine KI-Assistentin. Wie kann ich dir heute helfen?",
       "questions": {
         "stats": "Wie viele Kandidaten haben <bdi>{interview}</bdi> bestanden?",
         "help": "Wie gebe ich einem Kandidaten zusätzliche Zeit?",
@@ -1487,7 +1487,7 @@
         "review": "themen mit KI prüfen",
         "invite": "{count, plural, one {# Kandidaten} other {# Kandidaten}} einladen",
         "reports": "berichte und teilen",
-        "connect": "ATS, API, Slack, KI-Agent",
+        "connect": "ATS, API, Slack, KI-Assistent",
         "answered": "{count, plural, one {# Kandidat hat geantwortet} other {# Kandidaten haben geantwortet}}"
       },
       "total": "gesamt",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Häufige Fragen",
-    "intro": "Keine Antwort gefunden? Frag den KI-Assistenten (die Schaltfläche oben auf der Seite) oder schreib uns an die Adresse in der Datenschutzerklärung.",
+    "intro": "Keine Antwort gefunden? Frag Mira, die KI-Assistentin (die Schaltfläche oben auf der Seite), oder schreib uns an die Adresse in der Datenschutzerklärung.",
     "description": "Antworten zu prepza: wie Interviews aus einer Stellenbeschreibung entstehen, was Kandidaten sehen, Preise und Credits, Ergebnisse, ATS-Integrationen, Sprachen und deine Daten."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Assistent",
+    "title": "Mira · KI-Assistentin",
     "company": "Unternehmen",
     "allCompanies": "Alle Unternehmen",
     "newChat": "Neuer Chat",
@@ -2026,9 +2026,9 @@
     "deleteChat": "„<bdi>{title}</bdi>“ löschen",
     "deleteTitle": "Diesen Chat löschen?",
     "deleteText": "Der Chat und seine Antworten werden endgültig gelöscht.",
-    "emptyTitle": "Frag zu deinem Recruiting",
+    "emptyTitle": "Hi, ich bin Mira, deine KI-Assistentin",
     "emptyText": "Kandidaten, Interviews, Credits, Integrationen und wie prepza funktioniert – aus dem, was du in deinen Unternehmen siehst. Die KI kann sich irren; maßgeblich sind die Seiten, auf die sie verlinkt.",
-    "emptyTitleFaq": "Frag zu prepza",
+    "emptyTitleFaq": "Hi, ich bin Mira, die KI-Assistentin von prepza",
     "pageQuestion": "Was kann ich auf dieser Seite tun?",
     "pages": {
       "open": "Öffnen",

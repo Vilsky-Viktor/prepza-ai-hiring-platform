@@ -1298,7 +1298,7 @@
     "demos": "Video",
     "demosTooltip": "Demoları YouTube'da izle",
     "videoTooltip": "prepza'nın nasıl çalıştığını izleyin",
-    "askAgent": "asistana sor",
+    "askAgent": "Mira'ya sor",
     "create": {
       "title": "Dakikalar içinde mülakat oluşturun",
       "text": "Bir iş tanımı yapıştırın, konuları düzenleyin; mülakatınız dakikalar içinde hazır.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Adayları her yerden davet edin",
-      "text": "E-postayla davet edin, bir paylaşım bağlantısı yayınlayın, bir dosya içe aktarın ya da adayları ATS'niz, kendi platformunuz veya bir yapay zekâ ajanı göndersin.",
+      "text": "E-postayla davet edin, bir paylaşım bağlantısı yayınlayın, bir dosya içe aktarın ya da adayları ATS'niz, kendi platformunuz veya bir yapay zekâ asistanı göndersin.",
       "labels": {
         "ats": "ATS'niz",
         "email": "E-posta davetleri",
@@ -1331,7 +1331,7 @@
         "link": "İlandaki bağlantı",
         "api": "API",
         "sdk": "SDK ile yerleştirme",
-        "agent": "Yapay zekâ ajanı",
+        "agent": "Yapay zekâ asistanı",
         "apps": "Yapay zekâ uygulamaları (MCP)"
       },
       "automate": "İşe alımınızı otomatikleştirmek için",
@@ -1366,9 +1366,9 @@
       "samples": "Örnek raporlar"
     },
     "justAsk": {
-      "title": "Asistana sormanız yeterli",
+      "title": "Mira'ya sormanız yeterli",
       "text": "Sade bir dille sorun: verilerinizi okur, “nasıl yapılır” sorularını yanıtlar ve siz onayladıktan sonra işi yapar.",
-      "welcome": "Bugün size nasıl yardımcı olabilirim?",
+      "welcome": "Merhaba, ben Mira, yapay zekâ asistanınız. Bugün size nasıl yardımcı olabilirim?",
       "questions": {
         "stats": "<bdi>{interview}</bdi> mülakatını kaç aday geçti?",
         "help": "Bir adaya nasıl ek süre veririm?",
@@ -1487,7 +1487,7 @@
         "review": "konuları yapay zekâyla inceleme",
         "invite": "{count, number} aday davet etme",
         "reports": "raporlar ve paylaşım",
-        "connect": "ATS, API, Slack, yapay zekâ ajanı",
+        "connect": "ATS, API, Slack, yapay zekâ asistanı",
         "answered": "{count, number} aday yanıtladı"
       },
       "total": "toplam",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Sıkça sorulan sorular",
-    "intro": "Yanıtınızı bulamadınız mı? Yapay zekâ asistanına sorun (sayfanın üstündeki düğme) ya da gizlilik politikasındaki adrese yazın.",
+    "intro": "Yanıtınızı bulamadınız mı? Yapay zekâ asistanı Mira'ya sorun (sayfanın üstündeki düğme) ya da gizlilik politikasındaki adrese yazın.",
     "description": "prepza hakkında yanıtlar: mülakatlar iş tanımından nasıl hazırlanır, adaylar ne görür, fiyatlar ve krediler, sonuçlar, ATS entegrasyonları, diller ve verileriniz."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Asistan",
+    "title": "Mira · yapay zekâ asistanı",
     "company": "Şirket",
     "allCompanies": "Tüm şirketler",
     "newChat": "Yeni sohbet",
@@ -2026,9 +2026,9 @@
     "deleteChat": "“<bdi>{title}</bdi>” sohbetini sil",
     "deleteTitle": "Bu sohbet silinsin mi?",
     "deleteText": "Sohbet ve yanıtları kalıcı olarak silinir.",
-    "emptyTitle": "İşe alımın hakkında sor",
+    "emptyTitle": "Merhaba, ben Mira, yapay zekâ asistanınız",
     "emptyText": "Adaylar, mülakatlar, krediler, entegrasyonlar ve prepza'nın nasıl çalıştığı; şirketlerinde gördüklerine dayanarak. Yapay zekâ yanılabilir; esas olan bağlantı verdiği sayfalardır.",
-    "emptyTitleFaq": "prepza hakkında sor",
+    "emptyTitleFaq": "Merhaba, ben Mira, prepza'nın yapay zekâ asistanı",
     "pageQuestion": "Bu sayfada neler yapabilirim?",
     "pages": {
       "open": "Aç",

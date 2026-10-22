@@ -4,9 +4,9 @@
     "text": "prepza iş tanımınızı süreli bir mülakata dönüştürür; her aday kendi rastgele sorularını alır. Bu sayfa, mülakat oluşturmaktan sonuçları paylaşmaya kadar tüm süreci anlatır.",
     "actions": [
       "İş tanımını üstteki kutuya yapıştırın veya hazır bir şablon seçin; konuları düzenleyin, sorular sizin için yazılıp kontrol edilsin.",
-      "Adayları e-postayla, bir dosyadan, iş ilanınızdaki paylaşım bağlantısıyla ya da ATS'nizden, kendi platformunuzdan veya bir yapay zekâ ajanından davet edin.",
+      "Adayları e-postayla, bir dosyadan, iş ilanınızdaki paylaşım bağlantısıyla ya da ATS'nizden, kendi platformunuzdan veya bir yapay zekâ asistanından davet edin.",
       "Raporları okuyun: her adayın cevapları ve notu, tek tıkla e-postayla ya da sohbette paylaşılır.",
-      "Platformunuzu, yapay zekâ uygulamanızı ve iş ilanı sitelerini bağlayın, güncellemeleri Slack'te alın ya da işi sizin yerinize yapmasını asistandan isteyin."
+      "Platformunuzu, yapay zekâ uygulamanızı ve iş ilanı sitelerini bağlayın, güncellemeleri Slack'te alın ya da işi sizin yerinize yapmasını yapay zekâ asistanı Mira'dan isteyin."
     ],
     "tips": [
       "Mülakat oluşturmak ücretsizdir. Cevap veren her aday için başlığın altındaki fiyatı kendi para biriminizde ödersiniz ve ilk adaylarınız ücretsizdir.",
@@ -553,7 +553,7 @@
       "Cevabını açmak için bir soruya tıklayın."
     ],
     "tips": [
-      "Cevabınızı bulamadınız mı? Sayfanın üstündeki yapay zekâ asistanına sorun veya iletişim sayfasından bize yazın.",
+      "Cevabınızı bulamadınız mı? Sayfanın üstündeki yapay zekâ asistanı Mira'ya sorun veya iletişim sayfasından bize yazın.",
       "Cevaplardaki fiyatlar her zaman günceldir."
     ]
   },

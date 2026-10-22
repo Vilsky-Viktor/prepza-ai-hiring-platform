@@ -244,7 +244,7 @@ test("the comparison shows prepza's price range from the catalog", async ({ page
   await expect(section.getByRole("link")).toHaveAttribute("href", "/compare");
 });
 
-test("the closing buttons lead to the agent, the videos, the FAQ and the guides", async ({
+test("the closing buttons lead to Mira, the videos, the FAQ and the guides", async ({
   page,
 }) => {
   test.setTimeout(120_000);

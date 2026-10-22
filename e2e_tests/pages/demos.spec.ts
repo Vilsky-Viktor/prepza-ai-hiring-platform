@@ -25,8 +25,8 @@ test("the home page links to the demo videos", async ({ page }) => {
   }).toPass();
 });
 
-// Every page's footer has "ask agent" under the social icons; it opens the assistant's panel.
-test("the footer's ask agent opens the assistant", async ({ page }) => {
+// Every page's footer has "ask Mira" under the social icons; it opens the assistant's panel.
+test("the footer's ask Mira opens the assistant", async ({ page }) => {
   await page.goto("/faq");
   await loaded(page);
   await page.getByRole("contentinfo").locator("[data-assistant-toggle]").click();

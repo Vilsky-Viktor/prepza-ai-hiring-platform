@@ -4,9 +4,9 @@
     "text": "prepza teeb sinu töökuulutusest ajapiiranguga intervjuu, kus igal kandidaadil on omad juhuslikud küsimused. See leht näitab kogu teed, intervjuu loomisest tulemuste jagamiseni.",
     "actions": [
       "Kleebi töökuulutus üleval olevasse kasti või vali valmis mall; kohanda teemasid ja küsimused kirjutatakse ning kontrollitakse sinu eest.",
-      "Kutsu kandidaate e-kirjaga, failist, töökuulutuses oleva jagamislingiga või oma ATS-i, oma platvormi või AI-agendi kaudu.",
+      "Kutsu kandidaate e-kirjaga, failist, töökuulutuses oleva jagamislingiga või oma ATS-i, oma platvormi või AI-assistendi kaudu.",
       "Loe aruandeid: iga kandidaadi vastused ja hinne, jagatud ühe klikiga e-kirja või vestluse kaudu.",
-      "Ühenda oma platvorm, AI-rakendus ja tööportaalid, saa uuendusi Slackis või palu agendil töö sinu eest ära teha."
+      "Ühenda oma platvorm, AI-rakendus ja tööportaalid, saa uuendusi Slackis või palu Miral, tehisaru assistendil, töö sinu eest ära teha."
     ],
     "tips": [
       "Intervjuude loomine on tasuta. Maksad iga vastava kandidaadi eest pealkirja all näidatud hinnaga sinu valuutas ja esimesed kandidaadid on tasuta.",
@@ -553,7 +553,7 @@
       "Klõpsa küsimusel, et selle vastus avada."
     ],
     "tips": [
-      "Ei leidnud vastust? Küsi lehe ülaosas olevalt AI-assistendilt või kirjuta meile kontaktilehelt.",
+      "Ei leidnud vastust? Küsi lehe ülaosas Miralt, tehisaru assistendilt, või kirjuta meile kontaktilehelt.",
       "Vastustes olevad hinnad on alati tänased."
     ]
   },

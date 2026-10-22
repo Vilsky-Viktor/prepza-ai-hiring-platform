@@ -4,9 +4,9 @@
     "text": "A prepza transforma a descrição da vaga em uma entrevista cronometrada, com questões aleatórias próprias para cada candidato. Esta página mostra todo o processo, da criação de uma entrevista ao compartilhamento dos resultados.",
     "actions": [
       "Cole a descrição da vaga na caixa no topo ou escolha um modelo pronto; ajuste os tópicos, e as questões são escritas e verificadas para você.",
-      "Convide candidatos por e-mail, a partir de um arquivo, com um link compartilhável no seu anúncio de vaga, ou pelo seu ATS, pela sua própria plataforma ou por um agente de IA.",
+      "Convide candidatos por e-mail, a partir de um arquivo, com um link compartilhável no seu anúncio de vaga, ou pelo seu ATS, pela sua própria plataforma ou por um assistente de IA.",
       "Leia os relatórios: as respostas e a nota de cada candidato, compartilhadas por e-mail ou chat com um clique.",
-      "Conecte sua plataforma, seu app de IA e os sites de vagas, receba atualizações no Slack ou peça ao agente para fazer o trabalho por você."
+      "Conecte sua plataforma, seu app de IA e os sites de vagas, receba atualizações no Slack ou peça à Mira, a assistente de IA, para fazer o trabalho por você."
     ],
     "tips": [
       "Criar entrevistas é grátis. Você paga por candidato que responde, pelo preço mostrado sob o título e na sua moeda, e seus primeiros candidatos são grátis.",
@@ -553,7 +553,7 @@
       "Clique em uma pergunta para abrir a resposta."
     ],
     "tips": [
-      "Não encontrou sua resposta? Pergunte ao assistente de IA no topo da página, ou escreva para nós pela página de contato.",
+      "Não encontrou sua resposta? Pergunte à Mira, a assistente de IA, no topo da página, ou escreva para nós pela página de contato.",
       "Os preços nas respostas são sempre os atuais."
     ]
   },

@@ -32,6 +32,8 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
 
   // No company yet, then a company that isn't verified: the service decides the stage.
   await expect(panel.getByTestId("welcome-no_company")).toBeVisible();
+  // The welcome introduces the assistant by name, kept as written in the lowercase title.
+  await expect(panel.getByTestId("welcome-no_company").getByRole("heading").locator(".normal-case").first()).toBeVisible();
   await shot(owner, "welcome-no-company");
   await panel.getByTestId("assistant-close").click();
   const company = await createCompany(owner);

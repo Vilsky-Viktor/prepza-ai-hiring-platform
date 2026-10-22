@@ -4,9 +4,9 @@
     "text": "prepza biến mô tả công việc của bạn thành một buổi phỏng vấn có giới hạn thời gian, mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng. Trang này giới thiệu toàn bộ quy trình, từ tạo buổi phỏng vấn đến chia sẻ kết quả.",
     "actions": [
       "Dán mô tả công việc vào ô ở đầu trang, hoặc chọn một mẫu có sẵn; điều chỉnh các chủ đề, câu hỏi sẽ được soạn và kiểm tra giúp bạn.",
-      "Mời ứng viên qua email, từ tệp, bằng liên kết chia sẻ trong tin tuyển dụng, hoặc từ ATS, nền tảng của riêng bạn hay agent AI.",
+      "Mời ứng viên qua email, từ tệp, bằng liên kết chia sẻ trong tin tuyển dụng, hoặc từ ATS, nền tảng của riêng bạn hay trợ lý AI.",
       "Xem báo cáo: câu trả lời và điểm của mọi ứng viên, chia sẻ qua email hoặc chat chỉ với một cú nhấp.",
-      "Kết nối nền tảng của bạn, ứng dụng AI và các trang tuyển dụng, nhận cập nhật trong Slack, hoặc nhờ trợ lý AI làm thay bạn."
+      "Kết nối nền tảng của bạn, ứng dụng AI và các trang tuyển dụng, nhận cập nhật trong Slack, hoặc nhờ Mira, trợ lý AI, làm thay bạn."
     ],
     "tips": [
       "Tạo buổi phỏng vấn miễn phí. Bạn trả cho mỗi ứng viên trả lời, theo giá dưới tiêu đề bằng tiền tệ của bạn, và những ứng viên đầu tiên được miễn phí.",
@@ -553,7 +553,7 @@
       "Nhấp vào một câu hỏi để mở câu trả lời."
     ],
     "tips": [
-      "Không tìm thấy câu trả lời? Hãy hỏi trợ lý AI ở đầu trang, hoặc viết cho chúng tôi từ trang liên hệ.",
+      "Không tìm thấy câu trả lời? Hãy hỏi Mira, trợ lý AI ở đầu trang, hoặc viết cho chúng tôi từ trang liên hệ.",
       "Giá trong các câu trả lời luôn là giá hiện tại."
     ]
   },

@@ -1298,7 +1298,7 @@
     "demos": "Video",
     "demosTooltip": "Watch demos on YouTube",
     "videoTooltip": "Watch how prepza works",
-    "askAgent": "ask agent",
+    "askAgent": "ask Mira",
     "create": {
       "title": "Create an interview in minutes",
       "text": "Paste a job description, adjust the topics, and your interview is ready in minutes.",
@@ -1323,7 +1323,7 @@
     },
     "sources": {
       "title": "Invite candidates from everywhere",
-      "text": "Email them, publish a share link, import a file, or let your ATS, your own platform or an AI agent send them in.",
+      "text": "Email them, publish a share link, import a file, or let your ATS, your own platform or an AI assistant send them in.",
       "labels": {
         "ats": "Your ATS",
         "email": "Email invites",
@@ -1331,7 +1331,7 @@
         "link": "Shared ad link",
         "api": "API",
         "sdk": "SDK embed",
-        "agent": "AI agent",
+        "agent": "AI assistant",
         "apps": "AI apps (MCP)"
       },
       "automate": "Automate hiring with",
@@ -1366,9 +1366,9 @@
       "samples": "Report samples"
     },
     "justAsk": {
-      "title": "Just ask the agent",
+      "title": "Just ask Mira",
       "text": "Ask in plain words: it reads your data, answers how‑to questions and does the work after you confirm.",
-      "welcome": "How can I help you today?",
+      "welcome": "Hi, I'm Mira, your AI assistant. How can I help you today?",
       "questions": {
         "stats": "How many candidates passed <bdi>{interview}</bdi>?",
         "help": "How do I give a candidate extra time?",
@@ -1487,7 +1487,7 @@
         "review": "review topics with AI",
         "invite": "invite {count, plural, one {# candidate} other {# candidates}}",
         "reports": "reports and sharing",
-        "connect": "ATS, API, Slack, AI agent",
+        "connect": "ATS, API, Slack, AI assistant",
         "answered": "{count, plural, one {# candidate answered} other {# candidates answered}}"
       },
       "total": "total",
@@ -1507,7 +1507,7 @@
   },
   "faq": {
     "title": "Frequently asked questions",
-    "intro": "Can't find your answer? Ask the AI assistant (the button at the top of the page), or write to us at the address in the privacy policy.",
+    "intro": "Can't find your answer? Ask Mira, the AI assistant (the button at the top of the page), or write to us at the address in the privacy policy.",
     "description": "Answers about prepza: how interviews are made from a job description, what candidates see, prices and credits, results, ATS integrations, languages and your data."
   },
   "contact": {
@@ -2012,7 +2012,7 @@
     }
   },
   "assistant": {
-    "title": "Assistant",
+    "title": "Mira · AI assistant",
     "company": "Company",
     "allCompanies": "All companies",
     "newChat": "New chat",
@@ -2026,9 +2026,9 @@
     "deleteChat": "Delete “<bdi>{title}</bdi>”",
     "deleteTitle": "Delete this chat?",
     "deleteText": "The chat and its answers are deleted for good.",
-    "emptyTitle": "Ask about your hiring",
+    "emptyTitle": "Hi, I'm Mira, your AI assistant",
     "emptyText": "Candidates, interviews, credits, integrations and how prepza works, from what you can see in your companies. The AI can be wrong; the pages it links to are what count.",
-    "emptyTitleFaq": "Ask about prepza",
+    "emptyTitleFaq": "Hi, I'm Mira, prepza's AI assistant",
     "pageQuestion": "What can I do on this page?",
     "pages": {
       "open": "Open",
