@@ -147,3 +147,23 @@ def test_a_record_is_published_again_after_a_jittered_wait_and_given_up_quietly(
     # One id for every try, so a try that reached Pub/Sub after all is stored once.
     assert len(tries) == 3 and len(set(tries)) == 1
     assert len(slept) == 2 and all(0 <= wait <= 0.4 for wait in slept)
+
+
+def test_a_record_waits_no_longer_than_its_time_in_all(monkeypatch):
+    """A Pub/Sub that hangs costs the request recording it `timeout` seconds, not one per try."""
+    tries = []
+
+    async def hangs(messages, timeout):
+        tries.append(timeout)
+        await asyncio.Event().wait()
+
+    monkeypatch.setattr(pubsub, "publish_batch", hangs)
+
+    async def timed():
+        started = asyncio.get_running_loop().time()
+        await pubsub.publish_retried("ai.used", {"a": 1}, 3, 0.05)
+
+        return asyncio.get_running_loop().time() - started
+
+    assert asyncio.run(timed()) < 0.5
+    assert len(tries) == 1 and tries[0] <= 0.05

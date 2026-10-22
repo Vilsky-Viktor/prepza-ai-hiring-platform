@@ -69,24 +69,31 @@ async def publish(event_type: str, data: dict, timeout: float = HTTP_TIMEOUT_SEC
 
 
 async def publish_retried(event_type: str, data: dict, attempts: int, timeout: float) -> None:
-    """Publishes one event that has no outbox (a record of an AI call or a limit hit): tried
-    `attempts` times under one id, so a try that reached Pub/Sub after all is stored once, with
-    a jittered wait between tries (callers that failed together don't retry together); then
-    given up and logged, never raised."""
+    """Publishes one event that has no outbox (a record of an AI call or a limit hit): tried up
+    to `attempts` times under one id, so a try that reached Pub/Sub after all is stored once,
+    with a jittered wait between tries (callers that failed together don't retry together), all
+    within `timeout` seconds, as the request it's recorded in waits for it; then given up and
+    logged, never raised."""
     sent = message(event_type, data)
+    deadline = asyncio.get_running_loop().time() + timeout
 
     for attempt in range(1, attempts + 1):
+        left = deadline - asyncio.get_running_loop().time()
+
         try:
-            await publish_batch([sent], timeout)
+            async with asyncio.timeout(left):
+                await publish_batch([sent], left)
 
             return
         except Exception:
-            if attempt == attempts:
+            wait = wait_seconds(PUBLISH_RETRY_FIRST_WAIT, attempt - 1)
+
+            if attempt == attempts or wait >= deadline - asyncio.get_running_loop().time():
                 logger.warning("Couldn't publish %s", event_type, exc_info=True)
 
                 return
 
-            await asyncio.sleep(wait_seconds(PUBLISH_RETRY_FIRST_WAIT, attempt - 1))
+            await asyncio.sleep(wait)
 
 
 class PushMessage(BaseModel):
