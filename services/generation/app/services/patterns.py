@@ -43,26 +43,35 @@ def rejection(pattern: ProposedPattern, signals: list[QualitySignal]) -> str | N
     return names_something(pattern.text)
 
 
-async def propose(flag: str, signals: list[QualitySignal]) -> None:
-    """Asks the model for the recurring mistakes in one flag's questions; a new one is stored as
-    proposed, a known one counts again (a dismissed one stays dismissed)."""
-    known = await patterns.for_flag(flag)
+async def find_patterns(
+    flag: str, signals: list[QualitySignal], known: list[str]
+) -> ProposedPatterns:
+    """The model's recurring mistakes in one flag's questions, `known` being the patterns it
+    may name by number instead."""
     prompt = PATTERNS_PROMPT.format(
         meaning=FLAG_MEANINGS.get(flag, ""),
         min_questions=MIN_PATTERN_QUESTIONS,
         max_chars=MAX_PATTERN_CHARS,
-        known=known_block([pattern.text for pattern in known]),
+        known=known_block(known),
         questions="\n\n".join(
             question_block(number, signal) for number, signal in enumerate(signals, 1)
         ),
     )
 
+    return (
+        await llm.get_patterns_llm()
+        .with_structured_output(ProposedPatterns)
+        .ainvoke([HumanMessage(content=prompt)])
+    )
+
+
+async def propose(flag: str, signals: list[QualitySignal]) -> None:
+    """Asks the model for the recurring mistakes in one flag's questions; a new one is stored as
+    proposed, a known one counts again (a dismissed one stays dismissed)."""
+    known = await patterns.for_flag(flag)
+
     async with ai_run(QUALITY_PATTERNS):
-        result: ProposedPatterns = (
-            await llm.get_patterns_llm()
-            .with_structured_output(ProposedPatterns)
-            .ainvoke([HumanMessage(content=prompt)])
-        )
+        result = await find_patterns(flag, signals, [pattern.text for pattern in known])
 
     for proposed in result.patterns:
         proposed.text = proposed.text.strip()

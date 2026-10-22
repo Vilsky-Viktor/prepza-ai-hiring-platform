@@ -145,6 +145,17 @@ translated, not followed, and words that translate badly ("practice", "candidate
 lists what code checks (`keep`, `links`, `numbers`); the judge (`judges/translation.md`) reads
 the source first. Its traps are made by code from each run's own translations.
 
+## `patterns.json` (by hand, 2026-10-22)
+
+4 made-up groups of flagged questions as the weekly pattern job reads them (`QualitySignal`:
+options with their picks, answers, reports, likes), in everyday fields (cooking, travel,
+bookkeeping, care, projects, chemistry), each with its planted recurring mistakes and the
+questions that show them: weak options with an only-negative distractor and a giveaway long key;
+wrong keys whose stems leave out the deciding condition and whose two options are both defensible
+(a known pattern, to be named by `same_as`); rewrites with stacked negatives and an instruction
+hidden in a question; and a group with no recurring mistake (no rule expected). Other questions
+are noise with unrelated flaws. `judge_traps`: 5 rule-mistake pairs that match and 5 that don't.
+
 ## `code_languages.json` (by hand, 2026-10-22)
 
 36 made-up examples as questions show them, each with the notation the site should color it in

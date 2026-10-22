@@ -202,6 +202,26 @@ def check_translations(problems: list[str]) -> list[str]:
     return [row["text"] for row in rows]
 
 
+def check_patterns(problems: list[str]) -> list[str]:
+    """Planted questions exist in their group; returns the questions' texts."""
+    data = load("patterns.json")
+    check_described("patterns.json", data, problems)
+    unique_ids("patterns.json", data["groups"], problems)
+
+    for group in data["groups"]:
+        for planted in group["planted"]:
+            if not all(1 <= n <= len(group["questions"]) for n in planted["questions"]):
+                problems.append(f"patterns.json: {planted['id']} cites a missing question")
+
+        if group["expect_none"] == bool(group["planted"]):
+            problems.append(f"patterns.json: {group['id']} plants mistakes but expects none")
+
+    if {t["same"] for t in data["judge_traps"]} != {True, False}:
+        problems.append("patterns.json: judge_traps need matching and non-matching pairs")
+
+    return [q["text"] for group in data["groups"] for q in group["questions"]]
+
+
 def main() -> None:
     problems: list[str] = []
     examples = prompt_examples()
@@ -238,6 +258,7 @@ def main() -> None:
     texts += [("assistant_actions", text) for text in check_actions(problems)]
     texts += [("code_languages", text) for text in check_code_languages(problems)]
     texts += [("translations", text) for text in check_translations(problems)]
+    texts += [("patterns", text) for text in check_patterns(problems)]
 
     for where, text in texts:
         for example in examples:
