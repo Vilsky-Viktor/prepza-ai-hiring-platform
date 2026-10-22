@@ -4,6 +4,7 @@ import createNextIntlPlugin from "next-intl/plugin"
 
 import { EMBED_SCRIPT_HEADERS } from "./constants/embed"
 import { REPORT_SAMPLES_HEADERS } from "./constants/report-samples"
+import { DOCUMENT_HEADERS, PICTURE_HEADERS } from "./constants/static-files"
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -57,6 +58,13 @@ const nextConfig: NextConfig = {
     return [
       { source: "/embed/:file*", headers: EMBED_SCRIPT_HEADERS },
       { source: "/samples/:file*", headers: REPORT_SAMPLES_HEADERS },
+      // Files in public/; "+" so the /documents and /about pages themselves aren't matched.
+      { source: "/ats/:file+", headers: PICTURE_HEADERS },
+      { source: "/integrations/:file+", headers: PICTURE_HEADERS },
+      { source: "/about/:file+", headers: PICTURE_HEADERS },
+      { source: "/icon.png", headers: PICTURE_HEADERS },
+      { source: "/documents/:file+", headers: DOCUMENT_HEADERS },
+      { source: "/examples/:file+", headers: DOCUMENT_HEADERS },
     ]
   },
   // In `pnpm dev` there is no gateway in front of Next, so proxy the API to it.
