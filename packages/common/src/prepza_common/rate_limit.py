@@ -138,6 +138,7 @@ async def hit_emails(redis, sender: str, recipient: str, company_id: object | No
     on its own.
     """
     who = {"company_id": company_id, "user_id": sender}
+    # The narrower key first: one address refused doesn't use up the sender's counts.
+    await hit(redis, f"rate:emails:recipient:{recipient}", "EMAIL_RECIPIENT_DAILY_LIMIT", **who)
     await hit(redis, f"rate:emails:hour:{sender}", "EMAIL_HOURLY_LIMIT", **who)
     await hit(redis, f"rate:emails:day:{sender}", "EMAIL_DAILY_LIMIT", **who)
-    await hit(redis, f"rate:emails:recipient:{recipient}", "EMAIL_RECIPIENT_DAILY_LIMIT", **who)

@@ -145,6 +145,15 @@ def test_tagged_addresses_share_their_inboxs_count(published):
     assert statuses(calls) == [200, 200, 429]
 
 
+def test_an_address_over_its_limit_doesnt_use_up_the_senders_counts(published):
+    redis = FakeRedis({"EMAIL_RECIPIENT_DAILY_LIMIT": 1})
+    calls = [lambda: hit_emails(redis, "ann", "set-1:bob@example.com")] * 3
+
+    assert statuses(calls) == [200, 429, 429]
+    # Only the one email sent counts against Ann's hour and day.
+    assert redis.counts["rate:emails:hour:ann"] == 1
+
+
 def test_emails_are_limited_per_sender_across_recipients(published):
     redis = FakeRedis({"EMAIL_HOURLY_LIMIT": 2})
     calls = [lambda i=i: hit_emails(redis, "ann", f"set-1:{i}@example.com") for i in range(3)]
