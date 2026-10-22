@@ -22,6 +22,10 @@ def redis(monkeypatch):
     return fake
 
 
+async def not_reported(question_id, user_id):
+    return False
+
+
 def test_a_candidates_second_report_is_rejected(client, monkeypatch):
     reported = set()
 
@@ -67,6 +71,7 @@ def test_a_question_reported_as_hard_to_read_is_saved_with_that_reason(client, m
         pass
 
     monkeypatch.setattr(feedback, "report_question", fake_report)
+    monkeypatch.setattr(feedback, "has_reported", not_reported)
     monkeypatch.setattr("app.routers.internal_feedback.review", fake_review)
     url = f"/internal/questions/{QUESTION_ID}/reports"
     body = {"user_id": "ann", "reason": "hard_to_read"}
@@ -90,6 +95,7 @@ def test_a_users_reports_are_limited_a_day(client, monkeypatch, redis, published
         pass
 
     monkeypatch.setattr(feedback, "report_question", fake_report)
+    monkeypatch.setattr(feedback, "has_reported", not_reported)
     monkeypatch.setattr("app.routers.internal_feedback.review", fake_review)
     body = {"user_id": "spammer", "reason": "unclear"}
 

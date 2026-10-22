@@ -8,7 +8,7 @@ from prepza_common.limits import question_seconds
 from prepza_common.multi_answer import multi_share
 from prepza_common.paging import PageParams
 from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit
+from prepza_common.rate_limit import hit_or_skip
 
 from app.constants.practice import (
     NO_PRACTICE_QUESTIONS,
@@ -41,7 +41,6 @@ router = APIRouter(prefix="/practice", tags=["practice"])
 async def start_practice(template_id: UUID, user: CurrentUser) -> PracticeStartOut:
     redis = get_redis()
     await refuse_if_paused(redis, "practice", user_id=user.uid)
-    await hit(redis, f"rate:practice:{user.uid}", "PRACTICE_ROUNDS_PER_HOUR", user_id=user.uid)
     content = await library.practice_content(template_id)
 
     if content is None:
@@ -49,6 +48,10 @@ async def start_practice(template_id: UUID, user: CurrentUser) -> PracticeStartO
 
     if not content["topics"]:
         raise HTTPException(status.HTTP_409_CONFLICT, NO_PRACTICE_QUESTIONS)
+
+    # Counted once it would start, against floods: with Redis down, not counted.
+    key = f"rate:practice:{user.uid}"
+    await hit_or_skip(redis, key, "PRACTICE_ROUNDS_PER_HOUR", user_id=user.uid)
 
     round_id = uuid.uuid4()
     # Only a talent's first round counts in the questions' statistics: later rounds repeat

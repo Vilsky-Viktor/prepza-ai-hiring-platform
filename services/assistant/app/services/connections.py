@@ -4,7 +4,7 @@ from uuid import UUID
 from fastapi import HTTPException, status
 from mcp.server.auth.provider import construct_redirect_uri
 from prepza_common.analytics import track
-from prepza_common.rate_limit import hit
+from prepza_common.rate_limit import hit_or_skip
 from prepza_common.tokens import new_token
 from prepza_common.user import User
 
@@ -38,7 +38,8 @@ async def approve(request_id: str, user: User, marked: str | None, read_only: bo
         raise HTTPException(status.HTTP_403_FORBIDDEN, OTHER_BROWSER)
 
     key = f"rate:assistant:mcp:approve:{user.uid}"
-    await hit(get_redis(), key, "APPROVALS_PER_USER_HOUR", user_id=user.uid)
+    # Against floods, not spend: with Redis down, not counted rather than refused.
+    await hit_or_skip(get_redis(), key, "APPROVALS_PER_USER_HOUR", user_id=user.uid)
     found = await taken(request_id)
     code, code_hash = new_token("", CODE_BYTES)
     scope = granted_scope(found["scopes"], read_only)

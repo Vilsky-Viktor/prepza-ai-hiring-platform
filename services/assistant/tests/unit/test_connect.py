@@ -62,7 +62,7 @@ def kept(monkeypatch):
     monkeypatch.setattr(oauth_requests, "save_code", save_code)
     monkeypatch.setattr(oauth, "of_user", of_user)
     monkeypatch.setattr(oauth, "remove", remove)
-    monkeypatch.setattr(connections, "hit", nothing)
+    monkeypatch.setattr(connections, "hit_or_skip", nothing)
     monkeypatch.setattr(connections, "track", nothing)
     app.dependency_overrides[current_user] = lambda: ANN
 

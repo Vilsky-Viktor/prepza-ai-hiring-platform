@@ -64,7 +64,7 @@ def started(monkeypatch):
     async def counted(redis, key, name, **whose):
         asked.append(key)
 
-    monkeypatch.setattr(interview_routes, "hit", counted)
+    monkeypatch.setattr(interview_routes, "hit_or_skip", counted)
     monkeypatch.setattr(interviews, "get", get_interview)
     monkeypatch.setattr(companies, "get", get_company)
     monkeypatch.setattr(library, "get_content", content)
@@ -117,7 +117,7 @@ def test_previews_over_the_hourly_limit_are_refused(client, started, monkeypatch
     async def over(redis, key, name, **whose):
         raise HTTPException(429, "Too many requests. Try again later.")
 
-    monkeypatch.setattr(interview_routes, "hit", over)
+    monkeypatch.setattr(interview_routes, "hit_or_skip", over)
 
     assert (
         client.post(f"/interviews/{uuid.uuid4()}/preview", json={"pledged": True}).status_code

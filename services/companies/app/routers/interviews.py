@@ -9,7 +9,7 @@ from prepza_common.limits import question_seconds
 from prepza_common.multi_answer import multi_share
 from prepza_common.paging import PageParams
 from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit, hit_or_skip
+from prepza_common.rate_limit import hit_or_skip
 
 from app.constants.invites import INTERVIEW_NOT_READY, MAX_SEARCH_LENGTH
 from app.helpers.interviews import (
@@ -181,18 +181,21 @@ async def preview_interview(
     await refuse_if_paused(get_redis(), "preview", user_id=user.uid)
     interview, _, _ = await interview_for(user, interview_id)
     refuse_without_pledge(body is not None and body.pledged, None)
-    await hit(
+    interview = await attach_set(interview)
+    content = await library.get_content(interview.set_id) if interview.set_id else None
+
+    if content is None or not content["topics"]:
+        raise HTTPException(status.HTTP_409_CONFLICT, "Interview is not ready yet")
+
+    # Counted once it would start (a test not ready yet isn't a preview), against floods: with
+    # Redis down, not counted rather than refused.
+    await hit_or_skip(
         get_redis(),
         f"rate:previews:{user.uid}",
         "PREVIEWS_PER_USER_HOUR",
         company_id=interview.company_id,
         user_id=user.uid,
     )
-    interview = await attach_set(interview)
-    content = await library.get_content(interview.set_id) if interview.set_id else None
-
-    if content is None or not content["topics"]:
-        raise HTTPException(status.HTTP_409_CONFLICT, "Interview is not ready yet")
 
     # No invite stands behind a preview, so finishing it charges nothing.
     created = await rounds.create_sessions(
