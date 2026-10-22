@@ -1315,6 +1315,7 @@
       "waiting": "menunggu…"
     },
     "proof": {
+      "anyJob": "Pekerjaan apa pun, bidang apa pun",
       "languages": "{count, number} bahasa",
       "ready": "Siap dalam ~{minutes, number} mnt",
       "noSubscription": "Tanpa langganan"

@@ -1315,6 +1315,7 @@
       "waiting": "naghihintay…"
     },
     "proof": {
+      "anyJob": "Anumang trabaho, anumang larangan",
       "languages": "{count, number} wika",
       "ready": "Handa sa ~{minutes, number} min",
       "noSubscription": "Walang subscription"

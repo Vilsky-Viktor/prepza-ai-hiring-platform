@@ -1315,6 +1315,7 @@
       "waiting": "في الانتظار…"
     },
     "proof": {
+      "anyJob": "أي وظيفة، في أي مجال",
       "languages": "{count, plural, zero {# لغة} one {لغة واحدة} two {لغتان} few {# لغات} many {# لغة} other {# لغة}}",
       "ready": "جاهزة خلال ~{minutes, number} د",
       "noSubscription": "بلا اشتراك"

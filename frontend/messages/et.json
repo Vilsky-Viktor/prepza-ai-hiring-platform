@@ -1315,6 +1315,7 @@
       "waiting": "ootab…"
     },
     "proof": {
+      "anyJob": "Iga ametikoht, iga valdkond",
       "languages": "{count, plural, one {# keel} other {# keelt}}",
       "ready": "Valmis ~{minutes, number} minutiga",
       "noSubscription": "Ilma tellimuseta"

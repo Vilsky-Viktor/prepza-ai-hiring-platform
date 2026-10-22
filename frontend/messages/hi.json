@@ -1315,6 +1315,7 @@
       "waiting": "प्रतीक्षा में…"
     },
     "proof": {
+      "anyJob": "कोई भी नौकरी, कोई भी क्षेत्र",
       "languages": "{count, plural, one {# भाषा} other {# भाषाएँ}}",
       "ready": "~{minutes, number} मिनट में तैयार",
       "noSubscription": "कोई सब्सक्रिप्शन नहीं"

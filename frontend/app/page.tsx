@@ -111,6 +111,7 @@ export default async function HomePage() {
             >
               <Dotted
                 items={[
+                  landing("proof.anyJob"),
                   landing("proof.languages", { count: LOCALES.length }),
                   landing("proof.ready", { minutes: READY_MINUTES }),
                   landing("proof.noSubscription"),

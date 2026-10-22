@@ -1315,6 +1315,7 @@
       "waiting": "대기 중…"
     },
     "proof": {
+      "anyJob": "모든 직무, 모든 분야",
       "languages": "{count, number}개 언어",
       "ready": "약 {minutes, number}분이면 완성",
       "noSubscription": "구독 없음"

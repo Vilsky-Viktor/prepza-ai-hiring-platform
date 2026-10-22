@@ -1315,6 +1315,7 @@
       "waiting": "wachten…"
     },
     "proof": {
+      "anyJob": "Elke functie, elke branche",
       "languages": "{count, plural, one {# taal} other {# talen}}",
       "ready": "Klaar in ~{minutes, plural, one {# minuut} other {# minuten}}",
       "noSubscription": "Geen abonnement"

@@ -1315,6 +1315,7 @@
       "waiting": "ожидание…"
     },
     "proof": {
+      "anyJob": "Любая должность, любая сфера",
       "languages": "{count, plural, one {# язык} few {# языка} many {# языков} other {# языка}}",
       "ready": "Готово за ~{minutes, number} мин",
       "noSubscription": "Без подписки"

@@ -1315,6 +1315,7 @@
       "waiting": "等待中…"
     },
     "proof": {
+      "anyJob": "任何职位，任何领域",
       "languages": "{count, number} 种语言",
       "ready": "约 {minutes, number} 分钟即可完成",
       "noSubscription": "无需订阅"

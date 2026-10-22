@@ -1315,6 +1315,7 @@
       "waiting": "waiting…"
     },
     "proof": {
+      "anyJob": "Any job, any field",
       "languages": "{count, plural, one {# language} other {# languages}}",
       "ready": "Ready in ~{minutes, plural, one {# minute} other {# minutes}}",
       "noSubscription": "No subscription"

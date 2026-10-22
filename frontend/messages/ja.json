@@ -1315,6 +1315,7 @@
       "waiting": "待機中…"
     },
     "proof": {
+      "anyJob": "あらゆる職種・業界に対応",
       "languages": "{count, number} 言語",
       "ready": "約 {minutes, number} 分で完成",
       "noSubscription": "サブスクリプション不要"

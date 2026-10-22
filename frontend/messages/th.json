@@ -1315,6 +1315,7 @@
       "waiting": "กำลังรอ…"
     },
     "proof": {
+      "anyJob": "ทุกตำแหน่งงาน ทุกสายงาน",
       "languages": "{count, number} ภาษา",
       "ready": "พร้อมใช้ในราว {minutes, number} นาที",
       "noSubscription": "ไม่ต้องสมัครสมาชิก"

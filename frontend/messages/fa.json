@@ -1315,6 +1315,7 @@
       "waiting": "در انتظار…"
     },
     "proof": {
+      "anyJob": "هر شغلی، در هر حوزه‌ای",
       "languages": "{count, number} زبان",
       "ready": "آماده در ~{minutes, number} دقیقه",
       "noSubscription": "بدون اشتراک"

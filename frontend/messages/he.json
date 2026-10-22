@@ -1315,6 +1315,7 @@
       "waiting": "ממתין…"
     },
     "proof": {
+      "anyJob": "כל משרה, בכל תחום",
       "languages": "{count, plural, one {שפה אחת} two {# שפות} other {# שפות}}",
       "ready": "מוכן תוך ~{minutes, number} דק׳",
       "noSubscription": "בלי מנוי"

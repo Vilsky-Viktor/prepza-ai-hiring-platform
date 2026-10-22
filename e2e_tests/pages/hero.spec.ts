@@ -85,6 +85,35 @@ test("the play icon is named in its tooltip and its ring holds still with reduce
   await expect(ring).toBeHidden();
 });
 
+// The facts under the start box, a dot between each two: first the any-job fact, then the
+// languages (as many as prepza speaks), the time to ready and no subscription.
+test("the facts under the start box start with the any-job fact", async ({ page }) => {
+  test.skip(test.info().project.name !== "desktop", "once");
+  test.setTimeout(120_000);
+  await page.goto("/");
+  const proof = page.getByTestId("hero-proof");
+  await expect(proof).toBeVisible();
+
+  // Each fact's text, split at the drawn dots; screen readers' commas left out.
+  const facts = await proof.evaluate((element) => {
+    const parts = [""];
+
+    for (const node of Array.from(element.childNodes)) {
+      if (node instanceof HTMLElement && node.getAttribute("aria-hidden") !== null) {
+        parts.push("");
+      } else if (!(node instanceof HTMLElement && node.classList.contains("sr-only"))) {
+        parts[parts.length - 1] += node.textContent ?? "";
+      }
+    }
+
+    return parts.map((part) => part.trim());
+  });
+
+  expect(facts).toHaveLength(4);
+  expect(facts[0]).not.toBe("");
+  expect(facts[1]).toContain(String(LOCALES.length));
+});
+
 for (const locale of LOCALES) {
   test(`the hero's sentences are each on a line of their own in ${locale}`, async ({ page }) => {
     test.skip(test.info().project.name !== "desktop", "once per language");

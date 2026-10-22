@@ -1315,6 +1315,7 @@
       "waiting": "bekleniyor…"
     },
     "proof": {
+      "anyJob": "Her pozisyon, her sektör",
       "languages": "{count, number} dil",
       "ready": "~{minutes, number} dakikada hazır",
       "noSubscription": "Abonelik yok"

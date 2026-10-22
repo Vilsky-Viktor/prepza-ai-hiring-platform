@@ -1315,6 +1315,7 @@
       "waiting": "đang chờ…"
     },
     "proof": {
+      "anyJob": "Mọi vị trí, mọi lĩnh vực",
       "languages": "{count, number} ngôn ngữ",
       "ready": "Sẵn sàng sau ~{minutes, number} phút",
       "noSubscription": "Không cần gói đăng ký"

@@ -1315,6 +1315,7 @@
       "waiting": "wartet…"
     },
     "proof": {
+      "anyJob": "Jede Stelle, jede Branche",
       "languages": "{count, plural, one {# Sprache} other {# Sprachen}}",
       "ready": "Fertig in ~{minutes, plural, one {# Minute} other {# Minuten}}",
       "noSubscription": "Kein Abo"
