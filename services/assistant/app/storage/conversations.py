@@ -109,6 +109,18 @@ async def delete_mentioning(company_id: UUID, needles: list[str]) -> int:
         return result.rowcount
 
 
+async def trace_ids_of_user(user_id: str) -> list[str]:
+    """The Langfuse traces of the user's conversations' answers."""
+    query = (
+        select(Message.trace_id)
+        .join(Conversation, Conversation.id == Message.conversation_id)
+        .where(Conversation.user_id == user_id, Message.trace_id.is_not(None))
+    )
+
+    async with Session() as session:
+        return list(await session.scalars(query))
+
+
 async def delete_user(user_id: str) -> None:
     async with Session() as session:
         await session.execute(delete(Conversation).where(Conversation.user_id == user_id))

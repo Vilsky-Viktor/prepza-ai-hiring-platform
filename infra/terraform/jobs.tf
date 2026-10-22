@@ -43,6 +43,8 @@ locals {
     # Assistant conversations nobody added to for its retention period (90 days), AI apps'
     # connections whose refresh token expired, and apps with no connection for 30 days.
     assistant-retention = { service = "assistant", path = "/internal/schedules/retention", cron = "0 4 * * *" }
+    # Every service's Langfuse traces, a day before their 30 days (the free plan has no retention).
+    trace-retention = { service = "assistant", path = "/internal/schedules/traces", cron = "30 4 * * *" }
     # Emails to company members, in the morning (UTC): every minute for an hour, each run
     # going on where the last stopped (none is sent twice): the activity digest from 7:00,
     # reminders from 8:00; each again three hours later, catching up on what the first missed.

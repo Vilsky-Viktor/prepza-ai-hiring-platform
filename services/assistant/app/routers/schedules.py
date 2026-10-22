@@ -2,6 +2,7 @@ import logging
 from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, status
+from prepza_common import trace_retention
 from prepza_common.google import Invoker
 
 from app.config.settings import settings
@@ -13,6 +14,13 @@ from app.storage import conversations, oauth, update_checks
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/internal/schedules", tags=["schedules"], dependencies=[Invoker])
+
+
+@router.post("/traces", status_code=status.HTTP_204_NO_CONTENT)
+async def trace_retention_job() -> None:
+    """Daily, from Cloud Scheduler: every service's Langfuse traces a day short of their 30 days
+    go (Langfuse's free plan has no retention of its own). Nothing without Langfuse."""
+    await trace_retention.delete_old_traces()
 
 
 @router.post("/retention", status_code=status.HTTP_204_NO_CONTENT)

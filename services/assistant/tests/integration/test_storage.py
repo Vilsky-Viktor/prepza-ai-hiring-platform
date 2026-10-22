@@ -14,7 +14,7 @@ from sqlalchemy import update
 
 from app.integrations.redis import get_redis
 from app.main import app
-from app.models.conversations import Conversation
+from app.models.conversations import Conversation, Message
 from app.routers import schedules
 from app.schemas.chat import EarlierTurn
 from app.services import limits
@@ -187,3 +187,24 @@ def test_an_erased_candidates_or_deleted_interviews_conversations_go_and_the_res
     left = run(scenario())
 
     assert sorted(item.title for item in left) == ["About Bo", "Ann elsewhere"]
+
+
+def test_an_accounts_answers_traces_are_found_to_delete_with_it(run):
+    user, other = f"traced-{uuid.uuid4().hex[:8]}", f"other-{uuid.uuid4().hex[:8]}"
+
+    async def scenario():
+        for owner, trace in ((user, "a" * 32), (other, "b" * 32)):
+            conversation = await conversations.create(owner, None, "Traced")
+            await messages.add_question(conversation.id, "Hi", "text")
+
+            async with Session() as session:
+                await session.execute(
+                    update(Message)
+                    .where(Message.conversation_id == conversation.id)
+                    .values(trace_id=trace)
+                )
+                await session.commit()
+
+        return await conversations.trace_ids_of_user(user)
+
+    assert run(scenario()) == ["a" * 32]

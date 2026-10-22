@@ -1,5 +1,7 @@
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
+from prepza_common import trace_retention
+from prepza_common.tracing import tracing_on
 from prepza_common.user import UserEmailIn
 
 from app.schemas.connect import ConnectionOut
@@ -14,6 +16,10 @@ async def delete_user(user_id: str, body: UserEmailIn, caller: ServiceCaller) ->
     """Library, deleting an account: their conversations go, with every message and tool call,
     the actions they hadn't confirmed yet, and their connected AI apps (whose access stops).
     Safe to repeat."""
+    # Their answers' Langfuse traces first: once the messages go, nothing finds them.
+    if tracing_on():
+        await trace_retention.delete_traces(await conversations.trace_ids_of_user(user_id))
+
     await conversations.delete_user(user_id)
     await actions.delete_user(user_id)
     await oauth.delete_user(user_id)

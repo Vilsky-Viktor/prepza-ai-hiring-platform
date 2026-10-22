@@ -10,6 +10,7 @@
 45 3 * * * curl -s -X POST http://library:8000/internal/schedules/bank
 # Assistant conversations idle past their retention.
 0 4 * * * curl -s -X POST http://assistant:8000/internal/schedules/retention
+30 4 * * * curl -s -X POST http://assistant:8000/internal/schedules/traces
 # The activity digest and reminders to company members (notifications), every minute for an
 # hour each morning, and again for a catch-up hour three hours later.
 * 7,10 * * * curl -s -X POST http://notifications:8000/internal/schedules/digest
