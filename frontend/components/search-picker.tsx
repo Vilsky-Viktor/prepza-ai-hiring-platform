@@ -75,11 +75,12 @@ export function SearchPicker<T extends string>({
       <Combobox.Portal>
         <Combobox.Positioner sideOffset={6} align="start" className="z-50">
           <Combobox.Popup className="w-max max-w-[calc(100vw-2rem)] min-w-(--anchor-width) overflow-hidden rounded-xl bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10">
-            <div className="flex items-center gap-2 border-b px-3">
+            <div className="flex items-center gap-2 border-b px-3 focus-within:border-ring">
               <SearchIcon className="size-4 text-muted-foreground" />
               <Combobox.Input
                 maxLength={MAX_PICKER_SEARCH_LENGTH}
                 placeholder={placeholder}
+                aria-label={placeholder}
                 className="h-11 w-full bg-transparent text-base outline-none placeholder:text-muted-foreground"
               />
             </div>

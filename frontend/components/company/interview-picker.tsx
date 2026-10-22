@@ -114,7 +114,7 @@ export function InterviewPicker({
         <Combobox.Positioner sideOffset={6} align="start" className="z-50">
           <Combobox.Popup className="w-(--anchor-width) overflow-hidden rounded-xl bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10">
             {/* The search as the menu's first row, like the language picker's in Settings. */}
-            <div className="flex items-center gap-3 border-b px-5">
+            <div className="flex items-center gap-3 border-b px-5 focus-within:border-ring">
               <SearchIcon className="size-5 shrink-0 text-muted-foreground" />
               <Combobox.Input
                 maxLength={MAX_SEARCH_LENGTH}
