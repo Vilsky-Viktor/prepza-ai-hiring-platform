@@ -1,6 +1,7 @@
-# Trivy's scan of each built production image in CI (.github/workflows/ci.yml, images job): the
-# OS packages only (pip-audit and pnpm audit in audit.yml cover the Python and npm packages); a
-# high or critical vulnerability that has a fix fails the run.
+# Trivy's scan of each production image CI builds (.github/workflows/ci.yml) and of every image
+# each Monday (.github/workflows/audit.yml), both in their images job: the OS packages only
+# (pip-audit and pnpm audit in audit.yml cover the Python and npm packages); a high or critical
+# vulnerability that has a fix fails the run.
 exit-code: 1
 severity:
   - HIGH

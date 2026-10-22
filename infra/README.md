@@ -197,7 +197,7 @@ A failed step stops the deploy. Before the services step, nothing has changed fo
 
 - **Rolling back:** in **Actions → Deploy → Run workflow**, enter an earlier version, for example `v1.3.2`, and leave **Run migrations** off. It redeploys that version's images in about a minute, on the newer schema (an older version's migrations would fail on it). So this is safe only while the newer migrations didn't remove anything the older code needs: keep migrations additive. Tick **Run migrations** only to redeploy a version whose migrations haven't run. For one service, you can also move it to an earlier revision in the Cloud Run console.
 - **Terraform never touches image tags,** so applying an infrastructure change doesn't roll anything back.
-- **Pinned dependencies:** workflow actions are pinned by commit, the Dockerfiles' base images, the `uv` image and the local stack's images by digest, and packages by their lock files; [`.github/dependabot.yml`](../.github/dependabot.yml) opens weekly pull requests that update them (minor and patch versions only), and the dependency audit workflow fails on a known high-severity vulnerability. Merge one once CI passes.
+- **Pinned dependencies:** workflow actions are pinned by commit, the Dockerfiles' base images, the `uv` image and the local stack's images by digest, and packages by their lock files; [`.github/dependabot.yml`](../.github/dependabot.yml) opens weekly pull requests that update them (minor and patch versions only), Dependabot waits a week before proposing a new version. The dependency audit workflow fails on a known high-severity vulnerability or a committed secret. Merge one once CI passes.
 
 ## Restore drill
 

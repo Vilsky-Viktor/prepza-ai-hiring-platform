@@ -1,0 +1,19 @@
+# gitleaks's settings (.github/workflows/audit.yml, secrets job): its default rules, minus what
+# isn't a secret. Mark a single made-up value elsewhere with a `gitleaks:allow` comment.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Tests' made-up keys and the frontend's package store, committed early on"
+paths = [
+  '''(^|/)tests/''',
+  '''^frontend/\.pnpm-store/''',
+]
+
+[[allowlists]]
+description = "Placeholders and the local stack's internal addresses"
+regexTarget = "line"
+regexes = [
+  '''placeholder''',
+  '''http://[a-z-]+:8000/''',
+]
