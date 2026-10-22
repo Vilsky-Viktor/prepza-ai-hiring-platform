@@ -130,6 +130,8 @@ class Hold(Base):
 
     __tablename__ = "holds"
     __table_args__ = (
+        # An owner's holds (a deleted company's, a batch at a time).
+        Index("ix_holds_owner", "owner_type", "owner_id"),
         CheckConstraint(one_of("owner_type", OwnerType), name="ck_holds_owner_type"),
         CheckConstraint(one_of("status", HOLD_STATUSES), name="ck_holds_status"),
         CheckConstraint(one_of("reason", (Reason.CANDIDATE,)), name="ck_holds_reason"),

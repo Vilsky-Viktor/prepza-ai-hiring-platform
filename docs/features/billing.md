@@ -151,7 +151,7 @@ Paddle retries a web hook for about two days (three tries in the sandbox). So th
 
 ## Deleting a company
 
-Deleting a company deletes its credits: billing's internal `DELETE /internal/companies/{id}` removes the wallet, its holds and its history, and turns off automatic top-up. Purchases stay on record, and nothing is refunded; a refund Paddle makes later takes back only the referral reward the top-up paid. Before it's deleted, the owner sees how many credits are lost: the remove dialog, and the assistant's delete card, read the company's balance (`GET /companies/{id}/credits`, whose `candidates` is how many candidates the available credits pay for, worked out by billing) and add "Its 900 credits (about 3 candidates) will be lost and aren't refunded." when there are any.
+Deleting a company deletes its credits: billing's internal `DELETE /internal/companies/{id}` removes the wallet, its holds and its history (holds and history a batch at a time, each batch its own transaction, so a deletion cut off midway goes on when it's run again), and turns off automatic top-up. Purchases stay on record, and nothing is refunded; a refund Paddle makes later takes back only the referral reward the top-up paid. Before it's deleted, the owner sees how many credits are lost: the remove dialog, and the assistant's delete card, read the company's balance (`GET /companies/{id}/credits`, whose `candidates` is how many candidates the available credits pay for, worked out by billing) and add "Its 900 credits (about 3 candidates) will be lost and aren't refunded." when there are any.
 
 ## AI usage and limit hits
 
@@ -170,7 +170,7 @@ The services record each AI call (`prepza_common.ai_usage.record`) and each refu
 Who a call was for is decided as it's stored: a call for a company is **paid** if the company had a purchase by the call's time, **unpaid** otherwise; a call without a company is **prepza**'s when its action is prepza's own work (`PREPZA_ACTIONS`: templates, quality checks, batches, embeddings, news and campaign translations) and **no company** otherwise (the help chat's visitors, candidates, people without a company). Billing then adds an unpaid or no-company call's cost to the day's unpaid AI spend in Redis (`spend:ai:unpaid:<date>`), which the services check against the `AI_SPEND_UNPAID_DAY` cap before their AI calls for those users (`prepza_common.ai_cap`); it logs once when the day passes 80% of the cap and once when it reaches it.
 
 - **Kept:** `ai_usage` and `limit_hits` 13 months, for year-on-year comparison, and `limit_changes` 24 months, by the daily `/internal/schedules/retention`.
-- **Deleted accounts and companies:** deleting an account (`DELETE /internal/users/{id}`) or a company (`DELETE /internal/companies/{id}`) empties its id in both tables; the costs and hits stay.
+- **Deleted accounts and companies:** deleting an account (`DELETE /internal/users/{id}`) or a company (`DELETE /internal/companies/{id}`) empties its id in both tables, a batch at a time; the costs and hits stay.
 
 ```
 GET    /superadmin/ai-costs?period=         # the AI costs page

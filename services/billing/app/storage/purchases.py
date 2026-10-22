@@ -2,6 +2,7 @@ from datetime import datetime
 
 from prepza_common import audit
 from prepza_common.audit_actions import AuditAction, TargetKind
+from prepza_common.db import delete_in_batches
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 
@@ -242,12 +243,15 @@ async def forget_buyer(user_id: str) -> None:
 
 
 async def delete_company(company_id: str) -> None:
-    """A deleted company's wallet, holds and history; its purchases stay for the accounts."""
-    is_company = {"owner_type": OwnerType.COMPANY, "owner_id": company_id}
+    """A deleted company's holds and history, a batch at a time, then its wallet; its purchases
+    stay for the accounts. Cut off midway, it goes on when run again."""
+    for model in (Hold, Entry):
+        owned = (model.owner_type == OwnerType.COMPANY, model.owner_id == company_id)
+        await delete_in_batches(Session, model, *owned)
 
     async with Session() as session:
-        await session.execute(delete(Wallet).filter_by(**is_company))
-        await session.execute(delete(Hold).filter_by(**is_company))
-        await session.execute(delete(Entry).filter_by(**is_company))
+        await session.execute(
+            delete(Wallet).filter_by(owner_type=OwnerType.COMPANY, owner_id=company_id)
+        )
         await referrals.forget(session, OwnerType.COMPANY, company_id)
         await session.commit()
