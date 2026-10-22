@@ -90,6 +90,7 @@
   },
   "common": {
     "backToTop": "返回顶部",
+    "morePages": "更多页面",
     "copyLink": "复制链接",
     "linkCopied": "链接已复制",
     "home": "首页",

@@ -64,32 +64,33 @@ export default async function CompanyTemplatesPage({
         {...companyHeaderProps(company)}
         companyId={companyId}
         current="templates"
-      />
-      {/* Templates are generic; an interview from the job description fits the role closer. */}
-      <div className="flex items-center gap-4 rounded-2xl bg-muted p-5 text-base">
-        <div className="flex flex-1 items-center gap-4">
-          <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
-          <p className="text-muted-foreground">
-            {t.rich("warningText", {
-              b: (chunks) => (
-                <span className="font-medium text-foreground">{chunks}</span>
-              ),
-            })}
-          </p>
+      >
+        {/* Templates are generic; an interview from the job description fits the role closer. */}
+        <div className="flex items-center gap-4 rounded-2xl bg-muted p-5 text-base">
+          <div className="flex flex-1 items-center gap-4">
+            <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
+            <p className="text-muted-foreground">
+              {t.rich("warningText", {
+                b: (chunks) => (
+                  <span className="font-medium text-foreground">{chunks}</span>
+                ),
+              })}
+            </p>
+          </div>
+          {company.can_edit && (
+            <Button
+              size="icon"
+              aria-label={interviewsText("new")}
+              render={<Link href={`/companies/${companyId}/interviews/new`} />}
+              nativeButton={false}
+              className="size-10 shrink-0"
+            >
+              <ArrowRightIcon aria-hidden className="size-5 rtl:-scale-x-100" />
+            </Button>
+          )}
         </div>
-        {company.can_edit && (
-          <Button
-            size="icon"
-            aria-label={interviewsText("new")}
-            render={<Link href={`/companies/${companyId}/interviews/new`} />}
-            nativeButton={false}
-            className="size-10 shrink-0"
-          >
-            <ArrowRightIcon aria-hidden className="size-5 rtl:-scale-x-100" />
-          </Button>
-        )}
-      </div>
-      {browser}
+        {browser}
+      </CompanyHeader>
     </main>
   )
 }

@@ -251,10 +251,10 @@ test("the admin zone's older addresses open their tabs' new places", async ({
   for (const [from, to] of Object.entries(moved)) {
     await visit(superadmin, from)
     await expect(superadmin, from).toHaveURL(new RegExp(`${to}$`))
-    // The zone's tab and, in the row under it, the moved page's own tab.
-    const open = superadmin.getByRole("main").locator('a[aria-current="page"]')
-    await expect(open, from).toHaveCount(2)
-    await expect(open.last(), from).toHaveAttribute("href", to)
+    // The side menu marks the moved page, listed under the zone's page it belongs to.
+    const open = superadmin.getByRole("main").locator('a[aria-current="page"]:visible')
+    await expect(open, from).toHaveCount(1)
+    await expect(open, from).toHaveAttribute("href", to)
   }
 })
 

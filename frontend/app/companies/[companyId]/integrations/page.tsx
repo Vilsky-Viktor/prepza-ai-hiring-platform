@@ -65,60 +65,63 @@ export default async function IntegrationsPage({
         {...companyHeaderProps(company)}
         companyId={companyId}
         current="integrations"
-      />
-      {slack && (
-        <section className="space-y-6">
-          <h2 className="font-heading text-2xl font-medium">
-            {t("messagingGroup")}
-          </h2>
-          <ul className={`${LIST_BOX} overflow-hidden`}>
-            <SlackRow
-              companyId={companyId}
-              slack={slack}
-              canEdit={company.can_edit}
-            />
-          </ul>
-        </section>
-      )}
-      <section className="space-y-6">
-        {/* Acronyms: their capitals stay, though titles are lowercase. */}
-        <h2 className="font-heading text-2xl font-medium normal-case">
-          {t("apiAiAppsGroup")}
-        </h2>
-        <ul className={`${LIST_BOX} overflow-hidden`}>
-          {api && <ApiRow companyId={companyId} settings={api} />}
-          <AiAppsRow companyId={companyId} connections={connections ?? []} />
-        </ul>
-      </section>
-      <section className="space-y-6">
-        {/* An acronym: its capitals stay, though titles are lowercase. */}
-        <h2 className="font-heading text-2xl font-medium normal-case">
-          {t("atsGroup")}
-        </h2>
-        {integrations?.available ? (
-          <ul className={`${LIST_BOX} overflow-hidden`}>
-            {ATS_PROVIDERS.map((provider) => (
-              <AtsConnectionRow
-                key={provider.id}
+      >
+        {slack && (
+          <section className="space-y-6">
+            <h2 className="font-heading text-2xl font-medium">
+              {t("messagingGroup")}
+            </h2>
+            <ul className={`${LIST_BOX} overflow-hidden`}>
+              <SlackRow
                 companyId={companyId}
-                companyName={company.name}
-                provider={provider}
-                connection={
-                  integrations.connections.find(
-                    (item) => item.provider === provider.id
-                  ) ?? null
-                }
+                slack={slack}
                 canEdit={company.can_edit}
               />
-            ))}
-          </ul>
-        ) : (
-          <p className="rounded-2xl border p-6 text-muted-foreground">
-            {/* Not loaded (its service failed), or not offered yet. */}
-            {integrations === null ? t("connectionsFailed") : t("unavailable")}
-          </p>
+            </ul>
+          </section>
         )}
-      </section>
+        <section className="space-y-6">
+          {/* Acronyms: their capitals stay, though titles are lowercase. */}
+          <h2 className="font-heading text-2xl font-medium normal-case">
+            {t("apiAiAppsGroup")}
+          </h2>
+          <ul className={`${LIST_BOX} overflow-hidden`}>
+            {api && <ApiRow companyId={companyId} settings={api} />}
+            <AiAppsRow companyId={companyId} connections={connections ?? []} />
+          </ul>
+        </section>
+        <section className="space-y-6">
+          {/* An acronym: its capitals stay, though titles are lowercase. */}
+          <h2 className="font-heading text-2xl font-medium normal-case">
+            {t("atsGroup")}
+          </h2>
+          {integrations?.available ? (
+            <ul className={`${LIST_BOX} overflow-hidden`}>
+              {ATS_PROVIDERS.map((provider) => (
+                <AtsConnectionRow
+                  key={provider.id}
+                  companyId={companyId}
+                  companyName={company.name}
+                  provider={provider}
+                  connection={
+                    integrations.connections.find(
+                      (item) => item.provider === provider.id
+                    ) ?? null
+                  }
+                  canEdit={company.can_edit}
+                />
+              ))}
+            </ul>
+          ) : (
+            <p className="rounded-2xl border p-6 text-muted-foreground">
+              {/* Not loaded (its service failed), or not offered yet. */}
+              {integrations === null
+                ? t("connectionsFailed")
+                : t("unavailable")}
+            </p>
+          )}
+        </section>
+      </CompanyHeader>
     </main>
   )
 }

@@ -67,15 +67,16 @@ export default async function ActionsPage({
         {...companyHeaderProps(company)}
         companyId={companyId}
         current="actions"
-      />
-      <ActionFilters
-        members={(members ?? []).filter((member) => member.joined)}
-      />
-      <ActionList
-        path={path}
-        initial={first ?? []}
-        narrowed={filters.size > 0}
-      />
+      >
+        <ActionFilters
+          members={(members ?? []).filter((member) => member.joined)}
+        />
+        <ActionList
+          path={path}
+          initial={first ?? []}
+          narrowed={filters.size > 0}
+        />
+      </CompanyHeader>
     </main>
   )
 }

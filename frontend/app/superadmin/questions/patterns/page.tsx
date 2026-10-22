@@ -33,14 +33,15 @@ export default async function PatternsPage({
 
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
-      <SuperadminHeader current="questions" sub="patterns" />
-      <div className="space-y-4">
-        <div className="flex justify-end">
-          <PatternStatusFilter current={status} />
+      <SuperadminHeader current="questions" sub="patterns">
+        <div className="space-y-4">
+          <div className="flex justify-end">
+            <PatternStatusFilter current={status} />
+          </div>
+          {/* Remounted for each status: what was reviewed on the last one isn't hidden here. */}
+          <PatternList key={status} path={path} initial={first} />
         </div>
-        {/* Remounted for each status: what was reviewed on the last one isn't hidden here. */}
-        <PatternList key={status} path={path} initial={first} />
-      </div>
+      </SuperadminHeader>
     </main>
   )
 }

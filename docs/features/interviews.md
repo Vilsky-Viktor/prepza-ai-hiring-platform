@@ -43,19 +43,20 @@ When a generated interview is ready, the generation page opens it marked as just
 
 ## The interview page
 
-An interview's page has three tabs:
+An interview's page has three tabs, in its side menu as on a company's pages ([Companies](companies.md)):
 
 | Tab | Who sees it | What it holds |
 |---|---|---|
 | **topics** | Every member | What the interview adds up to for each candidate (total questions, time per question and the whole interview's minutes, as companies counts them, which follow each change), then the interview's topics and questions, each with its number of questions for each candidate |
 | **candidates** | Every member | The candidate list (see [Candidates](candidates.md#the-candidate-list)) |
-| **settings** | Owners and admins | Time per question, pass mark and "Mark as hired", each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
+| **settings** | Owners and admins | Time per question, pass mark, "Mark as hired" and keeping its questions out of the shared question bank, each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
 
 ### Settings
 
 - **Time per question:** a new test starts with its level's: 60 seconds for a basic or medium one, 75 for a hard one, by default (`QUESTION_SECONDS_BASIC`, `_MEDIUM`, `_HARD`, values in the admin zone's Controls). A template's copy gets them at once; a generated test when its questions are ready, the first time only. Adjustable per interview (see [Timing](candidates.md#timing)); a change in Controls reaches only new tests.
 - **Pass mark:** 70% by default, from 1 to 100. Grades show green or red against it.
 - **Mark as hired:** marks the interview as hired and stops its shareable link at once.
+- **Keep these questions out of prepza's shared question bank:** off by default, as the terms (2026-11-08) say: an interview's generated questions may be reused in other companies' interviews, without anything that identifies the company or anyone else. Checking it keeps the interview's questions out from then on (`keep_private` on the interview in companies); questions already reused in other interviews stay there. A change is in the action log (`interview_settings_changed`), and Mira and AI apps can set it (`keep_questions_private`). Today the bank holds only the templates' questions ([Generation](../generation.md)), so the setting records the company's choice ahead of companies' questions joining it.
 
 ### Status
 

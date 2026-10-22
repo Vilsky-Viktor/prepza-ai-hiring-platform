@@ -45,8 +45,9 @@ export default async function TemplatesPage({
             {t("new")}
           </Button>
         }
-      />
-      {browser}
+      >
+        {browser}
+      </SuperadminHeader>
     </main>
   )
 }

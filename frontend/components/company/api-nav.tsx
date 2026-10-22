@@ -1,22 +1,42 @@
 "use client"
 
+import { KeyRoundIcon, WebhookIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { TabNav } from "@/components/tab-nav"
+import type { ReactNode } from "react"
 
-/** The API page's tabs: its keys, and its web hooks. */
+import { SideMenuLayout } from "@/components/side-menu"
+
+/** The API page's menu beside its content (`children`): its keys, and its web hooks. */
 export function ApiNav({
   href,
   current,
+  children,
 }: {
   href: string
   current: "keys" | "webhooks"
+  children: ReactNode
 }) {
   const t = useTranslations("api")
   const items = [
-    { id: "keys", href, label: t("keysTitle"), keepCase: true },
-    { id: "webhooks", href: `${href}?tab=webhooks`, label: t("webhooksTitle") },
+    {
+      id: "keys",
+      href,
+      label: t("keysTitle"),
+      keepCase: true,
+      icon: KeyRoundIcon,
+    },
+    {
+      id: "webhooks",
+      href: `${href}?tab=webhooks`,
+      label: t("webhooksTitle"),
+      icon: WebhookIcon,
+    },
   ]
 
-  return <TabNav items={items} current={current} />
+  return (
+    <SideMenuLayout items={items} current={current}>
+      {children}
+    </SideMenuLayout>
+  )
 }

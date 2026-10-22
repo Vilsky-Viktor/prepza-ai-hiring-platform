@@ -3,31 +3,36 @@
 import { cn } from "cn"
 import type { LucideIcon } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useRef } from "react"
+import { type ReactNode, useEffect, useRef } from "react"
+
+/** One tab: a link to `href`, or with `onSelect` a button. */
+export type TabItem = {
+  id: string
+  href?: string
+  label: string
+  keepCase?: boolean
+  icon?: LucideIcon
+}
 
 /** A page's slim tabs under its title: the current one over a blue line. Labels are lowercase
  * like the site's other tabs; `keepCase` keeps an abbreviation's capitals (ATS). Tabs wider than
  * the screen scroll in their own row, with the current one brought into view. With `onSelect`
  * they're tabs within a page or a dialog (buttons) rather than links, fitting its width, and
  * control the `TabPanel` whose id is `panel`; an item's `icon` goes before its label, in the
- * label's colour. */
+ * label's colour. `more` goes at the row's end (the side menu's "more pages" on phones). */
 export function TabNav({
   items,
   current,
   onSelect,
   panel,
+  more,
 }: {
-  items: readonly {
-    id: string
-    href?: string
-    label: string
-    keepCase?: boolean
-    icon?: LucideIcon
-  }[]
+  items: readonly TabItem[]
   current: string
   onSelect?: (id: string) => void
   // With onSelect: the id of the panel the tabs show (useId in the caller).
   panel?: string
+  more?: ReactNode
 }) {
   const active = useRef<HTMLAnchorElement & HTMLButtonElement>(null)
 
@@ -139,6 +144,7 @@ export function TabNav({
             </Link>
           )
         })}
+        {more}
       </nav>
     </div>
   )

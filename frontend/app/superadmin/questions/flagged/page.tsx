@@ -24,12 +24,13 @@ export default async function FlaggedPage() {
 
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
-      <SuperadminHeader current="questions" sub="flagged" />
-      <QualityList
-        path="/library/superadmin/quality/flagged"
-        initial={first}
-        empty={t("noFlagged")}
-      />
+      <SuperadminHeader current="questions" sub="flagged">
+        <QualityList
+          path="/library/superadmin/quality/flagged"
+          initial={first}
+          empty={t("noFlagged")}
+        />
+      </SuperadminHeader>
     </main>
   )
 }

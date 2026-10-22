@@ -17,11 +17,7 @@ import { optionalFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyHeaderProps } from "@/lib/company-header"
 import { companyCurrencyPath, visitorCatalog } from "@/lib/catalog"
-import type {
-  Catalog,
-  CompanyCredits,
-  CompanyCurrency,
-} from "@/types/billing"
+import type { Catalog, CompanyCredits, CompanyCurrency } from "@/types/billing"
 import type {
   Company,
   CreditCandidate,
@@ -93,35 +89,38 @@ export default async function BillingPage({
         {...companyHeaderProps(company)}
         companyId={companyId}
         current="billing"
-      />
-      <Balance
-        credits={credits}
-        catalog={catalog}
-        currency={currency}
-        name={company.name}
-        companyId={companyId}
-        canEdit={company.can_edit}
-      />
-      <div className="space-y-6">
-        <TabNav
-          items={[
-            { id: "history", href: href, label: t("history") },
-            {
-              id: "reserved",
-              href: `${href}?tab=reserved`,
-              label: t("reservedTab", {
-                count: credits?.reserved_candidates ?? 0,
-              }),
-            },
-          ]}
-          current={tab}
+
+        className="space-y-12"
+      >
+        <Balance
+          credits={credits}
+          catalog={catalog}
+          currency={currency}
+          name={company.name}
+          companyId={companyId}
+          canEdit={company.can_edit}
         />
-        {tab === "reserved" ? (
-          <ReservedTab companyId={companyId} reserved={reserved} />
-        ) : (
-          <CreditHistory companyId={companyId} initial={history ?? []} />
-        )}
-      </div>
+        <div className="space-y-6">
+          <TabNav
+            items={[
+              { id: "history", href: href, label: t("history") },
+              {
+                id: "reserved",
+                href: `${href}?tab=reserved`,
+                label: t("reservedTab", {
+                  count: credits?.reserved_candidates ?? 0,
+                }),
+              },
+            ]}
+            current={tab}
+          />
+          {tab === "reserved" ? (
+            <ReservedTab companyId={companyId} reserved={reserved} />
+          ) : (
+            <CreditHistory companyId={companyId} initial={history ?? []} />
+          )}
+        </div>
+      </CompanyHeader>
     </main>
   )
 }

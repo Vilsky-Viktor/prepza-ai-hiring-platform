@@ -1,0 +1,131 @@
+import type { Page } from "@playwright/test"
+
+import { expect, test } from "../fixtures"
+import { createCompany, createInterview } from "../helpers/api"
+import { PHONE } from "../helpers/layout"
+import { visit } from "../helpers/navigation"
+import { shot } from "../helpers/screenshots"
+import { ownerEmail } from "../helpers/users"
+
+// The page menus: on wide screens a list at the content's side that stays in view and scrolls
+// itself when taller than the window; on phones three tabs and the other pages under "…", an
+// open one of those taking the third place.
+
+// A company's pages for its owner, in the menu's order (the owner sees all of them).
+const COMPANY_PAGES = [
+  "/interviews",
+  "/templates",
+  "/members",
+  "/integrations",
+  "/brand",
+  "/billing",
+  "/actions",
+  "/referrals",
+]
+
+/** The page menu shown in the page (the other, for the other screen size, is hidden). */
+function menu(page: Page) {
+  return page.getByRole("main").getByRole("navigation").first()
+}
+
+/** Where the menu's links lead, each as the end of its address after the company's. */
+async function pagesOf(page: Page, companyId: string, links = menu(page).getByRole("link")) {
+  const hrefs = await links.evaluateAll((all) => all.map((link) => link.getAttribute("href") ?? ""))
+
+  return hrefs.map((href) => href.replace(`/companies/${companyId}`, ""))
+}
+
+test("a company's side menu lists its pages and marks the open one", async ({ signInAs }) => {
+  const owner = await signInAs(ownerEmail())
+  const company = await createCompany(owner)
+  await visit(owner, `/companies/${company.id}/members`)
+
+  await expect.poll(() => pagesOf(owner, company.id)).toEqual(COMPANY_PAGES)
+  const open = menu(owner).locator('a[aria-current="page"]')
+  await expect(open).toHaveCount(1)
+  await expect(open).toHaveAttribute("href", `/companies/${company.id}/members`)
+  await shot(owner, "company-menu")
+})
+
+test("the side menu stays in view while the page scrolls", async ({ signInAs }) => {
+  const owner = await signInAs(ownerEmail())
+  const company = await createCompany(owner)
+  const interview = await createInterview(owner, company.id)
+  await owner.setViewportSize({ width: 1280, height: 500 })
+  await visit(owner, `/companies/${company.id}/interviews/${interview}`)
+  const nav = menu(owner)
+  await expect(nav.locator('a[aria-current="page"]')).toBeVisible()
+
+  // Scrolled past where the menu starts, it holds 24px under the window's top (sticky's
+  // top-6), where it would otherwise have gone above it.
+  const start = await nav.evaluate((element) => element.getBoundingClientRect().top + window.scrollY)
+  await owner.evaluate((top) => window.scrollTo(0, top + 100), start)
+  await expect
+    .poll(() => nav.evaluate((element) => Math.round(element.getBoundingClientRect().top)))
+    .toBe(24)
+  await expect(nav.locator('a[aria-current="page"]')).toBeInViewport()
+  await shot(owner, "menu-in-view", false)
+})
+
+test("a side menu taller than the window scrolls on its own", async ({ signInAs }) => {
+  const owner = await signInAs(ownerEmail())
+  const company = await createCompany(owner)
+  await owner.setViewportSize({ width: 1280, height: 400 })
+  await visit(owner, `/companies/${company.id}/interviews`)
+  const nav = menu(owner)
+  await expect(nav.getByRole("link")).toHaveCount(COMPANY_PAGES.length)
+
+  expect(await nav.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(true)
+  await nav.hover()
+  await owner.mouse.wheel(0, 200)
+  await expect.poll(() => nav.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+  await expect(nav.getByRole("link").last()).toBeInViewport()
+  await shot(owner, "menu-scrolled", false)
+})
+
+test("on a phone the menu shows three tabs and the rest under more", async ({ signInAs }) => {
+  const owner = await signInAs(ownerEmail())
+  const company = await createCompany(owner)
+  await owner.setViewportSize(PHONE)
+  await visit(owner, `/companies/${company.id}/interviews`)
+  const tabs = menu(owner).getByRole("link")
+  const more = menu(owner).getByRole("button")
+  const items = owner.getByRole("menu").getByRole("menuitem")
+
+  // The first three, the open one marked; the others in their order under "…".
+  await expect.poll(() => pagesOf(owner, company.id)).toEqual(COMPANY_PAGES.slice(0, 3))
+  await expect(tabs.first()).toHaveAttribute("aria-current", "page")
+  await expect(more).toHaveAccessibleName(/.+/)
+  await expect(async () => {
+    await more.click()
+    await expect(owner.getByRole("menu")).toBeVisible({ timeout: 2_000 })
+  }).toPass()
+  expect(await pagesOf(owner, company.id, items)).toEqual(COMPANY_PAGES.slice(3))
+  await shot(owner, "phone-more-open")
+
+  // A page from the menu, once open, takes the third place, and the one it replaces goes under
+  // "…".
+  await items.last().click()
+  await expect(owner).toHaveURL(new RegExp(`/companies/${company.id}/referrals$`))
+  await expect
+    .poll(() => pagesOf(owner, company.id))
+    .toEqual(["/interviews", "/templates", "/referrals"])
+  await expect(tabs.last()).toHaveAttribute("aria-current", "page")
+  // The three tabs and "…" fit the phone's width: none is cut off at the row's edges.
+  const fits = await menu(owner).evaluate((nav) => {
+    const row = nav.parentElement!.getBoundingClientRect()
+
+    return [...nav.children].every((child) => {
+      const box = child.getBoundingClientRect()
+
+      return box.left >= row.left - 1 && box.right <= row.right + 1
+    })
+  })
+  expect(fits).toBe(true)
+  await expect(async () => {
+    await more.click()
+    await expect(owner.getByRole("menu")).toBeVisible({ timeout: 2_000 })
+  }).toPass()
+  expect(await pagesOf(owner, company.id, items)).toEqual(COMPANY_PAGES.slice(2, 7))
+  await shot(owner, "phone-overflow-open")
+})

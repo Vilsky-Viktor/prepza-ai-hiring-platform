@@ -12,8 +12,10 @@ test("the developer docs show the API with its routes", async ({ page }) => {
   await expect(page.locator('footer a[href="/api-docs"]')).toHaveCount(1);
   await page.goto("/api-docs");
   await expect(page.getByRole("heading", { level: 1 })).not.toBeEmpty();
-  const tabs = page.locator("main nav a");
-  const hrefs = await tabs.evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+  // The menu's pages, in its order: once each, from the side menu and the phone's tabs.
+  const hrefs = await page
+    .locator("main nav a")
+    .evaluateAll((links) => [...new Set(links.map((link) => link.getAttribute("href")))]);
   expect(hrefs).toEqual([
     "/api-docs",
     "/api-docs?tab=webhooks",
@@ -21,7 +23,7 @@ test("the developer docs show the API with its routes", async ({ page }) => {
     "/api-docs?tab=mcp",
     "/api-docs?tab=objects",
   ]);
-  await expect(tabs.first()).toHaveAttribute("aria-current", "page");
+  await expect(page.locator('main nav a[aria-current="page"]:visible')).toHaveAttribute("href", "/api-docs");
 
   // The steps to a key, as a numbered list.
   expect(await page.locator("main ol").first().locator("li").count()).toBeGreaterThan(1);
@@ -44,7 +46,10 @@ test("the developer docs show the API with its routes", async ({ page }) => {
 // How to check a request, and the events.
 test("the developer docs show the web hooks and their events", async ({ page }) => {
   await page.goto("/api-docs?tab=webhooks");
-  await expect(page.locator("main nav a").nth(1)).toHaveAttribute("aria-current", "page");
+  await expect(page.locator('main nav a[aria-current="page"]:visible')).toHaveAttribute(
+    "href",
+    "/api-docs?tab=webhooks",
+  );
   const code = page.locator("main code");
   await expect(code.filter({ hasText: /^Prepza-Signature$/ }).first()).toBeVisible();
   await expect(code.filter({ hasText: /^candidate\.finished$/ }).first()).toBeVisible();
@@ -75,7 +80,7 @@ test("the MCP tab shows the server, the example agents and the server's tools", 
   const { tools } = (await page.evaluate(() =>
     fetch("/api/assistant/mcp/tools").then((response) => response.json()),
   )) as { tools: { name: string; key_permission: string | null }[] };
-  await expect(page.locator("main nav a").nth(3)).toHaveAttribute("aria-current", "page");
+  await expect(page.locator('main nav a[aria-current="page"]:visible')).toHaveAttribute("href", "/api-docs?tab=mcp");
   await expect(page.getByRole("main").getByRole("textbox").first()).toHaveValue(`${new URL(page.url()).origin}/mcp`);
 
   // Every tool, in the server's order, with the API key permission it needs where it has one.
@@ -95,8 +100,9 @@ test("the MCP tab shows the server, the example agents and the server's tools", 
   await expect(selected).toHaveAttribute("aria-controls", (await panel.getAttribute("id"))!);
   await expect(panel).toHaveAccessibleName((await selected.innerText()).trim());
 
-  // The examples start in Python; picking TypeScript in one editor switches them all.
-  const menus = page.locator('main [aria-haspopup="menu"]');
+  // The examples start in Python; picking TypeScript in one editor switches them all (the docs'
+  // own menus, not the page menu's "…" on a phone).
+  const menus = page.locator('main div[lang] [aria-haspopup="menu"]');
   const editors = page.locator("main pre");
   await expect(menus.first()).toHaveText("python");
   await expect(editors.first()).toContainText("from mcp");

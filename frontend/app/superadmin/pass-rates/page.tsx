@@ -34,22 +34,23 @@ export default async function PassRatesPage({
 
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
-      <SuperadminHeader current="pass-rates" />
-      <div className="space-y-4">
-        <div className="flex justify-end">
-          {/* A grey pill like the site's selects (components/pill-select.tsx). */}
-          <SortMenu
-            className="h-12 rounded-full bg-muted px-5 text-base hover:bg-muted/70 dark:bg-input/30"
-            current={sort}
-            label={candidates("sortBy", { sort: t(`sortBy.${sort}`) })}
-            options={SORTS.map((item) => ({
-              value: item,
-              label: t(`sortBy.${item}`),
-            }))}
-          />
+      <SuperadminHeader current="pass-rates">
+        <div className="space-y-4">
+          <div className="flex justify-end">
+            {/* A grey pill like the site's selects (components/pill-select.tsx). */}
+            <SortMenu
+              className="h-12 rounded-full bg-muted px-5 text-base hover:bg-muted/70 dark:bg-input/30"
+              current={sort}
+              label={candidates("sortBy", { sort: t(`sortBy.${sort}`) })}
+              options={SORTS.map((item) => ({
+                value: item,
+                label: t(`sortBy.${item}`),
+              }))}
+            />
+          </div>
+          <PassRateList path={path} initial={first} />
         </div>
-        <PassRateList path={path} initial={first} />
-      </div>
+      </SuperadminHeader>
     </main>
   )
 }

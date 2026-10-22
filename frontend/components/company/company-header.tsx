@@ -16,6 +16,8 @@ import { MAX_COMPANY_NAME_LENGTH } from "@/constants/limits"
 import { COMPANY_TAB_HELP } from "@/constants/page-help"
 import type { VerificationStatus } from "@/types/company"
 
+/** A company page: the way back, its logo, name and action, and its menu beside the page's
+ * content (`children`, spaced by `className`). */
 export function CompanyHeader({
   suspended = false,
   companyId,
@@ -29,6 +31,8 @@ export function CompanyHeader({
   action,
   canEdit,
   canSeeActions = false,
+  className,
+  children,
 }: {
   companyId: string
   name: string
@@ -47,6 +51,8 @@ export function CompanyHeader({
   canSeeActions?: boolean
   // A superadmin suspended the company: it can be read, not changed.
   suspended?: boolean
+  className?: string
+  children: ReactNode
 }) {
   const t = useTranslations("company")
   const verify = useTranslations("verify")
@@ -119,13 +125,16 @@ export function CompanyHeader({
         current={current}
         canEdit={canEdit}
         canSeeActions={canSeeActions}
-      />
-      {suspended && (
-        // Edge to edge on a phone.
-        <WarningCard className="-mx-6 rounded-none sm:mx-0 sm:rounded-2xl">
-          {t("suspended")}
-        </WarningCard>
-      )}
+        className={className}
+      >
+        {suspended && (
+          // Edge to edge on a phone.
+          <WarningCard className="-mx-6 rounded-none sm:mx-0 sm:rounded-2xl">
+            {t("suspended")}
+          </WarningCard>
+        )}
+        {children}
+      </CompanyNav>
     </div>
   )
 }

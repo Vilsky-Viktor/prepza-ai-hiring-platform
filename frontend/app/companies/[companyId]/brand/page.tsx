@@ -52,29 +52,32 @@ export default async function BrandPage({
         {...companyHeaderProps(company)}
         companyId={companyId}
         current="brand"
-      />
-      <section className="flex items-center gap-5">
-        <LogoPicker
+
+        className="space-y-12"
+      >
+        <section className="flex items-center gap-5">
+          <LogoPicker
+            companyId={companyId}
+            name={company.name}
+            logoUrl={company.logo_url ?? null}
+            editable
+            large
+          />
+          <div className="space-y-1">
+            <h2 className="font-heading text-2xl font-medium">
+              {t("logoTitle")}
+            </h2>
+            <p className="text-muted-foreground">{t("logoText")}</p>
+          </div>
+        </section>
+        <BrandColorsForm
           companyId={companyId}
-          name={company.name}
-          logoUrl={company.logo_url ?? null}
-          editable
-          large
+          saved={company.brand_colors ?? null}
+          current={company.candidate_colors}
+          style={company.brand_style ?? prepza.style}
+          prepza={prepza}
         />
-        <div className="space-y-1">
-          <h2 className="font-heading text-2xl font-medium">
-            {t("logoTitle")}
-          </h2>
-          <p className="text-muted-foreground">{t("logoText")}</p>
-        </div>
-      </section>
-      <BrandColorsForm
-        companyId={companyId}
-        saved={company.brand_colors ?? null}
-        current={company.candidate_colors}
-        style={company.brand_style ?? prepza.style}
-        prepza={prepza}
-      />
+      </CompanyHeader>
     </main>
   )
 }

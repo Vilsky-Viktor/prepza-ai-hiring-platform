@@ -90,6 +90,7 @@
   },
   "common": {
     "backToTop": "맨 위로",
+    "morePages": "다른 페이지",
     "copyLink": "링크 복사",
     "linkCopied": "링크를 복사했습니다",
     "home": "홈",

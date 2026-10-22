@@ -93,7 +93,7 @@ A key created, deleted or narrowed, and a web hook added, tested, given a new se
 
 `/companies/<id>/integrations/api`, from the **API** row on the integrations tab (which shows how many keys and web hooks the company has):
 
-- Two tabs, **API keys** and **web hooks**, each a list with its own button in the title row (**new key**, **add web hook**) for owners and admins, next to **developer docs**.
+- Two tabs in its side menu, **API keys** and **web hooks**, each a list with its own button in the title row (**new key**, **add web hook**) for owners and admins, next to **developer docs**.
 - A key shows its first characters, when it was made, when it expires (or that it expired), when it was last used (noted at most once a minute), and its permissions, one group a line. Owners and admins narrow them from the row ([Permissions](#permissions)). Viewers see the lists without the buttons, and each web hook's address only up to its site (`https://hooks.zapier.com/…`): the rest of a Zapier or Make address works like a password.
 
 ## How it's built

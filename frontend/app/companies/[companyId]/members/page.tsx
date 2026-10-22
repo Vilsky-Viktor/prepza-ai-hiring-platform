@@ -54,8 +54,9 @@ export default async function MembersPage({
             <InviteAdmin companyId={companyId} />
           ) : undefined
         }
-      />
-      <MemberList companyId={companyId} initial={members ?? []} />
+      >
+        <MemberList companyId={companyId} initial={members ?? []} />
+      </CompanyHeader>
     </main>
   )
 }

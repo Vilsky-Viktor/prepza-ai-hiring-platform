@@ -6,7 +6,7 @@ The admin zone is for superadmins: prepza's own team, not a company's admins.
 - Only they see the Admin zone in the account menu.
 - Everyone else gets "not found" from its pages and routes.
 
-It has nine tabs, in this order: [Templates](#templates), [News](#news), [Campaigns](#campaigns), [Questions](#questions), [Pass rates](#pass-rates), [Verification](#verification), [Support](#support), [Stats](#stats) and [Controls](#controls). On a phone the row scrolls sideways. Questions and Stats each have a row of tabs of their own under the main one.
+It has nine tabs, in this order: [Templates](#templates), [News](#news), [Campaigns](#campaigns), [Questions](#questions), [Pass rates](#pass-rates), [Verification](#verification), [Support](#support), [Stats](#stats) and [Controls](#controls). They're its side menu, as on a company's pages ([Companies](companies.md)); on a phone, three tabs and the rest under "…". Questions and Stats each have pages of their own, listed under them in the menu while open (on a phone, a row of pills under the tabs).
 
 ## Templates
 

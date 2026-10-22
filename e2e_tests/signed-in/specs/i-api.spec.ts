@@ -121,7 +121,7 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   await owner.keyboard.press("Escape")
 
   // The web hooks have a tab of their own, with its own button: a dialog with no expiry.
-  await owner.locator('main nav a[href$="?tab=webhooks"]').click()
+  await owner.locator('main nav a[href$="?tab=webhooks"]:visible').click()
   await expect(owner).toHaveURL(/\?tab=webhooks$/)
 
   // Only HTTPS addresses on the internet: anything else is refused, in a red toast.

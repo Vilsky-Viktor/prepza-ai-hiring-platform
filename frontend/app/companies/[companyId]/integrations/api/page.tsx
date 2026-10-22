@@ -110,22 +110,23 @@ export default async function ApiPage({
             </div>
           }
         />
-        <ApiNav href={href} current={current} />
+        <ApiNav href={href} current={current}>
+          {current === "keys" ? (
+            <ApiKeys
+              companyId={companyId}
+              keys={settings.keys}
+              options={settings}
+              canEdit={company.can_edit}
+            />
+          ) : (
+            <ApiWebhooks
+              companyId={companyId}
+              webhooks={settings.webhooks}
+              canEdit={company.can_edit}
+            />
+          )}
+        </ApiNav>
       </div>
-      {current === "keys" ? (
-        <ApiKeys
-          companyId={companyId}
-          keys={settings.keys}
-          options={settings}
-          canEdit={company.can_edit}
-        />
-      ) : (
-        <ApiWebhooks
-          companyId={companyId}
-          webhooks={settings.webhooks}
-          canEdit={company.can_edit}
-        />
-      )}
     </main>
   )
 }

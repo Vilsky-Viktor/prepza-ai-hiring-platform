@@ -4,8 +4,8 @@ import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { throwawayEmail } from "../helpers/users"
 
-// An interview's settings are its own tab: time per question, passing grade and hired, each
-// saved as it changes and kept after a reload.
+// An interview's settings are its own tab: time per question, passing grade, hired and keeping
+// its questions out of the shared question bank, each saved as it changes and kept after a reload.
 test("an owner changes an interview's settings on its settings tab", async ({ signInAs }) => {
   const owner = await signInAs(throwawayEmail("interview-settings"))
   const company = await createCompany(owner)
@@ -13,7 +13,7 @@ test("an owner changes an interview's settings on its settings tab", async ({ si
   const interviewUrl = `/companies/${company.id}/interviews/${interviewId}`
 
   await visit(owner, interviewUrl)
-  await owner.locator('main nav a[href$="?tab=settings"]').click()
+  await owner.locator('main nav a[href$="?tab=settings"]:visible').click()
   await expect(owner).toHaveURL(new RegExp(`${interviewUrl}\\?tab=settings$`))
   await shot(owner, "settings-tab")
 
@@ -24,11 +24,25 @@ test("an owner changes an interview's settings on its settings tab", async ({ si
   await seconds.press("Enter")
   await mark.fill("70")
   await mark.press("Enter")
-  await owner.getByRole("checkbox").click()
-  await expect(owner.getByRole("checkbox")).toBeChecked()
+  // Hired, then keeping the questions out of the shared question bank: shared by default.
+  const hired = owner.getByRole("main").getByRole("checkbox").first()
+  const keepPrivate = owner.getByRole("main").getByRole("checkbox").nth(1)
+  await expect(keepPrivate).not.toBeChecked()
+  await hired.click()
+  await expect(hired).toBeChecked()
+  await keepPrivate.click()
+  await expect(keepPrivate).toBeChecked()
 
   await owner.reload()
   await expect(seconds).toHaveValue("90")
   await expect(mark).toHaveValue("70")
-  await expect(owner.getByRole("checkbox")).toBeChecked()
+  await expect(hired).toBeChecked()
+  await expect(keepPrivate).toBeChecked()
+
+  // Unchecked again, the questions may join the bank again.
+  await keepPrivate.click()
+  await expect(keepPrivate).not.toBeChecked()
+  await owner.reload()
+  await expect(keepPrivate).not.toBeChecked()
+  await expect(hired).toBeChecked()
 })

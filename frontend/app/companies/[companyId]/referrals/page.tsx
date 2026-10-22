@@ -52,48 +52,52 @@ export default async function ReferralsPage({
         {...companyHeaderProps(company)}
         companyId={companyId}
         current="referrals"
-      />
-      {referral && (
-        <>
-          {/* What a referral earns, and the link to share; on phones the card spans the screen,
+      >
+        {referral && (
+          <>
+            {/* What a referral earns, and the link to share; on phones the card spans the screen,
               with square corners. */}
-          <div className="-mx-6 space-y-4 border-y p-5 sm:mx-0 sm:rounded-2xl sm:border">
-            <div className="flex items-center gap-4 text-base">
-              <GiftIcon aria-hidden className="size-7 shrink-0 text-primary" />
-              <p className="text-muted-foreground">
-                {referralText("companyNote", { reward: referral.reward })}
-              </p>
+            <div className="-mx-6 space-y-4 border-y p-5 sm:mx-0 sm:rounded-2xl sm:border">
+              <div className="flex items-center gap-4 text-base">
+                <GiftIcon
+                  aria-hidden
+                  className="size-7 shrink-0 text-primary"
+                />
+                <p className="text-muted-foreground">
+                  {referralText("companyNote", { reward: referral.reward })}
+                </p>
+              </div>
+              <ReferralLink referral={referral} path="/companies" />
             </div>
-            <ReferralLink referral={referral} path="/companies" />
-          </div>
-          {referral.rewards.length === 0 ? (
-            <p className="py-16 text-center text-muted-foreground">
-              {referralText("rewarded", { count: 0 })}
-            </p>
-          ) : (
-            <ul className={LIST_BOX}>
-              {referral.rewards.map((reward, index) => (
-                <li
-                  key={index}
-                  className="flex items-center justify-between gap-4 p-6"
-                >
-                  <span className="min-w-0 space-y-1">
-                    <span className="block truncate text-lg font-medium normal-case">
-                      {reward.name ?? referralText("deletedCompany")}
+            {referral.rewards.length === 0 ? (
+              <p className="py-16 text-center text-muted-foreground">
+                {referralText("rewarded", { count: 0 })}
+              </p>
+            ) : (
+              <ul className={LIST_BOX}>
+                {referral.rewards.map((reward, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center justify-between gap-4 p-6"
+                  >
+                    <span className="min-w-0 space-y-1">
+                      <span className="block truncate text-lg font-medium normal-case">
+                        {reward.name ?? referralText("deletedCompany")}
+                      </span>
+                      <span className="block text-sm text-muted-foreground">
+                        <LocalDate iso={reward.rewarded_at} />
+                      </span>
                     </span>
-                    <span className="block text-sm text-muted-foreground">
-                      <LocalDate iso={reward.rewarded_at} />
+                    <span className="shrink-0 text-primary tabular-nums">
+                      {referralText("credits", { count: reward.credits })}
                     </span>
-                  </span>
-                  <span className="shrink-0 text-primary tabular-nums">
-                    {referralText("credits", { count: reward.credits })}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </>
-      )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
+        )}
+      </CompanyHeader>
     </main>
   )
 }

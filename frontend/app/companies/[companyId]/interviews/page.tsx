@@ -81,15 +81,15 @@ export default async function InterviewsPage({
             )}
           </div>
         }
-      />
-
-      {interviews && (
-        <InterviewList
-          companyId={companyId}
-          initial={interviews}
-          canEdit={company.can_edit}
-        />
-      )}
+      >
+        {interviews && (
+          <InterviewList
+            companyId={companyId}
+            initial={interviews}
+            canEdit={company.can_edit}
+          />
+        )}
+      </CompanyHeader>
     </main>
   )
 }

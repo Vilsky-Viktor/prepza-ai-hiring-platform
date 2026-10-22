@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
+import type { ReactNode } from "react"
 
 import { BackLink } from "@/components/back-link"
 import { InterviewActions } from "@/components/company/interview-actions"
@@ -12,19 +13,21 @@ import { INTERVIEW_TAB_HELP } from "@/constants/page-help"
 import type { InterviewTab } from "@/lib/interview-page"
 import type { InterviewDetail } from "@/types/company"
 
-/** An interview page's header: the way back, its title with its tab's buttons, the way to
- * finish its generation while it isn't ready, its tabs, and on its topics tab what it adds up to
- * for each candidate once its topics are known. */
+/** An interview page: the way back, its title with its tab's buttons, the way to finish its
+ * generation while it isn't ready, and its menu beside the open tab's content (`children`), on
+ * its topics tab led by what it adds up to for each candidate once its topics are known. */
 export async function InterviewHeader({
   interview,
   companyId,
   current,
   maxInvites,
+  children,
 }: {
   interview: InterviewDetail
   companyId: string
   current: InterviewTab
   maxInvites: number | null
+  children: ReactNode
 }) {
   const t = await getTranslations("interviews")
   const interviewsHref = `/companies/${companyId}/interviews`
@@ -37,7 +40,13 @@ export async function InterviewHeader({
     <div className="space-y-6">
       <PageHeader
         back={
-          <BackLink href={interviewsHref} help={INTERVIEW_TAB_HELP[current]}>
+          // Level with the title's first line (3xl, 2.25rem tall), not the whole block with the
+          // status row under it.
+          <BackLink
+            href={interviewsHref}
+            help={INTERVIEW_TAB_HELP[current]}
+            className="xl:inset-y-auto xl:-top-1.5 xl:my-0"
+          >
             {t("title")}
           </BackLink>
         }
@@ -77,23 +86,24 @@ export async function InterviewHeader({
           </Button>
         )}
       </PageHeader>
-      {ready && (
-        <InterviewNav
-          href={interviewHref}
-          current={current}
-          canEdit={canEdit}
-        />
+      {ready ? (
+        <InterviewNav href={interviewHref} current={current} canEdit={canEdit}>
+          {/* What it adds up to for each candidate, on the topics tab, once its topics are
+              known. */}
+          {current === "topics" &&
+            interview.total_questions != null &&
+            interview.total_minutes != null && (
+              <InterviewEstimate
+                questions={interview.total_questions}
+                questionSeconds={interview.question_seconds}
+                minutes={interview.total_minutes}
+              />
+            )}
+          {children}
+        </InterviewNav>
+      ) : (
+        children
       )}
-      {/* What it adds up to for each candidate, on the topics tab, once its topics are known. */}
-      {current === "topics" &&
-        interview.total_questions != null &&
-        interview.total_minutes != null && (
-          <InterviewEstimate
-            questions={interview.total_questions}
-            questionSeconds={interview.question_seconds}
-            minutes={interview.total_minutes}
-          />
-        )}
     </div>
   )
 }

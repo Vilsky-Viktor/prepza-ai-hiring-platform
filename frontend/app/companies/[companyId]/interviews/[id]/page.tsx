@@ -60,34 +60,34 @@ export default async function InterviewPage({
         companyId={companyId}
         current={current}
         maxInvites={limits?.max_bulk_invites ?? null}
-      />
-
-      {current === "settings" ? (
-        <InterviewSettings
-          interviewId={interview.id}
-          questionSeconds={interview.question_seconds}
-          passMark={interview.pass_mark}
-          hired={interview.hired}
-        />
-      ) : current === "candidates" ? (
-        <InterviewCandidatesTab
-          interview={interview}
-          interviewHref={interviewHref}
-          canEdit={canEdit}
-          sort={sort}
-          search={search}
-          status={status}
-          filters={filters}
-          candidates={candidates}
-        />
-      ) : (
-        <InterviewTopics
-          interviewId={id}
-          language={interview.language}
-          topics={interview.topics}
-          canEdit={canEdit}
-        />
-      )}
+      >
+        {current === "settings" ? (
+          <InterviewSettings
+            interviewId={interview.id}
+            questionSeconds={interview.question_seconds}
+            passMark={interview.pass_mark}
+            hired={interview.hired}
+          />
+        ) : current === "candidates" ? (
+          <InterviewCandidatesTab
+            interview={interview}
+            interviewHref={interviewHref}
+            canEdit={canEdit}
+            sort={sort}
+            search={search}
+            status={status}
+            filters={filters}
+            candidates={candidates}
+          />
+        ) : (
+          <InterviewTopics
+            interviewId={id}
+            language={interview.language}
+            topics={interview.topics}
+            canEdit={canEdit}
+          />
+        )}
+      </InterviewHeader>
     </main>
   )
 }

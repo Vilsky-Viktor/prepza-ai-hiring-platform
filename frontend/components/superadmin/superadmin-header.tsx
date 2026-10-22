@@ -1,13 +1,22 @@
 "use client"
 
-import { cn } from "cn"
-import Link from "next/link"
+import {
+  BadgeCheckIcon,
+  ChartColumnIcon,
+  FlagIcon,
+  LayoutTemplateIcon,
+  LifeBuoyIcon,
+  MegaphoneIcon,
+  NewspaperIcon,
+  PercentIcon,
+  SlidersHorizontalIcon,
+} from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { TabNav } from "@/components/tab-nav"
+import { SideMenuLayout } from "@/components/side-menu"
 
-// The tabs with tabs of their own: each one's path under its tab and its label's message.
+// The pages with pages of their own: each one's path under its page and its label's message.
 const SUBTABS = {
   questions: [
     { id: "flagged", label: "flagged" },
@@ -20,12 +29,14 @@ const SUBTABS = {
   ],
 } as const
 
-/** The admin zone's title and tabs, as a company's pages have them, with `action` on the right.
- * Questions and stats have their own row of tabs under them: `sub` is the one open. */
+/** The admin zone's title, with `action` on the right, and its menu beside the page's content
+ * (`children`), as a company's pages have them. Questions and stats have pages of their own,
+ * listed under them while open: `sub` is the one open. */
 export function SuperadminHeader({
   current,
   sub,
   action,
+  children,
 }: {
   current:
     | "templates"
@@ -39,6 +50,7 @@ export function SuperadminHeader({
     | "campaigns"
   sub?: "flagged" | "replaced" | "patterns" | "general" | "ai-costs"
   action?: ReactNode
+  children: ReactNode
 }) {
   const t = useTranslations("superadmin")
 
@@ -55,76 +67,78 @@ export function SuperadminHeader({
           </div>
         )}
       </div>
-      <TabNav
+      <SideMenuLayout
         items={[
           {
             id: "templates",
             href: "/superadmin/templates",
             label: t("templates"),
+            icon: LayoutTemplateIcon,
           },
-          { id: "news", href: "/superadmin/news", label: t("news") },
+          {
+            id: "news",
+            href: "/superadmin/news",
+            label: t("news"),
+            icon: NewspaperIcon,
+          },
           {
             id: "campaigns",
             href: "/superadmin/campaigns",
             label: t("campaigns"),
+            icon: MegaphoneIcon,
           },
           {
             id: "questions",
             href: "/superadmin/questions/flagged",
             label: t("questions"),
+            icon: FlagIcon,
+            sub: SUBTABS.questions.map(({ id, label }) => ({
+              id,
+              href: `/superadmin/questions/${id}`,
+              label: t(label),
+            })),
           },
           {
             id: "pass-rates",
             href: "/superadmin/pass-rates",
             label: t("passRates"),
+            icon: PercentIcon,
           },
           {
             id: "verification",
             href: "/superadmin/verification",
             label: t("verification"),
+            icon: BadgeCheckIcon,
           },
           {
             id: "support",
             href: "/superadmin/support",
             label: t("support"),
+            icon: LifeBuoyIcon,
           },
           {
             id: "stats",
             href: "/superadmin/stats/general",
             label: t("stats"),
+            icon: ChartColumnIcon,
+            sub: SUBTABS.stats.map(({ id, label }) => ({
+              id,
+              href: `/superadmin/stats/${id}`,
+              label: t(label),
+            })),
           },
           {
             id: "controls",
             href: "/superadmin/controls",
             label: t("controls"),
+            icon: SlidersHorizontalIcon,
           },
         ]}
         current={current}
-      />
-      {sub && (current === "questions" || current === "stats") && (
-        // The open tab's own tabs: pills on a band of the row's line colour, softened, hanging
-        // from that line, so they read as part of the row; the open one in the page's colour.
-        <nav
-          aria-label={t(current)}
-          className="-mt-4 flex gap-2 rounded-b-2xl bg-border/50 p-2"
-        >
-          {SUBTABS[current].map(({ id, label }) => (
-            <Link
-              key={id}
-              href={`/superadmin/${current}/${id}`}
-              aria-current={id === sub ? "page" : undefined}
-              className={cn(
-                "rounded-full px-4 py-1.5 text-base lowercase transition-colors",
-                id === sub
-                  ? "bg-background text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {t(label)}
-            </Link>
-          ))}
-        </nav>
-      )}
+        currentSub={sub}
+      >
+        {children}
+      </SideMenuLayout>
     </div>
   )
 }

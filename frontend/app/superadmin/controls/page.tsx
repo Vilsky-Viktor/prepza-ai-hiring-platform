@@ -30,13 +30,14 @@ export default async function ControlsPage() {
 
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
-      <SuperadminHeader current="controls" />
-      <div className="space-y-4">
-        <PauseSwitch paused={pause.paused} />
-        <MaintenanceSwitch on={maintenance.on} />
-        <LegalNotices initial={notices} />
-        <LimitSettings initial={limits} initialChanges={changes} />
-      </div>
+      <SuperadminHeader current="controls">
+        <div className="space-y-4">
+          <PauseSwitch paused={pause.paused} />
+          <MaintenanceSwitch on={maintenance.on} />
+          <LegalNotices initial={notices} />
+          <LimitSettings initial={limits} initialChanges={changes} />
+        </div>
+      </SuperadminHeader>
     </main>
   )
 }

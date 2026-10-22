@@ -24,13 +24,14 @@ export default async function ReplacedPage() {
 
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
-      <SuperadminHeader current="questions" sub="replaced" />
-      <QualityList
-        path="/library/superadmin/quality/replaced"
-        initial={first}
-        empty={t("noReplaced")}
-        byKey
-      />
+      <SuperadminHeader current="questions" sub="replaced">
+        <QualityList
+          path="/library/superadmin/quality/replaced"
+          initial={first}
+          empty={t("noReplaced")}
+          byKey
+        />
+      </SuperadminHeader>
     </main>
   )
 }

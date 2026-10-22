@@ -18,7 +18,7 @@ test("an owner sees how to connect Workable and manages its linked jobs", async 
   const tab = `/companies/${company.id}/integrations`
 
   await visit(owner, `/companies/${company.id}/interviews`)
-  await owner.locator(`main nav a[href$="/integrations"]`).click()
+  await owner.locator(`main nav a[href$="/integrations"]:visible`).click()
   // The tab compiles on its first visit (slow on the dev server).
   await expect(owner).toHaveURL(new RegExp(`${tab}$`), { timeout: 60_000 })
   // Not connected yet: no tag; Instructions and Connect.

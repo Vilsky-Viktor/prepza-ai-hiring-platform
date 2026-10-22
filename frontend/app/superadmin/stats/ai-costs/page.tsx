@@ -10,8 +10,9 @@ export const generateMetadata = () => translatedTitle("superadmin", "zone")
 export default async function AiCostsPage() {
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
-      <SuperadminHeader current="stats" sub="ai-costs" />
-      <AiCostsView />
+      <SuperadminHeader current="stats" sub="ai-costs">
+        <AiCostsView />
+      </SuperadminHeader>
     </main>
   )
 }

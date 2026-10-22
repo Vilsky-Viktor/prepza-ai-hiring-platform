@@ -7,7 +7,7 @@ import { McpTab } from "@/components/api-docs/mcp-tab"
 import { Operation } from "@/components/api-docs/operation"
 import { RichText } from "@/components/api-docs/rich-text"
 import { CopyValue } from "@/components/copy-field"
-import { TabNav } from "@/components/tab-nav"
+import { DocsMenu } from "@/components/api-docs/docs-menu"
 import { JsonLd } from "@/components/json-ld"
 import { DOC_TABS } from "@/constants/api-docs"
 import { DEFAULT_LOCALE } from "@/constants/i18n"
@@ -94,27 +94,28 @@ export default async function ApiDocsPage({
           <p className="text-sm text-muted-foreground">{t("englishOnly")}</p>
         )}
       </header>
-      <TabNav items={tabs} current={current} />
-      <div lang="en" dir="ltr" className="space-y-12">
-        {current === "api" && <ApiTab spec={spec} text={texts.api} />}
-        {current === "webhooks" && (
-          <WebhooksTab spec={spec} text={texts.webhooks} />
-        )}
-        {current === "sdk" && texts.sdk && <RichText text={texts.sdk} />}
-        {current === "mcp" && examples && (
-          <McpTab site={site} examples={examples} tools={tools} />
-        )}
-        {current === "objects" &&
-          schemasOf(spec).map(([name, schema]) => (
-            <article key={name} id={name} className="scroll-mt-20 space-y-3">
-              <h3 className="font-mono text-xl font-medium normal-case">
-                {name}
-              </h3>
-              {schema.description && <RichText text={schema.description} />}
-              <Fields fields={fieldsOf(spec, schema)} />
-            </article>
-          ))}
-      </div>
+      <DocsMenu tabs={tabs} current={current}>
+        <div lang="en" dir="ltr" className="space-y-12">
+          {current === "api" && <ApiTab spec={spec} text={texts.api} />}
+          {current === "webhooks" && (
+            <WebhooksTab spec={spec} text={texts.webhooks} />
+          )}
+          {current === "sdk" && texts.sdk && <RichText text={texts.sdk} />}
+          {current === "mcp" && examples && (
+            <McpTab site={site} examples={examples} tools={tools} />
+          )}
+          {current === "objects" &&
+            schemasOf(spec).map(([name, schema]) => (
+              <article key={name} id={name} className="scroll-mt-20 space-y-3">
+                <h3 className="font-mono text-xl font-medium normal-case">
+                  {name}
+                </h3>
+                {schema.description && <RichText text={schema.description} />}
+                <Fields fields={fieldsOf(spec, schema)} />
+              </article>
+            ))}
+        </div>
+      </DocsMenu>
     </main>
   )
 }

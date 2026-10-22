@@ -2,6 +2,8 @@
 
 A company is where a hiring team works: its interviews, candidates, credits and team live under it. Companies' pages live under `/companies`; old `/company` links redirect.
 
+A company's pages (interviews, templates, team, integrations, brand, billing, action log, referrals; brand and billing for owners and admins, the action log for the owner) are listed in a menu beside the page, under the company's name: on wide screens a column at the start side (the right in Arabic, Hebrew and Persian), each page with its icon, the open one on a grey row with its icon in the page's blue. The menu stays in view while the page scrolls, and scrolls on its own when it's taller than the window. On phones and narrow screens it's a row of tabs above the page: the first three, and the others under a "…" button (labelled "More pages"); a page opened from there takes the third place. An interview's page, the API page, the admin zone and the developer docs have the same menu (`components/side-menu.tsx`).
+
 - [Names](#names)
 - [Team](#team)
 - [Brand](#brand)
