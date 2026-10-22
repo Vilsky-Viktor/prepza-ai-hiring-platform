@@ -92,9 +92,9 @@ class Fixture:
         about `right` of it correctly."""
         path = f"/companies/interviews/{interview_id}/candidates"
         invite = await self.api("POST", path, self.owner_token, {"email": email})
-        started = await self.api(
-            "POST", f"/companies/invites/{invite_token(invite['id'])}/start", token
-        )
+        # A first start takes the candidate's pledge to answer on their own.
+        start = f"/companies/invites/{invite_token(invite['id'])}/start"
+        started = await self.api("POST", start, token, {"pledged": True})
         session = started["sessions"][0]["id"]
         step = await self.api("POST", f"/rounds/sessions/{session}/step", token)
         luck = random.Random(seed)
