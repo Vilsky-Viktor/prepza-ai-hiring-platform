@@ -1,7 +1,7 @@
 import type { Page } from "@playwright/test";
 
 import { expect, test } from "../fixtures";
-import { createCompany } from "../helpers/api";
+import { api, createCompany } from "../helpers/api";
 import { visit } from "../helpers/navigation";
 import { shot } from "../helpers/screenshots";
 import { ownerEmail } from "../helpers/users";
@@ -15,7 +15,13 @@ function removeButton(page: Page, companyId: string) {
 // candidates they'd pay for) when there are any, and nothing about credits otherwise.
 test("removing a company warns about the credits it loses", async ({ signInAs }) => {
   const owner = await signInAs(ownerEmail());
-  // A first company gets the welcome credits (900, three candidates); a second one none.
+  // A first company gets the welcome credits (billing's catalog says how many, and for how many
+  // candidates); a second one none.
+  const catalog = await api<{ welcome_company: number; free_candidates: number }>(
+    owner,
+    "GET",
+    "/billing/catalog",
+  );
   const funded = await createCompany(owner);
   const empty = await createCompany(owner);
   await visit(owner, "/companies");
@@ -23,8 +29,8 @@ test("removing a company warns about the credits it loses", async ({ signInAs })
   await removeButton(owner, funded.id).click();
   let dialog = owner.getByRole("dialog");
   const credits = dialog.getByTestId("remove-credits");
-  await expect(credits).toContainText("900");
-  await expect(credits).toContainText("3");
+  await expect(credits).toContainText(catalog.welcome_company.toLocaleString("en-US"));
+  await expect(credits).toContainText(String(catalog.free_candidates));
   await shot(owner, "remove-with-credits");
   // Cancel, then Remove.
   await dialog.getByRole("button").first().click();
