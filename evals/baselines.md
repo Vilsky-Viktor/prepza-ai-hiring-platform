@@ -11,7 +11,8 @@ Contents: [Baselines (2026-10-04)](#baselines-2026-10-04) ·
 [Help chat: a tighter rule, reverted](#help-chat-a-tighter-rule-for-what-the-information-doesnt-say-2026-10-20-reverted) ·
 [Help chat: currencies](#help-chat-currencies-in-its-guide-2026-10-21-kept) ·
 [Help chat: four more currencies](#help-chat-four-more-currencies-2026-10-21-kept) ·
-[Help chat: automatic top-up](#help-chat-automatic-top-ups-pause-and-price-notice-2026-10-21-kept)
+[Help chat: automatic top-up](#help-chat-automatic-top-ups-pause-and-price-notice-2026-10-21-kept) ·
+[Help chat: Mira](#help-chat-mira-an-ai-assistant-that-says-so-2026-10-22-kept)
 
 ## Baselines (2026-10-04)
 
@@ -221,3 +222,16 @@ new price is emailed at least 30 days ahead, and that a currency change applies 
 test, dataset, model and judge as the run above: passed 94.4% (84.9–98.1), made up 5.6%
 (1.9–15.1), sign-in marker 100%; $0.013 help, $1.13 judge. No difference beyond the intervals;
 the only failures are the known h17 (an invented retake limit).
+
+## Help chat: Mira, an AI assistant that says so (2026-10-22, kept)
+
+The help chat is the same Mira as the in-app assistant, for visitors: its instructions open "You
+are Mira, prepza's AI assistant" and say that asked its name, who it is or whether it's human, it
+says it's Mira, an AI, never a person; its guide calls the header's button "ask Mira".
+`help_questions.json` gained 6 identity questions (h19–h24: English, French, Korean, Polish,
+Hebrew). Same test, model and judge, 3 repeats: before (`results/help_chat_mira-base.json`)
+passed 72.2% (61.0–81.2), identity 1 of 18, the rest 51 of 54, made up 6.9%; after
+(`…_mira-new2.json`) passed 94.4% (86.6–97.8), identity 18 of 18, the rest 50 of 54, made up
+4.2% (1.4–11.5), sign-in marker 100% both times. A first wording that also told it to offer help
+made an off-topic refusal two sentences long (h12, 1 of 3), so it was dropped. The remaining
+failures are the known h17 (an invented retake limit) and one h12.

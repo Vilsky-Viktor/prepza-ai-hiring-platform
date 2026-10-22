@@ -103,7 +103,10 @@ async def run_variant(variant: str, data: dict, facts: dict, token: str) -> dict
                     {"role": "assistant", "content": found["text"]},
                 ]
 
-            result = await ask(token, OWNER_NAME, company, item["question"], page, earlier)
+            language = item.get("language", "en")
+            result = await ask(
+                token, OWNER_NAME, company, item["question"], page, earlier, language
+            )
             result["earlier"] = earlier
 
             return result

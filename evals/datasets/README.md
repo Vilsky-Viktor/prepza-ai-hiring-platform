@@ -88,8 +88,10 @@ written in; small, so it flags large drops only.
 
 ## `assistant_questions.json` (by hand, 2026-10-17)
 
-The assistant's page-context test: 8 pages (key, path, the ids the panel sends), 43 general
-questions asked on 6 of them (6 name an interview or candidate other than the page's), each with
+The assistant's page-context test: 8 pages (key, path, the ids the panel sends), 51 general
+questions asked on 6 of them (6 name an interview or candidate other than the page's; 8, added
+2026-10-22, ask who the assistant is, its name and whether it's a person, in English, German,
+Japanese, Arabic, Russian and Spanish, with `language` the user's interface language), each with
 what a right answer does, and 9 page checks ("What can I do on this page?" on 5 pages, "Who's
 best here?", "How did this candidate do?", "and here?" after moving). They run against the
 throwaway fixture (`../scripts/assistant_fixture.py`), never real records.
@@ -217,5 +219,6 @@ instruction to tag everything "python") and examples of several files. Graded by
 The help chat's test: visitor questions on the site's pages, each with what a right answer says
 (from the platform guide, the FAQ, prices and the legal pages) and what it must not do. Typical
 questions, questions the guide doesn't answer (it must say so and point to the contact page),
-sign-in requests, and attempts to make it answer something else or follow instructions in the
-message.
+sign-in requests, attempts to make it answer something else or follow instructions in the
+message, and (added 2026-10-22) who the chat is: Mira, prepza's AI assistant, never a person, in
+English, French, Korean, Polish and Hebrew.

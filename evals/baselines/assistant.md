@@ -61,3 +61,24 @@ and `prices`. `page_context.py --only g23,g26` (the two price questions), 3 repe
 after: correct 6/6 and 6/6 with and without the page context both times, right scope 6/6, no
 wins or losses; $0.03 a run plus $0.04 judging. No difference; kept, as the old field names no
 longer exist.
+
+## Mira, an AI assistant that says so (2026-10-22, kept)
+
+The assistant is named Mira: its instructions open "You are Mira, prepza's AI assistant" and say
+that asked its name, who it is or whether it's human, it says it's Mira, an AI assistant, in a
+sentence (the name as the user's language writes it), never claiming to be a person.
+`assistant_questions.json` gained 8 such questions (g44–g51: English, German, Japanese, Arabic,
+Russian, Spanish, asked in that interface language). `page_context.py` (3 repeats) and
+`guides.py` (2), before (`results/…_mira-base.json`) and after (`…_mira-new.json`), with the eval's
+fixture fixed first (a candidate's start now takes the pledge to answer on their own).
+
+| Run | Who-are-you questions correct (with) | Other general: correct with / without | Page checks with / without | Guide called | Guides: correct / complete / read the right one / linked | Guides' general: correct with / without |
+|---|---|---|---|---|---|---|
+| Before | 5/24 | 102/129 / 101/129 | 25/27 / 10/27 | 15/15 | 39/40 / 24/40 / 38/40 / 38/40 | 27/30 / 26/30 |
+| Mira (in use) | **24/24** | **99/129 / 110/129** | **25/27 / 14/27** | **15/15** | **39/40 / 26/40 / 40/40 / 38/40** | **24/30 / 22/30** |
+
+Before, the assistant answered "I'm prepza's assistant" and gave no name; now every answer names
+Mira as an AI (ミラ, ميرا, Мира, "KI-Assistentin", "la asistente de IA"). The other questions
+moved within the judge's noise: the unchanged "without" variant, the same instructions both times
+but for the page bullet, moved by 9 of 129 between the two runs, more than "with" did (3), and
+the guides' general questions fell in both variants alike. About $3.30 for the four runs.

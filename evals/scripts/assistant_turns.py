@@ -77,16 +77,22 @@ async def companies_of(uid: str) -> frozenset[str]:
 
 
 async def ask(
-    token: str, owner: str, company_id: str | None, message: str, page: dict, earlier: list
+    token: str,
+    owner: str,
+    company_id: str | None,
+    message: str,
+    page: dict,
+    earlier: list,
+    language: str = "en",
 ) -> dict:
     """One message, on `page` (the context the panel sends), after `earlier` turns ({role,
-    content, page}); the answer's text, tool calls (with why one was refused), the actions it
+    content, page}), in the interface `language`; the answer's text, tool calls (with why one was refused), the actions it
     prepared for the user to confirm, shown rows, the pages linked under it (by the model or by
     code), tokens, cost and seconds."""
     uid = user_id(token)
     companies = await companies_of(uid)
     picked = uuid.UUID(company_id) if company_id else None
-    turn = Turn(uuid.uuid4(), uid, picked, token, "en", companies, owner)
+    turn = Turn(uuid.uuid4(), uid, picked, token, language, companies, owner)
     stored = [
         SimpleNamespace(role=Role(item["role"]), content=item["content"], page=item.get("page"))
         for item in earlier

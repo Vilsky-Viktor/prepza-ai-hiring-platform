@@ -1,5 +1,5 @@
 {
- "about": "The assistant's page-context test (scripts/page_context.py). Pages name where a question is asked, filled in with the throwaway fixture's ids (scripts/assistant_fixture.py: one company, the interviews 'Backend Developer (eval)' with Ann Lee and Ben Ortiz, and 'Data Analyst (eval)' with Cara Diaz). `general` questions don't depend on the page: asked with the page context and without it, they must mean the same. `page` checks do.",
+ "about": "The assistant's page-context test (scripts/page_context.py). Pages name where a question is asked, filled in with the throwaway fixture's ids (scripts/assistant_fixture.py: one company, the interviews 'Backend Developer (eval)' with Ann Lee and Ben Ortiz, and 'Data Analyst (eval)' with Cara Diaz). `general` questions don't depend on the page: asked with the page context and without it, they must mean the same. `page` checks do. Questions g44 to g51 ask who the assistant is (its name, whether it's a person), with `language` the user's interface language (English when absent).",
  "pages": {
   "companies": {"key": "companies", "path": "/companies", "describe": "the list of the user's companies; no company picked in the panel"},
   "interviews": {"key": "interviews", "path": "/companies/{company}/interviews", "company": true, "describe": "the company's interviews list"},
@@ -53,7 +53,15 @@
   {"id": "g41", "page": "candidateBen", "question": "How did Ann Lee do?", "expect": "Ann Lee's grade in 'Backend Developer (eval)' (the candidate the user names, not Ben Ortiz on screen)."},
   {"id": "g42", "page": "candidatesA", "question": "Did anyone pass the Data Analyst interview?", "expect": "No: Cara Diaz, its only candidate, is below its pass mark (the interview the user names, not the one on screen)."},
   {"id": "g43", "page": "candidateBen", "question": "Show me Cara Diaz's result.", "expect": "Cara Diaz's grade in 'Data Analyst (eval)' (the candidate the user names, not Ben Ortiz on screen)."},
-  {"id": "g40", "page": "pricing", "question": "Which languages does prepza support?", "expect": "From the platform guide: the interface's 23 languages, and tests in many languages."}
+  {"id": "g40", "page": "pricing", "question": "Which languages does prepza support?", "expect": "From the platform guide: the interface's 23 languages, and tests in many languages."},
+  {"id": "g44", "page": "companies", "question": "What's your name?", "expect": "Says it's Mira, prepza's AI assistant (the name may be written in the language's own script); an AI, not a person; in English."},
+  {"id": "g45", "page": "companies", "question": "Who are you?", "expect": "Says it's Mira, prepza's AI assistant (the name may be written in the language's own script); an AI, not a person; in English. Saying in a few words what it helps with is fine."},
+  {"id": "g46", "page": "interviews", "question": "Are you a human or a bot?", "expect": "Says it isn't a person: it's Mira, prepza's AI assistant; in English. Never claims or hints to be a person."},
+  {"id": "g47", "page": "candidatesB", "question": "Wie heißt du?", "expect": "Says it's Mira, prepza's AI assistant (the name may be written in the language's own script); an AI, not a person; in German, the user's interface language.", "language": "de"},
+  {"id": "g48", "page": "billing", "question": "あなたは人間ですか？", "expect": "Says it isn't a person: it's Mira (ミラ is fine), prepza's AI assistant; in Japanese, the user's interface language. Never claims to be a person.", "language": "ja"},
+  {"id": "g49", "page": "companies", "question": "من أنت؟", "expect": "Says it's Mira, prepza's AI assistant (the name may be written in the language's own script); an AI, not a person; in Arabic, the user's interface language.", "language": "ar"},
+  {"id": "g50", "page": "pricing", "question": "Я говорю с живым человеком?", "expect": "Says no, the user is talking to an AI: Mira (Мира is fine), prepza's AI assistant; in Russian, the user's interface language. Never claims to be a person.", "language": "ru"},
+  {"id": "g51", "page": "candidateBen", "question": "¿Cómo te llamas?", "expect": "Says it's Mira, prepza's AI assistant (the name may be written in the language's own script); an AI, not a person; in Spanish, the user's interface language.", "language": "es"}
  ],
  "page": [
   {"id": "p01", "kind": "guide", "page": "candidatesB", "question": "What can I do on this page?", "expect": "What this interview's candidates tab offers, from its page guide, without asking which page."},
