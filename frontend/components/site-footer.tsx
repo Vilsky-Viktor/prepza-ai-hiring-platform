@@ -21,9 +21,13 @@ export async function SiteFooter() {
       <div className="mx-auto flex max-w-5xl flex-wrap justify-between gap-8 px-6 py-8 text-sm text-muted-foreground max-sm:flex-col max-sm:items-center max-sm:gap-10 max-sm:py-12 max-sm:text-center sm:gap-x-16">
         <div className="space-y-6 max-sm:flex max-sm:flex-col max-sm:items-center">
           {/* The legal operator, as EU rules want it within reach of every page. */}
-          <span className="block">
-            © {new Date().getFullYear()} {OPERATOR.name}
-          </span>
+          {/* The language menu sits beside it, wrapping under it on narrow phones. */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 max-sm:justify-center">
+            <span>
+              © {new Date().getFullYear()} {OPERATOR.name}
+            </span>
+            <LanguageSwitch />
+          </div>
           {/* prepza's social accounts; links come once the accounts exist. */}
           <div className="flex items-center gap-5 max-sm:gap-8">
             <span role="img" aria-label="LinkedIn">
@@ -40,7 +44,6 @@ export async function SiteFooter() {
             </span>
           </div>
           <AskAgentButton className="h-10 px-5 text-sm max-sm:h-12 max-sm:px-6 max-sm:text-base" />
-          <LanguageSwitch />
         </div>
         {/* Lowercase with the blue dot, like the header's menu (globals.css, by data-slot). */}
         <nav
