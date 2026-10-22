@@ -1,4 +1,8 @@
-from prepza_common.constants import REDIS_HEALTH_CHECK_SECONDS, REDIS_RETRIES
+from prepza_common.constants import (
+    REDIS_HEALTH_CHECK_SECONDS,
+    REDIS_RETRIES,
+    REDIS_TIMEOUT_SECONDS,
+)
 from redis.asyncio import Redis
 from redis.asyncio.retry import Retry
 from redis.backoff import ExponentialWithJitterBackoff
@@ -15,4 +19,6 @@ def redis_client(url: str) -> Redis:
         retry=Retry(ExponentialWithJitterBackoff(), REDIS_RETRIES),
         retry_on_error=[ConnectionError, TimeoutError],
         health_check_interval=REDIS_HEALTH_CHECK_SECONDS,
+        socket_connect_timeout=REDIS_TIMEOUT_SECONDS,
+        socket_timeout=REDIS_TIMEOUT_SECONDS,
     )

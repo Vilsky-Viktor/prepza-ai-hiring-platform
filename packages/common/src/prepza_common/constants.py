@@ -109,6 +109,9 @@ MIGRATION_STATEMENT_TIMEOUT = "5min"
 # idle this long is checked before use.
 REDIS_RETRIES = 3
 REDIS_HEALTH_CHECK_SECONDS = 30
+# Connecting to Redis, and each command, gives up after this long (Upstash answers in
+# milliseconds from the same region), so a Redis outage costs a request seconds, not its deadline.
+REDIS_TIMEOUT_SECONDS = 2
 
 # Lists are served a page at a time; a page holds at most this many items.
 MAX_PAGE_SIZE = 100
