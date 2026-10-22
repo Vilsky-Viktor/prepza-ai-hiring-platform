@@ -273,3 +273,18 @@ service's own `key_check_prompt` and order. `gpt-6.1-sol` medium, before → aft
 traps fixed 60/60 → 60/60, real keys kept 60/60 → 60/60 ($0.0010 a check both); multi-answer
 263/263 → 263/263 both ($0.0012). No difference; kept for rule 19 (a checker works out the
 answer with positions and marks hidden).
+
+## Extraction: one cached system message, the posting tagged (2026-10-22, kept)
+
+The extraction's system message changed with each call (the title rule and the language were
+filled in), shouted ("EVERY", "ALL", "ONE", "YES/NO"), walked through a procedure, used a
+dataset's role as its example ("Senior Accountant at Acme") and contradicted its schema (the
+title's description said "the role and company", the template rule "never the company"). Now
+one fixed system message holds the role and the rules with their reasons; the posting goes in
+the user's message inside `<job_posting>`, with the kind of test and the language last; the
+examples are placeholders; native wording is asked for. `planning_test.py` (13 postings × 2, 6
+revisions × 2), `gpt-6.1-sol` low, judged by `gpt-6.1-sol` high, before → after: code checks
+92.3% → 96.2%; extraction covered 92.3% → 92.3%, invented 3.8% → 3.8%, titles 100% both;
+topics covered 84.6% → 92.3%, coherent 100% → 96.2%; revisions (unchanged prompt) applied 66.7%
+→ 83.3%, kept 75.0% both; judge traps 62 of 62 both; $0.014 a plan both, 23 → 27 s. All within
+the intervals; kept for rule 19.

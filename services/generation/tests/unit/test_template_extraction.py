@@ -8,8 +8,8 @@ from app.services.nodes import extraction
 from app.storage import draft_cache
 
 
-def system_prompt(monkeypatch, template):
-    """The extraction instructions the model gets for a test, or for a template."""
+def messages_for(monkeypatch, template):
+    """The extraction messages the model gets for a test, or for a template."""
     seen = []
 
     class FakeLLM:
@@ -17,7 +17,7 @@ def system_prompt(monkeypatch, template):
             return self
 
         async def ainvoke(self, messages):
-            seen.append(messages[0].content)
+            seen.append(messages)
 
             return SimpleNamespace(title="Accountant", requirements=["IFRS"], level="medium")
 
@@ -34,13 +34,18 @@ def system_prompt(monkeypatch, template):
     return seen[0]
 
 
-def test_a_template_never_names_the_company_a_test_may(monkeypatch):
-    template = system_prompt(monkeypatch, True)
-    test = system_prompt(monkeypatch, False)
+def test_the_instructions_are_the_same_and_the_posting_is_data_in_the_request(monkeypatch):
+    template = messages_for(monkeypatch, True)
+    test = messages_for(monkeypatch, False)
 
-    assert "Never the company's name" in template
-    assert "at Acme" not in template
-    assert "Senior Accountant at Acme" in test
+    # One system message for both kinds (the provider caches it), the role first.
+    assert template[0].content == test[0].content
+    assert template[0].content.startswith("You are")
+    assert "Acme" not in template[0].content
+    # The posting is tagged; the kind and the language come last, and differ.
+    assert "<job_posting>\nAcme hires an accountant.\n</job_posting>" in template[1].content
+    assert template[1].content != test[1].content
+    assert template[1].content.rstrip().endswith("in English.")
 
 
 def test_a_title_too_long_is_cut_to_what_editing_it_allows(monkeypatch):

@@ -38,7 +38,7 @@ FIELD_TERMS = (
 def test_generation_prompts_name_no_technology_standard_or_field():
     from app.prompts.answers import ANSWERS_REQUEST, ANSWERS_SYSTEM, MULTI_ANSWER_KIND
     from app.prompts.code_languages import CODE_LANGUAGES_SYSTEM
-    from app.prompts.extraction import EXTRACTION_SYSTEM, TEMPLATE_TITLE_RULE
+    from app.prompts.extraction import EXTRACTION_INPUT, EXTRACTION_SYSTEM
     from app.prompts.question_rules import QUESTION_WRITER_ROLE
     from app.prompts.questions import QUESTIONS_REQUEST, QUESTIONS_SYSTEM
     from app.prompts.regenerate import (
@@ -63,7 +63,7 @@ def test_generation_prompts_name_no_technology_standard_or_field():
         MULTI_ANSWER_KIND,
         CODE_LANGUAGES_SYSTEM,
         EXTRACTION_SYSTEM,
-        TEMPLATE_TITLE_RULE,
+        EXTRACTION_INPUT,
         QUESTIONS_SYSTEM,
         QUESTIONS_REQUEST,
         REGENERATE_SYSTEM,
@@ -101,6 +101,7 @@ def test_generation_prompts_name_no_technology_standard_or_field():
         REGENERATE_REQUEST,
         TOPICS_REQUEST,
         REVISION_REQUEST,
+        EXTRACTION_INPUT,
     ):
         assert "you are" not in request.lower()
 
