@@ -12,9 +12,11 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { DEFAULT_LOCALE } from "@/constants/i18n"
 import { ROLE_PAGE_FAQ } from "@/constants/role-tests"
+import { bdi } from "@/lib/bidi"
 import { publicFetch } from "@/lib/server-api"
 import { textDirection } from "@/lib/locale"
 import { localizedPath, templateLocales } from "@/lib/locale-path"
+import { hasMessage } from "@/lib/messages"
 import { pageMetadata, siteUrl, urlLocale } from "@/lib/site"
 import { breadcrumbData } from "@/lib/structured-data"
 import {
@@ -113,7 +115,9 @@ export default async function RoleTestPage({ params }: Params) {
         tags={
           <>
             <Badge variant="outline" className="h-7 px-3 text-sm font-light">
-              {tLevel(template.level)}
+              {hasMessage(tLevel, template.level)
+                ? tLevel(template.level)
+                : template.level}
             </Badge>
             <Badge
               variant="outline"
@@ -125,7 +129,7 @@ export default async function RoleTestPage({ params }: Params) {
         }
         title={
           <h1 className="font-heading text-3xl font-medium tracking-tight text-balance normal-case">
-            {t("heading", { role: template.title })}
+            {t.rich("heading", { role: template.title, ...bdi })}
           </h1>
         }
       />

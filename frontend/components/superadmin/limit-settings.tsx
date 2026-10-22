@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 
 import { Dotted } from "@/components/dot"
+import { useAdminName } from "@/hooks/use-admin-name"
 import { useLimitAmount } from "@/components/superadmin/ai-budgets"
 import { LimitChanges } from "@/components/superadmin/limit-changes"
 import { LimitField } from "@/components/superadmin/limit-field"
@@ -25,6 +26,7 @@ export function LimitSettings({
 }) {
   const t = useTranslations("superadmin")
   const amount = useLimitAmount()
+  const named = useAdminName()
   const [limits, setLimits] = useState(initial)
   const [changes, setChanges] = useState(initialChanges)
   const services = [...new Set(limits.limits.map((limit) => limit.service))]
@@ -48,8 +50,8 @@ export function LimitSettings({
     }
 
     return [
-      limit.window ? t(`limitWindows.${limit.window}`) : t("limitAtOnce"),
-      t(`limitScopes.${limit.scope}`),
+      limit.window ? named("limitWindows", limit.window) : t("limitAtOnce"),
+      named("limitScopes", limit.scope),
       t("limitDefault", { value: amount(limit.default, limit.unit) }),
       t("limitRecentHits", { count: limit.hits, days: limits.hits_days }),
     ]
@@ -61,7 +63,7 @@ export function LimitSettings({
         <LimitField
           key={`${limit.name}-${limit.value}`}
           limit={limit}
-          label={t(`limitNames.${limit.name}`)}
+          label={named("limitNames", limit.name)}
           onSaved={saved}
         />
       )
@@ -77,7 +79,7 @@ export function LimitSettings({
             <LimitField
               key={`${shown.name}-${shown.value}`}
               limit={shown}
-              label={t(`limitNames.${shown.name}`)}
+              label={named("limitNames", shown.name)}
               onSaved={saved}
             />
           </div>
@@ -100,7 +102,7 @@ export function LimitSettings({
       {services.map((service) => (
         <div key={service} className="space-y-1">
           <h3 className="pt-3 text-sm font-medium text-muted-foreground">
-            {t(`limitServices.${service}`)}
+            {named("limitServices", service)}
           </h3>
           <ul className="divide-y">
             {limits.limits
@@ -113,7 +115,7 @@ export function LimitSettings({
                 >
                   <span className="min-w-0 space-y-0.5">
                     <span className="flex flex-wrap items-center gap-2">
-                      {t(`limitNames.${limit.name}`)}
+                      {named("limitNames", limit.name)}
                       {limit.audience === "unpaid" && !limit.unpaid && (
                         <Badge
                           variant="outline"
@@ -143,7 +145,7 @@ export function LimitSettings({
               key={limit.name}
               className="flex flex-wrap items-center justify-between gap-3 py-5"
             >
-              <span>{t(`limitNames.${limit.name}`)}</span>
+              <span>{named("limitNames", limit.name)}</span>
               <span className="text-sm text-muted-foreground">
                 {t("limitRecentHits", {
                   count: limit.hits,

@@ -10,6 +10,7 @@ import { LIST_BOX } from "@/constants/lists"
 import { useLocalTime } from "@/hooks/use-local-time"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { formatPercent } from "@/lib/format"
+import { hasMessage } from "@/lib/messages"
 import type { Interview } from "@/types/company"
 import type { SupportCandidateRow } from "@/types/superadmin"
 
@@ -57,7 +58,9 @@ export function SupportInterviews({
           <p className="text-sm text-muted-foreground">
             <Dotted
               items={[
-                statuses(interview.status),
+                hasMessage(statuses, interview.status)
+                  ? statuses(interview.status)
+                  : interview.status,
                 localTime.date(interview.created_at),
                 t("supportCandidates", { count: interview.candidate_count }),
               ]}
@@ -116,7 +119,14 @@ export function SupportInterviewCandidates({
               <WrappedEmail email={candidate.email} />
             </span>
             <span className="block text-sm text-muted-foreground">
-              <Dotted items={[candidate.name, statuses(candidate.status)]} />
+              <Dotted
+                items={[
+                  candidate.name,
+                  hasMessage(statuses, candidate.status)
+                    ? statuses(candidate.status)
+                    : candidate.status,
+                ]}
+              />
             </span>
           </span>
           {candidate.grade != null && (

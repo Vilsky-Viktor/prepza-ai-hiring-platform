@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { MAX_TOPIC_NAME_LENGTH } from "@/constants/limits"
 import type { DraftTopic } from "@/types/generation"
+import { bdiText } from "@/lib/bidi"
 
 type TopicEditorProps = {
   topic: DraftTopic
@@ -84,7 +85,7 @@ export function TopicEditor({
               variant="ghost"
               size="icon-xs"
               className="rounded-full"
-              aria-label={t("removeSubtopic", { subtopic })}
+              aria-label={t.markup("removeSubtopic", { subtopic, ...bdiText })}
               onClick={() => removeSubtopic(index)}
             >
               <XIcon />

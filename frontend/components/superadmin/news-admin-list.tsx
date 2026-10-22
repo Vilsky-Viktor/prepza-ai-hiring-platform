@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdiText } from "@/lib/bidi"
 import { formatDay } from "@/lib/format"
 import { byId } from "@/lib/paged-list"
 import type { AdminNewsPost } from "@/types/news"
@@ -133,7 +134,10 @@ export function NewsAdminList({ initial }: { initial: AdminNewsPost[] }) {
                 variant="ghost"
                 size="icon"
                 className="size-12 text-muted-foreground hover:text-destructive"
-                aria-label={t("deleteLabel", { title: post.title })}
+                aria-label={t.markup("deleteLabel", {
+                  title: post.title,
+                  ...bdiText,
+                })}
                 tooltip={common("delete")}
                 onClick={() => setDeleting(post)}
               >

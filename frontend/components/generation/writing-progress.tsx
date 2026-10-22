@@ -1,8 +1,9 @@
 "use client"
 
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 import { Progress } from "@/components/ui/progress"
+import { formatPercent } from "@/lib/format"
 import type { Generation } from "@/types/generation"
 
 /** How far the questions' writing has come: a bar, its percent and the topics ready. */
@@ -12,6 +13,7 @@ export function WritingProgress({
   progress: NonNullable<Generation["progress"]>
 }) {
   const t = useTranslations("generation")
+  const locale = useLocale()
   const percent =
     progress.total > 0
       ? Math.min(100, Math.round((progress.done / progress.total) * 100))
@@ -20,7 +22,9 @@ export function WritingProgress({
   return (
     <div className="mx-auto w-full max-w-2xl space-y-2">
       <Progress value={percent} />
-      <p className="text-2xl font-light tabular-nums">{percent}%</p>
+      <p className="text-2xl font-light tabular-nums">
+        {formatPercent(percent, locale)}
+      </p>
       {progress.topics != null && (
         <p className="text-sm text-muted-foreground tabular-nums">
           {t("topicsReady", {

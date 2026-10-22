@@ -6,6 +6,7 @@ import {
   formatDate,
   formatDateTime,
   formatDay,
+  formatList,
   formatPercent,
   formatPrice,
   candidatePriceRange,
@@ -154,6 +155,19 @@ describe("formatPercent", () => {
     expect(formatPercent(85, "fr")).toMatch(/^85\s%$/)
     expect(formatPercent(85, "de")).toMatch(/^85\s%$/)
     expect(formatPercent(null, "en")).toBe("—")
+  })
+
+  it("writes a plus before an added share when asked", () => {
+    expect(formatPercent(25, "en", true)).toBe("+25%")
+    expect(formatPercent(25, "tr", true)).toBe("+%25")
+    expect(formatPercent(0, "en", true)).toBe("0%")
+  })
+})
+
+describe("formatList", () => {
+  it("lists items as each language does", () => {
+    expect(formatList(["English", "French"], "en")).toBe("English, French")
+    expect(formatList(["英語", "フランス語"], "ja")).toBe("英語、フランス語")
   })
 })
 

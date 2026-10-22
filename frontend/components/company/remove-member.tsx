@@ -16,6 +16,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { CompanyMember } from "@/types/company"
 
 /** Removes a member, or withdraws an invite they haven't accepted yet, after a confirmation. */
@@ -42,7 +43,7 @@ export function RemoveMember({
         `/companies/members/${member.id}?company_id=${companyId}`,
         { method: "DELETE" }
       )
-      toast.success(t("removed", { email }))
+      toast.success(t.rich("removed", { email, ...bdi }))
       onRemoved()
     } catch (error) {
       toast.error(apiErrorMessage(error, t("removeFailed")))
@@ -78,7 +79,10 @@ export function RemoveMember({
               {t("removeTitle")}
             </DialogTitle>
             <DialogDescription>
-              {t(member.joined ? "removeText" : "removeInviteText", { email })}
+              {t.rich(member.joined ? "removeText" : "removeInviteText", {
+                email,
+                ...bdi,
+              })}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

@@ -8,6 +8,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { bdiText } from "@/lib/bidi"
 
 /** The check beside a verified company's name, wherever it's shown; its tooltip names the
  * domain an admin's work email verified. `className` sizes it to the name beside it. */
@@ -19,7 +20,7 @@ export function VerifiedBadge({
   className?: string
 }) {
   const t = useTranslations("verify")
-  const label = t("verified", { domain })
+  const label = t.markup("verified", { domain, ...bdiText })
 
   return (
     <Tooltip>

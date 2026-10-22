@@ -2,7 +2,7 @@
 
 import { ChevronDownIcon, TimerIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { formatPercent } from "@/lib/format"
 
 /** Extra time on each question for a candidate who needs it (an accommodation), chosen among
  * the amounts the API offers before the candidate starts; shown as set afterwards. */
@@ -30,10 +31,13 @@ export function ExtraTime({
   options: number[]
 }) {
   const t = useTranslations("candidates")
+  const locale = useLocale()
   const router = useRouter()
   const [busy, setBusy] = useState(false)
   const label = (percent: number) =>
-    percent ? t("extraTimeSome", { percent }) : t("extraTimeNone")
+    percent
+      ? t("extraTimeSome", { percent: formatPercent(percent, locale) })
+      : t("extraTimeNone")
 
   async function choose(value: string) {
     setBusy(true)

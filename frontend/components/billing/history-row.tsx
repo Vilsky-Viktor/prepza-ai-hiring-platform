@@ -9,6 +9,7 @@ import { InvoiceLink } from "@/components/billing/invoice-link"
 import { Dotted } from "@/components/dot"
 import { candidateHref, type CandidateLinks } from "@/lib/candidate-links"
 import { formatPrice } from "@/lib/format"
+import { hasMessage } from "@/lib/messages"
 import type { CreditHistoryEntry } from "@/types/company"
 
 /** One movement of a company's credits: what it was, when, and the credits it moved; a top-up
@@ -31,6 +32,7 @@ export function HistoryRow({
   const locale = useLocale()
   const localTime = useLocalTime()
   const candidate = entry.candidate
+  const reason = `reasons.${entry.reason}` as const
 
   const content = (
     // On phones the amount goes under the rest, everything centered.
@@ -40,7 +42,9 @@ export function HistoryRow({
         <span className="block text-lg font-medium break-all normal-case">
           {candidate
             ? (candidate.name ?? candidate.email)
-            : t(`reasons.${entry.reason}`)}
+            : hasMessage(t, reason)
+              ? t(reason)
+              : entry.reason}
         </span>
         {candidate && (
           <span className="block text-sm break-all text-muted-foreground normal-case">

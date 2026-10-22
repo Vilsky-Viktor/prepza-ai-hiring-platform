@@ -9,6 +9,7 @@ import { useAuth } from "@/components/auth-provider"
 import { Button } from "@/components/ui/button"
 import { LinkStatus } from "@/components/link-status"
 import { apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import { useLinkData } from "@/hooks/use-link-data"
 import type { UnsubscribeLink } from "@/types/notifications"
 
@@ -51,7 +52,7 @@ export function UnsubscribeView({ token }: { token: string }) {
           {done ? t("done") : t("title")}
         </h1>
         <p className="text-base text-pretty text-muted-foreground">
-          {t(`what.${link.type}`, { company: link.company ?? "" })}
+          {t.rich(`what.${link.type}`, { company: link.company ?? "", ...bdi })}
         </p>
       </div>
       {!done ? (

@@ -61,6 +61,7 @@ export function InviteIntro({
           <p className="text-base text-muted-foreground">
             {t.rich("invitedYou", {
               company,
+              ...bdi,
               b: (chunks) => (
                 <span className="font-medium text-foreground">
                   {chunks}

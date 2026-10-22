@@ -26,8 +26,8 @@ export function ConfirmDialog({
 }: {
   open: boolean
   onOpenChange: (open: boolean) => void
-  title: string
-  text: string
+  title: React.ReactNode
+  text: React.ReactNode
   confirm: string
   busy: boolean
   onConfirm: () => void

@@ -18,6 +18,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { apiFetch, serviceRefusal } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { Verification, VerificationStatus } from "@/types/company"
 
 /** "Verify" beside an unverified company's name (the pending clock while it's reviewed): its website, sent for a superadmin's review
@@ -52,10 +53,13 @@ export function VerifyCompany({
       )
       toast.success(
         result.verified_domain
-          ? t("done", { domain: result.verified_domain })
+          ? t.rich("done", { domain: result.verified_domain, ...bdi })
           : result.verification_status === "pending"
             ? t("submitted")
-            : t("pending", { domain: result.website_domain ?? website })
+            : t.rich("pending", {
+                domain: result.website_domain ?? website,
+                ...bdi,
+              })
       )
       setOpen(false)
       router.refresh()
@@ -107,13 +111,13 @@ export function VerifyCompany({
         )}
         {status === "waiting_email" && websiteDomain && (
           <p className="text-sm text-muted-foreground">
-            {t("waitingEmail", { domain: websiteDomain })}
+            {t.rich("waitingEmail", { domain: websiteDomain, ...bdi })}
           </p>
         )}
         {status === "declined" && (
           <div className="space-y-1 text-sm">
             <p className="text-destructive">
-              {t("declined", { reason: declineReason ?? "none" })}
+              {t.rich("declined", { reason: declineReason ?? "none", ...bdi })}
             </p>
             <p className="text-muted-foreground">
               {t.rich("tryAgain", {

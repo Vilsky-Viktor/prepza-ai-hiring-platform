@@ -21,7 +21,9 @@ import {
   NOTIFICATION_LOOKS,
 } from "@/constants/notifications"
 import { apiFetch } from "@/lib/api"
-import { formatDay, formatPrice } from "@/lib/format"
+import { bdi, bdiText } from "@/lib/bidi"
+import { formatDay, formatPercent, formatPrice } from "@/lib/format"
+import { hasMessage } from "@/lib/messages"
 import { watchNotifications } from "@/lib/notifications"
 import type { AppNotification, NotificationFeed } from "@/types/notifications"
 
@@ -42,7 +44,7 @@ function prices(
  * values become "none", which the messages' selects read as "leave it out". */
 function useNotificationText() {
   const t = useTranslations("notifications.kinds")
-  const format = useFormatter()
+  const common = useTranslations("common")
   const locale = useLocale()
 
   return (item: AppNotification) => {
@@ -56,19 +58,29 @@ function useNotificationText() {
       ...Object.fromEntries(given),
       // "Name (email)" once the candidate's name is known.
       email: data.candidate_name
-        ? `${data.candidate_name} (${data.email})`
+        ? common.markup("nameWithEmail", {
+            name: data.candidate_name,
+            email: data.email ?? "",
+            ...bdiText,
+          })
         : (data.email ?? ""),
       // How many came together, for the kinds the service groups.
       count: typeof data.count === "number" ? data.count : 1,
-      credits:
-        typeof data.credits === "number" ? format.number(data.credits) : "",
+      credits: typeof data.credits === "number" ? data.credits : 0,
+      // A finished candidate's grade, as the language writes a percentage.
+      grade:
+        typeof data.grade === "number"
+          ? formatPercent(data.grade, locale)
+          : NOTIFICATION_DEFAULTS.grade,
       // The day a legal document's new version applies, or an automatic top-up's new price.
       date: typeof data.date === "string" ? formatDay(data.date, locale) : "",
       // An automatic top-up's price and its new one, in their currency.
       ...prices(data, locale),
     }
 
-    return t.has(item.kind) ? t(item.kind, values) : null
+    return hasMessage(t, item.kind)
+      ? t.rich(item.kind, { ...values, ...bdi })
+      : null
   }
 }
 

@@ -17,6 +17,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdiText } from "@/lib/bidi"
 
 export function DeleteTemplate({
   templateId,
@@ -52,7 +53,7 @@ export function DeleteTemplate({
         variant="ghost"
         size="icon"
         className="size-12 shrink-0 text-muted-foreground hover:text-destructive"
-        aria-label={t("deleteLabel", { title })}
+        aria-label={t.markup("deleteLabel", { title, ...bdiText })}
         tooltip={common("delete")}
         onClick={() => setOpen(true)}
       >

@@ -7,6 +7,7 @@ import { toast } from "sonner"
 import { EmailPreferencesSetting } from "@/components/settings/email-preferences"
 import { Button } from "@/components/ui/button"
 import { apiErrorMessage } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import { allOptionalEmailsOff, saveForUser } from "@/lib/superadmin-emails"
 import type { EmailChanges } from "@/types/emails"
 import type { EmailLookup } from "@/types/superadmin"
@@ -19,7 +20,7 @@ function Section({
   children,
 }: {
   title: string
-  description: string
+  description: React.ReactNode
   children?: React.ReactNode
 }) {
   return (
@@ -73,7 +74,7 @@ export function AccountEmails({
   return (
     <Section
       title={t("account")}
-      description={t("accountText", { email: account.email })}
+      description={t.rich("accountText", { email: account.email, ...bdi })}
     >
       <EmailPreferencesSetting
         key={shown}

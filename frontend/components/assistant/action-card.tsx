@@ -8,6 +8,8 @@ import { LocalizedLink } from "@/components/localized-link"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { previewValue } from "@/lib/action-values"
 import { linkPage } from "@/lib/assistant"
+import { bdi } from "@/lib/bidi"
+import { hasMessage } from "@/lib/messages"
 import type { AssistantBlock } from "@/types/assistant"
 
 export type CardActions = {
@@ -32,6 +34,7 @@ export function ActionCard({
 }) {
   const t = useTranslations("assistant.actions")
   const tool = card.tool ?? ""
+  const title = `titles.${tool}` as const
   const state = card.state ?? "pending"
   // The company, unless the card is about it already.
   const named = card.company_id && actions.companyNames[card.company_id]
@@ -45,7 +48,7 @@ export function ActionCard({
     >
       <div className="space-y-0.5">
         <p className="font-medium">
-          {t.has(`titles.${tool}`) ? t(`titles.${tool}`) : t("generic")}
+          {hasMessage(t, title) ? t(title) : t("generic")}
         </p>
         {card.subject && (
           <p className="bidi-auto break-words">{card.subject}</p>
@@ -95,6 +98,16 @@ function ActionFields({
   fields: [string, unknown][]
 }) {
   const t = useTranslations("assistant.actions")
+  const label = (key: string) => {
+    const own = `fieldsOf.${tool}.${key}` as const
+    const general = `fields.${key}` as const
+
+    if (hasMessage(t, own)) {
+      return t(own)
+    }
+
+    return hasMessage(t, general) ? t(general) : key
+  }
 
   return (
     <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
@@ -106,13 +119,7 @@ function ActionFields({
       )}
       {fields.map(([key, value]) => (
         <div key={key} className="contents">
-          <dt className="text-muted-foreground">
-            {t.has(`fieldsOf.${tool}.${key}`)
-              ? t(`fieldsOf.${tool}.${key}`)
-              : t.has(`fields.${key}`)
-                ? t(`fields.${key}`)
-                : key}
-          </dt>
+          <dt className="text-muted-foreground">{label(key)}</dt>
           <dd className="bidi-auto break-words whitespace-pre-wrap">
             {previewValue(key, value, t("yes"), t("no"))}
           </dd>
@@ -201,10 +208,8 @@ function ActionOutcome({
               )}
             >
               {card.result_label
-                ? t("openNamed", { name: card.result_label })
-                : pages.has(linkPage(href) ?? "")
-                  ? pages(linkPage(href)!)
-                  : pages("open")}
+                ? t.rich("openNamed", { name: card.result_label, ...bdi })
+                : pages(linkPage(href) ?? "open")}
               <ArrowRightIcon
                 data-icon="inline-end"
                 className="rtl:-scale-x-100"

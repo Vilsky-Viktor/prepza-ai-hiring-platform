@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Dot } from "@/components/dot"
 import { LIST_BOX } from "@/constants/lists"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { AiConnection } from "@/types/connections"
 
 /** The AI apps the user connected to their account, in one list like the API keys: each with
@@ -105,8 +106,8 @@ function Disconnect({ app }: { app: AiConnection }) {
       <ConfirmDialog
         open={confirming}
         onOpenChange={setConfirming}
-        title={t("disconnectTitle", { client: app.client_name })}
-        text={t("disconnectText", { client: app.client_name })}
+        title={t.rich("disconnectTitle", { client: app.client_name, ...bdi })}
+        text={t.rich("disconnectText", { client: app.client_name, ...bdi })}
         confirm={ats("disconnect")}
         busy={busy}
         onConfirm={disconnect}

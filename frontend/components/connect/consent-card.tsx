@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { WarningCard } from "@/components/warning-card"
 import { ApiError, apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { ConnectAnswer, ConnectRequest } from "@/types/connections"
 
 /** Asks the signed-in user whether an AI app may use their account: who asks, what it can and
@@ -74,11 +75,17 @@ export function ConsentCard({
         <h1 className="font-heading text-3xl font-medium tracking-tight text-balance">
           {t.rich("title", {
             client,
+            ...bdi,
             name: (chunks) => <span className="normal-case">{chunks}</span>,
           })}
         </h1>
         <p className="text-base break-words text-muted-foreground">
-          {t("who", { client, host: request.redirect_host, email })}
+          {t.rich("who", {
+            client,
+            host: request.redirect_host,
+            email,
+            ...bdi,
+          })}
         </p>
       </div>
       <List title={t("canTitle")} items={can} />

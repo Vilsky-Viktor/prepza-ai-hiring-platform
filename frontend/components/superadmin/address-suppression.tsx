@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { WarningCard } from "@/components/warning-card"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { formatDate } from "@/lib/format"
+import { hasMessage } from "@/lib/messages"
 import type { components } from "@/types/api/notifications"
 
 type Suppression = components["schemas"]["SuppressionOut"]
@@ -36,6 +37,8 @@ export function AddressSuppression({ email }: { email: string }) {
   if (!found?.reason || !found.created_at) {
     return null
   }
+
+  const reason = `suppressed.${found.reason}` as const
 
   async function remove() {
     setBusy(true)
@@ -68,9 +71,9 @@ export function AddressSuppression({ email }: { email: string }) {
         </Button>
       }
     >
-      {t(`suppressed.${found.reason}`, {
-        date: formatDate(found.created_at, locale),
-      })}
+      {hasMessage(t, reason)
+        ? t(reason, { date: formatDate(found.created_at, locale) })
+        : found.reason}
     </WarningCard>
   )
 }

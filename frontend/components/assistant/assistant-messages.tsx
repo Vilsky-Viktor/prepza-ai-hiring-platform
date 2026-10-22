@@ -7,8 +7,10 @@ import { type CardActions } from "@/components/assistant/action-card"
 import { AnswerMarkdown } from "@/components/assistant/answer-markdown"
 import { AnswerVote } from "@/components/assistant/answer-vote"
 import { ChatBubble, ThinkingDots } from "@/components/chat-bubble"
+import { KeepAcronyms } from "@/components/keep-acronyms"
 import { Button } from "@/components/ui/button"
 import { WELCOME_QUESTIONS } from "@/constants/assistant"
+import { hasMessage } from "@/lib/messages"
 import type { ChatMessage, Vote } from "@/types/assistant"
 
 /** The conversation in the panel: questions, answers with what their tools found, the tools
@@ -52,17 +54,26 @@ export function AssistantMessages({
     const questions = (stage && WELCOME_QUESTIONS[stage]) || []
     const asks = [
       ...(onPage ? [t("pageQuestion")] : []),
-      ...questions.map((key) => t(`welcome.${stage}.questions.${key}`)),
+      ...questions.flatMap((key) => {
+        const question = `welcome.${stage}.questions.${key}` as const
+
+        return hasMessage(t, question) ? [t(question)] : []
+      }),
     ]
+    const text = `welcome.${stage}.text` as const
 
     return (
       <div className="space-y-6 py-6" data-testid={`welcome-${stage}`}>
         <div className="space-y-2">
           <h2 className="font-heading text-2xl font-medium tracking-tight">
-            {signedIn ? t("emptyTitle") : t("emptyTitleFaq")}
+            <KeepAcronyms
+              text={signedIn ? t("emptyTitle") : t("emptyTitleFaq")}
+            />
           </h2>
           <p className="text-base text-muted-foreground">
-            {questions.length > 0 ? t(`welcome.${stage}.text`) : t("emptyText")}
+            {questions.length > 0 && hasMessage(t, text)
+              ? t(text)
+              : t("emptyText")}
           </p>
         </div>
         <ul className="space-y-2">

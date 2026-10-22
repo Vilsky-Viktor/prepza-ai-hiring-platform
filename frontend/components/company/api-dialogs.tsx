@@ -234,7 +234,7 @@ export function RemoveButton({
   path: string
   label: string
   title: string
-  text: string
+  text: React.ReactNode
   failed: string
 }) {
   const common = useTranslations("common")

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
+import { hasMessage } from "@/lib/messages"
 import type { QuestionReport } from "@/types/feedback"
 
 /** A question's reports in their own scroll box, loading more as the user scrolls it. */
@@ -48,7 +49,7 @@ export function QuestionReports({ path }: { path: string }) {
         <div className="space-y-1 pb-3 text-sm">
           <p className="flex flex-wrap items-baseline justify-between gap-2">
             <span className="font-medium">
-              {reasons.has(report.reason)
+              {hasMessage(reasons, report.reason)
                 ? reasons(report.reason)
                 : report.reason}
             </span>

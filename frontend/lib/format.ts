@@ -145,13 +145,25 @@ export function formatSeconds(value: number, locale: string) {
   }).format(value)
 }
 
+/** Short items as the language lists them ("English, French"; "英語、フランス語"). */
+export function formatList(items: string[], locale: string) {
+  return new Intl.ListFormat(locale, {
+    type: "conjunction",
+    style: "narrow",
+  }).format(items)
+}
+
 /** A percentage (0 to 100) as the language writes it ("85 %" in French, "%85" in Turkish); "—"
- * for none (a grade not known yet). */
+ * for none (a grade not known yet). `signed` writes a plus before it ("+25%", extra time). */
 export function formatPercent(
   value: number | null | undefined,
-  locale: string
+  locale: string,
+  signed = false
 ) {
   return value == null
     ? "—"
-    : new Intl.NumberFormat(locale, { style: "percent" }).format(value / 100)
+    : new Intl.NumberFormat(locale, {
+        style: "percent",
+        signDisplay: signed ? "exceptZero" : "auto",
+      }).format(value / 100)
 }

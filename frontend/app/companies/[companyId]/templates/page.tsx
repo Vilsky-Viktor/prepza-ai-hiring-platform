@@ -70,10 +70,11 @@ export default async function CompanyTemplatesPage({
         <div className="flex flex-1 items-center gap-4">
           <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
           <p className="text-muted-foreground">
-            <span className="font-medium text-foreground">
-              {t("warningTitle")}
-            </span>{" "}
-            {t("warning")}
+            {t.rich("warningText", {
+              b: (chunks) => (
+                <span className="font-medium text-foreground">{chunks}</span>
+              ),
+            })}
           </p>
         </div>
         {company.can_edit && (

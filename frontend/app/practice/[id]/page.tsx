@@ -15,6 +15,7 @@ import { TOKEN_COOKIE } from "@/constants/auth"
 import { DEFAULT_LOCALE } from "@/constants/i18n"
 import { textDirection } from "@/lib/locale"
 import { localizedPath, templateLocales } from "@/lib/locale-path"
+import { hasMessage } from "@/lib/messages"
 import { pageMetadata, siteUrl, urlLocale } from "@/lib/site"
 import { publicFetch, serverFetch } from "@/lib/server-api"
 import { breadcrumbData } from "@/lib/structured-data"
@@ -42,7 +43,9 @@ export async function generateMetadata({
       t("pageTitle", { title: template.title }),
       t("pageDescription", {
         title: template.title,
-        level: tLevel(template.level),
+        level: hasMessage(tLevel, template.level)
+          ? tLevel(template.level)
+          : template.level,
         count: template.topic_count,
       }),
       `/practice/${template.slug ?? template.id}`,
@@ -120,7 +123,9 @@ export default async function PracticeTestPage({
                   variant="outline"
                   className="h-7 px-3 text-sm font-light"
                 >
-                  {tLevel(template.level)}
+                  {hasMessage(tLevel, template.level)
+                    ? tLevel(template.level)
+                    : template.level}
                 </Badge>
                 <Badge
                   variant="outline"

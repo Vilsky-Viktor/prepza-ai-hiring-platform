@@ -6,6 +6,7 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/button"
+import { bdiText } from "@/lib/bidi"
 
 /** Opens the test's preview: the candidate's intro page, then the test itself, free. */
 export function TryInterview({
@@ -29,7 +30,7 @@ export function TryInterview({
         "size-12 shrink-0 text-muted-foreground hover:text-foreground",
         className
       )}
-      aria-label={t("tryLabel", { title })}
+      aria-label={t.markup("tryLabel", { title, ...bdiText })}
       tooltip={t("try")}
       render={
         <Link href={`/companies/${companyId}/interviews/${interviewId}/try`} />

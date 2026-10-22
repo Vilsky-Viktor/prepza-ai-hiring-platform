@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge"
 import { WrappedEmail } from "@/components/wrapped-email"
 import { DottedText } from "@/components/dot"
 import { formatPercent } from "@/lib/format"
+import { hasMessage } from "@/lib/messages"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { SupportCandidate } from "@/types/superadmin"
@@ -60,7 +61,9 @@ export default async function SupportCandidatePage({
                 <span className="normal-case">{candidate.name}</span>
               )}
               <Badge variant="outline" className="h-7 px-3 text-sm font-light">
-                {statuses(candidate.status)}
+                {hasMessage(statuses, candidate.status)
+                  ? statuses(candidate.status)
+                  : candidate.status}
               </Badge>
               <EntityId id={candidate.invite_id} />
             </p>
@@ -105,7 +108,7 @@ export default async function SupportCandidatePage({
           [
             t("supportFacts.extraTime"),
             candidate.extra_time
-              ? `+${candidate.extra_time}%`
+              ? formatPercent(candidate.extra_time, locale, true)
               : t("supportNoExtraTime"),
           ],
           [

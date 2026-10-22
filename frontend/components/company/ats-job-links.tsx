@@ -16,6 +16,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { AtsProvider } from "@/constants/ats"
 import type { AtsJobLink, Interview } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
@@ -110,13 +111,19 @@ function LinkRow({
       <span className="min-w-0 space-y-1">
         <span className="block text-lg font-medium">{link.job_name}</span>
         <span className="block text-base text-muted-foreground">
-          {t("linkLine", { stage: link.stage_name })}{" "}
-          <Link
-            href={`/companies/${companyId}/interviews/${link.interview_id}`}
-            className="text-foreground underline-offset-4 hover:underline"
-          >
-            {link.interview_title ?? t("generatingInterview")}
-          </Link>
+          {t.rich("linkLineTo", {
+            stage: link.stage_name,
+            interview: link.interview_title ?? t("generatingInterview"),
+            ...bdi,
+            link: (chunks) => (
+              <Link
+                href={`/companies/${companyId}/interviews/${link.interview_id}`}
+                className="text-foreground underline-offset-4 hover:underline"
+              >
+                {chunks}
+              </Link>
+            ),
+          })}
         </span>
         {link.waiting > 0 && (
           <span className="block text-sm text-muted-foreground">
@@ -146,7 +153,7 @@ function LinkRow({
         open={confirming}
         onOpenChange={setConfirming}
         title={t("unlinkTitle")}
-        text={t("unlinkText", { job: link.job_name })}
+        text={t.rich("unlinkText", { job: link.job_name, ...bdi })}
         confirm={t("unlink")}
         busy={busy}
         onConfirm={unlink}

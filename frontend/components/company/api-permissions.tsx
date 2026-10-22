@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/dialog"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { lockedReads, permissionsByGroup, tick } from "@/lib/api-permissions"
+import { bdi } from "@/lib/bidi"
+import { hasMessage } from "@/lib/messages"
 import type { ApiKey, PermissionOptions } from "@/types/api-access"
 
 // The sizes of the email preferences' checkboxes: "Select all" like the digest, the rest like
@@ -29,6 +31,17 @@ const LABEL =
   "flex cursor-pointer items-center has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50"
 const BIG = "size-7 shrink-0 [&_[data-slot=checkbox-indicator]>svg]:size-5"
 const SMALL = "size-6 shrink-0 [&_[data-slot=checkbox-indicator]>svg]:size-4"
+
+// A group or a permission from the API by its name in `group`, or as it is when there's none.
+function named(
+  t: ReturnType<typeof useTranslations<"api">>,
+  group: "permissionGroups" | "permissions" | "permissionLine",
+  value: string
+) {
+  const key = `${group}.${value}` as const
+
+  return hasMessage(t, key) ? t(key) : value
+}
 
 /** A key's permissions as checkboxes, laid out like the email preferences' digest: "Select all"
  * (a dash when only some are ticked; a new key only), then each group's permissions under its name. A read that
@@ -80,7 +93,7 @@ export function PermissionTicks({
         {Object.entries(options.permission_groups).map(([group, items]) => (
           <fieldset key={group} className="space-y-2">
             <legend className="text-base">
-              {t(`permissionGroups.${group}`)}
+              {named(t, "permissionGroups", group)}
             </legend>
             {/* Two columns on phones; a group's only permission takes the whole row. */}
             <div
@@ -107,7 +120,7 @@ export function PermissionTicks({
                     }
                     onCheckedChange={(checked) => change(permission, checked)}
                   />
-                  {t(`permissions.${permission}`)}
+                  {named(t, "permissions", permission)}
                 </label>
               ))}
             </div>
@@ -137,7 +150,7 @@ export function PermissionTags({
       {permissionsByGroup(permissions, groups).map((entry) => (
         <Fragment key={entry.group}>
           <span className="text-sm text-muted-foreground">
-            {t(`permissionGroups.${entry.group}`)}
+            {named(t, "permissionGroups", entry.group)}
           </span>
           <span className="flex gap-1.5">
             {entry.permissions.map((item) => (
@@ -146,7 +159,7 @@ export function PermissionTags({
                 variant="outline"
                 className="h-6 px-2.5 text-xs font-light normal-case"
               >
-                {t(`permissionLine.${item}`)}
+                {named(t, "permissionLine", item)}
               </Badge>
             ))}
           </span>
@@ -214,7 +227,7 @@ export function EditPermissions({
           <DialogHeader>
             <DialogTitle>{t("editPermissions")}</DialogTitle>
             <DialogDescription>
-              {t("editPermissionsText", { name: apiKey.name })}
+              {t.rich("editPermissionsText", { name: apiKey.name, ...bdi })}
             </DialogDescription>
           </DialogHeader>
           <PermissionTicks

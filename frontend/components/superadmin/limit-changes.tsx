@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl"
 
 import { Dotted } from "@/components/dot"
 import { useLimitAmount } from "@/components/superadmin/ai-budgets"
+import { useAdminName } from "@/hooks/use-admin-name"
 import { useLocalTime } from "@/hooks/use-local-time"
 import type { LimitChange } from "@/types/superadmin"
 
@@ -19,6 +20,7 @@ export function LimitChanges({
 }) {
   const t = useTranslations("superadmin")
   const amount = useLimitAmount()
+  const named = useAdminName()
   const localTime = useLocalTime()
   const shown = (value: number | null | undefined, name: string) =>
     value === null || value === undefined
@@ -43,7 +45,7 @@ export function LimitChanges({
             >
               <span className="block">
                 {t("limitChange", {
-                  name: t(`limitNames.${change.name}`),
+                  name: named("limitNames", change.name),
                   from: shown(change.old_value, change.name),
                   to: shown(change.new_value, change.name),
                 })}

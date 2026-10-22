@@ -11,6 +11,7 @@ import { IconButton } from "@/components/icon-button"
 import { RenameCompanyDialog } from "@/components/superadmin/rename-company-dialog"
 import { Button } from "@/components/ui/button"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdi, bdiText } from "@/lib/bidi"
 
 type Step = "suspend" | "delete" | "rename"
 
@@ -77,14 +78,14 @@ export function CompanyActions({
       )}
       <span className="flex items-center gap-2 max-sm:basis-full max-sm:justify-center">
         <IconButton
-          label={t("renameCompany", { name: company.name })}
+          label={t.markup("renameCompany", { name: company.name, ...bdiText })}
           onClick={() => setAsking("rename")}
           className="size-10"
         >
           <PencilIcon className="size-5" />
         </IconButton>
         <IconButton
-          label={t("deleteCompany", { name: company.name })}
+          label={t.markup("deleteCompany", { name: company.name, ...bdiText })}
           onClick={() => setAsking("delete")}
           className="size-10 hover:text-destructive"
         >
@@ -94,7 +95,7 @@ export function CompanyActions({
       <ConfirmDialog
         open={asking === "suspend"}
         onOpenChange={(open) => !open && setAsking(undefined)}
-        title={t("suspendTitle", { name: company.name })}
+        title={t.rich("suspendTitle", { name: company.name, ...bdi })}
         text={t("suspendText")}
         confirm={t("suspend")}
         busy={busy}
@@ -105,7 +106,7 @@ export function CompanyActions({
       <ConfirmDialog
         open={asking === "delete"}
         onOpenChange={(open) => !open && setAsking(undefined)}
-        title={t("deleteCompanyTitle", { name: company.name })}
+        title={t.rich("deleteCompanyTitle", { name: company.name, ...bdi })}
         text={t("deleteCompanyText")}
         confirm={t("deleteCompanyConfirm")}
         busy={busy}

@@ -160,7 +160,7 @@ export function answerHref(href: unknown): string | null {
 
 /** The "assistant.pages" message naming the page a link opens, or null for a page the panel
  * doesn't know. */
-export function linkPage(href: string): string | null {
+export function linkPage(href: string) {
   return LINK_PAGES.find(([pattern]) => pattern.test(href))?.[1] ?? null
 }
 

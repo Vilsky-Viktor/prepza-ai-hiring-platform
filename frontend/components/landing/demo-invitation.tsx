@@ -13,6 +13,7 @@ import {
   DEMO_TOTAL_MINUTES,
 } from "@/constants/candidates-demo"
 import { START_BUTTON } from "@/constants/start-page"
+import { bdi } from "@/lib/bidi"
 
 // The real page's rules, shortened; phones show the first few.
 const RULES = [
@@ -51,6 +52,7 @@ export function DemoInvitation({
             <p className="text-sm text-muted-foreground">
               {t.rich("invitedYou", {
                 company: DEMO_COMPANY,
+                ...bdi,
                 b: (chunks) => (
                   <span className="font-medium text-foreground">{chunks}</span>
                 ),
@@ -101,7 +103,7 @@ export function DemoInvitation({
             <span className="w-5 shrink-0 text-base font-medium text-primary tabular-nums">
               {index + 1}.
             </span>
-            <span>{rules(rule, { company: DEMO_COMPANY })}</span>
+            <span>{rules.rich(rule, { company: DEMO_COMPANY, ...bdi })}</span>
           </li>
         ))}
       </ol>

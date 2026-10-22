@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/tooltip"
 import { apiErrorMessage } from "@/lib/api"
 import { deleteConversation, listConversations } from "@/lib/assistant"
+import { bdiText } from "@/lib/bidi"
 import type { Conversation } from "@/types/assistant"
 
 /** The user's past conversations with the assistant, the latest first: one opens, the bin
@@ -121,7 +122,10 @@ export function AssistantHistory({
               variant="ghost"
               size="icon"
               className="relative z-10 size-10 shrink-0 text-muted-foreground hover:text-destructive"
-              aria-label={t("deleteChat", { title: item.title })}
+              aria-label={t.markup("deleteChat", {
+                title: item.title,
+                ...bdiText,
+              })}
               tooltip={common("delete")}
               onClick={() => setDeleting(item.id)}
             >

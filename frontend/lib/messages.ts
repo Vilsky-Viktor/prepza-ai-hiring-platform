@@ -13,3 +13,12 @@ export function clientMessages(messages: Messages, withAdmin = false) {
     Object.entries(messages).filter(([group]) => !left.includes(group))
   )
 }
+
+/** Whether `t` has a message for `key`: narrows a value the API sends as any string to the keys
+ * `t` takes, so an unknown one can fall back instead of failing. */
+export function hasMessage<
+  T extends { has: (key: never) => boolean },
+  Key extends string,
+>(t: T, key: Key): key is Key & Parameters<T["has"]>[0] {
+  return t.has(key as never)
+}

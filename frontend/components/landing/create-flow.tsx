@@ -37,6 +37,7 @@ import {
   WRITTEN,
 } from "@/constants/create-demo-steps"
 import { countedAt, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
+import { bdi } from "@/lib/bidi"
 
 // Tailwind's lg: below it the panels stack, one under another.
 const STACKED_BELOW = 1024
@@ -272,7 +273,7 @@ export function CreateFlow({
         />
         <DemoSentNotice
           shown={step === "invited"}
-          text={share("sent", { email: DEMO_INVITE_EMAIL })}
+          text={share.rich("sent", { email: DEMO_INVITE_EMAIL, ...bdi })}
         />
       </DemoPanel>
     </div>

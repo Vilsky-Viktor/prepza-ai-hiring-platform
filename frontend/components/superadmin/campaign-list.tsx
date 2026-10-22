@@ -8,7 +8,7 @@ import { CampaignStatus } from "@/components/superadmin/campaign-status"
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { LIST_BOX } from "@/constants/lists"
-import { compactNumber, formatDate } from "@/lib/format"
+import { formatDate } from "@/lib/format"
 import { byId } from "@/lib/paged-list"
 import type { CampaignRow } from "@/types/campaigns"
 
@@ -64,7 +64,7 @@ export function CampaignList({ initial }: { initial: CampaignRow[] }) {
                         ] as const
                       ).map((key) =>
                         t(`campaignRowCounts.${key}`, {
-                          count: compactNumber(campaign.counts![key], locale),
+                          count: campaign.counts![key],
                         })
                       )
                     : []),

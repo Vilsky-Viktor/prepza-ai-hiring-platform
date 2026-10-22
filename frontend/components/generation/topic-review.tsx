@@ -14,6 +14,7 @@ import { MAX_INSTRUCTIONS_LENGTH } from "@/constants/limits"
 import type { DraftTopic } from "@/types/generation"
 import { LIST_BOX } from "@/constants/lists"
 import { Dot } from "@/components/dot"
+import { bdiText } from "@/lib/bidi"
 
 type TopicReviewProps = {
   topics: DraftTopic[]
@@ -125,7 +126,10 @@ export function TopicReview({
                 variant="ghost"
                 size="icon"
                 className="absolute end-4 top-1/2 -translate-y-1/2"
-                aria-label={t("editTopic", { topic: topic.main_topic })}
+                aria-label={t.markup("editTopic", {
+                  topic: topic.main_topic,
+                  ...bdiText,
+                })}
                 tooltip={common("edit")}
                 onClick={() => setEditing(index)}
               >

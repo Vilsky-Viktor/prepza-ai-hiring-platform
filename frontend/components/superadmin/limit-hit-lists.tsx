@@ -4,8 +4,10 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 
 import { useLimitAmount } from "@/components/superadmin/ai-budgets"
+import { useAdminName } from "@/hooks/use-admin-name"
 import { AmountRows } from "@/components/superadmin/amount-rows"
 import type { LimitHitLists as Hits, LimitHits } from "@/types/superadmin"
+import { bdi } from "@/lib/bidi"
 
 const LINK = "underline underline-offset-4 hover:text-foreground"
 
@@ -15,27 +17,29 @@ const LINK = "underline underline-offset-4 hover:text-foreground"
 export function LimitHitLists({ hits }: { hits: Hits }) {
   const t = useTranslations("superadmin")
   const amount = useLimitAmount()
+  const named = useAdminName()
 
   function rows(list: LimitHits[]) {
     return list.map((row) => ({
       key: `${row.kind}-${row.limit}`,
-      title: t(`limitNames.${row.limit}`),
+      title: named("limitNames", row.limit),
       details: [
         row.value !== null && row.value !== undefined
           ? t("limitValue", {
               value: amount(row.value, row.unit),
-              window: row.window ? t(`limitWindows.${row.window}`) : "",
+              window: row.window ? named("limitWindows", row.window) : "",
             })
-          : t(`limitKinds.${row.kind.split(":").pop()}`),
+          : named("limitKinds", row.kind.split(":").pop() ?? row.kind),
         ...row.companies.map((company) => (
           <Link
             key={company.id}
             href={`/superadmin/support/companies/${company.id}`}
             className={LINK}
           >
-            {t("limitHitter", {
+            {t.rich("limitHitter", {
               name: company.name ?? company.id,
               count: company.hits,
+              ...bdi,
             })}
           </Link>
         )),
@@ -45,7 +49,11 @@ export function LimitHitLists({ hits }: { hits: Hits }) {
             href={`/superadmin/support/users/${user.id}`}
             className={LINK}
           >
-            {t("limitHitter", { name: user.name ?? user.id, count: user.hits })}
+            {t.rich("limitHitter", {
+              name: user.name ?? user.id,
+              count: user.hits,
+              ...bdi,
+            })}
           </Link>
         )),
       ],

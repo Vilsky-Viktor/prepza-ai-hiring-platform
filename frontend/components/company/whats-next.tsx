@@ -14,6 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { bdi } from "@/lib/bidi"
 
 /** Right after an interview is generated (the generation page marks the address with `ready`):
  * a dialog with what to do next, each step a button that takes the user there. Closing it takes
@@ -53,6 +54,7 @@ export function WhatsNext({
           <DialogDescription>
             {t.rich("text", {
               title,
+              ...bdi,
               name: (chunks) => (
                 <span className="font-medium text-foreground">{chunks}</span>
               ),

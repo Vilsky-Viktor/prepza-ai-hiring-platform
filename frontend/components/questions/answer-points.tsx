@@ -1,6 +1,6 @@
 "use client"
 
-import { useFormatter, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 
 import { Dotted } from "@/components/dot"
 import type { ReviewItem } from "@/types/round"
@@ -10,7 +10,6 @@ import type { ReviewItem } from "@/types/round"
  * for a single-answer question, or one unanswered or timed out. */
 export function AnswerPoints({ item }: { item: ReviewItem }) {
   const t = useTranslations("rounds")
-  const format = useFormatter()
   const answer = item.answer
 
   if (!item.multi || !answer || answer.timed_out || answer.score == null) {
@@ -30,11 +29,7 @@ export function AnswerPoints({ item }: { item: ReviewItem }) {
           }),
           (answer.wrong_picks ?? 0) > 0 &&
             t("wrongPicks", { count: answer.wrong_picks ?? 0 }),
-          t("points", {
-            points: format.number(answer.score / 100, {
-              maximumFractionDigits: 2,
-            }),
-          }),
+          t("points", { points: answer.score / 100 }),
         ]}
       />
     </p>

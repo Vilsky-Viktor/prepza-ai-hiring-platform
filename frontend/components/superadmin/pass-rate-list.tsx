@@ -1,11 +1,12 @@
 "use client"
 
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 import { Badge } from "@/components/ui/badge"
 import { VirtualList } from "@/components/virtual-list"
 import { Dot } from "@/components/dot"
 import { usePagedList } from "@/hooks/use-paged-list"
+import { formatPercent } from "@/lib/format"
 import type { PassRate } from "@/types/superadmin"
 import { LIST_BOX } from "@/constants/lists"
 
@@ -25,6 +26,8 @@ export function PassRateList({
   initial: PassRate[]
 }) {
   const t = useTranslations("superadmin")
+  const locale = useLocale()
+  const percent = (value: number) => formatPercent(value, locale)
   const interviews = useTranslations("interviews")
   const { items, loadMore } = usePagedList<PassRate>(
     path,
@@ -66,15 +69,17 @@ export function PassRateList({
             <span>
               {t("finished", { count: row.finished })}
               <Dot />
-              {t("passed", { percent: row.pass_rate })}
+              {t("passed", { percent: percent(row.pass_rate) })}
             </span>
             <span>
-              {t("passMark", { percent: row.pass_mark })}
+              {t("passMark", { percent: percent(row.pass_mark) })}
               <Dot />
-              {t("averageGrade", { percent: row.average_grade })}
+              {t("averageGrade", { percent: percent(row.average_grade) })}
             </span>
             {row.timeout_share !== null && (
-              <span>{t("timedOut", { percent: row.timeout_share })}</span>
+              <span>
+                {t("timedOut", { percent: percent(row.timeout_share) })}
+              </span>
             )}
           </div>
         </div>

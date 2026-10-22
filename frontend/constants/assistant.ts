@@ -1,3 +1,5 @@
+import type { MessageKey } from "@/types/messages"
+
 // The in-app assistant's panel.
 
 // The welcome's questions by the user's stage (the assistant's GET /welcome decides it;
@@ -13,7 +15,7 @@ export const WELCOME_QUESTIONS: Record<string, string[]> = {
 
 // The pages an answer links to, by their path, and the "assistant.pages" message naming each;
 // the first match wins. Links come from the service, built from each tool's page.
-export const LINK_PAGES: [RegExp, string][] = [
+export const LINK_PAGES: [RegExp, MessageKey<"assistant.pages">][] = [
   [/^\/pricing$/, "pricing"],
   [/^\/top-up$/, "topUp"],
   [/^\/settings$/, "settings"],
@@ -36,7 +38,7 @@ export const LINK_PAGES: [RegExp, string][] = [
 ]
 
 // The service's link pages (its `show` tool) and the "assistant.pages" message naming each.
-export const PAGE_LABELS: Record<string, string> = {
+export const PAGE_LABELS: Record<string, MessageKey<"assistant.pages">> = {
   interview: "interview",
   interview_candidates: "candidates",
   candidate: "candidate",

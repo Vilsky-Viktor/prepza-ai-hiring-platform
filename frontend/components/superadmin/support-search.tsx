@@ -9,6 +9,7 @@ import { toast } from "sonner"
 import { InputAction } from "@/components/input-action"
 import { LIST_BOX } from "@/constants/lists"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { SupportResult } from "@/types/superadmin"
 
 // The support page each kind of result opens.
@@ -88,10 +89,14 @@ export function SupportSearch() {
                   </span>
                   <span className="block text-sm text-muted-foreground">
                     {result.company_name && result.kind !== "company"
-                      ? t(`supportKinds.${result.kind}`, {
+                      ? t.rich(`supportKinds.${result.kind}`, {
                           company: result.company_name,
+                          ...bdi,
                         })
-                      : t(`supportKinds.${result.kind}`, { company: "" })}
+                      : t.rich(`supportKinds.${result.kind}`, {
+                          company: "",
+                          ...bdi,
+                        })}
                   </span>
                 </span>
                 <ChevronRightIcon

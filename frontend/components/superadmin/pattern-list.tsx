@@ -5,6 +5,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { useLocalTime } from "@/hooks/use-local-time"
+import { useAdminName } from "@/hooks/use-admin-name"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { VirtualList } from "@/components/virtual-list"
@@ -29,6 +30,7 @@ export function PatternList({
   initial: QualityPattern[]
 }) {
   const t = useTranslations("superadmin")
+  const named = useAdminName()
   const localTime = useLocalTime()
   const { items, loadMore } = usePagedList<QualityPattern>(
     path,
@@ -88,7 +90,7 @@ export function PatternList({
             {/* On phones the problem and the count share a line, the buttons on the right. */}
             <span className="flex flex-col items-end gap-2 max-sm:flex-row max-sm:items-center max-sm:gap-3">
               <Badge variant="outline" className="h-7 px-3 text-sm font-light">
-                {t(`flags.${row.flag}`)}
+                {named("flags", row.flag)}
               </Badge>
               <span>
                 {t("patternQuestions", { count: row.question_count })}

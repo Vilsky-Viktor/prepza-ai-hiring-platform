@@ -17,6 +17,7 @@ import {
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { firstGrapheme } from "@/lib/graphemes"
+import { hasMessage } from "@/lib/messages"
 import { byId } from "@/lib/paged-list"
 import type { Company } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
@@ -132,7 +133,9 @@ export function CompanyList({
                   variant="secondary"
                   className="h-7 px-3 text-sm font-light"
                 >
-                  {roles(company.role)}
+                  {hasMessage(roles, company.role)
+                    ? roles(company.role)
+                    : company.role}
                 </Badge>
               )}
             </span>

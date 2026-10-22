@@ -11,6 +11,7 @@ import { SupportInterviewCandidates } from "@/components/superadmin/support-list
 import { Badge } from "@/components/ui/badge"
 import { PAGE_SIZE } from "@/constants/lists"
 import { formatPercent } from "@/lib/format"
+import { hasMessage } from "@/lib/messages"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { SupportCandidateRow, SupportInterview } from "@/types/superadmin"
@@ -61,7 +62,9 @@ export default async function SupportInterviewPage({
                   variant="outline"
                   className="h-7 px-3 text-sm font-light"
                 >
-                  {statuses(interview.status)}
+                  {hasMessage(statuses, interview.status)
+                    ? statuses(interview.status)
+                    : interview.status}
                 </Badge>
               )}
               <EntityId id={interview.id} />

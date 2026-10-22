@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { InfoCard } from "@/components/warning-card"
 import { apiFetch } from "@/lib/api"
 import { formatDay } from "@/lib/format"
+import { hasMessage } from "@/lib/messages"
 import { notClosed, rememberClosed } from "@/lib/legal-banner"
 import type { LegalChange } from "@/types/campaigns"
 
@@ -49,34 +50,41 @@ export function LegalBanner() {
       data-testid="legal-banner"
       className="relative z-10 mx-auto -mb-8 max-w-5xl space-y-2 px-6 pt-6"
     >
-      {changes.map((change) => (
-        <InfoCard
-          key={change.document}
-          className="py-2 ps-5 pe-2 text-sm"
-          action={
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-muted-foreground hover:text-foreground"
-              aria-label={t("closeLegalBanner")}
-              tooltip={t("closeLegalBanner")}
-              onClick={() => close(change)}
-            >
-              <XIcon />
-            </Button>
-          }
-        >
-          {t(`legalBanner.${change.document}`, {
-            date: formatDay(change.version, locale),
-          })}{" "}
-          <Link
-            href={`/${change.document}`}
-            className="font-medium text-foreground underline underline-offset-4"
+      {changes.map((change) => {
+        const key = `legalBanner.${change.document}` as const
+
+        // A document the messages don't name has no notice.
+        if (!hasMessage(t, key)) {
+          return null
+        }
+
+        return (
+          <InfoCard
+            key={change.document}
+            className="py-2 ps-5 pe-2 text-sm"
+            action={
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-muted-foreground hover:text-foreground"
+                aria-label={t("closeLegalBanner")}
+                tooltip={t("closeLegalBanner")}
+                onClick={() => close(change)}
+              >
+                <XIcon />
+              </Button>
+            }
           >
-            {t("readLegal")}
-          </Link>
-        </InfoCard>
-      ))}
+            {t(key, { date: formatDay(change.version, locale) })}{" "}
+            <Link
+              href={`/${change.document}`}
+              className="font-medium text-foreground underline underline-offset-4"
+            >
+              {t("readLegal")}
+            </Link>
+          </InfoCard>
+        )
+      })}
     </div>
   )
 }

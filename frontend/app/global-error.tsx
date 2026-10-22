@@ -7,7 +7,7 @@ import { cn } from "cn"
 
 import ErrorPage from "@/app/error"
 import { FONT_VARIABLES } from "@/constants/fonts"
-import { DEFAULT_LOCALE, LOCALE_COOKIE } from "@/constants/i18n"
+import { DEFAULT_LOCALE, LOCALE_COOKIE, type Locale } from "@/constants/i18n"
 import { isLocale, preferredLocale, textDirection } from "@/lib/locale"
 
 import "./globals.css"
@@ -36,7 +36,7 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  const [found, setFound] = useState<{ locale: string; messages: Messages }>()
+  const [found, setFound] = useState<{ locale: Locale; messages: Messages }>()
 
   useEffect(() => {
     const locale = visitorLocale()

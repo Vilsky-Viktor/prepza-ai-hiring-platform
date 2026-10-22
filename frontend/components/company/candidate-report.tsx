@@ -112,11 +112,12 @@ export async function CandidateReport({
         ))}
       </ul>
       <p className="text-xs text-muted-foreground">
-        {t("humanReview")}
         {sections.some(
           (section) =>
             section.tab_leaves || section.copies || section.fast_answers
-        ) && ` ${t("signalsNote")}`}
+        )
+          ? t("humanReviewSignals")
+          : t("humanReview")}
       </p>
     </div>
   )

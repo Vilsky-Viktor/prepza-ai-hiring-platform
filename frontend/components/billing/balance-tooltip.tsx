@@ -1,6 +1,6 @@
 "use client"
 
-import { useFormatter, useLocale, useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 import {
   Tooltip,
@@ -24,7 +24,6 @@ export function BalanceTooltip({
   balance: number
 }) {
   const t = useTranslations("billing")
-  const format = useFormatter()
   const locale = useLocale()
 
   return (
@@ -33,7 +32,7 @@ export function BalanceTooltip({
         {compactNumber(shown, locale)}
       </TooltipTrigger>
       <TooltipContent data-testid="balance-tooltip">
-        <p>{t("currentBalance", { amount: format.number(balance) })}</p>
+        <p>{t("currentBalance", { amount: balance })}</p>
         {note && <p>{note}</p>}
       </TooltipContent>
     </Tooltip>

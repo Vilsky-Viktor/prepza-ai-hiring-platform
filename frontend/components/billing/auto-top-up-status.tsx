@@ -51,7 +51,7 @@ function useValues(setting: AutoTopUp, titles: Record<string, string>) {
   const locale = useLocale()
   const values = {
     amount: titles[setting.product ?? ""] ?? setting.product ?? "",
-    threshold: (setting.threshold ?? 0).toLocaleString(locale),
+    threshold: setting.threshold ?? 0,
   }
   const next =
     setting.next_price != null && setting.next_price_from && !setting.paused

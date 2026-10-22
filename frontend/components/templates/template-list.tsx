@@ -16,6 +16,7 @@ import {
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
+import { hasMessage } from "@/lib/messages"
 import { localizedPath } from "@/lib/locale-path"
 import type { TemplateSummary } from "@/types/superadmin"
 import { LIST_BOX } from "@/constants/lists"
@@ -56,6 +57,7 @@ export function TemplateList({
       onEndReached={loadMore}
       className={LIST_BOX}
       renderItem={(template) => {
+        const level = `levels.${template.level}` as const
         const row = (
           <>
             <span className="min-w-0 flex-1 basis-full space-y-1 sm:basis-auto">
@@ -71,7 +73,7 @@ export function TemplateList({
             {/* Their own column, so the tags line up whatever the title's length. */}
             <span className="flex shrink-0 gap-2">
               <Badge variant="outline" className="h-7 px-3 text-sm font-light">
-                {t(`levels.${template.level}`)}
+                {hasMessage(t, level) ? t(level) : template.level}
               </Badge>
               <Badge
                 variant="outline"

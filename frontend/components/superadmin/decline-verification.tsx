@@ -18,6 +18,7 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { MAX_DECLINE_REASON_LENGTH } from "@/constants/limits"
 import { apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import { decisionFailed } from "@/lib/verification"
 
 /** "Decline" on a pending verification: a confirm with an optional reason, which the company's
@@ -78,7 +79,7 @@ export function DeclineVerification({
       <DialogContent showCloseButton={false} className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="no-dot">
-            {t("declineTitle", { name })}
+            {t.rich("declineTitle", { name, ...bdi })}
           </DialogTitle>
           <DialogDescription>{t("declineText")}</DialogDescription>
         </DialogHeader>

@@ -17,6 +17,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { apiFetch } from "@/lib/api"
+import { bdi, bdiText } from "@/lib/bidi"
 import type { CompanyCredits } from "@/types/billing"
 
 export function RemoveCompany({
@@ -66,7 +67,7 @@ export function RemoveCompany({
         variant="ghost"
         size="icon"
         className="size-12 text-muted-foreground hover:text-destructive"
-        aria-label={t("removeLabel", { name })}
+        aria-label={t.markup("removeLabel", { name, ...bdiText })}
         tooltip={t("remove")}
         onClick={openDialog}
       >
@@ -83,7 +84,7 @@ export function RemoveCompany({
         <DialogContent showCloseButton={false}>
           <DialogHeader className="gap-4">
             <DialogTitle className="no-dot mb-2">
-              {t("removeTitle", { name })}
+              {t.rich("removeTitle", { name, ...bdi })}
             </DialogTitle>
             <DialogDescription>{t("removeText")}</DialogDescription>
             {credits && credits.available > 0 && (

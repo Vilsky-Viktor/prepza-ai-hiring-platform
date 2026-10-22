@@ -83,6 +83,6 @@ test("company verification: pending, declined, renamed, approved", async ({
   await shot(superadmin, "superadmin-approved")
 
   await visit(owner, interviews)
-  await expect(owner.getByRole("img", { name: `Verified: ${domain}` })).toBeVisible()
+  await expect(owner.getByRole("img", { name: `Verified: \u2068${domain}\u2069` })).toBeVisible()
   await shot(owner, "verified")
 })

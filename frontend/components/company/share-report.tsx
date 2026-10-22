@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { MAX_EMAIL_LENGTH } from "@/constants/limits"
 import { apiFetch, serviceRefusal } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import { fileBase64 } from "@/lib/files"
 import { useOrigin } from "@/lib/origin"
 
@@ -61,7 +62,7 @@ export function ShareReport({
         method: "POST",
         body: JSON.stringify({ email, pdf: await fileBase64(file) }),
       })
-      toast.success(t("sent", { email }))
+      toast.success(t.rich("sent", { email, ...bdi }))
       setEmail("")
       onOpenChange(false)
     } catch (error) {

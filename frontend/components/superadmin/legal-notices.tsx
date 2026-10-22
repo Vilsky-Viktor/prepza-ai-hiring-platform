@@ -7,6 +7,7 @@ import { toast } from "sonner"
 
 import { ConfirmDialog } from "@/components/confirm-dialog"
 import { Button } from "@/components/ui/button"
+import { useAdminName } from "@/hooks/use-admin-name"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { LegalNotice } from "@/types/superadmin"
 
@@ -17,6 +18,7 @@ const PATH = "/notifications/superadmin/legal-notices"
  * least 14 days before it applies, once per version) and who gets it. */
 export function LegalNotices({ initial }: { initial: LegalNotice[] }) {
   const t = useTranslations("superadmin")
+  const named = useAdminName()
   const [notices, setNotices] = useState(initial)
   const [asking, setAsking] = useState<LegalNotice>()
   const [busy, setBusy] = useState(false)
@@ -36,7 +38,7 @@ export function LegalNotices({ initial }: { initial: LegalNotice[] }) {
     }
   }
 
-  const name = (notice: LegalNotice) => t(`legalDocuments.${notice.document}`)
+  const name = (notice: LegalNotice) => named("legalDocuments", notice.document)
 
   return (
     <div className="space-y-4 rounded-2xl border p-5">

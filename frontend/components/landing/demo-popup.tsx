@@ -71,7 +71,7 @@ export function DemoSentNotice({
   text,
 }: {
   shown: boolean
-  text: string
+  text: React.ReactNode
 }) {
   return (
     <div

@@ -12,6 +12,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { hasMessage } from "@/lib/messages"
 
 // "Any status" in the menu; the statuses and results themselves come from the API.
 const ANY = "any"
@@ -30,6 +31,11 @@ export function CandidateStatusFilter({
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
+
+  // A status from the API or the address, or as it is when there's no name for it.
+  function named(status: string) {
+    return hasMessage(labels, status) ? labels(status) : status
+  }
 
   function choose(status: string) {
     const params = new URLSearchParams(searchParams)
@@ -55,7 +61,7 @@ export function CandidateStatusFilter({
         }
       >
         {t("status", {
-          status: current ? labels(current) : t("anyStatus"),
+          status: current ? named(current) : t("anyStatus"),
         })}
         <ChevronDownIcon className="text-muted-foreground" />
       </DropdownMenuTrigger>
@@ -70,7 +76,7 @@ export function CandidateStatusFilter({
               value={status}
               className="px-3 py-2 lowercase"
             >
-              {labels(status)}
+              {named(status)}
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>

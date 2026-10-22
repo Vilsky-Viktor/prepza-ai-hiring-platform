@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from "next-intl"
 
 import { AmountRows } from "@/components/superadmin/amount-rows"
+import { useAdminName } from "@/hooks/use-admin-name"
 import {
   compactNumber,
   formatPercent,
@@ -45,6 +46,7 @@ export function AiBudgets({
   const t = useTranslations("superadmin")
   const locale = useLocale()
   const amount = useLimitAmount()
+  const named = useAdminName()
 
   return (
     <AmountRows
@@ -62,7 +64,7 @@ export function AiBudgets({
         },
         ...budgets.map((budget) => ({
           key: budget.name,
-          title: t(`limitNames.${budget.name}`),
+          title: named("limitNames", budget.name),
           details: [formatPercent(budget.share * 100, locale)],
           amount: t("aiOf", {
             used: amount(budget.used, budget.unit),

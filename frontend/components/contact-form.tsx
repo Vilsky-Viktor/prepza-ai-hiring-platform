@@ -17,6 +17,7 @@ import {
 import { useOneAtATime } from "@/hooks/use-one-at-a-time"
 import { useHumanCheck } from "@/hooks/use-human-check"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import { humanHeaders } from "@/lib/human-check"
 import { isSubmitShortcut } from "@/lib/keys"
 
@@ -67,7 +68,7 @@ export function ContactForm() {
           {t("thanks")}
         </p>
         <p className="text-lg text-muted-foreground">
-          {t("sent", { email: sentTo })}
+          {t.rich("sent", { email: sentTo, ...bdi })}
         </p>
       </div>
     )

@@ -14,7 +14,9 @@ import {
   PLAIN_ADDRESS_HEADER,
   SITE_NAME,
 } from "@/constants/seo"
+import { withoutIsolates } from "@/lib/bidi"
 import { sliceGraphemes } from "@/lib/graphemes"
+import { hasMessage } from "@/lib/messages"
 import { hreflang, languageAlternates, localizedPath } from "@/lib/locale-path"
 import { previewSignature } from "@/lib/preview-signature"
 
@@ -29,7 +31,8 @@ export function siteUrl() {
  * language the picture can't draw. */
 export function previewImage(title?: string, locale: string = DEFAULT_LOCALE) {
   const drawn = title && !PREVIEW_UNSUPPORTED.includes(locale as Locale)
-  const shown = sliceGraphemes(title ?? "", PREVIEW_TITLE_MAX)
+  // Drawn without the marks that isolate a name in the page's title, which the picture's fonts lack.
+  const shown = sliceGraphemes(withoutIsolates(title ?? ""), PREVIEW_TITLE_MAX)
   // Signed, so the picture route draws only titles our own pages name.
   const query = new URLSearchParams({
     title: shown,
@@ -79,9 +82,10 @@ export async function translatedTitle(
   namespace: string,
   key: string
 ): Promise<Metadata> {
-  const t = await getTranslations(namespace)
+  const t = await getTranslations()
+  const full = `${namespace}.${key}`
 
-  return { title: t(key) }
+  return { title: hasMessage(t, full) ? t(full) : key }
 }
 
 /** The title a page's preview picture draws: lowercase like the site's titles; articles and the

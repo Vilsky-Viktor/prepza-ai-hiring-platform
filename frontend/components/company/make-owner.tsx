@@ -16,6 +16,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { CompanyMember } from "@/types/company"
 
 /** Asks the owner to confirm handing the company to an admin, who becomes its owner; the owner
@@ -45,7 +46,7 @@ export function MakeOwner({
         `/companies/members/${member.id}/owner?company_id=${companyId}`,
         { method: "POST" }
       )
-      toast.success(t("madeOwner", { email }))
+      toast.success(t.rich("madeOwner", { email, ...bdi }))
       onOpenChange(false)
       router.refresh()
     } catch (error) {
@@ -60,7 +61,7 @@ export function MakeOwner({
       <DialogContent showCloseButton={false}>
         <DialogHeader className="gap-4">
           <DialogTitle className="no-dot mb-2">
-            {t("makeOwnerTitle", { email })}
+            {t.rich("makeOwnerTitle", { email, ...bdi })}
           </DialogTitle>
           <DialogDescription>{t("makeOwnerText")}</DialogDescription>
         </DialogHeader>

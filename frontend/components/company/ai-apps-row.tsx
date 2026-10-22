@@ -1,10 +1,11 @@
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 import { AiAppsInstructions } from "@/components/company/ai-apps-setup"
 import { IntegrationRow } from "@/components/company/integration-row"
 import { Badge } from "@/components/ui/badge"
 import { MCP_MARK } from "@/constants/ai-apps"
 import { INTEGRATION_ACTIONS } from "@/constants/lists"
+import { formatList } from "@/lib/format"
 import type { AiConnection } from "@/types/connections"
 
 /** AI apps' row on the integrations tab: the MCP mark, the name, and which apps the user
@@ -19,6 +20,7 @@ export function AiAppsRow({
 }) {
   const t = useTranslations("aiApps")
   const ats = useTranslations("ats")
+  const locale = useLocale()
   const names = [...new Set(connections.map((item) => item.client_name))]
 
   return (
@@ -41,7 +43,7 @@ export function AiAppsRow({
           </Badge>
         )
       }
-      text={names.length > 0 ? names.join(", ") : t("rowText")}
+      text={names.length > 0 ? formatList(names, locale) : t("rowText")}
       actions={
         <span className={INTEGRATION_ACTIONS}>
           <AiAppsInstructions />

@@ -69,26 +69,29 @@ export async function LegalPage({
         <p className="text-sm text-muted-foreground">
           {document.language !== DEFAULT_LOCALE ? (
             <span className="block pb-2">
-              {t("translated")}{" "}
-              <Link href={link(shown, true)} className="underline">
-                {t("readEnglish")}
-              </Link>
+              {t.rich("translatedRead", {
+                link: (chunks) => (
+                  <Link href={link(shown, true)} className="underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
             </span>
           ) : (
             locale !== DEFAULT_LOCALE && (
               <span className="block pb-2">{t("englishOnly")}</span>
             )
           )}
-          {document.state === "in_force" ? (
-            t("inForce", { date: formatDay(shown, locale) })
-          ) : (
-            <>
-              {t(document.state, { date: formatDay(shown, locale) })}{" "}
-              <Link href={link(inForce)} className="underline">
-                {t("readInForce")}
-              </Link>
-            </>
-          )}
+          {document.state === "in_force"
+            ? t("inForce", { date: formatDay(shown, locale) })
+            : t.rich(`${document.state}Read`, {
+                date: formatDay(shown, locale),
+                link: (chunks) => (
+                  <Link href={link(inForce)} className="underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
         </p>
       </header>
       {/* In the text's own language: English reads left to right in every interface. */}

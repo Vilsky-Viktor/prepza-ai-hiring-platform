@@ -5,6 +5,8 @@ import type { ReactNode } from "react"
 
 import { AmountRows } from "@/components/superadmin/amount-rows"
 import { NumberCards } from "@/components/superadmin/number-cards"
+import { useAdminName } from "@/hooks/use-admin-name"
+import { hasMessage } from "@/lib/messages"
 import { compactNumber, formatPercent, formatUsd } from "@/lib/format"
 import type { AiCosts } from "@/types/superadmin"
 
@@ -20,6 +22,7 @@ export function AiCostSections({
   budgets: ReactNode
 }) {
   const t = useTranslations("superadmin")
+  const named = useAdminName()
   const locale = useLocale()
   const format = useFormatter()
   const usd = (value: number) => formatUsd(value, locale)
@@ -68,7 +71,7 @@ export function AiCostSections({
         empty={t("aiNothing")}
         rows={costs.categories.map((row) => ({
           key: row.category,
-          title: t(`aiCategories.${row.category}`),
+          title: named("aiCategories", row.category),
           details: [percent(row.share), calls(row.calls)],
           amount: usd(row.spend),
         }))}
@@ -76,17 +79,22 @@ export function AiCostSections({
       <AmountRows
         title={t("aiActionsTitle")}
         empty={t("aiNothing")}
-        rows={costs.actions.map((row) => ({
-          key: row.action,
-          title: t(`aiActions.${row.action}`),
-          details: [
-            t(`aiUnitCost.${row.action}`, { cost: usd(row.unit_cost) }),
-            calls(row.calls),
-            t("aiPaid", { spend: usd(row.paid_spend) }),
-            t("aiUnpaid", { spend: usd(row.unpaid_spend) }),
-          ],
-          amount: usd(row.spend),
-        }))}
+        rows={costs.actions.map((row) => {
+          const unitCost = `aiUnitCost.${row.action}` as const
+          const cost = usd(row.unit_cost)
+
+          return {
+            key: row.action,
+            title: named("aiActions", row.action),
+            details: [
+              hasMessage(t, unitCost) ? t(unitCost, { cost }) : cost,
+              calls(row.calls),
+              t("aiPaid", { spend: usd(row.paid_spend) }),
+              t("aiUnpaid", { spend: usd(row.unpaid_spend) }),
+            ],
+            amount: usd(row.spend),
+          }
+        })}
       />
       <AmountRows
         title={t("aiModelsTitle")}
@@ -96,9 +104,9 @@ export function AiCostSections({
           title: row.model,
           details: [
             calls(row.calls),
-            t("aiTokensIn", { count: count(row.input_tokens) }),
+            t("aiTokensIn", { count: row.input_tokens }),
             t("aiCachedShare", { share: percent(row.cached_share) }),
-            t("aiTokensOut", { count: count(row.output_tokens) }),
+            t("aiTokensOut", { count: row.output_tokens }),
           ],
           amount: usd(row.spend),
         }))}

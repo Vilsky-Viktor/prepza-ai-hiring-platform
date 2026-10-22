@@ -11,6 +11,8 @@ import { VirtualList } from "@/components/virtual-list"
 import { Dot } from "@/components/dot"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
+import { hasMessage } from "@/lib/messages"
 import { decisionFailed } from "@/lib/verification"
 import type { VerificationRequest } from "@/types/superadmin"
 import { LIST_BOX } from "@/constants/lists"
@@ -76,6 +78,8 @@ export function VerificationList({
       renderItem={(row) => {
         const date =
           row.status === "pending" ? row.submitted_at : row.decided_at
+        // The list has only requests sent for review: pending or decided.
+        const status = `verificationStatus.${row.status}` as const
 
         return (
           // On phones the status and then the buttons go under the company and its details, each
@@ -109,13 +113,16 @@ export function VerificationList({
               </p>
               {row.decline_reason && (
                 <p className="text-sm text-muted-foreground">
-                  {t("declinedBecause", { reason: row.decline_reason })}
+                  {t.rich("declinedBecause", {
+                    reason: row.decline_reason,
+                    ...bdi,
+                  })}
                 </p>
               )}
             </div>
             <div className="flex shrink-0 flex-col items-end gap-2 max-sm:flex-row max-sm:flex-wrap max-sm:items-center max-sm:justify-center max-sm:gap-4">
               <Badge variant="outline" className="h-7 px-3 text-sm font-light">
-                {t(`verificationStatus.${row.status}`)}
+                {hasMessage(t, status) ? t(status) : row.status}
               </Badge>
               {row.status === "pending" && (
                 <span className="flex gap-2 pt-1 max-sm:basis-full max-sm:items-center max-sm:justify-center max-sm:gap-4 max-sm:pt-0">

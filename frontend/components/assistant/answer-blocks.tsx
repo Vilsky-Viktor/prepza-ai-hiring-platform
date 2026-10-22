@@ -18,6 +18,7 @@ import { SignInOptions } from "@/components/sign-in-options"
 import { buttonVariants } from "@/components/ui/button"
 import { PAGE_LABELS } from "@/constants/assistant"
 import { answerParts, linkPage } from "@/lib/assistant"
+import { bdi } from "@/lib/bidi"
 import type { AssistantBlock } from "@/types/assistant"
 import { WARNING_TONE } from "@/constants/tones"
 
@@ -172,7 +173,7 @@ export function AnswerBlocks({
               >
                 <span className={label ? "normal-case" : undefined}>
                   {label
-                    ? named("openNamed", { name: label })
+                    ? named.rich("openNamed", { name: label, ...bdi })
                     : key
                       ? t(key)
                       : t("open")}

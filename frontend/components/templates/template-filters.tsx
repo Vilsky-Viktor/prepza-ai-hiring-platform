@@ -3,7 +3,7 @@
 import { cn } from "cn"
 import { ChevronDownIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -15,7 +15,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { LANGUAGE_NAMES, type Locale } from "@/constants/i18n"
+import { formatList } from "@/lib/format"
 import { isLocale, languageOf } from "@/lib/locale"
+import { hasMessage } from "@/lib/messages"
 import type { TemplateFilters } from "@/types/superadmin"
 
 // "Any level" in the level menu; levels themselves come from the API.
@@ -69,12 +71,20 @@ export function TemplateFilterBar({
   current: TemplateChoice
 }) {
   const t = useTranslations("templates")
+  const locale = useLocale()
   const router = useRouter()
 
   function choose(change: Partial<TemplateChoice>) {
     router.replace(templatesHref(base, { ...current, ...change }), {
       scroll: false,
     })
+  }
+
+  // A level from the API or the address, or as it is when there's no name for it.
+  function levelName(level: string) {
+    const key = `levels.${level}` as const
+
+    return hasMessage(t, key) ? t(key) : level
   }
 
   function toggle(language: string, checked: boolean) {
@@ -91,7 +101,7 @@ export function TemplateFilterBar({
     current.languages.length === 0
       ? t("allLanguages")
       : current.languages.length <= 2
-        ? current.languages.map(languageName).join(", ")
+        ? formatList(current.languages.map(languageName), locale)
         : t("languages", { count: current.languages.length })
 
   return (
@@ -101,7 +111,7 @@ export function TemplateFilterBar({
           render={<Button type="button" variant="ghost" className={TRIGGER} />}
         >
           {t("level", {
-            level: current.level ? t(`levels.${current.level}`) : t("anyLevel"),
+            level: current.level ? levelName(current.level) : t("anyLevel"),
           })}
           <ChevronDownIcon className="text-muted-foreground" />
         </DropdownMenuTrigger>
@@ -121,7 +131,7 @@ export function TemplateFilterBar({
                 value={level}
                 className="px-3 py-2 lowercase"
               >
-                {t(`levels.${level}`)}
+                {levelName(level)}
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>

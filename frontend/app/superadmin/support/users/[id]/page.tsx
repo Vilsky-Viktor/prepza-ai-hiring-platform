@@ -13,6 +13,7 @@ import { WrappedEmail } from "@/components/wrapped-email"
 import { Dot } from "@/components/dot"
 import { LIST_BOX } from "@/constants/lists"
 import { formatPrice } from "@/lib/format"
+import { hasMessage } from "@/lib/messages"
 import { aiSpend, AiSpendLine } from "@/components/superadmin/ai-spend-line"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
@@ -94,7 +95,9 @@ export default async function SupportUserPage({
                     variant="outline"
                     className="h-7 px-3 text-sm font-light"
                   >
-                    {roles(company.role)}
+                    {hasMessage(roles, company.role)
+                      ? roles(company.role)
+                      : company.role}
                   </Badge>
                 </Link>
               </li>

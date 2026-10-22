@@ -1,19 +1,29 @@
 import type { CandidateReportData, InterviewReportData } from "@/types/company"
-import { formatPercent } from "@/lib/format"
+import { formatList, formatPercent } from "@/lib/format"
+import type { MessageKey } from "@/types/messages"
+
+// The keys a summary is written with: the report's, the candidates' signal counts and the
+// shared "Name (email)" (useReportTranslate finds each in its group).
+export type ReportKey =
+  | MessageKey<"report">
+  | "pageLeaves"
+  | "copies"
+  | "fastAnswers"
+  | "nameWithEmail"
 
 type Translate = (
-  key: string,
+  key: ReportKey,
   values?: Record<string, string | number>
 ) => string
 
 /** A candidate as a message names them: "Name (email)", or the email while the name is
  * unknown. */
-export function candidateLabel(candidate: {
-  email: string
-  name?: string | null
-}) {
+export function candidateLabel(
+  candidate: { email: string; name?: string | null },
+  t: Translate
+) {
   return candidate.name
-    ? `${candidate.name} (${candidate.email})`
+    ? t("nameWithEmail", { name: candidate.name, email: candidate.email })
     : candidate.email
 }
 
@@ -27,21 +37,23 @@ export function reportSummary(
   const result =
     report.passed == null
       ? t("notFinished")
-      : t(report.passed ? "passed" : "notPassed", { mark: report.passMark })
+      : t(report.passed ? "passed" : "notPassed", {
+          mark: formatPercent(report.passMark, locale),
+        })
   const topics = report.sections.map((section) => {
     const signals = [
       section.tab_leaves && t("pageLeaves", { count: section.tab_leaves }),
       section.copies && t("copies", { count: section.copies }),
       section.fast_answers && t("fastAnswers", { count: section.fast_answers }),
-    ].filter(Boolean)
+    ].filter(Boolean) as string[]
     const score = formatPercent(section.final_score, locale)
 
-    return `• ${section.topic_title}: ${[score, ...signals].join(", ")}`
+    return `• ${section.topic_title}: ${formatList([score, ...signals], locale)}`
   })
 
   return [
     [report.company, report.title].filter(Boolean).join(" · "),
-    `${candidateLabel(report)}: ${formatPercent(report.grade, locale)}, ${result}`,
+    `${candidateLabel(report, t)}: ${formatList([formatPercent(report.grade, locale), result], locale)}`,
     "",
     ...topics,
     "",
@@ -62,15 +74,18 @@ export function candidatesSummary(
       candidate.copies && t("copies", { count: candidate.copies }),
       candidate.fast_answers &&
         t("fastAnswers", { count: candidate.fast_answers }),
-    ].filter(Boolean)
+    ].filter(Boolean) as string[]
     const grade = formatPercent(candidate.grade, locale)
+    const progress = t("progressOf", {
+      progress: formatPercent(candidate.progress, locale),
+    })
 
-    return `• ${candidateLabel(candidate)}: ${[grade, t("progressOf", { progress: candidate.progress }), ...signals].join(", ")}`
+    return `• ${candidateLabel(candidate, t)}: ${formatList([grade, progress, ...signals], locale)}`
   })
 
   return [
     [report.company, report.title].filter(Boolean).join(" · "),
-    t("passMark", { mark: report.pass_mark }),
+    t("passMark", { mark: formatPercent(report.pass_mark, locale) }),
     "",
     ...rows,
     "",

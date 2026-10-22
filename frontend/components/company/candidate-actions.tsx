@@ -17,6 +17,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 
 type CandidateActionsProps = {
   interviewId: string
@@ -54,7 +55,7 @@ export function CandidateActions({
     try {
       // Inviting the same email again sends the same link again.
       await apiFetch(path, { method: "POST", body: JSON.stringify({ email }) })
-      toast.success(t("resent", { email }))
+      toast.success(t.rich("resent", { email, ...bdi }))
       router.refresh()
     } catch (error) {
       toast.error(apiErrorMessage(error, t("resendFailed")))
@@ -68,7 +69,7 @@ export function CandidateActions({
 
     try {
       await apiFetch(`${path}/${inviteId}`, { method: "DELETE" })
-      toast.success(t(unused ? "revoked" : "erased", { email }))
+      toast.success(t.rich(unused ? "revoked" : "erased", { email, ...bdi }))
       router.push(backHref)
       router.refresh()
     } catch (error) {
@@ -118,7 +119,7 @@ export function CandidateActions({
               {t(unused ? "revokeTitle" : "eraseTitle")}
             </DialogTitle>
             <DialogDescription>
-              {t(unused ? "revokeText" : "eraseText", { email })}
+              {t.rich(unused ? "revokeText" : "eraseText", { email, ...bdi })}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

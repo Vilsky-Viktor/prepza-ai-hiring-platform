@@ -26,11 +26,19 @@ import { gradeTone } from "@/lib/grade-tone"
 import { serverFetch, signedIn } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { Scorecard } from "@/types/company"
-import { candidateReportData } from "@/lib/candidate-report-data"
 import { formatPercent } from "@/lib/format"
+import { candidateReportData } from "@/lib/candidate-report-data"
 import { languageOf } from "@/lib/locale"
+import { hasMessage } from "@/lib/messages"
 
 export const generateMetadata = () => translatedTitle("candidates", "scorecard")
+
+// A candidate's status by its name, or as the API sent it when there's none.
+async function statusName(status: string) {
+  const statuses = await getTranslations("candidateStatus")
+
+  return hasMessage(statuses, status) ? statuses(status) : status
+}
 
 export default async function ScorecardPage({
   params,
@@ -44,7 +52,6 @@ export default async function ScorecardPage({
   const { companyId, id, inviteId } = await params
   const locale = await getLocale()
   const t = await getTranslations("candidates")
-  const statuses = await getTranslations("candidateStatus")
   const card = await serverFetch<Scorecard>(
     `/companies/interviews/${id}/candidates/${inviteId}`
   )
@@ -102,7 +109,7 @@ export default async function ScorecardPage({
                   }
                   className="h-7 px-3 text-sm font-light"
                 >
-                  {statuses(card.status)}
+                  {await statusName(card.status)}
                 </Badge>
                 <EntityId id={inviteId} />
               </div>
@@ -274,8 +281,7 @@ async function ScorecardSummary({ card }: { card: Scorecard }) {
       >
         <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
         <p>
-          {reportT("humanReview")}
-          {signals && ` ${reportT("signalsNote")}`}
+          {signals ? reportT("humanReviewSignals") : reportT("humanReview")}
         </p>
       </div>
     </>

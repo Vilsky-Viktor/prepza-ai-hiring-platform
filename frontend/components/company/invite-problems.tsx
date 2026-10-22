@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl"
 
 import { SHOWN_LINE_PROBLEMS } from "@/constants/invites"
 import type { BulkInviteResult } from "@/types/company"
+import { bdi } from "@/lib/bidi"
+import { hasMessage } from "@/lib/messages"
 
 /** What the invite dialog couldn't do, in red: the API's refusal (`error`), each line it
  * couldn't use with its reason (the first few, then how many more), and why emails weren't
@@ -26,15 +28,20 @@ export function InviteProblems({
   const more = problems.length - SHOWN_LINE_PROBLEMS
   const rows = [
     ...(error ? [error] : []),
-    ...problems
-      .slice(0, SHOWN_LINE_PROBLEMS)
-      .map((row) => t(`lineProblems.${row.reason}`, { line: row.line })),
+    ...problems.slice(0, SHOWN_LINE_PROBLEMS).map((row) => {
+      const key = `lineProblems.${row.reason}` as const
+
+      return hasMessage(t, key)
+        ? t.rich(key, { line: row.line, ...bdi })
+        : row.line
+    }),
     ...(more > 0 ? [t("lineProblems.more", { count: more })] : []),
-    ...reasons.map((reason) =>
-      t(`skip.${reason}`, {
-        count: skipped.filter((row) => row.reason === reason).length,
-      })
-    ),
+    ...reasons.map((reason) => {
+      const key = `skip.${reason}` as const
+      const count = skipped.filter((row) => row.reason === reason).length
+
+      return hasMessage(t, key) ? t(key, { count }) : reason
+    }),
   ]
 
   return (

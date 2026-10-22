@@ -3,6 +3,9 @@ import path from "node:path"
 import { createTranslator } from "next-intl"
 import { describe, expect, it } from "vitest"
 
+import { bdiText } from "@/lib/bidi"
+import { isLocale } from "@/lib/locale"
+
 const DIR = path.resolve(__dirname, "../../messages")
 // Notifications that name an interview; the bell passes "none" when it has no title yet.
 const KINDS = [
@@ -22,11 +25,12 @@ const VALUES = {
 }
 
 describe("a notification about an interview without a title", () => {
-  for (const file of readdirSync(DIR).filter((name) =>
-    name.endsWith(".json")
-  )) {
-    const locale = file.replace(".json", "")
-    const messages = JSON.parse(readFileSync(path.join(DIR, file), "utf8"))
+  for (const locale of readdirSync(DIR)
+    .map((name) => name.replace(".json", ""))
+    .filter(isLocale)) {
+    const messages = JSON.parse(
+      readFileSync(path.join(DIR, `${locale}.json`), "utf8")
+    )
     const t = createTranslator({
       locale,
       messages,
@@ -36,8 +40,18 @@ describe("a notification about an interview without a title", () => {
     it(`names no title in ${locale}, and quotes one that's there`, () => {
       for (const kind of KINDS) {
         for (const count of [1, 2]) {
-          const untitled = t(kind, { ...VALUES, count, title: "none" })
-          const titled = t(kind, { ...VALUES, count, title: "Backend" })
+          const untitled = t.markup(kind, {
+            ...VALUES,
+            count,
+            title: "none",
+            ...bdiText,
+          })
+          const titled = t.markup(kind, {
+            ...VALUES,
+            count,
+            title: "Backend",
+            ...bdiText,
+          })
 
           expect(untitled, `${kind} ${count}`).not.toMatch(/none|“”|«»|„“|「」/)
           expect(titled, `${kind} ${count}`).toContain("Backend")

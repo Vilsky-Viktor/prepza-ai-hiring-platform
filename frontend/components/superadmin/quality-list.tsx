@@ -1,11 +1,12 @@
 "use client"
 
 import { FlagIcon } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
 import { useLocalTime } from "@/hooks/use-local-time"
+import { useAdminName } from "@/hooks/use-admin-name"
 import { AnswerOptions } from "@/components/questions/answer-options"
 import { QuestionReports } from "@/components/questions/question-reports"
 import { QuestionText } from "@/components/questions/question-text"
@@ -16,6 +17,7 @@ import { VirtualList } from "@/components/virtual-list"
 import { Dot } from "@/components/dot"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { formatPercent } from "@/lib/format"
 import type { QualityRow } from "@/types/superadmin"
 import { LIST_BOX } from "@/constants/lists"
 
@@ -39,6 +41,8 @@ export function QualityList({
   byKey?: boolean
 }) {
   const t = useTranslations("superadmin")
+  const named = useAdminName()
+  const locale = useLocale()
   const localTime = useLocalTime()
   const { items, loadMore } = usePagedList<QualityRow>(
     path,
@@ -113,7 +117,7 @@ export function QualityList({
                 <p className="text-xs text-muted-foreground">
                   <span className="normal-case">{row.set_title}</span>
                   <Dot />
-                  {t(`kinds.${row.set_kind}`)}
+                  {named("kinds", row.set_kind)}
                   <Dot />
                   <time dateTime={row.at} suppressHydrationWarning>
                     {localTime.date(row.at)}
@@ -128,7 +132,7 @@ export function QualityList({
                   variant="outline"
                   className="h-7 px-3 text-sm font-light"
                 >
-                  {t(`flags.${row.flag}`)}
+                  {named("flags", row.flag)}
                 </Badge>
               )}
               <span>
@@ -137,7 +141,10 @@ export function QualityList({
                   <>
                     <Dot />
                     {t("right", {
-                      percent: Math.round((row.correct / row.answers) * 100),
+                      percent: formatPercent(
+                        (row.correct / row.answers) * 100,
+                        locale
+                      ),
                     })}
                   </>
                 )}

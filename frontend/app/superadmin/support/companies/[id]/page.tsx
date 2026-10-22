@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { getFormatter, getTranslations } from "next-intl/server"
+import { getTranslations } from "next-intl/server"
 
 import { BackLink } from "@/components/back-link"
 import { CreditHistory } from "@/components/billing/credit-history"
@@ -19,6 +19,7 @@ import { Badge } from "@/components/ui/badge"
 import { WrappedEmail } from "@/components/wrapped-email"
 import { Dot } from "@/components/dot"
 import { LIST_BOX, PAGE_SIZE } from "@/constants/lists"
+import { hasMessage } from "@/lib/messages"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type {
@@ -71,7 +72,6 @@ export default async function SupportCompanyPage({
   const tab = TABS.find((name) => name === asked) ?? "money"
   const t = await getTranslations("superadmin")
   const roles = await getTranslations("roles")
-  const format = await getFormatter()
   const api = `/companies/superadmin/support/companies/${id}`
   // Only the open tab's first page, asked with the company and its AI spend.
   const first = <T,>(path: string) =>
@@ -137,11 +137,11 @@ export default async function SupportCompanyPage({
       {/* One line on desktop; on phones, the held credits on a line of their own. */}
       <p className="text-lg">
         {t("supportAvailable", {
-          available: format.number(company.balance - company.reserved),
+          available: company.balance - company.reserved,
         })}
         <Dot className="max-sm:hidden" />
         <span className="max-sm:block">
-          {t("supportHeld", { reserved: format.number(company.reserved) })}
+          {t("supportHeld", { reserved: company.reserved })}
         </span>
       </p>
 
@@ -196,7 +196,9 @@ export default async function SupportCompanyPage({
                         variant="outline"
                         className="h-7 px-3 text-sm font-light sm:hidden"
                       >
-                        {roles(member.role)}
+                        {hasMessage(roles, member.role)
+                          ? roles(member.role)
+                          : member.role}
                       </Badge>
                     </span>
                   </span>
@@ -204,7 +206,9 @@ export default async function SupportCompanyPage({
                     variant="outline"
                     className="h-7 px-3 text-sm font-light max-sm:hidden"
                   >
-                    {roles(member.role)}
+                    {hasMessage(roles, member.role)
+                      ? roles(member.role)
+                      : member.role}
                   </Badge>
                 </MemberLink>
               </li>

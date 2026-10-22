@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useFormatter, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
@@ -19,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { MAX_ADJUSTMENT_NOTE } from "@/constants/limits"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 
 const FIELD =
   "rounded-full border border-transparent transition-colors focus-within:border-ring"
@@ -37,7 +38,6 @@ export function AdjustCredits({
 }) {
   const t = useTranslations("superadmin")
   const common = useTranslations("common")
-  const format = useFormatter()
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const [confirming, setConfirming] = useState(false)
@@ -94,11 +94,12 @@ export function AdjustCredits({
           <DialogHeader>
             <DialogTitle>
               {confirming
-                ? t("adjustConfirmTitle", {
-                    amount: format.number(credits, { signDisplay: "always" }),
+                ? t.rich("adjustConfirmTitle", {
+                    amount: credits,
                     name,
+                    ...bdi,
                   })
-                : t("adjustTitle", { name })}
+                : t.rich("adjustTitle", { name, ...bdi })}
             </DialogTitle>
             <DialogDescription>
               {confirming ? note.trim() : t("adjustText")}

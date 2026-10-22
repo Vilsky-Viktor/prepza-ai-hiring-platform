@@ -78,6 +78,17 @@ export function FinishDialog({
   const rounds = useTranslations("rounds")
   const common = useTranslations("common")
 
+  // What finishing ends, and how many unanswered questions count as wrong when known.
+  function endsText() {
+    if (unanswered === null) {
+      return sections > 1 ? t("endsAll", { count: sections }) : t("endsOne")
+    }
+
+    return sections > 1
+      ? t("endsAllUnscored", { sections, count: unanswered })
+      : t("endsOneUnscored", { count: unanswered })
+  }
+
   return (
     <Dialog
       open={open}
@@ -90,10 +101,7 @@ export function FinishDialog({
       <DialogContent showCloseButton={false}>
         <DialogHeader className="gap-4">
           <DialogTitle className="no-dot mb-2">{t("finishTitle")}</DialogTitle>
-          <DialogDescription>
-            {sections > 1 ? t("endsAll", { count: sections }) : t("endsOne")}
-            {unanswered !== null && ` ${t("unscored", { count: unanswered })}`}
-          </DialogDescription>
+          <DialogDescription>{endsText()}</DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <DialogClose

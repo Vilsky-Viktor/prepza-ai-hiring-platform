@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import { WrappedEmail } from "@/components/wrapped-email"
 import type { MemberRole } from "@/constants/roles"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { hasMessage } from "@/lib/messages"
 import type { CompanyMember } from "@/types/company"
 
 export function MemberRow({
@@ -78,7 +79,7 @@ export function MemberRow({
             />
           ) : (
             <Badge variant="secondary" className="h-7 px-3 text-sm font-light">
-              {roles(role)}
+              {hasMessage(roles, role) ? roles(role) : role}
             </Badge>
           )}
           {member.removable && (

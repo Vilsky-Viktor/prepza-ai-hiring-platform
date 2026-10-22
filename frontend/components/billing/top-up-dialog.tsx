@@ -18,6 +18,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { Catalog } from "@/types/billing"
 
 /** The top-up button and its dialog: any number of candidates, and the automatic top-up, for
@@ -69,7 +70,9 @@ export function TopUpDialog({
         data-testid="top-up-dialog"
       >
         <DialogHeader>
-          <DialogTitle>{t("topUpTitle", { name: title })}</DialogTitle>
+          <DialogTitle>
+            {t.rich("topUpTitle", { name: title, ...bdi })}
+          </DialogTitle>
           <DialogDescription className="text-base">
             {t("topUpNote")} {t("taxes")}
           </DialogDescription>

@@ -33,6 +33,7 @@ import {
   MAX_CANDIDATE_NAME_LENGTH,
 } from "@/constants/limits"
 import { ApiError, apiFetch } from "@/lib/api"
+import { bdi } from "@/lib/bidi"
 import type { BulkInviteResult } from "@/types/company"
 
 // A field as in "Add member".
@@ -122,7 +123,7 @@ export function InviteCandidate({
       if (result.invited.length > 0) {
         toast.success(
           result.invited.length === 1
-            ? share("sent", { email: result.invited[0] })
+            ? share.rich("sent", { email: result.invited[0], ...bdi })
             : t("invitedMany", { count: result.invited.length })
         )
         router.refresh()

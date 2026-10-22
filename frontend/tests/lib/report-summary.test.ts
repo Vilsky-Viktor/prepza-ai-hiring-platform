@@ -21,11 +21,13 @@ const report: CandidateReportData = {
 
 describe("candidateLabel", () => {
   it("names a candidate with their email once the name is known", () => {
-    expect(candidateLabel(report)).toBe("Ann Lee (ann@example.com)")
+    expect(candidateLabel(report, t)).toBe(
+      'nameWithEmail:{"name":"Ann Lee","email":"ann@example.com"}'
+    )
   })
 
   it("is the email while the name is unknown", () => {
-    expect(candidateLabel({ email: "ann@example.com", name: null })).toBe(
+    expect(candidateLabel({ email: "ann@example.com", name: null }, t)).toBe(
       "ann@example.com"
     )
   })
@@ -34,7 +36,13 @@ describe("candidateLabel", () => {
 describe("reportSummary", () => {
   it("names the candidate in the shared summary", () => {
     expect(reportSummary(report, t, "en").split("\n")[1]).toMatch(
-      /^Ann Lee \(ann@example\.com\): 80%, /
+      /^nameWithEmail:\{"name":"Ann Lee","email":"ann@example\.com"\}: 80%, /
+    )
+  })
+
+  it("writes the passing grade as the language writes a percentage", () => {
+    expect(reportSummary(report, t, "tr").split("\n")[1]).toContain(
+      '"mark":"%70"'
     )
   })
 })

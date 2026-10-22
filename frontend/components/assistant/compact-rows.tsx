@@ -9,6 +9,7 @@ import { LocalizedLink } from "@/components/localized-link"
 import { Badge } from "@/components/ui/badge"
 import { formatPercent } from "@/lib/format"
 import { gradeTone } from "@/lib/grade-tone"
+import { hasMessage } from "@/lib/messages"
 
 type Row = { item: Record<string, unknown>; href: string | null }
 
@@ -117,7 +118,9 @@ export function CandidateTable({
                 }
                 className="h-5 px-2 text-xs font-light"
               >
-                {statuses(candidate.status)}
+                {hasMessage(statuses, candidate.status)
+                  ? statuses(candidate.status)
+                  : candidate.status}
               </Badge>
             </span>
           </RowLink>

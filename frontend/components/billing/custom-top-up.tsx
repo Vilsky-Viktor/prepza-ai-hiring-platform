@@ -115,7 +115,7 @@ export function CustomTopUp({
           thumb={{
             "aria-label": t("howMany"),
             getAriaValueText: () =>
-              `${t("candidates", { count })}, ${price(bought.cents)}`,
+              t("customValueText", { count, price: price(bought.cents) }),
             onKeyDown,
             // The slider's own count, over the knob, moving and growing with it.
             children: (
@@ -206,8 +206,7 @@ export function CustomTopUp({
           )}
           data-testid={bought.upgraded ? "custom-upgraded" : undefined}
         >
-          {bought.upgraded &&
-            t("upgraded", { count: number(bought.candidates) })}
+          {bought.upgraded && t("upgraded", { count: bought.candidates })}
         </p>
       </div>
       {/* A little closer to the cards than the dialog's other gaps. */}

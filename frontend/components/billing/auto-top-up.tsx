@@ -77,7 +77,6 @@ export function AutoTopUpSetting({
   const buys = Object.fromEntries(
     catalog.products.map((item) => [item.key, item.candidates])
   )
-  const credits = (count: number) => count.toLocaleString(locale)
   const checkoutFor = (transactionId: string) => ({
     catalog,
     checkout: { transactionId },
@@ -221,7 +220,7 @@ export function AutoTopUpSetting({
             onChange={setThreshold}
             options={setting.thresholds.map((value) => ({
               value: String(value),
-              label: t("level", { threshold: credits(value) }),
+              label: t("level", { threshold: value }),
             }))}
           />
         </form>

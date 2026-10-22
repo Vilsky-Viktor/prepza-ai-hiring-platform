@@ -8,6 +8,7 @@ import { LIST_BOX } from "@/constants/lists"
 import { useLocalTime } from "@/hooks/use-local-time"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
+import { hasMessage } from "@/lib/messages"
 import type { CompanyAction } from "@/types/company"
 
 /** A company's action log from `path` (the API list with its filters), newest first, loading
@@ -42,6 +43,13 @@ export function ActionList({
     return action.target_kind === "member" ? t("formerMember") : null
   }
 
+  // A value from the API by its name in `group`, or as it is when the log has no name for it.
+  function named(group: "actions" | "permissions" | "via", value: string) {
+    const key = `${group}.${value}` as const
+
+    return hasMessage(t, key) ? t(key) : value
+  }
+
   if (!loaded) {
     return null
   }
@@ -64,7 +72,7 @@ export function ActionList({
       renderItem={(action) => (
         <div className="space-y-1 p-6">
           <p className="text-lg font-medium">
-            {t(`actions.${action.action}`)}
+            {named("actions", action.action)}
             {target(action) && (
               <span className="font-normal break-words normal-case">
                 <Dot />
@@ -76,7 +84,7 @@ export function ActionList({
                 <Dot />
                 {t("removed", {
                   permissions: format.list(
-                    action.removed.map((item) => t(`permissions.${item}`))
+                    action.removed.map((item) => named("permissions", item))
                   ),
                 })}
               </span>
@@ -87,7 +95,7 @@ export function ActionList({
               items={[
                 action.user_email ?? t("formerMember"),
                 localTime.dateTime(action.created_at),
-                action.via && t(`via.${action.via}`),
+                action.via && named("via", action.via),
               ]}
             />
           </p>

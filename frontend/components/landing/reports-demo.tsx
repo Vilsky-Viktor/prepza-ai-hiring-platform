@@ -18,6 +18,7 @@ import {
   pointedAt,
   useDemoSteps,
 } from "@/hooks/use-demo-steps"
+import { bdi } from "@/lib/bidi"
 
 // A step and what it shows: the screen, whether the share popup is open or the "sent" notice
 // shows, and how far down the report is scrolled (0 to 1).
@@ -185,7 +186,7 @@ export function ReportsDemo() {
         />
         <DemoSentNotice
           shown={step.notice === true}
-          text={report("sent", { email: DEMO_SHARE_EMAIL })}
+          text={report.rich("sent", { email: DEMO_SHARE_EMAIL, ...bdi })}
         />
       </DemoPanel>
     </div>

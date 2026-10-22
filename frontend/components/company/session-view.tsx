@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import { useSessionPlayer } from "@/hooks/use-session-player"
 import { useSessionBrand } from "@/hooks/use-session-brand"
 import { useSessionDone } from "@/hooks/use-session-done"
+import { bdi } from "@/lib/bidi"
 import { setTimedPageOver } from "@/lib/timed-page"
 import type { Brand } from "@/types/company"
 
@@ -164,7 +165,7 @@ function SessionFinished({
           render={<a href={brand.return_url} />}
           nativeButton={false}
         >
-          {t("backTo", { company: brand.company })}
+          {t.rich("backTo", { company: brand.company, ...bdi })}
         </Button>
       ) : (
         testHref && (

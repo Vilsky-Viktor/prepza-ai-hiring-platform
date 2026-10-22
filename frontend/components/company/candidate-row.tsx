@@ -12,6 +12,7 @@ import { WrappedEmail } from "@/components/wrapped-email"
 import { gradeTone } from "@/lib/grade-tone"
 import type { Candidate } from "@/types/company"
 import { formatPercent } from "@/lib/format"
+import { hasMessage } from "@/lib/messages"
 
 // What a row shows; the assistant's answers may leave out the date or the progress.
 export type CandidateRowData = Pick<
@@ -108,7 +109,9 @@ export function CandidateRow({
               }
               className="h-7 px-3 text-sm font-light"
             >
-              {statuses(candidate.status)}
+              {hasMessage(statuses, candidate.status)
+                ? statuses(candidate.status)
+                : candidate.status}
             </Badge>
           </span>
         </span>

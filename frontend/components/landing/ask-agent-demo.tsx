@@ -1,7 +1,7 @@
 "use client"
 
 import { HistoryIcon, SparklesIcon, SquarePenIcon, XIcon } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { Fragment, useEffect, useRef, useState } from "react"
 
 import { ChatBubble, ThinkingDots } from "@/components/chat-bubble"
@@ -21,6 +21,8 @@ import {
   type AskAgentQuestion,
 } from "@/constants/ask-agent-demo"
 import { type DemoStep, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
+import { bdi, bdiText } from "@/lib/bidi"
+import { formatPercent } from "@/lib/format"
 import { graphemes, sliceGraphemes } from "@/lib/graphemes"
 
 // A step and what it shows: how many of the chat's items (each question, its answer, and the
@@ -109,11 +111,15 @@ function demoSteps(letters: Record<AskAgentQuestion, number>): Step[] {
 export function AskAgentDemo() {
   const t = useTranslations("landing.justAsk")
   const landing = useTranslations("landing")
+  const locale = useLocale()
   const assistant = useTranslations("assistant")
   const common = useTranslations("common")
   const values = { interview: ASK_AGENT_INTERVIEW, email: ASK_AGENT_EMAIL }
   const questions = Object.fromEntries(
-    ASK_AGENT_QUESTIONS.map((key) => [key, t(`questions.${key}`, values)])
+    ASK_AGENT_QUESTIONS.map((key) => [
+      key,
+      t.markup(`questions.${key}`, { ...values, ...bdiText }),
+    ])
   ) as Record<AskAgentQuestion, string>
   const { stats, help, invite } = questions
   // Made once, so the demo plays on as it renders.
@@ -138,7 +144,7 @@ export function AskAgentDemo() {
     : step.name.startsWith("focus-")
       ? ""
       : asking
-  const { passed, total } = ASK_AGENT_RESULTS
+  const { passed, total, passMark, best } = ASK_AGENT_RESULTS
   const answer = (text: React.ReactNode) => (
     <ChatBubble
       role="assistant"
@@ -150,8 +156,11 @@ export function AskAgentDemo() {
     <ChatBubble key="q-stats" role="user" content={stats} />,
     answer(
       t("answers.stats", {
-        ...ASK_AGENT_RESULTS,
-        percent: Math.round((passed / total) * 100),
+        passed,
+        total,
+        percent: formatPercent((passed / total) * 100, locale),
+        passMark: formatPercent(passMark, locale),
+        best: formatPercent(best, locale),
       })
     ),
     <ChatBubble key="q-help" role="user" content={help} />,
@@ -169,7 +178,7 @@ export function AskAgentDemo() {
       confirmRef={confirmRef}
       pressed={step.name === "confirm"}
     />,
-    answer(t("answers.invite", values)),
+    answer(t.rich("answers.invite", { ...values, ...bdi })),
   ]
 
   // The latest message comes into view as it's added; back to the top as the chat starts again.

@@ -7,6 +7,7 @@ import { OutcomeDialog } from "@/components/billing/outcome-dialog"
 import { Button } from "@/components/ui/button"
 import { PAYMENT_FAILURE_TIMEOUT_MS } from "@/constants/paddle"
 import { apiFetch } from "@/lib/api"
+import { hasMessage } from "@/lib/messages"
 import {
   closeCheckout,
   reopenCheckout,
@@ -51,7 +52,7 @@ export function PaymentFailed() {
     []
   )
 
-  const key = `paymentFailed.${reason}`
+  const key = `paymentFailed.${reason}` as const
 
   function tryAgain() {
     if (!failure) {
@@ -69,7 +70,7 @@ export function PaymentFailed() {
       onClose={() => setFailure(null)}
       tone="failure"
       title={t("paymentFailedTitle")}
-      description={t(t.has(key) ? key : `paymentFailed.${OTHER}`)}
+      description={t(hasMessage(t, key) ? key : `paymentFailed.${OTHER}`)}
       action={<Button onClick={tryAgain}>{t("tryAnotherMethod")}</Button>}
       data-testid="payment-failed"
       data-reason={failure ? reason : undefined}

@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "cn"
-import { useFormatter, useLocale, useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 import { PassStatus } from "@/components/company/pass-status"
 import { Dot, Dotted } from "@/components/dot"
@@ -165,7 +165,6 @@ function DemoTopicAnswers({ topic }: { topic: DemoTopic }) {
  * multi-answer one's ticks marked right or wrong, with its points. */
 function DemoAnswerItem({ answer }: { answer: DemoAnswer }) {
   const rounds = useTranslations("rounds")
-  const format = useFormatter()
 
   return (
     <li className="space-y-3 p-4">
@@ -197,11 +196,7 @@ function DemoAnswerItem({ answer }: { answer: DemoAnswer }) {
             <Dotted
               items={[
                 rounds("rightPicks", answer.multi),
-                rounds("points", {
-                  points: format.number(answer.multi.points, {
-                    maximumFractionDigits: 2,
-                  }),
-                }),
+                rounds("points", { points: answer.multi.points }),
               ]}
             />
           </p>

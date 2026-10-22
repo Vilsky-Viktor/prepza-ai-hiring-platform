@@ -14,6 +14,8 @@ import { WebhookActions } from "@/components/company/webhook-actions"
 import { MAX_KEY_NAME, MAX_WEBHOOK_URL } from "@/constants/api"
 import type { ApiKey, ApiWebhook, PermissionOptions } from "@/types/api-access"
 import { LIST_BOX } from "@/constants/lists"
+import { bdi } from "@/lib/bidi"
+import { hasMessage } from "@/lib/messages"
 
 /** "New key", in the title row while the keys tab is open: a name, when it expires and what it
  * may do (starting from the api service's defaults), then the key itself, shown this once. */
@@ -42,10 +44,11 @@ export function NewKey({
       choice={{
         field: "expiry",
         label: t("expiresIn"),
-        options: expiries.map((expiry) => ({
-          value: expiry,
-          label: t(`expiries.${expiry}`),
-        })),
+        options: expiries.map((expiry) => {
+          const key = `expiries.${expiry}` as const
+
+          return { value: expiry, label: hasMessage(t, key) ? t(key) : expiry }
+        }),
         warning: { value: "never", text: t("neverWarning") },
       }}
       ticks={{
@@ -165,7 +168,7 @@ export function ApiKeys({
                   path={`${manage}/${key.id}?company_id=${companyId}`}
                   label={t("removeKey")}
                   title={t("removeKeyTitle")}
-                  text={t("removeKeyText", { name: key.name })}
+                  text={t.rich("removeKeyText", { name: key.name, ...bdi })}
                   failed={t("removeFailed")}
                 />
               </span>
@@ -227,7 +230,7 @@ export function ApiWebhooks({
                   path={`${manage}/${hook.id}?company_id=${companyId}`}
                   label={t("removeWebhook")}
                   title={t("removeWebhookTitle")}
-                  text={t("removeWebhookText", { url: hook.url })}
+                  text={t.rich("removeWebhookText", { url: hook.url, ...bdi })}
                   failed={t("removeFailed")}
                 />
               )}
