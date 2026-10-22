@@ -9,13 +9,10 @@ const eslintConfig = defineConfig([
   { settings: { react: { version: "19" } } },
   // Rule 2: a function's branching stays readable; the generated API types are exempt.
   { ignores: ["types/api/**"], rules: { complexity: ["error", 15] } },
-  // TODO(rule 2): InterviewPage (49) and AutoTopUpSetting (27) are over 15; split them at their
-  // seams once the work open in these files is committed.
+  // TODO(rule 2): InterviewPage (49) is over 15; split it at its seams once the work open in
+  // this file is committed.
   {
-    files: [
-      "app/companies/\\[companyId\\]/interviews/\\[id\\]/page.tsx",
-      "components/billing/auto-top-up.tsx",
-    ],
+    files: ["app/companies/\\[companyId\\]/interviews/\\[id\\]/page.tsx"],
     rules: { complexity: "off" },
   },
   // Override default ignores of eslint-config-next.
