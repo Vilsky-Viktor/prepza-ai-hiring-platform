@@ -8,12 +8,17 @@ from prepza_common.money import money
 from app.constants.member_emails import COMPANIES_LINK, TOP_UP_LINK, MemberEmail
 from app.constants.unsubscribe import UnsubscribeType
 from app.helpers.emails import optional_email
-from app.helpers.rendering import Section, render
+from app.helpers.rendering import Section, email_language, render
 from app.models.email import Email
 
 
 def recipient_data(recipient: dict) -> dict:
     return {"email": recipient["email"], "language": recipient["language"]}
+
+
+def long_date(day: str, language: str) -> str:
+    """A day (YYYY-MM-DD) as the recipient's language writes it in full ("8 November 2026")."""
+    return format_date(date.fromisoformat(day), "long", locale=language)
 
 
 def digest_email(recipient: dict, sections: list[Section], site_url: str, secret: str) -> Email:
@@ -79,7 +84,7 @@ def price_change_email(recipient: dict, company: str, notice: dict, link: str) -
         "company": company,
         "price": money(notice["price"], notice["currency"], language),
         "new_price": money(notice["new_price"], notice["currency"], language),
-        "date": format_date(date.fromisoformat(notice["date"]), "long", locale=language),
+        "date": long_date(notice["date"], language),
     }
 
     return render("top_up_price_change", data, link)
@@ -87,7 +92,9 @@ def price_change_email(recipient: dict, company: str, notice: dict, link: str) -
 
 def legal_email(recipient: dict, document: str, version: str, site_url: str) -> Email:
     """A notice of a change to a legal document: a service email, whatever the settings. Its
-    button opens the new version."""
-    data = {**recipient_data(recipient), "date": version}
+    button opens the new version. The day it applies is written in the recipient's language."""
+    kind = f"legal_{document}"
+    language = email_language(kind, recipient["language"])
+    data = {**recipient_data(recipient), "date": long_date(version, language)}
 
-    return render(f"legal_{document}", data, f"{site_url.rstrip('/')}/{document}")
+    return render(kind, data, f"{site_url.rstrip('/')}/{document}")

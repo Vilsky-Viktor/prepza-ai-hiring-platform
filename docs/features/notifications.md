@@ -183,7 +183,7 @@ Legal notices and campaigns go through one bulk sender (`services/bulk.py`):
 
 #### Legal notices
 
-A notice of a significant change to the terms, the privacy policy or the DPA, asked for in the admin zone (see [Legal notices](admin-zone.md#legal-notices)). It's a service email, sent whatever the email settings, in each recipient's language: the terms and privacy notices to every account (library's `GET /internal/users/ids`), the DPA's to every company's joined owners and admins (companies' `GET /internal/companies/editors`). It says the day the new version applies and links to it. Asking twice, or two superadmins at once, starts it once. It also goes in the bell (see [The bell](#the-bell)).
+A notice of a significant change to the terms, the privacy policy or the DPA, asked for in the admin zone (see [Legal notices](admin-zone.md#legal-notices)). It's a service email, sent whatever the email settings, in each recipient's language: the terms and privacy notices to every account (library's `GET /internal/users/ids`), the DPA's to every company's joined owners and admins (companies' `GET /internal/companies/editors`). It says the day the new version applies, written as the recipient's language writes dates (8 November 2026, 8. November 2026), and links to it. Counts in the digest and reminders are formatted for the language too (1,234 or 1.234). Asking twice, or two superadmins at once, starts it once. It also goes in the bell (see [The bell](#the-bell)).
 
 Until the new version applies, the site shows a thin banner above the page to whom it concerns (`GET /me/legal-changes`: the terms and the privacy policy to everyone, the DPA to those it was sent to), with a link to it. Closing it keeps it closed in that browser for that version.
 

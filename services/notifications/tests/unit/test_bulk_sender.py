@@ -240,7 +240,8 @@ def test_a_legal_notice_goes_whatever_the_settings(store):
     store.add("ann")
 
     assert run() == 1
-    assert store.sent[0].subject == "We're updating prepza's terms on 2026-12-01"
+    # The day it applies, as the recipient's language writes it.
+    assert "December 1, 2026" in store.sent[0].subject
 
 
 def test_a_campaign_deleted_while_sending_is_stopped_for_the_rest(store, monkeypatch):

@@ -1,6 +1,7 @@
 import re
 from html import escape
 
+from babel.numbers import format_decimal
 from prepza_common.constants import DEFAULT_LANGUAGE, OPERATOR, RTL_LANGUAGES
 
 from app.constants.email import LTR_VALUE
@@ -32,6 +33,14 @@ Section = tuple[str, list[tuple[str, dict, str]]]
 def email_language(kind: str, language: str | None) -> str:
     """The language the `kind` email is written in: English until that language has it."""
     return language if kind in EMAILS.get(language, {}) else DEFAULT_LANGUAGE
+
+
+def shown(value, language: str) -> str:
+    """A value as the email shows it: a number formatted for the language (1,234 or 1 234)."""
+    if isinstance(value, int) and not isinstance(value, bool):
+        return format_decimal(value, locale=language)
+
+    return str(value)
 
 
 def render(
@@ -78,7 +87,18 @@ def render(
     footer_links = [(texts[key], url) for key, url in links]
     # Each list's heading and its lines, filled in.
     filled = [
-        (heading, [(template["rows"][row].format(**values), url) for row, values, url in rows])
+        (
+            heading,
+            [
+                (
+                    template["rows"][row].format(
+                        **{key: shown(value, language) for key, value in values.items()}
+                    ),
+                    url,
+                )
+                for row, values, url in rows
+            ],
+        )
         for heading, rows in sections
     ]
 
