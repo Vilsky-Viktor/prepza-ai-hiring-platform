@@ -43,11 +43,11 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
   // The company picker: all companies outside a company's pages, the page's company on them.
   const picker = panel.getByTestId("assistant-company").getByRole("button");
   await expect(picker).toBeVisible();
-  await expect(picker).not.toHaveText(company.name);
+  await expect(picker).not.toContainText(company.name);
   await panel.getByTestId("assistant-close").click();
   await visit(owner, `/companies/${company.id}/interviews`);
   panel = await openPanel(owner);
-  await expect(picker).toHaveText(company.name);
+  await expect(picker).toContainText(company.name);
 
   // An answer: the tool at work, the markdown, and the candidate's row linking to their page.
   const sent = await assistantAnswers(owner);
@@ -70,7 +70,7 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
   // Picking all companies (the menu's first choice) sends no company with the next message.
   await picker.click();
   await owner.getByRole("menuitemradio").first().click();
-  await expect(picker).not.toHaveText(company.name);
+  await expect(picker).not.toContainText(company.name);
 
   // Voice from the keyboard: Enter starts, Enter stops; the transcript is sent as the message.
   // The page's clock is Playwright's, so a long enough recording takes no time.
