@@ -135,6 +135,9 @@ EXCLUDED_TOOL = (
 # past the companies that don't allow AI apps (companies refuses those on its own routes); a
 # page's guide is about the page the user is on in prepza, and an app has none.
 MCP_UNLISTED = frozenset({"list_notifications", "get_page_guide"})
+# A refused call is logged with the tool's name: an unknown one is the app's own text, so only
+# this much of it (a real name is at most 64 characters).
+MAX_LOGGED_TOOL_NAME = 64
 # What an app reads when the connection's account is gone or disabled.
 ACCOUNT_GONE = "This prepza account no longer exists or is disabled."
 # The tool that changes the user's language: their kept sign-in is dropped after it, so the next

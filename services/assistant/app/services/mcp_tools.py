@@ -20,6 +20,7 @@ from app.constants.mcp import (
     ACTIVE_KEY,
     EXCLUDED_TOOL,
     KEY_FUNNEL_CLIENT,
+    MAX_LOGGED_TOOL_NAME,
     MCP_EXCLUDED,
     MCP_SCOPE,
     MCP_UNLISTED,
@@ -119,19 +120,34 @@ async def checked_write(tool: Tool, arguments: dict, user: User, token: str) -> 
     return arguments
 
 
-def refusal(name: str, tool: Tool | None, access: Access) -> str | None:
-    """Why an app may not call this tool at all, or None."""
+def logged(why: str, name: str, access: Access, detail: str) -> types.CallToolResult:
+    """A refused call as the app reads it, logged with ids and the tool's name only: never the
+    token or the arguments. An unknown tool's name is the app's text, so only its start."""
+    connection = access.key_id or access.grant_id
+    logger.info(
+        "An AI app's call was refused (%s): tool %s, user %s, connection %s",
+        why,
+        name[:MAX_LOGGED_TOOL_NAME],
+        access.subject,
+        connection,
+    )
+
+    return error_result(detail)
+
+
+def refusal(name: str, tool: Tool | None, access: Access) -> types.CallToolResult | None:
+    """Why an app may not call this tool at all (logged), or None."""
     if name in MCP_EXCLUDED:
-        return EXCLUDED_TOOL
+        return logged("excluded tool", name, access, EXCLUDED_TOOL)
 
     if tool is None:
-        return UNKNOWN_TOOL
+        return logged("unknown tool", name, access, UNKNOWN_TOOL)
 
     if not key_may_use(access, name):
-        return key_refusal(name)
+        return logged("key permission", name, access, key_refusal(name))
 
     if tool.method != "GET" and not writes_allowed(access):
-        return READ_ONLY
+        return logged("read-only connection", name, access, READ_ONLY)
 
     return None
 
@@ -182,19 +198,19 @@ async def call(name: str, arguments: dict, access: Access) -> types.CallToolResu
     refused = refusal(name, tool, access)
 
     if refused:
-        return error_result(refused)
+        return refused
 
     signed_in = await firebase_tokens.sign_in(access.subject)
 
     if signed_in is None:
-        return error_result(ACCOUNT_GONE)
+        return logged("account gone", name, access, ACCOUNT_GONE)
 
     user, token = signed_in
     texts = [value for value in arguments.values() if isinstance(value, str)]
 
     # Secrets are never sent through an AI app: entered in prepza itself only.
     if secret_in(texts) is not None:
-        return error_result(translate(SECRET_REMOVED, user.language))
+        return logged("secret in arguments", name, access, translate(SECRET_REMOVED, user.language))
 
     # An API key's company: companies refuses any other one (the X-Assistant header).
     if access.key_id:
@@ -210,7 +226,9 @@ async def call(name: str, arguments: dict, access: Access) -> types.CallToolResu
         # As in the app's panel: a company that isn't one of the user's (or the key's) isn't
         # called at all.
         if foreign_company(arguments, companies):
-            return error_result(translate(COMPANY_NOT_FOUND, user.language))
+            detail = translate(COMPANY_NOT_FOUND, user.language)
+
+            return logged("company not the user's", name, access, detail)
 
         if tool.method != "GET":
             arguments = await checked_write(tool, arguments, user, token)

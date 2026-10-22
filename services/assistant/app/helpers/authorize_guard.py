@@ -78,9 +78,11 @@ class GuardAuthorize:
 
         try:
             await self.app(scope, receive, guarded)
-        except Exception:
+        except Exception as error:
             if state["started"] or state["replaced"]:
                 raise
 
-            logger.warning("A request to connect couldn't be read", exc_info=True)
+            # The error's type only: its message and traceback can hold the request's values
+            # (state, redirect_uri, code_challenge).
+            logger.warning("A request to connect couldn't be read: %s", type(error).__name__)
             await refuse("unreadable")
