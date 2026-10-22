@@ -1,8 +1,8 @@
 ---
 title: "AI agents, MCP and APIs: what they are and how to use them in hiring"
 seoTitle: "AI Agents, MCP and APIs in Hiring: How to Use Them"
-description: "What an AI agent, MCP and an API are, how to use them safely in hiring, and how to run prepza from its agent, Claude, ChatGPT or your own platform."
-updated: "2026-10-21"
+description: "What an AI agent, MCP and an API are, how to use them safely in hiring, and how to run prepza from its AI assistant, Claude, ChatGPT or your own platform."
+updated: "2026-10-22"
 ---
 
 # AI agents, MCP and APIs: what they are and how to use them in hiring
@@ -40,7 +40,7 @@ For you, this means you can work with a tool from the chat you already use, with
 
 An API (application programming interface) is a set of fixed requests one program can send another: "list the candidates of this interview", "invite this email". Your developers write code that sends them. There's no AI involved: the same request always does the same thing, which is exactly what you want for automation that runs on its own.
 
-| | AI agent (in the app) | MCP (in Claude or ChatGPT) | API |
+| | Mira, the AI assistant (in the app) | MCP (in Claude or ChatGPT) | API |
 | --- | --- | --- | --- |
 | Who uses it | You, in prepza | You, in your AI chat | Your platform's code |
 | How you ask | In your own words | In your own words | Fixed requests a developer writes |
@@ -48,7 +48,7 @@ An API (application programming interface) is a set of fixed requests one progra
 | Best for | Quick questions and tasks | Mixing prepza with your other tools and files | Automation that runs without anyone watching |
 | Signs in as | You | You | A company key |
 
-Use an agent or MCP when a person is in the loop. Use the API when your own system should invite candidates and collect results by itself, for example from a careers site or an internal HR tool.
+Use Mira or MCP when a person is in the loop. Use the API when your own system should invite candidates and collect results by itself, for example from a careers site or an internal HR tool.
 
 ## What this is good for in hiring
 
@@ -79,9 +79,9 @@ Before connecting any AI app to work data, check your company's policy on AI too
 
 ## Three ways to work with prepza beyond its pages
 
-### 1. The built-in agent
+### 1. Mira, the built-in AI assistant
 
-Select **ask agent** in the header of any page. The agent knows your companies, interviews, candidates, credits and integrations, and how prepza works. It answers in your language, and you can type or speak.
+Select **ask Mira** in the header of any page. Mira, prepza's AI assistant, knows your companies, interviews, candidates, credits and integrations, and how prepza works. It answers in your language, and you can type or speak.
 
 - **It answers from your data**, with the same view you have: an admin sees what an admin sees, a viewer what a viewer sees.
 - **It knows the page you're on.** Ask "What can I do on this page?" for that page's guide, or "Who's best here?" on an interview's candidates, and it answers about that interview without asking which.
@@ -91,7 +91,7 @@ Select **ask agent** in the header of any page. The agent knows your companies, 
 
 ### 2. prepza in Claude or ChatGPT, through MCP
 
-If your team already works in Claude or ChatGPT, you can bring prepza there. prepza's MCP server offers the same tools as the built-in agent.
+If your team already works in Claude or ChatGPT, you can bring prepza there. prepza's MCP server offers the same tools as Mira, the built-in assistant.
 
 **To connect:**
 
@@ -131,8 +131,8 @@ Start from who does the work and how often.
 
 | Your situation | Use |
 | --- | --- |
-| You're in prepza and want a quick answer: who passed, who hasn't started, how many credits are left | The built-in agent |
-| You want to set something up in a few words: an interview from a job description, a pass mark, extra time | The built-in agent |
+| You're in prepza and want a quick answer: who passed, who hasn't started, how many credits are left | Mira, the built-in assistant |
+| You want to set something up in a few words: an interview from a job description, a pass mark, extra time | Mira, the built-in assistant |
 | You already work in Claude or ChatGPT all day and want prepza there too | MCP |
 | The task needs prepza plus something else: your documents, email drafts, another connected tool | MCP |
 | A recruiter on the go wants to check the pipeline from the AI app on their phone | MCP |
@@ -142,11 +142,11 @@ Start from who does the work and how often.
 
 A simple rule of thumb:
 
-- **A person asks, and checks each change:** the agent in prepza, or MCP if that person lives in Claude or ChatGPT.
+- **A person asks, and checks each change:** Mira in prepza, or MCP if that person lives in Claude or ChatGPT.
 - **Software acts on its own, the same way every time:** the API.
-- **Starting out:** try the built-in agent first. It needs no setup, and what you learn carries over to MCP.
+- **Starting out:** try Mira, the built-in assistant, first. It needs no setup, and what you learn carries over to MCP.
 
-They work together, too. A team can run invites from its HR system through the API, while recruiters ask the agent or their AI chat about the results.
+They work together, too. A team can run invites from its HR system through the API, while recruiters ask Mira or their AI chat about the results.
 
 ## Getting good results
 
@@ -158,7 +158,7 @@ They work together, too. A team can run invites from its HR system through the A
 
 ## Pricing
 
-The built-in agent, the MCP connection and the API are free to use. You pay only for candidates, the same as always: per candidate who answers at least one question, with no subscription. See [pricing](/pricing).
+Mira, the MCP connection and the API are free to use. You pay only for candidates, the same as always: per candidate who answers at least one question, with no subscription. See [pricing](/pricing).
 
 ## Related reading
 

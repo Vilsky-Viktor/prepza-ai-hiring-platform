@@ -2,7 +2,7 @@
 title: "Agent AI, MCP và API: là gì và cách dùng trong tuyển dụng"
 seoTitle: "Agent AI, MCP và API trong tuyển dụng: là gì và cách dùng"
 description: "Agent AI, MCP và API là gì, cách dùng an toàn trong tuyển dụng, và cách vận hành prepza từ trợ lý AI của nó, từ Claude, ChatGPT hoặc nền tảng của bạn."
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 # Agent AI, MCP và API: là gì và cách dùng trong tuyển dụng
@@ -40,7 +40,7 @@ Với bạn, điều này có nghĩa là bạn có thể làm việc với một
 
 API (giao diện lập trình ứng dụng) là một tập hợp các yêu cầu cố định mà một chương trình có thể gửi cho chương trình khác: "liệt kê ứng viên của buổi phỏng vấn này", "mời email này". Lập trình viên của bạn viết mã để gửi các yêu cầu đó. Không có AI tham gia: cùng một yêu cầu luôn cho cùng một kết quả, đúng như điều bạn cần cho tự động hóa chạy một mình.
 
-| | Trợ lý AI (trong ứng dụng) | MCP (trong Claude hoặc ChatGPT) | API |
+| | Mira, trợ lý AI (trong ứng dụng) | MCP (trong Claude hoặc ChatGPT) | API |
 | --- | --- | --- | --- |
 | Ai sử dụng | Bạn, trong prepza | Bạn, trong chat AI của bạn | Mã của nền tảng bạn |
 | Cách yêu cầu | Bằng lời của chính bạn | Bằng lời của chính bạn | Các yêu cầu cố định do lập trình viên viết |
@@ -48,7 +48,7 @@ API (giao diện lập trình ứng dụng) là một tập hợp các yêu cầ
 | Phù hợp nhất cho | Câu hỏi và việc nhanh | Kết hợp prepza với các công cụ và tệp khác của bạn | Tự động hóa chạy mà không cần ai theo dõi |
 | Đăng nhập với tư cách | Bạn | Bạn | Một khóa của công ty |
 
-Hãy dùng trợ lý AI hoặc MCP khi có người trực tiếp tham gia. Hãy dùng API khi hệ thống của bạn cần tự mời ứng viên và thu thập kết quả, ví dụ từ trang tuyển dụng hoặc một công cụ nhân sự nội bộ.
+Hãy dùng Mira hoặc MCP khi có người trực tiếp tham gia. Hãy dùng API khi hệ thống của bạn cần tự mời ứng viên và thu thập kết quả, ví dụ từ trang tuyển dụng hoặc một công cụ nhân sự nội bộ.
 
 ## Hữu ích gì trong tuyển dụng
 
@@ -79,9 +79,9 @@ Trước khi kết nối bất kỳ ứng dụng AI nào với dữ liệu công
 
 ## Ba cách làm việc với prepza ngoài các trang của nó
 
-### 1. Trợ lý AI tích hợp sẵn
+### 1. Mira, trợ lý AI tích hợp sẵn
 
-Chọn **hỏi trợ lý AI** ở thanh đầu trang của bất kỳ trang nào. Trợ lý biết các công ty, buổi phỏng vấn, ứng viên, credit và tích hợp của bạn, cũng như cách prepza hoạt động. Nó trả lời bằng ngôn ngữ của bạn, và bạn có thể gõ hoặc nói.
+Chọn **hỏi Mira** ở thanh đầu trang của bất kỳ trang nào. Mira, trợ lý AI của prepza, biết các công ty, buổi phỏng vấn, ứng viên, credit và tích hợp của bạn, cũng như cách prepza hoạt động. Nó trả lời bằng ngôn ngữ của bạn, và bạn có thể gõ hoặc nói.
 
 - **Nó trả lời từ dữ liệu của bạn**, với cùng phạm vi bạn thấy: quản trị viên thấy những gì quản trị viên thấy, người xem thấy những gì người xem thấy.
 - **Nó biết bạn đang ở trang nào.** Hỏi "Tôi có thể làm gì trên trang này?" để xem hướng dẫn của trang đó, hoặc "Ai là người giỏi nhất ở đây?" trong danh sách ứng viên của một buổi phỏng vấn, và nó trả lời về buổi phỏng vấn đó mà không hỏi lại là buổi nào.
@@ -91,7 +91,7 @@ Chọn **hỏi trợ lý AI** ở thanh đầu trang của bất kỳ trang nào
 
 ### 2. prepza trong Claude hoặc ChatGPT, qua MCP
 
-Nếu bạn đã làm việc trong Claude hoặc ChatGPT, bạn có thể đưa prepza vào đó. Máy chủ MCP của prepza cung cấp cùng các công cụ như trợ lý AI tích hợp sẵn.
+Nếu bạn đã làm việc trong Claude hoặc ChatGPT, bạn có thể đưa prepza vào đó. Máy chủ MCP của prepza cung cấp cùng các công cụ như Mira, trợ lý tích hợp sẵn.
 
 **Cách kết nối:**
 
@@ -131,8 +131,8 @@ Hãy bắt đầu từ việc ai làm và làm thường xuyên đến đâu.
 
 | Tình huống của bạn | Dùng |
 | --- | --- |
-| Bạn đang ở trong prepza và muốn câu trả lời nhanh: ai đã đạt, ai chưa bắt đầu, còn bao nhiêu credit | Trợ lý AI tích hợp sẵn |
-| Bạn muốn thiết lập một việc bằng vài lời: buổi phỏng vấn từ mô tả công việc, điểm đạt, thêm thời gian | Trợ lý AI tích hợp sẵn |
+| Bạn đang ở trong prepza và muốn câu trả lời nhanh: ai đã đạt, ai chưa bắt đầu, còn bao nhiêu credit | Mira, trợ lý tích hợp sẵn |
+| Bạn muốn thiết lập một việc bằng vài lời: buổi phỏng vấn từ mô tả công việc, điểm đạt, thêm thời gian | Mira, trợ lý tích hợp sẵn |
 | Bạn đã làm việc cả ngày trong Claude hoặc ChatGPT và muốn có prepza ở đó | MCP |
 | Công việc cần prepza cùng thứ khác: tài liệu của bạn, bản nháp email, một công cụ đã kết nối khác | MCP |
 | Một recruiter đang di chuyển muốn kiểm tra quy trình tuyển dụng từ ứng dụng AI trên điện thoại | MCP |
@@ -142,11 +142,11 @@ Hãy bắt đầu từ việc ai làm và làm thường xuyên đến đâu.
 
 Một nguyên tắc đơn giản:
 
-- **Một người hỏi và kiểm tra từng thay đổi:** trợ lý AI trong prepza, hoặc MCP nếu người đó làm việc cả ngày trong Claude hay ChatGPT.
+- **Một người hỏi và kiểm tra từng thay đổi:** Mira trong prepza, hoặc MCP nếu người đó làm việc cả ngày trong Claude hay ChatGPT.
 - **Phần mềm tự hành động, lần nào cũng như nhau:** API.
-- **Mới bắt đầu:** hãy thử trợ lý AI tích hợp sẵn trước. Nó không cần thiết lập, và những gì bạn học được cũng áp dụng cho MCP.
+- **Mới bắt đầu:** hãy thử Mira, trợ lý tích hợp sẵn, trước. Nó không cần thiết lập, và những gì bạn học được cũng áp dụng cho MCP.
 
-Chúng cũng có thể dùng cùng nhau. Một nhóm có thể gửi lời mời từ hệ thống nhân sự qua API, trong khi các recruiter hỏi trợ lý AI hoặc chat AI của họ về kết quả.
+Chúng cũng có thể dùng cùng nhau. Một nhóm có thể gửi lời mời từ hệ thống nhân sự qua API, trong khi các recruiter hỏi Mira hoặc chat AI của họ về kết quả.
 
 ## Để có kết quả tốt
 
@@ -158,7 +158,7 @@ Chúng cũng có thể dùng cùng nhau. Một nhóm có thể gửi lời mời
 
 ## Giá
 
-Trợ lý AI tích hợp sẵn, kết nối MCP và API đều miễn phí. Bạn chỉ trả tiền cho ứng viên, như mọi khi: tính theo mỗi ứng viên trả lời ít nhất một câu hỏi, không có gói đăng ký. Xem [bảng giá](/pricing).
+Mira, kết nối MCP và API đều miễn phí. Bạn chỉ trả tiền cho ứng viên, như mọi khi: tính theo mỗi ứng viên trả lời ít nhất một câu hỏi, không có gói đăng ký. Xem [bảng giá](/pricing).
 
 ## Đọc thêm
 

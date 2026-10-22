@@ -1,8 +1,8 @@
 ---
 title: "Yapay zekâ ajanları, MCP ve API'ler: nedir ve işe alımda nasıl kullanılır"
 seoTitle: "İşe Alımda Yapay Zekâ Ajanları, MCP ve API'ler"
-description: "Yapay zekâ ajanı, MCP ve API nedir, işe alımda güvenle nasıl kullanılır ve prepza asistanından, Claude, ChatGPT veya platformunuzdan nasıl yönetilir."
-updated: "2026-10-21"
+description: "Yapay zekâ ajanı, MCP, API nedir, işe alımda güvenle nasıl kullanılır, prepza yapay zekâ asistanıyla, Claude, ChatGPT veya platformunuzla nasıl yönetilir."
+updated: "2026-10-22"
 ---
 
 # Yapay zekâ ajanları, MCP ve API'ler: nedir ve işe alımda nasıl kullanılır
@@ -40,7 +40,7 @@ Sizin için bu, verileri pencereler arasında kopyalamadan, zaten kullandığın
 
 API (uygulama programlama arayüzü), bir programın başka bir programa gönderebileceği sabit isteklerden oluşan bir kümedir: "bu mülakatın adaylarını listele", "bu e-posta adresini davet et". Geliştiricileriniz bu istekleri gönderen kodu yazar. Arada yapay zekâ yoktur: aynı istek her zaman aynı şeyi yapar ve kendi kendine çalışan otomasyon için tam da istediğiniz budur.
 
-| | Yapay zekâ asistanı (uygulamada) | MCP (Claude veya ChatGPT'de) | API |
+| | Mira, yapay zekâ asistanı (uygulamada) | MCP (Claude veya ChatGPT'de) | API |
 | --- | --- | --- | --- |
 | Kim kullanır | Siz, prepza'da | Siz, yapay zekâ sohbetinizde | Platformunuzun kodu |
 | Nasıl istersiniz | Kendi sözlerinizle | Kendi sözlerinizle | Bir geliştiricinin yazdığı sabit isteklerle |
@@ -48,7 +48,7 @@ API (uygulama programlama arayüzü), bir programın başka bir programa gönder
 | En uygun olduğu iş | Hızlı sorular ve görevler | prepza'yı diğer araçlarınız ve dosyalarınızla birlikte kullanmak | Kimse izlemeden çalışan otomasyon |
 | Kimin adına giriş yapar | Siz | Siz | Bir şirket anahtarı |
 
-Süreçte bir insan varsa asistanı veya MCP'yi kullanın. Kendi sisteminizin adayları kendiliğinden davet etmesi ve sonuçları toplaması gerekiyorsa, örneğin bir kariyer sitesinden veya şirket içi bir İK aracından, API'yi kullanın.
+Süreçte bir insan varsa Mira'yı veya MCP'yi kullanın. Kendi sisteminizin adayları kendiliğinden davet etmesi ve sonuçları toplaması gerekiyorsa, örneğin bir kariyer sitesinden veya şirket içi bir İK aracından, API'yi kullanın.
 
 ## İşe alımda ne işe yarar
 
@@ -79,9 +79,9 @@ Herhangi bir yapay zekâ uygulamasını iş verilerine bağlamadan önce şirket
 
 ## prepza ile sayfalarının ötesinde çalışmanın üç yolu
 
-### 1. Yerleşik asistan
+### 1. Mira, yerleşik yapay zekâ asistanı
 
-Herhangi bir sayfanın üst kısmında **asistana sor**'u seçin. Asistan şirketlerinizi, mülakatlarınızı, adaylarınızı, kredilerinizi ve entegrasyonlarınızı, ayrıca prepza'nın nasıl çalıştığını bilir. Sizin dilinizde yanıt verir; yazarak veya konuşarak sorabilirsiniz.
+Herhangi bir sayfanın üst kısmında **Mira'ya sor**'u seçin. prepza'nın yapay zekâ asistanı Mira, şirketlerinizi, mülakatlarınızı, adaylarınızı, kredilerinizi ve entegrasyonlarınızı, ayrıca prepza'nın nasıl çalıştığını bilir. Sizin dilinizde yanıt verir; yazarak veya konuşarak sorabilirsiniz.
 
 - **Verilerinize göre yanıtlar,** sizinle aynı görünümle: bir yönetici bir yöneticinin gördüğünü, bir görüntüleyici bir görüntüleyicinin gördüğünü görür.
 - **Hangi sayfada olduğunuzu bilir.** O sayfanın rehberi için "Bu sayfada neler yapabilirim?" diye sorun ya da bir mülakatın adaylarındayken "Burada en iyisi kim?" diye sorun; hangisi olduğunu sormadan o mülakat hakkında yanıt verir.
@@ -91,7 +91,7 @@ Herhangi bir sayfanın üst kısmında **asistana sor**'u seçin. Asistan şirke
 
 ### 2. MCP ile Claude veya ChatGPT'de prepza
 
-Ekibiniz zaten Claude veya ChatGPT'de çalışıyorsa prepza'yı oraya taşıyabilirsiniz. prepza'nın MCP sunucusu, yerleşik asistanla aynı araçları sunar.
+Ekibiniz zaten Claude veya ChatGPT'de çalışıyorsa prepza'yı oraya taşıyabilirsiniz. prepza'nın MCP sunucusu, yerleşik asistan Mira ile aynı araçları sunar.
 
 **Bağlamak için:**
 
@@ -131,8 +131,8 @@ Her yerde geçerli olan kural burada da geçerlidir: not bir insanın kararını
 
 | Durumunuz | Kullanın |
 | --- | --- |
-| prepza'dasınız ve hızlı bir yanıt istiyorsunuz: kim geçti, kim başlamadı, ne kadar kredi kaldı | Yerleşik asistan |
-| Bir şeyi birkaç kelimeyle kurmak istiyorsunuz: bir iş tanımından mülakat, geçme notu, ek süre | Yerleşik asistan |
+| prepza'dasınız ve hızlı bir yanıt istiyorsunuz: kim geçti, kim başlamadı, ne kadar kredi kaldı | Mira, yerleşik asistan |
+| Bir şeyi birkaç kelimeyle kurmak istiyorsunuz: bir iş tanımından mülakat, geçme notu, ek süre | Mira, yerleşik asistan |
 | Zaten bütün gün Claude veya ChatGPT'de çalışıyorsunuz ve prepza'yı da orada istiyorsunuz | MCP |
 | Görev prepza'nın yanında başka bir şey de gerektiriyor: belgeleriniz, e-posta taslakları, bağlı başka bir araç | MCP |
 | Yoldaki bir işe alım uzmanı süreci telefonundaki yapay zekâ uygulamasından kontrol etmek istiyor | MCP |
@@ -142,11 +142,11 @@ Her yerde geçerli olan kural burada da geçerlidir: not bir insanın kararını
 
 Basit bir kural:
 
-- **Bir insan soruyor ve her değişikliği kontrol ediyor:** prepza'daki asistan ya da o kişi tüm gününü Claude veya ChatGPT'de geçiriyorsa MCP.
+- **Bir insan soruyor ve her değişikliği kontrol ediyor:** prepza'daki Mira ya da o kişi tüm gününü Claude veya ChatGPT'de geçiriyorsa MCP.
 - **Yazılım kendi başına, her seferinde aynı şekilde çalışıyor:** API.
-- **Yeni başlıyorsanız:** önce yerleşik asistanı deneyin. Kurulum gerektirmez ve öğrendikleriniz MCP'de de işinize yarar.
+- **Yeni başlıyorsanız:** önce yerleşik asistan Mira'yı deneyin. Kurulum gerektirmez ve öğrendikleriniz MCP'de de işinize yarar.
 
-Birlikte de çalışırlar. Bir ekip davetleri İK sisteminden API ile gönderirken işe alım uzmanları sonuçları asistana veya yapay zekâ sohbetlerine sorabilir.
+Birlikte de çalışırlar. Bir ekip davetleri İK sisteminden API ile gönderirken işe alım uzmanları sonuçları Mira'ya veya yapay zekâ sohbetlerine sorabilir.
 
 ## İyi sonuç almak için
 
@@ -158,7 +158,7 @@ Birlikte de çalışırlar. Bir ekip davetleri İK sisteminden API ile gönderir
 
 ## Fiyatlandırma
 
-Yerleşik asistan, MCP bağlantısı ve API ücretsizdir. Her zamanki gibi yalnızca adaylar için ödeme yaparsınız: en az bir soruyu yanıtlayan aday başına, abonelik olmadan. Bkz. [fiyatlar](/pricing).
+Mira, MCP bağlantısı ve API ücretsizdir. Her zamanki gibi yalnızca adaylar için ödeme yaparsınız: en az bir soruyu yanıtlayan aday başına, abonelik olmadan. Bkz. [fiyatlar](/pricing).
 
 ## İlgili yazılar
 

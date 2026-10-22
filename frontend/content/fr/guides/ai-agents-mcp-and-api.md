@@ -1,8 +1,8 @@
 ---
 title: "Agents IA, MCP et API : ce que c'est et comment s'en servir dans le recrutement"
 seoTitle: "Agents IA, MCP et API en recrutement : définition et usages"
-description: "Agent IA, MCP et API : définitions, usage sûr dans le recrutement et pilotage de prepza depuis son agent, Claude, ChatGPT ou votre plateforme."
-updated: "2026-10-21"
+description: "Agent IA, MCP et API : définitions, usage sûr dans le recrutement et pilotage de prepza depuis son assistante IA, Claude, ChatGPT ou votre plateforme."
+updated: "2026-10-22"
 ---
 
 # Agents IA, MCP et API : ce que c'est et comment s'en servir dans le recrutement
@@ -40,7 +40,7 @@ Concrètement, vous pouvez travailler avec un outil depuis l'assistant que vous 
 
 Une API (interface de programmation d'application) est un ensemble de requêtes fixes qu'un programme peut envoyer à un autre : « lister les candidats de cet entretien », « inviter cette adresse e-mail ». Vos développeurs écrivent le code qui les envoie. Aucune IA n'intervient : la même requête produit toujours le même résultat, et c'est exactement ce qu'on attend d'une automatisation qui tourne seule.
 
-| | Agent IA (dans l'application) | MCP (dans Claude ou ChatGPT) | API |
+| | Mira, l'assistante IA (dans l'application) | MCP (dans Claude ou ChatGPT) | API |
 | --- | --- | --- | --- |
 | Qui l'utilise | Vous, dans prepza | Vous, dans votre assistant IA | Le code de votre plateforme |
 | Comment demander | Avec vos propres mots | Avec vos propres mots | Des requêtes fixes écrites par un développeur |
@@ -48,7 +48,7 @@ Une API (interface de programmation d'application) est un ensemble de requêtes 
 | Idéal pour | Questions et tâches rapides | Combiner prepza avec vos autres outils et fichiers | Une automatisation qui tourne sans surveillance |
 | Se connecte en tant que | Vous | Vous | Une clé d'entreprise |
 
-Utilisez un agent ou MCP quand une personne garde la main. Utilisez l'API quand votre propre système doit inviter les candidats et récupérer les résultats tout seul, par exemple depuis un site carrières ou un outil RH interne.
+Utilisez Mira ou MCP quand une personne garde la main. Utilisez l'API quand votre propre système doit inviter les candidats et récupérer les résultats tout seul, par exemple depuis un site carrières ou un outil RH interne.
 
 ## À quoi cela sert dans le recrutement
 
@@ -79,9 +79,9 @@ Avant de connecter une application d'IA à des données professionnelles, vérif
 
 ## Trois façons d'utiliser prepza au-delà de ses pages
 
-### 1. L'agent intégré
+### 1. Mira, l'assistante IA intégrée
 
-Sélectionnez **demander à l'agent** dans l'en-tête de n'importe quelle page. L'agent connaît vos entreprises, entretiens, candidats, crédits et intégrations, ainsi que le fonctionnement de prepza. Il répond dans votre langue, et vous pouvez écrire ou parler.
+Sélectionnez **demander à Mira** dans l'en-tête de n'importe quelle page. Mira, l'assistante IA de prepza, connaît vos entreprises, entretiens, candidats, crédits et intégrations, ainsi que le fonctionnement de prepza. Elle répond dans votre langue, et vous pouvez écrire ou parler.
 
 - **Il répond à partir de vos données**, avec la même vue que vous : un admin voit ce que voit un admin, un lecteur ce que voit un lecteur.
 - **Il sait sur quelle page vous êtes.** Demandez « Que puis-je faire sur cette page ? » pour obtenir le guide de cette page, ou « Qui est le meilleur ici ? » sur les candidats d'un entretien, et il répond sur cet entretien sans vous demander lequel.
@@ -91,7 +91,7 @@ Sélectionnez **demander à l'agent** dans l'en-tête de n'importe quelle page. 
 
 ### 2. prepza dans Claude ou ChatGPT, via MCP
 
-Si votre équipe travaille déjà dans Claude ou ChatGPT, vous pouvez y faire venir prepza. Le serveur MCP de prepza propose les mêmes outils que l'agent intégré.
+Si votre équipe travaille déjà dans Claude ou ChatGPT, vous pouvez y faire venir prepza. Le serveur MCP de prepza propose les mêmes outils que Mira, l'assistante intégrée.
 
 **Pour vous connecter :**
 
@@ -131,8 +131,8 @@ Partez de qui fait le travail et à quelle fréquence.
 
 | Votre situation | À utiliser |
 | --- | --- |
-| Vous êtes dans prepza et voulez une réponse rapide : qui a réussi, qui n'a pas commencé, combien de crédits il reste | L'agent intégré |
-| Vous voulez configurer quelque chose en quelques mots : un entretien à partir d'une fiche de poste, un seuil de réussite, du temps supplémentaire | L'agent intégré |
+| Vous êtes dans prepza et voulez une réponse rapide : qui a réussi, qui n'a pas commencé, combien de crédits il reste | Mira, l'assistante intégrée |
+| Vous voulez configurer quelque chose en quelques mots : un entretien à partir d'une fiche de poste, un seuil de réussite, du temps supplémentaire | Mira, l'assistante intégrée |
 | Vous travaillez déjà toute la journée dans Claude ou ChatGPT et voulez y retrouver prepza | MCP |
 | La tâche demande prepza et autre chose : vos documents, des brouillons d'e-mails, un autre outil connecté | MCP |
 | Un recruteur en déplacement veut suivre le pipeline depuis l'application d'IA de son téléphone | MCP |
@@ -142,11 +142,11 @@ Partez de qui fait le travail et à quelle fréquence.
 
 Une règle simple :
 
-- **Une personne demande et vérifie chaque modification :** l'agent dans prepza, ou MCP si cette personne passe ses journées dans Claude ou ChatGPT.
+- **Une personne demande et vérifie chaque modification :** Mira dans prepza, ou MCP si cette personne passe ses journées dans Claude ou ChatGPT.
 - **Un logiciel agit seul, toujours de la même façon :** l'API.
-- **Pour commencer :** essayez d'abord l'agent intégré. Il ne demande aucune configuration, et ce que vous apprenez vous servira avec MCP.
+- **Pour commencer :** essayez d'abord Mira, l'assistante intégrée. Elle ne demande aucune configuration, et ce que vous apprenez vous servira avec MCP.
 
-Ils fonctionnent aussi ensemble. Une équipe peut envoyer les invitations depuis son système RH via l'API, pendant que les recruteurs interrogent l'agent ou leur assistant IA sur les résultats.
+Ils fonctionnent aussi ensemble. Une équipe peut envoyer les invitations depuis son système RH via l'API, pendant que les recruteurs interrogent Mira ou leur assistant IA sur les résultats.
 
 ## Obtenir de bons résultats
 
@@ -158,7 +158,7 @@ Ils fonctionnent aussi ensemble. Une équipe peut envoyer les invitations depuis
 
 ## Tarifs
 
-L'agent intégré, la connexion MCP et l'API sont gratuits. Vous ne payez que les candidats, comme toujours : par candidat qui répond à au moins une question, sans abonnement. Voir les [tarifs](/pricing).
+Mira, la connexion MCP et l'API sont gratuits. Vous ne payez que les candidats, comme toujours : par candidat qui répond à au moins une question, sans abonnement. Voir les [tarifs](/pricing).
 
 ## À lire aussi
 

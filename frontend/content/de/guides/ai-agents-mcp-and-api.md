@@ -1,8 +1,8 @@
 ---
 title: "KI-Agenten, MCP und APIs: was sie sind und wie du sie im Recruiting nutzt"
 seoTitle: "KI-Agenten, MCP und APIs im Recruiting: so nutzt du sie"
-description: "Was KI-Agenten, MCP und APIs sind, wie du sie im Recruiting sicher einsetzt und prepza über seinen Agenten, Claude, ChatGPT oder deine Plattform steuerst."
-updated: "2026-10-21"
+description: "Was KI-Agenten, MCP und APIs sind, wie du sie im Recruiting sicher nutzt und prepza über seine KI-Assistentin, Claude, ChatGPT oder dein System steuerst."
+updated: "2026-10-22"
 ---
 
 # KI-Agenten, MCP und APIs: was sie sind und wie du sie im Recruiting nutzt
@@ -40,7 +40,7 @@ Für dich heißt das: Du kannst mit einem Tool direkt aus dem Chat arbeiten, den
 
 Eine API (Programmierschnittstelle) ist eine Reihe fester Anfragen, die ein Programm an ein anderes senden kann: „Kandidaten dieses Interviews auflisten“, „diese E-Mail-Adresse einladen“. Deine Entwickler schreiben den Code, der sie sendet. KI ist dabei nicht im Spiel: Dieselbe Anfrage bewirkt immer dasselbe, und genau das willst du bei einer Automatisierung, die von selbst läuft.
 
-| | KI-Agent (in der App) | MCP (in Claude oder ChatGPT) | API |
+| | Mira, die KI-Assistentin (in der App) | MCP (in Claude oder ChatGPT) | API |
 | --- | --- | --- | --- |
 | Wer es nutzt | Du, in prepza | Du, in deinem KI-Chat | Der Code deiner Plattform |
 | Wie du fragst | In deinen eigenen Worten | In deinen eigenen Worten | Feste Anfragen, die ein Entwickler schreibt |
@@ -48,7 +48,7 @@ Eine API (Programmierschnittstelle) ist eine Reihe fester Anfragen, die ein Prog
 | Am besten für | Schnelle Fragen und Aufgaben | prepza mit deinen anderen Tools und Dateien kombinieren | Automatisierung, die ohne Aufsicht läuft |
 | Meldet sich an als | Du | Du | Ein Unternehmensschlüssel |
 
-Nutze einen Agenten oder MCP, wenn ein Mensch beteiligt ist. Nutze die API, wenn dein eigenes System Kandidaten selbstständig einladen und Ergebnisse einsammeln soll, zum Beispiel von einer Karriereseite oder einem internen HR-Tool aus.
+Nutze Mira oder MCP, wenn ein Mensch beteiligt ist. Nutze die API, wenn dein eigenes System Kandidaten selbstständig einladen und Ergebnisse einsammeln soll, zum Beispiel von einer Karriereseite oder einem internen HR-Tool aus.
 
 ## Wofür das im Recruiting gut ist
 
@@ -79,19 +79,19 @@ Bevor du eine KI-App mit Arbeitsdaten verbindest, prüf die Richtlinie deines Un
 
 ## Drei Wege, mit prepza über seine Seiten hinaus zu arbeiten
 
-### 1. Der eingebaute Agent
+### 1. Mira, die eingebaute KI-Assistentin
 
-Wähle **agent fragen** in der Kopfzeile einer beliebigen Seite. Der Agent kennt deine Unternehmen, Interviews, Kandidaten, Credits und Integrationen und weiß, wie prepza funktioniert. Er antwortet in deiner Sprache, und du kannst tippen oder sprechen.
+Wähle **Mira fragen** in der Kopfzeile einer beliebigen Seite. Mira, die KI-Assistentin von prepza, kennt deine Unternehmen, Interviews, Kandidaten, Credits und Integrationen und weiß, wie prepza funktioniert. Sie antwortet in deiner Sprache, und du kannst tippen oder sprechen.
 
-- **Er antwortet aus deinen Daten,** mit derselben Sicht wie du: Ein Admin sieht, was ein Admin sieht, ein Betrachter, was ein Betrachter sieht.
-- **Er kennt die Seite, auf der du bist.** Frag „Was kann ich auf dieser Seite tun?“, um die Anleitung zu dieser Seite zu bekommen, oder „Wer ist hier am besten?“ bei den Kandidaten eines Interviews, und er antwortet zu genau diesem Interview, ohne nachzufragen, welches gemeint ist.
-- **Er bereitet Änderungen vor, du bestätigst sie.** Bittest du ihn, Kandidaten einzuladen, zeigt er eine Karte mit genau dem, was passieren wird, etwa „12 Kandidaten zu Backend developer einladen“. Nichts läuft, bevor du Bestätigen wählst.
-- **Er zeigt seine Quellen.** Unter einer Antwort siehst du die Kandidaten oder Interviews, die er genutzt hat, und einen Link zur Seite, von der sie stammen.
-- **Er bleibt beim Thema.** Er antwortet zu prepza und zum Recruiting damit und lehnt alles andere ab.
+- **Sie antwortet aus deinen Daten,** mit derselben Sicht wie du: Ein Admin sieht, was ein Admin sieht, ein Betrachter, was ein Betrachter sieht.
+- **Sie kennt die Seite, auf der du bist.** Frag „Was kann ich auf dieser Seite tun?“, um die Anleitung zu dieser Seite zu bekommen, oder „Wer ist hier am besten?“ bei den Kandidaten eines Interviews, und sie antwortet zu genau diesem Interview, ohne nachzufragen, welches gemeint ist.
+- **Sie bereitet Änderungen vor, du bestätigst sie.** Bittest du sie, Kandidaten einzuladen, zeigt sie eine Karte mit genau dem, was passieren wird, etwa „12 Kandidaten zu Backend developer einladen“. Nichts läuft, bevor du Bestätigen wählst.
+- **Sie zeigt ihre Quellen.** Unter einer Antwort siehst du die Kandidaten oder Interviews, die sie genutzt hat, und einen Link zur Seite, von der sie stammen.
+- **Sie bleibt beim Thema.** Sie antwortet zu prepza und zum Recruiting damit und lehnt alles andere ab.
 
 ### 2. prepza in Claude oder ChatGPT, über MCP
 
-Wenn dein Team schon in Claude oder ChatGPT arbeitet, kannst du prepza dorthin holen. Der MCP-Server von prepza bietet dieselben Tools wie der eingebaute Agent.
+Wenn dein Team schon in Claude oder ChatGPT arbeitet, kannst du prepza dorthin holen. Der MCP-Server von prepza bietet dieselben Tools wie Mira, die eingebaute Assistentin.
 
 **So verbindest du:**
 
@@ -131,8 +131,8 @@ Geh davon aus, wer die Arbeit macht und wie oft.
 
 | Deine Situation | Nutze |
 | --- | --- |
-| Du bist in prepza und willst eine schnelle Antwort: wer bestanden hat, wer noch nicht angefangen hat, wie viele Credits übrig sind | Den eingebauten Agenten |
-| Du willst etwas mit wenigen Worten einrichten: ein Interview aus einer Stellenbeschreibung, eine Bestehensgrenze, mehr Zeit | Den eingebauten Agenten |
+| Du bist in prepza und willst eine schnelle Antwort: wer bestanden hat, wer noch nicht angefangen hat, wie viele Credits übrig sind | Mira, die eingebaute Assistentin |
+| Du willst etwas mit wenigen Worten einrichten: ein Interview aus einer Stellenbeschreibung, eine Bestehensgrenze, mehr Zeit | Mira, die eingebaute Assistentin |
 | Du arbeitest ohnehin den ganzen Tag in Claude oder ChatGPT und willst prepza auch dort haben | MCP |
 | Die Aufgabe braucht prepza plus etwas anderes: deine Dokumente, E-Mail-Entwürfe, ein weiteres verbundenes Tool | MCP |
 | Ein Recruiter unterwegs will die Pipeline über die KI-App auf dem Handy prüfen | MCP |
@@ -142,11 +142,11 @@ Geh davon aus, wer die Arbeit macht und wie oft.
 
 Eine einfache Faustregel:
 
-- **Ein Mensch fragt und prüft jede Änderung:** der Agent in prepza, oder MCP, wenn diese Person ohnehin in Claude oder ChatGPT arbeitet.
+- **Ein Mensch fragt und prüft jede Änderung:** Mira in prepza, oder MCP, wenn diese Person ohnehin in Claude oder ChatGPT arbeitet.
 - **Software handelt selbstständig, jedes Mal gleich:** die API.
-- **Für den Anfang:** Probier zuerst den eingebauten Agenten. Er braucht keine Einrichtung, und was du dabei lernst, kannst du auf MCP übertragen.
+- **Für den Anfang:** Probier zuerst Mira, die eingebaute Assistentin. Sie braucht keine Einrichtung, und was du dabei lernst, kannst du auf MCP übertragen.
 
-Sie funktionieren auch zusammen. Ein Team kann Einladungen über die API aus seinem HR-System verschicken, während Recruiter den Agenten oder ihren KI-Chat nach den Ergebnissen fragen.
+Sie funktionieren auch zusammen. Ein Team kann Einladungen über die API aus seinem HR-System verschicken, während Recruiter Mira oder ihren KI-Chat nach den Ergebnissen fragen.
 
 ## So bekommst du gute Ergebnisse
 
@@ -158,7 +158,7 @@ Sie funktionieren auch zusammen. Ein Team kann Einladungen über die API aus sei
 
 ## Preise
 
-Der eingebaute Agent, die MCP-Verbindung und die API sind kostenlos. Du zahlst nur für Kandidaten, wie immer: pro Kandidat, der mindestens eine Frage beantwortet, ohne Abo. Siehe [Preise](/pricing).
+Mira, die MCP-Verbindung und die API sind kostenlos. Du zahlst nur für Kandidaten, wie immer: pro Kandidat, der mindestens eine Frage beantwortet, ohne Abo. Siehe [Preise](/pricing).
 
 ## Weiterlesen
 

@@ -1,8 +1,8 @@
 ---
 title: "AI agents, MCP at APIs: ano ang mga ito at paano gamitin sa hiring"
 seoTitle: "AI Agents, MCP at APIs sa Hiring: Paano Gamitin"
-description: "Ano ang AI agent, MCP at API, paano ito gamitin nang ligtas sa hiring, at paano patakbuhin ang prepza mula sa agent nito, Claude, ChatGPT o iyong platform."
-updated: "2026-10-21"
+description: "Ano ang AI agent, MCP at API, paano gamitin nang ligtas sa hiring, at paano patakbuhin ang prepza mula sa AI assistant nito, Claude, ChatGPT o platform mo."
+updated: "2026-10-22"
 ---
 
 # AI agents, MCP at APIs: ano ang mga ito at paano gamitin sa hiring
@@ -40,7 +40,7 @@ Para sa iyo, ibig sabihin nito ay puwede kang magtrabaho sa isang tool mula sa c
 
 Ang API (application programming interface) ay isang hanay ng mga nakapirming request na puwedeng ipadala ng isang program sa iba: "ilista ang mga aplikante ng interview na ito", "imbitahan ang email na ito". Ang mga developer mo ang sumusulat ng code na nagpapadala ng mga ito. Walang AI na kasangkot: laging pareho ang ginagawa ng parehong request, at iyon mismo ang kailangan mo para sa automation na tumatakbo nang mag-isa.
 
-| | AI agent (sa app) | MCP (sa Claude o ChatGPT) | API |
+| | Si Mira, ang AI assistant (sa app) | MCP (sa Claude o ChatGPT) | API |
 | --- | --- | --- | --- |
 | Sino ang gumagamit | Ikaw, sa prepza | Ikaw, sa AI chat mo | Ang code ng platform mo |
 | Paano ka nagtatanong | Sa sarili mong salita | Sa sarili mong salita | Mga nakapirming request na isinulat ng developer |
@@ -48,7 +48,7 @@ Ang API (application programming interface) ay isang hanay ng mga nakapirming re
 | Pinakabagay para sa | Mabilisang tanong at gawain | Pagsasama ng prepza sa iba mo pang tools at file | Automation na tumatakbo nang walang nagbabantay |
 | Nagsa-sign in bilang | Ikaw | Ikaw | Isang key ng kumpanya |
 
-Gumamit ng agent o MCP kapag may taong kasali sa proseso. Gamitin ang API kapag ang sarili mong system ang dapat mag-imbita ng mga aplikante at mangolekta ng mga resulta nang mag-isa, halimbawa mula sa isang careers site o internal na HR tool.
+Gamitin si Mira o ang MCP kapag may taong kasali sa proseso. Gamitin ang API kapag ang sarili mong system ang dapat mag-imbita ng mga aplikante at mangolekta ng mga resulta nang mag-isa, halimbawa mula sa isang careers site o internal na HR tool.
 
 ## Saan ito magagamit sa hiring
 
@@ -79,9 +79,9 @@ Bago ikonekta ang kahit anong AI app sa data ng trabaho, i-check ang patakaran n
 
 ## Tatlong paraan ng paggamit ng prepza lampas sa mga page nito
 
-### 1. Ang built-in na agent
+### 1. Si Mira, ang built-in na AI assistant
 
-Piliin ang **magtanong sa agent** sa header ng kahit anong page. Alam ng agent ang mga kumpanya, interview, aplikante, credits at integration mo, at kung paano gumagana ang prepza. Sumasagot ito sa wika mo, at puwede kang mag-type o magsalita.
+Piliin ang **magtanong kay Mira** sa header ng kahit anong page. Alam ni Mira, ang AI assistant ng prepza, ang mga kumpanya, interview, aplikante, credits at integration mo, at kung paano gumagana ang prepza. Sumasagot ito sa wika mo, at puwede kang mag-type o magsalita.
 
 - **Sumasagot ito mula sa data mo**, na may parehong access na mayroon ka: nakikita ng admin ang nakikita ng admin, ng viewer ang nakikita ng viewer.
 - **Alam nito ang page na kinaroroonan mo.** Itanong ang "Ano ang magagawa ko sa page na ito?" para sa gabay ng page na iyon, o "Sino ang pinakamahusay dito?" sa mga aplikante ng isang interview, at sasagot ito tungkol sa interview na iyon nang hindi nagtatanong kung alin.
@@ -91,7 +91,7 @@ Piliin ang **magtanong sa agent** sa header ng kahit anong page. Alam ng agent a
 
 ### 2. prepza sa Claude o ChatGPT, gamit ang MCP
 
-Kung nagtatrabaho ka na sa Claude o ChatGPT, puwede mong dalhin doon ang prepza. Pareho ang tools na iniaalok ng MCP server ng prepza at ng built-in na agent.
+Kung nagtatrabaho ka na sa Claude o ChatGPT, puwede mong dalhin doon ang prepza. Pareho ang tools na iniaalok ng MCP server ng prepza at ni Mira, ang built-in na assistant.
 
 **Para kumonekta:**
 
@@ -131,8 +131,8 @@ Magsimula sa kung sino ang gagawa ng trabaho at gaano kadalas.
 
 | Ang sitwasyon mo | Gamitin |
 | --- | --- |
-| Nasa prepza ka at gusto mo ng mabilis na sagot: sino ang pumasa, sino ang hindi pa nagsisimula, ilan pa ang natitirang credits | Ang built-in na agent |
-| Gusto mong mag-set up ng isang bagay sa ilang salita: interview mula sa job description, passing mark, dagdag na oras | Ang built-in na agent |
+| Nasa prepza ka at gusto mo ng mabilis na sagot: sino ang pumasa, sino ang hindi pa nagsisimula, ilan pa ang natitirang credits | Si Mira, ang built-in na assistant |
+| Gusto mong mag-set up ng isang bagay sa ilang salita: interview mula sa job description, passing mark, dagdag na oras | Si Mira, ang built-in na assistant |
 | Buong araw ka nang nagtatrabaho sa Claude o ChatGPT at gusto mong nandoon din ang prepza | MCP |
 | Kailangan ng gawain ang prepza at iba pa: mga dokumento mo, mga draft ng email, isa pang nakakonektang tool | MCP |
 | Isang recruiter na nasa labas ang gustong i-check ang pipeline mula sa AI app sa phone niya | MCP |
@@ -142,11 +142,11 @@ Magsimula sa kung sino ang gagawa ng trabaho at gaano kadalas.
 
 Isang simpleng panuntunan:
 
-- **Isang tao ang nagtatanong, at sinusuri niya ang bawat pagbabago:** ang agent sa prepza, o MCP kung nasa Claude o ChatGPT ang taong iyon buong araw.
+- **Isang tao ang nagtatanong, at sinusuri niya ang bawat pagbabago:** si Mira sa prepza, o MCP kung nasa Claude o ChatGPT ang taong iyon buong araw.
 - **Software ang kumikilos nang mag-isa, sa parehong paraan tuwing pagkakataon:** ang API.
-- **Kung nagsisimula pa lang:** subukan muna ang built-in na agent. Hindi ito kailangang i-set up, at magagamit mo rin sa MCP ang matututunan mo.
+- **Kung nagsisimula pa lang:** subukan muna si Mira, ang built-in na assistant. Hindi ito kailangang i-set up, at magagamit mo rin sa MCP ang matututunan mo.
 
-Puwede rin silang magtulungan. Puwedeng magpadala ang isang team ng mga imbitasyon mula sa HR system nito gamit ang API, habang nagtatanong ang mga recruiter sa agent o sa AI chat nila tungkol sa mga resulta.
+Puwede rin silang magtulungan. Puwedeng magpadala ang isang team ng mga imbitasyon mula sa HR system nito gamit ang API, habang nagtatanong ang mga recruiter kay Mira o sa AI chat nila tungkol sa mga resulta.
 
 ## Paano makakuha ng magagandang resulta
 
@@ -158,7 +158,7 @@ Puwede rin silang magtulungan. Puwedeng magpadala ang isang team ng mga imbitasy
 
 ## Presyo
 
-Libreng gamitin ang built-in na agent, ang koneksyon sa MCP at ang API. Nagbabayad ka lang para sa mga aplikante, gaya ng dati: bawat aplikanteng sumagot ng kahit isang tanong, walang subscription. Tingnan ang [pricing](/pricing).
+Libreng gamitin si Mira, ang koneksyon sa MCP at ang API. Nagbabayad ka lang para sa mga aplikante, gaya ng dati: bawat aplikanteng sumagot ng kahit isang tanong, walang subscription. Tingnan ang [pricing](/pricing).
 
 ## Kaugnay na babasahin
 

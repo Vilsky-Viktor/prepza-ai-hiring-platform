@@ -1,8 +1,8 @@
 ---
 title: "AI-agendid, MCP ja API-d: mis need on ja kuidas neid värbamisel kasutada"
 seoTitle: "AI-agendid, MCP ja API-d värbamisel: kuidas neid kasutada"
-description: "Mis on AI-agent, MCP ja API, kuidas neid värbamisel turvaliselt kasutada ja kuidas juhtida prepzat selle agendi, Claude'i, ChatGPT või oma platvormi kaudu."
-updated: "2026-10-21"
+description: "Mis on AI-agent, MCP ja API, kuidas neid värbamisel turvaliselt kasutada ja prepzat juhtida selle AI-assistendi, Claude'i, ChatGPT või oma platvormi kaudu."
+updated: "2026-10-22"
 ---
 
 # AI-agendid, MCP ja API-d: mis need on ja kuidas neid värbamisel kasutada
@@ -40,7 +40,7 @@ Sinu jaoks tähendab see, et saad tööriistaga töötada samast vestlusest, mid
 
 API (rakendusliides) on kogum kindlaid päringuid, mida üks programm saab teisele saata: „näita selle intervjuu kandidaate“, „kutsu see e-posti aadress“. Sinu arendajad kirjutavad koodi, mis neid saadab. AI-d pole selles mängus: sama päring teeb alati sama asja, ja just seda tahad automaatikalt, mis töötab iseseisvalt.
 
-| | AI-agent (rakenduses) | MCP (Claude'is või ChatGPT-s) | API |
+| | Mira, AI-assistent (rakenduses) | MCP (Claude'is või ChatGPT-s) | API |
 | --- | --- | --- | --- |
 | Kes seda kasutab | Sina, prepzas | Sina, oma AI-vestluses | Sinu platvormi kood |
 | Kuidas küsid | Oma sõnadega | Oma sõnadega | Kindlad päringud, mille kirjutab arendaja |
@@ -48,7 +48,7 @@ API (rakendusliides) on kogum kindlaid päringuid, mida üks programm saab teise
 | Sobib kõige paremini | Kiireteks küsimusteks ja ülesanneteks | prepza kombineerimiseks sinu teiste tööriistade ja failidega | Automaatikaks, mis töötab ilma, et keegi jälgiks |
 | Logib sisse kui | Sina | Sina | Ettevõtte võti |
 
-Kasuta agenti või MCP-d, kui protsessis osaleb inimene. Kasuta API-t, kui sinu enda süsteem peab ise kandidaate kutsuma ja tulemusi koguma, näiteks karjäärilehelt või sisemisest personalitööriistast.
+Kasuta Mirat või MCP-d, kui protsessis osaleb inimene. Kasuta API-t, kui sinu enda süsteem peab ise kandidaate kutsuma ja tulemusi koguma, näiteks karjäärilehelt või sisemisest personalitööriistast.
 
 ## Milleks see värbamisel hea on
 
@@ -79,9 +79,9 @@ Enne kui ühendad mõne AI-rakenduse tööandmetega, kontrolli oma ettevõtte AI
 
 ## Kolm viisi töötada prepzaga väljaspool selle lehti
 
-### 1. Sisseehitatud agent
+### 1. Mira, sisseehitatud AI-assistent
 
-Vali mis tahes lehe päises **küsi agendilt**. Agent tunneb sinu ettevõtteid, intervjuusid, kandidaate, krediite ja integratsioone ning teab, kuidas prepza töötab. Ta vastab sinu keeles ning sa võid kirjutada või rääkida.
+Vali mis tahes lehe päises **küsi Miralt**. Mira, prepza AI-assistent, tunneb sinu ettevõtteid, intervjuusid, kandidaate, krediite ja integratsioone ning teab, kuidas prepza töötab. Ta vastab sinu keeles ning sa võid kirjutada või rääkida.
 
 - **Ta vastab sinu andmete põhjal,** sama vaatega kui sinul: administraator näeb seda, mida administraator, vaataja seda, mida vaataja.
 - **Ta teab, millisel lehel sa oled.** Küsi „Mida ma sellel lehel teha saan?“, et saada selle lehe juhend, või intervjuu kandidaatide juures „Kes on siin parim?“, ja ta vastab just selle intervjuu kohta, küsimata, millist sa mõtled.
@@ -91,7 +91,7 @@ Vali mis tahes lehe päises **küsi agendilt**. Agent tunneb sinu ettevõtteid, 
 
 ### 2. prepza Claude'is või ChatGPT-s, MCP kaudu
 
-Kui sinu meeskond juba töötab Claude'is või ChatGPT-s, saad prepza sinna tuua. prepza MCP-server pakub samu tööriistu mis sisseehitatud agent.
+Kui sinu meeskond juba töötab Claude'is või ChatGPT-s, saad prepza sinna tuua. prepza MCP-server pakub samu tööriistu mis Mira, sisseehitatud assistent.
 
 **Ühendamiseks:**
 
@@ -131,8 +131,8 @@ Lähtu sellest, kes tööd teeb ja kui sageli.
 
 | Sinu olukord | Kasuta |
 | --- | --- |
-| Oled prepzas ja tahad kiiret vastust: kes läbis, kes pole alustanud, palju krediiti on alles | Sisseehitatud agenti |
-| Tahad paari sõnaga midagi seadistada: intervjuu töökuulutuse põhjal, läbimise lävi, lisaaeg | Sisseehitatud agenti |
+| Oled prepzas ja tahad kiiret vastust: kes läbis, kes pole alustanud, palju krediiti on alles | Mirat, sisseehitatud assistenti |
+| Tahad paari sõnaga midagi seadistada: intervjuu töökuulutuse põhjal, läbimise lävi, lisaaeg | Mirat, sisseehitatud assistenti |
 | Töötad niikuinii terve päeva Claude'is või ChatGPT-s ja tahad prepzat ka sinna | MCP-d |
 | Ülesanne vajab prepzat ja veel midagi: sinu dokumente, e-kirjade mustandeid, mõnda teist ühendatud tööriista | MCP-d |
 | Liikvel olev värbaja tahab värbamistoru telefonis oleva AI-rakenduse kaudu üle vaadata | MCP-d |
@@ -142,11 +142,11 @@ Lähtu sellest, kes tööd teeb ja kui sageli.
 
 Lihtne rusikareegel:
 
-- **Inimene küsib ja kontrollib iga muudatust:** prepza agent või MCP, kui see inimene töötab niikuinii Claude'is või ChatGPT-s.
+- **Inimene küsib ja kontrollib iga muudatust:** Mira prepzas või MCP, kui see inimene töötab niikuinii Claude'is või ChatGPT-s.
 - **Tarkvara tegutseb iseseisvalt, iga kord samamoodi:** API.
-- **Alustuseks:** proovi esmalt sisseehitatud agenti. See ei vaja seadistamist ja see, mida õpid, kehtib ka MCP puhul.
+- **Alustuseks:** proovi esmalt Mirat, sisseehitatud assistenti. Ta ei vaja seadistamist ja see, mida õpid, kehtib ka MCP puhul.
 
-Need töötavad ka koos. Meeskond võib saata kutseid oma personalisüsteemist API kaudu, samal ajal kui värbajad küsivad tulemuste kohta agendilt või oma AI-vestluselt.
+Need töötavad ka koos. Meeskond võib saata kutseid oma personalisüsteemist API kaudu, samal ajal kui värbajad küsivad tulemuste kohta Miralt või oma AI-vestluselt.
 
 ## Kuidas saada häid tulemusi
 
@@ -158,7 +158,7 @@ Need töötavad ka koos. Meeskond võib saata kutseid oma personalisüsteemist A
 
 ## Hinnad
 
-Sisseehitatud agent, MCP-ühendus ja API on tasuta. Maksad ainult kandidaatide eest, nagu alati: iga kandidaadi eest, kes vastab vähemalt ühele küsimusele, ilma tellimuseta. Vaata [hindu](/pricing).
+Mira, MCP-ühendus ja API on tasuta. Maksad ainult kandidaatide eest, nagu alati: iga kandidaadi eest, kes vastab vähemalt ühele küsimusele, ilma tellimuseta. Vaata [hindu](/pricing).
 
 ## Loe ka
 

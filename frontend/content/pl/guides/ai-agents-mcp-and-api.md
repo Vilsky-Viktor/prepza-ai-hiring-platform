@@ -1,8 +1,8 @@
 ---
 title: "Agenci AI, MCP i API: czym są i jak wykorzystać je w rekrutacji"
 seoTitle: "Agenci AI, MCP i API w rekrutacji: jak z nich korzystać"
-description: "Czym są agent AI, MCP i API, jak bezpiecznie korzystać z nich w rekrutacji i jak obsługiwać prepza przez jej agenta, Claude, ChatGPT albo własną platformę."
-updated: "2026-10-21"
+description: "Czym są agent AI, MCP i API, jak bezpiecznie używać ich w rekrutacji i jak obsługiwać prepza przez jej asystentkę AI, Claude, ChatGPT lub własną platformę."
+updated: "2026-10-22"
 ---
 
 # Agenci AI, MCP i API: czym są i jak wykorzystać je w rekrutacji
@@ -40,7 +40,7 @@ Dla Ciebie oznacza to, że możesz pracować z narzędziem z poziomu czatu, któ
 
 API (interfejs programowania aplikacji) to zestaw stałych żądań, które jeden program może wysłać do drugiego: „pokaż kandydatów tej rozmowy”, „zaproś ten adres e-mail”. Twoi programiści piszą kod, który je wysyła. Nie ma tu żadnej AI: to samo żądanie zawsze robi to samo, i właśnie tego oczekujesz od automatyzacji, która działa samodzielnie.
 
-| | Agent AI (w aplikacji) | MCP (w Claude lub ChatGPT) | API |
+| | Mira, asystentka AI (w aplikacji) | MCP (w Claude lub ChatGPT) | API |
 | --- | --- | --- | --- |
 | Kto z tego korzysta | Ty, w prepza | Ty, w swoim czacie AI | Kod Twojej platformy |
 | Jak pytasz | Własnymi słowami | Własnymi słowami | Stałymi żądaniami, które pisze programista |
@@ -48,7 +48,7 @@ API (interfejs programowania aplikacji) to zestaw stałych żądań, które jede
 | Najlepsze do | Szybkich pytań i zadań | Łączenia prepza z innymi narzędziami i plikami | Automatyzacji, która działa bez nadzoru |
 | Loguje się jako | Ty | Ty | Klucz firmy |
 
-Korzystaj z agenta lub MCP, gdy w procesie uczestniczy człowiek. Korzystaj z API, gdy Twój własny system ma samodzielnie zapraszać kandydatów i zbierać wyniki, na przykład ze strony kariery albo wewnętrznego narzędzia HR.
+Korzystaj z Miry lub MCP, gdy w procesie uczestniczy człowiek. Korzystaj z API, gdy Twój własny system ma samodzielnie zapraszać kandydatów i zbierać wyniki, na przykład ze strony kariery albo wewnętrznego narzędzia HR.
 
 ## Do czego to się przydaje w rekrutacji
 
@@ -79,9 +79,9 @@ Zanim połączysz jakąkolwiek aplikację AI z danymi służbowymi, sprawdź pol
 
 ## Trzy sposoby pracy z prepza poza jej stronami
 
-### 1. Wbudowany agent
+### 1. Mira, wbudowana asystentka AI
 
-Wybierz **zapytaj agenta** w nagłówku dowolnej strony. Agent zna Twoje firmy, rozmowy, kandydatów, kredyty i integracje oraz wie, jak działa prepza. Odpowiada w Twoim języku, a Ty możesz pisać albo mówić.
+Wybierz **zapytaj Mirę** w nagłówku dowolnej strony. Mira, asystentka AI prepza, zna Twoje firmy, rozmowy, kandydatów, kredyty i integracje oraz wie, jak działa prepza. Odpowiada w Twoim języku, a Ty możesz pisać albo mówić.
 
 - **Odpowiada na podstawie Twoich danych,** z takim samym widokiem jak Twój: administrator widzi to, co administrator, a obserwator to, co obserwator.
 - **Wie, na jakiej stronie jesteś.** Zapytaj „Co mogę zrobić na tej stronie?”, aby dostać przewodnik po tej stronie, albo „Kto jest tu najlepszy?” przy kandydatach z rozmowy, a odpowie o tej rozmowie, nie pytając, o którą chodzi.
@@ -91,7 +91,7 @@ Wybierz **zapytaj agenta** w nagłówku dowolnej strony. Agent zna Twoje firmy, 
 
 ### 2. prepza w Claude lub ChatGPT, przez MCP
 
-Jeśli Twój zespół już pracuje w Claude lub ChatGPT, możesz przenieść tam prepza. Serwer MCP prepza udostępnia te same narzędzia co wbudowany agent.
+Jeśli Twój zespół już pracuje w Claude lub ChatGPT, możesz przenieść tam prepza. Serwer MCP prepza udostępnia te same narzędzia co Mira, wbudowana asystentka.
 
 **Jak połączyć:**
 
@@ -131,8 +131,8 @@ Zacznij od tego, kto wykonuje pracę i jak często.
 
 | Twoja sytuacja | Użyj |
 | --- | --- |
-| Jesteś w prepza i chcesz szybkiej odpowiedzi: kto zaliczył, kto nie zaczął, ile zostało kredytów | Wbudowanego agenta |
-| Chcesz coś skonfigurować w kilku słowach: rozmowę z opisu stanowiska, próg zaliczenia, dodatkowy czas | Wbudowanego agenta |
+| Jesteś w prepza i chcesz szybkiej odpowiedzi: kto zaliczył, kto nie zaczął, ile zostało kredytów | Mirę, wbudowaną asystentkę |
+| Chcesz coś skonfigurować w kilku słowach: rozmowę z opisu stanowiska, próg zaliczenia, dodatkowy czas | Mirę, wbudowaną asystentkę |
 | Cały dzień pracujesz w Claude lub ChatGPT i chcesz mieć tam też prepza | MCP |
 | Zadanie wymaga prepza i czegoś jeszcze: Twoich dokumentów, szkiców e-maili, innego podłączonego narzędzia | MCP |
 | Rekruter w drodze chce sprawdzić lejek rekrutacyjny w aplikacji AI na telefonie | MCP |
@@ -142,11 +142,11 @@ Zacznij od tego, kto wykonuje pracę i jak często.
 
 Prosta zasada:
 
-- **Człowiek pyta i sprawdza każdą zmianę:** agent w prepza albo MCP, jeśli ta osoba na co dzień pracuje w Claude lub ChatGPT.
+- **Człowiek pyta i sprawdza każdą zmianę:** Mira w prepza albo MCP, jeśli ta osoba na co dzień pracuje w Claude lub ChatGPT.
 - **Oprogramowanie działa samo, za każdym razem tak samo:** API.
-- **Na początek:** wypróbuj najpierw wbudowanego agenta. Nie wymaga konfiguracji, a to, czego się nauczysz, przyda się przy MCP.
+- **Na początek:** wypróbuj najpierw Mirę, wbudowaną asystentkę. Nie wymaga konfiguracji, a to, czego się nauczysz, przyda się przy MCP.
 
-Mogą też działać razem. Zespół może wysyłać zaproszenia ze swojego systemu HR przez API, a rekruterzy pytają o wyniki agenta lub swój czat AI.
+Mogą też działać razem. Zespół może wysyłać zaproszenia ze swojego systemu HR przez API, a rekruterzy pytają o wyniki Mirę lub swój czat AI.
 
 ## Jak uzyskać dobre wyniki
 
@@ -158,7 +158,7 @@ Mogą też działać razem. Zespół może wysyłać zaproszenia ze swojego syst
 
 ## Cennik
 
-Wbudowany agent, połączenie MCP i API są bezpłatne. Płacisz tylko za kandydatów, tak jak zawsze: za każdego kandydata, który odpowie na co najmniej jedno pytanie, bez subskrypcji. Zobacz [cennik](/pricing).
+Mira, połączenie MCP i API są bezpłatne. Płacisz tylko za kandydatów, tak jak zawsze: za każdego kandydata, który odpowie na co najmniej jedno pytanie, bez subskrypcji. Zobacz [cennik](/pricing).
 
 ## Przeczytaj też
 

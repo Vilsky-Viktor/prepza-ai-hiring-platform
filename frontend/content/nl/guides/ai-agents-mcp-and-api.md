@@ -1,8 +1,8 @@
 ---
 title: "AI-agents, MCP en API's: wat het zijn en hoe je ze inzet bij werving en selectie"
 seoTitle: "AI-agents, MCP en API's bij werving: zo zet je ze in"
-description: "Wat een AI-agent, MCP en een API zijn, hoe je ze veilig inzet bij werving en hoe je prepza bedient via de eigen agent, Claude, ChatGPT of je platform."
-updated: "2026-10-21"
+description: "Wat een AI-agent, MCP en API zijn, hoe je ze veilig inzet bij werving en hoe je prepza bedient via de eigen AI-assistent, Claude, ChatGPT of je platform."
+updated: "2026-10-22"
 ---
 
 # AI-agents, MCP en API's: wat het zijn en hoe je ze inzet bij werving en selectie
@@ -40,7 +40,7 @@ Voor jou betekent dit dat je met een tool kunt werken vanuit de chat die je al g
 
 Een API (application programming interface) is een set vaste verzoeken die het ene programma naar het andere kan sturen: "toon de kandidaten van dit interview", "nodig dit e-mailadres uit". Je developers schrijven de code die ze verstuurt. Er komt geen AI aan te pas: hetzelfde verzoek doet altijd hetzelfde, en dat is precies wat je wilt voor automatisering die vanzelf draait.
 
-| | AI-agent (in de app) | MCP (in Claude of ChatGPT) | API |
+| | Mira, de AI-assistent (in de app) | MCP (in Claude of ChatGPT) | API |
 | --- | --- | --- | --- |
 | Wie het gebruikt | Jij, in prepza | Jij, in je AI-chat | De code van je platform |
 | Hoe je vraagt | In je eigen woorden | In je eigen woorden | Vaste verzoeken die een developer schrijft |
@@ -48,7 +48,7 @@ Een API (application programming interface) is een set vaste verzoeken die het e
 | Het meest geschikt voor | Snelle vragen en taken | prepza combineren met je andere tools en bestanden | Automatisering die draait zonder dat iemand meekijkt |
 | Meldt zich aan als | Jij | Jij | Een bedrijfssleutel |
 
-Gebruik een agent of MCP als er een mens bij betrokken is. Gebruik de API als je eigen systeem zelf kandidaten moet uitnodigen en resultaten moet ophalen, bijvoorbeeld vanuit een vacaturesite of een interne HR-tool.
+Gebruik Mira of MCP als er een mens bij betrokken is. Gebruik de API als je eigen systeem zelf kandidaten moet uitnodigen en resultaten moet ophalen, bijvoorbeeld vanuit een vacaturesite of een interne HR-tool.
 
 ## Waar dit goed voor is bij werving en selectie
 
@@ -79,9 +79,9 @@ Controleer voordat je een AI-app aan werkgegevens koppelt het beleid van je bedr
 
 ## Drie manieren om met prepza te werken buiten de pagina's zelf
 
-### 1. De ingebouwde agent
+### 1. Mira, de ingebouwde AI-assistent
 
-Kies **vraag de agent** in de kop van elke pagina. De agent kent je bedrijven, interviews, kandidaten, credits en integraties, en weet hoe prepza werkt. Hij antwoordt in jouw taal, en je kunt typen of spreken.
+Kies **vraag Mira** in de kop van elke pagina. Mira, de AI-assistent van prepza, kent je bedrijven, interviews, kandidaten, credits en integraties, en weet hoe prepza werkt. Ze antwoordt in jouw taal, en je kunt typen of spreken.
 
 - **Hij antwoordt vanuit je gegevens,** met hetzelfde zicht als jij: een beheerder ziet wat een beheerder ziet, een kijker wat een kijker ziet.
 - **Hij weet op welke pagina je bent.** Vraag "Wat kan ik op deze pagina doen?" voor de uitleg bij die pagina, of "Wie is hier de beste?" bij de kandidaten van een interview, en hij antwoordt over dat interview zonder te vragen welk.
@@ -91,7 +91,7 @@ Kies **vraag de agent** in de kop van elke pagina. De agent kent je bedrijven, i
 
 ### 2. prepza in Claude of ChatGPT, via MCP
 
-Werkt je team al in Claude of ChatGPT, dan kun je prepza daarheen halen. De MCP-server van prepza biedt dezelfde tools als de ingebouwde agent.
+Werkt je team al in Claude of ChatGPT, dan kun je prepza daarheen halen. De MCP-server van prepza biedt dezelfde tools als Mira, de ingebouwde assistent.
 
 **Zo koppel je:**
 
@@ -131,8 +131,8 @@ Ga uit van wie het werk doet en hoe vaak.
 
 | Jouw situatie | Gebruik |
 | --- | --- |
-| Je zit in prepza en wilt snel antwoord: wie is geslaagd, wie is nog niet begonnen, hoeveel credits er nog zijn | De ingebouwde agent |
-| Je wilt iets in een paar woorden inrichten: een interview op basis van een vacaturetekst, een slaaggrens, extra tijd | De ingebouwde agent |
+| Je zit in prepza en wilt snel antwoord: wie is geslaagd, wie is nog niet begonnen, hoeveel credits er nog zijn | Mira, de ingebouwde assistent |
+| Je wilt iets in een paar woorden inrichten: een interview op basis van een vacaturetekst, een slaaggrens, extra tijd | Mira, de ingebouwde assistent |
 | Je werkt al de hele dag in Claude of ChatGPT en wilt prepza daar ook | MCP |
 | De taak vraagt om prepza plus iets anders: je documenten, e-mailconcepten, een andere gekoppelde tool | MCP |
 | Een recruiter onderweg wil de pipeline checken vanuit de AI-app op de telefoon | MCP |
@@ -142,11 +142,11 @@ Ga uit van wie het werk doet en hoe vaak.
 
 Een eenvoudige vuistregel:
 
-- **Een mens vraagt en controleert elke wijziging:** de agent in prepza, of MCP als die persoon de hele dag in Claude of ChatGPT werkt.
+- **Een mens vraagt en controleert elke wijziging:** Mira in prepza, of MCP als die persoon de hele dag in Claude of ChatGPT werkt.
 - **Software handelt zelfstandig, elke keer op dezelfde manier:** de API.
-- **Net begonnen:** probeer eerst de ingebouwde agent. Daarvoor hoef je niets in te stellen, en wat je leert neem je mee naar MCP.
+- **Net begonnen:** probeer eerst Mira, de ingebouwde assistent. Daarvoor hoef je niets in te stellen, en wat je leert neem je mee naar MCP.
 
-Ze werken ook samen. Een team kan uitnodigingen vanuit zijn HR-systeem via de API versturen, terwijl recruiters de agent of hun AI-chat naar de resultaten vragen.
+Ze werken ook samen. Een team kan uitnodigingen vanuit zijn HR-systeem via de API versturen, terwijl recruiters Mira of hun AI-chat naar de resultaten vragen.
 
 ## Goede resultaten krijgen
 
@@ -158,7 +158,7 @@ Ze werken ook samen. Een team kan uitnodigingen vanuit zijn HR-systeem via de AP
 
 ## Prijzen
 
-De ingebouwde agent, de MCP-koppeling en de API zijn gratis te gebruiken. Je betaalt alleen voor kandidaten, net als altijd: per kandidaat die minstens één vraag beantwoordt, zonder abonnement. Zie [prijzen](/pricing).
+Mira, de MCP-koppeling en de API zijn gratis te gebruiken. Je betaalt alleen voor kandidaten, net als altijd: per kandidaat die minstens één vraag beantwoordt, zonder abonnement. Zie [prijzen](/pricing).
 
 ## Verder lezen
 

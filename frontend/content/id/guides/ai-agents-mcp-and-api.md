@@ -1,8 +1,8 @@
 ---
 title: "Agen AI, MCP, dan API: apa itu dan cara memakainya dalam rekrutmen"
 seoTitle: "Agen AI, MCP, dan API dalam Rekrutmen: Cara Memakainya"
-description: "Apa itu agen AI, MCP, dan API, cara memakainya dengan aman dalam rekrutmen, dan cara menjalankan prepza dari agennya, Claude, ChatGPT, atau platformmu."
-updated: "2026-10-21"
+description: "Apa itu agen AI, MCP, dan API, cara memakainya dengan aman di rekrutmen, dan cara menjalankan prepza dari asisten AI-nya, Claude, ChatGPT, atau platformmu."
+updated: "2026-10-22"
 ---
 
 # Agen AI, MCP, dan API: apa itu dan cara memakainya dalam rekrutmen
@@ -40,7 +40,7 @@ Bagimu, artinya kamu bisa bekerja dengan sebuah alat dari chat yang sudah kamu p
 
 API (application programming interface) adalah sekumpulan permintaan tetap yang bisa dikirim satu program ke program lain: "tampilkan kandidat di wawancara ini", "undang email ini". Developer-mu menulis kode yang mengirimkannya. Tidak ada AI yang terlibat: permintaan yang sama selalu menghasilkan hal yang sama, dan itulah yang kamu butuhkan untuk otomatisasi yang berjalan sendiri.
 
-| | Agen AI (di aplikasi) | MCP (di Claude atau ChatGPT) | API |
+| | Mira, asisten AI (di aplikasi) | MCP (di Claude atau ChatGPT) | API |
 | --- | --- | --- | --- |
 | Siapa yang memakainya | Kamu, di prepza | Kamu, di chat AI-mu | Kode platformmu |
 | Cara meminta | Dengan kata-katamu sendiri | Dengan kata-katamu sendiri | Permintaan tetap yang ditulis developer |
@@ -48,7 +48,7 @@ API (application programming interface) adalah sekumpulan permintaan tetap yang 
 | Paling cocok untuk | Pertanyaan dan tugas singkat | Menggabungkan prepza dengan alat dan file lainnya | Otomatisasi yang berjalan tanpa ada yang mengawasi |
 | Masuk sebagai | Kamu | Kamu | Kunci perusahaan |
 
-Pakai agen atau MCP saat ada orang yang terlibat langsung. Pakai API saat sistemmu sendiri perlu mengundang kandidat dan mengumpulkan hasil secara mandiri, misalnya dari situs karier atau alat HR internal.
+Pakai Mira atau MCP saat ada orang yang terlibat langsung. Pakai API saat sistemmu sendiri perlu mengundang kandidat dan mengumpulkan hasil secara mandiri, misalnya dari situs karier atau alat HR internal.
 
 ## Apa gunanya dalam rekrutmen
 
@@ -79,9 +79,9 @@ Sebelum menghubungkan aplikasi AI apa pun ke data kerja, cek kebijakan perusahaa
 
 ## Tiga cara bekerja dengan prepza di luar halamannya
 
-### 1. Agen bawaan
+### 1. Mira, asisten AI bawaan
 
-Pilih **tanya agen** di header halaman mana pun. Agen mengenal perusahaan, wawancara, kandidat, kredit, dan integrasimu, serta cara kerja prepza. Ia menjawab dalam bahasamu, dan kamu bisa mengetik atau berbicara.
+Pilih **tanya Mira** di header halaman mana pun. Mira, asisten AI prepza, mengenal perusahaan, wawancara, kandidat, kredit, dan integrasimu, serta cara kerja prepza. Ia menjawab dalam bahasamu, dan kamu bisa mengetik atau berbicara.
 
 - **Ia menjawab dari datamu**, dengan akses yang sama seperti kamu: admin melihat apa yang dilihat admin, pelihat melihat apa yang dilihat pelihat.
 - **Ia tahu halaman yang sedang kamu buka.** Tanyakan "Apa yang bisa saya lakukan di halaman ini?" untuk panduan halaman itu, atau "Siapa yang terbaik di sini?" di kandidat sebuah wawancara, dan ia menjawab tentang wawancara itu tanpa bertanya yang mana.
@@ -91,7 +91,7 @@ Pilih **tanya agen** di header halaman mana pun. Agen mengenal perusahaan, wawan
 
 ### 2. prepza di Claude atau ChatGPT, lewat MCP
 
-Kalau kamu sudah bekerja di Claude atau ChatGPT, kamu bisa membawa prepza ke sana. Server MCP prepza menyediakan alat yang sama dengan agen bawaan.
+Kalau kamu sudah bekerja di Claude atau ChatGPT, kamu bisa membawa prepza ke sana. Server MCP prepza menyediakan alat yang sama dengan Mira, asisten bawaan.
 
 **Cara menghubungkan:**
 
@@ -131,8 +131,8 @@ Mulailah dari siapa yang mengerjakannya dan seberapa sering.
 
 | Situasimu | Pakai |
 | --- | --- |
-| Kamu sedang di prepza dan ingin jawaban cepat: siapa yang lulus, siapa yang belum mulai, berapa kredit yang tersisa | Agen bawaan |
-| Kamu ingin menyiapkan sesuatu dengan beberapa kata: wawancara dari deskripsi pekerjaan, batas lulus, tambahan waktu | Agen bawaan |
+| Kamu sedang di prepza dan ingin jawaban cepat: siapa yang lulus, siapa yang belum mulai, berapa kredit yang tersisa | Mira, asisten bawaan |
+| Kamu ingin menyiapkan sesuatu dengan beberapa kata: wawancara dari deskripsi pekerjaan, batas lulus, tambahan waktu | Mira, asisten bawaan |
 | Kamu sudah bekerja di Claude atau ChatGPT seharian dan ingin prepza ada di sana juga | MCP |
 | Tugasnya butuh prepza plus hal lain: dokumenmu, draf email, alat lain yang terhubung | MCP |
 | Rekruter yang sedang di perjalanan ingin mengecek pipeline dari aplikasi AI di ponselnya | MCP |
@@ -142,11 +142,11 @@ Mulailah dari siapa yang mengerjakannya dan seberapa sering.
 
 Patokan sederhananya:
 
-- **Seseorang bertanya, dan mengecek setiap perubahan:** agen di prepza, atau MCP kalau orang itu sehari-hari bekerja di Claude atau ChatGPT.
+- **Seseorang bertanya, dan mengecek setiap perubahan:** Mira di prepza, atau MCP kalau orang itu sehari-hari bekerja di Claude atau ChatGPT.
 - **Perangkat lunak bertindak sendiri, dengan cara yang sama setiap kali:** API.
-- **Baru mulai:** coba agen bawaan dulu. Tidak perlu pengaturan apa pun, dan apa yang kamu pelajari juga berlaku di MCP.
+- **Baru mulai:** coba Mira, asisten bawaan, dulu. Tidak perlu pengaturan apa pun, dan apa yang kamu pelajari juga berlaku di MCP.
 
-Ketiganya juga bisa dipakai bersama. Sebuah tim bisa mengirim undangan dari sistem HR-nya lewat API, sementara rekruter bertanya tentang hasilnya kepada agen atau chat AI mereka.
+Ketiganya juga bisa dipakai bersama. Sebuah tim bisa mengirim undangan dari sistem HR-nya lewat API, sementara rekruter bertanya tentang hasilnya kepada Mira atau chat AI mereka.
 
 ## Agar hasilnya bagus
 
@@ -158,7 +158,7 @@ Ketiganya juga bisa dipakai bersama. Sebuah tim bisa mengirim undangan dari sist
 
 ## Harga
 
-Agen bawaan, koneksi MCP, dan API gratis dipakai. Kamu hanya membayar untuk kandidat, seperti biasa: per kandidat yang menjawab setidaknya satu soal, tanpa langganan. Lihat [harga](/pricing).
+Mira, koneksi MCP, dan API gratis dipakai. Kamu hanya membayar untuk kandidat, seperti biasa: per kandidat yang menjawab setidaknya satu soal, tanpa langganan. Lihat [harga](/pricing).
 
 ## Bacaan terkait
 
