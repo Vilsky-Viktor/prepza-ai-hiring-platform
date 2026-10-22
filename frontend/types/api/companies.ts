@@ -1355,8 +1355,9 @@ export interface paths {
     }
     /**
      * Access
-     * @description What the user may do in the company: ats guards its pages with it. A company that
-     *     doesn't exist is 404.
+     * @description What the user may do in the company: ats, notifications and the api guard their pages
+     *     with it (prepza_common.company_access), refusing what companies' own routes refuse: the
+     *     caller passes on the assistant's X-Assistant header. A company that doesn't exist is 404.
      */
     get: operations["access_internal_companies__company_id__access_get"]
     put?: never
@@ -1486,41 +1487,12 @@ export interface paths {
     delete: operations["remove_candidate_internal_companies__company_id__interviews__interview_id__candidates__invite_id__delete"]
     options?: never
     head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/companies/{company_id}/interviews/{interview_id}/candidates/{invite_id}/name": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    /** Rename Candidate */
-    patch: operations["rename_candidate_internal_companies__company_id__interviews__interview_id__candidates__invite_id__name_patch"]
-    trace?: never
-  }
-  "/internal/companies/{company_id}/interviews/{interview_id}/candidates/{invite_id}/extra-time": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    /** Set Extra Time */
-    put: operations["set_extra_time_internal_companies__company_id__interviews__interview_id__candidates__invite_id__extra_time_put"]
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
+    /**
+     * Change Candidate
+     * @description The candidate's name and extra time, as the body gives them, all or none (a blank name
+     *     makes it not known).
+     */
+    patch: operations["change_candidate_internal_companies__company_id__interviews__interview_id__candidates__invite_id__patch"]
     trace?: never
   }
   "/internal/companies/{company_id}/interviews/{interview_id}/candidates/{invite_id}/resend": {
@@ -1700,7 +1672,7 @@ export interface paths {
     /**
      * Company Editors
      * @description Notifications, for a notice about the data processing agreement: every owner and admin
-     *     of a company.
+     *     of a company, a page at a time.
      */
     get: operations["company_editors_internal_companies_editors_get"]
     put?: never
@@ -2348,6 +2320,10 @@ export interface components {
       member: boolean
       /** Editor */
       editor: boolean
+      /** Refused */
+      refused?: string | null
+      /** Read Only */
+      read_only?: string | null
     }
     /** AccountDeletionOut */
     AccountDeletionOut: {
@@ -2661,6 +2637,16 @@ export interface components {
        * @default []
        */
       problems: components["schemas"]["LineProblemOut"][]
+    }
+    /**
+     * CandidateChangesIn
+     * @description An API key's changes to a candidate, made all or none: only the fields given.
+     */
+    CandidateChangesIn: {
+      /** Name */
+      name?: string | null
+      /** Extra Time */
+      extra_time?: number | null
     }
     /**
      * CandidateFilter
@@ -7401,7 +7387,7 @@ export interface operations {
       }
     }
   }
-  rename_candidate_internal_companies__company_id__interviews__interview_id__candidates__invite_id__name_patch: {
+  change_candidate_internal_companies__company_id__interviews__interview_id__candidates__invite_id__patch: {
     parameters: {
       query: {
         user_id: string
@@ -7416,44 +7402,7 @@ export interface operations {
     }
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CandidateNameIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  set_extra_time_internal_companies__company_id__interviews__interview_id__candidates__invite_id__extra_time_put: {
-    parameters: {
-      query: {
-        user_id: string
-      }
-      header?: never
-      path: {
-        company_id: string
-        interview_id: string
-        invite_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ExtraTimeIn"]
+        "application/json": components["schemas"]["CandidateChangesIn"]
       }
     }
     responses: {
@@ -7736,7 +7685,11 @@ export interface operations {
   }
   company_editors_internal_companies_editors_get: {
     parameters: {
-      query?: never
+      query?: {
+        /** @description The last id of the previous page */
+        after?: string
+        limit?: number
+      }
       header?: never
       path?: never
       cookie?: never

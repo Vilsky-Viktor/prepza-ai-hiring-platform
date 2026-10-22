@@ -1,6 +1,7 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
+from app.constants.invites import NOT_STARTED
 from app.storage import candidates, companies, interviews, invites
 
 
@@ -16,7 +17,7 @@ def test_a_changed_candidate_comes_last_and_a_cursor_never_repeats_or_skips_one(
             made.append(invite)
 
         # Ann changes after the others were invited: the trigger moves her to the end.
-        await candidates.set_name(made[0].id, "Ann Lee")
+        await invites.change(made[0].id, {"name": "Ann Lee"}, NOT_STARTED)
 
         def page(since, after=None):
             return candidates.page(found.id, 0, 2, False, since=since, after=after)

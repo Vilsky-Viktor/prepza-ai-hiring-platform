@@ -93,7 +93,7 @@ async def rename_candidate(
     """Owners and admins correct the name a candidate's sign-in gave, a nickname for example; a
     blank name makes it not known. The sign-in fills only a name not known, so this one stays."""
     interview, invite, _, _ = await candidate_for(user, interview_id, invite_id, editor=True)
-    await candidate_changes.rename(interview, invite, body.name, user.uid)
+    await candidate_changes.change(interview, invite, {"name": body.name or None}, user.uid)
 
 
 @router.get("/{interview_id}/candidates/{invite_id}")

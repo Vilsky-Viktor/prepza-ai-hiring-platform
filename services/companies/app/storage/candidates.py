@@ -154,15 +154,6 @@ async def get(interview_id, invite_id: uuid.UUID) -> CandidateInvite | None:
         return await session.scalar(query)
 
 
-async def set_name(invite_id: uuid.UUID, name: str | None) -> None:
-    """The candidate's name as an owner or admin corrected it; None makes it not known again."""
-    async with Session() as session:
-        await session.execute(
-            update(CandidateInvite).where(CandidateInvite.id == invite_id).values(name=name)
-        )
-        await session.commit()
-
-
 async def any_finished(interview_id) -> bool:
     query = select(
         select(CandidateInvite.id)

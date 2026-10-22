@@ -42,13 +42,15 @@ def candidate(monkeypatch):
     async def fake_invite(interview_id, invite_id):
         return invite if invite.interview_id == interview_id else None
 
-    async def fake_set(invite_id, extra_time):
-        saved["extra_time"] = extra_time
+    async def fake_change(invite_id, values, statuses):
+        saved.update(values)
+
+        return invite.status in statuses
 
     monkeypatch.setattr(interviews, "get", fake_interview)
     monkeypatch.setattr(companies, "get", fake_company)
     monkeypatch.setattr(candidates, "get", fake_invite)
-    monkeypatch.setattr(invites, "set_extra_time", fake_set)
+    monkeypatch.setattr(invites, "change", fake_change)
     app.dependency_overrides[current_user] = lambda: User(
         uid="bob", email="bob@example.com", email_verified=True
     )

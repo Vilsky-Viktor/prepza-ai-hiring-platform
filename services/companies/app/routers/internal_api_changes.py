@@ -12,7 +12,7 @@ from app.integrations.redis import get_redis
 from app.routers.internal_api import company_interview
 from app.schemas.companies import CompanyCreditsOut
 from app.schemas.interviews import InterviewCreate, InterviewOut
-from app.schemas.invites import CandidateNameIn, ExtraTimeIn, FoundCandidateOut
+from app.schemas.invites import CandidateChangesIn, FoundCandidateOut
 from app.service_auth import ServiceCaller
 from app.services import candidate_changes, candidate_invites, credits, interview_creation
 from app.services import outbox as outbox_service
@@ -59,35 +59,25 @@ async def remove_candidate(
 
 
 @router.patch(
-    "/interviews/{interview_id}/candidates/{invite_id}/name",
-    status_code=status.HTTP_204_NO_CONTENT,
+    "/interviews/{interview_id}/candidates/{invite_id}", status_code=status.HTTP_204_NO_CONTENT
 )
-async def rename_candidate(
+async def change_candidate(
     company_id: UUID,
     interview_id: UUID,
     invite_id: UUID,
-    body: CandidateNameIn,
+    body: CandidateChangesIn,
     user_id: str,
     caller: ServiceCaller,
 ) -> None:
+    """The candidate's name and extra time, as the body gives them, all or none (a blank name
+    makes it not known)."""
     interview, invite = await company_candidate(company_id, interview_id, invite_id)
-    await candidate_changes.rename(interview, invite, body.name, user_id, VIA_API)
+    changes = body.model_dump(exclude_unset=True)
 
+    if "name" in changes:
+        changes["name"] = changes["name"] or None
 
-@router.put(
-    "/interviews/{interview_id}/candidates/{invite_id}/extra-time",
-    status_code=status.HTTP_204_NO_CONTENT,
-)
-async def set_extra_time(
-    company_id: UUID,
-    interview_id: UUID,
-    invite_id: UUID,
-    body: ExtraTimeIn,
-    user_id: str,
-    caller: ServiceCaller,
-) -> None:
-    interview, invite = await company_candidate(company_id, interview_id, invite_id)
-    await candidate_changes.set_extra_time(interview, invite, body.extra_time, user_id, VIA_API)
+    await candidate_changes.change(interview, invite, changes, user_id, VIA_API)
 
 
 @router.post(

@@ -53,7 +53,7 @@ def changes(monkeypatch, companies_api):
 
         return change
 
-    for name in ("remove_candidate", "rename_candidate", "set_extra_time", "resend"):
+    for name in ("remove_candidate", "change_candidate", "resend"):
         monkeypatch.setattr(companies, name, record(name))
 
     async def create_interview(company_id, text, language, user_id):
@@ -144,15 +144,24 @@ def test_a_failed_request_frees_its_idempotency_key(client, companies_api, key, 
 def test_a_candidate_is_renamed_given_extra_time_resent_and_removed(client, key, changes):
     renamed = call(client, "PATCH", CANDIDATE_PATH, json={"name": "Anna", "extra_time": 25})
     unchanged = call(client, "PATCH", CANDIDATE_PATH, json={})
+    unnamed = call(client, "PATCH", CANDIDATE_PATH, json={"name": None})
     resent = call(client, "POST", f"{CANDIDATE_PATH}/resend")
     removed = call(client, "DELETE", CANDIDATE_PATH)
     wrong_time = call(client, "PATCH", CANDIDATE_PATH, json={"extra_time": 30})
 
-    assert renamed.status_code == unchanged.status_code == 200
+    assert renamed.status_code == unchanged.status_code == unnamed.status_code == 200
     assert (resent.status_code, removed.status_code, wrong_time.status_code) == (204, 204, 422)
     assert changes == [
-        ("rename_candidate", COMPANY, INTERVIEW, CANDIDATE, "Anna", "u1"),
-        ("set_extra_time", COMPANY, INTERVIEW, CANDIDATE, 25, "u1"),
+        # Both changes in one call, so companies makes them together or not at all.
+        (
+            "change_candidate",
+            COMPANY,
+            INTERVIEW,
+            CANDIDATE,
+            {"name": "Anna", "extra_time": 25},
+            "u1",
+        ),
+        ("change_candidate", COMPANY, INTERVIEW, CANDIDATE, {"name": ""}, "u1"),
         ("resend", COMPANY, INTERVIEW, CANDIDATE, "u1"),
         ("remove_candidate", COMPANY, INTERVIEW, CANDIDATE, "u1"),
     ]
@@ -162,7 +171,7 @@ def test_companies_refusals_reach_the_client(client, key, changes, monkeypatch):
     async def started(*args):
         raise HTTPException(409, "The candidate already started.")
 
-    monkeypatch.setattr(companies, "set_extra_time", started)
+    monkeypatch.setattr(companies, "change_candidate", started)
 
     response = call(client, "PATCH", CANDIDATE_PATH, json={"extra_time": 50})
 

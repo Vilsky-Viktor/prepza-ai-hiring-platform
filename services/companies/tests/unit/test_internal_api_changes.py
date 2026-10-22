@@ -4,10 +4,10 @@ from types import SimpleNamespace
 import pytest
 
 from app.constants.audit import VIA_API
-from app.constants.invites import NO_EMAILS_FOR_GUEST
+from app.constants.invites import EXTRA_TIME_STARTED, NO_EMAILS_FOR_GUEST
 from app.routers import internal_api_changes
 from app.services import candidate_changes, candidate_invites, credits
-from app.storage import candidates, companies, interviews
+from app.storage import candidates, companies, interviews, invites
 from tests.unit.test_internal_api import COMPANY_ID, HEADERS, INTERVIEW, OTHER_ID
 
 BASE = f"/internal/companies/{COMPANY_ID}"
@@ -65,6 +65,80 @@ def test_a_candidate_is_removed_as_the_keys_creator_through_the_api(client, worl
 
     assert (response.status_code, other.status_code) == (204, 404)
     assert world["done"] == [("remove", INTERVIEW, world["invite"], "ann", VIA_API)]
+
+
+@pytest.fixture
+def written(monkeypatch, world):
+    """The changes written to the candidate, as the database would take them."""
+    changes = []
+
+    async def change(invite_id, values, statuses):
+        if world["invite"].status not in statuses:
+            return False
+
+        changes.append(values)
+
+        return True
+
+    monkeypatch.setattr(invites, "change", change)
+
+    return changes
+
+
+def test_a_candidates_name_and_extra_time_change_together(client, world, written, audited):
+    body = {"name": "  Anna Lee ", "extra_time": 25}
+    response = client.patch(
+        candidate_path(world), params={"user_id": "ann"}, json=body, headers=HEADERS
+    )
+    blank = client.patch(
+        candidate_path(world), params={"user_id": "ann"}, json={"name": " "}, headers=HEADERS
+    )
+
+    assert (response.status_code, blank.status_code) == (204, 204)
+    assert written == [{"name": "Anna Lee", "extra_time": 25}, {"name": None}]
+    assert [event[2] for event in audited] == [
+        "candidate_renamed",
+        "extra_time_set",
+        "candidate_renamed",
+    ]
+
+
+@pytest.mark.parametrize(
+    ("status", "code", "detail"),
+    [("in_process", 409, EXTRA_TIME_STARTED), ("deleted", 404, "Candidate not found")],
+)
+def test_a_refused_change_leaves_the_name_as_it_was(
+    client, world, written, audited, status, code, detail
+):
+    """One refused field refuses the whole change: the name isn't written either."""
+    world["invite"].status = status
+    body = {"name": "Anna Lee", "extra_time": 25}
+    response = client.patch(
+        candidate_path(world), params={"user_id": "ann"}, json=body, headers=HEADERS
+    )
+
+    assert (response.status_code, response.json()["detail"]) == (code, detail)
+    assert written == [] and audited == []
+
+
+def test_a_candidate_who_started_meanwhile_keeps_their_time_and_name(
+    client, world, written, monkeypatch
+):
+    """Read before they started, written after: the guarded write refuses it."""
+    invite = world["invite"]
+
+    async def get_candidate(interview_id, invite_id):
+        return SimpleNamespace(**{**vars(invite), "status": "invited"})
+
+    monkeypatch.setattr(candidates, "get", get_candidate)
+    invite.status = "in_process"
+    body = {"name": "Anna Lee", "extra_time": 25}
+    response = client.patch(
+        candidate_path(world), params={"user_id": "ann"}, json=body, headers=HEADERS
+    )
+
+    assert (response.status_code, response.json()["detail"]) == (409, EXTRA_TIME_STARTED)
+    assert written == []
 
 
 def test_a_reminder_goes_out_again_but_not_to_a_guest(client, world):

@@ -201,14 +201,21 @@ async def remove(invite: CandidateInvite, company_id) -> str | None:
     return removed
 
 
-async def set_extra_time(invite_id: uuid.UUID, extra_time: int) -> None:
+async def change(invite_id: uuid.UUID, values: dict, statuses) -> bool:
+    """Writes an owner or admin's changes to the candidate (`name`, `extra_time`) in one
+    statement, all or none: only while the invite's status is one of `statuses`, so a candidate
+    who started, or was deleted, since it was read keeps theirs. Whether it was written."""
+    query = (
+        update(CandidateInvite)
+        .where(CandidateInvite.id == invite_id, CandidateInvite.status.in_(statuses))
+        .values(**values)
+    )
+
     async with Session() as session:
-        await session.execute(
-            update(CandidateInvite)
-            .where(CandidateInvite.id == invite_id)
-            .values(extra_time=extra_time)
-        )
+        written = (await session.execute(query)).rowcount
         await session.commit()
+
+    return written > 0
 
 
 async def company_ids_for(email: str) -> list[str]:

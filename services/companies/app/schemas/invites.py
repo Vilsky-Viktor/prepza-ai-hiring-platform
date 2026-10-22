@@ -1,7 +1,8 @@
 from datetime import datetime
+from typing import Annotated
 from uuid import UUID
 
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from pydantic import AfterValidator, BaseModel, EmailStr, Field, StringConstraints
 
 from app.constants.brand import Theme
 from app.constants.invites import (
@@ -172,29 +173,38 @@ class BulkInviteOut(BaseModel):
     problems: list[LineProblemOut] = []
 
 
+def _offered(value: int) -> int:
+    if value not in EXTRA_TIME_OPTIONS:
+        raise ValueError(f"Extra time must be one of {EXTRA_TIME_OPTIONS}")
+
+    return value
+
+
+# Extra time for a candidate who needs it, in percent of each question's time.
+ExtraTime = Annotated[int, AfterValidator(_offered)]
+# A candidate's name as an owner or admin corrects it, trimmed; blank means not known.
+CandidateName = Annotated[
+    str, StringConstraints(strip_whitespace=True, max_length=MAX_CANDIDATE_NAME_LENGTH)
+]
+
+
 class ExtraTimeIn(BaseModel):
     """Extra time for a candidate who needs it, in percent of each question's time."""
 
-    extra_time: int
-
-    @field_validator("extra_time")
-    @classmethod
-    def offered(cls, value: int) -> int:
-        if value not in EXTRA_TIME_OPTIONS:
-            raise ValueError(f"Extra time must be one of {EXTRA_TIME_OPTIONS}")
-
-        return value
+    extra_time: ExtraTime
 
 
 class CandidateNameIn(BaseModel):
     """A candidate's name as an owner or admin corrects it; blank means not known."""
 
-    name: str = Field(max_length=MAX_CANDIDATE_NAME_LENGTH)
+    name: CandidateName
 
-    @field_validator("name")
-    @classmethod
-    def stripped(cls, value: str) -> str:
-        return value.strip()
+
+class CandidateChangesIn(BaseModel):
+    """An API key's changes to a candidate, made all or none: only the fields given."""
+
+    name: CandidateName | None = None
+    extra_time: ExtraTime | None = None
 
 
 class InvitedCompaniesOut(BaseModel):

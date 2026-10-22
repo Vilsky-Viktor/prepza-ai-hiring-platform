@@ -156,18 +156,12 @@ async def remove_candidate(
     await _call("DELETE", path, {"user_id": user_id})
 
 
-async def rename_candidate(
-    company_id: UUID, interview_id: UUID, invite_id: UUID, name: str, user_id: str
+async def change_candidate(
+    company_id: UUID, interview_id: UUID, invite_id: UUID, changes: dict, user_id: str
 ) -> None:
+    """Changes the candidate's `name` and `extra_time` (only the keys given), all or none."""
     path = _candidate_path(company_id, interview_id, invite_id)
-    await _call("PATCH", f"{path}/name", {"user_id": user_id}, {"name": name})
-
-
-async def set_extra_time(
-    company_id: UUID, interview_id: UUID, invite_id: UUID, extra_time: int, user_id: str
-) -> None:
-    path = _candidate_path(company_id, interview_id, invite_id)
-    await _call("PUT", f"{path}/extra-time", {"user_id": user_id}, {"extra_time": extra_time})
+    await _call("PATCH", path, {"user_id": user_id}, changes)
 
 
 async def resend(company_id: UUID, interview_id: UUID, invite_id: UUID, user_id: str) -> None:

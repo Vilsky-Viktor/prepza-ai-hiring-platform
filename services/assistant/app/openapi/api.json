@@ -520,7 +520,7 @@
      "Interviews"
     ],
     "summary": "Update a candidate",
-    "description": "Corrects the candidate's name, or gives them extra time on each question before they\nstart, as an accommodation.\n\nNeeds the `candidates:change` permission.",
+    "description": "Corrects the candidate's name, or gives them extra time on each question before they\nstart, as an accommodation. All or nothing: when one change is refused, neither is made.\n\nNeeds the `candidates:change` permission.",
     "operationId": "update_candidate_interviews__interview_id__candidates__candidate_id__patch",
     "security": [
      {

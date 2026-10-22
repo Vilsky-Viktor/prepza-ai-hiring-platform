@@ -19,7 +19,7 @@ from app.models.invites import CandidateInvite
 from app.routers import candidates as candidates_router
 from app.routers import invites as invites_router
 from app.services import candidate_start, interview_access
-from app.storage import candidates, companies, interviews, invite_progress
+from app.storage import companies, interviews, invite_progress
 from app.storage import invites as invite_store
 from tests.unit import fake_candidates
 from tests.unit.test_candidate_start import INTERVIEW, INVITE, steps  # noqa: F401 (fixture)
@@ -114,12 +114,14 @@ def candidate(monkeypatch):
     async def fake_company(_id):
         return company
 
-    async def set_name(invite_id, name):
-        saved.append((invite_id, name))
+    async def change(invite_id, values, statuses):
+        saved.append((invite_id, values["name"]))
+
+        return invite.status in statuses
 
     monkeypatch.setattr(interviews, "get", fake_interview)
     monkeypatch.setattr(companies, "get", fake_company)
-    monkeypatch.setattr(candidates, "set_name", set_name)
+    monkeypatch.setattr(invite_store, "change", change)
 
     return invite, saved
 

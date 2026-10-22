@@ -1,6 +1,7 @@
 from enum import StrEnum
 from http import HTTPStatus
 
+from prepza_common.audit_actions import AuditAction
 from prepza_common.constants import MAX_CANDIDATE_NAME_LENGTH  # noqa: F401 (re-exported)
 
 # The longest search through candidates' emails and names (an email is at most 254 characters).
@@ -28,6 +29,8 @@ class InviteStatus(StrEnum):
 # Statuses of an invite the candidate hasn't started: its credits are set aside, not charged.
 NOT_STARTED = (InviteStatus.INVITED, InviteStatus.UNDELIVERED, InviteStatus.EXPIRED)
 STARTED = (InviteStatus.IN_PROCESS, InviteStatus.FINISHED)
+# What each change an owner or admin makes to a candidate is recorded as.
+CHANGE_ACTIONS = {"name": AuditAction.CANDIDATE_RENAMED, "extra_time": AuditAction.EXTRA_TIME_SET}
 # Statuses of an invite still open: its link works and its credits are set aside (an expired
 # one gave them back).
 OPEN = (InviteStatus.INVITED, InviteStatus.UNDELIVERED, InviteStatus.IN_PROCESS)

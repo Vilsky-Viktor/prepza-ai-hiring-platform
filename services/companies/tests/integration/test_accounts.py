@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from app.constants.invites import InviteStatus
+from app.constants.invites import NOT_STARTED, InviteStatus
 from app.storage import accounts, candidates, companies, interviews, invite_progress, invites
 
 
@@ -126,7 +126,7 @@ def test_a_candidates_data_includes_their_extra_time_and_when_they_started(run):
         interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
         email = f"time-{uuid.uuid4().hex[:8]}@example.com"
         invite, _ = await invites.upsert(interview.id, email, "Backend", "Acme", "en")
-        await invites.set_extra_time(invite.id, 30)
+        await invites.change(invite.id, {"extra_time": 30}, NOT_STARTED)
         await invite_progress.start(invite.id, f"u-{invite.id}")
         [row] = (await accounts.export(f"u-{invite.id}", email))["interview_invites"]
 

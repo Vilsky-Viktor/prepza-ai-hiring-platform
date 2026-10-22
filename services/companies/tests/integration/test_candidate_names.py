@@ -1,5 +1,6 @@
 import uuid
 
+from app.constants.invites import NOT_STARTED, STARTED
 from app.helpers.candidate_lists import read_list
 from app.storage import accounts, candidates, companies, interviews, invite_progress, invites
 
@@ -41,10 +42,10 @@ def test_a_name_an_owner_set_survives_the_sign_in_and_blank_makes_it_unknown(run
     async def scenario():
         interview, invite = await invited("nick@example.com")
         await invite_progress.start(invite.id, "nick-uid", "nick99")
-        await candidates.set_name(invite.id, "Nicholas Brown")
+        await invites.change(invite.id, {"name": "Nicholas Brown"}, STARTED)
         await invite_progress.start(invite.id, "nick-uid", "nick99")
         corrected = (await candidates.get(interview.id, invite.id)).name
-        await candidates.set_name(invite.id, None)
+        await invites.change(invite.id, {"name": None}, STARTED)
         cleared = (await candidates.get(interview.id, invite.id)).name
 
         return corrected, cleared
@@ -73,7 +74,7 @@ def test_an_inviters_name_fills_an_unknown_name_and_a_known_one_stays(run):
         interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
         invite, _ = await invites.upsert(interview.id, "x@example.com", "B", "A", "en", name="Xi")
         # Sent again (a redelivered ATS candidate, a list pasted again): an edit stays.
-        await candidates.set_name(invite.id, "Xi Jun")
+        await invites.change(invite.id, {"name": "Xi Jun"}, NOT_STARTED)
         await invites.upsert(interview.id, "x@example.com", "B", "A", "en", name="Xi")
         await invite_progress.start(invite.id, "x-uid", "Signed In Name")
 
@@ -118,3 +119,19 @@ def test_a_csv_lists_names_are_stored_with_its_invites(run):
         return sorted((row.email, row.name) for row in rows)
 
     assert run(scenario()) == [("ann@example.com", "Ann Lee"), ("bob@example.com", None)]
+
+
+def test_a_candidates_changes_are_written_together_or_not_at_all(run):
+    """A change allowed only before the start writes nothing, its name included, for one who
+    started."""
+
+    async def scenario():
+        _, invite = await invited(f"both-{uuid.uuid4().hex[:8]}@example.com")
+        written = await invites.change(invite.id, {"name": "Ann", "extra_time": 25}, NOT_STARTED)
+        await invite_progress.start(invite.id, f"u-{invite.id}")
+        refused = await invites.change(invite.id, {"name": "Bo", "extra_time": 50}, NOT_STARTED)
+        found = await invites.get(invite.id)
+
+        return written, refused, found.name, found.extra_time
+
+    assert run(scenario()) == (True, False, "Ann", 25)

@@ -5226,15 +5226,14 @@
       }
      }
     }
-   }
-  },
-  "/internal/companies/{company_id}/interviews/{interview_id}/candidates/{invite_id}/name": {
+   },
    "patch": {
     "tags": [
      "internal"
     ],
-    "summary": "Rename Candidate",
-    "operationId": "rename_candidate_internal_companies__company_id__interviews__interview_id__candidates__invite_id__name_patch",
+    "summary": "Change Candidate",
+    "description": "The candidate's name and extra time, as the body gives them, all or none (a blank name\nmakes it not known).",
+    "operationId": "change_candidate_internal_companies__company_id__interviews__interview_id__candidates__invite_id__patch",
     "security": [
      {
       "HTTPBearer": []
@@ -5286,87 +5285,7 @@
      "content": {
       "application/json": {
        "schema": {
-        "$ref": "#/components/schemas/CandidateNameIn"
-       }
-      }
-     }
-    },
-    "responses": {
-     "204": {
-      "description": "Successful Response"
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
-  "/internal/companies/{company_id}/interviews/{interview_id}/candidates/{invite_id}/extra-time": {
-   "put": {
-    "tags": [
-     "internal"
-    ],
-    "summary": "Set Extra Time",
-    "operationId": "set_extra_time_internal_companies__company_id__interviews__interview_id__candidates__invite_id__extra_time_put",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "company_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "format": "uuid",
-       "title": "Company Id"
-      }
-     },
-     {
-      "name": "interview_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "format": "uuid",
-       "title": "Interview Id"
-      }
-     },
-     {
-      "name": "invite_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "format": "uuid",
-       "title": "Invite Id"
-      }
-     },
-     {
-      "name": "user_id",
-      "in": "query",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "title": "User Id"
-      }
-     }
-    ],
-    "requestBody": {
-     "required": true,
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/ExtraTimeIn"
+        "$ref": "#/components/schemas/CandidateChangesIn"
        }
       }
      }
@@ -8407,6 +8326,36 @@
      "skipped"
     ],
     "title": "BulkInviteOut"
+   },
+   "CandidateChangesIn": {
+    "properties": {
+     "name": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 200
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "extra_time": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Extra Time"
+     }
+    },
+    "type": "object",
+    "title": "CandidateChangesIn",
+    "description": "An API key's changes to a candidate, made all or none: only the fields given."
    },
    "CandidateFilter": {
     "type": "string",

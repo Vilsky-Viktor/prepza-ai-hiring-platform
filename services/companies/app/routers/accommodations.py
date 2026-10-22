@@ -17,4 +17,5 @@ async def set_extra_time(
     interview_id: UUID, invite_id: UUID, body: ExtraTimeIn, user: CurrentUser, via: Via
 ) -> None:
     interview, invite, _, _ = await candidate_for(user, interview_id, invite_id, editor=True)
-    await candidate_changes.set_extra_time(interview, invite, body.extra_time, user.uid, via)
+    changes = {"extra_time": body.extra_time}
+    await candidate_changes.change(interview, invite, changes, user.uid, via)

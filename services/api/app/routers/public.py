@@ -229,15 +229,19 @@ async def update_candidate(
     key: Annotated[ApiKey, needs(Permission.CANDIDATES_CHANGE)],
 ) -> Candidate:
     """Corrects the candidate's name, or gives them extra time on each question before they
-    start, as an accommodation."""
+    start, as an accommodation. All or nothing: when one change is refused, neither is made."""
+    changes = {}
+
     if "name" in body.model_fields_set:
-        await companies.rename_candidate(
-            key.company_id, interview_id, candidate_id, body.name or "", key.created_by
-        )
+        changes["name"] = body.name or ""
 
     if body.extra_time is not None:
-        await companies.set_extra_time(
-            key.company_id, interview_id, candidate_id, body.extra_time, key.created_by
+        changes["extra_time"] = body.extra_time
+
+    # Both or neither: companies checks every rule before it writes.
+    if changes:
+        await companies.change_candidate(
+            key.company_id, interview_id, candidate_id, changes, key.created_by
         )
 
     found = await companies.candidate(key.company_id, interview_id, candidate_id)
