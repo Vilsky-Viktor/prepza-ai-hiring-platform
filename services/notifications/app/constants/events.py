@@ -21,3 +21,7 @@ CANDIDATE_REMOVED = "candidate.removed"
 CANDIDATE_INTERVIEW_DELETED = "candidate.interview_deleted"
 # Library: a news post was deleted; its notification for everyone goes.
 NEWS_DELETED = "news.deleted"
+# Its own: a Resend web hook received and verified, recorded by its delivery (svix-id); its work
+# (suppression, telling companies and library) runs from this event, so the web hook is answered
+# at once (notifications' `email` family, infra/terraform/pubsub.tf).
+EMAIL_WEBHOOK = "email.webhook_received"

@@ -1,5 +1,6 @@
 import asyncio
 import contextvars
+import uuid
 from datetime import UTC, datetime
 from types import SimpleNamespace
 
@@ -177,3 +178,18 @@ def test_an_outage_ends_the_run_and_still_deletes_old_events(monkeypatch):
         asyncio.run(outbox.flush(None, None))
 
     assert deleted == [True]
+
+
+def test_an_event_that_stands_for_a_delivery_keeps_its_given_id():
+    """Saved twice under one id (a provider's delivery), the row's key keeps one."""
+    rows = []
+    session = SimpleNamespace(add=rows.append)
+    given = uuid.uuid4()
+
+    async def request():
+        outbox.add(session, SimpleNamespace, "email.webhook_received", {}, given)
+        outbox.add(session, SimpleNamespace, "a.done", {})
+
+    contextvars.Context().run(asyncio.run, request())
+
+    assert rows[0].id == given and rows[1].id != given

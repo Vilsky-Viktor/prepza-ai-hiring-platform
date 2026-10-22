@@ -33,14 +33,15 @@ resource "google_pubsub_subscription" "dead_letter" {
 # by one outgrew the cap, and ignore the ones they don't handle. A family of one type today
 # (company, contact, member, report, credits) is taken whole to save bytes; a consumer ignores any
 # type of it it doesn't handle. Companies takes `audit.recorded`, members' actions in billing,
-# ats, notifications and api, for the company's action log. Ats takes its own family too (ats): a
-# candidate an ATS's web hook sent is invited from its own event. A new consumer's subscription is
-# created on apply and gets only the events published after that.
+# ats, notifications and api, for the company's action log. Notifications and ats take their own
+# families too (email, ats): a web hook received is recorded as an event, and its work runs from
+# it. A new consumer's subscription is created on apply and gets only the events published after
+# that.
 locals {
   consumes = {
     library       = ["answer.recorded", "session.scored", "guests.deleted", "question.fixed"]
     companies     = ["generation.completed", "generation.failed", "generation.cancelled", "interview.finished", "audit.recorded"]
-    notifications = ["notification.requested", "candidate.*", "member.*", "report.*", "contact.*", "company.*"]
+    notifications = ["notification.requested", "candidate.*", "member.*", "report.*", "contact.*", "company.*", "email.*"]
     ats           = ["candidate.finished", "candidate.removed", "interview.ready", "interview.deleted", "company.*", "credits.*", "ats.*"]
     api           = ["candidate.*", "interview.ready", "company.deleted"]
     assistant     = ["company.deleted", "candidate.removed", "candidate.interview_deleted"]

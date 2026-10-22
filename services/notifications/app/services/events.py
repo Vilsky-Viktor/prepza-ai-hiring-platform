@@ -9,6 +9,7 @@ from app.constants.events import (
     CANDIDATE_REMOVED,
     COMPANY_DELETED,
     CONTACT_SENT,
+    EMAIL_WEBHOOK,
     MEMBER_INVITED,
     NEWS_DELETED,
     NOTIFICATION_REQUESTED,
@@ -24,7 +25,7 @@ from app.helpers.emails import (
 )
 from app.helpers.unsubscribe import address_hash
 from app.models.email import Email
-from app.services import delivery, service_emails, slack
+from app.services import delivery, service_emails, slack, webhooks
 from app.services.feed import announce
 from app.services.webhooks import report_undelivered
 from app.storage import notifications, opt_outs
@@ -102,9 +103,13 @@ async def remind(data: dict, event_id: str) -> None:
 
 
 async def handle(event_type: str, data: dict, event_id: str) -> None:
-    """Sends the email or stores the notification an event asks for; other events aren't ours."""
+    """Sends the email or stores the notification an event asks for, and does a Resend web
+    hook's work (each step safe to repeat); other events aren't ours."""
     if event_type == NOTIFICATION_REQUESTED:
         await notify(data, event_id)
+
+    if event_type == EMAIL_WEBHOOK:
+        await webhooks.handle(data["event"])
 
     if event_type == CANDIDATE_INVITED:
         await invite(data, event_id)

@@ -1,4 +1,3 @@
-import asyncio
 import base64
 import hashlib
 import hmac
@@ -9,12 +8,14 @@ import pytest
 from prepza_common.constants import WEBHOOK_SIGNATURE_REFUSED
 
 from app.config.settings import settings
+from app.constants.events import EMAIL_WEBHOOK
 from app.helpers.emails import candidate_invite_email
 from app.helpers.unsubscribe import address_hash
 from app.helpers.webhooks import signature_valid
 from app.integrations import companies, library
 from app.routers import webhooks as webhook_routes
-from app.storage import opt_outs, suppressed
+from app.services.events import handle
+from app.storage import opt_outs, suppressed, webhook_deliveries
 
 # Svix's published example (docs.svix.com, "Verifying Webhooks Manually"), not a real secret. Put
 # together from parts so secret scanners don't take the literal for a leaked key.
@@ -87,8 +88,33 @@ def reported(monkeypatch):
     monkeypatch.setattr(library, "unsubscribe", fake_unsubscribe)
     monkeypatch.setattr(suppressed, "add", fake_suppress)
     monkeypatch.setattr(opt_outs, "add", fake_opt_out)
+    deliver_recorded(monkeypatch)
 
     return calls
+
+
+def deliver_recorded(monkeypatch) -> dict:
+    """The outbox and Pub/Sub, faked: each web hook recorded (by its delivery id, once) comes
+    back as its event once the request publishes, and is handled as Pub/Sub's push would be."""
+    recorded, waiting = {}, []
+
+    async def record(delivery_id, event):
+        if delivery_id in recorded:
+            return False
+
+        recorded[delivery_id] = event
+        waiting.append(event)
+
+        return True
+
+    async def flush():
+        while waiting:
+            await handle(EMAIL_WEBHOOK, {"event": waiting.pop(0)}, "event-1")
+
+    monkeypatch.setattr(webhook_deliveries, "record", record)
+    monkeypatch.setattr(webhook_routes.outbox_service, "flush_quietly", flush)
+
+    return recorded
 
 
 def event(event_type, kind=None, tag_id=INVITE_ID):
@@ -188,11 +214,25 @@ def test_a_signature_beyond_ascii_is_refused_not_an_error():
     assert signature_valid("m1", "1000", "v1,ä", b"{}", secret, 1000, 300) is False
 
 
-def test_a_web_hook_whose_work_takes_too_long_comes_back(client, reported, monkeypatch):
-    async def slow(invite_id):
-        await asyncio.Event().wait()
+def test_a_web_hook_sent_again_is_recorded_and_handled_once(client, reported):
+    first = signed_post(client, event("email.bounced", "candidate_invite"))
+    again = signed_post(client, event("email.bounced", "candidate_invite"))
 
-    monkeypatch.setattr(companies, "invite_undelivered", slow)
-    monkeypatch.setattr(webhook_routes, "RESEND_HOOK_SECONDS", 0.01)
+    assert (first.status_code, again.status_code) == (204, 204)
+    assert reported == [("companies", INVITE_ID)]
 
-    assert signed_post(client, event("email.bounced", "candidate_invite")).status_code == 503
+
+def test_the_answer_waits_only_for_the_record_not_the_work(client, reported, monkeypatch):
+    """Its work runs from the event: companies being down fails the event's push, which Pub/Sub
+    retries, never the web hook's answer."""
+
+    async def published():
+        return None
+
+    async def down(invite_id):
+        raise AssertionError("asked before the answer")
+
+    monkeypatch.setattr(webhook_routes.outbox_service, "flush_quietly", published)
+    monkeypatch.setattr(companies, "invite_undelivered", down)
+
+    assert signed_post(client, event("email.bounced", "candidate_invite")).status_code == 204

@@ -25,10 +25,12 @@ logger = logging.getLogger(__name__)
 saved_ids: ContextVar[list[uuid.UUID] | None] = ContextVar("outbox_saved_ids", default=None)
 
 
-def add(session, model, event_type: str, data: dict) -> None:
+def add(session, model, event_type: str, data: dict, event_id: uuid.UUID | None = None) -> None:
     """Saves an event in the caller's transaction, so it exists exactly when the change does.
-    Its row id goes with it as the event's id (pubsub.EVENT_ID_ATTRIBUTE)."""
-    row = model(id=uuid.uuid4(), event_type=event_type, data=data)
+    Its row id goes with it as the event's id (pubsub.EVENT_ID_ATTRIBUTE): `event_id` when the
+    event stands for something with an id of its own (a provider's delivery), so saving it twice
+    breaks the row's key and keeps one."""
+    row = model(id=event_id or uuid.uuid4(), event_type=event_type, data=data)
     session.add(row)
     saved = saved_ids.get()
 
