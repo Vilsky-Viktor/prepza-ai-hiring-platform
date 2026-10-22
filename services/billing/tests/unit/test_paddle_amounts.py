@@ -50,7 +50,7 @@ def test_prices_are_whole_minor_units_above_paddles_minimum(currency):
 @pytest.mark.parametrize("candidates", [10, 49, 333, CUSTOM_TOP_UP_MAX])
 def test_the_amount_paddle_is_sent_is_an_integer_string(currency, candidates):
     count, cents = custom_top_up(candidates, currency)
-    amount = candidates_price(count, cents, currency, None)["unit_price"]["amount"]
+    amount = candidates_price(count, cents, currency, None, "en")["unit_price"]["amount"]
 
     assert amount.isdigit()
     assert int(amount) == count * cents

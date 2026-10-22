@@ -179,6 +179,7 @@ def test_an_automatic_top_up_charges_in_the_companys_currency(
         currency=subscription,
         price=None,
         price_currency=None,
+        language=None,
     )
     patched, recorded, items = [], [], []
 

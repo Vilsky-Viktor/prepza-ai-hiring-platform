@@ -100,3 +100,25 @@ def test_a_charge_that_timed_out_isnt_failed_and_is_tried_again_only_after_a_day
     assert row.failed_at is None
     assert soon is None
     assert next_day is not None
+
+
+def test_its_charges_are_named_in_the_language_of_whoever_pays(run, paddle_calls):
+    """The language follows the buyer: the one waiting for a checkout takes the latest member's,
+    a running one changes only with the person whose card pays."""
+    ann, bob = f"user-{uuid.uuid4()}", f"user-{uuid.uuid4()}"
+    acme = str(uuid.uuid4())
+    sub = f"sub_{uuid.uuid4().hex[:12]}"
+
+    async def scenario():
+        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD, "uk")
+        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, bob, Currency.USD, "de")
+        waiting = (await rows.get(COMPANY, acme)).language
+        await auto_top_ups.start(checkout_data(acme, bob), sub, "USD")
+        # Ann's save reaching the table anyway (a race past the service's check) keeps Bob's.
+        await rows.save(COMPANY, acme, "topup_50", 500, ann, 5000, "USD", "fr")
+        kept = (await rows.get(COMPANY, acme)).language
+        await auto_top_ups.turn_on(COMPANY, acme, CHOICE, bob, Currency.USD, "ja")
+
+        return waiting, kept, (await rows.get(COMPANY, acme)).language
+
+    assert run(scenario()) == ("de", "de", "ja")

@@ -201,21 +201,24 @@ def test_the_credits_say_how_many_candidates_hold_the_reserved_ones(client, monk
 def test_an_admin_gets_a_checkout_billing_made_and_a_viewer_none(client, monkeypatch):
     made = []
 
-    async def checkout(company_id, candidates, buyer_id, country):
-        made.append((company_id, candidates, buyer_id))
+    async def checkout(company_id, candidates, buyer_id, country, language):
+        made.append((company_id, candidates, buyer_id, language))
 
         return "txn_new"
 
     monkeypatch.setattr(billing_prices, "company_checkout", checkout)
     as_member(monkeypatch, "admin")
-    admin = client.post(f"{COMPANY}/billing/checkout", json={"candidates": 45})
+    # The item is named in the interface language the site sends.
+    admin = client.post(
+        f"{COMPANY}/billing/checkout", json={"candidates": 45}, headers={"Accept-Language": "de-DE"}
+    )
     as_member(monkeypatch, "viewer")
     viewer = client.post(f"{COMPANY}/billing/checkout", json={"candidates": 45})
     app.dependency_overrides.clear()
 
     assert admin.json() == {"transaction_id": "txn_new"}
     assert viewer.status_code == 403
-    assert made == [(COMPANY_ID, 45, "bob")]
+    assert made == [(COMPANY_ID, 45, "bob", "de")]
 
 
 def test_an_admin_learns_why_their_payment_failed_and_a_viewer_doesnt(client, monkeypatch):

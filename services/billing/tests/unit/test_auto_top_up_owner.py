@@ -34,8 +34,8 @@ def running(monkeypatch):
     async def get(owner_type, owner_id):
         return row
 
-    async def save(owner_type, owner_id, product, threshold, buyer_id, price, currency):
-        saved.append((product, threshold, buyer_id, price, currency))
+    async def save(owner_type, owner_id, product, threshold, buyer_id, price, currency, language):
+        saved.append((product, threshold, buyer_id, price, currency, language))
 
         return row
 
@@ -56,8 +56,24 @@ def test_another_member_cant_change_a_top_up_charged_to_someone_elses_card(clien
 
 
 def test_the_cards_owner_changes_it(client, running):
-    response = client.put(URL, json=CHOICE, params={"buyer_id": "ann"}, headers=AUTH)
+    params = {"buyer_id": "ann", "language": "de"}
+    response = client.put(URL, json=CHOICE, params=params, headers=AUTH)
 
     assert response.status_code == 200
-    # At the price list's price for the top-up chosen, in the company's currency.
-    assert running == [("topup_1000", AUTO_TOP_UP_THRESHOLDS[-1], "ann", 100_000, "USD")]
+    # At the price list's price for the top-up chosen, in the company's currency; each charge
+    # named in Ann's language.
+    assert running == [("topup_1000", AUTO_TOP_UP_THRESHOLDS[-1], "ann", 100_000, "USD", "de")]
+
+
+def test_without_a_language_charges_are_named_in_english(client, running):
+    client.put(URL, json=CHOICE, params={"buyer_id": "ann"}, headers=AUTH)
+
+    assert running[0][-1] == "en"
+
+
+def test_a_language_the_site_doesnt_have_is_refused(client, running):
+    params = {"buyer_id": "ann", "language": "xx"}
+    response = client.put(URL, json=CHOICE, params=params, headers=AUTH)
+
+    assert response.status_code == 422
+    assert running == []

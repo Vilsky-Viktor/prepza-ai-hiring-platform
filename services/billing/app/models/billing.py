@@ -96,6 +96,9 @@ class AutoTopUp(Base):
     price_currency: Mapped[str | None] = mapped_column(String(3))
     next_price: Mapped[int | None] = mapped_column(BigInteger)
     next_price_from: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # The interface language of whoever turned it on, which names what each charge buys on
+    # Paddle's invoice; None (set up before it was kept) is English.
+    language: Mapped[str | None] = mapped_column(String(8))
 
 
 class CurrencyChoice(Base):

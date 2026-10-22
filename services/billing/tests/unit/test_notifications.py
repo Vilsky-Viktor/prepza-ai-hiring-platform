@@ -105,6 +105,7 @@ def charge_failing_with(monkeypatch, error):
             currency="USD",
             price=None,
             price_currency=None,
+            language=None,
         )
 
     async def charge(subscription_id, price_id):

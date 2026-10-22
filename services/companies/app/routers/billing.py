@@ -1,9 +1,10 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Request
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import CurrentUser
+from prepza_common.i18n import request_language
 from prepza_common.paging import PageParams
 from prepza_common.rate_limit import hit_or_skip
 from prepza_common.visitor_country import VisitorCountry
@@ -70,18 +71,22 @@ async def get_invoice(company_id: UUID, transaction_id: str, user: CurrentUser) 
 
 @router.post("/checkout")
 async def create_checkout(
-    company_id: UUID, body: TopUpCheckoutIn, user: CurrentUser, country: VisitorCountry = None
+    company_id: UUID,
+    body: TopUpCheckoutIn,
+    user: CurrentUser,
+    request: Request,
+    country: VisitorCountry = None,
 ) -> TopUpCheckoutOut:
     """A Paddle checkout for a top-up of some number of candidates, paid by the user into the
     company: billing checks the count and makes it at its price, in the company's currency, so
     neither the price, the currency nor whose wallet it pays into can be changed in the
-    browser."""
+    browser. Its item is named in the user's interface language."""
     await require_editor(user, company_id)
     await count_checkout_call(user.uid, company_id)
 
     return TopUpCheckoutOut(
         transaction_id=await billing_prices.company_checkout(
-            company_id, body.candidates, user.uid, country
+            company_id, body.candidates, user.uid, country, language=request_language(request)
         )
     )
 

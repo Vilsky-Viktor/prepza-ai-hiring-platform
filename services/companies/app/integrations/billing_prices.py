@@ -67,15 +67,16 @@ async def auto_top_up(company_id: UUID, country: str | None = None) -> dict:
 
 
 async def turn_on_auto_top_up(
-    company_id: UUID, body: dict, buyer_id: str, country: str | None
+    company_id: UUID, body: dict, buyer_id: str, country: str | None, language: str
 ) -> dict:
-    """Saves the choice; billing's answer carries the checkout when the card isn't saved yet.
-    Its refusals reach the user unchanged: a choice it doesn't offer (422), or a running one
-    paid by someone else's card (403)."""
+    """Saves the choice, with the buyer's interface `language`, which names what each charge
+    buys; billing's answer carries the checkout when the card isn't saved yet. Its refusals reach
+    the user unchanged: a choice it doesn't offer (422), or a running one paid by someone else's
+    card (403)."""
     response = await http.get_client().put(
         _company(company_id, "auto-top-up"),
         json=body,
-        params={"buyer_id": buyer_id, **_country(country)},
+        params={"buyer_id": buyer_id, "language": language, **_country(country)},
         headers=_headers(),
     )
 
@@ -109,14 +110,14 @@ async def update_auto_top_up_card(company_id: UUID, buyer_id: str) -> str:
 
 
 async def company_checkout(
-    company_id: UUID, candidates: int, buyer_id: str, country: str | None
+    company_id: UUID, candidates: int, buyer_id: str, country: str | None, language: str
 ) -> str:
     """The Paddle transaction of a checkout for a top-up of `candidates` into the company, made
-    by billing in the company's currency; its refusal of a count or a price it doesn't sell
-    (422) reaches the user unchanged."""
+    by billing in the company's currency, its item named in the buyer's interface `language`;
+    its refusal of a count or a price it doesn't sell (422) reaches the user unchanged."""
     response = await http.get_client().post(
         _company(company_id, "checkout"),
-        params={"buyer_id": buyer_id, **_country(country)},
+        params={"buyer_id": buyer_id, "language": language, **_country(country)},
         json={"candidates": candidates},
         headers=_headers(),
     )

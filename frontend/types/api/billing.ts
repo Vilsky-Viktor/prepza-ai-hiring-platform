@@ -479,8 +479,9 @@ export interface paths {
      * Company Checkout
      * @description A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies
      *     has checked they're its owner or an admin. What it buys and its price are set here from the
-     *     count, in the company's currency, which Paddle then charges wherever the buyer is; a count
-     *     outside the range, or before Paddle's product is set, is refused (422).
+     *     count, in the company's currency, which Paddle then charges wherever the buyer is; its item
+     *     is named in the buyer's interface `language`. A count outside the range, or before Paddle's
+     *     product is set, is refused (422).
      */
     post: operations["company_checkout_internal_companies__company_id__checkout_post"]
     delete?: never
@@ -498,7 +499,10 @@ export interface paths {
     }
     /** Company Auto Top Up */
     get: operations["company_auto_top_up_internal_companies__company_id__auto_top_up_get"]
-    /** Turn On Company */
+    /**
+     * Turn On Company
+     * @description `language` is the buyer's interface language, which names what each charge buys.
+     */
     put: operations["turn_on_company_internal_companies__company_id__auto_top_up_put"]
     post?: never
     /**
@@ -2283,6 +2287,30 @@ export interface operations {
       query: {
         buyer_id: string
         country?: string | null
+        language?:
+          | "en"
+          | "ru"
+          | "uk"
+          | "es"
+          | "pt"
+          | "de"
+          | "fr"
+          | "it"
+          | "pl"
+          | "nl"
+          | "tr"
+          | "ar"
+          | "he"
+          | "fa"
+          | "ja"
+          | "zh"
+          | "ko"
+          | "hi"
+          | "id"
+          | "th"
+          | "vi"
+          | "fil"
+          | "et"
       }
       header?: never
       path: {
@@ -2354,6 +2382,30 @@ export interface operations {
       query: {
         buyer_id: string
         country?: string | null
+        language?:
+          | "en"
+          | "ru"
+          | "uk"
+          | "es"
+          | "pt"
+          | "de"
+          | "fr"
+          | "it"
+          | "pl"
+          | "nl"
+          | "tr"
+          | "ar"
+          | "he"
+          | "fa"
+          | "ja"
+          | "zh"
+          | "ko"
+          | "hi"
+          | "id"
+          | "th"
+          | "vi"
+          | "fil"
+          | "et"
       }
       header?: never
       path: {

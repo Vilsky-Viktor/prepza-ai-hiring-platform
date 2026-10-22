@@ -5,6 +5,7 @@ from datetime import UTC, datetime
 import httpx
 from fastapi import HTTPException, status
 from prepza_common.analytics import track
+from prepza_common.constants import DEFAULT_LANGUAGE
 
 from app.config.settings import settings
 from app.constants.currencies import DEFAULT_CURRENCY, Currency
@@ -77,10 +78,16 @@ async def out(owner_type: str, owner_id: str, currency: Currency) -> AutoTopUpOu
 
 
 async def turn_on(
-    owner_type: str, owner_id: str, body: AutoTopUpIn, buyer_id: str, currency: Currency
+    owner_type: str,
+    owner_id: str,
+    body: AutoTopUpIn,
+    buyer_id: str,
+    currency: Currency,
+    language: str = DEFAULT_LANGUAGE,
 ) -> AutoTopUpOut:
-    """Saves the choice. If it isn't running yet, the answer carries the checkout that saves
-    the card; it starts when Paddle confirms the subscription."""
+    """Saves the choice, and the buyer's `language`, which names what each charge buys. If it
+    isn't running yet, the answer carries the checkout that saves the card; it starts when
+    Paddle confirms the subscription."""
     if not offered() or body.product not in products():
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, TOP_UP_UNAVAILABLE)
 
@@ -101,6 +108,7 @@ async def turn_on(
         buyer_id,
         listed(body.product, currency),
         currency,
+        language,
     )
     result = await out(owner_type, owner_id, currency)
 
@@ -225,11 +233,14 @@ async def check_briefly(owner_type: str, owner_id: str) -> None:
         logger.warning("Automatic top-up cut off for %s %s", owner_type, owner_id)
 
 
-def top_up_item(product_key: str, price: int, currency: Currency) -> dict:
-    """The fixed top-up the automatic top-up buys, at `price` (minor units) in `currency`."""
+def top_up_item(product_key: str, price: int, currency: Currency, language: str) -> dict:
+    """The fixed top-up the automatic top-up buys, at `price` (minor units) in `currency`, named
+    in `language`."""
     product = next(product for product in TOP_UPS if product.key == product_key)
 
-    return candidates_price(product.candidates, price // product.candidates, currency, product.key)
+    return candidates_price(
+        product.candidates, price // product.candidates, currency, product.key, language
+    )
 
 
 async def charge(row: AutoTopUp, owner_id: str, now: datetime) -> tuple[int, Currency]:
@@ -244,7 +255,9 @@ async def charge(row: AutoTopUp, owner_id: str, now: datetime) -> tuple[int, Cur
         await paddle.set_currency(row.subscription_id, currency)
         await auto_top_ups.set_currency(row.subscription_id, currency)
 
-    await paddle.charge(row.subscription_id, top_up_item(row.product, price, currency))
+    # Named in the language of whoever turned it on; set up before languages were kept, English.
+    item = top_up_item(row.product, price, currency, row.language or DEFAULT_LANGUAGE)
+    await paddle.charge(row.subscription_id, item)
 
     return price, currency
 

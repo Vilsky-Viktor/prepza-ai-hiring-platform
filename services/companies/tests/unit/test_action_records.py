@@ -64,7 +64,7 @@ def company(monkeypatch):
     async def current(_company_id, country=None):
         return dict(top_up)
 
-    async def turn_on(_company_id, body, buyer_id, country):
+    async def turn_on(_company_id, body, buyer_id, country, language):
         top_up.update(on=True, **body)
 
         return dict(top_up)
@@ -128,6 +128,25 @@ def test_setting_up_changing_and_stopping_the_automatic_top_up_is_recorded(clien
             AuditAction.AUTO_TOP_UP_STOPPED,
         )
     ]
+
+
+def test_turning_on_passes_the_interface_language_to_billing(client, audited, monkeypatch):
+    """Billing names what each automatic charge buys in it."""
+    languages = []
+
+    async def turn_on(_company_id, body, buyer_id, country, language):
+        languages.append(language)
+
+        return {**OFF, **body}
+
+    monkeypatch.setattr(billing_prices, "turn_on_auto_top_up", turn_on)
+    url = f"/companies/{COMPANY_ID}/auto-top-up"
+    body = {"product": "pack_10", "threshold": 5}
+
+    client.put(url, json=body, headers={"Accept-Language": "pl-PL,pl;q=0.9"})
+    client.put(url, json=body)
+
+    assert languages == ["pl", "en"]
 
 
 def test_a_viewer_changes_nothing_and_nothing_is_recorded(client, audited):

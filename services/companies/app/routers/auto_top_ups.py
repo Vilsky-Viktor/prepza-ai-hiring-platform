@@ -1,8 +1,9 @@
 from uuid import UUID
 
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Request, status
 from prepza_common.audit_actions import AuditAction, TargetKind
 from prepza_common.auth import CurrentUser
+from prepza_common.i18n import request_language
 from prepza_common.visitor_country import VisitorCountry
 
 from app.integrations import billing_prices as billing
@@ -27,13 +28,20 @@ async def get_auto_top_up(
 
 @router.put("")
 async def turn_on(
-    company_id: UUID, body: AutoTopUpIn, user: CurrentUser, country: VisitorCountry = None
+    company_id: UUID,
+    body: AutoTopUpIn,
+    user: CurrentUser,
+    request: Request,
+    country: VisitorCountry = None,
 ) -> AutoTopUpOut:
+    """What each charge buys is named on its invoice in the user's interface language."""
     await require_editor(user, company_id)
     # Turning it on makes the checkout's transaction in Paddle.
     await count_checkout_call(user.uid, company_id)
     was_on = (await billing.auto_top_up(company_id))["on"]
-    saved = await billing.turn_on_auto_top_up(company_id, body.model_dump(), user.uid, country)
+    saved = await billing.turn_on_auto_top_up(
+        company_id, body.model_dump(), user.uid, country, language=request_language(request)
+    )
     action = AuditAction.AUTO_TOP_UP_CHANGED if was_on else AuditAction.AUTO_TOP_UP_SET
     await audit.record(company_id, user.uid, action, company_id, target_kind=TargetKind.COMPANY)
 

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from prepza_common.constants import DEFAULT_LANGUAGE
 from sqlalchemy import and_, case, delete, exists, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 
@@ -21,12 +22,14 @@ async def save(
     buyer_id: str,
     price: int,
     currency: str,
+    language: str = DEFAULT_LANGUAGE,
 ) -> AutoTopUp:
     """Sets what to buy and when. A running one keeps its subscription and the card it charges
     (a declined card isn't tried again sooner: its card is updated instead); one still waiting
     for its checkout waits for this person's, whoever turned it on before. Choosing another
     top-up agrees to its `price` now (in `currency`); keeping the same one keeps the price agreed
-    and any new price announced."""
+    and any new price announced. `language`, which names what each charge buys, is the buyer's:
+    it changes only with the person whose card pays."""
     values = {"product": product, "threshold": threshold}
     upsert = insert(AutoTopUp).values(
         owner_type=owner_type,
@@ -34,9 +37,11 @@ async def save(
         buyer_id=buyer_id,
         price=price,
         price_currency=currency,
+        language=language,
         **values,
     )
     waiting = AutoTopUp.subscription_id.is_(None)
+    buyers = or_(waiting, AutoTopUp.buyer_id == upsert.excluded.buyer_id)
     kept = AutoTopUp.product == upsert.excluded.product
 
     def unless_kept(column, chosen):
@@ -49,6 +54,7 @@ async def save(
                 set_={
                     **values,
                     "buyer_id": case((waiting, upsert.excluded.buyer_id), else_=AutoTopUp.buyer_id),
+                    "language": case((buyers, upsert.excluded.language), else_=AutoTopUp.language),
                     "price": unless_kept(AutoTopUp.price, upsert.excluded.price),
                     "price_currency": unless_kept(
                         AutoTopUp.price_currency, upsert.excluded.price_currency

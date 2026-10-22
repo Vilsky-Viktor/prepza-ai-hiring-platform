@@ -9,6 +9,7 @@ from app.constants.products import (
     TOP_UPS,
 )
 from app.helpers.credits import candidate_price, candidate_tiers, top_up_price, upgrade_from
+from app.helpers.item_names import candidates_name
 from app.schemas.billing import (
     CandidatePriceOut,
     CandidateTierOut,
@@ -62,12 +63,15 @@ def catalog_out(currency: Currency) -> CatalogOut:
     )
 
 
-def candidates_price(candidates: int, cents: int, currency: Currency, top_up: str | None) -> dict:
+def candidates_price(
+    candidates: int, cents: int, currency: Currency, top_up: str | None, language: str
+) -> dict:
     """Paddle's price, made in the transaction itself, of a top-up of `candidates` at `cents`
     each in `currency` only, so Paddle charges that currency wherever the buyer is: one item the
-    buyer can't change, its tax added on top. What it buys is in its custom data: the fixed
-    top-up's key (`top_up`), or the candidates."""
-    name = f"{candidates:,} candidates"
+    buyer can't change, its tax added on top, named in the buyer's `language` (checkout and
+    invoice show it). What it buys is in its custom data: the fixed top-up's key (`top_up`), or
+    the candidates; web hooks read that, never the name."""
+    name = candidates_name(candidates, language)
     bought = {TOP_UP_FLAG: top_up} if top_up else {CUSTOM_TOP_UP_FLAG: str(candidates)}
 
     return {

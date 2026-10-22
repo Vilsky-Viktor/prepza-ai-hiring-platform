@@ -1,6 +1,8 @@
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, HTTPException, status
+from prepza_common.constants import DEFAULT_LANGUAGE
+from prepza_common.user import Language
 
 from app.config.settings import settings
 from app.constants.currencies import ChoiceOwner, Currency
@@ -77,11 +79,13 @@ async def company_checkout(
     buyer_id: str,
     caller: ServiceCaller,
     country: Country = None,
+    language: Language = DEFAULT_LANGUAGE,
 ) -> TopUpCheckoutOut:
     """A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies
     has checked they're its owner or an admin. What it buys and its price are set here from the
-    count, in the company's currency, which Paddle then charges wherever the buyer is; a count
-    outside the range, or before Paddle's product is set, is refused (422)."""
+    count, in the company's currency, which Paddle then charges wherever the buyer is; its item
+    is named in the buyer's interface `language`. A count outside the range, or before Paddle's
+    product is set, is refused (422)."""
     currency = await decide(country, company_id=company_id)
     bought = custom_top_up(body.candidates, currency)
 
@@ -93,7 +97,7 @@ async def company_checkout(
 
     candidates, cents = bought
     custom = {"owner_type": OwnerType.COMPANY, "owner_id": company_id, "buyer_id": buyer_id}
-    item = {"price": candidates_price(candidates, cents, currency, None), "quantity": 1}
+    item = {"price": candidates_price(candidates, cents, currency, None, language), "quantity": 1}
 
     return TopUpCheckoutOut(
         transaction_id=await paddle.create_transaction([item], currency, custom)

@@ -1,4 +1,6 @@
 from fastapi import APIRouter, status
+from prepza_common.constants import DEFAULT_LANGUAGE
+from prepza_common.user import Language
 
 from app.constants.products import OwnerType
 from app.dependencies import Country
@@ -29,10 +31,14 @@ async def turn_on_company(
     buyer_id: str,
     caller: ServiceCaller,
     country: Country = None,
+    language: Language = DEFAULT_LANGUAGE,
 ) -> AutoTopUpOut:
+    """`language` is the buyer's interface language, which names what each charge buys."""
     currency = await decide(country, company_id=company_id)
 
-    return await auto_top_ups.turn_on(OwnerType.COMPANY, company_id, body, buyer_id, currency)
+    return await auto_top_ups.turn_on(
+        OwnerType.COMPANY, company_id, body, buyer_id, currency, language
+    )
 
 
 @internal.delete("/companies/{company_id}/auto-top-up", status_code=status.HTTP_204_NO_CONTENT)

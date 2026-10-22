@@ -774,6 +774,7 @@
      "companies"
     ],
     "summary": "Turn On",
+    "description": "What each charge buys is named on its invoice in the user's interface language.",
     "operationId": "turn_on_companies__company_id__auto_top_up_put",
     "security": [
      {
@@ -1154,7 +1155,7 @@
      "companies"
     ],
     "summary": "Create Checkout",
-    "description": "A Paddle checkout for a top-up of some number of candidates, paid by the user into the\ncompany: billing checks the count and makes it at its price, in the company's currency, so\nneither the price, the currency nor whose wallet it pays into can be changed in the\nbrowser.",
+    "description": "A Paddle checkout for a top-up of some number of candidates, paid by the user into the\ncompany: billing checks the count and makes it at its price, in the company's currency, so\nneither the price, the currency nor whose wallet it pays into can be changed in the\nbrowser. Its item is named in the user's interface language.",
     "operationId": "create_checkout_companies__company_id__billing_checkout_post",
     "security": [
      {

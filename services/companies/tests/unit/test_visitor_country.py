@@ -54,7 +54,7 @@ def passed(monkeypatch):
         return company
 
     def answering(answer):
-        async def call(*args):
+        async def call(*args, **kwargs):
             countries.append(args[-1])
 
             return answer
