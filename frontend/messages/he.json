@@ -1775,7 +1775,7 @@
     "bzStepPaste": "הדביקו את המפתח למטה. את הוובהוק ב-Breezy HR נוסיף בעצמנו.",
     "atsGroup": "ATS",
     "messagingGroup": "אפליקציות הודעות",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API ואפליקציות AI",
     "searchInterview": "חיפוש ראיונות",
     "noInterview": "אין ראיון שהכותרת שלו מכילה את זה."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "לא ניתן היה לשנות את המטבע. נסו שוב."
   },
   "aiApps": {
-    "group": "אפליקציות AI",
     "name": "שרת MCP",
     "rowText": "חברו ל-prepza את Claude, את ChatGPT ואפליקציות AI אחרות.",
     "title": "אפליקציות AI",

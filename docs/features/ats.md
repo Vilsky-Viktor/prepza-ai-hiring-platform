@@ -42,7 +42,7 @@ On a company's **Integrations** tab, an owner or admin connects an ATS with its 
 
 ## The ATS pages
 
-- The Integrations tab lists the ATSs, with a "connected" tag once connected.
+- The Integrations tab has three groups, in this order: messaging (Slack), the API and AI apps (MCP) in one list, then the ATSs, each with a "connected" tag once connected.
 - Under a connected ATS's name, on its row and its page: the account it's connected as (Workable's and Recruitee's subdomain, Teamtailor's and Breezy HR's company name). Greenhouse names no account, so it shows the company's own name on prepza instead; no member's name is kept with a connection.
 - Each ATS opens its own page: `/companies/<id>/integrations/<workable, greenhouse, teamtailor, recruitee or breezy>`. Before it's connected, the page says so in place of the linked jobs.
 - The page lists its linked jobs. For each job:

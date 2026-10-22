@@ -219,9 +219,9 @@
     "text": "将 prepza 连接到团队已在使用的工具。每个集成都有单独的页面和设置步骤。",
     "actions": [
       "Slack：在频道中接收公司的通知。",
-      "ATS（Workable、Greenhouse、Teamtailor、Recruitee、Breezy HR）：你移到某个阶段的候选人会收到面试，结果会同步回 ATS。",
       "API：用于连接你自己平台的 API 密钥和 Webhook。",
-      "AI 应用：在 Claude、ChatGPT 等 AI 应用中使用 prepza。"
+      "AI 应用：在 Claude、ChatGPT 等 AI 应用中使用 prepza。",
+      "ATS（Workable、Greenhouse、Teamtailor、Recruitee、Breezy HR）：你移到某个阶段的候选人会收到面试，结果会同步回 ATS。"
     ],
     "tips": [
       "公司里的每个人都能看到集成；所有者和管理员可以修改。"

@@ -219,9 +219,9 @@
     "text": "prepza'yı ekibinizin zaten kullandığı araçlara bağlayın. Her entegrasyonun kurulum adımlarını içeren kendi sayfası vardır.",
     "actions": [
       "Slack: şirketinizin bildirimlerini bir kanalda alın.",
-      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): bir aşamaya taşıdığınız adaylar mülakatı alır, sonuçları ATS'e geri döner.",
       "API: kendi platformunuzu bağlamak için anahtarlar ve webhook'lar.",
-      "Yapay zekâ uygulamaları: prepza'yı Claude, ChatGPT ve diğer yapay zekâ uygulamalarından kullanın."
+      "Yapay zekâ uygulamaları: prepza'yı Claude, ChatGPT ve diğer yapay zekâ uygulamalarından kullanın.",
+      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): bir aşamaya taşıdığınız adaylar mülakatı alır, sonuçları ATS'e geri döner."
     ],
     "tips": [
       "Şirketteki herkes entegrasyonları görür; sahipler ve yöneticiler değiştirebilir."

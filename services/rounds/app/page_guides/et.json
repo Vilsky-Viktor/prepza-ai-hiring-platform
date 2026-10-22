@@ -219,9 +219,9 @@
     "text": "Ühenda prepza tööriistadega, mida su meeskond juba kasutab. Igal integratsioonil on oma leht seadistamise sammudega.",
     "actions": [
       "Slack: saa ettevõtte teavitused kanalisse.",
-      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): etappi viidud kandidaadid saavad intervjuu ja nende tulemused jõuavad tagasi ATS-i.",
       "API: võtmed ja webhookid oma platvormi ühendamiseks.",
-      "AI-rakendused: kasuta prepzat Claude'is, ChatGPT-s ja teistes AI-rakendustes."
+      "AI-rakendused: kasuta prepzat Claude'is, ChatGPT-s ja teistes AI-rakendustes.",
+      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): etappi viidud kandidaadid saavad intervjuu ja nende tulemused jõuavad tagasi ATS-i."
     ],
     "tips": [
       "Integratsioone näevad kõik ettevõttes; muuta saavad neid omanikud ja administraatorid."

@@ -219,9 +219,9 @@
     "text": "Kết nối prepza với các công cụ nhóm bạn đang dùng. Mỗi tích hợp có trang riêng với các bước thiết lập.",
     "actions": [
       "Slack: nhận thông báo của công ty trong một kênh.",
-      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): ứng viên bạn chuyển sang một giai đoạn sẽ nhận buổi phỏng vấn, và kết quả được gửi ngược lại.",
       "API: khóa và webhook để kết nối nền tảng của riêng bạn.",
-      "Ứng dụng AI: dùng prepza từ Claude, ChatGPT và các ứng dụng AI khác."
+      "Ứng dụng AI: dùng prepza từ Claude, ChatGPT và các ứng dụng AI khác.",
+      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): ứng viên bạn chuyển sang một giai đoạn sẽ nhận buổi phỏng vấn, và kết quả được gửi ngược lại."
     ],
     "tips": [
       "Mọi người trong công ty đều thấy các tích hợp; chủ sở hữu và quản trị viên thay đổi chúng."

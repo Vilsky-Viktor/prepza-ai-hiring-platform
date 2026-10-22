@@ -1775,7 +1775,7 @@
     "bzStepPaste": "Tempel kunci di bawah. Webhook di Breezy HR kami tambahkan sendiri.",
     "atsGroup": "ATS",
     "messagingGroup": "Aplikasi pesan",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API & aplikasi AI",
     "searchInterview": "Cari wawancara",
     "noInterview": "Tidak ada wawancara yang judulnya memuat itu."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Tidak dapat mengubah mata uang. Silakan coba lagi."
   },
   "aiApps": {
-    "group": "Aplikasi AI",
     "name": "Server MCP",
     "rowText": "Hubungkan Claude, ChatGPT, dan aplikasi AI lainnya ke prepza.",
     "title": "Aplikasi AI",

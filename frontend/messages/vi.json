@@ -1775,7 +1775,7 @@
     "bzStepPaste": "Dán khóa bên dưới. Chúng tôi tự thêm webhook trong Breezy HR.",
     "atsGroup": "ATS",
     "messagingGroup": "Nhắn tin",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API và ứng dụng AI",
     "searchInterview": "Tìm buổi phỏng vấn",
     "noInterview": "Không có buổi phỏng vấn nào có nội dung này trong tiêu đề."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Không thể đổi tiền tệ. Vui lòng thử lại."
   },
   "aiApps": {
-    "group": "Ứng dụng AI",
     "name": "Máy chủ MCP",
     "rowText": "Kết nối Claude, ChatGPT và các ứng dụng AI khác với prepza.",
     "title": "Ứng dụng AI",

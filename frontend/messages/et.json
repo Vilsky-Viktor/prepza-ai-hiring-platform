@@ -1775,7 +1775,7 @@
     "bzStepPaste": "Kleebi võti allpool. Webhooki lisame Breezy HR-is ise.",
     "atsGroup": "ATS",
     "messagingGroup": "Sõnumirakendused",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API ja AI-rakendused",
     "searchInterview": "Otsi intervjuud",
     "noInterview": "Ühegi intervjuu pealkirjas seda pole."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Valuutat ei õnnestunud muuta. Proovi uuesti."
   },
   "aiApps": {
-    "group": "AI-rakendused",
     "name": "MCP-server",
     "rowText": "Ühenda Claude, ChatGPT ja teised AI-rakendused prepzaga.",
     "title": "AI-rakendused",

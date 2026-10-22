@@ -219,9 +219,9 @@
     "text": "팀이 이미 쓰는 도구와 prepza를 연결하세요. 연동마다 설정 방법이 담긴 별도 페이지가 있습니다.",
     "actions": [
       "Slack: 회사 알림을 채널에서 받습니다.",
-      "ATS(Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): 전형 단계로 옮긴 지원자에게 면접이 발송되고, 결과가 ATS로 돌아갑니다.",
       "API: 자체 플랫폼을 연결하는 API 키와 웹훅.",
-      "AI 앱: Claude, ChatGPT 등 AI 앱에서 prepza를 사용합니다."
+      "AI 앱: Claude, ChatGPT 등 AI 앱에서 prepza를 사용합니다.",
+      "ATS(Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): 전형 단계로 옮긴 지원자에게 면접이 발송되고, 결과가 ATS로 돌아갑니다."
     ],
     "tips": [
       "연동은 회사의 모든 사람이 볼 수 있고, 소유자와 관리자가 변경할 수 있습니다."

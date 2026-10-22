@@ -1775,7 +1775,7 @@
     "bzStepPaste": "将密钥粘贴到下方。我们会自行在 Breezy HR 中添加 Webhook。",
     "atsGroup": "ATS",
     "messagingGroup": "消息应用",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API 与 AI 应用",
     "searchInterview": "搜索面试",
     "noInterview": "没有标题包含该内容的面试。"
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "无法更改货币，请重试。"
   },
   "aiApps": {
-    "group": "AI 应用",
     "name": "MCP 服务器",
     "rowText": "将 Claude、ChatGPT 等 AI 应用连接到 prepza。",
     "title": "AI 应用",

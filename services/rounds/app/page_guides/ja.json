@@ -219,9 +219,9 @@
     "text": "チームがすでに使っているツールと prepza をつなぎます。各連携には、設定手順を記載した専用ページがあります。",
     "actions": [
       "Slack：会社のお知らせをチャンネルで受け取ります。",
-      "ATS（Workable、Greenhouse、Teamtailor、Recruitee、Breezy HR）：選考ステップに移動した候補者に面接が送られ、結果が ATS に戻ります。",
       "API：自社のプラットフォームとつなぐための API キーと Webhook。",
-      "AI アプリ：Claude や ChatGPT などの AI アプリから prepza を使います。"
+      "AI アプリ：Claude や ChatGPT などの AI アプリから prepza を使います。",
+      "ATS（Workable、Greenhouse、Teamtailor、Recruitee、Breezy HR）：選考ステップに移動した候補者に面接が送られ、結果が ATS に戻ります。"
     ],
     "tips": [
       "連携は会社の全員が閲覧でき、所有者と管理者が変更できます。"

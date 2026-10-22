@@ -1775,7 +1775,7 @@
     "bzStepPaste": "کلید را در زیر بچسبانید. وب‌هوک را در Breezy HR خودمان اضافه می‌کنیم.",
     "atsGroup": "ATS",
     "messagingGroup": "پیام‌رسان‌ها",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API و اپ‌های هوش مصنوعی",
     "searchInterview": "جست‌وجوی مصاحبه",
     "noInterview": "هیچ مصاحبه‌ای این را در عنوانش ندارد."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "تغییر واحد پول ممکن نشد. لطفاً دوباره تلاش کنید."
   },
   "aiApps": {
-    "group": "اپ‌های هوش مصنوعی",
     "name": "سرور MCP",
     "rowText": "Claude، ChatGPT و دیگر اپ‌های هوش مصنوعی را به prepza وصل کنید.",
     "title": "اپ‌های هوش مصنوعی",

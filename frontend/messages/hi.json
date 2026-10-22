@@ -1775,7 +1775,7 @@
     "bzStepPaste": "कुंजी नीचे पेस्ट करें। Breezy HR में वेबहुक हम खुद जोड़ देंगे।",
     "atsGroup": "ATS",
     "messagingGroup": "मैसेजिंग",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API और AI ऐप्स",
     "searchInterview": "इंटरव्यू खोजें",
     "noInterview": "किसी इंटरव्यू के शीर्षक में यह नहीं है।"
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "मुद्रा नहीं बदल सकी। कृपया फिर से कोशिश करें।"
   },
   "aiApps": {
-    "group": "AI ऐप्स",
     "name": "MCP सर्वर",
     "rowText": "Claude, ChatGPT और दूसरे AI ऐप्स को prepza से कनेक्ट करें।",
     "title": "AI ऐप्स",

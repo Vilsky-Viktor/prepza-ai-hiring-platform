@@ -1775,7 +1775,7 @@
     "bzStepPaste": "Вставте ключ нижче. Вебхук у Breezy HR ми додамо самі.",
     "atsGroup": "ATS",
     "messagingGroup": "Месенджери",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API та ШІ-застосунки",
     "searchInterview": "Пошук співбесіди",
     "noInterview": "Жодна співбесіда не має цього в назві."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Не вдалося змінити валюту. Спробуйте ще раз."
   },
   "aiApps": {
-    "group": "ШІ-застосунки",
     "name": "MCP-сервер",
     "rowText": "Підключіть Claude, ChatGPT та інші ШІ-застосунки до prepza.",
     "title": "ШІ-застосунки",

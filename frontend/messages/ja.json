@@ -1775,7 +1775,7 @@
     "bzStepPaste": "下にキーを貼り付けてください。Breezy HR の Webhook はこちらで追加します。",
     "atsGroup": "ATS",
     "messagingGroup": "メッセージアプリ",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API と AI アプリ",
     "searchInterview": "面接を検索",
     "noInterview": "タイトルにこの語句を含む面接はありません。"
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "通貨を変更できませんでした。もう一度お試しください。"
   },
   "aiApps": {
-    "group": "AI アプリ",
     "name": "MCP サーバー",
     "rowText": "Claude や ChatGPT などの AI アプリを prepza に接続します。",
     "title": "AI アプリ",

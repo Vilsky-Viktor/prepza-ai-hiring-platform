@@ -1775,7 +1775,7 @@
     "bzStepPaste": "Anahtarı aşağıya yapıştırın. Breezy HR'daki webhook'u kendimiz ekleriz.",
     "atsGroup": "ATS",
     "messagingGroup": "Mesajlaşma",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API ve yapay zekâ uygulamaları",
     "searchInterview": "Mülakat ara",
     "noInterview": "Başlığında bu geçen bir mülakat yok."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Para birimi değiştirilemedi. Lütfen tekrar deneyin."
   },
   "aiApps": {
-    "group": "Yapay zekâ uygulamaları",
     "name": "MCP sunucusu",
     "rowText": "Claude, ChatGPT ve diğer yapay zekâ uygulamalarını prepza'ya bağlayın.",
     "title": "Yapay zekâ uygulamaları",

@@ -1775,7 +1775,7 @@
     "bzStepPaste": "Paste the key below. We add the web hook in Breezy HR ourselves.",
     "atsGroup": "ATS",
     "messagingGroup": "Messaging",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API & AI apps",
     "searchInterview": "Search interviews",
     "noInterview": "No interview has that in its title."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Couldn't change the currency. Please try again."
   },
   "aiApps": {
-    "group": "AI apps",
     "name": "MCP server",
     "rowText": "Connect Claude, ChatGPT and other AI apps to prepza.",
     "title": "AI apps",

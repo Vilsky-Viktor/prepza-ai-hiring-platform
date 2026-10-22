@@ -21,8 +21,9 @@ import { LIST_BOX } from "@/constants/lists"
 
 export const generateMetadata = () => translatedTitle("company", "integrations")
 
-/** The company's integrations: Slack, its ATSs, the API and AI apps, a row each laid out like
- * the companies list, in four groups, messaging first; each opens its own page. Everyone in the company sees them; owners and admins change them. */
+/** The company's integrations: Slack, then the API and AI apps (MCP) together, then its ATSs, a
+ * row each laid out like the companies list, in three groups in that order; each opens its own
+ * page. Everyone in the company sees them; owners and admins change them. */
 export default async function IntegrationsPage({
   params,
 }: {
@@ -31,7 +32,6 @@ export default async function IntegrationsPage({
   const { companyId } = await params
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
   const t = await getTranslations("ats")
-  const ai = await getTranslations("aiApps")
   // Asked together: the API refuses each on its own when the company isn't theirs.
   const [company, integrations, slack, api, connections] = signedIn
     ? await Promise.all([
@@ -81,6 +81,16 @@ export default async function IntegrationsPage({
         </section>
       )}
       <section className="space-y-6">
+        {/* Acronyms: their capitals stay, though titles are lowercase. */}
+        <h2 className="font-heading text-2xl font-medium normal-case">
+          {t("apiAiAppsGroup")}
+        </h2>
+        <ul className={`${LIST_BOX} overflow-hidden`}>
+          {api && <ApiRow companyId={companyId} settings={api} />}
+          <AiAppsRow companyId={companyId} connections={connections ?? []} />
+        </ul>
+      </section>
+      <section className="space-y-6">
         {/* An acronym: its capitals stay, though titles are lowercase. */}
         <h2 className="font-heading text-2xl font-medium normal-case">
           {t("atsGroup")}
@@ -108,25 +118,6 @@ export default async function IntegrationsPage({
             {integrations === null ? t("connectionsFailed") : t("unavailable")}
           </p>
         )}
-      </section>
-      {api && (
-        <section className="space-y-6">
-          <h2 className="font-heading text-2xl font-medium normal-case">
-            {t("apiGroup")}
-          </h2>
-          <ul className={`${LIST_BOX} overflow-hidden`}>
-            <ApiRow companyId={companyId} settings={api} />
-          </ul>
-        </section>
-      )}
-      <section className="space-y-6">
-        {/* "AI" keeps its capitals, though titles are lowercase. */}
-        <h2 className="font-heading text-2xl font-medium normal-case">
-          {ai("group")}
-        </h2>
-        <ul className={`${LIST_BOX} overflow-hidden`}>
-          <AiAppsRow companyId={companyId} connections={connections ?? []} />
-        </ul>
       </section>
     </main>
   )

@@ -219,9 +219,9 @@
     "text": "Hubungkan prepza ke alat yang sudah dipakai timmu. Setiap integrasi membuka halamannya sendiri dengan langkah penyiapan.",
     "actions": [
       "Slack: terima notifikasi perusahaanmu di sebuah channel.",
-      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): kandidat yang kamu pindahkan ke suatu tahap mendapat wawancara, dan hasilnya dikirim balik.",
       "API: kunci dan webhook untuk menghubungkan platformmu sendiri.",
-      "Aplikasi AI: pakai prepza dari Claude, ChatGPT, dan aplikasi AI lainnya."
+      "Aplikasi AI: pakai prepza dari Claude, ChatGPT, dan aplikasi AI lainnya.",
+      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): kandidat yang kamu pindahkan ke suatu tahap mendapat wawancara, dan hasilnya dikirim balik."
     ],
     "tips": [
       "Semua orang di perusahaan bisa melihat integrasi; pemilik dan admin yang mengubahnya."

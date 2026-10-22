@@ -1775,7 +1775,7 @@
     "bzStepPaste": "วางคีย์ด้านล่าง เราจะเพิ่มเว็บฮุกใน Breezy HR เอง",
     "atsGroup": "ATS",
     "messagingGroup": "แอปส่งข้อความ",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API และแอป AI",
     "searchInterview": "ค้นหาการสัมภาษณ์",
     "noInterview": "ไม่มีการสัมภาษณ์ที่มีคำนี้ในชื่อ"
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "เปลี่ยนสกุลเงินไม่สำเร็จ โปรดลองอีกครั้ง"
   },
   "aiApps": {
-    "group": "แอป AI",
     "name": "เซิร์ฟเวอร์ MCP",
     "rowText": "เชื่อมต่อ Claude, ChatGPT และแอป AI อื่นๆ กับ prepza",
     "title": "แอป AI",

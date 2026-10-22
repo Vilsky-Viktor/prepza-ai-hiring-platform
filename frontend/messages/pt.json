@@ -1775,7 +1775,7 @@
     "bzStepPaste": "Cole a chave abaixo. Nós mesmos adicionamos o webhook no Breezy HR.",
     "atsGroup": "ATS",
     "messagingGroup": "Mensagens",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API e apps de IA",
     "searchInterview": "Buscar entrevistas",
     "noInterview": "Nenhuma entrevista tem isso no título."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Não foi possível mudar a moeda. Tente novamente."
   },
   "aiApps": {
-    "group": "Apps de IA",
     "name": "Servidor MCP",
     "rowText": "Conecte o Claude, o ChatGPT e outros apps de IA à prepza.",
     "title": "Apps de IA",

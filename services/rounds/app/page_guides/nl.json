@@ -219,9 +219,9 @@
     "text": "Koppel prepza aan de tools die je team al gebruikt. Elke integratie opent een eigen pagina met de stappen om die in te stellen.",
     "actions": [
       "Slack: ontvang de meldingen van je bedrijf in een kanaal.",
-      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): kandidaten die je naar een fase verplaatst krijgen het interview, en hun resultaten gaan terug.",
       "API: sleutels en webhooks om je eigen platform te koppelen.",
-      "AI-apps: gebruik prepza vanuit Claude, ChatGPT en andere AI-apps."
+      "AI-apps: gebruik prepza vanuit Claude, ChatGPT en andere AI-apps.",
+      "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): kandidaten die je naar een fase verplaatst krijgen het interview, en hun resultaten gaan terug."
     ],
     "tips": [
       "Iedereen in het bedrijf ziet de integraties; eigenaren en beheerders wijzigen ze."

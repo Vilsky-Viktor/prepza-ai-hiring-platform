@@ -1775,7 +1775,7 @@
     "bzStepPaste": "아래에 키를 붙여 넣으세요. Breezy HR의 웹훅은 저희가 직접 추가합니다.",
     "atsGroup": "ATS",
     "messagingGroup": "메신저",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API 및 AI 앱",
     "searchInterview": "면접 검색",
     "noInterview": "제목에 이 내용이 포함된 면접이 없습니다."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "통화를 변경하지 못했습니다. 다시 시도해 주세요."
   },
   "aiApps": {
-    "group": "AI 앱",
     "name": "MCP 서버",
     "rowText": "Claude, ChatGPT 등 AI 앱을 prepza와 연동합니다.",
     "title": "AI 앱",

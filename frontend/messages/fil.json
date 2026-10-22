@@ -1775,7 +1775,7 @@
     "bzStepPaste": "I-paste ang key sa ibaba. Kami na ang magdadagdag ng webhook sa Breezy HR.",
     "atsGroup": "ATS",
     "messagingGroup": "Mga messaging app",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API at mga AI app",
     "searchInterview": "Maghanap ng interview",
     "noInterview": "Walang interview na may ganyan sa pamagat."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Hindi mapalitan ang currency. Pakisubukang muli."
   },
   "aiApps": {
-    "group": "Mga AI app",
     "name": "MCP server",
     "rowText": "Ikonekta ang Claude, ChatGPT at iba pang AI app sa prepza.",
     "title": "Mga AI app",

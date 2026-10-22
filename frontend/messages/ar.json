@@ -1775,7 +1775,7 @@
     "bzStepPaste": "الصق المفتاح أدناه. سنضيف الويب هوك في Breezy HR بأنفسنا.",
     "atsGroup": "ATS",
     "messagingGroup": "تطبيقات المراسلة",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API وتطبيقات الذكاء الاصطناعي",
     "searchInterview": "ابحث عن مقابلة",
     "noInterview": "لا توجد مقابلة يحتوي عنوانها على ذلك."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "تعذّر تغيير العملة. يرجى المحاولة مرة أخرى."
   },
   "aiApps": {
-    "group": "تطبيقات الذكاء الاصطناعي",
     "name": "خادم MCP",
     "rowText": "اربط Claude وChatGPT وتطبيقات الذكاء الاصطناعي الأخرى بـ prepza.",
     "title": "تطبيقات الذكاء الاصطناعي",

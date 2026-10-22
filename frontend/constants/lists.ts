@@ -23,11 +23,11 @@ export const INTEGRATION_ROW =
 
 /** The row's link: it covers the whole row; on phones its logo and text join the row's grid. */
 export const INTEGRATION_LINK =
-  "flex min-w-0 items-center gap-4 after:absolute after:inset-0 max-sm:contents"
+  "flex min-w-0 items-center gap-4 self-stretch after:absolute after:inset-0 max-sm:contents"
 
 /** The logo tile: full height of the row; on phones a small rounded tile beside the name. */
 export const INTEGRATION_LOGO =
-  "-my-6 me-2 flex size-[6.25rem] shrink-0 items-center justify-center overflow-hidden bg-muted max-sm:m-0 max-sm:size-12 max-sm:self-start max-sm:rounded-lg"
+  "-my-6 me-2 flex min-h-[6.25rem] w-[6.25rem] shrink-0 items-center justify-center self-stretch overflow-hidden bg-muted max-sm:m-0 max-sm:size-12 max-sm:min-h-0 max-sm:self-start max-sm:rounded-lg"
 
 /** An integration's group of buttons, on its row and on its page. */
 export const INTEGRATION_ACTIONS = "flex shrink-0 items-center gap-3"

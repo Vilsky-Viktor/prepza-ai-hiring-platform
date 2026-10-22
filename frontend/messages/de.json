@@ -1775,7 +1775,7 @@
     "bzStepPaste": "Füge den Schlüssel unten ein. Den Webhook in Breezy HR richten wir selbst ein.",
     "atsGroup": "ATS",
     "messagingGroup": "Messenger",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API & KI-Apps",
     "searchInterview": "Interviews suchen",
     "noInterview": "Kein Interview hat das im Titel."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Die Währung konnte nicht geändert werden. Bitte versuche es erneut."
   },
   "aiApps": {
-    "group": "KI-Apps",
     "name": "MCP-Server",
     "rowText": "Verbinde Claude, ChatGPT und andere KI-Apps mit prepza.",
     "title": "KI-Apps",

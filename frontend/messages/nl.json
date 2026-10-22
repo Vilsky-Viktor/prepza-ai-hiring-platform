@@ -1775,7 +1775,7 @@
     "bzStepPaste": "Plak de sleutel hieronder. De webhook in Breezy HR voegen we zelf toe.",
     "atsGroup": "ATS",
     "messagingGroup": "Berichtenapps",
-    "apiGroup": "API",
+    "apiAiAppsGroup": "API & AI-apps",
     "searchInterview": "Interviews zoeken",
     "noInterview": "Geen interview heeft dit in de titel."
   },
@@ -2240,7 +2240,6 @@
     "currencyFailed": "Kon de valuta niet wijzigen. Probeer het opnieuw."
   },
   "aiApps": {
-    "group": "AI-apps",
     "name": "MCP-server",
     "rowText": "Koppel Claude, ChatGPT en andere AI-apps aan prepza.",
     "title": "AI-apps",
