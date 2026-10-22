@@ -35,6 +35,8 @@ jobs:
       - run: uvx "ruff@$RUFF_VERSION" check services packages evals
       - run: uvx "ruff@$RUFF_VERSION" format --check services packages evals
       - run: scripts/check_migrations.py && uvx --with pytest pytest -q scripts/tests
+      # The evals' frozen datasets: shape, duplicates, overlap with the prompts' examples.
+      - run: python3 evals/scripts/check_datasets.py
 
   # Rule 2: no hand-written file over 300 lines.
   size:
