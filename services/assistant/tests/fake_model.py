@@ -62,14 +62,21 @@ class FakeModel:
 
 
 class FakeTitleModel:
-    """The titles' model, answering `title` (no OpenAI)."""
+    """The titles' model, answering `title` as the structured output the service asks for, with
+    the raw message beside it (no OpenAI)."""
 
     def __init__(self, title: str = "A chat"):
         self.title = title
+
+    def with_structured_output(self, schema, include_raw=False):
+        self.schema = schema
+
+        return self
 
     async def ainvoke(self, messages):
         from langchain_core.messages import AIMessage
 
         usage = {"input_tokens": 3, "output_tokens": 2, "total_tokens": 5}
+        raw = AIMessage(content=self.title, usage_metadata=usage)
 
-        return AIMessage(content=self.title, usage_metadata=usage)
+        return {"raw": raw, "parsed": self.schema(title=self.title)}
