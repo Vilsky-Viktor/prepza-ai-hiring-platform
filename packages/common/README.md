@@ -106,3 +106,85 @@ and `INVOKER_AUDIENCE`, and the `<SERVICE>_SERVICE_SECRET` keys of the services 
 Services depend on it by path (see `[tool.uv.sources]` in each service's `pyproject.toml`). To
 publish it instead, run `uv build` and `uv publish` here, then replace the path source with a
 version requirement such as `prepza-common>=0.1`.
+
+## Modules
+
+One line each, by name (`tests/unit/test_readme_modules.py` fails on one left out):
+
+- `ai_cap`: the unpaid users' daily AI spend cap (`refuse_if_capped`, `add_unpaid`).
+- `ai_constants`: AI prices, the kinds of AI calls and the usage records' settings.
+- `ai_usage`: records each AI call's tokens and cost (`ai.used`), and OpenAI's refusals.
+- `analytics`: funnel events with keyed pseudonymous ids (`track`).
+- `answer_votes`: the chats' thumbs up and down mirrored to Langfuse within the vote's request.
+- `audit`: a member's action in another service, saved in its outbox for companies' action log.
+- `audit_actions`: the action log's actions, targets and groups.
+- `auth`: Firebase sign-in: verifying ID tokens, the current user, `start_firebase`.
+- `backoff`: the jittered, doubling wait before a retry (`wait_seconds`).
+- `body_limit`: refuses a request body over its size (413), counted as it streams.
+- `capped`: `gather_capped`: calls run together, at most so many at a time.
+- `clean_start`: a clean start for every integration test (a `_test` database, Redis database 15).
+- `client_ip`: the visitor's address behind the load balancer, and its rate-limit key.
+- `company_access`: who may do what in a company, asked of companies.
+- `company_invites`: inviting a candidate through companies' internal route (api, ats).
+- `constants`: the values every service shares: timeouts, pools, limits, languages, keys.
+- `credit_keys`: one-off migrations of candidates' credit keys.
+- `db`: engines, sessions, timeouts, the migrations' engine and `delete_in_batches`.
+- `encryption`: symmetric encryption of stored secrets, with key rotation.
+- `error_codes`: the machine-readable codes of refusals several services give.
+- `event_models`: the outbox's and processed events' columns every service's tables share.
+- `examples`: questions with an example block, counted and shaped.
+- `google`: Google credentials, the invoker check of Google's pushes, timed certificate downloads.
+- `health`: `/health` (the process) and `/ready` (its database).
+- `http`: the shared HTTP client (a timeout, the trace passed on, no retries) and `passed_on`.
+- `human_check`: the Turnstile check of anonymous flows.
+- `i18n`: a request's language, translated refusals and their codes.
+- `limit_list`: every usage limit of ours, with its default, window and scope.
+- `limit_schemas`: the shared daily budgets' use today.
+- `limit_types`: a limit's definition (`Limit`).
+- `limits`: limits' current values, cached per instance, and the record of every refusal.
+- `llm`: OpenAI chat models built one way, prices and token estimates.
+- `logging`: one-line JSON logs with severity and trace, and each request's line.
+- `maintenance`: the maintenance switch every service reads.
+- `memory_cache`: a per-instance cache of values that may be stale for their TTL.
+- `money`: an amount of money as a language writes it.
+- `multi_answer`: "select all that apply" questions and their share of a draw.
+- `names`: a candidate's name cleaned from untrusted fields.
+- `no_store`: `Cache-Control: no-store` on signed-in and secret-token answers.
+- `notifications`: the bell's notifications other services ask for.
+- `outbox`: events saved with their change and published once committed.
+- `pacing`: requests paced to a share a second, counted in Redis (`wait_turn`).
+- `page_keys`: the pages where the assistant's panel opens, by their guide's key.
+- `paging`: a route's page, a page of ids by key, and `every_id`.
+- `pause`: the emergency pause of new interviews and AI features.
+- `person_hash`: keyed hashes that stand for a person.
+- `processed_events`: events a consumer handled, to handle each once (`claim`).
+- `public_urls`: HTTPS addresses on the public internet only, looked up within a time, and pinned.
+- `pubsub`: publishing to the events topic, and reading Pub/Sub's pushes.
+- `rate_limit`: fixed-window limits and budgets in Redis, refused with 429 and Retry-After.
+- `redis_client`: each service's Redis client: timeouts, retries with jitter, a health check.
+- `redis_constants`: the Redis client's retries, health check and timeouts.
+- `redis_lock`: a lock that keeps a scheduled run from overlapping the next.
+- `route_guards`: lists the routes that run no guard, for each service's test.
+- `schema_rules`: the database rules a migrated database is checked against.
+- `scope`: what prepza's AI chats answer, and what they don't.
+- `scrub`: emails, URLs and people's names taken out of logs, errors and traces.
+- `scrub_patterns`: the patterns `scrub` takes out.
+- `secret_words`: words that say a message holds a secret, in every language.
+- `secrets_check`: secrets pasted into the AI chats, found before anything keeps them.
+- `sentry`: Sentry without personal data, and which requests are traced.
+- `service_auth`: short-lived, audience-bound tokens for calls between services.
+- `sets`: a generated test's and a template's shapes, as services pass them.
+- `settings`: the base of every service's settings.
+- `shutdown`: `close_shared`: what a service holds open, closed at the end of its lifespan.
+- `sse`: server-sent events: framing, keep-alives, no-store.
+- `stats`: the admin zone's counts, all time or by period.
+- `superadmin`: prepza's own team, signed in with Google, for the admin zone.
+- `tenant_columns`: the migration step that gives a tenant's child table its company_id.
+- `titles`: an edited name's or title's check.
+- `tokens`: secret tokens kept as their hashes, compared in constant time.
+- `trace_constants`: Langfuse's retention and its API's settings.
+- `trace_retention`: Langfuse's traces deleted on time, page by page.
+- `tracing`: AI calls traced to Langfuse, with personal data masked.
+- `translations`: the messages users read, by language, and the check that each is translated.
+- `user`: the signed-in user (`User`).
+- `visitor_country`: the visitor's country from the load balancer.
