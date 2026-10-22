@@ -229,7 +229,7 @@ The services stay on the main instance (each mounts only its socket), so the clo
 
 To restore everything, restore the instance from a backup instead (`gcloud sql backups restore`), which overwrites all nine databases.
 
-**After any restore or clone used for data,** run the account deletions of the last 14 days again, so nobody who deleted their account since the backup comes back: `gcloud scheduler jobs run erasures --location=europe-west1` (it also runs daily; library keeps the deleted accounts' ids and emails 14 days for it, `erasures`).
+**After any restore or clone used for data,** run the account deletions of the last 14 days again, so nobody who deleted their account since the backup comes back: `gcloud scheduler jobs run erasures --location=europe-west1` (it also runs daily; library keeps the deleted accounts' ids and emails 14 days for it, `erasures`). Then `gcloud scheduler jobs run candidate-removals --location=europe-west1`: the candidates companies erased since come back too, and are erased again (companies keeps their invite ids 14 days, `removed_invites`).
 
 **Recovery targets.** At most a few seconds of data is lost (point-in-time recovery, 7 days back), and a restore takes about an hour (cloning or restoring takes 15–30 minutes, plus the copy). The instance is zonal (`db_high_availability` off): if its zone fails, Cloud SQL brings it back in another zone of the region with its data, after some downtime; `db_high_availability = true` makes that failover automatic, at twice the database cost. If the whole region fails, prepza is down until it returns: restoring elsewhere would mean recreating the infrastructure in another region from a backup (backups are kept in a multi-region location by default), which isn't scripted.
 

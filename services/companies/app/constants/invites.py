@@ -38,6 +38,9 @@ OPEN = (InviteStatus.INVITED, InviteStatus.UNDELIVERED, InviteStatus.IN_PROCESS)
 
 # Candidate invites, with the candidate's results, are kept this long after they're sent.
 CANDIDATE_RETENTION_DAYS = 365
+# Erased candidates are remembered (ids only) as long as the database's backups last, so a
+# restore's removals can be run again (services/removal_replay.py).
+REMOVAL_KEEP_DAYS = 14
 # Invites deleted per batch of the daily retention run.
 RETENTION_BATCH = 200
 # An invite never started this long after it was last sent expires, and its credits come back.

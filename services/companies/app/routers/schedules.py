@@ -9,6 +9,7 @@ from app.constants.events import PROCESSED_EVENT_DAYS
 from app.integrations.redis import get_redis
 from app.models.events import ProcessedEvent
 from app.services import outbox as outbox_service
+from app.services import removal_replay
 from app.services.candidate_billing import expire_unstarted
 from app.services.reminders import remind_unstarted
 from app.services.retention import delete_expired_candidates, delete_old_audit_events
@@ -37,6 +38,16 @@ async def retention() -> None:
     await processed_events.forget(
         Session, ProcessedEvent, datetime.now(UTC) - timedelta(days=PROCESSED_EVENT_DAYS)
     )
+
+
+@router.post("/removals", status_code=status.HTTP_204_NO_CONTENT)
+async def replay_removals() -> None:
+    """Daily, from Cloud Scheduler, and by hand right after a database restore or clone: the
+    candidates erased in the backups' life are erased again if they came back."""
+    count = await removal_replay.replay()
+
+    if count:
+        logger.warning("Erased %d restored candidates again", count)
 
 
 @router.post("/invite-expiry", status_code=status.HTTP_204_NO_CONTENT)

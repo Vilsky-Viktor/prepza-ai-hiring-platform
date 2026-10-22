@@ -32,6 +32,8 @@ locals {
     quality-patterns    = { service = "generation-worker", path = "/internal/schedules/patterns", cron = "0 5 * * 1" }
     candidate-retention = { service = "companies", path = "/internal/schedules/retention", cron = "15 3 * * *" }
     invite-expiry       = { service = "companies", path = "/internal/schedules/invite-expiry", cron = "30 3 * * *" }
+    # Candidates erased in the last 14 days, erased again if a restore brought them back.
+    candidate-removals = { service = "companies", path = "/internal/schedules/removals", cron = "15 5 * * *" }
     # In the morning (UTC), not the night: a reminder candidates see.
     invite-reminders = { service = "companies", path = "/internal/schedules/invite-reminders", cron = "0 9 * * *" }
     bank-stages      = { service = "library", path = "/internal/schedules/bank", cron = "45 3 * * *" }

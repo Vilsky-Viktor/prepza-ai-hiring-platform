@@ -12,6 +12,7 @@ from app.helpers.candidates import new_hold_key
 from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
 from app.models.outbox import OutboxEvent
+from app.models.removals import RemovedInvite
 from app.storage import guests
 from app.storage.db import Session
 from app.storage.interviews import company_of
@@ -180,6 +181,12 @@ async def remove(invite: CandidateInvite, company_id) -> str | None:
     status as it was deleted."""
     async with Session() as session:
         await guests.announce_deleted(session, CandidateInvite.id == invite.id)
+        # Erased again after a restore from a backup (services/removal_replay.py).
+        await session.execute(
+            insert(RemovedInvite)
+            .values(invite_id=invite.id, company_id=company_id)
+            .on_conflict_do_nothing()
+        )
         removed = await session.scalar(
             delete(CandidateInvite)
             .where(CandidateInvite.id == invite.id)

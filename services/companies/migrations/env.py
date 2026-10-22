@@ -8,7 +8,8 @@ import app.models.companies
 import app.models.events
 import app.models.interviews
 import app.models.invites
-import app.models.outbox  # noqa: F401
+import app.models.outbox
+import app.models.removals  # noqa: F401
 from app.config.settings import settings
 from app.models.base import Base
 
