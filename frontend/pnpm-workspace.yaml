@@ -1,9 +1,23 @@
 packages: []
 
+# Supply-chain guards (they need pnpm 10.26 or later, package.json's packageManager):
+# a version published less than a day ago (in minutes) isn't installed, nor one that lost the
+# provenance its earlier releases had, nor a sub-dependency from git or a tarball URL.
+minimumReleaseAge: 1440
+trustPolicy: no-downgrade
+blockExoticSubdeps: true
+
+# Only the packages set to true run their install scripts; every other one is listed so a new
+# one shows up as a warning to review.
 allowBuilds:
   sharp: true
   unrs-resolver: true
   msw: false
+  "@firebase/util": false
+  "@parcel/watcher": false
+  "@swc/core": false
+  core-js: false
+  protobufjs: false
 
 # Patched versions of transitive packages with security advisories: grpc-js (under Firebase's
 # Firestore, unused here) and source-map-js (under PostCSS, at build time).
