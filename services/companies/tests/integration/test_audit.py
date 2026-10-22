@@ -138,3 +138,28 @@ def test_old_audit_events_are_deleted_in_batches_and_new_ones_kept(run):
 
     assert deleted == 5
     assert [row.action for row in kept] == [AuditAction.TOPICS_APPROVED]
+
+
+def test_a_deleted_users_actions_lose_their_id_batch_after_batch(run, monkeypatch):
+    from prepza_common import db
+
+    monkeypatch.setattr(db, "DELETE_BATCH", 2)
+    user = f"gone-{uuid.uuid4()}"
+
+    async def scenario():
+        company = await companies.create(f"Audit {uuid.uuid4()}", "owner", "owner@example.com")
+
+        for _ in range(5):
+            await audit.record(company.id, user, AuditAction.PASS_MARK_CHANGED)
+
+        await audit.record(company.id, "owner", AuditAction.TOPICS_APPROVED)
+        await audit.forget_user(user)
+        listed = await audit.list_for_company(company.id, 0, 10)
+        await companies.delete(company.id)
+
+        return listed
+
+    listed = run(scenario())
+
+    # More than a batch, all without the id; the other member's stays theirs.
+    assert sorted(row.user_id for row in listed) == [DELETED_USER] * 5 + ["owner"]

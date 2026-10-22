@@ -3,8 +3,8 @@ from uuid import UUID, uuid4
 
 from prepza_common.audit_actions import ACTION_GROUPS, MAX_TARGET_LABEL, AuditAction, TargetKind
 from prepza_common.constants import DELETED_USER
-from prepza_common.db import delete_in_batches
-from sqlalchemy import select, update
+from prepza_common.db import delete_in_batches, update_in_batches
+from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError
 
@@ -153,12 +153,11 @@ async def list_for_company(
 
 
 async def forget_user(user_id: str) -> None:
-    """The user's actions stay in their companies' logs, without the user's id."""
-    query = update(AuditEvent).where(AuditEvent.user_id == user_id).values(user_id=DELETED_USER)
-
-    async with Session() as session:
-        await session.execute(query)
-        await session.commit()
+    """The user's actions stay in their companies' logs, without the user's id; a batch at a
+    time, so a run cut off midway goes on when run again."""
+    await update_in_batches(
+        Session, AuditEvent, {"user_id": DELETED_USER}, AuditEvent.user_id == user_id
+    )
 
 
 async def delete_before(before: datetime) -> int:
