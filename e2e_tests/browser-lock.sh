@@ -38,11 +38,19 @@ browser_run_gone() {
   [ -n "$(find "$1" -maxdepth 0 -mmin +1 2>/dev/null)" ]
 }
 
+# The queue's tickets, lowest first: only plain numbers count, so anything else in the folder
+# can't break the count.
+browser_tickets() {
+  ls "$browser_queue" | grep -E '^[0-9]+$' | sort -n || true
+}
+
 # The next number after every ticket in the queue, taken atomically.
 take_browser_ticket() {
   local next
+  local last
 
-  next=$(($(ls "$browser_queue" | sort -n | tail -n 1) + 1))
+  last="$(browser_tickets | tail -n 1)"
+  next=$((10#${last:-0} + 1))
 
   until mkdir "$browser_queue/$next" 2>/dev/null; do
     next=$((next + 1))
@@ -56,7 +64,7 @@ take_browser_ticket() {
 first_browser_ticket() {
   local ticket
 
-  for ticket in $(ls "$browser_queue" | sort -n); do
+  for ticket in $(browser_tickets); do
     if ! browser_run_gone "$browser_queue/$ticket"; then
       echo "$browser_queue/$ticket"
 

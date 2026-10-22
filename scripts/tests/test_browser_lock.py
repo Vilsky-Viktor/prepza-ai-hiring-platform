@@ -86,3 +86,27 @@ def test_a_waiting_run_that_died_does_not_hold_up_the_queue(tmp_path):
 
         for process in runs:
             process.wait(timeout=20)
+
+
+def test_a_stray_file_in_the_queue_does_not_let_a_run_skip_it(tmp_path):
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    got = tmp_path / "got"
+    queue = tmp_path / ".git" / "prepza-browser-runs" / "queue"
+    runs = [run(tmp_path, "first")]
+
+    try:
+        until(lambda: got.exists())
+        (queue / "001792674436-7365").touch()
+        runs.append(run(tmp_path, "second"))
+        until(lambda: any(entry.name.isdigit() for entry in queue.iterdir()))
+
+        assert got.read_text().split() == ["first"]
+
+        (tmp_path / "release-first").touch()
+        until(lambda: got.read_text().split() == ["first", "second"])
+    finally:
+        for name in ["first", "second"]:
+            (tmp_path / f"release-{name}").touch()
+
+        for process in runs:
+            process.wait(timeout=20)
