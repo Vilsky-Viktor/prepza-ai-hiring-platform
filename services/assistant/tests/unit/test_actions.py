@@ -188,3 +188,22 @@ def test_a_company_made_by_the_assistant_counts_for_the_referral_link(redis, wri
     asyncio.run(actions.run(CONVERSATION, action_id, ANN, "fresh", "en", "abc123"))
 
     assert writes.referrals == ["abc123"]
+
+
+def test_a_confirm_the_message_limits_refuse_isnt_counted_as_an_action(redis, writes, monkeypatch):
+    counted = []
+
+    async def over(redis, user_id, company_id):
+        raise HTTPException(429, "Too many messages")
+
+    async def count(redis, user_id, company_id=None):
+        counted.append(user_id)
+
+    monkeypatch.setattr(actions.limits, "check", over)
+    monkeypatch.setattr(actions, "count_action", count)
+    action_id = prepared(redis)
+
+    with pytest.raises(HTTPException):
+        asyncio.run(actions.run(CONVERSATION, action_id, ANN, "fresh", "en"))
+
+    assert (counted, writes) == ([], [])

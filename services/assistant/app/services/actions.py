@@ -233,8 +233,9 @@ async def run(
     await refuse_if_paused(redis, "assistant_action", user_id=user.uid)
     pending = await owned_action(conversation_id, action_id, user, token, language)
     company_id = UUID(pending["company_id"]) if pending["company_id"] else None
-    await count_action(redis, user.uid, company_id)
+    # The message limits refuse without counting; the action is counted once it can go ahead.
     await limits.check(redis, user.uid, company_id)
+    await count_action(redis, user.uid, company_id)
     pending = await claim(action_id)
     tool = tools()[pending["tool"]]
     arguments = pending["arguments"]
