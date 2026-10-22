@@ -6,7 +6,8 @@ use is in `assistant-actions.md` and `assistant.md`.
 
 Contents: [Fewer tools per turn](#fewer-tools-per-turn-tried-and-reverted-2026-10-20) ·
 [Domain agents](#domain-agents-tried-and-removed-2026-10-21) ·
-[Fuller tool descriptions](#fuller-tool-descriptions-tried-and-reverted-2026-10-22)
+[Fuller tool descriptions](#fuller-tool-descriptions-tried-and-reverted-2026-10-22) ·
+[Cutting earlier steps' results](#cutting-earlier-steps-results-tried-and-reverted-2026-10-22)
 
 ## Fewer tools per turn, tried and reverted (2026-10-20)
 
@@ -82,3 +83,12 @@ cases failing (renames, invites, members). Then only the 15 tools whose route gi
 parent 100% → 83.3%. Both reverted, as a cost beyond the noise with nothing better; with all 88
 tools offered every turn, longer descriptions mostly add tokens. Fuller descriptions belong with
 fewer tools a turn.
+
+## Cutting earlier steps' results, tried and reverted (2026-10-22)
+
+Each tool result from before the step the model had just read was cut to 1,500 characters, with
+a note to call the tool again for the rest, so long turns resend less. `page_context.py`, 2
+repeats, against `results/assistant_page_context_ctx.json` (`…_cut.json`): general questions
+correct with the page 88/102 → 75/102, and on the turns with three or more tool calls, the only
+ones a cut can reach, 30/34 → 19/27; page checks 16/18 → 17/18. Reverted: the turns it touches
+did worse, and the eval's results are short enough that little was saved. $1.34.
