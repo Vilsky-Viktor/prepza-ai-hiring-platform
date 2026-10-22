@@ -135,8 +135,8 @@ async def without_candidates(company_id) -> int:
 
 async def list_for_company(
     company_id,
-    offset: int = 0,
-    limit: int | None = None,
+    offset: int,
+    limit: int,
     since: datetime | None = None,
     after: uuid.UUID | None = None,
     q: str = "",
