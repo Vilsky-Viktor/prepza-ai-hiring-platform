@@ -83,6 +83,7 @@ def test_a_generation_run_is_one_trace_tagged_with_the_generation_id_only(langfu
     assert attributes == {
         "trace_name": INTERVIEW_GENERATION,
         "tags": [INTERVIEW_GENERATION, str(GENERATION_ID)],
+        "session_id": None,
     }
     tags = " ".join(attributes["tags"])
     assert str(COMPANY_ID) not in tags
