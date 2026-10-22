@@ -4,6 +4,8 @@ import { Combobox } from "@base-ui/react/combobox"
 import { cn } from "cn"
 import { CheckIcon, ChevronDownIcon, SearchIcon } from "lucide-react"
 
+import { useId } from "react"
+
 import { MAX_PICKER_SEARCH_LENGTH } from "@/constants/limits"
 import { languageOf } from "@/lib/locale"
 
@@ -40,6 +42,10 @@ export function SearchPicker<T extends string>({
   // What the trigger shows for the chosen item, when not its label (a currency's code).
   valueLabel?: (item: T) => string
 }) {
+  // Named by its label and the value it shows, so the visible text is in its name (WCAG 2.5.3).
+  const labelId = useId()
+  const valueId = useId()
+
   return (
     <Combobox.Root
       items={items}
@@ -53,7 +59,7 @@ export function SearchPicker<T extends string>({
       disabled={disabled}
     >
       <Combobox.Trigger
-        aria-label={label}
+        aria-labelledby={`${labelId} ${valueId}`}
         className={cn(
           "flex items-center justify-between gap-3 rounded-full normal-case transition-colors outline-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50",
           // Compact, it sits inside a grey input card: white stands out there in light mode.
@@ -63,7 +69,10 @@ export function SearchPicker<T extends string>({
           triggerClassName
         )}
       >
-        <span {...languageOf(langOf?.(value))}>
+        <span id={labelId} className="sr-only">
+          {label}
+        </span>
+        <span id={valueId} {...languageOf(langOf?.(value))}>
           <Combobox.Value>
             {valueLabel ? (item: T) => valueLabel(item) : undefined}
           </Combobox.Value>
