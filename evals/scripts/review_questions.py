@@ -16,6 +16,7 @@ import argparse
 import asyncio
 import random
 import statistics
+import time
 
 from common import (
     DATASETS,
@@ -34,7 +35,9 @@ from common import (
     reviews_of,
     run_record,
     save,
+    tokens_of,
 )
+from langchain_core.callbacks import get_usage_metadata_callback
 from langchain_core.messages import HumanMessage
 from pydantic import BaseModel, Field
 from stats import mean, share
@@ -196,7 +199,12 @@ async def main(
         async with limit:
             return await review(llm, item)
 
-    reviews = await asyncio.gather(*(one(item) for item in chosen))
+    started = time.monotonic()
+
+    with get_usage_metadata_callback() as usage:
+        reviews = await asyncio.gather(*(one(item) for item in chosen))
+
+    seconds = round(time.monotonic() - started)
     by_id = {item["id"]: item for item in items}
     scores = summary(reviews, by_id)
     spent = round(sum(r["judge_cost"] for r in reviews), 4)
@@ -207,7 +215,15 @@ async def main(
 
     # How the questions were made (a dataset's model and date, a test's run), beside the review.
     made = {k: data[k] for k in ("model", "built", "run") if isinstance(data, dict) and k in data}
-    run = run_record(questions=path, made=made, measured=measured, scores=scores, cost=spent)
+    run = run_record(
+        questions=path,
+        made=made,
+        measured=measured,
+        scores=scores,
+        cost=spent,
+        seconds=seconds,
+        tokens=tokens_of(usage.usage_metadata),
+    )
     name = path.replace("/", "_").removesuffix(".json")
     result = {"run": run, "reviews": reviews}
     save(RESULTS / f"reviews_{name}_{JUDGE_MODEL}_{JUDGE_EFFORT}.json", result)

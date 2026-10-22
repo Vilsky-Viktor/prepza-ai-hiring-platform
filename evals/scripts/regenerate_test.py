@@ -15,7 +15,17 @@ import random
 import time
 import uuid
 
-from common import DATASETS, RESULTS, cost, generation_models, is_multi, load, run_record, save
+from common import (
+    DATASETS,
+    RESULTS,
+    cost,
+    generation_models,
+    is_multi,
+    load,
+    run_record,
+    save,
+    tokens_of,
+)
 from langchain_core.callbacks import get_usage_metadata_callback
 from prepza_common.examples import has_example
 
@@ -78,7 +88,8 @@ async def main(label: str, sample: int) -> None:
         is_multi(new) == is_multi(item) for (item, _), new in zip(pairs, out, strict=True)
     )
     scores = {"asked": len(chosen), "written": len(out), "same_kind": same_kind}
-    run = run_record(model=models, scores=scores, cost=spent, seconds=seconds)
+    tokens = tokens_of(usage.usage_metadata)
+    run = run_record(model=models, scores=scores, cost=spent, seconds=seconds, tokens=tokens)
     save(RESULTS / f"regenerated_{label}.json", {"run": run, "model": models, "items": out})
     print(f"{models}: {scores}, ${spent:.3f}, {seconds}s")
 

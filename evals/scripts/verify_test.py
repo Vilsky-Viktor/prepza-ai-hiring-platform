@@ -37,7 +37,9 @@ from common import (
     reviews_of,
     run_record,
     save,
+    tokens_of,
 )
+from langchain_core.callbacks import get_usage_metadata_callback
 from stats import share
 
 from app.helpers.prompts import checker_messages
@@ -198,11 +200,19 @@ async def main(settings: list[str], multi: bool, confirm: bool) -> None:
             async with limit:
                 return await check(checker, case)
 
-        results = await asyncio.gather(*(one(case) for case in found))
+        started = time.monotonic()
+
+        with get_usage_metadata_callback() as usage:
+            results = await asyncio.gather(*(one(case) for case in found))
+
+        seconds = round(time.monotonic() - started)
         prefix = ("confirm" if confirm else "verify") + ("_multi" if multi else "")
         scores = report(setting, results)
         spent = round(sum(r["cost"] for r in results), 4)
-        run = run_record(model=setting, multi=multi, scores=scores, cost=spent)
+        tokens = tokens_of(usage.usage_metadata)
+        run = run_record(
+            model=setting, multi=multi, scores=scores, cost=spent, seconds=seconds, tokens=tokens
+        )
         name = f"{prefix}_{setting.replace('/', '_')}.json"
         save(RESULTS / name, {"run": run, "results": results})
 

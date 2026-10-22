@@ -24,7 +24,17 @@ import time
 from collections import Counter
 from datetime import UTC, datetime
 
-from common import DATASETS, RESULTS, cost, generation_models, is_multi, load, run_record, save
+from common import (
+    DATASETS,
+    RESULTS,
+    cost,
+    generation_models,
+    is_multi,
+    load,
+    run_record,
+    save,
+    tokens_of,
+)
 from langchain_core.callbacks import get_usage_metadata_callback
 from prepza_common.examples import example_count
 
@@ -132,7 +142,12 @@ async def main(
             "(`run` names its commit and prompts). See datasets/README.md.",
             "model": models,
             "built": datetime.now(UTC).date().isoformat(),
-            "run": run_record(model=models, cost=round(spent, 4), seconds=seconds),
+            "run": run_record(
+                model=models,
+                cost=round(spent, 4),
+                seconds=seconds,
+                tokens=tokens_of(usage.usage_metadata),
+            ),
             "items": items,
         },
     )

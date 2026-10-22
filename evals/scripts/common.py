@@ -55,6 +55,11 @@ def run_record(**fields) -> dict:
     }
 
 
+def tokens_of(usage_metadata: dict) -> int:
+    """The tokens of a run's calls, from LangChain's usage callback (all models together)."""
+    return sum(used.get("total_tokens", 0) for used in usage_metadata.values())
+
+
 def reviews_of(path: Path) -> list[dict]:
     """A review file's verdicts: a list, or {"run", "reviews"} as review_questions.py saves."""
     data = load(path)
