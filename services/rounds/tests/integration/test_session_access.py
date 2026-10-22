@@ -20,7 +20,9 @@ def test_a_rating_after_the_deadline_doesnt_time_out_an_answer_still_in_its_grac
     so their answer, still within the grace, counts."""
 
     async def scenario():
-        [row] = await sessions.create_many("cand", uuid.uuid4(), [topic()], 30)
+        [row] = await sessions.create_many(
+            "cand", uuid.uuid4(), [topic()], 30, company_id=uuid.uuid4()
+        )
         await sessions.mark_shown(row.id)
         # Shown just over its 30 seconds ago, well within the grace.
         shown = datetime.now(UTC) - timedelta(seconds=31)

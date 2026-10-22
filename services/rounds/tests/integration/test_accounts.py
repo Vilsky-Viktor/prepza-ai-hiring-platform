@@ -11,7 +11,9 @@ from tests.integration.factories import option_index, topic
 
 def test_deleting_a_user_removes_their_interview_sessions(run):
     async def scenario():
-        [session] = await sessions.create_many("gone", uuid.uuid4(), [topic()], 60)
+        [session] = await sessions.create_many(
+            "gone", uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4()
+        )
         question = session.questions[0]
         await sessions.add_answer(
             Answer(
@@ -23,7 +25,9 @@ def test_deleting_a_user_removes_their_interview_sessions(run):
             ),
             ("answer.recorded", {"question_id": question["id"]}),
         )
-        [kept] = await sessions.create_many("stays", uuid.uuid4(), [topic()], 60)
+        [kept] = await sessions.create_many(
+            "stays", uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4()
+        )
 
         async with Db() as db:
             await db.execute(update(Session).where(Session.id == session.id).values(final_score=50))

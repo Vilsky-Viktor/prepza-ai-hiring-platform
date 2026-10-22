@@ -17,7 +17,9 @@ def test_a_practice_round_counts_once_in_the_month_it_started(run):
         before = (await stats.stats(month))["practice"]
         # A practice round of two sections, and a company candidate's interview.
         await sessions.create_many("talent", uuid.uuid4(), [topic(), topic()], 30, practice=True)
-        await sessions.create_many("candidate", uuid.uuid4(), [topic()], 30)
+        await sessions.create_many(
+            "candidate", uuid.uuid4(), [topic()], 30, company_id=uuid.uuid4()
+        )
         # A practice round started last month.
         older = uuid.uuid4()
         await sessions.create_many("talent", older, [topic()], 30, practice=True)

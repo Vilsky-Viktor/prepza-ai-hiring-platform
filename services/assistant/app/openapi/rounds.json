@@ -1203,6 +1203,57 @@
     ]
    }
   },
+  "/internal/session-companies": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Session Companies",
+    "description": "Companies' backfill: the company of each interview set, for the sections started before\nrounds kept it.",
+    "operationId": "session_companies_internal_session_companies_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SetCompaniesIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": {
+          "type": "integer"
+         },
+         "type": "object",
+         "title": "Response Session Companies Internal Session Companies Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
   "/internal/invite-scores": {
    "post": {
     "tags": [
@@ -3120,15 +3171,8 @@
       "default": false
      },
      "company_id": {
-      "anyOf": [
-       {
-        "type": "string",
-        "format": "uuid"
-       },
-       {
-        "type": "null"
-       }
-      ],
+      "type": "string",
+      "format": "uuid",
       "title": "Company Id"
      }
     },
@@ -3137,9 +3181,32 @@
      "user_id",
      "candidate_invite_id",
      "topics",
-     "question_seconds"
+     "question_seconds",
+     "company_id"
     ],
     "title": "SessionsCreate"
+   },
+   "SetCompaniesIn": {
+    "properties": {
+     "companies": {
+      "additionalProperties": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "propertyNames": {
+       "format": "uuid"
+      },
+      "type": "object",
+      "maxProperties": 500,
+      "title": "Companies"
+     }
+    },
+    "type": "object",
+    "required": [
+     "companies"
+    ],
+    "title": "SetCompaniesIn",
+    "description": "Each interview's set and its company, by set id (companies' backfill of old sections)."
    },
    "SetIdsIn": {
     "properties": {

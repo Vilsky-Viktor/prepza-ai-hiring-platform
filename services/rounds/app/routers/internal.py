@@ -12,10 +12,12 @@ from app.schemas.sessions import (
     ScorecardSession,
     SessionOut,
     SessionsCreate,
+    SetCompaniesIn,
     SetIdsIn,
 )
 from app.service_auth import ServiceCaller
 from app.storage import answer_counts, sessions
+from app.storage import session_companies as session_companies_storage
 
 router = APIRouter(prefix="/internal", tags=["internal"])
 
@@ -42,6 +44,13 @@ async def create_sessions(body: SessionsCreate, caller: ServiceCaller) -> list[S
         rows = await sessions.list_for_invite(body.candidate_invite_id)
 
     return [session_out(row) for row in rows]
+
+
+@router.post("/session-companies")
+async def session_companies(body: SetCompaniesIn, caller: ServiceCaller) -> dict[str, int]:
+    """Companies' backfill: the company of each interview set, for the sections started before
+    rounds kept it."""
+    return {"filled": await session_companies_storage.fill(body.companies)}
 
 
 @router.post("/invite-scores")

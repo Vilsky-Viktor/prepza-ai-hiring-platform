@@ -24,10 +24,16 @@ def test_running_counts_candidates_with_a_question_on_screen_now(run):
     async def scenario():
         before = await running.running_interviews()
         invite = uuid.uuid4()
-        both = await sessions.create_many("ann", invite, [topic(), topic()], 30)
-        [idle] = await sessions.create_many("bob", uuid.uuid4(), [topic()], 30)
-        [preview] = await sessions.create_many("cto", uuid.uuid4(), [topic()], 30, preview=True)
-        await sessions.create_many("dan", uuid.uuid4(), [topic()], 30)
+        both = await sessions.create_many(
+            "ann", invite, [topic(), topic()], 30, company_id=uuid.uuid4()
+        )
+        [idle] = await sessions.create_many(
+            "bob", uuid.uuid4(), [topic()], 30, company_id=uuid.uuid4()
+        )
+        [preview] = await sessions.create_many(
+            "cto", uuid.uuid4(), [topic()], 30, preview=True, company_id=uuid.uuid4()
+        )
+        await sessions.create_many("dan", uuid.uuid4(), [topic()], 30, company_id=uuid.uuid4())
 
         for row in both:
             await shown(row, timedelta(minutes=1))
@@ -47,9 +53,13 @@ def test_running_interviews_get_back_the_time_maintenance_mode_was_on(run):
         # Ann's 6-minute interview (2 sections, 3 questions at 60 seconds) started 7 minutes ago,
         # past its time with the margin; her first section is done and a question is on screen.
         ann = uuid.uuid4()
-        first, second = await sessions.create_many("ann", ann, [topic(), topic()], 60)
+        first, second = await sessions.create_many(
+            "ann", ann, [topic(), topic()], 60, company_id=uuid.uuid4()
+        )
         # Bob finished; his interview isn't running.
-        [done] = await sessions.create_many("bob", uuid.uuid4(), [topic()], 60)
+        [done] = await sessions.create_many(
+            "bob", uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4()
+        )
 
         async with Db() as db:
             await db.execute(

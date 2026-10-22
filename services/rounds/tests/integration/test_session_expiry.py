@@ -18,7 +18,9 @@ async def interview(started_minutes_ago: float):
     """A candidate's interview of two sections, 3 questions each at 60 seconds: 6 minutes in
     all, 6.6 with the margin."""
     invite_id = uuid.uuid4()
-    rows = await sessions.create_many("cand", invite_id, [topic(), topic()], 60)
+    rows = await sessions.create_many(
+        "cand", invite_id, [topic(), topic()], 60, company_id=uuid.uuid4()
+    )
 
     async with Db() as db:
         await db.execute(

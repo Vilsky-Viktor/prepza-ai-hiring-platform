@@ -64,6 +64,7 @@ def test_starting_a_timed_interview_passes_the_seconds_per_question(client, monk
     monkeypatch.setattr(sessions, "create_many", fake_create)
     body = {
         "user_id": "cand",
+        "company_id": str(uuid4()),
         "candidate_invite_id": str(INVITE_ID),
         "topics": [],
         "question_seconds": 45,

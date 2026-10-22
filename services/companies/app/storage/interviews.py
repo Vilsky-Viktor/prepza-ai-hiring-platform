@@ -172,6 +172,21 @@ async def page_by_id(company_id, after: uuid.UUID | None, limit: int) -> list[In
         return list(await session.scalars(query.order_by(Interview.id).limit(limit)))
 
 
+async def set_companies(after: uuid.UUID | None, limit: int) -> list[tuple]:
+    """Up to `limit` interviews with questions, by id after `after`: (id, set_id, company_id)."""
+    query = select(Interview.id, Interview.set_id, Interview.company_id).where(
+        Interview.set_id.is_not(None)
+    )
+
+    if after is not None:
+        query = query.where(Interview.id > after)
+
+    async with Session() as session:
+        return [
+            tuple(row) for row in await session.execute(query.order_by(Interview.id).limit(limit))
+        ]
+
+
 async def update_settings(interview_id, settings: InterviewSettings) -> None:
     """Saves the settings that were sent; marking the test hired also turns its shareable link
     off, so a job ad left online stops bringing in candidates."""

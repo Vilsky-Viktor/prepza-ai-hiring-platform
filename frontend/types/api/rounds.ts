@@ -451,6 +451,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/session-companies": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Session Companies
+     * @description Companies' backfill: the company of each interview set, for the sections started before
+     *     rounds kept it.
+     */
+    post: operations["session_companies_internal_session_companies_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/invite-scores": {
     parameters: {
       query?: never
@@ -1303,8 +1324,21 @@ export interface components {
        * @default false
        */
       preview: boolean
-      /** Company Id */
-      company_id?: string | null
+      /**
+       * Company Id
+       * Format: uuid
+       */
+      company_id: string
+    }
+    /**
+     * SetCompaniesIn
+     * @description Each interview's set and its company, by set id (companies' backfill of old sections).
+     */
+    SetCompaniesIn: {
+      /** Companies */
+      companies: {
+        [key: string]: string
+      }
     }
     /** SetIdsIn */
     SetIdsIn: {
@@ -2102,6 +2136,41 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["SessionOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  session_companies_internal_session_companies_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["SetCompaniesIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": {
+            [key: string]: number
+          }
         }
       }
       /** @description Validation Error */

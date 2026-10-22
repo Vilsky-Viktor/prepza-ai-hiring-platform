@@ -17,6 +17,12 @@ class SetIdsIn(BaseModel):
     set_ids: list[UUID]
 
 
+class SetCompaniesIn(BaseModel):
+    """Each interview's set and its company, by set id (companies' backfill of old sections)."""
+
+    companies: dict[UUID, UUID] = Field(max_length=500)
+
+
 class InviteIdsIn(BaseModel):
     invite_ids: list[UUID]
 
@@ -30,7 +36,7 @@ class SessionsCreate(BaseModel):
     # A company member trying their own test (see models/sessions.py).
     preview: bool = False
     # The interview's company, kept on each section.
-    company_id: UUID | None = None
+    company_id: UUID
 
 
 class SessionTopicOut(BaseModel):

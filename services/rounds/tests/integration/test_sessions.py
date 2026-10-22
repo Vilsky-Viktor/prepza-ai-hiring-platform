@@ -20,7 +20,9 @@ def timed_out(session_id, question_id):
 
 def test_two_requests_timing_out_the_same_question_save_one_answer(run):
     async def scenario():
-        [row] = await sessions.create_many("cand", uuid.uuid4(), [topic()], 30)
+        [row] = await sessions.create_many(
+            "cand", uuid.uuid4(), [topic()], 30, company_id=uuid.uuid4()
+        )
         await sessions.mark_shown(row.id)
         question_id = uuid.UUID(row.questions[0]["id"])
         saved = await asyncio.gather(
@@ -42,7 +44,9 @@ def test_scores_show_progress_and_the_grade_of_answers_so_far(run):
     invite_id = uuid.uuid4()
 
     async def scenario():
-        rows = await sessions.create_many("cand", invite_id, [topic(4)], 60)
+        rows = await sessions.create_many(
+            "cand", invite_id, [topic(4)], 60, company_id=uuid.uuid4()
+        )
         row = rows[0]
         question = row.questions[0]
         correct = next(i for i, option in enumerate(question["options"]) if option["correct"])
@@ -70,7 +74,9 @@ def test_a_finished_interview_grades_unanswered_questions_as_wrong(run):
     invite_id = uuid.uuid4()
 
     async def scenario():
-        [row] = await sessions.create_many("cand", invite_id, [topic(4)], 60)
+        [row] = await sessions.create_many(
+            "cand", invite_id, [topic(4)], 60, company_id=uuid.uuid4()
+        )
         question = row.questions[0]
         correct = next(i for i, option in enumerate(question["options"]) if option["correct"])
         await sessions.add_answer(
@@ -103,7 +109,9 @@ def test_a_talents_practice_rounds_on_a_template_are_found_and_kept_apart(run):
             await sessions.create_many(user, round_id, [practice_topic], 60, practice=True)
 
         # A company's interview on the same set isn't practice.
-        await sessions.create_many(user, uuid.uuid4(), [practice_topic], 60)
+        await sessions.create_many(
+            user, uuid.uuid4(), [practice_topic], 60, company_id=uuid.uuid4()
+        )
         template_id = practice_topic.preparation_id
         newest = await practice_sessions.practice_rounds(user, template_id, 0, 2)
         oldest = await practice_sessions.practice_rounds(user, template_id, 2, 2)
@@ -123,7 +131,9 @@ def test_a_talents_practice_rounds_on_a_template_are_found_and_kept_apart(run):
 
 def test_a_finished_section_takes_no_more_answers_and_is_scored_from_its_saved_ones(run):
     async def scenario():
-        [row] = await sessions.create_many("cand", uuid.uuid4(), [topic(4)], 60)
+        [row] = await sessions.create_many(
+            "cand", uuid.uuid4(), [topic(4)], 60, company_id=uuid.uuid4()
+        )
         first, second = (uuid.UUID(question["id"]) for question in row.questions[:2])
         right = Answer(
             session_id=row.id,
@@ -150,7 +160,9 @@ def test_timed_out_questions_count_in_progress_but_not_as_picked_answers(run):
     invite_id = uuid.uuid4()
 
     async def scenario():
-        [row] = await sessions.create_many("cand", invite_id, [topic(4)], 60)
+        [row] = await sessions.create_many(
+            "cand", invite_id, [topic(4)], 60, company_id=uuid.uuid4()
+        )
         first, second = (uuid.UUID(question["id"]) for question in row.questions[:2])
         await sessions.add_answer(timed_out(row.id, first))
         await sessions.add_answer(timed_out(row.id, second))
@@ -165,7 +177,9 @@ def test_timed_out_questions_count_in_progress_but_not_as_picked_answers(run):
 
 def test_two_tabs_starting_the_clock_get_the_same_time(run):
     async def scenario():
-        [row] = await sessions.create_many("cand", uuid.uuid4(), [topic()], 30)
+        [row] = await sessions.create_many(
+            "cand", uuid.uuid4(), [topic()], 30, company_id=uuid.uuid4()
+        )
 
         return await asyncio.gather(sessions.mark_shown(row.id), sessions.mark_shown(row.id))
 
@@ -179,8 +193,10 @@ def test_scores_add_up_every_section_its_signals_and_fast_answers(run):
     other_id = uuid.uuid4()
 
     async def scenario():
-        rows = await sessions.create_many("cand", invite_id, [topic(2), topic(2)], 60)
-        await sessions.create_many("cand", other_id, [topic(2)], 60)
+        rows = await sessions.create_many(
+            "cand", invite_id, [topic(2), topic(2)], 60, company_id=uuid.uuid4()
+        )
+        await sessions.create_many("cand", other_id, [topic(2)], 60, company_id=uuid.uuid4())
 
         for row, (score, seconds) in zip(rows, [(100, 1), (0, 20)]):
             await sessions.add_answer(
@@ -227,7 +243,7 @@ def test_sections_keep_their_topics_order(run):
     async def scenario():
         invite_id = uuid.uuid4()
         topics = [topic(size=1) for _ in range(5)]
-        await sessions.create_many("cand", invite_id, topics, 60)
+        await sessions.create_many("cand", invite_id, topics, 60, company_id=uuid.uuid4())
         listed = await sessions.list_for_invite(invite_id)
 
         return [row.topic_id for row in listed], [item.id for item in topics]

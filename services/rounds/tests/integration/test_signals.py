@@ -12,7 +12,9 @@ def test_signals_are_saved_with_their_question_and_loaded_for_the_scorecard(run)
     invite_id = uuid.uuid4()
 
     async def scenario():
-        [row] = await sessions.create_many("cand", invite_id, [topic()], 60)
+        [row] = await sessions.create_many(
+            "cand", invite_id, [topic()], 60, company_id=uuid.uuid4()
+        )
         question_id = uuid.UUID(row.questions[0]["id"])
         await signals.add_signal(row.id, question_id, "tab_leave")
         await signals.add_signal(row.id, None, "copy")
@@ -38,7 +40,9 @@ def test_a_question_keeps_a_limited_number_of_signals(run, edited):
             await get_redis().hset(LIMITS_KEY, "MAX_SIGNALS_PER_QUESTION", edited)
 
         try:
-            [row] = await sessions.create_many("cand", invite_id, [topic()], 30)
+            [row] = await sessions.create_many(
+                "cand", invite_id, [topic()], 30, company_id=uuid.uuid4()
+            )
             question_id = uuid.UUID(row.questions[0]["id"])
 
             for _ in range(most + 5):
@@ -63,7 +67,9 @@ def test_a_returns_length_times_the_latest_leave_and_a_short_one_isnt_counted(ru
     invite_id = uuid.uuid4()
 
     async def scenario():
-        [row] = await sessions.create_many("cand", invite_id, [topic(2)], 60)
+        [row] = await sessions.create_many(
+            "cand", invite_id, [topic(2)], 60, company_id=uuid.uuid4()
+        )
         await signals.add_signal(row.id, None, "tab_leave")
         await signals.set_away(row.id, 5)
         await signals.add_signal(row.id, None, "tab_leave")
@@ -90,7 +96,9 @@ def test_signals_sent_at_once_still_stop_at_the_limit(run):
     most = LIMITS["MAX_SIGNALS_PER_QUESTION"].default
 
     async def scenario():
-        [row] = await sessions.create_many("cand", invite_id, [topic()], 30)
+        [row] = await sessions.create_many(
+            "cand", invite_id, [topic()], 30, company_id=uuid.uuid4()
+        )
         question_id = uuid.UUID(row.questions[0]["id"])
         await asyncio.gather(
             *(signals.add_signal(row.id, question_id, "tab_leave") for _ in range(most + 5))

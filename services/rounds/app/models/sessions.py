@@ -32,6 +32,8 @@ class Session(Base):
             f"final_score BETWEEN 0 AND {CORRECT_SCORE}", name="ck_sessions_final_score"
         ),
         CheckConstraint("question_seconds > 0", name="ck_sessions_question_seconds"),
+        # An interview's section has its company; practice has none.
+        CheckConstraint("practice OR company_id IS NOT NULL", name="ck_sessions_company_id"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
@@ -40,8 +42,7 @@ class Session(Base):
     interview_set_id: Mapped[uuid.UUID] = mapped_column(index=True)
     # Indexed by uq_sessions_invite_topic's first column.
     candidate_invite_id: Mapped[uuid.UUID] = mapped_column()
-    # The interview's company (companies sends it); None for practice, and for sections started
-    # before it was kept.
+    # The interview's company (companies sends it); None for practice.
     company_id: Mapped[uuid.UUID | None] = mapped_column(index=True)
     topic_title: Mapped[str] = mapped_column(Text)
     status: Mapped[str] = mapped_column(String(32), default=RoundStatus.IN_PROGRESS)

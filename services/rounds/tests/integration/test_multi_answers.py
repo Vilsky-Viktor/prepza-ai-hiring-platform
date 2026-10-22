@@ -49,7 +49,9 @@ def test_multi_answer_answers_count_as_answered_not_as_timed_out(run):
     invite_id = uuid.uuid4()
 
     async def scenario():
-        [row] = await sessions.create_many("cand", invite_id, [topic(4, multi=True)], 30)
+        [row] = await sessions.create_many(
+            "cand", invite_id, [topic(4, multi=True)], 30, company_id=uuid.uuid4()
+        )
         await sessions.add_answer(ticked(row, 0, right=True, seconds=1))
         await sessions.add_answer(ticked(row, 1, right=False))
         await sessions.add_answer(ran_out(row, 2))
@@ -73,7 +75,9 @@ def test_a_finished_section_tells_library_each_answers_credit(run):
     invite_id = uuid.uuid4()
 
     async def scenario():
-        [row] = await sessions.create_many("cand", invite_id, [topic(2, multi=True)], 30)
+        [row] = await sessions.create_many(
+            "cand", invite_id, [topic(2, multi=True)], 30, company_id=uuid.uuid4()
+        )
         await sessions.add_answer(ticked(row, 0, right=True))
         await sessions.add_answer(ran_out(row, 1))
         await sessions.finish(row.id)
@@ -133,7 +137,9 @@ def test_a_practice_round_counts_ticked_answers_as_answered(run):
 
 def test_the_picks_migration_marks_answers_without_an_option_as_timed_out(run):
     async def setup():
-        [row] = await sessions.create_many("cand", uuid.uuid4(), [topic(2)], 30)
+        # A practice section: going down to 0023 takes sections' companies away, and an
+        # interview section can't come back up without one (0030).
+        [row] = await sessions.create_many("cand", uuid.uuid4(), [topic(2)], 30, practice=True)
 
         return row
 

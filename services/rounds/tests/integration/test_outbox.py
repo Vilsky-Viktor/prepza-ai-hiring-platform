@@ -11,7 +11,9 @@ from tests.integration.factories import option_index, topic
 
 def test_an_answer_and_its_event_are_saved_together_and_a_repeat_saves_neither(run):
     async def scenario():
-        [row] = await sessions.create_many("ann", uuid.uuid4(), [topic()], 60)
+        [row] = await sessions.create_many(
+            "ann", uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4()
+        )
         question = row.questions[0]
         event = ("answer.recorded", {"question_id": question["id"], "option": "right"})
 
