@@ -36,7 +36,7 @@ export default async function ReferralsPage({
 
   if (!signedIn) {
     return (
-      <main className="mx-auto max-w-5xl px-6 py-12">
+      <main className="mx-auto max-w-page px-6 py-12">
         <SignInPrompt />
       </main>
     )
@@ -47,7 +47,7 @@ export default async function ReferralsPage({
   }
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       <CompanyHeader
         {...companyHeaderProps(company)}
         companyId={companyId}

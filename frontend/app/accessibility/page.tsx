@@ -23,9 +23,9 @@ export default async function AccessibilityPage() {
   const locale = await getLocale()
 
   return (
-    <main className="mx-auto max-w-5xl space-y-12 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-12 px-6 py-12">
       <PageKey page="accessibility" />
-      <header className="space-y-4">
+      <header className="max-w-3xl space-y-4">
         <h1 className="font-heading text-4xl font-medium tracking-tight">
           {t("title")}
         </h1>
@@ -39,7 +39,7 @@ export default async function AccessibilityPage() {
         title={t("limits.title")}
         items={ACCESSIBILITY_LIMITS.map((key) => t(`limits.${key}`))}
       />
-      <section className="space-y-4">
+      <section className="max-w-3xl space-y-4">
         <h2 className="font-heading text-2xl font-medium tracking-tight">
           {t("feedback.title")}
         </h2>
@@ -59,7 +59,7 @@ export default async function AccessibilityPage() {
           {t("feedback.authority")}
         </p>
       </section>
-      <p className="text-sm text-muted-foreground">
+      <p className="max-w-3xl text-sm text-muted-foreground">
         {t("reviewed", { date: formatDay(ACCESSIBILITY_REVIEWED, locale) })}
       </p>
     </main>
@@ -68,7 +68,7 @@ export default async function AccessibilityPage() {
 
 function Section({ title, items }: { title: string; items: string[] }) {
   return (
-    <section className="space-y-4">
+    <section className="max-w-3xl space-y-4">
       <h2 className="font-heading text-2xl font-medium tracking-tight">
         {title}
       </h2>

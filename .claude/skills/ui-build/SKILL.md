@@ -43,8 +43,9 @@ No new colors, shadows, gradients or effects unless asked.
 
 ## Layout rules
 
-- **Same width everywhere** (rule 6): a page's `<main>` is `mx-auto max-w-5xl px-6`. Cards and
-  forms inside may be narrower; the page never is.
+- **Same width everywhere** (rule 6): a page's `<main>` is `mx-auto max-w-page px-6` (80rem).
+  Cards and forms inside may be narrower; the page never is; running text keeps a `max-w-3xl`
+  column.
 - **Titles** are lowercase, like the logo, and end with its blue dot; typed content keeps its
   case (`normal-case`).
 - **Phones:** a header's button goes under the title, across the page

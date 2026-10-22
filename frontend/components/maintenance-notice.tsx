@@ -18,7 +18,7 @@ export async function MaintenanceNotice() {
   return (
     <div
       data-testid="maintenance-notice"
-      className="mx-auto -mb-8 max-w-5xl px-6 pt-6"
+      className="mx-auto -mb-8 max-w-page px-6 pt-6"
     >
       <WarningCard>{t("notice")}</WarningCard>
     </div>

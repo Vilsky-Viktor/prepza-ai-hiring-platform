@@ -93,7 +93,7 @@ export default async function SupportCompanyPage({
   const href = `/superadmin/support/companies/${id}`
 
   return (
-    <main className="mx-auto max-w-5xl space-y-10 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-10 px-6 py-12">
       {/* The actions sit beside the name; on phones, on their own line under it. */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <PageHeader

@@ -52,7 +52,7 @@ export default async function HomePage() {
   const { price } = await priceValues(catalog)
 
   return (
-    <main className="mx-auto max-w-5xl px-6">
+    <main className="mx-auto max-w-page px-6">
       <JsonLd
         data={organizationData(siteUrl(), site("description", countryPrices))}
       />

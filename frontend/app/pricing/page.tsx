@@ -58,7 +58,7 @@ export default async function PricingPage() {
 
   if (!catalog) {
     return (
-      <main className="mx-auto max-w-5xl space-y-16 px-6 py-12">
+      <main className="mx-auto max-w-page space-y-16 px-6 py-12">
         <PageKey page="pricing" />
         {header}
         <InfoCard>{t("unavailable")}</InfoCard>
@@ -69,7 +69,7 @@ export default async function PricingPage() {
   const [standard, ...volume] = catalog.candidate_prices
 
   return (
-    <main className="mx-auto max-w-5xl space-y-16 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-16 px-6 py-12">
       <PageKey page="pricing" />
       <JsonLd data={softwareData(siteUrl(), t("intro"), catalog)} />
       {header}

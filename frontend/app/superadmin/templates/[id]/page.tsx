@@ -40,7 +40,7 @@ export default async function TemplatePage({
   const base = `/library/superadmin/templates/${id}`
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       <PageHeader
         back={
           <BackLink href="/superadmin/templates">{t("templates")}</BackLink>

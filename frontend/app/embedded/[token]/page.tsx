@@ -15,7 +15,7 @@ export default async function EmbeddedPage({
   const { origin } = await searchParams
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-6">
+    <main className="mx-auto w-full max-w-page px-6">
       <EmbedView token={token} origin={originOf(origin)} />
     </main>
   )

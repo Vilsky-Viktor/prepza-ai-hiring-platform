@@ -32,7 +32,7 @@ export default async function PatternsPage({
   }
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       <SuperadminHeader current="questions" sub="patterns">
         <div className="space-y-4">
           <div className="flex justify-end">

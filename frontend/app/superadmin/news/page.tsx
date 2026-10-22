@@ -22,7 +22,7 @@ export default async function NewsAdminPage() {
   }
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       <SuperadminHeader current="news" action={<NewPost />}>
         <NewsAdminList initial={first} />
       </SuperadminHeader>

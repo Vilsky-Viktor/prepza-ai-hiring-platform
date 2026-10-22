@@ -17,7 +17,7 @@ export default function ReportSamplesPage() {
   }
 
   return (
-    <main className="mx-auto max-w-5xl space-x-4 px-6 py-12">
+    <main className="mx-auto max-w-page space-x-4 px-6 py-12">
       <CandidateReport report={CANDIDATE_SAMPLE} />
       <InterviewReport report={INTERVIEW_SAMPLE} />
       <ReportActions

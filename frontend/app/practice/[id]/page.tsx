@@ -96,7 +96,7 @@ export default async function PracticeTestPage({
   const reached = new Map((progress ?? []).map((item) => [item.topic_id, item]))
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       <PageKey page="practiceTest" />
       <JsonLd
         data={breadcrumbData(siteUrl(), [

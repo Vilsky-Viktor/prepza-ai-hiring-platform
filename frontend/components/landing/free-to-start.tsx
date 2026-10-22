@@ -27,7 +27,7 @@ export async function FreeToStartSection({ catalog }: { catalog: Catalog }) {
   return (
     <LandingSection id="pricing" title={t("title")} text={t("text")}>
       <div className="flex flex-col items-center gap-10">
-        <div className="grid w-full gap-10 md:grid-cols-2">
+        <div className="grid w-full max-w-4xl gap-10 md:grid-cols-2">
           <div className="flex justify-center">
             <Receipt
               free={

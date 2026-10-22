@@ -17,7 +17,7 @@ export function FaqList({ items }: { items: FaqItem[] }) {
             {item.question}
             <ChevronDownIcon className="size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
           </summary>
-          <div className="pb-5 text-base leading-relaxed text-muted-foreground">
+          <div className="max-w-3xl pb-5 text-base leading-relaxed text-muted-foreground">
             <ReactMarkdown {...FAQ_MARKDOWN} components={{ a: SiteLink }}>
               {item.answer}
             </ReactMarkdown>

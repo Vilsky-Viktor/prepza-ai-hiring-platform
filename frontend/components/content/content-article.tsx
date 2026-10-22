@@ -42,7 +42,7 @@ export async function ContentArticle({
   ].map((step) => ({ ...step, path: localizeHref(address, step.path) }))
 
   return (
-    <main className="mx-auto max-w-5xl space-y-10 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-10 px-6 py-12">
       <PageKey page={pageKey} />
       <JsonLd
         data={[
@@ -60,7 +60,7 @@ export async function ContentArticle({
           breadcrumbData(siteUrl(), steps),
         ]}
       />
-      <header className="space-y-4">
+      <header className="max-w-3xl space-y-4">
         {section && <BackLink href={section.path}>{section.name}</BackLink>}
         <h1
           className={cn(
@@ -85,7 +85,7 @@ export async function ContentArticle({
       <article
         lang={page.language}
         dir={textDirection(page.language)}
-        className="space-y-5"
+        className="max-w-3xl space-y-5"
       >
         <Markdown text={page.body} />
       </article>

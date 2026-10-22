@@ -33,7 +33,7 @@ export default async function GeneratePage({
 
   if (next === "/superadmin/templates") {
     return (
-      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col space-y-8 px-6 py-12">
+      <main className="mx-auto flex w-full max-w-page flex-1 flex-col space-y-8 px-6 py-12">
         <GenerationView
           path={`/generate/superadmin/generations/${id}`}
           next={next}
@@ -51,7 +51,7 @@ export default async function GeneratePage({
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col space-y-8 px-6 py-12">
+    <main className="mx-auto flex w-full max-w-page flex-1 flex-col space-y-8 px-6 py-12">
       <GenerationView
         // Generations go through companies, so every admin can follow them.
         path={`/companies/interviews/${company[2]}/generation`}

@@ -11,7 +11,7 @@ export default async function NewTemplatePage() {
   const t = await getTranslations("superadmin")
 
   return (
-    <main className="mx-auto max-w-5xl px-6">
+    <main className="mx-auto max-w-page px-6">
       <div className="flex min-h-[calc(100svh-3.5rem)] flex-col items-center justify-center pb-24">
         <div className="w-full max-w-176 space-y-10">
           <div className="relative">

@@ -18,7 +18,7 @@ export default async function SessionPage({
   const testHref = from && FROM_TEST.test(from) ? from : undefined
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-12">
+    <main className="mx-auto max-w-page px-6 py-12">
       <SessionView id={id} testHref={testHref} />
     </main>
   )

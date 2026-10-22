@@ -33,7 +33,7 @@ export default async function PracticeRoundPage({
 
   if (!(await cookies()).has(TOKEN_COOKIE)) {
     return (
-      <main className="mx-auto max-w-5xl px-6 py-12">
+      <main className="mx-auto max-w-page px-6 py-12">
         <PageKey page="practiceRound" />
         <SignInPrompt />
       </main>
@@ -56,7 +56,7 @@ export default async function PracticeRoundPage({
     : null
 
   return (
-    <main className="mx-auto max-w-5xl space-y-10 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-10 px-6 py-12">
       <PageKey page="practiceRound" />
       <PageHeader
         back={

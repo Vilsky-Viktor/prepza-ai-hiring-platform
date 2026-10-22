@@ -18,7 +18,7 @@ export default async function HubPage() {
   const pages = await contentPages("compare", await getLocale())
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       <PageKey page="compare" />
       <div className="space-y-2">
         <h1 className="font-heading text-3xl font-medium tracking-tight">

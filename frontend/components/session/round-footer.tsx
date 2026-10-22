@@ -15,7 +15,7 @@ export function RoundFooter({
     >
       <div
         className={cn(
-          "mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4",
+          "mx-auto flex max-w-page items-center justify-between gap-4 px-6 py-4",
           className
         )}
       >

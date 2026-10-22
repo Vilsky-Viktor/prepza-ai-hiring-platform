@@ -48,7 +48,7 @@ export default async function SupportUserPage({
   }
 
   return (
-    <main className="mx-auto max-w-5xl space-y-10 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-10 px-6 py-12">
       <PageHeader
         back={<BackLink href="/superadmin/support">{t("support")}</BackLink>}
         title={

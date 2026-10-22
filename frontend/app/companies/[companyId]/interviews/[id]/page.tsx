@@ -47,7 +47,7 @@ export default async function InterviewPage({
   const current = interviewTab(query.tab, ready, canEdit)
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       {/* Just generated: what to do next, for those who can do it. */}
       {ready && canEdit && query[READY_PARAM] && (
         <WhatsNext

@@ -60,9 +60,9 @@ export async function LegalPage({
   }
 
   return (
-    <main className="mx-auto max-w-5xl space-y-10 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-10 px-6 py-12">
       <PageKey page={name} />
-      <header className="space-y-4">
+      <header className="max-w-3xl space-y-4">
         <h1 className="font-heading text-4xl font-medium tracking-tight">
           {t(`titles.${name}`)}
         </h1>
@@ -98,7 +98,7 @@ export async function LegalPage({
       <div
         lang={document.language}
         dir={textDirection(document.language)}
-        className="space-y-10"
+        className="max-w-3xl space-y-10"
       >
         <p className="text-base leading-relaxed text-muted-foreground">
           <EmailText text={intro} />

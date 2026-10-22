@@ -50,7 +50,7 @@ export default async function ApiPage({
 
   if (!signedIn) {
     return (
-      <main className="mx-auto max-w-5xl px-6 py-12">
+      <main className="mx-auto max-w-page px-6 py-12">
         <SignInPrompt />
       </main>
     )
@@ -61,7 +61,7 @@ export default async function ApiPage({
   }
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       <div className="space-y-6">
         <PageHeader
           back={

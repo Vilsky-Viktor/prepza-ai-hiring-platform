@@ -17,7 +17,7 @@ export default async function MaintenancePage() {
   const t = await getTranslations("maintenance")
 
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-6 py-12">
+    <main className="mx-auto flex w-full max-w-page flex-1 flex-col items-center justify-center px-6 py-12">
       <div className="w-full space-y-4 text-center">
         <h1 className="font-heading text-4xl font-medium tracking-tight text-balance sm:text-5xl">
           {t("title")}

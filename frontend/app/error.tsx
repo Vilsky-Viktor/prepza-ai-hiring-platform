@@ -38,7 +38,7 @@ export default function ErrorPage({
   return (
     <main
       data-testid="error-page"
-      className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-6 py-12"
+      className="mx-auto flex w-full max-w-page flex-1 flex-col items-center justify-center px-6 py-12"
     >
       <div className="w-full space-y-8 text-center">
         <div className="space-y-4">

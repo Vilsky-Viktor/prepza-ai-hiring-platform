@@ -27,7 +27,7 @@ export default async function CampaignPage({
   }
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       <CampaignView
         initial={campaign}
         back={

@@ -4,7 +4,7 @@ import { SignInPrompt } from "@/components/sign-in-prompt"
  * shows the page itself. */
 export function SignInPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-12">
+    <main className="mx-auto max-w-page px-6 py-12">
       <SignInPrompt />
     </main>
   )

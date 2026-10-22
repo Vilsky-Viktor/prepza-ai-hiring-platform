@@ -76,6 +76,9 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  /* Every page's width (max-w-page), the header's and the footer's: 80rem, Tailwind's 7xl
+     (CLAUDE.md, rule 6). */
+  --container-page: 80rem;
 }
 
 /* Light tokens; .light-scope sets them again inside a dark page. */

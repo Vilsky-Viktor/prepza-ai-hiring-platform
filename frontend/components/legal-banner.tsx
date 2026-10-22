@@ -48,7 +48,7 @@ export function LegalBanner() {
     // clicks.
     <div
       data-testid="legal-banner"
-      className="relative z-10 mx-auto -mb-8 max-w-5xl space-y-2 px-6 pt-6"
+      className="relative z-10 mx-auto -mb-8 max-w-page space-y-2 px-6 pt-6"
     >
       {changes.map((change) => {
         const key = `legalBanner.${change.document}` as const

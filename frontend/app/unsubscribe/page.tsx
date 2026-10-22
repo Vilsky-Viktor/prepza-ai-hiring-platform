@@ -13,7 +13,7 @@ export default async function UnsubscribePage({
   const { token } = await searchParams
 
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-6 py-12">
+    <main className="mx-auto flex w-full max-w-page flex-1 flex-col items-center justify-center px-6 py-12">
       <PageKey page="unsubscribe" />
       <UnsubscribeView token={token ?? ""} />
     </main>

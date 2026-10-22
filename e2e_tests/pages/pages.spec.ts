@@ -31,8 +31,8 @@ const ARTICLES = [
   "/compare/testgorilla",
   "/guides/hiring-engineers",
 ];
-// The width every page's <main> has: max-w-5xl (CLAUDE.md, rule 6).
-const MAIN_MAX_WIDTH = 1024;
+// The width every page's <main> has: max-w-page, 80rem (CLAUDE.md, rule 6).
+const MAIN_MAX_WIDTH = 1280;
 
 for (const path of PAGES) {
   test(`${path} loads cleanly and follows the layout rules`, async ({
@@ -76,8 +76,8 @@ for (const path of PAGES) {
 
     // Nothing wider than the window, on a phone too.
     expect(layout.scrollWidth).toBeLessThanOrEqual(layout.clientWidth);
-    // Every page is as wide as the header.
-    expect(layout.mainWidth).toBe(Math.min(MAIN_MAX_WIDTH, layout.viewport));
+    // Every page is as wide as the header: its full width, or the window's beside the scroll bar.
+    expect(layout.mainWidth).toBe(Math.min(MAIN_MAX_WIDTH, layout.clientWidth));
     // The footer ends the page.
     expect(
       Math.abs(layout.footerBottom - layout.scrollHeight),

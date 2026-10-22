@@ -101,7 +101,7 @@ export default async function RoleTestPage({ params }: Params) {
   const faq = (answers ?? []).filter((item) => ROLE_PAGE_FAQ.includes(item.key))
 
   return (
-    <main className="mx-auto max-w-5xl space-y-10 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-10 px-6 py-12">
       <PageKey page="test" />
       <JsonLd
         data={breadcrumbData(siteUrl(), [

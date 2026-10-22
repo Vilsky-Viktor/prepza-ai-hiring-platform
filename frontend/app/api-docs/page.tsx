@@ -70,7 +70,7 @@ export default async function ApiDocsPage({
   const site = siteUrl()
 
   return (
-    <main className="mx-auto max-w-5xl space-y-12 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-12 px-6 py-12">
       <PageKey page="apiDocs" />
       <JsonLd
         data={[

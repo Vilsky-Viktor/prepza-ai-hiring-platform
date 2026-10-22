@@ -59,7 +59,7 @@ export default async function NewsPage() {
   )
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
+    <main className="mx-auto max-w-page space-y-8 px-6 py-12">
       <PageKey page="news" />
       <JsonLd data={blog} />
       {/* The title and its line on the left, the feed on the right, as a list page's action. */}

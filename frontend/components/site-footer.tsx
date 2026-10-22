@@ -18,7 +18,7 @@ export async function SiteFooter() {
   return (
     <footer className="border-t">
       {/* On phones: everything centered in one column, with bigger icons, button and links. */}
-      <div className="mx-auto flex max-w-5xl flex-wrap justify-between gap-8 px-6 py-8 text-sm text-muted-foreground max-sm:flex-col max-sm:items-center max-sm:gap-10 max-sm:py-12 max-sm:text-center sm:gap-x-16">
+      <div className="mx-auto flex max-w-page flex-wrap justify-between gap-8 px-6 py-8 text-sm text-muted-foreground max-sm:flex-col max-sm:items-center max-sm:gap-10 max-sm:py-12 max-sm:text-center sm:gap-x-16">
         <div className="space-y-6 max-sm:flex max-sm:flex-col max-sm:items-center">
           {/* The legal operator, as EU rules want it within reach of every page. */}
           {/* The language menu sits beside it, wrapping under it on narrow phones. */}
