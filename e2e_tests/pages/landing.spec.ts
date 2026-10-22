@@ -270,4 +270,3 @@ test("the guides button opens the guides", async ({ page }) => {
   // The local dev server compiles the guides on first open.
   await expect(page).toHaveURL(/\/guides$/, { timeout: 30_000 });
 });
-});
