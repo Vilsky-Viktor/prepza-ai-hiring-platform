@@ -18,14 +18,14 @@ trace_header: ContextVar[str | None] = ContextVar("trace_header", default=None)
 
 
 class JsonFormatter(logging.Formatter):
-    """One JSON object per line, in the fields Cloud Logging reads: its severity, so errors are
-    errors there, and the request's trace, when there is one. Emails and URLs' paths (a secret
+    """One JSON object per line, in the fields Cloud Logging reads: its time, its severity, so
+    errors are errors there, and the request's trace, when there is one. Emails and URLs' paths (a secret
     web hook's, an invite's token) are scrubbed from the message and the error, whatever brought
     them in (a database error's detail, a provider's reply)."""
 
     def format(self, record: logging.LogRecord) -> str:
         payload = {
-            "ts": datetime.now(UTC).isoformat(),
+            "time": datetime.now(UTC).isoformat(),
             "severity": record.levelname,
             "logger": record.name,
             "message": scrub(record.getMessage()),
@@ -76,6 +76,14 @@ def configure_logging() -> None:
     # paths carry secret tokens (invite, guest and unsubscribe links) and an address is personal
     # data. RequestLogMiddleware logs each request without them.
     logging.getLogger("uvicorn.access").disabled = True
+
+    # Uvicorn gives its own logger a plain-text handler that doesn't propagate, so its lines (an
+    # unhandled error's traceback among them) reached Cloud Logging as text, without severity or
+    # trace. They now go through the root's JSON handler.
+    for name in ("uvicorn", "uvicorn.error"):
+        server = logging.getLogger(name)
+        server.handlers = []
+        server.propagate = True
 
 
 class RequestLogMiddleware(BaseHTTPMiddleware):

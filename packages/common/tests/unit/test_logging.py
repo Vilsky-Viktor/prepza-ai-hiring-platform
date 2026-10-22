@@ -1,6 +1,7 @@
 import json
 import logging
 import sys
+from datetime import datetime
 
 from fastapi import FastAPI, Response
 from fastapi.testclient import TestClient
@@ -33,6 +34,22 @@ def test_a_line_carries_the_fields_cloud_logging_reads():
         "billing",
     )
     assert TRACE_FIELD not in line
+    assert datetime.fromisoformat(line["time"]).tzinfo is not None
+
+
+def test_uvicorns_own_lines_are_json_too(capsys):
+    """Uvicorn sets up its logger with a plain-text handler before the app loads; once the app's
+    logging is configured, its lines (an unhandled error's traceback) are JSON with a severity."""
+    server = logging.getLogger("uvicorn")
+    server.addHandler(logging.StreamHandler(sys.stdout))
+    server.propagate = False
+    configure_logging()
+
+    logging.getLogger("uvicorn.error").error("Exception in ASGI application")
+    lines = [line for line in capsys.readouterr().err.splitlines() if line]
+
+    assert json.loads(lines[-1])["severity"] == "ERROR"
+    assert capsys.readouterr().out == ""
 
 
 def test_emails_and_url_paths_never_reach_a_line_even_from_an_error():
