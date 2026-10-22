@@ -123,7 +123,10 @@
       } else if (data.type === "started") {
         call(options.onStart)
       } else if (data.type === "finished") {
-        call(options.onFinish, { candidateId: data.candidateId })
+        call(options.onFinish, {
+          candidateId:
+            typeof data.candidateId === "string" ? data.candidateId : undefined,
+        })
       } else if (data.type === "error") {
         call(options.onError, { code: String(data.code) })
       }
@@ -143,10 +146,22 @@
 
   window.Prepza = { version: VERSION, embed: embed }
 
+  // A queued call that throws (a missing element) still reaches the page's console, after the
+  // other queued calls ran.
+  function rethrow(error) {
+    window.setTimeout(function () {
+      throw error
+    })
+  }
+
   // Calls the page made before this loaded.
   var queued = (existing && existing.q) || []
 
   for (var i = 0; i < queued.length; i++) {
-    embed(queued[i])
+    try {
+      embed(queued[i])
+    } catch (error) {
+      rethrow(error)
+    }
   }
 })()

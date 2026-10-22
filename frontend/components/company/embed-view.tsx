@@ -44,7 +44,8 @@ export function EmbedView({
       post(EMBED_EVENTS.ready)
     }
 
-    if (!content.current) {
+    // Without ResizeObserver the frame keeps the script's fixed height.
+    if (!content.current || typeof ResizeObserver === "undefined") {
       return
     }
 
