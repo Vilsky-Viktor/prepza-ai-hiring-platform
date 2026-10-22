@@ -1,9 +1,10 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useId, useState } from "react"
 import { toast } from "sonner"
 
+import { LabeledField } from "@/components/labeled-field"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -41,6 +42,7 @@ export function NewsDialog({
   const [day, setDay] = useState(post?.published_on ?? today())
   const [text, setText] = useState(post?.text ?? "")
   const [saving, setSaving] = useState(false)
+  const textId = useId()
 
   async function save(event: React.FormEvent) {
     event.preventDefault()
@@ -73,29 +75,31 @@ export function NewsDialog({
           <DialogDescription>{t("postInEnglish")}</DialogDescription>
         </DialogHeader>
         <form id="news-post" onSubmit={save} className="min-w-0 space-y-4">
-          <Input
-            required
-            maxLength={MAX_NEWS_TITLE_LENGTH}
-            placeholder={t("postTitlePlaceholder")}
-            aria-label={common("title")}
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-            className={`h-14 ${GRAY_FIELD}`}
-          />
-          <Input
-            required
-            type="date"
-            aria-label={t("postDate")}
-            value={day}
-            onChange={(event) => setDay(event.target.value)}
-            className={`h-14 w-auto ${GRAY_FIELD}`}
-          />
-          <div className="space-y-2">
+          <LabeledField label={common("title")}>
+            <Input
+              required
+              maxLength={MAX_NEWS_TITLE_LENGTH}
+              placeholder={t("postTitlePlaceholder")}
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+              className={`h-14 ${GRAY_FIELD}`}
+            />
+          </LabeledField>
+          <LabeledField label={t("postDate")}>
+            <Input
+              required
+              type="date"
+              value={day}
+              onChange={(event) => setDay(event.target.value)}
+              className={`h-14 w-auto ${GRAY_FIELD}`}
+            />
+          </LabeledField>
+          <LabeledField label={t("postText")} htmlFor={textId}>
             <Textarea
               required
+              id={textId}
               maxLength={MAX_NEWS_TEXT_LENGTH}
               placeholder={t("postTextPlaceholder")}
-              aria-label={t("postText")}
               value={text}
               onChange={(event) => setText(event.target.value)}
               // A long unbroken word wraps instead of widening the dialog.
@@ -109,7 +113,7 @@ export function NewsDialog({
                 count: MAX_NEWS_TEXT_LENGTH - text.length,
               })}
             </p>
-          </div>
+          </LabeledField>
         </form>
         <DialogFooter>
           <DialogClose

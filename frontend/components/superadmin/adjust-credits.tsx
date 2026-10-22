@@ -5,6 +5,7 @@ import { useFormatter, useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
+import { LabeledField } from "@/components/labeled-field"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -112,30 +113,30 @@ export function AdjustCredits({
                 setConfirming(true)
               }}
             >
-              <div className={FIELD}>
-                <Input
-                  required
-                  type="number"
-                  step={1}
-                  inputMode="numeric"
-                  placeholder={t("adjustAmount")}
-                  aria-label={t("adjustAmount")}
-                  value={amount}
-                  onChange={(event) => setAmount(event.target.value)}
-                  className={INPUT}
-                />
-              </div>
-              <div className={FIELD}>
-                <Input
-                  required
-                  maxLength={MAX_ADJUSTMENT_NOTE}
-                  placeholder={t("adjustNote")}
-                  aria-label={t("adjustNote")}
-                  value={note}
-                  onChange={(event) => setNote(event.target.value)}
-                  className={INPUT}
-                />
-              </div>
+              <LabeledField label={t("adjustAmount")}>
+                <div className={FIELD}>
+                  <Input
+                    required
+                    type="number"
+                    step={1}
+                    inputMode="numeric"
+                    value={amount}
+                    onChange={(event) => setAmount(event.target.value)}
+                    className={INPUT}
+                  />
+                </div>
+              </LabeledField>
+              <LabeledField label={t("adjustNote")}>
+                <div className={FIELD}>
+                  <Input
+                    required
+                    maxLength={MAX_ADJUSTMENT_NOTE}
+                    value={note}
+                    onChange={(event) => setNote(event.target.value)}
+                    className={INPUT}
+                  />
+                </div>
+              </LabeledField>
             </form>
           )}
           <DialogFooter>

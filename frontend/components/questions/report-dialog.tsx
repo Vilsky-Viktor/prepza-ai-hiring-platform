@@ -17,7 +17,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { MenuPill } from "@/components/menu-pill"
+import { LabeledField } from "@/components/labeled-field"
+import { PillSelect } from "@/components/pill-select"
 import { Textarea } from "@/components/ui/textarea"
 import { FEEDBACK_HOVER_CLASS, REPORT_REASONS } from "@/constants/feedback"
 import { MAX_REPORT_COMMENT_LENGTH } from "@/constants/limits"
@@ -107,28 +108,27 @@ export function ReportDialog({ basePath }: { basePath: string }) {
         </DialogHeader>
         <form id="report-question-form" onSubmit={send} className="space-y-4">
           {/* The site's select, opening the site's menu (not the browser's). */}
-          <MenuPill
-            ariaLabel={t("reason")}
+          <PillSelect
+            label={t("reason")}
             placeholder={t("selectReason")}
             value={reason || null}
             options={REPORT_REASONS.map((key) => ({
               value: key,
               label: reasons(key),
-              keepCase: true,
             }))}
             onChange={(next) => setReason(next as ReportReason)}
-            className="h-16"
+            pillClassName="h-16"
           />
-          <div className="rounded-xl border border-transparent transition-colors focus-within:border-ring">
-            <Textarea
-              maxLength={MAX_REPORT_COMMENT_LENGTH}
-              placeholder={t("details")}
-              aria-label={t("details")}
-              value={comment}
-              onChange={(event) => setComment(event.target.value)}
-              className="min-h-32 resize-none border-0 bg-muted px-6 py-4 text-lg shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-lg dark:bg-input/30"
-            />
-          </div>
+          <LabeledField label={t("details")}>
+            <div className="rounded-xl border border-transparent transition-colors focus-within:border-ring">
+              <Textarea
+                maxLength={MAX_REPORT_COMMENT_LENGTH}
+                value={comment}
+                onChange={(event) => setComment(event.target.value)}
+                className="min-h-32 resize-none border-0 bg-muted px-6 py-4 text-lg shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-lg dark:bg-input/30"
+              />
+            </div>
+          </LabeledField>
         </form>
         <DialogFooter>
           <DialogClose

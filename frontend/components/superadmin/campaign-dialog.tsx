@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
+import { LabeledField } from "@/components/labeled-field"
 import { PillSelect } from "@/components/pill-select"
 import { Button } from "@/components/ui/button"
 import {
@@ -124,16 +125,18 @@ export function CampaignDialog({
               onChange={setKind}
             />
           )}
-          <Input
-            required
-            maxLength={MAX_CAMPAIGN_SUBJECT_LENGTH}
-            placeholder={t("campaignSubjectPlaceholder")}
-            aria-label={t("campaignSubject")}
-            value={subject}
-            onChange={(event) => setSubject(event.target.value)}
-            className={`h-14 ${GRAY_FIELD}`}
-          />
-          <div className="space-y-2">
+          <LabeledField label={t("campaignSubject")}>
+            <Input
+              required
+              maxLength={MAX_CAMPAIGN_SUBJECT_LENGTH}
+              placeholder={t("campaignSubjectPlaceholder")}
+              value={subject}
+              onChange={(event) => setSubject(event.target.value)}
+              className={`h-14 ${GRAY_FIELD}`}
+            />
+          </LabeledField>
+          {/* The editor names itself (aria-label); the label shows its name. */}
+          <LabeledField label={t("campaignText")}>
             <TextEditor
               value={text}
               onChange={setText}
@@ -148,23 +151,24 @@ export function CampaignDialog({
                 count: MAX_CAMPAIGN_TEXT_LENGTH - text.length,
               })}
             </p>
-          </div>
-          <Input
-            maxLength={MAX_CAMPAIGN_BUTTON_LENGTH}
-            placeholder={t("campaignButton")}
-            aria-label={t("campaignButton")}
-            value={button}
-            onChange={(event) => setButton(event.target.value)}
-            className={`h-14 ${GRAY_FIELD}`}
-          />
-          {english && (
+          </LabeledField>
+          <LabeledField label={t("campaignButton")}>
             <Input
-              placeholder={t("campaignLinkPlaceholder")}
-              aria-label={t("campaignLink")}
-              value={link}
-              onChange={(event) => setLink(event.target.value)}
+              maxLength={MAX_CAMPAIGN_BUTTON_LENGTH}
+              value={button}
+              onChange={(event) => setButton(event.target.value)}
               className={`h-14 ${GRAY_FIELD}`}
             />
+          </LabeledField>
+          {english && (
+            <LabeledField label={t("campaignLink")}>
+              <Input
+                placeholder={t("campaignLinkPlaceholder")}
+                value={link}
+                onChange={(event) => setLink(event.target.value)}
+                className={`h-14 ${GRAY_FIELD}`}
+              />
+            </LabeledField>
           )}
         </form>
         <DialogFooter>

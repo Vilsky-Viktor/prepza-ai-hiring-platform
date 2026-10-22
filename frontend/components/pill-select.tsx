@@ -11,6 +11,7 @@ export function PillSelect({
   value,
   options,
   onChange,
+  placeholder,
   disabled,
   className,
   pillClassName,
@@ -18,7 +19,8 @@ export function PillSelect({
   // Shown above the select; without it, `ariaLabel` names it.
   label?: string
   ariaLabel?: string
-  value: string
+  // Null until something is chosen, showing `placeholder`.
+  value: string | null
   // `note`: a line under the option in the open menu; `display`: what the pill shows once
   // it's chosen, instead of the label.
   options: {
@@ -29,6 +31,7 @@ export function PillSelect({
     display?: ReactNode
   }[]
   onChange: (value: string) => void
+  placeholder?: string
   disabled?: boolean
   className?: string
   // The pill's own classes: a width that stays as the choice changes, say.
@@ -44,6 +47,7 @@ export function PillSelect({
         value={value}
         options={options.map((option) => ({ ...option, keepCase: true }))}
         onChange={onChange}
+        placeholder={placeholder}
         disabled={disabled}
         className={pillClassName}
       />

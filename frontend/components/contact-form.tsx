@@ -2,10 +2,11 @@
 
 import { ForwardIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useId, useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
+import { LabeledField } from "@/components/labeled-field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -33,6 +34,7 @@ export function ContactForm() {
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
   const [sending, setSending] = useState(false)
+  const messageId = useId()
   // The address the reply goes to, once the message is sent.
   const [sentTo, setSentTo] = useState<string | null>(null)
 
@@ -74,57 +76,59 @@ export function ContactForm() {
   return (
     <form onSubmit={send} className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <Input
-          required
-          maxLength={MAX_CONTACT_NAME_LENGTH}
-          autoComplete="name"
-          placeholder={t("name")}
-          aria-label={t("name")}
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          className={FIELD}
-        />
-        <Input
-          required
-          type="email"
-          maxLength={MAX_EMAIL_LENGTH}
-          autoComplete="email"
-          placeholder={t("email")}
-          aria-label={t("email")}
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          className={FIELD}
-        />
+        <LabeledField label={t("name")}>
+          <Input
+            required
+            maxLength={MAX_CONTACT_NAME_LENGTH}
+            autoComplete="name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            className={FIELD}
+          />
+        </LabeledField>
+        <LabeledField label={t("email")}>
+          <Input
+            required
+            type="email"
+            maxLength={MAX_EMAIL_LENGTH}
+            autoComplete="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            className={FIELD}
+          />
+        </LabeledField>
       </div>
-      <div className="relative">
-        <Textarea
-          required
-          maxLength={MAX_CONTACT_MESSAGE_LENGTH}
-          placeholder={t("messagePlaceholder")}
-          aria-label={t("message")}
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-          onKeyDown={(event) => {
-            if (isSubmitShortcut(event)) {
-              event.preventDefault()
-              event.currentTarget.form?.requestSubmit()
-            }
-          }}
-          className={`min-h-48 resize-none rounded-[2rem] px-6 pt-4 pb-20 text-lg md:text-lg ${BORDERLESS}`}
-        />
-        <p className="pointer-events-none absolute start-6 bottom-6 text-xs text-muted-foreground pointer-coarse:hidden">
-          {common("submitHint")}
-        </p>
-        <Button
-          type="submit"
-          size="icon-lg"
-          className="absolute end-3 bottom-3 size-12 rounded-full"
-          disabled={sending}
-          aria-label={t("send")}
-        >
-          <ForwardIcon className="size-6 rtl:-scale-x-100" />
-        </Button>
-      </div>
+      <LabeledField label={t("message")} htmlFor={messageId}>
+        <div className="relative">
+          <Textarea
+            required
+            maxLength={MAX_CONTACT_MESSAGE_LENGTH}
+            id={messageId}
+            placeholder={t("messagePlaceholder")}
+            value={message}
+            onChange={(event) => setMessage(event.target.value)}
+            onKeyDown={(event) => {
+              if (isSubmitShortcut(event)) {
+                event.preventDefault()
+                event.currentTarget.form?.requestSubmit()
+              }
+            }}
+            className={`min-h-48 resize-none rounded-[2rem] px-6 pt-4 pb-20 text-lg md:text-lg ${BORDERLESS}`}
+          />
+          <p className="pointer-events-none absolute start-6 bottom-6 text-xs text-muted-foreground pointer-coarse:hidden">
+            {common("submitHint")}
+          </p>
+          <Button
+            type="submit"
+            size="icon-lg"
+            className="absolute end-3 bottom-3 size-12 rounded-full"
+            disabled={sending}
+            aria-label={t("send")}
+          >
+            <ForwardIcon className="size-6 rtl:-scale-x-100" />
+          </Button>
+        </div>
+      </LabeledField>
     </form>
   )
 }

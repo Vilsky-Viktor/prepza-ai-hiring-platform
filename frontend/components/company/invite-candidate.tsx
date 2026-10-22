@@ -8,6 +8,7 @@ import { toast } from "sonner"
 import { InviteExample } from "@/components/company/invite-example"
 import { InviteFileTab } from "@/components/company/invite-file-tab"
 import { InviteProblems } from "@/components/company/invite-problems"
+import { LabeledField } from "@/components/labeled-field"
 import { TabNav, TabPanel } from "@/components/tab-nav"
 import { INVITE_TAB_ICONS } from "@/components/company/invite-tab-icons"
 import { Button } from "@/components/ui/button"
@@ -189,28 +190,29 @@ export function InviteCandidate({
           >
             {tab === "one" && (
               <>
-                <div className={FIELD}>
-                  <Input
-                    type="email"
-                    autoComplete="off"
-                    placeholder="candidate@example.com"
-                    aria-label={t("candidateEmail")}
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    className={INPUT}
-                  />
-                </div>
-                <div className={FIELD}>
-                  <Input
-                    autoComplete="off"
-                    maxLength={MAX_CANDIDATE_NAME_LENGTH}
-                    placeholder={t("candidateName")}
-                    aria-label={t("candidateName")}
-                    value={name}
-                    onChange={(event) => setName(event.target.value)}
-                    className={INPUT}
-                  />
-                </div>
+                <LabeledField label={t("candidateEmail")}>
+                  <div className={FIELD}>
+                    <Input
+                      type="email"
+                      autoComplete="off"
+                      placeholder="candidate@example.com"
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                      className={INPUT}
+                    />
+                  </div>
+                </LabeledField>
+                <LabeledField label={t("candidateName")}>
+                  <div className={FIELD}>
+                    <Input
+                      autoComplete="off"
+                      maxLength={MAX_CANDIDATE_NAME_LENGTH}
+                      value={name}
+                      onChange={(event) => setName(event.target.value)}
+                      className={INPUT}
+                    />
+                  </div>
+                </LabeledField>
               </>
             )}
             {tab === "many" && (
