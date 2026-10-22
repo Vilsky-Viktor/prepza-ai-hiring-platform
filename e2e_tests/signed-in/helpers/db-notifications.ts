@@ -1,20 +1,24 @@
-import { createHash, randomUUID } from "node:crypto"
+import { createHash, createHmac, randomUUID } from "node:crypto"
 
 import { withDatabase } from "./db"
+import { env } from "./env"
 
 /** An address as the notifications service keeps it on its suppression list: never in the
- * clear (services/notifications/app/helpers/unsubscribe.py address_hash). */
+ * clear, but its hash keyed with PERSON_HASH_KEY (services/notifications/app/helpers/
+ * unsubscribe.py address_hash, prepza_common.person_hash). */
 function addressHash(email: string) {
-  return createHash("sha256").update(email.trim().toLowerCase()).digest("hex")
+  const digest = createHash("sha256").update(email.trim().toLowerCase()).digest("hex")
+
+  return createHmac("sha256", env("PERSON_HASH_KEY")).update(digest).digest("hex")
 }
 
-/** Puts a throwaway address on the suppression list, as a hard bounce does. */
-export async function suppress(email: string) {
+/** Puts a throwaway address on the suppression list, as a hard bounce (or `reason`) does. */
+export async function suppress(email: string, reason = "bounced") {
   await withDatabase("notifications", (client) =>
     client.query(
-      `INSERT INTO suppressed_addresses (address, reason, created_at) VALUES ($1, 'bounced', now())
+      `INSERT INTO suppressed_addresses (address, reason, created_at) VALUES ($1, $2, now())
        ON CONFLICT DO NOTHING`,
-      [addressHash(email)]
+      [addressHash(email), reason]
     )
   )
 }
