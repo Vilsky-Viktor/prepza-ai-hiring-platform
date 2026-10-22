@@ -104,7 +104,13 @@ export function CodeEditor({
           </IconButton>
         </div>
       )}
-      <pre className="overflow-x-auto py-4 font-mono text-sm leading-relaxed font-normal">
+      {/* Code is no human language ("zxx"): the page's own language rules, such as Chinese,
+          Japanese and Korean's larger small text (scripts.css), never widen it, and screen readers
+          don't read it in the page's language. It scrolls inside itself when longer. */}
+      <pre
+        lang="zxx"
+        className="overflow-x-auto py-4 font-mono text-sm leading-relaxed font-normal"
+      >
         <code className="grid min-w-max">
           {lines.map((line, index) => (
             <span key={index} className="flex pe-5">

@@ -20,11 +20,12 @@
   line-height: 1.4;
 }
 
-/* Chinese, Japanese and Korean characters are dense: the two smallest text sizes a step larger. */
-:is(:lang(ja), :lang(zh), :lang(ko)) .text-xs {
+/* Chinese, Japanese and Korean characters are dense: the two smallest text sizes a step larger,
+   where the element's own text is in one of them (code, lang="zxx", keeps its size). */
+.text-xs:is(:lang(ja), :lang(zh), :lang(ko)) {
   font-size: 0.8125rem;
 }
 
-:is(:lang(ja), :lang(zh), :lang(ko)) .text-sm {
+.text-sm:is(:lang(ja), :lang(zh), :lang(ko)) {
   font-size: 0.9375rem;
 }
