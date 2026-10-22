@@ -4,8 +4,8 @@ import { gradeTone } from "@/lib/grade-tone"
 
 describe("gradeTone", () => {
   it("is green for a pass and red for a fail", () => {
-    expect(gradeTone(true)).toContain("text-green-600")
-    expect(gradeTone(false)).toContain("text-red-600")
+    expect(gradeTone(true)).toContain("text-green-700")
+    expect(gradeTone(false)).toContain("text-red-700")
   })
 
   it("has no colour while the result isn't decided", () => {

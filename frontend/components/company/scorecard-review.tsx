@@ -102,7 +102,7 @@ function ScorecardSignals({ item }: { item: ReviewItem }) {
   }
 
   return (
-    <p className="flex flex-wrap items-center gap-x-1.5 text-sm text-amber-600 tabular-nums dark:text-amber-400">
+    <p className="flex flex-wrap items-center gap-x-1.5 text-sm text-amber-700 tabular-nums dark:text-amber-400">
       {signals.map((signal, index) => (
         <span key={String(signal)} className="flex items-center gap-x-1.5">
           {index > 0 && <Dot className="mx-0" />}

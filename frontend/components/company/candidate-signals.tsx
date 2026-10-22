@@ -42,7 +42,7 @@ export function CandidateSignals({
         render={
           <span
             aria-label={label}
-            className="flex items-center gap-1 text-amber-600 tabular-nums dark:text-amber-400"
+            className="flex items-center gap-1 text-amber-700 tabular-nums dark:text-amber-400"
           />
         }
       >

@@ -50,7 +50,7 @@ export function BalanceRow({
           </p>
         )}
         {low && (
-          <p className="text-sm text-amber-600 dark:text-amber-400">
+          <p className="text-sm text-amber-700 dark:text-amber-400">
             {t("low")}
           </p>
         )}
