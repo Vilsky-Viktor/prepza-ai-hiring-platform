@@ -252,7 +252,7 @@ def test_an_add_to_slack_trip_finishes_once(run, monkeypatch):
             ]
 
     try:
-        assert run(scenario()) == [303, 400]
+        assert run(scenario()) == [303, 422]
     finally:
         app.dependency_overrides.clear()
 
