@@ -42,9 +42,9 @@ from app.services.access import (
     require_company,
     require_editor,
 )
-from app.services.candidate_billing import release_unfinished, settle_removed
+from app.services.candidate_billing import release_unfinished, settle_unfinished
 from app.services.interview_access import interview_for
-from app.storage import audit, candidates, interviews, invites
+from app.storage import audit, candidates, interviews
 
 router = APIRouter(prefix="/interviews", tags=["interviews"])
 
@@ -164,7 +164,7 @@ async def delete_interview(interview_id: UUID, user: CurrentUser) -> None:
 
     # Settled while rounds still has the answers. Released again as it's removed, for an invite
     # made or sent again meanwhile; a charged candidate stays charged.
-    await settle_removed(await invites.unfinished(interview.id))
+    await settle_unfinished(interview.id)
     await rounds.delete_interview_data(interview.set_id)
     await library.delete_interview(interview.set_id)
     await release_unfinished(await interviews.remove(interview.id))

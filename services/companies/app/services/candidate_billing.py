@@ -11,6 +11,7 @@ from app.constants.invites import (
     INVITE_EXPIRY_DAYS,
     JOB_RUN_SECONDS,
     NOT_STARTED,
+    SETTLE_BATCH,
     InviteStatus,
 )
 from app.helpers.candidates import finished_result, stored_results
@@ -114,6 +115,21 @@ async def release_unfinished(rows: list) -> None:
     for interview_id, email, status, stored in rows:
         if status in (*NOT_STARTED, InviteStatus.IN_PROCESS):
             await billing.release_candidate(stored)
+
+
+async def settle_unfinished(interview_id) -> None:
+    """Settles the credits of a deleted interview's unfinished invites (settle_removed),
+    SETTLE_BATCH at a time."""
+    after = None
+
+    while True:
+        rows = await invites.unfinished(interview_id, after, SETTLE_BATCH)
+        await settle_removed(rows)
+
+        if len(rows) < SETTLE_BATCH:
+            return
+
+        after = rows[-1].id
 
 
 async def settle_removed(rows: list) -> None:

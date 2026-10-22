@@ -101,6 +101,9 @@ REMINDER_AFTER_DAYS = 3
 REMINDERS_PER_RUN = 500
 # Invites expired per batch of the daily expiry run.
 EXPIRIES_PER_BATCH = 200
+# A deleted interview's unfinished invites are settled (charged or given back) this many at a
+# time, read by key.
+SETTLE_BATCH = 200
 TOO_MANY_COMPANIES = "You already own as many companies as one person may: {limit}."
 # Company names are unique across prepza, ignoring case, and short enough for a heading.
 MAX_COMPANY_NAME_LENGTH = 45

@@ -24,7 +24,7 @@ def no_billing_calls(monkeypatch):
     for name in ("delete_company", "release_candidate", "charge_candidate", "welcome_company"):
         monkeypatch.setattr(billing, name, nothing)
 
-    async def none_unfinished(interview_id):
+    async def none_unfinished(interview_id, after, size):
         return []
 
     monkeypatch.setattr(accounts, "unfinished_invites", no_invites)

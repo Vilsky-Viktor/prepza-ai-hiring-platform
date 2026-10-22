@@ -146,12 +146,17 @@ async def statuses_of(interview_id, emails: list[str]) -> dict[str, str]:
         return dict((await session.execute(query)).all())
 
 
-async def unfinished(interview_id) -> list[CandidateInvite]:
-    """The interview's invites not finished yet."""
+async def unfinished(interview_id, after: uuid.UUID | None, size: int) -> list[CandidateInvite]:
+    """Up to `size` of the interview's invites not finished yet, by id, those after `after`."""
     query = select(CandidateInvite).where(
         CandidateInvite.interview_id == interview_id,
         CandidateInvite.status != InviteStatus.FINISHED,
     )
+
+    if after is not None:
+        query = query.where(CandidateInvite.id > after)
+
+    query = query.order_by(CandidateInvite.id).limit(size)
 
     async with Session() as session:
         return list(await session.scalars(query))

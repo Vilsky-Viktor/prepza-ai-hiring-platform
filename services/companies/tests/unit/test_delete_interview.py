@@ -131,8 +131,8 @@ def test_deleting_an_interview_settles_unfinished_candidates_credits(client, mon
     dan = candidate("dan@example.com", "in_process")
     erin = candidate("erin@example.com", "in_process")
 
-    async def unfinished(interview_id):
-        return [carol, dan, erin]
+    async def unfinished(interview_id, after, size):
+        return [carol, dan, erin] if after is None else []
 
     async def scores(invite_ids):
         calls.append(("scores", sorted(invite_ids)))

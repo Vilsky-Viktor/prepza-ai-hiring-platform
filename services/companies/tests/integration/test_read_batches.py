@@ -35,3 +35,22 @@ def test_a_companys_interviews_come_a_page_at_a_time_by_id(run):
     made, read = run(scenario())
 
     assert read == made
+
+
+def test_an_interviews_unfinished_invites_come_a_page_at_a_time_by_id(run):
+    async def scenario():
+        company = await companies.create(f"Unfinished {uuid.uuid4()}", "owner", "o@example.com")
+        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
+
+        for name in ("ann", "bob", "cid"):
+            await invites.upsert(interview.id, f"{name}@example.com", "Backend", "Acme", "en")
+
+        first = await invites.unfinished(interview.id, None, 2)
+        second = await invites.unfinished(interview.id, first[-1].id, 2)
+
+        return [row.id for row in first], [row.id for row in second]
+
+    first, second = run(scenario())
+
+    assert len(first) == 2 and len(second) == 1
+    assert first == sorted(first) and second[0] > first[-1]
