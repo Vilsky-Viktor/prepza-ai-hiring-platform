@@ -1,8 +1,8 @@
 "use client"
 
-import { LoaderCircleIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
+import { LoadingSpinner } from "@/components/loading-spinner"
 import { Button } from "@/components/ui/button"
 import type { LinkStatus as Status } from "@/hooks/use-link-data"
 
@@ -20,14 +20,7 @@ export function LinkStatus({
   const common = useTranslations("common")
 
   if (status === "loading") {
-    return (
-      <div className="flex justify-center py-24" role="status">
-        <LoaderCircleIcon
-          aria-label={common("loading")}
-          className="size-8 animate-spin text-muted-foreground"
-        />
-      </div>
-    )
+    return <LoadingSpinner label={common("loading")} />
   }
 
   if (status === "missing") {
