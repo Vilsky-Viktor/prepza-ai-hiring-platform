@@ -1331,6 +1331,8 @@
         "agent": "Yapay zekâ ajanı",
         "apps": "Yapay zekâ uygulamaları (MCP)"
       },
+      "automate": "İşe alımınızı otomatikleştirmek için",
+      "developerTools": "geliştirici araçları",
       "interview": "Mülakat",
       "candidates": "{count, plural, one {<n>#</n> aday} other {<n>#</n> aday}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "Her adayın cevapları ve notu, e-postayla ya da sohbette paylaşılır.",
       "chatQuestion": "Selam, geçen oldu mu?",
       "samples": "Örnek raporlar"
-    },
-    "automate": {
-      "title": "İşe alımınızı otomatikleştirin",
-      "text": "Platformunuzu, yapay zekâ uygulamanızı ve iş ilanı sitelerini bağlayın, güncellemeleri Slack'te alın.",
-      "labels": {
-        "platform": "Platformunuz",
-        "api": "API",
-        "sdk": "SDK ile yerleştirme",
-        "webhook": "Web kancaları",
-        "aiApp": "Yapay zekâ uygulaması",
-        "mcp": "MCP sunucusu",
-        "jobBoard": "İş ilanı sitesi",
-        "link": "İlandaki bağlantı",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Asistana sormanız yeterli",

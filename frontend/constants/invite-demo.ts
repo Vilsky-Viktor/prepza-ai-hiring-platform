@@ -32,8 +32,9 @@ export const INVITE_WIRE_GAP = 18
 // How far into a card its wire starts, in pixels, so the card's float never shows its end.
 export const INVITE_WIRE_INSET = 14
 
-// How many ATS logos fit a phone's or tablet's narrow card; laptops show them all.
-export const PHONE_ATS_LOGOS = 3
+// How many ATS logos fit a phone's or tablet's narrow card, beside each other in its tile;
+// laptops show them all.
+export const PHONE_ATS_LOGOS = 2
 
 // The interview's candidates: the count it starts from, how many arrive before it starts again
 // from there, and the initials of those who arrive, in turn; the card shows the latest few.
@@ -47,3 +48,8 @@ export const DEMO_INVITE_CANDIDATES = {
 // How fast candidates run along the wires to the interview, in pixels a second: a little slower
 // than the hero's.
 export const INVITE_SPEED = 105
+
+// The bell's speed from the interview to Slack, pixels a second: slower than the candidates,
+// since its wire is short and at their speed the bell only flashes past; and when it first runs.
+export const INVITE_NOTIFY_SPEED = 40
+export const INVITE_NOTIFY_DELAY = 0.9

@@ -1331,6 +1331,8 @@
         "agent": "AI-agent",
         "apps": "AI-rakendused (MCP)"
       },
+      "automate": "Automatiseeri värbamine",
+      "developerTools": "arendaja tööriistadega",
       "interview": "Intervjuu",
       "candidates": "{count, plural, one {<n>#</n> kandidaat} other {<n>#</n> kandidaati}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "Iga kandidaadi vastused ja hinne, jagatud e-kirja või vestluse kaudu.",
       "chatQuestion": "Hei, kas keegi juba läbis?",
       "samples": "Näidisaruanded"
-    },
-    "automate": {
-      "title": "Automatiseeri värbamine",
-      "text": "Ühenda oma platvorm, AI-rakendus ja tööportaalid ning saa uuendusi Slackis.",
-      "labels": {
-        "platform": "Sinu platvorm",
-        "api": "API",
-        "sdk": "SDK manustamine",
-        "webhook": "Veebihaagid",
-        "aiApp": "AI-rakendus",
-        "mcp": "MCP-server",
-        "jobBoard": "Tööportaal",
-        "link": "Link töökuulutuses",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Lihtsalt küsi agendilt",

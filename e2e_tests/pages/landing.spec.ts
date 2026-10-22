@@ -12,7 +12,6 @@ const SECTIONS = [
   "invite",
   "candidates",
   "reports",
-  "automate",
   "agent",
   "trust",
   "compare",
@@ -271,12 +270,4 @@ test("the guides button opens the guides", async ({ page }) => {
   // The local dev server compiles the guides on first open.
   await expect(page).toHaveURL(/\/guides$/, { timeout: 30_000 });
 });
-
-test("the automation section links to the developer docs", async ({ page }) => {
-  test.setTimeout(120_000);
-  await page.goto("/");
-  await loaded(page);
-  await page.locator("#automate a[href='/api-docs']").click();
-  // The local dev server compiles the docs on first open.
-  await expect(page).toHaveURL(/\/api-docs$/, { timeout: 30_000 });
 });

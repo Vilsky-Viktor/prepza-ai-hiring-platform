@@ -1331,6 +1331,8 @@
         "agent": "KI-Agent",
         "apps": "KI-Apps (MCP)"
       },
+      "automate": "Automatisiere dein Recruiting mit",
+      "developerTools": "Entwickler-Tools",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> Kandidat} other {<n>#</n> Kandidaten}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "Die Antworten und das Ergebnis jedes Kandidaten, geteilt per E-Mail oder Chat.",
       "chatQuestion": "Hey, hat schon jemand bestanden?",
       "samples": "Beispielberichte"
-    },
-    "automate": {
-      "title": "Automatisiere dein Recruiting",
-      "text": "Verbinde deine Plattform, deine KI-App und Jobbörsen und erhalte Updates in Slack.",
-      "labels": {
-        "platform": "Deine Plattform",
-        "api": "API",
-        "sdk": "SDK-Einbindung",
-        "webhook": "Webhooks",
-        "aiApp": "KI-App",
-        "mcp": "MCP-Server",
-        "jobBoard": "Jobbörse",
-        "link": "Link in der Anzeige",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Frag einfach den Agenten",

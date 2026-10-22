@@ -1331,6 +1331,8 @@
         "agent": "Agent AI",
         "apps": "Ứng dụng AI (MCP)"
       },
+      "automate": "Tự động hóa tuyển dụng với",
+      "developerTools": "công cụ cho nhà phát triển",
       "interview": "Phỏng vấn",
       "candidates": "{count, plural, other {<n>#</n> ứng viên}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "Câu trả lời và điểm của mọi ứng viên, chia sẻ qua email hoặc chat.",
       "chatQuestion": "Này, đã có ai đạt chưa?",
       "samples": "Báo cáo mẫu"
-    },
-    "automate": {
-      "title": "Tự động hóa tuyển dụng",
-      "text": "Kết nối nền tảng của bạn, ứng dụng AI và các trang tuyển dụng, rồi nhận cập nhật trong Slack.",
-      "labels": {
-        "platform": "Nền tảng của bạn",
-        "api": "API",
-        "sdk": "Nhúng SDK",
-        "webhook": "Webhook",
-        "aiApp": "Ứng dụng AI",
-        "mcp": "Máy chủ MCP",
-        "jobBoard": "Trang tuyển dụng",
-        "link": "Liên kết trong tin tuyển dụng",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Chỉ cần hỏi trợ lý AI",

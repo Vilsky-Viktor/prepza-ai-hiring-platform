@@ -1331,6 +1331,8 @@
         "agent": "AI 에이전트",
         "apps": "AI 앱 (MCP)"
       },
+      "automate": "채용을 자동화하려면",
+      "developerTools": "개발자 도구",
       "interview": "면접",
       "candidates": "{count, plural, other {지원자 <n>#</n>명}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "모든 지원자의 답변과 점수를 이메일이나 채팅으로 공유하세요.",
       "chatQuestion": "혹시 합격한 사람 벌써 있어요?",
       "samples": "보고서 샘플"
-    },
-    "automate": {
-      "title": "채용 자동화",
-      "text": "자체 플랫폼, AI 앱, 채용 사이트를 연결하고 Slack으로 소식을 받아 보세요.",
-      "labels": {
-        "platform": "자체 플랫폼",
-        "api": "API",
-        "sdk": "SDK 임베드",
-        "webhook": "웹훅",
-        "aiApp": "AI 앱",
-        "mcp": "MCP 서버",
-        "jobBoard": "채용 사이트",
-        "link": "채용 공고 링크",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "에이전트에게 물어보세요",

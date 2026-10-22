@@ -1331,6 +1331,8 @@
         "agent": "AI agent",
         "apps": "AI apps (MCP)"
       },
+      "automate": "Automate hiring with",
+      "developerTools": "developer tools",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> candidate} other {<n>#</n> candidates}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "Every candidate's answers and grade, shared by email or chat.",
       "chatQuestion": "Hey, has anyone passed yet?",
       "samples": "Report samples"
-    },
-    "automate": {
-      "title": "Automate your hiring",
-      "text": "Connect your platform, AI app and job boards, and get updates in Slack.",
-      "labels": {
-        "platform": "Your platform",
-        "api": "API",
-        "sdk": "SDK embed",
-        "webhook": "Web hooks",
-        "aiApp": "AI app",
-        "mcp": "MCP server",
-        "jobBoard": "Job board",
-        "link": "Shared ad link",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Just ask the agent",

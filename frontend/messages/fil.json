@@ -1331,6 +1331,8 @@
         "agent": "AI agent",
         "apps": "Mga AI app (MCP)"
       },
+      "automate": "I-automate ang hiring gamit ang",
+      "developerTools": "mga developer tool",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> aplikante} other {<n>#</n> aplikante}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "Ang mga sagot at grade ng bawat aplikante, ishine-share sa email o chat.",
       "chatQuestion": "Uy, may pumasa na ba?",
       "samples": "Mga halimbawang ulat"
-    },
-    "automate": {
-      "title": "I-automate ang iyong hiring",
-      "text": "Ikonekta ang iyong platform, AI app at mga job board, at makatanggap ng mga update sa Slack.",
-      "labels": {
-        "platform": "Iyong platform",
-        "api": "API",
-        "sdk": "SDK embed",
-        "webhook": "Mga webhook",
-        "aiApp": "AI app",
-        "mcp": "MCP server",
-        "jobBoard": "Job board",
-        "link": "Link sa job ad",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Itanong lang sa agent",

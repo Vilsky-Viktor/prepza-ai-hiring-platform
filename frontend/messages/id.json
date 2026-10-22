@@ -1331,6 +1331,8 @@
         "agent": "Agen AI",
         "apps": "Aplikasi AI (MCP)"
       },
+      "automate": "Otomatiskan rekrutmenmu dengan",
+      "developerTools": "alat pengembang",
       "interview": "Wawancara",
       "candidates": "{count, plural, other {<n>#</n> kandidat}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "Jawaban dan nilai setiap kandidat, dibagikan lewat email atau chat.",
       "chatQuestion": "Hai, sudah ada yang lulus belum?",
       "samples": "Contoh laporan"
-    },
-    "automate": {
-      "title": "Otomatiskan rekrutmenmu",
-      "text": "Hubungkan platformmu, aplikasi AI, dan situs lowongan kerja, lalu dapatkan kabar terbaru di Slack.",
-      "labels": {
-        "platform": "Platformmu",
-        "api": "API",
-        "sdk": "Sematan SDK",
-        "webhook": "Webhook",
-        "aiApp": "Aplikasi AI",
-        "mcp": "Server MCP",
-        "jobBoard": "Situs lowongan",
-        "link": "Tautan di iklan lowongan",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Tanya saja agennya",

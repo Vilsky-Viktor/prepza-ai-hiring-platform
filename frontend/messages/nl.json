@@ -1331,6 +1331,8 @@
         "agent": "AI-agent",
         "apps": "AI-apps (MCP)"
       },
+      "automate": "Automatiseer je werving met",
+      "developerTools": "ontwikkelaarstools",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> kandidaat} other {<n>#</n> kandidaten}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "De antwoorden en score van elke kandidaat, gedeeld per e-mail of chat.",
       "chatQuestion": "Hé, is er al iemand geslaagd?",
       "samples": "Voorbeeldrapporten"
-    },
-    "automate": {
-      "title": "Automatiseer je werving",
-      "text": "Koppel je platform, je AI-app en vacaturesites, en krijg updates in Slack.",
-      "labels": {
-        "platform": "Je platform",
-        "api": "API",
-        "sdk": "SDK-integratie",
-        "webhook": "Webhooks",
-        "aiApp": "AI-app",
-        "mcp": "MCP-server",
-        "jobBoard": "Vacaturesite",
-        "link": "Link in de vacature",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Vraag het gewoon de agent",

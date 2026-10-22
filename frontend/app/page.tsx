@@ -1,7 +1,6 @@
 import { ArrowDownIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
-import { AutomateSection } from "@/components/landing/automate"
 import { CandidatesSection } from "@/components/landing/candidates"
 import { Closing } from "@/components/landing/closing"
 import { ComparisonSection } from "@/components/landing/comparison"
@@ -132,7 +131,6 @@ export default async function HomePage() {
       <InviteFromSection />
       <CandidatesSection />
       <ShareReportsSection />
-      <AutomateSection />
       <JustAskSection />
       <TrustQualitySection />
       {catalog && <ComparisonSection catalog={catalog} />}

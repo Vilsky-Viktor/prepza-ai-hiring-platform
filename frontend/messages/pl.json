@@ -1331,6 +1331,8 @@
         "agent": "Agent AI",
         "apps": "Aplikacje AI (MCP)"
       },
+      "automate": "Zautomatyzuj rekrutację za pomocą",
+      "developerTools": "narzędzi dla deweloperów",
       "interview": "Rozmowa",
       "candidates": "{count, plural, one {<n>#</n> kandydat} few {<n>#</n> kandydaci} many {<n>#</n> kandydatów} other {<n>#</n> kandydata}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "Odpowiedzi i wynik każdego kandydata, udostępniane e-mailem lub na czacie.",
       "chatQuestion": "Hej, czy ktoś już zdał?",
       "samples": "Przykładowe raporty"
-    },
-    "automate": {
-      "title": "Zautomatyzuj rekrutację",
-      "text": "Połącz swoją platformę, aplikację AI i portale z ofertami pracy, a powiadomienia otrzymuj na Slacku.",
-      "labels": {
-        "platform": "Twoja platforma",
-        "api": "API",
-        "sdk": "Osadzenie SDK",
-        "webhook": "Webhooki",
-        "aiApp": "Aplikacja AI",
-        "mcp": "Serwer MCP",
-        "jobBoard": "Portal z ofertami",
-        "link": "Link w ogłoszeniu",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Po prostu zapytaj agenta",

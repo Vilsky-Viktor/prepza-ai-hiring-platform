@@ -1331,6 +1331,8 @@
         "agent": "Agente de IA",
         "apps": "Apps de IA (MCP)"
       },
+      "automate": "Automatiza tu contratación con",
+      "developerTools": "herramientas para desarrolladores",
       "interview": "Entrevista",
       "candidates": "{count, plural, one {<n>#</n> candidato} other {<n>#</n> candidatos}}"
     },
@@ -1359,21 +1361,6 @@
       "text": "Las respuestas y la nota de cada candidato, compartidas por correo o chat.",
       "chatQuestion": "Oye, ¿ya aprobó alguien?",
       "samples": "Informes de ejemplo"
-    },
-    "automate": {
-      "title": "Automatiza tu contratación",
-      "text": "Conecta tu plataforma, tu app de IA y los portales de empleo, y recibe novedades en Slack.",
-      "labels": {
-        "platform": "Tu plataforma",
-        "api": "API",
-        "sdk": "SDK integrado",
-        "webhook": "Webhooks",
-        "aiApp": "App de IA",
-        "mcp": "Servidor MCP",
-        "jobBoard": "Portal de empleo",
-        "link": "Enlace en la oferta",
-        "slack": "Slack"
-      }
     },
     "justAsk": {
       "title": "Solo pregunta al agente",
