@@ -102,3 +102,20 @@ Right tools fell by 12: seven of them are one mistyped id (`…b0d9cce08b87` cop
 slips; the unchanged "without" variant moved by 7 between runs too. Everything else is within the
 judge's noise; kept for the cacheable prefix and the data kept out of the instructions. About
 $2.40 for the two runs.
+
+## The assistant's judges checked on traps (2026-10-22)
+
+`assistant_judge_traps.py` checks the three judges (`judges/assistant_pair.md`,
+`assistant_page.md`, `assistant_guide.md`) on traps made from a run's own passed answers: every
+number moved, a made-up promise added, or asking back which interview is meant, each of which
+the judge must fail (and rank lower in a pair), and the answer itself, which it must still pass;
+8 of each per judge, seed 7, on `results/assistant_page_context_p1.json` and
+`…_guides_g1.json`. Then each judge got a role first and its data in tags (the user's data, the
+guide, the conversation, the answers), read as data, and ran again on the same traps:
+
+| Judges | Pair: caught / kept / kappa | Page | Guide | Cost |
+|---|---|---|---|---|
+| As they were (`results/assistant_judge_traps_before.json`) | 8/8 / 8/8 / 1.0 | 8/8 / 8/8 / 1.0 | 8/8 / 8/8 / 1.0 | $0.10 |
+| With a role and tagged data (in use, `…_role.json`) | **8/8 / 8/8 / 1.0** | **8/8 / 8/8 / 1.0** | **8/8 / 8/8 / 1.0** | $0.16 |
+
+Runs from here on use the judges with a role; their verdicts on the traps didn't change.

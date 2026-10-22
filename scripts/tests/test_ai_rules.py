@@ -20,11 +20,8 @@ SHOUTED |= {"ONLY", "NOT", "YES", "NO", "DO", "DON'T"}
 # Modules that send messages to a model with the system message made elsewhere: the retry of a
 # topic draft adds to the conversation the draft started.
 SYSTEM_ELSEWHERE = {"services/generation/app/services/topic_planning.py"}
-# Judges without a role yet: changed only with their calibration run, after the assistant's
-# prompt work lands (the audit of 2026-10-22).
 # Helpers that take the schema as an argument (by its parameter's name there).
 SCHEMA_HELPERS = {"translate_fields": "schema"}
-JUDGES_WITHOUT_ROLE = {"assistant_guide.md", "assistant_page.md", "assistant_pair.md"}
 
 
 def constants(path: Path) -> dict[str, ast.expr]:
@@ -186,7 +183,7 @@ def test_every_judge_has_a_role():
     missing = [
         path.name
         for path in judges
-        if not path.read_text().startswith("You are") and path.name not in JUDGES_WITHOUT_ROLE
+        if not path.read_text().startswith("You are")
     ]
 
     assert len(judges) >= 10
