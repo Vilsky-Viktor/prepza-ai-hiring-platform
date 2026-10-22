@@ -57,6 +57,8 @@ export type CandidateReportData = {
   grade: number | null
   passed: boolean | null
   passMark: number
+  // The interview's language, which its topics' titles are in; none: the page's (samples).
+  language?: string
   sections: {
     id: string
     topic_title: string
@@ -103,6 +105,8 @@ export type Scorecard = {
   grade: number | null
   passed: boolean | null
   pass_mark: number
+  // The language the questions are written in, which can differ from the page's.
+  language: string
   // When the candidate confirmed they'd answer on their own; null before they start (and for
   // candidates from before it was asked).
   pledged_at: string | null

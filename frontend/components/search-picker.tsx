@@ -5,15 +5,18 @@ import { cn } from "cn"
 import { CheckIcon, ChevronDownIcon, SearchIcon } from "lucide-react"
 
 import { MAX_PICKER_SEARCH_LENGTH } from "@/constants/limits"
+import { languageOf } from "@/lib/locale"
 
 /** A dropdown of choices with a search field above them, matching what each is called
- * (`labelOf`). `compact` is the small trigger that sits next to a text box's send button;
- * `triggerClassName` sizes the trigger to sit beside other controls. */
+ * (`labelOf`), each in its own language when `langOf` gives one (a language's own name).
+ * `compact` is the small trigger that sits next to a text box's send button; `triggerClassName`
+ * sizes the trigger to sit beside other controls. */
 export function SearchPicker<T extends string>({
   items,
   value,
   onChange,
   labelOf,
+  langOf,
   label,
   placeholder,
   empty,
@@ -26,6 +29,7 @@ export function SearchPicker<T extends string>({
   value: T
   onChange: (item: T) => void
   labelOf: (item: T) => string
+  langOf?: (item: T) => string
   // The trigger's accessible name, the search field's placeholder and what shows with no match.
   label: string
   placeholder: string
@@ -59,9 +63,11 @@ export function SearchPicker<T extends string>({
           triggerClassName
         )}
       >
-        <Combobox.Value>
-          {valueLabel ? (item: T) => valueLabel(item) : undefined}
-        </Combobox.Value>
+        <span {...languageOf(langOf?.(value))}>
+          <Combobox.Value>
+            {valueLabel ? (item: T) => valueLabel(item) : undefined}
+          </Combobox.Value>
+        </span>
         <ChevronDownIcon
           className={cn("text-muted-foreground", compact ? "size-4" : "size-5")}
         />
@@ -85,9 +91,9 @@ export function SearchPicker<T extends string>({
                 <Combobox.Item
                   key={item}
                   value={item}
-                  className="flex cursor-default items-center justify-between gap-4 rounded-lg px-3 py-2 text-base sm:whitespace-nowrap outline-none select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
+                  className="flex cursor-default items-center justify-between gap-4 rounded-lg px-3 py-2 text-base outline-none select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground sm:whitespace-nowrap"
                 >
-                  {labelOf(item)}
+                  <span {...languageOf(langOf?.(item))}>{labelOf(item)}</span>
                   <Combobox.ItemIndicator>
                     <CheckIcon className="size-4" />
                   </Combobox.ItemIndicator>

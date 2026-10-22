@@ -12,6 +12,7 @@ import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { QuestionText } from "@/components/questions/question-text"
 import { ChoiceOptions } from "@/components/session/choice-options"
 import { useIntegritySignals } from "@/hooks/use-integrity-signals"
+import { languageOf } from "@/lib/locale"
 import type { InterviewSession } from "@/types/company"
 import type { AnswerInput, NextQuestion } from "@/types/round"
 
@@ -129,13 +130,13 @@ export function SessionPlay({
       {question && (
         <div key={question.question_id} ref={questionRef} className="space-y-6">
           {/* In the interview's own language, so screen readers read it with the right voice. */}
-          <div lang={session.language ?? undefined} className="space-y-6">
+          <div {...languageOf(session.language)} className="space-y-6">
             {/* Multi-answer questions are tagged just above their text, so they can't be taken
                 for single-answer ones. */}
             <div className="space-y-3">
               {/* The tag and the hint are the site's, so read in its language. */}
               {multi && (
-                <div lang={locale}>
+                <div {...languageOf(locale)}>
                   <MultiChoiceTag />
                 </div>
               )}
@@ -147,7 +148,7 @@ export function SessionPlay({
             </div>
             {multi && (
               <p
-                lang={locale}
+                {...languageOf(locale)}
                 data-testid="select-all"
                 className="flex items-center gap-1.5 text-sm text-muted-foreground"
               >

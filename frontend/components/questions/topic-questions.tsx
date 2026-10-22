@@ -18,16 +18,20 @@ import {
 import { VirtualList } from "@/components/virtual-list"
 import { WarningCard } from "@/components/warning-card"
 import { apiFetch, serviceRefusal } from "@/lib/api"
+import { languageOf } from "@/lib/locale"
 import type { QuestionStats } from "@/types/feedback"
 
+/** A topic's questions in a dialog, written in `language` (the interview's or template's). */
 export function TopicQuestions({
   title,
+  language,
   path,
   regeneratePath,
   wrongPath,
   reportsPath,
 }: {
   title: string
+  language: string
   path: string
   regeneratePath?: string
   wrongPath?: string
@@ -108,7 +112,9 @@ export function TopicQuestions({
         )}
       >
         <DialogHeader>
-          <DialogTitle className="normal-case">{title}</DialogTitle>
+          <DialogTitle className="normal-case" {...languageOf(language)}>
+            {title}
+          </DialogTitle>
         </DialogHeader>
         {/* Owners should know the keys can be wrong (the AI Act's instructions for use); the
             warning card the templates page used to have. */}
@@ -126,6 +132,7 @@ export function TopicQuestions({
             renderItem={(question) => (
               <QuestionRow
                 question={question}
+                language={language}
                 canRegenerate={Boolean(regeneratePath)}
                 wrongPath={wrongPath}
                 reportsPath={reportsPath}

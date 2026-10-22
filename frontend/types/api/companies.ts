@@ -3351,6 +3351,8 @@ export interface components {
        * Format: uuid
        */
       company_id: string
+      /** Language */
+      language: string
       /** Topics */
       topics: components["schemas"]["TopicOut"][]
       /** Total Minutes */
@@ -3963,6 +3965,8 @@ export interface components {
       passed: boolean | null
       /** Pass Mark */
       pass_mark: number
+      /** Language */
+      language: string
       /** Pledged At */
       pledged_at?: string | null
       /** Sessions */

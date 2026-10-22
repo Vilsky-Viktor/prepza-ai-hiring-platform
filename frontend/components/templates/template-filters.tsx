@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { LANGUAGE_NAMES, type Locale } from "@/constants/i18n"
-import { isLocale } from "@/lib/locale"
+import { isLocale, languageOf } from "@/lib/locale"
 import type { TemplateFilters } from "@/types/superadmin"
 
 // "Any level" in the level menu; levels themselves come from the API.
@@ -161,7 +161,7 @@ export function TemplateFilterBar({
           {filters.languages.map((language) => (
             <DropdownMenuCheckboxItem
               key={language}
-              lang={language}
+              {...languageOf(language)}
               checked={current.languages.includes(language)}
               onCheckedChange={(next) => toggle(language, next)}
               className="px-3 py-2"

@@ -9933,6 +9933,10 @@
       "format": "uuid",
       "title": "Company Id"
      },
+     "language": {
+      "type": "string",
+      "title": "Language"
+     },
      "topics": {
       "items": {
        "$ref": "#/components/schemas/TopicOut"
@@ -9983,6 +9987,7 @@
      "status",
      "created_at",
      "company_id",
+     "language",
      "topics"
     ],
     "title": "InterviewDetail"
@@ -11496,6 +11501,10 @@
       "type": "integer",
       "title": "Pass Mark"
      },
+     "language": {
+      "type": "string",
+      "title": "Language"
+     },
      "pledged_at": {
       "anyOf": [
        {
@@ -11531,6 +11540,7 @@
      "grade",
      "passed",
      "pass_mark",
+     "language",
      "sessions"
     ],
     "title": "ScorecardOut"

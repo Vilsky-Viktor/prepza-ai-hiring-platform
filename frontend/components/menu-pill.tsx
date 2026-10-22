@@ -11,12 +11,13 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { languageOf } from "@/lib/locale"
 
 /** The site's select pill (as components/pill-select.tsx looks) opening the site's menu, not the
  * browser's: one choice among `options`, each with an optional line under it. Shows
  * `placeholder` until something is chosen. Labels are lowercase like the site's; `keepCase` keeps
- * a name's capitals (an ATS job, an interview's title); `fontFamily` draws one in a font; `href`
- * makes one a plain link. */
+ * a name's capitals (an ATS job, an interview's title); `fontFamily` draws one in a font; `lang`
+ * marks one written in another language (a language's own name); `href` makes one a plain link. */
 export function MenuPill({
   ariaLabel,
   value,
@@ -35,6 +36,7 @@ export function MenuPill({
     keepCase?: boolean
     // Draws the label in this font: a font's name in itself.
     fontFamily?: string
+    lang?: string
     // A link instead of a choice: the option opens this address (another language's page).
     href?: string
     // Shown in the pill instead of the label once chosen.
@@ -64,6 +66,7 @@ export function MenuPill({
           <span
             className={cn("truncate", chosen?.keepCase && "normal-case")}
             style={{ fontFamily: chosen?.fontFamily }}
+            {...languageOf(chosen?.lang)}
           >
             {chosen ? (chosen.display ?? chosen.label) : placeholder}
           </span>
@@ -88,6 +91,7 @@ export function MenuPill({
                       option.keepCase ? "normal-case" : "lowercase"
                     )}
                     style={{ fontFamily: option.fontFamily }}
+                    {...languageOf(option.lang)}
                   >
                     {option.label}
                   </span>

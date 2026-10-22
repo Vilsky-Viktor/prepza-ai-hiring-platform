@@ -28,6 +28,7 @@ export function PillSelect({
     label: string
     note?: string
     fontFamily?: string
+    lang?: string
     display?: ReactNode
   }[]
   onChange: (value: string) => void

@@ -88,6 +88,8 @@ class TopicOut(BaseModel):
 class InterviewDetail(InterviewOut):
     # The company it belongs to, so a link to it can be built from the interview alone.
     company_id: UUID
+    # The language its topics and questions are written in, which can differ from the page's.
+    language: str
     topics: list[TopicOut]
     # The whole interview at its time per question, in minutes, as a candidate sees it before
     # starting; None while its questions aren't known.

@@ -275,6 +275,7 @@ export default async function InterviewPage({
       ) : (
         <InterviewTopics
           interviewId={id}
+          language={interview.language}
           topics={interview.topics}
           canEdit={canEdit}
         />

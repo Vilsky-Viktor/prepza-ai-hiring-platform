@@ -30,6 +30,7 @@ export function LanguagePicker({
       value={value}
       onChange={onChange}
       labelOf={(language) => LANGUAGE_NAMES[language]}
+      langOf={(language) => language}
       label={label}
       placeholder={t("searchLanguage")}
       empty={t("noLanguage")}

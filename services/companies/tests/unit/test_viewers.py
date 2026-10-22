@@ -12,6 +12,7 @@ from app.models.companies import Company, Member
 from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
 from app.routers import companies as companies_route
+from app.services import set_cache
 from app.services.access import can_edit, is_owner
 from app.storage import companies, credit_invites, interviews, invites, members
 from tests.unit import fake_candidates
@@ -146,6 +147,39 @@ def test_a_viewer_reads_questions(client, viewer, monkeypatch):
     monkeypatch.setattr(library, "get_topic_questions", fake_questions)
 
     assert client.get(f"{INTERVIEW}/topics/{TOPIC_ID}/questions").status_code == 200
+
+
+def test_a_viewer_reads_an_interview_with_the_language_it_is_written_in(
+    client, viewer, monkeypatch
+):
+    interview = Interview(
+        id=INTERVIEW_ID,
+        company_id=COMPANY_ID,
+        generation_id=uuid.uuid4(),
+        set_id=uuid.uuid4(),
+        generation_failed=False,
+        title="Backend",
+        question_seconds=60,
+        hired=False,
+        pass_mark=70,
+        language="ar",
+        created_at=datetime.now(UTC),
+    )
+
+    async def fake_interview(_interview_id):
+        return interview
+
+    async def no_set(_set_id):
+        return None
+
+    monkeypatch.setattr(interviews, "get", fake_interview)
+    monkeypatch.setattr(set_cache, "get_set", no_set)
+
+    response = client.get(INTERVIEW)
+
+    assert response.status_code == 200
+    # Its topics and questions carry it on the page (lang, dir).
+    assert response.json()["language"] == "ar"
 
 
 @pytest.mark.parametrize(

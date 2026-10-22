@@ -99,6 +99,7 @@ def open_scorecard(client, monkeypatch, headers=None, status=InviteStatus.FINISH
         set_id=uuid.uuid4(),
         title="Backend",
         pass_mark=70,
+        language="ar",
     )
     company = Company(id=COMPANY_ID, name="Arcolabs", created_at=datetime.now(UTC))
     company.members = [
@@ -142,6 +143,8 @@ def test_the_scorecard_carries_the_overall_result_for_the_pdf(client, monkeypatc
     assert card["name"] == "Ann Lee"
     # When they pledged to answer on their own, for the report's line.
     assert datetime.fromisoformat(card["pledged_at"]) == PLEDGED_AT
+    # The questions' language, which the page marks them with (lang, dir).
+    assert card["language"] == "ar"
 
 
 @pytest.mark.parametrize(

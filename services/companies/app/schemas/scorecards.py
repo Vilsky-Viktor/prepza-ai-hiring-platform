@@ -85,6 +85,8 @@ class ScorecardOut(BaseModel):
     # None until the candidate finishes.
     passed: bool | None
     pass_mark: int
+    # The language the questions are written in, which can differ from the page's.
+    language: str
     # When the candidate confirmed they'd answer on their own, without AI tools or other people;
     # None before they start (and for candidates from before it was asked).
     pledged_at: datetime | None = None

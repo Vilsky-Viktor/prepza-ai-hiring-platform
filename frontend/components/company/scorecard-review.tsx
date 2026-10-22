@@ -10,13 +10,22 @@ import { InlineText } from "@/components/questions/inline-text"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { QuestionText } from "@/components/questions/question-text"
 import { VirtualList } from "@/components/virtual-list"
+import { languageOf } from "@/lib/locale"
 import { verdict } from "@/lib/rounds"
 import type { ReviewItem } from "@/types/round"
 import { LIST_BOX } from "@/constants/lists"
 import { WARNING_TONE } from "@/constants/tones"
 import { Dot } from "@/components/dot"
 
-export function ScorecardReview({ items }: { items: ReviewItem[] }) {
+/** A section's questions as the candidate answered them; the questions and options in the
+ * interview's `language`, the marks and signals in the page's. */
+export function ScorecardReview({
+  items,
+  language,
+}: {
+  items: ReviewItem[]
+  language: string
+}) {
   return (
     <VirtualList
       items={items}
@@ -30,11 +39,13 @@ export function ScorecardReview({ items }: { items: ReviewItem[] }) {
             {/* A multi-answer question tagged as while it was played. */}
             <div className="min-w-0 space-y-3 max-sm:self-stretch">
               {item.multi && <MultiChoiceTag />}
-              <QuestionText text={item.text} className="text-lg font-light" />
+              <div {...languageOf(language)}>
+                <QuestionText text={item.text} className="text-lg font-light" />
+              </div>
             </div>
             <ScorecardMark item={item} />
           </div>
-          <ScorecardAnswer item={item} />
+          <ScorecardAnswer item={item} language={language} />
           <ScorecardSignals item={item} />
         </div>
       )}
@@ -118,7 +129,13 @@ function useDuration() {
   }
 }
 
-function ScorecardAnswer({ item }: { item: ReviewItem }) {
+function ScorecardAnswer({
+  item,
+  language,
+}: {
+  item: ReviewItem
+  language: string
+}) {
   const t = useTranslations("scorecard")
   const duration = useDuration()
 
@@ -133,17 +150,22 @@ function ScorecardAnswer({ item }: { item: ReviewItem }) {
       {/* A multi-answer question's ticks, each marked right or wrong, with the points. */}
       {item.multi ? (
         <>
-          <AnswerOptions
-            options={picks.map((index) => ({
-              answer: item.options[index],
-              correct: Boolean(item.correct_indexes?.includes(index)),
-            }))}
-            className="rounded-xl bg-muted px-5 py-4 text-lg font-light"
-          />
+          <div {...languageOf(language)}>
+            <AnswerOptions
+              options={picks.map((index) => ({
+                answer: item.options[index],
+                correct: Boolean(item.correct_indexes?.includes(index)),
+              }))}
+              className="rounded-xl bg-muted px-5 py-4 text-lg font-light"
+            />
+          </div>
           <AnswerPoints item={item} />
         </>
       ) : (
-        <p className="bidi-auto rounded-xl bg-muted px-5 py-4 text-lg leading-relaxed font-light whitespace-pre-wrap">
+        <p
+          {...languageOf(language)}
+          className="bidi-auto rounded-xl bg-muted px-5 py-4 text-lg leading-relaxed font-light whitespace-pre-wrap"
+        >
           <InlineText text={item.options[picks[0]]} />
         </p>
       )}

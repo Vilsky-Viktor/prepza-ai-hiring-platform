@@ -26,7 +26,9 @@ import { gradeTone } from "@/lib/grade-tone"
 import { serverFetch, signedIn } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { Scorecard } from "@/types/company"
+import { candidateReportData } from "@/lib/candidate-report-data"
 import { formatPercent } from "@/lib/format"
+import { languageOf } from "@/lib/locale"
 
 export const generateMetadata = () => translatedTitle("candidates", "scorecard")
 
@@ -54,27 +56,7 @@ export default async function ScorecardPage({
   const deleted = card.status === "deleted"
 
   const reportable = !deleted && card.sessions.length > 0
-  const report = {
-    company: card.company,
-    logoUrl: card.logo_url,
-    verifiedDomain: card.verified_domain,
-    title: card.title,
-    email: card.email,
-    name: card.name,
-    grade: card.grade,
-    passed: card.passed,
-    passMark: card.pass_mark,
-    // Without the questions: the report never shows them.
-    sections: card.sessions.map((session) => ({
-      id: session.id,
-      topic_title: session.topic_title,
-      final_score: session.final_score,
-      passed: session.passed,
-      tab_leaves: session.tab_leaves,
-      copies: session.copies,
-      fast_answers: session.fast_answers,
-    })),
-  }
+  const report = candidateReportData(card)
 
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-12">
@@ -160,7 +142,10 @@ export default async function ScorecardPage({
             {/* On phones the topic, its signals and then its grade, centered. */}
             <div className="flex items-center justify-between gap-4 max-sm:flex-col max-sm:text-center">
               <div className="min-w-0 space-y-1 max-sm:[&_p]:justify-center">
-                <h2 className="font-heading text-2xl font-medium normal-case">
+                <h2
+                  {...languageOf(card.language)}
+                  className="font-heading text-2xl font-medium normal-case"
+                >
                   {session.topic_title}
                 </h2>
                 <IntegrityLine session={session} />
@@ -169,7 +154,7 @@ export default async function ScorecardPage({
                 {formatPercent(score, locale)}
               </p>
             </div>
-            <ScorecardReview items={session.review} />
+            <ScorecardReview items={session.review} language={card.language} />
           </section>
         )
       })}

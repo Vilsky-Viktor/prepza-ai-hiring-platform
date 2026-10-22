@@ -123,6 +123,7 @@ export function CampaignView({
               options={LOCALES.map((code) => ({
                 value: code,
                 label: LANGUAGE_NAMES[code],
+                lang: code,
               }))}
               onChange={setLanguage}
             />

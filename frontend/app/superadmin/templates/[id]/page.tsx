@@ -9,6 +9,7 @@ import { PageHeader } from "@/components/page-header"
 import { SubtopicList } from "@/components/questions/subtopic-list"
 import { TopicQuestions } from "@/components/questions/topic-questions"
 import { DottedText } from "@/components/dot"
+import { languageOf } from "@/lib/locale"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { Addition } from "@/types/generation"
@@ -70,13 +71,17 @@ export default async function TemplatePage({
             key={topic.id}
             className="flex items-center justify-between gap-6 p-4 max-sm:flex-col max-sm:items-stretch max-sm:px-6 max-sm:py-8 sm:p-6"
           >
-            <span className="max-w-3xl min-w-0 space-y-3">
+            <span
+              {...languageOf(template.language)}
+              className="max-w-3xl min-w-0 space-y-3"
+            >
               <span className="block text-lg font-medium">{topic.title}</span>
               <SubtopicList subtopics={topic.subtopics} />
             </span>
             <span className="flex shrink-0 flex-col items-center gap-3 max-sm:flex-row max-sm:flex-wrap max-sm:justify-center max-sm:gap-4">
               <TopicQuestions
                 title={topic.title}
+                language={template.language}
                 path={`${base}/topics/${topic.id}/questions`}
                 regeneratePath={`/generate/superadmin/templates/${id}/questions`}
                 wrongPath={`${base}/questions`}

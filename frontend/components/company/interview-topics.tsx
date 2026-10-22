@@ -2,16 +2,20 @@ import { SubtopicList } from "@/components/questions/subtopic-list"
 import { TopicQuestionLimit } from "@/components/questions/topic-question-limit"
 import { TopicQuestions } from "@/components/questions/topic-questions"
 import { LIST_BOX } from "@/constants/lists"
+import { languageOf } from "@/lib/locale"
 import type { InterviewDetail } from "@/types/company"
 
-/** An interview's topics, each with its questions and how many each candidate gets. Viewers
- * read the questions; only owners and admins (`canEdit`) change them. */
+/** An interview's topics, each with its questions and how many each candidate gets, in the
+ * interview's `language`. Viewers read the questions; only owners and admins (`canEdit`) change
+ * them. */
 export function InterviewTopics({
   interviewId,
+  language,
   topics,
   canEdit,
 }: {
   interviewId: string
+  language: string
   topics: InterviewDetail["topics"]
   canEdit: boolean
 }) {
@@ -30,12 +34,15 @@ export function InterviewTopics({
           className="flex items-center justify-between gap-6 p-4 max-sm:flex-col max-sm:items-stretch max-sm:gap-6 max-sm:px-6 max-sm:py-8 sm:p-6"
         >
           <span className="max-w-3xl min-w-0 space-y-3">
-            <span className="block text-lg font-medium">{topic.title}</span>
-            <SubtopicList subtopics={topic.subtopics} />
+            <span {...languageOf(language)} className="block space-y-3">
+              <span className="block text-lg font-medium">{topic.title}</span>
+              <SubtopicList subtopics={topic.subtopics} />
+            </span>
           </span>
           <span className="flex shrink-0 flex-col items-center gap-3 max-sm:flex-row max-sm:flex-wrap">
             <TopicQuestions
               title={topic.title}
+              language={language}
               path={`/companies/interviews/${interviewId}/topics/${topic.id}/questions`}
               regeneratePath={canEdit ? questionsPath : undefined}
               wrongPath={canEdit ? questionsPath : undefined}

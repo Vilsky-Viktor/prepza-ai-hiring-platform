@@ -23,11 +23,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { apiFetch } from "@/lib/api"
+import { languageOf } from "@/lib/locale"
 import { FEEDBACK_HOVER_CLASS } from "@/constants/feedback"
 import type { QuestionStats } from "@/types/feedback"
 
 export function QuestionRow({
   question,
+  language,
   canRegenerate,
   wrongPath,
   reportsPath,
@@ -36,6 +38,8 @@ export function QuestionRow({
   onRegenerate,
 }: {
   question: QuestionStats
+  // What the question is written in; its text and options carry it.
+  language: string
   canRegenerate: boolean
   // Where to say the marked answer is wrong (owners and admins, superadmins).
   wrongPath?: string
@@ -72,14 +76,18 @@ export function QuestionRow({
           regenerating && "opacity-50"
         )}
       >
-        <QuestionText text={question.text} />
+        <div {...languageOf(language)}>
+          <QuestionText text={question.text} />
+        </div>
         {/* Candidates tick every right option of it. */}
         {question.multi && (
           <div className="mt-3">
             <MultiChoiceTag />
           </div>
         )}
-        <AnswerOptions options={question.options} className="mt-3" />
+        <div {...languageOf(language)}>
+          <AnswerOptions options={question.options} className="mt-3" />
+        </div>
       </div>
       <div className="self-center py-5 ps-5 pe-6 text-sm whitespace-nowrap text-muted-foreground tabular-nums max-sm:px-5 max-sm:pt-0 max-sm:pb-7">
         <span className="flex flex-col items-end gap-3 max-sm:items-center">

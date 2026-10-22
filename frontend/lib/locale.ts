@@ -15,6 +15,12 @@ export function textDirection(language: string) {
   return RTL_LOCALES.includes(language as Locale) ? "rtl" : "ltr"
 }
 
+/** The `lang` and `dir` attributes of text written in `language` (a language's own name, an
+ * interview's questions), or none when it isn't known. */
+export function languageOf(language: string | null | undefined) {
+  return language ? { lang: language, dir: textDirection(language) } : {}
+}
+
 export function readLocaleCookie() {
   return document.cookie
     .split("; ")
