@@ -23,8 +23,9 @@ The public pages have an address in every other language: home, pricing, FAQ, ab
 - English keeps the plain address.
 - The language versions are linked with hreflang, in the head and the sitemap alike. hreflang uses the codes search engines read: Filipino is `tl` and Simplified Chinese `zh-Hans`, while their addresses stay `/fil/` and `/zh/` (`HREFLANG_CODES` in `constants/seo.ts`).
 - `proxy.ts` serves a prefixed address from its page in that language.
-- A first visit through a prefixed address keeps that language on the next pages.
-- Links between such pages stay in the address's language (`components/localized-link.tsx`, `lib/locale-path.ts`).
+- The plain address is always the English page, whatever language the visitor chose before, as its canonical and hreflang say (`proxy.ts` marks it, `i18n/request.ts` follows).
+- A first visit through a prefixed address keeps that language as the visitor's choice, which pages with one address follow: signed-in pages, the legal pages and the developer docs.
+- Links between such pages stay in the address's language; on a page with one address they lead to the chosen language's versions (`/de/pricing` from a German settings page; `components/localized-link.tsx`, `linkLocale` in `lib/site.ts`).
 
 Some pages exist only in certain languages: a skills test page and a free practice page are in English and in their template's language only (see [Public site](site.md#skills-tests-by-role)).
 

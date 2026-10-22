@@ -1,7 +1,7 @@
 import { headers } from "next/headers"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-import { pageMetadata, previewImage } from "@/lib/site"
+import { linkLocale, pageMetadata, previewImage } from "@/lib/site"
 
 // lib/site.ts also reads request headers and translations for pages; previewImage uses neither.
 vi.mock("next/headers", () => ({ headers: vi.fn() }))
@@ -67,7 +67,12 @@ describe("pageMetadata's link preview", () => {
 
   it("names its address, language and the other languages", async () => {
     servedUnder("fil")
-    const { openGraph } = await pageMetadata("Presyo", "Text.", "/pricing", true)
+    const { openGraph } = await pageMetadata(
+      "Presyo",
+      "Text.",
+      "/pricing",
+      true
+    )
     const og = openGraph as Record<string, unknown>
 
     expect(og.url).toBe("/fil/pricing")
@@ -97,5 +102,30 @@ describe("pageMetadata's link preview", () => {
 
     expect(og.locale).toBe("en")
     expect(og.alternateLocale).toBeUndefined()
+  })
+})
+
+describe("linkLocale", () => {
+  function served(found: Record<string, string>) {
+    vi.mocked(headers).mockResolvedValue(new Headers(found) as never)
+  }
+
+  it("follows the address's language", async () => {
+    served({ "x-prepza-locale": "de" })
+
+    expect(await linkLocale("de")).toBe("de")
+  })
+
+  it("keeps a plain address's links plain, whatever the interface", async () => {
+    served({ "x-prepza-plain": "1" })
+
+    expect(await linkLocale("de")).toBeNull()
+  })
+
+  it("follows the interface on a page with one address", async () => {
+    served({})
+
+    expect(await linkLocale("de")).toBe("de")
+    expect(await linkLocale("en")).toBeNull()
   })
 })

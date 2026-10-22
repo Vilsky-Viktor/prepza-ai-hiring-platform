@@ -27,7 +27,7 @@ import { SITE_NAME } from "@/constants/seo"
 import { textDirection } from "@/lib/locale"
 import { countryCatalog, priceValues } from "@/lib/catalog"
 import { clientMessages } from "@/lib/messages"
-import { ogLocale, previewImage, siteUrl, urlLocale } from "@/lib/site"
+import { linkLocale, ogLocale, previewImage, siteUrl } from "@/lib/site"
 import { cn } from "cn"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -86,7 +86,7 @@ export default async function RootLayout({
         {CJK_LOCALES.includes(locale as Locale) && <CjkFonts />}
         {/* Only what client components use: the admin zone adds its own (its layout). */}
         <NextIntlClientProvider messages={clientMessages(await getMessages())}>
-          <UrlLocaleProvider locale={await urlLocale()}>
+          <UrlLocaleProvider locale={await linkLocale(locale)}>
             <ThemeProvider nonce={nonce}>
               <AuthProvider>
                 <TooltipProvider>

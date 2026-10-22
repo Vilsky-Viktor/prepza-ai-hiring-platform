@@ -80,6 +80,10 @@ export const NEWS_FEED = "/news/rss.xml"
 // page then renders in and names as its canonical address.
 export const LOCALE_HEADER = "x-prepza-locale"
 
+// Set by proxy.ts on the plain address of a page that has language versions (/pricing): it is
+// the English page whatever language the visitor chose before, as its canonical and hreflang say.
+export const PLAIN_ADDRESS_HEADER = "x-prepza-plain"
+
 // hreflang codes where a language's own code isn't the one search engines read: Filipino has no
 // two-letter code (Tagalog's stands for it), and Chinese names its script. Addresses keep their
 // own prefix (/fil/, /zh/).

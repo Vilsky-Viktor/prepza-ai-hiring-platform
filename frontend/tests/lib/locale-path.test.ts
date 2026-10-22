@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest"
 
 import {
   isLocalizedPath,
+  hasLanguageVersions,
   hreflang,
   isPrivatePath,
   languageAlternates,
@@ -55,6 +56,30 @@ describe("languageAlternates", () => {
         /^([a-z]{2}(-[A-Z][a-z]{3})?|x-default)$/.test(code)
       )
     ).toBe(true)
+  })
+})
+
+describe("hasLanguageVersions", () => {
+  it("covers localized pages, articles, template pages and the news feed", () => {
+    for (const path of [
+      "/pricing",
+      "/guides/hiring-engineers",
+      "/tests/sql",
+      "/news/rss.xml",
+    ]) {
+      expect(hasLanguageVersions(path), path).toBe(true)
+    }
+  })
+
+  it("leaves out pages with one address and private ones", () => {
+    for (const path of [
+      "/privacy",
+      "/api-docs",
+      "/companies",
+      "/practice/history",
+    ]) {
+      expect(hasLanguageVersions(path), path).toBe(false)
+    }
   })
 })
 

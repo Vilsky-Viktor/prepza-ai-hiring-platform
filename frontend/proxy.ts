@@ -6,11 +6,15 @@ import {
   MAINTENANCE_HEADER,
   MAINTENANCE_OPEN_PAGES,
 } from "@/constants/maintenance"
-import { LOCALE_HEADER } from "@/constants/seo"
+import { LOCALE_HEADER, PLAIN_ADDRESS_HEADER } from "@/constants/seo"
 import { EMBED_PAGE } from "@/constants/embed"
 import { contentSecurityPolicy } from "@/lib/csp"
 import { embedAncestors } from "@/lib/embed"
-import { isPrivatePath, splitLocale } from "@/lib/locale-path"
+import {
+  hasLanguageVersions,
+  isPrivatePath,
+  splitLocale,
+} from "@/lib/locale-path"
 import { maintenanceState } from "@/lib/maintenance"
 
 /** A fresh nonce for every page; Next.js adds it to its own scripts from the request header.
@@ -39,15 +43,19 @@ export async function proxy(request: NextRequest) {
   requestHeaders.set(MAINTENANCE_HEADER, maintenance)
   const localized = splitLocale(request.nextUrl.pathname)
 
-  // Only the proxy names the address's language; a visitor's own header is dropped.
+  // Only the proxy names the address's language; a visitor's own headers are dropped.
   requestHeaders.delete(LOCALE_HEADER)
+  requestHeaders.delete(PLAIN_ADDRESS_HEADER)
 
   if (localized) {
     requestHeaders.set(LOCALE_HEADER, localized.locale)
+  } else if (hasLanguageVersions(request.nextUrl.pathname)) {
+    // The plain address of a page with language versions is always its English one.
+    requestHeaders.set(PLAIN_ADDRESS_HEADER, "1")
   }
 
-  // A public page's language comes from its address (or the visitor's chosen one), never from
-  // the browser's, so its plain address is the English page that search engines index.
+  // A public page's language comes from its address, never from the browser's, so its plain
+  // address is the English page that search engines index.
   if (!isPrivatePath(request.nextUrl.pathname)) {
     requestHeaders.delete("accept-language")
   }
@@ -74,8 +82,8 @@ export async function proxy(request: NextRequest) {
     response.headers.set("X-Robots-Tag", "noindex")
   }
 
-  // A first visit through a language's address keeps that language on the next pages, whose
-  // links have no prefix; a chosen language (the cookie) is never changed.
+  // A first visit through a language's address keeps that language on the pages with one
+  // address (signed-in ones, the legal pages); a chosen language (the cookie) is never changed.
   if (localized && !request.cookies.has(LOCALE_COOKIE)) {
     response.cookies.set(LOCALE_COOKIE, localized.locale, {
       maxAge: LOCALE_COOKIE_MAX_AGE,

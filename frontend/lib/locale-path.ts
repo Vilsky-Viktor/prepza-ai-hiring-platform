@@ -72,9 +72,17 @@ export function splitLocale(pathname: string) {
     return null
   }
 
-  return isLocalizedPath(path) || TEMPLATE_PAGE.test(path) || path === NEWS_FEED
-    ? { locale: first, path }
-    : null
+  return hasLanguageVersions(path) ? { locale: first, path } : null
+}
+
+/** Whether a page has addresses in other languages: the localized pages and articles, a
+ * template's pages (in its language), and the news feed; never a private page, even one whose
+ * address looks like a template's (/practice/history). */
+export function hasLanguageVersions(path: string) {
+  return (
+    (isLocalizedPath(path) || TEMPLATE_PAGE.test(path) || path === NEWS_FEED) &&
+    !isPrivatePath(path)
+  )
 }
 
 /** Whether an address is a private page: signed-in areas and personal links, kept out of search

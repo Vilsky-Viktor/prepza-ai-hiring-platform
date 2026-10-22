@@ -8,7 +8,12 @@ import {
   PREVIEW_UNSUPPORTED,
 } from "@/constants/preview-image"
 import { CATEGORY_PAGES } from "@/constants/content"
-import { LOCALE_HEADER, LOCALIZED_ARTICLE, SITE_NAME } from "@/constants/seo"
+import {
+  LOCALE_HEADER,
+  LOCALIZED_ARTICLE,
+  PLAIN_ADDRESS_HEADER,
+  SITE_NAME,
+} from "@/constants/seo"
 import { sliceGraphemes } from "@/lib/graphemes"
 import { hreflang, languageAlternates, localizedPath } from "@/lib/locale-path"
 import { previewSignature } from "@/lib/preview-signature"
@@ -53,6 +58,20 @@ function otherOgLocales(locales: readonly string[], shown: string) {
  * plain address. */
 export async function urlLocale() {
   return (await headers()).get(LOCALE_HEADER)
+}
+
+/** The language links on a page lead to the versions of (components/localized-link.tsx): its
+ * address's (/de/pricing gives de); none on the plain address of a page with versions, which is
+ * English; the interface's on a page with one address (signed-in pages, the legal pages), so a
+ * German interface's links lead to /de/pricing. Null for English. */
+export async function linkLocale(interfaceLocale: string) {
+  const address = await urlLocale()
+
+  if (address || (await headers()).has(PLAIN_ADDRESS_HEADER)) {
+    return address
+  }
+
+  return interfaceLocale === DEFAULT_LOCALE ? null : interfaceLocale
 }
 
 /** A page's title in the interface language, for its generateMetadata. */

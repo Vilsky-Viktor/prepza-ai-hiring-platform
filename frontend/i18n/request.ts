@@ -3,18 +3,21 @@ import { getRequestConfig } from "next-intl/server"
 import { cookies, headers } from "next/headers"
 
 import { DEFAULT_LOCALE, LOCALE_COOKIE } from "@/constants/i18n"
-import { LOCALE_HEADER } from "@/constants/seo"
+import { LOCALE_HEADER, PLAIN_ADDRESS_HEADER } from "@/constants/seo"
 import { isLocale, preferredLocale } from "@/lib/locale"
 
-// The interface language: the address's (/de/pricing, set by proxy.ts), else the signed-in
-// user's setting, which auth-provider.tsx keeps in a cookie. Without either (a first visit), the
-// browser's preferred language if we support it, on private pages only: proxy.ts leaves it out
-// of public ones, whose plain address is English.
+// The interface language: the address's (/de/pricing, set by proxy.ts), and English on the plain
+// address of a page with language versions (/pricing), whatever the visitor chose; else the
+// signed-in user's setting, which auth-provider.tsx keeps in a cookie. Without either (a first
+// visit), the browser's preferred language if we support it, on private pages only: proxy.ts
+// leaves it out of public ones.
 export default getRequestConfig(async () => {
   const requestHeaders = await headers()
   const value =
     requestHeaders.get(LOCALE_HEADER) ??
-    (await cookies()).get(LOCALE_COOKIE)?.value
+    (requestHeaders.has(PLAIN_ADDRESS_HEADER)
+      ? DEFAULT_LOCALE
+      : (await cookies()).get(LOCALE_COOKIE)?.value)
   const locale =
     value && isLocale(value)
       ? value
