@@ -58,12 +58,12 @@ export async function addAtsConnection(
       [companyId, provider, account, credentials],
     );
     const link = await client.query(
-      `INSERT INTO ats_job_links (id, connection_id, interview_id, job_id, job_name, stage_id,
-         stage_name, created_at)
-       VALUES (gen_random_uuid(), $1, $2, 'E2E01', 'E2E Backend developer', 'assessment',
+      `INSERT INTO ats_job_links (id, company_id, connection_id, interview_id, job_id, job_name,
+         stage_id, stage_name, created_at)
+       VALUES (gen_random_uuid(), $1, $2, $3, 'E2E01', 'E2E Backend developer', 'assessment',
          'Assessment', now())
        RETURNING id`,
-      [connection.rows[0].id, interviewId],
+      [companyId, connection.rows[0].id, interviewId],
     );
     // Candidates the ATS "sent" for the job: invited, and not invited for lack of credits.
     const statuses = [
@@ -73,10 +73,11 @@ export async function addAtsConnection(
 
     for (const [index, [status, reason]] of statuses.entries()) {
       await client.query(
-        `INSERT INTO ats_candidates (id, connection_id, interview_id, link_id, candidate_id,
-           email, status, reason, created_at)
-         VALUES (gen_random_uuid(), $1, $2, $3, $4, $5, $6, $7, now())`,
+        `INSERT INTO ats_candidates (id, company_id, connection_id, interview_id, link_id,
+           candidate_id, email, status, reason, created_at)
+         VALUES (gen_random_uuid(), $1, $2, $3, $4, $5, $6, $7, $8, now())`,
         [
+          companyId,
           connection.rows[0].id,
           interviewId,
           link.rows[0].id,
