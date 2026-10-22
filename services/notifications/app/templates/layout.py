@@ -2,11 +2,11 @@
 # inline styles only, a 560px column, a hidden preview line, and a button that stays a plain link.
 
 TEXT_LAYOUT = """\
-{heading}.
+{heading}
 
 {lines}{sections}
 
-{button}: {link}
+{button}
 
 --
 {footer}{links}
@@ -14,8 +14,9 @@ TEXT_LAYOUT = """\
 {operator}
 """
 
-# The footer's links (unsubscribe, email settings), each on its own line after the footer text.
-TEXT_FOOTER_LINK = "\n{text}: {url}"
+# The footer's links (unsubscribe, email settings), each on its own line after the footer text
+# (its label and address, joined by the language's "labelled" pattern).
+TEXT_FOOTER_LINK = "\n{line}"
 HTML_FOOTER_LINK = (
     '<br><a href="{url}" target="_blank" style="color:#6b6b6b;text-decoration:underline;">'
     "{text}</a>"
@@ -96,7 +97,7 @@ font-size:16px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:no
 border-radius:10px;">{button}</a></td></tr>
 </table>
 <p style="margin:0;font-size:14px;line-height:20px;color:#737373;">\
-{paste_link}:<br>\
+{paste_link}<br>\
 <a href="{link}" target="_blank" dir="ltr" style="color:#0071e0;word-break:break-all;">{link}</a></p>
 </td></tr>
 <tr><td style="padding:24px 8px 0;text-align:{align};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',\

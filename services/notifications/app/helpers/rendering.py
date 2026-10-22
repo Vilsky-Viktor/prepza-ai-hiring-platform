@@ -24,6 +24,7 @@ from app.templates.layout import (
     TEXT_ROW,
     TEXT_SECTION_HEADING,
 )
+from app.templates.patterns import PATTERNS
 
 # A list under an email's text: its heading ("" for none) and its items, each the key of its
 # line in the template's "rows", the values that fill it, and where it links.
@@ -33,6 +34,12 @@ Section = tuple[str, list[tuple[str, dict, str]]]
 def email_language(kind: str, language: str | None) -> str:
     """The language the `kind` email is written in: English until that language has it."""
     return language if kind in EMAILS.get(language, {}) else DEFAULT_LANGUAGE
+
+
+def pattern(language: str, key: str) -> str:
+    """The language's way of putting pieces together (templates/patterns.py), English's while
+    it has none."""
+    return PATTERNS.get(language, PATTERNS[DEFAULT_LANGUAGE])[key]
 
 
 def shown(value, language: str) -> str:
@@ -65,9 +72,10 @@ def render(
 
     # An invite from a company prepza hasn't verified says so, quietly, in the footer.
     if data.get("verified") is False:
-        footer = f"{footer} {texts['unverified']}"
+        footer = pattern(language, "joined").format(first=footer, second=texts["unverified"])
 
     rtl = language in RTL_LANGUAGES
+    labelled = pattern(language, "labelled")
     # Addresses and links keep reading left to right in a right-to-left text.
     safe = {
         key: HTML_LTR.format(text=escape(str(value)))
@@ -104,7 +112,7 @@ def render(
 
     operator = texts["operator"].format(name=OPERATOR["name"], address=OPERATOR["address"])
     text = TEXT_LAYOUT.format(
-        heading=template["heading"].format(**data),
+        heading=pattern(language, "sentence").format(text=template["heading"].format(**data)),
         lines="\n\n".join(
             [
                 *(line.format(**data) for line in template["lines"]),
@@ -117,13 +125,12 @@ def render(
             + "".join(TEXT_ROW.format(text=text, url=url) for text, url in rows)
             for heading, rows in filled
         ),
-        button=template["button"].format(**data),
-        link=link,
+        button=labelled.format(label=template["button"].format(**data), value=link),
         footer=footer.format(**data),
         operator=operator,
         links="\n"
         + "".join(
-            TEXT_FOOTER_LINK.format(text=label.format(**data), url=url)
+            TEXT_FOOTER_LINK.format(line=labelled.format(label=label.format(**data), value=url))
             for label, url in footer_links
         )
         if footer_links
@@ -167,7 +174,7 @@ def render(
         language=language,
         direction="rtl" if rtl else "ltr",
         align="right" if rtl else "left",
-        paste_link=texts["paste_link"],
+        paste_link=escape(labelled.format(label=texts["paste_link"], value="").rstrip()),
         logo=HTML_LOGO.format(
             url=escape(data["logo_url"]),
             alt=safe.get("company", ""),

@@ -6,7 +6,7 @@ prepza works in 23 languages: the interface, error messages, generated interview
 
 English, Russian, Ukrainian, Spanish, Portuguese, German, French, Italian, Polish, Dutch, Turkish, Arabic, Hebrew, Persian, Japanese, Chinese, Korean, Hindi, Indonesian, Thai, Vietnamese, Filipino and Estonian.
 
-Arabic, Hebrew and Persian read right to left, on the site and in emails. In an email every table states the direction, lists are indented on the right, and addresses and links inside the text keep reading left to right.
+Arabic, Hebrew and Persian read right to left, on the site and in emails. In an email every table states the direction, lists are indented on the right, and addresses and links inside the text keep reading left to right. The punctuation an email's layout adds between its pieces (the plain text's heading, a label before its link, a note after the footer) is each language's own (`services/notifications/app/templates/patterns.py`): full-width marks in Japanese and Chinese, a no-break space before a French colon, the danda in Hindi, no full stop in Thai.
 
 ## The interface language
 
