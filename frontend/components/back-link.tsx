@@ -31,8 +31,9 @@ export function BackLink({
     // Centred with auto margins: the button's press effect replaces any translate, so a
     // translate-based centre would jump away from the cursor mid-click.
     <div
+      data-testid="back-link"
       className={cn(
-        "-ms-3 mb-2 flex shrink-0 items-center xl:absolute xl:inset-y-0 xl:end-[calc(100%+0.25rem)] xl:my-auto xl:ms-0",
+        "-ms-3 mb-2 flex shrink-0 items-center xl:absolute xl:inset-y-0 xl:end-[calc(100%+1rem)] xl:my-auto xl:ms-0",
         // With the info button, a smaller arrow leaves 8px between the two in the margin.
         help ? "gap-2 xl:h-12" : "xl:h-14",
         className
