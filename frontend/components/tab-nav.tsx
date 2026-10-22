@@ -8,12 +8,14 @@ import { useEffect, useRef } from "react"
 /** A page's slim tabs under its title: the current one over a blue line. Labels are lowercase
  * like the site's other tabs; `keepCase` keeps an abbreviation's capitals (ATS). Tabs wider than
  * the screen scroll in their own row, with the current one brought into view. With `onSelect`
- * they're tabs within a page or a dialog (buttons) rather than links, fitting its width; an
- * item's `icon` goes before its label, in the label's colour. */
+ * they're tabs within a page or a dialog (buttons) rather than links, fitting its width, and
+ * control the `TabPanel` whose id is `panel`; an item's `icon` goes before its label, in the
+ * label's colour. */
 export function TabNav({
   items,
   current,
   onSelect,
+  panel,
 }: {
   items: readonly {
     id: string
@@ -24,6 +26,8 @@ export function TabNav({
   }[]
   current: string
   onSelect?: (id: string) => void
+  // With onSelect: the id of the panel the tabs show (useId in the caller).
+  panel?: string
 }) {
   const active = useRef<HTMLAnchorElement & HTMLButtonElement>(null)
 
@@ -106,7 +110,9 @@ export function TabNav({
               ref={item.id === current ? active : undefined}
               type="button"
               role="tab"
+              id={panel && tabId(panel, item.id)}
               aria-selected={item.id === current}
+              aria-controls={panel}
               // Only the current tab is in the Tab order; the arrow keys reach the others.
               tabIndex={item.id === current ? 0 : -1}
               className={className}
@@ -134,6 +140,36 @@ export function TabNav({
           )
         })}
       </nav>
+    </div>
+  )
+}
+
+/** The id of the tab `id` of the tabs that show `panel`, which names the panel. */
+export function tabId(panel: string, id: string) {
+  return `${panel}-tab-${id}`
+}
+
+/** What the current tab of a TabNav with `onSelect` shows: its panel, named by the tab. */
+export function TabPanel({
+  id,
+  current,
+  className,
+  children,
+}: {
+  // The panel's id, as the TabNav's `panel`.
+  id: string
+  current: string
+  className?: string
+  children: React.ReactNode
+}) {
+  return (
+    <div
+      role="tabpanel"
+      id={id}
+      aria-labelledby={tabId(id, current)}
+      className={className}
+    >
+      {children}
     </div>
   )
 }

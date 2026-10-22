@@ -3,13 +3,13 @@
 import { cn } from "cn"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useId, useState } from "react"
 import { toast } from "sonner"
 
 import { BrandPreview } from "@/components/company/brand-preview"
 import { BrandStyleFields } from "@/components/company/brand-style-fields"
 import { ColorField } from "@/components/company/color-field"
-import { TabNav } from "@/components/tab-nav"
+import { TabNav, TabPanel } from "@/components/tab-nav"
 import { Button } from "@/components/ui/button"
 import { BRAND_GROUPS } from "@/constants/brand"
 import { LIST_BOX } from "@/constants/lists"
@@ -48,6 +48,7 @@ export function BrandColorsForm({
   const t = useTranslations("brand")
   const router = useRouter()
   const [theme, setTheme] = useState<Theme>("light")
+  const panel = useId()
   const [colors, setColors] = useState<BrandColorSets>(current)
   const [look, setLook] = useState(style)
   // What was last saved, and which themes have colors of their own.
@@ -173,8 +174,13 @@ export function BrandColorsForm({
         items={THEMES.map((id) => ({ id, label: t(`themes.${id}`) }))}
         current={theme}
         onSelect={(id) => setTheme(id as Theme)}
+        panel={panel}
       />
-      <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
+      <TabPanel
+        id={panel}
+        current={theme}
+        className="grid gap-8 lg:grid-cols-2 lg:items-start"
+      >
         <div className="space-y-10">
           <ul className={LIST_BOX}>
             {BRAND_GROUPS.map((group) => (
@@ -221,7 +227,7 @@ export function BrandColorsForm({
           <p className="text-sm text-muted-foreground">{t("preview")}</p>
           <BrandPreview colors={shown} look={look} />
         </div>
-      </div>
+      </TabPanel>
       {actions(true)}
     </section>
   )

@@ -2,13 +2,13 @@
 
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useId, useState } from "react"
 import { toast } from "sonner"
 
 import { InviteExample } from "@/components/company/invite-example"
 import { InviteFileTab } from "@/components/company/invite-file-tab"
 import { InviteProblems } from "@/components/company/invite-problems"
-import { TabNav } from "@/components/tab-nav"
+import { TabNav, TabPanel } from "@/components/tab-nav"
 import { INVITE_TAB_ICONS } from "@/components/company/invite-tab-icons"
 import { Button } from "@/components/ui/button"
 import {
@@ -59,6 +59,7 @@ export function InviteCandidate({
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const [tab, setTab] = useState<InviteTab>("one")
+  const panel = useId()
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
   const [text, setText] = useState("")
@@ -178,71 +179,78 @@ export function InviteCandidate({
           }))}
           current={tab}
           onSelect={(id) => choose(id as InviteTab)}
+          panel={panel}
         />
-        <form id="invite-candidate-form" onSubmit={send} className="space-y-3">
-          {tab === "one" && (
-            <>
-              <div className={FIELD}>
-                <Input
-                  type="email"
-                  autoComplete="off"
+        <TabPanel id={panel} current={tab}>
+          <form
+            id="invite-candidate-form"
+            onSubmit={send}
+            className="space-y-3"
+          >
+            {tab === "one" && (
+              <>
+                <div className={FIELD}>
+                  <Input
+                    type="email"
+                    autoComplete="off"
+                    placeholder="candidate@example.com"
+                    aria-label={t("candidateEmail")}
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    className={INPUT}
+                  />
+                </div>
+                <div className={FIELD}>
+                  <Input
+                    autoComplete="off"
+                    maxLength={MAX_CANDIDATE_NAME_LENGTH}
+                    placeholder={t("candidateName")}
+                    aria-label={t("candidateName")}
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    className={INPUT}
+                  />
+                </div>
+              </>
+            )}
+            {tab === "many" && (
+              <>
+                {/* A list: it grows as one is pasted. */}
+                <Textarea
+                  rows={3}
+                  maxLength={MAX_BULK_TEXT_LENGTH}
                   placeholder="candidate@example.com"
-                  aria-label={t("candidateEmail")}
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  className={INPUT}
+                  aria-label={t("candidateEmails")}
+                  value={text}
+                  onChange={(event) => {
+                    setText(event.target.value)
+                    setSkipped([])
+                  }}
+                  className="max-h-64 min-h-28 resize-none rounded-[2rem] border-transparent px-6 py-[18px] text-lg focus-visible:border-ring focus-visible:ring-0 md:text-lg"
                 />
-              </div>
-              <div className={FIELD}>
-                <Input
-                  autoComplete="off"
-                  maxLength={MAX_CANDIDATE_NAME_LENGTH}
-                  placeholder={t("candidateName")}
-                  aria-label={t("candidateName")}
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  className={INPUT}
-                />
-              </div>
-            </>
-          )}
-          {tab === "many" && (
-            <>
-              {/* A list: it grows as one is pasted. */}
-              <Textarea
-                rows={3}
-                maxLength={MAX_BULK_TEXT_LENGTH}
-                placeholder="candidate@example.com"
-                aria-label={t("candidateEmails")}
-                value={text}
-                onChange={(event) => {
-                  setText(event.target.value)
+                <InviteExample maxInvites={maxInvites} />
+              </>
+            )}
+            {tab === "file" && (
+              <InviteFileTab
+                maxInvites={maxInvites}
+                file={file}
+                onChoose={(chosen, tooLarge) => {
+                  setFile(chosen)
                   setSkipped([])
+                  setProblems([])
+                  setError(tooLarge)
                 }}
-                className="max-h-64 min-h-28 resize-none rounded-[2rem] border-transparent px-6 py-[18px] text-lg focus-visible:border-ring focus-visible:ring-0 md:text-lg"
               />
-              <InviteExample maxInvites={maxInvites} />
-            </>
-          )}
-          {tab === "file" && (
-            <InviteFileTab
-              maxInvites={maxInvites}
-              file={file}
-              onChoose={(chosen, tooLarge) => {
-                setFile(chosen)
-                setSkipped([])
-                setProblems([])
-                setError(tooLarge)
-              }}
+            )}
+            <InviteProblems
+              error={error}
+              problems={problems}
+              skipped={skipped}
+              center={tab === "file"}
             />
-          )}
-          <InviteProblems
-            error={error}
-            problems={problems}
-            skipped={skipped}
-            center={tab === "file"}
-          />
-        </form>
+          </form>
+        </TabPanel>
         <DialogFooter>
           <DialogClose
             render={

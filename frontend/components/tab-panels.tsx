@@ -1,8 +1,8 @@
 "use client"
 
-import { type ReactNode, useState } from "react"
+import { type ReactNode, useId, useState } from "react"
 
-import { TabNav } from "@/components/tab-nav"
+import { TabNav, TabPanel } from "@/components/tab-nav"
 
 /** Sections of a page as tabs (the site's TabNav as buttons), the first open: each panel's
  * content is made by the page, so a server page can pass its own. */
@@ -12,6 +12,7 @@ export function TabPanels({
   panels: { id: string; label: string; content: ReactNode }[]
 }) {
   const [current, setCurrent] = useState(panels[0]?.id ?? "")
+  const panel = useId()
 
   return (
     <div className="space-y-6">
@@ -19,8 +20,11 @@ export function TabPanels({
         items={panels.map(({ id, label }) => ({ id, label, keepCase: true }))}
         current={current}
         onSelect={setCurrent}
+        panel={panel}
       />
-      {panels.find((panel) => panel.id === current)?.content}
+      <TabPanel id={panel} current={current}>
+        {panels.find((item) => item.id === current)?.content}
+      </TabPanel>
     </div>
   )
 }

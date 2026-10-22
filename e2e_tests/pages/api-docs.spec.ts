@@ -89,6 +89,12 @@ test("the MCP tab shows the server, the example agents and the server's tools", 
   expect(tools[updates]?.key_permission).toBe("candidates:read");
   await expect(rows.nth(updates)).toContainText("candidates:read");
 
+  // Its sections are tabs: the chosen one controls the panel shown, which it names (WAI-ARIA tabs).
+  const selected = page.getByRole("main").getByRole("tab", { selected: true }).first();
+  const panel = page.getByRole("tabpanel").first();
+  await expect(selected).toHaveAttribute("aria-controls", (await panel.getAttribute("id"))!);
+  await expect(panel).toHaveAccessibleName((await selected.innerText()).trim());
+
   // The examples start in Python; picking TypeScript in one editor switches them all.
   const menus = page.locator('main [aria-haspopup="menu"]');
   const editors = page.locator("main pre");
