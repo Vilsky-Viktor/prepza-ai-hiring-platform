@@ -2,19 +2,28 @@ from datetime import datetime
 from typing import Literal
 from uuid import UUID
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
+
+from app.constants import examples
 
 
 class Interview(BaseModel):
-    id: UUID
+    """One of your company's interviews."""
+
+    model_config = ConfigDict(json_schema_extra={"examples": [examples.INTERVIEW]})
+
+    id: UUID = Field(description="The interview's id")
     title: str | None = Field(
         description="Null while the interview's questions are being generated"
     )
-    status: str = Field(description="One of new, in_process or hired")
+    status: Literal["new", "in_process", "hired"] = Field(
+        description="`new` before any candidate is invited, then `in_process`; `hired` once "
+        "your company marks it so"
+    )
     ready: bool = Field(description="Whether the questions are ready and candidates can be invited")
     pass_mark: int = Field(description="The minimum grade, in percent, a candidate needs to pass")
-    candidate_count: int
-    created_at: datetime
+    candidate_count: int = Field(description="How many candidates were invited to it")
+    created_at: datetime = Field(description="When it was made")
     updated_at: datetime | None = Field(
         default=None,
         description=(
@@ -38,15 +47,20 @@ class Signals(BaseModel):
 class Section(BaseModel):
     """One section of a candidate's interview."""
 
-    title: str
+    title: str = Field(description="The section's title")
     grade: int | None = Field(
         default=None, description="The section's grade in percent; null until it's finished"
     )
 
 
 class Candidate(BaseModel):
-    id: UUID
-    email: str
+    """A candidate invited to one of your interviews, with their progress and results."""
+
+    model_config = ConfigDict(json_schema_extra={"examples": [examples.CANDIDATE]})
+
+    id: UUID = Field(description="The candidate's id, within the interview")
+    interview_id: UUID = Field(description="The interview the candidate was invited to")
+    email: str = Field(description="The email the candidate was invited with")
     name: str | None = Field(
         default=None,
         description=(
@@ -54,8 +68,14 @@ class Candidate(BaseModel):
             "or else from their sign-in when they start; null while unknown"
         ),
     )
-    status: str = Field(
-        description="One of invited, undelivered, in_process, finished, expired or deleted"
+    status: Literal["invited", "undelivered", "in_process", "finished", "expired", "deleted"] = (
+        Field(
+            description=(
+                "`invited`; `undelivered` when the invite email bounced; `in_process` once they "
+                "start; `finished`; `expired` when the invite went unused for 30 days; `deleted` "
+                "when the candidate deleted their account"
+            )
+        )
     )
     progress: int = Field(description="Percentage of the interview answered")
     grade: int | None = Field(
@@ -67,7 +87,7 @@ class Candidate(BaseModel):
             "supports a person's decision: don't reject a candidate automatically on it"
         )
     )
-    signals: Signals
+    signals: Signals = Field(description="Integrity signals recorded while they answered")
     flagged: bool = Field(
         default=False,
         description=(
@@ -114,6 +134,10 @@ class Candidate(BaseModel):
 
 
 class CandidateIn(BaseModel):
+    """Who to invite, and how."""
+
+    model_config = ConfigDict(json_schema_extra={"examples": [examples.CANDIDATE_IN]})
+
     email: EmailStr = Field(description="The candidate's email address")
     name: str | None = Field(
         default=None,
@@ -158,23 +182,23 @@ class CandidateEvent(BaseModel):
     `candidate.undelivered`, `candidate.expired`): the interview and the candidate as they are
     when it's sent."""
 
-    interview: Interview
-    candidate: Candidate
+    interview: Interview = Field(description="The interview, as it is now")
+    candidate: Candidate = Field(description="The candidate, as they are now")
 
 
 class RemovedEvent(BaseModel):
     """The `data` object of a `candidate.removed` event: who was removed, as the candidate is
     gone."""
 
-    interview_id: UUID
-    candidate_id: UUID
-    email: str
+    interview_id: UUID = Field(description="The interview the candidate was removed from")
+    candidate_id: UUID = Field(description="The candidate's id")
+    email: str = Field(description="The email the candidate was invited with")
 
 
 class InterviewEvent(BaseModel):
     """The `data` object of an `interview.ready` event."""
 
-    interview: Interview
+    interview: Interview = Field(description="The interview, now ready")
 
 
 class TestEvent(BaseModel):

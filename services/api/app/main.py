@@ -27,6 +27,7 @@ from app.routers import (
     internal_keys,
     manage,
     public,
+    public_candidates,
     schedules,
     webhook_docs,
 )
@@ -59,6 +60,9 @@ app = FastAPI(
     redoc_url=None,
     # Passes the assistant's header on to companies' access checks.
     dependencies=[Depends(remember_assistant)],
+    # Short, stable operation ids (SDK methods and agent tools are named after them): the
+    # route's function name, so renaming a route function is a breaking change.
+    generate_unique_id_function=lambda route: route.name,
 )
 # Every refusal of the public API carries a machine-readable code.
 add_localized_errors(app, error_codes.BY_STATUS)
@@ -68,8 +72,9 @@ app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
 # The public routes' docs name the permission each needs.
-name_permissions([*public.router.routes, *company.router.routes])
+name_permissions([*public.router.routes, *public_candidates.router.routes, *company.router.routes])
 app.include_router(public.router)
+app.include_router(public_candidates.router)
 app.include_router(company.router)
 app.include_router(manage.router)
 app.include_router(events.router)

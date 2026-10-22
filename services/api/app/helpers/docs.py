@@ -2,6 +2,7 @@ from fastapi.routing import APIRoute
 from starlette.routing import BaseRoute
 
 from app.constants.permissions import Permission
+from app.schemas.errors import Error
 
 
 def route_permission(route: APIRoute) -> Permission | None:
@@ -18,3 +19,8 @@ def name_permissions(routes: list[BaseRoute]) -> None:
 
         if permission:
             route.description += f"\n\nNeeds the `{permission}` permission."
+
+
+def refusal(description: str) -> dict:
+    """A refusal's entry in a route's `responses`: its description, with the Error body."""
+    return {"model": Error, "description": description}

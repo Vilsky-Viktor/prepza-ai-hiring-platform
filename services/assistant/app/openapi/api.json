@@ -7,7 +7,7 @@
     ],
     "summary": "List interviews",
     "description": "Returns your company's interviews, newest first; with `updated_since`, the ones that\nchanged since, oldest change first.\n\nNeeds the `interviews:read` permission.",
-    "operationId": "list_interviews_interviews_get",
+    "operationId": "list_interviews",
     "security": [
      {
       "HTTPBearer": []
@@ -90,19 +90,58 @@
          "items": {
           "$ref": "#/components/schemas/Interview"
          },
-         "title": "Response List Interviews Interviews Get"
+         "title": "Response List Interviews"
         }
        }
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "Your company's keys exceeded 60 requests per minute"
+      "description": "Your company's keys exceeded 60 requests per minute (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
       "description": "Validation Error",
@@ -122,7 +161,7 @@
     ],
     "summary": "Create an interview",
     "description": "Makes an interview from a job description, as the key's creator would. Its questions take\na few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web\nhook event says when it is. Retrying is safe: the same request from the same key within 15\nminutes returns the interview the first one made.\n\nNeeds the `interviews:create` permission.",
-    "operationId": "create_interview_interviews_post",
+    "operationId": "create_interview",
     "security": [
      {
       "HTTPBearer": []
@@ -150,22 +189,72 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "Your company or the key's creator made as many today as it may"
-     },
-     "409": {
-      "description": "The same request is still running, or your company has as many interviews without candidates as it may"
-     },
-     "422": {
-      "description": "The body is invalid"
+      "description": "Your company or the key's creator made as many today as it may (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "503": {
-      "description": "Making interviews is paused, or today's AI budget is used up"
+      "description": "Making interviews is paused (`paused`), or today's AI budget is used up (`ai_budget_used_up`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "409": {
+      "description": "The same request is still running (`request_in_progress`), or your company has as many interviews without candidates as it may (`interview_quota_reached`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "The body is invalid (`validation_failed`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      }
     }
    }
@@ -177,7 +266,7 @@
     ],
     "summary": "Get an interview",
     "description": "Returns one of your company's interviews.\n\nNeeds the `interviews:read` permission.",
-    "operationId": "get_interview_interviews__interview_id__get",
+    "operationId": "get_interview",
     "security": [
      {
       "HTTPBearer": []
@@ -207,16 +296,62 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "Your company's keys exceeded 60 requests per minute"
+      "description": "Your company's keys exceeded 60 requests per minute (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "404": {
-      "description": "The interview or candidate doesn't exist in your company"
+      "description": "The interview or candidate doesn't exist in your company (`not_found`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
       "description": "Validation Error",
@@ -239,7 +374,7 @@
     ],
     "summary": "List candidates",
     "description": "Returns the interview's candidates with their progress and results, newest first; with\n`updated_since`, the ones that changed since, oldest change first.\n\nNeeds the `candidates:read` permission.",
-    "operationId": "list_candidates_interviews__interview_id__candidates_get",
+    "operationId": "list_candidates",
     "security": [
      {
       "HTTPBearer": []
@@ -332,22 +467,68 @@
          "items": {
           "$ref": "#/components/schemas/Candidate"
          },
-         "title": "Response List Candidates Interviews  Interview Id  Candidates Get"
+         "title": "Response List Candidates"
         }
        }
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "Your company's keys exceeded 60 requests per minute"
+      "description": "Your company's keys exceeded 60 requests per minute (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "404": {
-      "description": "The interview or candidate doesn't exist in your company"
+      "description": "The interview or candidate doesn't exist in your company (`not_found`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
       "description": "Validation Error",
@@ -368,7 +549,7 @@
     ],
     "summary": "Invite a candidate",
     "description": "Invites the candidate to the interview on behalf of the key's creator and reserves credits\nfor them, with their name if given. By default prepza emails the invitation and the\ncandidate signs in with that email; with `sign_in` false, your platform sends them to the\nresponse's `invite_url`, which opens the interview without signing in. With a `return_url`,\nthe finished page takes the candidate back to your platform. Retrying is safe: inviting an\naddress whose invite is still open, or who already finished, returns that candidate as they\nare (`200`), without another email or credits; an expired invite is sent again. To send an\nopen invite again, use the resend endpoint.\n\nNeeds the `candidates:invite` permission.",
-    "operationId": "invite_candidate_interviews__interview_id__candidates_post",
+    "operationId": "invite_candidate",
     "security": [
      {
       "HTTPBearer": []
@@ -408,13 +589,52 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "The key's creator reached their email limits, or the key its rate limit"
+      "description": "The key's creator reached their email limits, or the key its rate limit (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "200": {
       "description": "Already invited or finished: the candidate as they are",
@@ -427,19 +647,44 @@
       }
      },
      "404": {
-      "description": "The interview or candidate doesn't exist in your company"
+      "description": "The interview or candidate doesn't exist in your company (`not_found`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "402": {
-      "description": "The company doesn't have enough credits"
+      "description": "The company doesn't have enough credits (`insufficient_credits`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "409": {
-      "description": "The interview's questions are still being generated"
+      "description": "The interview's questions are still being generated (`interview_not_ready`), the company is suspended (`company_suspended`), or the same request is still running (`request_in_progress`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
-      "description": "The body is invalid, or `return_url` isn't an https address on the company's verified website domain"
-     },
-     "503": {
-      "description": "Invitations are temporarily paused"
+      "description": "The body is invalid (`validation_failed`), or `return_url` isn't an https address on the company's verified website domain (`return_url_off_domain`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      }
     }
    }
@@ -452,7 +697,7 @@
     ],
     "summary": "Get a candidate",
     "description": "Returns one candidate of the interview with their progress and results.\n\nNeeds the `candidates:read` permission.",
-    "operationId": "get_candidate_interviews__interview_id__candidates__candidate_id__get",
+    "operationId": "get_candidate",
     "security": [
      {
       "HTTPBearer": []
@@ -492,16 +737,62 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "Your company's keys exceeded 60 requests per minute"
+      "description": "Your company's keys exceeded 60 requests per minute (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "404": {
-      "description": "The interview or candidate doesn't exist in your company"
+      "description": "The interview or candidate doesn't exist in your company (`not_found`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
       "description": "Validation Error",
@@ -517,11 +808,11 @@
    },
    "patch": {
     "tags": [
-     "Interviews"
+     "Candidates"
     ],
     "summary": "Update a candidate",
     "description": "Corrects the candidate's name, or gives them extra time on each question before they\nstart, as an accommodation. All or nothing: when one change is refused, neither is made.\n\nNeeds the `candidates:change` permission.",
-    "operationId": "update_candidate_interviews__interview_id__candidates__candidate_id__patch",
+    "operationId": "update_candidate",
     "security": [
      {
       "HTTPBearer": []
@@ -571,32 +862,92 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "Your company's keys exceeded 60 requests per minute"
+      "description": "Your company's keys exceeded 60 requests per minute (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "404": {
-      "description": "The interview or candidate doesn't exist in your company"
+      "description": "The interview or candidate doesn't exist in your company (`not_found`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "409": {
-      "description": "Extra time was asked for a candidate who already started"
+      "description": "Extra time was asked for a candidate who already started (`candidate_started`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
-      "description": "The body is invalid"
+      "description": "The body is invalid (`validation_failed`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      }
     }
    },
    "delete": {
     "tags": [
-     "Interviews"
+     "Candidates"
     ],
     "summary": "Remove a candidate",
     "description": "Withdraws an invite the candidate hasn't used yet: its link stops working and its credits\ncome back. A candidate who started is erased for good, with their answers and results, for\nexample when they ask to have their data deleted; one who answered at least one question is\ncharged. Your web hooks get `candidate.removed`.\n\nNeeds the `candidates:delete` permission.",
-    "operationId": "remove_candidate_interviews__interview_id__candidates__candidate_id__delete",
+    "operationId": "remove_candidate",
     "security": [
      {
       "HTTPBearer": []
@@ -629,16 +980,62 @@
       "description": "Successful Response"
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "Your company's keys exceeded 60 requests per minute"
+      "description": "Your company's keys exceeded 60 requests per minute (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "404": {
-      "description": "The interview or candidate doesn't exist in your company"
+      "description": "The interview or candidate doesn't exist in your company (`not_found`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
       "description": "Validation Error",
@@ -656,11 +1053,11 @@
   "/interviews/{interview_id}/candidates/{candidate_id}/resend": {
    "post": {
     "tags": [
-     "Interviews"
+     "Candidates"
     ],
     "summary": "Send the invitation again",
     "description": "Emails the candidate their invitation again, as a reminder; an expired invitation comes\nback to life for another 30 days.\n\nNeeds the `candidates:invite` permission.",
-    "operationId": "resend_invite_interviews__interview_id__candidates__candidate_id__resend_post",
+    "operationId": "resend_invite",
     "security": [
      {
       "HTTPBearer": []
@@ -693,19 +1090,72 @@
       "description": "Successful Response"
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "The key's creator reached their email limits"
+      "description": "The key's creator reached their email limits (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "404": {
-      "description": "The interview or candidate doesn't exist in your company"
+      "description": "The interview or candidate doesn't exist in your company (`not_found`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "409": {
-      "description": "The candidate already finished, or was invited with `sign_in` false (prepza doesn't email them)"
+      "description": "The candidate already finished (`candidate_finished`), or was invited with `sign_in` false, so prepza doesn't email them (`invited_without_sign_in`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
       "description": "Validation Error",
@@ -727,7 +1177,7 @@
     ],
     "summary": "Find a candidate by email",
     "description": "The candidates invited with this email in any of your company's interviews, newest\nfirst, each with its interview's `interview_id`.\n\nNeeds the `candidates:read` permission.",
-    "operationId": "find_candidates_candidates_get",
+    "operationId": "find_candidates",
     "security": [
      {
       "HTTPBearer": []
@@ -757,19 +1207,58 @@
          "items": {
           "$ref": "#/components/schemas/Candidate"
          },
-         "title": "Response Find Candidates Candidates Get"
+         "title": "Response Find Candidates"
         }
        }
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "Your company's keys exceeded 60 requests per minute"
+      "description": "Your company's keys exceeded 60 requests per minute (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
       "description": "Validation Error",
@@ -791,7 +1280,7 @@
     ],
     "summary": "Read your credits",
     "description": "Your company's credits: a candidate costs 500, set aside when they're invited.\n\nNeeds the `credits:read` permission.",
-    "operationId": "get_credits_credits_get",
+    "operationId": "get_credits",
     "responses": {
      "200": {
       "description": "Successful Response",
@@ -804,13 +1293,52 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
+      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`code` is `missing_permission`)"
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "429": {
-      "description": "Your company's keys exceeded 60 requests per minute"
+      "description": "Your company's keys exceeded 60 requests per minute (`rate_limited`)",
+      "headers": {
+       "Retry-After": {
+        "description": "How many seconds to wait before trying again",
+        "schema": {
+         "type": "integer"
+        }
+       }
+      },
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
+     },
+     "503": {
+      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Error"
+        }
+       }
+      }
      },
      "422": {
       "description": "Validation Error",
@@ -837,7 +1365,7 @@
     ],
     "summary": "Get Settings",
     "description": "Every member sees the keys (never the keys themselves) and web hooks; only owners and\nadmins their whole addresses.",
-    "operationId": "get_settings_manage_get",
+    "operationId": "get_settings",
     "security": [
      {
       "HTTPBearer": []
@@ -885,7 +1413,7 @@
      "manage"
     ],
     "summary": "Create Key",
-    "operationId": "create_key_manage_keys_post",
+    "operationId": "create_key",
     "security": [
      {
       "HTTPBearer": []
@@ -944,7 +1472,7 @@
     ],
     "summary": "Narrow Key",
     "description": "Owners and admins take permissions away from a key; adding one is refused.",
-    "operationId": "narrow_key_manage_keys__key_id__patch",
+    "operationId": "narrow_key",
     "security": [
      {
       "HTTPBearer": []
@@ -1010,7 +1538,7 @@
      "manage"
     ],
     "summary": "Remove Key",
-    "operationId": "remove_key_manage_keys__key_id__delete",
+    "operationId": "remove_key",
     "security": [
      {
       "HTTPBearer": []
@@ -1061,7 +1589,7 @@
      "manage"
     ],
     "summary": "Create Webhook",
-    "operationId": "create_webhook_manage_webhooks_post",
+    "operationId": "create_webhook",
     "security": [
      {
       "HTTPBearer": []
@@ -1119,7 +1647,7 @@
      "manage"
     ],
     "summary": "Remove Webhook",
-    "operationId": "remove_webhook_manage_webhooks__webhook_id__delete",
+    "operationId": "remove_webhook",
     "security": [
      {
       "HTTPBearer": []
@@ -1171,7 +1699,7 @@
     ],
     "summary": "Test Webhook",
     "description": "Owners and admins send a signed test event to a web hook, now.",
-    "operationId": "test_webhook_manage_webhooks__webhook_id__test_post",
+    "operationId": "test_webhook",
     "security": [
      {
       "HTTPBearer": []
@@ -1230,7 +1758,7 @@
     ],
     "summary": "Webhook Log",
     "description": "A web hook's latest sends and how they went, newest first; every member sees them.",
-    "operationId": "webhook_log_manage_webhooks__webhook_id__log_get",
+    "operationId": "webhook_log",
     "security": [
      {
       "HTTPBearer": []
@@ -1268,7 +1796,7 @@
          "items": {
           "$ref": "#/components/schemas/WebhookAttemptOut"
          },
-         "title": "Response Webhook Log Manage Webhooks  Webhook Id  Log Get"
+         "title": "Response Webhook Log"
         }
        }
       }
@@ -1356,11 +1884,19 @@
      "id": {
       "type": "string",
       "format": "uuid",
-      "title": "Id"
+      "title": "Id",
+      "description": "The candidate's id, within the interview"
+     },
+     "interview_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Interview Id",
+      "description": "The interview the candidate was invited to"
      },
      "email": {
       "type": "string",
-      "title": "Email"
+      "title": "Email",
+      "description": "The email the candidate was invited with"
      },
      "name": {
       "anyOf": [
@@ -1376,8 +1912,16 @@
      },
      "status": {
       "type": "string",
+      "enum": [
+       "invited",
+       "undelivered",
+       "in_process",
+       "finished",
+       "expired",
+       "deleted"
+      ],
       "title": "Status",
-      "description": "One of invited, undelivered, in_process, finished, expired or deleted"
+      "description": "`invited`; `undelivered` when the invite email bounced; `in_process` once they start; `finished`; `expired` when the invite went unused for 30 days; `deleted` when the candidate deleted their account"
      },
      "progress": {
       "type": "integer",
@@ -1409,7 +1953,8 @@
       "description": "Whether the grade reached the pass mark; null until the candidate finishes. It supports a person's decision: don't reject a candidate automatically on it"
      },
      "signals": {
-      "$ref": "#/components/schemas/Signals"
+      "$ref": "#/components/schemas/Signals",
+      "description": "Integrity signals recorded while they answered"
      },
      "flagged": {
       "type": "boolean",
@@ -1504,6 +2049,7 @@
     "type": "object",
     "required": [
      "id",
+     "interview_id",
      "email",
      "status",
      "progress",
@@ -1513,15 +2059,42 @@
      "results_url",
      "created_at"
     ],
-    "title": "Candidate"
+    "title": "Candidate",
+    "description": "A candidate invited to one of your interviews, with their progress and results.",
+    "examples": [
+     {
+      "created_at": "2026-10-02T10:30:00Z",
+      "email": "anna@example.com",
+      "extra_time": 0,
+      "finished_at": "2026-10-03T11:05:00Z",
+      "flagged": false,
+      "grade": 86,
+      "id": "0e7a4d2c-91b3-4f6e-8a5d-2c1b9f3e7a60",
+      "interview_id": "6b1f0c3e-2a7d-4c58-9e41-3f8a2d5b7c90",
+      "name": "Anna Nowak",
+      "passed": true,
+      "progress": 100,
+      "results_url": "https://prepza.ai/companies/…/candidates/0e7a4d2c-91b3-4f6e-8a5d-2c1b9f3e7a60",
+      "signals": {
+       "copies": 1,
+       "fast_answers": 0,
+       "tab_leaves": 0
+      },
+      "started_at": "2026-10-03T10:40:00Z",
+      "status": "finished",
+      "updated_at": "2026-10-03T11:05:00Z"
+     }
+    ]
    },
    "CandidateEvent": {
     "properties": {
      "interview": {
-      "$ref": "#/components/schemas/Interview"
+      "$ref": "#/components/schemas/Interview",
+      "description": "The interview, as it is now"
      },
      "candidate": {
-      "$ref": "#/components/schemas/Candidate"
+      "$ref": "#/components/schemas/Candidate",
+      "description": "The candidate, as they are now"
      }
     },
     "type": "object",
@@ -1588,7 +2161,14 @@
     "required": [
      "email"
     ],
-    "title": "CandidateIn"
+    "title": "CandidateIn",
+    "description": "Who to invite, and how.",
+    "examples": [
+     {
+      "email": "anna@example.com",
+      "name": "Anna Nowak"
+     }
+    ]
    },
    "CandidateUpdate": {
     "properties": {
@@ -1626,25 +2206,42 @@
     },
     "type": "object",
     "title": "CandidateUpdate",
-    "description": "Only the fields given change."
+    "description": "Only the fields given change, all or none.",
+    "examples": [
+     {
+      "name": "Anna Nowak"
+     }
+    ]
    },
    "CandidateWebhook": {
     "properties": {
      "id": {
       "type": "string",
       "title": "Id",
-      "description": "The event's id: the same when it's sent again"
-     },
-     "type": {
-      "type": "string",
-      "title": "Type",
-      "description": "The event's type, such as candidate.finished"
+      "description": "The event's id: the same when it's sent again, so ignore one you've had",
+      "examples": [
+       "9f1c2b7e-4d3a-4b8e-9a51-0c6e2f1d7a44"
+      ]
      },
      "occurred_at": {
       "type": "string",
       "format": "date-time",
       "title": "Occurred At",
-      "description": "When the change happened, to put events in order: a retried one can arrive after a later one"
+      "description": "When the change happened, to put events in order: a retried one can arrive after a later one",
+      "examples": [
+       "2026-10-15T08:30:00+00:00"
+      ]
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "candidate.finished",
+       "candidate.started",
+       "candidate.undelivered",
+       "candidate.expired"
+      ],
+      "title": "Type",
+      "description": "The event's type"
      },
      "data": {
       "$ref": "#/components/schemas/CandidateEvent"
@@ -1653,8 +2250,8 @@
     "type": "object",
     "required": [
      "id",
-     "type",
      "occurred_at",
+     "type",
      "data"
     ],
     "title": "CandidateWebhook"
@@ -1689,7 +2286,54 @@
      "candidates",
      "low"
     ],
-    "title": "Credits"
+    "title": "Credits",
+    "description": "Your company's credits.",
+    "examples": [
+     {
+      "available": 4500,
+      "candidates": 9,
+      "low": false,
+      "reserved": 1000
+     }
+    ]
+   },
+   "Error": {
+    "properties": {
+     "detail": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "items": {
+         "additionalProperties": true,
+         "type": "object"
+        },
+        "type": "array"
+       }
+      ],
+      "title": "Detail",
+      "description": "Why, for people, in the language of your `Accept-Language` header; never branch on it, as it can change. For `validation_failed`, a list with one entry per bad field, which its `loc` names",
+      "examples": [
+       "Interview not found"
+      ]
+     },
+     "code": {
+      "type": "string",
+      "title": "Code",
+      "description": "What went wrong, as a stable machine-readable code to branch on; the list is in the description's Errors section. New codes can be added, so treat an unknown one by its HTTP status",
+      "examples": [
+       "not_found"
+      ]
+     }
+    },
+    "type": "object",
+    "required": [
+     "detail",
+     "code"
+    ],
+    "title": "Error",
+    "description": "Every refusal's body: branch on `code`, show `detail`."
    },
    "HTTPValidationError": {
     "properties": {
@@ -1709,7 +2353,8 @@
      "id": {
       "type": "string",
       "format": "uuid",
-      "title": "Id"
+      "title": "Id",
+      "description": "The interview's id"
      },
      "title": {
       "anyOf": [
@@ -1725,8 +2370,13 @@
      },
      "status": {
       "type": "string",
+      "enum": [
+       "new",
+       "in_process",
+       "hired"
+      ],
       "title": "Status",
-      "description": "One of new, in_process or hired"
+      "description": "`new` before any candidate is invited, then `in_process`; `hired` once your company marks it so"
      },
      "ready": {
       "type": "boolean",
@@ -1740,12 +2390,14 @@
      },
      "candidate_count": {
       "type": "integer",
-      "title": "Candidate Count"
+      "title": "Candidate Count",
+      "description": "How many candidates were invited to it"
      },
      "created_at": {
       "type": "string",
       "format": "date-time",
-      "title": "Created At"
+      "title": "Created At",
+      "description": "When it was made"
      },
      "updated_at": {
       "anyOf": [
@@ -1771,12 +2423,26 @@
      "candidate_count",
      "created_at"
     ],
-    "title": "Interview"
+    "title": "Interview",
+    "description": "One of your company's interviews.",
+    "examples": [
+     {
+      "candidate_count": 12,
+      "created_at": "2026-10-01T09:00:00Z",
+      "id": "6b1f0c3e-2a7d-4c58-9e41-3f8a2d5b7c90",
+      "pass_mark": 70,
+      "ready": true,
+      "status": "in_process",
+      "title": "Backend developer",
+      "updated_at": "2026-10-14T16:20:00Z"
+     }
+    ]
    },
    "InterviewEvent": {
     "properties": {
      "interview": {
-      "$ref": "#/components/schemas/Interview"
+      "$ref": "#/components/schemas/Interview",
+      "description": "The interview, now ready"
      }
     },
     "type": "object",
@@ -1837,25 +2503,38 @@
     "required": [
      "job_description"
     ],
-    "title": "InterviewIn"
+    "title": "InterviewIn",
+    "description": "The job to make an interview for.",
+    "examples": [
+     {
+      "job_description": "Backend developer: Python, Postgres, APIs."
+     }
+    ]
    },
    "InterviewWebhook": {
     "properties": {
      "id": {
       "type": "string",
       "title": "Id",
-      "description": "The event's id: the same when it's sent again"
-     },
-     "type": {
-      "type": "string",
-      "title": "Type",
-      "description": "The event's type, such as candidate.finished"
+      "description": "The event's id: the same when it's sent again, so ignore one you've had",
+      "examples": [
+       "9f1c2b7e-4d3a-4b8e-9a51-0c6e2f1d7a44"
+      ]
      },
      "occurred_at": {
       "type": "string",
       "format": "date-time",
       "title": "Occurred At",
-      "description": "When the change happened, to put events in order: a retried one can arrive after a later one"
+      "description": "When the change happened, to put events in order: a retried one can arrive after a later one",
+      "examples": [
+       "2026-10-15T08:30:00+00:00"
+      ]
+     },
+     "type": {
+      "type": "string",
+      "const": "interview.ready",
+      "title": "Type",
+      "description": "The event's type"
      },
      "data": {
       "$ref": "#/components/schemas/InterviewEvent"
@@ -1864,8 +2543,8 @@
     "type": "object",
     "required": [
      "id",
-     "type",
      "occurred_at",
+     "type",
      "data"
     ],
     "title": "InterviewWebhook"
@@ -2127,16 +2806,19 @@
      "interview_id": {
       "type": "string",
       "format": "uuid",
-      "title": "Interview Id"
+      "title": "Interview Id",
+      "description": "The interview the candidate was removed from"
      },
      "candidate_id": {
       "type": "string",
       "format": "uuid",
-      "title": "Candidate Id"
+      "title": "Candidate Id",
+      "description": "The candidate's id"
      },
      "email": {
       "type": "string",
-      "title": "Email"
+      "title": "Email",
+      "description": "The email the candidate was invited with"
      }
     },
     "type": "object",
@@ -2153,18 +2835,25 @@
      "id": {
       "type": "string",
       "title": "Id",
-      "description": "The event's id: the same when it's sent again"
-     },
-     "type": {
-      "type": "string",
-      "title": "Type",
-      "description": "The event's type, such as candidate.finished"
+      "description": "The event's id: the same when it's sent again, so ignore one you've had",
+      "examples": [
+       "9f1c2b7e-4d3a-4b8e-9a51-0c6e2f1d7a44"
+      ]
      },
      "occurred_at": {
       "type": "string",
       "format": "date-time",
       "title": "Occurred At",
-      "description": "When the change happened, to put events in order: a retried one can arrive after a later one"
+      "description": "When the change happened, to put events in order: a retried one can arrive after a later one",
+      "examples": [
+       "2026-10-15T08:30:00+00:00"
+      ]
+     },
+     "type": {
+      "type": "string",
+      "const": "candidate.removed",
+      "title": "Type",
+      "description": "The event's type"
      },
      "data": {
       "$ref": "#/components/schemas/RemovedEvent"
@@ -2173,8 +2862,8 @@
     "type": "object",
     "required": [
      "id",
-     "type",
      "occurred_at",
+     "type",
      "data"
     ],
     "title": "RemovedWebhook"
@@ -2183,7 +2872,8 @@
     "properties": {
      "title": {
       "type": "string",
-      "title": "Title"
+      "title": "Title",
+      "description": "The section's title"
      },
      "grade": {
       "anyOf": [
@@ -2243,18 +2933,25 @@
      "id": {
       "type": "string",
       "title": "Id",
-      "description": "The event's id: the same when it's sent again"
-     },
-     "type": {
-      "type": "string",
-      "title": "Type",
-      "description": "The event's type, such as candidate.finished"
+      "description": "The event's id: the same when it's sent again, so ignore one you've had",
+      "examples": [
+       "9f1c2b7e-4d3a-4b8e-9a51-0c6e2f1d7a44"
+      ]
      },
      "occurred_at": {
       "type": "string",
       "format": "date-time",
       "title": "Occurred At",
-      "description": "When the change happened, to put events in order: a retried one can arrive after a later one"
+      "description": "When the change happened, to put events in order: a retried one can arrive after a later one",
+      "examples": [
+       "2026-10-15T08:30:00+00:00"
+      ]
+     },
+     "type": {
+      "type": "string",
+      "const": "test",
+      "title": "Type",
+      "description": "The event's type"
      },
      "data": {
       "$ref": "#/components/schemas/TestEvent"
@@ -2263,8 +2960,8 @@
     "type": "object",
     "required": [
      "id",
-     "type",
      "occurred_at",
+     "type",
      "data"
     ],
     "title": "TestWebhook"

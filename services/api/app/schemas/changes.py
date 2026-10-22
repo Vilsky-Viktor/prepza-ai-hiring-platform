@@ -2,10 +2,18 @@ from typing import Literal
 
 from prepza_common.constants import MAX_GOAL_LENGTH
 from prepza_common.user import Language
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class InterviewIn(BaseModel):
+    """The job to make an interview for."""
+
+    model_config = ConfigDict(
+        json_schema_extra={
+            "examples": [{"job_description": "Backend developer: Python, Postgres, APIs."}]
+        }
+    )
+
     job_description: str = Field(
         min_length=1,
         max_length=MAX_GOAL_LENGTH,
@@ -23,7 +31,9 @@ class InterviewIn(BaseModel):
 
 
 class CandidateUpdate(BaseModel):
-    """Only the fields given change."""
+    """Only the fields given change, all or none."""
+
+    model_config = ConfigDict(json_schema_extra={"examples": [{"name": "Anna Nowak"}]})
 
     name: str | None = Field(
         default=None,
@@ -40,6 +50,14 @@ class CandidateUpdate(BaseModel):
 
 
 class Credits(BaseModel):
+    """Your company's credits."""
+
+    model_config = ConfigDict(
+        json_schema_extra={
+            "examples": [{"available": 4500, "reserved": 1000, "candidates": 9, "low": False}]
+        }
+    )
+
     available: int = Field(description="Credits your company can spend now")
     reserved: int = Field(description="Credits set aside for candidates who haven't finished")
     candidates: int = Field(description="How many more candidates the available credits pay for")

@@ -7,32 +7,18 @@ from prepza_common.paging import PageParams
 from app.auth import needs
 from app.config.settings import settings
 from app.constants.permissions import Permission
+from app.constants.responses import COMMON, NOT_FOUND, RETRY_AFTER
+from app.helpers.docs import refusal
 from app.helpers.public import candidate_of, interview_of
 from app.integrations import companies
 from app.models.api import ApiKey
-from app.schemas.changes import CandidateUpdate, InterviewIn
+from app.schemas.changes import InterviewIn
 from app.schemas.public import Candidate, CandidateIn, Interview
 from app.schemas.public_params import After, IdempotencyKey, UpdatedSince
 from app.services.idempotency import fingerprint, once, slot
 
-# Every route can answer these; ones under an interview also 404 (NOT_FOUND).
-router = APIRouter(
-    prefix="/interviews",
-    tags=["Interviews"],
-    responses={
-        401: {
-            "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
-        },
-        403: {
-            "description": (
-                "The API key doesn't have the permission the endpoint needs (`code` is "
-                "`missing_permission`)"
-            )
-        },
-        429: {"description": "Your company's keys exceeded 60 requests per minute"},
-    },
-)
-NOT_FOUND = {404: {"description": "The interview or candidate doesn't exist in your company"}}
+# Every route can answer COMMON; ones under an interview also NOT_FOUND.
+router = APIRouter(prefix="/interviews", tags=["Interviews"], responses=COMMON)
 
 
 @router.get("", summary="List interviews")
@@ -109,18 +95,23 @@ async def get_candidate(
             "description": "Already invited or finished: the candidate as they are",
         },
         **NOT_FOUND,
-        402: {"description": "The company doesn't have enough credits"},
-        409: {"description": "The interview's questions are still being generated"},
-        422: {
-            "description": (
-                "The body is invalid, or `return_url` isn't an https address on the company's "
-                "verified website domain"
-            )
-        },
+        402: refusal("The company doesn't have enough credits (`insufficient_credits`)"),
+        409: refusal(
+            "The interview's questions are still being generated (`interview_not_ready`), the "
+            "company is suspended (`company_suspended`), or the same request is still running "
+            "(`request_in_progress`)"
+        ),
+        422: refusal(
+            "The body is invalid (`validation_failed`), or `return_url` isn't an https address "
+            "on the company's verified website domain (`return_url_off_domain`)"
+        ),
         429: {
-            "description": "The key's creator reached their email limits, or the key its rate limit"
+            **refusal(
+                "The key's creator reached their email limits, or the key its rate limit "
+                "(`rate_limited`)"
+            ),
+            "headers": RETRY_AFTER,
         },
-        503: {"description": "Invitations are temporarily paused"},
     },
 )
 async def invite_candidate(
@@ -178,15 +169,21 @@ async def invite_candidate(
     status_code=status.HTTP_201_CREATED,
     summary="Create an interview",
     responses={
-        409: {
-            "description": (
-                "The same request is still running, or your company has as many interviews "
-                "without candidates as it may"
-            )
+        409: refusal(
+            "The same request is still running (`request_in_progress`), or your company has as "
+            "many interviews without candidates as it may (`interview_quota_reached`)"
+        ),
+        422: refusal("The body is invalid (`validation_failed`)"),
+        429: {
+            **refusal(
+                "Your company or the key's creator made as many today as it may (`rate_limited`)"
+            ),
+            "headers": RETRY_AFTER,
         },
-        422: {"description": "The body is invalid"},
-        429: {"description": "Your company or the key's creator made as many today as it may"},
-        503: {"description": "Making interviews is paused, or today's AI budget is used up"},
+        503: refusal(
+            "Making interviews is paused (`paused`), or today's AI budget is used up "
+            "(`ai_budget_used_up`)"
+        ),
     },
 )
 async def create_interview(
@@ -211,82 +208,3 @@ async def create_interview(
     interview_id = UUID(await once(name, seconds, request, create))
 
     return interview_of(await companies.interview(key.company_id, interview_id))
-
-
-@router.patch(
-    "/{interview_id}/candidates/{candidate_id}",
-    summary="Update a candidate",
-    responses={
-        **NOT_FOUND,
-        409: {"description": "Extra time was asked for a candidate who already started"},
-        422: {"description": "The body is invalid"},
-    },
-)
-async def update_candidate(
-    interview_id: UUID,
-    candidate_id: UUID,
-    body: CandidateUpdate,
-    key: Annotated[ApiKey, needs(Permission.CANDIDATES_CHANGE)],
-) -> Candidate:
-    """Corrects the candidate's name, or gives them extra time on each question before they
-    start, as an accommodation. All or nothing: when one change is refused, neither is made."""
-    changes = {}
-
-    if "name" in body.model_fields_set:
-        changes["name"] = body.name or ""
-
-    if body.extra_time is not None:
-        changes["extra_time"] = body.extra_time
-
-    # Both or neither: companies checks every rule before it writes.
-    if changes:
-        await companies.change_candidate(
-            key.company_id, interview_id, candidate_id, changes, key.created_by
-        )
-
-    found = await companies.candidate(key.company_id, interview_id, candidate_id)
-
-    return candidate_of(found, key.company_id, interview_id, settings.site_url)
-
-
-@router.delete(
-    "/{interview_id}/candidates/{candidate_id}",
-    status_code=status.HTTP_204_NO_CONTENT,
-    summary="Remove a candidate",
-    responses=NOT_FOUND,
-)
-async def remove_candidate(
-    interview_id: UUID,
-    candidate_id: UUID,
-    key: Annotated[ApiKey, needs(Permission.CANDIDATES_DELETE)],
-) -> None:
-    """Withdraws an invite the candidate hasn't used yet: its link stops working and its credits
-    come back. A candidate who started is erased for good, with their answers and results, for
-    example when they ask to have their data deleted; one who answered at least one question is
-    charged. Your web hooks get `candidate.removed`."""
-    await companies.remove_candidate(key.company_id, interview_id, candidate_id, key.created_by)
-
-
-@router.post(
-    "/{interview_id}/candidates/{candidate_id}/resend",
-    status_code=status.HTTP_204_NO_CONTENT,
-    summary="Send the invitation again",
-    responses={
-        **NOT_FOUND,
-        409: {
-            "description": (
-                "The candidate already finished, or was invited with `sign_in` false (prepza "
-                "doesn't email them)"
-            )
-        },
-        429: {"description": "The key's creator reached their email limits"},
-    },
-)
-async def resend_invite(
-    interview_id: UUID,
-    candidate_id: UUID,
-    key: Annotated[ApiKey, needs(Permission.CANDIDATES_INVITE)],
-) -> None:
-    """Emails the candidate their invitation again, as a reminder; an expired invitation comes
-    back to life for another 30 days."""
-    await companies.resend(key.company_id, interview_id, candidate_id, key.created_by)

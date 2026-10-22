@@ -7,6 +7,7 @@ from pydantic import EmailStr
 from app.auth import needs
 from app.config.settings import settings
 from app.constants.permissions import Permission
+from app.constants.responses import COMMON
 from app.helpers.public import candidate_of
 from app.integrations import companies
 from app.models.api import ApiKey
@@ -14,21 +15,7 @@ from app.schemas.changes import Credits
 from app.schemas.public import Candidate
 
 # What's the company's as a whole: its candidates across interviews and its credits.
-router = APIRouter(
-    tags=["Company"],
-    responses={
-        401: {
-            "description": "The API key is missing, invalid or expired, or its creator can no longer use it"
-        },
-        403: {
-            "description": (
-                "The API key doesn't have the permission the endpoint needs (`code` is "
-                "`missing_permission`)"
-            )
-        },
-        429: {"description": "Your company's keys exceeded 60 requests per minute"},
-    },
-)
+router = APIRouter(tags=["Company"], responses=COMMON)
 
 
 @router.get("/candidates", summary="Find a candidate by email")
