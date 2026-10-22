@@ -110,7 +110,7 @@ export function CodeEditor({
             <span key={index} className="flex pe-5">
               <span
                 aria-hidden
-                className="w-12 shrink-0 pe-4 text-end text-muted-foreground/60 select-none"
+                className="w-12 shrink-0 pe-4 text-end text-muted-foreground select-none"
               >
                 {index + 1}
               </span>

@@ -76,9 +76,9 @@ export function InviteIntro({
           </p>
         </div>
       )}
-      {/* Barely there: prepza hasn't checked who this company is. */}
+      {/* Small and quiet, yet readable (4.5:1): prepza hasn't checked who this company is. */}
       {company && !verifiedDomain && (
-        <p className="text-xs text-muted-foreground/70">{t("unverified")}</p>
+        <p className="text-xs text-muted-foreground">{t("unverified")}</p>
       )}
       <h1
         className={cn(

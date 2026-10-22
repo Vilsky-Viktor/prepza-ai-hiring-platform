@@ -27,7 +27,7 @@ export async function AutomateSection() {
           <span className="mt-1 block">
             <LocalizedLink
               href="/api-docs"
-              className="group inline-flex items-center gap-1 text-primary lowercase transition-colors hover:text-primary/80"
+              className="group inline-flex items-center gap-1 text-primary lowercase underline-offset-4 hover:underline"
             >
               {nav("apiDocs")}
               <ArrowRightIcon
