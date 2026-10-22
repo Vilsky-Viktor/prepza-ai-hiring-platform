@@ -113,7 +113,8 @@ def test_lookups_count_find_one_candidate_and_leave_out_deleted_ones(run):
 
     counts, mine, elsewhere, before, after, unscored, report, found_id, ann_id = run(scenario())
 
-    assert counts == {found_id: 2}
+    # The deleted account's invite is gone, not kept as a row.
+    assert counts == {found_id: 1}
     assert mine.id == ann_id
     assert elsewhere is None
     assert (before, after) == (False, True)

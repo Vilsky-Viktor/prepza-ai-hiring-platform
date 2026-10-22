@@ -1,11 +1,15 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
+from sqlalchemy import select
+
 from app.constants.invites import NOT_STARTED, InviteStatus
+from app.models.outbox import OutboxEvent
 from app.storage import accounts, candidates, companies, interviews, invite_progress, invites
+from app.storage.db import Session
 
 
-def test_a_deleted_candidate_keeps_a_row_without_their_email(run):
+def test_a_deleted_candidates_invites_go_and_the_other_services_are_told(run):
     async def scenario():
         company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
         interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
@@ -13,18 +17,27 @@ def test_a_deleted_candidate_keeps_a_row_without_their_email(run):
         await invite_progress.start(first.id, "gone")
         # A second address of the same person, never started: matched by email.
         await invites.upsert(interview.id, "Gone2@Example.com", "Backend", "Acme", "en")
+        await invites.upsert(interview.id, "stays@example.com", "Backend", "Acme", "en")
         await accounts.forget_candidate("gone", "gone2@example.com")
 
-        return (
-            await candidates.page(interview.id, 0, 10, False),
-            await invites.get_by_token(first.token),
-        )
+        async with Session() as session:
+            told = list(
+                await session.scalars(
+                    select(OutboxEvent.data["candidate_invite_id"].astext).where(
+                        OutboxEvent.event_type == "candidate.removed",
+                        OutboxEvent.data["interview_id"].astext == str(interview.id),
+                    )
+                )
+            )
 
-    rows, by_old_token = run(scenario())
+        return first, await candidates.page(interview.id, 0, 10, False), told
 
-    assert {row.status for row in rows} == {InviteStatus.DELETED}
-    assert all(row.email.startswith("deleted-") and row.user_id is None for row in rows)
-    assert by_old_token is None
+    first, rows, told = run(scenario())
+
+    # Nothing of theirs is left, not even a row without their email: its times and grade would
+    # still point to them.
+    assert [row.email for row in rows] == ["stays@example.com"]
+    assert str(first.id) in told and len(told) == 2
 
 
 def test_memberships_report_how_many_owners_each_company_has(run):

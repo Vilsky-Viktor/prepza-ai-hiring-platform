@@ -60,11 +60,12 @@ def test_a_deleted_account_takes_its_name_with_it_and_an_export_holds_it(run):
         exported = await accounts.export("gone-name-uid", "gone-name@example.com")
         await accounts.forget_candidate("gone-name-uid", "gone-name@example.com")
 
-        return exported, (await candidates.get(interview.id, invite.id)).name
+        return exported, await candidates.get(interview.id, invite.id)
 
     exported, after = run(scenario())
 
     assert [row["name"] for row in exported["interview_invites"]] == ["Gone Person"]
+    # The invite went with the account, name and all.
     assert after is None
 
 

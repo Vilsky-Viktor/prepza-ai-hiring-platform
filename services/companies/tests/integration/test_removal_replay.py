@@ -61,3 +61,32 @@ def test_an_erased_candidate_a_restore_brings_back_is_erased_again(run, monkeypa
     assert (first, again, found) == (1, 0, None)
     assert sessions_deleted == [invite.id]
     assert invite.id in kept and old.id not in kept
+
+
+def test_a_row_a_deleted_account_once_left_blanked_goes_with_the_daily_job(run, monkeypatch):
+    async def nothing(invite_ids):
+        pass
+
+    monkeypatch.setattr(rounds, "delete_invite_sessions", nothing)
+
+    async def scenario():
+        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
+        blanked, _ = await invites.upsert(interview.id, "x@example.com", "Backend", "Acme", "en")
+        kept, _ = await invites.upsert(interview.id, "y@example.com", "Backend", "Acme", "en")
+
+        async with Session() as session:
+            await session.execute(
+                update(CandidateInvite)
+                .where(CandidateInvite.id == blanked.id)
+                .values(status="deleted", email=f"deleted-{blanked.id}")
+            )
+            await session.commit()
+
+        await removal_replay.replay()
+
+        return await invites.get(blanked.id), await invites.get(kept.id)
+
+    gone, kept = run(scenario())
+
+    assert gone is None and kept is not None

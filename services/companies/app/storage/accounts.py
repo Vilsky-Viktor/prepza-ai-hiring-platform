@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Text, delete, func, literal, or_, select, update
+from sqlalchemy import delete, func, or_, select, update
 from sqlalchemy.orm import aliased
 
 from app.constants.invites import InviteStatus
@@ -9,7 +9,7 @@ from app.models.audit import AuditEvent
 from app.models.companies import Company, Member
 from app.models.interviews import Interview
 from app.models.invites import CandidateInvite
-from app.storage import guests
+from app.storage import guests, invites
 from app.storage.db import Session
 
 
@@ -69,21 +69,38 @@ async def unfinished_invites(user_id: str, email: str) -> list[CandidateInvite]:
 
 
 async def forget_candidate(user_id: str, email: str) -> None:
-    """Keeps the company's invite row, marked deleted, without the candidate's email, name or a
-    usable link. The email becomes unique per invite, as an interview can't hold it twice."""
+    """Every invite the person was sent or started goes, as if each company erased them: a row
+    kept without their email still linked back to them (its times, grade, return address), so it
+    wasn't anonymous. The other services are told (candidate.removed), and a restore's copy is
+    erased again (removal_replay). An empty (unverified) email matches by id only."""
+    matched = [CandidateInvite.user_id == user_id]
+
+    if email:
+        matched.append(CandidateInvite.email == email.lower())
+
+    query = (
+        select(CandidateInvite, Interview.company_id)
+        .join(Interview, Interview.id == CandidateInvite.interview_id)
+        .where(or_(*matched))
+    )
+
     async with Session() as session:
-        await session.execute(
-            update(CandidateInvite)
-            .where(or_(CandidateInvite.user_id == user_id, CandidateInvite.email == email.lower()))
-            .values(
-                status=InviteStatus.DELETED,
-                email=literal("deleted-") + func.cast(CandidateInvite.id, Text()),
-                name=None,
-                token=func.md5(func.random().cast(Text()) + func.cast(CandidateInvite.id, Text())),
-                user_id=None,
-            )
-        )
-        await session.commit()
+        found = [tuple(row) for row in await session.execute(query)]
+
+    for invite, company_id in found:
+        await invites.remove(invite, company_id)
+
+
+async def blanked_invites(limit: int) -> list:
+    """Up to `limit` ids of invites a deleted account once left, blanked (status deleted)."""
+    query = (
+        select(CandidateInvite.id)
+        .where(CandidateInvite.status == InviteStatus.DELETED)
+        .limit(limit)
+    )
+
+    async with Session() as session:
+        return list(await session.scalars(query))
 
 
 async def forget_member_invites(email: str) -> None:
