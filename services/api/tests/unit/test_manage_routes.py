@@ -1,6 +1,7 @@
 import socket
 
 import pytest
+from prepza_common import public_urls
 from prepza_common.encryption import decrypt
 from prepza_common.tokens import hashed
 
@@ -69,7 +70,7 @@ def public(monkeypatch):
 
         return None if "internal" in url else "203.0.113.10"
 
-    monkeypatch.setattr(manage, "public_address", check)
+    monkeypatch.setattr(public_urls, "public_address", check)
 
 
 def test_a_web_hook_gets_a_secret_shown_once_and_stored_encrypted(

@@ -5,7 +5,7 @@ import socket
 from functools import cache
 
 import httpx
-from prepza_common.public_urls import pinned, public_address
+from prepza_common.public_urls import pinned, resolved_address
 
 from app.constants.limits import MAX_REGISTRATION_BYTES
 from app.constants.mcp import METADATA_DOCUMENT_TIMEOUT_SECONDS
@@ -25,7 +25,7 @@ async def read(url: str) -> dict | None:
     internet, connected to the address that was checked, without following redirects, within
     METADATA_DOCUMENT_TIMEOUT_SECONDS and MAX_REGISTRATION_BYTES. None when it can't be read."""
     try:
-        address = await asyncio.to_thread(public_address, url)
+        address = await resolved_address(url)
     except socket.gaierror:
         return None
 

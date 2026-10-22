@@ -4,6 +4,7 @@ from datetime import UTC, datetime, timedelta
 import httpx
 import pytest
 from mcp.shared.auth import InvalidRedirectUriError
+from prepza_common import public_urls
 
 from app.constants.limits import MAX_REGISTRATION_BYTES
 from app.helpers.mcp_clients import document_client, is_document_id, same_loopback
@@ -167,7 +168,7 @@ def answering(monkeypatch, response: httpx.Response, address: str | None = "93.1
 
     client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
     monkeypatch.setattr(reader, "get_client", lambda: client)
-    monkeypatch.setattr(reader, "public_address", lambda url: address)
+    monkeypatch.setattr(public_urls, "public_address", lambda url: address)
 
     return sent
 

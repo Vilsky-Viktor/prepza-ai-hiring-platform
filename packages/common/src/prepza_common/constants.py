@@ -12,6 +12,9 @@ HTTP_TIMEOUT_SECONDS = 15
 # The shared client doesn't retry, not even a failed connection: each call has one layer of
 # retries, its caller's (Pub/Sub's or Cloud Tasks' redelivery, the outbox's flush, a jittered loop
 # around it, or the person), so a call is never retried both underneath and above, nor at once.
+# Looking up the address of a URL someone gave (a web hook, an AI app's metadata) gives up after
+# this long, as a lookup that found nothing: it may work on a retry.
+ADDRESS_LOOKUP_SECONDS = 5
 # Google's token-signing certificates and Firebase Admin's calls (a revocation check, an account's
 # deletion) give up after this long; their libraries' own default, 120 s, outlasts every request.
 GOOGLE_TIMEOUT_SECONDS = 10

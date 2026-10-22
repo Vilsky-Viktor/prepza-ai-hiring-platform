@@ -1,8 +1,10 @@
+import asyncio
 import ipaddress
 import socket
 from urllib.parse import urlsplit
 
 import httpx
+from prepza_common.constants import ADDRESS_LOOKUP_SECONDS
 
 
 def public_address(url: str) -> str | None:
@@ -28,6 +30,17 @@ def public_address(url: str) -> str | None:
         return None
 
     return addresses[0]
+
+
+async def resolved_address(url: str) -> str | None:
+    """public_address, off the event loop and within ADDRESS_LOOKUP_SECONDS: a lookup that takes
+    longer raises socket.gaierror, as one that failed."""
+    try:
+        return await asyncio.wait_for(
+            asyncio.to_thread(public_address, url), ADDRESS_LOOKUP_SECONDS
+        )
+    except TimeoutError:
+        raise socket.gaierror("The address lookup took too long") from None
 
 
 def pinned(url: str, address: str) -> tuple[httpx.URL, dict[str, str], dict[str, str]]:

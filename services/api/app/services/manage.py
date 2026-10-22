@@ -1,4 +1,3 @@
-import asyncio
 import socket
 from datetime import UTC, datetime
 from uuid import UUID
@@ -7,7 +6,7 @@ from fastapi import HTTPException, status
 from prepza_common.encryption import encrypt
 from prepza_common.i18n import TemplateError
 from prepza_common.limits import limit, record_hit
-from prepza_common.public_urls import public_address
+from prepza_common.public_urls import resolved_address
 
 from app.config.settings import settings
 from app.constants.api import KEY_EXPIRY_MONTHS, KeyExpiry
@@ -131,7 +130,7 @@ async def create_webhook(company_id: UUID, url: str, user_id: str) -> NewWebhook
     url = url.strip()
 
     try:
-        address = await asyncio.to_thread(public_address, url)
+        address = await resolved_address(url)
     except socket.gaierror:
         address = None
 

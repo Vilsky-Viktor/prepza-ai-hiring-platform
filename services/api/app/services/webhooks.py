@@ -12,7 +12,7 @@ from fastapi import HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from prepza_common.encryption import decrypt
 from prepza_common.notifications import NotificationKind, Recipient, notification
-from prepza_common.public_urls import public_address
+from prepza_common.public_urls import resolved_address
 from pydantic import BaseModel
 
 from app.config.settings import settings
@@ -231,7 +231,7 @@ async def deliver(hook: Webhook, event_id: str, body: bytes) -> bool:
     secret = decrypt(settings.api_encryption_key, hook.secret)
 
     try:
-        address = await asyncio.to_thread(public_address, hook.url)
+        address = await resolved_address(hook.url)
     except socket.gaierror as error:
         logger.info(
             "Web hook %s didn't take %s: address lookup failed: %s", hook.id, event_id, error

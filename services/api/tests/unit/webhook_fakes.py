@@ -6,6 +6,7 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
+from prepza_common import public_urls
 from prepza_common.encryption import encrypt
 
 from app.services import webhooks as delivery
@@ -118,7 +119,7 @@ def endpoints(monkeypatch, companies_api):
     monkeypatch.setattr(delivery.retries, "claim", claim)
     monkeypatch.setattr(delivery.retries, "postpone", postpone)
     monkeypatch.setattr(delivery.retries, "remove", remove_retry)
-    monkeypatch.setattr(delivery, "public_address", lambda url: check(url, state))
+    monkeypatch.setattr(public_urls, "public_address", lambda url: check(url, state))
     state["hook"] = hook
 
     return state

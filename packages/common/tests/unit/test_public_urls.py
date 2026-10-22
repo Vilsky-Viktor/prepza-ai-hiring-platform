@@ -1,4 +1,6 @@
+import asyncio
 import socket
+import threading
 
 import pytest
 from prepza_common import public_urls
@@ -43,3 +45,29 @@ def test_a_pinned_request_goes_to_the_address_with_the_hosts_name():
     assert str(url) == "https://93.184.216.34:8443/a?b=1"
     assert headers == {"Host": "hooks.example.com:8443"}
     assert extensions == {"sni_hostname": "hooks.example.com"}
+
+
+def test_a_lookup_that_takes_too_long_fails_like_one_that_found_nothing(monkeypatch):
+    release = threading.Event()
+
+    def slow(url):
+        release.wait()
+
+    monkeypatch.setattr(public_urls, "public_address", slow)
+    monkeypatch.setattr(public_urls, "ADDRESS_LOOKUP_SECONDS", 0.01)
+
+    async def look_up():
+        try:
+            await public_urls.resolved_address("https://slow.example/hook")
+        finally:
+            # Let the lookup's thread go, or the test's loop would wait for it.
+            release.set()
+
+    with pytest.raises(socket.gaierror):
+        asyncio.run(look_up())
+
+
+def test_a_lookup_in_time_gives_the_checked_address(monkeypatch):
+    monkeypatch.setattr(public_urls, "public_address", lambda url: "203.0.113.10")
+
+    assert asyncio.run(public_urls.resolved_address("https://ok.example/hook")) == "203.0.113.10"
