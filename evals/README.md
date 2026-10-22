@@ -84,7 +84,8 @@ constants and of the judge prompts, the judge, the model and effort, the scores 
 ## Baselines
 
 The numbers each metric reached last, on its dataset and judge; `baselines.md` has every run
-behind them, by date (the assistant's in `baselines/assistant.md`, generation's prompts' in
+behind them, by date (the assistant's in `baselines/assistant.md` and, for its actions,
+`baselines/assistant-actions.md`, generation's prompts' in
 `baselines/generation.md`, the small utility prompts' in `baselines/utility.md`). Compare a change only with a baseline on the same dataset and judge, and act
 only on a difference beyond both intervals (every result prints its 95% interval, `stats.py`).
 

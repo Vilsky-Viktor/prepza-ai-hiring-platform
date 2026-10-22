@@ -2,9 +2,16 @@
 
 What each metric of `README.md` measured, by date, with the runs behind it. The newest numbers
 per metric are summed up in `README.md`; a shipped change adds its row here, for the assistant
-in `baselines/assistant.md`, for generation's prompts in `baselines/generation.md`, and for the
+in `baselines/assistant.md` (its actions in `baselines/assistant-actions.md`), for generation's prompts in `baselines/generation.md`, and for the
 small utility prompts (translations, code-language tags, quality patterns, conversation titles)
 in `baselines/utility.md` (CLAUDE.md rule 20).
+
+Contents: [Baselines (2026-10-04)](#baselines-2026-10-04) ·
+[Eval changes (2026-10-20)](#eval-changes-2026-10-20) ·
+[Help chat: a tighter rule, reverted](#help-chat-a-tighter-rule-for-what-the-information-doesnt-say-2026-10-20-reverted) ·
+[Help chat: currencies](#help-chat-currencies-in-its-guide-2026-10-21-kept) ·
+[Help chat: four more currencies](#help-chat-four-more-currencies-2026-10-21-kept) ·
+[Help chat: automatic top-up](#help-chat-automatic-top-ups-pause-and-price-notice-2026-10-21-kept)
 
 ## Baselines (2026-10-04)
 
@@ -134,7 +141,8 @@ questions about 75% longer, so a hard Sol interview costs roughly 50–70% more;
 backend and Spanish for travel): no topic came up short at 1.1 (13 topics) or at 1.0 (12), so no
 fill-up call was made; 1.0 saves about 9% of question generation and is in use.
 
-**Assistant** (page context, guides, actions, tools per turn): `baselines/assistant.md`.
+**Assistant**: page context and guides in `baselines/assistant.md`; actions and tools per turn
+in `baselines/assistant-actions.md`.
 
 ## Eval changes (2026-10-20)
 
