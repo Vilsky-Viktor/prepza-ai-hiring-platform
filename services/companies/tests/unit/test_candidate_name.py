@@ -177,8 +177,16 @@ def test_a_deleted_candidate_cant_be_renamed(client, candidate):
     assert saved == []
 
 
-def test_a_single_invite_passes_its_name(client, candidate, monkeypatch):
+@pytest.mark.parametrize(
+    ("earlier", "code"),
+    # Sent again while still open, nothing new is made; an expired invite comes back to life.
+    [(None, 201), ("invited", 200), ("in_process", 200), ("expired", 201)],
+)
+def test_a_single_invite_passes_its_name(client, candidate, monkeypatch, earlier, code):
     names = []
+
+    async def held(interview_id, email):
+        return earlier, None
 
     async def invite(interview, company, user, email, name=None):
         names.append(name)
@@ -188,6 +196,7 @@ def test_a_single_invite_passes_its_name(client, candidate, monkeypatch):
         )
 
     monkeypatch.setattr(candidates_router.candidate_invites, "invite", invite)
+    monkeypatch.setattr(invite_store, "held", held)
     monkeypatch.setattr(interview_access, "attach_set", fake_attach)
     monkeypatch.setattr(interview_access, "refuse_if_paused", nothing)
     monkeypatch.setattr(candidates_router.outbox_service, "flush_quietly", nothing)
@@ -195,7 +204,7 @@ def test_a_single_invite_passes_its_name(client, candidate, monkeypatch):
     body = {"email": "ann@example.com", "name": "Ann Lee"}
     response = client.post(f"/interviews/{INTERVIEW_ID}/candidates", json=body)
 
-    assert response.status_code == 201
+    assert response.status_code == code
     assert names == ["Ann Lee"]
     assert response.json()["name"] == "Ann Lee"
 

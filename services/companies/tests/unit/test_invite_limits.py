@@ -84,7 +84,7 @@ def test_invite_emails_are_refused_over_each_email_limit_as_edited(
     invites_redis.limits[name] = "2"
     codes = [client.post(URL, json={"email": "carol@example.com"}).status_code for _ in range(3)]
 
-    assert codes == [201, 201, 429]
+    assert codes == [201, 200, 429]
     assert [hit["limit"] for hit in limit_hits] == [name]
 
 

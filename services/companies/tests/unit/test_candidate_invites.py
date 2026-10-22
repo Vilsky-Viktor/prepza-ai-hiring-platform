@@ -118,7 +118,8 @@ def test_inviting_the_same_email_again_resends_the_invite(client, monkeypatch, a
     first = client.post(url, json={"email": "Carol@example.com"})
     second = client.post(url, json={"email": "carol@example.com"})
 
-    assert first.status_code == second.status_code == 201
+    # Sent again while still open: nothing new was made.
+    assert (first.status_code, second.status_code) == (201, 200)
     # Credits are set aside once for the candidate; the resend costs nothing more.
     # Set aside once, under the invite's own key.
     assert len(used) == 1
@@ -142,7 +143,7 @@ def test_one_address_gets_at_most_three_invites_a_day(client, monkeypatch):
     other = client.post(URL, json={"email": "dave@example.com"})
     app.dependency_overrides.clear()
 
-    assert codes == [201, 201, 201, 429]
+    assert codes == [201, 200, 200, 429]
     assert other.status_code == 201
     assert len(sent) == 4
 
@@ -179,7 +180,7 @@ def test_invites_refused_for_credits_use_up_no_email_limits(client, monkeypatch)
     app.dependency_overrides.clear()
 
     assert refused == [402] * 4
-    assert codes == [201] * 3
+    assert codes == [201, 200, 200]
     assert len(sent) == 3
 
 

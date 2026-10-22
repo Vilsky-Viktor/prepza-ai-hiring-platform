@@ -2,7 +2,7 @@ import asyncio
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Query, status
+from fastapi import APIRouter, Query, Response, status
 from prepza_common.analytics import track
 from prepza_common.auth import CurrentUser
 from prepza_common.paging import PageParams
@@ -11,6 +11,7 @@ from app.constants.invites import (
     EXTRA_TIME_OPTIONS,
     MAX_SEARCH_LENGTH,
     NOT_STARTED,
+    OPEN,
     CandidateFilter,
     CandidateSort,
     InviteStatus,
@@ -28,20 +29,26 @@ from app.services import candidate_changes, candidate_invites, candidate_results
 from app.services import outbox as outbox_service
 from app.services.access import can_edit
 from app.services.interview_access import candidate_for, interview_for, ready_for_invites
-from app.storage import audit
+from app.storage import audit, invites
 
 router = APIRouter(prefix="/interviews", tags=["interviews"])
 
 
 @router.post("/{interview_id}/candidates", status_code=status.HTTP_201_CREATED)
 async def invite_candidate(
-    interview_id: UUID, body: CandidateIn, user: CurrentUser
+    interview_id: UUID, body: CandidateIn, user: CurrentUser, response: Response
 ) -> CandidateOut:
+    """Invites the candidate (201), or sends an invite that's still open again (200: nothing
+    new is made, as the public API answers); an expired one comes back to life (201)."""
     interview, company, _ = await interview_for(user, interview_id, editor=True)
     interview = await ready_for_invites(interview, user.uid)
+    earlier, _ = await invites.held(interview.id, str(body.email))
 
     invite = await candidate_invites.invite(interview, company, user, str(body.email), body.name)
     await outbox_service.flush_quietly()
+
+    if earlier in OPEN:
+        response.status_code = status.HTTP_200_OK
 
     return CandidateOut(
         id=invite.id,

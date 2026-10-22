@@ -2343,6 +2343,7 @@
      "interviews"
     ],
     "summary": "Invite Candidate",
+    "description": "Invites the candidate (201), or sends an invite that's still open again (200: nothing\nnew is made, as the public API answers); an expired one comes back to life (201).",
     "operationId": "invite_candidate_interviews__interview_id__candidates_post",
     "security": [
      {

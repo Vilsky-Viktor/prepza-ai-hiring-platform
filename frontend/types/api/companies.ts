@@ -648,7 +648,11 @@ export interface paths {
      */
     get: operations["list_candidates_interviews__interview_id__candidates_get"]
     put?: never
-    /** Invite Candidate */
+    /**
+     * Invite Candidate
+     * @description Invites the candidate (201), or sends an invite that's still open again (200: nothing
+     *     new is made, as the public API answers); an expired one comes back to life (201).
+     */
     post: operations["invite_candidate_interviews__interview_id__candidates_post"]
     delete?: never
     options?: never
