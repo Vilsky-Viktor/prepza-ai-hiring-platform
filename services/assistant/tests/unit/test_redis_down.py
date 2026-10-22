@@ -4,29 +4,11 @@ tools) go uncounted rather than refusing every app."""
 import asyncio
 
 import pytest
-from redis.exceptions import ConnectionError as RedisDown
+from fake_redis import DownRedis
 
 from app.services import mcp_tools, oauth_limits
 from app.storage import oauth
 from tests.unit.test_mcp_tools import ACCESS
-
-
-class Pipeline:
-    async def __aenter__(self):
-        raise RedisDown("Connection refused")
-
-    async def __aexit__(self, *exc):
-        return False
-
-
-class DownRedis:
-    """Redis that can't be reached: every command fails."""
-
-    def pipeline(self, transaction=True):
-        return Pipeline()
-
-    async def set(self, *args, **kwargs):
-        raise RedisDown("Connection refused")
 
 
 @pytest.fixture

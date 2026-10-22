@@ -3,6 +3,7 @@ import time
 from datetime import UTC, datetime
 
 import pytest
+from fake_redis import DownRedis, FakeRedis
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from prepza_common import maintenance, memory_cache
@@ -21,32 +22,6 @@ from prepza_common.maintenance import (
 )
 from prepza_common.translations import TRANSLATIONS
 from prepza_common.user import User
-
-
-class FakeRedis:
-    def __init__(self):
-        self.values = {}
-
-    async def exists(self, key):
-        return int(key in self.values)
-
-    async def set(self, key, value, nx=False):
-        if not (nx and key in self.values):
-            self.values[key] = value
-
-    async def getdel(self, key):
-        value = self.values.pop(key, None)
-
-        return value.encode() if value else None
-
-    async def delete(self, key):
-        self.values.pop(key, None)
-
-
-class DownRedis:
-    async def exists(self, key):
-        raise ConnectionError("Redis is down")
-
 
 REDIS = FakeRedis()
 app = FastAPI()
@@ -78,7 +53,7 @@ client = TestClient(app)
 @pytest.fixture(autouse=True)
 def switched_on(monkeypatch):
     """On, with ann as the only superadmin; a token is the email it signs in. Nothing cached."""
-    REDIS.values = {MAINTENANCE_KEY: "ann"}
+    REDIS.counts = {MAINTENANCE_KEY: "ann"}
     monkeypatch.setattr(memory_cache, "_entries", {})
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     monkeypatch.setattr(
@@ -122,7 +97,7 @@ def test_an_invalid_token_is_refused(monkeypatch):
 
 
 def test_off_everything_passes():
-    REDIS.values = {}
+    REDIS.counts = {}
 
     assert client.get("/companies").status_code == 200
 
@@ -140,7 +115,7 @@ def test_the_switch_turns_on_and_off_and_remembers_who():
 
     asyncio.run(set_on(redis, True, "ann"))
 
-    assert redis.values[MAINTENANCE_KEY] == "ann"
+    assert redis.counts[MAINTENANCE_KEY] == "ann"
     assert asyncio.run(is_on(redis))
 
     asyncio.run(set_on(redis, False, "ann"))
@@ -154,7 +129,7 @@ def test_each_instance_reads_the_switch_at_most_every_few_seconds(monkeypatch):
 
     assert asyncio.run(is_on(REDIS))
 
-    REDIS.values = {}
+    REDIS.counts = {}
 
     assert asyncio.run(is_on(REDIS))
 
@@ -173,11 +148,11 @@ def test_it_remembers_when_it_was_turned_on_and_gives_that_out_once():
     before = datetime.now(UTC)
 
     asyncio.run(set_on(redis, True, "ann"))
-    first = redis.values[MAINTENANCE_STARTED_KEY]
+    first = redis.counts[MAINTENANCE_STARTED_KEY]
     # Turned on again while on: still the first start.
     asyncio.run(set_on(redis, True, "bob"))
 
-    assert redis.values[MAINTENANCE_STARTED_KEY] == first
+    assert redis.counts[MAINTENANCE_STARTED_KEY] == first
 
     started = asyncio.run(take_start(redis))
 

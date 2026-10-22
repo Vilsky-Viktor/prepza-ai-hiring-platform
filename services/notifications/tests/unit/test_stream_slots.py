@@ -2,6 +2,7 @@ import asyncio
 
 import anyio
 import pytest
+from fake_redis import FakeRedis
 from fastapi import HTTPException
 from prepza_common import memory_cache
 from prepza_common.limit_list import LIMITS
@@ -9,54 +10,6 @@ from prepza_common.limit_list import LIMITS
 from app.services import feed
 
 MOST = LIMITS["STREAMS_PER_USER"].default
-
-
-class FakeRedis:
-    """Counters and their expiries, set in transactions as rate_limit.counted does."""
-
-    def __init__(self, limits=None):
-        self.counts = {}
-        self.expiries = {}
-        self.limits = limits or {}
-
-    def pipeline(self, transaction):
-        return Pipeline(self)
-
-    async def hgetall(self, key):
-        return {name.encode(): str(value).encode() for name, value in self.limits.items()}
-
-
-class Pipeline:
-    def __init__(self, redis):
-        self.redis, self.steps = redis, []
-
-    async def __aenter__(self):
-        return self
-
-    async def __aexit__(self, *args):
-        return False
-
-    def set(self, key, value, ex, nx):
-        if key not in self.redis.counts:
-            self.steps.append(lambda: self.redis.counts.setdefault(key, value))
-            self.redis.expiries[key] = ex
-
-    def incrby(self, key, amount):
-        def run():
-            self.redis.counts[key] = self.redis.counts.get(key, 0) + amount
-
-            return self.redis.counts[key]
-
-        self.steps.append(run)
-
-    def ttl(self, key):
-        self.steps.append(lambda: self.redis.expiries.get(key, -2))
-
-    async def execute(self):
-        # A round trip, as the real client's: a cancelled caller stops here.
-        await asyncio.sleep(0)
-
-        return [None] * (3 - len(self.steps)) + [step() for step in self.steps]
 
 
 @pytest.fixture

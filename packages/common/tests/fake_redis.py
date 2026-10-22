@@ -3,9 +3,16 @@
 `expiries`), sets, the limits' hash (`limits`, name to value) and transactions. Every command
 fails while `down`; DownRedis is one that is."""
 
+import asyncio
+
 from prepza_common.limit_list import LIMITS_KEY
+from redis.exceptions import ConnectionError as RedisConnectionError
 
 MISSING = -2
+
+
+class RedisDown(RedisConnectionError, ConnectionError):
+    """What a command raises while Redis is down: redis-py's error, which is also Python's."""
 
 
 class FakePipeline:
@@ -50,6 +57,12 @@ class FakePipeline:
         self.queue(self.redis.drop, *keys)
 
     async def execute(self):
+        # A round trip, as the real client's: a cancelled caller stops here. Not asyncio.sleep,
+        # which tests patch to control time.
+        loop = asyncio.get_running_loop()
+        answered = loop.create_future()
+        loop.call_soon(answered.set_result, None)
+        await answered
         results = [command(*args, **kwargs) for command, args, kwargs in self.commands]
         self.commands = []
 
@@ -66,7 +79,7 @@ class FakeRedis:
 
     def check(self):
         if self.down:
-            raise ConnectionError("Redis is down")
+            raise RedisDown("Redis is down")
 
     # The commands' work, shared by the plain commands and the transaction's.
 
@@ -120,7 +133,10 @@ class FakeRedis:
         self.check()
         found = self.counts.get(key)
 
-        return None if found is None else str(found).encode()
+        if found is None or isinstance(found, bytes):
+            return found
+
+        return str(found).encode()
 
     async def getdel(self, key):
         found = await self.get(key)

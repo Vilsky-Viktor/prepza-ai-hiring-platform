@@ -3,23 +3,11 @@
 import asyncio
 
 import pytest
+from fake_redis import FakeRedis
 from prepza_common import memory_cache
-from prepza_common.limit_list import LIMITS_KEY
 
 from app.services import ai_costs
 from app.storage import ai_costs as ai_costs_storage
-
-
-class LimitsRedis:
-    """Only the hash of the limits edited in Controls."""
-
-    def __init__(self, edited: dict):
-        self.edited = edited
-
-    async def hgetall(self, key):
-        assert key == LIMITS_KEY
-
-        return self.edited
 
 
 @pytest.mark.parametrize(
@@ -34,7 +22,7 @@ def test_the_months_spend_is_a_share_of_the_budget_set_in_controls(
 
     monkeypatch.setattr(memory_cache, "_entries", {})
     monkeypatch.setattr(ai_costs_storage, "totals", totals)
-    monkeypatch.setattr(ai_costs, "get_redis", lambda: LimitsRedis(edited))
+    monkeypatch.setattr(ai_costs, "get_redis", lambda: FakeRedis(edited))
 
     month = asyncio.run(ai_costs.month_out())
 

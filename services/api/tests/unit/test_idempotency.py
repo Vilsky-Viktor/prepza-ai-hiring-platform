@@ -1,10 +1,10 @@
 import asyncio
 
 import pytest
+from fake_redis import FakeRedis
 from redis.exceptions import RedisError
 
 from app.services import idempotency
-from tests.unit.test_api_changes import FakeRedis
 
 
 class FlakyRedis(FakeRedis):
@@ -43,7 +43,7 @@ def test_a_made_result_is_answered_when_redis_fails_to_keep_it(monkeypatch):
 
     assert result == "id-1" and runs == [1]
     # Still claimed: a retry is told the first one runs, never making it twice.
-    assert redis.values["slot"] == b"req:pending"
+    assert asyncio.run(redis.get("slot")) == b"req:pending"
 
 
 def test_a_failed_run_raises_its_own_error_when_redis_fails_to_free_its_claim(monkeypatch):

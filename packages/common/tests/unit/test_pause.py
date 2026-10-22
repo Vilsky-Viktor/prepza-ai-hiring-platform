@@ -1,6 +1,7 @@
 import asyncio
 
 import pytest
+from fake_redis import DownRedis, FakeRedis
 from fastapi import HTTPException
 from prepza_common.ai_constants import LIMIT_HIT
 from prepza_common.constants import PAUSE_KEY, PAUSED
@@ -9,31 +10,12 @@ from prepza_common.pause import is_paused, refuse_if_paused, set_paused
 from prepza_common.translations import TRANSLATIONS
 
 
-class FakeRedis:
-    def __init__(self):
-        self.values = {}
-
-    async def exists(self, key):
-        return int(key in self.values)
-
-    async def set(self, key, value):
-        self.values[key] = value
-
-    async def delete(self, key):
-        self.values.pop(key, None)
-
-
-class DownRedis:
-    async def exists(self, key):
-        raise ConnectionError("Redis is down")
-
-
 def test_the_switch_turns_on_and_off_and_remembers_who():
     redis = FakeRedis()
 
     asyncio.run(set_paused(redis, True, "ann"))
 
-    assert redis.values == {PAUSE_KEY: "ann"}
+    assert redis.counts == {PAUSE_KEY: "ann"}
     assert asyncio.run(is_paused(redis))
 
     asyncio.run(set_paused(redis, False, "ann"))

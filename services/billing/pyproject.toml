@@ -19,7 +19,7 @@ dependencies = [
 prepza-common = { path = "../../packages/common", editable = true }
 
 [tool.pytest.ini_options]
-pythonpath = ["."]
+pythonpath = [".", "../../packages/common/tests"]
 
 [dependency-groups]
 dev = [

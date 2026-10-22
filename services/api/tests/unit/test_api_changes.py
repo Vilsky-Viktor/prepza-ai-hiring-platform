@@ -3,6 +3,7 @@ import asyncio
 # The key fixture is imported from test_public_routes and named in the tests.
 # ruff: noqa: F811
 import pytest
+from fake_redis import FakeRedis
 from fastapi import HTTPException
 
 from app.constants.api import IDEMPOTENCY_KEY_REUSED
@@ -21,25 +22,6 @@ def post(client, path, body, idempotency_key=None):
         headers["Idempotency-Key"] = idempotency_key
 
     return client.post(path, json=body, headers=headers)
-
-
-class FakeRedis:
-    def __init__(self):
-        self.values = {}
-
-    async def set(self, name, value, nx=False, ex=None):
-        if nx and name in self.values:
-            return None
-
-        self.values[name] = value.encode() if isinstance(value, str) else value
-
-        return True
-
-    async def get(self, name):
-        return self.values.get(name)
-
-    async def delete(self, name):
-        self.values.pop(name, None)
 
 
 @pytest.fixture
@@ -230,7 +212,7 @@ def test_lists_pass_on_what_changed_since_and_after_which_item(
 
 def test_a_result_kept_before_requests_were_fingerprinted_is_still_returned(monkeypatch):
     redis = FakeRedis()
-    redis.values["old"] = str(INTERVIEW).encode()
+    redis.counts["old"] = str(INTERVIEW).encode()
     monkeypatch.setattr(idempotency, "get_redis", lambda: redis)
 
     async def run():
@@ -241,7 +223,7 @@ def test_a_result_kept_before_requests_were_fingerprinted_is_still_returned(monk
 
 def test_a_retry_while_the_first_still_runs_is_refused(monkeypatch):
     redis = FakeRedis()
-    redis.values["running"] = b"req:pending"
+    redis.counts["running"] = b"req:pending"
     monkeypatch.setattr(idempotency, "get_redis", lambda: redis)
 
     async def run():

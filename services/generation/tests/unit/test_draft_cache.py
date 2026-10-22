@@ -1,28 +1,12 @@
 import asyncio
 from types import SimpleNamespace
 
+from fake_redis import FakeRedis
+
 from app.integrations import llm
 from app.schemas.extraction import JobExtraction
 from app.services.nodes.extraction import extract_info
 from app.storage import draft_cache
-
-
-class FakeRedis:
-    def __init__(self, down=False):
-        self.values = {}
-        self.down = down
-
-    async def get(self, key):
-        if self.down:
-            raise ConnectionError("Redis is down")
-
-        return self.values.get(key)
-
-    async def set(self, key, value, ex):
-        if self.down:
-            raise ConnectionError("Redis is down")
-
-        self.values[key] = value
 
 
 class CountingLLM:

@@ -1,8 +1,10 @@
+import asyncio
 import time
 from types import SimpleNamespace
 from urllib.parse import parse_qs, urlparse
 
 import pytest
+from fake_redis import FakeRedis
 from prepza_common.auth import current_user
 from prepza_common.encryption import encrypt
 from prepza_common.user import User
@@ -33,24 +35,13 @@ def configured(monkeypatch):
     app.dependency_overrides.clear()
 
 
-class FakeRedis:
-    def __init__(self, nonces):
-        self.nonces = nonces
-
-    async def set(self, key, value, ex):
-        self.nonces[key] = ex
-
-    async def delete(self, key):
-        return 1 if self.nonces.pop(key, None) else 0
-
-
 @pytest.fixture(autouse=True)
 def nonces(monkeypatch):
     """The trips' nonces Redis holds, and how long each lives."""
-    found = {}
-    monkeypatch.setattr(service, "get_redis", lambda: FakeRedis(found))
+    fake = FakeRedis()
+    monkeypatch.setattr(service, "get_redis", lambda: fake)
 
-    return found
+    return fake.expiries
 
 
 def test_a_company_id_that_isnt_one_is_refused_before_companies_is_asked(client, monkeypatch):
@@ -124,7 +115,7 @@ def test_slack_not_set_up_on_the_server_says_so(client, monkeypatch):
 def state(expires_in=60):
     """A state whose nonce Redis holds, as if "Add to Slack" was just pressed."""
     nonce = f"n{time.time_ns()}"
-    service.get_redis().nonces[f"slack:state:{nonce}"] = 1
+    asyncio.run(service.get_redis().set(f"slack:state:{nonce}", 1, ex=1))
 
     return signed_state(service.state_key(), C1, "u1", int(time.time()) + expires_in, nonce)
 

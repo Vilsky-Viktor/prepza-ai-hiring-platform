@@ -1,29 +1,11 @@
 import asyncio
 
+from fake_redis import FakeRedis
 from prepza_common import redis_lock
 
 
-class LockRedis:
-    """What the lock uses of Redis: SET NX EX and the release script."""
-
-    def __init__(self):
-        self.values = {}
-
-    async def set(self, key, value, nx, ex):
-        if nx and key in self.values:
-            return None
-
-        self.values[key] = value
-
-        return True
-
-    async def eval(self, script, numkeys, key, token):
-        if self.values.get(key) == token:
-            del self.values[key]
-
-
 def test_a_second_run_waits_for_the_first_to_release_the_lock():
-    redis = LockRedis()
+    redis = FakeRedis()
 
     async def scenario():
         first = await redis_lock.acquire(redis, "job:lock", 60)
