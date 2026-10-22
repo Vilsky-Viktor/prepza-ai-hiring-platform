@@ -146,7 +146,12 @@ export function EditableTitle({
     // readers. A title draws its blue dot itself (.no-dot), so the pencil can sit over it.
     return (
       <Tag className={cn(textClass, !small && "no-dot")}>
-        <span className="cursor-text normal-case" onClick={startEditing}>
+        {/* A name or a title takes the direction of its own text, whatever the page's. */}
+        <span
+          dir="auto"
+          className="cursor-text normal-case"
+          onClick={startEditing}
+        >
           {small ? (
             // A name can be one long word: it breaks, the word joiner keeps the pencil on.
             <>
@@ -174,6 +179,8 @@ export function EditableTitle({
   const input = (
     <input
       ref={inputRef}
+      // A name or a title takes its own direction as it's typed.
+      dir="auto"
       maxLength={maxLength}
       aria-label={label ?? t("title")}
       disabled={saving}

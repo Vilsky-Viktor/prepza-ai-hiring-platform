@@ -36,7 +36,7 @@ export function ArrivingCandidates({ arrived }: { arrived: number }) {
             key={number}
             className={
               at === 0 && arrived > 0
-                ? "animate-in duration-500 fade-in slide-in-from-left-3 motion-reduce:animate-none"
+                ? "animate-in duration-500 fade-in slide-in-from-left-3 motion-reduce:animate-none rtl:slide-in-from-right-3"
                 : undefined
             }
           >

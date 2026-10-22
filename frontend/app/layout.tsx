@@ -29,6 +29,7 @@ import { countryCatalog, priceValues } from "@/lib/catalog"
 import { clientMessages } from "@/lib/messages"
 import { linkLocale, ogLocale, previewImage, siteUrl } from "@/lib/site"
 import { cn } from "cn"
+import { DirectionProvider } from "@base-ui/react/direction-provider"
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("site")
@@ -84,51 +85,57 @@ export default async function RootLayout({
           flex column would otherwise shrink them to their content. */}
       <body className="flex min-h-svh flex-col">
         {CJK_LOCALES.includes(locale as Locale) && <CjkFonts />}
-        {/* Only what client components use: the admin zone adds its own (its layout). */}
-        <NextIntlClientProvider messages={clientMessages(await getMessages())}>
-          <UrlLocaleProvider locale={await linkLocale(locale)}>
-            <ThemeProvider nonce={nonce}>
-              <AuthProvider>
-                <TooltipProvider>
-                  <SignInProvider>
-                    <AssistantProvider>
-                      <NotOnTimedPage>
-                        {/* For keyboards and screen readers: past the header to the page,
-                            shown only when tabbed to. */}
-                        <a
-                          href="#content"
-                          className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-full focus:border focus:bg-background focus:px-5 focus:py-3 focus:text-base"
-                        >
-                          {common("skipToContent")}
-                        </a>
-                        <SiteHeader />
-                      </NotOnTimedPage>
-                      <div
-                        id="content"
-                        tabIndex={-1}
-                        className="flex flex-1 flex-col outline-none [&>*]:w-full"
-                      >
-                        <MaintenanceNotice />
+        {/* Base UI's sliders, menus and popups follow the page's direction (right to left in
+            Arabic, Hebrew and Persian), arrow keys included. */}
+        <DirectionProvider direction={textDirection(locale)}>
+          {/* Only what client components use: the admin zone adds its own (its layout). */}
+          <NextIntlClientProvider
+            messages={clientMessages(await getMessages())}
+          >
+            <UrlLocaleProvider locale={await linkLocale(locale)}>
+              <ThemeProvider nonce={nonce}>
+                <AuthProvider>
+                  <TooltipProvider>
+                    <SignInProvider>
+                      <AssistantProvider>
                         <NotOnTimedPage>
-                          <LegalBanner />
+                          {/* For keyboards and screen readers: past the header to the page,
+                            shown only when tabbed to. */}
+                          <a
+                            href="#content"
+                            className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-full focus:border focus:bg-background focus:px-5 focus:py-3 focus:text-base"
+                          >
+                            {common("skipToContent")}
+                          </a>
+                          <SiteHeader />
                         </NotOnTimedPage>
-                        {children}
-                      </div>
-                      <NotOnTimedPage>
-                        <SiteFooter />
-                      </NotOnTimedPage>
-                      <ScrollTopButton />
-                      <Toaster />
-                      <ReferralNotice />
-                      <PaidNotice />
-                      <PaymentFailed />
-                    </AssistantProvider>
-                  </SignInProvider>
-                </TooltipProvider>
-              </AuthProvider>
-            </ThemeProvider>
-          </UrlLocaleProvider>
-        </NextIntlClientProvider>
+                        <div
+                          id="content"
+                          tabIndex={-1}
+                          className="flex flex-1 flex-col outline-none [&>*]:w-full"
+                        >
+                          <MaintenanceNotice />
+                          <NotOnTimedPage>
+                            <LegalBanner />
+                          </NotOnTimedPage>
+                          {children}
+                        </div>
+                        <NotOnTimedPage>
+                          <SiteFooter />
+                        </NotOnTimedPage>
+                        <ScrollTopButton />
+                        <Toaster />
+                        <ReferralNotice />
+                        <PaidNotice />
+                        <PaymentFailed />
+                      </AssistantProvider>
+                    </SignInProvider>
+                  </TooltipProvider>
+                </AuthProvider>
+              </ThemeProvider>
+            </UrlLocaleProvider>
+          </NextIntlClientProvider>
+        </DirectionProvider>
       </body>
     </html>
   )

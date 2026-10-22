@@ -120,6 +120,7 @@ export function InterviewPicker({
                 maxLength={MAX_SEARCH_LENGTH}
                 placeholder={t("searchInterview")}
                 aria-label={t("searchInterview")}
+                dir="auto"
                 className="h-14 w-full bg-transparent text-lg outline-none placeholder:text-muted-foreground"
               />
             </div>

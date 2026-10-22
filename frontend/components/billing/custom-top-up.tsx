@@ -16,7 +16,8 @@ import { compactNumber, formatPrice } from "@/lib/format"
 import { AREA_STEPS, candidatesAt, customTopUp, positionOf } from "@/lib/top-up"
 import type { Catalog } from "@/types/billing"
 
-// Keys that move the slider by whole candidates, not by its steps.
+// Keys that move the slider by whole candidates, not by its steps; right to left, the arrows'
+// sides swap, as the slider is mirrored.
 const KEY_STEPS: Record<string, number> = {
   ArrowRight: 1,
   ArrowUp: 1,
@@ -46,8 +47,14 @@ export function CustomTopUp({
   const price = (cents: number) => formatPrice(cents, catalog.currency, locale)
   const number = (value: number) => value.toLocaleString(locale)
 
-  function onKeyDown(event: React.KeyboardEvent) {
-    const step = KEY_STEPS[event.key]
+  function onKeyDown(event: React.KeyboardEvent<HTMLElement>) {
+    const mirrored =
+      ["ArrowLeft", "ArrowRight"].includes(event.key) &&
+      getComputedStyle(event.currentTarget).direction === "rtl"
+    const step =
+      KEY_STEPS[event.key] === undefined
+        ? undefined
+        : KEY_STEPS[event.key] * (mirrored ? -1 : 1)
     const edge =
       event.key === "Home"
         ? custom.min_candidates
@@ -64,7 +71,7 @@ export function CustomTopUp({
     setCount(
       edge ??
         Math.min(
-          Math.max(count + step, custom.min_candidates),
+          Math.max(count + (step ?? 0), custom.min_candidates),
           custom.max_candidates
         )
     )
@@ -99,9 +106,9 @@ export function CustomTopUp({
             <span
               key={tier.from_candidates}
               aria-hidden
-              className="absolute top-1/2 h-4 w-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-border"
+              className="absolute top-1/2 h-4 w-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-border rtl:translate-x-1/2"
               style={{
-                left: `${((index + 1) / custom.tiers.length) * 100}%`,
+                insetInlineStart: `${((index + 1) / custom.tiers.length) * 100}%`,
               }}
             />
           ))}

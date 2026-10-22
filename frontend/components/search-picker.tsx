@@ -81,6 +81,7 @@ export function SearchPicker<T extends string>({
                 maxLength={MAX_PICKER_SEARCH_LENGTH}
                 placeholder={placeholder}
                 aria-label={placeholder}
+                dir="auto"
                 className="h-11 w-full bg-transparent text-base outline-none placeholder:text-muted-foreground"
               />
             </div>

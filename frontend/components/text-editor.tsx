@@ -59,7 +59,13 @@ export function TextEditor({
     contentType: "markdown",
     immediatelyRender: false,
     editorProps: {
-      attributes: { class: CONTENT, "aria-label": label, role: "textbox" },
+      // What's typed takes its own direction (Arabic in an English page).
+      attributes: {
+        class: CONTENT,
+        "aria-label": label,
+        role: "textbox",
+        dir: "auto",
+      },
     },
     onUpdate: ({ editor }) => onChange(editor.getMarkdown()),
   })

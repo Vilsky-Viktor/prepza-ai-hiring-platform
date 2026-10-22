@@ -36,6 +36,8 @@ export function ColorField({
           value={typed ?? value}
           maxLength={7}
           spellCheck={false}
+          // A hex code reads left to right on every page.
+          dir="ltr"
           className="w-28 border-transparent font-mono"
           aria-label={label}
           onChange={(event) => {
