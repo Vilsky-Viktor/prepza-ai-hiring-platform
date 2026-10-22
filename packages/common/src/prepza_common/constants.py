@@ -11,6 +11,9 @@ SERVICE_TOKEN_LIFETIME = timedelta(seconds=60)
 HTTP_TIMEOUT_SECONDS = 15
 # Retries only connection attempts that failed, so a request is never sent twice.
 HTTP_RETRIES = 3
+# Google's token-signing certificates and Firebase Admin's calls (a revocation check, an account's
+# deletion) give up after this long; their libraries' own default, 120 s, outlasts every request.
+GOOGLE_TIMEOUT_SECONDS = 10
 
 # Requests that only read: their sign-in token isn't checked for revocation (auth.py), which
 # costs a call to Firebase; every other method's is, so a deleted account can't change anything.

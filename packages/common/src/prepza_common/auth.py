@@ -1,5 +1,6 @@
 from typing import Annotated
 
+import firebase_admin
 import sentry_sdk
 from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -7,6 +8,7 @@ from firebase_admin import auth as firebase_auth
 from firebase_admin.exceptions import FirebaseError
 from prepza_common.constants import (
     DEFAULT_LANGUAGE,
+    GOOGLE_TIMEOUT_SECONDS,
     LANGUAGE_CLAIM,
     LANGUAGES,
     READ_METHODS,
@@ -17,6 +19,14 @@ from prepza_common.user import User
 
 bearer = HTTPBearer()
 optional_bearer = HTTPBearer(auto_error=False)
+
+
+def start_firebase(project_id: str) -> None:
+    """Firebase Admin for a service's lifespan; each of its calls gives up after
+    GOOGLE_TIMEOUT_SECONDS."""
+    firebase_admin.initialize_app(
+        options={"projectId": project_id, "httpTimeout": GOOGLE_TIMEOUT_SECONDS}
+    )
 
 
 def verify(token: str, check_revoked: bool = False) -> User | None:

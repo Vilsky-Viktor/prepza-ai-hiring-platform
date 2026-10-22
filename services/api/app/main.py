@@ -1,8 +1,8 @@
 import logging
 from contextlib import asynccontextmanager
 
-import firebase_admin
 from fastapi import Depends, FastAPI
+from prepza_common.auth import start_firebase
 from prepza_common.body_limit import BodyLimitMiddleware
 from prepza_common.company_access import remember_assistant
 from prepza_common.health import health_router
@@ -39,7 +39,7 @@ init_sentry("api")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    firebase_admin.initialize_app(options={"projectId": settings.firebase_project_id})
+    start_firebase(settings.firebase_project_id)
 
     yield
 

@@ -83,6 +83,9 @@ generation's OpenAI calls); `pacing.take_turn` only asks. With Redis down, reque
 Caching: `no_store.NoStoreMiddleware` marks every answer to a signed-in request, or to a path that
 carries a secret token (`/invites/{token}`), `Cache-Control: no-store`, unless its route set its own
 (a versioned logo); streams (`sse`) are `no-store` too.
+Firebase and Google: `auth.start_firebase(project_id)` starts Firebase Admin in each service's lifespan,
+and its calls, like `google.verify_invoker`'s certificate downloads, give up after
+`GOOGLE_TIMEOUT_SECONDS` (10 s) rather than their libraries' 120 s.
 Settings: `ServiceSettings` (`settings.py`) is the base of every service's `Settings`, with the
 sign-in settings they all read (`FIREBASE_PROJECT_ID`, and `FIREBASE_AUTH_EMULATOR_HOST`, refused
 unless the project is a `demo-` one). A refused setting's error names the setting, never the
