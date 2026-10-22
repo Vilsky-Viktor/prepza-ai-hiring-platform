@@ -10,17 +10,22 @@ from app.constants.webhooks import (
     COMPLAINED_EVENT,
     ID_TAG,
     KIND_TAG,
+    SUPPRESSED_EVENT,
 )
 from app.helpers.unsubscribe import address_hash
 from app.storage import bulk_recipients, suppressed
 
 logger = logging.getLogger(__name__)
 
-REASONS = {BOUNCED_EVENT: SuppressionReason.BOUNCED, COMPLAINED_EVENT: SuppressionReason.COMPLAINED}
+REASONS = {
+    BOUNCED_EVENT: SuppressionReason.BOUNCED,
+    COMPLAINED_EVENT: SuppressionReason.COMPLAINED,
+    SUPPRESSED_EVENT: SuppressionReason.SUPPRESSED,
+}
 
 
 async def from_webhook(event: dict) -> None:
-    """A hard bounce or a spam complaint about an email to a member (not a candidate's invite,
+    """A hard bounce, a spam complaint or Resend's own suppression of an email to a member (not a candidate's invite,
     which is a company's) suppresses its addresses; a complaint about a campaign counts against
     it. Safe to repeat: Resend may send the web hook again."""
     reason = REASONS.get(event.get("type"))

@@ -1,5 +1,6 @@
 import uuid
 
+import pytest
 from prepza_common.auth import current_user
 from prepza_common.user import User
 
@@ -48,3 +49,15 @@ def test_a_superadmin_sees_why_an_address_is_suppressed_and_takes_it_off(run, mo
     assert removed == {"reason": None, "created_at": None}
     assert again.status_code == 200
     assert left == set()
+
+
+@pytest.mark.parametrize("reason", list(SuppressionReason))
+def test_every_reason_is_kept(run, reason):
+    address = address_hash(f"r{uuid.uuid4().hex[:12]}@example.com")
+
+    async def scenario():
+        await suppressed.add(address, reason)
+
+        return await suppressed.get(address)
+
+    assert run(scenario()).reason == reason

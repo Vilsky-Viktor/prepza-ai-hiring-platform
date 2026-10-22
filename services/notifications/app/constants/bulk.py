@@ -39,8 +39,12 @@ class SkipReason(StrEnum):
 
 
 class SuppressionReason(StrEnum):
+    """Why an address is on prepza's suppression list: it bounced for good, marked an email as
+    spam, or Resend suppressed an email to it (on Resend's own list after an earlier one)."""
+
     BOUNCED = "bounced"
     COMPLAINED = "complained"
+    SUPPRESSED = "suppressed"
 
 
 # A run reads this many recipients' addresses and languages at once, just before sending them.
