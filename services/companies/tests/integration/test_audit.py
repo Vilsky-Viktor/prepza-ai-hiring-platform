@@ -163,3 +163,27 @@ def test_a_deleted_users_actions_lose_their_id_batch_after_batch(run, monkeypatc
 
     # More than a batch, all without the id; the other member's stays theirs.
     assert sorted(row.user_id for row in listed) == [DELETED_USER] * 5 + ["owner"]
+
+
+def test_two_deleted_members_who_viewed_one_candidate_the_same_day_are_both_forgotten(run):
+    """Both views fall to the deleted user on the same day: one view stays, and neither
+    deletion fails on the one-view-a-day rule."""
+    first, second = f"gone-{uuid.uuid4()}", f"gone-{uuid.uuid4()}"
+    candidate = uuid.uuid4()
+
+    async def scenario():
+        company = await companies.create(f"Views {uuid.uuid4()}", "owner", "o@example.com")
+        await audit.record_view(company.id, first, candidate)
+        await audit.record_view(company.id, second, candidate)
+        await audit.forget_user(first)
+        await audit.forget_user(second)
+        listed = await audit.list_for_company(company.id, 0, 10)
+        await companies.delete(company.id)
+
+        return listed
+
+    listed = run(scenario())
+
+    assert [(row.user_id, row.action) for row in listed] == [
+        (DELETED_USER, AuditAction.RESULTS_VIEWED)
+    ]

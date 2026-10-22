@@ -7,6 +7,7 @@ from prepza_common.db import delete_in_batches, update_in_batches
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import aliased
 
 from app.models.audit import AuditEvent
 from app.service_auth import REQUEST_KEY, REQUEST_VIA
@@ -154,7 +155,28 @@ async def list_for_company(
 
 async def forget_user(user_id: str) -> None:
     """The user's actions stay in their companies' logs, without the user's id; a batch at a
-    time, so a run cut off midway goes on when run again."""
+    time, so a run cut off midway goes on when run again. A view of a candidate's results that
+    day already kept for a deleted user (another member who deleted their account) holds it: the
+    log keeps one view a candidate and day, so this one goes instead of colliding with it."""
+    kept = aliased(AuditEvent)
+    already_kept = (
+        select(kept.id)
+        .where(
+            kept.user_id == DELETED_USER,
+            kept.action == AuditAction.RESULTS_VIEWED,
+            kept.company_id == AuditEvent.company_id,
+            kept.target_id == AuditEvent.target_id,
+            kept.day == AuditEvent.day,
+        )
+        .exists()
+    )
+    await delete_in_batches(
+        Session,
+        AuditEvent,
+        AuditEvent.user_id == user_id,
+        AuditEvent.action == AuditAction.RESULTS_VIEWED,
+        already_kept,
+    )
     await update_in_batches(
         Session, AuditEvent, {"user_id": DELETED_USER}, AuditEvent.user_id == user_id
     )
