@@ -48,7 +48,11 @@ export async function ContentArticle({
         data={[
           articleData(siteUrl(), {
             ...page,
-            path: localizeHref(address, path),
+            // Its canonical address: the English one while it isn't translated.
+            path:
+              page.language === (address ?? DEFAULT_LOCALE)
+                ? localizeHref(address, path)
+                : path,
             // The page's link preview picture (lib/site.ts pageMetadata).
             image: previewImage(page.seoTitle, address ?? DEFAULT_LOCALE)[0]
               .url,

@@ -186,7 +186,7 @@ On phones dialogs and menus span the screen's width, with square corners. A dial
 
 ## Search engines
 
-Every public page has its title, description, canonical address and link-preview image.
+Every public page has its title, description, canonical address and link-preview image, with the preview's address (the canonical), language (`og:locale`, and `og:locale:alternate` for its other languages) and the picture's `alt`. `e2e_tests/pages/public-heads.spec.ts` checks all of it on every public page, and that each language version names the same versions as English.
 
 **Link-preview images:**
 

@@ -1,11 +1,14 @@
 import { headers } from "next/headers"
-import { describe, expect, it, vi } from "vitest"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { pageMetadata, previewImage } from "@/lib/site"
 
 // lib/site.ts also reads request headers and translations for pages; previewImage uses neither.
 vi.mock("next/headers", () => ({ headers: vi.fn() }))
-vi.mock("next-intl/server", () => ({ getTranslations: vi.fn() }))
+vi.mock("next-intl/server", () => ({
+  getLocale: vi.fn(async () => "en"),
+  getTranslations: vi.fn(),
+}))
 
 describe("previewImage", () => {
   it("draws a page's title in its language", () => {
@@ -15,7 +18,7 @@ describe("previewImage", () => {
     expect(url.pathname).toBe("/preview")
     expect(url.searchParams.get("title")).toBe("preise")
     expect(url.searchParams.get("lang")).toBe("de")
-    expect(image).toMatchObject({ width: 1200, height: 630 })
+    expect(image).toMatchObject({ width: 1200, height: 630, alt: "preise" })
   })
 
   it("keeps the site's own picture without a title", () => {
@@ -33,7 +36,9 @@ describe("previewImage", () => {
 
 describe("pageMetadata", () => {
   // A plain address: no language prefix.
-  vi.mocked(headers).mockResolvedValue(new Headers() as never)
+  beforeEach(() => {
+    vi.mocked(headers).mockResolvedValue(new Headers() as never)
+  })
 
   async function pictureTitle(title: string, path: string) {
     const { openGraph } = await pageMetadata(title, "Text.", path)
@@ -50,5 +55,47 @@ describe("pageMetadata", () => {
 
   it("keeps the API docs' capitals", async () => {
     expect(await pictureTitle("API docs", "/api-docs")).toBe("API docs")
+  })
+})
+
+describe("pageMetadata's link preview", () => {
+  function servedUnder(locale: string | null) {
+    vi.mocked(headers).mockResolvedValue(
+      new Headers(locale ? { "x-prepza-locale": locale } : {}) as never
+    )
+  }
+
+  it("names its address, language and the other languages", async () => {
+    servedUnder("fil")
+    const { openGraph } = await pageMetadata("Presyo", "Text.", "/pricing", true)
+    const og = openGraph as Record<string, unknown>
+
+    expect(og.url).toBe("/fil/pricing")
+    expect(og.locale).toBe("tl")
+    expect(og.alternateLocale).toHaveLength(22)
+    expect(og.alternateLocale).toContain("zh_Hans")
+    expect(og.alternateLocale).not.toContain("tl")
+  })
+
+  it("names English for an article not translated into the address's language", async () => {
+    servedUnder("de")
+    const { openGraph } = await pageMetadata("Guide", "Text.", "/guides/x", [
+      "en",
+      "fr",
+    ])
+    const og = openGraph as Record<string, unknown>
+
+    expect(og.url).toBe("/guides/x")
+    expect(og.locale).toBe("en")
+    expect(og.alternateLocale).toEqual(["fr"])
+  })
+
+  it("names one language and no others for a page with one address", async () => {
+    servedUnder(null)
+    const { openGraph } = await pageMetadata("Terms", "Text.", "/terms")
+    const og = openGraph as Record<string, unknown>
+
+    expect(og.locale).toBe("en")
+    expect(og.alternateLocale).toBeUndefined()
   })
 })
