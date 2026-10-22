@@ -61,6 +61,11 @@ time out on cold pages. These are not code failures:
 - A failure at a different step on each run is timing; the same failure twice is real.
 - When the frontend container passes about 6 GB (`docker stats --no-stream`), restart it:
   `/opt/homebrew/bin/docker-compose restart frontend`, then warm pages again.
+- Browser runs queue: `pages.sh` and `signed-in.sh` run one at a time across every agent
+  (`BROWSER_RUNS`, default 1); "waiting for another browser run" means one is in progress.
+- If the frontend hangs on "Compiling" with long "filesystem cache" lines, its Turbopack cache
+  has grown too large: stop the frontend, run
+  `docker run --rm -v prepza_frontend-next:/next alpine rm -rf /next/dev`, and start it again.
 - A run with no output for many minutes may be stuck: find it with
   `ps aux | grep signed-in.sh`, kill it, and run again.
 - `pages.sh -g "a|b"` breaks on the pipe: run each name separately.

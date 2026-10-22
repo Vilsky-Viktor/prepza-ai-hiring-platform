@@ -10,6 +10,11 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
+# One browser run at a time on the local stack (BROWSER_RUNS), whoever starts it.
+# shellcheck source=browser-lock.sh
+. e2e_tests/browser-lock.sh
+take_browser_slot
+
 if docker compose version >/dev/null 2>&1; then
   compose=(docker compose)
 else
