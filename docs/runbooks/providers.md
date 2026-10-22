@@ -74,8 +74,8 @@ What to do when a provider prepza depends on fails, a payment isn't credited or 
 **What the system does by itself**
 
 - **Generation:** each AI call is tried again up to twice (`LLM_MAX_RETRIES`), and one silent for 5 minutes counts as hung (`LLM_TIMEOUT_SECONDS`, [generation.py](../../services/generation/app/constants/generation.py)). A run that still fails is saved as failed, and companies hears it through the `generation.failed` event. Nothing retries it: the user does, and **Retry** continues from the run's last checkpoint ([retry.py](../../services/generation/app/services/retry.py), [Generation](../generation.md)).
-- **Regenerating one question:** past 110 seconds the old question stays and the company is told to try again ([Generation](../generation.md)).
-- **Help chat:** 3 retries, a 60-second timeout ([rounds llm.py](../../services/rounds/app/integrations/llm.py)). **Assistant:** 2 retries, a 60-second timeout; the failed answer is saved as failed and its tokens still count toward the budgets ([assistant llm.py](../../services/assistant/app/integrations/llm.py), [turns.py](../../services/assistant/app/services/turns.py)).
+- **Regenerating one question:** past 90 seconds of writing the old question stays and the company is told to try again ([Generation](../generation.md)).
+- **Help chat:** 1 retry, a 25-second timeout ([rounds llm.py](../../services/rounds/app/integrations/llm.py)). **Assistant:** 2 retries, a 60-second timeout; the failed answer is saved as failed and its tokens still count toward the budgets ([assistant llm.py](../../services/assistant/app/integrations/llm.py), [turns.py](../../services/assistant/app/services/turns.py)).
 - **Answer-key checks** (OpenAI's Batch API, every 10 minutes): a batch that expires or fails keeps the results it has, and the rest go out again ([Generation](../generation.md)).
 - **News translations:** the job fails, so Cloud Tasks runs it again (up to 3 attempts), and library's daily schedule sends any post still missing a language again ([Admin zone](../features/admin-zone.md#news)).
 
@@ -91,6 +91,8 @@ What to do when a provider prepza depends on fails, a payment isn't credited or 
    ```
 3. If OpenAI is down, wait. The users see a "try again" message, not a broken page. The emergency pause would replace those with a clear 503, but it also stops candidate invites and new interviews, which don't need OpenAI: turn it on only if the failures cost money (**prepza AI spend high**) or a long outage is announced.
 4. Once it's back, there's nothing to replay: failed generations wait for their owner's **Retry**. A template's generation has the same **Retry** on its page in the admin zone. There's no way to retry a company's generation for it.
+
+**OpenAI's rate limits (a dashboard check, before scaling).** OpenAI limits each model by requests and tokens a minute (RPM, TPM) for the account's usage tier. Before raising the generation worker's instances or concurrency (`infra/terraform/locals.tf`), `GENERATION_CALLS_AT_ONCE` or `GENERATION_CALLS_PER_SECOND` (the admin zone's Controls), and again when 429s from OpenAI show in the logs or as `OPENAI_THROTTLED` hits: open OpenAI's dashboard (**Settings → Limits**), read the TPM of each model in `.env.example`'s model settings (generation, verifier, assistant, help chat, embeddings) and check it covers the new peak: about 380k tokens for a full template, times the generations at once, plus the chats. Raise the tier (it rises with spend) or lower the limits above if it doesn't.
 
 **Resolved when** a test question in the help chat gets an answer, `generation-worker` logs no new OpenAI errors, and the alert closes.
 
