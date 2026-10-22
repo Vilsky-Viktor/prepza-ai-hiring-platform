@@ -38,6 +38,9 @@ def discovery() -> None:
     check(status == 401 and "resource_metadata=" in headers.get("WWW-Authenticate", ""), "401")
     status, _, metadata = send("GET", f"{SITE}/.well-known/oauth-protected-resource/mcp")
     check(status == 200 and metadata["authorization_servers"] == [SITE], f"resource {metadata}")
+    # Some apps look for it at the root, without the resource's path: the same document.
+    status, _, root = send("GET", f"{SITE}/.well-known/oauth-protected-resource")
+    check(status == 200 and root == metadata, f"root resource metadata {root}")
     status, _, server = send("GET", f"{SITE}/.well-known/oauth-authorization-server")
     check(status == 200 and server["issuer"] == SITE, f"authorization server {server}")
 
@@ -124,6 +127,10 @@ def refresh_and_revoke(client_id: str, tokens: dict) -> None:
         "refresh_token": tokens["refresh_token"],
         "client_id": client_id,
     }
+    # A refresh for another resource is refused (RFC 8707), and leaves the token working.
+    other = {**refresh, "resource": "https://other.example/mcp"}
+    status, _, refused = post_form(f"{SITE}/token", other)
+    check(status == 400 and refused["error"] == "invalid_target", f"another resource {refused}")
     status, _, renewed = post_form(f"{SITE}/token", refresh)
     check(status == 200 and renewed["access_token"] != access, f"refresh -> {status}")
     status, _, _ = post_form(f"{SITE}/token", refresh)
