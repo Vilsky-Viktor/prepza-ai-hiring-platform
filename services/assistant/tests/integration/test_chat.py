@@ -85,7 +85,8 @@ def test_a_conversation_is_streamed_saved_listed_exported_and_deleted(run, user,
     # with its page, and is on its own page.
     assert (stored[0].page, stored[2].page) == (PAGE, SETTINGS)
     assert model.prompts[2][1].content.startswith('[Asked on the page "companies" ')
-    assert 'the page "settings"' in model.prompts[2][0].content
+    # The page it's asked on now opens the new message, in its context.
+    assert 'the page "settings"' in model.prompts[2][-1].content
     assert first[-1] == {"title": "Your companies"}
     assert [item["title"] for item in listed] == ["Your companies"]
     assert [(m["role"], m["content"], m["status"]) for m in opened["messages"]] == [
