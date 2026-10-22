@@ -11,11 +11,11 @@ from starlette.exceptions import HTTPException
 
 # Pydantic's prefix on messages raised from a validator.
 VALUE_ERROR = "Value error, "
-
-
 # Traditional Chinese (Taiwan's, Hong Kong's, Macau's, or the Hant script): never given the
 # Simplified Chinese that "zh" is.
 TRADITIONAL_CHINESE = ("zh-tw", "zh-hk", "zh-mo", "zh-hant")
+
+
 def language_of(accept_language: str) -> str:
     """The interface language in an Accept-Language header: its first tag, without its region
     ("fil-PH" is Filipino, "pt-BR" Portuguese); Traditional Chinese gets the default."""

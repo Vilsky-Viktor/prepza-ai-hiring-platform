@@ -102,6 +102,14 @@ def test_a_three_letter_language_with_a_region_is_read_whole():
     assert response.json() == {"detail": "Masyadong maraming request. Subukang muli mamaya."}
 
 
+def test_traditional_chinese_never_gets_simplified():
+    assert language_of("zh-TW,zh;q=0.9") == "en"
+    assert language_of("zh-Hant-HK") == "en"
+    assert language_of("zh-HK") == "en"
+    assert language_of("zh-CN") == "zh"
+    assert language_of("zh") == "zh"
+
+
 def test_raised_messages_finds_literals_and_constants_but_not_f_strings(tmp_path, monkeypatch):
     from prepza_common.translations import raised_messages
 
@@ -122,11 +130,3 @@ def test_raised_messages_finds_literals_and_constants_but_not_f_strings(tmp_path
     monkeypatch.syspath_prepend(str(tmp_path))
 
     assert raised_messages(package) == {"Not here", "It is gone"}
-def test_traditional_chinese_never_gets_simplified():
-    assert language_of("zh-TW,zh;q=0.9") == "en"
-    assert language_of("zh-Hant-HK") == "en"
-    assert language_of("zh-HK") == "en"
-    assert language_of("zh-CN") == "zh"
-    assert language_of("zh") == "zh"
-
-
