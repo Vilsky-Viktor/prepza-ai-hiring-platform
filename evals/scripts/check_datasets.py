@@ -179,6 +179,29 @@ def check_code_languages(problems: list[str]) -> list[str]:
     return [item["example"] for item in data["items"]]
 
 
+def check_translations(problems: list[str]) -> list[str]:
+    """Every text has its fields and what code checks; returns the texts."""
+    data = load("translations.json")
+    rows = data["news"] + data["campaigns"]
+    check_described("translations.json", data, problems)
+    unique_ids("translations.json", rows, problems)
+
+    for row in rows:
+        fields = ("title", "text") if row in data["news"] else ("subject", "text", "button")
+
+        if any(field not in row for field in (*fields, "keep")):
+            problems.append(f"translations.json: {row['id']} lacks a field")
+
+        source = " ".join(str(row.get(field) or "") for field in fields)
+        problems += [
+            f"translations.json: {row['id']} keeps {name!r}, which its text lacks"
+            for name in row["keep"] + row.get("links", []) + row.get("numbers", [])
+            if name not in source
+        ]
+
+    return [row["text"] for row in rows]
+
+
 def main() -> None:
     problems: list[str] = []
     examples = prompt_examples()
@@ -214,6 +237,7 @@ def main() -> None:
     texts += [("assistant", text) for text in check_assistant(problems)]
     texts += [("assistant_actions", text) for text in check_actions(problems)]
     texts += [("code_languages", text) for text in check_code_languages(problems)]
+    texts += [("translations", text) for text in check_translations(problems)]
 
     for where, text in texts:
         for example in examples:

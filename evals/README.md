@@ -31,9 +31,13 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | **Other languages** | The same question measures on `language_questions.json` (German, Japanese, Arabic, Thai, Hindi, Russian) | Judge | Keys ≥ 98%; the rest no worse than English beyond the interval |
 | **Help chat** | Answers that do what a right answer does, in the right language, with the right sign-in marker | Judge (`judges/help_answer.md`) and code | ≥ 90% |
 | | Answers that state something the site's information doesn't support | Judge | ≤ 5% |
+| **Translations** (news posts, campaign emails) | Translations that pass every code check: within the limits, names, "prepza", links, Markdown, paragraphs and numbers kept, in the language's script | Code | 100% |
+| | Faithful (nothing left out, added or changed) / native (a hiring professional's wording) / one language | Judge (`judges/translation.md`), pass/fail each | ≥ 90% / ≥ 90% / 100% |
+| | Price and time per translation | Measured | ≤ $0.005, ≤ 10 s |
 | **Code-language tags** | Examples tagged with the notation expected (`code_languages.json`: look-alike notations, plain-text traps, several files) | Code | ≥ 98% (regression: near 100%) |
 | | Price and time per batch of 20 | Measured | ≤ $0.01, ≤ 15 s |
-| **Judge reliability** | Planted wrong keys it catches (`key_traps.json`, `multi_key_traps.json`) | `review_questions.py` | 100% |
+| **Judge reliability** | Planted broken translations it fails (a sentence left out, a number changed) | `translations_test.py` | 100% |
+| | Planted wrong keys it catches (`key_traps.json`, `multi_key_traps.json`) | `review_questions.py` | 100% |
 | | Agreement with the reference verdicts (`reviews.json`): right keys kept, wrong keys found, Cohen's kappa | `review_questions.py --compare-reference` | ≥ 95%, every wrong key found |
 
 Questions also report their average length and the share that show an example (code, a query,
@@ -70,6 +74,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
 | Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 95–100% / 3.25 ± 0.27 / 4.47 | 40 of `multi_questions.json` | 2026-10-20 |
 | Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 328/335 / 328/335 / 188/188 / 44/45 / 45/45 / 85/85; 23,300 tokens, $0.0024, 6.4 s a turn | `assistant_actions.json` (67 cases), 5 repeats | 2026-10-21 |
+| Translations: code checks / faithful / native / one language; judge traps | 100% / 88.6% (79.0–94.1) / 94.3% (86.2–97.8) / 100%; 97 of 97; $0.0021 and 4.9 s a translation | `translations.json`, 10 texts × 7 languages | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
 | Help chat: passed / made up / sign-in marker | 94.4% (84.9–98.1) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-21 |
 
@@ -152,6 +157,14 @@ evals/run.sh assistant assistant_actions.py --label new-prompt # --repeat 3, --o
 evals/run.sh library assistant_templates.py remove
 ```
 
+Translations of news posts and campaign emails, by generation's own `translate_one`, checked by
+code and judged; the judge must catch the traps planted in the run's own translations (a sentence
+left out, a number changed):
+
+```bash
+evals/run.sh generation translations_test.py --label new-prompt   # --languages de,ja, --only n01
+```
+
 The code-language tagging job's call (`tag_examples`), graded by code:
 
 ```bash
@@ -178,6 +191,7 @@ evals/run.sh rounds help_chat.py --label new-prompt          # --repeat 3, --onl
 | The assistant's page-context test, 3 repeats | about $1.70 |
 | The assistant's guides test, 3 repeats | about $1.50 |
 | The assistant's action test, 3 repeats | about $0.45 (the judge reads only 24 replies and 8 traps) |
+| The translations' test (70 translations) | about $0.62 (three quarters the judge) |
 | The code-language tags' test, 3 repeats | about $0.02 |
 | Code check, measurements, dataset checks, traps | free |
 

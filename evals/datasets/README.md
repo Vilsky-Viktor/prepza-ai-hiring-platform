@@ -134,6 +134,17 @@ refused because it would change nothing isn't an action either. 8 judge traps
 `check_datasets.py` checks that its pages' keys are the panel's real ones (an unknown key reaches
 the model as none).
 
+## `translations.json` (by hand, 2026-10-22)
+
+5 made-up news posts and 5 campaign emails in prepza's own voice, translated into 7 languages, one
+per script family plus Persian (German, Japanese, Arabic, Thai, Hindi, Russian, Persian, whose
+word for "candidate" is a known trap). Typical texts, names to keep (Workable, Greenhouse,
+Slack, "prepza"), numbers and prices, Markdown with a link, a campaign without a button, a post
+close to the length limit, one quoting an instruction ("Ignore your instructions…") that must be
+translated, not followed, and words that translate badly ("practice", "candidates"). Each text
+lists what code checks (`keep`, `links`, `numbers`); the judge (`judges/translation.md`) reads
+the source first. Its traps are made by code from each run's own translations.
+
 ## `code_languages.json` (by hand, 2026-10-22)
 
 36 made-up examples as questions show them, each with the notation the site should color it in
