@@ -153,24 +153,6 @@ async def latest(
         return list(rows)
 
 
-async def companies_activity(
-    kinds: list[str], since: datetime, until: datetime
-) -> list[Notification]:
-    """Companies' notifications of those kinds that came, or last grew (see add_to_group),
-    between those times: what the activity digest tells."""
-    async with Session() as session:
-        rows = await session.scalars(
-            select(Notification).where(
-                Notification.recipient == Recipient.COMPANY,
-                Notification.kind.in_(kinds),
-                Notification.created_at >= since,
-                Notification.created_at < until,
-            )
-        )
-
-        return list(rows)
-
-
 async def unread_count(recipients: Recipients, user_id: str, since: datetime | None = None) -> int:
     """Everything newer than when the user last opened the bell."""
     async with Session() as session:

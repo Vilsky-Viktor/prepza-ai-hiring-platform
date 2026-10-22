@@ -16,6 +16,17 @@ class MemberEmail(StrEnum):
 # Other services take at most this many ids in one call.
 MAX_IDS_PER_CALL = 1000
 
+# A run works a page of this many companies at a time (services/member_pages.py): their members
+# and everything those members' emails cover are read for the page alone, and the page's emails
+# go before the next is read. At most this many of a page's members' companies are asked for at
+# once.
+MEMBER_PAGE = 100
+CALLS_AT_ONCE = 10
+# Where the day's runs of a job (the digest, reminders) have got to: the last company id of the
+# last page done, kept past the day's catch-up hour.
+CURSOR_KEY = "member_emails:after:{job}:{day}"
+CURSOR_SECONDS = 2 * 24 * 3600
+
 # A run stops sending after this long, well within the scheduler's 60 seconds, and waits this
 # long between two emails, so it stays under Resend's per-second limit with room for invites.
 RUN_SECONDS = 40

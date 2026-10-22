@@ -12,7 +12,7 @@ from app.config.settings import settings
 from app.constants.member_emails import DIGEST_HOUR
 from app.integrations import smtp
 from app.services import digest, reminders
-from app.storage import notifications, sent_emails
+from app.storage import digest_activity, notifications, sent_emails
 from tests.integration.factories import api
 
 TODAY = date(2026, 10, 8)
@@ -89,6 +89,9 @@ def outside(monkeypatch):
                     else []
                 },
             )
+
+        if path.startswith("/internal/users/") and path.endswith("/companies"):
+            return httpx.Response(200, json={"company_ids": [company_id]})
 
         if path == "/internal/users/email-recipients":
             return httpx.Response(200, json={"recipients": state["people"]})
@@ -169,6 +172,52 @@ def test_the_digest_tells_yesterdays_activity_once_in_the_users_language(run, ou
     assert email.to == f"{ann}@example.com"
     assert email.subject == "Deine Aktivitätsübersicht auf prepza"
     assert "List-Unsubscribe" in email.headers
+
+
+def test_the_digest_reads_active_companies_a_page_at_a_time_in_its_window(run):
+    kinds = [str(NotificationKind.CANDIDATE_FINISHED)]
+    ids = sorted(str(uuid.uuid4()) for _ in range(3))
+    other = str(uuid.uuid4())
+
+    async def scenario():
+        since = datetime.now(UTC)
+
+        for company_id in ids:
+            # Two notifications of a company count it once.
+            for _ in range(2):
+                await notifications.add(str(uuid.uuid4()), finished_at(company_id))
+
+        await notifications.add(
+            str(uuid.uuid4()),
+            notification(
+                Recipient.COMPANY, other, NotificationKind.INTERVIEW_READY, "/", title="x"
+            ),
+        )
+        until = datetime.now(UTC) + timedelta(seconds=1)
+        first = await digest_activity.active_companies(kinds, since, until, "", 2)
+        rest = await digest_activity.active_companies(kinds, since, until, first[-1], 2)
+        later = await digest_activity.active_companies(
+            kinds, until, until + timedelta(days=1), "", 2
+        )
+        activity = await digest_activity.companies_activity(kinds, since, until, ids[:1])
+
+        return first, rest, later, activity
+
+    first, rest, later, activity = run(scenario())
+
+    assert (first, rest, later) == (ids[:2], ids[2:], [])
+    assert {item.recipient_id for item in activity} == {ids[0]}
+
+
+def finished_at(company_id: str) -> dict:
+    """A company's notification that a candidate finished, each of its own."""
+    return notification(
+        Recipient.COMPANY,
+        company_id,
+        NotificationKind.CANDIDATE_FINISHED,
+        f"/companies/{company_id}/interviews/{uuid.uuid4()}",
+        title="Backend",
+    )
 
 
 def test_reminders_are_sent_once_a_week_and_not_to_those_who_turned_them_off(run, outside):

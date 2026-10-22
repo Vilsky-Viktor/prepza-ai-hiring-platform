@@ -1,42 +1,53 @@
 from datetime import datetime, timedelta
 
 from app.config.settings import settings
-from app.constants.member_emails import DIGEST_HOUR, DIGEST_HOURS, MemberEmail
+from app.constants.member_emails import DIGEST_HOUR, DIGEST_HOURS, MEMBER_PAGE, MemberEmail
 from app.constants.unsubscribe import DIGEST_KINDS
 from app.helpers.member_emails import digest_email
 from app.helpers.member_selection import digest_sections
 from app.integrations import companies, library
+from app.services.member_pages import each_page, their_companies
 from app.services.member_sends import deadline, send_once
-from app.storage import notifications
+from app.storage import digest_activity
 
 
 async def send_digests(now: datetime) -> int:
     """The activity digest: one email a day to each member of a company that had activity of a
     kind they get, in the 24 hours before the day's DIGEST_HOUR (the same for every run that day,
-    the catch-up hour's too), covering all their companies. Returns how many were sent."""
+    the catch-up hour's too), covering all their companies. A page of active companies at a
+    time (services/member_pages.py): each page's members get theirs, every company of theirs
+    included. Returns how many were sent."""
     until = now.replace(hour=DIGEST_HOUR, minute=0, second=0, microsecond=0)
+    since = until - timedelta(hours=DIGEST_HOURS)
     stop = deadline()
-    activity = await notifications.companies_activity(
-        DIGEST_KINDS, until - timedelta(hours=DIGEST_HOURS), until
-    )
 
-    if not activity:
-        return 0
-
-    found = await companies.members(sorted({item.recipient_id for item in activity}))
-    user_ids = sorted({member["user_id"] for company in found for member in company["members"]})
-    site = settings.site_url.rstrip("/")
-    jobs = []
-
-    for recipient in await library.recipients(user_ids):
-        sections = digest_sections(
-            recipient["user_id"], recipient["preferences"], found, activity, site
+    async def read_page(after: str) -> tuple[list[str], str]:
+        found = await digest_activity.active_companies(
+            DIGEST_KINDS, since, until, after, MEMBER_PAGE
         )
 
-        if sections:
-            jobs.append((recipient["user_id"], [], email_for(recipient, sections)))
+        return found, found[-1] if found else after
 
-    return await send_once(MemberEmail.DIGEST, until.date(), 1, jobs, stop)
+    async def send_page(company_ids: list[str]) -> int:
+        found = await companies.members(company_ids)
+        user_ids = sorted({member["user_id"] for company in found for member in company["members"]})
+        theirs = await their_companies(user_ids)
+        everywhere = await companies.members(theirs)
+        activity = await digest_activity.companies_activity(DIGEST_KINDS, since, until, theirs)
+        site = settings.site_url.rstrip("/")
+        jobs = []
+
+        for recipient in await library.recipients(user_ids):
+            sections = digest_sections(
+                recipient["user_id"], recipient["preferences"], everywhere, activity, site
+            )
+
+            if sections:
+                jobs.append((recipient["user_id"], [], email_for(recipient, sections)))
+
+        return await send_once(MemberEmail.DIGEST, until.date(), 1, jobs, stop)
+
+    return await each_page(MemberEmail.DIGEST, until.date(), read_page, send_page, stop)
 
 
 def email_for(recipient: dict, sections: list):
