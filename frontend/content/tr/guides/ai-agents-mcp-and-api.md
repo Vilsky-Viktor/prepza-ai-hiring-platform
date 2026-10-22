@@ -1,7 +1,7 @@
 ---
 title: "Yapay zekâ ajanları, MCP ve API'ler: nedir ve işe alımda nasıl kullanılır"
-seoTitle: "İşe Alımda Yapay Zekâ Ajanları, MCP ve API'ler: Nedir, Nasıl Kullanılır"
-description: "Yapay zekâ ajanı nedir, MCP ve API ne işe yarar, işe alımda güvenle nasıl kullanılır ve prepza'yı kendi asistanından, Claude ve ChatGPT'den ya da kendi platformunuzdan nasıl kullanırsınız."
+seoTitle: "İşe Alımda Yapay Zekâ Ajanları, MCP ve API'ler"
+description: "Yapay zekâ ajanı, MCP ve API nedir, işe alımda güvenle nasıl kullanılır ve prepza asistanından, Claude, ChatGPT veya platformunuzdan nasıl yönetilir."
 updated: "2026-10-21"
 ---
 

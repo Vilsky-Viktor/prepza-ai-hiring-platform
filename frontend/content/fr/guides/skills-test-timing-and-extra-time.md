@@ -1,6 +1,6 @@
 ---
 title: "Chronométrer un test de compétences : temps par question, durée et temps supplémentaire"
-seoTitle: "Test de compétences : temps par question et temps supplémentaire"
+seoTitle: "Durée d'un test de compétences et temps supplémentaire"
 description: "Combien de temps par question, combien de questions, quelle durée totale retenir, et comment accorder équitablement du temps supplémentaire aux candidats."
 updated: "2026-10-17"
 ---

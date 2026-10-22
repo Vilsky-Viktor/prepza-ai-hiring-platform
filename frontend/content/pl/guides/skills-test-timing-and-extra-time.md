@@ -1,6 +1,6 @@
 ---
 title: "Jak ustawić czas w teście umiejętności: limit na pytanie, długość i dodatkowy czas"
-seoTitle: "Limit czasu w teście umiejętności: czas na pytanie i dodatkowy czas"
+seoTitle: "Limit czasu w teście umiejętności i dodatkowy czas"
 description: "Ile czasu dać na każde pytanie, ile pytań zadać, jaka łączna długość się sprawdza i jak uczciwie przyznać dodatkowy czas kandydatom, którzy go potrzebują."
 updated: "2026-10-17"
 ---

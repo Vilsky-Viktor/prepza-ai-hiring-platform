@@ -1,7 +1,7 @@
 ---
 title: "AI-agents, MCP en API's: wat het zijn en hoe je ze inzet bij werving en selectie"
-seoTitle: "AI-agents, MCP en API's bij werving: wat het zijn en hoe je ze inzet"
-description: "Wat een AI-agent is, wat MCP en een API doen, hoe je ze veilig inzet bij werving en selectie, en hoe je prepza bedient via de eigen agent, vanuit Claude en ChatGPT of vanuit je eigen platform."
+seoTitle: "AI-agents, MCP en API's bij werving: zo zet je ze in"
+description: "Wat een AI-agent, MCP en een API zijn, hoe je ze veilig inzet bij werving en hoe je prepza bedient via de eigen agent, Claude, ChatGPT of je platform."
 updated: "2026-10-21"
 ---
 

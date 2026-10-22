@@ -54,7 +54,7 @@ A role page, like the template's free practice page, is in English and in its te
 The articles are `/pre-employment-testing`, `/ai-interviews`, `/compare` and its pages, and `/guides` and its pages.
 
 - They are Markdown in `frontend/content/` (`pages/`, `compare/`, `guides/`).
-- Each has a short frontmatter: `title`, `seoTitle`, `description`, `updated`.
+- Each has a short frontmatter: `title`, `seoTitle` (at most 60 characters), `description` (at most 155), `updated`; the body starts with `# <title>`. `tests/lib/content-front-matter.test.ts` checks every file in every folder and language.
 - `lib/content.ts` and `components/content/` show them.
 - A new file is a new page, in its hub and the sitemap.
 - The guides (`guides/` and each language's) are also what the assistant reads for hiring advice: rounds serves them from the same files (`GET /api/rounds/help/guides`, the list by title, and `GET /api/rounds/help/guides/{slug}`, one with its Markdown, in the page's language, English until translated). Its image copies `frontend/content` to the same place relative to its code as in the repo, the local stack mounts it, and CI rebuilds rounds when a guide changes, so there's one copy of each article.

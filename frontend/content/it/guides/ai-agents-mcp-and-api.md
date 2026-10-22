@@ -1,7 +1,7 @@
 ---
 title: "Agenti IA, MCP e API: cosa sono e come usarli nella selezione del personale"
-seoTitle: "Agenti IA, MCP e API nella selezione del personale: cosa sono e come usarli"
-description: "Cos'è un agente IA, a cosa servono MCP e un'API, come usarli in sicurezza nella selezione del personale e come gestire prepza dal suo agente, da Claude e ChatGPT o dalla tua piattaforma."
+seoTitle: "Agenti IA, MCP e API nella selezione del personale"
+description: "Cosa sono agenti IA, MCP e API, come usarli in sicurezza nella selezione e gestire prepza dal suo agente, Claude, ChatGPT o la tua piattaforma."
 updated: "2026-10-21"
 ---
 

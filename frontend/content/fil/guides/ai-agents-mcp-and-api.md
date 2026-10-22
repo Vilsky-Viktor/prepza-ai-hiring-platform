@@ -1,7 +1,7 @@
 ---
 title: "AI agents, MCP at APIs: ano ang mga ito at paano gamitin sa hiring"
-seoTitle: "AI Agents, MCP at APIs sa Hiring: Ano ang Mga Ito at Paano Gamitin"
-description: "Ano ang AI agent, ano ang ginagawa ng MCP at ng API, paano gamitin nang ligtas ang mga ito sa hiring, at paano patakbuhin ang prepza mula sa agent nito, mula sa Claude at ChatGPT, o mula sa sarili mong platform."
+seoTitle: "AI Agents, MCP at APIs sa Hiring: Paano Gamitin"
+description: "Ano ang AI agent, MCP at API, paano ito gamitin nang ligtas sa hiring, at paano patakbuhin ang prepza mula sa agent nito, Claude, ChatGPT o iyong platform."
 updated: "2026-10-21"
 ---
 

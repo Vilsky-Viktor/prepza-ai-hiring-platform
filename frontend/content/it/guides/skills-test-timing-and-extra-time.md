@@ -1,7 +1,7 @@
 ---
 title: "Come impostare i tempi di un test di competenze: timer per domanda, durata e tempo extra"
-seoTitle: "Tempi del test di competenze: timer per domanda e tempo extra"
-description: "Quanto tempo dare a ogni domanda, quante domande fare, quale durata totale funziona e come concedere in modo equo tempo extra ai candidati che ne hanno bisogno."
+seoTitle: "Tempi del test di competenze: timer e tempo extra"
+description: "Quanto tempo dare a ogni domanda, quante domande fare, quale durata totale funziona e come concedere tempo extra equo ai candidati che ne hanno bisogno."
 updated: "2026-10-17"
 ---
 

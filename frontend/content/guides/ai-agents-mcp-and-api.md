@@ -1,7 +1,7 @@
 ---
 title: "AI agents, MCP and APIs: what they are and how to use them in hiring"
-seoTitle: "AI Agents, MCP and APIs in Hiring: What They Are and How to Use Them"
-description: "What an AI agent is, what MCP and an API do, how to use them safely in hiring, and how to run prepza from its agent, from Claude and ChatGPT, or from your own platform."
+seoTitle: "AI Agents, MCP and APIs in Hiring: How to Use Them"
+description: "What an AI agent, MCP and an API are, how to use them safely in hiring, and how to run prepza from its agent, Claude, ChatGPT or your own platform."
 updated: "2026-10-21"
 ---
 

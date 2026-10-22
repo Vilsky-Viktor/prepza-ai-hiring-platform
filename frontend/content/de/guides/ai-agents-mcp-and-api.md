@@ -1,7 +1,7 @@
 ---
 title: "KI-Agenten, MCP und APIs: was sie sind und wie du sie im Recruiting nutzt"
-seoTitle: "KI-Agenten, MCP und APIs im Recruiting: was sie sind und wie du sie nutzt"
-description: "Was ein KI-Agent ist, was MCP und eine API leisten, wie du sie im Recruiting sicher einsetzt und wie du prepza über seinen Agenten, aus Claude und ChatGPT oder von deiner eigenen Plattform aus steuerst."
+seoTitle: "KI-Agenten, MCP und APIs im Recruiting: so nutzt du sie"
+description: "Was KI-Agenten, MCP und APIs sind, wie du sie im Recruiting sicher einsetzt und prepza über seinen Agenten, Claude, ChatGPT oder deine Plattform steuerst."
 updated: "2026-10-21"
 ---
 

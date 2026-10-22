@@ -1,7 +1,7 @@
 ---
 title: "Cara mengatur waktu tes keterampilan: timer per soal, panjang tes, dan waktu tambahan"
-seoTitle: "Batas Waktu Tes Keterampilan: Timer per Soal dan Waktu Tambahan"
-description: "Berapa lama waktu untuk tiap soal, berapa banyak soal, berapa total durasi yang pas, dan cara memberi waktu tambahan secara adil kepada kandidat yang membutuhkannya."
+seoTitle: "Waktu Tes Keterampilan: Timer per Soal dan Waktu Tambahan"
+description: "Berapa lama waktu tiap soal, berapa banyak soal, total durasi yang pas, dan cara memberi waktu tambahan secara adil kepada kandidat yang membutuhkannya."
 updated: "2026-10-17"
 ---
 

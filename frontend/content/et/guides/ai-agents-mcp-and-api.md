@@ -1,7 +1,7 @@
 ---
 title: "AI-agendid, MCP ja API-d: mis need on ja kuidas neid värbamisel kasutada"
-seoTitle: "AI-agendid, MCP ja API-d värbamisel: mis need on ja kuidas neid kasutada"
-description: "Mis on AI-agent, mida teevad MCP ja API, kuidas neid värbamisel turvaliselt kasutada ja kuidas juhtida prepzat selle agendi kaudu, Claude'ist ja ChatGPT-st või oma platvormilt."
+seoTitle: "AI-agendid, MCP ja API-d värbamisel: kuidas neid kasutada"
+description: "Mis on AI-agent, MCP ja API, kuidas neid värbamisel turvaliselt kasutada ja kuidas juhtida prepzat selle agendi, Claude'i, ChatGPT või oma platvormi kaudu."
 updated: "2026-10-21"
 ---
 

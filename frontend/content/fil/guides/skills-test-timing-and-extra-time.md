@@ -1,7 +1,7 @@
 ---
 title: "Paano itakda ang oras ng skills test: oras bawat tanong, haba at dagdag na oras"
-seoTitle: "Time Limit ng Skills Test: Timer Bawat Tanong at Dagdag na Oras"
-description: "Gaano katagal ang ibibigay sa bawat tanong, ilang tanong ang itatanong, anong kabuuang haba ang epektibo, at paano patas na magbigay ng dagdag na oras sa aplikanteng nangangailangan nito."
+seoTitle: "Oras ng Skills Test: Timer Bawat Tanong at Dagdag na Oras"
+description: "Gaano katagal bawat tanong, ilang tanong, anong kabuuang haba ang epektibo, at paano patas na magbigay ng dagdag na oras sa aplikanteng kailangan ito."
 updated: "2026-10-17"
 ---
 

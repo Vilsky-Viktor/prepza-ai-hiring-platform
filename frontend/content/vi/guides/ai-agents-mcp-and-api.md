@@ -1,7 +1,7 @@
 ---
 title: "Agent AI, MCP và API: là gì và cách dùng trong tuyển dụng"
 seoTitle: "Agent AI, MCP và API trong tuyển dụng: là gì và cách dùng"
-description: "Agent AI là gì, MCP và API làm gì, cách dùng chúng an toàn trong tuyển dụng, và cách vận hành prepza từ trợ lý AI của nó, từ Claude và ChatGPT, hoặc từ nền tảng riêng của bạn."
+description: "Agent AI, MCP và API là gì, cách dùng an toàn trong tuyển dụng, và cách vận hành prepza từ trợ lý AI của nó, từ Claude, ChatGPT hoặc nền tảng của bạn."
 updated: "2026-10-21"
 ---
 

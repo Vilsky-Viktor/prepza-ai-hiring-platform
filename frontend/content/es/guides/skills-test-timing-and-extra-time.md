@@ -1,7 +1,7 @@
 ---
 title: "Cómo fijar el tiempo de una prueba de habilidades: tiempo por pregunta, duración y tiempo extra"
-seoTitle: "Tiempo en pruebas de habilidades: por pregunta y tiempo extra"
-description: "Cuánto tiempo dar a cada pregunta, cuántas preguntas hacer, qué duración total funciona y cómo dar tiempo extra de forma justa a los candidatos que lo necesitan."
+seoTitle: "Tiempo en pruebas de habilidades: por pregunta y extra"
+description: "Cuánto tiempo dar a cada pregunta, cuántas preguntas hacer, qué duración total funciona y cómo dar tiempo extra justo a los candidatos que lo necesitan."
 updated: "2026-10-17"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Agen AI, MCP, dan API: apa itu dan cara memakainya dalam rekrutmen"
-seoTitle: "Agen AI, MCP, dan API dalam Rekrutmen: Apa Itu dan Cara Memakainya"
-description: "Apa itu agen AI, apa fungsi MCP dan API, cara memakainya dengan aman dalam rekrutmen, dan cara menjalankan prepza dari agennya, dari Claude dan ChatGPT, atau dari platformmu sendiri."
+seoTitle: "Agen AI, MCP, dan API dalam Rekrutmen: Cara Memakainya"
+description: "Apa itu agen AI, MCP, dan API, cara memakainya dengan aman dalam rekrutmen, dan cara menjalankan prepza dari agennya, Claude, ChatGPT, atau platformmu."
 updated: "2026-10-21"
 ---
 

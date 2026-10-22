@@ -1,7 +1,7 @@
 ---
 title: "Agents IA, MCP et API : ce que c'est et comment s'en servir dans le recrutement"
-seoTitle: "Agents IA, MCP et API dans le recrutement : définition et usages"
-description: "Ce qu'est un agent IA, à quoi servent MCP et une API, comment les utiliser en toute sécurité dans le recrutement, et comment piloter prepza depuis son agent, depuis Claude et ChatGPT ou depuis votre propre plateforme."
+seoTitle: "Agents IA, MCP et API en recrutement : définition et usages"
+description: "Agent IA, MCP et API : définitions, usage sûr dans le recrutement et pilotage de prepza depuis son agent, Claude, ChatGPT ou votre plateforme."
 updated: "2026-10-21"
 ---
 

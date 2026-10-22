@@ -1,7 +1,7 @@
 ---
 title: "Cách đặt thời gian cho bài kiểm tra kỹ năng: thời gian mỗi câu, độ dài và thời gian cộng thêm"
-seoTitle: "Thời gian làm bài kiểm tra kỹ năng: đồng hồ mỗi câu và thêm giờ"
-description: "Nên cho mỗi câu hỏi bao nhiêu thời gian, hỏi bao nhiêu câu, tổng thời lượng bao nhiêu là hợp lý, và cách cho thêm thời gian công bằng với ứng viên cần điều đó."
+seoTitle: "Thời gian bài kiểm tra kỹ năng: mỗi câu và thêm giờ"
+description: "Nên cho mỗi câu bao nhiêu thời gian, hỏi bao nhiêu câu, tổng thời lượng bao nhiêu là hợp lý, và cách cho thêm thời gian công bằng với ứng viên cần điều đó."
 updated: "2026-10-17"
 ---
 

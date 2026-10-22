@@ -1,7 +1,7 @@
 ---
 title: "Bài kiểm tra trước tuyển dụng: hướng dẫn thực tế cho doanh nghiệp vừa và nhỏ"
 seoTitle: "Bài kiểm tra tuyển dụng: các loại, tính công bằng và công cụ"
-description: "Bài kiểm tra tuyển dụng là gì, có những loại nào, khi nào nên dùng, các điều cơ bản về công bằng và pháp lý, và cách chọn công cụ đánh giá năng lực ứng viên."
+description: "Bài kiểm tra tuyển dụng là gì, có những loại nào, khi nào nên dùng, cơ bản về công bằng và pháp lý, và cách chọn công cụ đánh giá năng lực ứng viên."
 updated: "2026-10-21"
 ---
 

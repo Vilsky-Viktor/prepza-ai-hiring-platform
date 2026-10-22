@@ -1,7 +1,7 @@
 ---
 title: "Agenci AI, MCP i API: czym są i jak wykorzystać je w rekrutacji"
-seoTitle: "Agenci AI, MCP i API w rekrutacji: czym są i jak z nich korzystać"
-description: "Czym jest agent AI, do czego służą MCP i API, jak bezpiecznie korzystać z nich w rekrutacji i jak obsługiwać prepza przez jej agenta, z Claude i ChatGPT albo z własnej platformy."
+seoTitle: "Agenci AI, MCP i API w rekrutacji: jak z nich korzystać"
+description: "Czym są agent AI, MCP i API, jak bezpiecznie korzystać z nich w rekrutacji i jak obsługiwać prepza przez jej agenta, Claude, ChatGPT albo własną platformę."
 updated: "2026-10-21"
 ---
 
