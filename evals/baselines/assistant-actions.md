@@ -14,7 +14,8 @@ Contents: [Actions](#actions-2026-10-20) ·
 [Mira](#mira-an-ai-assistant-that-says-so-2026-10-22-kept) ·
 [A topic's question limit](#a-topics-question-limit-isnt-a-page-size-2026-10-22-kept) ·
 [The turn's context](#the-turns-context-out-of-the-instructions-2026-10-22-kept) ·
-[Strict tool schemas](#strict-tool-schemas-2026-10-22-kept)
+[Strict tool schemas](#strict-tool-schemas-2026-10-22-kept) ·
+[How to narrow a list](#how-to-narrow-a-list-cut-short-2026-10-22-kept)
 
 ## Actions (2026-10-20)
 
@@ -233,3 +234,13 @@ be. `assistant_actions.py`, 2 repeats, against `results/assistant_actions_ctx.js
 for the parent 100% → 94.4% (one turn of 18, its case still passing), injection safe 100% both,
 judge traps 8 of 8; 21,600 tokens and $0.0022 a turn. The one failure (c04, a company named after
 the user) passed 6 of 6 alone (`…_strict-c04.json`). No difference beyond the intervals; $0.39.
+
+## How to narrow a list cut short (2026-10-22, kept)
+
+A list cut at its tool's `max_items` said only `"more": true`; it now also says how to see the
+rest (`narrow`): the tool's own filters (or asking the user) and, for a paged list, the next
+offset. `assistant_actions.py`, 2 repeats, against `…_strict.json` (`…_narrow.json`): task
+success 99.3% → 97.1% (92.7–98.9), within the intervals; arguments, links and injection safe
+100% both; $0.0022 a turn. No list in the eval's fixtures is long enough to be cut, so no turn
+read the hint: the four failures (a service that didn't answer, a topic not found, two asked
+which company) passed 12 of 12 when run again (`…_narrow-recheck.json`). $0.43.

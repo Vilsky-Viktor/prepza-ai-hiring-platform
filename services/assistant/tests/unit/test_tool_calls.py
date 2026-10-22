@@ -75,8 +75,22 @@ def test_a_list_is_trimmed_and_cut_for_the_model_and_shows_nothing(calls):
         "source": "list_candidates",
         "shown": 3,
         "more": True,
+        "narrow": result.content["narrow"],
     }
+    # How to see the rest: the tool's own filters, never its paging or order.
+    assert "q, status" in result.content["narrow"]
+    assert "sort" not in result.content["narrow"]
     assert result.block is None
+
+
+def test_a_paged_list_cut_short_points_to_its_next_page_and_to_the_user(calls):
+    calls.answer = answer(json=[{"id": f"i{i}"} for i in range(6)])
+    result = run("list_interviews", {"company_id": COMPANY, "offset": 10, "limit": 5})
+
+    assert (result.content["shown"], result.content["more"]) == (5, True)
+    # No filters of its own (the company is its scope): the next page, and the user to narrow it.
+    assert "offset 15" in result.content["narrow"]
+    assert "company_id" not in result.content["narrow"]
 
 
 def test_the_model_gets_full_links_never_their_bare_codes(calls):

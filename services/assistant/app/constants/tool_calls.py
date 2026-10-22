@@ -31,6 +31,13 @@ SERVICE_UNAVAILABLE = "The service didn't answer. Try again later."
 # followed by ": " and what's wrong, when that's known.
 INVALID_ARGUMENTS = "The arguments don't match the tool's schema; correct them and call it again"
 UNKNOWN_TOOL = "There is no such tool: use one of the tools listed for you, by its exact name."
+# What the model reads under a list cut short: how to see the rest. A list tool's query
+# parameters narrow it, but these, which page or order it or name its scope.
+NOT_FILTERS = ("limit", "offset", "sort", "company_id")
+MORE_ITEMS = "More exist than shown."
+NARROW_WITH = "Narrow the call with {filters}, or ask the user how to narrow it."
+ASK_TO_NARROW = "Say so, and ask the user how to narrow it."
+NEXT_PAGE = "For the next ones, call again with offset {offset}."
 # A link's secret code in a tool's data, and the full link the model gets in its place, as the
 # app's pages copy it: the candidate's invite and the interview's shareable link.
 TOKEN_LINKS = {

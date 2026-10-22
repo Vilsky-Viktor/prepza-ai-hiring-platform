@@ -7,8 +7,13 @@ from prepza_common.i18n import translate
 
 from app.config.settings import settings
 from app.constants.tool_calls import (
+    ASK_TO_NARROW,
     INVALID_ARGUMENTS,
     MAX_PARALLEL_TOOL_CALLS,
+    MORE_ITEMS,
+    NARROW_WITH,
+    NEXT_PAGE,
+    NOT_FILTERS,
     SERVICE_UNAVAILABLE,
     UNKNOWN_TOOL,
 )
@@ -99,7 +104,7 @@ async def call_tool(
     if not response.is_success:
         return result(response.status_code, error_content(response, language))
 
-    content, data = read(tool, response, wanted)
+    content, data = read(tool, response, wanted, given.get("offset", 0))
     context = {"company_id": company_id, **given}
 
     return result(
@@ -107,7 +112,7 @@ async def call_tool(
     )
 
 
-def read(tool: Tool, response: httpx.Response, wanted: int) -> tuple[dict, object]:
+def read(tool: Tool, response: httpx.Response, wanted: int, offset: int = 0) -> tuple[dict, object]:
     """What the model reads of a successful answer, and the trimmed data alone."""
     is_json = response.headers.get("content-type", "").startswith("application/json")
     # A write may answer with no body at all (204).
@@ -121,9 +126,24 @@ def read(tool: Tool, response: httpx.Response, wanted: int) -> tuple[dict, objec
     content = {"data": data, "source": tool.name}
 
     if more:
-        content |= {"shown": len(data), "more": True}
+        content |= {"shown": len(data), "more": True, "narrow": narrowing(tool, offset + len(data))}
 
     return content, data
+
+
+def narrowing(tool: Tool, next_offset: int) -> str:
+    """How the model sees the rest of a list cut short: the tool's own filters, or asking the
+    user, and the next page when the tool pages."""
+    filters = [param for param in tool.query_params if param not in NOT_FILTERS]
+    hint = [
+        MORE_ITEMS,
+        NARROW_WITH.format(filters=", ".join(filters)) if filters else ASK_TO_NARROW,
+    ]
+
+    if "offset" in tool.query_params:
+        hint.append(NEXT_PAGE.format(offset=next_offset))
+
+    return " ".join(hint)
 
 
 def error_content(response: httpx.Response, language: str) -> dict:
