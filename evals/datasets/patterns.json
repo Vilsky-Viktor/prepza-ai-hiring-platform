@@ -438,7 +438,7 @@
       3,
       4
      ],
-     "mistake": "One wrong option is the only negative statement, so it is ruled out at once."
+     "mistake": "One wrong option stands out as the only negative one, a sweeping dismissal (nothing needs doing, it doesn't matter), so it is ruled out at once."
     },
     {
      "id": "p2",
@@ -1369,7 +1369,7 @@
  ],
  "judge_traps": [
   {
-   "planted": "One wrong option is the only negative statement, so it is ruled out at once.",
+   "planted": "One wrong option stands out as the only negative one, a sweeping dismissal (nothing needs doing, it doesn't matter), so it is ruled out at once.",
    "rule": "A distractor is phrased as a denial while all other options are affirmative, so it stands out as wrong.",
    "same": true
   },
@@ -1394,7 +1394,7 @@
    "same": true
   },
   {
-   "planted": "One wrong option is the only negative statement, so it is ruled out at once.",
+   "planted": "One wrong option stands out as the only negative one, a sweeping dismissal (nothing needs doing, it doesn't matter), so it is ruled out at once.",
    "rule": "The correct option is much longer than the others.",
    "same": false
   },

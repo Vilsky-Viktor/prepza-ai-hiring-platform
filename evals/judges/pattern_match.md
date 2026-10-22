@@ -13,6 +13,7 @@ rule and decide.
 </proposed_rule>
 
 Return:
-- same: true when a question that shows the planted mistake is exactly what the rule warns
-  against, even in other words or more generally; false when the rule describes another mistake
-  or is too vague to tell.
+- same: true when the rule would point at the same questions for the same reason, even in other
+  words, or more narrowly or broadly (a rule about the only negatively worded option names an
+  option that is a sweeping negative); false when it describes another mistake or is too vague
+  to tell which questions it means.

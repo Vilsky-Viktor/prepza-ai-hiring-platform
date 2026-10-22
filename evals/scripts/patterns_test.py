@@ -83,10 +83,20 @@ async def run_group(group: dict, turn: int) -> dict:
     for proposed in result.patterns:
         numbers = {n for n in proposed.questions if 1 <= n <= len(signals)}
 
-        if len(numbers) >= MIN_PATTERN_QUESTIONS and rejection(proposed, signals) is None:
-            kept.append(
-                {"text": proposed.text, "questions": sorted(numbers), "same_as": proposed.same_as}
-            )
+        # As the service: a known pattern named by its number counts as that pattern, whatever
+        # its text; a new one must pass the checks.
+        known = (
+            group["known"][proposed.same_as - 1]
+            if proposed.same_as and 1 <= proposed.same_as <= len(group["known"])
+            else None
+        )
+
+        if len(numbers) < MIN_PATTERN_QUESTIONS:
+            continue
+
+        if known or rejection(proposed, signals) is None:
+            rule = {"text": known or proposed.text, "questions": sorted(numbers)}
+            kept.append({**rule, "same_as": proposed.same_as})
 
     judge_cost = 0.0
     found = {}
