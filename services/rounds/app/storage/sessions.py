@@ -2,6 +2,7 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 from prepza_common import outbox
+from prepza_common.db import delete_in_batches
 from sqlalchemy import delete, func, or_, select, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import selectinload
@@ -12,7 +13,7 @@ from app.constants.integrity import (
     MIN_TAB_LEAVE_SECONDS,
     IntegritySignal,
 )
-from app.constants.rounds import RoundStatus
+from app.constants.rounds import SESSION_DELETE_BATCH, RoundStatus
 from app.helpers.rounds import shuffled
 from app.helpers.scores import final_score, invite_grade, scored
 from app.models.answers import Answer
@@ -264,7 +265,9 @@ async def remove_for_invites(candidate_invite_ids: list[uuid.UUID]) -> None:
 
 
 async def remove_for_interview(interview_set_id: uuid.UUID) -> None:
-    """Deletes every candidate's sessions on the interview; answers and chats cascade."""
-    async with Db() as session:
-        await session.execute(delete(Session).where(Session.interview_set_id == interview_set_id))
-        await session.commit()
+    """Deletes every candidate's sessions on the interview, SESSION_DELETE_BATCH at a time, each
+    batch in its own transaction; answers and signals cascade. A run cut off keeps what it
+    deleted, and running it again goes on."""
+    await delete_in_batches(
+        Db, Session, Session.interview_set_id == interview_set_id, batch=SESSION_DELETE_BATCH
+    )
