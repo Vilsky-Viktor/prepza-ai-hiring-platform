@@ -1,10 +1,11 @@
 import logging
+import time
 from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, status
 from prepza_common.google import Invoker
 
-from app.constants.member_emails import SENT_KEEP_DAYS
+from app.constants.member_emails import CLEANUP_SECONDS, SENT_KEEP_DAYS
 from app.constants.suppression import SOFT_BOUNCE_DAYS
 from app.integrations.resend import ResendBusy
 from app.services import outbox as outbox_service
@@ -29,11 +30,12 @@ async def digest() -> None:
 async def reminders() -> None:
     """Every minute for an hour each morning, from Cloud Scheduler: reminders, each kind
     at most once a week to a user. The sent log's old rows go too, and soft bounces past their
-    window."""
+    window, until CLEANUP_SECONDS after the run started; the next run deletes the rest."""
     now = datetime.now(UTC)
+    until = time.monotonic() + CLEANUP_SECONDS
     await run("reminders", send_reminders)
-    await sent_emails.forget(now.date() - timedelta(days=SENT_KEEP_DAYS))
-    await soft_bounces.forget(now - timedelta(days=SOFT_BOUNCE_DAYS))
+    await sent_emails.forget(now.date() - timedelta(days=SENT_KEEP_DAYS), until)
+    await soft_bounces.forget(now - timedelta(days=SOFT_BOUNCE_DAYS), until)
 
 
 @router.post("/bulk", status_code=status.HTTP_204_NO_CONTENT)

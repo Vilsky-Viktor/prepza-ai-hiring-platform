@@ -72,9 +72,10 @@ async def release(user_id: str, kind: str, today: date, items: list[str]) -> Non
         await session.commit()
 
 
-async def forget(before: date) -> None:
-    """Rows older than every window that reads them go, in batches."""
-    await delete_in_batches(Session, SentEmail, SentEmail.sent_on < before)
+async def forget(before: date, until: float | None = None) -> None:
+    """Rows older than every window that reads them go, in batches, none started after `until`
+    (time.monotonic()); the next run deletes the rest."""
+    await delete_in_batches(Session, SentEmail, SentEmail.sent_on < before, until=until)
 
 
 async def remove_user(user_id: str) -> None:

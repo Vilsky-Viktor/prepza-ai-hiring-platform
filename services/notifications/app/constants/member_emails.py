@@ -55,8 +55,11 @@ REVIEW_STARTED_DAYS = 15
 # Generation's status of a generation waiting for its topics' review.
 AWAITING_REVIEW = "awaiting_review"
 
-# The sent log keeps rows long enough to outlast every window above.
+# The sent log keeps rows long enough to outlast every window above. The reminders' runs delete
+# older rows (and old soft bounces) until this long after the run started, still within the
+# scheduler's and Cloud Run's 60 seconds; the next run deletes the rest.
 SENT_KEEP_DAYS = 30
+CLEANUP_SECONDS = 50
 
 # The pages emails link to.
 COMPANIES_LINK = "/companies"

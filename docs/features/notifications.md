@@ -128,7 +128,7 @@ The digest and reminders are sent by `notifications` on a schedule: `POST /inter
 
 - **Never twice:** each email is claimed in a sent log (`sent_emails`: the person, the kind, the day or what a reminder named) under a per-person lock and a unique constraint, so a re-run or two runs at once send it once. A send that fails gives its claim back for the next run; Resend's idempotency key (the person, the kind and the email's content) keeps a send that failed but went through from going out again.
 - **Resend busy** (429): the run gives back its claim and stops; the next run sends the rest. Any other failure fails the run (and the scheduler's alert) after giving the claim back.
-- The log keeps 30 days; deleting an account removes the person's rows.
+- The log keeps 30 days: the reminders' runs delete older rows (and soft bounces past their 14 days) in batches, none started later than 50 seconds after the run began, and the next run deletes the rest; deleting an account removes the person's rows.
 
 ### Email preferences and consent
 

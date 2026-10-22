@@ -1,3 +1,5 @@
+import time
+
 from prepza_common.constants import (
     DB_MAX_OVERFLOW,
     DB_POOL_RECYCLE_SECONDS,
@@ -62,10 +64,13 @@ def migration_engine(database_url: str) -> Engine:
     return create_engine(sqlalchemy_url(database_url), connect_args={"options": options})
 
 
-async def delete_in_batches(sessionmaker, model, *conditions, batch: int | None = None) -> int:
+async def delete_in_batches(
+    sessionmaker, model, *conditions, batch: int | None = None, until: float | None = None
+) -> int:
     """Deletes `model`'s rows matching `conditions`, `batch` (DELETE_BATCH) at a time, each batch
     committed on its own, and returns how many went. For old rows (retention) and a deleted
-    tenant's: a run cut off midway keeps what it deleted, and the next run goes on."""
+    tenant's: a run cut off midway keeps what it deleted, and the next run goes on. With `until`
+    (time.monotonic()), no batch starts after it, so a scheduled job keeps to its deadline."""
     (key,) = inspect(model).primary_key
     batch = batch or DELETE_BATCH
     total = 0
@@ -79,7 +84,7 @@ async def delete_in_batches(sessionmaker, model, *conditions, batch: int | None 
 
         total += result.rowcount
 
-        if result.rowcount < batch:
+        if result.rowcount < batch or (until is not None and time.monotonic() > until):
             return total
 
 

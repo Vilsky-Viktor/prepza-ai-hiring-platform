@@ -25,6 +25,7 @@ async def add(address: str, email_id: str, since: datetime) -> int:
     return count or 0
 
 
-async def forget(before: datetime) -> None:
-    """Bounces older than any window that counts them go, in batches."""
-    await delete_in_batches(Session, SoftBounce, SoftBounce.created_at < before)
+async def forget(before: datetime, until: float | None = None) -> None:
+    """Bounces older than any window that counts them go, in batches, none started after `until`
+    (time.monotonic()); the next run deletes the rest."""
+    await delete_in_batches(Session, SoftBounce, SoftBounce.created_at < before, until=until)

@@ -1,14 +1,16 @@
 import asyncio
 import logging
+import time
 from datetime import UTC, datetime
 
 import pytest
 from prepza_common.notifications import NotificationKind, Recipient, notification
 
 from app.constants.email import AUTOMATED_HEADERS
+from app.constants.member_emails import CLEANUP_SECONDS
 from app.integrations.resend import ResendBusy
 from app.services import digest, events, member_sends, reminders
-from app.storage import notifications, sent_emails
+from app.storage import notifications, sent_emails, soft_bounces
 from tests.unit.member_world import NOW, person
 
 
@@ -108,6 +110,26 @@ def test_the_schedules_stop_quietly_when_resend_is_busy(client, world):
     world["busy"] = True
 
     assert client.post("/internal/schedules/digest").status_code == 204
+
+
+def test_the_reminders_run_deletes_old_rows_only_until_its_cleanup_deadline(
+    client, world, monkeypatch
+):
+    deadlines = []
+
+    async def forget(before, until):
+        deadlines.append(until)
+
+    monkeypatch.setattr(sent_emails, "forget", forget)
+    monkeypatch.setattr(soft_bounces, "forget", forget)
+    started = time.monotonic()
+
+    assert client.post("/internal/schedules/reminders").status_code == 204
+    assert len(deadlines) == 2
+    assert all(
+        started + CLEANUP_SECONDS <= until <= time.monotonic() + CLEANUP_SECONDS
+        for until in deadlines
+    )
 
 
 def test_a_failed_top_up_emails_the_companys_owners_and_admins_at_once(world, monkeypatch):

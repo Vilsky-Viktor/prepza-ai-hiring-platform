@@ -96,6 +96,16 @@ def test_rows_go_batch_after_batch_until_one_comes_up_short(monkeypatch, run):
     assert len(commits) == 3
 
 
+def test_a_deadline_stops_further_batches_and_the_next_run_goes_on(monkeypatch):
+    monkeypatch.setattr(db, "DELETE_BATCH", 3)
+    commits = []
+
+    # The deadline has passed: the batch under way is the last.
+    done = asyncio.run(db.delete_in_batches(fake_sessions([3, 3, 1], commits), Old, until=0))
+
+    assert (done, len(commits)) == (3, 1)
+
+
 def test_a_closed_set_becomes_a_check_condition_with_each_value_quoted():
     from enum import StrEnum
 
