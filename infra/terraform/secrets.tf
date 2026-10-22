@@ -63,14 +63,29 @@ resource "google_secret_manager_secret_version" "service_secret" {
   secret_data = random_password.service_secret[each.value].result
 }
 
-# Signs the titles the frontend's link-preview pictures draw, so /preview draws only prepza's own.
-resource "random_password" "preview_secret" {
-  length  = 48
-  special = false
+# Secrets prepza makes itself, 48 random characters each:
+# - analytics-salt salts the user ids in funnel events, so the table never holds a real id (see
+#   analytics.py and analytics.tf);
+# - preview-secret signs the titles the frontend's link-preview pictures draw, so /preview draws
+#   only prepza's own;
+# - email-link-secret signs the unsubscribe links in emails (notifications), so nobody can make one
+#   for someone else;
+# - person-hash-key keys the hashes that stand for a person (a candidate's opted-out or suppressed
+#   address, a welcome gift's inbox), so nobody with a list of addresses can match them. Replacing
+#   it orphans every stored hash (opt-outs would stop working): never rotate it without moving them.
+locals {
+  generated_secrets = toset(["analytics-salt", "preview-secret", "email-link-secret", "person-hash-key"])
 }
 
-resource "google_secret_manager_secret" "preview_secret" {
-  secret_id = "preview-secret"
+resource "random_password" "generated" {
+  for_each = local.generated_secrets
+  length   = 48
+  special  = false
+}
+
+resource "google_secret_manager_secret" "generated" {
+  for_each  = local.generated_secrets
+  secret_id = each.value
 
   replication {
     auto {}
@@ -79,62 +94,76 @@ resource "google_secret_manager_secret" "preview_secret" {
   depends_on = [google_project_service.apis]
 }
 
-resource "google_secret_manager_secret_version" "preview_secret" {
-  secret      = google_secret_manager_secret.preview_secret.id
-  secret_data = random_password.preview_secret.result
+resource "google_secret_manager_secret_version" "generated" {
+  for_each    = local.generated_secrets
+  secret      = google_secret_manager_secret.generated[each.value].id
+  secret_data = random_password.generated[each.value].result
 }
 
-# Signs the unsubscribe links in emails (notifications), so nobody can make one for someone else.
-resource "random_password" "email_link_secret" {
-  length  = 48
-  special = false
+moved {
+  from = random_password.analytics_salt
+  to   = random_password.generated["analytics-salt"]
 }
 
-resource "google_secret_manager_secret" "email_link_secret" {
-  secret_id = "email-link-secret"
-
-  replication {
-    auto {}
-  }
-
-  depends_on = [google_project_service.apis]
+moved {
+  from = google_secret_manager_secret.analytics_salt
+  to   = google_secret_manager_secret.generated["analytics-salt"]
 }
 
-resource "google_secret_manager_secret_version" "email_link_secret" {
-  secret      = google_secret_manager_secret.email_link_secret.id
-  secret_data = random_password.email_link_secret.result
+moved {
+  from = google_secret_manager_secret_version.analytics_salt
+  to   = google_secret_manager_secret_version.generated["analytics-salt"]
 }
 
-# Keys the hashes that stand for a person (a candidate's opted-out or suppressed address, a
-# welcome gift's inbox), so nobody with a list of addresses can match them. Replacing it orphans
-# every stored hash (opt-outs would stop working): never rotate it without moving them.
-resource "random_password" "person_hash_key" {
-  length  = 48
-  special = false
+moved {
+  from = random_password.preview_secret
+  to   = random_password.generated["preview-secret"]
 }
 
-resource "google_secret_manager_secret" "person_hash_key" {
-  secret_id = "person-hash-key"
-
-  replication {
-    auto {}
-  }
-
-  depends_on = [google_project_service.apis]
+moved {
+  from = google_secret_manager_secret.preview_secret
+  to   = google_secret_manager_secret.generated["preview-secret"]
 }
 
-resource "google_secret_manager_secret_version" "person_hash_key" {
-  secret      = google_secret_manager_secret.person_hash_key.id
-  secret_data = random_password.person_hash_key.result
+moved {
+  from = google_secret_manager_secret_version.preview_secret
+  to   = google_secret_manager_secret_version.generated["preview-secret"]
+}
+
+moved {
+  from = random_password.email_link_secret
+  to   = random_password.generated["email-link-secret"]
+}
+
+moved {
+  from = google_secret_manager_secret.email_link_secret
+  to   = google_secret_manager_secret.generated["email-link-secret"]
+}
+
+moved {
+  from = google_secret_manager_secret_version.email_link_secret
+  to   = google_secret_manager_secret_version.generated["email-link-secret"]
+}
+
+moved {
+  from = random_password.person_hash_key
+  to   = random_password.generated["person-hash-key"]
+}
+
+moved {
+  from = google_secret_manager_secret.person_hash_key
+  to   = google_secret_manager_secret.generated["person-hash-key"]
+}
+
+moved {
+  from = google_secret_manager_secret_version.person_hash_key
+  to   = google_secret_manager_secret_version.generated["person-hash-key"]
 }
 
 locals {
   secret_ids = merge(
     { for name, secret in google_secret_manager_secret.manual : name => secret.secret_id },
     { for name in local.keyed_services : "service-secret-${name}" => google_secret_manager_secret.service_secret[name].secret_id },
-    { analytics-salt = google_secret_manager_secret.analytics_salt.secret_id },
-    { preview-secret = google_secret_manager_secret.preview_secret.secret_id },
-    { email-link-secret = google_secret_manager_secret.email_link_secret.secret_id },
-    { person-hash-key = google_secret_manager_secret.person_hash_key.secret_id },
+    { for name in local.generated_secrets : name => google_secret_manager_secret.generated[name].secret_id },
   )
 }

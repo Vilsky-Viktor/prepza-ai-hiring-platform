@@ -53,26 +53,7 @@ resource "google_pubsub_subscription" "funnel" {
   depends_on = [google_bigquery_dataset_iam_member.pubsub_writer]
 }
 
-# Salts the user ids in funnel events, so the table never holds a real id (see analytics.py).
-resource "random_password" "analytics_salt" {
-  length  = 48
-  special = false
-}
-
-resource "google_secret_manager_secret" "analytics_salt" {
-  secret_id = "analytics-salt"
-
-  replication {
-    auto {}
-  }
-
-  depends_on = [google_project_service.apis]
-}
-
-resource "google_secret_manager_secret_version" "analytics_salt" {
-  secret      = google_secret_manager_secret.analytics_salt.id
-  secret_data = random_password.analytics_salt.result
-}
+# The salt of the user ids in funnel events is the analytics-salt secret (secrets.tf).
 
 locals {
   # Matches FUNNEL_PREFIX in prepza_common.constants.

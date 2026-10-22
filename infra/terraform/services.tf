@@ -146,10 +146,7 @@ resource "google_cloud_run_v2_service" "service" {
     google_secret_manager_secret_version.manual,
     google_secret_manager_secret_version.database_url,
     google_secret_manager_secret_version.service_secret,
-    google_secret_manager_secret_version.analytics_salt,
-    google_secret_manager_secret_version.preview_secret,
-    google_secret_manager_secret_version.email_link_secret,
-    google_secret_manager_secret_version.person_hash_key,
+    google_secret_manager_secret_version.generated,
   ]
 }
 
