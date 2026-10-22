@@ -20,7 +20,14 @@ allowBuilds:
   protobufjs: false
 
 # Patched versions of transitive packages with security advisories: grpc-js (under Firebase's
-# Firestore, unused here) and source-map-js (under PostCSS, at build time).
+# Firestore, unused here), source-map-js (under PostCSS, at build time) and DOMPurify (under
+# jsPDF, which the PDF report uses).
 overrides:
   "@grpc/grpc-js": ">=1.13.6"
   source-map-js: ">=1.2.2"
+  dompurify: ">=3.4.17"
+
+# Versions already in the lockfile before the trust guard existed, flagged only because they are
+# maintenance releases of older majors published after newer, signed ones (no new code pulled in).
+trustPolicyExclude:
+  - "semver@6.3.1"
