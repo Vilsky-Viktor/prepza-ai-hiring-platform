@@ -16,8 +16,8 @@ from prepza_common.ai_constants import Outcome
 from prepza_common.llm import estimated_input, estimated_tokens
 from prepza_common.tracing import traced_run
 
+from app.config.settings import settings
 from app.constants.actions import EMBEDDINGS
-from app.constants.reuse import EMBEDDING_MODEL
 from app.integrations import llm
 
 # The run model calls are counted in; every model call made while it's set reports to it.
@@ -130,4 +130,4 @@ async def embed(texts: list[str]) -> list[list[float]]:
         raise
     finally:
         kept = {**who, "subject_id": subject_id}
-        await ai_usage.record(EMBEDDINGS, EMBEDDING_MODEL, usage, outcome=outcome, **kept)
+        await ai_usage.record(EMBEDDINGS, settings.embedding_model, usage, outcome=outcome, **kept)

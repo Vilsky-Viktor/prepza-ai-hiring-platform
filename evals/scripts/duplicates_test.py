@@ -16,8 +16,8 @@ import time
 from common import DATASETS, RESULTS, load, run_record, save
 from stats import share
 
+from app.config.settings import settings
 from app.constants.generation import DUPLICATE_DISTANCE
-from app.constants.reuse import EMBEDDING_MODEL
 from app.integrations import llm
 from app.services.dedupe import distinct_by_meaning
 
@@ -50,7 +50,9 @@ async def main(label: str) -> None:
         "distinct_kept": share(sum(not r["dropped"] for r in other), len(other)),
         "threshold": DUPLICATE_DISTANCE,
     }
-    run = run_record(model=EMBEDDING_MODEL, scores=scores, cost=0.0, seconds=round(seconds, 1))
+    run = run_record(
+        model=settings.embedding_model, scores=scores, cost=0.0, seconds=round(seconds, 1)
+    )
     save(RESULTS / f"duplicates_{label}.json", {"run": run, "rows": rows})
     print(json.dumps(scores, indent=1))
 

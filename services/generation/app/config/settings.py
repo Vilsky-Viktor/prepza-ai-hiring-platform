@@ -36,6 +36,10 @@ class Settings(ServiceSettings):
     # Tags the notation of questions' examples (the tag_code_languages job).
     code_tags_model: str = "gpt-6.1-sol"
     code_tags_reasoning_effort: ReasoningEffort = "low"
+    # Embeds topics (to find bank questions to reuse) and questions (to drop repeats). Stored
+    # vectors of two models can't be compared: a new one needs every topic embedded again
+    # (jobs/embed_templates.py), at the dimensions library's column holds.
+    embedding_model: str = "text-embedding-3-small"
 
 
 settings = Settings()

@@ -6,8 +6,8 @@ import pytest
 from prepza_common.ai_constants import AI_USED, LIMIT_HIT
 from prepza_common.llm import estimated_tokens
 
+from app.config.settings import settings
 from app.constants.actions import EMBEDDINGS, INTERVIEW_GENERATION
-from app.constants.reuse import EMBEDDING_MODEL
 from app.integrations import llm, usage
 from tests.unit.fake_ai import HANG, MODEL, Chat, refused, reply
 
@@ -140,7 +140,11 @@ def test_embeddings_are_recorded_for_the_runs_company_with_their_input_estimated
     assert asyncio.run(run()) == [[1.0], [1.0]]
 
     [data] = used(events)
-    assert (data["action"], data["model"], data["outcome"]) == (EMBEDDINGS, EMBEDDING_MODEL, "ok")
+    assert (data["action"], data["model"], data["outcome"]) == (
+        EMBEDDINGS,
+        settings.embedding_model,
+        "ok",
+    )
     assert data["input_tokens"] == sum(estimated_tokens(text) for text in texts)
     assert (data["company_id"], data["user_id"]) == (str(COMPANY_ID), "bob")
 

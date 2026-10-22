@@ -5,7 +5,7 @@ from prepza_common.llm import chat_model
 
 from app.config.settings import settings
 from app.constants.generation import LLM_MAX_RETRIES, LLM_TIMEOUT_SECONDS, MAX_OUTPUT_TOKENS
-from app.constants.reuse import EMBEDDING_DIMENSIONS, EMBEDDING_MODEL
+from app.constants.reuse import EMBEDDING_DIMENSIONS
 from app.integrations.llm_limiter import SharedRateLimiter
 
 
@@ -49,7 +49,7 @@ def get_rate_limiter() -> SharedRateLimiter:
 @cache
 def get_embeddings() -> OpenAIEmbeddings:
     return OpenAIEmbeddings(
-        model=EMBEDDING_MODEL,
+        model=settings.embedding_model,
         dimensions=EMBEDDING_DIMENSIONS,
         timeout=LLM_TIMEOUT_SECONDS,
         max_retries=LLM_MAX_RETRIES,

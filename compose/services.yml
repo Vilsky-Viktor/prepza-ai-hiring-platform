@@ -29,6 +29,7 @@ x-generation-env: &generation-env
   PATTERNS_REASONING_EFFORT: ${PATTERNS_REASONING_EFFORT:-medium}
   CODE_TAGS_MODEL: ${CODE_TAGS_MODEL:-gpt-6.1-sol}
   CODE_TAGS_REASONING_EFFORT: ${CODE_TAGS_REASONING_EFFORT:-low}
+  EMBEDDING_MODEL: ${EMBEDDING_MODEL:-text-embedding-3-small}
 
 x-rounds-env: &rounds-env
   DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/rounds

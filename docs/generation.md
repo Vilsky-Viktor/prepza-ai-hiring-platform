@@ -191,6 +191,7 @@ Each AI task has its own model and reasoning effort. The effort is `none`, `mini
 | Translating news posts and campaign emails | `TRANSLATION_MODEL` (`gpt-6.1-sol`) | `TRANSLATION_REASONING_EFFORT` (`low`) |
 | The weekly quality patterns | `PATTERNS_MODEL` (`gpt-6.1-sol`) | `PATTERNS_REASONING_EFFORT` (`medium`) |
 | Tagging the notation of questions' examples (`tag_code_languages`) | `CODE_TAGS_MODEL` (`gpt-6.1-sol`) | `CODE_TAGS_REASONING_EFFORT` (`low`) |
+| Embeddings of topics and questions (reuse, dropping repeats); a new model needs every stored topic embedded again | `EMBEDDING_MODEL` (`text-embedding-3-small`) | None |
 | Help chat (the signed-out assistant) | `HELP_MODEL` (`gpt-6-luna`) | `HELP_REASONING_EFFORT` (`none`, which also lets it take a temperature) |
 | In-app assistant | `ASSISTANT_MODEL` (`gpt-6-luna`) | `ASSISTANT_REASONING_EFFORT` (`low`) |
 | Assistant's conversation titles | `TITLE_MODEL` (`gpt-6-luna`) | `TITLE_REASONING_EFFORT` (`none`) |
