@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs"
 import { getRequestConfig } from "next-intl/server"
 import { cookies, headers } from "next/headers"
 
@@ -29,7 +30,13 @@ export default getRequestConfig(async () => {
           (await import(`../messages/${locale}.json`)).default
         )
 
-  return { locale, messages }
+  // A message that can't be shown (a missing key, a wrong argument) is reported, never silent;
+  // English text a translation lacks comes from withFallback, and `pnpm check:messages` lists it.
+  return {
+    locale,
+    messages,
+    onError: (error) => Sentry.captureException(error),
+  }
 })
 
 type Messages = { [key: string]: string | string[] | Messages }
