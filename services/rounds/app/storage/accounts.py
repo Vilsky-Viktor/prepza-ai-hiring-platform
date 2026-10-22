@@ -15,6 +15,20 @@ async def delete_user(user_id: str) -> None:
     await delete_in_batches(Db, Session, Session.user_id == user_id, batch=SESSION_DELETE_BATCH)
 
 
+async def user_ids(practice: bool, after: str, limit: int) -> list[str]:
+    """The people who took a company's interview (never a member's own try, a preview), or with
+    `practice` a free practice round, once each, in order: up to `limit` after `after`."""
+    query = select(Session.user_id).where(Session.user_id > after, Session.practice.is_(practice))
+
+    if not practice:
+        query = query.where(Session.preview.is_(False))
+
+    async with Db() as session:
+        rows = await session.scalars(query.distinct().order_by(Session.user_id).limit(limit))
+
+        return list(rows)
+
+
 async def export(user_id: str) -> dict:
     """The user's own data, in plain terms, for their data export."""
     async with Db() as session:

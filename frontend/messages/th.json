@@ -419,8 +419,33 @@
     "campaignKind": "ประเภท",
     "campaignKinds": {
       "updates": "อัปเดตผลิตภัณฑ์",
-      "promotions": "ข้อเสนอ"
+      "promotions": "ข้อเสนอ",
+      "notices": "ประกาศสำคัญ"
     },
+    "campaignNoticeWarning": "ประกาศสำคัญจะส่งถึงทุกคนในกลุ่มเป้าหมาย ไม่ว่าการตั้งค่าอีเมลของพวกเขาจะเป็นอย่างไร และยกเลิกการรับไม่ได้ ใช้เฉพาะกับเหตุการณ์ด้านความปลอดภัย การปิดปรับปรุงตามแผน หรือการเปลี่ยนแปลงวิธีการทำงานของ prepza เท่านั้น ห้ามใช้เพื่อโปรโมตสิ่งใดเด็ดขาด",
+    "campaignAudience": "กลุ่มเป้าหมาย",
+    "campaignAudienceEveryone": "ทุกคน",
+    "campaignAudienceEveryoneNote": {
+      "updates": "ทุกคนที่เปิดรับอัปเดตผลิตภัณฑ์",
+      "promotions": "ทุกคนที่เปิดรับข้อเสนอ",
+      "notices": "ทุกบัญชี"
+    },
+    "campaignAudienceGroups": {
+      "members": "บริษัท",
+      "candidates": "ผู้สมัคร",
+      "learners": "ผู้ฝึกซ้อม"
+    },
+    "campaignAudienceNotes": {
+      "members": "คนในทีมของบริษัท",
+      "candidates": "คนที่ทำการสัมภาษณ์ของบริษัท",
+      "learners": "คนที่ใช้การฝึกซ้อมฟรี"
+    },
+    "campaignAudienceEditorsOnly": "เฉพาะเจ้าของและผู้ดูแล",
+    "campaignAudienceCount": "{count, plural, other {ตอนนี้ส่งถึง {shown} คน}}",
+    "campaignCompanies": "เฉพาะบริษัทเหล่านี้",
+    "campaignCompaniesPlaceholder": "ทุกบริษัท",
+    "campaignCompaniesSearch": "ค้นหาบริษัท",
+    "campaignCompaniesNone": "ไม่พบบริษัท",
     "campaignSubject": "หัวเรื่อง",
     "campaignSubjectPlaceholder": "พิมพ์หัวเรื่องที่นี่…",
     "campaignText": "ข้อความ",
@@ -459,6 +484,11 @@
     "stopCampaign": "หยุด",
     "deleteCampaign": "ลบแคมเปญ",
     "campaignConfirm": {
+      "notice": {
+        "title": "ส่งประกาศสำคัญนี้ไหม",
+        "warning": "ประกาศนี้จะส่งออกไปไม่ว่าการตั้งค่าอีเมลของผู้รับจะเป็นอย่างไร การส่งโปรโมชันด้วยวิธีนี้ละเมิดกฎหมายเกี่ยวกับอีเมลและทำลายความไว้วางใจของผู้ใช้ของเรา",
+        "acknowledge": "ประกาศนี้เกี่ยวกับตัวบริการเอง (ความปลอดภัย ความพร้อมใช้งาน หรือวิธีการทำงาน) ไม่ใช่โปรโมชัน"
+      },
       "send": {
         "title": "ส่งแคมเปญนี้ไหม",
         "text": "{count, plural, =0 {ตอนนี้จะไม่มีใครได้รับ} other {ผู้รับ # คนจะได้รับตั้งแต่ชั่วโมงส่งถัดไป (8:00 ถึง 18:00 UTC) หลังจากนั้นจะแก้ไขไม่ได้}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "อีเมลผ่าน Resend ต่อวัน",
       "RESEND_RESERVE_PERCENT": "สัดส่วนอีเมลผ่าน Resend ต่อวันที่กันไว้ไม่ให้ใช้ส่งแบบกลุ่ม",
       "CAMPAIGNS_PER_KIND_DAY": "แคมเปญแต่ละประเภทต่อวัน",
+      "NOTICES_PER_DAY": "ประกาศสำคัญต่อวัน",
       "AI_SPEND_UNPAID_DAY": "ค่าใช้จ่าย AI ต่อวัน รวมผู้ใช้ที่ยังไม่ชำระเงิน",
       "QUESTION_SECONDS_BASIC": "วินาทีต่อคำถาม แบบทดสอบใหม่ระดับพื้นฐาน",
       "QUESTION_SECONDS_MEDIUM": "วินาทีต่อคำถาม แบบทดสอบใหม่ระดับกลาง",

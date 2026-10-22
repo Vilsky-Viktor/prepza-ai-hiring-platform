@@ -419,8 +419,33 @@
     "campaignKind": "نوع",
     "campaignKinds": {
       "updates": "تازهٔ محصول",
-      "promotions": "پیشنهاد ویژه"
+      "promotions": "پیشنهاد ویژه",
+      "notices": "اطلاعیهٔ مهم"
     },
+    "campaignNoticeWarning": "اطلاعیهٔ مهم به همهٔ مخاطبانش می‌رسد، هر تنظیمات ایمیلی که داشته باشند، و لغو اشتراک ندارد. فقط برای حوادث امنیتی، قطعی‌های برنامه‌ریزی‌شده یا تغییر در نحوهٔ کار prepza از آن استفاده کنید، هرگز برای تبلیغ چیزی.",
+    "campaignAudience": "مخاطبان",
+    "campaignAudienceEveryone": "همه",
+    "campaignAudienceEveryoneNote": {
+      "updates": "همهٔ کسانی که تازه‌های محصول را روشن کرده‌اند",
+      "promotions": "همهٔ کسانی که پیشنهادهای ویژه را روشن کرده‌اند",
+      "notices": "همهٔ حساب‌ها"
+    },
+    "campaignAudienceGroups": {
+      "members": "شرکت‌ها",
+      "candidates": "متقاضیان",
+      "learners": "تمرین‌کنندگان"
+    },
+    "campaignAudienceNotes": {
+      "members": "اعضای تیم یک شرکت",
+      "candidates": "کسانی که مصاحبهٔ یک شرکت را انجام داده‌اند",
+      "learners": "کسانی که از تمرین رایگان استفاده کرده‌اند"
+    },
+    "campaignAudienceEditorsOnly": "فقط مالکان و مدیران",
+    "campaignAudienceCount": "{count, plural, one {اکنون به {shown} نفر می‌رسد} other {اکنون به {shown} نفر می‌رسد}}",
+    "campaignCompanies": "فقط این شرکت‌ها",
+    "campaignCompaniesPlaceholder": "همهٔ شرکت‌ها",
+    "campaignCompaniesSearch": "یافتن شرکت",
+    "campaignCompaniesNone": "هیچ شرکتی پیدا نشد.",
     "campaignSubject": "موضوع",
     "campaignSubjectPlaceholder": "موضوع را اینجا بنویسید…",
     "campaignText": "متن",
@@ -459,6 +484,11 @@
     "stopCampaign": "توقف",
     "deleteCampaign": "حذف کمپین",
     "campaignConfirm": {
+      "notice": {
+        "title": "این اطلاعیهٔ مهم ارسال شود؟",
+        "warning": "بدون توجه به تنظیمات ایمیل افراد فرستاده می‌شود. فرستادن تبلیغ از این راه، قوانین ایمیل و اعتماد کاربران ما را زیر پا می‌گذارد.",
+        "acknowledge": "این اطلاعیه دربارهٔ خود سرویس است (امنیت، دسترس‌پذیری یا نحوهٔ کار آن)، نه تبلیغ."
+      },
       "send": {
         "title": "این کمپین ارسال شود؟",
         "text": "{count, plural, =0 {الان هیچ‌کس آن را دریافت نمی‌کند.} one {گیرندگان: #. از ساعت ارسال بعدی (۸:۰۰ تا ۱۸:۰۰ UTC) آن را دریافت می‌کنند. پس از آن قابل تغییر نیست.} other {گیرندگان: #. از ساعت ارسال بعدی (۸:۰۰ تا ۱۸:۰۰ UTC) آن را دریافت می‌کنند. پس از آن قابل تغییر نیست.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "ایمیل‌ها از طریق Resend در روز",
       "RESEND_RESERVE_PERCENT": "سهمی از ایمیل‌های روزانهٔ Resend که از ارسال‌های انبوه کنار گذاشته می‌شود",
       "CAMPAIGNS_PER_KIND_DAY": "کمپین‌های هر نوع در روز",
+      "NOTICES_PER_DAY": "اطلاعیه‌های مهم در روز",
       "AI_SPEND_UNPAID_DAY": "هزینهٔ هوش مصنوعی در روز، همهٔ کاربران بدون پرداخت با هم",
       "QUESTION_SECONDS_BASIC": "ثانیه برای هر پرسش، آزمون‌های جدید سطح مقدماتی",
       "QUESTION_SECONDS_MEDIUM": "ثانیه برای هر پرسش، آزمون‌های جدید سطح متوسط",

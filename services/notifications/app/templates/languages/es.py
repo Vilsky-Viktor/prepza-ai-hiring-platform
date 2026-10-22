@@ -262,6 +262,21 @@ TEXTS = {
             " prepza."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "Abrir prepza",
+        "footer": (
+            "Este correo se envió a {email} porque tienes una cuenta en prepza. Es un aviso"
+            " importante sobre el servicio, como su seguridad o disponibilidad, así que se"
+            " envía sin importar tu configuración de correo."
+        ),
+    },
     "top_up_failed": {
         "subject": "Recarga automática fallida: {company}",
         "preheader": "No se pudo cobrar a la tarjeta. Recarga para seguir invitando a candidatos.",

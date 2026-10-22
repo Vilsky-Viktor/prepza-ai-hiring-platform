@@ -231,6 +231,20 @@ TEXTS = {
         "open_site": "פתיחת prepza",
         "footer": "הודעה זו נשלחה אל {email} כי בחרתם לקבל מ-prepza מבצעים והטבות.",
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "פתיחת prepza",
+        "footer": (
+            "הודעה זו נשלחה אל {email} כי יש לכם חשבון ב-prepza. זו הודעה חשובה על השירות, כמו"
+            " האבטחה או הזמינות שלו, ולכן היא נשלחת בלי קשר להגדרות האימייל שלכם."
+        ),
+    },
     "top_up_failed": {
         "subject": "הטעינה האוטומטית נכשלה: {company}",
         "preheader": "לא ניתן היה לחייב את הכרטיס. טענו כדי להמשיך להזמין מועמדים.",

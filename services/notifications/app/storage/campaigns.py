@@ -5,7 +5,7 @@ from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
 from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
 
-from app.constants.campaigns import ALREADY_SENT, ONE_A_DAY
+from app.constants.campaigns import ALREADY_SENT, CHANGED, ONE_A_DAY
 from app.models.bulk import BulkSend
 from app.models.campaigns import Campaign, CampaignText
 from app.storage.db import Session
@@ -18,9 +18,10 @@ def as_texts(row: CampaignText) -> dict:
     return {"subject": row.subject, "text": row.text, "button": row.button}
 
 
-async def create(kind: str, link: str | None, created_by: str, english: dict) -> Campaign:
+async def create(fields: dict, created_by: str, english: dict) -> Campaign:
+    """`fields`: its kind, audience and link."""
     async with Session() as session:
-        campaign = Campaign(id=uuid.uuid4(), kind=kind, link=link, created_by=created_by)
+        campaign = Campaign(id=uuid.uuid4(), created_by=created_by, **fields)
         session.add(campaign)
         await session.flush()
         session.add(CampaignText(campaign_id=campaign.id, language=DEFAULT_LANGUAGE, **english))
@@ -69,9 +70,10 @@ async def list_campaigns(offset: int, limit: int) -> list[tuple[Campaign, str, i
 
 
 async def update(
-    campaign_id: uuid.UUID, kind: str, link: str | None, english: dict
+    campaign_id: uuid.UUID, fields: dict, english: dict
 ) -> tuple[Campaign, bool] | str | None:
-    """Saves the campaign as written in English, and whether its texts changed: then the other
+    """Saves the campaign as written in English (`fields`: its kind, audience and link), and
+    whether its texts changed: then the other
     languages are deleted, to be translated again. ALREADY_SENT once it's sent (the row is
     locked, so it can't be sent meanwhile); None when it's gone."""
     async with Session() as session:
@@ -92,7 +94,9 @@ async def update(
             )
             session.add(CampaignText(campaign_id=campaign_id, language=DEFAULT_LANGUAGE, **english))
 
-        campaign.kind, campaign.link = kind, link
+        for name, value in fields.items():
+            setattr(campaign, name, value)
+
         await session.commit()
         await session.refresh(campaign)
 
@@ -160,10 +164,13 @@ async def remove(campaign_id: uuid.UUID) -> str | None:
     return None
 
 
-async def mark_sent(campaign_id: uuid.UUID, asked_by: str, per_day: int) -> uuid.UUID | str | None:
+async def mark_sent(
+    campaign_id: uuid.UUID, kind: str, asked_by: str, per_day: int
+) -> uuid.UUID | str | None:
     """Marks the campaign sent and starts its bulk send, in one transaction; the send's id.
-    ALREADY_SENT when it was, ONE_A_DAY when `per_day` of its kind went out today (UTC), None when it's gone. Campaigns of one kind are sent one at a time (a lock), so
-    two at once can't both pass the check."""
+    ALREADY_SENT when it was, CHANGED when it's no longer of the `kind` its checks were for,
+    ONE_A_DAY when `per_day` of its kind went out today (UTC), None when it's gone. Campaigns of
+    one kind are sent one at a time (a lock), so two at once can't both pass the check."""
     async with Session() as session:
         campaign = await session.get(Campaign, campaign_id, with_for_update=True)
 
@@ -172,6 +179,9 @@ async def mark_sent(campaign_id: uuid.UUID, asked_by: str, per_day: int) -> uuid
 
         if campaign.sent_at is not None:
             return ALREADY_SENT
+
+        if campaign.kind != kind:
+            return CHANGED
 
         await session.execute(
             select(func.pg_advisory_xact_lock(func.hashtext(f"campaigns:{campaign.kind}")))

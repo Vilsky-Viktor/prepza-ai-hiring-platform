@@ -419,8 +419,33 @@
     "campaignKind": "类型",
     "campaignKinds": {
       "updates": "产品更新",
-      "promotions": "优惠"
+      "promotions": "优惠",
+      "notices": "重要通知"
     },
+    "campaignNoticeWarning": "重要通知会发送给受众中的所有人，无论其邮件设置如何，且无法退订。仅在发生安全事件、计划停机或 prepza 的运作方式发生变化时使用，切勿用于推广任何内容。",
+    "campaignAudience": "受众",
+    "campaignAudienceEveryone": "所有人",
+    "campaignAudienceEveryoneNote": {
+      "updates": "所有开启了产品更新的人",
+      "promotions": "所有开启了优惠的人",
+      "notices": "所有账户"
+    },
+    "campaignAudienceGroups": {
+      "members": "公司",
+      "candidates": "候选人",
+      "learners": "练习用户"
+    },
+    "campaignAudienceNotes": {
+      "members": "公司团队中的成员",
+      "candidates": "参加过公司面试的人",
+      "learners": "使用过免费练习的人"
+    },
+    "campaignAudienceEditorsOnly": "仅所有者和管理员",
+    "campaignAudienceCount": "{count, plural, other {目前可送达 {shown} 人}}",
+    "campaignCompanies": "仅限这些公司",
+    "campaignCompaniesPlaceholder": "所有公司",
+    "campaignCompaniesSearch": "查找公司",
+    "campaignCompaniesNone": "未找到公司。",
     "campaignSubject": "主题",
     "campaignSubjectPlaceholder": "在此输入主题…",
     "campaignText": "正文",
@@ -459,6 +484,11 @@
     "stopCampaign": "停止",
     "deleteCampaign": "删除群发邮件",
     "campaignConfirm": {
+      "notice": {
+        "title": "发送这条重要通知？",
+        "warning": "无论收件人的邮件设置如何，它都会发出。以这种方式发送推广内容会违反电子邮件相关法律，并辜负用户对我们的信任。",
+        "acknowledge": "此通知关于服务本身（安全、可用性或运作方式），而非推广。"
+      },
       "send": {
         "title": "发送这封群发邮件？",
         "text": "{count, plural, =0 {目前没有人会收到。} other {# 人将从下一个发送时段（UTC 8:00 至 18:00）起收到。发送后无法更改。}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "每天通过 Resend 发送的邮件数",
       "RESEND_RESERVE_PERCENT": "每天通过 Resend 发送的邮件中不供群发使用的保留比例",
       "CAMPAIGNS_PER_KIND_DAY": "每种类型每天的群发次数",
+      "NOTICES_PER_DAY": "每天的重要通知数",
       "AI_SPEND_UNPAID_DAY": "每天的 AI 支出，未付费用户合计",
       "QUESTION_SECONDS_BASIC": "新初级测试每题秒数",
       "QUESTION_SECONDS_MEDIUM": "新中级测试每题秒数",

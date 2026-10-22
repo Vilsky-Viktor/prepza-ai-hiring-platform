@@ -264,6 +264,21 @@ TEXTS = {
         "open_site": "Mở prepza",
         "footer": "Email này được gửi đến {email} vì bạn đã chọn nhận ưu đãi và khuyến mãi từ prepza.",
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "Mở prepza",
+        "footer": (
+            "Email này được gửi đến {email} vì bạn có tài khoản prepza. Đây là thông báo quan"
+            " trọng về dịch vụ, chẳng hạn như bảo mật hoặc tính sẵn sàng của dịch vụ, nên luôn"
+            " được gửi, bất kể cài đặt email của bạn."
+        ),
+    },
     "top_up_failed": {
         "subject": "Tự động nạp thất bại: {company}",
         "preheader": "Không trừ tiền được từ thẻ. Hãy nạp thêm để tiếp tục mời ứng viên.",

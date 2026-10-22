@@ -419,8 +419,33 @@
     "campaignKind": "Rodzaj",
     "campaignKinds": {
       "updates": "Nowość o produkcie",
-      "promotions": "Oferta"
+      "promotions": "Oferta",
+      "notices": "Ważne powiadomienie"
     },
+    "campaignNoticeWarning": "Ważne powiadomienie trafia do wszystkich odbiorców, niezależnie od ich ustawień e-maili, i nie można się z niego wypisać. Używaj go tylko w przypadku incydentów bezpieczeństwa, planowanych przerw w działaniu lub zmian w działaniu prepza, nigdy do promowania czegokolwiek.",
+    "campaignAudience": "Odbiorcy",
+    "campaignAudienceEveryone": "Wszyscy",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Wszyscy, którzy włączyli nowości o produkcie",
+      "promotions": "Wszyscy, którzy włączyli oferty",
+      "notices": "Każde konto"
+    },
+    "campaignAudienceGroups": {
+      "members": "Firmy",
+      "candidates": "Kandydaci",
+      "learners": "Uczący się"
+    },
+    "campaignAudienceNotes": {
+      "members": "Osoby z zespołu firmy",
+      "candidates": "Osoby, które odbyły rozmowę w firmie",
+      "learners": "Osoby, które korzystały z darmowych ćwiczeń"
+    },
+    "campaignAudienceEditorsOnly": "Tylko właściciele i administratorzy",
+    "campaignAudienceCount": "{count, plural, one {Dociera teraz do {shown} osoby} few {Dociera teraz do {shown} osób} many {Dociera teraz do {shown} osób} other {Dociera teraz do {shown} osoby}}",
+    "campaignCompanies": "Tylko te firmy",
+    "campaignCompaniesPlaceholder": "Wszystkie firmy",
+    "campaignCompaniesSearch": "Znajdź firmę",
+    "campaignCompaniesNone": "Nie znaleziono firmy.",
     "campaignSubject": "Temat",
     "campaignSubjectPlaceholder": "Tu wpisz temat…",
     "campaignText": "Treść",
@@ -459,6 +484,11 @@
     "stopCampaign": "Zatrzymaj",
     "deleteCampaign": "Usuń kampanię",
     "campaignConfirm": {
+      "notice": {
+        "title": "Wysłać to ważne powiadomienie?",
+        "warning": "Wychodzi niezależnie od ustawień e-maili odbiorców. Wysyłanie w ten sposób promocji narusza prawo dotyczące e-maili i zaufanie naszych użytkowników.",
+        "acknowledge": "To powiadomienie dotyczy samej usługi (bezpieczeństwa, dostępności lub jej działania), a nie promocji."
+      },
       "send": {
         "title": "Wysłać tę kampanię?",
         "text": "{count, plural, =0 {Teraz nikt by jej nie otrzymał.} one {Odbiorcy: #. Otrzymają ją od najbliższej godziny wysyłki (od 8:00 do 18:00 UTC). Potem nie można jej zmienić.} few {Odbiorcy: #. Otrzymają ją od najbliższej godziny wysyłki (od 8:00 do 18:00 UTC). Potem nie można jej zmienić.} many {Odbiorcy: #. Otrzymają ją od najbliższej godziny wysyłki (od 8:00 do 18:00 UTC). Potem nie można jej zmienić.} other {Odbiorcy: #. Otrzymają ją od najbliższej godziny wysyłki (od 8:00 do 18:00 UTC). Potem nie można jej zmienić.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "E-maile dziennie przez Resend",
       "RESEND_RESERVE_PERCENT": "Część dziennych e-maili przez Resend zachowana poza wysyłkami masowymi",
       "CAMPAIGNS_PER_KIND_DAY": "Kampanie każdego rodzaju dziennie",
+      "NOTICES_PER_DAY": "Ważne powiadomienia dziennie",
       "AI_SPEND_UNPAID_DAY": "Wydatki na AI dziennie, niepłacący użytkownicy łącznie",
       "QUESTION_SECONDS_BASIC": "Sekundy na pytanie, nowe testy na poziomie podstawowym",
       "QUESTION_SECONDS_MEDIUM": "Sekundy na pytanie, nowe testy na poziomie średnim",

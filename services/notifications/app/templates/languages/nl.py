@@ -267,6 +267,21 @@ TEXTS = {
             " van prepza."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "prepza openen",
+        "footer": (
+            "Deze e-mail is naar {email} gestuurd omdat je een prepza-account hebt. Het is een"
+            " belangrijke mededeling over de dienst, zoals de beveiliging of beschikbaarheid"
+            " ervan, en wordt daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
+        ),
+    },
     "top_up_failed": {
         "subject": "Opwaarderen mislukt: {company}",
         "preheader": (

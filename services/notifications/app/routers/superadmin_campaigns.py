@@ -7,19 +7,22 @@ from prepza_common.superadmin import SuperadminUser
 from prepza_common.user import Language
 
 from app.schemas.campaigns import (
+    AudienceIn,
     CampaignIn,
     CampaignOut,
     CampaignRowOut,
     CampaignTexts,
     PreviewOut,
     RecipientsOut,
+    SendIn,
 )
 from app.services import campaign_sends, campaigns
 
 logger = logging.getLogger(__name__)
 
-# The admin zone's Campaigns tab: product updates and offers to the users who chose them,
-# written in English, translated, checked and sent at once. Everyone else gets "not found".
+# The admin zone's Campaigns tab: product updates and offers to the users who chose them, and
+# important notices to everyone they concern, written in English, translated, checked and sent
+# at once. Everyone else gets "not found".
 router = APIRouter(prefix="/superadmin/campaigns", tags=["superadmin"])
 
 
@@ -32,6 +35,13 @@ async def list_campaigns(superadmin: SuperadminUser, page: PageParams) -> list[C
 @router.post("", status_code=status.HTTP_201_CREATED)
 async def create_campaign(body: CampaignIn, superadmin: SuperadminUser) -> CampaignOut:
     return await campaigns.create(body, superadmin.uid)
+
+
+@router.post("/recipients")
+async def count_audience(body: AudienceIn, superadmin: SuperadminUser) -> RecipientsOut:
+    """Who a campaign of that kind and audience would reach now, as the dialog's choice
+    changes."""
+    return RecipientsOut(count=await campaign_sends.reachable(body))
 
 
 @router.post("/from-news/{news_id}", status_code=status.HTTP_201_CREATED)
@@ -89,10 +99,20 @@ async def send_test(
 
 
 @router.post("/{campaign_id}/send")
-async def send_campaign(campaign_id: UUID, superadmin: SuperadminUser) -> CampaignOut:
-    """Starts it at once; it can't be changed after. At most one of each kind a day."""
-    sent = await campaign_sends.send(campaign_id, superadmin.uid)
-    logger.warning("Superadmin %s sent campaign %s", superadmin.uid, campaign_id)
+async def send_campaign(
+    campaign_id: UUID, superadmin: SuperadminUser, body: SendIn | None = None
+) -> CampaignOut:
+    """Starts it at once; it can't be changed after. At most one of each kind a day; an
+    important notice only once confirmed as one."""
+    acknowledged = body is not None and body.acknowledged
+    sent = await campaign_sends.send(campaign_id, superadmin.uid, acknowledged)
+    logger.warning(
+        "Superadmin %s sent campaign %s (%s, to %s)",
+        superadmin.uid,
+        campaign_id,
+        sent.kind,
+        ", ".join(sent.groups) or "everyone",
+    )
 
     return sent
 

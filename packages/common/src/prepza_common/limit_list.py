@@ -225,6 +225,9 @@ LIMITS = {
     # Campaigns of each kind a day (UTC), so a double click or a hurried second one can't flood
     # people.
     "CAMPAIGNS_PER_KIND_DAY": Limit("notifications", 1, "calls", DAY_SECONDS, 1, 10, EVERYONE),
+    # Important notices a day (UTC): they reach people whatever their email settings, so fewer
+    # may go out than of the other kinds.
+    "NOTICES_PER_DAY": Limit("notifications", 1, "calls", DAY_SECONDS, 1, 3, EVERYONE),
     # Every AI call for unpaid companies and people without a company, in USD a UTC day
     # (ai_cap.py).
     "AI_SPEND_UNPAID_DAY": Limit(

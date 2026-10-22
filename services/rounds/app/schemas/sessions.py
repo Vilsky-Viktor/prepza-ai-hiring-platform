@@ -27,6 +27,10 @@ class InviteIdsIn(BaseModel):
     invite_ids: list[UUID]
 
 
+class UserIdsOut(BaseModel):
+    user_ids: list[str]
+
+
 class SessionsCreate(BaseModel):
     user_id: str
     candidate_invite_id: UUID

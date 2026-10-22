@@ -251,6 +251,21 @@ TEXTS = {
         "open_site": "prepza खोलें",
         "footer": "यह ईमेल {email} पर भेजा गया क्योंकि आपने prepza से ऑफ़र और प्रमोशन पाना चुना है।",
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "prepza खोलें",
+        "footer": (
+            "यह ईमेल {email} पर भेजा गया क्योंकि आपका prepza अकाउंट है। यह सेवा के बारे में एक"
+            " ज़रूरी सूचना है, जैसे उसकी सुरक्षा या उपलब्धता, इसलिए आपकी ईमेल सेटिंग्स चाहे जो"
+            " हों, यह भेजा जाता है।"
+        ),
+    },
     "top_up_failed": {
         "subject": "ऑटो टॉप अप नहीं हुआ: {company}",
         "preheader": ("कार्ड से भुगतान नहीं लिया जा सका। उम्मीदवारों को इनवाइट करते रहने के लिए टॉप अप करें।"),

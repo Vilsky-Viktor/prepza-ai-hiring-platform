@@ -46,7 +46,7 @@ def terms(monkeypatch):
         return None
 
     monkeypatch.setitem(legal_notices.LEGAL_VERSIONS, "terms", LATER)
-    monkeypatch.setattr("app.services.bulk_content.library.user_ids", user_ids)
+    monkeypatch.setattr("app.services.audiences.library.user_ids", user_ids)
     monkeypatch.setattr(bulk.library, "recipients", recipients)
     monkeypatch.setattr(delivery, "transmit", transmit)
     monkeypatch.setattr("app.services.bulk.asyncio.sleep", no_wait)

@@ -419,8 +419,33 @@
     "campaignKind": "प्रकार",
     "campaignKinds": {
       "updates": "प्रोडक्ट अपडेट",
-      "promotions": "ऑफ़र"
+      "promotions": "ऑफ़र",
+      "notices": "ज़रूरी सूचना"
     },
+    "campaignNoticeWarning": "ज़रूरी सूचना अपनी ऑडियंस में सभी तक पहुँचती है, चाहे उनकी ईमेल सेटिंग्स कुछ भी हों, और इससे अनसब्सक्राइब नहीं किया जा सकता। इसका इस्तेमाल सिर्फ़ सुरक्षा घटनाओं, पहले से तय डाउनटाइम या prepza के काम करने के तरीके में बदलावों के लिए करें, किसी चीज़ के प्रचार के लिए कभी नहीं।",
+    "campaignAudience": "ऑडियंस",
+    "campaignAudienceEveryone": "सभी",
+    "campaignAudienceEveryoneNote": {
+      "updates": "जिन्होंने प्रोडक्ट अपडेट चालू किए हैं, वे सभी",
+      "promotions": "जिन्होंने ऑफ़र चालू किए हैं, वे सभी",
+      "notices": "हर खाता"
+    },
+    "campaignAudienceGroups": {
+      "members": "कंपनियाँ",
+      "candidates": "उम्मीदवार",
+      "learners": "प्रैक्टिस करने वाले"
+    },
+    "campaignAudienceNotes": {
+      "members": "किसी कंपनी की टीम के लोग",
+      "candidates": "जिन लोगों ने किसी कंपनी का इंटरव्यू दिया",
+      "learners": "जिन लोगों ने मुफ़्त प्रैक्टिस की"
+    },
+    "campaignAudienceEditorsOnly": "सिर्फ़ मालिक और एडमिन",
+    "campaignAudienceCount": "{count, plural, one {अभी {shown} व्यक्ति तक पहुँचता है} other {अभी {shown} लोगों तक पहुँचता है}}",
+    "campaignCompanies": "सिर्फ़ ये कंपनियाँ",
+    "campaignCompaniesPlaceholder": "सभी कंपनियाँ",
+    "campaignCompaniesSearch": "कोई कंपनी खोजें",
+    "campaignCompaniesNone": "कोई कंपनी नहीं मिली।",
     "campaignSubject": "विषय",
     "campaignSubjectPlaceholder": "विषय यहाँ लिखें…",
     "campaignText": "टेक्स्ट",
@@ -459,6 +484,11 @@
     "stopCampaign": "रोकें",
     "deleteCampaign": "कैंपेन हटाएँ",
     "campaignConfirm": {
+      "notice": {
+        "title": "यह ज़रूरी सूचना भेजें?",
+        "warning": "लोगों की ईमेल सेटिंग्स चाहे जो हों, यह भेजी जाती है। इस तरह प्रमोशन भेजना ईमेल कानून का उल्लंघन है और हमारे उपयोगकर्ताओं का भरोसा तोड़ता है।",
+        "acknowledge": "यह सूचना खुद सेवा के बारे में है (सुरक्षा, उपलब्धता या यह कैसे काम करती है), कोई प्रमोशन नहीं।"
+      },
       "send": {
         "title": "यह कैंपेन भेजें?",
         "text": "{count, plural, =0 {अभी यह किसी को नहीं मिलेगा।} one {प्राप्तकर्ता: #। उन्हें यह भेजने के अगले घंटे (8:00 से 18:00 UTC) से मिलेगा। इसके बाद इसे बदला नहीं जा सकता।} other {प्राप्तकर्ता: #। उन्हें यह भेजने के अगले घंटे (8:00 से 18:00 UTC) से मिलेगा। इसके बाद इसे बदला नहीं जा सकता।}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "Resend से प्रति दिन ईमेल",
       "RESEND_RESERVE_PERCENT": "Resend से प्रति दिन ईमेल का वह हिस्सा जो बल्क भेजने से बचाकर रखा जाता है",
       "CAMPAIGNS_PER_KIND_DAY": "हर प्रकार के कैंपेन प्रति दिन",
+      "NOTICES_PER_DAY": "ज़रूरी सूचनाएँ प्रति दिन",
       "AI_SPEND_UNPAID_DAY": "प्रति दिन AI खर्च, बिना भुगतान वाले सभी उपयोगकर्ता मिलाकर",
       "QUESTION_SECONDS_BASIC": "प्रति सवाल सेकंड, बुनियादी स्तर के नए टेस्ट",
       "QUESTION_SECONDS_MEDIUM": "प्रति सवाल सेकंड, मध्यम स्तर के नए टेस्ट",

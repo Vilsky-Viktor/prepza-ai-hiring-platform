@@ -179,6 +179,17 @@ TEXTS = {
         "open_site": "打开 prepza",
         "footer": "这封邮件发送到 {email}，因为你选择了接收 prepza 的优惠与促销。",
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "打开 prepza",
+        "footer": "这封邮件发送到 {email}，因为你有 prepza 账户。这是关于服务的重要通知，例如其安全性或可用性，因此无论你的邮件设置如何都会发送。",
+    },
     "top_up_failed": {
         "subject": "自动充值失败：{company}",
         "preheader": "无法从银行卡扣款。充值后才能继续邀请候选人。",

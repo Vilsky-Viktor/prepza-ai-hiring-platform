@@ -255,6 +255,21 @@ TEXTS = {
             " saamise."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "Ava prepza",
+        "footer": (
+            "See e-kiri saadeti aadressile {email}, sest sul on prepza konto. See on oluline"
+            " teade teenuse kohta, näiteks selle turvalisuse või kättesaadavuse kohta, seega"
+            " saadetakse see sõltumata sinu e-kirjade seadetest."
+        ),
+    },
     "top_up_failed": {
         "subject": "Juurdelaadimine ebaõnnestus: {company}",
         "preheader": "Kaardilt ei saanud makset võtta. Laadi juurde, et kandidaate edasi kutsuda.",

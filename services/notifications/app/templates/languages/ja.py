@@ -184,6 +184,17 @@ TEXTS = {
         "open_site": "prepza を開く",
         "footer": "このメールは、prepza からキャンペーンとお得な情報を受け取る設定にしているため {email} に送信されました。",
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "prepza を開く",
+        "footer": "このメールは、prepza のアカウントをお持ちのため {email} に送信されました。セキュリティや可用性など、サービスに関する重要なお知らせのため、メール設定にかかわらず送信されます。",
+    },
     "top_up_failed": {
         "subject": "自動チャージ失敗: {company}",
         "preheader": "カードに請求できませんでした。候補者の招待を続けるにはチャージしてください。",

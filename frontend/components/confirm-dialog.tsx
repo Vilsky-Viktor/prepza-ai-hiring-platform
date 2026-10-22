@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/dialog"
 
 /** Asks before something that can't be undone: a title, what happens, "keep" and the red
- * `confirm` button. Closing is off while `busy`. */
+ * `confirm` button. Closing is off while `busy`. `children` go under the text (a box to tick
+ * first), and `confirmDisabled` holds the button until then. */
 export function ConfirmDialog({
   open,
   onOpenChange,
@@ -23,6 +24,8 @@ export function ConfirmDialog({
   confirm,
   busy,
   onConfirm,
+  confirmDisabled = false,
+  children,
 }: {
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -31,6 +34,8 @@ export function ConfirmDialog({
   confirm: string
   busy: boolean
   onConfirm: () => void
+  confirmDisabled?: boolean
+  children?: React.ReactNode
 }) {
   const common = useTranslations("common")
 
@@ -41,6 +46,7 @@ export function ConfirmDialog({
           <DialogTitle className="no-dot mb-2">{title}</DialogTitle>
           <DialogDescription>{text}</DialogDescription>
         </DialogHeader>
+        {children}
         <DialogFooter>
           <DialogClose
             render={
@@ -56,7 +62,7 @@ export function ConfirmDialog({
           <Button
             variant="destructive"
             className="h-10 px-5 text-base"
-            disabled={busy}
+            disabled={busy || confirmDisabled}
             onClick={onConfirm}
           >
             {confirm}

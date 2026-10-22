@@ -419,8 +419,33 @@
     "campaignKind": "Soort",
     "campaignKinds": {
       "updates": "Productupdate",
-      "promotions": "Aanbieding"
+      "promotions": "Aanbieding",
+      "notices": "Belangrijke mededeling"
     },
+    "campaignNoticeWarning": "Een belangrijke mededeling bereikt iedereen in de doelgroep, wat hun e-mailinstellingen ook zijn, en ontvangers kunnen zich er niet voor afmelden. Gebruik hem alleen voor beveiligingsincidenten, gepland onderhoud of wijzigingen in hoe prepza werkt, nooit om iets te promoten.",
+    "campaignAudience": "Doelgroep",
+    "campaignAudienceEveryone": "Iedereen",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Iedereen die productupdates heeft aangezet",
+      "promotions": "Iedereen die aanbiedingen heeft aangezet",
+      "notices": "Elk account"
+    },
+    "campaignAudienceGroups": {
+      "members": "Bedrijven",
+      "candidates": "Kandidaten",
+      "learners": "Oefenaars"
+    },
+    "campaignAudienceNotes": {
+      "members": "Mensen in het team van een bedrijf",
+      "candidates": "Mensen die het interview van een bedrijf hebben gedaan",
+      "learners": "Mensen die gratis hebben geoefend"
+    },
+    "campaignAudienceEditorsOnly": "Alleen eigenaren en beheerders",
+    "campaignAudienceCount": "{count, plural, one {Bereikt nu {shown} persoon} other {Bereikt nu {shown} mensen}}",
+    "campaignCompanies": "Alleen deze bedrijven",
+    "campaignCompaniesPlaceholder": "Alle bedrijven",
+    "campaignCompaniesSearch": "Zoek een bedrijf",
+    "campaignCompaniesNone": "Geen bedrijf gevonden.",
     "campaignSubject": "Onderwerp",
     "campaignSubjectPlaceholder": "Typ hier het onderwerp…",
     "campaignText": "Tekst",
@@ -459,6 +484,11 @@
     "stopCampaign": "Stoppen",
     "deleteCampaign": "Campagne verwijderen",
     "campaignConfirm": {
+      "notice": {
+        "title": "Deze belangrijke mededeling verzenden?",
+        "warning": "Hij gaat uit ongeacht de e-mailinstellingen van mensen. Op deze manier promotie versturen is in strijd met de e-mailwetgeving en beschaamt het vertrouwen van onze gebruikers.",
+        "acknowledge": "Deze mededeling gaat over de dienst zelf (beveiliging, beschikbaarheid of hoe die werkt), niet over een promotie."
+      },
       "send": {
         "title": "Deze campagne verzenden?",
         "text": "{count, plural, =0 {Op dit moment zou niemand hem krijgen.} one {# persoon krijgt hem vanaf het volgende verzenduur (8:00 tot 18:00 UTC). Daarna kan hij niet meer worden gewijzigd.} other {# personen krijgen hem vanaf het volgende verzenduur (8:00 tot 18:00 UTC). Daarna kan hij niet meer worden gewijzigd.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "E-mails per dag via Resend",
       "RESEND_RESERVE_PERCENT": "Deel van de e-mails per dag via Resend dat buiten bulkverzendingen blijft",
       "CAMPAIGNS_PER_KIND_DAY": "Campagnes per soort per dag",
+      "NOTICES_PER_DAY": "Belangrijke mededelingen per dag",
       "AI_SPEND_UNPAID_DAY": "AI-uitgaven per dag, niet-betalende gebruikers samen",
       "QUESTION_SECONDS_BASIC": "Seconden per vraag, nieuwe tests op niveau basis",
       "QUESTION_SECONDS_MEDIUM": "Seconden per vraag, nieuwe tests op niveau gemiddeld",

@@ -419,8 +419,33 @@
     "campaignKind": "Art",
     "campaignKinds": {
       "updates": "Produkt-Update",
-      "promotions": "Angebot"
+      "promotions": "Angebot",
+      "notices": "Wichtiger Hinweis"
     },
+    "campaignNoticeWarning": "Ein wichtiger Hinweis erreicht alle in seiner Zielgruppe, unabhängig von ihren E-Mail-Einstellungen, und lässt sich nicht abbestellen. Nutze ihn nur für Sicherheitsvorfälle, geplante Ausfallzeiten oder Änderungen daran, wie prepza funktioniert, niemals, um etwas zu bewerben.",
+    "campaignAudience": "Zielgruppe",
+    "campaignAudienceEveryone": "Alle",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Alle, die Produkt-Updates eingeschaltet haben",
+      "promotions": "Alle, die Angebote eingeschaltet haben",
+      "notices": "Jedes Konto"
+    },
+    "campaignAudienceGroups": {
+      "members": "Unternehmen",
+      "candidates": "Kandidaten",
+      "learners": "Übende"
+    },
+    "campaignAudienceNotes": {
+      "members": "Personen im Team eines Unternehmens",
+      "candidates": "Personen, die ein Interview eines Unternehmens gemacht haben",
+      "learners": "Personen, die kostenlos geübt haben"
+    },
+    "campaignAudienceEditorsOnly": "Nur Inhaber und Admins",
+    "campaignAudienceCount": "{count, plural, one {Erreicht jetzt {shown} Person} other {Erreicht jetzt {shown} Personen}}",
+    "campaignCompanies": "Nur diese Unternehmen",
+    "campaignCompaniesPlaceholder": "Alle Unternehmen",
+    "campaignCompaniesSearch": "Unternehmen suchen",
+    "campaignCompaniesNone": "Kein Unternehmen gefunden.",
     "campaignSubject": "Betreff",
     "campaignSubjectPlaceholder": "Betreff hier eingeben…",
     "campaignText": "Text",
@@ -459,6 +484,11 @@
     "stopCampaign": "Stoppen",
     "deleteCampaign": "Kampagne löschen",
     "campaignConfirm": {
+      "notice": {
+        "title": "Diesen wichtigen Hinweis senden?",
+        "warning": "Er wird unabhängig von den E-Mail-Einstellungen der Empfänger verschickt. Werbung auf diesem Weg zu senden, verstößt gegen das E-Mail-Recht und missbraucht das Vertrauen unserer Nutzer.",
+        "acknowledge": "Dieser Hinweis betrifft den Dienst selbst (Sicherheit, Verfügbarkeit oder wie er funktioniert), keine Werbung."
+      },
       "send": {
         "title": "Diese Kampagne senden?",
         "text": "{count, plural, =0 {Gerade würde sie niemand erhalten.} one {# Person erhält sie ab der nächsten Versandstunde (8:00 bis 18:00 UTC). Danach lässt sie sich nicht mehr ändern.} other {# Personen erhalten sie ab der nächsten Versandstunde (8:00 bis 18:00 UTC). Danach lässt sie sich nicht mehr ändern.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "E-Mails pro Tag über Resend",
       "RESEND_RESERVE_PERCENT": "Anteil der täglichen E-Mails über Resend, der für Massenversand gesperrt bleibt",
       "CAMPAIGNS_PER_KIND_DAY": "Kampagnen pro Art und Tag",
+      "NOTICES_PER_DAY": "Wichtige Hinweise pro Tag",
       "AI_SPEND_UNPAID_DAY": "KI-Ausgaben pro Tag, alle nicht zahlenden Nutzer zusammen",
       "QUESTION_SECONDS_BASIC": "Sekunden pro Frage, neue Tests auf Level grundlegend",
       "QUESTION_SECONDS_MEDIUM": "Sekunden pro Frage, neue Tests auf Level mittel",

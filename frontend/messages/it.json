@@ -419,8 +419,33 @@
     "campaignKind": "Tipo",
     "campaignKinds": {
       "updates": "Novità sul prodotto",
-      "promotions": "Offerta"
+      "promotions": "Offerta",
+      "notices": "Avviso importante"
     },
+    "campaignNoticeWarning": "Un avviso importante raggiunge tutto il suo pubblico, qualunque siano le impostazioni email, e non permette di annullare l'iscrizione. Usalo solo per incidenti di sicurezza, interruzioni programmate o cambiamenti nel funzionamento di prepza, mai per promuovere qualcosa.",
+    "campaignAudience": "Pubblico",
+    "campaignAudienceEveryone": "Tutti",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Tutti quelli che hanno attivato le novità sul prodotto",
+      "promotions": "Tutti quelli che hanno attivato le offerte",
+      "notices": "Ogni account"
+    },
+    "campaignAudienceGroups": {
+      "members": "Aziende",
+      "candidates": "Candidati",
+      "learners": "Utenti delle simulazioni"
+    },
+    "campaignAudienceNotes": {
+      "members": "Persone nel team di un'azienda",
+      "candidates": "Persone che hanno sostenuto il colloquio di un'azienda",
+      "learners": "Persone che hanno usato le simulazioni gratuite"
+    },
+    "campaignAudienceEditorsOnly": "Solo proprietari e amministratori",
+    "campaignAudienceCount": "{count, plural, one {Raggiunge ora {shown} persona} other {Raggiunge ora {shown} persone}}",
+    "campaignCompanies": "Solo queste aziende",
+    "campaignCompaniesPlaceholder": "Tutte le aziende",
+    "campaignCompaniesSearch": "Trova un'azienda",
+    "campaignCompaniesNone": "Nessuna azienda trovata.",
     "campaignSubject": "Oggetto",
     "campaignSubjectPlaceholder": "Scrivi qui l'oggetto…",
     "campaignText": "Testo",
@@ -459,6 +484,11 @@
     "stopCampaign": "Ferma",
     "deleteCampaign": "Elimina campagna",
     "campaignConfirm": {
+      "notice": {
+        "title": "Inviare questo avviso importante?",
+        "warning": "Parte qualunque siano le impostazioni email delle persone. Inviare una promozione in questo modo viola la normativa sulle email e tradisce la fiducia dei nostri utenti.",
+        "acknowledge": "Questo avviso riguarda il servizio stesso (sicurezza, disponibilità o funzionamento), non è una promozione."
+      },
       "send": {
         "title": "Inviare questa campagna?",
         "text": "{count, plural, =0 {Al momento non la riceverebbe nessuno.} one {# persona la riceve a partire dalla prossima ora di invio (dalle 8:00 alle 18:00 UTC). Dopo non si può più modificare.} other {# persone la ricevono a partire dalla prossima ora di invio (dalle 8:00 alle 18:00 UTC). Dopo non si può più modificare.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "Email al giorno tramite Resend",
       "RESEND_RESERVE_PERCENT": "Quota delle email giornaliere tramite Resend tenuta fuori dagli invii massivi",
       "CAMPAIGNS_PER_KIND_DAY": "Campagne di ciascun tipo al giorno",
+      "NOTICES_PER_DAY": "Avvisi importanti al giorno",
       "AI_SPEND_UNPAID_DAY": "Spesa per l'IA al giorno, tutti gli utenti non paganti insieme",
       "QUESTION_SECONDS_BASIC": "Secondi per domanda, nuovi test di livello base",
       "QUESTION_SECONDS_MEDIUM": "Secondi per domanda, nuovi test di livello intermedio",

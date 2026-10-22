@@ -258,6 +258,21 @@ TEXTS = {
             " prepza."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "Buka prepza",
+        "footer": (
+            "Email ini dikirim ke {email} karena kamu punya akun prepza. Ini pemberitahuan"
+            " penting tentang layanan, seperti keamanan atau ketersediaannya, jadi selalu"
+            " dikirim apa pun pengaturan emailmu."
+        ),
+    },
     "top_up_failed": {
         "subject": "Isi ulang otomatis gagal: {company}",
         "preheader": "Kartu tidak dapat ditagih. Isi ulang untuk terus mengundang kandidat.",

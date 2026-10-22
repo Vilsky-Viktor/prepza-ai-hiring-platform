@@ -77,3 +77,8 @@ class EmailLookupOut(BaseModel):
 
 class UserIdsOut(BaseModel):
     user_ids: list[str]
+
+
+class WithSettingIn(BaseModel):
+    user_ids: list[str] = Field(max_length=MAX_RECIPIENTS_PER_CALL)
+    setting: Literal[EmailSetting.UPDATES, EmailSetting.PROMOTIONS]

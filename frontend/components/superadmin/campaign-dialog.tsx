@@ -7,6 +7,7 @@ import { toast } from "sonner"
 
 import { LabeledField } from "@/components/labeled-field"
 import { PillSelect } from "@/components/pill-select"
+import { CampaignAudience } from "@/components/superadmin/campaign-audience"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -18,6 +19,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import { WarningCard } from "@/components/warning-card"
 import { LANGUAGE_NAMES, type Locale } from "@/constants/i18n"
 import {
   MAX_CAMPAIGN_BUTTON_LENGTH,
@@ -26,7 +28,7 @@ import {
 } from "@/constants/limits"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { campaignForm } from "@/lib/campaigns"
-import type { Campaign } from "@/types/campaigns"
+import type { Campaign, CampaignKind } from "@/types/campaigns"
 import { GRAY_FIELD } from "@/constants/fields"
 
 // The rich text editor (TipTap) is large and only this dialog uses it: loaded when it opens.
@@ -35,12 +37,13 @@ const TextEditor = dynamic(
   { ssr: false }
 )
 
-const KINDS = ["updates", "promotions"] as const
+const KINDS: CampaignKind[] = ["updates", "promotions", "notices"]
 const PATH = "/notifications/superadmin/campaigns"
 
 /** Writes a campaign, as the news tab's dialog writes a post: a new one in English (its kind,
- * subject, text with its styles and an optional button), or `campaign` in `language`: in English with its kind
- * and button link too, in another language only its texts. The API checks the limits and the
+ * audience, subject, text with its styles and an optional button), or `campaign` in `language`:
+ * in English with its kind, audience and button link too, in another language only its texts.
+ * An important notice says first what it's for. The API checks the limits, the audience and the
  * link. */
 export function CampaignDialog({
   open,
@@ -59,7 +62,8 @@ export function CampaignDialog({
   const common = useTranslations("common")
   const english = language === "en"
   const initial = campaignForm(campaign, language)
-  const [kind, setKind] = useState<string>(initial.kind)
+  const [kind, setKind] = useState<CampaignKind>(initial.kind)
+  const [audience, setAudience] = useState(initial.audience)
   const [subject, setSubject] = useState(initial.subject)
   const [text, setText] = useState(initial.text)
   const [button, setButton] = useState(initial.button)
@@ -81,7 +85,16 @@ export function CampaignDialog({
         {
           method: campaign ? "PUT" : "POST",
           body: JSON.stringify(
-            english ? { ...body, kind, link: link || null } : body
+            english
+              ? {
+                  ...body,
+                  kind,
+                  groups: audience.groups,
+                  editors_only: audience.editorsOnly,
+                  company_ids: audience.companies.map((company) => company.id),
+                  link: link || null,
+                }
+              : body
           ),
         }
       )
@@ -122,7 +135,24 @@ export function CampaignDialog({
                 value,
                 label: t(`campaignKinds.${value}`),
               }))}
-              onChange={setKind}
+              onChange={(value) => {
+                setKind(value as CampaignKind)
+
+                // Only an important notice goes to some companies only.
+                if (value !== "notices") {
+                  setAudience({ ...audience, companies: [] })
+                }
+              }}
+            />
+          )}
+          {english && kind === "notices" && (
+            <WarningCard>{t("campaignNoticeWarning")}</WarningCard>
+          )}
+          {english && (
+            <CampaignAudience
+              kind={kind}
+              value={audience}
+              onChange={setAudience}
             />
           )}
           <LabeledField label={t("campaignSubject")}>

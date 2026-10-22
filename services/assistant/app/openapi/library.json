@@ -2552,7 +2552,7 @@
      "internal"
     ],
     "summary": "User Ids",
-    "description": "Notifications: every account, for a notice about the terms or the privacy policy; with a\n`setting`, the users who have it on (a campaign's product updates or offers), a page at a\ntime.",
+    "description": "Notifications, a page at a time: every account, for a notice about the terms or the\nprivacy policy; with a `setting`, the users who have it on (a campaign's product updates or\noffers).",
     "operationId": "user_ids_internal_users_ids_get",
     "security": [
      {
@@ -2627,6 +2627,53 @@
       }
      }
     }
+   }
+  },
+  "/internal/users/with-setting": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Users With Setting",
+    "description": "Notifications, for a campaign to some groups (companies, candidates, learners): those of\nthe users who have its setting on.",
+    "operationId": "users_with_setting_internal_users_with_setting_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/WithSettingIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UserIdsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
    }
   },
   "/internal/users/{user_id}/unsubscribe": {
@@ -6408,6 +6455,32 @@
      "type"
     ],
     "title": "ValidationError"
+   },
+   "WithSettingIn": {
+    "properties": {
+     "user_ids": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "maxItems": 1000,
+      "title": "User Ids"
+     },
+     "setting": {
+      "type": "string",
+      "enum": [
+       "updates",
+       "promotions"
+      ],
+      "title": "Setting"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_ids",
+     "setting"
+    ],
+    "title": "WithSettingIn"
    }
   },
   "securitySchemes": {

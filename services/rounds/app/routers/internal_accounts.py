@@ -1,7 +1,10 @@
+from typing import Literal
+
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
+from prepza_common.paging import IdPageParams
 
-from app.schemas.sessions import InviteIdsIn
+from app.schemas.sessions import InviteIdsIn, UserIdsOut
 from app.service_auth import ServiceCaller
 from app.storage import accounts, sessions
 
@@ -17,6 +20,18 @@ async def delete_user(user_id: str, caller: ServiceCaller) -> None:
 @router.post("/users/{user_id}/export")
 async def export_user(user_id: str, caller: ServiceCaller) -> dict:
     return jsonable_encoder(await accounts.export(user_id))
+
+
+@router.get("/users/ids")
+async def user_ids(
+    group: Literal["candidates", "learners"], caller: ServiceCaller, page: IdPageParams
+) -> UserIdsOut:
+    """Notifications, for a campaign to them, a page at a time: the candidates (people who took
+    a company's interview) or the learners (people who took a free practice round). Only their
+    ids: what they did stays here."""
+    found = await accounts.user_ids(group == "learners", page.after, page.limit)
+
+    return UserIdsOut(user_ids=found)
 
 
 @router.post("/invites/delete", status_code=status.HTTP_204_NO_CONTENT)

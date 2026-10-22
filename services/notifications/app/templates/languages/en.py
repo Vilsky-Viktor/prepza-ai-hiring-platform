@@ -234,6 +234,21 @@ TEXTS = {
             " from prepza."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "Open prepza",
+        "footer": (
+            "This email was sent to {email} because you have a prepza account. It's an important"
+            " notice about the service, such as its security or availability, so it's sent"
+            " whatever your email settings."
+        ),
+    },
     "top_up_failed": {
         "subject": "Top-up failed: {company}",
         "preheader": "The card couldn't be charged. Top up to keep inviting candidates.",

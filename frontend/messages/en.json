@@ -419,8 +419,33 @@
     "campaignKind": "Kind",
     "campaignKinds": {
       "updates": "Product update",
-      "promotions": "Offer"
+      "promotions": "Offer",
+      "notices": "Important notice"
     },
+    "campaignNoticeWarning": "An important notice reaches everyone in its audience, whatever their email settings, and can't be unsubscribed from. Use it only for security incidents, planned downtime or changes to how prepza works, never to promote anything.",
+    "campaignAudience": "Audience",
+    "campaignAudienceEveryone": "Everyone",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Everyone who turned on product updates",
+      "promotions": "Everyone who turned on offers",
+      "notices": "Every account"
+    },
+    "campaignAudienceGroups": {
+      "members": "Companies",
+      "candidates": "Candidates",
+      "learners": "Learners"
+    },
+    "campaignAudienceNotes": {
+      "members": "People on a company's team",
+      "candidates": "People who took a company's interview",
+      "learners": "People who used free practice"
+    },
+    "campaignAudienceEditorsOnly": "Owners and admins only",
+    "campaignAudienceCount": "{count, plural, one {Reaches {shown} person now} other {Reaches {shown} people now}}",
+    "campaignCompanies": "Only these companies",
+    "campaignCompaniesPlaceholder": "All companies",
+    "campaignCompaniesSearch": "Find a company",
+    "campaignCompaniesNone": "No company found.",
     "campaignSubject": "Subject",
     "campaignSubjectPlaceholder": "Subject goes here…",
     "campaignText": "Text",
@@ -459,6 +484,11 @@
     "stopCampaign": "Stop",
     "deleteCampaign": "Delete campaign",
     "campaignConfirm": {
+      "notice": {
+        "title": "Send this important notice?",
+        "warning": "It goes out whatever people's email settings. Sending a promotion this way breaks email law and our users' trust.",
+        "acknowledge": "This notice is about the service itself (security, availability or how it works), not a promotion."
+      },
       "send": {
         "title": "Send this campaign?",
         "text": "{count, plural, =0 {Nobody would get it right now.} one {# person gets it, from the next sending hour (8:00 to 18:00 UTC). It can't be changed after.} other {# people get it, from the next sending hour (8:00 to 18:00 UTC). It can't be changed after.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "Emails a day through Resend",
       "RESEND_RESERVE_PERCENT": "Share of the Resend emails a day kept from bulk sends",
       "CAMPAIGNS_PER_KIND_DAY": "Campaigns of each kind a day",
+      "NOTICES_PER_DAY": "Important notices a day",
       "AI_SPEND_UNPAID_DAY": "AI spend a day, unpaid users together",
       "QUESTION_SECONDS_BASIC": "Seconds per question, new basic tests",
       "QUESTION_SECONDS_MEDIUM": "Seconds per question, new medium tests",

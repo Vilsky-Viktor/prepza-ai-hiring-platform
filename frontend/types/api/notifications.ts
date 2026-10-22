@@ -77,7 +77,7 @@ export interface paths {
     /**
      * Stream
      * @description Server-sent events while a tab is open: {"new": true} as soon as a notification comes,
-     *     so the bell reloads; heartbeat comments in between. At most MAX_STREAMS_PER_USER at once;
+     *     so the bell reloads; heartbeat comments in between. At most STREAMS_PER_USER at once;
      *     the bell refreshes on its own without one.
      */
     get: operations["stream_me_stream_get"]
@@ -124,8 +124,9 @@ export interface paths {
     put?: never
     /**
      * Resend Webhook
-     * @description Resend retries until it gets a 2xx, and marking an invite is idempotent, so a failed
-     *     call to its owner simply comes back later.
+     * @description Answered once the signature is checked and the event recorded (by its delivery id, so a
+     *     repeat is recorded once): its work runs from the email.webhook_received event
+     *     (services/webhooks.py), retried by Pub/Sub, not before the answer.
      */
     post: operations["resend_webhook_webhooks_resend_post"]
     delete?: never
@@ -389,6 +390,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/superadmin/campaigns/recipients": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Count Audience
+     * @description Who a campaign of that kind and audience would reach now, as the dialog's choice
+     *     changes.
+     */
+    post: operations["count_audience_superadmin_campaigns_recipients_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/superadmin/campaigns/from-news/{news_id}": {
     parameters: {
       query?: never
@@ -522,7 +544,8 @@ export interface paths {
     put?: never
     /**
      * Send Campaign
-     * @description Starts it at once; it can't be changed after. At most one of each kind a day.
+     * @description Starts it at once; it can't be changed after. At most one of each kind a day; an
+     *     important notice only once confirmed as one.
      */
     post: operations["send_campaign_superadmin_campaigns__campaign_id__send_post"]
     delete?: never
@@ -683,7 +706,8 @@ export interface paths {
     /**
      * Reminders
      * @description Every minute for an hour each morning, from Cloud Scheduler: reminders, each kind
-     *     at most once a week to a user. The sent log's old rows go too.
+     *     at most once a week to a user. The sent log's old rows go too, and soft bounces past their
+     *     window, until CLEANUP_SECONDS after the run started; the next run deletes the rest.
      */
     post: operations["reminders_internal_schedules_reminders_post"]
     delete?: never
@@ -738,6 +762,42 @@ export interface paths {
 export type webhooks = Record<string, never>
 export interface components {
   schemas: {
+    /**
+     * AudienceGroup
+     * @description Whom a campaign goes to, besides everyone: the people who joined a company (members), who
+     *     took a company's interview (candidates, rounds' interview sessions) or a free practice round
+     *     (learners, rounds' practice sessions). Someone in several groups gets it once.
+     * @enum {string}
+     */
+    AudienceGroup: "members" | "candidates" | "learners"
+    /**
+     * AudienceIn
+     * @description Whom a campaign of `kind` goes to: everyone (no `groups`), or the people in any of
+     *     `groups`; of companies, with `editors_only` only their owners and admins, and for an
+     *     important notice with `company_ids` only those companies'.
+     */
+    AudienceIn: {
+      /**
+       * Kind
+       * @enum {string}
+       */
+      kind: "updates" | "promotions" | "notices"
+      /**
+       * Groups
+       * @default []
+       */
+      groups: components["schemas"]["AudienceGroup"][]
+      /**
+       * Editors Only
+       * @default false
+       */
+      editors_only: boolean
+      /**
+       * Company Ids
+       * @default []
+       */
+      company_ids: string[]
+    }
     /** CampaignCounts */
     CampaignCounts: {
       /** Pending */
@@ -755,21 +815,36 @@ export interface components {
     }
     /**
      * CampaignIn
-     * @description A campaign as a superadmin writes it, in English: a product update or an offer, and the
-     *     page on the site its button opens.
+     * @description A campaign as a superadmin writes it, in English: a product update, an offer or an
+     *     important notice, whom it goes to, and the page on the site its button opens.
      */
     CampaignIn: {
+      /**
+       * Kind
+       * @enum {string}
+       */
+      kind: "updates" | "promotions" | "notices"
+      /**
+       * Groups
+       * @default []
+       */
+      groups: components["schemas"]["AudienceGroup"][]
+      /**
+       * Editors Only
+       * @default false
+       */
+      editors_only: boolean
+      /**
+       * Company Ids
+       * @default []
+       */
+      company_ids: string[]
       /** Subject */
       subject: string
       /** Text */
       text: string
       /** Button */
       button?: string | null
-      /**
-       * Kind
-       * @enum {string}
-       */
-      kind: "updates" | "promotions"
       /** Link */
       link?: string | null
     }
@@ -784,7 +859,7 @@ export interface components {
        * Kind
        * @enum {string}
        */
-      kind: "updates" | "promotions"
+      kind: "updates" | "promotions" | "notices"
       /** Subject */
       subject: string
       /**
@@ -804,6 +879,12 @@ export interface components {
       counts: components["schemas"]["CampaignCounts"] | null
       /** Link */
       link: string | null
+      /** Groups */
+      groups: components["schemas"]["AudienceGroup"][]
+      /** Editors Only */
+      editors_only: boolean
+      /** Companies */
+      companies: components["schemas"]["CompanyOut"][]
       /** Texts */
       texts: {
         [key: string]: components["schemas"]["CampaignTexts"]
@@ -825,7 +906,7 @@ export interface components {
        * Kind
        * @enum {string}
        */
-      kind: "updates" | "promotions"
+      kind: "updates" | "promotions" | "notices"
       /** Subject */
       subject: string
       /**
@@ -925,6 +1006,16 @@ export interface components {
       stopped_by_admin: boolean
       /** Stopped Reminders */
       stopped_reminders: number
+    }
+    /** CompanyOut */
+    CompanyOut: {
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string
+      /** Name */
+      name: string
     }
     /** FeedOut */
     FeedOut: {
@@ -1030,12 +1121,24 @@ export interface components {
     }
     /**
      * RecipientsOut
-     * @description Who the campaign would reach now: users with its setting on, not suppressed, with an
-     *     address.
+     * @description Who the campaign would reach now: the users of its audience with an address, not
+     *     suppressed, and for an optional kind with its setting on; each once.
      */
     RecipientsOut: {
       /** Count */
       count: number
+    }
+    /**
+     * SendIn
+     * @description An important notice is sent only once the superadmin confirms it's about the service
+     *     itself, never a promotion.
+     */
+    SendIn: {
+      /**
+       * Acknowledged
+       * @default false
+       */
+      acknowledged: boolean
     }
     /** SlackKindsIn */
     SlackKindsIn: {
@@ -1830,6 +1933,39 @@ export interface operations {
       }
     }
   }
+  count_audience_superadmin_campaigns_recipients_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["AudienceIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["RecipientsOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   campaign_from_news_superadmin_campaigns_from_news__news_id__post: {
     parameters: {
       query?: never
@@ -2165,7 +2301,11 @@ export interface operations {
       }
       cookie?: never
     }
-    requestBody?: never
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SendIn"] | null
+      }
+    }
     responses: {
       /** @description Successful Response */
       200: {

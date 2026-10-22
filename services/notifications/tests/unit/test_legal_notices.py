@@ -8,7 +8,7 @@ from prepza_common.user import User
 
 from app.constants.legal_notices import ALREADY_ASKED, TOO_LATE
 from app.main import app
-from app.services import bulk, bulk_content, legal_notices
+from app.services import audiences, bulk, bulk_content, legal_notices
 from app.storage import bulk_recipients, bulk_sends, notifications
 
 TODAY = datetime.now(UTC).date()
@@ -53,7 +53,9 @@ def notices(monkeypatch):
     async def user_ids(after, setting=None):
         return ["ann", "bob", "guest-1"]
 
-    async def editor_ids(after):
+    async def member_ids(after, editors_only):
+        assert editors_only
+
         return ["ann"]
 
     async def add(event_id, event):
@@ -72,8 +74,8 @@ def notices(monkeypatch):
     monkeypatch.setattr(bulk_sends, "get", get)
     monkeypatch.setattr(bulk_sends, "save_page", save_page)
     monkeypatch.setattr(bulk_recipients, "is_recipient", is_recipient)
-    monkeypatch.setattr(bulk_content.library, "user_ids", user_ids)
-    monkeypatch.setattr(bulk_content.companies, "editor_ids", editor_ids)
+    monkeypatch.setattr(audiences.library, "user_ids", user_ids)
+    monkeypatch.setattr(audiences.companies, "member_ids", member_ids)
     monkeypatch.setattr(notifications, "add", add)
     monkeypatch.setattr(bulk_content, "announce", announce)
 

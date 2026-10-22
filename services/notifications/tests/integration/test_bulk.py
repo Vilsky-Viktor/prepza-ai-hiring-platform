@@ -7,9 +7,11 @@ from prepza_common.constants import GUEST_UID_PREFIX
 from sqlalchemy import select
 
 from app.models.bulk import BulkRecipient
-from app.services import bulk, delivery
-from app.storage import bulk_recipients, bulk_sends
+from app.services import audiences, bulk, delivery
+from app.storage import bulk_recipients, bulk_sends, campaigns
 from app.storage.db import Session
+
+ENGLISH = {"subject": "Code questions", "text": "Now with code.", "button": None}
 
 
 async def large_resend_quota(redis):
@@ -202,20 +204,22 @@ def audience(monkeypatch):
 
         return [user for user in users if user > after][:2]
 
-    monkeypatch.setattr("app.services.bulk_content.library.user_ids", user_ids)
-    monkeypatch.setattr(bulk, "ID_PAGE_SIZE", 2)
+    monkeypatch.setattr("app.services.audiences.library.user_ids", user_ids)
+    monkeypatch.setattr(audiences, "ID_PAGE_SIZE", 2)
 
     return users, asked
 
 
 def campaign_send():
-    """A started campaign send, its recipients not worked out; (kind, about)."""
-    about = str(uuid.uuid4())
+    """A started campaign send to everyone with product updates on, its recipients not worked
+    out; (kind, about)."""
 
     async def scenario():
-        await bulk_sends.start("updates", about, "sam")
+        everyone = {"kind": "updates", "groups": [], "editors_only": False, "company_ids": []}
+        campaign = await campaigns.create({**everyone, "link": None}, "sam", ENGLISH)
+        await bulk_sends.start("updates", str(campaign.id), "sam")
 
-        return "updates", about
+        return "updates", str(campaign.id)
 
     return scenario()
 

@@ -419,8 +419,33 @@
     "campaignKind": "Tür",
     "campaignKinds": {
       "updates": "Ürün güncellemesi",
-      "promotions": "Teklif"
+      "promotions": "Teklif",
+      "notices": "Önemli duyuru"
     },
+    "campaignNoticeWarning": "Önemli duyuru, e-posta ayarları ne olursa olsun hedef kitlesindeki herkese ulaşır ve aboneliğinden çıkılamaz. Yalnızca güvenlik olayları, planlı kesintiler veya prepza'nın işleyişindeki değişiklikler için kullanın, hiçbir şeyi tanıtmak için asla kullanmayın.",
+    "campaignAudience": "Hedef kitle",
+    "campaignAudienceEveryone": "Herkes",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Ürün güncellemelerini açan herkes",
+      "promotions": "Teklifleri açan herkes",
+      "notices": "Her hesap"
+    },
+    "campaignAudienceGroups": {
+      "members": "Şirketler",
+      "candidates": "Adaylar",
+      "learners": "Pratik yapanlar"
+    },
+    "campaignAudienceNotes": {
+      "members": "Bir şirketin ekibindeki kişiler",
+      "candidates": "Bir şirketin mülakatına girmiş kişiler",
+      "learners": "Ücretsiz pratiği kullanmış kişiler"
+    },
+    "campaignAudienceEditorsOnly": "Yalnızca sahipler ve yöneticiler",
+    "campaignAudienceCount": "{count, plural, one {Şu anda {shown} kişiye ulaşıyor} other {Şu anda {shown} kişiye ulaşıyor}}",
+    "campaignCompanies": "Yalnızca bu şirketler",
+    "campaignCompaniesPlaceholder": "Tüm şirketler",
+    "campaignCompaniesSearch": "Şirket bul",
+    "campaignCompaniesNone": "Şirket bulunamadı.",
     "campaignSubject": "Konu",
     "campaignSubjectPlaceholder": "Konuyu buraya yazın…",
     "campaignText": "Metin",
@@ -459,6 +484,11 @@
     "stopCampaign": "Durdur",
     "deleteCampaign": "Kampanyayı sil",
     "campaignConfirm": {
+      "notice": {
+        "title": "Bu önemli duyuru gönderilsin mi?",
+        "warning": "Kişilerin e-posta ayarları ne olursa olsun gönderilir. Bu yolla tanıtım göndermek e-posta mevzuatını ihlal eder ve kullanıcılarımızın güvenini zedeler.",
+        "acknowledge": "Bu duyuru tanıtım değil, hizmetin kendisiyle ilgilidir (güvenlik, erişilebilirlik veya işleyiş)."
+      },
       "send": {
         "title": "Bu kampanya gönderilsin mi?",
         "text": "{count, plural, =0 {Şu anda bunu kimse almaz.} one {# kişi bunu bir sonraki gönderim saatinden (UTC 8:00–18:00) itibaren alır. Sonrasında değiştirilemez.} other {# kişi bunu bir sonraki gönderim saatinden (UTC 8:00–18:00) itibaren alır. Sonrasında değiştirilemez.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "Resend üzerinden günlük e-posta",
       "RESEND_RESERVE_PERCENT": "Resend üzerinden günlük e-postaların toplu gönderimlere ayrılmayan payı",
       "CAMPAIGNS_PER_KIND_DAY": "Her türden günlük kampanya",
+      "NOTICES_PER_DAY": "Günlük önemli duyuru",
       "AI_SPEND_UNPAID_DAY": "Günlük yapay zekâ harcaması, ödeme yapmayan kullanıcılar toplamı",
       "QUESTION_SECONDS_BASIC": "Yeni temel seviye testlerde soru başına saniye",
       "QUESTION_SECONDS_MEDIUM": "Yeni orta seviye testlerde soru başına saniye",

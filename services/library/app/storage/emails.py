@@ -56,6 +56,18 @@ async def ids_with(setting: EmailSetting, after: str, limit: int) -> list[str]:
         return list(await session.scalars(query))
 
 
+async def having(setting: EmailSetting, user_ids: list[str]) -> list[str]:
+    """Those of the users who have the setting on, in the order given."""
+    query = select(EmailPreferences.user_id).where(
+        EmailPreferences.user_id.in_(user_ids), getattr(EmailPreferences, setting).is_(True)
+    )
+
+    async with Session() as session:
+        found = set(await session.scalars(query))
+
+    return [user_id for user_id in user_ids if user_id in found]
+
+
 async def change(
     user_id: str,
     changes: dict[EmailSetting, bool],

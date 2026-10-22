@@ -116,12 +116,13 @@ async def waiting_interviews(
     return found
 
 
-async def editor_ids(after: str) -> list[str]:
-    """A page of the owners and admins of every company, the ids after `after` in order
-    (prepza_common.paging), for a notice about the data processing agreement."""
+async def member_ids(after: str, editors_only: bool) -> list[str]:
+    """A page of everyone who joined a company, or with `editors_only` of every company's owners
+    and admins (a notice about the data processing agreement), the ids after `after` in order
+    (prepza_common.paging)."""
     response = await http.get_client().get(
-        f"{settings.companies_url}/internal/companies/editors",
-        params={"after": after},
+        f"{settings.companies_url}/internal/companies/member-ids",
+        params={"after": after, "editors_only": editors_only},
         headers=bearer(service_token("companies")),
     )
     response.raise_for_status()

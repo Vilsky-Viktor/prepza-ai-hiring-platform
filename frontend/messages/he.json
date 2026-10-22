@@ -419,8 +419,33 @@
     "campaignKind": "סוג",
     "campaignKinds": {
       "updates": "עדכון מוצר",
-      "promotions": "מבצע"
+      "promotions": "מבצע",
+      "notices": "הודעה חשובה"
     },
+    "campaignNoticeWarning": "הודעה חשובה מגיעה לכל מי שבקהל שלה, בלי קשר להגדרות האימייל שלהם, ואי אפשר לבטל את ההרשמה אליה. יש להשתמש בה רק לאירועי אבטחה, להשבתות מתוכננות או לשינויים באופן שבו prepza עובד, ולעולם לא כדי לקדם משהו.",
+    "campaignAudience": "קהל",
+    "campaignAudienceEveryone": "כולם",
+    "campaignAudienceEveryoneNote": {
+      "updates": "כל מי שהפעיל עדכוני מוצר",
+      "promotions": "כל מי שהפעיל מבצעים",
+      "notices": "כל החשבונות"
+    },
+    "campaignAudienceGroups": {
+      "members": "חברות",
+      "candidates": "מועמדים",
+      "learners": "מתרגלים"
+    },
+    "campaignAudienceNotes": {
+      "members": "אנשים בצוות של חברה",
+      "candidates": "אנשים שעשו ראיון של חברה",
+      "learners": "אנשים שהשתמשו בתרגול חינם"
+    },
+    "campaignAudienceEditorsOnly": "בעלים ומנהלים בלבד",
+    "campaignAudienceCount": "{count, plural, one {מגיע עכשיו ל-{shown} איש} two {מגיע עכשיו ל-{shown} אנשים} other {מגיע עכשיו ל-{shown} אנשים}}",
+    "campaignCompanies": "רק החברות האלה",
+    "campaignCompaniesPlaceholder": "כל החברות",
+    "campaignCompaniesSearch": "חיפוש חברה",
+    "campaignCompaniesNone": "לא נמצאה חברה.",
     "campaignSubject": "נושא",
     "campaignSubjectPlaceholder": "כאן כותבים את הנושא…",
     "campaignText": "טקסט",
@@ -459,6 +484,11 @@
     "stopCampaign": "עצירה",
     "deleteCampaign": "מחיקת הקמפיין",
     "campaignConfirm": {
+      "notice": {
+        "title": "לשלוח את ההודעה החשובה?",
+        "warning": "היא נשלחת בלי קשר להגדרות האימייל של האנשים. שליחת קידום מכירות בדרך הזו מפרה את חוקי האימייל ואת האמון של המשתמשים שלנו.",
+        "acknowledge": "ההודעה הזו עוסקת בשירות עצמו (אבטחה, זמינות או אופן הפעולה שלו), ולא בקידום מכירות."
+      },
       "send": {
         "title": "לשלוח את הקמפיין?",
         "text": "{count, plural, =0 {כרגע אף אחד לא היה מקבל אותו.} one {נמענים: #. הם יקבלו אותו החל משעת השליחה הבאה (8:00 עד 18:00 UTC). אחר כך אי אפשר לשנות אותו.} two {נמענים: #. הם יקבלו אותו החל משעת השליחה הבאה (8:00 עד 18:00 UTC). אחר כך אי אפשר לשנות אותו.} other {נמענים: #. הם יקבלו אותו החל משעת השליחה הבאה (8:00 עד 18:00 UTC). אחר כך אי אפשר לשנות אותו.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "אימיילים ביום דרך Resend",
       "RESEND_RESERVE_PERCENT": "החלק מהאימיילים היומיים דרך Resend שנשמר מחוץ לשליחות המוניות",
       "CAMPAIGNS_PER_KIND_DAY": "קמפיינים מכל סוג ביום",
+      "NOTICES_PER_DAY": "הודעות חשובות ביום",
       "AI_SPEND_UNPAID_DAY": "הוצאה על AI ביום, כל המשתמשים שלא שילמו יחד",
       "QUESTION_SECONDS_BASIC": "שניות לשאלה, מבחנים חדשים ברמה בסיסית",
       "QUESTION_SECONDS_MEDIUM": "שניות לשאלה, מבחנים חדשים ברמה בינונית",

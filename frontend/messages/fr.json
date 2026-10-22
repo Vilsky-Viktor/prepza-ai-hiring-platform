@@ -419,8 +419,33 @@
     "campaignKind": "Type",
     "campaignKinds": {
       "updates": "Nouveauté du produit",
-      "promotions": "Offre"
+      "promotions": "Offre",
+      "notices": "Avis important"
     },
+    "campaignNoticeWarning": "Un avis important parvient à toute son audience, quels que soient les réglages d'e-mails de chacun, et on ne peut pas s'en désabonner. Utilisez-le uniquement pour des incidents de sécurité, des interruptions planifiées ou des changements dans le fonctionnement de prepza, jamais pour promouvoir quoi que ce soit.",
+    "campaignAudience": "Audience",
+    "campaignAudienceEveryone": "Tout le monde",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Toutes les personnes ayant activé les nouveautés du produit",
+      "promotions": "Toutes les personnes ayant activé les offres",
+      "notices": "Tous les comptes"
+    },
+    "campaignAudienceGroups": {
+      "members": "Entreprises",
+      "candidates": "Candidats",
+      "learners": "Apprenants"
+    },
+    "campaignAudienceNotes": {
+      "members": "Membres de l'équipe d'une entreprise",
+      "candidates": "Personnes ayant passé l'entretien d'une entreprise",
+      "learners": "Personnes ayant utilisé l'entraînement gratuit"
+    },
+    "campaignAudienceEditorsOnly": "Propriétaires et administrateurs uniquement",
+    "campaignAudienceCount": "{count, plural, one {Atteint actuellement {shown} personne} other {Atteint actuellement {shown} personnes}}",
+    "campaignCompanies": "Uniquement ces entreprises",
+    "campaignCompaniesPlaceholder": "Toutes les entreprises",
+    "campaignCompaniesSearch": "Trouver une entreprise",
+    "campaignCompaniesNone": "Aucune entreprise trouvée.",
     "campaignSubject": "Objet",
     "campaignSubjectPlaceholder": "Saisissez l'objet ici…",
     "campaignText": "Texte",
@@ -459,6 +484,11 @@
     "stopCampaign": "Arrêter",
     "deleteCampaign": "Supprimer la campagne",
     "campaignConfirm": {
+      "notice": {
+        "title": "Envoyer cet avis important ?",
+        "warning": "Il part quels que soient les réglages d'e-mails des destinataires. Envoyer une promotion par ce biais enfreint la législation sur les e-mails et trahit la confiance de nos utilisateurs.",
+        "acknowledge": "Cet avis concerne le service lui-même (sécurité, disponibilité ou fonctionnement), et non une promotion."
+      },
       "send": {
         "title": "Envoyer cette campagne ?",
         "text": "{count, plural, =0 {Personne ne la recevrait pour l'instant.} one {# personne la reçoit à partir de la prochaine heure d'envoi (de 8 h à 18 h UTC). Elle ne pourra plus être modifiée ensuite.} other {# personnes la reçoivent à partir de la prochaine heure d'envoi (de 8 h à 18 h UTC). Elle ne pourra plus être modifiée ensuite.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "E-mails par jour via Resend",
       "RESEND_RESERVE_PERCENT": "Part des e-mails quotidiens via Resend réservée hors envois groupés",
       "CAMPAIGNS_PER_KIND_DAY": "Campagnes de chaque type par jour",
+      "NOTICES_PER_DAY": "Avis importants par jour",
       "AI_SPEND_UNPAID_DAY": "Dépenses d'IA par jour, utilisateurs non payants confondus",
       "QUESTION_SECONDS_BASIC": "Secondes par question, nouveaux tests de niveau basique",
       "QUESTION_SECONDS_MEDIUM": "Secondes par question, nouveaux tests de niveau intermédiaire",

@@ -764,13 +764,34 @@ export interface paths {
     }
     /**
      * User Ids
-     * @description Notifications: every account, for a notice about the terms or the privacy policy; with a
-     *     `setting`, the users who have it on (a campaign's product updates or offers), a page at a
-     *     time.
+     * @description Notifications, a page at a time: every account, for a notice about the terms or the
+     *     privacy policy; with a `setting`, the users who have it on (a campaign's product updates or
+     *     offers).
      */
     get: operations["user_ids_internal_users_ids_get"]
     put?: never
     post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/users/with-setting": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Users With Setting
+     * @description Notifications, for a campaign to some groups (companies, candidates, learners): those of
+     *     the users who have its setting on.
+     */
+    post: operations["users_with_setting_internal_users_with_setting_post"]
     delete?: never
     options?: never
     head?: never
@@ -2487,6 +2508,16 @@ export interface components {
       /** Context */
       ctx?: Record<string, never>
     }
+    /** WithSettingIn */
+    WithSettingIn: {
+      /** User Ids */
+      user_ids: string[]
+      /**
+       * Setting
+       * @enum {string}
+       */
+      setting: "updates" | "promotions"
+    }
   }
   responses: never
   parameters: never
@@ -3972,6 +4003,39 @@ export interface operations {
       cookie?: never
     }
     requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["UserIdsOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  users_with_setting_internal_users_with_setting_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["WithSettingIn"]
+      }
+    }
     responses: {
       /** @description Successful Response */
       200: {

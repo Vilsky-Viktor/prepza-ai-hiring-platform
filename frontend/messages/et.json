@@ -419,8 +419,33 @@
     "campaignKind": "Liik",
     "campaignKinds": {
       "updates": "Tooteuudis",
-      "promotions": "Pakkumine"
+      "promotions": "Pakkumine",
+      "notices": "Oluline teade"
     },
+    "campaignNoticeWarning": "Oluline teade jõuab kõigini selle sihtrühmas, olenemata nende e-kirjade seadetest, ja sellest ei saa loobuda. Kasuta seda ainult turvaintsidentide, plaaniliste katkestuste või prepza toimimise muudatuste korral, mitte kunagi millegi reklaamimiseks.",
+    "campaignAudience": "Sihtrühm",
+    "campaignAudienceEveryone": "Kõik",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Kõik, kes on tooteuudised sisse lülitanud",
+      "promotions": "Kõik, kes on pakkumised sisse lülitanud",
+      "notices": "Iga konto"
+    },
+    "campaignAudienceGroups": {
+      "members": "Ettevõtted",
+      "candidates": "Kandidaadid",
+      "learners": "Harjutajad"
+    },
+    "campaignAudienceNotes": {
+      "members": "Ettevõtte meeskonna liikmed",
+      "candidates": "Inimesed, kes tegid ettevõtte intervjuu",
+      "learners": "Inimesed, kes kasutasid tasuta harjutamist"
+    },
+    "campaignAudienceEditorsOnly": "Ainult omanikud ja administraatorid",
+    "campaignAudienceCount": "{count, plural, one {Jõuab praegu {shown} inimeseni} other {Jõuab praegu {shown} inimeseni}}",
+    "campaignCompanies": "Ainult need ettevõtted",
+    "campaignCompaniesPlaceholder": "Kõik ettevõtted",
+    "campaignCompaniesSearch": "Otsi ettevõtet",
+    "campaignCompaniesNone": "Ühtki ettevõtet ei leitud.",
     "campaignSubject": "Teema",
     "campaignSubjectPlaceholder": "Kirjuta teema siia…",
     "campaignText": "Tekst",
@@ -459,6 +484,11 @@
     "stopCampaign": "Peata",
     "deleteCampaign": "Kustuta kampaania",
     "campaignConfirm": {
+      "notice": {
+        "title": "Kas saata see oluline teade?",
+        "warning": "See saadetakse olenemata inimeste e-kirjade seadetest. Reklaami saatmine sel viisil rikub e-kirju puudutavat seadust ja meie kasutajate usaldust.",
+        "acknowledge": "See teade puudutab teenust ennast (turvalisust, kättesaadavust või selle toimimist), mitte reklaami."
+      },
       "send": {
         "title": "Kas saata see kampaania?",
         "text": "{count, plural, =0 {Praegu ei saaks seda keegi.} one {Saajaid: #. Nad saavad selle alates järgmisest saatmistunnist (8:00–18:00 UTC). Hiljem seda muuta ei saa.} other {Saajaid: #. Nad saavad selle alates järgmisest saatmistunnist (8:00–18:00 UTC). Hiljem seda muuta ei saa.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "E-kirjad päevas Resendi kaudu",
       "RESEND_RESERVE_PERCENT": "Osa Resendi kaudu saadetavatest päevastest e-kirjadest, mis hoitakse massiliste saadetiste eest kõrvale",
       "CAMPAIGNS_PER_KIND_DAY": "Kampaaniad iga liigi kohta päevas",
+      "NOTICES_PER_DAY": "Olulised teated päevas",
       "AI_SPEND_UNPAID_DAY": "AI-kulu päevas, mittemaksvad kasutajad kokku",
       "QUESTION_SECONDS_BASIC": "Sekundid küsimuse kohta, uued lihtsa taseme testid",
       "QUESTION_SECONDS_MEDIUM": "Sekundid küsimuse kohta, uued keskmise taseme testid",

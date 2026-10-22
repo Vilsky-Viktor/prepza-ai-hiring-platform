@@ -24,6 +24,11 @@ SECRET = "whsec_dGVzdC13ZWJob29rLWtleQ=="
 ENGLISH = {"subject": "Code questions", "text": "Now with code.", "button": None}
 
 
+def fields(kind: str, link: str | None = None) -> dict:
+    """A campaign's columns besides its texts: to everyone."""
+    return {"kind": kind, "groups": [], "editors_only": False, "company_ids": [], "link": link}
+
+
 async def large_resend_quota(redis):
     """Resend's daily quota edited far above what the tests send, so emails other tests sent
     today never use up the bulk share."""
@@ -65,15 +70,15 @@ def test_a_campaign_goes_from_start_to_mailpit_once_and_only_to_who_chose_it(
             if one == user
         ]
 
-    monkeypatch.setattr("app.services.bulk_content.library.user_ids", user_ids)
+    monkeypatch.setattr("app.services.audiences.library.user_ids", user_ids)
     monkeypatch.setattr(bulk.library, "recipients", recipients)
     monkeypatch.setattr(settings, "resend_api_key", "")
     monkeypatch.setattr("prepza_common.limits.current_values", large_resend_quota)
 
     async def scenario():
-        campaign = await campaigns_store.create("promotions", None, "sam", ENGLISH)
-        send_id = await campaigns_store.mark_sent(campaign.id, "sam", 1)
-        again = await campaigns_store.mark_sent(campaign.id, "sam", 1)
+        campaign = await campaigns_store.create(fields("promotions"), "sam", ENGLISH)
+        send_id = await campaigns_store.mark_sent(campaign.id, "promotions", "sam", 1)
+        again = await campaigns_store.mark_sent(campaign.id, "promotions", "sam", 1)
         await bulk.prepare(await bulk_sends.get("promotions", str(campaign.id)), until=0)
         await bulk.send_bulk(datetime.now(UTC))
         counts = (await bulk_sends.counts([send_id]))[send_id]
@@ -97,10 +102,10 @@ def test_a_kinds_campaigns_a_day_stay_within_the_limit_even_sent_at_once(run, qu
     No other test sends an "updates" campaign, in a database of their own."""
 
     async def scenario():
-        drafts = [await campaigns_store.create("updates", None, "sam", ENGLISH) for _ in range(3)]
+        drafts = [await campaigns_store.create(fields("updates"), "sam", ENGLISH) for _ in range(3)]
 
         return await asyncio.gather(
-            *(campaigns_store.mark_sent(draft.id, "sam", 2) for draft in drafts)
+            *(campaigns_store.mark_sent(draft.id, "updates", "sam", 2) for draft in drafts)
         )
 
     outcomes = run(scenario())
@@ -111,7 +116,7 @@ def test_a_kinds_campaigns_a_day_stay_within_the_limit_even_sent_at_once(run, qu
 
 def test_a_changed_english_drops_the_translations_but_a_hand_edit_survives_a_late_job(run):
     async def scenario():
-        campaign = await campaigns_store.create("updates", "/pricing", "sam", ENGLISH)
+        campaign = await campaigns_store.create(fields("updates", "/pricing"), "sam", ENGLISH)
         await campaigns_store.set_texts(campaign.id, "de", {**ENGLISH, "subject": "Von Hand"})
         await campaigns_store.save_translations(
             campaign.id,
@@ -123,7 +128,7 @@ def test_a_changed_english_drops_the_translations_but_a_hand_edit_survives_a_lat
         )
         _, kept = await campaigns_store.get(campaign.id)
         changed = {**ENGLISH, "text": "Now with more code."}
-        await campaigns_store.update(campaign.id, "updates", "/pricing", changed)
+        await campaigns_store.update(campaign.id, fields("updates", "/pricing"), changed)
         # A job that translated the old text arrives late: dropped.
         await campaigns_store.save_translations(campaign.id, ENGLISH, {"de": ENGLISH})
         _, after = await campaigns_store.get(campaign.id)

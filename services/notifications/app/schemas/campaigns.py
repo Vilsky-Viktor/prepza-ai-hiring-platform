@@ -8,7 +8,9 @@ from prepza_common.constants import (
     MAX_CAMPAIGN_TEXT_LENGTH,
 )
 from prepza_common.user import Language
-from pydantic import BaseModel, StringConstraints
+from pydantic import BaseModel, Field, StringConstraints
+
+from app.constants.campaigns import MAX_NOTICE_COMPANIES, AudienceGroup
 
 Subject = Annotated[
     str,
@@ -20,7 +22,7 @@ Text = Annotated[
 ButtonText = Annotated[
     str, StringConstraints(strip_whitespace=True, max_length=MAX_CAMPAIGN_BUTTON_LENGTH)
 ]
-CampaignKind = Literal["updates", "promotions"]
+CampaignKind = Literal["updates", "promotions", "notices"]
 
 
 class CampaignTexts(BaseModel):
@@ -32,12 +34,29 @@ class CampaignTexts(BaseModel):
     button: ButtonText | None = None
 
 
-class CampaignIn(CampaignTexts):
-    """A campaign as a superadmin writes it, in English: a product update or an offer, and the
-    page on the site its button opens."""
+class AudienceIn(BaseModel):
+    """Whom a campaign of `kind` goes to: everyone (no `groups`), or the people in any of
+    `groups`; of companies, with `editors_only` only their owners and admins, and for an
+    important notice with `company_ids` only those companies'."""
 
     kind: CampaignKind
+    groups: list[AudienceGroup] = Field(default=[], max_length=len(AudienceGroup))
+    editors_only: bool = False
+    company_ids: list[UUID] = Field(default=[], max_length=MAX_NOTICE_COMPANIES)
+
+
+class CampaignIn(CampaignTexts, AudienceIn):
+    """A campaign as a superadmin writes it, in English: a product update, an offer or an
+    important notice, whom it goes to, and the page on the site its button opens."""
+
     link: Annotated[str, StringConstraints(strip_whitespace=True, max_length=300)] | None = None
+
+
+class SendIn(BaseModel):
+    """An important notice is sent only once the superadmin confirms it's about the service
+    itself, never a promotion."""
+
+    acknowledged: bool = False
 
 
 class CampaignCounts(BaseModel):
@@ -65,15 +84,24 @@ class CampaignRowOut(BaseModel):
     counts: CampaignCounts | None
 
 
+class CompanyOut(BaseModel):
+    id: UUID
+    name: str
+
+
 class CampaignOut(CampaignRowOut):
     link: str | None
+    groups: list[AudienceGroup]
+    editors_only: bool
+    # The companies an important notice goes to, by name; those deleted since are left out.
+    companies: list[CompanyOut]
     # By language; a language without texts gets the English.
     texts: dict[str, CampaignTexts]
 
 
 class RecipientsOut(BaseModel):
-    """Who the campaign would reach now: users with its setting on, not suppressed, with an
-    address."""
+    """Who the campaign would reach now: the users of its audience with an address, not
+    suppressed, and for an optional kind with its setting on; each once."""
 
     count: int
 

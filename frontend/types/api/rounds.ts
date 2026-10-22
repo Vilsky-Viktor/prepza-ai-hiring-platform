@@ -668,6 +668,28 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/users/ids": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * User Ids
+     * @description Notifications, for a campaign to them, a page at a time: the candidates (people who took
+     *     a company's interview) or the learners (people who took a free practice round). Only their
+     *     ids: what they did stays here.
+     */
+    get: operations["user_ids_internal_users_ids_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/invites/delete": {
     parameters: {
       query?: never
@@ -1407,6 +1429,11 @@ export interface components {
       title: string
       /** Questions */
       questions: components["schemas"]["Question"][]
+    }
+    /** UserIdsOut */
+    UserIdsOut: {
+      /** User Ids */
+      user_ids: string[]
     }
     /** ValidationError */
     ValidationError: {
@@ -2485,6 +2512,40 @@ export interface operations {
           "application/json": {
             [key: string]: unknown
           }
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  user_ids_internal_users_ids_get: {
+    parameters: {
+      query: {
+        group: "candidates" | "learners"
+        /** @description The last id of the previous page */
+        after?: string
+        limit?: number
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["UserIdsOut"]
         }
       }
       /** @description Validation Error */

@@ -118,3 +118,26 @@ def test_a_campaign_asks_only_for_the_users_with_its_setting_on(client, monkeypa
     assert asked == [("promotions", "", 5000), ("promotions", "ann", 5000)]
     # Only the marketing settings, which are off until the user turns them on.
     assert client.get("/internal/users/ids?setting=reminders", headers=HEADERS).status_code == 422
+
+
+def test_of_some_users_notifications_learns_who_has_a_campaigns_setting_on(client, monkeypatch):
+    asked = []
+
+    async def having(setting, user_ids):
+        asked.append((setting, user_ids))
+
+        return user_ids[:1]
+
+    monkeypatch.setattr(emails, "having", having)
+    body = {"user_ids": ["ann", "bob"], "setting": "promotions"}
+
+    response = client.post("/internal/users/with-setting", json=body, headers=HEADERS)
+
+    assert response.json() == {"user_ids": ["ann"]}
+    assert asked == [("promotions", ["ann", "bob"])]
+    # Only a campaign's settings, and only for a service.
+    wrong = {**body, "setting": "reminders"}
+    assert (
+        client.post("/internal/users/with-setting", json=wrong, headers=HEADERS).status_code == 422
+    )
+    assert client.post("/internal/users/with-setting", json=body).status_code in (401, 403)

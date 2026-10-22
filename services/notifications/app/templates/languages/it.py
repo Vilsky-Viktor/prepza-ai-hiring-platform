@@ -257,6 +257,21 @@ TEXTS = {
             " promozioni da prepza."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "Apri prepza",
+        "footer": (
+            "Questa email è stata inviata a {email} perché hai un account prepza. È un avviso"
+            " importante sul servizio, ad esempio sulla sua sicurezza o disponibilità, quindi"
+            " viene inviata indipendentemente dalle tue impostazioni email."
+        ),
+    },
     "top_up_failed": {
         "subject": "Ricarica automatica non riuscita: {company}",
         "preheader": (

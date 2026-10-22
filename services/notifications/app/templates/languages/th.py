@@ -182,6 +182,21 @@ TEXTS = {
         "open_site": "เปิด prepza",
         "footer": "อีเมลนี้ส่งถึง {email} เนื่องจากคุณเลือกรับข้อเสนอและโปรโมชันจาก prepza",
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "เปิด prepza",
+        "footer": (
+            "อีเมลนี้ส่งถึง {email} เนื่องจากคุณมีบัญชี prepza"
+            " อีเมลนี้เป็นประกาศสำคัญเกี่ยวกับบริการ เช่น ความปลอดภัยหรือความพร้อมใช้งาน"
+            " จึงส่งเสมอไม่ว่าการตั้งค่าอีเมลของคุณจะเป็นอย่างไร"
+        ),
+    },
     "top_up_failed": {
         "subject": "เติมเครดิตอัตโนมัติไม่สำเร็จ: {company}",
         "preheader": "เรียกเก็บเงินจากบัตรไม่สำเร็จ เติมเครดิตเพื่อเชิญผู้สมัครต่อ",

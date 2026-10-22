@@ -6,18 +6,22 @@ from enum import StrEnum
 
 class BulkKind(StrEnum):
     """What a bulk send is: a notice of a legal document's new version (a service email, about the
-    version), or a campaign (an optional email, about the campaign's id), named after the email
-    setting it needs."""
+    version), or a campaign (about the campaign's id): a product update or an offer (optional
+    emails, named after the email setting they need), or an important notice (a service email:
+    a security incident, planned downtime, a change to how the service works)."""
 
     LEGAL_TERMS = "legal_terms"
     LEGAL_PRIVACY = "legal_privacy"
     LEGAL_DPA = "legal_dpa"
     UPDATES = "updates"
     PROMOTIONS = "promotions"
+    NOTICES = "notices"
 
 
 LEGAL_KINDS = (BulkKind.LEGAL_TERMS, BulkKind.LEGAL_PRIVACY, BulkKind.LEGAL_DPA)
-CAMPAIGN_KINDS = (BulkKind.UPDATES, BulkKind.PROMOTIONS)
+CAMPAIGN_KINDS = (BulkKind.UPDATES, BulkKind.PROMOTIONS, BulkKind.NOTICES)
+# The campaigns that need their setting on, and can be unsubscribed from.
+OPTIONAL_KINDS = (BulkKind.UPDATES, BulkKind.PROMOTIONS)
 
 
 class RecipientStatus(StrEnum):
@@ -29,7 +33,7 @@ class RecipientStatus(StrEnum):
 
 class SkipReason(StrEnum):
     """Why a recipient was skipped: their account or address is gone, the address is on the
-    suppression list, they turned the campaign's setting off since it started, or it was
+    suppression list, they turned an optional campaign's setting off since it started, or it was
     stopped."""
 
     GONE = "gone"

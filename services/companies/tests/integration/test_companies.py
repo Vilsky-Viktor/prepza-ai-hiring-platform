@@ -1,5 +1,6 @@
 import uuid
 
+import pytest
 from prepza_common.constants import LEGAL_VERSIONS
 
 from app.models.companies import Member
@@ -34,7 +35,10 @@ def test_a_new_company_keeps_the_dpa_version_its_owner_accepted(run):
     assert run(scenario()).dpa_version == LEGAL_VERSIONS["dpa"]
 
 
-def test_the_dpa_notice_goes_to_joined_owners_and_admins_only(run):
+@pytest.mark.parametrize("editors_only", [True, False])
+def test_members_are_listed_a_page_at_a_time_joined_ones_only(run, editors_only):
+    """Owners and admins for the DPA's notice (editors_only), everyone who joined for a campaign
+    to companies; never an invite not accepted yet."""
     owner, viewer = f"own-{uuid.uuid4()}", f"view-{uuid.uuid4()}"
 
     async def scenario():
@@ -52,17 +56,19 @@ def test_the_dpa_notice_goes_to_joined_owners_and_admins_only(run):
             )
             await session.commit()
 
-        found = await email_reminders.editor_ids("", 5000)
+        # Read from just before this test's members.
+        found = await email_reminders.member_ids("own-", 5000, editors_only)
         # The next page starts after the owner.
-        after = await email_reminders.editor_ids(owner, 5000)
+        after = await email_reminders.member_ids(owner, 5000, editors_only)
         await companies.delete(made.id)
 
         return found, after
 
     found, after = run(scenario())
 
-    assert owner in found and viewer not in found
-    assert owner not in after
+    assert owner in found and owner not in after
+    assert (viewer in found) is not editors_only
+    assert None not in found
 
 
 def test_a_users_companies_are_listed_by_name_in_any_case(run):

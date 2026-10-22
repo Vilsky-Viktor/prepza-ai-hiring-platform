@@ -273,6 +273,21 @@ TEXTS = {
             " promo mula sa prepza."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "Buksan ang prepza",
+        "footer": (
+            "Ipinadala ang email na ito sa {email} dahil may prepza account ka. Mahalagang"
+            " abiso ito tungkol sa serbisyo, gaya ng seguridad o availability nito, kaya"
+            " ipinapadala ito anuman ang iyong email settings."
+        ),
+    },
     "top_up_failed": {
         "subject": "Pumalya ang top-up: {company}",
         "preheader": (

@@ -264,6 +264,21 @@ TEXTS = {
             " prepza."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "Открыть prepza",
+        "footer": (
+            "Это письмо отправлено на {email}, потому что у вас есть аккаунт prepza. Это важное"
+            " уведомление о сервисе, например о его безопасности или доступности, поэтому оно"
+            " отправляется независимо от настроек писем."
+        ),
+    },
     "top_up_failed": {
         "subject": "Автопополнение не удалось: {company}",
         "preheader": (

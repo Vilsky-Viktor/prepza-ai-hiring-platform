@@ -126,7 +126,7 @@
      "notifications"
     ],
     "summary": "Stream",
-    "description": "Server-sent events while a tab is open: {\"new\": true} as soon as a notification comes,\nso the bell reloads; heartbeat comments in between. At most MAX_STREAMS_PER_USER at once;\nthe bell refreshes on its own without one.",
+    "description": "Server-sent events while a tab is open: {\"new\": true} as soon as a notification comes,\nso the bell reloads; heartbeat comments in between. At most STREAMS_PER_USER at once;\nthe bell refreshes on its own without one.",
     "operationId": "stream_me_stream_get",
     "security": [
      {
@@ -208,7 +208,7 @@
      "webhooks"
     ],
     "summary": "Resend Webhook",
-    "description": "Resend retries until it gets a 2xx, and marking an invite is idempotent, so a failed\ncall to its owner simply comes back later.",
+    "description": "Answered once the signature is checked and the event recorded (by its delivery id, so a\nrepeat is recorded once): its work runs from the email.webhook_received event\n(services/webhooks.py), retried by Pub/Sub, not before the answer.",
     "operationId": "resend_webhook_webhooks_resend_post",
     "responses": {
      "204": {
@@ -961,6 +961,53 @@
     }
    }
   },
+  "/superadmin/campaigns/recipients": {
+   "post": {
+    "tags": [
+     "superadmin"
+    ],
+    "summary": "Count Audience",
+    "description": "Who a campaign of that kind and audience would reach now, as the dialog's choice\nchanges.",
+    "operationId": "count_audience_superadmin_campaigns_recipients_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AudienceIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RecipientsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
   "/superadmin/campaigns/from-news/{news_id}": {
    "post": {
     "tags": [
@@ -1463,7 +1510,7 @@
      "superadmin"
     ],
     "summary": "Send Campaign",
-    "description": "Starts it at once; it can't be changed after. At most one of each kind a day.",
+    "description": "Starts it at once; it can't be changed after. At most one of each kind a day; an\nimportant notice only once confirmed as one.",
     "operationId": "send_campaign_superadmin_campaigns__campaign_id__send_post",
     "security": [
      {
@@ -1482,6 +1529,23 @@
       }
      }
     ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "anyOf": [
+         {
+          "$ref": "#/components/schemas/SendIn"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Body"
+       }
+      }
+     }
+    },
     "responses": {
      "200": {
       "description": "Successful Response",
@@ -1827,7 +1891,7 @@
      "schedules"
     ],
     "summary": "Reminders",
-    "description": "Every minute for an hour each morning, from Cloud Scheduler: reminders, each kind\nat most once a week to a user. The sent log's old rows go too.",
+    "description": "Every minute for an hour each morning, from Cloud Scheduler: reminders, each kind\nat most once a week to a user. The sent log's old rows go too, and soft bounces past their\nwindow, until CLEANUP_SECONDS after the run started; the next run deletes the rest.",
     "operationId": "reminders_internal_schedules_reminders_post",
     "responses": {
      "204": {
@@ -1899,6 +1963,59 @@
  },
  "components": {
   "schemas": {
+   "AudienceGroup": {
+    "type": "string",
+    "enum": [
+     "members",
+     "candidates",
+     "learners"
+    ],
+    "title": "AudienceGroup",
+    "description": "Whom a campaign goes to, besides everyone: the people who joined a company (members), who\ntook a company's interview (candidates, rounds' interview sessions) or a free practice round\n(learners, rounds' practice sessions). Someone in several groups gets it once."
+   },
+   "AudienceIn": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "enum": [
+       "updates",
+       "promotions",
+       "notices"
+      ],
+      "title": "Kind"
+     },
+     "groups": {
+      "items": {
+       "$ref": "#/components/schemas/AudienceGroup"
+      },
+      "type": "array",
+      "maxItems": 3,
+      "title": "Groups",
+      "default": []
+     },
+     "editors_only": {
+      "type": "boolean",
+      "title": "Editors Only",
+      "default": false
+     },
+     "company_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "maxItems": 50,
+      "title": "Company Ids",
+      "default": []
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind"
+    ],
+    "title": "AudienceIn",
+    "description": "Whom a campaign of `kind` goes to: everyone (no `groups`), or the people in any of\n`groups`; of companies, with `editors_only` only their owners and admins, and for an\nimportant notice with `company_ids` only those companies'."
+   },
    "CampaignCounts": {
     "properties": {
      "pending": {
@@ -1939,6 +2056,39 @@
    },
    "CampaignIn": {
     "properties": {
+     "kind": {
+      "type": "string",
+      "enum": [
+       "updates",
+       "promotions",
+       "notices"
+      ],
+      "title": "Kind"
+     },
+     "groups": {
+      "items": {
+       "$ref": "#/components/schemas/AudienceGroup"
+      },
+      "type": "array",
+      "maxItems": 3,
+      "title": "Groups",
+      "default": []
+     },
+     "editors_only": {
+      "type": "boolean",
+      "title": "Editors Only",
+      "default": false
+     },
+     "company_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "maxItems": 50,
+      "title": "Company Ids",
+      "default": []
+     },
      "subject": {
       "type": "string",
       "maxLength": 120,
@@ -1963,14 +2113,6 @@
       ],
       "title": "Button"
      },
-     "kind": {
-      "type": "string",
-      "enum": [
-       "updates",
-       "promotions"
-      ],
-      "title": "Kind"
-     },
      "link": {
       "anyOf": [
        {
@@ -1986,12 +2128,12 @@
     },
     "type": "object",
     "required": [
+     "kind",
      "subject",
-     "text",
-     "kind"
+     "text"
     ],
     "title": "CampaignIn",
-    "description": "A campaign as a superadmin writes it, in English: a product update or an offer, and the\npage on the site its button opens."
+    "description": "A campaign as a superadmin writes it, in English: a product update, an offer or an\nimportant notice, whom it goes to, and the page on the site its button opens."
    },
    "CampaignOut": {
     "properties": {
@@ -2004,7 +2146,8 @@
       "type": "string",
       "enum": [
        "updates",
-       "promotions"
+       "promotions",
+       "notices"
       ],
       "title": "Kind"
      },
@@ -2064,6 +2207,24 @@
       ],
       "title": "Link"
      },
+     "groups": {
+      "items": {
+       "$ref": "#/components/schemas/AudienceGroup"
+      },
+      "type": "array",
+      "title": "Groups"
+     },
+     "editors_only": {
+      "type": "boolean",
+      "title": "Editors Only"
+     },
+     "companies": {
+      "items": {
+       "$ref": "#/components/schemas/CompanyOut"
+      },
+      "type": "array",
+      "title": "Companies"
+     },
      "texts": {
       "additionalProperties": {
        "$ref": "#/components/schemas/CampaignTexts"
@@ -2083,6 +2244,9 @@
      "status",
      "counts",
      "link",
+     "groups",
+     "editors_only",
+     "companies",
      "texts"
     ],
     "title": "CampaignOut"
@@ -2098,7 +2262,8 @@
       "type": "string",
       "enum": [
        "updates",
-       "promotions"
+       "promotions",
+       "notices"
       ],
       "title": "Kind"
      },
@@ -2377,6 +2542,25 @@
     "title": "CompanyOptOutOut",
     "description": "A company that invited an address, or whose emails it stopped: whether every email from\nthe company to it is stopped, whether a superadmin stopped them (only that can be lifted\nthere; the candidate's own stops stay), and for how many invites only the reminders are."
    },
+   "CompanyOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Id"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "name"
+    ],
+    "title": "CompanyOut"
+   },
    "FeedOut": {
     "properties": {
      "items": {
@@ -2595,7 +2779,19 @@
      "count"
     ],
     "title": "RecipientsOut",
-    "description": "Who the campaign would reach now: users with its setting on, not suppressed, with an\naddress."
+    "description": "Who the campaign would reach now: the users of its audience with an address, not\nsuppressed, and for an optional kind with its setting on; each once."
+   },
+   "SendIn": {
+    "properties": {
+     "acknowledged": {
+      "type": "boolean",
+      "title": "Acknowledged",
+      "default": false
+     }
+    },
+    "type": "object",
+    "title": "SendIn",
+    "description": "An important notice is sent only once the superadmin confirms it's about the service\nitself, never a promotion."
    },
    "SlackKindsIn": {
     "properties": {

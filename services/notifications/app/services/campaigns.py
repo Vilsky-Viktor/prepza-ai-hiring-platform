@@ -9,15 +9,25 @@ from prepza_common.constants import DEFAULT_LANGUAGE
 from app.constants.bulk import BulkKind
 from app.constants.campaigns import (
     ALREADY_SENT,
+    COMPANIES_ONLY_NOTICES,
     LINK_NOT_ON_SITE,
     NEWS_BUTTON,
     NEWS_LINK,
     NO_BUTTON_TEXT,
+    OWNERS_NEED_COMPANIES,
+    AudienceGroup,
 )
-from app.integrations import generation, library
+from app.integrations import companies, generation, library
 from app.models.bulk import BulkSend
 from app.models.campaigns import Campaign
-from app.schemas.campaigns import CampaignIn, CampaignOut, CampaignRowOut, CampaignTexts
+from app.schemas.campaigns import (
+    AudienceIn,
+    CampaignIn,
+    CampaignOut,
+    CampaignRowOut,
+    CampaignTexts,
+    CompanyOut,
+)
 from app.storage import bulk_sends, campaigns
 
 logger = logging.getLogger(__name__)
@@ -29,15 +39,46 @@ def english_of(body: CampaignTexts) -> dict:
     return {"subject": body.subject, "text": body.text, "button": body.button or None}
 
 
+def checked_audience(body: AudienceIn) -> AudienceIn:
+    """Owners and admins only, and some companies only, narrow the companies group; only an
+    important notice goes to some companies only. Each group once."""
+    members = AudienceGroup.MEMBERS in body.groups
+
+    if body.editors_only and not members:
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, OWNERS_NEED_COMPANIES)
+
+    if body.company_ids and (body.kind != BulkKind.NOTICES or not members):
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, COMPANIES_ONLY_NOTICES)
+
+    return body.model_copy(
+        update={
+            "groups": list(dict.fromkeys(body.groups)),
+            "company_ids": list(dict.fromkeys(body.company_ids)),
+        }
+    )
+
+
 def checked(body: CampaignIn) -> CampaignIn:
-    """The button opens a page on the site, and has a text when it has a link."""
+    """The button opens a page on the site, and has a text when it has a link; the audience is
+    one that can be chosen."""
     if body.link and (not body.link.startswith("/") or body.link.startswith("//")):
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, LINK_NOT_ON_SITE)
 
     if body.link and not body.button:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, NO_BUTTON_TEXT)
 
-    return body
+    return checked_audience(body)
+
+
+def fields_of(body: CampaignIn) -> dict:
+    """The campaign's columns besides its texts."""
+    return {
+        "kind": body.kind,
+        "groups": [str(group) for group in body.groups],
+        "editors_only": body.editors_only,
+        "company_ids": body.company_ids,
+        "link": body.link or None,
+    }
 
 
 def refused(outcome) -> None:
@@ -57,11 +98,33 @@ async def send_to_translator(campaign_id: uuid.UUID) -> None:
         logger.exception("Couldn't send campaign %s to be translated", campaign_id)
 
 
+async def companies_of(campaign: Campaign) -> list[CompanyOut]:
+    """The companies an important notice goes to, by name, as chosen; those gone are left out."""
+    if not campaign.company_ids:
+        return []
+
+    found = await companies.members([str(company_id) for company_id in campaign.company_ids])
+    names = {company["id"]: company["name"] for company in found}
+
+    return [
+        CompanyOut(id=company_id, name=names[str(company_id)])
+        for company_id in campaign.company_ids
+        if str(company_id) in names
+    ]
+
+
 async def out(campaign: Campaign) -> CampaignOut:
     _, texts = await campaigns.get(campaign.id)
     row = await row_out(campaign, texts[DEFAULT_LANGUAGE]["subject"], len(texts))
 
-    return CampaignOut(**row.model_dump(), link=campaign.link, texts=texts)
+    return CampaignOut(
+        **row.model_dump(),
+        link=campaign.link,
+        groups=campaign.groups,
+        editors_only=campaign.editors_only,
+        companies=await companies_of(campaign),
+        texts=texts,
+    )
 
 
 def status_of(send) -> str:
@@ -124,7 +187,7 @@ async def get(campaign_id: uuid.UUID) -> CampaignOut:
 
 async def create(body: CampaignIn, user_id: str) -> CampaignOut:
     body = checked(body)
-    campaign = await campaigns.create(body.kind, body.link or None, user_id, english_of(body))
+    campaign = await campaigns.create(fields_of(body), user_id, english_of(body))
     await send_to_translator(campaign.id)
 
     return await out(campaign)
@@ -149,10 +212,10 @@ async def from_news(news_id: uuid.UUID, user_id: str) -> CampaignOut:
 
 
 async def update(campaign_id: uuid.UUID, body: CampaignIn) -> CampaignOut:
-    """A changed English text is translated again; a new kind or link alone keeps the other
-    languages."""
+    """A changed English text is translated again; a new kind, audience or link alone keeps the
+    other languages."""
     body = checked(body)
-    saved = await campaigns.update(campaign_id, body.kind, body.link or None, english_of(body))
+    saved = await campaigns.update(campaign_id, fields_of(body), english_of(body))
     refused(saved)
     campaign, changed = saved
 

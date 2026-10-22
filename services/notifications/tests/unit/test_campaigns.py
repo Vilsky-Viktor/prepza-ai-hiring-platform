@@ -87,7 +87,9 @@ def test_the_recipients_are_users_with_the_setting_on_with_an_address_not_suppre
     asked = []
 
     async def get(campaign_id):
-        return SimpleNamespace(kind="promotions"), TEXTS
+        return SimpleNamespace(
+            kind="promotions", groups=[], editors_only=False, company_ids=[]
+        ), TEXTS
 
     async def user_ids(after, setting=None):
         asked.append(setting)
@@ -103,7 +105,7 @@ def test_the_recipients_are_users_with_the_setting_on_with_an_address_not_suppre
         return {address_hash("bob@example.com")} & set(hashes)
 
     monkeypatch.setattr(campaigns_store, "get", get)
-    monkeypatch.setattr("app.services.bulk_content.library.user_ids", user_ids)
+    monkeypatch.setattr("app.services.audiences.library.user_ids", user_ids)
     monkeypatch.setattr(campaign_sends.library, "recipients", recipients)
     monkeypatch.setattr(suppressed, "among", among)
 
@@ -145,7 +147,10 @@ def test_a_second_send_or_one_over_the_kinds_limit_today_is_refused(
     """The day's limit of a kind is as edited in Controls, and a refusal over it is recorded."""
     asked, hits = [], []
 
-    async def mark_sent(campaign_id, user_id, per_day):
+    async def get(campaign_id):
+        return SimpleNamespace(kind="updates"), TEXTS
+
+    async def mark_sent(campaign_id, kind, user_id, per_day):
         asked.append(per_day)
 
         return outcome
@@ -156,10 +161,11 @@ def test_a_second_send_or_one_over_the_kinds_limit_today_is_refused(
     monkeypatch.setattr(memory_cache, "_entries", {})
     monkeypatch.setattr(campaign_sends, "get_redis", lambda: EditedLimits(edited))
     monkeypatch.setattr(campaign_sends, "record_hit", record_hit)
+    monkeypatch.setattr(campaigns_store, "get", get)
     monkeypatch.setattr(campaigns_store, "mark_sent", mark_sent)
 
     with pytest.raises(HTTPException) as refused:
-        asyncio.run(campaign_sends.send(uuid.uuid4(), "sam"))
+        asyncio.run(campaign_sends.send(uuid.uuid4(), "sam", acknowledged=False))
 
     assert (refused.value.status_code, refused.value.detail) == (code, detail)
     # The day's limit says when it frees up; a campaign sent already never does.

@@ -44,6 +44,9 @@ class Settings(ServiceSettings):
     # review: the reminders. Generation also translates campaigns.
     billing_url: str
     generation_url: str
+    # Rounds says who took a company's interview or a free practice round: a campaign's
+    # candidates and learners.
+    rounds_url: str
     # prepza's Slack app (api.slack.com: incoming-webhook scope), and the Fernet key that seals
     # each company's web hook. Without all three, Slack isn't offered.
     slack_client_id: str = ""

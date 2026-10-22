@@ -64,7 +64,8 @@ locals {
     companies         = ["generation", "library", "rounds", "billing"]
     # companies' names and accounts' emails, for the AI costs tab.
     billing              = ["companies", "library"]
-    notifications        = ["companies", "library", "billing", "generation"]
+    # rounds: a campaign's candidates and learners.
+    notifications        = ["companies", "library", "billing", "generation", "rounds"]
     notifications-stream = ["companies", "library"]
     ats                  = ["companies"]
     api                  = ["companies"]

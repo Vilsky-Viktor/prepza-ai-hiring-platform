@@ -419,8 +419,33 @@
     "campaignKind": "종류",
     "campaignKinds": {
       "updates": "제품 업데이트",
-      "promotions": "혜택"
+      "promotions": "혜택",
+      "notices": "중요 공지"
     },
+    "campaignNoticeWarning": "중요 공지는 이메일 설정과 관계없이 대상자 모두에게 전달되며 수신 거부할 수 없습니다. 보안 사고, 예정된 서비스 중단, prepza 작동 방식의 변경에만 사용하고, 무언가를 홍보하는 데는 절대 사용하지 마세요.",
+    "campaignAudience": "대상",
+    "campaignAudienceEveryone": "모두",
+    "campaignAudienceEveryoneNote": {
+      "updates": "제품 업데이트를 켠 모든 사람",
+      "promotions": "혜택을 켠 모든 사람",
+      "notices": "모든 계정"
+    },
+    "campaignAudienceGroups": {
+      "members": "회사",
+      "candidates": "지원자",
+      "learners": "연습 사용자"
+    },
+    "campaignAudienceNotes": {
+      "members": "회사 팀에 속한 사람",
+      "candidates": "회사의 면접을 본 사람",
+      "learners": "무료 연습을 이용한 사람"
+    },
+    "campaignAudienceEditorsOnly": "소유자와 관리자만",
+    "campaignAudienceCount": "{count, plural, other {현재 {shown}명에게 전달됩니다}}",
+    "campaignCompanies": "이 회사만",
+    "campaignCompaniesPlaceholder": "모든 회사",
+    "campaignCompaniesSearch": "회사 찾기",
+    "campaignCompaniesNone": "회사를 찾을 수 없습니다.",
     "campaignSubject": "제목",
     "campaignSubjectPlaceholder": "여기에 제목 입력…",
     "campaignText": "본문",
@@ -459,6 +484,11 @@
     "stopCampaign": "중지",
     "deleteCampaign": "캠페인 삭제",
     "campaignConfirm": {
+      "notice": {
+        "title": "이 중요 공지를 보낼까요?",
+        "warning": "받는 사람의 이메일 설정과 관계없이 발송됩니다. 이 방식으로 홍보를 보내면 이메일 관련 법률을 위반하고 사용자의 신뢰를 저버리게 됩니다.",
+        "acknowledge": "이 공지는 홍보가 아니라 서비스 자체(보안, 가용성 또는 작동 방식)에 관한 것입니다."
+      },
       "send": {
         "title": "이 캠페인을 보낼까요?",
         "text": "{count, plural, =0 {지금은 받을 사람이 없습니다.} other {#명이 다음 발송 시간(UTC 8:00~18:00)부터 받습니다. 보낸 후에는 변경할 수 없습니다.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "Resend를 통한 하루 이메일",
       "RESEND_RESERVE_PERCENT": "대량 발송에 쓰지 않고 남겨 두는 Resend 하루 이메일 비율",
       "CAMPAIGNS_PER_KIND_DAY": "종류별 하루 캠페인",
+      "NOTICES_PER_DAY": "하루 중요 공지",
       "AI_SPEND_UNPAID_DAY": "하루 AI 지출, 무료 사용자 합계",
       "QUESTION_SECONDS_BASIC": "새 초급 테스트의 문제당 초",
       "QUESTION_SECONDS_MEDIUM": "새 중급 테스트의 문제당 초",

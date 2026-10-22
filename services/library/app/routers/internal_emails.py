@@ -11,6 +11,7 @@ from app.schemas.emails import (
     RecipientsOut,
     UnsubscribeIn,
     UserIdsOut,
+    WithSettingIn,
 )
 from app.service_auth import ServiceCaller
 from app.services.email_recipients import recipients, user_ids_after
@@ -34,6 +35,13 @@ async def user_ids(
         return UserIdsOut(user_ids=found)
 
     return UserIdsOut(user_ids=await asyncio.to_thread(user_ids_after, page.after, page.limit))
+
+
+@router.post("/with-setting")
+async def users_with_setting(body: WithSettingIn, caller: ServiceCaller) -> UserIdsOut:
+    """Notifications, for a campaign to some groups (companies, candidates, learners): those of
+    the users who have its setting on."""
+    return UserIdsOut(user_ids=await emails.having(body.setting, body.user_ids))
 
 
 @router.post("/{user_id}/unsubscribe")

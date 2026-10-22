@@ -14,7 +14,7 @@ import { NumberCards } from "@/components/superadmin/number-cards"
 import { Badge } from "@/components/ui/badge"
 import { LANGUAGE_NAMES, LOCALES } from "@/constants/i18n"
 import { apiFetch } from "@/lib/api"
-import { compactNumber } from "@/lib/format"
+import { compactNumber, formatList } from "@/lib/format"
 import type { Campaign, CampaignPreview } from "@/types/campaigns"
 
 const COUNTS = [
@@ -58,7 +58,8 @@ export function CampaignView({
     apiFetch<{ count: number }>(`${path}/recipients`)
       .then((found) => setRecipients(found.count))
       .catch(() => setRecipients(null))
-  }, [path, campaign.status, campaign.kind])
+    // Again after an edit: its kind or audience may have changed.
+  }, [path, campaign])
 
   const shown = (value: number | null | undefined) =>
     value === null || value === undefined ? "—" : compactNumber(value, locale)
@@ -67,6 +68,24 @@ export function CampaignView({
     label: t(`campaignCounts.${key}`),
     value: shown(campaign.counts?.[key]),
   }))
+
+  // Whom it goes to, a badge each: everyone, or its groups (the companies' owners and admins
+  // only, when so) and the companies it's limited to.
+  const audience = [
+    ...(campaign.groups.length === 0 ? [t("campaignAudienceEveryone")] : []),
+    ...campaign.groups.map((group) =>
+      group === "members" && campaign.editors_only
+        ? t("campaignAudienceEditorsOnly")
+        : t(`campaignAudienceGroups.${group}`)
+    ),
+  ]
+  // Companies' names keep their case.
+  const companies =
+    campaign.companies.length > 0 &&
+    formatList(
+      campaign.companies.map((company) => company.name),
+      locale
+    )
 
   const buttons = campaign.status === "draft" && (
     <div className="flex items-center gap-2">
@@ -102,6 +121,25 @@ export function CampaignView({
             <Badge variant="outline" className="h-7 px-3 text-sm font-light">
               {t(`campaignKinds.${campaign.kind}`)}
             </Badge>
+            {audience.map((label) => (
+              <Badge
+                key={label}
+                variant="outline"
+                className="h-7 px-3 text-sm font-light"
+                data-testid="campaign-audience"
+              >
+                {label}
+              </Badge>
+            ))}
+            {companies && (
+              <Badge
+                variant="outline"
+                className="h-7 px-3 text-sm font-light normal-case"
+                data-testid="campaign-companies"
+              >
+                {companies}
+              </Badge>
+            )}
             <CampaignStatus campaign={campaign} />
           </>
         }

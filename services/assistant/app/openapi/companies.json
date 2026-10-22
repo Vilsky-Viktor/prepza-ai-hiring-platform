@@ -5674,14 +5674,14 @@
     ]
    }
   },
-  "/internal/interviews/waiting": {
+  "/internal/interviews/waiting/companies": {
    "get": {
     "tags": [
      "internal"
     ],
-    "summary": "Waiting Interviews",
-    "description": "Notifications, for its reminders: interviews ready between the `ready_` times that\nnobody was invited to, and interviews started between the `started_` times still waiting\nfor their questions.",
-    "operationId": "waiting_interviews_internal_interviews_waiting_get",
+    "summary": "Waiting Companies",
+    "description": "Notifications, for its reminders a page at a time: the companies with an interview ready\nbetween the `ready_` times that nobody was invited to, or one started between the `started_`\ntimes still waiting for its questions; up to `limit` after `after`, in order.",
+    "operationId": "waiting_companies_internal_interviews_waiting_companies_get",
     "security": [
      {
       "HTTPBearer": []
@@ -5727,8 +5727,79 @@
        "format": "date-time",
        "title": "Started Before"
       }
+     },
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "uuid"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "After"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 1000,
+       "minimum": 1,
+       "default": 1000,
+       "title": "Limit"
+      }
      }
     ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CompanyIdsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/interviews/waiting": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Waiting Interviews",
+    "description": "Notifications, for its reminders: those companies' interviews ready between the `ready_`\ntimes that nobody was invited to, and those started between the `started_` times still\nwaiting for their questions.",
+    "operationId": "waiting_interviews_internal_interviews_waiting_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/WaitingIn"
+       }
+      }
+     },
+     "required": true
+    },
     "responses": {
      "200": {
       "description": "Successful Response",
@@ -5750,23 +5821,38 @@
        }
       }
      }
-    }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
    }
   },
-  "/internal/companies/editors": {
+  "/internal/companies/member-ids": {
    "get": {
     "tags": [
      "internal"
     ],
-    "summary": "Company Editors",
-    "description": "Notifications, for a notice about the data processing agreement: every owner and admin\nof a company, a page at a time.",
-    "operationId": "company_editors_internal_companies_editors_get",
+    "summary": "Company Member Ids",
+    "description": "Notifications, a page at a time: everyone who joined a company, for a campaign to\ncompanies; with `editors_only`, their owners and admins, for a notice about the data\nprocessing agreement or a campaign to them.",
+    "operationId": "company_member_ids_internal_companies_member_ids_get",
     "security": [
      {
       "HTTPBearer": []
      }
     ],
     "parameters": [
+     {
+      "name": "editors_only",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Editors Only"
+      }
+     },
      {
       "name": "after",
       "in": "query",
@@ -9168,6 +9254,23 @@
      "company_ids"
     ],
     "title": "CompanyIdsIn"
+   },
+   "CompanyIdsOut": {
+    "properties": {
+     "company_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "title": "Company Ids"
+     }
+    },
+    "type": "object",
+    "required": [
+     "company_ids"
+    ],
+    "title": "CompanyIdsOut"
    },
    "CompanyMembersOut": {
     "properties": {
@@ -12851,6 +12954,49 @@
     ],
     "title": "VerificationStatus",
     "description": "Where a company's verification stands. A work email on the website's domain is the\nproof; a superadmin then approves or declines it, and only approved shows the badge."
+   },
+   "WaitingIn": {
+    "properties": {
+     "ready_after": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Ready After"
+     },
+     "ready_before": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Ready Before"
+     },
+     "started_after": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Started After"
+     },
+     "started_before": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Started Before"
+     },
+     "company_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "maxItems": 1000,
+      "title": "Company Ids"
+     }
+    },
+    "type": "object",
+    "required": [
+     "ready_after",
+     "ready_before",
+     "started_after",
+     "started_before",
+     "company_ids"
+    ],
+    "title": "WaitingIn",
+    "description": "Interviews nobody was invited to, ready within the `ready_` times, and interviews still\ngenerating, started within the `started_` times, of those companies."
    },
    "WaitingInterviewOut": {
     "properties": {

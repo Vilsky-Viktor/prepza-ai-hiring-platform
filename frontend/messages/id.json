@@ -419,8 +419,33 @@
     "campaignKind": "Jenis",
     "campaignKinds": {
       "updates": "Pembaruan produk",
-      "promotions": "Penawaran"
+      "promotions": "Penawaran",
+      "notices": "Pemberitahuan penting"
     },
+    "campaignNoticeWarning": "Pemberitahuan penting sampai ke semua orang dalam audiensnya, apa pun pengaturan email mereka, dan tidak bisa dihentikan langganannya. Gunakan hanya untuk insiden keamanan, waktu henti terjadwal, atau perubahan cara kerja prepza, jangan pernah untuk mempromosikan apa pun.",
+    "campaignAudience": "Audiens",
+    "campaignAudienceEveryone": "Semua orang",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Semua yang mengaktifkan pembaruan produk",
+      "promotions": "Semua yang mengaktifkan penawaran",
+      "notices": "Setiap akun"
+    },
+    "campaignAudienceGroups": {
+      "members": "Perusahaan",
+      "candidates": "Kandidat",
+      "learners": "Pengguna latihan"
+    },
+    "campaignAudienceNotes": {
+      "members": "Orang dalam tim sebuah perusahaan",
+      "candidates": "Orang yang mengikuti wawancara sebuah perusahaan",
+      "learners": "Orang yang menggunakan latihan gratis"
+    },
+    "campaignAudienceEditorsOnly": "Hanya pemilik dan admin",
+    "campaignAudienceCount": "{count, plural, other {Saat ini menjangkau {shown} orang}}",
+    "campaignCompanies": "Hanya perusahaan ini",
+    "campaignCompaniesPlaceholder": "Semua perusahaan",
+    "campaignCompaniesSearch": "Cari perusahaan",
+    "campaignCompaniesNone": "Perusahaan tidak ditemukan.",
     "campaignSubject": "Subjek",
     "campaignSubjectPlaceholder": "Tulis subjek di sini…",
     "campaignText": "Teks",
@@ -459,6 +484,11 @@
     "stopCampaign": "Hentikan",
     "deleteCampaign": "Hapus kampanye",
     "campaignConfirm": {
+      "notice": {
+        "title": "Kirim pemberitahuan penting ini?",
+        "warning": "Pemberitahuan ini dikirim apa pun pengaturan email penerimanya. Mengirim promosi dengan cara ini melanggar hukum tentang email dan merusak kepercayaan pengguna kami.",
+        "acknowledge": "Pemberitahuan ini tentang layanan itu sendiri (keamanan, ketersediaan, atau cara kerjanya), bukan promosi."
+      },
       "send": {
         "title": "Kirim kampanye ini?",
         "text": "{count, plural, =0 {Saat ini tidak ada yang akan menerimanya.} other {# orang menerimanya mulai jam pengiriman berikutnya (08.00–18.00 UTC). Setelah itu tidak bisa diubah.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "Email per hari lewat Resend",
       "RESEND_RESERVE_PERCENT": "Porsi email per hari lewat Resend yang disisihkan dari pengiriman massal",
       "CAMPAIGNS_PER_KIND_DAY": "Kampanye tiap jenis per hari",
+      "NOTICES_PER_DAY": "Pemberitahuan penting per hari",
       "AI_SPEND_UNPAID_DAY": "Pengeluaran AI per hari, gabungan pengguna yang belum membayar",
       "QUESTION_SECONDS_BASIC": "Detik per soal, tes baru level dasar",
       "QUESTION_SECONDS_MEDIUM": "Detik per soal, tes baru level menengah",

@@ -252,6 +252,21 @@ TEXTS = {
             " کرده‌اید."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "باز کردن prepza",
+        "footer": (
+            "این ایمیل به {email} فرستاده شد چون شما در prepza حساب دارید. این ایمیل اطلاعیه‌ای"
+            " مهم دربارهٔ سرویس است، مانند امنیت یا دسترس‌پذیری آن، بنابراین بدون توجه به"
+            " تنظیمات ایمیل شما فرستاده می‌شود."
+        ),
+    },
     "top_up_failed": {
         "subject": "شارژ خودکار ناموفق: {company}",
         "preheader": "برداشت از کارت ممکن نشد. برای ادامه دعوت از متقاضیان شارژ کنید.",

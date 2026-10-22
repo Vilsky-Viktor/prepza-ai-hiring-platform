@@ -419,8 +419,33 @@
     "campaignKind": "Loại",
     "campaignKinds": {
       "updates": "Cập nhật sản phẩm",
-      "promotions": "Ưu đãi"
+      "promotions": "Ưu đãi",
+      "notices": "Thông báo quan trọng"
     },
+    "campaignNoticeWarning": "Thông báo quan trọng đến với mọi người trong đối tượng nhận, bất kể cài đặt email của họ, và không thể hủy đăng ký. Chỉ dùng cho sự cố bảo mật, thời gian ngừng hoạt động theo kế hoạch hoặc thay đổi về cách prepza hoạt động, không bao giờ dùng để quảng bá bất cứ điều gì.",
+    "campaignAudience": "Đối tượng nhận",
+    "campaignAudienceEveryone": "Mọi người",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Mọi người đã bật cập nhật sản phẩm",
+      "promotions": "Mọi người đã bật ưu đãi",
+      "notices": "Mọi tài khoản"
+    },
+    "campaignAudienceGroups": {
+      "members": "Công ty",
+      "candidates": "Ứng viên",
+      "learners": "Người luyện tập"
+    },
+    "campaignAudienceNotes": {
+      "members": "Người trong nhóm của một công ty",
+      "candidates": "Người đã làm phỏng vấn của một công ty",
+      "learners": "Người đã dùng luyện tập miễn phí"
+    },
+    "campaignAudienceEditorsOnly": "Chỉ chủ sở hữu và quản trị viên",
+    "campaignAudienceCount": "{count, plural, other {Hiện đến được {shown} người}}",
+    "campaignCompanies": "Chỉ các công ty này",
+    "campaignCompaniesPlaceholder": "Tất cả công ty",
+    "campaignCompaniesSearch": "Tìm công ty",
+    "campaignCompaniesNone": "Không tìm thấy công ty nào.",
     "campaignSubject": "Tiêu đề",
     "campaignSubjectPlaceholder": "Nhập tiêu đề ở đây…",
     "campaignText": "Nội dung",
@@ -459,6 +484,11 @@
     "stopCampaign": "Dừng",
     "deleteCampaign": "Xóa chiến dịch",
     "campaignConfirm": {
+      "notice": {
+        "title": "Gửi thông báo quan trọng này?",
+        "warning": "Thông báo này được gửi bất kể cài đặt email của mọi người. Gửi quảng cáo theo cách này vi phạm luật về email và làm mất lòng tin của người dùng chúng tôi.",
+        "acknowledge": "Thông báo này nói về chính dịch vụ (bảo mật, tính sẵn sàng hoặc cách dịch vụ hoạt động), không phải quảng cáo."
+      },
       "send": {
         "title": "Gửi chiến dịch này?",
         "text": "{count, plural, =0 {Hiện chưa có ai nhận được.} other {# người sẽ nhận được, bắt đầu từ giờ gửi tiếp theo (8:00 đến 18:00 UTC). Sau đó không thể thay đổi.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "Email mỗi ngày qua Resend",
       "RESEND_RESERVE_PERCENT": "Phần email mỗi ngày qua Resend được giữ lại, không dùng cho gửi hàng loạt",
       "CAMPAIGNS_PER_KIND_DAY": "Chiến dịch mỗi loại mỗi ngày",
+      "NOTICES_PER_DAY": "Thông báo quan trọng mỗi ngày",
       "AI_SPEND_UNPAID_DAY": "Chi tiêu AI mỗi ngày, tổng mọi người dùng chưa thanh toán",
       "QUESTION_SECONDS_BASIC": "Số giây mỗi câu hỏi, bài kiểm tra mới cấp độ cơ bản",
       "QUESTION_SECONDS_MEDIUM": "Số giây mỗi câu hỏi, bài kiểm tra mới cấp độ trung bình",

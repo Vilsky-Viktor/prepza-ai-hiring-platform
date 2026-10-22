@@ -84,16 +84,15 @@ async def waiting_of(
         return list(without), list(being)
 
 
-async def editor_ids(after: str, limit: int) -> list[str]:
-    """Everyone who owns or runs a company (a joined owner or admin), once each, in order: up to
-    `limit` after `after`."""
+async def member_ids(after: str, limit: int, editors_only: bool) -> list[str]:
+    """Everyone who joined a company, in any role, or with `editors_only` only its owners and
+    admins, once each, in order: up to `limit` after `after`."""
+    query = select(Member.user_id).where(Member.user_id > after)
+
+    if editors_only:
+        query = query.where(Member.role.in_(EDITORS))
+
     async with Session() as session:
-        rows = await session.scalars(
-            select(Member.user_id)
-            .where(Member.role.in_(EDITORS), Member.user_id > after)
-            .distinct()
-            .order_by(Member.user_id)
-            .limit(limit)
-        )
+        rows = await session.scalars(query.distinct().order_by(Member.user_id).limit(limit))
 
         return list(rows)

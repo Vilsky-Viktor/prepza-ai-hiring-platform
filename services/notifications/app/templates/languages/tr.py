@@ -263,6 +263,21 @@ TEXTS = {
             " için gönderildi."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "prepza'yı aç",
+        "footer": (
+            "Bu e-posta {email} adresine, bir prepza hesabınız olduğu için gönderildi. Hizmetle"
+            " ilgili, örneğin güvenliği veya erişilebilirliği hakkında önemli bir duyuru"
+            " olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
+        ),
+    },
     "top_up_failed": {
         "subject": "Otomatik yükleme başarısız: {company}",
         "preheader": "Karttan ödeme alınamadı. Aday davet etmeye devam etmek için kredi yükleyin.",

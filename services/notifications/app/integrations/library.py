@@ -43,6 +43,14 @@ async def user_ids(after: str, setting: str | None = None) -> list[str]:
     return response.json()["user_ids"]
 
 
+async def with_setting(user_ids: list[str], setting: str) -> list[str]:
+    """Those of the users who have the setting on ("updates", "promotions")."""
+    url = f"{settings.library_url}/internal/users/with-setting"
+    token = service_token("library")
+
+    return await post_ids(url, token, "user_ids", user_ids, "user_ids", {"setting": setting})
+
+
 async def account_created(user_id: str) -> datetime | None:
     """When the account was made; None when library doesn't know (no account, or Firebase
     doesn't say)."""

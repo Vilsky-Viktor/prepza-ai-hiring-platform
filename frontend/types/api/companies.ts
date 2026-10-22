@@ -207,7 +207,10 @@ export interface paths {
      * @description Priced in the currency it charges in: a running one's, or else the company's.
      */
     get: operations["get_auto_top_up_companies__company_id__auto_top_up_get"]
-    /** Turn On */
+    /**
+     * Turn On
+     * @description What each charge buys is named on its invoice in the user's interface language.
+     */
     put: operations["turn_on_companies__company_id__auto_top_up_put"]
     post?: never
     /** Turn Off */
@@ -312,7 +315,7 @@ export interface paths {
      * @description A Paddle checkout for a top-up of some number of candidates, paid by the user into the
      *     company: billing checks the count and makes it at its price, in the company's currency, so
      *     neither the price, the currency nor whose wallet it pays into can be changed in the
-     *     browser.
+     *     browser. Its item is named in the user's interface language.
      */
     post: operations["create_checkout_companies__company_id__billing_checkout_post"]
     delete?: never
@@ -1648,7 +1651,7 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/interviews/waiting": {
+  "/internal/interviews/waiting/companies": {
     parameters: {
       query?: never
       header?: never
@@ -1656,12 +1659,12 @@ export interface paths {
       cookie?: never
     }
     /**
-     * Waiting Interviews
-     * @description Notifications, for its reminders: interviews ready between the `ready_` times that
-     *     nobody was invited to, and interviews started between the `started_` times still waiting
-     *     for their questions.
+     * Waiting Companies
+     * @description Notifications, for its reminders a page at a time: the companies with an interview ready
+     *     between the `ready_` times that nobody was invited to, or one started between the `started_`
+     *     times still waiting for its questions; up to `limit` after `after`, in order.
      */
-    get: operations["waiting_interviews_internal_interviews_waiting_get"]
+    get: operations["waiting_companies_internal_interviews_waiting_companies_get"]
     put?: never
     post?: never
     delete?: never
@@ -1670,7 +1673,29 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/companies/editors": {
+  "/internal/interviews/waiting": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Waiting Interviews
+     * @description Notifications, for its reminders: those companies' interviews ready between the `ready_`
+     *     times that nobody was invited to, and those started between the `started_` times still
+     *     waiting for their questions.
+     */
+    post: operations["waiting_interviews_internal_interviews_waiting_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/companies/member-ids": {
     parameters: {
       query?: never
       header?: never
@@ -1678,11 +1703,12 @@ export interface paths {
       cookie?: never
     }
     /**
-     * Company Editors
-     * @description Notifications, for a notice about the data processing agreement: every owner and admin
-     *     of a company, a page at a time.
+     * Company Member Ids
+     * @description Notifications, a page at a time: everyone who joined a company, for a campaign to
+     *     companies; with `editors_only`, their owners and admins, for a notice about the data
+     *     processing agreement or a campaign to them.
      */
-    get: operations["company_editors_internal_companies_editors_get"]
+    get: operations["company_member_ids_internal_companies_member_ids_get"]
     put?: never
     post?: never
     delete?: never
@@ -3046,6 +3072,11 @@ export interface components {
     }
     /** CompanyIdsIn */
     CompanyIdsIn: {
+      /** Company Ids */
+      company_ids: string[]
+    }
+    /** CompanyIdsOut */
+    CompanyIdsOut: {
       /** Company Ids */
       company_ids: string[]
     }
@@ -4515,6 +4546,35 @@ export interface components {
      */
     VerificationStatus:
       "none" | "waiting_email" | "pending" | "approved" | "declined"
+    /**
+     * WaitingIn
+     * @description Interviews nobody was invited to, ready within the `ready_` times, and interviews still
+     *     generating, started within the `started_` times, of those companies.
+     */
+    WaitingIn: {
+      /**
+       * Ready After
+       * Format: date-time
+       */
+      ready_after: string
+      /**
+       * Ready Before
+       * Format: date-time
+       */
+      ready_before: string
+      /**
+       * Started After
+       * Format: date-time
+       */
+      started_after: string
+      /**
+       * Started Before
+       * Format: date-time
+       */
+      started_before: string
+      /** Company Ids */
+      company_ids: string[]
+    }
     /** WaitingInterviewOut */
     WaitingInterviewOut: {
       /**
@@ -7701,19 +7761,54 @@ export interface operations {
       }
     }
   }
-  waiting_interviews_internal_interviews_waiting_get: {
+  waiting_companies_internal_interviews_waiting_companies_get: {
     parameters: {
       query: {
         ready_after: string
         ready_before: string
         started_after: string
         started_before: string
+        after?: string | null
+        limit?: number
       }
       header?: never
       path?: never
       cookie?: never
     }
     requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CompanyIdsOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  waiting_interviews_internal_interviews_waiting_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["WaitingIn"]
+      }
+    }
     responses: {
       /** @description Successful Response */
       200: {
@@ -7735,9 +7830,10 @@ export interface operations {
       }
     }
   }
-  company_editors_internal_companies_editors_get: {
+  company_member_ids_internal_companies_member_ids_get: {
     parameters: {
       query?: {
+        editors_only?: boolean
         /** @description The last id of the previous page */
         after?: string
         limit?: number

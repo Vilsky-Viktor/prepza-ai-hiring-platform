@@ -419,8 +419,33 @@
     "campaignKind": "種類",
     "campaignKinds": {
       "updates": "製品の最新情報",
-      "promotions": "お得な情報"
+      "promotions": "お得な情報",
+      "notices": "重要なお知らせ"
     },
+    "campaignNoticeWarning": "重要なお知らせは、メール設定にかかわらず対象者全員に届き、配信停止できません。セキュリティインシデント、計画メンテナンス、prepza の仕組みの変更にのみ使い、宣伝には決して使わないでください。",
+    "campaignAudience": "対象者",
+    "campaignAudienceEveryone": "全員",
+    "campaignAudienceEveryoneNote": {
+      "updates": "製品の最新情報をオンにした全員",
+      "promotions": "お得な情報をオンにした全員",
+      "notices": "すべてのアカウント"
+    },
+    "campaignAudienceGroups": {
+      "members": "会社",
+      "candidates": "候補者",
+      "learners": "練習の利用者"
+    },
+    "campaignAudienceNotes": {
+      "members": "会社のチームに所属する人",
+      "candidates": "会社の面接を受けた人",
+      "learners": "無料の練習を利用した人"
+    },
+    "campaignAudienceEditorsOnly": "オーナーと管理者のみ",
+    "campaignAudienceCount": "{count, plural, other {現在 {shown} 人に届きます}}",
+    "campaignCompanies": "これらの会社のみ",
+    "campaignCompaniesPlaceholder": "すべての会社",
+    "campaignCompaniesSearch": "会社を検索",
+    "campaignCompaniesNone": "会社が見つかりません。",
     "campaignSubject": "件名",
     "campaignSubjectPlaceholder": "件名を入力…",
     "campaignText": "本文",
@@ -459,6 +484,11 @@
     "stopCampaign": "停止",
     "deleteCampaign": "配信を削除",
     "campaignConfirm": {
+      "notice": {
+        "title": "この重要なお知らせを送信しますか？",
+        "warning": "受信者のメール設定にかかわらず送信されます。この方法で宣伝を送ると、メールに関する法律に違反し、ユーザーの信頼を損ないます。",
+        "acknowledge": "このお知らせはサービス自体（セキュリティ、可用性、仕組み）に関するもので、宣伝ではありません。"
+      },
       "send": {
         "title": "この配信を送信しますか？",
         "text": "{count, plural, =0 {現在、受け取る人はいません。} other {# 人が、次の送信時間帯（UTC 8:00〜18:00）から受け取ります。送信後は変更できません。}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "Resend 経由の 1 日あたりのメール数",
       "RESEND_RESERVE_PERCENT": "一括送信に使わず確保しておく、Resend 経由の 1 日あたりのメールの割合",
       "CAMPAIGNS_PER_KIND_DAY": "種類ごとの 1 日あたりの配信数",
+      "NOTICES_PER_DAY": "1 日あたりの重要なお知らせ数",
       "AI_SPEND_UNPAID_DAY": "1 日あたりの AI 支出（無料ユーザーの合計）",
       "QUESTION_SECONDS_BASIC": "新しい初級テストの 1 問あたりの秒数",
       "QUESTION_SECONDS_MEDIUM": "新しい中級テストの 1 問あたりの秒数",

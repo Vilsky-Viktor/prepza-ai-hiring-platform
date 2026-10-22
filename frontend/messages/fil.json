@@ -419,8 +419,33 @@
     "campaignKind": "Uri",
     "campaignKinds": {
       "updates": "Update tungkol sa produkto",
-      "promotions": "Alok"
+      "promotions": "Alok",
+      "notices": "Mahalagang abiso"
     },
+    "campaignNoticeWarning": "Naaabot ng mahalagang abiso ang lahat sa audience nito, anuman ang kanilang email settings, at hindi ito maa-unsubscribe. Gamitin lang ito para sa mga security incident, nakaplanong downtime o pagbabago sa kung paano gumagana ang prepza, hindi kailanman para mag-promote ng anuman.",
+    "campaignAudience": "Audience",
+    "campaignAudienceEveryone": "Lahat",
+    "campaignAudienceEveryoneNote": {
+      "updates": "Lahat ng nag-on ng mga update tungkol sa produkto",
+      "promotions": "Lahat ng nag-on ng mga alok",
+      "notices": "Bawat account"
+    },
+    "campaignAudienceGroups": {
+      "members": "Mga kumpanya",
+      "candidates": "Mga aplikante",
+      "learners": "Mga nagpa-practice"
+    },
+    "campaignAudienceNotes": {
+      "members": "Mga tao sa team ng isang kumpanya",
+      "candidates": "Mga taong sumagot ng interview ng isang kumpanya",
+      "learners": "Mga taong gumamit ng libreng practice"
+    },
+    "campaignAudienceEditorsOnly": "Mga may-ari at admin lang",
+    "campaignAudienceCount": "{count, plural, one {Naaabot ngayon ang {shown} tao} other {Naaabot ngayon ang {shown} tao}}",
+    "campaignCompanies": "Ang mga kumpanyang ito lang",
+    "campaignCompaniesPlaceholder": "Lahat ng kumpanya",
+    "campaignCompaniesSearch": "Maghanap ng kumpanya",
+    "campaignCompaniesNone": "Walang nahanap na kumpanya.",
     "campaignSubject": "Subject",
     "campaignSubjectPlaceholder": "Ilagay dito ang subject…",
     "campaignText": "Teksto",
@@ -459,6 +484,11 @@
     "stopCampaign": "Ihinto",
     "deleteCampaign": "Burahin ang campaign",
     "campaignConfirm": {
+      "notice": {
+        "title": "Ipadala ang mahalagang abisong ito?",
+        "warning": "Ipinapadala ito anuman ang email settings ng mga tao. Ang pagpapadala ng promo sa paraang ito ay labag sa batas sa email at sumisira sa tiwala ng aming mga user.",
+        "acknowledge": "Tungkol sa serbisyo mismo ang abisong ito (seguridad, availability o kung paano ito gumagana), hindi isang promo."
+      },
       "send": {
         "title": "Ipadala ang campaign na ito?",
         "text": "{count, plural, =0 {Walang makakatanggap nito ngayon.} one {# tao ang makakatanggap nito, simula sa susunod na oras ng pagpapadala (8:00 hanggang 18:00 UTC). Hindi na ito mababago pagkatapos.} other {# tao ang makakatanggap nito, simula sa susunod na oras ng pagpapadala (8:00 hanggang 18:00 UTC). Hindi na ito mababago pagkatapos.}}",
@@ -619,6 +649,7 @@
       "RESEND_DAILY_LIMIT": "Mga email kada araw sa pamamagitan ng Resend",
       "RESEND_RESERVE_PERCENT": "Bahagi ng mga email kada araw sa Resend na nakalaan at hindi para sa maramihang pagpapadala",
       "CAMPAIGNS_PER_KIND_DAY": "Mga campaign ng bawat uri kada araw",
+      "NOTICES_PER_DAY": "Mga mahalagang abiso kada araw",
       "AI_SPEND_UNPAID_DAY": "Gastos sa AI kada araw, lahat ng hindi bayad na user",
       "QUESTION_SECONDS_BASIC": "Segundo bawat tanong, mga bagong basic na test",
       "QUESTION_SECONDS_MEDIUM": "Segundo bawat tanong, mga bagong medium na test",

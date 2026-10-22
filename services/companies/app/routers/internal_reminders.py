@@ -87,8 +87,13 @@ async def waiting_interviews(body: WaitingIn, caller: ServiceCaller) -> WaitingI
     )
 
 
-@router.get("/companies/editors")
-async def company_editors(caller: ServiceCaller, page: IdPageParams) -> UserIdsOut:
-    """Notifications, for a notice about the data processing agreement: every owner and admin
-    of a company, a page at a time."""
-    return UserIdsOut(user_ids=await email_reminders.editor_ids(page.after, page.limit))
+@router.get("/companies/member-ids")
+async def company_member_ids(
+    caller: ServiceCaller, page: IdPageParams, editors_only: bool = False
+) -> UserIdsOut:
+    """Notifications, a page at a time: everyone who joined a company, for a campaign to
+    companies; with `editors_only`, their owners and admins, for a notice about the data
+    processing agreement or a campaign to them."""
+    found = await email_reminders.member_ids(page.after, page.limit, editors_only)
+
+    return UserIdsOut(user_ids=found)

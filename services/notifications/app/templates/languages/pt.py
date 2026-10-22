@@ -256,6 +256,21 @@ TEXTS = {
             " da prepza."
         ),
     },
+    # An important notice: a service email about prepza itself (a security incident, planned
+    # downtime, a change to how it works), whatever the email settings; never a promotion.
+    "notices": {
+        "subject": "{subject}",
+        "preheader": "{preheader}",
+        "heading": "{subject}",
+        "lines": [],
+        "button": "{button}",
+        "open_site": "Abrir a prepza",
+        "footer": (
+            "Este e-mail foi enviado para {email} porque você tem uma conta na prepza. É um"
+            " aviso importante sobre o serviço, como a segurança ou a disponibilidade dele, por"
+            " isso é enviado independentemente das suas configurações de e-mail."
+        ),
+    },
     "top_up_failed": {
         "subject": "Recarga automática falhou: {company}",
         "preheader": (

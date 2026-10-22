@@ -1686,6 +1686,82 @@
     }
    }
   },
+  "/internal/users/ids": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "User Ids",
+    "description": "Notifications, for a campaign to them, a page at a time: the candidates (people who took\na company's interview) or the learners (people who took a free practice round). Only their\nids: what they did stays here.",
+    "operationId": "user_ids_internal_users_ids_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "group",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "enum": [
+        "candidates",
+        "learners"
+       ],
+       "type": "string",
+       "title": "Group"
+      }
+     },
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "description": "The last id of the previous page",
+       "default": "",
+       "title": "After"
+      },
+      "description": "The last id of the previous page"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 5000,
+       "minimum": 1,
+       "default": 5000,
+       "title": "Limit"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UserIdsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/invites/delete": {
    "post": {
     "tags": [
@@ -3392,6 +3468,22 @@
      "questions"
     ],
     "title": "TopicQuestions"
+   },
+   "UserIdsOut": {
+    "properties": {
+     "user_ids": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "User Ids"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_ids"
+    ],
+    "title": "UserIdsOut"
    },
    "ValidationError": {
     "properties": {

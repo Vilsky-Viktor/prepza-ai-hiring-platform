@@ -8,7 +8,6 @@ from datetime import UTC, datetime
 
 from prepza_common import redis_lock
 from prepza_common.limits import limit, record_hit
-from prepza_common.paging import ID_PAGE_SIZE
 
 from app.constants.bulk import (
     BULK_BATCH,
@@ -17,6 +16,7 @@ from app.constants.bulk import (
     CAMPAIGN_KINDS,
     LEGAL_KINDS,
     MAX_ATTEMPTS,
+    OPTIONAL_KINDS,
     MAX_REASON_LENGTH,
     RecipientStatus,
     SkipReason,
@@ -28,13 +28,8 @@ from app.integrations.redis import get_redis
 from app.integrations.resend import EmailRefused, ResendBusy
 from app.models.bulk import BulkSend
 from app.services import delivery
-from app.services.bulk_content import (
-    audience_page,
-    campaign_texts,
-    email_for,
-    legal_in_bell,
-    without_guests,
-)
+from app.services.audiences import audience_of, page_of
+from app.services.bulk_content import campaign_texts, email_for, legal_in_bell
 from app.services.member_sends import deadline
 from app.storage import bulk_recipients, bulk_sends, suppressed
 
@@ -43,23 +38,20 @@ logger = logging.getLogger(__name__)
 
 async def prepare(send: BulkSend, until: float) -> None:
     """Works out the send's recipients and saves them a page at a time, from where the last run
-    stopped, until the audience ends or `until` (time.monotonic()) passes; at least one page, and
-    the next run goes on. A legal notice goes in each page's bell first (safe to repeat), so a
-    failure in between leaves nothing missing for the next try."""
-    after = send.prepared_after or ""
+    stopped (services/audiences.py), until the audience ends or `until` (time.monotonic())
+    passes; at least one page, and the next run goes on. A legal notice goes in each page's bell
+    first (safe to repeat), so a failure in between leaves nothing missing for the next try."""
+    cursor = send.prepared_after or ""
+    audience = await audience_of(send.kind, send.about)
 
     while True:
-        page = await audience_page(send.kind, after)
-        user_ids = without_guests(page)
-        done = len(page) < ID_PAGE_SIZE
+        user_ids, after, done = await page_of(audience, cursor)
 
         if send.kind in LEGAL_KINDS:
             await legal_in_bell(send.kind, send.about, user_ids)
 
         # Another run saved this page already: it goes on with the rest.
-        if not await bulk_sends.save_page(
-            send.id, after, page[-1] if page else after, user_ids, done
-        ):
+        if not await bulk_sends.save_page(send.id, cursor, after, user_ids, done):
             return
 
         if done:
@@ -67,7 +59,7 @@ async def prepare(send: BulkSend, until: float) -> None:
 
             return
 
-        after = page[-1]
+        cursor = after
 
         if time.monotonic() > until:
             return
@@ -100,7 +92,7 @@ def skip_reason(kind: str, person: dict | None, suppressed_hashes: set[str]) -> 
     if address_hash(person["email"]) in suppressed_hashes:
         return SkipReason.SUPPRESSED
 
-    if kind in CAMPAIGN_KINDS and not person["preferences"].get(kind):
+    if kind in OPTIONAL_KINDS and not person["preferences"].get(kind):
         return SkipReason.UNSUBSCRIBED
 
     return None

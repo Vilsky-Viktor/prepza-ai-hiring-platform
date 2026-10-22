@@ -7,14 +7,18 @@ import { toast } from "sonner"
 
 import { ConfirmDialog } from "@/components/confirm-dialog"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { WarningCard } from "@/components/warning-card"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { Campaign } from "@/types/campaigns"
 
 const BUTTON = "h-10 px-5 text-base"
 
 /** Sending a campaign, beside its recipients: while it's a draft, send a test (in the language
- * shown) to oneself, or send it (after confirming with how many get it); while it's going out,
- * stop it. Editing and deleting are on its title's line. The API refuses what's no longer allowed and says why. */
+ * shown) to oneself, or send it (after confirming with how many get it; an important notice
+ * also after ticking that it's about the service, not a promotion); while it's going out, stop
+ * it. Editing and deleting are on its title's line. The API refuses what's no longer allowed
+ * and says why. */
 export function CampaignActions({
   campaign,
   language,
@@ -30,6 +34,10 @@ export function CampaignActions({
   const router = useRouter()
   const [asking, setAsking] = useState<"send" | "stop" | null>(null)
   const [busy, setBusy] = useState(false)
+  // An important notice's sender confirmed it isn't a promotion.
+  const [acknowledged, setAcknowledged] = useState(false)
+  // Sending an important notice: it asks more.
+  const noticing = asking === "send" && campaign.kind === "notices"
   const path = `/notifications/superadmin/campaigns/${campaign.id}`
 
   async function act(run: () => Promise<void>) {
@@ -54,7 +62,11 @@ export function CampaignActions({
   const confirmed = () =>
     act(async () => {
       onChanged(
-        await apiFetch<Campaign>(`${path}/${asking}`, { method: "POST" })
+        await apiFetch<Campaign>(`${path}/${asking}`, {
+          method: "POST",
+          body:
+            asking === "send" ? JSON.stringify({ acknowledged }) : undefined,
+        })
       )
       router.refresh()
     })
@@ -98,8 +110,17 @@ export function CampaignActions({
       )}
       <ConfirmDialog
         open={asking !== null}
-        onOpenChange={(open) => !open && setAsking(null)}
-        title={asking ? t(`campaignConfirm.${asking}.title`) : ""}
+        onOpenChange={(open) => {
+          if (!open) {
+            setAsking(null)
+            setAcknowledged(false)
+          }
+        }}
+        title={
+          asking
+            ? t(`campaignConfirm.${noticing ? "notice" : asking}.title`)
+            : ""
+        }
         text={
           asking === "send" && recipients === null
             ? t("campaignConfirm.send.unknown")
@@ -110,7 +131,23 @@ export function CampaignActions({
         confirm={asking ? t(`campaignConfirm.${asking}.confirm`) : ""}
         busy={busy}
         onConfirm={confirmed}
-      />
+        confirmDisabled={noticing && !acknowledged}
+      >
+        {noticing && (
+          <div className="space-y-4">
+            <WarningCard>{t("campaignConfirm.notice.warning")}</WarningCard>
+            <label className="flex cursor-pointer items-start gap-3 text-base">
+              <Checkbox
+                className="mt-0.5 size-6 shrink-0 [&_[data-slot=checkbox-indicator]>svg]:size-4"
+                checked={acknowledged}
+                onCheckedChange={(checked) => setAcknowledged(checked === true)}
+                data-testid="notice-acknowledged"
+              />
+              {t("campaignConfirm.notice.acknowledge")}
+            </label>
+          </div>
+        )}
+      </ConfirmDialog>
     </div>
   )
 }
