@@ -2,11 +2,13 @@ import asyncio
 import uuid
 
 import pytest
+from langgraph.checkpoint.memory import InMemorySaver
 from prepza_common.multi_answer import is_multi
 
 from app.helpers.payload import build_preparation
 from app.integrations import llm
-from app.services.nodes.fill import fill_topics
+from app.services.graph import build_graph
+from app.services.nodes import fill_topic
 from app.services.top_up import TopicShortError
 from tests.unit.fakes import EXAMPLE, OPTIONS, FakeVerifier, asked_examples, asked_multi, items
 
@@ -64,6 +66,21 @@ def state(usable, dropped=0, examples=0, share=0):
     }
 
 
+async def fill(values, graph=None):
+    """The graph's fill, from collect_results on, for `values`; `graph` keeps its checkpoints
+    between runs, and a run on it with no values resumes from them."""
+    graph = graph or build_graph(InMemorySaver())
+    config = {"configurable": {"thread_id": "fill"}}
+
+    if values is not None:
+        await graph.aupdate_state(config, values, as_node="collect_results")
+
+    async for _ in graph.astream(None, config, stream_mode="updates"):
+        pass
+
+    return (await graph.aget_state(config)).values
+
+
 @pytest.fixture(autouse=True)
 def verifier(monkeypatch):
     monkeypatch.setattr(llm, "get_verifier_llm", FakeVerifier)
@@ -75,7 +92,7 @@ def test_a_short_topic_is_filled_to_exactly_its_size(monkeypatch):
     monkeypatch.setattr(llm, "get_generation_llm", lambda *_: fake)
     values = state(usable=7, dropped=2)
 
-    values.update(asyncio.run(fill_topics(values)))
+    values = asyncio.run(fill(values))
     payload = build_preparation(uuid.uuid4(), "uid", "text", values)
 
     assert [q.text for q in payload.topics[0].questions][-3:] == ["New 1", "New 2", "New 3"]
@@ -88,7 +105,7 @@ def test_a_full_topic_is_left_alone(monkeypatch):
     monkeypatch.setattr(llm, "get_generation_llm", lambda *_: fake)
     values = state(usable=10)
 
-    assert asyncio.run(fill_topics(values))["final"] == values["final"]
+    assert asyncio.run(fill(values))["final"] == values["final"]
     assert fake.prompts == []
 
 
@@ -97,7 +114,7 @@ def test_a_topic_that_cannot_be_filled_fails_the_generation(monkeypatch):
     monkeypatch.setattr(llm, "get_generation_llm", lambda *_: fake)
 
     with pytest.raises(TopicShortError):
-        asyncio.run(fill_topics(state(usable=8)))
+        asyncio.run(fill(state(usable=8)))
 
     assert len(fake.prompts) == 3
 
@@ -107,7 +124,7 @@ def test_a_short_topic_is_topped_up_with_each_kind_it_lacks(monkeypatch):
     fake = FakeLLM(["Question 0", "New 1", "New 2", "New 3"])
     monkeypatch.setattr(llm, "get_generation_llm", lambda *_: fake)
 
-    [item] = asyncio.run(fill_topics(state(usable=7, share=0.2)))["final"]
+    [item] = asyncio.run(fill(state(usable=7, share=0.2)))["final"]
 
     assert item["questions"][7:] == ["New 1", "New 2", "New 3"]
     assert [is_multi(options) for options in item["answer_options"][7:]] == [False, True, True]
@@ -121,7 +138,7 @@ def test_multi_answer_questions_that_never_come_are_made_up_with_single_in_the_l
     fake = FakeLLM(["New 1", "New 2", "New 3", "New 4", "New 5"], writes_multi=False)
     monkeypatch.setattr(llm, "get_generation_llm", lambda *_: fake)
 
-    [item] = asyncio.run(fill_topics(state(usable=8, share=0.2)))["final"]
+    [item] = asyncio.run(fill(state(usable=8, share=0.2)))["final"]
 
     assert len(item["questions"]) == 10
     assert not any(is_multi(options) for options in item["answer_options"])
@@ -134,7 +151,7 @@ def test_a_topic_on_formal_material_is_topped_up_with_the_examples_it_lacks(monk
     fake = FakeLLM(["New 1", "New 2", "New 3", "New 4", "New 5"])
     monkeypatch.setattr(llm, "get_generation_llm", lambda *_: fake)
 
-    [item] = asyncio.run(fill_topics(state(usable=7, examples=2)))["final"]
+    [item] = asyncio.run(fill(state(usable=7, examples=2)))["final"]
 
     shown = [text for text in item["questions"] if "```" in text]
 
@@ -148,7 +165,42 @@ def test_a_topic_on_other_material_is_never_asked_for_examples(monkeypatch):
     fake = FakeLLM(["New 1", "New 2", "New 3", "New 4", "New 5"])
     monkeypatch.setattr(llm, "get_generation_llm", lambda *_: fake)
 
-    [item] = asyncio.run(fill_topics(state(usable=7)))["final"]
+    [item] = asyncio.run(fill(state(usable=7)))["final"]
 
     assert len(item["questions"]) == 10
     assert [asked_examples(prompt) for prompt in fake.prompts] == [0]
+
+
+def test_a_retry_tops_up_only_the_topics_that_failed(monkeypatch):
+    calls = []
+
+    async def fake_top_up(item, questions, size, multi, examples, state):
+        calls.append(item["topic"])
+
+        # SQL's first attempt adds nothing, so its branch fails; every other one fills.
+        if calls.count("SQL") == 1 and item["topic"] == "SQL":
+            return
+
+        while len(questions) < size:
+            text = f"{item['topic']} new {len(questions)}"
+            questions.append({"text": text, "options": OPTIONS})
+            item["questions"].append(text)
+
+    monkeypatch.setattr(fill_topic, "top_up", fake_top_up)
+    values = state(usable=7)
+    full = {**values["final"][0], "topic": "Full", "questions": [f"F{i}" for i in range(10)]}
+    full["answer_options"] = [OPTIONS] * 10
+    sql = {**values["final"][0], "topic": "SQL"}
+    values["final"] = [values["final"][0], full, sql]
+    graph = build_graph(InMemorySaver())
+
+    with pytest.raises(TopicShortError, match="SQL"):
+        asyncio.run(fill(values, graph))
+
+    final = asyncio.run(fill(None, graph))["final"]
+
+    # The retry re-ran only SQL's branch; Bookkeeping's top-up was kept, Full needed none.
+    assert sorted(calls) == ["Bookkeeping", "SQL", "SQL"]
+    assert [item["topic"] for item in final] == ["Bookkeeping", "Full", "SQL"]
+    assert [len(item["questions"]) for item in final] == [10, 10, 10]
+    assert final[1] == full

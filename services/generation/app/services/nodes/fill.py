@@ -1,41 +1,33 @@
-from prepza_common.examples import example_range, is_formal
-from prepza_common.multi_answer import multi_count
+from langgraph.types import Send
 
-from app.helpers.questions import topic_size
-from app.models.state import State
-from app.services.top_up import TopicShortError, top_up
+from app.helpers.questions import topic_size, usable_questions
+from app.models.state import FillTask, State
 
 
-async def fill_topics(state: State) -> dict:
-    """Tops up every topic that ended below its size, so each one has exactly as many questions,
-    of each kind as many as it should (top_up): its share of multi-answer questions and, on
-    material in a formal notation, of questions with an example."""
+def fill_topics(state: State) -> dict:
+    """Start of the fill: changes nothing; fan_out_fill sends each short topic to its own
+    branch, so a retry after one topic failed tops up only that one again."""
+    return {}
+
+
+def fan_out_fill(state: State):
+    """Conditional edge: one fill_topic branch per topic below its size; a topic at its size
+    needs none, and with none short the run goes straight to join_topics."""
     size = topic_size(state)
-    final = []
+    sends = []
 
-    for item in state["final"]:
-        item = {**item, "questions": list(item["questions"])}
-        usable = [
-            {"text": text, "options": options}
-            for text, options in zip(item["questions"], item["answer_options"], strict=True)
-            if options
-        ]
-        added = len(usable)
-        formal = is_formal([question["text"] for question in usable])
-        await top_up(
-            item,
-            usable,
-            size,
-            multi_count(size, state["multi_share"]),
-            example_range(size, formal),
-            state,
-        )
-        item["answer_options"] = list(item["answer_options"]) + [
-            question["options"] for question in usable[added:]
-        ]
-        final.append(item)
+    for ti, item in enumerate(state["final"]):
+        if len(usable_questions(item)) >= size:
+            continue
 
-        if len(usable) < size:
-            raise TopicShortError(f"Topic {item['topic']!r} has only {len(usable)} questions")
+        task: FillTask = {
+            "topic_index": ti,
+            "item": item,
+            "topic_size": size,
+            "multi_share": state["multi_share"],
+            "level": state["level"],
+            "language": state.get("language"),
+        }
+        sends.append(Send("fill_topic", task))
 
-    return {"final": final}
+    return sends or "join_topics"

@@ -140,6 +140,15 @@ def count_multi(questions: list[dict]) -> int:
     return sum(1 for question in questions if is_multi(question["options"]))
 
 
+def usable_questions(item: dict) -> list[dict]:
+    """A topic's questions ({"text", "options"}) that kept their options; the rest were dropped."""
+    return [
+        {"text": text, "options": options}
+        for text, options in zip(item["questions"], item["answer_options"], strict=True)
+        if options
+    ]
+
+
 def count_examples(questions: list[dict]) -> int:
     """How many of the questions ({"text"}) have an example."""
     return sum(1 for question in questions if has_example(question["text"]))

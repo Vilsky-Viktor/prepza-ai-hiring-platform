@@ -23,7 +23,8 @@ def test_diagram_has_every_step_and_the_review_loop():
     assert "human_review -.-> revise_topics;" in mermaid
     assert "revise_topics --> human_review;" in mermaid
     assert "find_reused -.-> generate_questions;" in mermaid
-    assert "fill_topics --> __end__;" in mermaid
+    assert "fill_topics -.-> fill_topic;" in mermaid
+    assert "join_topics --> __end__;" in mermaid
     assert "classDef" not in mermaid
 
 

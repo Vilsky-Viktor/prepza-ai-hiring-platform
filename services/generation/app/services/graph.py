@@ -4,7 +4,9 @@ from langgraph.graph import END, START, StateGraph
 from app.models.state import State
 from app.services.nodes.extraction import extract_info
 from app.services.nodes.fan_out import fan_out_questions
-from app.services.nodes.fill import fill_topics
+from app.services.nodes.fill import fan_out_fill, fill_topics
+from app.services.nodes.fill_join import join_topics
+from app.services.nodes.fill_topic import fill_topic
 from app.services.nodes.merge import merge_questions
 from app.services.nodes.questions import generate_questions
 from app.services.nodes.results import collect_results
@@ -16,7 +18,8 @@ from app.services.nodes.topics import generate_topics
 
 def build_graph(checkpointer: BaseCheckpointSaver):
     """job text -> extraction -> topics -> human review loop -> reused questions ->
-    parallel questions with their options -> merge -> final results -> fill short topics."""
+    parallel questions with their options -> merge -> final results -> parallel fill of short
+    topics -> join."""
     graph = StateGraph(State)
     graph.add_node("extract_info", extract_info)
     graph.add_node("generate_topics", generate_topics)
@@ -27,6 +30,8 @@ def build_graph(checkpointer: BaseCheckpointSaver):
     graph.add_node("merge_questions", merge_questions)
     graph.add_node("collect_results", collect_results)
     graph.add_node("fill_topics", fill_topics)
+    graph.add_node("fill_topic", fill_topic)
+    graph.add_node("join_topics", join_topics)
 
     graph.add_edge(START, "extract_info")
     graph.add_edge("extract_info", "generate_topics")
@@ -42,6 +47,9 @@ def build_graph(checkpointer: BaseCheckpointSaver):
     graph.add_edge("generate_questions", "merge_questions")
     graph.add_edge("merge_questions", "collect_results")
     graph.add_edge("collect_results", "fill_topics")
-    graph.add_edge("fill_topics", END)
+    # Stage 2 fan-out: one branch per short topic, so a retry re-runs only the failed ones.
+    graph.add_conditional_edges("fill_topics", fan_out_fill, ["fill_topic", "join_topics"])
+    graph.add_edge("fill_topic", "join_topics")
+    graph.add_edge("join_topics", END)
 
     return graph.compile(checkpointer=checkpointer)

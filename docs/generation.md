@@ -19,6 +19,9 @@ graph TD;
 	__start__ --> extract_info;
 	collect_results --> fill_topics;
 	extract_info --> generate_topics;
+	fill_topic --> join_topics;
+	fill_topics -.-> fill_topic;
+	fill_topics -.-> join_topics;
 	find_reused -.-> collect_results;
 	find_reused -.-> generate_questions;
 	generate_questions --> merge_questions;
@@ -27,7 +30,7 @@ graph TD;
 	human_review -.-> revise_topics;
 	merge_questions --> collect_results;
 	revise_topics --> human_review;
-	fill_topics --> __end__;
+	join_topics --> __end__;
 ```
 <!-- /graph:generation -->
 
@@ -38,10 +41,12 @@ graph TD;
 - `generate_questions`: one parallel branch (`Send`) per call of each subtopic writes questions with their options, for what reuse left; with nothing left to write, the run goes straight to `collect_results`.
 - `merge_questions`: waits for every branch and keeps, per topic, one list of distinct questions (duplicates by meaning dropped with embeddings).
 - `collect_results`: each topic's questions, reused ones first.
-- `fill_topics`: tops up any topic short of its size, of each kind; the questions are then saved to the library.
+- `fill_topics`: sends each topic short of its size to its own parallel branch (`Send`); a topic at its size needs none.
+- `fill_topic`: tops up one short topic, of each kind; a topic still short fails the run.
+- `join_topics`: waits for every fill branch and keeps the topics in their order; the questions are then saved to the library.
 
 - The graph is run by the generation worker (`app/worker_main.py`) as Cloud Tasks jobs.
-- The graph is checkpointed in Postgres, so a failed run can be retried from where it stopped.
+- The graph is checkpointed in Postgres, so a failed run can be retried from where it stopped: a retry re-runs only the parallel branches that failed (the question calls of `generate_questions`, the topics of `fill_topic`), as the ones that finished are kept in the checkpoint.
 - Companies hears how an interview's generation ends through events: `generation.completed` stores its questions and title, `generation.failed` (a failed run, or one the sweeper finds stuck: up to 100 a sweep, every 5 minutes, the rest in the next) marks it as failed until a retry, and `generation.cancelled` removes it. Interview lists read only what these stored and never ask generation; an interview's own page asks once, in case an event hasn't come yet, and shows what companies knows when generation can't answer.
 - The title the model gives is cut to 70 characters (`MAX_TITLE_LENGTH`), what editing a title allows, so saving the questions never fails on it.
 - A generation can be cancelled at any step.

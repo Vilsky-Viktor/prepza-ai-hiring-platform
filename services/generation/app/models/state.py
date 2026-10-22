@@ -44,6 +44,19 @@ class AnswerTask(TypedDict):
     multi: bool
 
 
+class FillTask(TypedDict):
+    """Payload for one parallel fill_topic branch: one topic short of its size."""
+
+    # The topic's place in `final`, so joining keeps the topic order.
+    topic_index: int
+    # The topic as collect_results left it ({"topic", "subtopics", "questions", ...}).
+    item: dict
+    topic_size: int
+    multi_share: float
+    level: str
+    language: str | None
+
+
 class State(TypedDict):
     input_text: str
     # The code of the language content is written in (prepza_common.constants.LANGUAGES).
@@ -70,3 +83,6 @@ class State(TypedDict):
     # started (prepza_common.multi_answer.multi_share), so the whole run holds one.
     multi_share: float
     final: list[dict]
+    # Fill branches append {"topic_index", "item"} here; operator.add merges the lists, and a
+    # retry re-runs only the branches that failed.
+    filled: Annotated[list[dict], operator.add]
