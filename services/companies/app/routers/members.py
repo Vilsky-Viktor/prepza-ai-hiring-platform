@@ -64,7 +64,7 @@ async def invite_member(company_id: UUID, body: MemberIn, user: CurrentUser) -> 
     email = str(body.email).lower()
 
     if email == user.email.lower():
-        raise HTTPException(status.HTTP_400_BAD_REQUEST, "You're already a member")
+        raise HTTPException(status.HTTP_409_CONFLICT, "You're already a member")
 
     if any(member.invited_email == email for member in company.members):
         raise HTTPException(status.HTTP_409_CONFLICT, ALREADY_INVITED)

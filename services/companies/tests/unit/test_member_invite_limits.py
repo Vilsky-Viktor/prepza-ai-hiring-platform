@@ -151,3 +151,12 @@ def test_nobody_becomes_owner_of_more_companies_than_one_person_may(
     assert [(hit["limit"], hit["company_id"], hit["user_id"]) for hit in limit_hits] == [
         ("MAX_OWNED_COMPANIES", str(COMPANY_ID), "bob")
     ]
+
+
+def test_the_owner_inviting_their_own_email_is_a_conflict(client, team, limits):  # noqa: F811
+    _, added, _ = team
+    sign_in("ann@example.com", uid="ann")
+    response = client.post(URL, json={"email": "ANN@example.com"})
+
+    assert (response.status_code, response.json()["detail"]) == (409, "You're already a member")
+    assert added == []

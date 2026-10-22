@@ -116,7 +116,7 @@ def test_recruitee_connects_with_the_companys_subdomain_and_token(client, stored
 def test_an_address_that_isnt_one_isnt_checked(client, stored):
     response = connect(client, account="not an address")
 
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert response.json()["detail"] == "Enter your Recruitee address, like acme.recruitee.com"
     assert stored["checked"] == [] and stored["connection"] is None
 
@@ -124,7 +124,7 @@ def test_an_address_that_isnt_one_isnt_checked(client, stored):
 def test_a_refused_token_isnt_saved(client, stored):
     response = connect(client, token="bad")
 
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert response.json()["detail"] == "Recruitee didn't accept this token for that company"
     assert stored["connection"] is None
 

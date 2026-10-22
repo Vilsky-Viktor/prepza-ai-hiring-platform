@@ -99,6 +99,20 @@ test("owner adds a viewer, who sees the company read-only", async ({
   await owner.keyboard.press("Escape");
   await expect(row).toHaveCount(1);
 
+  // Inviting their own email says why too (a conflict, as the service answers it), once the
+  // first refusal's toast is gone.
+  await expect(owner.locator("[data-sonner-toast]")).toHaveCount(0);
+  await owner.getByTestId("add-member").click();
+  await owner
+    .getByRole("dialog")
+    .locator('input[type="email"]')
+    .fill(ownerEmail());
+  await owner.getByRole("dialog").locator('button[type="submit"]').click();
+  await expect(
+    owner.locator('[data-sonner-toast][data-type="error"]'),
+  ).toContainText("You're already a member");
+  await owner.keyboard.press("Escape");
+
   // The role changes in place, and back.
   await rolePill(row).click();
   await pickRole(owner, "admin");

@@ -92,7 +92,9 @@ async def finish(code: str | None, state: str, error: str | None) -> str:
 
     # Deleting the nonce takes the state: a second callback with it finds nothing.
     if found is None or not await get_redis().delete(SLACK_STATE_KEY.format(nonce=found[2])):
-        raise HTTPException(status.HTTP_400_BAD_REQUEST, "This Slack link expired: try again")
+        raise HTTPException(
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "This Slack link expired: try again"
+        )
 
     company_id, user_id, _ = found
     await companies.require(company_id, user_id, editor=True)

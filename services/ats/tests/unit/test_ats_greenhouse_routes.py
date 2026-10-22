@@ -119,7 +119,7 @@ def test_a_reconnect_keeps_the_web_hooks_secret_key(client, stored):
 def test_a_refused_credential_isnt_saved(client, stored):
     response = connect(client, secret="bad")
 
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert stored["connection"] is None
     assert client.get(f"/greenhouse/webhook?company_id={COMPANY_ID}").status_code == 404
 
@@ -129,7 +129,7 @@ def test_a_credential_that_cant_add_notes_isnt_saved(client, stored):
     stored["can_write"] = False
     response = connect(client)
 
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert "can't add notes" in response.json()["detail"]
     assert stored["connection"] is None
 

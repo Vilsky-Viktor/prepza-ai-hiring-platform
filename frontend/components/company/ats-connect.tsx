@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import type { AtsProvider } from "@/constants/ats"
-import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 
 // What each ATS's connect form asks for: its fields as the API takes them, and the steps to
 // find them.
@@ -96,8 +96,10 @@ export function ConnectAts({
       onConnected()
       router.refresh()
     } catch (error) {
+      // The service says why: the details refused (422), or the ATS plan lacks a feature (409).
       toast.error(
-        apiErrorMessage(error, t("connectFailed", { ats: provider.name }))
+        serviceRefusal(error, [409]) ??
+          apiErrorMessage(error, t("connectFailed", { ats: provider.name }))
       )
     } finally {
       setSaving(false)

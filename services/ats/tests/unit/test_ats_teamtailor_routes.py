@@ -123,7 +123,7 @@ def test_teamtailor_connects_with_its_region_company_name_and_member(client, sto
 def test_a_refused_key_isnt_saved(client, stored):
     response = connect(client, key="bad")
 
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert response.json()["detail"] == (
         "Teamtailor didn't accept this key: it needs Admin and Read/Write"
     )

@@ -43,8 +43,8 @@ def test_an_admin_connects_and_the_key_is_kept_encrypted(client, stored, key):
 def test_a_refused_token_or_a_wrong_address_isnt_saved(client, stored, key):
     sign_in("ann")
 
-    assert connect(client, token="bad").status_code == 400
-    assert connect(client, account="not an address").status_code == 400
+    assert connect(client, token="bad").status_code == 422
+    assert connect(client, account="not an address").status_code == 422
     assert stored["connection"] is None
 
 

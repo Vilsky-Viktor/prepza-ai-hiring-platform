@@ -50,10 +50,10 @@ export function InviteAdmin({ companyId }: { companyId: string }) {
       setOpen(false)
       router.refresh()
     } catch (error) {
-      // The service says why: already invited or a member already (409, 400), too many
-      // invites waiting (409), the email limits (429).
+      // The service says why: already invited or a member already, too many invites waiting
+      // (409), the email limits (429).
       toast.error(
-        serviceRefusal(error, [400, 403, 409]) ??
+        serviceRefusal(error, [403, 409]) ??
           apiErrorMessage(error, t("memberFailed"))
       )
     } finally {

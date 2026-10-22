@@ -145,7 +145,7 @@ def test_breezy_connects_with_a_key_and_creates_its_web_hook(client, stored):
 def test_a_refused_key_isnt_saved(client, stored):
     response = connect(client, token="bad")
 
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert response.json()["detail"] == "Breezy HR didn't accept this key"
     assert stored["connection"] is None and stored["hooks"] == []
 
@@ -153,7 +153,7 @@ def test_a_refused_key_isnt_saved(client, stored):
 def test_a_key_whose_person_has_no_company_isnt_saved(client, stored):
     response = connect(client, token="nobody")
 
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert response.json()["detail"] == "This key's person has no Breezy HR company"
     assert stored["connection"] is None and stored["hooks"] == []
 
@@ -166,7 +166,7 @@ def test_without_its_web_hook_the_connection_doesnt_stay(client, stored, monkeyp
     monkeypatch.setattr(breezy, "subscribe", refuse)
     response = connect(client)
 
-    assert response.status_code == 400
+    assert response.status_code == 409
     assert "web hooks come with Breezy's Pro plan" in response.json()["detail"]
     assert stored["connection"] is None
     # Disconnected as Ann's, so the company's action log shows it didn't stay.
@@ -185,7 +185,7 @@ def test_a_failed_reconnect_keeps_the_earlier_connection_marked_for_reconnecting
     monkeypatch.setattr(breezy, "subscribe", refuse)
     response = connect(client)
 
-    assert response.status_code == 400
+    assert response.status_code == 409
     # Not disconnected (which would delete its linked jobs and candidates): its key is back.
     assert stored["connection"].id == earlier.id
     assert stored["connection"].status == "broken"

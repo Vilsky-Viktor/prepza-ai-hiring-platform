@@ -162,7 +162,8 @@ def test_a_candidate_who_finished_is_returned_without_another_email(client, stor
     body = {"email": "cara@example.com", "sender_id": "ann"}
     response = client.post(f"/internal/interviews/{READY.id}/invites", json=body, headers=HEADERS)
 
-    assert response.status_code == 201
+    # Nothing new was made.
+    assert response.status_code == 200
     assert response.json() == {"invite_id": str(uuid.UUID(int=9)), "created": False}
     assert stored["invites"] == []
 
@@ -187,6 +188,7 @@ def test_without_resend_a_candidate_still_invited_is_returned_as_they_are(
     response = client.post(f"/internal/interviews/{READY.id}/invites", json=body, headers=HEADERS)
 
     assert response.json()["created"] is sent
+    assert response.status_code == (201 if sent else 200)
     assert bool(stored["invites"]) is sent
 
 

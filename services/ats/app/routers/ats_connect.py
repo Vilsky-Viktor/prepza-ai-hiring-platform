@@ -59,7 +59,7 @@ async def connect_workable(company_id: UUID, body: WorkableIn, user: CurrentUser
 
     if account is None:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, "Enter your Workable address, like acme.workable.com"
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "Enter your Workable address, like acme.workable.com"
         )
 
     token = body.token.strip()
@@ -68,7 +68,7 @@ async def connect_workable(company_id: UUID, body: WorkableIn, user: CurrentUser
         await workable.check(account, token)
     except KeyRejected:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, "Workable didn't accept this token for that account"
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "Workable didn't accept this token for that account"
         ) from None
 
     credentials = integrations.seal({"subdomain": account, "token": token})
@@ -95,11 +95,11 @@ async def connect_greenhouse(company_id: UUID, body: GreenhouseIn, user: Current
         await greenhouse.check(client_id, client_secret)
     except KeyRejected:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, "Greenhouse didn't accept this client ID and secret"
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "Greenhouse didn't accept this client ID and secret"
         ) from None
 
     if not await greenhouse.can_write(client_id, client_secret):
-        raise HTTPException(status.HTTP_400_BAD_REQUEST, GREENHOUSE_CANT_WRITE)
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, GREENHOUSE_CANT_WRITE)
 
     kept = await kept_secret(company_id, AtsProvider.GREENHOUSE)
     sealed = integrations.seal(
@@ -132,7 +132,7 @@ async def connect_teamtailor(company_id: UUID, body: TeamtailorIn, user: Current
         await teamtailor.check(host, key)
     except KeyRejected:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST,
+            status.HTTP_422_UNPROCESSABLE_CONTENT,
             "Teamtailor didn't accept this key: it needs Admin and Read/Write",
         ) from None
 
@@ -164,7 +164,7 @@ async def connect_recruitee(company_id: UUID, body: RecruiteeIn, user: CurrentUs
 
     if account is None:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, "Enter your Recruitee address, like acme.recruitee.com"
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "Enter your Recruitee address, like acme.recruitee.com"
         )
 
     token = body.token.strip()
@@ -173,7 +173,7 @@ async def connect_recruitee(company_id: UUID, body: RecruiteeIn, user: CurrentUs
         await recruitee.check(account, token)
     except KeyRejected:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, "Recruitee didn't accept this token for that company"
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "Recruitee didn't accept this token for that company"
         ) from None
 
     credentials = {"company": account, "token": token}
@@ -208,12 +208,12 @@ async def connect_breezy(company_id: UUID, body: BreezyIn, user: CurrentUser) ->
             await breezy.check(found["id"], token)
     except KeyRejected:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, "Breezy HR didn't accept this key"
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "Breezy HR didn't accept this key"
         ) from None
 
     if found is None:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, "This key's person has no Breezy HR company"
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "This key's person has no Breezy HR company"
         )
 
     earlier = await ats.connection(company_id, AtsProvider.BREEZY)
@@ -243,8 +243,9 @@ async def connect_breezy(company_id: UUID, body: BreezyIn, user: CurrentUser) ->
         else:
             await ats.restore_broken(earlier)
 
+        # The account's plan, not the request: a conflict until the company upgrades.
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST,
+            status.HTTP_409_CONFLICT,
             "Breezy HR didn't let us add its web hook: web hooks come with Breezy's Pro plan",
         ) from None
 

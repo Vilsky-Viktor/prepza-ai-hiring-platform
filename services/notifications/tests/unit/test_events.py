@@ -148,7 +148,9 @@ def test_over_resends_limit_pubsub_retries_without_a_server_error(client, monkey
     resend_answering(monkeypatch, 429)
     monkeypatch.setattr(settings, "resend_api_key", "re_test")
 
-    assert client.post("/internal/events", json=push()).status_code == 429
+    response = client.post("/internal/events", json=push())
+
+    assert (response.status_code, response.headers["Retry-After"]) == (429, "1")
 
 
 def test_a_refused_invite_is_marked_undelivered_and_not_retried(client, monkeypatch):

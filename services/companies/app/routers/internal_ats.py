@@ -1,7 +1,7 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException, Query, status
+from fastapi import APIRouter, HTTPException, Query, Response, status
 from prepza_common.pause import refuse_if_paused
 from prepza_common.user import User
 
@@ -59,12 +59,15 @@ async def interviews_by_ids(
 
 
 @router.post("/interviews/{interview_id}/invites", status_code=status.HTTP_201_CREATED)
-async def invite(interview_id: UUID, body: AtsInviteIn, caller: ServiceCaller) -> AtsInviteOut:
+async def invite(
+    interview_id: UUID, body: AtsInviteIn, caller: ServiceCaller, response: Response
+) -> AtsInviteOut:
     """A candidate an ATS sent is invited, as the member who connected it. Refused with 503
     during the emergency pause, 402 without credits and 429 over the email limits; 404 when the
     interview is gone, 409 while it has no questions yet, and 403 when that member is no longer
     an owner or admin (a removed member's connection invites no one). A candidate who already
-    finished is returned as they are, and so is one still invited when `resend` is false."""
+    finished is returned as they are (200), and so is one still invited when `resend` is
+    false."""
     interview = await interviews.get(interview_id)
 
     if interview is None:
@@ -89,6 +92,9 @@ async def invite(interview_id: UUID, body: AtsInviteIn, caller: ServiceCaller) -
     kept = (InviteStatus.FINISHED,) if body.resend else (InviteStatus.FINISHED, *OPEN)
 
     if found is not None and found.status in kept:
+        # Nothing new was made.
+        response.status_code = status.HTTP_200_OK
+
         return AtsInviteOut(invite_id=found.id, created=False)
 
     user = User(uid=body.sender_id, email="", email_verified=True)

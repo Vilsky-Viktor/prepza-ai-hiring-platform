@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.constants import RATE_LIMITED
+from prepza_common.constants import RATE_LIMITED, RETRY_AFTER
 from prepza_common.google import Invoker
 from prepza_common.pubsub import PushBody, event_of
 
@@ -21,4 +21,7 @@ async def receive_event(body: PushBody) -> None:
     try:
         await handle(event_type, data, event_id)
     except ResendBusy:
-        raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS, RATE_LIMITED) from None
+        # Resend's limit is per second.
+        raise HTTPException(
+            status.HTTP_429_TOO_MANY_REQUESTS, RATE_LIMITED, headers={RETRY_AFTER: "1"}
+        ) from None

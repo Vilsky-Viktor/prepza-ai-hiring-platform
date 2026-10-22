@@ -93,7 +93,7 @@ def test_a_state_works_once_and_only_for_a_current_editor(client, monkeypatch, s
     started = parse_qs(urlparse(url).query)["state"][0]
 
     assert callback(client, f"code=ok&state={started}").status_code == 303
-    assert callback(client, f"code=ok&state={started}").status_code == 400
+    assert callback(client, f"code=ok&state={started}").status_code == 422
 
     saved["saved"] = None
     member(monkeypatch, editor=False)
@@ -217,7 +217,7 @@ def test_cancelled_refused_and_expired_trips(client, monkeypatch, saved):
     assert (
         callback(client, f"code=bad&state={state()}").headers["location"].endswith("?slack=failed")
     )
-    assert callback(client, f"code=ok&state={state(-1)}").status_code == 400
+    assert callback(client, f"code=ok&state={state(-1)}").status_code == 422
     assert saved["saved"] is None
 
 
