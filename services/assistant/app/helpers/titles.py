@@ -1,6 +1,10 @@
 import re
 
+from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
+from prepza_common.constants import LANGUAGES
+
 from app.constants.titles import MAX_TITLE_LENGTH, TITLE_EVERY
+from app.prompts.titles import TITLE_SYSTEM
 
 EMAIL = re.compile(r"\S+@\S+")
 
@@ -18,3 +22,11 @@ def clean_title(text: str) -> str | None:
     line = line.strip().strip("\"'“”«»„").rstrip(".").strip()
 
     return line[:MAX_TITLE_LENGTH].strip() or None
+
+
+def title_prompt(chat: list[BaseMessage], language: str) -> list[BaseMessage]:
+    """What the title model reads: its instructions, then the conversation, one line a message."""
+    lines = "\n".join(f"{message.type}: {message.content}" for message in chat)
+    system = TITLE_SYSTEM.format(length=MAX_TITLE_LENGTH, language=LANGUAGES[language])
+
+    return [SystemMessage(content=system), HumanMessage(content=lines)]

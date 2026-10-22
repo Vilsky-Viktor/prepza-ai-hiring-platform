@@ -156,6 +156,16 @@ wrong keys whose stems leave out the deciding condition and whose two options ar
 hidden in a question; and a group with no recurring mistake (no rule expected). Other questions
 are noise with unrelated flaws. `judge_traps`: 5 rule-mistake pairs that match and 5 that don't.
 
+## `titles.json` (by hand, 2026-10-22)
+
+14 made-up conversations with the in-app assistant, for their titles in the history: typical
+requests in English and in German, Japanese, Arabic, Russian, Thai, Hindi and Persian; a
+conversation whose topic changes (the title sums up all of it); a greeting only; candidates'
+names, emails and a phone number that must stay out of the title (`forbidden`); an instruction to
+title it a certain way; and a user writing Spanish where the code chose English. Each has what a
+right title does (`expect`). The judge's traps are made by code each run: another
+conversation's title, and a generic "Conversation".
+
 ## `code_languages.json` (by hand, 2026-10-22)
 
 36 made-up examples as questions show them, each with the notation the site should color it in

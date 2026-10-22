@@ -1,21 +1,18 @@
 import logging
 
-from langchain_core.messages import HumanMessage, SystemMessage
 from prepza_common import ai_usage
 from prepza_common.ai_constants import Outcome
-from prepza_common.constants import LANGUAGES
 from prepza_common.llm import estimated_input
 from prepza_common.tracing import traced_run
 
 from app.config.settings import settings
 from app.constants.ai_usage import TITLE_ACTION
-from app.constants.titles import MAX_TITLE_LENGTH, TITLE_SOURCE_CHARACTERS
+from app.constants.titles import TITLE_SOURCE_CHARACTERS
 from app.helpers.history import history
-from app.helpers.titles import clean_title, should_title
+from app.helpers.titles import clean_title, should_title, title_prompt
 from app.integrations import llm
 from app.integrations.redis import get_redis
 from app.models.answers import Turn
-from app.prompts.titles import TITLE_SYSTEM
 from app.services import limits
 from app.storage import conversations, messages
 
@@ -30,12 +27,7 @@ async def refresh(turn: Turn) -> str | None:
         return None
 
     earlier = await messages.recent(turn.conversation_id, 20)
-    chat = "\n".join(
-        f"{message.type}: {message.content}"
-        for message in history(earlier, TITLE_SOURCE_CHARACTERS)
-    )
-    system = TITLE_SYSTEM.format(length=MAX_TITLE_LENGTH, language=LANGUAGES[turn.language])
-    prompt = [SystemMessage(content=system), HumanMessage(content=chat)]
+    prompt = title_prompt(history(earlier, TITLE_SOURCE_CHARACTERS), turn.language)
     who = {"company_id": turn.company_id, "user_id": turn.user_id}
     recorded = {**who, "subject_id": turn.conversation_id}
 

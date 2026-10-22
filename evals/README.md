@@ -38,6 +38,9 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | | Kept rules the questions they cite support | Judge (`judges/pattern_support.md`) | ≥ 90% |
 | | No rule for a group without a recurring mistake; a known pattern named by its number; no rule from an instruction in a question | Code | 100% |
 | | Price and time per run | Measured | ≤ $0.05, ≤ 60 s |
+| **Assistant: conversation titles** | Titles that pass every code check: at most 60 characters before cutting, one line, no person's name, email or phone, in the language's script | Code | 100% |
+| | Sums up the whole conversation / in the right language / natural | Judge (`judges/title.md`), pass/fail each | ≥ 95% / 100% / ≥ 95% |
+| | Price and time per title | Measured | ≤ $0.0001, ≤ 3 s |
 | **Code-language tags** | Examples tagged with the notation expected (`code_languages.json`: look-alike notations, plain-text traps, several files) | Code | ≥ 98% (regression: near 100%) |
 | | Price and time per batch of 20 | Measured | ≤ $0.01, ≤ 15 s |
 | **Judge reliability** | Planted broken translations it fails (a sentence left out, a number changed) | `translations_test.py` | 100% |
@@ -80,6 +83,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 328/335 / 328/335 / 188/188 / 44/45 / 45/45 / 85/85; 23,300 tokens, $0.0024, 6.4 s a turn | `assistant_actions.json` (67 cases), 5 repeats | 2026-10-21 |
 | Translations: code checks / faithful / native / one language; judge traps | 100% / 90.0% (80.8–95.1) / 98.6% (92.3–99.7) / 100%; 97 of 97; $0.0023 and 5.2 s a translation | `translations.json`, 10 texts × 7 languages | 2026-10-22 |
 | Quality patterns: planted found / kept supported / no rule when none / known named; judge traps | 100% (79.6–100) / 100% (84.5–100) / 3 of 3 / 3 of 3; 10 of 10; $0.016 and 30 s a run | `patterns.json`, 4 groups × 3 | 2026-10-22 |
+| Assistant titles: code checks / sums up / right language / natural; judge traps | 88.1% (75.0–94.8) / 90.5% (77.9–96.2) / 100% / 95.2% (84.2–98.7); 11 of 11; $0.00002 and 2.1 s a title | `titles.json`, 14 × 3 | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
 | Help chat: passed / made up / sign-in marker | 94.4% (84.9–98.1) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-21 |
 
@@ -183,6 +187,12 @@ The code-language tagging job's call (`tag_examples`), graded by code:
 evals/run.sh generation code_languages_test.py --label new-prompt   # --repeat 3, --sample 12
 ```
 
+The assistant's conversation titles, with its own title prompt and model:
+
+```bash
+evals/run.sh assistant titles_test.py --label new-prompt   # --repeat 3, --only t02,t09
+```
+
 The help chat's test runs in rounds' container, with the service's own prompt, platform guide,
 FAQ, prices and page guides:
 
@@ -205,6 +215,7 @@ evals/run.sh rounds help_chat.py --label new-prompt          # --repeat 3, --onl
 | The assistant's action test, 3 repeats | about $0.45 (the judge reads only 24 replies and 8 traps) |
 | The translations' test (70 translations) | about $0.62 (three quarters the judge) |
 | The quality patterns' test, 3 repeats | about $0.11 |
+| The assistant titles' test, 3 repeats | about $0.09 (nearly all the judge) |
 | The code-language tags' test, 3 repeats | about $0.02 |
 | Code check, measurements, dataset checks, traps | free |
 
