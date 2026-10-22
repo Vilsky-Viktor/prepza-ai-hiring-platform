@@ -18,6 +18,10 @@ soon as a candidate finishes.
 A company can have a limited number of keys; the API page refuses one more. An expired key
 returns `401`; make a new one before it expires. Deleting a key on the same page revokes it immediately.
 
+To rotate a key without downtime, make a new one while the old one still works (a company can
+have up to 10), switch your platform to the new key, check it's used (the API page shows when
+each key was last used), then delete the old one.
+
 ## Authentication
 
 Send the key with every request in the `Authorization` header: `Authorization: Bearer pz_...`.

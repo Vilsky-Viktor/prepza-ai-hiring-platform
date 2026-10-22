@@ -73,7 +73,7 @@ export function verify(
 ```
 
 Respond with any `2xx` status within 10 seconds to confirm delivery. Other responses and timeouts
-are retried with growing pauses, from 5 minutes up to 6 hours apart, for 3 days; after that the
+are retried with growing, slightly random pauses, from 5 minutes up to 6 hours apart, for 3 days; after that the
 web hook is paused: it gets no events, and the API page shows it as paused, until a test event
 sent from there goes through. An event can occasionally arrive more than once; use its `id` to
 ignore duplicates.
