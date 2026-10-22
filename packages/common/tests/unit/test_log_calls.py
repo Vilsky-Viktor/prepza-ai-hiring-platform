@@ -1,6 +1,6 @@
 """No log call passes an email, a name, a token, a key or a secret (the privacy and security
 rules): every logger call in the services and the shared library is read, and any argument
-whose variable is named so fails here. Log ids, counts and outcomes instead."""
+whose variable is named so (or put in an f-string template) fails here. Log ids, counts and outcomes instead."""
 
 import ast
 import re
@@ -33,16 +33,36 @@ ALLOWED = {
 }
 
 
+# Whose `.name` is a person's name, unlike a tool's, a limit's or a file's.
+PEOPLE = {"user", "member", "candidate", "inviter", "owner", "person", "guest", "recipient"}
+
+
 def names(node) -> list[str]:
-    """What an argument is called when it's passed as is: `x` or `a.x`. A call or an expression
-    made of it (an id list, a kind) is the code's choice of what to log."""
+    """What an argument is called when it's passed as is: `x` or `a.x` (a person's `.name` as
+    `person_name`). A call or an expression made of it (an id list, a kind) is the code's choice
+    of what to log."""
     if isinstance(node, ast.Name):
         return [node.id]
 
     if isinstance(node, ast.Attribute):
-        return [node.attr]
+        owner = node.value.id if isinstance(node.value, ast.Name) else ""
+
+        return ["person_name" if node.attr == "name" and owner in PEOPLE else node.attr]
 
     return []
+
+
+def arguments(node: ast.Call) -> list:
+    """The values a log call puts in its line: the arguments after its template, and what an
+    f-string template puts in itself."""
+    found = list(node.args[1:])
+
+    if node.args and isinstance(node.args[0], ast.JoinedStr):
+        found += [
+            part.value for part in node.args[0].values if isinstance(part, ast.FormattedValue)
+        ]
+
+    return found
 
 
 def offending(path: Path) -> list[str]:
@@ -59,7 +79,7 @@ def offending(path: Path) -> list[str]:
         ):
             continue
 
-        for argument in node.args[1:]:
+        for argument in arguments(node):
             for name in names(argument):
                 where = f"{path.relative_to(ROOT)} {name}"
 
@@ -88,3 +108,16 @@ def test_a_log_call_passing_an_email_or_token_is_caught(tmp_path, monkeypatch):
     )
 
     assert offending(code) == ["x.py:1 email", "x.py:2 token"]
+
+
+def test_a_persons_name_or_an_f_string_carrying_personal_data_is_caught(tmp_path, monkeypatch):
+    monkeypatch.setitem(globals(), "ROOT", tmp_path)
+    code = tmp_path / "x.py"
+    code.write_text(
+        'logger.info("Joined: %s", member.name)\n'
+        'logger.info(f"Sent to {address}")\n'
+        'logger.info("Tool %s ran", tool.name)\n'
+        'logger.info(f"Invite {invite.id} sent")\n'
+    )
+
+    assert offending(code) == ["x.py:1 person_name", "x.py:2 address"]
