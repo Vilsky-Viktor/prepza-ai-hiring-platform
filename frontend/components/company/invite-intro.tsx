@@ -8,6 +8,7 @@ import type { ReactNode } from "react"
 import { CompanyLogo } from "@/components/company/company-logo"
 import { VerifiedBadge } from "@/components/company/verified-badge"
 import { InfoCard } from "@/components/warning-card"
+import { bdi } from "@/lib/bidi"
 
 /** What a candidate sees before starting: who invited them, the test, the time per question and
  * the rules, then `action` (the start button). A company member's preview shows the same. */
@@ -149,10 +150,11 @@ export function InviteIntro({
           t("unanswered"),
           viaLink ? t("savedLink") : t("saved"),
           // Accommodations, and the human decision behind the score.
-          t(viaLink ? "extraTimeLink" : "extraTime", {
+          t.rich(viaLink ? "extraTimeLink" : "extraTime", {
             company: company || t("theCompany"),
+            ...bdi,
           }),
-          t("people", { company: company || t("theCompany") }),
+          t.rich("people", { company: company || t("theCompany"), ...bdi }),
           t.rich("stay", {
             link: (chunks) => (
               // In a new tab: the interview stays open, also inside a company's site, whose
