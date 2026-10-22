@@ -1,7 +1,7 @@
 import type { Page } from "@playwright/test"
 
 import { expect, test } from "../fixtures"
-import { createCompany } from "../helpers/api"
+import { api, createCompany } from "../helpers/api"
 import { openDialog, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { throwawayEmail } from "../helpers/users"
@@ -87,6 +87,34 @@ const AUTO_TOP_UP = {
 }
 
 // Under the button, the automatic top-up as a card; its dialog saves only a change.
+// Right to left (Arabic) the slider is mirrored: it starts on the right, so ArrowLeft adds and
+// the knob moves left.
+test("the top-up slider runs right to left in Arabic", async ({ signInAs, signInWith }) => {
+  const email = throwawayEmail("custom-top-up-rtl")
+  const owner = await signInAs(email)
+  const company = await createCompany(owner)
+  // A new sign-in's token carries the account's new language.
+  await api(owner, "PUT", "/library/me/settings", { language: "ar" })
+  const arabic = await signInWith(email, false)
+  const dialog = await openTopUp(arabic, company.id)
+  await expect(arabic.locator("html")).toHaveAttribute("dir", "rtl")
+  const slider = dialog.getByRole("slider")
+
+  await slider.focus()
+  await arabic.keyboard.press("Home")
+  const start = Number(await slider.inputValue())
+  const before = (await slider.boundingBox())!
+
+  for (let step = 0; step < 5; step++) {
+    await arabic.keyboard.press("ArrowLeft")
+  }
+
+  await expect(slider).not.toHaveValue(String(start))
+  expect(Number(await slider.inputValue())).toBeGreaterThan(start)
+  expect((await slider.boundingBox())!.x).toBeLessThan(before.x)
+  await shot(arabic, "rtl-slider")
+})
+
 test("the automatic top-up card changes the setting it shows", async ({ signInAs }) => {
   const owner = await signInAs(throwawayEmail("custom-top-up-auto"))
   const company = await createCompany(owner)
