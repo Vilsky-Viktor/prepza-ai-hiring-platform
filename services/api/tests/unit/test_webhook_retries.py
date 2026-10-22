@@ -1,12 +1,15 @@
 import asyncio
 from datetime import UTC, datetime, timedelta
 
+import pytest
+
 from app.constants.api import (
     RETRY_BATCH,
     RETRY_FIRST_DELAY,
     RETRY_GIVE_UP,
     RETRY_MAX_DELAY,
 )
+from app.helpers import webhooks as webhook_helpers
 from app.helpers.webhooks import retry_delay
 from app.services import webhooks as delivery
 from tests.unit.test_webhook_delivery import finish
@@ -34,10 +37,29 @@ def failed_once(endpoints, url="https://down.example/x"):
 
 
 def test_the_wait_doubles_up_to_a_limit():
-    assert retry_delay(1) == RETRY_FIRST_DELAY
-    assert retry_delay(2) == RETRY_FIRST_DELAY * 2
-    assert retry_delay(3) == RETRY_FIRST_DELAY * 4
-    assert retry_delay(30) == RETRY_MAX_DELAY
+    assert retry_delay(1, 0) == RETRY_FIRST_DELAY
+    assert retry_delay(2, 0) == RETRY_FIRST_DELAY * 2
+    assert retry_delay(3, 0) == RETRY_FIRST_DELAY * 4
+    assert retry_delay(30, 0) == RETRY_MAX_DELAY
+
+
+@pytest.mark.parametrize(
+    ("attempts", "share", "wait"),
+    [
+        (3, 1, RETRY_FIRST_DELAY * 2),
+        (3, 0.5, RETRY_FIRST_DELAY * 3),
+        (30, 1, RETRY_MAX_DELAY / 2),
+        # Never sooner than the first wait.
+        (1, 1, RETRY_FIRST_DELAY),
+    ],
+)
+def test_the_wait_is_spread_by_up_to_half(attempts, share, wait):
+    """Events that failed together come back at different times."""
+    assert retry_delay(attempts, share) == wait
+
+
+def test_waits_differ_between_events_that_failed_together():
+    assert len({retry_delay(8) for _ in range(20)}) > 1
 
 
 def test_an_event_isnt_sent_again_before_its_time(endpoints):
@@ -68,15 +90,18 @@ def test_an_event_sent_again_and_taken_is_done(endpoints):
     assert len(endpoints["posted"]) == 1
 
 
-def test_an_event_that_fails_again_waits_twice_as_long(endpoints):
+def test_an_event_that_fails_again_waits_up_to_twice_as_long(endpoints, monkeypatch):
+    # The random share of the wait taken off: a quarter of it (half of the most).
+    monkeypatch.setattr(webhook_helpers.random, "random", lambda: 0.5)
     hook = failed_once(endpoints)
     due(endpoints, hook)
     run()
     row = endpoints["retries"][(hook.id, "e1")]
     wait = row.next_at - datetime.now(UTC)
+    expected = RETRY_FIRST_DELAY * 2 * 0.75
 
     assert row.attempts == 2
-    assert RETRY_FIRST_DELAY * 2 - timedelta(minutes=1) < wait <= RETRY_FIRST_DELAY * 2
+    assert expected - timedelta(minutes=1) < wait <= expected
     assert hook.failing is False
 
 

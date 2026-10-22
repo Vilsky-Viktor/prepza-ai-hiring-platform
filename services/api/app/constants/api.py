@@ -37,9 +37,9 @@ SIGNATURE_HEADER = "Prepza-Signature"
 # How long a web hook's deliveries are remembered: past Pub/Sub's redelivery of an event.
 DELIVERIES_KEPT = timedelta(days=30)
 # An event a web hook didn't take is sent again by the retry job (every 5 minutes): first after
-# RETRY_FIRST_DELAY, then twice as long each time, at most RETRY_MAX_DELAY apart. After
-# RETRY_GIVE_UP it's dropped, and the web hook is paused (`failing`): it gets no events, and its
-# other retries go, until a test event goes through.
+# RETRY_FIRST_DELAY, then up to twice as long each time (jittered), at most RETRY_MAX_DELAY
+# apart. After RETRY_GIVE_UP it's dropped, and the web hook is paused (`failing`): it gets no
+# events, and its other retries go, until a test event goes through.
 RETRY_FIRST_DELAY = timedelta(minutes=5)
 RETRY_MAX_DELAY = timedelta(hours=6)
 RETRY_GIVE_UP = timedelta(days=3)

@@ -1,6 +1,7 @@
 import hashlib
 import hmac
 import json
+import random
 import secrets
 from datetime import datetime, timedelta
 from urllib.parse import urlsplit
@@ -42,7 +43,12 @@ def signature(secret: str, timestamp: int, body: bytes) -> str:
     return f"t={timestamp},v1={digest.hexdigest()}"
 
 
-def retry_delay(attempts: int) -> timedelta:
-    """How long an event waits to be sent again after its `attempts`-th failed send: twice as
-    long each time, from RETRY_FIRST_DELAY up to RETRY_MAX_DELAY."""
-    return min(RETRY_FIRST_DELAY * 2 ** (attempts - 1), RETRY_MAX_DELAY)
+def retry_delay(attempts: int, share: float | None = None) -> timedelta:
+    """How long an event waits to be sent again after its `attempts`-th failed send: up to twice
+    as long each time, from RETRY_FIRST_DELAY up to RETRY_MAX_DELAY, less a random share of up
+    to half (equal jitter), so events that failed together, when an endpoint was down, don't all
+    come back together. `share` (0 to 1) fixes the random part."""
+    longest = min(RETRY_FIRST_DELAY * 2 ** (attempts - 1), RETRY_MAX_DELAY)
+    share = random.random() if share is None else share
+
+    return max(longest * (1 - share / 2), RETRY_FIRST_DELAY)
