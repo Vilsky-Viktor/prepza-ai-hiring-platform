@@ -1,17 +1,17 @@
 import uuid
 
 from prepza_common import outbox
-from prepza_common.notifications import NOTIFICATION_REQUESTED, NotificationKind
 from prepza_common.sets import PreparationIn
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.orm import aliased, selectinload
 
+from app.constants.events import QUESTION_FIXED
 from app.constants.sets import OwnerType, Pool, SetKind
-from app.helpers.notifications import question_notification
 from app.models.outbox import OutboxEvent
 from app.models.quality import QuestionStats
 from app.models.sets import Question, QuestionSet, Topic
 from app.storage import quality, reuse
+from app.storage.copy_fixes import notify_fixed, set_query, topic_query
 from app.storage.db import Session
 
 
@@ -136,32 +136,15 @@ async def get_topic_with_question_texts(
         return tuple(row) if row else None
 
 
-def _set_of_question(question_id: uuid.UUID):
-    return (
-        select(QuestionSet)
-        .join(Topic, Topic.set_id == QuestionSet.id)
-        .join(Question, Question.topic_id == Topic.id)
-        .where(Question.id == question_id)
-    )
-
-
 async def get_for_question(question_id: uuid.UUID) -> QuestionSet | None:
     async with Session() as session:
-        return await session.scalar(_set_of_question(question_id))
-
-
-def _topic_of_question(question_id: uuid.UUID):
-    return (
-        select(Topic.title)
-        .join(Question, Question.topic_id == Topic.id)
-        .where(Question.id == question_id)
-    )
+        return await session.scalar(set_query(question_id))
 
 
 async def topic_of_question(question_id: uuid.UUID) -> str | None:
     """The title of the topic the question is in."""
     async with Session() as session:
-        return await session.scalar(_topic_of_question(question_id))
+        return await session.scalar(topic_query(question_id))
 
 
 async def get_question_context(
@@ -182,56 +165,34 @@ async def get_question_context(
         return tuple(row) if row else None
 
 
-async def unchanged_copies(session, question_id: uuid.UUID) -> list[uuid.UUID]:
-    """The copies of a bank question in companies' tests that still hold its content: not one a
-    company changed, nor one fixed on its own."""
-    original = aliased(Question)
-    query = (
-        select(Question.id)
-        .join(original, original.id == Question.source_question_id)
-        .where(
-            original.id == question_id,
-            Question.text == original.text,
-            Question.options == original.options,
-        )
-    )
-
-    return list(await session.scalars(query))
-
-
 async def replace_question(question_id: uuid.UUID, text: str, options: list[dict]) -> None:
     """New content in the same slot, for candidates who start after it. The old content and its
     feedback are kept as a revision.
 
     Replacing a flagged question fixes it, and its set's owner hears of that. A fixed bank
-    question fixes its unchanged copies in companies' tests too, and each company hears of it.
+    question's unchanged copies in companies' tests are fixed after it, a batch at a time
+    (question.fixed, services/copy_fixes.py), and each company hears of it.
     """
     async with Session() as session:
         flagged = await session.scalar(
             select(QuestionStats.flag).where(QuestionStats.question_id == question_id)
         )
-        fixed = [question_id]
-
-        if flagged is not None:
-            fixed += await unchanged_copies(session, question_id)
-
-        for each in fixed:
-            await quality.archive(session, each, fixed=flagged is not None)
-
+        old = await session.get(Question, question_id)
+        before = {"text": old.text, "options": old.options} if old else None
+        await quality.archive(session, question_id, fixed=flagged is not None)
         await session.execute(
-            update(Question).where(Question.id.in_(fixed)).values(text=text, options=options)
+            update(Question).where(Question.id == question_id).values(text=text, options=options)
         )
 
-        if flagged is not None:
-            for each in fixed:
-                question_set = await session.scalar(_set_of_question(each))
-                topic = await session.scalar(_topic_of_question(each))
-                outbox.add(
-                    session,
-                    OutboxEvent,
-                    NOTIFICATION_REQUESTED,
-                    question_notification(question_set, topic, NotificationKind.QUESTION_FIXED),
-                )
+        if flagged is not None and before is not None:
+            notify_fixed(
+                session,
+                question_id,
+                await session.scalar(set_query(question_id)),
+                await session.scalar(topic_query(question_id)),
+            )
+            event = {"question_id": str(question_id), **before}
+            outbox.add(session, OutboxEvent, QUESTION_FIXED, event)
 
         await session.commit()
 

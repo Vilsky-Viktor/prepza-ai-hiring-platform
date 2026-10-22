@@ -34,6 +34,11 @@ TOO_SLOW_SHARE = 0.25
 FLAG_RESEND_AFTER_HOURS = 48
 # Flags sent again by one daily sweep, oldest first.
 MAX_FLAG_RESENDS = 100
+# A fixed bank question's copies are fixed COPY_FIX_BATCH at a time, each batch its own
+# transaction; a push of question.fixed starts no batch after COPY_FIX_SECONDS (under Pub/Sub's
+# 60 s ack deadline) and answers 503, so Pub/Sub brings it back for the rest.
+COPY_FIX_BATCH = 50
+COPY_FIX_SECONDS = 30
 # The questions flagged or replaced lately that generation's weekly pattern job reads, newest
 # first, at most this many.
 MAX_PATTERN_SIGNALS = 500

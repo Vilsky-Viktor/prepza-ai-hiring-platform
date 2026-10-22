@@ -148,7 +148,7 @@ Delivery:
 
 | Consumer | Event types |
 |---|---|
-| library | `answer.recorded`, `session.scored`, `guests.deleted` (companies deleted guest invites, by removal, retention or with their interview or company: library deletes each guest's sign-in, terms, ratings and reports; deleting again deletes nothing more) |
+| library | `answer.recorded`, `session.scored`, `guests.deleted` (companies deleted guest invites, by removal, retention or with their interview or company: library deletes each guest's sign-in, terms, ratings and reports; deleting again deletes nothing more), `question.fixed` (its own: a fixed bank question's copies in companies' tests that still hold its old content get the new one, 50 at a time; a push that runs out of time answers 503 and Pub/Sub brings it back for the rest; a copy already fixed no longer matches, so a repeat fixes nothing twice) |
 | companies | `generation.completed`, `generation.failed`, `generation.cancelled`, `interview.finished` |
 | notifications | `notification.requested`, every `candidate.*` (it handles `candidate.invited`, `candidate.joined`, `candidate.reminded`, `candidate.removed` and `candidate.interview_deleted`, which companies sends with `interview.deleted` so the bell forgets a deleted interview's candidates), `member.invited`, `report.shared`, `contact.sent`, `company.deleted` |
 | ats | `candidate.finished`, `candidate.removed`, `interview.ready`, `interview.deleted`, `company.deleted`, `credits.added` |

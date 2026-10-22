@@ -5,6 +5,7 @@ from types import SimpleNamespace
 import pytest
 from prepza_common.notifications import NOTIFICATION_REQUESTED
 
+from app.constants.events import QUESTION_FIXED
 from app.constants.quality import QualityFlag
 from app.integrations import generation
 from app.services import outbox
@@ -103,9 +104,9 @@ def fake_session(monkeypatch, flag, archived=None):
         async def scalar(self, statement):
             return replies.pop(0)
 
-        async def scalars(self, statement):
-            # The question has no copies in companies' tests.
-            return []
+        async def get(self, model, question_id):
+            # The question's content before it's replaced.
+            return SimpleNamespace(text="What is a debit?", options=OPTIONS)
 
         async def execute(self, statement):
             pass
@@ -141,7 +142,12 @@ def test_fixing_a_flagged_question_notifies_its_owner(monkeypatch):
                 "link": "/companies/u1/interviews",
                 "data": {"title": "Accounting", "topic": TOPIC},
             },
-        )
+        ),
+        # Its copies in companies' tests are fixed after it, from their old content.
+        (
+            QUESTION_FIXED,
+            {"question_id": str(QUESTION_ID), "text": "What is a debit?", "options": OPTIONS},
+        ),
     ]
 
 
