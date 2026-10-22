@@ -1,7 +1,13 @@
 from html import escape
 
 from app.constants.unsubscribe import SETTINGS_PATH, UnsubscribeType
-from app.constants.webhooks import CANDIDATE_INVITE_KIND, ID_TAG, KIND_TAG
+from app.constants.webhooks import (
+    CANDIDATE_INVITE_KIND,
+    CANDIDATE_REMINDER_KIND,
+    COMPANY_TAG,
+    ID_TAG,
+    KIND_TAG,
+)
 from app.helpers.attachments import pdf_name
 from app.helpers.rendering import Section, email_language, render
 from app.helpers.unsubscribe import candidate_token, one_click_headers, page_url, user_token
@@ -61,9 +67,10 @@ def candidate_joined_email(data: dict, site_url: str, secret: str) -> Email:
 
 
 def candidate_reminder_email(data: dict, site_url: str, secret: str) -> Email:
-    """The one reminder to a candidate who hasn't started: the same invite link. Tagged like the
-    invite, so a bounce marks the invite undelivered. Its links stop this invite's reminders or
-    all the company's emails; a mail client's own unsubscribe stops the reminders."""
+    """The one reminder to a candidate who hasn't started: the same invite link. Tagged with the
+    invite and the company, so a bounce marks the invite undelivered and a spam complaint stops
+    this invite's reminders. Its links stop those reminders or all the company's emails; a mail
+    client's own unsubscribe stops the reminders."""
     data = with_logo(data, site_url)
     links = []
     headers = {}
@@ -78,7 +85,10 @@ def candidate_reminder_email(data: dict, site_url: str, secret: str) -> Email:
         headers = one_click_headers(site_url, reminders)
 
     email = render("reminder", data, f"{site_url.rstrip('/')}/invite/{data['token']}", links)
-    email.tags = invite_tags(CANDIDATE_INVITE_KIND, data.get("invite_id"))
+    email.tags = invite_tags(CANDIDATE_REMINDER_KIND, data.get("invite_id"))
+
+    if email.tags and data.get("company_id"):
+        email.tags[COMPANY_TAG] = data["company_id"]
     email.headers.update(headers)
 
     return email

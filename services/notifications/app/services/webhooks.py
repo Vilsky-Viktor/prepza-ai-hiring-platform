@@ -2,15 +2,19 @@ import logging
 
 from app.constants.unsubscribe import USER_SETTINGS
 from app.constants.webhooks import (
-    CANDIDATE_INVITE_KIND,
+    CANDIDATE_KINDS,
+    CANDIDATE_REMINDER_KIND,
+    COMPANY_TAG,
     COMPLAINED_EVENT,
     ID_TAG,
     KIND_TAG,
     UNDELIVERED_EVENTS,
 )
+from app.helpers.unsubscribe import address_hash
 from app.integrations import companies
 from app.services.suppression import from_webhook
 from app.services.unsubscribe import apply
+from app.storage import opt_outs
 
 logger = logging.getLogger(__name__)
 
@@ -29,19 +33,23 @@ async def handle(event: dict) -> None:
     await from_webhook(event)
 
     if event["type"] == COMPLAINED_EVENT:
-        await complained(tags)
+        await complained(tags, (event.get("data") or {}).get("to") or [])
 
     await report_undelivered(tags)
 
 
-async def complained(tags: dict[str, str]) -> None:
-    """A spam complaint about an optional email (the digest, reminders) turns it off, as its
-    unsubscribe link would: logged in library as an unsubscribe, and safe to repeat when Resend
-    sends the webhook again."""
-    kind, user_id = tags.get(KIND_TAG), tags.get(ID_TAG)
+async def complained(tags: dict[str, str], addresses: list[str]) -> None:
+    """A spam complaint about an optional email turns it off, as its unsubscribe link would: a
+    user's digest or reminders (logged in library as an unsubscribe), or a candidate's
+    reminders for that invite. Safe to repeat when Resend sends the webhook again."""
+    kind, about = tags.get(KIND_TAG), tags.get(ID_TAG)
 
-    if kind in USER_SETTINGS and user_id:
-        await apply({"type": kind, "user_id": user_id})
+    if kind in USER_SETTINGS and about:
+        await apply({"type": kind, "user_id": about})
+
+    if kind == CANDIDATE_REMINDER_KIND and about and tags.get(COMPANY_TAG):
+        for address in addresses:
+            await opt_outs.add(address_hash(address), tags[COMPANY_TAG], about)
 
 
 async def report_undelivered(tags: dict[str, str]) -> None:
@@ -51,5 +59,5 @@ async def report_undelivered(tags: dict[str, str]) -> None:
     if not invite_id:
         return
 
-    if kind == CANDIDATE_INVITE_KIND:
+    if kind in CANDIDATE_KINDS:
         await companies.invite_undelivered(invite_id)

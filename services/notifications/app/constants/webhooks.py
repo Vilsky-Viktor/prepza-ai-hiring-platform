@@ -12,10 +12,15 @@ UNDELIVERED_EVENTS = {BOUNCED_EVENT, COMPLAINED_EVENT, SUPPRESSED_EVENT, FAILED_
 # be replayed.
 WEBHOOK_TOLERANCE_SECONDS = 5 * 60
 
-# Tags Resend's webhooks carry back: what the email is and its id. A candidate's invite and
-# reminder: "candidate_invite" and the invite's id; an optional email: its unsubscribe type
-# ("digest", "reminders", "updates") and the user's id, and a campaign's also its bulk send's id
-# (constants/bulk.py SEND_TAG).
+# Tags Resend's webhooks carry back: what the email is and its id. A candidate's invite:
+# "candidate_invite" and the invite's id; their reminder: "candidate_reminder", the invite's id
+# and the company's (reminders sent before it had its own kind carry the invite's); an optional
+# email: its unsubscribe type ("digest", "reminders", "updates") and the user's id, and a
+# campaign's also its bulk send's id (constants/bulk.py SEND_TAG).
 KIND_TAG = "kind"
 ID_TAG = "id"
+COMPANY_TAG = "company"
 CANDIDATE_INVITE_KIND = "candidate_invite"
+CANDIDATE_REMINDER_KIND = "candidate_reminder"
+# Both are about an invite, which a failed one marks undelivered.
+CANDIDATE_KINDS = (CANDIDATE_INVITE_KIND, CANDIDATE_REMINDER_KIND)

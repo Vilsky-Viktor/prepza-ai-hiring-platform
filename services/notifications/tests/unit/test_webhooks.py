@@ -9,9 +9,10 @@ from prepza_common.constants import WEBHOOK_SIGNATURE_REFUSED
 
 from app.config.settings import settings
 from app.helpers.emails import candidate_invite_email
+from app.helpers.unsubscribe import address_hash
 from app.helpers.webhooks import signature_valid
 from app.integrations import companies, library
-from app.storage import suppressed
+from app.storage import opt_outs, suppressed
 
 # Svix's published example (docs.svix.com, "Verifying Webhooks Manually"), not a real secret. Put
 # together from parts so secret scanners don't take the literal for a leaked key.
@@ -23,6 +24,7 @@ SVIX_SIGNATURE = "v1,rAvfW3dJ/X/qxhsaXPOyyCGmRKsaKWcsNccKXlIktD0="
 
 SECRET = "whsec_" + base64.b64encode(b"test-webhook-key").decode()
 INVITE_ID = "6f1c2c1e-0000-4000-8000-000000000001"
+COMPANY_ID = "6f1c2c1e-0000-4000-8000-0000000000c0"
 
 
 def valid(signature=SVIX_SIGNATURE, now=int(SVIX_TIMESTAMP), secret=SVIX_SECRET):
@@ -77,8 +79,12 @@ def reported(monkeypatch):
     async def fake_suppress(address, reason):
         return None
 
+    async def fake_opt_out(address, company_id, invite_id=None):
+        calls.append(("opt_out", address, company_id, invite_id))
+
     monkeypatch.setattr(library, "unsubscribe", fake_unsubscribe)
     monkeypatch.setattr(suppressed, "add", fake_suppress)
+    monkeypatch.setattr(opt_outs, "add", fake_opt_out)
 
     return calls
 
@@ -147,6 +153,24 @@ def test_a_spam_complaint_on_a_reminder_turns_reminders_off(client, reported):
     signed_post(client, event("email.complained", "reminders", "ann"))
 
     assert reported == [("library", "ann", ["reminders"])]
+
+
+def test_a_spam_complaint_on_a_candidates_reminder_stops_that_invites_reminders(client, reported):
+    complaint = event("email.complained", "candidate_reminder")
+    complaint["data"]["tags"]["company"] = COMPANY_ID
+
+    signed_post(client, complaint)
+
+    assert reported == [
+        ("opt_out", address_hash("bob@example.com"), COMPANY_ID, INVITE_ID),
+        ("companies", INVITE_ID),
+    ]
+
+
+def test_a_bounced_reminder_marks_its_invite_undelivered_and_stops_nothing(client, reported):
+    signed_post(client, event("email.bounced", "candidate_reminder"))
+
+    assert reported == [("companies", INVITE_ID)]
 
 
 def test_a_bounce_on_an_optional_email_changes_no_settings(client, reported):

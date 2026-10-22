@@ -9,7 +9,9 @@ from prepza_common.ai_constants import LIMIT_HIT
 
 from app.config.settings import settings
 from app.helpers.member_emails import digest_email
+from app.helpers.unsubscribe import address_hash
 from app.services import delivery
+from app.storage import opt_outs
 from tests.integration.factories import api, push, signed
 
 SECRET = "whsec_" + base64.b64encode(b"test-webhook-key").decode()
@@ -166,6 +168,28 @@ def test_after_a_hard_bounce_no_invite_goes_to_the_address_and_it_shows_undelive
     assert codes == [204]
     # The bounce's report, then the next invite's: Resend is never asked to send it.
     assert [str(request.url) for request in outside["requests"]] == [undelivered, undelivered]
+
+
+def test_a_spam_complaint_on_a_reminder_stops_only_that_invites_reminders(run, outside):
+    address = f"c{uuid.uuid4().hex[:12]}@example.com"
+    company = str(uuid.uuid4())
+    tags = {"kind": "candidate_reminder", "id": INVITE_ID, "company": company}
+    body = json.dumps({"type": "email.complained", "data": {"to": [address], "tags": tags}})
+
+    async def scenario():
+        async with api() as client:
+            await client.post(
+                "/webhooks/resend", content=body, headers=signed(body.encode(), SECRET)
+            )
+
+        hashed = address_hash(address)
+
+        return (
+            await opt_outs.opted_out(hashed, company, INVITE_ID),
+            await opt_outs.opted_out(hashed, company),
+        )
+
+    assert run(scenario()) == (True, False)
 
 
 def test_a_webhook_with_a_wrong_signature_is_refused(run, outside):

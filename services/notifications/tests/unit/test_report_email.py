@@ -92,7 +92,7 @@ def test_smtp_attaches_the_pdf(monkeypatch):
     assert attachment.get_content() == b"%PDF-1.3 a report"
 
 
-def test_a_reminder_opens_the_same_invite_and_is_tagged_like_it():
+def test_a_reminder_opens_the_same_invite_and_is_tagged_with_it():
     data = {
         "invite_id": "i-1",
         "email": "ann@example.com",
@@ -106,7 +106,7 @@ def test_a_reminder_opens_the_same_invite_and_is_tagged_like_it():
 
     assert reminder.subject == "Reminder: Acme is waiting for your interview"
     assert "https://prepza.com/invite/abc" in reminder.text
-    assert reminder.tags == candidate_invite_email(data, "https://prepza.com", "secret").tags
+    assert reminder.tags == {"kind": "candidate_reminder", "id": "i-1"}
 
 
 def test_an_invite_from_a_company_with_a_logo_shows_it_beside_the_title():
@@ -147,3 +147,18 @@ def test_an_attachment_is_named_in_the_emails_language_without_unsafe_characters
     assert not any(char in name for char in '/\\:*?"<>|')
     assert "Ann A B Lee" in name
     assert not name.startswith("Candidate report")
+
+
+def test_a_reminder_from_a_company_carries_its_id_for_a_complaint():
+    data = {
+        "invite_id": "i-1",
+        "company_id": "c-1",
+        "email": "ann@example.com",
+        "token": "abc",
+        "title": "Backend",
+        "company": "Acme",
+    }
+
+    tags = candidate_reminder_email(data, "https://prepza.com", "secret").tags
+
+    assert tags == {"kind": "candidate_reminder", "id": "i-1", "company": "c-1"}
