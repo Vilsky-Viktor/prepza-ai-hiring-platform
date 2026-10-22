@@ -5,6 +5,8 @@ import { REQUEST_URL } from "./helpers/env";
 // The files in public/ go out with their own Cache-Control, not Next.js's max-age=0.
 
 test("logos and pictures are kept a day, documents an hour", async ({ request }) => {
+  // The /documents page may need compiling first on the local dev server.
+  test.setTimeout(180_000);
   for (const path of ["/ats/greenhouse.png", "/integrations/slack.svg", "/icon.png"]) {
     const response = await request.get(`${REQUEST_URL}${path}`);
 

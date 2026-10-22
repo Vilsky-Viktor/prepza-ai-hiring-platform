@@ -82,8 +82,9 @@ function checkHead(head: Head, address: string) {
 
   expect(head.title, address).toMatch(/^.+ · prepza\.$/);
   expect(one("description"), address).toBeTruthy();
-  expect(head.canonical, address).toBe(address);
-  expect(one("og:url"), address).toBe(address);
+  // Compared as URLs: the home page's "https://site" is "https://site/".
+  expect(new URL(head.canonical ?? "").href, address).toBe(address);
+  expect(new URL(one("og:url") ?? "").href, address).toBe(address);
   expect(one("og:title"), address).toBeTruthy();
   expect(one("og:description"), address).toBe(one("description"));
   expect(one("og:locale"), address).toMatch(/^[a-z]{2}(_[A-Z][a-z]{3})?$/);
