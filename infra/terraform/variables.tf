@@ -135,24 +135,10 @@ variable "github_client_id" {
   default     = ""
 }
 
-variable "github_client_secret" {
-  description = "Client secret of the GitHub OAuth app (kept in the Terraform state)."
-  type        = string
-  default     = ""
-  sensitive   = true
-}
-
 variable "linkedin_client_id" {
   description = "Client id of the LinkedIn app (Sign In with LinkedIn using OpenID Connect); empty leaves it off."
   type        = string
   default     = ""
-}
-
-variable "linkedin_client_secret" {
-  description = "Client secret of the LinkedIn app (kept in the Terraform state)."
-  type        = string
-  default     = ""
-  sensitive   = true
 }
 
 variable "google_site_verification" {

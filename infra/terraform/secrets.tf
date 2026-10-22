@@ -21,6 +21,19 @@ resource "google_secret_manager_secret_version" "manual" {
   }
 }
 
+# The GitHub and LinkedIn sign-in apps' client secrets: Terraform makes each secret without a
+# value; you add it once (README.md), and auth.tf reads it. Nothing secret goes through tfvars.
+resource "google_secret_manager_secret" "sign_in" {
+  for_each  = toset(["github-client-secret", "linkedin-client-secret"])
+  secret_id = each.value
+
+  replication {
+    auto {}
+  }
+
+  depends_on = [google_project_service.apis]
+}
+
 # Secrets Terraform makes: each service's own key. Tokens calling a service are signed with its
 # key and addressed to it, so a leaked key lets someone call one service, not all of them.
 locals {

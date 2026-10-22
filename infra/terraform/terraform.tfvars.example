@@ -32,12 +32,10 @@ paddle_prices = {
 # maintenance mode). At least one is required.
 superadmin_emails = ["you@example.com"]
 
-# Sign in with GitHub and LinkedIn (README.md): empty leaves them off. Put the secrets in a
-# terraform.tfvars that's never committed, or pass them as TF_VAR_* environment variables.
-github_client_id       = ""
-github_client_secret   = ""
-linkedin_client_id     = ""
-linkedin_client_secret = ""
+# Sign in with GitHub and LinkedIn (README.md): empty leaves them off. Their client secrets go
+# into Secret Manager (gcloud secrets versions add), never here.
+github_client_id   = ""
+linkedin_client_id = ""
 
 # Optional: the tokens from Google Search Console's and Bing Webmaster Tools' meta-tag checks.
 # google_site_verification = ""
