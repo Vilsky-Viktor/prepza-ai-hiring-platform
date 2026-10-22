@@ -88,9 +88,32 @@ def test_a_visitor_sees_the_invite_without_its_email(client, stored_invite):
     assert response.json() == {
         "company_name": "Arcolabs",
         "email": None,
+        "matches": False,
         "joined": False,
         "company_id": None,
     }
+
+
+@pytest.mark.parametrize(
+    ("email", "verified", "matches", "shown"),
+    [
+        ("bob@example.com", True, True, "bob@example.com"),
+        ("bob@example.com", False, True, None),
+        ("eve@example.com", True, False, None),
+    ],
+)
+def test_only_the_verified_account_invited_sees_the_invites_address(
+    client, stored_invite, email, verified, matches, shown
+):
+    from prepza_common.auth import optional_user
+
+    app.dependency_overrides[optional_user] = lambda: User(
+        uid="u1", email=email, email_verified=verified
+    )
+
+    found = client.get("/members/invites/token-1").json()
+
+    assert (found["matches"], found["email"]) == (matches, shown)
 
 
 def test_a_used_link_opens_the_company_for_its_member_and_says_used_to_others(client, monkeypatch):
@@ -126,6 +149,7 @@ def test_invite_view(client, stored_invite):
     assert response.json() == {
         "company_name": "Arcolabs",
         "email": "bob@example.com",
+        "matches": True,
         "joined": False,
         "company_id": None,
     }

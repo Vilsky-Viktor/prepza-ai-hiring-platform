@@ -50,8 +50,10 @@ class AdminInviteOut(BaseModel):
     """What the invited member sees before accepting."""
 
     company_name: str
-    # None for a visitor who isn't signed in.
+    # Only for the signed-in account it was sent to, with its email verified.
     email: str | None = None
+    # Whether it was sent to the signed-in account's email: they may join with it.
+    matches: bool = False
     joined: bool
     # Only for the member who joined through this link, so they can open the company.
     company_id: UUID | None = None

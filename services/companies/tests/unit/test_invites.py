@@ -160,11 +160,25 @@ def test_a_visitor_sees_the_invitation_without_the_candidates_email(client, invi
     assert response.json()["total_minutes"] == 4
 
 
-def test_a_signed_in_visitor_sees_whose_invitation_it_is(client, invite_page):
+@pytest.mark.parametrize(
+    ("email", "verified", "matches", "shown"),
+    [
+        ("Bob@Example.com", True, True, "bob@example.com"),
+        # Their address, not confirmed yet: told it's theirs, never shown it.
+        ("bob@example.com", False, True, None),
+        # Anyone else with the link: neither.
+        ("eve@example.com", True, False, None),
+    ],
+)
+def test_only_the_verified_account_it_was_sent_to_sees_its_address(
+    client, invite_page, email, verified, matches, shown
+):
     from prepza_common.auth import optional_user
 
     app.dependency_overrides[optional_user] = lambda: User(
-        uid="cand", email="bob@example.com", email_verified=True, name="Bob"
+        uid="cand", email=email, email_verified=verified, name="Bob"
     )
 
-    assert client.get("/invites/token-1").json()["email"] == "bob@example.com"
+    found = client.get("/invites/token-1").json()
+
+    assert (found["matches"], found["email"]) == (matches, shown)

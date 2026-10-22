@@ -64,7 +64,8 @@ export function AdminInvite({ token }: { token: string }) {
     )
   }
 
-  const matches = user?.email?.toLowerCase() === invite.email
+  // The backend says whether the invite is this account's.
+  const matches = invite.matches ?? false
 
   return (
     <div className="w-full space-y-8 text-center">

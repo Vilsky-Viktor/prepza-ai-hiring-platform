@@ -8,6 +8,7 @@ from app.constants.invites import EMAIL_NOT_VERIFIED, NOT_THE_GUEST, InviteStatu
 from app.helpers.brand import color_sets, style_of
 from app.helpers.candidates import candidate_seconds
 from app.helpers.interviews import attach_set, interview_minutes, interview_title
+from app.helpers.invite_links import addressed_to
 from app.helpers.logos import logo_path
 from app.integrations.firebase_tokens import guest_token, guest_uid
 from app.integrations.redis import get_redis
@@ -23,8 +24,8 @@ router = APIRouter(prefix="/invites", tags=["invites"])
 
 @router.get("/{token}")
 async def get_invite(token: str, user: OptionalUser) -> InviteView:
-    """The invitation, also before signing in, so the page shows what it's for; the candidate's
-    email only once someone is signed in."""
+    """The invitation, also before signing in, so the page shows what it's for; whether it's the
+    signed-in account's, and its email only to that account with the email verified."""
     # An expired invite's link stops working until the company sends it again.
     invite, interview = await open_invite(token)
     interview = await attach_set(interview)
@@ -34,6 +35,7 @@ async def get_invite(token: str, user: OptionalUser) -> InviteView:
     refuse_if_suspended(company, invite.status)
     seconds = candidate_seconds(interview.question_seconds, invite.extra_time)
     found = await set_cache.get_set(interview.set_id) if interview.set_id else None
+    matches, email = addressed_to(user, invite.email)
 
     return InviteView(
         interview_id=interview.id,
@@ -41,7 +43,8 @@ async def get_invite(token: str, user: OptionalUser) -> InviteView:
         company=company.name if company else "",
         logo_url=logo_path(company),
         verified_domain=company.verified_domain if company else None,
-        email=invite.email if user else None,
+        email=email,
+        matches=matches,
         status=invite.status,
         question_seconds=seconds,
         total_minutes=interview_minutes(found, interview.topic_limits, seconds),

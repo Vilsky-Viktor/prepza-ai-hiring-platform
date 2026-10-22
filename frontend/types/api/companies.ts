@@ -2380,6 +2380,11 @@ export interface components {
       company_name: string
       /** Email */
       email?: string | null
+      /**
+       * Matches
+       * @default false
+       */
+      matches: boolean
       /** Joined */
       joined: boolean
       /** Company Id */
@@ -3403,6 +3408,11 @@ export interface components {
       verified_domain?: string | null
       /** Email */
       email?: string | null
+      /**
+       * Matches
+       * @default false
+       */
+      matches: boolean
       /** Status */
       status: string
       /** Question Seconds */

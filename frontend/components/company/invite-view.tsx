@@ -117,7 +117,8 @@ export function InviteView({
     )
   }
 
-  const matches = user?.email?.toLowerCase() === invite.email
+  // The backend says whether the invite is this account's.
+  const matches = invite.matches ?? false
 
   return (
     <InviteIntro

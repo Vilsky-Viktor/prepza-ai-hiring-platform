@@ -15,6 +15,7 @@ from app.constants.roles import (
     Role,
 )
 from app.core.exceptions import OverLimit
+from app.helpers.invite_links import addressed_to
 from app.helpers.logos import logo_path
 from app.integrations import billing, billing_prices
 from app.integrations.redis import get_redis
@@ -214,8 +215,9 @@ async def remove_member(company_id: UUID, member_id: UUID, user: CurrentUser) ->
 
 @router.get("/invites/{token}")
 async def get_admin_invite(token: str, user: OptionalUser) -> AdminInviteOut:
-    """Open to visitors, so they see what they're invited to before signing in; the invited
-    email only once signed in, so a visitor with the link doesn't learn it. A used link says so,
+    """Open to visitors, so they see what they're invited to before signing in; whether it's the
+    signed-in account's, and the invited email only to that account with it verified, so
+    nobody else with the link learns it. A used link says so,
     and gives the company's id to the member who joined through it."""
     found = await members.get_by_token(token)
 
@@ -224,9 +226,12 @@ async def get_admin_invite(token: str, user: OptionalUser) -> AdminInviteOut:
 
     member, company = found
 
+    matches, email = addressed_to(user, member.invited_email)
+
     return AdminInviteOut(
         company_name=company.name,
-        email=member.invited_email if user else None,
+        email=email,
+        matches=matches,
         joined=member.user_id is not None,
         company_id=company.id if user and member.user_id == user.uid else None,
     )
