@@ -133,7 +133,7 @@ export function CandidatesDemo({
   }
 
   return (
-    <div className="mx-auto w-full max-w-3xl">
+    <div className="mx-auto w-full max-w-5xl">
       <DemoPanel ref={ref}>
         <DemoPointer
           target={target}
