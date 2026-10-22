@@ -9,6 +9,7 @@ from prepza_common.user import User
 
 from app.constants.actions import (
     CAMPAIGN_TRANSLATION,
+    CODE_TAGS,
     EMBEDDINGS,
     INTERVIEW_GENERATION,
     NEWS_TRANSLATION,
@@ -20,6 +21,7 @@ from app.constants.actions import (
 )
 from app.constants.quality import QualityFlag
 from app.integrations import library, llm, notifications
+from app.jobs import tag_code_languages as tag_job
 from app.jobs.embed_templates import embed_templates
 from app.main import app
 from app.models.generation import Generation
@@ -245,6 +247,29 @@ def test_news_and_campaign_translations_are_recorded(events, monkeypatch):
         (NEWS_TRANSLATION, None, None, "ok"),
         (CAMPAIGN_TRANSLATION, None, None, "ok"),
     ]
+
+
+def test_tagging_examples_notation_is_recorded(events, monkeypatch):
+    chat = Chat(replies=[reply(100, 10)])
+    pages = [[{"id": "q1", "text": "Q?\n```\nprint(1)\n```"}], []]
+
+    async def untagged_code(limit, text=False, after=None):
+        return pages.pop(0)
+
+    async def tagged(examples):
+        await chat.ainvoke("Tag")
+
+        return {0: "python"}
+
+    async def saved(*args):
+        pass
+
+    monkeypatch.setattr(library, "untagged_code", untagged_code)
+    monkeypatch.setattr(library, "save_code_languages", saved)
+    monkeypatch.setattr(tag_job, "tag_examples", tagged)
+
+    assert asyncio.run(tag_job.tag_code_languages()) == 1
+    assert recorded(events) == [(CODE_TAGS, None, None, "ok")]
 
 
 def test_embedding_templates_topics_is_recorded(events, monkeypatch):

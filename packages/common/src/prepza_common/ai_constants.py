@@ -46,6 +46,7 @@ ACTIONS = {
     "news_translation": "generation",
     "campaign_translation": "generation",
     "quality_patterns": "generation",
+    "code_tags": "generation",
     "assistant_message": "assistant",
     "assistant_title": "assistant",
     "transcription": "assistant",
@@ -64,6 +65,7 @@ PREPZA_ACTIONS = {
     "news_translation",
     "campaign_translation",
     "quality_patterns",
+    "code_tags",
 }
 
 
