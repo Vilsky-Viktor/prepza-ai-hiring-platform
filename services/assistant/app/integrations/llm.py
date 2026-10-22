@@ -11,7 +11,7 @@ from app.constants.chat import (
     MODEL_RETRIES,
     MODEL_TIMEOUT_SECONDS,
 )
-from app.constants.titles import TITLE_MAX_TOKENS, TITLE_REASONING_EFFORT
+from app.constants.titles import TITLE_MAX_TOKENS
 from app.constants.transcribe import TRANSCRIBE_RETRIES, TRANSCRIBE_TIMEOUT_SECONDS
 
 
@@ -41,10 +41,10 @@ def get_openai() -> AsyncOpenAI:
 
 @cache
 def get_title_model() -> ChatOpenAI:
-    """The conversations' titles: the assistant's model, without reasoning, a few tokens."""
+    """The conversations' titles: a few tokens."""
     return chat_model(
-        settings.assistant_model,
-        TITLE_REASONING_EFFORT,
+        settings.title_model,
+        settings.title_reasoning_effort,
         max_tokens=TITLE_MAX_TOKENS,
         timeout=MODEL_TIMEOUT_SECONDS,
         max_retries=MODEL_RETRIES,

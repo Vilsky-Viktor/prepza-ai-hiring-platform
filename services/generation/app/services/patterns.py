@@ -59,7 +59,7 @@ async def propose(flag: str, signals: list[QualitySignal]) -> None:
 
     async with ai_run(QUALITY_PATTERNS):
         result: ProposedPatterns = (
-            await llm.get_verifier_llm()
+            await llm.get_patterns_llm()
             .with_structured_output(ProposedPatterns)
             .ainvoke([HumanMessage(content=prompt)])
         )

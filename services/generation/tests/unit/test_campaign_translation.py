@@ -64,7 +64,7 @@ def saved(monkeypatch):
 def test_each_missing_language_is_translated_and_saved(monkeypatch, saved):
     calls, _ = saved
     model = FakeLLM()
-    monkeypatch.setattr(llm, "get_generation_llm", lambda: model)
+    monkeypatch.setattr(llm, "get_translation_llm", lambda: model)
 
     asyncio.run(translate_campaign(CAMPAIGN_ID))
 
@@ -80,7 +80,7 @@ def test_each_missing_language_is_translated_and_saved(monkeypatch, saved):
 def test_a_campaign_without_a_button_gets_none(monkeypatch, saved):
     calls, state = saved
     state["source"] = SOURCE.model_copy(update={"button": None})
-    monkeypatch.setattr(llm, "get_generation_llm", lambda: FakeLLM())
+    monkeypatch.setattr(llm, "get_translation_llm", lambda: FakeLLM())
 
     asyncio.run(translate_campaign(CAMPAIGN_ID))
 
@@ -91,7 +91,7 @@ def test_a_campaign_without_a_button_gets_none(monkeypatch, saved):
 @pytest.mark.parametrize("problem", ["error", "too long"])
 def test_a_failed_language_is_left_out_and_the_job_fails_to_be_retried(monkeypatch, saved, problem):
     calls, _ = saved
-    monkeypatch.setattr(llm, "get_generation_llm", lambda: FakeLLM({"French": problem}))
+    monkeypatch.setattr(llm, "get_translation_llm", lambda: FakeLLM({"French": problem}))
 
     with pytest.raises(RuntimeError):
         asyncio.run(translate_campaign(CAMPAIGN_ID))
@@ -106,7 +106,7 @@ def test_a_sent_or_deleted_campaign_needs_nothing(monkeypatch, saved):
     def no_model():
         raise AssertionError("no translation needed")
 
-    monkeypatch.setattr(llm, "get_generation_llm", no_model)
+    monkeypatch.setattr(llm, "get_translation_llm", no_model)
 
     for found in (None, SOURCE.model_copy(update={"missing": []})):
         state["source"] = found

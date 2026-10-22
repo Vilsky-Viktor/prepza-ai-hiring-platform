@@ -20,11 +20,21 @@ def test_llm_calls_time_out():
 
 def test_each_task_uses_its_own_model_and_effort(monkeypatch):
     monkeypatch.setattr(settings, "interview_reasoning_effort", "high")
-    monkeypatch.setattr(settings, "verify_model", "model-b")
-    monkeypatch.setattr(settings, "verify_reasoning_effort", "minimal")
-    tasks = [llm.get_generation_llm(), llm.get_verifier_llm()]
+    tasks = {
+        "verify": llm.get_verifier_llm,
+        "translation": llm.get_translation_llm,
+        "patterns": llm.get_patterns_llm,
+        "code_tags": llm.get_code_tags_llm,
+    }
 
-    assert [(t.model_name, t.reasoning_effort) for t in tasks] == [
-        ("interview-model", "high"),
-        ("model-b", "minimal"),
-    ]
+    for name in tasks:
+        monkeypatch.setattr(settings, f"{name}_model", f"{name}-model")
+        monkeypatch.setattr(settings, f"{name}_reasoning_effort", "minimal")
+
+    assert (llm.get_generation_llm().model_name, llm.get_generation_llm().reasoning_effort) == (
+        "interview-model",
+        "high",
+    )
+
+    for name, getter in tasks.items():
+        assert (getter().model_name, getter().reasoning_effort) == (f"{name}-model", "minimal")

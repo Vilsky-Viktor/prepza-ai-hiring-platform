@@ -72,6 +72,8 @@ x-assistant-env: &assistant-env
   LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
   ASSISTANT_MODEL: ${ASSISTANT_MODEL:-gpt-6-luna}
   ASSISTANT_REASONING_EFFORT: ${ASSISTANT_REASONING_EFFORT:-low}
+  TITLE_MODEL: ${TITLE_MODEL:-gpt-6-luna}
+  TITLE_REASONING_EFFORT: ${TITLE_REASONING_EFFORT:-none}
   TRANSCRIBE_MODEL: ${TRANSCRIBE_MODEL:-gpt-4o-mini-transcribe}
   ASSISTANT_RETENTION_DAYS: ${ASSISTANT_RETENTION_DAYS:-90}
   # AI apps connect to <SITE_URL>/mcp; their calls sign the user in with Firebase's web key.

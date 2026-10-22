@@ -19,7 +19,7 @@ async def translate_fields[T: BaseModel](
 ) -> T:
     """The model's translation, trimmed; raises when a field in `limits` is empty or longer than
     its limit."""
-    structured_llm = llm.get_generation_llm().with_structured_output(schema)
+    structured_llm = llm.get_translation_llm().with_structured_output(schema)
     result = await structured_llm.ainvoke([HumanMessage(content=prompt)])
     values = {
         name: value.strip() if isinstance(value, str) else value

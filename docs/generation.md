@@ -49,7 +49,7 @@ graph TD;
 - An LLM call silent for 5 minutes has hung (`LLM_TIMEOUT_SECONDS`) and is tried again at most twice (`LLM_MAX_RETRIES`): quick failures recover, and a stuck call gives up well within a run's 25 minutes.
 - Regenerating one question has 110 seconds to write it (`REGENERATE_TIMEOUT_SECONDS`), under the 120 companies waits; past that the old question stays and the company is told to try again, so a retry never makes two replacements.
 - `generation.completed` carries the test's level, which gives a generated test its level's seconds a question (see [Interviews](features/interviews.md#settings)).
-- The worker also translates news posts into every language, with the generation model (`INTERVIEW_MODEL`), as a `translate-news` job (see [Admin zone](features/admin-zone.md#news)).
+- The worker also translates news posts into every language, with its own model (`TRANSLATION_MODEL`), as a `translate-news` job (see [Admin zone](features/admin-zone.md#news)).
 
 ### Prompts
 
@@ -183,8 +183,12 @@ Each AI task has its own model and reasoning effort. The effort is `none`, `mini
 |---|---|---|
 | Generation of an interview or template, at any level | `INTERVIEW_MODEL` (`gpt-6.1-sol`) | `INTERVIEW_REASONING_EFFORT` (`low`) |
 | Verifier: answer-key checks, at once and in batches | `VERIFY_MODEL` (`gpt-6.1-sol`) | `VERIFY_REASONING_EFFORT` (`medium`) |
+| Translating news posts and campaign emails | `TRANSLATION_MODEL` (`gpt-6.1-sol`) | `TRANSLATION_REASONING_EFFORT` (`low`) |
+| The weekly quality patterns | `PATTERNS_MODEL` (`gpt-6.1-sol`) | `PATTERNS_REASONING_EFFORT` (`medium`) |
+| Tagging the notation of questions' examples (`tag_code_languages`) | `CODE_TAGS_MODEL` (`gpt-6.1-sol`) | `CODE_TAGS_REASONING_EFFORT` (`low`) |
 | Help chat (the signed-out assistant) | `HELP_MODEL` (`gpt-6-luna`) | `HELP_REASONING_EFFORT` (`none`, which also lets it take a temperature) |
 | In-app assistant | `ASSISTANT_MODEL` (`gpt-6-luna`) | `ASSISTANT_REASONING_EFFORT` (`low`) |
+| Assistant's conversation titles | `TITLE_MODEL` (`gpt-6-luna`) | `TITLE_REASONING_EFFORT` (`none`) |
 | Assistant's voice messages to text | `TRANSCRIBE_MODEL` (`gpt-4o-mini-transcribe`) | None |
 
 Every service builds its chat models with `prepza_common.llm.chat_model`, which leaves the temperature out at any effort but `none`.

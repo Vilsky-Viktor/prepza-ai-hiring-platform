@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 async def tag_code_languages(text: bool = False) -> int:
     """Tags every untagged example, or with `text` re-tags the "text" ones; how many changed."""
-    structured = llm.get_generation_llm().with_structured_output(CodeTagList)
+    structured = llm.get_code_tags_llm().with_structured_output(CodeTagList)
     fence = TEXT_FENCE if text else UNTAGGED_FENCE
     done = 0
     after = None

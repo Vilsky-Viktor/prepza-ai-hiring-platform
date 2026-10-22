@@ -48,7 +48,7 @@ def test_every_listed_example_is_tagged_and_one_the_model_skips_is_text(monkeypa
 
     monkeypatch.setattr(library, "untagged_code", untagged_code)
     monkeypatch.setattr(library, "save_code_languages", save_code_languages)
-    monkeypatch.setattr(llm, "get_generation_llm", lambda *_: FakeLLM())
+    monkeypatch.setattr(llm, "get_code_tags_llm", lambda *_: FakeLLM())
 
     done = asyncio.run(tag_code_languages())
 
@@ -97,7 +97,7 @@ def test_examples_tagged_text_get_their_notation_and_genuine_plain_text_is_left_
 
     monkeypatch.setattr(library, "untagged_code", untagged_code)
     monkeypatch.setattr(library, "save_code_languages", save_code_languages)
-    monkeypatch.setattr(llm, "get_generation_llm", lambda *_: FakeLLM())
+    monkeypatch.setattr(llm, "get_code_tags_llm", lambda *_: FakeLLM())
 
     done = asyncio.run(tag_code_languages(text=True))
 

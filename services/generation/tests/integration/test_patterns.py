@@ -51,7 +51,7 @@ def given(monkeypatch, flag, *answers):
 
     model = Model(list(answers))
     monkeypatch.setattr(library, "quality_signals", quality_signals)
-    monkeypatch.setattr(llm, "get_verifier_llm", lambda: model)
+    monkeypatch.setattr(llm, "get_patterns_llm", lambda: model)
 
     return model
 

@@ -29,6 +29,18 @@ def get_verifier_llm() -> ChatOpenAI:
     return build_llm(settings.verify_model, settings.verify_reasoning_effort)
 
 
+def get_translation_llm() -> ChatOpenAI:
+    return build_llm(settings.translation_model, settings.translation_reasoning_effort)
+
+
+def get_patterns_llm() -> ChatOpenAI:
+    return build_llm(settings.patterns_model, settings.patterns_reasoning_effort)
+
+
+def get_code_tags_llm() -> ChatOpenAI:
+    return build_llm(settings.code_tags_model, settings.code_tags_reasoning_effort)
+
+
 @cache
 def get_rate_limiter() -> SharedRateLimiter:
     return SharedRateLimiter()

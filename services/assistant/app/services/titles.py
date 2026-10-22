@@ -47,13 +47,13 @@ async def refresh(turn: Turn) -> str | None:
         logger.error("A conversation's title failed: %s", type(failure).__name__)
         await ai_usage.provider_refused(failure, TITLE_ACTION, **who)
         usage = {"input_tokens": estimated_input(prompt)}
-        model = settings.assistant_model
+        model = settings.title_model
         await ai_usage.record(TITLE_ACTION, model, usage, outcome=Outcome.FAILED, **recorded)
 
         return None
 
     usage = reply.usage_metadata or {}
-    await ai_usage.record(TITLE_ACTION, settings.assistant_model, usage, **recorded)
+    await ai_usage.record(TITLE_ACTION, settings.title_model, usage, **recorded)
     tokens = usage.get("input_tokens", 0) + usage.get("output_tokens", 0)
     await limits.record(get_redis(), turn.user_id, turn.company_id, tokens)
     title = clean_title(reply.text)

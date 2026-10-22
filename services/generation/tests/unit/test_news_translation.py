@@ -60,7 +60,7 @@ def saved(monkeypatch):
 
 def test_each_missing_language_is_translated_and_saved(monkeypatch, saved):
     model = FakeLLM()
-    monkeypatch.setattr(llm, "get_generation_llm", lambda: model)
+    monkeypatch.setattr(llm, "get_translation_llm", lambda: model)
 
     asyncio.run(translate_news(NEWS_ID))
 
@@ -76,7 +76,7 @@ def test_each_missing_language_is_translated_and_saved(monkeypatch, saved):
 
 @pytest.mark.parametrize("problem", ["error", "too long"])
 def test_a_failed_language_is_left_out_and_the_job_fails_to_be_retried(monkeypatch, saved, problem):
-    monkeypatch.setattr(llm, "get_generation_llm", lambda: FakeLLM({"French": problem}))
+    monkeypatch.setattr(llm, "get_translation_llm", lambda: FakeLLM({"French": problem}))
 
     with pytest.raises(RuntimeError):
         asyncio.run(translate_news(NEWS_ID))
@@ -89,7 +89,7 @@ def test_a_deleted_or_translated_post_needs_nothing(monkeypatch, saved):
     def no_model():
         raise AssertionError("no translation needed")
 
-    monkeypatch.setattr(llm, "get_generation_llm", no_model)
+    monkeypatch.setattr(llm, "get_translation_llm", no_model)
 
     for found in (None, SOURCE.model_copy(update={"missing": []})):
 
