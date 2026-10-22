@@ -81,8 +81,11 @@ async def welcome_company(
             response.raise_for_status()
 
             return
-        except Exception:
-            if attempt == WELCOME_ATTEMPTS - 1:
+        except Exception as error:
+            # A refusal (4xx) won't change on a retry; an outage or a lost answer may.
+            refused = isinstance(error, httpx.HTTPStatusError) and error.response.is_client_error
+
+            if refused or attempt == WELCOME_ATTEMPTS - 1:
                 raise
 
             await asyncio.sleep(wait_seconds(WELCOME_FIRST_WAIT_SECONDS, attempt))

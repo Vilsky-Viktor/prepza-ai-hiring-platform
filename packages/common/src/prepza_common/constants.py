@@ -126,6 +126,9 @@ DEFAULT_TRACES_SAMPLE_RATE = "0.1"
 UNTRACED_PATHS = ("/ready", "/health", "/internal/")
 EMAIL_PATTERN = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
 
+# A record without an outbox (an AI call, a limit hit) is published again after a jittered wait
+# from this many seconds (backoff.wait_seconds).
+PUBLISH_RETRY_FIRST_WAIT = 0.2
 # Pub/Sub: the one topic every domain event goes to, and its REST API.
 EVENTS_TOPIC = "events"
 PUBSUB_URL = "https://pubsub.googleapis.com"

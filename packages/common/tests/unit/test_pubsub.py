@@ -127,3 +127,23 @@ def test_an_event_says_when_it_happened_else_when_it_was_published():
 
     assert pubsub.occurred_at(happened) == datetime(2026, 10, 15, 8, tzinfo=UTC)
     assert pubsub.occurred_at(older) == datetime(2026, 10, 15, 9, tzinfo=UTC)
+
+
+def test_a_record_is_published_again_after_a_jittered_wait_and_given_up_quietly(monkeypatch):
+    tries, slept = [], []
+
+    async def down(messages, timeout):
+        tries.append(messages[0]["attributes"]["event_id"])
+        raise ConnectionError("down")
+
+    async def sleep(seconds):
+        slept.append(seconds)
+
+    monkeypatch.setattr(pubsub, "publish_batch", down)
+    monkeypatch.setattr(pubsub.asyncio, "sleep", sleep)
+
+    asyncio.run(pubsub.publish_retried("ai.used", {"a": 1}, 3, 1))
+
+    # One id for every try, so a try that reached Pub/Sub after all is stored once.
+    assert len(tries) == 3 and len(set(tries)) == 1
+    assert len(slept) == 2 and all(0 <= wait <= 0.4 for wait in slept)

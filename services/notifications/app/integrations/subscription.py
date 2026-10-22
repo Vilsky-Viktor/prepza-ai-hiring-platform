@@ -9,6 +9,8 @@ from collections import defaultdict
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
+from prepza_common.backoff import wait_seconds
+
 from app.constants.notifications import CHANNELS, HEARTBEAT_SECONDS, RESUBSCRIBE_SECONDS
 from app.integrations.redis import get_redis
 
@@ -51,7 +53,8 @@ class Subscription:
             finally:
                 await pubsub.aclose()
 
-            await asyncio.sleep(RESUBSCRIBE_SECONDS)
+            # Jittered, so every instance doesn't reconnect at once when Redis comes back.
+            await asyncio.sleep(wait_seconds(RESUBSCRIBE_SECONDS, 0))
 
     def wake(self, *channels: str) -> None:
         for channel in channels:

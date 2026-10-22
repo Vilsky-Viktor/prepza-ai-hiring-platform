@@ -57,3 +57,13 @@ def test_a_welcome_failing_every_time_fails_after_its_tries(monkeypatch):
         asyncio.run(welcome_company(uuid.uuid4(), "ann@example.com", None, [], None))
 
     assert len(calls) == WELCOME_ATTEMPTS
+
+
+def test_a_welcome_billing_refuses_isnt_asked_again(monkeypatch, waits):
+    client, calls = answering(422, 204)
+    monkeypatch.setattr(http, "get_client", lambda: client)
+
+    with pytest.raises(httpx.HTTPStatusError):
+        asyncio.run(welcome_company(uuid.uuid4(), "ann@example.com", None, [], None))
+
+    assert (len(calls), waits) == (1, [])

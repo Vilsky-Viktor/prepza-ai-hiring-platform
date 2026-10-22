@@ -7,11 +7,13 @@ import uuid
 from datetime import UTC, datetime
 
 from prepza_common import http
+from prepza_common.backoff import wait_seconds
 from prepza_common.constants import (
     EVENT_ID_ATTRIBUTE,
     EVENTS_TOPIC,
     HTTP_TIMEOUT_SECONDS,
     OCCURRED_AT_ATTRIBUTE,
+    PUBLISH_RETRY_FIRST_WAIT,
     PUBSUB_URL,
 )
 from prepza_common.google import access_token, project, running_locally
@@ -68,7 +70,8 @@ async def publish(event_type: str, data: dict, timeout: float = HTTP_TIMEOUT_SEC
 
 async def publish_retried(event_type: str, data: dict, attempts: int, timeout: float) -> None:
     """Publishes one event that has no outbox (a record of an AI call or a limit hit): tried
-    `attempts` times under one id, so a try that reached Pub/Sub after all is stored once; then
+    `attempts` times under one id, so a try that reached Pub/Sub after all is stored once, with
+    a jittered wait between tries (callers that failed together don't retry together); then
     given up and logged, never raised."""
     sent = message(event_type, data)
 
@@ -80,6 +83,10 @@ async def publish_retried(event_type: str, data: dict, attempts: int, timeout: f
         except Exception:
             if attempt == attempts:
                 logger.warning("Couldn't publish %s", event_type, exc_info=True)
+
+                return
+
+            await asyncio.sleep(wait_seconds(PUBLISH_RETRY_FIRST_WAIT, attempt - 1))
 
 
 class PushMessage(BaseModel):
