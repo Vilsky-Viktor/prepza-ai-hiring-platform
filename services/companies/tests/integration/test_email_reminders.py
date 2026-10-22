@@ -68,12 +68,11 @@ def test_waiting_interviews_are_ready_ones_nobody_was_invited_to_and_ones_still_
             )
             await session.commit()
 
-        without = await email_reminders.without_candidates(
-            now - timedelta(days=10), now - timedelta(days=3)
+        windows = (
+            (now - timedelta(days=10), now - timedelta(days=3)),
+            (now - timedelta(days=15), now + timedelta(minutes=1)),
         )
-        being = await email_reminders.being_generated(
-            now - timedelta(days=15), now + timedelta(minutes=1)
-        )
+        without, being = await email_reminders.waiting_of(*windows, [found.id, uuid.uuid4()])
         ids = {idle.id, invited.id, recent.id, hired.id, generating.id}
 
         return (
@@ -87,6 +86,43 @@ def test_waiting_interviews_are_ready_ones_nobody_was_invited_to_and_ones_still_
 
     assert without == {idle}
     assert being == {generating}
+
+
+def test_companies_with_waiting_interviews_come_in_order_a_page_at_a_time(run):
+    now = datetime.now(UTC)
+    windows = (
+        (now - timedelta(days=10), now - timedelta(days=3)),
+        (now - timedelta(days=15), now + timedelta(minutes=1)),
+    )
+
+    async def scenario():
+        idle, generating, quiet = await company(), await company(), await company()
+        waiting = await interviews.create_from_template(idle.id, uuid.uuid4(), "Idle", "en", 60)
+        await ready_at(waiting.id, now - timedelta(days=4))
+        await interviews.create(generating.id, uuid.uuid4(), "en", 60)
+        await interviews.create_from_template(quiet.id, uuid.uuid4(), "Recent", "en", 60)
+        mine = sorted([idle.id, generating.id, quiet.id])
+        # Two companies a page, from just before this test's first company until past its last.
+        pages, after = [], uuid.UUID(int=mine[0].int - 1)
+
+        while True:
+            page = await email_reminders.waiting_company_ids(*windows, after, 2)
+            pages.append(page)
+
+            if len(page) < 2 or page[-1] >= mine[-1]:
+                break
+
+            after = page[-1]
+
+        found = [company_id for page in pages for company_id in page]
+
+        return [company_id for company_id in found if company_id in mine], found, idle, generating
+
+    mine, found, idle, generating = run(scenario())
+
+    assert mine == sorted([idle.id, generating.id])
+    # In order, each once, every page going on after the last.
+    assert found == sorted(set(found))
 
 
 def test_members_come_with_their_company_and_whether_they_can_act(run):

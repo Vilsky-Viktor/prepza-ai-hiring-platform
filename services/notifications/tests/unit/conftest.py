@@ -43,6 +43,7 @@ def world(monkeypatch):
         "activity": [finished("c1")],
         "asked_companies": [],
         "pages": [],
+        "waiting_pages": [],
         "cursors": {},
     }
 
@@ -64,11 +65,19 @@ def world(monkeypatch):
     async def low_companies():
         return state["low"]
 
-    async def waiting(ready, started):
+    async def waiting(ready, started, company_ids):
+        state["waiting_of"] = company_ids
+        idle = [{"id": "i1", "company_id": "c1", "title": "Backend"}]
+
         return {
-            "without_candidates": [{"id": "i1", "company_id": "c1", "title": "Backend"}],
+            "without_candidates": [row for row in idle if row["company_id"] in company_ids],
             "being_generated": [],
         }
+
+    async def waiting_company_ids(ready, started, after, limit):
+        state["waiting_pages"].append(after)
+
+        return [company_id for company_id in ["c1"] if company_id > after][:limit]
 
     async def statuses(ids):
         return []
@@ -113,6 +122,7 @@ def world(monkeypatch):
 
     monkeypatch.setattr(companies, "members", members)
     monkeypatch.setattr(companies, "waiting_interviews", waiting)
+    monkeypatch.setattr(companies, "waiting_company_ids", waiting_company_ids)
     monkeypatch.setattr(library, "recipients", recipients)
     monkeypatch.setattr(billing, "low_companies", low_companies)
     monkeypatch.setattr(generation, "statuses", statuses)

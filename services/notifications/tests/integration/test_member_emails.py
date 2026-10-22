@@ -11,7 +11,7 @@ from prepza_common.notifications import NotificationKind, Recipient, notificatio
 from app.config.settings import settings
 from app.constants.member_emails import DIGEST_HOUR
 from app.integrations import smtp
-from app.services import digest, reminders
+from app.services import digest, member_pages, reminders
 from app.storage import digest_activity, notifications, sent_emails
 from tests.integration.factories import api
 
@@ -101,6 +101,9 @@ def outside(monkeypatch):
                 200, json={"companies": [{"company_id": company_id, "available": 50}]}
             )
 
+        if path == "/internal/interviews/waiting/companies":
+            return httpx.Response(200, json={"company_ids": []})
+
         if path == "/internal/interviews/waiting":
             return httpx.Response(200, json={"without_candidates": [], "being_generated": []})
 
@@ -115,6 +118,18 @@ def outside(monkeypatch):
     monkeypatch.setattr(settings, "resend_api_key", "")
     monkeypatch.setattr(smtp, "send", send)
     monkeypatch.setattr("app.services.member_sends.asyncio.sleep", no_wait)
+    # Where the day's runs got to, this test's own: a cursor another test left in Redis would
+    # skip this test's company.
+    cursors = {}
+
+    async def cursor(job, day):
+        return cursors.get((job, day), "")
+
+    async def move_cursor(job, day, after):
+        cursors[(job, day)] = after
+
+    monkeypatch.setattr(member_pages, "cursor", cursor)
+    monkeypatch.setattr(member_pages, "move_cursor", move_cursor)
     monkeypatch.setattr(
         http, "get_client", lambda: httpx.AsyncClient(transport=httpx.MockTransport(answer))
     )

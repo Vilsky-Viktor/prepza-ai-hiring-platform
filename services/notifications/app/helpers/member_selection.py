@@ -125,3 +125,19 @@ def awaiting_review(
     return interviews, {
         interview["id"]: [waiting[interview["generation_id"]][0]] for interview in interviews
     }
+
+
+def next_companies(
+    low: list[str], waiting: list[str], after: str, limit: int
+) -> tuple[list[str], str]:
+    """The reminders' next page of companies after `after`, in order, and where the page after
+    it starts: those running low on credits (`low`, all of them) and those with interviews
+    waiting (`waiting`, a page of at most `limit` from companies). While `waiting` is a full
+    page, nothing past its last id is taken: the next page reads on from there."""
+    cut = waiting[-1] if len(waiting) >= limit else None
+    more = [
+        company_id for company_id in low if company_id > after and (not cut or company_id <= cut)
+    ]
+    page = sorted({*waiting, *more})[:limit]
+
+    return page, page[-1] if page else after

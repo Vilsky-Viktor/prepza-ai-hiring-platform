@@ -46,7 +46,38 @@ def test_members_say_who_can_act_and_leave_out_pending_invites(client, monkeypat
     }
 
 
-def test_waiting_interviews_pass_the_windows_through(client, monkeypatch):
+WINDOWS = {
+    "ready_after": "2026-09-28T08:00:00+00:00",
+    "ready_before": "2026-10-05T08:00:00+00:00",
+    "started_after": "2026-09-23T08:00:00+00:00",
+    "started_before": "2026-10-07T08:00:00+00:00",
+}
+
+
+def test_the_companies_with_waiting_interviews_come_a_page_at_a_time(client, monkeypatch):
+    asked = []
+
+    async def waiting_company_ids(ready, started, after, limit):
+        asked.append((ready, started, after, limit))
+
+        return [COMPANY_ID]
+
+    monkeypatch.setattr(email_reminders, "waiting_company_ids", waiting_company_ids)
+
+    response = client.get(
+        "/internal/interviews/waiting/companies",
+        params={**WINDOWS, "after": str(COMPANY_ID), "limit": 5},
+        headers=HEADERS,
+    )
+
+    assert response.json() == {"company_ids": [str(COMPANY_ID)]}
+    [(ready, started, after, limit)] = asked
+    assert ready[1] == datetime(2026, 10, 5, 8, tzinfo=UTC)
+    assert started[0] == datetime(2026, 9, 23, 8, tzinfo=UTC)
+    assert (after, limit) == (COMPANY_ID, 5)
+
+
+def test_waiting_interviews_of_some_companies_pass_the_windows_through(client, monkeypatch):
     calls = []
     row = SimpleNamespace(
         id=uuid.uuid4(),
@@ -56,32 +87,25 @@ def test_waiting_interviews_pass_the_windows_through(client, monkeypatch):
         created_at=datetime(2026, 10, 1, tzinfo=UTC),
     )
 
-    async def without_candidates(after, before):
-        calls.append(("ready", after, before))
+    async def waiting_of(ready, started, company_ids):
+        calls.append((ready, started, company_ids))
 
-        return [row]
+        return [row], []
 
-    async def being_generated(after, before):
-        calls.append(("started", after, before))
+    monkeypatch.setattr(email_reminders, "waiting_of", waiting_of)
 
-        return []
-
-    monkeypatch.setattr(email_reminders, "without_candidates", without_candidates)
-    monkeypatch.setattr(email_reminders, "being_generated", being_generated)
-    params = {
-        "ready_after": "2026-09-28T08:00:00+00:00",
-        "ready_before": "2026-10-05T08:00:00+00:00",
-        "started_after": "2026-09-23T08:00:00+00:00",
-        "started_before": "2026-10-07T08:00:00+00:00",
-    }
-
-    response = client.get("/internal/interviews/waiting", params=params, headers=HEADERS)
+    response = client.post(
+        "/internal/interviews/waiting",
+        json={**WINDOWS, "company_ids": [str(COMPANY_ID)]},
+        headers=HEADERS,
+    )
 
     assert response.status_code == 200
     assert response.json()["without_candidates"][0]["title"] == "Backend"
     assert response.json()["being_generated"] == []
-    assert [call[0] for call in calls] == ["ready", "started"]
-    assert calls[0][2] == datetime(2026, 10, 5, 8, tzinfo=UTC)
+    [(ready, _, company_ids)] = calls
+    assert ready[1] == datetime(2026, 10, 5, 8, tzinfo=UTC)
+    assert company_ids == [COMPANY_ID]
 
 
 def test_these_routes_need_a_service_token(client):

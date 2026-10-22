@@ -25,6 +25,8 @@ CALLS_AT_ONCE = 10
 # Where the day's runs of a job (the digest, reminders) have got to: the last company id of the
 # last page done, kept past the day's catch-up hour.
 CURSOR_KEY = "member_emails:after:{job}:{day}"
+# The reminders' job, by that name (the digest's is MemberEmail.DIGEST).
+REMINDERS_JOB = "reminders"
 CURSOR_SECONDS = 2 * 24 * 3600
 
 # A run stops sending after this long, well within the scheduler's 60 seconds, and waits this

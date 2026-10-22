@@ -27,6 +27,21 @@ class CompaniesMembersOut(BaseModel):
     companies: list[CompanyMembersOut]
 
 
+class CompanyIdsOut(BaseModel):
+    company_ids: list[UUID]
+
+
+class WaitingIn(BaseModel):
+    """Interviews nobody was invited to, ready within the `ready_` times, and interviews still
+    generating, started within the `started_` times, of those companies."""
+
+    ready_after: datetime
+    ready_before: datetime
+    started_after: datetime
+    started_before: datetime
+    company_ids: list[UUID] = Field(max_length=MAX_COMPANIES_PER_CALL)
+
+
 class WaitingInterviewOut(BaseModel):
     id: UUID
     company_id: UUID

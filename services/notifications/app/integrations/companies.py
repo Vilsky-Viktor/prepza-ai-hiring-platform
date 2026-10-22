@@ -4,6 +4,7 @@ from prepza_common import company_access, http
 from prepza_common.http import bearer
 
 from app.config.settings import settings
+from app.constants.member_emails import MAX_IDS_PER_CALL
 from app.integrations.batches import post_ids
 from app.service_auth import service_token
 
@@ -64,23 +65,55 @@ async def members(company_ids: list[str]) -> list[dict]:
     return await post_ids(url, service_token("companies"), "company_ids", company_ids, "companies")
 
 
-async def waiting_interviews(ready: tuple[datetime, datetime], started: tuple[datetime, datetime]):
-    """Interviews ready within `ready` (after, before) that nobody was invited to, and
-    interviews started within `started` still waiting for their questions."""
+def windows(ready: tuple[datetime, datetime], started: tuple[datetime, datetime]) -> dict:
+    return {
+        "ready_after": ready[0].isoformat(),
+        "ready_before": ready[1].isoformat(),
+        "started_after": started[0].isoformat(),
+        "started_before": started[1].isoformat(),
+    }
+
+
+async def waiting_company_ids(
+    ready: tuple[datetime, datetime], started: tuple[datetime, datetime], after: str, limit: int
+) -> list[str]:
+    """A page of the companies with an interview ready within `ready` (after, before) that
+    nobody was invited to, or one started within `started` still waiting for its questions: up
+    to `limit` after `after`, in order."""
+    params = {**windows(ready, started), "limit": limit}
     response = await http.get_client().get(
-        f"{settings.companies_url}/internal/interviews/waiting",
-        params={
-            "ready_after": ready[0].isoformat(),
-            "ready_before": ready[1].isoformat(),
-            "started_after": started[0].isoformat(),
-            "started_before": started[1].isoformat(),
-        },
+        f"{settings.companies_url}/internal/interviews/waiting/companies",
+        params={**params, "after": after} if after else params,
         headers=bearer(service_token("companies")),
     )
-
     response.raise_for_status()
 
-    return response.json()
+    return response.json()["company_ids"]
+
+
+async def waiting_interviews(
+    ready: tuple[datetime, datetime], started: tuple[datetime, datetime], company_ids: list[str]
+) -> dict[str, list[dict]]:
+    """Those companies' interviews ready within `ready` that nobody was invited to
+    ("without_candidates"), and those started within `started` still waiting for their questions
+    ("being_generated"), MAX_IDS_PER_CALL companies a call."""
+    found = {"without_candidates": [], "being_generated": []}
+
+    for start in range(0, len(company_ids), MAX_IDS_PER_CALL):
+        response = await http.get_client().post(
+            f"{settings.companies_url}/internal/interviews/waiting",
+            json={
+                **windows(ready, started),
+                "company_ids": company_ids[start : start + MAX_IDS_PER_CALL],
+            },
+            headers=bearer(service_token("companies")),
+        )
+        response.raise_for_status()
+
+        for key, rows in response.json().items():
+            found[key] += rows
+
+    return found
 
 
 async def editor_ids(after: str) -> list[str]:
