@@ -74,7 +74,9 @@ async def main(label: str, sample: int) -> None:
         }
         for item, (text, options) in pairs
     ]
-    same_kind = sum(is_multi(new) == is_multi(item) for (item, _), new in zip(pairs, out, strict=True))
+    same_kind = sum(
+        is_multi(new) == is_multi(item) for (item, _), new in zip(pairs, out, strict=True)
+    )
     scores = {"asked": len(chosen), "written": len(out), "same_kind": same_kind}
     run = run_record(model=models, scores=scores, cost=spent, seconds=seconds)
     save(RESULTS / f"regenerated_{label}.json", {"run": run, "model": models, "items": out})

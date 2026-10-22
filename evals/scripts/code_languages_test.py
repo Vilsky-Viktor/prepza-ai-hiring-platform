@@ -54,7 +54,9 @@ async def main(args) -> None:
     results = await asyncio.gather(*(tag_batch(batch) for batch in batches))
     rows = [row for found, _, _ in results for row in found]
     spent = sum(
-        cost(model.split("-20")[0], used) for _, usage, _ in results for model, used in usage.items()
+        cost(model.split("-20")[0], used)
+        for _, usage, _ in results
+        for model, used in usage.items()
     )
     tokens = sum(
         used.get("input_tokens", 0) + used.get("output_tokens", 0)
@@ -77,7 +79,9 @@ async def main(args) -> None:
     seconds = sorted(seconds for _, _, seconds in results)
     measured = {"tokens": tokens, "median_seconds": round(seconds[len(seconds) // 2], 1)}
     models = generation_models(settings, ("code_tags",))
-    run = run_record(model=models, repeat=args.repeat, scores=scores, cost=round(spent, 4), **measured)
+    run = run_record(
+        model=models, repeat=args.repeat, scores=scores, cost=round(spent, 4), **measured
+    )
     save(RESULTS / f"code_languages_{args.label}.json", {"run": run, "rows": rows})
     print(json.dumps({"scores": scores, "cost": round(spent, 4), **measured}, indent=1))
 

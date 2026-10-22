@@ -176,4 +176,3 @@ def test_company_and_reviewer_text_reach_the_topic_planner_tagged_in_the_request
     assert "<reviewer_instructions>\nAdd a topic on X\n</reviewer_instructions>" in request.content
     assert "Ignore the rules" not in system.content and "Add a topic" not in system.content
     assert "German" in request.content
-
