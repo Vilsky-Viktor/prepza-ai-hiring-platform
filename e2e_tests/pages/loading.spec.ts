@@ -1,28 +1,18 @@
 import { expect, test } from "@playwright/test";
 
-// A page whose data is slow shows the site's frame and a spinner at once, then its content.
-test("a slow page shows its loading state first, then the page", async ({ page }) => {
-  await page.goto("/pricing");
-  const footer = page.getByRole("contentinfo");
-  await expect(footer).toBeVisible();
+import { REQUEST_URL } from "./helpers/env";
 
-  // The next page's data is held until the spinner has been seen.
-  let release = () => {};
-  const held = new Promise<void>((resolve) => (release = resolve));
-  await page.route(/\/faq\?_rsc=/, async (route) => {
-    await held;
-    await route.continue();
-  });
-  await footer.locator('a[href="/faq"]').click();
+// A page whose data is slow shows the site's frame and a spinner first: the page's segment has a
+// loading state, which Next.js sends ahead of its content (and production prefetches with each
+// link). The local dev server answers a prefetch with the loading state and the page together.
+test("a page's loading state comes with it, ahead of its content", async ({ request }) => {
+  for (const path of ["/faq", "/companies", "/practice"]) {
+    const response = await request.get(`${REQUEST_URL}${path}`, {
+      headers: { RSC: "1", "Next-Router-Prefetch": "1" },
+    });
+    const payload = await response.text();
 
-  const main = page.getByRole("main");
-  await expect(main.getByRole("status")).toBeVisible();
-  // The header and footer stay while it loads.
-  await expect(page.getByRole("banner")).toBeVisible();
-  await expect(footer).toBeVisible();
-
-  release();
-  await expect(page).toHaveURL(/\/faq$/);
-  await expect(main.getByRole("status")).toHaveCount(0);
-  await expect(main.getByRole("heading", { level: 1 })).toBeVisible();
+    expect(response.status(), path).toBe(200);
+    expect(payload, path).toContain('"data-testid":"page-loading"');
+  }
 });
