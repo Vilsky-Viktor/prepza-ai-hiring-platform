@@ -52,6 +52,8 @@ export default async function AboutPage() {
           width={FOUNDER.width}
           height={FOUNDER.height}
           alt={FOUNDER.name}
+          // Shown 14rem wide (16rem from tablets), far narrower than the file.
+          sizes="(min-width: 768px) 16rem, 14rem"
           className="aspect-[3/4] w-56 rounded-3xl object-cover md:w-64"
         />
         <div className="space-y-6">
