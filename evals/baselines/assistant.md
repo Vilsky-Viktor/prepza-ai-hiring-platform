@@ -82,3 +82,23 @@ Mira as an AI (ミラ, ميرا, Мира, "KI-Assistentin", "la asistente de IA
 moved within the judge's noise: the unchanged "without" variant, the same instructions both times
 but for the page bullet, moved by 9 of 129 between the two runs, more than "with" did (3), and
 the guides' general questions fell in both variants alike. About $3.30 for the four runs.
+
+## The turn's context out of the instructions (2026-10-22, kept)
+
+The system message held the user's name, today's date, the company picked and the page's
+address (the browser's text), so it changed with every user, page and day and mixed data into
+the instructions. Now it's the same for everyone (cached whole), and each new message starts with
+a tagged `<context>` (the language to answer in, the user's name, the date, the company, the
+page). `page_context.py` and `guides.py`, 2 repeats, against `results/…_page_context_p1.json` and
+`…_guides_g1.json` (`…_ctx.json`):
+
+| Run | General: correct / scope / tools (with) | Page checks (with) | Guide called | Guides: correct / complete / read the right one / linked | Guides' general correct |
+|---|---|---|---|---|---|
+| Before | 84/102 / 97/102 / 90/102 | 16/18 | 10/10 | 40/40 / 27/40 / 40/40 / 39/40 | 27/30 |
+| Context in the message (in use) | **88/102 / 92/102 / 78/102** | **16/18** | **10/10** | **39/40 / 26/40 / 38/40 / 37/40** | **28/30** |
+
+Right tools fell by 12: seven of them are one mistyped id (`…b0d9cce08b87` copied as
+`…b0d9dce08b87`), a quirk of this run's random fixture ids, where the earlier run had three id
+slips; the unchanged "without" variant moved by 7 between runs too. Everything else is within the
+judge's noise; kept for the cacheable prefix and the data kept out of the instructions. About
+$2.40 for the two runs.

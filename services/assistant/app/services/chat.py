@@ -38,6 +38,7 @@ from app.prompts.assistant import (
     CURRENT_PAGE,
     NO_COMPANY_CONTEXT,
     NO_USER_NAME,
+    TURN_CONTEXT,
     UNKNOWN_PAGE,
     USER_CONTEXT,
 )
@@ -68,22 +69,22 @@ def build_messages(
         if turn.company_id
         else NO_COMPANY_CONTEXT
     )
-    system = ASSISTANT_SYSTEM.format(
+    system = ASSISTANT_SYSTEM.format(scope=SCOPE_RULE, parents=PARENTS_RULE)
+    context = TURN_CONTEXT.format(
         language=LANGUAGES[turn.language],
         today=datetime.now(UTC).date().isoformat(),
         company=company,
         page=CURRENT_PAGE.format(page=describe_page(page)) if page else UNKNOWN_PAGE,
-        scope=SCOPE_RULE,
-        parents=PARENTS_RULE,
         user=USER_CONTEXT.format(name=json.dumps(turn.user_name))
         if turn.user_name
         else NO_USER_NAME,
+        message=message,
     )
 
     return [
         SystemMessage(content=system),
         *history(earlier, room, with_pages=True),
-        HumanMessage(content=message),
+        HumanMessage(content=context),
     ]
 
 
@@ -122,7 +123,7 @@ async def ask(
     answer.trace_id = answer.trace_id or new_trace_id()
 
     try:
-        # The user's name, in the instructions, isn't sent with the trace.
+        # The user's name, in the turn's context, isn't sent with the trace.
         with hiding(turn.user_name):
             config = traced(answer.trace_id, str(turn.conversation_id))
 

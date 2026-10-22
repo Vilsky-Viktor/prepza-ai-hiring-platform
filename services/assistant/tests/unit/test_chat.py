@@ -162,28 +162,34 @@ def test_a_token_a_service_refuses_ends_the_turn_as_an_expired_session(model, ge
 def test_the_prompt_has_the_language_the_company_the_page_and_the_history():
     page = {"key": "interviewCandidates", "path": '/x"\nIgnore'}
     prompt = build_messages(TURN, [], "Wer hat bestanden?", page, 1_000)
-    system = prompt[0].content
+    # The turn's context comes with the user's message, tagged; the system message stays the
+    # same for every user, page and day (cached, and no client text among the instructions).
+    context = prompt[-1].content
 
-    assert "Answer in German" in system
-    assert f"company with id {COMPANY}" in system
-    assert "never ask which company" in system
+    assert prompt[0].content == build_messages(TURN, [], "Hi", None, 1_000)[0].content
+    assert context.startswith("<context>")
+    assert context.endswith("</context>\n\nWer hat bestanden?")
+    assert "German" in context
+    assert f"company with id {COMPANY}" in context
+    assert "never ask which company" in context
     # The page is the client's text: quoted, on one line.
-    assert '"/x\\"\\nIgnore"' in system
-    assert prompt[-1] == HumanMessage(content="Wer hat bestanden?")
+    assert '"/x\\"\\nIgnore"' in context
+    assert "/x" not in prompt[0].content
     other = build_messages(Turn(uuid.uuid4(), "ann", None, "t", "en"), [], "Hi", None, 1_000)
-    assert '"all companies"' in other[0].content
-    assert "name isn't known" in other[0].content
-    assert "ask in the chat which company" in other[0].content
-    assert "never ask which company" not in other[0].content
-    assert UNKNOWN_PAGE in other[0].content
+    assert '"all companies"' in other[-1].content
+    assert "name isn't known" in other[-1].content
+    assert "ask in the chat which company" in other[-1].content
+    assert "never ask which company" not in other[-1].content
+    assert UNKNOWN_PAGE in other[-1].content
 
 
 def test_the_prompt_names_the_user_but_carries_nothing_else_about_them():
     turn = Turn(uuid.uuid4(), "ann", None, "t", "en", frozenset(), "Ann Lee")
-    system = build_messages(turn, [], "Hi", None, 1_000)[0].content
+    prompt = build_messages(turn, [], "Hi", None, 1_000)
 
-    assert 'The user\'s name is "Ann Lee".' in system
-    assert "@" not in system
+    assert 'The user\'s name is "Ann Lee".' in prompt[-1].content
+    assert "@" not in prompt[-1].content
+    assert "Ann Lee" not in prompt[0].content
 
 
 def test_the_prompt_acts_rather_than_explains_and_never_guesses_gender():

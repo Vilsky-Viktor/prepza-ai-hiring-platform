@@ -29,14 +29,16 @@ TURN = Turn(uuid.uuid4(), "ann", uuid.UUID(COMPANY), "user-token", "en", frozens
 
 
 def test_the_page_line_names_the_page_its_tab_and_each_id():
-    system = build_messages(TURN, [], "Who's best here?", PAGE, 1_000)[0].content
+    prompt = build_messages(TURN, [], "Who's best here?", PAGE, 1_000)
+    context = prompt[-1].content
 
-    assert 'the page "interviewCandidates"' in system
-    # The path with its query (the tab), quoted: it's the client's text.
-    assert f'"{PAGE["path"]}"' in system
-    assert f"the company with id {COMPANY}" in system
-    assert f"the interview with id {INTERVIEW}" in system
-    assert "get_page_guide" in system
+    assert 'the page "interviewCandidates"' in context
+    # The path with its query (the tab), quoted: it's the client's text, never an instruction.
+    assert f'"{PAGE["path"]}"' in context
+    assert PAGE["path"] not in prompt[0].content
+    assert f"the company with id {COMPANY}" in context
+    assert f"the interview with id {INTERVIEW}" in context
+    assert "get_page_guide" in prompt[0].content
 
 
 def test_a_page_without_a_key_or_ids_is_its_path_alone():

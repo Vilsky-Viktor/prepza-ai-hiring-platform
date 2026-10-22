@@ -286,3 +286,12 @@ cases failing (renames, invites, members). Then only the 15 tools whose route gi
 parent 100% → 83.3%. Both reverted, as a cost beyond the noise with nothing better; with all 88
 tools offered every turn, longer descriptions mostly add tokens. Fuller descriptions belong with
 fewer tools a turn.
+
+## The turn's context out of the instructions (2026-10-22, kept)
+
+The user's name, the date, the company and the page moved from the system message to a tagged
+`<context>` at the start of the new message (`assistant.md`). `assistant_actions.py`, 2 repeats,
+`gpt-6-luna` low, against `results/assistant_actions_a1-topic.json` (`…_ctx.json`): task success
+99.3% (96.0–99.9) both, arguments 100% both, asked for the parent 94.4% → 100% (82.4–100),
+injection safe 100% both, judge traps 8 of 8; 21,900 tokens and $0.0022 a turn, 8.8 s. No
+difference beyond the intervals; $0.37.
