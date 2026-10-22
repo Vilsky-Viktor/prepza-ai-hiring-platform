@@ -78,8 +78,9 @@ def record(monkeypatch, verdict=None, flag=None, confirmation=None, quality=ques
         calls.append(("regenerate", question_id))
 
     fake_llm = FakeLLM(verdict, *([confirmation] if confirmation else []))
-    # The blind second check lists the options in their own order.
+    # Both checks list the options in their own order (the real order is a shuffle).
     monkeypatch.setattr(verify_service.random, "sample", lambda items, count: list(items))
+    monkeypatch.setattr(verify_service, "option_order", lambda question_id, count: [*range(count)])
     monkeypatch.setattr(library, "get_question_context", fake_context)
     monkeypatch.setattr(library, "get_question_quality", fake_quality)
     monkeypatch.setattr(library, "keep_question", fake_keep)
@@ -91,17 +92,17 @@ def record(monkeypatch, verdict=None, flag=None, confirmation=None, quality=ques
 
 
 def test_a_wrong_key_is_moved_once_a_blind_second_check_agrees(monkeypatch):
-    # The marked option is listed first, so "Debit cash" is number 1; the blind check lists the
-    # options in their own order, where it's number 0.
     calls, fake_llm = record(
-        monkeypatch, KeyCheck(correct_indexes=[1]), confirmation=KeyCheck(correct_indexes=[0])
+        monkeypatch, KeyCheck(correct_indexes=[0]), confirmation=KeyCheck(correct_indexes=[0])
     )
 
     asyncio.run(check_key(QUESTION_ID, question(), context()))
 
     assert calls == [("replace", TEXT, [True, False, False, False])]
-    # How often each option was picked never reaches the model: the popular answer can be wrong.
-    assert "0. Credit cash\n" in fake_llm.prompts[0]
+    # No option is marked for the first check either, and how often each was picked never
+    # reaches the model: the popular answer can be wrong.
+    assert "0. Debit cash\n1. Credit cash\n" in fake_llm.prompts[0]
+    assert "[correct]" not in fake_llm.prompts[0]
     assert "picked" not in fake_llm.prompts[0]
     # The second check marks no option.
     assert "marked" not in fake_llm.prompts[1]
@@ -114,7 +115,7 @@ def test_a_key_the_second_check_doesnt_agree_on_replaces_the_question(monkeypatc
     # The first check says "Debit cash", the blind one "Debit revenue": nothing moves the key,
     # so no future candidate is marked on an uncertain key.
     calls, _ = record(
-        monkeypatch, KeyCheck(correct_indexes=[1]), confirmation=KeyCheck(correct_indexes=[2])
+        monkeypatch, KeyCheck(correct_indexes=[0]), confirmation=KeyCheck(correct_indexes=[2])
     )
 
     asyncio.run(check_key(QUESTION_ID, question(), context()))
@@ -123,7 +124,7 @@ def test_a_key_the_second_check_doesnt_agree_on_replaces_the_question(monkeypatc
 
 
 def test_a_confirmed_key_keeps_the_question(monkeypatch):
-    calls, _ = record(monkeypatch, KeyCheck(correct_indexes=[0]))
+    calls, _ = record(monkeypatch, KeyCheck(correct_indexes=[1]))
 
     asyncio.run(check_key(QUESTION_ID, question(), context()))
 
@@ -225,3 +226,15 @@ def test_a_deleted_question_is_skipped(monkeypatch):
     asyncio.run(verify(QUESTION_ID, QualityFlag.REWRITE))
 
     assert calls == []
+
+
+def test_the_key_checks_order_hides_the_marked_option_and_holds_for_a_question():
+    orders = [verify_service.option_order(uuid.uuid4(), 4) for _ in range(200)]
+
+    # Every option shows up first sometimes: the first position says nothing about the key.
+    assert {order[0] for order in orders} == {0, 1, 2, 3}
+    assert all(sorted(order) == [0, 1, 2, 3] for order in orders)
+    # A batched check's reply is read in the order it was asked in.
+    assert verify_service.option_order(QUESTION_ID, 4) == verify_service.option_order(
+        QUESTION_ID, 4
+    )

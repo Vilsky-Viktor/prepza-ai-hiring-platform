@@ -28,7 +28,7 @@ class QuestionQuality(BaseModel):
 class KeyCheck(BaseModel):
     correct_indexes: list[int] | None = Field(
         description="The numbers of the options that are correct, as the question's kind asks: "
-        "one for a single-answer question, two or more for a select-all-that-apply one. Null "
+        "one for a single-answer question, 2 or 3 for a select-all-that-apply one. Null "
         "when no such answer can be given with certainty."
     )
 

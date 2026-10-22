@@ -314,3 +314,15 @@ Arabic title naming the candidate (2 of 3) gone; sums up 90.5% (77.9–96.2) →
 right language 100% both; natural 95.2% → 100%; judge traps 11 of 11 both; $0.00002 → $0.00003
 and 2.1 → 2.8 s a title. Kept: the privacy failure is gone, nothing worse beyond the intervals
 (the remaining misses are a greeting titled "Hiring Assistance" and one partial summary).
+
+## Verifier: the key check no longer sees where the key is (2026-10-22, kept)
+
+The key check listed the marked options first, so for a single-answer question option 0 was
+always the claimed key, and a check that agreed with it kept the question with no blind second
+look. The options now come in an order shuffled by the question's id (the same for a batched
+check and its reply, `option_order`), and the prompt says no option is marked; `KeyCheck` says
+2 or 3 for a select-all-that-apply key, as the prompt does. `verify_test.py` now asks through the
+service's own `key_check_prompt` and order. `gpt-6.1-sol` medium, before → after: single-answer
+traps fixed 60/60 → 60/60, real keys kept 60/60 → 60/60 ($0.0010 a check both); multi-answer
+263/263 → 263/263 both ($0.0012). No difference; kept for rule 19 (a checker works out the
+answer with positions and marks hidden).

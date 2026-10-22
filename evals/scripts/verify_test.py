@@ -4,7 +4,8 @@ their real key it should keep the key. Questions the reference judge found flawe
 
     evals/run.sh generation verify_test.py gpt-6.1-sol/low gpt-6.1-sol/medium
 
-Each question is checked as the verifier sees it after two "wrong answer" reports. Costs about
+Each question is checked as the verifier sees it after two "wrong answer" reports, through the
+service's own key_check_prompt and option order. Costs about
 $0.001 a check on gpt-6.1-sol (120 checks a setting, about $0.11); the service's batched checks
 cost half.
 
@@ -16,6 +17,7 @@ dataset found flawed (results/reviews_datasets_multi_questions_*.json) are left 
 import argparse
 import asyncio
 import time
+import uuid
 
 from common import (
     DATASETS,
@@ -33,10 +35,9 @@ from common import (
 )
 
 from app.helpers.prompts import checker_messages
-from app.prompts.verify import MULTI_ANSWER_KEY, SINGLE_ANSWER_KEY, VERIFY_PROMPT
-from app.schemas.verify import KeyCheck
-
-REPORTS = "- wrong_answer: \n- wrong_answer: "
+from app.schemas.regenerate import QuestionContext, RegeneratedOption
+from app.schemas.verify import KeyCheck, QuestionQuality, ReportNote
+from app.services.verify import key_check_prompt, option_order
 
 
 def flawed_ids(multi: bool) -> set[str]:
@@ -76,20 +77,28 @@ def cases(multi: bool) -> list[dict]:
 
 
 def prompt_for(item: dict) -> tuple[str, list[str]]:
-    """The prompt, and the options in the order shown: the marked ones first, as the service
-    does."""
-    marked = [o["answer"] for o in item["options"] if o["correct"]]
-    shown = marked + [o["answer"] for o in item["options"] if not o["correct"]]
-    text = VERIFY_PROMPT.format(
-        kind=MULTI_ANSWER_KEY if is_multi(item) else SINGLE_ANSWER_KEY,
+    """The service's own prompt after two "wrong answer" reports, and the options in the order
+    it shows them (option_order, a shuffle by the question's id)."""
+    options = [RegeneratedOption(**o) for o in item["options"]]
+    question = QuestionQuality(
+        text=item["question"],
+        options=options,
+        answers=0,
+        option_picks={},
+        reports=[ReportNote(reason="wrong_answer", comment="")] * 2,
+    )
+    context = QuestionContext(
+        set_id=uuid.uuid4(),
+        kind="interview",
+        owner_id="eval",
         level=item["level"],
         topic=item["topic"],
-        question=item["question"],
-        options="\n".join(f"{n}. {answer}" for n, answer in enumerate(shown)),
-        reports=REPORTS,
+        subtopics=[],
+        existing=[],
     )
+    order = option_order(item["id"], len(options))
 
-    return text, shown
+    return key_check_prompt(item["id"], question, context), [options[i].answer for i in order]
 
 
 async def check(checker, case: dict) -> dict:

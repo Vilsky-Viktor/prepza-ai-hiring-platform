@@ -18,8 +18,7 @@ TEXT = "A shop sells goods for cash. Which entries are recorded?"
 
 def multi_answer():
     # The key marks "Debit cash" and "Credit cash"; the entries are "Debit cash" and "Credit
-    # revenue". The marked ones are listed first: 0 Debit cash, 1 Credit cash, 2 Credit revenue,
-    # 3 Debit revenue.
+    # revenue". The tests list the options in their own order (record()).
     return QuestionQuality(
         text=TEXT,
         options=[
@@ -47,15 +46,14 @@ def checked(monkeypatch, verdict, confirmation=None):
 
 
 def test_a_confirmed_set_of_right_options_keeps_the_question(monkeypatch):
-    calls, fake_llm = checked(monkeypatch, [1, 0])
+    calls, fake_llm = checked(monkeypatch, [3, 0])
 
     assert calls == [("keep", QUESTION_ID)]
     assert MULTI_ANSWER_KEY in fake_llm.prompts[0]
 
 
 def test_a_wrong_set_is_moved_once_a_blind_second_check_names_the_same_set(monkeypatch):
-    # The blind check lists the options in their own order: "Credit revenue" is number 1 there.
-    calls, fake_llm = checked(monkeypatch, [0, 2], KeyCheck(correct_indexes=[1, 0]))
+    calls, fake_llm = checked(monkeypatch, [0, 1], KeyCheck(correct_indexes=[1, 0]))
 
     assert calls == [("replace", TEXT, [True, True, False, False])]
     assert MULTI_ANSWER_KEY in fake_llm.prompts[1]

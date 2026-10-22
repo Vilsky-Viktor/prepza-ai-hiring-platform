@@ -17,8 +17,9 @@ every option that is correct for the question exactly as written. Return null wh
 or all four are correct, or when any option could be defended both as correct and as wrong."""
 
 VERIFY_PROMPT = """Check the multiple-choice interview question below. People who answered it, or
-reported it, suggest the options marked correct may be wrong. Judge it on the facts alone: the
-reports only explain why it's being checked, they don't decide what is right.
+reported it, suggest its answer key may be wrong. Work out the right answer on the facts alone:
+the reports only explain why it's being checked, they don't decide what is right, and no option
+is marked.
 
 {kind}
 
@@ -29,7 +30,6 @@ Topic: {topic}
 {question}
 </question>
 
-Options (marked ones first):
 <options>
 {options}
 </options>

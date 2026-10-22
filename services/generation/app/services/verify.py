@@ -41,14 +41,14 @@ def marked_answer(question: QuestionQuality) -> str:
     return "\n".join(option.answer for option in question.options if option.correct)
 
 
-def option_order(question: QuestionQuality) -> list[int]:
-    """The marked options first, so the model doesn't take a position as a hint."""
-    marked = [i for i, option in enumerate(question.options) if option.correct]
+def option_order(question_id: UUID | str, count: int) -> list[int]:
+    """The order a key check shows the options in: shuffled, so no position hints at the marked
+    key, and the same for the same question, so a batched check's reply is read in the order
+    it was asked in."""
+    return random.Random(str(question_id)).sample(range(count), count)
 
-    return marked + [i for i in range(len(question.options)) if i not in marked]
 
-
-def key_check_prompt(question: QuestionQuality, context: QuestionContext) -> str:
+def key_check_prompt(question_id: UUID, question: QuestionQuality, context: QuestionContext) -> str:
     return VERIFY_PROMPT.format(
         kind=MULTI_ANSWER_KEY if is_multi(question.options) else SINGLE_ANSWER_KEY,
         level=context.level,
@@ -58,7 +58,7 @@ def key_check_prompt(question: QuestionQuality, context: QuestionContext) -> str
         # people picking one together mustn't steer the check.
         options="\n".join(
             f"{number}. {question.options[i].answer}"
-            for number, i in enumerate(option_order(question))
+            for number, i in enumerate(option_order(question_id, len(question.options)))
         ),
         # Reasons only, counted: a reporter's free-text comment never reaches the model, so it
         # can't steer which answer counts as correct.
@@ -122,7 +122,8 @@ async def apply_key_check(
     """Keeps the question, moves the key to the right options, or replaces a broken question. A
     key moves only when a second, blind check agrees: a moved key marks every future candidate's
     answer, so a check that doesn't hold up again replaces the question instead."""
-    correct = checked_key(question.options, result, option_order(question))
+    order = option_order(question_id, len(question.options))
+    correct = checked_key(question.options, result, order)
 
     if correct is None:
         await replace(question_id, context, question)
@@ -153,7 +154,7 @@ async def check_key(question_id: UUID, question: QuestionQuality, context: Quest
     result: KeyCheck = (
         await llm.get_verifier_llm()
         .with_structured_output(KeyCheck)
-        .ainvoke(checker_messages(key_check_prompt(question, context)))
+        .ainvoke(checker_messages(key_check_prompt(question_id, question, context)))
     )
     await apply_key_check(question_id, question, context, result)
 
