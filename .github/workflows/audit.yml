@@ -47,7 +47,7 @@ jobs:
           version: "0.12.24"
       # The locked packages a production image installs; the shared package is ours, not on PyPI.
       - run: |
-          uv export --frozen --no-dev --no-hashes --no-emit-project --no-emit-package prepza-common > /tmp/requirements.txt
+          uv export --locked --no-dev --no-hashes --no-emit-project --no-emit-package prepza-common > /tmp/requirements.txt
           uvx pip-audit==2.9.0 -r /tmp/requirements.txt --disable-pip --no-deps --progress-spinner off
 
   frontend:
