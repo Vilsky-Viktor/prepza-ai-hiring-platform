@@ -132,12 +132,14 @@ async def current_flag(question_id: uuid.UUID) -> str | None:
 
 async def take_stale_flags(before: datetime, limit: int) -> list[tuple[uuid.UUID, str]]:
     """Up to `limit` flags set or last sent before `before`, oldest first, each dated now so the
-    next sweep waits for it again: (question_id, flag)."""
+    next sweep waits for it again: (question_id, flag). Two sweeps at once take different
+    ones."""
     stale = (
         select(QuestionStats.question_id)
         .where(QuestionStats.flag.is_not(None), QuestionStats.flagged_at < before)
         .order_by(QuestionStats.flagged_at)
         .limit(limit)
+        .with_for_update(skip_locked=True)
     )
     statement = (
         update(QuestionStats)

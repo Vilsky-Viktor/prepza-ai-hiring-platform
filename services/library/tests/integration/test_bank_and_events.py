@@ -197,6 +197,28 @@ def test_flags_left_unfixed_are_taken_for_sending_again_once_a_while(run):
     assert question_id not in [row[0] for row in cleared]
 
 
+def test_a_flag_another_sweep_holds_is_skipped_not_waited_for(run):
+    async def scenario():
+        set_id = await interview("Held", questions=1)
+        question = (await preparations.get_content(set_id)).topics[0].questions[0]
+        await quality.save_flag(question.id, "rewrite")
+
+        # Another sweep holds the flag's row in its open transaction.
+        async with Session() as other:
+            await other.execute(
+                text("SELECT 1 FROM question_stats WHERE question_id = :id FOR UPDATE"),
+                {"id": question.id},
+            )
+            taken = await quality.take_stale_flags(datetime.now(UTC) + timedelta(seconds=1), 1000)
+            await other.rollback()
+
+        return question.id, taken
+
+    question_id, taken = run(scenario())
+
+    assert question_id not in [row[0] for row in taken]
+
+
 def test_a_replaced_question_starts_its_own_statistics(run):
     """The old content's answers go into its revision; a late answer to the old text isn't
     counted for the new one."""

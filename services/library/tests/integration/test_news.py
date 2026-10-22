@@ -162,3 +162,20 @@ def test_a_post_tells_everyones_bell_and_its_deletion_takes_the_notification_bac
     # Removed twice, announced once.
     assert events == [("news.deleted", None), ("notification.requested", "all")]
     assert gone == {}
+
+
+def test_a_run_sends_a_batch_of_untranslated_posts_again_newest_first(run, monkeypatch):
+    monkeypatch.setattr(news, "NEWS_RESEND_BATCH", 1)
+
+    async def scenario():
+        older = await news.create(post("Older", date(2026, 10, 8)))
+        newer = await news.create(post("Newer", date(2026, 10, 9)))
+        sent = await news.untranslated()
+        await news.remove(older.id)
+        await news.remove(newer.id)
+
+        return sent, newer.id
+
+    sent, newer_id = run(scenario())
+
+    assert sent == [newer_id]

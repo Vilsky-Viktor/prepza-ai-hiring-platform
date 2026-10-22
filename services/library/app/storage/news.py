@@ -7,6 +7,7 @@ from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
 
 from app.constants.events import NEWS_DELETED
+from app.constants.news import NEWS_RESEND_BATCH
 from app.helpers.notifications import news_notification
 from app.models.news import News, NewsTranslation
 from app.models.outbox import OutboxEvent
@@ -132,12 +133,14 @@ async def missing_languages(news_id: uuid.UUID) -> list[str]:
 
 
 async def untranslated() -> list[uuid.UUID]:
-    """Posts that lack a translation into some language."""
+    """Up to NEWS_RESEND_BATCH posts that lack a translation into some language, newest first."""
     query = (
         select(News.id)
         .outerjoin(NewsTranslation)
         .group_by(News.id)
         .having(func.count(NewsTranslation.language) < len(OTHER_LANGUAGES))
+        .order_by(News.created_at.desc())
+        .limit(NEWS_RESEND_BATCH)
     )
 
     async with Session() as session:

@@ -16,7 +16,8 @@ async def send_to_translator(news_id: uuid.UUID) -> None:
 
 
 async def resend_untranslated() -> int:
-    """Sends every post that still lacks a translation to be translated again; how many."""
+    """Sends the posts that still lack a translation to be translated again, a batch a run (the
+    newest first); how many."""
     ids = await news.untranslated()
 
     for news_id in ids:
