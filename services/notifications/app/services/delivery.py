@@ -3,18 +3,19 @@ import logging
 from app.config.settings import settings
 from app.integrations import resend, smtp
 from app.models.email import Email
-from app.services import suppression
+from app.services import pacing, suppression
 from app.services.webhooks import report_undelivered
 
 logger = logging.getLogger(__name__)
 
 
 async def transmit(email: Email, idempotency_key: str) -> None:
-    """Through Resend when it's set up, else to the SMTP server (Mailpit). Resend never sends
-    the same key twice within 24 hours, so a retry is safe. Raises resend.ResendBusy over its
-    per-second limit, resend.EmailRefused when it won't ever send it, and on any failure a retry
-    may fix."""
+    """Through Resend when it's set up, paced under its per-second limit, else to the SMTP
+    server (Mailpit). Resend never sends the same key twice within 24 hours, so a retry is safe.
+    Raises resend.ResendBusy over its per-second limit, resend.EmailRefused when it won't ever
+    send it, and on any failure a retry may fix."""
     if settings.resend_api_key:
+        await pacing.wait_turn()
         await resend.send(email, idempotency_key)
 
         return

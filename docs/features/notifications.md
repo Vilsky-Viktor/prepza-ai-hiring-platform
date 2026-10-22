@@ -110,6 +110,7 @@ Invites and reminders from a company prepza hasn't verified say so in a small li
 
 - **Two senders:** service emails come from `MAIL_FROM`, and the emails a user may turn off (the digest, reminders and campaigns) from `MAIL_FROM_UPDATES`, on a subdomain of its own, so spam complaints about them can't hurt the service emails' reputation. The DNS records both need are in [infra/README.md](../../infra/README.md#email-deliverability).
 - **Replies** go to the member who shared a report (when their email is verified), to the visitor for contact messages, and otherwise to `CONTACT_EMAIL`, prepza's inbox, rather than to an unread no-reply address.
+- **Pacing:** every request to Resend, from an event, a scheduled run or a bulk send on any instance, takes a turn in one per-second count in Redis (`services/pacing.py`, 8 a second), so a burst of invites or two runs at once stay under Resend's 10 a second a team; with Redis down, sending goes on unpaced and a 429 is retried as usual.
 - **Headers:** every email has `Auto-Submitted: auto-generated` (no out-of-office replies); only those the recipient may stop carry the one-click unsubscribe headers (see [Unsubscribing](#unsubscribing)).
 
 ### Emails to company members

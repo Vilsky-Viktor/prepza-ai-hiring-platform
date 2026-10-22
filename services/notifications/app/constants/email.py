@@ -3,6 +3,10 @@ RESEND_EMAILS_URL = "https://api.resend.com/emails"
 # with full access, not a sending-only one.
 RESEND_SUPPRESSION_URL = "https://api.resend.com/suppressions/{address}"
 SEND_TIMEOUT_S = 10
+# Requests to Resend a second, from every instance and run together (a Redis counter per
+# second): under its limit of 10 a team, with room for a retry.
+RESEND_PER_SECOND = 8
+RESEND_PACE_KEY = "resend:pace"
 # Resend's answers that no retry can change: a malformed request or an address it won't send to.
 # Rate limits (resend.ResendBusy), outages and a wrong API key are retried instead.
 RESEND_REFUSED = (400, 422)
