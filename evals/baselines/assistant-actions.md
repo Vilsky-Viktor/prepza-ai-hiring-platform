@@ -275,3 +275,14 @@ questions from the Indexes topic") joins the set. `assistant_actions.py`, 2 repe
 low, before → after: task success 100% (97.3–100) → 99.3% (96.0–99.9), arguments 100% both,
 asked for the parent 100% → 94.4% (the known flaky e07, once), injection safe 100% both; e12 right
 both times; $0.0022 a turn both. Within the intervals; kept (a correctness fix).
+
+## Fuller tool descriptions, tried and reverted (2026-10-22)
+
+Every tool got a 3–4 sentence description (what, when and when not, its parameters, its
+limits) and the guide and `show` rules moved from the system prompt into the tools: tokens a
+turn 21,600 → 39,200 and cost $0.0022 → $0.0040, task success 100% → 95.6% (90.7–98.0), six
+cases failing (renames, invites, members). Then only the 15 tools whose route gives a bare title
+("Get Company", "Me") got one, the prompt unchanged: tokens 25,000, success 97.1%, asked for the
+parent 100% → 83.3%. Both reverted, as a cost beyond the noise with nothing better; with all 88
+tools offered every turn, longer descriptions mostly add tokens. Fuller descriptions belong with
+fewer tools a turn.
