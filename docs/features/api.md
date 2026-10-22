@@ -27,7 +27,7 @@ Each key may do only what was ticked when it was made, so a key for a dashboard 
 |---|---|---|
 | Interviews | `interviews:read` | `GET /interviews`, `GET /interviews/{id}` |
 | | `interviews:create` | `POST /interviews` |
-| Candidates | `candidates:read` | `GET /interviews/{id}/candidates`, `…/{candidate_id}`, `GET /candidates?email=` |
+| Candidates | `candidates:read` | `GET /interviews/{id}/candidates`, `…/{candidate_id}`, `POST /candidates/search` (and the deprecated `GET /candidates?email=`) |
 | | `candidates:invite` | `POST /interviews/{id}/candidates`, `…/resend` |
 | | `candidates:change` | `PATCH …/{candidate_id}` (name, extra time) |
 | | `candidates:delete` | `DELETE …/{candidate_id}` |
@@ -57,7 +57,8 @@ Everything is under `https://<domain>/api/v1`, with `Authorization: Bearer pz_..
 | `PATCH /interviews/{id}/candidates/{candidate_id}` | Corrects the candidate's `name` (empty: unknown) and gives `extra_time` (0, 25, 50 or 100 percent) before they start (`409` after); only the fields given change, all or none: when one is refused, neither is made |
 | `POST /interviews/{id}/candidates/{candidate_id}/resend` | Emails the invitation again, as a reminder (an expired one comes back for 30 days); `409` for a candidate who finished, or one invited with `sign_in: false` |
 | `DELETE /interviews/{id}/candidates/{candidate_id}` | Revokes an unused invite (its credits come back) or erases a candidate who started, as on the candidate's page (`candidate_changes.remove`, audited `via: "api"`) |
-| `GET /candidates?email=` | The company's candidates invited with that email, in any of its interviews, newest first (at most 100; `sections` null, as in lists: companies answers with the rows in one call) |
+| `POST /candidates/search` | The company's candidates invited with the body's `email`, in any of its interviews, newest first (at most 100; `sections` null, as in lists: companies answers with the rows in one call, `POST /internal/companies/{id}/candidates/search`, so the email stays out of URLs and logs) |
+| `GET /candidates?email=` | Deprecated (the email is in the URL): answers as the search does, with `Deprecation: @<unix time>` (RFC 9745), `Sunset` (RFC 8594, 1 May 2027: `EMAIL_QUERY_SUNSET_AT`) and `Link: <…/api-docs>; rel="deprecation"`, and is marked deprecated in the OpenAPI |
 | `GET /credits` | The company's credits: `available`, `reserved`, `candidates` they pay for, `low` |
 
 - Lists take `offset` and `limit` (up to 100). A full page carries `Link: <https://<domain>/api/v1/…>; rel="next"` (`helpers/public.py` `next_link`): the next `offset`, or when syncing, `updated_since` and `after` from the last item; a shorter page has none. To sync, they also take `updated_since` (items changed then or later, oldest change first) and `after` (the last item's id, a keyset on `(updated_at, id)`, `helpers/sync.py` in companies). Interviews and candidates carry `updated_at`, which a Postgres trigger sets on every update of their row (companies' migration 0045), so no write can forget it; a candidate's progress while answering lives in rounds and doesn't change it.

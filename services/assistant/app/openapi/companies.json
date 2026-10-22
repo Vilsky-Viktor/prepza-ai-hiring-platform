@@ -1791,7 +1791,7 @@
      "members"
     ],
     "summary": "Get Admin Invite",
-    "description": "Open to visitors, so they see what they're invited to before signing in; the invited\nemail only once signed in, so a visitor with the link doesn't learn it. A used link says so,\nand gives the company's id to the member who joined through it.",
+    "description": "Open to visitors, so they see what they're invited to before signing in; whether it's the\nsigned-in account's, and the invited email only to that account with it verified, so\nnobody else with the link learns it. A used link says so,\nand gives the company's id to the member who joined through it.",
     "operationId": "get_admin_invite_members_invites__token__get",
     "security": [
      {
@@ -3466,7 +3466,7 @@
      "invites"
     ],
     "summary": "Get Invite",
-    "description": "The invitation, also before signing in, so the page shows what it's for; the candidate's\nemail only once someone is signed in.",
+    "description": "The invitation, also before signing in, so the page shows what it's for; whether it's the\nsigned-in account's, and its email only to that account with the email verified.",
     "operationId": "get_invite_invites__token__get",
     "security": [
      {
@@ -4678,7 +4678,7 @@
      "internal"
     ],
     "summary": "Invite",
-    "description": "A candidate an ATS sent is invited, as the member who connected it. Refused with 503\nduring the emergency pause, 402 without credits and 429 over the email limits; 404 when the\ninterview is gone, 409 while it has no questions yet, and 403 when that member is no longer\nan owner or admin (a removed member's connection invites no one). A candidate who already\nfinished is returned as they are, and so is one still invited when `resend` is false.",
+    "description": "A candidate an ATS sent is invited, as the member who connected it. Refused with 503\nduring the emergency pause, 402 without credits and 429 over the email limits; 404 when the\ninterview is gone, 409 while it has no questions yet, and 403 when that member is no longer\nan owner or admin (a removed member's connection invites no one). A candidate who already\nfinished is returned as they are (200), and so is one still invited when `resend` is\nfalse.",
     "operationId": "invite_internal_interviews__interview_id__invites_post",
     "security": [
      {
@@ -5378,14 +5378,14 @@
     }
    }
   },
-  "/internal/companies/{company_id}/candidates": {
-   "get": {
+  "/internal/companies/{company_id}/candidates/search": {
+   "post": {
     "tags": [
      "internal"
     ],
     "summary": "Find Candidates",
-    "description": "The company's candidates invited with this email, in any of its interviews, newest\nfirst, with their results and invite links: at most a page, in one answer.",
-    "operationId": "find_candidates_internal_companies__company_id__candidates_get",
+    "description": "The company's candidates invited with this email (in the body, out of URLs and their\nlogs), in any of its interviews, newest first, with their results and invite links: at most\na page, in one answer.",
+    "operationId": "find_candidates_internal_companies__company_id__candidates_search_post",
     "security": [
      {
       "HTTPBearer": []
@@ -5401,18 +5401,18 @@
        "format": "uuid",
        "title": "Company Id"
       }
-     },
-     {
-      "name": "email",
-      "in": "query",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "format": "email",
-       "title": "Email"
-      }
      }
     ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CandidateSearchIn"
+       }
+      }
+     }
+    },
     "responses": {
      "200": {
       "description": "Successful Response",
@@ -5423,7 +5423,7 @@
          "items": {
           "$ref": "#/components/schemas/CompanyCandidateOut"
          },
-         "title": "Response Find Candidates Internal Companies  Company Id  Candidates Get"
+         "title": "Response Find Candidates Internal Companies  Company Id  Candidates Search Post"
         }
        }
       }
@@ -5874,6 +5874,31 @@
     }
    }
   },
+  "/internal/schedules/removals": {
+   "post": {
+    "tags": [
+     "schedules"
+    ],
+    "summary": "Replay Removals",
+    "description": "Daily, from Cloud Scheduler, and by hand right after a database restore or clone: the\ncandidates erased in the backups' life are erased again if they came back.",
+    "operationId": "replay_removals_internal_schedules_removals_post",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/schedules/invite-expiry": {
    "post": {
     "tags": [
@@ -6152,6 +6177,7 @@
      "superadmin"
     ],
     "summary": "List Pass Rates",
+    "description": "A page after the interview `after` (the last one shown): paged by key, as the list grows\nacross every company.",
     "operationId": "list_pass_rates_superadmin_pass_rates_get",
     "security": [
      {
@@ -6166,6 +6192,23 @@
       "schema": {
        "$ref": "#/components/schemas/PassRateSort",
        "default": "pass_rate"
+      }
+     },
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "uuid"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "After"
       }
      },
      {
@@ -7684,6 +7727,11 @@
       ],
       "title": "Email"
      },
+     "matches": {
+      "type": "boolean",
+      "title": "Matches",
+      "default": false
+     },
      "joined": {
       "type": "boolean",
       "title": "Joined"
@@ -8590,6 +8638,21 @@
      "created_at"
     ],
     "title": "CandidateOut"
+   },
+   "CandidateSearchIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "format": "email",
+      "title": "Email"
+     }
+    },
+    "type": "object",
+    "required": [
+     "email"
+    ],
+    "title": "CandidateSearchIn",
+    "description": "The email an API key looks candidates up by."
    },
    "CandidateSort": {
     "type": "string",
@@ -10217,6 +10280,11 @@
        }
       ],
       "title": "Email"
+     },
+     "matches": {
+      "type": "boolean",
+      "title": "Matches",
+      "default": false
      },
      "status": {
       "type": "string",

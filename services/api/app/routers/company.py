@@ -1,31 +1,57 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Response
 from pydantic import EmailStr
 
 from app.auth import needs
 from app.config.settings import settings
+from app.constants.api import EMAIL_QUERY_DEPRECATED_AT, EMAIL_QUERY_SUNSET_AT
 from app.constants.permissions import Permission
-from app.constants.responses import COMMON
-from app.helpers.public import candidate_of
+from app.constants.responses import COMMON, DEPRECATION_HEADERS
+from app.helpers.public import candidate_of, deprecation_headers
 from app.integrations import companies
 from app.models.api import ApiKey
-from app.schemas.changes import Credits
+from app.schemas.changes import CandidateSearch, Credits
 from app.schemas.public import Candidate
 
 # What's the company's as a whole: its candidates across interviews and its credits.
 router = APIRouter(tags=["Company"], responses=COMMON)
 
 
-@router.get("/candidates", summary="Find a candidate by email")
+@router.post("/candidates/search", summary="Find a candidate by email")
+async def search_candidates(
+    body: CandidateSearch, key: Annotated[ApiKey, needs(Permission.CANDIDATES_READ)]
+) -> list[Candidate]:
+    """The candidates invited with this email in any of your company's interviews, newest
+    first, at most 100, each with its interview's `interview_id`. The email goes in the body, so
+    it stays out of URLs and the logs that keep them."""
+    return await found_by_email(key, str(body.email))
+
+
+@router.get(
+    "/candidates",
+    summary="Find a candidate by email (deprecated)",
+    deprecated=True,
+    responses={200: {"description": "Successful Response", "headers": DEPRECATION_HEADERS}},
+)
 async def find_candidates(
     email: Annotated[EmailStr, Query(description="The email the candidate was invited with")],
     key: Annotated[ApiKey, needs(Permission.CANDIDATES_READ)],
+    response: Response,
 ) -> list[Candidate]:
-    """The candidates invited with this email in any of your company's interviews, newest
-    first, each with its interview's `interview_id`."""
-    found = await companies.find_candidates(key.company_id, str(email))
+    """Use `POST /candidates/search`, which takes the email in the body: an email in a query
+    string ends up in logs. This one works, answering as that does, until 1 May 2027, and says
+    so in its `Deprecation`, `Sunset` and `Link` headers."""
+    response.headers.update(
+        deprecation_headers(EMAIL_QUERY_DEPRECATED_AT, EMAIL_QUERY_SUNSET_AT, settings.site_url)
+    )
+
+    return await found_by_email(key, str(email))
+
+
+async def found_by_email(key: ApiKey, email: str) -> list[Candidate]:
+    found = await companies.find_candidates(key.company_id, email)
 
     return [
         candidate_of(row, key.company_id, UUID(row["interview_id"]), settings.site_url)

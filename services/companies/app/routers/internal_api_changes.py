@@ -5,7 +5,6 @@ from prepza_common.constants import MAX_PAGE_SIZE
 from prepza_common.i18n import CodedError
 from prepza_common.pause import refuse_if_paused
 from prepza_common.user import User
-from pydantic import EmailStr
 
 from app.constants import error_codes
 from app.constants.audit import VIA_API
@@ -14,7 +13,7 @@ from app.integrations.redis import get_redis
 from app.routers.internal_api import company_interview
 from app.schemas.companies import CompanyCreditsOut
 from app.schemas.interviews import InterviewCreate, InterviewOut
-from app.schemas.invites import CandidateChangesIn, CompanyCandidateOut
+from app.schemas.invites import CandidateChangesIn, CandidateSearchIn, CompanyCandidateOut
 from app.service_auth import ServiceCaller
 from app.services import (
     candidate_changes,
@@ -114,14 +113,15 @@ async def resend_invite(
     await outbox_service.flush_quietly()
 
 
-@router.get("/candidates")
+@router.post("/candidates/search")
 async def find_candidates(
-    company_id: UUID, email: EmailStr, caller: ServiceCaller
+    company_id: UUID, body: CandidateSearchIn, caller: ServiceCaller
 ) -> list[CompanyCandidateOut]:
-    """The company's candidates invited with this email, in any of its interviews, newest
-    first, with their results and invite links: at most a page, in one answer."""
+    """The company's candidates invited with this email (in the body, out of URLs and their
+    logs), in any of its interviews, newest first, with their results and invite links: at most
+    a page, in one answer."""
     return await candidate_results.company_page(
-        company_id, 0, MAX_PAGE_SIZE, email=str(email), with_link=True
+        company_id, 0, MAX_PAGE_SIZE, email=str(body.email), with_link=True
     )
 
 

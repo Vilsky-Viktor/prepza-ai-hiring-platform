@@ -195,7 +195,9 @@ def test_a_candidate_is_found_by_exact_email_in_full_and_credits_are_read(
     monkeypatch.setattr(candidate_results.rounds, "invite_scores", invite_scores)
     monkeypatch.setattr(credits, "credits_of", credits_of)
 
-    found = client.get(f"{BASE}/candidates", params={"email": "anna@example.com"}, headers=HEADERS)
+    found = client.post(
+        f"{BASE}/candidates/search", json={"email": "anna@example.com"}, headers=HEADERS
+    )
     balance = client.get(f"{BASE}/credits", headers=HEADERS)
 
     [row] = found.json()

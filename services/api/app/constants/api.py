@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import UTC, datetime, timedelta
 from enum import StrEnum
 
 # An API key: this prefix and random characters; the list shows the key's first characters.
@@ -52,6 +52,13 @@ RETRY_RUN_SECONDS = 40
 RETRY_LEASE = timedelta(minutes=10)
 # The public API's address, which links to its own pages start with.
 API_BASE = "{site}/api/v1"
+# The API docs, whose changelog says what changed and what's retired.
+CHANGELOG_LINK = "{site}/api-docs"
+# Looking a candidate up by email in the query string (GET /candidates?email=) is retired: the
+# email goes in a POST body (POST /candidates/search), out of URLs and the logs that keep them.
+# It still works until the sunset, at least six months after it was deprecated.
+EMAIL_QUERY_DEPRECATED_AT = datetime(2026, 10, 22, tzinfo=UTC)
+EMAIL_QUERY_SUNSET_AT = datetime(2027, 5, 1, tzinfo=UTC)
 # Where a candidate's results are in prepza.
 CANDIDATE_LINK = "{site}/companies/{company_id}/interviews/{interview_id}/candidates/{invite_id}"
 # The candidate's own invite link, to send them yourself.

@@ -19,6 +19,21 @@ LINK_NEXT = {
 }
 # A list's success: the page, and the next one's address.
 LISTED = {"description": "Successful Response", "headers": LINK_NEXT}
+DEPRECATION_HEADERS = {
+    "Deprecation": {
+        "description": "When this endpoint was deprecated (RFC 9745), as `@<unix time>`",
+        "schema": {"type": "string"},
+    },
+    "Sunset": {
+        "description": "When this endpoint stops working (RFC 8594), as an HTTP date",
+        "schema": {"type": "string"},
+    },
+    "Link": {
+        "description": 'The changelog that says what to use instead (`rel="deprecation"`)',
+        "schema": {"type": "string"},
+    },
+}
+
 # Every public route can answer these.
 COMMON = {
     401: refusal(

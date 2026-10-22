@@ -41,4 +41,5 @@ def test_each_public_operation_has_a_short_stable_id():
 
     assert ids[("/interviews", "get")] == "list_interviews"
     assert ids[("/interviews/{interview_id}/candidates", "post")] == "invite_candidate"
+    assert ids[("/candidates/search", "post")] == "search_candidates"
     assert len(set(ids.values())) == len(ids)

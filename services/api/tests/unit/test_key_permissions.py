@@ -23,6 +23,7 @@ ROUTES = [
     ("GET", f"/interviews/{INTERVIEW}/candidates", None, Permission.CANDIDATES_READ),
     ("GET", CANDIDATE_PATH, None, Permission.CANDIDATES_READ),
     ("GET", "/candidates?email=bob@example.com", None, Permission.CANDIDATES_READ),
+    ("POST", "/candidates/search", {"email": "bob@example.com"}, Permission.CANDIDATES_READ),
     (
         "POST",
         f"/interviews/{INTERVIEW}/candidates",

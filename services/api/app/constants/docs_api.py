@@ -179,5 +179,8 @@ added. Anything retired first answers with `Deprecation` and `Sunset` headers an
 - 2026-10-22: a full page of a list sends a `Link` header to the next one; candidates carry
   their `interview_id`.
 - 2026-10-22: a retried request that made nothing new answers `200`, not `201`.
+- 2026-10-22: `POST /candidates/search` finds candidates by an email in the body.
+  `GET /candidates?email=` is deprecated, as it puts an email in the URL: it keeps working until
+  1 May 2027 and answers with `Deprecation`, `Sunset` and `Link` (`rel="deprecation"`) headers.
 
 """

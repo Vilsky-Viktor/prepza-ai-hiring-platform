@@ -202,6 +202,12 @@ class CandidateNameIn(BaseModel):
     name: CandidateName
 
 
+class CandidateSearchIn(BaseModel):
+    """The email an API key looks candidates up by."""
+
+    email: EmailStr
+
+
 class CandidateChangesIn(BaseModel):
     """An API key's changes to a candidate, made all or none: only the fields given."""
 

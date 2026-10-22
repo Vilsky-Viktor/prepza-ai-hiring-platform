@@ -1,9 +1,11 @@
+from datetime import datetime
+from email.utils import format_datetime
 from urllib.parse import urlencode
 
 from fastapi import Request, Response
 
 from app.config.settings import settings
-from app.constants.api import API_BASE, CANDIDATE_LINK, INVITE_LINK
+from app.constants.api import API_BASE, CANDIDATE_LINK, CHANGELOG_LINK, INVITE_LINK
 from app.schemas.public import Candidate, Interview, Signals
 
 
@@ -78,3 +80,13 @@ def link_next(
 
     if link:
         response.headers["Link"] = link
+
+
+def deprecation_headers(deprecated_at: datetime, sunset_at: datetime, site: str) -> dict:
+    """What a retired route answers with until it's gone: when it was deprecated (RFC 9745), when
+    it stops working (RFC 8594) and the changelog that says what to use instead."""
+    return {
+        "Deprecation": f"@{int(deprecated_at.timestamp())}",
+        "Sunset": format_datetime(sunset_at, usegmt=True),
+        "Link": f'<{CHANGELOG_LINK.format(site=site)}>; rel="deprecation"; type="text/html"',
+    }

@@ -479,8 +479,9 @@ export interface paths {
     }
     /**
      * Get Admin Invite
-     * @description Open to visitors, so they see what they're invited to before signing in; the invited
-     *     email only once signed in, so a visitor with the link doesn't learn it. A used link says so,
+     * @description Open to visitors, so they see what they're invited to before signing in; whether it's the
+     *     signed-in account's, and the invited email only to that account with it verified, so
+     *     nobody else with the link learns it. A used link says so,
      *     and gives the company's id to the member who joined through it.
      */
     get: operations["get_admin_invite_members_invites__token__get"]
@@ -964,8 +965,8 @@ export interface paths {
     }
     /**
      * Get Invite
-     * @description The invitation, also before signing in, so the page shows what it's for; the candidate's
-     *     email only once someone is signed in.
+     * @description The invitation, also before signing in, so the page shows what it's for; whether it's the
+     *     signed-in account's, and its email only to that account with the email verified.
      */
     get: operations["get_invite_invites__token__get"]
     put?: never
@@ -1403,7 +1404,8 @@ export interface paths {
      *     during the emergency pause, 402 without credits and 429 over the email limits; 404 when the
      *     interview is gone, 409 while it has no questions yet, and 403 when that member is no longer
      *     an owner or admin (a removed member's connection invites no one). A candidate who already
-     *     finished is returned as they are, and so is one still invited when `resend` is false.
+     *     finished is returned as they are (200), and so is one still invited when `resend` is
+     *     false.
      */
     post: operations["invite_internal_interviews__interview_id__invites_post"]
     delete?: never
@@ -1517,21 +1519,22 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/companies/{company_id}/candidates": {
+  "/internal/companies/{company_id}/candidates/search": {
     parameters: {
       query?: never
       header?: never
       path?: never
       cookie?: never
     }
+    get?: never
+    put?: never
     /**
      * Find Candidates
-     * @description The company's candidates invited with this email, in any of its interviews, newest
-     *     first, with their results and invite links: at most a page, in one answer.
+     * @description The company's candidates invited with this email (in the body, out of URLs and their
+     *     logs), in any of its interviews, newest first, with their results and invite links: at most
+     *     a page, in one answer.
      */
-    get: operations["find_candidates_internal_companies__company_id__candidates_get"]
-    put?: never
-    post?: never
+    post: operations["find_candidates_internal_companies__company_id__candidates_search_post"]
     delete?: never
     options?: never
     head?: never
@@ -1725,7 +1728,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
-
+  "/internal/schedules/removals": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Replay Removals
+     * @description Daily, from Cloud Scheduler, and by hand right after a database restore or clone: the
+     *     candidates erased in the backups' life are erased again if they came back.
+     */
+    post: operations["replay_removals_internal_schedules_removals_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/schedules/invite-expiry": {
     parameters: {
       query?: never
@@ -1876,7 +1899,11 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    /** List Pass Rates */
+    /**
+     * List Pass Rates
+     * @description A page after the interview `after` (the last one shown): paged by key, as the list grows
+     *     across every company.
+     */
     get: operations["list_pass_rates_superadmin_pass_rates_get"]
     put?: never
     post?: never
@@ -2764,6 +2791,17 @@ export interface components {
       revokable: boolean
       /** Sections */
       sections?: components["schemas"]["SectionGrade"][] | null
+    }
+    /**
+     * CandidateSearchIn
+     * @description The email an API key looks candidates up by.
+     */
+    CandidateSearchIn: {
+      /**
+       * Email
+       * Format: email
+       */
+      email: string
     }
     /**
      * CandidateSort
@@ -7452,18 +7490,20 @@ export interface operations {
       }
     }
   }
-  find_candidates_internal_companies__company_id__candidates_get: {
+  find_candidates_internal_companies__company_id__candidates_search_post: {
     parameters: {
-      query: {
-        email: string
-      }
+      query?: never
       header?: never
       path: {
         company_id: string
       }
       cookie?: never
     }
-    requestBody?: never
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CandidateSearchIn"]
+      }
+    }
     responses: {
       /** @description Successful Response */
       200: {
@@ -7769,7 +7809,33 @@ export interface operations {
       }
     }
   }
-
+  replay_removals_internal_schedules_removals_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   invite_expiry_internal_schedules_invite_expiry_post: {
     parameters: {
       query?: never
@@ -8008,6 +8074,7 @@ export interface operations {
     parameters: {
       query?: {
         sort?: components["schemas"]["PassRateSort"]
+        after?: string | null
         /** @description Number of items to skip */
         offset?: number
         /** @description Number of items to return, up to 100 */

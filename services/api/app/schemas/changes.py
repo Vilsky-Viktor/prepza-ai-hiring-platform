@@ -2,7 +2,7 @@ from typing import Literal
 
 from prepza_common.constants import MAX_GOAL_LENGTH
 from prepza_common.user import Language
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
 class InterviewIn(BaseModel):
@@ -46,6 +46,12 @@ class CandidateUpdate(BaseModel):
             "Extra time on each question, in percent, for a candidate who needs it; only "
             "before they start (409 after)"
         ),
+    )
+
+
+class CandidateSearch(BaseModel):
+    email: EmailStr = Field(
+        description="The email the candidate was invited with", examples=["anna@example.com"]
     )
 
 
