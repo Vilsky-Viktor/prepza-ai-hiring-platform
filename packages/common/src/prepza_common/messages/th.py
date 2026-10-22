@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "สีหลักมองเห็นยากเกินไปบนพื้นหลังของหน้า",
     "Enter the company's website, like acme.com": "ป้อนเว็บไซต์ของบริษัท เช่น acme.com",
     "That's a free mail service, not a company's website.": "นั่นเป็นบริการอีเมลฟรี ไม่ใช่เว็บไซต์ของบริษัท",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "ข้อความนี้ไม่ได้ระบุสิ่งที่จะทดสอบ วางรายละเอียดงาน ตำแหน่งงาน หรือทักษะที่ต้องการทดสอบ",
     "Generation failed. Please try again.": "สร้างไม่สำเร็จ โปรดลองอีกครั้ง",
     "Generation stopped unexpectedly. Please try again.": "การสร้างหยุดลงโดยไม่คาดคิด โปรดลองอีกครั้ง",
     "Time is up for this question.": "หมดเวลาสำหรับคำถามนี้แล้ว",

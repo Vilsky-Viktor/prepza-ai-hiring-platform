@@ -194,6 +194,15 @@ OpenAI's text-to-speech into `audio/<id>.ogg` (Ogg Opus, as browsers record; `bu
 rebuilt only on purpose). `also` lists other right ways to write a message (digits for a
 number). Graded by code (`transcription_test.py`).
 
+## `screen.json` (by hand, 2026-10-22)
+
+42 made-up texts a user may paste to start a test, for the check that refuses text naming
+nothing testable: 30 to accept (job postings, role titles, short lists of skills, technologies or
+topics in eleven languages, "Python and FastAPI" and a single "Excel" among them, a learner's
+goal, a posting with a misleading first line) and 12 to refuse (a recipe, a news item, a story,
+gibberish, a shopping list, small talk, instructions aimed at an AI in three languages). Graded
+by code (`screen_test.py`); a false refusal fails.
+
 ## `code_languages.json` (by hand, 2026-10-22)
 
 36 made-up examples as questions show them, each with the notation the site should color it in

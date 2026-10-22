@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "اللون الأساسي صعب الرؤية جدًا على خلفية الصفحة.",
     "Enter the company's website, like acme.com": "أدخل موقع الشركة، مثل acme.com",
     "That's a free mail service, not a company's website.": "هذه خدمة بريد مجانية، وليست موقع شركة.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "هذا النص لا يذكر أي شيء يمكن اختباره. الصق وصفًا وظيفيًا أو مسمى وظيفيًا أو المهارات المراد اختبارها.",
     "Generation failed. Please try again.": "فشل الإنشاء. حاول مرة أخرى.",
     "Generation stopped unexpectedly. Please try again.": "توقف الإنشاء بشكل غير متوقع. حاول مرة أخرى.",
     "Time is up for this question.": "انتهى وقت هذا السؤال.",

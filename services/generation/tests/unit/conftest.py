@@ -16,6 +16,7 @@ from app.services import (
     pipeline,
     review,
     sample_checks,
+    screen,
     top_up,
     topic_caps,
     translations,
@@ -30,6 +31,18 @@ def no_langfuse(monkeypatch):
     """No test traces to Langfuse, also when its keys are set where tests run."""
     monkeypatch.delenv("LANGFUSE_PUBLIC_KEY", raising=False)
     monkeypatch.delenv("LANGFUSE_SECRET_KEY", raising=False)
+
+
+@pytest.fixture(autouse=True)
+def texts_name_something(request, monkeypatch):
+    """No test calls OpenAI to check a pasted text: every text names something to test, but
+    in the check's own tests (marked `screen`)."""
+    if "screen" not in request.keywords:
+
+        async def testable(text):
+            return True
+
+        monkeypatch.setattr(screen, "names_something_testable", testable)
 
 
 @pytest.fixture(autouse=True)

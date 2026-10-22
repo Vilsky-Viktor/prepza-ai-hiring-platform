@@ -180,6 +180,10 @@ These settings in `.env` trace generation to Langfuse. Terraform doesn't pass th
 |---|---|---|
 | `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Off; `https://cloud.langfuse.com` (EU) | Trace generation's AI calls to Langfuse, marked with the environment they come from (`ENVIRONMENT`, as Sentry's reports are), on only with both keys (`prepza_common.tracing`). Each AI run (a generation's pipeline run through LangGraph, a regenerated question, a key check, a translation, ...) is one trace with every call it makes: named by its action and tagged with it and its subject's id (the generation's id for a generation), with no company names, job text or emails in its name or tags; the calls' inputs and outputs are traced. A generation's runs before and after its review share one trace. A batched key check, made outside LangChain through the Batch API, is reported to its question's verify trace with its tokens and cost at batch price (`tracing.traced_call`), and priced with its question's id. Langfuse prices a call from its model's definition and has none for our models, so generation, the assistant and rounds set them from `MODEL_PRICES` when they start (`prepza_common.trace_prices`: fresh and cached input, output and reasoning tokens apart; a changed price replaces its definition; a failure is logged and tracing goes on without costs). The assistant and the help chat use the same keys ([Votes in Langfuse](features/assistant.md#votes-in-langfuse)). Nothing goes to LangSmith |
 
+## Text that names nothing to test
+
+Before a company's test or a template starts generating, one quick model call checks that the pasted text names anything a test could cover (`services/screen.py`, `prompts/screen.py`): a job posting, a role or job title, a list of skills, tools, technologies, topics or requirements, a learner's goal, in any language and of any length ("Python and FastAPI" is enough). Only text that names nothing testable for hiring is refused with a 422, "This text doesn't name anything to test. Paste a job description, a role, or the skills to test." (in the user's language): a recipe, a news story, a tale, small talk, random characters, instructions aimed at an AI. When in doubt the text goes through, and so does a check that fails or takes over 5 seconds (`SCREEN_TIMEOUT_SECONDS`). It's traced and priced as part of the generation's action, and measured by `evals/scripts/screen_test.py` (0 false refusals is the target).
+
 ## Models
 
 Each AI task has its own model and reasoning effort. The effort is `none`, `minimal`, `low`, `medium` or `high`; only reasoning models take an effort.
@@ -191,6 +195,7 @@ Each AI task has its own model and reasoning effort. The effort is `none`, `mini
 | Translating news posts and campaign emails | `TRANSLATION_MODEL` (`gpt-6.1-sol`) | `TRANSLATION_REASONING_EFFORT` (`low`) |
 | The weekly quality patterns | `PATTERNS_MODEL` (`gpt-6.1-sol`) | `PATTERNS_REASONING_EFFORT` (`medium`) |
 | Tagging the notation of questions' examples (`tag_code_languages`) | `CODE_TAGS_MODEL` (`gpt-6.1-sol`) | `CODE_TAGS_REASONING_EFFORT` (`low`) |
+| The check that a pasted text names anything to test, before a generation starts | `SCREEN_MODEL` (`gpt-6-luna`) | `SCREEN_REASONING_EFFORT` (`none`) |
 | Embeddings of topics and questions (reuse, dropping repeats); a new model needs every stored topic embedded again | `EMBEDDING_MODEL` (`text-embedding-3-small`) | None |
 | Help chat (the signed-out assistant) | `HELP_MODEL` (`gpt-6-luna`) | `HELP_REASONING_EFFORT` (`none`, which also lets it take a temperature) |
 | In-app assistant | `ASSISTANT_MODEL` (`gpt-6-luna`) | `ASSISTANT_REASONING_EFFORT` (`low`) |

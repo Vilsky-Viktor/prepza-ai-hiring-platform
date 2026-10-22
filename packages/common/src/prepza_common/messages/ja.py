@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "メインカラーがページの背景に対して見えにくすぎます。",
     "Enter the company's website, like acme.com": "会社のウェブサイトを入力してください（例: acme.com）",
     "That's a free mail service, not a company's website.": "それは無料メールサービスで、会社のウェブサイトではありません。",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "このテキストにはテストできる内容がありません。求人票、職種、またはテストしたいスキルを貼り付けてください。",
     "Generation failed. Please try again.": "生成に失敗しました。もう一度お試しください。",
     "Generation stopped unexpectedly. Please try again.": "生成が予期せず停止しました。もう一度お試しください。",
     "Time is up for this question.": "この問題の時間が終了しました。",

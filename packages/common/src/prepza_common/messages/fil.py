@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "Masyadong mahirap makita ang primary color sa background ng page.",
     "Enter the company's website, like acme.com": "Ilagay ang website ng kumpanya, tulad ng acme.com",
     "That's a free mail service, not a company's website.": "Libreng email service iyan, hindi website ng kumpanya.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "Walang binabanggit ang tekstong ito na puwedeng i-test. I-paste ang job description, ang posisyon, o ang mga skill na ite-test.",
     "Generation failed. Please try again.": "Nabigo ang paggawa. Pakisubukang muli.",
     "Generation stopped unexpectedly. Please try again.": "Biglang huminto ang paggawa. Pakisubukang muli.",
     "Time is up for this question.": "Ubos na ang oras para sa tanong na ito.",

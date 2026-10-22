@@ -6,6 +6,7 @@ from prepza_common.llm import chat_model
 from app.config.settings import settings
 from app.constants.generation import LLM_MAX_RETRIES, LLM_TIMEOUT_SECONDS, MAX_OUTPUT_TOKENS
 from app.constants.reuse import EMBEDDING_DIMENSIONS
+from app.constants.screen import SCREEN_MAX_TOKENS, SCREEN_RETRIES, SCREEN_TIMEOUT_SECONDS
 from app.integrations.llm_limiter import SharedRateLimiter
 
 
@@ -35,6 +36,18 @@ def get_translation_llm() -> ChatOpenAI:
 
 def get_patterns_llm() -> ChatOpenAI:
     return build_llm(settings.patterns_model, settings.patterns_reasoning_effort)
+
+
+@cache
+def get_screen_llm() -> ChatOpenAI:
+    """The check before a generation: the user waits on it, so its own short timeout."""
+    return chat_model(
+        settings.screen_model,
+        settings.screen_reasoning_effort,
+        max_retries=SCREEN_RETRIES,
+        max_tokens=SCREEN_MAX_TOKENS,
+        timeout=SCREEN_TIMEOUT_SECONDS,
+    )
 
 
 def get_code_tags_llm() -> ChatOpenAI:

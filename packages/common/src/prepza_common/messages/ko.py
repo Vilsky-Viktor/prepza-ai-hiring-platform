@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "기본 색상이 페이지 배경 위에서 너무 잘 보이지 않습니다.",
     "Enter the company's website, like acme.com": "회사 웹사이트를 입력하세요. 예: acme.com",
     "That's a free mail service, not a company's website.": "무료 메일 서비스이며 회사 웹사이트가 아닙니다.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "이 텍스트에는 평가할 내용이 없습니다. 채용 공고, 직무 또는 평가할 역량을 붙여 넣어 주세요.",
     "Generation failed. Please try again.": "생성에 실패했습니다. 다시 시도해 주세요.",
     "Generation stopped unexpectedly. Please try again.": "생성이 예기치 않게 중단되었습니다. 다시 시도해 주세요.",
     "Time is up for this question.": "이 문제의 시간이 끝났습니다.",

@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "Ana renk, sayfanın arka planında çok zor fark ediliyor.",
     "Enter the company's website, like acme.com": "Şirketin web sitesini girin, örneğin acme.com",
     "That's a free mail service, not a company's website.": "Bu bir şirket web sitesi değil, ücretsiz bir e-posta hizmeti.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "Bu metin test edilecek bir şey belirtmiyor. Bir iş tanımı, bir pozisyon veya test edilecek becerileri yapıştırın.",
     "Generation failed. Please try again.": "Oluşturma başarısız oldu. Lütfen tekrar deneyin.",
     "Generation stopped unexpectedly. Please try again.": "Oluşturma beklenmedik şekilde durdu. Lütfen tekrar deneyin.",
     "Time is up for this question.": "Bu sorunun süresi doldu.",

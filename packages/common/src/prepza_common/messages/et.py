@@ -58,6 +58,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "Põhivärvi on lehe taustal liiga raske näha.",
     "Enter the company's website, like acme.com": "Sisesta ettevõtte veebisait, näiteks acme.com",
     "That's a free mail service, not a company's website.": "See on tasuta e-posti teenus, mitte ettevõtte veebisait.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "Selles tekstis pole midagi, mida testida. Kleebi ametijuhend, ametinimetus või oskused, mida testida.",
     "Generation failed. Please try again.": "Loomine ebaõnnestus. Proovi uuesti.",
     "Generation stopped unexpectedly. Please try again.": "Loomine peatus ootamatult. Proovi uuesti.",
     "Time is up for this question.": "Selle küsimuse aeg sai otsa.",

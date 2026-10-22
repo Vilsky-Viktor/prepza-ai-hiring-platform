@@ -52,6 +52,8 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | **Dropping repeated questions** (embeddings, `DUPLICATE_DISTANCE`) | Pairs that ask something else both kept / pairs that ask the same, the second dropped | Code | 100% (regression) / report (capability: the threshold sits below the closest trap, so only near-verbatim repeats go) |
 | **Assistant: voice messages** (speech to text) | Messages heard right (at most 10% of characters wrong, case and punctuation aside) / in the language's script | Code | ≥ 95% / 100% |
 | | Price and time per message | Measured | ≤ $0.001, ≤ 5 s |
+| **Refusing text that names nothing to test** | Postings, roles and short skill lists accepted (any refusal fails) / recipes, stories, gibberish, instructions to an AI refused | Code | 0 false refusals / ≥ 90% |
+| | Price and time per check | Measured | ≤ $0.0001, ≤ 3 s |
 | **Code-language tags** | Examples tagged with the notation expected (`code_languages.json`: look-alike notations, plain-text traps, several files) | Code | ≥ 98% (regression: near 100%) |
 | | Price and time per batch of 20 | Measured | ≤ $0.01, ≤ 15 s |
 | **Verifier** | Planted wrong keys fixed, real keys kept, and the blind confirmation naming the real key (`verify_test.py`, `--confirm`) | Code | 100% (regression) |
@@ -100,18 +102,19 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-22 |
 | Blind confirmation before a key moves: real key named | 60/60; multi 263/263; $0.0009–0.0010 a check | the same questions | 2026-10-22 |
 | Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
-| Assistant page context: general correct with / without; page checks | 112/129 / 116/129; 25/27 | `assistant_questions.json`, 3 repeats | 2026-10-20 |
-| Assistant guides: guide questions correct; read and linked | 60/60; 58/60 | `assistant_guides.json`, 3 repeats | 2026-10-17 |
+| Assistant page context: general correct with / without; page checks; who-are-you answers | 123/153 / 134/153; 25/27; 24/24 | `assistant_questions.json`, 3 repeats | 2026-10-22 |
+| Assistant guides: guide questions correct; read and linked | 39/40; 40/40, 38/40 | `assistant_guides.json`, 2 repeats | 2026-10-22 |
 | Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 97.5% / 3.23 ± 0.27 / 4.53 | 40 of `multi_questions.json` | 2026-10-22 |
-| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 328/335 / 328/335 / 188/188 / 44/45 / 45/45 / 85/85; 23,300 tokens, $0.0024, 6.4 s a turn | `assistant_actions.json` (67 cases), 5 repeats | 2026-10-21 |
+| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 98.5% (95.7–99.5) / 98.5% / 100% / 100% / 100% / 100%; 22,000 tokens, $0.0023, 13.2 s a turn | `assistant_actions.json` (67 cases), 3 repeats | 2026-10-22 |
 | Planning: code checks / extraction covered / invented / topics covered / revisions applied / kept; judge traps | 88.2% (73.4–95.3) / 97.1% (85.1–99.5) / 0% / 94.1% (80.9–98.4) / 75.0% (46.8–91.1) / 50.0% (25.4–74.6); 78 of 78; $0.012 and 24 s a plan | `postings.json` (with the Arabic, Thai, Hindi and Russian tests) and 7 of `inputs.json`, 17 × 2, 6 revisions × 2 | 2026-10-22 |
 | Translations: code checks / faithful / native / one language; judge traps | 100% / 90.0% (80.8–95.1) / 98.6% (92.3–99.7) / 100%; 97 of 97; $0.0023 and 5.2 s a translation | `translations.json`, 10 texts × 7 languages | 2026-10-22 |
 | Quality patterns: planted found / kept supported / no rule when none / known named; judge traps | 100% (79.6–100) / 100% (84.5–100) / 3 of 3 / 3 of 3; 10 of 10; $0.016 and 30 s a run | `patterns.json`, 4 groups × 3 | 2026-10-22 |
 | Assistant titles: code checks / sums up / right language / natural; judge traps | 97.6% (87.7–99.6) / 88.1% (75.0–94.8) / 100% / 100%; 11 of 11; $0.00003 and 2.8 s a title | `titles.json`, 14 × 3 | 2026-10-22 |
 | Repeated questions: distinct kept / repeats dropped | 100% (74.1–100) / 18.2% (5.1–47.7); the closest distinct pair at 0.084, the threshold 0.08 | `duplicates.json`, 22 pairs | 2026-10-22 |
 | Voice messages: heard right / character errors / script | 95.8% (79.8–99.3) / 1.6% ± 1.3 / 100%; $0.0006 a message | `voice.json`, 12 × 2 | 2026-10-22 |
+| Text check: false refusals / accepted / refused | 0 / 100% (95.9–100) / 100% (90.4–100); $0.00003 and 1.9 s a check | `screen.json`, 42 × 3 | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
-| Help chat: passed / made up / sign-in marker | 94.4% (84.9–98.1) / 5.6% / 100% | `help_questions.json`, 3 repeats | 2026-10-21 |
+| Help chat: passed / made up / sign-in marker; who-are-you answers | 94.4% (86.6–97.8) / 4.2% / 100%; 18/18 | `help_questions.json`, 3 repeats | 2026-10-22 |
 
 ## Datasets
 
@@ -133,7 +136,7 @@ it; `scripts/tests/test_ai_rules.py` fails when an action has none.
 
 | Action | Test |
 |---|---|
-| `interview_generation`, `template_generation` | `planning_test.py`, `build_questions.py`, `generate_tests.py` |
+| `interview_generation`, `template_generation` | `screen_test.py`, `planning_test.py`, `build_questions.py`, `generate_tests.py` |
 | `question_regeneration`, `template_question_regeneration` | `regenerate_test.py` |
 | `sample_key_check`, `question_verify`, `key_check_batch` | `verify_test.py` |
 | `embeddings` | `duplicates_test.py` |

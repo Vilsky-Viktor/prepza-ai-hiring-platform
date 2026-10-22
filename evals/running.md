@@ -116,6 +116,13 @@ pair's distance is saved):
 evals/run.sh generation duplicates_test.py --label new-threshold
 ```
 
+The check that refuses a pasted text naming nothing to test, graded by code (a false refusal
+fails):
+
+```bash
+evals/run.sh generation screen_test.py --label new-prompt   # --repeat 3
+```
+
 The code-language tagging job's call (`tag_examples`), graded by code:
 
 ```bash

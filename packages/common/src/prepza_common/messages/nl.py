@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "De hoofdkleur is te moeilijk te zien op de achtergrond van de pagina.",
     "Enter the company's website, like acme.com": "Voer de website van het bedrijf in, zoals acme.com",
     "That's a free mail service, not a company's website.": "Dat is een gratis e-maildienst, geen bedrijfswebsite.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "Deze tekst noemt niets om te testen. Plak een vacaturetekst, een functie of de vaardigheden die je wilt testen.",
     "Generation failed. Please try again.": "Genereren is mislukt. Probeer het opnieuw.",
     "Generation stopped unexpectedly. Please try again.": "Genereren is onverwacht gestopt. Probeer het opnieuw.",
     "Time is up for this question.": "De tijd voor deze vraag is om.",

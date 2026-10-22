@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "קשה מדי לראות את הצבע הראשי על רקע הדף.",
     "Enter the company's website, like acme.com": "הזינו את אתר החברה, למשל acme.com",
     "That's a free mail service, not a company's website.": "זה שירות דואר חינמי, לא אתר של חברה.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "הטקסט הזה לא מציין שום דבר שאפשר לבחון. הדבק תיאור משרה, תפקיד או את הכישורים לבחינה.",
     "Generation failed. Please try again.": "היצירה נכשלה. נסו שוב.",
     "Generation stopped unexpectedly. Please try again.": "היצירה נעצרה באופן לא צפוי. נסו שוב.",
     "Time is up for this question.": "הזמן לשאלה הזו נגמר.",

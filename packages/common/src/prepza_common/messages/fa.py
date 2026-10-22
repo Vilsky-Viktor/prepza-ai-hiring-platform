@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "دیدن رنگ اصلی روی پس‌زمینهٔ صفحه بیش از حد دشوار است.",
     "Enter the company's website, like acme.com": "وب‌سایت شرکت را وارد کنید، مانند acme.com",
     "That's a free mail service, not a company's website.": "این یک سرویس ایمیل رایگان است، نه وب‌سایت یک شرکت.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "این متن به چیزی که بتوان آزمود اشاره نمی‌کند. شرح شغل، عنوان شغلی یا مهارت‌هایی را که می‌خواهید بسنجید وارد کنید.",
     "Generation failed. Please try again.": "ساخت ناموفق بود. دوباره امتحان کنید.",
     "Generation stopped unexpectedly. Please try again.": "ساخت به‌طور غیرمنتظره متوقف شد. دوباره امتحان کنید.",
     "Time is up for this question.": "زمان این پرسش تمام شد.",

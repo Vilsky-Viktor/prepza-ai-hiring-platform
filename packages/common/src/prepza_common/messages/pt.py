@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "A cor principal está difícil demais de ver sobre o fundo da página.",
     "Enter the company's website, like acme.com": "Informe o site da empresa, como acme.com",
     "That's a free mail service, not a company's website.": "Esse é um serviço de e-mail gratuito, não o site de uma empresa.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "Este texto não menciona nada para avaliar. Cole uma descrição da vaga, um cargo ou as habilidades a avaliar.",
     "Generation failed. Please try again.": "A geração falhou. Tente novamente.",
     "Generation stopped unexpectedly. Please try again.": "A geração parou inesperadamente. Tente novamente.",
     "Time is up for this question.": "O tempo desta questão acabou.",

@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "Warna utama terlalu sulit terlihat di atas latar belakang halaman.",
     "Enter the company's website, like acme.com": "Masukkan situs web perusahaan, seperti acme.com",
     "That's a free mail service, not a company's website.": "Itu layanan email gratis, bukan situs web perusahaan.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "Teks ini tidak menyebutkan apa pun yang bisa diuji. Tempel deskripsi pekerjaan, posisi, atau keterampilan yang ingin diuji.",
     "Generation failed. Please try again.": "Pembuatan gagal. Coba lagi.",
     "Generation stopped unexpectedly. Please try again.": "Pembuatan berhenti tiba-tiba. Coba lagi.",
     "Time is up for this question.": "Waktu untuk soal ini sudah habis.",

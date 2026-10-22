@@ -27,6 +27,8 @@ prepza-common = { path = "../../packages/common", editable = true }
 
 [tool.pytest.ini_options]
 pythonpath = [".", "../../packages/common/tests"]
+# `screen`: the text check's own tests, which call its (fake) model; every other test skips it.
+markers = ["screen"]
 
 [dependency-groups]
 dev = [

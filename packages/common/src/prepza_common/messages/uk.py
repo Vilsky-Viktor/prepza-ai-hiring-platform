@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "Основний колір надто погано видно на тлі сторінки.",
     "Enter the company's website, like acme.com": "Вкажіть сайт компанії, наприклад acme.com",
     "That's a free mail service, not a company's website.": "Це безкоштовний поштовий сервіс, а не сайт компанії.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "У цьому тексті немає нічого, що можна перевірити. Вставте опис вакансії, посаду або навички для перевірки.",
     "Generation failed. Please try again.": "Не вдалося згенерувати. Спробуйте ще раз.",
     "Generation stopped unexpectedly. Please try again.": "Генерація несподівано зупинилася. Спробуйте ще раз.",
     "Time is up for this question.": "Час на це питання вийшов.",

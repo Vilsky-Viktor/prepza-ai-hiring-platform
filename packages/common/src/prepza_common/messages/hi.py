@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "पेज के बैकग्राउंड पर प्राइमरी रंग देखना बहुत मुश्किल है।",
     "Enter the company's website, like acme.com": "कंपनी की वेबसाइट दर्ज करें, जैसे acme.com",
     "That's a free mail service, not a company's website.": "यह एक मुफ़्त ईमेल सेवा है, किसी कंपनी की वेबसाइट नहीं।",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "इस टेक्स्ट में परखने लायक कुछ भी नहीं है। जॉब विवरण, पद या जिन कौशलों को परखना है, उन्हें पेस्ट करें।",
     "Generation failed. Please try again.": "जनरेशन नहीं हो सकी। कृपया फिर से कोशिश करें।",
     "Generation stopped unexpectedly. Please try again.": "जनरेशन अचानक रुक गई। कृपया फिर से कोशिश करें।",
     "Time is up for this question.": "इस सवाल का समय खत्म हो गया।",

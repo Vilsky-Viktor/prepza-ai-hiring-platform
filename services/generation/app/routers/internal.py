@@ -7,6 +7,7 @@ from prepza_common.rate_limit import hit
 
 from app.constants.actions import (
     CAMPAIGN_TRANSLATION,
+    INTERVIEW_GENERATION,
     NEWS_TRANSLATION,
     QUESTION_REGENERATION,
     QUESTION_VERIFY,
@@ -33,6 +34,7 @@ from app.services.cancel import cancel_generation
 from app.services.regenerate import regenerate
 from app.services.retry import retry_generation
 from app.services.review import submit_review
+from app.services.screen import refuse_if_nothing_to_test
 from app.services.topic_caps import generation_out
 from app.storage import generations
 
@@ -60,6 +62,7 @@ async def create_interview_generation(
 
     await hit(get_redis(), f"rate:generations:{body.owner_uid}", "GENERATION_LIMIT", **who)
     await use_daily_budget(body.paid, **who)
+    await refuse_if_nothing_to_test(body.text, INTERVIEW_GENERATION, **who)
     generation = await generations.create(
         body.owner_uid,
         body.text,

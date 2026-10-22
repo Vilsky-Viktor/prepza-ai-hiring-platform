@@ -21,6 +21,7 @@ from app.services.cancel import cancel_generation
 from app.services.regenerate import regenerate
 from app.services.retry import retry_generation
 from app.services.review import submit_review
+from app.services.screen import refuse_if_nothing_to_test
 from app.services.topic_caps import generation_out
 from app.storage import generations
 
@@ -44,6 +45,7 @@ async def create_template(
 ) -> GenerationOut:
     await refuse_if_paused(get_redis(), TEMPLATE_GENERATION, user_id=superadmin.uid)
     await use_daily_budget(user_id=superadmin.uid)
+    await refuse_if_nothing_to_test(body.text, TEMPLATE_GENERATION, user_id=superadmin.uid)
     generation = await generations.create(
         superadmin.uid,
         body.text,

@@ -173,3 +173,15 @@ def check_voice(problems: list[str]) -> list[str]:
     ]
 
     return [item["text"] for item in data["items"]]
+
+
+def check_screen(problems: list[str]) -> list[str]:
+    """Texts of both kinds, each with a language."""
+    data = load("screen.json")
+    check_described("screen.json", data, problems)
+    unique_ids("screen.json", data["items"], problems)
+
+    if {item["accept"] for item in data["items"]} != {True, False}:
+        problems.append("screen.json: needs texts to accept and texts to refuse")
+
+    return [item["text"] for item in data["items"]]

@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "Màu chính quá khó nhìn thấy trên nền trang.",
     "Enter the company's website, like acme.com": "Nhập website của công ty, ví dụ acme.com",
     "That's a free mail service, not a company's website.": "Đó là dịch vụ email miễn phí, không phải website của công ty.",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "Văn bản này không nêu điều gì để kiểm tra. Hãy dán mô tả công việc, vị trí hoặc các kỹ năng cần kiểm tra.",
     "Generation failed. Please try again.": "Tạo không thành công. Vui lòng thử lại.",
     "Generation stopped unexpectedly. Please try again.": "Quá trình tạo bị dừng đột ngột. Vui lòng thử lại.",
     "Time is up for this question.": "Đã hết thời gian cho câu này.",

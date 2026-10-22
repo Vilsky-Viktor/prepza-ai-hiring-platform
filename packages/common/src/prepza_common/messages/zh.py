@@ -48,6 +48,7 @@ MESSAGES = {
     "The primary color is too hard to see on the page's background.": "主色在页面背景上太难辨认。",
     "Enter the company's website, like acme.com": "请输入公司网站，例如 acme.com",
     "That's a free mail service, not a company's website.": "这是免费邮箱服务，不是公司网站。",
+    "This text doesn't name anything to test. Paste a job description, a role, or the skills to test.": "这段文字没有提到可以测试的内容。请粘贴职位描述、职位名称或要测试的技能。",
     "Generation failed. Please try again.": "生成失败，请重试。",
     "Generation stopped unexpectedly. Please try again.": "生成意外中断，请重试。",
     "Time is up for this question.": "这道题的时间到了。",
