@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useHumanCheck } from "@/hooks/use-human-check"
 import type { Locale } from "@/constants/i18n"
 import { MAX_COMPANY_NAME_LENGTH, MAX_GOAL_LENGTH } from "@/constants/limits"
+import { COMPANIES_CHANGED } from "@/constants/notifications"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { refreshVerification } from "@/lib/auth"
 import { humanHeaders } from "@/lib/human-check"
@@ -89,6 +90,8 @@ export function StartTest({
       headers: await humanHeaders(),
     })
 
+    // The bell hears the new company at once.
+    window.dispatchEvent(new Event(COMPANIES_CHANGED))
     // Picked from now on, so a failure after this doesn't create it twice.
     setCompanies((current) => [...(current ?? []), company])
     setChosen(company.id)

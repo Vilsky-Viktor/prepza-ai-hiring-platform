@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { MAX_COMPANY_NAME_LENGTH } from "@/constants/limits"
+import { COMPANIES_CHANGED } from "@/constants/notifications"
 import { useHumanCheck } from "@/hooks/use-human-check"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { refreshVerification } from "@/lib/auth"
@@ -66,6 +67,8 @@ export function CreateCompany({ templateId }: { templateId?: string }) {
         body: JSON.stringify({ name: name.trim() }),
         headers: await humanHeaders(),
       })
+      // The bell hears the new company at once.
+      window.dispatchEvent(new Event(COMPANIES_CHANGED))
       // Choosing where to use a free test: the new company opens on that test.
       router.replace(
         templateId
