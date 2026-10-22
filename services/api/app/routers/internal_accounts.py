@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
+from prepza_common.user import UserEmailIn
 
-from app.schemas.accounts import UserEmailIn
 from app.service_auth import ServiceCaller
 from app.storage import keys, webhook_retries, webhooks
 
