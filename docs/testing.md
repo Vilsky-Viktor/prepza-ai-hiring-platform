@@ -23,6 +23,7 @@ prepza has unit, integration, browser, end-to-end and load tests, plus offline e
 | File size | `scripts/check_file_size.sh` | Nothing running |
 | Migration safety | `scripts/check_migrations.py` (its tests: `uvx --with pytest pytest scripts/tests`) | Nothing running |
 | Gateway config | `uvx --with pytest pytest scripts/tests/test_nginx_conf.py`: a block with its own `add_header` or `proxy_set_header` repeats the server's | Nothing running |
+| Workflows, images and alerts | `uvx --with pytest pytest scripts/tests`: every workflow starts read-only and every job has a timeout; images pinned by digest, installed from the lock, no `uv` and no root in production; every alert's severity and runbook section | Nothing running |
 | Frontend lint, types, translations and unit tests | `cd frontend && pnpm install && pnpm lint && pnpm typecheck && pnpm check:messages && pnpm test` | Nothing running |
 | Smoke test | `./e2e_tests/smoke.sh` | The running stack |
 | Integration tests | `./scripts/integration.sh` | The running stack |
