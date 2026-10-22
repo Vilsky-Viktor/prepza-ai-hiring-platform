@@ -120,6 +120,8 @@ def test_a_refused_change_leaves_the_name_as_it_was(
     )
 
     assert (response.status_code, response.json()["detail"]) == (code, detail)
+    # The public API passes the reason on with a code its clients branch on.
+    assert response.json().get("code") == ("candidate_started" if code == 409 else None)
     assert written == [] and audited == []
 
 
@@ -153,7 +155,8 @@ def test_a_reminder_goes_out_again_but_not_to_a_guest(client, world):
     )
 
     assert sent.status_code == 204
-    assert (guest.status_code, guest.json()["detail"]) == (409, NO_EMAILS_FOR_GUEST)
+    assert guest.status_code == 409
+    assert guest.json() == {"detail": NO_EMAILS_FOR_GUEST, "code": "invited_without_sign_in"}
     [(name, interview, _company, sender, email)] = world["done"]
     assert (name, interview, sender.uid, email) == ("invite", INTERVIEW, "ann", "anna@example.com")
 

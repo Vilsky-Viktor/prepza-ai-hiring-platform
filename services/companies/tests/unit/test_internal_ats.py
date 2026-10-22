@@ -192,12 +192,16 @@ def test_without_resend_a_candidate_still_invited_is_returned_as_they_are(
     assert bool(stored["invites"]) is sent
 
 
-@pytest.mark.parametrize(("interview_id", "code"), [(uuid.uuid4(), 404), (MAKING.id, 409)])
-def test_no_invite_to_an_interview_gone_or_not_ready(client, stored, interview_id, code):
+@pytest.mark.parametrize(
+    ("interview_id", "code", "reason"),
+    [(uuid.uuid4(), 404, None), (MAKING.id, 409, "interview_not_ready")],
+)
+def test_no_invite_to_an_interview_gone_or_not_ready(client, stored, interview_id, code, reason):
     body = {"email": "cara@example.com", "sender_id": "ann"}
     url = f"/internal/interviews/{interview_id}/invites"
+    response = client.post(url, json=body, headers=HEADERS)
 
-    assert client.post(url, json=body, headers=HEADERS).status_code == code
+    assert (response.status_code, response.json().get("code")) == (code, reason)
     assert stored["invites"] == []
 
 
@@ -267,7 +271,7 @@ def test_a_return_address_off_the_companys_website_invites_no_one(client, stored
     )
 
     assert refused.status_code == 422
-    assert refused.json()["detail"] == RETURN_URL_OFF_DOMAIN
+    assert refused.json() == {"detail": RETURN_URL_OFF_DOMAIN, "code": "return_url_off_domain"}
     assert allowed.status_code == 201
     assert len(stored["invites"]) == 1
 

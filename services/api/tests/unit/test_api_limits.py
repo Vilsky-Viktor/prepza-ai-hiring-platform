@@ -42,7 +42,10 @@ def test_a_company_has_at_most_the_key_limits_keys(
 
     assert {response.status_code for response in made} == {201}
     assert refused.status_code == 409
-    assert refused.json() == {"detail": f"A company can have up to {most} API keys"}
+    assert refused.json() == {
+        "detail": f"A company can have up to {most} API keys",
+        "code": "conflict",
+    }
     assert len(stored["keys"]) == most
     assert whose(limit_hits) == [("MAX_API_KEYS", str(COMPANY), "u1")]
 
@@ -67,7 +70,10 @@ def test_a_company_has_at_most_the_web_hook_limits_web_hooks(
 
     assert {response.status_code for response in made} == {201}
     assert refused.status_code == 409
-    assert refused.json() == {"detail": f"A company can have up to {most} web hooks"}
+    assert refused.json() == {
+        "detail": f"A company can have up to {most} web hooks",
+        "code": "conflict",
+    }
     assert len(stored["webhooks"]) == most
     assert whose(limit_hits) == [("MAX_WEBHOOKS", str(COMPANY), "u1")]
 
@@ -101,7 +107,7 @@ def test_a_companys_requests_a_minute_are_limited(
 
     assert set(answered) == {200}
     assert refused.status_code == 429
-    assert refused.json() == {"detail": TOO_MANY_REQUESTS}
+    assert refused.json() == {"detail": TOO_MANY_REQUESTS, "code": "rate_limited"}
     assert refused.headers["Retry-After"] == "25"
     assert totals == {f"rate:api:{COMPANY}": most + 1}
     assert whose(limit_hits) == [("API_REQUESTS_PER_MINUTE", str(COMPANY), None)]

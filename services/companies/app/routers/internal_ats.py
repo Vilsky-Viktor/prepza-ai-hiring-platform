@@ -2,9 +2,11 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, Response, status
+from prepza_common.i18n import CodedError
 from prepza_common.pause import refuse_if_paused
 from prepza_common.user import User
 
+from app.constants import error_codes
 from app.constants.audit import VIA_API, VIA_ATS
 from app.constants.invites import OPEN, RETURN_URL_OFF_DOMAIN, InviteStatus
 from app.helpers.return_urls import on_domain
@@ -74,7 +76,11 @@ async def invite(
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Interview not found")
 
     if interview.set_id is None:
-        raise HTTPException(status.HTTP_409_CONFLICT, "The interview isn't ready yet")
+        raise CodedError(
+            status.HTTP_409_CONFLICT,
+            "The interview isn't ready yet",
+            error_codes.INTERVIEW_NOT_READY,
+        )
 
     await refuse_if_paused(get_redis(), "candidate_invite", interview.company_id, body.sender_id)
     company = await companies.get(interview.company_id)
@@ -84,7 +90,11 @@ async def invite(
         raise HTTPException(status.HTTP_403_FORBIDDEN, "Only an owner or admin can invite")
 
     if body.return_url and not on_domain(body.return_url, company.verified_domain):
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, RETURN_URL_OFF_DOMAIN)
+        raise CodedError(
+            status.HTTP_422_UNPROCESSABLE_CONTENT,
+            RETURN_URL_OFF_DOMAIN,
+            error_codes.RETURN_URL_OFF_DOMAIN,
+        )
 
     # A candidate who already finished keeps their results, and isn't emailed again; nor is one
     # whose invite is still open, when the caller asked for no resend (the API's retries).

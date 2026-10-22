@@ -20,6 +20,16 @@ def test_a_refusal_asked_for_reaches_the_client_with_its_reason():
     assert (refused.value.status_code, refused.value.detail) == (402, "Not enough credits.")
 
 
+def test_a_refusal_keeps_its_machine_readable_code():
+    with pytest.raises(HTTPException) as refused:
+        passed_on(answer(409, {"detail": "Not ready.", "code": "interview_not_ready"}), {409})
+    with pytest.raises(HTTPException) as uncoded:
+        passed_on(answer(409, {"detail": "Not ready."}), {409})
+
+    assert (refused.value.detail, refused.value.code) == ("Not ready.", "interview_not_ready")
+    assert getattr(uncoded.value, "code", None) is None
+
+
 def test_a_rate_limits_refusal_keeps_its_retry_after():
     limited = httpx.Response(
         429,

@@ -3,9 +3,11 @@ from uuid import UUID
 
 import httpx
 from fastapi import HTTPException, status
+from prepza_common import error_codes as shared_codes
 from prepza_common import http
 from prepza_common.backoff import wait_seconds
 from prepza_common.http import bearer, passed_on
+from prepza_common.i18n import CodedError
 
 from app.config.settings import settings
 from app.constants.billing import (
@@ -29,7 +31,11 @@ async def hold_candidate(company_id: UUID, key: str) -> None:
     )
 
     if response.status_code == status.HTTP_402_PAYMENT_REQUIRED:
-        raise HTTPException(status.HTTP_402_PAYMENT_REQUIRED, response.json()["detail"])
+        raise CodedError(
+            status.HTTP_402_PAYMENT_REQUIRED,
+            response.json()["detail"],
+            shared_codes.INSUFFICIENT_CREDITS,
+        )
 
     response.raise_for_status()
 

@@ -21,7 +21,7 @@ def test_a_finished_candidate_is_not_invited_again(client, monkeypatch):
     app.dependency_overrides.clear()
 
     assert response.status_code == 409
-    assert response.json()["detail"] == ALREADY_FINISHED
+    assert response.json() == {"detail": ALREADY_FINISHED, "code": "candidate_finished"}
     assert sent == used == []
 
 
@@ -56,4 +56,5 @@ def test_an_interview_without_its_title_sends_no_invite_and_keeps_no_credits(cli
     app.dependency_overrides.clear()
 
     assert (response.status_code, response.json()["detail"]) == (409, INTERVIEW_NOT_READY)
+    assert response.json()["code"] == "interview_not_ready"
     assert sent == [] and released == used

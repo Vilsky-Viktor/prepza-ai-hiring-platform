@@ -1,10 +1,12 @@
 from fastapi import FastAPI, Request
 from fastapi import HTTPException as RaisedHTTPException
+from fastapi.encoders import jsonable_encoder
 from fastapi.exception_handlers import (
     http_exception_handler,
     request_validation_exception_handler,
 )
 from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
 from prepza_common.translations import TRANSLATIONS
 from starlette.exceptions import HTTPException
@@ -38,10 +40,22 @@ def translate(text: str, language: str) -> str:
     return TRANSLATIONS.get(language, {}).get(text, text)
 
 
+class CodedError(RaisedHTTPException):
+    """A refusal with a stable, machine-readable `code` beside its translated `detail`, for
+    clients (the public API's) that branch on it rather than on the text."""
+
+    def __init__(
+        self, status_code: int, detail: str, code: str, *, headers: dict[str, str] | None = None
+    ):
+        super().__init__(status_code, detail, headers=headers)
+        self.code = code
+
+
 class TemplateError(RaisedHTTPException):
     """An error whose message carries values, such as a limit's current number: `template` is
-    translated first, then filled in with `values`. FastAPI's HTTPException, so code that lets
-    those through (rate_limit.hit_or_skip) lets this one through too."""
+    translated first, then filled in with `values`; `code` as in CodedError. FastAPI's
+    HTTPException, so code that lets those through (rate_limit.hit_or_skip) lets this one
+    through too."""
 
     def __init__(
         self,
@@ -49,36 +63,56 @@ class TemplateError(RaisedHTTPException):
         template: str,
         *,
         headers: dict[str, str] | None = None,
+        code: str | None = None,
         **values: object,
     ):
         super().__init__(status_code, template.format(**values), headers=headers)
         self.template = template
         self.values = values
+        self.code = code
 
 
-async def localized_http_error(request: Request, error: HTTPException):
-    if isinstance(error, TemplateError):
+def add_localized_errors(app: FastAPI, codes: dict[int, str] | None = None) -> None:
+    """Error messages in the language of the interface that asked, with the refusal's `code` when
+    it has one (CodedError, TemplateError). With `codes` (a status to its code), every refusal
+    carries one: its own, or its status's; validation errors the code of 422, beside the list
+    that names each bad field."""
+    codes = codes or {}
+
+    async def http_error(request: Request, error: HTTPException):
+        if isinstance(error, TemplateError):
+            language = request_language(request)
+            error.detail = translate(error.template, language).format(**error.values)
+        elif isinstance(error.detail, str):
+            error.detail = translate(error.detail, request_language(request))
+
+        code = getattr(error, "code", None) or codes.get(error.status_code)
+
+        if code is None:
+            return await http_exception_handler(request, error)
+
+        return JSONResponse(
+            {"detail": error.detail, "code": code},
+            status_code=error.status_code,
+            headers=error.headers,
+        )
+
+    async def validation_error(request: Request, error: RequestValidationError):
         language = request_language(request)
-        error.detail = translate(error.template, language).format(**error.values)
-    elif isinstance(error.detail, str):
-        error.detail = translate(error.detail, request_language(request))
+        errors = error.errors()
 
-    return await http_exception_handler(request, error)
+        for item in errors:
+            message = item.get("msg", "")
 
+            if message.startswith(VALUE_ERROR):
+                item["msg"] = VALUE_ERROR + translate(message.removeprefix(VALUE_ERROR), language)
 
-async def localized_validation_error(request: Request, error: RequestValidationError):
-    language = request_language(request)
+        if 422 not in codes:
+            return await request_validation_exception_handler(request, error)
 
-    for item in error.errors():
-        message = item.get("msg", "")
+        return JSONResponse(
+            {"detail": jsonable_encoder(errors), "code": codes[422]}, status_code=422
+        )
 
-        if message.startswith(VALUE_ERROR):
-            item["msg"] = VALUE_ERROR + translate(message.removeprefix(VALUE_ERROR), language)
-
-    return await request_validation_exception_handler(request, error)
-
-
-def add_localized_errors(app: FastAPI) -> None:
-    """Error messages in the language of the interface that asked."""
-    app.add_exception_handler(HTTPException, localized_http_error)
-    app.add_exception_handler(RequestValidationError, localized_validation_error)
+    app.add_exception_handler(HTTPException, http_error)
+    app.add_exception_handler(RequestValidationError, validation_error)

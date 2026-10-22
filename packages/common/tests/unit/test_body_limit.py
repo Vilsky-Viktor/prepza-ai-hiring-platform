@@ -24,7 +24,7 @@ def test_a_body_said_to_be_too_large_is_refused_in_the_users_language():
     response = client().post("/echo", content=b"x" * 101, headers={"Accept-Language": "de-DE"})
 
     assert response.status_code == 413
-    assert response.json() == {"detail": "Die Anfrage ist zu groß."}
+    assert response.json() == {"detail": "Die Anfrage ist zu groß.", "code": "body_too_large"}
 
 
 def test_a_streamed_body_is_refused_once_it_grows_too_large():
@@ -35,4 +35,4 @@ def test_a_streamed_body_is_refused_once_it_grows_too_large():
     response = client().post("/echo", content=chunks())
 
     assert response.status_code == 413
-    assert response.json() == {"detail": "The request is too large."}
+    assert response.json() == {"detail": "The request is too large.", "code": "body_too_large"}

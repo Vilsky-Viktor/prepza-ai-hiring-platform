@@ -1,6 +1,8 @@
 from fastapi import HTTPException, status
 from prepza_common.audit_actions import AuditAction, TargetKind
+from prepza_common.i18n import CodedError
 
+from app.constants import error_codes
 from app.constants.invites import CHANGE_ACTIONS, EXTRA_TIME_STARTED, NOT_STARTED, InviteStatus
 from app.integrations import rounds
 from app.models.interviews import Interview
@@ -55,7 +57,9 @@ async def change(
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
 
     if timed and invite.status not in NOT_STARTED:
-        raise HTTPException(status.HTTP_409_CONFLICT, EXTRA_TIME_STARTED)
+        raise CodedError(
+            status.HTTP_409_CONFLICT, EXTRA_TIME_STARTED, error_codes.CANDIDATE_STARTED
+        )
 
     statuses = (
         NOT_STARTED if timed else [item for item in InviteStatus if item != InviteStatus.DELETED]
@@ -64,7 +68,9 @@ async def change(
     # Started, or deleted, since it was read.
     if values and not await invites.change(invite.id, values, statuses):
         if timed:
-            raise HTTPException(status.HTTP_409_CONFLICT, EXTRA_TIME_STARTED)
+            raise CodedError(
+                status.HTTP_409_CONFLICT, EXTRA_TIME_STARTED, error_codes.CANDIDATE_STARTED
+            )
 
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
 

@@ -4,6 +4,7 @@ from functools import cache
 import httpx
 from fastapi import HTTPException
 from prepza_common.constants import HTTP_TIMEOUT_SECONDS, RETRY_AFTER, TRACE_HEADER
+from prepza_common.i18n import CodedError
 from prepza_common.logging import trace_header
 
 
@@ -34,19 +35,26 @@ def bearer(token: str) -> dict[str, str]:
 
 def passed_on(response: httpx.Response, codes: Collection[int] | None = None) -> httpx.Response:
     """Another service's answer, once it worked. Its refusals in `codes` (any refusal, without
-    them) reach the client unchanged, status, reason and Retry-After; another failure raises."""
+    them) reach the client unchanged, status, reason, its machine-readable `code` and
+    Retry-After; another failure raises."""
     refused = response.is_error if codes is None else response.status_code in codes
 
     if refused:
         try:
-            detail = response.json().get("detail")
+            body = response.json()
         except ValueError:
-            detail = None
+            body = {}
 
+        body = body if isinstance(body, dict) else {}
         retry_after = response.headers.get(RETRY_AFTER)
         headers = {RETRY_AFTER: retry_after} if retry_after else None
 
-        raise HTTPException(response.status_code, detail, headers=headers)
+        if body.get("code"):
+            raise CodedError(
+                response.status_code, body.get("detail"), body["code"], headers=headers
+            )
+
+        raise HTTPException(response.status_code, body.get("detail"), headers=headers)
 
     if response.is_error:
         response.raise_for_status()

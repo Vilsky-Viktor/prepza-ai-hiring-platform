@@ -109,9 +109,11 @@ async def at_most(
     *,
     company_id: object | None = None,
     user_id: str | None = None,
+    code: str | None = None,
 ) -> None:
     """Refuses one more of what `count` counts (keys, members, ...) once the limit is reached:
-    a `status_code` with `message`, in which "{limit}" is the limit's value."""
+    a `status_code` with `message`, in which "{limit}" is the limit's value, and `code`
+    (CodedError)."""
     value = await limit(redis, name)
 
     if count < value:
@@ -119,4 +121,4 @@ async def at_most(
 
     await record_hit(name, company_id=company_id, user_id=user_id)
 
-    raise TemplateError(status_code, message, limit=value)
+    raise TemplateError(status_code, message, code=code, limit=value)

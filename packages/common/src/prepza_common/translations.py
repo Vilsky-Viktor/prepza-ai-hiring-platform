@@ -8,6 +8,7 @@ from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
 # refusal (rate_limit, limits.at_most) answers with the message it's given.
 MESSAGE_ARGS = {
     "HTTPException": (1, "detail"),
+    "CodedError": (1, "detail"),
     "TemplateError": (1, "template"),
     "hit": (3, "message"),
     "hit_or_skip": (3, "message"),

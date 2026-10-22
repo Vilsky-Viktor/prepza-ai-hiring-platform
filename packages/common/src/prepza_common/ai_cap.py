@@ -5,7 +5,8 @@ services refuse their AI calls (503) once today's (UTC) total reaches it, until 
 import logging
 from datetime import UTC, datetime
 
-from fastapi import HTTPException, status
+from fastapi import status
+from prepza_common import error_codes
 from prepza_common.ai_constants import (
     AI_PAUSED_TODAY,
     MICRO,
@@ -13,6 +14,7 @@ from prepza_common.ai_constants import (
     UNPAID_SPEND_KEY,
     UNPAID_SPEND_KEY_SECONDS,
 )
+from prepza_common.i18n import CodedError
 from prepza_common.limits import limit as limit_value
 from prepza_common.limits import record_hit
 from prepza_common.rate_limit import until_tomorrow
@@ -49,8 +51,11 @@ async def refuse_if_capped(
 
     await record_hit(CAP, company_id=company_id, user_id=user_id)
 
-    raise HTTPException(
-        status.HTTP_503_SERVICE_UNAVAILABLE, AI_PAUSED_TODAY, headers=until_tomorrow()
+    raise CodedError(
+        status.HTTP_503_SERVICE_UNAVAILABLE,
+        AI_PAUSED_TODAY,
+        error_codes.AI_BUDGET_USED_UP,
+        headers=until_tomorrow(),
     )
 
 

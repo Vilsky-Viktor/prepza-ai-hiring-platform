@@ -71,7 +71,7 @@ def test_invite_emails_are_refused_over_each_email_limits_default(
 
     assert allowed.status_code == 201
     assert refused.status_code == 429
-    assert refused.json() == {"detail": TOO_MANY_REQUESTS}
+    assert refused.json() == {"detail": TOO_MANY_REQUESTS, "code": "rate_limited"}
     assert [(hit["limit"], hit["company_id"], hit["user_id"]) for hit in limit_hits] == [
         (name, str(COMPANY_ID), "bob")
     ]

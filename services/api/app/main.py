@@ -15,6 +15,7 @@ from prepza_common.shutdown import close_shared
 
 from app.auth import MissingPermission, missing_permission
 from app.config.settings import settings
+from app.constants import error_codes
 from app.constants.docs import API_DESCRIPTION, API_TITLE, API_VERSION
 from app.helpers.docs import name_permissions
 from app.integrations import webhooks as endpoints
@@ -59,7 +60,8 @@ app = FastAPI(
     # Passes the assistant's header on to companies' access checks.
     dependencies=[Depends(remember_assistant)],
 )
-add_localized_errors(app)
+# Every refusal of the public API carries a machine-readable code.
+add_localized_errors(app, error_codes.BY_STATUS)
 app.add_exception_handler(MissingPermission, missing_permission)
 app.add_middleware(MaintenanceMiddleware, get_redis=get_redis)
 app.add_middleware(NoStoreMiddleware)

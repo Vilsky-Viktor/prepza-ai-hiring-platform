@@ -6,7 +6,7 @@ import logging
 from datetime import UTC, datetime
 
 from fastapi import HTTPException, status
-from prepza_common import memory_cache
+from prepza_common import error_codes, memory_cache
 from prepza_common.auth import verify
 from prepza_common.constants import (
     MAINTENANCE,
@@ -108,4 +108,7 @@ class MaintenanceMiddleware(BaseHTTPMiddleware):
 
         message = translate(MAINTENANCE, request_language(request))
 
-        return JSONResponse({"detail": message}, status_code=status.HTTP_503_SERVICE_UNAVAILABLE)
+        return JSONResponse(
+            {"detail": message, "code": error_codes.MAINTENANCE},
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+        )

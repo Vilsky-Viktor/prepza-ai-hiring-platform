@@ -1,5 +1,6 @@
 import json
 
+from prepza_common import error_codes
 from prepza_common.constants import BODY_TOO_LARGE, MAX_BODY_BYTES
 from prepza_common.i18n import language_of, translate
 
@@ -61,7 +62,8 @@ class BodyLimitMiddleware:
 
 
 async def refuse(send, accept_language: str) -> None:
-    body = json.dumps({"detail": translate(BODY_TOO_LARGE, language_of(accept_language))}).encode()
+    detail = translate(BODY_TOO_LARGE, language_of(accept_language))
+    body = json.dumps({"detail": detail, "code": error_codes.BODY_TOO_LARGE}).encode()
     await send(
         {
             "type": "http.response.start",

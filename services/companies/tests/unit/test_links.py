@@ -208,7 +208,7 @@ def test_a_link_takes_a_limited_number_of_new_candidates_an_hour(client, linked,
     refused = client.post("/links/abc/start", json={"pledged": True})
 
     assert refused.status_code == 429
-    assert refused.json() == {"detail": TOO_MANY_REQUESTS}
+    assert refused.json() == {"detail": TOO_MANY_REQUESTS, "code": "rate_limited"}
     assert linked["held"] == []
     assert [(hit["limit"], hit["company_id"], hit["user_id"]) for hit in limit_hits] == [
         ("LINK_STARTS_PER_HOUR", str(INTERVIEW.company_id), "cand")
@@ -230,7 +230,7 @@ def test_one_address_starts_a_limited_number_of_new_candidates_an_hour(client, l
     refused = client.post("/links/abc/start", json={"pledged": True})
 
     assert refused.status_code == 429
-    assert refused.json() == {"detail": TOO_MANY_REQUESTS}
+    assert refused.json() == {"detail": TOO_MANY_REQUESTS, "code": "rate_limited"}
     assert len(linked["held"]) == LINK_STARTS_PER_IP_HOUR
 
 

@@ -4,9 +4,11 @@ import logging
 from collections.abc import Awaitable, Callable
 from uuid import UUID
 
-from fastapi import HTTPException, status
+from fastapi import status
+from prepza_common.i18n import CodedError
 from redis.exceptions import RedisError
 
+from app.constants import error_codes
 from app.constants.api import (
     IDEMPOTENCY_IN_PROGRESS,
     IDEMPOTENCY_KEY_REUSED,
@@ -61,10 +63,16 @@ async def once(name: str, seconds: int, request: str, run: Callable[[], Awaitabl
         made_by, _, result = earlier.rpartition(":")
 
         if made_by and made_by != request:
-            raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, IDEMPOTENCY_KEY_REUSED)
+            raise CodedError(
+                status.HTTP_422_UNPROCESSABLE_CONTENT,
+                IDEMPOTENCY_KEY_REUSED,
+                error_codes.IDEMPOTENCY_KEY_REUSED,
+            )
 
         if result == PENDING:
-            raise HTTPException(status.HTTP_409_CONFLICT, IDEMPOTENCY_IN_PROGRESS)
+            raise CodedError(
+                status.HTTP_409_CONFLICT, IDEMPOTENCY_IN_PROGRESS, error_codes.REQUEST_IN_PROGRESS
+            )
 
         return result
 

@@ -1,10 +1,12 @@
-from fastapi import HTTPException, status
+from fastapi import status
 from prepza_common.analytics import track
 from prepza_common.audit_actions import AuditAction, TargetKind
+from prepza_common.i18n import CodedError
 from prepza_common.names import clean_name
 from prepza_common.rate_limit import hit_emails, recipient_key
 from prepza_common.user import User
 
+from app.constants import error_codes
 from app.constants.invites import (
     ALREADY_FINISHED,
     COMPANY_SUSPENDED,
@@ -41,7 +43,7 @@ async def invite(
     superadmin has the company suspended (an ATS keeps its candidates waiting then). The action
     log records it as `user`'s, through `via` when an ATS or the API sent it."""
     if company.suspended_at is not None:
-        raise HTTPException(status.HTTP_409_CONFLICT, COMPANY_SUSPENDED)
+        raise CodedError(status.HTTP_409_CONFLICT, COMPANY_SUSPENDED, error_codes.COMPANY_SUSPENDED)
 
     email = email.lower()
 
@@ -50,7 +52,7 @@ async def invite(
 
     # Their results are in: inviting them again would only email them for nothing.
     if current == InviteStatus.FINISHED:
-        raise HTTPException(status.HTTP_409_CONFLICT, ALREADY_FINISHED)
+        raise CodedError(status.HTTP_409_CONFLICT, ALREADY_FINISHED, error_codes.CANDIDATE_FINISHED)
 
     # A candidate who hasn't started has credits set aside: new, or sent again after expiring.
     # Credits first, so an invite refused for them never uses up the email limits.
@@ -66,7 +68,9 @@ async def invite(
 
         # A ready interview has its title; without one, no email names it wrongly.
         if not title:
-            raise HTTPException(status.HTTP_409_CONFLICT, INTERVIEW_NOT_READY)
+            raise CodedError(
+                status.HTTP_409_CONFLICT, INTERVIEW_NOT_READY, error_codes.INTERVIEW_NOT_READY
+            )
 
         invite, revived = await invites.upsert(
             interview.id,

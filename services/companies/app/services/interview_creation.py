@@ -7,6 +7,7 @@ from prepza_common.limit_list import LIMITS
 from prepza_common.limits import at_most, limit, question_seconds
 from prepza_common.rate_limit import counted, hit
 
+from app.constants import error_codes
 from app.constants.generation import GENERATION_REFUSALS
 from app.constants.interviews import UNKNOWN_LEVEL
 from app.constants.invites import (
@@ -55,6 +56,7 @@ async def create(
                 status.HTTP_409_CONFLICT,
                 TOO_MANY_WITHOUT_CANDIDATES if paid else TOO_MANY_WITHOUT_CANDIDATES_UNPAID,
                 **who,
+                code=error_codes.INTERVIEW_QUOTA_REACHED,
             )
         except HTTPException:
             await track("limit_hit", which="interviews_without_candidates", **who)

@@ -6,6 +6,7 @@ import logging
 from datetime import UTC, datetime, timedelta
 
 from fastapi import HTTPException, status
+from prepza_common import error_codes
 from prepza_common.constants import RATE_LIMITED, RETRY_AFTER
 from prepza_common.i18n import TemplateError
 from prepza_common.limit_list import LIMITS
@@ -42,7 +43,11 @@ async def refuse(name: str, value: float, message: str, seconds: int, company_id
     retry_after = {RETRY_AFTER: str(max(seconds, 1))}
 
     raise TemplateError(
-        status.HTTP_429_TOO_MANY_REQUESTS, message, headers=retry_after, limit=value
+        status.HTTP_429_TOO_MANY_REQUESTS,
+        message,
+        headers=retry_after,
+        code=error_codes.RATE_LIMITED,
+        limit=value,
     )
 
 

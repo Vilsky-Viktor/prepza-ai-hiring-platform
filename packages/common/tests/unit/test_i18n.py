@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.testclient import TestClient
 from prepza_common.constants import RATE_LIMITED
-from prepza_common.i18n import TemplateError, add_localized_errors, language_of
+from prepza_common.i18n import CodedError, TemplateError, add_localized_errors, language_of
 from pydantic import BaseModel, field_validator
 
 
@@ -41,7 +41,34 @@ def titles(body: Body):
     return body
 
 
+@app.get("/coded")
+def coded():
+    raise CodedError(429, RATE_LIMITED, "rate_limited", headers={"Retry-After": "9"})
+
+
 client = TestClient(app)
+
+# An app whose every refusal carries a code: its own, or its status's.
+coded_app = FastAPI()
+add_localized_errors(coded_app, {404: "not_found", 422: "validation_failed"})
+
+
+@coded_app.get("/missing")
+def missing():
+    raise HTTPException(404, "Interview not found")
+
+
+@coded_app.get("/templated")
+def coded_template():
+    raise TemplateError(409, "At most {limit}.", code="quota_reached", limit=3)
+
+
+@coded_app.post("/titles")
+def coded_titles(body: Body):
+    return body
+
+
+coded_client = TestClient(coded_app)
 
 
 def test_errors_come_in_the_interface_language():
@@ -130,3 +157,28 @@ def test_raised_messages_finds_literals_and_constants_but_not_f_strings(tmp_path
     monkeypatch.syspath_prepend(str(tmp_path))
 
     assert raised_messages(package) == {"Not here", "It is gone"}
+
+
+def test_a_coded_refusal_carries_its_code_beside_the_translated_detail():
+    response = client.get("/coded", headers={"Accept-Language": "ru"})
+
+    assert response.json() == {
+        "detail": "Слишком много запросов. Попробуйте позже.",
+        "code": "rate_limited",
+    }
+    assert response.headers["Retry-After"] == "9"
+
+
+def test_with_codes_every_refusal_has_one_and_validation_still_names_each_field():
+    missing = coded_client.get("/missing")
+    templated = coded_client.get("/templated")
+    invalid = coded_client.post("/titles", json={"title": " "}, headers={"Accept-Language": "ru"})
+    unknown_route = coded_client.get("/nowhere")
+
+    assert missing.json() == {"detail": "Interview not found", "code": "not_found"}
+    assert templated.json() == {"detail": "At most 3.", "code": "quota_reached"}
+    assert invalid.json()["code"] == "validation_failed"
+    assert [(item["loc"], item["msg"]) for item in invalid.json()["detail"]] == [
+        (["body", "title"], "Value error, Нужно название")
+    ]
+    assert unknown_route.json()["code"] == "not_found"

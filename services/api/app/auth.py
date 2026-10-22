@@ -2,14 +2,16 @@ from datetime import UTC, datetime
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import Depends, HTTPException, Request, status
+from fastapi import Depends, Request, status
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from prepza_common import memory_cache
+from prepza_common.i18n import CodedError
 from prepza_common.rate_limit import hit_or_skip
 from prepza_common.tokens import hashed
 
 from app.constants.api import ACCESS_CACHE_SECONDS, LAST_USED_EVERY
+from app.constants.error_codes import API_KEY_EXPIRED, INVALID_API_KEY, KEY_CREATOR_LOST_ACCESS
 from app.constants.permissions import MISSING_PERMISSION, MISSING_PERMISSION_MESSAGE, Permission
 from app.helpers.keys import expired
 from app.integrations import companies
@@ -34,19 +36,20 @@ async def checked_key(raw: str | None) -> ApiKey:
     found = await keys.by_hash(hashed(raw)) if raw else None
 
     if found is None:
-        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid API key")
+        raise CodedError(status.HTTP_401_UNAUTHORIZED, "Invalid API key", INVALID_API_KEY)
 
     now = datetime.now(UTC)
 
     if expired(found.expires_at, now):
-        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "This API key has expired")
+        raise CodedError(status.HTTP_401_UNAUTHORIZED, "This API key has expired", API_KEY_EXPIRED)
 
     await limit(found.company_id)
 
     if not await editor(found.company_id, found.created_by):
-        raise HTTPException(
+        raise CodedError(
             status.HTTP_401_UNAUTHORIZED,
             "This key's creator is no longer an owner or admin of the company",
+            KEY_CREATOR_LOST_ACCESS,
         )
 
     if found.last_used_at is None or now - found.last_used_at >= LAST_USED_EVERY:

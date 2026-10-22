@@ -85,7 +85,7 @@ def test_an_unpaid_companys_generation_stops_once_today_reached_the_cap(
 
     assert allowed.status_code == 200
     assert refused.status_code == 503
-    assert refused.json() == {"detail": AI_PAUSED_TODAY}
+    assert refused.json() == {"detail": AI_PAUSED_TODAY, "code": "ai_budget_used_up"}
     assert len(generating["reached"]) == 1
     assert [(hit["limit"], hit["company_id"], hit["user_id"]) for hit in limit_hits] == [
         ("AI_SPEND_UNPAID_DAY", str(COMPANY_ID), "bob")
@@ -99,7 +99,7 @@ def test_the_cap_is_as_edited(client, generating, path):
     refused = client.post(path, json={"selected": [0]})
 
     assert refused.status_code == 503
-    assert refused.json() == {"detail": AI_PAUSED_TODAY}
+    assert refused.json() == {"detail": AI_PAUSED_TODAY, "code": "ai_budget_used_up"}
     assert generating["reached"] == []
 
 

@@ -5,8 +5,10 @@
 # one Redis key without expiry, which every service already reads for its rate limits.
 import logging
 
-from fastapi import HTTPException, status
+from fastapi import status
+from prepza_common import error_codes
 from prepza_common.constants import PAUSE_KEY, PAUSED
+from prepza_common.i18n import CodedError
 from prepza_common.limit_list import PAUSED_LIMIT
 from prepza_common.limits import EVERYONE, record_hit
 
@@ -32,7 +34,7 @@ async def refuse_if_paused(
         kept = {"company_id": company_id, "user_id": user_id, "what": what}
         await record_hit(PAUSED_LIMIT, scope=EVERYONE, **kept)
 
-        raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, PAUSED)
+        raise CodedError(status.HTTP_503_SERVICE_UNAVAILABLE, PAUSED, error_codes.PAUSED)
 
 
 async def set_paused(redis, paused: bool, user_id: str) -> None:

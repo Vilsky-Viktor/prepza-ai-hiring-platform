@@ -2,10 +2,12 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
 from prepza_common.constants import MAX_PAGE_SIZE
+from prepza_common.i18n import CodedError
 from prepza_common.pause import refuse_if_paused
 from prepza_common.user import User
 from pydantic import EmailStr
 
+from app.constants import error_codes
 from app.constants.audit import VIA_API
 from app.constants.invites import NO_EMAILS_FOR_GUEST, InviteStatus
 from app.integrations.redis import get_redis
@@ -102,7 +104,9 @@ async def resend_invite(
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
 
     if invite.guest:
-        raise HTTPException(status.HTTP_409_CONFLICT, NO_EMAILS_FOR_GUEST)
+        raise CodedError(
+            status.HTTP_409_CONFLICT, NO_EMAILS_FOR_GUEST, error_codes.INVITED_WITHOUT_SIGN_IN
+        )
 
     company = await companies.get(company_id)
     sender = User(uid=user_id, email="", email_verified=True)
