@@ -57,9 +57,11 @@ MAX_QUESTION_CHARS = 400
 # Its example's lines:
 MAX_EXAMPLE_LINES = 10
 REGENERATE_ATTEMPTS = 3
-# Writing a regenerated question must finish within this, under the 120 s companies waits for
-# it; past it nothing is replaced, so a company that tries again never gets two replacements.
-REGENERATE_TIMEOUT_SECONDS = 110
+# Writing a regenerated question must finish within this, so the whole request (reading the
+# question, up to 15 s; writing; saving the new one, up to 15 s; recording its AI usage, up to 5 s
+# a model) ends within the 140 s companies waits for it (REGENERATE_CALL_SECONDS); past it nothing
+# is replaced, so a company that tries again never gets two replacements.
+REGENERATE_TIMEOUT_SECONDS = 90
 # Rounds of extra questions for a topic that ended short, before the generation fails.
 FILL_ATTEMPTS = 3
 # Extra questions a fill-up asks for beyond what's missing: it runs one round after another, so a
@@ -79,6 +81,8 @@ TOO_MANY_SUBTOPICS = "A topic can have at most {count} subtopics"
 JOB_TIMEOUT_SECONDS = 25 * 60
 # How long Cloud Tasks waits for the worker's answer; a little over JOB_TIMEOUT_SECONDS.
 TASK_DEADLINE_SECONDS = 28 * 60
+# Queueing a job is answered within this, well inside the 15 s companies waits to start one.
+ENQUEUE_TIMEOUT_SECONDS = 5
 CLOUD_TASKS_URL = "https://cloudtasks.googleapis.com"
 # The worker's job endpoints.
 RUN_GENERATION = "/internal/jobs/run-generation"

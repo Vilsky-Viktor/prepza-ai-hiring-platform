@@ -5,6 +5,7 @@ from prepza_common import http
 from prepza_common.http import bearer
 
 from app.config.settings import settings
+from app.constants.generation import REGENERATE_CALL_SECONDS
 from app.service_auth import service_token
 
 
@@ -43,7 +44,7 @@ async def regenerate_question(
         f"{settings.generation_url}/internal/questions/{question_id}/regenerate",
         json={"user_id": user_id, "set_id": str(set_id), "paid": paid},
         headers=bearer(service_token("generation")),
-        timeout=120,
+        timeout=REGENERATE_CALL_SECONDS,
     )
 
 
