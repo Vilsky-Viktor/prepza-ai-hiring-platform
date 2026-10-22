@@ -1,3 +1,4 @@
+import contextlib
 import json
 import logging
 import os
@@ -68,9 +69,17 @@ def configure_logging() -> None:
     root.handlers = [handler]
     root.setLevel(logging.INFO)
     # The HTTP client logs every request's full address at INFO, and some addresses are secrets
-    # (a company's Slack web hook): only its warnings and errors are kept.
+    # (a company's Slack web hook): only its warnings and errors are kept. Langfuse's package
+    # gives httpx's logger a plain-text handler of its own when it's imported, so it's loaded
+    # first (where installed) and that handler dropped: those lines go out as JSON too.
+    with contextlib.suppress(ImportError):
+        import langfuse.logger  # noqa: F401
+
     for name in ("httpx", "httpcore"):
-        logging.getLogger(name).setLevel(logging.WARNING)
+        client = logging.getLogger(name)
+        client.setLevel(logging.WARNING)
+        client.handlers = []
+        client.propagate = True
 
     # Uvicorn's access log prints every request's full path and query and the client's address:
     # paths carry secret tokens (invite, guest and unsubscribe links) and an address is personal

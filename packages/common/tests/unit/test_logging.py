@@ -52,6 +52,20 @@ def test_uvicorns_own_lines_are_json_too(capsys):
     assert capsys.readouterr().out == ""
 
 
+def test_the_http_clients_lines_are_json_even_after_langfuse_added_its_handler(capsys):
+    """Langfuse's package gives httpx's logger a plain-text handler of its own on import."""
+    import langfuse.logger  # noqa: F401
+
+    logging.getLogger("httpx").addHandler(logging.StreamHandler(sys.stdout))
+    configure_logging()
+
+    logging.getLogger("httpx").warning("A call failed")
+    lines = [line for line in capsys.readouterr().err.splitlines() if line]
+
+    assert json.loads(lines[-1])["message"] == "A call failed"
+    assert capsys.readouterr().out == ""
+
+
 def test_emails_and_url_paths_never_reach_a_line_even_from_an_error():
     try:
         raise ValueError('Key (email)=(ann@example.com) exists; url "https://hooks.slack.com/T/x"')
