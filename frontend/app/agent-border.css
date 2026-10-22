@@ -1,5 +1,5 @@
-/* "ask agent": an outline pill whose brand-blue border has a bright arc circling it, once every
-   4.4 s. On hover the arc speeds up and brightens, the border glows and the pill takes a light
+/* "ask agent": an outline pill whose brand-blue border has a bright arc circling it once, in 4.4 s,
+   then resting (nothing moves on its own for more than 5 s, WCAG 2.2.2). On hover the arc speeds up and brightens, the border glows and the pill takes a light
    blue tint. Under reduced motion the border stays still; the hover tint and glow remain. */
 @property --agent-angle {
   syntax: "<angle>";
@@ -53,7 +53,7 @@
       )
       border-box;
   animation:
-    agent-border 4.4s linear infinite,
+    agent-border 4.4s linear 1,
     agent-boost 2.2s linear infinite paused;
   transition:
     --agent-fill 0.3s ease,
@@ -68,7 +68,7 @@
   animation-play-state: running, running;
 }
 
-/* Its sparkles twinkle: a quick pulse (about 0.6 s), every 3.5 s. */
+/* Its sparkles twinkle once: a quick pulse (about 0.6 s). */
 @keyframes agent-twinkle {
   0%,
   17%,
@@ -83,7 +83,7 @@
 }
 
 .agent-border svg {
-  animation: agent-twinkle 3.5s ease-in-out infinite;
+  animation: agent-twinkle 3.5s ease-in-out 1;
 }
 
 @media (prefers-reduced-motion: reduce) {

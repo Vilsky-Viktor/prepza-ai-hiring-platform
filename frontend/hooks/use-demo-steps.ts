@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 
+import { useStill } from "@/components/landing/motion-pause"
+
 /** A demo's step: how long it shows, in milliseconds; one that `repeat`s counts up to it, a
  * count each `ms` (a letter typed, a row shown). For a demo with a pointer, `point` names what
  * the pointer moves to as the step starts ("none" hides it), and `click` clicks there. */
@@ -27,21 +29,20 @@ const STEPS_SEEN = Array.from({ length: 21 }, (_, i) => i / 20)
  * element whose coming into view starts it. It rests on its first step until then, plays the
  * steps over and over while in view, and starts again from the first when it's back; `skipTo`
  * moves it on to a later step. Without
- * scripts and with reduced motion it rests on the last step, a complete frame. */
+ * scripts, with reduced motion and paused (useStill) it rests on the last step, a complete frame. */
 export function useDemoSteps<T extends Element>(steps: readonly DemoStep[]) {
   const ref = useRef<T>(null)
   // Set while it plays: moves it on to a later step.
   const jump = useRef<((to: number) => void) | null>(null)
   const last = steps.length - 1
-  const [at, setAt] = useState({ index: last, n: steps[last].repeat ?? 0 })
+  const complete = { index: last, n: steps[last].repeat ?? 0 }
+  const [at, setAt] = useState(complete)
+  const still = useStill()
 
   useEffect(() => {
     const element = ref.current
 
-    if (
-      !element ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (!element || still) {
       return
     }
 
@@ -107,12 +108,12 @@ export function useDemoSteps<T extends Element>(steps: readonly DemoStep[]) {
       window.clearTimeout(timer)
       jump.current = null
     }
-  }, [steps])
+  }, [steps, still])
 
   // On to step `to` now, if it's playing and hasn't got there yet.
   const skipTo = useCallback((to: number) => jump.current?.(to), [])
 
-  return { ref, skipTo, ...at }
+  return { ref, skipTo, ...(still ? complete : at) }
 }
 
 /** Whether a demo is seen: IN_VIEW of it on a `screen` this tall, or, for one taller than the

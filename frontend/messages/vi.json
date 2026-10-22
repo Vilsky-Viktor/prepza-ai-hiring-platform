@@ -1480,7 +1480,8 @@
         "refund": "credit đã mua chưa dùng được hoàn tiền trong 14 ngày",
         "tax": "giá chưa gồm VAT hoặc thuế bán hàng"
       }
-    }
+    },
+    "pauseMotion": "Tạm dừng hoạt ảnh"
   },
   "faq": {
     "title": "Câu hỏi thường gặp",

@@ -1480,7 +1480,8 @@
         "refund": "kasutamata ostetud krediidid saab 14 päeva jooksul tagasi",
         "tax": "hindadele lisandub käibemaks või müügimaks"
       }
-    }
+    },
+    "pauseMotion": "Peata animatsioonid"
   },
   "faq": {
     "title": "Korduma kippuvad küsimused",

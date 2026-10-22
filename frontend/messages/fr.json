@@ -1480,7 +1480,8 @@
         "refund": "crédits payés non utilisés remboursables pendant 14 jours",
         "tax": "prix hors TVA ou taxe de vente"
       }
-    }
+    },
+    "pauseMotion": "Mettre les animations en pause"
   },
   "faq": {
     "title": "Questions fréquentes",

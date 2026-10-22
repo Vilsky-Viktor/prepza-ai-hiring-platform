@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 
 import { CodeEditor } from "@/components/code-editor"
 import { DemoLogo } from "@/components/landing/demo-logo"
+import { useStill } from "@/components/landing/motion-pause"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { buttonVariants } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
@@ -148,9 +149,10 @@ export function DemoQuestion({
 }
 
 /** The question's clock, counting down a second at a time while `running`; from the full time
- * again each time it starts. Still with reduced motion. */
+ * again each time it starts. Still with reduced motion or paused. */
 function DemoClock({ running }: { running: boolean }) {
   const [left, setLeft] = useState(DEMO_QUESTION_SECONDS)
+  const still = useStill()
   const [wasRunning, setWasRunning] = useState(running)
 
   if (wasRunning !== running) {
@@ -162,10 +164,7 @@ function DemoClock({ running }: { running: boolean }) {
   }
 
   useEffect(() => {
-    if (
-      !running ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (!running || still) {
       return
     }
 
@@ -175,7 +174,7 @@ function DemoClock({ running }: { running: boolean }) {
     )
 
     return () => window.clearInterval(timer)
-  }, [running])
+  }, [running, still])
 
   return (
     <span className="flex items-center gap-1.5 font-medium">

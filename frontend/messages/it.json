@@ -1480,7 +1480,8 @@
         "refund": "crediti pagati non usati rimborsabili per 14 giorni",
         "tax": "prezzi al netto di IVA o imposta sulle vendite"
       }
-    }
+    },
+    "pauseMotion": "Metti in pausa le animazioni"
   },
   "faq": {
     "title": "Domande frequenti",

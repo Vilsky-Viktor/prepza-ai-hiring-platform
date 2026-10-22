@@ -3,6 +3,7 @@
 import { type LucideIcon, UserRoundIcon } from "lucide-react"
 import { useEffect, useRef } from "react"
 
+import { useStill } from "@/components/landing/motion-pause"
 import { PULSE_SECONDS, SPARK_SPEED } from "@/constants/landing"
 
 /** One wire of the landing page, for an SVG in the focused border's colour (`text-ring`): the
@@ -34,6 +35,7 @@ export function Wire({
   onArrive?: () => void
 }) {
   const motion = useRef<SVGAnimateMotionElement>(null)
+  const still = useStill()
   const fade = useRef<SVGAnimateElement>(null)
   // A longer wire takes longer.
   const length = wireLength(d) / speed
@@ -53,11 +55,7 @@ export function Wire({
   // The looping traveller's arrivals, on the same clock: at its delay and length, then once
   // every length.
   useEffect(() => {
-    if (
-      once ||
-      !onArrive ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (once || !onArrive || still) {
       return
     }
 
@@ -74,7 +72,7 @@ export function Wire({
       window.clearTimeout(first)
       window.clearInterval(interval)
     }
-  }, [once, onArrive, delay, length])
+  }, [once, onArrive, delay, length, still])
 
   const animations = (
     <>

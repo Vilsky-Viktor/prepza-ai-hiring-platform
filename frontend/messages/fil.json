@@ -1480,7 +1480,8 @@
         "refund": "mare-refund ang binayarang credits sa 14 araw",
         "tax": "hindi pa kasama sa presyo ang VAT o sales tax"
       }
-    }
+    },
+    "pauseMotion": "I-pause ang mga animation"
   },
   "faq": {
     "title": "Mga madalas itanong",

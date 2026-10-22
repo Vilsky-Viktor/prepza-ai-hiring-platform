@@ -147,10 +147,12 @@ export function NotificationBell() {
           />
         }
       >
+        {/* It swings once when something unread arrives, then rests: the count carries the
+            state (nothing moves on its own for more than 5 seconds). */}
         <BellIcon
           className={cn(
             "size-5 origin-top",
-            unread > 0 && "animate-[bell-ring_4s_ease-in-out_infinite]"
+            unread > 0 && "animate-[bell-ring_4s_ease-in-out_1]"
           )}
         />
         {unread > 0 && (

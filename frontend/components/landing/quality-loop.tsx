@@ -12,6 +12,7 @@ import {
 import { useEffect, useRef, useState } from "react"
 
 import { SOURCE_CARD } from "@/components/landing/demo-panel"
+import { useStill } from "@/components/landing/motion-pause"
 import { Wire, wireLength } from "@/components/landing/wire"
 import { INVITE_SPEED } from "@/constants/invite-demo"
 import {
@@ -48,6 +49,7 @@ export function QualityLoop({
   const [wires, setWires] = useState<string[]>([])
   // The step the question is on, and how many times each wire has sent it on.
   const [lit, setLit] = useState<number | null>(null)
+  const still = useStill()
   const [fired, setFired] = useState<number[]>(QUALITY_STEPS.map(() => 0))
 
   // The wires through the cards' middles, again whenever one of them changes size.
@@ -85,11 +87,7 @@ export function QualityLoop({
 
   // Round the ring: a rest on a step, then the wire to the next, which takes as long as it's long.
   useEffect(() => {
-    if (
-      !playing ||
-      wires.length === 0 ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (!playing || wires.length === 0 || still) {
       return
     }
 
@@ -115,7 +113,7 @@ export function QualityLoop({
       window.clearTimeout(timer)
       setLit(null)
     }
-  }, [playing, wires])
+  }, [playing, wires, still])
 
   return (
     <div

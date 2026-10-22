@@ -1480,7 +1480,8 @@
         "refund": "créditos pagados sin usar reembolsables durante 14 días",
         "tax": "precios sin IVA ni impuesto sobre las ventas"
       }
-    }
+    },
+    "pauseMotion": "Pausar animaciones"
   },
   "faq": {
     "title": "Preguntas frecuentes",
