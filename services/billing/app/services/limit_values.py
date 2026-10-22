@@ -1,6 +1,7 @@
 """The limits superadmins edit in Controls: kept in Postgres, and written to Redis's
-limits:values hash, which every service reads (on each change, at start and every
-LIMITS_SYNC_SECONDS, so a Redis wipe heals itself and never brings back old values)."""
+limits:values hash, which every service reads (on each change and every LIMITS_SYNC_SECONDS,
+so a Redis wipe heals itself and never brings back old values; not at start, which a cold start
+would wait on, Redis down included)."""
 
 from datetime import UTC, datetime, timedelta
 

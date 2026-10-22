@@ -1,4 +1,3 @@
-import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -25,23 +24,15 @@ from app.routers import (
     superadmin_ai,
     superadmin_limits,
 )
-from app.services import limit_values
 from app.storage.db import engine
 
 configure_logging()
 init_sentry("billing")
-logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     start_firebase(settings.firebase_project_id)
-
-    # The edited limits into Redis at once; the scheduled sync tries again if Redis is down.
-    try:
-        await limit_values.sync()
-    except Exception:
-        logger.warning("Couldn't write the limits to Redis at start", exc_info=True)
 
     yield
 
