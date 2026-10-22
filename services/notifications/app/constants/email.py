@@ -6,6 +6,10 @@ RESEND_REFUSED = (400, 422)
 # The name in Resend's 429 error once the account's daily sending quota is used up (other 429s
 # are its per-second limit).
 RESEND_DAILY_QUOTA_ERROR = "daily_quota_exceeded"
+# Resend's 409s about the idempotency key: used within 24 hours with a changed body, so the email
+# already went out (never retried); or the same key still in progress (retried, nothing sent yet).
+RESEND_ALREADY_SENT = "invalid_idempotent_request"
+RESEND_IN_PROGRESS = "concurrent_idempotent_requests"
 # On every email (RFC 3834): sent by a program, so mail servers and clients send it no
 # out-of-office or other automatic replies.
 AUTOMATED_HEADERS = {"Auto-Submitted": "auto-generated"}

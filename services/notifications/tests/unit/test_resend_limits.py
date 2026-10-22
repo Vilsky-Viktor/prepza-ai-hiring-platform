@@ -60,3 +60,22 @@ def test_a_sent_or_refused_email_is_no_limit_hit(monkeypatch, published):
         send(monkeypatch, httpx.Response(422, json={"name": "validation_error"}))
 
     assert published == []
+
+
+def test_a_key_resend_already_sent_with_counts_as_sent(monkeypatch, published):
+    # Same key, changed body (a retry whose language changed): the email went out the first time.
+    send(monkeypatch, httpx.Response(409, json={"name": "invalid_idempotent_request"}))
+
+    assert published == []
+
+
+def test_the_same_key_still_in_progress_is_retried(monkeypatch, published):
+    with pytest.raises(ResendBusy):
+        send(monkeypatch, httpx.Response(409, json={"name": "concurrent_idempotent_requests"}))
+
+    assert published == []
+
+
+def test_another_conflict_is_a_failure_a_retry_may_fix(monkeypatch):
+    with pytest.raises(RuntimeError):
+        send(monkeypatch, httpx.Response(409, json={"name": "resource_locked"}))

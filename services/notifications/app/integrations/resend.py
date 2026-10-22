@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import status
 from prepza_common import http
 from prepza_common.http import bearer
@@ -5,12 +7,16 @@ from prepza_common.limits import record_hit
 
 from app.config.settings import settings
 from app.constants.email import (
+    RESEND_ALREADY_SENT,
     RESEND_DAILY_QUOTA_ERROR,
     RESEND_EMAILS_URL,
+    RESEND_IN_PROGRESS,
     RESEND_REFUSED,
     SEND_TIMEOUT_S,
 )
 from app.models.email import Email
+
+logger = logging.getLogger(__name__)
 
 
 class EmailRefused(Exception):
@@ -18,22 +24,30 @@ class EmailRefused(Exception):
 
 
 class ResendBusy(Exception):
-    """Over Resend's per-second limit (a burst of invites) or its daily quota: nothing was sent,
-    a retry will."""
+    """Over Resend's per-second limit (a burst of invites) or its daily quota, or the same
+    email still being sent by another try: nothing was sent yet, a retry will."""
+
+
+def error_name(response) -> str | None:
+    """The name of Resend's error (its JSON body's "name"), when it gives one."""
+    try:
+        body = response.json()
+    except ValueError:
+        return None
+
+    return body.get("name") if isinstance(body, dict) else None
 
 
 def quota_used(response) -> bool:
     """Whether Resend's 429 is for its daily quota rather than its per-second limit: its error's
     name says so."""
-    try:
-        return response.json().get("name") == RESEND_DAILY_QUOTA_ERROR
-    except ValueError:
-        return False
+    return error_name(response) == RESEND_DAILY_QUOTA_ERROR
 
 
 async def send(email: Email, idempotency_key: str) -> None:
     """Sends through Resend, on the service's shared connections; the same key within 24 hours
-    never sends twice, so retries are safe."""
+    never sends twice, so retries are safe. A key Resend already sent with (a retry whose email
+    changed meanwhile, say its language) counts as sent."""
     response = await http.get_client().post(
         RESEND_EMAILS_URL,
         headers={**bearer(settings.resend_api_key), "Idempotency-Key": idempotency_key},
@@ -65,6 +79,17 @@ async def send(email: Email, idempotency_key: str) -> None:
         await record_hit(name, kind="provider:resend", scope="everyone")
 
         raise ResendBusy()
+
+    if response.status_code == status.HTTP_409_CONFLICT:
+        name = error_name(response)
+
+        if name == RESEND_ALREADY_SENT:
+            logger.info("Resend already sent the email for key %s", idempotency_key)
+
+            return
+
+        if name == RESEND_IN_PROGRESS:
+            raise ResendBusy()
 
     if response.status_code in RESEND_REFUSED:
         raise EmailRefused(f"Resend refused the email ({response.status_code}): {response.text}")

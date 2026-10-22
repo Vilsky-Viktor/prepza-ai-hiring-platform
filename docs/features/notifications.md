@@ -204,6 +204,7 @@ Resend's `email.bounced` and `email.complained` for any email to a user (not a c
 
 - A failed send answers Pub/Sub's push with an error, so Pub/Sub retries it.
 - Over Resend's per-second limit (a burst of invites), it answers 429 instead: Pub/Sub retries with backoff, and it doesn't count as a server error in the alerts.
+- A key Resend already sent with, whose email changed since (409 `invalid_idempotent_request`: a retry after the recipient's language changed, say), counts as sent and is logged, never retried; the same key still being sent by another try (409 `concurrent_idempotent_requests`) is retried like a 429. The same holds for the scheduled and bulk sends: the row stays sent, its claim kept.
 - After the subscription's maximum attempts, Pub/Sub moves it to the dead-letter topic.
 - The error from Resend is in the logs.
 - Retries never send an email twice.
