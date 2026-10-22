@@ -332,7 +332,8 @@ export interface paths {
     /**
      * Low Companies
      * @description Companies running low on credits that no automatic top-up refills: for notifications'
-     *     reminders, and (only `ids`) the assistant's get_updates.
+     *     reminders a page at a time by company id (`after`, `limit`), and (only `ids`) the
+     *     assistant's get_updates.
      */
     get: operations["low_companies_internal_companies_low_get"]
     put?: never
@@ -2024,6 +2025,9 @@ export interface operations {
     parameters: {
       query?: {
         ids?: string[] | null
+        /** @description The last id of the previous page */
+        after?: string
+        limit?: number
       }
       header?: never
       path?: never

@@ -27,9 +27,11 @@ async def wallets(owner_type: str, owner_ids: list[str]) -> dict[str, Wallet]:
         return {row.owner_id: row for row in await session.scalars(query)}
 
 
-async def running_low(owner_type: str, owner_ids: list[str] | None = None) -> list[Wallet]:
+async def running_low(
+    owner_type: str, owner_ids: list[str] | None = None, after: str = "", limit: int | None = None
+) -> list[Wallet]:
     """Wallets running low (as helpers/wallets.py tells it) that no automatic top-up refills;
-    with `owner_ids`, only theirs."""
+    with `owner_ids`, only theirs; else up to `limit` by owner id, those after `after`."""
     refilled = exists().where(
         AutoTopUp.owner_type == Wallet.owner_type,
         AutoTopUp.owner_id == Wallet.owner_id,
@@ -41,6 +43,8 @@ async def running_low(owner_type: str, owner_ids: list[str] | None = None) -> li
 
     if owner_ids is not None:
         query = query.where(Wallet.owner_id.in_(owner_ids))
+    else:
+        query = query.where(Wallet.owner_id > after).order_by(Wallet.owner_id).limit(limit)
 
     async with Session() as session:
         return list(await session.scalars(query))

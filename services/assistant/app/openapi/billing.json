@@ -890,7 +890,7 @@
      "internal"
     ],
     "summary": "Low Companies",
-    "description": "Companies running low on credits that no automatic top-up refills: for notifications'\nreminders, and (only `ids`) the assistant's get_updates.",
+    "description": "Companies running low on credits that no automatic top-up refills: for notifications'\nreminders a page at a time by company id (`after`, `limit`), and (only `ids`) the\nassistant's get_updates.",
     "operationId": "low_companies_internal_companies_low_get",
     "security": [
      {
@@ -916,6 +916,30 @@
         }
        ],
        "title": "Ids"
+      }
+     },
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "description": "The last id of the previous page",
+       "default": "",
+       "title": "After"
+      },
+      "description": "The last id of the previous page"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 5000,
+       "minimum": 1,
+       "default": 5000,
+       "title": "Limit"
       }
      }
     ],

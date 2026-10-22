@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 from fastapi.encoders import jsonable_encoder
 from prepza_common.analytics import track
 from prepza_common.constants import MAX_PAGE_SIZE
-from prepza_common.paging import PageParams
+from prepza_common.paging import IdPageParams, PageParams
 
 from app.constants.credits import (
     ADJUSTMENT_BELOW_ZERO,
@@ -197,11 +197,14 @@ async def companies_credits(body: OwnersIn, caller: ServiceCaller) -> dict[str, 
 
 @router.get("/companies/low")
 async def low_companies(
-    caller: ServiceCaller, ids: Annotated[list[str] | None, Query(max_length=MAX_PAGE_SIZE)] = None
+    caller: ServiceCaller,
+    page: IdPageParams,
+    ids: Annotated[list[str] | None, Query(max_length=MAX_PAGE_SIZE)] = None,
 ) -> LowCompaniesOut:
     """Companies running low on credits that no automatic top-up refills: for notifications'
-    reminders, and (only `ids`) the assistant's get_updates."""
-    rows = await ledger.running_low(OwnerType.COMPANY, ids)
+    reminders a page at a time by company id (`after`, `limit`), and (only `ids`) the
+    assistant's get_updates."""
+    rows = await ledger.running_low(OwnerType.COMPANY, ids, page.after, page.limit)
 
     return LowCompaniesOut(
         companies=[

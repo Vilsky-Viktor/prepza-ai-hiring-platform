@@ -91,3 +91,18 @@ def test_running_low_takes_credits_set_aside_off_the_balance(run):
     found, owner = run(scenario())
 
     assert found == [owner]
+
+
+def test_running_low_comes_a_page_at_a_time_by_company_id(run):
+    async def scenario():
+        owners = sorted([await wallet(0) for _ in range(3)])
+        one = await ledger.running_low(COMPANY, None, owners[0], 1)
+        rest = await ledger.running_low(COMPANY, None, owners[0], 5000)
+
+        return owners, [row.owner_id for row in one], [row.owner_id for row in rest]
+
+    owners, one, rest = run(scenario())
+
+    # Other tests' wallets may come between: the page is in order, after the given id, bounded.
+    assert len(one) == 1 and one[0] > owners[0]
+    assert rest == sorted(rest) and {owners[1], owners[2]} <= set(rest)

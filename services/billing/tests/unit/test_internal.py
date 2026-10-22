@@ -156,7 +156,7 @@ def test_library_exports_a_users_purchases_and_automatic_top_ups_with_a_post(cli
 def test_low_companies_say_how_many_credits_are_available(client, monkeypatch):
     asked = []
 
-    async def running_low(owner_type, owner_ids=None):
+    async def running_low(owner_type, owner_ids=None, after="", limit=None):
         asked.append(owner_ids)
 
         return [SimpleNamespace(owner_id="acme", balance=1400, reserved=300)]
@@ -174,7 +174,7 @@ def test_low_companies_say_how_many_credits_are_available(client, monkeypatch):
 def test_low_companies_can_be_only_those_asked_for(client, monkeypatch):
     asked = []
 
-    async def running_low(owner_type, owner_ids=None):
+    async def running_low(owner_type, owner_ids=None, after="", limit=None):
         asked.append(owner_ids)
 
         return []
