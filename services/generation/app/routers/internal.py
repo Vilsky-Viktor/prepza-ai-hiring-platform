@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException, Request, status
 from prepza_common.ai_cap import refuse_if_capped
 from prepza_common.pause import refuse_if_paused
 from prepza_common.rate_limit import hit
+from prepza_common.text_language import text_language
 
 from app.constants.actions import (
     CAMPAIGN_TRANSLATION,
@@ -18,7 +19,6 @@ from app.constants.generation import (
     TRANSLATE_NEWS,
     VERIFY_QUESTION,
 )
-from app.helpers.language import text_language
 from app.helpers.questions import set_company
 from app.integrations import library, tasks
 from app.integrations.redis import get_redis

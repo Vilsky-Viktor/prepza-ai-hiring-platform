@@ -89,7 +89,7 @@ class GenerationOut(BaseModel):
     progress: GenerationProgress | None
     preparation_id: UUID | None
     error: str | None
-    # What it's generated in, from the pasted text (helpers/language.py).
+    # What it's generated in, from the pasted text (prepza_common.text_language).
     language: str
 
     # How many topics the review may approve without instructions, and how many subtopics a

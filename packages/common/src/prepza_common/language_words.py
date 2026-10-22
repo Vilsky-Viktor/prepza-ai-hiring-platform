@@ -1,4 +1,5 @@
-# Telling the pasted text's language (helpers/language.py), among LANGUAGES.
+# Telling a text's language (text_language.py), among LANGUAGES: a pasted job description's in
+# generation, a visitor's message's in the help chat.
 
 # A text is in a non-Latin script once this share of its letters is in it. Job descriptions in
 # those carry many Latin tech terms (Python, PostgreSQL), so a majority would miss them; texts in

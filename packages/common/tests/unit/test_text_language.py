@@ -1,6 +1,5 @@
 import pytest
-
-from app.helpers.language import text_language
+from prepza_common.text_language import text_language
 
 # Short job descriptions as people paste them, each full of English tech terms.
 JOBS = {
@@ -52,3 +51,8 @@ def test_an_english_text_naming_a_russian_city_stays_english():
 
 def test_a_text_without_letters_takes_the_interfaces_language():
     assert text_language("123 — 456", "ru") == "ru"
+
+
+def test_a_latin_text_without_common_words_takes_the_callers_unknown():
+    assert text_language("Kubernetes, Terraform", unknown="de") == "de"
+    assert text_language("Kubernetes, Terraform") == "en"

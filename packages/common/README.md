@@ -144,6 +144,7 @@ One line each, by name (`tests/unit/test_readme_modules.py` fails on one left ou
 - `http`: the shared HTTP client (a timeout, the trace passed on, no retries) and `passed_on`.
 - `human_check`: the Turnstile check of anonymous flows.
 - `i18n`: a request's language, translated refusals and their codes.
+- `language_words`: the scripts and common words `text_language` tells languages by.
 - `limit_list`: every usage limit of ours, with its default, window and scope.
 - `limit_schemas`: the shared daily budgets' use today.
 - `limit_types`: a limit's definition (`Limit`).
@@ -191,6 +192,7 @@ One line each, by name (`tests/unit/test_readme_modules.py` fails on one left ou
 - `tokens`: secret tokens kept as their hashes, compared in constant time.
 - `trace_constants`: Langfuse's retention and its API's settings.
 - `trace_retention`: Langfuse's traces deleted on time, page by page.
+- `text_language`: a text's language from its script and common words (`language_words`).
 - `tracing`: AI calls traced to Langfuse, with personal data masked.
 - `trace_prices`: our models' prices set in Langfuse at start-up, so traced calls carry their cost.
 - `translations`: the messages users read, by language, and the check that each is translated.

@@ -5,11 +5,11 @@ from prepza_common.limit_schemas import BudgetOut
 from prepza_common.pause import refuse_if_paused
 from prepza_common.rate_limit import hit
 from prepza_common.superadmin import SuperadminUser
+from prepza_common.text_language import text_language
 
 from app.constants.actions import TEMPLATE_GENERATION, TEMPLATE_QUESTION_REGENERATION
 from app.constants.generation import RUN_GENERATION
 from app.constants.kinds import GenerationKind
-from app.helpers.language import text_language
 from app.integrations import library, tasks
 from app.integrations.redis import get_redis
 from app.integrations.usage import ai_run

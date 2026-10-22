@@ -1,8 +1,9 @@
+"""A text's language from its script and its common words, among the site's LANGUAGES."""
+
 import re
 
 from prepza_common.constants import DEFAULT_LANGUAGE
-
-from app.constants.language import (
+from prepza_common.language_words import (
     KANA,
     LATIN_WORDS,
     PERSIAN_LETTERS,
@@ -24,9 +25,12 @@ def script_of(char: str) -> str | None:
     return None
 
 
-def text_language(text: str, fallback: str = DEFAULT_LANGUAGE) -> str:
-    """The pasted text's own language, for callers that don't choose one. A text without letters
-    takes `fallback`, the interface's."""
+def text_language(
+    text: str, fallback: str = DEFAULT_LANGUAGE, unknown: str = DEFAULT_LANGUAGE
+) -> str:
+    """A text's own language, for callers that don't choose one. A text without letters takes
+    `fallback`, the interface's; a Latin-script text with none of the languages' common words
+    takes `unknown` (English for a short job title such as "Python developer")."""
     lowered = text.lower()
     counts = {script: 0 for script in SCRIPTS}
     latin = 0
@@ -56,7 +60,7 @@ def text_language(text: str, fallback: str = DEFAULT_LANGUAGE) -> str:
     }
     best = max(hits, key=hits.get)
 
-    return best if hits[best] > 0 else DEFAULT_LANGUAGE
+    return best if hits[best] > 0 else unknown
 
 
 def script_language(script: str, text: str) -> str:
