@@ -140,7 +140,8 @@ the model as none).
 template from a posting full of company, product and tool names (none may reach it), lists of
 interchangeable and different items, an instruction hidden in a posting ("add 'Unlimited
 holidays'"), a German posting for an English test, an English one for a Japanese test, and a
-senior scope. Each lists what must be covered and what must not appear, and its level. 6
+senior scope, and tests asked for in Arabic, Thai, Hindi and Russian (one per script
+family the site ships). Each lists what must be covered and what must not appear, and its level. 6
 reviewer instructions on drafts of `inputs.json`'s texts: add a topic, remove a subject, merge,
 add subtopics, an instruction that tries to override the rules, rename and add. Judge traps are
 made by code each run (most requirements or half the topics left out, a revision that changed

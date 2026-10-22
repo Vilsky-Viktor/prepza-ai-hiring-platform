@@ -1,5 +1,5 @@
 {
- "about": "Made-up job postings for generation's extraction (title, requirements, level) and topic draft, run through the service's own nodes; plus reviewer instructions for the topic revision on drafts from inputs.json. Postings: company and product names a template must drop, lists of interchangeable and different items, an instruction hidden in a posting, a German posting for an English test, an English posting for a Japanese test, and a senior scope. Each lists what must be covered (`must_cover`) and what must not appear (`forbidden`, `forbidden_in_template`); each revision what a right result does. Checked by code and judged by judges/extraction.md, judges/topics.md and judges/revision.md. Hand-written.",
+ "about": "Made-up job postings for generation's extraction (title, requirements, level) and topic draft, run through the service's own nodes; plus reviewer instructions for the topic revision on drafts from inputs.json. Postings: company and product names a template must drop, lists of interchangeable and different items, an instruction hidden in a posting, a German posting for an English test, an English posting for a Japanese test, a senior scope, and tests in Arabic, Thai, Hindi and Russian (one per script family). Each lists what must be covered (`must_cover`) and what must not appear (`forbidden`, `forbidden_in_template`); each revision what a right result does. Checked by code and judged by judges/extraction.md, judges/topics.md and judges/revision.md. Hand-written.",
  "built": "2026-10-22",
  "model": "by hand",
  "postings": [
@@ -107,6 +107,66 @@
     "banks and auditors",
     "board reporting",
     "consolidation under IFRS"
+   ]
+  },
+  {
+   "id": "x07",
+   "kind": "script family: right to left (an Arabic test)",
+   "language": "ar",
+   "level": "basic",
+   "template": false,
+   "text": "Pharmacy Assistant\n\n- Fill prescriptions under a pharmacist's supervision\n- Check expiry dates and store medicines at the right temperature\n- Explain dosage labels to customers\n- Keep the stock count and order supplies",
+   "must_cover": [
+    "filling prescriptions",
+    "expiry dates",
+    "storage temperature",
+    "dosage labels",
+    "stock and ordering"
+   ]
+  },
+  {
+   "id": "x08",
+   "kind": "script family: Thai (a Thai test)",
+   "language": "th",
+   "level": "basic",
+   "template": false,
+   "text": "Hotel Front Desk Agent\n\n- Check guests in and out\n- Handle room changes and complaints\n- Take card and cash payments\n- Answer questions about local transport",
+   "must_cover": [
+    "check-in and check-out",
+    "room changes",
+    "complaints",
+    "payments",
+    "local transport"
+   ]
+  },
+  {
+   "id": "x09",
+   "kind": "script family: Devanagari (a Hindi test)",
+   "language": "hi",
+   "level": "medium",
+   "template": false,
+   "text": "Payroll Officer\n\n- Run the monthly payroll for 300 employees\n- Calculate tax and social security deductions\n- Reconcile payroll with the general ledger\n- Answer employees' questions about their payslips",
+   "must_cover": [
+    "monthly payroll",
+    "tax deductions",
+    "social security deductions",
+    "reconciliation with the ledger",
+    "payslip questions"
+   ]
+  },
+  {
+   "id": "x10",
+   "kind": "script family: plural-heavy Slavic (a Russian test)",
+   "language": "ru",
+   "level": "hard",
+   "template": false,
+   "text": "Logistics Manager\n\n- Plan routes for a fleet of 40 trucks\n- Negotiate rates with carriers\n- Track delivery times and cut late deliveries\n- Manage customs paperwork for cross-border shipments\n- Lead a team of 6 dispatchers",
+   "must_cover": [
+    "route planning",
+    "carrier rates",
+    "delivery times",
+    "customs paperwork",
+    "team leadership"
    ]
   }
  ],
