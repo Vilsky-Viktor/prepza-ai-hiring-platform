@@ -14,7 +14,7 @@ from mcp.client.streamable_http import streamable_http_client
 from mcp.shared.auth import AuthorizationCodeResult, OAuthClientMetadata
 
 from app.config.settings import settings
-from app.constants.chat import COMPANY_NOT_FOUND
+from app.constants.chat import OTHER_COMPANY
 from app.main import app
 from app.routers import mcp as mcp_router
 from app.storage import oauth
@@ -125,7 +125,7 @@ def test_an_app_connects_with_oauth_and_calls_tools_as_the_user(run, user):
     assert json.loads(me.content[0].text)["data"]["email"].startswith("assistant-")
     assert json.loads(companies.content[0].text)["data"] == []
     # Someone else's company: refused before anything is sent.
-    assert refused.is_error and COMPANY_NOT_FOUND in refused.content[0].text
+    assert refused.is_error and OTHER_COMPANY in refused.content[0].text
     assert excluded.is_error
     assert [(grant.client_name, grant.redirect_host) for grant in grants] == [
         ("Integration app", "127.0.0.1")

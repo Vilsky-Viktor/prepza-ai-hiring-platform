@@ -8,7 +8,7 @@ from prepza_common import http
 from prepza_common.i18n import translate
 from prepza_common.service_auth import token_claims
 
-from app.constants.chat import COMPANY_NOT_FOUND
+from app.constants.chat import OTHER_COMPANY
 from app.constants.key_tools import KEY_TOOLS
 from app.constants.mcp import KEY_MISSING_PERMISSION
 from app.constants.tool_calls import UNKNOWN_TOOL
@@ -107,7 +107,7 @@ def test_a_key_is_refused_another_company_before_anything_is_called(calls):  # n
     error, content = called("get_company", {"company_id": OTHER}, key())
 
     # In the user's language (German here).
-    assert (error, content) == (True, {"error": translate(COMPANY_NOT_FOUND, "de")})
+    assert (error, content) == (True, {"error": translate(OTHER_COMPANY, "de")})
     assert calls == []
 
 

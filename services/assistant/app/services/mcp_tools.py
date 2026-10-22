@@ -14,7 +14,7 @@ from prepza_common.secrets_check import SECRET_REMOVED, secret_in
 from prepza_common.user import User
 
 from app.config.settings import settings
-from app.constants.chat import COMPANY_NOT_FOUND
+from app.constants.chat import OTHER_COMPANY
 from app.constants.mcp import (
     ACCOUNT_GONE,
     ACTIVE_KEY,
@@ -232,7 +232,7 @@ async def call(name: str, arguments: dict, access: Access) -> types.CallToolResu
         # As in the app's panel: a company that isn't one of the user's (or the key's) isn't
         # called at all.
         if foreign_company(arguments, companies):
-            detail = translate(COMPANY_NOT_FOUND, user.language)
+            detail = translate(OTHER_COMPANY, user.language)
 
             return logged("company not the user's", name, access, detail)
 

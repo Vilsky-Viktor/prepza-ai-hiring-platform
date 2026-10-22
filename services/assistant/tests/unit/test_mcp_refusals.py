@@ -125,3 +125,19 @@ def test_over_the_limit_a_call_is_refused_before_anything_else(monkeypatch):
     error, content = called("no_such_tool", {})
 
     assert error and content == {"error": translate("Too many requests. Try again later.", "de")}
+
+
+def test_a_refusal_says_what_to_do_next(monkeypatch):
+    other = "1b2c3d4e-0000-4000-8000-000000000000"
+
+    async def own(uid):
+        return frozenset({COMPANY})
+
+    monkeypatch.setattr(mcp_tools, "user_companies", own)
+
+    assert called("no_such_tool", {})[1]["error"] == (
+        "There is no such tool: use one of the tools listed for you, by its exact name."
+    )
+    assert called("get_company", {"company_id": other})[1]["error"] == translate(
+        "This company isn't one of yours: use a company id from list_companies.", "de"
+    )

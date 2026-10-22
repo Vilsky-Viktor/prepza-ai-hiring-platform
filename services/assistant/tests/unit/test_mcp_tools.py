@@ -9,7 +9,7 @@ from prepza_common.secrets_check import SECRET_REMOVED
 from prepza_common.user import User
 
 from app.constants.actions_flow import NOTHING_TO_CHANGE, SUBJECT_NOT_FOUND
-from app.constants.chat import COMPANY_NOT_FOUND
+from app.constants.chat import OTHER_COMPANY
 from app.constants.mcp import ACCOUNT_GONE, EXCLUDED_TOOL, READ_ONLY
 from app.constants.mcp_descriptions import MCP_DESCRIPTIONS
 from app.constants.tool_calls import UNKNOWN_TOOL
@@ -232,7 +232,7 @@ def test_a_company_that_isnt_the_users_isnt_called_through_mcp(calls):
 
     error, content = called("get_company", {"company_id": other})
 
-    assert (error, content) == (True, {"error": translate(COMPANY_NOT_FOUND, "de")})
+    assert (error, content) == (True, {"error": translate(OTHER_COMPANY, "de")})
     assert calls == []
 
 

@@ -142,7 +142,10 @@ MCP_UNLISTED = frozenset({"list_notifications", "get_page_guide"})
 # this much of it (a real name is at most 64 characters).
 MAX_LOGGED_TOOL_NAME = 64
 # What an app reads when the connection's account is gone or disabled.
-ACCOUNT_GONE = "This prepza account no longer exists or is disabled."
+ACCOUNT_GONE = (
+    "This prepza account no longer exists or is disabled: reconnect the app with an active "
+    "prepza account."
+)
 # The tool that changes the user's language: their kept sign-in is dropped after it, so the next
 # calls answer in the new one.
 UPDATE_LANGUAGE = "update_language"

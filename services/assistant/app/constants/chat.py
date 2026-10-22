@@ -66,6 +66,8 @@ SESSION_EXPIRED = "Your session expired. Sign in again."
 QUESTION_TOO_LONG = "The question is too long."
 NOT_FOUND = "Not found"
 COMPANY_NOT_FOUND = "Company not found"
+# A tool call naming a company that isn't one of the user's (or an API key's), for the model.
+OTHER_COMPANY = "This company isn't one of yours: use a company id from list_companies."
 # With "all companies" picked and several of them, a company's interviews come with this note
 # for the model (not the user's text): the company comes first, unless the user named it or
 # the interview.

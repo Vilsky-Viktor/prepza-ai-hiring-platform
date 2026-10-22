@@ -20,7 +20,7 @@ from prepza_common.tracing import hiding, new_trace_id, traced
 
 from app.config.settings import settings
 from app.constants.ai_usage import MESSAGE_ACTION
-from app.constants.chat import COMPANY_NOT_FOUND, MAX_TOOL_STEPS, ToolState
+from app.constants.chat import MAX_TOOL_STEPS, OTHER_COMPANY, ToolState
 from app.constants.client_tools import SIGN_OUT, SIGN_OUT_DEFINITION, SIGN_OUT_FOR_MODEL
 from app.constants.show import SHOW, SHOW_DEFINITION
 from app.constants.tool_calls import INVALID_ARGUMENTS
@@ -190,7 +190,7 @@ async def step_results(
             content = {"detail": SIGN_OUT_FOR_MODEL}
             results[index] = ToolResult(name, {}, 200, content, None, 0)
         elif foreign_company(arguments, turn.companies):
-            content = {"error": 404, "detail": translate(COMPANY_NOT_FOUND, turn.language)}
+            content = {"error": 404, "detail": translate(OTHER_COMPANY, turn.language)}
             results[index] = ToolResult(name, arguments, None, content, None, 0)
         elif tool is not None and tool.confirm:
             results[index] = await prepare(tool, arguments, turn, seen)

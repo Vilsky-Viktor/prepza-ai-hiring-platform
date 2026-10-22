@@ -4,6 +4,8 @@ from pathlib import Path
 
 from prepza_common.translations import TRANSLATIONS
 
+from app.constants.tool_calls import INVALID_ARGUMENTS
+
 APP = Path(__file__).resolve().parents[2] / "app"
 # Names that stay as they are in every language.
 NAMES = {"Slack"}
@@ -53,7 +55,7 @@ def translated_texts() -> set[str]:
 def test_every_text_translate_gets_is_translated():
     texts = translated_texts()
 
-    assert "Invalid arguments" in texts
+    assert INVALID_ARGUMENTS in texts
     for language, messages in TRANSLATIONS.items():
         missing = sorted(texts - NAMES - set(messages))
         assert missing == [], (language, missing)

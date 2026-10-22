@@ -27,8 +27,10 @@ SERVICE_URLS = {
 }
 # What the model reads when a tool's service didn't answer.
 SERVICE_UNAVAILABLE = "The service didn't answer. Try again later."
-INVALID_ARGUMENTS = "Invalid arguments"
-UNKNOWN_TOOL = "There is no such tool."
+# What the model reads for a call it can correct, with what to do next. INVALID_ARGUMENTS is
+# followed by ": " and what's wrong, when that's known.
+INVALID_ARGUMENTS = "The arguments don't match the tool's schema; correct them and call it again"
+UNKNOWN_TOOL = "There is no such tool: use one of the tools listed for you, by its exact name."
 # A link's secret code in a tool's data, and the full link the model gets in its place, as the
 # app's pages copy it: the candidate's invite and the interview's shareable link.
 TOKEN_LINKS = {
