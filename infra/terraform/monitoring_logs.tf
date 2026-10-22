@@ -83,7 +83,7 @@ resource "google_logging_metric" "ai_stopped" {
   }
 }
 
-# notifications logs each email Resend reports bounced, suppressed or marked as spam.
+# notifications logs each email Resend reports bounced, suppressed, failed or marked as spam.
 resource "google_logging_metric" "emails_undelivered" {
   name   = "prepza_emails_undelivered"
   filter = "resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"notifications\" AND jsonPayload.message:\"Email not delivered\""

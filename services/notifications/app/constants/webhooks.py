@@ -1,8 +1,11 @@
-# Resend's webhook events meaning the email never reached the inbox: a permanent bounce, a spam
-# complaint, or an address Resend won't send to after an earlier one.
+# Resend's webhook events meaning the email never reached the inbox: a bounce, a spam complaint,
+# an address Resend won't send to after an earlier one, or an email it couldn't send at all (its
+# quota, say). Only bounces, complaints and suppressions suppress the address; a failure is
+# Resend's, not the address's. `email.delivery_delayed` is temporary: not subscribed to.
 BOUNCED_EVENT = "email.bounced"
 COMPLAINED_EVENT = "email.complained"
-UNDELIVERED_EVENTS = {BOUNCED_EVENT, COMPLAINED_EVENT, "email.suppressed"}
+FAILED_EVENT = "email.failed"
+UNDELIVERED_EVENTS = {BOUNCED_EVENT, COMPLAINED_EVENT, "email.suppressed", FAILED_EVENT}
 
 # Resend signs each webhook with a timestamp; older ones are refused, so a captured one can't
 # be replayed.

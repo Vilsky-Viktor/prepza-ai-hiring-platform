@@ -211,9 +211,9 @@ Resend's `email.bounced` and `email.complained` for any email to a user (not a c
 
 ### Undelivered emails
 
-To show invites whose email bounced or was marked as spam ("Email not delivered" in the candidate list), to turn off an optional email for a user who marked it as spam, and to keep the suppression list:
+To show invites whose email bounced, was marked as spam or couldn't be sent ("Email not delivered" in the candidate list), to turn off an optional email for a user who marked it as spam, and to keep the suppression list:
 
-1. Add a webhook at resend.com/webhooks pointing at `https://<your domain>/api/notifications/webhooks/resend`, with the events `email.bounced`, `email.complained` and `email.suppressed`.
+1. Add a webhook at resend.com/webhooks pointing at `https://<your domain>/api/notifications/webhooks/resend`, with the events `email.bounced`, `email.complained`, `email.suppressed` and `email.failed` (an email Resend couldn't send at all, its quota used up, say: the invite shows as undelivered, and the address isn't suppressed). `email.delivery_delayed` isn't needed: a delay is temporary.
 2. Put its signing secret (`whsec_...`) in `.env` as `RESEND_WEBHOOK_SECRET`.
 3. Restart notifications.
 

@@ -99,6 +99,11 @@ def test_a_spam_complaint_on_an_invite_is_reported_to_companies(client, reported
     assert reported == [("companies", INVITE_ID)]
 
 
+def test_an_invite_resend_failed_to_send_is_reported_to_companies(client, reported):
+    assert signed_post(client, event("email.failed", "candidate_invite")).status_code == 204
+    assert reported == [("companies", INVITE_ID)]
+
+
 def test_other_events_and_untagged_emails_are_ignored(client, reported):
     assert signed_post(client, event("email.delivered", "candidate_invite")).status_code == 204
     assert signed_post(client, event("email.bounced")).status_code == 204
