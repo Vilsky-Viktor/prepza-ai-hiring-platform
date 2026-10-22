@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Generaciones de entrevistas repetidas por empresa y día",
       "HELP_VOTES_PER_IP_HOUR": "Votos a respuestas del chat de ayuda por dirección y hora",
       "STREAMS_PER_USER": "Flujos de la campana abiertos a la vez por usuario",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "Llamadas al ATS de la empresa por empresa y minuto",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "Webhooks de ATS por dirección de envío y minuto",
       "ATS_CONNECTS_PER_HOUR": "Conexiones de ATS por empresa y hora",
       "RESEND_DAILY_LIMIT": "Correos al día a través de Resend",
       "RESEND_RESERVE_PERCENT": "Parte de los correos al día a través de Resend reservada fuera de los envíos masivos",

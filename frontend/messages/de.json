@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Erneut gestartete Interview-Erstellungen pro Unternehmen und Tag",
       "HELP_VOTES_PER_IP_HOUR": "Bewertungen von Hilfe-Chat-Antworten pro Adresse und Stunde",
       "STREAMS_PER_USER": "Gleichzeitig offene Glocken-Streams pro Nutzer",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "Aufrufe an das Bewerbermanagementsystem pro Unternehmen und Minute",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "Webhooks aus Bewerbermanagementsystemen pro Absenderadresse und Minute",
       "ATS_CONNECTS_PER_HOUR": "ATS-Verbindungen pro Unternehmen und Stunde",
       "RESEND_DAILY_LIMIT": "E-Mails pro Tag über Resend",
       "RESEND_RESERVE_PERCENT": "Anteil der täglichen E-Mails über Resend, der für Massenversand gesperrt bleibt",

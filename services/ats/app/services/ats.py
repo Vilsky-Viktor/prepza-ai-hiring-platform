@@ -35,6 +35,14 @@ async def count_connect(company_id, user_id: str) -> None:
     await hit_or_skip(get_redis(), key, "ATS_CONNECTS_PER_HOUR", **who)
 
 
+async def count_call(company_id, user_id: str) -> None:
+    """Counts one page's call to the company's ATS (or the invites a retry sends), once the
+    caller may make it: against floods, so with Redis down not counted."""
+    key = f"rate:ats-calls:{company_id}"
+    who = {"company_id": company_id, "user_id": user_id}
+    await hit_or_skip(get_redis(), key, "ATS_CALLS_PER_COMPANY_MINUTE", **who)
+
+
 def require_available() -> None:
     if not available():
         raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, "Integrations aren't set up")

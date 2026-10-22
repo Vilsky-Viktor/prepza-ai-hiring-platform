@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "إعادة إنشاء المقابلات لكل شركة في اليوم",
       "HELP_VOTES_PER_IP_HOUR": "تقييمات إجابات دردشة المساعدة لكل عنوان في الساعة",
       "STREAMS_PER_USER": "تدفقات الجرس المفتوحة لكل مستخدم في وقت واحد",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "الاستدعاءات إلى نظام التوظيف لكل شركة في الدقيقة",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "طلبات الويب هوك من نظام التوظيف لكل عنوان مُرسِل في الدقيقة",
       "ATS_CONNECTS_PER_HOUR": "اتصالات ATS لكل شركة في الساعة",
       "RESEND_DAILY_LIMIT": "رسائل البريد في اليوم عبر Resend",
       "RESEND_RESERVE_PERCENT": "نسبة رسائل البريد اليومية عبر Resend المحجوزة بعيدًا عن الإرسال الجماعي",

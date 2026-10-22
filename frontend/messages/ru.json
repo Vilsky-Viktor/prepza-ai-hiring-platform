@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Повторные запуски создания интервью на компанию в день",
       "HELP_VOTES_PER_IP_HOUR": "Оценки ответов чата помощи с одного адреса в час",
       "STREAMS_PER_USER": "Одновременно открытые потоки колокольчика на пользователя",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "Обращения к ATS компании на компанию в минуту",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "Вебхуки ATS с одного адреса отправителя в минуту",
       "ATS_CONNECTS_PER_HOUR": "Подключения ATS на компанию в час",
       "RESEND_DAILY_LIMIT": "Письма через Resend в день",
       "RESEND_RESERVE_PERCENT": "Доля дневных писем через Resend, закрытая для массовой отправки",

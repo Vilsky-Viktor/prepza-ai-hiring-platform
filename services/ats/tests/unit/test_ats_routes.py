@@ -116,3 +116,51 @@ def test_a_connect_past_the_limit_is_refused_before_the_ats_is_asked(
     assert connect(client).status_code == 429
     assert asked == []
     assert stored["connection"] is None
+
+
+def test_a_page_calling_the_ats_is_counted_per_company_and_refused_past_it_unasked(
+    client, stored, key, monkeypatch
+):
+    sign_in("ann")
+    connect(client)
+    stored["connects"].clear()
+    client.get(f"/workable/jobs?company_id={COMPANY_ID}")
+
+    assert stored["connects"] == [
+        (f"rate:ats-calls:{COMPANY_ID}", "ATS_CALLS_PER_COMPANY_MINUTE", "ann")
+    ]
+
+    async def used_up(redis, key, name, message=None, **who):
+        raise HTTPException(429, "Too many requests. Try again later.")
+
+    asked = []
+
+    async def jobs(account, token):
+        asked.append(token)
+
+        return []
+
+    monkeypatch.setattr(ats_service, "hit_or_skip", used_up)
+    monkeypatch.setattr(workable, "jobs", jobs)
+
+    assert client.get(f"/workable/jobs?company_id={COMPANY_ID}").status_code == 429
+    assert asked == []
+
+
+def test_ats_web_hooks_past_a_senders_limit_are_refused_before_their_signature(client, monkeypatch):
+    from app.routers import ats_webhooks as hooks
+    from app.services import ats_webhooks
+
+    checked = []
+
+    async def over(redis, key, name, message=None, **who):
+        raise HTTPException(429, "Too many requests. Try again later.")
+
+    async def receive(*args):
+        checked.append(args)
+
+    monkeypatch.setattr(hooks, "hit_or_skip", over)
+    monkeypatch.setattr(ats_webhooks, "receive_breezy", receive)
+
+    assert client.post(f"/webhooks/breezy/{uuid.uuid4()}", content=b"{}").status_code == 429
+    assert checked == []

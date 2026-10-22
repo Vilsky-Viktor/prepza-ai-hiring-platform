@@ -208,6 +208,10 @@ LIMITS = {
     "STREAMS_PER_USER": Limit("notifications", 10, "items", None, 1, 100, "user"),
     "WEBHOOK_TESTS_PER_HOUR": Limit("api", 30, "calls", HOUR_SECONDS, 1, 1_000, "company"),
     # ATS connections made or replaced, each checked with a call to the ATS.
+    # Calls a company's ATS pages make to its ATS (jobs, stages, texts, links), and ATS web hooks
+    # per sending address, counted before their signature is checked.
+    "ATS_CALLS_PER_COMPANY_MINUTE": Limit("ats", 60, "calls", MINUTE_SECONDS, 1, 1_000, "company"),
+    "ATS_WEBHOOKS_PER_IP_MINUTE": Limit("ats", 600, "calls", MINUTE_SECONDS, 10, 10_000, "ip"),
     "ATS_CONNECTS_PER_HOUR": Limit("ats", 20, "calls", HOUR_SECONDS, 1, 1_000, "company"),
     # Notifications: emails a day through Resend, for the bulk ones' share (bulk.py).
     "RESEND_DAILY_LIMIT": Limit(

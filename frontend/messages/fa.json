@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "ساخت دوبارهٔ مصاحبه برای هر شرکت در روز",
       "HELP_VOTES_PER_IP_HOUR": "رأی به پاسخ‌های گفت‌وگوی راهنما از هر نشانی در ساعت",
       "STREAMS_PER_USER": "جریان‌های باز زنگوله برای هر کاربر هم‌زمان",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "فراخوانی سامانهٔ جذب شرکت برای هر شرکت در دقیقه",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "وب‌هوک‌های سامانهٔ جذب از هر نشانی فرستنده در دقیقه",
       "ATS_CONNECTS_PER_HOUR": "اتصال‌های ATS برای هر شرکت در ساعت",
       "RESEND_DAILY_LIMIT": "ایمیل‌ها از طریق Resend در روز",
       "RESEND_RESERVE_PERCENT": "سهمی از ایمیل‌های روزانهٔ Resend که از ارسال‌های انبوه کنار گذاشته می‌شود",

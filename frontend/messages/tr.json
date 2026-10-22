@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Şirket başına günlük yeniden çalıştırılan mülakat oluşturma",
       "HELP_VOTES_PER_IP_HOUR": "Adres başına saatlik yardım sohbeti cevabı oylaması",
       "STREAMS_PER_USER": "Kullanıcı başına aynı anda açık bildirim zili akışı",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "Şirket başına dakikalık şirketin ATS'sine yapılan çağrı",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "Gönderen adres başına dakikalık ATS webhook'u",
       "ATS_CONNECTS_PER_HOUR": "Şirket başına saatlik ATS bağlantısı",
       "RESEND_DAILY_LIMIT": "Resend üzerinden günlük e-posta",
       "RESEND_RESERVE_PERCENT": "Resend üzerinden günlük e-postaların toplu gönderimlere ayrılmayan payı",

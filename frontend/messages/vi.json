@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Lượt tạo lại phỏng vấn mỗi công ty mỗi ngày",
       "HELP_VOTES_PER_IP_HOUR": "Lượt bình chọn câu trả lời trò chuyện trợ giúp mỗi địa chỉ mỗi giờ",
       "STREAMS_PER_USER": "Luồng chuông mở cùng lúc mỗi người dùng",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "Lượt gọi tới ATS của công ty mỗi công ty mỗi phút",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "Webhook ATS mỗi địa chỉ gửi mỗi phút",
       "ATS_CONNECTS_PER_HOUR": "Kết nối ATS mỗi công ty mỗi giờ",
       "RESEND_DAILY_LIMIT": "Email mỗi ngày qua Resend",
       "RESEND_RESERVE_PERCENT": "Phần email mỗi ngày qua Resend được giữ lại, không dùng cho gửi hàng loạt",

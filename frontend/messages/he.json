@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "יצירות ראיון שהורצו מחדש לחברה ביום",
       "HELP_VOTES_PER_IP_HOUR": "הצבעות על תשובות צ'אט העזרה לכתובת בשעה",
       "STREAMS_PER_USER": "זרמי פעמון פתוחים בו־זמנית למשתמש",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "קריאות למערכת הגיוס של החברה לחברה בדקה",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "וובהוקים ממערכות גיוס לכתובת שולחת בדקה",
       "ATS_CONNECTS_PER_HOUR": "חיבורי ATS לחברה בשעה",
       "RESEND_DAILY_LIMIT": "אימיילים ביום דרך Resend",
       "RESEND_RESERVE_PERCENT": "החלק מהאימיילים היומיים דרך Resend שנשמר מחוץ לשליחות המוניות",

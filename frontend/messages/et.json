@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "Uuesti käivitatud intervjuude koostamised ettevõtte kohta päevas",
       "HELP_VOTES_PER_IP_HOUR": "Abivestluse vastuste hinnangud aadressi kohta tunnis",
       "STREAMS_PER_USER": "Korraga avatud kellavood kasutaja kohta",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "Päringud ettevõtte värbamissüsteemi ettevõtte kohta minutis",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "Värbamissüsteemide webhookid saatja aadressi kohta minutis",
       "ATS_CONNECTS_PER_HOUR": "ATS-i ühendused ettevõtte kohta tunnis",
       "RESEND_DAILY_LIMIT": "E-kirjad päevas Resendi kaudu",
       "RESEND_RESERVE_PERCENT": "Osa Resendi kaudu saadetavatest päevastest e-kirjadest, mis hoitakse massiliste saadetiste eest kõrvale",

@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "การสร้างการสัมภาษณ์ซ้ำต่อบริษัทต่อวัน",
       "HELP_VOTES_PER_IP_HOUR": "การโหวตคำตอบของแชทช่วยเหลือต่อที่อยู่ต่อชั่วโมง",
       "STREAMS_PER_USER": "สตรีมกระดิ่งที่เปิดพร้อมกันต่อผู้ใช้",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "การเรียกระบบ ATS ของบริษัทต่อบริษัทต่อนาที",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "เว็บฮุกจากระบบ ATS ต่อที่อยู่ผู้ส่งต่อนาที",
       "ATS_CONNECTS_PER_HOUR": "การเชื่อมต่อ ATS ต่อบริษัทต่อชั่วโมง",
       "RESEND_DAILY_LIMIT": "อีเมลผ่าน Resend ต่อวัน",
       "RESEND_RESERVE_PERCENT": "สัดส่วนอีเมลผ่าน Resend ต่อวันที่กันไว้ไม่ให้ใช้ส่งแบบกลุ่ม",

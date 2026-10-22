@@ -609,6 +609,8 @@
       "GENERATION_RETRIES_PER_COMPANY_DAY": "会社ごとの 1 日あたりの面接生成の再実行数",
       "HELP_VOTES_PER_IP_HOUR": "IP アドレスごとの 1 時間あたりのヘルプチャットの回答への評価数",
       "STREAMS_PER_USER": "ユーザーごとに同時に開けるベルのストリーム数",
+      "ATS_CALLS_PER_COMPANY_MINUTE": "会社ごとの 1 分あたりの採用管理システムへの呼び出し数",
+      "ATS_WEBHOOKS_PER_IP_MINUTE": "送信元 IP アドレスごとの 1 分あたりの採用管理システムの Webhook 数",
       "ATS_CONNECTS_PER_HOUR": "会社ごとの 1 時間あたりの ATS 接続数",
       "RESEND_DAILY_LIMIT": "Resend 経由の 1 日あたりのメール数",
       "RESEND_RESERVE_PERCENT": "一括送信に使わず確保しておく、Resend 経由の 1 日あたりのメールの割合",

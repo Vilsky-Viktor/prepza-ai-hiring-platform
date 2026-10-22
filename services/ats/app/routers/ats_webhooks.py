@@ -1,10 +1,22 @@
 from uuid import UUID
 
-from fastapi import APIRouter, Request, status
+from fastapi import APIRouter, Depends, Request, status
+from prepza_common.client_ip import limit_address
+from prepza_common.rate_limit import hit_or_skip
 
+from app.integrations.redis import get_redis
 from app.services import ats_webhooks
 
-router = APIRouter(prefix="/webhooks", tags=["webhooks"])
+
+async def count_sender(request: Request) -> None:
+    """Every web hook is counted by its sending address before its signature (and the database
+    lookup that needs) is checked, against floods: generous, as an ATS sends for many companies
+    from few addresses; with Redis down, not counted."""
+    key = f"rate:ats-webhooks:{limit_address(request)}"
+    await hit_or_skip(get_redis(), key, "ATS_WEBHOOKS_PER_IP_MINUTE")
+
+
+router = APIRouter(prefix="/webhooks", tags=["webhooks"], dependencies=[Depends(count_sender)])
 
 
 @router.post("/workable/{link_id}", status_code=status.HTTP_200_OK)
