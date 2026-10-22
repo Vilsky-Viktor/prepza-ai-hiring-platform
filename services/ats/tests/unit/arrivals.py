@@ -5,9 +5,10 @@ from app.services import ats_candidates as flow
 from app.storage import ats_candidates
 
 
-def deliver_arrivals(monkeypatch, rows: dict, then=None) -> None:
+def deliver_arrivals(monkeypatch, rows: dict, then=None, connection=None) -> None:
     """`rows`: the fixture's saved candidates, by their ATS id; `then`: the fixture's own flush,
-    still called."""
+    still called; `connection`: the one every candidate came through, when the fixture doesn't
+    look connections up itself."""
     delivered = set()
 
     async def get(row_id):
@@ -21,6 +22,12 @@ def deliver_arrivals(monkeypatch, rows: dict, then=None) -> None:
 
         if then is not None:
             await then()
+
+    async def connection_by_id(connection_id):
+        return connection
+
+    if connection is not None:
+        monkeypatch.setattr(flow.ats, "connection_by_id", connection_by_id)
 
     monkeypatch.setattr(ats_candidates, "get", get)
     monkeypatch.setattr(flow.outbox_service, "flush_quietly", flush)
