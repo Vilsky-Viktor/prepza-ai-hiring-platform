@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "チャージ",
     "intro": "候補者 1 人あたり {credits, number} クレジット。クレジットに有効期限はありません。",
-    "companies": "会社のクレジット",
-    "companiesNote": "各社の候補者に使います。",
     "noCompany": "クレジットは会社に属します。まず会社を作成してから、ここでチャージしてください。",
     "createCompany": "会社を作成",
     "pricing": "料金"

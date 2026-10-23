@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Laadi juurde",
     "intro": "Üks kandidaat võtab {credits, number} krediiti ja krediidid ei aegu.",
-    "companies": "Ettevõtete krediidid",
-    "companiesNote": "Iga ettevõtte kandidaatide jaoks.",
     "noCompany": "Krediidid kuuluvad ettevõttele. Loo esmalt oma ettevõte ja laadi siis siin juurde.",
     "createCompany": "Loo ettevõte",
     "pricing": "Hinnad"

@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Kredi yükle",
     "intro": "Bir aday {credits, number} kredi tutar ve krediler hiç sona ermez.",
-    "companies": "Şirket kredileri",
-    "companiesNote": "Her şirketin adayları için.",
     "noCompany": "Krediler bir şirkete aittir. Önce şirketinizi oluşturun, sonra burada kredi yükleyin.",
     "createCompany": "Şirket oluştur",
     "pricing": "Fiyatlar"

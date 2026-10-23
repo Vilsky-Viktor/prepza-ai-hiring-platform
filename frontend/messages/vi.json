@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Nạp credit",
     "intro": "Mỗi ứng viên tốn {credits, number} credit, và credit không bao giờ hết hạn.",
-    "companies": "Credit của công ty",
-    "companiesNote": "Cho ứng viên của từng công ty.",
     "noCompany": "Credit thuộc về công ty. Hãy tạo công ty trước, rồi nạp credit tại đây.",
     "createCompany": "Tạo công ty",
     "pricing": "Bảng giá"

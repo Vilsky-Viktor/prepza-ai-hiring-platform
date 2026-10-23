@@ -82,7 +82,10 @@ const ELEMENTS: ComponentProps<typeof ReactMarkdown>["components"] = {
   },
   table: ({ children }) => (
     <div className="overflow-x-auto rounded-2xl border">
-      <table className="w-full text-sm">{children}</table>
+      {/* A body row lights up on hover, as the pricing page's rows do, so the eye follows it. */}
+      <table className="w-full text-sm [&_tbody_tr]:transition-colors [&_tbody_tr:hover]:bg-muted/50">
+        {children}
+      </table>
     </div>
   ),
   th: ({ children }) => (

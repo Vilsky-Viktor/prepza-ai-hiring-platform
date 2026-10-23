@@ -26,12 +26,12 @@ export function InterviewTopics({
   }
 
   return (
-    <ul className={LIST_BOX}>
+    <ul className={`${LIST_BOX} overflow-hidden`}>
       {topics.map((topic) => (
         // On phones the questions' button and their number take the line under the topic.
         <li
           key={topic.id}
-          className="flex items-center justify-between gap-6 p-4 max-sm:flex-col max-sm:items-stretch max-sm:gap-6 max-sm:px-6 max-sm:py-8 sm:p-6"
+          className="flex items-center justify-between gap-6 p-4 transition-colors hover:bg-muted/50 max-sm:flex-col max-sm:items-stretch max-sm:gap-6 max-sm:px-6 max-sm:py-8 sm:p-6"
         >
           <span className="max-w-3xl min-w-0 space-y-3">
             <span {...languageOf(language)} className="block space-y-3">

@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Recargar",
     "intro": "Un candidato cuesta {credits, number} créditos, y los créditos no caducan.",
-    "companies": "Créditos de empresas",
-    "companiesNote": "Para los candidatos de cada empresa.",
     "noCompany": "Los créditos pertenecen a una empresa. Crea primero tu empresa y luego recárgala aquí.",
     "createCompany": "Crear una empresa",
     "pricing": "Precios"

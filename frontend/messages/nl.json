@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Opwaarderen",
     "intro": "Een kandidaat kost {credits, number} credits, en credits verlopen nooit.",
-    "companies": "Credits van bedrijven",
-    "companiesNote": "Voor de kandidaten van elk bedrijf.",
     "noCompany": "Credits horen bij een bedrijf. Maak eerst je bedrijf aan en waardeer het dan hier op.",
     "createCompany": "Bedrijf aanmaken",
     "pricing": "Prijzen"

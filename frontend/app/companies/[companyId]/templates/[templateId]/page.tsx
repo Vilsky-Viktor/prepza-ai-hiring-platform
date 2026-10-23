@@ -59,11 +59,11 @@ export default async function CompanyTemplatePage({
         }
       />
 
-      <ul className={LIST_BOX}>
+      <ul className={`${LIST_BOX} overflow-hidden`}>
         {template.topics.map((topic) => (
           <li
             key={topic.id}
-            className="flex items-center justify-between gap-6 p-4 sm:p-6"
+            className="flex items-center justify-between gap-6 p-4 transition-colors hover:bg-muted/50 sm:p-6"
           >
             <span className="max-w-3xl min-w-0 space-y-3">
               <span className="block text-lg font-medium">{topic.title}</span>

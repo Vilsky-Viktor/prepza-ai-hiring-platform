@@ -17,11 +17,12 @@ export async function generateMetadata() {
 }
 
 // The prices in one bordered list; on phones it spans the screen, with square corners.
-const PRICE_LIST = "-mx-6 divide-y border-y sm:mx-0 sm:rounded-xl sm:border"
+const PRICE_LIST =
+  "-mx-6 divide-y overflow-hidden border-y sm:mx-0 sm:rounded-xl sm:border"
 
 function PriceRow({ what, price }: { what: string; price: string }) {
   return (
-    <li className="flex items-baseline justify-between gap-6 px-5 py-4 max-sm:gap-10 max-sm:px-6">
+    <li className="flex items-baseline justify-between gap-6 px-5 py-4 transition-colors hover:bg-muted/50 max-sm:gap-10 max-sm:px-6">
       <span>{what}</span>
       <span className="max-w-[65%] shrink-0 text-end font-medium tabular-nums">
         {price}

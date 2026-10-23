@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Recharger",
     "intro": "Un candidat coûte {credits, number} crédits, et les crédits n'expirent jamais.",
-    "companies": "Crédits des entreprises",
-    "companiesNote": "Pour les candidats de chaque entreprise.",
     "noCompany": "Les crédits appartiennent à une entreprise. Créez d'abord votre entreprise, puis rechargez-la ici.",
     "createCompany": "Créer une entreprise",
     "pricing": "Tarifs"

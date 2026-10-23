@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Top up",
     "intro": "A candidate takes {credits, number} credits, and credits never expire.",
-    "companies": "Company credits",
-    "companiesNote": "For each company's candidates.",
     "noCompany": "Credits belong to a company. Create your company first, then top it up here.",
     "createCompany": "Create a company",
     "pricing": "Pricing"

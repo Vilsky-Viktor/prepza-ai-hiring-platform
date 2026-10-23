@@ -22,3 +22,15 @@ test("the pricing page shows the catalog's free candidates", async ({ page }) =>
     String(prices.free_candidates),
   );
 });
+
+// A price row lights up under the pointer, so the eye follows its line to the price.
+test("a price row changes its background on hover", async ({ page }, info) => {
+  test.skip(info.project.name === "phone", "no hover on a touch screen");
+  await page.goto("/pricing");
+  const row = page.locator("main ul").first().locator("li").first();
+  const background = () => row.evaluate((element) => getComputedStyle(element).backgroundColor);
+  const before = await background();
+
+  await row.hover();
+  await expect.poll(background).not.toBe(before);
+});

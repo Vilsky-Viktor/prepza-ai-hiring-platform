@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "充值",
     "intro": "每位候选人需 {credits, number} 点数，点数永不过期。",
-    "companies": "公司点数",
-    "companiesNote": "用于各公司的候选人。",
     "noCompany": "点数属于公司。请先创建公司，再在这里充值。",
     "createCompany": "创建公司",
     "pricing": "价格"

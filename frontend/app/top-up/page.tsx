@@ -18,15 +18,6 @@ import { LIST_BOX } from "@/constants/lists"
 
 export const generateMetadata = () => translatedTitle("topUp", "title")
 
-function SectionTitle({ title, note }: { title: string; note: string }) {
-  return (
-    <div className="space-y-1">
-      <h2 className="font-heading text-2xl font-medium">{title}</h2>
-      <p className="text-base text-muted-foreground">{note}</p>
-    </div>
-  )
-}
-
 export default async function TopUpPage() {
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
   const t = await getTranslations("topUp")
@@ -89,8 +80,10 @@ export default async function TopUpPage() {
 
       {catalog && companies && companies.length > 0 && (
         <section className="space-y-4">
-          <SectionTitle title={t("companies")} note={t("companiesNote")} />
-          <div className={LIST_BOX}>
+          {/* Each company's row lights up on hover, so the eye follows its line. */}
+          <div
+            className={`${LIST_BOX} overflow-hidden [&>*]:transition-colors [&>*:hover]:bg-muted/50`}
+          >
             {companies.map((company, index) => (
               <BalanceRow
                 key={company.id}

@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Aufladen",
     "intro": "Ein Kandidat kostet {credits, number} Credits, und Credits verfallen nie.",
-    "companies": "Credits der Unternehmen",
-    "companiesNote": "Für die Kandidaten jedes Unternehmens.",
     "noCompany": "Credits gehören einem Unternehmen. Erstelle zuerst dein Unternehmen und lade es dann hier auf.",
     "createCompany": "Unternehmen erstellen",
     "pricing": "Preise"

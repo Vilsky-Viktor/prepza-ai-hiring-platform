@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Mag-top up",
     "intro": "Ang bawat aplikante ay {credits, number} credits, at hindi nag-e-expire ang credits.",
-    "companies": "Credits ng mga kumpanya",
-    "companiesNote": "Para sa mga aplikante ng bawat kumpanya.",
     "noCompany": "Ang credits ay pag-aari ng isang kumpanya. Gumawa muna ng iyong kumpanya, saka ito i-top up dito.",
     "createCompany": "Gumawa ng kumpanya",
     "pricing": "Presyo"

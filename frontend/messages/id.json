@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Isi ulang",
     "intro": "Satu kandidat memakai {credits, number} kredit, dan kredit tidak pernah kedaluwarsa.",
-    "companies": "Kredit perusahaan",
-    "companiesNote": "Untuk kandidat setiap perusahaan.",
     "noCompany": "Kredit milik perusahaan. Buat perusahaanmu dulu, lalu isi ulang di sini.",
     "createCompany": "Buat perusahaan",
     "pricing": "Harga"

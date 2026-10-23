@@ -159,12 +159,12 @@ export default async function RoleTestPage({ params }: Params) {
         <ul
           lang={template.language}
           dir={textDirection(template.language)}
-          className={LIST_BOX}
+          className={`${LIST_BOX} overflow-hidden`}
         >
           {template.topics.map((topic) => (
             <li
               key={topic.id}
-              className="space-y-3 p-4 max-sm:px-6 max-sm:py-8 sm:p-6"
+              className="space-y-3 p-4 transition-colors hover:bg-muted/50 max-sm:px-6 max-sm:py-8 sm:p-6"
             >
               <span className="block text-lg font-medium">{topic.title}</span>
               <SubtopicList subtopics={topic.subtopics} />

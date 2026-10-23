@@ -41,7 +41,7 @@ export default async function DocsPage() {
         {DOCUMENTS.map((item) => (
           <li
             key={item.key}
-            className="flex items-center justify-between gap-4 py-6 ps-6 pe-3"
+            className="flex items-center justify-between gap-4 py-6 ps-6 pe-3 transition-colors hover:bg-muted/50"
           >
             <div className="min-w-0 space-y-1">
               <span className="block text-xl font-medium">

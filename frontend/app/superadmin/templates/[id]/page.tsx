@@ -64,12 +64,12 @@ export default async function TemplatePage({
         }
       />
 
-      <ul className={LIST_BOX}>
+      <ul className={`${LIST_BOX} overflow-hidden`}>
         {template.topics.map((topic) => (
           // On phones the questions' button and count go under the subtopics, centered.
           <li
             key={topic.id}
-            className="flex items-center justify-between gap-6 p-4 max-sm:flex-col max-sm:items-stretch max-sm:px-6 max-sm:py-8 sm:p-6"
+            className="flex items-center justify-between gap-6 p-4 transition-colors hover:bg-muted/50 max-sm:flex-col max-sm:items-stretch max-sm:px-6 max-sm:py-8 sm:p-6"
           >
             <span
               {...languageOf(template.language)}

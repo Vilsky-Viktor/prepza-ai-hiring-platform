@@ -28,7 +28,7 @@ export function NewsList({ initial }: { initial: NewsPost[] }) {
       getKey={byId}
       estimateSize={160}
       onEndReached={loadMore}
-      className={LIST_BOX}
+      className={`${LIST_BOX} overflow-hidden`}
       renderItem={(post) => <Post post={post} />}
     />
   )
@@ -41,13 +41,16 @@ function Post({ post }: { post: NewsPost }) {
   const heading = postHeading(post.title)
 
   return (
-    <article id={post.id} className="space-y-3 p-6 max-sm:py-9">
+    <article
+      id={post.id}
+      className="space-y-3 p-6 transition-colors hover:bg-muted/50 max-sm:py-9"
+    >
       <div className="space-y-1">
         <h2 className="no-dot font-heading text-2xl font-medium break-words normal-case">
           {heading.text}
           {heading.dot && <span className="text-primary">.</span>}
         </h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground italic">
           <time dateTime={post.published_on}>
             {formatDay(post.published_on, locale)}
           </time>

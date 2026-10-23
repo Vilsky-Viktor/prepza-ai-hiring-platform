@@ -164,13 +164,16 @@ export default async function PracticeTestPage({
       <ul
         lang={template.language}
         dir={textDirection(template.language)}
-        className={LIST_BOX}
+        className={`${LIST_BOX} overflow-hidden`}
       >
         {template.topics.map((topic) => {
           const step = reached.get(topic.id)
 
           return (
-            <li key={topic.id} className="p-4 max-sm:px-6 max-sm:py-8 sm:p-6">
+            <li
+              key={topic.id}
+              className="p-4 transition-colors hover:bg-muted/50 max-sm:px-6 max-sm:py-8 sm:p-6"
+            >
               <span className="block min-w-0 space-y-3">
                 <span className="block text-lg font-medium">{topic.title}</span>
                 <SubtopicList subtopics={topic.subtopics} />

@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "충전",
     "intro": "지원자 1명당 {credits, number}크레딧이며, 크레딧은 만료되지 않습니다.",
-    "companies": "회사 크레딧",
-    "companiesNote": "각 회사의 지원자에게 사용됩니다.",
     "noCompany": "크레딧은 회사에 속합니다. 먼저 회사를 만든 후 여기에서 충전하세요.",
     "createCompany": "회사 만들기",
     "pricing": "요금"

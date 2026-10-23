@@ -1289,8 +1289,6 @@
   "topUp": {
     "title": "Doładowanie",
     "intro": "Jeden kandydat to {credits, plural, one {# kredyt} few {# kredyty} many {# kredytów} other {# kredytu}}, a kredyty nie wygasają.",
-    "companies": "Kredyty firm",
-    "companiesNote": "Na kandydatów każdej firmy.",
     "noCompany": "Kredyty należą do firmy. Najpierw utwórz firmę, a potem doładuj ją tutaj.",
     "createCompany": "Utwórz firmę",
     "pricing": "Cennik"
