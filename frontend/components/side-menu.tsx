@@ -97,10 +97,10 @@ function MenuLink({
         nested ? "py-2 ps-11" : "py-2.5",
         keepCase ? "normal-case" : "lowercase",
         marked
-          ? "bg-muted text-foreground"
+          ? "bg-muted/50 text-foreground"
           : open
-            ? "text-foreground hover:bg-muted"
-            : "text-muted-foreground hover:bg-muted hover:text-foreground"
+            ? "text-foreground hover:bg-muted/50"
+            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
       )}
     >
       {Icon && (
@@ -109,7 +109,11 @@ function MenuLink({
           className={cn("size-5 shrink-0", open && "text-primary")}
         />
       )}
-      <span className="min-w-0">{label}</span>
+      {/* Ending with the logo's blue dot, as the site's titles do. */}
+      <span className="min-w-0">
+        {label}
+        <span className="text-primary">.</span>
+      </span>
     </Link>
   )
 }

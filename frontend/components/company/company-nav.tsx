@@ -3,12 +3,12 @@
 import {
   BlocksIcon,
   BriefcaseBusinessIcon,
-  CreditCardIcon,
-  GiftIcon,
+  DollarSignIcon,
+  FormIcon,
   HistoryIcon,
-  LayoutTemplateIcon,
   PaletteIcon,
   UsersIcon,
+  UsersRoundCollaborationIcon,
 } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
@@ -56,7 +56,7 @@ export function CompanyNav({
       id: "templates",
       href: `/companies/${companyId}/templates`,
       label: t("templates"),
-      icon: LayoutTemplateIcon,
+      icon: FormIcon,
     },
     {
       id: "members",
@@ -82,7 +82,7 @@ export function CompanyNav({
             id: "billing",
             href: `/companies/${companyId}/billing`,
             label: t("billing"),
-            icon: CreditCardIcon,
+            icon: DollarSignIcon,
           },
         ]
       : []),
@@ -100,7 +100,7 @@ export function CompanyNav({
       id: "referrals",
       href: `/companies/${companyId}/referrals`,
       label: t("referrals"),
-      icon: GiftIcon,
+      icon: UsersRoundCollaborationIcon,
     },
   ]
 

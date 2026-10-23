@@ -1,14 +1,14 @@
 "use client"
 
 import {
-  BadgeCheckIcon,
   ChartColumnIcon,
-  FlagIcon,
-  LayoutTemplateIcon,
+  FormIcon,
   LifeBuoyIcon,
   MegaphoneIcon,
+  MessagesSquareIcon,
   NewspaperIcon,
   PercentIcon,
+  ShieldCheckIcon,
   SlidersHorizontalIcon,
 } from "lucide-react"
 import { useTranslations } from "next-intl"
@@ -73,7 +73,7 @@ export function SuperadminHeader({
             id: "templates",
             href: "/superadmin/templates",
             label: t("templates"),
-            icon: LayoutTemplateIcon,
+            icon: FormIcon,
           },
           {
             id: "news",
@@ -91,7 +91,7 @@ export function SuperadminHeader({
             id: "questions",
             href: "/superadmin/questions/flagged",
             label: t("questions"),
-            icon: FlagIcon,
+            icon: MessagesSquareIcon,
             sub: SUBTABS.questions.map(({ id, label }) => ({
               id,
               href: `/superadmin/questions/${id}`,
@@ -108,7 +108,7 @@ export function SuperadminHeader({
             id: "verification",
             href: "/superadmin/verification",
             label: t("verification"),
-            icon: BadgeCheckIcon,
+            icon: ShieldCheckIcon,
           },
           {
             id: "support",
