@@ -13,7 +13,8 @@ Contents: [Baselines (2026-10-04)](#baselines-2026-10-04) ·
 [Help chat: four more currencies](#help-chat-four-more-currencies-2026-10-21-kept) ·
 [Help chat: automatic top-up](#help-chat-automatic-top-ups-pause-and-price-notice-2026-10-21-kept) ·
 [Help chat: Mira](#help-chat-mira-an-ai-assistant-that-says-so-2026-10-22-kept) ·
-[The scope rule's language](#the-scope-rule-names-no-language-of-its-own-2026-10-22-kept)
+[The scope rule's language](#the-scope-rule-names-no-language-of-its-own-2026-10-22-kept) ·
+[Help chat: the shareable link's tab](#help-chat-the-shareable-link-on-the-settings-tab-2026-10-23-kept)
 
 ## Baselines (2026-10-04)
 
@@ -258,3 +259,13 @@ off-topic 3 of 3 and injection 6 of 6 both; language cases 4 → 3 of 6, the mis
 invented retake limit. `assistant_actions.py`, 2 repeats (`results/assistant_actions_scope.json`):
 task success 97.1% (92.7–98.9), injection safe 100%, its failures (c04, e12, m05, m06) cases that
 failed before. Within the noise; kept so no prompt leaves a language to inference. $1.89.
+
+## Help chat: the shareable link on the Settings tab (2026-10-23, kept)
+
+The shareable link moved from an interview's Candidates tab to its Settings tab, and the help
+chat's guide says so (`00af4873e`). A new case, h25 ("Where do I turn on the link I can post with
+a job ad?"), checks the answer names the Settings tab. `help_chat.py`, 25 × 3, `gpt-6-luna` at
+none, judged by `gpt-6.1-sol` high, against `results/help_chat_scope.json` (24 × 3) →
+`…_link.json`: passed 95.8% (88.5–98.6) → 94.7% (87.1–97.9); h25 3 of 3; made up 4.2% → 4.0%;
+sign-in marker 100% both; off-topic 3 → 2 of 3 (h12 declined in two sentences, not one); the
+other misses are h17's known invented retake limit. Within the noise. $1.53.

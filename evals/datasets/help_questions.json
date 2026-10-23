@@ -216,6 +216,15 @@
    "sign_in": null,
    "question": "מי אתה?",
    "expect": "Says it's Mira, prepza's AI assistant (the name may be written in the language's own script): an AI, not a person; in Hebrew."
+  },
+  {
+   "id": "h25",
+   "kind": "typical",
+   "page": "landing",
+   "language": "en",
+   "sign_in": null,
+   "question": "Where do I turn on the link I can post with a job ad?",
+   "expect": "Says the shareable link is turned on in the interview's Settings tab, not its Candidates tab."
   }
  ]
 }

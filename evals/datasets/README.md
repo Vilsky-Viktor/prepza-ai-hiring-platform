@@ -230,4 +230,5 @@ The help chat's test: visitor questions on the site's pages, each with what a ri
 questions, questions the guide doesn't answer (it must say so and point to the contact page),
 sign-in requests, attempts to make it answer something else or follow instructions in the
 message, and (added 2026-10-22) who the chat is: Mira, prepza's AI assistant, never a person, in
-English, French, Korean, Polish and Hebrew.
+English, French, Korean, Polish and Hebrew. h25 (added 2026-10-23) asks where the shareable link
+for a job ad is turned on: the interview's Settings tab, since the link moved there.

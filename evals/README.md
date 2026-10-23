@@ -117,7 +117,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Voice messages: heard right / character errors / script | 95.8% (79.8–99.3) / 1.6% ± 1.3 / 100%; $0.0006 a message | `voice.json`, 12 × 2 | 2026-10-22 |
 | Text check: false refusals / accepted / refused | 0 / 100% (95.9–100) / 100% (90.4–100); $0.00003 and 1.9 s a check | `screen.json`, 42 × 3 | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
-| Help chat: passed / made up / sign-in marker; who-are-you answers | 97.2% (90.4–99.2) / 2.8% / 100%; 18/18 | `help_questions.json`, 3 repeats | 2026-10-22 |
+| Help chat: passed / made up / sign-in marker; who-are-you answers | 94.7% (87.1–97.9) / 4.0% / 100%; 18/18 | `help_questions.json` (25), 3 repeats | 2026-10-23 |
 
 ## Datasets
 
