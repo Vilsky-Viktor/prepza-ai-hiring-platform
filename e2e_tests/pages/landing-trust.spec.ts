@@ -92,6 +92,33 @@ test("the steps are one size, mirrored round the middle, and lighting keeps the 
   ]);
 });
 
+test("only one question travels the ring at a time", async ({ page }) => {
+  test.setTimeout(120_000);
+  const section = await openTrust(page);
+  await expect(section.getByTestId("quality-step")).toHaveCount(5);
+
+  // The most travellers shown at once over a few seconds of the loop playing, sampled in the
+  // page (its SMIL animations run on their own clock, not Playwright's).
+  const most = await section.evaluate(
+    (element) =>
+      new Promise<number>((resolve) => {
+        let peak = 0;
+        const sample = window.setInterval(() => {
+          const shown = [
+            ...element.querySelectorAll('[data-testid="wire-traveller"]'),
+          ].filter((traveller) => Number(getComputedStyle(traveller).opacity) > 0.05);
+          peak = Math.max(peak, shown.length);
+        }, 50);
+        window.setTimeout(() => {
+          window.clearInterval(sample);
+          resolve(peak);
+        }, 6_000);
+      }),
+  );
+
+  expect(most).toBeLessThanOrEqual(1);
+});
+
 test("with reduced motion, no step lights up", async ({
   page,
 }) => {

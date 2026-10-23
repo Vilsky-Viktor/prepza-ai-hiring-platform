@@ -45,11 +45,17 @@ export function Wire({
   const repeat = once ? undefined : "indefinite"
   const icons = traveller === "candidate" ? [UserRoundIcon] : traveller
 
+  // Runs only when `fired` changes, never on mount: a wire drawn anew (its picture restarting)
+  // with a count from before mustn't send its traveller again, or several would run at once.
+  const lastFired = useRef(fired)
+
   useEffect(() => {
-    if (fired) {
+    if (fired && fired !== lastFired.current) {
       motion.current?.beginElement()
       fade.current?.beginElement()
     }
+
+    lastFired.current = fired
   }, [fired])
 
   // The looping traveller's arrivals, on the same clock: at its delay and length, then once
@@ -105,7 +111,11 @@ export function Wire({
         strokeWidth={1.5 * thickness}
       />
       {icons !== "dot" ? (
-        <g opacity={0} className="motion-reduce:hidden">
+        <g
+          opacity={0}
+          data-testid="wire-traveller"
+          className="motion-reduce:hidden"
+        >
           {animations}
           <circle r={10 * size} className="fill-background" />
           {icons.map((Icon, at) => (
