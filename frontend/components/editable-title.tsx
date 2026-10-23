@@ -185,7 +185,7 @@ export function EditableTitle({
       aria-label={label ?? t("title")}
       disabled={saving}
       value={value}
-      className={`${textClass} w-full min-w-0 rounded-full border border-ring bg-transparent px-4 py-1 outline-none`}
+      className={`${textClass} w-full min-w-0 rounded-xl border border-ring bg-transparent px-4 py-1 outline-none`}
       onChange={(event) => setValue(event.target.value)}
       onBlur={() => {
         if (skipSave.current) {

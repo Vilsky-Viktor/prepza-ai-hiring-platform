@@ -233,7 +233,7 @@ export function InviteStage({
         ref={holders[INTERVIEW]}
         data-testid="invite-interview"
         aria-hidden
-        className="relative z-10 mx-auto w-full max-w-88 space-y-5 rounded-3xl bg-muted p-6 text-start lg:absolute lg:inset-x-0 lg:top-56 lg:mx-auto dark:bg-card"
+        className="relative z-10 mx-auto w-full max-w-88 space-y-5 rounded-xl bg-muted p-6 text-start lg:absolute lg:inset-x-0 lg:top-56 lg:mx-auto dark:bg-card"
       >
         {/* What the card is, on its top edge. */}
         <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-background px-4 py-1 text-sm text-muted-foreground lowercase">

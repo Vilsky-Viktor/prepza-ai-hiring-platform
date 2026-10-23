@@ -162,7 +162,7 @@ export function StartTest({
             <Button
               type="submit"
               size="icon-lg"
-              className="rounded-full"
+              className="rounded-lg"
               disabled={busy || !text.trim()}
               aria-label={t("submit")}
             >
@@ -199,7 +199,7 @@ export function StartTest({
               aria-checked={chosen === option.id}
               onClick={() => setChosen(option.id)}
               className={cn(
-                "flex w-full items-center gap-3 rounded-2xl border bg-background p-4 text-start text-base transition-colors",
+                "flex w-full items-center gap-3 rounded-xl border bg-background p-4 text-start text-base transition-colors",
                 chosen === option.id ? "border-ring" : "hover:border-ring"
               )}
             >

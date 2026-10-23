@@ -83,18 +83,23 @@ export function UserMenu() {
           <Button
             variant="ghost"
             size="icon"
-            className="size-10 rounded-full"
+            className="size-10 rounded-xl"
             aria-label={t("account")}
           />
         }
       >
-        {/* A primary ring on hover, and while the menu is open. */}
+        {/* A rounded square like the site's buttons, with a primary ring on hover and while the
+            menu is open. */}
         <Avatar
           size="lg"
           className="ring-primary transition-shadow group-hover/button:ring-1 group-aria-expanded/button:ring-1"
         >
-          <AvatarImage src={user.photoURL ?? undefined} alt="" />
-          <AvatarFallback>{initial}</AvatarFallback>
+          <AvatarImage
+            src={user.photoURL ?? undefined}
+            alt=""
+            className="rounded-xl"
+          />
+          <AvatarFallback className="rounded-xl">{initial}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56 p-2">

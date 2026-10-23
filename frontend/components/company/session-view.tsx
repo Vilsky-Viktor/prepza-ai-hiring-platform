@@ -151,7 +151,7 @@ function SessionFinished({
     <div className="flex flex-col items-center gap-8 py-24 text-center">
       <SessionLogo
         brand={brand}
-        className="h-20 w-auto max-w-40 rounded-2xl object-contain"
+        className="h-20 w-auto max-w-40 rounded-xl object-contain"
       />
       <div className="space-y-3">
         <h1 className="font-heading text-3xl font-medium tracking-tight text-balance normal-case">

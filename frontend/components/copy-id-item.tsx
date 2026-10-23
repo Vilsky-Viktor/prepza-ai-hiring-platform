@@ -28,7 +28,7 @@ export function CopyIdItem({ id }: { id: string }) {
             aria-label={label}
             data-testid="copy-id"
             data-copied={copied}
-            className="size-8 shrink-0 justify-center rounded-full p-0 text-muted-foreground [&_svg:not([class*='size-'])]:size-4"
+            className="size-8 shrink-0 justify-center rounded-lg p-0 text-muted-foreground [&_svg:not([class*='size-'])]:size-4"
           />
         }
       >

@@ -5,7 +5,7 @@
 // The grey box: the focus outline, the error border and the disabled look are the whole box's.
 // Its top margin keeps room for the raised pill above it.
 export const FLOAT_BOX =
-  "relative mt-3 rounded-full border border-transparent bg-muted transition-colors focus-within:border-ring has-[textarea]:rounded-3xl has-disabled:cursor-not-allowed has-disabled:bg-input/50 has-disabled:opacity-50 has-aria-invalid:border-destructive dark:bg-input/30 dark:has-disabled:bg-input/80 dark:has-aria-invalid:border-destructive/50"
+  "relative mt-3 rounded-xl border border-transparent bg-muted transition-colors focus-within:border-ring has-disabled:cursor-not-allowed has-disabled:bg-input/50 has-disabled:opacity-50 has-aria-invalid:border-destructive dark:bg-input/30 dark:has-disabled:bg-input/80 dark:has-aria-invalid:border-destructive/50"
 
 // `--pill`: a fill for something sitting on a grey field (the raised name, the description box's
 // language picker), a mix of the muted grey and the page, a bit lighter than the field in both

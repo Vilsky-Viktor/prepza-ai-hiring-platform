@@ -15,7 +15,7 @@ export function DemoPopup({
   return (
     <div
       className={cn(
-        "absolute inset-0 z-5 flex items-center justify-center rounded-3xl bg-black/10 p-3 transition-opacity duration-200",
+        "absolute inset-0 z-5 flex items-center justify-center rounded-xl bg-black/10 p-3 transition-opacity duration-200",
         !open && "invisible opacity-0"
       )}
     >
@@ -82,7 +82,7 @@ export function DemoSentNotice({
         !shown && "invisible translate-y-2 opacity-0"
       )}
     >
-      <p className="flex items-center gap-3 rounded-lg border bg-popover px-4 py-3 text-base text-popover-foreground">
+      <p className="flex items-center gap-3 rounded-xl border bg-popover px-4 py-3 text-base text-popover-foreground">
         <CircleCheckIcon className="size-6 shrink-0" />
         <span className="min-w-0">{text}</span>
       </p>

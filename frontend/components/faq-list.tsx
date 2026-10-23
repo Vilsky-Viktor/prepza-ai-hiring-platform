@@ -10,7 +10,7 @@ import type { FaqItem } from "@/types/help"
  * pages are links. */
 export function FaqList({ items }: { items: FaqItem[] }) {
   return (
-    <div className="divide-y rounded-3xl bg-card shadow-sm ring-1 ring-foreground/5">
+    <div className="divide-y rounded-xl bg-card shadow-sm ring-1 ring-foreground/5">
       {items.map((item) => (
         <details key={item.key} className="group px-6">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-medium [&::-webkit-details-marker]:hidden">

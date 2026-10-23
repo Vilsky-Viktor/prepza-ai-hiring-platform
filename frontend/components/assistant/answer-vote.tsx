@@ -27,7 +27,7 @@ export function AnswerVote({
 
   return (
     <div
-      className="flex items-center gap-0.5 rounded-full border bg-popover px-1"
+      className="flex items-center gap-0.5 rounded-xl border bg-popover px-1"
       data-testid="answer-vote"
     >
       {thumbs.map(({ vote, label, Icon }) => (

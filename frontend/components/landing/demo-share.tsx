@@ -10,7 +10,7 @@ import { buttonVariants } from "@/components/ui/button"
 
 // A report action's icon, like the page's icon buttons, a size down.
 const ACTION =
-  "flex size-10 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-shadow"
+  "flex size-10 shrink-0 items-center justify-center rounded-xl text-muted-foreground transition-shadow"
 
 /** A report's two actions, small, for the landing: download its PDF and share it; `shareRef`
  * for the pointer, the share icon `pressed` as it's clicked. */
@@ -74,7 +74,7 @@ export function DemoSharePopup({
               key={name}
               ref={index === 0 ? whatsAppRef : undefined}
               className={cn(
-                "flex size-10 items-center justify-center rounded-full text-muted-foreground transition-shadow",
+                "flex size-10 items-center justify-center rounded-xl text-muted-foreground transition-shadow",
                 index === 0 &&
                   pressed === "whatsApp" &&
                   "bg-muted text-foreground ring-3 ring-ring/50"

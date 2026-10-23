@@ -126,7 +126,7 @@ function WebhookLog({ path, url }: { path: string; url: string }) {
             <p className="text-muted-foreground">{t("logEmpty")}</p>
           )}
           {!!attempts?.length && (
-            <ul className="max-h-96 divide-y overflow-y-auto rounded-2xl border">
+            <ul className="max-h-96 divide-y overflow-y-auto rounded-xl border">
               {attempts.map((attempt, index) => (
                 <li
                   key={index}

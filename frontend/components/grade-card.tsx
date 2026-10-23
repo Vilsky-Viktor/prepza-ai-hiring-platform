@@ -5,7 +5,7 @@ import type { ReactNode } from "react"
  * centered, without the line. */
 export function GradeCard({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto flex w-fit flex-wrap items-stretch divide-x overflow-hidden rounded-2xl border max-sm:w-full max-sm:flex-col max-sm:items-center max-sm:divide-x-0 max-sm:py-2 max-sm:*:justify-center max-sm:*:py-3">
+    <div className="mx-auto flex w-fit flex-wrap items-stretch divide-x overflow-hidden rounded-xl border max-sm:w-full max-sm:flex-col max-sm:items-center max-sm:divide-x-0 max-sm:py-2 max-sm:*:justify-center max-sm:*:py-3">
       {children}
     </div>
   )

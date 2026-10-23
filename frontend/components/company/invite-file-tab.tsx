@@ -29,7 +29,7 @@ export function InviteFileTab({
       <Button
         type="button"
         variant="outline"
-        className="h-16 w-full justify-start gap-3 rounded-full px-6 text-lg font-normal"
+        className="h-16 w-full justify-start gap-3 rounded-xl px-6 text-lg font-normal"
         onClick={() => fileInput.current?.click()}
       >
         <UploadIcon className="size-5 shrink-0 text-muted-foreground" />

@@ -55,7 +55,7 @@ export function InviteIntro({
             <CompanyLogo
               url={logoUrl}
               name={company}
-              className="h-28 w-auto max-w-56 shrink-0 rounded-3xl object-contain"
+              className="h-28 w-auto max-w-56 shrink-0 rounded-xl object-contain"
             />
           )}
           <p className="text-base text-muted-foreground">

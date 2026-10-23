@@ -80,7 +80,7 @@ export function DescriptionBox({
           <Button
             type="submit"
             size="icon-lg"
-            className="rounded-full"
+            className="rounded-lg"
             disabled={disabled || busy || !text.trim()}
             aria-label={submitLabel}
           >

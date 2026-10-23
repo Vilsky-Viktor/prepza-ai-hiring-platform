@@ -95,7 +95,7 @@ export function ChatInput({
             <Button
               type="button"
               size="icon"
-              className="size-10 rounded-full"
+              className="size-10 rounded-lg"
               onClick={onStop}
               aria-label={stopLabel}
             >
@@ -105,7 +105,7 @@ export function ChatInput({
             <Button
               type="submit"
               size="icon"
-              className="size-10 rounded-full"
+              className="size-10 rounded-lg"
               disabled={!value.trim() || streaming}
               aria-label={common("send")}
             >

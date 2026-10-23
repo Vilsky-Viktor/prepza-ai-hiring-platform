@@ -44,7 +44,7 @@ export function DemoCandidates({
         <InterviewHeader {...DEMO_REPORT_INTERVIEW} status="in_process" />
         <DemoReportActions shareRef={shareRef} pressed={sharePressed} />
       </div>
-      <ul className="divide-y rounded-2xl border">
+      <ul className="divide-y rounded-xl border">
         {DEMO_REPORT_CANDIDATES.map((candidate, index) => (
           <li
             key={candidate.email}

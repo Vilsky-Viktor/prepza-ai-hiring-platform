@@ -52,7 +52,7 @@ export function InviteCard({
       data-testid="invite-card"
       data-mark={mark}
       className={cn(
-        "relative z-10 flex min-w-0 flex-col items-center justify-center gap-2 rounded-2xl border bg-background px-2 pt-3 pb-4 text-center text-sm leading-tight font-medium break-words lowercase lg:flex-row lg:gap-5 lg:overflow-hidden lg:p-4 lg:pe-9 lg:text-start lg:text-xl lg:whitespace-nowrap",
+        "relative z-10 flex min-w-0 flex-col items-center justify-center gap-2 rounded-xl border bg-background px-2 pt-3 pb-4 text-center text-sm leading-tight font-normal break-words lowercase lg:flex-row lg:gap-5 lg:overflow-hidden lg:p-4 lg:pe-9 lg:text-start lg:text-xl lg:whitespace-nowrap",
         className
       )}
     >
@@ -98,7 +98,7 @@ function MarkIcon({ mark }: { mark: Mark }) {
             alt=""
             className={cn(
               MARK,
-              "rounded-md bg-background object-contain ring-2 ring-muted dark:ring-card",
+              "rounded-lg bg-background object-contain ring-2 ring-muted dark:ring-card",
               index >= PHONE_ATS_LOGOS && "max-lg:hidden"
             )}
           />

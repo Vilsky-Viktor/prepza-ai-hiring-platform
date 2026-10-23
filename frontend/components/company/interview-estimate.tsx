@@ -47,7 +47,7 @@ export function InterviewEstimate({
           key={key}
           data-testid={key}
           className={cn(
-            "flex rounded-2xl border",
+            "flex rounded-xl border",
             small
               ? "flex-col justify-between gap-1 px-2.5 py-2"
               : "items-center justify-between gap-4 p-5"

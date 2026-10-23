@@ -115,7 +115,7 @@ export function AnswerBlocks({
               ) : block.kind === "interview" ? (
                 <InterviewTable rows={block.items} onNavigate={onNavigate} />
               ) : (
-                <ul className="divide-y overflow-hidden rounded-2xl border">
+                <ul className="divide-y overflow-hidden rounded-xl border">
                   {block.items.map(({ item, href }, row) => (
                     <li key={row}>
                       <CreditsRow

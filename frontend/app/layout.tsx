@@ -103,7 +103,7 @@ export default async function RootLayout({
                             shown only when tabbed to. */}
                           <a
                             href="#content"
-                            className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-full focus:border focus:bg-background focus:px-5 focus:py-3 focus:text-base"
+                            className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-xl focus:border focus:bg-background focus:px-5 focus:py-3 focus:text-base"
                           >
                             {common("skipToContent")}
                           </a>

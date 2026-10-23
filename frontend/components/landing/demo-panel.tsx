@@ -34,7 +34,7 @@ export function DemoPanel({
       <div
         aria-hidden
         inert
-        className="relative flex flex-1 flex-col rounded-3xl border bg-background p-3 text-start text-sm"
+        className="relative flex flex-1 flex-col rounded-xl border bg-background p-3 text-start text-sm"
       >
         {children}
       </div>

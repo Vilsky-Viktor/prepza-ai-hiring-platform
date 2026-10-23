@@ -36,7 +36,7 @@ export function InterviewReport({ report }: { report: InterviewReportData }) {
           <CompanyLogo
             url={report.logo_url}
             name={report.company}
-            className="h-16 w-auto max-w-40 shrink-0 rounded-2xl object-contain"
+            className="h-16 w-auto max-w-40 shrink-0 rounded-xl object-contain"
           />
         )}
         <div className="min-w-0 space-y-1">

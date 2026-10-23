@@ -107,7 +107,7 @@ export function LogoPicker({
     <>
       <span
         aria-hidden
-        className="absolute end-1 top-1 flex rounded-md bg-background/90 p-0.5 text-muted-foreground transition-opacity group-hover:opacity-0 group-focus-visible:opacity-0"
+        className="absolute end-1 top-1 flex rounded-lg bg-background/90 p-0.5 text-muted-foreground transition-opacity group-hover:opacity-0 group-focus-visible:opacity-0"
       >
         <SquarePenIcon
           className={cn("size-3 rtl:-scale-x-100", large && "size-4")}

@@ -57,7 +57,7 @@ export function SlackKinds({
         <h2 className="font-heading text-2xl font-medium">{t("kindsTitle")}</h2>
         <p className="text-base text-muted-foreground">{t("kindsText")}</p>
       </div>
-      <div className="divide-y rounded-2xl border">
+      <div className="divide-y rounded-xl border">
         {allKinds.map((kind) => (
           <label
             key={kind}

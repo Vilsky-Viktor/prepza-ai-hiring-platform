@@ -154,7 +154,7 @@ export function QualityList({
                   type="button"
                   aria-expanded={openReports.includes(rowKey(row))}
                   onClick={() => toggleReports(rowKey(row))}
-                  className="-mx-2 -my-1 flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1 transition-colors hover:text-foreground aria-expanded:bg-foreground/10 aria-expanded:text-foreground"
+                  className="-mx-2 -my-1 flex cursor-pointer items-center gap-1.5 rounded-lg px-2 py-1 transition-colors hover:text-foreground aria-expanded:bg-foreground/10 aria-expanded:text-foreground"
                 >
                   <FlagIcon className="size-4" />
                   {t("reports", { count: row.reports })}

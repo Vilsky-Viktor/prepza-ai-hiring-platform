@@ -59,7 +59,7 @@ export default async function AboutPage() {
           alt={FOUNDER.name}
           // Shown 14rem wide (16rem from tablets), far narrower than the file.
           sizes="(min-width: 768px) 16rem, 14rem"
-          className="aspect-[3/4] w-56 rounded-3xl object-cover md:w-64"
+          className="aspect-[3/4] w-56 rounded-xl object-cover md:w-64"
         />
         <div className="space-y-6">
           <blockquote className="text-xl leading-relaxed italic sm:text-2xl">

@@ -63,7 +63,7 @@ export function VideoButton() {
             <Button
               variant="outline"
               size="icon"
-              className="absolute end-3 top-3 z-10 size-11 rounded-full bg-popover sm:-end-5 sm:-top-5 dark:bg-popover"
+              className="absolute end-3 top-3 z-10 size-11 rounded-xl bg-popover sm:-end-5 sm:-top-5 dark:bg-popover"
             />
           }
         >
@@ -76,7 +76,7 @@ export function VideoButton() {
           title={t("demos")}
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
           allowFullScreen
-          className="aspect-video w-full rounded-lg"
+          className="aspect-video w-full rounded-xl"
         />
       </DialogContent>
     </Dialog>

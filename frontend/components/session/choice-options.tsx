@@ -36,7 +36,7 @@ export function ChoiceOptions({
               aria-pressed={picked}
               onClick={() => onChoose(index)}
               className={cn(
-                "flex w-full items-start gap-3 rounded-2xl border p-4 text-start text-lg leading-7 font-light normal-case transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-default",
+                "flex w-full items-start gap-3 rounded-xl border p-4 text-start text-lg leading-7 font-light normal-case transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-default",
                 picked
                   ? "border-ring bg-muted"
                   : "hover:border-ring hover:bg-muted/50 active:bg-muted/50"

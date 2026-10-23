@@ -14,7 +14,7 @@ export function SettingsSection({
 }) {
   return (
     <section
-      className={`flex gap-6 rounded-2xl border p-6 ${action ? "items-center" : "items-start"}`}
+      className={`flex gap-6 rounded-xl border p-6 ${action ? "items-center" : "items-start"}`}
     >
       {/* Its controls at the bottom, so blocks side by side line them up whatever their notes'
           length. */}

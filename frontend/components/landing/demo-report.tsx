@@ -71,7 +71,7 @@ export function DemoReport({
       {/* The page below the header, scrolled inside its own window. */}
       <div
         ref={windowRef}
-        className="relative min-h-0 flex-1 overflow-hidden rounded-2xl"
+        className="relative min-h-0 flex-1 overflow-hidden rounded-xl"
       >
         <div
           ref={contentRef}
@@ -81,7 +81,7 @@ export function DemoReport({
             gliding && "transition-transform duration-2000 ease-in-out"
           )}
         >
-          <div className="mx-auto flex w-fit items-center divide-x rounded-2xl border max-sm:w-full max-sm:flex-col max-sm:divide-x-0 max-sm:py-2">
+          <div className="mx-auto flex w-fit items-center divide-x rounded-xl border max-sm:w-full max-sm:flex-col max-sm:divide-x-0 max-sm:py-2">
             <div className="flex items-baseline gap-3 px-6 py-4 max-sm:py-2">
               <p
                 className={cn(
@@ -151,7 +151,7 @@ function DemoTopicAnswers({ topic }: { topic: DemoTopic }) {
           {formatPercent(topic.grade, locale)}
         </p>
       </div>
-      <ul className="divide-y rounded-2xl border">
+      <ul className="divide-y rounded-xl border">
         {topic.answers.map((answer) => (
           <DemoAnswerItem key={answer.text} answer={answer} />
         ))}

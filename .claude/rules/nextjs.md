@@ -58,4 +58,11 @@ themselves: `.claude/rules/content-i18n.md`.
 - Locale choice: the URL prefix (public pages), then the saved setting, then `Accept-Language`;
   `zh-TW`, `zh-HK` and other Traditional Chinese never silently get Simplified.
 
+## Look
+
+- Corners: `rounded-xl` everywhere (cards, lists, dialogs, menus, fields, buttons), `rounded-lg`
+  for something set close inside one (a button in a field, a menu item); circles only for avatars
+  outside the header, dots, rings, sliders, switches, chips and label pills. Labelled fields use
+  `components/ui/floating-field.tsx`; units go in its `suffix`, never beside the field.
+
 Research (local notes, git-ignored): `internal_docs/best-practices/i18n.md`.

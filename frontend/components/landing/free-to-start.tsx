@@ -48,15 +48,12 @@ export async function FreeToStartSection({ catalog }: { catalog: Catalog }) {
           <div className="mx-auto flex w-full max-w-sm flex-col gap-5 md:mx-0">
             <Badge
               variant="secondary"
-              className="h-11 w-full gap-2 rounded-full px-3 text-sm [&>svg]:size-4!"
+              className="h-11 w-full gap-2 rounded-xl px-3 text-sm [&>svg]:size-4!"
             >
               <GiftIcon className="text-primary" />
               {t("free", { count: catalog.free_candidates })}
             </Badge>
-            <ul
-              data-testid="price-list"
-              className="divide-y rounded-2xl border"
-            >
+            <ul data-testid="price-list" className="divide-y rounded-xl border">
               {catalog.products.map((product) => {
                 const used = product.key === topUp.key
 

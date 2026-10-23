@@ -68,7 +68,7 @@ export function CandidateTable({
 
   return (
     <div
-      className="divide-y overflow-hidden rounded-2xl border"
+      className="divide-y overflow-hidden rounded-xl border"
       data-testid="candidate-table"
     >
       <div className={cn(CANDIDATE_GRID, HEAD)}>
@@ -143,7 +143,7 @@ export function InterviewTable({
 
   return (
     <div
-      className="divide-y overflow-hidden rounded-2xl border"
+      className="divide-y overflow-hidden rounded-xl border"
       data-testid="interview-table"
     >
       <div className={cn(INTERVIEW_GRID, HEAD)}>

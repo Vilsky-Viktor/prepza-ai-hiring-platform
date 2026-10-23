@@ -44,7 +44,7 @@ export function DemoInterview({
         minutes={(questions * questionSeconds) / 60}
         small
       />
-      <ul className="divide-y rounded-2xl border">
+      <ul className="divide-y rounded-xl border">
         {topics.map((topic) => (
           <li
             key={topic}

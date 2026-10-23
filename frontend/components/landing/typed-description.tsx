@@ -27,10 +27,7 @@ export function TypedDescription({
   pressed: boolean
 }) {
   return (
-    <div
-      ref={ref}
-      className="flex flex-1 flex-col p-5"
-    >
+    <div ref={ref} className="flex flex-1 flex-col p-5">
       <div className="grid flex-1 items-start text-base *:[grid-area:1/1]">
         <p ref={ref} className="invisible">
           {full}
@@ -52,7 +49,7 @@ export function TypedDescription({
           className={buttonVariants({
             size: "icon-lg",
             className: cn(
-              "rounded-full",
+              "rounded-lg",
               !letters && "opacity-50",
               pressed && "ring-3 ring-ring/50"
             ),

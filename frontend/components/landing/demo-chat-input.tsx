@@ -51,7 +51,7 @@ export function DemoChatInput({
         className={buttonVariants({
           size: "icon",
           className: cn(
-            "size-10 shrink-0 rounded-full",
+            "size-10 shrink-0 rounded-lg",
             !text && "opacity-50",
             pressed && "ring-3 ring-ring/50"
           ),

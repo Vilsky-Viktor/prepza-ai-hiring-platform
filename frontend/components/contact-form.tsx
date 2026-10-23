@@ -114,7 +114,7 @@ export function ContactForm() {
               event.currentTarget.form?.requestSubmit()
             }
           }}
-          className={`min-h-48 resize-none rounded-[2rem] px-6 pt-4 pb-20 text-lg md:text-lg ${BORDERLESS}`}
+          className={`min-h-48 resize-none rounded-xl px-6 pt-4 pb-20 text-lg md:text-lg ${BORDERLESS}`}
         />
         <p className="pointer-events-none absolute start-6 bottom-6 text-xs text-muted-foreground pointer-coarse:hidden">
           {common("submitHint")}
@@ -122,7 +122,7 @@ export function ContactForm() {
         <Button
           type="submit"
           size="icon-lg"
-          className="absolute end-3 bottom-3 size-12 rounded-full"
+          className="absolute end-3 bottom-3 size-12 rounded-lg"
           disabled={sending}
           aria-label={t("send")}
         >

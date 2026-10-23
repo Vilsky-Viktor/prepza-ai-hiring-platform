@@ -96,7 +96,7 @@ test("the integrations pages on a phone", async ({ signInAs }) => {
   await visit(owner, `${tab}/slack`)
   await expectButtonsUnderTitle(owner)
   const kinds = owner
-    .locator("main div.divide-y.rounded-2xl")
+    .locator("main div.divide-y.rounded-xl")
     .filter({ has: owner.getByRole("checkbox") })
   await expect(kinds).not.toHaveCSS("border-top-left-radius", "0px")
   await shot(owner, "slack")

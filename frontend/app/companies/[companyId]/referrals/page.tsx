@@ -63,7 +63,7 @@ export default async function ReferralsPage({
             <div
               className={cn(
                 SIGN_CARD,
-                "-mx-6 space-y-4 p-5 ps-20 max-sm:rounded-none sm:mx-0"
+                "-mx-6 space-y-4 max-sm:rounded-none sm:mx-0"
               )}
             >
               <CornerSign>

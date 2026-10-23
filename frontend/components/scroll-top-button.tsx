@@ -36,7 +36,7 @@ export function ScrollTopButton() {
       data-testid="back-to-top"
       // Smooth unless the visitor asked for less motion (the page's scroll-smooth).
       onClick={() => window.scrollTo({ top: 0 })}
-      className="fixed end-6 bottom-6 z-30 size-12 rounded-full bg-background [body:has([data-round-footer])_&]:hidden"
+      className="fixed end-6 bottom-6 z-30 size-12 rounded-xl bg-background [body:has([data-round-footer])_&]:hidden"
     >
       <ArrowUpIcon className="size-6" />
     </Button>

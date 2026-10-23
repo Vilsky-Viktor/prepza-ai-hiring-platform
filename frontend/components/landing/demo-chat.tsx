@@ -62,7 +62,7 @@ export function DemoChat({ shown }: { shown: boolean }) {
       </div>
       <div className="flex min-h-0 flex-1 flex-col justify-end gap-2 overflow-hidden rounded-2xl bg-muted p-3 sm:p-5">
         {/* The team's question, already there. */}
-        <div className="max-w-[80%] self-start rounded-2xl rounded-es-sm bg-background px-4 pt-3 pb-2">
+        <div className="max-w-[80%] self-start rounded-xl rounded-es-sm bg-background px-4 pt-3 pb-2">
           <p className="text-sm leading-relaxed">{t("chatQuestion")}</p>
           <p className="text-end text-xs text-muted-foreground">
             {DEMO_CHAT.asked}
@@ -70,7 +70,7 @@ export function DemoChat({ shown }: { shown: boolean }) {
         </div>
         <div
           className={cn(
-            "max-w-[92%] self-end rounded-2xl rounded-ee-sm bg-background px-4 pt-3 pb-2 transition-[opacity,translate] delay-300 duration-500 sm:max-w-sm",
+            "max-w-[92%] self-end rounded-xl rounded-ee-sm bg-background px-4 pt-3 pb-2 transition-[opacity,translate] delay-300 duration-500 sm:max-w-sm",
             !shown && "translate-y-3 opacity-0"
           )}
         >

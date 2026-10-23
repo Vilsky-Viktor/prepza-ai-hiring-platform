@@ -105,7 +105,7 @@ export function CampaignAudience({
       <span className="block text-sm text-muted-foreground">
         {t("campaignAudience")}
       </span>
-      <div className="divide-y rounded-2xl border">
+      <div className="divide-y rounded-xl border">
         <div className="p-4">
           <Choice
             name={t("campaignAudienceEveryone")}

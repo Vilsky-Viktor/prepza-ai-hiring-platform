@@ -211,7 +211,7 @@ export function CampaignView({
                 frame.style.height = `${page.scrollHeight}px`
               }).observe(page)
             }}
-            className="h-[40rem] w-full rounded-2xl border bg-white"
+            className="h-[40rem] w-full rounded-xl border bg-white"
           />
         )}
       </div>

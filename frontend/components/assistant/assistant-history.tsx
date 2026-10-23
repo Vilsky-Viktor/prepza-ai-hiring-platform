@@ -81,7 +81,7 @@ export function AssistantHistory({
 
   return (
     <>
-      <ul className="divide-y rounded-2xl border">
+      <ul className="divide-y rounded-xl border">
         {items.map((item) => (
           // One hover surface: the row opens the conversation, the bin sits on top of it.
           <li
