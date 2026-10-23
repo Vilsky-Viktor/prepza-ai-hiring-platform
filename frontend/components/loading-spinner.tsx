@@ -1,6 +1,7 @@
-import { LoaderCircleIcon } from "lucide-react"
+import { AiPulse } from "@/components/ai-pulse"
 
-/** The spinner a page shows while its content loads, named for screen readers (`label`). */
+/** What a page shows while its content loads, named for screen readers (`label`): prepza's
+ * loading mark. */
 export function LoadingSpinner({ label }: { label: string }) {
   return (
     <div
@@ -8,10 +9,7 @@ export function LoadingSpinner({ label }: { label: string }) {
       role="status"
       data-testid="page-loading"
     >
-      <LoaderCircleIcon
-        aria-label={label}
-        className="size-14 animate-spin text-primary"
-      />
+      <AiPulse label={label} className="size-14" />
     </div>
   )
 }

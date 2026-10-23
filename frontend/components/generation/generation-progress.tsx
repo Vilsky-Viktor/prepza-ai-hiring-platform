@@ -1,9 +1,9 @@
 "use client"
 
-import { LoaderCircleIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
+import { AiPulse } from "@/components/ai-pulse"
 import { BackLink } from "@/components/back-link"
 import { WritingProgress } from "@/components/generation/writing-progress"
 import type { Generation } from "@/types/generation"
@@ -25,7 +25,7 @@ export function GenerationProgress({
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center space-y-8 text-center">
-      <LoaderCircleIcon className="size-20 animate-spin text-primary" />
+      <AiPulse className="size-20" />
       <div className="space-y-4">
         <div className="relative">
           <BackLink href={backHref} help="generating">
