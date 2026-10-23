@@ -1,8 +1,8 @@
-import { createHash, createHmac, randomBytes } from "node:crypto";
+import { createHash, createHmac } from "node:crypto";
 
 import { expect, test as base } from "@playwright/test";
 
-import { deleteOptOuts } from "./helpers/db";
+import { deleteOptOuts, madeUpCompanyId } from "./helpers/db";
 import { loaded } from "./helpers/waits";
 
 // The page an email's unsubscribe link opens, signed out. Links are signed the way notifications
@@ -19,11 +19,11 @@ function companyLink(email: string, companyId: string, company: string): string 
   return `/unsubscribe?token=${body}.${signature}`;
 }
 
-// A made-up company of the test's own (e2e-<id>, never a real id); its opt-outs are deleted when
-// the test ends.
+// A made-up company of the test's own (never a real id); its opt-outs are deleted when the test
+// ends.
 const test = base.extend<{ companyId: string }>({
   companyId: async ({}, use) => {
-    const companyId = `e2e-${randomBytes(4).toString("hex")}`;
+    const companyId = madeUpCompanyId();
     await use(companyId);
     await deleteOptOuts(companyId);
   },
@@ -39,7 +39,7 @@ test("an invalid unsubscribe link says so and isn't indexed", async ({ page }) =
 
 test("a candidate confirms stopping a company's emails", async ({ page, companyId }) => {
   // A made-up company and address of this test's own: nothing real is changed.
-  const id = companyId.slice("e2e-".length);
+  const id = companyId.slice(-12);
   const posts: string[] = [];
   page.on("request", (request) => {
     if (request.method() === "POST" && request.url().includes("/unsubscribe/")) {
@@ -47,7 +47,7 @@ test("a candidate confirms stopping a company's emails", async ({ page, companyI
     }
   });
 
-  await page.goto(companyLink(`e2e-${id}@example.com`, `e2e-${id}`, `Acme ${id}`));
+  await page.goto(companyLink(`e2e-${id}@example.com`, companyId, `Acme ${id}`));
   const main = page.getByRole("main");
   // It names the company the link stops.
   await expect(main).toContainText(`Acme ${id}`);

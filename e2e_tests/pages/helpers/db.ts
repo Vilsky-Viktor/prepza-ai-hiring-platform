@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { randomBytes, randomUUID } from "node:crypto";
 
 import pg from "pg";
 
@@ -79,7 +79,15 @@ export async function deleteTemplate(id: string) {
   await withDatabase("library", (client) => client.query("DELETE FROM sets WHERE id = $1", [id]));
 }
 
-/** Deletes the opt-outs a made-up company's unsubscribe link left (e2e-<id>, never a real id). */
+// Made-up companies' ids: uuids, as the opt-outs keep them, that no real company is given.
+const MADE_UP_COMPANY = "00000000-e2e0-4000-8000-";
+
+/** A made-up company's id of a test's own. */
+export function madeUpCompanyId() {
+  return `${MADE_UP_COMPANY}${randomBytes(6).toString("hex")}`;
+}
+
+/** Deletes the opt-outs a made-up company's unsubscribe link left (never a real id). */
 export async function deleteOptOuts(companyId: string) {
   await withDatabase("notifications", (client) =>
     client.query("DELETE FROM candidate_opt_outs WHERE company_id = $1", [companyId]),
@@ -97,8 +105,8 @@ export async function deleteLeftovers() {
   );
   await withDatabase("notifications", (client) =>
     client.query(
-      "DELETE FROM candidate_opt_outs WHERE company_id::text LIKE 'e2e-%' AND created_at < now() - $1::interval",
-      [STALE],
+      "DELETE FROM candidate_opt_outs WHERE company_id::text LIKE $1 AND created_at < now() - $2::interval",
+      [`${MADE_UP_COMPANY}%`, STALE],
     ),
   );
 }
