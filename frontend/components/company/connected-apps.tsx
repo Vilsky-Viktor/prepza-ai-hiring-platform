@@ -41,19 +41,11 @@ export function ConnectedApps({
                 <span className="block text-sm text-muted-foreground">
                   {app.redirect_host}
                   <Dot />
-                  <time suppressHydrationWarning>
-                    {t("connectedOn", {
-                      date: localTime.date(app.created_at),
-                    })}
-                  </time>
+                  {t.rich("connectedOn", localTime.dateValues(app.created_at))}
                   <Dot />
-                  <time suppressHydrationWarning>
-                    {app.last_used_at
-                      ? t("lastUsed", {
-                          date: localTime.date(app.last_used_at),
-                        })
-                      : t("neverUsed")}
-                  </time>
+                  {app.last_used_at
+                    ? t.rich("lastUsed", localTime.dateValues(app.last_used_at))
+                    : t("neverUsed")}
                 </span>
               </span>
               <span className="max-sm:flex max-sm:justify-center">

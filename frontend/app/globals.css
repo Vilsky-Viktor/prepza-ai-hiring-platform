@@ -155,6 +155,11 @@
 }
 
 @layer base {
+  /* Every date on the site is in italics: shown in a <time> element. */
+  time {
+    font-style: italic;
+  }
+
   /* On a touch screen nothing shows a hover, so everything that can be tapped dims a little while
      pressed: the sign a tap landed. :where keeps it the weakest rule, so a component's own pressed
      style wins. */

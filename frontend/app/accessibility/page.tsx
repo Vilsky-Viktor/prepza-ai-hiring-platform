@@ -8,6 +8,7 @@ import {
 import { OPERATOR } from "@/constants/operator"
 import { formatDay } from "@/lib/format"
 import { pageMetadata } from "@/lib/site"
+import { timeTag } from "@/lib/time-tag"
 import { PageKey } from "@/components/page-key"
 
 export async function generateMetadata() {
@@ -60,7 +61,10 @@ export default async function AccessibilityPage() {
         </p>
       </section>
       <p className="max-w-3xl text-sm text-muted-foreground">
-        {t("reviewed", { date: formatDay(ACCESSIBILITY_REVIEWED, locale) })}
+        {t.rich("reviewed", {
+          date: formatDay(ACCESSIBILITY_REVIEWED, locale),
+          ...timeTag(ACCESSIBILITY_REVIEWED),
+        })}
       </p>
     </main>
   )

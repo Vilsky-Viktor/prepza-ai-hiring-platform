@@ -182,8 +182,8 @@
       "dismissed": "reddedildi"
     },
     "patternQuestions": "{count, plural, one {# soru} other {# soru}}",
-    "firstSeen": "ilk görülme {date}",
-    "lastSeen": "son görülme {date}",
+    "firstSeen": "ilk görülme <time>{date}</time>",
+    "lastSeen": "son görülme <time>{date}</time>",
     "replacedWith": "Yerine gelen",
     "answers": "{count, plural, one {# cevap} other {# cevap}}",
     "right": "{percent} doğru",
@@ -329,17 +329,17 @@
       "dpa": "Veri işleme sözleşmesi"
     },
     "legalStates": {
-      "in_force": "{date} tarihinden beri yürürlükte. Bir değişikliği e-postayla bildirmek için yeni sürüme en az 14 gün sonrasının tarihini verin.",
-      "sendable": "{date} tarihinden itibaren geçerli.",
-      "too_late": "{date} tarihinden itibaren geçerli. Değişiklik, geçerli olmadan en az 14 gün önce bildirilir.",
-      "sending": "{date} tarihinden itibaren geçerli. Gönderiliyor.",
-      "sent": "{date} tarihinden itibaren geçerli. Gönderildi."
+      "in_force": "<time>{date}</time> tarihinden beri yürürlükte. Bir değişikliği e-postayla bildirmek için yeni sürüme en az 14 gün sonrasının tarihini verin.",
+      "sendable": "<time>{date}</time> tarihinden itibaren geçerli.",
+      "too_late": "<time>{date}</time> tarihinden itibaren geçerli. Değişiklik, geçerli olmadan en az 14 gün önce bildirilir.",
+      "sending": "<time>{date}</time> tarihinden itibaren geçerli. Gönderiliyor.",
+      "sent": "<time>{date}</time> tarihinden itibaren geçerli. Gönderildi."
     },
     "legalSend": "Değişikliği e-postayla bildir",
     "legalConfirmTitle": "{document} değişikliği e-postayla bildirilsin mi?",
     "legalAudience": {
-      "everyone": "prepza hesabı olan herkes, bir sonraki gönderim saatinden (UTC 8:00–18:00) itibaren yeni sürümün {date} tarihinden itibaren geçerli olduğunu bildiren e-postayı alır ve bunu bildirimlerinde de görür. Bir kez gönderilir ve geri alınamaz.",
-      "company_editors": "Her şirketin sahipleri ve yöneticileri, bir sonraki gönderim saatinden (UTC 8:00–18:00) itibaren yeni sürümün {date} tarihinden itibaren geçerli olduğunu bildiren e-postayı alır ve bunu bildirimlerinde de görür. Bir kez gönderilir ve geri alınamaz."
+      "everyone": "prepza hesabı olan herkes, bir sonraki gönderim saatinden (UTC 8:00–18:00) itibaren yeni sürümün <time>{date}</time> tarihinden itibaren geçerli olduğunu bildiren e-postayı alır ve bunu bildirimlerinde de görür. Bir kez gönderilir ve geri alınamaz.",
+      "company_editors": "Her şirketin sahipleri ve yöneticileri, bir sonraki gönderim saatinden (UTC 8:00–18:00) itibaren yeni sürümün <time>{date}</time> tarihinden itibaren geçerli olduğunu bildiren e-postayı alır ve bunu bildirimlerinde de görür. Bir kez gönderilir ve geri alınamaz."
     },
     "legalAsked": "Değişiklik bir sonraki gönderim saatinden itibaren e-postayla bildirilecek.",
     "legalFailed": "E-posta istenemedi. Lütfen tekrar deneyin.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "Kampanya olarak gönder",
     "removeSuppression": "Listeden çıkar",
     "suppressed": {
-      "bounced": "Bu adrese gönderilen bir e-posta {date} tarihinde geri döndü; bu yüzden bu adrese hiçbir e-posta gönderilmez.",
-      "complained": "Bu adres {date} tarihinde bir e-postayı spam olarak işaretledi; bu yüzden bu adrese hiçbir e-posta gönderilmez.",
-      "suppressed": "Resend, daha önceki bir geri dönme veya spam bildirimi nedeniyle {date} tarihinde bu adrese göndermeyi durdurdu; bu yüzden bu adrese hiçbir e-posta gönderilmez.",
-      "soft_bounced": "Bu adrese gönderilen e-postalar {date} tarihine kadar tekrar tekrar geri döndü; bu yüzden bu adrese hiçbir e-posta gönderilmez."
+      "bounced": "Bu adrese gönderilen bir e-posta <time>{date}</time> tarihinde geri döndü; bu yüzden bu adrese hiçbir e-posta gönderilmez.",
+      "complained": "Bu adres <time>{date}</time> tarihinde bir e-postayı spam olarak işaretledi; bu yüzden bu adrese hiçbir e-posta gönderilmez.",
+      "suppressed": "Resend, daha önceki bir geri dönme veya spam bildirimi nedeniyle <time>{date}</time> tarihinde bu adrese göndermeyi durdurdu; bu yüzden bu adrese hiçbir e-posta gönderilmez.",
+      "soft_bounced": "Bu adrese gönderilen e-postalar <time>{date}</time> tarihine kadar tekrar tekrar geri döndü; bu yüzden bu adrese hiçbir e-posta gönderilmez."
     },
     "aiCosts": "Yapay zekâ maliyetleri",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "Bu sürüm yalnızca İngilizce olarak mevcuttur.",
-    "inForce": "{date} tarihinden beri yürürlükte",
-    "upcomingRead": "{date} tarihinden itibaren geçerlidir. <link>Şu an geçerli sürümü okuyun</link>",
-    "replacedRead": "Bu sürüm {date} tarihinden itibaren geçerliydi ve yerini başka bir sürüm aldı. <link>Şu an geçerli sürümü okuyun</link>",
+    "inForce": "<time>{date}</time> tarihinden beri yürürlükte",
+    "upcomingRead": "<time>{date}</time> tarihinden itibaren geçerlidir. <link>Şu an geçerli sürümü okuyun</link>",
+    "replacedRead": "Bu sürüm <time>{date}</time> tarihinden itibaren geçerliydi ve yerini başka bir sürüm aldı. <link>Şu an geçerli sürümü okuyun</link>",
     "versions": "Tüm sürümler",
     "translatedRead": "Bu bir çeviridir; yalnızca İngilizce sürüm bağlayıcıdır. <link>İngilizce oku</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "Kartınız bekleniyor",
     "cardPaused": "Duraklatıldı: kart reddedildi. Otomatik yüklemeyi yeniden açmak için kartı güncelleyin.",
     "paused": "Otomatik yükleme duraklatıldı: kart reddedildi",
-    "nextPrice": "{date} itibarıyla: {amount}.",
+    "nextPrice": "<time>{date}</time> itibarıyla: {amount}.",
     "updateCard": "Kartı güncelle",
     "updateCardFailed": "Kart güncelleme açılamadı. Lütfen tekrar deneyin.",
     "currencyApplied": "Otomatik yükleme artık {amount} tahsil ediyor.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "Otomatik yükleme {credits, number} kredi ekledi.",
       "auto_top_up_failed": "Otomatik yükleme karttan ödeme alamadı. Bakiyenizin bitmemesi için kredi yükleyin.",
       "auto_top_up_paused": "Otomatik yükleme duraklatıldı: kart reddedildi. Yeniden açmak için kartı güncelleyin.",
-      "auto_top_up_price_change": "{date} itibarıyla her otomatik yüklemenin ücreti {price} yerine {newPrice} olacak.",
+      "auto_top_up_price_change": "<time>{date}</time> itibarıyla her otomatik yüklemenin ücreti {price} yerine {newPrice} olacak.",
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi>, {title, select, none {bir mülakatı} other {“<bdi>{title}</bdi>” mülakatını}} tamamladı{grade, select, none {.} other {: {grade}.}}} other {# aday {title, select, none {bir mülakatı} other {“<bdi>{title}</bdi>” mülakatını}} tamamladı.}}",
       "invite_undelivered": "{count, plural, one {<bdi>{email}</bdi> adresine gönderilen {title, select, none {mülakat daveti} other {“<bdi>{title}</bdi>” daveti}} iletilemedi.} other {{title, select, none {Bir mülakat için} other {“<bdi>{title}</bdi>” için}} gönderilen # davet iletilemedi.}}",
       "interview_ready": "{title, select, none {Bir mülakat hazır.} other {“<bdi>{title}</bdi>” mülakatı hazır.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "<bdi>{url}</bdi> adresine giden web kancası durdu: onu ekleyen üye artık sahip veya yönetici değil. Sonuç almaya devam etmek için yeniden ekleyin.",
       "ownership_received": "Artık “<bdi>{name}</bdi>” şirketinin sahibisiniz.",
       "news": "Haberler: <bdi>{title}</bdi>",
-      "legal_terms": "Yeni koşullar {date} tarihinden itibaren geçerlidir.",
-      "legal_privacy": "Yeni gizlilik politikası {date} tarihinden itibaren geçerlidir.",
-      "legal_dpa": "Yeni veri işleme sözleşmesi {date} tarihinden itibaren geçerlidir."
+      "legal_terms": "Yeni koşullar <time>{date}</time> tarihinden itibaren geçerlidir.",
+      "legal_privacy": "Yeni gizlilik politikası <time>{date}</time> tarihinden itibaren geçerlidir.",
+      "legal_dpa": "Yeni veri işleme sözleşmesi <time>{date}</time> tarihinden itibaren geçerlidir."
     },
     "legalBanner": {
-      "terms": "prepza'nın koşulları {date} tarihinde değişiyor.",
-      "privacy": "prepza'nın gizlilik politikası {date} tarihinde değişiyor.",
-      "dpa": "Veri işleme sözleşmesi {date} tarihinde değişiyor."
+      "terms": "prepza'nın koşulları <time>{date}</time> tarihinde değişiyor.",
+      "privacy": "prepza'nın gizlilik politikası <time>{date}</time> tarihinde değişiyor.",
+      "dpa": "Veri işleme sözleşmesi <time>{date}</time> tarihinde değişiyor."
     },
     "readLegal": "Yeni sürümü okuyun",
     "closeLegalBanner": "Kapat"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "Şimdi kopyalayın ve güvenli bir yerde saklayın: bir daha gösterilmeyecek.",
     "copyKey": "Anahtarı kopyala",
     "keyCopied": "Anahtar kopyalandı",
-    "created": "oluşturulma: {date}",
-    "lastUsed": "son kullanım: {date}",
-    "expires": "son geçerlilik: {date}",
+    "created": "oluşturulma: <time>{date}</time>",
+    "lastUsed": "son kullanım: <time>{date}</time>",
+    "expires": "son geçerlilik: <time>{date}</time>",
     "neverExpires": "süresiz",
     "expired": "süresi doldu",
     "neverUsed": "hiç kullanılmadı",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "Yeni bir imzalama anahtarı alır. Önümüzdeki 24 saat boyunca her isteği iki anahtar da imzalar; böylece uç noktanızı yenisine geçirirken çalışmaya devam eder.",
     "rollSecretFailed": "Gizli anahtar yenilenemedi.",
     "newSecretTitle": "Webhook'unuzun yeni gizli anahtarı",
-    "newSecretText": "İstekler bununla ve {until} tarihine kadar eskisiyle de imzalanır. Şimdi kopyalayın: bir daha gösterilmeyecek.",
-    "added": "eklenme: {date}",
+    "newSecretText": "İstekler bununla ve <time>{until}</time> tarihine kadar eskisiyle de imzalanır. Şimdi kopyalayın: bir daha gösterilmeyecek.",
+    "added": "eklenme: <time>{date}</time>",
     "sendTest": "Test olayı gönder",
     "testSent": "Test olayı teslim edildi.",
     "testNotTaken": "Uç nokta test olayını kabul etmedi. Nedenini teslim günlüğünde görebilirsiniz.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "Apps & Connectors'a dönüp şunu seçin:",
     "chatgptPaste": "Adını {name} koyun, sunucu adresini yapıştırın ve bu kimlik doğrulama yöntemini seçin:",
     "noConnected": "Henüz bağlı uygulama yok.",
-    "connectedOn": "bağlanma: {date}",
-    "lastUsed": "son kullanım: {date}",
+    "connectedOn": "bağlanma: <time>{date}</time>",
+    "lastUsed": "son kullanım: <time>{date}</time>",
     "neverUsed": "henüz kullanılmadı",
     "disconnectTitle": "<bdi>{client}</bdi> bağlantısı kesilsin mi?",
     "disconnectText": "<bdi>{client}</bdi>, siz yeniden bağlayana kadar prepza ile çalışmaz.",
@@ -2323,7 +2323,7 @@
       "text": "prepza'da kullanmakta zorlandığınız bir şey varsa ya da onu başka bir biçimde istiyorsanız <email></email> adresine yazın. 14 gün içinde yanıt veriyoruz.",
       "authority": "Yanıtımızdan memnun kalmazsanız Estonya Tüketiciyi Koruma ve Teknik Düzenleme Kurumuna (TTJA) başvurabilirsiniz."
     },
-    "reviewed": "Son gözden geçirme: {date}."
+    "reviewed": "Son gözden geçirme: <time>{date}</time>."
   },
   "actionLog": {
     "empty": "Henüz işlem yok.",

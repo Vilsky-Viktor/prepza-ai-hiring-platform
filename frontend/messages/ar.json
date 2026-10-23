@@ -182,8 +182,8 @@
       "dismissed": "مرفوض"
     },
     "patternQuestions": "{count, plural, zero {لا أسئلة} one {سؤال واحد} two {سؤالان} few {# أسئلة} many {# سؤالًا} other {# سؤال}}",
-    "firstSeen": "أول ظهور {date}",
-    "lastSeen": "آخر ظهور {date}",
+    "firstSeen": "أول ظهور <time>{date}</time>",
+    "lastSeen": "آخر ظهور <time>{date}</time>",
     "replacedWith": "استُبدل بـ",
     "answers": "{count, plural, zero {لا إجابات} one {إجابة واحدة} two {إجابتان} few {# إجابات} many {# إجابةً} other {# إجابة}}",
     "right": "{percent} صحيحة",
@@ -329,17 +329,17 @@
       "dpa": "اتفاقية معالجة البيانات"
     },
     "legalStates": {
-      "in_force": "سارية منذ {date}. لإرسال تغيير بالبريد، اجعل تاريخ نسخته الجديدة بعد 14 يومًا على الأقل.",
-      "sendable": "تسري اعتبارًا من {date}.",
-      "too_late": "تسري اعتبارًا من {date}. يُرسل التغيير قبل 14 يومًا على الأقل من سريانه.",
-      "sending": "تسري اعتبارًا من {date}. جارٍ الإرسال.",
-      "sent": "تسري اعتبارًا من {date}. أُرسل."
+      "in_force": "سارية منذ <time>{date}</time>. لإرسال تغيير بالبريد، اجعل تاريخ نسخته الجديدة بعد 14 يومًا على الأقل.",
+      "sendable": "تسري اعتبارًا من <time>{date}</time>.",
+      "too_late": "تسري اعتبارًا من <time>{date}</time>. يُرسل التغيير قبل 14 يومًا على الأقل من سريانه.",
+      "sending": "تسري اعتبارًا من <time>{date}</time>. جارٍ الإرسال.",
+      "sent": "تسري اعتبارًا من <time>{date}</time>. أُرسل."
     },
     "legalSend": "أرسل التغيير بالبريد",
     "legalConfirmTitle": "إرسال التغيير على {document} بالبريد؟",
     "legalAudience": {
-      "everyone": "يتلقاه كل من لديه حساب في prepza بدءًا من ساعة الإرسال التالية (من 8:00 إلى 18:00 UTC)، ويذكر أن النسخة الجديدة تسري اعتبارًا من {date}، ويراه في إشعاراته. يُرسل مرة واحدة ولا يمكن التراجع عنه.",
-      "company_editors": "يتلقاه مالكو كل شركة ومشرفوها بدءًا من ساعة الإرسال التالية (من 8:00 إلى 18:00 UTC)، ويذكر أن النسخة الجديدة تسري اعتبارًا من {date}، ويرونه في إشعاراتهم. يُرسل مرة واحدة ولا يمكن التراجع عنه."
+      "everyone": "يتلقاه كل من لديه حساب في prepza بدءًا من ساعة الإرسال التالية (من 8:00 إلى 18:00 UTC)، ويذكر أن النسخة الجديدة تسري اعتبارًا من <time>{date}</time>، ويراه في إشعاراته. يُرسل مرة واحدة ولا يمكن التراجع عنه.",
+      "company_editors": "يتلقاه مالكو كل شركة ومشرفوها بدءًا من ساعة الإرسال التالية (من 8:00 إلى 18:00 UTC)، ويذكر أن النسخة الجديدة تسري اعتبارًا من <time>{date}</time>، ويرونه في إشعاراتهم. يُرسل مرة واحدة ولا يمكن التراجع عنه."
     },
     "legalAsked": "سيُرسل التغيير بالبريد بدءًا من ساعة الإرسال التالية.",
     "legalFailed": "تعذّر طلب الإرسال. يُرجى المحاولة مرة أخرى.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "إرسال كحملة",
     "removeSuppression": "إزالة من القائمة",
     "suppressed": {
-      "bounced": "ارتدّت رسالة إلى هذا العنوان في {date}، لذا لا تُرسَل إليه أي رسالة.",
-      "complained": "أبلغ هذا العنوان عن رسالة بوصفها مزعجة في {date}، لذا لا تُرسَل إليه أي رسالة.",
-      "suppressed": "أوقف Resend الإرسال إلى هذا العنوان في {date} بعد ارتداد سابق أو بلاغ عن رسالة مزعجة، لذا لا تُرسَل إليه أي رسالة.",
-      "soft_bounced": "ظلّت الرسائل إلى هذا العنوان ترتدّ حتى {date}، لذا لا تُرسَل إليه أي رسالة."
+      "bounced": "ارتدّت رسالة إلى هذا العنوان في <time>{date}</time>، لذا لا تُرسَل إليه أي رسالة.",
+      "complained": "أبلغ هذا العنوان عن رسالة بوصفها مزعجة في <time>{date}</time>، لذا لا تُرسَل إليه أي رسالة.",
+      "suppressed": "أوقف Resend الإرسال إلى هذا العنوان في <time>{date}</time> بعد ارتداد سابق أو بلاغ عن رسالة مزعجة، لذا لا تُرسَل إليه أي رسالة.",
+      "soft_bounced": "ظلّت الرسائل إلى هذا العنوان ترتدّ حتى <time>{date}</time>، لذا لا تُرسَل إليه أي رسالة."
     },
     "aiCosts": "تكاليف الذكاء الاصطناعي",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "هذه النسخة متاحة بالإنجليزية فقط.",
-    "inForce": "سارية منذ {date}",
-    "upcomingRead": "تسري اعتبارًا من {date}. <link>اقرأ النسخة السارية الآن</link>",
-    "replacedRead": "سرت هذه النسخة اعتبارًا من {date} وقد استُبدلت. <link>اقرأ النسخة السارية الآن</link>",
+    "inForce": "سارية منذ <time>{date}</time>",
+    "upcomingRead": "تسري اعتبارًا من <time>{date}</time>. <link>اقرأ النسخة السارية الآن</link>",
+    "replacedRead": "سرت هذه النسخة اعتبارًا من <time>{date}</time> وقد استُبدلت. <link>اقرأ النسخة السارية الآن</link>",
     "versions": "كل النسخ",
     "translatedRead": "هذه ترجمة؛ النسخة الإنجليزية وحدها هي الملزمة. <link>اقرأها بالإنجليزية</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "بانتظار بطاقتك",
     "cardPaused": "متوقف مؤقتًا: رُفضت البطاقة. حدّثها لإعادة تشغيل الشحن التلقائي.",
     "paused": "الشحن التلقائي متوقف مؤقتًا: رُفضت البطاقة",
-    "nextPrice": "اعتبارًا من {date}: {amount}.",
+    "nextPrice": "اعتبارًا من <time>{date}</time>: {amount}.",
     "updateCard": "تحديث البطاقة",
     "updateCardFailed": "تعذّر فتح صفحة تحديث البطاقة. حاول مرة أخرى.",
     "currencyApplied": "أصبح الشحن التلقائي يخصم {amount}.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "أضاف الشحن التلقائي {credits, number} من الأرصدة.",
       "auto_top_up_failed": "تعذّر على الشحن التلقائي الخصم من البطاقة. اشحن رصيدك حتى لا ينفد.",
       "auto_top_up_paused": "الشحن التلقائي متوقف مؤقتًا: رُفضت البطاقة. حدّث البطاقة لإعادة تشغيله.",
-      "auto_top_up_price_change": "اعتبارًا من {date}، تكلّف كل عملية شحن تلقائي {newPrice} بدلًا من {price}.",
+      "auto_top_up_price_change": "اعتبارًا من <time>{date}</time>، تكلّف كل عملية شحن تلقائي {newPrice} بدلًا من {price}.",
       "candidate_finished": "{count, plural, one {أنهى <bdi>{email}</bdi> {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}{grade, select, none {.} other {: {grade}.}}} zero {أنهى # مرشح {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.} two {أنهى مرشحان {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.} few {أنهى # مرشحين {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.} many {أنهى # مرشحًا {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.} other {أنهى # مرشح {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.}}",
       "invite_undelivered": "{count, plural, one {لم تُسلَّم دعوة {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}} إلى <bdi>{email}</bdi>.} zero {لم تُسلَّم # دعوة {title, select, none {لمقابلة} other {لـ«<bdi>{title}</bdi>»}}.} two {لم تُسلَّم دعوتان {title, select, none {لمقابلة} other {لـ«<bdi>{title}</bdi>»}}.} few {لم تُسلَّم # دعوات {title, select, none {لمقابلة} other {لـ«<bdi>{title}</bdi>»}}.} many {لم تُسلَّم # دعوةً {title, select, none {لمقابلة} other {لـ«<bdi>{title}</bdi>»}}.} other {لم تُسلَّم # دعوة {title, select, none {لمقابلة} other {لـ«<bdi>{title}</bdi>»}}.}}",
       "interview_ready": "{title, select, none {هناك مقابلة جاهزة.} other {المقابلة «<bdi>{title}</bdi>» جاهزة.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "توقف خطاف الويب إلى <bdi>{url}</bdi>: العضو الذي أضافه لم يعد مالكًا أو مسؤولًا. أضفه مرة أخرى لتستمر في تلقي النتائج.",
       "ownership_received": "أصبحت الآن مالك «<bdi>{name}</bdi>».",
       "news": "الأخبار: <bdi>{title}</bdi>",
-      "legal_terms": "تسري شروط جديدة اعتبارًا من {date}.",
-      "legal_privacy": "تسري سياسة خصوصية جديدة اعتبارًا من {date}.",
-      "legal_dpa": "تسري اتفاقية معالجة بيانات جديدة اعتبارًا من {date}."
+      "legal_terms": "تسري شروط جديدة اعتبارًا من <time>{date}</time>.",
+      "legal_privacy": "تسري سياسة خصوصية جديدة اعتبارًا من <time>{date}</time>.",
+      "legal_dpa": "تسري اتفاقية معالجة بيانات جديدة اعتبارًا من <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "تتغير شروط prepza في {date}.",
-      "privacy": "تتغير سياسة الخصوصية لدى prepza في {date}.",
-      "dpa": "تتغير اتفاقية معالجة البيانات في {date}."
+      "terms": "تتغير شروط prepza في <time>{date}</time>.",
+      "privacy": "تتغير سياسة الخصوصية لدى prepza في <time>{date}</time>.",
+      "dpa": "تتغير اتفاقية معالجة البيانات في <time>{date}</time>."
     },
     "readLegal": "اقرأ النسخة الجديدة",
     "closeLegalBanner": "إغلاق"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "انسخه الآن واحفظه في مكان آمن: لن يُعرض مرة أخرى.",
     "copyKey": "نسخ المفتاح",
     "keyCopied": "تم نسخ المفتاح",
-    "created": "أُنشئ في {date}",
-    "lastUsed": "آخر استخدام {date}",
-    "expires": "ينتهي في {date}",
+    "created": "أُنشئ في <time>{date}</time>",
+    "lastUsed": "آخر استخدام <time>{date}</time>",
+    "expires": "ينتهي في <time>{date}</time>",
     "neverExpires": "لا تنتهي صلاحيته",
     "expired": "منتهي الصلاحية",
     "neverUsed": "لم يُستخدم",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "سيحصل على سر توقيع جديد. خلال الساعات الـ 24 القادمة يوقّع السرّان كل طلب، فتبقى نقطة النهاية لديك تعمل بينما تنقلها إلى السر الجديد.",
     "rollSecretFailed": "تعذّر تجديد السر.",
     "newSecretTitle": "السر الجديد للويب هوك الخاص بك",
-    "newSecretText": "تُوقَّع الطلبات به، ومعه السر القديم أيضًا حتى {until}. انسخه الآن: لن يُعرض مرة أخرى.",
-    "added": "أُضيف في {date}",
+    "newSecretText": "تُوقَّع الطلبات به، ومعه السر القديم أيضًا حتى <time>{until}</time>. انسخه الآن: لن يُعرض مرة أخرى.",
+    "added": "أُضيف في <time>{date}</time>",
     "sendTest": "إرسال حدث تجريبي",
     "testSent": "تم تسليم الحدث التجريبي.",
     "testNotTaken": "لم تقبل نقطة النهاية الحدث التجريبي. يوضح سجل التسليم السبب.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "بعد العودة إلى Apps & Connectors، اختر:",
     "chatgptPaste": "سمّه {name}، والصق عنوان الخادم، واختر طريقة المصادقة هذه:",
     "noConnected": "لا توجد تطبيقات مرتبطة بعد.",
-    "connectedOn": "رُبط في {date}",
-    "lastUsed": "آخر استخدام {date}",
+    "connectedOn": "رُبط في <time>{date}</time>",
+    "lastUsed": "آخر استخدام <time>{date}</time>",
     "neverUsed": "لم يُستخدم بعد",
     "disconnectTitle": "إلغاء ربط <bdi>{client}</bdi>؟",
     "disconnectText": "سيتوقف <bdi>{client}</bdi> عن العمل مع prepza حتى تربطه مجددًا.",
@@ -2323,7 +2323,7 @@
       "text": "إذا كان استخدام شيء ما في prepza صعبًا عليك، أو كنت تحتاج إليه بشكل آخر، فاكتب إلى <email></email>. نردّ خلال 14 يومًا.",
       "authority": "إذا لم تكن راضيًا عن ردّنا، يمكنك التواصل مع هيئة حماية المستهلك والتنظيم الفني في إستونيا (TTJA)."
     },
-    "reviewed": "آخر مراجعة: {date}."
+    "reviewed": "آخر مراجعة: <time>{date}</time>."
   },
   "actionLog": {
     "empty": "لا توجد إجراءات بعد.",

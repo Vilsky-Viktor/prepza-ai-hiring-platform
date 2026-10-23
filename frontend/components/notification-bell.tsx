@@ -25,6 +25,7 @@ import { bdi, bdiText } from "@/lib/bidi"
 import { formatDay, formatPercent, formatPrice } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"
 import { watchNotifications } from "@/lib/notifications"
+import { timeTag } from "@/lib/time-tag"
 import type { AppNotification, NotificationFeed } from "@/types/notifications"
 
 /** An automatic top-up's price change as the bell writes it: what it costs and will cost. */
@@ -79,7 +80,11 @@ function useNotificationText() {
     }
 
     return hasMessage(t, item.kind)
-      ? t.rich(item.kind, { ...values, ...bdi })
+      ? t.rich(item.kind, {
+          ...values,
+          ...bdi,
+          ...timeTag(typeof data.date === "string" ? data.date : ""),
+        })
       : null
   }
 }

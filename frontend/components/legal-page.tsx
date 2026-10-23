@@ -9,6 +9,7 @@ import { DEFAULT_LOCALE } from "@/constants/i18n"
 import { formatDay } from "@/lib/format"
 import { textDirection } from "@/lib/locale"
 import { publicFetch } from "@/lib/server-api"
+import { timeTag } from "@/lib/time-tag"
 import type { LegalDocument } from "@/types/help"
 import { TEXT_LINK } from "@/constants/links"
 
@@ -85,9 +86,13 @@ export async function LegalPage({
             )
           )}
           {document.state === "in_force"
-            ? t("inForce", { date: formatDay(shown, locale) })
+            ? t.rich("inForce", {
+                date: formatDay(shown, locale),
+                ...timeTag(shown),
+              })
             : t.rich(`${document.state}Read`, {
                 date: formatDay(shown, locale),
+                ...timeTag(shown),
                 link: (chunks) => (
                   <Link href={link(inForce)} className={TEXT_LINK}>
                     {chunks}

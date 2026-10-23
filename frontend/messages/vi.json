@@ -182,8 +182,8 @@
       "dismissed": "đã loại bỏ"
     },
     "patternQuestions": "{count, plural, other {# câu hỏi}}",
-    "firstSeen": "phát hiện lần đầu {date}",
-    "lastSeen": "phát hiện gần nhất {date}",
+    "firstSeen": "phát hiện lần đầu <time>{date}</time>",
+    "lastSeen": "phát hiện gần nhất <time>{date}</time>",
     "replacedWith": "Được thay bằng",
     "answers": "{count, plural, other {# câu trả lời}}",
     "right": "{percent} đúng",
@@ -329,17 +329,17 @@
       "dpa": "Thỏa thuận xử lý dữ liệu"
     },
     "legalStates": {
-      "in_force": "Có hiệu lực từ {date}. Để gửi email về thay đổi, hãy đặt ngày cho phiên bản mới ít nhất 14 ngày sau.",
-      "sendable": "Áp dụng từ {date}.",
-      "too_late": "Áp dụng từ {date}. Thay đổi được thông báo ít nhất 14 ngày trước khi áp dụng.",
-      "sending": "Áp dụng từ {date}. Đang gửi.",
-      "sent": "Áp dụng từ {date}. Đã gửi."
+      "in_force": "Có hiệu lực từ <time>{date}</time>. Để gửi email về thay đổi, hãy đặt ngày cho phiên bản mới ít nhất 14 ngày sau.",
+      "sendable": "Áp dụng từ <time>{date}</time>.",
+      "too_late": "Áp dụng từ <time>{date}</time>. Thay đổi được thông báo ít nhất 14 ngày trước khi áp dụng.",
+      "sending": "Áp dụng từ <time>{date}</time>. Đang gửi.",
+      "sent": "Áp dụng từ <time>{date}</time>. Đã gửi."
     },
     "legalSend": "Gửi email về thay đổi",
     "legalConfirmTitle": "Gửi email về thay đổi của {document}?",
     "legalAudience": {
-      "everyone": "Mọi người có tài khoản prepza sẽ nhận được từ giờ gửi tiếp theo (8:00 đến 18:00 UTC), cho biết phiên bản mới áp dụng từ {date}, và thấy nó trong thông báo của mình. Chỉ gửi một lần và không thể thu hồi.",
-      "company_editors": "Chủ sở hữu và quản trị viên của mọi công ty sẽ nhận được từ giờ gửi tiếp theo (8:00 đến 18:00 UTC), cho biết phiên bản mới áp dụng từ {date}, và thấy nó trong thông báo của mình. Chỉ gửi một lần và không thể thu hồi."
+      "everyone": "Mọi người có tài khoản prepza sẽ nhận được từ giờ gửi tiếp theo (8:00 đến 18:00 UTC), cho biết phiên bản mới áp dụng từ <time>{date}</time>, và thấy nó trong thông báo của mình. Chỉ gửi một lần và không thể thu hồi.",
+      "company_editors": "Chủ sở hữu và quản trị viên của mọi công ty sẽ nhận được từ giờ gửi tiếp theo (8:00 đến 18:00 UTC), cho biết phiên bản mới áp dụng từ <time>{date}</time>, và thấy nó trong thông báo của mình. Chỉ gửi một lần và không thể thu hồi."
     },
     "legalAsked": "Thay đổi sẽ được gửi email từ giờ gửi tiếp theo.",
     "legalFailed": "Không thể yêu cầu gửi email. Vui lòng thử lại.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "Gửi dưới dạng chiến dịch",
     "removeSuppression": "Gỡ khỏi danh sách",
     "suppressed": {
-      "bounced": "Email gửi đến địa chỉ này bị trả lại vào {date}, nên không có email nào được gửi đến địa chỉ này.",
-      "complained": "Địa chỉ này đã đánh dấu một email là spam vào {date}, nên không có email nào được gửi đến địa chỉ này.",
-      "suppressed": "Resend đã ngừng gửi đến địa chỉ này vào {date} sau một lần bị trả lại hoặc báo cáo spam trước đó, nên không có email nào được gửi đến địa chỉ này.",
-      "soft_bounced": "Email gửi đến địa chỉ này liên tục bị trả lại cho đến {date}, nên không có email nào được gửi đến địa chỉ này."
+      "bounced": "Email gửi đến địa chỉ này bị trả lại vào <time>{date}</time>, nên không có email nào được gửi đến địa chỉ này.",
+      "complained": "Địa chỉ này đã đánh dấu một email là spam vào <time>{date}</time>, nên không có email nào được gửi đến địa chỉ này.",
+      "suppressed": "Resend đã ngừng gửi đến địa chỉ này vào <time>{date}</time> sau một lần bị trả lại hoặc báo cáo spam trước đó, nên không có email nào được gửi đến địa chỉ này.",
+      "soft_bounced": "Email gửi đến địa chỉ này liên tục bị trả lại cho đến <time>{date}</time>, nên không có email nào được gửi đến địa chỉ này."
     },
     "aiCosts": "Chi phí AI",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "Phiên bản này chỉ có bằng tiếng Anh.",
-    "inForce": "Có hiệu lực từ {date}",
-    "upcomingRead": "Áp dụng từ {date}. <link>Đọc phiên bản đang có hiệu lực</link>",
-    "replacedRead": "Phiên bản này áp dụng từ {date} và đã được thay thế. <link>Đọc phiên bản đang có hiệu lực</link>",
+    "inForce": "Có hiệu lực từ <time>{date}</time>",
+    "upcomingRead": "Áp dụng từ <time>{date}</time>. <link>Đọc phiên bản đang có hiệu lực</link>",
+    "replacedRead": "Phiên bản này áp dụng từ <time>{date}</time> và đã được thay thế. <link>Đọc phiên bản đang có hiệu lực</link>",
     "versions": "Tất cả phiên bản",
     "translatedRead": "Đây là bản dịch; chỉ bản tiếng Anh có giá trị ràng buộc. <link>Đọc bằng tiếng Anh</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "Đang chờ thẻ của bạn",
     "cardPaused": "Đã tạm dừng: thẻ bị từ chối. Hãy cập nhật thẻ để bật lại tự động nạp.",
     "paused": "Tự động nạp đã tạm dừng: thẻ bị từ chối",
-    "nextPrice": "Từ {date}: {amount}.",
+    "nextPrice": "Từ <time>{date}</time>: {amount}.",
     "updateCard": "Cập nhật thẻ",
     "updateCardFailed": "Không thể mở trang cập nhật thẻ. Vui lòng thử lại.",
     "currencyApplied": "Tự động nạp giờ trừ {amount} mỗi lần.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "Tự động nạp đã thêm {credits, number} credit.",
       "auto_top_up_failed": "Tự động nạp không trừ tiền được từ thẻ. Hãy nạp credit để không bị hết số dư.",
       "auto_top_up_paused": "Tự động nạp đã tạm dừng: thẻ bị từ chối. Hãy cập nhật thẻ để bật lại.",
-      "auto_top_up_price_change": "Từ {date}, mỗi lần tự động nạp có giá {newPrice} thay vì {price}.",
+      "auto_top_up_price_change": "Từ <time>{date}</time>, mỗi lần tự động nạp có giá {newPrice} thay vì {price}.",
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> đã hoàn thành {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}}{grade, select, none {.} other {: {grade}.}}} other {# ứng viên đã hoàn thành {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}}.}}",
       "invite_undelivered": "{count, plural, =1 {Lời mời gửi tới <bdi>{email}</bdi> cho {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}} chưa được chuyển đến.} other {# lời mời cho {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}} chưa được chuyển đến.}}",
       "interview_ready": "{title, select, none {Một buổi phỏng vấn đã sẵn sàng.} other {Buổi phỏng vấn “<bdi>{title}</bdi>” đã sẵn sàng.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "Web hook tới <bdi>{url}</bdi> đã dừng: thành viên thêm nó không còn là chủ sở hữu hay quản trị viên. Hãy thêm lại để tiếp tục nhận kết quả.",
       "ownership_received": "Bạn giờ là chủ sở hữu của “<bdi>{name}</bdi>”.",
       "news": "Tin tức: <bdi>{title}</bdi>",
-      "legal_terms": "Điều khoản mới áp dụng từ {date}.",
-      "legal_privacy": "Chính sách quyền riêng tư mới áp dụng từ {date}.",
-      "legal_dpa": "Thỏa thuận xử lý dữ liệu mới áp dụng từ {date}."
+      "legal_terms": "Điều khoản mới áp dụng từ <time>{date}</time>.",
+      "legal_privacy": "Chính sách quyền riêng tư mới áp dụng từ <time>{date}</time>.",
+      "legal_dpa": "Thỏa thuận xử lý dữ liệu mới áp dụng từ <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "Điều khoản của prepza thay đổi vào {date}.",
-      "privacy": "Chính sách quyền riêng tư của prepza thay đổi vào {date}.",
-      "dpa": "Thỏa thuận xử lý dữ liệu thay đổi vào {date}."
+      "terms": "Điều khoản của prepza thay đổi vào <time>{date}</time>.",
+      "privacy": "Chính sách quyền riêng tư của prepza thay đổi vào <time>{date}</time>.",
+      "dpa": "Thỏa thuận xử lý dữ liệu thay đổi vào <time>{date}</time>."
     },
     "readLegal": "Đọc phiên bản mới",
     "closeLegalBanner": "Đóng"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "Hãy sao chép ngay và cất giữ an toàn: khóa sẽ không được hiển thị lại.",
     "copyKey": "Sao chép khóa",
     "keyCopied": "Đã sao chép khóa",
-    "created": "tạo ngày {date}",
-    "lastUsed": "dùng lần cuối {date}",
-    "expires": "hết hạn {date}",
+    "created": "tạo ngày <time>{date}</time>",
+    "lastUsed": "dùng lần cuối <time>{date}</time>",
+    "expires": "hết hạn <time>{date}</time>",
     "neverExpires": "không bao giờ hết hạn",
     "expired": "đã hết hạn",
     "neverUsed": "chưa từng dùng",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "Webhook sẽ có khóa bí mật ký mới. Trong 24 giờ tới, cả hai khóa đều ký mỗi yêu cầu, nên endpoint của bạn vẫn hoạt động trong lúc bạn chuyển sang khóa mới.",
     "rollSecretFailed": "Không thể đổi khóa bí mật.",
     "newSecretTitle": "Khóa bí mật mới của webhook",
-    "newSecretText": "Các yêu cầu được ký bằng khóa này và, cho đến {until}, cả bằng khóa cũ. Hãy sao chép ngay: khóa bí mật sẽ không được hiển thị lại.",
-    "added": "thêm ngày {date}",
+    "newSecretText": "Các yêu cầu được ký bằng khóa này và, cho đến <time>{until}</time>, cả bằng khóa cũ. Hãy sao chép ngay: khóa bí mật sẽ không được hiển thị lại.",
+    "added": "thêm ngày <time>{date}</time>",
     "sendTest": "Gửi sự kiện thử nghiệm",
     "testSent": "Sự kiện thử nghiệm đã được gửi tới nơi.",
     "testNotTaken": "Endpoint không nhận sự kiện thử nghiệm. Nhật ký gửi cho biết lý do.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "Quay lại Apps & Connectors, chọn:",
     "chatgptPaste": "Đặt tên là {name}, dán địa chỉ máy chủ và chọn kiểu xác thực này:",
     "noConnected": "Chưa có ứng dụng nào được kết nối.",
-    "connectedOn": "kết nối ngày {date}",
-    "lastUsed": "dùng lần cuối {date}",
+    "connectedOn": "kết nối ngày <time>{date}</time>",
+    "lastUsed": "dùng lần cuối <time>{date}</time>",
     "neverUsed": "chưa dùng",
     "disconnectTitle": "Ngắt kết nối <bdi>{client}</bdi>?",
     "disconnectText": "<bdi>{client}</bdi> sẽ không hoạt động với prepza cho đến khi bạn kết nối lại.",
@@ -2323,7 +2323,7 @@
       "text": "Nếu có gì trên prepza khó dùng với bạn, hoặc bạn cần ở dạng khác, hãy viết tới <email></email>. Chúng tôi trả lời trong vòng 14 ngày.",
       "authority": "Nếu không hài lòng với câu trả lời của chúng tôi, bạn có thể liên hệ Cơ quan Bảo vệ Người tiêu dùng và Quản lý Kỹ thuật Estonia (TTJA)."
     },
-    "reviewed": "Xem xét lần cuối: {date}."
+    "reviewed": "Xem xét lần cuối: <time>{date}</time>."
   },
   "actionLog": {
     "empty": "Chưa có thao tác nào.",

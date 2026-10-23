@@ -182,8 +182,8 @@
       "dismissed": "נדחה"
     },
     "patternQuestions": "{count, plural, one {שאלה אחת} two {# שאלות} other {# שאלות}}",
-    "firstSeen": "נראה לראשונה {date}",
-    "lastSeen": "נראה לאחרונה {date}",
+    "firstSeen": "נראה לראשונה <time>{date}</time>",
+    "lastSeen": "נראה לאחרונה <time>{date}</time>",
     "replacedWith": "הוחלפה ב",
     "answers": "{count, plural, one {תשובה אחת} two {# תשובות} other {# תשובות}}",
     "right": "{percent} נכונות",
@@ -329,17 +329,17 @@
       "dpa": "הסכם עיבוד נתונים"
     },
     "legalStates": {
-      "in_force": "בתוקף מאז {date}. כדי לשלוח שינוי במייל, יש לתת לגרסה החדשה תאריך לפחות 14 יום קדימה.",
-      "sendable": "חל מ-{date}.",
-      "too_late": "חל מ-{date}. הודעה על שינוי נשלחת לפחות 14 יום לפני שהוא חל.",
-      "sending": "חל מ-{date}. בשליחה.",
-      "sent": "חל מ-{date}. נשלח."
+      "in_force": "בתוקף מאז <time>{date}</time>. כדי לשלוח שינוי במייל, יש לתת לגרסה החדשה תאריך לפחות 14 יום קדימה.",
+      "sendable": "חל מ-<time>{date}</time>.",
+      "too_late": "חל מ-<time>{date}</time>. הודעה על שינוי נשלחת לפחות 14 יום לפני שהוא חל.",
+      "sending": "חל מ-<time>{date}</time>. בשליחה.",
+      "sent": "חל מ-<time>{date}</time>. נשלח."
     },
     "legalSend": "שליחת השינוי במייל",
     "legalConfirmTitle": "לשלוח במייל את השינוי ב{document}?",
     "legalAudience": {
-      "everyone": "כל מי שיש לו חשבון prepza יקבל אותו החל משעת השליחה הבאה (8:00 עד 18:00 UTC), עם ההודעה שהגרסה החדשה חלה מ-{date}, ויראה אותו בהתראות שלו. הוא נשלח פעם אחת ואי אפשר לבטל אותו.",
-      "company_editors": "הבעלים והמנהלים של כל חברה יקבלו אותו החל משעת השליחה הבאה (8:00 עד 18:00 UTC), עם ההודעה שהגרסה החדשה חלה מ-{date}, ויראו אותו בהתראות שלהם. הוא נשלח פעם אחת ואי אפשר לבטל אותו."
+      "everyone": "כל מי שיש לו חשבון prepza יקבל אותו החל משעת השליחה הבאה (8:00 עד 18:00 UTC), עם ההודעה שהגרסה החדשה חלה מ-<time>{date}</time>, ויראה אותו בהתראות שלו. הוא נשלח פעם אחת ואי אפשר לבטל אותו.",
+      "company_editors": "הבעלים והמנהלים של כל חברה יקבלו אותו החל משעת השליחה הבאה (8:00 עד 18:00 UTC), עם ההודעה שהגרסה החדשה חלה מ-<time>{date}</time>, ויראו אותו בהתראות שלהם. הוא נשלח פעם אחת ואי אפשר לבטל אותו."
     },
     "legalAsked": "השינוי יישלח במייל החל משעת השליחה הבאה.",
     "legalFailed": "לא הצלחנו לבקש את השליחה. נסו שוב.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "שליחה כקמפיין",
     "removeSuppression": "הסרה מהרשימה",
     "suppressed": {
-      "bounced": "אימייל לכתובת הזו חזר ב-{date}, ולכן לא נשלח אליה שום אימייל.",
-      "complained": "הכתובת הזו סימנה אימייל כספאם ב-{date}, ולכן לא נשלח אליה שום אימייל.",
-      "suppressed": "Resend הפסיקה לשלוח לכתובת הזו ב-{date} אחרי החזרה או דיווח ספאם קודמים, ולכן לא נשלח אליה שום אימייל.",
-      "soft_bounced": "אימיילים לכתובת הזו חזרו שוב ושוב עד {date}, ולכן לא נשלח אליה שום אימייל."
+      "bounced": "אימייל לכתובת הזו חזר ב-<time>{date}</time>, ולכן לא נשלח אליה שום אימייל.",
+      "complained": "הכתובת הזו סימנה אימייל כספאם ב-<time>{date}</time>, ולכן לא נשלח אליה שום אימייל.",
+      "suppressed": "Resend הפסיקה לשלוח לכתובת הזו ב-<time>{date}</time> אחרי החזרה או דיווח ספאם קודמים, ולכן לא נשלח אליה שום אימייל.",
+      "soft_bounced": "אימיילים לכתובת הזו חזרו שוב ושוב עד <time>{date}</time>, ולכן לא נשלח אליה שום אימייל."
     },
     "aiCosts": "עלויות AI",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "הגרסה הזו זמינה באנגלית בלבד.",
-    "inForce": "בתוקף מאז {date}",
-    "upcomingRead": "חל החל מ-{date}. <link>לקריאת הגרסה שבתוקף כעת</link>",
-    "replacedRead": "הגרסה הזו חלה החל מ-{date} והוחלפה. <link>לקריאת הגרסה שבתוקף כעת</link>",
+    "inForce": "בתוקף מאז <time>{date}</time>",
+    "upcomingRead": "חל החל מ-<time>{date}</time>. <link>לקריאת הגרסה שבתוקף כעת</link>",
+    "replacedRead": "הגרסה הזו חלה החל מ-<time>{date}</time> והוחלפה. <link>לקריאת הגרסה שבתוקף כעת</link>",
     "versions": "כל הגרסאות",
     "translatedRead": "זהו תרגום; רק הגרסה האנגלית מחייבת. <link>לקריאה באנגלית</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "ממתינה לכרטיס",
     "cardPaused": "מושהית: הכרטיס נדחה. עדכנו אותו כדי להפעיל מחדש את הטעינה האוטומטית.",
     "paused": "הטעינה האוטומטית מושהית: הכרטיס נדחה",
-    "nextPrice": "החל מ-{date}: {amount}.",
+    "nextPrice": "החל מ-<time>{date}</time>: {amount}.",
     "updateCard": "עדכון כרטיס",
     "updateCardFailed": "לא ניתן לפתוח את עדכון הכרטיס. נסו שוב.",
     "currencyApplied": "הטעינה האוטומטית מחייבת עכשיו {amount}.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "הטעינה האוטומטית הוסיפה {credits, plural, one {קרדיט אחד} two {# קרדיטים} other {# קרדיטים}}.",
       "auto_top_up_failed": "הטעינה האוטומטית לא הצליחה לחייב את הכרטיס. טענו קרדיטים כדי שהיתרה לא תיגמר.",
       "auto_top_up_paused": "הטעינה האוטומטית מושהית: הכרטיס נדחה. עדכנו את הכרטיס כדי להפעיל אותה מחדש.",
-      "auto_top_up_price_change": "החל מ-{date}, כל טעינה אוטומטית תעלה {newPrice} במקום {price}.",
+      "auto_top_up_price_change": "החל מ-<time>{date}</time>, כל טעינה אוטומטית תעלה {newPrice} במקום {price}.",
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> השלים/ה {title, select, none {ראיון} other {את \"<bdi>{title}</bdi>\"}}{grade, select, none {.} other {: {grade}.}}} two {שני מועמדים השלימו {title, select, none {ראיון} other {את \"<bdi>{title}</bdi>\"}}.} other {# מועמדים השלימו {title, select, none {ראיון} other {את \"<bdi>{title}</bdi>\"}}.}}",
       "invite_undelivered": "{count, plural, one {ההזמנה ל-<bdi>{email}</bdi> עבור {title, select, none {ראיון} other {\"<bdi>{title}</bdi>\"}} לא נמסרה.} two {שתי הזמנות עבור {title, select, none {ראיון} other {\"<bdi>{title}</bdi>\"}} לא נמסרו.} other {# הזמנות עבור {title, select, none {ראיון} other {\"<bdi>{title}</bdi>\"}} לא נמסרו.}}",
       "interview_ready": "{title, select, none {ראיון מוכן.} other {הראיון \"<bdi>{title}</bdi>\" מוכן.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "ה-webhook אל <bdi>{url}</bdi> הופסק: החבר שהוסיף אותו כבר אינו בעלים או מנהל. יש להוסיף אותו מחדש כדי להמשיך לקבל תוצאות.",
       "ownership_received": "הבעלות על \"<bdi>{name}</bdi>\" עברה אליך.",
       "news": "חדשות: <bdi>{title}</bdi>",
-      "legal_terms": "תנאי שימוש חדשים חלים מ-{date}.",
-      "legal_privacy": "מדיניות פרטיות חדשה חלה מ-{date}.",
-      "legal_dpa": "הסכם עיבוד נתונים חדש חל מ-{date}."
+      "legal_terms": "תנאי שימוש חדשים חלים מ-<time>{date}</time>.",
+      "legal_privacy": "מדיניות פרטיות חדשה חלה מ-<time>{date}</time>.",
+      "legal_dpa": "הסכם עיבוד נתונים חדש חל מ-<time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "תנאי השימוש של prepza משתנים ב-{date}.",
-      "privacy": "מדיניות הפרטיות של prepza משתנה ב-{date}.",
-      "dpa": "הסכם עיבוד הנתונים משתנה ב-{date}."
+      "terms": "תנאי השימוש של prepza משתנים ב-<time>{date}</time>.",
+      "privacy": "מדיניות הפרטיות של prepza משתנה ב-<time>{date}</time>.",
+      "dpa": "הסכם עיבוד הנתונים משתנה ב-<time>{date}</time>."
     },
     "readLegal": "לקריאת הגרסה החדשה",
     "closeLegalBanner": "סגירה"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "העתיקו אותו עכשיו ושמרו אותו במקום בטוח: הוא לא יוצג שוב.",
     "copyKey": "העתקת המפתח",
     "keyCopied": "המפתח הועתק",
-    "created": "נוצר ב-{date}",
-    "lastUsed": "שימוש אחרון ב-{date}",
-    "expires": "יפוג ב-{date}",
+    "created": "נוצר ב-<time>{date}</time>",
+    "lastUsed": "שימוש אחרון ב-<time>{date}</time>",
+    "expires": "יפוג ב-<time>{date}</time>",
     "neverExpires": "ללא תפוגה",
     "expired": "פג תוקף",
     "neverUsed": "לא נעשה בו שימוש",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "הוא יקבל סוד חתימה חדש. ב-24 השעות הקרובות שני הסודות חותמים על כל בקשה, כך שנקודת הקצה שלכם ממשיכה לעבוד בזמן שאתם מעבירים אותה לסוד החדש.",
     "rollSecretFailed": "לא ניתן היה להחליף את הסוד.",
     "newSecretTitle": "הסוד החדש של הוובהוק שלכם",
-    "newSecretText": "הבקשות נחתמות בו, ועד {until} גם בסוד הישן. העתיקו אותו עכשיו: הוא לא יוצג שוב.",
-    "added": "נוסף ב-{date}",
+    "newSecretText": "הבקשות נחתמות בו, ועד <time>{until}</time> גם בסוד הישן. העתיקו אותו עכשיו: הוא לא יוצג שוב.",
+    "added": "נוסף ב-<time>{date}</time>",
     "sendTest": "שליחת אירוע בדיקה",
     "testSent": "אירוע הבדיקה נמסר.",
     "testNotTaken": "נקודת הקצה לא קיבלה את אירוע הבדיקה. הסיבה מופיעה ביומן המסירות.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "בחזרה ב-Apps & Connectors, בחרו:",
     "chatgptPaste": "תנו לו את השם {name}, הדביקו את כתובת השרת ובחרו את שיטת האימות הזו:",
     "noConnected": "עדיין לא חוברו אפליקציות.",
-    "connectedOn": "חוברה ב-{date}",
-    "lastUsed": "שימוש אחרון ב-{date}",
+    "connectedOn": "חוברה ב-<time>{date}</time>",
+    "lastUsed": "שימוש אחרון ב-<time>{date}</time>",
     "neverUsed": "עדיין לא נעשה בה שימוש",
     "disconnectTitle": "לנתק את <bdi>{client}</bdi>?",
     "disconnectText": "האפליקציה <bdi>{client}</bdi> תפסיק לעבוד עם prepza עד שתחברו אותה שוב.",
@@ -2323,7 +2323,7 @@
       "text": "אם משהו ב-prepza קשה לכם לשימוש, או שאתם צריכים אותו בצורה אחרת, כתבו אל <email></email>. אנחנו עונים תוך 14 יום.",
       "authority": "אם אינכם מרוצים מהתשובה שלנו, תוכלו לפנות לרשות האסטונית להגנת הצרכן ולרגולציה טכנית (TTJA)."
     },
-    "reviewed": "נבדק לאחרונה: {date}."
+    "reviewed": "נבדק לאחרונה: <time>{date}</time>."
   },
   "actionLog": {
     "empty": "עדיין אין פעולות.",

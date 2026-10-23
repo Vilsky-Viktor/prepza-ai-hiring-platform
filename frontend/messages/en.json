@@ -182,8 +182,8 @@
       "dismissed": "dismissed"
     },
     "patternQuestions": "{count, plural, one {# question} other {# questions}}",
-    "firstSeen": "first seen {date}",
-    "lastSeen": "last seen {date}",
+    "firstSeen": "first seen <time>{date}</time>",
+    "lastSeen": "last seen <time>{date}</time>",
     "replacedWith": "Replaced with",
     "answers": "{count, plural, one {# answer} other {# answers}}",
     "right": "{percent} right",
@@ -329,17 +329,17 @@
       "dpa": "Data processing agreement"
     },
     "legalStates": {
-      "in_force": "In force since {date}. To email a change, give its new version a day at least 14 days ahead.",
-      "sendable": "Applies from {date}.",
-      "too_late": "Applies from {date}. A change is emailed at least 14 days before it applies.",
-      "sending": "Applies from {date}. Being emailed.",
-      "sent": "Applies from {date}. Emailed."
+      "in_force": "In force since <time>{date}</time>. To email a change, give its new version a day at least 14 days ahead.",
+      "sendable": "Applies from <time>{date}</time>.",
+      "too_late": "Applies from <time>{date}</time>. A change is emailed at least 14 days before it applies.",
+      "sending": "Applies from <time>{date}</time>. Being emailed.",
+      "sent": "Applies from <time>{date}</time>. Emailed."
     },
     "legalSend": "Email the change",
     "legalConfirmTitle": "Email the change to the {document}?",
     "legalAudience": {
-      "everyone": "Everyone with a prepza account gets it from the next sending hour (8:00 to 18:00 UTC), saying the new version applies from {date}, and sees it in their notifications. It goes out once and can't be taken back.",
-      "company_editors": "Every company's owners and admins get it from the next sending hour (8:00 to 18:00 UTC), saying the new version applies from {date}, and see it in their notifications. It goes out once and can't be taken back."
+      "everyone": "Everyone with a prepza account gets it from the next sending hour (8:00 to 18:00 UTC), saying the new version applies from <time>{date}</time>, and sees it in their notifications. It goes out once and can't be taken back.",
+      "company_editors": "Every company's owners and admins get it from the next sending hour (8:00 to 18:00 UTC), saying the new version applies from <time>{date}</time>, and see it in their notifications. It goes out once and can't be taken back."
     },
     "legalAsked": "The change will be emailed from the next sending hour.",
     "legalFailed": "Couldn't ask for the email. Please try again.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "Send as a campaign",
     "removeSuppression": "Take off the list",
     "suppressed": {
-      "bounced": "This address bounced on {date}, so no email is sent to it.",
-      "complained": "This address marked an email as spam on {date}, so no email is sent to it.",
-      "suppressed": "Resend stopped sending to this address on {date} after an earlier bounce or spam report, so no email is sent to it.",
-      "soft_bounced": "This address kept bouncing until {date}, so no email is sent to it."
+      "bounced": "This address bounced on <time>{date}</time>, so no email is sent to it.",
+      "complained": "This address marked an email as spam on <time>{date}</time>, so no email is sent to it.",
+      "suppressed": "Resend stopped sending to this address on <time>{date}</time> after an earlier bounce or spam report, so no email is sent to it.",
+      "soft_bounced": "This address kept bouncing until <time>{date}</time>, so no email is sent to it."
     },
     "aiCosts": "AI costs",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "",
-    "inForce": "In force since {date}",
-    "upcomingRead": "Applies from {date}. <link>Read the version in force now</link>",
-    "replacedRead": "This version applied from {date} and has been replaced. <link>Read the version in force now</link>",
+    "inForce": "In force since <time>{date}</time>",
+    "upcomingRead": "Applies from <time>{date}</time>. <link>Read the version in force now</link>",
+    "replacedRead": "This version applied from <time>{date}</time> and has been replaced. <link>Read the version in force now</link>",
     "versions": "All versions",
     "translatedRead": "This is a translation; only the English version is binding. <link>Read it in English</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "Waiting for your card",
     "cardPaused": "Paused: the card was declined. Update it to turn automatic top-up back on.",
     "paused": "Automatic top-up is paused: the card was declined",
-    "nextPrice": "From {date}: {amount}.",
+    "nextPrice": "From <time>{date}</time>: {amount}.",
     "updateCard": "Update card",
     "updateCardFailed": "Couldn't open the card update. Please try again.",
     "currencyApplied": "Automatic top-up now charges {amount}.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "Automatic top-up added {credits, plural, one {# credit} other {# credits}}.",
       "auto_top_up_failed": "Automatic top-up couldn't charge the card. Top up to keep your balance going.",
       "auto_top_up_paused": "Automatic top-up is paused: the card was declined. Update the card to turn it back on.",
-      "auto_top_up_price_change": "From {date}, each automatic top-up costs {newPrice} instead of {price}.",
+      "auto_top_up_price_change": "From <time>{date}</time>, each automatic top-up costs {newPrice} instead of {price}.",
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> finished {title, select, none {an interview} other {“<bdi>{title}</bdi>”}}{grade, select, none {.} other {: {grade}.}}} other {# candidates finished {title, select, none {an interview} other {“<bdi>{title}</bdi>”}}.}}",
       "invite_undelivered": "{count, plural, one {The invite to <bdi>{email}</bdi> for {title, select, none {an interview} other {“<bdi>{title}</bdi>”}} wasn't delivered.} other {# invites for {title, select, none {an interview} other {“<bdi>{title}</bdi>”}} weren't delivered.}}",
       "interview_ready": "{title, select, none {An interview is ready.} other {The interview “<bdi>{title}</bdi>” is ready.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "The web hook to <bdi>{url}</bdi> stopped: the member who added it is no longer an owner or admin. Add it again to keep getting results.",
       "ownership_received": "You're now the owner of “<bdi>{name}</bdi>”.",
       "news": "News: <bdi>{title}</bdi>",
-      "legal_terms": "New terms apply from {date}.",
-      "legal_privacy": "A new privacy policy applies from {date}.",
-      "legal_dpa": "A new data processing agreement applies from {date}."
+      "legal_terms": "New terms apply from <time>{date}</time>.",
+      "legal_privacy": "A new privacy policy applies from <time>{date}</time>.",
+      "legal_dpa": "A new data processing agreement applies from <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "prepza's terms change on {date}.",
-      "privacy": "prepza's privacy policy changes on {date}.",
-      "dpa": "The data processing agreement changes on {date}."
+      "terms": "prepza's terms change on <time>{date}</time>.",
+      "privacy": "prepza's privacy policy changes on <time>{date}</time>.",
+      "dpa": "The data processing agreement changes on <time>{date}</time>."
     },
     "readLegal": "Read the new version",
     "closeLegalBanner": "Close"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "Copy it now and keep it safe: it won't be shown again.",
     "copyKey": "Copy key",
     "keyCopied": "Key copied",
-    "created": "made {date}",
-    "lastUsed": "last used {date}",
-    "expires": "expires {date}",
+    "created": "made <time>{date}</time>",
+    "lastUsed": "last used <time>{date}</time>",
+    "expires": "expires <time>{date}</time>",
     "neverExpires": "never expires",
     "expired": "expired",
     "neverUsed": "never used",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "It gets a new signing secret. For the next 24 hours both secrets sign each request, so your endpoint keeps working while you switch it to the new one.",
     "rollSecretFailed": "Couldn't roll the secret.",
     "newSecretTitle": "Your web hook's new secret",
-    "newSecretText": "Requests are signed with it and, until {until}, with the old one too. Copy it now: it won't be shown again.",
-    "added": "added {date}",
+    "newSecretText": "Requests are signed with it and, until <time>{until}</time>, with the old one too. Copy it now: it won't be shown again.",
+    "added": "added <time>{date}</time>",
     "sendTest": "Send test event",
     "testSent": "The test event was delivered.",
     "testNotTaken": "The endpoint didn't take the test event. Its delivery log says why.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "Back in Apps & Connectors, choose:",
     "chatgptPaste": "Name it {name}, paste the server address and choose this authentication:",
     "noConnected": "No apps connected yet.",
-    "connectedOn": "connected {date}",
-    "lastUsed": "last used {date}",
+    "connectedOn": "connected <time>{date}</time>",
+    "lastUsed": "last used <time>{date}</time>",
     "neverUsed": "not used yet",
     "disconnectTitle": "Disconnect <bdi>{client}</bdi>?",
     "disconnectText": "<bdi>{client}</bdi> stops working with prepza until you connect it again.",
@@ -2323,7 +2323,7 @@
       "text": "If something on prepza is hard for you to use, or you need it in another form, write to <email></email>. We answer within 14 days.",
       "authority": "If you aren't satisfied with our answer, you can contact the Estonian Consumer Protection and Technical Regulatory Authority (TTJA)."
     },
-    "reviewed": "Last reviewed {date}."
+    "reviewed": "Last reviewed <time>{date}</time>."
   },
   "actionLog": {
     "empty": "No actions yet.",

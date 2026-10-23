@@ -94,7 +94,9 @@ export function ActionList({
             <Dotted
               items={[
                 action.user_email ?? t("formerMember"),
-                localTime.dateTime(action.created_at),
+                <time key="created" dateTime={action.created_at}>
+                  {localTime.dateTime(action.created_at)}
+                </time>,
                 action.via && named("via", action.via),
               ]}
             />

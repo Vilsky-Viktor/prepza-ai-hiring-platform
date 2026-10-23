@@ -77,13 +77,9 @@ export function PatternList({
           <div className="min-w-0 flex-1 space-y-1">
             <p className="font-light normal-case">{row.text}</p>
             <p className="text-xs text-muted-foreground">
-              <time dateTime={row.first_seen} suppressHydrationWarning>
-                {t("firstSeen", { date: localTime.date(row.first_seen) })}
-              </time>
+              {t.rich("firstSeen", localTime.dateValues(row.first_seen))}
               <Dot />
-              <time dateTime={row.last_seen} suppressHydrationWarning>
-                {t("lastSeen", { date: localTime.date(row.last_seen) })}
-              </time>
+              {t.rich("lastSeen", localTime.dateValues(row.last_seen))}
             </p>
           </div>
           <div className="flex shrink-0 flex-col items-end gap-2 text-sm text-muted-foreground tabular-nums max-sm:items-start">

@@ -182,8 +182,8 @@
       "dismissed": "tagasi lükatud"
     },
     "patternQuestions": "{count, plural, one {# küsimus} other {# küsimust}}",
-    "firstSeen": "esimest korda leitud {date}",
-    "lastSeen": "viimati leitud {date}",
+    "firstSeen": "esimest korda leitud <time>{date}</time>",
+    "lastSeen": "viimati leitud <time>{date}</time>",
     "replacedWith": "Asendatud",
     "answers": "{count, plural, one {# vastus} other {# vastust}}",
     "right": "{percent} õigesti",
@@ -329,17 +329,17 @@
       "dpa": "Andmetöötlusleping"
     },
     "legalStates": {
-      "in_force": "Kehtib alates {date}. Muudatusest teatamiseks anna uuele versioonile kuupäev vähemalt 14 päeva ette.",
-      "sendable": "Kehtib alates {date}.",
-      "too_late": "Kehtib alates {date}. Muudatusest teatatakse vähemalt 14 päeva enne selle kehtima hakkamist.",
-      "sending": "Kehtib alates {date}. Saatmisel.",
-      "sent": "Kehtib alates {date}. Saadetud."
+      "in_force": "Kehtib alates <time>{date}</time>. Muudatusest teatamiseks anna uuele versioonile kuupäev vähemalt 14 päeva ette.",
+      "sendable": "Kehtib alates <time>{date}</time>.",
+      "too_late": "Kehtib alates <time>{date}</time>. Muudatusest teatatakse vähemalt 14 päeva enne selle kehtima hakkamist.",
+      "sending": "Kehtib alates <time>{date}</time>. Saatmisel.",
+      "sent": "Kehtib alates <time>{date}</time>. Saadetud."
     },
     "legalSend": "Saada teade muudatusest",
     "legalConfirmTitle": "Kas saata teade muudatusest: {document}?",
     "legalAudience": {
-      "everyone": "Kõik prepza kontoga inimesed saavad selle alates järgmisest saatmistunnist (8:00–18:00 UTC) koos teatega, et uus versioon kehtib alates {date}, ja näevad seda oma teavitustes. See saadetakse üks kord ja seda ei saa tagasi võtta.",
-      "company_editors": "Kõigi ettevõtete omanikud ja administraatorid saavad selle alates järgmisest saatmistunnist (8:00–18:00 UTC) koos teatega, et uus versioon kehtib alates {date}, ja näevad seda oma teavitustes. See saadetakse üks kord ja seda ei saa tagasi võtta."
+      "everyone": "Kõik prepza kontoga inimesed saavad selle alates järgmisest saatmistunnist (8:00–18:00 UTC) koos teatega, et uus versioon kehtib alates <time>{date}</time>, ja näevad seda oma teavitustes. See saadetakse üks kord ja seda ei saa tagasi võtta.",
+      "company_editors": "Kõigi ettevõtete omanikud ja administraatorid saavad selle alates järgmisest saatmistunnist (8:00–18:00 UTC) koos teatega, et uus versioon kehtib alates <time>{date}</time>, ja näevad seda oma teavitustes. See saadetakse üks kord ja seda ei saa tagasi võtta."
     },
     "legalAsked": "Teade muudatusest saadetakse alates järgmisest saatmistunnist.",
     "legalFailed": "Saatmist ei õnnestunud tellida. Proovi uuesti.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "Saada kampaaniana",
     "removeSuppression": "Eemalda nimekirjast",
     "suppressed": {
-      "bounced": "E-kiri sellele aadressile põrkus {date} tagasi, seega sellele ei saadeta enam ühtegi e-kirja.",
-      "complained": "See aadress märkis {date} e-kirja rämpspostiks, seega sellele ei saadeta enam ühtegi e-kirja.",
-      "suppressed": "Resend lõpetas {date} sellele aadressile saatmise varasema tagasipõrke või rämpspostiteate tõttu, seega sellele ei saadeta enam ühtegi e-kirja.",
-      "soft_bounced": "E-kirjad sellele aadressile põrkusid kuni {date} korduvalt tagasi, seega sellele ei saadeta enam ühtegi e-kirja."
+      "bounced": "E-kiri sellele aadressile põrkus <time>{date}</time> tagasi, seega sellele ei saadeta enam ühtegi e-kirja.",
+      "complained": "See aadress märkis <time>{date}</time> e-kirja rämpspostiks, seega sellele ei saadeta enam ühtegi e-kirja.",
+      "suppressed": "Resend lõpetas <time>{date}</time> sellele aadressile saatmise varasema tagasipõrke või rämpspostiteate tõttu, seega sellele ei saadeta enam ühtegi e-kirja.",
+      "soft_bounced": "E-kirjad sellele aadressile põrkusid kuni <time>{date}</time> korduvalt tagasi, seega sellele ei saadeta enam ühtegi e-kirja."
     },
     "aiCosts": "AI-kulud",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "See versioon on saadaval ainult inglise keeles.",
-    "inForce": "Kehtib alates {date}",
-    "upcomingRead": "Kehtib alates {date}. <link>Loe praegu kehtivat versiooni</link>",
-    "replacedRead": "See versioon kehtis alates {date} ja on asendatud. <link>Loe praegu kehtivat versiooni</link>",
+    "inForce": "Kehtib alates <time>{date}</time>",
+    "upcomingRead": "Kehtib alates <time>{date}</time>. <link>Loe praegu kehtivat versiooni</link>",
+    "replacedRead": "See versioon kehtis alates <time>{date}</time> ja on asendatud. <link>Loe praegu kehtivat versiooni</link>",
     "versions": "Kõik versioonid",
     "translatedRead": "See on tõlge; siduv on ainult ingliskeelne versioon. <link>Loe inglise keeles</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "Ootab sinu kaarti",
     "cardPaused": "Peatatud: kaart lükati tagasi. Uuenda kaarti, et automaatne juurdelaadimine uuesti sisse lülitada.",
     "paused": "Automaatne juurdelaadimine on peatatud: kaart lükati tagasi",
-    "nextPrice": "Alates kuupäevast {date}: {amount}.",
+    "nextPrice": "Alates kuupäevast <time>{date}</time>: {amount}.",
     "updateCard": "Uuenda kaarti",
     "updateCardFailed": "Kaardi uuendamist ei õnnestunud avada. Proovi uuesti.",
     "currencyApplied": "Automaatne juurdelaadimine võtab nüüd {amount}.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "Automaatne juurdelaadimine lisas {credits, plural, one {# krediidi} other {# krediiti}}.",
       "auto_top_up_failed": "Automaatne juurdelaadimine ei saanud kaardilt makset võtta. Laadi juurde, et saldo otsa ei saaks.",
       "auto_top_up_paused": "Automaatne juurdelaadimine on peatatud: kaart lükati tagasi. Uuenda kaarti, et see uuesti sisse lülitada.",
-      "auto_top_up_price_change": "Alates kuupäevast {date} maksab iga automaatne juurdelaadimine {price} asemel {newPrice}.",
+      "auto_top_up_price_change": "Alates kuupäevast <time>{date}</time> maksab iga automaatne juurdelaadimine {price} asemel {newPrice}.",
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> lõpetas intervjuu{title, select, none {} other { „<bdi>{title}</bdi>“}}{grade, select, none {.} other {: {grade}.}}} other {# kandidaati lõpetasid intervjuu{title, select, none {} other { „<bdi>{title}</bdi>“}}.}}",
       "invite_undelivered": "{count, plural, one {Kutset intervjuule{title, select, none {} other { „<bdi>{title}</bdi>“}} aadressile <bdi>{email}</bdi> ei õnnestunud kohale toimetada.} other {# kutset intervjuule{title, select, none {} other { „<bdi>{title}</bdi>“}} ei õnnestunud kohale toimetada.}}",
       "interview_ready": "{title, select, none {Intervjuu on valmis.} other {Intervjuu „<bdi>{title}</bdi>“ on valmis.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "Veebihaak aadressile <bdi>{url}</bdi> peatati: selle lisanud liige pole enam omanik ega administraator. Lisa see uuesti, et tulemusi edasi saada.",
       "ownership_received": "Oled nüüd ettevõtte „<bdi>{name}</bdi>“ omanik.",
       "news": "Uudised: <bdi>{title}</bdi>",
-      "legal_terms": "Uued tingimused kehtivad alates {date}.",
-      "legal_privacy": "Uus privaatsuspoliitika kehtib alates {date}.",
-      "legal_dpa": "Uus andmetöötlusleping kehtib alates {date}."
+      "legal_terms": "Uued tingimused kehtivad alates <time>{date}</time>.",
+      "legal_privacy": "Uus privaatsuspoliitika kehtib alates <time>{date}</time>.",
+      "legal_dpa": "Uus andmetöötlusleping kehtib alates <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "prepza tingimused muutuvad {date}.",
-      "privacy": "prepza privaatsuspoliitika muutub {date}.",
-      "dpa": "Andmetöötlusleping muutub {date}."
+      "terms": "prepza tingimused muutuvad <time>{date}</time>.",
+      "privacy": "prepza privaatsuspoliitika muutub <time>{date}</time>.",
+      "dpa": "Andmetöötlusleping muutub <time>{date}</time>."
     },
     "readLegal": "Loe uut versiooni",
     "closeLegalBanner": "Sulge"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "Kopeeri see kohe ja hoia turvaliselt: seda ei näidata uuesti.",
     "copyKey": "Kopeeri võti",
     "keyCopied": "Võti kopeeritud",
-    "created": "loodud {date}",
-    "lastUsed": "viimati kasutatud {date}",
-    "expires": "aegub {date}",
+    "created": "loodud <time>{date}</time>",
+    "lastUsed": "viimati kasutatud <time>{date}</time>",
+    "expires": "aegub <time>{date}</time>",
     "neverExpires": "ei aegu kunagi",
     "expired": "aegunud",
     "neverUsed": "pole kasutatud",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "Webhook saab uue allkirjastamise saladuse. Järgmise 24 tunni jooksul allkirjastavad iga päringut mõlemad saladused, nii et sinu otspunkt töötab edasi, kuni lülitad selle uuele.",
     "rollSecretFailed": "Saladust ei õnnestunud uuendada.",
     "newSecretTitle": "Sinu webhooki uus saladus",
-    "newSecretText": "Päringud allkirjastatakse sellega ja kuni {until} ka vanaga. Kopeeri see kohe: seda ei näidata uuesti.",
-    "added": "lisatud {date}",
+    "newSecretText": "Päringud allkirjastatakse sellega ja kuni <time>{until}</time> ka vanaga. Kopeeri see kohe: seda ei näidata uuesti.",
+    "added": "lisatud <time>{date}</time>",
     "sendTest": "Saada testsündmus",
     "testSent": "Testsündmus jõudis kohale.",
     "testNotTaken": "Otspunkt ei võtnud testsündmust vastu. Põhjus on kirjas saatmislogis.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "Tagasi jaotises Apps & Connectors vali:",
     "chatgptPaste": "Pane nimeks {name}, kleebi serveri aadress ja vali see autentimisviis:",
     "noConnected": "Ühendatud rakendusi veel pole.",
-    "connectedOn": "ühendatud {date}",
-    "lastUsed": "viimati kasutatud {date}",
+    "connectedOn": "ühendatud <time>{date}</time>",
+    "lastUsed": "viimati kasutatud <time>{date}</time>",
     "neverUsed": "pole veel kasutatud",
     "disconnectTitle": "Katkestada ühendus rakendusega <bdi>{client}</bdi>?",
     "disconnectText": "<bdi>{client}</bdi> ei tööta prepzaga enne, kui selle uuesti ühendad.",
@@ -2323,7 +2323,7 @@
       "text": "Kui midagi prepzas on sul raske kasutada või vajad seda muul kujul, kirjuta aadressil <email></email>. Vastame 14 päeva jooksul.",
       "authority": "Kui sa meie vastusega rahul ei ole, võid pöörduda Tarbijakaitse ja Tehnilise Järelevalve Ameti (TTJA) poole."
     },
-    "reviewed": "Viimati üle vaadatud: {date}."
+    "reviewed": "Viimati üle vaadatud: <time>{date}</time>."
   },
   "actionLog": {
     "empty": "Toiminguid veel pole.",

@@ -1,7 +1,7 @@
 "use client"
 
 import { ScaleIcon } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
@@ -9,6 +9,8 @@ import { ConfirmDialog } from "@/components/confirm-dialog"
 import { Button } from "@/components/ui/button"
 import { useAdminName } from "@/hooks/use-admin-name"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { formatDay } from "@/lib/format"
+import { timeTag } from "@/lib/time-tag"
 import type { LegalNotice } from "@/types/superadmin"
 
 const PATH = "/notifications/superadmin/legal-notices"
@@ -18,6 +20,7 @@ const PATH = "/notifications/superadmin/legal-notices"
  * least 14 days before it applies, once per version) and who gets it. */
 export function LegalNotices({ initial }: { initial: LegalNotice[] }) {
   const t = useTranslations("superadmin")
+  const locale = useLocale()
   const named = useAdminName()
   const [notices, setNotices] = useState(initial)
   const [asking, setAsking] = useState<LegalNotice>()
@@ -39,6 +42,11 @@ export function LegalNotices({ initial }: { initial: LegalNotice[] }) {
   }
 
   const name = (notice: LegalNotice) => named("legalDocuments", notice.document)
+  // The day a version applies from, as the language writes it, in a `<time>` element.
+  const day = (version: string) => ({
+    date: formatDay(version, locale),
+    ...timeTag(version),
+  })
 
   return (
     <div className="space-y-4 rounded-2xl border p-5">
@@ -60,7 +68,7 @@ export function LegalNotices({ initial }: { initial: LegalNotice[] }) {
             <span className="min-w-0 space-y-0.5">
               <span className="block">{name(notice)}</span>
               <span className="block text-sm text-muted-foreground">
-                {t(`legalStates.${notice.state}`, { date: notice.version })}
+                {t.rich(`legalStates.${notice.state}`, day(notice.version))}
               </span>
             </span>
             {notice.state === "sendable" && (
@@ -81,7 +89,7 @@ export function LegalNotices({ initial }: { initial: LegalNotice[] }) {
           open
           onOpenChange={(open) => !open && setAsking(undefined)}
           title={t("legalConfirmTitle", { document: name(asking) })}
-          text={t(`legalAudience.${asking.audience}`, { date: asking.version })}
+          text={t.rich(`legalAudience.${asking.audience}`, day(asking.version))}
           confirm={t("legalSend")}
           busy={busy}
           onConfirm={() => send(asking)}

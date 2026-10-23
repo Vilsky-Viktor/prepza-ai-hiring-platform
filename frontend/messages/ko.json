@@ -182,8 +182,8 @@
       "dismissed": "반려됨"
     },
     "patternQuestions": "{count, plural, other {문제 #개}}",
-    "firstSeen": "처음 발견 {date}",
-    "lastSeen": "마지막 발견 {date}",
+    "firstSeen": "처음 발견 <time>{date}</time>",
+    "lastSeen": "마지막 발견 <time>{date}</time>",
     "replacedWith": "교체된 문제",
     "answers": "{count, plural, other {답변 #개}}",
     "right": "정답률 {percent}",
@@ -329,17 +329,17 @@
       "dpa": "데이터 처리 계약"
     },
     "legalStates": {
-      "in_force": "{date}부터 시행 중. 변경 사항을 이메일로 알리려면 새 버전의 날짜를 최소 14일 뒤로 지정하세요.",
-      "sendable": "{date}부터 적용.",
-      "too_late": "{date}부터 적용. 변경 사항은 적용 최소 14일 전에 이메일로 알립니다.",
-      "sending": "{date}부터 적용. 발송 중.",
-      "sent": "{date}부터 적용. 발송 완료."
+      "in_force": "<time>{date}</time>부터 시행 중. 변경 사항을 이메일로 알리려면 새 버전의 날짜를 최소 14일 뒤로 지정하세요.",
+      "sendable": "<time>{date}</time>부터 적용.",
+      "too_late": "<time>{date}</time>부터 적용. 변경 사항은 적용 최소 14일 전에 이메일로 알립니다.",
+      "sending": "<time>{date}</time>부터 적용. 발송 중.",
+      "sent": "<time>{date}</time>부터 적용. 발송 완료."
     },
     "legalSend": "변경 사항 이메일로 알리기",
     "legalConfirmTitle": "{document} 변경 사항을 이메일로 알릴까요?",
     "legalAudience": {
-      "everyone": "prepza 계정이 있는 모든 사람이 다음 발송 시간(UTC 8:00~18:00)부터 새 버전이 {date}부터 적용된다는 안내를 받으며, 알림에서도 볼 수 있습니다. 한 번만 발송되며 취소할 수 없습니다.",
-      "company_editors": "모든 회사의 소유자와 관리자가 다음 발송 시간(UTC 8:00~18:00)부터 새 버전이 {date}부터 적용된다는 안내를 받으며, 알림에서도 볼 수 있습니다. 한 번만 발송되며 취소할 수 없습니다."
+      "everyone": "prepza 계정이 있는 모든 사람이 다음 발송 시간(UTC 8:00~18:00)부터 새 버전이 <time>{date}</time>부터 적용된다는 안내를 받으며, 알림에서도 볼 수 있습니다. 한 번만 발송되며 취소할 수 없습니다.",
+      "company_editors": "모든 회사의 소유자와 관리자가 다음 발송 시간(UTC 8:00~18:00)부터 새 버전이 <time>{date}</time>부터 적용된다는 안내를 받으며, 알림에서도 볼 수 있습니다. 한 번만 발송되며 취소할 수 없습니다."
     },
     "legalAsked": "다음 발송 시간부터 변경 사항이 이메일로 발송됩니다.",
     "legalFailed": "이메일을 요청하지 못했습니다. 다시 시도해 주세요.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "캠페인으로 보내기",
     "removeSuppression": "목록에서 제거",
     "suppressed": {
-      "bounced": "이 주소로 보낸 이메일이 {date}에 반송되어 이 주소로는 어떤 이메일도 보내지 않습니다.",
-      "complained": "이 주소가 {date}에 이메일을 스팸으로 신고하여 이 주소로는 어떤 이메일도 보내지 않습니다.",
-      "suppressed": "이전 반송 또는 스팸 신고로 Resend가 {date}에 이 주소로의 발송을 중단하여 이 주소로는 어떤 이메일도 보내지 않습니다.",
-      "soft_bounced": "이 주소로 보낸 이메일이 {date}까지 계속 반송되어 이 주소로는 어떤 이메일도 보내지 않습니다."
+      "bounced": "이 주소로 보낸 이메일이 <time>{date}</time>에 반송되어 이 주소로는 어떤 이메일도 보내지 않습니다.",
+      "complained": "이 주소가 <time>{date}</time>에 이메일을 스팸으로 신고하여 이 주소로는 어떤 이메일도 보내지 않습니다.",
+      "suppressed": "이전 반송 또는 스팸 신고로 Resend가 <time>{date}</time>에 이 주소로의 발송을 중단하여 이 주소로는 어떤 이메일도 보내지 않습니다.",
+      "soft_bounced": "이 주소로 보낸 이메일이 <time>{date}</time>까지 계속 반송되어 이 주소로는 어떤 이메일도 보내지 않습니다."
     },
     "aiCosts": "AI 비용",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "이 버전은 영어로만 제공됩니다.",
-    "inForce": "{date}부터 시행",
-    "upcomingRead": "{date}부터 적용됩니다. <link>현재 시행 중인 버전 읽기</link>",
-    "replacedRead": "이 버전은 {date}부터 적용되었으며 이후 대체되었습니다. <link>현재 시행 중인 버전 읽기</link>",
+    "inForce": "<time>{date}</time>부터 시행",
+    "upcomingRead": "<time>{date}</time>부터 적용됩니다. <link>현재 시행 중인 버전 읽기</link>",
+    "replacedRead": "이 버전은 <time>{date}</time>부터 적용되었으며 이후 대체되었습니다. <link>현재 시행 중인 버전 읽기</link>",
     "versions": "모든 버전",
     "translatedRead": "번역본입니다. 영어 원문만 구속력이 있습니다. <link>영어로 읽기</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "카드 등록 대기 중",
     "cardPaused": "일시 중지됨: 카드가 거절되었습니다. 자동 충전을 다시 켜려면 카드를 업데이트하세요.",
     "paused": "자동 충전 일시 중지: 카드가 거절되었습니다",
-    "nextPrice": "{date}부터: {amount}",
+    "nextPrice": "<time>{date}</time>부터: {amount}",
     "updateCard": "카드 업데이트",
     "updateCardFailed": "카드 업데이트 화면을 열지 못했습니다. 다시 시도해 주세요.",
     "currencyApplied": "이제 자동 충전 금액은 {amount}입니다.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "자동 충전으로 {credits, number} 크레딧이 추가되었습니다.",
       "auto_top_up_failed": "자동 충전 중 카드 결제에 실패했습니다. 잔액이 부족하지 않도록 충전해 주세요.",
       "auto_top_up_paused": "카드가 거절되어 자동 충전이 일시 중지되었습니다. 다시 켜려면 카드를 업데이트하세요.",
-      "auto_top_up_price_change": "{date}부터 자동 충전 1회 가격이 {price}에서 {newPrice}(으)로 바뀝니다.",
+      "auto_top_up_price_change": "<time>{date}</time>부터 자동 충전 1회 가격이 {price}에서 {newPrice}(으)로 바뀝니다.",
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> 님이 {title, select, none {면접을} other {“<bdi>{title}</bdi>”을(를)}} 완료했습니다{grade, select, none {.} other {: {grade}.}}} other {지원자 #명이 {title, select, none {면접을} other {“<bdi>{title}</bdi>”을(를)}} 완료했습니다.}}",
       "invite_undelivered": "{count, plural, =1 {<bdi>{email}</bdi> 님에게 보낸 {title, select, none {면접} other {“<bdi>{title}</bdi>”}} 초대가 전달되지 않았습니다.} other {{title, select, none {면접} other {“<bdi>{title}</bdi>”}} 초대 #건이 전달되지 않았습니다.}}",
       "interview_ready": "{title, select, none {면접 준비가 완료되었습니다.} other {면접 “<bdi>{title}</bdi>” 준비가 완료되었습니다.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "<bdi>{url}</bdi>(으)로 가는 웹훅이 중지되었습니다. 추가한 멤버가 더 이상 소유자나 관리자가 아닙니다. 결과를 계속 받으려면 다시 추가하세요.",
       "ownership_received": "이제 “<bdi>{name}</bdi>”의 소유자입니다.",
       "news": "소식: <bdi>{title}</bdi>",
-      "legal_terms": "새 이용약관이 {date}부터 적용됩니다.",
-      "legal_privacy": "새 개인정보 처리방침이 {date}부터 적용됩니다.",
-      "legal_dpa": "새 데이터 처리 계약이 {date}부터 적용됩니다."
+      "legal_terms": "새 이용약관이 <time>{date}</time>부터 적용됩니다.",
+      "legal_privacy": "새 개인정보 처리방침이 <time>{date}</time>부터 적용됩니다.",
+      "legal_dpa": "새 데이터 처리 계약이 <time>{date}</time>부터 적용됩니다."
     },
     "legalBanner": {
-      "terms": "prepza 이용약관이 {date}에 변경됩니다.",
-      "privacy": "prepza 개인정보 처리방침이 {date}에 변경됩니다.",
-      "dpa": "데이터 처리 계약이 {date}에 변경됩니다."
+      "terms": "prepza 이용약관이 <time>{date}</time>에 변경됩니다.",
+      "privacy": "prepza 개인정보 처리방침이 <time>{date}</time>에 변경됩니다.",
+      "dpa": "데이터 처리 계약이 <time>{date}</time>에 변경됩니다."
     },
     "readLegal": "새 버전 읽기",
     "closeLegalBanner": "닫기"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "지금 복사해서 안전하게 보관하세요. 다시 표시되지 않습니다.",
     "copyKey": "키 복사",
     "keyCopied": "키를 복사했습니다",
-    "created": "{date}에 생성",
-    "lastUsed": "마지막 사용 {date}",
-    "expires": "{date}에 만료",
+    "created": "<time>{date}</time>에 생성",
+    "lastUsed": "마지막 사용 <time>{date}</time>",
+    "expires": "<time>{date}</time>에 만료",
     "neverExpires": "만료 없음",
     "expired": "만료됨",
     "neverUsed": "사용한 적 없음",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "새 서명 시크릿이 발급됩니다. 앞으로 24시간 동안은 두 시크릿이 모두 각 요청에 서명하므로, 엔드포인트를 새 시크릿으로 바꾸는 동안에도 계속 작동합니다.",
     "rollSecretFailed": "시크릿을 교체하지 못했습니다.",
     "newSecretTitle": "웹훅의 새 시크릿",
-    "newSecretText": "요청은 이 시크릿으로 서명되며, {until}까지는 이전 시크릿으로도 서명됩니다. 지금 복사하세요. 다시 표시되지 않습니다.",
-    "added": "{date}에 추가",
+    "newSecretText": "요청은 이 시크릿으로 서명되며, <time>{until}</time>까지는 이전 시크릿으로도 서명됩니다. 지금 복사하세요. 다시 표시되지 않습니다.",
+    "added": "<time>{date}</time>에 추가",
     "sendTest": "테스트 이벤트 보내기",
     "testSent": "테스트 이벤트가 전달되었습니다.",
     "testNotTaken": "엔드포인트가 테스트 이벤트를 받지 않았습니다. 전송 기록에서 이유를 확인하세요.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "Apps & Connectors로 돌아와 다음을 선택하세요:",
     "chatgptPaste": "이름을 {name}(으)로 지정하고 서버 주소를 붙여 넣은 뒤 이 인증 방식을 선택하세요:",
     "noConnected": "아직 연동된 앱이 없습니다.",
-    "connectedOn": "{date} 연동",
-    "lastUsed": "마지막 사용 {date}",
+    "connectedOn": "<time>{date}</time> 연동",
+    "lastUsed": "마지막 사용 <time>{date}</time>",
     "neverUsed": "아직 사용 안 함",
     "disconnectTitle": "<bdi>{client}</bdi> 연동을 해제할까요?",
     "disconnectText": "다시 연동할 때까지 <bdi>{client}</bdi>에서 prepza를 사용할 수 없습니다.",
@@ -2323,7 +2323,7 @@
       "text": "prepza에서 이용하기 어려운 부분이 있거나 다른 형식이 필요하면 <email></email>로 연락해 주세요. 14일 이내에 답변해 드립니다.",
       "authority": "답변에 만족하지 않으시면 에스토니아 소비자보호기술규제청(TTJA)에 문의하실 수 있습니다."
     },
-    "reviewed": "최종 검토일: {date}"
+    "reviewed": "최종 검토일: <time>{date}</time>"
   },
   "actionLog": {
     "empty": "아직 작업이 없습니다.",

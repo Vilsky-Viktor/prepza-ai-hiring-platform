@@ -3,10 +3,12 @@
 import { cn } from "cn"
 import { CreditCardIcon, RepeatIcon, SquarePenIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
+import type { ReactNode } from "react"
 
 import { Button } from "@/components/ui/button"
 import { DialogTrigger } from "@/components/ui/dialog"
 import { formatDay, formatPrice } from "@/lib/format"
+import { timeTag } from "@/lib/time-tag"
 import type { AutoTopUp } from "@/types/billing"
 
 type State = "off" | "on" | "waiting" | "paused"
@@ -55,9 +57,10 @@ function useValues(setting: AutoTopUp, titles: Record<string, string>) {
   }
   const next =
     setting.next_price != null && setting.next_price_from && !setting.paused
-      ? t("nextPrice", {
+      ? t.rich("nextPrice", {
           date: formatDay(setting.next_price_from, locale),
           amount: formatPrice(setting.next_price, setting.currency, locale),
+          ...timeTag(setting.next_price_from),
         })
       : null
 
@@ -91,7 +94,7 @@ function NextPrice({
   text,
   className,
 }: {
-  text: string | null
+  text: ReactNode
   className?: string
 }) {
   return (

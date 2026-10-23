@@ -61,7 +61,9 @@ export function SupportInterviews({
                 hasMessage(statuses, interview.status)
                   ? statuses(interview.status)
                   : interview.status,
-                localTime.date(interview.created_at),
+                <time key="created" dateTime={interview.created_at}>
+                  {localTime.date(interview.created_at)}
+                </time>,
                 t("supportCandidates", { count: interview.candidate_count }),
               ]}
             />

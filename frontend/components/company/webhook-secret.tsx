@@ -20,6 +20,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { timeTag } from "@/lib/time-tag"
 
 /** Rolling a web hook's signing secret, for owners and admins: asked first, then the new secret,
  * shown this once to copy, as when the web hook was added. The api service keeps the old one
@@ -71,8 +72,9 @@ export function RollSecret({ path }: { path: string }) {
             <DialogTitle>{t("newSecretTitle")}</DialogTitle>
             <DialogDescription>
               {rolled &&
-                t("newSecretText", {
+                t.rich("newSecretText", {
                   until: localTime.dateTime(rolled.previous_until),
+                  ...timeTag(rolled.previous_until),
                 })}
             </DialogDescription>
           </DialogHeader>

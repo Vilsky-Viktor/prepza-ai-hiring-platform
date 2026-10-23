@@ -182,8 +182,8 @@
       "dismissed": "afgewezen"
     },
     "patternQuestions": "{count, plural, one {# vraag} other {# vragen}}",
-    "firstSeen": "eerst gezien {date}",
-    "lastSeen": "laatst gezien {date}",
+    "firstSeen": "eerst gezien <time>{date}</time>",
+    "lastSeen": "laatst gezien <time>{date}</time>",
     "replacedWith": "Vervangen door",
     "answers": "{count, plural, one {# antwoord} other {# antwoorden}}",
     "right": "{percent} goed",
@@ -329,17 +329,17 @@
       "dpa": "Verwerkersovereenkomst"
     },
     "legalStates": {
-      "in_force": "Geldig sinds {date}. Om een wijziging te mailen, geef je de nieuwe versie een datum minstens 14 dagen vooruit.",
-      "sendable": "Geldt vanaf {date}.",
-      "too_late": "Geldt vanaf {date}. Een wijziging wordt minstens 14 dagen voordat ze geldt gemaild.",
-      "sending": "Geldt vanaf {date}. Wordt gemaild.",
-      "sent": "Geldt vanaf {date}. Gemaild."
+      "in_force": "Geldig sinds <time>{date}</time>. Om een wijziging te mailen, geef je de nieuwe versie een datum minstens 14 dagen vooruit.",
+      "sendable": "Geldt vanaf <time>{date}</time>.",
+      "too_late": "Geldt vanaf <time>{date}</time>. Een wijziging wordt minstens 14 dagen voordat ze geldt gemaild.",
+      "sending": "Geldt vanaf <time>{date}</time>. Wordt gemaild.",
+      "sent": "Geldt vanaf <time>{date}</time>. Gemaild."
     },
     "legalSend": "Wijziging mailen",
     "legalConfirmTitle": "De wijziging in {document} mailen?",
     "legalAudience": {
-      "everyone": "Iedereen met een prepza-account krijgt hem vanaf het volgende verzenduur (8:00 tot 18:00 UTC), met de melding dat de nieuwe versie geldt vanaf {date}, en ziet hem bij zijn meldingen. Hij gaat één keer uit en kan niet worden teruggedraaid.",
-      "company_editors": "De eigenaren en beheerders van elk bedrijf krijgen hem vanaf het volgende verzenduur (8:00 tot 18:00 UTC), met de melding dat de nieuwe versie geldt vanaf {date}, en zien hem bij hun meldingen. Hij gaat één keer uit en kan niet worden teruggedraaid."
+      "everyone": "Iedereen met een prepza-account krijgt hem vanaf het volgende verzenduur (8:00 tot 18:00 UTC), met de melding dat de nieuwe versie geldt vanaf <time>{date}</time>, en ziet hem bij zijn meldingen. Hij gaat één keer uit en kan niet worden teruggedraaid.",
+      "company_editors": "De eigenaren en beheerders van elk bedrijf krijgen hem vanaf het volgende verzenduur (8:00 tot 18:00 UTC), met de melding dat de nieuwe versie geldt vanaf <time>{date}</time>, en zien hem bij hun meldingen. Hij gaat één keer uit en kan niet worden teruggedraaid."
     },
     "legalAsked": "De wijziging wordt vanaf het volgende verzenduur gemaild.",
     "legalFailed": "Kon de e-mail niet aanvragen. Probeer het opnieuw.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "Verzenden als campagne",
     "removeSuppression": "Van de lijst halen",
     "suppressed": {
-      "bounced": "Een e-mail aan dit adres kwam op {date} onbestelbaar terug, dus er wordt geen e-mail meer naar gestuurd.",
-      "complained": "Dit adres heeft op {date} een e-mail als spam gemarkeerd, dus er wordt geen e-mail meer naar gestuurd.",
-      "suppressed": "Resend stopte op {date} met verzenden naar dit adres na een eerdere onbestelbare e-mail of spammelding, dus er wordt geen e-mail meer naar gestuurd.",
-      "soft_bounced": "E-mails aan dit adres kwamen tot {date} steeds onbestelbaar terug, dus er wordt geen e-mail meer naar gestuurd."
+      "bounced": "Een e-mail aan dit adres kwam op <time>{date}</time> onbestelbaar terug, dus er wordt geen e-mail meer naar gestuurd.",
+      "complained": "Dit adres heeft op <time>{date}</time> een e-mail als spam gemarkeerd, dus er wordt geen e-mail meer naar gestuurd.",
+      "suppressed": "Resend stopte op <time>{date}</time> met verzenden naar dit adres na een eerdere onbestelbare e-mail of spammelding, dus er wordt geen e-mail meer naar gestuurd.",
+      "soft_bounced": "E-mails aan dit adres kwamen tot <time>{date}</time> steeds onbestelbaar terug, dus er wordt geen e-mail meer naar gestuurd."
     },
     "aiCosts": "AI-kosten",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "Deze versie is alleen in het Engels beschikbaar.",
-    "inForce": "Geldig sinds {date}",
-    "upcomingRead": "Geldt vanaf {date}. <link>Lees de versie die nu geldt</link>",
-    "replacedRead": "Deze versie gold vanaf {date} en is vervangen. <link>Lees de versie die nu geldt</link>",
+    "inForce": "Geldig sinds <time>{date}</time>",
+    "upcomingRead": "Geldt vanaf <time>{date}</time>. <link>Lees de versie die nu geldt</link>",
+    "replacedRead": "Deze versie gold vanaf <time>{date}</time> en is vervangen. <link>Lees de versie die nu geldt</link>",
     "versions": "Alle versies",
     "translatedRead": "Dit is een vertaling; alleen de Engelse versie is bindend. <link>Lees in het Engels</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "Wacht op je kaart",
     "cardPaused": "Gepauzeerd: de kaart is geweigerd. Werk hem bij om automatisch opwaarderen weer aan te zetten.",
     "paused": "Automatisch opwaarderen is gepauzeerd: de kaart is geweigerd",
-    "nextPrice": "Vanaf {date}: {amount}.",
+    "nextPrice": "Vanaf <time>{date}</time>: {amount}.",
     "updateCard": "Kaart bijwerken",
     "updateCardFailed": "Het bijwerken van de kaart kon niet worden geopend. Probeer het opnieuw.",
     "currencyApplied": "Automatisch opwaarderen rekent nu {amount} af.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "Automatisch opwaarderen heeft {credits, plural, one {# credit} other {# credits}} toegevoegd.",
       "auto_top_up_failed": "Automatisch opwaarderen kon de kaart niet belasten. Waardeer op zodat je saldo niet opraakt.",
       "auto_top_up_paused": "Automatisch opwaarderen is gepauzeerd: de kaart is geweigerd. Werk de kaart bij om het weer aan te zetten.",
-      "auto_top_up_price_change": "Vanaf {date} kost elke automatische opwaardering {newPrice} in plaats van {price}.",
+      "auto_top_up_price_change": "Vanaf <time>{date}</time> kost elke automatische opwaardering {newPrice} in plaats van {price}.",
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> heeft {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} afgerond{grade, select, none {.} other {: {grade}.}}} other {# kandidaten hebben {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} afgerond.}}",
       "invite_undelivered": "{count, plural, one {De uitnodiging voor {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} aan <bdi>{email}</bdi> is niet bezorgd.} other {# uitnodigingen voor {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} zijn niet bezorgd.}}",
       "interview_ready": "{title, select, none {Een interview is klaar.} other {Het interview “<bdi>{title}</bdi>” is klaar.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "De webhook naar <bdi>{url}</bdi> is gestopt: het lid dat hem heeft toegevoegd is geen eigenaar of beheerder meer. Voeg hem opnieuw toe om resultaten te blijven ontvangen.",
       "ownership_received": "Je bent nu eigenaar van “<bdi>{name}</bdi>”.",
       "news": "Nieuws: <bdi>{title}</bdi>",
-      "legal_terms": "Nieuwe voorwaarden gelden vanaf {date}.",
-      "legal_privacy": "Een nieuw privacybeleid geldt vanaf {date}.",
-      "legal_dpa": "Een nieuwe verwerkersovereenkomst geldt vanaf {date}."
+      "legal_terms": "Nieuwe voorwaarden gelden vanaf <time>{date}</time>.",
+      "legal_privacy": "Een nieuw privacybeleid geldt vanaf <time>{date}</time>.",
+      "legal_dpa": "Een nieuwe verwerkersovereenkomst geldt vanaf <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "De voorwaarden van prepza veranderen op {date}.",
-      "privacy": "Het privacybeleid van prepza verandert op {date}.",
-      "dpa": "De verwerkersovereenkomst verandert op {date}."
+      "terms": "De voorwaarden van prepza veranderen op <time>{date}</time>.",
+      "privacy": "Het privacybeleid van prepza verandert op <time>{date}</time>.",
+      "dpa": "De verwerkersovereenkomst verandert op <time>{date}</time>."
     },
     "readLegal": "Lees de nieuwe versie",
     "closeLegalBanner": "Sluiten"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "Kopieer hem nu en bewaar hem veilig: hij wordt niet opnieuw getoond.",
     "copyKey": "Sleutel kopiëren",
     "keyCopied": "Sleutel gekopieerd",
-    "created": "gemaakt op {date}",
-    "lastUsed": "laatst gebruikt op {date}",
-    "expires": "verloopt op {date}",
+    "created": "gemaakt op <time>{date}</time>",
+    "lastUsed": "laatst gebruikt op <time>{date}</time>",
+    "expires": "verloopt op <time>{date}</time>",
     "neverExpires": "verloopt nooit",
     "expired": "verlopen",
     "neverUsed": "nooit gebruikt",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "Hij krijgt een nieuw ondertekeningssecret. De komende 24 uur ondertekenen beide secrets elk verzoek, zodat je endpoint blijft werken terwijl je het overzet naar het nieuwe.",
     "rollSecretFailed": "Het secret kon niet worden vernieuwd.",
     "newSecretTitle": "Het nieuwe secret van je webhook",
-    "newSecretText": "Verzoeken worden ermee ondertekend en tot {until} ook met het oude. Kopieer het nu: het wordt niet opnieuw getoond.",
-    "added": "toegevoegd op {date}",
+    "newSecretText": "Verzoeken worden ermee ondertekend en tot <time>{until}</time> ook met het oude. Kopieer het nu: het wordt niet opnieuw getoond.",
+    "added": "toegevoegd op <time>{date}</time>",
     "sendTest": "Testgebeurtenis versturen",
     "testSent": "De testgebeurtenis is afgeleverd.",
     "testNotTaken": "Het endpoint heeft de testgebeurtenis niet aangenomen. In het afleverlogboek staat waarom.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "Kies daarna weer in Apps & Connectors:",
     "chatgptPaste": "Noem hem {name}, plak het serveradres en kies deze authenticatie:",
     "noConnected": "Nog geen apps gekoppeld.",
-    "connectedOn": "gekoppeld op {date}",
-    "lastUsed": "laatst gebruikt op {date}",
+    "connectedOn": "gekoppeld op <time>{date}</time>",
+    "lastUsed": "laatst gebruikt op <time>{date}</time>",
     "neverUsed": "nog niet gebruikt",
     "disconnectTitle": "<bdi>{client}</bdi> ontkoppelen?",
     "disconnectText": "<bdi>{client}</bdi> werkt niet meer met prepza totdat je het opnieuw koppelt.",
@@ -2323,7 +2323,7 @@
       "text": "Is iets op prepza lastig voor je om te gebruiken, of heb je het in een andere vorm nodig? Schrijf naar <email></email>. We antwoorden binnen 14 dagen.",
       "authority": "Ben je niet tevreden met ons antwoord, dan kun je contact opnemen met de Estse Autoriteit voor Consumentenbescherming en Technische Regulering (TTJA)."
     },
-    "reviewed": "Laatst herzien: {date}."
+    "reviewed": "Laatst herzien: <time>{date}</time>."
   },
   "actionLog": {
     "empty": "Nog geen acties.",

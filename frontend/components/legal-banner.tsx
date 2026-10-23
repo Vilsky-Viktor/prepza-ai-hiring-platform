@@ -12,6 +12,7 @@ import { apiFetch } from "@/lib/api"
 import { formatDay } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"
 import { notClosed, rememberClosed } from "@/lib/legal-banner"
+import { timeTag } from "@/lib/time-tag"
 import type { LegalChange } from "@/types/campaigns"
 
 /** While a legal document's new version has been announced and doesn't apply yet, a thin
@@ -75,7 +76,10 @@ export function LegalBanner() {
               </Button>
             }
           >
-            {t(key, { date: formatDay(change.version, locale) })}{" "}
+            {t.rich(key, {
+              date: formatDay(change.version, locale),
+              ...timeTag(change.version),
+            })}{" "}
             <Link
               href={`/${change.document}`}
               className="font-medium text-foreground underline underline-offset-4"

@@ -182,8 +182,8 @@
       "dismissed": "ditolak"
     },
     "patternQuestions": "{count, plural, other {# soal}}",
-    "firstSeen": "pertama terlihat {date}",
-    "lastSeen": "terakhir terlihat {date}",
+    "firstSeen": "pertama terlihat <time>{date}</time>",
+    "lastSeen": "terakhir terlihat <time>{date}</time>",
     "replacedWith": "Diganti dengan",
     "answers": "{count, plural, other {# jawaban}}",
     "right": "{percent} benar",
@@ -329,17 +329,17 @@
       "dpa": "Perjanjian pemrosesan data"
     },
     "legalStates": {
-      "in_force": "Berlaku sejak {date}. Untuk mengemail perubahan, beri versi barunya tanggal paling cepat 14 hari ke depan.",
-      "sendable": "Berlaku mulai {date}.",
-      "too_late": "Berlaku mulai {date}. Perubahan diberitahukan paling lambat 14 hari sebelum berlaku.",
-      "sending": "Berlaku mulai {date}. Sedang dikirim.",
-      "sent": "Berlaku mulai {date}. Terkirim."
+      "in_force": "Berlaku sejak <time>{date}</time>. Untuk mengemail perubahan, beri versi barunya tanggal paling cepat 14 hari ke depan.",
+      "sendable": "Berlaku mulai <time>{date}</time>.",
+      "too_late": "Berlaku mulai <time>{date}</time>. Perubahan diberitahukan paling lambat 14 hari sebelum berlaku.",
+      "sending": "Berlaku mulai <time>{date}</time>. Sedang dikirim.",
+      "sent": "Berlaku mulai <time>{date}</time>. Terkirim."
     },
     "legalSend": "Email perubahannya",
     "legalConfirmTitle": "Email perubahan pada {document}?",
     "legalAudience": {
-      "everyone": "Semua pemilik akun prepza menerimanya mulai jam pengiriman berikutnya (08.00–18.00 UTC), berisi bahwa versi baru berlaku mulai {date}, dan melihatnya di notifikasi mereka. Dikirim sekali dan tidak bisa ditarik kembali.",
-      "company_editors": "Pemilik dan admin setiap perusahaan menerimanya mulai jam pengiriman berikutnya (08.00–18.00 UTC), berisi bahwa versi baru berlaku mulai {date}, dan melihatnya di notifikasi mereka. Dikirim sekali dan tidak bisa ditarik kembali."
+      "everyone": "Semua pemilik akun prepza menerimanya mulai jam pengiriman berikutnya (08.00–18.00 UTC), berisi bahwa versi baru berlaku mulai <time>{date}</time>, dan melihatnya di notifikasi mereka. Dikirim sekali dan tidak bisa ditarik kembali.",
+      "company_editors": "Pemilik dan admin setiap perusahaan menerimanya mulai jam pengiriman berikutnya (08.00–18.00 UTC), berisi bahwa versi baru berlaku mulai <time>{date}</time>, dan melihatnya di notifikasi mereka. Dikirim sekali dan tidak bisa ditarik kembali."
     },
     "legalAsked": "Perubahan akan diemail mulai jam pengiriman berikutnya.",
     "legalFailed": "Tidak bisa meminta email. Silakan coba lagi.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "Kirim sebagai kampanye",
     "removeSuppression": "Keluarkan dari daftar",
     "suppressed": {
-      "bounced": "Email ke alamat ini terpental pada {date}, jadi tidak ada email yang dikirim ke alamat ini.",
-      "complained": "Alamat ini menandai email sebagai spam pada {date}, jadi tidak ada email yang dikirim ke alamat ini.",
-      "suppressed": "Resend berhenti mengirim ke alamat ini pada {date} setelah email terpental atau laporan spam sebelumnya, jadi tidak ada email yang dikirim ke alamat ini.",
-      "soft_bounced": "Email ke alamat ini terus terpental hingga {date}, jadi tidak ada email yang dikirim ke alamat ini."
+      "bounced": "Email ke alamat ini terpental pada <time>{date}</time>, jadi tidak ada email yang dikirim ke alamat ini.",
+      "complained": "Alamat ini menandai email sebagai spam pada <time>{date}</time>, jadi tidak ada email yang dikirim ke alamat ini.",
+      "suppressed": "Resend berhenti mengirim ke alamat ini pada <time>{date}</time> setelah email terpental atau laporan spam sebelumnya, jadi tidak ada email yang dikirim ke alamat ini.",
+      "soft_bounced": "Email ke alamat ini terus terpental hingga <time>{date}</time>, jadi tidak ada email yang dikirim ke alamat ini."
     },
     "aiCosts": "Biaya AI",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "Versi ini hanya tersedia dalam bahasa Inggris.",
-    "inForce": "Berlaku sejak {date}",
-    "upcomingRead": "Berlaku mulai {date}. <link>Baca versi yang berlaku sekarang</link>",
-    "replacedRead": "Versi ini berlaku sejak {date} dan telah diganti. <link>Baca versi yang berlaku sekarang</link>",
+    "inForce": "Berlaku sejak <time>{date}</time>",
+    "upcomingRead": "Berlaku mulai <time>{date}</time>. <link>Baca versi yang berlaku sekarang</link>",
+    "replacedRead": "Versi ini berlaku sejak <time>{date}</time> dan telah diganti. <link>Baca versi yang berlaku sekarang</link>",
     "versions": "Semua versi",
     "translatedRead": "Ini adalah terjemahan; hanya versi bahasa Inggris yang mengikat. <link>Baca dalam bahasa Inggris</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "Menunggu kartumu",
     "cardPaused": "Dijeda: kartu ditolak. Perbarui kartu untuk menyalakan lagi isi ulang otomatis.",
     "paused": "Isi ulang otomatis dijeda: kartu ditolak",
-    "nextPrice": "Mulai {date}: {amount}.",
+    "nextPrice": "Mulai <time>{date}</time>: {amount}.",
     "updateCard": "Perbarui kartu",
     "updateCardFailed": "Pembaruan kartu tidak bisa dibuka. Coba lagi.",
     "currencyApplied": "Isi ulang otomatis sekarang menagih {amount}.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "Isi ulang otomatis menambahkan {credits, number} kredit.",
       "auto_top_up_failed": "Isi ulang otomatis gagal menagih kartu. Isi ulang agar saldomu tidak habis.",
       "auto_top_up_paused": "Isi ulang otomatis dijeda: kartu ditolak. Perbarui kartu untuk menyalakannya lagi.",
-      "auto_top_up_price_change": "Mulai {date}, setiap isi ulang otomatis berharga {newPrice}, bukan {price}.",
+      "auto_top_up_price_change": "Mulai <time>{date}</time>, setiap isi ulang otomatis berharga {newPrice}, bukan {price}.",
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> menyelesaikan {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}}{grade, select, none {.} other {: {grade}.}}} other {# kandidat menyelesaikan {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}}.}}",
       "invite_undelivered": "{count, plural, =1 {Undangan {title, select, none {wawancara} other {“<bdi>{title}</bdi>”}} ke <bdi>{email}</bdi> tidak terkirim.} other {# undangan {title, select, none {wawancara} other {“<bdi>{title}</bdi>”}} tidak terkirim.}}",
       "interview_ready": "{title, select, none {Sebuah wawancara sudah siap.} other {Wawancara “<bdi>{title}</bdi>” sudah siap.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "Web hook ke <bdi>{url}</bdi> dihentikan: anggota yang menambahkannya bukan lagi pemilik atau admin. Tambahkan lagi agar tetap menerima hasil.",
       "ownership_received": "Kamu sekarang pemilik “<bdi>{name}</bdi>”.",
       "news": "Berita: <bdi>{title}</bdi>",
-      "legal_terms": "Ketentuan baru berlaku mulai {date}.",
-      "legal_privacy": "Kebijakan privasi baru berlaku mulai {date}.",
-      "legal_dpa": "Perjanjian pemrosesan data baru berlaku mulai {date}."
+      "legal_terms": "Ketentuan baru berlaku mulai <time>{date}</time>.",
+      "legal_privacy": "Kebijakan privasi baru berlaku mulai <time>{date}</time>.",
+      "legal_dpa": "Perjanjian pemrosesan data baru berlaku mulai <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "Ketentuan prepza berubah pada {date}.",
-      "privacy": "Kebijakan privasi prepza berubah pada {date}.",
-      "dpa": "Perjanjian pemrosesan data berubah pada {date}."
+      "terms": "Ketentuan prepza berubah pada <time>{date}</time>.",
+      "privacy": "Kebijakan privasi prepza berubah pada <time>{date}</time>.",
+      "dpa": "Perjanjian pemrosesan data berubah pada <time>{date}</time>."
     },
     "readLegal": "Baca versi baru",
     "closeLegalBanner": "Tutup"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "Salin sekarang dan simpan dengan aman: kunci ini tidak akan ditampilkan lagi.",
     "copyKey": "Salin kunci",
     "keyCopied": "Kunci disalin",
-    "created": "dibuat {date}",
-    "lastUsed": "terakhir dipakai {date}",
-    "expires": "kedaluwarsa {date}",
+    "created": "dibuat <time>{date}</time>",
+    "lastUsed": "terakhir dipakai <time>{date}</time>",
+    "expires": "kedaluwarsa <time>{date}</time>",
     "neverExpires": "tidak pernah kedaluwarsa",
     "expired": "sudah kedaluwarsa",
     "neverUsed": "belum pernah dipakai",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "Webhook ini akan mendapat secret penanda tangan baru. Selama 24 jam ke depan, kedua secret menandatangani setiap permintaan, jadi endpoint-mu tetap berfungsi selagi kamu beralih ke yang baru.",
     "rollSecretFailed": "Secret tidak dapat diganti.",
     "newSecretTitle": "Secret baru webhook-mu",
-    "newSecretText": "Permintaan ditandatangani dengan secret ini dan, hingga {until}, juga dengan yang lama. Salin sekarang: secret ini tidak akan ditampilkan lagi.",
-    "added": "ditambahkan {date}",
+    "newSecretText": "Permintaan ditandatangani dengan secret ini dan, hingga <time>{until}</time>, juga dengan yang lama. Salin sekarang: secret ini tidak akan ditampilkan lagi.",
+    "added": "ditambahkan <time>{date}</time>",
     "sendTest": "Kirim event uji",
     "testSent": "Event uji berhasil terkirim.",
     "testNotTaken": "Endpoint tidak menerima event uji. Alasannya ada di log pengiriman.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "Kembali di Apps & Connectors, pilih:",
     "chatgptPaste": "Beri nama {name}, tempel alamat server, lalu pilih autentikasi ini:",
     "noConnected": "Belum ada aplikasi yang terhubung.",
-    "connectedOn": "terhubung {date}",
-    "lastUsed": "terakhir dipakai {date}",
+    "connectedOn": "terhubung <time>{date}</time>",
+    "lastUsed": "terakhir dipakai <time>{date}</time>",
     "neverUsed": "belum dipakai",
     "disconnectTitle": "Putuskan <bdi>{client}</bdi>?",
     "disconnectText": "<bdi>{client}</bdi> berhenti bekerja dengan prepza sampai kamu menghubungkannya lagi.",
@@ -2323,7 +2323,7 @@
       "text": "Jika ada yang sulit kamu gunakan di prepza, atau kamu membutuhkannya dalam bentuk lain, tulis ke <email></email>. Kami menjawab dalam 14 hari.",
       "authority": "Jika kamu tidak puas dengan jawaban kami, kamu bisa menghubungi Otoritas Perlindungan Konsumen dan Regulasi Teknis Estonia (TTJA)."
     },
-    "reviewed": "Terakhir ditinjau: {date}."
+    "reviewed": "Terakhir ditinjau: <time>{date}</time>."
   },
   "actionLog": {
     "empty": "Belum ada tindakan.",

@@ -52,7 +52,15 @@ export function CampaignList({ initial }: { initial: CampaignRow[] }) {
               <Dotted
                 items={[
                   t(`campaignKinds.${campaign.kind}`),
-                  formatDate(campaign.sent_at ?? campaign.created_at, locale),
+                  <time
+                    key="sent"
+                    dateTime={campaign.sent_at ?? campaign.created_at}
+                  >
+                    {formatDate(
+                      campaign.sent_at ?? campaign.created_at,
+                      locale
+                    )}
+                  </time>,
                   ...(campaign.counts
                     ? (
                         [

@@ -182,8 +182,8 @@
       "dismissed": "ibinasura"
     },
     "patternQuestions": "{count, plural, one {# tanong} other {# tanong}}",
-    "firstSeen": "unang nakita {date}",
-    "lastSeen": "huling nakita {date}",
+    "firstSeen": "unang nakita <time>{date}</time>",
+    "lastSeen": "huling nakita <time>{date}</time>",
     "replacedWith": "Pinalitan ng",
     "answers": "{count, plural, one {# sagot} other {# sagot}}",
     "right": "{percent} tama",
@@ -329,17 +329,17 @@
       "dpa": "Kasunduan sa pagproseso ng data"
     },
     "legalStates": {
-      "in_force": "May bisa mula {date}. Para i-email ang pagbabago, bigyan ang bagong bersyon ng petsang hindi bababa sa 14 na araw mula ngayon.",
-      "sendable": "Magkakabisa mula {date}.",
-      "too_late": "Magkakabisa mula {date}. Ini-email ang pagbabago nang hindi bababa sa 14 na araw bago ito magkabisa.",
-      "sending": "Magkakabisa mula {date}. Ipinapadala.",
-      "sent": "Magkakabisa mula {date}. Naipadala na."
+      "in_force": "May bisa mula <time>{date}</time>. Para i-email ang pagbabago, bigyan ang bagong bersyon ng petsang hindi bababa sa 14 na araw mula ngayon.",
+      "sendable": "Magkakabisa mula <time>{date}</time>.",
+      "too_late": "Magkakabisa mula <time>{date}</time>. Ini-email ang pagbabago nang hindi bababa sa 14 na araw bago ito magkabisa.",
+      "sending": "Magkakabisa mula <time>{date}</time>. Ipinapadala.",
+      "sent": "Magkakabisa mula <time>{date}</time>. Naipadala na."
     },
     "legalSend": "I-email ang pagbabago",
     "legalConfirmTitle": "I-email ang pagbabago sa {document}?",
     "legalAudience": {
-      "everyone": "Matatanggap ito ng lahat ng may prepza account simula sa susunod na oras ng pagpapadala (8:00 hanggang 18:00 UTC), at sinasabing magkakabisa ang bagong bersyon mula {date}; makikita rin nila ito sa kanilang mga notification. Isang beses itong ipapadala at hindi na mababawi.",
-      "company_editors": "Matatanggap ito ng mga may-ari at admin ng bawat kumpanya simula sa susunod na oras ng pagpapadala (8:00 hanggang 18:00 UTC), at sinasabing magkakabisa ang bagong bersyon mula {date}; makikita rin nila ito sa kanilang mga notification. Isang beses itong ipapadala at hindi na mababawi."
+      "everyone": "Matatanggap ito ng lahat ng may prepza account simula sa susunod na oras ng pagpapadala (8:00 hanggang 18:00 UTC), at sinasabing magkakabisa ang bagong bersyon mula <time>{date}</time>; makikita rin nila ito sa kanilang mga notification. Isang beses itong ipapadala at hindi na mababawi.",
+      "company_editors": "Matatanggap ito ng mga may-ari at admin ng bawat kumpanya simula sa susunod na oras ng pagpapadala (8:00 hanggang 18:00 UTC), at sinasabing magkakabisa ang bagong bersyon mula <time>{date}</time>; makikita rin nila ito sa kanilang mga notification. Isang beses itong ipapadala at hindi na mababawi."
     },
     "legalAsked": "Ie-email ang pagbabago simula sa susunod na oras ng pagpapadala.",
     "legalFailed": "Hindi nahiling ang email. Pakisubukang muli.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "Ipadala bilang campaign",
     "removeSuppression": "Alisin sa listahan",
     "suppressed": {
-      "bounced": "Nag-bounce ang email sa address na ito noong {date}, kaya walang email na ipinapadala rito.",
-      "complained": "Minarkahan ng address na ito ang isang email bilang spam noong {date}, kaya walang email na ipinapadala rito.",
-      "suppressed": "Itinigil ng Resend ang pagpapadala sa address na ito noong {date} dahil sa naunang bounce o ulat ng spam, kaya walang email na ipinapadala rito.",
-      "soft_bounced": "Paulit-ulit na nag-bounce ang mga email sa address na ito hanggang {date}, kaya walang email na ipinapadala rito."
+      "bounced": "Nag-bounce ang email sa address na ito noong <time>{date}</time>, kaya walang email na ipinapadala rito.",
+      "complained": "Minarkahan ng address na ito ang isang email bilang spam noong <time>{date}</time>, kaya walang email na ipinapadala rito.",
+      "suppressed": "Itinigil ng Resend ang pagpapadala sa address na ito noong <time>{date}</time> dahil sa naunang bounce o ulat ng spam, kaya walang email na ipinapadala rito.",
+      "soft_bounced": "Paulit-ulit na nag-bounce ang mga email sa address na ito hanggang <time>{date}</time>, kaya walang email na ipinapadala rito."
     },
     "aiCosts": "Gastos sa AI",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "Available lang sa Ingles ang bersyong ito.",
-    "inForce": "May bisa mula {date}",
-    "upcomingRead": "Magkakabisa sa {date}. <link>Basahin ang bersyong may bisa ngayon</link>",
-    "replacedRead": "Nagkabisa ang bersyong ito mula {date} at napalitan na. <link>Basahin ang bersyong may bisa ngayon</link>",
+    "inForce": "May bisa mula <time>{date}</time>",
+    "upcomingRead": "Magkakabisa sa <time>{date}</time>. <link>Basahin ang bersyong may bisa ngayon</link>",
+    "replacedRead": "Nagkabisa ang bersyong ito mula <time>{date}</time> at napalitan na. <link>Basahin ang bersyong may bisa ngayon</link>",
     "versions": "Lahat ng bersyon",
     "translatedRead": "Isa itong salin; ang bersyong Ingles lang ang may bisa. <link>Basahin sa Ingles</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "Hinihintay ang iyong card",
     "cardPaused": "Naka-pause: tinanggihan ang card. I-update ito para i-on ulit ang awtomatikong top-up.",
     "paused": "Naka-pause ang awtomatikong top-up: tinanggihan ang card",
-    "nextPrice": "Simula {date}: {amount}.",
+    "nextPrice": "Simula <time>{date}</time>: {amount}.",
     "updateCard": "I-update ang card",
     "updateCardFailed": "Hindi mabuksan ang pag-update ng card. Pakisubukang muli.",
     "currencyApplied": "{amount} na ang sinisingil ng awtomatikong top-up.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "Nagdagdag ang awtomatikong top-up ng {credits, plural, =1 {# credit} other {# credits}}.",
       "auto_top_up_failed": "Hindi ma-charge ng awtomatikong top-up ang card. Mag-top up para hindi maubos ang iyong balance.",
       "auto_top_up_paused": "Naka-pause ang awtomatikong top-up: tinanggihan ang card. I-update ang card para i-on ito ulit.",
-      "auto_top_up_price_change": "Simula {date}, {newPrice} na ang bawat awtomatikong top-up sa halip na {price}.",
+      "auto_top_up_price_change": "Simula <time>{date}</time>, {newPrice} na ang bawat awtomatikong top-up sa halip na {price}.",
       "candidate_finished": "{count, plural, =1 {Natapos ni <bdi>{email}</bdi> ang {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}{grade, select, none {.} other {: {grade}.}}} other {# aplikante ang nakatapos ng {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.}}",
       "invite_undelivered": "{count, plural, =1 {Hindi naihatid ang imbitasyon kay <bdi>{email}</bdi> para sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.} other {Hindi naihatid ang # imbitasyon para sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.}}",
       "interview_ready": "{title, select, none {Handa na ang isang interview.} other {Handa na ang interview na “<bdi>{title}</bdi>”.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "Huminto ang web hook papunta sa <bdi>{url}</bdi>: hindi na owner o admin ang member na nagdagdag nito. Idagdag ulit para patuloy na makatanggap ng mga resulta.",
       "ownership_received": "Ikaw na ang may-ari ng “<bdi>{name}</bdi>”.",
       "news": "Balita: <bdi>{title}</bdi>",
-      "legal_terms": "Magkakabisa ang bagong mga tuntunin sa {date}.",
-      "legal_privacy": "Magkakabisa ang bagong patakaran sa privacy sa {date}.",
-      "legal_dpa": "Magkakabisa ang bagong kasunduan sa pagproseso ng data sa {date}."
+      "legal_terms": "Magkakabisa ang bagong mga tuntunin sa <time>{date}</time>.",
+      "legal_privacy": "Magkakabisa ang bagong patakaran sa privacy sa <time>{date}</time>.",
+      "legal_dpa": "Magkakabisa ang bagong kasunduan sa pagproseso ng data sa <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "Magbabago ang mga tuntunin ng prepza sa {date}.",
-      "privacy": "Magbabago ang patakaran sa privacy ng prepza sa {date}.",
-      "dpa": "Magbabago ang kasunduan sa pagproseso ng data sa {date}."
+      "terms": "Magbabago ang mga tuntunin ng prepza sa <time>{date}</time>.",
+      "privacy": "Magbabago ang patakaran sa privacy ng prepza sa <time>{date}</time>.",
+      "dpa": "Magbabago ang kasunduan sa pagproseso ng data sa <time>{date}</time>."
     },
     "readLegal": "Basahin ang bagong bersyon",
     "closeLegalBanner": "Isara"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "Kopyahin ito ngayon at itago nang ligtas: hindi na ito ipapakita ulit.",
     "copyKey": "Kopyahin ang key",
     "keyCopied": "Nakopya ang key",
-    "created": "ginawa noong {date}",
-    "lastUsed": "huling ginamit noong {date}",
-    "expires": "mag-e-expire sa {date}",
+    "created": "ginawa noong <time>{date}</time>",
+    "lastUsed": "huling ginamit noong <time>{date}</time>",
+    "expires": "mag-e-expire sa <time>{date}</time>",
     "neverExpires": "hindi nag-e-expire",
     "expired": "expired na",
     "neverUsed": "hindi pa nagagamit",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "Magkakaroon ito ng bagong signing secret. Sa susunod na 24 na oras, parehong secret ang pipirma sa bawat request, kaya gagana pa rin ang endpoint mo habang inililipat mo ito sa bago.",
     "rollSecretFailed": "Hindi napalitan ang secret.",
     "newSecretTitle": "Ang bagong secret ng webhook mo",
-    "newSecretText": "Pinipirmahan ang mga request gamit ito at, hanggang {until}, pati ng luma. Kopyahin ito ngayon: hindi na ito ipapakita ulit.",
-    "added": "idinagdag noong {date}",
+    "newSecretText": "Pinipirmahan ang mga request gamit ito at, hanggang <time>{until}</time>, pati ng luma. Kopyahin ito ngayon: hindi na ito ipapakita ulit.",
+    "added": "idinagdag noong <time>{date}</time>",
     "sendTest": "Magpadala ng test event",
     "testSent": "Naipadala ang test event.",
     "testNotTaken": "Hindi tinanggap ng endpoint ang test event. Nasa delivery log nito kung bakit.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "Pagbalik sa Apps & Connectors, piliin ang:",
     "chatgptPaste": "Pangalanan itong {name}, i-paste ang address ng server at piliin ang authentication na ito:",
     "noConnected": "Wala pang naka-connect na app.",
-    "connectedOn": "na-connect noong {date}",
-    "lastUsed": "huling ginamit noong {date}",
+    "connectedOn": "na-connect noong <time>{date}</time>",
+    "lastUsed": "huling ginamit noong <time>{date}</time>",
     "neverUsed": "hindi pa nagagamit",
     "disconnectTitle": "I-disconnect ang <bdi>{client}</bdi>?",
     "disconnectText": "Hihinto ang <bdi>{client}</bdi> sa paggana sa prepza hanggang i-connect mo ulit ito.",
@@ -2323,7 +2323,7 @@
       "text": "Kung may bagay sa prepza na mahirap mong gamitin, o kailangan mo ito sa ibang anyo, sumulat sa <email></email>. Sumasagot kami sa loob ng 14 na araw.",
       "authority": "Kung hindi ka kuntento sa sagot namin, puwede kang makipag-ugnayan sa Consumer Protection and Technical Regulatory Authority ng Estonia (TTJA)."
     },
-    "reviewed": "Huling sinuri: {date}."
+    "reviewed": "Huling sinuri: <time>{date}</time>."
   },
   "actionLog": {
     "empty": "Wala pang aksyon.",

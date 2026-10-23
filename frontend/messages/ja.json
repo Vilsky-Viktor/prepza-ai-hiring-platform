@@ -182,8 +182,8 @@
       "dismissed": "却下"
     },
     "patternQuestions": "{count, plural, other {# 問}}",
-    "firstSeen": "初回検出 {date}",
-    "lastSeen": "最終検出 {date}",
+    "firstSeen": "初回検出 <time>{date}</time>",
+    "lastSeen": "最終検出 <time>{date}</time>",
     "replacedWith": "置き換え後",
     "answers": "{count, plural, other {回答 # 件}}",
     "right": "正答率 {percent}",
@@ -329,17 +329,17 @@
       "dpa": "データ処理契約"
     },
     "legalStates": {
-      "in_force": "{date} から有効。変更をメールで通知するには、新しいバージョンの日付を少なくとも 14 日先にしてください。",
-      "sendable": "{date} から適用。",
-      "too_late": "{date} から適用。変更は適用日の少なくとも 14 日前に通知されます。",
-      "sending": "{date} から適用。送信中。",
-      "sent": "{date} から適用。送信済み。"
+      "in_force": "<time>{date}</time> から有効。変更をメールで通知するには、新しいバージョンの日付を少なくとも 14 日先にしてください。",
+      "sendable": "<time>{date}</time> から適用。",
+      "too_late": "<time>{date}</time> から適用。変更は適用日の少なくとも 14 日前に通知されます。",
+      "sending": "<time>{date}</time> から適用。送信中。",
+      "sent": "<time>{date}</time> から適用。送信済み。"
     },
     "legalSend": "変更をメールで通知",
     "legalConfirmTitle": "{document}の変更をメールで通知しますか？",
     "legalAudience": {
-      "everyone": "prepza のアカウントを持つ全員に、次の送信時間帯（UTC 8:00〜18:00）から、新しいバージョンが {date} から適用される旨が届き、通知にも表示されます。送信は一度だけで、取り消せません。",
-      "company_editors": "各社のオーナーと管理者に、次の送信時間帯（UTC 8:00〜18:00）から、新しいバージョンが {date} から適用される旨が届き、通知にも表示されます。送信は一度だけで、取り消せません。"
+      "everyone": "prepza のアカウントを持つ全員に、次の送信時間帯（UTC 8:00〜18:00）から、新しいバージョンが <time>{date}</time> から適用される旨が届き、通知にも表示されます。送信は一度だけで、取り消せません。",
+      "company_editors": "各社のオーナーと管理者に、次の送信時間帯（UTC 8:00〜18:00）から、新しいバージョンが <time>{date}</time> から適用される旨が届き、通知にも表示されます。送信は一度だけで、取り消せません。"
     },
     "legalAsked": "次の送信時間帯から変更がメールで通知されます。",
     "legalFailed": "メールを依頼できませんでした。もう一度お試しください。",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "メール配信として送る",
     "removeSuppression": "リストから外す",
     "suppressed": {
-      "bounced": "このアドレスへのメールが {date} に届かずに戻ってきたため、メールは一切送信されません。",
-      "complained": "このアドレスは {date} にメールを迷惑メールとして報告したため、メールは一切送信されません。",
-      "suppressed": "以前の不達または迷惑メール報告により、Resend が {date} にこのアドレスへの送信を停止したため、メールは一切送信されません。",
-      "soft_bounced": "このアドレスへのメールが {date} まで繰り返し届かずに戻ってきたため、メールは一切送信されません。"
+      "bounced": "このアドレスへのメールが <time>{date}</time> に届かずに戻ってきたため、メールは一切送信されません。",
+      "complained": "このアドレスは <time>{date}</time> にメールを迷惑メールとして報告したため、メールは一切送信されません。",
+      "suppressed": "以前の不達または迷惑メール報告により、Resend が <time>{date}</time> にこのアドレスへの送信を停止したため、メールは一切送信されません。",
+      "soft_bounced": "このアドレスへのメールが <time>{date}</time> まで繰り返し届かずに戻ってきたため、メールは一切送信されません。"
     },
     "aiCosts": "AI コスト",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "このバージョンは英語でのみ提供されています。",
-    "inForce": "{date} から有効",
-    "upcomingRead": "{date} から適用されます。<link>現在有効なバージョンを読む</link>",
-    "replacedRead": "このバージョンは {date} から適用され、その後置き換えられました。<link>現在有効なバージョンを読む</link>",
+    "inForce": "<time>{date}</time> から有効",
+    "upcomingRead": "<time>{date}</time> から適用されます。<link>現在有効なバージョンを読む</link>",
+    "replacedRead": "このバージョンは <time>{date}</time> から適用され、その後置き換えられました。<link>現在有効なバージョンを読む</link>",
     "versions": "すべてのバージョン",
     "translatedRead": "これは翻訳です。拘束力を持つのは英語版のみです。<link>英語で読む</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "カードの登録待ち",
     "cardPaused": "一時停止中：カードが承認されませんでした。自動チャージを再開するには、カードを更新してください。",
     "paused": "自動チャージは一時停止中：カードが承認されませんでした",
-    "nextPrice": "{date} から：{amount}",
+    "nextPrice": "<time>{date}</time> から：{amount}",
     "updateCard": "カードを更新",
     "updateCardFailed": "カードの更新画面を開けませんでした。もう一度お試しください。",
     "currencyApplied": "自動チャージの請求額は {amount} になりました。",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "自動チャージで {credits, number} クレジットが追加されました。",
       "auto_top_up_failed": "自動チャージでカードに請求できませんでした。残高が不足しないようチャージしてください。",
       "auto_top_up_paused": "カードが承認されなかったため、自動チャージを一時停止しています。再開するにはカードを更新してください。",
-      "auto_top_up_price_change": "{date} から、自動チャージ 1 回あたりの料金は {price} から {newPrice} に変わります。",
+      "auto_top_up_price_change": "<time>{date}</time> から、自動チャージ 1 回あたりの料金は {price} から {newPrice} に変わります。",
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> さんが{title, select, none {面接} other {「<bdi>{title}</bdi>」}}を完了しました{grade, select, none {。} other {（{grade}）。}}} other {# 人の候補者が{title, select, none {面接} other {「<bdi>{title}</bdi>」}}を完了しました。}}",
       "invite_undelivered": "{count, plural, =1 {<bdi>{email}</bdi> さんへの{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の招待を届けられませんでした。} other {{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の招待 # 件を届けられませんでした。}}",
       "interview_ready": "{title, select, none {面接の準備ができました。} other {面接「<bdi>{title}</bdi>」の準備ができました。}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "<bdi>{url}</bdi> への Webhook が停止しました。追加したメンバーがオーナーまたは管理者ではなくなりました。結果を受け取り続けるには、もう一度追加してください。",
       "ownership_received": "「<bdi>{name}</bdi>」のオーナーになりました。",
       "news": "お知らせ：<bdi>{title}</bdi>",
-      "legal_terms": "新しい利用規約が {date} から適用されます。",
-      "legal_privacy": "新しいプライバシーポリシーが {date} から適用されます。",
-      "legal_dpa": "新しいデータ処理契約が {date} から適用されます。"
+      "legal_terms": "新しい利用規約が <time>{date}</time> から適用されます。",
+      "legal_privacy": "新しいプライバシーポリシーが <time>{date}</time> から適用されます。",
+      "legal_dpa": "新しいデータ処理契約が <time>{date}</time> から適用されます。"
     },
     "legalBanner": {
-      "terms": "prepza の利用規約は {date} に変わります。",
-      "privacy": "prepza のプライバシーポリシーは {date} に変わります。",
-      "dpa": "データ処理契約は {date} に変わります。"
+      "terms": "prepza の利用規約は <time>{date}</time> に変わります。",
+      "privacy": "prepza のプライバシーポリシーは <time>{date}</time> に変わります。",
+      "dpa": "データ処理契約は <time>{date}</time> に変わります。"
     },
     "readLegal": "新しい版を読む",
     "closeLegalBanner": "閉じる"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "今すぐコピーして安全に保管してください。今後は表示されません。",
     "copyKey": "キーをコピー",
     "keyCopied": "キーをコピーしました",
-    "created": "{date} に作成",
-    "lastUsed": "最終使用 {date}",
-    "expires": "{date} に期限切れ",
+    "created": "<time>{date}</time> に作成",
+    "lastUsed": "最終使用 <time>{date}</time>",
+    "expires": "<time>{date}</time> に期限切れ",
     "neverExpires": "無期限",
     "expired": "期限切れ",
     "neverUsed": "未使用",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "新しい署名シークレットが発行されます。今後 24 時間は両方のシークレットで各リクエストに署名するため、新しいシークレットに切り替えるまでエンドポイントはそのまま動作します。",
     "rollSecretFailed": "シークレットを更新できませんでした。",
     "newSecretTitle": "Webhook の新しいシークレット",
-    "newSecretText": "リクエストはこのシークレットで署名され、{until} までは古いシークレットでも署名されます。今すぐコピーしてください。今後は表示されません。",
-    "added": "{date} に追加",
+    "newSecretText": "リクエストはこのシークレットで署名され、<time>{until}</time> までは古いシークレットでも署名されます。今すぐコピーしてください。今後は表示されません。",
+    "added": "<time>{date}</time> に追加",
     "sendTest": "テストイベントを送信",
     "testSent": "テストイベントが配信されました。",
     "testNotTaken": "エンドポイントがテストイベントを受け付けませんでした。理由は配信ログで確認できます。",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "Apps & Connectors に戻り、次を選びます：",
     "chatgptPaste": "名前を {name} にし、サーバーのアドレスを貼り付けて、次の認証方式を選びます：",
     "noConnected": "接続済みのアプリはまだありません。",
-    "connectedOn": "{date} に接続",
-    "lastUsed": "最終使用 {date}",
+    "connectedOn": "<time>{date}</time> に接続",
+    "lastUsed": "最終使用 <time>{date}</time>",
     "neverUsed": "未使用",
     "disconnectTitle": "<bdi>{client}</bdi> の接続を解除しますか？",
     "disconnectText": "もう一度接続するまで、<bdi>{client}</bdi> から prepza は使えなくなります。",
@@ -2323,7 +2323,7 @@
       "text": "prepza で使いにくいところがある場合や、別の形式が必要な場合は、<email></email> までご連絡ください。14 日以内にお返事します。",
       "authority": "回答にご満足いただけない場合は、エストニア消費者保護・技術規制庁（TTJA）にお問い合わせいただけます。"
     },
-    "reviewed": "最終確認日：{date}"
+    "reviewed": "最終確認日：<time>{date}</time>"
   },
   "actionLog": {
     "empty": "まだ操作はありません。",

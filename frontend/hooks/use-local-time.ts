@@ -4,6 +4,7 @@ import { useLocale } from "next-intl"
 import { useSyncExternalStore } from "react"
 
 import { formatDate, formatDateTime } from "@/lib/format"
+import { timeTag } from "@/lib/time-tag"
 
 function subscribe() {
   return () => {}
@@ -20,9 +21,13 @@ export function useLocalTime() {
     () => false
   )
   const timeZone = inBrowser ? undefined : "UTC"
+  const date = (iso: string) => formatDate(iso, locale, timeZone)
+  const dateTime = (iso: string) => formatDateTime(iso, locale, timeZone)
 
   return {
-    date: (iso: string) => formatDate(iso, locale, timeZone),
-    dateTime: (iso: string) => formatDateTime(iso, locale, timeZone),
+    date,
+    dateTime,
+    // For `t.rich`: a message's `<time>{date}</time>`, the moment's date in a `<time>` element.
+    dateValues: (iso: string) => ({ date: date(iso), ...timeTag(iso) }),
   }
 }

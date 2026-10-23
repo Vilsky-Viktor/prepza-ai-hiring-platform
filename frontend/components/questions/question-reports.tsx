@@ -53,9 +53,12 @@ export function QuestionReports({ path }: { path: string }) {
                 ? reasons(report.reason)
                 : report.reason}
             </span>
-            <span className="text-muted-foreground">
+            <time
+              dateTime={report.created_at}
+              className="text-muted-foreground"
+            >
               {localTime.date(report.created_at)}
-            </span>
+            </time>
           </p>
           {report.comment && (
             <p className="font-light whitespace-pre-line text-muted-foreground">

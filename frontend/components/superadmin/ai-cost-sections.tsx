@@ -138,12 +138,16 @@ export function AiCostSections({
         empty={t("aiNothing")}
         rows={costs.days.map((row) => ({
           key: row.day,
-          title: format.dateTime(new Date(`${row.day}T12:00:00Z`), {
-            ...(costs.by_month ? {} : { day: "numeric" }),
-            month: "long",
-            year: "numeric",
-            timeZone: "UTC",
-          }),
+          title: (
+            <time dateTime={row.day}>
+              {format.dateTime(new Date(`${row.day}T12:00:00Z`), {
+                ...(costs.by_month ? {} : { day: "numeric" }),
+                month: "long",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </time>
+          ),
           amount: usd(row.spend),
         }))}
       />

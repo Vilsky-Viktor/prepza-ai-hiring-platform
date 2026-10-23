@@ -9,6 +9,7 @@ import { WarningCard } from "@/components/warning-card"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { formatDate } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"
+import { timeTag } from "@/lib/time-tag"
 import type { components } from "@/types/api/notifications"
 
 type Suppression = components["schemas"]["SuppressionOut"]
@@ -72,7 +73,10 @@ export function AddressSuppression({ email }: { email: string }) {
       }
     >
       {hasMessage(t, reason)
-        ? t(reason, { date: formatDate(found.created_at, locale) })
+        ? t.rich(reason, {
+            date: formatDate(found.created_at, locale),
+            ...timeTag(found.created_at),
+          })
         : found.reason}
     </WarningCard>
   )

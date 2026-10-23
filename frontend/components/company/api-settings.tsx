@@ -127,27 +127,19 @@ export function ApiKeys({
           title={key.name}
           details={
             <>
-              <time suppressHydrationWarning>
-                {t("created", { date: localTime.date(key.created_at) })}
-              </time>
+              {t.rich("created", localTime.dateValues(key.created_at))}
               <Dot />
               {key.expired ? (
                 <span className="text-destructive">{t("expired")}</span>
+              ) : key.expires_at ? (
+                t.rich("expires", localTime.dateValues(key.expires_at))
               ) : (
-                <time suppressHydrationWarning>
-                  {key.expires_at
-                    ? t("expires", { date: localTime.date(key.expires_at) })
-                    : t("neverExpires")}
-                </time>
+                t("neverExpires")
               )}
               <Dot />
-              <time suppressHydrationWarning>
-                {key.last_used_at
-                  ? t("lastUsed", {
-                      date: localTime.date(key.last_used_at),
-                    })
-                  : t("neverUsed")}
-              </time>
+              {key.last_used_at
+                ? t.rich("lastUsed", localTime.dateValues(key.last_used_at))
+                : t("neverUsed")}
             </>
           }
           more={
@@ -205,9 +197,7 @@ export function ApiWebhooks({
           title={hook.url}
           details={
             <>
-              <time suppressHydrationWarning>
-                {t("added", { date: localTime.date(hook.created_at) })}
-              </time>
+              {t.rich("added", localTime.dateValues(hook.created_at))}
               {(hook.stopped || hook.failing) && (
                 <>
                   <Dot />

@@ -182,8 +182,8 @@
       "dismissed": "écarté"
     },
     "patternQuestions": "{count, plural, one {# question} other {# questions}}",
-    "firstSeen": "premier repérage {date}",
-    "lastSeen": "dernier repérage {date}",
+    "firstSeen": "premier repérage <time>{date}</time>",
+    "lastSeen": "dernier repérage <time>{date}</time>",
     "replacedWith": "Remplacée par",
     "answers": "{count, plural, one {# réponse} other {# réponses}}",
     "right": "{percent} de bonnes réponses",
@@ -329,17 +329,17 @@
       "dpa": "Accord de traitement des données"
     },
     "legalStates": {
-      "in_force": "En vigueur depuis le {date}. Pour annoncer une modification, donnez à sa nouvelle version une date au moins 14 jours plus tard.",
-      "sendable": "S'applique à partir du {date}.",
-      "too_late": "S'applique à partir du {date}. Une modification est annoncée au moins 14 jours avant de s'appliquer.",
-      "sending": "S'applique à partir du {date}. Envoi en cours.",
-      "sent": "S'applique à partir du {date}. Envoyé."
+      "in_force": "En vigueur depuis le <time>{date}</time>. Pour annoncer une modification, donnez à sa nouvelle version une date au moins 14 jours plus tard.",
+      "sendable": "S'applique à partir du <time>{date}</time>.",
+      "too_late": "S'applique à partir du <time>{date}</time>. Une modification est annoncée au moins 14 jours avant de s'appliquer.",
+      "sending": "S'applique à partir du <time>{date}</time>. Envoi en cours.",
+      "sent": "S'applique à partir du <time>{date}</time>. Envoyé."
     },
     "legalSend": "Annoncer la modification",
     "legalConfirmTitle": "Annoncer par email la modification de : {document} ?",
     "legalAudience": {
-      "everyone": "Toutes les personnes ayant un compte prepza la reçoivent à partir de la prochaine heure d'envoi (de 8 h à 18 h UTC), avec la date d'application de la nouvelle version, le {date}, et la voient dans leurs notifications. Elle part une fois et ne peut pas être annulée.",
-      "company_editors": "Les propriétaires et administrateurs de chaque entreprise la reçoivent à partir de la prochaine heure d'envoi (de 8 h à 18 h UTC), avec la date d'application de la nouvelle version, le {date}, et la voient dans leurs notifications. Elle part une fois et ne peut pas être annulée."
+      "everyone": "Toutes les personnes ayant un compte prepza la reçoivent à partir de la prochaine heure d'envoi (de 8 h à 18 h UTC), avec la date d'application de la nouvelle version, le <time>{date}</time>, et la voient dans leurs notifications. Elle part une fois et ne peut pas être annulée.",
+      "company_editors": "Les propriétaires et administrateurs de chaque entreprise la reçoivent à partir de la prochaine heure d'envoi (de 8 h à 18 h UTC), avec la date d'application de la nouvelle version, le <time>{date}</time>, et la voient dans leurs notifications. Elle part une fois et ne peut pas être annulée."
     },
     "legalAsked": "La modification sera annoncée par email à partir de la prochaine heure d'envoi.",
     "legalFailed": "Impossible de demander l'envoi. Veuillez réessayer.",
@@ -510,10 +510,10 @@
     "sendAsCampaign": "Envoyer comme campagne",
     "removeSuppression": "Retirer de la liste",
     "suppressed": {
-      "bounced": "Un e-mail envoyé à cette adresse a été rejeté le {date} : aucun e-mail ne lui est donc plus envoyé.",
-      "complained": "Cette adresse a signalé un e-mail comme spam le {date} : aucun e-mail ne lui est donc plus envoyé.",
-      "suppressed": "Resend a cessé d'envoyer à cette adresse le {date} après un rejet ou un signalement de spam antérieur : aucun e-mail ne lui est donc plus envoyé.",
-      "soft_bounced": "Les e-mails envoyés à cette adresse ont été rejetés à plusieurs reprises jusqu'au {date} : aucun e-mail ne lui est donc plus envoyé."
+      "bounced": "Un e-mail envoyé à cette adresse a été rejeté le <time>{date}</time> : aucun e-mail ne lui est donc plus envoyé.",
+      "complained": "Cette adresse a signalé un e-mail comme spam le <time>{date}</time> : aucun e-mail ne lui est donc plus envoyé.",
+      "suppressed": "Resend a cessé d'envoyer à cette adresse le <time>{date}</time> après un rejet ou un signalement de spam antérieur : aucun e-mail ne lui est donc plus envoyé.",
+      "soft_bounced": "Les e-mails envoyés à cette adresse ont été rejetés à plusieurs reprises jusqu'au <time>{date}</time> : aucun e-mail ne lui est donc plus envoyé."
     },
     "aiCosts": "Coûts de l'IA",
     "aiCards": {
@@ -1208,9 +1208,9 @@
   },
   "legal": {
     "englishOnly": "Cette version n'existe qu'en anglais.",
-    "inForce": "En vigueur depuis le {date}",
-    "upcomingRead": "S'applique à partir du {date}. <link>Lire la version en vigueur</link>",
-    "replacedRead": "Cette version s'appliquait à partir du {date} et a été remplacée. <link>Lire la version en vigueur</link>",
+    "inForce": "En vigueur depuis le <time>{date}</time>",
+    "upcomingRead": "S'applique à partir du <time>{date}</time>. <link>Lire la version en vigueur</link>",
+    "replacedRead": "Cette version s'appliquait à partir du <time>{date}</time> et a été remplacée. <link>Lire la version en vigueur</link>",
     "versions": "Toutes les versions",
     "translatedRead": "Ceci est une traduction ; seule la version anglaise fait foi. <link>Lire en anglais</link>",
     "titles": {
@@ -1260,7 +1260,7 @@
     "cardWaiting": "En attente de votre carte",
     "cardPaused": "En pause : la carte a été refusée. Mettez-la à jour pour réactiver la recharge automatique.",
     "paused": "La recharge automatique est en pause : la carte a été refusée",
-    "nextPrice": "À partir du {date} : {amount}.",
+    "nextPrice": "À partir du <time>{date}</time> : {amount}.",
     "updateCard": "Mettre à jour la carte",
     "updateCardFailed": "Impossible d'ouvrir la mise à jour de la carte. Veuillez réessayer.",
     "currencyApplied": "La recharge automatique débite désormais {amount}.",
@@ -1560,7 +1560,7 @@
       "auto_top_up_charged": "La recharge automatique a ajouté {credits, plural, one {# crédit} other {# crédits}}.",
       "auto_top_up_failed": "La recharge automatique n'a pas pu débiter la carte. Rechargez pour ne pas manquer de solde.",
       "auto_top_up_paused": "La recharge automatique est en pause : la carte a été refusée. Mettez la carte à jour pour la réactiver.",
-      "auto_top_up_price_change": "À partir du {date}, chaque recharge automatique coûte {newPrice} au lieu de {price}.",
+      "auto_top_up_price_change": "À partir du <time>{date}</time>, chaque recharge automatique coûte {newPrice} au lieu de {price}.",
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> a terminé {title, select, none {un entretien} other {« <bdi>{title}</bdi> »}}{grade, select, none {.} other { : {grade}.}}} other {# candidats ont terminé {title, select, none {un entretien} other {« <bdi>{title}</bdi> »}}.}}",
       "invite_undelivered": "{count, plural, =1 {L'invitation envoyée à <bdi>{email}</bdi> pour {title, select, none {un entretien} other {« <bdi>{title}</bdi> »}} n'a pas été remise.} other {# invitations pour {title, select, none {un entretien} other {« <bdi>{title}</bdi> »}} n'ont pas été remises.}}",
       "interview_ready": "{title, select, none {Un entretien est prêt.} other {L'entretien « <bdi>{title}</bdi> » est prêt.}}",
@@ -1574,14 +1574,14 @@
       "webhook_stopped": "Le webhook vers <bdi>{url}</bdi> est arrêté : le membre qui l'a ajouté n'est plus propriétaire ni administrateur. Ajoutez-le à nouveau pour continuer à recevoir les résultats.",
       "ownership_received": "Vous êtes maintenant le propriétaire de « <bdi>{name}</bdi> ».",
       "news": "Actualités : <bdi>{title}</bdi>",
-      "legal_terms": "De nouvelles conditions d'utilisation s'appliquent à partir du {date}.",
-      "legal_privacy": "Une nouvelle politique de confidentialité s'applique à partir du {date}.",
-      "legal_dpa": "Un nouvel accord de traitement des données s'applique à partir du {date}."
+      "legal_terms": "De nouvelles conditions d'utilisation s'appliquent à partir du <time>{date}</time>.",
+      "legal_privacy": "Une nouvelle politique de confidentialité s'applique à partir du <time>{date}</time>.",
+      "legal_dpa": "Un nouvel accord de traitement des données s'applique à partir du <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "Les conditions d'utilisation de prepza changent le {date}.",
-      "privacy": "La politique de confidentialité de prepza change le {date}.",
-      "dpa": "L'accord de traitement des données change le {date}."
+      "terms": "Les conditions d'utilisation de prepza changent le <time>{date}</time>.",
+      "privacy": "La politique de confidentialité de prepza change le <time>{date}</time>.",
+      "dpa": "L'accord de traitement des données change le <time>{date}</time>."
     },
     "readLegal": "Lire la nouvelle version",
     "closeLegalBanner": "Fermer"
@@ -1831,9 +1831,9 @@
     "keyCreatedText": "Copiez-la maintenant et conservez-la en lieu sûr : elle ne sera plus affichée.",
     "copyKey": "Copier la clé",
     "keyCopied": "Clé copiée",
-    "created": "créée le {date}",
-    "lastUsed": "dernière utilisation le {date}",
-    "expires": "expire le {date}",
+    "created": "créée le <time>{date}</time>",
+    "lastUsed": "dernière utilisation le <time>{date}</time>",
+    "expires": "expire le <time>{date}</time>",
     "neverExpires": "n'expire jamais",
     "expired": "expirée",
     "neverUsed": "jamais utilisée",
@@ -1857,8 +1857,8 @@
     "rollSecretText": "Il reçoit un nouveau secret de signature. Pendant les 24 prochaines heures, les deux secrets signent chaque requête : votre endpoint continue de fonctionner pendant que vous passez au nouveau.",
     "rollSecretFailed": "Impossible de renouveler le secret.",
     "newSecretTitle": "Le nouveau secret de votre webhook",
-    "newSecretText": "Les requêtes sont signées avec lui et, jusqu'au {until}, aussi avec l'ancien. Copiez-le maintenant : il ne sera plus affiché.",
-    "added": "ajouté le {date}",
+    "newSecretText": "Les requêtes sont signées avec lui et, jusqu'au <time>{until}</time>, aussi avec l'ancien. Copiez-le maintenant : il ne sera plus affiché.",
+    "added": "ajouté le <time>{date}</time>",
     "sendTest": "Envoyer un événement de test",
     "testSent": "L'événement de test a été remis.",
     "testNotTaken": "L'endpoint n'a pas accepté l'événement de test. Son journal des envois indique pourquoi.",
@@ -2264,8 +2264,8 @@
     "chatgptCreate": "De retour dans Apps & Connectors, choisissez :",
     "chatgptPaste": "Nommez-le {name}, collez l'adresse du serveur et choisissez cette authentification :",
     "noConnected": "Aucune application connectée pour l'instant.",
-    "connectedOn": "connectée le {date}",
-    "lastUsed": "dernière utilisation le {date}",
+    "connectedOn": "connectée le <time>{date}</time>",
+    "lastUsed": "dernière utilisation le <time>{date}</time>",
     "neverUsed": "pas encore utilisée",
     "disconnectTitle": "Déconnecter <bdi>{client}</bdi> ?",
     "disconnectText": "<bdi>{client}</bdi> ne fonctionne plus avec prepza tant que vous ne le reconnectez pas.",
@@ -2323,7 +2323,7 @@
       "text": "Si quelque chose sur prepza vous est difficile à utiliser, ou si vous en avez besoin sous une autre forme, écrivez à <email></email>. Nous répondons sous 14 jours.",
       "authority": "Si notre réponse ne vous satisfait pas, vous pouvez contacter l'Autorité estonienne de protection des consommateurs et de régulation technique (TTJA)."
     },
-    "reviewed": "Dernière révision : {date}."
+    "reviewed": "Dernière révision : <time>{date}</time>."
   },
   "actionLog": {
     "empty": "Aucune action pour l'instant.",

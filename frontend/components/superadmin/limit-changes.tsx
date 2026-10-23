@@ -54,7 +54,9 @@ export function LimitChanges({
                 <Dotted
                   items={[
                     change.changed_by_email,
-                    localTime.dateTime(change.changed_at),
+                    <time key="changed" dateTime={change.changed_at}>
+                      {localTime.dateTime(change.changed_at)}
+                    </time>,
                   ]}
                 />
               </span>
