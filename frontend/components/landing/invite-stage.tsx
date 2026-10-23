@@ -20,6 +20,7 @@ import {
   type InviteSource,
   INVITE_SPEED,
 } from "@/constants/invite-demo"
+import { SEE_THROUGH_CARD } from "@/constants/landing-backgrounds"
 import { ON_SCREEN, useDemoSteps } from "@/hooks/use-demo-steps"
 import { boxOf, sourceWires } from "@/lib/source-wires"
 
@@ -229,7 +230,11 @@ export function InviteStage({
         ref={holders[INTERVIEW]}
         data-testid="invite-interview"
         aria-hidden
-        className="relative z-10 mx-auto w-full max-w-88 space-y-5 rounded-xl bg-surface p-6 text-start lg:absolute lg:inset-x-0 lg:top-56 lg:mx-auto"
+        // The dot grid under it shows faintly.
+        className={cn(
+          SEE_THROUGH_CARD,
+          "relative z-10 mx-auto w-full max-w-88 space-y-5 rounded-xl p-6 text-start lg:absolute lg:inset-x-0 lg:top-56 lg:mx-auto"
+        )}
       >
         {/* What the card is, on its top edge. */}
         <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-background px-4 py-1 text-sm text-muted-foreground lowercase">

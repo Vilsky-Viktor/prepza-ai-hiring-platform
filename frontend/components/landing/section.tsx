@@ -12,6 +12,7 @@ export function LandingSection({
   title,
   text,
   extra,
+  background,
   children,
 }: {
   id?: string
@@ -19,12 +20,17 @@ export function LandingSection({
   // Usually plain text; a section may end it with a link.
   text: React.ReactNode
   extra?: React.ReactNode
+  // Its background across the window, top to bottom (constants/landing-backgrounds.ts).
+  background?: string
   children?: React.ReactNode
 }) {
   return (
     <section
       id={id}
-      className="flex min-h-[calc(100svh-3.5rem)] scroll-mt-14 flex-col justify-center gap-14 py-20 sm:py-28"
+      className={cn(
+        "flex min-h-[calc(100svh-3.5rem)] scroll-mt-14 flex-col justify-center gap-14 py-20 sm:py-28",
+        background
+      )}
     >
       <div className="mx-auto max-w-3xl space-y-4 text-center">
         {/* A title over two lines ends each with the logo's blue dot, like the hero's. */}

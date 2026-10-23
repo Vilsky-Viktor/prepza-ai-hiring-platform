@@ -1,9 +1,10 @@
 import { getTranslations } from "next-intl/server"
 
 import { CreateFlow } from "@/components/landing/create-flow"
-import { DEMO_BAND } from "@/components/landing/demo-panel"
+import { DEMO_GROUP } from "@/components/landing/demo-panel"
 import { NotesLine } from "@/components/landing/notes-line"
 import { LandingSection } from "@/components/landing/section"
+import { BAND } from "@/constants/landing-backgrounds"
 
 /** How an interview is created, as three panels playing on their own, joined by arrows: a job
  * description typed, its topics adjusted, and the interview made from them. In one row from
@@ -18,9 +19,14 @@ export async function CreateSection({
   const t = await getTranslations("landing.create")
 
   return (
-    <LandingSection id="how" title={t("title")} text={t("text")}>
+    <LandingSection
+      id="how"
+      title={t("title")}
+      text={t("text")}
+      background={BAND}
+    >
       <div className="flex flex-col gap-8">
-        <div className={DEMO_BAND}>
+        <div className={DEMO_GROUP}>
           <CreateFlow
             labels={{
               describe: t("describe"),

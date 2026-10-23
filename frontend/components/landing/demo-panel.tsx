@@ -1,9 +1,6 @@
 // A group of panels, laid out in a column.
 export const DEMO_GROUP = "flex flex-col gap-3"
 
-// A group on a grey band across the whole window, the panels within the page's width.
-export const DEMO_BAND = `${DEMO_GROUP} relative py-8 before:absolute before:inset-y-0 before:left-1/2 before:-z-10 before:w-screen before:-translate-x-1/2 before:bg-surface`
-
 // A small grey card on a wired stage (sections 2 and 5): an icon and a short label, stacked in a
 // grid cell on phones and tablets, side by side from laptops up.
 export const SOURCE_CARD =

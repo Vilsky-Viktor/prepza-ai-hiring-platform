@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
 import { CandidatesDemo } from "@/components/landing/candidates-demo"
-import { DEMO_BAND } from "@/components/landing/demo-panel"
+import { DEMO_GROUP } from "@/components/landing/demo-panel"
 import { NotesLine } from "@/components/landing/notes-line"
 import { LandingSection } from "@/components/landing/section"
 import { CANDIDATE_NOTES, DEMO_QUESTIONS } from "@/constants/candidates-demo"
@@ -26,7 +26,7 @@ export async function CandidatesSection() {
   return (
     <LandingSection id="candidates" title={t("title")} text={t("text")}>
       <div className="flex flex-col gap-8">
-        <div className={DEMO_BAND}>
+        <div className={DEMO_GROUP}>
           <CandidatesDemo exampleColors={exampleColors} />
         </div>
         <NotesLine notes={CANDIDATE_NOTES.map((key) => t(`notes.${key}`))} />

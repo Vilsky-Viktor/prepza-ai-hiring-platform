@@ -1,3 +1,4 @@
+import { cn } from "cn"
 import { GiftIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
@@ -5,6 +6,7 @@ import { AskAgentButton } from "@/components/landing/ask-agent-button"
 import { DemosButton } from "@/components/landing/demos-button"
 import { MoreLink } from "@/components/landing/section"
 import { StartButton } from "@/components/landing/start-button"
+import { GLOW } from "@/constants/landing-backgrounds"
 
 /** The landing page's last screen: a two-line call to create the first interview, each line
  * ending with the logo's blue dot, the button back up to the job description box and the free
@@ -20,7 +22,10 @@ export async function Closing({
   return (
     <section
       id="help"
-      className="flex min-h-[calc(100svh-3.5rem)] scroll-mt-14 flex-col items-center justify-center gap-24 py-24 text-center"
+      className={cn(
+        GLOW,
+        "flex min-h-[calc(100svh-3.5rem)] scroll-mt-14 flex-col items-center justify-center gap-24 py-24 text-center"
+      )}
     >
       <div className="flex flex-col items-center gap-10">
         <h2 className="no-dot font-heading text-[min(3rem,10.5vw)] leading-none font-medium tracking-tight text-balance sm:text-6xl">

@@ -4,6 +4,7 @@ import { DEMO_GROUP } from "@/components/landing/demo-panel"
 import { InviteStage } from "@/components/landing/invite-stage"
 import { LandingSection, MoreLink } from "@/components/landing/section"
 import { INVITE_SOURCES, type InviteSource } from "@/constants/invite-demo"
+import { DOT_GRID } from "@/constants/landing-backgrounds"
 
 /** Every way candidates come into an interview, around it, each wired to it, and Slack told
  * about them; above the interview, a link to the developer docs. */
@@ -14,7 +15,12 @@ export async function InviteFromSection() {
   ) as Record<InviteSource["key"], string>
 
   return (
-    <LandingSection id="invite" title={t("title")} text={t("text")}>
+    <LandingSection
+      id="invite"
+      title={t("title")}
+      text={t("text")}
+      background={DOT_GRID}
+    >
       {/* A little closer to the text than other sections' pictures. */}
       <div className={`${DEMO_GROUP} -mt-6`}>
         <InviteStage

@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server"
 
 import { LandingSection, MoreLink } from "@/components/landing/section"
 import { COMPARED } from "@/constants/comparison"
+import { BAND } from "@/constants/landing-backgrounds"
 import { candidatePriceRange } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
 
@@ -24,8 +25,14 @@ export async function ComparisonSection({ catalog }: { catalog: Catalog }) {
   const price = candidatePriceRange(catalog, locale)
 
   return (
-    <LandingSection id="compare" title={t("title")} text={t("text")}>
+    <LandingSection
+      id="compare"
+      title={t("title")}
+      text={t("text")}
+      background={BAND}
+    >
       <div className="flex flex-col items-center gap-10">
+        {/* On the section's grey band, the cards in the page's colour. */}
         <ul className="grid w-full gap-3 md:grid-cols-3">
           {COMPARED.map((key) => {
             const ours = key === "prepza"
@@ -35,7 +42,7 @@ export async function ComparisonSection({ catalog }: { catalog: Catalog }) {
               <li
                 key={key}
                 className={cn(
-                  "flex flex-col gap-6 rounded-xl bg-surface p-6 sm:p-8 lg:p-10",
+                  "flex flex-col gap-6 rounded-xl bg-background p-6 sm:p-8 lg:p-10",
                   ours && "border-primary-gradient relative"
                 )}
               >

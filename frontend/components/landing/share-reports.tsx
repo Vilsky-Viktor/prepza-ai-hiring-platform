@@ -2,11 +2,12 @@ import { cn } from "cn"
 import { DownloadIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
-import { DEMO_BAND } from "@/components/landing/demo-panel"
+import { DEMO_GROUP } from "@/components/landing/demo-panel"
 import { ReportsDemo } from "@/components/landing/reports-demo"
 import { LandingSection, OUTLINE_BUTTON } from "@/components/landing/section"
 import { StartButton } from "@/components/landing/start-button"
 import { buttonVariants } from "@/components/ui/button"
+import { BAND } from "@/constants/landing-backgrounds"
 import { REPORT_SAMPLES_URL } from "@/constants/report-samples"
 
 /** Detailed reports and quick sharing: the candidates list and a candidate's report, each
@@ -20,8 +21,9 @@ export async function ShareReportsSection() {
       id="reports"
       title={t("shareReports.title")}
       text={t("shareReports.text")}
+      background={BAND}
     >
-      <div className={DEMO_BAND}>
+      <div className={DEMO_GROUP}>
         <ReportsDemo />
       </div>
       <div className="flex justify-center gap-3 max-sm:mx-auto max-sm:w-fit max-sm:flex-col max-sm:items-stretch">
