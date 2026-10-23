@@ -14,11 +14,17 @@ async function contentWidth(page: Page) {
   return (await box(page.getByRole("banner"))).width - 48
 }
 
+/** What is drawn as the site's buttons in `scope`: buttons, and links drawn as buttons (the
+ * docs), which are links to assistive tech. */
+function drawnButtons(scope: Locator) {
+  return scope.locator('button, a[data-slot="button"]')
+}
+
 /** The page's buttons (its integration's actions) sit on their own line under its title,
  * together as wide as the page. */
 async function expectButtonsUnderTitle(page: Page) {
   const title = await box(page.getByRole("heading", { level: 1 }))
-  const buttons = page.getByRole("main").getByTestId("integration-actions").getByRole("button")
+  const buttons = drawnButtons(page.getByRole("main").getByTestId("integration-actions"))
   await expect(buttons.first()).toBeVisible()
   const found = await Promise.all((await buttons.all()).map((button) => box(button)))
 
@@ -76,7 +82,7 @@ test("the integrations pages on a phone", async ({ signInAs }) => {
     // The link's two parts: the logo, then the name and its text.
     const logo = await box(row.getByRole("link").locator("> span").first())
     const title = await box(row.getByRole("link").locator("> span").nth(1))
-    const instructions = await box(row.getByRole("button").first())
+    const instructions = await box(drawnButtons(row).first())
     expect(logo.width, path).toBe(48)
     expect(logo.height, path).toBe(48)
     expect(title.left, path).toBeGreaterThan(logo.right)
@@ -127,7 +133,7 @@ test("the integrations pages on a phone", async ({ signInAs }) => {
   // The API: the docs and New key under the title.
   await visit(owner, `${tab}/api`)
   // The docs and New key.
-  await expect(owner.getByTestId("integration-actions").getByRole("button")).toHaveCount(2)
+  await expect(drawnButtons(owner.getByTestId("integration-actions"))).toHaveCount(2)
   await expectButtonsUnderTitle(owner)
   await shot(owner, "api")
 })
