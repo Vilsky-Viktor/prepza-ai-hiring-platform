@@ -1,7 +1,8 @@
 import type { Locator, Page } from "@playwright/test"
 
 import { expect, test } from "../fixtures"
-import { api, createCompany } from "../helpers/api"
+import { api, createCompany, createInterview } from "../helpers/api"
+import { PHONE } from "../helpers/layout"
 import { openDialog, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { ownerEmail, randomId } from "../helpers/users"
@@ -24,10 +25,11 @@ async function uploadLogo(page: Page, companyId: string, width: number, height: 
   await api(page, "PUT", `/companies/companies/${companyId}/logo`, { image })
 }
 
-// The companies page shows a card per company, three to a row on a laptop: each card opens its
-// company, its names level across the row whatever the logo, a logo covers its whole area, and
-// Remove asks to confirm without opening the company.
-test("companies are cards that open their company", async ({ signInAs }) => {
+// The companies page shows a square card per company, three to a row on a laptop: each card opens
+// its company, its names level across the row whatever the logo, its count of interviews at the
+// end of the name row, a logo covers its whole area, and Remove shows on hover or keyboard focus
+// (always on touch screens) and asks to confirm without opening the company.
+test("companies are cards that open their company", async ({ browser, signInAs }) => {
   const owner = await signInAs(ownerEmail())
   // A wide logo, a tall one, and none (the first letter); a long name (45 characters, the most) too.
   const companies = [
@@ -37,6 +39,7 @@ test("companies are cards that open their company", async ({ signInAs }) => {
   ]
   await uploadLogo(owner, companies[0].id, 600, 200)
   await uploadLogo(owner, companies[1].id, 200, 600)
+  await createInterview(owner, companies[0].id)
   await owner.setViewportSize({ width: 1440, height: 1000 })
   await visit(owner, "/companies")
 
@@ -81,13 +84,62 @@ test("companies are cards that open their company", async ({ signInAs }) => {
   await expect(card(2).getByTestId("company-logo").locator("img")).toHaveCount(0)
   await shot(owner, "cards")
 
-  // Remove, the card's one button, asks to confirm and stays on the page; Cancel keeps the card.
-  await expect(card(0).getByRole("button")).toHaveCount(1)
+  for (const [index, count] of [1, 0, 0].entries()) {
+    // Square, within a pixel's rounding.
+    const cardBox = (await card(index).boundingBox())!
+    expect(Math.abs(cardBox.width - cardBox.height)).toBeLessThan(1.5)
+
+    // The count sits in the name row, after the name, below the logo.
+    const link = card(index).getByRole("link")
+    const stat = link.locator("xpath=..").getByText(String(count), { exact: true })
+    await expect(stat).toBeVisible()
+    const statBox = (await stat.boundingBox())!
+    const linkBox = (await link.boundingBox())!
+    const logoBox = (await card(index).getByTestId("company-logo").boundingBox())!
+    expect(statBox.x).toBeGreaterThanOrEqual(linkBox.x + linkBox.width)
+    expect(statBox.y).toBeGreaterThanOrEqual(logoBox.y + logoBox.height - 1)
+  }
+
+  // Remove, the card's one button, is hidden until the card is hovered or holds focus.
+  const remove = card(0).getByRole("button")
+  await expect(remove).toHaveCount(1)
+  const removePill = remove.locator("xpath=..")
+  await expect(removePill).toHaveCSS("opacity", "0")
+  await card(0).hover()
+  await expect(removePill).toHaveCSS("opacity", "1")
+  await owner.mouse.move(0, 0)
+  await expect(removePill).toHaveCSS("opacity", "0")
+  await card(0).getByRole("link").focus()
+  await owner.keyboard.press("Tab")
+  await expect(remove).toBeFocused()
+  await expect(removePill).toHaveCSS("opacity", "1")
+  await remove.blur()
+  await expect(removePill).toHaveCSS("opacity", "0")
+
+  // Remove asks to confirm and stays on the page; Cancel keeps the card.
   await openDialog(owner, card(0).getByRole("button"))
   await expect(owner).toHaveURL(/\/companies$/)
   await owner.getByRole("dialog").getByRole("button").first().click()
   await expect(owner.getByRole("dialog")).toHaveCount(0)
   await expect(cards).toHaveCount(3)
+
+  // A touch screen, which can't hover, always shows Remove: the owner's session on a phone.
+  const storageState = await owner.context().storageState({ indexedDB: true })
+  const phone = await browser.newContext({ storageState, isMobile: true, hasTouch: true, viewport: PHONE })
+
+  try {
+    const touch = await phone.newPage()
+    await visit(touch, "/companies")
+    expect(await touch.evaluate(() => matchMedia("(hover: none)").matches)).toBe(true)
+    const touchRemove = touch
+      .getByRole("main")
+      .getByRole("listitem")
+      .filter({ has: touch.locator(`a[href="/companies/${companies[0].id}/interviews"]`) })
+      .getByRole("button")
+    await expect(touchRemove.locator("xpath=..")).toHaveCSS("opacity", "1")
+  } finally {
+    await phone.close()
+  }
 
   // Anywhere on the card, the logo too, opens the company.
   await card(1).click({ position: { x: 60, y: 120 } })
