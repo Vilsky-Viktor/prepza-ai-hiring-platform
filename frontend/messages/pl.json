@@ -1525,7 +1525,12 @@
     "thanks": "Dziękujemy!",
     "sent": "Twoja wiadomość jest w drodze. Odpowiemy na <bdi>{email}</bdi>.",
     "failed": "Nie udało się wysłać wiadomości. Spróbuj ponownie.",
-    "operator": "prepza jest prowadzona przez {name}, numer rejestrowy {code}, {address}. E-mail: {email}"
+    "company": {
+      "name": "Firma",
+      "code": "Numer rejestrowy",
+      "address": "Adres",
+      "email": "E-mail"
+    }
   },
   "about": {
     "title": "O nas",

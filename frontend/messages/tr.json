@@ -1525,7 +1525,12 @@
     "thanks": "Teşekkürler!",
     "sent": "Mesajınız yola çıktı. <bdi>{email}</bdi> adresine yanıt vereceğiz.",
     "failed": "Mesajınız gönderilemedi. Lütfen tekrar deneyin.",
-    "operator": "prepza, {name} tarafından işletilir, sicil numarası {code}, {address}. E-posta: {email}"
+    "company": {
+      "name": "Şirket",
+      "code": "Sicil numarası",
+      "address": "Adres",
+      "email": "E-posta"
+    }
   },
   "about": {
     "title": "Hakkımızda",

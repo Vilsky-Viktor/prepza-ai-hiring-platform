@@ -1525,7 +1525,12 @@
     "thanks": "Terima kasih!",
     "sent": "Pesanmu sudah terkirim. Kami akan membalas ke <bdi>{email}</bdi>.",
     "failed": "Pesanmu tidak bisa dikirim. Coba lagi.",
-    "operator": "prepza dijalankan oleh {name}, nomor registrasi {code}, {address}. Email: {email}"
+    "company": {
+      "name": "Perusahaan",
+      "code": "Nomor registrasi",
+      "address": "Alamat",
+      "email": "Email"
+    }
   },
   "about": {
     "title": "Tentang kami",

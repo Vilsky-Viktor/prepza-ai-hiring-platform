@@ -144,7 +144,7 @@ Code anywhere on the site shows in one editor (`components/code-editor.tsx`): a 
 
 ## Contact us
 
-`/contact` is a form with a name, an email and a message.
+`/contact` is a form with a name, an email and a message, named by their placeholders (and `aria-label`s, for screen readers) without visible labels. Beside it from laptops up (above it on narrower screens), two cards: what to write about, and the company that runs prepza as labelled rows (name, registry code, address, and the email as a link).
 
 - The message is emailed to hello@prepza.ai (`CONTACT_EMAIL` in notifications).
 - The visitor's address is the reply-to, so answering the email answers them.

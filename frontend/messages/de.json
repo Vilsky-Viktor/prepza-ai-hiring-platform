@@ -1525,7 +1525,12 @@
     "thanks": "Danke!",
     "sent": "Deine Nachricht ist unterwegs. Wir antworten an <bdi>{email}</bdi>.",
     "failed": "Deine Nachricht konnte nicht gesendet werden. Bitte versuch es noch einmal.",
-    "operator": "prepza wird von {name} betrieben, Registernummer {code}, {address}. E-Mail: {email}"
+    "company": {
+      "name": "Unternehmen",
+      "code": "Registernummer",
+      "address": "Adresse",
+      "email": "E-Mail"
+    }
   },
   "about": {
     "title": "Über uns",

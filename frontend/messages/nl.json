@@ -1525,7 +1525,12 @@
     "thanks": "Bedankt!",
     "sent": "Je bericht is onderweg. We antwoorden naar <bdi>{email}</bdi>.",
     "failed": "Je bericht kon niet worden verstuurd. Probeer het opnieuw.",
-    "operator": "prepza wordt beheerd door {name}, registratienummer {code}, {address}. E-mail: {email}"
+    "company": {
+      "name": "Bedrijf",
+      "code": "Registratienummer",
+      "address": "Adres",
+      "email": "E-mail"
+    }
   },
   "about": {
     "title": "Over ons",

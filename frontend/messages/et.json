@@ -1525,7 +1525,12 @@
     "thanks": "Aitäh!",
     "sent": "Sinu sõnum on teel. Vastame aadressile <bdi>{email}</bdi>.",
     "failed": "Sõnumit ei õnnestunud saata. Proovi uuesti.",
-    "operator": "prepzat haldab {name}, registrikood {code}, {address}. E-post: {email}"
+    "company": {
+      "name": "Ettevõte",
+      "code": "Registrikood",
+      "address": "Aadress",
+      "email": "E-post"
+    }
   },
   "about": {
     "title": "Meist",

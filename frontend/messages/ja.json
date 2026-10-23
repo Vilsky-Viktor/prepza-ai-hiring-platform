@@ -1525,7 +1525,12 @@
     "thanks": "ありがとうございます！",
     "sent": "メッセージを送信しました。<bdi>{email}</bdi> 宛てにお返事します。",
     "failed": "メッセージを送信できませんでした。もう一度お試しください。",
-    "operator": "prepza は {name}（登記番号 {code}、{address}）が運営しています。メール: {email}"
+    "company": {
+      "name": "会社",
+      "code": "登記番号",
+      "address": "住所",
+      "email": "メール"
+    }
   },
   "about": {
     "title": "私たちについて",

@@ -1525,7 +1525,12 @@
     "thanks": "谢谢！",
     "sent": "你的留言已发出。我们会回复到 <bdi>{email}</bdi>。",
     "failed": "留言发送失败，请重试。",
-    "operator": "prepza 由 {name} 运营，注册号 {code}，{address}。邮箱：{email}"
+    "company": {
+      "name": "公司",
+      "code": "注册号",
+      "address": "地址",
+      "email": "邮箱"
+    }
   },
   "about": {
     "title": "关于我们",

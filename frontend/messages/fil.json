@@ -1525,7 +1525,12 @@
     "thanks": "Salamat!",
     "sent": "Papunta na sa amin ang mensahe mo. Sasagot kami sa <bdi>{email}</bdi>.",
     "failed": "Hindi naipadala ang mensahe mo. Pakisubukan ulit.",
-    "operator": "Ang prepza ay pinapatakbo ng {name}, registry code {code}, {address}. Email: {email}"
+    "company": {
+      "name": "Kompanya",
+      "code": "Registry code",
+      "address": "Address",
+      "email": "Email"
+    }
   },
   "about": {
     "title": "Tungkol sa amin",

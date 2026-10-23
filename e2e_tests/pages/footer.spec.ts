@@ -53,6 +53,9 @@ test("the footer and the contact page name the company that runs prepza", async 
   for (const fact of Object.values(OPERATOR)) {
     await expect(main).toContainText(fact);
   }
+
+  // The email is a link that writes to it.
+  await expect(main.locator(`a[href="mailto:${OPERATOR.email}"]`)).toBeVisible();
 });
 
 // The accessibility statement says where to write, in the visitor's language.

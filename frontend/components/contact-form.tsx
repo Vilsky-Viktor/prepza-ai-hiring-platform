@@ -6,7 +6,6 @@ import { useId, useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
-import { LabeledField } from "@/components/labeled-field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -77,59 +76,59 @@ export function ContactForm() {
   return (
     <form onSubmit={send} className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <LabeledField label={t("name")}>
-          <Input
-            required
-            maxLength={MAX_CONTACT_NAME_LENGTH}
-            autoComplete="name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            className={FIELD}
-          />
-        </LabeledField>
-        <LabeledField label={t("email")}>
-          <Input
-            required
-            type="email"
-            maxLength={MAX_EMAIL_LENGTH}
-            autoComplete="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            className={FIELD}
-          />
-        </LabeledField>
+        <Input
+          required
+          aria-label={t("name")}
+          placeholder={t("name")}
+          maxLength={MAX_CONTACT_NAME_LENGTH}
+          autoComplete="name"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          className={FIELD}
+        />
+        <Input
+          required
+          type="email"
+          aria-label={t("email")}
+          placeholder={t("email")}
+          maxLength={MAX_EMAIL_LENGTH}
+          autoComplete="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          className={FIELD}
+        />
       </div>
-      <LabeledField label={t("message")} htmlFor={messageId}>
-        <div className="relative">
-          <Textarea
-            required
-            maxLength={MAX_CONTACT_MESSAGE_LENGTH}
-            id={messageId}
-            placeholder={t("messagePlaceholder")}
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
-            onKeyDown={(event) => {
-              if (isSubmitShortcut(event)) {
-                event.preventDefault()
-                event.currentTarget.form?.requestSubmit()
-              }
-            }}
-            className={`min-h-48 resize-none rounded-[2rem] px-6 pt-4 pb-20 text-lg md:text-lg ${BORDERLESS}`}
-          />
-          <p className="pointer-events-none absolute start-6 bottom-6 text-xs text-muted-foreground pointer-coarse:hidden">
-            {common("submitHint")}
-          </p>
-          <Button
-            type="submit"
-            size="icon-lg"
-            className="absolute end-3 bottom-3 size-12 rounded-full"
-            disabled={sending}
-            aria-label={t("send")}
-          >
-            <ForwardIcon className="size-6 rtl:-scale-x-100" />
-          </Button>
-        </div>
-      </LabeledField>
+      {/* Placeholders name the fields; their names stay for screen readers (aria-label). */}
+      <div className="relative">
+        <Textarea
+          required
+          maxLength={MAX_CONTACT_MESSAGE_LENGTH}
+          id={messageId}
+          aria-label={t("message")}
+          placeholder={t("messagePlaceholder")}
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+          onKeyDown={(event) => {
+            if (isSubmitShortcut(event)) {
+              event.preventDefault()
+              event.currentTarget.form?.requestSubmit()
+            }
+          }}
+          className={`min-h-48 resize-none rounded-[2rem] px-6 pt-4 pb-20 text-lg md:text-lg ${BORDERLESS}`}
+        />
+        <p className="pointer-events-none absolute start-6 bottom-6 text-xs text-muted-foreground pointer-coarse:hidden">
+          {common("submitHint")}
+        </p>
+        <Button
+          type="submit"
+          size="icon-lg"
+          className="absolute end-3 bottom-3 size-12 rounded-full"
+          disabled={sending}
+          aria-label={t("send")}
+        >
+          <ForwardIcon className="size-6 rtl:-scale-x-100" />
+        </Button>
+      </div>
     </form>
   )
 }

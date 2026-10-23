@@ -1525,7 +1525,12 @@
     "thanks": "Cảm ơn bạn!",
     "sent": "Tin nhắn của bạn đang trên đường đến chúng tôi. Chúng tôi sẽ trả lời qua <bdi>{email}</bdi>.",
     "failed": "Không gửi được tin nhắn. Vui lòng thử lại.",
-    "operator": "prepza do {name} vận hành, mã số đăng ký {code}, {address}. Email: {email}"
+    "company": {
+      "name": "Công ty",
+      "code": "Mã số đăng ký",
+      "address": "Địa chỉ",
+      "email": "Email"
+    }
   },
   "about": {
     "title": "Về chúng tôi",
