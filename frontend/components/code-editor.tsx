@@ -106,10 +106,14 @@ export function CodeEditor({
       )}
       {/* Code is no human language ("zxx"): the page's own language rules, such as Chinese,
           Japanese and Korean's larger small text (scripts.css), never widen it, and screen readers
-          don't read it in the page's language. It scrolls inside itself when longer. */}
+          don't read it in the page's language. It scrolls inside itself when longer, so it takes
+          keyboard focus to scroll by keys, with the ring inside the box, which clips outside. */}
       <pre
         lang="zxx"
-        className="overflow-x-auto py-4 font-mono text-sm leading-relaxed font-normal"
+        tabIndex={0}
+        role="region"
+        aria-label={t("code")}
+        className="overflow-x-auto py-4 font-mono text-sm leading-relaxed font-normal outline-none focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset"
       >
         <code className="grid min-w-max">
           {lines.map((line, index) => (

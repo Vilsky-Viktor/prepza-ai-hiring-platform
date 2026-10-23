@@ -205,3 +205,14 @@ test("the MCP agent frameworks page shows the example agents", async ({ page }) 
   expect(new Set(languages)).toEqual(new Set(["typescript"]));
   await page.screenshot({ path: test.info().outputPath("mcp-frameworks.png"), fullPage: true });
 });
+
+// Code that scrolls sideways is reached from the keyboard: Tab from the editor's copy button
+// lands on the code, a named region, so the arrow keys can scroll it.
+test("a code box takes keyboard focus after its copy button", async ({ page }) => {
+  await page.goto("/api-docs?tab=mcp&page=frameworks");
+  const code = page.getByRole("main").getByRole("region").first();
+  await expect(code).toHaveAccessibleName(/.+/);
+  await code.locator("xpath=preceding-sibling::div[1]//button").last().focus();
+  await page.keyboard.press("Tab");
+  await expect(code).toBeFocused();
+});

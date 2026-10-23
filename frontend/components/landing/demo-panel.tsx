@@ -29,8 +29,11 @@ export function DemoPanel({
       className="flex min-w-0 flex-col gap-3"
     >
       {label && <DemoLabel>{label}</DemoLabel>}
+      {/* A picture: hidden from screen readers and out of the keyboard's way (its code box would
+          otherwise take focus). */}
       <div
         aria-hidden
+        inert
         className="relative flex flex-1 flex-col rounded-3xl border bg-background p-3 text-start text-sm"
       >
         {children}
