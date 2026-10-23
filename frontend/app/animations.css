@@ -38,6 +38,21 @@
   }
 }
 
+/* The quality loop's AI chip: half lit, charging to full in the last part of each wave's cycle,
+   at full as the wave leaves it (the cycle's start), then dimming back. */
+@keyframes chip-charge {
+  0% {
+    opacity: 1;
+  }
+  35%,
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* A landing card floating in place: a slow, small sway. */
 @keyframes source-float {
   0%,

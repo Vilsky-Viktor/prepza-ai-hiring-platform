@@ -17,6 +17,8 @@ import { NetWave } from "@/components/landing/net-wave"
 import { Wire, wireLength } from "@/components/landing/wire"
 import { INVITE_SPEED } from "@/constants/invite-demo"
 import {
+  NET_WAVE_SECONDS,
+  NET_WAVES,
   QUALITY_ELLIPSE,
   QUALITY_PAUSE_MS,
   QUALITY_STEPS,
@@ -149,7 +151,11 @@ export function QualityLoop({
       aria-hidden
       className="relative mx-auto h-[26rem] w-full max-w-md lg:h-[37rem] lg:max-w-6xl"
     >
-      <svg className="pointer-events-none absolute inset-0 size-full overflow-visible text-ring">
+      {/* Drawn anew as the light starts, so the waves' clock starts with the chip's charging. */}
+      <svg
+        key={String(playing && !still)}
+        className="pointer-events-none absolute inset-0 size-full overflow-visible text-ring"
+      >
         {/* The net: a fine diamond mesh in the primary colour, inside the ellipse. */}
         <defs>
           <pattern
@@ -198,12 +204,25 @@ export function QualityLoop({
           />
         ))}
       </svg>
-      {/* The AI chip at the ellipse's centre, light running out of it through the net. */}
+      {/* The AI chip at the ellipse's centre, half lit; while the light runs, it charges to full
+          just as each wave leaves it through the net, then dims again (one charge a wave, on the
+          waves' clock). */}
       <span
         data-testid="ai-chip"
         className="absolute top-1/2 left-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-primary lg:size-36"
       >
-        <CpuAiIcon className="relative size-16 lg:size-24" strokeWidth={1.5} />
+        <CpuAiIcon
+          className={cn(
+            "relative size-16 lg:size-24",
+            size && playing && !still
+              ? "animate-[chip-charge_ease-in-out_infinite]"
+              : "opacity-50"
+          )}
+          style={{
+            animationDuration: `${NET_WAVE_SECONDS / NET_WAVES}s`,
+          }}
+          strokeWidth={1.5}
+        />
       </span>
       {QUALITY_STEPS.map((key, at) => {
         const Icon = ICONS[key]
