@@ -11,6 +11,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/constants/menu-pill"
 import { languageOf } from "@/lib/locale"
 
 /** The site's select pill (as components/pill-select.tsx looks) opening the site's menu, not the
@@ -60,7 +61,7 @@ export function MenuPill({
           disabled={disabled}
           aria-labelledby={`${labelId} ${valueId}`}
           className={cn(
-            "relative flex h-14 w-full items-center rounded-full border border-transparent bg-muted px-6 pe-16 text-start text-lg transition-colors outline-none focus-visible:border-ring disabled:opacity-50 dark:bg-input/30",
+            MENU_PILL_CLASS,
             !chosen && "text-muted-foreground",
             className
           )}
@@ -76,10 +77,7 @@ export function MenuPill({
           >
             {chosen ? (chosen.display ?? chosen.label) : placeholder}
           </span>
-          <ChevronDownIcon
-            aria-hidden
-            className="pointer-events-none absolute end-6 top-1/2 size-6 -translate-y-1/2 text-muted-foreground"
-          />
+          <ChevronDownIcon aria-hidden className={MENU_PILL_CHEVRON_CLASS} />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="max-h-80 w-72 p-2">
           <DropdownMenuRadioGroup value={value ?? ""} onValueChange={onChange}>

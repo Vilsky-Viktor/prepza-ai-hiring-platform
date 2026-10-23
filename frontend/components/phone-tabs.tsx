@@ -1,9 +1,10 @@
 "use client"
 
 import { cn } from "cn"
-import { MoreHorizontalIcon } from "lucide-react"
+import { CheckIcon, ChevronDownIcon, MoreHorizontalIcon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
+import { useId } from "react"
 
 import type { SideMenuItem } from "@/components/side-menu"
 import { TabNav } from "@/components/tab-nav"
@@ -14,11 +15,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/constants/menu-pill"
 import { splitPhoneTabs } from "@/lib/phone-tabs"
 
 /** A page menu on phones and narrow screens: the site's tabs, the first three in the row and
  * the others, in their order, in a menu under a "…" button; an open page from that menu takes
- * the third place. A page with pages of its own (`sub`) shows them as pills under the row. */
+ * the third place. A page with pages of its own (`sub`) names the open one in a bar under the row,
+ * which opens the list of them all. */
 export function PhoneTabs({
   items,
   current,
@@ -73,30 +76,71 @@ export function PhoneTabs({
         }
       />
       {open?.sub && (
-        // The open page's own pages: pills on a band of the row's line colour, softened,
-        // hanging from that line, so they read as part of the row; the open one in the page's
-        // colour.
-        <nav
-          aria-label={open.label}
-          className="flex gap-2 rounded-b-2xl bg-border/50 p-2"
-        >
-          {open.sub.map((item) => (
-            <Link
-              key={item.id}
-              href={item.href}
-              aria-current={item.id === currentSub ? "page" : undefined}
-              className={cn(
-                "rounded-full px-4 py-1.5 text-base lowercase transition-colors",
-                item.id === currentSub
-                  ? "bg-background text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <SubPages label={open.label} items={open.sub} current={currentSub} />
       )}
     </div>
+  )
+}
+
+/** The open page's own pages: the open one named in a full-width bar in the site's select look
+ * (as MenuPill), opening a menu of links to them all, the open one checked. */
+function SubPages({
+  label,
+  items,
+  current,
+}: {
+  label: string
+  items: NonNullable<SideMenuItem["sub"]>
+  current?: string
+}) {
+  const chosen = items.find((item) => item.id === current) ?? items[0]
+  // Named by the page and the open sub-page, so the visible text is in its name (WCAG 2.5.3).
+  const labelId = useId()
+  const valueId = useId()
+
+  return (
+    // Edge to edge of the screen: out of the page's side padding (`px-6`), the text kept in line
+    // with the page by the pill's own padding.
+    <nav aria-label={label} className="-mx-6">
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          aria-labelledby={`${labelId} ${valueId}`}
+          // Square and straight under the row's line, so it reads as the row's continuation.
+          className={cn(MENU_PILL_CLASS, "rounded-none")}
+        >
+          <span id={labelId} className="sr-only">
+            {label}
+          </span>
+          <span
+            id={valueId}
+            className={cn(
+              "truncate",
+              chosen.keepCase ? "normal-case" : "lowercase"
+            )}
+          >
+            {chosen.label}
+          </span>
+          <ChevronDownIcon aria-hidden className={MENU_PILL_CHEVRON_CLASS} />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="max-h-80 w-72 p-2">
+          {items.map((item) => (
+            <DropdownMenuItem
+              key={item.id}
+              aria-current={item.id === chosen.id ? "page" : undefined}
+              className={cn(
+                "px-3 py-2 pe-8",
+                item.keepCase ? "normal-case" : "lowercase"
+              )}
+              render={<Link href={item.href} />}
+            >
+              {item.label}
+              {item.id === chosen.id && (
+                <CheckIcon aria-hidden className="absolute end-2" />
+              )}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </nav>
   )
 }
