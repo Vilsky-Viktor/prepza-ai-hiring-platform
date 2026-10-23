@@ -9,7 +9,6 @@ import { RefreshOnFocus } from "@/components/billing/refresh-on-focus"
 import { ReservedList } from "@/components/billing/reserved-list"
 import { CompanyHeader } from "@/components/company/company-header"
 import { SignInPrompt } from "@/components/sign-in-prompt"
-import { TabNav } from "@/components/tab-nav"
 import { InfoCard } from "@/components/warning-card"
 import { TOKEN_COOKIE } from "@/constants/auth"
 import { LIST_BOX, PAGE_SIZE } from "@/constants/lists"
@@ -89,7 +88,18 @@ export default async function BillingPage({
         {...companyHeaderProps(company)}
         companyId={companyId}
         current="billing"
-
+        // The history and the reserved candidates, each a page of billing's in the menu.
+        sub={[
+          { id: "history", href, label: t("history") },
+          {
+            id: "reserved",
+            href: `${href}?tab=reserved`,
+            label: t("reservedTab", {
+              count: credits?.reserved_candidates ?? 0,
+            }),
+          },
+        ]}
+        currentSub={tab}
         className="space-y-12"
       >
         <Balance
@@ -100,26 +110,11 @@ export default async function BillingPage({
           companyId={companyId}
           canEdit={company.can_edit}
         />
-        <div className="space-y-6">
-          <TabNav
-            items={[
-              { id: "history", href: href, label: t("history") },
-              {
-                id: "reserved",
-                href: `${href}?tab=reserved`,
-                label: t("reservedTab", {
-                  count: credits?.reserved_candidates ?? 0,
-                }),
-              },
-            ]}
-            current={tab}
-          />
-          {tab === "reserved" ? (
-            <ReservedTab companyId={companyId} reserved={reserved} />
-          ) : (
-            <CreditHistory companyId={companyId} initial={history ?? []} />
-          )}
-        </div>
+        {tab === "reserved" ? (
+          <ReservedTab companyId={companyId} reserved={reserved} />
+        ) : (
+          <CreditHistory companyId={companyId} initial={history ?? []} />
+        )}
       </CompanyHeader>
     </main>
   )

@@ -9,13 +9,24 @@ import {
   inviteCandidate,
 } from "../helpers/api";
 import { addTopUp } from "../helpers/db";
+import { PHONE } from "../helpers/layout";
 import { openTab, visit } from "../helpers/navigation";
 import { shot } from "../helpers/screenshots";
 import { ownerEmail, throwawayEmail } from "../helpers/users";
 
-/** The billing page's tab of the reserved candidates, which counts them. */
+/** The billing page's sub-page of the reserved candidates in the side menu, which counts them
+ * (the visible one; the phone's menu holds the other). */
 function reservedTab(page: Page) {
-  return page.getByRole("main").locator('a[href$="?tab=reserved"]');
+  return page.getByRole("main").locator('a[href$="?tab=reserved"]:visible');
+}
+
+/** The open sub-page of billing's in the side menu (billing itself isn't marked while one of
+ * its pages is). */
+function openSub(page: Page) {
+  return page
+    .getByRole("main")
+    .getByRole("navigation")
+    .locator('a[aria-current="page"]:visible');
 }
 
 // A company's billing: owners and admins see where the credits came from and went, and the
@@ -44,6 +55,11 @@ test("owner sees the company's billing, a viewer doesn't", async ({
   await expect(history).toHaveCount(1);
   await expect(history).toContainText("+1,500");
   await expect(reservedTab(owner)).toHaveText(/\b0\b/);
+  // The history is billing's first page in the menu, open; billing itself is listed above it.
+  await expect(openSub(owner)).toHaveAttribute(
+    "href",
+    `/companies/${company.id}/billing`,
+  );
   // Nothing reserved yet: no "0 reserved" under the balance.
   await expect(reserved).toHaveCount(0);
   await shot(owner, "history");
@@ -57,7 +73,40 @@ test("owner sees the company's billing, a viewer doesn't", async ({
   await expect(reservedTab(owner)).toHaveText(/\b1\b/);
   await openTab(owner, "?tab=reserved");
   await expect(owner.getByText(candidate)).toBeVisible();
+  await expect(openSub(owner)).toHaveAttribute(
+    "href",
+    `/companies/${company.id}/billing?tab=reserved`,
+  );
   await shot(owner, "reserved");
+
+  // On a phone the same two pages are in a bar under the tabs, opening a menu of both with the
+  // open one marked.
+  await owner.setViewportSize(PHONE);
+  const subPages = owner.getByRole("main").getByRole("navigation").last().getByRole("button");
+  const subMenu = owner.getByRole("menu");
+  async function openSubPages() {
+    await expect(async () => {
+      await subPages.click();
+      await expect(subMenu).toBeVisible({ timeout: 2_000 });
+    }).toPass();
+  }
+  await openSubPages();
+  await expect(subMenu.getByRole("menuitem")).toHaveCount(2);
+  await expect(subMenu.locator('[aria-current="page"]')).toHaveAttribute(
+    "href",
+    `/companies/${company.id}/billing?tab=reserved`,
+  );
+  await expect(subMenu.getByRole("menuitem").last()).toHaveText(/\b1\b/);
+  await shot(owner, "phone-sub-pages");
+  await subMenu.getByRole("menuitem").first().click();
+  await expect(owner).toHaveURL(new RegExp(`/companies/${company.id}/billing$`));
+  await openSubPages();
+  await expect(subMenu.locator('[aria-current="page"]')).toHaveAttribute(
+    "href",
+    `/companies/${company.id}/billing`,
+  );
+  await owner.keyboard.press("Escape");
+  await shot(owner, "phone-history");
 
   // A viewer joins through their invite.
   const viewer = throwawayEmail("billing-viewer");

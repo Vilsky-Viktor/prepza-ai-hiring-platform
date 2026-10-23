@@ -7,6 +7,7 @@ import { BackLink } from "@/components/back-link"
 import { CompanyNav, type CompanyTab } from "@/components/company/company-nav"
 import { LogoPicker } from "@/components/company/logo-picker"
 import { PendingBadge } from "@/components/company/pending-badge"
+import type { SideMenuItem } from "@/components/side-menu"
 import { VerifiedBadge } from "@/components/company/verified-badge"
 import { WarningCard } from "@/components/warning-card"
 import { VerifyCompany } from "@/components/company/verify-company"
@@ -17,7 +18,7 @@ import { COMPANY_TAB_HELP } from "@/constants/page-help"
 import type { VerificationStatus } from "@/types/company"
 
 /** A company page: the way back, its logo, name and action, and its menu beside the page's
- * content (`children`, spaced by `className`). */
+ * content (`children`, spaced by `className`), with the page's own pages under it (`sub`). */
 export function CompanyHeader({
   suspended = false,
   companyId,
@@ -31,6 +32,8 @@ export function CompanyHeader({
   action,
   canEdit,
   canSeeActions = false,
+  sub,
+  currentSub,
   className,
   children,
 }: {
@@ -51,6 +54,9 @@ export function CompanyHeader({
   canSeeActions?: boolean
   // A superadmin suspended the company: it can be read, not changed.
   suspended?: boolean
+  // The open page's own pages, and the one open.
+  sub?: SideMenuItem["sub"]
+  currentSub?: string
   className?: string
   children: ReactNode
 }) {
@@ -125,6 +131,8 @@ export function CompanyHeader({
         current={current}
         canEdit={canEdit}
         canSeeActions={canSeeActions}
+        sub={sub}
+        currentSub={currentSub}
         className={className}
       >
         {suspended && (

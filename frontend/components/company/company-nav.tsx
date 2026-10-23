@@ -13,7 +13,7 @@ import {
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { SideMenuLayout } from "@/components/side-menu"
+import { type SideMenuItem, SideMenuLayout } from "@/components/side-menu"
 
 export type CompanyTab =
   | "interviews"
@@ -27,12 +27,15 @@ export type CompanyTab =
 
 /** A company's page menu beside its page's content (`children`); brand and billing only for
  * owners and admins (`canEdit`), who set its colors and top up; the action log only for the
- * owner (`canSeeActions`). */
+ * owner (`canSeeActions`). The open page's own pages (`sub`, `currentSub` the open one) are
+ * listed under it. */
 export function CompanyNav({
   companyId,
   current,
   canEdit,
   canSeeActions,
+  sub,
+  currentSub,
   className,
   children,
 }: {
@@ -40,6 +43,8 @@ export function CompanyNav({
   current: CompanyTab
   canEdit: boolean
   canSeeActions: boolean
+  sub?: SideMenuItem["sub"]
+  currentSub?: string
   // The content's spacing, as the page's.
   className?: string
   children: ReactNode
@@ -105,7 +110,14 @@ export function CompanyNav({
   ]
 
   return (
-    <SideMenuLayout items={items} current={current} className={className}>
+    <SideMenuLayout
+      items={items.map((item) =>
+        item.id === current ? { ...item, sub } : item
+      )}
+      current={current}
+      currentSub={currentSub}
+      className={className}
+    >
       {children}
     </SideMenuLayout>
   )

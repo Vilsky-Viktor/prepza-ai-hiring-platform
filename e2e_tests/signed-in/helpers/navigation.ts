@@ -13,12 +13,19 @@ export async function openDialog(page: Page, button: Locator) {
  * end of its address, such as "/billing" or "?tab=reserved"), clicking again if the first click
  * came before the page was ready for it. */
 export async function openTab(page: Page, path: string) {
-  const tab = page.getByRole("main").getByRole("navigation").locator(`a[href$="${path}"]`)
+  // The visible one: the side menu on wide screens, the tabs on phones (the other is hidden); the
+  // first, as a page's first sub-page shares its address and is listed under it.
+  const tab = page
+    .getByRole("main")
+    .getByRole("navigation")
+    .locator(`a[href$="${path}"]:visible`)
+    .first()
   const href = await tab.getAttribute("href")
 
   await expect(async () => {
     await tab.click()
-    await expect(page).toHaveURL((url) => url.href.endsWith(href ?? path), { timeout: 3_000 })
+    // Long enough for a page the dev server is still compiling: a click again cancels the first.
+    await expect(page).toHaveURL((url) => url.href.endsWith(href ?? path), { timeout: 15_000 })
   }).toPass()
 }
 

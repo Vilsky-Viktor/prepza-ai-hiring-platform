@@ -127,7 +127,7 @@ A balance shows short from a thousand credits up ("3.5K", in the language's own 
 Owners and admins see a company's **billing** tab, before referrals; viewers don't, and its API answers them with 403.
 
 - At the top: the available credits, the credits reserved for candidates who haven't finished, the automatic top-up setting, the company's currency (a pill with its code, such as USD, EUR or JPY, beside the top-up button, which owners and admins change at once) and the top-up button. On phones the currency and the button go together under the balance.
-- Two tabs under it, **history** first and **reserved (N)** beside it (`?tab=reserved`), so a long list of reserved candidates never pushes the history out of sight; only the open tab's list is loaded.
+- Two pages of billing's own, listed under it in the company's side menu (on a phone, a bar under the tabs naming the open one, which opens a menu of both): **history** first and **reserved (N)** (`?tab=reserved`), so a long list of reserved candidates never pushes the history out of sight; only the open page's list is loaded.
 - **Reserved**: an info card on what reserved credits are, then the candidates invited who haven't finished (invited, undelivered or in progress), each opening the candidate's page. Their count comes with the company's credits (`reserved_candidates`).
 - **History**: every movement of the company's credits, newest first, loading more as you scroll. Each shows the credits it moved (+5,000, −500), what it was and when:
   - a top-up: what was paid (tax included), whether it was automatic, and its invoice, opened through a temporary Paddle link made on request;
