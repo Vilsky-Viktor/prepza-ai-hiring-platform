@@ -100,14 +100,13 @@ export default async function PricingPage() {
             />
           ))}
         </ul>
-        <div className="space-y-4">
-          <InfoCard className="mx-auto w-fit">
+        {/* The credits and the taxes, each its own sentence on its own line, in one card. */}
+        <InfoCard>
+          <span className="block">
             {t("credits", { credits: catalog.candidate_credits })}
-          </InfoCard>
-          <p className="text-center text-sm text-muted-foreground">
-            {billing("taxes")}
-          </p>
-        </div>
+          </span>
+          <span className="mt-1 block">{billing("taxes")}</span>
+        </InfoCard>
       </section>
 
       <section className="space-y-4">
