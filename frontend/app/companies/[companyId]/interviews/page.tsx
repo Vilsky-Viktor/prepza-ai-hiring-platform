@@ -7,6 +7,7 @@ import { CompanyCredits as CreditsPanel } from "@/components/company/company-cre
 import { CompanyHeader } from "@/components/company/company-header"
 import { InterviewList } from "@/components/company/interview-list"
 import { InterviewSearch } from "@/components/company/interview-search"
+import { SearchedList } from "@/components/searched-list"
 import { SignInPrompt } from "@/components/sign-in-prompt"
 import { Button } from "@/components/ui/button"
 import { TOKEN_COOKIE } from "@/constants/auth"
@@ -86,16 +87,21 @@ export default async function InterviewsPage({
           </div>
         }
       >
-        <InterviewSearch action={`/companies/${companyId}/interviews`} q={q} />
-        {interviews && (
-          <InterviewList
-            companyId={companyId}
-            path={listPath}
-            initial={interviews}
-            canEdit={company.can_edit}
-            searched={Boolean(q)}
+        <SearchedList>
+          <InterviewSearch
+            action={`/companies/${companyId}/interviews`}
+            q={q}
           />
-        )}
+          {interviews && (
+            <InterviewList
+              companyId={companyId}
+              path={listPath}
+              initial={interviews}
+              canEdit={company.can_edit}
+              searched={Boolean(q)}
+            />
+          )}
+        </SearchedList>
       </CompanyHeader>
     </main>
   )

@@ -11,6 +11,8 @@
 
 /* Dark, except inside .light-scope: the candidate PDF report keeps the light design. */
 @custom-variant dark (&:is(.dark *):not(.light-scope *));
+/* A search and the list under it, merged into one block (components/searched-list.tsx). */
+@custom-variant searched (&:where([data-slot="searched-list"] *));
 
 /* The script fonts in fallback order. The CJK fonts are only on Chinese, Japanese and Korean
    pages (constants/cjk-fonts.ts), and :lang() puts each one's own font first. */

@@ -7,7 +7,8 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { InputAction } from "@/components/input-action"
-import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
+import { SearchedList } from "@/components/searched-list"
+import { LIST_BOX, LIST_EMPTY, ROW_HOVER } from "@/constants/lists"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { SupportResult } from "@/types/superadmin"
@@ -50,32 +51,39 @@ export function SupportSearch() {
     }
   }
 
+  // The search alone until it has results (or none), then the two as one block.
+  const field = (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault()
+        void search()
+      }}
+      className="flex"
+    >
+      <InputAction
+        maxLength={300}
+        placeholder={t("supportSearch")}
+        aria-label={t("supportSearch")}
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+        action={t("emailSearchAction")}
+        icon={<SearchIcon className="size-5" />}
+        disabled={searching}
+      />
+    </form>
+  )
+
+  if (!results) {
+    return field
+  }
+
   return (
-    <div className="space-y-8">
-      <form
-        onSubmit={(event) => {
-          event.preventDefault()
-          void search()
-        }}
-        className="flex"
-      >
-        <InputAction
-          maxLength={300}
-          placeholder={t("supportSearch")}
-          aria-label={t("supportSearch")}
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          action={t("emailSearchAction")}
-          icon={<SearchIcon className="size-5" />}
-          disabled={searching}
-        />
-      </form>
-      {results?.length === 0 && (
-        <p className="py-10 text-center text-muted-foreground">
-          {t("supportNotFound")}
-        </p>
+    <SearchedList>
+      {field}
+      {results.length === 0 && (
+        <p className={LIST_EMPTY}>{t("supportNotFound")}</p>
       )}
-      {results && results.length > 0 && (
+      {results.length > 0 && (
         <ul className={LIST_BOX}>
           {results.map((result) => (
             <li key={`${result.kind}-${result.id}`}>
@@ -108,6 +116,6 @@ export function SupportSearch() {
           ))}
         </ul>
       )}
-    </div>
+    </SearchedList>
   )
 }

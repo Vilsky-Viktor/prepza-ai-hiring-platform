@@ -186,6 +186,8 @@ While a company's page loads its data (a service waking up can take a few second
 
 Corners are rounded the same everywhere, as the side menu's items are (`rounded-xl`): cards, lists, dialogs, menus, tooltips, fields and buttons; something set close inside one of them (a button in a field, a menu's item) is a step less rounded (`rounded-lg`), so the corners nest. Only avatars (except the account's in the header), dots, progress bars, sliders, switches, chips and a field's raised name are round. A field shows its name inside it: where the value goes while it's empty, and as a small pill on its top edge once it's focused or filled; a unit (s, px) sits inside the field at its end.
 
+A search over a list (a company's interviews, an interview's candidates, the templates and the practice tests, the admin zone's support search) joins it as one block: the search on top, rounded at the top, and the list, or its empty state, straight under it, rounded at the bottom, the same width and inside one border, with a single line between them (`components/searched-list.tsx`).
+
 On phones dialogs and menus span the screen's width, with square corners. A dialog's buttons stay in sight at its bottom edge, with only its body scrolling, and help dialogs fill the screen. Lists, search boxes and gray panels reach the screen's edges, a page's main button ("new company", "new interview", "add member") takes its own full-width line under the title, and rows put their numbers and buttons under their title. On touch screens the keyboard hints ("⌘/Ctrl + Enter to send" under the long text boxes, "Enter to send, ⌘/Ctrl + Enter for a new line" under the assistant's chat) are hidden, and everything that can be tapped dims a little while pressed.
 
 ## Search engines

@@ -10,7 +10,7 @@ import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
 import type { Interview } from "@/types/company"
-import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
+import { LIST_BOX, LIST_EMPTY, ROW_HOVER } from "@/constants/lists"
 
 /** A company's interviews at `path` (narrowed by a search when `searched`), newest first, a page
  * at a time; `initial` is the server's first page. */
@@ -35,7 +35,7 @@ export function InterviewList({
     return (
       <p
         data-testid={searched ? "no-matches" : "no-interviews"}
-        className="py-16 text-center text-muted-foreground"
+        className={LIST_EMPTY}
       >
         {searched ? t("noMatches") : t("empty")}
       </p>

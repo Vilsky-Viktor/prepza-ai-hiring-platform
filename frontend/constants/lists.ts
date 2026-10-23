@@ -14,7 +14,19 @@ export const INITIAL_VIEWPORT = { width: 1024, height: 1000 }
 // A page's list: its rows in one bordered, rounded box. On phones it spans the screen, out of
 // the page's side padding, with only its top and bottom borders and square corners.
 export const LIST_BOX =
-  "-mx-6 divide-y border-y sm:mx-0 sm:rounded-2xl sm:border"
+  "-mx-6 divide-y border-y sm:mx-0 sm:rounded-2xl sm:border" +
+  // Under a search (SearchedList): no top border or top corners, so the two read as one block.
+  " searched:border-t-0! searched:rounded-t-none!"
+
+// A list's empty state; under a search it closes the block the search starts, in the list's box.
+export const LIST_EMPTY =
+  "py-16 text-center text-muted-foreground searched:max-sm:-mx-6 searched:max-sm:border-b searched:sm:rounded-b-xl searched:sm:border searched:sm:border-t-0"
+
+// A search's field over a list (SearchedList): the list's border on its top and sides (the seam is
+// its bottom one; focus still turns it the focus colour), square bottom corners, and on phones
+// square and across the screen like the list, with no side borders.
+export const SEARCH_OVER_LIST =
+  "searched:border-border searched:rounded-b-none! searched:max-sm:rounded-none! searched:max-sm:border-x-0"
 
 // A list's or table's row reacting to hover (and to a tap on touch screens): the search field's
 // grey.

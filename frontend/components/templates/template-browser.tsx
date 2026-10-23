@@ -2,6 +2,7 @@ import { SearchIcon } from "lucide-react"
 import { getLocale, getTranslations } from "next-intl/server"
 
 import { InputAction } from "@/components/input-action"
+import { SearchedList } from "@/components/searched-list"
 import {
   ALL_LANGUAGES,
   TemplateFilterBar,
@@ -80,7 +81,7 @@ export async function TemplateBrowser({
   }
 
   return (
-    <>
+    <SearchedList>
       <form action={base} className="flex">
         <InputAction
           maxLength={MAX_TITLE_LENGTH}
@@ -116,6 +117,6 @@ export async function TemplateBrowser({
         bySlug={bySlug}
         statuses={statuses}
       />
-    </>
+    </SearchedList>
   )
 }

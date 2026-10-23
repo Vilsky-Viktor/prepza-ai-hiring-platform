@@ -1,5 +1,6 @@
 import { CandidateList } from "@/components/company/candidate-list"
 import { CandidateSearch } from "@/components/company/candidate-search"
+import { SearchedList } from "@/components/searched-list"
 import type { CandidateSort } from "@/constants/interviews"
 import { candidatesPath } from "@/lib/interview-page"
 import type {
@@ -30,7 +31,7 @@ export function InterviewCandidatesTab({
   candidates: Candidate[] | null
 }) {
   return (
-    <div className="space-y-6">
+    <SearchedList>
       <CandidateSearch
         action={interviewHref}
         sort={sort}
@@ -45,6 +46,6 @@ export function InterviewCandidatesTab({
         initial={candidates ?? []}
         canEdit={canEdit}
       />
-    </div>
+    </SearchedList>
   )
 }

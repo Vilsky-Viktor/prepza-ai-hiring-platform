@@ -7,7 +7,7 @@ import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
 import type { Candidate } from "@/types/company"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, LIST_EMPTY } from "@/constants/lists"
 
 /** An interview's candidates, a page at a time, from `path` (the API list with its sort and
 filters); `initial` is the server's first page. `narrowed` when a search or filter is on.
@@ -30,10 +30,7 @@ export function CandidateList({
 
   if (items.length === 0) {
     return (
-      <p className="py-16 text-center text-muted-foreground">
-        {" "}
-        {narrowed ? t("noMatches") : t("empty")}
-      </p>
+      <p className={LIST_EMPTY}> {narrowed ? t("noMatches") : t("empty")}</p>
     )
   }
 
