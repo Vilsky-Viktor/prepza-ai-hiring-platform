@@ -284,9 +284,9 @@ ACCOUNT_OWNS_SHARED = (
 # python -m app.legal_archive in rounds); library records the terms a new account accepts, and
 # companies the DPA a new company does.
 LEGAL_VERSIONS = {
-    "terms": "2026-11-08",
-    "privacy": "2026-11-08",
-    "dpa": "2026-11-08",
+    "terms": "2026-10-23",
+    "privacy": "2026-10-23",
+    "dpa": "2026-10-23",
 }
 
 # The sign-in a company's own platform gives its candidate with the invite link (no email, no

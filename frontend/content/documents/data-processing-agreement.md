@@ -1,6 +1,6 @@
 # Data processing agreement
 
-Version: 2026-11-08\
+Version: 2026-10-23\
 Operator: Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia; hello@prepza.ai\
 Also online at https://prepza.ai/dpa
 
