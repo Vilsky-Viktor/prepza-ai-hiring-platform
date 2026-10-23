@@ -127,7 +127,8 @@
     "actions": [
       "Imposta il tempo per domanda, in secondi.",
       "Imposta la soglia di superamento: i candidati che la raggiungono superano il colloquio.",
-      "Segna il colloquio come assunto quando hai coperto la posizione."
+      "Segna il colloquio come assunto quando hai coperto la posizione.",
+      "Escludi le domande del colloquio dalla banca domande condivisa di prepza; quelle già riutilizzate in altri colloqui restano lì."
     ],
     "tips": [
       "Ogni impostazione viene salvata appena esci dal suo campo.",

@@ -127,7 +127,8 @@
     "actions": [
       "Set the time each question has, in seconds.",
       "Set the passing grade: candidates who reach it pass.",
-      "Mark the interview as hired once you've filled the role."
+      "Mark the interview as hired once you've filled the role.",
+      "Keep the interview's questions out of prepza's shared question bank; questions already reused in other interviews stay there."
     ],
     "tips": [
       "Each setting saves as soon as you leave its field.",

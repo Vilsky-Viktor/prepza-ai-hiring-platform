@@ -3395,6 +3395,11 @@ export interface components {
        * @default false
        */
       can_edit: boolean
+      /**
+       * Keep Private
+       * @default false
+       */
+      keep_private: boolean
     }
     /** InterviewFromTemplate */
     InterviewFromTemplate: {
@@ -3469,6 +3474,8 @@ export interface components {
       hired?: boolean | null
       /** Pass Mark */
       pass_mark?: number | null
+      /** Keep Private */
+      keep_private?: boolean | null
     }
     /** InviteStartOut */
     InviteStartOut: {

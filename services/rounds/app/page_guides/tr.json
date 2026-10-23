@@ -127,7 +127,8 @@
     "actions": [
       "Her soru için süreyi saniye olarak belirleyin.",
       "Geçme notunu belirleyin: buna ulaşan adaylar geçer.",
-      "Pozisyonu doldurduğunuzda mülakatı işe alındı olarak işaretleyin."
+      "Pozisyonu doldurduğunuzda mülakatı işe alındı olarak işaretleyin.",
+      "Mülakatın sorularını prepza'nın ortak soru bankasının dışında tutun; başka mülakatlarda zaten yeniden kullanılan sorular orada kalır."
     ],
     "tips": [
       "Her ayar, alanından çıktığınız anda kaydedilir.",

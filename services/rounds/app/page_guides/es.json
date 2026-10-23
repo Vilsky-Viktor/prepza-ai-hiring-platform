@@ -127,7 +127,8 @@
     "actions": [
       "Define el tiempo por pregunta, en segundos.",
       "Define la nota de aprobado: los candidatos que la alcanzan aprueban.",
-      "Marca el puesto como cubierto cuando hayas contratado."
+      "Marca el puesto como cubierto cuando hayas contratado.",
+      "Mantén las preguntas de la entrevista fuera del banco de preguntas compartido de prepza; las que ya se reutilizan en otras entrevistas se quedan allí."
     ],
     "tips": [
       "Cada ajuste se guarda en cuanto sales de su campo.",

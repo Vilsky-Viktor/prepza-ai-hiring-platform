@@ -1059,6 +1059,8 @@
     "passMark": "Nota de aprobado",
     "passMarkLabel": "Nota de aprobado en porcentaje",
     "markHired": "Marcar el puesto como cubierto",
+    "keepPrivate": "Mantener estas preguntas fuera del banco de preguntas compartido de prepza",
+    "keepPrivateHelp": "Las preguntas que ya se reutilizan en otras entrevistas se quedan allí",
     "tryLabel": "Probar <bdi>{title}</bdi> como candidato",
     "tryFailed": "No se pudo iniciar la vista previa. Inténtalo de nuevo.",
     "generating": "Generando…",

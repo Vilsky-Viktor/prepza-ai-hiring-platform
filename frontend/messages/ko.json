@@ -1059,6 +1059,8 @@
     "passMark": "합격 기준",
     "passMarkLabel": "합격 기준(%)",
     "markHired": "채용됨으로 표시",
+    "keepPrivate": "이 질문들을 prepza 공유 문제 은행에서 제외",
+    "keepPrivateHelp": "다른 면접에서 이미 재사용된 질문은 그대로 남습니다",
     "tryLabel": "지원자로 <bdi>{title}</bdi> 체험하기",
     "tryFailed": "미리보기를 시작하지 못했습니다. 다시 시도해 주세요.",
     "generating": "생성 중…",

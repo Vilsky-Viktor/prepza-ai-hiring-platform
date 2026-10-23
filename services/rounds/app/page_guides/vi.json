@@ -127,7 +127,8 @@
     "actions": [
       "Đặt thời gian cho mỗi câu hỏi, tính bằng giây.",
       "Đặt điểm đạt: ứng viên đạt mức này là đậu.",
-      "Đánh dấu buổi phỏng vấn là đã tuyển khi bạn đã tuyển được người cho vị trí."
+      "Đánh dấu buổi phỏng vấn là đã tuyển khi bạn đã tuyển được người cho vị trí.",
+      "Không đưa câu hỏi của buổi phỏng vấn vào ngân hàng câu hỏi dùng chung của prepza; các câu hỏi đã được dùng lại trong buổi phỏng vấn khác vẫn ở đó."
     ],
     "tips": [
       "Mỗi cài đặt được lưu ngay khi bạn rời khỏi ô nhập.",

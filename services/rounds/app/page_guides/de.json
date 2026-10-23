@@ -127,7 +127,8 @@
     "actions": [
       "Lege die Zeit pro Frage in Sekunden fest.",
       "Lege die Bestehensgrenze fest: Kandidaten, die sie erreichen, bestehen.",
-      "Markiere das Interview als eingestellt, sobald die Stelle besetzt ist."
+      "Markiere das Interview als eingestellt, sobald die Stelle besetzt ist.",
+      "Halte die Fragen des Interviews aus dem gemeinsamen Fragenpool von prepza heraus; Fragen, die bereits in anderen Interviews wiederverwendet werden, bleiben dort."
     ],
     "tips": [
       "Jede Einstellung wird gespeichert, sobald du ihr Feld verlässt.",

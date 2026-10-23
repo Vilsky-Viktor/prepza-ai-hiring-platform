@@ -1059,6 +1059,8 @@
     "passMark": "Geçme notu",
     "passMarkLabel": "Yüzde olarak geçme notu",
     "markHired": "İşe alındı olarak işaretle",
+    "keepPrivate": "Bu soruları prepza'nın ortak soru bankasının dışında tut",
+    "keepPrivateHelp": "Başka mülakatlarda zaten yeniden kullanılan sorular orada kalır",
     "tryLabel": "<bdi>{title}</bdi> mülakatını aday olarak dene",
     "tryFailed": "Önizleme başlatılamadı. Lütfen tekrar deneyin.",
     "generating": "Oluşturuluyor…",

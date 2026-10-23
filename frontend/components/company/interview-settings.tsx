@@ -11,19 +11,21 @@ import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { InterviewSettingsData } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
 
-/** The interview's settings tab: the time each question has, the pass mark, and whether the
-company hired, one row each in a list like the topics'. Every interview is timed, and
-candidates never see their scores. */
+/** The interview's settings tab: the time each question has, the pass mark, whether the company
+hired, and whether its questions stay out of prepza's shared question bank, one row each in a
+list like the topics'. Every interview is timed, and candidates never see their scores. */
 export function InterviewSettings({
   interviewId,
   questionSeconds,
   passMark,
   hired,
+  keepPrivate,
 }: {
   interviewId: string
   questionSeconds: number
   passMark: number
   hired: boolean
+  keepPrivate: boolean
 }) {
   const t = useTranslations("interviews")
   const router = useRouter()
@@ -31,6 +33,7 @@ export function InterviewSettings({
     question_seconds: questionSeconds,
     hired,
     pass_mark: passMark,
+    keep_private: keepPrivate,
   })
   const [seconds, setSeconds] = useState(String(questionSeconds))
   const [mark, setMark] = useState(String(passMark))
@@ -83,19 +86,55 @@ export function InterviewSettings({
         onChange={setMark}
         onSave={() => save({ pass_mark: Number(mark) })}
       />
-      <label className="flex cursor-pointer items-center justify-between gap-4 p-4 sm:p-6">
-        <span className="text-lg font-light">{t("markHired")}</span>
-        {/* Centred under the fields above. */}
-        <span className="flex w-36 justify-center">
-          <Checkbox
-            className="size-7 shrink-0 [&_[data-slot=checkbox-indicator]>svg]:size-5"
-            checked={saved.hired}
-            disabled={saving}
-            onCheckedChange={(checked) => save({ hired: checked })}
-          />
-        </span>
-      </label>
+      <CheckSetting
+        label={t("markHired")}
+        checked={saved.hired}
+        disabled={saving}
+        onChange={(checked) => save({ hired: checked })}
+      />
+      <CheckSetting
+        label={t("keepPrivate")}
+        help={t("keepPrivateHelp")}
+        checked={saved.keep_private}
+        disabled={saving}
+        onChange={(checked) => save({ keep_private: checked })}
+      />
     </div>
+  )
+}
+
+/** A yes-or-no setting: its name, an optional line under it, and a checkbox. */
+function CheckSetting({
+  label,
+  help,
+  checked,
+  disabled,
+  onChange,
+}: {
+  label: string
+  help?: string
+  checked: boolean
+  disabled: boolean
+  onChange: (checked: boolean) => void
+}) {
+  return (
+    <label className="flex cursor-pointer items-center justify-between gap-4 p-4 sm:p-6">
+      <span className="min-w-0 space-y-1">
+        <span className="block text-lg font-light">{label}</span>
+        {help && (
+          <span className="block text-sm text-muted-foreground">{help}</span>
+        )}
+      </span>
+      {/* Centred under the fields above. */}
+      <span className="flex w-36 shrink-0 justify-center">
+        <Checkbox
+          className="size-7 shrink-0 [&_[data-slot=checkbox-indicator]>svg]:size-5"
+          checked={checked}
+          disabled={disabled}
+          onCheckedChange={onChange}
+        />
+      </span>
+    </label>
   )
 }
 

@@ -1059,6 +1059,8 @@
     "passMark": "Nilai lulus",
     "passMarkLabel": "Nilai lulus dalam persen",
     "markHired": "Tandai diterima",
+    "keepPrivate": "Jangan masukkan pertanyaan ini ke bank soal bersama prepza",
+    "keepPrivateHelp": "Pertanyaan yang sudah dipakai ulang di wawancara lain tetap di sana",
     "tryLabel": "Coba <bdi>{title}</bdi> sebagai kandidat",
     "tryFailed": "Pratinjau tidak bisa dimulai. Coba lagi.",
     "generating": "Sedang dibuat…",

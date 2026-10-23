@@ -1059,6 +1059,8 @@
     "passMark": "Passing grade",
     "passMarkLabel": "Passing grade sa porsiyento",
     "markHired": "Markahan bilang na-hire",
+    "keepPrivate": "Huwag isama ang mga tanong na ito sa shared question bank ng prepza",
+    "keepPrivateHelp": "Mananatili roon ang mga tanong na nagamit na sa ibang interview",
     "tryLabel": "Subukan ang <bdi>{title}</bdi> bilang aplikante",
     "tryFailed": "Hindi masimulan ang preview. Pakisubukang muli.",
     "generating": "Ginagawa…",

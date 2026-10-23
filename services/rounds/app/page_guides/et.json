@@ -127,7 +127,8 @@
     "actions": [
       "Määra iga küsimuse aeg sekundites.",
       "Määra läbimise lävi: selle saavutanud kandidaadid läbivad intervjuu.",
-      "Märgi intervjuu palgatuks, kui oled ametikoha täitnud."
+      "Märgi intervjuu palgatuks, kui oled ametikoha täitnud.",
+      "Hoia intervjuu küsimused prepza ühisest küsimustepangast väljas; teistes intervjuudes juba kasutatavad küsimused jäävad sinna."
     ],
     "tips": [
       "Iga seade salvestub kohe, kui selle väljalt lahkud.",

@@ -1059,6 +1059,8 @@
     "passMark": "Läbimise lävi",
     "passMarkLabel": "Läbimise lävi protsentides",
     "markHired": "Märgi palgatuks",
+    "keepPrivate": "Hoia need küsimused prepza ühisest küsimustepangast väljas",
+    "keepPrivateHelp": "Teistes intervjuudes juba kasutatavad küsimused jäävad sinna",
     "tryLabel": "Proovi intervjuud <bdi>{title}</bdi> kandidaadina",
     "tryFailed": "Eelvaadet ei õnnestunud alustada. Proovi uuesti.",
     "generating": "Loomisel…",

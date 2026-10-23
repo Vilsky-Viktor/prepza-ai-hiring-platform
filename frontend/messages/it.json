@@ -1059,6 +1059,8 @@
     "passMark": "Soglia di superamento",
     "passMarkLabel": "Soglia di superamento in percentuale",
     "markHired": "Segna come assunto",
+    "keepPrivate": "Escludi queste domande dalla banca domande condivisa di prepza",
+    "keepPrivateHelp": "Le domande già riutilizzate in altri colloqui restano lì",
     "tryLabel": "Prova <bdi>{title}</bdi> come candidato",
     "tryFailed": "Impossibile avviare l'anteprima. Riprova.",
     "generating": "In generazione…",

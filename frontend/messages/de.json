@@ -1059,6 +1059,8 @@
     "passMark": "Bestehensgrenze",
     "passMarkLabel": "Bestehensgrenze in Prozent",
     "markHired": "Als eingestellt markieren",
+    "keepPrivate": "Diese Fragen aus dem gemeinsamen Fragenpool von prepza heraushalten",
+    "keepPrivateHelp": "Fragen, die bereits in anderen Interviews wiederverwendet werden, bleiben dort",
     "tryLabel": "<bdi>{title}</bdi> als Kandidat ausprobieren",
     "tryFailed": "Die Vorschau konnte nicht gestartet werden. Bitte versuche es erneut.",
     "generating": "Wird generiert…",

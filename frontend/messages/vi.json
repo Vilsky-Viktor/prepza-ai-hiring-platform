@@ -1059,6 +1059,8 @@
     "passMark": "Điểm đạt",
     "passMarkLabel": "Điểm đạt tính bằng phần trăm",
     "markHired": "Đánh dấu đã tuyển",
+    "keepPrivate": "Không đưa các câu hỏi này vào ngân hàng câu hỏi dùng chung của prepza",
+    "keepPrivateHelp": "Các câu hỏi đã được dùng lại trong buổi phỏng vấn khác vẫn ở đó",
     "tryLabel": "Thử <bdi>{title}</bdi> với vai trò ứng viên",
     "tryFailed": "Không thể bắt đầu bản xem trước. Vui lòng thử lại.",
     "generating": "Đang tạo…",

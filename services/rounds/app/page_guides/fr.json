@@ -127,7 +127,8 @@
     "actions": [
       "Définissez le temps par question, en secondes.",
       "Définissez le seuil de réussite : les candidats qui l'atteignent réussissent.",
-      "Marquez l'entretien comme recruté une fois le poste pourvu."
+      "Marquez l'entretien comme recruté une fois le poste pourvu.",
+      "Gardez les questions de l'entretien hors de la banque de questions partagée de prepza ; celles déjà réutilisées dans d'autres entretiens y restent."
     ],
     "tips": [
       "Chaque paramètre est enregistré dès que vous quittez son champ.",

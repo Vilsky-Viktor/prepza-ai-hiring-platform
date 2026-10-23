@@ -1059,6 +1059,8 @@
     "passMark": "合格ライン",
     "passMarkLabel": "合格ライン（％）",
     "markHired": "採用済みにする",
+    "keepPrivate": "これらの質問を prepza の共有問題バンクに含めない",
+    "keepPrivateHelp": "ほかの面接ですでに再利用されている質問はそのまま残ります",
     "tryLabel": "<bdi>{title}</bdi> を候補者として試す",
     "tryFailed": "プレビューを開始できませんでした。もう一度お試しください。",
     "generating": "作成中…",

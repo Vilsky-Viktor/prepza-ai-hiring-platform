@@ -127,7 +127,8 @@
     "actions": [
       "Stel de tijd per vraag in, in seconden.",
       "Stel de slaaggrens in: kandidaten die die halen, zijn geslaagd.",
-      "Markeer het interview als aangenomen zodra de vacature is vervuld."
+      "Markeer het interview als aangenomen zodra de vacature is vervuld.",
+      "Houd de vragen van het interview buiten de gedeelde vragenbank van prepza; vragen die al in andere interviews worden hergebruikt, blijven daar."
     ],
     "tips": [
       "Elke instelling wordt opgeslagen zodra je het veld verlaat.",

@@ -1059,6 +1059,8 @@
     "passMark": "Passing grade",
     "passMarkLabel": "Passing grade in percent",
     "markHired": "Mark as hired",
+    "keepPrivate": "Keep these questions out of prepza's shared question bank",
+    "keepPrivateHelp": "Questions already reused in other interviews stay there",
     "tryLabel": "Try <bdi>{title}</bdi> as a candidate",
     "tryFailed": "Couldn't start the preview. Please try again.",
     "generating": "Generating…",

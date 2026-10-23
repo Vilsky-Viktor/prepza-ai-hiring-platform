@@ -127,7 +127,8 @@
     "actions": [
       "Defina o tempo de cada questão, em segundos.",
       "Defina a nota de aprovação: os candidatos que a atingem são aprovados.",
-      "Marque a entrevista como “Contratado” quando preencher a vaga."
+      "Marque a entrevista como “Contratado” quando preencher a vaga.",
+      "Mantenha as perguntas da entrevista fora do banco de perguntas compartilhado do prepza; as já reutilizadas em outras entrevistas continuam lá."
     ],
     "tips": [
       "Cada configuração é salva assim que você sai do campo.",

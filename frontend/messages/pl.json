@@ -1059,6 +1059,8 @@
     "passMark": "Próg zaliczenia",
     "passMarkLabel": "Próg zaliczenia w procentach",
     "markHired": "Oznacz jako zatrudnionego",
+    "keepPrivate": "Nie dodawaj tych pytań do wspólnej bazy pytań prepza",
+    "keepPrivateHelp": "Pytania już użyte ponownie w innych rozmowach tam pozostaną",
     "tryLabel": "Wypróbuj <bdi>{title}</bdi> jako kandydat",
     "tryFailed": "Nie udało się uruchomić podglądu. Spróbuj ponownie.",
     "generating": "Generowanie…",

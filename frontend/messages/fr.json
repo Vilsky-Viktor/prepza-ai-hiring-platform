@@ -1059,6 +1059,8 @@
     "passMark": "Seuil de réussite",
     "passMarkLabel": "Seuil de réussite en pourcentage",
     "markHired": "Marquer comme recruté",
+    "keepPrivate": "Garder ces questions hors de la banque de questions partagée de prepza",
+    "keepPrivateHelp": "Les questions déjà réutilisées dans d'autres entretiens y restent",
     "tryLabel": "Essayer <bdi>{title}</bdi> en tant que candidat",
     "tryFailed": "Impossible de démarrer l'aperçu. Veuillez réessayer.",
     "generating": "Génération…",

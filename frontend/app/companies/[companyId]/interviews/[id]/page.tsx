@@ -67,6 +67,7 @@ export default async function InterviewPage({
             questionSeconds={interview.question_seconds}
             passMark={interview.pass_mark}
             hired={interview.hired}
+            keepPrivate={interview.keep_private}
           />
         ) : current === "candidates" ? (
           <InterviewCandidatesTab

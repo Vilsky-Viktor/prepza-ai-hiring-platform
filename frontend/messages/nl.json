@@ -1059,6 +1059,8 @@
     "passMark": "Slaaggrens",
     "passMarkLabel": "Slaaggrens in procenten",
     "markHired": "Markeren als aangenomen",
+    "keepPrivate": "Deze vragen buiten de gedeelde vragenbank van prepza houden",
+    "keepPrivateHelp": "Vragen die al in andere interviews worden hergebruikt, blijven daar",
     "tryLabel": "<bdi>{title}</bdi> proberen als kandidaat",
     "tryFailed": "Het voorbeeld kon niet worden gestart. Probeer het opnieuw.",
     "generating": "Wordt gegenereerd…",

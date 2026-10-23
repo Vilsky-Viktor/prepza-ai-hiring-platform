@@ -1059,6 +1059,8 @@
     "passMark": "及格线",
     "passMarkLabel": "及格线（百分比）",
     "markHired": "标记为已录用",
+    "keepPrivate": "不将这些题目加入 prepza 的共享题库",
+    "keepPrivateHelp": "已在其他面试中复用的题目会保留在那里",
     "tryLabel": "以候选人身份试用 <bdi>{title}</bdi>",
     "tryFailed": "无法开始预览，请重试。",
     "generating": "正在生成…",

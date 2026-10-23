@@ -1059,6 +1059,8 @@
     "passMark": "Nota de aprovação",
     "passMarkLabel": "Nota de aprovação em porcentagem",
     "markHired": "Marcar como contratado",
+    "keepPrivate": "Manter estas perguntas fora do banco de perguntas compartilhado do prepza",
+    "keepPrivateHelp": "As perguntas já reutilizadas em outras entrevistas continuam lá",
     "tryLabel": "Experimentar <bdi>{title}</bdi> como candidato",
     "tryFailed": "Não foi possível iniciar a prévia. Tente novamente.",
     "generating": "Gerando…",

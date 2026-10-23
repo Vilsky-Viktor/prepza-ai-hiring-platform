@@ -127,7 +127,8 @@
     "actions": [
       "Ustaw czas na każde pytanie, w sekundach.",
       "Ustaw próg zaliczenia: kandydaci, którzy go osiągną, przechodzą.",
-      "Oznacz rozmowę jako zakończoną zatrudnieniem, gdy obsadzisz stanowisko."
+      "Oznacz rozmowę jako zakończoną zatrudnieniem, gdy obsadzisz stanowisko.",
+      "Nie dodawaj pytań z rozmowy do wspólnej bazy pytań prepza; pytania już użyte ponownie w innych rozmowach tam pozostaną."
     ],
     "tips": [
       "Każde ustawienie zapisuje się, gdy tylko opuścisz jego pole.",

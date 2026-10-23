@@ -127,7 +127,8 @@
     "actions": [
       "Atur waktu untuk setiap soal, dalam detik.",
       "Atur nilai lulus: kandidat yang mencapainya dinyatakan lulus.",
-      "Tandai wawancara sebagai diterima setelah posisinya terisi."
+      "Tandai wawancara sebagai diterima setelah posisinya terisi.",
+      "Jangan masukkan pertanyaan wawancara ke bank soal bersama prepza; pertanyaan yang sudah dipakai ulang di wawancara lain tetap di sana."
     ],
     "tips": [
       "Setiap pengaturan tersimpan begitu kamu meninggalkan kolomnya.",
