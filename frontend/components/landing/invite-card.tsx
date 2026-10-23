@@ -60,7 +60,7 @@ export function InviteCard({
           integrations' logo tiles; the ATSs' tile as wide as their logos. */}
       <span
         className={cn(
-          "flex h-11 shrink-0 items-center justify-center rounded-xl bg-muted lg:-my-4 lg:-ms-4 lg:h-auto lg:min-h-16 lg:self-stretch lg:rounded-none dark:bg-card",
+          "flex h-11 shrink-0 items-center justify-center rounded-xl bg-surface lg:-my-4 lg:-ms-4 lg:h-auto lg:min-h-16 lg:self-stretch lg:rounded-none",
           mark === "ats" ? "px-1 lg:px-4" : "w-11 lg:w-16"
         )}
       >

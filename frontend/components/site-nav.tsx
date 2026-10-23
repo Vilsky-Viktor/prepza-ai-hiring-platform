@@ -40,7 +40,7 @@ export function SiteNav() {
             href={link.href}
             aria-current={current ? "page" : undefined}
             className={cn(
-              "rounded-md px-1.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground active:bg-muted active:text-foreground sm:px-2.5",
+              "rounded-lg px-1.5 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground active:bg-surface active:text-foreground sm:px-2.5",
               current && "text-foreground"
             )}
           >

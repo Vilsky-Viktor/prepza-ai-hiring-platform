@@ -36,7 +36,7 @@ function TooltipContent({
         <TooltipPrimitive.Popup
           className={cn(
             // A quick fade in and out.
-            "rounded-md bg-muted px-2 py-1 text-xs text-foreground transition-opacity duration-150 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0",
+            "rounded-xl bg-surface px-2 py-1 text-xs text-foreground transition-opacity duration-150 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0",
             className
           )}
           {...props}

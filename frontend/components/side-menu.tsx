@@ -104,10 +104,10 @@ function MenuLink({
         nested ? "py-2 ps-11" : "py-2.5",
         keepCase ? "normal-case" : "lowercase",
         marked
-          ? "bg-muted/50 text-foreground"
+          ? "bg-surface text-foreground"
           : open
-            ? "text-foreground hover:bg-muted/50"
-            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+            ? "text-foreground hover:bg-surface"
+            : "text-muted-foreground hover:bg-surface hover:text-foreground"
       )}
     >
       {Icon && (

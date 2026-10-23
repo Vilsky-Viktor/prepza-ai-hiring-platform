@@ -61,7 +61,7 @@ export function ReportProblem() {
               aria-label={t("reportPlaceholder")}
               value={message}
               onChange={(event) => setMessage(event.target.value)}
-              className="min-h-32 resize-none border-0 bg-muted px-6 py-4 text-lg shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-lg dark:bg-input/30"
+              className="min-h-32 resize-none border-0 bg-surface px-6 py-4 text-lg shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-lg"
             />
           </div>
         </form>

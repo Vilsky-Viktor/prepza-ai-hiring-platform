@@ -10,7 +10,7 @@ import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
 import type { Interview } from "@/types/company"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 
 /** A company's interviews at `path` (narrowed by a search when `searched`), newest first, a page
  * at a time; `initial` is the server's first page. */
@@ -52,7 +52,9 @@ export function InterviewList({
       renderItem={(interview) => (
         // One hover surface: the link stretches over the whole row, Delete sits on top of it.
         // Phones show the title and date, without the status, counts and preview button.
-        <div className="relative flex items-center gap-2 p-6 pe-3 transition-colors hover:bg-muted/50 active:bg-muted/50">
+        <div
+          className={`relative flex items-center gap-2 p-6 pe-3 ${ROW_HOVER}`}
+        >
           <Link
             href={`/companies/${companyId}/interviews/${interview.id}`}
             data-testid={

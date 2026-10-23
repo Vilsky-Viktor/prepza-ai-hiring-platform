@@ -7,7 +7,7 @@ import { Dotted } from "@/components/dot"
 import { CampaignStatus } from "@/components/superadmin/campaign-status"
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { formatDate } from "@/lib/format"
 import { byId } from "@/lib/paged-list"
 import type { CampaignRow } from "@/types/campaigns"
@@ -42,7 +42,7 @@ export function CampaignList({ initial }: { initial: CampaignRow[] }) {
         // On phones the status takes the line under the subject.
         <Link
           href={`/superadmin/campaigns/${campaign.id}`}
-          className="flex items-center gap-6 p-6 hover:bg-muted/50 max-sm:flex-wrap max-sm:gap-y-3"
+          className={`flex items-center gap-6 p-6 ${ROW_HOVER} max-sm:flex-wrap max-sm:gap-y-3`}
         >
           <div className="min-w-0 flex-1 space-y-1 max-sm:basis-full">
             <span className="block text-lg font-medium break-words normal-case sm:truncate">

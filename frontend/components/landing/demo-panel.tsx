@@ -1,14 +1,13 @@
 // A group of panels, laid out in a column.
 export const DEMO_GROUP = "flex flex-col gap-3"
 
-// "create an interview"'s groups: a soft band behind the panels, spanning the screen on phones.
-export const DEMO_BAND =
-  "-mx-6 flex flex-col gap-3 bg-muted/60 px-6 py-5 sm:mx-0 sm:rounded-[2rem] sm:px-4 dark:bg-muted/30"
+// A group on a grey band across the whole window, the panels within the page's width.
+export const DEMO_BAND = `${DEMO_GROUP} relative py-8 before:absolute before:inset-y-0 before:left-1/2 before:-z-10 before:w-screen before:-translate-x-1/2 before:bg-surface`
 
 // A small grey card on a wired stage (sections 2 and 5): an icon and a short label, stacked in a
 // grid cell on phones and tablets, side by side from laptops up.
 export const SOURCE_CARD =
-  "relative z-10 flex min-w-0 flex-col items-center justify-center gap-1.5 rounded-xl bg-muted px-1.5 py-4 text-center text-sm leading-tight font-medium break-words lowercase lg:flex-row lg:gap-2.5 lg:rounded-2xl lg:px-5 lg:py-3.5 lg:text-base lg:whitespace-nowrap dark:bg-card"
+  "relative z-10 flex min-w-0 flex-col items-center justify-center gap-1.5 rounded-xl bg-surface px-1.5 py-4 text-center text-sm leading-tight font-medium break-words lowercase lg:flex-row lg:gap-2.5 lg:rounded-xl lg:px-5 lg:py-3.5 lg:text-base lg:whitespace-nowrap"
 
 /** A small landing picture with its short label above, if any: a plain card that fills its
  * grid cell, so panels side by side are the same height. Screen readers read the label, not the

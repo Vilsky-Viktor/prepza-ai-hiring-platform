@@ -27,7 +27,7 @@ import {
 } from "@/lib/catalog"
 import type { FaqItem } from "@/types/help"
 import type { SampleQuestion, Template } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { PageKey } from "@/components/page-key"
 
 type Params = { params: Promise<{ slug: string }> }
@@ -164,7 +164,7 @@ export default async function RoleTestPage({ params }: Params) {
           {template.topics.map((topic) => (
             <li
               key={topic.id}
-              className="space-y-3 p-4 transition-colors hover:bg-muted/50 max-sm:px-6 max-sm:py-8 sm:p-6"
+              className={`space-y-3 p-4 ${ROW_HOVER} max-sm:px-6 max-sm:py-8 sm:p-6`}
             >
               <span className="block text-lg font-medium">{topic.title}</span>
               <SubtopicList subtopics={topic.subtopics} />

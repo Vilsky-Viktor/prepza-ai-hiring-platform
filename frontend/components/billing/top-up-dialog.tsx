@@ -55,7 +55,7 @@ export function TopUpDialog({
           card ? (
             <button
               type="button"
-              className="cursor-pointer rounded-xl border px-4 py-2 text-end whitespace-nowrap transition-colors hover:bg-muted max-sm:text-center"
+              className="cursor-pointer rounded-xl border px-4 py-2 text-end whitespace-nowrap transition-colors hover:bg-surface max-sm:text-center"
             />
           ) : (
             <Button className="h-10 px-5" />

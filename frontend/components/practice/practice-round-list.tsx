@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl"
 
 import { useLocalTime } from "@/hooks/use-local-time"
 import { VirtualList } from "@/components/virtual-list"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { usePagedList } from "@/hooks/use-paged-list"
 import type { PracticeRoundSummary } from "@/types/round"
 import { formatPercent } from "@/lib/format"
@@ -48,7 +48,7 @@ export function PracticeRoundList({
       renderItem={(round) => (
         <Link
           href={`/practice/rounds/${round.round_id}`}
-          className="flex items-center justify-between gap-4 p-6 transition-colors hover:bg-muted/50 active:bg-muted/50"
+          className={`flex items-center justify-between gap-4 p-6 ${ROW_HOVER}`}
         >
           <time
             dateTime={round.started_at}

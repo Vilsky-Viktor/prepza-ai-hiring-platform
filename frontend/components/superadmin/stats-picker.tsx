@@ -61,7 +61,7 @@ export function StatsPicker({
               type="button"
               variant="ghost"
               aria-label={t("statsPeriod")}
-              className="relative h-14 w-60 justify-start rounded-full bg-muted px-6 pe-16 text-lg font-normal normal-case hover:bg-muted dark:bg-input/30 dark:hover:bg-input/30"
+              className="relative h-14 w-60 justify-start rounded-xl bg-surface px-6 pe-16 text-lg font-normal normal-case hover:bg-surface"
             />
           }
         >

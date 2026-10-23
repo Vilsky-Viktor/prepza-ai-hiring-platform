@@ -91,7 +91,7 @@ export function DemoInvitation({
       </div>
       {/* The rules, numbered in the brand colour, on a gray area as on the real page: out to the
           frame's edges, the full height of its end side from tablets up; across it on phones. */}
-      <ol className="-mx-5 flex flex-col justify-center gap-3 bg-muted px-5 py-6 text-start text-sm text-muted-foreground sm:-mx-8 sm:px-8 md:-my-8 md:ms-0 md:rounded-e-[calc(1.5rem-1px)] md:py-8">
+      <ol className="-mx-5 flex flex-col justify-center gap-3 bg-surface px-5 py-6 text-start text-sm text-muted-foreground sm:-mx-8 sm:px-8 md:-my-8 md:ms-0 md:rounded-e-[calc(var(--radius-xl)-1px)] md:py-8">
         {RULES.map((rule, index) => (
           <li
             key={rule}

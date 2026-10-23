@@ -11,7 +11,7 @@ import { AddressSuppression } from "@/components/superadmin/address-suppression"
 import { Badge } from "@/components/ui/badge"
 import { WrappedEmail } from "@/components/wrapped-email"
 import { Dot } from "@/components/dot"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { formatPrice } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"
 import { aiSpend, AiSpendLine } from "@/components/superadmin/ai-spend-line"
@@ -86,7 +86,7 @@ export default async function SupportUserPage({
               <li key={company.id}>
                 <Link
                   href={`/superadmin/support/companies/${company.id}`}
-                  className={`${ROW} transition-colors hover:bg-muted/50 active:bg-muted/50`}
+                  className={`${ROW} ${ROW_HOVER}`}
                 >
                   <span className="min-w-0 text-lg font-medium break-words normal-case">
                     {company.name}

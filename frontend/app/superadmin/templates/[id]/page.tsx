@@ -14,7 +14,7 @@ import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { Addition } from "@/types/generation"
 import type { PooledTemplate } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 
 export const generateMetadata = () => translatedTitle("superadmin", "templates")
 
@@ -69,7 +69,7 @@ export default async function TemplatePage({
           // On phones the questions' button and count go under the subtopics, centered.
           <li
             key={topic.id}
-            className="flex items-center justify-between gap-6 p-4 transition-colors hover:bg-muted/50 max-sm:flex-col max-sm:items-stretch max-sm:px-6 max-sm:py-8 sm:p-6"
+            className={`flex items-center justify-between gap-6 p-4 ${ROW_HOVER} max-sm:flex-col max-sm:items-stretch max-sm:px-6 max-sm:py-8 sm:p-6`}
           >
             <span
               {...languageOf(template.language)}

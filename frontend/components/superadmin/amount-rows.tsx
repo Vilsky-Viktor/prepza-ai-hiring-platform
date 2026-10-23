@@ -2,7 +2,7 @@ import Link from "next/link"
 import type { ReactNode } from "react"
 
 import { Dotted } from "@/components/dot"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 
 export type AmountRow = {
   key: string
@@ -59,10 +59,7 @@ export function AmountRows({
             return (
               <li key={row.key} data-testid={`amount-${row.key}`}>
                 {row.href ? (
-                  <Link
-                    href={row.href}
-                    className={`${ROW} transition-colors hover:bg-muted/50 active:bg-muted/50`}
-                  >
+                  <Link href={row.href} className={`${ROW} ${ROW_HOVER}`}>
                     {content}
                   </Link>
                 ) : (

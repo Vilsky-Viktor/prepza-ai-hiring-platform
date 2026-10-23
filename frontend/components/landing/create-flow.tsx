@@ -203,7 +203,7 @@ export function CreateFlow({
           {/* The request for changes, as the review's box, and its button. */}
           <div
             ref={askRef}
-            className="flex h-10 items-center rounded-full bg-muted px-4 dark:bg-card"
+            className="flex h-10 items-center rounded-xl bg-surface px-4"
           >
             {asking ? (
               <span className="flex h-5 min-w-0 items-center">

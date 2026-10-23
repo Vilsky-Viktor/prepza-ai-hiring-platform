@@ -48,7 +48,7 @@ export function DemoEmailField({
     <div
       ref={ref}
       className={cn(
-        "flex h-12 items-center rounded-full border bg-muted px-5 dark:bg-input/30",
+        "flex h-12 items-center rounded-xl border bg-surface px-5",
         typing || email ? "border-ring" : "border-input"
       )}
     >

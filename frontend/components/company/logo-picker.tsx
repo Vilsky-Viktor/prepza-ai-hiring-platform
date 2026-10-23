@@ -24,9 +24,9 @@ import { fileBase64 } from "@/lib/files"
 import { firstGrapheme } from "@/lib/graphemes"
 
 const BOX =
-  "flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-muted"
-const LARGE = "size-24 rounded-2xl"
-const SPOT = `${BOX} group relative cursor-pointer transition-colors hover:bg-muted/70 disabled:cursor-default`
+  "flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-surface"
+const LARGE = "size-24 rounded-xl"
+const SPOT = `${BOX} group relative cursor-pointer transition-colors hover:bg-surface disabled:cursor-default`
 
 /** The company's logo beside its name: without one, its first letter, and a click picks an
  * image; with one, a click offers to change or remove it. Not `editable` (a viewer), it only

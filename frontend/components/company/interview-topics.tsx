@@ -1,7 +1,7 @@
 import { SubtopicList } from "@/components/questions/subtopic-list"
 import { TopicQuestionLimit } from "@/components/questions/topic-question-limit"
 import { TopicQuestions } from "@/components/questions/topic-questions"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { languageOf } from "@/lib/locale"
 import type { InterviewDetail } from "@/types/company"
 
@@ -31,7 +31,7 @@ export function InterviewTopics({
         // On phones the questions' button and their number take the line under the topic.
         <li
           key={topic.id}
-          className="flex items-center justify-between gap-6 p-4 transition-colors hover:bg-muted/50 max-sm:flex-col max-sm:items-stretch max-sm:gap-6 max-sm:px-6 max-sm:py-8 sm:p-6"
+          className={`flex items-center justify-between gap-6 p-4 ${ROW_HOVER} max-sm:flex-col max-sm:items-stretch max-sm:gap-6 max-sm:px-6 max-sm:py-8 sm:p-6`}
         >
           <span className="max-w-3xl min-w-0 space-y-3">
             <span {...languageOf(language)} className="block space-y-3">

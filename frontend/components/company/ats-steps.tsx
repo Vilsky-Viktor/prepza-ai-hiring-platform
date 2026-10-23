@@ -24,7 +24,7 @@ export function Chips({ items, path }: { items: string[]; path?: boolean }) {
           {path && index > 0 && (
             <ArrowRightIcon aria-hidden className="size-4 rtl:rotate-180" />
           )}
-          <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground">
+          <span className="rounded bg-surface px-1.5 py-0.5 font-mono text-sm text-foreground">
             {item}
           </span>
         </span>

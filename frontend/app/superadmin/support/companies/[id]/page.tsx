@@ -18,7 +18,7 @@ import { TabNav } from "@/components/tab-nav"
 import { Badge } from "@/components/ui/badge"
 import { WrappedEmail } from "@/components/wrapped-email"
 import { Dot } from "@/components/dot"
-import { LIST_BOX, PAGE_SIZE } from "@/constants/lists"
+import { LIST_BOX, PAGE_SIZE, ROW_HOVER } from "@/constants/lists"
 import { hasMessage } from "@/lib/messages"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
@@ -45,7 +45,7 @@ function MemberLink({
   return userId ? (
     <Link
       href={`/superadmin/support/users/${userId}`}
-      className={`${className} transition-colors hover:bg-muted/50 active:bg-muted/50`}
+      className={`${className} ${ROW_HOVER}`}
     >
       {children}
     </Link>

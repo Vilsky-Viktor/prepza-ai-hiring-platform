@@ -9,7 +9,7 @@ export function InlineText({ text }: { text: string | null }) {
     piece.code ? (
       <code
         key={index}
-        className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em] font-normal"
+        className="rounded bg-surface px-1.5 py-0.5 font-mono text-[0.85em] font-normal"
       >
         {piece.text}
       </code>

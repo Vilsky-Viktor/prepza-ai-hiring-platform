@@ -116,7 +116,7 @@ export function CompanyPicker({
                 <Combobox.Item
                   key={id}
                   value={id}
-                  className="flex cursor-default items-center justify-between gap-2 rounded-lg px-4 py-2.5 text-lg outline-none select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
+                  className="flex cursor-default items-center justify-between gap-2 rounded-lg px-4 py-2.5 text-lg outline-none select-none data-highlighted:bg-surface data-highlighted:text-accent-foreground"
                 >
                   <span className="normal-case">{label(id)}</span>
                   <Combobox.ItemIndicator>

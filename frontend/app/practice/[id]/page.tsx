@@ -22,7 +22,7 @@ import { publicFetch, serverFetch } from "@/lib/server-api"
 import { breadcrumbData } from "@/lib/structured-data"
 import type { PracticeSize, PracticeTopicProgress } from "@/types/round"
 import type { Template } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { PageKey } from "@/components/page-key"
 
 export async function generateMetadata({
@@ -149,8 +149,8 @@ export default async function PracticeTestPage({
 
       {/* One full-width card: the note on gray with its sign in the corner, as the info card's,
           continued by a round's length on the transparent part at the end. */}
-      <div className="flex flex-wrap items-stretch overflow-hidden rounded-2xl border text-base text-muted-foreground">
-        <div className="relative flex flex-1 items-center bg-muted/50 p-5 ps-20">
+      <div className="flex flex-wrap items-stretch overflow-hidden rounded-xl border text-base text-muted-foreground">
+        <div className="relative flex flex-1 items-center bg-surface p-5 ps-20">
           <CornerSign>
             <InfoIcon className="text-primary" />
           </CornerSign>
@@ -175,7 +175,7 @@ export default async function PracticeTestPage({
           return (
             <li
               key={topic.id}
-              className="p-4 transition-colors hover:bg-muted/50 max-sm:px-6 max-sm:py-8 sm:p-6"
+              className={`p-4 ${ROW_HOVER} max-sm:px-6 max-sm:py-8 sm:p-6`}
             >
               <span className="block min-w-0 space-y-3">
                 <span className="block text-lg font-medium">{topic.title}</span>

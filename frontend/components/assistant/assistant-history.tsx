@@ -18,6 +18,7 @@ import { apiErrorMessage } from "@/lib/api"
 import { deleteConversation, listConversations } from "@/lib/assistant"
 import { bdiText } from "@/lib/bidi"
 import type { Conversation } from "@/types/assistant"
+import { ROW_HOVER } from "@/constants/lists"
 
 /** The user's past conversations with the assistant, the latest first: one opens, the bin
  * deletes it. `companyNames` names each one's company. */
@@ -86,7 +87,7 @@ export function AssistantHistory({
           // One hover surface: the row opens the conversation, the bin sits on top of it.
           <li
             key={item.id}
-            className="relative flex items-center gap-2 p-4 pe-2 transition-colors hover:bg-muted/50 active:bg-muted/50"
+            className={`relative flex items-center gap-2 p-4 pe-2 ${ROW_HOVER}`}
           >
             {/* The title is cut to one line; the tooltip shows it whole. */}
             <Tooltip>

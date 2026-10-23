@@ -11,6 +11,7 @@ import { candidateHref, type CandidateLinks } from "@/lib/candidate-links"
 import { formatPrice } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"
 import type { CreditHistoryEntry } from "@/types/company"
+import { ROW_HOVER } from "@/constants/lists"
 
 /** One movement of a company's credits: what it was, when, and the credits it moved; a top-up
  * with what was paid and its invoice, a candidate's charge with the candidate and their test,
@@ -96,7 +97,7 @@ export function HistoryRow({
   return candidate ? (
     <Link
       href={candidateHref(links, companyId, candidate)}
-      className="block transition-colors hover:bg-muted/50 active:bg-muted/50"
+      className={`block ${ROW_HOVER}`}
     >
       {content}
     </Link>

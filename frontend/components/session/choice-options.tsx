@@ -38,8 +38,8 @@ export function ChoiceOptions({
               className={cn(
                 "flex w-full items-start gap-3 rounded-xl border p-4 text-start text-lg leading-7 font-light normal-case transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-default",
                 picked
-                  ? "border-ring bg-muted"
-                  : "hover:border-ring hover:bg-muted/50 active:bg-muted/50"
+                  ? "border-ring bg-surface"
+                  : "hover:border-ring hover:bg-surface active:bg-surface"
               )}
             >
               {/* A big check box for an option ticked on its own; the card is marked as in a

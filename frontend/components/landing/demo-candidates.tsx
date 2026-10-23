@@ -50,8 +50,8 @@ export function DemoCandidates({
             key={candidate.email}
             ref={index === DEMO_OPENED ? rowRef : undefined}
             className={cn(
-              "flex items-center justify-between gap-3 px-4 py-3 transition-colors first:rounded-t-2xl last:rounded-b-2xl sm:px-5",
-              index === DEMO_OPENED && rowPressed && "bg-muted/50"
+              "flex items-center justify-between gap-3 px-4 py-3 transition-colors first:rounded-t-xl last:rounded-b-xl sm:px-5",
+              index === DEMO_OPENED && rowPressed && "bg-surface"
             )}
           >
             {/* On phones the status takes the email's place, under the name. */}

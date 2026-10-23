@@ -77,7 +77,7 @@ export default async function NewsPage() {
               <a
                 href={feed}
                 aria-label={t("rss")}
-                className="flex size-14 shrink-0 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="flex size-14 shrink-0 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
               />
             }
           >

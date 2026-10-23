@@ -2,7 +2,7 @@ import { ChevronRightIcon } from "lucide-react"
 
 import { LocalizedLink } from "@/components/localized-link"
 import type { ContentPage } from "@/lib/content"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 
 /** A hub's pages as one list, like the companies list: each title with its description (in its
  * own language), opening the page under `base` in the address's language. */
@@ -19,7 +19,7 @@ export function ContentList({
         <li key={page.slug} lang={page.language}>
           <LocalizedLink
             href={`${base}/${page.slug}`}
-            className="flex items-center gap-6 p-6 transition-colors hover:bg-muted/50 active:bg-muted/50"
+            className={`flex items-center gap-6 p-6 ${ROW_HOVER}`}
           >
             <span className="min-w-0 flex-1 space-y-1">
               <span className="block text-lg font-medium">{page.title}</span>

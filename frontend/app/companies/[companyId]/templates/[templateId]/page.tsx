@@ -11,7 +11,7 @@ import { serverFetch, signedIn } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { Company } from "@/types/company"
 import type { Template } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 
 export const generateMetadata = () => translatedTitle("templates", "title")
 
@@ -63,7 +63,7 @@ export default async function CompanyTemplatePage({
         {template.topics.map((topic) => (
           <li
             key={topic.id}
-            className="flex items-center justify-between gap-6 p-4 transition-colors hover:bg-muted/50 sm:p-6"
+            className={`flex items-center justify-between gap-6 p-4 ${ROW_HOVER} sm:p-6`}
           >
             <span className="max-w-3xl min-w-0 space-y-3">
               <span className="block text-lg font-medium">{topic.title}</span>

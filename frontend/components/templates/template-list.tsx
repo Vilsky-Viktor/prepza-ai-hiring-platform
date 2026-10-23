@@ -18,7 +18,7 @@ import { hasMessage } from "@/lib/messages"
 import { localizedPath } from "@/lib/locale-path"
 import type { PracticeStatus } from "@/types/round"
 import type { TemplateSummary } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 
 /** The templates at `path`, newest first, a page at a time; `initial` is the server's first
  * page, and `empty` shows when there are none. A row opens the template under `openBase` (by its
@@ -116,13 +116,16 @@ export function TemplateList({
                 {template.language}
               </Badge>
             </span>
-            <IconStat
-              label={t("topics", { count: template.topic_count })}
-              icon={<LayersIcon aria-hidden className="size-5" />}
-              className="ms-auto w-16 justify-end text-sm sm:-ms-2"
-            >
-              {template.topic_count}
-            </IconStat>
+            {/* A fixed column on every row; the hover background only around the icon and count. */}
+            <span className="ms-auto flex w-12 shrink-0 justify-end sm:-ms-2">
+              <IconStat
+                label={t("topics", { count: template.topic_count })}
+                icon={<LayersIcon aria-hidden className="size-5" />}
+                className="text-sm"
+              >
+                {template.topic_count}
+              </IconStat>
+            </span>
           </>
         )
 
@@ -131,7 +134,9 @@ export function TemplateList({
         // One hover surface: the link stretches over the whole row, "Use template" sits on top;
         // on phones it takes its own line, at full width.
         return (
-          <div className="relative flex items-center gap-6 p-6 transition-colors hover:bg-muted/50 active:bg-muted/50 max-sm:flex-wrap max-sm:gap-4">
+          <div
+            className={`relative flex items-center gap-6 p-6 ${ROW_HOVER} max-sm:flex-wrap max-sm:gap-4`}
+          >
             <Link
               // On a language's address (/de/tests), a template in that language opens there
               // too; the others have only their English address.

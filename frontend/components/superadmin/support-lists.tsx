@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { VirtualList } from "@/components/virtual-list"
 import { WrappedEmail } from "@/components/wrapped-email"
 import { Dotted } from "@/components/dot"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { useLocalTime } from "@/hooks/use-local-time"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { formatPercent } from "@/lib/format"
@@ -50,7 +50,7 @@ export function SupportInterviews({
       renderItem={(interview) => (
         <Link
           href={`/superadmin/support/interviews/${interview.id}`}
-          className="block space-y-1 p-6 transition-colors hover:bg-muted/50 active:bg-muted/50"
+          className={`block space-y-1 p-6 ${ROW_HOVER}`}
         >
           <p className="text-lg font-medium break-words normal-case">
             {interview.title ?? t("supportUntitled")}
@@ -114,7 +114,7 @@ export function SupportInterviewCandidates({
       renderItem={(candidate) => (
         <Link
           href={`/superadmin/support/candidates/${candidate.invite_id}`}
-          className="flex items-center justify-between gap-4 p-6 transition-colors hover:bg-muted/50 active:bg-muted/50"
+          className={`flex items-center justify-between gap-4 p-6 ${ROW_HOVER}`}
         >
           <span className="min-w-0 space-y-1">
             <span className="block text-lg font-medium">

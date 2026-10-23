@@ -40,7 +40,7 @@ export function IconButton({
             size="icon"
             className={cn(
               "size-12 shrink-0 text-muted-foreground hover:text-foreground",
-              pressed && "bg-muted text-foreground",
+              pressed && "bg-surface text-foreground",
               className
             )}
             aria-label={label}

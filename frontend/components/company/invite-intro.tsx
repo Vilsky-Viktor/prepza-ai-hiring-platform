@@ -140,7 +140,7 @@ export function InviteIntro({
       <ol
         data-testid="invite-rules"
         className={cn(
-          "-mx-6 space-y-4 bg-muted p-8 text-start text-base text-muted-foreground sm:mx-0 sm:rounded-2xl sm:p-10 md:flex md:flex-col md:self-stretch md:overflow-y-auto md:rounded-none md:[&>li:first-child]:mt-auto md:[&>li:last-child]:mb-auto",
+          "-mx-6 space-y-4 bg-surface p-8 text-start text-base text-muted-foreground sm:mx-0 sm:rounded-xl sm:p-10 md:flex md:flex-col md:self-stretch md:overflow-y-auto md:rounded-none md:[&>li:first-child]:mt-auto md:[&>li:last-child]:mb-auto",
           height.rules
         )}
       >

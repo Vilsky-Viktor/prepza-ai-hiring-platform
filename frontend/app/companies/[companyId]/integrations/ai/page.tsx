@@ -66,7 +66,7 @@ export default async function AiAppsPage({
           // On phones the Instructions go on their own line, full width.
           <div className="flex items-start justify-between gap-4 max-sm:flex-col max-sm:items-stretch">
             <div className="flex min-w-0 items-center gap-4">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-muted">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-surface">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={MCP_MARK}

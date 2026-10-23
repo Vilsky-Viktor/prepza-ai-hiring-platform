@@ -64,5 +64,7 @@ themselves: `.claude/rules/content-i18n.md`.
   for something set close inside one (a button in a field, a menu item); circles only for avatars
   outside the header, dots, rings, sliders, switches, chips and label pills. Labelled fields use
   `components/ui/floating-field.tsx`; units go in its `suffix`, never beside the field.
+- Grey backgrounds: `bg-surface` only (fields, hovered rows as `ROW_HOVER`, grey buttons and cards);
+  cards' padding is `CARD_PADDING` (`constants/cards.ts`).
 
 Research (local notes, git-ignored): `internal_docs/best-practices/i18n.md`.

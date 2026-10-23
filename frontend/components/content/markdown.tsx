@@ -81,9 +81,10 @@ const ELEMENTS: ComponentProps<typeof ReactMarkdown>["components"] = {
     )
   },
   table: ({ children }) => (
-    <div className="overflow-x-auto rounded-2xl border">
-      {/* A body row lights up on hover, as the pricing page's rows do, so the eye follows it. */}
-      <table className="w-full text-sm [&_tbody_tr]:transition-colors [&_tbody_tr:hover]:bg-muted/50">
+    <div className="overflow-x-auto rounded-xl border">
+      {/* A body row lights up on hover in the search field's grey, as ROW_HOVER (constants/lists.ts)
+          colours the site's list rows, so the eye follows it. */}
+      <table className="w-full text-sm [&_tbody_tr]:transition-colors [&_tbody_tr:hover]:bg-surface">
         {children}
       </table>
     </div>

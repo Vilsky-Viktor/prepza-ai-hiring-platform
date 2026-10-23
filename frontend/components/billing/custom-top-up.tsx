@@ -172,7 +172,7 @@ export function CustomTopUp({
                   />
                 </>
               )}
-              <p className="flex-1 rounded-2xl bg-muted px-4 py-3 text-center">
+              <p className="flex-1 rounded-xl bg-surface px-4 py-3 text-center">
                 {card.full ? (
                   <Tooltip>
                     <TooltipTrigger

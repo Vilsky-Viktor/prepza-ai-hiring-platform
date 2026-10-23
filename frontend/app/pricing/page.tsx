@@ -9,6 +9,7 @@ import { pageMetadata, siteUrl } from "@/lib/site"
 import { softwareData } from "@/lib/structured-data"
 import { visitorCatalog } from "@/lib/catalog"
 import { PageKey } from "@/components/page-key"
+import { ROW_HOVER } from "@/constants/lists"
 
 export async function generateMetadata() {
   const t = await getTranslations("pricing")
@@ -22,7 +23,9 @@ const PRICE_LIST =
 
 function PriceRow({ what, price }: { what: string; price: string }) {
   return (
-    <li className="flex items-baseline justify-between gap-6 px-5 py-4 transition-colors hover:bg-muted/50 max-sm:gap-10 max-sm:px-6">
+    <li
+      className={`flex items-baseline justify-between gap-6 px-5 py-4 ${ROW_HOVER} max-sm:gap-10 max-sm:px-6`}
+    >
       <span>{what}</span>
       <span className="max-w-[65%] shrink-0 text-end font-medium tabular-nums">
         {price}

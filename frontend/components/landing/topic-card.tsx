@@ -61,7 +61,7 @@ export function SubtopicChip({
       ref={ref}
       className={cn(
         "flex h-5 items-center rounded-full border px-2 text-xs",
-        typing ? "border-ring bg-background" : "border-transparent bg-muted",
+        typing ? "border-ring bg-background" : "border-transparent bg-surface",
         hidden && "invisible"
       )}
     >

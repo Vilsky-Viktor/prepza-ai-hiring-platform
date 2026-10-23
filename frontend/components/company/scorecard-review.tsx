@@ -156,7 +156,7 @@ function ScorecardAnswer({
                 answer: item.options[index],
                 correct: Boolean(item.correct_indexes?.includes(index)),
               }))}
-              className="rounded-xl bg-muted px-5 py-4 text-lg font-light"
+              className="rounded-xl bg-surface px-5 py-4 text-lg font-light"
             />
           </div>
           <AnswerPoints item={item} />
@@ -164,7 +164,7 @@ function ScorecardAnswer({
       ) : (
         <p
           {...languageOf(language)}
-          className="bidi-auto rounded-xl bg-muted px-5 py-4 text-lg leading-relaxed font-light whitespace-pre-wrap"
+          className="bidi-auto rounded-xl bg-surface px-5 py-4 text-lg leading-relaxed font-light whitespace-pre-wrap"
         >
           <InlineText text={item.options[picks[0]]} />
         </p>

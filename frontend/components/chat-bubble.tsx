@@ -15,8 +15,8 @@ export function ChatBubble({
   after?: React.ReactNode
 }) {
   const bubble = cn(
-    "bidi-auto rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap",
-    role === "user" ? "bg-muted" : "bg-card",
+    "bidi-auto rounded-xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap",
+    role === "user" ? "bg-surface" : "bg-card",
     className
   )
   const place = cn("w-fit max-w-[85%]", role === "user" && "ms-auto")

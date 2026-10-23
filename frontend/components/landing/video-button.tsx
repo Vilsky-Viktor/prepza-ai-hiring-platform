@@ -37,7 +37,7 @@ export function VideoButton() {
                   type="button"
                   aria-label={t("videoTooltip")}
                   data-testid="video-button"
-                  className="relative inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-primary transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50"
+                  className="relative inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-primary transition-colors outline-none hover:bg-surface focus-visible:ring-3 focus-visible:ring-ring/50"
                 />
               }
             />

@@ -22,6 +22,7 @@ import { bdi } from "@/lib/bidi"
 import type { AssistantBlock } from "@/types/assistant"
 import { WARNING_TONE } from "@/constants/tones"
 import { CARD } from "@/constants/cards"
+import { ROW_HOVER } from "@/constants/lists"
 
 type Item = Record<string, unknown>
 
@@ -77,10 +78,7 @@ function CreditsRow({
     <LocalizedLink
       href={href}
       onClick={onNavigate}
-      className={cn(
-        ROW,
-        "transition-colors hover:bg-muted/50 active:bg-muted/50"
-      )}
+      className={cn(ROW, ROW_HOVER)}
     >
       <CreditsItem item={item} />
     </LocalizedLink>

@@ -77,7 +77,7 @@ export function TopicEditor({
         {topic.subtopics.map((subtopic, index) => (
           <li
             key={subtopic}
-            className="flex items-center gap-1 rounded-full bg-muted py-1 ps-3 pe-1 text-sm"
+            className="flex items-center gap-1 rounded-full bg-surface py-1 ps-3 pe-1 text-sm"
           >
             {subtopic}
             <Button

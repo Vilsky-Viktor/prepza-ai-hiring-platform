@@ -117,7 +117,7 @@ export function QuestionRow({
                       className={cn(
                         // Hovered like the likes and dislikes beside it.
                         ROUND_ICON_BUTTON,
-                        "-mx-2 -my-1 flex cursor-pointer items-center gap-1.5 px-2 py-1 transition-colors aria-expanded:bg-muted aria-expanded:text-foreground"
+                        "-mx-2 -my-1 flex cursor-pointer items-center gap-1.5 px-2 py-1 transition-colors aria-expanded:bg-surface aria-expanded:text-foreground"
                       )}
                     />
                   }
@@ -161,7 +161,7 @@ export function QuestionRow({
         </span>
       </div>
       {canViewReports && showReports && (
-        <div className="col-span-full bg-muted/40 py-5 ps-5 pe-6">
+        <div className="col-span-full bg-surface py-5 ps-5 pe-6">
           <QuestionReports path={`${reportsPath}/${question.id}/reports`} />
         </div>
       )}

@@ -7,7 +7,7 @@ import { IconButton } from "@/components/icon-button"
 import { DOCUMENTS } from "@/constants/documents"
 import { DEFAULT_LOCALE } from "@/constants/i18n"
 import { pageMetadata } from "@/lib/site"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { PageKey } from "@/components/page-key"
 
 // Like the report's download button (components/company/report-actions.tsx).
@@ -41,7 +41,7 @@ export default async function DocsPage() {
         {DOCUMENTS.map((item) => (
           <li
             key={item.key}
-            className="flex items-center justify-between gap-4 py-6 ps-6 pe-3 transition-colors hover:bg-muted/50"
+            className={`flex items-center justify-between gap-4 py-6 ps-6 pe-3 ${ROW_HOVER}`}
           >
             <div className="min-w-0 space-y-1">
               <span className="block text-xl font-medium">

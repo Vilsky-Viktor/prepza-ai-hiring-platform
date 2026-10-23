@@ -195,7 +195,7 @@ export function AskAgentDemo() {
       <div
         ref={ref}
         aria-hidden
-        className="relative flex h-120 flex-col overflow-hidden rounded-3xl bg-popover text-popover-foreground ring-1 ring-foreground/10 motion-reduce:h-auto"
+        className="relative flex h-120 flex-col overflow-hidden rounded-xl bg-surface text-popover-foreground ring-1 ring-foreground/10 motion-reduce:h-auto"
       >
         <DemoPointer
           target={

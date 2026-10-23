@@ -6,7 +6,7 @@ import { NoName } from "@/components/company/no-name"
 import { VirtualList } from "@/components/virtual-list"
 import { WrappedEmail } from "@/components/wrapped-email"
 import { Dot } from "@/components/dot"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { candidateHref, type CandidateLinks } from "@/lib/candidate-links"
 import type { CreditCandidate } from "@/types/company"
@@ -60,7 +60,7 @@ export function ReservedList({
         return (
           <Link
             href={candidateHref(links, companyId, candidate)}
-            className="block space-y-1 p-6 transition-colors hover:bg-muted/50 active:bg-muted/50"
+            className={`block space-y-1 p-6 ${ROW_HOVER}`}
           >
             {content}
           </Link>

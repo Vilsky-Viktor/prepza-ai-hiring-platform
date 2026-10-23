@@ -79,7 +79,7 @@ export function LanguageSwitch() {
     <DropdownMenu>
       <DropdownMenuTrigger
         aria-labelledby={`${labelId} ${valueId}`}
-        className="flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1 leading-5 transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring active:text-foreground dark:bg-input/30"
+        className="flex items-center gap-1.5 rounded-xl bg-surface px-2.5 py-1 leading-5 transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring active:text-foreground"
       >
         <span id={labelId} className="sr-only">
           {t("language")}

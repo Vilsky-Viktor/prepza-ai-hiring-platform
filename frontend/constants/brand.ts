@@ -21,7 +21,7 @@ export const BRAND_VARIABLES: Record<keyof BrandColors, string[]> = {
   card_foreground: ["--card-foreground", "--popover-foreground"],
   primary: ["--primary", "--ring"],
   primary_foreground: ["--primary-foreground"],
-  muted: ["--muted", "--secondary", "--accent"],
+  muted: ["--muted", "--secondary", "--accent", "--surface"],
   muted_foreground: ["--muted-foreground"],
   border: ["--border", "--input"],
 }

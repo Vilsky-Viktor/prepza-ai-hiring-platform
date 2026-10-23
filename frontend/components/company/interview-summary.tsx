@@ -38,15 +38,17 @@ export function InterviewSummary({
         className="flex shrink-0 items-center gap-6"
       >
         {status && <InterviewStatus status={status} />}
-        {/* w-16 less its negative margins: the same 3rem column on every row. */}
-        <IconStat
-          label={t("candidateCount", { count: candidateCount })}
-          icon={<UsersIcon aria-hidden className="size-5" />}
-          className="w-16 justify-end text-sm"
-          data-testid="candidate-count"
-        >
-          {candidateCount}
-        </IconStat>
+        {/* The same 3rem column on every row; the hover background only around the icon and count. */}
+        <span className="flex w-12 shrink-0 justify-end">
+          <IconStat
+            label={t("candidateCount", { count: candidateCount })}
+            icon={<UsersIcon aria-hidden className="size-5" />}
+            className="text-sm"
+            data-testid="candidate-count"
+          >
+            {candidateCount}
+          </IconStat>
+        </span>
       </span>
     </>
   )

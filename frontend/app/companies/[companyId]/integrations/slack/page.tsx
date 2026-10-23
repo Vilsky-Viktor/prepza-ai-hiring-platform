@@ -75,7 +75,7 @@ export default async function SlackPage({
               <img
                 src={SLACK.logo}
                 alt=""
-                className="size-12 shrink-0 rounded-xl bg-muted p-2"
+                className="size-12 shrink-0 rounded-xl bg-surface p-2"
               />
               <div className="min-w-0 space-y-1">
                 <div className="flex items-center gap-3">

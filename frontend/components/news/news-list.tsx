@@ -8,7 +8,7 @@ import { formatDay } from "@/lib/format"
 import { postHeading } from "@/lib/news"
 import { byId } from "@/lib/paged-list"
 import type { NewsPost } from "@/types/news"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 
 /** The news page's posts, newest first, one after another. `initial` is the server's first
  * page; the next loads near the end. */
@@ -41,10 +41,7 @@ function Post({ post }: { post: NewsPost }) {
   const heading = postHeading(post.title)
 
   return (
-    <article
-      id={post.id}
-      className="space-y-3 p-6 transition-colors hover:bg-muted/50 max-sm:py-9"
-    >
+    <article id={post.id} className={`space-y-3 p-6 ${ROW_HOVER} max-sm:py-9`}>
       <div className="space-y-1">
         <h2 className="no-dot font-heading text-2xl font-medium break-words normal-case">
           {heading.text}

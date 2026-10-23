@@ -73,7 +73,7 @@ export default async function ApiPage({
             // On phones the buttons go on their own line, full width, sharing it equally.
             <div className="flex items-start justify-between gap-4 max-sm:flex-col max-sm:items-stretch">
               <div className="flex min-w-0 items-center gap-4">
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-muted">
+                <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-surface">
                   <CodeXmlIcon className="size-6" />
                 </span>
                 <div className="min-w-0 space-y-1">

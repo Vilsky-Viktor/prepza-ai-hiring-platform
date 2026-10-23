@@ -13,6 +13,7 @@ import { gradeTone } from "@/lib/grade-tone"
 import type { Candidate } from "@/types/company"
 import { formatPercent } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"
+import { ROW_HOVER } from "@/constants/lists"
 
 // What a row shows; the assistant's answers may leave out the date or the progress.
 export type CandidateRowData = Pick<
@@ -51,7 +52,7 @@ export function CandidateRow({
     <Link
       href={href}
       onClick={onClick}
-      className="@container block transition-colors hover:bg-muted/50 active:bg-muted/50"
+      className={`@container block ${ROW_HOVER}`}
     >
       <span className="flex flex-col gap-4 p-4 @xl:flex-row @xl:items-center @xl:justify-between @xl:p-6">
         <span className="min-w-0 space-y-1">

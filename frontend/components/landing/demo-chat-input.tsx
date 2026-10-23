@@ -27,7 +27,7 @@ export function DemoChatInput({
     <div
       ref={ref}
       className={cn(
-        "flex min-h-14 items-center gap-2 rounded-[2rem] border border-transparent bg-muted ps-5 pe-2 transition-colors dark:bg-input/30",
+        "flex min-h-14 items-center gap-2 rounded-xl border border-transparent bg-surface ps-5 pe-2 transition-colors",
         typing && "border-ring"
       )}
     >

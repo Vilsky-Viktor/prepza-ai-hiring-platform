@@ -190,7 +190,7 @@ function DemoAnswerItem({ answer }: { answer: DemoAnswer }) {
         <div className="space-y-2">
           <AnswerOptions
             options={answer.picks}
-            className="rounded-xl bg-muted px-4 py-3 text-base font-light"
+            className="rounded-xl bg-surface px-4 py-3 text-base font-light"
           />
           <p className="text-sm text-muted-foreground tabular-nums">
             <Dotted
@@ -202,7 +202,7 @@ function DemoAnswerItem({ answer }: { answer: DemoAnswer }) {
           </p>
         </div>
       ) : (
-        <p className="rounded-xl bg-muted px-4 py-3 text-base font-light">
+        <p className="rounded-xl bg-surface px-4 py-3 text-base font-light">
           {answer.picks[0].answer}
         </p>
       )}

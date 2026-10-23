@@ -7,7 +7,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { InputAction } from "@/components/input-action"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { SupportResult } from "@/types/superadmin"
@@ -81,7 +81,7 @@ export function SupportSearch() {
             <li key={`${result.kind}-${result.id}`}>
               <Link
                 href={`/superadmin/support/${PAGES[result.kind]}/${result.id}`}
-                className="flex items-center gap-4 p-6 transition-colors hover:bg-muted/50 active:bg-muted/50"
+                className={`flex items-center gap-4 p-6 ${ROW_HOVER}`}
               >
                 <span className="min-w-0 flex-1 space-y-1">
                   <span className="block text-lg font-medium break-words normal-case">

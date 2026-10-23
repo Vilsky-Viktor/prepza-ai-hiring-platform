@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { formatPercent } from "@/lib/format"
 import { gradeTone } from "@/lib/grade-tone"
 import { hasMessage } from "@/lib/messages"
+import { ROW_HOVER } from "@/constants/lists"
 
 type Row = { item: Record<string, unknown>; href: string | null }
 
@@ -18,7 +19,7 @@ const CANDIDATE_GRID =
   "grid grid-cols-[minmax(0,1fr)_3.5rem_3.5rem_5.5rem] items-center gap-3"
 const INTERVIEW_GRID =
   "grid grid-cols-[minmax(0,1fr)_5.5rem_4.5rem] items-center gap-3"
-const HEAD = "bg-muted/40 px-3 py-2 text-xs text-muted-foreground"
+const HEAD = "bg-surface px-3 py-2 text-xs text-muted-foreground"
 const CELL_ROW = "px-3 py-2 text-sm"
 const NUMBER = "text-end tabular-nums"
 
@@ -42,10 +43,7 @@ function RowLink({
     <LocalizedLink
       href={href}
       onClick={onNavigate}
-      className={cn(
-        className,
-        "transition-colors hover:bg-muted/50 active:bg-muted/50"
-      )}
+      className={cn(className, ROW_HOVER)}
     >
       {children}
     </LocalizedLink>

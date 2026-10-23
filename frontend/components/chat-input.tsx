@@ -83,7 +83,7 @@ export function ChatInput({
           placeholder={placeholder}
           aria-label={label}
           className={cn(
-            "max-h-40 min-h-16 resize-none overscroll-contain rounded-[2rem] border-0 bg-muted px-6 py-4 pe-20 text-lg shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-lg dark:bg-input/30",
+            "max-h-40 min-h-16 resize-none overscroll-contain rounded-xl border-0 bg-surface px-6 py-4 pe-20 text-lg shadow-none focus-visible:border-transparent focus-visible:ring-0 md:text-lg",
             children && "pe-32"
           )}
         />

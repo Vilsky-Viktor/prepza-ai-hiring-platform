@@ -54,13 +54,13 @@ export function DemoChat({ shown }: { shown: boolean }) {
       <div className="flex items-center gap-3 px-1 pt-1">
         <WhatsAppIcon className="size-7 text-muted-foreground" />
         <Avatar>
-          <AvatarFallback className="bg-muted text-xs">
+          <AvatarFallback className="bg-surface text-xs">
             {DEMO_CHAT.initials}
           </AvatarFallback>
         </Avatar>
         <p className="font-medium">{DEMO_CHAT.name}</p>
       </div>
-      <div className="flex min-h-0 flex-1 flex-col justify-end gap-2 overflow-hidden rounded-2xl bg-muted p-3 sm:p-5">
+      <div className="flex min-h-0 flex-1 flex-col justify-end gap-2 overflow-hidden rounded-xl bg-surface p-3 sm:p-5">
         {/* The team's question, already there. */}
         <div className="max-w-[80%] self-start rounded-xl rounded-es-sm bg-background px-4 pt-3 pb-2">
           <p className="text-sm leading-relaxed">{t("chatQuestion")}</p>

@@ -105,8 +105,8 @@ export function DemoQuestion({
               key={option}
               ref={optionRefs[index]}
               className={cn(
-                "flex items-center gap-3 rounded-2xl border px-4 py-2.5 text-base font-light transition-colors",
-                chosen && "border-ring bg-muted"
+                "flex items-center gap-3 rounded-xl border px-4 py-2.5 text-base font-light transition-colors",
+                chosen && "border-ring bg-surface"
               )}
             >
               {/* A big check box on a multi-answer question, as when playing it. */}

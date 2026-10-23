@@ -39,7 +39,7 @@ export default async function PassRatesPage({
           <div className="flex justify-end">
             {/* A grey pill like the site's selects (components/pill-select.tsx). */}
             <SortMenu
-              className="h-12 rounded-full bg-muted px-5 text-base hover:bg-muted/70 dark:bg-input/30"
+              className="h-12 rounded-xl bg-surface px-5 text-base hover:bg-surface"
               current={sort}
               label={candidates("sortBy", { sort: t(`sortBy.${sort}`) })}
               options={SORTS.map((item) => ({

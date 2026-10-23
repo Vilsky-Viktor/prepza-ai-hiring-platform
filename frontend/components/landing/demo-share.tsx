@@ -28,7 +28,7 @@ export function DemoReportActions({
       </span>
       <span
         ref={shareRef}
-        className={cn(ACTION, pressed && "bg-muted ring-3 ring-ring/50")}
+        className={cn(ACTION, pressed && "bg-surface ring-3 ring-ring/50")}
       >
         <Share2Icon className="size-5" />
       </span>
@@ -77,7 +77,7 @@ export function DemoSharePopup({
                 "flex size-10 items-center justify-center rounded-xl text-muted-foreground transition-shadow",
                 index === 0 &&
                   pressed === "whatsApp" &&
-                  "bg-muted text-foreground ring-3 ring-ring/50"
+                  "bg-surface text-foreground ring-3 ring-ring/50"
               )}
             >
               <Icon className="size-6" />

@@ -195,7 +195,7 @@ export function QualityList({
             </div>
           </div>
           {openReports.includes(rowKey(row)) && (
-            <div className="bg-muted/40 px-6 py-5">
+            <div className="bg-surface px-6 py-5">
               <QuestionReports path={reportsPath(row)} />
             </div>
           )}

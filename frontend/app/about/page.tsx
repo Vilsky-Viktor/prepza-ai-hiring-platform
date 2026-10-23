@@ -84,7 +84,7 @@ export default async function AboutPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
-                    className="flex size-12 items-center justify-center rounded-xl border transition-colors hover:bg-muted [&_svg]:size-6"
+                    className="flex size-12 items-center justify-center rounded-xl border transition-colors hover:bg-surface [&_svg]:size-6"
                   />
                 }
               >

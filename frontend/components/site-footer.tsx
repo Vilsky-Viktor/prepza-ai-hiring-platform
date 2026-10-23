@@ -61,7 +61,7 @@ export async function SiteFooter() {
                 <li key={link.href}>
                   <LocalizedLink
                     href={link.href}
-                    className="-mx-1.5 rounded-md px-1.5 py-0.5 transition-colors hover:text-foreground active:bg-muted active:text-foreground"
+                    className="-mx-1.5 rounded-lg px-1.5 py-0.5 transition-colors hover:text-foreground active:bg-surface active:text-foreground"
                   >
                     {t(link.label)}
                   </LocalizedLink>

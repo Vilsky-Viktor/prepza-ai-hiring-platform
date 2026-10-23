@@ -83,7 +83,7 @@ export default async function TopUpPage() {
         <section className="space-y-4">
           {/* Each company's row lights up on hover, so the eye follows its line. */}
           <div
-            className={`${LIST_BOX} overflow-hidden [&>*]:transition-colors [&>*:hover]:bg-muted/50`}
+            className={`${LIST_BOX} overflow-hidden [&>*]:transition-colors [&>*:hover]:bg-surface`}
           >
             {companies.map((company, index) => (
               <BalanceRow
