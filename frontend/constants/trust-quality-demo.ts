@@ -12,6 +12,11 @@ export const QUALITY_STEPS = [
 
 export type QualityStep = (typeof QUALITY_STEPS)[number]
 
+// Light through the loop's net: each ring's seconds from the chip to the ellipse, and how many
+// rings run at once, evenly apart.
+export const NET_WAVE_SECONDS = 8
+export const NET_WAVES = 2
+
 // The ellipse the steps sit on, centred on the stage: its radii, in percent of the stage's width
 // and height. The steps sit evenly round it, the first at the top, then clockwise, so left and
 // right mirror each other.
@@ -26,4 +31,4 @@ export const TRUST_CARDS = ["person", "fair", "laws", "log"] as const
 export type TrustCard = (typeof TRUST_CARDS)[number]
 
 // The question travelling the loop, this many times the usual traveller's size.
-export const QUESTION_SIZE = 1.9
+export const QUESTION_SIZE = 2.6

@@ -2,7 +2,7 @@
 
 import { cn } from "cn"
 import {
-  BrainIcon,
+  CpuAiIcon,
   ShieldQuestionMarkIcon,
   FlagIcon,
   ListChecksIcon,
@@ -13,6 +13,7 @@ import {
 import { useEffect, useId, useRef, useState } from "react"
 
 import { useStill } from "@/hooks/use-still"
+import { NetWave } from "@/components/landing/net-wave"
 import { Wire, wireLength } from "@/components/landing/wire"
 import { INVITE_SPEED } from "@/constants/invite-demo"
 import {
@@ -33,8 +34,9 @@ const ICONS = {
   rewritten: PenLineIcon,
 }
 
-// A card's padding and border from laptops up, top and bottom together, in pixels (p-5, border).
-const CARD_PADDING = 42
+// A card's padding and border from laptops up, top and bottom together, in pixels (pt-9 under
+// the icon on its edge, pb-5, border).
+const CARD_PADDING = 58
 // The net's mesh, in pixels.
 const NET_CELL = 22
 
@@ -145,7 +147,7 @@ export function QualityLoop({
     <div
       ref={ref}
       aria-hidden
-      className="relative mx-auto h-[26rem] w-full max-w-md lg:h-[44rem] lg:max-w-6xl"
+      className="relative mx-auto h-[26rem] w-full max-w-md lg:h-[37rem] lg:max-w-6xl"
     >
       <svg className="pointer-events-none absolute inset-0 size-full overflow-visible text-ring">
         {/* The net: a fine diamond mesh in the primary colour, inside the ellipse. */}
@@ -174,6 +176,16 @@ export function QualityLoop({
             fill={`url(#${net})`}
           />
         )}
+        {size && playing && !still && (
+          <NetWave
+            cx={size.width / 2}
+            cy={size.height / 2}
+            rx={(QUALITY_ELLIPSE.x * size.width) / 100}
+            ry={(QUALITY_ELLIPSE.y * size.height) / 100}
+            from={40}
+            cell={NET_CELL}
+          />
+        )}
         {wires.map((d, at) => (
           <Wire
             key={at}
@@ -186,13 +198,12 @@ export function QualityLoop({
           />
         ))}
       </svg>
-      {/* The brain at the ellipse's centre, a ring pulsing out of it. */}
-      <span className="absolute top-1/2 left-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-primary lg:size-36">
-        <span
-          data-testid="brain-pulse"
-          className="absolute inset-2 animate-ping rounded-full border-2 border-primary/40 [animation-duration:2.5s] motion-reduce:hidden"
-        />
-        <BrainIcon className="size-16 lg:size-24" strokeWidth={1.5} />
+      {/* The AI chip at the ellipse's centre, light running out of it through the net. */}
+      <span
+        data-testid="ai-chip"
+        className="absolute top-1/2 left-1/2 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-primary lg:size-36"
+      >
+        <CpuAiIcon className="relative size-16 lg:size-24" strokeWidth={1.5} />
       </span>
       {QUALITY_STEPS.map((key, at) => {
         const Icon = ICONS[key]
@@ -209,21 +220,22 @@ export function QualityLoop({
               } as React.CSSProperties
             }
             className={cn(
-              "absolute start-(--x) top-(--y) z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 overflow-hidden rounded-2xl border bg-background p-1.5 text-center lowercase transition-shadow duration-300 lg:h-(--card-h) lg:w-60 lg:justify-start lg:p-5 rtl:translate-x-1/2",
+              "absolute start-(--x) top-(--y) z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 rounded-2xl border bg-background p-1.5 pt-6 text-center lowercase transition-shadow duration-300 lg:h-(--card-h) lg:w-60 lg:justify-start lg:p-5 lg:pt-9 rtl:translate-x-1/2",
               lit === at && "ring-2 ring-primary"
             )}
           >
+            {/* The step's icon, sitting on the card's top edge. */}
+            <span className="absolute top-0 left-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border bg-background text-foreground lg:size-12 [&_svg]:size-5 lg:[&_svg]:size-6">
+              <Icon />
+            </span>
             <span
               ref={(element) => {
                 if (element) {
                   contents.current[at] = element
                 }
               }}
-              className="flex flex-col items-center gap-2 lg:gap-3"
+              className="flex min-w-0 shrink-0 flex-col items-center"
             >
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted text-primary lg:size-12 [&_svg]:size-5 lg:[&_svg]:size-6">
-                <Icon />
-              </span>
               <span className="flex min-w-0 flex-col gap-1">
                 <span className="font-heading text-sm font-medium break-words lg:text-lg">
                   {labels[key]}

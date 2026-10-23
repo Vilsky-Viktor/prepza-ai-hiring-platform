@@ -3,7 +3,7 @@ import { expect, test, type Locator, type Page } from "@playwright/test";
 import { loaded } from "./helpers/waits";
 
 // The home page's "trust, quality and compliance" section: five steps of one size spaced evenly
-// round an ellipse, a question running round them and lighting each in turn, a pulsing brain in
+// round an ellipse, a question running round them and lighting each in turn, the AI chip with light running out of it through the net in
 // the middle; with reduced motion all of it still. Under it, four columns, one linking to the
 // documents.
 
@@ -57,7 +57,8 @@ test("the steps light up one at a time, in order round the ring", async ({
   const first = await litStep(page, steps);
   const next = await litStep(page, steps, first);
   expect(next).toBe((first + 1) % 5);
-  await expect(section.getByTestId("brain-pulse")).toBeVisible();
+  await expect(section.getByTestId("ai-chip")).toBeVisible();
+  await expect(section.getByTestId("net-wave")).toHaveCount(1);
 });
 
 test("the steps are one size, mirrored round the middle, and lighting keeps the size", async ({
@@ -91,7 +92,7 @@ test("the steps are one size, mirrored round the middle, and lighting keeps the 
   ]);
 });
 
-test("with reduced motion, no step lights up and the brain holds still", async ({
+test("with reduced motion, no step lights up", async ({
   page,
 }) => {
   test.setTimeout(120_000);
@@ -102,7 +103,7 @@ test("with reduced motion, no step lights up and the brain holds still", async (
 
   await expect(section.getByTestId("quality-step")).toHaveCount(5);
   await expect(section.locator("[data-lit]")).toHaveCount(0);
-  await expect(section.getByTestId("brain-pulse")).toBeHidden();
+  await expect(section.getByTestId("net-wave")).toHaveCount(0);
 });
 
 test("the four columns show, one linking to the documents", async ({
