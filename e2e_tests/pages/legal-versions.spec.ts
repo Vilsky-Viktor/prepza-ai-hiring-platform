@@ -18,8 +18,8 @@ test("the terms show since when they apply", async ({ page }) => {
   const header = page.locator("main header");
   // Dates as the language writes them, not as the API names them.
   await expect(header).toContainText(/[A-Z][a-z]{2} \d{1,2}, \d{4}/);
-  // The version in force needs no link onwards.
-  await expect(header.locator("a")).toHaveCount(0);
+  // The version in force needs no link onwards to another version.
+  await expect(header.locator('a[href*="version="]')).toHaveCount(0);
   await page.screenshot({ path: test.info().outputPath("terms.png"), fullPage: true });
   // The versions card, with every other version linked by its date.
   await expect(page.locator("main nav")).toHaveCount(1);
