@@ -748,8 +748,8 @@
     "use": "Kasuta malli",
     "using": "Alustamine…",
     "useFailed": "Sellest mallist ei õnnestunud intervjuud alustada. Proovi uuesti.",
-    "inProgress": "Pooleli: {done}/{total, plural, one {# teema} other {# teemat}}",
-    "completed": "Lõpetatud: {done}/{total, plural, one {# teema} other {# teemat}}",
+    "inProgress": "pooleli: {done}/{total, plural, one {# teema} other {# teemat}}",
+    "completed": "lõpetatud: {done}/{total, plural, one {# teema} other {# teemat}}",
     "warningText": "<b>Mallid on valmis tavaliste ametite jaoks.</b> Täpsema sobivuse jaoks loo intervjuu oma töökuulutuse põhjal."
   },
   "billing": {

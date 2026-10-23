@@ -748,8 +748,8 @@
     "use": "Usar modelo",
     "using": "Iniciando…",
     "useFailed": "Não foi possível iniciar uma entrevista a partir deste modelo. Tente novamente.",
-    "inProgress": "Em andamento: {done}/{total, plural, one {# tópico} other {# tópicos}}",
-    "completed": "Concluído: {done}/{total, plural, one {# tópico} other {# tópicos}}",
+    "inProgress": "em andamento: {done}/{total, plural, one {# tópico} other {# tópicos}}",
+    "completed": "concluído: {done}/{total, plural, one {# tópico} other {# tópicos}}",
     "warningText": "<b>Os modelos estão prontos para cargos comuns.</b> Para algo mais ajustado, crie uma entrevista a partir da sua descrição de vaga."
   },
   "billing": {

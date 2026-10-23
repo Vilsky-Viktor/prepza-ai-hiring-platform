@@ -748,8 +748,8 @@
     "use": "Gamitin ang template",
     "using": "Sinisimulan…",
     "useFailed": "Hindi makapagsimula ng interview mula sa template na ito. Pakisubukang muli.",
-    "inProgress": "Ginagawa pa: {done}/{total, plural, one {# topic} other {# topic}}",
-    "completed": "Tapos na: {done}/{total, plural, one {# topic} other {# topic}}",
+    "inProgress": "ginagawa pa: {done}/{total, plural, one {# topic} other {# topic}}",
+    "completed": "tapos na: {done}/{total, plural, one {# topic} other {# topic}}",
     "warningText": "<b>Handa na ang mga template para sa mga karaniwang role.</b> Para mas tumugma, gumawa ng interview mula sa iyong job description."
   },
   "billing": {

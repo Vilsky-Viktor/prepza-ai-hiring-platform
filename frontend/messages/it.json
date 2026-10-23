@@ -748,8 +748,8 @@
     "use": "Usa modello",
     "using": "Avvio…",
     "useFailed": "Impossibile avviare un colloquio da questo modello. Riprova.",
-    "inProgress": "In corso: {done}/{total, plural, one {# argomento} other {# argomenti}}",
-    "completed": "Completato: {done}/{total, plural, one {# argomento} other {# argomenti}}",
+    "inProgress": "in corso: {done}/{total, plural, one {# argomento} other {# argomenti}}",
+    "completed": "completato: {done}/{total, plural, one {# argomento} other {# argomenti}}",
     "warningText": "<b>I modelli sono pronti per i ruoli più comuni.</b> Per un risultato più mirato, crea un colloquio dalla tua descrizione del ruolo."
   },
   "billing": {

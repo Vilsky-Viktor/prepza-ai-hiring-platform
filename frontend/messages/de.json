@@ -748,8 +748,8 @@
     "use": "Vorlage verwenden",
     "using": "Wird gestartet…",
     "useFailed": "Mit dieser Vorlage konnte kein Interview gestartet werden. Bitte versuche es erneut.",
-    "inProgress": "In Bearbeitung: {done}/{total, plural, one {# Thema} other {# Themen}}",
-    "completed": "Abgeschlossen: {done}/{total, plural, one {# Thema} other {# Themen}}",
+    "inProgress": "in Bearbeitung: {done}/{total, plural, one {# Thema} other {# Themen}}",
+    "completed": "abgeschlossen: {done}/{total, plural, one {# Thema} other {# Themen}}",
     "warningText": "<b>Vorlagen sind fertige Interviews für gängige Rollen.</b> Für eine genauere Passung erstelle ein Interview aus deiner Stellenbeschreibung."
   },
   "billing": {
