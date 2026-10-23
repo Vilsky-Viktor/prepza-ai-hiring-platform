@@ -10,6 +10,7 @@ from app.schemas.library import TopicQuestions
 from app.schemas.practice import (
     PracticeRoundOut,
     PracticeRoundSummary,
+    PracticeStatusOut,
     PracticeTimingOut,
     PracticeTopicProgress,
     PracticeTopicResult,
@@ -127,4 +128,24 @@ def topic_progress(rows: list) -> list[PracticeTopicProgress]:
         )
         for row in rows
         if row.candidate_invite_id == latest
+    ]
+
+
+def practice_statuses(sections: list[tuple]) -> list[PracticeStatusOut]:
+    """Each practiced template's status from the (template, status) of its latest round's
+    sections: completed once every topic is finished, otherwise in progress with the topics
+    finished so far."""
+    statuses = {}
+
+    for template_id, status in sections:
+        statuses.setdefault(template_id, []).append(status)
+
+    return [
+        PracticeStatusOut(
+            template_id=template_id,
+            status="completed" if interview_finished(found) else "in_progress",
+            topics_done=sum(1 for status in found if status == RoundStatus.FINISHED),
+            topics_total=len(found),
+        )
+        for template_id, found in statuses.items()
     ]

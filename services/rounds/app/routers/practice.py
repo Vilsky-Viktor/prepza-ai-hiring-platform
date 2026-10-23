@@ -16,6 +16,7 @@ from app.constants.practice import (
     STANDARD_TIMING,
 )
 from app.helpers.practice import (
+    practice_statuses,
     practice_timings,
     practice_topics,
     round_out,
@@ -32,6 +33,7 @@ from app.schemas.practice import (
     PracticeSizeOut,
     PracticeStartIn,
     PracticeStartOut,
+    PracticeStatusOut,
     PracticeTopicProgress,
 )
 from app.storage import practice_sessions, sessions
@@ -76,6 +78,13 @@ async def start_practice(
     )
 
     return PracticeStartOut(round_id=round_id, session_id=rows[0].id)
+
+
+@router.get("/statuses")
+async def list_statuses(user: CurrentUser) -> list[PracticeStatusOut]:
+    """Where the talent is on each template they practiced, for the practice list: one entry
+    a template, never started ones left out."""
+    return practice_statuses(await practice_sessions.latest_round_sections(user.uid))
 
 
 @router.get("/{template_id}/size")

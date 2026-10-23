@@ -68,6 +68,17 @@ class PracticeTopicProgress(BaseModel):
     total: int
 
 
+class PracticeStatusOut(BaseModel):
+    """Where the talent is on a template they practiced, from their latest round on it; a
+    template missing from the list was never started."""
+
+    template_id: UUID
+    status: Literal["in_progress", "completed"]
+    # The latest round's finished topics, and all its topics.
+    topics_done: int
+    topics_total: int
+
+
 class PracticeTimingOut(BaseModel):
     """A time per question the talent can choose before a round."""
 

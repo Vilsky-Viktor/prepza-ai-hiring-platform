@@ -99,6 +99,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/practice/statuses": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * List Statuses
+     * @description Where the talent is on each template they practiced, for the practice list: one entry
+     *     a template, never started ones left out.
+     */
+    get: operations["list_statuses_practice_statuses_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/practice/{template_id}/size": {
     parameters: {
       query?: never
@@ -1146,6 +1167,27 @@ export interface components {
       session_id: string
     }
     /**
+     * PracticeStatusOut
+     * @description Where the talent is on a template they practiced, from their latest round on it; a
+     *     template missing from the list was never started.
+     */
+    PracticeStatusOut: {
+      /**
+       * Template Id
+       * Format: uuid
+       */
+      template_id: string
+      /**
+       * Status
+       * @enum {string}
+       */
+      status: "in_progress" | "completed"
+      /** Topics Done */
+      topics_done: number
+      /** Topics Total */
+      topics_total: number
+    }
+    /**
      * PracticeTimingOut
      * @description A time per question the talent can choose before a round.
      */
@@ -1618,6 +1660,26 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  list_statuses_practice_statuses_get: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["PracticeStatusOut"][]
         }
       }
     }

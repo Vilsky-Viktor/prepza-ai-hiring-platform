@@ -272,6 +272,37 @@
     }
    }
   },
+  "/practice/statuses": {
+   "get": {
+    "tags": [
+     "practice"
+    ],
+    "summary": "List Statuses",
+    "description": "Where the talent is on each template they practiced, for the practice list: one entry\na template, never started ones left out.",
+    "operationId": "list_statuses_practice_statuses_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/PracticeStatusOut"
+         },
+         "type": "array",
+         "title": "Response List Statuses Practice Statuses Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
   "/practice/{template_id}/size": {
    "get": {
     "tags": [
@@ -2807,6 +2838,40 @@
     ],
     "title": "PracticeStartOut",
     "description": "A new practice round: its id, and the first section to open."
+   },
+   "PracticeStatusOut": {
+    "properties": {
+     "template_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Template Id"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "in_progress",
+       "completed"
+      ],
+      "title": "Status"
+     },
+     "topics_done": {
+      "type": "integer",
+      "title": "Topics Done"
+     },
+     "topics_total": {
+      "type": "integer",
+      "title": "Topics Total"
+     }
+    },
+    "type": "object",
+    "required": [
+     "template_id",
+     "status",
+     "topics_done",
+     "topics_total"
+    ],
+    "title": "PracticeStatusOut",
+    "description": "Where the talent is on a template they practiced, from their latest round on it; a\ntemplate missing from the list was never started."
    },
    "PracticeTimingOut": {
     "properties": {
