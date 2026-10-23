@@ -2170,7 +2170,8 @@
         "set_extra_time": "给予额外时间",
         "set_pass_mark": "设置及格线",
         "set_question_seconds": "设置每题时间",
-        "mark_hired": "将面试标为已录用"
+        "mark_hired": "将面试标为已录用",
+        "keep_questions_private": "不将题目加入共享题库"
       },
       "fields": {
         "company": "公司",
@@ -2184,6 +2185,7 @@
         "question_seconds": "每题秒数",
         "pass_mark": "及格线 (%)",
         "hired": "已录用",
+        "keep_private": "不在共享题库中",
         "on": "分享链接已开启",
         "limit": "每位候选人的题数",
         "instructions": "更改",

@@ -2170,7 +2170,8 @@
         "set_extra_time": "Accorder du temps supplémentaire",
         "set_pass_mark": "Définir le seuil de réussite",
         "set_question_seconds": "Définir le temps par question",
-        "mark_hired": "Marquer l'entretien comme pourvu"
+        "mark_hired": "Marquer l'entretien comme pourvu",
+        "keep_questions_private": "Garder les questions hors de la banque de questions partagée"
       },
       "fields": {
         "company": "Entreprise",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Secondes par question",
         "pass_mark": "Seuil de réussite (%)",
         "hired": "Recruté",
+        "keep_private": "Hors de la banque de questions partagée",
         "on": "Lien à partager activé",
         "limit": "Questions par candidat",
         "instructions": "Modifications",

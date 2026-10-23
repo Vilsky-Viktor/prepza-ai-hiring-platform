@@ -1277,6 +1277,23 @@
      }
     ]
    }
+  },
+  {
+   "id": "e13",
+   "kind": "edit",
+   "page": "interviewsA",
+   "message": "Keep the Data Analyst interview's questions out of the shared question bank.",
+   "expect": {
+    "actions": [
+     {
+      "tool": "keep_questions_private",
+      "args": {
+       "interview_id": "{interview1}",
+       "keep_private": true
+      }
+     }
+    ]
+   }
   }
  ],
  "judge_traps": [

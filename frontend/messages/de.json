@@ -2170,7 +2170,8 @@
         "set_extra_time": "Zusätzliche Zeit geben",
         "set_pass_mark": "Bestehensgrenze festlegen",
         "set_question_seconds": "Zeit pro Frage festlegen",
-        "mark_hired": "Interview als besetzt markieren"
+        "mark_hired": "Interview als besetzt markieren",
+        "keep_questions_private": "Fragen aus dem gemeinsamen Fragenpool heraushalten"
       },
       "fields": {
         "company": "Unternehmen",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Sekunden pro Frage",
         "pass_mark": "Bestehensgrenze (%)",
         "hired": "Eingestellt",
+        "keep_private": "Aus dem gemeinsamen Fragenpool herausgehalten",
         "on": "Teilbarer Link an",
         "limit": "Fragen pro Kandidat",
         "instructions": "Änderungen",

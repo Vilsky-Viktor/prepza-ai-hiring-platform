@@ -2170,7 +2170,8 @@
         "set_extra_time": "Anna lisaaega",
         "set_pass_mark": "Määra läbimise piir",
         "set_question_seconds": "Määra aeg küsimuse kohta",
-        "mark_hired": "Märgi intervjuu täidetuks"
+        "mark_hired": "Märgi intervjuu täidetuks",
+        "keep_questions_private": "Hoia küsimused ühisest küsimustepangast väljas"
       },
       "fields": {
         "company": "Ettevõte",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Sekundit küsimuse kohta",
         "pass_mark": "Läbimise piir (%)",
         "hired": "Palgatud",
+        "keep_private": "Ühisest küsimustepangast väljas",
         "on": "Jagatav link sees",
         "limit": "Küsimusi kandidaadi kohta",
         "instructions": "Muudatused",

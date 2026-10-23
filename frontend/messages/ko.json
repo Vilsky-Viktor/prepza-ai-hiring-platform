@@ -2170,7 +2170,8 @@
         "set_extra_time": "추가 시간 부여",
         "set_pass_mark": "합격 기준 설정",
         "set_question_seconds": "질문당 시간 설정",
-        "mark_hired": "면접을 채용 완료로 표시"
+        "mark_hired": "면접을 채용 완료로 표시",
+        "keep_questions_private": "질문을 공유 문제 은행에서 제외"
       },
       "fields": {
         "company": "회사",
@@ -2184,6 +2185,7 @@
         "question_seconds": "질문당 초",
         "pass_mark": "합격 기준 (%)",
         "hired": "채용됨",
+        "keep_private": "공유 문제 은행에서 제외됨",
         "on": "공유 링크 켜짐",
         "limit": "지원자당 질문 수",
         "instructions": "변경 사항",

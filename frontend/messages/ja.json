@@ -2170,7 +2170,8 @@
         "set_extra_time": "延長時間を付与",
         "set_pass_mark": "合格ラインを設定",
         "set_question_seconds": "1 問あたりの時間を設定",
-        "mark_hired": "面接を採用済みにする"
+        "mark_hired": "面接を採用済みにする",
+        "keep_questions_private": "質問を共有問題バンクに含めない"
       },
       "fields": {
         "company": "会社",
@@ -2184,6 +2185,7 @@
         "question_seconds": "1 問あたりの秒数",
         "pass_mark": "合格ライン (%)",
         "hired": "採用済み",
+        "keep_private": "共有問題バンクに含めない",
         "on": "共有リンクをオン",
         "limit": "候補者ごとの質問数",
         "instructions": "変更内容",

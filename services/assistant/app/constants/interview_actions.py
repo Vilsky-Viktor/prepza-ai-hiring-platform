@@ -102,6 +102,16 @@ INTERVIEW_ACTIONS = {
         required=["hired"],
         fields=INTERVIEW_FIELDS,
     ),
+    "keep_questions_private": interview_action(
+        "PATCH",
+        "/interviews/{interview_id}/settings",
+        "Keep an interview's questions out of prepza's shared question bank, which other "
+        "companies' interviews reuse questions from (true), or let them join it again (false). "
+        "Questions already reused in other interviews stay there.",
+        body=["keep_private"],
+        required=["keep_private"],
+        fields=[*INTERVIEW_FIELDS, "keep_private"],
+    ),
     "set_interview_link": interview_action(
         "PUT",
         "/interviews/{interview_id}/link",

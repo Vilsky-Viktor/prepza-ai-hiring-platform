@@ -44,6 +44,7 @@ MCP_TITLES = {
     "set_pass_mark": "Set the pass mark",
     "set_question_seconds": "Set the time per question",
     "mark_hired": "Mark as hired",
+    "keep_questions_private": "Keep questions out of the shared bank",
     "set_interview_link": "Set the interview link",
     "set_topic_limit": "Set a topic's question count",
     "regenerate_question": "Regenerate a question",

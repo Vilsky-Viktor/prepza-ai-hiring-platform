@@ -2170,7 +2170,8 @@
         "set_extra_time": "Give extra time",
         "set_pass_mark": "Set the pass mark",
         "set_question_seconds": "Set the time per question",
-        "mark_hired": "Mark the interview as hired"
+        "mark_hired": "Mark the interview as hired",
+        "keep_questions_private": "Keep the questions out of the shared question bank"
       },
       "fields": {
         "company": "Company",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Seconds per question",
         "pass_mark": "Pass mark (%)",
         "hired": "Hired",
+        "keep_private": "Kept out of the shared question bank",
         "on": "Shareable link on",
         "limit": "Questions per candidate",
         "instructions": "Changes",

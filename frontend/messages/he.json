@@ -2170,7 +2170,8 @@
         "set_extra_time": "מתן זמן נוסף",
         "set_pass_mark": "קביעת ציון עובר",
         "set_question_seconds": "קביעת זמן לשאלה",
-        "mark_hired": "סימון הראיון כגיוס שהושלם"
+        "mark_hired": "סימון הראיון כגיוס שהושלם",
+        "keep_questions_private": "השארת השאלות מחוץ למאגר השאלות המשותף"
       },
       "fields": {
         "company": "חברה",
@@ -2184,6 +2185,7 @@
         "question_seconds": "שניות לשאלה",
         "pass_mark": "ציון עובר (%)",
         "hired": "גויס",
+        "keep_private": "מחוץ למאגר השאלות המשותף",
         "on": "קישור לשיתוף פעיל",
         "limit": "שאלות למועמד",
         "instructions": "שינויים",

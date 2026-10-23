@@ -2170,7 +2170,8 @@
         "set_extra_time": "Beri waktu tambahan",
         "set_pass_mark": "Atur nilai lulus",
         "set_question_seconds": "Atur waktu per pertanyaan",
-        "mark_hired": "Tandai wawancara sudah merekrut"
+        "mark_hired": "Tandai wawancara sudah merekrut",
+        "keep_questions_private": "Jangan masukkan pertanyaan ke bank soal bersama"
       },
       "fields": {
         "company": "Perusahaan",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Detik per pertanyaan",
         "pass_mark": "Nilai lulus (%)",
         "hired": "Diterima",
+        "keep_private": "Tidak masuk bank soal bersama",
         "on": "Tautan berbagi aktif",
         "limit": "Pertanyaan per kandidat",
         "instructions": "Perubahan",

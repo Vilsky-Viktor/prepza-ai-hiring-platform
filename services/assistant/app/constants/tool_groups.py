@@ -60,6 +60,7 @@ TOOL_GROUPS = {
             "delete_interview",
             "set_pass_mark",
             "set_question_seconds",
+            "keep_questions_private",
             "set_topic_limit",
             "list_topic_questions",
             "regenerate_question",

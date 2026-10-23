@@ -2170,7 +2170,8 @@
         "set_extra_time": "Dar tempo extra",
         "set_pass_mark": "Definir a nota de aprovação",
         "set_question_seconds": "Definir o tempo por pergunta",
-        "mark_hired": "Marcar a entrevista como contratada"
+        "mark_hired": "Marcar a entrevista como contratada",
+        "keep_questions_private": "Manter as perguntas fora do banco de perguntas compartilhado"
       },
       "fields": {
         "company": "Empresa",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Segundos por pergunta",
         "pass_mark": "Nota de aprovação (%)",
         "hired": "Contratado",
+        "keep_private": "Fora do banco de perguntas compartilhado",
         "on": "Link compartilhável ativo",
         "limit": "Perguntas por candidato",
         "instructions": "Mudanças",

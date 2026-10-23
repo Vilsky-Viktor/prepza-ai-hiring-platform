@@ -112,11 +112,12 @@ one), writes no link in its text and doesn't keep retrying.
 
 ## `assistant_actions.json` (by hand, 2026-10-20)
 
-The assistant's action test (`../scripts/assistant_actions.py`): 67 panel messages on 11 pages,
-against the page-context fixture plus an empty second company and a pending team member. 43 ask
+The assistant's action test (`../scripts/assistant_actions.py`): 68 panel messages on 11 pages,
+against the page-context fixture plus an empty second company and a pending team member. 44 ask
 for an action of each kind: creating (a company, an interview from a pasted description, one that
 only mentions an AI assistant and keeps those words), inviting (a candidate, several, a team
-member), editing (pass mark, time per question, names, roles, language), deleting (an interview,
+member), editing (pass mark, time per question, keeping an interview's questions out of the
+shared bank, names, roles, language), deleting (an interview,
 a company, a member, the account), buying (credits, auto top-up: a link, as the assistant can't
 charge) and connecting (an ATS, Slack, an API key: a link, asked from other pages and on the
 billing and integrations pages themselves; a web hook: an action), each with the action and

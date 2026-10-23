@@ -2170,7 +2170,8 @@
         "set_extra_time": "Daj dodatkowy czas",
         "set_pass_mark": "Ustaw próg zaliczenia",
         "set_question_seconds": "Ustaw czas na pytanie",
-        "mark_hired": "Oznacz rozmowę jako zakończoną zatrudnieniem"
+        "mark_hired": "Oznacz rozmowę jako zakończoną zatrudnieniem",
+        "keep_questions_private": "Nie dodawaj pytań do wspólnej bazy pytań"
       },
       "fields": {
         "company": "Firma",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Sekund na pytanie",
         "pass_mark": "Próg zaliczenia (%)",
         "hired": "Zatrudniony",
+        "keep_private": "Poza wspólną bazą pytań",
         "on": "Link do udostępnienia włączony",
         "limit": "Pytań na kandydata",
         "instructions": "Zmiany",

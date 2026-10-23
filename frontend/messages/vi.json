@@ -2170,7 +2170,8 @@
         "set_extra_time": "Cho thêm thời gian",
         "set_pass_mark": "Đặt điểm đạt",
         "set_question_seconds": "Đặt thời gian mỗi câu hỏi",
-        "mark_hired": "Đánh dấu buổi phỏng vấn đã tuyển được"
+        "mark_hired": "Đánh dấu buổi phỏng vấn đã tuyển được",
+        "keep_questions_private": "Không đưa câu hỏi vào ngân hàng câu hỏi dùng chung"
       },
       "fields": {
         "company": "Công ty",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Giây mỗi câu hỏi",
         "pass_mark": "Điểm đạt (%)",
         "hired": "Đã tuyển",
+        "keep_private": "Không thuộc ngân hàng câu hỏi dùng chung",
         "on": "Liên kết chia sẻ đang bật",
         "limit": "Câu hỏi mỗi ứng viên",
         "instructions": "Thay đổi",

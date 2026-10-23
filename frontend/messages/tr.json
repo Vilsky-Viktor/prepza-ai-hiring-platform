@@ -2170,7 +2170,8 @@
         "set_extra_time": "Ek süre ver",
         "set_pass_mark": "Geçme notunu ayarla",
         "set_question_seconds": "Soru başına süreyi ayarla",
-        "mark_hired": "Mülakatı işe alım yapıldı olarak işaretle"
+        "mark_hired": "Mülakatı işe alım yapıldı olarak işaretle",
+        "keep_questions_private": "Soruları ortak soru bankasının dışında tut"
       },
       "fields": {
         "company": "Şirket",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Soru başına saniye",
         "pass_mark": "Geçme notu (%)",
         "hired": "İşe alındı",
+        "keep_private": "Ortak soru bankasının dışında",
         "on": "Paylaşılabilir bağlantı açık",
         "limit": "Aday başına soru",
         "instructions": "Değişiklikler",

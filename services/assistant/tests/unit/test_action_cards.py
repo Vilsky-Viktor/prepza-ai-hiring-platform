@@ -70,6 +70,7 @@ def test_each_setting_is_its_own_action_and_needs_its_value():
         ("set_pass_mark", "pass_mark"),
         ("set_question_seconds", "question_seconds"),
         ("mark_hired", "hired"),
+        ("keep_questions_private", "keep_private"),
     ]:
         parameters = tools()[name].parameters
 

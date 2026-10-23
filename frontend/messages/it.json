@@ -2170,7 +2170,8 @@
         "set_extra_time": "Concedi tempo extra",
         "set_pass_mark": "Imposta la soglia di superamento",
         "set_question_seconds": "Imposta il tempo per domanda",
-        "mark_hired": "Segna il colloquio come assunzione fatta"
+        "mark_hired": "Segna il colloquio come assunzione fatta",
+        "keep_questions_private": "Escludi le domande dalla banca domande condivisa"
       },
       "fields": {
         "company": "Azienda",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Secondi per domanda",
         "pass_mark": "Soglia di superamento (%)",
         "hired": "Assunto",
+        "keep_private": "Escluse dalla banca domande condivisa",
         "on": "Link condivisibile attivo",
         "limit": "Domande per candidato",
         "instructions": "Modifiche",

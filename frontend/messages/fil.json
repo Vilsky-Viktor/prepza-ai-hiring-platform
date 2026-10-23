@@ -2170,7 +2170,8 @@
         "set_extra_time": "Magbigay ng dagdag na oras",
         "set_pass_mark": "Itakda ang pass mark",
         "set_question_seconds": "Itakda ang oras bawat tanong",
-        "mark_hired": "Markahang may na-hire ang interview"
+        "mark_hired": "Markahang may na-hire ang interview",
+        "keep_questions_private": "Huwag isama ang mga tanong sa shared question bank"
       },
       "fields": {
         "company": "Kumpanya",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Segundo bawat tanong",
         "pass_mark": "Pass mark (%)",
         "hired": "Na-hire",
+        "keep_private": "Hindi kasama sa shared question bank",
         "on": "Naka-on ang shareable link",
         "limit": "Tanong bawat aplikante",
         "instructions": "Mga pagbabago",

@@ -286,3 +286,14 @@ stays within them. `page_context.py` and `guides.py`, 2 repeats (`…_routed.jso
 checks 16/18 both, the guide called 10/10 both, $0.33 → $0.19 for the run; guides correct 39 →
 39/40, complete 26 → 24, read the right one 38 → 40, linked 37 → 38, general correct 28 → 25/30,
 $0.27 → $0.17. All within the judge's noise. $4.30 for the runs.
+
+## Keeping an interview's questions out of the shared bank (2026-10-23, kept)
+
+A new tool, `keep_questions_private` (the interview's `keep_private` setting, in the interview
+setup group), and its case e13 ("Keep the Data Analyst interview's questions out of the shared
+question bank."). `assistant_actions.py`, 2 repeats, 68 cases (`…_bank.json`): task success
+94.2% (89.0–97.0) against 97.8% (93.7–99.2), within both intervals; e13 2 of 2, arguments 100%,
+injection safe 100%, judge traps 8/8; 13,200 tokens, $0.0014, 11.4 s a turn. Of its 8 failures, 3
+were OpenAI connection errors (i02, i04, i06) and e07 (a pass mark without an interview: it picked
+one instead of asking) failed twice; run again with 3 repeats (`…_bank-recheck.json`), e07, i02,
+i04, i06 and e13 passed 15 of 15. $0.30 in all.

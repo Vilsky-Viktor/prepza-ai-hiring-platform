@@ -10074,6 +10074,11 @@
       "type": "boolean",
       "title": "Can Edit",
       "default": false
+     },
+     "keep_private": {
+      "type": "boolean",
+      "title": "Keep Private",
+      "default": false
      }
     },
     "type": "object",
@@ -10323,6 +10328,17 @@
        }
       ],
       "title": "Pass Mark"
+     },
+     "keep_private": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Keep Private"
      }
     },
     "type": "object",

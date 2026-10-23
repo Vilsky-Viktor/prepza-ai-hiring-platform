@@ -2170,7 +2170,8 @@
         "set_extra_time": "Extra tijd geven",
         "set_pass_mark": "Slaaggrens instellen",
         "set_question_seconds": "Tijd per vraag instellen",
-        "mark_hired": "Interview als ingevuld markeren"
+        "mark_hired": "Interview als ingevuld markeren",
+        "keep_questions_private": "De vragen buiten de gedeelde vragenbank houden"
       },
       "fields": {
         "company": "Bedrijf",
@@ -2184,6 +2185,7 @@
         "question_seconds": "Seconden per vraag",
         "pass_mark": "Slaaggrens (%)",
         "hired": "Aangenomen",
+        "keep_private": "Buiten de gedeelde vragenbank gehouden",
         "on": "Deelbare link aan",
         "limit": "Vragen per kandidaat",
         "instructions": "Wijzigingen",
