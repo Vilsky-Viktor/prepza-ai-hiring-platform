@@ -4,6 +4,12 @@ import { useId } from "react"
 
 import { NET_WAVE_SECONDS, NET_WAVES } from "@/constants/trust-quality-demo"
 
+// A ring's width and its blur's deviation, in pixels, and the room its glow takes beyond the
+// net's edge: half its width and three deviations.
+const RING_WIDTH = 44
+const BLUR = 24
+const BLUR_ROOM = RING_WIDTH / 2 + 3 * BLUR
+
 /** Light running through the quality loop's net, for its SVG: soft rings that spread from the
  * centre (`cx`, `cy`, from the chip's edge, `from` pixels out) to the ellipse's edge (`rx`, `ry`),
  * brightening only the net's lines as they pass, a few at a time. `cell` is the net's cell, in
@@ -49,8 +55,17 @@ export function NetWave({
             className="stroke-primary"
           />
         </pattern>
-        <filter id={soft}>
-          <feGaussianBlur stdDeviation={24} />
+        {/* The blur may draw over the whole net and round it: the usual 10% round each ring
+            cut its glow off square, so the light ran out as a rectangle, not an oval. */}
+        <filter
+          id={soft}
+          filterUnits="userSpaceOnUse"
+          x={cx - rx - BLUR_ROOM}
+          y={cy - ry - BLUR_ROOM}
+          width={2 * (rx + BLUR_ROOM)}
+          height={2 * (ry + BLUR_ROOM)}
+        >
+          <feGaussianBlur stdDeviation={BLUR} />
         </filter>
         {/* The rings: soft white bands growing from the chip to the edge, fading near it. */}
         <mask id={rings} maskUnits="userSpaceOnUse">
@@ -64,7 +79,7 @@ export function NetWave({
                 cy={cy}
                 fill="none"
                 stroke="white"
-                strokeWidth={44}
+                strokeWidth={RING_WIDTH}
                 filter={`url(#${soft})`}
                 opacity={0}
               >

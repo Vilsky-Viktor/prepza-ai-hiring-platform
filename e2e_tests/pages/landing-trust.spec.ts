@@ -159,6 +159,53 @@ test("the light runs through the whole net, left of the chip as well as right", 
   expect(lit[1].equals(dark[1])).toBe(false);
 });
 
+test("the light spreads as an oval, its glow never cut off square", async ({ page }) => {
+  test.setTimeout(120_000);
+  const section = await openTrust(page);
+  await expect(section.getByTestId("net-wave")).toHaveCount(1);
+
+  // Every ring, at every size up to the net's edge, against the box its blur may draw in: the
+  // ring's band plus three of the blur's deviations must fit, or its glow is cut off straight.
+  const cut = await section
+    .locator('svg:has([data-testid="net-wave"])')
+    .evaluate((svg: SVGSVGElement) => {
+      const edge = svg.querySelector<SVGEllipseElement>('[data-testid="net-wave"] > ellipse')!;
+      const [cx, cy, rx, ry] = ["cx", "cy", "rx", "ry"].map((part) =>
+        Number(edge.getAttribute(part)),
+      );
+
+      return [...svg.querySelectorAll<SVGEllipseElement>('[data-testid="net-wave"] mask ellipse')]
+        .flatMap((ring) => {
+          const filter = svg.querySelector<SVGFilterElement>(
+            ring.getAttribute("filter")!.slice(4, -1),
+          )!;
+          const blur = Number(filter.querySelector("feGaussianBlur")!.getAttribute("stdDeviation"));
+          const reach = Number(ring.getAttribute("stroke-width")) / 2 + 3 * blur;
+          // The region in the drawing's units; relative to each ring's box otherwise (by default,
+          // 10% round it), checked at the ring's largest.
+          const user = filter.getAttribute("filterUnits") === "userSpaceOnUse";
+          const at = (part: string, start: number, size: number, fallback: number) => {
+            const value = filter.getAttribute(part);
+            const share = value === null ? fallback : parseFloat(value) / 100;
+
+            return user && value !== null ? Number(value) : start + share * size;
+          };
+          const left = at("x", cx - rx, 2 * rx, -0.1);
+          const top = at("y", cy - ry, 2 * ry, -0.1);
+          const right = left + at("width", 0, 2 * rx, 1.2);
+          const bottom = top + at("height", 0, 2 * ry, 1.2);
+
+          return [
+            left > cx - rx - reach,
+            top > cy - ry - reach,
+            right < cx + rx + reach,
+            bottom < cy + ry + reach,
+          ].filter(Boolean);
+        });
+    });
+  expect(cut).toEqual([]);
+});
+
 test("with reduced motion, no step lights up", async ({
   page,
 }) => {
