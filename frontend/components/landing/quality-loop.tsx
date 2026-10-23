@@ -92,14 +92,16 @@ export function QualityLoop({
       stage!.style.setProperty("--card-h", `${tallest + CARD_PADDING}px`)
       setSize({ width, height })
       const mirrored = getComputedStyle(stage!).direction === "rtl"
+      // From the stage's centre, the drawing's origin: a traveller waiting between runs sits
+      // there, behind the chip, rather than on the stage's corner, past the window's edge.
       const points = PLACES.map(({ x, y }) => ({
-        x: ((mirrored ? 100 - x : x) * width) / 100,
-        y: (y * height) / 100,
+        x: ((mirrored ? 50 - x : x - 50) * width) / 100,
+        y: ((y - 50) * height) / 100,
       }))
       setWires(
         ellipseWires(
           points,
-          { x: width / 2, y: height / 2 },
+          { x: 0, y: 0 },
           (QUALITY_ELLIPSE.x * width) / 100,
           (QUALITY_ELLIPSE.y * height) / 100
         )
@@ -156,53 +158,59 @@ export function QualityLoop({
         key={String(playing && !still)}
         className="pointer-events-none absolute inset-0 size-full overflow-visible text-ring"
       >
-        {/* The net: a fine diamond mesh in the primary colour, inside the ellipse. */}
-        <defs>
-          <pattern
-            id={net}
-            width={NET_CELL}
-            height={NET_CELL}
-            patternUnits="userSpaceOnUse"
-            patternTransform="rotate(45)"
-          >
-            <path
-              d={`M 0 0 H ${NET_CELL} M 0 0 V ${NET_CELL}`}
-              fill="none"
-              strokeWidth={1}
-              className="stroke-primary/15 dark:stroke-primary/25"
+        <g
+          transform={
+            size ? `translate(${size.width / 2} ${size.height / 2})` : undefined
+          }
+        >
+          {/* The net: a fine diamond mesh in the primary colour, inside the ellipse. */}
+          <defs>
+            <pattern
+              id={net}
+              width={NET_CELL}
+              height={NET_CELL}
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(45)"
+            >
+              <path
+                d={`M 0 0 H ${NET_CELL} M 0 0 V ${NET_CELL}`}
+                fill="none"
+                strokeWidth={1}
+                className="stroke-primary/15 dark:stroke-primary/25"
+              />
+            </pattern>
+          </defs>
+          {size && (
+            <ellipse
+              cx={0}
+              cy={0}
+              rx={(QUALITY_ELLIPSE.x * size.width) / 100}
+              ry={(QUALITY_ELLIPSE.y * size.height) / 100}
+              fill={`url(#${net})`}
             />
-          </pattern>
-        </defs>
-        {size && (
-          <ellipse
-            cx={size.width / 2}
-            cy={size.height / 2}
-            rx={(QUALITY_ELLIPSE.x * size.width) / 100}
-            ry={(QUALITY_ELLIPSE.y * size.height) / 100}
-            fill={`url(#${net})`}
-          />
-        )}
-        {size && playing && !still && (
-          <NetWave
-            cx={size.width / 2}
-            cy={size.height / 2}
-            rx={(QUALITY_ELLIPSE.x * size.width) / 100}
-            ry={(QUALITY_ELLIPSE.y * size.height) / 100}
-            from={40}
-            cell={NET_CELL}
-          />
-        )}
-        {wires.map((d, at) => (
-          <Wire
-            key={at}
-            d={d}
-            fired={fired[at]}
-            traveller={[ShieldQuestionMarkIcon]}
-            size={QUESTION_SIZE}
-            thickness={1.5}
-            speed={INVITE_SPEED}
-          />
-        ))}
+          )}
+          {size && playing && !still && (
+            <NetWave
+              cx={0}
+              cy={0}
+              rx={(QUALITY_ELLIPSE.x * size.width) / 100}
+              ry={(QUALITY_ELLIPSE.y * size.height) / 100}
+              from={40}
+              cell={NET_CELL}
+            />
+          )}
+          {wires.map((d, at) => (
+            <Wire
+              key={at}
+              d={d}
+              fired={fired[at]}
+              traveller={[ShieldQuestionMarkIcon]}
+              size={QUESTION_SIZE}
+              thickness={1.5}
+              speed={INVITE_SPEED}
+            />
+          ))}
+        </g>
       </svg>
       {/* The AI chip at the ellipse's centre, half lit; while the light runs, it charges to full
           just as each wave leaves it through the net, then dims again (one charge a wave, on the
