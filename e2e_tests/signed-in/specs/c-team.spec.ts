@@ -265,7 +265,10 @@ test("owner adds a viewer, who sees the company read-only", async ({
   await visit(page, `/companies/${company.id}/members`);
   await expect(page.getByRole("main").getByRole("listitem").first()).toBeVisible();
   await expect(page.getByTestId("add-member")).toHaveCount(0);
-  await expect(page.getByRole("main").locator('[aria-haspopup="menu"]')).toHaveCount(0);
+  // No role menu on the team's rows (the page menu's "more pages" is navigation, not a change).
+  await expect(
+    page.getByRole("main").getByRole("listitem").locator('[aria-haspopup="menu"]'),
+  ).toHaveCount(0);
   await shot(page, "viewer-team");
 });
 
