@@ -43,7 +43,8 @@
    `max-w-7xl`), the width of the header and the footer, so content lines up with the
    logo and the menu on every page. No page is narrower or wider. Cards, forms and
    prompts inside a page may be narrower, but the page itself never is; running text
-   (articles, legal documents, FAQ answers) keeps a readable `max-w-3xl` column.
+   (articles, legal documents, the about and accessibility pages) sits in a centred
+   `mx-auto max-w-5xl` column.
 
 7. **One design language across the app.** Build a new page or piece of UI from the
    patterns the app already has, never from scratch. Before writing it, find the

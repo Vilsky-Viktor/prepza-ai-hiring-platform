@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { getTranslations } from "next-intl/server"
 
+import { BackLink } from "@/components/back-link"
 import { LinkedInIcon } from "@/components/brand-icons"
 import {
   Tooltip,
@@ -26,13 +27,17 @@ export default async function AboutPage() {
     <main className="mx-auto max-w-page space-y-16 px-6 py-12">
       <PageKey page="about" />
       <JsonLd data={personData(siteUrl())} />
-      <header className="max-w-3xl space-y-4">
-        <h1 className="font-heading text-4xl font-medium tracking-tight">
-          {t("title")}
-        </h1>
+      <header className="mx-auto max-w-5xl space-y-4">
+        {/* The way back home, beside the title as on the app's pages. */}
+        <div className="relative">
+          <BackLink href="/">{null}</BackLink>
+          <h1 className="font-heading text-4xl font-medium tracking-tight">
+            {t("title")}
+          </h1>
+        </div>
         <p className="text-lg text-muted-foreground">{t("intro")}</p>
       </header>
-      <section className="max-w-3xl space-y-4">
+      <section className="mx-auto max-w-5xl space-y-4">
         <h2 className="font-heading text-2xl font-medium tracking-tight">
           {t("company.title")}
         </h2>

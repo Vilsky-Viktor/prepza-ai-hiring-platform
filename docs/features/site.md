@@ -54,7 +54,7 @@ The articles are `/pre-employment-testing`, `/ai-interviews`, `/compare` and its
 
 - They are Markdown in `frontend/content/` (`pages/`, `compare/`, `guides/`).
 - Each has a short frontmatter: `title`, `seoTitle` (at most 60 characters), `description` (at most 155), `updated`; the body starts with `# <title>`. `tests/lib/content-front-matter.test.ts` checks every file in every folder and language.
-- `lib/content.ts` and `components/content/` show them.
+- `lib/content.ts` and `components/content/` show them, in a centred reading column (`max-w-5xl`) with a back arrow beside the title to the article's section (home for a page without one) and the updated date in italics.
 - A new file is a new page, in its hub and the sitemap.
 - The guides (`guides/` and each language's) are also what the assistant reads for hiring advice: rounds serves them from the same files (`GET /api/rounds/help/guides`, the list by title, and `GET /api/rounds/help/guides/{slug}`, one with its Markdown, in the page's language, English until translated). Its image copies `frontend/content` to the same place relative to its code as in the repo, the local stack mounts it, and CI rebuilds rounds when a guide changes, so there's one copy of each article.
 
@@ -108,6 +108,7 @@ The chat's model is set in [Generation settings](../generation.md#models).
 - **Versions:** each document's version is the day it applies from (`LEGAL_VERSIONS` in `prepza_common.constants`), and may come after the day it's published. Each page says "In force since …", or "Applies from …" with a link to the version in force now. Every published version stays readable (`/terms?version=<date>`, which says it was replaced), listed under **All versions**. Rounds keeps a copy of each in `app/legal_versions/<document>/<version>.json`, the current one too, and a test fails when a text changes without a new version: give it one, then run `python -m app.legal_archive` in rounds. Rounds decides which version applies today and whether the one shown is in force, upcoming or replaced.
 - **Acceptance:** signing up accepts the terms in force (the sign-in says so, and that the privacy policy was read), and library keeps that version and when (`terms_acceptances`; in the data export, deleted with the account). A company keeps the DPA version in force when it was made (`companies.dpa_version`), which its owner accepted with the terms. A later version applies after its notice; the terms say that using prepza after that day accepts it.
 - **Notices:** a significant change is emailed at least 14 days before it applies, from the admin zone (see [Legal notices](admin-zone.md#legal-notices)). It goes in the bell too, and until it applies a thin banner above every page tells signed-in users from when, with a link to it; closing it keeps it closed in that browser for that version (see [Notifications](notifications.md#legal-notices)).
+- They sit in the articles' centred reading column, with a back arrow home beside the title, as do the about and accessibility pages.
 - The contact address in them, hello@prepza.ai, is put together in the browser, so the page's HTML doesn't hold it for bots to collect.
 
 ## Documents for companies

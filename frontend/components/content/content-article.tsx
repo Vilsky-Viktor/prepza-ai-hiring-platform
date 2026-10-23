@@ -60,32 +60,43 @@ export async function ContentArticle({
           breadcrumbData(siteUrl(), steps),
         ]}
       />
-      <header className="max-w-3xl space-y-4">
-        {section && <BackLink href={section.path}>{section.name}</BackLink>}
-        <h1
-          className={cn(
-            "font-heading text-4xl font-medium tracking-tight text-balance normal-case",
-            endsWithQuestionMark(page.title) && "no-dot"
+      <header className="mx-auto max-w-5xl space-y-4">
+        {/* The way back beside the title, as on the app's pages: to the article's section, or
+            home for a page without one. */}
+        <div className="relative">
+          {section ? (
+            <BackLink href={section.path}>{section.name}</BackLink>
+          ) : (
+            <BackLink href="/">{null}</BackLink>
           )}
-        >
-          {page.title}
-        </h1>
+          <h1
+            className={cn(
+              "font-heading text-4xl font-medium tracking-tight text-balance normal-case",
+              endsWithQuestionMark(page.title) && "no-dot"
+            )}
+          >
+            {page.title}
+          </h1>
+        </div>
         <p className="text-lg text-muted-foreground">{page.description}</p>
         <p className="text-sm text-muted-foreground">
           {page.language !== locale && (
             <span className="block pb-2">{t("englishOnly")}</span>
           )}
-          {t("updated")}{" "}
-          <time dateTime={page.updated}>
-            {/* At midday UTC, so the day is the same in any time zone. */}
-            {formatDay(page.updated, locale)}
-          </time>
+          {/* The date line in italics. */}
+          <span className="italic">
+            {t("updated")}{" "}
+            <time dateTime={page.updated}>
+              {/* At midday UTC, so the day is the same in any time zone. */}
+              {formatDay(page.updated, locale)}
+            </time>
+          </span>
         </p>
       </header>
       <article
         lang={page.language}
         dir={textDirection(page.language)}
-        className="max-w-3xl space-y-5"
+        className="mx-auto max-w-5xl space-y-5"
       >
         <Markdown text={page.body} />
       </article>
