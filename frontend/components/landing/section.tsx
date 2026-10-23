@@ -1,5 +1,4 @@
 import { cn } from "cn"
-import { ArrowRightIcon } from "lucide-react"
 
 import { KeepAcronyms } from "@/components/keep-acronyms"
 import { LocalizedLink } from "@/components/localized-link"
@@ -60,7 +59,7 @@ export function LandingSection({
 export const OUTLINE_BUTTON =
   "gap-2 border-foreground/20 text-base dark:border-input"
 
-/** A link onwards from a section, as an outline button; its arrow faces the reading direction. */
+/** A link onwards from a section, as an outline button. */
 export function MoreLink({
   href,
   keepCase = false,
@@ -85,7 +84,6 @@ export function MoreLink({
       )}
     >
       {children}
-      <ArrowRightIcon className="size-4 rtl:-scale-x-100" />
     </LocalizedLink>
   )
 }
