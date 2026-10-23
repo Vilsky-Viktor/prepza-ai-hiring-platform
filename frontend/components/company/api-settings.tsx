@@ -16,6 +16,7 @@ import type { ApiKey, ApiWebhook, PermissionOptions } from "@/types/api-access"
 import { LIST_BOX } from "@/constants/lists"
 import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
+import { CARD } from "@/constants/cards"
 
 /** "New key", in the title row while the keys tab is open: a name, when it expires and what it
  * may do (starting from the api service's defaults), then the key itself, shown this once. */
@@ -248,7 +249,7 @@ function Section({
       {rows.length ? (
         <ul className={LIST_BOX}>{rows}</ul>
       ) : (
-        <p className="rounded-2xl border p-6 text-muted-foreground">{empty}</p>
+        <p className={`${CARD} text-muted-foreground`}>{empty}</p>
       )}
     </section>
   )

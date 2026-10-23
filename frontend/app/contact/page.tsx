@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/contact-form"
 import { OPERATOR } from "@/constants/operator"
 import { pageMetadata } from "@/lib/site"
 import { PageKey } from "@/components/page-key"
+import { CARD } from "@/constants/cards"
 
 export async function generateMetadata() {
   const t = await getTranslations("contact")
@@ -25,13 +26,13 @@ export default async function ContactPage() {
           screens), so the form keeps a comfortable width. */}
       <div className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-start">
         <div className="space-y-4">
-          <div className="space-y-4 rounded-2xl border p-6">
+          <div className={`space-y-4 ${CARD}`}>
             <p className="text-base text-muted-foreground">{t("intro")}</p>
             {/* What to quote, so support finds what the message is about at once. */}
             <p className="text-base text-muted-foreground">{t("idHint")}</p>
           </div>
           {/* Who runs prepza, as labelled rows. */}
-          <div className="space-y-3 rounded-2xl border p-6">
+          <div className={`space-y-3 ${CARD}`}>
             <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-6 gap-y-2 text-sm">
               {(
                 [

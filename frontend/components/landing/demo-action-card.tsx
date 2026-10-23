@@ -7,6 +7,7 @@ import {
   ASK_AGENT_EMAIL,
   ASK_AGENT_INTERVIEW,
 } from "@/constants/ask-agent-demo"
+import { CARD } from "@/constants/cards"
 
 export type DemoCardState = "pending" | "running" | "done"
 
@@ -26,7 +27,7 @@ export function DemoActionCard({
   const pages = useTranslations("assistant.pages")
 
   return (
-    <li className="space-y-3 rounded-2xl border p-4 text-sm">
+    <li className={`space-y-3 ${CARD} text-sm`}>
       <div className="space-y-0.5">
         <p className="font-medium">{t("titles.invite_candidate")}</p>
         <p>{ASK_AGENT_INTERVIEW}</p>

@@ -1,6 +1,5 @@
 "use client"
 
-import { cn } from "cn"
 import { WrenchIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
@@ -71,7 +70,7 @@ export function MaintenanceSwitch({ on: initial }: { on: boolean }) {
   }
 
   return (
-    <div className={cn(SIGN_CARD, "p-5 ps-20")}>
+    <div className={SIGN_CARD}>
       <CornerSign>
         <WrenchIcon className="text-primary" />
       </CornerSign>

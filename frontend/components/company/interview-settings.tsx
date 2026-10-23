@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { InterviewSettingsData } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
+import { CARD_PADDING } from "@/constants/cards"
 
 /** The interview's settings tab: the time each question has, the pass mark, whether the company
 hired, and whether its questions stay out of prepza's shared question bank, one row each in a
@@ -118,7 +119,9 @@ function CheckSetting({
   onChange: (checked: boolean) => void
 }) {
   return (
-    <label className="flex cursor-pointer items-center justify-between gap-4 p-4 sm:p-6">
+    <label
+      className={`flex cursor-pointer items-center justify-between gap-4 ${CARD_PADDING}`}
+    >
       <span className="min-w-0 space-y-1">
         <span className="block text-lg font-light">{label}</span>
         {help && (
@@ -157,7 +160,9 @@ function NumberSetting({
   onSave: () => void
 }) {
   return (
-    <label className="flex items-center justify-between gap-4 p-4 sm:p-6">
+    <label
+      className={`flex items-center justify-between gap-4 ${CARD_PADDING}`}
+    >
       <span className="text-lg font-light">{label}</span>
       {/* Same look as the app's other fields (library search, candidate invite). */}
       <span className="relative w-36 rounded-full border border-transparent transition-colors focus-within:border-ring">

@@ -7,6 +7,7 @@ import { toast } from "sonner"
 import { Checkbox } from "@/components/ui/checkbox"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { hasMessage } from "@/lib/messages"
+import { CARD_PADDING } from "@/constants/cards"
 
 /** Which of the company's notifications go to its Slack channel, one row each in a list like the
  * interview's settings; each change is saved at once. Viewers see them without changing. */
@@ -61,7 +62,7 @@ export function SlackKinds({
         {allKinds.map((kind) => (
           <label
             key={kind}
-            className="flex cursor-pointer items-center justify-between gap-4 p-4 sm:p-6"
+            className={`flex cursor-pointer items-center justify-between gap-4 ${CARD_PADDING}`}
           >
             <span className="text-lg font-light">{named(kind)}</span>
             <Checkbox

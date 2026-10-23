@@ -22,11 +22,7 @@ function NoticeCard({
   return (
     <div
       role="status"
-      className={cn(
-        SIGN_CARD,
-        "flex items-center gap-4 p-5 ps-20 text-base",
-        className
-      )}
+      className={cn(SIGN_CARD, "flex items-center gap-4 text-base", className)}
     >
       <CornerSign>{icon}</CornerSign>
       <p className="text-muted-foreground">{children}</p>

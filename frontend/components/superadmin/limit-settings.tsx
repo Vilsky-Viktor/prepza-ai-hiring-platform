@@ -92,7 +92,7 @@ export function LimitSettings({
   }
 
   return (
-    <div className={cn(SIGN_CARD, "space-y-4 p-5 ps-20")}>
+    <div className={cn(SIGN_CARD, "space-y-4")}>
       <CornerSign>
         <GaugeIcon className="text-primary" />
       </CornerSign>

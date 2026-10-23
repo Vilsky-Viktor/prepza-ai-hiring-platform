@@ -10,6 +10,7 @@ import { DialogTrigger } from "@/components/ui/dialog"
 import { formatDay, formatPrice } from "@/lib/format"
 import { timeTag } from "@/lib/time-tag"
 import type { AutoTopUp } from "@/types/billing"
+import { CARD } from "@/constants/cards"
 
 type State = "off" | "on" | "waiting" | "paused"
 
@@ -119,7 +120,7 @@ function StatusCard(props: Props) {
 
   return (
     <div
-      className="flex items-center gap-4 rounded-2xl border p-5 max-sm:flex-col max-sm:items-stretch"
+      className={`flex items-center gap-4 ${CARD} max-sm:flex-col max-sm:items-stretch`}
       data-testid="auto-top-up"
       data-paused={setting.paused || undefined}
     >

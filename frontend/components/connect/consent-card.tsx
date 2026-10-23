@@ -10,7 +10,7 @@ import { CornerSign } from "@/components/corner-sign"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { WarningCard } from "@/components/warning-card"
-import { SIGN_CARD } from "@/constants/cards"
+import { CARD, SIGN_CARD } from "@/constants/cards"
 import { ApiError, apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { ConnectAnswer, ConnectRequest } from "@/types/connections"
@@ -73,7 +73,7 @@ export function ConsentCard({
   }
 
   return (
-    <div className="w-full max-w-md space-y-6 rounded-2xl border p-6 sm:p-8">
+    <div className={`w-full max-w-md space-y-6 ${CARD}`}>
       <div className="space-y-3">
         <h1 className="font-heading text-3xl font-medium tracking-tight text-balance">
           {t.rich("title", {
@@ -97,7 +97,7 @@ export function ConsentCard({
         <label
           className={cn(
             SIGN_CARD,
-            "flex cursor-pointer items-center gap-4 p-5 ps-20 text-base"
+            "flex cursor-pointer items-center gap-4 text-base"
           )}
         >
           <CornerSign>

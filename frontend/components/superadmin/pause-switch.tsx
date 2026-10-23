@@ -1,6 +1,5 @@
 "use client"
 
-import { cn } from "cn"
 import { PauseIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
@@ -35,7 +34,7 @@ export function PauseSwitch({ paused }: { paused: boolean }) {
   }
 
   return (
-    <div className={cn(SIGN_CARD, "p-5 ps-20")}>
+    <div className={SIGN_CARD}>
       <CornerSign>
         <PauseIcon className="text-primary" />
       </CornerSign>

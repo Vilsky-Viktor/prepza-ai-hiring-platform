@@ -24,6 +24,7 @@ import { lockedReads, permissionsByGroup, tick } from "@/lib/api-permissions"
 import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
 import type { ApiKey, PermissionOptions } from "@/types/api-access"
+import { CARD } from "@/constants/cards"
 
 // The sizes of the email preferences' checkboxes: "Select all" like the digest, the rest like
 // its kinds. A checkbox that can't change fades with its text, as a disabled switch does.
@@ -74,7 +75,7 @@ export function PermissionTicks({
   }
 
   return (
-    <div className="space-y-4 rounded-2xl border p-4 sm:p-6">
+    <div className={`space-y-4 ${CARD}`}>
       {/* Only for a new key: narrowing a key has nothing to select. */}
       {!allowed && (
         <label className={`${LABEL} gap-4`}>

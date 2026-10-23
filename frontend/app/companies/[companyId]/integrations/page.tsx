@@ -18,6 +18,7 @@ import type { AtsIntegrations, Company } from "@/types/company"
 import type { AiConnection } from "@/types/connections"
 import type { SlackOverview } from "@/types/notifications"
 import { LIST_BOX } from "@/constants/lists"
+import { CARD } from "@/constants/cards"
 
 export const generateMetadata = () => translatedTitle("company", "integrations")
 
@@ -113,7 +114,7 @@ export default async function IntegrationsPage({
               ))}
             </ul>
           ) : (
-            <p className="rounded-2xl border p-6 text-muted-foreground">
+            <p className={`${CARD} text-muted-foreground`}>
               {/* Not loaded (its service failed), or not offered yet. */}
               {integrations === null
                 ? t("connectionsFailed")

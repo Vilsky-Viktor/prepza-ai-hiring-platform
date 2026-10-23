@@ -20,6 +20,7 @@ import type {
   Company,
   Interview,
 } from "@/types/company"
+import { CARD } from "@/constants/cards"
 
 type Params = Promise<{ companyId: string; provider: string }>
 
@@ -138,7 +139,7 @@ export default async function AtsPage({ params }: { params: Params }) {
           canEdit={company.can_edit && connected}
         />
       ) : (
-        <p className="rounded-2xl border p-6 text-muted-foreground">
+        <p className={`${CARD} text-muted-foreground`}>
           {ats("notConnected", { ats: provider.name })}
         </p>
       )}

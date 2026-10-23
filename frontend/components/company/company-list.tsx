@@ -7,6 +7,7 @@ import { CompanyCard } from "@/components/company/company-card"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
 import type { Company } from "@/types/company"
+import { CARD } from "@/constants/cards"
 
 const PATH = "/companies/companies"
 
@@ -44,11 +45,7 @@ export function CompanyList({
   }, [items.length, loadMore])
 
   if (items.length === 0) {
-    return (
-      <p className="rounded-2xl border p-6 text-muted-foreground">
-        {t("empty")}
-      </p>
-    )
+    return <p className={`${CARD} text-muted-foreground`}>{t("empty")}</p>
   }
 
   return (

@@ -18,6 +18,7 @@ import { SLACK } from "@/constants/slack"
 import { serverFetch } from "@/lib/server-api"
 import type { Company } from "@/types/company"
 import type { SlackOverview } from "@/types/notifications"
+import { CARD } from "@/constants/cards"
 
 export const generateMetadata = () => ({ title: SLACK.name })
 
@@ -116,7 +117,7 @@ export default async function SlackPage({
           canEdit={company.can_edit}
         />
       ) : (
-        <p className="rounded-2xl border p-6 text-muted-foreground">
+        <p className={`${CARD} text-muted-foreground`}>
           {slackText("notConnected")}
         </p>
       )}

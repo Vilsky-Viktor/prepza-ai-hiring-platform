@@ -16,6 +16,7 @@ import { bdi } from "@/lib/bidi"
 import type { AtsProvider } from "@/constants/ats"
 import type { AtsJobLink, Interview } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
+import { CARD } from "@/constants/cards"
 
 /** The ATS's jobs linked to the company's interviews, on the ATS's own page, with "Link a job"
  * for owners and admins. */
@@ -53,9 +54,7 @@ export function AtsJobLinks({
         )}
       </div>
       {links.length === 0 ? (
-        <p className="rounded-2xl border p-6 text-muted-foreground">
-          {t("noLinks")}
-        </p>
+        <p className={`${CARD} text-muted-foreground`}>{t("noLinks")}</p>
       ) : (
         <ul className={LIST_BOX}>
           {links.map((link) => (

@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { InfoCard } from "@/components/warning-card"
 import { ApiError, apiFetch } from "@/lib/api"
 import type { ConnectRequest } from "@/types/connections"
+import { CARD } from "@/constants/cards"
 
 /** The consent page's states: an expired or used request (also one that expires while the
  * card is open); signed out, Sign in (the request is read only signed in); signed in, the
@@ -50,7 +51,7 @@ export function ConnectView({ requestId }: { requestId: string }) {
 
   if (!user) {
     return (
-      <div className="w-full max-w-md space-y-6 rounded-2xl border p-6 sm:p-8">
+      <div className={`w-full max-w-md space-y-6 ${CARD}`}>
         <div className="space-y-3">
           <h1 className="font-heading text-3xl font-medium tracking-tight text-balance">
             {t("titleAny")}

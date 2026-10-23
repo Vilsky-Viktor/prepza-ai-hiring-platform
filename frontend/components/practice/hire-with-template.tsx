@@ -16,7 +16,7 @@ export async function HireWithTemplate({ templateId }: { templateId: string }) {
     <div
       className={cn(
         SIGN_CARD,
-        "flex flex-col gap-4 p-6 ps-20 sm:flex-row sm:items-center sm:justify-between"
+        "flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
       )}
     >
       <CornerSign>

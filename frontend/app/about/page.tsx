@@ -13,6 +13,7 @@ import { FOUNDER } from "@/constants/about"
 import { pageMetadata, siteUrl } from "@/lib/site"
 import { personData } from "@/lib/structured-data"
 import { PageKey } from "@/components/page-key"
+import { CARD } from "@/constants/cards"
 
 export async function generateMetadata() {
   const t = await getTranslations("about")
@@ -51,7 +52,9 @@ export default async function AboutPage() {
           {t("company.practice")}
         </p>
       </section>
-      <figure className="grid items-center gap-8 rounded-3xl border p-6 sm:p-10 md:grid-cols-[16rem_1fr] md:gap-12">
+      <figure
+        className={`grid items-center gap-8 ${CARD} md:grid-cols-[16rem_1fr] md:gap-12`}
+      >
         <Image
           src={FOUNDER.photo}
           width={FOUNDER.width}

@@ -15,6 +15,7 @@ import { companyCurrencyPath, visitorCatalog } from "@/lib/catalog"
 import type { CompanyCurrency } from "@/types/billing"
 import type { CompanyBalance } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
+import { CARD } from "@/constants/cards"
 
 export const generateMetadata = () => translatedTitle("topUp", "title")
 
@@ -66,7 +67,7 @@ export default async function TopUpPage() {
       {!signedIn && <SignInPrompt />}
 
       {signedIn && companies && companies.length === 0 && (
-        <div className="flex flex-col items-start gap-4 rounded-2xl border p-6">
+        <div className={`flex flex-col items-start gap-4 ${CARD}`}>
           <p className="text-base text-muted-foreground">{t("noCompany")}</p>
           <Button
             className="h-12 px-6 text-base"

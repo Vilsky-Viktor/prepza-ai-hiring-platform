@@ -11,6 +11,7 @@ import { linkPage } from "@/lib/assistant"
 import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
 import type { AssistantBlock } from "@/types/assistant"
+import { CARD } from "@/constants/cards"
 
 export type CardActions = {
   onConfirm: (actionId: string) => void
@@ -42,10 +43,7 @@ export function ActionCard({
   const fields = Object.entries(card.preview ?? {})
 
   return (
-    <div
-      className="space-y-3 rounded-2xl border p-4 text-sm"
-      data-testid="action-card"
-    >
+    <div className={`space-y-3 ${CARD} text-sm`} data-testid="action-card">
       <div className="space-y-0.5">
         <p className="font-medium">
           {hasMessage(t, title) ? t(title) : t("generic")}

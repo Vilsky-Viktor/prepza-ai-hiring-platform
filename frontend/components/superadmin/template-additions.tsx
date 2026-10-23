@@ -21,6 +21,7 @@ import { ACTIVE_STATUSES } from "@/constants/generation"
 import { useGenerationPoll } from "@/hooks/use-generation-poll"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { Addition } from "@/types/generation"
+import { CARD } from "@/constants/cards"
 
 /** A superadmin adds questions to every topic of a template: "Top up" (when the backend says a
  * topic lacks practice or company questions) writes what's missing, "Add questions" a number of
@@ -84,7 +85,7 @@ export function TemplateAdditions({
   if (running) {
     return (
       <div
-        className="basis-full space-y-4 rounded-2xl border p-6 text-center"
+        className={`basis-full space-y-4 ${CARD} text-center`}
         data-testid="adding-questions"
       >
         <p className="text-lg font-medium">{t("addingQuestions")}</p>

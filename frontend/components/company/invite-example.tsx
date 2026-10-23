@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl"
 
 import { INVITE_EXAMPLE_LINES } from "@/constants/invites"
+import { CARD } from "@/constants/cards"
 
 /** How a list is written, in the gray info card: the hint (with the most a list may hold, when
  * known), then example lines. */
@@ -8,7 +9,7 @@ export function InviteExample({ maxInvites }: { maxInvites: number | null }) {
   const t = useTranslations("interviews")
 
   return (
-    <div className="space-y-2 rounded-2xl border px-5 py-4">
+    <div className={`space-y-2 ${CARD}`}>
       <h2 className="font-heading text-lg font-medium lowercase">
         {t("example")}
       </h2>

@@ -21,6 +21,7 @@ import { answerParts, linkPage } from "@/lib/assistant"
 import { bdi } from "@/lib/bidi"
 import type { AssistantBlock } from "@/types/assistant"
 import { WARNING_TONE } from "@/constants/tones"
+import { CARD } from "@/constants/cards"
 
 type Item = Record<string, unknown>
 
@@ -154,7 +155,7 @@ export function AnswerBlocks({
         />
       ))}
       {signIn && (
-        <div className="space-y-4 rounded-2xl border p-4">
+        <div className={`space-y-4 ${CARD}`}>
           <p className="text-sm text-muted-foreground">{card("signInCard")}</p>
           <SignInOptions first={signIn.provider} />
         </div>

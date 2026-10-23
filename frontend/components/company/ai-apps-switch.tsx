@@ -46,7 +46,7 @@ export function AiAppsSwitch({
     <label
       className={cn(
         SIGN_CARD,
-        "flex cursor-pointer items-center gap-4 p-5 ps-20 text-base"
+        "flex cursor-pointer items-center gap-4 text-base"
       )}
     >
       <CornerSign>

@@ -52,7 +52,7 @@ export function LegalNotices({ initial }: { initial: LegalNotice[] }) {
   })
 
   return (
-    <div className={cn(SIGN_CARD, "space-y-4 p-5 ps-20")}>
+    <div className={cn(SIGN_CARD, "space-y-4")}>
       <CornerSign>
         <ScaleIcon className="text-primary" />
       </CornerSign>

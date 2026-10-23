@@ -13,6 +13,7 @@ import { publicFetch } from "@/lib/server-api"
 import { timeTag } from "@/lib/time-tag"
 import type { LegalDocument } from "@/types/help"
 import { TEXT_LINK } from "@/constants/links"
+import { CARD } from "@/constants/cards"
 
 // A version's name: the day it applies from.
 const VERSION = /^\d{4}-\d{2}-\d{2}$/
@@ -144,7 +145,9 @@ export async function LegalPage({
       {versions.length > 0 && (
         // Every version, in a card at the end, like the contact page's cards: the one shown in
         // the muted color, the others as links.
-        <nav className="mx-auto max-w-5xl space-y-3 rounded-2xl border p-6 text-sm text-muted-foreground">
+        <nav
+          className={`mx-auto max-w-5xl space-y-3 ${CARD} text-sm text-muted-foreground`}
+        >
           <h2 className="text-lg font-medium text-foreground">
             {t("versions")}
           </h2>
