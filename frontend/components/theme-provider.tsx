@@ -10,7 +10,8 @@ function ThemeProvider({
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="system"
+      // Dark until the visitor picks a theme; "system" stays a choice that follows the device.
+      defaultTheme="dark"
       enableSystem
       disableTransitionOnChange
       // The theme script only needs to run in the server's HTML, before the page paints. Created

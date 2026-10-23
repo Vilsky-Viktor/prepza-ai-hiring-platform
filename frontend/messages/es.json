@@ -2325,7 +2325,7 @@
     "intro": "Queremos que todo el mundo pueda usar prepza: para hacer una entrevista que te envía una empresa, para practicar y para gestionar la selección de personal de una empresa. Nuestro objetivo es cumplir el nivel AA de las Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2.",
     "done": {
       "title": "Lo que hacemos",
-      "themes": "Temas claro y oscuro, según la configuración de tu dispositivo.",
+      "themes": "Temas oscuro y claro: oscuro de forma predeterminada, o la configuración de tu dispositivo si la eliges.",
       "contrast": "Los colores que una empresa elige para sus páginas de entrevista se rechazan si el texto sobre ellos fuera difícil de leer (por debajo del contraste de las WCAG).",
       "languages": "El sitio en 23 idiomas, de derecha a izquierda en los idiomas que se escriben así.",
       "phones": "Las páginas se adaptan a pantallas de móvil y funcionan al ampliar.",

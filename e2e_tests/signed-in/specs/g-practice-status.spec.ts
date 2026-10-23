@@ -7,6 +7,7 @@ import { box, PHONE } from "../helpers/layout"
 import { hoverFor, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { tokenOf } from "../helpers/sign-in"
+import { setScheme } from "../helpers/theme"
 import { throwawayEmail } from "../helpers/users"
 
 type Listed = { id: string; slug: string | null; topic_count: number }
@@ -121,7 +122,7 @@ test("the practice list shows the talent's progress on each test", async ({ sign
   await shot(user, "tooltip", false)
 
   for (const scheme of ["light", "dark"] as const) {
-    await user.emulateMedia({ colorScheme: scheme })
+    await setScheme(user, scheme)
     await user.setViewportSize({ width: 1280, height: 900 })
     await visit(user, "/practice")
     await expect(statusOf(user, whole.template)).toBeVisible()

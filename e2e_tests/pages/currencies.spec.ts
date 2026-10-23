@@ -1,5 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import { setScheme } from "./helpers/theme";
+
 // A signed-out visitor sees prices in their country's currency (a local one in Canada,
 // Australia, Israel, Poland, Switzerland, Japan and other countries billing names, euros in the
 // rest of the EU, pounds in the UK, US dollars elsewhere): the hero's price per candidate and the
@@ -32,7 +34,7 @@ for (const { country, symbol } of COUNTRIES) {
     await expect(page.getByTestId("hero-price")).toContainText(symbol);
 
     for (const scheme of ["light", "dark"] as const) {
-      await page.emulateMedia({ colorScheme: scheme });
+      await setScheme(page, scheme);
       await page.screenshot({
         path: test.info().outputPath(`home-${country}-${scheme}.png`),
         animations: "disabled",
@@ -43,7 +45,7 @@ for (const { country, symbol } of COUNTRIES) {
     await expect(page.getByRole("main")).toContainText(symbol);
 
     for (const scheme of ["light", "dark"] as const) {
-      await page.emulateMedia({ colorScheme: scheme });
+      await setScheme(page, scheme);
       await page.screenshot({
         path: test.info().outputPath(`pricing-${country}-${scheme}.png`),
         fullPage: true,

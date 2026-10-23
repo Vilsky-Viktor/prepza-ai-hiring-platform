@@ -2325,7 +2325,7 @@
     "intro": "We want everyone to be able to use prepza: to take an interview a company sends you, to practise, and to run a company's hiring. We aim to meet level AA of the Web Content Accessibility Guidelines (WCAG) 2.2.",
     "done": {
       "title": "What we do",
-      "themes": "Light and dark themes, following your device's setting.",
+      "themes": "Dark and light themes: dark by default, or your device's setting if you choose it.",
       "contrast": "Colors a company chooses for its interview pages are refused when text on them would be hard to read (below WCAG contrast).",
       "languages": "The site in 23 languages, right to left where the language is written that way.",
       "phones": "Pages fit phone screens and work when you zoom in.",

@@ -2325,7 +2325,7 @@
     "intro": "Vogliamo che tutti possano usare prepza: per fare un colloquio che ti invia un'azienda, per esercitarti e per gestire le selezioni di un'azienda. Puntiamo al livello AA delle Linee guida per l'accessibilità dei contenuti Web (WCAG) 2.2.",
     "done": {
       "title": "Cosa facciamo",
-      "themes": "Tema chiaro e tema scuro, secondo l'impostazione del tuo dispositivo.",
+      "themes": "Tema scuro e tema chiaro: scuro per impostazione predefinita, oppure secondo l'impostazione del tuo dispositivo, se lo scegli.",
       "contrast": "I colori che un'azienda sceglie per le pagine del suo colloquio vengono rifiutati se il testo sopra risulterebbe difficile da leggere (contrasto sotto la soglia WCAG).",
       "languages": "Il sito in 23 lingue, da destra a sinistra per le lingue che si scrivono così.",
       "phones": "Le pagine si adattano agli schermi dei telefoni e funzionano anche con lo zoom.",

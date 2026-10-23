@@ -5,6 +5,7 @@ import { createCompany } from "../helpers/api"
 import { PHONE } from "../helpers/layout"
 import { openDialog, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
+import { setScheme } from "../helpers/theme"
 import { throwawayEmail } from "../helpers/users"
 
 /** The visitor's country as the load balancer would give it: locally the gateway takes it from
@@ -26,11 +27,11 @@ async function servedPill(page: Page, path: string) {
 /** Both themes of the page as it is now. */
 async function shots(page: Page, name: string, fullPage = false) {
   for (const scheme of ["light", "dark"] as const) {
-    await page.emulateMedia({ colorScheme: scheme })
+    await setScheme(page, scheme)
     await shot(page, `${name}-${scheme}`, fullPage)
   }
 
-  await page.emulateMedia({ colorScheme: "light" })
+  await setScheme(page, "light")
 }
 
 // A person's currency is saved from their country the first time billing sees them with one,

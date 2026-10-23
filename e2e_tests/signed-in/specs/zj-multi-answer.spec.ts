@@ -13,6 +13,7 @@ import {
 import { PHONE } from "../helpers/layout"
 import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
+import { setScheme } from "../helpers/theme"
 import { ownerEmail, randomId, throwawayEmail } from "../helpers/users"
 
 type Step = {
@@ -56,7 +57,7 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
 
   try {
     const owner = await signInAs(ownerEmail())
-    await owner.emulateMedia({ colorScheme: "dark" })
+    await setScheme(owner, "dark")
     const company = await createCompany(owner)
     const interview = await api<{ id: string }>(
       owner,
@@ -82,7 +83,7 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
     const email = throwawayEmail("multi-candidate")
     await inviteCandidate(owner, interview.id, email)
     const candidate = await signInAs(email)
-    await candidate.emulateMedia({ colorScheme: "dark" })
+    await setScheme(candidate, "dark")
     const { sessions } = await api<{ sessions: { id: string }[] }>(
       candidate,
       "POST",
@@ -159,7 +160,7 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
 
     // Practice: the same partial point in the review, with every right option shown.
     const learner = await signInAs(throwawayEmail("multi-practice"))
-    await learner.emulateMedia({ colorScheme: "dark" })
+    await setScheme(learner, "dark")
     const round = await api<{ round_id: string }>(learner, "POST", `/rounds/practice/${template}`)
     const result = await api<{ topics: { session_id: string }[] }>(
       learner,

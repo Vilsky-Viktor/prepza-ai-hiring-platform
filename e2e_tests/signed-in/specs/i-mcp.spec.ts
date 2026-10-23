@@ -9,6 +9,7 @@ import { box, PHONE, settled } from "../helpers/layout"
 import { integrationRow, openDialog, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { uidOf } from "../helpers/sign-in"
+import { setScheme } from "../helpers/theme"
 import { throwawayEmail } from "../helpers/users"
 
 /** Checks an Instructions dialog opened on the dialog itself (not its first field), and that
@@ -146,11 +147,11 @@ test("the consent page asks before an AI app may use the account", async ({ sign
   await main.getByRole("switch").click()
   await expect(main.getByRole("switch")).not.toBeChecked()
   await shot(user, "consent-read-only")
-  await user.emulateMedia({ colorScheme: "dark" })
+  await setScheme(user, "dark")
   await shot(user, "consent-read-only-dark")
   await main.getByRole("switch").click()
   await shot(user, "consent-dark")
-  await user.emulateMedia({ colorScheme: "light" })
+  await setScheme(user, "light")
   await main.getByRole("button").first().click()
   await expect(user).toHaveURL(/\/\?error=access_denied$/)
 

@@ -2325,7 +2325,7 @@
     "intro": "Nous voulons que chacun puisse utiliser prepza : pour passer un entretien qu'une entreprise vous envoie, pour vous entraîner et pour gérer le recrutement d'une entreprise. Nous visons le niveau AA des Règles pour l'accessibilité des contenus Web (WCAG) 2.2.",
     "done": {
       "title": "Ce que nous faisons",
-      "themes": "Thèmes clair et sombre, selon le réglage de votre appareil.",
+      "themes": "Thèmes sombre et clair : sombre par défaut, ou le réglage de votre appareil si vous le choisissez.",
       "contrast": "Les couleurs qu'une entreprise choisit pour ses pages d'entretien sont refusées si le texte y serait difficile à lire (contraste inférieur au seuil des WCAG).",
       "languages": "Le site en 23 langues, de droite à gauche pour les langues qui s'écrivent ainsi.",
       "phones": "Les pages s'adaptent aux écrans de téléphone et fonctionnent quand vous zoomez.",

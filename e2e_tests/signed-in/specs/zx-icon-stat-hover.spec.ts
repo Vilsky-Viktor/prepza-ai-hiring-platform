@@ -4,6 +4,7 @@ import { expect, test } from "../fixtures"
 import { createCompany, createInterview } from "../helpers/api"
 import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
+import { setScheme } from "../helpers/theme"
 import { ownerEmail } from "../helpers/users"
 
 function colors(stat: Locator) {
@@ -22,7 +23,7 @@ test("a stat icon reacts on hover like an icon button", async ({ signInAs }) => 
   await createInterview(owner, company.id)
 
   for (const scheme of ["light", "dark"] as const) {
-    await owner.emulateMedia({ colorScheme: scheme })
+    await setScheme(owner, scheme)
     await visit(owner, `/companies/${company.id}/interviews`)
     const stat = owner.getByRole("main").getByTestId("candidate-count")
     await expect(stat).toHaveText("0")

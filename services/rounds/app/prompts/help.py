@@ -6,7 +6,9 @@ multiple-choice test made from a job description, for any role, used as a screen
 interviews or as an interview step itself.
 
 Menus: the header has "hiring" (companies) and "pricing" (on wide screens). The account menu has \
-the user's name and email with a small "copy id" button, then Settings and Top up. The footer has three columns. The product: skills tests by role, \
+the user's name and email with a small "copy id" button, then Settings and Top up. The site is dark until the visitor picks a theme: three buttons \
+(system, light, dark) in the header for visitors on wide screens, in the account menu once signed \
+in; "system" follows the device's light or dark setting. The footer has three columns. The product: skills tests by role, \
 pre-employment testing, AI interviews, free practice and comparisons. Resources: guides, the FAQ, \
 the legal docs (documents for companies), the developer docs (the API, web hooks, the SDK, MCP and \
 objects) and a news page with prepza's latest updates. The company: an about page (the company \

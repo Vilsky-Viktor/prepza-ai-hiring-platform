@@ -2325,7 +2325,7 @@
     "intro": "Tahame, et kõik saaksid prepzat kasutada: teha intervjuud, mille ettevõte sulle saadab, harjutada ja juhtida ettevõtte värbamist. Meie eesmärk on vastata veebisisu juurdepääsetavuse suuniste (WCAG) 2.2 tasemele AA.",
     "done": {
       "title": "Mida me teeme",
-      "themes": "Hele ja tume teema vastavalt sinu seadme seadistusele.",
+      "themes": "Tume ja hele teema: vaikimisi tume või soovi korral sinu seadme seadistuse järgi.",
       "contrast": "Värvid, mille ettevõte oma intervjuulehtedele valib, lükatakse tagasi, kui neil olevat teksti oleks raske lugeda (kontrast alla WCAG nõude).",
       "languages": "Sait 23 keeles, paremalt vasakule neis keeltes, mida nii kirjutatakse.",
       "phones": "Lehed mahuvad telefoniekraanile ja toimivad ka suurendatult.",

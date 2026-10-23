@@ -1,6 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
+import { setScheme } from "./helpers/theme";
 import { loaded } from "./helpers/waits";
 
 // The signed-out pages checked with axe against WCAG 2.2 AA, light and dark, in a left-to-right
@@ -24,7 +25,8 @@ const WCAG_AA = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 for (const path of PAGES) {
   for (const theme of THEMES) {
     test(`${path} in ${theme} meets WCAG 2.2 AA`, async ({ page }) => {
-      await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
+      await setScheme(page, theme);
+      await page.emulateMedia({ reducedMotion: "reduce" });
       await page.goto(path);
       await loaded(page);
 

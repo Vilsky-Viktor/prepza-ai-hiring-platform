@@ -2325,7 +2325,7 @@
     "intro": "We willen dat iedereen prepza kan gebruiken: om een interview te doen dat een bedrijf je stuurt, om te oefenen en om de werving van een bedrijf te regelen. We streven naar niveau AA van de Richtlijnen voor Toegankelijkheid van Webcontent (WCAG) 2.2.",
     "done": {
       "title": "Wat we doen",
-      "themes": "Een licht en een donker thema, volgens de instelling van je apparaat.",
+      "themes": "Een donker en een licht thema: standaard donker, of de instelling van je apparaat als je die kiest.",
       "contrast": "Kleuren die een bedrijf kiest voor zijn interviewpagina's worden geweigerd als tekst erop moeilijk leesbaar zou zijn (onder het WCAG-contrast).",
       "languages": "De site in 23 talen, van rechts naar links waar de taal zo wordt geschreven.",
       "phones": "Pagina's passen op telefoonschermen en werken als je inzoomt.",

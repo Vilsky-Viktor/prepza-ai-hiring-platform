@@ -107,6 +107,8 @@ Like every browser test, these check behaviour and data, never the wording: elem
 
 Tests that need a template never use the platform's own: each adds its own throwaway templates straight into the library database (`helpers/templates.ts`: a unique title and readable address, topics with subtopics and company and practice questions; at least 3 topics makes one indexable, fewer doesn't), checks only those, and deletes them when it ends. Before a run, a global setup (`global-setup.ts`) deletes the templates and opt-outs a stopped run left, once they're older than 6 hours, so runs at the same time keep each other's. `pages.sh` mounts `.env` read-only for `POSTGRES_PASSWORD`, read without printing it.
 
+The site is dark until a visitor picks a theme, so the device's setting alone (`emulateMedia`) no longer changes it: a test that wants light or dark calls `setScheme(page, scheme)` (`helpers/theme.ts`, one in each suite), which sets the device's setting and the visitor's saved choice, on the open page at once and on every page it loads next. `theme.spec.ts` checks that a new visitor gets dark on a light device, that picking system follows the device (also after a reload), and that a picked light theme stays on a dark device.
+
 ```bash
 ./e2e_tests/pages.sh
 ```
