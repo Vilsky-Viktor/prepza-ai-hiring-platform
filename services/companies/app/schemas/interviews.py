@@ -98,6 +98,8 @@ class InterviewDetail(InterviewOut):
     total_questions: int | None = None
     # Whether the user may change the test and its candidates: owners and admins, not viewers.
     can_edit: bool = False
+    # Its questions are kept out of prepza's shared question bank (the terms' opt-out).
+    keep_private: bool = False
 
 
 class ReviewIn(BaseModel):
@@ -122,6 +124,7 @@ class InterviewSettings(BaseModel):
     )
     hired: bool | None = None
     pass_mark: int | None = Field(default=None, ge=MIN_PASS_MARK, le=MAX_PASS_MARK)
+    keep_private: bool | None = None
 
 
 class TitleIn(BaseModel):

@@ -11,6 +11,7 @@ from prepza_common.paging import PageParams
 from prepza_common.pause import refuse_if_paused
 from prepza_common.rate_limit import hit_or_skip
 
+from app.constants.interviews import SETTINGS_LOGGED
 from app.constants.invites import INTERVIEW_NOT_READY, MAX_SEARCH_LENGTH
 from app.helpers.interviews import (
     attach_set,
@@ -120,6 +121,7 @@ async def get_interview(interview_id: UUID, user: CurrentUser) -> InterviewDetai
         total_minutes=interview_minutes(found, interview.topic_limits, interview.question_seconds),
         total_questions=interview_questions(found, interview.topic_limits),
         can_edit=can_edit(member),
+        keep_private=interview.keep_private,
     )
 
 
@@ -129,11 +131,9 @@ async def update_settings(
 ) -> None:
     interview, _, _ = await interview_for(user, interview_id, editor=True)
     await interviews.update_settings(interview.id, body)
-    changed = (
-        body.question_seconds is not None and body.question_seconds != interview.question_seconds
-    ) or (body.hired is not None and body.hired != interview.hired)
+    sent = body.model_dump(include=SETTINGS_LOGGED, exclude_none=True)
 
-    if changed:
+    if any(value != getattr(interview, key) for key, value in sent.items()):
         await audit.record_interview(interview, user.uid, AuditAction.INTERVIEW_SETTINGS_CHANGED)
 
     if body.pass_mark is not None and body.pass_mark != interview.pass_mark:

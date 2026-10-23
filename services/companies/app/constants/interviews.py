@@ -25,6 +25,9 @@ UNKNOWN_LEVEL = "medium"
 DEFAULT_PASS_MARK = 70
 MIN_PASS_MARK = 1
 MAX_PASS_MARK = 100
+# The settings whose change the action log records as interview_settings_changed (the pass mark
+# has an action of its own).
+SETTINGS_LOGGED = {"question_seconds", "hired", "keep_private"}
 # Questions each candidate gets from a topic until a manager sets another number: a short
 # interview, drawn at random from the topic's whole bank.
 DEFAULT_TOPIC_QUESTIONS = 10

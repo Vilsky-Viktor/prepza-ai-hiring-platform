@@ -9,6 +9,7 @@ from prepza_common.user import User
 from app.main import app
 from app.models.companies import Company, Member
 from app.models.interviews import Interview
+from app.services import set_cache
 from app.storage import companies, interviews
 
 COMPANY_ID = uuid.uuid4()
@@ -27,18 +28,26 @@ def clear_overrides():
     app.dependency_overrides.clear()
 
 
-def test_only_the_settings_sent_change(client, monkeypatch, audited):
+@pytest.fixture
+def saved(monkeypatch):
+    """Bob owns a company with one test; each settings change it saves, in order. The test is
+    read for each request with what earlier ones saved."""
     sign_in()
-    saved = []
+    changes = []
     # Not the defaults, so a reset to them would show.
     fields = {
         "id": INTERVIEW_ID,
         "company_id": COMPANY_ID,
         "generation_id": uuid.uuid4(),
-        "set_id": None,
+        "set_id": uuid.uuid4(),
         "pass_mark": 85,
         "question_seconds": 30,
         "hired": False,
+        "keep_private": False,
+        "title": "Backend",
+        "generation_failed": False,
+        "language": "en",
+        "created_at": datetime.now(UTC),
     }
     company = Company(id=COMPANY_ID, name="My company", created_at=datetime.now(UTC))
     company.members = [
@@ -52,18 +61,26 @@ def test_only_the_settings_sent_change(client, monkeypatch, audited):
     ]
 
     async def fake_interview(_interview_id):
-        # As read for each request, with what earlier ones saved.
-        return Interview(**{**fields, **{k: v for item in saved for k, v in item.items()}})
+        return Interview(**{**fields, **{k: v for item in changes for k, v in item.items()}})
 
     async def fake_company(_company_id):
         return company
 
     async def fake_update(_interview_id, settings):
-        saved.append(settings.model_dump(exclude_none=True))
+        changes.append(settings.model_dump(exclude_none=True))
+
+    async def no_set(_set_id):
+        return None
 
     monkeypatch.setattr(interviews, "get", fake_interview)
     monkeypatch.setattr(companies, "get", fake_company)
     monkeypatch.setattr(interviews, "update_settings", fake_update)
+    monkeypatch.setattr(set_cache, "get_set", no_set)
+
+    return changes
+
+
+def test_only_the_settings_sent_change(client, saved, audited):
     url = f"/interviews/{INTERVIEW_ID}/settings"
 
     assert client.patch(url, json={"hired": True}).status_code == 204
@@ -102,3 +119,25 @@ def test_a_tests_status_follows_its_candidates_and_the_hired_mark():
     # Marked as hired wins, with or without candidates.
     assert interview_status(True, 3) == "hired"
     assert interview_status(True, 0) == "hired"
+
+
+def test_keeping_the_questions_out_of_the_bank_is_saved_logged_and_shown(client, saved, audited):
+    url = f"/interviews/{INTERVIEW_ID}/settings"
+    # Shared until the company keeps them out, as the terms say.
+    assert client.get(f"/interviews/{INTERVIEW_ID}").json()["keep_private"] is False
+
+    assert client.patch(url, json={"keep_private": True}).status_code == 204
+    # The same value again isn't a change.
+    client.patch(url, json={"keep_private": True})
+
+    assert saved == [{"keep_private": True}, {"keep_private": True}]
+    assert audited == [
+        (
+            COMPANY_ID,
+            "bob",
+            AuditAction.INTERVIEW_SETTINGS_CHANGED,
+            INTERVIEW_ID,
+            TargetKind.INTERVIEW,
+        )
+    ]
+    assert client.get(f"/interviews/{INTERVIEW_ID}").json()["keep_private"] is True
