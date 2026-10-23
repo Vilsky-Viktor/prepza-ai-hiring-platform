@@ -263,7 +263,9 @@ export function QualityLoop({
               } as React.CSSProperties
             }
             className={cn(
-              "absolute start-(--x) top-(--y) z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 rounded-2xl border bg-background p-1.5 pt-6 text-center lowercase transition-shadow duration-300 lg:h-(--card-h) lg:w-60 lg:justify-start lg:p-5 lg:pt-9 rtl:translate-x-1/2",
+              "absolute start-(--x) top-(--y) z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 rounded-2xl border p-1.5 pt-6 text-center lowercase transition-shadow duration-300 lg:h-(--card-h) lg:w-60 lg:justify-start lg:p-5 lg:pt-9 rtl:translate-x-1/2",
+              // The page's colour, see-through as much as the interview card among the ways in.
+              "bg-background/75",
               lit === at && "ring-2 ring-primary"
             )}
           >
