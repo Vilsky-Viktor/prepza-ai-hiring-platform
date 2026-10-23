@@ -1,8 +1,9 @@
 "use client"
 
 import { type LucideIcon, UserRoundIcon } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { useEffect, useId, useRef } from "react"
 
+import { Comet } from "@/components/landing/comet"
 import { useStill } from "@/hooks/use-still"
 import { PULSE_SECONDS, SPARK_SPEED } from "@/constants/landing"
 
@@ -10,7 +11,7 @@ import { PULSE_SECONDS, SPARK_SPEED } from "@/constants/landing"
  * curve `d`, in pixels, and a traveller running along it that fades in at its start and out at
  * its end, at the same speed on every screen: a small pulsing dot, or an icon in the primary
  * colour on a small disc of the page's background: a person's as `candidate`, or the given ones,
- * one each run, in turn. It runs on a loop from
+ * one each run, in turn; or a glowing dot with a short trail as `comet`. It runs on a loop from
  * `delay` seconds, calling `onArrive` each time it reaches the end; or, with `fired`, once each
  * time that number changes. `size` scales the icon and `speed` (pixels a second)
  * replaces the usual speed. Without motion, the wire alone. */
@@ -27,7 +28,7 @@ export function Wire({
   d: string
   delay?: number
   fired?: number
-  traveller?: "dot" | "candidate" | LucideIcon[]
+  traveller?: "dot" | "candidate" | "comet" | LucideIcon[]
   size?: number
   // The wire's width, times the usual.
   thickness?: number
@@ -37,6 +38,8 @@ export function Wire({
   const motion = useRef<SVGAnimateMotionElement>(null)
   const still = useStill()
   const fade = useRef<SVGAnimateElement>(null)
+  // The main motion's id, for a comet's trail to start after it; letters and digits only.
+  const motionId = `motion-${useId().replace(/[^a-zA-Z0-9]/g, "")}`
   // A longer wire takes longer.
   const length = wireLength(d) / speed
   const seconds = `${length}s`
@@ -84,6 +87,7 @@ export function Wire({
     <>
       <animateMotion
         ref={motion}
+        id={motionId}
         path={d}
         dur={seconds}
         begin={begin}
@@ -110,7 +114,16 @@ export function Wire({
         strokeOpacity={0.35}
         strokeWidth={1.5 * thickness}
       />
-      {icons !== "dot" ? (
+      {icons === "comet" ? (
+        <Comet
+          animations={animations}
+          motion={motionId}
+          path={d}
+          seconds={length}
+          speed={speed}
+          repeat={repeat}
+        />
+      ) : icons !== "dot" ? (
         <g
           opacity={0}
           data-testid="wire-traveller"

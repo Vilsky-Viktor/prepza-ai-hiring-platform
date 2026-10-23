@@ -3,7 +3,6 @@
 import { cn } from "cn"
 import {
   CpuAiIcon,
-  ShieldQuestionMarkIcon,
   FlagIcon,
   ListChecksIcon,
   PenLineIcon,
@@ -26,7 +25,6 @@ import {
   QUALITY_PAUSE_MS,
   QUALITY_STEPS,
   type QualityStep,
-  QUESTION_SIZE,
 } from "@/constants/trust-quality-demo"
 import { ON_SCREEN, useDemoSteps } from "@/hooks/use-demo-steps"
 import { ellipsePoints, ellipseWires } from "@/lib/ellipse-wires"
@@ -223,8 +221,7 @@ export function QualityLoop({
               key={at}
               d={d}
               fired={fired[at]}
-              traveller={[ShieldQuestionMarkIcon]}
-              size={QUESTION_SIZE}
+              traveller="comet"
               thickness={1.5}
               speed={INVITE_SPEED}
             />

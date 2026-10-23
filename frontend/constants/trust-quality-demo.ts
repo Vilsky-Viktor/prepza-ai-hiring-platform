@@ -36,6 +36,3 @@ export const QUALITY_PAUSE_MS = 900
 export const TRUST_CARDS = ["person", "fair", "laws", "log"] as const
 
 export type TrustCard = (typeof TRUST_CARDS)[number]
-
-// The question travelling the loop, this many times the usual traveller's size.
-export const QUESTION_SIZE = 2.6
