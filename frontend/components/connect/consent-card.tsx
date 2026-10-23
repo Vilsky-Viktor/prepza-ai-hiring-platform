@@ -1,13 +1,16 @@
 "use client"
 
+import { cn } from "cn"
 import { PencilLineIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
+import { CornerSign } from "@/components/corner-sign"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { WarningCard } from "@/components/warning-card"
+import { SIGN_CARD } from "@/constants/cards"
 import { ApiError, apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { ConnectAnswer, ConnectRequest } from "@/types/connections"
@@ -91,11 +94,15 @@ export function ConsentCard({
       <List title={t("canTitle")} items={can} />
       <List title={t("cantTitle")} items={cant} />
       {!request.read_only && (
-        <label className="flex cursor-pointer items-center gap-4 rounded-2xl border p-5 text-base">
-          <PencilLineIcon
-            aria-hidden
-            className="size-7 shrink-0 text-primary"
-          />
+        <label
+          className={cn(
+            SIGN_CARD,
+            "flex cursor-pointer items-center gap-4 p-5 ps-20 text-base"
+          )}
+        >
+          <CornerSign>
+            <PencilLineIcon className="text-primary" />
+          </CornerSign>
           <span className="min-w-0 flex-1 space-y-1">
             <span className="block font-medium lowercase">
               {t("changesTitle")}

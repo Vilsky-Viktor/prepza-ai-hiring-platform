@@ -4,6 +4,7 @@ import { notFound, permanentRedirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { BackLink } from "@/components/back-link"
+import { CornerSign } from "@/components/corner-sign"
 import { JsonLd } from "@/components/json-ld"
 import { PageHeader } from "@/components/page-header"
 import { HireWithTemplate } from "@/components/practice/hire-with-template"
@@ -146,11 +147,13 @@ export default async function PracticeTestPage({
         }
       />
 
-      {/* One full-width card: the note on gray with an info icon, like the pricing page's,
+      {/* One full-width card: the note on gray with its sign in the corner, as the info card's,
           continued by a round's length on the transparent part at the end. */}
       <div className="flex flex-wrap items-stretch overflow-hidden rounded-2xl border text-base text-muted-foreground">
-        <div className="flex flex-1 items-center gap-3 bg-muted px-5 py-4">
-          <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
+        <div className="relative flex flex-1 items-center bg-muted/50 p-5 ps-20">
+          <CornerSign>
+            <InfoIcon className="text-primary" />
+          </CornerSign>
           <p>{t("about")}</p>
         </div>
         {size && (

@@ -1,15 +1,18 @@
 "use client"
 
+import { cn } from "cn"
 import { GaugeIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
+import { CornerSign } from "@/components/corner-sign"
 import { Dotted } from "@/components/dot"
 import { useAdminName } from "@/hooks/use-admin-name"
 import { useLimitAmount } from "@/components/superadmin/ai-budgets"
 import { LimitChanges } from "@/components/superadmin/limit-changes"
 import { LimitField } from "@/components/superadmin/limit-field"
 import { Badge } from "@/components/ui/badge"
+import { SIGN_CARD } from "@/constants/cards"
 import { apiFetch } from "@/lib/api"
 import type { Limit, LimitChange, Limits } from "@/types/superadmin"
 
@@ -89,9 +92,11 @@ export function LimitSettings({
   }
 
   return (
-    <div className="space-y-4 rounded-2xl border p-5">
+    <div className={cn(SIGN_CARD, "space-y-4 p-5 ps-20")}>
+      <CornerSign>
+        <GaugeIcon className="text-primary" />
+      </CornerSign>
       <div className="flex items-center gap-4 text-base">
-        <GaugeIcon aria-hidden className="size-7 shrink-0 text-primary" />
         <span className="min-w-0 flex-1 space-y-1">
           <span className="block font-medium">{t("limitsTitle")}</span>
           <span className="block text-sm text-muted-foreground">

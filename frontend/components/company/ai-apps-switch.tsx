@@ -1,11 +1,14 @@
 "use client"
 
+import { cn } from "cn"
 import { ShieldCheckIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
+import { CornerSign } from "@/components/corner-sign"
 import { Switch } from "@/components/ui/switch"
+import { SIGN_CARD } from "@/constants/cards"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 
 /** Whether members may use the company's data from the AI apps they connected, as the
@@ -40,8 +43,15 @@ export function AiAppsSwitch({
   }
 
   return (
-    <label className="flex cursor-pointer items-center gap-4 rounded-2xl border p-5 text-base">
-      <ShieldCheckIcon aria-hidden className="size-7 shrink-0 text-primary" />
+    <label
+      className={cn(
+        SIGN_CARD,
+        "flex cursor-pointer items-center gap-4 p-5 ps-20 text-base"
+      )}
+    >
+      <CornerSign>
+        <ShieldCheckIcon className="text-primary" />
+      </CornerSign>
       <span className="min-w-0 flex-1 space-y-1">
         <span className="block font-medium lowercase">{t("allowTitle")}</span>
         <span className="block text-sm text-muted-foreground">

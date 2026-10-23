@@ -1,10 +1,12 @@
 "use client"
 
+import { cn } from "cn"
 import { WrenchIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
+import { CornerSign } from "@/components/corner-sign"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -16,6 +18,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Switch } from "@/components/ui/switch"
+import { SIGN_CARD } from "@/constants/cards"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { MaintenanceSwitchState } from "@/types/company"
 
@@ -68,9 +71,11 @@ export function MaintenanceSwitch({ on: initial }: { on: boolean }) {
   }
 
   return (
-    <div className="rounded-2xl border p-5">
+    <div className={cn(SIGN_CARD, "p-5 ps-20")}>
+      <CornerSign>
+        <WrenchIcon className="text-primary" />
+      </CornerSign>
       <label className="flex cursor-pointer items-center gap-4 text-base">
-        <WrenchIcon aria-hidden className="size-7 shrink-0 text-primary" />
         <span className="min-w-0 flex-1 space-y-1">
           <span className="block font-medium">{t("maintenanceTitle")}</span>
           <span className="block text-sm text-muted-foreground">

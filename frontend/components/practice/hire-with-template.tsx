@@ -1,8 +1,11 @@
+import { cn } from "cn"
 import { BriefcaseBusinessIcon } from "lucide-react"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 
+import { CornerSign } from "@/components/corner-sign"
 import { Button } from "@/components/ui/button"
+import { SIGN_CARD } from "@/constants/cards"
 
 /** For a hiring manager who found or just took a practice interview: this test for their own
  * candidates, in a company they choose (app/companies/templates). */
@@ -10,12 +13,16 @@ export async function HireWithTemplate({ templateId }: { templateId: string }) {
   const t = await getTranslations("practice")
 
   return (
-    <div className="flex flex-col gap-4 rounded-2xl border p-6 sm:flex-row sm:items-center sm:justify-between">
+    <div
+      className={cn(
+        SIGN_CARD,
+        "flex flex-col gap-4 p-6 ps-20 sm:flex-row sm:items-center sm:justify-between"
+      )}
+    >
+      <CornerSign>
+        <BriefcaseBusinessIcon className="text-primary" />
+      </CornerSign>
       <div className="flex items-center gap-4">
-        <BriefcaseBusinessIcon
-          aria-hidden
-          className="size-6 shrink-0 text-primary"
-        />
         <div className="space-y-1">
           <p className="text-lg font-medium">{t("hireTitle")}</p>
           <p className="text-base text-muted-foreground">{t("hireText")}</p>

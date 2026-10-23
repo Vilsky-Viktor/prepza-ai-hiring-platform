@@ -1,5 +1,6 @@
 "use client"
 
+import { cn } from "cn"
 import { LinkIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -7,7 +8,9 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { CopyField } from "@/components/copy-field"
+import { CornerSign } from "@/components/corner-sign"
 import { Switch } from "@/components/ui/switch"
+import { SIGN_CARD } from "@/constants/cards"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 
 /** One link for many candidates, for a job ad: on or off, and the link to copy while it's on.
@@ -44,9 +47,11 @@ export function ShareLink({
   }
 
   return (
-    <div className="space-y-4 rounded-2xl border p-5">
+    <div className={cn(SIGN_CARD, "space-y-4 p-5 ps-20")}>
+      <CornerSign>
+        <LinkIcon className="text-primary" />
+      </CornerSign>
       <label className="flex cursor-pointer items-center gap-4 text-base">
-        <LinkIcon aria-hidden className="size-7 shrink-0 text-primary" />
         <span className="min-w-0 flex-1 space-y-1">
           <span className="block font-medium lowercase">{t("linkTitle")}</span>
           <span className="block text-sm text-muted-foreground">

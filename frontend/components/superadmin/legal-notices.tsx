@@ -1,12 +1,15 @@
 "use client"
 
+import { cn } from "cn"
 import { ScaleIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
 import { ConfirmDialog } from "@/components/confirm-dialog"
+import { CornerSign } from "@/components/corner-sign"
 import { Button } from "@/components/ui/button"
+import { SIGN_CARD } from "@/constants/cards"
 import { useAdminName } from "@/hooks/use-admin-name"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { formatDay } from "@/lib/format"
@@ -49,9 +52,11 @@ export function LegalNotices({ initial }: { initial: LegalNotice[] }) {
   })
 
   return (
-    <div className="space-y-4 rounded-2xl border p-5">
+    <div className={cn(SIGN_CARD, "space-y-4 p-5 ps-20")}>
+      <CornerSign>
+        <ScaleIcon className="text-primary" />
+      </CornerSign>
       <div className="flex items-center gap-4 text-base">
-        <ScaleIcon aria-hidden className="size-7 shrink-0 text-primary" />
         <span className="min-w-0 flex-1 space-y-1">
           <span className="block font-medium">{t("legalTitle")}</span>
           <span className="block text-sm text-muted-foreground">

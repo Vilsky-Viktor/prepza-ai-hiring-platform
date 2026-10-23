@@ -1,6 +1,6 @@
-import { cn } from "cn"
-import { InfoIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
+
+import { InfoCard } from "@/components/warning-card"
 
 /** While prepza is paused (the admin zone's emergency pause, from isPaused), the gray info card
  * says so; otherwise nothing. */
@@ -18,16 +18,8 @@ export async function PausedNotice({
   }
 
   return (
-    <div
-      role="status"
-      data-testid="paused-notice"
-      className={cn(
-        "flex items-center gap-3 rounded-2xl border bg-muted px-5 py-4 text-base text-muted-foreground",
-        className
-      )}
-    >
-      <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
-      <p>{t("notice")}</p>
+    <div data-testid="paused-notice" className={className}>
+      <InfoCard>{t("notice")}</InfoCard>
     </div>
   )
 }

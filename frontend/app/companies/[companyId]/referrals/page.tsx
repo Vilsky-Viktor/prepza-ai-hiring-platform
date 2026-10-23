@@ -1,3 +1,4 @@
+import { cn } from "cn"
 import { GiftIcon } from "lucide-react"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
@@ -5,6 +6,7 @@ import { getTranslations } from "next-intl/server"
 
 import { ReferralLink } from "@/components/billing/referral-link"
 import { CompanyHeader } from "@/components/company/company-header"
+import { CornerSign } from "@/components/corner-sign"
 import { SignInPrompt } from "@/components/sign-in-prompt"
 import { TOKEN_COOKIE } from "@/constants/auth"
 import { LocalDate } from "@/components/local-date"
@@ -12,6 +14,7 @@ import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyHeaderProps } from "@/lib/company-header"
 import type { Company, CompanyReferral } from "@/types/company"
+import { SIGN_CARD } from "@/constants/cards"
 import { LIST_BOX } from "@/constants/lists"
 
 export const generateMetadata = () => translatedTitle("company", "referrals")
@@ -57,12 +60,16 @@ export default async function ReferralsPage({
           <>
             {/* What a referral earns, and the link to share; on phones the card spans the screen,
               with square corners. */}
-            <div className="-mx-6 space-y-4 border-y p-5 sm:mx-0 sm:rounded-2xl sm:border">
+            <div
+              className={cn(
+                SIGN_CARD,
+                "-mx-6 space-y-4 p-5 ps-20 max-sm:rounded-none sm:mx-0"
+              )}
+            >
+              <CornerSign>
+                <GiftIcon className="text-primary" />
+              </CornerSign>
               <div className="flex items-center gap-4 text-base">
-                <GiftIcon
-                  aria-hidden
-                  className="size-7 shrink-0 text-primary"
-                />
                 <p className="text-muted-foreground">
                   {referralText("companyNote", { reward: referral.reward })}
                 </p>

@@ -1,6 +1,9 @@
 import { cn } from "cn"
 import { InfoIcon, TriangleAlertIcon } from "lucide-react"
 
+import { CornerSign } from "@/components/corner-sign"
+import { SIGN_CARD } from "@/constants/cards"
+
 type CardProps = {
   children: React.ReactNode
   className?: string
@@ -8,10 +11,8 @@ type CardProps = {
   action?: React.ReactNode
 }
 
-/** A notice on a soft gray card (the side menu's active item's gray), its sign large and half
- * transparent in the card's top start corner, running under the top and start borders only, the
- * same size and place on a card of any height: a large sign and the text in the muted color, as the maintenance
- * notice shows it. */
+/** A notice on a soft gray card with its sign in the corner (CornerSign), the text in the muted
+ * color, as the maintenance notice shows it. */
 function NoticeCard({
   children,
   className,
@@ -22,16 +23,12 @@ function NoticeCard({
     <div
       role="status"
       className={cn(
-        "relative flex items-center gap-4 overflow-hidden rounded-2xl bg-muted/50 p-5 ps-20 text-base",
+        SIGN_CARD,
+        "flex items-center gap-4 p-5 ps-20 text-base",
         className
       )}
     >
-      <span
-        aria-hidden
-        className="absolute -start-5 -top-5 flex opacity-50 [&_svg]:size-20"
-      >
-        {icon}
-      </span>
+      <CornerSign>{icon}</CornerSign>
       <p className="text-muted-foreground">{children}</p>
       {action && <div className="ms-auto shrink-0">{action}</div>}
     </div>

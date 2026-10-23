@@ -1,4 +1,4 @@
-import { CheckIcon, InfoIcon, LinkIcon } from "lucide-react"
+import { CheckIcon, LinkIcon } from "lucide-react"
 import { notFound } from "next/navigation"
 import { getLocale, getTranslations } from "next-intl/server"
 import { cn } from "cn"
@@ -6,6 +6,7 @@ import type { ComponentProps } from "react"
 
 import { BackLink } from "@/components/back-link"
 import { CopyField } from "@/components/copy-field"
+import { CornerSign } from "@/components/corner-sign"
 import { CandidateActions } from "@/components/company/candidate-actions"
 import { CandidateReport } from "@/components/company/candidate-report"
 import { ExtraTime } from "@/components/company/extra-time"
@@ -20,7 +21,9 @@ import { EntityId } from "@/components/entity-id"
 import { PageHeader } from "@/components/page-header"
 import { SignInPage } from "@/components/sign-in-page"
 import { Badge } from "@/components/ui/badge"
+import { InfoCard } from "@/components/warning-card"
 import { WrappedEmail } from "@/components/wrapped-email"
+import { SIGN_CARD } from "@/constants/cards"
 import { MAX_CANDIDATE_NAME_LENGTH } from "@/constants/limits"
 import { gradeTone } from "@/lib/grade-tone"
 import { serverFetch, signedIn } from "@/lib/server-api"
@@ -224,9 +227,16 @@ async function InviteLink({ token }: { token?: string | null }) {
   }
 
   return (
-    <div className="mx-auto max-w-xl space-y-4 rounded-2xl border p-5 max-sm:-mx-6 max-sm:rounded-none max-sm:border-x-0">
+    <div
+      className={cn(
+        SIGN_CARD,
+        "space-y-4 p-5 ps-20 max-sm:-mx-6 max-sm:rounded-none"
+      )}
+    >
+      <CornerSign>
+        <LinkIcon className="text-primary" />
+      </CornerSign>
       <div className="flex items-center gap-4 text-base">
-        <LinkIcon aria-hidden className="size-7 shrink-0 text-primary" />
         <div className="min-w-0 flex-1 space-y-1">
           <p className="font-medium lowercase">{t("inviteLinkTitle")}</p>
           <p className="text-sm text-muted-foreground">{t("inviteLinkHint")}</p>
@@ -275,14 +285,10 @@ async function ScorecardSummary({ card }: { card: Scorecard }) {
           )}
         </div>
       </GradeCard>
-      <div
-        data-testid="human-review"
-        className="flex items-center gap-3 rounded-2xl border bg-muted px-5 py-4 text-sm text-muted-foreground max-sm:-mx-6 max-sm:rounded-none max-sm:border-x-0 max-sm:px-6"
-      >
-        <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
-        <p>
+      <div data-testid="human-review" className="max-sm:-mx-6">
+        <InfoCard className="text-sm max-sm:rounded-none">
           {signals ? reportT("humanReviewSignals") : reportT("humanReview")}
-        </p>
+        </InfoCard>
       </div>
     </>
   )
