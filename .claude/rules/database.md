@@ -69,8 +69,9 @@ runs older code on the newer schema.
 
 ## Sessions, transactions and queries
 
-- One `AsyncSession` per unit of work, never shared between concurrent tasks;
-  `expire_on_commit=False` (`prepza_common.db`).
+- One `AsyncSession` per unit of work, opened by the service and passed to the repositories
+  (`python-services.md`), never shared between concurrent tasks; `expire_on_commit=False`
+  (`prepza_common.db`).
 - A transaction covers exactly what must succeed together; no call to another service or a model
   while it's open (it holds locks and a pooled connection). Events leave through the outbox in
   the same transaction.

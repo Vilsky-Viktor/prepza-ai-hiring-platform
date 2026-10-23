@@ -24,7 +24,9 @@ Shared test rules are in `testing.md`; CLAUDE.md wins on any conflict.
 
 ## FastAPI
 
-- Replace auth, sessions and clients with `app.dependency_overrides`, cleared in teardown.
+- Replace auth and clients with `app.dependency_overrides`, cleared in teardown. The database
+  session isn't a dependency (services open the transaction, python-services.md): a test of
+  code that saves runs against the real database, or stubs the repository functions.
 - Async tests use `httpx.AsyncClient(transport=ASGITransport(app))`; it skips lifespan, so a
   test that needs start-up uses `with TestClient(app)`.
 

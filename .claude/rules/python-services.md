@@ -19,8 +19,8 @@ my_service/
 │   ├── api/v1/, api/dependencies.py   # Routes; current user, sessions, auth
 │   ├── core/                # Exceptions, security, logging
 │   ├── models/, schemas/    # SQLAlchemy models; Pydantic request/response models
-│   ├── repositories/        # Every database query
-│   └── services/            # Business logic
+│   ├── repositories/        # Every database query; take a session, never commit
+│   └── services/            # Business logic; owns the transaction
 ├── tests/unit/, tests/integration/, tests/conftest.py   # Mirrors src/
 └── migrations/              # Alembic
 ```
@@ -28,6 +28,27 @@ my_service/
 From today's layout: `routers/` → `api/v1/`, `storage/` → `repositories/`, `auth.py` and
 `service_auth.py` → `api/dependencies.py` and `core/`; `helpers/`, `constants/`, `prompts/` and
 `integrations/` stay their own folders in the package.
+
+## Routes, services, repositories
+
+- **Routes** (`api/v1/`) do HTTP only: input, auth and access through dependencies, one call,
+  the response model and status. A route with a rule, more than one write or an event calls a
+  service; a plain read may open `async with Session() as session:` and call one repository
+  function directly (no forwarding services).
+- **Services** hold the rules and own the transaction: `async with Session.begin() as session:`
+  (the `AsyncSession` is the unit of work), passed to each repository call. Each action is a
+  single save: steps that must succeed together share one transaction; calls to other services
+  or models happen outside it.
+- **Repositories** are module functions taking `session: AsyncSession` first: queries, writes
+  and locks (`FOR UPDATE`, `ON CONFLICT`), returning models. No commit, no decisions; pure
+  calculations come from `helpers/`. The one exception is batched work, each batch its own
+  transaction (`prepza_common.db.delete_in_batches` takes the session factory; scalability.md).
+- Imports go one way: `api` → `services` → `repositories` → `models`; `helpers`, `constants`
+  and `schemas` from anywhere.
+- Never commit in a `yield` dependency: its exit runs after the response.
+- Not adopted (rule 4): repository classes, a generic base repository, a unit-of-work class,
+  domain models apart from the ORM, domain exceptions mapped to HTTP (every entry point is an
+  HTTP route, so services may raise `HTTPException`).
 
 ## Event-driven services
 
@@ -37,7 +58,8 @@ A worker (Pub/Sub, outbox, scheduled jobs, task queues) is packaged as in the la
 outgoing events, `mapping.py` to domain models), `handlers/` (one module per event) and
 `infrastructure/` (broker, database session, external clients). A service that also serves HTTP
 keeps the layout above and adds `events/` and `handlers/` beside `api/`. Every handler is
-idempotent, safe to retry and independent of event order (rule 11).
+idempotent, safe to retry and independent of event order (rule 11); a handler is an entry point
+like a route and calls services, never repositories with their own commit.
 
 ## Shared library
 
@@ -100,4 +122,5 @@ install it as an editable path dependency from the same commit: no releases, no 
   is logged as its route template (`.claude/rules/security.md`).
 - Sentry: `send_default_pii=False`, no local variables, users by internal id.
 
-Research (local notes, git-ignored): `internal_docs/best-practices/architecture.md`.
+Research (local notes, git-ignored): `internal_docs/best-practices/architecture.md`,
+`internal_docs/best-practices/controller-service-repository.md`.
