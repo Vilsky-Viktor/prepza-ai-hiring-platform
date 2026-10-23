@@ -51,7 +51,9 @@ A change to the candidate's pages updates `internal_docs/compliance/accessibilit
   working) is in a live region that exists before the message: `role="status"` by default,
   `alert` only when urgent. A toast that disappears never holds the only way to act.
 - Every field has a label (a placeholder alone vanishes on typing); multi-field forms show
-  visible labels, built from an existing form's pattern. A field's error is text next to it that
+  visible labels, built from an existing form's pattern (user-decided exception, 2026-10-23: the
+  contact form shows placeholders only, each field keeping its name as `aria-label`). A field's
+  error is text next to it that
   names the problem and how to fix it, linked with `aria-describedby` and flagged with
   `aria-invalid`. `autocomplete` on personal data.
 - Don't ask for what the user already gave in the same process: prefill it or offer to pick it.
