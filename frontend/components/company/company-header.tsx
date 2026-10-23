@@ -137,7 +137,7 @@ export function CompanyHeader({
       >
         {suspended && (
           // Edge to edge on a phone.
-          <WarningCard className="-mx-6 rounded-none sm:mx-0 sm:rounded-2xl">
+          <WarningCard className="-mx-6 rounded-none sm:mx-0 sm:rounded-xl">
             {t("suspended")}
           </WarningCard>
         )}

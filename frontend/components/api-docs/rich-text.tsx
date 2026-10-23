@@ -67,7 +67,7 @@ function Inline({ pieces }: { pieces: Pieces }) {
     ) : piece.kind === "code" ? (
       <code
         key={at}
-        className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-sm"
+        className="rounded-md bg-surface px-1.5 py-0.5 font-mono text-sm"
       >
         {piece.text}
       </code>

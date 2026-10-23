@@ -11,6 +11,7 @@ import {
   typeOf,
 } from "@/lib/openapi"
 import type { OpenApi, Operation as OperationSpec } from "@/types/openapi"
+import { CARD } from "@/constants/cards"
 
 /** One route (or web hook): its method and path, what it does, what it takes, what it returns
  * and the errors it may answer with. */
@@ -37,7 +38,7 @@ export async function Operation({
   const errors = errorsOf(operation)
 
   return (
-    <article className="space-y-5 rounded-2xl border p-6">
+    <article className={`space-y-5 ${CARD}`}>
       <header className="space-y-3">
         <h3 className="text-xl font-medium">{operation.summary}</h3>
         <p className="flex flex-wrap items-center gap-3">

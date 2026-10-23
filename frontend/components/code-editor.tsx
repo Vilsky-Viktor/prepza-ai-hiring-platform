@@ -70,7 +70,7 @@ export function CodeEditor({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-2xl border bg-muted text-start",
+        "overflow-hidden rounded-xl border bg-surface text-start",
         className
       )}
       dir="ltr"
@@ -172,7 +172,7 @@ function LanguageMenu({
         </span>
         <DropdownMenuTrigger
           aria-labelledby={`${labelId} ${valueId}`}
-          className="-ms-3 flex h-8 items-center gap-1.5 rounded-full px-3 font-mono text-sm text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+          className="-ms-3 flex h-8 items-center gap-1.5 rounded-lg px-3 font-mono text-sm text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
         >
           <span id={valueId}>{languages[chosen]}</span>
           <ChevronDownIcon aria-hidden className="size-4" />
