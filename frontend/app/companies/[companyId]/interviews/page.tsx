@@ -6,6 +6,7 @@ import { redirect } from "next/navigation"
 import { CompanyCredits as CreditsPanel } from "@/components/company/company-credits"
 import { CompanyHeader } from "@/components/company/company-header"
 import { InterviewList } from "@/components/company/interview-list"
+import { InterviewSearch } from "@/components/company/interview-search"
 import { SignInPrompt } from "@/components/sign-in-prompt"
 import { Button } from "@/components/ui/button"
 import { TOKEN_COOKIE } from "@/constants/auth"
@@ -18,21 +19,24 @@ import type { Company, Interview } from "@/types/company"
 
 export const generateMetadata = () => translatedTitle("interviews", "title")
 
+/** A company's interviews, searched by title (`?q=`, kept in the address like the templates'). */
 export default async function InterviewsPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ companyId: string }>
+  searchParams: Promise<{ q?: string }>
 }) {
   const { companyId } = await params
+  const q = (await searchParams).q?.trim() ?? ""
+  const listPath = `/companies/interviews?company_id=${companyId}${q ? `&q=${encodeURIComponent(q)}` : ""}`
   const t = await getTranslations("interviews")
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
   // Asked together: the API refuses each on its own when the company isn't theirs.
   const [company, interviews, credits] = signedIn
     ? await Promise.all([
         serverFetch<Company>(`/companies/companies/${companyId}`),
-        serverFetch<Interview[]>(
-          `/companies/interviews?company_id=${companyId}&limit=${PAGE_SIZE}`
-        ),
+        serverFetch<Interview[]>(`${listPath}&limit=${PAGE_SIZE}`),
         optionalFetch<CompanyCredits>(
           `/companies/companies/${companyId}/credits`
         ),
@@ -82,11 +86,14 @@ export default async function InterviewsPage({
           </div>
         }
       >
+        <InterviewSearch action={`/companies/${companyId}/interviews`} q={q} />
         {interviews && (
           <InterviewList
             companyId={companyId}
+            path={listPath}
             initial={interviews}
             canEdit={company.can_edit}
+            searched={Boolean(q)}
           />
         )}
       </CompanyHeader>

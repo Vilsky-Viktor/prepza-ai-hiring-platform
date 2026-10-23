@@ -45,6 +45,7 @@
     "actions": [
       "Créez un entretien à partir d'une description de poste avec « Nouvel entretien ».",
       "Ouvrez un entretien pour voir ses thèmes, ses candidats et ses paramètres.",
+      "Recherchez des entretiens par leur titre.",
       "Essayez un entretien en tant que candidat, ou supprimez-le.",
       "Rechargez des crédits depuis le solde, ou activez la recharge automatique dans l'onglet Facturation."
     ],

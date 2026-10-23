@@ -45,6 +45,7 @@
     "actions": [
       "Erstelle mit „Neues Interview“ ein Interview aus einer Stellenbeschreibung.",
       "Öffne ein Interview, um seine Themen, Kandidaten und Einstellungen zu sehen.",
+      "Suche Interviews nach ihrem Titel.",
       "Probiere ein Interview als Kandidat aus oder lösche es.",
       "Lade Credits direkt beim Guthaben auf, oder schalte automatisches Aufladen im Tab „Abrechnung“ ein."
     ],

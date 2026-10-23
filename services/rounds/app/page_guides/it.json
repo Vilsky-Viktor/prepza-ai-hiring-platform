@@ -45,6 +45,7 @@
     "actions": [
       "Crea un colloquio da una descrizione del ruolo con «Nuovo colloquio».",
       "Apri un colloquio per vederne argomenti, candidati e impostazioni.",
+      "Cerca i colloqui per titolo.",
       "Prova un colloquio come candidato, oppure eliminalo.",
       "Ricarica i crediti dal saldo, o attiva la ricarica automatica nella scheda Fatturazione."
     ],

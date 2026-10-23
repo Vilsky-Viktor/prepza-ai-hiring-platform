@@ -12,27 +12,33 @@ import { byId } from "@/lib/paged-list"
 import type { Interview } from "@/types/company"
 import { LIST_BOX } from "@/constants/lists"
 
-/** A company's interviews, newest first, a page at a time; `initial` is the server's first page. */
+/** A company's interviews at `path` (narrowed by a search when `searched`), newest first, a page
+ * at a time; `initial` is the server's first page. */
 export function InterviewList({
   companyId,
+  path,
   initial,
   canEdit,
+  searched,
 }: {
   companyId: string
+  path: string
   initial: Interview[]
   // Viewers preview a test but don't delete it.
   canEdit: boolean
+  searched: boolean
 }) {
   const t = useTranslations("interviews")
-  const { items, setItems, loadMore } = usePagedList(
-    `/companies/interviews?company_id=${companyId}`,
-    byId,
-    initial
-  )
+  const { items, setItems, loadMore } = usePagedList(path, byId, initial)
 
   if (items.length === 0) {
     return (
-      <p className="py-16 text-center text-muted-foreground">{t("empty")}</p>
+      <p
+        data-testid={searched ? "no-matches" : "no-interviews"}
+        className="py-16 text-center text-muted-foreground"
+      >
+        {searched ? t("noMatches") : t("empty")}
+      </p>
     )
   }
 

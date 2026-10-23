@@ -45,6 +45,7 @@
     "actions": [
       "Create an interview from a job description with “new interview”.",
       "Open an interview to see its topics, candidates and settings.",
+      "Search the interviews by title.",
       "Try an interview as a candidate, or delete it.",
       "Top up credits from the balance, or turn on automatic top-ups on the Billing tab."
     ],

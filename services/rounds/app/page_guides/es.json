@@ -45,6 +45,7 @@
     "actions": [
       "Crea una entrevista a partir de una descripción del puesto con «Nueva entrevista».",
       "Abre una entrevista para ver sus temas, candidatos y ajustes.",
+      "Busca entrevistas por su título.",
       "Prueba una entrevista como candidato o elimínala.",
       "Recarga créditos desde el saldo, o activa la recarga automática en la pestaña Facturación."
     ],

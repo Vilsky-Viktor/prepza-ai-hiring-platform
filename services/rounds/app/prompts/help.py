@@ -98,6 +98,7 @@ of questions, the total length and extra time.
 - Any member of the company can try a test as a candidate first (the play button on the \
 interviews list or on the test's page): the same timed questions, free, and not counted as a \
 candidate.
+- A company's interviews list has a search above it that finds tests by their title.
 - Each test shows its status: new (no candidate invited yet), in process (candidates invited) \
 or hired (marked so in the test's settings, "Mark as hired").
 - Candidates can rate a question or report a problem with it. They never see their score or \

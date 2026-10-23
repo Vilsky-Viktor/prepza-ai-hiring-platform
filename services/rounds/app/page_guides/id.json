@@ -45,6 +45,7 @@
     "actions": [
       "Buat wawancara dari deskripsi pekerjaan dengan “Wawancara baru”.",
       "Buka wawancara untuk melihat topik, kandidat, dan pengaturannya.",
+      "Cari wawancara berdasarkan judulnya.",
       "Coba wawancara sebagai kandidat, atau hapus.",
       "Isi ulang kredit dari saldo, atau aktifkan isi ulang otomatis di tab Tagihan."
     ],

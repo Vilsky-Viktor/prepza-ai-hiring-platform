@@ -157,6 +157,7 @@ Playwright tests of the signed-in pages, in the same Docker image, against the r
 - a viewer emailing a report: an address outside the company refused with the reason, a member's address let through (`f-reports-viewer.spec.ts`),
 - a practice result leading to a company's test,
 - a talent's practice history, newest first, loading older rounds as it scrolls,
+- a company's interviews searched by title in any case (`zz-interviews-search.spec.ts`): the search kept in the address after a reload and in the next page loaded as the list scrolls, and a search matching nothing showing the no-matches state,
 - a practice round's time per question: the options the API sends, the picker beside the start, and an untimed round without a countdown (`zu-practice-timing.spec.ts`),
 - text in another language than the page marked with its `lang` and `dir`: an interview's topics and questions, and each language's own name in the language picker (`zv-text-language.spec.ts`),
 - an interview's settings tab, and the shareable link turned on at its top (not on the candidates tab) to give the link to copy,

@@ -45,6 +45,7 @@
     "actions": [
       "Tạo buổi phỏng vấn từ mô tả công việc bằng “Buổi phỏng vấn mới”.",
       "Mở một buổi phỏng vấn để xem chủ đề, ứng viên và cài đặt.",
+      "Tìm buổi phỏng vấn theo tiêu đề.",
       "Thử buổi phỏng vấn với vai trò ứng viên, hoặc xóa nó.",
       "Nạp credit từ số dư, hoặc bật tự động nạp ở thẻ Thanh toán."
     ],
