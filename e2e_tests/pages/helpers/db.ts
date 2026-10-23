@@ -79,6 +79,26 @@ export async function deleteTemplate(id: string) {
   await withDatabase("library", (client) => client.query("DELETE FROM sets WHERE id = $1", [id]));
 }
 
+/** A throwaway news post published today, saved straight into the library database; its id. */
+export async function addNewsPost(): Promise<string> {
+  const key = randomUUID().slice(0, 8);
+
+  return withDatabase("library", async (client) => {
+    const post = await client.query(
+      `INSERT INTO news (id, title, text, published_on)
+       VALUES (gen_random_uuid(), $1, 'E2E', current_date) RETURNING id`,
+      [`E2E news ${key}`],
+    );
+
+    return post.rows[0].id;
+  });
+}
+
+/** Deletes a post addNewsPost made; its translations go with it. */
+export async function deleteNewsPost(id: string) {
+  await withDatabase("library", (client) => client.query("DELETE FROM news WHERE id = $1", [id]));
+}
+
 // Made-up companies' ids: uuids, as the opt-outs keep them, that no real company is given.
 const MADE_UP_COMPANY = "00000000-e2e0-4000-8000-";
 
@@ -94,12 +114,19 @@ export async function deleteOptOuts(companyId: string) {
   );
 }
 
-/** Deletes what stopped runs left: their templates and their made-up companies' opt-outs. */
+/** Deletes what stopped runs left: their templates, news posts and made-up companies' opt-outs. */
 export async function deleteLeftovers() {
   await withDatabase("library", (client) =>
     client.query(
       `DELETE FROM sets WHERE kind = 'template' AND owner_type = 'platform'
          AND slug LIKE 'e2e-%' AND source_text = 'E2E' AND created_at < now() - $1::interval`,
+      [STALE],
+    ),
+  );
+  await withDatabase("library", (client) =>
+    client.query(
+      `DELETE FROM news WHERE title LIKE 'E2E news %' AND text = 'E2E'
+         AND created_at < now() - $1::interval`,
       [STALE],
     ),
   );
