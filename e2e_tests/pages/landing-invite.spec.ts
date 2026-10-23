@@ -65,6 +65,33 @@ test("every way in and Slack are joined to the interview by a wire", async ({ pa
   ]);
 });
 
+test("from laptops up, each card's icon tile spans the card's full height", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.setViewportSize({ width: 1280, height: 800 });
+  const section = await openPicture(page);
+  const cards = section.getByTestId("invite-card");
+  await expect(cards).toHaveCount(WAYS_IN.length + 1);
+
+  // The tile is the card's first part. Its laid-out box against the card's inside (within its
+  // border; the card is its offset parent), so the border and sub-pixel scaling don't count.
+  const gaps = await cards.evaluateAll((all) =>
+    all.map((card) => {
+      const tile = card.firstElementChild as HTMLElement;
+
+      return {
+        top: tile.offsetTop,
+        bottom: card.clientHeight - (tile.offsetTop + tile.offsetHeight),
+      };
+    }),
+  );
+  expect(gaps).toHaveLength(WAYS_IN.length + 1);
+
+  for (const gap of gaps) {
+    expect(Math.abs(gap.top)).toBeLessThanOrEqual(1);
+    expect(Math.abs(gap.bottom)).toBeLessThanOrEqual(1);
+  }
+});
+
 test("the developer tools button opens the developer docs", async ({ page }) => {
   test.setTimeout(120_000);
   const section = await openPicture(page);

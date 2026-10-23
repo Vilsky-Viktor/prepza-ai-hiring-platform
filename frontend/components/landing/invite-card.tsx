@@ -24,7 +24,7 @@ const ICONS = {
 }
 
 // A mark's size in its tile.
-const MARK = "size-6 lg:size-7"
+const MARK = "size-6 lg:size-8"
 
 type Mark = InviteSource["key"] | "slack"
 
@@ -52,15 +52,16 @@ export function InviteCard({
       data-testid="invite-card"
       data-mark={mark}
       className={cn(
-        "relative z-10 flex min-w-0 flex-col items-center justify-center gap-2 rounded-2xl border bg-background px-2 pt-3 pb-4 text-center text-sm leading-tight font-medium break-words lowercase lg:flex-row lg:gap-4 lg:p-3 lg:pe-7 lg:text-start lg:text-lg lg:whitespace-nowrap",
+        "relative z-10 flex min-w-0 flex-col items-center justify-center gap-2 rounded-2xl border bg-background px-2 pt-3 pb-4 text-center text-sm leading-tight font-medium break-words lowercase lg:flex-row lg:gap-5 lg:overflow-hidden lg:p-4 lg:pe-9 lg:text-start lg:text-xl lg:whitespace-nowrap",
         className
       )}
     >
-      {/* The ATSs' tile as wide as their logos, so they never run under the label. */}
+      {/* From laptops up, the tile fills the card's start edge, top to bottom, like the
+          integrations' logo tiles; the ATSs' tile as wide as their logos. */}
       <span
         className={cn(
-          "flex h-11 shrink-0 items-center justify-center rounded-xl bg-muted lg:h-13 dark:bg-card",
-          mark === "ats" ? "px-1 lg:px-3" : "w-11 lg:w-13"
+          "flex h-11 shrink-0 items-center justify-center rounded-xl bg-muted lg:-my-4 lg:-ms-4 lg:h-auto lg:min-h-16 lg:self-stretch lg:rounded-none dark:bg-card",
+          mark === "ats" ? "px-1 lg:px-4" : "w-11 lg:w-16"
         )}
       >
         <MarkIcon mark={mark} />
@@ -72,8 +73,8 @@ export function InviteCard({
   )
 }
 
-/** A card's mark: its icon in the primary colour; the ATSs' logos overlapping (two on phones and
- * tablets); the MCP mark in the icons' blue; Slack's logo in its colours. */
+/** A card's mark: its icon in the text colour (white in dark); the ATSs' logos overlapping (two
+ * on phones and tablets); the MCP mark in the icons' colour; Slack's logo in its colours. */
 function MarkIcon({ mark }: { mark: Mark }) {
   if (mark === "slack") {
     return (
@@ -85,7 +86,7 @@ function MarkIcon({ mark }: { mark: Mark }) {
   if (mark === "apps") {
     return (
       <span
-        className={cn(MARK, "bg-primary")}
+        className={cn(MARK, "bg-foreground")}
         style={{
           mask: `url(${MCP_MARK}) center / contain no-repeat`,
           WebkitMask: `url(${MCP_MARK}) center / contain no-repeat`,
@@ -116,5 +117,5 @@ function MarkIcon({ mark }: { mark: Mark }) {
 
   const Icon = ICONS[mark]
 
-  return <Icon className={cn(MARK, "text-primary")} />
+  return <Icon className={cn(MARK, "text-foreground")} />
 }
