@@ -43,18 +43,17 @@ test("a company's pages on a phone", async ({ signInAs }) => {
   await user.setViewportSize(PHONE);
 
   try {
-    // The companies list: "new company" at full width under the title, rows without the logo.
+    // The companies list: "new company" at full width under the title, cards across the screen.
     await visit(user, "/companies");
     const width = await pageWidth(user);
     const title = user.getByRole("main").getByRole("heading", { level: 1 });
     const create = user.getByTestId("new-company");
     expect((await box(create)).top).toBeGreaterThan((await box(title)).bottom);
     expect((await box(create)).width).toBeGreaterThan(width - 60);
-    const list = user.locator("main .divide-y").first();
-    await expectEdgeToEdge(user, list);
-    await expect(
-      list.getByText(company.name.slice(0, 1), { exact: true }),
-    ).toBeHidden();
+    await expectEdgeToEdge(
+      user,
+      user.getByRole("main").getByRole("listitem").first(),
+    );
 
     // A dialog spans the screen, its two buttons (Cancel, Create) side by side, as tall and in
     // the same font.

@@ -6,9 +6,12 @@ import { visit } from "../helpers/navigation";
 import { shot } from "../helpers/screenshots";
 import { ownerEmail } from "../helpers/users";
 
-/** The Remove button on a company's row in the companies list, beside its link. */
+/** The Remove button on a company's card in the companies list, the card's one button. */
 function removeButton(page: Page, companyId: string) {
-  return page.locator(`a[href="/companies/${companyId}/interviews"] ~ div button`);
+  return page
+    .getByRole("listitem")
+    .filter({ has: page.locator(`a[href="/companies/${companyId}/interviews"]`) })
+    .getByRole("button");
 }
 
 // Removing a company deletes its credits: the dialog says how many are lost (and the

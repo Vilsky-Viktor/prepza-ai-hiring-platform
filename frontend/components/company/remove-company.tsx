@@ -1,5 +1,6 @@
 "use client"
 
+import { cn } from "cn"
 import { Trash2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -24,9 +25,12 @@ export function RemoveCompany({
   companyId,
   name,
   onRemoved,
+  className,
 }: {
   companyId: string
   name: string
+  // Sizes the button where it sits (a company's card makes it smaller).
+  className?: string
   // Takes it out of the list at once (pages loaded past the first aren't refreshed).
   onRemoved?: () => void
 }) {
@@ -66,7 +70,10 @@ export function RemoveCompany({
       <Button
         variant="ghost"
         size="icon"
-        className="size-12 text-muted-foreground hover:text-destructive"
+        className={cn(
+          "size-12 text-muted-foreground hover:text-destructive",
+          className
+        )}
         aria-label={t.markup("removeLabel", { name, ...bdiText })}
         tooltip={t("remove")}
         onClick={openDialog}
