@@ -132,7 +132,7 @@ export function TemplateAdditions({
               start(`${path}/additions`, { count: Number(count) })
             }}
           >
-            <div className="rounded-full border border-transparent transition-colors focus-within:border-ring">
+            <div className="relative rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient">
               <Input
                 required
                 type="number"

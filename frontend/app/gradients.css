@@ -1,0 +1,82 @@
+/* The primary buttons' gradient, darker towards both sides (components/ui/button.tsx), for every
+   primary fill and border on the site. --gradient-depth is how much of the colour the sides keep
+   (78%); small things set a softer 92% (gradient-soft), where the full depth looks harsh. Built from --primary (a company's own on its candidates'
+   pages) and, for a focused field, --ring. */
+
+/* A fill: buttons, badges, a checked box or switch, progress, the slider's range. */
+@utility bg-primary-gradient {
+  background-color: var(--primary);
+  background-image: linear-gradient(
+    90deg,
+    color-mix(in oklch, var(--primary) var(--gradient-depth, 78%), black),
+    var(--primary),
+    color-mix(in oklch, var(--primary) var(--gradient-depth, 78%), black)
+  );
+}
+
+/* A 1px border drawn over the element's own (transparent) one, whatever its fill: a mask leaves
+   only the ring. The element must be positioned (relative or absolute); one that clips its
+   overflow draws it just inside (--gradient-inset: 0px). */
+@utility border-primary-gradient {
+  border-color: transparent;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: var(--gradient-inset, -1px);
+    padding: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      color-mix(
+        in oklch,
+        var(--gradient-edge, var(--primary)) var(--gradient-depth, 78%),
+        black
+      ),
+      var(--gradient-edge, var(--primary)),
+      color-mix(
+        in oklch,
+        var(--gradient-edge, var(--primary)) var(--gradient-depth, 78%),
+        black
+      )
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+  }
+}
+
+/* A focused field's border: the same in the focus colour. */
+@utility border-ring-gradient {
+  --gradient-edge: var(--ring);
+  @apply border-primary-gradient;
+}
+
+/* For an <input> or <textarea>, which can't draw ::before: the gradient as the border box's
+   background under the field's own fill (--field-fill, the grey by default, over the page, as
+   the grey is see-through in dark). A field inside a box (border-0) leaves it to the box. */
+@utility border-ring-gradient-field {
+  &:not(.border-0) {
+    border-color: transparent;
+    background:
+      linear-gradient(
+          var(--field-fill, var(--surface)),
+          var(--field-fill, var(--surface))
+        )
+        padding-box,
+      linear-gradient(var(--background), var(--background)) padding-box,
+      linear-gradient(
+          90deg,
+          color-mix(in oklch, var(--ring) var(--gradient-depth, 78%), black),
+          var(--ring),
+          color-mix(in oklch, var(--ring) var(--gradient-depth, 78%), black)
+        )
+        border-box;
+  }
+}
+
+/* The softer depth for small things: small buttons, checkboxes, switches, badges, ticks, bars. */
+@utility gradient-soft {
+  --gradient-depth: 92%;
+}

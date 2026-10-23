@@ -80,8 +80,8 @@ export function CompanyPicker({
       <Combobox.Trigger
         aria-label={t("campaignCompanies")}
         className={cn(
-          "relative flex h-14 w-full items-center rounded-full border border-transparent bg-muted px-6 pe-16 text-start text-lg transition-colors outline-none focus-visible:border-ring disabled:opacity-50 dark:bg-input/30",
-          chosen.length === 0 && "text-muted-foreground"
+          "relative flex h-14 w-full items-center rounded-xl border border-transparent bg-surface px-6 pe-16 text-start text-lg transition-colors outline-none focus-visible:border-ring-gradient disabled:opacity-50",
+          chosen.length === 0 && "text-placeholder"
         )}
         data-testid="campaign-companies"
       >

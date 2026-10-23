@@ -22,7 +22,7 @@ import { isSubmitShortcut } from "@/lib/keys"
 
 // No border, only a focus outline, like the chat inputs.
 const BORDERLESS =
-  "border-transparent focus-visible:border-ring focus-visible:ring-0"
+  "border-transparent focus-visible:border-ring-gradient-field focus-visible:ring-0"
 const FIELD = `h-14 px-6 text-lg md:text-lg ${BORDERLESS}`
 
 /** The contact page's form; the rounds service emails it to prepza's inbox. */

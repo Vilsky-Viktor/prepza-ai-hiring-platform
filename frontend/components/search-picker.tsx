@@ -6,6 +6,7 @@ import { CheckIcon, ChevronDownIcon, SearchIcon } from "lucide-react"
 
 import { useId } from "react"
 
+import { PILL_FILL } from "@/constants/floating-label"
 import { MAX_PICKER_SEARCH_LENGTH } from "@/constants/limits"
 import { languageOf } from "@/lib/locale"
 
@@ -61,11 +62,11 @@ export function SearchPicker<T extends string>({
       <Combobox.Trigger
         aria-labelledby={`${labelId} ${valueId}`}
         className={cn(
-          "flex items-center justify-between gap-3 rounded-xl border border-transparent normal-case transition-colors outline-none hover:bg-muted focus-visible:border-ring disabled:opacity-50",
-          // Compact, it sits inside a grey input card: white stands out there in light mode.
+          "relative flex items-center justify-between gap-3 rounded-xl border border-transparent normal-case transition-colors outline-none hover:bg-surface focus-visible:border-ring-gradient disabled:opacity-50",
+          // Compact, it sits inside a grey input card, a bit lighter than the card.
           compact
-            ? "h-9 w-48 bg-background px-4 text-sm dark:bg-muted/50"
-            : "h-12 w-full max-w-xs bg-muted/50 px-5 text-base",
+            ? cn(PILL_FILL, "h-9 w-48 bg-(--pill) px-4 text-sm")
+            : "h-12 w-full max-w-xs bg-surface px-5 text-base",
           triggerClassName
         )}
       >
@@ -102,7 +103,7 @@ export function SearchPicker<T extends string>({
                 <Combobox.Item
                   key={item}
                   value={item}
-                  className="flex cursor-default items-center justify-between gap-4 rounded-lg px-3 py-2 text-base outline-none select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground sm:whitespace-nowrap"
+                  className="flex cursor-default items-center justify-between gap-4 rounded-lg px-3 py-2 text-base outline-none select-none data-highlighted:bg-surface data-highlighted:text-accent-foreground sm:whitespace-nowrap"
                 >
                   <span {...languageOf(langOf?.(item))}>{labelOf(item)}</span>
                   <Combobox.ItemIndicator>

@@ -23,8 +23,8 @@ function Slider({
       {...props}
     >
       <SliderPrimitive.Control className="relative flex h-8 w-full touch-none items-center select-none">
-        <SliderPrimitive.Track className="relative h-2 w-full rounded-full bg-muted">
-          <SliderPrimitive.Indicator className="rounded-full bg-primary" />
+        <SliderPrimitive.Track className="relative h-2 w-full rounded-full bg-surface">
+          <SliderPrimitive.Indicator className="rounded-full bg-primary-gradient gradient-soft" />
           {marks}
           <SliderPrimitive.Thumb
             {...thumb}

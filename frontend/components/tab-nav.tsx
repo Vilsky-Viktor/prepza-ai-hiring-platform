@@ -2,12 +2,7 @@
 
 import { cn } from "cn"
 import Link from "next/link"
-import {
-  type ComponentType,
-  type ReactNode,
-  useEffect,
-  useRef,
-} from "react"
+import { type ComponentType, type ReactNode, useEffect, useRef } from "react"
 
 /** A menu item's icon: a lucide icon or another icon sized by its class (McpIcon). */
 export type MenuIcon = ComponentType<{
@@ -115,7 +110,7 @@ export function TabNav({
               : "text-base whitespace-nowrap",
             item.keepCase ? "normal-case" : "lowercase",
             item.id === current
-              ? "border-primary text-foreground"
+              ? "text-foreground [border-image:linear-gradient(90deg,color-mix(in_oklch,var(--primary)_78%,black),var(--primary),color-mix(in_oklch,var(--primary)_78%,black))_1]"
               : "border-transparent text-muted-foreground hover:text-foreground active:border-border active:text-foreground"
           )
 

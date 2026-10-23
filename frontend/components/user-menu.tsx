@@ -92,7 +92,7 @@ export function UserMenu() {
             menu is open. */}
         <Avatar
           size="lg"
-          className="ring-primary transition-shadow group-hover/button:ring-1 group-aria-expanded/button:ring-1"
+          className="rounded-xl gradient-soft group-hover/button:border-primary-gradient group-aria-expanded/button:border-primary-gradient after:rounded-xl"
         >
           <AvatarImage
             src={user.photoURL ?? undefined}

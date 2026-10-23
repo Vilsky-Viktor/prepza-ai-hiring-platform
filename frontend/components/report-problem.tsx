@@ -53,7 +53,7 @@ export function ReportProblem() {
           <DialogDescription>{t("reportText")}</DialogDescription>
         </DialogHeader>
         <form id="report-problem" onSubmit={send}>
-          <div className="rounded-xl border border-transparent transition-colors focus-within:border-ring">
+          <div className="relative rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient">
             <Textarea
               required
               maxLength={MAX_PROBLEM_REPORT_LENGTH}

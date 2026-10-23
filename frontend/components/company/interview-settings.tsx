@@ -165,7 +165,7 @@ function NumberSetting({
     >
       <span className="text-lg font-light">{label}</span>
       {/* Same look as the app's other fields (library search, candidate invite). */}
-      <span className="relative w-36 rounded-full border border-transparent transition-colors focus-within:border-ring">
+      <span className="relative w-36 rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient">
         <Input
           type="number"
           inputMode="numeric"

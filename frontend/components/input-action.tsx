@@ -21,7 +21,7 @@ export function InputAction({
     return (
       // On phones the text takes its own row and the controls the row under it, inside the same
       // field, which spans the screen with square corners; from sm up it's one rounded row.
-      <div className="-mx-6 flex min-w-0 flex-1 flex-wrap items-center gap-2 border border-transparent bg-surface ps-3 pe-3 pb-3 transition-colors focus-within:border-ring sm:mx-0 sm:flex-nowrap sm:rounded-xl sm:ps-0 sm:pb-0">
+      <div className="relative -mx-6 flex min-w-0 flex-1 flex-wrap items-center gap-2 border border-transparent bg-surface ps-3 pe-3 pb-3 transition-colors focus-within:border-ring-gradient sm:mx-0 sm:flex-nowrap sm:rounded-xl sm:ps-0 sm:pb-0">
         <Input
           className="h-16 min-w-0 flex-1 basis-full border-0 bg-transparent px-3 text-lg focus-visible:ring-0 sm:basis-auto sm:px-6 md:text-lg dark:bg-transparent"
           {...props}

@@ -6,6 +6,8 @@
 @import "./bell.css";
 @import "./animations.css";
 @import "./scripts.css";
+/* The primary gradient as fills and borders (bg-primary-gradient, border-primary-gradient). */
+@import "./gradients.css";
 
 /* Dark, except inside .light-scope: the candidate PDF report keeps the light design. */
 @custom-variant dark (&:is(.dark *):not(.light-scope *));

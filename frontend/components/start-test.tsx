@@ -138,7 +138,7 @@ export function StartTest({
 
   // On phones the box spans the screen, with square corners.
   const box =
-    "-mx-6 w-[calc(100%+3rem)] border border-transparent bg-muted p-3 transition-colors focus-within:border-ring sm:mx-0 sm:w-full sm:rounded-3xl dark:bg-card"
+    "relative -mx-6 w-[calc(100%+3rem)] border border-transparent bg-surface p-3 transition-colors focus-within:border-ring-gradient sm:mx-0 sm:w-full sm:rounded-xl"
 
   if (companies === null) {
     return (

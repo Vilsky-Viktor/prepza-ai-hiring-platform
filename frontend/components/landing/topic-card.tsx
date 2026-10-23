@@ -29,7 +29,7 @@ export function TopicCard({
         className={cn(
           "flex size-5 shrink-0 items-center justify-center rounded-[6px] border transition-colors",
           checked
-            ? "border-primary bg-primary text-primary-foreground"
+            ? "border-primary bg-primary-gradient text-primary-foreground gradient-soft"
             : "border-input"
         )}
       >

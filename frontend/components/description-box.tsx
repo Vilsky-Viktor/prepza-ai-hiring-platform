@@ -57,7 +57,7 @@ export function DescriptionBox({
   return (
     <form
       onSubmit={submit}
-      className="w-full rounded-3xl border border-transparent bg-muted p-3 transition-colors focus-within:border-ring dark:bg-card"
+      className="relative w-full rounded-xl border border-transparent bg-surface p-3 transition-colors focus-within:border-ring-gradient"
     >
       <Textarea
         maxLength={MAX_GOAL_LENGTH}

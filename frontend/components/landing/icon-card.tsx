@@ -21,8 +21,8 @@ export function IconCard({
       data-testid="icon-card"
       data-lit={lit || undefined}
       className={cn(
-        "relative flex flex-col justify-center gap-1.5 rounded-2xl bg-muted p-4 pe-14 transition-shadow duration-300 sm:p-5 sm:pe-16 dark:bg-card",
-        lit && "ring-2 ring-primary"
+        "relative flex flex-col justify-center gap-1.5 rounded-xl bg-surface p-4 pe-14 transition-shadow duration-300 sm:p-5 sm:pe-16",
+        lit && "border-primary-gradient"
       )}
     >
       <Icon

@@ -76,7 +76,7 @@ export function InviteAdmin({ companyId }: { companyId: string }) {
         <form id="invite-admin-form" onSubmit={send}>
           <div className="space-y-3">
             {/* The email field as in the report's share dialog. */}
-            <div className="rounded-full border border-transparent transition-colors focus-within:border-ring">
+            <div className="relative rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient">
               <Input
                 type="email"
                 required

@@ -35,8 +35,8 @@ export async function ComparisonSection({ catalog }: { catalog: Catalog }) {
               <li
                 key={key}
                 className={cn(
-                  "flex flex-col gap-6 rounded-2xl bg-muted p-6 sm:p-8 lg:p-10 dark:bg-card",
-                  ours && "ring-2 ring-primary"
+                  "flex flex-col gap-6 rounded-xl bg-surface p-6 sm:p-8 lg:p-10",
+                  ours && "border-primary-gradient relative"
                 )}
               >
                 <div className="flex min-h-8 items-center gap-3">

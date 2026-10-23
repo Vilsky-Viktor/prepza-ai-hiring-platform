@@ -72,7 +72,7 @@ export function ChatInput({
     <div>
       <form
         onSubmit={submit}
-        className="relative rounded-[2rem] border border-transparent transition-colors focus-within:border-ring"
+        className="relative rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient"
       >
         <Textarea
           ref={inputRef}

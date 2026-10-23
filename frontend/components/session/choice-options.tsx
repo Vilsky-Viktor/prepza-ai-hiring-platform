@@ -51,7 +51,7 @@ export function ChoiceOptions({
                   className={cn(
                     "mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-md border-2 border-input",
                     picked &&
-                      "border-primary bg-primary text-primary-foreground"
+                      "border-primary bg-primary-gradient text-primary-foreground gradient-soft"
                   )}
                 >
                   {picked && <CheckIcon className="size-4" strokeWidth={3} />}

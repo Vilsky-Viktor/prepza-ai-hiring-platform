@@ -105,7 +105,7 @@ export function CreateCompany({ templateId }: { templateId?: string }) {
         <form id="create-company-form" onSubmit={create}>
           <div
             className={cn(
-              "rounded-full border border-transparent transition-colors focus-within:border-ring",
+              "relative rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient",
               nameError && "border-destructive focus-within:border-destructive"
             )}
           >

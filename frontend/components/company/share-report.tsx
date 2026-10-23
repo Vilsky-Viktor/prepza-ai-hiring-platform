@@ -108,7 +108,7 @@ export function ShareReport({
           </div>
         </DialogHeader>
         <form id="share-report-form" onSubmit={send}>
-          <div className="rounded-full border border-transparent transition-colors focus-within:border-ring">
+          <div className="relative rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient">
             <Input
               type="email"
               required

@@ -84,7 +84,7 @@ export function DeclineVerification({
           <DialogDescription>{t("declineText")}</DialogDescription>
         </DialogHeader>
         <form id={`decline-${companyId}`} onSubmit={decline}>
-          <div className="rounded-xl border border-transparent transition-colors focus-within:border-ring">
+          <div className="relative rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient">
             <Textarea
               maxLength={MAX_DECLINE_REASON_LENGTH}
               placeholder={t("declineReason")}

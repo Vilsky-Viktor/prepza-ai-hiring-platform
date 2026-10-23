@@ -215,7 +215,7 @@ export function InviteCandidate({
                     setText(event.target.value)
                     setSkipped([])
                   }}
-                  className="max-h-64 min-h-28 resize-none rounded-[2rem] border-transparent px-6 py-[18px] text-lg focus-visible:border-ring focus-visible:ring-0 md:text-lg"
+                  className="max-h-64 min-h-28 resize-none rounded-xl border-transparent px-6 py-[18px] text-lg focus-visible:border-ring-gradient-field focus-visible:ring-0 md:text-lg"
                 />
                 <InviteExample maxInvites={maxInvites} />
               </>

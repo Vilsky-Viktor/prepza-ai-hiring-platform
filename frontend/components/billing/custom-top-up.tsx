@@ -121,7 +121,7 @@ export function CustomTopUp({
             children: (
               <span
                 aria-hidden
-                className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded-full bg-primary px-2 py-0.5 text-xs font-medium whitespace-nowrap text-primary-foreground tabular-nums"
+                className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded-full bg-primary-gradient px-2 py-0.5 text-xs font-medium whitespace-nowrap text-primary-foreground tabular-nums gradient-soft"
                 data-testid="custom-count"
               >
                 {number(count)}

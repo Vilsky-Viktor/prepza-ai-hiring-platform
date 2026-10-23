@@ -121,7 +121,7 @@ export function ConnectAts({
             // The fields as in "Add member".
             <div
               key={field.name}
-              className="rounded-full border border-transparent transition-colors focus-within:border-ring"
+              className="relative rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient"
             >
               <Input
                 required

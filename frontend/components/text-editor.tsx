@@ -146,7 +146,7 @@ export function TextEditor({
 
   return (
     // The dialog's other fields' look: grey, without a border, outlined while focused.
-    <div className="rounded-xl border border-transparent bg-muted transition-colors focus-within:border-ring dark:bg-input/30">
+    <div className="relative rounded-xl border border-transparent bg-surface transition-colors focus-within:border-ring-gradient">
       <div className="flex flex-wrap items-center gap-1 border-b border-background px-3 py-2 dark:border-border">
         {tools.map(({ key, Icon, pressed, run }) => (
           <IconButton

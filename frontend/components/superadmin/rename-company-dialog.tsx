@@ -62,7 +62,7 @@ export function RenameCompanyDialog({
           <DialogTitle>{t("renameCompanyTitle")}</DialogTitle>
         </DialogHeader>
         <form id="rename-company-form" onSubmit={save}>
-          <div className="rounded-full border border-transparent transition-colors focus-within:border-ring">
+          <div className="relative rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient">
             <Input
               required
               maxLength={MAX_COMPANY_NAME_LENGTH}
