@@ -12,7 +12,7 @@ import { UserMenu } from "@/components/user-menu"
 import { Wordmark } from "@/components/wordmark"
 
 export function SiteHeader() {
-  const t = useTranslations("nav")
+  const tc = useTranslations("common")
   const { user, loading } = useAuth()
 
   return (
@@ -22,12 +22,11 @@ export function SiteHeader() {
       <div className="mx-auto flex h-full max-w-page items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6">
         {/* The logo and links share a text baseline; the separator stays centered. */}
         <div className="flex items-baseline gap-2 sm:gap-4">
-          <LocalizedLink
-            href="/"
-            aria-label={t("home")}
-            className="flex h-8 items-center"
-          >
+          {/* The link's name is the logo as shown ("p." on phones) plus "Home", so it always
+              contains the visible text (WCAG 2.5.3). */}
+          <LocalizedLink href="/" className="flex h-8 items-center">
             <Wordmark className="text-xl leading-none" shortOnPhones />
+            <span className="sr-only"> {tc("home")}</span>
           </LocalizedLink>
           <span aria-hidden className="h-5 w-px self-center bg-border" />
           <SiteNav />

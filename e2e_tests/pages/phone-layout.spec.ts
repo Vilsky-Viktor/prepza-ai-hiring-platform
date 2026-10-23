@@ -173,3 +173,15 @@ test("a practice page starts under its tags on a phone", async ({
   const start = (await page.getByTestId("start-practice").boundingBox())!;
   expect(start.y).toBeGreaterThan(tags.y + tags.height);
 });
+
+// The header's logo link is named by what it shows ("p." on a phone, the whole logo on a wider
+// screen) and then where it leads, so a voice user can say what they see (WCAG 2.5.3).
+test("the header's logo link is named by its visible text", async ({ page }) => {
+  await page.goto("/");
+  const logo = page.getByRole("banner").getByRole("link").first();
+  // The logo itself, as drawn: letters hidden on a phone aren't in its text.
+  const shown = (await logo.locator("span").first().innerText()).replace(/\s/g, "");
+  expect(shown.length).toBeGreaterThan(0);
+  const letters = [...shown].map((letter) => letter.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  await expect(logo).toHaveAccessibleName(new RegExp(`^${letters.join("\\s*")}\\s+\\S`));
+});
