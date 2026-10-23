@@ -91,13 +91,9 @@ export function InviteStage({
         INVITE_WIRE_GAP,
         INVITE_WIRE_INSET
       ),
-      // From inside the interview's card out to Slack's.
-      slack: sourceWires(
-        boxOf(placed[SLACK_CARD]),
-        [card],
-        0,
-        INVITE_WIRE_INSET
-      )[0],
+      // From the interview card's edge (it doesn't float, and its grey lets a wire show through)
+      // out to Slack's.
+      slack: sourceWires(boxOf(placed[SLACK_CARD]), [card], 0, 0)[0],
     }
 
     // Unchanged wires keep the picture as it is, so a redraw never starts a render loop.

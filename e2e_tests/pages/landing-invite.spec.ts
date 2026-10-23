@@ -65,6 +65,30 @@ test("every way in and Slack are joined to the interview by a wire", async ({ pa
   ]);
 });
 
+test("no wire runs over the interview's card", async ({ page }) => {
+  test.setTimeout(120_000);
+  const section = await openPicture(page);
+  const wires = section.locator("svg > g > path");
+  await expect(wires).toHaveCount(WAYS_IN.length + 1);
+
+  // Points along every wire, in the stage's frame (the card's laid-out box), more than a pixel
+  // inside the card: the card's grey lets a wire under it show through.
+  const inside = await section.evaluate((element) => {
+    const card = element.querySelector<HTMLElement>("[data-testid=invite-interview]")!;
+    const [left, top] = [card.offsetLeft + 1, card.offsetTop + 1];
+    const [right, bottom] = [left + card.offsetWidth - 2, top + card.offsetHeight - 2];
+
+    return [...element.querySelectorAll<SVGPathElement>("svg > g > path")].flatMap((path) => {
+      const length = path.getTotalLength();
+
+      return Array.from({ length: 101 }, (_, at) => path.getPointAtLength((length * at) / 100))
+        .filter(({ x, y }) => x > left && x < right && y > top && y < bottom)
+        .map(({ x, y }) => `${Math.round(x)},${Math.round(y)}`);
+    });
+  });
+  expect(inside).toEqual([]);
+});
+
 test("from laptops up, each card's icon tile spans the card's full height", async ({ page }) => {
   test.setTimeout(120_000);
   await page.setViewportSize({ width: 1280, height: 800 });
