@@ -161,7 +161,7 @@ def test_the_candidate_and_members_see_the_brand_others_dont(client, company, mo
         # No colors of its own: prepza's, by theme; and the candidate's own theme.
         "brand_colors": PREPZA_COLORS,
         "theme": None,
-        "brand_style": {"font": "poppins_geist", "radius": 10, "button_radius": 24},
+        "brand_style": {"font": "poppins_geist", "radius": 14, "button_radius": 14},
     }
     assert member.status_code == 200
     assert stranger.status_code == 404

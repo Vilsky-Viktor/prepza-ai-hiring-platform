@@ -64,8 +64,8 @@ CONTRAST_RULES = [
 
 # The font of all the text on a company's candidates' pages (the site bundles each, and a page
 # downloads only the one it uses), and how round their cards' and buttons' corners are, in px.
-# prepza's: Poppins titles over Geist text, 10 px cards, and pill buttons (24 px: half the height
-# of the tallest).
+# prepza's, as the site draws them: Poppins titles over Geist text, and 14 px cards and buttons
+# (the site's rounded-xl). A company's saved values stay as they are.
 class BrandFont(StrEnum):
     # prepza's pair, Poppins titles over Geist text (only together); every other is one font for
     # all the text.
@@ -96,6 +96,6 @@ class BrandFont(StrEnum):
 
 
 PREPZA_FONT = BrandFont.POPPINS_GEIST
-PREPZA_RADIUS = 10
-PREPZA_BUTTON_RADIUS = 24
+PREPZA_RADIUS = 14
+PREPZA_BUTTON_RADIUS = 14
 MAX_RADIUS = 24

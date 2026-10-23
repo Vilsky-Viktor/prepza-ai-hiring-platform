@@ -99,7 +99,7 @@ def test_only_owners_and_admins_set_colors(client, saved):
 def test_prepzas_colors_font_and_rounding_are_public(client):
     assert client.get("/brand/prepza").json() == {
         "colors": PREPZA_COLORS,
-        "style": {"font": "poppins_geist", "radius": 10, "button_radius": 24},
+        "style": {"font": "poppins_geist", "radius": 14, "button_radius": 14},
     }
 
 
@@ -146,4 +146,4 @@ def test_a_font_no_longer_offered_is_prepzas():
 
     old = SimpleNamespace(brand_font="poppins", brand_radius=4, brand_button_radius=None)
 
-    assert style_of(old) == {"font": "poppins_geist", "radius": 4, "button_radius": 24}
+    assert style_of(old) == {"font": "poppins_geist", "radius": 4, "button_radius": 14}

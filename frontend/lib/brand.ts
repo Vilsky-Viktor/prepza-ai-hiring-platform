@@ -1,8 +1,9 @@
 import { BRAND_VARIABLES } from "@/constants/brand"
 import type { BrandColors, Theme } from "@/types/company"
 
-/** A company's colors, font and corner rounding (px: cards' and buttons') as the theme variables
- * they set: on an element's style, everything inside takes them. A font family replaces both
+/** A company's colors, font and corner rounding (px: cards' and buttons', as drawn: cards are
+ * rounded-xl, 1.4 times the theme's --radius, which the other corners scale from) as the theme
+ * variables they set: on an element's style, everything inside takes them. A font family replaces both
  * of the site's, so it's all the text's; none keeps prepza's pair. */
 export function brandStyle(
   colors: BrandColors,
@@ -16,7 +17,7 @@ export function brandStyle(
     ),
     ...(look
       ? {
-          "--radius": `${look.radius}px`,
+          "--radius": `calc(${look.radius}px / 1.4)`,
           "--button-radius": `${look.buttonRadius}px`,
         }
       : {}),
