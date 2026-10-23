@@ -20,6 +20,7 @@ import {
   NOTIFICATION_DEFAULTS,
   NOTIFICATION_LOOKS,
 } from "@/constants/notifications"
+import { ROUND_ICON_BUTTON } from "@/constants/buttons"
 import { apiFetch } from "@/lib/api"
 import { bdi, bdiText } from "@/lib/bidi"
 import { formatDay, formatPercent, formatPrice } from "@/lib/format"
@@ -157,7 +158,7 @@ export function NotificationBell() {
           <Button
             variant="ghost"
             size="icon"
-            className="relative rounded-full"
+            className={cn("relative", ROUND_ICON_BUTTON)}
             aria-label={
               unread > 0 ? t("unread", { count: unread }) : t("title")
             }

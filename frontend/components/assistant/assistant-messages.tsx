@@ -81,7 +81,7 @@ export function AssistantMessages({
             <li key={question}>
               <Button
                 variant="outline"
-                className="h-auto w-full justify-start rounded-2xl px-4 py-3 text-start text-sm whitespace-normal normal-case"
+                className="h-auto w-full justify-start rounded-2xl border-0 px-4 py-3 text-start text-sm whitespace-normal normal-case"
                 onClick={() => onAsk(question)}
               >
                 {question}

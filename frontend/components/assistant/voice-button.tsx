@@ -7,6 +7,7 @@ import { useEffect, useEffectEvent, useRef, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { CANCEL_DISTANCE_PX } from "@/constants/assistant"
+import { ROUND_ICON_BUTTON } from "@/constants/buttons"
 import { apiErrorMessage } from "@/lib/api"
 import { transcribe } from "@/lib/assistant"
 import {
@@ -244,7 +245,8 @@ export function VoiceButton({
         size="icon"
         variant="ghost"
         className={cn(
-          "size-10 touch-none rounded-full select-none",
+          ROUND_ICON_BUTTON,
+          "size-10 touch-none select-none",
           recordingNow &&
             "bg-destructive text-white hover:bg-destructive hover:text-white"
         )}

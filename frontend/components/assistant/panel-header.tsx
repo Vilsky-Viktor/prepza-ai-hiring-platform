@@ -7,6 +7,7 @@ import { MenuPill } from "@/components/menu-pill"
 import { Button } from "@/components/ui/button"
 import { DialogClose } from "@/components/ui/dialog"
 import type { Company } from "@/types/company"
+import { ROUND_ICON_BUTTON } from "@/constants/buttons"
 
 // The company picker's value for all companies.
 const ALL = "all"
@@ -58,7 +59,7 @@ export function PanelHeader({
       <Button
         variant="ghost"
         size="icon"
-        className="rounded-full"
+        className={ROUND_ICON_BUTTON}
         aria-label={t("newChat")}
         data-testid="assistant-new-chat"
         onClick={onNewChat}
@@ -69,7 +70,7 @@ export function PanelHeader({
         <Button
           variant="ghost"
           size="icon"
-          className="rounded-full"
+          className={ROUND_ICON_BUTTON}
           aria-label={t("history")}
           data-testid="assistant-history"
           aria-pressed={history}
@@ -83,7 +84,7 @@ export function PanelHeader({
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-full"
+            className={ROUND_ICON_BUTTON}
             aria-label={common("close")}
             data-testid="assistant-close"
           />
