@@ -1733,7 +1733,6 @@
     "interview": "Interview",
     "pickJob": "Kies een vacature",
     "pickStage": "Kies een fase",
-    "pickInterview": "Kies een interview",
     "newFromJob": "Nieuw interview uit deze vacature",
     "jobText": "De vacature uit {ats}",
     "jobTextNote": "De vacature zoals die in {ats} staat. Pas hem aan als je wilt: het interview wordt van deze tekst gemaakt.",

@@ -1733,7 +1733,6 @@
     "interview": "Intervjuu",
     "pickJob": "Vali töökuulutus",
     "pickStage": "Vali etapp",
-    "pickInterview": "Vali intervjuu",
     "newFromJob": "Uus intervjuu selle töökuulutuse põhjal",
     "jobText": "Töökuulutus {ats} keskkonnast",
     "jobTextNote": "Töökuulutus nii, nagu see on {ats} keskkonnas. Muuda seda soovi korral: intervjuu luuakse selle teksti põhjal.",

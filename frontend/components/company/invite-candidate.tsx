@@ -8,7 +8,7 @@ import { toast } from "sonner"
 import { InviteExample } from "@/components/company/invite-example"
 import { InviteFileTab } from "@/components/company/invite-file-tab"
 import { InviteProblems } from "@/components/company/invite-problems"
-import { LabeledField } from "@/components/labeled-field"
+import { FloatingInput } from "@/components/ui/floating-field"
 import { TabNav, TabPanel } from "@/components/tab-nav"
 import { INVITE_TAB_ICONS } from "@/components/company/invite-tab-icons"
 import { Button } from "@/components/ui/button"
@@ -21,7 +21,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {
   INVITE_TAB_KEY,
@@ -35,11 +34,6 @@ import {
 import { ApiError, apiFetch } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { BulkInviteResult } from "@/types/company"
-
-// A field as in "Add member".
-const FIELD =
-  "rounded-full border border-transparent transition-colors focus-within:border-ring"
-const INPUT = "h-16 border-0 px-6 text-lg focus-visible:ring-0 md:text-lg"
 
 /** "New candidate" beside the test's title: a dialog with three tabs, one email with an
  * optional name, a list, or a file. The API reads the emails and names and invites each; what
@@ -191,29 +185,21 @@ export function InviteCandidate({
           >
             {tab === "one" && (
               <>
-                <LabeledField label={t("candidateEmail")}>
-                  <div className={FIELD}>
-                    <Input
-                      type="email"
-                      autoComplete="off"
-                      placeholder="candidate@example.com"
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value)}
-                      className={INPUT}
-                    />
-                  </div>
-                </LabeledField>
-                <LabeledField label={t("candidateName")}>
-                  <div className={FIELD}>
-                    <Input
-                      autoComplete="off"
-                      maxLength={MAX_CANDIDATE_NAME_LENGTH}
-                      value={name}
-                      onChange={(event) => setName(event.target.value)}
-                      className={INPUT}
-                    />
-                  </div>
-                </LabeledField>
+                <FloatingInput
+                  label={t("candidateEmail")}
+                  type="email"
+                  autoComplete="off"
+                  placeholder="candidate@example.com"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+                <FloatingInput
+                  label={t("candidateName")}
+                  autoComplete="off"
+                  maxLength={MAX_CANDIDATE_NAME_LENGTH}
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                />
               </>
             )}
             {tab === "many" && (

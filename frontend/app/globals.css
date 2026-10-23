@@ -58,6 +58,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
+  --color-placeholder: var(--placeholder);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
@@ -98,6 +99,8 @@
   --muted: oklch(0.97 0 0);
   /* 4.5:1 on the muted gray, not only on white (WCAG AA). */
   --muted-foreground: oklch(0.54 0 0);
+  /* A field's placeholder and resting name: the muted text, which light has no room to dim. */
+  --placeholder: var(--muted-foreground);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -133,6 +136,12 @@
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
+  /* Dimmer than the muted text, still 4.5:1 on every field's gray (the muted one the lightest). */
+  --placeholder: color-mix(
+    in oklch,
+    var(--muted-foreground) 89%,
+    var(--background)
+  );
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);

@@ -1,13 +1,11 @@
 "use client"
 
-import { cn } from "cn"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 
+import { FloatingInput } from "@/components/ui/floating-field"
 import { PillSelect } from "@/components/pill-select"
-import { Input } from "@/components/ui/input"
 import { ACTION_GROUPS } from "@/constants/action-log"
-import { GRAY_FIELD } from "@/constants/fields"
 import { dayStart, today } from "@/lib/format"
 import type { CompanyMember } from "@/types/company"
 
@@ -91,14 +89,11 @@ function DayField({
   onChange: (day: string) => void
 }) {
   return (
-    <label className="space-y-2">
-      <span className="block text-sm text-muted-foreground">{label}</span>
-      <Input
-        type="date"
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className={cn("h-14", GRAY_FIELD)}
-      />
-    </label>
+    <FloatingInput
+      label={label}
+      type="date"
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+    />
   )
 }

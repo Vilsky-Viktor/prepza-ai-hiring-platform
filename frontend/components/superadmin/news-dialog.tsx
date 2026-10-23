@@ -1,10 +1,10 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { useId, useState } from "react"
+import { useState } from "react"
 import { toast } from "sonner"
 
-import { LabeledField } from "@/components/labeled-field"
+import { FloatingInput, FloatingTextarea } from "@/components/ui/floating-field"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -15,13 +15,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH } from "@/constants/limits"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { today } from "@/lib/format"
 import type { AdminNewsPost } from "@/types/news"
-import { GRAY_FIELD } from "@/constants/fields"
 
 /** Writes a news post in English, or edits `post`: its title, day (today for a new one) and
  * text, with how many characters the text has left. The API checks the limits. */
@@ -42,7 +39,6 @@ export function NewsDialog({
   const [day, setDay] = useState(post?.published_on ?? today())
   const [text, setText] = useState(post?.text ?? "")
   const [saving, setSaving] = useState(false)
-  const textId = useId()
 
   async function save(event: React.FormEvent) {
     event.preventDefault()
@@ -75,35 +71,32 @@ export function NewsDialog({
           <DialogDescription>{t("postInEnglish")}</DialogDescription>
         </DialogHeader>
         <form id="news-post" onSubmit={save} className="min-w-0 space-y-4">
-          <LabeledField label={common("title")}>
-            <Input
+          <FloatingInput
+            label={common("title")}
+            required
+            maxLength={MAX_NEWS_TITLE_LENGTH}
+            placeholder={t("postTitlePlaceholder")}
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+          <FloatingInput
+            label={t("postDate")}
+            boxClassName="w-fit"
+            required
+            type="date"
+            value={day}
+            onChange={(event) => setDay(event.target.value)}
+          />
+          <div className="space-y-2">
+            <FloatingTextarea
+              label={t("postText")}
               required
-              maxLength={MAX_NEWS_TITLE_LENGTH}
-              placeholder={t("postTitlePlaceholder")}
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-              className={`h-14 ${GRAY_FIELD}`}
-            />
-          </LabeledField>
-          <LabeledField label={t("postDate")}>
-            <Input
-              required
-              type="date"
-              value={day}
-              onChange={(event) => setDay(event.target.value)}
-              className={`h-14 w-auto ${GRAY_FIELD}`}
-            />
-          </LabeledField>
-          <LabeledField label={t("postText")} htmlFor={textId}>
-            <Textarea
-              required
-              id={textId}
               maxLength={MAX_NEWS_TEXT_LENGTH}
               placeholder={t("postTextPlaceholder")}
               value={text}
               onChange={(event) => setText(event.target.value)}
               // A long unbroken word wraps instead of widening the dialog.
-              className={`min-h-48 resize-none rounded-xl py-4 wrap-anywhere ${GRAY_FIELD}`}
+              className="min-h-44 resize-none wrap-anywhere"
             />
             <p
               aria-live="polite"
@@ -113,7 +106,7 @@ export function NewsDialog({
                 count: MAX_NEWS_TEXT_LENGTH - text.length,
               })}
             </p>
-          </LabeledField>
+          </div>
         </form>
         <DialogFooter>
           <DialogClose

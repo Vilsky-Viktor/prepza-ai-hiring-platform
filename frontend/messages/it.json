@@ -1733,7 +1733,6 @@
     "interview": "Colloquio",
     "pickJob": "Scegli una posizione",
     "pickStage": "Scegli una fase",
-    "pickInterview": "Scegli un colloquio",
     "newFromJob": "Nuovo colloquio da questa posizione",
     "jobText": "La posizione da {ats}",
     "jobTextNote": "La posizione come appare in {ats}. Modificala se vuoi: il colloquio viene creato da questo testo.",

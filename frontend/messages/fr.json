@@ -1733,7 +1733,6 @@
     "interview": "Entretien",
     "pickJob": "Choisissez un poste",
     "pickStage": "Choisissez une étape",
-    "pickInterview": "Choisissez un entretien",
     "newFromJob": "Nouvel entretien à partir de ce poste",
     "jobText": "Le poste dans {ats}",
     "jobTextNote": "Le poste tel qu'il figure dans {ats}. Modifiez-le si vous le souhaitez : l'entretien est créé à partir de ce texte.",

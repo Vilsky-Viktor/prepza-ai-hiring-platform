@@ -7,7 +7,6 @@ import { toast } from "sonner"
 
 import { DescriptionBox } from "@/components/description-box"
 import { InterviewPicker } from "@/components/company/interview-picker"
-import { LabeledField } from "@/components/labeled-field"
 import { PillSelect } from "@/components/pill-select"
 import { Button } from "@/components/ui/button"
 import {
@@ -210,18 +209,15 @@ export function LinkJob({
             onChange={setStage}
             disabled={stages === null || saving}
           />
-          <LabeledField label={t("interview")}>
-            <InterviewPicker
-              companyId={companyId}
-              interviews={interviews}
-              first={{ value: NEW, label: t("newFromJob") }}
-              ariaLabel={t("interview")}
-              placeholder={t("pickInterview")}
-              value={interview}
-              onChange={chooseInterview}
-              disabled={saving}
-            />
-          </LabeledField>
+          <InterviewPicker
+            companyId={companyId}
+            interviews={interviews}
+            first={{ value: NEW, label: t("newFromJob") }}
+            label={t("interview")}
+            value={interview}
+            onChange={chooseInterview}
+            disabled={saving}
+          />
         </form>
         {/* The job's text from the ATS, to check and edit before the interview is made from
             it, in the home page's box. */}

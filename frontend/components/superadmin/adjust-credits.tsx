@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { LabeledField } from "@/components/labeled-field"
+import { FloatingInput } from "@/components/ui/floating-field"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -16,14 +16,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
 import { MAX_ADJUSTMENT_NOTE } from "@/constants/limits"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
-
-const FIELD =
-  "rounded-full border border-transparent transition-colors focus-within:border-ring"
-const INPUT = "h-16 border-0 px-6 text-lg focus-visible:ring-0 md:text-lg"
 
 /** A superadmin adds credits to a company (a positive amount) or removes some (negative), with
  * the reason its history will show, confirmed on a second step. The billing service refuses an
@@ -114,30 +109,22 @@ export function AdjustCredits({
                 setConfirming(true)
               }}
             >
-              <LabeledField label={t("adjustAmount")}>
-                <div className={FIELD}>
-                  <Input
-                    required
-                    type="number"
-                    step={1}
-                    inputMode="numeric"
-                    value={amount}
-                    onChange={(event) => setAmount(event.target.value)}
-                    className={INPUT}
-                  />
-                </div>
-              </LabeledField>
-              <LabeledField label={t("adjustNote")}>
-                <div className={FIELD}>
-                  <Input
-                    required
-                    maxLength={MAX_ADJUSTMENT_NOTE}
-                    value={note}
-                    onChange={(event) => setNote(event.target.value)}
-                    className={INPUT}
-                  />
-                </div>
-              </LabeledField>
+              <FloatingInput
+                label={t("adjustAmount")}
+                required
+                type="number"
+                step={1}
+                inputMode="numeric"
+                value={amount}
+                onChange={(event) => setAmount(event.target.value)}
+              />
+              <FloatingInput
+                label={t("adjustNote")}
+                required
+                maxLength={MAX_ADJUSTMENT_NOTE}
+                value={note}
+                onChange={(event) => setNote(event.target.value)}
+              />
             </form>
           )}
           <DialogFooter>

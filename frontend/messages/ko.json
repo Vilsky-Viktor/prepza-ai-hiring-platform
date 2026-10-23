@@ -1733,7 +1733,6 @@
     "interview": "면접",
     "pickJob": "채용 공고 선택",
     "pickStage": "전형 단계 선택",
-    "pickInterview": "면접 선택",
     "newFromJob": "이 채용 공고로 새 면접 만들기",
     "jobText": "{ats}의 채용 공고",
     "jobTextNote": "{ats}에 있는 그대로의 채용 공고입니다. 필요하면 수정하세요: 면접은 이 텍스트로 만들어집니다.",

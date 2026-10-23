@@ -1733,7 +1733,6 @@
     "interview": "面试",
     "pickJob": "选择职位",
     "pickStage": "选择阶段",
-    "pickInterview": "选择面试",
     "newFromJob": "根据此职位新建面试",
     "jobText": "来自 {ats} 的职位",
     "jobTextNote": "{ats} 中的职位原文。可按需修改：面试将根据这段文字生成。",

@@ -6,8 +6,14 @@ import { CheckIcon, ChevronDownIcon, SearchIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
+import {
+  FLOAT_LABEL,
+  FLOAT_LABEL_REST,
+  FLOAT_LABEL_UP,
+} from "@/constants/floating-label"
 import { MAX_SEARCH_LENGTH } from "@/constants/limits"
 import { SEARCH_DELAY_MS } from "@/constants/lists"
+import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/constants/menu-pill"
 import { apiFetch } from "@/lib/api"
 import type { Interview } from "@/types/company"
 
@@ -15,15 +21,15 @@ type Choice = { value: string; label: string; keepCase?: boolean }
 
 /** The ATS link's interview, as the site's select pill (menu-pill.tsx), with a search field:
  * the newest interviews first, and any of the company's interviews by its title, found by the
- * service. `first` is a choice above them (a new interview from the job). */
+ * service. `first` is a choice above them (a new interview from the job). Its name sits inside,
+ * as in the site's other select pills (menu-pill.tsx). */
 export function InterviewPicker({
   companyId,
   interviews,
   first,
   value,
   onChange,
-  ariaLabel,
-  placeholder,
+  label: name,
   disabled,
 }: {
   companyId: string
@@ -31,8 +37,7 @@ export function InterviewPicker({
   first: Choice
   value: string | null
   onChange: (value: string) => void
-  ariaLabel: string
-  placeholder: string
+  label: string
   disabled?: boolean
 }) {
   const t = useTranslations("ats")
@@ -94,21 +99,25 @@ export function InterviewPicker({
       disabled={disabled}
     >
       <Combobox.Trigger
-        aria-label={ariaLabel}
-        className={cn(
-          "relative flex h-14 w-full items-center rounded-full border border-transparent bg-muted px-6 pe-16 text-start text-lg transition-colors outline-none focus-visible:border-ring disabled:opacity-50 dark:bg-input/30",
-          !value && "text-muted-foreground"
-        )}
+        aria-label={name}
+        className={cn(MENU_PILL_CLASS, "mt-3")}
       >
+        <span
+          aria-hidden
+          className={cn(
+            FLOAT_LABEL,
+            "max-w-[calc(100%-5rem)]",
+            value ? FLOAT_LABEL_UP : FLOAT_LABEL_REST
+          )}
+        >
+          {name}
+        </span>
         <span
           className={cn("truncate", value !== first.value && "normal-case")}
         >
-          {value ? label(value) : placeholder}
+          {value && label(value)}
         </span>
-        <ChevronDownIcon
-          aria-hidden
-          className="pointer-events-none absolute end-6 top-1/2 size-6 -translate-y-1/2 text-muted-foreground"
-        />
+        <ChevronDownIcon aria-hidden className={MENU_PILL_CHEVRON_CLASS} />
       </Combobox.Trigger>
       <Combobox.Portal>
         <Combobox.Positioner sideOffset={6} align="start" className="z-50">
@@ -121,7 +130,7 @@ export function InterviewPicker({
                 placeholder={t("searchInterview")}
                 aria-label={t("searchInterview")}
                 dir="auto"
-                className="h-14 w-full bg-transparent text-lg outline-none placeholder:text-muted-foreground"
+                className="h-14 w-full bg-transparent text-lg outline-none placeholder:text-placeholder"
               />
             </div>
             <Combobox.List className="max-h-72 overflow-y-auto p-2">

@@ -52,8 +52,15 @@ A change to the candidate's pages updates `internal_docs/compliance/accessibilit
   `alert` only when urgent. A toast that disappears never holds the only way to act.
 - Every field has a label (a placeholder alone vanishes on typing); multi-field forms show
   visible labels, built from an existing form's pattern (user-decided exception, 2026-10-23: the
-  contact form shows placeholders only, each field keeping its name as `aria-label`). A field's
-  error is text next to it that
+  contact form shows placeholders only, each field keeping its name as `aria-label`). A labelled
+  field shows its name inside it (`FloatingInput` and `FloatingTextarea` in
+  `components/ui/floating-field.tsx`, `label` on `PillSelect` and `MenuPill`): a real
+  `<label htmlFor>` that rests where the value goes while the field is empty and rises onto the
+  top edge once it's focused or filled (CSS only, autofill included, no motion under reduced
+  motion). A unit or sign sits inside the field (`suffix`, `prefix`), never as text beside it.
+  A field's focus is a 1px border in `--ring` (3:1 on the field and the page in both themes), no
+  extra ring; an invalid field keeps its 1px destructive border.
+  Checkboxes, radios and switches keep their side labels. A field's error is text next to it that
   names the problem and how to fix it, linked with `aria-describedby` and flagged with
   `aria-invalid`. `autocomplete` on personal data.
 - Don't ask for what the user already gave in the same process: prefill it or offer to pick it.

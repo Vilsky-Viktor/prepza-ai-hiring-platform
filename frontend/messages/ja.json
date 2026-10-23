@@ -1733,7 +1733,6 @@
     "interview": "面接",
     "pickJob": "求人を選択",
     "pickStage": "選考ステップを選択",
-    "pickInterview": "面接を選択",
     "newFromJob": "この求人から新しい面接",
     "jobText": "{ats} の求人",
     "jobTextNote": "{ats} に登録されている求人です。必要に応じて編集してください。面接はこのテキストから作成されます。",

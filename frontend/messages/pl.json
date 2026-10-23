@@ -1733,7 +1733,6 @@
     "interview": "Rozmowa",
     "pickJob": "Wybierz ofertę",
     "pickStage": "Wybierz etap",
-    "pickInterview": "Wybierz rozmowę",
     "newFromJob": "Nowa rozmowa z tej oferty",
     "jobText": "Oferta z {ats}",
     "jobTextNote": "Oferta w takiej postaci, jak w {ats}. Możesz ją edytować: rozmowa powstanie z tego tekstu.",

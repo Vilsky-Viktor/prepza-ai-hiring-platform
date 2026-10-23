@@ -9,7 +9,7 @@ import { toast } from "sonner"
 import { ConfirmDialog } from "@/components/confirm-dialog"
 import { CopyValue } from "@/components/copy-field"
 import { KeepAcronyms } from "@/components/keep-acronyms"
-import { LabeledField } from "@/components/labeled-field"
+import { FloatingInput } from "@/components/ui/floating-field"
 import { PillSelect } from "@/components/pill-select"
 import { Button } from "@/components/ui/button"
 import {
@@ -22,7 +22,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
 import { WarningCard } from "@/components/warning-card"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 
@@ -162,20 +161,15 @@ export function CreateDialog({
               onSubmit={create}
               className="space-y-3"
             >
-              {/* The field as in "Add member", named above it. */}
-              <LabeledField label={placeholder}>
-                <div className="rounded-full border border-transparent transition-colors focus-within:border-ring">
-                  <Input
-                    required
-                    type={type}
-                    autoComplete="off"
-                    maxLength={maxLength}
-                    value={value}
-                    onChange={(event) => setValue(event.target.value)}
-                    className="h-16 border-0 px-6 text-lg focus-visible:ring-0 md:text-lg"
-                  />
-                </div>
-              </LabeledField>
+              <FloatingInput
+                label={placeholder}
+                required
+                type={type}
+                autoComplete="off"
+                maxLength={maxLength}
+                value={value}
+                onChange={(event) => setValue(event.target.value)}
+              />
               {choice && (
                 <PillSelect
                   label={choice.label}

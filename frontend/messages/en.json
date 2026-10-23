@@ -1733,7 +1733,6 @@
     "interview": "Interview",
     "pickJob": "Choose a job",
     "pickStage": "Choose a stage",
-    "pickInterview": "Choose an interview",
     "newFromJob": "New interview from this job",
     "jobText": "The job from {ats}",
     "jobTextNote": "The job as {ats} has it. Edit it if you like: the interview is made from this text.",

@@ -61,7 +61,7 @@ export function SearchPicker<T extends string>({
       <Combobox.Trigger
         aria-labelledby={`${labelId} ${valueId}`}
         className={cn(
-          "flex items-center justify-between gap-3 rounded-full normal-case transition-colors outline-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50",
+          "flex items-center justify-between gap-3 rounded-full border border-transparent normal-case transition-colors outline-none hover:bg-muted focus-visible:border-ring disabled:opacity-50",
           // Compact, it sits inside a grey input card: white stands out there in light mode.
           compact
             ? "h-9 w-48 bg-background px-4 text-sm dark:bg-muted/50"
@@ -91,7 +91,7 @@ export function SearchPicker<T extends string>({
                 placeholder={placeholder}
                 aria-label={placeholder}
                 dir="auto"
-                className="h-11 w-full bg-transparent text-base outline-none placeholder:text-muted-foreground"
+                className="h-11 w-full bg-transparent text-base outline-none placeholder:text-placeholder"
               />
             </div>
             <Combobox.Empty className="px-4 py-3 text-sm text-muted-foreground empty:hidden">

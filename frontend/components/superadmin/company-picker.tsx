@@ -105,7 +105,7 @@ export function CompanyPicker({
                 placeholder={t("campaignCompaniesSearch")}
                 aria-label={t("campaignCompaniesSearch")}
                 dir="auto"
-                className="h-14 w-full bg-transparent text-lg outline-none placeholder:text-muted-foreground"
+                className="h-14 w-full bg-transparent text-lg outline-none placeholder:text-placeholder"
               />
             </div>
             <Combobox.Empty className="px-6 py-3 text-base text-muted-foreground empty:hidden">

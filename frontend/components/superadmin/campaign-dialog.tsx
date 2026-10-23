@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
+import { FloatingInput } from "@/components/ui/floating-field"
 import { LabeledField } from "@/components/labeled-field"
 import { PillSelect } from "@/components/pill-select"
 import { CampaignAudience } from "@/components/superadmin/campaign-audience"
@@ -18,7 +19,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
 import { WarningCard } from "@/components/warning-card"
 import { LANGUAGE_NAMES, type Locale } from "@/constants/i18n"
 import {
@@ -29,7 +29,6 @@ import {
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { campaignForm } from "@/lib/campaigns"
 import type { Campaign, CampaignKind } from "@/types/campaigns"
-import { GRAY_FIELD } from "@/constants/fields"
 
 // The rich text editor (TipTap) is large and only this dialog uses it: loaded when it opens.
 const TextEditor = dynamic(
@@ -155,16 +154,14 @@ export function CampaignDialog({
               onChange={setAudience}
             />
           )}
-          <LabeledField label={t("campaignSubject")}>
-            <Input
-              required
-              maxLength={MAX_CAMPAIGN_SUBJECT_LENGTH}
-              placeholder={t("campaignSubjectPlaceholder")}
-              value={subject}
-              onChange={(event) => setSubject(event.target.value)}
-              className={`h-14 ${GRAY_FIELD}`}
-            />
-          </LabeledField>
+          <FloatingInput
+            label={t("campaignSubject")}
+            required
+            maxLength={MAX_CAMPAIGN_SUBJECT_LENGTH}
+            placeholder={t("campaignSubjectPlaceholder")}
+            value={subject}
+            onChange={(event) => setSubject(event.target.value)}
+          />
           {/* The editor names itself (aria-label); the label shows its name. */}
           <LabeledField label={t("campaignText")}>
             <TextEditor
@@ -182,23 +179,19 @@ export function CampaignDialog({
               })}
             </p>
           </LabeledField>
-          <LabeledField label={t("campaignButton")}>
-            <Input
-              maxLength={MAX_CAMPAIGN_BUTTON_LENGTH}
-              value={button}
-              onChange={(event) => setButton(event.target.value)}
-              className={`h-14 ${GRAY_FIELD}`}
-            />
-          </LabeledField>
+          <FloatingInput
+            label={t("campaignButton")}
+            maxLength={MAX_CAMPAIGN_BUTTON_LENGTH}
+            value={button}
+            onChange={(event) => setButton(event.target.value)}
+          />
           {english && (
-            <LabeledField label={t("campaignLink")}>
-              <Input
-                placeholder={t("campaignLinkPlaceholder")}
-                value={link}
-                onChange={(event) => setLink(event.target.value)}
-                className={`h-14 ${GRAY_FIELD}`}
-              />
-            </LabeledField>
+            <FloatingInput
+              label={t("campaignLink")}
+              placeholder={t("campaignLinkPlaceholder")}
+              value={link}
+              onChange={(event) => setLink(event.target.value)}
+            />
           )}
         </form>
         <DialogFooter>

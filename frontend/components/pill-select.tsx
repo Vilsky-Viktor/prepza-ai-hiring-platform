@@ -1,10 +1,9 @@
-import { cn } from "cn"
 import type { ReactNode } from "react"
 
 import { MenuPill } from "@/components/menu-pill"
 
-/** The site's select, with an optional label above it: the pill opens the site's menu, never
- * the browser's own list. */
+/** The site's select, with an optional label inside it (as the site's fields have theirs): the
+ * pill opens the site's menu, never the browser's own list. */
 export function PillSelect({
   label,
   ariaLabel,
@@ -16,7 +15,7 @@ export function PillSelect({
   className,
   pillClassName,
 }: {
-  // Shown above the select; without it, `ariaLabel` names it.
+  // Shown inside the select; without it, `ariaLabel` names it.
   label?: string
   ariaLabel?: string
   // Null until something is chosen, showing `placeholder`.
@@ -39,12 +38,10 @@ export function PillSelect({
   pillClassName?: string
 }) {
   return (
-    <div className={cn("space-y-2", className)}>
-      {label && (
-        <span className="block text-sm text-muted-foreground">{label}</span>
-      )}
+    <div className={className}>
       <MenuPill
-        ariaLabel={label ?? ariaLabel ?? ""}
+        label={label}
+        ariaLabel={ariaLabel}
         value={value}
         options={options.map((option) => ({ ...option, keepCase: true }))}
         onChange={onChange}

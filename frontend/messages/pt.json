@@ -1733,7 +1733,6 @@
     "interview": "Entrevista",
     "pickJob": "Escolha uma vaga",
     "pickStage": "Escolha uma etapa",
-    "pickInterview": "Escolha uma entrevista",
     "newFromJob": "Nova entrevista a partir desta vaga",
     "jobText": "A vaga no {ats}",
     "jobTextNote": "A vaga como está no {ats}. Edite se quiser: a entrevista é criada a partir deste texto.",
