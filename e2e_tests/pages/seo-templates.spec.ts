@@ -122,9 +122,12 @@ test("only an indexable template's pages may be found", async ({ page, addTempla
   ] as const) {
     for (const base of ["/tests", "/practice"]) {
       await page.goto(`${base}/${template.slug}`);
-      // Read at once: an indexable page has no robots tag to wait for.
+      // A browser gets the metadata streamed after the page's start, in the body until React
+      // moves it to the head: its description first shows it has come. Then read at once, as
+      // an indexable page has no robots tag to wait for.
+      await expect(page.locator('meta[name="description"]')).toBeAttached();
       const meta = await page
-        .locator('head meta[name="robots"]')
+        .locator('meta[name="robots"]')
         .evaluateAll((tags) => tags.map((tag) => tag.getAttribute("content")).join());
       expect(meta.includes("noindex") ? "noindex" : null).toBe(robots);
     }
