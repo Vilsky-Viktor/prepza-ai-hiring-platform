@@ -50,7 +50,8 @@ test("the steps light up one at a time, in order round the ring", async ({
   await page.clock.install();
   const section = await openTrust(page);
   const now = await page.evaluate(() => Date.now());
-  await page.clock.pauseAt(now + 1_000);
+  // A few seconds ahead, so a slow page never has the clock past it already.
+  await page.clock.pauseAt(now + 5_000);
   const steps = section.getByTestId("quality-step");
   await expect(steps).toHaveCount(5);
 
@@ -68,7 +69,8 @@ test("the steps are one size, mirrored round the middle, and lighting keeps the 
   await page.clock.install();
   const section = await openTrust(page);
   const now = await page.evaluate(() => Date.now());
-  await page.clock.pauseAt(now + 1_000);
+  // A few seconds ahead, so a slow page never has the clock past it already.
+  await page.clock.pauseAt(now + 5_000);
   const steps = section.getByTestId("quality-step");
   const before = await Promise.all((await steps.all()).map(centre));
   const [top, right, lowerRight, lowerLeft, left] = before;
@@ -142,5 +144,6 @@ test("the four columns show, one linking to the documents", async ({
   await expect(columns).toHaveCount(4);
 
   await columns.getByRole("link").click();
-  await expect(page).toHaveURL(/\/documents$/);
+  // The local dev server compiles the documents on first open.
+  await expect(page).toHaveURL(/\/documents$/, { timeout: 60_000 });
 });
