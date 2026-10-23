@@ -41,7 +41,7 @@ export async function TrustQualitySection() {
           {TRUST_CARDS.map((key) => (
             <li
               key={key}
-              className="flex flex-col gap-2 py-8 first:pt-0 last:pb-0 lg:px-8 lg:py-2 lg:first:ps-0 lg:last:pe-0"
+              className="flex flex-col gap-2 py-8 max-lg:first:pt-0 max-lg:last:pb-0 lg:px-8 lg:py-2 lg:first:ps-0 lg:last:pe-0"
             >
               <h3 className="font-heading text-xl font-medium lowercase">
                 <KeepAcronyms text={t(`cards.${key}.title`)} />

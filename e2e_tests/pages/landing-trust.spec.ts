@@ -121,6 +121,44 @@ test("only one question travels the ring at a time", async ({ page }) => {
   expect(most).toBeLessThanOrEqual(1);
 });
 
+test("the light runs through the whole net, left of the chip as well as right", async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  const section = await openTrust(page);
+  await expect(section.getByTestId("net-wave")).toHaveCount(1);
+  const chip = await centre(section.getByTestId("ai-chip"));
+  const step = await centre(section.getByTestId("quality-step").first());
+
+  // The net between the chip and the steps on each side, at the chip's height.
+  const patch = (side: -1 | 1) => ({
+    x: chip.x + side * (chip.width / 2 + step.width / 4) - step.width / 8,
+    y: chip.y - step.height / 4,
+    width: step.width / 4,
+    height: step.height / 2,
+  });
+
+  // The waves' SMIL clock held still: at the start no ring shows; two seconds in, the first ring
+  // has spread past the chip on every side.
+  const at = async (seconds: number) => {
+    await section.locator('svg:has([data-testid="net-wave"])').evaluate((svg: SVGSVGElement, time) => {
+      svg.pauseAnimations();
+      svg.setCurrentTime(time);
+    }, seconds);
+
+    return Promise.all(
+      ([-1, 1] as const).map((side) =>
+        page.screenshot({ clip: patch(side), animations: "disabled" }),
+      ),
+    );
+  };
+  const dark = await at(0);
+  const lit = await at(2);
+
+  expect(lit[0].equals(dark[0])).toBe(false);
+  expect(lit[1].equals(dark[1])).toBe(false);
+});
+
 test("with reduced motion, no step lights up", async ({
   page,
 }) => {
@@ -142,6 +180,19 @@ test("the four columns show, one linking to the documents", async ({
   const section = await openTrust(page);
   const columns = section.getByRole("list").last().getByRole("listitem");
   await expect(columns).toHaveCount(4);
+
+  // Side by side on a desktop, their titles start on one line.
+  if (test.info().project.name !== "phone") {
+    const tops = await Promise.all(
+      (await columns.getByRole("heading").all()).map(
+        async (title) => (await title.boundingBox())!.y,
+      ),
+    );
+
+    for (const top of tops) {
+      expect(top).toBeCloseTo(tops[0], 0);
+    }
+  }
 
   await columns.getByRole("link").click();
   // The local dev server compiles the documents on first open.

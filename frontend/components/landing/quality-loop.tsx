@@ -158,47 +158,49 @@ export function QualityLoop({
         key={String(playing && !still)}
         className="pointer-events-none absolute inset-0 size-full overflow-visible text-ring"
       >
+        {/* The net: a fine diamond mesh in the primary colour, inside the ellipse. */}
+        <defs>
+          <pattern
+            id={net}
+            width={NET_CELL}
+            height={NET_CELL}
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(45)"
+          >
+            <path
+              d={`M 0 0 H ${NET_CELL} M 0 0 V ${NET_CELL}`}
+              fill="none"
+              strokeWidth={1}
+              className="stroke-primary/15 dark:stroke-primary/25"
+            />
+          </pattern>
+        </defs>
+        {size && (
+          <ellipse
+            cx={size.width / 2}
+            cy={size.height / 2}
+            rx={(QUALITY_ELLIPSE.x * size.width) / 100}
+            ry={(QUALITY_ELLIPSE.y * size.height) / 100}
+            fill={`url(#${net})`}
+          />
+        )}
+        {size && playing && !still && (
+          <NetWave
+            cx={size.width / 2}
+            cy={size.height / 2}
+            rx={(QUALITY_ELLIPSE.x * size.width) / 100}
+            ry={(QUALITY_ELLIPSE.y * size.height) / 100}
+            from={40}
+            cell={NET_CELL}
+          />
+        )}
+        {/* The wires, drawn from the stage's centre, where a traveller waits between runs. Only
+            they move the origin: the net's mask and blur keep their regions on the stage. */}
         <g
           transform={
             size ? `translate(${size.width / 2} ${size.height / 2})` : undefined
           }
         >
-          {/* The net: a fine diamond mesh in the primary colour, inside the ellipse. */}
-          <defs>
-            <pattern
-              id={net}
-              width={NET_CELL}
-              height={NET_CELL}
-              patternUnits="userSpaceOnUse"
-              patternTransform="rotate(45)"
-            >
-              <path
-                d={`M 0 0 H ${NET_CELL} M 0 0 V ${NET_CELL}`}
-                fill="none"
-                strokeWidth={1}
-                className="stroke-primary/15 dark:stroke-primary/25"
-              />
-            </pattern>
-          </defs>
-          {size && (
-            <ellipse
-              cx={0}
-              cy={0}
-              rx={(QUALITY_ELLIPSE.x * size.width) / 100}
-              ry={(QUALITY_ELLIPSE.y * size.height) / 100}
-              fill={`url(#${net})`}
-            />
-          )}
-          {size && playing && !still && (
-            <NetWave
-              cx={0}
-              cy={0}
-              rx={(QUALITY_ELLIPSE.x * size.width) / 100}
-              ry={(QUALITY_ELLIPSE.y * size.height) / 100}
-              from={40}
-              cell={NET_CELL}
-            />
-          )}
           {wires.map((d, at) => (
             <Wire
               key={at}
