@@ -31,6 +31,9 @@ const WARM_UP_PATHS = [
   "/invite/e2e-warm-up",
   "/de",
   "/de/pricing",
+  // The admin zone answers a signed-out visitor 404, after compiling its pages all the same.
+  "/superadmin/templates",
+  "/superadmin/support",
 ];
 // Long enough for a cold dev server to compile a page, or to come back from a restart.
 const PAGE_DEADLINE_MS = 120_000;
