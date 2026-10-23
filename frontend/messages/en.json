@@ -1336,8 +1336,8 @@
         "agent": "AI assistant",
         "apps": "AI apps (MCP)"
       },
-      "automate": "Automate hiring with",
-      "developerTools": "developer tools",
+      "automate": "Automate hiring",
+      "developerDocs": "developer docs",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> candidate} other {<n>#</n> candidates}}"
     },

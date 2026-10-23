@@ -1337,7 +1337,7 @@
         "apps": "AI-rakendused (MCP)"
       },
       "automate": "Automatiseeri värbamine",
-      "developerTools": "arendaja tööriistadega",
+      "developerDocs": "arendaja dokumentatsioon",
       "interview": "Intervjuu",
       "candidates": "{count, plural, one {<n>#</n> kandidaat} other {<n>#</n> kandidaati}}"
     },

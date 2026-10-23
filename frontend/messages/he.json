@@ -1336,8 +1336,8 @@
         "agent": "עוזר AI",
         "apps": "אפליקציות AI (MCP)"
       },
-      "automate": "הפכו את הגיוס לאוטומטי עם",
-      "developerTools": "כלי מפתחים",
+      "automate": "הפכו את הגיוס לאוטומטי",
+      "developerDocs": "תיעוד למפתחים",
       "interview": "ראיון",
       "candidates": "{count, plural, one {<n>#</n> מועמד} two {<n>#</n> מועמדים} other {<n>#</n> מועמדים}}"
     },

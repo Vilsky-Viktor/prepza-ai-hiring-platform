@@ -92,7 +92,7 @@ test("from laptops up, each card's icon tile spans the card's full height", asyn
   }
 });
 
-test("the developer tools button opens the developer docs", async ({ page }) => {
+test("the developer docs button opens the developer docs", async ({ page }) => {
   test.setTimeout(120_000);
   const section = await openPicture(page);
   // The section's only link.

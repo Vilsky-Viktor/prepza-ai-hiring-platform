@@ -1336,8 +1336,8 @@
         "agent": "دستیار هوش مصنوعی",
         "apps": "اپ‌های هوش مصنوعی (MCP)"
       },
-      "automate": "خودکارسازی استخدام با",
-      "developerTools": "ابزارهای توسعه‌دهندگان",
+      "automate": "استخدام را خودکار کنید",
+      "developerDocs": "مستندات توسعه‌دهندگان",
       "interview": "مصاحبه",
       "candidates": "{count, plural, one {<n>#</n> متقاضی} other {<n>#</n> متقاضی}}"
     },

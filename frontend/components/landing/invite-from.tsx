@@ -1,11 +1,8 @@
-import { cn } from "cn"
 import { getTranslations } from "next-intl/server"
 
 import { DEMO_GROUP } from "@/components/landing/demo-panel"
 import { InviteStage } from "@/components/landing/invite-stage"
-import { LandingSection } from "@/components/landing/section"
-import { LocalizedLink } from "@/components/localized-link"
-import { buttonVariants } from "@/components/ui/button"
+import { LandingSection, MoreLink } from "@/components/landing/section"
 import { INVITE_SOURCES, type InviteSource } from "@/constants/invite-demo"
 
 /** Every way candidates come into an interview, around it, each wired to it, and Slack told
@@ -28,15 +25,7 @@ export async function InviteFromSection() {
               <span className="text-lg text-muted-foreground lowercase">
                 {t("automate")}
               </span>
-              <LocalizedLink
-                href="/api-docs"
-                className={cn(
-                  buttonVariants({ variant: "secondary" }),
-                  "h-10 px-5 text-base lowercase"
-                )}
-              >
-                {t("developerTools")}
-              </LocalizedLink>
+              <MoreLink href="/api-docs">{t("developerDocs")}</MoreLink>
             </>
           }
         />

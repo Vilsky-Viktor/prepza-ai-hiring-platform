@@ -1336,8 +1336,8 @@
         "agent": "Asisten AI",
         "apps": "Aplikasi AI (MCP)"
       },
-      "automate": "Otomatiskan rekrutmenmu dengan",
-      "developerTools": "alat pengembang",
+      "automate": "Otomatiskan rekrutmenmu",
+      "developerDocs": "dokumentasi pengembang",
       "interview": "Wawancara",
       "candidates": "{count, plural, other {<n>#</n> kandidat}}"
     },

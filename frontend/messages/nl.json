@@ -1336,8 +1336,8 @@
         "agent": "AI-assistent",
         "apps": "AI-apps (MCP)"
       },
-      "automate": "Automatiseer je werving met",
-      "developerTools": "ontwikkelaarstools",
+      "automate": "Automatiseer je werving",
+      "developerDocs": "documentatie voor ontwikkelaars",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> kandidaat} other {<n>#</n> kandidaten}}"
     },

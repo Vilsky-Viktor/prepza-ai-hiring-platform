@@ -1336,8 +1336,8 @@
         "agent": "Trợ lý AI",
         "apps": "Ứng dụng AI (MCP)"
       },
-      "automate": "Tự động hóa tuyển dụng với",
-      "developerTools": "công cụ cho nhà phát triển",
+      "automate": "Tự động hóa tuyển dụng",
+      "developerDocs": "tài liệu cho nhà phát triển",
       "interview": "Phỏng vấn",
       "candidates": "{count, plural, other {<n>#</n> ứng viên}}"
     },

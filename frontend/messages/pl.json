@@ -1336,8 +1336,8 @@
         "agent": "Asystent AI",
         "apps": "Aplikacje AI (MCP)"
       },
-      "automate": "Zautomatyzuj rekrutację za pomocą",
-      "developerTools": "narzędzi dla deweloperów",
+      "automate": "Zautomatyzuj rekrutację",
+      "developerDocs": "dokumentacja dla deweloperów",
       "interview": "Rozmowa",
       "candidates": "{count, plural, one {<n>#</n> kandydat} few {<n>#</n> kandydaci} many {<n>#</n> kandydatów} other {<n>#</n> kandydata}}"
     },

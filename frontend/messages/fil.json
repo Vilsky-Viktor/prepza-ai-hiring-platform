@@ -1336,8 +1336,8 @@
         "agent": "AI assistant",
         "apps": "Mga AI app (MCP)"
       },
-      "automate": "I-automate ang hiring gamit ang",
-      "developerTools": "mga developer tool",
+      "automate": "I-automate ang hiring",
+      "developerDocs": "dokumentasyon para sa developer",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> aplikante} other {<n>#</n> aplikante}}"
     },

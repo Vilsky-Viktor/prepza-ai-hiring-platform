@@ -1336,8 +1336,8 @@
         "agent": "Yapay zekâ asistanı",
         "apps": "Yapay zekâ uygulamaları (MCP)"
       },
-      "automate": "İşe alımınızı otomatikleştirmek için",
-      "developerTools": "geliştirici araçları",
+      "automate": "İşe alımınızı otomatikleştirin",
+      "developerDocs": "geliştirici dokümantasyonu",
       "interview": "Mülakat",
       "candidates": "{count, plural, one {<n>#</n> aday} other {<n>#</n> aday}}"
     },

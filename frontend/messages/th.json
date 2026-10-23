@@ -1336,8 +1336,8 @@
         "agent": "ผู้ช่วย AI",
         "apps": "แอป AI (MCP)"
       },
-      "automate": "ทำให้การจ้างงานเป็นอัตโนมัติด้วย",
-      "developerTools": "เครื่องมือสำหรับนักพัฒนา",
+      "automate": "ทำให้การจ้างงานเป็นอัตโนมัติ",
+      "developerDocs": "เอกสารสำหรับนักพัฒนา",
       "interview": "การสัมภาษณ์",
       "candidates": "{count, plural, other {ผู้สมัคร <n>#</n> คน}}"
     },

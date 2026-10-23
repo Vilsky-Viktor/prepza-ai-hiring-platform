@@ -1336,8 +1336,8 @@
         "agent": "KI-Assistent",
         "apps": "KI-Apps (MCP)"
       },
-      "automate": "Automatisiere dein Recruiting mit",
-      "developerTools": "Entwickler-Tools",
+      "automate": "Automatisiere dein Recruiting",
+      "developerDocs": "Entwicklerdokumentation",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> Kandidat} other {<n>#</n> Kandidaten}}"
     },

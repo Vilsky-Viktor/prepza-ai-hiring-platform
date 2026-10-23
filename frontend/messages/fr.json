@@ -1336,8 +1336,8 @@
         "agent": "Assistant IA",
         "apps": "Apps IA (MCP)"
       },
-      "automate": "Automatisez votre recrutement avec",
-      "developerTools": "les outils développeurs",
+      "automate": "Automatisez votre recrutement",
+      "developerDocs": "documentation développeurs",
       "interview": "Entretien",
       "candidates": "{count, plural, one {<n>#</n> candidat} other {<n>#</n> candidats}}"
     },

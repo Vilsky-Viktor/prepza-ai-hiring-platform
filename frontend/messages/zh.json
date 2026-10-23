@@ -1337,7 +1337,7 @@
         "apps": "AI 应用 (MCP)"
       },
       "automate": "让招聘自动化",
-      "developerTools": "开发者工具",
+      "developerDocs": "开发者文档",
       "interview": "面试",
       "candidates": "{count, plural, other {<n>#</n> 位候选人}}"
     },

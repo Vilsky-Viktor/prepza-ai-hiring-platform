@@ -1336,8 +1336,8 @@
         "agent": "AI असिस्टेंट",
         "apps": "AI ऐप (MCP)"
       },
-      "automate": "हायरिंग ऑटोमेट करने के लिए",
-      "developerTools": "डेवलपर टूल्स",
+      "automate": "हायरिंग ऑटोमेट करें",
+      "developerDocs": "डेवलपर डॉक्स",
       "interview": "इंटरव्यू",
       "candidates": "{count, plural, one {<n>#</n> उम्मीदवार} other {<n>#</n> उम्मीदवार}}"
     },
