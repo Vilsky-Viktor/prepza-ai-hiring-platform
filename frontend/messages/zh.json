@@ -748,6 +748,8 @@
     "use": "使用模板",
     "using": "正在开始…",
     "useFailed": "无法从此模板开始面试，请重试。",
+    "inProgress": "进行中：{done}/{total, plural, other {# 个主题}}",
+    "completed": "已完成：{done}/{total, plural, other {# 个主题}}",
     "warningText": "<b>模板是为常见职位准备好的面试。</b>想要更贴合，请根据你的职位描述创建面试。"
   },
   "billing": {

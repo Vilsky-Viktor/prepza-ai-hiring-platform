@@ -1,14 +1,18 @@
+import { cookies } from "next/headers"
 import { getTranslations } from "next-intl/server"
 
 import {
   TemplateBrowser,
   type TemplateSearchParams,
 } from "@/components/templates/template-browser"
+import { TOKEN_COOKIE } from "@/constants/auth"
 import { DEFAULT_LOCALE } from "@/constants/i18n"
 import { localizedPath } from "@/lib/locale-path"
+import { serverFetch } from "@/lib/server-api"
 import { pageMetadata, urlLocale } from "@/lib/site"
 import { PUBLIC_TEMPLATES_PATH } from "@/constants/lists"
 import { PageKey } from "@/components/page-key"
+import type { PracticeStatus } from "@/types/round"
 
 export async function generateMetadata() {
   const t = await getTranslations("practice")
@@ -24,6 +28,11 @@ export default async function PracticePage({
   searchParams: Promise<TemplateSearchParams>
 }) {
   const t = await getTranslations("practice")
+  // Signed in: which tests the talent started or finished, as the API decides.
+  const signedIn = (await cookies()).has(TOKEN_COOKIE)
+  const statuses = signedIn
+    ? await serverFetch<PracticeStatus[]>("/rounds/practice/statuses")
+    : null
   const browser = await TemplateBrowser({
     // A search stays in the language of the address it started on.
     base: localizedPath((await urlLocale()) ?? DEFAULT_LOCALE, "/practice"),
@@ -31,6 +40,7 @@ export default async function PracticePage({
     params: await searchParams,
     openBase: "/practice",
     bySlug: true,
+    statuses: statuses ?? undefined,
   })
 
   return (

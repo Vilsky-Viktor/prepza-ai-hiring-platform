@@ -748,6 +748,8 @@
     "use": "Şablonu kullan",
     "using": "Başlatılıyor…",
     "useFailed": "Bu şablondan mülakat başlatılamadı. Lütfen tekrar deneyin.",
+    "inProgress": "Devam ediyor: {done}/{total, plural, one {# konu} other {# konu}}",
+    "completed": "Tamamlandı: {done}/{total, plural, one {# konu} other {# konu}}",
     "warningText": "<b>Şablonlar yaygın pozisyonlar için hazırdır.</b> Daha iyi bir uyum için iş tanımınızdan bir mülakat oluşturun."
   },
   "billing": {

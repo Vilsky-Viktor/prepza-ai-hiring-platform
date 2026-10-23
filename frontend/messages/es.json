@@ -748,6 +748,8 @@
     "use": "Usar plantilla",
     "using": "Iniciando…",
     "useFailed": "No se pudo iniciar una entrevista con esta plantilla. Inténtalo de nuevo.",
+    "inProgress": "En curso: {done}/{total, plural, one {# tema} other {# temas}}",
+    "completed": "Completado: {done}/{total, plural, one {# tema} other {# temas}}",
     "warningText": "<b>Las plantillas están listas para puestos comunes.</b> Para un mejor ajuste, crea una entrevista a partir de tu descripción del puesto."
   },
   "billing": {

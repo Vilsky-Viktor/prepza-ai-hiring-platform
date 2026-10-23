@@ -395,7 +395,8 @@
     ],
     "tips": [
       "Dopóki nie wybierzesz języków, lista pokazuje język strony i angielski.",
-      "Ćwiczenia są prywatne: żadna firma nie widzi Twoich wyników."
+      "Ćwiczenia są prywatne: żadna firma nie widzi Twoich wyników.",
+      "Po zalogowaniu znacznik po tytule oznacza ćwiczenie, które zaczęto, a podwójny znacznik takie, które ukończono; najedź na niego kursorem, aby zobaczyć, ile tematów masz już ukończonych."
     ]
   },
   "practiceTest": {

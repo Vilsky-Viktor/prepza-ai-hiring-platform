@@ -395,7 +395,8 @@
     ],
     "tips": [
       "Mientras no elijas idiomas, la lista muestra el idioma del sitio y el inglés.",
-      "La práctica es privada: ninguna empresa ve tus resultados."
+      "La práctica es privada: ninguna empresa ve tus resultados.",
+      "Con la sesión iniciada, una marca tras el título indica una práctica que has empezado, y una marca doble, una que has terminado; pasa el cursor por encima para ver cuántos temas has completado."
     ]
   },
   "practiceTest": {

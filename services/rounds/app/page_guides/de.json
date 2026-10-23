@@ -395,7 +395,8 @@
     ],
     "tips": [
       "Solange du keine Sprachen wählst, zeigt die Liste die Sprache der Website und Englisch.",
-      "Üben ist privat: Kein Unternehmen sieht deine Ergebnisse."
+      "Üben ist privat: Kein Unternehmen sieht deine Ergebnisse.",
+      "Wenn du angemeldet bist, markiert ein Haken nach dem Titel ein Training, das du begonnen hast, und ein Doppelhaken eines, das du abgeschlossen hast; fahr mit der Maus darüber, um zu sehen, wie viele Themen du abgeschlossen hast."
     ]
   },
   "practiceTest": {

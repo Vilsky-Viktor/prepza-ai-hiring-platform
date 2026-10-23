@@ -395,7 +395,8 @@
     ],
     "tips": [
       "Siz dil seçene kadar liste, sitenin dilini ve İngilizceyi gösterir.",
-      "Pratik gizlidir: hiçbir şirket sonuçlarınızı görmez."
+      "Pratik gizlidir: hiçbir şirket sonuçlarınızı görmez.",
+      "Oturum açtığınızda, başlıktan sonraki onay işareti başladığınız bir pratiği, çift onay işareti ise bitirdiğiniz bir pratiği gösterir; kaç konuyu tamamladığınızı görmek için üzerine gelin."
     ]
   },
   "practiceTest": {

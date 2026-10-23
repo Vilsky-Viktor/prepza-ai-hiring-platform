@@ -12,6 +12,7 @@ import { MAX_TITLE_LENGTH } from "@/constants/limits"
 import { PAGE_SIZE, PUBLIC_TEMPLATES_PATH } from "@/constants/lists"
 import { publicFetch, serverFetch } from "@/lib/server-api"
 import { templateChoice, templateQuery } from "@/lib/templates"
+import type { PracticeStatus } from "@/types/round"
 import type { TemplateFilters, TemplateSummary } from "@/types/superadmin"
 
 export type TemplateSearchParams = {
@@ -24,8 +25,8 @@ export type TemplateSearchParams = {
  * address keeps the choices). `listPath` is the API list; rows open under `openBase` (by their
  * readable slug with `bySlug`, the public practice pages), and carry a "Use template" button for
  * `companyId`. Until a language is chosen, the list shows the visitor's interface language and
- * English (every language with `allLanguages`, the admin zone's). Null when the list can't be
- * read. */
+ * English (every language with `allLanguages`, the admin zone's). `statuses` marks the templates
+ * the signed-in talent practiced. Null when the list can't be read. */
 export async function TemplateBrowser({
   base,
   listPath,
@@ -34,6 +35,7 @@ export async function TemplateBrowser({
   companyId,
   bySlug,
   allLanguages,
+  statuses,
 }: {
   base: string
   listPath: string
@@ -42,6 +44,7 @@ export async function TemplateBrowser({
   companyId?: string
   bySlug?: boolean
   allLanguages?: boolean
+  statuses?: PracticeStatus[]
 }) {
   const t = await getTranslations("templates")
   // The filters are the same for everyone: kept a while.
@@ -111,6 +114,7 @@ export async function TemplateBrowser({
         openBase={openBase}
         companyId={companyId}
         bySlug={bySlug}
+        statuses={statuses}
       />
     </>
   )

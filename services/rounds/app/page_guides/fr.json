@@ -395,7 +395,8 @@
     ],
     "tips": [
       "Tant que vous ne choisissez pas de langues, la liste affiche la langue du site et l'anglais.",
-      "L'entraînement est privé : aucune entreprise ne voit vos résultats."
+      "L'entraînement est privé : aucune entreprise ne voit vos résultats.",
+      "Une fois connecté, une coche après le titre signale un entraînement que vous avez commencé, et une double coche un entraînement terminé ; survolez-la pour voir combien de thèmes vous avez terminés."
     ]
   },
   "practiceTest": {

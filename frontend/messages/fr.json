@@ -748,6 +748,8 @@
     "use": "Utiliser le modèle",
     "using": "Démarrage…",
     "useFailed": "Impossible de démarrer un entretien à partir de ce modèle. Veuillez réessayer.",
+    "inProgress": "En cours : {done}/{total, plural, one {# thème} other {# thèmes}}",
+    "completed": "Terminé : {done}/{total, plural, one {# thème} other {# thèmes}}",
     "warningText": "<b>Les modèles sont prêts à l’emploi pour les postes courants.</b> Pour un meilleur ajustement, créez un entretien à partir de votre fiche de poste."
   },
   "billing": {

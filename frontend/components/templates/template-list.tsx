@@ -1,8 +1,9 @@
 "use client"
 
-import { LayersIcon } from "lucide-react"
+import { CheckCheckIcon, CheckIcon, LayersIcon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
+import { cn } from "cn"
 
 import { useLocalTime } from "@/hooks/use-local-time"
 import { useUrlLocale } from "@/components/localized-link"
@@ -11,16 +12,20 @@ import { IconStat } from "@/components/icon-stat"
 import { Badge } from "@/components/ui/badge"
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
+import { gradeTone } from "@/lib/grade-tone"
 import { byId } from "@/lib/paged-list"
 import { hasMessage } from "@/lib/messages"
 import { localizedPath } from "@/lib/locale-path"
+import type { PracticeStatus } from "@/types/round"
 import type { TemplateSummary } from "@/types/superadmin"
 import { LIST_BOX } from "@/constants/lists"
 
 /** The templates at `path`, newest first, a page at a time; `initial` is the server's first
  * page, and `empty` shows when there are none. A row opens the template under `openBase` (by its
  * slug with `bySlug`), and
- * for `companyId` also ends with a "Use template" button. */
+ * for `companyId` also ends with a "Use template" button. A template in `statuses` shows the
+ * signed-in talent's progress on it after its title: a check while in progress, a double check
+ * in the results' green once completed, each named in its tooltip. */
 export function TemplateList({
   path,
   initial,
@@ -28,6 +33,7 @@ export function TemplateList({
   openBase,
   companyId,
   bySlug,
+  statuses,
 }: {
   path: string
   initial: TemplateSummary[]
@@ -35,11 +41,15 @@ export function TemplateList({
   openBase: string
   companyId?: string
   bySlug?: boolean
+  statuses?: PracticeStatus[]
 }) {
   const t = useTranslations("templates")
   const localTime = useLocalTime()
   const urlLocale = useUrlLocale()
   const { items, loadMore } = usePagedList(path, byId, initial)
+  const practiced = new Map(
+    (statuses ?? []).map((status) => [status.template_id, status])
+  )
 
   if (items.length === 0) {
     return <p className="py-16 text-center text-muted-foreground">{empty}</p>
@@ -54,11 +64,39 @@ export function TemplateList({
       className={LIST_BOX}
       renderItem={(template) => {
         const level = `levels.${template.level}` as const
+        const practice = practiced.get(template.id)
         const row = (
           <>
             <span className="min-w-0 flex-1 basis-full space-y-1 sm:basis-auto">
-              <span className="block text-lg font-medium break-words sm:truncate">
-                {template.title}
+              {/* On phones the title wraps and its mark follows its last word; from sm up, the
+                  title truncates and the mark stays beside it. */}
+              <span className="block text-lg font-medium break-words sm:flex sm:items-center sm:gap-2">
+                <span className="sm:min-w-0 sm:truncate">{template.title}</span>
+                {practice &&
+                  (practice.status === "completed" ? (
+                    <IconStat
+                      label={t("completed", {
+                        done: practice.topics_done,
+                        total: practice.topics_total,
+                      })}
+                      icon={<CheckCheckIcon aria-hidden className="size-5" />}
+                      className={cn(
+                        gradeTone(true),
+                        "ms-1 hover:text-current sm:-ms-1"
+                      )}
+                      data-status={practice.status}
+                    />
+                  ) : (
+                    <IconStat
+                      label={t("inProgress", {
+                        done: practice.topics_done,
+                        total: practice.topics_total,
+                      })}
+                      icon={<CheckIcon aria-hidden className="size-5" />}
+                      className="ms-1 text-primary hover:text-primary sm:-ms-1"
+                      data-status={practice.status}
+                    />
+                  ))}
               </span>
               <span className="block text-sm text-muted-foreground">
                 <time dateTime={template.created_at} suppressHydrationWarning>

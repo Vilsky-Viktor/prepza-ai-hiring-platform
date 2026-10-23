@@ -395,7 +395,8 @@
     ],
     "tips": [
       "Kuni sa keeli ei vali, näitab loend saidi keelt ja inglise keelt.",
-      "Harjutamine on privaatne: ükski ettevõte sinu tulemusi ei näe."
+      "Harjutamine on privaatne: ükski ettevõte sinu tulemusi ei näe.",
+      "Sisselogituna tähistab linnuke pealkirja järel harjutust, mida oled alustanud, ja topeltlinnuke harjutust, mille oled lõpetanud; vii kursor selle kohale, et näha, mitu teemat oled lõpetanud."
     ]
   },
   "practiceTest": {
