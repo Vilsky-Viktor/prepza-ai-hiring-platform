@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Broneeritud ({count, number})",
     "reservedEmpty": "Ühelgi kandidaadil pole krediiti broneeritud.",
-    "reservedNote": "Kutsutud kandidaadid, kes pole veel lõpetanud. Nende krediidid on broneeritud: need arvestatakse maha, kui kandidaat vastab, ja antakse tagasi, kui ta ei vasta.",
+    "reservedNote": "Kandidaadid, kes pole veel lõpetanud. Nende krediidid on broneeritud: vastamisel arvestatakse maha, muidu antakse tagasi.",
     "history": "Ajalugu",
     "empty": "Krediite pole veel liikunud.",
     "reasons": {

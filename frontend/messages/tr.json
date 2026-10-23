@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Ayrılan ({count, number})",
     "reservedEmpty": "Kredisi ayrılmış aday yok.",
-    "reservedNote": "Davet edilen ve henüz bitirmemiş adaylar. Kredileri ayrıldı: yanıt verdiklerinde düşülür, vermezlerse iade edilir.",
+    "reservedNote": "Henüz bitirmemiş adaylar. Kredileri ayrıldı: yanıt verirlerse düşülür, vermezlerse iade edilir.",
     "history": "Geçmiş",
     "empty": "Henüz kredi hareketi yok.",
     "reasons": {

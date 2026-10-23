@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Gereserveerd ({count, number})",
     "reservedEmpty": "Er zijn geen kandidaten met gereserveerde credits.",
-    "reservedNote": "Uitgenodigde kandidaten die nog niet klaar zijn. Hun credits zijn gereserveerd: afgeschreven zodra ze antwoorden, teruggegeven als ze dat niet doen.",
+    "reservedNote": "Kandidaten die nog niet klaar zijn. Hun credits zijn gereserveerd: afgeschreven als ze antwoorden, anders teruggegeven.",
     "history": "Geschiedenis",
     "empty": "Er zijn nog geen credits bijgekomen of afgegaan.",
     "reasons": {

@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "已预留 ({count, number})",
     "reservedEmpty": "没有候选人占用点数。",
-    "reservedNote": "已邀请但尚未完成的候选人。他们的点数已预留：作答后扣除，未作答则退回。",
+    "reservedNote": "尚未完成的候选人。他们的点数已预留：作答则扣除，未作答则退回。",
     "history": "记录",
     "empty": "点数还没有任何变动。",
     "reasons": {

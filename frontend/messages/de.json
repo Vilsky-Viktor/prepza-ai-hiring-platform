@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Reserviert ({count, number})",
     "reservedEmpty": "Für keinen Kandidaten sind Credits reserviert.",
-    "reservedNote": "Eingeladene Kandidaten, die noch nicht fertig sind. Ihre Credits sind reserviert: Sie werden abgebucht, sobald sie antworten, und zurückgegeben, wenn nicht.",
+    "reservedNote": "Kandidaten, die noch nicht fertig sind. Ihre Credits sind reserviert: abgebucht, wenn sie antworten, sonst zurückgegeben.",
     "history": "Verlauf",
     "empty": "Bisher wurden keine Credits bewegt.",
     "reasons": {

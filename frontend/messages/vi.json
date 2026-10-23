@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Đang giữ ({count, number})",
     "reservedEmpty": "Không có ứng viên nào đang được giữ credit.",
-    "reservedNote": "Các ứng viên đã được mời nhưng chưa hoàn thành. Credit của họ đang được giữ: bị trừ khi họ trả lời, được hoàn lại nếu không.",
+    "reservedNote": "Các ứng viên chưa hoàn thành. Credit của họ đang được giữ: bị trừ nếu họ trả lời, được hoàn lại nếu không.",
     "history": "Lịch sử",
     "empty": "Chưa có biến động credit nào.",
     "reasons": {

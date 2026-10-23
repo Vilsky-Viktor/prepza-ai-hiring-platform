@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Riservati ({count, number})",
     "reservedEmpty": "Nessun candidato ha crediti riservati.",
-    "reservedNote": "Candidati invitati che non hanno ancora finito. I loro crediti sono riservati: addebitati quando rispondono, restituiti se non rispondono.",
+    "reservedNote": "Candidati che non hanno ancora finito. I loro crediti sono riservati: addebitati se rispondono, restituiti se no.",
     "history": "Cronologia",
     "empty": "Nessun movimento di crediti finora.",
     "reasons": {

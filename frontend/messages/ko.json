@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "예약됨 ({count, number})",
     "reservedEmpty": "크레딧이 예약된 지원자가 없습니다.",
-    "reservedNote": "초대했지만 아직 마치지 않은 지원자입니다. 크레딧은 예약되어 있으며, 응답하면 차감되고 응답하지 않으면 반환됩니다.",
+    "reservedNote": "아직 마치지 않은 지원자입니다. 크레딧은 예약되어 있으며, 응답하면 차감되고 응답하지 않으면 반환됩니다.",
     "history": "내역",
     "empty": "아직 크레딧 변동이 없습니다.",
     "reasons": {

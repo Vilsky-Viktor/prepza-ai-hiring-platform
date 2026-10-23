@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Naka-reserve ({count, number})",
     "reservedEmpty": "Walang aplikanteng may naka-reserve na credits.",
-    "reservedNote": "Mga inimbitahang aplikante na hindi pa tapos. Naka-reserve ang credits nila: sisingilin kapag sumagot sila, ibabalik kung hindi.",
+    "reservedNote": "Mga aplikanteng hindi pa tapos. Naka-reserve ang credits nila: sisingilin kung sasagot sila, ibabalik kung hindi.",
     "history": "History",
     "empty": "Wala pang galaw ang credits.",
     "reasons": {

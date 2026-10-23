@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Réservés ({count, number})",
     "reservedEmpty": "Aucun candidat ne bloque de crédits.",
-    "reservedNote": "Candidats invités qui n'ont pas encore terminé. Leurs crédits sont réservés : débités dès qu'ils répondent, rendus s'ils ne répondent pas.",
+    "reservedNote": "Candidats qui n'ont pas encore terminé. Leurs crédits sont réservés : débités s'ils répondent, rendus sinon.",
     "history": "Historique",
     "empty": "Aucun mouvement de crédits pour l'instant.",
     "reasons": {

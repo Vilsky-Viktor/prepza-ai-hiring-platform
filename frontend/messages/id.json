@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Dicadangkan ({count, number})",
     "reservedEmpty": "Tidak ada kandidat yang memegang kredit.",
-    "reservedNote": "Kandidat yang diundang tetapi belum selesai. Kredit mereka dicadangkan: dipotong setelah mereka menjawab, dikembalikan jika tidak.",
+    "reservedNote": "Kandidat yang belum selesai. Kredit mereka dicadangkan: dipotong jika mereka menjawab, dikembalikan jika tidak.",
     "history": "Riwayat",
     "empty": "Belum ada pergerakan kredit.",
     "reasons": {

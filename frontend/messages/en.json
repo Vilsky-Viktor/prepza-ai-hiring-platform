@@ -2226,7 +2226,7 @@
   "companyBilling": {
     "reservedTab": "Reserved ({count, number})",
     "reservedEmpty": "No candidates are holding credits.",
-    "reservedNote": "Candidates invited who haven't finished yet. Their credits are reserved: charged once they answer, given back if they don't.",
+    "reservedNote": "Candidates who haven't finished yet. Their credits are reserved: charged if they answer, returned if not.",
     "history": "History",
     "empty": "No credits have moved yet.",
     "reasons": {
