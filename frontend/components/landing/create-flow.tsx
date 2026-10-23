@@ -152,7 +152,7 @@ export function CreateFlow({
       <FlowArrows />
       <DemoPanel label={labels.adjust}>
         {pointer(ADJUST)}
-        <div className="flex flex-1 flex-col gap-3">
+        <div className="flex flex-1 flex-col gap-3 p-2">
           {/* Until the first topic shows, "waiting…" in the middle of the list's place. */}
           <div className="relative flex-1">
             {shown === 0 && <Waiting text={labels.waiting} />}
@@ -240,7 +240,7 @@ export function CreateFlow({
         {pointer(RESULT)}
         {/* "waiting…" until the topics are approved, then the questions being written, then the
             interview in their place. */}
-        <div className="relative grid flex-1 *:[grid-area:1/1]">
+        <div className="relative grid flex-1 p-2 *:[grid-area:1/1]">
           {at.index < WRITING && <Waiting text={labels.waiting} />}
           <div
             data-testid="demo-writing"

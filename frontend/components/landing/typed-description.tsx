@@ -29,7 +29,7 @@ export function TypedDescription({
   return (
     <div
       ref={ref}
-      className="flex flex-1 flex-col rounded-2xl bg-muted p-3 dark:bg-card"
+      className="flex flex-1 flex-col p-5"
     >
       <div className="grid flex-1 items-start text-base *:[grid-area:1/1]">
         <p ref={ref} className="invisible">

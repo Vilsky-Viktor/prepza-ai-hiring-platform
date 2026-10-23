@@ -2,10 +2,11 @@ import { cn } from "cn"
 import { CheckIcon, LoaderCircleIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
+import { AiPulse } from "@/components/ai-pulse"
 import { Progress } from "@/components/ui/progress"
 
 /** The questions being written, as the generation page shows it (components/generation/
- * generation-progress.tsx), small: its spinner and title, the bar with its percent and the
+ * generation-progress.tsx), small: its loading mark and title, the bar with its percent and the
  * topics `ready`, and each topic checked off once its questions are written. The percent is the
  * share of topics ready, so the two always agree. */
 export function DemoWriting({
@@ -21,12 +22,7 @@ export function DemoWriting({
   return (
     <div className="flex flex-1 flex-col justify-center gap-4 px-2">
       <div className="flex items-center gap-3">
-        <LoaderCircleIcon
-          className={cn(
-            "size-6 shrink-0 text-primary",
-            percent < 100 && "animate-spin"
-          )}
-        />
+        <AiPulse className="size-8" />
         <p className="font-heading text-base font-medium">{t("writing")}</p>
       </div>
       <div className="space-y-1">
