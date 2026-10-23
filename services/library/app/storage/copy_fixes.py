@@ -30,9 +30,11 @@ def topic_query(question_id: uuid.UUID):
 
 
 def notify_fixed(session, question_id: uuid.UUID, question_set, topic: str | None) -> None:
-    """Tells the set's owner, in `session`, that a question in it was fixed."""
+    """Tells the set's owner, in `session`, that a question in it was fixed: a company only."""
     notification = question_notification(question_set, topic, NotificationKind.QUESTION_FIXED)
-    outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notification)
+
+    if notification is not None:
+        outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notification)
 
 
 async def fix_copies(question_id: uuid.UUID, old_text: str, old_options: list[dict]) -> int:

@@ -82,6 +82,13 @@ def test_a_newly_flagged_interview_question_notifies_the_company(monkeypatch):
     assert saved[0]["link"] == "/companies/c1/interviews"
 
 
+def test_a_newly_flagged_template_question_notifies_no_company(monkeypatch):
+    saved, flushes = run_review(monkeypatch, None, kit("platform", "prepza"))
+
+    assert saved == [None]
+    assert flushes == []
+
+
 def test_a_flagged_question_is_not_notified_again(monkeypatch):
     saved, flushes = run_review(monkeypatch, QualityFlag.REWRITE, kit())
 
@@ -89,10 +96,10 @@ def test_a_flagged_question_is_not_notified_again(monkeypatch):
     assert flushes == []
 
 
-def fake_session(monkeypatch, flag, archived=None):
+def fake_session(monkeypatch, flag, archived=None, question_set=None):
     added = []
     # What the session's lookups find, in order: the question's flag, its set and its topic.
-    replies = [flag, kit(), TOPIC]
+    replies = [flag, question_set or kit(), TOPIC]
 
     class FakeSession:
         async def __aenter__(self):
@@ -149,6 +156,15 @@ def test_fixing_a_flagged_question_notifies_its_owner(monkeypatch):
             {"question_id": str(QUESTION_ID), "text": "What is a debit?", "options": OPTIONS},
         ),
     ]
+
+
+def test_fixing_a_flagged_template_question_notifies_no_company(monkeypatch):
+    added = fake_session(monkeypatch, QualityFlag.WRONG_KEY, question_set=kit("platform", "prepza"))
+
+    asyncio.run(preparations.replace_question(QUESTION_ID, "What is debit?", OPTIONS))
+
+    # Only its copies in companies' tests are fixed after it, and those companies told then.
+    assert [row.event_type for row in added] == [QUESTION_FIXED]
 
 
 def test_replacing_an_unflagged_question_notifies_nobody(monkeypatch):
