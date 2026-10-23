@@ -8,7 +8,7 @@ import { expect, test } from "./helpers/templates";
  * icon, isn't one of them). */
 function buttonLinks(page: import("@playwright/test").Page) {
   return page
-    .locator("main a[role=button]:not([aria-label])")
+    .locator("main a[data-slot=button]:not([aria-label])")
     .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
 }
 

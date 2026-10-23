@@ -82,9 +82,9 @@ test("the error page's report sits beside its buttons, under them on a phone", a
     await page.goto("/invite/e2e-error-layout");
     const error = page.getByTestId("error-page");
     await expect(error).toBeVisible();
-    // Retry and home (a link drawn as a button), then report.
+    // Retry, home (a link drawn as a button), then report.
     const retry = (await error.getByRole("button").nth(0).boundingBox())!;
-    const home = (await error.getByRole("button").nth(1).boundingBox())!;
+    const home = (await error.locator('a[href="/"]').boundingBox())!;
     const report = (await page.getByTestId("report-problem").boundingBox())!;
 
     expect(home.y).toBe(retry.y);
