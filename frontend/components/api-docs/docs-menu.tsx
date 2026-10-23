@@ -4,11 +4,11 @@ import {
   BracesIcon,
   CodeXmlIcon,
   PanelsTopLeftIcon,
-  PlugZapIcon,
   WebhookIcon,
 } from "lucide-react"
 import type { ReactNode } from "react"
 
+import { McpIcon } from "@/components/mcp-icon"
 import { SideMenuLayout } from "@/components/side-menu"
 import type { TabItem } from "@/components/tab-nav"
 import type { DocTab } from "@/constants/api-docs"
@@ -18,7 +18,7 @@ const ICONS = {
   api: CodeXmlIcon,
   webhooks: WebhookIcon,
   sdk: PanelsTopLeftIcon,
-  mcp: PlugZapIcon,
+  mcp: McpIcon,
   objects: BracesIcon,
 } as const
 

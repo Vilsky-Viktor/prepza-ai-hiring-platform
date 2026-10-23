@@ -1,6 +1,6 @@
 import { cn } from "cn"
 import {
-  BracesIcon,
+  CodeXmlIcon,
   FileUpIcon,
   LinkIcon,
   MailIcon,
@@ -9,7 +9,7 @@ import {
 } from "lucide-react"
 
 import { KeepAcronyms } from "@/components/keep-acronyms"
-import { MCP_MARK } from "@/constants/ai-apps"
+import { McpIcon } from "@/components/mcp-icon"
 import { ATS_PROVIDERS } from "@/constants/ats"
 import { PHONE_ATS_LOGOS, type InviteSource } from "@/constants/invite-demo"
 import { SLACK } from "@/constants/slack"
@@ -18,7 +18,7 @@ const ICONS = {
   email: MailIcon,
   file: FileUpIcon,
   link: LinkIcon,
-  api: BracesIcon,
+  api: CodeXmlIcon,
   sdk: PanelsTopLeftIcon,
   agent: SparklesIcon,
 }
@@ -84,15 +84,7 @@ function MarkIcon({ mark }: { mark: Mark }) {
   }
 
   if (mark === "apps") {
-    return (
-      <span
-        className={cn(MARK, "bg-foreground")}
-        style={{
-          mask: `url(${MCP_MARK}) center / contain no-repeat`,
-          WebkitMask: `url(${MCP_MARK}) center / contain no-repeat`,
-        }}
-      />
-    )
+    return <McpIcon className={cn(MARK, "text-foreground")} />
   }
 
   if (mark === "ats") {

@@ -1,9 +1,19 @@
 "use client"
 
 import { cn } from "cn"
-import type { LucideIcon } from "lucide-react"
 import Link from "next/link"
-import { type ReactNode, useEffect, useRef } from "react"
+import {
+  type ComponentType,
+  type ReactNode,
+  useEffect,
+  useRef,
+} from "react"
+
+/** A menu item's icon: a lucide icon or another icon sized by its class (McpIcon). */
+export type MenuIcon = ComponentType<{
+  className?: string
+  "aria-hidden"?: boolean | "true" | "false"
+}>
 
 /** One tab: a link to `href`, or with `onSelect` a button. */
 export type TabItem = {
@@ -11,7 +21,7 @@ export type TabItem = {
   href?: string
   label: string
   keepCase?: boolean
-  icon?: LucideIcon
+  icon?: MenuIcon
 }
 
 /** A page's slim tabs under its title: the current one over a blue line. Labels are lowercase

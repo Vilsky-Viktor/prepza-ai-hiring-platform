@@ -1,12 +1,11 @@
 "use client"
 
 import { cn } from "cn"
-import type { LucideIcon } from "lucide-react"
 import Link from "next/link"
 import { Fragment, type ReactNode } from "react"
 
 import { PhoneTabs } from "@/components/phone-tabs"
-import type { TabItem } from "@/components/tab-nav"
+import type { MenuIcon, TabItem } from "@/components/tab-nav"
 
 /** A page of a page menu; `sub` are its own pages, shown under it while it's open. */
 export type SideMenuItem = TabItem & {
@@ -83,7 +82,7 @@ function MenuLink({
 }: {
   href: string
   label: string
-  icon?: LucideIcon
+  icon?: MenuIcon
   keepCase?: boolean
   open: boolean
   marked: boolean
