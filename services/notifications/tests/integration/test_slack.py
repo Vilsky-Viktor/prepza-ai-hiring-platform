@@ -140,6 +140,18 @@ def test_a_notification_posts_once_however_often_its_event_comes(run, configured
     assert "a@x.com finished “Backend”" in configured["posted"][0][1]
 
 
+def test_a_notification_for_an_id_no_company_has_is_handled_not_retried(run, configured):
+    # A template's owner, prepza itself, as the library once sent it.
+    event = push("notification.requested", finished("prepza"), f"o-{uuid.uuid4()}", "m-s4")
+
+    async def scenario():
+        async with api() as client:
+            return (await client.post("/internal/events", json=event)).status_code
+
+    assert run(scenario()) < 300
+    assert configured["posted"] == []
+
+
 def test_a_retry_after_slack_was_down_posts_it_without_a_second_bell_notification(run, configured):
     company_id = company()
     event = push("notification.requested", finished(company_id, email="a@x.com"), "o-2", "m-s3")

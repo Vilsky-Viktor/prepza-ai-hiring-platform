@@ -1,3 +1,4 @@
+import uuid
 from datetime import UTC, datetime, timedelta
 
 from prepza_common import audit
@@ -170,7 +171,13 @@ async def remove(company_id: str, user_id: str | None = None) -> None:
 
 
 async def connected(company_id: str) -> SlackConnection | None:
-    """The company's working channel, if any."""
+    """The company's working channel, if any. An id that can't be a company's has none, so an
+    event naming one is handled instead of failing on every redelivery."""
+    try:
+        uuid.UUID(company_id)
+    except ValueError:
+        return None
+
     query = select(SlackConnection).where(
         SlackConnection.company_id == company_id, SlackConnection.status == SlackStatus.CONNECTED
     )
