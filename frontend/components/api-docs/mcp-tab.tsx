@@ -8,11 +8,11 @@ import {
   ServerAddress,
 } from "@/components/company/ai-apps-setup"
 import { Dotted } from "@/components/dot"
-import { TabPanels } from "@/components/tab-panels"
 import { MCP_PATH } from "@/constants/ai-apps"
 import { LIST_BOX } from "@/constants/lists"
 import {
   MCP_AGENTS,
+  MCP_APP_PAGES,
   MCP_CONNECTIONS,
   MCP_INTRO,
   MCP_OTHER_APPS,
@@ -25,20 +25,10 @@ import {
 } from "@/constants/mcp-docs"
 import type { McpExample, McpTool, McpTools } from "@/types/mcp"
 
-/** The developer docs' MCP tab: the server and how to sign in, the AI apps' setup as tabs (the AI
- * apps page's own steps for Claude and ChatGPT, then other apps), daily updates, example agents, and the tools and limits as the server
- * lists them. */
-export function McpTab({
-  site,
-  examples,
-  tools,
-}: {
-  site: string
-  examples: McpExample[]
-  tools: McpTools | null
-}) {
-  const url = `${site}${MCP_PATH}`
-
+/** The developer docs' MCP tab's overview: the server and how to sign in, daily updates, the
+ * rules with the limits as the server sets them, and managing connections. The tools, each AI
+ * app's setup and the example agents are pages of their own. */
+export function McpTab({ tools }: { tools: McpTools | null }) {
   return (
     <>
       <RichText text={MCP_INTRO} />
@@ -46,72 +36,84 @@ export function McpTab({
         <ServerAddress />
         <RichText text={MCP_SERVER} />
       </DocSection>
-      <DocSection title={MCP_TITLES.apps}>
-        {/* Each app a tab: Claude's and ChatGPT's steps are the AI apps page's own. */}
-        <TabPanels
-          panels={[
-            {
-              id: "claude",
-              label: "Claude",
-              content: (
-                <div className="space-y-4">
-                  <ClaudeSteps />
-                </div>
-              ),
-            },
-            { id: "chatgpt", label: "ChatGPT", content: <ChatGptSteps /> },
-            ...MCP_OTHER_APPS.map((app) => ({
-              id: app.label,
-              label: app.label,
-              content: (
-                <div className="space-y-4">
-                  <RichText text={app.text} />
-                  {app.code && (
-                    <HighlightedCode
-                      code={app.code.replace("{url}", url)}
-                      language="json"
-                    />
-                  )}
-                </div>
-              ),
-            })),
-          ]}
-        />
-      </DocSection>
       <DocSection title={MCP_TITLES.updates}>
         <RichText text={MCP_UPDATES} />
       </DocSection>
-      <DocSection title={MCP_TITLES.agents}>
-        <RichText text={MCP_AGENTS} />
-        <McpExamples examples={examples} />
-      </DocSection>
-      {tools && (
-        <DocSection title={MCP_TITLES.rules}>
-          <RichText
-            text={MCP_RULES.replace(
-              "{minute}",
-              String(tools.limits.calls_per_minute)
-            )
-              .replace("{day}", tools.limits.calls_per_day.toLocaleString("en"))
-              .replace("{writes}", String(tools.limits.writes_per_hour))}
-          />
-        </DocSection>
-      )}
+      {tools && <McpRules tools={tools} />}
       <DocSection title={MCP_TITLES.connections}>
         <RichText text={MCP_CONNECTIONS} />
       </DocSection>
-      {/* The tools last: the longest list. */}
-      {tools && (
-        <DocSection title={MCP_TITLES.tools}>
-          <RichText text={MCP_TOOLS_TEXT} />
-          <ul className={LIST_BOX}>
-            {tools.tools.map((tool) => (
-              <ToolRow key={tool.name} tool={tool} />
-            ))}
-          </ul>
-        </DocSection>
-      )}
     </>
+  )
+}
+
+/** The MCP tab's example agents. */
+export function McpAgents({ examples }: { examples: McpExample[] }) {
+  return (
+    <DocSection title={MCP_TITLES.agents}>
+      <RichText text={MCP_AGENTS} />
+      <McpExamples examples={examples} />
+    </DocSection>
+  )
+}
+
+/** The MCP overview's rules, with the limits as the server sets them. */
+function McpRules({ tools }: { tools: McpTools }) {
+  const { limits } = tools
+
+  return (
+    <DocSection title={MCP_TITLES.rules}>
+      <RichText
+        text={MCP_RULES.replace("{minute}", String(limits.calls_per_minute))
+          .replace("{day}", limits.calls_per_day.toLocaleString("en"))
+          .replace("{writes}", String(limits.writes_per_hour))}
+      />
+    </DocSection>
+  )
+}
+
+/** The MCP tab's tools, as the server lists them. */
+export function McpToolList({ tools }: { tools: McpTools }) {
+  return (
+    <DocSection title={MCP_TITLES.tools}>
+      <RichText text={MCP_TOOLS_TEXT} />
+      <ul className={LIST_BOX}>
+        {tools.tools.map((tool) => (
+          <ToolRow key={tool.name} tool={tool} />
+        ))}
+      </ul>
+    </DocSection>
+  )
+}
+
+/** One AI app's page of the MCP tab: the server's address, then the app's steps (Claude's and
+ * ChatGPT's are the AI apps page's own). */
+export function McpApp({ site, app }: { site: string; app: string }) {
+  const page = MCP_APP_PAGES.find((item) => item.id === app)
+  const other = MCP_OTHER_APPS.find((item) => item.id === app)
+
+  return (
+    // An app's name keeps its capitals in the lowercase title.
+    <DocSection title={<span className="normal-case">{page?.label}</span>}>
+      <ServerAddress />
+      {app === "claude" && (
+        <div className="space-y-4">
+          <ClaudeSteps />
+        </div>
+      )}
+      {app === "chatgpt" && <ChatGptSteps />}
+      {other && (
+        <div className="space-y-4">
+          <RichText text={other.text} />
+          {other.code && (
+            <HighlightedCode
+              code={other.code.replace("{url}", `${site}${MCP_PATH}`)}
+              language="json"
+            />
+          )}
+        </div>
+      )}
+    </DocSection>
   )
 }
 

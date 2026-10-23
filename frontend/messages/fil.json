@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "Pangkalahatang-ideya",
+      "tools": "Mga tool",
+      "frameworks": "Mga agent framework"
+    },
     "englishOnly": "English lang ang page na ito.",
     "baseUrl": "Base URL",
     "copyBaseUrl": "Kopyahin ang URL",

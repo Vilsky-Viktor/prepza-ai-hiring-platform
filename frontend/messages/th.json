@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "ภาพรวม",
+      "tools": "เครื่องมือ",
+      "frameworks": "เฟรมเวิร์กเอเจนต์"
+    },
     "englishOnly": "หน้านี้มีเฉพาะภาษาอังกฤษ",
     "baseUrl": "URL หลัก",
     "copyBaseUrl": "คัดลอก URL",

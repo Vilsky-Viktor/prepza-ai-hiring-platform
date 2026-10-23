@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "نظرة عامة",
+      "tools": "الأدوات",
+      "frameworks": "أطر عمل الوكلاء"
+    },
     "englishOnly": "هذه الصفحة متوفرة بالإنجليزية فقط.",
     "baseUrl": "عنوان URL الأساسي",
     "copyBaseUrl": "نسخ عنوان URL",

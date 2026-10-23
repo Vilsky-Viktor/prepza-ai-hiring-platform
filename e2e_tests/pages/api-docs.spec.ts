@@ -1,11 +1,13 @@
-import { expect, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 
 // The footer's developer docs open the reference, read from the API itself, in five tabs: the
 // API (how to get a key, every route with what it returns), its web hooks, the SDK that embeds
-// the interview, the MCP server and the objects. Names the API defines (routes, events, headers, fields) are
+// the interview, the MCP server (with pages of its own) and the objects. Names the API defines (routes, events, headers, fields) are
 // its data, so they're matched; the page's own wording isn't. One test per tab, each opening its
 // own pages, so none runs out of time behind another's.
 test("the developer docs show the API with its routes", async ({ page }) => {
+  // Every route's examples make the page long: its full-page picture on a phone takes a while.
+  test.setTimeout(120_000);
   await page.goto("/");
   // The footer's link leads to the page; opened directly, so a click before the page is ready
   // can't miss it.
@@ -90,16 +92,80 @@ test("the developer docs show the objects", async ({ page }) => {
   await page.screenshot({ path: test.info().outputPath("objects.png"), fullPage: true });
 });
 
-// The MCP tab: the server's address on this site, the example agents in Python and TypeScript
-// (one language menu switches every example), and the tools exactly as the server lists them.
-test("the MCP tab shows the server, the example agents and the server's tools", async ({ page }) => {
+// The MCP tab's own pages, in the docs' side menu (in the page on a phone too, where it's hidden):
+// the overview, each AI app's, the tools and the example agents.
+const MCP_PAGES = [
+  "/api-docs?tab=mcp",
+  ...["claude", "chatgpt", "gemini-cli", "cursor", "vs-code", "le-chat", "tools", "frameworks"].map(
+    (id) => `/api-docs?tab=mcp&page=${id}`,
+  ),
+];
+
+// The docs' side menu: the only menu that lists the objects tab on an MCP page.
+function sideMenu(page: Page) {
+  return page.locator('main nav:has(a[href="/api-docs?tab=objects"])');
+}
+
+/** The MCP pages in the side menu, in its order, and the one marked open. */
+async function expectMcpMenu(page: Page, open: string) {
+  const hrefs = await sideMenu(page)
+    .locator('a[href^="/api-docs?tab=mcp"]')
+    .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+  expect(hrefs).toEqual(["/api-docs?tab=mcp", ...MCP_PAGES]);
+  await expect(sideMenu(page).locator('a[aria-current="page"]')).toHaveAttribute("href", open);
+}
+
+// The MCP tab opens on its overview: the server's address on this site and the rules with the
+// server's own limits; the tools and the examples are pages of their own. An unknown page lands
+// on the overview too.
+test("the MCP tab opens on its overview with its own pages in the menu", async ({ page }) => {
+  for (const address of ["/api-docs?tab=mcp", "/api-docs?tab=mcp&page=unknown"]) {
+    await page.goto(address);
+    await expectMcpMenu(page, "/api-docs?tab=mcp");
+  }
+  const { limits } = (await page.evaluate(() =>
+    fetch("/api/assistant/mcp/tools").then((response) => response.json()),
+  )) as { limits: { calls_per_minute: number; writes_per_hour: number } };
+  await expect(page.getByRole("main").getByRole("textbox").first()).toHaveValue(`${new URL(page.url()).origin}/mcp`);
+  const rules = page.locator("main div[lang]");
+  await expect(rules).toContainText(String(limits.calls_per_minute));
+  await expect(rules).toContainText(String(limits.writes_per_hour));
+  await expect(page.getByTestId("mcp-tool")).toHaveCount(0);
+  await expect(page.locator("main pre")).toHaveCount(0);
+  await page.screenshot({ path: test.info().outputPath("mcp.png"), fullPage: true });
+});
+
+// On a wide screen the menu's pages open from it, each at its own address.
+test("the MCP tab's pages open from the side menu", async ({ page }, info) => {
+  test.skip(info.project.name === "phone", "the side menu shows on wide screens only");
   await page.goto("/api-docs?tab=mcp");
+  for (const href of [MCP_PAGES[3], MCP_PAGES[7], MCP_PAGES[0]]) {
+    // The last link to it: the overview's address is the MCP tab's too.
+    await sideMenu(page).locator(`a[href="${href}"]`).last().click();
+    await expect(page).toHaveURL(href);
+    await expectMcpMenu(page, href);
+  }
+});
+
+// An AI app's page: the server's address, then its steps, with this site's address in its file.
+test("an AI app's MCP page shows its setup", async ({ page }) => {
+  await page.goto("/api-docs?tab=mcp&page=cursor");
+  await expectMcpMenu(page, "/api-docs?tab=mcp&page=cursor");
+  const origin = new URL(page.url()).origin;
+  await expect(page.getByRole("main").getByRole("textbox").first()).toHaveValue(`${origin}/mcp`);
+  await expect(page.locator("main pre")).toContainText(`${origin}/mcp`);
+  await page.goto("/api-docs?tab=mcp&page=claude");
+  expect(await page.locator("main div[lang] ol li").count()).toBeGreaterThan(1);
+});
+
+// The tools exactly as the server lists them.
+test("the MCP tools page lists the server's tools", async ({ page }) => {
+  await page.goto("/api-docs?tab=mcp&page=tools");
+  await expectMcpMenu(page, "/api-docs?tab=mcp&page=tools");
   // The server's own list, read the way the page reads it (the browser reaches the site).
   const { tools } = (await page.evaluate(() =>
     fetch("/api/assistant/mcp/tools").then((response) => response.json()),
   )) as { tools: { name: string; key_permission: string | null }[] };
-  await expect(page.locator('main nav a[aria-current="page"]:visible')).toHaveAttribute("href", "/api-docs?tab=mcp");
-  await expect(page.getByRole("main").getByRole("textbox").first()).toHaveValue(`${new URL(page.url()).origin}/mcp`);
 
   // Every tool, in the server's order, with the API key permission it needs where it has one.
   const rows = page.getByTestId("mcp-tool");
@@ -111,8 +177,15 @@ test("the MCP tab shows the server, the example agents and the server's tools", 
   const updates = tools.findIndex((tool) => tool.name === "get_updates");
   expect(tools[updates]?.key_permission).toBe("candidates:read");
   await expect(rows.nth(updates)).toContainText("candidates:read");
+});
 
-  // Its sections are tabs: the chosen one controls the panel shown, which it names (WAI-ARIA tabs).
+// The example agents in Python and TypeScript (one language menu switches every example), each
+// framework a tab.
+test("the MCP agent frameworks page shows the example agents", async ({ page }) => {
+  await page.goto("/api-docs?tab=mcp&page=frameworks");
+  await expectMcpMenu(page, "/api-docs?tab=mcp&page=frameworks");
+
+  // The frameworks are tabs: the chosen one controls the panel shown, which it names (WAI-ARIA tabs).
   const selected = page.getByRole("main").getByRole("tab", { selected: true }).first();
   const panel = page.getByRole("tabpanel").first();
   await expect(selected).toHaveAttribute("aria-controls", (await panel.getAttribute("id"))!);
@@ -130,5 +203,5 @@ test("the MCP tab shows the server, the example agents and the server's tools", 
   await expect(editors.first()).toContainText("@modelcontextprotocol/sdk");
   const languages = await menus.evaluateAll((items) => items.map((item) => item.textContent?.trim()));
   expect(new Set(languages)).toEqual(new Set(["typescript"]));
-  await page.screenshot({ path: test.info().outputPath("mcp.png"), fullPage: true });
+  await page.screenshot({ path: test.info().outputPath("mcp-frameworks.png"), fullPage: true });
 });

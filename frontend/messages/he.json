@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "סקירה כללית",
+      "tools": "כלים",
+      "frameworks": "פריימוורקים לסוכנים"
+    },
     "englishOnly": "הדף הזה זמין באנגלית בלבד.",
     "baseUrl": "כתובת URL בסיסית",
     "copyBaseUrl": "העתקת הכתובת",

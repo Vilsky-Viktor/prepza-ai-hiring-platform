@@ -9,8 +9,7 @@ export const MCP_LANGUAGES = ["python", "typescript"] as const
 
 export const MCP_TITLES = {
   server: "Server",
-  apps: "AI apps",
-  agents: "Your own agent",
+  agents: "Agent frameworks",
   updates: "Daily updates",
   tools: "Tools",
   rules: "Rules",
@@ -28,26 +27,50 @@ export const MCP_SERVER = `The server speaks the Model Context Protocol over Str
 
 export const MCP_OTHER_APPS = [
   {
+    id: "gemini-cli",
     label: "Gemini CLI",
     text: "Add the server to `~/.gemini/settings.json`, then run `/mcp auth prepza` in Gemini CLI and allow it on the prepza page that opens.",
     code: '{\n  "mcpServers": {\n    "prepza": { "httpUrl": "{url}" }\n  }\n}',
   },
   {
+    id: "cursor",
     label: "Cursor",
     text: "Add the server to `~/.cursor/mcp.json` (or the project's `.cursor/mcp.json`), choose **Connect** next to prepza in Cursor's MCP settings, and allow it on the prepza page that opens.",
     code: '{\n  "mcpServers": {\n    "prepza": { "url": "{url}" }\n  }\n}',
   },
   {
+    id: "vs-code",
     label: "VS Code",
     text: "With GitHub Copilot: add the server to the project's `.vscode/mcp.json`, choose **Start** above prepza, and allow it on the prepza page that opens.",
     code: '{\n  "servers": {\n    "prepza": { "type": "http", "url": "{url}" }\n  }\n}',
   },
   {
+    id: "le-chat",
     label: "Le Chat",
     text: "In Le Chat, open **Intelligence → Connectors → Add connector → Custom MCP connector**, paste the server address, choose **Connect**, and allow it on the prepza page that opens.",
     code: null,
   },
 ]
+
+// The MCP tab's AI app pages, each at ?tab=mcp&page=<id>: the AI apps page's Claude and ChatGPT,
+// then the other apps.
+export const MCP_APP_PAGES = [
+  { id: "claude", label: "Claude" },
+  { id: "chatgpt", label: "ChatGPT" },
+  ...MCP_OTHER_APPS.map(({ id, label }) => ({ id, label })),
+]
+
+// The MCP tab's pages in the docs' menu after its overview: each app's (names keep their
+// capitals), then the tools and the example agents, named by apiDocs.mcpPages.
+export const MCP_SUB_PAGES = [
+  ...MCP_APP_PAGES.map((page) => ({
+    ...page,
+    href: `/api-docs?tab=mcp&page=${page.id}`,
+    keepCase: true,
+  })),
+  { id: "tools", href: "/api-docs?tab=mcp&page=tools" },
+  { id: "frameworks", href: "/api-docs?tab=mcp&page=frameworks" },
+] as const
 
 export const MCP_UPDATES = `Ask your AI app "What's new in prepza?" and it calls \`get_updates\`: what happened in your companies since that app last checked (the first time, the last 7 days). A short summary comes first, then each candidate who started or finished, with their grade and whether they passed, invites that weren't delivered, candidates from your ATS who couldn't be invited, questions flagged or fixed, interviews that are ready, the rest of your notifications, and companies running low on credits that no automatic top-up refills. Each app and each API key keeps its own last check, so every update reaches it once, and checking doesn't mark anything as read in prepza. Only companies that allow AI apps are included; an API key needs the \`candidates:read\` permission, and \`credits:read\` to hear about credits.
 

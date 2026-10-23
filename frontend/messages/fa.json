@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "نمای کلی",
+      "tools": "ابزارها",
+      "frameworks": "فریم‌ورک‌های عامل"
+    },
     "englishOnly": "این صفحه فقط به انگلیسی است.",
     "baseUrl": "URL پایه",
     "copyBaseUrl": "کپی URL",

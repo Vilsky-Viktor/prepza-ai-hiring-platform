@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "Tổng quan",
+      "tools": "Công cụ",
+      "frameworks": "Framework cho agent"
+    },
     "englishOnly": "Trang này chỉ có bằng tiếng Anh.",
     "baseUrl": "URL gốc",
     "copyBaseUrl": "Sao chép URL",

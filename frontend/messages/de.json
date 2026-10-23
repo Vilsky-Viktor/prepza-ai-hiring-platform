@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "Überblick",
+      "tools": "Tools",
+      "frameworks": "Agent-Frameworks"
+    },
     "englishOnly": "Diese Seite gibt es nur auf Englisch.",
     "baseUrl": "Basis-URL",
     "copyBaseUrl": "URL kopieren",

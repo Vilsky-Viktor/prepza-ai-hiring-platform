@@ -3,7 +3,12 @@ import { getLocale, getTranslations } from "next-intl/server"
 
 import { DocSection } from "@/components/api-docs/doc-section"
 import { Fields } from "@/components/api-docs/fields"
-import { McpTab } from "@/components/api-docs/mcp-tab"
+import {
+  McpAgents,
+  McpApp,
+  McpTab,
+  McpToolList,
+} from "@/components/api-docs/mcp-tab"
 import { Operation } from "@/components/api-docs/operation"
 import { RichText } from "@/components/api-docs/rich-text"
 import { CopyValue } from "@/components/copy-field"
@@ -11,7 +16,11 @@ import { DocsMenu } from "@/components/api-docs/docs-menu"
 import { JsonLd } from "@/components/json-ld"
 import { DOC_TABS } from "@/constants/api-docs"
 import { DEFAULT_LOCALE } from "@/constants/i18n"
-import { MCP_TOOLS_PATH } from "@/constants/mcp-docs"
+import {
+  MCP_APP_PAGES,
+  MCP_SUB_PAGES,
+  MCP_TOOLS_PATH,
+} from "@/constants/mcp-docs"
 import { mcpExamples } from "@/lib/mcp-examples"
 import {
   descriptionTabs,
@@ -34,37 +43,47 @@ export async function generateMetadata() {
 
 /** The developer docs, read from the API's own description, so they always match it: a tab for
  * the API (how to sign in, its routes), its web hooks, the SDK that embeds the interview, the
- * MCP server (its tools and limits read from the server), and the objects they return. English
- * only, like the legal pages. */
+ * MCP server (its tools and limits read from the server; its longer parts and each AI app's
+ * setup pages of its own, `page`), and the objects they return. English only, like the legal pages. */
 export default async function ApiDocsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ tab?: string }>
+  searchParams: Promise<{ tab?: string; page?: string }>
 }) {
   const t = await getTranslations("apiDocs")
   const locale = await getLocale()
-  const { tab } = await searchParams
+  const { tab, page: asked } = await searchParams
   const current = DOC_TABS.find((item) => item === tab) ?? "api"
-  // Asked together: the spec, and on the MCP tab its examples and the tools' list.
-  const [spec, examples, tools] = await Promise.all([
-    publicFetch<OpenApi>("/v1/openapi.json", { locale: "en" }),
-    current === "mcp" ? mcpExamples() : null,
-    current === "mcp"
-      ? publicFetch<McpTools>(MCP_TOOLS_PATH, { locale: "en" })
-      : null,
-  ])
+  // A page of the MCP tab; any other address on it is the tab's overview.
+  const mcpPage = MCP_SUB_PAGES.find(
+    (item) => current === "mcp" && item.id === asked
+  )?.id
+  const spec = await publicFetch<OpenApi>("/v1/openapi.json", { locale: "en" })
 
   if (!spec) {
     notFound()
   }
 
   const texts = descriptionTabs(spec.info.description ?? "")
+  // The MCP tab's own pages: its overview, then the rest, the apps by their own names.
+  const mcpPages = [
+    {
+      id: "overview",
+      href: "/api-docs?tab=mcp",
+      label: t("mcpPages.overview"),
+    },
+    ...MCP_SUB_PAGES.map((page) => ({
+      ...page,
+      label: "label" in page ? page.label : t(`mcpPages.${page.id}`),
+    })),
+  ]
   const tabs = DOC_TABS.map((id) => ({
     id,
     href: id === "api" ? "/api-docs" : `/api-docs?tab=${id}`,
     label: id === "objects" ? t("objects") : t(`tabs.${id}`),
     // Acronyms keep their capitals in the lowercase tabs.
     keepCase: id === "api" || id === "sdk" || id === "mcp",
+    sub: id === "mcp" ? mcpPages : undefined,
   }))
 
   const site = siteUrl()
@@ -94,16 +113,18 @@ export default async function ApiDocsPage({
           <p className="text-sm text-muted-foreground">{t("englishOnly")}</p>
         )}
       </header>
-      <DocsMenu tabs={tabs} current={current}>
+      <DocsMenu
+        tabs={tabs}
+        current={current}
+        currentSub={mcpPage ?? "overview"}
+      >
         <div lang="en" dir="ltr" className="space-y-12">
           {current === "api" && <ApiTab spec={spec} text={texts.api} />}
           {current === "webhooks" && (
             <WebhooksTab spec={spec} text={texts.webhooks} />
           )}
           {current === "sdk" && texts.sdk && <RichText text={texts.sdk} />}
-          {current === "mcp" && examples && (
-            <McpTab site={site} examples={examples} tools={tools} />
-          )}
+          {current === "mcp" && <McpPage page={mcpPage} site={site} />}
           {current === "objects" &&
             schemasOf(spec).map(([name, schema]) => (
               <article key={name} id={name} className="scroll-mt-20 space-y-3">
@@ -118,6 +139,26 @@ export default async function ApiDocsPage({
       </DocsMenu>
     </main>
   )
+}
+
+/** The MCP tab's open page: the example agents, an AI app's setup, or a page with what it shows
+ * from the server (the tools, or the overview with the limits in its rules). */
+async function McpPage({ page, site }: { page?: string; site: string }) {
+  if (page === "frameworks") {
+    return <McpAgents examples={await mcpExamples()} />
+  }
+
+  if (MCP_APP_PAGES.some((item) => item.id === page)) {
+    return <McpApp site={site} app={page ?? ""} />
+  }
+
+  const tools = await publicFetch<McpTools>(MCP_TOOLS_PATH, { locale: "en" })
+
+  if (page === "tools") {
+    return tools && <McpToolList tools={tools} />
+  }
+
+  return <McpTab tools={tools} />
 }
 
 /** The API tab: how to sign in (the description's text), the base URL and every route. */

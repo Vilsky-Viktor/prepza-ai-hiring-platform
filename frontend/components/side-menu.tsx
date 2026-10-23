@@ -7,9 +7,15 @@ import { Fragment, type ReactNode } from "react"
 import { PhoneTabs } from "@/components/phone-tabs"
 import type { MenuIcon, TabItem } from "@/components/tab-nav"
 
-/** A page of a page menu; `sub` are its own pages, shown under it while it's open. */
+/** A page of a page menu; `sub` are its own pages, shown under it while it's open (`keepCase`
+ * keeps a name's capitals, as a page's own). */
 export type SideMenuItem = TabItem & {
-  sub?: readonly { id: string; href: string; label: string }[]
+  sub?: readonly {
+    id: string
+    href: string
+    label: string
+    keepCase?: boolean
+  }[]
 }
 
 /** A page with a menu of its pages: on wide screens a list of its pages, each with its icon, at
@@ -56,6 +62,7 @@ export function SideMenuLayout({
                   key={sub.id}
                   href={sub.href}
                   label={sub.label}
+                  keepCase={sub.keepCase}
                   open={sub.id === currentSub}
                   marked={sub.id === currentSub}
                   nested

@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "Ülevaade",
+      "tools": "Tööriistad",
+      "frameworks": "Agendiraamistikud"
+    },
     "englishOnly": "See leht on ainult inglise keeles.",
     "baseUrl": "Baas-URL",
     "copyBaseUrl": "Kopeeri URL",

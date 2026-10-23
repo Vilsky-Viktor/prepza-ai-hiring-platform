@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "Ringkasan",
+      "tools": "Tool",
+      "frameworks": "Framework agen"
+    },
     "englishOnly": "Halaman ini hanya tersedia dalam bahasa Inggris.",
     "baseUrl": "URL dasar",
     "copyBaseUrl": "Salin URL",

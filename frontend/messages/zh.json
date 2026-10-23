@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "概览",
+      "tools": "工具",
+      "frameworks": "智能体框架"
+    },
     "englishOnly": "此页面仅提供英文版。",
     "baseUrl": "基础 URL",
     "copyBaseUrl": "复制 URL",

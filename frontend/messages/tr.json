@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "Genel bakış",
+      "tools": "Araçlar",
+      "frameworks": "Ajan framework'leri"
+    },
     "englishOnly": "Bu sayfa yalnızca İngilizce.",
     "baseUrl": "Temel URL",
     "copyBaseUrl": "URL'yi kopyala",

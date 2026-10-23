@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "अवलोकन",
+      "tools": "टूल",
+      "frameworks": "एजेंट फ़्रेमवर्क"
+    },
     "englishOnly": "यह पेज सिर्फ़ अंग्रेज़ी में है।",
     "baseUrl": "बेस URL",
     "copyBaseUrl": "URL कॉपी करें",

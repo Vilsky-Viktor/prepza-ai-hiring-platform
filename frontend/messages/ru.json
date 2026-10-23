@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "Обзор",
+      "tools": "Инструменты",
+      "frameworks": "Фреймворки для агентов"
+    },
     "englishOnly": "Эта страница доступна только на английском.",
     "baseUrl": "Базовый URL",
     "copyBaseUrl": "Копировать URL",

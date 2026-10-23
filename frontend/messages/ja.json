@@ -1984,6 +1984,11 @@
       "sdk": "SDK",
       "mcp": "MCP"
     },
+    "mcpPages": {
+      "overview": "概要",
+      "tools": "ツール",
+      "frameworks": "エージェントフレームワーク"
+    },
     "englishOnly": "このページは英語のみです。",
     "baseUrl": "ベース URL",
     "copyBaseUrl": "URL をコピー",
