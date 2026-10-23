@@ -749,7 +749,7 @@
     "using": "Wordt gestart…",
     "useFailed": "Er kon geen interview vanuit dit sjabloon worden gestart. Probeer het opnieuw.",
     "inProgress": "bezig: {done}/{total, plural, one {# onderwerp} other {# onderwerpen}}",
-    "completed": "afgerond: {done}/{total, plural, one {# onderwerp} other {# onderwerpen}}",
+    "completed": "afgerond",
     "warningText": "<b>Sjablonen zijn kant-en-klaar voor veelvoorkomende functies.</b> Voor een betere match maak je een interview op basis van je functieomschrijving."
   },
   "billing": {

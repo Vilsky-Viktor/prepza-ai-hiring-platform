@@ -749,7 +749,7 @@
     "using": "시작하는 중…",
     "useFailed": "이 템플릿으로 면접을 시작하지 못했습니다. 다시 시도해 주세요.",
     "inProgress": "진행 중: 주제 {done}/{total, plural, other {#개}}",
-    "completed": "완료: 주제 {done}/{total, plural, other {#개}}",
+    "completed": "완료",
     "warningText": "<b>템플릿은 일반적인 직무용으로 미리 만들어져 있습니다.</b> 더 잘 맞추려면 채용 공고로 면접을 만드세요."
   },
   "billing": {

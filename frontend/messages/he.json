@@ -749,7 +749,7 @@
     "using": "מתחיל…",
     "useFailed": "לא ניתן להתחיל ראיון מהתבנית הזו. נסו שוב.",
     "inProgress": "בתהליך: {done}/{total, plural, one {# נושא} two {# נושאים} other {# נושאים}}",
-    "completed": "הושלם: {done}/{total, plural, one {# נושא} two {# נושאים} other {# נושאים}}",
+    "completed": "הושלם",
     "warningText": "<b>התבניות מוכנות לתפקידים נפוצים.</b> להתאמה מדויקת יותר, צרו ראיון מתיאור המשרה שלכם."
   },
   "billing": {

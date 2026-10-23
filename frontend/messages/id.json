@@ -749,7 +749,7 @@
     "using": "Memulai…",
     "useFailed": "Wawancara tidak bisa dimulai dari templat ini. Coba lagi.",
     "inProgress": "sedang berjalan: {done}/{total, plural, other {# topik}}",
-    "completed": "selesai: {done}/{total, plural, other {# topik}}",
+    "completed": "selesai",
     "warningText": "<b>Templat dibuat siap pakai untuk posisi yang umum.</b> Agar lebih sesuai, buat wawancara dari deskripsi pekerjaanmu."
   },
   "billing": {

@@ -749,7 +749,7 @@
     "using": "Démarrage…",
     "useFailed": "Impossible de démarrer un entretien à partir de ce modèle. Veuillez réessayer.",
     "inProgress": "en cours : {done}/{total, plural, one {# thème} other {# thèmes}}",
-    "completed": "terminé : {done}/{total, plural, one {# thème} other {# thèmes}}",
+    "completed": "terminé",
     "warningText": "<b>Les modèles sont prêts à l’emploi pour les postes courants.</b> Pour un meilleur ajustement, créez un entretien à partir de votre fiche de poste."
   },
   "billing": {

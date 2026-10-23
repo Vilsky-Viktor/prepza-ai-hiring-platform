@@ -749,7 +749,7 @@
     "using": "Đang bắt đầu…",
     "useFailed": "Không thể tạo buổi phỏng vấn từ mẫu này. Vui lòng thử lại.",
     "inProgress": "đang làm: {done}/{total, plural, other {# chủ đề}}",
-    "completed": "đã hoàn thành: {done}/{total, plural, other {# chủ đề}}",
+    "completed": "đã hoàn thành",
     "warningText": "<b>Mẫu được soạn sẵn cho các vị trí phổ biến.</b> Để phù hợp hơn, hãy tạo buổi phỏng vấn từ mô tả công việc của bạn."
   },
   "billing": {

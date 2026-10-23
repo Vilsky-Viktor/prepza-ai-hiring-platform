@@ -749,7 +749,7 @@
     "using": "開始中…",
     "useFailed": "このテンプレートから面接を開始できませんでした。もう一度お試しください。",
     "inProgress": "進行中：{done}/{total, plural, other {# トピック}}",
-    "completed": "完了：{done}/{total, plural, other {# トピック}}",
+    "completed": "完了",
     "warningText": "<b>テンプレートは一般的な職種向けの既製の面接です。</b>より合った面接にするには、求人票から面接を作成しましょう。"
   },
   "billing": {

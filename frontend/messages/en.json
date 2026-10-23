@@ -749,7 +749,7 @@
     "using": "Starting…",
     "useFailed": "Couldn't start an interview from this template. Please try again.",
     "inProgress": "in progress: {done}/{total, plural, one {# topic} other {# topics}}",
-    "completed": "finished: {done}/{total, plural, one {# topic} other {# topics}}",
+    "completed": "completed",
     "warningText": "<b>Templates are ready-made for common roles.</b> For a closer fit, create an interview from your job description."
   },
   "billing": {

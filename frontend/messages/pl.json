@@ -749,7 +749,7 @@
     "using": "Uruchamianie…",
     "useFailed": "Nie udało się rozpocząć rozmowy z tego szablonu. Spróbuj ponownie.",
     "inProgress": "w toku: {done}/{total, plural, one {# temat} few {# tematy} many {# tematów} other {# tematu}}",
-    "completed": "ukończono: {done}/{total, plural, one {# temat} few {# tematy} many {# tematów} other {# tematu}}",
+    "completed": "ukończono",
     "warningText": "<b>Szablony to gotowe rozmowy dla popularnych stanowisk.</b> Aby lepiej dopasować pytania, utwórz rozmowę na podstawie swojego opisu stanowiska."
   },
   "billing": {

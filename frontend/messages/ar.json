@@ -749,7 +749,7 @@
     "using": "جارٍ البدء…",
     "useFailed": "تعذّر بدء مقابلة من هذا القالب. حاول مرة أخرى.",
     "inProgress": "قيد التنفيذ: {done}/{total, plural, zero {# موضوع} one {# موضوع} two {# موضوع} few {# مواضيع} many {# موضوعًا} other {# موضوع}}",
-    "completed": "مكتمل: {done}/{total, plural, zero {# موضوع} one {# موضوع} two {# موضوع} few {# مواضيع} many {# موضوعًا} other {# موضوع}}",
+    "completed": "مكتمل",
     "warningText": "<b>القوالب جاهزة للوظائف الشائعة.</b> لنتيجة أدق، أنشئ مقابلة من وصفك الوظيفي."
   },
   "billing": {

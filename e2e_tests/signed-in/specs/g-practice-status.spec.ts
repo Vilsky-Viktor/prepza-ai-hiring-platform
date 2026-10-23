@@ -111,7 +111,6 @@ test("the practice list shows the talent's progress on each test", async ({ sign
     new RegExp(`\\b0/${barely.template.topic_count}\\b`)
   )
   await expect(statusOf(user, whole.template)).toHaveAttribute("data-status", "completed")
-  await expect(statusOf(user, whole.template)).toHaveAccessibleName(/\b2\/2\b/)
   await expect(statusOf(user, opened.template)).toHaveCount(0)
   await expect(user.getByRole("main").locator("[data-status]")).toHaveCount(3)
 
