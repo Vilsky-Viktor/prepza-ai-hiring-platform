@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Couldn't save the permissions."
   },
   "brand": {
+    "general": "General",
     "logoTitle": "Logo",
     "logoText": "Candidates see it on their invitation, during the interview and in emails.",
     "colorsTitle": "Colors",
-    "colorsText": "Candidates see the interview process in these colors, light or dark as their own setting is, or as your link, the API or the SDK asks. Any text must stay easy to read, so colors with too little contrast can't be saved.",
+    "colorsText": "Candidates see these colors when their interview is {theme, select, dark {dark} other {light}}: by their own setting, or because your link, the API or the SDK asks for it. Colors with too little contrast to read easily can't be saved.",
     "groups": {
+      "font": {
+        "name": "Font",
+        "text": "All the text on your candidates' pages, in both themes."
+      },
+      "rounding": {
+        "name": "Rounding",
+        "text": "How round the cards' and buttons' corners are, in both themes."
+      },
       "page": {
         "name": "Page",
         "text": "The background, and the titles and questions on it."
@@ -1958,7 +1967,7 @@
     "save": "Save",
     "saved": "Saved",
     "styleTitle": "Font and corners",
-    "styleText": "All the text in one font, and how round the cards' and buttons' corners are, the same in both themes.",
+    "styleText": "These apply to both the light and the dark theme.",
     "font": "Font",
     "radius": "Card rounding",
     "buttonRadius": "Button rounding",

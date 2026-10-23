@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Impossibile salvare i permessi."
   },
   "brand": {
+    "general": "Generale",
     "logoTitle": "Logo",
     "logoText": "I candidati lo vedono nell'invito, durante il colloquio e nelle email.",
     "colorsTitle": "Colori",
-    "colorsText": "I candidati vedono lo svolgimento del colloquio con questi colori, in chiaro o in scuro secondo la loro impostazione, o come richiede il tuo link, l'API o l'SDK. Ogni testo deve restare facile da leggere, quindi i colori con poco contrasto non si possono salvare.",
+    "colorsText": "I candidati vedono questi colori quando il loro colloquio è in tema {theme, select, dark {scuro} other {chiaro}}: per una loro impostazione o perché lo richiede il tuo link, l'API o l'SDK. I colori con un contrasto troppo basso per leggere facilmente non si possono salvare.",
     "groups": {
+      "font": {
+        "name": "Carattere",
+        "text": "Tutto il testo nelle pagine dei tuoi candidati, in entrambi i temi."
+      },
+      "rounding": {
+        "name": "Arrotondamento",
+        "text": "Quanto sono arrotondati gli angoli di schede e pulsanti, in entrambi i temi."
+      },
       "page": {
         "name": "Pagina",
         "text": "Lo sfondo, e i titoli e le domande che ci stanno sopra."
@@ -1958,7 +1967,7 @@
     "save": "Salva",
     "saved": "Salvato",
     "styleTitle": "Carattere e angoli",
-    "styleText": "Tutto il testo in un solo carattere e quanto sono arrotondati gli angoli di schede e pulsanti, uguali in entrambi i temi.",
+    "styleText": "Valgono sia per il tema chiaro sia per quello scuro.",
     "font": "Carattere",
     "radius": "Arrotondamento delle schede",
     "buttonRadius": "Arrotondamento dei pulsanti",

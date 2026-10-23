@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Hak akses tidak bisa disimpan."
   },
   "brand": {
+    "general": "Umum",
     "logoTitle": "Logo",
     "logoText": "Kandidat melihatnya di undangan, selama wawancara, dan di email.",
     "colorsTitle": "Warna",
-    "colorsText": "Kandidat melihat proses wawancara dengan warna-warna ini, terang atau gelap sesuai pengaturan mereka sendiri, atau sesuai permintaan tautanmu, API, atau SDK. Setiap teks harus tetap mudah dibaca, jadi warna dengan kontras terlalu rendah tidak bisa disimpan.",
+    "colorsText": "Kandidat melihat warna-warna ini saat wawancara mereka memakai tema {theme, select, dark {gelap} other {terang}}: karena pengaturan mereka sendiri, atau karena tautanmu, API, atau SDK memintanya. Warna dengan kontras terlalu rendah sehingga sulit dibaca tidak bisa disimpan.",
     "groups": {
+      "font": {
+        "name": "Font",
+        "text": "Semua teks di halaman kandidatmu, di kedua tema."
+      },
+      "rounding": {
+        "name": "Kelengkungan",
+        "text": "Seberapa lengkung sudut kartu dan tombol, di kedua tema."
+      },
       "page": {
         "name": "Halaman",
         "text": "Latar belakang, serta judul dan pertanyaan di atasnya."
@@ -1958,7 +1967,7 @@
     "save": "Simpan",
     "saved": "Disimpan",
     "styleTitle": "Font dan sudut",
-    "styleText": "Semua teks dalam satu font, dan seberapa lengkung sudut kartu dan tombol, sama di kedua tema.",
+    "styleText": "Ini berlaku untuk tema terang maupun gelap.",
     "font": "Font",
     "radius": "Kelengkungan kartu",
     "buttonRadius": "Kelengkungan tombol",

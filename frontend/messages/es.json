@@ -1918,11 +1918,20 @@
     "permissionsFailed": "No se pudieron guardar los permisos."
   },
   "brand": {
+    "general": "General",
     "logoTitle": "Logo",
     "logoText": "Los candidatos lo ven en su invitación, durante la entrevista y en los correos.",
     "colorsTitle": "Colores",
-    "colorsText": "Los candidatos ven el proceso de la entrevista con estos colores, en claro u oscuro según su propia configuración o según lo pida tu enlace, la API o el SDK. Todo texto debe seguir siendo fácil de leer, así que no se pueden guardar colores con poco contraste.",
+    "colorsText": "Los candidatos ven estos colores cuando su entrevista está en tema {theme, select, dark {oscuro} other {claro}}: por su propia configuración o porque lo pide tu enlace, la API o el SDK. No se pueden guardar colores con tan poco contraste que cueste leerlos.",
     "groups": {
+      "font": {
+        "name": "Fuente",
+        "text": "Todo el texto de las páginas de tus candidatos, en ambos temas."
+      },
+      "rounding": {
+        "name": "Redondeo",
+        "text": "Lo redondeadas que son las esquinas de las tarjetas y los botones, en ambos temas."
+      },
       "page": {
         "name": "Página",
         "text": "El fondo, y los títulos y las preguntas sobre él."
@@ -1958,7 +1967,7 @@
     "save": "Guardar",
     "saved": "Guardado",
     "styleTitle": "Fuente y esquinas",
-    "styleText": "Todo el texto en una sola fuente y lo redondeadas que son las esquinas de las tarjetas y los botones, igual en ambos temas.",
+    "styleText": "Se aplican tanto al tema claro como al oscuro.",
     "font": "Fuente",
     "radius": "Redondeo de tarjetas",
     "buttonRadius": "Redondeo de botones",

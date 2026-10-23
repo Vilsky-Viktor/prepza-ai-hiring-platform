@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Õigusi ei õnnestunud salvestada."
   },
   "brand": {
+    "general": "Üldine",
     "logoTitle": "Logo",
     "logoText": "Kandidaadid näevad seda oma kutses, intervjuu ajal ja e-kirjades.",
     "colorsTitle": "Värvid",
-    "colorsText": "Kandidaadid näevad kogu intervjuu käiku nendes värvides, heledana või tumedana vastavalt oma seadistusele või sellele, mida sinu link, API või SDK määrab. Iga tekst peab jääma kergesti loetavaks, seega liiga väikese kontrastiga värve salvestada ei saa.",
+    "colorsText": "Kandidaadid näevad neid värve, kui nende intervjuu on {theme, select, dark {tumedas} other {heledas}} teemas: oma seadistuse tõttu või seetõttu, et sinu link, API või SDK seda nõuab. Värve, mille kontrast on kergeks lugemiseks liiga väike, salvestada ei saa.",
     "groups": {
+      "font": {
+        "name": "Font",
+        "text": "Kogu tekst sinu kandidaatide lehtedel, mõlemas teemas."
+      },
+      "rounding": {
+        "name": "Ümarus",
+        "text": "Kui ümarad on kaartide ja nuppude nurgad, mõlemas teemas."
+      },
       "page": {
         "name": "Leht",
         "text": "Taust ning sellel olevad pealkirjad ja küsimused."
@@ -1958,7 +1967,7 @@
     "save": "Salvesta",
     "saved": "Salvestatud",
     "styleTitle": "Font ja nurgad",
-    "styleText": "Kogu tekst ühes fondis ning kui ümarad on kaartide ja nuppude nurgad, mõlemas teemas ühesugused.",
+    "styleText": "Need kehtivad nii heledas kui ka tumedas teemas.",
     "font": "Font",
     "radius": "Kaartide ümarus",
     "buttonRadius": "Nuppude ümarus",

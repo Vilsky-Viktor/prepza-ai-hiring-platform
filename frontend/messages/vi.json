@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Không lưu được quyền."
   },
   "brand": {
+    "general": "Chung",
     "logoTitle": "Logo",
     "logoText": "Ứng viên thấy logo trong lời mời, trong buổi phỏng vấn và trong email.",
     "colorsTitle": "Màu sắc",
-    "colorsText": "Ứng viên thấy quá trình phỏng vấn bằng những màu này, sáng hoặc tối theo cài đặt của chính họ, hoặc theo yêu cầu của liên kết của bạn, API hay SDK. Mọi văn bản phải luôn dễ đọc, nên không thể lưu các màu có độ tương phản quá thấp.",
+    "colorsText": "Ứng viên thấy những màu này khi buổi phỏng vấn của họ ở giao diện {theme, select, dark {tối} other {sáng}}: theo cài đặt của chính họ, hoặc vì liên kết của bạn, API hay SDK yêu cầu. Không thể lưu các màu có độ tương phản quá thấp, khó đọc.",
     "groups": {
+      "font": {
+        "name": "Phông chữ",
+        "text": "Toàn bộ chữ trên các trang của ứng viên, ở cả hai giao diện."
+      },
+      "rounding": {
+        "name": "Bo góc",
+        "text": "Độ bo góc của thẻ và nút, ở cả hai giao diện."
+      },
       "page": {
         "name": "Trang",
         "text": "Nền, cùng tiêu đề và câu hỏi trên nền."
@@ -1958,7 +1967,7 @@
     "save": "Lưu",
     "saved": "Đã lưu",
     "styleTitle": "Phông chữ và góc",
-    "styleText": "Toàn bộ chữ dùng một phông, và độ bo góc của thẻ và nút, giống nhau ở cả hai giao diện.",
+    "styleText": "Các thiết lập này áp dụng cho cả giao diện sáng và tối.",
     "font": "Phông chữ",
     "radius": "Độ bo góc thẻ",
     "buttonRadius": "Độ bo góc nút",

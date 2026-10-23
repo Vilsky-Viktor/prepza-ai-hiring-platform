@@ -1918,11 +1918,20 @@
     "permissionsFailed": "De rechten konden niet worden opgeslagen."
   },
   "brand": {
+    "general": "Algemeen",
     "logoTitle": "Logo",
     "logoText": "Kandidaten zien het in hun uitnodiging, tijdens het interview en in e-mails.",
     "colorsTitle": "Kleuren",
-    "colorsText": "Kandidaten zien het hele verloop van het interview in deze kleuren, licht of donker volgens hun eigen instelling, of zoals je link, de API of de SDK aangeeft. Elke tekst moet goed leesbaar blijven, dus kleuren met te weinig contrast kunnen niet worden opgeslagen.",
+    "colorsText": "Kandidaten zien deze kleuren als hun interview in het {theme, select, dark {donkere} other {lichte}} thema staat: door hun eigen instelling, of omdat je link, de API of de SDK erom vraagt. Kleuren met te weinig contrast om makkelijk te lezen kunnen niet worden opgeslagen.",
     "groups": {
+      "font": {
+        "name": "Lettertype",
+        "text": "Alle tekst op de pagina's van je kandidaten, in beide thema's."
+      },
+      "rounding": {
+        "name": "Afronding",
+        "text": "Hoe rond de hoeken van kaarten en knoppen zijn, in beide thema's."
+      },
       "page": {
         "name": "Pagina",
         "text": "De achtergrond, en de titels en vragen erop."
@@ -1958,7 +1967,7 @@
     "save": "Opslaan",
     "saved": "Opgeslagen",
     "styleTitle": "Lettertype en hoeken",
-    "styleText": "Alle tekst in één lettertype, en hoe rond de hoeken van kaarten en knoppen zijn, in beide thema's hetzelfde.",
+    "styleText": "Deze gelden voor zowel het lichte als het donkere thema.",
     "font": "Lettertype",
     "radius": "Afronding van kaarten",
     "buttonRadius": "Afronding van knoppen",

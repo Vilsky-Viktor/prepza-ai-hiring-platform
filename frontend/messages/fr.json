@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Impossible d'enregistrer les autorisations."
   },
   "brand": {
+    "general": "Général",
     "logoTitle": "Logo",
     "logoText": "Les candidats le voient sur leur invitation, pendant l'entretien et dans les e-mails.",
     "colorsTitle": "Couleurs",
-    "colorsText": "Les candidats voient le déroulement de l'entretien dans ces couleurs, en clair ou en sombre selon leur propre réglage, ou selon ce que demande votre lien, l'API ou le SDK. Tout texte doit rester facile à lire : les couleurs trop peu contrastées ne peuvent donc pas être enregistrées.",
+    "colorsText": "Les candidats voient ces couleurs quand leur entretien est en thème {theme, select, dark {sombre} other {clair}} : selon leur propre réglage, ou parce que votre lien, l'API ou le SDK le demande. Les couleurs trop peu contrastées pour être lues facilement ne peuvent pas être enregistrées.",
     "groups": {
+      "font": {
+        "name": "Police",
+        "text": "Tout le texte des pages de vos candidats, dans les deux thèmes."
+      },
+      "rounding": {
+        "name": "Arrondi",
+        "text": "L'arrondi des coins des cartes et des boutons, dans les deux thèmes."
+      },
       "page": {
         "name": "Page",
         "text": "Le fond, et les titres et les questions qui s'y trouvent."
@@ -1958,7 +1967,7 @@
     "save": "Enregistrer",
     "saved": "Enregistré",
     "styleTitle": "Police et coins",
-    "styleText": "Tout le texte dans une seule police, et l'arrondi des coins des cartes et des boutons, identiques dans les deux thèmes.",
+    "styleText": "Ces réglages s'appliquent au thème clair comme au thème sombre.",
     "font": "Police",
     "radius": "Arrondi des cartes",
     "buttonRadius": "Arrondi des boutons",

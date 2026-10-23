@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Nie udało się zapisać uprawnień."
   },
   "brand": {
+    "general": "Ogólne",
     "logoTitle": "Logo",
     "logoText": "Kandydaci widzą je w zaproszeniu, podczas rozmowy i w e-mailach.",
     "colorsTitle": "Kolory",
-    "colorsText": "Kandydaci widzą cały przebieg rozmowy w tych kolorach, jasnych lub ciemnych zgodnie z własnym ustawieniem albo tak, jak wskazuje Twój link, API lub SDK. Każdy tekst musi pozostać czytelny, dlatego nie da się zapisać kolorów o zbyt małym kontraście.",
+    "colorsText": "Kandydaci widzą te kolory, gdy ich rozmowa jest w {theme, select, dark {ciemnym} other {jasnym}} motywie: z powodu własnego ustawienia albo dlatego, że wymaga tego Twój link, API lub SDK. Kolorów o zbyt małym kontraście, przy którym trudno czytać, nie da się zapisać.",
     "groups": {
+      "font": {
+        "name": "Czcionka",
+        "text": "Cały tekst na stronach Twoich kandydatów, w obu motywach."
+      },
+      "rounding": {
+        "name": "Zaokrąglenie",
+        "text": "Jak bardzo zaokrąglone są rogi kart i przycisków, w obu motywach."
+      },
       "page": {
         "name": "Strona",
         "text": "Tło oraz tytuły i pytania na nim."
@@ -1958,7 +1967,7 @@
     "save": "Zapisz",
     "saved": "Zapisano",
     "styleTitle": "Czcionka i rogi",
-    "styleText": "Cały tekst jedną czcionką oraz zaokrąglenie rogów kart i przycisków, takie same w obu motywach.",
+    "styleText": "Dotyczą zarówno jasnego, jak i ciemnego motywu.",
     "font": "Czcionka",
     "radius": "Zaokrąglenie kart",
     "buttonRadius": "Zaokrąglenie przycisków",

@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Die Berechtigungen konnten nicht gespeichert werden."
   },
   "brand": {
+    "general": "Allgemein",
     "logoTitle": "Logo",
     "logoText": "Kandidaten sehen es in ihrer Einladung, während des Interviews und in E-Mails.",
     "colorsTitle": "Farben",
-    "colorsText": "Kandidaten sehen den Ablauf des Interviews in diesen Farben, hell oder dunkel, je nach ihrer eigenen Einstellung oder wie es dein Link, die API oder das SDK vorgibt. Jeder Text muss gut lesbar bleiben, deshalb lassen sich Farben mit zu wenig Kontrast nicht speichern.",
+    "colorsText": "Kandidaten sehen diese Farben, wenn ihr Interview im {theme, select, dark {dunklen} other {hellen}} Design angezeigt wird: durch ihre eigene Einstellung oder weil dein Link, die API oder das SDK es vorgibt. Farben mit zu wenig Kontrast, um gut lesbar zu sein, lassen sich nicht speichern.",
     "groups": {
+      "font": {
+        "name": "Schriftart",
+        "text": "Der gesamte Text auf den Seiten deiner Kandidaten, in beiden Designs."
+      },
+      "rounding": {
+        "name": "Rundung",
+        "text": "Wie rund die Ecken von Karten und Buttons sind, in beiden Designs."
+      },
       "page": {
         "name": "Seite",
         "text": "Der Hintergrund und die Titel und Fragen darauf."
@@ -1958,7 +1967,7 @@
     "save": "Speichern",
     "saved": "Gespeichert",
     "styleTitle": "Schriftart und Ecken",
-    "styleText": "Der gesamte Text in einer Schriftart und wie rund die Ecken von Karten und Buttons sind, in beiden Designs gleich.",
+    "styleText": "Diese gelten für das helle und das dunkle Design.",
     "font": "Schriftart",
     "radius": "Kartenrundung",
     "buttonRadius": "Buttonrundung",

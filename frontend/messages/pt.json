@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Não foi possível salvar as permissões."
   },
   "brand": {
+    "general": "Geral",
     "logoTitle": "Logotipo",
     "logoText": "Os candidatos o veem no convite, durante a entrevista e nos e-mails.",
     "colorsTitle": "Cores",
-    "colorsText": "Os candidatos veem o processo da entrevista nestas cores, no modo claro ou escuro conforme a própria configuração, ou como pedirem o seu link, a API ou o SDK. Todo texto precisa continuar fácil de ler, por isso cores com pouco contraste não podem ser salvas.",
+    "colorsText": "Os candidatos veem estas cores quando a entrevista deles está no tema {theme, select, dark {escuro} other {claro}}: pela própria configuração ou porque o seu link, a API ou o SDK pede isso. Cores com contraste baixo demais para ler com facilidade não podem ser salvas.",
     "groups": {
+      "font": {
+        "name": "Fonte",
+        "text": "Todo o texto das páginas dos seus candidatos, nos dois temas."
+      },
+      "rounding": {
+        "name": "Arredondamento",
+        "text": "O quanto os cantos dos cartões e botões são arredondados, nos dois temas."
+      },
       "page": {
         "name": "Página",
         "text": "O fundo, e os títulos e as perguntas sobre ele."
@@ -1958,7 +1967,7 @@
     "save": "Salvar",
     "saved": "Salvo",
     "styleTitle": "Fonte e cantos",
-    "styleText": "Todo o texto em uma só fonte e o arredondamento dos cantos dos cartões e botões, iguais nos dois temas.",
+    "styleText": "Valem tanto para o tema claro quanto para o escuro.",
     "font": "Fonte",
     "radius": "Arredondamento dos cartões",
     "buttonRadius": "Arredondamento dos botões",

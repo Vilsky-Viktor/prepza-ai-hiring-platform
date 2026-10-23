@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Hindi ma-save ang mga pahintulot."
   },
   "brand": {
+    "general": "Pangkalahatan",
     "logoTitle": "Logo",
     "logoText": "Nakikita ito ng mga aplikante sa kanilang imbitasyon, habang nasa interview, at sa mga email.",
     "colorsTitle": "Mga kulay",
-    "colorsText": "Nakikita ng mga aplikante ang buong proseso ng interview sa mga kulay na ito, light o dark ayon sa sarili nilang setting, o ayon sa hinihingi ng iyong link, ng API o ng SDK. Dapat madaling basahin ang lahat ng text, kaya hindi mase-save ang mga kulay na kulang sa contrast.",
+    "colorsText": "Nakikita ng mga aplikante ang mga kulay na ito kapag {theme, select, dark {dark} other {light}} na tema ang kanilang interview: dahil sa sarili nilang setting, o dahil hinihingi ito ng iyong link, ng API o ng SDK. Hindi mase-save ang mga kulay na masyadong mababa ang contrast para madaling mabasa.",
     "groups": {
+      "font": {
+        "name": "Font",
+        "text": "Lahat ng text sa mga page ng iyong mga aplikante, sa dalawang tema."
+      },
+      "rounding": {
+        "name": "Pag-ikot",
+        "text": "Kung gaano kabilog ang mga sulok ng mga card at button, sa dalawang tema."
+      },
       "page": {
         "name": "Pahina",
         "text": "Ang background, at ang mga title at tanong dito."
@@ -1958,7 +1967,7 @@
     "save": "I-save",
     "saved": "Na-save",
     "styleTitle": "Font at mga sulok",
-    "styleText": "Lahat ng text sa iisang font, at kung gaano kabilog ang mga sulok ng mga card at button, pareho sa dalawang theme.",
+    "styleText": "Nalalapat ang mga ito sa light at dark na tema.",
     "font": "Font",
     "radius": "Pag-ikot ng mga card",
     "buttonRadius": "Pag-ikot ng mga button",

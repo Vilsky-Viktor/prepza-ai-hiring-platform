@@ -1918,11 +1918,20 @@
     "permissionsFailed": "Yetkiler kaydedilemedi."
   },
   "brand": {
+    "general": "Genel",
     "logoTitle": "Logo",
     "logoText": "Adaylar onu davetlerinde, mülakat sırasında ve e-postalarda görür.",
     "colorsTitle": "Renkler",
-    "colorsText": "Adaylar mülakat sürecini bu renklerle görür; kendi ayarlarına göre ya da bağlantınızın, API'nin veya SDK'nın istediği gibi açık veya koyu olarak. Her metin kolayca okunabilir kalmalıdır, bu yüzden kontrastı yetersiz renkler kaydedilemez.",
+    "colorsText": "Adaylar, mülakatları {theme, select, dark {koyu} other {açık}} temada olduğunda bu renkleri görür: kendi ayarları nedeniyle ya da bağlantınız, API veya SDK bunu istediği için. Kolayca okunamayacak kadar düşük kontrastlı renkler kaydedilemez.",
     "groups": {
+      "font": {
+        "name": "Yazı tipi",
+        "text": "Adaylarınızın sayfalarındaki tüm metin, iki temada da."
+      },
+      "rounding": {
+        "name": "Yuvarlaklık",
+        "text": "Kartların ve düğmelerin köşelerinin ne kadar yuvarlak olduğu, iki temada da."
+      },
       "page": {
         "name": "Sayfa",
         "text": "Arka plan ve üzerindeki başlıklar ile sorular."
@@ -1958,7 +1967,7 @@
     "save": "Kaydet",
     "saved": "Kaydedildi",
     "styleTitle": "Yazı tipi ve köşeler",
-    "styleText": "Tüm metin tek bir yazı tipinde; kartların ve düğmelerin köşelerinin ne kadar yuvarlak olacağı, iki temada da aynı.",
+    "styleText": "Bunlar hem açık hem koyu temada geçerlidir.",
     "font": "Yazı tipi",
     "radius": "Kart yuvarlaklığı",
     "buttonRadius": "Düğme yuvarlaklığı",
