@@ -68,7 +68,7 @@ Inviting the same address again (a list pasted again, an ATS event delivered twi
 
 ## Shareable link
 
-The shareable link (`/apply/{token}`) is one link per interview, for a job ad. Owners and admins turn it on, once the interview has its questions (as for an invite, and not during the emergency pause); a link turned on earlier holds no credits until they're made.
+The shareable link (`/apply/{token}`) is one link per interview, for a job ad. Owners and admins turn it on at the top of the interview's settings tab, once the interview has its questions (as for an invite, and not during the emergency pause); a link turned on earlier holds no credits until they're made.
 
 - Anyone who opens it signs in and takes the interview.
 - Each verified email can take it once.

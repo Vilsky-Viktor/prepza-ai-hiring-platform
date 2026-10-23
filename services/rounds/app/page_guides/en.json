@@ -112,7 +112,6 @@
     "text": "Everyone invited to this interview, with their status, progress and grade.",
     "actions": [
       "Invite candidates: one at a time, a list, or a CSV or TXT file.",
-      "Turn on the shareable link for a job ad: anyone with it can take the interview.",
       "Search by email or name, filter by status, and sort by grade or date.",
       "Open a candidate's report, or download or share the report on all candidates."
     ],
@@ -125,6 +124,7 @@
     "title": "Settings",
     "text": "How this interview runs for every candidate.",
     "actions": [
+      "Turn on the shareable link for a job ad: anyone with it can take the interview.",
       "Set the time each question has, in seconds.",
       "Set the passing grade: candidates who reach it pass.",
       "Mark the interview as hired once you've filled the role.",

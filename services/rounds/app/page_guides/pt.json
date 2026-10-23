@@ -112,7 +112,6 @@
     "text": "Todos os convidados para esta entrevista, com status, progresso e nota.",
     "actions": [
       "Convide candidatos: um de cada vez, uma lista de até 100 ou um arquivo CSV ou TXT.",
-      "Ative o link compartilhável para um anúncio de vaga: qualquer pessoa com ele pode fazer a entrevista.",
       "Busque por e-mail ou nome, filtre por status e ordene por nota ou data.",
       "Abra o relatório de um candidato ou baixe ou compartilhe o relatório de todos os candidatos."
     ],
@@ -125,6 +124,7 @@
     "title": "Configurações",
     "text": "Como esta entrevista funciona para cada candidato.",
     "actions": [
+      "Ative o link compartilhável para um anúncio de vaga: qualquer pessoa com ele pode fazer a entrevista.",
       "Defina o tempo de cada questão, em segundos.",
       "Defina a nota de aprovação: os candidatos que a atingem são aprovados.",
       "Marque a entrevista como “Contratado” quando preencher a vaga.",

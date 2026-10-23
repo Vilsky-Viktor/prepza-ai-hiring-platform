@@ -112,7 +112,6 @@
     "text": "Mọi người được mời vào buổi phỏng vấn này, cùng trạng thái, tiến độ và điểm của họ.",
     "actions": [
       "Mời ứng viên: từng người một, danh sách tối đa 100 người, hoặc tệp CSV hay TXT.",
-      "Bật liên kết chia sẻ cho tin tuyển dụng: bất kỳ ai có liên kết đều có thể làm bài phỏng vấn.",
       "Tìm theo email hoặc tên, lọc theo trạng thái, và sắp xếp theo điểm hoặc ngày.",
       "Mở báo cáo của một ứng viên, hoặc tải xuống hay chia sẻ báo cáo về tất cả ứng viên."
     ],
@@ -125,6 +124,7 @@
     "title": "Cài đặt",
     "text": "Cách buổi phỏng vấn này diễn ra với mọi ứng viên.",
     "actions": [
+      "Bật liên kết chia sẻ cho tin tuyển dụng: bất kỳ ai có liên kết đều có thể làm bài phỏng vấn.",
       "Đặt thời gian cho mỗi câu hỏi, tính bằng giây.",
       "Đặt điểm đạt: ứng viên đạt mức này là đậu.",
       "Đánh dấu buổi phỏng vấn là đã tuyển khi bạn đã tuyển được người cho vị trí.",

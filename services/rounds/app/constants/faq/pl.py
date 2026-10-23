@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Czy mogę umieścić rozmowę w ogłoszeniu o pracę?",
-        "answer": "Tak. Włącz link do udostępnienia rozmowy na jej karcie kandydatów i wklej go do ogłoszenia. Każdy, kto go otworzy, loguje się i bierze udział w rozmowie, a za każdą osobę płacisz jak za zaproszonego kandydata. Link wyłącza się, gdy oznaczysz w rozmowie, że ktoś został zatrudniony.",
+        "answer": "Tak. Włącz link do udostępnienia rozmowy na jej karcie ustawień i wklej go do ogłoszenia. Każdy, kto go otworzy, loguje się i bierze udział w rozmowie, a za każdą osobę płacisz jak za zaproszonego kandydata. Link wyłącza się, gdy oznaczysz w rozmowie, że ktoś został zatrudniony.",
     },
     {
         "key": "preview",

@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Kan ik een interview in een vacature zetten?",
-        "answer": "Ja. Zet de deelbare link van het interview aan op het tabblad met kandidaten en plak hem in je vacature. Iedereen die hem opent, logt in en doet het interview, en je betaalt per persoon hetzelfde als voor een uitgenodigde kandidaat. De link gaat uit wanneer je het interview markeert als aangenomen.",
+        "answer": "Ja. Zet de deelbare link van het interview aan op het tabblad Instellingen en plak hem in je vacature. Iedereen die hem opent, logt in en doet het interview, en je betaalt per persoon hetzelfde als voor een uitgenodigde kandidaat. De link gaat uit wanneer je het interview markeert als aangenomen.",
     },
     {
         "key": "preview",

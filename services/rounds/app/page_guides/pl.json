@@ -112,7 +112,6 @@
     "text": "Wszyscy zaproszeni na tę rozmowę, z ich statusem, postępem i wynikiem.",
     "actions": [
       "Zaproś kandydatów: pojedynczo, listą do 100 osób albo plikiem CSV lub TXT.",
-      "Włącz link do udostępnienia do ogłoszenia o pracę: każdy, kto go ma, może przejść rozmowę.",
       "Szukaj po e-mailu lub imieniu i nazwisku, filtruj po statusie i sortuj po wyniku lub dacie.",
       "Otwórz raport kandydata albo pobierz lub udostępnij raport o wszystkich kandydatach."
     ],
@@ -125,6 +124,7 @@
     "title": "Ustawienia",
     "text": "Jak ta rozmowa przebiega dla każdego kandydata.",
     "actions": [
+      "Włącz link do udostępnienia do ogłoszenia o pracę: każdy, kto go ma, może przejść rozmowę.",
       "Ustaw czas na każde pytanie, w sekundach.",
       "Ustaw próg zaliczenia: kandydaci, którzy go osiągną, przechodzą.",
       "Oznacz rozmowę jako zakończoną zatrudnieniem, gdy obsadzisz stanowisko.",

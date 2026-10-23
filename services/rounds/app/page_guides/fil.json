@@ -112,7 +112,6 @@
     "text": "Lahat ng inimbitahan sa interview na ito, kasama ang kanilang status, progreso at grade.",
     "actions": [
       "Mag-imbita ng mga aplikante: isa-isa, listahan na hanggang 100, o CSV o TXT na file.",
-      "I-on ang link na puwedeng i-share para sa job ad: puwedeng sumagot sa interview ang sinumang may link.",
       "Maghanap ayon sa email o pangalan, i-filter ayon sa status, at i-sort ayon sa grade o petsa.",
       "Buksan ang report ng isang aplikante, o i-download o i-share ang report ng lahat ng aplikante."
     ],
@@ -125,6 +124,7 @@
     "title": "Mga setting",
     "text": "Kung paano tumatakbo ang interview na ito para sa bawat aplikante.",
     "actions": [
+      "I-on ang link na puwedeng i-share para sa job ad: puwedeng sumagot sa interview ang sinumang may link.",
       "Itakda ang oras ng bawat tanong, sa segundo.",
       "Itakda ang passing grade: pasado ang mga aplikanteng aabot dito.",
       "Markahan ang interview bilang na-hire kapag may napili ka na para sa role.",

@@ -112,7 +112,6 @@
     "text": "Todas las personas invitadas a esta entrevista, con su estado, avance y nota.",
     "actions": [
       "Invita a candidatos: uno a uno, una lista de hasta 100, o un archivo CSV o TXT.",
-      "Activa el enlace para compartir en una oferta de empleo: cualquiera que lo tenga puede hacer la entrevista.",
       "Busca por correo o nombre, filtra por estado y ordena por nota o fecha.",
       "Abre el informe de un candidato, o descarga o comparte el informe de todos los candidatos."
     ],
@@ -125,6 +124,7 @@
     "title": "Ajustes",
     "text": "Cómo funciona esta entrevista para cada candidato.",
     "actions": [
+      "Activa el enlace para compartir en una oferta de empleo: cualquiera que lo tenga puede hacer la entrevista.",
       "Define el tiempo por pregunta, en segundos.",
       "Define la nota de aprobado: los candidatos que la alcanzan aprueban.",
       "Marca el puesto como cubierto cuando hayas contratado.",

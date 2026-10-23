@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Posso mettere un colloquio in un annuncio di lavoro?",
-        "answer": "Sì. Attiva il link condivisibile del colloquio nella sua scheda Candidati e incollalo nel tuo annuncio. Chiunque lo apra accede e svolge il colloquio, e ogni persona ti costa quanto un candidato invitato. Il link si disattiva quando segni il colloquio come «Assunto».",
+        "answer": "Sì. Attiva il link condivisibile del colloquio nella sua scheda Impostazioni e incollalo nel tuo annuncio. Chiunque lo apra accede e svolge il colloquio, e ogni persona ti costa quanto un candidato invitato. Il link si disattiva quando segni il colloquio come «Assunto».",
     },
     {
         "key": "preview",

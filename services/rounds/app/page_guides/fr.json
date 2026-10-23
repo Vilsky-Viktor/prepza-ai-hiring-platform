@@ -112,7 +112,6 @@
     "text": "Toutes les personnes invitées à cet entretien, avec leur statut, leur progression et leur note.",
     "actions": [
       "Invitez des candidats : un par un, une liste de 100 au maximum, ou un fichier CSV ou TXT.",
-      "Activez le lien de partage pour une offre d'emploi : toute personne qui l'a peut passer l'entretien.",
       "Recherchez par e-mail ou par nom, filtrez par statut et triez par note ou par date.",
       "Ouvrez le rapport d'un candidat, ou téléchargez ou partagez le rapport sur tous les candidats."
     ],
@@ -125,6 +124,7 @@
     "title": "Paramètres",
     "text": "Le déroulement de cet entretien pour chaque candidat.",
     "actions": [
+      "Activez le lien de partage pour une offre d'emploi : toute personne qui l'a peut passer l'entretien.",
       "Définissez le temps par question, en secondes.",
       "Définissez le seuil de réussite : les candidats qui l'atteignent réussissent.",
       "Marquez l'entretien comme recruté une fois le poste pourvu.",

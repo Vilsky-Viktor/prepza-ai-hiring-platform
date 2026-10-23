@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Kas saan intervjuu töökuulutusse panna?",
-        "answer": "Jah. Lülita intervjuu vahekaardil Kandidaadid sisse jagatav link ja kleebi see oma kuulutusse. Igaüks, kes selle avab, logib sisse ja teeb intervjuu, ning iga inimese eest võetakse tasu nagu kutsutud kandidaadi eest. Link lülitub välja, kui märgid intervjuu palgatuks.",
+        "answer": "Jah. Lülita intervjuu vahekaardil Seaded sisse jagatav link ja kleebi see oma kuulutusse. Igaüks, kes selle avab, logib sisse ja teeb intervjuu, ning iga inimese eest võetakse tasu nagu kutsutud kandidaadi eest. Link lülitub välja, kui märgid intervjuu palgatuks.",
     },
     {
         "key": "preview",

@@ -75,7 +75,7 @@ Candidates:
 - Invite candidates by email or resend an invite. Revoke any candidate: before they start it \
 withdraws the invite; after, it erases them and their results for good (also how a candidate's \
 request to delete their data is handled). Or turn on the test's \
-shareable link (candidates tab) for a job ad: anyone who opens it signs in and takes \
+shareable link (settings tab) for a job ad: anyone who opens it signs in and takes \
 the test, charged like an invited candidate; it can be turned off at any time. The invite page \
 tells candidates what to expect.
 - Until a candidate finishes, owners and admins see their invite link on the candidate's page, \

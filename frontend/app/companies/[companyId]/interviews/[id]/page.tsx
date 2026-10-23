@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server"
 import { InterviewCandidatesTab } from "@/components/company/interview-candidates-tab"
 import { InterviewHeader } from "@/components/company/interview-header"
 import { InterviewSettings } from "@/components/company/interview-settings"
+import { ShareLink } from "@/components/company/share-link"
 import { InterviewTopics } from "@/components/company/interview-topics"
 import { WhatsNext } from "@/components/company/whats-next"
 import { SignInPage } from "@/components/sign-in-page"
@@ -62,13 +63,21 @@ export default async function InterviewPage({
         maxInvites={limits?.max_bulk_invites ?? null}
       >
         {current === "settings" ? (
-          <InterviewSettings
-            interviewId={interview.id}
-            questionSeconds={interview.question_seconds}
-            passMark={interview.pass_mark}
-            hired={interview.hired}
-            keepPrivate={interview.keep_private}
-          />
+          // The shareable link sits with the interview's settings, above them.
+          <div className="space-y-6">
+            <ShareLink
+              interviewId={interview.id}
+              linkToken={interview.link_token}
+              canEdit={canEdit}
+            />
+            <InterviewSettings
+              interviewId={interview.id}
+              questionSeconds={interview.question_seconds}
+              passMark={interview.pass_mark}
+              hired={interview.hired}
+              keepPrivate={interview.keep_private}
+            />
+          </div>
         ) : current === "candidates" ? (
           <InterviewCandidatesTab
             interview={interview}

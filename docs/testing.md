@@ -157,7 +157,7 @@ Playwright tests of the signed-in pages, in the same Docker image, against the r
 - a talent's practice history, newest first, loading older rounds as it scrolls,
 - a practice round's time per question: the options the API sends, the picker beside the start, and an untimed round without a countdown (`zu-practice-timing.spec.ts`),
 - text in another language than the page marked with its `lang` and `dir`: an interview's topics and questions, and each language's own name in the language picker (`zv-text-language.spec.ts`),
-- an interview's settings tab,
+- an interview's settings tab, and the shareable link turned on at its top (not on the candidates tab) to give the link to copy,
 - an interview's start page on a computer: the whole interview's minutes from its topics' questions and seconds, the big start button, and the rules card from the screen's top to its bottom, scrolling inside on a short screen (`zo-start-page.spec.ts`),
 - a new hard test starting with the hard level's seconds a question, the value changed in the admin zone's Controls reaching the next new hard test, and set back (`zn-level-seconds.spec.ts`),
 - a company's brand tab: colors previewed as they're typed, unreadable ones refused, the font and rounding saved with them, and its candidate's invitation in those colors,

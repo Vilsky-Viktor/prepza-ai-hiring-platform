@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Kann ich ein Interview in eine Stellenanzeige setzen?",
-        "answer": "Ja. Schalte den Link zum Teilen des Interviews im Tab Kandidaten ein und füge ihn in deine Anzeige ein. Jeder, der ihn öffnet, meldet sich an und macht das Interview, und jede Person wird wie ein eingeladener Kandidat berechnet. Der Link wird abgeschaltet, wenn du das Interview als eingestellt markierst.",
+        "answer": "Ja. Schalte den Link zum Teilen des Interviews im Tab Einstellungen ein und füge ihn in deine Anzeige ein. Jeder, der ihn öffnet, meldet sich an und macht das Interview, und jede Person wird wie ein eingeladener Kandidat berechnet. Der Link wird abgeschaltet, wenn du das Interview als eingestellt markierst.",
     },
     {
         "key": "preview",

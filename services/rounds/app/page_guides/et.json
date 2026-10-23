@@ -112,7 +112,6 @@
     "text": "Kõik sellele intervjuule kutsutud, koos oleku, edenemise ja hindega.",
     "actions": [
       "Kutsu kandidaate: ükshaaval, kuni 100-liikmelise loendina või CSV- või TXT-failist.",
-      "Lülita töökuulutuse jaoks sisse jagatav link: igaüks, kellel see on, saab intervjuu teha.",
       "Otsi e-posti või nime järgi, filtreeri oleku järgi ja sordi hinde või kuupäeva järgi.",
       "Ava kandidaadi aruanne või laadi alla või jaga kõigi kandidaatide aruannet."
     ],
@@ -125,6 +124,7 @@
     "title": "Seaded",
     "text": "Kuidas see intervjuu iga kandidaadi jaoks kulgeb.",
     "actions": [
+      "Lülita töökuulutuse jaoks sisse jagatav link: igaüks, kellel see on, saab intervjuu teha.",
       "Määra iga küsimuse aeg sekundites.",
       "Määra läbimise lävi: selle saavutanud kandidaadid läbivad intervjuu.",
       "Märgi intervjuu palgatuks, kui oled ametikoha täitnud.",

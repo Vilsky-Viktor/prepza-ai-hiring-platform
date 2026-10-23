@@ -46,3 +46,24 @@ test("an owner changes an interview's settings on its settings tab", async ({ si
   await expect(keepPrivate).not.toBeChecked()
   await expect(hired).toBeChecked()
 })
+
+// The shareable link is on the settings tab, not the candidates tab: turned on there, it gives
+// the link to copy.
+test("an owner turns on the shareable link on the settings tab", async ({ signInAs }) => {
+  const owner = await signInAs(throwawayEmail("share-link-settings"))
+  const company = await createCompany(owner)
+  const interviewId = await createInterview(owner, company.id)
+  const interviewUrl = `/companies/${company.id}/interviews/${interviewId}`
+
+  await visit(owner, `${interviewUrl}?tab=candidates`)
+  // Loaded: the candidates' search is there.
+  await expect(owner.locator('main form input[name="tab"][value="candidates"]')).toHaveCount(1)
+  await expect(owner.getByRole("main").getByRole("switch")).toHaveCount(0)
+
+  await visit(owner, `${interviewUrl}?tab=settings`)
+  const share = owner.getByRole("main").getByRole("switch")
+  await expect(share).toHaveCount(1)
+  await share.click()
+  await expect(share).toBeChecked()
+  await expect(owner.getByRole("main").locator('input[readonly]')).toHaveValue(/\/apply\/\S+$/)
+})

@@ -112,7 +112,6 @@
     "text": "Iedereen die voor dit interview is uitgenodigd, met status, voortgang en score.",
     "actions": [
       "Nodig kandidaten uit: één voor één, een lijst van maximaal 100, of een CSV- of TXT-bestand.",
-      "Zet de deelbare link aan voor een vacaturetekst: iedereen met de link kan het interview doen.",
       "Zoek op e-mailadres of naam, filter op status en sorteer op score of datum.",
       "Open het rapport van een kandidaat, of download of deel het rapport over alle kandidaten."
     ],
@@ -125,6 +124,7 @@
     "title": "Instellingen",
     "text": "Hoe dit interview verloopt voor elke kandidaat.",
     "actions": [
+      "Zet de deelbare link aan voor een vacaturetekst: iedereen met de link kan het interview doen.",
       "Stel de tijd per vraag in, in seconden.",
       "Stel de slaaggrens in: kandidaten die die halen, zijn geslaagd.",
       "Markeer het interview als aangenomen zodra de vacature is vervuld.",

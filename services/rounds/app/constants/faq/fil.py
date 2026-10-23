@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Puwede ko bang ilagay ang interview sa isang job ad?",
-        "answer": "Oo. I-on ang shareable link ng interview sa tab nitong Mga aplikante at i-paste ito sa iyong ad. Ang sinumang magbukas nito ay magsa-sign in at sasagot sa interview, at sinisingil ang bawat tao tulad ng isang inimbitahang aplikante. Mag-o-off ang link kapag minarkahan mo ang interview bilang na-hire.",
+        "answer": "Oo. I-on ang shareable link ng interview sa tab nitong Mga setting at i-paste ito sa iyong ad. Ang sinumang magbukas nito ay magsa-sign in at sasagot sa interview, at sinisingil ang bawat tao tulad ng isang inimbitahang aplikante. Mag-o-off ang link kapag minarkahan mo ang interview bilang na-hire.",
     },
     {
         "key": "preview",

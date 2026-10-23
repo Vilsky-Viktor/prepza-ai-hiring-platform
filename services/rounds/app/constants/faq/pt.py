@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Posso colocar uma entrevista em um anúncio de vaga?",
-        "answer": "Sim. Ative o link compartilhável da entrevista na aba de candidatos e cole-o no seu anúncio. Quem o abre entra na conta e faz a entrevista, e cada pessoa é cobrada como um candidato convidado. O link é desativado quando você marca a entrevista como “Contratado”.",
+        "answer": "Sim. Ative o link compartilhável da entrevista na aba Configurações e cole-o no seu anúncio. Quem o abre entra na conta e faz a entrevista, e cada pessoa é cobrada como um candidato convidado. O link é desativado quando você marca a entrevista como “Contratado”.",
     },
     {
         "key": "preview",

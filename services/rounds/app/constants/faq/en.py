@@ -19,7 +19,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Can I put an interview in a job ad?",
-        "answer": "Yes. Turn on the interview's shareable link on its candidates tab and paste it into your ad. Anyone who opens it signs in and takes the interview, and each person is charged like an invited candidate. The link turns off when you mark the interview as hired.",
+        "answer": "Yes. Turn on the interview's shareable link on its settings tab and paste it into your ad. Anyone who opens it signs in and takes the interview, and each person is charged like an invited candidate. The link turns off when you mark the interview as hired.",
     },
     {
         "key": "preview",

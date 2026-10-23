@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Bir mülakatı iş ilanına koyabilir miyim?",
-        "answer": "Evet. Mülakatın Adaylar sekmesinden paylaşılabilir bağlantısını açın ve ilanınıza yapıştırın. Bağlantıyı açan herkes giriş yapar ve mülakata girer; her kişi, davet edilen bir aday gibi ücretlendirilir. Mülakatı İşe alındı olarak işaretlediğinizde bağlantı kapanır.",
+        "answer": "Evet. Mülakatın Ayarlar sekmesinden paylaşılabilir bağlantısını açın ve ilanınıza yapıştırın. Bağlantıyı açan herkes giriş yapar ve mülakata girer; her kişi, davet edilen bir aday gibi ücretlendirilir. Mülakatı İşe alındı olarak işaretlediğinizde bağlantı kapanır.",
     },
     {
         "key": "preview",

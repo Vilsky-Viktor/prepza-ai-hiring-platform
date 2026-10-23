@@ -49,10 +49,11 @@ An interview's page has three tabs, in its side menu as on a company's pages ([C
 |---|---|---|
 | **topics** | Every member | What the interview adds up to for each candidate (total questions, time per question and the whole interview's minutes, as companies counts them, which follow each change), then the interview's topics and questions, each with its number of questions for each candidate |
 | **candidates** | Every member | The candidate list (see [Candidates](candidates.md#the-candidate-list)) |
-| **settings** | Owners and admins | Time per question, pass mark, "Mark as hired" and keeping its questions out of the shared question bank, each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
+| **settings** | Owners and admins | The [shareable link](candidates.md#shareable-link) in a card at the top, then time per question, pass mark, "Mark as hired" and keeping its questions out of the shared question bank, each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
 
 ### Settings
 
+- **Shareable link:** a card above the settings turns the job ad's link on or off and copies it ([Shareable link](candidates.md#shareable-link)).
 - **Time per question:** a new test starts with its level's: 60 seconds for a basic or medium one, 75 for a hard one, by default (`QUESTION_SECONDS_BASIC`, `_MEDIUM`, `_HARD`, values in the admin zone's Controls). A template's copy gets them at once; a generated test when its questions are ready, the first time only. Adjustable per interview (see [Timing](candidates.md#timing)); a change in Controls reaches only new tests.
 - **Pass mark:** 70% by default, from 1 to 100. Grades show green or red against it.
 - **Mark as hired:** marks the interview as hired and stops its shareable link at once.

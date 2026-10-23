@@ -112,7 +112,6 @@
     "text": "Alle, die zu diesem Interview eingeladen wurden, mit Status, Fortschritt und Ergebnis.",
     "actions": [
       "Lade Kandidaten ein: einzeln, als Liste mit bis zu 100 oder aus einer CSV- oder TXT-Datei.",
-      "Schalte den Link zum Teilen für eine Stellenanzeige ein: Jeder mit dem Link kann das Interview machen.",
       "Suche nach E-Mail oder Name, filtere nach Status und sortiere nach Ergebnis oder Datum.",
       "Öffne den Bericht eines Kandidaten oder lade den Bericht über alle Kandidaten herunter oder teile ihn."
     ],
@@ -125,6 +124,7 @@
     "title": "Einstellungen",
     "text": "Wie dieses Interview für jeden Kandidaten abläuft.",
     "actions": [
+      "Schalte den Link zum Teilen für eine Stellenanzeige ein: Jeder mit dem Link kann das Interview machen.",
       "Lege die Zeit pro Frage in Sekunden fest.",
       "Lege die Bestehensgrenze fest: Kandidaten, die sie erreichen, bestehen.",
       "Markiere das Interview als eingestellt, sobald die Stelle besetzt ist.",

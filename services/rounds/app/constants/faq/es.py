@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "¿Puedo poner una entrevista en una oferta de empleo?",
-        "answer": "Sí. Activa el enlace para compartir de la entrevista en su pestaña Candidatos y pégalo en tu oferta. Cualquiera que lo abra inicia sesión y hace la entrevista, y cada persona cuesta lo mismo que un candidato invitado. El enlace se desactiva cuando marcas el puesto de la entrevista como cubierto.",
+        "answer": "Sí. Activa el enlace para compartir de la entrevista en su pestaña Ajustes y pégalo en tu oferta. Cualquiera que lo abra inicia sesión y hace la entrevista, y cada persona cuesta lo mismo que un candidato invitado. El enlace se desactiva cuando marcas el puesto de la entrevista como cubierto.",
     },
     {
         "key": "preview",

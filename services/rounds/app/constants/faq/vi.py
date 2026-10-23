@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Tôi có thể đặt buổi phỏng vấn vào tin tuyển dụng không?",
-        "answer": "Có. Bật liên kết chia sẻ của buổi phỏng vấn trong thẻ ứng viên và dán vào tin tuyển dụng. Ai mở liên kết sẽ đăng nhập và tham gia phỏng vấn, và mỗi người được tính phí như một ứng viên được mời. Liên kết tự tắt khi bạn đánh dấu buổi phỏng vấn là đã tuyển.",
+        "answer": "Có. Bật liên kết chia sẻ của buổi phỏng vấn trong thẻ Cài đặt và dán vào tin tuyển dụng. Ai mở liên kết sẽ đăng nhập và tham gia phỏng vấn, và mỗi người được tính phí như một ứng viên được mời. Liên kết tự tắt khi bạn đánh dấu buổi phỏng vấn là đã tuyển.",
     },
     {
         "key": "preview",

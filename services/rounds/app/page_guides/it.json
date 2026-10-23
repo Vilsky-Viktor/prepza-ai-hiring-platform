@@ -112,7 +112,6 @@
     "text": "Tutte le persone invitate a questo colloquio, con stato, avanzamento e punteggio.",
     "actions": [
       "Invita i candidati: uno alla volta, un elenco fino a 100, o un file CSV o TXT.",
-      "Attiva il link condivisibile per un annuncio di lavoro: chiunque lo abbia può sostenere il colloquio.",
       "Cerca per email o nome, filtra per stato e ordina per punteggio o data.",
       "Apri il report di un candidato, oppure scarica o condividi il report su tutti i candidati."
     ],
@@ -125,6 +124,7 @@
     "title": "Impostazioni",
     "text": "Come si svolge questo colloquio per ogni candidato.",
     "actions": [
+      "Attiva il link condivisibile per un annuncio di lavoro: chiunque lo abbia può sostenere il colloquio.",
       "Imposta il tempo per domanda, in secondi.",
       "Imposta la soglia di superamento: i candidati che la raggiungono superano il colloquio.",
       "Segna il colloquio come assunto quando hai coperto la posizione.",

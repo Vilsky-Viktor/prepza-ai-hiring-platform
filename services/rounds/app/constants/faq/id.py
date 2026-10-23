@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Bisakah aku memasang wawancara di iklan lowongan?",
-        "answer": "Bisa. Aktifkan tautan wawancara yang bisa dibagikan di tab kandidatnya, lalu tempel di iklanmu. Siapa pun yang membukanya masuk dan mengikuti wawancara, dan setiap orang dikenai biaya seperti kandidat yang diundang. Tautan nonaktif saat kamu menandai wawancara dengan status Diterima.",
+        "answer": "Bisa. Aktifkan tautan wawancara yang bisa dibagikan di tab pengaturannya, lalu tempel di iklanmu. Siapa pun yang membukanya masuk dan mengikuti wawancara, dan setiap orang dikenai biaya seperti kandidat yang diundang. Tautan nonaktif saat kamu menandai wawancara dengan status Diterima.",
     },
     {
         "key": "preview",

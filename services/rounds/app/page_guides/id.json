@@ -112,7 +112,6 @@
     "text": "Semua yang diundang ke wawancara ini, dengan status, progres, dan nilainya.",
     "actions": [
       "Undang kandidat: satu per satu, daftar hingga 100, atau file CSV atau TXT.",
-      "Aktifkan tautan yang bisa dibagikan untuk iklan lowongan: siapa pun yang memilikinya bisa mengikuti wawancara.",
       "Cari berdasarkan email atau nama, filter berdasarkan status, dan urutkan berdasarkan nilai atau tanggal.",
       "Buka laporan kandidat, atau unduh atau bagikan laporan semua kandidat."
     ],
@@ -125,6 +124,7 @@
     "title": "Pengaturan",
     "text": "Cara wawancara ini berjalan untuk setiap kandidat.",
     "actions": [
+      "Aktifkan tautan yang bisa dibagikan untuk iklan lowongan: siapa pun yang memilikinya bisa mengikuti wawancara.",
       "Atur waktu untuk setiap soal, dalam detik.",
       "Atur nilai lulus: kandidat yang mencapainya dinyatakan lulus.",
       "Tandai wawancara sebagai diterima setelah posisinya terisi.",

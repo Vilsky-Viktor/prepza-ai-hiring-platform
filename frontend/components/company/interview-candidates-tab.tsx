@@ -1,6 +1,5 @@
 import { CandidateList } from "@/components/company/candidate-list"
 import { CandidateSearch } from "@/components/company/candidate-search"
-import { ShareLink } from "@/components/company/share-link"
 import type { CandidateSort } from "@/constants/interviews"
 import { candidatesPath } from "@/lib/interview-page"
 import type {
@@ -9,8 +8,8 @@ import type {
   InterviewDetail,
 } from "@/types/company"
 
-/** An interview's candidates tab: its shareable link, the search, sort and status filter, and
- * the candidates, their first page from the server. */
+/** An interview's candidates tab: the search, sort and status filter, and the candidates, their
+ * first page from the server. */
 export function InterviewCandidatesTab({
   interview,
   interviewHref,
@@ -32,11 +31,6 @@ export function InterviewCandidatesTab({
 }) {
   return (
     <div className="space-y-6">
-      <ShareLink
-        interviewId={interview.id}
-        linkToken={interview.link_token}
-        canEdit={canEdit}
-      />
       <CandidateSearch
         action={interviewHref}
         sort={sort}

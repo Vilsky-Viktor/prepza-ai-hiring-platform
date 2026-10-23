@@ -20,7 +20,7 @@ FAQ = [
     {
         "key": "link",
         "question": "Puis-je mettre un entretien dans une offre d'emploi ?",
-        "answer": "Oui. Activez le lien de partage de l'entretien dans son onglet Candidats et collez-le dans votre offre. Toute personne qui l'ouvre se connecte et passe l'entretien, et chacune est facturée comme un candidat invité. Le lien se désactive quand vous marquez l'entretien comme recruté.",
+        "answer": "Oui. Activez le lien de partage de l'entretien dans son onglet Paramètres et collez-le dans votre offre. Toute personne qui l'ouvre se connecte et passe l'entretien, et chacune est facturée comme un candidat invité. Le lien se désactive quand vous marquez l'entretien comme recruté.",
     },
     {
         "key": "preview",
