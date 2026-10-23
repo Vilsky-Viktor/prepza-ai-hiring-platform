@@ -177,7 +177,7 @@ export function NotificationBell() {
           with a thin, quiet scrollbar. */}
       <DropdownMenuContent
         align="end"
-        className="max-h-[min(26rem,70vh)] w-80 p-2"
+        className="max-h-[min(26rem,70vh)] w-80 px-0 py-2"
       >
         {items.length === 0 && (
           <p className="px-3 py-6 text-center text-sm text-muted-foreground">
@@ -196,14 +196,21 @@ export function NotificationBell() {
           return (
             <DropdownMenuItem
               key={item.id}
-              className="items-start gap-3 px-3 py-2.5 whitespace-normal normal-case"
+              className="relative items-start gap-3 rounded-none py-2.5 ps-9 pe-4 whitespace-normal normal-case"
               render={<Link href={item.link} />}
             >
+              {/* The kind's sign, large and half transparent (full on hover), running a little
+                  under the dropdown's start border (its scroll box clips it). Items run from
+                  border to border. */}
               <look.icon
-                className={cn(
-                  "mt-0.5 size-4 shrink-0",
-                  look.alert ? "text-destructive" : "text-primary"
-                )}
+                aria-hidden
+                className="absolute -start-2 top-2 size-8 shrink-0 opacity-50 transition-opacity group-hover/dropdown-menu-item:opacity-100 group-focus/dropdown-menu-item:opacity-100"
+                // Its own colour always. The item's highlight recolours every element inside it,
+                // the icon's lines too (they draw in currentColor), so the lines get the colour
+                // as their stroke, which they inherit and the highlight doesn't touch.
+                style={{
+                  stroke: look.alert ? "var(--destructive)" : "var(--primary)",
+                }}
               />
               <span className="min-w-0 space-y-1">
                 <span className="block text-sm leading-snug">{message}</span>
