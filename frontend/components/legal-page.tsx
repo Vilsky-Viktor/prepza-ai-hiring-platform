@@ -1,3 +1,4 @@
+import { cn } from "cn"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getLocale, getTranslations } from "next-intl/server"
@@ -9,6 +10,7 @@ import { formatDay } from "@/lib/format"
 import { textDirection } from "@/lib/locale"
 import { publicFetch } from "@/lib/server-api"
 import type { LegalDocument } from "@/types/help"
+import { TEXT_LINK } from "@/constants/links"
 
 // A version's name: the day it applies from.
 const VERSION = /^\d{4}-\d{2}-\d{2}$/
@@ -71,7 +73,7 @@ export async function LegalPage({
             <span className="block pb-2">
               {t.rich("translatedRead", {
                 link: (chunks) => (
-                  <Link href={link(shown, true)} className="underline">
+                  <Link href={link(shown, true)} className={TEXT_LINK}>
                     {chunks}
                   </Link>
                 ),
@@ -87,7 +89,7 @@ export async function LegalPage({
             : t.rich(`${document.state}Read`, {
                 date: formatDay(shown, locale),
                 link: (chunks) => (
-                  <Link href={link(inForce)} className="underline">
+                  <Link href={link(inForce)} className={TEXT_LINK}>
                     {chunks}
                   </Link>
                 ),
@@ -129,17 +131,25 @@ export async function LegalPage({
           </section>
         ))}
       </div>
-      {versions.length > 1 && (
-        <nav className="space-y-2 text-sm text-muted-foreground">
-          <h2 className="font-medium">{t("versions")}</h2>
-          <ul className="flex flex-wrap gap-x-4 gap-y-1">
+      {versions.length > 0 && (
+        // Every version, in a card at the end, like the contact page's cards: the one shown in
+        // the muted color, the others as links.
+        <nav className="max-w-3xl space-y-3 rounded-2xl border p-6 text-sm text-muted-foreground">
+          <h2 className="text-lg font-medium text-foreground">
+            {t("versions")}
+          </h2>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {versions.map((item) => (
               <li key={item}>
                 {item === shown ? (
-                  formatDay(item, locale)
+                  <time dateTime={item}>{formatDay(item, locale)}</time>
                 ) : (
-                  <Link href={link(item)} className="underline">
-                    {formatDay(item, locale)}
+                  // A list, not running text: the dates stay regular weight.
+                  <Link
+                    href={link(item)}
+                    className={cn(TEXT_LINK, "font-normal")}
+                  >
+                    <time dateTime={item}>{formatDay(item, locale)}</time>
                   </Link>
                 )}
               </li>
