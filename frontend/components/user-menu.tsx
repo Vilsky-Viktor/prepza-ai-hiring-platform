@@ -88,7 +88,11 @@ export function UserMenu() {
           />
         }
       >
-        <Avatar size="lg">
+        {/* A primary ring on hover, and while the menu is open. */}
+        <Avatar
+          size="lg"
+          className="ring-primary transition-shadow group-hover/button:ring-1 group-aria-expanded/button:ring-1"
+        >
           <AvatarImage src={user.photoURL ?? undefined} alt="" />
           <AvatarFallback>{initial}</AvatarFallback>
         </Avatar>
