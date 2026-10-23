@@ -12,6 +12,10 @@ import { LocalizedLink } from "@/components/localized-link"
 import { FOOTER_COLUMNS } from "@/constants/navigation"
 import { OPERATOR } from "@/constants/operator"
 
+// A social icon: the text colour (white in dark) and a little larger on hover.
+const SOCIAL =
+  "inline-flex transition-[color,scale] duration-200 hover:scale-110 hover:text-foreground"
+
 export async function SiteFooter() {
   const t = await getTranslations("nav")
 
@@ -30,16 +34,16 @@ export async function SiteFooter() {
           </div>
           {/* prepza's social accounts; links come once the accounts exist. */}
           <div className="flex items-center gap-5 max-sm:gap-8">
-            <span role="img" aria-label="LinkedIn">
+            <span role="img" aria-label="LinkedIn" className={SOCIAL}>
               <LinkedInIcon className="size-6 max-sm:size-8" />
             </span>
-            <span role="img" aria-label="X">
+            <span role="img" aria-label="X" className={SOCIAL}>
               <XIcon className="size-6 max-sm:size-8" />
             </span>
-            <span role="img" aria-label="YouTube">
+            <span role="img" aria-label="YouTube" className={SOCIAL}>
               <YouTubeIcon className="size-6 max-sm:size-8" />
             </span>
-            <span role="img" aria-label="Facebook">
+            <span role="img" aria-label="Facebook" className={SOCIAL}>
               <FacebookIcon className="size-6 max-sm:size-8" />
             </span>
           </div>
