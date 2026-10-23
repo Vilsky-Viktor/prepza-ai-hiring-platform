@@ -21,9 +21,13 @@ def test_only_the_latest_round_on_each_template_counts(run):
         # A company's interview isn't practice; someone else's practice isn't the talent's.
         await sessions.create_many(user, uuid.uuid4(), [second], 60, company_id=uuid.uuid4())
         await sessions.create_many(f"other-{user}", uuid.uuid4(), [first], 60, practice=True)
-        found = await practice_sessions.latest_round_sections(user)
+        found = await practice_sessions.latest_rounds(user)
 
-        return first.preparation_id, second.preparation_id, found
+        return (
+            first.preparation_id,
+            second.preparation_id,
+            [(row.interview_set_id, row.status) for row in found],
+        )
 
     first, second, found = run(scenario())
 

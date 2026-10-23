@@ -84,7 +84,7 @@ async def start_practice(
 async def list_statuses(user: CurrentUser) -> list[PracticeStatusOut]:
     """Where the talent is on each template they practiced, for the practice list: one entry
     a template, never started ones left out."""
-    return practice_statuses(await practice_sessions.latest_round_sections(user.uid))
+    return practice_statuses(await practice_sessions.latest_rounds(user.uid))
 
 
 @router.get("/{template_id}/size")

@@ -131,21 +131,24 @@ def topic_progress(rows: list) -> list[PracticeTopicProgress]:
     ]
 
 
-def practice_statuses(sections: list[tuple]) -> list[PracticeStatusOut]:
-    """Each practiced template's status from the (template, status) of its latest round's
-    sections: completed once every topic is finished, otherwise in progress with the topics
-    finished so far."""
-    statuses = {}
+def practice_statuses(rows: list) -> list[PracticeStatusOut]:
+    """Each practiced template's status from its latest round's sections, by the same count as
+    the practice page's topics (topic_progress): completed once every topic's questions are all
+    answered, in progress once any is answered, with the topics answered to the end; a round
+    without an answer is left out, as never started. A round that ended, or a topic that
+    finished, with questions left unanswered isn't completed."""
+    topics = {}
 
-    for template_id, status in sections:
-        statuses.setdefault(template_id, []).append(status)
+    for row in rows:
+        topics.setdefault(row.interview_set_id, []).append((len(row.answers), len(row.questions)))
 
     return [
         PracticeStatusOut(
             template_id=template_id,
-            status="completed" if interview_finished(found) else "in_progress",
-            topics_done=sum(1 for status in found if status == RoundStatus.FINISHED),
+            status="completed" if all(a >= total for a, total in found) else "in_progress",
+            topics_done=sum(1 for a, total in found if a >= total),
             topics_total=len(found),
         )
-        for template_id, found in statuses.items()
+        for template_id, found in topics.items()
+        if any(a for a, _ in found)
     ]

@@ -45,9 +45,9 @@ async def practice_rounds(
         return list(await session.scalars(query))
 
 
-async def latest_round_sections(user_id: str) -> list[tuple[uuid.UUID, str]]:
-    """The template and status of each section of the talent's latest practice round on every
-    template they practiced."""
+async def latest_rounds(user_id: str) -> list[Session]:
+    """The sections, with answers, of the talent's latest practice round on every template they
+    practiced."""
     latest = (
         select(Session.candidate_invite_id)
         .where(Session.user_id == user_id, Session.practice.is_(True))
@@ -55,9 +55,11 @@ async def latest_round_sections(user_id: str) -> list[tuple[uuid.UUID, str]]:
         .order_by(Session.interview_set_id, func.min(Session.started_at).desc())
         .ext(distinct_on(Session.interview_set_id))
     )
-    query = select(Session.interview_set_id, Session.status).where(
-        Session.candidate_invite_id.in_(latest)
+    query = (
+        select(Session)
+        .where(Session.candidate_invite_id.in_(latest))
+        .options(selectinload(Session.answers))
     )
 
     async with Db() as session:
-        return [(row.interview_set_id, row.status) for row in await session.execute(query)]
+        return list(await session.scalars(query))
