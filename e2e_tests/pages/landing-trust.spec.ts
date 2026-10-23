@@ -206,6 +206,28 @@ test("the light spreads as an oval, its glow never cut off square", async ({ pag
   expect(cut).toEqual([]);
 });
 
+test("the net runs on outside the ellipse, fading out", async ({ page }) => {
+  test.setTimeout(120_000);
+  const section = await openTrust(page);
+  const svg = section.locator('svg:has(ellipse[fill^="url(#net-"])');
+  await expect(section.getByTestId("quality-step")).toHaveCount(5);
+
+  // The travellers held still and hidden, then just under the ellipse's bottom (between the two
+  // lower steps) against the same patch at the window's edge, far from it.
+  const { x, bottom } = await svg.evaluate((element: SVGSVGElement) => {
+    element.pauseAnimations();
+    element.setCurrentTime(0);
+    const box = element.querySelector('ellipse[fill^="url(#net-"]')!.getBoundingClientRect();
+
+    return { x: box.left + box.width / 2, bottom: box.bottom };
+  });
+  const patch = (left: number) => ({ x: left, y: bottom + 30, width: 40, height: 20 });
+  const near = await page.screenshot({ clip: patch(x - 20), animations: "disabled" });
+  const far = await page.screenshot({ clip: patch(4), animations: "disabled" });
+
+  expect(near.equals(far)).toBe(false);
+});
+
 test("with reduced motion, no step lights up", async ({
   page,
 }) => {

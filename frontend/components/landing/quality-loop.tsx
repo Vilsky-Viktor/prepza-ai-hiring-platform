@@ -13,12 +13,15 @@ import {
 import { useEffect, useId, useRef, useState } from "react"
 
 import { useStill } from "@/hooks/use-still"
+import { NetOutside } from "@/components/landing/net-outside"
 import { NetWave } from "@/components/landing/net-wave"
 import { Wire, wireLength } from "@/components/landing/wire"
 import { INVITE_SPEED } from "@/constants/invite-demo"
 import {
+  NET_CELL,
   NET_WAVE_SECONDS,
   NET_WAVES,
+  QUALITY_CARD_PADDING,
   QUALITY_ELLIPSE,
   QUALITY_PAUSE_MS,
   QUALITY_STEPS,
@@ -27,6 +30,7 @@ import {
 } from "@/constants/trust-quality-demo"
 import { ON_SCREEN, useDemoSteps } from "@/hooks/use-demo-steps"
 import { ellipsePoints, ellipseWires } from "@/lib/ellipse-wires"
+import { type Area, sectionArea } from "@/lib/section-area"
 
 const ICONS = {
   generated: SparklesIcon,
@@ -35,12 +39,6 @@ const ICONS = {
   flagged: FlagIcon,
   rewritten: PenLineIcon,
 }
-
-// A card's padding and border from laptops up, top and bottom together, in pixels (pt-9 under
-// the icon on its edge, pb-5, border).
-const CARD_PADDING = 58
-// The net's mesh, in pixels.
-const NET_CELL = 22
 
 // Each step's centre on the ellipse, in percent of the stage.
 const PLACES = ellipsePoints(
@@ -67,9 +65,13 @@ export function QualityLoop({
   const net = `net-${useId().replace(/[^a-zA-Z0-9]/g, "")}`
   const [wires, setWires] = useState<string[]>([])
   // The stage's size, in pixels, for the net inside the ellipse.
-  const [size, setSize] = useState<{ width: number; height: number } | null>(
-    null
-  )
+  // The stage's size, in pixels, for the net inside the ellipse, and the section's box across the
+  // page in the stage's frame, for the net outside it.
+  const [size, setSize] = useState<{
+    width: number
+    height: number
+    area: Area
+  } | null>(null)
   // The step the question is on, and how many times each wire has sent it on.
   const [lit, setLit] = useState<number | null>(null)
   const still = useStill()
@@ -89,8 +91,11 @@ export function QualityLoop({
       const tallest = Math.max(
         ...contents.current.map((content) => content.offsetHeight)
       )
-      stage!.style.setProperty("--card-h", `${tallest + CARD_PADDING}px`)
-      setSize({ width, height })
+      stage!.style.setProperty(
+        "--card-h",
+        `${tallest + QUALITY_CARD_PADDING}px`
+      )
+      setSize({ width, height, area: sectionArea(stage!) })
       const mirrored = getComputedStyle(stage!).direction === "rtl"
       // From the stage's centre, the drawing's origin: a traveller waiting between runs sits
       // there, behind the chip, rather than on the stage's corner, past the window's edge.
@@ -110,7 +115,8 @@ export function QualityLoop({
 
     const observer = new ResizeObserver(draw)
 
-    for (const element of [stage, ...contents.current]) {
+    // The page's body too: on a wide window the stage keeps its size while the page grows.
+    for (const element of [stage, document.body, ...contents.current]) {
       observer.observe(element)
     }
 
@@ -175,6 +181,17 @@ export function QualityLoop({
             />
           </pattern>
         </defs>
+        {size && (
+          <NetOutside
+            cx={size.width / 2}
+            cy={size.height / 2}
+            rx={(QUALITY_ELLIPSE.x * size.width) / 100}
+            ry={(QUALITY_ELLIPSE.y * size.height) / 100}
+            width={size.width}
+            area={size.area}
+            cell={NET_CELL}
+          />
+        )}
         {size && (
           <ellipse
             cx={size.width / 2}
