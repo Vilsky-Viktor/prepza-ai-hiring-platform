@@ -8,7 +8,9 @@ type CardProps = {
   action?: React.ReactNode
 }
 
-/** A notice on a gray card: a large sign and the text in the muted color, as the maintenance
+/** A notice on a soft gray card (the side menu's active item's gray), its sign large and half
+ * transparent in the card's top start corner, running under the top and start borders only, the
+ * same size and place on a card of any height: a large sign and the text in the muted color, as the maintenance
  * notice shows it. */
 function NoticeCard({
   children,
@@ -20,11 +22,16 @@ function NoticeCard({
     <div
       role="status"
       className={cn(
-        "flex items-center gap-4 rounded-2xl bg-muted p-5 text-base",
+        "relative flex items-center gap-4 overflow-hidden rounded-2xl bg-muted/50 p-5 ps-20 text-base",
         className
       )}
     >
-      {icon}
+      <span
+        aria-hidden
+        className="absolute -start-5 -top-5 flex opacity-50 [&_svg]:size-20"
+      >
+        {icon}
+      </span>
       <p className="text-muted-foreground">{children}</p>
       {action && <div className="ms-auto shrink-0">{action}</div>}
     </div>
@@ -39,7 +46,7 @@ export function WarningCard(props: CardProps) {
       icon={
         <TriangleAlertIcon
           aria-hidden
-          className="size-7 shrink-0 text-amber-600 dark:text-amber-400"
+          className="shrink-0 text-amber-600 dark:text-amber-400"
         />
       }
     />
@@ -51,7 +58,7 @@ export function InfoCard(props: CardProps) {
   return (
     <NoticeCard
       {...props}
-      icon={<InfoIcon aria-hidden className="size-7 shrink-0 text-primary" />}
+      icon={<InfoIcon aria-hidden className="shrink-0 text-primary" />}
     />
   )
 }

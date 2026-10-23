@@ -1,4 +1,3 @@
-import { InfoIcon } from "lucide-react"
 import Link from "next/link"
 import { getLocale, getTranslations } from "next-intl/server"
 
@@ -101,10 +100,9 @@ export default async function PricingPage() {
           ))}
         </ul>
         <div className="space-y-4">
-          <div className="mx-auto flex w-fit items-center gap-3 rounded-2xl bg-muted px-5 py-4 text-base text-muted-foreground">
-            <InfoIcon aria-hidden className="size-6 shrink-0 text-primary" />
-            <p>{t("credits", { credits: catalog.candidate_credits })}</p>
-          </div>
+          <InfoCard className="mx-auto w-fit">
+            {t("credits", { credits: catalog.candidate_credits })}
+          </InfoCard>
           <p className="text-center text-sm text-muted-foreground">
             {billing("taxes")}
           </p>
