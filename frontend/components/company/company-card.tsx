@@ -8,11 +8,7 @@ import { CompanyLogo } from "@/components/company/company-logo"
 import { PendingBadge } from "@/components/company/pending-badge"
 import { RemoveCompany } from "@/components/company/remove-company"
 import { VerifiedBadge } from "@/components/company/verified-badge"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { IconStat } from "@/components/icon-stat"
 import { firstGrapheme } from "@/lib/graphemes"
 import { hasMessage } from "@/lib/messages"
 import type { Company } from "@/types/company"
@@ -92,14 +88,11 @@ export function CompanyCard({
             <PendingBadge className="size-5" />
           )}
           {company.role === "owner" ? (
-            <Tooltip>
-              <TooltipTrigger
-                render={<span role="img" aria-label={t("owner")} />}
-              >
-                <UserRoundIcon className="size-5" />
-              </TooltipTrigger>
-              <TooltipContent>{t("owner")}</TooltipContent>
-            </Tooltip>
+            <IconStat
+              label={t("owner")}
+              icon={<UserRoundIcon aria-hidden className="size-5" />}
+              className="text-foreground"
+            />
           ) : (
             <span>
               {hasMessage(roles, company.role)
@@ -109,20 +102,13 @@ export function CompanyCard({
           )}
         </span>
         <span className={`${PILL} ${removable ? "pe-0.5" : ""}`}>
-          <Tooltip>
-            <TooltipTrigger
-              render={
-                <span
-                  className="flex items-center gap-1.5 tabular-nums"
-                  aria-label={count}
-                />
-              }
-            >
-              <MessagesSquareIcon aria-hidden className="size-5" />
-              {company.interview_count}
-            </TooltipTrigger>
-            <TooltipContent>{count}</TooltipContent>
-          </Tooltip>
+          <IconStat
+            label={count}
+            icon={<MessagesSquareIcon aria-hidden className="size-5" />}
+            className="text-foreground"
+          >
+            {company.interview_count}
+          </IconStat>
           {removable && (
             <RemoveCompany
               companyId={company.id}

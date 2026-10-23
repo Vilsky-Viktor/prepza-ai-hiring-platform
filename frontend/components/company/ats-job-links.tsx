@@ -9,12 +9,8 @@ import { toast } from "sonner"
 
 import { LinkJob } from "@/components/company/ats-link-job"
 import { ConfirmDialog } from "@/components/confirm-dialog"
+import { IconStat } from "@/components/icon-stat"
 import { Button } from "@/components/ui/button"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { AtsProvider } from "@/constants/ats"
@@ -168,21 +164,15 @@ function InvitedCount({ count }: { count: number }) {
   const t = useTranslations("ats")
 
   return (
-    <Tooltip>
-      <TooltipTrigger
-        render={
-          <span
-            className="me-6 flex items-center gap-1.5 text-sm text-muted-foreground tabular-nums"
-            aria-label={t("invitedCount", { count })}
-            data-testid="invited-count"
-          />
-        }
-      >
-        <UserRoundIcon aria-hidden className="size-5" />
-        {count}
-      </TooltipTrigger>
-      <TooltipContent>{t("invitedCount", { count })}</TooltipContent>
-    </Tooltip>
+    // me-4 and the negative start margin keep the count where it was: 1.5rem before the button.
+    <IconStat
+      label={t("invitedCount", { count })}
+      icon={<UserRoundIcon aria-hidden className="size-5" />}
+      className="me-4 text-sm"
+      data-testid="invited-count"
+    >
+      {count}
+    </IconStat>
   )
 }
 

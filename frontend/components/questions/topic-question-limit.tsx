@@ -3,13 +3,9 @@
 import { UserIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
+import { IconStat } from "@/components/icon-stat"
 import { QuestionMarkIcon } from "@/components/question-mark-icon"
 import { TopicLimit } from "@/components/questions/topic-limit"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 
 /** A topic's question count, in one short line under its "manage questions" button: how many
  * each candidate gets (editable with `limitPath`) of how many the topic has; just the count
@@ -49,24 +45,15 @@ export function TopicQuestionLimit({
       <span className="flex items-center gap-1.5">
         {/* "of 100 ? per 👤": icons stand for questions and candidate, named in tooltips. */}
         {t("ofCount", { count })}
-        <Tooltip>
-          <TooltipTrigger
-            render={
-              <QuestionMarkIcon
-                aria-label={t("count", { count })}
-                className="h-4 w-2"
-              />
-            }
-          />
-          <TooltipContent>{t("count", { count })}</TooltipContent>
-        </Tooltip>
+        <IconStat
+          label={t("count", { count })}
+          icon={<QuestionMarkIcon aria-hidden className="h-4 w-2" />}
+        />
         {t("per")}
-        <Tooltip>
-          <TooltipTrigger
-            render={<UserIcon aria-label={t("candidate")} className="size-4" />}
-          />
-          <TooltipContent>{t("candidate")}</TooltipContent>
-        </Tooltip>
+        <IconStat
+          label={t("candidate")}
+          icon={<UserIcon aria-hidden className="size-4" />}
+        />
       </span>
     </p>
   )

@@ -3,11 +3,7 @@
 import { BadgeCheckIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { IconStat } from "@/components/icon-stat"
 import { bdiText } from "@/lib/bidi"
 
 /** The check beside a verified company's name, wherever it's shown; its tooltip names the
@@ -23,19 +19,10 @@ export function VerifiedBadge({
   const label = t.markup("verified", { domain, ...bdiText })
 
   return (
-    <Tooltip>
-      <TooltipTrigger
-        render={
-          <span
-            role="img"
-            aria-label={label}
-            className="relative z-10 inline-flex shrink-0 align-middle text-primary"
-          />
-        }
-      >
-        <BadgeCheckIcon className={className} />
-      </TooltipTrigger>
-      <TooltipContent>{label}</TooltipContent>
-    </Tooltip>
+    <IconStat
+      label={label}
+      icon={<BadgeCheckIcon aria-hidden className={className} />}
+      className="text-primary hover:text-primary"
+    />
   )
 }

@@ -30,6 +30,7 @@ against it. CLAUDE.md rules 5 to 7 apply in full.
 | A long list | `VirtualList` with `usePagedList` (loads more as you scroll; failures retry) |
 | A choice from a few options | `PillSelect` (the gray pill opening the site's `DropdownMenu`); never a native `<select>` |
 | A searchable choice | the `LanguagePicker` pattern: a Base UI `Combobox`, the search as the menu's first row with a magnifier, the menu as wide as the picker |
+| An icon with a count or a status, named in a tooltip | `IconStat` (hovered like a round icon button, `ROUND_ICON_BUTTON`) |
 | A note or a warning | `InfoCard` / `WarningCard` (`components/warning-card.tsx`) |
 | A confirmation | `ConfirmDialog`; steps to follow: `InstructionsDialog` |
 | An integration row | `IntegrationRow` |

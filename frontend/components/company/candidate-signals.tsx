@@ -3,11 +3,7 @@
 import { CopyIcon, LogOutIcon, ZapIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { IconStat } from "@/components/icon-stat"
 import type { Candidate } from "@/types/company"
 
 /** A candidate's integrity signals at a glance: page leaves, copy attempts and answers picked
@@ -37,19 +33,13 @@ export function CandidateSignals({
   ].filter((signal) => signal.count > 0)
 
   return signals.map(({ icon: Icon, count, label }) => (
-    <Tooltip key={label}>
-      <TooltipTrigger
-        render={
-          <span
-            aria-label={label}
-            className="flex items-center gap-1 text-amber-700 tabular-nums dark:text-amber-400"
-          />
-        }
-      >
-        <Icon aria-hidden className="size-4" />
-        {count}
-      </TooltipTrigger>
-      <TooltipContent>{label}</TooltipContent>
-    </Tooltip>
+    <IconStat
+      key={label}
+      label={label}
+      icon={<Icon aria-hidden className="size-4" />}
+      className="gap-1 text-amber-700 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-400"
+    >
+      {count}
+    </IconStat>
   ))
 }

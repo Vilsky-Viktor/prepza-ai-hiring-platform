@@ -16,6 +16,7 @@ import { AnswerOptions } from "@/components/questions/answer-options"
 import { QuestionReports } from "@/components/questions/question-reports"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { QuestionText } from "@/components/questions/question-text"
+import { IconStat } from "@/components/icon-stat"
 import { Button } from "@/components/ui/button"
 import {
   Tooltip,
@@ -24,7 +25,7 @@ import {
 } from "@/components/ui/tooltip"
 import { apiFetch } from "@/lib/api"
 import { languageOf } from "@/lib/locale"
-import { FEEDBACK_HOVER_CLASS } from "@/constants/feedback"
+import { ROUND_ICON_BUTTON } from "@/constants/buttons"
 import type { QuestionStats } from "@/types/feedback"
 
 export function QuestionRow({
@@ -92,24 +93,18 @@ export function QuestionRow({
       <div className="self-center py-5 ps-5 pe-6 text-sm whitespace-nowrap text-muted-foreground tabular-nums max-sm:px-5 max-sm:pt-0 max-sm:pb-7">
         <span className="flex flex-col items-end gap-3 max-sm:items-center">
           <span className="flex items-center gap-4">
-            <Tooltip>
-              <TooltipTrigger
-                render={<span className="flex items-center gap-1.5" />}
-              >
-                <ThumbsUpIcon className="size-4" />
-                {question.likes}
-              </TooltipTrigger>
-              <TooltipContent>{t("likes")}</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger
-                render={<span className="flex items-center gap-1.5" />}
-              >
-                <ThumbsDownIcon className="size-4" />
-                {question.dislikes}
-              </TooltipTrigger>
-              <TooltipContent>{t("dislikes")}</TooltipContent>
-            </Tooltip>
+            <IconStat
+              label={t("likes")}
+              icon={<ThumbsUpIcon aria-hidden className="size-4" />}
+            >
+              {question.likes}
+            </IconStat>
+            <IconStat
+              label={t("dislikes")}
+              icon={<ThumbsDownIcon aria-hidden className="size-4" />}
+            >
+              {question.dislikes}
+            </IconStat>
             {canViewReports ? (
               <Tooltip>
                 <TooltipTrigger
@@ -120,8 +115,9 @@ export function QuestionRow({
                       onClick={() => setShowReports((shown) => !shown)}
                       aria-label={t("showReports", { count: question.reports })}
                       className={cn(
-                        "-mx-2 -my-1 flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1 aria-expanded:bg-foreground/10 aria-expanded:text-foreground",
-                        FEEDBACK_HOVER_CLASS
+                        // Hovered like the likes and dislikes beside it.
+                        ROUND_ICON_BUTTON,
+                        "-mx-2 -my-1 flex cursor-pointer items-center gap-1.5 px-2 py-1 transition-colors aria-expanded:bg-muted aria-expanded:text-foreground"
                       )}
                     />
                   }
@@ -132,15 +128,12 @@ export function QuestionRow({
                 <TooltipContent>{t("reports")}</TooltipContent>
               </Tooltip>
             ) : (
-              <Tooltip>
-                <TooltipTrigger
-                  render={<span className="flex items-center gap-1.5" />}
-                >
-                  <FlagIcon className="size-4" />
-                  {question.reports}
-                </TooltipTrigger>
-                <TooltipContent>{t("reports")}</TooltipContent>
-              </Tooltip>
+              <IconStat
+                label={t("reports")}
+                icon={<FlagIcon aria-hidden className="size-4" />}
+              >
+                {question.reports}
+              </IconStat>
             )}
           </span>
           {/* Under each other, beside the question; on one line, on phones. */}

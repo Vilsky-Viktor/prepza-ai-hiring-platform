@@ -7,12 +7,8 @@ import { useTranslations } from "next-intl"
 import { useLocalTime } from "@/hooks/use-local-time"
 import { useUrlLocale } from "@/components/localized-link"
 import { UseTemplate } from "@/components/templates/use-template"
+import { IconStat } from "@/components/icon-stat"
 import { Badge } from "@/components/ui/badge"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
@@ -82,23 +78,13 @@ export function TemplateList({
                 {template.language}
               </Badge>
             </span>
-            <Tooltip>
-              {/* Above the row's link overlay, so hovering it shows the tooltip. */}
-              <TooltipTrigger
-                render={
-                  <span
-                    className="relative z-10 ms-auto flex w-12 shrink-0 items-center justify-end gap-1.5 text-sm text-muted-foreground tabular-nums sm:ms-0"
-                    aria-label={t("topics", { count: template.topic_count })}
-                  />
-                }
-              >
-                <LayersIcon aria-hidden className="size-5" />
-                {template.topic_count}
-              </TooltipTrigger>
-              <TooltipContent>
-                {t("topics", { count: template.topic_count })}
-              </TooltipContent>
-            </Tooltip>
+            <IconStat
+              label={t("topics", { count: template.topic_count })}
+              icon={<LayersIcon aria-hidden className="size-5" />}
+              className="ms-auto w-16 justify-end text-sm sm:-ms-2"
+            >
+              {template.topic_count}
+            </IconStat>
           </>
         )
 

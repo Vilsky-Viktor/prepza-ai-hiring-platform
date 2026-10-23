@@ -4,6 +4,7 @@ import { ClockIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactElement } from "react"
 
+import { IconStat } from "@/components/icon-stat"
 import {
   Tooltip,
   TooltipContent,
@@ -23,19 +24,18 @@ export function PendingBadge({
   const t = useTranslations("verify")
   const label = t("pendingBadge")
 
+  if (!render) {
+    return (
+      <IconStat
+        label={label}
+        icon={<ClockIcon aria-hidden className={className} />}
+      />
+    )
+  }
+
   return (
     <Tooltip>
-      <TooltipTrigger
-        render={
-          render ?? (
-            <span
-              role="img"
-              aria-label={label}
-              className="relative z-10 inline-flex shrink-0 align-middle text-muted-foreground"
-            />
-          )
-        }
-      >
+      <TooltipTrigger render={render}>
         <ClockIcon className={className} />
       </TooltipTrigger>
       <TooltipContent>{label}</TooltipContent>

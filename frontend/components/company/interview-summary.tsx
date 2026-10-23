@@ -5,11 +5,7 @@ import { useTranslations } from "next-intl"
 
 import { useLocalTime } from "@/hooks/use-local-time"
 import { InterviewStatus } from "@/components/company/interview-status"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { IconStat } from "@/components/icon-stat"
 
 /** An interview's row content: its title and date, then its status (when it has one) and how
  * many candidates it has. */
@@ -42,23 +38,15 @@ export function InterviewSummary({
         className="flex shrink-0 items-center gap-6"
       >
         {status && <InterviewStatus status={status} />}
-        <Tooltip>
-          {/* Above the row's link overlay, so hovering it shows the tooltip. */}
-          <TooltipTrigger
-            render={
-              <span
-                className="relative z-10 flex w-12 shrink-0 items-center justify-end gap-1.5 text-sm text-muted-foreground tabular-nums"
-                aria-label={t("candidateCount", { count: candidateCount })}
-              />
-            }
-          >
-            <UsersIcon aria-hidden className="size-5" />
-            {candidateCount}
-          </TooltipTrigger>
-          <TooltipContent>
-            {t("candidateCount", { count: candidateCount })}
-          </TooltipContent>
-        </Tooltip>
+        {/* w-16 less its negative margins: the same 3rem column on every row. */}
+        <IconStat
+          label={t("candidateCount", { count: candidateCount })}
+          icon={<UsersIcon aria-hidden className="size-5" />}
+          className="w-16 justify-end text-sm"
+          data-testid="candidate-count"
+        >
+          {candidateCount}
+        </IconStat>
       </span>
     </>
   )
