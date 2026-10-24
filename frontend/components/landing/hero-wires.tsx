@@ -25,7 +25,8 @@ export function HeroWires() {
   )
 }
 
-/** The right side's straight wire, from the box's middle out to the window's edge. */
+/** The right side's straight wire, from the box's middle out to the page's edge (the page's
+ * container, app/page.tsx: never over a scrollbar's gutter, so the page can't scroll sideways). */
 function Out() {
   const { ref, size } = useElementSize<SVGSVGElement>()
 
@@ -33,7 +34,7 @@ function Out() {
     <svg
       ref={ref}
       aria-hidden
-      className="pointer-events-none absolute inset-y-0 left-full hidden h-full w-[calc((100vw-100%)/2)] overflow-visible text-ring sm:block"
+      className="pointer-events-none absolute inset-y-0 left-full hidden h-full w-[calc((100cqw-100%)/2)] overflow-visible text-ring sm:block"
     >
       {size && (
         <Wire
@@ -57,7 +58,7 @@ function Side({ wires }: { wires: typeof HERO_WIRES }) {
     <svg
       ref={ref}
       aria-hidden
-      className="pointer-events-none absolute inset-y-0 right-full hidden h-full w-[calc((100vw-100%)/2)] overflow-visible text-ring sm:block"
+      className="pointer-events-none absolute inset-y-0 right-full hidden h-full w-[calc((100cqw-100%)/2)] overflow-visible text-ring sm:block"
     >
       {size &&
         wires.map((wire) => {

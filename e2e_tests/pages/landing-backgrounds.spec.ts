@@ -40,3 +40,45 @@ test("the sections' backgrounds run across the whole page, top to bottom", async
   }));
   expect(widths.scrollWidth).toBeLessThanOrEqual(widths.clientWidth);
 });
+
+test("nothing on the home page reaches past the page's edges, so it never scrolls sideways", async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  await page.goto("/");
+  await loaded(page);
+
+  for (const width of [390, 1280, 1440, 1920]) {
+    await page.setViewportSize({ width, height: 900 });
+    // The hero's wires run out to the page's edges, never over a scrollbar's gutter; once the
+    // pictures have redrawn for the new width.
+    await expect
+      .poll(
+        () =>
+          page.locator("main svg").evaluateAll((all) => {
+            const body = document.body.getBoundingClientRect();
+
+            return all
+              .filter((svg) => {
+                const box = svg.getBoundingClientRect();
+
+                return box.width > 0 && (box.left < body.left - 1 || box.right > body.right + 1);
+              })
+              .map((svg) => svg.outerHTML.slice(0, 80));
+          }),
+        { message: String(width) },
+      )
+      .toEqual([]);
+    await expect
+      .poll(
+        () =>
+          page.evaluate(() => {
+            window.scrollTo(300, 0);
+
+            return window.scrollX;
+          }),
+        { message: String(width) },
+      )
+      .toBe(0);
+  }
+});
