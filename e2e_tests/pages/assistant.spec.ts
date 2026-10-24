@@ -282,7 +282,8 @@ test("the header's icon-only assistant button is named like the footer's", async
   test.skip(test.info().project.name !== "phone", "the label shows on wider screens");
   await page.goto("/");
   await loaded(page);
-  const label = await page.getByRole("contentinfo").locator("[data-assistant-toggle]").innerText();
+  // Its text as written, not as shown: the button shows it in lowercase.
+  const label = await page.getByRole("contentinfo").locator("[data-assistant-toggle]").textContent();
 
-  await expect(askAgent(page)).toHaveAccessibleName(label.trim());
+  await expect(askAgent(page)).toHaveAccessibleName(label!.trim());
 });
