@@ -30,7 +30,10 @@ function at(messages: Messages, key: string) {
     )
 }
 
-const dated = strings(en as Messages).filter(([, text]) => TIME.test(text))
+// Lists (arrays) are walked like objects; only their strings count.
+const dated = strings(en as unknown as Messages).filter(([, text]) =>
+  TIME.test(text)
+)
 
 describe("dates in messages", () => {
   it("are tagged in English", () => {
