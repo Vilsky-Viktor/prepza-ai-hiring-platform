@@ -250,10 +250,10 @@ for (const reducedMotion of ["no-preference", "reduce"] as const) {
   });
 }
 
-// Titles and buttons are lowercase, but the assistant's name keeps its capital, in every case
-// form a language gives it (Russian "Миру" in the button, "Мира" in the welcome).
+// Titles and buttons are lowercase, the "ask mira" buttons whole, but the welcome keeps the
+// assistant's name's capital, in every case form a language gives it (Russian "Мира").
 for (const path of ["/", "/ru"]) {
-  test(`the assistant's name keeps its capital in its buttons and welcome at ${path}`, async ({ page }) => {
+  test(`the assistant's name keeps its capital in the welcome only at ${path}`, async ({ page }) => {
     await page.goto(path);
     await loaded(page);
     const name = (place: Locator) => place.locator(".normal-case").first();
@@ -265,8 +265,9 @@ for (const path of ["/", "/ru"]) {
 
     for (const place of places as ("contentinfo" | "banner")[]) {
       const button = page.getByRole(place).locator("[data-assistant-toggle]");
-      await expect(name(button)).toBeVisible();
-      expect(await kept(button)).toBe("none");
+      await expect(button).toBeVisible();
+      await expect(button).toHaveCSS("text-transform", "lowercase");
+      await expect(button.locator(".normal-case")).toHaveCount(0);
     }
 
     const panel = await openPanel(page);
