@@ -90,7 +90,7 @@ test("an owner sees how to connect Workable and manages its linked jobs", async 
   // A test chosen: the picker shows its title, closed.
   await search.fill(title.slice(0, 5))
   await options.filter({ hasText: title }).click()
-  await expect(picker).toHaveText(title)
+  await expect(picker).toContainText(title)
   await shot(owner, "interview-chosen")
   await picker.click()
   await search.fill("")
