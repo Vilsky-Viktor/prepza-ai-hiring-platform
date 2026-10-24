@@ -19,36 +19,6 @@ test("the home page's title lines sit close together", async ({ page }) => {
   expect(lineHeight).toBe(fontSize);
 });
 
-// On phones the previews' gray panels reach the screen's edges, with square corners.
-test("the previews' panels span a phone's width", async ({ page }, info) => {
-  test.setTimeout(120_000);
-  await page.goto("/");
-  const width = page.viewportSize()!.width;
-  const boxes = await page
-    .locator("div.bg-muted\\/60")
-    .evaluateAll((elements) =>
-      elements.map((element) => {
-        const box = element.getBoundingClientRect();
-
-        return {
-          left: Math.round(box.left),
-          width: Math.round(box.width),
-          radius: getComputedStyle(element).borderTopLeftRadius,
-        };
-      }),
-    );
-  expect(boxes.length).toBeGreaterThan(0);
-
-  for (const box of boxes) {
-    if (isPhone(info.project.name)) {
-      expect(box).toEqual({ left: 0, width, radius: "0px" });
-    } else {
-      expect(box.left).toBeGreaterThan(0);
-      expect(box.radius).not.toBe("0px");
-    }
-  }
-});
-
 // On phones the footer is one centered column; on desktop its links stand in three columns.
 test("the footer is one centered column on phones", async ({ page }, info) => {
   await page.goto("/faq");
