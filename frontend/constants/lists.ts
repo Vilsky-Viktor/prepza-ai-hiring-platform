@@ -14,7 +14,7 @@ export const INITIAL_VIEWPORT = { width: 1024, height: 1000 }
 // A page's list: its rows in one bordered, rounded box. On phones it spans the screen, out of
 // the page's side padding, with only its top and bottom borders and square corners.
 export const LIST_BOX =
-  "-mx-6 divide-y border-y sm:mx-0 sm:rounded-2xl sm:border" +
+  "-mx-6 divide-y border-y sm:mx-0 sm:rounded-xl sm:border" +
   // Under a search (SearchedList): no top border or top corners, so the two read as one block.
   " searched:border-t-0! searched:rounded-t-none!"
 

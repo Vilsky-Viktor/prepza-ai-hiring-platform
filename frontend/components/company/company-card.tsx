@@ -19,7 +19,7 @@ import type { Company } from "@/types/company"
 // which fills what the square card leaves above the name whatever the image (laid over it, an
 // image never stretches the area).
 const CARD =
-  "group relative flex aspect-square flex-col overflow-hidden border-y bg-background transition-colors hover:border-primary has-[a:focus-visible]:border-primary has-[a:focus-visible]:ring-3 has-[a:focus-visible]:ring-ring/50 sm:rounded-2xl sm:border"
+  "group relative flex aspect-square flex-col overflow-hidden border-y bg-background transition-colors hover:border-primary-gradient has-[a:focus-visible]:border-primary-gradient before:z-10 [--gradient-inset:0px] has-[a:focus-visible]:ring-3 has-[a:focus-visible]:ring-ring/50 sm:rounded-xl sm:border"
 
 const ZOOM =
   "absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-out motion-safe:group-hover:scale-105 motion-safe:group-has-[a:focus-visible]:scale-105"
@@ -58,7 +58,7 @@ export function CompanyCard({
       <div
         aria-hidden
         data-testid="company-logo"
-        className="relative min-h-0 flex-1 overflow-hidden bg-muted"
+        className="relative min-h-0 flex-1 overflow-hidden bg-surface"
       >
         <div className={ZOOM}>
           {company.logo_url ? (
