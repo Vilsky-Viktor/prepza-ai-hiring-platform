@@ -24,8 +24,10 @@ test("an owner rolls a web hook's secret and sees the new one once", async ({ si
   await owner.getByRole("dialog").getByRole("button").last().click()
 
   const shown = owner.getByRole("dialog")
-  await expect(shown.getByText(/^whsec_/)).toBeVisible()
-  await expect(shown.getByText(made.secret)).toHaveCount(0)
+  // The new secret, in its read-only field to copy, not the old one.
+  const secret = shown.getByRole("textbox")
+  await expect(secret).toHaveValue(/^whsec_/)
+  await expect(secret).not.toHaveValue(made.secret)
   await shot(owner, "rolled")
   await owner.setViewportSize(PHONE)
   await shot(owner, "rolled-phone")
