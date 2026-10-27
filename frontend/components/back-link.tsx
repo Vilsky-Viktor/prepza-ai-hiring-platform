@@ -33,9 +33,9 @@ export function BackLink({
     <div
       data-testid="back-link"
       className={cn(
-        "-ms-3 mb-2 flex shrink-0 items-center xl:absolute xl:inset-y-0 xl:end-[calc(100%+1rem)] xl:my-auto xl:ms-0",
+        "-ms-3 mb-2 flex shrink-0 items-center wide:absolute wide:inset-y-0 wide:end-[calc(100%+1rem)] wide:my-auto wide:ms-0",
         // With the info button, a smaller arrow leaves 8px between the two in the margin.
-        help ? "gap-2 xl:h-12" : "xl:h-14",
+        help ? "gap-2 wide:h-12" : "wide:h-14",
         className
       )}
     >
@@ -45,17 +45,17 @@ export function BackLink({
         aria-label={label}
         className={cn(
           "size-11 rounded-xl text-muted-foreground",
-          help ? "xl:size-12" : "xl:size-14"
+          help ? "wide:size-12" : "wide:size-14"
         )}
         render={<LocalizedLink href={href} />}
         nativeButton={false}
       >
-        <ArrowLeftIcon className="size-6 xl:size-8 rtl:-scale-x-100" />
+        <ArrowLeftIcon className="size-6 wide:size-8 rtl:-scale-x-100" />
       </Button>
       {help && (
         <PageHelp
           page={help}
-          className="xl:absolute xl:inset-x-0 xl:top-[calc(100%+0.5rem)] xl:mx-auto xl:size-6"
+          className="wide:absolute wide:inset-x-0 wide:top-[calc(100%+0.5rem)] wide:mx-auto wide:size-6"
         />
       )}
     </div>

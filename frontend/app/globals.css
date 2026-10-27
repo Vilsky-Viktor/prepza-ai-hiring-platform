@@ -85,6 +85,9 @@
   /* Every page's width (max-w-page), the header's and the footer's: 80rem, Tailwind's 7xl
      (CLAUDE.md, rule 6). */
   --container-page: 80rem;
+  /* Wide enough for the page plus its margins to hold the back arrow and info button (wide:);
+     narrower, they sit above the title instead of off the screen's edge. */
+  --breakpoint-wide: 88rem;
 }
 
 /* Light tokens; .light-scope sets them again inside a dark page. */

@@ -43,7 +43,7 @@ export default async function NewInterviewPage({
             <BackLink
               href={`/companies/${companyId}/interviews`}
               help="newInterview"
-              className="xl:top-2.5"
+              className="wide:top-2.5"
             >
               {t("title")}
             </BackLink>

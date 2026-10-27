@@ -79,7 +79,7 @@ export default async function ScorecardPage({
               href={`/companies/${companyId}/interviews/${id}?tab=candidates`}
               help="candidate"
               // On the email's line, so the info button lines up with the name and status.
-              className="xl:inset-y-auto xl:-top-1.5 xl:my-0"
+              className="wide:inset-y-auto wide:-top-1.5 wide:my-0"
             >
               {t("interview")}
             </BackLink>

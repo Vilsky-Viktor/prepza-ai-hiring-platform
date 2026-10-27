@@ -15,7 +15,7 @@ export default async function NewTemplatePage() {
       <div className="flex min-h-[calc(100svh-3.5rem)] flex-col items-center justify-center pb-24">
         <div className="w-full max-w-176 space-y-10">
           <div className="relative">
-            <BackLink href="/superadmin/templates" className="xl:top-2.5">
+            <BackLink href="/superadmin/templates" className="wide:top-2.5">
               {t("templates")}
             </BackLink>
             <h1 className="font-heading text-5xl font-medium tracking-tight text-balance sm:text-6xl">

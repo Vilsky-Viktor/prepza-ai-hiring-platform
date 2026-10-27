@@ -45,7 +45,7 @@ export async function InterviewHeader({
           <BackLink
             href={interviewsHref}
             help={INTERVIEW_TAB_HELP[current]}
-            className="xl:inset-y-auto xl:-top-1.5 xl:my-0"
+            className="wide:inset-y-auto wide:-top-1.5 wide:my-0"
           >
             {t("title")}
           </BackLink>

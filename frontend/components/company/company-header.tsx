@@ -75,7 +75,7 @@ export function CompanyHeader({
         <BackLink
           href="/companies"
           help={COMPANY_TAB_HELP[current]}
-          className="max-xl:basis-full"
+          className="max-wide:basis-full"
         >
           {t("title")}
         </BackLink>
