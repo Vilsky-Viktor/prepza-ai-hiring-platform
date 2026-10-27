@@ -32,8 +32,14 @@ def save(path: Path, data) -> None:
 def prompts_version() -> str:
     """A short hash of the service's prompts, its constants (tool descriptions, limits) and the
     judge prompts, so a result names the exact wording it was made with, committed or not. Run
-    from the service's folder, as run.sh does."""
-    files = sorted(Path("app/prompts").glob("*.py")) + sorted(Path("app/constants").glob("*.py"))
+    from the service's folder, as run.sh does: its code is in `app/` or `src/<service>/`."""
+    package = Path("app") if Path("app").is_dir() else Path("src") / Path.cwd().name
+    files = sorted((package / "prompts").glob("*.py"))
+    files += sorted((package / "constants").glob("*.py"))
+
+    if not files:
+        raise FileNotFoundError(f"no prompts or constants in {Path.cwd() / package}")
+
     files += sorted(JUDGES.glob("*.md"))
     digest = hashlib.sha256()
 

@@ -1,34 +1,21 @@
-import { readFileSync, readdirSync, statSync } from "node:fs"
+import { readFileSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
 
 import { ADMIN_MESSAGES, SERVER_ONLY_MESSAGES } from "@/constants/i18n"
 
-const ROOT = path.resolve(__dirname, "../..")
-
-function files(dir: string): string[] {
-  return readdirSync(dir).flatMap((name) => {
-    const full = path.join(dir, name)
-
-    return statSync(full).isDirectory()
-      ? files(full)
-      : /\.tsx?$/.test(name)
-        ? [full]
-        : []
-  })
-}
+import { SOURCE_ROOT, sourceFiles } from "../source-files"
 
 // The groups each client component asks for with useTranslations("group…").
 function clientGroups() {
-  return ["app", "components", "hooks"]
-    .flatMap((dir) => files(path.join(ROOT, dir)))
+  return sourceFiles(["app", "components", "features", "hooks"], /\.tsx?$/)
     .filter((file) =>
       readFileSync(file, "utf8").trimStart().startsWith('"use client"')
     )
     .flatMap((file) =>
       [
         ...readFileSync(file, "utf8").matchAll(/useTranslations\(\s*"([\w]+)/g),
-      ].map(([, group]) => ({ file: path.relative(ROOT, file), group }))
+      ].map(([, group]) => ({ file: path.relative(SOURCE_ROOT, file), group }))
     )
 }
 

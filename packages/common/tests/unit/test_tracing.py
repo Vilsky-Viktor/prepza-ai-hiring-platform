@@ -11,6 +11,7 @@ import pytest
 from langchain_core.callbacks import BaseCallbackHandler
 from langchain_core.runnables import RunnableLambda
 from prepza_common import tracing
+from service_code import service_code
 
 ROOT = Path(__file__).resolve().parents[4]
 TRACE_ID = re.compile(r"[0-9a-f]{32}")
@@ -170,7 +171,7 @@ def test_nothing_configures_langsmith():
     files = [ROOT / ".env.example", ROOT / "evals" / "run.sh"]
     files += list((ROOT / "compose").glob("*.yml"))
     files += list(ROOT.glob("services/*/pyproject.toml"))
-    files += list(ROOT.glob("services/*/app/**/*.py"))
+    files += service_code(ROOT)
     files += list(ROOT.glob("packages/common/src/**/*.py"))
     files.append(ROOT / "packages" / "common" / "pyproject.toml")
     pattern = re.compile(r"LANGSMITH_|LANGCHAIN_TRACING|LANGCHAIN_API_KEY|\"langsmith")

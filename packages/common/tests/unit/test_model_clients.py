@@ -5,6 +5,8 @@ library's default."""
 import ast
 from pathlib import Path
 
+from service_code import service_code
+
 ROOT = Path(__file__).resolve().parents[4]
 CLIENTS = {"chat_model", "ChatOpenAI", "AsyncOpenAI", "OpenAI", "OpenAIEmbeddings"}
 
@@ -27,7 +29,7 @@ def clients(path: Path) -> list[tuple[str, set]]:
 
 
 def test_every_model_client_states_its_timeout_and_retries():
-    built = [client for path in ROOT.glob("services/*/app/**/*.py") for client in clients(path)]
+    built = [client for path in service_code(ROOT) for client in clients(path)]
     unbounded = [where for where, given in built if not {"timeout", "max_retries"} <= given]
 
     assert len(built) >= 5

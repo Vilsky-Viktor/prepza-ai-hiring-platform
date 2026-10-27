@@ -1,32 +1,17 @@
-import { readFileSync, readdirSync, statSync } from "node:fs"
+import { readFileSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
 
 import en from "@/messages/en.json"
 
+import { SOURCE_ROOT, sourceFiles } from "../source-files"
+
 // A message with a tag (<bdi>, <b>, <link>) only shows through t.rich or t.markup; plain t()
 // throws "didn't resolve to a string" and the page shows the key instead. This finds plain t()
 // calls, by the namespace their t was made for, whose English message has a tag.
 
-const ROOT = path.resolve(__dirname, "../..")
 const SOURCES = ["app", "components", "features", "hooks", "lib"]
 const TAG = /<\w+>/
-
-function files(dir: string): string[] {
-  let names: string[]
-
-  try {
-    names = readdirSync(dir)
-  } catch {
-    return []
-  }
-
-  return names.flatMap((name) => {
-    const full = path.join(dir, name)
-
-    return statSync(full).isDirectory() ? files(full) : /\.tsx?$/.test(name) ? [full] : []
-  })
-}
 
 function message(key: string): unknown {
   return key.split(".").reduce<unknown>(
@@ -61,7 +46,7 @@ function plainCallsWithTags(file: string) {
         const text = message(`${namespace}.${key[1]}`)
 
         if (typeof text === "string" && TAG.test(text)) {
-          offenders.push(`${path.relative(ROOT, file)}: ${name}("${key[1]}") (${namespace})`)
+          offenders.push(`${path.relative(SOURCE_ROOT, file)}: ${name}("${key[1]}") (${namespace})`)
         }
       }
     }
@@ -72,7 +57,7 @@ function plainCallsWithTags(file: string) {
 
 describe("messages with tags", () => {
   it("are only shown through t.rich or t.markup", () => {
-    const offenders = SOURCES.flatMap((dir) => files(path.join(ROOT, dir))).flatMap(plainCallsWithTags)
+    const offenders = sourceFiles(SOURCES, /\.tsx?$/).flatMap(plainCallsWithTags)
 
     expect(offenders).toEqual([])
   })

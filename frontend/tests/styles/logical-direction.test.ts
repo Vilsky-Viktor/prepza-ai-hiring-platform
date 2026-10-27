@@ -1,11 +1,12 @@
-import { readFileSync, readdirSync, statSync } from "node:fs"
+import { readFileSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
+
+import { SOURCE_ROOT, sourceFiles as filesIn } from "../source-files"
 
 // Pages mirror right to left (ar, he, fa) only if their spacing and placement are logical:
 // ms-/me-/ps-/pe-/start-/end-/text-start, never ml-/mr-/pl-/pr-/left-/text-left
 // (.claude/rules/nextjs.md, "Languages and direction").
-const ROOT = path.resolve(__dirname, "../..")
 const DIRS = ["app", "components", "features", "hooks", "lib"]
 
 // A physical class: margin, padding, placement, alignment, a side's radius or border, or a slide.
@@ -25,28 +26,8 @@ const ALLOWED_IN: Record<string, RegExp> = {
 const PHYSICAL_STYLE =
   /style=\{\{[^}]*\b(?:left|right|marginLeft|marginRight|paddingLeft|paddingRight)\s*:/
 
-function files(dir: string): string[] {
-  return readdirSync(dir).flatMap((name) => {
-    const full = path.join(dir, name)
-
-    return statSync(full).isDirectory()
-      ? files(full)
-      : /\.(tsx?|css)$/.test(name)
-        ? [full]
-        : []
-  })
-}
-
 function sourceFiles() {
-  return DIRS.flatMap((dir) => {
-    const full = path.join(ROOT, dir)
-
-    try {
-      return files(full)
-    } catch {
-      return []
-    }
-  })
+  return filesIn(DIRS, /\.(tsx?|css)$/)
 }
 
 /** The classes in a file's string literals that place, pad or align by a physical side. */
@@ -84,7 +65,7 @@ describe("direction-neutral layout", () => {
     const found = sourceFiles()
       .filter((file) => !file.endsWith(".css"))
       .flatMap((full) => {
-        const file = path.relative(ROOT, full)
+        const file = path.relative(SOURCE_ROOT, full)
         const text = readFileSync(full, "utf8")
         const styles = PHYSICAL_STYLE.test(text) ? ["inline style"] : []
 
@@ -107,7 +88,7 @@ describe("direction-neutral layout", () => {
               line
             )
           )
-          .map((line) => `${path.relative(ROOT, full)}: ${line.trim()}`)
+          .map((line) => `${path.relative(SOURCE_ROOT, full)}: ${line.trim()}`)
       )
 
     expect(found).toEqual([])

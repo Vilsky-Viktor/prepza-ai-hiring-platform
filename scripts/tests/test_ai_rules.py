@@ -8,9 +8,11 @@ import ast
 import re
 from pathlib import Path
 
+from service_code import service_code
+
 ROOT = Path(__file__).resolve().parents[2]
-PROMPTS = sorted(ROOT.glob("services/*/app/prompts/*.py"))
-APP = sorted(p for p in ROOT.glob("services/*/app/**/*.py") if "/tests/" not in str(p))
+PROMPTS = service_code(ROOT, "prompts/*.py")
+APP = service_code(ROOT)
 # System messages without a role, on purpose: the MCP server's instructions go to an AI app
 # whose own system prompt sets the role.
 NO_ROLE = {"MCP_INSTRUCTIONS"}
@@ -142,7 +144,7 @@ def test_structured_output_is_a_schema_with_a_description_on_every_field():
     schemas = structured_schemas()
     classes = {
         node.name: node
-        for path in ROOT.glob("services/*/app/schemas/*.py")
+        for path in service_code(ROOT, "schemas/*.py")
         for node in ast.parse(path.read_text()).body
         if isinstance(node, ast.ClassDef)
     }

@@ -6,6 +6,8 @@ import ast
 import re
 from pathlib import Path
 
+from service_code import service_code
+
 ROOT = Path(__file__).resolve().parents[4]
 LEVELS = {"debug", "info", "warning", "error", "exception", "critical", "log"}
 # The last part of a variable's name that says it holds what logs must never carry.
@@ -90,7 +92,7 @@ def offending(path: Path) -> list[str]:
 
 
 def test_no_log_call_passes_personal_data_or_a_secret():
-    files = list(ROOT.glob("services/*/app/**/*.py"))
+    files = service_code(ROOT)
     files += list(ROOT.glob("packages/common/src/prepza_common/**/*.py"))
     found = [line for path in files for line in offending(path)]
 

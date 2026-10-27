@@ -9,9 +9,14 @@ import {
   PAGE_HELP_KEYS,
 } from "@/constants/page-help"
 
-const root = new URL("../../", import.meta.url).pathname
-const read = (path: string) => readFileSync(join(root, path), "utf8")
-const locales = readdirSync(join(root, "messages")).map((name) =>
+import { FRONTEND, SOURCE_ROOT } from "../source-files"
+
+// The page code's paths are relative to SOURCE_ROOT; messages/ and the repo's other files to
+// the frontend's folder.
+const read = (path: string) => readFileSync(join(FRONTEND, path), "utf8")
+const readSource = (path: string) =>
+  readFileSync(join(SOURCE_ROOT, path), "utf8")
+const locales = readdirSync(join(FRONTEND, "messages")).map((name) =>
   name.replace(".json", "")
 )
 
@@ -38,7 +43,7 @@ const DEVELOPMENT_ONLY =
 
 /** Every page file under app/, as its route ("/companies/[companyId]/billing"). */
 function pages(dir = "app"): string[] {
-  return readdirSync(join(root, dir), { withFileTypes: true }).flatMap(
+  return readdirSync(join(SOURCE_ROOT, dir), { withFileTypes: true }).flatMap(
     (entry) => {
       const path = join(dir, entry.name)
 
@@ -58,12 +63,12 @@ function sources(page: string) {
   for (let dir = dirname(page); dir !== "."; dir = dirname(dir)) {
     const layout = join(dir, "layout.tsx")
 
-    if (existsSync(join(root, layout))) {
+    if (existsSync(join(SOURCE_ROOT, layout))) {
       files.push(layout)
     }
   }
 
-  return files.map(read).join("\n")
+  return files.map(readSource).join("\n")
 }
 
 describe("page help", () => {
@@ -103,10 +108,12 @@ describe("page help", () => {
 
   it("registers a key on every page where the assistant's panel opens", () => {
     for (const [, component] of REGISTERS) {
-      expect(read(component), component).toMatch(
+      expect(readSource(component), component).toMatch(
         /usePageKey\(|<PageHelp\b|<PageKey\b|\bhelp=/
       )
     }
+
+    expect(pages().length).toBeGreaterThan(0)
 
     const missing = pages().filter((page) => {
       const route =
@@ -121,8 +128,8 @@ describe("page help", () => {
         COMPANY_INTERVIEW_PAGE.test(route + "/") ||
         COMPANY_INTERVIEW_PAGE.test(route) ||
         route === "/maintenance" ||
-        /\bredirect\(/.test(read(page)) ||
-        DEVELOPMENT_ONLY.test(read(page))
+        /\bredirect\(/.test(readSource(page)) ||
+        DEVELOPMENT_ONLY.test(readSource(page))
 
       return !exempt && !REGISTERS.some(([marker]) => marker.test(source))
     })

@@ -1,9 +1,12 @@
 import { readdirSync, readFileSync } from "node:fs"
+import path from "node:path"
 
 import { describe, expect, it } from "vitest"
 
+import { SOURCE_ROOT } from "../source-files"
+
 // proxy.ts's matcher is read from its file, as Next.js does: it must stay a plain string there.
-const PROXY = readFileSync(new URL("../../proxy.ts", import.meta.url), "utf8")
+const PROXY = readFileSync(path.join(SOURCE_ROOT, "proxy.ts"), "utf8")
 const SOURCE = /source:\s*"([^"]+)"/.exec(PROXY)![1]
 const matched = (path: string) => new RegExp(`^${SOURCE}$`).test(path)
 

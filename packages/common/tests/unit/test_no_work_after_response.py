@@ -6,6 +6,8 @@ with why it isn't."""
 import re
 from pathlib import Path
 
+from service_code import service_code
+
 ROOT = Path(__file__).resolve().parents[4]
 STARTS = re.compile(r"\b(create_task|ensure_future|BackgroundTasks|add_task)\(|BackgroundTasks\b")
 
@@ -23,7 +25,7 @@ ALLOWED = {
 
 
 def test_no_task_outlives_its_request():
-    files = list(ROOT.glob("services/*/app/**/*.py"))
+    files = service_code(ROOT)
     files += list(ROOT.glob("packages/common/src/prepza_common/**/*.py"))
     found = [
         str(path.relative_to(ROOT))

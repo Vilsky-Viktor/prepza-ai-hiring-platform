@@ -5,6 +5,8 @@ function also sets the key's expiry, or listed here with why."""
 import ast
 from pathlib import Path
 
+from service_code import service_code
+
 ROOT = Path(__file__).resolve().parents[4]
 WRITES = {"set", "hset", "sadd", "lpush", "rpush", "zadd", "incr", "incrby", "hincrby", "setex"}
 EXPIRIES = {"ex", "px", "exat", "pxat", "keepttl"}
@@ -66,7 +68,7 @@ def unexpired(path: Path) -> list[str]:
 
 
 def test_every_redis_key_expires_unless_it_is_a_switch():
-    files = list(ROOT.glob("services/*/app/**/*.py"))
+    files = service_code(ROOT)
     files += list(ROOT.glob("packages/common/src/prepza_common/**/*.py"))
     found = [line for path in files for line in unexpired(path)]
 

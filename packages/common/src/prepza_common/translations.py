@@ -33,8 +33,13 @@ def raised_messages(app_dir) -> set[str]:
 
     root = Path(app_dir)
     found = set()
+    files = sorted(root.rglob("*.py"))
 
-    for path in root.rglob("*.py"):
+    # A moved or misnamed package would otherwise raise nothing, and every check pass.
+    if not files:
+        raise FileNotFoundError(f"no Python files in {root}")
+
+    for path in files:
         module = None
         name = ".".join((root.name, *path.relative_to(root).with_suffix("").parts))
 

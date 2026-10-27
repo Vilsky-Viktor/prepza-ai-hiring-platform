@@ -1,3 +1,4 @@
+import pytest
 from fastapi import FastAPI, HTTPException
 from fastapi.testclient import TestClient
 from prepza_common.constants import RATE_LIMITED
@@ -157,6 +158,13 @@ def test_raised_messages_finds_literals_and_constants_but_not_f_strings(tmp_path
     monkeypatch.syspath_prepend(str(tmp_path))
 
     assert raised_messages(package) == {"Not here", "It is gone"}
+
+
+def test_raised_messages_fails_on_a_folder_without_code(tmp_path):
+    from prepza_common.translations import raised_messages
+
+    with pytest.raises(FileNotFoundError):
+        raised_messages(tmp_path / "moved")
 
 
 def test_a_coded_refusal_carries_its_code_beside_the_translated_detail():

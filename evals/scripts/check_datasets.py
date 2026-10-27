@@ -12,6 +12,9 @@ from collections import Counter
 from difflib import SequenceMatcher
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "packages" / "common" / "tests"))
+
+from service_code import service_code
 from small_datasets import (
     check_code_languages,
     check_duplicates,
@@ -25,7 +28,6 @@ from small_datasets import (
 
 EVALS = Path(__file__).resolve().parents[1]
 DATASETS = EVALS / "datasets"
-SERVICES = EVALS.parent / "services"
 # The keys of the pages the panel opens on (an unknown one reaches the model as no key).
 PAGE_KEYS = EVALS.parent / "packages/common/src/prepza_common/page_keys.py"
 QUESTION_SETS = ("questions.json", "multi_questions.json", "language_questions.json")
@@ -58,7 +60,10 @@ def prompt_examples() -> set[str]:
     """The quoted examples in every service's prompts and tool descriptions."""
     found = set()
 
-    for path in [*SERVICES.glob("*/app/prompts/*.py"), *SERVICES.glob("*/app/constants/*.py")]:
+    for path in [
+        *service_code(EVALS.parent, "prompts/*.py"),
+        *service_code(EVALS.parent, "constants/*.py"),
+    ]:
         if path.name in NOT_EXAMPLES:
             continue
 
