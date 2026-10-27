@@ -12,7 +12,9 @@ import httpx
 from prepza_common import http
 from prepza_common.backoff import wait_seconds
 from prepza_common.constants import RETRY_AFTER
-from prepza_common.trace_constants import (
+from prepza_common.tracing import EU_CLOUD, tracing_on
+
+from app.constants.trace_retention import (
     OBSERVATIONS_PATH,
     TRACE_ATTEMPTS,
     TRACE_DELETE_AFTER_DAYS,
@@ -24,7 +26,6 @@ from prepza_common.trace_constants import (
     TRACE_TIMEOUT_SECONDS,
     TRACES_PATH,
 )
-from prepza_common.tracing import EU_CLOUD, tracing_on
 
 logger = logging.getLogger(__name__)
 RETRIED = {429, 500, 502, 503, 504}

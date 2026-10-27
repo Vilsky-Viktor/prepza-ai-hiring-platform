@@ -1,9 +1,9 @@
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common import trace_retention
 from prepza_common.tracing import tracing_on
 from prepza_common.user import UserEmailIn
 
+from app.integrations import trace_retention
 from app.schemas.connect import ConnectionOut
 from app.service_auth import ServiceCaller
 from app.storage import actions, conversations, messages, oauth

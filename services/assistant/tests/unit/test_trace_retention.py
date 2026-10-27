@@ -1,4 +1,4 @@
-"""Langfuse's traces deleted on time (prepza_common.trace_retention), against a fake Langfuse."""
+"""Langfuse's traces deleted on time (app.integrations.trace_retention), against a fake Langfuse."""
 
 import asyncio
 import json
@@ -6,7 +6,9 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 import pytest
-from prepza_common import http, trace_retention
+from prepza_common import http
+
+from app.integrations import trace_retention
 
 NOW = datetime(2026, 10, 22, tzinfo=UTC)
 

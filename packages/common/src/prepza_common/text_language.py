@@ -61,7 +61,7 @@ def text_language(
 
 def word_hits(text: str, vocabularies: dict[str, set[str]] = LATIN_WORDS) -> dict[str, int]:
     """How many of each Latin-script language's common words the text has: a job description's
-    (LATIN_WORDS) by default, a chat message's with chat_words.CHAT_WORDS."""
+    (LATIN_WORDS) by default, a chat message's with the help chat's own words (rounds)."""
     words = re.findall(r"[^\W\d_]+(?:'[^\W\d_]+)?", text.lower())
 
     return {

@@ -4,7 +4,6 @@ from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from langchain_core.messages.ai import add_usage
 from prepza_common import ai_usage, memory_cache
 from prepza_common.ai_constants import Outcome
-from prepza_common.chat_words import CHAT_WORDS
 from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
 from prepza_common.limit_schemas import BudgetOut
 from prepza_common.limits import limit, question_seconds
@@ -15,6 +14,7 @@ from prepza_common.text_language import text_language, word_hits
 from prepza_common.tracing import traced
 
 from app.config.settings import settings
+from app.constants.chat_words import CHAT_WORDS
 from app.constants.help import (
     GUIDE_CACHE_SECONDS,
     HELP_ALL_KEY,

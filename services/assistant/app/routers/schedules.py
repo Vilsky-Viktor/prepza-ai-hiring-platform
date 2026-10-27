@@ -2,13 +2,13 @@ import logging
 from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, status
-from prepza_common import trace_retention
 from prepza_common.google import Invoker
 
 from app.config.settings import settings
 from app.constants.assistant import RETENTION_BATCH
 from app.constants.mcp import IDLE_CLIENT_DAYS
 from app.constants.updates import KEEP_DAYS
+from app.integrations import trace_retention
 from app.storage import conversations, oauth, update_checks
 
 logger = logging.getLogger(__name__)

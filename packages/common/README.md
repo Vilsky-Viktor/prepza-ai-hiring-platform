@@ -25,12 +25,8 @@ tagged with ids only; `new_trace_id` and `traced(trace_id)` give the chats' answ
 Personal data is masked before a trace leaves (`scrub.scrub_people`: emails, URLs cut to their host,
 `name` and `email` fields, and the names a caller hides with `hiding`, the assistant's user's).
 Sentry's events are scrubbed by `scrub.scrub` (emails and URLs).
-Retention: `trace_retention.delete_old_traces` deletes every trace a day short of 30 days (root
-observations found through `/api/public/v2/observations` and deleted through `/api/public/traces` a
-page at a time, its rate limit waited out up to 10 s, no page started after 240 s, the rest left to
-the next day's run), and `delete_traces(ids)` a deleted account's (the assistant's answers' trace ids).
-`answer_votes` mirrors the chats' thumbs up and down there as a score on the answer's trace. Both
-need the `langfuse` extra: `prepza-common[llm,langfuse]` (generation, the assistant, rounds).
+`answer_votes` mirrors the chats' thumbs up and down there as a score on the answer's trace.
+Both need the `langfuse` extra: `prepza-common[llm,langfuse]` (generation, the assistant, rounds).
 Limits: `limit_list.LIMITS` is every usage limit of ours (`limit_types.Limit`: its service, default,
 unit, window, lowest and highest value, scope), and the plain values tuned beside them
 (`counted=False`: nothing counts against them), and `limits.limit(redis, NAME)` its current value,
@@ -129,7 +125,6 @@ One line each, by name (`tests/unit/test_readme_modules.py` fails on one left ou
 - `backoff`: the jittered, doubling wait before a retry (`wait_seconds`).
 - `body_limit`: refuses a request body over its size (413), counted as it streams.
 - `capped`: `gather_capped`: calls run together, at most so many at a time.
-- `chat_words`: the common words of chat messages per Latin-script language, for the help chat's reply language.
 - `clean_start`: a clean start for every integration test (a `_test` database, Redis database 15).
 - `client_ip`: the visitor's address behind the load balancer, and its rate-limit key.
 - `company_access`: who may do what in a company, asked of companies.
@@ -195,8 +190,7 @@ One line each, by name (`tests/unit/test_readme_modules.py` fails on one left ou
 - `tenant_columns`: the migration step that gives a tenant's child table its company_id.
 - `titles`: an edited name's or title's check.
 - `tokens`: secret tokens kept as their hashes, compared in constant time.
-- `trace_constants`: Langfuse's retention and its API's settings.
-- `trace_retention`: Langfuse's traces deleted on time, page by page.
+- `trace_constants`: how long setting our models' prices in Langfuse may take, and its page size.
 - `text_language`: a text's language from its script and common words (`language_words`).
 - `tracing`: AI calls traced to Langfuse, with personal data masked.
 - `trace_prices`: our models' prices set in Langfuse at start-up, so traced calls carry their cost.
