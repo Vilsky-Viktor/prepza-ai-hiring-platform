@@ -61,6 +61,8 @@ test("superadmin writes an important notice to one company's owners and admins",
     await dialog.getByRole("textbox").first().fill(subject)
     const editor = dialog.locator("[contenteditable=true]")
     await editor.click()
+    // Typed once the editor has the cursor, or its first keys go nowhere.
+    await expect(editor).toBeFocused()
     await superadmin.keyboard.type("Down on Sunday.")
     await expect(editor).toContainText("Down on Sunday.")
     await dialog.locator("button[type=submit]").click()
