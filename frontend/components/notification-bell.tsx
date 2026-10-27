@@ -204,6 +204,8 @@ export function NotificationBell() {
               key={item.id}
               className="relative items-start gap-3 rounded-none py-2.5 ps-9 pe-4 whitespace-normal normal-case"
               render={<Link href={item.link} />}
+              // An alert (a problem to act on), its sign in red; others in the brand colour.
+              data-alert={look.alert || undefined}
             >
               {/* The kind's sign, large and half transparent (full on hover), running a little
                   under the dropdown's start border (its scroll box clips it). Items run from

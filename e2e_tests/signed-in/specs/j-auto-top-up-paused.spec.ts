@@ -89,7 +89,7 @@ test("a paused automatic top-up is told in the bell and by email", async ({
   await page.getByTestId("notifications").click();
   const notice = page.getByRole("menu").locator(`a[href$="${billing}"]`);
   await expect(notice).toHaveCount(1);
-  await expect(notice.locator("svg.text-destructive")).toBeVisible();
+  await expect(notice).toHaveAttribute("data-alert", "true");
   await shot(page, "bell");
 });
 

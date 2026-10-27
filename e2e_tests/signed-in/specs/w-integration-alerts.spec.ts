@@ -26,7 +26,7 @@ async function bellAlert(owner: Page, companyId: string, page: string, named: st
   const notice = owner.getByRole("menu").locator(`a[href$="${page}"]`);
   await expect(notice).toHaveCount(1);
   await expect(notice).toContainText(named);
-  await expect(notice.locator("svg.text-destructive")).toBeVisible();
+  await expect(notice).toHaveAttribute("data-alert", "true");
 
   return notice;
 }
