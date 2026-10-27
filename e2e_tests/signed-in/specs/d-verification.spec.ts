@@ -67,7 +67,8 @@ test("company verification: pending, declined, renamed, approved", async ({
   // A rename (the title's pencil, named for screen readers) sends it for review again.
   const renamed = `${company.name} Renamed`
   await owner.getByRole("heading").getByRole("button", { name: "Edit title" }).click()
-  const title = owner.getByRole("main").getByRole("textbox")
+  // The title's field, before the interviews' search.
+  const title = owner.getByRole("main").getByRole("textbox").first()
   await shot(owner, "rename-hint")
   await title.fill(renamed)
   await title.press("Enter")
