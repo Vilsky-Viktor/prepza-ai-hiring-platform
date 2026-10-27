@@ -2,8 +2,8 @@ from types import SimpleNamespace
 
 import httpx
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 from sqlalchemy import select
 
 from app.main import app

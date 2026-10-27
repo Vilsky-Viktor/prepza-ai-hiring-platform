@@ -6,7 +6,7 @@ import httpx
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
-from prepza_common.user import User
+from prepza_common.auth.user import User
 
 from app.auth import user_with_token
 from app.constants.limits import MAX_AUDIO_SECONDS

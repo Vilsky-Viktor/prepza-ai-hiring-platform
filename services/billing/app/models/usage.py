@@ -2,8 +2,8 @@ import uuid
 from datetime import datetime
 from decimal import Decimal
 
-from prepza_common.ai_constants import ACTIONS, Category, Outcome
-from prepza_common.db import one_of
+from prepza_common.ai.ai_constants import ACTIONS, Category, Outcome
+from prepza_common.db.db import one_of
 from sqlalchemy import (
     BigInteger,
     CheckConstraint,

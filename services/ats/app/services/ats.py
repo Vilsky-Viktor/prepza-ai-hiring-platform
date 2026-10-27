@@ -4,8 +4,8 @@ import logging
 
 from cryptography.fernet import Fernet
 from fastapi import HTTPException, status
-from prepza_common.encryption import decrypt, encrypt
-from prepza_common.rate_limit import hit_or_skip
+from prepza_common.auth.encryption import decrypt, encrypt
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from app.config.settings import settings
 from app.constants.ats import (

@@ -1,7 +1,7 @@
 from typing import Literal
 
-from prepza_common.constants import MAX_GOAL_LENGTH
-from prepza_common.user import Language
+from prepza_common.auth.user import Language
+from prepza_common.config.constants import MAX_GOAL_LENGTH
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 

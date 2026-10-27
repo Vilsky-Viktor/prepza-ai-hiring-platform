@@ -5,9 +5,9 @@ from types import SimpleNamespace
 from urllib.parse import parse_qs, urlparse
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.tokens import hashed
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.tokens import hashed
+from prepza_common.auth.user import User
 
 from app.constants.mcp import CONNECT_COOKIE, OTHER_BROWSER
 from app.helpers.mcp_clients import describe_client

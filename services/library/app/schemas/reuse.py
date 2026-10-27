@@ -1,7 +1,7 @@
 from uuid import UUID
 
-from prepza_common.constants import DEFAULT_LANGUAGE
-from prepza_common.sets import OptionIn
+from prepza_common.ai.sets import OptionIn
+from prepza_common.config.constants import DEFAULT_LANGUAGE
 from pydantic import BaseModel, Field
 
 from app.constants.reuse import MAX_REUSE_COUNT

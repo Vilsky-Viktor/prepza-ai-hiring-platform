@@ -1,8 +1,8 @@
 from typing import Annotated
 from uuid import UUID
 
-from prepza_common.constants import DEFAULT_LANGUAGE
-from prepza_common.user import Language
+from prepza_common.auth.user import Language
+from prepza_common.config.constants import DEFAULT_LANGUAGE
 from pydantic import (
     BaseModel,
     ConfigDict,
@@ -89,7 +89,7 @@ class GenerationOut(BaseModel):
     progress: GenerationProgress | None
     preparation_id: UUID | None
     error: str | None
-    # What it's generated in, from the pasted text (prepza_common.text_language).
+    # What it's generated in, from the pasted text (prepza_common.i18n.text_language).
     language: str
 
     # How many topics the review may approve without instructions, and how many subtopics a

@@ -1,8 +1,8 @@
 from enum import StrEnum
 from http import HTTPStatus
 
-from prepza_common.audit_actions import AuditAction
-from prepza_common.constants import MAX_CANDIDATE_NAME_LENGTH  # noqa: F401 (re-exported)
+from prepza_common.config.constants import MAX_CANDIDATE_NAME_LENGTH  # noqa: F401 (re-exported)
+from prepza_common.events.audit_actions import AuditAction
 
 # The longest search through candidates' emails and names (an email is at most 254 characters).
 MAX_SEARCH_LENGTH = 254

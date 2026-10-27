@@ -3,10 +3,10 @@
 import uuid
 
 from fastapi import HTTPException, status
-from prepza_common.i18n import TemplateError
-from prepza_common.limits import limit, record_hit
-from prepza_common.rate_limit import until_tomorrow
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.i18n.i18n import TemplateError
+from prepza_common.limits.limits import limit, record_hit
+from prepza_common.limits.rate_limit import until_tomorrow
 
 from app.config.settings import settings
 from app.constants.bulk import OPTIONAL_KINDS, BulkKind

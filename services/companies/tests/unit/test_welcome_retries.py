@@ -3,7 +3,7 @@ import uuid
 
 import httpx
 import pytest
-from prepza_common import http
+from prepza_common.http import http
 
 from app.constants.billing import WELCOME_ATTEMPTS, WELCOME_FIRST_WAIT_SECONDS
 from app.integrations import billing

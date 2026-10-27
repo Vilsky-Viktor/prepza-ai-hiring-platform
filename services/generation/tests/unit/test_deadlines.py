@@ -4,7 +4,7 @@ ends before its own request does (.claude/rules/scalability.md, Timeouts)."""
 import re
 from pathlib import Path
 
-from prepza_common.constants import HTTP_TIMEOUT_SECONDS, PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
+from prepza_common.config.constants import HTTP_TIMEOUT_SECONDS, PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
 
 from app.constants.generation import ENQUEUE_TIMEOUT_SECONDS, REGENERATE_TIMEOUT_SECONDS
 

@@ -5,13 +5,13 @@ from datetime import UTC, datetime
 
 import mcp_types as types
 from fastapi import HTTPException
-from prepza_common.analytics import track
-from prepza_common.constants import DAY_SECONDS, VIA_MCP
-from prepza_common.i18n import translate
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit_or_skip
-from prepza_common.secrets_check import SECRET_REMOVED, secret_in
-from prepza_common.user import User
+from prepza_common.ai.secrets_check import SECRET_REMOVED, secret_in
+from prepza_common.auth.user import User
+from prepza_common.config.constants import DAY_SECONDS, VIA_MCP
+from prepza_common.events.analytics import track
+from prepza_common.i18n.i18n import translate
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from app.config.settings import settings
 from app.constants.chat import OTHER_COMPANY

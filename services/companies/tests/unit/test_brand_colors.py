@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.audit_actions import AuditAction, TargetKind
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 
 from app.constants.brand import (
     BUTTON_TEXT_UNREADABLE,

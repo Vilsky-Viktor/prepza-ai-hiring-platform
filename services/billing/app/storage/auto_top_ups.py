@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from prepza_common.constants import DEFAULT_LANGUAGE
+from prepza_common.config.constants import DEFAULT_LANGUAGE
 from sqlalchemy import and_, case, delete, exists, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 

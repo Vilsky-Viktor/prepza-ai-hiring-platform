@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from prepza_common.constants import LEGAL_VERSIONS
+from prepza_common.config.constants import LEGAL_VERSIONS
 
 from app.constants.dpa import DPA_INTRO, DPA_SECTIONS
 

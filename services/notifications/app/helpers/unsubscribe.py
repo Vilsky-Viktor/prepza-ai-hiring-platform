@@ -4,8 +4,8 @@ import hashlib
 import hmac
 import json
 
-from prepza_common.person_hash import keyed, person_hash
-from prepza_common.tokens import same_secret
+from prepza_common.auth.person_hash import keyed, person_hash
+from prepza_common.auth.tokens import same_secret
 
 from app.config.settings import settings
 from app.constants.unsubscribe import (

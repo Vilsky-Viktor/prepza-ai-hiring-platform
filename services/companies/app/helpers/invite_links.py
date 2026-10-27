@@ -1,4 +1,4 @@
-from prepza_common.user import User
+from prepza_common.auth.user import User
 
 
 def addressed_to(user: User | None, address: str) -> tuple[bool, str | None]:

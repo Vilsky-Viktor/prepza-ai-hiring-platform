@@ -1,7 +1,7 @@
 import asyncio
 from datetime import timedelta
 
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.routers import internal_maintenance, schedules
 from app.service_auth import service_token

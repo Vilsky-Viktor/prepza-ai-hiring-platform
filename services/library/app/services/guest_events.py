@@ -1,7 +1,7 @@
 import asyncio
 import logging
 
-from prepza_common.constants import GUEST_UID_PREFIX
+from prepza_common.config.constants import GUEST_UID_PREFIX
 
 from app.services.accounts import delete_sign_in
 from app.storage import accounts

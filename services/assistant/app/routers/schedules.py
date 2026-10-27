@@ -2,7 +2,7 @@ import logging
 from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, status
-from prepza_common.google import Invoker
+from prepza_common.auth.google import Invoker
 
 from app.config.settings import settings
 from app.constants.assistant import RETENTION_BATCH

@@ -1,4 +1,4 @@
-# Superadmins' use of the admin zone (prepza_common.superadmin logs every request by account id
+# Superadmins' use of the admin zone (prepza_common.auth.superadmin logs every request by account id
 # and route, never what it looked up): kept a year in a bucket whose retention is locked, so
 # nobody, project owners included, can shorten it or delete the lines sooner. Locking is for
 # good: Terraform can't delete or shorten this bucket afterwards. The _Default bucket keeps its
@@ -15,6 +15,6 @@ resource "google_logging_project_bucket_config" "admin_access" {
 resource "google_logging_project_sink" "admin_access" {
   name                   = "admin-access"
   destination            = "logging.googleapis.com/${google_logging_project_bucket_config.admin_access.id}"
-  filter                 = "resource.type=\"cloud_run_revision\" AND jsonPayload.logger=\"prepza_common.superadmin\""
+  filter                 = "resource.type=\"cloud_run_revision\" AND jsonPayload.logger=\"prepza_common.auth.superadmin\""
   unique_writer_identity = true
 }

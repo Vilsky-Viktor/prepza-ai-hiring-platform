@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import pytest
 from firebase_admin import auth as firebase_auth
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.service_auth import service_token
 

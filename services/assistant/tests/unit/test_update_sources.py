@@ -5,7 +5,7 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 import pytest
-from prepza_common.i18n import translate
+from prepza_common.i18n.i18n import translate
 
 from app.constants.tool_calls import SERVICE_UNAVAILABLE
 from app.integrations import billing, services

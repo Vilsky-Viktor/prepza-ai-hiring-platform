@@ -4,7 +4,7 @@ Paddle repeats a top-up, and a bell notice kept until Pub/Sub takes it."""
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.notifications import NOTIFICATION_REQUESTED
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import select
 
 from app.constants.products import OwnerType

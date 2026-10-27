@@ -1,8 +1,8 @@
 from collections.abc import AsyncIterator
 
-from prepza_common.i18n import translate
-from prepza_common.secrets_check import SECRET_REMOVED
-from prepza_common.sse import sse_event
+from prepza_common.ai.secrets_check import SECRET_REMOVED
+from prepza_common.http.sse import sse_event
+from prepza_common.i18n.i18n import translate
 
 from app.constants.help import SIGN_IN_MARKER, SIGN_IN_PREFIX
 

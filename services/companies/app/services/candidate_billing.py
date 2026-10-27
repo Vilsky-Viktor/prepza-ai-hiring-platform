@@ -3,7 +3,7 @@ import uuid
 from datetime import UTC, datetime, timedelta
 from time import monotonic
 
-from prepza_common.analytics import track
+from prepza_common.events.analytics import track
 
 from app.constants.events import INTERVIEW_FINISHED
 from app.constants.invites import (

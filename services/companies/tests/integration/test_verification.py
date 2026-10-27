@@ -2,7 +2,7 @@ import uuid
 
 from alembic import command
 from alembic.config import Config
-from prepza_common.db import sqlalchemy_url
+from prepza_common.db.db import sqlalchemy_url
 from sqlalchemy import create_engine, select, text
 
 from app.config.settings import settings

@@ -2,8 +2,8 @@ import secrets
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, status
-from prepza_common.audit_actions import AuditAction
-from prepza_common.auth import CurrentUser, OptionalUser
+from prepza_common.auth.auth import CurrentUser, OptionalUser
+from prepza_common.events.audit_actions import AuditAction
 
 from app.constants.invites import (
     EMAIL_NOT_VERIFIED,

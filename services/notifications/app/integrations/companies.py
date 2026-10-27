@@ -1,7 +1,8 @@
 from datetime import datetime
 
-from prepza_common import company_access, http
-from prepza_common.http import bearer
+from prepza_common.auth import company_access
+from prepza_common.http import http
+from prepza_common.http.http import bearer
 
 from app.config.settings import settings
 from app.constants.member_emails import MAX_IDS_PER_CALL
@@ -119,7 +120,7 @@ async def waiting_interviews(
 async def member_ids(after: str, editors_only: bool) -> list[str]:
     """A page of everyone who joined a company, or with `editors_only` of every company's owners
     and admins (a notice about the data processing agreement), the ids after `after` in order
-    (prepza_common.paging)."""
+    (prepza_common.db.paging)."""
     response = await http.get_client().get(
         f"{settings.companies_url}/internal/companies/member-ids",
         params={"after": after, "editors_only": editors_only},

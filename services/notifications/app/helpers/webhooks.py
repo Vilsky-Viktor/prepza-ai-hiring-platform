@@ -3,7 +3,7 @@ import binascii
 import hashlib
 import hmac
 
-from prepza_common.tokens import same_secret
+from prepza_common.auth.tokens import same_secret
 
 
 def signature_valid(

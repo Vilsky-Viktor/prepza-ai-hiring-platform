@@ -6,9 +6,9 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from prepza_common import memory_cache
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.redis import memory_cache
 
 from app.constants.campaigns import ALREADY_SENT, LINK_NOT_ON_SITE, NO_BUTTON_TEXT, ONE_A_DAY
 from app.helpers.campaign_emails import campaign_email

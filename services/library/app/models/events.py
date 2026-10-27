@@ -1,4 +1,4 @@
-from prepza_common.event_models import ProcessedEventColumns
+from prepza_common.events.event_models import ProcessedEventColumns
 
 from app.models.base import Base
 

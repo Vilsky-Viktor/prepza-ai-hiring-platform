@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from prepza_common.constants import MAX_PAGE_SIZE
-from prepza_common.sets import OptionIn
+from prepza_common.ai.sets import OptionIn
+from prepza_common.config.constants import MAX_PAGE_SIZE
 from pydantic import AwareDatetime, BaseModel, Field
 
 

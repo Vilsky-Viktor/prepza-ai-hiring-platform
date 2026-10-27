@@ -1,4 +1,4 @@
-from prepza_common.service_auth import issue_token
+from prepza_common.auth.service_auth import issue_token
 
 from app.storage import keys, webhook_retries, webhooks
 

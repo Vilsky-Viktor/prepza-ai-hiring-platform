@@ -1,9 +1,9 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common import audit
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.constants import DELETED_USER
+from prepza_common.config.constants import DELETED_USER
+from prepza_common.events import audit
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy import delete, exists, select, update
 from sqlalchemy.dialects.postgresql import insert
 

@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from prepza_common import outbox
+from prepza_common.events import outbox
 from sqlalchemy import select
 
 from app.constants.events import CANDIDATE_REMINDED

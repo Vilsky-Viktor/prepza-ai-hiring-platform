@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Request, status
-from prepza_common.client_ip import limit_address
-from prepza_common.rate_limit import hit_or_skip
+from prepza_common.http.client_ip import limit_address
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from app.integrations.redis import get_redis
 from app.services import ats_webhooks

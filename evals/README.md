@@ -134,7 +134,7 @@ write to `results/` (not committed).
 
 ## Every AI action and its eval
 
-Each AI action billing records (`prepza_common.ai_constants.ACTIONS`) and the test that measures
+Each AI action billing records (`prepza_common.ai.ai_constants.ACTIONS`) and the test that measures
 it; `scripts/tests/test_ai_rules.py` fails when an action has none.
 
 | Action | Test |

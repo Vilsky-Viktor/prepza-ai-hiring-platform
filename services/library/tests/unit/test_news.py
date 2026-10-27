@@ -5,10 +5,10 @@ from types import SimpleNamespace
 
 import jwt
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
-from prepza_common.http import bearer
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
+from prepza_common.http.http import bearer
 
 from app.helpers.notifications import news_notification
 from app.integrations import generation

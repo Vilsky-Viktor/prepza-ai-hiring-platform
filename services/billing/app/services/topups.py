@@ -2,8 +2,12 @@ import asyncio
 import logging
 from datetime import UTC, datetime
 
-from prepza_common.analytics import track
-from prepza_common.notifications import NOTIFICATION_REQUESTED, NotificationKind, notification
+from prepza_common.events.analytics import track
+from prepza_common.events.notifications import (
+    NOTIFICATION_REQUESTED,
+    NotificationKind,
+    notification,
+)
 
 from app.config.settings import settings
 from app.constants.declines import PAYMENT_METHOD_CHANGE_ORIGIN

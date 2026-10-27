@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request, status
-from prepza_common.google import Invoker
+from prepza_common.auth.google import Invoker
 
 from app.services import patterns, schedules
 

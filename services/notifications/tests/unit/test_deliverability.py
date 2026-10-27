@@ -5,7 +5,7 @@ from email.utils import parseaddr
 
 import httpx
 import pytest
-from prepza_common.constants import LANGUAGES
+from prepza_common.config.constants import LANGUAGES
 
 from app.config.settings import settings
 from app.constants.unsubscribe import UnsubscribeType

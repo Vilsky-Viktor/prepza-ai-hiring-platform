@@ -2,14 +2,14 @@ from typing import Annotated
 from uuid import UUID, uuid4
 
 from fastapi import APIRouter, HTTPException, Query, status
-from prepza_common.analytics import track
-from prepza_common.audit_actions import AuditAction
-from prepza_common.auth import CurrentUser
-from prepza_common.limits import question_seconds
-from prepza_common.multi_answer import multi_share
-from prepza_common.paging import PageParams
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit_or_skip
+from prepza_common.ai.multi_answer import multi_share
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.db.paging import PageParams
+from prepza_common.events.analytics import track
+from prepza_common.events.audit_actions import AuditAction
+from prepza_common.limits.limits import question_seconds
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from app.constants.interviews import SETTINGS_LOGGED
 from app.constants.invites import INTERVIEW_NOT_READY, MAX_SEARCH_LENGTH

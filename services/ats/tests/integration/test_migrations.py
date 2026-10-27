@@ -4,7 +4,7 @@ import uuid
 
 from alembic.config import Config
 from alembic.script import ScriptDirectory
-from prepza_common.db import sqlalchemy_url
+from prepza_common.db.db import sqlalchemy_url
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import DBAPIError
 
@@ -45,8 +45,8 @@ def test_the_models_match_the_migrations():
 
 
 def test_the_tables_follow_the_database_rules():
-    """What `.claude/rules/database.md` asks of every table (prepza_common.schema_rules)."""
-    from prepza_common.schema_rules import problems
+    """What `.claude/rules/database.md` asks of every table (prepza_common.db.schema_rules)."""
+    from prepza_common.db.schema_rules import problems
 
     from app.config.settings import settings
 
@@ -55,7 +55,7 @@ def test_the_tables_follow_the_database_rules():
 
 def test_the_models_name_constraints_and_indexes_as_the_database_does():
     """So a migration can drop or rename one by its name (the naming convention, models/base.py)."""
-    from prepza_common.schema_rules import misnamed
+    from prepza_common.db.schema_rules import misnamed
 
     import app.models
     from app.config.settings import settings
@@ -65,7 +65,7 @@ def test_the_models_name_constraints_and_indexes_as_the_database_does():
 
 def test_every_check_allows_what_its_model_allows():
     """A value added to a closed set in the code changes its CHECK in a migration too."""
-    from prepza_common.schema_rules import stale_checks
+    from prepza_common.db.schema_rules import stale_checks
 
     import app.models
     from app.config.settings import settings
@@ -74,7 +74,7 @@ def test_every_check_allows_what_its_model_allows():
 
 
 def test_a_migration_waits_only_so_long_for_a_lock_and_runs_only_so_long():
-    from prepza_common.db import migration_engine
+    from prepza_common.db.db import migration_engine
 
     from app.config.settings import settings
 
@@ -125,7 +125,7 @@ def test_postgres_stops_a_runaway_statement(run):
 
 
 def test_a_table_breaking_a_database_rule_is_named():
-    from prepza_common.schema_rules import problems
+    from prepza_common.db.schema_rules import problems
 
     from app.config.settings import settings
 
@@ -186,7 +186,7 @@ def test_a_value_outside_its_closed_set_is_refused(run):
 
 
 def test_a_tenants_child_table_without_its_company_is_named():
-    from prepza_common.schema_rules import problems
+    from prepza_common.db.schema_rules import problems
 
     from app.config.settings import settings
 

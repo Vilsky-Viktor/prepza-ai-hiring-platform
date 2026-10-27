@@ -3,7 +3,7 @@ from datetime import datetime
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.paging import PageParams
+from prepza_common.db.paging import PageParams
 
 from app.helpers.candidates import candidate_out
 from app.helpers.interviews import attach_set_if_reachable, interview_out

@@ -2,7 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.constants.credits import Reason
 from app.helpers.history import history_entry_out, transaction_id

@@ -1,6 +1,6 @@
 import re
 
-from prepza_common.constants import DEFAULT_LANGUAGE
+from prepza_common.config.constants import DEFAULT_LANGUAGE
 
 from app.constants.help import ARTICLES_ROOT, GUIDE_PATH, GUIDE_SLUG, GUIDES_FOLDER
 

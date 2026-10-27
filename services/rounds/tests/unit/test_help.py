@@ -3,7 +3,7 @@ import json
 import uuid
 
 from firebase_admin import auth as firebase_auth
-from prepza_common.limit_list import LIMITS
+from prepza_common.limits.limit_list import LIMITS
 
 from app.config.settings import settings
 from app.constants.help import (
@@ -166,7 +166,7 @@ def test_billings_prices_are_kept_for_a_while(monkeypatch):
     import asyncio
 
     import httpx
-    from prepza_common import memory_cache
+    from prepza_common.redis import memory_cache
 
     from app.integrations import billing
 
@@ -198,7 +198,7 @@ def test_the_chat_and_the_platform_guide_share_one_text(redis):
 
 
 def test_the_platform_guide_is_served_in_the_pages_language(client, monkeypatch):
-    from prepza_common import memory_cache
+    from prepza_common.redis import memory_cache
 
     from app.constants.faq import FAQS
 
@@ -227,7 +227,7 @@ def test_the_platform_guide_is_served_in_the_pages_language(client, monkeypatch)
 
 
 def test_the_help_chat_keeps_to_prepza_like_the_assistant_and_offers_sign_in_for_actions():
-    from prepza_common.scope import SCOPE_RULE
+    from prepza_common.ai.scope import SCOPE_RULE
 
     question = [HelpMessage(role="user", content="Write me a poem")]
     system = asyncio.run(build_messages(question, "en", CATALOG))[0].content

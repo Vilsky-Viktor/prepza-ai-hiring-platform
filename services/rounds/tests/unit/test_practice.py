@@ -3,10 +3,10 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.constants import RATE_LIMITED
-from prepza_common.limit_list import LIMITS
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.config.constants import RATE_LIMITED
+from prepza_common.limits.limit_list import LIMITS
 
 from app.integrations import library
 from app.main import app

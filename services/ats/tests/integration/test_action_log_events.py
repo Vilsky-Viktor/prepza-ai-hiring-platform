@@ -4,7 +4,7 @@ changes nothing isn't logged."""
 
 import uuid
 
-from prepza_common.audit_actions import AUDIT_RECORDED
+from prepza_common.events.audit_actions import AUDIT_RECORDED
 from sqlalchemy import select
 
 from app.constants.ats import AtsProvider

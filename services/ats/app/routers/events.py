@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
-from prepza_common.google import Invoker
-from prepza_common.pubsub import PushBody, event_of
+from prepza_common.auth.google import Invoker
+from prepza_common.events.pubsub import PushBody, event_of
 
 from app.services.events import handle
 

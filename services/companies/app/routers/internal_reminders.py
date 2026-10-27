@@ -3,7 +3,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Query
-from prepza_common.paging import IdPageParams
+from prepza_common.db.paging import IdPageParams
 
 from app.constants.notifications import MAX_COMPANIES_PER_CALL
 from app.schemas.internal_reminders import (

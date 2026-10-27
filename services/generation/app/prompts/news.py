@@ -1,4 +1,4 @@
-from prepza_common.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
+from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
 
 from app.prompts.translations import TRANSLATE_TO, TRANSLATION_ROLE, TRANSLATION_RULES
 

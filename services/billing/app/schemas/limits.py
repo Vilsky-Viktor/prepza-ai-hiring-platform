@@ -40,7 +40,7 @@ class LimitOut(BaseModel):
     highest: float
     scope: str
     audience: str | None
-    # False for a plain value (prepza_common.limit_types): nothing counts against it, so it has
+    # False for a plain value (prepza_common.limits.limit_types): nothing counts against it, so it has
     # no window and no hits.
     counted: bool
     # Hits in the last HITS_DAYS days.

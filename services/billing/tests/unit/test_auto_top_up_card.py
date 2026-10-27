@@ -6,7 +6,7 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.constants.products import NOT_YOUR_AUTO_TOP_UP
 from app.integrations import paddle

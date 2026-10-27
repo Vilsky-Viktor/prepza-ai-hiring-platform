@@ -2,7 +2,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, status
 from fastapi.responses import RedirectResponse
-from prepza_common.auth import CurrentUser
+from prepza_common.auth.auth import CurrentUser
 
 from app.integrations import companies
 from app.schemas.slack import SlackKindsIn, SlackOut, SlackStartOut

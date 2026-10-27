@@ -18,7 +18,7 @@ os.environ.setdefault("COMPANIES_SERVICE_SECRET", "test-secret-that-is-at-least-
 
 import pytest
 from fastapi.testclient import TestClient
-from prepza_common import memory_cache
+from prepza_common.redis import memory_cache
 
 from app.main import app
 

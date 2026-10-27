@@ -3,7 +3,7 @@ from datetime import datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
+from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
 
 from app.constants.email import AUTOMATED_HEADERS
 from app.constants.member_emails import MemberEmail

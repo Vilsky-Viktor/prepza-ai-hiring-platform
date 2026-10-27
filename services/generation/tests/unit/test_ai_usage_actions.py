@@ -3,9 +3,9 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.ai_constants import AI_USED
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.ai.ai_constants import AI_USED
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.actions import (
     CODE_TAGS,

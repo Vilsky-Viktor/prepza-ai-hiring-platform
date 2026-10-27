@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import pytest
 from mcp.server.auth.provider import AuthorizationParams, AuthorizeError, TokenError
 from mcp.shared.auth import OAuthClientInformationFull
-from prepza_common.tokens import hashed
+from prepza_common.auth.tokens import hashed
 
 from app.services import oauth_limits, oauth_provider
 from app.services.oauth_provider import Provider

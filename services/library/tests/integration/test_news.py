@@ -1,8 +1,8 @@
 from datetime import date
 
 import httpx
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 from sqlalchemy import select
 
 from app.integrations import generation

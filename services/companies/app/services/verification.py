@@ -1,4 +1,4 @@
-from prepza_common.user import User
+from prepza_common.auth.user import User
 
 from app.constants.verification import REVIEWED, VerificationStatus
 from app.helpers.verification import email_on_domain

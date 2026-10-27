@@ -5,7 +5,7 @@ import socket
 from functools import cache
 
 import httpx
-from prepza_common.public_urls import pinned, resolved_address
+from prepza_common.http.public_urls import pinned, resolved_address
 
 from app.constants.limits import MAX_REGISTRATION_BYTES
 from app.constants.mcp import METADATA_DOCUMENT_TIMEOUT_SECONDS

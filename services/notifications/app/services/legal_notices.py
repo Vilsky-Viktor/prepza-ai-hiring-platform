@@ -1,7 +1,7 @@
 from datetime import UTC, datetime, timedelta
 
 from fastapi import HTTPException, status
-from prepza_common.constants import LEGAL_VERSIONS
+from prepza_common.config.constants import LEGAL_VERSIONS
 
 from app.constants.bulk import LEGAL_KINDS
 from app.constants.legal_notices import (

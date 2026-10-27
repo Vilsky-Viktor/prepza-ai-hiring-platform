@@ -2,9 +2,9 @@ from uuid import UUID
 
 from fastapi import APIRouter, Request
 from fastapi.responses import StreamingResponse
-from prepza_common.i18n import request_language
-from prepza_common.limits import limit
-from prepza_common.sse import event_stream
+from prepza_common.http.sse import event_stream
+from prepza_common.i18n.i18n import request_language
+from prepza_common.limits.limits import limit
 
 from app.auth import UserWithToken
 from app.constants.chat import MAX_MESSAGE_LENGTH, RESTORE_MINUTES

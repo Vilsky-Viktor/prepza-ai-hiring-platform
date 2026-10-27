@@ -1,9 +1,14 @@
 from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
-from prepza_common.audit_actions import ACTION_GROUPS, MAX_TARGET_LABEL, AuditAction, TargetKind
-from prepza_common.constants import DELETED_USER
-from prepza_common.db import delete_in_batches, update_in_batches
+from prepza_common.config.constants import DELETED_USER
+from prepza_common.db.db import delete_in_batches, update_in_batches
+from prepza_common.events.audit_actions import (
+    ACTION_GROUPS,
+    MAX_TARGET_LABEL,
+    AuditAction,
+    TargetKind,
+)
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError
@@ -95,7 +100,7 @@ async def record_interview(interview, user_id: str, action: str, via: str | None
 
 
 async def store_event(event_id: str, data: dict, at: datetime) -> None:
-    """Another service's action (prepza_common.audit), once however often it comes, at the time
+    """Another service's action (prepza_common.events.audit), once however often it comes, at the time
     it happened. A company deleted since keeps nothing."""
     query = (
         insert(AuditEvent)

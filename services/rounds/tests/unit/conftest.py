@@ -3,7 +3,8 @@ import json
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common import memory_cache, pubsub
+from prepza_common.events import pubsub
+from prepza_common.redis import memory_cache
 
 from app.storage import session_expiry
 

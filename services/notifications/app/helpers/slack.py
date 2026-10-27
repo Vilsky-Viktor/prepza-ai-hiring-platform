@@ -3,8 +3,8 @@ import hashlib
 import hmac
 import re
 
-from prepza_common.notifications import NotificationKind
-from prepza_common.tokens import same_secret
+from prepza_common.auth.tokens import same_secret
+from prepza_common.events.notifications import NotificationKind
 
 from app.constants.slack import LINKABLE_DOT, ZERO_WIDTH_SPACE
 

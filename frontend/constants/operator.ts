@@ -1,5 +1,5 @@
 // The company that runs prepza: the site's footer, contact page and structured data name it. Mirrors
-// OPERATOR in packages/common/src/prepza_common/constants.py (tests/constants/operator.test.ts
+// OPERATOR in packages/common/src/prepza_common/config/constants.py (tests/constants/operator.test.ts
 // keeps them equal), which the legal texts and the emails' footer use.
 export const OPERATOR = {
   name: "Arcolabs OÜ",

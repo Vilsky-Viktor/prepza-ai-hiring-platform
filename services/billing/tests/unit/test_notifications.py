@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common.notifications import NOTIFICATION_REQUESTED, notification
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED, notification
 
 from app.integrations import paddle
 from app.services import auto_top_up_declines, auto_top_ups, referrals, topups, webhooks

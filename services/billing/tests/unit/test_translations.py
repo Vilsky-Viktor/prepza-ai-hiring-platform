@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from prepza_common.translations import TRANSLATIONS, raised_messages
+from prepza_common.i18n.translations import TRANSLATIONS, raised_messages
 
 from app.constants.credits import NOT_ENOUGH
 

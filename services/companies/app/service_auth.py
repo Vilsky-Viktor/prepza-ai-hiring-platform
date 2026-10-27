@@ -2,7 +2,7 @@ from contextvars import ContextVar
 from typing import Annotated
 
 from fastapi import Depends, Header
-from prepza_common.service_auth import callee_secret, issue_token, service_caller, token_claims
+from prepza_common.auth.service_auth import callee_secret, issue_token, service_caller, token_claims
 
 from app.config.settings import settings
 from app.constants.audit import VIAS

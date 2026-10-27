@@ -56,6 +56,6 @@ resource "google_pubsub_subscription" "funnel" {
 # The salt of the user ids in funnel events is the analytics-salt secret (secrets.tf).
 
 locals {
-  # Matches FUNNEL_PREFIX in prepza_common.constants.
+  # Matches FUNNEL_PREFIX in prepza_common.config.constants.
   funnel_prefix = "funnel."
 }

@@ -1,7 +1,7 @@
 import logging
 from urllib.parse import parse_qs, urlparse
 
-from prepza_common.i18n import language_of, translate
+from prepza_common.i18n.i18n import language_of, translate
 from starlette.requests import Request
 from starlette.responses import PlainTextResponse
 from starlette.types import ASGIApp, Message, Receive, Scope, Send

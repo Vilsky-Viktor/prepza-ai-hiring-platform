@@ -6,8 +6,8 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common import public_urls
-from prepza_common.encryption import encrypt
+from prepza_common.auth.encryption import encrypt
+from prepza_common.http import public_urls
 
 from app.services import webhooks as delivery
 from tests.unit.ids import COMPANY, KEY

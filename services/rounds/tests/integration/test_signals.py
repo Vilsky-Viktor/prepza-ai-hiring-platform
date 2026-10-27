@@ -2,8 +2,8 @@ import os
 import uuid
 
 import pytest
-from prepza_common.limit_list import LIMITS, LIMITS_KEY
-from prepza_common.lock_waits import hold_first_commit, race
+from prepza_common.db.lock_waits import hold_first_commit, race
+from prepza_common.limits.limit_list import LIMITS, LIMITS_KEY
 
 from app.integrations.redis import get_redis
 from app.storage import sessions, signals

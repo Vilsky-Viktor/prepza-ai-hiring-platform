@@ -2,8 +2,8 @@ import asyncio
 from datetime import datetime
 
 import httpx
-from prepza_common.constants import VIA_MCP
-from prepza_common.i18n import translate
+from prepza_common.config.constants import VIA_MCP
+from prepza_common.i18n.i18n import translate
 
 from app.constants.tool_calls import SERVICE_UNAVAILABLE
 from app.constants.updates import (

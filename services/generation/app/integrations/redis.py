@@ -1,6 +1,6 @@
 from functools import cache
 
-from prepza_common.redis_client import redis_client
+from prepza_common.redis.redis_client import redis_client
 from redis.asyncio import Redis
 
 from app.config.settings import settings

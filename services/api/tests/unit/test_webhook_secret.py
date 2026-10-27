@@ -8,7 +8,7 @@ from datetime import UTC, datetime, timedelta
 # The fixtures are imported and named in the tests.
 # ruff: noqa: F811
 import pytest
-from prepza_common.encryption import decrypt, encrypt
+from prepza_common.auth.encryption import decrypt, encrypt
 
 from app.constants.api import SECRET_OVERLAP
 from app.storage import webhooks

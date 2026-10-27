@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.constants import LANGUAGES
+from prepza_common.config.constants import LANGUAGES
 
 from app.helpers.emails import member_invite_email
 from app.integrations import smtp

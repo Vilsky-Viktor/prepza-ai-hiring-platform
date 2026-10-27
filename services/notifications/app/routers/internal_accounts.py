@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.notifications import Recipient
-from prepza_common.user import UserEmailIn
+from prepza_common.auth.user import UserEmailIn
+from prepza_common.events.notifications import Recipient
 
 from app.schemas.notifications import NotificationOut
 from app.service_auth import ServiceCaller

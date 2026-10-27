@@ -1,4 +1,4 @@
-from prepza_common.notifications import NotificationKind, Recipient
+from prepza_common.events.notifications import NotificationKind, Recipient
 
 from app.config.settings import settings
 from app.helpers.member_emails import price_change_email, top_up_failed_email, top_up_paused_email

@@ -4,10 +4,10 @@ from urllib.parse import parse_qs, urlparse
 
 import httpx
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.constants import DELETED_USER
-from prepza_common.encryption import encrypt
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.encryption import encrypt
+from prepza_common.auth.user import User
+from prepza_common.config.constants import DELETED_USER
 
 from app.config.settings import settings
 from app.constants.notifications import KEEP_DAYS

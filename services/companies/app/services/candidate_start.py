@@ -1,7 +1,7 @@
 from fastapi import HTTPException, status
-from prepza_common.multi_answer import multi_share
-from prepza_common.names import clean_name
-from prepza_common.user import User
+from prepza_common.ai.multi_answer import multi_share
+from prepza_common.auth.user import User
+from prepza_common.i18n.names import clean_name
 
 from app.constants.invites import InviteStatus
 from app.helpers.candidates import candidate_seconds

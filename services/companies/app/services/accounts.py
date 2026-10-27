@@ -2,7 +2,7 @@ import asyncio
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.constants import ACCOUNT_OWNS_SHARED
+from prepza_common.config.constants import ACCOUNT_OWNS_SHARED
 
 from app.constants.roles import Role
 from app.integrations import billing

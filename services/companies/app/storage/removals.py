@@ -1,7 +1,7 @@
 from datetime import datetime
 from uuid import UUID
 
-from prepza_common.db import delete_in_batches
+from prepza_common.db.db import delete_in_batches
 from sqlalchemy import select
 
 from app.models.invites import CandidateInvite

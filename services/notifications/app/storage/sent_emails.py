@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from prepza_common.db import delete_in_batches
+from prepza_common.db.db import delete_in_batches
 from sqlalchemy import delete, exists, func, select
 
 from app.models.sent_emails import SentEmail

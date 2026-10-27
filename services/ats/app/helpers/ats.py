@@ -5,8 +5,8 @@ import re
 import time
 from html.parser import HTMLParser
 
-from prepza_common.constants import DEFAULT_LANGUAGE
-from prepza_common.tokens import same_secret
+from prepza_common.auth.tokens import same_secret
+from prepza_common.config.constants import DEFAULT_LANGUAGE
 
 from app.constants.ats import SUBDOMAIN, TEAMTAILOR_SIGNATURE_SECONDS
 from app.templates.comments import COMMENTS

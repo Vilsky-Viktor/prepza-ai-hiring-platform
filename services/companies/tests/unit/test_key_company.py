@@ -1,7 +1,7 @@
 import asyncio
 import uuid
 
-from prepza_common.service_auth import issue_token
+from prepza_common.auth.service_auth import issue_token
 
 from app.constants.ai_apps import KEY_OTHER_COMPANY
 from app.storage import audit, companies

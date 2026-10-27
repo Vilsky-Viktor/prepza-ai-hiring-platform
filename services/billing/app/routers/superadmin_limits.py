@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
 
 from app.constants.usage import CHANGES_SHOWN
 from app.schemas.limits import LimitChangeOut, LimitIn, LimitsOut

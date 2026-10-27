@@ -31,7 +31,7 @@ ALLOWED = {
     # Resend's idempotency key: an event's or a send's id, never the recipient.
     "services/notifications/app/integrations/resend.py idempotency_key",
     # A limit's name, as limit_list.LIMITS names it.
-    "packages/common/src/prepza_common/limits.py key",
+    "packages/common/src/prepza_common/limits/limits.py key",
 }
 
 

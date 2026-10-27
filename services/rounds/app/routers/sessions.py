@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.auth import CurrentUser
-from prepza_common.rate_limit import hit_or_skip
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from app.constants.integrity import IntegritySignal
 from app.constants.rounds import TIME_GRACE_SECONDS, RoundStatus

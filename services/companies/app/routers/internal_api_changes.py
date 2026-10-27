@@ -1,10 +1,10 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.constants import MAX_PAGE_SIZE
-from prepza_common.i18n import CodedError
-from prepza_common.pause import refuse_if_paused
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.config.constants import MAX_PAGE_SIZE
+from prepza_common.i18n.i18n import CodedError
+from prepza_common.limits.pause import refuse_if_paused
 
 from app.constants import error_codes
 from app.constants.audit import VIA_API

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.user import UserEmailIn
+from prepza_common.auth.user import UserEmailIn
 
 from app.service_auth import ServiceCaller
 from app.services import outbox as outbox_service

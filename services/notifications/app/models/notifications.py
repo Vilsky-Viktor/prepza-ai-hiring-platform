@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db import one_of
-from prepza_common.notifications import NotificationKind, Recipient
+from prepza_common.db.db import one_of
+from prepza_common.events.notifications import NotificationKind, Recipient
 from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
@@ -12,7 +12,7 @@ from app.models.base import Base
 
 class Notification(Base):
     """One notification for a user, or for every member of a company (see
-    prepza_common.notifications)."""
+    prepza_common.events.notifications)."""
 
     __tablename__ = "notifications"
     __table_args__ = (

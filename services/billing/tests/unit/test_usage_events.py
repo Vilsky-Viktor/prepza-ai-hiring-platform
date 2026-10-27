@@ -6,7 +6,7 @@ import json
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.ai_constants import AI_USED, LIMIT_HIT, Category
+from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT, Category
 
 from app.services import usage_events
 from app.storage import usage

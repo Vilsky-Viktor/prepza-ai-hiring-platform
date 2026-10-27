@@ -1,7 +1,7 @@
 from datetime import datetime
 from uuid import UUID
 
-from prepza_common.sets import OptionIn
+from prepza_common.ai.sets import OptionIn
 from pydantic import BaseModel
 
 

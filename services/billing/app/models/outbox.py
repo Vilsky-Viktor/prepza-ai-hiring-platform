@@ -1,4 +1,4 @@
-from prepza_common.event_models import OutboxColumns
+from prepza_common.events.event_models import OutboxColumns
 
 from app.models.base import Base
 

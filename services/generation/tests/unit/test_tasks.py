@@ -3,7 +3,7 @@ import base64
 import json
 from unittest import mock
 
-from prepza_common import http
+from prepza_common.http import http
 
 from app.config.settings import settings
 from app.constants.generation import RUN_GENERATION, TASK_DEADLINE_SECONDS

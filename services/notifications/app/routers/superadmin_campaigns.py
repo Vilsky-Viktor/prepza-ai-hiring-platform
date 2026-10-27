@@ -2,9 +2,9 @@ import logging
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.paging import PageParams
-from prepza_common.superadmin import SuperadminUser
-from prepza_common.user import Language
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.auth.user import Language
+from prepza_common.db.paging import PageParams
 
 from app.schemas.campaigns import (
     AudienceIn,

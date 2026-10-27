@@ -4,8 +4,8 @@ import uuid
 
 import httpx
 import pytest
-from prepza_common import http
-from prepza_common.ai_constants import LIMIT_HIT
+from prepza_common.ai.ai_constants import LIMIT_HIT
+from prepza_common.http import http
 
 from app.config.settings import settings
 from app.helpers.member_emails import digest_email

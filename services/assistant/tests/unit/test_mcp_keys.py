@@ -4,9 +4,9 @@ import json
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common import http
-from prepza_common.i18n import translate
-from prepza_common.service_auth import token_claims
+from prepza_common.auth.service_auth import token_claims
+from prepza_common.http import http
+from prepza_common.i18n.i18n import translate
 
 from app.constants.chat import OTHER_COMPANY
 from app.constants.key_tools import KEY_TOOLS

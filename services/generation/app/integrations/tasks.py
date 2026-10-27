@@ -3,9 +3,9 @@ import base64
 import json
 import logging
 
-from prepza_common import http
-from prepza_common.google import access_token, running_locally
-from prepza_common.http import bearer
+from prepza_common.auth.google import access_token, running_locally
+from prepza_common.http import http
+from prepza_common.http.http import bearer
 
 from app.config.settings import settings
 from app.constants.generation import (

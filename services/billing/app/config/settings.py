@@ -1,6 +1,6 @@
 from typing import Literal
 
-from prepza_common.settings import ServiceSettings
+from prepza_common.config.settings import ServiceSettings
 from pydantic import model_validator
 
 from app.constants.products import PADDLE_KEY_PREFIXES, PADDLE_TOKEN_PREFIXES
@@ -28,7 +28,7 @@ class Settings(ServiceSettings):
     # monthly price whose checkout saves it. Without both, it isn't offered.
     paddle_api_key: str = ""
     paddle_price_auto_top_up: str = ""
-    # Keys the hashes welcome gifts are kept by (prepza_common.person_hash), so nobody with a
+    # Keys the hashes welcome gifts are kept by (prepza_common.auth.person_hash), so nobody with a
     # list of addresses can match them.
     person_hash_key: str
 

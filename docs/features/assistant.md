@@ -32,7 +32,7 @@ Anyone asks Mira, prepza's AI assistant, from the "ask Mira" button in the heade
 - History titles: the start of the first question at first; after the first answer, and after every 5th question, one cheap call to the title model (`TITLE_MODEL`, `TITLE_REASONING_EFFORT`: `gpt-6-luna` without reasoning, a few tokens; it counts toward the budgets) writes a one-line summary of up to 60 characters in the conversation's language, as structured output, without people's names, emails or phone numbers (code also removes emails and cuts a long title at a word's end). The conversation reaches it as tagged data, never as instructions; measured in `evals/` (`scripts/titles_test.py`). It comes as a `{"title"}` event after `{"done"}`; a failure keeps the old title.
 - Asked to sign out, the assistant signs the user out at once: its `sign_out` tool only makes the turn send `{"sign_out": true}`, and the panel runs the site's sign-out and shows the visitor's welcome.
 - **Signed out** it's the same panel with FAQ answers only: the questions go to rounds' help chat (its limits, nothing stored, see [Public site](site.md#faq-and-help-chat)), with no tools, actions, history, company or voice. Asking to sign in, or to do something that needs an account, brings a sign-in card; signing in from it keeps the panel open, now signed in.
-- Both prompts keep to prepza and hiring with it (`prepza_common.scope.SCOPE_RULE`): anything else is declined in one friendly sentence, with no tools called.
+- Both prompts keep to prepza and hiring with it (`prepza_common.ai.scope.SCOPE_RULE`): anything else is declined in one friendly sentence, with no tools called.
 
 ## What it answers
 
@@ -48,7 +48,7 @@ Anyone asks Mira, prepza's AI assistant, from the "ask Mira" button in the heade
 
 ## The page the user is on
 
-Every message carries the page it's asked on (`page`): its guide's key (`prepza_common.page_keys`, which every page registers in the frontend, see [page guides](companies.md#page-guides)), its path with the query (the tab, `?tab=candidates`), and the ids its route names (`company_id`, `interview_id`, `candidate_id` (the invite), `template_id`, `practice_round_id`), read from the route's parameters (`lib/page-context.ts`). The admin zone's pages register no key, so the panel sends no page there.
+Every message carries the page it's asked on (`page`): its guide's key (`prepza_common.ai.page_keys`, which every page registers in the frontend, see [page guides](companies.md#page-guides)), its path with the query (the tab, `?tab=candidates`), and the ids its route names (`company_id`, `interview_id`, `candidate_id` (the invite), `template_id`, `practice_round_id`), read from the route's parameters (`lib/page-context.ts`). The admin zone's pages register no key, so the panel sends no page there.
 
 - It's only context, checked like any input (`schemas/chat.py`): an unknown key is dropped, the path is cut to 200 characters, an id must look like one. The ids are never trusted: the tools read with the user's token, so one that isn't theirs is a 404 there.
 - The prompt's context line names the page, its quoted path and each id ("the interview with id …"), and says the ids stand only for what the user points at ("here", "this", "these"): a question naming an interview or a candidate is about that one (found by its name, even on another one's page), and any other covers all the user's data. A question about using the page calls `get_page_guide` (rounds' `GET /help/pages/{key}`, in the user's language); one about its data calls the usual tools with its ids, without asking which.
@@ -128,7 +128,7 @@ Signed in, the panel's microphone button takes a spoken question: hold it to tal
 
 ## Secrets pasted into the chat
 
-A message holding a secret (a key, a token, a password) is caught before anything else happens to it, by one detector in `prepza_common/secrets_check.py` shared with the help chat and voice:
+A message holding a secret (a key, a token, a password) is caught before anything else happens to it, by one detector in `prepza_common/ai/secrets_check.py` shared with the help chat and voice:
 
 - Known formats: prepza's `pz_` API keys and `whsec_` web hook secrets, Slack tokens and web hook URLs, OpenAI, Anthropic, GitHub, Stripe, Paddle, AWS and Google keys, JWTs and private keys.
 - A word saying it's a secret (secret, key, token, password, credential and the like in the 23 languages, `secret_words.py`) anywhere in the message: then any standalone value of 16+ characters mixing letters and digits counts, unless it's a URL, an email, a UUID, a path or glued words (`postgresql16django5`).
@@ -138,7 +138,7 @@ On a match, the message (or the chat carried from before signing in) isn't store
 
 ## Limits
 
-Counted in Redis. Each is one of `prepza_common.limit_list`'s, at the default below until a superadmin changes it in the admin zone's Controls tab (see [Admin zone](admin-zone.md#limits)):
+Counted in Redis. Each is one of `prepza_common.limits.limit_list`'s, at the default below until a superadmin changes it in the admin zone's Controls tab (see [Admin zone](admin-zone.md#limits)):
 
 | Limit | Default |
 |---|---|
@@ -162,8 +162,8 @@ The limits for everyone hold only people in a company that never topped up, so f
 - A company that isn't among the user's is refused before anything is called with it: the picked company, any `company_id` a tool is given (in the panel and through an AI app alike), and a pending action's company on confirm. The list is companies' internal one (`/internal/users/{id}/companies`, every company, no page limit), kept 10 seconds (`constants/tenancy.py`) so a confirm reads it once, and read again after an action that made a company.
 - Never `/internal/` or `/superadmin/` routes, and a write only with `confirm: True` (the tool loader refuses them).
 - Reads of a candidate's results go to companies with a signed `X-Assistant` header: the action log records them as the assistant's (`via: "assistant"`, or `"mcp"` through an AI app), and they're kept out of the "results viewed" funnel.
-- Questions and the data the tools read are sent to OpenAI (no training). Each tool's data is trimmed to the fields it needs. A link's code reaches the model only as the full link the app's page copies (`TOKEN_LINKS`): a candidate's invite link (owners and admins, until they finish) and an interview's shareable link. Team members' join links are never read: they give access to the company, and AI apps use the same tools. Every model call is made with `store=false` (`prepza_common.llm.chat_model`), so OpenAI keeps nothing beyond its 30-day abuse monitoring; the assistant's tool loops send the model's encrypted reasoning back with each call instead (`MODEL_INCLUDE`).
-- Logs and error reports never hold what was said, tool arguments or results: failures are logged by their type only, and Sentry gets no variables' values, in any service (`prepza_common.sentry.init_sentry`).
+- Questions and the data the tools read are sent to OpenAI (no training). Each tool's data is trimmed to the fields it needs. A link's code reaches the model only as the full link the app's page copies (`TOKEN_LINKS`): a candidate's invite link (owners and admins, until they finish) and an interview's shareable link. Team members' join links are never read: they give access to the company, and AI apps use the same tools. Every model call is made with `store=false` (`prepza_common.ai.llm.chat_model`), so OpenAI keeps nothing beyond its 30-day abuse monitoring; the assistant's tool loops send the model's encrypted reasoning back with each call instead (`MODEL_INCLUDE`).
+- Logs and error reports never hold what was said, tool arguments or results: failures are logged by their type only, and Sentry gets no variables' values, in any service (`prepza_common.observability.sentry.init_sentry`).
 
 ## What's stored
 
@@ -172,7 +172,7 @@ The limits for everyone hold only people in a company that never topped up, so f
 
 ### Votes in Langfuse
 
-With `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` set (local only for now: not in Terraform until the privacy policy and DPA of 2026-10-23, which list Langfuse, are in force), the assistant's and the help chat's answers are traced to Langfuse (`LANGFUSE_HOST`, its EU cloud by default) through its LangChain callback (`prepza_common.tracing`): each answer gets one trace, which all its model calls report to, and its id is kept with the answer. A vote is then sent within its own request (waiting at most 3 seconds) as a Langfuse score on that trace (`prepza_common.answer_votes`): name `user_vote`, value 1 for a thumbs up and 0 for a thumbs down, one score a trace (a stable id, so a changed vote replaces it), deleted when the vote is cleared. Each send reads the vote as it is then and sends it again if it changed meanwhile, so quick changes end with the latest; it's tried twice, after a jittered wait, before it's logged and dropped; the vote itself stays saved. Without the keys nothing is traced, no trace id is kept and nothing is sent. A conversation's title is its own trace, tagged with the conversation's id; its answers' traces and its titles' share the conversation's Langfuse session (its id), so a conversation reads as one there. Generation traces to Langfuse with the same keys (see [Generation settings](../generation.md#generation-settings)).
+With `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` set (local only for now: not in Terraform until the privacy policy and DPA of 2026-10-23, which list Langfuse, are in force), the assistant's and the help chat's answers are traced to Langfuse (`LANGFUSE_HOST`, its EU cloud by default) through its LangChain callback (`prepza_common.ai.tracing`): each answer gets one trace, which all its model calls report to, and its id is kept with the answer. A vote is then sent within its own request (waiting at most 3 seconds) as a Langfuse score on that trace (`prepza_common.ai.answer_votes`): name `user_vote`, value 1 for a thumbs up and 0 for a thumbs down, one score a trace (a stable id, so a changed vote replaces it), deleted when the vote is cleared. Each send reads the vote as it is then and sends it again if it changed meanwhile, so quick changes end with the latest; it's tried twice, after a jittered wait, before it's logged and dropped; the vote itself stays saved. Without the keys nothing is traced, no trace id is kept and nothing is sent. A conversation's title is its own trace, tagged with the conversation's id; its answers' traces and its titles' share the conversation's Langfuse session (its id), so a conversation reads as one there. Generation traces to Langfuse with the same keys (see [Generation settings](../generation.md#generation-settings)).
 
 ## Retention and deletion
 

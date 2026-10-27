@@ -8,8 +8,8 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.patterns import PatternStatus
 from app.main import app

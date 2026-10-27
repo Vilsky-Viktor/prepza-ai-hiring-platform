@@ -1,8 +1,8 @@
 import json
 
 from babel.numbers import format_decimal
-from prepza_common.constants import LANGUAGES
-from prepza_common.money import money
+from prepza_common.config.constants import LANGUAGES
+from prepza_common.i18n.money import money
 
 from app.constants.faq import FAQS
 from app.constants.help import FAQ_EXAMPLE_CANDIDATES

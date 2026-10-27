@@ -2,8 +2,8 @@ import logging
 import time
 
 from fastapi import APIRouter, HTTPException, Request, status
-from prepza_common.auth import CurrentUser, OptionalUser
-from prepza_common.constants import WEBHOOK_SIGNATURE_REFUSED
+from prepza_common.auth.auth import CurrentUser, OptionalUser
+from prepza_common.config.constants import WEBHOOK_SIGNATURE_REFUSED
 
 from app.config.settings import settings
 from app.constants.currencies import ChoiceOwner

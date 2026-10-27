@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.auth import CurrentUser
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 
 from app.constants.ai_apps import AI_APPS_CHANGED_BY_APP
 from app.schemas.ai_apps import AiAppsIn

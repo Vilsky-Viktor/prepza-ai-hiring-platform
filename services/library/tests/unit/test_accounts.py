@@ -6,10 +6,10 @@ import httpx
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
-from prepza_common import http
-from prepza_common.auth import current_user
-from prepza_common.constants import ACCOUNT_OWNS_SHARED, GOOGLE_TIMEOUT_SECONDS
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.config.constants import ACCOUNT_OWNS_SHARED, GOOGLE_TIMEOUT_SECONDS
+from prepza_common.http import http
 
 from app.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
 from app.integrations import accounts as account_services
@@ -240,7 +240,7 @@ def test_a_sign_in_already_gone_is_deleted(monkeypatch):
 
 
 def test_deleting_and_exporting_in_a_service_waits_longer_than_an_ordinary_call(monkeypatch):
-    from prepza_common.constants import HTTP_TIMEOUT_SECONDS
+    from prepza_common.config.constants import HTTP_TIMEOUT_SECONDS
 
     from app.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
 

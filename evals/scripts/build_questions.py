@@ -36,7 +36,7 @@ from common import (
     tokens_of,
 )
 from langchain_core.callbacks import get_usage_metadata_callback
-from prepza_common.examples import example_count
+from prepza_common.ai.examples import example_count
 
 from app.config.settings import settings
 from app.helpers.questions import build_options, with_example

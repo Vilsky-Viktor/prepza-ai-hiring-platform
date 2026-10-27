@@ -4,7 +4,7 @@ import time
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.notifications import NotificationKind, Recipient, notification
+from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
 from app.constants.email import AUTOMATED_HEADERS
 from app.constants.member_emails import CLEANUP_SECONDS

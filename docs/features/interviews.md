@@ -91,7 +91,7 @@ Any company member can preview an interview as a candidate, with the play button
 
 | Field | Limit (characters) |
 |---|---|
-| Title | 70, and at least 3 (`MIN_TITLE_LENGTH`; a test's and a template's title, spaces at either end aside, `prepza_common.titles`) |
+| Title | 70, and at least 3 (`MIN_TITLE_LENGTH`; a test's and a template's title, spaces at either end aside, `prepza_common.i18n.titles`) |
 | Company name | 45, and at least 2 (`MIN_COMPANY_NAME_LENGTH`: EY and 3M are companies) |
 | Topic name | 50 |
 | Job description | 10,000 |

@@ -3,7 +3,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common import db
+from prepza_common.db import db
 
 from app.models.usage import AiUsage
 from app.storage import usage

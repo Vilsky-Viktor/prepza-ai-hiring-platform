@@ -2,8 +2,8 @@ from uuid import UUID
 
 import httpx
 from fastapi import APIRouter, HTTPException, Response, status
-from prepza_common.auth import CurrentUser
-from prepza_common.http import passed_on
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.http.http import passed_on
 
 from app.helpers.rounds import find_question
 from app.integrations import feedback

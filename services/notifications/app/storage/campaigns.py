@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
+from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
 from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
 

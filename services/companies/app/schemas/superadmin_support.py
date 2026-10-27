@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Annotated, Literal
 from uuid import UUID
 
-from prepza_common.constants import MAX_ADJUSTMENT, MAX_ADJUSTMENT_NOTE
+from prepza_common.config.constants import MAX_ADJUSTMENT, MAX_ADJUSTMENT_NOTE
 from pydantic import BaseModel, Field, StringConstraints
 
 from app.constants.superadmin import MAX_SUPPORT_QUERY, SupportKind

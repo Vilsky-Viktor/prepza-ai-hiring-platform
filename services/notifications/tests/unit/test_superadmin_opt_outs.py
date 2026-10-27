@@ -2,8 +2,8 @@ import logging
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.helpers.unsubscribe import address_hash
 from app.integrations import companies

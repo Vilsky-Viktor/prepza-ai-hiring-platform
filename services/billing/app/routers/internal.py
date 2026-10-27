@@ -2,9 +2,9 @@ from typing import Annotated
 
 from fastapi import APIRouter, HTTPException, Query, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.analytics import track
-from prepza_common.constants import MAX_PAGE_SIZE
-from prepza_common.paging import IdPageParams, PageParams
+from prepza_common.config.constants import MAX_PAGE_SIZE
+from prepza_common.db.paging import IdPageParams, PageParams
+from prepza_common.events.analytics import track
 
 from app.constants.credits import (
     ADJUSTMENT_BELOW_ZERO,

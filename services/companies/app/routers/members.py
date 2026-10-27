@@ -1,11 +1,11 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.auth import CurrentUser, OptionalUser
-from prepza_common.limits import at_most, limit
-from prepza_common.paging import PageParams
-from prepza_common.rate_limit import hit, hit_emails, recipient_key
+from prepza_common.auth.auth import CurrentUser, OptionalUser
+from prepza_common.db.paging import PageParams
+from prepza_common.events.audit_actions import AuditAction, TargetKind
+from prepza_common.limits.limits import at_most, limit
+from prepza_common.limits.rate_limit import hit, hit_emails, recipient_key
 
 from app.constants.roles import (
     ALREADY_INVITED,

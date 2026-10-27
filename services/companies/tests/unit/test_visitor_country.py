@@ -6,8 +6,8 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.integrations import billing, billing_prices
 from app.main import app

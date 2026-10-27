@@ -2,7 +2,7 @@ import secrets
 from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.constants import DELETED_USER
+from prepza_common.config.constants import DELETED_USER
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession

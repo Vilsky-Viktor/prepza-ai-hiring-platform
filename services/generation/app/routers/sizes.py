@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from prepza_common.limits import limit
+from prepza_common.limits.limits import limit
 
 from app.helpers.questions import topic_size_name
 from app.integrations.redis import get_redis

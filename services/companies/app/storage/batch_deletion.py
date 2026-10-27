@@ -1,4 +1,4 @@
-from prepza_common.constants import DELETE_BATCH
+from prepza_common.config.constants import DELETE_BATCH
 from sqlalchemy import delete, select
 
 from app.constants.invites import InviteStatus

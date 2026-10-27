@@ -1,6 +1,6 @@
 """candidate_invites hold_key: the hash migration 0036 put in older invites' keys is a plain hash
 of the interview and the candidate's email, which anyone with both could match; every key's hash
-is keyed (prepza_common.credit_keys.rekeyed, PERSON_HASH_KEY), as billing's migration 0026 does
+is keyed (prepza_common.limits.credit_keys.rekeyed, PERSON_HASH_KEY), as billing's migration 0026 does
 to its copies, so the two still meet. One transaction, so a cut-off run leaves nothing half done.
 
 Revision ID: 0057
@@ -10,7 +10,7 @@ Create Date: 2026-10-22
 
 import sqlalchemy as sa
 from alembic import op
-from prepza_common.credit_keys import rekeyed
+from prepza_common.limits.credit_keys import rekeyed
 
 from app.config.settings import settings
 

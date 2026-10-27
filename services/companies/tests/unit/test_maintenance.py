@@ -2,8 +2,8 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 import pytest
-from prepza_common.auth import current_user, optional_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user, optional_user
+from prepza_common.auth.user import User
 
 from app.main import app
 from app.routers import maintenance as maintenance_routes

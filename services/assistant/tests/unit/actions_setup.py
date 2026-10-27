@@ -1,7 +1,7 @@
 import asyncio
 import uuid
 
-from prepza_common.user import User
+from prepza_common.auth.user import User
 
 from app.models.answers import Turn
 from app.services import actions

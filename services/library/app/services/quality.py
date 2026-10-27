@@ -2,7 +2,7 @@ import logging
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.notifications import NotificationKind
+from prepza_common.events.notifications import NotificationKind
 
 from app.constants.quality import FLAG_RESEND_AFTER_HOURS, MAX_FLAG_RESENDS, QualityFlag
 from app.helpers.notifications import question_notification

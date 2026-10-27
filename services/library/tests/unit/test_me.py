@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 from firebase_admin import auth as firebase_auth
-from prepza_common.constants import LEGAL_VERSIONS
+from prepza_common.config.constants import LEGAL_VERSIONS
 
 from app.services import accounts
 from app.storage import legal

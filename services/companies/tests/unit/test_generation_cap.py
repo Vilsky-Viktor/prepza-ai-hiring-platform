@@ -4,9 +4,9 @@ from datetime import UTC, datetime
 import httpx
 import pytest
 from fake_redis import FakeRedis
-from prepza_common import ai_cap
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.ai import ai_cap
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.integrations import billing, generation
 from app.main import app

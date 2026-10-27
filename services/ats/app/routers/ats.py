@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth import CurrentUser
-from prepza_common.constants import MAX_GOAL_LENGTH
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.config.constants import MAX_GOAL_LENGTH
 
 from app.constants.ats import ATS_NAMES, AtsProvider, CandidateStatus
 from app.helpers.ats import job_text

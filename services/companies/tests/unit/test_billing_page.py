@@ -3,9 +3,9 @@ from datetime import UTC, datetime
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth import current_user
-from prepza_common.constants import MAX_PAGE_SIZE
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.config.constants import MAX_PAGE_SIZE
 
 from app.integrations import billing, billing_prices
 from app.main import app

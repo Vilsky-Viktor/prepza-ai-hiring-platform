@@ -1,8 +1,8 @@
 import math
 
 from langgraph.types import Send
-from prepza_common.examples import example_count
-from prepza_common.multi_answer import multi_count
+from prepza_common.ai.examples import example_count
+from prepza_common.ai.multi_answer import multi_count
 
 from app.constants.generation import QUESTION_OVERSAMPLE
 from app.helpers.questions import (

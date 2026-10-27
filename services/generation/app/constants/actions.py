@@ -1,4 +1,4 @@
-# The AI calls this service makes, as prepza_common.ai_constants.ACTIONS names them; also what a
+# The AI calls this service makes, as prepza_common.ai.ai_constants.ACTIONS names them; also what a
 # refusal while paused says was refused.
 INTERVIEW_GENERATION = "interview_generation"
 TEMPLATE_GENERATION = "template_generation"

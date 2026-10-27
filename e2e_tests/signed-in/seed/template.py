@@ -10,7 +10,7 @@ A fixed generation id makes a second run find the first one's template instead o
 import asyncio
 import uuid
 
-from prepza_common.sets import OptionIn, PreparationIn, QuestionIn, TopicIn
+from prepza_common.ai.sets import OptionIn, PreparationIn, QuestionIn, TopicIn
 
 from app.storage import preparations, templates
 

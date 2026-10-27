@@ -1,10 +1,10 @@
 import asyncio
 
 import pytest
-from prepza_common import memory_cache
-from prepza_common.auth import current_user
-from prepza_common.limit_list import LIMITS
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.limits.limit_list import LIMITS
+from prepza_common.redis import memory_cache
 
 from app.constants.help import HELP_ALL_KEY, HELP_SPEND_KEY
 from app.main import app

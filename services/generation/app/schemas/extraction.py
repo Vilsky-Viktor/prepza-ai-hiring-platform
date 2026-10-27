@@ -1,4 +1,4 @@
-from prepza_common.user import Level
+from prepza_common.auth.user import Level
 from pydantic import BaseModel, Field
 
 

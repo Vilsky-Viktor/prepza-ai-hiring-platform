@@ -1,10 +1,10 @@
 from fastapi import status
-from prepza_common.analytics import track
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.i18n import CodedError
-from prepza_common.names import clean_name
-from prepza_common.rate_limit import hit_emails, recipient_key
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.events.analytics import track
+from prepza_common.events.audit_actions import AuditAction, TargetKind
+from prepza_common.i18n.i18n import CodedError
+from prepza_common.i18n.names import clean_name
+from prepza_common.limits.rate_limit import hit_emails, recipient_key
 
 from app.constants import error_codes
 from app.constants.invites import (

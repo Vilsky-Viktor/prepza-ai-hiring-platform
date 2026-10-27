@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.auth import CurrentUser
-from prepza_common.rate_limit import recipient_key
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.events.audit_actions import AuditAction, TargetKind
+from prepza_common.limits.rate_limit import recipient_key
 
 from app.constants.invites import InviteStatus
 from app.constants.reports import READ_BATCH

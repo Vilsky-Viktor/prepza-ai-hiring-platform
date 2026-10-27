@@ -2,7 +2,7 @@ import time
 import uuid
 
 from fastapi import HTTPException, status
-from prepza_common.constants import RETRY_AFTER
+from prepza_common.config.constants import RETRY_AFTER
 
 from app.constants.quality import COPY_FIX_BATCH, COPY_FIX_SECONDS
 from app.storage import copy_fixes

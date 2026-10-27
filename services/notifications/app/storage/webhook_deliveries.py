@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common import outbox
+from prepza_common.events import outbox
 from sqlalchemy.exc import IntegrityError
 
 from app.constants.events import EMAIL_WEBHOOK

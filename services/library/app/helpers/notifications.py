@@ -1,4 +1,4 @@
-from prepza_common.notifications import EVERYONE, NotificationKind, Recipient, notification
+from prepza_common.events.notifications import EVERYONE, NotificationKind, Recipient, notification
 
 from app.constants.quality import COMPANY_INTERVIEWS_LINK
 from app.constants.sets import OwnerType

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
-from prepza_common.constants import DEFAULT_LANGUAGE
-from prepza_common.user import Language
+from prepza_common.auth.user import Language
+from prepza_common.config.constants import DEFAULT_LANGUAGE
 
 from app.constants.products import OwnerType
 from app.dependencies import Country

@@ -4,12 +4,12 @@ from collections.abc import AsyncIterator
 
 import anyio
 from fastapi import HTTPException, status
-from prepza_common.constants import RETRY_AFTER
-from prepza_common.i18n import translate
-from prepza_common.pause import refuse_if_paused
-from prepza_common.secrets_check import secret_in
-from prepza_common.sse import KEEP_ALIVE, sse_event
-from prepza_common.user import User
+from prepza_common.ai.secrets_check import secret_in
+from prepza_common.auth.user import User
+from prepza_common.config.constants import RETRY_AFTER
+from prepza_common.http.sse import KEEP_ALIVE, sse_event
+from prepza_common.i18n.i18n import translate
+from prepza_common.limits.pause import refuse_if_paused
 
 from app.constants.ai_usage import MESSAGE_ACTION
 from app.constants.chat import (

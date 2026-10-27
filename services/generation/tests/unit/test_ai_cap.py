@@ -2,11 +2,11 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common import ai_cap
-from prepza_common.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT, MICRO
-from prepza_common.auth import current_user
-from prepza_common.limit_list import LIMITS
-from prepza_common.user import User
+from prepza_common.ai import ai_cap
+from prepza_common.ai.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT, MICRO
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.limits.limit_list import LIMITS
 
 from app.main import app
 from app.models.generation import Generation

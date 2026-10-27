@@ -2,7 +2,7 @@ import asyncio
 import uuid
 
 import pytest
-from prepza_common.notifications import (
+from prepza_common.events.notifications import (
     NOTIFICATION_REQUESTED,
     NotificationKind,
     Recipient,

@@ -5,9 +5,9 @@ from datetime import UTC, date, datetime, timedelta
 
 import httpx
 import pytest
-from prepza_common import http
-from prepza_common.lock_waits import hold_first_commit, race
-from prepza_common.notifications import NotificationKind, Recipient, notification
+from prepza_common.db.lock_waits import hold_first_commit, race
+from prepza_common.events.notifications import NotificationKind, Recipient, notification
+from prepza_common.http import http
 
 from app.config.settings import settings
 from app.constants.member_emails import DIGEST_HOUR

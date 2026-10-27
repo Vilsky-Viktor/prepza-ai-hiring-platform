@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from prepza_common.constants import DELETE_BATCH, DELETED_USER
+from prepza_common.config.constants import DELETE_BATCH, DELETED_USER
 from sqlalchemy import select, update
 
 from app.constants.statuses import Status

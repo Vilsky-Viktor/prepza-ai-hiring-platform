@@ -3,8 +3,8 @@ from datetime import UTC, date, datetime, timedelta
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.legal_notices import ALREADY_ASKED, TOO_LATE
 from app.main import app

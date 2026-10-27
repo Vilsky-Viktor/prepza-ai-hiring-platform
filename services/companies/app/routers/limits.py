@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from prepza_common.auth import CurrentUser
-from prepza_common.limits import limit
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.limits.limits import limit
 
 from app.integrations.redis import get_redis
 from app.schemas.limits import LimitsOut

@@ -1,7 +1,7 @@
 import uuid
 
 import pytest
-from prepza_common.constants import LEGAL_VERSIONS
+from prepza_common.config.constants import LEGAL_VERSIONS
 
 from app.models.companies import Member
 from app.storage import companies, email_reminders

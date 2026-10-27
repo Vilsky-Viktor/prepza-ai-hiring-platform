@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common.notifications import notification
+from prepza_common.events.notifications import notification
 
 from app.constants.invites import InviteStatus
 from app.integrations import billing, rounds

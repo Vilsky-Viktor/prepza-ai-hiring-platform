@@ -4,8 +4,8 @@ from datetime import UTC, datetime
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.analytics import track
-from prepza_common.constants import DEFAULT_LANGUAGE
+from prepza_common.config.constants import DEFAULT_LANGUAGE
+from prepza_common.events.analytics import track
 
 from app.config.settings import settings
 from app.constants.currencies import DEFAULT_CURRENCY, Currency

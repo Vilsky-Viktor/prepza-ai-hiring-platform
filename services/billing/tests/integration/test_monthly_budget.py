@@ -1,9 +1,9 @@
 """The AI costs tab's monthly budget as set in Controls, against the real database and Redis."""
 
 import pytest
-from prepza_common import memory_cache
-from prepza_common.limit_list import LIMITS_KEY
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.limits.limit_list import LIMITS_KEY
+from prepza_common.redis import memory_cache
 
 from app.services import ai_costs, limit_values
 

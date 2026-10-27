@@ -4,8 +4,8 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.campaigns import CHANGED, NOT_ACKNOWLEDGED
 from app.main import app

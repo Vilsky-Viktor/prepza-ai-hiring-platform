@@ -5,9 +5,9 @@ import re
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.i18n import translate
-from prepza_common.secrets_check import SECRET_REMOVED
-from prepza_common.user import User
+from prepza_common.ai.secrets_check import SECRET_REMOVED
+from prepza_common.auth.user import User
+from prepza_common.i18n.i18n import translate
 
 from app.constants.actions_flow import NOTHING_TO_CHANGE, SUBJECT_NOT_FOUND
 from app.constants.chat import OTHER_COMPANY

@@ -2,7 +2,7 @@ import json
 from functools import cache
 from pathlib import Path
 
-from prepza_common.constants import MAX_UPDATES
+from prepza_common.config.constants import MAX_UPDATES
 
 from app.constants.tool_calls import DEFAULT_MAX_ITEMS, MAX_STRING_LENGTH, SERVICE_URLS
 from app.constants.tools import TOOLS

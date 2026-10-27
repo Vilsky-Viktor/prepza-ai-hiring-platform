@@ -4,8 +4,8 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.http import bearer
-from prepza_common.service_auth import issue_token
+from prepza_common.auth.service_auth import issue_token
+from prepza_common.http.http import bearer
 
 from app.constants.ai_apps import AI_APPS_OFF, KEY_OTHER_COMPANY
 from app.constants.audit import VIA_ATS
@@ -219,7 +219,7 @@ def test_no_invite_during_the_pause(client, stored, monkeypatch):
     async def on(redis):
         return True
 
-    monkeypatch.setattr("prepza_common.pause.is_paused", on)
+    monkeypatch.setattr("prepza_common.limits.pause.is_paused", on)
     body = {"email": "cara@example.com", "sender_id": "ann"}
     url = f"/internal/interviews/{READY.id}/invites"
 

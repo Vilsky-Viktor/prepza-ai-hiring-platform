@@ -5,8 +5,8 @@ matter; an error answers 5xx and Pub/Sub delivers it again)."""
 import logging
 from datetime import datetime
 
-from prepza_common.ai_cap import add_unpaid
-from prepza_common.ai_constants import AI_USED, LIMIT_HIT, Category
+from prepza_common.ai.ai_cap import add_unpaid
+from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT, Category
 
 from app.integrations.redis import get_redis
 from app.storage import usage

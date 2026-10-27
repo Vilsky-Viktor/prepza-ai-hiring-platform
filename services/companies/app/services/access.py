@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.auth import CurrentUser
-from prepza_common.constants import VIA_MCP
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.config.constants import VIA_MCP
 
 from app.constants.ai_apps import AI_APPS_OFF, KEY_OTHER_COMPANY
 from app.constants.invites import (

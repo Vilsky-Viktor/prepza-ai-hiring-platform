@@ -4,7 +4,8 @@ import uuid
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common import http, limits
+from prepza_common.http import http
+from prepza_common.limits import limits
 
 from app.constants.ats import TEAMTAILOR_HOSTS
 from app.integrations import teamtailor

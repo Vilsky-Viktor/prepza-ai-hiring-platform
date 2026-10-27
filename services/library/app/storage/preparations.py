@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common import outbox
-from prepza_common.sets import PreparationIn
+from prepza_common.ai.sets import PreparationIn
+from prepza_common.events import outbox
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.orm import aliased, selectinload
 

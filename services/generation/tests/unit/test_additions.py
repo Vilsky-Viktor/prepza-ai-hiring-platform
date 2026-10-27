@@ -2,9 +2,9 @@ import asyncio
 import uuid
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.sets import AdditionContext, AdditionTopic, QuestionIn
-from prepza_common.user import User
+from prepza_common.ai.sets import AdditionContext, AdditionTopic, QuestionIn
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.additions import ADDED_QUESTIONS_INVALID, ADDITION_RUNNING, NOTHING_TO_TOP_UP
 from app.helpers.additions import planned

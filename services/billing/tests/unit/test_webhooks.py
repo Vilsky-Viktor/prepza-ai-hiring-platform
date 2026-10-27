@@ -2,7 +2,7 @@ import asyncio
 import time
 
 import pytest
-from prepza_common.constants import WEBHOOK_SIGNATURE_REFUSED
+from prepza_common.config.constants import WEBHOOK_SIGNATURE_REFUSED
 
 from app.constants.products import WEBHOOK_TOLERANCE_SECONDS
 from app.helpers.paddle import signature_valid

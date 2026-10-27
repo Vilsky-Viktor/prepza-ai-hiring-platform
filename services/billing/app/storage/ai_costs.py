@@ -2,8 +2,8 @@
 
 from datetime import datetime
 
-from prepza_common.ai_constants import Category
-from prepza_common.stats import period_range
+from prepza_common.ai.ai_constants import Category
+from prepza_common.db.stats import period_range
 from sqlalchemy import ColumnElement, Float, String, cast, func, select
 
 from app.constants.usage import TRANSCRIPTION

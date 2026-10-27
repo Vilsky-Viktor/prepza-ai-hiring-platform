@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-from prepza_common.constants import (  # noqa: F401 (re-exported)
+from prepza_common.config.constants import (  # noqa: F401 (re-exported)
     MAX_QUESTION_SECONDS,
     MIN_QUESTION_SECONDS,
 )

@@ -3,7 +3,7 @@
 import logging
 
 from fastapi import HTTPException, status
-from prepza_common.user import User
+from prepza_common.auth.user import User
 
 from app.constants.invites import SKIP_REASONS, STARTED, SkipReason
 from app.models.companies import Company

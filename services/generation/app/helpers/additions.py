@@ -1,4 +1,4 @@
-from prepza_common.sets import AdditionTopic
+from prepza_common.ai.sets import AdditionTopic
 
 from app.constants.additions import ADDED_QUESTIONS_STEP
 

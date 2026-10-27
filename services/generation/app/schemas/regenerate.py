@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from prepza_common.constants import DEFAULT_LANGUAGE
+from prepza_common.config.constants import DEFAULT_LANGUAGE
 from pydantic import BaseModel
 
 
@@ -16,7 +16,7 @@ class QuestionContext(BaseModel):
     existing: list[str]
     # The question is multi-answer ("select all that apply"): its replacement is too.
     multi: bool = False
-    # The question shows an example (prepza_common.examples): its replacement does too.
+    # The question shows an example (prepza_common.ai.examples): its replacement does too.
     example: bool = False
 
 

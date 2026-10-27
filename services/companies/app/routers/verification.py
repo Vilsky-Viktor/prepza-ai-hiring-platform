@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.auth import CurrentUser
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 
 from app.constants.verification import FREE_DOMAIN, NOT_A_WEBSITE
 from app.helpers.verification import is_free_domain, website_domain

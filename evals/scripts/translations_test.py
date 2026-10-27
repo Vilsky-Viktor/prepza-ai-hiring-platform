@@ -31,7 +31,7 @@ from common import (
     save,
 )
 from langchain_core.messages import HumanMessage
-from prepza_common.constants import LANGUAGES
+from prepza_common.config.constants import LANGUAGES
 from pydantic import BaseModel, Field
 from stats import share
 from text_checks import in_script, keeps, paragraphs

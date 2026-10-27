@@ -1,6 +1,6 @@
 import logging
 
-from prepza_common import memory_cache
+from prepza_common.redis import memory_cache
 
 from app.constants.rounds import SET_CACHE_SECONDS
 from app.helpers.sessions import session_out

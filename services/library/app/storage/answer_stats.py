@@ -1,7 +1,7 @@
 import json
 import uuid
 
-from prepza_common import processed_events
+from prepza_common.events import processed_events
 from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 

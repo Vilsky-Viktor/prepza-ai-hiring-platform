@@ -3,8 +3,8 @@ import secrets
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth import CurrentUser
-from prepza_common.encryption import decrypt
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.auth.encryption import decrypt
 
 from app.config.settings import settings
 from app.constants.ats import (

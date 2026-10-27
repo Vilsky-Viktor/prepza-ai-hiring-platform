@@ -2,8 +2,8 @@ import logging
 from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, status
-from prepza_common import processed_events
-from prepza_common.google import Invoker
+from prepza_common.auth.google import Invoker
+from prepza_common.events import processed_events
 
 from app.constants.events import PROCESSED_EVENT_DAYS
 from app.models.events import ProcessedEvent

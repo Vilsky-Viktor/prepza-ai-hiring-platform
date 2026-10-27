@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from prepza_common.sets import OptionIn
+from prepza_common.ai.sets import OptionIn
 from pydantic import BaseModel, Field
 
 
@@ -17,7 +17,7 @@ class QuestionContext(BaseModel):
     existing: list[str]
     # A multi-answer ("select all that apply") question: its replacement is one too.
     multi: bool = False
-    # A question with an example (prepza_common.examples): its replacement has one too.
+    # A question with an example (prepza_common.ai.examples): its replacement has one too.
     example: bool = False
 
 

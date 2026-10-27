@@ -5,9 +5,9 @@ from datetime import UTC, datetime
 
 import pytest
 from PIL import Image
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 
 from app.constants.brand import PREPZA_COLORS
 from app.helpers.logos import logo_path, logo_type

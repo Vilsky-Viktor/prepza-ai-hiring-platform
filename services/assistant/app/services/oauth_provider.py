@@ -11,8 +11,8 @@ from mcp.server.auth.provider import (
     TokenError,
 )
 from mcp.shared.auth import OAuthClientInformationFull, OAuthToken
-from prepza_common.analytics import track
-from prepza_common.tokens import hashed
+from prepza_common.auth.tokens import hashed
+from prepza_common.events.analytics import track
 
 from app.config.settings import settings
 from app.constants.limits import MAX_REGISTRATION_BYTES, MAX_STATE_LENGTH

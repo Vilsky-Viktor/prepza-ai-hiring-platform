@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from prepza_common.constants import LANGUAGES
+from prepza_common.config.constants import LANGUAGES
 
 router = APIRouter(tags=["languages"])
 

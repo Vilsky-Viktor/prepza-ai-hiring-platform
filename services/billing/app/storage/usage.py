@@ -3,8 +3,8 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
 
-from prepza_common.ai_constants import PREPZA_ACTIONS, Category
-from prepza_common.db import delete_in_batches, update_in_batches
+from prepza_common.ai.ai_constants import PREPZA_ACTIONS, Category
+from prepza_common.db.db import delete_in_batches, update_in_batches
 from sqlalchemy import exists, select
 from sqlalchemy.dialects.postgresql import insert
 

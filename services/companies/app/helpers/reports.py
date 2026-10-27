@@ -1,7 +1,7 @@
 import base64
 import binascii
 
-from prepza_common.user import User
+from prepza_common.auth.user import User
 
 from app.constants.reports import MAX_REPORT_BYTES, PDF_SIGNATURE
 from app.models.interviews import Interview

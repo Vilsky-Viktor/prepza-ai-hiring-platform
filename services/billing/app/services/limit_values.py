@@ -6,9 +6,9 @@ would wait on, Redis down included)."""
 from datetime import UTC, datetime, timedelta
 
 from fastapi import HTTPException, status
-from prepza_common.i18n import TemplateError
-from prepza_common.limit_list import LIMITS, LIMITS_KEY, PROVIDER_LIMITS
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.i18n.i18n import TemplateError
+from prepza_common.limits.limit_list import LIMITS, LIMITS_KEY, PROVIDER_LIMITS
 
 from app.constants.usage import HITS_DAYS, OUT_OF_BOUNDS, UNKNOWN_LIMIT
 from app.integrations.redis import get_redis

@@ -2,7 +2,7 @@
 throwaway Auth emulator user: one vote an answer, changed or cleared, shown when the
 conversation is opened, and only on the user's own answers."""
 
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.constants.chat import Status
 from app.models.answers import Answer

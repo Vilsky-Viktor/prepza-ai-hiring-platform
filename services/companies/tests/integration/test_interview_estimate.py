@@ -7,8 +7,8 @@ import uuid
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.lock_waits import hold_first_commit, race
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.db.lock_waits import hold_first_commit, race
 
 from app.integrations import library
 from app.routers.interview_questions import set_topic_limit

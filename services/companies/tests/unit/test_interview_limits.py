@@ -4,9 +4,9 @@ from types import SimpleNamespace
 import httpx
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.auth import current_user
-from prepza_common.translations import TRANSLATIONS
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.i18n.translations import TRANSLATIONS
 
 from app.constants.invites import (
     TOO_MANY_INTERVIEWS_UNPAID,

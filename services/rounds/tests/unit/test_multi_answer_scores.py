@@ -2,7 +2,7 @@ from types import SimpleNamespace
 from uuid import uuid4
 
 import pytest
-from prepza_common.multi_answer import multi_count
+from prepza_common.ai.multi_answer import multi_count
 from pydantic import ValidationError
 
 from app.constants.practice import PRACTICE_TOPIC_QUESTIONS

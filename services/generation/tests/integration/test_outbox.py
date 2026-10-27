@@ -3,7 +3,7 @@ import json
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common import outbox, pubsub
+from prepza_common.events import outbox, pubsub
 from sqlalchemy import select
 
 from app.constants.statuses import Status

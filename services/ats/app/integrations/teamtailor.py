@@ -1,4 +1,4 @@
-from prepza_common.names import clean_name
+from prepza_common.i18n.names import clean_name
 
 from app.constants.ats import (
     TEAMTAILOR_API_VERSION,

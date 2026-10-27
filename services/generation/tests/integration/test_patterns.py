@@ -2,7 +2,7 @@
 what a run stores, a second run in the same week, and a superadmin's review."""
 
 import pytest
-from prepza_common import pubsub
+from prepza_common.events import pubsub
 from sqlalchemy import delete, inspect
 
 from app.constants.patterns import PATTERN_DONE_KEY, PatternStatus

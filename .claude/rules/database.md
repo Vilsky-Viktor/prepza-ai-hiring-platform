@@ -4,7 +4,7 @@ paths:
   - "services/*/app/storage/**"
   - "services/*/migrations/**"
   - "services/*/alembic.ini"
-  - "packages/common/src/prepza_common/db.py"
+  - "packages/common/src/prepza_common/db/db.py"
 ---
 
 # Database (Postgres, SQLAlchemy 2.0 async, Alembic)
@@ -22,9 +22,9 @@ One Cloud SQL instance, a database per service. Adding a migration: the `migrati
   `uuid` in one and `varchar` in another). New integer keys use `Identity()`, not `serial`.
 - `created_at` has `server_default=func.now()`, so rows written outside the ORM get it too.
 - A closed set of values is a string column with a `CHECK (col IN (...))`, not a native `ENUM`
-  (values can't be removed from one), built from its enum (`prepza_common.db.one_of`); a value
+  (values can't be removed from one), built from its enum (`prepza_common.db.db.one_of`); a value
   added to the enum changes the CHECK in a migration (`test_migrations.py` compares them).
-- Every `Base` sets `MetaData(naming_convention=NAMING_CONVENTION)` (`prepza_common.constants`:
+- Every `Base` sets `MetaData(naming_convention=NAMING_CONVENTION)` (`prepza_common.config.constants`:
   Postgres' own names for `uq`, `fk`, `pk`, so existing names stay) so migrations can drop and
   rename constraints by name; a `CHECK` is named where it's made (`ck_<table>_<what>`).
 
@@ -71,7 +71,7 @@ runs older code on the newer schema.
 
 - One `AsyncSession` per unit of work, opened by the service and passed to the repositories
   (`python-services.md`), never shared between concurrent tasks; `expire_on_commit=False`
-  (`prepza_common.db`).
+  (`prepza_common.db.db`).
 - A transaction covers exactly what must succeed together; no call to another service or a model
   while it's open (it holds locks and a pooled connection). Events leave through the outbox in
   the same transaction.

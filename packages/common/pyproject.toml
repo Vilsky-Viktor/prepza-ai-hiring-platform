@@ -16,13 +16,13 @@ dependencies = [
     "sqlalchemy[asyncio]>=2.1.1",
 ]
 
-# Only the services that call OpenAI install it: `prepza-common[llm]` (prepza_common.llm).
+# Only the services that call OpenAI install it: `prepza-common[llm]` (prepza_common.ai.llm).
 [project.optional-dependencies]
 llm = ["langchain-openai>=1.6.6"]
-# Tracing AI calls to Langfuse (prepza_common.tracing) and the chats' votes there
-# (prepza_common.answer_votes): the services that call AI (with `llm`).
+# Tracing AI calls to Langfuse (prepza_common.ai.tracing) and the chats' votes there
+# (prepza_common.ai.answer_votes): the services that call AI (with `llm`).
 langfuse = ["langfuse>=5.0.2"]
-# Money as a language writes it (prepza_common.money): rounds and notifications.
+# Money as a language writes it (prepza_common.i18n.money): rounds and notifications.
 money = ["babel>=2.17"]
 
 [build-system]

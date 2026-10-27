@@ -2,7 +2,7 @@ import hashlib
 import hmac
 from uuid import UUID
 
-from prepza_common.tokens import purpose_key, same_secret
+from prepza_common.auth.tokens import purpose_key, same_secret
 
 from app.constants.help import HELP_SIGNING_PURPOSE, HelpRole
 from app.schemas.help import HelpMessage

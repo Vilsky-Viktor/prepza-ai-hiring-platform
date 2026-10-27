@@ -8,8 +8,8 @@ import openai
 import pytest
 from fastapi import HTTPException
 from langchain_core.messages import HumanMessage
-from prepza_common.sse import KEEP_ALIVE
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.http.sse import KEEP_ALIVE
 
 from app.constants.chat import CHAT_FAILED, TURNS_AT_ONCE, TURNS_BUSY_RETRY_SECONDS, Status
 from app.integrations import llm, services

@@ -4,22 +4,22 @@ import uuid
 import anyio
 from fastapi import APIRouter, HTTPException, Path, Query, Request, status
 from fastapi.responses import PlainTextResponse, StreamingResponse
-from prepza_common import ai_cap
-from prepza_common.ai_constants import Outcome
-from prepza_common.ai_usage import provider_refused
-from prepza_common.analytics import track
-from prepza_common.auth import OptionalUser
-from prepza_common.client_ip import limit_address
-from prepza_common.constants import DEFAULT_LANGUAGE, LEGAL_VERSIONS
-from prepza_common.human_check import require_human
-from prepza_common.i18n import request_language, translate
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit, spend
-from prepza_common.secrets_check import secret_in
-from prepza_common.sse import event_stream, sse_event
-from prepza_common.tracing import new_trace_id
-from prepza_common.user import Language
-from prepza_common.visitor_country import VisitorCountry
+from prepza_common.ai import ai_cap
+from prepza_common.ai.ai_constants import Outcome
+from prepza_common.ai.ai_usage import provider_refused
+from prepza_common.ai.secrets_check import secret_in
+from prepza_common.ai.tracing import new_trace_id
+from prepza_common.auth.auth import OptionalUser
+from prepza_common.auth.human_check import require_human
+from prepza_common.auth.user import Language
+from prepza_common.config.constants import DEFAULT_LANGUAGE, LEGAL_VERSIONS
+from prepza_common.events.analytics import track
+from prepza_common.http.client_ip import limit_address
+from prepza_common.http.sse import event_stream, sse_event
+from prepza_common.http.visitor_country import VisitorCountry
+from prepza_common.i18n.i18n import request_language, translate
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit, spend
 
 from app.config.settings import settings
 from app.constants.help import (

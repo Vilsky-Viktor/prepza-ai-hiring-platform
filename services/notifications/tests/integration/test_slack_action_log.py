@@ -1,7 +1,7 @@
 """A member's Slack actions reach the company's action log through notifications' outbox,
 saved with the change itself; what changes nothing isn't logged."""
 
-from prepza_common.audit_actions import AUDIT_RECORDED
+from prepza_common.events.audit_actions import AUDIT_RECORDED
 from sqlalchemy import select
 
 from app.models.outbox import OutboxEvent

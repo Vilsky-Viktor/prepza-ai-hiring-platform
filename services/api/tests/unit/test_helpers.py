@@ -4,7 +4,7 @@ import json
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.tokens import hashed
+from prepza_common.auth.tokens import hashed
 
 from app.helpers.keys import add_months, expired, new_key
 from app.helpers.webhooks import body_of, masked, signature

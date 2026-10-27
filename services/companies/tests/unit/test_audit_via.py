@@ -1,6 +1,11 @@
 from uuid import uuid4
 
-from prepza_common.audit_actions import ACTION_GROUPS, MAX_TARGET_LABEL, AuditAction, TargetKind
+from prepza_common.events.audit_actions import (
+    ACTION_GROUPS,
+    MAX_TARGET_LABEL,
+    AuditAction,
+    TargetKind,
+)
 
 from app.service_auth import REQUEST_VIA
 from app.storage import audit

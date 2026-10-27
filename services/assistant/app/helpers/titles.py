@@ -1,7 +1,7 @@
 import re
 
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
-from prepza_common.constants import LANGUAGES
+from prepza_common.config.constants import LANGUAGES
 
 from app.constants.titles import MAX_TITLE_LENGTH, TITLE_EVERY
 from app.prompts.titles import TITLE_INPUT, TITLE_SYSTEM

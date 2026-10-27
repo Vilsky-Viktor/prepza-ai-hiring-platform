@@ -2,8 +2,8 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.invites import EMAIL_NOT_VERIFIED, NO_PLEDGE, InviteStatus
 from app.main import app
@@ -173,7 +173,7 @@ def test_a_visitor_sees_the_invitation_without_the_candidates_email(client, invi
 def test_only_the_verified_account_it_was_sent_to_sees_its_address(
     client, invite_page, email, verified, matches, shown
 ):
-    from prepza_common.auth import optional_user
+    from prepza_common.auth.auth import optional_user
 
     app.dependency_overrides[optional_user] = lambda: User(
         uid="cand", email=email, email_verified=verified, name="Bob"

@@ -3,7 +3,7 @@ import base64
 
 import httpx
 import pytest
-from prepza_common.notifications import NotificationKind, Recipient, notification
+from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
 from app.constants.slack import ZERO_WIDTH_SPACE
 from app.helpers.slack import message, read_state, signed_state

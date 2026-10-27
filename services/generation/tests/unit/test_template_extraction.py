@@ -1,7 +1,7 @@
 import asyncio
 from types import SimpleNamespace
 
-from prepza_common.constants import MAX_TITLE_LENGTH
+from prepza_common.config.constants import MAX_TITLE_LENGTH
 
 from app.integrations import llm
 from app.services.nodes import extraction

@@ -175,7 +175,7 @@ def test_structured_output_is_a_schema_with_a_description_on_every_field():
 
 
 def test_every_ai_action_has_an_eval():
-    source = (ROOT / "packages/common/src/prepza_common/ai_constants.py").read_text()
+    source = (ROOT / "packages/common/src/prepza_common/ai/ai_constants.py").read_text()
     actions = constants_dict(source, "ACTIONS")
     readme = (ROOT / "evals/README.md").read_text()
     table = readme[readme.index("## Every AI action and its eval") :]

@@ -41,7 +41,7 @@ line, a trace, a third-party call) does all of this in the same change:
 
 - Pseudonymised data is still personal data: it needs a retention and a place in erasure and in
   the records.
-- A hash that stands for a person (an email, an id) is keyed (`prepza_common.person_hash` with
+- A hash that stands for a person (an email, an id) is keyed (`prepza_common.auth.person_hash` with
   `PERSON_HASH_KEY`, or `analytics` with its salt; both in Secret Manager), never a plain SHA-256
   anyone can recompute. The key lives apart from the data.
 

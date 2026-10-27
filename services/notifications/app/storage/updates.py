@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from prepza_common.notifications import Recipient
+from prepza_common.events.notifications import Recipient
 from sqlalchemy import select
 
 from app.models.notifications import Notification

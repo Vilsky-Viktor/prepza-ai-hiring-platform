@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.constants import DELETE_BATCH
+from prepza_common.config.constants import DELETE_BATCH
 from sqlalchemy import case, exists, func, select, tuple_, update
 from sqlalchemy.dialects.postgresql import insert
 

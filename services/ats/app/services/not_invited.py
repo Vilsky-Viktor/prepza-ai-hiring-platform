@@ -1,7 +1,7 @@
 from datetime import datetime
 from uuid import UUID
 
-from prepza_common.constants import MAX_UPDATES
+from prepza_common.config.constants import MAX_UPDATES
 
 from app.constants.ats import ATS_NAMES
 from app.constants.notifications import ATS_LINK

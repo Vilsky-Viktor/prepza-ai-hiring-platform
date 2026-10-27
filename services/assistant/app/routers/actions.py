@@ -2,9 +2,9 @@ from uuid import UUID
 
 from fastapi import APIRouter, Request
 from fastapi.responses import StreamingResponse
-from prepza_common.constants import REFERRAL_COOKIE
-from prepza_common.i18n import request_language
-from prepza_common.sse import event_stream
+from prepza_common.config.constants import REFERRAL_COOKIE
+from prepza_common.http.sse import event_stream
+from prepza_common.i18n.i18n import request_language
 
 from app.auth import UserWithToken
 from app.services import actions, confirmations

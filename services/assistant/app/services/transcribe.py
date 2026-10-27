@@ -2,17 +2,17 @@ import logging
 
 from fastapi import HTTPException, Request, status
 from openai import OpenAIError
-from prepza_common import ai_usage
-from prepza_common.ai_constants import Outcome
-from prepza_common.pause import refuse_if_paused
-from prepza_common.secrets_check import SECRET_IN_VOICE, find_secret
+from prepza_common.ai import ai_usage
+from prepza_common.ai.ai_constants import Outcome
+from prepza_common.ai.secrets_check import SECRET_IN_VOICE, find_secret
+from prepza_common.limits.pause import refuse_if_paused
 
 from app.config.settings import settings
 from app.constants.ai_usage import TRANSCRIPTION_ACTION
 from app.constants.transcribe import (
     AUDIO_FILES,
-    AUDIO_SIGNATURES,
     AUDIO_NOT_SUPPORTED,
+    AUDIO_SIGNATURES,
     AUDIO_TOO_LARGE,
     MAX_AUDIO_BYTES,
     NOTHING_HEARD,

@@ -2,9 +2,9 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 import pytest
-from prepza_common import rate_limit
-from prepza_common.http import bearer
-from prepza_common.tokens import hashed
+from prepza_common.auth.tokens import hashed
+from prepza_common.http.http import bearer
+from prepza_common.limits import rate_limit
 from redis.exceptions import ConnectionError as RedisConnectionError
 
 from app.constants.api import LAST_USED_EVERY

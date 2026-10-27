@@ -10,13 +10,13 @@ from langchain_core.messages import (
     SystemMessage,
     ToolMessage,
 )
-from prepza_common import ai_usage
-from prepza_common.ai_constants import Outcome
-from prepza_common.constants import LANGUAGES
-from prepza_common.i18n import translate
-from prepza_common.llm import estimated_input, estimated_tokens
-from prepza_common.scope import SCOPE_RULE
-from prepza_common.tracing import hiding, new_trace_id, traced
+from prepza_common.ai import ai_usage
+from prepza_common.ai.ai_constants import Outcome
+from prepza_common.ai.llm import estimated_input, estimated_tokens
+from prepza_common.ai.scope import SCOPE_RULE
+from prepza_common.ai.tracing import hiding, new_trace_id, traced
+from prepza_common.config.constants import LANGUAGES
+from prepza_common.i18n.i18n import translate
 
 from app.config.settings import settings
 from app.constants.ai_usage import MESSAGE_ACTION

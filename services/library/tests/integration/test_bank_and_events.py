@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common import processed_events
+from prepza_common.events import processed_events
 from sqlalchemy import text
 
 from app.constants.sets import Pool

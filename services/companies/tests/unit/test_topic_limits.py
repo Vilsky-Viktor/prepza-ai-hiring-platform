@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.interviews import DEFAULT_TOPIC_QUESTIONS
 from app.helpers.interviews import pick_questions, session_topics, topics_out

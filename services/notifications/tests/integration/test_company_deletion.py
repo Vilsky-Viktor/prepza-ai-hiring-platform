@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.notifications import NotificationKind, Recipient, notification
+from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
 from app.storage import notifications
 from tests.integration.factories import api, company, finished, push

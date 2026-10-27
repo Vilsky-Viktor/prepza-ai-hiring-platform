@@ -5,9 +5,9 @@ from datetime import UTC, date, datetime, timedelta
 import pytest
 from babel.dates import format_date
 from fastapi import HTTPException
-from prepza_common.auth import current_user
-from prepza_common.notifications import EVERYONE, Recipient
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.events.notifications import EVERYONE, Recipient
 
 from app.constants.legal_notices import ALREADY_ASKED
 from app.main import app
@@ -50,7 +50,7 @@ def terms(monkeypatch):
     monkeypatch.setattr(bulk.library, "recipients", recipients)
     monkeypatch.setattr(delivery, "transmit", transmit)
     monkeypatch.setattr("app.services.bulk.asyncio.sleep", no_wait)
-    monkeypatch.setattr("prepza_common.limits.current_values", large_resend_quota)
+    monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
 
     return ann, bob, sent
 

@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common import outbox
-from prepza_common.notifications import NOTIFICATION_REQUESTED, NotificationKind
+from prepza_common.events import outbox
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED, NotificationKind
 from sqlalchemy import select, update
 
 from app.constants.quality import COPY_FIX_BATCH

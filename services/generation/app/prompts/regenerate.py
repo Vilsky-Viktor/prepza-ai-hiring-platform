@@ -14,7 +14,7 @@ MULTI_ANSWER_KIND = (
     + MULTI_ANSWER_RULES
 )
 
-# Whether it shows an example: as the one it replaces does (prepza_common.examples).
+# Whether it shows an example: as the one it replaces does (prepza_common.ai.examples).
 WITH_EXAMPLE = "It comes with an example (see the practice rules)."
 WITHOUT_EXAMPLE = "It has no example."
 

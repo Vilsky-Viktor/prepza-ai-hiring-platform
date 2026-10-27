@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-from prepza_common.notifications import NotificationKind
+from prepza_common.events.notifications import NotificationKind
 
 
 class UnsubscribeType(StrEnum):

@@ -192,7 +192,7 @@ def test_finished_topics_count_strong_weak_and_timeouts_for_copies_and_originals
 
 
 def test_a_new_template_never_puts_questions_reused_from_the_bank_in_practice(run):
-    from prepza_common.sets import PreparationIn
+    from prepza_common.ai.sets import PreparationIn
 
     async def scenario():
         older = await interview("Older template", template=True, questions=33)

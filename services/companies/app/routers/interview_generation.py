@@ -1,13 +1,13 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, status
-from prepza_common import ai_cap
-from prepza_common.audit_actions import AuditAction
-from prepza_common.auth import CurrentUser
-from prepza_common.http import passed_on
-from prepza_common.human_check import require_human
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit
+from prepza_common.ai import ai_cap
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.auth.human_check import require_human
+from prepza_common.events.audit_actions import AuditAction
+from prepza_common.http.http import passed_on
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit
 
 from app.config.settings import settings
 from app.constants.generation import GENERATION_REFUSALS

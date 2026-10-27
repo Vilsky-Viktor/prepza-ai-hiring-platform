@@ -1,4 +1,4 @@
-from prepza_common.service_auth import callee_secret, issue_token, service_caller
+from prepza_common.auth.service_auth import callee_secret, issue_token, service_caller
 
 from app.config.settings import settings
 

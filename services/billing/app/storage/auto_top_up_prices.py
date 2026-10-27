@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from prepza_common import outbox
-from prepza_common.notifications import NOTIFICATION_REQUESTED
+from prepza_common.events import outbox
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import select, tuple_, update
 
 from app.models.billing import AutoTopUp

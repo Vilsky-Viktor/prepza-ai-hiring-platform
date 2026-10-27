@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.user import User
+from prepza_common.auth.user import User
 from sqlalchemy import update
 
 from app.constants.rounds import TIME_GRACE_SECONDS

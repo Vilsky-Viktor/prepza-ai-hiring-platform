@@ -4,7 +4,7 @@ import asyncio
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common import memory_cache
+from prepza_common.redis import memory_cache
 
 from app.services import ai_costs
 from app.storage import ai_costs as ai_costs_storage

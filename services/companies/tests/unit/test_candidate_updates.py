@@ -2,9 +2,9 @@ import uuid
 from datetime import UTC, datetime, timedelta
 from types import SimpleNamespace
 
-from prepza_common.constants import MAX_UPDATES
-from prepza_common.http import bearer
-from prepza_common.service_auth import issue_token
+from prepza_common.auth.service_auth import issue_token
+from prepza_common.config.constants import MAX_UPDATES
+from prepza_common.http.http import bearer
 
 from app.helpers.candidate_updates import candidate_updates
 from app.helpers.candidates import grade_passed

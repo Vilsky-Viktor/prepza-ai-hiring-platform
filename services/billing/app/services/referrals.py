@@ -1,6 +1,10 @@
-from prepza_common.analytics import track
-from prepza_common.constants import MAX_PAGE_SIZE
-from prepza_common.notifications import NOTIFICATION_REQUESTED, NotificationKind, notification
+from prepza_common.config.constants import MAX_PAGE_SIZE
+from prepza_common.events.analytics import track
+from prepza_common.events.notifications import (
+    NOTIFICATION_REQUESTED,
+    NotificationKind,
+    notification,
+)
 
 from app.constants.credits import REFERRAL_REWARD
 from app.constants.notifications import REFERRAL_LINK

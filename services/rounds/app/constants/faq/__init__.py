@@ -1,6 +1,6 @@
 from importlib import import_module
 
-from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES
+from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
 
 
 def with_english(faq: list[dict], english: list[dict]) -> list[dict]:

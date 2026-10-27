@@ -1,10 +1,10 @@
 import logging
 
 from langchain_core.messages import BaseMessage
-from prepza_common import ai_usage
-from prepza_common.ai_constants import Outcome
-from prepza_common.llm import estimated_input
-from prepza_common.tracing import traced_run
+from prepza_common.ai import ai_usage
+from prepza_common.ai.ai_constants import Outcome
+from prepza_common.ai.llm import estimated_input
+from prepza_common.ai.tracing import traced_run
 
 from app.config.settings import settings
 from app.constants.ai_usage import TITLE_ACTION

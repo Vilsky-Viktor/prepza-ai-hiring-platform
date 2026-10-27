@@ -2,8 +2,8 @@ from datetime import timedelta
 from uuid import UUID
 
 import httpx
-from prepza_common import http
-from prepza_common.http import bearer
+from prepza_common.http import http
+from prepza_common.http.http import bearer
 
 from app.config.settings import settings
 from app.service_auth import service_token

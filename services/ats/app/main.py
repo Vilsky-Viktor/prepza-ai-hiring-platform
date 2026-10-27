@@ -1,17 +1,17 @@
 from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI
-from prepza_common.auth import start_firebase
-from prepza_common.body_limit import BodyLimitMiddleware
-from prepza_common.company_access import remember_assistant
-from prepza_common.compression import compress_answers
-from prepza_common.health import health_router
-from prepza_common.i18n import add_localized_errors
-from prepza_common.logging import RequestLogMiddleware, configure_logging
-from prepza_common.maintenance import MaintenanceMiddleware
-from prepza_common.no_store import NoStoreMiddleware
-from prepza_common.sentry import init_sentry
-from prepza_common.shutdown import close_shared
+from prepza_common.auth.auth import start_firebase
+from prepza_common.auth.company_access import remember_assistant
+from prepza_common.http.body_limit import BodyLimitMiddleware
+from prepza_common.http.compression import compress_answers
+from prepza_common.http.health import health_router
+from prepza_common.http.no_store import NoStoreMiddleware
+from prepza_common.http.shutdown import close_shared
+from prepza_common.i18n.i18n import add_localized_errors
+from prepza_common.limits.maintenance import MaintenanceMiddleware
+from prepza_common.observability.logging import RequestLogMiddleware, configure_logging
+from prepza_common.observability.sentry import init_sentry
 
 from app.config.settings import settings
 from app.integrations.redis import get_redis

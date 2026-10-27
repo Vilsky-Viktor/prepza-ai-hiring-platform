@@ -1364,7 +1364,7 @@ export interface paths {
     /**
      * Access
      * @description What the user may do in the company: ats, notifications and the api guard their pages
-     *     with it (prepza_common.company_access), refusing what companies' own routes refuse: the
+     *     with it (prepza_common.auth.company_access), refusing what companies' own routes refuse: the
      *     caller passes on the assistant's X-Assistant header. A company that doesn't exist is 404.
      */
     get: operations["access_internal_companies__company_id__access_get"]

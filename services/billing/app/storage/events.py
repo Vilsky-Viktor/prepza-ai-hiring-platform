@@ -1,5 +1,5 @@
-from prepza_common import outbox
-from prepza_common.notifications import NOTIFICATION_REQUESTED
+from prepza_common.events import outbox
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 
 from app.models.outbox import OutboxEvent
 from app.storage.db import Session

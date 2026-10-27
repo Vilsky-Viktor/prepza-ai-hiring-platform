@@ -2,8 +2,8 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.service_auth import issue_token
+from prepza_common.auth.service_auth import issue_token
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 
 from app.constants.invites import InviteStatus
 from app.integrations import rounds

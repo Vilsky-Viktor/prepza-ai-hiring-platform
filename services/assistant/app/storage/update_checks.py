@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from prepza_common.db import delete_in_batches
+from prepza_common.db.db import delete_in_batches
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 

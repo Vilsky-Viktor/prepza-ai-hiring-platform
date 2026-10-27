@@ -1,5 +1,5 @@
-from prepza_common import http
-from prepza_common.http import bearer
+from prepza_common.http import http
+from prepza_common.http.http import bearer
 
 from app.constants.member_emails import MAX_IDS_PER_CALL
 

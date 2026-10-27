@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common import outbox
-from prepza_common.constants import OUTBOX_KEEP_DAYS, OUTBOX_MAX_ATTEMPTS
+from prepza_common.config.constants import OUTBOX_KEEP_DAYS, OUTBOX_MAX_ATTEMPTS
+from prepza_common.events import outbox
 from sqlalchemy import select
 
 from app.models.outbox import OutboxEvent

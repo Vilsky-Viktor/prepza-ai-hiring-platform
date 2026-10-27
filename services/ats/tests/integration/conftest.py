@@ -7,7 +7,7 @@ import os
 import pytest
 from alembic import command
 from alembic.config import Config
-from prepza_common.clean_start import start_clean, tables_left_empty
+from prepza_common.db.clean_start import start_clean, tables_left_empty
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
 

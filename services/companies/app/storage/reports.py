@@ -1,4 +1,4 @@
-from prepza_common import outbox
+from prepza_common.events import outbox
 
 from app.constants.events import REPORT_SHARED
 from app.models.outbox import OutboxEvent

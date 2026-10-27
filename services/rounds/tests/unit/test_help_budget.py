@@ -3,7 +3,7 @@ import asyncio
 import httpx
 import openai
 from fastapi import Request
-from prepza_common.ai_constants import AI_USED, LIMIT_HIT
+from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT
 
 import app.routers.help as help_routes
 from app.config.settings import settings

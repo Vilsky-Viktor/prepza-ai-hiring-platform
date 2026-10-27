@@ -5,7 +5,7 @@ import { env } from "./env"
 
 /** An address as the notifications service keeps it on its suppression list: never in the
  * clear, but its hash keyed with PERSON_HASH_KEY (services/notifications/app/helpers/
- * unsubscribe.py address_hash, prepza_common.person_hash). */
+ * unsubscribe.py address_hash, prepza_common.auth.person_hash). */
 function addressHash(email: string) {
   const digest = createHash("sha256").update(email.trim().toLowerCase()).digest("hex")
 

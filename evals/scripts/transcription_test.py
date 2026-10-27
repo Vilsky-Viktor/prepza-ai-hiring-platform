@@ -15,7 +15,7 @@ import time
 import unicodedata
 
 from common import DATASETS, RESULTS, load, run_record, save
-from prepza_common.llm import transcription_cost
+from prepza_common.ai.llm import transcription_cost
 from stats import mean, share
 from text_checks import in_script
 

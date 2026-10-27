@@ -6,8 +6,8 @@ from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 
 import pytest
-from prepza_common.ai_cap import spent_today
-from prepza_common.ai_constants import AI_USED, Category
+from prepza_common.ai.ai_cap import spent_today
+from prepza_common.ai.ai_constants import AI_USED, Category
 from sqlalchemy import func, select
 
 from app.constants.products import OwnerType

@@ -2,7 +2,7 @@ import json
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.names import clean_name
+from prepza_common.i18n.names import clean_name
 
 from app.constants.ats import (
     BREEZY_STATUS_UPDATED,

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request
-from prepza_common.i18n import request_language
-from prepza_common.paging import PageParams
+from prepza_common.db.paging import PageParams
+from prepza_common.i18n.i18n import request_language
 
 from app.schemas.news import NewsOut
 from app.storage import news

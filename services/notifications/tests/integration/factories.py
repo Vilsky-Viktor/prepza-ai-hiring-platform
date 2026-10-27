@@ -6,8 +6,8 @@ import time
 import uuid
 
 import httpx
-from prepza_common.constants import EVENT_ID_ATTRIBUTE
-from prepza_common.notifications import NotificationKind, Recipient, notification
+from prepza_common.config.constants import EVENT_ID_ATTRIBUTE
+from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
 from app.main import app
 from app.models.outbox import OutboxEvent

@@ -80,7 +80,7 @@ def writes(monkeypatch):
 def users_companies(monkeypatch):
     """Companies' list of the user's companies, faked: COMPANY, unless a test says otherwise;
     nothing is kept between tests."""
-    from prepza_common import memory_cache
+    from prepza_common.redis import memory_cache
 
     from app.integrations import companies
 

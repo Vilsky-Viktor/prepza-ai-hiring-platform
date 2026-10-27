@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
-from prepza_common.i18n import TemplateError
-from prepza_common.rate_limit import hit
+from prepza_common.i18n.i18n import TemplateError
+from prepza_common.limits.rate_limit import hit
 
 from app.constants.generation import (
     NOT_AWAITING_REVIEW,

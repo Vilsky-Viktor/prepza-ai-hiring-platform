@@ -2,7 +2,7 @@ import json
 import re
 
 import pytest
-from prepza_common.constants import DEFAULT_LANGUAGE, LANGUAGES, LEGAL_VERSIONS
+from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES, LEGAL_VERSIONS
 
 from app.helpers import legal
 

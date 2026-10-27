@@ -3,7 +3,7 @@ and app, however often the app calls."""
 
 import uuid
 
-from prepza_common.constants import DAY_SECONDS
+from prepza_common.config.constants import DAY_SECONDS
 
 from app.constants.mcp import ACTIVE_KEY
 from app.integrations.redis import get_redis

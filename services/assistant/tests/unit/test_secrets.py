@@ -1,7 +1,7 @@
 import json
 
 import pytest
-from prepza_common.user import User
+from prepza_common.auth.user import User
 
 from app.auth import user_with_token
 from app.main import app

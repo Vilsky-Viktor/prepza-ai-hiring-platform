@@ -5,7 +5,7 @@ import asyncio
 
 import httpx
 import pytest
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.constants.payment_failures import PaymentFailure
 from app.helpers.payment_failures import latest_failure

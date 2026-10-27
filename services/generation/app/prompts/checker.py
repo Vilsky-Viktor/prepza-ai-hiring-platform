@@ -8,7 +8,7 @@ VERIFIER_ROLE = (
 )
 
 # The key check is told the question's kind: a single-answer question has exactly one correct
-# option, a select-all-that-apply one 2 or 3 (prepza_common.multi_answer).
+# option, a select-all-that-apply one 2 or 3 (prepza_common.ai.multi_answer).
 SINGLE_ANSWER_KEY = """This is a single-answer question. Return correct_indexes: a list with the
 number of the one option that is correct for the question exactly as written. Return null when
 none of the options is correct, or when more than one could be defended as correct."""

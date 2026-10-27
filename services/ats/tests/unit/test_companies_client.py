@@ -6,7 +6,7 @@ import httpx
 import jwt
 import pytest
 from fastapi import HTTPException
-from prepza_common import http
+from prepza_common.http import http
 
 from app.integrations import companies
 

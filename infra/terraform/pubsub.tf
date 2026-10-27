@@ -28,7 +28,7 @@ resource "google_pubsub_subscription" "dead_letter" {
 # is empty. Funnel events go only to BigQuery (analytics.tf).
 # Pub/Sub caps a filter at 256 bytes (scripts/tests/test_pubsub_filters.py checks each): a type
 # adds 24 bytes plus its name. An entry ending in ".*" is a whole family, every type up to its
-# first dot, matched on the event's `family` attribute (prepza_common.pubsub) in 25 bytes plus the
+# first dot, matched on the event's `family` attribute (prepza_common.events.pubsub) in 25 bytes plus the
 # family's name: notifications and api take all "candidate." events that way, as listing them one
 # by one outgrew the cap, and ignore the ones they don't handle. A family of one type today
 # (company, contact, member, report, credits) is taken whole to save bytes; a consumer ignores any

@@ -1,10 +1,10 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, status
-from prepza_common.answer_votes import mirror_vote
-from prepza_common.client_ip import limit_address
-from prepza_common.rate_limit import hit_or_skip
-from prepza_common.tokens import same_secret
+from prepza_common.ai.answer_votes import mirror_vote
+from prepza_common.auth.tokens import same_secret
+from prepza_common.http.client_ip import limit_address
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from app.config.settings import settings
 from app.constants.help import NO_SUCH_ANSWER

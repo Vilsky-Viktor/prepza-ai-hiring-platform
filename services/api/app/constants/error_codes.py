@@ -1,4 +1,4 @@
-from prepza_common import error_codes as shared
+from prepza_common.i18n import error_codes as shared
 
 # The machine-readable `code` every refusal of the public API carries beside its translated
 # `detail` (clients branch on it, never on the text). Stable: a code is never changed or reused,

@@ -2,7 +2,7 @@ import secrets
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common import outbox
+from prepza_common.events import outbox
 from sqlalchemy import delete, select, update
 from sqlalchemy.dialects.postgresql import insert
 

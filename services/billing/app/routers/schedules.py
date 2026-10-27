@@ -1,7 +1,7 @@
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, status
-from prepza_common.google import Invoker
+from prepza_common.auth.google import Invoker
 
 from app.constants.usage import CHANGES_KEEP_DAYS, USAGE_KEEP_DAYS
 from app.services import limit_values

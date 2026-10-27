@@ -7,9 +7,10 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 from fastapi import HTTPException
-from prepza_common import limits, memory_cache
-from prepza_common.limit_list import LIMITS, LIMITS_KEY
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.limits import limits
+from prepza_common.limits.limit_list import LIMITS, LIMITS_KEY
+from prepza_common.redis import memory_cache
 
 from app.models.usage import LimitHit
 from app.routers import schedules

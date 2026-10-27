@@ -3,7 +3,7 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.notifications import NOTIFICATION_REQUESTED
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 
 from app.constants.events import QUESTION_FIXED
 from app.constants.quality import QualityFlag

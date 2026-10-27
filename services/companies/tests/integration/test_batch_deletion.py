@@ -5,8 +5,8 @@ rows than a batch all go, the events are saved once, and another company keeps i
 import uuid
 
 import pytest
-from prepza_common import db
-from prepza_common.audit_actions import AuditAction
+from prepza_common.db import db
+from prepza_common.events.audit_actions import AuditAction
 from sqlalchemy import func, select, update
 
 from app.constants.invites import InviteStatus

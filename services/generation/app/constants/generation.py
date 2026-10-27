@@ -1,6 +1,6 @@
 from typing import Literal
 
-from prepza_common.constants import MAX_GOAL_LENGTH  # noqa: F401 (re-exported)
+from prepza_common.config.constants import MAX_GOAL_LENGTH  # noqa: F401 (re-exported)
 
 # How many AI calls one generation makes at once, and how many a second all of them together,
 # are set in the admin zone's Controls tab (GENERATION_CALLS_AT_ONCE, GENERATION_CALLS_PER_SECOND).
@@ -44,7 +44,7 @@ BATCH_MAX_RETRIES = 0
 # What OpenAI accepts for a reasoning model's effort; the settings pick one (see config).
 ReasoningEffort = Literal["none", "minimal", "low", "medium", "high"]
 # Every question has this many options: one correct, or for a multi-answer ("select all that
-# apply") question 2 or 3 of them, never all (prepza_common.multi_answer).
+# apply") question 2 or 3 of them, never all (prepza_common.ai.multi_answer).
 MAX_MULTI_CORRECT = 3
 OPTIONS = 4
 # A question, its example and its four options are read and answered within a minute, also by

@@ -1,4 +1,4 @@
-from prepza_common.settings import ServiceSettings
+from prepza_common.config.settings import ServiceSettings
 from pydantic import Field
 
 

@@ -6,8 +6,8 @@ import logging
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.i18n import translate
-from prepza_common.secrets_check import SECRET_REMOVED
+from prepza_common.ai.secrets_check import SECRET_REMOVED
+from prepza_common.i18n.i18n import translate
 
 from app.integrations import firebase_tokens
 from app.services import mcp_tools

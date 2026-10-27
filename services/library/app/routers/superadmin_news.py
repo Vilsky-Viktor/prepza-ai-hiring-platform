@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.paging import PageParams
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.db.paging import PageParams
 
 from app.models.news import News
 from app.schemas.news import AdminNewsOut, NewsIn

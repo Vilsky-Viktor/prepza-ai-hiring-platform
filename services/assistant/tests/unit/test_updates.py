@@ -2,7 +2,7 @@
 
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.constants import MAX_UPDATES
+from prepza_common.config.constants import MAX_UPDATES
 
 from app.helpers.updates import (
     counts_of,

@@ -1,8 +1,8 @@
 """The AI costs tab's limits: ours and our providers', each with its hits in the period and the
 companies and users that hit it most."""
 
-from prepza_common.limit_list import LIMITS
-from prepza_common.limits import OURS, current_values
+from prepza_common.limits.limit_list import LIMITS
+from prepza_common.limits.limits import OURS, current_values
 
 from app.constants.usage import TOP_HITTERS
 from app.integrations import names

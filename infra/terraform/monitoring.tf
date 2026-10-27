@@ -188,7 +188,7 @@ resource "google_monitoring_alert_policy" "scheduler_failed" {
 }
 
 # Web hooks refused: Paddle's or Resend's signature check failed (WEBHOOK_SIGNATURE_REFUSED in
-# prepza_common/constants.py). Usually a wrong or unset secret: then every payment and email event
+# prepza_common/config/constants.py). Usually a wrong or unset secret: then every payment and email event
 # is refused, as 401s the server-error alert doesn't count.
 resource "google_monitoring_alert_policy" "webhook_signature_refused" {
   display_name = "prepza web hook signature refused"

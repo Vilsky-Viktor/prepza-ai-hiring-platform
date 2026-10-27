@@ -1,5 +1,5 @@
 """holds and entries: the hash in candidates' keys ("candidate:{interview_id}:{hash}") is keyed
-(prepza_common.credit_keys.rekeyed, PERSON_HASH_KEY), as companies' migration 0057 does to its
+(prepza_common.limits.credit_keys.rekeyed, PERSON_HASH_KEY), as companies' migration 0057 does to its
 invites' keys, so the two still meet; the plain hash could be matched by anyone with the
 interview and the candidate's email. One transaction, so a cut-off run leaves nothing half done.
 
@@ -10,7 +10,7 @@ Create Date: 2026-10-22
 
 import sqlalchemy as sa
 from alembic import op
-from prepza_common.credit_keys import rekeyed
+from prepza_common.limits.credit_keys import rekeyed
 
 from app.config.settings import settings
 from app.constants.credits import CANDIDATE_PREFIX

@@ -1,4 +1,4 @@
-from prepza_common.constants import LANGUAGES
+from prepza_common.config.constants import LANGUAGES
 
 from app.helpers.ats import result_comment
 from app.templates.comments import COMMENTS

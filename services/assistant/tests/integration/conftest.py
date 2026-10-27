@@ -10,7 +10,7 @@ import httpx
 import pytest
 from alembic import command
 from alembic.config import Config
-from prepza_common.clean_start import start_clean, tables_left_empty
+from prepza_common.db.clean_start import start_clean, tables_left_empty
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
 
@@ -53,7 +53,7 @@ def clean_start(database):
 def run():
     """Runs a coroutine on a fresh event loop; the database pool and the Redis and HTTP clients
     are closed after, as their connections belong to that loop."""
-    from prepza_common import http
+    from prepza_common.http import http
 
     from app.integrations.redis import get_redis
     from app.storage.db import engine

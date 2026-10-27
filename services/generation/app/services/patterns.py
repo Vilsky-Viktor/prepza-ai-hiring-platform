@@ -1,7 +1,8 @@
 import logging
 
 from langchain_core.messages import HumanMessage, SystemMessage
-from prepza_common import pause, redis_lock
+from prepza_common.limits import pause
+from prepza_common.redis import redis_lock
 
 from app.constants.actions import QUALITY_PATTERNS
 from app.constants.patterns import (

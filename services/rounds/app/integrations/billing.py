@@ -1,5 +1,6 @@
 import httpx
-from prepza_common import http, memory_cache
+from prepza_common.http import http
+from prepza_common.redis import memory_cache
 
 from app.config.settings import settings
 from app.constants.help import CATALOG_CACHE_SECONDS, CATALOG_KEY

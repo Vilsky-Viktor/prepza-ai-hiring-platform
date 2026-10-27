@@ -15,7 +15,7 @@ import json
 
 from common import DATASETS, JUDGE_MODEL, RESULTS, cost, judge, load, prompt, run_record, save
 from langchain_core.messages import HumanMessage
-from prepza_common.constants import LANGUAGES
+from prepza_common.config.constants import LANGUAGES
 from pydantic import BaseModel, Field
 from stats import share
 

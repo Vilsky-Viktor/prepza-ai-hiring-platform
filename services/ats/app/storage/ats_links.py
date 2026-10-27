@@ -1,8 +1,8 @@
 from uuid import UUID
 
-from prepza_common import audit
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.db import delete_in_batches
+from prepza_common.db.db import delete_in_batches
+from prepza_common.events import audit
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy import delete, select, update
 from sqlalchemy.dialects.postgresql import insert
 

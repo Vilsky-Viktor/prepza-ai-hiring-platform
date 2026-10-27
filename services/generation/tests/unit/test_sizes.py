@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from prepza_common.limit_list import LIMITS
+from prepza_common.limits.limit_list import LIMITS
 
 from app.main import app
 from app.routers import sizes

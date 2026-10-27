@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.constants import DELETED_USER
+from prepza_common.config.constants import DELETED_USER
 
 from app.constants.statuses import Status
 from app.storage import accounts, generations

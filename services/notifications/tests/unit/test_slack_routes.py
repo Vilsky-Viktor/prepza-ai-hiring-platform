@@ -5,9 +5,9 @@ from urllib.parse import parse_qs, urlparse
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.auth import current_user
-from prepza_common.encryption import encrypt
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.encryption import encrypt
+from prepza_common.auth.user import User
 
 from app.config.settings import settings
 from app.helpers.slack import signed_state, token_hash

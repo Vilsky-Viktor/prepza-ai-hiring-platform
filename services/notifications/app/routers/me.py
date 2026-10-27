@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import StreamingResponse
-from prepza_common.auth import CurrentUser, FreshUser
-from prepza_common.i18n import request_language
-from prepza_common.sse import event_stream
+from prepza_common.auth.auth import CurrentUser, FreshUser
+from prepza_common.http.sse import event_stream
+from prepza_common.i18n.i18n import request_language
 
 from app.schemas.legal_notices import LegalChangeOut
 from app.schemas.notifications import FeedOut

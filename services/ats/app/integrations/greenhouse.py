@@ -2,8 +2,9 @@ import hashlib
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common import http, memory_cache
-from prepza_common.http import bearer
+from prepza_common.http import http
+from prepza_common.http.http import bearer
+from prepza_common.redis import memory_cache
 
 from app.constants.ats import (
     ATS_TIMEOUT_SECONDS,

@@ -1,8 +1,8 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.constants import DEFAULT_LANGUAGE
-from prepza_common.db import one_of
+from prepza_common.config.constants import DEFAULT_LANGUAGE
+from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column

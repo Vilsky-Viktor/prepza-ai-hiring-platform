@@ -3,10 +3,10 @@ from uuid import UUID
 
 from fastapi import HTTPException, status
 from mcp.server.auth.provider import construct_redirect_uri
-from prepza_common.analytics import track
-from prepza_common.rate_limit import hit_or_skip
-from prepza_common.tokens import new_token
-from prepza_common.user import User
+from prepza_common.auth.tokens import new_token
+from prepza_common.auth.user import User
+from prepza_common.events.analytics import track
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from app.constants.mcp import CODE_BYTES, CODE_SECONDS, MCP_SCOPE, NOT_FOUND, OTHER_BROWSER
 from app.helpers.oauth import auth_settings, granted_scope

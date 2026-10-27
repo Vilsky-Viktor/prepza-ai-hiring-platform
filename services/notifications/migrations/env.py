@@ -1,7 +1,7 @@
 from logging.config import fileConfig
 
 from alembic import context
-from prepza_common.db import migration_engine
+from prepza_common.db.db import migration_engine
 
 import app.models.bulk
 import app.models.campaigns

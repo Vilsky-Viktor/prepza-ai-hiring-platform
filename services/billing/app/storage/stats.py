@@ -1,7 +1,7 @@
 """The admin zone's stats from billing's records. Purchases stay when an account or company is
 deleted, so every top-up counts; a deleted company's spent credits go with its history."""
 
-from prepza_common.stats import counted
+from prepza_common.db.stats import counted
 from sqlalchemy import func, select
 
 from app.constants.credits import Reason

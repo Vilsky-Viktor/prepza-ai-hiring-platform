@@ -14,7 +14,7 @@ def now() -> datetime:
 
 
 class LimitSetting(Base):
-    """A limit a superadmin changed from its default (prepza_common.limit_list); only changed
+    """A limit a superadmin changed from its default (prepza_common.limits.limit_list); only changed
     ones have a row. Redis's limits:values hash, which the services read, is written from these."""
 
     __tablename__ = "limit_settings"

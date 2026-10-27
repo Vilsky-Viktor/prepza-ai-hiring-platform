@@ -92,7 +92,7 @@ def check_titles(problems: list[str]) -> list[str]:
     known = set(
         re.findall(
             r'"(\w+)": "',
-            (EVALS.parent / "packages/common/src/prepza_common/constants.py").read_text(),
+            (EVALS.parent / "packages/common/src/prepza_common/config/constants.py").read_text(),
         )
     )
     check_described("titles.json", data, problems)

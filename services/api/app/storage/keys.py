@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common import audit
-from prepza_common.audit_actions import AuditAction, TargetKind
+from prepza_common.events import audit
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy import delete, func, or_, select, update
 
 from app.constants.api import LAST_USED_EVERY

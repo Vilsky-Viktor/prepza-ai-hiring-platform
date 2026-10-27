@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Annotated, Literal
 from uuid import UUID
 
-from prepza_common.titles import at_least
+from prepza_common.i18n.titles import at_least
 from pydantic import AfterValidator, BaseModel, EmailStr, Field
 
 from app.constants.invites import (

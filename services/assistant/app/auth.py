@@ -2,8 +2,8 @@ from typing import Annotated
 
 from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials
-from prepza_common.auth import bearer, current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import bearer, current_user
+from prepza_common.auth.user import User
 
 
 def user_with_token(

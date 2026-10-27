@@ -1,7 +1,7 @@
 """MAX_TOPICS and MAX_SUBTOPICS as set in Controls now: what the topic draft is held to, what a
 review may approve, and what the review page is told."""
 
-from prepza_common.limits import limit
+from prepza_common.limits.limits import limit
 
 from app.integrations.redis import get_redis
 from app.models.generation import Generation

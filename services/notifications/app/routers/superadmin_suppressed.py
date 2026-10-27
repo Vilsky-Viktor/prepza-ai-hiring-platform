@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from prepza_common.superadmin import SuperadminUser
-from prepza_common.user import UserEmailIn
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.auth.user import UserEmailIn
 
 from app.schemas.suppression import SuppressionOut
 from app.services import suppression

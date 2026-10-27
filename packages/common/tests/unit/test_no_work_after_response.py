@@ -20,7 +20,7 @@ ALLOWED = {
     # Locally only: there's no Cloud Tasks queue, so a job calls the worker in the background.
     "services/generation/app/integrations/tasks.py",
     # Integration tests' races only: both calls are awaited before the test ends.
-    "packages/common/src/prepza_common/lock_waits.py",
+    "packages/common/src/prepza_common/db/lock_waits.py",
 }
 
 

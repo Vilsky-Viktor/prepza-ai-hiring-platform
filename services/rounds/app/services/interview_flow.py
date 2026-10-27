@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from prepza_common.user import User
+from prepza_common.auth.user import User
 
 from app.constants.rounds import RoundStatus
 from app.helpers.sessions import next_session_question, seconds_left, time_is_up, topic_out

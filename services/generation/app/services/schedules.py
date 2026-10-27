@@ -1,7 +1,8 @@
 import logging
 from datetime import UTC, datetime, timedelta
 
-from prepza_common import pause, redis_lock
+from prepza_common.limits import pause
+from prepza_common.redis import redis_lock
 
 from app.constants.accounts import TEXT_RETENTION_DAYS
 from app.constants.generation import (

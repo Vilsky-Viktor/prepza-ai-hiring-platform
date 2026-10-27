@@ -6,7 +6,7 @@ import json
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common import http
+from prepza_common.http import http
 
 from app.helpers.ats import breezy_signed
 from app.integrations import ats_clients, breezy

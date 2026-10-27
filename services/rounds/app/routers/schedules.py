@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
-from prepza_common.google import Invoker
-from prepza_common.maintenance import is_on
+from prepza_common.auth.google import Invoker
+from prepza_common.limits.maintenance import is_on
 
 from app.integrations.redis import get_redis
 from app.services import outbox as outbox_service

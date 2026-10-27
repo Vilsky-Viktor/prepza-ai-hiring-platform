@@ -1,4 +1,4 @@
-from prepza_common.credit_keys import invite_key, ledger_key, rekeyed
+from prepza_common.limits.credit_keys import invite_key, ledger_key, rekeyed
 from sqlalchemy import text
 
 from app.config.settings import settings

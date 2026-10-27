@@ -20,7 +20,7 @@ Points other rule files already hold are only pointed at.
 
 - An instance keeps nothing another request needs: no sessions, uploads or queues in memory or on
   disk; session affinity is best effort. Per-instance caches only hold what may be stale for their
-  TTL (`prepza_common.memory_cache`); what every instance must agree on lives in Postgres or Redis.
+  TTL (`prepza_common.redis.memory_cache`); what every instance must agree on lives in Postgres or Redis.
 - Each service's `min`, `max`, `concurrency`, `timeout`, CPU and memory are set in
   `infra/terraform/locals.tf` and explained there. `max` protects what the service uses (its
   database connections, OpenAI), never a guess at traffic.
@@ -39,9 +39,9 @@ Points other rule files already hold are only pointed at.
 
 - The connection budget, pool sizes and timeouts: `.claude/rules/database.md` (Connections;
   Sessions, transactions and queries). `statement_timeout` (`STATEMENT_TIMEOUT`, the shortest
-  request timeout) is set on every service connection by `prepza_common.db`.
+  request timeout) is set on every service connection by `prepza_common.db.db`.
 - Large deletes (retention, published events, processed-event notes) go `DELETE_BATCH` rows at a
-  time, each batch its own transaction (`prepza_common.db.delete_in_batches`); the same for
+  time, each batch its own transaction (`prepza_common.db.db.delete_in_batches`); the same for
   backfills. One statement never touches an unbounded number of rows.
 - Every list a user or a job reads is bounded: a page (`MAX_PAGE_SIZE`), a batch, or a limit.
   OFFSET paging is fine inside one company; a list that can grow without end across tenants (logs,

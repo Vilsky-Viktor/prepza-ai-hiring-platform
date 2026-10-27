@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.paging import PageParams
-from prepza_common.stats import Period, StatsOut
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.db.paging import PageParams
+from prepza_common.db.stats import Period, StatsOut
 
 from app.constants.monitoring import PassRateSort
 from app.helpers.pass_rates import outside_triggers, percent

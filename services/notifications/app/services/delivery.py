@@ -1,6 +1,6 @@
 import logging
 
-from prepza_common.pacing import wait_turn
+from prepza_common.http.pacing import wait_turn
 
 from app.config.settings import settings
 from app.constants.email import RESEND_PACE_KEY, RESEND_PER_SECOND

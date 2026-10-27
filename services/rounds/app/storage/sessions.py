@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common import outbox
-from prepza_common.db import delete_in_batches
+from prepza_common.db.db import delete_in_batches
+from prepza_common.events import outbox
 from sqlalchemy import delete, func, or_, select, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import selectinload

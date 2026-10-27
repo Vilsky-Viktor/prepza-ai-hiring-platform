@@ -4,8 +4,8 @@ from datetime import UTC, datetime
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.reports import NO_FINISHED_CANDIDATES, OUTSIDE_COMPANY, TOO_MANY_REPORT_EMAILS
 from app.integrations import rounds

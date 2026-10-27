@@ -3,7 +3,7 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.constants import MAX_PAGE_SIZE
+from prepza_common.config.constants import MAX_PAGE_SIZE
 
 from app.constants.audit import VIA_API
 from app.constants.invites import EXTRA_TIME_STARTED, NO_EMAILS_FOR_GUEST

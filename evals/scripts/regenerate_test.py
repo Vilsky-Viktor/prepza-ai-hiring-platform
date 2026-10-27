@@ -29,7 +29,7 @@ from common import (
     tokens_of,
 )
 from langchain_core.callbacks import get_usage_metadata_callback
-from prepza_common.examples import has_example
+from prepza_common.ai.examples import has_example
 
 from app.config.settings import settings
 from app.constants.batch_work import BatchKind, BatchStep

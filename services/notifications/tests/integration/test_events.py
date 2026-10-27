@@ -1,7 +1,11 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.notifications import NOTIFICATION_REQUESTED, NotificationKind, notification
+from prepza_common.events.notifications import (
+    NOTIFICATION_REQUESTED,
+    NotificationKind,
+    notification,
+)
 from sqlalchemy import func, select, update
 
 from app.constants.notifications import GROUP_HOURS

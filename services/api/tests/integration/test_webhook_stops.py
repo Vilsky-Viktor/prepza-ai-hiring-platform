@@ -2,7 +2,7 @@ import asyncio
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.notifications import NOTIFICATION_REQUESTED
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import select
 
 from app.models.outbox import OutboxEvent

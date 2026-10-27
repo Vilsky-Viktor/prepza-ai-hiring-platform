@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.db import one_of
+from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, DateTime, Index, Text, UniqueConstraint, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column

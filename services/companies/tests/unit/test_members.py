@@ -2,8 +2,8 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.auth import current_user, optional_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user, optional_user
+from prepza_common.auth.user import User
 
 from app.main import app
 from app.models.companies import Company, Member
@@ -105,7 +105,7 @@ def test_a_visitor_sees_the_invite_without_its_email(client, stored_invite):
 def test_only_the_verified_account_invited_sees_the_invites_address(
     client, stored_invite, email, verified, matches, shown
 ):
-    from prepza_common.auth import optional_user
+    from prepza_common.auth.auth import optional_user
 
     app.dependency_overrides[optional_user] = lambda: User(
         uid="u1", email=email, email_verified=verified

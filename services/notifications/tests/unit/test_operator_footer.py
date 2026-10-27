@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.constants import OPERATOR
+from prepza_common.config.constants import OPERATOR
 
 from app.helpers.emails import candidate_invite_email
 from app.templates.emails import EMAILS

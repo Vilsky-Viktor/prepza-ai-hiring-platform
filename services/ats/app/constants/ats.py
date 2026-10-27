@@ -95,7 +95,7 @@ GREENHOUSE_TOKEN_URL = "https://auth.greenhouse.io/token"
 # What a token may do (its scopes), and the scope writing results back (a note) needs.
 GREENHOUSE_INTROSPECT_URL = "https://auth.greenhouse.io/introspect"
 GREENHOUSE_NOTES_SCOPE = "harvest:notes:create"
-# Connecting a credential that reads but can't write notes (translated in prepza_common.messages).
+# Connecting a credential that reads but can't write notes (translated in prepza_common.i18n.messages).
 GREENHOUSE_CANT_WRITE = (
     "This credential can't add notes, so results can't go back to Greenhouse: allow it the Notes "
     "endpoints too"

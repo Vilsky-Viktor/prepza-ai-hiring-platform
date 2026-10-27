@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.constants import VIA_MCP
+from prepza_common.config.constants import VIA_MCP
 from sqlalchemy import select
 
 from app.models.audit import AuditEvent

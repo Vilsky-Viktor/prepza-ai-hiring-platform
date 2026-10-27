@@ -4,7 +4,7 @@ import uuid
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common import http
+from prepza_common.http import http
 
 from app.integrations import billing_prices as billing
 

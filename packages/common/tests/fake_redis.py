@@ -5,7 +5,7 @@ fails while `down`; DownRedis is one that is."""
 
 import asyncio
 
-from prepza_common.limit_list import LIMITS_KEY
+from prepza_common.limits.limit_list import LIMITS_KEY
 from redis.exceptions import ConnectionError as RedisConnectionError
 
 MISSING = -2
@@ -188,7 +188,7 @@ class FakeRedis:
         return {name.encode(): str(value).encode() for name, value in self.limits.items()}
 
     async def eval(self, script, numkeys, key, token):
-        """Only the lock's release (prepza_common.redis_lock): deletes the key while it holds
+        """Only the lock's release (prepza_common.redis.redis_lock): deletes the key while it holds
         `token`."""
         self.check()
 

@@ -3,7 +3,7 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.constants import GUEST_UID_PREFIX
+from prepza_common.config.constants import GUEST_UID_PREFIX
 from sqlalchemy import select
 
 from app.models.bulk import BulkRecipient
@@ -50,7 +50,7 @@ def sending(monkeypatch):
     monkeypatch.setattr(bulk.library, "recipients", recipients)
     monkeypatch.setattr(delivery, "transmit", transmit)
     monkeypatch.setattr("app.services.bulk.asyncio.sleep", no_wait)
-    monkeypatch.setattr("prepza_common.limits.current_values", large_resend_quota)
+    monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
 
     return sent
 

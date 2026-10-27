@@ -5,9 +5,9 @@ paths:
   - "services/assistant/**"
   - "services/rounds/app/integrations/llm.py"
   - "services/rounds/app/routers/help.py"
-  - "packages/common/src/prepza_common/llm.py"
-  - "packages/common/src/prepza_common/ai_*.py"
-  - "packages/common/src/prepza_common/tracing.py"
+  - "packages/common/src/prepza_common/ai/llm.py"
+  - "packages/common/src/prepza_common/ai/ai_*.py"
+  - "packages/common/src/prepza_common/ai/tracing.py"
   - "evals/judges/**"
 ---
 
@@ -23,7 +23,7 @@ prompts, schemas and settings apart (rule 3); every call is bounded, typed, trac
   work (e.g. "You are an assessment designer who writes skills questions"), never tied to one
   job, industry or language: prompts stay domain-neutral, and examples are generic, never a
   company's text.
-- Model and effort per task in settings; models built with `prepza_common.llm.chat_model`, with
+- Model and effort per task in settings; models built with `prepza_common.ai.llm.chat_model`, with
   a timeout and `max_retries` from constants; parallel calls capped; bulk work that can wait
   uses the Batch API.
 - Output the code reads is a Pydantic schema (`with_structured_output`, a description per
@@ -32,7 +32,7 @@ prompts, schemas and settings apart (rule 3); every call is bounded, typed, trac
   code gave, links are built by code, tools check access themselves.
 - Graph nodes: `services/nodes/`, one per module, returning only the state they change, safe to
   re-run (rule 11).
-- Every call is traced (`prepza_common.tracing`) and priced (`prepza_common.ai_usage`).
+- Every call is traced (`prepza_common.ai.tracing`) and priced (`prepza_common.ai.ai_usage`).
 - Any change to a prompt, model, effort, schema or output-shaping step runs its eval first
   (`.claude/rules/evals.md`).
 

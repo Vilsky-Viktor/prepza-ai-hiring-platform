@@ -1,4 +1,4 @@
-from prepza_common.constants import OPERATOR
+from prepza_common.config.constants import OPERATOR
 
 # The company behind prepza, as named in the privacy policy and terms.
 COMPANY = OPERATOR

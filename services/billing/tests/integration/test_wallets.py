@@ -3,7 +3,7 @@ import os
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.lock_waits import wait_for_lock_wait
+from prepza_common.db.lock_waits import wait_for_lock_wait
 from sqlalchemy import delete
 
 from app.constants.credits import CANDIDATE_CREDITS, WELCOME_COMPANY, Reason

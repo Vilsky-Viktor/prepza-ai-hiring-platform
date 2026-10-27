@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.auth import CurrentUser
+from prepza_common.auth.auth import CurrentUser
 
 from app.schemas.interview_flow import InterviewStep
 from app.services import interview_flow

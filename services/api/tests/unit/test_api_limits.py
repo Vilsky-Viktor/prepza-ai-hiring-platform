@@ -1,5 +1,5 @@
 import pytest
-from prepza_common import limits, rate_limit
+from prepza_common.limits import limits, rate_limit
 
 from app import auth
 from tests.unit.conftest import COMPANY, sign_in

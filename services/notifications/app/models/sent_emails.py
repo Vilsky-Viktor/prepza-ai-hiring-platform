@@ -1,6 +1,6 @@
 from datetime import date
 
-from prepza_common.db import one_of
+from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, Date, Identity, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 

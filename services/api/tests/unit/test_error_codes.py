@@ -5,7 +5,7 @@ from datetime import UTC, datetime, timedelta
 # The key fixture is imported from test_public_routes and named in the tests.
 # ruff: noqa: F811
 import pytest
-from prepza_common.i18n import CodedError
+from prepza_common.i18n.i18n import CodedError
 
 from app.integrations import companies
 from tests.unit.conftest import INTERVIEW

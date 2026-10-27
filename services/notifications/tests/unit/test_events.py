@@ -4,7 +4,7 @@ import json
 
 import httpx
 import pytest
-from prepza_common.constants import LANGUAGES
+from prepza_common.config.constants import LANGUAGES
 
 from app.config.settings import settings
 from app.helpers.emails import candidate_invite_email, contact_email

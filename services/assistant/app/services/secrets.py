@@ -1,19 +1,19 @@
 from collections.abc import AsyncIterator
 
-from prepza_common.i18n import translate
-from prepza_common.secrets_check import (
+from prepza_common.ai.secrets_check import (
     SECRET_PAGE_NAMES,
     SECRET_REMOVED,
     SECRET_REMOVED_ON_PAGE,
     Secret,
 )
-from prepza_common.sse import sse_event
+from prepza_common.http.sse import sse_event
+from prepza_common.i18n.i18n import translate
 
 from app.constants.show import PAGES
 from app.helpers.blocks import link
 from app.schemas.chat import ChatRequest
 
-# The page of each form a secret belongs in (prepza_common.secrets_check's forms).
+# The page of each form a secret belongs in (prepza_common.ai.secrets_check's forms).
 SECRET_PAGES = {"api": "api", "slack": "slack", "ats": "integrations"}
 
 

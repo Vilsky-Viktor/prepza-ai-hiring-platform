@@ -3,7 +3,7 @@ import time
 from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, status
-from prepza_common.google import Invoker
+from prepza_common.auth.google import Invoker
 
 from app.constants.member_emails import CLEANUP_SECONDS, SENT_KEEP_DAYS
 from app.constants.suppression import SOFT_BOUNCE_DAYS

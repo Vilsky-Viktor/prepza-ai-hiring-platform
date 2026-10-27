@@ -7,7 +7,8 @@ from types import SimpleNamespace
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common import http, memory_cache
+from prepza_common.http import http
+from prepza_common.redis import memory_cache
 
 from app.constants.ats import GREENHOUSE_API, GREENHOUSE_TOKEN_URL, AtsProvider
 from app.helpers.ats import greenhouse_signed

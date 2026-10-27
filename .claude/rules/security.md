@@ -14,7 +14,7 @@ the Top 10 for LLM applications 2025.
 
 ## Sign-in and access
 
-- Every Firebase ID token is verified server-side (`prepza_common.auth`: signature, `aud`,
+- Every Firebase ID token is verified server-side (`prepza_common.auth.auth`: signature, `aud`,
   `iss`, `exp`); a certificate fetch failure is a 503, never a pass. Deleting an account
   revokes its refresh tokens; a check that must see revocation at once uses `check_revoked`.
 - Decisions that rely on an email (starting an invite, accepting a member invite, the admin
@@ -22,7 +22,7 @@ the Top 10 for LLM applications 2025.
 - Every route resolves its object and checks the caller's company and role on it (`interview_for`,
   `candidate_for`, `require_company`, `require_editor`); an unguessable id never replaces the
   check. Test access with a second account that must be refused.
-- Each service's `test_route_guards.py` (`prepza_common.route_guards`) fails on a route that runs
+- Each service's `test_route_guards.py` (`prepza_common.auth.route_guards`) fails on a route that runs
   no guard; a route public on purpose is listed there with why.
 - Superadmin routes answer 404 to everyone else.
 - Service-to-service calls carry short-lived (60 s), audience-bound tokens with one key per
@@ -76,7 +76,7 @@ the Top 10 for LLM applications 2025.
 - Never log tokens, keys, session ids, a URL path that carries a secret token (log the route
   template) or unneeded personal data; log authentication and authorization failures.
 - `packages/common/tests/unit/test_log_calls.py` fails on a log call passing an email, a name, a
-  token or a key; every log line is scrubbed of emails and URL paths (`prepza_common.scrub`).
+  token or a key; every log line is scrubbed of emails and URL paths (`prepza_common.observability.scrub`).
 
 ## AI
 
@@ -88,7 +88,7 @@ the Top 10 for LLM applications 2025.
 ## Rate limiting
 
 - Every route that costs money or can be abused (AI, emails, invites, exports, checkouts,
-  integrations, anonymous endpoints) has a limit from `prepza_common.rate_limit`, with its
+  integrations, anonymous endpoints) has a limit from `prepza_common.limits.rate_limit`, with its
   default, window and scope in `limit_list.LIMITS`, editable in the admin zone.
 - Pick the key by what it protects: per user or company for fairness and spend, per IP for
   anonymous traffic, a global cap for shared budgets (the AI bill). Normalise keys built from

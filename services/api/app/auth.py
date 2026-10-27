@@ -5,10 +5,10 @@ from uuid import UUID
 from fastapi import Depends, Request, status
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from prepza_common import memory_cache
-from prepza_common.i18n import CodedError
-from prepza_common.rate_limit import hit_or_skip
-from prepza_common.tokens import hashed
+from prepza_common.auth.tokens import hashed
+from prepza_common.i18n.i18n import CodedError
+from prepza_common.limits.rate_limit import hit_or_skip
+from prepza_common.redis import memory_cache
 
 from app.constants.api import ACCESS_CACHE_SECONDS, LAST_USED_EVERY
 from app.constants.error_codes import API_KEY_EXPIRED, INVALID_API_KEY, KEY_CREATOR_LOST_ACCESS

@@ -25,7 +25,8 @@ import json
 
 import pytest
 from fastapi.testclient import TestClient
-from prepza_common import memory_cache, pubsub
+from prepza_common.events import pubsub
+from prepza_common.redis import memory_cache
 
 from app.main import app
 

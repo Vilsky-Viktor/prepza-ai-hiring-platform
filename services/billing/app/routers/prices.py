@@ -1,8 +1,8 @@
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.constants import DEFAULT_LANGUAGE
-from prepza_common.user import Language
+from prepza_common.auth.user import Language
+from prepza_common.config.constants import DEFAULT_LANGUAGE
 
 from app.config.settings import settings
 from app.constants.currencies import ChoiceOwner, Currency

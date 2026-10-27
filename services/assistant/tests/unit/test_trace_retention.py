@@ -6,7 +6,7 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 import pytest
-from prepza_common import http
+from prepza_common.http import http
 
 from app.integrations import trace_retention
 

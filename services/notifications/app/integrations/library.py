@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from fastapi import status
-from prepza_common import http
-from prepza_common.http import bearer
+from prepza_common.http import http
+from prepza_common.http.http import bearer
 
 from app.config.settings import settings
 from app.integrations.batches import post_ids
@@ -29,7 +29,7 @@ async def recipients(user_ids: list[str]) -> list[dict]:
 
 
 async def user_ids(after: str, setting: str | None = None) -> list[str]:
-    """A page of account ids after `after`, in order (prepza_common.paging): every account, for
+    """A page of account ids after `after`, in order (prepza_common.db.paging): every account, for
     a notice about the terms or the privacy policy; with a `setting` ("updates", "promotions"),
     the users who have it on, for a campaign."""
     params = {"after": after, "setting": setting} if setting else {"after": after}

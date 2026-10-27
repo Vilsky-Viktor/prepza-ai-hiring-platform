@@ -6,10 +6,10 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.auth import current_user
-from prepza_common.names import clean_name
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.events.audit_actions import AuditAction, TargetKind
+from prepza_common.i18n.names import clean_name
 
 from app.constants.invites import MAX_CANDIDATE_NAME_LENGTH, InviteStatus
 from app.main import app

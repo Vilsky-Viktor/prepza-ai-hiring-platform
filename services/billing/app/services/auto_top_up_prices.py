@@ -1,6 +1,6 @@
 from datetime import UTC, datetime, time, timedelta
 
-from prepza_common.notifications import NotificationKind, notification
+from prepza_common.events.notifications import NotificationKind, notification
 
 from app.constants.auto_top_up_prices import (
     AUTO_TOP_UP_PRICE_NOTICE_DAYS,

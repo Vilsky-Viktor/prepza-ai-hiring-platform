@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, Response, status
-from prepza_common.answer_votes import mirror_vote
-from prepza_common.i18n import request_language
-from prepza_common.paging import PageParams
+from prepza_common.ai.answer_votes import mirror_vote
+from prepza_common.db.paging import PageParams
+from prepza_common.i18n.i18n import request_language
 
 from app.auth import UserWithToken
 from app.constants.chat import NOT_FOUND, RESTORE_MINUTES

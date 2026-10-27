@@ -1,9 +1,9 @@
 from contextvars import ContextVar
 
 import httpx
-from prepza_common import http
-from prepza_common.constants import ASSISTANT_HEADER, REFERRAL_COOKIE, VIA_ASSISTANT
-from prepza_common.http import bearer
+from prepza_common.config.constants import ASSISTANT_HEADER, REFERRAL_COOKIE, VIA_ASSISTANT
+from prepza_common.http import http
+from prepza_common.http.http import bearer
 
 from app.config.settings import settings
 from app.constants.tool_calls import REFERRAL_CODE, SERVICE_URLS, TOOL_TIMEOUT_SECONDS

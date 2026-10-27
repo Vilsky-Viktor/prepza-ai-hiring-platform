@@ -233,7 +233,7 @@ def test_a_finished_interview_delivered_twice_notifies_the_company_once(run):
 def test_a_candidate_invited_again_after_removal_is_held_under_a_new_key(run, monkeypatch):
     # A finished candidate removed and invited again must be charged again: billing keeps a
     # charged key charged, so the new invite needs its own key.
-    from prepza_common.user import User
+    from prepza_common.auth.user import User
 
     from app.integrations import billing
     from app.services import candidate_invites

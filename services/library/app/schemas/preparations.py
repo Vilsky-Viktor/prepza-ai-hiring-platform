@@ -1,7 +1,7 @@
 from uuid import UUID
 
-from prepza_common.sets import OptionIn
-from prepza_common.titles import Title
+from prepza_common.ai.sets import OptionIn
+from prepza_common.i18n.titles import Title
 from pydantic import BaseModel
 
 

@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.sets import PreparationIn
+from prepza_common.ai.sets import PreparationIn
 from sqlalchemy import Text, and_, cast, func, or_, select, text
 from sqlalchemy.orm import aliased, selectinload
 

@@ -5,8 +5,8 @@ catalog and currency, a top-up's checkout and the automatic top-up. `country` is
 from uuid import UUID
 
 from fastapi import status
-from prepza_common import http
-from prepza_common.http import bearer, passed_on
+from prepza_common.http import http
+from prepza_common.http.http import bearer, passed_on
 
 from app.config.settings import settings
 from app.service_auth import service_token

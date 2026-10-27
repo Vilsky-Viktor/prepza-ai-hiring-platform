@@ -8,8 +8,8 @@ from datetime import UTC, datetime, timedelta
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common import memory_cache
-from prepza_common.limit_list import LIMITS_KEY
+from prepza_common.limits.limit_list import LIMITS_KEY
+from prepza_common.redis import memory_cache
 from sqlalchemy import update
 
 from app.integrations.redis import get_redis
@@ -211,7 +211,7 @@ def test_an_accounts_answers_traces_are_found_to_delete_with_it(run):
 
 
 def test_a_companys_conversations_go_batch_after_batch(run, monkeypatch):
-    from prepza_common import db
+    from prepza_common.db import db
 
     monkeypatch.setattr(db, "DELETE_BATCH", 2)
     company, other = uuid.uuid4(), uuid.uuid4()

@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common import outbox, processed_events
-from prepza_common.notifications import NOTIFICATION_REQUESTED
+from prepza_common.events import outbox, processed_events
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import func, update
 
 from app.constants.events import CANDIDATE_FINISHED, CANDIDATE_STARTED, CANDIDATE_UNDELIVERED

@@ -1,9 +1,9 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common import audit, outbox
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.notifications import NOTIFICATION_REQUESTED
+from prepza_common.events import audit, outbox
+from prepza_common.events.audit_actions import AuditAction, TargetKind
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 

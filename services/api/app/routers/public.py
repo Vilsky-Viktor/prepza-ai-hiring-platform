@@ -2,7 +2,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Request, Response, status
-from prepza_common.paging import PageParams
+from prepza_common.db.paging import PageParams
 
 from app.auth import needs
 from app.config.settings import settings

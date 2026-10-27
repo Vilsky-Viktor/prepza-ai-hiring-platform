@@ -5,9 +5,9 @@ from datetime import UTC, datetime
 
 import httpx
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.lock_waits import hold_first_commit, race
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.db.lock_waits import hold_first_commit, race
 
 from app.config.settings import settings
 from app.constants.campaigns import ALREADY_SENT, ONE_A_DAY
@@ -73,7 +73,7 @@ def test_a_campaign_goes_from_start_to_mailpit_once_and_only_to_who_chose_it(
     monkeypatch.setattr("app.services.audiences.library.user_ids", user_ids)
     monkeypatch.setattr(bulk.library, "recipients", recipients)
     monkeypatch.setattr(settings, "resend_api_key", "")
-    monkeypatch.setattr("prepza_common.limits.current_values", large_resend_quota)
+    monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
 
     async def scenario():
         campaign = await campaigns_store.create(fields("promotions"), "sam", ENGLISH)

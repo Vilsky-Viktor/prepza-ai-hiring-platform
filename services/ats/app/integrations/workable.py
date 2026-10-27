@@ -1,6 +1,6 @@
 import httpx
 from fastapi import status
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.constants.ats import (
     WORKABLE_API,

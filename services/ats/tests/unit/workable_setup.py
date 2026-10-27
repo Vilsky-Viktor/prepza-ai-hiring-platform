@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.integrations import workable
 from app.main import app

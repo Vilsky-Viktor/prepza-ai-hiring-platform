@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.notifications import notification
+from prepza_common.events.notifications import notification
 
 from app.services import generation_events
 from app.services import outbox as outbox_service

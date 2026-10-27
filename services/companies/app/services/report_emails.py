@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
-from prepza_common.rate_limit import hit, hit_emails
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.limits.rate_limit import hit, hit_emails
 
 from app.constants.reports import (
     NO_FINISHED_CANDIDATES,

@@ -80,7 +80,7 @@ DISTRACTOR_RULES = """- Each distractor is a specific, believable mistake: a com
 - A distractor must be wrong for the question exactly as written, not merely less precise. If
   an expert could defend it as a correct answer, it is not a distractor."""
 
-# The two kinds of question (prepza_common.multi_answer): the candidate picks one option, or ticks
+# The two kinds of question (prepza_common.ai.multi_answer): the candidate picks one option, or ticks
 # every correct one of a select-all-that-apply question, which scores only when no wrong one is
 # ticked. Each prompt that writes questions or options says which kind it wants.
 SINGLE_ANSWER_RULES = """- A single-answer question has exactly one clearly correct option that can be stated

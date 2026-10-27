@@ -2,9 +2,9 @@ import logging
 import random
 from collections import Counter
 
-from prepza_common.capped import gather_capped
-from prepza_common.limits import limit
-from prepza_common.multi_answer import is_multi
+from prepza_common.ai.multi_answer import is_multi
+from prepza_common.http.capped import gather_capped
+from prepza_common.limits.limits import limit
 
 from app.helpers.prompts import checker_messages
 from app.integrations import llm

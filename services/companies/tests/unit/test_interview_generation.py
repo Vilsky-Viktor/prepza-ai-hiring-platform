@@ -4,9 +4,9 @@ from datetime import UTC, datetime
 import httpx
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 
 import app.routers.interview_generation as generation_routes
 from app.integrations import generation

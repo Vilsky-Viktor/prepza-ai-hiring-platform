@@ -3,7 +3,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, status
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
 
 from app.constants.invites import COMPANY_NAME_TAKEN
 from app.constants.superadmin import COMPANIES_SHOWN

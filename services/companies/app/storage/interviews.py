@@ -2,7 +2,7 @@ import uuid
 from collections.abc import Callable
 from datetime import UTC, datetime
 
-from prepza_common import outbox
+from prepza_common.events import outbox
 from sqlalchemy import delete, func, select, update
 
 from app.constants.events import CANDIDATE_INTERVIEW_DELETED, INTERVIEW_DELETED

@@ -3,8 +3,8 @@ paths:
   - "frontend/messages/**"
   - "frontend/content/**"
   - "frontend/i18n/**"
-  - "packages/common/src/prepza_common/messages/**"
-  - "packages/common/src/prepza_common/i18n.py"
+  - "packages/common/src/prepza_common/i18n/messages/**"
+  - "packages/common/src/prepza_common/i18n/i18n.py"
   - "services/billing/app/services/catalog.py"
 ---
 

@@ -3,10 +3,10 @@ from uuid import UUID
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.i18n import translate
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.i18n.i18n import translate
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit
 
 from app.constants.actions_flow import (
     ACTION_GONE,

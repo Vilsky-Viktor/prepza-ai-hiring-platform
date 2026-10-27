@@ -1,6 +1,6 @@
 import logging
 
-from prepza_common import ai_usage
+from prepza_common.ai import ai_usage
 from pydantic import ValidationError
 
 from app.config.settings import settings

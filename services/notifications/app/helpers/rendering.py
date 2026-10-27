@@ -2,7 +2,7 @@ import re
 from html import escape
 
 from babel.numbers import format_decimal
-from prepza_common.constants import DEFAULT_LANGUAGE, OPERATOR, RTL_LANGUAGES
+from prepza_common.config.constants import DEFAULT_LANGUAGE, OPERATOR, RTL_LANGUAGES
 
 from app.constants.email import LTR_VALUE
 from app.helpers.markdown import markdown_html

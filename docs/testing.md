@@ -59,7 +59,7 @@ Besides the helpers, vitest checks rules the code must keep: `tests/messages/num
 
 ## Integration tests
 
-Each service's `tests/integration` runs against the running stack's real Postgres and Redis, in a `<service>_test` database created and dropped for the run. Every test starts clean (`prepza_common.clean_start`): before it, the tables the migrations left empty are truncated, Redis database 15 is flushed and work an earlier test left running is ended; rows the migrations seed stay. Nothing outside the `_test` databases and Redis database 15 is touched.
+Each service's `tests/integration` runs against the running stack's real Postgres and Redis, in a `<service>_test` database created and dropped for the run. Every test starts clean (`prepza_common.db.clean_start`): before it, the tables the migrations left empty are truncated, Redis database 15 is flushed and work an earlier test left running is ended; rows the migrations seed stay. Nothing outside the `_test` databases and Redis database 15 is touched.
 
 ```bash
 ./scripts/integration.sh            # or: ./scripts/integration.sh rounds library

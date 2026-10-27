@@ -2,7 +2,7 @@ from typing import Literal
 
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.paging import IdPageParams
+from prepza_common.db.paging import IdPageParams
 
 from app.schemas.sessions import InviteIdsIn, UserIdsOut
 from app.service_auth import ServiceCaller

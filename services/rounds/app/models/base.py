@@ -1,4 +1,4 @@
-from prepza_common.constants import NAMING_CONVENTION
+from prepza_common.config.constants import NAMING_CONVENTION
 from sqlalchemy import MetaData
 from sqlalchemy.orm import DeclarativeBase
 

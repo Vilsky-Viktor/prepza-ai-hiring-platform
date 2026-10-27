@@ -233,7 +233,7 @@ def test_the_recovery_job_takes_each_connections_candidates_in_turn(run):
 
 
 def test_more_not_invited_candidates_than_a_batch_all_wait_again(run, monkeypatch):
-    from prepza_common import db
+    from prepza_common.db import db
     from sqlalchemy import select
 
     from app.models.ats import AtsCandidate

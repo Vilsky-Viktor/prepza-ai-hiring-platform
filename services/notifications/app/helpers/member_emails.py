@@ -3,7 +3,7 @@
 from datetime import date
 
 from babel.dates import format_date
-from prepza_common.money import money
+from prepza_common.i18n.money import money
 
 from app.constants.member_emails import COMPANIES_LINK, TOP_UP_LINK, MemberEmail
 from app.constants.unsubscribe import UnsubscribeType

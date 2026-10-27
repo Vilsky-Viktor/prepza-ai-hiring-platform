@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common import http
+from prepza_common.http import http
 
 from app.integrations import accounts as account_services
 from app.storage import accounts, feedback, legal

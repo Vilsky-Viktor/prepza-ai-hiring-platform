@@ -1,9 +1,9 @@
 import pytest
 from firebase_admin import auth as firebase_auth
-from prepza_common import ai_cap
-from prepza_common.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT, MICRO
-from prepza_common.constants import RATE_LIMITED
-from prepza_common.limit_list import LIMITS
+from prepza_common.ai import ai_cap
+from prepza_common.ai.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT, MICRO
+from prepza_common.config.constants import RATE_LIMITED
+from prepza_common.limits.limit_list import LIMITS
 
 import app.routers.help as help_routes
 from app.constants.help import HELP_ALL_KEY, HELP_SPEND_KEY

@@ -8,7 +8,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from langchain_openai import ChatOpenAI
-from prepza_common.llm import call_cost
+from prepza_common.ai.llm import call_cost
 
 EVALS = Path(__file__).resolve().parents[1]
 DATASETS = EVALS / "datasets"

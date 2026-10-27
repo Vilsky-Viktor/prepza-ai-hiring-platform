@@ -1,7 +1,7 @@
 import asyncio
 from types import SimpleNamespace
 
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.constants.credits import CANDIDATE_CREDITS
 from app.service_auth import service_token

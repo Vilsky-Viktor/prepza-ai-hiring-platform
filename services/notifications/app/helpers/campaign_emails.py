@@ -1,7 +1,7 @@
 # The campaign emails: a superadmin's text in the recipient's language, as an optional email
 # (the unsubscribe link and headers of its setting), or for an important notice as a service
 # email (from the service sender, nothing to unsubscribe from, its footer saying why).
-from prepza_common.constants import DEFAULT_LANGUAGE
+from prepza_common.config.constants import DEFAULT_LANGUAGE
 
 from app.constants.bulk import OPTIONAL_KINDS, SEND_TAG
 from app.constants.unsubscribe import UnsubscribeType

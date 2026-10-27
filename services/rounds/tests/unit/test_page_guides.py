@@ -1,8 +1,8 @@
 import asyncio
 
 import pytest
-from prepza_common.constants import LANGUAGES
-from prepza_common.page_keys import PAGE_KEYS
+from prepza_common.ai.page_keys import PAGE_KEYS
+from prepza_common.config.constants import LANGUAGES
 
 from app.constants.help import NO_SUCH_PAGE
 from app.helpers import page_guides

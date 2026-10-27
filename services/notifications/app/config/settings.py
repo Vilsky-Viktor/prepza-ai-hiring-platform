@@ -1,4 +1,4 @@
-from prepza_common.settings import ServiceSettings
+from prepza_common.config.settings import ServiceSettings
 
 
 class Settings(ServiceSettings):
@@ -33,7 +33,7 @@ class Settings(ServiceSettings):
     # Signs the unsubscribe links in emails, so nobody can make one for someone else.
     email_link_secret: str
     # Keys the hashes candidates' opted-out and suppressed addresses are kept as
-    # (prepza_common.person_hash), so nobody with a list of addresses can match them.
+    # (prepza_common.auth.person_hash), so nobody with a list of addresses can match them.
     person_hash_key: str
     # Companies owns the invites, told when an invite's email wasn't delivered, and says which
     # companies a user belongs to, whose notifications they see.

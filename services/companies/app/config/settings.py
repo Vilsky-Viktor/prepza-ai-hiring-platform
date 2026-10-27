@@ -1,4 +1,4 @@
-from prepza_common.settings import ServiceSettings
+from prepza_common.config.settings import ServiceSettings
 
 
 class Settings(ServiceSettings):
@@ -15,7 +15,7 @@ class Settings(ServiceSettings):
     library_url: str
     rounds_url: str
     billing_url: str
-    # Keys the hashes in older invites' credit keys (prepza_common.credit_keys, migration 0057).
+    # Keys the hashes in older invites' credit keys (prepza_common.limits.credit_keys, migration 0057).
     person_hash_key: str
 
 

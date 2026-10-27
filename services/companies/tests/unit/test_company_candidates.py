@@ -2,8 +2,8 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.invites import InviteStatus
 from app.integrations import rounds

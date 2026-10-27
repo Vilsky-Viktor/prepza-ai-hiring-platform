@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.rate_limit import hit_or_skip
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from app.integrations.redis import get_redis
 from app.schemas.feedback import (

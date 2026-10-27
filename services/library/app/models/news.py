@@ -1,7 +1,7 @@
 import uuid
 from datetime import date, datetime
 
-from prepza_common.constants import MAX_NEWS_TITLE_LENGTH
+from prepza_common.config.constants import MAX_NEWS_TITLE_LENGTH
 from sqlalchemy import DateTime, ForeignKey, Index, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column
 

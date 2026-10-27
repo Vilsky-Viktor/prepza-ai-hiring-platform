@@ -1,10 +1,11 @@
 from datetime import UTC, datetime
 from uuid import UUID
 
+from prepza_common.config.constants import LEGAL_VERSIONS
+from prepza_common.db.db import delete_in_batches
+
 # Aliased: this module's own delete() would otherwise shadow it.
-from prepza_common import outbox
-from prepza_common.constants import LEGAL_VERSIONS
-from prepza_common.db import delete_in_batches
+from prepza_common.events import outbox
 from sqlalchemy import String, and_, cast, func, literal, or_, select, update
 from sqlalchemy import delete as sql_delete
 from sqlalchemy.dialects.postgresql import JSONB

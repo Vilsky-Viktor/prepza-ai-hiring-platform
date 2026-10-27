@@ -2,13 +2,13 @@ import uuid
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common import memory_cache
-from prepza_common.auth import CurrentUser
-from prepza_common.limits import question_seconds
-from prepza_common.multi_answer import multi_share
-from prepza_common.paging import PageParams
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit_or_skip
+from prepza_common.ai.multi_answer import multi_share
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.db.paging import PageParams
+from prepza_common.limits.limits import question_seconds
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit_or_skip
+from prepza_common.redis import memory_cache
 
 from app.constants.practice import (
     NO_PRACTICE_QUESTIONS,

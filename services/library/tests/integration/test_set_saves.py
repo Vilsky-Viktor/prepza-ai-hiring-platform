@@ -4,7 +4,7 @@ same title, each end with one set, without an error."""
 import asyncio
 import uuid
 
-from prepza_common.sets import PreparationIn
+from prepza_common.ai.sets import PreparationIn
 
 from app.services.set_saves import save_once
 from app.storage import preparations, templates

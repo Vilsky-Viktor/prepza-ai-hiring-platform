@@ -4,8 +4,8 @@ import anyio
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
-from prepza_common import memory_cache
-from prepza_common.limit_list import LIMITS
+from prepza_common.limits.limit_list import LIMITS
+from prepza_common.redis import memory_cache
 
 from app.services import feed
 

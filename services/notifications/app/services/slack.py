@@ -5,9 +5,9 @@ from urllib.parse import urlencode
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.encryption import decrypt, encrypt
-from prepza_common.notifications import NotificationKind, Recipient, notification
-from prepza_common.tokens import purpose_key
+from prepza_common.auth.encryption import decrypt, encrypt
+from prepza_common.auth.tokens import purpose_key
+from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
 from app.config.settings import settings
 from app.constants.slack import (

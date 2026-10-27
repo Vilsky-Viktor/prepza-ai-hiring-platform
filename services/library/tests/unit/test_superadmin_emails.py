@@ -3,8 +3,8 @@ from types import SimpleNamespace
 
 import pytest
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.emails import ADMIN_CANT_CONSENT, DEFAULTS
 from app.main import app

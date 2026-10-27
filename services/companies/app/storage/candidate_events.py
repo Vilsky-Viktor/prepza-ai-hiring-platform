@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common import outbox
+from prepza_common.events import outbox
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 

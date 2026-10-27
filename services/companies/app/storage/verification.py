@@ -2,8 +2,8 @@
 
 from datetime import UTC, datetime
 
-from prepza_common import outbox
-from prepza_common.notifications import NOTIFICATION_REQUESTED
+from prepza_common.events import outbox
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import case, select, update
 
 from app.constants.verification import VerificationStatus

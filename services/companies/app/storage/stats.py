@@ -1,7 +1,7 @@
 """The admin zone's stats from companies' records: what is stored now, so deleted companies and
 candidates past retention aren't counted."""
 
-from prepza_common.stats import counted
+from prepza_common.db.stats import counted
 from sqlalchemy import func
 
 from app.constants.invites import InviteStatus

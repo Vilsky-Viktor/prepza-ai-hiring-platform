@@ -4,8 +4,8 @@ import binascii
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Response, status
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.auth import CurrentUser
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 
 from app.constants.brand import PREPZA_COLORS, Theme
 from app.constants.logos import LOGO_CACHE

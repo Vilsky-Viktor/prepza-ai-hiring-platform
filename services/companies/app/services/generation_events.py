@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common.analytics import track
-from prepza_common.limits import question_seconds
+from prepza_common.events.analytics import track
+from prepza_common.limits.limits import question_seconds
 
 from app.constants.events import GENERATION_CANCELLED, GENERATION_COMPLETED, GENERATION_FAILED
 from app.helpers.notifications import interview_cancelled, interview_ready

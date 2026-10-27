@@ -3,8 +3,8 @@ from datetime import UTC, datetime
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth import current_user
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.user import User
 
 from app.constants.invites import NO_PLEDGE
 from app.integrations import library, rounds

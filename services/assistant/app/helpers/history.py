@@ -1,5 +1,5 @@
 from langchain_core.messages import BaseMessage
-from prepza_common.llm import latest_messages
+from prepza_common.ai.llm import latest_messages
 
 from app.constants.chat import Role
 from app.helpers.page_context import describe_page

@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.multi_answer import multi_count
+from prepza_common.ai.multi_answer import multi_count
 
 from app.helpers.interviews import pick_questions
 from app.schemas.scorecards import ScorecardSection

@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.sets import AddedQuestionsIn, AdditionContext, AdditionTopic
+from prepza_common.ai.sets import AddedQuestionsIn, AdditionContext, AdditionTopic
 
 from app.constants.sets import Pool, SetKind
 from app.helpers.pools import missing

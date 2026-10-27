@@ -1,6 +1,6 @@
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.notifications import NotificationKind, Recipient
+from prepza_common.events.notifications import NotificationKind, Recipient
 from sqlalchemy import and_, delete, func, or_, select, tuple_
 from sqlalchemy.dialects.postgresql import insert
 

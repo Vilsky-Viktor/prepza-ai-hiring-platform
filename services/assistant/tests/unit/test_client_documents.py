@@ -4,7 +4,7 @@ from datetime import UTC, datetime, timedelta
 import httpx
 import pytest
 from mcp.shared.auth import InvalidRedirectUriError
-from prepza_common import public_urls
+from prepza_common.http import public_urls
 
 from app.constants.limits import MAX_REGISTRATION_BYTES
 from app.helpers.mcp_clients import document_client, is_document_id, same_loopback

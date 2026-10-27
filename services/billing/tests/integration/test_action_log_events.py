@@ -4,7 +4,7 @@ purchase, once however often Paddle retries, never for an automatic top-up."""
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.audit_actions import AUDIT_RECORDED
+from prepza_common.events.audit_actions import AUDIT_RECORDED
 from sqlalchemy import select
 
 from app.constants.products import TOP_UPS, OwnerType

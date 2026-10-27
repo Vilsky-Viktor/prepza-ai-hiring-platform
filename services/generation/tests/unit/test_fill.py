@@ -3,7 +3,7 @@ import uuid
 
 import pytest
 from langgraph.checkpoint.memory import InMemorySaver
-from prepza_common.multi_answer import is_multi
+from prepza_common.ai.multi_answer import is_multi
 
 from app.helpers.payload import build_preparation
 from app.integrations import llm

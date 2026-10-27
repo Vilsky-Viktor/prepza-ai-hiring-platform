@@ -6,7 +6,7 @@ from datetime import UTC, datetime
 
 import httpx
 import pytest
-from prepza_common import http
+from prepza_common.http import http
 
 from app.constants.products import PADDLE_API_VERSION
 from app.integrations import paddle

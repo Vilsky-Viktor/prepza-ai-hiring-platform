@@ -4,7 +4,7 @@ import uuid
 
 import httpx
 import pytest
-from prepza_common import http
+from prepza_common.http import http
 from sqlalchemy import func, select
 
 from app.config.settings import settings

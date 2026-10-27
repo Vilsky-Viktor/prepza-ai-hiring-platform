@@ -1,9 +1,9 @@
 import time
 
 import httpx
-from prepza_common.capped import gather_capped
-from prepza_common.constants import VIA_ASSISTANT
-from prepza_common.i18n import translate
+from prepza_common.config.constants import VIA_ASSISTANT
+from prepza_common.http.capped import gather_capped
+from prepza_common.i18n.i18n import translate
 
 from app.config.settings import settings
 from app.constants.tool_calls import (

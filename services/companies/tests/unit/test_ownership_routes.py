@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.audit_actions import AuditAction, TargetKind
+from prepza_common.events.audit_actions import AuditAction, TargetKind
 
 from app.constants.roles import ONLY_ADMINS_OWN
 from app.routers import members as members_router

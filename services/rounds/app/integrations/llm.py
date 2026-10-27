@@ -1,7 +1,7 @@
 from functools import cache
 
 from langchain_openai import ChatOpenAI
-from prepza_common.llm import chat_model
+from prepza_common.ai.llm import chat_model
 
 from app.config.settings import settings
 from app.constants.help import HELP_MAX_OUTPUT_TOKENS

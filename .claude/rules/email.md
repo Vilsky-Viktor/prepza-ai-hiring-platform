@@ -1,7 +1,7 @@
 ---
 paths:
   - "services/notifications/**"
-  - "packages/common/src/prepza_common/notifications.py"
+  - "packages/common/src/prepza_common/events/notifications.py"
 ---
 
 # Email

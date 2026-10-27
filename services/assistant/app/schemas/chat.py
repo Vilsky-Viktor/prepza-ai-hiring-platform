@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from prepza_common.page_keys import PAGE_KEYS
+from prepza_common.ai.page_keys import PAGE_KEYS
 from pydantic import BaseModel, Field, field_validator
 
 from app.constants.chat import (

@@ -88,7 +88,7 @@ describe("page help", () => {
   })
 
   it("has the keys rounds serves guides for", () => {
-    const python = read("../packages/common/src/prepza_common/page_keys.py")
+    const python = read("../packages/common/src/prepza_common/ai/page_keys.py")
     const keys = [...python.matchAll(/^\s+"(\w+)",$/gm)].map(
       (match) => match[1]
     )

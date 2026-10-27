@@ -5,8 +5,8 @@ paths:
   - "docs/runbooks.md"
   - "docs/runbooks/**"
   - "docs/deployment.md"
-  - "packages/common/src/prepza_common/logging.py"
-  - "packages/common/src/prepza_common/health.py"
+  - "packages/common/src/prepza_common/observability/logging.py"
+  - "packages/common/src/prepza_common/http/health.py"
 ---
 
 # Operations: alerts, incidents, backups

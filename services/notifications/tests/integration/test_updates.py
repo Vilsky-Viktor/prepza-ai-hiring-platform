@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.notifications import Recipient
+from prepza_common.events.notifications import Recipient
 from sqlalchemy import delete
 
 from app.models.notifications import Notification

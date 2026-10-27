@@ -2,8 +2,9 @@ from datetime import datetime
 from uuid import UUID
 
 from fastapi import status
-from prepza_common import company_access, company_invites, http
-from prepza_common.http import bearer, passed_on
+from prepza_common.auth import company_access, company_invites
+from prepza_common.http import http
+from prepza_common.http.http import bearer, passed_on
 
 from app.config.settings import settings
 from app.service_auth import service_token

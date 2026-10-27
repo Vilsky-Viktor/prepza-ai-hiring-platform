@@ -65,7 +65,7 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
 - Registration: Client ID Metadata Documents (an HTTPS URL with a path as `client_id`;
   preferred by Claude and ChatGPT, advertised as `client_id_metadata_document_supported`) and,
   deprecated in 2026-07-28 but kept for apps that use it, dynamic client registration (RFC 7591).
-  A document is read through `prepza_common.public_urls` (HTTPS, public addresses, pinned, no
+  A document is read through `prepza_common.http.public_urls` (HTTPS, public addresses, pinned, no
   redirects, 5 s, 4,000 bytes), must name itself by its URL, have no secret and return only to
   app addresses; its copy is kept a day, and serves while its site is down.
 - Redirect URIs match exactly what was registered, but a loopback one on any port (RFC 8252);

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Response
-from prepza_common.limits import limit
+from prepza_common.limits.limits import limit
 
 from app.constants.key_tools import KEY_TOOLS
 from app.constants.mcp import TOOLS_CACHE_SECONDS

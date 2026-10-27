@@ -3,7 +3,7 @@ import asyncio
 import openai
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.ai_constants import AI_USED, LIMIT_HIT
+from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT
 
 from app.constants.actions import KEY_CHECK_BATCH
 from app.integrations import openai_batch

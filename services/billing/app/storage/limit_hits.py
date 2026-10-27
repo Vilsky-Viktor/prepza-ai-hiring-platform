@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from prepza_common.stats import period_range
+from prepza_common.db.stats import period_range
 from sqlalchemy import func, select
 
 from app.models.usage import LimitHit

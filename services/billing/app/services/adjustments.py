@@ -1,6 +1,6 @@
 import logging
 
-from prepza_common.analytics import track
+from prepza_common.events.analytics import track
 
 from app.constants.credits import Reason
 from app.constants.products import ADJUSTMENT_APPROVED

@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Request, status
-from prepza_common.auth import CurrentUser
-from prepza_common.client_ip import limit_address
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.http.client_ip import limit_address
 
 from app.constants.mcp import CONNECT_COOKIE
 from app.schemas.connect import ApproveIn, ConnectionOut, ConnectRequestOut, RedirectOut

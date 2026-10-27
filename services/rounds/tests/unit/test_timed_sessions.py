@@ -4,8 +4,8 @@ from uuid import uuid4
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.http import bearer
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.http.http import bearer
 
 from app.constants.rounds import TIME_UP
 from app.models.answers import Answer

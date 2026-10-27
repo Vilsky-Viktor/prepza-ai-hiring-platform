@@ -3,7 +3,7 @@ hold and entry, then the wallet; another company's stays."""
 
 import uuid
 
-from prepza_common import db
+from prepza_common.db import db
 from sqlalchemy import func, select
 
 from app.constants.credits import Reason

@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from prepza_common.constants import GUEST_UID_PREFIX
+from prepza_common.config.constants import GUEST_UID_PREFIX
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 

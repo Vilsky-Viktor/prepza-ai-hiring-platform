@@ -1,4 +1,4 @@
-// Matches REFERRAL_COOKIE in prepza_common.constants: the backend reads it when a new person
+// Matches REFERRAL_COOKIE in prepza_common.config.constants: the backend reads it when a new person
 // signs up or makes a company.
 export const REFERRAL_COOKIE = "prepza_ref"
 export const REFERRAL_PARAM = "ref"

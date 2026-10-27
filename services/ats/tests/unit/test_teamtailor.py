@@ -4,8 +4,8 @@ import json
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common import http
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.http import http
 
 from app.constants.ats import (
     TEAMTAILOR_API_VERSION,

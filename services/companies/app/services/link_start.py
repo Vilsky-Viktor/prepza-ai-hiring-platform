@@ -2,12 +2,12 @@
 candidate, their invite and the start itself (routers/links.py's start_link)."""
 
 from fastapi import HTTPException, Request, status
-from prepza_common.analytics import track
-from prepza_common.client_ip import limit_address
-from prepza_common.human_check import require_human
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit
-from prepza_common.user import User
+from prepza_common.auth.human_check import require_human
+from prepza_common.auth.user import User
+from prepza_common.events.analytics import track
+from prepza_common.http.client_ip import limit_address
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit
 
 from app.config.settings import settings
 from app.constants.invites import LINK_CLOSED, NOT_STARTED, InviteStatus

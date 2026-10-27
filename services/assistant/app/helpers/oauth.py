@@ -2,7 +2,7 @@ from datetime import UTC, datetime, timedelta
 
 from mcp.server.auth.settings import AuthSettings
 from mcp.shared.auth import OAuthToken
-from prepza_common.tokens import new_token
+from prepza_common.auth.tokens import new_token
 
 from app.config.settings import settings
 from app.constants.mcp import (

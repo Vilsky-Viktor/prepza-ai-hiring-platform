@@ -1,4 +1,4 @@
-from prepza_common.db import database
+from prepza_common.db.db import database
 
 from app.config.settings import settings
 from app.constants.assistant import DB_MAX_OVERFLOW, DB_POOL_SIZE

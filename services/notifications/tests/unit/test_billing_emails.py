@@ -4,7 +4,7 @@ owners and admins, whatever their email settings; nothing else is, and nobody el
 import asyncio
 
 import pytest
-from prepza_common.notifications import notification
+from prepza_common.events.notifications import notification
 
 from app.config.settings import settings
 from app.integrations import companies, library

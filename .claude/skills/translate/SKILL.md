@@ -15,7 +15,7 @@ must change in all of them in the same commit.
 
 - **Frontend:** `frontend/messages/<locale>.json`, nested by namespace (`invite.extraTime`).
   `en.json` is the source.
-- **Backend:** `packages/common/src/prepza_common/messages/<locale>.py`, a `MESSAGES` dict from
+- **Backend:** `packages/common/src/prepza_common/i18n/messages/<locale>.py`, a `MESSAGES` dict from
   the exact English text to its translation. Every message a service raises must be there:
   each service's `tests/unit/test_translations.py` fails otherwise.
 

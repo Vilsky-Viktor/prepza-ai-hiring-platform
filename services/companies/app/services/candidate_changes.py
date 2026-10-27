@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.i18n import CodedError
+from prepza_common.events.audit_actions import AuditAction, TargetKind
+from prepza_common.i18n.i18n import CodedError
 
 from app.constants import error_codes
 from app.constants.invites import CHANGE_ACTIONS, EXTRA_TIME_STARTED, NOT_STARTED, InviteStatus

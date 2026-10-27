@@ -10,9 +10,9 @@ from uuid import UUID, uuid4
 import httpx
 from fastapi import HTTPException, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.encryption import decrypt
-from prepza_common.notifications import NotificationKind, Recipient, notification
-from prepza_common.public_urls import resolved_address
+from prepza_common.auth.encryption import decrypt
+from prepza_common.events.notifications import NotificationKind, Recipient, notification
+from prepza_common.http.public_urls import resolved_address
 from pydantic import BaseModel
 
 from app.config.settings import settings

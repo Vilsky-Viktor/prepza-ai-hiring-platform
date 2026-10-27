@@ -1,10 +1,10 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Request, status
-from prepza_common.audit_actions import AuditAction, TargetKind
-from prepza_common.auth import CurrentUser
-from prepza_common.i18n import request_language
-from prepza_common.visitor_country import VisitorCountry
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.events.audit_actions import AuditAction, TargetKind
+from prepza_common.http.visitor_country import VisitorCountry
+from prepza_common.i18n.i18n import request_language
 
 from app.integrations import billing_prices as billing
 from app.routers.billing import count_checkout_call

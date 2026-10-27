@@ -2,10 +2,10 @@ import logging
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.constants import MAX_PAGE_SIZE
-from prepza_common.paging import PageParams
-from prepza_common.superadmin import SuperadminUser
-from prepza_common.user import User
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.auth.user import User
+from prepza_common.config.constants import MAX_PAGE_SIZE
+from prepza_common.db.paging import PageParams
 
 from app.helpers.interviews import interviews_page
 from app.integrations import billing

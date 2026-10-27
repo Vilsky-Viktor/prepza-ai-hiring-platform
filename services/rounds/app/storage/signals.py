@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.limits import limit
+from prepza_common.limits.limits import limit
 from sqlalchemy import func, select, update
 
 from app.constants.integrity import IntegritySignal

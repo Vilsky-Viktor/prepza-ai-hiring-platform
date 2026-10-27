@@ -2,7 +2,7 @@ import uuid
 
 from alembic import command
 from alembic.config import Config
-from prepza_common.sets import TopicAdditionIn
+from prepza_common.ai.sets import TopicAdditionIn
 from sqlalchemy import text
 
 from app.constants.sets import Pool

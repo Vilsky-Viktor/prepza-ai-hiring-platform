@@ -1,6 +1,6 @@
 from functools import cache
 
-from prepza_common.redis_client import redis_client
+from prepza_common.redis.redis_client import redis_client
 from redis.asyncio import Redis
 
 from app.config.settings import settings
@@ -8,5 +8,5 @@ from app.config.settings import settings
 
 @cache
 def get_redis() -> Redis:
-    """For rate limits; events go through Pub/Sub (prepza_common.pubsub)."""
+    """For rate limits; events go through Pub/Sub (prepza_common.events.pubsub)."""
     return redis_client(settings.redis_url)

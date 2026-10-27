@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.constants import UPDATES_CALLER
-from prepza_common.service_auth import issue_token
+from prepza_common.auth.service_auth import issue_token
+from prepza_common.config.constants import UPDATES_CALLER
 
 from app.models.notifications import Notification
 from app.storage import updates

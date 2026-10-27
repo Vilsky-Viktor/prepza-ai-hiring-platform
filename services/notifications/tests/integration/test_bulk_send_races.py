@@ -1,11 +1,11 @@
 """A bulk send started twice at once (two clicks), proven to overlap: the first start's
 transaction stays open at its commit until the second is seen waiting on the send's unique key
-(prepza_common.lock_waits)."""
+(prepza_common.db.lock_waits)."""
 
 import os
 import uuid
 
-from prepza_common.lock_waits import hold_first_commit, race
+from prepza_common.db.lock_waits import hold_first_commit, race
 
 from app.constants.bulk import BulkKind
 from app.storage import bulk_sends

@@ -6,11 +6,11 @@ import uuid
 from urllib.parse import parse_qs, urlparse
 
 import pytest
-from prepza_common.auth import current_user
-from prepza_common.constants import HOUR_SECONDS, RATE_LIMITED
-from prepza_common.limit_list import LIMITS
-from prepza_common.tokens import hashed
-from prepza_common.user import User
+from prepza_common.auth.auth import current_user
+from prepza_common.auth.tokens import hashed
+from prepza_common.auth.user import User
+from prepza_common.config.constants import HOUR_SECONDS, RATE_LIMITED
+from prepza_common.limits.limit_list import LIMITS
 
 from app.constants.mcp import CONNECT_COOKIE
 from app.integrations.redis import get_redis

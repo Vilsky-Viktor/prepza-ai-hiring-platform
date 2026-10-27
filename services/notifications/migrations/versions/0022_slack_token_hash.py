@@ -11,7 +11,7 @@ Create Date: 2026-10-22
 
 import sqlalchemy as sa
 from alembic import op
-from prepza_common.encryption import decrypt
+from prepza_common.auth.encryption import decrypt
 
 from app.config.settings import settings
 from app.helpers.slack import token_hash

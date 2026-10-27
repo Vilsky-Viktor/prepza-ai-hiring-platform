@@ -1,5 +1,5 @@
-# A service asks for an in-app notification (prepza_common.notifications).
-from prepza_common.notifications import NOTIFICATION_REQUESTED  # noqa: F401 (re-exported)
+# A service asks for an in-app notification (prepza_common.events.notifications).
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED  # noqa: F401 (re-exported)
 
 CANDIDATE_INVITED = "candidate.invited"
 # Companies: someone started through a test's shareable link; they're emailed their own invite

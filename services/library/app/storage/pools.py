@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.sets import TopicAdditionIn
+from prepza_common.ai.sets import TopicAdditionIn
 from sqlalchemy import func, select
 from sqlalchemy.orm import load_only, selectinload
 

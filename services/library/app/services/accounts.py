@@ -3,14 +3,14 @@ import asyncio
 import httpx
 from fastapi import HTTPException, status
 from firebase_admin import auth as firebase_auth
-from prepza_common.analytics import track
-from prepza_common.constants import (
+from prepza_common.auth.user import Language, User
+from prepza_common.config.constants import (
     ACCOUNT_OWNS_SHARED,
     GUEST_UID_PREFIX,
     LANGUAGE_CLAIM,
     LEGAL_VERSIONS,
 )
-from prepza_common.user import Language, User
+from prepza_common.events.analytics import track
 
 from app.helpers.accounts import candidate_email
 from app.integrations import accounts as services

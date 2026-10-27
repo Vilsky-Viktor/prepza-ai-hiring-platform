@@ -14,9 +14,9 @@ EXPIRIES = {"ex", "px", "exat", "pxat", "keepttl"}
 # Keys kept without an expiry on purpose, by file and the key's name.
 ALLOWED = {
     # The switches: on until a superadmin turns them off.
-    "packages/common/src/prepza_common/pause.py PAUSE_KEY",
-    "packages/common/src/prepza_common/maintenance.py MAINTENANCE_KEY",
-    "packages/common/src/prepza_common/maintenance.py MAINTENANCE_STARTED_KEY",
+    "packages/common/src/prepza_common/limits/pause.py PAUSE_KEY",
+    "packages/common/src/prepza_common/limits/maintenance.py MAINTENANCE_KEY",
+    "packages/common/src/prepza_common/limits/maintenance.py MAINTENANCE_STARTED_KEY",
     # The limits edited in Controls, rewritten from Postgres every 5 minutes.
     "services/billing/app/services/limit_values.py LIMITS_KEY",
 }

@@ -1,7 +1,7 @@
 import uuid
 
 from fastapi import HTTPException
-from prepza_common.encryption import decrypt
+from prepza_common.auth.encryption import decrypt
 
 from app.config.settings import settings
 from app.integrations import workable

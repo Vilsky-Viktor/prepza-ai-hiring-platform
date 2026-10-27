@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from prepza_common.stats import Period, StatsOut
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.db.stats import Period, StatsOut
 
 from app.services import user_stats
 

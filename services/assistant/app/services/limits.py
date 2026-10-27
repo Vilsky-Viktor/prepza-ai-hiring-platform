@@ -1,9 +1,9 @@
 from uuid import UUID
 
-from prepza_common.ai_cap import refuse_if_capped
-from prepza_common.limit_schemas import BudgetOut
-from prepza_common.limits import limit
-from prepza_common.rate_limit import add_spent, hit, spend
+from prepza_common.ai.ai_cap import refuse_if_capped
+from prepza_common.limits.limit_schemas import BudgetOut
+from prepza_common.limits.limits import limit
+from prepza_common.limits.rate_limit import add_spent, hit, spend
 from redis.exceptions import RedisError
 
 from app.constants.limits import ALL_MESSAGES_KEY, ALL_TOKENS_KEY, PAID_CACHE_SECONDS

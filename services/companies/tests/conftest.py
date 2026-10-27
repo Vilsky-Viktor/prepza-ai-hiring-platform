@@ -25,7 +25,7 @@ os.environ.setdefault("ROUNDS_URL", "http://rounds")
 
 import pytest
 from fastapi.testclient import TestClient
-from prepza_common import memory_cache
+from prepza_common.redis import memory_cache
 
 from app.main import app
 
@@ -54,4 +54,4 @@ def not_paused(monkeypatch):
     async def off(redis):
         return False
 
-    monkeypatch.setattr("prepza_common.pause.is_paused", off)
+    monkeypatch.setattr("prepza_common.limits.pause.is_paused", off)

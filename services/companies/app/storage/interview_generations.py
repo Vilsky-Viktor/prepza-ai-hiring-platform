@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common import outbox, processed_events
-from prepza_common.notifications import NOTIFICATION_REQUESTED
+from prepza_common.events import outbox, processed_events
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import case, delete, func, select, update
 
 from app.constants.events import INTERVIEW_READY

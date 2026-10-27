@@ -1,8 +1,8 @@
 import asyncio
 
 import httpx
-from prepza_common import http
-from prepza_common.service_auth import token_caller
+from prepza_common.auth.service_auth import token_caller
+from prepza_common.http import http
 
 from app.constants.tool_calls import TOOL_TIMEOUT_SECONDS
 from app.integrations import services

@@ -6,8 +6,9 @@ import httpx
 import pytest
 from firebase_admin import auth as firebase_auth
 from firebase_admin.exceptions import ResourceExhaustedError
-from prepza_common import http, memory_cache
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.http import http
+from prepza_common.redis import memory_cache
 
 from app.config.settings import settings
 from app.constants.mcp import MAX_KEEP_SECONDS

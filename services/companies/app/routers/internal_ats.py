@@ -2,9 +2,9 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, Response, status
-from prepza_common.i18n import CodedError
-from prepza_common.pause import refuse_if_paused
-from prepza_common.user import User
+from prepza_common.auth.user import User
+from prepza_common.i18n.i18n import CodedError
+from prepza_common.limits.pause import refuse_if_paused
 
 from app.constants import error_codes
 from app.constants.audit import VIA_API, VIA_ATS
@@ -30,7 +30,7 @@ router = APIRouter(prefix="/internal", tags=["internal"])
 @router.get("/companies/{company_id}/access")
 async def access(company_id: UUID, user_id: str, caller: ServiceCaller) -> AccessOut:
     """What the user may do in the company: ats, notifications and the api guard their pages
-    with it (prepza_common.company_access), refusing what companies' own routes refuse: the
+    with it (prepza_common.auth.company_access), refusing what companies' own routes refuse: the
     caller passes on the assistant's X-Assistant header. A company that doesn't exist is 404."""
     company = await companies.get(company_id)
 

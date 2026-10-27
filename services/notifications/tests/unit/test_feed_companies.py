@@ -3,8 +3,8 @@ import uuid
 
 import httpx
 import pytest
-from prepza_common import memory_cache
-from prepza_common.notifications import Recipient
+from prepza_common.events.notifications import Recipient
+from prepza_common.redis import memory_cache
 
 from app.integrations import companies
 from app.services import feed

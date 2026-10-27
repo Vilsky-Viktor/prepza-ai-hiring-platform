@@ -1,11 +1,11 @@
 from fastapi import APIRouter
-from prepza_common.pause import is_paused, set_paused
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.limits.pause import is_paused, set_paused
 
 from app.integrations.redis import get_redis
 from app.schemas.monitoring import PauseIn, PauseOut
 
-# The emergency pause (prepza_common.pause): every service reads the switch; it's turned here.
+# The emergency pause (prepza_common.limits.pause): every service reads the switch; it's turned here.
 router = APIRouter(tags=["pause"])
 
 

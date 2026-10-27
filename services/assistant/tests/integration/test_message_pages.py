@@ -2,7 +2,7 @@
 `earlier` says whether more are left."""
 
 import httpx
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.constants.chat import Source
 from app.main import app

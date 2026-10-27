@@ -1,12 +1,12 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.audit_actions import AuditAction
-from prepza_common.auth import CurrentUser
-from prepza_common.http import passed_on
-from prepza_common.paging import PageParams
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.db.paging import PageParams
+from prepza_common.events.audit_actions import AuditAction
+from prepza_common.http.http import passed_on
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit
 
 from app.constants.interviews import NO_QUESTIONS_LEFT
 from app.helpers.interviews import interview_questions

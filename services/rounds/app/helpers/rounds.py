@@ -1,6 +1,6 @@
 import random
 
-from prepza_common.multi_answer import is_multi
+from prepza_common.ai.multi_answer import is_multi
 
 from app.schemas.rounds import NextQuestion
 

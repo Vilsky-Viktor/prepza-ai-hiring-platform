@@ -6,8 +6,8 @@ import logging
 import time
 from datetime import UTC, datetime
 
-from prepza_common import redis_lock
-from prepza_common.limits import limit, record_hit
+from prepza_common.limits.limits import limit, record_hit
+from prepza_common.redis import redis_lock
 
 from app.constants.bulk import (
     BULK_BATCH,

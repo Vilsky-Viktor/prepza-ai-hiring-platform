@@ -2,8 +2,8 @@ import logging
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.paging import PageParams
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.db.paging import PageParams
 
 from app.constants.patterns import PatternStatus
 from app.schemas.patterns import PatternOut

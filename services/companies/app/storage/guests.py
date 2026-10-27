@@ -1,5 +1,5 @@
-from prepza_common import outbox
-from prepza_common.constants import GUEST_UID_PREFIX
+from prepza_common.config.constants import GUEST_UID_PREFIX
+from prepza_common.events import outbox
 from sqlalchemy import select
 
 from app.constants.events import GUESTS_DELETED

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from prepza_common.limit_schemas import BudgetOut
-from prepza_common.stats import Period, StatsOut
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.db.stats import Period, StatsOut
+from prepza_common.limits.limit_schemas import BudgetOut
 
 from app.integrations.redis import get_redis
 from app.services import help as help_service

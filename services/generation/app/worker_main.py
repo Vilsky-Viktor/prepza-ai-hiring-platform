@@ -1,11 +1,11 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from prepza_common.health import health_router
-from prepza_common.logging import RequestLogMiddleware, configure_logging
-from prepza_common.sentry import init_sentry
-from prepza_common.shutdown import close_shared
-from prepza_common.trace_prices import sync_model_prices
+from prepza_common.ai.trace_prices import sync_model_prices
+from prepza_common.http.health import health_router
+from prepza_common.http.shutdown import close_shared
+from prepza_common.observability.logging import RequestLogMiddleware, configure_logging
+from prepza_common.observability.sentry import init_sentry
 
 from app.integrations.redis import get_redis
 from app.routers import jobs, schedules

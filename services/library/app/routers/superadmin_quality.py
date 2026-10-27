@@ -1,9 +1,9 @@
 from uuid import UUID, uuid5
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.paging import PageParams
-from prepza_common.pause import refuse_if_paused
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.db.paging import PageParams
+from prepza_common.limits.pause import refuse_if_paused
 
 from app.constants.sets import SetKind
 from app.integrations import generation

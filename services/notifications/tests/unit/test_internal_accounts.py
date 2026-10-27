@@ -1,4 +1,4 @@
-from prepza_common.service_auth import issue_token
+from prepza_common.auth.service_auth import issue_token
 
 from app.models.slack import SlackConnection
 from app.storage import bulk_recipients, notifications, sent_emails, slack

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, Request, status
-from prepza_common.auth import CurrentUser, OptionalUser
-from prepza_common.client_ip import limit_address
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit_or_skip
+from prepza_common.auth.auth import CurrentUser, OptionalUser
+from prepza_common.http.client_ip import limit_address
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from app.constants.invites import EMAIL_NOT_VERIFIED, NOT_THE_GUEST, InviteStatus
 from app.helpers.brand import color_sets, style_of

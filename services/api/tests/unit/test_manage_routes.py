@@ -1,9 +1,9 @@
 import socket
 
 import pytest
-from prepza_common import public_urls
-from prepza_common.encryption import decrypt
-from prepza_common.tokens import hashed
+from prepza_common.auth.encryption import decrypt
+from prepza_common.auth.tokens import hashed
+from prepza_common.http import public_urls
 
 from app.services import manage
 from tests.unit.conftest import COMPANY, KEY, sign_in

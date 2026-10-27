@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.user import User
+from prepza_common.auth.user import User
 
 from app.constants.invites import COMPANY_SUSPENDED, INTERVIEW_UNAVAILABLE, InviteStatus
 from app.models.companies import Company, Member

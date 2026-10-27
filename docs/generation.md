@@ -79,7 +79,7 @@ A question that still comes back far over is dropped, and the topic's top-up wri
 
 ### Examples and their language
 
-On a topic about material written in a formal notation (instructions a machine runs, a lookup over stored records, commands, settings files, text-matching patterns), about a third of the questions show an example and ask what it produces, what it does, why it fails or which change fixes it. It's held both ways (`prepza_common.examples`):
+On a topic about material written in a formal notation (instructions a machine runs, a lookup over stored records, commands, settings files, text-matching patterns), about a third of the questions show an example and ask what it produces, what it does, why it fails or which change fixes it. It's held both ways (`prepza_common.ai.examples`):
 
 - each question call is asked for its share: exactly a third of its questions with an example when the subtopic is about such material, otherwise none (`QUESTIONS_REQUEST`);
 - each topic keeps 30–40% with an example (`MIN_EXAMPLE_SHARE`, `MAX_EXAMPLE_SHARE`; 27–36 of a template's 90), and each of a template's pools its share too (9–12 of the 30 practice questions, 18–24 of the 60 company ones, `pool_share`). A topic counts as being about such material when at least 15% of its questions came with an example in a notation the site colors (`FORMAL_SHARE`; a table's rows are `text` and don't count). Other topics, such as nursing or a language for travel, are never asked for examples and only held to the 40% ceiling;
@@ -104,7 +104,7 @@ Each candidate's draw from a topic, and each practice round's, has the same shar
 
 ### Cost
 
-Every AI call is recorded by `prepza_common.ai_usage.record`: its action (`ACTIONS` in `prepza_common.ai_constants`: `interview_generation`, `template_generation`, `question_regeneration`, `question_verify`, `embeddings`, …), model, tokens and cost in USD at the prices in `ai_constants.MODEL_PRICES` (cached input at its own price, Batch API calls at half), who it was for and whether it ended `ok`, `cut` or `failed`. In generation, a run (a generation's topic draft or its questions, one regenerated question, a quality check) records once per model when it ends, failed runs too; a call that got no answer counts with estimated tokens. A retry or a resume records its own.
+Every AI call is recorded by `prepza_common.ai.ai_usage.record`: its action (`ACTIONS` in `prepza_common.ai.ai_constants`: `interview_generation`, `template_generation`, `question_regeneration`, `question_verify`, `embeddings`, …), model, tokens and cost in USD at the prices in `ai_constants.MODEL_PRICES` (cached input at its own price, Batch API calls at half), who it was for and whether it ended `ok`, `cut` or `failed`. In generation, a run (a generation's topic draft or its questions, one regenerated question, a quality check) records once per model when it ends, failed runs too; a call that got no answer counts with estimated tokens. A retry or a resume records its own.
 
 Each record is one log line ("AI used: …", the `prepza_ai_spend` metric and the **prepza AI spend high** alert) and an `ai.used` event that billing stores for the admin zone's AI costs page (see [Credits and payments](features/billing.md#ai-usage-and-limit-hits)).
 
@@ -171,7 +171,7 @@ Once a week (Mondays, 05:00 UTC, `/internal/schedules/patterns` on the worker) g
 
 ## Generation settings
 
-Four values shape every generation. They aren't settings: each starts at its default in `prepza_common.limit_list` and a superadmin changes it in the admin zone's Controls tab ([Admin zone](features/admin-zone.md#limits)), in effect within 30 seconds. A run takes its questions per topic when it starts and keeps them to its end, also through a retry or a resume; a change applies to generations started after it. The topic caps are read when the topics are drafted or revised, and when a review is sent.
+Four values shape every generation. They aren't settings: each starts at its default in `prepza_common.limits.limit_list` and a superadmin changes it in the admin zone's Controls tab ([Admin zone](features/admin-zone.md#limits)), in effect within 30 seconds. A run takes its questions per topic when it starts and keeps them to its end, also through a retry or a resume; a change applies to generations started after it. The topic caps are read when the topics are drafted or revised, and when a review is sent.
 
 | Value | Default | Range | What it sets |
 |---|---|---|---|
@@ -184,7 +184,7 @@ These settings in `.env` trace generation to Langfuse. Terraform doesn't pass th
 
 | Setting | Default | What it sets |
 |---|---|---|
-| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Off; `https://cloud.langfuse.com` (EU) | Trace generation's AI calls to Langfuse, marked with the environment they come from (`ENVIRONMENT`, as Sentry's reports are), on only with both keys (`prepza_common.tracing`). Each AI run (a generation's pipeline run through LangGraph, a regenerated question, a key check, a translation, ...) is one trace with every call it makes: named by its action and tagged with it and its subject's id (the generation's id for a generation), with no company names, job text or emails in its name or tags; the calls' inputs and outputs are traced. A generation's runs before and after its review share one trace. A batched key check, made outside LangChain through the Batch API, is reported to its question's verify trace with its tokens and cost at batch price (`tracing.traced_call`), and priced with its question's id. Langfuse prices a call from its model's definition and has none for our models, so generation, the assistant and rounds set them from `MODEL_PRICES` when they start (`prepza_common.trace_prices`: fresh and cached input, output and reasoning tokens apart; a changed price replaces its definition; a failure is logged and tracing goes on without costs). The assistant and the help chat use the same keys ([Votes in Langfuse](features/assistant.md#votes-in-langfuse)). Nothing goes to LangSmith |
+| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Off; `https://cloud.langfuse.com` (EU) | Trace generation's AI calls to Langfuse, marked with the environment they come from (`ENVIRONMENT`, as Sentry's reports are), on only with both keys (`prepza_common.ai.tracing`). Each AI run (a generation's pipeline run through LangGraph, a regenerated question, a key check, a translation, ...) is one trace with every call it makes: named by its action and tagged with it and its subject's id (the generation's id for a generation), with no company names, job text or emails in its name or tags; the calls' inputs and outputs are traced. A generation's runs before and after its review share one trace. A batched key check, made outside LangChain through the Batch API, is reported to its question's verify trace with its tokens and cost at batch price (`tracing.traced_call`), and priced with its question's id. Langfuse prices a call from its model's definition and has none for our models, so generation, the assistant and rounds set them from `MODEL_PRICES` when they start (`prepza_common.ai.trace_prices`: fresh and cached input, output and reasoning tokens apart; a changed price replaces its definition; a failure is logged and tracing goes on without costs). The assistant and the help chat use the same keys ([Votes in Langfuse](features/assistant.md#votes-in-langfuse)). Nothing goes to LangSmith |
 
 ## Text that names nothing to test
 
@@ -209,7 +209,7 @@ Each AI task has its own model and reasoning effort. The effort is `none`, `mini
 | Assistant's tools for a turn (the groups it's offered) | `ROUTING_MODEL` (`gpt-6-luna`) | `ROUTING_REASONING_EFFORT` (`none`) |
 | Assistant's voice messages to text | `TRANSCRIBE_MODEL` (`gpt-4o-mini-transcribe`) | None |
 
-Every service builds its chat models with `prepza_common.llm.chat_model`, which leaves the temperature out at any effort but `none`.
+Every service builds its chat models with `prepza_common.ai.llm.chat_model`, which leaves the temperature out at any effort but `none`.
 
 Every generation runs on `gpt-6.1-sol` at low. In testing ([evals/README.md](../evals/README.md)):
 
@@ -220,7 +220,7 @@ Every generation runs on `gpt-6.1-sol` at low. In testing ([evals/README.md](../
 
 ## Rate limits
 
-Each limit is one of `prepza_common.limit_list.LIMITS`, with its default; a superadmin changes its number in the admin zone's Controls tab (see [Admin zone](features/admin-zone.md#limits)), and generation reads the current one (`limits.limit`). Its window stays as it is.
+Each limit is one of `prepza_common.limits.limit_list.LIMITS`, with its default; a superadmin changes its number in the admin zone's Controls tab (see [Admin zone](features/admin-zone.md#limits)), and generation reads the current one (`limits.limit`). Its window stays as it is.
 
 | Limit | Name | Default |
 |---|---|---|

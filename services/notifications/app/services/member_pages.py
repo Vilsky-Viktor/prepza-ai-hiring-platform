@@ -4,7 +4,7 @@ import time
 from collections.abc import Awaitable, Callable
 from datetime import date
 
-from prepza_common.capped import gather_capped
+from prepza_common.http.capped import gather_capped
 
 from app.constants.member_emails import CALLS_AT_ONCE, CURSOR_KEY, CURSOR_SECONDS
 from app.integrations import companies

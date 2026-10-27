@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.constants import MAX_UPDATES, UPDATES_CALLER
-from prepza_common.service_auth import only_from
-from prepza_common.user import UserEmailIn
+from prepza_common.auth.service_auth import only_from
+from prepza_common.auth.user import UserEmailIn
+from prepza_common.config.constants import MAX_UPDATES, UPDATES_CALLER
 
 from app.helpers import notifications
 from app.helpers.candidate_updates import candidate_updates, update_counts

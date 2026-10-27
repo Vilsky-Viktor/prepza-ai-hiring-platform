@@ -5,7 +5,7 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 import httpx
-from prepza_common.lock_waits import hold_first_commit, race
+from prepza_common.db.lock_waits import hold_first_commit, race
 from sqlalchemy import select, update
 
 from app.constants.api import DELIVERIES_KEPT, LAST_USED_EVERY

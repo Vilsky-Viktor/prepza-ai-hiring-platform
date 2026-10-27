@@ -4566,7 +4566,7 @@
      "internal"
     ],
     "summary": "Access",
-    "description": "What the user may do in the company: ats, notifications and the api guard their pages\nwith it (prepza_common.company_access), refusing what companies' own routes refuse: the\ncaller passes on the assistant's X-Assistant header. A company that doesn't exist is 404.",
+    "description": "What the user may do in the company: ats, notifications and the api guard their pages\nwith it (prepza_common.auth.company_access), refusing what companies' own routes refuse: the\ncaller passes on the assistant's X-Assistant header. A company that doesn't exist is 404.",
     "operationId": "access_internal_companies__company_id__access_get",
     "security": [
      {

@@ -1,8 +1,8 @@
 import asyncio
 
 from fake_redis import FakeRedis
-from prepza_common import pacing
-from prepza_common.ai_constants import LIMIT_HIT
+from prepza_common.ai.ai_constants import LIMIT_HIT
+from prepza_common.http import pacing
 
 from app.constants.generation import LLM_RATE_KEY, LLM_WAIT_JITTER_SECONDS
 from app.integrations import llm_limiter

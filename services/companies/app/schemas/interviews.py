@@ -1,9 +1,9 @@
 from datetime import datetime
 from uuid import UUID
 
-from prepza_common.constants import MAX_GOAL_LENGTH
-from prepza_common.titles import Title
-from prepza_common.user import Language
+from prepza_common.auth.user import Language
+from prepza_common.config.constants import MAX_GOAL_LENGTH
+from prepza_common.i18n.titles import Title
 from pydantic import BaseModel, Field
 
 from app.constants.interviews import (

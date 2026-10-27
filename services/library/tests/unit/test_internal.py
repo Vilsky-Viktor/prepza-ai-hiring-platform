@@ -3,7 +3,7 @@ from datetime import UTC, datetime, timedelta
 from types import SimpleNamespace
 
 import jwt
-from prepza_common.http import bearer
+from prepza_common.http.http import bearer
 
 from app.constants.sets import SetKind
 from app.models.sets import QuestionSet

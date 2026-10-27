@@ -2,7 +2,7 @@ import asyncio
 import itertools
 
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth import claims_language
+from prepza_common.auth.auth import claims_language
 
 from app.constants.emails import FIREBASE_LOOKUP_LIMIT
 from app.storage import emails

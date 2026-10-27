@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from prepza_common.constants import MAX_UPDATES
+from prepza_common.config.constants import MAX_UPDATES
 
 from app.constants.tool_calls import MAX_STRING_LENGTH
 from app.constants.updates import (

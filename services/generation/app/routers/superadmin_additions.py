@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.pause import refuse_if_paused
-from prepza_common.superadmin import SuperadminUser
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.limits.pause import refuse_if_paused
 
 from app.constants.actions import TEMPLATE_GENERATION
 from app.constants.additions import ADDITION_RUNNING, NOTHING_TO_TOP_UP

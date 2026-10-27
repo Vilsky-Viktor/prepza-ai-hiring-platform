@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-from prepza_common.notifications import NotificationKind
+from prepza_common.events.notifications import NotificationKind
 
 # The wording of the email checkboxes (settings and sign-in). Change it whenever that wording
 # changes, so the consent log tells which wording each choice was made under.

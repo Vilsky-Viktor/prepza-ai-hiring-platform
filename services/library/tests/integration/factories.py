@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.sets import PreparationIn
+from prepza_common.ai.sets import PreparationIn
 
 from app.storage import preparations, templates
 

@@ -2,7 +2,7 @@
 # ruff: noqa: F811
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.service_auth import issue_token
+from prepza_common.auth.service_auth import issue_token
 
 from app.constants.permissions import Permission
 from tests.unit.conftest import COMPANY

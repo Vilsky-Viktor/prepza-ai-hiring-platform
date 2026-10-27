@@ -1,4 +1,4 @@
-from prepza_common import memory_cache
+from prepza_common.redis import memory_cache
 
 from app.constants.interviews import SET_CACHE_SECONDS
 from app.integrations import library

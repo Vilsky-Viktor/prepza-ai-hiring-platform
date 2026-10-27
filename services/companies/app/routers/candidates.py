@@ -3,9 +3,9 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Query, Response, status
-from prepza_common.analytics import track
-from prepza_common.auth import CurrentUser
-from prepza_common.paging import PageParams
+from prepza_common.auth.auth import CurrentUser
+from prepza_common.db.paging import PageParams
+from prepza_common.events.analytics import track
 
 from app.constants.invites import (
     EXTRA_TIME_OPTIONS,

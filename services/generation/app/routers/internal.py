@@ -1,10 +1,10 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, status
-from prepza_common.ai_cap import refuse_if_capped
-from prepza_common.pause import refuse_if_paused
-from prepza_common.rate_limit import hit
-from prepza_common.text_language import text_language
+from prepza_common.ai.ai_cap import refuse_if_capped
+from prepza_common.i18n.text_language import text_language
+from prepza_common.limits.pause import refuse_if_paused
+from prepza_common.limits.rate_limit import hit
 
 from app.constants.actions import (
     CAMPAIGN_TRANSLATION,

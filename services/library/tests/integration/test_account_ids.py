@@ -4,7 +4,7 @@ import uuid
 import firebase_admin
 import pytest
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth import start_firebase
+from prepza_common.auth.auth import start_firebase
 
 from app.services.email_recipients import user_ids_after
 

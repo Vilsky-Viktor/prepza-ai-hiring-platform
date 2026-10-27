@@ -1,8 +1,8 @@
 import logging
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.superadmin import SuperadminUser
-from prepza_common.user import UserEmailIn
+from prepza_common.auth.superadmin import SuperadminUser
+from prepza_common.auth.user import UserEmailIn
 
 from app.constants.emails import ADMIN_CANT_CONSENT, MARKETING_SETTINGS, ConsentSource
 from app.schemas.emails import (

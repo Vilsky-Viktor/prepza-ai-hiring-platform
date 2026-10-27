@@ -2,16 +2,16 @@ import asyncio
 import logging
 import math
 
-from prepza_common.examples import example_count, example_range, is_formal, pick, pool_share
-from prepza_common.limits import limit
-from prepza_common.multi_answer import multi_count, multi_share
-from prepza_common.sets import (
+from prepza_common.ai.examples import example_count, example_range, is_formal, pick, pool_share
+from prepza_common.ai.multi_answer import multi_count, multi_share
+from prepza_common.ai.sets import (
     AddedQuestionsIn,
     AdditionContext,
     AdditionTopic,
     QuestionIn,
     TopicAdditionIn,
 )
+from prepza_common.limits.limits import limit
 
 from app.constants.actions import TEMPLATE_GENERATION
 from app.constants.generation import QUESTION_OVERSAMPLE
