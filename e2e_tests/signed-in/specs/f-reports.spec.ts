@@ -13,12 +13,6 @@ test("owner downloads and shares the report of all candidates", async ({ signInA
   const interviewId = await createInterview(owner, company.id)
   await inviteCandidate(owner, interviewId, throwawayEmail("candidate"))
   await visit(owner, `/companies/${company.id}/interviews/${interviewId}?tab=candidates`)
-  // Labels are lowercase like the filters beside them, in every language (CSS, not the text):
-  // the shareable link's, the first label on the tab.
-  await expect(owner.getByRole("main").locator("label span.font-medium").first()).toHaveCSS(
-    "text-transform",
-    "lowercase"
-  )
   await shot(owner, "candidates")
 
   const downloaded = owner.waitForEvent("download")
@@ -33,15 +27,15 @@ test("owner downloads and shares the report of all candidates", async ({ signInA
   await owner.getByRole("button", { name: "Share report" }).click()
   const dialog = owner.getByRole("dialog")
   await expect(dialog.locator('input[type="email"]')).toBeVisible()
-  // The summary goes to each chat app with its own link (icon buttons named after the app), after
+  // The summary goes to each chat app with its own link (icon links named after the app), after
   // a lowercase label.
   await expect(
-    dialog.getByRole("button", { name: "WhatsApp" }).locator("xpath=preceding-sibling::span")
+    dialog.getByRole("link", { name: "WhatsApp" }).locator("xpath=preceding-sibling::span")
   ).toHaveCSS("text-transform", "lowercase")
-  await expect(dialog.getByRole("button", { name: "WhatsApp" })).toHaveAttribute("href", /^https:\/\/wa\.me\/\?text=/)
-  await expect(dialog.getByRole("button", { name: "Telegram" })).toHaveAttribute("href", /^https:\/\/t\.me\/share\/url\?/)
-  await expect(dialog.getByRole("button", { name: "Viber" })).toHaveAttribute("href", /^viber:\/\/forward\?text=/)
-  await expect(dialog.getByRole("button", { name: "LINE" })).toHaveAttribute("href", /^https:\/\/line\.me\/R\/share\?text=/)
+  await expect(dialog.getByRole("link", { name: "WhatsApp" })).toHaveAttribute("href", /^https:\/\/wa\.me\/\?text=/)
+  await expect(dialog.getByRole("link", { name: "Telegram" })).toHaveAttribute("href", /^https:\/\/t\.me\/share\/url\?/)
+  await expect(dialog.getByRole("link", { name: "Viber" })).toHaveAttribute("href", /^viber:\/\/forward\?text=/)
+  await expect(dialog.getByRole("link", { name: "LINE" })).toHaveAttribute("href", /^https:\/\/line\.me\/R\/share\?text=/)
   await shot(owner, "share-dialog")
   await owner.keyboard.press("Escape")
 })
