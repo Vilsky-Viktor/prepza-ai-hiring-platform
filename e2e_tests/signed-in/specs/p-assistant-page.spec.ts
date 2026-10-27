@@ -1,4 +1,4 @@
-import type { Page, Response } from "@playwright/test"
+import type { Page } from "@playwright/test"
 
 import { expect, test } from "../fixtures"
 import { createCompany, createInterview, finishOneAnswer, inviteCandidate } from "../helpers/api"
@@ -11,25 +11,37 @@ import { ownerEmail, throwawayEmail } from "../helpers/users"
 // cent or so): on an interview's candidates tab, "here" means that interview.
 
 /** The events of one answer, as the chat route streamed them. */
-async function events(response: Response) {
-  return (await response.text())
+function events(body: string) {
+  return body
     .split("\n")
     .filter((line) => line.startsWith("data: "))
     .map((line) => JSON.parse(line.slice(6)))
 }
 
-/** Sends a message from the open panel; the request's body and the answer's events. */
+/** Sends a message from the open panel; the request's body and the answer's events. Chromium
+ * can't hand over a streamed body once it has gone by, so the reply is read on its way through
+ * and passed on unchanged. */
 async function ask(owner: Page, message: string) {
   const panel = owner.getByRole("dialog")
-  const answered = owner.waitForResponse(
-    (response) => response.url().endsWith("/api/assistant/chat"),
-    { timeout: 120_000 }
+  let replied: (reply: { sent: unknown; body: string }) => void = () => {}
+  const answered = new Promise<{ sent: unknown; body: string }>((resolve) => {
+    replied = resolve
+  })
+  await owner.route(
+    "**/api/assistant/chat",
+    async (route) => {
+      const response = await route.fetch({ timeout: 120_000 })
+      const body = await response.text()
+      await route.fulfill({ response, body })
+      replied({ sent: route.request().postDataJSON(), body })
+    },
+    { times: 1 }
   )
   await panel.getByRole("textbox").fill(message)
   await panel.locator("button[type=submit]").click()
-  const response = await answered
+  const { sent, body } = await answered
 
-  return { sent: response.request().postDataJSON(), answer: await events(response) }
+  return { sent: sent as { page: unknown }, answer: events(body) }
 }
 
 test("the assistant answers about the page and the interview on screen", async ({ signInAs }) => {
