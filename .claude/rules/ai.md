@@ -1,6 +1,7 @@
 ---
 paths:
   - "services/*/app/prompts/**"
+  - "services/*/src/*/prompts/**"
   - "services/generation/**"
   - "services/assistant/**"
   - "services/rounds/app/integrations/llm.py"

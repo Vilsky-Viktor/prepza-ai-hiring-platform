@@ -9,11 +9,11 @@ from prepza_common.auth.user import User
 from prepza_common.limits import limits
 from prepza_common.redis import memory_cache
 
-from app import auth
-from app.config.settings import settings
-from app.integrations import companies
-from app.main import app
-from app.storage import keys, webhooks
+from api.config import settings
+from api.integrations import companies
+from api.main import app
+from api.repositories import keys, webhooks
+from api.services import key_checks
 from tests.unit.ids import CANDIDATE, COMPANY, INTERVIEW, KEY
 
 # The web hook fakes, a fixture of their own module.
@@ -236,6 +236,6 @@ def stored(monkeypatch):
     monkeypatch.setattr(keys, "narrow", narrow)
     monkeypatch.setattr(webhooks, "add", add_webhook)
     monkeypatch.setattr(webhooks, "of_company", webhooks_of)
-    monkeypatch.setattr(auth, "hit_or_skip", hit)
+    monkeypatch.setattr(key_checks, "hit_or_skip", hit)
 
     return state

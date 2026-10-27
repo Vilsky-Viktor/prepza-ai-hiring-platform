@@ -1,7 +1,8 @@
 # The services are written to 100 columns; without this, ruff would rewrap them to 88.
 line-length = 100
-# Each service has its own first-party `app` package.
-src = ["services/*"]
+# Each service has its own first-party package: `app` in the old layout, `src/<service>` in the
+# new one (python-services.md) while the services move.
+src = ["services/*", "services/*/src"]
 
 # Rule 2: a function's branching stays readable. Test fakes and migrations are exempt.
 [lint]
@@ -16,5 +17,5 @@ max-complexity = 15
 
 [lint.isort]
 # The shared package is installed like any other dependency.
-known-first-party = ["app"]
+known-first-party = ["app", "api"]
 known-third-party = ["prepza_common"]

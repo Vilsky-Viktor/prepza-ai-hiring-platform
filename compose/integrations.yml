@@ -112,7 +112,7 @@ x-ats-source: &ats-source
   - ./packages/common/src:/packages/common/src
 
 x-api-source: &api-source
-  - ./services/api/app:/services/api/app
+  - ./services/api/src:/services/api/src
   - ./services/api/migrations:/services/api/migrations
   - ./services/api/alembic.ini:/services/api/alembic.ini:ro
   - ./packages/common/src:/packages/common/src

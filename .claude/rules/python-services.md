@@ -13,7 +13,7 @@ module still holds):
 
 ```
 my_service/
-├── pyproject.toml, README.md, Makefile, .env.example, .gitignore
+├── pyproject.toml, README.md   # the repo's .env.example, .gitignore and scripts cover the rest
 ├── src/my_service/
 │   ├── main.py, config.py   # App setup only (no route logic); Pydantic Settings
 │   ├── api/v1/, api/dependencies.py   # Routes; current user, sessions, auth
@@ -26,8 +26,10 @@ my_service/
 ```
 
 From today's layout: `routers/` → `api/v1/`, `storage/` → `repositories/`, `auth.py` and
-`service_auth.py` → `api/dependencies.py` and `core/`; `helpers/`, `constants/`, `prompts/` and
-`integrations/` stay their own folders in the package.
+`service_auth.py` → `api/dependencies.py` and `core/`, `storage/db.py` → `core/db.py`, the
+Pub/Sub event handling → `handlers/` (one module per event, `dispatch.py` picks it);
+`helpers/`, `constants/`, `prompts/`, `integrations/` and `jobs/` stay their own folders in the
+package.
 
 ## Routes, services, repositories
 

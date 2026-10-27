@@ -2,6 +2,8 @@
 paths:
   - "services/*/app/models/**"
   - "services/*/app/storage/**"
+  - "services/*/src/*/models/**"
+  - "services/*/src/*/repositories/**"
   - "services/*/migrations/**"
   - "services/*/alembic.ini"
   - "packages/common/src/prepza_common/db/db.py"

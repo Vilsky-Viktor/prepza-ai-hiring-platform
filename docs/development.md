@@ -141,7 +141,7 @@ Claude (claude.ai, the desktop app) and ChatGPT connect from their own servers, 
 See [CLAUDE.md](../CLAUDE.md). In short:
 
 - separate modules for schemas, models, prompts, helpers and constants,
-- `app/main.py` only wires the app,
+- `main.py` only wires the app,
 - at most 300 lines per file,
 - the simplest solution that works,
 - no business logic on the frontend: rules, thresholds and decisions live in the services.

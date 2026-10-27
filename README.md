@@ -79,4 +79,4 @@ Then open the app at http://localhost:8090. Sign-in uses the Firebase Auth emula
 
 ## Project conventions
 
-See [CLAUDE.md](CLAUDE.md): separate modules for schemas, models, prompts, helpers and constants; `app/main.py` only wires the app; at most 300 lines per file; the simplest solution that works; and no business logic on the frontend (rules, thresholds and decisions live in the services).
+See [CLAUDE.md](CLAUDE.md): separate modules for schemas, models, prompts, helpers and constants; `main.py` only wires the app; at most 300 lines per file; the simplest solution that works; and no business logic on the frontend (rules, thresholds and decisions live in the services).
