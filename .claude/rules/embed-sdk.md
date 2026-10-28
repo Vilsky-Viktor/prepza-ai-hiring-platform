@@ -63,8 +63,10 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
   only, never `<meta>`. The site's pages carry no `X-Frame-Options` (it can't list origins;
   `ALLOW-FROM` is obsolete); the API keeps `DENY`.
 - The frame's address authorizes nothing by itself beyond the invite's token, which already is
-  the candidate's link; the embedding domain is never trusted from `Referer` or
-  `ancestorOrigins`.
+  the candidate's link; `?origin=` and `Referer` can only refuse sooner, never allow (the
+  browser enforces the policy).
+- The script reads its own address only from a real `HTMLScriptElement` (`document.currentScript`
+  can be clobbered by a page element named `currentScript`), else prepza.ai.
 - Not adopted: a separate embed origin (the frame's storage is partitioned per top-level site
   anyway and its sign-in is a guest's, apart from the main app's); `sandbox` on our own frame
   (it would only restrict our page; parents protect themselves); `loading="lazy"` (the interview

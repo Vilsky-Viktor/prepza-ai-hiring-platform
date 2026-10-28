@@ -19,7 +19,14 @@ type Listener = (event: {
   data: unknown
 }) => void
 
-function page(queued: object[] = []) {
+class HTMLScriptElement {
+  constructor(public src: string) {}
+}
+
+function page(
+  queued: object[] = [],
+  currentScript: object = new HTMLScriptElement(`${ORIGIN}/embed/v1.js`)
+) {
   const listeners: Listener[] = []
   const timers: (() => void)[] = []
   const frames: { contentWindow: object; style: Record<string, string> }[] = []
@@ -36,7 +43,7 @@ function page(queued: object[] = []) {
     clearTimeout: () => {},
   }
   const document = {
-    currentScript: { src: `${ORIGIN}/embed/v1.js` },
+    currentScript,
     querySelector: (selector: string) => elements[selector] ?? null,
     createElement: () => {
       const frame = { contentWindow: {}, style: {}, remove: () => {} }
@@ -45,7 +52,13 @@ function page(queued: object[] = []) {
       return frame
     },
   }
-  runInNewContext(SCRIPT, { window, document, URL, console })
+  runInNewContext(SCRIPT, {
+    window,
+    document,
+    URL,
+    console,
+    HTMLScriptElement,
+  })
 
   return {
     window: window as typeof window & {
@@ -108,6 +121,17 @@ describe("the embed script", () => {
 
     expect(code).not.toMatch(
       /=>|\blet\b|\bconst\b|`|\bclass\b|\.\.\.|\basync\b|\bawait\b/
+    )
+  })
+
+  it("frames prepza even when the page shadows document.currentScript", () => {
+    // <img name="currentScript" src="https://evil.example/embed/v1.js">
+    const clobbered = { src: "https://evil.example/embed/v1.js", nodeType: 1 }
+    const { window, frames } = page([], clobbered)
+    window.Prepza.embed({ element: "#interview", url: URL_OF_INVITE })
+
+    expect((frames[0] as unknown as { src: string }).src).toMatch(
+      /^https:\/\/prepza\.ai\/embedded\//
     )
   })
 })

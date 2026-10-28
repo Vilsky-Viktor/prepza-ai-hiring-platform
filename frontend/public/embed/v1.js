@@ -53,7 +53,14 @@
     return
   }
 
-  var ORIGIN = new URL(document.currentScript.src).origin
+  // prepza's address, where this copy was loaded from. An element named "currentScript" on the
+  // page shadows document.currentScript (DOM clobbering), which would send the frame, and the
+  // invite's link, elsewhere: only a real script element counts; anything else is prepza.ai.
+  var current = document.currentScript
+  var ORIGIN =
+    current instanceof HTMLScriptElement
+      ? new URL(current.src).origin
+      : "https://prepza.ai"
 
   function call(callback, value) {
     if (typeof callback === "function") {
