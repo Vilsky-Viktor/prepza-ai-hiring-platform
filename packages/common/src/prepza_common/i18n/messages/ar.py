@@ -218,7 +218,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "يُرسل الإشعار قبل 14 يومًا على الأقل من سريان النسخة الجديدة: اختر لها تاريخًا لاحقًا.",
     "This version's notice was already sent.": "سبق إرسال إشعار هذه النسخة.",
     "Prices aren't available right now. Please try again in a minute.": "الأسعار غير متاحة الآن. يُرجى المحاولة مرة أخرى بعد دقيقة.",
-    "return_url must be an https address on the company's verified website domain; get the company verified in prepza first (Verify, next to its name).": "يجب أن يكون return_url عنوان https على نطاق الموقع الموثَّق للشركة؛ وثِّق الشركة في prepza أولًا (زر «توثيق» بجانب اسمها).",
+    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "يجب أن يكون return_url عنوان https على أحد النطاقات المسموح بها للشركة؛ أضف النطاق أولًا في صفحة API الخاصة بها في prepza.",
     "The same request is still running. Try again shortly.": "لا يزال الطلب نفسه قيد التنفيذ. حاول مرة أخرى بعد قليل.",
     "This Idempotency-Key was already used for a different request.": "سبق استخدام هذا Idempotency-Key لطلب مختلف.",
     "prepza doesn't email this candidate: send them their invite link yourself.": "لا يرسل prepza رسائل بريد إلكتروني إلى هذا المرشح: أرسل إليه رابط الدعوة بنفسك.",

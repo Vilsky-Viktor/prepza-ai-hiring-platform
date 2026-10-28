@@ -26,15 +26,20 @@ test("a candidate invited through the API goes back to the company's platform", 
   const path = `${API_URL}/v1/interviews/${interviewId}/candidates`
   const email = throwawayEmail("returning")
 
-  // Its website entered, not verified yet: refused, and no one invited.
-  const unverified = await owner.request.post(path, {
+  // Verified but with no allowed domains: refused, and no one invited. Verification only gives
+  // the badge.
+  await verifyCompany(company.id, "acme-e2e.com")
+  const notAllowed = await owner.request.post(path, {
     headers,
     data: { email, return_url: "https://jobs.acme-e2e.com/done", sign_in: false },
   })
-  expect(unverified.status()).toBe(422)
-  await verifyCompany(company.id, "acme-e2e.com")
+  expect(notAllowed.status()).toBe(422)
+  expect((await notAllowed.json()).code).toBe("return_url_off_domain")
+  await api(owner, "PUT", `/companies/companies/${company.id}/allowed-domains`, {
+    domains: ["jobs.acme-e2e.com"],
+  })
 
-  // Off the company's verified website: refused too.
+  // Off the company's allowed domains: refused too.
   const off = await owner.request.post(path, {
     headers,
     data: { email, return_url: "https://elsewhere.com/done", sign_in: false },

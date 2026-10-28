@@ -1,5 +1,5 @@
 """An owner or admin's changes to the company itself: its name, its brand (logo, colors,
-style) and whether AI apps may use its data. Each is saved with its line in the action log."""
+style), whether AI apps may use its data and the domains that may embed its interviews. Each is saved with its line in the action log."""
 
 import asyncio
 import base64
@@ -17,6 +17,7 @@ from companies.helpers.brand import unreadable
 from companies.helpers.logos import logo_path, logo_type, stored_logo
 from companies.models.companies import Company
 from companies.repositories import audit, companies
+from companies.schemas.allowed_domains import AllowedDomains
 from companies.services.access import require_editor
 
 
@@ -73,6 +74,28 @@ async def set_ai_apps(company_id, user: CurrentUser, allowed: bool, via: str | N
     await changed(
         company.id, user.uid, AuditAction.AI_APPS_CHANGED, companies.set_ai_apps, allowed, via=via
     )
+
+
+async def set_allowed_domains(
+    company_id, user: CurrentUser, allowed: AllowedDomains, via: str | None
+) -> AllowedDomains:
+    """Owners and admins set the sites that may embed the company's interviews and that the
+    API's return_url may lead to. Never through an AI app or the assistant (403, before anything
+    else): a security setting a person decides, in prepza itself."""
+    if via is not None:
+        raise HTTPException(status.HTTP_403_FORBIDDEN, AI_APPS_CHANGED_BY_APP)
+
+    company, _ = await require_editor(user, company_id)
+    await changed(
+        company.id,
+        user.uid,
+        AuditAction.EMBED_DOMAINS_CHANGED,
+        companies.set_allowed_domains,
+        allowed.domains,
+        allowed.allow_localhost,
+    )
+
+    return allowed
 
 
 async def set_logo(company: Company, user_id: str, image: str) -> str | None:

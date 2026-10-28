@@ -89,6 +89,10 @@ class CompanyOut(BaseModel):
     suspended: bool = False
     # Members may use its data from AI apps they connected.
     ai_apps_allowed: bool = True
+    # The sites that may embed its interviews and that the API's return_url may lead to, and
+    # whether localhost may too (schemas/allowed_domains.py).
+    allowed_domains: list[str] = []
+    allow_localhost: bool = False
     created_at: datetime
 
 

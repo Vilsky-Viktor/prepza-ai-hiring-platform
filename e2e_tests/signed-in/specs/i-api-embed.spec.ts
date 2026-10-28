@@ -3,11 +3,10 @@ import type { Browser, Page } from "@playwright/test"
 import { expect, test } from "../fixtures"
 import { API_URL, FRONTEND_URL } from "../constants"
 import { api, createCompany, createInterview } from "../helpers/api"
-import { verifyCompany } from "../helpers/db"
 import { shot } from "../helpers/screenshots"
 import { ownerEmail, throwawayEmail } from "../helpers/users"
 
-// The company's own site, at an address of its verified website's domain: it embeds the interview with
+// The company's own site, on one of its allowed domains: it embeds the interview with
 // the hosted script and hears when the candidate has finished. It calls Prepza.embed before the
 // script has loaded (the documented stub queues it) and includes the script twice by mistake.
 // The dev server compiles a page on its first request in each browser; a poll waits that long.
@@ -81,21 +80,28 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
 
     return (await response.json()) as { id: string; invite_url: string }
   }
-  const framers = async (inviteUrl: string) => {
+  const framers = async (inviteUrl: string, origin?: string) => {
     const token = new URL(inviteUrl).pathname.split("/").pop()
-    const page = await owner.request.get(`${FRONTEND_URL}/embedded/${token}`)
+    const query = origin ? `?origin=${encodeURIComponent(origin)}` : ""
+    const page = await owner.request.get(`${FRONTEND_URL}/embedded/${token}${query}`)
 
     // No policy: the busy dev server answered with an error page; polled again.
     return page.headers()["content-security-policy"]?.match(/frame-ancestors ([^;]+)/)?.[1]
   }
 
   const candidate = await invite(throwawayEmail("embedded"), false)
-  // Not before the company is verified; then only its own site; an invite by email, no site.
-  await api(owner, "PUT", `/companies/companies/${company.id}/website`, { website: DOMAIN })
+  // No site until the company allows its domains (unverified: verification only gives the
+  // badge); then only those, and not for a page that says it's elsewhere; an invite by email,
+  // no site.
   await expect.poll(() => framers(candidate.invite_url), LOADED).toBe("'none'")
-  await verifyCompany(company.id, DOMAIN)
+  await api(owner, "PUT", `/companies/companies/${company.id}/allowed-domains`, {
+    domains: [`*.${DOMAIN}`],
+  })
   // Polled: the page gives up on a slow lookup (3 s) and refuses framing, as it should.
-  await expect.poll(() => framers(candidate.invite_url), LOADED).toBe(`${DOMAIN} *.${DOMAIN}`)
+  await expect.poll(() => framers(candidate.invite_url), LOADED).toBe(`*.${DOMAIN}`)
+  await expect
+    .poll(() => framers(candidate.invite_url, "https://elsewhere.example"), LOADED)
+    .toBe("'none'")
   const byEmail = await invite(throwawayEmail("by-email"), true)
   await expect.poll(() => framers(byEmail.invite_url), LOADED).toBe("'none'")
 

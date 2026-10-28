@@ -152,8 +152,8 @@ class CandidateIn(BaseModel):
         max_length=2048,
         description=(
             "Where to take the candidate once they've finished, optional: an https address on "
-            "the company's verified website domain (or a subdomain of it); see Verified "
-            "companies. The finished page shows a button to it, with "
+            "one of the company's allowed domains; see Allowed domains. The finished page shows "
+            "a button to it, with "
             "`prepza_invite=<candidate id>` added to its query"
         ),
     )

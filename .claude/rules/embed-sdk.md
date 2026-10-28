@@ -55,9 +55,11 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
 
 ## Who may frame it
 
-- The embedded page sends `frame-ancestors` built per request from the company's verified
-  website domain and its subdomains (`embedAncestors`, guest invites only; `'none'` when unsure,
-  on a timeout or for anything else); every other page is `frame-ancestors 'none'`. Header
+- The embedded page sends `frame-ancestors` built per request from the sources companies gives
+  (`embed_ancestors`: the company's allowed domains, localhost only when it opted in, guest
+  invites only, none when the script's `?origin=` or the `Referer` is off them; `embedAncestors`
+  checks each is a source; `'none'` when unsure, on a timeout or for anything else); every
+  other page is `frame-ancestors 'none'`. Verification never decides it (it's the badge only). Header
   only, never `<meta>`. The site's pages carry no `X-Frame-Options` (it can't list origins;
   `ALLOW-FROM` is obsolete); the API keeps `DENY`.
 - The frame's address authorizes nothing by itself beyond the invite's token, which already is
@@ -120,8 +122,8 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
 ## Testing
 
 - `i-api-embed.spec.ts` serves the company's page from another site (`jobs.acme-embed.com`), so
-  partitioning and `SameSite` apply as in production: framing refused before verification and
-  for email invites, the full interview in the frame, the callbacks in order, the script's
+  partitioning and `SameSite` apply as in production: framing refused before the company allows
+  its domains, for a page elsewhere and for email invites, the full interview in the frame, the callbacks in order, the script's
   headers. Unit tests cover `embedAncestors` and `originOf`.
 - The embed spec runs in Chromium, Firefox and WebKit (`playwright.config.ts` projects): Firefox
   and WebKit partition the frame's storage and refuse third-party cookies, as browsers do, while

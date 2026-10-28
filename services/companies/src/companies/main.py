@@ -17,6 +17,7 @@ from companies.api.v1 import (
     accommodations,
     account,
     ai_apps,
+    allowed_domains,
     audit,
     billing,
     bulk_invites,
@@ -110,6 +111,7 @@ app.include_router(superadmin.router)
 app.include_router(superadmin_companies.router)
 app.include_router(superadmin_support.router)
 app.include_router(ai_apps.router)
+app.include_router(allowed_domains.router)
 app.include_router(superadmin_verification.router)
 
 

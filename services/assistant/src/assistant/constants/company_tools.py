@@ -58,6 +58,8 @@ COMPANY_TOOLS = {
             "verified_domain",
             "verification_status",
             "decline_reason",
+            "allowed_domains",
+            "allow_localhost",
             "created_at",
         ],
     },

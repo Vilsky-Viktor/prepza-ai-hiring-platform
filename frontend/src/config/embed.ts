@@ -31,5 +31,9 @@ export const EMBED_SCRIPT_HEADERS = [
   { key: "Access-Control-Allow-Origin", value: "*" },
 ]
 
-// How long the page waits for the company's domain before refusing to be framed.
+// How long the page waits for the company's domains before refusing to be framed.
 export const EMBED_LOOKUP_TIMEOUT_MS = 3000
+// A frame-ancestors source as the companies service gives one ("*.acme.com",
+// "http://localhost:3000"): nothing else reaches the page's policy.
+export const EMBED_SOURCE_PATTERN =
+  /^(https?:\/\/)?(\*\.)?[a-z0-9.-]+(:(\d{1,5}|\*))?$|^https?:\/\/\[::1\](:(\d{1,5}|\*))?$/

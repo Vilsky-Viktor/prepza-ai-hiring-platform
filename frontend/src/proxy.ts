@@ -21,14 +21,20 @@ import { maintenanceState } from "@/lib/maintenance"
  * While maintenance mode is on, every page is the maintenance screen, except for superadmins and
  * the unsubscribe and legal pages (MAINTENANCE_OPEN_PAGES).
  * A page under a language prefix (/de/pricing) is served from its page in that language; private
- * pages are kept out of search results. No site may frame a page, but a company's own its
- * embedded interview. */
+ * pages are kept out of search results. No site may frame a page, but a company's allowed
+ * domains its embedded interview. */
 export async function proxy(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64")
   const embedded = EMBED_PAGE.exec(request.nextUrl.pathname)
   // Asked together: who may frame an embedded interview, and whether maintenance is on.
   const [ancestors, maintenance] = await Promise.all([
-    embedded ? embedAncestors(embedded[1]) : undefined,
+    embedded
+      ? embedAncestors(
+          embedded[1],
+          request.nextUrl.searchParams.get("origin"),
+          request.headers.get("referer")
+        )
+      : undefined,
     maintenanceState(request.cookies.get(TOKEN_COOKIE)?.value),
   ])
   const policy = contentSecurityPolicy(

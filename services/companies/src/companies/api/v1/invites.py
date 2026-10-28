@@ -1,8 +1,11 @@
-from fastapi import APIRouter, HTTPException, Request, status
+from typing import Annotated
+
+from fastapi import APIRouter, HTTPException, Query, Request, status
 from prepza_common.auth.auth import CurrentUser, OptionalUser
 from prepza_common.http.client_ip import limit_address
 from prepza_common.limits.rate_limit import hit_or_skip
 
+from companies.constants.allowed_domains import MAX_URL_LENGTH
 from companies.integrations.firebase_tokens import guest_token
 from companies.integrations.redis import get_redis
 from companies.schemas.invites import GuestTokenOut, InviteStartOut, InviteView, StartIn
@@ -13,10 +16,18 @@ router = APIRouter(prefix="/invites", tags=["invites"])
 
 
 @router.get("/{token}")
-async def get_invite(token: str, user: OptionalUser) -> InviteView:
+async def get_invite(
+    token: str,
+    user: OptionalUser,
+    embed_origin: Annotated[str | None, Query(max_length=MAX_URL_LENGTH)] = None,
+    embed_referrer: Annotated[str | None, Query(max_length=MAX_URL_LENGTH)] = None,
+) -> InviteView:
     """The invitation, also before signing in, so the page shows what it's for; whether it's the
-    signed-in account's, and its email only to that account with the email verified."""
-    return await invite_pages.invite_view(token, user)
+    signed-in account's, and its email only to that account with the email verified. The
+    embedded page's frame passes the page it's on (`embed_origin`, from the script) and the one
+    the browser came from (`embed_referrer`), so a page off the allowed domains gets no sources
+    to be framed by."""
+    return await invite_pages.invite_view(token, user, embed_origin, embed_referrer)
 
 
 @router.post("/{token}/guest")

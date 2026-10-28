@@ -218,7 +218,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "Un avis part au moins 14 jours avant que la nouvelle version s'applique : donnez-lui une date plus tardive.",
     "This version's notice was already sent.": "L'avis de cette version a déjà été envoyé.",
     "Prices aren't available right now. Please try again in a minute.": "Les prix ne sont pas disponibles pour le moment. Veuillez réessayer dans une minute.",
-    "return_url must be an https address on the company's verified website domain; get the company verified in prepza first (Verify, next to its name).": "return_url doit être une adresse https sur le domaine vérifié du site de l'entreprise ; faites d'abord vérifier l'entreprise dans prepza (Vérifier, à côté de son nom).",
+    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url doit être une adresse https sur l'un des domaines autorisés de l'entreprise ; ajoutez d'abord le domaine sur sa page API dans prepza.",
     "The same request is still running. Try again shortly.": "La même demande est encore en cours de traitement. Réessayez dans un instant.",
     "This Idempotency-Key was already used for a different request.": "Cette Idempotency-Key a déjà été utilisée pour une autre demande.",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza n'envoie pas d'e-mails à ce candidat : envoyez-lui vous-même son lien d'invitation.",

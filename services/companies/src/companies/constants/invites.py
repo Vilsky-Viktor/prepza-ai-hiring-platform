@@ -172,9 +172,3 @@ SIGNAL_KEYS = ("tab_leaves", "copies", "fast_answers")
 EXTRA_TIME_OPTIONS = (0, 25, 50, 100)
 # Extra time is set before the candidate starts: their questions' time is fixed then.
 EXTRA_TIME_STARTED = "Extra time can only be changed before the candidate starts."
-
-# The API's return_url must stay on the company's own site, so it can't send candidates elsewhere.
-RETURN_URL_OFF_DOMAIN = (
-    "return_url must be an https address on the company's verified website domain; get the "
-    "company verified in prepza first (Verify, next to its name)."
-)

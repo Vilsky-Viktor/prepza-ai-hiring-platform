@@ -821,7 +821,10 @@ export interface paths {
     /**
      * Get Invite
      * @description The invitation, also before signing in, so the page shows what it's for; whether it's the
-     *     signed-in account's, and its email only to that account with the email verified.
+     *     signed-in account's, and its email only to that account with the email verified. The
+     *     embedded page's frame passes the page it's on (`embed_origin`, from the script) and the one
+     *     the browser came from (`embed_referrer`), so a page off the allowed domains gets no sources
+     *     to be framed by.
      */
     get: operations["get_invite_invites__token__get"]
     put?: never
@@ -2161,6 +2164,28 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/companies/{company_id}/allowed-domains": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    /**
+     * Set Allowed Domains
+     * @description Owners and admins set the sites that may embed the company's interviews and that the
+     *     API's return_url may lead to, and whether localhost may too; the saved list. Never through
+     *     an AI app or the assistant: a person decides, in prepza itself.
+     */
+    put: operations["set_allowed_domains_companies__company_id__allowed_domains_put"]
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/superadmin/verifications": {
     parameters: {
       query?: never
@@ -2301,6 +2326,21 @@ export interface components {
     AiAppsIn: {
       /** Allowed */
       allowed: boolean
+    }
+    /**
+     * AllowedDomains
+     * @description The sites that may embed the company's interviews and that the API's return_url may lead
+     *     to, kept lowercase without a scheme, each once (422 naming a bad one); and whether the
+     *     developer's own computer (localhost, any port) may too.
+     */
+    AllowedDomains: {
+      /** Domains */
+      domains: string[]
+      /**
+       * Allow Localhost
+       * @default false
+       */
+      allow_localhost: boolean
     }
     /**
      * ApproveIn
@@ -2918,6 +2958,16 @@ export interface components {
        */
       ai_apps_allowed: boolean
       /**
+       * Allowed Domains
+       * @default []
+       */
+      allowed_domains: string[]
+      /**
+       * Allow Localhost
+       * @default false
+       */
+      allow_localhost: boolean
+      /**
        * Created At
        * Format: date-time
        */
@@ -3288,6 +3338,11 @@ export interface components {
       brand_style?: components["schemas"]["BrandStyle"] | null
       /** Embed Domain */
       embed_domain?: string | null
+      /**
+       * Embed Ancestors
+       * @default []
+       */
+      embed_ancestors: string[]
     }
     /**
      * InvitedCompaniesOut
@@ -5910,7 +5965,10 @@ export interface operations {
   }
   get_invite_invites__token__get: {
     parameters: {
-      query?: never
+      query?: {
+        embed_origin?: string | null
+        embed_referrer?: string | null
+      }
       header?: never
       path: {
         token: string
@@ -8238,6 +8296,41 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  set_allowed_domains_companies__company_id__allowed_domains_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["AllowedDomains"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["AllowedDomains"]
+        }
       }
       /** @description Validation Error */
       422: {

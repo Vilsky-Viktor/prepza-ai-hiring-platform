@@ -9,9 +9,10 @@ from prepza_common.i18n.i18n import CodedError
 from prepza_common.limits.pause import refuse_if_paused
 
 from companies.constants import error_codes
-from companies.constants.invites import OPEN, RETURN_URL_OFF_DOMAIN, InviteStatus
+from companies.constants.allowed_domains import RETURN_URL_OFF_DOMAIN
+from companies.constants.invites import OPEN, InviteStatus
 from companies.core.db import Session
-from companies.helpers.return_urls import on_domain
+from companies.helpers.allowed_domains import allows
 from companies.integrations.redis import get_redis
 from companies.repositories import companies, interviews, invites
 from companies.schemas.internal_ats import AtsInviteIn
@@ -50,7 +51,9 @@ async def invite(interview_id: UUID, body: AtsInviteIn, via: str) -> tuple[UUID,
     if sender is None or not can_edit(sender):
         raise HTTPException(status.HTTP_403_FORBIDDEN, "Only an owner or admin can invite")
 
-    if body.return_url and not on_domain(body.return_url, company.verified_domain):
+    if body.return_url and not allows(
+        company.allowed_domains, company.allow_localhost, body.return_url
+    ):
         raise CodedError(
             status.HTTP_422_UNPROCESSABLE_CONTENT,
             RETURN_URL_OFF_DOMAIN,

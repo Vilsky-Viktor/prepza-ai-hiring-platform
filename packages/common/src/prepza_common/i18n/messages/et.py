@@ -228,7 +228,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "Teade läheb välja vähemalt 14 päeva enne uue versiooni kehtima hakkamist: anna sellele hilisem kuupäev.",
     "This version's notice was already sent.": "Selle versiooni teade on juba saadetud.",
     "Prices aren't available right now. Please try again in a minute.": "Hinnad ei ole praegu saadaval. Proovi minuti pärast uuesti.",
-    "return_url must be an https address on the company's verified website domain; get the company verified in prepza first (Verify, next to its name).": "return_url peab olema https-aadress ettevõtte kinnitatud veebisaidi domeenil; lase ettevõte esmalt prepzas kinnitada (Kinnita, selle nime kõrval).",
+    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url peab olema https-aadress mõnel ettevõtte lubatud domeenil; lisa domeen esmalt prepzas ettevõtte API lehel.",
     "The same request is still running. Try again shortly.": "Sama päring on veel pooleli. Proovi varsti uuesti.",
     "This Idempotency-Key was already used for a different request.": "Seda Idempotency-Key'd on juba kasutatud teise päringu jaoks.",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza ei saada sellele kandidaadile e-kirju: saada talle kutselink ise.",

@@ -182,8 +182,10 @@ events reach it) until a test event goes through. An invite can skip prepza's em
 (the platform sends the candidate the link itself), bring the candidate back to the \
 company's site when they finish, and ask for the light or dark theme. With prepza's SDK (a \
 script), the company's own page shows the interview itself. Bringing candidates back and \
-embedding work only on a verified company's website domain. The reference is the "developer \
-docs" page, linked in the footer.
+embedding work only on the domains the company allows on its API page (localhost only when it \
+allows it); verification isn't needed for the API, the SDK or AI apps, it only adds the \
+verified badge. An API key can be limited to allowed IP addresses. The reference is the \
+"developer docs" page, linked in the footer.
 - AI apps: Claude, ChatGPT and other apps that support MCP connect to prepza; any member can \
 connect one (Integrations → AI apps → Instructions has the address and the steps). Connected, an app acts as the person who \
 connected it, in every company they're in, with their role there: it reads tests, candidates \

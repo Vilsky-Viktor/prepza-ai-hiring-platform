@@ -7,6 +7,7 @@ from fastapi import HTTPException, status
 from prepza_common.auth.user import User
 
 from companies.core.db import Session
+from companies.helpers.allowed_domains import frame_sources
 from companies.helpers.brand import color_sets, style_of
 from companies.helpers.candidates import candidate_seconds
 from companies.helpers.interviews import interview_minutes
@@ -27,9 +28,15 @@ async def company_of(interview: Interview):
         return await companies.get(session, interview.company_id)
 
 
-async def invite_view(token: str, user: User | None) -> InviteView:
+async def invite_view(
+    token: str,
+    user: User | None,
+    embed_origin: str | None = None,
+    embed_referrer: str | None = None,
+) -> InviteView:
     """The invitation, also before signing in; whether it's the signed-in account's, and its
-    email only to that account with the email verified."""
+    email only to that account with the email verified. For a guest invite, who may frame it:
+    the company's allowed domains, unless the page embedding it is elsewhere (frame_sources)."""
     # An expired invite's link stops working until the company sends it again.
     invite, interview = await open_invite(token)
     interview = await attach_set(interview)
@@ -57,6 +64,11 @@ async def invite_view(token: str, user: User | None) -> InviteView:
         theme=invite.theme,
         brand_style=BrandStyle(**style_of(company)),
         embed_domain=company.verified_domain if company and invite.guest else None,
+        embed_ancestors=frame_sources(
+            company.allowed_domains, company.allow_localhost, embed_origin, embed_referrer
+        )
+        if company and invite.guest
+        else [],
     )
 
 

@@ -12,12 +12,14 @@ from sqlalchemy import (
     String,
     Text,
     UniqueConstraint,
+    false,
     func,
     text,
 )
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from companies.constants.allowed_domains import MAX_DOMAIN_LENGTH
 from companies.constants.brand import BrandFont
 from companies.constants.logos import LOGO_SIGNATURES
 from companies.constants.roles import Role
@@ -71,6 +73,13 @@ class Company(Base):
     decline_reason: Mapped[str | None] = mapped_column(String(MAX_DECLINE_REASON_LENGTH))
     verification_decided_by: Mapped[str | None] = mapped_column(String(128))
     verification_decided_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # The sites that may embed its interviews and that the API's return_url may lead to
+    # (constants/allowed_domains.py), and whether the developer's own computer (localhost) may
+    # too. Nothing to do with verification, which only gives the badge.
+    allowed_domains: Mapped[list[str]] = mapped_column(
+        ARRAY(String(MAX_DOMAIN_LENGTH)), default=list, server_default="{}"
+    )
+    allow_localhost: Mapped[bool] = mapped_column(default=False, server_default=false())
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )

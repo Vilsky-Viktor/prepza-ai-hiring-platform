@@ -57,6 +57,9 @@ def company_out(company: Company, user_id: str, interview_count: int = 0) -> Com
         decline_reason=company.decline_reason,
         suspended=company.suspended_at is not None,
         ai_apps_allowed=company.ai_apps_off_at is None,
+        # A company not yet saved has no defaults filled in.
+        allowed_domains=company.allowed_domains or [],
+        allow_localhost=bool(company.allow_localhost),
         created_at=company.created_at,
     )
 

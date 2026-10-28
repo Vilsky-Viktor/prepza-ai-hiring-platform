@@ -218,3 +218,13 @@ async def set_ai_apps(session: AsyncSession, company_id, allowed: bool) -> None:
         .where(Company.id == company_id)
         .values(ai_apps_off_at=None if allowed else datetime.now(UTC))
     )
+
+
+async def set_allowed_domains(
+    session: AsyncSession, company_id, domains: list[str], allow_localhost: bool
+) -> None:
+    await session.execute(
+        update(Company)
+        .where(Company.id == company_id)
+        .values(allowed_domains=domains, allow_localhost=allow_localhost)
+    )

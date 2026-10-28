@@ -84,7 +84,7 @@ Later changes:
 - Renaming a verified, pending or declined company sends the new name for review, taking any check away.
 - Changing the website starts over.
 
-Until a company is verified, its invite pages and its invite and reminder emails say, in a small gray line, that prepza hasn't verified it.
+Until a company is verified, its invite pages and its invite and reminder emails say, in a small gray line, that prepza hasn't verified it. Verification only gives the badge: the API, the SDK, the return button and AI apps don't depend on it (embedding and `return_url` follow the company's [allowed domains](api.md#allowed-domains)).
 
 ## Suspension
 
@@ -105,7 +105,7 @@ Every action a company's members take on it is logged: who took it, what it was 
 | Team | member invited, joined, removed, role changed, ownership handed on |
 | Company | renamed, logo, brand colors or style, website sent for verification, AI apps allowed or stopped |
 | Billing | a member's top-up paid, automatic top-up set up, changed or stopped |
-| Integrations | an ATS connected, reconnected or disconnected, a job linked or unlinked; Slack connected, disconnected or its notifications changed; an API key created, deleted or its permissions narrowed (with what was taken away); a web hook added, tested or deleted |
+| Integrations | an ATS connected, reconnected or disconnected, a job linked or unlinked; Slack connected, disconnected or its notifications changed; an API key created, deleted, its permissions narrowed (with what was taken away) or its allowed IPs changed; the allowed domains changed; a web hook added, tested or deleted |
 
 **How it's recorded.** Companies records its own actions (`src/companies/repositories/audit.py`), the joining of a member in the same transaction as the join. Billing, ats, notifications and api save theirs in their outbox in the change's own transaction (`prepza_common.events.audit.add`, event `audit.recorded`), so an action is sent exactly when its change is saved, and retried until companies stores it (each service's outbox is flushed after the request and every minute). Companies stores an event once however often it comes (its id is unique in `audit_events.event_id`), at the time it happened rather than when it arrived, so a late event keeps its place; an event for a company deleted meanwhile is dropped. A member's views of one candidate's results are one row a day (UTC), moved to the latest view (a partial unique index and an upsert, so views at once make one row).
 

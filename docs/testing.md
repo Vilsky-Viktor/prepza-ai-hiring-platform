@@ -170,7 +170,7 @@ Playwright tests of the signed-in pages, in the same Docker image, against the r
 - API keys and web hooks,
 - a web hook's signed test event and its delivery log,
 - the API's operations: inviting a candidate twice, with and without a client's Idempotency-Key (invited once; the retry is a `200`), a reused key with another body refused, correcting them, extra time, a reminder, finding them by email, the credits, removing them, and a new interview within the app's limits,
-- a candidate invited through the API taking the interview without signing in and going back to the company's platform, refused while the company's website isn't verified or the return address is off it,
+- a candidate invited through the API taking the interview without signing in and going back to the company's platform, refused while the return address is off the company's allowed domains,
 - a company's own site embedding a candidate's interview and hearing it finish,
 - each ATS: Workable's linked jobs, and connecting Greenhouse (with who connected it under its title), Teamtailor, Recruitee and Breezy HR,
 - Slack,

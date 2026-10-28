@@ -218,7 +218,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "הודעה נשלחת לפחות 14 יום לפני שהגרסה החדשה חלה: יש לתת לה תאריך מאוחר יותר.",
     "This version's notice was already sent.": "ההודעה על הגרסה הזו כבר נשלחה.",
     "Prices aren't available right now. Please try again in a minute.": "המחירים לא זמינים כרגע. נסו שוב בעוד דקה.",
-    "return_url must be an https address on the company's verified website domain; get the company verified in prepza first (Verify, next to its name).": "return_url חייבת להיות כתובת https בדומיין המאומת של אתר החברה; אמתו קודם את החברה ב-prepza (אימות, ליד שמה).",
+    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url חייבת להיות כתובת https באחד הדומיינים המורשים של החברה; הוסיפו קודם את הדומיין בדף ה-API שלה ב-prepza.",
     "The same request is still running. Try again shortly.": "אותה בקשה עדיין בטיפול. נסו שוב בעוד רגע.",
     "This Idempotency-Key was already used for a different request.": "ה-Idempotency-Key הזה כבר שימש לבקשה אחרת.",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza לא שולחת אימיילים למועמד הזה: שלחו לו בעצמכם את קישור ההזמנה.",

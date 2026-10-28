@@ -218,7 +218,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "通知は新しいバージョンの適用日の少なくとも 14 日前に送られます。より後の日付にしてください。",
     "This version's notice was already sent.": "このバージョンの通知はすでに送信されています。",
     "Prices aren't available right now. Please try again in a minute.": "現在、料金を表示できません。1分後にもう一度お試しください。",
-    "return_url must be an https address on the company's verified website domain; get the company verified in prepza first (Verify, next to its name).": "return_url は企業の認証済みウェブサイトドメイン上の https アドレスにしてください。先に prepza で企業の認証を受けてください（企業名の横の「認証」）。",
+    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url は企業の許可ドメインのいずれかにある https アドレスにしてください。先に prepza の企業の API ページでドメインを追加してください。",
     "The same request is still running. Try again shortly.": "同じリクエストがまだ処理中です。少し時間をおいてもう一度お試しください。",
     "This Idempotency-Key was already used for a different request.": "この Idempotency-Key は別のリクエストですでに使われています。",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza はこの候補者にメールを送りません。招待リンクはご自身で送ってください。",

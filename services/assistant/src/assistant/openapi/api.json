@@ -114,7 +114,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -207,7 +207,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -324,7 +324,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -509,7 +509,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -625,7 +625,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -703,7 +703,7 @@
       }
      },
      "422": {
-      "description": "The body is invalid (`validation_failed`), or `return_url` isn't an https address on the company's verified website domain (`return_url_off_domain`)",
+      "description": "The body is invalid (`validation_failed`), or `return_url` isn't an https address on one of the company's allowed domains (`return_url_off_domain`)",
       "content": {
        "application/json": {
         "schema": {
@@ -773,7 +773,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -898,7 +898,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1016,7 +1016,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1126,7 +1126,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1240,7 +1240,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1369,7 +1369,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1449,7 +1449,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`)",
+      "description": "The API key doesn't have the permission the endpoint needs (`missing_permission`), or doesn't allow the address the request came from (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1715,6 +1715,75 @@
     "responses": {
      "204": {
       "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/manage/keys/{key_id}/allowed-ips": {
+   "put": {
+    "tags": [
+     "manage"
+    ],
+    "summary": "Set Key Ips",
+    "description": "Owners and admins limit a key to the addresses its servers call from, or let it be used\nfrom any (an empty list).",
+    "operationId": "set_key_ips",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "key_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Key Id"
+      }
+     },
+     {
+      "name": "company_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/KeyIpsIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/KeyOut"
+        }
+       }
+      }
      },
      "422": {
       "description": "Validation Error",
@@ -2342,7 +2411,7 @@
        }
       ],
       "title": "Return Url",
-      "description": "Where to take the candidate once they've finished, optional: an https address on the company's verified website domain (or a subdomain of it); see Verified companies. The finished page shows a button to it, with `prepza_invite=<candidate id>` added to its query"
+      "description": "Where to take the candidate once they've finished, optional: an https address on one of the company's allowed domains; see Allowed domains. The finished page shows a button to it, with `prepza_invite=<candidate id>` added to its query"
      },
      "theme": {
       "type": "string",
@@ -2821,6 +2890,16 @@
       "type": "array",
       "minItems": 1,
       "title": "Permissions"
+     },
+     "allowed_ips": {
+      "items": {
+       "type": "string",
+       "maxLength": 49
+      },
+      "type": "array",
+      "maxItems": 50,
+      "title": "Allowed Ips",
+      "default": []
      }
     },
     "type": "object",
@@ -2829,6 +2908,24 @@
      "expiry"
     ],
     "title": "KeyIn"
+   },
+   "KeyIpsIn": {
+    "properties": {
+     "allowed_ips": {
+      "items": {
+       "type": "string",
+       "maxLength": 49
+      },
+      "type": "array",
+      "maxItems": 50,
+      "title": "Allowed Ips"
+     }
+    },
+    "type": "object",
+    "required": [
+     "allowed_ips"
+    ],
+    "title": "KeyIpsIn"
    },
    "KeyOut": {
     "properties": {
@@ -2884,6 +2981,14 @@
       },
       "type": "array",
       "title": "Permissions"
+     },
+     "allowed_ips": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Allowed Ips",
+      "default": []
      }
     },
     "type": "object",
@@ -2970,6 +3075,14 @@
       },
       "type": "array",
       "title": "Permissions"
+     },
+     "allowed_ips": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Allowed Ips",
+      "default": []
      },
      "key": {
       "type": "string",

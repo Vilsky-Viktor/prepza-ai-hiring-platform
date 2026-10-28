@@ -9,7 +9,7 @@ from prepza_common.http.http import bearer
 
 from companies.constants.ai_apps import AI_APPS_OFF, KEY_OTHER_COMPANY
 from companies.constants.audit import VIA_ATS
-from companies.constants.invites import COMPANY_SUSPENDED, RETURN_URL_OFF_DOMAIN
+from companies.constants.invites import COMPANY_SUSPENDED
 from companies.repositories import companies, interviews, invites
 from companies.services import candidate_invites
 from companies.services import outbox as outbox_service
@@ -256,33 +256,3 @@ def test_the_ats_name_goes_with_the_invite(client, stored):
 
     assert response.status_code == 201
     assert stored["names"] == ["Cara Diaz"]
-
-
-def test_a_return_address_off_the_companys_website_invites_no_one(client, stored, monkeypatch):
-    monkeypatch.setattr(COMPANY, "verified_domain", "acme.com", raising=False)
-    url = f"/internal/interviews/{READY.id}/invites"
-    body = {"email": "cara@example.com", "sender_id": "ann"}
-
-    refused = client.post(
-        url, json={**body, "return_url": "https://elsewhere.com/next"}, headers=HEADERS
-    )
-    allowed = client.post(
-        url, json={**body, "return_url": "https://jobs.acme.com/next"}, headers=HEADERS
-    )
-
-    assert refused.status_code == 422
-    assert refused.json() == {"detail": RETURN_URL_OFF_DOMAIN, "code": "return_url_off_domain"}
-    assert allowed.status_code == 201
-    assert len(stored["invites"]) == 1
-
-
-def test_a_return_address_needs_the_company_verified_not_only_its_website(
-    client, stored, monkeypatch
-):
-    monkeypatch.setattr(COMPANY, "website_domain", "acme.com", raising=False)
-    monkeypatch.setattr(COMPANY, "verified_domain", None, raising=False)
-    body = {"email": "cara@example.com", "sender_id": "ann", "return_url": "https://acme.com/next"}
-    response = client.post(f"/internal/interviews/{READY.id}/invites", json=body, headers=HEADERS)
-
-    assert response.status_code == 422
-    assert stored["invites"] == []

@@ -2849,7 +2849,7 @@
      "invites"
     ],
     "summary": "Get Invite",
-    "description": "The invitation, also before signing in, so the page shows what it's for; whether it's the\nsigned-in account's, and its email only to that account with the email verified.",
+    "description": "The invitation, also before signing in, so the page shows what it's for; whether it's the\nsigned-in account's, and its email only to that account with the email verified. The\nembedded page's frame passes the page it's on (`embed_origin`, from the script) and the one\nthe browser came from (`embed_referrer`), so a page off the allowed domains gets no sources\nto be framed by.",
     "operationId": "get_invite_invites__token__get",
     "security": [
      {
@@ -2864,6 +2864,40 @@
       "schema": {
        "type": "string",
        "title": "Token"
+      }
+     },
+     {
+      "name": "embed_origin",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 2000
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Embed Origin"
+      }
+     },
+     {
+      "name": "embed_referrer",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 2000
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Embed Referrer"
       }
      }
     ],
@@ -6822,6 +6856,65 @@
     }
    }
   },
+  "/companies/{company_id}/allowed-domains": {
+   "put": {
+    "tags": [
+     "companies"
+    ],
+    "summary": "Set Allowed Domains",
+    "description": "Owners and admins set the sites that may embed the company's interviews and that the\nAPI's return_url may lead to, and whether localhost may too; the saved list. Never through\nan AI app or the assistant: a person decides, in prepza itself.",
+    "operationId": "set_allowed_domains_companies__company_id__allowed_domains_put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AllowedDomains"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AllowedDomains"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/superadmin/verifications": {
    "get": {
     "tags": [
@@ -7238,6 +7331,30 @@
      "allowed"
     ],
     "title": "AiAppsIn"
+   },
+   "AllowedDomains": {
+    "properties": {
+     "domains": {
+      "items": {
+       "type": "string",
+       "maxLength": 260
+      },
+      "type": "array",
+      "maxItems": 20,
+      "title": "Domains"
+     },
+     "allow_localhost": {
+      "type": "boolean",
+      "title": "Allow Localhost",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "domains"
+    ],
+    "title": "AllowedDomains",
+    "description": "The sites that may embed the company's interviews and that the API's return_url may lead\nto, kept lowercase without a scheme, each once (422 naming a bad one); and whether the\ndeveloper's own computer (localhost, any port) may too."
    },
    "ApproveIn": {
     "properties": {
@@ -8622,6 +8739,19 @@
       "title": "Ai Apps Allowed",
       "default": true
      },
+     "allowed_domains": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Allowed Domains",
+      "default": []
+     },
+     "allow_localhost": {
+      "type": "boolean",
+      "title": "Allow Localhost",
+      "default": false
+     },
      "created_at": {
       "type": "string",
       "format": "date-time",
@@ -9656,6 +9786,14 @@
        }
       ],
       "title": "Embed Domain"
+     },
+     "embed_ancestors": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Embed Ancestors",
+      "default": []
      }
     },
     "type": "object",

@@ -63,6 +63,7 @@ class AuditAction(StrEnum):
     BRAND_CHANGED = "brand_changed"
     VERIFICATION_REQUESTED = "verification_requested"
     AI_APPS_CHANGED = "ai_apps_changed"
+    EMBED_DOMAINS_CHANGED = "embed_domains_changed"
     # Billing.
     TOP_UP_PAID = "top_up_paid"
     AUTO_TOP_UP_SET = "auto_top_up_set"
@@ -146,6 +147,7 @@ _GROUPS = {
         AuditAction.API_KEY_DELETED,
         AuditAction.API_KEY_NARROWED,
         AuditAction.API_KEY_IPS_CHANGED,
+        AuditAction.EMBED_DOMAINS_CHANGED,
         AuditAction.WEBHOOK_ADDED,
         AuditAction.WEBHOOK_TESTED,
         AuditAction.WEBHOOK_DELETED,

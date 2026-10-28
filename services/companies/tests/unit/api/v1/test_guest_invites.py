@@ -89,38 +89,98 @@ def test_only_the_guest_starts_a_guest_invitation_not_even_the_invited_email(cli
     assert guest_invite == []
 
 
-def test_only_a_guest_invitation_may_be_embedded_and_only_on_the_companys_verified_site(
-    client,
-    monkeypatch,
-    invite_page,  # noqa: F811
-):
-    verified = {"domain": None}
+def embedding(monkeypatch, **changes) -> SimpleNamespace:
+    """The invite's company, with no allowed domains unless `changes` say so."""
+    acme = SimpleNamespace(
+        **{
+            "name": "Acme",
+            "verified_domain": None,
+            "allowed_domains": [],
+            "allow_localhost": False,
+            "brand_colors": None,
+            "brand_font": None,
+            "brand_radius": None,
+            "brand_button_radius": None,
+            "suspended_at": None,
+            **changes,
+        }
+    )
 
     async def company(session, company_id):
-        return SimpleNamespace(
-            name="Acme",
-            website_domain="acme.com",
-            verified_domain=verified["domain"],
-            brand_colors=None,
-            brand_font=None,
-            brand_radius=None,
-            brand_button_radius=None,
-            suspended_at=None,
-        )
+        return acme
 
     monkeypatch.setattr(invite_pages.companies, "get", company)
     monkeypatch.setattr(invite_pages, "logo_path", lambda company: None)
 
-    assert client.get("/invites/token-1").json()["embed_domain"] is None
+    return acme
+
+
+def test_only_a_guest_invitation_may_be_embedded_and_only_on_the_companys_allowed_domains(
+    client,
+    monkeypatch,
+    invite_page,  # noqa: F811
+):
+    acme = embedding(monkeypatch, verified_domain="acme.com")
+
+    def ancestors(query=""):
+        return client.get(f"/invites/token-1{query}").json()["embed_ancestors"]
+
+    acme.allowed_domains = ["jobs.acme.com"]
+
+    # An invite sent by email is never embedded.
+    assert ancestors() == []
 
     invite_page.guest = True
 
-    # Its website entered, not verified yet: no site may.
-    assert client.get("/invites/token-1").json()["embed_domain"] is None
+    assert ancestors() == ["jobs.acme.com"]
+    # Verification has nothing to do with it: no allowed domains, no site, verified or not.
+    acme.allowed_domains = []
 
-    verified["domain"] = "acme.com"
+    assert ancestors() == []
 
-    assert client.get("/invites/token-1").json()["embed_domain"] == "acme.com"
+    acme.allowed_domains, acme.verified_domain = ["jobs.acme.com"], None
+
+    assert ancestors() == ["jobs.acme.com"]
+
+
+@pytest.mark.parametrize(
+    ("query", "expected"),
+    [
+        ("?embed_origin=https://jobs.acme.com", ["jobs.acme.com"]),
+        ("?embed_origin=https://evil.com", []),
+        # The browser holds the scheme to the policy's; a claim is checked by its host.
+        ("?embed_origin=http://jobs.acme.com", ["jobs.acme.com"]),
+        ("?embed_referrer=https://evil.com/page", []),
+        (
+            "?embed_origin=https://jobs.acme.com&embed_referrer=https://jobs.acme.com/apply",
+            ["jobs.acme.com"],
+        ),
+        ("?embed_origin=http://localhost:3000", []),
+    ],
+)
+def test_a_page_off_the_allowed_domains_gets_no_sources(
+    client,
+    monkeypatch,
+    invite_page,  # noqa: F811
+    query,
+    expected,
+):
+    embedding(monkeypatch, allowed_domains=["jobs.acme.com"])
+    invite_page.guest = True
+
+    assert client.get(f"/invites/token-1{query}").json()["embed_ancestors"] == expected
+
+
+def test_localhost_may_embed_once_the_company_opts_in(
+    client,
+    monkeypatch,
+    invite_page,  # noqa: F811
+):
+    embedding(monkeypatch, allow_localhost=True)
+    invite_page.guest = True
+    found = client.get("/invites/token-1?embed_origin=http://localhost:3000").json()
+
+    assert "http://localhost:*" in found["embed_ancestors"]
 
 
 def test_guest_sign_ins_past_the_hourly_limit_of_an_address_are_refused(

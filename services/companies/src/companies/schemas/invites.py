@@ -89,9 +89,13 @@ class InviteView(BaseModel):
     brand_colors: BrandColorSets | None = None
     theme: Theme | None = None
     brand_style: BrandStyle | None = None
-    # The website that may embed this interview in a frame (with its subdomains): the company's
-    # verified one (a superadmin approved it), for a guest invite only. None: no site may.
+    # Deprecated, no longer read (embed_ancestors replaced it); removed in the next release: the
+    # company's verified domain, for a guest invite.
     embed_domain: str | None = None
+    # The Content-Security-Policy sources that may embed this interview in a frame: the
+    # company's allowed domains (and localhost when it allows it), for a guest invite only,
+    # unless the embedding page is elsewhere. Empty: no site may.
+    embed_ancestors: list[str] = []
 
 
 class SessionSummary(BaseModel):

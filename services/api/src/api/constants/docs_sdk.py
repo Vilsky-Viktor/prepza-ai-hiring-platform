@@ -3,8 +3,9 @@ SDK_TAB = """# SDK
 
 Your page can show the interview itself, for a candidate invited with `sign_in` false. Your
 server invites them and passes the `invite_url` to your page, which embeds it with prepza's
-script; never put your API key in a page. The page must be on your company's verified website
-domain (or a subdomain of it) and served over HTTPS: anywhere else the interview isn't shown.
+script; never put your API key in a page. The page must be on one of your company's allowed
+domains (see Allowed domains on the API tab) and served over HTTPS: anywhere else the interview
+isn't shown. To try it on your own computer, allow localhost there first.
 
 ```html
 <div id="interview"></div>
@@ -33,7 +34,7 @@ candidate's own theme, or the one the invite asked for. `title` names the frame 
 readers. The frame fits its height to the interview. `onFinish` gets the candidate's `id`, so
 your page can take them on; their results come with the `candidate.finished` web hook as usual.
 `onError` gets a `code`: `"timeout"` when the frame didn't load within 20 seconds (the page isn't
-on your verified domain, or the network failed), `"invite_unavailable"` when the link expired or
+on an allowed domain, or the network failed), `"invite_unavailable"` when the link expired or
 was revoked, `"load_failed"` when it couldn't be read (try again). Loaded without `async`, the
 script is ready at once and `Prepza.embed(...)` returns `{ destroy() }`, which removes the frame.
 While the interview runs, the candidate should stay on it: leaving it, including for the rest of
@@ -47,6 +48,8 @@ only ever added; a change that isn't compatible would come as `v2.js`, with `v1.
 
 ## Changes to v1
 
+- 2026-10-29: the page must be on one of the company's allowed domains (localhost when allowed),
+  instead of its verified website domain.
 - 2026-10-20: `onError`, `title`, calls queued before the script loads, and a console warning for
   an option it doesn't know.
 """

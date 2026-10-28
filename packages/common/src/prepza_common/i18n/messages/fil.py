@@ -220,7 +220,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "Ipinapadala ang abiso nang hindi bababa sa 14 na araw bago magkabisa ang bagong bersyon: bigyan ito ng mas huling petsa.",
     "This version's notice was already sent.": "Naipadala na ang abiso para sa bersyong ito.",
     "Prices aren't available right now. Please try again in a minute.": "Hindi available ang mga presyo ngayon. Pakisubukang muli pagkalipas ng isang minuto.",
-    "return_url must be an https address on the company's verified website domain; get the company verified in prepza first (Verify, next to its name).": "Ang return_url ay dapat https na address sa na-verify na website domain ng kumpanya; ipa-verify muna ang kumpanya sa prepza (Verify, katabi ng pangalan nito).",
+    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "Ang return_url ay dapat https na address sa isa sa mga pinapayagang domain ng kumpanya; idagdag muna ang domain sa API page nito sa prepza.",
     "The same request is still running. Try again shortly.": "Tumatakbo pa ang parehong request. Subukang muli maya-maya.",
     "This Idempotency-Key was already used for a different request.": "Nagamit na ang Idempotency-Key na ito sa ibang request.",
     "prepza doesn't email this candidate: send them their invite link yourself.": "Hindi nag-e-email ang prepza sa kandidatong ito: ikaw na ang magpadala sa kanila ng invite link nila.",
