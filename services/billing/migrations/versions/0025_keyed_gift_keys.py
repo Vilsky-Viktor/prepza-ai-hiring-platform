@@ -12,7 +12,7 @@ import sqlalchemy as sa
 from alembic import op
 from prepza_common.auth.person_hash import keyed
 
-from app.config.settings import settings
+from billing.config import settings
 
 revision = "0025"
 down_revision = "0024"

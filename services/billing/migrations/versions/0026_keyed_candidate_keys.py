@@ -12,8 +12,8 @@ import sqlalchemy as sa
 from alembic import op
 from prepza_common.limits.credit_keys import rekeyed
 
-from app.config.settings import settings
-from app.constants.credits import CANDIDATE_PREFIX
+from billing.config import settings
+from billing.constants.credits import CANDIDATE_PREFIX
 
 revision = "0026"
 down_revision = "0025"

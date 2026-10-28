@@ -2,8 +2,8 @@ import pytest
 from prepza_common.auth.auth import current_user, optional_user
 from prepza_common.auth.user import User
 
-from app.main import app
-from app.storage import currencies, ledger
+from billing.main import app
+from billing.repositories import currencies, ledger
 
 
 @pytest.fixture(autouse=True)

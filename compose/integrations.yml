@@ -94,7 +94,7 @@ x-assistant-env: &assistant-env
 
 # Each service's mounted source; migrations read it too, so new ones run without a rebuild.
 x-billing-source: &billing-source
-  - ./services/billing/app:/services/billing/app
+  - ./services/billing/src:/services/billing/src
   - ./services/billing/migrations:/services/billing/migrations
   - ./services/billing/alembic.ini:/services/billing/alembic.ini:ro
   - ./packages/common/src:/packages/common/src

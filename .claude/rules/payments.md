@@ -24,7 +24,7 @@ CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed a
 
 ## Choosing and running the gateway
 
-- One provider, Paddle, behind one module (`services/billing/app/integrations/paddle.py`). No
+- One provider, Paddle, behind one module (`services/billing/src/billing/integrations/paddle.py`). No
   gateway abstraction or second processor (rule 4): saved cards can't move between providers, an
   MoR swap means new terms, tax and payouts, and a second gateway would double the web hooks,
   ledger keys and tests. Revisit only with a reason the user names (fees at volume, a market
@@ -35,7 +35,7 @@ CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed a
   their decimals and minimum charges; fees, payouts and the account's verification are the user's.
 - Sandbox and live are separate Paddle accounts: their API keys (`pdl_sdbx_` / `pdl_live_`) and
   client tokens (`test_` / `live_`) must match `PADDLE_ENVIRONMENT`, or billing refuses to start
-  (`config/settings.py`). Development and every test use the sandbox; never a real card or a live
+  (`config.py`). Development and every test use the sandbox; never a real card or a live
   key on a laptop, in CI or in a test.
 - The API key has only the permissions billing uses (listed in `docs/features/billing.md`, Setting
   up Paddle) and an expiry; keys and the web hook secret live in Secret Manager. Every call pins

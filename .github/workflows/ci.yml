@@ -66,7 +66,7 @@ jobs:
           - { name: rounds, path: services/rounds, code: src }
           - { name: companies, path: services/companies }
           - { name: notifications, path: services/notifications }
-          - { name: billing, path: services/billing }
+          - { name: billing, path: services/billing, code: src }
           - { name: ats, path: services/ats, code: src }
           - { name: api, path: services/api, code: src }
           - { name: assistant, path: services/assistant }

@@ -62,7 +62,7 @@ def call(method: str, url: str, token: str | None = None, body=None, headers=Non
         sys.exit(f"FAIL {method} {url} -> {error.code} {error.read().decode()[:300]}")
 
 
-# Billing's prices (services/billing/app/constants/credits.py).
+# Billing's prices (services/billing/src/billing/constants/credits.py).
 CANDIDATE_CREDITS = 500
 WELCOME_COMPANY = 3 * CANDIDATE_CREDITS
 

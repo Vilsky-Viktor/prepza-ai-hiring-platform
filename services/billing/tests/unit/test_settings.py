@@ -4,7 +4,7 @@ billing from starting."""
 import pytest
 from pydantic import ValidationError
 
-from app.config.settings import Settings
+from billing.config import Settings
 
 
 @pytest.mark.parametrize(

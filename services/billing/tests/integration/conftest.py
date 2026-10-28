@@ -14,7 +14,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
 
 if not os.getenv("INTEGRATION_TESTS"):
-    collect_ignore_glob = ["test_*.py"]
+    collect_ignore_glob = ["test_*.py", "*/test_*.py"]
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -52,8 +52,8 @@ def clean_start(database):
 def run():
     """Runs a coroutine on a fresh event loop; the pool and the Redis client are dropped after,
     as their connections belong to that loop."""
-    from app.integrations.redis import get_redis
-    from app.storage.db import engine
+    from billing.core.db import engine
+    from billing.integrations.redis import get_redis
 
     def run(coroutine):
         async def wrapped():
@@ -77,8 +77,8 @@ def paddle_calls(monkeypatch):
     cancel one starting with sub_down."""
     import httpx
 
-    from app.config.settings import settings
-    from app.integrations import paddle
+    from billing.config import settings
+    from billing.integrations import paddle
 
     calls = []
 
@@ -148,7 +148,7 @@ def redis(monkeypatch):
     with the limits read afresh."""
     from prepza_common.redis import memory_cache
 
-    from app.integrations.redis import get_redis
+    from billing.integrations.redis import get_redis
 
     monkeypatch.setattr(memory_cache, "_entries", {})
 

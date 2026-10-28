@@ -18,7 +18,7 @@ ALLOWED = {
     "packages/common/src/prepza_common/limits/maintenance.py MAINTENANCE_KEY",
     "packages/common/src/prepza_common/limits/maintenance.py MAINTENANCE_STARTED_KEY",
     # The limits edited in Controls, rewritten from Postgres every 5 minutes.
-    "services/billing/app/services/limit_values.py LIMITS_KEY",
+    "services/billing/src/billing/services/limit_values.py LIMITS_KEY",
 }
 
 
