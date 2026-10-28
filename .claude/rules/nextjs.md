@@ -24,10 +24,11 @@ tests/                    # vitest
 ```
 
 Shared components, with the site's header, footer and page chrome, are in `components/common/`,
-icons in `components/icons/`. Still to move from the old layout: feature folders in `components/`
-(company, billing, assistant, generation, landing, …) → `features/<name>/`, each with the loose
-components only it uses (`chat-input`, `delete-account`, `instructions-dialog`, `labeled-field`,
-`text-editor`, `tab-panels`).
+icons in `components/icons/`. A component used by one feature lives in that feature's
+`features/<name>/components/`; once a second feature (or `components/common/`) needs it, it moves
+to `components/common/` with what it imports from its feature. Pages in `app/` import from any
+feature; a feature never imports another feature, and `components/common/` imports none but the
+assistant (its button in the site's header, its provider behind the ask button).
 
 ## Languages and direction
 
