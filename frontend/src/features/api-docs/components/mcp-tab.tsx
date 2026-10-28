@@ -1,7 +1,7 @@
 import { HighlightedCode } from "@/components/common/highlighted-code"
-import { DocSection } from "@/components/api-docs/doc-section"
-import { McpExamples } from "@/components/api-docs/mcp-examples"
-import { RichText } from "@/components/api-docs/rich-text"
+import { DocSection } from "@/features/api-docs/components/doc-section"
+import { McpExamples } from "@/features/api-docs/components/mcp-examples"
+import { RichText } from "@/features/api-docs/components/rich-text"
 import {
   ChatGptSteps,
   ClaudeSteps,

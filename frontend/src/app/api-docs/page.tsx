@@ -1,18 +1,18 @@
 import { notFound } from "next/navigation"
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { DocSection } from "@/components/api-docs/doc-section"
-import { Fields } from "@/components/api-docs/fields"
+import { DocSection } from "@/features/api-docs/components/doc-section"
+import { Fields } from "@/features/api-docs/components/fields"
 import {
   McpAgents,
   McpApp,
   McpTab,
   McpToolList,
-} from "@/components/api-docs/mcp-tab"
-import { Operation } from "@/components/api-docs/operation"
-import { RichText } from "@/components/api-docs/rich-text"
+} from "@/features/api-docs/components/mcp-tab"
+import { Operation } from "@/features/api-docs/components/operation"
+import { RichText } from "@/features/api-docs/components/rich-text"
 import { CopyValue } from "@/components/common/copy-field"
-import { DocsMenu } from "@/components/api-docs/docs-menu"
+import { DocsMenu } from "@/features/api-docs/components/docs-menu"
 import { JsonLd } from "@/components/common/json-ld"
 import { DOC_TABS } from "@/config/api-docs"
 import { DEFAULT_LOCALE } from "@/config/i18n"

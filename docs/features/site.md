@@ -131,7 +131,7 @@ After changing one, rebuild the files in `frontend/public/documents` and commit 
 
 ## Developer docs
 
-The `/api-docs` page ("developer docs" in the footer) is the public API's reference, in English only, like the legal pages. It reads the API's OpenAPI description on each request (`lib/openapi.ts`, `components/api-docs/`) and shows it in five tabs in a side menu, as on a company's pages (`?tab=`, `config/api-docs.ts`), the description split at its `# ` titles, except MCP's:
+The `/api-docs` page ("developer docs" in the footer) is the public API's reference, in English only, like the legal pages. It reads the API's OpenAPI description on each request (`lib/openapi.ts`, `features/api-docs/components/`) and shows it in five tabs in a side menu, as on a company's pages (`?tab=`, `config/api-docs.ts`), the description split at its `# ` titles, except MCP's:
 
 - **API** (the page's own address): getting a key, authentication, limits, errors, sending candidates from your own platform and verified companies, then the base URL and each route with its parameters, body, result and errors;
 - **web hooks**: signatures and delivery, then the `candidate.finished` event;

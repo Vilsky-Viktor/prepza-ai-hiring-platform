@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
-import { Fields, TypeName } from "@/components/api-docs/fields"
-import { RichText } from "@/components/api-docs/rich-text"
+import { Fields, TypeName } from "@/features/api-docs/components/fields"
+import { RichText } from "@/features/api-docs/components/rich-text"
 import { Badge } from "@/components/ui/badge"
 import {
   bodySchema,
