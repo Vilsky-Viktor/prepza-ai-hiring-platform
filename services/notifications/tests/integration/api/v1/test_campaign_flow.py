@@ -72,8 +72,8 @@ def test_a_campaign_goes_from_start_to_mailpit_once_and_only_to_who_chose_it(
             if one == user
         ]
 
-    monkeypatch.setattr("notifications.services.audiences.library.user_ids", user_ids)
-    monkeypatch.setattr(bulk.library, "recipients", recipients)
+    monkeypatch.setattr("notifications.services.audiences.accounts.user_ids", user_ids)
+    monkeypatch.setattr(bulk.accounts, "recipients", recipients)
     monkeypatch.setattr(settings, "resend_api_key", "")
     monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
 
@@ -164,7 +164,7 @@ def test_a_signed_complaint_puts_the_address_on_the_suppression_list(run, monkey
     async def unsubscribe(user_id, email_settings):
         return None
 
-    monkeypatch.setattr("notifications.services.unsubscribe.library.unsubscribe", unsubscribe)
+    monkeypatch.setattr("notifications.services.unsubscribe.accounts.unsubscribe", unsubscribe)
     event = {"type": "email.complained", "data": {"to": [address], "tags": {"kind": "updates"}}}
     body = json.dumps(event).encode()
 

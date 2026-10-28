@@ -13,6 +13,7 @@ x-library-env: &library-env
   ATS_URL: http://ats:8000
   API_URL: http://api:8000
   ASSISTANT_URL: http://assistant:8000
+  ACCOUNTS_URL: http://accounts:8000
 
 x-generation-env: &generation-env
   DATABASE_URL: postgresql://generation:${POSTGRES_PASSWORD}@postgres:5432/generation
@@ -50,6 +51,7 @@ x-companies-env: &companies-env
   GENERATION_URL: http://generation:8000
   LIBRARY_URL: http://library:8000
   ROUNDS_URL: http://rounds:8000
+  ACCOUNTS_URL: http://accounts:8000
 
 # Each service's mounted source; migrations read it too, so new ones run without a rebuild.
 x-library-source: &library-source

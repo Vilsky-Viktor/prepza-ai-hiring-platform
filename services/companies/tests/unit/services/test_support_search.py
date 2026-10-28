@@ -1,4 +1,4 @@
-"""The admin zone's support search, with the database, billing and library faked: one company,
+"""The admin zone's support search, with the database, billing and accounts faked: one company,
 Acme, with one interview and one candidate invite, and Ann's account."""
 
 import asyncio
@@ -8,7 +8,7 @@ from types import SimpleNamespace
 import pytest
 
 from companies.constants.superadmin import SUPPORT_RESULTS
-from companies.integrations import billing, library
+from companies.integrations import accounts, billing
 from companies.repositories import companies, superadmin_companies, superadmin_support
 from companies.services import support_search
 
@@ -76,8 +76,8 @@ def stored(monkeypatch):
     monkeypatch.setattr(companies, "get", get)
     monkeypatch.setattr(superadmin_support, "interview", interview)
     monkeypatch.setattr(superadmin_support, "candidate", candidate)
-    monkeypatch.setattr(library, "account", account)
-    monkeypatch.setattr(library, "account_by_email", account_by_email)
+    monkeypatch.setattr(accounts, "account", account)
+    monkeypatch.setattr(accounts, "account_by_email", account_by_email)
     monkeypatch.setattr(billing, "purchase_owner", purchase_owner)
     monkeypatch.setattr(superadmin_support, "companies_of_member", companies_of_member)
     monkeypatch.setattr(superadmin_support, "invites_to", invites_to)
@@ -142,7 +142,7 @@ def test_an_account_without_an_address_is_titled_by_its_id(monkeypatch):
     async def account(user_id):
         return {"user_id": user_id, "email": None, "created_at": None}
 
-    monkeypatch.setattr(library, "account", account)
+    monkeypatch.setattr(accounts, "account", account)
 
     assert found("guest-1") == [("user", "guest-1", "guest-1", None, None)]
 

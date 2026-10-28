@@ -52,7 +52,7 @@ def paged(monkeypatch):
 
         return [user_id for user_id in user_ids if user_id in {"a", "c"}]
 
-    monkeypatch.setattr(audiences.library, "with_setting", with_setting)
+    monkeypatch.setattr(audiences.accounts, "with_setting", with_setting)
 
     return filtered
 
@@ -126,7 +126,7 @@ def test_a_campaigns_audience_reads_what_its_choice_names(monkeypatch, chosen, r
 
         return []
 
-    monkeypatch.setattr(audiences.library, "user_ids", user_ids)
+    monkeypatch.setattr(audiences.accounts, "user_ids", user_ids)
     monkeypatch.setattr(audiences.companies, "member_ids", member_ids)
     monkeypatch.setattr(audiences.rounds, "user_ids", rounds_ids)
 
@@ -211,7 +211,7 @@ def test_a_notice_reaches_everyone_whatever_their_settings_but_never_a_suppresse
 
     monkeypatch.setattr(audiences.companies, "member_ids", member_ids)
     monkeypatch.setattr(audiences.rounds, "user_ids", rounds_ids)
-    monkeypatch.setattr(campaign_sends.library, "recipients", recipients)
+    monkeypatch.setattr(campaign_sends.accounts, "recipients", recipients)
     monkeypatch.setattr(suppressed, "among", among)
     chosen = AudienceIn(kind="notices", groups=["members", "candidates"])
 

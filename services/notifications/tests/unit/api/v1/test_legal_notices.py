@@ -75,7 +75,7 @@ def notices(monkeypatch):
     monkeypatch.setattr(bulk_sends, "get", get)
     monkeypatch.setattr(bulk_sends, "save_page", save_page)
     monkeypatch.setattr(bulk_recipients, "is_recipient", is_recipient)
-    monkeypatch.setattr(audiences.library, "user_ids", user_ids)
+    monkeypatch.setattr(audiences.accounts, "user_ids", user_ids)
     monkeypatch.setattr(audiences.companies, "member_ids", member_ids)
     monkeypatch.setattr(bell, "store", add)
     monkeypatch.setattr(bulk_content, "announce", announce)

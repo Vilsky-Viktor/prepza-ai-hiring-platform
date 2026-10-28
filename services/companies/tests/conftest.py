@@ -19,8 +19,10 @@ os.environ.setdefault("GENERATION_SERVICE_SECRET", "test-secret-that-is-at-least
 os.environ.setdefault("ROUNDS_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("COMPANIES_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("BILLING_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
+os.environ.setdefault("ACCOUNTS_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("GENERATION_URL", "http://generation")
 os.environ.setdefault("LIBRARY_URL", "http://library")
+os.environ.setdefault("ACCOUNTS_URL", "http://accounts")
 os.environ.setdefault("ROUNDS_URL", "http://rounds")
 
 import pytest

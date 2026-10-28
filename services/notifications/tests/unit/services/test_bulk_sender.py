@@ -109,7 +109,7 @@ def store(monkeypatch):
     monkeypatch.setattr(bulk_recipients, "still_pending", still_pending)
     monkeypatch.setattr(bulk_recipients, "save", save)
     monkeypatch.setattr(bulk_recipients, "sent_since", sent_since)
-    monkeypatch.setattr(bulk.library, "recipients", recipients)
+    monkeypatch.setattr(bulk.accounts, "recipients", recipients)
     monkeypatch.setattr(suppressed, "among", among)
     monkeypatch.setattr(delivery, "transmit", transmit)
     monkeypatch.setattr(campaigns, "get", get_campaign)

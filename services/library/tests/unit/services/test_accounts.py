@@ -50,7 +50,8 @@ def test_every_service_is_cleaned_before_the_sign_in_goes(steps):
 
     # Companies first (it may refuse), then the others together.
     assert steps[0] == ("service", "companies")
-    assert sorted(steps[1:8]) == [
+    assert sorted(steps[1:9]) == [
+        ("service", "accounts"),
         ("service", "api"),
         ("service", "assistant"),
         ("service", "ats"),
@@ -59,7 +60,7 @@ def test_every_service_is_cleaned_before_the_sign_in_goes(steps):
         ("service", "notifications"),
         ("service", "rounds"),
     ]
-    assert steps[8:] == [
+    assert steps[9:] == [
         ("library", "ann"),
         # Kept for the backups' life, to run again after a restore.
         ("erasure", "ann", "Ann@Example.com"),
@@ -186,6 +187,7 @@ def test_the_export_holds_every_service_and_downloads_as_a_file(client, monkeypa
         "ats": {"from": "ats"},
         "api": {"from": "api"},
         "assistant": {"from": "assistant"},
+        "accounts": {"from": "accounts"},
     }
 
 
@@ -212,31 +214,6 @@ def test_deletion_and_export_send_the_email_in_the_body_not_the_url(monkeypatch)
         ("DELETE", f"{url}/internal/users/ann", body),
         ("POST", f"{url}/internal/users/ann/export", body),
     ]
-
-
-def test_deleting_the_sign_in_revokes_it_first(monkeypatch):
-    done = []
-    monkeypatch.setattr(
-        account_service.firebase_auth,
-        "revoke_refresh_tokens",
-        lambda uid: done.append(("revoked", uid)),
-    )
-    monkeypatch.setattr(
-        account_service.firebase_auth, "delete_user", lambda uid: done.append(("deleted", uid))
-    )
-
-    account_service.delete_sign_in("ann")
-
-    assert done == [("revoked", "ann"), ("deleted", "ann")]
-
-
-def test_a_sign_in_already_gone_is_deleted(monkeypatch):
-    def gone(uid):
-        raise account_service.firebase_auth.UserNotFoundError("gone")
-
-    monkeypatch.setattr(account_service.firebase_auth, "revoke_refresh_tokens", gone)
-
-    account_service.delete_sign_in("ann")
 
 
 def test_deleting_and_exporting_in_a_service_waits_longer_than_an_ordinary_call(monkeypatch):

@@ -19,14 +19,14 @@ One box takes whatever the complaint gives (at most 300 characters), sent in the
 - **a link or path from prepza's site,** on any host and under any language prefix: the deepest page it points at (`/companies/{id}`, `/interviews/{id}`, `/candidates/{invite id}`),
 - **an id:** the company, interview or candidate invite that has it,
 - **a Paddle transaction** (`txn_…`, from a receipt): the company the top-up paid into, as billing knows it,
-- **an email address,** whatever its case: the account that signs in with it (library asks Firebase), then the companies with a member of that address and the candidates invited at it,
+- **an email address,** whatever its case: the account that signs in with it (accounts asks Firebase), then the companies with a member of that address and the candidates invited at it,
 - **anything else:** the account with that id (from "copy id" in its menu or Settings) and the companies it's a member of, then companies whose name contains it; a company found both ways shows once. Only text that could be an account id (letters, digits, `-` and `_`, up to 128) is asked of library.
 
 An account is titled by its address (by its id when it has none: a company's guest candidate). Each result opens its page, by its kind and id: an account's, a company's, an interview's or a candidate's. An id nothing has finds nothing.
 
 ## An account's page
 
-- its address and when it was made, from library (Firebase); neither once the account is gone, as its memberships may outlive it,
+- its address and when it was made, from accounts (Firebase); neither once the account is gone, as its memberships may outlive it,
 - the companies it's a member of, with its role in each,
 - the top-ups it paid for, newest first (at most 100): each with its company, what it cost (tax included) and when, from billing,
 - what its AI calls cost in the last 30 days, and how many there were, from billing (`GET /billing/superadmin/ai-spend?user_id=`; the line is left out when billing doesn't answer),
@@ -84,7 +84,7 @@ Both are safe to repeat. A company that's gone isn't listed.
 
 Each search, each look at a page or its lists, and each action goes to the logs with the superadmin's id and what they looked at or did: the kind of query and the ids it found, the account, company, interview or candidate ids viewed, never the query or an email address. Adjustments and the actions above are warnings: "Credits of company {id} adjusted by {amount} by superadmin {id}". Also:
 
-- An email settings change goes to the consent log (`email_consents`) with the source `admin` and the superadmin's id (`changed_by`), and to library's logs.
+- An email settings change goes to the consent log (`email_consents`) with the source `admin` and the superadmin's id (`changed_by`), and to accounts' logs.
 - Stopping or resuming a company's emails goes to notifications' logs with the superadmin's id, the company and the address's hash, never the address.
 
 ```
@@ -110,7 +110,10 @@ POST /notifications/superadmin/candidate-opt-outs/lookup                  {email
 PUT  /notifications/superadmin/candidate-opt-outs                         {email, company_id, stopped}
 ```
 
+The `/library/superadmin/emails/...` routes are the accounts service's, kept at library's addresses
+(the gateway and the load balancer send them to accounts).
+
 Behind them, internal routes:
 
 - billing's `GET /internal/purchases/{transaction_id}` (whose wallet a top-up paid into), `GET /internal/purchases?buyer_id` (the top-ups someone paid for), `GET /internal/candidates/hold?key` (a candidate's credits) and `POST /internal/companies/{id}/adjustments`,
-- library's `GET /internal/accounts/{user_id}` and `POST /internal/accounts/lookup` (`{email}`): an account's id, address and when it was made.
+- accounts' `GET /internal/accounts/{user_id}` and `POST /internal/accounts/lookup` (`{email}`): an account's id, address and when it was made.

@@ -38,7 +38,9 @@ class Settings(ServiceSettings):
     # Companies owns the invites, told when an invite's email wasn't delivered, and says which
     # companies a user belongs to, whose notifications they see.
     companies_url: str
-    # Library keeps each user's email settings; an unsubscribe link turns them off there.
+    # Accounts keeps each user's address, language and email settings; an unsubscribe link turns
+    # them off there. Library keeps the news the bell names.
+    accounts_url: str
     library_url: str
     # Billing says which companies run low on credits, and generation which topics wait for a
     # review: the reminders. Generation also translates campaigns.

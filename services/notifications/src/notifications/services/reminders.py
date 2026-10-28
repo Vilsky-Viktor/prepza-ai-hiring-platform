@@ -19,7 +19,7 @@ from notifications.helpers.member_selection import (
     low_credit_rows,
     next_companies,
 )
-from notifications.integrations import billing, companies, generation, library
+from notifications.integrations import accounts, billing, companies, generation
 from notifications.services.member_pages import each_page, their_companies
 from notifications.services.member_sends import deadline, send_once
 
@@ -52,7 +52,7 @@ async def send_reminders(now: datetime) -> int:
         rows = await reminder_rows(now, ready, started, low, theirs)
         recipients = [
             recipient
-            for recipient in await library.recipients(user_ids)
+            for recipient in await accounts.recipients(user_ids)
             if recipient["preferences"]["reminders"]
         ]
         sent = 0

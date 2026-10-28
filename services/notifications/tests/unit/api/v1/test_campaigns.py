@@ -111,8 +111,8 @@ def test_the_recipients_are_users_with_the_setting_on_with_an_address_not_suppre
         return {address_hash("bob@example.com")} & set(hashes)
 
     monkeypatch.setattr(campaigns_store, "get", get)
-    monkeypatch.setattr("notifications.services.audiences.library.user_ids", user_ids)
-    monkeypatch.setattr(campaign_sends.library, "recipients", recipients)
+    monkeypatch.setattr("notifications.services.audiences.accounts.user_ids", user_ids)
+    monkeypatch.setattr(campaign_sends.accounts, "recipients", recipients)
     monkeypatch.setattr(suppressed, "among", among)
 
     assert asyncio.run(campaign_sends.recipients_count(uuid.uuid4())) == 1
@@ -206,7 +206,7 @@ def test_unsubscribing_from_a_campaign_turns_off_only_its_setting_and_counts_aga
     async def mark_unsubscribed(session, user_id, kind):
         marked.append((user_id, kind))
 
-    monkeypatch.setattr(unsubscribe.library, "unsubscribe", library_unsubscribe)
+    monkeypatch.setattr(unsubscribe.accounts, "unsubscribe", library_unsubscribe)
     monkeypatch.setattr(bulk_recipients, "mark_unsubscribed", mark_unsubscribed)
 
     asyncio.run(unsubscribe.apply({"type": "promotions", "user_id": "ann"}))

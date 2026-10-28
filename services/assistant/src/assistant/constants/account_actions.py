@@ -26,7 +26,7 @@ def company_action(service: str, method: str, path: str, description: str, **mor
 
 ACCOUNT_ACTIONS = {
     "update_language": {
-        "service": "library",
+        "service": "accounts",
         "method": "PUT",
         "path": "/me/settings",
         "params": [],
@@ -37,7 +37,7 @@ ACCOUNT_ACTIONS = {
         "link": "/settings",
     },
     "update_email_preferences": {
-        "service": "library",
+        "service": "accounts",
         "method": "PUT",
         "path": "/me/email-preferences",
         "params": [],

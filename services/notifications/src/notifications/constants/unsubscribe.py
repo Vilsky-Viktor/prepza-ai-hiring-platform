@@ -27,7 +27,7 @@ DIGEST_KINDS = [
     UnsubscribeType.INTERVIEW_READY,
 ]
 
-# The email settings (library) each of a user's types turns off; the digest is all its kinds.
+# The email settings (accounts) each of a user's types turns off; the digest is all its kinds.
 USER_SETTINGS = {
     **{kind: [kind.value] for kind in DIGEST_KINDS},
     UnsubscribeType.DIGEST: [kind.value for kind in DIGEST_KINDS],

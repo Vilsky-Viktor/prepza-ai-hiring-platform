@@ -15,7 +15,7 @@ class Settings(ServiceSettings):
     service_secret: str
     # The services asked for names in the AI costs tab: companies' names, accounts' emails.
     companies_url: str
-    library_url: str
+    accounts_url: str
     # Paddle: "sandbox" or "production", the client-side token for Paddle.js (public by design),
     # and the secret that signs its webhooks.
     paddle_environment: Literal["sandbox", "production"] = "sandbox"

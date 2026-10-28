@@ -46,6 +46,7 @@ locals {
     ats           = ["candidate.finished", "candidate.removed", "interview.ready", "interview.deleted", "company.*", "credits.*", "ats.*"]
     api           = ["candidate.*", "interview.ready", "company.deleted"]
     assistant     = ["company.deleted", "candidate.removed", "candidate.interview_deleted"]
+    accounts      = ["guests.deleted"]
     # Every AI call and limit hit, stored for the admin zone's AI costs tab.
     billing = ["ai.used", "limit.hit"]
   }

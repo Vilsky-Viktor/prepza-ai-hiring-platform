@@ -11,7 +11,7 @@ from notifications.constants.unsubscribe import DIGEST_KINDS
 from notifications.core.db import Session
 from notifications.helpers.member_emails import digest_email
 from notifications.helpers.member_selection import digest_sections
-from notifications.integrations import companies, library
+from notifications.integrations import accounts, companies
 from notifications.repositories import digest_activity
 from notifications.services.member_pages import each_page, their_companies
 from notifications.services.member_sends import deadline, send_once
@@ -49,7 +49,7 @@ async def send_digests(now: datetime) -> int:
         site = settings.site_url.rstrip("/")
         jobs = []
 
-        for recipient in await library.recipients(user_ids):
+        for recipient in await accounts.recipients(user_ids):
             sections = digest_sections(
                 recipient["user_id"], recipient["preferences"], everywhere, activity, site
             )

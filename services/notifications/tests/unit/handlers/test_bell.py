@@ -90,7 +90,7 @@ def test_the_bell_shows_the_users_and_their_companies_notifications(client, monk
     monkeypatch.setattr(feed.companies, "company_ids", fake_companies)
     monkeypatch.setattr(notifications, "latest", fake_latest)
     monkeypatch.setattr(notifications, "unread_count", fake_unread)
-    monkeypatch.setattr(feed.library, "account_created", fake_created)
+    monkeypatch.setattr(feed.accounts, "account_created", fake_created)
 
     body = client.get("/me").json()
 

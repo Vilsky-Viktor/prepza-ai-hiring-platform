@@ -14,6 +14,7 @@ locals {
     BILLING_URL             = local.run_url["billing"]
     NOTIFICATIONS_URL       = local.run_url["notifications"]
     ATS_URL                 = local.run_url["ats"]
+    ACCOUNTS_URL            = local.run_url["accounts"]
   }
 
   # And each service its own; INVOKER_AUDIENCE is the service's address, which Google's signed

@@ -9,7 +9,7 @@ from prepza_common.config.constants import MAX_PAGE_SIZE
 from companies.constants.superadmin import CREDIT_STATES
 from companies.core.db import Session
 from companies.helpers.candidates import candidate_out
-from companies.integrations import billing, library, rounds
+from companies.integrations import accounts, billing, rounds
 from companies.repositories import candidates, companies, members, superadmin_support
 from companies.schemas.superadmin_support import (
     SupportCandidateOut,
@@ -32,7 +32,7 @@ USER_COMPANIES = 1000
 
 async def user_page(user_id: str) -> SupportUserOut | None:
     """None when there's neither an account nor a membership with that id."""
-    account = await library.account(user_id)
+    account = await accounts.account(user_id)
 
     async with Session() as session:
         memberships = await superadmin_support.companies_of_user(session, user_id, USER_COMPANIES)

@@ -15,7 +15,7 @@
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "api-types": "openapi-typescript http://127.0.0.1:8090/api/library/openapi.json -o src/types/api/library.ts && openapi-typescript http://127.0.0.1:8090/api/generate/openapi.json -o src/types/api/generation.ts && openapi-typescript http://127.0.0.1:8090/api/rounds/openapi.json -o src/types/api/rounds.ts && openapi-typescript http://127.0.0.1:8090/api/companies/openapi.json -o src/types/api/companies.ts && openapi-typescript http://127.0.0.1:8090/api/billing/openapi.json -o src/types/api/billing.ts && openapi-typescript http://127.0.0.1:8090/api/notifications/openapi.json -o src/types/api/notifications.ts && openapi-typescript http://127.0.0.1:8090/api/ats/openapi.json -o src/types/api/ats.ts && prettier --write src/types/api",
+    "api-types": "openapi-typescript http://127.0.0.1:8090/api/library/openapi.json -o src/types/api/library.ts && openapi-typescript http://127.0.0.1:8090/api/generate/openapi.json -o src/types/api/generation.ts && openapi-typescript http://127.0.0.1:8090/api/rounds/openapi.json -o src/types/api/rounds.ts && openapi-typescript http://127.0.0.1:8090/api/companies/openapi.json -o src/types/api/companies.ts && openapi-typescript http://127.0.0.1:8090/api/billing/openapi.json -o src/types/api/billing.ts && openapi-typescript http://127.0.0.1:8090/api/notifications/openapi.json -o src/types/api/notifications.ts && openapi-typescript http://127.0.0.1:8090/api/ats/openapi.json -o src/types/api/ats.ts && openapi-typescript http://127.0.0.1:8090/api/accounts/openapi.json -o src/types/api/accounts.ts && prettier --write src/types/api",
     "check:messages": "node scripts/check-messages.mjs"
   },
   "dependencies": {

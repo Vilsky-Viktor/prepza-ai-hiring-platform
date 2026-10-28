@@ -34,7 +34,7 @@ Only what matters, for every member of a company:
 
 Companies' verification decisions reach only the owner and admins, one notification each, as viewers can't act on them (see [Companies](companies.md#verification)).
 
-For everyone, one notification each (recipient `all`, a single row, not one per user): a user's bell shows those newer than their account (library's `GET /internal/accounts/{id}`, kept an hour), read and seen like their own, and announced live to every open tab.
+For everyone, one notification each (recipient `all`, a single row, not one per user): a user's bell shows those newer than their account (accounts' `GET /internal/accounts/{id}`, kept an hour), read and seen like their own, and announced live to every open tab.
 
 - **News:** a published news post ("News: <title>", opening it on the news page). The bell names it in the user's language (library's `POST /internal/news/titles`), in English until it's translated; a post deleted meanwhile isn't shown. Library saves the notification with the post in its outbox, and deleting the post sends `news.deleted`, which removes it. News has no email setting: the bell isn't email. A post can still be emailed by hand as a product update (see [Campaigns](#campaigns)).
 - **Legal changes:** when a notice of new terms or a new privacy policy is sent ("New terms apply from <date>", opening the document). The DPA's notice goes to each company owner's and admin's own bell instead.
@@ -120,7 +120,7 @@ Invites and reminders from a company prepza hasn't verified say so in a small li
 
 ### Emails to company members
 
-All three follow the invites' layout, with a plain-text version, in the member's interface language (their sign-in's language, from library). What they list links into the app.
+All three follow the invites' layout, with a plain-text version, in the member's interface language (their sign-in's language, from accounts). What they list links into the app.
 
 - **Activity digest** (optional, `digest`): one email a day per person, covering every company they're a member of (any role). It lists what reached the companies' bells in the 24 hours before 7:00 UTC that day (the same for the catch-up hour's runs), only of the kinds the person gets, grouped by company: candidates who finished and undelivered invites, each with its count and interview; candidates not invited, with their count, one line per ATS they came from; interviews ready. Nothing happened, or every kind is off: no email. It shows counts and titles only, no candidate's address or grade. Its "Unsubscribe" stops the whole digest; "Change your email settings" chooses kinds.
 - **Reminders** (optional, the one `reminders` setting), to owners and admins, each kind at most once in 7 days to a person:
@@ -137,7 +137,7 @@ The digest and reminders are sent by `notifications` on a schedule: `POST /inter
 
 ### Email preferences and consent
 
-Each user chooses, in Settings > Emails, which emails they get beyond service emails (invites, reports, billing problems, legal changes), which always go out. `library` stores the choices (`/library/me/email-preferences`; other services read them at `/internal/users/{id}/email-preferences`):
+Each user chooses, in Settings > Emails, which emails they get beyond service emails (invites, reports, billing problems, legal changes), which always go out. the accounts service stores the choices (at `/library/me/email-preferences`, the address they always had, which the gateway sends to accounts; other services read them through accounts' `POST /internal/users/email-recipients`):
 
 - the activity digest, one setting per kind: a candidate finished, an invite wasn't delivered, an ATS candidate wasn't invited, an interview is ready; on by default, with one checkbox in Settings that turns all four on or off,
 - reminders (low credits, an interview with no candidates, topics waiting for review); on by default,
@@ -146,7 +146,7 @@ Each user chooses, in Settings > Emails, which emails they get beyond service em
 
 The sign-in dialog shows both checkboxes only on a browser where no one has signed in yet (a `prepza:signed-in-before` flag in local storage, set at every sign-in): an existing account's choices are in its Settings.
 
-Every change is logged and never edited (`email_consents`): the setting, on or off, where (`sign_in`, `settings`, `unsubscribe`, or `admin` with the superadmin's id in `changed_by`), on what basis (`choice`, or `soft_opt_in` for updates turned on at a first sign-in that showed the opt-out), the wording's version (`CONSENT_TEXT_VERSION` in `services/library/src/library/constants/emails.py`, changed whenever the checkboxes' wording changes) and the time. The account export includes both; deleting the account removes them.
+Every change is logged and never edited (`email_consents`): the setting, on or off, where (`sign_in`, `settings`, `unsubscribe`, or `admin` with the superadmin's id in `changed_by`), on what basis (`choice`, or `soft_opt_in` for updates turned on at a first sign-in that showed the opt-out), the wording's version (`CONSENT_TEXT_VERSION` in `services/accounts/src/accounts/constants/emails.py`, changed whenever the checkboxes' wording changes) and the time. The account export includes both; deleting the account removes them.
 
 ### Unsubscribing
 
@@ -157,7 +157,7 @@ Emails carry signed unsubscribe links (`EMAIL_LINK_SECRET`, an HMAC-SHA256; `ser
 
 A link opens `/unsubscribe?token=…` (no sign-in, not indexed): it says what stops ("You won't get the activity digest anymore", "You won't get reminders for this interview anymore", "You won't get emails from Acme anymore") and changes nothing until "Confirm", since mail scanners open links. Then it says "You're unsubscribed", with "Email settings" for a signed-in user. The page reads the link at `GET /api/notifications/unsubscribe/{token}` and confirms with a `POST` there; mail clients' one-click `POST` (body `List-Unsubscribe=One-Click`) goes to the same address and needs nothing more. Repeating either changes nothing.
 
-- A user's link turns the setting (or the digest's four kinds) off in `library`, logged with the source `unsubscribe`. Marking the digest or reminders as spam does the same: those emails are tagged with the user and what they are, and Resend's `email.complained` webhook (see [Undelivered emails](#undelivered-emails)) turns that email off as its link would.
+- A user's link turns the setting (or the digest's four kinds) off in `accounts`, logged with the source `unsubscribe`. Marking the digest or reminders as spam does the same: those emails are tagged with the user and what they are, and Resend's `email.complained` webhook (see [Undelivered emails](#undelivered-emails)) turns that email off as its link would.
 - A candidate's link is kept in notifications (`candidate_opt_outs`, by the address's hash). An invite to an address that stopped the company's emails isn't sent, and the company sees it as undelivered, as with a bounce. A reminder isn't sent when the address stopped the company's emails or that interview's reminders; the company isn't told. Marking a reminder as spam stops that invite's reminders as its link would: reminders are tagged with the invite and the company (`candidate_reminder`), and Resend's `email.complained` adds the opt-out. An opt-out stays when the company erases the candidate, and goes with the company.
 
 Someone who asks by email instead: a superadmin turns their settings off, or stops or resumes a company's emails to their address, on the admin zone's [Support](admin-support.md#emails) tab (an account's page, or a candidate's). Companies' invites tell which companies invited the address (`POST /internal/invites/companies`, the address in the body).
@@ -201,7 +201,7 @@ Product updates, offers and important notices, written by a superadmin in the ad
   - **Companies:** everyone who joined a company's team (companies' `GET /internal/companies/member-ids`), or with "owners and admins only" its owners and admins; for an important notice, optionally only some companies (up to 50, `MAX_NOTICE_COMPANIES`; their members from `POST /internal/companies/members`), for an incident that affects them.
   - **Candidates:** accounts that took a company's interview, from rounds' interview sessions (a member's own try, a preview, doesn't count; guest candidates never); rounds' `GET /internal/users/ids?group=candidates`.
   - **Learners:** accounts that took a free practice round, from rounds' practice sessions (`?group=learners`).
-  - Only account ids cross between services; for a product update or an offer to some groups, library keeps those with the setting on (`POST /internal/users/with-setting`). "Everyone" is every account for a notice (library's `GET /internal/users/ids`) and the users with the setting on for the others (`?setting=`).
+  - Only account ids cross between services; for a product update or an offer to some groups, accounts keeps those with the setting on (`POST /internal/users/with-setting`). "Everyone" is every account for a notice (library's `GET /internal/users/ids`) and the users with the setting on for the others (`?setting=`).
   - Each group is read a page at a time, one after the other; the send's cursor names the group and its last id (`<group>:<id>`). The dialog's count (`POST /superadmin/campaigns/recipients`) reads the same pages, then who has an address and isn't suppressed (and, for an optional kind, the setting on).
 - **The email:** a product update or an offer is an optional email from `MAIL_FROM_UPDATES` with the unsubscribe link and one-click headers of that one setting; an important notice comes from `MAIL_FROM`, with no unsubscribe link or `List-Unsubscribe`, and its footer says it's sent whatever the email settings as an important notice about the service. Each is in the user's language (English until translated). The text is Markdown (bold, italic, links, lists), rendered with inline styles; raw HTML stays text and unsafe links (`javascript:`) aren't links (`helpers/markdown.py`). The button opens a page on the site, or the site.
 - **Day limits:** at most `CAMPAIGNS_PER_KIND_DAY` product updates and as many offers a day (UTC; 1 by default), and at most `NOTICES_PER_DAY` important notices (1 by default, at most 3), both editable in the admin zone's Controls: the kind is locked while one is marked sent, so a double click or two superadmins at once can't pass the limit. A campaign whose kind changed between its checks and being marked sent is refused (409, "This campaign's kind was changed meanwhile. Check it and send it again.").

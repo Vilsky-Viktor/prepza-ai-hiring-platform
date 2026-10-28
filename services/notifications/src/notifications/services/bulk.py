@@ -24,7 +24,7 @@ from notifications.constants.bulk import (
 from notifications.constants.member_emails import SEND_INTERVAL_SECONDS
 from notifications.core.db import Session
 from notifications.helpers.unsubscribe import address_hash
-from notifications.integrations import library
+from notifications.integrations import accounts
 from notifications.integrations.redis import get_redis
 from notifications.integrations.resend import EmailRefused, ResendBusy
 from notifications.models.bulk import BulkRecipient, BulkSend
@@ -223,7 +223,7 @@ async def send_run(now: datetime) -> int:
 
         people = {
             person["user_id"]: person
-            for person in await library.recipients(list({row[2] for row in batch}))
+            for person in await accounts.recipients(list({row[2] for row in batch}))
         }
 
         async with Session() as session:

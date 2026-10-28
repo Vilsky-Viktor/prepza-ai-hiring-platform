@@ -28,7 +28,7 @@ from notifications.constants.notifications import (
     STREAMS_LIMIT,
 )
 from notifications.core.db import Session
-from notifications.integrations import companies, library
+from notifications.integrations import accounts, companies, library
 from notifications.integrations.redis import get_redis
 from notifications.integrations.subscription import listening
 from notifications.repositories import notifications
@@ -61,15 +61,15 @@ async def recipients_of(user_id: str, fresh: bool = False) -> tuple[Recipients, 
 
 
 async def account_created(user_id: str) -> datetime | None:
-    """When the user's account was made, from library (kept ACCOUNT_CREATED_SECONDS, as it
+    """When the user's account was made, from accounts (kept ACCOUNT_CREATED_SECONDS, as it
     never changes): the notifications for everyone that came after it are theirs too. None
-    while library doesn't answer, or doesn't know: then the bell shows only their own."""
+    while accounts doesn't answer, or doesn't know: then the bell shows only their own."""
     key = ACCOUNT_CREATED_KEY.format(user_id=user_id)
     created = memory_cache.get(key)
 
     if created is None:
         try:
-            created = await library.account_created(user_id)
+            created = await accounts.account_created(user_id)
         except httpx.HTTPError as error:
             logger.warning("Library didn't say when %s's account was made: %s", user_id, error)
 

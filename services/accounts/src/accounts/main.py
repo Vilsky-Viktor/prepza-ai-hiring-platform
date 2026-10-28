@@ -12,7 +12,15 @@ from prepza_common.limits.maintenance import MaintenanceMiddleware
 from prepza_common.observability.logging import RequestLogMiddleware, configure_logging
 from prepza_common.observability.sentry import init_sentry
 
-from accounts.api.v1 import internal_events
+from accounts.api.v1 import (
+    internal_accounts,
+    internal_emails,
+    internal_events,
+    internal_users,
+    me,
+    superadmin_emails,
+    superadmin_stats,
+)
 from accounts.config import settings
 from accounts.core.db import engine
 from accounts.integrations.redis import get_redis
@@ -41,6 +49,12 @@ app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
 compress_answers(app)
+app.include_router(me.router)
+app.include_router(superadmin_emails.router)
+app.include_router(superadmin_stats.router)
+app.include_router(internal_accounts.router)
+app.include_router(internal_emails.router)
+app.include_router(internal_users.router)
 app.include_router(internal_events.router)
 
 

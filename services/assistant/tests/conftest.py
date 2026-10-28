@@ -13,7 +13,16 @@ os.environ.setdefault("COMPANIES_SERVICE_SECRET", "test-secret-that-is-at-least-
 os.environ.setdefault("API_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("OPENAI_API_KEY", "test")
 
-for name in ("companies", "billing", "library", "notifications", "ats", "api", "rounds"):
+for name in (
+    "companies",
+    "billing",
+    "library",
+    "notifications",
+    "ats",
+    "api",
+    "rounds",
+    "accounts",
+):
     os.environ.setdefault(f"{name.upper()}_URL", f"http://{name}")
 
 os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "demo-test")

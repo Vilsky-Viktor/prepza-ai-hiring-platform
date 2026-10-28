@@ -192,7 +192,7 @@ POST   /internal/schedules/retention        # daily
 POST   /internal/schedules/reconcile        # daily: Paddle's payments and refunds of the last week
 ```
 
-To fill in the top lists' names, billing asks companies for companies' names and library for accounts' emails. `MONTHLY_BUDGET` (USD a month, set in the admin zone's Controls, see [Admin zone](admin-zone.md#limits)) is what the page compares the month's spend with; at 0 it shows the month's spend alone.
+To fill in the top lists' names, billing asks companies for companies' names and accounts for accounts' emails. `MONTHLY_BUDGET` (USD a month, set in the admin zone's Controls, see [Admin zone](admin-zone.md#limits)) is what the page compares the month's spend with; at 0 it shows the month's spend alone.
 
 ## Currencies
 

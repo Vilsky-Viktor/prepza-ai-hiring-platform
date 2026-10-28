@@ -2,14 +2,11 @@ from fastapi import APIRouter, Response, status
 from fastapi.encoders import jsonable_encoder
 from prepza_common.auth.auth import CurrentUser, FreshUser
 from prepza_common.auth.superadmin import is_superadmin
-from prepza_common.http.visitor_country import VisitorCountry
 from prepza_common.limits.rate_limit import hit_or_skip
 
 from library.integrations.redis import get_redis
-from library.schemas.emails import EmailPreferencesIn, EmailPreferencesOut
-from library.schemas.me import MeOut, SettingsIn
-from library.services import email_preferences
-from library.services.accounts import delete_account, export_account, set_language
+from library.schemas.me import MeOut
+from library.services.accounts import delete_account, export_account
 
 router = APIRouter()
 
@@ -17,29 +14,6 @@ router = APIRouter()
 @router.get("/me")
 def me(user: CurrentUser) -> MeOut:
     return MeOut(**user.model_dump(), is_superadmin=is_superadmin(user))
-
-
-@router.put("/me/settings", status_code=status.HTTP_204_NO_CONTENT)
-async def update_settings(
-    body: SettingsIn, user: CurrentUser, country: VisitorCountry = None
-) -> None:
-    """Takes effect once the frontend refreshes the user's ID token."""
-    await set_language(user, body.language, country)
-
-
-@router.get("/me/email-preferences")
-async def get_email_preferences(user: CurrentUser) -> EmailPreferencesOut:
-    return EmailPreferencesOut(**await email_preferences.preferences(user.uid))
-
-
-@router.put("/me/email-preferences")
-async def update_email_preferences(
-    body: EmailPreferencesIn, user: CurrentUser
-) -> EmailPreferencesOut:
-    """Changes some settings; each change is logged as consent given or withdrawn."""
-    saved = await email_preferences.change(user.uid, body.changes, body.source)
-
-    return EmailPreferencesOut(**saved)
 
 
 @router.delete("/me", status_code=status.HTTP_204_NO_CONTENT)

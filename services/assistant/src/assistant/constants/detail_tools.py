@@ -77,7 +77,7 @@ DETAIL_TOOLS = {
         "fields": CREDIT_CANDIDATE_FIELDS,
     },
     "get_email_preferences": {
-        "service": "library",
+        "service": "accounts",
         "method": "GET",
         "path": "/me/email-preferences",
         "params": [],

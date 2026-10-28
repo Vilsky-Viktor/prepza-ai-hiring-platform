@@ -3,6 +3,8 @@ from logging.config import fileConfig
 from alembic import context
 from prepza_common.db.db import migration_engine
 
+import accounts.models.emails  # registers the tables on Base.metadata
+import accounts.models.legal  # noqa: F401
 from accounts.config import settings
 from accounts.models.base import Base
 

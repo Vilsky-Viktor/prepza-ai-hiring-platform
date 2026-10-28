@@ -1,0 +1,1318 @@
+{
+ "paths": {
+  "/me/settings": {
+   "put": {
+    "summary": "Update Settings",
+    "description": "Takes effect once the frontend refreshes the user's ID token.",
+    "operationId": "update_settings_me_settings_put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "X-Client-Country",
+      "in": "header",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "X-Client-Country"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SettingsIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/me/email-preferences": {
+   "get": {
+    "summary": "Get Email Preferences",
+    "operationId": "get_email_preferences_me_email_preferences_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EmailPreferencesOut"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   },
+   "put": {
+    "summary": "Update Email Preferences",
+    "description": "Changes some settings; each change is logged as consent given or withdrawn.",
+    "operationId": "update_email_preferences_me_email_preferences_put",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EmailPreferencesIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EmailPreferencesOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/superadmin/emails/lookup": {
+   "post": {
+    "tags": [
+     "superadmin"
+    ],
+    "summary": "Look Up",
+    "description": "The account signed in with the address, whatever its case, with its email settings.",
+    "operationId": "look_up_superadmin_emails_lookup_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserEmailIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EmailLookupOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/superadmin/emails/accounts/{user_id}": {
+   "get": {
+    "tags": [
+     "superadmin"
+    ],
+    "summary": "Get Account",
+    "description": "The account with that id (the support tab's user page), with its email settings; 404\nwhen there's none, or it has no address to email (a company's guest candidate).",
+    "operationId": "get_account_superadmin_emails_accounts__user_id__get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EmailAccountOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/superadmin/emails/{user_id}/preferences": {
+   "put": {
+    "tags": [
+     "superadmin"
+    ],
+    "summary": "Change Preferences",
+    "description": "Changes some of the user's settings, each change logged with the admin source and the\nsuperadmin's id. Marketing only goes off: consent to it is the user's own. Safe to repeat: a\nsetting already as asked logs nothing.",
+    "operationId": "change_preferences_superadmin_emails__user_id__preferences_put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AdminEmailChangesIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EmailPreferencesOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/superadmin/stats": {
+   "get": {
+    "tags": [
+     "superadmin"
+    ],
+    "summary": "Get Stats",
+    "description": "Users who signed up, all time or in one year or month, for the stats tab.",
+    "operationId": "get_stats_superadmin_stats_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "period",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "pattern": "^\\d{4}(-(0[1-9]|1[0-2]))?$"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Period"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/StatsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/accounts/{user_id}": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Get Account",
+    "description": "404 when there's no account with that id.",
+    "operationId": "get_account_internal_accounts__user_id__get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AccountOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/accounts/lookup": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Look Up",
+    "description": "The account signed in with the address, whatever its case; 404 when there's none.",
+    "operationId": "look_up_internal_accounts_lookup_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserEmailIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AccountOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/internal/users/ids": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "User Ids",
+    "description": "Notifications, a page at a time: every account, for a notice about the terms or the\nprivacy policy; with a `setting`, the users who have it on (a campaign's product updates or\noffers).",
+    "operationId": "user_ids_internal_users_ids_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "setting",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "updates",
+          "promotions"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Setting"
+      }
+     },
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "description": "The last id of the previous page",
+       "default": "",
+       "title": "After"
+      },
+      "description": "The last id of the previous page"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 5000,
+       "minimum": 1,
+       "default": 5000,
+       "title": "Limit"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UserIdsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/users/with-setting": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Users With Setting",
+    "description": "Notifications, for a campaign to some groups (companies, candidates, learners): those of\nthe users who have its setting on.",
+    "operationId": "users_with_setting_internal_users_with_setting_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/WithSettingIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UserIdsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/internal/users/{user_id}/unsubscribe": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Unsubscribe",
+    "description": "Notifications, for an email's unsubscribe link (checked there): turns the settings off,\nlogged as an unsubscribe. Safe to repeat: a setting already off logs nothing.",
+    "operationId": "unsubscribe_internal_users__user_id__unsubscribe_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UnsubscribeIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EmailPreferencesOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/users/email-recipients": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Email Recipients",
+    "description": "Notifications, for its emails to many users at once (the activity digest, reminders): each\nuser's address, interface language and preferences; users who are gone are left out.",
+    "operationId": "email_recipients_internal_users_email_recipients_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RecipientsIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RecipientsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/internal/users/{user_id}": {
+   "delete": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Delete User",
+    "description": "Deleting an account: its email settings with their consent log and its accepted terms\ngo; safe to repeat.",
+    "operationId": "delete_user_internal_users__user_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserEmailIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/users/{user_id}/export": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Export User",
+    "description": "For \"Download my data\": the account's email settings, their consent log and the terms\nit accepted.",
+    "operationId": "export_user_internal_users__user_id__export_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserEmailIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Export User Internal Users  User Id  Export Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/events": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Receive Event",
+    "description": "Pub/Sub pushes every event here. A failure answers with an error, so Pub/Sub retries it,\nand moves it to the dead-letter topic after the subscription's maximum attempts. An event no\nretry can handle is logged and acknowledged (handle_or_drop).",
+    "operationId": "receive_event_internal_events_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PushBody"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "AccountOut": {
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "title": "User Id"
+     },
+     "email": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Email"
+     },
+     "created_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Created At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_id",
+     "email",
+     "created_at"
+    ],
+    "title": "AccountOut",
+    "description": "A prepza account, for the admin zone's support tab: `email` is None for an account\nwithout one (a company's guest candidate), `created_at` when Firebase doesn't say."
+   },
+   "AdminEmailChangesIn": {
+    "properties": {
+     "changes": {
+      "additionalProperties": {
+       "type": "boolean"
+      },
+      "propertyNames": {
+       "$ref": "#/components/schemas/EmailSetting"
+      },
+      "type": "object",
+      "minProperties": 1,
+      "title": "Changes"
+     }
+    },
+    "type": "object",
+    "required": [
+     "changes"
+    ],
+    "title": "AdminEmailChangesIn",
+    "description": "A superadmin's changes to a user's settings; the rest stay as they are."
+   },
+   "EmailAccountOut": {
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "title": "User Id"
+     },
+     "email": {
+      "type": "string",
+      "title": "Email"
+     },
+     "preferences": {
+      "$ref": "#/components/schemas/EmailPreferencesOut"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_id",
+     "email",
+     "preferences"
+    ],
+    "title": "EmailAccountOut"
+   },
+   "EmailLookupOut": {
+    "properties": {
+     "account": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/EmailAccountOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "type": "object",
+    "required": [
+     "account"
+    ],
+    "title": "EmailLookupOut",
+    "description": "The account with the address a superadmin looked up, or none."
+   },
+   "EmailPreferencesIn": {
+    "properties": {
+     "changes": {
+      "additionalProperties": {
+       "type": "boolean"
+      },
+      "propertyNames": {
+       "$ref": "#/components/schemas/EmailSetting"
+      },
+      "type": "object",
+      "minProperties": 1,
+      "title": "Changes"
+     },
+     "source": {
+      "type": "string",
+      "enum": [
+       "sign_in",
+       "settings"
+      ],
+      "title": "Source"
+     }
+    },
+    "type": "object",
+    "required": [
+     "changes",
+     "source"
+    ],
+    "title": "EmailPreferencesIn",
+    "description": "Only the settings to change; the rest stay as they are."
+   },
+   "EmailPreferencesOut": {
+    "properties": {
+     "candidate_finished": {
+      "type": "boolean",
+      "title": "Candidate Finished"
+     },
+     "invite_undelivered": {
+      "type": "boolean",
+      "title": "Invite Undelivered"
+     },
+     "ats_not_invited": {
+      "type": "boolean",
+      "title": "Ats Not Invited"
+     },
+     "interview_ready": {
+      "type": "boolean",
+      "title": "Interview Ready"
+     },
+     "reminders": {
+      "type": "boolean",
+      "title": "Reminders"
+     },
+     "updates": {
+      "type": "boolean",
+      "title": "Updates"
+     },
+     "promotions": {
+      "type": "boolean",
+      "title": "Promotions"
+     }
+    },
+    "type": "object",
+    "required": [
+     "candidate_finished",
+     "invite_undelivered",
+     "ats_not_invited",
+     "interview_ready",
+     "reminders",
+     "updates",
+     "promotions"
+    ],
+    "title": "EmailPreferencesOut"
+   },
+   "EmailSetting": {
+    "type": "string",
+    "enum": [
+     "candidate_finished",
+     "invite_undelivered",
+     "ats_not_invited",
+     "interview_ready",
+     "reminders",
+     "updates",
+     "promotions"
+    ],
+    "title": "EmailSetting",
+    "description": "What a user may get by email beyond service emails, which always go out. The activity\ndigest's kinds are notification kinds."
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "type": "array",
+      "title": "Detail"
+     }
+    },
+    "type": "object",
+    "title": "HTTPValidationError"
+   },
+   "PushBody": {
+    "properties": {
+     "message": {
+      "$ref": "#/components/schemas/PushMessage"
+     },
+     "subscription": {
+      "type": "string",
+      "title": "Subscription"
+     }
+    },
+    "type": "object",
+    "required": [
+     "message",
+     "subscription"
+    ],
+    "title": "PushBody",
+    "description": "What Pub/Sub sends to a push endpoint."
+   },
+   "PushMessage": {
+    "properties": {
+     "data": {
+      "type": "string",
+      "title": "Data",
+      "default": ""
+     },
+     "attributes": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "type": "object",
+      "title": "Attributes",
+      "default": {}
+     },
+     "messageId": {
+      "type": "string",
+      "title": "Messageid"
+     },
+     "publishTime": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Publishtime"
+     }
+    },
+    "type": "object",
+    "required": [
+     "messageId"
+    ],
+    "title": "PushMessage"
+   },
+   "RecipientOut": {
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "title": "User Id"
+     },
+     "email": {
+      "type": "string",
+      "title": "Email"
+     },
+     "language": {
+      "type": "string",
+      "title": "Language"
+     },
+     "preferences": {
+      "$ref": "#/components/schemas/EmailPreferencesOut"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_id",
+     "email",
+     "language",
+     "preferences"
+    ],
+    "title": "RecipientOut"
+   },
+   "RecipientsIn": {
+    "properties": {
+     "user_ids": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "maxItems": 1000,
+      "title": "User Ids"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_ids"
+    ],
+    "title": "RecipientsIn"
+   },
+   "RecipientsOut": {
+    "properties": {
+     "recipients": {
+      "items": {
+       "$ref": "#/components/schemas/RecipientOut"
+      },
+      "type": "array",
+      "title": "Recipients"
+     }
+    },
+    "type": "object",
+    "required": [
+     "recipients"
+    ],
+    "title": "RecipientsOut"
+   },
+   "SettingsIn": {
+    "properties": {
+     "language": {
+      "type": "string",
+      "enum": [
+       "en",
+       "ru",
+       "uk",
+       "es",
+       "pt",
+       "de",
+       "fr",
+       "it",
+       "pl",
+       "nl",
+       "tr",
+       "ar",
+       "he",
+       "fa",
+       "ja",
+       "zh",
+       "ko",
+       "hi",
+       "id",
+       "th",
+       "vi",
+       "fil",
+       "et"
+      ],
+      "title": "Language"
+     }
+    },
+    "type": "object",
+    "required": [
+     "language"
+    ],
+    "title": "SettingsIn"
+   },
+   "StatsOut": {
+    "properties": {
+     "counts": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Counts"
+     },
+     "paid": {
+      "anyOf": [
+       {
+        "additionalProperties": {
+         "type": "integer"
+        },
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Paid"
+     }
+    },
+    "type": "object",
+    "required": [
+     "counts"
+    ],
+    "title": "StatsOut"
+   },
+   "UnsubscribeIn": {
+    "properties": {
+     "settings": {
+      "items": {
+       "$ref": "#/components/schemas/EmailSetting"
+      },
+      "type": "array",
+      "minItems": 1,
+      "title": "Settings"
+     }
+    },
+    "type": "object",
+    "required": [
+     "settings"
+    ],
+    "title": "UnsubscribeIn",
+    "description": "The settings an unsubscribe link turns off."
+   },
+   "UserEmailIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "title": "Email"
+     }
+    },
+    "type": "object",
+    "required": [
+     "email"
+    ],
+    "title": "UserEmailIn",
+    "description": "An email address sent in the body, so request logs don't record it: the account's, in\nlibrary's calls to delete or export a user's data, or the one a superadmin looks up."
+   },
+   "UserIdsOut": {
+    "properties": {
+     "user_ids": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "User Ids"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_ids"
+    ],
+    "title": "UserIdsOut"
+   },
+   "ValidationError": {
+    "properties": {
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Location"
+     },
+     "msg": {
+      "type": "string",
+      "title": "Message"
+     },
+     "type": {
+      "type": "string",
+      "title": "Error Type"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "ctx": {
+      "type": "object",
+      "title": "Context"
+     }
+    },
+    "type": "object",
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError"
+   },
+   "WithSettingIn": {
+    "properties": {
+     "user_ids": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "maxItems": 1000,
+      "title": "User Ids"
+     },
+     "setting": {
+      "type": "string",
+      "enum": [
+       "updates",
+       "promotions"
+      ],
+      "title": "Setting"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_ids",
+     "setting"
+    ],
+    "title": "WithSettingIn"
+   }
+  },
+  "securitySchemes": {
+   "HTTPBearer": {
+    "type": "http",
+    "scheme": "bearer"
+   }
+  }
+ }
+}

@@ -6,7 +6,7 @@ from notifications.helpers.member_emails import (
     top_up_failed_email,
     top_up_paused_email,
 )
-from notifications.integrations import companies, library
+from notifications.integrations import accounts, companies
 from notifications.services import delivery
 
 # The bell's notifications about a company's billing that are emailed to its owners and admins
@@ -47,6 +47,6 @@ async def billing_emails(data: dict, key: str) -> None:
     [company] = found
     editors = [member["user_id"] for member in company["members"] if member["editor"]]
 
-    for recipient in await library.recipients(editors):
+    for recipient in await accounts.recipients(editors):
         email = billing_email(data, recipient, company["name"])
         await delivery.send(email, f"events/{key}/{recipient['user_id']}")

@@ -22,7 +22,7 @@ from notifications.constants.campaigns import (
 from notifications.core.db import Session
 from notifications.helpers.campaign_emails import campaign_email
 from notifications.helpers.unsubscribe import address_hash
-from notifications.integrations import library
+from notifications.integrations import accounts
 from notifications.integrations.redis import get_redis
 from notifications.repositories import bulk_sends, campaigns, suppressed
 from notifications.schemas.campaigns import AudienceIn, CampaignOut, PreviewOut
@@ -51,7 +51,7 @@ async def reachable(chosen: AudienceIn) -> int:
     """Users of the audience who'd get it now, each once: an address, not suppressed, and for
     an optional kind its setting on."""
     chosen = checked_audience(chosen)
-    people = await library.recipients(await everyone(campaign_audience(chosen)))
+    people = await accounts.recipients(await everyone(campaign_audience(chosen)))
 
     if chosen.kind in OPTIONAL_KINDS:
         people = [person for person in people if person["preferences"].get(chosen.kind)]

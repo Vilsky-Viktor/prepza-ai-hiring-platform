@@ -1,6 +1,6 @@
 import pytest
 
-from notifications.integrations import billing, companies, generation, library
+from notifications.integrations import accounts, billing, companies, generation
 from notifications.integrations.resend import ResendBusy
 from notifications.repositories import digest_activity, suppressed
 from notifications.services import delivery, member_pages, member_sends
@@ -123,7 +123,7 @@ def world(monkeypatch):
     monkeypatch.setattr(companies, "members", members)
     monkeypatch.setattr(companies, "waiting_interviews", waiting)
     monkeypatch.setattr(companies, "waiting_company_ids", waiting_company_ids)
-    monkeypatch.setattr(library, "recipients", recipients)
+    monkeypatch.setattr(accounts, "recipients", recipients)
     monkeypatch.setattr(billing, "low_companies", low_companies)
     monkeypatch.setattr(generation, "statuses", statuses)
     monkeypatch.setattr(member_sends, "claim", claim)

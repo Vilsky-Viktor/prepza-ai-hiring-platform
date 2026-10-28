@@ -1,5 +1,5 @@
 """The admin zone's support pages of an account, a candidate and an interview: superadmins
-only, the database, rounds, billing and library faked. Never a candidate's questions or
+only, the database, rounds, billing, library and accounts faked. Never a candidate's questions or
 answers."""
 
 import logging
@@ -8,7 +8,7 @@ from datetime import UTC, datetime
 
 import pytest
 
-from companies.integrations import billing, library, rounds
+from companies.integrations import accounts, billing, library, rounds
 from companies.models.companies import Company
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
@@ -101,7 +101,7 @@ def stored(monkeypatch, stored_candidates):
     async def page(session, interview_id, offset, limit, by_grade, *args):
         return [CID] if not by_grade else []
 
-    monkeypatch.setattr(library, "account", account)
+    monkeypatch.setattr(accounts, "account", account)
     monkeypatch.setattr(superadmin_support, "companies_of_user", companies_of_user)
     monkeypatch.setattr(billing, "buyer_purchases", buyer_purchases)
     monkeypatch.setattr(companies, "names", names)

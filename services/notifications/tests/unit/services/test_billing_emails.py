@@ -7,7 +7,7 @@ import pytest
 from prepza_common.events.notifications import notification
 
 from notifications.config import settings
-from notifications.integrations import companies, library
+from notifications.integrations import accounts, companies
 from notifications.services import delivery, service_emails
 
 COMPANY = {
@@ -37,7 +37,7 @@ def sent(monkeypatch):
         found["sent"].append((key, email.subject, email.text))
 
     monkeypatch.setattr(companies, "members", members)
-    monkeypatch.setattr(library, "recipients", recipients)
+    monkeypatch.setattr(accounts, "recipients", recipients)
     monkeypatch.setattr(delivery, "send", send)
     monkeypatch.setattr(settings, "site_url", "https://prepza.ai")
 

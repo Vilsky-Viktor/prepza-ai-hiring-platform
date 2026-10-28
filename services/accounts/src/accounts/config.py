@@ -9,6 +9,8 @@ class Settings(ServiceSettings):
     redis_url: str
     # Signs calls from other services (their users' addresses, settings and accounts).
     service_secret: str
+    # A new account's currency, from the country it signed up in.
+    billing_url: str
 
 
 settings = Settings()

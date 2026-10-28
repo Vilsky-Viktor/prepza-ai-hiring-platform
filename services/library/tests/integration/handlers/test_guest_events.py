@@ -1,4 +1,4 @@
-"""A deleted guest invite's guest goes from library: its terms, ratings, reports and sign-in."""
+"""A deleted guest invite's guest goes from library: its ratings and reports of questions."""
 
 import uuid
 
@@ -6,25 +6,19 @@ import httpx
 from event_pushes import push
 
 from library.main import app
-from library.repositories import feedback, legal
-from library.services import guest_events
+from library.repositories import feedback
 from tests.integration.factories import interview, question_ids
 from tests.integration.transactions import transaction
 
 
-def test_a_deleted_guests_rows_and_sign_in_go_and_others_stay_however_often_it_comes(
-    run, monkeypatch
-):
+def test_a_deleted_guests_rows_go_and_others_stay_however_often_it_comes(run):
     guest, other = f"guest-{uuid.uuid4()}", f"user-{uuid.uuid4()}"
-    signed_out = []
-    monkeypatch.setattr(guest_events, "delete_sign_in", signed_out.append)
 
     async def scenario():
         set_id = await interview("Guests")
         first, second, _ = await question_ids(set_id)
 
         for user_id in (guest, other):
-            await transaction(legal.accept_terms, user_id, "2026-10-10")
             await transaction(feedback.rate_question, first, user_id, 1)
 
         await transaction(feedback.report_question, second, guest, "unclear", "Two answers fit.")
@@ -37,16 +31,13 @@ def test_a_deleted_guests_rows_and_sign_in_go_and_others_stay_however_often_it_c
 
         return (
             codes,
-            await transaction(legal.accepted_terms, guest),
             await transaction(feedback.my_question_rating, first, guest),
             await transaction(feedback.has_reported, second, guest),
-            len(await transaction(legal.accepted_terms, other)),
             await transaction(feedback.my_question_rating, first, other),
         )
 
-    codes, terms, rating, reported, other_terms, other_rating = run(scenario())
+    codes, rating, reported, other_rating = run(scenario())
 
     assert codes == [204, 204]
-    assert (terms, rating, reported) == ([], None, False)
-    assert (other_terms, other_rating) == (1, 1)
-    assert signed_out == [guest, guest]
+    assert (rating, reported) == (None, False)
+    assert other_rating == 1

@@ -7,7 +7,7 @@ from notifications.config import settings
 from notifications.constants.unsubscribe import UnsubscribeType
 from notifications.helpers.emails import candidate_reminder_email
 from notifications.helpers.unsubscribe import address_hash, candidate_token, sign, user_token
-from notifications.integrations import library, smtp
+from notifications.integrations import accounts, smtp
 from notifications.repositories import bulk_recipients, opt_outs
 from notifications.services import events
 
@@ -43,7 +43,7 @@ def applied(monkeypatch):
     async def mark_unsubscribed(session, user_id, kind):
         calls.append(("campaign", user_id, kind))
 
-    monkeypatch.setattr(library, "unsubscribe", unsubscribe)
+    monkeypatch.setattr(accounts, "unsubscribe", unsubscribe)
     monkeypatch.setattr(opt_outs, "add", add)
     monkeypatch.setattr(bulk_recipients, "mark_unsubscribed", mark_unsubscribed)
 

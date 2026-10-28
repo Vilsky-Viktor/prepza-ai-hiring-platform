@@ -29,7 +29,7 @@ src/companies/
 │                           # candidates, the action log, ...; take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (lists, brand colors, notifications); fixed values
-└── integrations/           # billing, generation, library, rounds, Firebase, Redis
+└── integrations/           # accounts, billing, generation, library, rounds, Firebase, Redis
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```

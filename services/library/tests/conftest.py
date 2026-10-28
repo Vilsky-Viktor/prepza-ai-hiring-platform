@@ -20,6 +20,7 @@ os.environ.setdefault("BILLING_SERVICE_SECRET", "test-secret-that-is-at-least-32
 os.environ.setdefault("NOTIFICATIONS_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("ATS_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("ASSISTANT_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
+os.environ.setdefault("ACCOUNTS_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("ROUNDS_URL", "http://rounds:8000")
 os.environ.setdefault("GENERATION_URL", "http://generation:8000")
 os.environ.setdefault("COMPANIES_URL", "http://companies:8000")
@@ -28,6 +29,7 @@ os.environ.setdefault("NOTIFICATIONS_URL", "http://notifications:8000")
 os.environ.setdefault("ATS_URL", "http://ats:8000")
 os.environ.setdefault("API_URL", "http://api:8000")
 os.environ.setdefault("ASSISTANT_URL", "http://assistant:8000")
+os.environ.setdefault("ACCOUNTS_URL", "http://accounts:8000")
 
 
 import pytest

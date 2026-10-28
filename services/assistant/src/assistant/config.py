@@ -37,6 +37,7 @@ class Settings(ServiceSettings):
     companies_url: str
     billing_url: str
     library_url: str
+    accounts_url: str
     notifications_url: str
     ats_url: str
     api_url: str

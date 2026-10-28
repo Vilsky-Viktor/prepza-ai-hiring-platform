@@ -48,7 +48,7 @@ def sending(monkeypatch):
     async def no_wait(_seconds):
         return None
 
-    monkeypatch.setattr(bulk.library, "recipients", recipients)
+    monkeypatch.setattr(bulk.accounts, "recipients", recipients)
     monkeypatch.setattr(delivery, "transmit", transmit)
     monkeypatch.setattr("notifications.services.bulk.asyncio.sleep", no_wait)
     monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
@@ -214,7 +214,7 @@ def audience(monkeypatch):
 
         return [user for user in users if user > after][:2]
 
-    monkeypatch.setattr("notifications.services.audiences.library.user_ids", user_ids)
+    monkeypatch.setattr("notifications.services.audiences.accounts.user_ids", user_ids)
     monkeypatch.setattr(audiences, "ID_PAGE_SIZE", 2)
 
     return users, asked

@@ -20,6 +20,7 @@ SERVICE_URLS = {
     "companies": "companies_url",
     "billing": "billing_url",
     "library": "library_url",
+    "accounts": "accounts_url",
     "notifications": "notifications_url",
     "ats": "ats_url",
     "api": "api_url",

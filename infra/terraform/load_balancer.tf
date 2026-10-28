@@ -168,11 +168,32 @@ resource "google_compute_url_map" "site" {
       }
     }
 
+    # Users' accounts are accounts', at the addresses library had: before library's own prefix
+    # below (gateway/nginx.conf has the same list).
+    dynamic "route_rules" {
+      for_each = local.account_paths
+
+      content {
+        priority = route_rules.key + 2 + length(local.company_billing_paths)
+        service  = google_compute_backend_service.service["accounts"].id
+
+        match_rules {
+          prefix_match = "/api/library/${route_rules.value}"
+        }
+
+        route_action {
+          url_rewrite {
+            path_prefix_rewrite = "/${route_rules.value}"
+          }
+        }
+      }
+    }
+
     dynamic "route_rules" {
       for_each = { for name, service in local.public_services : name => service if service.path != null }
 
       content {
-        priority = index(keys(local.public_services), route_rules.key) + 2 + length(local.company_billing_paths)
+        priority = index(keys(local.public_services), route_rules.key) + 2 + length(local.company_billing_paths) + length(local.account_paths)
         service  = google_compute_backend_service.service[route_rules.key].id
 
         match_rules {

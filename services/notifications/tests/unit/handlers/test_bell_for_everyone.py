@@ -55,7 +55,7 @@ def test_everyones_notifications_are_the_users_after_their_account_was_made(monk
 
         return made
 
-    monkeypatch.setattr(feed.library, "account_created", account_created)
+    monkeypatch.setattr(feed.accounts, "account_created", account_created)
     user = f"u-{uuid.uuid4()}"
 
     assert asyncio.run(feed.account_created(user)) == made

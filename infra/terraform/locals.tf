@@ -70,29 +70,39 @@ locals {
     "auto-top-up/card",
   ]
 
+  # Users' accounts under /api/library/: accounts' routes, kept at the addresses library had
+  # (load_balancer.tf; gateway/nginx.conf has the same list). Each is a path prefix.
+  account_paths = [
+    "me/settings",
+    "me/email-preferences",
+    "superadmin/emails/",
+    "superadmin/stats",
+  ]
+
   databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts"]
 
   # Which services each one calls; it gets their keys, to sign tokens for them.
   calls = {
     frontend          = []
-    library           = ["rounds", "generation", "companies", "billing", "notifications", "ats", "api", "assistant"]
+    library           = ["rounds", "generation", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts"]
     generation        = ["library", "notifications"]
     generation-worker = ["library", "notifications"]
     rounds            = ["library"]
-    companies         = ["generation", "library", "rounds", "billing"]
+    companies         = ["generation", "library", "rounds", "billing", "accounts"]
     # companies' names and accounts' emails, for the AI costs tab.
-    billing = ["companies", "library"]
+    billing = ["companies", "accounts"]
     # rounds: a campaign's candidates and learners.
-    notifications        = ["companies", "library", "billing", "generation", "rounds"]
-    notifications-stream = ["companies", "library"]
+    notifications        = ["companies", "library", "billing", "generation", "rounds", "accounts"]
+    notifications-stream = ["companies", "library", "accounts"]
     ats                  = ["companies"]
     api                  = ["companies"]
     # Its X-Assistant header, so companies audits reads made through it as such; billing, whether
     # a company ever paid (its limits); api, checking an AI agent's API key at the MCP server;
     # notifications, ats and library, what get_updates reads (the bell, ATS candidates not
     # invited, questions flagged or fixed); rounds, what the help chat answers from.
-    assistant = ["companies", "billing", "api", "notifications", "ats", "library", "rounds"]
-    accounts  = []
+    assistant = ["companies", "billing", "api", "notifications", "ats", "library", "rounds", "accounts"]
+    # billing: a new account's currency.
+    accounts = ["billing"]
   }
 
   # Each service's own key checks calls to it. The worker and the stream share generation's and

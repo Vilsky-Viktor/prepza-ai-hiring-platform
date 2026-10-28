@@ -10,7 +10,7 @@ import httpx
 import pytest
 from prepza_common.http import http
 
-from companies.integrations import billing, library
+from companies.integrations import accounts, billing
 from companies.models.companies import Company, Member
 from companies.repositories import companies, members
 
@@ -143,15 +143,15 @@ def test_an_unknown_transaction_has_no_owner(billing_answers):
     }
 
 
-def test_only_what_could_be_an_account_id_is_asked_of_library(billing_answers):
-    """Anything else, a path above all, never reaches library as one."""
+def test_only_what_could_be_an_account_id_is_asked_of_accounts(billing_answers):
+    """Anything else, a path above all, never reaches accounts as one."""
     billing_answers.answers["/internal/accounts/uid-ann"] = (200, {"user_id": "uid-ann"})
     billing_answers.answers["/internal/accounts/gone"] = (404, {"detail": "Not found"})
 
-    assert asyncio.run(library.account("uid-ann")) == {"user_id": "uid-ann"}
-    assert asyncio.run(library.account("gone")) is None
-    assert asyncio.run(library.account("../users/ids")) is None
-    assert asyncio.run(library.account("acme corp")) is None
+    assert asyncio.run(accounts.account("uid-ann")) == {"user_id": "uid-ann"}
+    assert asyncio.run(accounts.account("gone")) is None
+    assert asyncio.run(accounts.account("../users/ids")) is None
+    assert asyncio.run(accounts.account("acme corp")) is None
     assert [path for path, _ in billing_answers.asked] == [
         "/internal/accounts/uid-ann",
         "/internal/accounts/gone",
@@ -161,7 +161,7 @@ def test_only_what_could_be_an_account_id_is_asked_of_library(billing_answers):
 def test_an_address_is_looked_up_in_the_body(billing_answers):
     billing_answers.answers["/internal/accounts/lookup"] = (404, {"detail": "Not found"})
 
-    assert asyncio.run(library.account_by_email("ann@example.com")) is None
+    assert asyncio.run(accounts.account_by_email("ann@example.com")) is None
     assert billing_answers.asked == [("/internal/accounts/lookup", {"email": "ann@example.com"})]
 
 

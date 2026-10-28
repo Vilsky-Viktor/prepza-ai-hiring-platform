@@ -16,6 +16,8 @@ class Settings(ServiceSettings):
     ats_url: str
     api_url: str
     assistant_url: str
+    # Users' email settings and accepted terms; its old routes here forward to it.
+    accounts_url: str
 
 
 settings = Settings()

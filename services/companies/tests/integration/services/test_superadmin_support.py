@@ -5,7 +5,7 @@ import uuid
 
 import pytest
 
-from companies.integrations import library
+from companies.integrations import accounts
 from companies.repositories import interviews, invites, superadmin_support
 from companies.services import support_search
 from tests.integration import factories
@@ -17,8 +17,8 @@ def no_accounts(monkeypatch):
     async def none(text):
         return None
 
-    monkeypatch.setattr(library, "account", none)
-    monkeypatch.setattr(library, "account_by_email", none)
+    monkeypatch.setattr(accounts, "account", none)
+    monkeypatch.setattr(accounts, "account_by_email", none)
 
 
 def test_a_support_search_finds_a_company_its_interview_and_its_candidate(run):

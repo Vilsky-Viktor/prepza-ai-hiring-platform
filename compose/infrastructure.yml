@@ -44,7 +44,7 @@ services:
       PUBSUB_EMULATOR_HOST: localhost:8085
       GOOGLE_CLOUD_PROJECT: ${FIREBASE_PROJECT_ID}
     healthcheck:
-      test: ["CMD", "curl", "-sf", "http://localhost:8085/v1/projects/${FIREBASE_PROJECT_ID}/subscriptions/billing-events"]
+      test: ["CMD", "curl", "-sf", "http://localhost:8085/v1/projects/${FIREBASE_PROJECT_ID}/subscriptions/accounts-events"]
       interval: 5s
       timeout: 3s
       retries: 30

@@ -8,7 +8,7 @@ x-billing-env: &billing-env
   SERVICE_SECRET: ${SERVICE_SECRET}
   # The AI costs tab names companies and accounts.
   COMPANIES_URL: http://companies:8000
-  LIBRARY_URL: http://library:8000
+  ACCOUNTS_URL: http://accounts:8000
   PADDLE_ENVIRONMENT: ${PADDLE_ENVIRONMENT:-sandbox}
   PADDLE_CLIENT_TOKEN: ${PADDLE_CLIENT_TOKEN:-}
   PADDLE_WEBHOOK_SECRET: ${PADDLE_WEBHOOK_SECRET:-}
@@ -28,6 +28,8 @@ x-notifications-env: &notifications-env
   # Candidates' emails, watched apart; empty: MAIL_FROM.
   MAIL_FROM_CANDIDATES: ${MAIL_FROM_CANDIDATES:-}
   COMPANIES_URL: http://companies:8000
+  # Users' addresses, languages and email settings; library has the news the bell names.
+  ACCOUNTS_URL: http://accounts:8000
   LIBRARY_URL: http://library:8000
   # The reminders ask billing for low credits and generation for topics waiting for review.
   BILLING_URL: http://billing:8000
@@ -92,6 +94,7 @@ x-assistant-env: &assistant-env
   COMPANIES_URL: http://companies:8000
   BILLING_URL: http://billing:8000
   LIBRARY_URL: http://library:8000
+  ACCOUNTS_URL: http://accounts:8000
   NOTIFICATIONS_URL: http://notifications:8000
   ATS_URL: http://ats:8000
   API_URL: http://api:8000
@@ -101,6 +104,8 @@ x-accounts-env: &accounts-env
   DATABASE_URL: postgresql://accounts:${POSTGRES_PASSWORD}@postgres:5432/accounts
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
+  # A new account's currency, from the country it signed up in.
+  BILLING_URL: http://billing:8000
 
 # Each service's mounted source; migrations read it too, so new ones run without a rebuild.
 x-billing-source: &billing-source

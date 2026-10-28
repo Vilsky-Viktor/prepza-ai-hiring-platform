@@ -6,7 +6,6 @@ from prepza_common.http import http
 from prepza_common.http.http import bearer
 
 from companies.config import settings
-from companies.constants.superadmin import ACCOUNT_ID
 from companies.core.security import service_token
 
 
@@ -107,42 +106,6 @@ async def get_question_context(question_id: UUID) -> dict | None:
     """The question's set and topic: {"set_id", ...}, or None when there's no such question."""
     response = await http.get_client().get(
         f"{settings.library_url}/internal/questions/{question_id}/context",
-        headers=bearer(service_token("library")),
-    )
-
-    if response.status_code == httpx.codes.NOT_FOUND:
-        return None
-
-    response.raise_for_status()
-
-    return response.json()
-
-
-async def account(user_id: str) -> dict | None:
-    """The account with that id ({"user_id", "email", "created_at"}); None when there's none, or
-    the text couldn't be an account's id."""
-    if not ACCOUNT_ID.fullmatch(user_id):
-        return None
-
-    response = await http.get_client().get(
-        f"{settings.library_url}/internal/accounts/{user_id}",
-        headers=bearer(service_token("library")),
-    )
-
-    if response.status_code == httpx.codes.NOT_FOUND:
-        return None
-
-    response.raise_for_status()
-
-    return response.json()
-
-
-async def account_by_email(email: str) -> dict | None:
-    """The account signed in with the address, as account() gives it; None when there's none.
-    The address goes in the body, which request logs don't record."""
-    response = await http.get_client().post(
-        f"{settings.library_url}/internal/accounts/lookup",
-        json={"email": email},
         headers=bearer(service_token("library")),
     )
 

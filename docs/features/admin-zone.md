@@ -115,7 +115,7 @@ Numbers show short from a thousand up, in the language's own way ("1.5K", "$12.3
 
 ### How it counts
 
-Companies, rounds and billing each count their own records, through the shared `prepza_common.db.stats`; library counts the sign-in accounts, which live in Firebase only, by when each was made (it reads them all, page by page):
+Companies, rounds and billing each count their own records, through the shared `prepza_common.db.stats`; accounts counts the sign-in accounts, which live in Firebase only, by when each was made (it reads them all, page by page; at `/library/superadmin/stats`, library's address, which the gateway and the load balancer send to accounts):
 
 ```
 GET /superadmin/stats?period=2026-10   # a month

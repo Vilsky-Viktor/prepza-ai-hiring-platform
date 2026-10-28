@@ -3,11 +3,13 @@
 The question bank: every test's and template's topics and questions (companies' interviews and
 the public templates), question reuse across tests, practice content, the questions'
 statistics and quality checks (ratings, reports, flags, revisions and the patterns behind them),
-news posts, users' email settings and accepted terms, account deletion and data export across
-the services, and the erasures replayed after a restore. It keeps all of it in its own database.
-What it does and its settings: [templates and practice](../../docs/features/templates-and-practice.md),
-[the admin zone](../../docs/features/admin-zone.md) and
-[notifications](../../docs/features/notifications.md) (email settings).
+news posts, account deletion and export across the services, and the erasures replayed after a
+restore. It keeps all of it in its own database. Users' email settings and accepted terms are the
+accounts service's; library's old internal routes for them forward there for one release
+(`api/v1/internal_moved.py`), and its old tables (`email_preferences`, `email_consents`,
+`terms_acceptances`) go in the next release. What it does and its settings:
+[templates and practice](../../docs/features/templates-and-practice.md) and
+[the admin zone](../../docs/features/admin-zone.md).
 
 ## Layout
 
@@ -20,15 +22,14 @@ src/library/
 ├── handlers/               # Pub/Sub events (answers, scored topics, deleted guests, fixed
 │                           # bank questions, deleted interviews and companies); dispatch.py
 │                           # picks one
-├── services/               # Sets and templates, quality reviews and fixes, feedback, email
-│                           # settings, news, account deletion and export, erasures; each
-│                           # opens its transaction
+├── services/               # Sets and templates, quality reviews and fixes, feedback, news,
+│                           # account deletion and export, erasures; each opens its
+│                           # transaction
 ├── repositories/           # Database queries: sets, templates, pools, statistics, quality,
-│                           # feedback, email settings, news, erasures, ...; take the
-│                           # session, never commit
+│                           # feedback, news, erasures, ...; take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (pools, slugs, quality flags); fixed values
-├── integrations/           # Other services (account deletion, billing, generation), Redis
+├── integrations/           # Other services (account deletion, accounts, generation), Redis
 └── jobs/db_roles.py        # `python -m library.jobs.db_roles`: each service's Postgres user
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic

@@ -15,6 +15,8 @@ class Settings(ServiceSettings):
     library_url: str
     rounds_url: str
     billing_url: str
+    # Who an account id or an address belongs to, for the admin zone's support tab.
+    accounts_url: str
     # Keys the hashes in older invites' credit keys (prepza_common.limits.credit_keys, migration 0057).
     person_hash_key: str
 

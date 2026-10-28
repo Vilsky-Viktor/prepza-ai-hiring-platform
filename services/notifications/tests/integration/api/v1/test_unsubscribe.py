@@ -32,7 +32,7 @@ def invite(company_id: str, email: str = "ann@example.com") -> dict:
 
 @pytest.fixture
 def outside(monkeypatch):
-    """Resend, companies and library at the HTTP boundary: every request is recorded."""
+    """Resend, companies and accounts at the HTTP boundary: every request is recorded."""
     requests = []
 
     def answer(request: httpx.Request) -> httpx.Response:
@@ -45,7 +45,7 @@ def outside(monkeypatch):
 
     monkeypatch.setattr(settings, "resend_api_key", "re_test")
     monkeypatch.setattr(settings, "companies_url", "http://companies")
-    monkeypatch.setattr(settings, "library_url", "http://library")
+    monkeypatch.setattr(settings, "accounts_url", "http://accounts")
     monkeypatch.setattr(
         http, "get_client", lambda: httpx.AsyncClient(transport=httpx.MockTransport(answer))
     )
@@ -139,7 +139,7 @@ def test_stopping_one_invites_reminders_leaves_its_invite_and_other_invites(run,
     assert headers["List-Unsubscribe"].startswith(f"<{settings.site_url}/api/notifications/")
 
 
-def test_a_users_one_click_unsubscribe_turns_library_settings_off(run, outside):
+def test_a_users_one_click_unsubscribe_turns_accounts_settings_off(run, outside):
     link = user_token("ann", UnsubscribeType.DIGEST, settings.email_link_secret)
 
     async def scenario():
@@ -152,7 +152,7 @@ def test_a_users_one_click_unsubscribe_turns_library_settings_off(run, outside):
 
     assert run(scenario()).status_code == 204
     [request] = outside
-    assert str(request.url) == "http://library/internal/users/ann/unsubscribe"
+    assert str(request.url) == "http://accounts/internal/users/ann/unsubscribe"
     assert json.loads(request.content) == {
         "settings": [
             "candidate_finished",

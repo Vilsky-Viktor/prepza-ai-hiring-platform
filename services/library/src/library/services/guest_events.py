@@ -1,16 +1,15 @@
-import asyncio
 import logging
 
 from prepza_common.config.constants import GUEST_UID_PREFIX
 
-from library.services.accounts import delete_data, delete_sign_in
+from library.services.accounts import delete_data
 
 logger = logging.getLogger(__name__)
 
 
 async def delete_guests(event_id: str, data: dict) -> None:
-    """A deleted guest invite's guest goes too: what library kept under its sign-in (the terms
-    it accepted, its ratings and reports of questions) and the sign-in itself. Safe to repeat,
+    """A deleted guest invite's guest goes too: what library kept under its sign-in (its ratings
+    and reports of questions; accounts deletes the sign-in on the same event). Safe to repeat,
     so a redelivered event changes nothing; only guests' ids are taken."""
     user_ids = data.get("user_ids")
 
@@ -26,4 +25,3 @@ async def delete_guests(event_id: str, data: dict) -> None:
             continue
 
         await delete_data(user_id)
-        await asyncio.to_thread(delete_sign_in, user_id)

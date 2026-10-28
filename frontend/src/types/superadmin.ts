@@ -1,3 +1,4 @@
+import type { components as accounts } from "@/types/api/accounts"
 import type { components as billing } from "@/types/api/billing"
 import type { components as companies } from "@/types/api/companies"
 import type { components as generation } from "@/types/api/generation"
@@ -48,7 +49,7 @@ export type Stats = companies["schemas"]["StatsOut"]
 export type SampleQuestion = Schemas["SampleQuestionOut"]
 
 /** The account an address signs in with, if any, for the emails tab. */
-export type EmailLookup = Schemas["EmailLookupOut"]
+export type EmailLookup = accounts["schemas"]["EmailLookupOut"]
 
 /** The companies that invited an address, and what it stopped, for the emails tab. */
 export type CandidateOptOuts = notifications["schemas"]["CandidateOptOutsOut"]

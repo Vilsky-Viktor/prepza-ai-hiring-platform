@@ -1,5 +1,5 @@
 """Names for the AI costs tab's top lists: companies' names (companies) and accounts' emails
-(library). Best effort: without an answer, the tab shows the ids."""
+(accounts). Best effort: without an answer, the tab shows the ids."""
 
 import logging
 
@@ -38,9 +38,9 @@ async def user_emails(user_ids: list[str]) -> dict[str, str]:
 
     try:
         response = await http.get_client().post(
-            f"{settings.library_url}/internal/users/email-recipients",
+            f"{settings.accounts_url}/internal/users/email-recipients",
             json={"user_ids": user_ids},
-            headers=bearer(service_token("library")),
+            headers=bearer(service_token("accounts")),
         )
         response.raise_for_status()
     except httpx.HTTPError:

@@ -56,7 +56,7 @@ async def handle(event: dict) -> None:
 
 async def complained(tags: dict[str, str], addresses: list[str]) -> None:
     """A spam complaint about an optional email turns it off, as its unsubscribe link would: a
-    user's digest or reminders (logged in library as an unsubscribe), or a candidate's
+    user's digest or reminders (logged in accounts as an unsubscribe), or a candidate's
     reminders for that invite. Safe to repeat when Resend sends the webhook again."""
     kind, about = tags.get(KIND_TAG), tags.get(ID_TAG)
 

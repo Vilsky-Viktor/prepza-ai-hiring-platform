@@ -27,7 +27,8 @@ timeouts: `python-services.md`; scaling: `scalability.md`; tables: `database.md`
   (candidates' sessions and answers, practice rounds), library (the question bank), generation
   (AI drafting and checking), billing (credits, payments, AI costs, limits), notifications
   (email, Slack, the bell), ats (ATS connections), api (the public API, web hooks), assistant
-  (Mira, the help chat for visitors, and MCP). New code goes to its owner; code found in the
+  (Mira, the help chat for visitors, and MCP), accounts (users' accounts: settings, email
+  settings, accepted terms). New code goes to its owner; code found in the
   wrong service moves there.
 
 ## 2. Database per service

@@ -47,8 +47,8 @@ def terms(monkeypatch):
         return None
 
     monkeypatch.setitem(legal_notices.LEGAL_VERSIONS, "terms", LATER)
-    monkeypatch.setattr("notifications.services.audiences.library.user_ids", user_ids)
-    monkeypatch.setattr(bulk.library, "recipients", recipients)
+    monkeypatch.setattr("notifications.services.audiences.accounts.user_ids", user_ids)
+    monkeypatch.setattr(bulk.accounts, "recipients", recipients)
     monkeypatch.setattr(delivery, "transmit", transmit)
     monkeypatch.setattr("notifications.services.bulk.asyncio.sleep", no_wait)
     monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)

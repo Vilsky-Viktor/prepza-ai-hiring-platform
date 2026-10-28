@@ -11,7 +11,7 @@ from companies.constants.superadmin import (
     SupportKind,
 )
 from companies.core.db import Session
-from companies.integrations import billing, library
+from companies.integrations import accounts, billing
 from companies.repositories import companies, superadmin_companies, superadmin_support
 from companies.schemas.superadmin_support import SupportResultOut
 
@@ -140,7 +140,7 @@ async def by_transaction(query: str) -> list[SupportResultOut]:
 async def by_email(query: str) -> list[SupportResultOut]:
     """The account signed in with that address, companies with a member of it, and candidates
     invited at it."""
-    account = await library.account_by_email(query)
+    account = await accounts.account_by_email(query)
 
     async with Session() as session:
         members = await superadmin_support.companies_of_member(session, query, SUPPORT_RESULTS)
@@ -165,7 +165,7 @@ async def by_name(query: str) -> list[SupportResultOut]:
     named = [company for company, _ in found]
     ids = {company.id for company in members}
 
-    return user_result(await library.account(query)) + [
+    return user_result(await accounts.account(query)) + [
         company_result(company)
         for company in members + [company for company in named if company.id not in ids]
     ]

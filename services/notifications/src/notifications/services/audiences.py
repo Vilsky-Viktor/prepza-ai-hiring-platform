@@ -10,7 +10,7 @@ from prepza_common.db.paging import ID_PAGE_SIZE
 from notifications.constants.bulk import LEGAL_KINDS, OPTIONAL_KINDS, BulkKind
 from notifications.constants.campaigns import AudienceGroup
 from notifications.core.db import Session
-from notifications.integrations import companies, library, rounds
+from notifications.integrations import accounts, companies, rounds
 from notifications.models.audience import Audience, Source
 from notifications.repositories import campaigns
 from notifications.schemas.campaigns import AudienceIn
@@ -56,7 +56,7 @@ def campaign_audience(chosen: AudienceIn) -> Audience:
     setting = chosen.kind if chosen.kind in OPTIONAL_KINDS else None
 
     if not chosen.groups:
-        return Audience([lambda after: library.user_ids(after, setting)])
+        return Audience([lambda after: accounts.user_ids(after, setting)])
 
     groups = [group for group in AudienceGroup if group in chosen.groups]
 
@@ -70,7 +70,7 @@ async def audience_of(kind: str, about: str) -> Audience:
         return Audience([lambda after: companies.member_ids(after, True)])
 
     if kind in LEGAL_KINDS:
-        return Audience([library.user_ids])
+        return Audience([accounts.user_ids])
 
     async with Session() as session:
         found = await campaigns.get(session, uuid.UUID(about))
@@ -103,7 +103,7 @@ async def page_of(audience: Audience, cursor: str) -> tuple[list[str], str, bool
     user_ids = without_guests(page)
 
     if audience.setting and user_ids:
-        user_ids = await library.with_setting(user_ids, audience.setting)
+        user_ids = await accounts.with_setting(user_ids, audience.setting)
 
     if len(page) >= ID_PAGE_SIZE:
         return user_ids, f"{index}:{page[-1]}", False

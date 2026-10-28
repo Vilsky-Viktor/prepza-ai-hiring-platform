@@ -57,7 +57,7 @@ def outside(monkeypatch):
     monkeypatch.setattr(settings, "resend_api_key", "re_test")
     monkeypatch.setattr(settings, "resend_webhook_secret", SECRET)
     monkeypatch.setattr(settings, "companies_url", "http://companies")
-    monkeypatch.setattr(settings, "library_url", "http://library")
+    monkeypatch.setattr(settings, "accounts_url", "http://accounts")
     monkeypatch.setattr(
         http, "get_client", lambda: httpx.AsyncClient(transport=httpx.MockTransport(answer))
     )
@@ -228,7 +228,7 @@ def test_a_webhook_with_a_wrong_signature_is_refused(run, outside):
     assert outside["requests"] == []
 
 
-def test_a_spam_complaint_on_a_sent_digest_turns_the_digest_off_in_library(
+def test_a_spam_complaint_on_a_sent_digest_turns_the_digest_off_in_accounts(
     run, outside, pushed_back
 ):
     recipient = {"user_id": "ann", "email": "ann@example.com", "language": "en"}
@@ -252,7 +252,7 @@ def test_a_spam_complaint_on_a_sent_digest_turns_the_digest_off_in_library(
 
     assert sent["from"] == settings.mail_from_updates
     assert answers == (204, 204)
-    assert str(unsubscribe.url) == "http://library/internal/users/ann/unsubscribe"
+    assert str(unsubscribe.url) == "http://accounts/internal/users/ann/unsubscribe"
     assert json.loads(unsubscribe.content) == {
         "settings": [
             "candidate_finished",

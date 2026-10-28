@@ -81,6 +81,14 @@ resource "google_project_iam_member" "assistant_reads_accounts" {
   member  = "serviceAccount:${google_service_account.service["assistant"].email}"
 }
 
+# Accounts manages users' sign-ins: sets their language, looks them up for other services and
+# the admin zone, counts them for the stats, and deletes them with their account or guest invite.
+resource "google_project_iam_member" "accounts_manages_sign_ins" {
+  project = var.project_id
+  role    = "roles/firebaseauth.admin"
+  member  = "serviceAccount:${google_service_account.service["accounts"].email}"
+}
+
 # Only signBlob, which signing a custom token needs: roles/iam.serviceAccountTokenCreator would
 # also let the account mint access and ID tokens as itself.
 resource "google_project_iam_custom_role" "token_signer" {

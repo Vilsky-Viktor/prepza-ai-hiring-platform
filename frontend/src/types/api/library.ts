@@ -25,47 +25,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/me/settings": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    /**
-     * Update Settings
-     * @description Takes effect once the frontend refreshes the user's ID token.
-     */
-    put: operations["update_settings_me_settings_put"]
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/me/email-preferences": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Get Email Preferences */
-    get: operations["get_email_preferences_me_email_preferences_get"]
-    /**
-     * Update Email Preferences
-     * @description Changes some settings; each change is logged as consent given or withdrawn.
-     */
-    put: operations["update_email_preferences_me_email_preferences_put"]
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/me/export": {
     parameters: {
       query?: never
@@ -190,69 +149,6 @@ export interface paths {
     put?: never
     /** Mark Wrong */
     post: operations["mark_wrong_superadmin_templates__template_id__questions__question_id__wrong_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/superadmin/emails/lookup": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /**
-     * Look Up
-     * @description The account signed in with the address, whatever its case, with its email settings.
-     */
-    post: operations["look_up_superadmin_emails_lookup_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/superadmin/emails/accounts/{user_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /**
-     * Get Account
-     * @description The account with that id (the support tab's user page), with its email settings; 404
-     *     when there's none, or it has no address to email (a company's guest candidate).
-     */
-    get: operations["get_account_superadmin_emails_accounts__user_id__get"]
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/superadmin/emails/{user_id}/preferences": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    /**
-     * Change Preferences
-     * @description Changes some of the user's settings, each change logged with the admin source and the
-     *     superadmin's id. Marketing only goes off: consent to it is the user's own. Safe to repeat: a
-     *     setting already as asked logs nothing.
-     */
-    put: operations["change_preferences_superadmin_emails__user_id__preferences_put"]
-    post?: never
     delete?: never
     options?: never
     head?: never
@@ -408,26 +304,6 @@ export interface paths {
      * @description The reports a replaced question had, as kept with its old content, newest first.
      */
     get: operations["list_revision_reports_superadmin_quality_revisions__revision_id__reports_get"]
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/superadmin/stats": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /**
-     * Get Stats
-     * @description Users who signed up, all time or in one year or month, for the stats tab.
-     */
-    get: operations["get_stats_superadmin_stats_get"]
     put?: never
     post?: never
     delete?: never
@@ -763,12 +639,7 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    /**
-     * User Ids
-     * @description Notifications, a page at a time: every account, for a notice about the terms or the
-     *     privacy policy; with a `setting`, the users who have it on (a campaign's product updates or
-     *     offers).
-     */
+    /** User Ids */
     get: operations["user_ids_internal_users_ids_get"]
     put?: never
     post?: never
@@ -787,33 +658,8 @@ export interface paths {
     }
     get?: never
     put?: never
-    /**
-     * Users With Setting
-     * @description Notifications, for a campaign to some groups (companies, candidates, learners): those of
-     *     the users who have its setting on.
-     */
+    /** Users With Setting */
     post: operations["users_with_setting_internal_users_with_setting_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/users/{user_id}/unsubscribe": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /**
-     * Unsubscribe
-     * @description Notifications, for an email's unsubscribe link (checked there): turns the settings off,
-     *     logged as an unsubscribe. Safe to repeat: a setting already off logs nothing.
-     */
-    post: operations["unsubscribe_internal_users__user_id__unsubscribe_post"]
     delete?: never
     options?: never
     head?: never
@@ -829,12 +675,25 @@ export interface paths {
     }
     get?: never
     put?: never
-    /**
-     * Email Recipients
-     * @description Notifications, for its emails to many users at once (the activity digest, reminders): each
-     *     user's address, interface language and preferences; users who are gone are left out.
-     */
+    /** Email Recipients */
     post: operations["email_recipients_internal_users_email_recipients_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/users/{user_id}/unsubscribe": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Unsubscribe */
+    post: operations["unsubscribe_internal_users__user_id__unsubscribe_post"]
     delete?: never
     options?: never
     head?: never
@@ -848,10 +707,7 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    /**
-     * Get Account
-     * @description 404 when there's no account with that id.
-     */
+    /** Get Account */
     get: operations["get_account_internal_accounts__user_id__get"]
     put?: never
     post?: never
@@ -870,10 +726,7 @@ export interface paths {
     }
     get?: never
     put?: never
-    /**
-     * Look Up
-     * @description The account signed in with the address, whatever its case; 404 when there's none.
-     */
+    /** Look Up */
     post: operations["look_up_internal_accounts_lookup_post"]
     delete?: never
     options?: never
@@ -1350,19 +1203,6 @@ export type webhooks = Record<string, never>
 export interface components {
   schemas: {
     /**
-     * AccountOut
-     * @description A prepza account, for the admin zone's support tab: `email` is None for an account
-     *     without one (a company's guest candidate), `created_at` when Firebase doesn't say.
-     */
-    AccountOut: {
-      /** User Id */
-      user_id: string
-      /** Email */
-      email: string | null
-      /** Created At */
-      created_at: string | null
-    }
-    /**
      * AddedQuestionsIn
      * @description Questions generation adds to a template's topics, saved in one go.
      */
@@ -1402,16 +1242,6 @@ export interface components {
       practice_missing: number
       /** Company Missing */
       company_missing: number
-    }
-    /**
-     * AdminEmailChangesIn
-     * @description A superadmin's changes to a user's settings; the rest stay as they are.
-     */
-    AdminEmailChangesIn: {
-      /** Changes */
-      changes: {
-        [key: string]: boolean
-      }
     }
     /** AdminNewsOut */
     AdminNewsOut: {
@@ -1455,67 +1285,6 @@ export interface components {
        */
       id: string
     }
-    /** EmailAccountOut */
-    EmailAccountOut: {
-      /** User Id */
-      user_id: string
-      /** Email */
-      email: string
-      preferences: components["schemas"]["EmailPreferencesOut"]
-    }
-    /**
-     * EmailLookupOut
-     * @description The account with the address a superadmin looked up, or none.
-     */
-    EmailLookupOut: {
-      account: components["schemas"]["EmailAccountOut"] | null
-    }
-    /**
-     * EmailPreferencesIn
-     * @description Only the settings to change; the rest stay as they are.
-     */
-    EmailPreferencesIn: {
-      /** Changes */
-      changes: {
-        [key: string]: boolean
-      }
-      /**
-       * Source
-       * @enum {string}
-       */
-      source: "sign_in" | "settings"
-    }
-    /** EmailPreferencesOut */
-    EmailPreferencesOut: {
-      /** Candidate Finished */
-      candidate_finished: boolean
-      /** Invite Undelivered */
-      invite_undelivered: boolean
-      /** Ats Not Invited */
-      ats_not_invited: boolean
-      /** Interview Ready */
-      interview_ready: boolean
-      /** Reminders */
-      reminders: boolean
-      /** Updates */
-      updates: boolean
-      /** Promotions */
-      promotions: boolean
-    }
-    /**
-     * EmailSetting
-     * @description What a user may get by email beyond service emails, which always go out. The activity
-     *     digest's kinds are notification kinds.
-     * @enum {string}
-     */
-    EmailSetting:
-      | "candidate_finished"
-      | "invite_undelivered"
-      | "ats_not_invited"
-      | "interview_ready"
-      | "reminders"
-      | "updates"
-      | "promotions"
     /**
      * FlaggedQuestionOut
      * @description A question flagged now, for the admin zone's quality tab.
@@ -2069,26 +1838,6 @@ export interface components {
         [key: string]: number
       }
     }
-    /** RecipientOut */
-    RecipientOut: {
-      /** User Id */
-      user_id: string
-      /** Email */
-      email: string
-      /** Language */
-      language: string
-      preferences: components["schemas"]["EmailPreferencesOut"]
-    }
-    /** RecipientsIn */
-    RecipientsIn: {
-      /** User Ids */
-      user_ids: string[]
-    }
-    /** RecipientsOut */
-    RecipientsOut: {
-      /** Recipients */
-      recipients: components["schemas"]["RecipientOut"][]
-    }
     /**
      * ReplacedQuestionOut
      * @description A question's old content, kept when it was replaced.
@@ -2252,48 +2001,6 @@ export interface components {
       title: string
       /** Questions */
       questions: components["schemas"]["QuestionOut"][]
-    }
-    /** SettingsIn */
-    SettingsIn: {
-      /**
-       * Language
-       * @enum {string}
-       */
-      language:
-        | "en"
-        | "ru"
-        | "uk"
-        | "es"
-        | "pt"
-        | "de"
-        | "fr"
-        | "it"
-        | "pl"
-        | "nl"
-        | "tr"
-        | "ar"
-        | "he"
-        | "fa"
-        | "ja"
-        | "zh"
-        | "ko"
-        | "hi"
-        | "id"
-        | "th"
-        | "vi"
-        | "fil"
-        | "et"
-    }
-    /** StatsOut */
-    StatsOut: {
-      /** Counts */
-      counts: {
-        [key: string]: number
-      }
-      /** Paid */
-      paid?: {
-        [key: string]: number
-      } | null
     }
     /** TemplateCopyIn */
     TemplateCopyIn: {
@@ -2465,14 +2172,6 @@ export interface components {
       /** Subtopics */
       subtopics: string[]
     }
-    /**
-     * UnsubscribeIn
-     * @description The settings an unsubscribe link turns off.
-     */
-    UnsubscribeIn: {
-      /** Settings */
-      settings: components["schemas"]["EmailSetting"][]
-    }
     /** UntaggedQuestion */
     UntaggedQuestion: {
       /**
@@ -2482,20 +2181,6 @@ export interface components {
       id: string
       /** Text */
       text: string
-    }
-    /**
-     * UserEmailIn
-     * @description An email address sent in the body, so request logs don't record it: the account's, in
-     *     library's calls to delete or export a user's data, or the one a superadmin looks up.
-     */
-    UserEmailIn: {
-      /** Email */
-      email: string
-    }
-    /** UserIdsOut */
-    UserIdsOut: {
-      /** User Ids */
-      user_ids: string[]
     }
     /** ValidationError */
     ValidationError: {
@@ -2509,16 +2194,6 @@ export interface components {
       input?: unknown
       /** Context */
       ctx?: Record<string, never>
-    }
-    /** WithSettingIn */
-    WithSettingIn: {
-      /** User Ids */
-      user_ids: string[]
-      /**
-       * Setting
-       * @enum {string}
-       */
-      setting: "updates" | "promotions"
     }
   }
   responses: never
@@ -2564,92 +2239,6 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
-      }
-    }
-  }
-  update_settings_me_settings_put: {
-    parameters: {
-      query?: never
-      header?: {
-        "X-Client-Country"?: string | null
-      }
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["SettingsIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  get_email_preferences_me_email_preferences_get: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["EmailPreferencesOut"]
-        }
-      }
-    }
-  }
-  update_email_preferences_me_email_preferences_put: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["EmailPreferencesIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["EmailPreferencesOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
       }
     }
   }
@@ -2918,105 +2507,6 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  look_up_superadmin_emails_lookup_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UserEmailIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["EmailLookupOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  get_account_superadmin_emails_accounts__user_id__get: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["EmailAccountOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  change_preferences_superadmin_emails__user_id__preferences_put: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["AdminEmailChangesIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["EmailPreferencesOut"]
-        }
       }
       /** @description Validation Error */
       422: {
@@ -3348,37 +2838,6 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["ReportOut"][]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  get_stats_superadmin_stats_get: {
-    parameters: {
-      query?: {
-        period?: string | null
-      }
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["StatsOut"]
         }
       }
       /** @description Validation Error */
@@ -3994,12 +3453,7 @@ export interface operations {
   }
   user_ids_internal_users_ids_get: {
     parameters: {
-      query?: {
-        setting?: ("updates" | "promotions") | null
-        /** @description The last id of the previous page */
-        after?: string
-        limit?: number
-      }
+      query?: never
       header?: never
       path?: never
       cookie?: never
@@ -4012,16 +3466,7 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          "application/json": components["schemas"]["UserIdsOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
+          "application/json": unknown
         }
       }
     }
@@ -4033,11 +3478,7 @@ export interface operations {
       path?: never
       cookie?: never
     }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["WithSettingIn"]
-      }
-    }
+    requestBody?: never
     responses: {
       /** @description Successful Response */
       200: {
@@ -4045,16 +3486,27 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          "application/json": components["schemas"]["UserIdsOut"]
+          "application/json": unknown
         }
       }
-      /** @description Validation Error */
-      422: {
+    }
+  }
+  email_recipients_internal_users_email_recipients_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
         headers: {
           [name: string]: unknown
         }
         content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
+          "application/json": unknown
         }
       }
     }
@@ -4068,11 +3520,7 @@ export interface operations {
       }
       cookie?: never
     }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UnsubscribeIn"]
-      }
-    }
+    requestBody?: never
     responses: {
       /** @description Successful Response */
       200: {
@@ -4080,40 +3528,7 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          "application/json": components["schemas"]["EmailPreferencesOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  email_recipients_internal_users_email_recipients_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["RecipientsIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["RecipientsOut"]
+          "application/json": unknown
         }
       }
       /** @description Validation Error */
@@ -4144,7 +3559,7 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          "application/json": components["schemas"]["AccountOut"]
+          "application/json": unknown
         }
       }
       /** @description Validation Error */
@@ -4165,11 +3580,7 @@ export interface operations {
       path?: never
       cookie?: never
     }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UserEmailIn"]
-      }
-    }
+    requestBody?: never
     responses: {
       /** @description Successful Response */
       200: {
@@ -4177,16 +3588,7 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          "application/json": components["schemas"]["AccountOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
+          "application/json": unknown
         }
       }
     }

@@ -13,7 +13,7 @@ from notifications.handlers.dispatch import handle
 from notifications.helpers.emails import candidate_invite_email
 from notifications.helpers.unsubscribe import address_hash
 from notifications.helpers.webhooks import signature_valid
-from notifications.integrations import companies, library
+from notifications.integrations import accounts, companies
 from notifications.repositories import opt_outs, suppressed, webhook_deliveries
 from notifications.services import outbox as outbox_service
 
@@ -85,7 +85,7 @@ def reported(monkeypatch):
     async def fake_opt_out(session, address, company_id, invite_id=None):
         calls.append(("opt_out", address, company_id, invite_id))
 
-    monkeypatch.setattr(library, "unsubscribe", fake_unsubscribe)
+    monkeypatch.setattr(accounts, "unsubscribe", fake_unsubscribe)
     monkeypatch.setattr(suppressed, "add", fake_suppress)
     monkeypatch.setattr(opt_outs, "add", fake_opt_out)
     deliver_recorded(monkeypatch)

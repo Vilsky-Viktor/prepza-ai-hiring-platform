@@ -11,7 +11,7 @@ from prepza_common.events.notifications import (
 
 from notifications.constants.notifications import DROPDOWN_LIMIT
 from notifications.handlers import dispatch
-from notifications.integrations import companies, library, subscription
+from notifications.integrations import accounts, companies, subscription
 from notifications.repositories import notifications
 from notifications.services import feed, notices
 from tests.integration.factories import company, finished
@@ -30,7 +30,7 @@ def member_of(monkeypatch):
         """Unknown to library: only the user's own and their companies' notifications."""
 
     monkeypatch.setattr(companies, "company_ids", company_ids)
-    monkeypatch.setattr(library, "account_created", account_created)
+    monkeypatch.setattr(accounts, "account_created", account_created)
 
     return memberships
 

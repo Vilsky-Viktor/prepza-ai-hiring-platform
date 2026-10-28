@@ -66,7 +66,7 @@ def people(monkeypatch):
     monkeypatch.setattr("notifications.services.bulk.asyncio.sleep", no_wait)
     monkeypatch.setattr("notifications.services.audiences.companies.member_ids", member_ids)
     monkeypatch.setattr("notifications.services.audiences.rounds.user_ids", rounds_ids)
-    monkeypatch.setattr(bulk.library, "recipients", recipients)
+    monkeypatch.setattr(bulk.accounts, "recipients", recipients)
     monkeypatch.setattr(settings, "resend_api_key", "")
     monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
 
