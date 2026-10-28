@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from prepza_common.auth.google import Invoker
 from prepza_common.config.constants import RATE_LIMITED, RETRY_AFTER
 from prepza_common.events.pubsub import PushBody, event_of
+from prepza_common.events.unhandleable import handle_or_drop
 
 from notifications.handlers.dispatch import handle
 from notifications.integrations.resend import ResendBusy
@@ -15,11 +16,12 @@ async def receive_event(body: PushBody) -> None:
     Pub/Sub retries it, and moves it to the dead-letter topic after the subscription's maximum
     attempts; neither Resend nor Slack gets the same message twice. Over Resend's per-second limit
     (a burst of invites) it answers 429: Pub/Sub retries with backoff, and it isn't counted as a
-    server error."""
+    server error. An event no retry can handle (one missing the data its email needs) is logged
+    and acknowledged (handle_or_drop)."""
     event_type, data, event_id = event_of(body)
 
     try:
-        await handle(event_type, data, event_id)
+        await handle_or_drop(handle(event_type, data, event_id), event_type, event_id)
     except ResendBusy:
         # Resend's limit is per second.
         raise HTTPException(

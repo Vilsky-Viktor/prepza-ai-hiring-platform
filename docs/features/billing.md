@@ -166,7 +166,7 @@ The services record each AI call (`prepza_common.ai.ai_usage.record`) and each r
 
 - **Idempotent:** the event id is unique in both tables, so a redelivered event changes nothing.
 - **Order:** each row keeps the call's own time, so the order events arrive in doesn't matter.
-- **Failures:** an error answers 5xx and Pub/Sub delivers the event again, then dead-letters it as any other.
+- **Failures:** an error answers 5xx and Pub/Sub delivers the event again, then dead-letters it as any other; an event no retry can store (missing or malformed data) is logged as an error and acknowledged instead.
 
 Who a call was for is decided as it's stored: a call for a company is **paid** if the company had a purchase by the call's time, **unpaid** otherwise; a call without a company is **prepza**'s when its action is prepza's own work (`PREPZA_ACTIONS`: templates, quality checks, batches, embeddings, news and campaign translations) and **no company** otherwise (the help chat's visitors, candidates, people without a company). Billing then adds an unpaid or no-company call's cost to the day's unpaid AI spend in Redis (`spend:ai:unpaid:<date>`), which the services check against the `AI_SPEND_UNPAID_DAY` cap before their AI calls for those users (`prepza_common.ai.ai_cap`); it logs once when the day passes 80% of the cap and once when it reaches it.
 

@@ -178,6 +178,8 @@ out or listed under another area):
 - `outbox`: events saved with their change and published once committed.
 - `processed_events`: events a consumer handled, to handle each once (`claim`).
 - `pubsub`: publishing to the events topic, and reading Pub/Sub's pushes.
+- `unhandleable`: an event no retry can handle (`BadEvent`, missing or malformed data, unknown
+  ids) logged and acknowledged; other failures raise for Pub/Sub to retry (`handle_or_drop`).
 
 ### `http/`
 
@@ -221,6 +223,7 @@ out or listed under another area):
 ### `config/`
 
 - `constants`: the values every service shares: timeouts, pools, limits, languages, keys.
+- `event_constants`: the answers of other services that make an event unhandleable for good.
 - `settings`: the base of every service's settings.
 
 ### `observability/`

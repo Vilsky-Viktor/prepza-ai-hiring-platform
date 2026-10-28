@@ -1,8 +1,10 @@
 import pytest
+from fastapi.testclient import TestClient
 from prepza_common.config.constants import LANGUAGES
 
 from notifications.helpers.emails import member_invite_email
 from notifications.integrations import smtp
+from notifications.main import app
 from notifications.templates.emails import EMAILS
 from tests.unit.handlers.test_events import (  # noqa: F401 (the emulator fixture is autouse)
     emulator,
@@ -66,3 +68,30 @@ def test_a_member_invite_event_sends_its_email(client, monkeypatch):
 
     assert client.post("/internal/events", json=push("member.invited", MEMBER)).status_code == 204
     assert sent == [("dan@example.com", SUBJECT)]
+
+
+def test_a_member_invite_event_without_its_sender_is_acknowledged_once_and_sends_nothing(
+    client, monkeypatch
+):
+    """No retry can fill in the sender: the event is acknowledged rather than failing on every
+    redelivery."""
+    sent = []
+
+    async def fake_send(email):
+        sent.append(email.to)
+
+    monkeypatch.setattr(smtp, "send", fake_send)
+    unsigned = {key: value for key, value in MEMBER.items() if key != "inviter"}
+
+    assert client.post("/internal/events", json=push("member.invited", unsigned)).status_code == 204
+    assert sent == []
+
+
+def test_a_member_invite_the_mail_server_failed_to_take_is_retried(monkeypatch):
+    async def down(email):
+        raise ConnectionError("The mail server went away")
+
+    monkeypatch.setattr(smtp, "send", down)
+    client = TestClient(app, raise_server_exceptions=False)
+
+    assert client.post("/internal/events", json=push("member.invited", MEMBER)).status_code == 500

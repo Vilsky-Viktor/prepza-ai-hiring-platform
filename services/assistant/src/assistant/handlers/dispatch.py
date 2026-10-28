@@ -26,15 +26,9 @@ async def handle(event_type: str, data: dict) -> None:
     if handler is None:
         return
 
-    try:
-        company_id = UUID(str(data.get("company_id")))
-    except ValueError:
-        # Retrying can't fix it: dropped, so Pub/Sub doesn't send it again and again.
-        logger.warning("Dropped %s for a malformed company %r", event_type, data.get("company_id"))
-
-        return
-
-    deleted = await handler(company_id, data)
+    # A malformed id raises ValueError: no retry can fix it, so the event is dropped
+    # (prepza_common.events.unhandleable).
+    deleted = await handler(UUID(str(data.get("company_id"))), data)
 
     if deleted:
         logger.info("Deleted %d assistant conversations (%s)", deleted, event_type)

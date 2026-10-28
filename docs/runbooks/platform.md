@@ -78,7 +78,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 **How you notice:** **prepza events waiting** (a ticket): a consumer's subscription (`<service>-events`) or the funnel's has held an event unhandled for over 15 minutes ([monitoring_backlog.tf](../../infra/terraform/monitoring_backlog.tf)). **prepza events dead-lettered** (a page): an event failed 50 deliveries and waits in `events-dead-letter` ([monitoring.tf](../../infra/terraform/monitoring.tf)). What that consumer does (emails, credits, the action log) happens late or not at all.
 
-**What the system does by itself:** Pub/Sub retries each push with backoff (10 seconds to 10 minutes) for 50 attempts, several hours, then moves it to `events-dead-letter`, which keeps it 7 days ([pubsub.tf](../../infra/terraform/pubsub.tf)). Consumers are idempotent, so a retry or replay changes nothing twice.
+**What the system does by itself:** Pub/Sub retries each push with backoff (10 seconds to 10 minutes) for 50 attempts, several hours, then moves it to `events-dead-letter`, which keeps it 7 days ([pubsub.tf](../../infra/terraform/pubsub.tf)). Consumers are idempotent, so a retry or replay changes nothing twice. An event no retry can handle (data its handler needs missing or malformed, ids nothing knows, another service answering 400, 404, 410 or 422) is logged as an error, "Dropped event … no retry can handle it", and acknowledged instead ([unhandleable.py](../../packages/common/src/prepza_common/events/unhandleable.py)): it shows in Sentry, not in `events-dead-letter`.
 
 **What to do**
 
