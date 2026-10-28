@@ -1,7 +1,7 @@
 # Assistant actions: baselines and their history
 
 The runs of `assistant_actions.py`, the eval of the actions the in-app assistant prepares, by date;
-page context and guides are in `assistant.md`, the rest of the evals' history in `../baselines.md`,
+page context and guides are in `assistant.md`, the rest of the evals' history in `README.md`,
 and the newest numbers per metric in `../README.md`. Changes tried and not kept are in
 `assistant-tried.md`.
 

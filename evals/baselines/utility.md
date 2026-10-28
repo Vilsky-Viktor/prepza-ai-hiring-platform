@@ -1,7 +1,7 @@
 # Baselines of the small utility prompts
 
 The runs behind the README's numbers for translations, code-language tags, the weekly quality
-patterns and the assistant's conversation titles, by date; the rest are in `../baselines.md`.
+patterns and the assistant's conversation titles, by date; the rest are in `README.md`.
 
 ## Code-language tags: a role and tagged examples (2026-10-22, kept)
 

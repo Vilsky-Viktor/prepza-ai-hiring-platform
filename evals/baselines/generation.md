@@ -2,7 +2,7 @@
 
 The runs behind changes to generation's prompts (questions, options, re-generation, extraction,
 topics, key checks) from 2026-10-20 on, by date; the first baselines and the eval changes are in
-`../baselines.md`.
+`README.md`.
 
 ## Question prompts: role, instructions first, data tagged (2026-10-20)
 

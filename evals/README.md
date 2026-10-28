@@ -85,7 +85,7 @@ constants and of the judge prompts, the judge, the model and effort, the scores 
 
 ## Baselines
 
-The numbers each metric reached last, on its dataset and judge; `baselines.md` has every run
+The numbers each metric reached last, on its dataset and judge; `baselines/README.md` has every run
 behind them, by date (the assistant's in `baselines/assistant.md` and, for its actions,
 `baselines/assistant-actions.md`, what was tried there and not kept in
 `baselines/assistant-tried.md`, generation's prompts' in

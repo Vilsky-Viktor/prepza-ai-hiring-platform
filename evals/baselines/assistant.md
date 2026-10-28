@@ -2,7 +2,7 @@
 
 The in-app assistant's runs of `page_context.py` and `guides.py`, by date; the runs of
 `assistant_actions.py` are in `assistant-actions.md`, the rest of the evals' history in
-`../baselines.md`, and the newest numbers per metric in `../README.md`.
+`README.md`, and the newest numbers per metric in `../README.md`.
 
 ## Page context (2026-10-17)
 
