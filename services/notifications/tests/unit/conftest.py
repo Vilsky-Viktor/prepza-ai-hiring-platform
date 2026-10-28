@@ -1,9 +1,9 @@
 import pytest
 
-from app.integrations import billing, companies, generation, library
-from app.integrations.resend import ResendBusy
-from app.services import delivery, member_pages
-from app.storage import digest_activity, sent_emails, suppressed
+from notifications.integrations import billing, companies, generation, library
+from notifications.integrations.resend import ResendBusy
+from notifications.repositories import digest_activity, sent_emails, suppressed
+from notifications.services import delivery, member_pages
 from tests.unit.member_world import COMPANY, finished, person
 
 
@@ -134,6 +134,6 @@ def world(monkeypatch):
     monkeypatch.setattr(digest_activity, "companies_activity", companies_activity)
     monkeypatch.setattr(member_pages, "cursor", cursor)
     monkeypatch.setattr(member_pages, "move_cursor", move_cursor)
-    monkeypatch.setattr("app.services.member_sends.asyncio.sleep", no_wait)
+    monkeypatch.setattr("notifications.services.member_sends.asyncio.sleep", no_wait)
 
     return state

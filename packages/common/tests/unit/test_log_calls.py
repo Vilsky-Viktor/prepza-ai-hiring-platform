@@ -24,12 +24,12 @@ SAFE = {"name", "event_type", "kind", "action", "limit", "route", "key_id", "hoo
 # Arguments named so that hold none of it, by file and name, with why.
 ALLOWED = {
     # The keyed hash of an address (helpers/unsubscribe.py address_hash), never the address.
-    "services/notifications/app/services/suppression.py address",
-    "services/notifications/app/services/admin_opt_outs.py address",
+    "services/notifications/src/notifications/services/suppression.py address",
+    "services/notifications/src/notifications/services/admin_opt_outs.py address",
     # The local job's internal address (a route of ours), only when running without Google.
     "services/generation/app/integrations/tasks.py url",
     # Resend's idempotency key: an event's or a send's id, never the recipient.
-    "services/notifications/app/integrations/resend.py idempotency_key",
+    "services/notifications/src/notifications/integrations/resend.py idempotency_key",
     # A limit's name, as limit_list.LIMITS names it.
     "packages/common/src/prepza_common/limits/limits.py key",
 }

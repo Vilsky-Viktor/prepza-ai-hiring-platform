@@ -9,9 +9,9 @@ import httpx
 from prepza_common.config.constants import EVENT_ID_ATTRIBUTE
 from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
-from app.main import app
-from app.models.outbox import OutboxEvent
-from app.storage.db import Session
+from notifications.core.db import Session
+from notifications.main import app
+from notifications.models.outbox import OutboxEvent
 
 
 def company() -> str:

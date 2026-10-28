@@ -101,7 +101,7 @@ What to do when a provider prepza depends on fails, a payment isn't credited or 
 **How you notice**
 
 - **prepza events waiting:** an event waits unhandled for over 15 minutes, here on notifications' subscription ([monitoring_backlog.tf](../../infra/terraform/monitoring_backlog.tf)).
-- **prepza scheduled job failed:** the morning runs (digest, reminders) fail on an email they can't send; the bulk sender's runs (legal notices, campaigns) don't: a failed email is tried again in two later runs, then marked failed on its send ([bulk.py](../../services/notifications/app/services/bulk.py)) ([member_sends.py](../../services/notifications/app/services/member_sends.py)).
+- **prepza scheduled job failed:** the morning runs (digest, reminders) fail on an email they can't send; the bulk sender's runs (legal notices, campaigns) don't: a failed email is tried again in two later runs, then marked failed on its send ([bulk.py](../../services/notifications/src/notifications/services/bulk.py)) ([member_sends.py](../../services/notifications/src/notifications/services/member_sends.py)).
 - **prepza server errors** may fire too: a failed email answers Pub/Sub with a 500.
 - After several hours: **prepza events dead-lettered**.
 - **prepza emails bouncing** (more bounces or spam marks than `email_bounce_alert_hourly` in an hour) and **prepza web hook signature refused** with `resend` in the log aren't outages: the first is about the addresses or the content (see the alert's text in [monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)), the second a wrong `resend-webhook-secret`.
@@ -109,10 +109,10 @@ What to do when a provider prepza depends on fails, a payment isn't credited or 
 
 **What the system does by itself**
 
-- **Event emails** (invites, reports, contact messages): a failed send answers Pub/Sub with an error, and Pub/Sub retries with backoff (10 seconds to 10 minutes), for 50 attempts, several hours, before dead-lettering the event ([events.py](../../services/notifications/app/routers/events.py), [infra/README.md](../../infra/README.md)). A wrong API key and Resend's own errors are retried the same way; only a `400` or `422` is final, and an invite refused that way shows as undelivered ([constants/email.py](../../services/notifications/app/constants/email.py), [delivery.py](../../services/notifications/app/services/delivery.py)).
-- **No email twice:** each send carries an idempotency key (the event's id), and Resend sends the same key once within 24 hours ([resend.py](../../services/notifications/app/integrations/resend.py)).
-- **Over Resend's rate limit:** the event answers `429` and Pub/Sub retries; a morning run stops and the next minute's run goes on ([schedules.py](../../services/notifications/app/routers/schedules.py)).
-- **Morning emails:** a run that fails gives back the claim on the email it failed, so the next run, a minute later, sends it. A failed run isn't retried itself: the next one goes on, until the hour ends, and the catch-up hour three hours later sends what's left ([member_sends.py](../../services/notifications/app/services/member_sends.py), [infra/README.md](../../infra/README.md)).
+- **Event emails** (invites, reports, contact messages): a failed send answers Pub/Sub with an error, and Pub/Sub retries with backoff (10 seconds to 10 minutes), for 50 attempts, several hours, before dead-lettering the event ([events.py](../../services/notifications/src/notifications/api/v1/events.py), [infra/README.md](../../infra/README.md)). A wrong API key and Resend's own errors are retried the same way; only a `400` or `422` is final, and an invite refused that way shows as undelivered ([constants/email.py](../../services/notifications/src/notifications/constants/email.py), [delivery.py](../../services/notifications/src/notifications/services/delivery.py)).
+- **No email twice:** each send carries an idempotency key (the event's id), and Resend sends the same key once within 24 hours ([resend.py](../../services/notifications/src/notifications/integrations/resend.py)).
+- **Over Resend's rate limit:** the event answers `429` and Pub/Sub retries; a morning run stops and the next minute's run goes on ([schedules.py](../../services/notifications/src/notifications/api/v1/schedules.py)).
+- **Morning emails:** a run that fails gives back the claim on the email it failed, so the next run, a minute later, sends it. A failed run isn't retried itself: the next one goes on, until the hour ends, and the catch-up hour three hours later sends what's left ([member_sends.py](../../services/notifications/src/notifications/services/member_sends.py), [infra/README.md](../../infra/README.md)).
 
 **What to do**
 
@@ -124,7 +124,7 @@ What to do when a provider prepza depends on fails, a payment isn't credited or 
    ```
 3. If Resend is down, wait: Pub/Sub keeps retrying for several hours. Nothing needs switching.
 4. If **prepza events dead-lettered** fires, replay the dead-lettered events once Resend is back, with the loop in [infra/README.md](../../infra/README.md#notes) ("Dead-lettered events"). A replay more than 24 hours after an email's first attempt isn't covered by Resend's idempotency key, so an email that went through but wasn't confirmed could arrive twice.
-5. Morning emails that didn't go out within their hour go out in its catch-up hour, three hours later (digest 10:00, reminders 11:00 UTC; [jobs.tf](../../infra/terraform/jobs.tf)); the bulk sender's runs go on every minute until 18:59 UTC, and what's left waits for the next day; the digest covers the same 24 hours ([digest.py](../../services/notifications/app/services/digest.py)). If Resend is still down then, they wait for the next day.
+5. Morning emails that didn't go out within their hour go out in its catch-up hour, three hours later (digest 10:00, reminders 11:00 UTC; [jobs.tf](../../infra/terraform/jobs.tf)); the bulk sender's runs go on every minute until 18:59 UTC, and what's left waits for the next day; the digest covers the same 24 hours ([digest.py](../../services/notifications/src/notifications/services/digest.py)). If Resend is still down then, they wait for the next day.
 
 **Resolved when** notifications' subscription has no backlog (**prepza events waiting** closes), `events-dead-letter` is empty, and a test invite to your own address arrives.
 

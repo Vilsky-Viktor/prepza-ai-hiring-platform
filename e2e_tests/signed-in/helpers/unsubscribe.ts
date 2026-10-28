@@ -4,9 +4,9 @@ import { createHash, createHmac } from "node:crypto"
 import { env } from "./env"
 
 // An email's unsubscribe link, signed the way notifications signs it
-// (services/notifications/app/helpers/unsubscribe.py) with the stack's EMAIL_LINK_SECRET. The
-// signed-out page tests (e2e_tests/pages/unsubscribe.spec.ts) keep their own copy: each suite is
-// its own package. The secret is read here and never printed.
+// (services/notifications/src/notifications/helpers/unsubscribe.py) with the stack's
+// EMAIL_LINK_SECRET. The signed-out page tests (e2e_tests/pages/unsubscribe.spec.ts) keep their
+// own copy: each suite is its own package. The secret is read here and never printed.
 function sign(payload: object): string {
   const body = Buffer.from(JSON.stringify(payload)).toString("base64url")
   const signature = createHmac("sha256", env("EMAIL_LINK_SECRET"))

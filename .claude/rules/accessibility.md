@@ -3,7 +3,7 @@ paths:
   - "frontend/**"
   - "services/rounds/**"
   - "services/companies/app/constants/invites.py"
-  - "services/notifications/app/templates/**"
+  - "services/notifications/src/notifications/templates/**"
 ---
 
 # Accessibility: WCAG 2.2 AA

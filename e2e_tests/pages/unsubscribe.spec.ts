@@ -6,8 +6,9 @@ import { deleteOptOuts, madeUpCompanyId } from "./helpers/db";
 import { loaded } from "./helpers/waits";
 
 // The page an email's unsubscribe link opens, signed out. Links are signed the way notifications
-// signs them (services/notifications/app/helpers/unsubscribe.py) with EMAIL_LINK_SECRET, which
-// pages.sh passes; e2e_tests/signed-in/helpers/unsubscribe.ts keeps the signed-in suite's copy.
+// signs them (services/notifications/src/notifications/helpers/unsubscribe.py) with
+// EMAIL_LINK_SECRET, which pages.sh passes; e2e_tests/signed-in/helpers/unsubscribe.ts keeps the
+// signed-in suite's copy.
 function companyLink(email: string, companyId: string, company: string): string {
   const address = createHash("sha256").update(email).digest("hex");
   const payload = { type: "company", address, company_id: companyId, company };

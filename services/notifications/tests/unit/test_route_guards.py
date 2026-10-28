@@ -3,7 +3,7 @@ a new route without a guard fails here until it gets one or is listed below with
 
 from prepza_common.auth.route_guards import unguarded
 
-from app.main import app
+from notifications.main import app
 
 PUBLIC = {
     # Resend's web hook (its Svix signature), Slack's return (a signed one-time state), and the

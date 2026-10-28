@@ -13,8 +13,8 @@ import sqlalchemy as sa
 from alembic import op
 from prepza_common.auth.encryption import decrypt
 
-from app.config.settings import settings
-from app.helpers.slack import token_hash
+from notifications.config import settings
+from notifications.helpers.slack import token_hash
 
 revision = "0022"
 down_revision = "0021"

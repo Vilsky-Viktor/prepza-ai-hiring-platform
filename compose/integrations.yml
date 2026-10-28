@@ -100,7 +100,7 @@ x-billing-source: &billing-source
   - ./packages/common/src:/packages/common/src
 
 x-notifications-source: &notifications-source
-  - ./services/notifications/app:/services/notifications/app
+  - ./services/notifications/src:/services/notifications/src
   - ./services/notifications/migrations:/services/notifications/migrations
   - ./services/notifications/alembic.ini:/services/notifications/alembic.ini:ro
   - ./packages/common/src:/packages/common/src

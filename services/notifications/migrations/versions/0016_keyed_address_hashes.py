@@ -11,7 +11,7 @@ import sqlalchemy as sa
 from alembic import op
 from prepza_common.auth.person_hash import keyed
 
-from app.config.settings import settings
+from notifications.config import settings
 
 revision = "0016"
 down_revision = "0015"

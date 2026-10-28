@@ -16,7 +16,7 @@ ALLOWED = {
     # A turn runs as a task its stream awaits in `finally`, so it ends with the request.
     "services/assistant/app/services/turns.py",
     # The instance's one Redis subscription for the bell's open streams, dropped with the last.
-    "services/notifications/app/integrations/subscription.py",
+    "services/notifications/src/notifications/integrations/subscription.py",
     # Locally only: there's no Cloud Tasks queue, so a job calls the worker in the background.
     "services/generation/app/integrations/tasks.py",
     # Integration tests' races only: both calls are awaited before the test ends.

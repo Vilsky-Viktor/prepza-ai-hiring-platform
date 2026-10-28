@@ -3,17 +3,17 @@ from logging.config import fileConfig
 from alembic import context
 from prepza_common.db.db import migration_engine
 
-import app.models.bulk
-import app.models.campaigns
-import app.models.notifications
-import app.models.opt_outs
-import app.models.outbox
-import app.models.sent_emails
-import app.models.slack
-import app.models.soft_bounces
-import app.models.suppressed  # noqa: F401
-from app.config.settings import settings
-from app.models.base import Base
+import notifications.models.bulk
+import notifications.models.campaigns
+import notifications.models.notifications
+import notifications.models.opt_outs
+import notifications.models.outbox
+import notifications.models.sent_emails
+import notifications.models.slack
+import notifications.models.soft_bounces
+import notifications.models.suppressed  # noqa: F401
+from notifications.config import settings
+from notifications.models.base import Base
 
 fileConfig(context.config.config_file_name)
 
