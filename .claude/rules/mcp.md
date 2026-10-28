@@ -145,7 +145,8 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
 
 - Unit tests per behaviour (`tests/unit/test_mcp_*`, `test_oauth_*`), integration for storage
   (`scripts/integration.sh`), and `e2e_tests/mcp.py` through the gateway: discovery, register,
-  consent, PKCE, both protocol eras, tools as the user, API keys, refresh, revoke, disconnect.
+  consent, PKCE, both protocol eras, tools as the user, API keys and their allowed IPs, refresh,
+  revoke, disconnect.
 - The conformance suite (`npx @modelcontextprotocol/conformance server --url …`) targets an
   unauthenticated reference server and has no auth option, so against prepza only its
   rebinding refusal applies; `e2e_tests/mcp.py` covers the protocol instead. Check new tools in

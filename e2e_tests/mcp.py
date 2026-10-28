@@ -109,6 +109,30 @@ def api_keys(id_token: str, company_id: str) -> None:
         agent["key"], "invite_candidate", {"interview_id": company_id, "email": "a@b.co"}
     )
     check(error, "a tool beyond its permissions is refused")
+    allowed_ips(id_token, company_id, agent["id"], agent["key"])
+
+
+# Locally the caller's address is the gateway's, on Docker's private network; elsewhere a private
+# address too. 203.0.113.0/24 is a documentation range no caller has.
+PRIVATE = ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "127.0.0.0/8", "fc00::/7", "::1"]
+
+
+def allowed_ips(id_token: str, company_id: str, key_id: str, key: str) -> None:
+    step("an API key limited to allowed IPs: refused elsewhere, working from its address")
+    path = f"{SITE}/api/v1/manage/keys/{key_id}/allowed-ips?company_id={company_id}"
+    headers = {"Content-Type": "application/json", "Authorization": f"Bearer {id_token}"}
+
+    def limit(addresses: list[str]) -> None:
+        body = json.dumps({"allowed_ips": addresses}).encode()
+        status, _, saved = send("PUT", path, body, headers)
+        check(status == 200 and saved["allowed_ips"] == addresses, f"allowed IPs -> {status}")
+
+    limit(["203.0.113.0/24"])
+    status, refused = rpc(key, "tools/list")
+    check(status == 403 and refused["code"] == "ip_not_allowed", f"elsewhere -> {status}")
+    limit(PRIVATE)
+    status, listed = rpc(key, "tools/list")
+    check(status == 200 and listed["tools"], f"from its address -> {status}")
 
 
 def listed_connections(id_token: str) -> list[dict]:
