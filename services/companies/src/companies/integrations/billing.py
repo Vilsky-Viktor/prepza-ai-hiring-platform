@@ -10,11 +10,7 @@ from prepza_common.i18n import error_codes as shared_codes
 from prepza_common.i18n.i18n import CodedError
 
 from companies.config import settings
-from companies.constants.billing import (
-    PAYMENT_FAILURE_TIMEOUT_SECONDS,
-    WELCOME_ATTEMPTS,
-    WELCOME_FIRST_WAIT_SECONDS,
-)
+from companies.constants.billing import WELCOME_ATTEMPTS, WELCOME_FIRST_WAIT_SECONDS
 from companies.core.security import service_token
 
 
@@ -189,19 +185,17 @@ async def company_invoice(company_id: UUID, transaction_id: str) -> str:
     return response.json()["url"]
 
 
-async def company_payment_failure(company_id: UUID, transaction_id: str, buyer_id: str) -> str:
-    """Why the latest payment of the buyer's checkout into the company failed; billing's 404 for
-    a transaction that isn't theirs, and its 422 for an id that isn't a transaction's, reach the
-    user unchanged."""
-    response = await http.get_client().get(
-        f"{settings.billing_url}/internal/companies/{company_id}/payment-failure",
-        params={"transaction_id": transaction_id, "buyer_id": buyer_id},
+async def turn_off_auto_top_up(company_id: UUID, buyer_id: str | None = None) -> None:
+    """The company's automatic top-up goes off (a member removed or made a viewer, the company
+    deleted); with `buyer_id`, only when that person's card pays for it."""
+    params = {"buyer_id": buyer_id} if buyer_id else None
+    response = await http.get_client().delete(
+        f"{settings.billing_url}/internal/companies/{company_id}/auto-top-up",
+        params=params,
         headers=_headers(),
-        timeout=PAYMENT_FAILURE_TIMEOUT_SECONDS,
     )
-    refusals = {status.HTTP_404_NOT_FOUND, status.HTTP_422_UNPROCESSABLE_CONTENT}
 
-    return passed_on(response, refusals).json()["reason"]
+    response.raise_for_status()
 
 
 async def purchase_owner(transaction_id: str) -> dict | None:

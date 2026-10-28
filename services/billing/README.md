@@ -24,7 +24,7 @@ src/billing/
 │                           # take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (prices, gift keys, signatures); fixed values
-└── integrations/           # Paddle, companies' names, Redis
+└── integrations/           # Paddle, companies (names, a member's access), Redis
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```

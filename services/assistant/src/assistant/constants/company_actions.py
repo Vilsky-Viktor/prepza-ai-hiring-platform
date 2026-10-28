@@ -90,7 +90,7 @@ COMPANY_ACTIONS = {
         "link": COMPANY_PAGE,
     },
     "turn_off_auto_top_up": {
-        "service": "companies",
+        "service": "billing",
         "method": "DELETE",
         "path": "/companies/{company_id}/auto-top-up",
         "params": ["company_id"],
@@ -98,7 +98,7 @@ COMPANY_ACTIONS = {
         "description": "Turn off the company's automatic top-up.",
         "subject": COMPANY_SUBJECT,
         "done_when": {
-            "service": "companies",
+            "service": "billing",
             "path": "/companies/{company_id}/auto-top-up",
             "field": "on",
             "value": False,

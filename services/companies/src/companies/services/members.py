@@ -22,7 +22,7 @@ from companies.core.db import Session
 from companies.core.exceptions import OverLimit
 from companies.helpers.logos import logo_path
 from companies.helpers.notifications import member_joined, ownership_received
-from companies.integrations import billing, billing_prices
+from companies.integrations import billing
 from companies.integrations.redis import get_redis
 from companies.models.companies import Company, Member
 from companies.repositories import audit, companies, members, outbox
@@ -94,7 +94,7 @@ async def change_role(company_id, member: Member, role: str, user_id: str) -> No
     """The owner makes an admin a viewer or the other way round. A new viewer's automatic
     top-up goes off first, as viewers spend no credits."""
     if role == Role.VIEWER and member.user_id is not None:
-        await billing_prices.turn_off_auto_top_up(company_id, member.user_id)
+        await billing.turn_off_auto_top_up(company_id, member.user_id)
 
     async with Session.begin() as session:
         await members.set_role(session, member.id, role)
@@ -112,7 +112,7 @@ async def remove(company_id, member: Member, user_id: str) -> None:
     """The owner removes a member or withdraws a pending invite. An automatic top-up paid with
     the removed member's card goes off first, so it's never charged again."""
     if member.user_id is not None:
-        await billing_prices.turn_off_auto_top_up(company_id, member.user_id)
+        await billing.turn_off_auto_top_up(company_id, member.user_id)
 
     async with Session.begin() as session:
         await members.remove(session, member.id)

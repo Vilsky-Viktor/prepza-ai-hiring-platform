@@ -81,7 +81,7 @@ COMPANY_TOOLS = {
         "params": ["company_id"],
     },
     "get_auto_top_up": {
-        "service": "companies",
+        "service": "billing",
         "method": "GET",
         "path": "/companies/{company_id}/auto-top-up",
         "params": ["company_id"],

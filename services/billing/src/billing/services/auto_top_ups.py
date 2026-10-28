@@ -5,6 +5,7 @@ import httpx
 from fastapi import HTTPException, status
 from prepza_common.config.constants import DEFAULT_LANGUAGE
 from prepza_common.events.analytics import track
+from prepza_common.events.audit_actions import AuditAction
 
 from billing.config import settings
 from billing.constants.currencies import Currency
@@ -19,7 +20,7 @@ from billing.constants.products import (
 from billing.core.db import Session
 from billing.helpers.credits import top_up_price
 from billing.integrations import paddle
-from billing.repositories import auto_top_up_charges, auto_top_ups
+from billing.repositories import auto_top_up_charges, auto_top_ups, company_actions
 from billing.schemas.billing import AutoTopUpIn, AutoTopUpOut, CheckoutOut
 from billing.services.auto_top_up_charging import check, check_briefly
 from billing.services.auto_top_up_prices import charge_price, listed
@@ -82,10 +83,12 @@ async def turn_on(
     buyer_id: str,
     currency: Currency,
     language: str = DEFAULT_LANGUAGE,
+    logged: bool = False,
 ) -> AutoTopUpOut:
     """Saves the choice, and the buyer's `language`, which names what each charge buys. If it
     isn't running yet, the answer carries the checkout that saves the card; it starts when
-    Paddle confirms the subscription."""
+    Paddle confirms the subscription. With `logged`, a company's action log gets the buyer's
+    change in the same save."""
     if not offered() or body.product not in products():
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, TOP_UP_UNAVAILABLE)
 
@@ -111,6 +114,11 @@ async def turn_on(
             language,
         )
 
+        if logged:
+            running = current is not None and current.subscription_id is not None
+            action = AuditAction.AUTO_TOP_UP_CHANGED if running else AuditAction.AUTO_TOP_UP_SET
+            company_actions.log(session, owner_id, buyer_id, action)
+
     result = await out(owner_type, owner_id, currency)
 
     # The $0 subscription that saves the card, in the company's currency, which every top-up
@@ -130,10 +138,13 @@ async def turn_on(
     return result
 
 
-async def turn_off(owner_type: str, owner_id: str, buyer_id: str | None = None) -> None:
+async def turn_off(
+    owner_type: str, owner_id: str, buyer_id: str | None = None, actor: str | None = None
+) -> None:
     """Off, once the subscription that keeps the card is cancelled: if Paddle can't cancel it,
     nothing changes and this raises, so turning it off (or deleting the company) can be tried
-    again. With `buyer_id`, only if that person's card pays for it (a member removed)."""
+    again. With `buyer_id`, only if that person's card pays for it (a member removed). An
+    `actor`'s turning it off goes to the company's action log in the same save."""
     async with Session() as session:
         row = await auto_top_ups.get(session, owner_type, owner_id)
 
@@ -145,6 +156,9 @@ async def turn_off(owner_type: str, owner_id: str, buyer_id: str | None = None) 
 
     async with Session.begin() as session:
         left = await auto_top_ups.remove(session, owner_type, owner_id, buyer_id)
+
+        if actor is not None:
+            company_actions.log(session, owner_id, actor, AuditAction.AUTO_TOP_UP_STOPPED)
 
     # One started meanwhile goes too.
     if left and left != row.subscription_id:

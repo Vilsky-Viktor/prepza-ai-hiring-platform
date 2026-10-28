@@ -1,7 +1,6 @@
 from datetime import datetime
 
-from prepza_common.events import audit
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from prepza_common.events.audit_actions import AuditAction
 from sqlalchemy import func, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -9,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from billing.constants.credits import Reason
 from billing.constants.products import OwnerType
 from billing.models.billing import Entry, Purchase
-from billing.models.outbox import OutboxEvent
+from billing.repositories import company_actions
 from billing.repositories.events import save
 from billing.repositories.ledger import add, ensure
 
@@ -71,15 +70,7 @@ async def grant(
 
 def log_top_up(session: AsyncSession, company_id: str, buyer_id: str) -> None:
     """The member's top-up, for the company's action log, through the outbox."""
-    audit.add(
-        session,
-        OutboxEvent,
-        company_id,
-        buyer_id,
-        AuditAction.TOP_UP_PAID,
-        TargetKind.COMPANY,
-        company_id,
-    )
+    company_actions.log(session, company_id, buyer_id, AuditAction.TOP_UP_PAID)
 
 
 async def for_transaction(

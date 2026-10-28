@@ -5,7 +5,7 @@ import pytest
 from fastapi import HTTPException, status
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 
-from companies.integrations import billing, billing_prices
+from companies.integrations import billing
 from companies.models.companies import Company, Member
 from companies.repositories import companies, members
 from companies.services import members as members_router
@@ -79,7 +79,7 @@ def team(monkeypatch):
     monkeypatch.setattr(companies, "get", fake_company)
     monkeypatch.setattr(members, "remove", fake_remove)
     monkeypatch.setattr(members, "list_for_company", fake_list)
-    monkeypatch.setattr(billing_prices, "turn_off_auto_top_up", fake_turn_off)
+    monkeypatch.setattr(billing, "turn_off_auto_top_up", fake_turn_off)
     monkeypatch.setattr(members_router, "hit_emails", fake_hit_emails)
     monkeypatch.setattr(outbox_service, "flush_quietly", fake_flush)
     # A paying company: the daily cap for unpaid ones doesn't count (test_member_invite_limits).

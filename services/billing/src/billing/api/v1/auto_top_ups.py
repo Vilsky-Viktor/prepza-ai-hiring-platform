@@ -8,9 +8,10 @@ from billing.schemas.billing import AutoTopUpIn, AutoTopUpOut, CheckoutOut
 from billing.services import auto_top_up_declines, auto_top_ups
 from billing.services.currencies import decide
 
-# A company's automatic top-up; companies checks that the user is one of its members. Prices
-# are in a running one's currency, or else the company's; `country` is the visitor's, which
-# companies passes on.
+# A company's automatic top-up, for companies' calls. Members reach company_auto_top_ups.py, so
+# only DELETE (a member removed, the company deleted) is still called; the others are kept one
+# release for a companies still calling them (microservices.md, 3), then removed. Prices are in a
+# running one's currency, or else the company's; `country` is the visitor's.
 internal = APIRouter(prefix="/internal", tags=["internal"])
 
 

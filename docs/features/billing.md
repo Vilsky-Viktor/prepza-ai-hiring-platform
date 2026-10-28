@@ -9,6 +9,7 @@ Companies pay per candidate from a wallet of credits. There's no paid subscripti
 - [A company's billing tab](#a-companys-billing-tab)
 - [Refunds and chargebacks](#refunds-and-chargebacks)
 - [Missed web hooks](#missed-web-hooks)
+- [Who reaches a company's payments](#who-reaches-a-companys-payments)
 - [Deleting a company](#deleting-a-company)
 - [AI usage and limit hits](#ai-usage-and-limit-hits)
 - [Currencies](#currencies)
@@ -70,7 +71,7 @@ The top-up dialog (on the top-up page and a company's billing tab and header) bu
 - Under the slider, the automatic top-up as a card, then "This company pays in USD. **Change**" (the company's currency, linking to its billing tab).
 
 - Top up on the top-up page, for any company you belong to.
-- Billing makes each top-up's checkout (a Paddle transaction naming the company and the buyer), after companies checks the buyer is its owner or an admin (`POST /companies/{id}/billing/checkout`); the browser only opens it, so it can't send the money to another wallet or record someone else as the buyer. A paid transaction billing didn't make (its origin isn't `api`), or one into a company deleted meanwhile, adds no credits and is logged as an error, to refund.
+- Billing makes each top-up's checkout (a Paddle transaction naming the company and the buyer), after checking with companies that the buyer is its owner or an admin (`POST /companies/{id}/billing/checkout`); the browser only opens it, so it can't send the money to another wallet or record someone else as the buyer. A paid transaction billing didn't make (its origin isn't `api`), or one into a company deleted meanwhile, adds no credits and is logged as an error, to refund.
 - Paddle's checkout doesn't offer a discount code field.
 - Paddle's checkout opens over the page the buyer is on, in the site's light or dark theme and language (English where Paddle doesn't have it), as one page.
 - Top up closes the top-up dialog once the checkout shows, so only the checkout is open.
@@ -135,7 +136,7 @@ Owners and admins see a company's **billing** tab, before referrals; viewers don
   - a refund, a chargeback, a chargeback reversed: the money it moved;
   - a referral reward, a referral reward taken back, the welcome gift.
 
-Billing's history entries keep the money a top-up, refund or chargeback moved (`total`, in minor units, and `currency`; stored as an integer, `total_minor`, which every purchase has; the API gives `total` as a string) and whether a top-up was automatic, and a superadmin's adjustment (reason `adjustment`, see [Admin zone](admin-support.md)) its `note`; entries from before that was kept have the money of their top-up only. Companies' `GET /companies/{id}/billing/history`, `/billing/reserved` and `/billing/invoice?transaction_id=` serve the tab: the history comes from billing's internal `GET /internal/companies/{id}/history`, its candidates are matched to their invites by the key of their credits in one query, and the invoice from `GET /internal/companies/{id}/invoice`, which checks the transaction topped up that company.
+Billing's history entries keep the money a top-up, refund or chargeback moved (`total`, in minor units, and `currency`; stored as an integer, `total_minor`, which every purchase has; the API gives `total` as a string) and whether a top-up was automatic, and a superadmin's adjustment (reason `adjustment`, see [Admin zone](admin-support.md)) its `note`; entries from before that was kept have the money of their top-up only. Companies' `GET /companies/{id}/billing/history` and `/billing/reserved` serve the tab: the history comes from billing's internal `GET /internal/companies/{id}/history`, and its candidates are matched to their invites by the key of their credits in one query. The invoice (`/billing/invoice?transaction_id=`) is billing's own route, which checks the transaction topped up that company.
 
 ## Refunds and chargebacks
 
@@ -149,6 +150,10 @@ Paddle retries a web hook for about two days (three tries in the sandbox). So th
 - Each one billing hasn't counted yet goes through the same handler as its web hook, so it counts once whichever comes first, and two runs at once change nothing twice. Payments go first, so a refund whose payment's web hook was lost counts too.
 - What it had to apply is logged as a warning ("Reconciliation credited transaction …", "Reconciliation counted adjustment …"): a sign that web hooks are failing. One item failing is logged and the rest go on. Each of these lines, and each paid transaction billing refuses to credit ("refund it"), fires the **prepza payment not credited** alert ([runbook](../runbooks.md#a-payment-not-credited)).
 - It needs the API key's permission to read transactions and adjustments (see [Setting up Paddle](#setting-up-paddle)).
+
+## Who reaches a company's payments
+
+A company's prices, currency, checkouts, invoices, failed payments and automatic top-up are billing's own routes (`src/billing/api/v1/company_payments.py`, `company_auto_top_ups.py`), kept at the addresses the site always used: `/api/companies/companies/{id}/billing/catalog`, `/currency`, `/checkout`, `/invoice`, `/payment-failure`, and `/api/companies/companies/{id}/auto-top-up` (and `/card`). The gateway and the load balancer send exactly these paths to billing (`gateway/nginx.conf`, `company_billing_paths` in `infra/terraform/locals.tf`); the history and the reserved list stay with companies, which knows the candidates. Billing asks companies who the user is in the company (`prepza_common.auth.company_access`, with the assistant's `X-Assistant` header passed on): any member sees the currency and the automatic top-up, only owners and admins pay, change them or read invoices and failures; others get 404, a viewer changing 403, and a suspended company or an AI app the company doesn't allow 403 with companies' reason. A changed currency and an automatic top-up set up, changed or turned off are logged in the company's action log through billing's outbox, in the same save as the change.
 
 ## Deleting a company
 

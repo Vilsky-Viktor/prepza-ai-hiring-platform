@@ -15,8 +15,10 @@ from billing.services import checkouts, currencies
 from billing.services.catalog import catalog_out
 from billing.services.currencies import decide, saved
 
-# A company's prices and currency, and its top-up's checkout; companies checks the caller's role.
-# `country` is the visitor's, which companies passes on.
+# A company's prices and currency, and its top-up's checkout, for companies' calls: no longer
+# made, as members reach company_payments.py. Kept one release for a companies still calling them
+# (microservices.md, 3), then removed; /users/{user_id}/currency stays. `country` is the
+# visitor's, which companies passes on.
 router = APIRouter(prefix="/internal", tags=["internal"])
 
 

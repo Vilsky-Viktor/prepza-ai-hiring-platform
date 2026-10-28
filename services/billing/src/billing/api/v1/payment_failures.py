@@ -8,7 +8,8 @@ from billing.constants.products import OwnerType
 from billing.schemas.billing import PaymentFailureOut
 from billing.services import payment_failures
 
-# Why a checkout's payment failed; companies checks that the user is one of its owners or admins.
+# Why a checkout's payment failed, for companies' calls: no longer made, as members reach
+# company_payments.py. Kept one release for a companies still calling it (microservices.md, 3).
 router = APIRouter(prefix="/internal", tags=["internal"])
 
 

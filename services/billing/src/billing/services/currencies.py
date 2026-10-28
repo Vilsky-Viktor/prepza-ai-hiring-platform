@@ -1,12 +1,13 @@
 from datetime import UTC, datetime
 
+from prepza_common.events.audit_actions import AuditAction
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from billing.constants.currencies import DEFAULT_CURRENCY, ChoiceOwner, Currency
 from billing.constants.products import OwnerType
 from billing.core.db import Session
 from billing.helpers.currencies import currency_for, known_country
-from billing.repositories import auto_top_ups, currencies
+from billing.repositories import auto_top_ups, company_actions, currencies
 from billing.schemas.billing import CompanyCurrencyOut
 from billing.services.auto_top_up_prices import charge_price
 
@@ -52,13 +53,19 @@ async def choose(owner_type: ChoiceOwner, owner_id: str, currency: Currency) -> 
         await currencies.choose(session, owner_type, owner_id, currency)
 
 
-async def choose_company(company_id: str, currency: Currency) -> CompanyCurrencyOut:
+async def choose_company(
+    company_id: str, currency: Currency, actor: str | None = None
+) -> CompanyCurrencyOut:
     """From now on its top-ups are priced and charged in it, automatic ones too, at once and at
     the price list's price in it (their next charge switches the subscription over), which the
-    answer says for a running one."""
+    answer says for a running one. The `actor`'s choice goes to the action log in the same
+    save."""
     async with Session.begin() as session:
         await currencies.choose(session, ChoiceOwner.COMPANY, company_id, currency)
         row = await auto_top_ups.get(session, OwnerType.COMPANY, company_id)
+
+        if actor is not None:
+            company_actions.log(session, company_id, actor, AuditAction.CURRENCY_CHANGED)
 
     chosen = CompanyCurrencyOut(currency=currency)
 

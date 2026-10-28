@@ -2,13 +2,11 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from fastapi import HTTPException
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.config.constants import MAX_PAGE_SIZE
 
-from companies.api.v1 import billing as billing_routes
-from companies.integrations import billing, billing_prices
+from companies.integrations import billing
 from companies.main import app
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
@@ -69,7 +67,7 @@ def movement(reason, amount, hold_key=None, transaction_id=None, total=None, not
     }
 
 
-@pytest.mark.parametrize("path", ["history", "reserved", "invoice?transaction_id=txn_01"])
+@pytest.mark.parametrize("path", ["history", "reserved"])
 def test_a_viewer_doesnt_see_the_billing(client, monkeypatch, path):
     as_member(monkeypatch, "viewer")
 
@@ -163,24 +161,6 @@ def test_the_reserved_list_names_the_candidates_holding_credits(client, monkeypa
     ]
 
 
-def test_an_owner_opens_a_top_ups_invoice_and_billings_404_passes_through(client, monkeypatch):
-    as_member(monkeypatch, "owner")
-
-    async def invoice(company_id, transaction_id):
-        if transaction_id != "txn_01":
-            raise HTTPException(404, "Not found")
-
-        return "https://paddle.test/txn_01.pdf"
-
-    monkeypatch.setattr(billing, "company_invoice", invoice)
-
-    ours = client.get(f"{COMPANY}/billing/invoice", params={"transaction_id": "txn_01"})
-    theirs = client.get(f"{COMPANY}/billing/invoice", params={"transaction_id": "txn_99"})
-
-    assert ours.json() == {"url": "https://paddle.test/txn_01.pdf"}
-    assert theirs.status_code == 404
-
-
 def test_the_credits_say_how_many_candidates_hold_the_reserved_ones(client, monkeypatch):
     as_member(monkeypatch, "viewer")
 
@@ -196,86 +176,3 @@ def test_the_credits_say_how_many_candidates_hold_the_reserved_ones(client, monk
     response = client.get(f"{COMPANY}/credits")
 
     assert (response.json()["reserved"], response.json()["reserved_candidates"]) == (600, 2)
-
-
-def test_an_admin_gets_a_checkout_billing_made_and_a_viewer_none(client, monkeypatch):
-    made = []
-
-    async def checkout(company_id, candidates, buyer_id, country, language):
-        made.append((company_id, candidates, buyer_id, language))
-
-        return "txn_new"
-
-    monkeypatch.setattr(billing_prices, "company_checkout", checkout)
-    as_member(monkeypatch, "admin")
-    # The item is named in the interface language the site sends.
-    admin = client.post(
-        f"{COMPANY}/billing/checkout", json={"candidates": 45}, headers={"Accept-Language": "de-DE"}
-    )
-    as_member(monkeypatch, "viewer")
-    viewer = client.post(f"{COMPANY}/billing/checkout", json={"candidates": 45})
-    app.dependency_overrides.clear()
-
-    assert admin.json() == {"transaction_id": "txn_new"}
-    assert viewer.status_code == 403
-    assert made == [(COMPANY_ID, 45, "bob", "de")]
-
-
-def test_an_admin_learns_why_their_payment_failed_and_a_viewer_doesnt(client, monkeypatch):
-    """Billing decides the reason and refuses a transaction that isn't the buyer's (its 404
-    passes through); a viewer never reaches billing."""
-    asked = []
-
-    async def failure(company_id, transaction_id, buyer_id):
-        asked.append((company_id, transaction_id, buyer_id))
-
-        if transaction_id != "txn_ours":
-            raise HTTPException(404, "Not found")
-
-        return "card_declined"
-
-    monkeypatch.setattr(billing, "company_payment_failure", failure)
-    path = f"{COMPANY}/billing/payment-failure"
-    as_member(monkeypatch, "admin")
-    ours = client.get(path, params={"transaction_id": "txn_ours"})
-    theirs = client.get(path, params={"transaction_id": "txn_theirs"})
-    as_member(monkeypatch, "viewer")
-    viewer = client.get(path, params={"transaction_id": "txn_ours"})
-    app.dependency_overrides.clear()
-
-    assert ours.json() == {"reason": "card_declined"}
-    assert theirs.status_code == 404
-    assert viewer.status_code == 403
-    assert asked == [(COMPANY_ID, "txn_ours", "bob"), (COMPANY_ID, "txn_theirs", "bob")]
-
-
-@pytest.mark.parametrize(
-    ("method", "path", "body"),
-    [
-        ("POST", "checkout", {"candidates": 45}),
-        ("GET", "payment-failure?transaction_id=txn_ours", None),
-        ("GET", "invoice?transaction_id=txn_01", None),
-    ],
-)
-def test_calls_to_paddle_stop_at_the_users_hourly_limit(client, monkeypatch, method, path, body):
-    counted = []
-
-    async def over(redis, key, name, **whose):
-        counted.append((key, name))
-
-        raise HTTPException(429, "Too many requests. Try again later.")
-
-    async def never(*args):
-        raise AssertionError("billing was called past the limit")
-
-    monkeypatch.setattr(billing_routes, "hit_or_skip", over)
-    monkeypatch.setattr(billing_prices, "company_checkout", never)
-    monkeypatch.setattr(billing, "company_payment_failure", never)
-    monkeypatch.setattr(billing, "company_invoice", never)
-    as_member(monkeypatch, "admin")
-
-    response = client.request(method, f"{COMPANY}/billing/{path}", json=body)
-    app.dependency_overrides.clear()
-
-    assert response.status_code == 429
-    assert counted == [("rate:checkout-calls:bob", "CHECKOUT_CALLS_PER_USER_HOUR")]

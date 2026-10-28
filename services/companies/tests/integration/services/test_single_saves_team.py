@@ -12,7 +12,7 @@ from sqlalchemy import func, select
 from companies.constants.events import MEMBER_INVITED
 from companies.constants.roles import Role
 from companies.core.db import Session
-from companies.integrations import billing, billing_prices
+from companies.integrations import billing
 from companies.models.companies import Member
 from companies.models.outbox import OutboxEvent
 from companies.repositories import accounts, audit, companies, interviews, invites
@@ -35,7 +35,7 @@ def calls_elsewhere(monkeypatch):
         return None
 
     monkeypatch.setattr(billing, "company_paid", paid)
-    monkeypatch.setattr(billing_prices, "turn_off_auto_top_up", nothing)
+    monkeypatch.setattr(billing, "turn_off_auto_top_up", nothing)
     monkeypatch.setattr(member_service, "get_redis", FakeRedis)
     monkeypatch.setattr(outbox_service, "flush_quietly", nothing)
     monkeypatch.setattr(audit, "record", broken)

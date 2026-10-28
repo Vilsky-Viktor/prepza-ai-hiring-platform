@@ -52,6 +52,19 @@ locals {
     "/.well-known/oauth-protected-resource/mcp",
   ]
 
+  # A company's payments, under /api/companies/companies/{id}/: billing's routes, which check the
+  # member themselves, kept at companies' addresses (load_balancer.tf; gateway/nginx.conf has
+  # the same list).
+  company_billing_paths = [
+    "billing/catalog",
+    "billing/currency",
+    "billing/checkout",
+    "billing/invoice",
+    "billing/payment-failure",
+    "auto-top-up",
+    "auto-top-up/card",
+  ]
+
   databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant"]
 
   # Which services each one calls; it gets their keys, to sign tokens for them.

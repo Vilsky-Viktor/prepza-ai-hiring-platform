@@ -18,7 +18,6 @@ from companies.api.v1 import (
     account,
     ai_apps,
     audit,
-    auto_top_ups,
     billing,
     bulk_invites,
     candidates,
@@ -82,7 +81,6 @@ compress_answers(app)
 app.include_router(companies.router)
 app.include_router(account.router)
 app.include_router(audit.router)
-app.include_router(auto_top_ups.router)
 app.include_router(billing.router)
 app.include_router(members.router)
 app.include_router(interviews.router)

@@ -536,6 +536,160 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/companies/{company_id}/billing/catalog": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get Company Catalog
+     * @description Every price in the currency the company pays in, for its top-up.
+     */
+    get: operations["get_company_catalog_companies__company_id__billing_catalog_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/companies/{company_id}/billing/currency": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Get Company Currency */
+    get: operations["get_company_currency_companies__company_id__billing_currency_get"]
+    /**
+     * Choose Company Currency
+     * @description What the company's top-ups are priced and charged in from now on, automatic ones too.
+     */
+    put: operations["choose_company_currency_companies__company_id__billing_currency_put"]
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/companies/{company_id}/billing/checkout": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Create Company Checkout
+     * @description A Paddle checkout for a top-up of some number of candidates, paid by the user into the
+     *     company, at the count's price in the company's currency: neither the price, the currency nor
+     *     whose wallet it pays into comes from the browser. Its item is named in the user's interface
+     *     language.
+     */
+    post: operations["create_company_checkout_companies__company_id__billing_checkout_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/companies/{company_id}/billing/invoice": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get Company Invoice
+     * @description A temporary link to the invoice of one of the company's top-ups.
+     */
+    get: operations["get_company_invoice_companies__company_id__billing_invoice_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/companies/{company_id}/billing/payment-failure": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get Company Payment Failure
+     * @description Why the latest payment of the user's own checkout into the company failed (a top-up's, or
+     *     the one that saves the card for automatic top-up), for the site to say what to try next;
+     *     404 for any other transaction, so its id alone reveals nothing.
+     */
+    get: operations["get_company_payment_failure_companies__company_id__billing_payment_failure_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/companies/{company_id}/auto-top-up": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get Company Auto Top Up
+     * @description Priced in the currency it charges in: a running one's, or else the company's.
+     */
+    get: operations["get_company_auto_top_up_companies__company_id__auto_top_up_get"]
+    /**
+     * Turn On Company Auto Top Up
+     * @description Sets it up, or changes a running one the user's card pays for; what each charge buys is
+     *     named on its invoice in the user's interface language. Turning it on makes the checkout's
+     *     transaction in Paddle.
+     */
+    put: operations["turn_on_company_auto_top_up_companies__company_id__auto_top_up_put"]
+    post?: never
+    /** Turn Off Company Auto Top Up */
+    delete: operations["turn_off_company_auto_top_up_companies__company_id__auto_top_up_delete"]
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/companies/{company_id}/auto-top-up/card": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Update Company Auto Top Up Card
+     * @description The checkout that saves a new card for the automatic top-up, for the person whose card
+     *     pays for it; a paused one starts again once the card is saved.
+     */
+    post: operations["update_company_auto_top_up_card_companies__company_id__auto_top_up_card_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/companies/{company_id}/payment-failure": {
     parameters: {
       query?: never
@@ -1581,6 +1735,15 @@ export interface operations {
           }
         }
       }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
     }
   }
   candidate_hold_internal_candidates_hold_get: {
@@ -2505,6 +2668,342 @@ export interface operations {
       }
     }
   }
+  get_company_catalog_companies__company_id__billing_catalog_get: {
+    parameters: {
+      query?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CatalogOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_company_currency_companies__company_id__billing_currency_get: {
+    parameters: {
+      query?: {
+        country?: string | null
+      }
+      header?: {
+        "X-Client-Country"?: string | null
+      }
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CompanyCurrencyOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  choose_company_currency_companies__company_id__billing_currency_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CurrencyIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CompanyCurrencyOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  create_company_checkout_companies__company_id__billing_checkout_post: {
+    parameters: {
+      query?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TopUpCheckoutIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["TopUpCheckoutOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_company_invoice_companies__company_id__billing_invoice_get: {
+    parameters: {
+      query: {
+        transaction_id: string
+      }
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["InvoiceOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_company_payment_failure_companies__company_id__billing_payment_failure_get: {
+    parameters: {
+      query: {
+        transaction_id: string
+      }
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["PaymentFailureOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_company_auto_top_up_companies__company_id__auto_top_up_get: {
+    parameters: {
+      query?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["AutoTopUpOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  turn_on_company_auto_top_up_companies__company_id__auto_top_up_put: {
+    parameters: {
+      query?: never
+      header?: {
+        "X-Client-Country"?: string | null
+      }
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["AutoTopUpIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["AutoTopUpOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  turn_off_company_auto_top_up_companies__company_id__auto_top_up_delete: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  update_company_auto_top_up_card_companies__company_id__auto_top_up_card_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CheckoutOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   company_payment_failure_internal_companies__company_id__payment_failure_get: {
     parameters: {
       query: {
@@ -2682,6 +3181,15 @@ export interface operations {
           "application/json": components["schemas"]["LimitsOut"]
         }
       }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
     }
   }
   get_changes_superadmin_limits_changes_get: {
@@ -2700,6 +3208,15 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["LimitChangeOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }

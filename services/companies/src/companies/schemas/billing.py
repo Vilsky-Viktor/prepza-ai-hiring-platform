@@ -35,27 +35,7 @@ class HistoryEntryOut(BaseModel):
     note: str | None = None
 
 
-class TopUpCheckoutIn(BaseModel):
-    """A top-up of this many candidates; billing checks the count and sets the price."""
-
-    candidates: int
-
-
-class TopUpCheckoutOut(BaseModel):
-    """The Paddle transaction the checkout opens."""
-
-    transaction_id: str
-
-
 class InvoiceOut(BaseModel):
     """A temporary link to the invoice PDF."""
 
     url: str
-
-
-class PaymentFailureOut(BaseModel):
-    """Why a checkout's latest payment failed, as billing decides it: one of card_declined,
-    insufficient_funds, expired_card, invalid_details, authentication_failed, card_not_supported,
-    payment_method_failed, try_later or other. The site says what the buyer can do for each."""
-
-    reason: str

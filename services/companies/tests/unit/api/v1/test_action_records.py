@@ -1,5 +1,5 @@
 """Actions recorded in the company's action log by routes that have no test of their own for it:
-renaming an interview, its shareable link, and the automatic top-up."""
+renaming an interview and its shareable link (billing logs the automatic top-up itself)."""
 
 import uuid
 from datetime import UTC, datetime
@@ -9,8 +9,7 @@ from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 
-from companies.api.v1 import auto_top_ups as auto_top_ups_router
-from companies.integrations import billing_prices, library
+from companies.integrations import library
 from companies.main import app
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
@@ -19,17 +18,6 @@ from companies.services import interview_changes
 
 COMPANY_ID = uuid.uuid4()
 INTERVIEW_ID = uuid.uuid4()
-OFF = {
-    "offered": True,
-    "on": False,
-    "waiting": False,
-    "product": None,
-    "threshold": None,
-    "products": ["pack_10"],
-    "thresholds": [5],
-    "currency": "USD",
-    "prices": {"topup_50": 5000},
-}
 
 
 def sign_in(uid):
@@ -41,7 +29,7 @@ def sign_in(uid):
 @pytest.fixture(autouse=True)
 def company(monkeypatch):
     """Acme, with Ann its owner and Vic a viewer, and its interview "Backend"; signed in as
-    Ann. Its automatic top-up is off until it's turned on."""
+    Ann."""
     acme = Company(id=COMPANY_ID, name="Acme", created_at=datetime.now(UTC))
     acme.members = [
         Member(company_id=COMPANY_ID, user_id="ann", invited_email="ann@x.com", role="owner"),
@@ -50,7 +38,6 @@ def company(monkeypatch):
     interview = Interview(
         id=INTERVIEW_ID, company_id=COMPANY_ID, title="Backend", set_id=uuid.uuid4()
     )
-    top_up = dict(OFF)
 
     async def get_company(session, _id):
         return acme
@@ -61,14 +48,6 @@ def company(monkeypatch):
     async def nothing(*args, **kwargs):
         return None
 
-    async def current(_company_id, country=None):
-        return dict(top_up)
-
-    async def turn_on(_company_id, body, buyer_id, country, language):
-        top_up.update(on=True, **body)
-
-        return dict(top_up)
-
     monkeypatch.setattr(companies, "get", get_company)
     monkeypatch.setattr(interviews, "get", get_interview)
 
@@ -77,13 +56,9 @@ def company(monkeypatch):
         (interviews, "set_title"),
         (interviews, "set_link"),
         (interview_changes, "ready_for_invites"),
-        (billing_prices, "turn_off_auto_top_up"),
-        (auto_top_ups_router, "count_checkout_call"),
     ):
         monkeypatch.setattr(module, name, nothing)
 
-    monkeypatch.setattr(billing_prices, "auto_top_up", current)
-    monkeypatch.setattr(billing_prices, "turn_on_auto_top_up", turn_on)
     sign_in("ann")
 
     yield
@@ -113,42 +88,6 @@ def test_turning_the_link_on_and_off_is_recorded(client, audited):
     ]
 
 
-def test_setting_up_changing_and_stopping_the_automatic_top_up_is_recorded(client, audited):
-    url = f"/companies/{COMPANY_ID}/auto-top-up"
-    body = {"product": "pack_10", "threshold": 5}
-
-    assert client.put(url, json=body).status_code == 200
-    assert client.put(url, json=body).status_code == 200
-    assert client.delete(url).status_code == 204
-    assert audited == [
-        (COMPANY_ID, "ann", action, COMPANY_ID, TargetKind.COMPANY)
-        for action in (
-            AuditAction.AUTO_TOP_UP_SET,
-            AuditAction.AUTO_TOP_UP_CHANGED,
-            AuditAction.AUTO_TOP_UP_STOPPED,
-        )
-    ]
-
-
-def test_turning_on_passes_the_interface_language_to_billing(client, audited, monkeypatch):
-    """Billing names what each automatic charge buys in it."""
-    languages = []
-
-    async def turn_on(_company_id, body, buyer_id, country, language):
-        languages.append(language)
-
-        return {**OFF, **body}
-
-    monkeypatch.setattr(billing_prices, "turn_on_auto_top_up", turn_on)
-    url = f"/companies/{COMPANY_ID}/auto-top-up"
-    body = {"product": "pack_10", "threshold": 5}
-
-    client.put(url, json=body, headers={"Accept-Language": "pl-PL,pl;q=0.9"})
-    client.put(url, json=body)
-
-    assert languages == ["pl", "en"]
-
-
 def test_a_viewer_changes_nothing_and_nothing_is_recorded(client, audited):
     sign_in("vic")
 
@@ -157,5 +96,4 @@ def test_a_viewer_changes_nothing_and_nothing_is_recorded(client, audited):
         == 403
     )
     assert client.put(f"/interviews/{INTERVIEW_ID}/link", json={"on": True}).status_code == 403
-    assert client.delete(f"/companies/{COMPANY_ID}/auto-top-up").status_code == 403
     assert audited == []

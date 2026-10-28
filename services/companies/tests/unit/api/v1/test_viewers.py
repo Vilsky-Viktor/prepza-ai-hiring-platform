@@ -49,8 +49,6 @@ FORBIDDEN = [
     ("put", f"{COMPANY}/logo", {"image": "aGVsbG8="}),
     ("delete", f"{COMPANY}/logo", None),
     ("put", f"{COMPANY}/website", {"website": "example.com"}),
-    ("put", f"{COMPANY}/auto-top-up", {"product": "small", "threshold": 10}),
-    ("delete", f"{COMPANY}/auto-top-up", None),
     ("post", f"/members?company_id={COMPANY_ID}", {"email": "cid@example.com"}),
 ]
 

@@ -1,7 +1,8 @@
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from prepza_common.auth.auth import start_firebase
+from prepza_common.auth.company_access import remember_assistant
 from prepza_common.http.body_limit import BodyLimitMiddleware
 from prepza_common.http.compression import compress_answers
 from prepza_common.http.health import health_router
@@ -14,6 +15,8 @@ from prepza_common.observability.sentry import init_sentry
 from billing.api.v1 import (
     auto_top_ups,
     billing,
+    company_auto_top_ups,
+    company_payments,
     events,
     internal,
     payment_failures,
@@ -44,6 +47,8 @@ app = FastAPI(
     title="billing",
     lifespan=lifespan,
     openapi_url="/openapi.json" if settings.api_docs else None,
+    # A company's access check passes on what the request came through (an AI app).
+    dependencies=[Depends(remember_assistant)],
 )
 add_localized_errors(app)
 app.add_middleware(NoStoreMiddleware)
@@ -54,6 +59,8 @@ app.include_router(billing.router)
 app.include_router(internal.router)
 app.include_router(prices.router)
 app.include_router(auto_top_ups.internal)
+app.include_router(company_payments.router)
+app.include_router(company_auto_top_ups.router)
 app.include_router(payment_failures.router)
 app.include_router(superadmin.router)
 app.include_router(superadmin_ai.router)

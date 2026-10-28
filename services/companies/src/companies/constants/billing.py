@@ -8,8 +8,3 @@ class Reason:
 WELCOME_ATTEMPTS = 3
 # The first wait before asking again, doubling after each try (with jitter): the owner is waiting.
 WELCOME_FIRST_WAIT_SECONDS = 0.2
-# Billing reads a failed payment from Paddle in at most about 9 seconds (two bounded reads, a
-# second apart); a little longer than that here.
-PAYMENT_FAILURE_TIMEOUT_SECONDS = 10
-# A currency as billing names it (ISO 4217, "EUR"); billing checks it's one it sells in.
-CURRENCY_CODE = r"^[A-Z]{3}$"
