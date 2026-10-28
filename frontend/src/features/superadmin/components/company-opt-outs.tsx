@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { SettingsSection } from "@/components/settings/settings-section"
+import { SettingsSection } from "@/components/common/settings-section"
 import { Button } from "@/components/ui/button"
 import { apiErrorMessage } from "@/lib/api"
 import { setCompanyEmails } from "@/lib/superadmin-emails"

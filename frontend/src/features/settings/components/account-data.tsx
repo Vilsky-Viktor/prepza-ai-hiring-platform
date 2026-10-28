@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { DeleteAccount } from "@/components/delete-account"
+import { DeleteAccount } from "@/features/settings/components/delete-account"
 import { Button } from "@/components/ui/button"
 import { downloadMyData } from "@/lib/account"
 import { apiErrorMessage } from "@/lib/api"
