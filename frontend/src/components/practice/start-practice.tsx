@@ -6,7 +6,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { useSignIn } from "@/components/sign-in-dialog"
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { PracticeTiming } from "@/components/practice/practice-timing"
 import { Button } from "@/components/ui/button"
 import { apiErrorMessage, serviceRefusal } from "@/lib/api"

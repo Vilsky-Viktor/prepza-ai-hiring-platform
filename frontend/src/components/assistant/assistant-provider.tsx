@@ -8,7 +8,7 @@ import {
   useSyncExternalStore,
 } from "react"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { saveChat, wasOpen } from "@/lib/assistant-storage"
 
 // The panel and all it brings (markdown, voice, actions) load the first time it's needed, not

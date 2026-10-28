@@ -4,7 +4,7 @@ import { SparklesIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { useAssistant } from "@/components/assistant/assistant-provider"
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { Button } from "@/components/ui/button"
 
 /** "ask mira" in the header, all lowercase: an outline pill the size of Sign in, a bright arc

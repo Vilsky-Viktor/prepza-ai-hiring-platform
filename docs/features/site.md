@@ -2,7 +2,7 @@
 
 The pages anyone can open without signing in, and how search engines see them. Every public page also has an address in each language (see [Languages](languages.md#language-addresses)).
 
-The whole site is dark until a visitor picks a theme, whatever their device's setting (`components/theme-provider.tsx`). The header's theme buttons (in the account menu once signed in, not on phones) offer system, light and dark; "system" follows the device's light or dark setting, and the choice is kept in the browser (`theme` in local storage). A company's interview pages show the theme the link, the API or the SDK asks for, else the candidate's own (dark unless they picked another); the PDF reports and the emails are always light.
+The whole site is dark until a visitor picks a theme, whatever their device's setting (`providers/theme-provider.tsx`). The header's theme buttons (in the account menu once signed in, not on phones) offer system, light and dark; "system" follows the device's light or dark setting, and the choice is kept in the browser (`theme` in local storage). A company's interview pages show the theme the link, the API or the SDK asks for, else the candidate's own (dark unless they picked another); the PDF reports and the emails are always light.
 
 - [Home page](#home-page)
 - [Skills tests by role](#skills-tests-by-role)

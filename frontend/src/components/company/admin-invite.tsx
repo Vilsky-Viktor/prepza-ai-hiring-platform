@@ -6,7 +6,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { COMPANIES_CHANGED } from "@/config/notifications"
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { useSignIn } from "@/components/sign-in-dialog"
 import { LinkStatus } from "@/components/link-status"
 import { Button } from "@/components/ui/button"

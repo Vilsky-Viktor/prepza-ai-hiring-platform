@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
 import { useSignIn } from "@/components/sign-in-dialog"
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { ThemeModes } from "@/components/theme-toggle"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"

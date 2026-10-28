@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { BackLink } from "@/components/back-link"
 import { CancelGeneration } from "@/components/generation/cancel-generation"
 import { GenerationProgress } from "@/components/generation/generation-progress"

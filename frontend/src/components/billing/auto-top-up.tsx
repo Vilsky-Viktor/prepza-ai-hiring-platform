@@ -5,7 +5,7 @@ import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { AutoTopUpStatus } from "@/components/billing/auto-top-up-status"
 import { Dotted } from "@/components/dot"
 import { PillSelect } from "@/components/pill-select"

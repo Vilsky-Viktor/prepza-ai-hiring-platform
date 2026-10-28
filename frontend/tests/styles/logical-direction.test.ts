@@ -7,7 +7,15 @@ import { SOURCE_ROOT, sourceFiles as filesIn } from "../source-files"
 // Pages mirror right to left (ar, he, fa) only if their spacing and placement are logical:
 // ms-/me-/ps-/pe-/start-/end-/text-start, never ml-/mr-/pl-/pr-/left-/text-left
 // (.claude/rules/nextjs.md, "Languages and direction").
-const DIRS = ["app", "components", "features", "hooks", "lib"]
+const DIRS = [
+  "app",
+  "components",
+  "features",
+  "hooks",
+  "lib",
+  "providers",
+  "styles",
+]
 
 // A physical class: margin, padding, placement, alignment, a side's radius or border, or a slide.
 const PHYSICAL =
@@ -78,18 +86,20 @@ describe("direction-neutral layout", () => {
   })
 
   it("uses logical properties in the style sheets", () => {
-    const found = sourceFiles()
-      .filter((file) => file.endsWith(".css"))
-      .flatMap((full) =>
-        readFileSync(full, "utf8")
-          .split("\n")
-          .filter((line) =>
-            /^\s*(?:(?:margin|padding|border)-(?:left|right)|left|right|text-align:\s*(?:left|right))\b/.test(
-              line
-            )
+    const sheets = sourceFiles().filter((file) => file.endsWith(".css"))
+
+    expect(sheets.length).toBeGreaterThan(0)
+
+    const found = sheets.flatMap((full) =>
+      readFileSync(full, "utf8")
+        .split("\n")
+        .filter((line) =>
+          /^\s*(?:(?:margin|padding|border)-(?:left|right)|left|right|text-align:\s*(?:left|right))\b/.test(
+            line
           )
-          .map((line) => `${path.relative(SOURCE_ROOT, full)}: ${line.trim()}`)
-      )
+        )
+        .map((line) => `${path.relative(SOURCE_ROOT, full)}: ${line.trim()}`)
+    )
 
     expect(found).toEqual([])
   })

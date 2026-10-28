@@ -4,7 +4,7 @@ import { cn } from "cn"
 import { usePathname } from "next/navigation"
 import { useTranslations } from "next-intl"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { LocalizedLink, useUrlLocale } from "@/components/localized-link"
 import { NAV_LINKS } from "@/config/navigation"
 import { localizeHref } from "@/lib/locale-path"

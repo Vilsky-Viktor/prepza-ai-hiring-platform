@@ -1,6 +1,6 @@
 "use client"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { EntityId } from "@/components/entity-id"
 
 /** The signed-in account's id, to quote when writing to prepza about the account. */

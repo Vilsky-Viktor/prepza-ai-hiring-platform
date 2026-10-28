@@ -8,7 +8,10 @@ import { SOURCE_ROOT, sourceFiles } from "../source-files"
 
 // The groups each client component asks for with useTranslations("group…").
 function clientGroups() {
-  return sourceFiles(["app", "components", "features", "hooks"], /\.tsx?$/)
+  return sourceFiles(
+    ["app", "components", "features", "hooks", "providers"],
+    /\.tsx?$/
+  )
     .filter((file) =>
       readFileSync(file, "utf8").trimStart().startsWith('"use client"')
     )

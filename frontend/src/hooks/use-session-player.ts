@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { ApiError, apiErrorMessage, apiFetch } from "@/lib/api"
 import type { InterviewStep, SessionAnswerResult } from "@/types/company"
 import type { AnswerInput } from "@/types/round"

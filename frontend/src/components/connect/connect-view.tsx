@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { ConsentCard } from "@/components/connect/consent-card"
 import { useSignIn } from "@/components/sign-in-dialog"
 import { Button } from "@/components/ui/button"

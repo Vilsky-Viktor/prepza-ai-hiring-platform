@@ -4,7 +4,7 @@ import { HistoryIcon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { StartPractice } from "@/components/practice/start-practice"
 import { Button } from "@/components/ui/button"
 import type { PracticeTiming } from "@/types/round"

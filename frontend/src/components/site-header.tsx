@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { AssistantButton } from "@/components/assistant/assistant-button"
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { LocalizedLink } from "@/components/localized-link"
 import { NotificationBell } from "@/components/notification-bell"
 import { SiteNav } from "@/components/site-nav"

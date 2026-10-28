@@ -25,7 +25,7 @@ tests/                    # vitest
 
 Still to move from the old layout: feature folders in `components/` (company, billing, assistant,
 generation, landing, …) → `features/<name>/`; shared components → `components/common/` (with the
-site's header, footer and page chrome); providers → `providers/`; `app/globals.css` → `styles/`.
+site's header, footer and page chrome).
 
 ## Languages and direction
 
@@ -68,7 +68,7 @@ themselves: `.claude/rules/content-i18n.md`.
   `components/ui/floating-field.tsx`; units go in its `suffix`, never beside the field.
 - Grey backgrounds: `bg-surface` only (fields, hovered rows as `ROW_HOVER`, grey buttons and cards);
   cards' padding is `CARD_PADDING` (`config/cards.ts`).
-- Primary fills and borders: `bg-primary-gradient`, `border-primary-gradient` (`app/gradients.css`),
+- Primary fills and borders: `bg-primary-gradient`, `border-primary-gradient` (`styles/gradients.css`),
   `gradient-soft` on small things; a field's focus is `border-ring-gradient`.
 
 Research (local notes, git-ignored): `internal_docs/best-practices/i18n.md`.

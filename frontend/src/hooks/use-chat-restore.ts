@@ -2,7 +2,7 @@
 
 import { type Dispatch, type SetStateAction, useEffect, useRef } from "react"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import {
   getActiveConversation,
   getConfig,

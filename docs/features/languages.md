@@ -34,7 +34,7 @@ Some pages exist only in certain languages: a skills test page and a free practi
 
 Scripts other than Latin and Cyrillic use Noto fonts (`config/fonts.ts`), loaded only on pages that need them. The Japanese, Chinese and Korean fonts (`config/cjk-fonts.ts`) are only on pages in those languages, so other pages' stylesheets stay small. The heading font loads Latin Extended too, for Polish, Turkish and Estonian.
 
-Per script (`app/scripts.css`): Arabic and Persian get no letter spacing, which breaks their joined letters; headings in Arabic, Persian, Hindi, Thai and Vietnamese get taller lines for the marks above and below; Japanese, Chinese and Korean small text is a step larger. Initials and typed-out text count characters as people see them (`lib/graphemes.ts`), never splitting an emoji or a Hindi cluster.
+Per script (`styles/scripts.css`): Arabic and Persian get no letter spacing, which breaks their joined letters; headings in Arabic, Persian, Hindi, Thai and Vietnamese get taller lines for the marks above and below; Japanese, Chinese and Korean small text is a step larger. Initials and typed-out text count characters as people see them (`lib/graphemes.ts`), never splitting an emoji or a Hindi cluster.
 
 ## Language of interviews and emails
 

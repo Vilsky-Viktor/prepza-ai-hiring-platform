@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { Button } from "@/components/ui/button"
 import { InfoCard } from "@/components/warning-card"
 import { apiFetch } from "@/lib/api"

@@ -6,7 +6,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { useSignIn } from "@/components/sign-in-dialog"
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { InviteIntro } from "@/components/company/invite-intro"
 import { LinkStatus } from "@/components/link-status"
 import { useHumanCheck } from "@/hooks/use-human-check"

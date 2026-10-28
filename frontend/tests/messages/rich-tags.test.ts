@@ -10,7 +10,7 @@ import { SOURCE_ROOT, sourceFiles } from "../source-files"
 // throws "didn't resolve to a string" and the page shows the key instead. This finds plain t()
 // calls, by the namespace their t was made for, whose English message has a tag.
 
-const SOURCES = ["app", "components", "features", "hooks", "lib"]
+const SOURCES = ["app", "components", "features", "hooks", "lib", "providers"]
 const TAG = /<\w+>/
 
 function message(key: string): unknown {

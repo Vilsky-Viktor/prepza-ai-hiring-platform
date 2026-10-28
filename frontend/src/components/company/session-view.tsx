@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { useEffect } from "react"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { BackLink } from "@/components/back-link"
 import { CompanyLogo } from "@/components/company/company-logo"
 import { SessionPlay } from "@/components/company/session-play"

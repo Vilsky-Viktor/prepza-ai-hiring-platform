@@ -10,7 +10,7 @@ import { FONT_VARIABLES } from "@/config/fonts"
 import { DEFAULT_LOCALE, LOCALE_COOKIE, type Locale } from "@/config/i18n"
 import { isLocale, preferredLocale, textDirection } from "@/lib/locale"
 
-import "./globals.css"
+import "@/styles/globals.css"
 
 type Messages = Record<string, unknown>
 

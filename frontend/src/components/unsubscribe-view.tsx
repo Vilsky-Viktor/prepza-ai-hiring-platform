@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { Button } from "@/components/ui/button"
 import { LinkStatus } from "@/components/link-status"
 import { apiFetch } from "@/lib/api"

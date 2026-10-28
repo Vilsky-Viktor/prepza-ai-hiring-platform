@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useFormatter, useLocale, useNow, useTranslations } from "next-intl"
 import { useCallback, useEffect, useState } from "react"
 
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,

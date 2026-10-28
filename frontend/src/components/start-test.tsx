@@ -8,7 +8,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { useSignIn } from "@/components/sign-in-dialog"
-import { useAuth } from "@/components/auth-provider"
+import { useAuth } from "@/providers/auth-provider"
 import { GenerateIn } from "@/components/generate-in"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
