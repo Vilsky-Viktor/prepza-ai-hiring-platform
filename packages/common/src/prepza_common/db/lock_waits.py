@@ -5,6 +5,7 @@ on the lock, where a sleep or two calls at once only hope they did."""
 
 import asyncio
 import time
+from contextlib import asynccontextmanager
 
 from prepza_common.db.db import sqlalchemy_url
 from sqlalchemy import text
@@ -16,9 +17,10 @@ POLL_SECONDS = 0.02
 
 
 class HeldCommit:
-    """Wraps a storage module's Session factory: the first session it makes waits at its commit,
-    with its locks held, until `release` is set; `reached` is set once it waits there. Later
-    sessions commit as usual. Used as `monkeypatch.setattr(module, "Session", HeldCommit(...))`."""
+    """Wraps a module's Session factory: the first session it makes waits at its commit, or the
+    first transaction it begins (`Session.begin()`, as services open one) waits before it
+    commits, with its locks held, until `release` is set; `reached` is set once it waits there.
+    Later ones commit as usual. Used as `monkeypatch.setattr(module, "Session", HeldCommit(...))`."""
 
     def __init__(self, factory):
         self.factory = factory
@@ -26,13 +28,19 @@ class HeldCommit:
         self.release = asyncio.Event()
         self.taken = False
 
+    def first(self) -> bool:
+        """Whether this is the first session or transaction made, the one held."""
+        first = not self.taken
+        self.taken = True
+
+        return first
+
     def __call__(self, *args, **kwargs):
         session = self.factory(*args, **kwargs)
 
-        if self.taken:
+        if not self.first():
             return session
 
-        self.taken = True
         commit = session.commit
 
         async def held_commit():
@@ -43,6 +51,18 @@ class HeldCommit:
         session.commit = held_commit
 
         return session
+
+    def begin(self):
+        return self.transaction(self.first())
+
+    @asynccontextmanager
+    async def transaction(self, held: bool):
+        async with self.factory.begin() as session:
+            yield session
+
+            if held:
+                self.reached.set()
+                await self.release.wait()
 
 
 def hold_first_commit(monkeypatch, module, name: str = "Session") -> HeldCommit:

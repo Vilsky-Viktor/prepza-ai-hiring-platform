@@ -4,7 +4,7 @@ from fastapi import APIRouter, status
 from prepza_common.auth.google import Invoker
 
 from api.services import outbox as outbox_service
-from api.services import webhooks
+from api.services import webhook_retries
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +19,7 @@ router = APIRouter(
 @router.post("/webhook-retries", status_code=status.HTTP_204_NO_CONTENT)
 async def retry_webhooks() -> None:
     """Every 5 minutes, from Cloud Scheduler: events web hooks didn't take are sent again."""
-    due = await webhooks.retry()
+    due = await webhook_retries.retry()
 
     if due:
         logger.info("Sent %d events again to web hooks", due)

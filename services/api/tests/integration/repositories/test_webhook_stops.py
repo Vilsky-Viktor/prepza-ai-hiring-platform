@@ -8,6 +8,7 @@ from sqlalchemy import select
 from api.core.db import Session
 from api.models.outbox import OutboxEvent
 from api.repositories import webhooks
+from tests.integration.transactions import transaction
 
 
 def test_a_web_hook_stops_once_however_many_events_find_it_and_starts_again(run):
@@ -15,12 +16,12 @@ def test_a_web_hook_stops_once_however_many_events_find_it_and_starts_again(run)
 
     async def scenario():
         company = uuid.uuid4()
-        hook = await webhooks.add(company, "https://a.example/x", "sealed", "u1", 10)
+        hook = await transaction(webhooks.add, company, "https://a.example/x", "sealed", "u1", 10)
         stopped = await asyncio.gather(
-            *[webhooks.set_stopped(hook.id, True, notice) for _ in range(2)]
+            *[transaction(webhooks.set_stopped, hook.id, True, notice) for _ in range(2)]
         )
-        again = await webhooks.set_stopped(hook.id, True, notice)
-        started = await webhooks.set_stopped(hook.id, False)
+        again = await transaction(webhooks.set_stopped, hook.id, True, notice)
+        started = await transaction(webhooks.set_stopped, hook.id, False)
 
         async with Session() as session:
             told = list(
@@ -32,7 +33,7 @@ def test_a_web_hook_stops_once_however_many_events_find_it_and_starts_again(run)
                 )
             )
 
-        await webhooks.remove_company(company)
+        await transaction(webhooks.remove_company, company)
 
         return sorted(stopped), again, started, told
 
@@ -43,11 +44,11 @@ def test_a_web_hook_stops_once_however_many_events_find_it_and_starts_again(run)
 def test_the_web_hooks_that_got_an_event_are_found_at_once(run):
     async def scenario():
         company = uuid.uuid4()
-        first = await webhooks.add(company, "https://a.example/x", "sealed", "u1", 10)
-        second = await webhooks.add(company, "https://b.example/x", "sealed", "u1", 10)
-        await webhooks.mark_delivered(first.id, "e1")
-        got = await webhooks.delivered_to([first.id, second.id], "e1")
-        await webhooks.remove_company(company)
+        first = await transaction(webhooks.add, company, "https://a.example/x", "sealed", "u1", 10)
+        second = await transaction(webhooks.add, company, "https://b.example/x", "sealed", "u1", 10)
+        await transaction(webhooks.mark_delivered, first.id, "e1")
+        got = await transaction(webhooks.delivered_to, [first.id, second.id], "e1")
+        await transaction(webhooks.remove_company, company)
 
         return got == {first.id}
 
@@ -60,10 +61,10 @@ def test_a_web_hooks_rows_carry_its_company(run):
 
     async def scenario():
         company = uuid.uuid4()
-        hook = await webhooks.add(company, "https://a.example/x", "sealed", "u1", 10)
-        await webhooks.mark_delivered(hook.id, "e1")
-        await webhook_retries.add(hook.id, "e2", "{}", datetime.now(UTC))
-        await webhook_log.add(hook.id, "e1", "test", True, "delivered")
+        hook = await transaction(webhooks.add, company, "https://a.example/x", "sealed", "u1", 10)
+        await transaction(webhooks.mark_delivered, hook.id, "e1")
+        await transaction(webhook_retries.add, hook.id, "e2", "{}", datetime.now(UTC))
+        await transaction(webhook_log.add, hook.id, "e1", "test", True, "delivered")
 
         async with Session() as session:
             found = [
@@ -71,7 +72,7 @@ def test_a_web_hooks_rows_carry_its_company(run):
                 for model in (WebhookDelivery, WebhookRetry, WebhookAttempt)
             ]
 
-        await webhooks.remove_company(company)
+        await transaction(webhooks.remove_company, company)
 
         return company, found
 

@@ -11,6 +11,7 @@ from api.constants.api import (
 )
 from api.helpers import webhooks as webhook_helpers
 from api.helpers.webhooks import retry_delay
+from api.services import webhook_retries as retrying
 from api.services import webhooks as delivery
 from tests.unit.services.test_webhook_delivery import finish
 
@@ -25,7 +26,7 @@ def due(endpoints, hook, event_id="e1", age=timedelta(minutes=5)):
 
 
 def run():
-    return asyncio.run(delivery.retry())
+    return asyncio.run(retrying.retry())
 
 
 def failed_once(endpoints, url="https://down.example/x"):
@@ -153,7 +154,7 @@ def test_the_schedule_sends_kept_events_again(client, monkeypatch):
 
         return 1
 
-    monkeypatch.setattr(delivery, "retry", retry)
+    monkeypatch.setattr(retrying, "retry", retry)
 
     assert client.post("/internal/schedules/webhook-retries").status_code == 204
     assert runs == [True]
@@ -165,7 +166,7 @@ def test_the_retry_job_sends_batch_after_batch_until_none_are_due(endpoints, mon
     async def retry_batch():
         return batches.pop(0)
 
-    monkeypatch.setattr(delivery, "retry_batch", retry_batch)
+    monkeypatch.setattr(retrying, "retry_batch", retry_batch)
 
     assert run() == 2 * RETRY_BATCH + 3
     assert batches == []
@@ -180,8 +181,8 @@ def test_the_retry_job_starts_no_batch_once_its_time_is_up(endpoints, monkeypatc
 
         return RETRY_BATCH
 
-    monkeypatch.setattr(delivery.time, "monotonic", lambda: clock["now"])
-    monkeypatch.setattr(delivery, "retry_batch", retry_batch)
+    monkeypatch.setattr(retrying.time, "monotonic", lambda: clock["now"])
+    monkeypatch.setattr(retrying, "retry_batch", retry_batch)
 
     # Started at 0, 15 and 30; not at 45, past RETRY_RUN_SECONDS.
     assert run() == 3 * RETRY_BATCH

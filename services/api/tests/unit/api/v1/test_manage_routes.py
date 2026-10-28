@@ -147,7 +147,7 @@ def test_without_an_encryption_key_web_hooks_cant_be_added(
 
 
 def test_deleting_what_isnt_there_is_not_found(client, companies_api, monkeypatch):
-    async def nothing(company_id, item_id, user_id):
+    async def nothing(session, company_id, item_id, user_id):
         return False
 
     monkeypatch.setattr(manage.keys, "remove", nothing)

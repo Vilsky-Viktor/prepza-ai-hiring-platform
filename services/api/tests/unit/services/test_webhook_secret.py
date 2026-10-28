@@ -24,7 +24,7 @@ def rolled(monkeypatch, stored):
     would."""
     done = []
 
-    async def rotate(company_id, webhook_id, sealed, until, user_id):
+    async def rotate(session, company_id, webhook_id, sealed, until, user_id):
         hook = next(
             (
                 item

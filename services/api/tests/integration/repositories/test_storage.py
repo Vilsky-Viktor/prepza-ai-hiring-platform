@@ -13,6 +13,8 @@ from api.core.db import Session
 from api.main import app
 from api.models.api import ApiKey, WebhookDelivery
 from api.repositories import keys, webhooks
+from tests.integration import transactions
+from tests.integration.transactions import transaction
 
 # A company's most keys and web hooks (MAX_API_KEYS and MAX_WEBHOOKS in the limit list).
 MAX_KEYS = 10
@@ -44,12 +46,14 @@ def test_a_key_is_found_by_its_hash_and_its_use_noted_at_most_once_a_minute(run)
     hashed = uuid.uuid4().hex * 2
 
     async def scenario():
-        made = await keys.add(company, "Site", "pz_abc", hashed, "u1", None, READS, MAX_KEYS)
-        found = await keys.by_hash(hashed)
-        await keys.used(made.id)
-        first = (await keys.by_hash(hashed)).last_used_at
-        await keys.used(made.id)
-        again = (await keys.by_hash(hashed)).last_used_at
+        made = await transaction(
+            keys.add, company, "Site", "pz_abc", hashed, "u1", None, READS, MAX_KEYS
+        )
+        found = await transaction(keys.by_hash, hashed)
+        await transaction(keys.used, made.id)
+        first = (await transaction(keys.by_hash, hashed)).last_used_at
+        await transaction(keys.used, made.id)
+        again = (await transaction(keys.by_hash, hashed)).last_used_at
 
         # A minute on, it's noted again.
         async with Session() as session:
@@ -59,8 +63,8 @@ def test_a_key_is_found_by_its_hash_and_its_use_noted_at_most_once_a_minute(run)
             )
             await session.commit()
 
-        await keys.used(made.id)
-        later = (await keys.by_hash(hashed)).last_used_at
+        await transaction(keys.used, made.id)
+        later = (await transaction(keys.by_hash, hashed)).last_used_at
 
         return made, found, first, again, later
 
@@ -75,8 +79,10 @@ def test_a_web_hook_remembers_an_event_once_and_forgets_old_ones(run):
     company = uuid.uuid4()
 
     async def scenario():
-        hook = await webhooks.add(company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS)
-        await webhooks.mark_delivered(hook.id, "old")
+        hook = await transaction(
+            webhooks.add, company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS
+        )
+        await transaction(webhooks.mark_delivered, hook.id, "old")
 
         async with Session() as session:
             await session.execute(
@@ -87,10 +93,12 @@ def test_a_web_hook_remembers_an_event_once_and_forgets_old_ones(run):
             await session.commit()
 
         # Twice: Pub/Sub may redeliver while the first is still being handled.
-        await webhooks.mark_delivered(hook.id, "e1")
-        await webhooks.mark_delivered(hook.id, "e1")
+        await transaction(webhooks.mark_delivered, hook.id, "e1")
+        await transaction(webhooks.mark_delivered, hook.id, "e1")
 
-        return await webhooks.delivered(hook.id, "e1"), await webhooks.delivered(hook.id, "old")
+        return await transaction(webhooks.delivered, hook.id, "e1"), await transaction(
+            webhooks.delivered, hook.id, "old"
+        )
 
     new, old = run(scenario())
 
@@ -102,10 +110,16 @@ def test_a_deleted_company_loses_its_keys_web_hooks_and_their_deliveries(run):
     deleted = push("company.deleted", {"company_id": str(company)}, f"m-{uuid.uuid4()}")
 
     async def scenario():
-        await keys.add(company, "Site", "pz_a", uuid.uuid4().hex * 2, "u1", None, READS, MAX_KEYS)
-        await keys.add(other, "Site", "pz_b", uuid.uuid4().hex * 2, "u1", None, READS, MAX_KEYS)
-        hook = await webhooks.add(company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS)
-        await webhooks.mark_delivered(hook.id, "e1")
+        await transaction(
+            keys.add, company, "Site", "pz_a", uuid.uuid4().hex * 2, "u1", None, READS, MAX_KEYS
+        )
+        await transaction(
+            keys.add, other, "Site", "pz_b", uuid.uuid4().hex * 2, "u1", None, READS, MAX_KEYS
+        )
+        hook = await transaction(
+            webhooks.add, company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS
+        )
+        await transaction(webhooks.mark_delivered, hook.id, "e1")
 
         async with api() as client:
             codes = [
@@ -121,9 +135,9 @@ def test_a_deleted_company_loses_its_keys_web_hooks_and_their_deliveries(run):
 
         return (
             codes,
-            await keys.of_company(company),
-            await keys.of_company(other),
-            await webhooks.of_company(company),
+            await transaction(keys.of_company, company),
+            await transaction(keys.of_company, other),
+            await transaction(webhooks.of_company, company),
             deliveries,
         )
 
@@ -138,19 +152,31 @@ def test_a_deleted_account_loses_the_keys_and_web_hooks_it_made(run):
     company = uuid.uuid4()
 
     async def scenario():
-        await keys.add(company, "Mine", "pz_m", uuid.uuid4().hex * 2, "gone", None, READS, MAX_KEYS)
-        await keys.add(
-            company, "Theirs", "pz_t", uuid.uuid4().hex * 2, "stays", None, READS, MAX_KEYS
+        await transaction(
+            keys.add, company, "Mine", "pz_m", uuid.uuid4().hex * 2, "gone", None, READS, MAX_KEYS
         )
-        await webhooks.add(company, "https://example.com/x", "sealed", "gone", MAX_WEBHOOKS)
-        exported = [key.name for key in await keys.of_user("gone")]
-        await keys.remove_user("gone")
-        await webhooks.remove_user("gone")
+        await transaction(
+            keys.add,
+            company,
+            "Theirs",
+            "pz_t",
+            uuid.uuid4().hex * 2,
+            "stays",
+            None,
+            READS,
+            MAX_KEYS,
+        )
+        await transaction(
+            webhooks.add, company, "https://example.com/x", "sealed", "gone", MAX_WEBHOOKS
+        )
+        exported = [key.name for key in await transaction(keys.of_user, "gone")]
+        await transaction(keys.remove_user, "gone")
+        await transaction(webhooks.remove_user, "gone")
 
         return (
             exported,
-            [key.name for key in await keys.of_company(company)],
-            await webhooks.of_user("gone"),
+            [key.name for key in await transaction(keys.of_company, company)],
+            await transaction(webhooks.of_user, "gone"),
         )
 
     exported, left, hooks = run(scenario())
@@ -166,13 +192,18 @@ def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run, monke
     company = uuid.uuid4()
 
     def new_key():
-        return keys.add(company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, READS, MAX_KEYS)
+        return transaction(
+            keys.add, company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, READS, MAX_KEYS
+        )
 
     def new_hook():
-        return webhooks.add(company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS)
+        return transaction(
+            webhooks.add, company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS
+        )
 
-    async def at_the_same_time(module, add):
-        held = hold_first_commit(monkeypatch, module)
+    async def at_the_same_time(add):
+        # The first add's transaction waits at its commit, holding the company's lock.
+        held = hold_first_commit(monkeypatch, transactions)
         _, second = await race(os.environ["DATABASE_URL"], held, add(), add())
 
         return second
@@ -185,10 +216,10 @@ def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run, monke
             await new_hook()
 
         return (
-            await at_the_same_time(keys, new_key),
-            await at_the_same_time(webhooks, new_hook),
-            len(await keys.of_company(company)),
-            len(await webhooks.of_company(company)),
+            await at_the_same_time(new_key),
+            await at_the_same_time(new_hook),
+            len(await transaction(keys.of_company, company)),
+            len(await transaction(webhooks.of_company, company)),
         )
 
     assert run(scenario()) == (None, None, MAX_KEYS, MAX_WEBHOOKS)

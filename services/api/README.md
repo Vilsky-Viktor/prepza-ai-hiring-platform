@@ -14,14 +14,20 @@ src/api/
 ├── api/dependencies.py     # The API key and its permissions, calls from other services
 ├── core/                   # db.py (engine, Session), exceptions.py, security.py (service tokens)
 ├── handlers/               # Companies' Pub/Sub events, one module per event; dispatch.py picks it
-├── services/               # Key checks, management, web hook sends and retries, idempotency
-├── repositories/           # Database queries: keys, web hooks, deliveries, retries, the log
+├── services/               # Key checks, management, web hook sends and retries, account
+│                           # deletions, idempotency; each opens its transaction
+├── repositories/           # Database queries: keys, web hooks, deliveries, retries, the log;
+│                           # take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions; fixed values and the API description
 └── integrations/           # Companies, Redis, the web hooks' HTTP client
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
+
+Routes and handlers call services; services open the transaction (`async with
+Session.begin() as session:`) and pass it to the repositories, so an action's steps are saved
+together (`tests/unit/test_layers.py` checks the imports and that no repository commits).
 
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,
 `prepend_sys_path` for Alembic), so the package imports as `api` (`api.api.v1.public`).

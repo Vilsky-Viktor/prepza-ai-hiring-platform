@@ -7,6 +7,7 @@ from prepza_common.auth.encryption import encrypt
 from prepza_common.http.public_urls import resolved_address
 from prepza_common.i18n.i18n import TemplateError
 from prepza_common.limits.limits import limit, record_hit
+from prepza_common.limits.rate_limit import hit_or_skip
 
 from api.config import settings
 from api.constants.api import KEY_EXPIRY_MONTHS, SECRET_OVERLAP, KeyExpiry
@@ -17,6 +18,7 @@ from api.constants.permissions import (
     PERMISSION_GROUPS,
     Permission,
 )
+from api.core.db import Session
 from api.helpers.keys import add_months, expired, new_key, with_implied
 from api.helpers.webhooks import masked, new_secret
 from api.integrations import companies
@@ -33,19 +35,23 @@ from api.schemas.manage import (
     WebhookAttemptOut,
     WebhookOut,
 )
+from api.services import webhooks as webhook_events
 
 
 async def overview(company_id: UUID, editor: bool) -> ApiSettingsOut:
     """A web hook shows as stopped while the member who added it is no longer an owner or admin,
     as it gets no events then (services/webhooks.py). Only an `editor` sees its whole address."""
-    hooks = await webhooks.of_company(company_id)
+    async with Session() as session:
+        hooks = await webhooks.of_company(session, company_id)
+        company_keys = await keys.of_company(session, company_id)
+
     editors = {
         maker: (await companies.access(company_id, maker))["editor"]
         for maker in {hook.created_by for hook in hooks}
     }
 
     return ApiSettingsOut(
-        keys=[key_out(key) for key in await keys.of_company(company_id)],
+        keys=[key_out(key) for key in company_keys],
         webhooks=[
             WebhookOut.model_validate(hook, from_attributes=True).model_copy(
                 update={
@@ -82,16 +88,19 @@ async def create_key(
     months = KEY_EXPIRY_MONTHS[expiry]
     expires_at = add_months(datetime.now(UTC), months) if months else None
     most = await limit(get_redis(), "MAX_API_KEYS")
-    row = await keys.add(
-        company_id,
-        name.strip(),
-        shown,
-        hashed,
-        user_id,
-        expires_at,
-        with_implied(permissions),
-        most,
-    )
+
+    async with Session.begin() as session:
+        row = await keys.add(
+            session,
+            company_id,
+            name.strip(),
+            shown,
+            hashed,
+            user_id,
+            expires_at,
+            with_implied(permissions),
+            most,
+        )
 
     if row is None:
         await record_hit("MAX_API_KEYS", company_id=company_id, user_id=user_id)
@@ -107,10 +116,11 @@ async def narrow_key(
     company_id: UUID, key_id: UUID, permissions: list[Permission], user_id: str
 ) -> KeyOut:
     """Only takes permissions away: a leaked key never gains one."""
-    row = await keys.narrow(company_id, key_id, with_implied(permissions), user_id)
+    async with Session.begin() as session:
+        row = await keys.narrow(session, company_id, key_id, with_implied(permissions), user_id)
 
-    if row is None and await keys.get(company_id, key_id) is None:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "API key not found")
+        if row is None and await keys.get(session, company_id, key_id) is None:
+            raise HTTPException(status.HTTP_404_NOT_FOUND, "API key not found")
 
     if row is None:
         raise HTTPException(status.HTTP_409_CONFLICT, ONLY_NARROWING)
@@ -119,7 +129,10 @@ async def narrow_key(
 
 
 async def remove_key(company_id: UUID, key_id: UUID, user_id: str) -> None:
-    if not await keys.remove(company_id, key_id, user_id):
+    async with Session.begin() as session:
+        removed = await keys.remove(session, company_id, key_id, user_id)
+
+    if not removed:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "API key not found")
 
 
@@ -144,7 +157,9 @@ async def create_webhook(company_id: UUID, url: str, user_id: str) -> NewWebhook
     secret = new_secret()
     sealed = encrypt(settings.api_encryption_key, secret)
     most = await limit(get_redis(), "MAX_WEBHOOKS")
-    row = await webhooks.add(company_id, url, sealed, user_id, most)
+
+    async with Session.begin() as session:
+        row = await webhooks.add(session, company_id, url, sealed, user_id, most)
 
     if row is None:
         await record_hit("MAX_WEBHOOKS", company_id=company_id, user_id=user_id)
@@ -165,19 +180,26 @@ async def rotate_secret(company_id: UUID, webhook_id: UUID, user_id: str) -> New
     until = datetime.now(UTC) + SECRET_OVERLAP
     sealed = encrypt(settings.api_encryption_key, secret)
 
-    if await webhooks.rotate(company_id, webhook_id, sealed, until, user_id) is None:
+    async with Session.begin() as session:
+        rotated = await webhooks.rotate(session, company_id, webhook_id, sealed, until, user_id)
+
+    if rotated is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Web hook not found")
 
     return NewSecretOut(secret=secret, previous_until=until)
 
 
 async def remove_webhook(company_id: UUID, webhook_id: UUID, user_id: str) -> None:
-    if not await webhooks.remove(company_id, webhook_id, user_id):
+    async with Session.begin() as session:
+        removed = await webhooks.remove(session, company_id, webhook_id, user_id)
+
+    if not removed:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Web hook not found")
 
 
 async def webhook(company_id: UUID, webhook_id: UUID) -> Webhook:
-    found = await webhooks.get(company_id, webhook_id)
+    async with Session() as session:
+        found = await webhooks.get(session, company_id, webhook_id)
 
     if found is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Web hook not found")
@@ -188,7 +210,26 @@ async def webhook(company_id: UUID, webhook_id: UUID) -> Webhook:
 async def webhook_log(company_id: UUID, webhook_id: UUID) -> list[WebhookAttemptOut]:
     hook = await webhook(company_id, webhook_id)
 
-    return [
-        WebhookAttemptOut.model_validate(row, from_attributes=True)
-        for row in await webhook_log_store.latest(hook.id)
-    ]
+    async with Session() as session:
+        rows = await webhook_log_store.latest(session, hook.id)
+
+    return [WebhookAttemptOut.model_validate(row, from_attributes=True) for row in rows]
+
+
+async def test_webhook(company_id: UUID, webhook_id: UUID, user_id: str) -> bool:
+    """A signed test event sent to the company's web hook now, up to WEBHOOK_TESTS_PER_HOUR a
+    company; whether it took it. The company's action log gets it as `user_id`'s."""
+    hook = await webhook(company_id, webhook_id)
+    await hit_or_skip(
+        get_redis(),
+        f"rate:webhook-tests:{company_id}",
+        "WEBHOOK_TESTS_PER_HOUR",
+        company_id=company_id,
+        user_id=user_id,
+    )
+    ok = await webhook_events.test(hook)
+
+    async with Session.begin() as session:
+        await webhooks.tested(session, hook, user_id)
+
+    return ok

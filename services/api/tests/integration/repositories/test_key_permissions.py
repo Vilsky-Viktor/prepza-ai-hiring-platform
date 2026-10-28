@@ -8,6 +8,7 @@ from sqlalchemy import text
 from api.core.db import Session
 from api.repositories import keys
 from tests.integration.repositories.test_action_log_events import logged
+from tests.integration.transactions import transaction
 
 READS = ["interviews:read", "candidates:read"]
 EVERY_API_PERMISSION = [
@@ -22,7 +23,9 @@ EVERY_API_PERMISSION = [
 
 
 def new_key(company, permissions):
-    return keys.add(company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, permissions, 10)
+    return transaction(
+        keys.add, company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, permissions, 10
+    )
 
 
 def test_a_keys_permissions_are_only_narrowed(run):
@@ -30,13 +33,20 @@ def test_a_keys_permissions_are_only_narrowed(run):
 
     async def scenario():
         made = await new_key(company, ["candidates:invite", *READS])
-        narrowed = await keys.narrow(company, made.id, ["candidates:read"], "u2")
-        widened = await keys.narrow(company, made.id, READS, "u2")
-        elsewhere = await keys.narrow(uuid.uuid4(), made.id, ["candidates:read"], "u2")
+        narrowed = await transaction(keys.narrow, company, made.id, ["candidates:read"], "u2")
+        widened = await transaction(keys.narrow, company, made.id, READS, "u2")
+        elsewhere = await transaction(keys.narrow, uuid.uuid4(), made.id, ["candidates:read"], "u2")
         # Nothing taken away: nothing to log.
-        same = await keys.narrow(company, made.id, ["candidates:read"], "u2")
+        same = await transaction(keys.narrow, company, made.id, ["candidates:read"], "u2")
 
-        return narrowed, widened, elsewhere, same, await keys.get(company, made.id), made
+        return (
+            narrowed,
+            widened,
+            elsewhere,
+            same,
+            await transaction(keys.get, company, made.id),
+            made,
+        )
 
     narrowed, widened, elsewhere, same, stored, made = run(scenario())
     events = run(logged(company))
@@ -62,11 +72,11 @@ def test_two_narrowings_at_once_never_add_back_what_the_other_took(run):
     async def scenario():
         made = await new_key(company, ["credits:read", *READS])
         await asyncio.gather(
-            keys.narrow(company, made.id, ["credits:read", "interviews:read"], "u1"),
-            keys.narrow(company, made.id, ["credits:read", "candidates:read"], "u2"),
+            transaction(keys.narrow, company, made.id, ["credits:read", "interviews:read"], "u1"),
+            transaction(keys.narrow, company, made.id, ["credits:read", "candidates:read"], "u2"),
         )
 
-        return await keys.get(company, made.id)
+        return await transaction(keys.get, company, made.id)
 
     stored = run(scenario())
 

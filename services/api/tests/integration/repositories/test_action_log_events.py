@@ -10,6 +10,7 @@ from sqlalchemy import select
 from api.core.db import Session
 from api.models.outbox import OutboxEvent
 from api.repositories import webhooks
+from tests.integration.transactions import transaction
 
 
 async def logged(company) -> list[dict]:
@@ -31,11 +32,13 @@ def test_a_web_hook_added_tested_and_deleted_is_logged_by_its_site(run):
     company = uuid.uuid4()
 
     async def scenario():
-        hook = await webhooks.add(company, "https://hooks.zapier.com/secret/path", "s", "ann", 5)
-        await webhooks.tested(hook, "bob")
-        await webhooks.remove(company, hook.id, "ann")
+        hook = await transaction(
+            webhooks.add, company, "https://hooks.zapier.com/secret/path", "s", "ann", 5
+        )
+        await transaction(webhooks.tested, hook, "bob")
+        await transaction(webhooks.remove, company, hook.id, "ann")
         # Gone already: nothing more.
-        await webhooks.remove(company, hook.id, "ann")
+        await transaction(webhooks.remove, company, hook.id, "ann")
 
         return hook, await logged(company)
 
@@ -54,11 +57,13 @@ def test_a_rolled_secret_keeps_the_old_one_until_its_overlap_ends_and_is_logged(
     until = datetime(2026, 10, 23, 9, tzinfo=UTC)
 
     async def scenario():
-        hook = await webhooks.add(company, "https://hooks.example.com/x", "sealed-1", "ann", 5)
-        rolled = await webhooks.rotate(company, hook.id, "sealed-2", until, "bob")
+        hook = await transaction(
+            webhooks.add, company, "https://hooks.example.com/x", "sealed-1", "ann", 5
+        )
+        rolled = await transaction(webhooks.rotate, company, hook.id, "sealed-2", until, "bob")
         # Another company's id finds nothing to roll.
-        other = await webhooks.rotate(uuid.uuid4(), hook.id, "sealed-3", until, "eve")
-        found = await webhooks.get(company, hook.id)
+        other = await transaction(webhooks.rotate, uuid.uuid4(), hook.id, "sealed-3", until, "eve")
+        found = await transaction(webhooks.get, company, hook.id)
 
         return rolled, other, found, await logged(company)
 

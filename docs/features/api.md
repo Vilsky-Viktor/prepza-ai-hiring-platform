@@ -102,6 +102,7 @@ A key created, deleted or narrowed, and a web hook added, tested, given a new se
 - It's reached at `/api/v1/` (the gateway locally, the load balancer's `v1` path in Google Cloud). The management routes (`/api/v1/manage`, for the API page, signed in with Firebase) and the internal ones are left out of the public OpenAPI.
 - `POST /internal/keys/verify` checks a key for the assistant's MCP server exactly as the API does (the same expiry, maker and rate-limit checks, counted against the company's API limit) and answers its id, company, maker and permissions.
 - It consumes companies' `candidate.*` events and `interview.ready` (web hooks) and `company.deleted` (deletes the company's keys and web hooks).
+- Each action is one save (python-services.md, routes → services → repositories): deleting an account (its keys, web hooks and results waiting to be sent again) or a company, a delivery that went through (noted, logged, a paused web hook started again) and giving up on an event (dropped, its web hook paused). A failure part way leaves nothing half done, and the retry finds the whole action still to do.
 
 ## Settings
 

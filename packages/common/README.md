@@ -57,7 +57,10 @@ company_id: filled from the parent in batches, indexed concurrently, NOT NULL th
 (`IdPageParams`, after the last one), and `every_id` reads such a list a page at a time.
 Unit tests: `tests/fake_redis.py` is the one fake Redis (`FakeRedis`, `DownRedis`) that this package's
 and every service's unit tests import (`from fake_redis import FakeRedis`; each service's pytest
-`pythonpath` includes `../../packages/common/tests`), never a copy of it.
+`pythonpath` includes `../../packages/common/tests`), never a copy of it. `tests/layer_rules.py`
+checks a service in the src layout from its code: imports go one way (routes and handlers →
+services → repositories → models) and repositories never commit; each moved service's
+`tests/unit/test_layers.py` runs `layer_problems` on its package.
 Integration tests: `clean_start` gives every test in a service's `tests/integration` a clean start (the
 tables a fresh migration left empty truncated, the tests' Redis database 15 flushed, the shared HTTP
 client dropped); it refuses any database but a `_test` one and any Redis database but 15. A race

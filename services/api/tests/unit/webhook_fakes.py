@@ -45,22 +45,22 @@ def endpoints(monkeypatch, companies_api):
 
         return found
 
-    async def of_company(company_id):
+    async def of_company(session, company_id):
         return state["hooks"] if company_id == COMPANY else []
 
-    async def delivered(webhook_id, event_id):
+    async def delivered(session, webhook_id, event_id):
         return (webhook_id, event_id) in state["delivered"]
 
-    async def delivered_to(webhook_ids, event_id):
+    async def delivered_to(session, webhook_ids, event_id):
         return {item for item in webhook_ids if (item, event_id) in state["delivered"]}
 
-    async def mark_delivered(webhook_id, event_id):
+    async def mark_delivered(session, webhook_id, event_id):
         state["delivered"].add((webhook_id, event_id))
 
-    async def set_failing(webhook_id, failing):
+    async def set_failing(session, webhook_id, failing):
         next(item for item in state["hooks"] if item.id == webhook_id).failing = failing
 
-    async def set_stopped(webhook_id, stopped, notice=None):
+    async def set_stopped(session, webhook_id, stopped, notice=None):
         found = next(item for item in state["hooks"] if item.id == webhook_id)
         changed = found.stopped != stopped
         found.stopped = stopped
@@ -76,7 +76,7 @@ def endpoints(monkeypatch, companies_api):
 
         state["posted"].append((url, json.loads(body), signature))
 
-    async def add_retry(webhook_id, event_id, body, next_at):
+    async def add_retry(session, webhook_id, event_id, body, next_at):
         state["retries"].setdefault(
             (webhook_id, event_id),
             SimpleNamespace(
@@ -88,7 +88,7 @@ def endpoints(monkeypatch, companies_api):
             ),
         )
 
-    async def claim(limit):
+    async def claim(session, limit):
         now = datetime.now(UTC)
         hooks = {item.id: item for item in state["hooks"]}
         due = [
@@ -99,14 +99,14 @@ def endpoints(monkeypatch, companies_api):
 
         return due[:limit]
 
-    async def postpone(webhook_id, event_id, attempts, next_at):
+    async def postpone(session, webhook_id, event_id, attempts, next_at):
         row = state["retries"][(webhook_id, event_id)]
         row.attempts, row.next_at = attempts, next_at
 
-    async def remove_retry(webhook_id, event_id):
+    async def remove_retry(session, webhook_id, event_id):
         state["retries"].pop((webhook_id, event_id))
 
-    async def log(webhook_id, event_id, event_type, ok, result):
+    async def log(session, webhook_id, event_id, event_type, ok, result):
         state["log"].append((webhook_id, event_type, ok, result))
 
     monkeypatch.setattr(delivery.webhook_log, "add", log)

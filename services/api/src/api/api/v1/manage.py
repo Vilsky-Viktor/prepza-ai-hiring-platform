@@ -2,11 +2,8 @@ from uuid import UUID
 
 from fastapi import APIRouter, status
 from prepza_common.auth.auth import CurrentUser
-from prepza_common.limits.rate_limit import hit_or_skip
 
 from api.integrations import companies
-from api.integrations.redis import get_redis
-from api.repositories import webhooks
 from api.schemas.manage import (
     ApiSettingsOut,
     KeyIn,
@@ -21,7 +18,6 @@ from api.schemas.manage import (
 )
 from api.services import manage
 from api.services import outbox as outbox_service
-from api.services import webhooks as webhook_events
 
 # The company's keys and web hooks, for its API page; not part of the public API.
 router = APIRouter(prefix="/manage", tags=["manage"], include_in_schema=False)
@@ -102,16 +98,7 @@ async def test_webhook(company_id: UUID, webhook_id: UUID, user: CurrentUser) ->
     """Owners and admins send a signed test event to a web hook, now."""
     await companies.require(company_id, user.uid, editor=True)
 
-    hook = await manage.webhook(company_id, webhook_id)
-    await hit_or_skip(
-        get_redis(),
-        f"rate:webhook-tests:{company_id}",
-        "WEBHOOK_TESTS_PER_HOUR",
-        company_id=company_id,
-        user_id=user.uid,
-    )
-    ok = await webhook_events.test(hook)
-    await webhooks.tested(hook, user.uid)
+    ok = await manage.test_webhook(company_id, webhook_id, user.uid)
     await outbox_service.flush_quietly()
 
     return WebhookTestOut(ok=ok)

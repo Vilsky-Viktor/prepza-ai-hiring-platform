@@ -154,13 +154,15 @@ def stored(monkeypatch):
         "narrowed": [],
     }
 
-    async def by_hash(hashed):
+    async def by_hash(session, hashed):
         return next((key for key in state["keys"] if key.hash == hashed), None)
 
-    async def used(key_id):
+    async def used(session, key_id):
         state["used"].append(key_id)
 
-    async def add_key(company_id, name, shown, hashed, user_id, expires_at, permissions, limit):
+    async def add_key(
+        session, company_id, name, shown, hashed, user_id, expires_at, permissions, limit
+    ):
         if sum(key.company_id == company_id for key in state["keys"]) >= limit:
             return None
 
@@ -180,14 +182,14 @@ def stored(monkeypatch):
 
         return key
 
-    async def keys_of(company_id):
+    async def keys_of(session, company_id):
         return [key for key in state["keys"] if key.company_id == company_id]
 
-    async def get_key(company_id, key_id):
-        return next((key for key in await keys_of(company_id) if key.id == key_id), None)
+    async def get_key(session, company_id, key_id):
+        return next((key for key in await keys_of(session, company_id) if key.id == key_id), None)
 
-    async def narrow(company_id, key_id, permissions, user_id):
-        key = await get_key(company_id, key_id)
+    async def narrow(session, company_id, key_id, permissions, user_id):
+        key = await get_key(session, company_id, key_id)
 
         if key is None or not set(permissions) <= set(key.permissions):
             return None
@@ -201,7 +203,7 @@ def stored(monkeypatch):
 
         return key
 
-    async def add_webhook(company_id, url, sealed, user_id, limit):
+    async def add_webhook(session, company_id, url, sealed, user_id, limit):
         if sum(hook.company_id == company_id for hook in state["webhooks"]) >= limit:
             return None
 
@@ -219,7 +221,7 @@ def stored(monkeypatch):
 
         return hook
 
-    async def webhooks_of(company_id):
+    async def webhooks_of(session, company_id):
         return [hook for hook in state["webhooks"] if hook.company_id == company_id]
 
     async def hit(redis, key, name, message="Too many requests. Try again later.", **whose):

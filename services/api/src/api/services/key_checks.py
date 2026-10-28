@@ -9,6 +9,7 @@ from prepza_common.redis import memory_cache
 
 from api.constants.api import ACCESS_CACHE_SECONDS, LAST_USED_EVERY
 from api.constants.error_codes import API_KEY_EXPIRED, INVALID_API_KEY, KEY_CREATOR_LOST_ACCESS
+from api.core.db import Session
 from api.helpers.keys import expired
 from api.integrations import companies
 from api.integrations.redis import get_redis
@@ -20,7 +21,11 @@ async def checked_key(raw: str | None) -> ApiKey:
     """The key `raw` is, counted as one request. It works until it expires, while whoever made it
     is still an owner or admin of its company, up to API_REQUESTS_PER_MINUTE requests a minute for
     the whole company (the API and the MCP server together); a 401 or 429 otherwise."""
-    found = await keys.by_hash(hashed(raw)) if raw else None
+    found = None
+
+    if raw:
+        async with Session() as session:
+            found = await keys.by_hash(session, hashed(raw))
 
     if found is None:
         raise CodedError(status.HTTP_401_UNAUTHORIZED, "Invalid API key", INVALID_API_KEY)
@@ -41,7 +46,8 @@ async def checked_key(raw: str | None) -> ApiKey:
     await limit(found.company_id)
 
     if found.last_used_at is None or now - found.last_used_at >= LAST_USED_EVERY:
-        await keys.used(found.id)
+        async with Session.begin() as session:
+            await keys.used(session, found.id)
 
     return found
 

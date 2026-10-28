@@ -5,10 +5,9 @@ from types import SimpleNamespace
 import pytest
 from fastapi import HTTPException
 
-from api.api.v1 import manage as manage_routes
-from api.handlers import candidate_removed, dispatch
+from api.handlers import dispatch
 from api.repositories import webhooks
-from api.services import manage
+from api.services import accounts, manage
 from api.services import webhooks as delivery
 from tests.unit.conftest import CANDIDATE, COMPANY, INTERVIEW, sign_in
 
@@ -21,10 +20,10 @@ CANDIDATE_DATA = {
 
 @pytest.fixture(autouse=True)
 def no_retries_to_drop(monkeypatch):
-    async def remove_candidate(company_id, interview_id, email):
+    async def remove_candidate(session, company_id, interview_id, email):
         pass
 
-    monkeypatch.setattr(candidate_removed.webhook_retries, "remove_candidate", remove_candidate)
+    monkeypatch.setattr(accounts.webhook_retries, "remove_candidate", remove_candidate)
 
 
 def handle(event_type, data, event_id="e1"):
@@ -109,15 +108,15 @@ def hook_routes(monkeypatch, endpoints):
     hook = endpoints["hook"]("https://a.example/x")
     hook.tested_by = []
 
-    async def get(company_id, webhook_id):
+    async def get(session, company_id, webhook_id):
         return hook if company_id == COMPANY and webhook_id == hook.id else None
 
-    async def latest(webhook_id):
+    async def latest(session, webhook_id):
         sent = datetime(2026, 10, 15, tzinfo=UTC)
 
         return [SimpleNamespace(event_type="test", ok=True, result="delivered", at=sent)]
 
-    async def tested(found, user_id):
+    async def tested(session, found, user_id):
         found.tested_by.append(user_id)
 
     monkeypatch.setattr(webhooks, "get", get)
@@ -167,7 +166,7 @@ def test_test_events_past_the_hourly_limit_are_refused_and_not_sent(
         if len(counted) > 1:
             raise HTTPException(429, "Too many requests. Try again later.")
 
-    monkeypatch.setattr(manage_routes, "hit_or_skip", one_left)
+    monkeypatch.setattr(manage, "hit_or_skip", one_left)
     sign_in("u1")
     url = f"/manage/webhooks/{hook_routes.id}/test"
     params = {"company_id": str(COMPANY)}

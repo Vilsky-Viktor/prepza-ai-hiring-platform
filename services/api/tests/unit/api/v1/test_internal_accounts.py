@@ -8,7 +8,7 @@ HEADERS = {
 }
 
 
-async def nothing(user_id):
+async def nothing(session, user_id):
     return []
 
 
@@ -17,7 +17,7 @@ def test_library_deletes_and_exports_a_users_keys_web_hooks_and_waiting_results(
 ):
     removed = []
 
-    async def remove_user(user_id):
+    async def remove_user(session, user_id):
         removed.append(user_id)
 
     monkeypatch.setattr(keys, "remove_user", remove_user)
@@ -25,7 +25,7 @@ def test_library_deletes_and_exports_a_users_keys_web_hooks_and_waiting_results(
     monkeypatch.setattr(keys, "of_user", nothing)
     monkeypatch.setattr(webhooks, "of_user", nothing)
 
-    async def remove_email(email):
+    async def remove_email(session, email):
         removed.append(email)
 
     monkeypatch.setattr(webhook_retries, "remove_email", remove_email)

@@ -7,8 +7,9 @@ from cryptography.fernet import Fernet
 from fastapi import HTTPException
 
 from api.constants.api import RETRY_FIRST_DELAY
-from api.handlers import company_deleted, dispatch
+from api.handlers import dispatch
 from api.integrations import webhooks as integration
+from api.services import accounts
 from api.services import webhooks as delivery
 from tests.unit.conftest import CANDIDATE, COMPANY, INTERVIEW
 
@@ -176,14 +177,14 @@ def test_companies_busy_raises_so_the_event_comes_again(endpoints, monkeypatch):
 def test_a_deleted_company_loses_its_keys_and_web_hooks(monkeypatch):
     removed = []
 
-    async def remove_keys(company_id):
+    async def remove_keys(session, company_id):
         removed.append(("keys", company_id))
 
-    async def remove_hooks(company_id):
+    async def remove_hooks(session, company_id):
         removed.append(("webhooks", company_id))
 
-    monkeypatch.setattr(company_deleted.keys, "remove_company", remove_keys)
-    monkeypatch.setattr(company_deleted.webhooks, "remove_company", remove_hooks)
+    monkeypatch.setattr(accounts.keys, "remove_company", remove_keys)
+    monkeypatch.setattr(accounts.webhooks, "remove_company", remove_hooks)
     asyncio.run(dispatch.handle("company.deleted", {"company_id": str(COMPANY)}, "e1"))
     asyncio.run(dispatch.handle("interview.ready", {"interview_id": str(INTERVIEW)}, "e2"))
 

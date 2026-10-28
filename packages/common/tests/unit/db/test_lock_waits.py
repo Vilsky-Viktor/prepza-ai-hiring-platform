@@ -1,4 +1,5 @@
 import asyncio
+from contextlib import asynccontextmanager
 
 from prepza_common.db.lock_waits import HeldCommit
 
@@ -29,4 +30,42 @@ def test_only_the_first_session_waits_at_its_commit_until_released():
         return before
 
     assert asyncio.run(scenario()) == ["second"]
+    assert log == ["second", "first"]
+
+
+class FakeFactory:
+    """A session factory whose transactions (`begin()`) note their name when they commit."""
+
+    def __init__(self, log: list[str], names):
+        self.log = log
+        self.names = names
+
+    @asynccontextmanager
+    async def begin(self):
+        name = next(self.names)
+
+        yield name
+
+        self.log.append(name)
+
+
+def test_only_the_first_transaction_waits_before_it_commits_until_released():
+    log = []
+
+    async def scenario():
+        held = HeldCommit(FakeFactory(log, iter(["first", "second"])))
+
+        async def run():
+            async with held.begin() as name:
+                return name
+
+        committing = asyncio.create_task(run())
+        await held.reached.wait()
+        await run()
+        before = list(log)
+        held.release.set()
+
+        return before, await committing
+
+    assert asyncio.run(scenario()) == (["second"], "first")
     assert log == ["second", "first"]

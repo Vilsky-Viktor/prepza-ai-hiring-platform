@@ -2,22 +2,29 @@ import uuid
 
 from api.constants.api import WEBHOOK_LOG_KEPT
 from api.repositories import webhook_log, webhooks
+from tests.integration.transactions import transaction
 
 
 def test_a_web_hooks_log_keeps_its_latest_sends_and_goes_with_it(run):
     async def scenario():
-        hook = await webhooks.add(uuid.uuid4(), "https://a.example/x", "secret", "ann", 5)
-        other = await webhooks.add(uuid.uuid4(), "https://b.example/x", "secret", "ann", 5)
+        hook = await transaction(
+            webhooks.add, uuid.uuid4(), "https://a.example/x", "secret", "ann", 5
+        )
+        other = await transaction(
+            webhooks.add, uuid.uuid4(), "https://b.example/x", "secret", "ann", 5
+        )
 
         for sent in range(WEBHOOK_LOG_KEPT + 3):
-            await webhook_log.add(hook.id, f"e{sent}", "candidate.started", True, "delivered")
+            await transaction(
+                webhook_log.add, hook.id, f"e{sent}", "candidate.started", True, "delivered"
+            )
 
-        await webhook_log.add(other.id, "x", "test", False, "500")
-        kept = await webhook_log.latest(hook.id)
-        others = await webhook_log.latest(other.id)
-        await webhooks.remove(hook.company_id, hook.id, "u1")
+        await transaction(webhook_log.add, other.id, "x", "test", False, "500")
+        kept = await transaction(webhook_log.latest, hook.id)
+        others = await transaction(webhook_log.latest, other.id)
+        await transaction(webhooks.remove, hook.company_id, hook.id, "u1")
 
-        return kept, others, await webhook_log.latest(hook.id)
+        return kept, others, await transaction(webhook_log.latest, hook.id)
 
     kept, others, after = run(scenario())
 
