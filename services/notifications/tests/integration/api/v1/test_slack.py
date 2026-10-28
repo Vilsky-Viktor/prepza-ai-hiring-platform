@@ -2,9 +2,9 @@ import uuid
 from datetime import UTC, datetime, timedelta
 from urllib.parse import parse_qs, urlparse
 
-from event_pushes import push
 import httpx
 import pytest
+from event_pushes import push
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.encryption import encrypt
 from prepza_common.auth.user import User

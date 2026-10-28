@@ -1,7 +1,7 @@
 import uuid
 
-from event_pushes import push
 import pytest
+from event_pushes import push
 
 from library.constants.quality import MIN_ANSWERS
 from library.repositories import answer_stats

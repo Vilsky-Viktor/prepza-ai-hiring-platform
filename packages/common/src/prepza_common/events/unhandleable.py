@@ -9,10 +9,9 @@ import logging
 from collections.abc import Awaitable
 
 import httpx
+from prepza_common.config.event_constants import FINAL_STATUSES
 from sqlalchemy.exc import DataError, IntegrityError, NoResultFound
 from starlette.exceptions import HTTPException
-
-from prepza_common.config.event_constants import FINAL_STATUSES
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +48,4 @@ async def handle_or_drop(handling: Awaitable[None], event_type: str, event_id: s
         if not final(error):
             raise
 
-        logger.error(
-            "Dropped event %s (%s): no retry can handle it", event_id, event_type, exc_info=True
-        )
+        logger.exception("Dropped event %s (%s): no retry can handle it", event_id, event_type)

@@ -4,8 +4,8 @@ back."""
 
 import uuid
 
-from event_pushes import push
 import pytest
+from event_pushes import push
 
 from library.repositories import copy_fixes as copy_storage
 from library.services import copy_fixes

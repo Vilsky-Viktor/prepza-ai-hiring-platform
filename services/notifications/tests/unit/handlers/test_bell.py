@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from event_pushes import push
 import pytest
+from event_pushes import push
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.events.notifications import (

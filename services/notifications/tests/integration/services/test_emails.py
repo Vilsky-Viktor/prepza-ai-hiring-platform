@@ -2,9 +2,9 @@ import base64
 import json
 import uuid
 
-from event_pushes import push
 import httpx
 import pytest
+from event_pushes import push
 from prepza_common.ai.ai_constants import LIMIT_HIT
 from prepza_common.http import http
 

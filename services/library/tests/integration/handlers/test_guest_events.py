@@ -2,8 +2,8 @@
 
 import uuid
 
-from event_pushes import push
 import httpx
+from event_pushes import push
 
 from library.main import app
 from library.repositories import feedback, legal

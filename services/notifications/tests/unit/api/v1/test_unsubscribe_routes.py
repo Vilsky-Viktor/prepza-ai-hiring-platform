@@ -1,7 +1,7 @@
 import hashlib
 
-from event_pushes import push
 import pytest
+from event_pushes import push
 
 from notifications.config import settings
 from notifications.constants.unsubscribe import UnsubscribeType

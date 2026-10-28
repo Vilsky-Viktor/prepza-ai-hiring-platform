@@ -3,9 +3,9 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from event_pushes import push
 import httpx
 import pytest
+from event_pushes import push
 from fastapi import HTTPException
 from prepza_common.limits.limit_list import LIMITS_KEY
 from prepza_common.redis import memory_cache
