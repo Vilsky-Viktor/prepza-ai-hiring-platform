@@ -1,4 +1,3 @@
-import asyncio
 from datetime import UTC, datetime
 from uuid import uuid4
 
@@ -9,14 +8,15 @@ from prepza_common.auth.user import User
 from prepza_common.config.constants import RATE_LIMITED
 from prepza_common.limits.limit_list import LIMITS
 
-from rounds.api.v1 import sessions as routes
 from rounds.helpers.review import add_signals, build_review
+from rounds.helpers.sessions import new_sections
 from rounds.main import app
 from rounds.models.answers import Answer
 from rounds.models.sessions import Session
 from rounds.models.signals import Signal
 from rounds.repositories import sessions, signals
 from rounds.schemas.library import TopicQuestions
+from rounds.services import signals as signal_service
 
 QUESTION_ID = uuid4()
 
@@ -61,21 +61,7 @@ def test_answers_under_three_seconds_are_fast():
     assert not build_review(session(seconds=3))[0].answer.fast
 
 
-def test_each_candidate_gets_their_own_option_order(monkeypatch):
-    class FakeDb:
-        async def __aenter__(self):
-            return self
-
-        async def __aexit__(self, *args):
-            return False
-
-        def add_all(self, rows):
-            pass
-
-        async def commit(self):
-            pass
-
-    monkeypatch.setattr(sessions, "Db", FakeDb)
+def test_each_candidate_gets_their_own_option_order():
     options = [{"answer": str(i), "correct": i == 0} for i in range(4)]
     topic = TopicQuestions.model_validate(
         {
@@ -88,7 +74,7 @@ def test_each_candidate_gets_their_own_option_order(monkeypatch):
     orders = set()
 
     for _ in range(30):
-        rows = asyncio.run(sessions.create_many("cand", uuid4(), [topic], 60, company_id=uuid4()))
+        rows = new_sections("cand", uuid4(), [topic], 60, datetime.now(UTC), company_id=uuid4())
         question = rows[0].questions[0]
         orders.add(tuple(option["answer"] for option in question["options"]))
         assert [option["answer"] for option in question["options"] if option["correct"]] == ["0"]
@@ -103,10 +89,10 @@ def test_the_browser_reports_signals(monkeypatch, redis, published, edited):
     row.question_shown_at = datetime.now(UTC)
     counted = []
 
-    async def fake_get(session_id):
+    async def fake_get(session, session_id):
         return row
 
-    async def fake_add_signal(session_id, question_id, kind):
+    async def fake_add_signal(session, session_id, question_id, kind, most):
         counted.append((question_id, kind))
 
     # At the limit's edited value, or its default when it isn't edited.
@@ -158,15 +144,15 @@ def test_with_redis_down_a_signal_is_still_saved(monkeypatch):
         async def hgetall(self, key):
             raise ConnectionError("Redis is down")
 
-    async def fake_get(session_id):
+    async def fake_get(session, session_id):
         return row
 
-    async def fake_add_signal(session_id, question_id, kind):
+    async def fake_add_signal(session, session_id, question_id, kind, most):
         counted.append((question_id, kind))
 
     monkeypatch.setattr(sessions, "get", fake_get)
     monkeypatch.setattr(signals, "add_signal", fake_add_signal)
-    monkeypatch.setattr(routes, "get_redis", DownRedis)
+    monkeypatch.setattr(signal_service, "get_redis", DownRedis)
     app.dependency_overrides[current_user] = lambda: User(
         uid="cand", email="cand@example.com", email_verified=True
     )
@@ -215,13 +201,13 @@ def test_coming_back_records_how_long_the_leave_lasted(monkeypatch):
     row.question_shown_at = datetime.now(UTC)
     calls = []
 
-    async def fake_get(session_id):
+    async def fake_get(session, session_id):
         return row
 
-    async def fake_add_signal(session_id, question_id, kind):
+    async def fake_add_signal(session, session_id, question_id, kind, most):
         calls.append(("signal", kind))
 
-    async def fake_set_away(session_id, seconds):
+    async def fake_set_away(session, session_id, seconds):
         calls.append(("away", seconds))
 
     monkeypatch.setattr(sessions, "get", fake_get)
@@ -257,13 +243,13 @@ def test_a_practice_round_or_a_preview_records_no_signals(monkeypatch, kind):
     setattr(row, kind, True)
     counted = []
 
-    async def fake_get(session_id):
+    async def fake_get(session, session_id):
         return row
 
-    async def fake_add_signal(session_id, question_id, kind):
+    async def fake_add_signal(session, session_id, question_id, kind, most):
         counted.append(kind)
 
-    async def fake_set_away(session_id, seconds):
+    async def fake_set_away(session, session_id, seconds):
         counted.append("away")
 
     monkeypatch.setattr(sessions, "get", fake_get)

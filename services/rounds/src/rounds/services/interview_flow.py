@@ -3,37 +3,55 @@ from datetime import UTC, datetime
 from prepza_common.auth.user import User
 
 from rounds.constants.rounds import RoundStatus
+from rounds.core.db import Session as Db
 from rounds.helpers.sessions import next_session_question, seconds_left, time_is_up, topic_out
 from rounds.models.sessions import Session
 from rounds.repositories import sessions
 from rounds.schemas.interview_flow import InterviewStep
 from rounds.schemas.rounds import NextQuestion
 from rounds.services import outbox as outbox_service
-from rounds.services.session_access import get_owned_session
+from rounds.services import sections
+from rounds.services.session_access import get_owned_session, read
 from rounds.services.session_expiry import finish_if_expired
 from rounds.services.session_titles import session_out_titled
 
 
 async def own_sections(row: Session, user: User) -> list[Session]:
     """The interview's sections, in order."""
-    rows = await sessions.list_for_invite(row.candidate_invite_id)
+    async with Db() as session:
+        rows = await sessions.list_for_invite(session, row.candidate_invite_id)
 
     return [item for item in rows if item.user_id == user.uid]
 
 
+async def move_on(done: list[Session], shown: Session | None) -> None:
+    """One save for a step: the sections left with no question finish, and the next one's
+    waiting question starts its clock (kept on the section). The finished sections' events are
+    published after it."""
+    async with Db.begin() as session:
+        await sections.finish_open(session, done)
+
+        if shown is not None and shown.question_shown_at is None:
+            shown.question_shown_at = await sessions.mark_shown(session, shown.id)
+
+    if done:
+        await outbox_service.flush_quietly()
+
+
 async def interview_step(row: Session, user: User) -> InterviewStep:
     """The step after the last one: the first open section's waiting question, starting its
-    clock. A section with no question left is finished on the way; with none open, the interview
-    is done. The sections are loaded once; only after a change (a time-out, a finish) are they
-    read again."""
-    sections = await own_sections(row, user)
-    running = [section for section in sections if section.status == RoundStatus.IN_PROGRESS]
+    clock. A section with no question left is finished on the way, with the next question's
+    clock; with none open, the interview is done. The sections are loaded once; only after a
+    change (a time-out, a finish) are they read again."""
+    sections_now = await own_sections(row, user)
+    running = [section for section in sections_now if section.status == RoundStatus.IN_PROGRESS]
     # get_owned_session checked the interview's time only if this section was running.
     changed = bool(
         running
         and row.status != RoundStatus.IN_PROGRESS
         and await finish_if_expired(row.candidate_invite_id)
     )
+    done = []
 
     for section in running:
         # Reloaded: a question whose time ran out counts as wrong, an expired interview ends.
@@ -47,45 +65,45 @@ async def interview_step(row: Session, user: User) -> InterviewStep:
         question = next_session_question(section)
 
         if question is None:
-            await sessions.finish(section.id)
-            await outbox_service.flush_quietly()
+            done.append(section)
             changed = True
 
             continue
 
-        if section.question_shown_at is None:
-            section.question_shown_at = await sessions.mark_shown(section.id)
-
+        await move_on(done, section)
         question.seconds_left = seconds_left(section, datetime.now(UTC))
 
-        return await step_out(section, user, question, None if changed else sections)
+        return await step_out(section, user, question, None if changed else sections_now)
+
+    await move_on(done, None)
 
     if not changed:
-        return await step_out(row, user, None, sections)
+        return await step_out(row, user, None, sections_now)
 
-    return await step_out(await sessions.get(row.id), user, None)
+    return await step_out(await read(row.id), user, None)
 
 
 async def finish_interview(row: Session, user: User) -> InterviewStep:
-    """The candidate ends the interview: every open section finishes; unanswered questions
-    count as wrong."""
-    for section in await own_sections(row, user):
-        if section.status == RoundStatus.IN_PROGRESS:
-            await sessions.finish(section.id)
+    """The candidate ends the interview: every open section finishes, in one save; unanswered
+    questions count as wrong."""
+    open_sections = await own_sections(row, user)
+
+    async with Db.begin() as session:
+        await sections.finish_open(session, open_sections)
 
     await outbox_service.flush_quietly()
 
-    return await step_out(await sessions.get(row.id), user, None)
+    return await step_out(await read(row.id), user, None)
 
 
 async def step_out(
     section: Session,
     user: User,
     question: NextQuestion | None,
-    sections: list[Session] | None = None,
+    sections_now: list[Session] | None = None,
 ) -> InterviewStep:
-    """`sections`: the interview's, when they're current; read again without them."""
-    topics = [topic_out(item) for item in sections or await own_sections(section, user)]
+    """`sections_now`: the interview's, when they're current; read again without them."""
+    topics = [topic_out(item) for item in sections_now or await own_sections(section, user)]
 
     return InterviewStep(
         session=await session_out_titled(section),

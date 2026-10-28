@@ -2,12 +2,14 @@ import uuid
 
 from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from rounds.core.db import Session
 from rounds.models.help_votes import HelpVote
 
 
-async def save(answer_id: uuid.UUID, trace_id: str | None, vote: int | None) -> None:
+async def save(
+    session: AsyncSession, answer_id: uuid.UUID, trace_id: str | None, vote: int | None
+) -> None:
     """Sets the answer's vote, or clears it (None)."""
     if vote is None:
         statement = delete(HelpVote).where(HelpVote.answer_id == answer_id)
@@ -21,11 +23,8 @@ async def save(answer_id: uuid.UUID, trace_id: str | None, vote: int | None) -> 
             )
         )
 
-    async with Session() as session:
-        await session.execute(statement)
-        await session.commit()
+    await session.execute(statement)
 
 
-async def vote_of(answer_id: uuid.UUID) -> int | None:
-    async with Session() as session:
-        return await session.scalar(select(HelpVote.vote).where(HelpVote.answer_id == answer_id))
+async def vote_of(session: AsyncSession, answer_id: uuid.UUID) -> int | None:
+    return await session.scalar(select(HelpVote.vote).where(HelpVote.answer_id == answer_id))

@@ -2,9 +2,9 @@ import uuid
 
 from sqlalchemy import exists, func, select
 from sqlalchemy.dialects.postgresql import distinct_on
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from rounds.core.db import Session as Db
 from rounds.models.sessions import Session
 
 
@@ -16,14 +16,13 @@ def _practice(user_id: str, template_id: uuid.UUID):
     )
 
 
-async def practiced(user_id: str, template_id: uuid.UUID) -> bool:
+async def practiced(session: AsyncSession, user_id: str, template_id: uuid.UUID) -> bool:
     """Whether the talent took a practice round on the template before."""
-    async with Db() as session:
-        return bool(await session.scalar(select(exists().where(*_practice(user_id, template_id)))))
+    return bool(await session.scalar(select(exists().where(*_practice(user_id, template_id)))))
 
 
 async def practice_rounds(
-    user_id: str, template_id: uuid.UUID, offset: int, limit: int
+    session: AsyncSession, user_id: str, template_id: uuid.UUID, offset: int, limit: int
 ) -> list[Session]:
     """The sections, with answers, of the talent's practice rounds on the template, a page of
     rounds at a time, newest first."""
@@ -41,11 +40,10 @@ async def practice_rounds(
         .options(selectinload(Session.answers))
     )
 
-    async with Db() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def latest_rounds(user_id: str) -> list[Session]:
+async def latest_rounds(session: AsyncSession, user_id: str) -> list[Session]:
     """The sections, with answers, of the talent's latest practice round on every template they
     practiced."""
     latest = (
@@ -61,5 +59,4 @@ async def latest_rounds(user_id: str) -> list[Session]:
         .options(selectinload(Session.answers))
     )
 
-    async with Db() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))

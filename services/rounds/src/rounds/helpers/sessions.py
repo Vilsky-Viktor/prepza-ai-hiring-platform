@@ -1,8 +1,46 @@
+import uuid
 from datetime import datetime, timedelta
 
-from rounds.helpers.rounds import next_question
+from rounds.constants.rounds import RoundStatus
+from rounds.helpers.rounds import next_question, shuffled
 from rounds.models.sessions import Session
+from rounds.schemas.library import TopicQuestions
 from rounds.schemas.sessions import SessionOut, SessionTopicOut
+
+
+def new_sections(
+    user_id: str,
+    candidate_invite_id: uuid.UUID,
+    topics: list[TopicQuestions],
+    question_seconds: int | None,
+    now: datetime,
+    preview: bool = False,
+    practice: bool = False,
+    company_id: uuid.UUID | None = None,
+) -> list[Session]:
+    """One running section a topic, with its questions in the candidate's own order. Each starts
+    a microsecond after the one before, so the sections keep the topics' order wherever they're
+    listed (repositories/sessions.py list_for_invite)."""
+    return [
+        Session(
+            user_id=user_id,
+            topic_id=topic.id,
+            interview_set_id=topic.preparation_id,
+            candidate_invite_id=candidate_invite_id,
+            company_id=company_id,
+            topic_title=topic.title,
+            status=RoundStatus.IN_PROGRESS,
+            questions=shuffled([question.model_dump(mode="json") for question in topic.questions]),
+            final_score=None,
+            finished_at=None,
+            question_seconds=question_seconds,
+            preview=preview,
+            practice=practice,
+            started_at=now + timedelta(microseconds=position),
+            answers=[],
+        )
+        for position, topic in enumerate(topics)
+    ]
 
 
 def answer_seconds(shown_at: datetime | None, answered_at: datetime) -> int | None:

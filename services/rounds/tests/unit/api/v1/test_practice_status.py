@@ -70,7 +70,7 @@ def test_each_template_has_its_own_status():
 def test_the_list_gives_the_signed_in_talents_statuses(client, monkeypatch):
     asked = []
 
-    async def fake_rounds(user_id):
+    async def fake_rounds(session, user_id):
         asked.append(user_id)
 
         return [topic(3)]

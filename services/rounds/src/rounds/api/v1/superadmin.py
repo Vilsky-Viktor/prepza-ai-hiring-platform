@@ -3,6 +3,7 @@ from prepza_common.auth.superadmin import SuperadminUser
 from prepza_common.db.stats import Period, StatsOut
 from prepza_common.limits.limit_schemas import BudgetOut
 
+from rounds.core.db import Session
 from rounds.integrations.redis import get_redis
 from rounds.repositories import stats
 from rounds.services import help as help_service
@@ -15,8 +16,8 @@ router = APIRouter(prefix="/superadmin", tags=["superadmin"])
 async def get_stats(superadmin: SuperadminUser, period: Period = None) -> StatsOut:
     """Practice rounds, all time or in one year or
     month, for the stats tab."""
-
-    return StatsOut(counts=await stats.stats(period))
+    async with Session() as session:
+        return StatsOut(counts=await stats.stats(session, period))
 
 
 @router.get("/budgets")

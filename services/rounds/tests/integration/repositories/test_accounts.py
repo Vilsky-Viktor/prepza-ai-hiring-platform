@@ -6,16 +6,17 @@ from rounds.core.db import Session as Db
 from rounds.models.answers import Answer
 from rounds.models.sessions import Session
 from rounds.repositories import accounts, sessions
-from tests.integration.factories import option_index, topic
+from rounds.services import accounts as accounts_service
+from tests.integration.factories import created, option_index, topic
+from tests.integration.transactions import transaction
 
 
 def test_deleting_a_user_removes_their_interview_sessions(run):
     async def scenario():
-        [session] = await sessions.create_many(
-            "gone", uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4()
-        )
+        [session] = await created("gone", uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4())
         question = session.questions[0]
-        await sessions.add_answer(
+        await transaction(
+            sessions.add_answer,
             Answer(
                 session_id=session.id,
                 question_id=uuid.UUID(question["id"]),
@@ -25,21 +26,23 @@ def test_deleting_a_user_removes_their_interview_sessions(run):
             ),
             ("answer.recorded", {"question_id": question["id"]}),
         )
-        [kept] = await sessions.create_many(
-            "stays", uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4()
-        )
+        [kept] = await created("stays", uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4())
 
         async with Db() as db:
             await db.execute(update(Session).where(Session.id == session.id).values(final_score=50))
             await db.commit()
 
-        exported = await accounts.export("gone")
+        exported = await accounts_service.export_user("gone")
 
-        await accounts.delete_user("gone")
+        await accounts.delete_user(Db, "gone")
         # Safe to repeat: a retried deletion finds nothing left.
-        await accounts.delete_user("gone")
+        await accounts.delete_user(Db, "gone")
 
-        return exported, await sessions.get(session.id), await sessions.get(kept.id)
+        return (
+            exported,
+            await transaction(sessions.get, session.id),
+            await transaction(sessions.get, kept.id),
+        )
 
     exported, session, kept = run(scenario())
 
@@ -64,17 +67,13 @@ def test_candidates_and_learners_are_listed_apart_a_page_at_a_time(run):
     async def scenario():
         for user_id in (cat, cy):
             for _ in range(2):
-                await sessions.create_many(
-                    user_id, uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4()
-                )
+                await created(user_id, uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4())
 
-        await sessions.create_many(lea, uuid.uuid4(), [topic()], 60, practice=True)
-        await sessions.create_many(
-            member, uuid.uuid4(), [topic()], 60, preview=True, company_id=uuid.uuid4()
-        )
-        candidates = await accounts.user_ids(False, f"{tag}-", 1)
-        more = await accounts.user_ids(False, candidates[-1], 1)
-        learners = await accounts.user_ids(True, f"{tag}-", 1000)
+        await created(lea, uuid.uuid4(), [topic()], 60, practice=True)
+        await created(member, uuid.uuid4(), [topic()], 60, preview=True, company_id=uuid.uuid4())
+        candidates = await transaction(accounts.user_ids, False, f"{tag}-", 1)
+        more = await transaction(accounts.user_ids, False, candidates[-1], 1)
+        learners = await transaction(accounts.user_ids, True, f"{tag}-", 1000)
 
         return candidates, more, [user for user in learners if user.startswith(tag)]
 

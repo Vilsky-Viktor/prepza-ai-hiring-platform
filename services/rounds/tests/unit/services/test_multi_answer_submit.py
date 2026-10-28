@@ -10,7 +10,7 @@ from rounds.models.answers import Answer
 from rounds.models.sessions import Session
 from rounds.repositories import sessions
 from rounds.schemas.rounds import AnswerCreate
-from rounds.services import session_answers
+from rounds.services import sections, session_answers
 
 QUESTION_ID = uuid4()
 # Three right options of four: B, C and D.
@@ -48,7 +48,7 @@ def saved(monkeypatch):
     """Every answer saved, with the event saved alongside it."""
     rows = []
 
-    async def fake_add(answer, event=None):
+    async def fake_add(session, answer, event=None):
         answer.id = uuid4()
         rows.append((answer, event))
 
@@ -58,7 +58,7 @@ def saved(monkeypatch):
         return None
 
     monkeypatch.setattr(sessions, "add_answer", fake_add)
-    monkeypatch.setattr(sessions, "finish", nothing)
+    monkeypatch.setattr(sections, "finish", nothing)
     monkeypatch.setattr(session_answers.outbox_service, "flush_quietly", nothing)
 
     return rows

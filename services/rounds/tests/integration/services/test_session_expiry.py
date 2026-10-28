@@ -10,17 +10,16 @@ from rounds.models.answers import Answer
 from rounds.models.outbox import OutboxEvent
 from rounds.models.sessions import Session
 from rounds.repositories import sessions
-from rounds.services import session_expiry
-from tests.integration.factories import option_index, topic
+from rounds.services import sections, session_expiry
+from tests.integration.factories import created, option_index, topic
+from tests.integration.transactions import transaction
 
 
 async def interview(started_minutes_ago: float):
     """A candidate's interview of two sections, 3 questions each at 60 seconds: 6 minutes in
     all, 6.6 with the margin."""
     invite_id = uuid.uuid4()
-    rows = await sessions.create_many(
-        "cand", invite_id, [topic(), topic()], 60, company_id=uuid.uuid4()
-    )
+    rows = await created("cand", invite_id, [topic(), topic()], 60, company_id=uuid.uuid4())
 
     async with Db() as db:
         await db.execute(
@@ -41,8 +40,8 @@ def test_an_interview_left_past_its_time_finishes_by_itself(run):
         await session_expiry.finish_expired()
 
         return (
-            [await sessions.get(row.id) for row in expired_rows],
-            [await sessions.get(row.id) for row in running_rows],
+            [await transaction(sessions.get, row.id) for row in expired_rows],
+            [await transaction(sessions.get, row.id) for row in running_rows],
         )
 
     expired, running = run(scenario())
@@ -62,7 +61,7 @@ def test_a_candidate_coming_back_late_finds_the_interview_finished(run):
         return (
             await session_expiry.finish_if_expired(late_id),
             await session_expiry.finish_if_expired(on_time_id),
-            await sessions.get(late_rows[0].id),
+            await transaction(sessions.get, late_rows[0].id),
         )
 
     late, on_time, row = run(scenario())
@@ -75,19 +74,20 @@ def test_the_last_section_finishing_announces_the_interview_with_its_answers(run
     async def scenario():
         invite_id, rows = await interview(started_minutes_ago=1)
         question = rows[0].questions[0]
-        await sessions.add_answer(
+        await transaction(
+            sessions.add_answer,
             Answer(
                 session_id=rows[0].id,
                 question_id=uuid.UUID(question["id"]),
                 option_index=option_index(question, True),
                 correct=True,
                 score=100,
-            )
+            ),
         )
-        await sessions.finish(rows[0].id)
+        await transaction(sections.finish, rows[0].id)
         after_first = await announced(invite_id)
-        await sessions.finish(rows[1].id)
-        await sessions.finish(rows[1].id)
+        await transaction(sections.finish, rows[1].id)
+        await transaction(sections.finish, rows[1].id)
 
         return after_first, await announced(invite_id)
 

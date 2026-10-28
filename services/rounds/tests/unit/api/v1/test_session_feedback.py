@@ -32,7 +32,7 @@ def test_candidate_rates_only_own_session_questions(client, monkeypatch):
     row = owned_session()
     calls = []
 
-    async def fake_get(_session_id):
+    async def fake_get(session, _session_id):
         return row
 
     async def fake_rate(question_id, user_id, value):
@@ -63,7 +63,7 @@ def test_candidate_rates_only_own_session_questions(client, monkeypatch):
 def test_the_librarys_daily_limit_reaches_the_candidate(client, monkeypatch):
     row = owned_session()
 
-    async def fake_get(_session_id):
+    async def fake_get(session, _session_id):
         return row
 
     async def fake_report(question_id, user_id, reason, comment):

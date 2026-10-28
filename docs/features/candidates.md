@@ -90,6 +90,8 @@ The shareable link (`/apply/{token}`) is one link per interview, for a job ad. O
 
 The backend decides which section and question come next, and when the interview is done: `POST /sessions/{id}/step` and `/finish-interview` in rounds (`src/rounds/api/v1/interview_flow.py`).
 
+Each of these steps is saved in one transaction (`src/rounds/services/`): an answer with the finish of the section it completes (and of the interview, with its last section), a question timed out with that finish, a step's finished sections with the clock of the next question, and every open section of an interview that ends (the candidate finishes it, or its time runs out). A failure saves none of it, so the next step finds it all still to do. Events go out only after the save; titles come from library outside it.
+
 Questions and options carry the interview's language (`lang`), so screen readers read them in it whatever the interface language.
 
 ### The pledge

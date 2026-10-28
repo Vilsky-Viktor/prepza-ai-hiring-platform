@@ -14,6 +14,7 @@ from rounds.models.sessions import Session
 from rounds.repositories import session_expiry, sessions
 from rounds.schemas.rounds import AnswerCreate
 from rounds.services import outbox as outbox_service
+from rounds.services import sections
 from rounds.services.session_access import get_owned_session
 from rounds.services.session_answers import submit_session_answer
 
@@ -51,22 +52,22 @@ def timed(shown_seconds_ago, answers=None):
 def test_starting_a_timed_interview_passes_the_seconds_per_question(client, monkeypatch):
     created = {}
 
-    async def no_sessions(invite_id):
+    async def no_sessions(session, invite_id):
         return []
 
-    async def fake_create(user_id, invite_id, topics, question_seconds, preview, company_id=None):
-        created["question_seconds"] = question_seconds
-        created["preview"] = preview
-
-        return []
+    async def fake_create(session, rows):
+        created["rows"] = rows
+        rows[0].id = uuid4()
 
     monkeypatch.setattr(sessions, "list_for_invite", no_sessions)
-    monkeypatch.setattr(sessions, "create_many", fake_create)
+    monkeypatch.setattr(sessions, "add_all", fake_create)
     body = {
         "user_id": "cand",
         "company_id": str(uuid4()),
         "candidate_invite_id": str(INVITE_ID),
-        "topics": [],
+        "topics": [
+            {"id": str(uuid4()), "preparation_id": str(uuid4()), "title": "T", "questions": []}
+        ],
         "question_seconds": 45,
     }
 
@@ -77,24 +78,23 @@ def test_starting_a_timed_interview_passes_the_seconds_per_question(client, monk
     )
 
     assert response.status_code == 201
-    assert created["question_seconds"] == 45
-    assert created["preview"] is False
+    assert [(row.question_seconds, row.preview) for row in created["rows"]] == [(45, False)]
 
 
 def test_a_question_past_its_time_counts_as_wrong(monkeypatch):
     expired = timed(shown_seconds_ago=40)
     saved = []
 
-    async def fake_get(session_id):
+    async def fake_get(session, session_id):
         return expired
 
-    async def fake_add(answer):
+    async def fake_add(session, answer):
         saved.append(answer)
         expired.answers = [answer]
 
         return True
 
-    async def fake_finish(session_id):
+    async def fake_finish(session, session_id):
         finished.append(session_id)
 
     async def no_flush():
@@ -103,7 +103,7 @@ def test_a_question_past_its_time_counts_as_wrong(monkeypatch):
     finished = []
     monkeypatch.setattr(sessions, "get", fake_get)
     monkeypatch.setattr(sessions, "add_answer", fake_add)
-    monkeypatch.setattr(sessions, "finish", fake_finish)
+    monkeypatch.setattr(sections, "finish", fake_finish)
     monkeypatch.setattr(outbox_service, "flush_quietly", no_flush)
 
     asyncio.run(get_owned_session(expired.id, CANDIDATE))
@@ -118,10 +118,10 @@ def test_a_question_past_its_time_counts_as_wrong(monkeypatch):
 def test_a_question_within_its_time_is_left_alone(monkeypatch):
     running = timed(shown_seconds_ago=10)
 
-    async def fake_get(session_id):
+    async def fake_get(session, session_id):
         return running
 
-    async def never(answer):
+    async def never(session, answer):
         raise AssertionError("must not time out a running question")
 
     monkeypatch.setattr(sessions, "get", fake_get)
@@ -181,23 +181,23 @@ def test_coming_back_after_the_interview_ran_out_finishes_it(monkeypatch):
     row = timed(shown_seconds_ago=5)
     finished = []
 
-    async def fake_get(session_id):
+    async def fake_get(session, session_id):
         return row
 
-    async def expired(now, limit, invite_id=None):
+    async def expired(session, now, limit, invite_id=None):
         return [invite_id]
 
-    async def fake_list(invite_id):
+    async def fake_list(session, invite_id):
         return [row]
 
-    async def fake_finish(session_id):
+    async def fake_finish(session, session_id):
         finished.append(session_id)
         row.status = "finished"
 
     monkeypatch.setattr(sessions, "get", fake_get)
     monkeypatch.setattr(session_expiry, "expired_invites", expired)
     monkeypatch.setattr(sessions, "list_for_invite", fake_list)
-    monkeypatch.setattr(sessions, "finish", fake_finish)
+    monkeypatch.setattr(sections, "finish", fake_finish)
 
     assert asyncio.run(get_owned_session(row.id, CANDIDATE)).status == "finished"
     assert finished == [row.id]

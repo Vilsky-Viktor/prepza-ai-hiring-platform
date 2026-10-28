@@ -31,8 +31,8 @@ def checks(monkeypatch):
     monkeypatch.setattr(help_routes, "require_human", require_human)
     monkeypatch.setattr(help_routes.billing, "catalog", fake_catalog(CATALOG))
     monkeypatch.setattr(help_routes, "stream_reply", fake_stream)
-    monkeypatch.setattr(help_routes.contact_store, "save", nothing)
-    monkeypatch.setattr(help_routes.outbox_service, "flush_quietly", nothing)
+    monkeypatch.setattr(help_routes.contact_service.sessions, "add_event", nothing)
+    monkeypatch.setattr(help_routes.contact_service.outbox_service, "flush_quietly", nothing)
 
     return state
 
@@ -57,10 +57,10 @@ def test_a_visitor_is_asked_until_their_chat_has_a_reply(client, checks):
 def test_a_contact_message_is_asked_and_one_that_fails_isnt_sent(client, checks, monkeypatch):
     saved = []
 
-    async def save(data):
+    async def save(session, event_type, data):
         saved.append(data)
 
-    monkeypatch.setattr(help_routes.contact_store, "save", save)
+    monkeypatch.setattr(help_routes.contact_service.sessions, "add_event", save)
     checks["refuse"] = True
     body = {"name": "Ann", "email": "ann@example.com", "message": "Do you offer invoices?"}
 

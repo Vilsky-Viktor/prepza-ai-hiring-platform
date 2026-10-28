@@ -2,9 +2,9 @@ import uuid
 from datetime import datetime
 
 from sqlalchemy import text
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from rounds.constants.rounds import INTERVIEW_TIME_MARGIN
-from rounds.core.db import Session as Db
 
 # Candidate interviews (all sessions of an invite) still in progress past their deadline: the
 # start plus every question's seconds, plus the margin. Sessions from before every interview
@@ -30,7 +30,7 @@ EXPIRED_SQL = text(
 
 
 async def expired_invites(
-    now: datetime, limit: int, invite_id: uuid.UUID | None = None
+    session: AsyncSession, now: datetime, limit: int, invite_id: uuid.UUID | None = None
 ) -> list[uuid.UUID]:
     """Invites whose interview ran out of time; only `invite_id` when given."""
     params = {
@@ -40,5 +40,4 @@ async def expired_invites(
         "limit": limit,
     }
 
-    async with Db() as session:
-        return list(await session.scalars(EXPIRED_SQL, params))
+    return list(await session.scalars(EXPIRED_SQL, params))

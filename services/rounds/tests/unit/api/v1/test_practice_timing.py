@@ -1,5 +1,4 @@
 import uuid
-from types import SimpleNamespace
 
 import pytest
 
@@ -8,7 +7,7 @@ from rounds.main import app
 from rounds.repositories import practice_sessions, sessions
 
 # signed_in: the talent signed in, for every test here as in test_practice.py.
-from tests.unit.api.v1.test_practice import TEMPLATE_ID, content, signed_in  # noqa: F401
+from tests.unit.api.v1.test_practice import TEMPLATE_ID, content, given_ids, signed_in  # noqa: F401
 
 # How long a practice round's questions take: the times to choose from, and the one chosen.
 
@@ -59,16 +58,15 @@ def test_a_talent_chooses_the_time_per_question(client, monkeypatch, redis, body
     async def fake_content(template_id):
         return content(10)
 
-    async def fake_create(user_id, round_id, topics, seconds, preview=False, practice=False):
-        created.append((seconds, preview))
+    async def fake_create(session, rows):
+        created.append((rows[0].question_seconds, rows[0].preview))
+        given_ids(rows)
 
-        return [SimpleNamespace(id=uuid.uuid4())]
-
-    async def fake_practiced(user_id, template_id):
+    async def fake_practiced(session, user_id, template_id):
         return False
 
     monkeypatch.setattr(library, "practice_content", fake_content)
-    monkeypatch.setattr(sessions, "create_many", fake_create)
+    monkeypatch.setattr(sessions, "add_all", fake_create)
     monkeypatch.setattr(practice_sessions, "practiced", fake_practiced)
 
     assert client.post(f"/practice/{TEMPLATE_ID}", json=body).status_code == 201

@@ -9,7 +9,7 @@ from rounds.integrations import library
 from rounds.models.answers import Answer
 from rounds.models.sessions import Session
 from rounds.repositories import sessions
-from rounds.services import interview_flow
+from rounds.services import interview_flow, sections
 
 CANDIDATE = User(uid="cand", email="cand@example.com", email_verified=True)
 INVITE_ID = uuid4()
@@ -41,21 +41,21 @@ def section(answered=False, status="in_progress"):
 
 @pytest.fixture
 def interview(monkeypatch):
-    """Fakes the storage of one candidate's interview made of the sections a test passes."""
+    """Fakes the repositories of one candidate's interview made of the sections a test passes."""
     rows = []
     finished = []
 
-    async def fake_get(session_id):
+    async def fake_get(session, session_id):
         return next(row for row in rows if row.id == session_id)
 
-    async def fake_list(invite_id):
+    async def fake_list(session, invite_id):
         return rows
 
-    async def fake_finish(session_id):
+    async def fake_finish(session, session_id):
         finished.append(session_id)
-        (await fake_get(session_id)).status = "finished"
+        (await fake_get(session, session_id)).status = "finished"
 
-    async def fake_shown(session_id):
+    async def fake_shown(session, session_id):
         return datetime.now(UTC)
 
     async def no_library(set_id):
@@ -66,7 +66,7 @@ def interview(monkeypatch):
 
     monkeypatch.setattr(sessions, "get", fake_get)
     monkeypatch.setattr(sessions, "list_for_invite", fake_list)
-    monkeypatch.setattr(sessions, "finish", fake_finish)
+    monkeypatch.setattr(sections, "finish", fake_finish)
     monkeypatch.setattr(sessions, "mark_shown", fake_shown)
     monkeypatch.setattr(library, "get_set", no_library)
     monkeypatch.setattr(interview_flow.outbox_service, "flush_quietly", nothing)
@@ -150,12 +150,12 @@ def test_a_step_reads_the_interview_once(interview, monkeypatch):
     rows += [section(answered=True, status="finished"), section()]
     reads = []
 
-    async def counted_list(invite_id):
+    async def counted_list(session, invite_id):
         reads.append("sections")
 
         return rows
 
-    async def counted_get(session_id):
+    async def counted_get(session, session_id):
         reads.append("section")
 
         return next(row for row in rows if row.id == session_id)
@@ -177,7 +177,7 @@ def test_a_question_whose_time_ran_out_counts_as_wrong_before_the_next_step(inte
     rows += [timed_out, section()]
     saved = []
 
-    async def fake_answer(answer, event=None):
+    async def fake_answer(session, answer, event=None):
         saved.append(answer)
         timed_out.answers = [answer]
         timed_out.question_shown_at = None

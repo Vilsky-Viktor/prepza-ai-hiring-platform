@@ -45,7 +45,6 @@ from rounds.helpers.page_guides import page_guide
 from rounds.helpers.sign_in import secret_reply, with_sign_in
 from rounds.integrations import billing
 from rounds.integrations.redis import get_redis
-from rounds.repositories import contact as contact_store
 from rounds.schemas.contact import ContactRequest
 from rounds.schemas.help import (
     FaqItemOut,
@@ -55,7 +54,7 @@ from rounds.schemas.help import (
     LegalOut,
     PageGuideOut,
 )
-from rounds.services import outbox as outbox_service
+from rounds.services import contact as contact_service
 from rounds.services.help import build_messages, platform_guide, record_answer, stream_reply
 
 logger = logging.getLogger(__name__)
@@ -248,8 +247,4 @@ async def contact(body: ContactRequest, request: Request) -> None:
     """The contact page's message; notifications emails it to prepza's inbox. Public, so the
     sender shows they're a person."""
     await require_human(request, settings.turnstile_secret_key)
-    redis = get_redis()
-    await hit(redis, f"rate:contact:ip:{limit_address(request)}", "CONTACT_IP_LIMIT")
-    await hit(redis, "rate:contact:all", "CONTACT_DAILY_LIMIT")
-    await contact_store.save({**body.model_dump(), "language": request_language(request)})
-    await outbox_service.flush_quietly()
+    await contact_service.send(body, limit_address(request), request_language(request))

@@ -9,7 +9,8 @@ from rounds.core.db import Session
 from rounds.models.sessions import Session as SessionRow
 from rounds.repositories import sessions
 from rounds.services.session_access import get_own_session, get_owned_session
-from tests.integration.factories import topic
+from tests.integration.factories import created, topic
+from tests.integration.transactions import transaction
 
 CANDIDATE = User(uid="cand", email="cand@example.com", email_verified=True)
 
@@ -20,10 +21,8 @@ def test_a_rating_after_the_deadline_doesnt_time_out_an_answer_still_in_its_grac
     so their answer, still within the grace, counts."""
 
     async def scenario():
-        [row] = await sessions.create_many(
-            "cand", uuid.uuid4(), [topic()], 30, company_id=uuid.uuid4()
-        )
-        await sessions.mark_shown(row.id)
+        [row] = await created("cand", uuid.uuid4(), [topic()], 30, company_id=uuid.uuid4())
+        await transaction(sessions.mark_shown, row.id)
         # Shown just over its 30 seconds ago, well within the grace.
         shown = datetime.now(UTC) - timedelta(seconds=31)
 
@@ -34,9 +33,9 @@ def test_a_rating_after_the_deadline_doesnt_time_out_an_answer_still_in_its_grac
             await session.commit()
 
         await get_own_session(row.id, CANDIDATE)
-        after_rating = await sessions.get(row.id)
+        after_rating = await transaction(sessions.get, row.id)
         await get_owned_session(row.id, CANDIDATE, TIME_GRACE_SECONDS)
-        at_answer = await sessions.get(row.id)
+        at_answer = await transaction(sessions.get, row.id)
 
         return after_rating, at_answer
 

@@ -9,7 +9,7 @@ from rounds.helpers.sessions import answer_seconds
 from rounds.models.sessions import Session
 from rounds.repositories import sessions
 from rounds.schemas.rounds import AnswerCreate
-from rounds.services import session_answers
+from rounds.services import sections, session_answers
 
 QUESTION_ID = uuid4()
 
@@ -47,10 +47,10 @@ def finished(monkeypatch):
     """The sections the answers finish, by id."""
     rows = []
 
-    async def fake_finish(session_id):
+    async def fake_finish(session, session_id):
         rows.append(session_id)
 
-    monkeypatch.setattr(sessions, "finish", fake_finish)
+    monkeypatch.setattr(sections, "finish", fake_finish)
 
     return rows
 
@@ -65,7 +65,7 @@ def test_answer_seconds():
 def test_answer_records_the_seconds_since_the_question_was_shown(monkeypatch):
     saved = []
 
-    async def fake_add(answer, event=None):
+    async def fake_add(session, answer, event=None):
         # As saving fills in the column defaults.
         answer.id, answer.timed_out = uuid4(), False
         saved.append(answer)
@@ -93,7 +93,7 @@ def test_answer_records_the_seconds_since_the_question_was_shown(monkeypatch):
 def test_only_a_candidates_answer_tells_library_about_the_question(monkeypatch):
     events = []
 
-    async def fake_add(answer, event=None):
+    async def fake_add(session, answer, event=None):
         answer.id = uuid4()
         events.append(event)
 
@@ -120,7 +120,7 @@ def test_only_a_candidates_answer_tells_library_about_the_question(monkeypatch):
 
 
 def test_the_last_answer_finishes_the_section_at_once(monkeypatch, finished):
-    async def fake_add(answer, event=None):
+    async def fake_add(session, answer, event=None):
         answer.id = uuid4()
 
         return True

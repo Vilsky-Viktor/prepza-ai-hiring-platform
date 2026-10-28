@@ -7,7 +7,7 @@ from sqlalchemy import func, select
 from rounds.core.db import Session as Db
 from rounds.models.sessions import Session
 from rounds.repositories import sessions
-from tests.integration.factories import topic
+from tests.integration.factories import created, topic
 
 
 def on(interview_set_id: uuid.UUID):
@@ -28,14 +28,14 @@ def test_an_interviews_sessions_go_in_batches_and_others_stay(run, monkeypatch):
 
     async def scenario():
         for user in ("cand-a", "cand-b", "cand-c"):
-            await sessions.create_many(user, uuid.uuid4(), [on(deleted)], 30, company_id=deleted)
+            await created(user, uuid.uuid4(), [on(deleted)], 30, company_id=deleted)
 
-        await sessions.create_many("cand-d", uuid.uuid4(), [on(kept)], 30, company_id=kept)
-        await sessions.remove_for_interview(deleted)
+        await created("cand-d", uuid.uuid4(), [on(kept)], 30, company_id=kept)
+        await sessions.remove_for_interview(Db, deleted)
         # Again, as a retried deletion would: nothing left to delete.
-        await sessions.remove_for_interview(deleted)
+        await sessions.remove_for_interview(Db, deleted)
         left = (await count(deleted), await count(kept))
-        await sessions.remove_for_interview(kept)
+        await sessions.remove_for_interview(Db, kept)
 
         return left
 

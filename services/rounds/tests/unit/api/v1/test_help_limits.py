@@ -28,8 +28,8 @@ def model(monkeypatch):
 
     monkeypatch.setattr(help_routes.billing, "catalog", fake_catalog(CATALOG))
     monkeypatch.setattr(help_routes, "stream_reply", answer)
-    monkeypatch.setattr(help_routes.contact_store, "save", nothing)
-    monkeypatch.setattr(help_routes.outbox_service, "flush_quietly", nothing)
+    monkeypatch.setattr(help_routes.contact_service.sessions, "add_event", nothing)
+    monkeypatch.setattr(help_routes.contact_service.outbox_service, "flush_quietly", nothing)
     monkeypatch.setattr(firebase_auth, "verify_id_token", lambda token, **_: {"uid": "u1"})
 
     return asked

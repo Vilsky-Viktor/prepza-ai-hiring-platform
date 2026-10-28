@@ -2,12 +2,12 @@
 
 from prepza_common.db.stats import counted
 from sqlalchemy import func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from rounds.core.db import Session
 from rounds.models.sessions import Session as RoundSession
 
 
-async def stats(period: str | None) -> dict[str, int]:
+async def stats(session: AsyncSession, period: str | None) -> dict[str, int]:
     """All time or in `period` (a year or a period): talents' free practice rounds, in the month each started. A round is
     one session per topic, all with the round's id in candidate_invite_id."""
     rounds = (
@@ -17,9 +17,8 @@ async def stats(period: str | None) -> dict[str, int]:
         .subquery()
     )
 
-    async with Session() as session:
-        return {
-            "practice": await counted(
-                session, func.count(rounds.c.started_at), rounds.c.started_at, period
-            ),
-        }
+    return {
+        "practice": await counted(
+            session, func.count(rounds.c.started_at), rounds.c.started_at, period
+        ),
+    }

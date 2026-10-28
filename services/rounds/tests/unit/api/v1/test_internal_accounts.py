@@ -9,20 +9,24 @@ HEADERS = {
 
 
 def test_library_exports_a_users_sessions_with_a_post(client, monkeypatch):
-    async def export(user_id):
-        return {"interview_sections": [user_id]}
+    asked = []
 
-    monkeypatch.setattr(accounts, "export", export)
+    async def of_user(session, user_id):
+        asked.append(user_id)
+
+        return []
+
+    monkeypatch.setattr(accounts, "of_user", of_user)
 
     response = client.post("/internal/users/ann/export", headers=HEADERS)
 
-    assert response.json() == {"interview_sections": ["ann"]}
+    assert (asked, response.json()) == (["ann"], {"interview_sections": []})
 
 
 def test_notifications_reads_the_candidates_or_the_learners_a_page_at_a_time(client, monkeypatch):
     asked = []
 
-    async def user_ids(practice, after, limit):
+    async def user_ids(session, practice, after, limit):
         asked.append((practice, after, limit))
 
         return ["ann"]

@@ -16,6 +16,12 @@ TEMPLATE_ID = uuid.uuid4()
 ROUND_ID = uuid.uuid4()
 
 
+def given_ids(rows):
+    """What saving the new sections does to them that the tests read: each gets its id."""
+    for row in rows:
+        row.id = uuid.uuid4()
+
+
 def options():
     return [{"answer": "right", "correct": True}, {"answer": "wrong", "correct": False}]
 
@@ -88,26 +94,30 @@ def test_a_round_takes_up_to_ten_fresh_questions_a_topic_and_only_the_first_coun
     async def fake_content(template_id):
         return content(14)
 
-    async def fake_create(user_id, round_id, topics, seconds, preview=False, practice=False):
+    async def fake_create(session, rows):
+        first = rows[0]
         created.update(
-            user_id=user_id, topics=topics, seconds=seconds, preview=preview, practice=practice
+            user_id=first.user_id,
+            questions=first.questions,
+            seconds=first.question_seconds,
+            preview=first.preview,
+            practice=first.practice,
         )
-
-        return [SimpleNamespace(id=uuid.uuid4())]
+        given_ids(rows)
 
     earlier = []
 
-    async def fake_practiced(user_id, template_id):
+    async def fake_practiced(session, user_id, template_id):
         return bool(earlier)
 
     monkeypatch.setattr(library, "practice_content", fake_content)
-    monkeypatch.setattr(sessions, "create_many", fake_create)
+    monkeypatch.setattr(sessions, "add_all", fake_create)
     monkeypatch.setattr(practice_sessions, "practiced", fake_practiced)
 
     response = client.post(f"/practice/{TEMPLATE_ID}")
 
     assert response.status_code == 201
-    assert len(created["topics"][0].questions) == 10
+    assert len(created["questions"]) == 10
     assert (created["user_id"], created["seconds"], created["practice"]) == ("ann", 60, True)
     # The first round counts in the questions' statistics; a later one doesn't.
     assert created["preview"] is False
@@ -131,16 +141,15 @@ def test_a_rounds_questions_have_the_seconds_of_the_templates_level(
     async def fake_content(template_id):
         return {**content(10), "level": level}
 
-    async def fake_create(user_id, round_id, topics, seconds, preview=False, practice=False):
-        created["seconds"] = seconds
+    async def fake_create(session, rows):
+        created["seconds"] = rows[0].question_seconds
+        given_ids(rows)
 
-        return [SimpleNamespace(id=uuid.uuid4())]
-
-    async def fake_practiced(user_id, template_id):
+    async def fake_practiced(session, user_id, template_id):
         return False
 
     monkeypatch.setattr(library, "practice_content", fake_content)
-    monkeypatch.setattr(sessions, "create_many", fake_create)
+    monkeypatch.setattr(sessions, "add_all", fake_create)
     monkeypatch.setattr(practice_sessions, "practiced", fake_practiced)
 
     assert client.post(f"/practice/{TEMPLATE_ID}").status_code == 201
@@ -162,7 +171,7 @@ def test_a_test_without_practice_questions_says_so(client, monkeypatch):
 def test_a_finished_round_shows_every_right_answer_an_open_one_none(client, monkeypatch):
     rows = [section("finished", answers=[1])]
 
-    async def fake_list(round_id):
+    async def fake_list(session, round_id):
         return rows
 
     async def fake_set(set_id):
@@ -184,7 +193,7 @@ def test_a_finished_round_shows_every_right_answer_an_open_one_none(client, monk
 
 
 def test_someone_else_cant_see_a_round(client, monkeypatch):
-    async def fake_list(round_id):
+    async def fake_list(session, round_id):
         return [section("finished", user_id="bob")]
 
     monkeypatch.setattr(sessions, "list_for_invite", fake_list)
@@ -199,7 +208,7 @@ def test_the_history_lists_a_page_of_rounds_newest_first_with_their_grades(clien
 
     pages = []
 
-    async def fake_rounds(user_id, template_id, offset, limit):
+    async def fake_rounds(session, user_id, template_id, offset, limit):
         pages.append((offset, limit))
 
         return [first, second]
@@ -226,7 +235,7 @@ def test_each_topic_shows_how_far_the_latest_round_got(client, monkeypatch):
     older.topic_id = latest.topic_id
     latest.started_at = datetime(2026, 10, 5, 10, tzinfo=UTC)
 
-    async def fake_rounds(user_id, template_id, offset, limit):
+    async def fake_rounds(session, user_id, template_id, offset, limit):
         # Only the latest round is asked for; the older one shows it's picked again here.
         assert (offset, limit) == (0, 1)
 
@@ -253,14 +262,14 @@ def test_a_talent_starts_a_limited_number_of_rounds_an_hour(
     async def fake_content(template_id):
         return content(10)
 
-    async def fake_create(user_id, round_id, topics, seconds, preview=False, practice=False):
-        return [SimpleNamespace(id=uuid.uuid4())]
+    async def fake_create(session, rows):
+        given_ids(rows)
 
-    async def fake_practiced(user_id, template_id):
+    async def fake_practiced(session, user_id, template_id):
         return False
 
     monkeypatch.setattr(library, "practice_content", fake_content)
-    monkeypatch.setattr(sessions, "create_many", fake_create)
+    monkeypatch.setattr(sessions, "add_all", fake_create)
     monkeypatch.setattr(practice_sessions, "practiced", fake_practiced)
 
     started = [client.post(f"/practice/{TEMPLATE_ID}").status_code for _ in range(allowed)]

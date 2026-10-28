@@ -9,7 +9,9 @@ from rounds.helpers.practice import round_out
 from rounds.models.answers import Answer
 from rounds.models.outbox import OutboxEvent
 from rounds.repositories import answer_counts, sessions
-from tests.integration.factories import topic
+from rounds.services import invite_scores, sections
+from tests.integration.factories import created, topic
+from tests.integration.transactions import transaction
 
 
 def ticked(row, index, right, seconds=20):
@@ -49,15 +51,15 @@ def test_multi_answer_answers_count_as_answered_not_as_timed_out(run):
     invite_id = uuid.uuid4()
 
     async def scenario():
-        [row] = await sessions.create_many(
+        [row] = await created(
             "cand", invite_id, [topic(4, multi=True)], 30, company_id=uuid.uuid4()
         )
-        await sessions.add_answer(ticked(row, 0, right=True, seconds=1))
-        await sessions.add_answer(ticked(row, 1, right=False))
-        await sessions.add_answer(ran_out(row, 2))
-        saved = await sessions.get(row.id)
-        totals = (await sessions.scores_for_invites([invite_id]))[invite_id]
-        counts = await answer_counts.for_sets([row.interview_set_id])
+        await transaction(sessions.add_answer, ticked(row, 0, right=True, seconds=1))
+        await transaction(sessions.add_answer, ticked(row, 1, right=False))
+        await transaction(sessions.add_answer, ran_out(row, 2))
+        saved = await transaction(sessions.get, row.id)
+        totals = (await invite_scores.scores([invite_id]))[invite_id]
+        counts = await transaction(answer_counts.for_sets, [row.interview_set_id])
 
         return saved, totals, counts[row.interview_set_id]
 
@@ -75,12 +77,12 @@ def test_a_finished_section_tells_library_each_answers_credit(run):
     invite_id = uuid.uuid4()
 
     async def scenario():
-        [row] = await sessions.create_many(
+        [row] = await created(
             "cand", invite_id, [topic(2, multi=True)], 30, company_id=uuid.uuid4()
         )
-        await sessions.add_answer(ticked(row, 0, right=True))
-        await sessions.add_answer(ran_out(row, 1))
-        await sessions.finish(row.id)
+        await transaction(sessions.add_answer, ticked(row, 0, right=True))
+        await transaction(sessions.add_answer, ran_out(row, 1))
+        await transaction(sections.finish, row.id)
 
         async with Session() as session:
             events = await session.execute(
@@ -122,13 +124,13 @@ async def session_finished(invite_id):
 def test_a_practice_round_counts_ticked_answers_as_answered(run):
     async def scenario():
         round_id = uuid.uuid4()
-        [row] = await sessions.create_many(
+        [row] = await created(
             f"talent-{round_id}", round_id, [topic(3, multi=True)], 60, practice=True
         )
-        await sessions.add_answer(ticked(row, 0, right=True))
-        await sessions.add_answer(ran_out(row, 1))
+        await transaction(sessions.add_answer, ticked(row, 0, right=True))
+        await transaction(sessions.add_answer, ran_out(row, 1))
 
-        return round_out(await sessions.list_for_invite(round_id), "Ledgers")
+        return round_out(await transaction(sessions.list_for_invite, round_id), "Ledgers")
 
     found = run(scenario())
 
@@ -139,7 +141,7 @@ def test_the_picks_migration_marks_answers_without_an_option_as_timed_out(run):
     async def setup():
         # A practice section: going down to 0023 takes sections' companies away, and an
         # interview section can't come back up without one (0030).
-        [row] = await sessions.create_many("cand", uuid.uuid4(), [topic(2)], 30, practice=True)
+        [row] = await created("cand", uuid.uuid4(), [topic(2)], 30, practice=True)
 
         return row
 

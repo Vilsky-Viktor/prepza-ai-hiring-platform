@@ -1,12 +1,12 @@
 from uuid import UUID
 
 from sqlalchemy import Uuid, column, update, values
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from rounds.core.db import Session as Db
-from rounds.models.sessions import Session
+from rounds.models.sessions import Session as RoundSession
 
 
-async def fill(companies: dict[UUID, UUID]) -> int:
+async def fill(session: AsyncSession, companies: dict[UUID, UUID]) -> int:
     """Gives the sections of each interview set (by its id) their company where they have none,
     in one statement: the sections started before rounds kept it. Safe to repeat; how many it
     filled."""
@@ -17,17 +17,15 @@ async def fill(companies: dict[UUID, UUID]) -> int:
         list(companies.items())
     )
     query = (
-        update(Session)
+        update(RoundSession)
         .where(
-            Session.interview_set_id == given.c.set_id,
-            Session.company_id.is_(None),
-            Session.practice.is_(False),
+            RoundSession.interview_set_id == given.c.set_id,
+            RoundSession.company_id.is_(None),
+            RoundSession.practice.is_(False),
         )
         .values(company_id=given.c.company_id)
     )
 
-    async with Db() as session:
-        done = await session.execute(query)
-        await session.commit()
+    done = await session.execute(query)
 
     return done.rowcount

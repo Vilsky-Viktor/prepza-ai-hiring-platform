@@ -1,6 +1,6 @@
-"""Votes on the help chat's answers (routers/help_votes.py): only the page that got an answer can
+"""Votes on the help chat's answers (services/help_votes.py): only the page that got an answer can
 vote on it, one vote an answer, changed or cleared; sent on to Langfuse on the answer's trace.
-The table's side is in tests/integration/test_help_votes.py."""
+The table's side is in tests/integration/repositories/test_help_votes.py."""
 
 import json
 import uuid
@@ -8,10 +8,10 @@ import uuid
 import pytest
 from fake_redis import FakeRedis
 
-from rounds.api.v1 import help_votes as routes
 from rounds.config import settings
 from rounds.helpers.help_replies import help_signing_key, vote_signature
 from rounds.repositories import help_votes
+from rounds.services import help_votes as routes
 from tests.unit.api.v1.test_help import CATALOG, fake_catalog
 
 ANSWER = uuid.uuid4()
@@ -24,7 +24,7 @@ def stored(monkeypatch):
     votes = {}
     mirrored = []
 
-    async def save(answer_id, trace_id, vote):
+    async def save(session, answer_id, trace_id, vote):
         if vote is None:
             votes.pop(answer_id, None)
         else:

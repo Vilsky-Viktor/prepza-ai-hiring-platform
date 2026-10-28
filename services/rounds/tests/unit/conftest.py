@@ -12,10 +12,12 @@ from rounds.repositories import session_expiry
 REDIS_USERS = [
     "rounds.api.v1.help",
     "rounds.api.v1.practice",
-    "rounds.api.v1.sessions",
     "rounds.api.v1.superadmin",
+    "rounds.services.contact",
     "rounds.services.help",
-    "rounds.repositories.signals",
+    "rounds.services.help_votes",
+    "rounds.services.practice",
+    "rounds.services.signals",
 ]
 
 
@@ -24,7 +26,7 @@ def nothing_expired(monkeypatch):
     """Opening a session checks whether the whole interview ran out of time, in the database;
     unit tests have none, so nothing has expired unless a test says so."""
 
-    async def none_expired(now, limit, invite_id=None):
+    async def none_expired(session, now, limit, invite_id=None):
         return []
 
     monkeypatch.setattr(session_expiry, "expired_invites", none_expired)

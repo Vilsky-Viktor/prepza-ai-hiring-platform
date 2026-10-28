@@ -8,7 +8,7 @@ from rounds.core.security import service_token
 
 
 def test_the_running_count_is_for_services_only(client, monkeypatch):
-    async def three():
+    async def three(session):
         return 3
 
     monkeypatch.setattr(internal_maintenance.running, "running_interviews", three)
@@ -26,7 +26,7 @@ def test_the_running_count_is_for_services_only(client, monkeypatch):
 def test_giving_time_back_is_for_services_only(client, monkeypatch):
     given = []
 
-    async def give_time_back(stopped):
+    async def give_time_back(session, stopped):
         given.append(stopped)
 
     monkeypatch.setattr(internal_maintenance.running, "give_time_back", give_time_back)

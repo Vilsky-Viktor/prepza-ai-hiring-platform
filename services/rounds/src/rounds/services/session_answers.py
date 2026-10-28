@@ -1,9 +1,11 @@
 from datetime import UTC, datetime
 
 from fastapi import HTTPException, status
+from sqlalchemy.exc import IntegrityError
 
 from rounds.constants.events import ANSWER_RECORDED
 from rounds.constants.rounds import CORRECT_SCORE, TIME_UP, RoundStatus
+from rounds.core.db import Session as Db
 from rounds.helpers.rounds import correct_indexes, find_question
 from rounds.helpers.scores import answer_score, picked_options
 from rounds.helpers.sessions import answer_seconds, next_session_question
@@ -13,12 +15,13 @@ from rounds.repositories import sessions
 from rounds.schemas.rounds import AnswerCreate
 from rounds.schemas.sessions import SessionAnswerResult
 from rounds.services import outbox as outbox_service
+from rounds.services import sections
 
 
 def recorded(answer: Answer, question: dict) -> tuple[str, dict]:
     """The event telling library which options were picked and the credit earned, for the
-    question's statistics; it's saved with the answer (see storage add_answer) and published
-    right after. `option` (the first pick) stays while library may still read only it."""
+    question's statistics; it's saved with the answer (see repositories add_answer) and
+    published right after. `option` (the first pick) stays while library may still read only it."""
     options = [question["options"][index]["answer"] for index in picked_options(answer)]
 
     return (
@@ -101,13 +104,18 @@ async def submit_session_answer(row: Session, body: AnswerCreate) -> SessionAnsw
     # rounds are previews too: they repeat questions whose answers were shown).
     event = None if row.preview else recorded(answer, question)
 
-    if not await sessions.add_answer(answer, event):
-        raise HTTPException(status.HTTP_409_CONFLICT, "Question already answered")
-
     # The section's last answer finishes it, and the interview with its last section, at once
-    # rather than on the candidate's next step.
-    if len(row.answers) + 1 >= len(row.questions):
-        await sessions.finish(row.id)
+    # rather than on the candidate's next step: in the answer's own transaction, so the answer is
+    # never saved without the finish it brings.
+    try:
+        async with Db.begin() as session:
+            if not await sessions.add_answer(session, answer, event):
+                raise HTTPException(status.HTTP_409_CONFLICT, "Question already answered")
+
+            if len(row.answers) + 1 >= len(row.questions):
+                await sections.finish(session, row.id)
+    except IntegrityError:
+        raise HTTPException(status.HTTP_409_CONFLICT, "Question already answered") from None
 
     await outbox_service.flush_quietly()
 

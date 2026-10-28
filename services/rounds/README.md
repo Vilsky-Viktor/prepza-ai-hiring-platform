@@ -16,8 +16,11 @@ src/rounds/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
-├── services/               # Interview steps, answers, timed sessions, the help chat
-├── repositories/           # Database queries (sessions, answers, signals, votes, ...)
+├── services/               # Interview steps, answers, timed sessions, practice, signals,
+│                           # the help chat, votes, contact, deletions; each opens its
+│                           # transaction
+├── repositories/           # Database queries (sessions, answers, signals, votes, ...);
+│                           # take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (scores, exports, guides); fixed values, the FAQ
 ├── integrations/           # library, billing, the help chat's model, Redis
@@ -28,6 +31,14 @@ src/rounds/
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
+
+Routes call services; services open the transaction (`async with Session.begin() as
+session:`) and pass it to the repositories, so an action's steps are saved together (an
+answer with the finish it brings, a step's finished sections with the next question's clock),
+and read limits from Redis or call library outside it. A plain read may open
+`async with Session() as session:` in the route. `tests/unit/test_layers.py` checks the imports
+and that no repository commits; batched deletions take the session factory, each batch its own
+transaction.
 
 The help articles come from `frontend/content` at the repo root (`constants/help.py`); the
 images copy it to `/frontend/content`, at the same place relative to the code.

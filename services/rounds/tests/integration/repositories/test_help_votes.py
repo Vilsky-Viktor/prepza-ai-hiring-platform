@@ -8,6 +8,7 @@ from sqlalchemy import inspect, select
 from rounds.core.db import Session, engine
 from rounds.models.help_votes import HelpVote
 from rounds.repositories import help_votes
+from tests.integration.transactions import transaction
 
 
 async def row(answer_id):
@@ -19,14 +20,20 @@ def test_a_vote_is_kept_changed_in_place_and_deleted_when_cleared(run):
     answer_id, trace_id = uuid.uuid4(), "a" * 32
 
     async def scenario():
-        await help_votes.save(answer_id, trace_id, 1)
+        await transaction(help_votes.save, answer_id, trace_id, 1)
         first = await row(answer_id)
-        await help_votes.save(answer_id, trace_id, -1)
+        await transaction(help_votes.save, answer_id, trace_id, -1)
         changed = await row(answer_id)
-        current = await help_votes.vote_of(answer_id)
-        await help_votes.save(answer_id, trace_id, None)
+        current = await transaction(help_votes.vote_of, answer_id)
+        await transaction(help_votes.save, answer_id, trace_id, None)
 
-        return first, changed, current, await row(answer_id), await help_votes.vote_of(answer_id)
+        return (
+            first,
+            changed,
+            current,
+            await row(answer_id),
+            await transaction(help_votes.vote_of, answer_id),
+        )
 
     first, changed, current, cleared, after = run(scenario())
 
@@ -41,7 +48,7 @@ def test_clearing_a_vote_never_given_changes_nothing(run):
     answer_id = uuid.uuid4()
 
     async def scenario():
-        await help_votes.save(answer_id, None, None)
+        await transaction(help_votes.save, answer_id, None, None)
 
         return await row(answer_id)
 

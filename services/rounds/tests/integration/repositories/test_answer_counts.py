@@ -2,7 +2,8 @@ import uuid
 
 from rounds.models.answers import Answer
 from rounds.repositories import answer_counts, sessions
-from tests.integration.factories import option_index, topic
+from tests.integration.factories import created, option_index, topic
+from tests.integration.transactions import transaction
 
 
 def answer(row, index, timed_out):
@@ -22,17 +23,13 @@ def answer(row, index, timed_out):
 def test_answers_are_counted_per_interview_with_timeouts_and_without_previews(run):
     async def scenario():
         shared = topic()
-        [first] = await sessions.create_many(
-            "ann", uuid.uuid4(), [shared], 30, company_id=uuid.uuid4()
-        )
-        [second] = await sessions.create_many(
-            "bob", uuid.uuid4(), [shared], 30, company_id=uuid.uuid4()
-        )
-        [preview] = await sessions.create_many(
+        [first] = await created("ann", uuid.uuid4(), [shared], 30, company_id=uuid.uuid4())
+        [second] = await created("bob", uuid.uuid4(), [shared], 30, company_id=uuid.uuid4())
+        [preview] = await created(
             "cto", uuid.uuid4(), [shared], 30, preview=True, company_id=uuid.uuid4()
         )
         other = topic()
-        await sessions.create_many("dan", uuid.uuid4(), [other], 30, company_id=uuid.uuid4())
+        await created("dan", uuid.uuid4(), [other], 30, company_id=uuid.uuid4())
 
         for row, index, timed_out in (
             (first, 0, True),
@@ -40,9 +37,11 @@ def test_answers_are_counted_per_interview_with_timeouts_and_without_previews(ru
             (second, 0, False),
             (preview, 0, True),
         ):
-            await sessions.add_answer(answer(row, index, timed_out))
+            await transaction(sessions.add_answer, answer(row, index, timed_out))
 
-        found = await answer_counts.for_sets([shared.preparation_id, other.preparation_id])
+        found = await transaction(
+            answer_counts.for_sets, [shared.preparation_id, other.preparation_id]
+        )
 
         return found, shared.preparation_id
 
