@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { AiPulse } from "@/components/common/ai-pulse"
 import { Progress } from "@/components/ui/progress"
 
-/** The questions being written, as the generation page shows it (components/generation/
+/** The questions being written, as the generation page shows it (features/generation/components/
  * generation-progress.tsx), small: its loading mark and title, the bar with its percent and the
  * topics `ready`, and each topic checked off once its questions are written. The percent is the
  * share of topics ready, so the two always agree. */

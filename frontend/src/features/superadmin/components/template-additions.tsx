@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { WritingProgress } from "@/components/generation/writing-progress"
+import { WritingProgress } from "@/components/common/writing-progress"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

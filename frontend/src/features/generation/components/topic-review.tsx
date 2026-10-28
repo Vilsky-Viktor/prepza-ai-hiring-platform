@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 import { useState } from "react"
 
-import { TopicEditor } from "@/components/generation/topic-editor"
+import { TopicEditor } from "@/features/generation/components/topic-editor"
 import { RoundFooter } from "@/components/session/round-footer"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"

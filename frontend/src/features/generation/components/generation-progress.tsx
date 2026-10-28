@@ -5,7 +5,7 @@ import type { ReactNode } from "react"
 
 import { AiPulse } from "@/components/common/ai-pulse"
 import { BackLink } from "@/components/common/back-link"
-import { WritingProgress } from "@/components/generation/writing-progress"
+import { WritingProgress } from "@/components/common/writing-progress"
 import type { Generation } from "@/types/generation"
 
 export function GenerationProgress({

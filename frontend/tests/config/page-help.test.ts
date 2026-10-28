@@ -33,8 +33,11 @@ const REGISTERS: [RegExp, string][] = [
     /\b(categoryRoute|hubArticleRoute)\(/,
     "components/content/content-article.tsx",
   ],
-  [/<GenerationView\b/, "components/generation/generation-view.tsx"],
-  [/<GenerationProgress\b/, "components/generation/generation-progress.tsx"],
+  [/<GenerationView\b/, "features/generation/components/generation-view.tsx"],
+  [
+    /<GenerationProgress\b/,
+    "features/generation/components/generation-progress.tsx",
+  ],
 ]
 
 // A page that is not found outside development.

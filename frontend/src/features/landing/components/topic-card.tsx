@@ -1,9 +1,10 @@
 import { cn } from "cn"
 import { CheckIcon } from "lucide-react"
 
-/** A topic as the topic review shows it (components/generation/topic-review.tsx), small, as a
- * card of its own in a list: its checkbox, its name, and `children` (its subtopic chips) under
- * it. `hidden` keeps its place unseen; `highlighted` tints it while it's being changed. */
+/** A topic as the topic review shows it (features/generation/components/topic-review.tsx),
+ * small, as a card of its own in a list: its checkbox, its name, and `children` (its subtopic
+ * chips) under it. `hidden` keeps its place unseen; `highlighted` tints it while it's being
+ * changed. */
 export function TopicCard({
   name,
   checked = true,
