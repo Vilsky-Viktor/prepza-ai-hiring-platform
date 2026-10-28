@@ -1409,6 +1409,7 @@ provides-extras = ["llm", "langfuse", "money"]
 dev = [
     { name = "prepza-common", extras = ["llm", "langfuse", "money"] },
     { name = "pytest", specifier = ">=9.1.1" },
+    { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "pytest-randomly", specifier = ">=5.0.0" },
 ]
 
