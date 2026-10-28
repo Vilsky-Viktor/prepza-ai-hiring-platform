@@ -33,6 +33,10 @@ class ApiKey(Base):
     last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     # What it may do (constants/permissions.py): only ever narrowed after it's made.
     permissions: Mapped[list[str]] = mapped_column(ARRAY(String(32)))
+    # The addresses it may be used from (IPv4 or IPv6, single or CIDR ranges); empty: any.
+    allowed_ips: Mapped[list[str]] = mapped_column(
+        ARRAY(String(49)), default=list, server_default="{}"
+    )
 
 
 class Webhook(Base):

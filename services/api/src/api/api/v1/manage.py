@@ -7,6 +7,7 @@ from api.integrations import companies
 from api.schemas.manage import (
     ApiSettingsOut,
     KeyIn,
+    KeyIpsIn,
     KeyOut,
     KeyPermissionsIn,
     NewKeyOut,
@@ -37,7 +38,7 @@ async def create_key(company_id: UUID, body: KeyIn, user: CurrentUser) -> NewKey
     await companies.require(company_id, user.uid, editor=True)
 
     created = await manage.create_key(
-        company_id, body.name, body.expiry, body.permissions, user.uid
+        company_id, body.name, body.expiry, body.permissions, body.allowed_ips, user.uid
     )
     await outbox_service.flush_quietly()
 
@@ -55,6 +56,18 @@ async def narrow_key(
     await outbox_service.flush_quietly()
 
     return narrowed
+
+
+@router.put("/keys/{key_id}/allowed-ips")
+async def set_key_ips(company_id: UUID, key_id: UUID, body: KeyIpsIn, user: CurrentUser) -> KeyOut:
+    """Owners and admins limit a key to the addresses its servers call from, or let it be used
+    from any (an empty list)."""
+    await companies.require(company_id, user.uid, editor=True)
+
+    changed = await manage.set_key_ips(company_id, key_id, body.allowed_ips, user.uid)
+    await outbox_service.flush_quietly()
+
+    return changed
 
 
 @router.delete("/keys/{key_id}", status_code=status.HTTP_204_NO_CONTENT)

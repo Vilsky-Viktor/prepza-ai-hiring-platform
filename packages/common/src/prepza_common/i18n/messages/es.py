@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "Ese correo ya está invitado",
     "That job is already linked": "Ese puesto ya está vinculado",
     "This API key has expired": "Esta clave de API ha caducado",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "Esta clave de API no se puede usar desde esta dirección IP. Añade la dirección a las IP permitidas de la clave en prepza o llama desde una permitida.",
     "This Slack link expired: try again": "Este enlace de Slack caducó: inténtalo de nuevo",
     "This invite was sent to a different email address": "Esta invitación se envió a otro correo",
     "This request changed; check it again.": "Esta solicitud cambió; revísala de nuevo.",

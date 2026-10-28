@@ -78,11 +78,17 @@ def key_out(key: ApiKey) -> KeyOut:
         expired=expired(key.expires_at, datetime.now(UTC)),
         last_used_at=key.last_used_at,
         permissions=key.permissions,
+        allowed_ips=key.allowed_ips,
     )
 
 
 async def create_key(
-    company_id: UUID, name: str, expiry: KeyExpiry, permissions: list[Permission], user_id: str
+    company_id: UUID,
+    name: str,
+    expiry: KeyExpiry,
+    permissions: list[Permission],
+    allowed_ips: list[str],
+    user_id: str,
 ) -> NewKeyOut:
     key, shown, hashed = new_key()
     months = KEY_EXPIRY_MONTHS[expiry]
@@ -99,6 +105,7 @@ async def create_key(
             user_id,
             expires_at,
             with_implied(permissions),
+            allowed_ips,
             most,
         )
 
@@ -124,6 +131,19 @@ async def narrow_key(
 
     if row is None:
         raise HTTPException(status.HTTP_409_CONFLICT, ONLY_NARROWING)
+
+    return key_out(row)
+
+
+async def set_key_ips(
+    company_id: UUID, key_id: UUID, allowed_ips: list[str], user_id: str
+) -> KeyOut:
+    """Replaces the addresses the key may be used from; the change applies to its next call."""
+    async with Session.begin() as session:
+        row = await keys.set_allowed_ips(session, company_id, key_id, allowed_ips, user_id)
+
+    if row is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "API key not found")
 
     return key_out(row)
 

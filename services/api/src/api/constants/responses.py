@@ -41,7 +41,8 @@ COMMON = {
         "(`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)"
     ),
     403: refusal(
-        "The API key doesn't have the permission the endpoint needs (`missing_permission`)"
+        "The API key doesn't have the permission the endpoint needs (`missing_permission`), or "
+        "doesn't allow the address the request came from (`ip_not_allowed`)"
     ),
     429: {
         **refusal("Your company's keys exceeded 60 requests per minute (`rate_limited`)"),

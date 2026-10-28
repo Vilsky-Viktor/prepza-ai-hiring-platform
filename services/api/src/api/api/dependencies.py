@@ -1,8 +1,9 @@
 from typing import Annotated
 
-from fastapi import Depends
+from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from prepza_common.auth.service_auth import service_caller
+from prepza_common.http.client_ip import client_ip
 
 from api.config import settings
 from api.constants.permissions import Permission
@@ -15,10 +16,11 @@ bearer = HTTPBearer(auto_error=False, description="A company's API key: `Bearer 
 
 
 async def api_key(
+    request: Request,
     credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer)],
 ) -> ApiKey:
-    """The API key the request carries (checked_key)."""
-    return await checked_key(credentials.credentials if credentials else None)
+    """The API key the request carries, from the address the load balancer saw (checked_key)."""
+    return await checked_key(credentials.credentials if credentials else None, client_ip(request))
 
 
 ApiKeyDep = Annotated[ApiKey, Depends(api_key)]

@@ -24,7 +24,7 @@ EVERY_API_PERMISSION = [
 
 def new_key(company, permissions):
     return transaction(
-        keys.add, company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, permissions, 10
+        keys.add, company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, permissions, [], 10
     )
 
 
@@ -111,3 +111,65 @@ def test_keys_made_before_permissions_keep_every_api_permission_but_mcp(run):
         command.upgrade(config, "head")
 
     assert run(permissions()) == EVERY_API_PERMISSION
+
+
+def test_a_keys_allowed_addresses_are_replaced_and_logged_when_they_change(run):
+    company = uuid.uuid4()
+
+    async def scenario():
+        made = await transaction(
+            keys.add,
+            company,
+            "Site",
+            "pz_x",
+            uuid.uuid4().hex * 2,
+            "u1",
+            None,
+            READS,
+            ["203.0.113.7"],
+            10,
+        )
+        changed = await transaction(keys.set_allowed_ips, company, made.id, ["2001:db8::/32"], "u2")
+        # The same list again: nothing to log.
+        await transaction(keys.set_allowed_ips, company, made.id, ["2001:db8::/32"], "u2")
+        elsewhere = await transaction(keys.set_allowed_ips, uuid.uuid4(), made.id, [], "u2")
+
+        return made, changed, elsewhere, await transaction(keys.get, company, made.id)
+
+    made, changed, elsewhere, stored = run(scenario())
+    events = run(logged(company))
+
+    assert made.allowed_ips == ["203.0.113.7"]
+    assert changed.allowed_ips == stored.allowed_ips == ["2001:db8::/32"]
+    assert elsewhere is None
+    assert [(row["action"], row["user_id"]) for row in events] == [
+        ("api_key_created", "u1"),
+        ("api_key_ips_changed", "u2"),
+    ]
+
+
+def test_keys_made_before_allowed_addresses_work_from_anywhere(run):
+    company = uuid.uuid4()
+
+    async def insert():
+        async with Session() as session:
+            await session.execute(
+                text(
+                    "INSERT INTO api_keys (id, company_id, name, shown, hash, created_by, "
+                    "created_at, permissions) VALUES (:id, :company, 'Old', 'pz_o', :hash, 'u1', "
+                    "now(), ARRAY['interviews:read'])"
+                ),
+                {"id": key_id, "company": company, "hash": uuid.uuid4().hex * 2},
+            )
+            await session.commit()
+
+    key_id = uuid.uuid4()
+    config = Config("alembic.ini")
+    command.downgrade(config, "0011")
+
+    try:
+        run(insert())
+    finally:
+        command.upgrade(config, "head")
+
+    assert run(transaction(keys.get, company, key_id)).allowed_ips == []

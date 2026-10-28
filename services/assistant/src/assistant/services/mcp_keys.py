@@ -6,6 +6,7 @@ from assistant.constants.mcp import (
     MCP_SCOPES,
 )
 from assistant.constants.tool_calls import UNKNOWN_TOOL
+from assistant.core.caller import CALLER_IP
 from assistant.helpers.oauth import resource_url
 from assistant.integrations import api_keys
 from assistant.models.oauth_tokens import Access
@@ -14,8 +15,9 @@ from assistant.models.oauth_tokens import Access
 async def key_access(key: str) -> Access | None:
     """An AI agent's access with a company's API key, as the api service checked it: as the
     key's maker, in its company, with its permissions. None for a key that doesn't work or
-    hasn't the mcp permission (the 401 an unknown token gets)."""
-    found = await api_keys.verify(key)
+    hasn't the mcp permission (the 401 an unknown token gets); the api's 403 for a key used from
+    an address it doesn't allow."""
+    found = await api_keys.verify(key, CALLER_IP.get())
 
     if found is None or KEY_MCP_PERMISSION not in found["permissions"]:
         return None

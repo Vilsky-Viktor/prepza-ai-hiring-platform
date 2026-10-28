@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "Email itu sudah diundang",
     "That job is already linked": "Lowongan itu sudah ditautkan",
     "This API key has expired": "Kunci API ini sudah kedaluwarsa",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "Kunci API ini tidak bisa digunakan dari alamat IP ini. Tambahkan alamat tersebut ke IP yang diizinkan untuk kunci ini di prepza, atau panggil dari alamat yang diizinkan.",
     "This Slack link expired: try again": "Tautan Slack ini sudah kedaluwarsa: coba lagi",
     "This invite was sent to a different email address": "Undangan ini dikirim ke alamat email lain",
     "This request changed; check it again.": "Permintaan ini berubah; periksa lagi.",

@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "อีเมลนี้ได้รับคำเชิญแล้ว",
     "That job is already linked": "ตำแหน่งงานนี้เชื่อมโยงไว้แล้ว",
     "This API key has expired": "คีย์ API นี้หมดอายุแล้ว",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "ใช้คีย์ API นี้จากที่อยู่ IP นี้ไม่ได้ ให้เพิ่มที่อยู่นี้ใน IP ที่อนุญาตของคีย์ใน prepza หรือเรียกจากที่อยู่ที่อนุญาต",
     "This Slack link expired: try again": "ลิงก์ Slack นี้หมดอายุแล้ว: โปรดลองอีกครั้ง",
     "This invite was sent to a different email address": "คำเชิญนี้ส่งไปยังอีเมลอื่น",
     "This request changed; check it again.": "คำขอนี้มีการเปลี่ยนแปลง โปรดตรวจสอบอีกครั้ง",

@@ -138,6 +138,8 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   arguments, calls and writes rate-limited per user, writes audited `via: "mcp"`.
 - Never log tokens, codes, request ids or arguments; log refusals with ids.
 - Not adopted: allowlisting Anthropic's or OpenAI's ranges: API-key agents call from anywhere.
+  A company limits its own keys instead (allowed IPs); the endpoint passes the caller's address
+  (`core/caller.py`) to the api service's key check.
 
 ## Testing
 

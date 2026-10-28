@@ -154,6 +154,7 @@ MESSAGES = {
     "That email is already invited": "See e-post on juba kutsutud",
     "That job is already linked": "See töökoht on juba seotud",
     "This API key has expired": "See API-võti on aegunud",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "Seda API-võtit ei saa sellelt IP-aadressilt kasutada. Lisa aadress prepzas võtme lubatud IP-de hulka või tee päring lubatud aadressilt.",
     "This Slack link expired: try again": "See Slacki link aegus: proovi uuesti",
     "This invite was sent to a different email address": "See kutse saadeti teisele e-posti aadressile",
     "This request changed; check it again.": "See taotlus muutus; kontrolli seda uuesti.",

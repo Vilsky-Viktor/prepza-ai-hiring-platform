@@ -38,7 +38,7 @@ async def unresolved(url):
 async def new_key(company: uuid.UUID, user: str):
     hashed = uuid.uuid4().hex * 2
 
-    return await transaction(keys.add, company, "Site", "pz_x", hashed, user, None, READS, 10)
+    return await transaction(keys.add, company, "Site", "pz_x", hashed, user, None, READS, [], 10)
 
 
 async def new_hook(company: uuid.UUID, user: str, secret: str = "sealed"):

@@ -24,6 +24,15 @@ KEY_EXPIRY_MONTHS = {
     KeyExpiry.NEVER: None,
 }
 MAX_NAME_LENGTH = 80
+# A key may be limited to the addresses its servers call from: up to this many IPv4 or IPv6
+# addresses or CIDR ranges (none: any address).
+MAX_ALLOWED_IPS = 50
+# The longest such entry: an IPv6 address with a /128.
+MAX_IP_LENGTH = 49
+IP_NOT_ALLOWED = (
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs "
+    "in prepza, or call from an allowed one."
+)
 MAX_URL_LENGTH = 500
 # How long a key maker's access (still an owner or admin?) is trusted before companies is asked
 # again, in this instance's memory.

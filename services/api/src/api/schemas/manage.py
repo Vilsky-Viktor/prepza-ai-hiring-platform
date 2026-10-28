@@ -1,10 +1,26 @@
 from datetime import datetime
+from typing import Annotated
 from uuid import UUID
 
-from pydantic import BaseModel, Field
+from pydantic import AfterValidator, BaseModel, Field, StringConstraints
 
-from api.constants.api import MAX_NAME_LENGTH, MAX_URL_LENGTH, KeyExpiry
+from api.constants.api import (
+    MAX_ALLOWED_IPS,
+    MAX_IP_LENGTH,
+    MAX_NAME_LENGTH,
+    MAX_URL_LENGTH,
+    KeyExpiry,
+)
 from api.constants.permissions import DEFAULT_PERMISSIONS, Permission
+from api.helpers.allowed_ips import normalized
+
+# A key's allowed addresses: IPv4 or IPv6 addresses and CIDR ranges, kept in their shortest
+# form, each once (422 naming a bad one); none: any address.
+AllowedIps = Annotated[
+    list[Annotated[str, StringConstraints(max_length=MAX_IP_LENGTH)]],
+    Field(max_length=MAX_ALLOWED_IPS),
+    AfterValidator(normalized),
+]
 
 
 class KeyOut(BaseModel):
@@ -18,6 +34,8 @@ class KeyOut(BaseModel):
     expired: bool
     last_used_at: datetime | None
     permissions: list[Permission]
+    # The addresses it may be used from; empty: any.
+    allowed_ips: list[str] = []
 
 
 class NewKeyOut(KeyOut):
@@ -32,11 +50,17 @@ class KeyIn(BaseModel):
     permissions: list[Permission] = Field(
         default_factory=lambda: list(DEFAULT_PERMISSIONS), min_length=1
     )
+    allowed_ips: AllowedIps = []
 
 
 class KeyPermissionsIn(BaseModel):
     # Only ones the key already has, at least one; the reads they imply are kept.
     permissions: list[Permission] = Field(min_length=1)
+
+
+class KeyIpsIn(BaseModel):
+    # The whole new list, replacing the old one; empty: any address.
+    allowed_ips: AllowedIps
 
 
 class WebhookOut(BaseModel):

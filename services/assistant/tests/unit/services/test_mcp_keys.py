@@ -39,7 +39,7 @@ def key(*permissions: str) -> Access:
 
 
 def verified(monkeypatch, permissions):
-    async def verify(raw):
+    async def verify(raw, ip):
         if permissions is None:
             return None
 
@@ -168,7 +168,8 @@ def test_the_docs_list_the_tools_and_limits_an_app_meets(client):
 def test_the_api_answers_whether_a_key_works(monkeypatch, status, expected):
     class Client:
         async def post(self, url, json, headers):
-            assert url == "http://api/internal/keys/verify" and json == {"key": "pz_key"}
+            assert url == "http://api/internal/keys/verify"
+            assert json == {"key": "pz_key", "ip": "203.0.113.7"}
             assert token_claims(headers["Authorization"][7:], SECRET, "api")["iss"] == "assistant"
 
             request = httpx.Request("POST", url)
@@ -179,7 +180,7 @@ def test_the_api_answers_whether_a_key_works(monkeypatch, status, expected):
 
     monkeypatch.setattr(http, "get_client", Client)
 
-    assert asyncio.run(api_keys.verify("pz_key")) == expected
+    assert asyncio.run(api_keys.verify("pz_key", "203.0.113.7")) == expected
 
 
 def test_over_the_companys_api_limit_a_key_gets_a_429(monkeypatch):
@@ -195,7 +196,7 @@ def test_over_the_companys_api_limit_a_key_gets_a_429(monkeypatch):
     monkeypatch.setattr(http, "get_client", Client)
 
     with pytest.raises(HTTPException) as refused:
-        asyncio.run(api_keys.verify("pz_key"))
+        asyncio.run(api_keys.verify("pz_key", None))
 
     assert (refused.value.status_code, refused.value.detail) == (429, "Too many requests")
     assert refused.value.headers == {"Retry-After": "17"}

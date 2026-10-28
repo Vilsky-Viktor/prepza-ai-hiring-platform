@@ -13,6 +13,7 @@ from starlette.routing import Route
 from starlette.types import Receive, Scope, Send
 
 from assistant.constants.mcp import CACHE_TTL_MS, MCP_PATH, MCP_READ_SCOPE, MCP_REQUEST_HEADERS
+from assistant.core.caller import CallerAddress
 from assistant.helpers.cors import browser_cors
 from assistant.helpers.oauth import auth_settings
 from assistant.prompts.mcp import MCP_INSTRUCTIONS
@@ -65,8 +66,8 @@ async def handle(scope: Scope, receive: Receive, send: Send) -> None:
 
 def routes() -> list[Route]:
     """The MCP endpoint, for the bearer of an access token prepza issued for it; without one, a
-    401 naming where to learn how to get one. Browser-based apps we know (MCP Inspector) may call
-    it."""
+    401 naming where to learn how to get one. The token check knows the caller's address (an API
+    key may be limited to some). Browser-based apps we know (MCP Inspector) may call it."""
     resource = auth_settings().resource_server_url
     verifier = ProviderTokenVerifier(Provider())
     required = RequireAuthMiddleware(
@@ -76,7 +77,7 @@ def routes() -> list[Route]:
         required, backend=BearerAuthBackend(verifier, resource_server_url=resource)
     )
     endpoint = browser_cors(
-        authenticated,
+        CallerAddress(authenticated),
         ["GET", "POST", "DELETE", "OPTIONS"],
         MCP_REQUEST_HEADERS,
         expose=["WWW-Authenticate", "Mcp-Session-Id"],

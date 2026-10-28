@@ -161,7 +161,7 @@ def stored(monkeypatch):
         state["used"].append(key_id)
 
     async def add_key(
-        session, company_id, name, shown, hashed, user_id, expires_at, permissions, limit
+        session, company_id, name, shown, hashed, user_id, expires_at, permissions, ips, limit
     ):
         if sum(key.company_id == company_id for key in state["keys"]) >= limit:
             return None
@@ -177,6 +177,7 @@ def stored(monkeypatch):
             expires_at=expires_at,
             last_used_at=None,
             permissions=permissions,
+            allowed_ips=ips,
         )
         state["keys"].append(key)
 
@@ -200,6 +201,14 @@ def stored(monkeypatch):
             state["narrowed"].append((key.id, user_id, removed))
 
         key.permissions = permissions
+
+        return key
+
+    async def set_allowed_ips(session, company_id, key_id, ips, user_id):
+        key = await get_key(session, company_id, key_id)
+
+        if key is not None:
+            key.allowed_ips = ips
 
         return key
 
@@ -236,6 +245,7 @@ def stored(monkeypatch):
     monkeypatch.setattr(keys, "of_company", keys_of)
     monkeypatch.setattr(keys, "get", get_key)
     monkeypatch.setattr(keys, "narrow", narrow)
+    monkeypatch.setattr(keys, "set_allowed_ips", set_allowed_ips)
     monkeypatch.setattr(webhooks, "add", add_webhook)
     monkeypatch.setattr(webhooks, "of_company", webhooks_of)
     monkeypatch.setattr(key_checks, "hit_or_skip", hit)

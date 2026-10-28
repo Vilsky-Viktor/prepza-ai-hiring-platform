@@ -12,8 +12,9 @@ async def verify_key(body: KeyVerifyIn, caller: ServiceCaller) -> VerifiedKeyOut
     """The assistant, for an AI agent signing in to the MCP server with a key: checked as the
     API checks it (a 401 for one that doesn't work) and counted against the company's API
     limit (a 429 over it). Whether it may be used there (the mcp permission) is the assistant's
-    to decide."""
-    found = await checked_key(body.key)
+    to decide. The agent's address is the one the assistant saw; a key that lists addresses
+    refuses a call without one (403)."""
+    found = await checked_key(body.key, body.ip)
 
     return VerifiedKeyOut(
         id=found.id,

@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "האימייל הזה כבר הוזמן",
     "That job is already linked": "המשרה הזו כבר מקושרת",
     "This API key has expired": "פג תוקפו של מפתח ה-API הזה",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "לא ניתן להשתמש במפתח ה-API הזה מכתובת ה-IP הזו. הוסיפו את הכתובת לכתובות ה-IP המורשות של המפתח ב-prepza, או שלחו את הבקשה מכתובת מורשית.",
     "This Slack link expired: try again": "פג תוקפו של קישור ה-Slack הזה: נסו שוב",
     "This invite was sent to a different email address": "ההזמנה הזו נשלחה לכתובת אימייל אחרת",
     "This request changed; check it again.": "הבקשה הזו השתנתה; בדקו אותה שוב.",

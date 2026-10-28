@@ -27,6 +27,7 @@ async def add(
     user_id: str,
     expires_at: datetime | None,
     permissions: list[str],
+    allowed_ips: list[str],
     limit: int,
 ) -> ApiKey | None:
     """None when the company already has `limit` keys. One company's keys are added one at a
@@ -41,6 +42,7 @@ async def add(
         created_by=user_id,
         expires_at=expires_at,
         permissions=permissions,
+        allowed_ips=allowed_ips,
     )
     await session.execute(
         select(func.pg_advisory_xact_lock(func.hashtext(f"api_keys:{company_id}")))
@@ -120,6 +122,40 @@ async def narrow(
         )
 
     await session.flush()
+
+    return key
+
+
+async def set_allowed_ips(
+    session: AsyncSession,
+    company_id: uuid.UUID,
+    key_id: uuid.UUID,
+    allowed_ips: list[str],
+    user_id: str,
+) -> ApiKey | None:
+    """Replaces the key's allowed addresses; None when the company has no such key. The
+    company's action log gets the change, when there is one, as `user_id`'s."""
+    query = (
+        select(ApiKey).where(ApiKey.company_id == company_id, ApiKey.id == key_id).with_for_update()
+    )
+    key = await session.scalar(query)
+
+    if key is None:
+        return None
+
+    if list(key.allowed_ips) != allowed_ips:
+        key.allowed_ips = allowed_ips
+        audit.add(
+            session,
+            OutboxEvent,
+            company_id,
+            user_id,
+            AuditAction.API_KEY_IPS_CHANGED,
+            TargetKind.API_KEY,
+            key_id,
+            key.name,
+        )
+        await session.flush()
 
     return key
 

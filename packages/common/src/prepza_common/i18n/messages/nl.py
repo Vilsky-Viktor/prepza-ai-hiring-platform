@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "Dat e-mailadres is al uitgenodigd",
     "That job is already linked": "Die vacature is al gekoppeld",
     "This API key has expired": "Deze API-sleutel is verlopen",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "Deze API-sleutel kan niet vanaf dit IP-adres worden gebruikt. Voeg het adres in prepza toe aan de toegestane IP's van de sleutel, of roep aan vanaf een toegestaan adres.",
     "This Slack link expired: try again": "Deze Slack-link is verlopen: probeer het opnieuw",
     "This invite was sent to a different email address": "Deze uitnodiging is naar een ander e-mailadres gestuurd",
     "This request changed; check it again.": "Dit verzoek is gewijzigd; controleer het opnieuw.",

@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "该邮箱已被邀请",
     "That job is already linked": "该职位已关联",
     "This API key has expired": "此 API 密钥已过期",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "此 API 密钥不能从该 IP 地址使用。请在 prepza 中将该地址添加到密钥允许的 IP，或从允许的地址调用。",
     "This Slack link expired: try again": "此 Slack 链接已过期：请重试",
     "This invite was sent to a different email address": "此邀请发送到了另一个邮箱地址",
     "This request changed; check it again.": "此请求已更改，请重新检查。",

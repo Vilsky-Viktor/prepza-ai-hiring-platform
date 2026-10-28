@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "Цю пошту вже запрошено",
     "That job is already linked": "Цю вакансію вже пов’язано",
     "This API key has expired": "Термін дії цього API-ключа минув",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "Цей API-ключ не можна використовувати з цієї IP-адреси. Додайте адресу до дозволених IP-адрес ключа в prepza або надсилайте запити з дозволеної адреси.",
     "This Slack link expired: try again": "Посилання Slack застаріло: спробуйте ще раз",
     "This invite was sent to a different email address": "Це запрошення надіслано на іншу пошту",
     "This request changed; check it again.": "Запит змінився; перевірте його ще раз.",

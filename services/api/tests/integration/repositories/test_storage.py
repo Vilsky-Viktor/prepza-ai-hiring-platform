@@ -35,7 +35,7 @@ def test_a_key_is_found_by_its_hash_and_its_use_noted_at_most_once_a_minute(run)
 
     async def scenario():
         made = await transaction(
-            keys.add, company, "Site", "pz_abc", hashed, "u1", None, READS, MAX_KEYS
+            keys.add, company, "Site", "pz_abc", hashed, "u1", None, READS, [], MAX_KEYS
         )
         found = await transaction(keys.by_hash, hashed)
         await transaction(keys.used, made.id)
@@ -99,10 +99,10 @@ def test_a_deleted_company_loses_its_keys_web_hooks_and_their_deliveries(run):
 
     async def scenario():
         await transaction(
-            keys.add, company, "Site", "pz_a", uuid.uuid4().hex * 2, "u1", None, READS, MAX_KEYS
+            keys.add, company, "Site", "pz_a", uuid.uuid4().hex * 2, "u1", None, READS, [], MAX_KEYS
         )
         await transaction(
-            keys.add, other, "Site", "pz_b", uuid.uuid4().hex * 2, "u1", None, READS, MAX_KEYS
+            keys.add, other, "Site", "pz_b", uuid.uuid4().hex * 2, "u1", None, READS, [], MAX_KEYS
         )
         hook = await transaction(
             webhooks.add, company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS
@@ -141,7 +141,16 @@ def test_a_deleted_account_loses_the_keys_and_web_hooks_it_made(run):
 
     async def scenario():
         await transaction(
-            keys.add, company, "Mine", "pz_m", uuid.uuid4().hex * 2, "gone", None, READS, MAX_KEYS
+            keys.add,
+            company,
+            "Mine",
+            "pz_m",
+            uuid.uuid4().hex * 2,
+            "gone",
+            None,
+            READS,
+            [],
+            MAX_KEYS,
         )
         await transaction(
             keys.add,
@@ -152,6 +161,7 @@ def test_a_deleted_account_loses_the_keys_and_web_hooks_it_made(run):
             "stays",
             None,
             READS,
+            [],
             MAX_KEYS,
         )
         await transaction(
@@ -181,7 +191,7 @@ def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run, monke
 
     def new_key():
         return transaction(
-            keys.add, company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, READS, MAX_KEYS
+            keys.add, company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, READS, [], MAX_KEYS
         )
 
     def new_hook():

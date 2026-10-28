@@ -29,6 +29,14 @@ A key belongs to one company and acts on behalf of the member who created it, so
 sent under that member's email limits. If the member leaves the company or is no longer an owner
 or admin, the key stops working and requests return `401`.
 
+## Allowed IPs
+
+A key can be limited to the addresses your servers call from: on the API page, give the key a
+list of IPv4 or IPv6 addresses or CIDR ranges (like `203.0.113.7` or `2001:db8::/32`). A request
+from any other address returns `403` (`ip_not_allowed`); a key without a list works from any
+address. The address checked is the one your request reached prepza from; an
+`X-Forwarded-For` header you send yourself is ignored.
+
 ## Example: inviting a candidate
 
 Invite a candidate to an interview and get their invite link. Sending the same request again is
@@ -122,6 +130,7 @@ you don't know by its HTTP status.
 | `invalid_api_key` | 401 | The key is missing or not a key |
 | `api_key_expired` | 401 | The key has expired |
 | `key_creator_lost_access` | 401 | The key's creator is no longer an owner or admin |
+| `ip_not_allowed` | 403 | The key doesn't allow the address the request came from |
 | `missing_permission` | 403 | The key lacks the endpoint's permission |
 | `not_found` | 404 | No such interview or candidate in your company |
 | `insufficient_credits` | 402 | Not enough credits to invite |

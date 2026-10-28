@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "यह ईमेल पहले से इनवाइट किया जा चुका है",
     "That job is already linked": "यह जॉब पहले से लिंक है",
     "This API key has expired": "यह API कुंजी एक्सपायर हो गई है",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "इस API कुंजी का इस्तेमाल इस IP पते से नहीं किया जा सकता। prepza में पते को कुंजी के अनुमत IP में जोड़ें, या किसी अनुमत पते से कॉल करें।",
     "This Slack link expired: try again": "यह Slack लिंक एक्सपायर हो गया है: फिर से कोशिश करें",
     "This invite was sent to a different email address": "यह इनवाइट किसी दूसरे ईमेल पते पर भेजा गया था",
     "This request changed; check it again.": "यह अनुरोध बदल गया है; इसे फिर से जाँचें।",

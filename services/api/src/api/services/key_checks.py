@@ -1,3 +1,4 @@
+import logging
 from datetime import UTC, datetime
 from uuid import UUID
 
@@ -7,20 +8,25 @@ from prepza_common.i18n.i18n import CodedError
 from prepza_common.limits.rate_limit import hit_or_skip
 from prepza_common.redis import memory_cache
 
-from api.constants.api import ACCESS_CACHE_SECONDS, LAST_USED_EVERY
+from api.constants.api import ACCESS_CACHE_SECONDS, IP_NOT_ALLOWED, LAST_USED_EVERY
+from api.constants import error_codes
 from api.constants.error_codes import API_KEY_EXPIRED, INVALID_API_KEY, KEY_CREATOR_LOST_ACCESS
 from api.core.db import Session
+from api.helpers.allowed_ips import allows
 from api.helpers.keys import expired
 from api.integrations import companies
 from api.integrations.redis import get_redis
 from api.models.api import ApiKey
 from api.repositories import keys
 
+logger = logging.getLogger(__name__)
 
-async def checked_key(raw: str | None) -> ApiKey:
-    """The key `raw` is, counted as one request. It works until it expires, while whoever made it
-    is still an owner or admin of its company, up to API_REQUESTS_PER_MINUTE requests a minute for
-    the whole company (the API and the MCP server together); a 401 or 429 otherwise."""
+
+async def checked_key(raw: str | None, address: str | None) -> ApiKey:
+    """The key `raw` is, counted as one request from `address` (the caller's IP). It works until
+    it expires, from the addresses it allows (any when it lists none), while whoever made it is
+    still an owner or admin of its company, up to API_REQUESTS_PER_MINUTE requests a minute for
+    the whole company (the API and the MCP server together); a 401, 403 or 429 otherwise."""
     found = None
 
     if raw:
@@ -34,6 +40,11 @@ async def checked_key(raw: str | None) -> ApiKey:
 
     if expired(found.expires_at, now):
         raise CodedError(status.HTTP_401_UNAUTHORIZED, "This API key has expired", API_KEY_EXPIRED)
+
+    if not allows(found.allowed_ips, address):
+        logger.warning("API key %s refused: called from an address it doesn't allow", found.id)
+
+        raise CodedError(status.HTTP_403_FORBIDDEN, IP_NOT_ALLOWED, error_codes.IP_NOT_ALLOWED)
 
     if not await editor(found.company_id, found.created_by):
         raise CodedError(

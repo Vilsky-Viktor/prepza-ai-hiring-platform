@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "そのメールアドレスはすでに招待されています",
     "That job is already linked": "その求人はすでにリンクされています",
     "This API key has expired": "この API キーは有効期限が切れています",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "この API キーはこの IP アドレスからは使えません。prepza でこのアドレスをキーの許可 IP に追加するか、許可されたアドレスから呼び出してください。",
     "This Slack link expired: try again": "この Slack リンクは有効期限が切れています。もう一度お試しください",
     "This invite was sent to a different email address": "この招待は別のメールアドレスに送信されました",
     "This request changed; check it again.": "このリクエストは変更されました。もう一度確認してください。",

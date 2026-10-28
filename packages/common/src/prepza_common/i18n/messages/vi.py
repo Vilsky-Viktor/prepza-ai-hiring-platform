@@ -144,6 +144,7 @@ MESSAGES = {
     "That email is already invited": "Email đó đã được mời",
     "That job is already linked": "Vị trí đó đã được liên kết",
     "This API key has expired": "Khóa API này đã hết hạn",
+    "This API key can't be used from this IP address. Add the address to the key's allowed IPs in prepza, or call from an allowed one.": "Không thể dùng khóa API này từ địa chỉ IP này. Hãy thêm địa chỉ vào danh sách IP được phép của khóa trên prepza, hoặc gọi từ một địa chỉ được phép.",
     "This Slack link expired: try again": "Liên kết Slack này đã hết hạn: hãy thử lại",
     "This invite was sent to a different email address": "Lời mời này được gửi đến một địa chỉ email khác",
     "This request changed; check it again.": "Yêu cầu này đã thay đổi; hãy kiểm tra lại.",
