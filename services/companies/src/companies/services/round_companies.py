@@ -6,17 +6,23 @@ import asyncio
 import logging
 
 from companies.constants.reports import READ_BATCH
+from companies.core.db import Session
 from companies.integrations import rounds
 from companies.repositories import interviews
 
 logger = logging.getLogger(__name__)
 
 
+async def read_batch(after) -> list[tuple]:
+    async with Session() as session:
+        return await interviews.set_companies(session, after, READ_BATCH)
+
+
 async def backfill() -> int:
     """How many sections got their company."""
     filled, after = 0, None
 
-    while batch := await interviews.set_companies(after, READ_BATCH):
+    while batch := await read_batch(after):
         after = batch[-1][0]
         filled += await rounds.fill_session_companies(
             {set_id: company_id for _, set_id, company_id in batch}

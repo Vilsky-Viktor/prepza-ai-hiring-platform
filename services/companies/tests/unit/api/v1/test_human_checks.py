@@ -1,10 +1,9 @@
 import pytest
 
-import companies.api.v1.companies as company_routes
-import companies.api.v1.interview_generation as generation_routes
 from companies.config import settings
 from companies.main import app
-from companies.services import link_start
+from companies.repositories import audit
+from companies.services import company_creation, generation_steps, link_start
 from tests.unit.api.v1.test_links import linked  # noqa: F401 (fixture)
 
 
@@ -18,7 +17,7 @@ def checks(monkeypatch):
 
     monkeypatch.setattr(settings, "turnstile_secret_key", "s3cret")
 
-    for module in (company_routes, generation_routes, link_start):
+    for module in (company_creation, generation_steps, link_start):
         monkeypatch.setattr(module, "require_human", require_human)
 
     return asked
@@ -49,10 +48,10 @@ def test_only_a_persons_first_company_on_the_site_is_asked(
 
     sign_in()
 
-    async def owned_count(user_id):
+    async def owned_count(session, user_id):
         return owned
 
-    async def name_taken(name, user_id, email, most=None):
+    async def name_taken(session, name, user_id, email, most=None):
         return None
 
     monkeypatch.setattr(companies, "owned_count", owned_count)
@@ -89,7 +88,7 @@ def test_only_a_company_that_never_paid_is_asked_before_its_questions_are_made(
 
     monkeypatch.setattr(generation, "review", fake_review)
     monkeypatch.setattr(billing, "company_paid", company_paid)
-    monkeypatch.setattr(generation_routes.audit, "record", record)
+    monkeypatch.setattr(audit, "record", record)
     client.post(f"/interviews/{review.INTERVIEW_ID}/generation/review", json={"selected": [0]})
     app.dependency_overrides.clear()
 

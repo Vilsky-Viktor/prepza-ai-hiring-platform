@@ -7,7 +7,7 @@ from prepza_common.auth.user import User
 
 from companies.main import app
 from companies.models.companies import Company, Member
-from companies.repositories import members
+from companies.repositories import members, outbox
 from companies.services import outbox as outbox_service
 
 MEMBER_ID = uuid.uuid4()
@@ -40,16 +40,21 @@ def stored_invite(monkeypatch):
     company = Company(id=COMPANY_ID, name="Arcolabs", created_at=datetime.now(UTC))
     accepted = []
 
-    async def fake_get(token):
+    async def fake_get(session, token):
         return (member, company) if token == "token-1" else None
 
-    async def fake_accept(item, company, user_id):
+    async def fake_join(session, member_id, user_id):
         accepted.append(user_id)
 
-        return True
+        return member, True
+
+    async def fake_owner(session, company_id):
+        return "owner"
 
     monkeypatch.setattr(members, "get_by_token", fake_get)
-    monkeypatch.setattr(members, "accept", fake_accept)
+    monkeypatch.setattr(members, "join", fake_join)
+    monkeypatch.setattr(members, "owner_user_id", fake_owner)
+    monkeypatch.setattr(outbox, "notify", lambda session, notice: notices.append(notice))
     monkeypatch.setattr(outbox_service, "flush_quietly", fake_flush)
 
     return accepted
@@ -57,11 +62,13 @@ def stored_invite(monkeypatch):
 
 def test_invited_email_accepts(client, stored_invite):
     flushed.clear()
+    notices.clear()
     sign_in("Bob@Example.com", uid="bob")
 
     assert client.post("/members/invites/token-1/accept").status_code == 204
     assert stored_invite == ["bob"]
-    # The owner's notification is sent right away, not on the outbox's next run.
+    # The owner is told, right away, not on the outbox's next run.
+    assert [notice["recipient_id"] for notice in notices] == ["owner"]
     assert flushed
 
 
@@ -128,7 +135,7 @@ def test_a_used_link_opens_the_company_for_its_member_and_says_used_to_others(cl
     )
     company = Company(id=COMPANY_ID, name="Arcolabs", created_at=datetime.now(UTC))
 
-    async def fake_get(token):
+    async def fake_get(session, token):
         return member, company
 
     monkeypatch.setattr(members, "get_by_token", fake_get)
@@ -157,6 +164,8 @@ def test_invite_view(client, stored_invite):
 
 # How many times the outbox was asked to send its events right away.
 flushed = []
+# The notifications saved with the change.
+notices = []
 
 
 async def fake_flush():

@@ -12,7 +12,7 @@ def test_unfinished_invites_are_settled_page_by_page(monkeypatch):
     rows = [SimpleNamespace(id=uuid.UUID(int=index)) for index in range(1, 6)]
     asked, settled = [], []
 
-    async def unfinished(interview_id, after, size):
+    async def unfinished(session, interview_id, after, size):
         asked.append(after)
         start = 0 if after is None else rows.index(next(r for r in rows if r.id == after)) + 1
 

@@ -11,6 +11,7 @@ A company's pages (interviews, templates, team, integrations, brand, billing, ac
 - [Suspension](#suspension)
 - [Action log](#action-log)
 - [Page guides](#page-guides)
+- [How it's built](#how-its-built)
 - [Related pages](#related-pages)
 
 ## Names
@@ -119,6 +120,10 @@ Every action a company's members take on it is logged: who took it, what it was 
 Every page from the companies list inward has an info button (a question mark in a badge, labelled "About this page"): under the back arrow in the page margin, or right after the arrow on narrower screens. It opens a short guide to that page: what it's for, what you can do there and a tip or two. The companies list, each company tab (interviews, templates, team, action log, integrations, brand, billing, referrals), each interview tab (topics, candidates, settings), a new interview and its topic review and generation, the preview, a candidate's report, a template, choosing a company for a template, the ATS, Slack, API and AI apps pages, and the top-up page and Settings each have their own, in every language. The companies list's back arrow goes to the home page.
 
 The guides live in rounds, beside the FAQ (`services/rounds/src/rounds/page_guides/<language>.json`, by the page's key from `prepza_common.ai.page_keys`), and `GET /api/rounds/help/pages/{key}` serves one in the page's language (English until it's translated; an unknown key is a 404). A page whose topic a guide article covers names it (`PAGE_ARTICLES` in rounds' `constants/help.py`: the interview's settings and a candidate's page name the guide on timing and extra time), and the dialog ends with a link to it, titled by the article in the page's language. The info button's dialog and the assistant read the same route, so there's one text. Every page where the assistant's panel opens has a guide, also the ones without an info button (practice, pricing, news, the articles and guides, the FAQ, the documents and legal pages, and so on): each page registers its key (`usePageKey`, the info button, or `PageKey`), which the panel sends with each message (see [the assistant](assistant.md#the-page-the-user-is-on)). The admin zone has none.
+
+## How it's built
+
+Companies' routes and event handlers call services (`services/companies/src/companies/services/`), which open each transaction and pass it to the repositories; billing, generation, library, rounds and Redis are called outside it, so no call to another service waits inside a transaction. Every change an owner, admin or member makes is one save with its line in the [action log](#action-log): a rename, the AI apps switch, the logo, the brand colors and style, the website, a member's invite (with its email), role, removal or join (with the owner's notification), the hand-over of ownership (with the new owner's notification), a candidate's invite (with its email), removal, name or extra time, an emailed report, an interview's creation (generated or copied from a template), settings, title, topics' numbers of questions, shareable link and deletion. When billing, generation or library makes the change (an automatic top-up, the currency, an approved topic review, a regenerated question, an answer reported wrong), its line is saved after they answer. An account's deletion ends its memberships, erases its candidate invites and forgets its team invites and its verification proof in one save, after deleting the companies it owned alone; its lines in the log lose its id a batch at a time. A company's or an interview's invites, interviews and action log go a batch at a time, each batch its own transaction, so a deletion cut off midway goes on when run again; the company or interview itself goes last, with its event.
 
 ## Related pages
 

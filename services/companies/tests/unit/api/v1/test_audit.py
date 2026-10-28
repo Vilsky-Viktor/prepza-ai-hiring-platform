@@ -58,7 +58,7 @@ def test_only_the_owner_reads_the_audit_log_newest_first(client, monkeypatch):
     rows = [AuditEvent(user_id="bob", action="results_viewed", target_id=INVITE_ID, created_at=now)]
     pages = []
 
-    async def fake_list(company_id, offset, limit):
+    async def fake_list(session, company_id, offset, limit):
         pages.append((company_id, offset, limit))
 
         return rows
@@ -69,7 +69,7 @@ def test_only_the_owner_reads_the_audit_log_newest_first(client, monkeypatch):
     for role, expected in (("admin", 403), ("owner", 200)):
         company = company_of(role)
 
-        async def fake_company(_company_id, company=company):
+        async def fake_company(session, _company_id, company=company):
             return company
 
         monkeypatch.setattr(companies, "get", fake_company)

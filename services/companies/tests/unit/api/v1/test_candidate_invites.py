@@ -49,13 +49,14 @@ def invite_setup(monkeypatch):
     invited = set()
     used = []
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     async def fake_upsert(
+        session,
         _interview_id,
         email,
         title,
@@ -77,13 +78,13 @@ def invite_setup(monkeypatch):
 
         return invite, False
 
-    async def fake_status(_interview_id, email):
+    async def fake_status(session, _interview_id, email):
         return (await fake_held(_interview_id, email))[0]
 
-    async def fake_held(_interview_id, email):
+    async def fake_held(session, _interview_id, email):
         return ("invited", invite.hold_key) if email in invited else (None, None)
 
-    async def fake_statuses(_interview_id, emails):
+    async def fake_statuses(session, _interview_id, emails):
         return {email: "invited" for email in emails if email in invited}
 
     async def fake_hold(company_id, key):
@@ -193,10 +194,10 @@ def limited_setup(monkeypatch, current):
     async def limited(*args):
         raise HTTPException(429, "Too many requests. Try again later.")
 
-    async def fake_held(_interview_id, email):
+    async def fake_held(session, _interview_id, email):
         return current, "stored-key" if current else None
 
-    async def fake_status(_interview_id, email):
+    async def fake_status(session, _interview_id, email):
         return current
 
     async def fake_release(key):
@@ -238,7 +239,7 @@ def test_an_expired_invite_sent_again_meanwhile_keeps_its_credits(client, monkey
     _, released = limited_setup(monkeypatch, "expired")
     holds = []
 
-    async def fake_status(_interview_id, email):
+    async def fake_status(session, _interview_id, email):
         return "invited"
 
     async def fake_hold(company_id, key):
@@ -275,7 +276,7 @@ def test_an_invite_that_expired_while_sent_again_has_its_credits_set_aside_again
     upsert = invites.upsert
     held = []
 
-    async def revived(*args, **kwargs):
+    async def revived(session, *args, **kwargs):
         invite, _ = await upsert(*args, **kwargs)
 
         return invite, True

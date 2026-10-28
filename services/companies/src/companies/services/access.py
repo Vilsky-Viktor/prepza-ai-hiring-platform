@@ -13,6 +13,7 @@ from companies.constants.invites import (
     InviteStatus,
 )
 from companies.constants.roles import EDITORS, Role
+from companies.core.db import Session
 from companies.core.security import REQUEST_COMPANY, REQUEST_VIA
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
@@ -27,7 +28,8 @@ async def require_company(user: CurrentUser, company_id: UUID) -> tuple[Company,
     if key_refusal(company_id):
         raise HTTPException(status.HTTP_403_FORBIDDEN, KEY_OTHER_COMPANY)
 
-    company = await companies.get(company_id)
+    async with Session() as session:
+        company = await companies.get(session, company_id)
 
     if company is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Company not found")
@@ -111,7 +113,8 @@ def refuse_without_pledge(pledged: bool, invite_status: str | None) -> None:
 async def open_invite(token: str) -> tuple[CandidateInvite, Interview]:
     """The invite a candidate's link names, with its interview: not found (404) when there's
     none, and gone (410, saying the company can send it again) once it expired."""
-    found = await invite_store.get_by_token(token)
+    async with Session() as session:
+        found = await invite_store.get_by_token(session, token)
 
     if found is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Invite not found")

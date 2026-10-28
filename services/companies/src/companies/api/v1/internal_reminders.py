@@ -7,6 +7,7 @@ from prepza_common.db.paging import IdPageParams
 
 from companies.api.dependencies import ServiceCaller
 from companies.constants.notifications import MAX_COMPANIES_PER_CALL
+from companies.core.db import Session
 from companies.repositories import email_reminders
 from companies.schemas.internal_reminders import (
     CompaniesMembersOut,
@@ -28,7 +29,8 @@ router = APIRouter(prefix="/internal", tags=["internal"])
 async def companies_members(body: CompanyIdsIn, caller: ServiceCaller) -> CompaniesMembersOut:
     """Notifications, for its emails to members: the companies of those ids that still exist,
     their names and who joined them, and whether each is an owner or admin."""
-    found = await email_reminders.with_members(body.company_ids)
+    async with Session() as session:
+        found = await email_reminders.with_members(session, body.company_ids)
 
     return CompaniesMembersOut(
         companies=[
@@ -59,9 +61,10 @@ async def waiting_companies(
     """Notifications, for its reminders a page at a time: the companies with an interview ready
     between the `ready_` times that nobody was invited to, or one started between the `started_`
     times still waiting for its questions; up to `limit` after `after`, in order."""
-    found = await email_reminders.waiting_company_ids(
-        (ready_after, ready_before), (started_after, started_before), after, limit
-    )
+    async with Session() as session:
+        found = await email_reminders.waiting_company_ids(
+            session, (ready_after, ready_before), (started_after, started_before), after, limit
+        )
 
     return CompanyIdsOut(company_ids=found)
 
@@ -71,11 +74,13 @@ async def waiting_interviews(body: WaitingIn, caller: ServiceCaller) -> WaitingI
     """Notifications, for its reminders: those companies' interviews ready between the `ready_`
     times that nobody was invited to, and those started between the `started_` times still
     waiting for their questions."""
-    idle, generating = await email_reminders.waiting_of(
-        (body.ready_after, body.ready_before),
-        (body.started_after, body.started_before),
-        body.company_ids,
-    )
+    async with Session() as session:
+        idle, generating = await email_reminders.waiting_of(
+            session,
+            (body.ready_after, body.ready_before),
+            (body.started_after, body.started_before),
+            body.company_ids,
+        )
 
     return WaitingInterviewsOut(
         without_candidates=[
@@ -94,6 +99,7 @@ async def company_member_ids(
     """Notifications, a page at a time: everyone who joined a company, for a campaign to
     companies; with `editors_only`, their owners and admins, for a notice about the data
     processing agreement or a campaign to them."""
-    found = await email_reminders.member_ids(page.after, page.limit, editors_only)
+    async with Session() as session:
+        found = await email_reminders.member_ids(session, page.after, page.limit, editors_only)
 
     return UserIdsOut(user_ids=found)

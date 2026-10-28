@@ -42,7 +42,7 @@ def as_member(monkeypatch, role):
         )
     ]
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     monkeypatch.setattr(companies, "get", fake_company)
@@ -91,7 +91,7 @@ def test_the_history_names_each_candidate_and_only_a_top_up_has_an_invoice(clien
             movement("welcome", 900),
         ]
 
-    async def by_hold_keys(company_id, keys):
+    async def by_hold_keys(session, company_id, keys):
         asked.append(keys)
 
         return {"hold-cid": (INVITE, INTERVIEW)}
@@ -148,7 +148,7 @@ def test_the_reserved_list_names_the_candidates_holding_credits(client, monkeypa
     as_member(monkeypatch, "owner")
     asked = []
 
-    async def holding(company_id, offset, limit):
+    async def holding(session, company_id, offset, limit):
         asked.append((company_id, offset, limit))
 
         return [(INVITE, INTERVIEW)]
@@ -187,7 +187,7 @@ def test_the_credits_say_how_many_candidates_hold_the_reserved_ones(client, monk
     async def credits(company_id):
         return {"available": 300, "reserved": 600, "low": False, "candidates": 1}
 
-    async def count_holding(company_id):
+    async def count_holding(session, company_id):
         return 2
 
     monkeypatch.setattr(billing, "company_credits", credits)

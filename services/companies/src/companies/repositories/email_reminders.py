@@ -2,16 +2,16 @@ import uuid
 from datetime import datetime
 
 from sqlalchemy import exists, select, union
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from companies.constants.roles import EDITORS
-from companies.core.db import Session
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 
 
-async def with_members(company_ids: list) -> list[Company]:
+async def with_members(session: AsyncSession, company_ids: list) -> list[Company]:
     """The companies of those ids that still exist, with their members."""
     if not company_ids:
         return []
@@ -20,8 +20,7 @@ async def with_members(company_ids: list) -> list[Company]:
         select(Company).where(Company.id.in_(company_ids)).options(selectinload(Company.members))
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
 def idle(ready_after: datetime, ready_before: datetime) -> list:
@@ -50,6 +49,7 @@ def generating(started_after: datetime, started_before: datetime) -> list:
 
 
 async def waiting_company_ids(
+    session: AsyncSession,
     ready: tuple[datetime, datetime],
     started: tuple[datetime, datetime],
     after: uuid.UUID | None,
@@ -63,28 +63,31 @@ async def waiting_company_ids(
         select(Interview.company_id).where(*generating(*started), *later),
     ).subquery()
 
-    async with Session() as session:
-        rows = await session.scalars(
-            select(query.c.company_id).order_by(query.c.company_id).limit(limit)
-        )
+    rows = await session.scalars(
+        select(query.c.company_id).order_by(query.c.company_id).limit(limit)
+    )
 
-        return list(rows)
+    return list(rows)
 
 
 async def waiting_of(
-    ready: tuple[datetime, datetime], started: tuple[datetime, datetime], company_ids: list
+    session: AsyncSession,
+    ready: tuple[datetime, datetime],
+    started: tuple[datetime, datetime],
+    company_ids: list,
 ) -> tuple[list[Interview], list[Interview]]:
     """Those companies' interviews nobody was invited to and those still generating."""
     of_them = Interview.company_id.in_(company_ids)
 
-    async with Session() as session:
-        without = await session.scalars(select(Interview).where(*idle(*ready), of_them))
-        being = await session.scalars(select(Interview).where(*generating(*started), of_them))
+    without = await session.scalars(select(Interview).where(*idle(*ready), of_them))
+    being = await session.scalars(select(Interview).where(*generating(*started), of_them))
 
-        return list(without), list(being)
+    return list(without), list(being)
 
 
-async def member_ids(after: str, limit: int, editors_only: bool) -> list[str]:
+async def member_ids(
+    session: AsyncSession, after: str, limit: int, editors_only: bool
+) -> list[str]:
     """Everyone who joined a company, in any role, or with `editors_only` only its owners and
     admins, once each, in order: up to `limit` after `after`."""
     query = select(Member.user_id).where(Member.user_id > after)
@@ -92,7 +95,6 @@ async def member_ids(after: str, limit: int, editors_only: bool) -> list[str]:
     if editors_only:
         query = query.where(Member.role.in_(EDITORS))
 
-    async with Session() as session:
-        rows = await session.scalars(query.distinct().order_by(Member.user_id).limit(limit))
+    rows = await session.scalars(query.distinct().order_by(Member.user_id).limit(limit))
 
-        return list(rows)
+    return list(rows)

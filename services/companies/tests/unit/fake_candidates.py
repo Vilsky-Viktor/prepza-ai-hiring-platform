@@ -1,4 +1,4 @@
-"""The candidate storage the routers use, in memory: a test adds its invites to ROWS."""
+"""The candidate repository the routes and services use, in memory: a test adds its invites to ROWS."""
 
 from companies.constants.invites import InviteStatus
 
@@ -11,13 +11,13 @@ def add(*invites) -> None:
     ROWS.extend(invites)
 
 
-async def get(interview_id, invite_id):
+async def get(session, interview_id, invite_id):
     return next(
         (row for row in ROWS if row.id == invite_id and row.interview_id == interview_id), None
     )
 
 
-async def counts(interview_ids):
+async def counts(session, interview_ids):
     found = {}
 
     for row in ROWS:
@@ -27,21 +27,21 @@ async def counts(interview_ids):
     return found
 
 
-async def any_finished(interview_id):
+async def any_finished(session, interview_id):
     return any(
         row.interview_id == interview_id and row.status == InviteStatus.FINISHED for row in ROWS
     )
 
 
-async def unscored(interview_id):
+async def unscored(session, interview_id):
     return []
 
 
-async def save_results(results):
+async def save_results(session, results):
     SAVED.extend((invite_id, *result) for invite_id, result in results.items())
 
 
-async def for_report(interview_id, offset, limit):
+async def for_report(session, interview_id, offset, limit):
     found = [
         row
         for row in ROWS

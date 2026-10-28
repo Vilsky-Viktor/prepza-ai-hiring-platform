@@ -5,8 +5,8 @@ triggers as invites finish), sorted and paged by key in SQL."""
 import uuid
 
 from sqlalchemy import Float, Row, cast, literal, select, tuple_
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from companies.core.db import Session
 from companies.models.companies import Company
 from companies.models.interview_results import InterviewResult
 from companies.models.interviews import Interview
@@ -23,7 +23,9 @@ def sort_key(by_finished: bool) -> tuple:
     return (cast(InterviewResult.passed, Float) / finished, -finished, InterviewResult.interview_id)
 
 
-async def page(by_finished: bool, after: uuid.UUID | None, limit: int) -> list[Row]:
+async def page(
+    session: AsyncSession, by_finished: bool, after: uuid.UUID | None, limit: int
+) -> list[Row]:
     """Interviews with finished candidates, `limit` after the interview `after` (the last one
     shown). Each row has the interview's id, title, set_id, pass_mark, the company's name, and
     the finished, passed and average (grade) of its candidates."""
@@ -52,5 +54,4 @@ async def page(by_finished: bool, after: uuid.UUID | None, limit: int) -> list[R
         place = [select(column).where(mine).scalar_subquery() for column in key[:-1]]
         query = query.where(tuple_(*key) > tuple_(*place, literal(after)))
 
-    async with Session() as session:
-        return list(await session.execute(query))
+    return list(await session.execute(query))

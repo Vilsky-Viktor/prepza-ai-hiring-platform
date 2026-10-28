@@ -5,7 +5,6 @@ import pytest
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 
-from companies.api.v1 import invites as invites_router
 from companies.constants.invites import InviteStatus
 from companies.integrations import library, rounds
 from companies.main import app
@@ -13,6 +12,7 @@ from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 from companies.repositories import invite_progress
 from companies.repositories import invites as invite_store
+from companies.services import candidate_start as invites_router
 
 
 @pytest.fixture(autouse=True)
@@ -43,7 +43,7 @@ def start(client, monkeypatch):
     )
     sent = {}
 
-    async def fake_get(token):
+    async def fake_get(session, token):
         return invite, interview
 
     async def same(item):
@@ -55,7 +55,7 @@ def start(client, monkeypatch):
             "topics": [{"id": str(uuid.uuid4()), "title": "T", "questions": []}],
         }
 
-    async def fake_start(invite_id, user_id, name=None):
+    async def fake_start(session, invite_id, user_id, name=None):
         return True
 
     async def fake_create(payload):

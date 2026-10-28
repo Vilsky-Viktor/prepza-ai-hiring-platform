@@ -47,15 +47,15 @@ def finished(monkeypatch, status=InviteStatus.IN_PROCESS, pass_mark=70):
     )
     notices = []
 
-    async def fake_get(invite_id):
+    async def fake_get(session, invite_id):
         return invite
 
-    async def fake_finish(invite_id, grade, flagged, notice, event_id, result):
+    async def fake_finish(session, invite_id, grade, flagged, notice, event_id, result):
         invite.results = (grade, flagged)
         invite.result = result
         notices.append(notice)
 
-    async def fake_interview(interview_id):
+    async def fake_interview(session, interview_id):
         return SimpleNamespace(
             id=interview_id,
             company_id=COMPANY_ID,

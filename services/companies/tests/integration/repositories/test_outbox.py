@@ -7,16 +7,18 @@ from sqlalchemy import select
 
 from companies.core.db import Session
 from companies.models.outbox import OutboxEvent
-from companies.repositories import companies, interviews, invites
+from companies.repositories import interviews, invites
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 def test_a_candidate_invite_and_its_email_event_are_saved_together(run):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
         # A Russian interview: its invite email goes out in Russian.
-        interview = await interviews.create(company.id, uuid.uuid4(), "ru", 60)
-        invite, _ = await invites.upsert(
-            interview.id, "erin@example.com", "Backend", "Acme", interview.language
+        interview = await transaction(interviews.create, company.id, uuid.uuid4(), "ru", 60)
+        invite, _ = await transaction(
+            invites.upsert, interview.id, "erin@example.com", "Backend", "Acme", interview.language
         )
 
         async with Session() as session:
@@ -47,8 +49,8 @@ def test_a_candidate_invite_and_its_email_event_are_saved_together(run):
 
 def test_a_deleted_company_and_its_company_deleted_event_are_saved_together(run):
     async def scenario():
-        company = await companies.create(f"Gone {uuid.uuid4()}", "owner", "owner@example.com")
-        await companies.delete(company.id)
+        company = await factories.company(f"Gone {uuid.uuid4()}", "owner", "owner@example.com")
+        await factories.deleted(company.id)
 
         async with Session() as session:
             events = list(
@@ -67,9 +69,10 @@ def test_a_deleted_company_and_its_company_deleted_event_are_saved_together(run)
 
 def test_an_invite_without_a_sign_in_is_a_guests_keeps_its_return_address_and_sends_no_email(run):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        invite, _ = await invites.upsert(
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        invite, _ = await transaction(
+            invites.upsert,
             interview.id,
             "quiet@example.com",
             "Backend",

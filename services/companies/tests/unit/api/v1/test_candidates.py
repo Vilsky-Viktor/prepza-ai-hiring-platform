@@ -72,10 +72,10 @@ def test_finished_interview_status(client, monkeypatch):
         )
     ]
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     async def fake_scores(_invite_ids):
@@ -86,7 +86,9 @@ def test_finished_interview_status(client, monkeypatch):
     monkeypatch.setattr(rounds, "invite_scores", fake_scores)
     asked = []
 
-    async def fake_page(interview_id, offset, limit, by_grade, q, filter_by, pass_mark, *synced):
+    async def fake_page(
+        session, interview_id, offset, limit, by_grade, q, filter_by, pass_mark, *synced
+    ):
         asked.append((interview_id, offset, limit, by_grade))
 
         return [invite]
@@ -139,13 +141,13 @@ def revoke(client, monkeypatch, status, progress=0, picked=0, removed_as=None):
         )
     ]
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
-    async def fake_remove(invite, company_id):
+    async def fake_remove(session, invite, company_id):
         # The other services hear of it with the company and the candidate's email.
         assert company_id == COMPANY_ID
         removed.append(invite.id)

@@ -25,7 +25,7 @@ def owner(monkeypatch):
         Member(company_id=COMPANY_ID, user_id="bob", invited_email="bob@example.com", role="owner")
     ]
 
-    async def fake_get(_company_id):
+    async def fake_get(session, _company_id):
         return company
 
     monkeypatch.setattr(companies, "get", fake_get)
@@ -51,7 +51,7 @@ def record_calls(monkeypatch, listed, fail_library=False):
     """Records every cleanup call in order; the still-generating interview has no set."""
     calls = []
 
-    async def fake_list(_company_id, after, limit):
+    async def fake_list(session, _company_id, after, limit):
         # One page, then none.
         return listed if after is None else []
 
@@ -72,7 +72,7 @@ def record_calls(monkeypatch, listed, fail_library=False):
         if fail_library:
             raise httpx.ConnectError("library is down")
 
-    async def fake_delete(company_id):
+    async def fake_delete(session, company_id):
         calls.append(("company", company_id))
 
     monkeypatch.setattr(interviews, "page_by_id", fake_list)

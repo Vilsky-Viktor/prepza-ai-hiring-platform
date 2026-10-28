@@ -57,10 +57,10 @@ def decisions(monkeypatch):
     company = pending_company()
     made = []
 
-    async def fake_get(_id):
+    async def fake_get(session, _id):
         return company if _id == COMPANY_ID else None
 
-    async def fake_decide(_id, approved, superadmin_id, reason, notices, seen=None):
+    async def fake_decide(session, _id, approved, superadmin_id, reason, notices, seen=None):
         if company.verification_status != "pending":
             return False
 
@@ -125,7 +125,7 @@ def test_a_decided_request_cant_be_decided_again(client, superadmin, decisions):
 def test_the_list_shows_what_to_review(client, superadmin, monkeypatch):
     asked = []
 
-    async def fake_requests(offset, limit):
+    async def fake_requests(session, offset, limit):
         asked.append((offset, limit))
 
         return [pending_company()]

@@ -8,7 +8,7 @@ from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 
-import companies.api.v1.interview_generation as generation_routes
+import companies.services.generation_steps as generation_routes
 from companies.integrations import generation
 from companies.main import app
 from companies.models.companies import Company, Member
@@ -55,10 +55,10 @@ def setup(monkeypatch, role):
         Member(company_id=COMPANY_ID, user_id="bob", invited_email="bob@example.com", role=role),
     ]
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     monkeypatch.setattr(interviews, "get", fake_interview)
@@ -171,7 +171,7 @@ def test_only_managers_retry_and_a_retry_clears_the_failure(client, monkeypatch)
     calls = []
     cleared = []
 
-    async def set_generation_failed(interview_id, failed):
+    async def set_generation_failed(session, interview_id, failed):
         cleared.append((interview_id, failed))
 
     async def fake_retry(generation_id, company_id):
@@ -214,8 +214,10 @@ def test_only_managers_cancel_and_the_interview_goes_with_it(client, monkeypatch
             request=httpx.Request("POST", "http://generation"),
         )
 
-    async def fake_remove(interview_id):
+    async def fake_remove(session, interview_id):
         removed.append(interview_id)
+
+        return []
 
     monkeypatch.setattr(generation, "cancel", fake_cancel)
     monkeypatch.setattr(interviews, "remove", fake_remove)
@@ -239,8 +241,10 @@ def test_a_finished_generation_keeps_its_interview(client, monkeypatch):
     async def fake_cancel(generation_id, company_id):
         return httpx.Response(409, json={"detail": "Generation already finished"})
 
-    async def fake_remove(interview_id):
+    async def fake_remove(session, interview_id):
         removed.append(interview_id)
+
+        return []
 
     monkeypatch.setattr(generation, "cancel", fake_cancel)
     monkeypatch.setattr(interviews, "remove", fake_remove)

@@ -1,21 +1,23 @@
 import uuid
 
-from companies.repositories import companies, interviews, invite_progress, link_invites, pass_rates
+from companies.repositories import interviews, invite_progress, link_invites, pass_rates
 from companies.schemas.interviews import InterviewSettings
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 async def interview(grades, pass_mark=60, unfinished=0):
     """A company's interview whose candidates finished with `grades`, and `unfinished` more."""
-    company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-    found = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-    await interviews.update_settings(found.id, InterviewSettings(pass_mark=pass_mark))
+    company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+    found = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+    await transaction(interviews.update_settings, found.id, InterviewSettings(pass_mark=pass_mark))
 
     for index, grade in enumerate(grades):
-        invite = await link_invites.for_link(found.id, f"c{index}@example.com")
-        await invite_progress.finish(invite.id, grade, False, None)
+        invite = await transaction(link_invites.for_link, found.id, f"c{index}@example.com")
+        await transaction(invite_progress.finish, invite.id, grade, False, None)
 
     for index in range(unfinished):
-        await link_invites.for_link(found.id, f"u{index}@example.com")
+        await transaction(link_invites.for_link, found.id, f"u{index}@example.com")
 
     return found.id
 
@@ -34,8 +36,8 @@ def test_rates_count_only_finished_candidates_against_each_pass_mark_sorted_in_s
         ids = [most, half, none, never]
 
         return (
-            mine(await pass_rates.page(False, None, 1000), ids),
-            mine(await pass_rates.page(True, None, 1000), ids),
+            mine(await transaction(pass_rates.page, False, None, 1000), ids),
+            mine(await transaction(pass_rates.page, True, None, 1000), ids),
         )
 
     by_rate, by_finished = run(scenario())
@@ -49,7 +51,7 @@ def test_rates_count_only_finished_candidates_against_each_pass_mark_sorted_in_s
 async def session_company(interview_id):
     from companies.repositories.interviews import get
 
-    return (await get(interview_id)).company_id
+    return (await transaction(get, interview_id)).company_id
 
 
 def test_the_counters_match_a_recount_after_finishes_grades_removals_and_a_new_mark(run):
@@ -64,13 +66,15 @@ def test_the_counters_match_a_recount_after_finishes_grades_removals_and_a_new_m
 
     async def scenario():
         found = await interview([60, 59, 90], unfinished=1)
-        [first, *_] = await candidates.for_report(found, 0, 10)
+        [first, *_] = await transaction(candidates.for_report, found, 0, 10)
         # A grade written again, a candidate removed, the pass mark changed.
-        await candidates.save_results({first.id: (95, False)})
-        [removed] = [row for row in await candidates.for_report(found, 0, 10) if row.grade == 59]
+        await transaction(candidates.save_results, {first.id: (95, False)})
+        [removed] = [
+            row for row in await transaction(candidates.for_report, found, 0, 10) if row.grade == 59
+        ]
         company_id = await session_company(found)
-        await invites.remove(removed, company_id)
-        await interviews.update_settings(found, InterviewSettings(pass_mark=80))
+        await transaction(invites.remove, removed, company_id)
+        await transaction(interviews.update_settings, found, InterviewSettings(pass_mark=80))
 
         async with Session() as session:
             kept = await session.get(InterviewResult, found)
@@ -99,8 +103,10 @@ def test_the_counters_match_a_recount_after_finishes_grades_removals_and_a_new_m
 def test_pass_rates_page_by_key_after_the_last_one_shown(run):
     async def scenario():
         ids = [await interview([grade]) for grade in (10, 20, 30)]
-        first = [row for row in await pass_rates.page(False, None, 1000) if row.id in ids][:2]
-        rest = await pass_rates.page(False, first[-1].id, 1000)
+        first = [
+            row for row in await transaction(pass_rates.page, False, None, 1000) if row.id in ids
+        ][:2]
+        rest = await transaction(pass_rates.page, False, first[-1].id, 1000)
 
         return ids, [row.id for row in first], [row.id for row in rest if row.id in ids]
 

@@ -8,7 +8,14 @@ from prepza_common.redis import memory_cache
 from companies.core.security import REQUEST_VIA
 from companies.integrations import billing
 from companies.main import app
-from companies.repositories import accounts, audit, candidates, companies, invites
+from companies.repositories import (
+    accounts,
+    audit,
+    batch_deletion,
+    candidates,
+    companies,
+    invites,
+)
 from tests.unit import fake_candidates
 
 
@@ -19,13 +26,13 @@ def no_billing_calls(monkeypatch):
     async def nothing(*args, **kwargs):
         return None
 
-    async def no_invites(user_id, email):
+    async def no_invites(session, user_id, email):
         return []
 
     for name in ("delete_company", "release_candidate", "charge_candidate", "welcome_company"):
         monkeypatch.setattr(billing, name, nothing)
 
-    async def none_unfinished(interview_id, after, size):
+    async def none_unfinished(session, interview_id, after, size):
         return []
 
     monkeypatch.setattr(accounts, "unfinished_invites", no_invites)
@@ -33,10 +40,29 @@ def no_billing_calls(monkeypatch):
 
 
 @pytest.fixture(autouse=True)
+def nothing_to_delete_in_batches(monkeypatch):
+    """Batched deletions (a company's or an interview's invites, interviews and action log) find
+    nothing: unit tests have no database; the integration tests delete for real."""
+
+    async def no_invites(session, *conditions):
+        return 0, []
+
+    async def no_interviews(session, company_id):
+        return 0
+
+    async def no_log(sessions, company_id):
+        pass
+
+    monkeypatch.setattr(batch_deletion, "delete_invites_batch", no_invites)
+    monkeypatch.setattr(batch_deletion, "delete_interviews_batch", no_interviews)
+    monkeypatch.setattr(audit, "delete_company", no_log)
+
+
+@pytest.fixture(autouse=True)
 def no_company_by_default(monkeypatch):
     """Looking a company up finds none unless a test stores one (unit tests have no database)."""
 
-    async def none(company_id):
+    async def none(session, company_id):
         return None
 
     monkeypatch.setattr(companies, "get", none)
@@ -49,19 +75,29 @@ def audited(monkeypatch):
     results views (record_view) land here too."""
     events = []
 
-    async def record(company_id, user_id, action, target_id=None, via=None, target_kind=None, **_):
+    async def record(
+        session, company_id, user_id, action, target_id=None, via=None, target_kind=None, **_
+    ):
         # As the real one: what the request came through, unless the caller says.
         via = via or REQUEST_VIA.get()
         events.append(
             (company_id, user_id, action, target_id, target_kind, *([via] if via else []))
         )
 
-    async def record_interview(interview, user_id, action, via=None):
-        await record(interview.company_id, user_id, action, interview.id, via, TargetKind.INTERVIEW)
-
-    async def record_view(company_id, user_id, invite_id, via=None):
+    async def record_interview(session, interview, user_id, action, via=None):
         await record(
-            company_id, user_id, AuditAction.RESULTS_VIEWED, invite_id, via, TargetKind.CANDIDATE
+            session, interview.company_id, user_id, action, interview.id, via, TargetKind.INTERVIEW
+        )
+
+    async def record_view(session, company_id, user_id, invite_id, via=None):
+        await record(
+            session,
+            company_id,
+            user_id,
+            AuditAction.RESULTS_VIEWED,
+            invite_id,
+            via,
+            TargetKind.CANDIDATE,
         )
 
     monkeypatch.setattr(audit, "record", record)

@@ -6,9 +6,9 @@ import pytest
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.http.http import bearer
 
-from companies.api.v1 import internal_api
+from companies.integrations import rounds
 from companies.repositories import candidates, interviews
-from companies.services import candidate_results
+from companies.services import candidate_results, interview_views
 
 COMPANY_ID, OTHER_ID = uuid.uuid4(), uuid.uuid4()
 INTERVIEW = SimpleNamespace(
@@ -37,15 +37,15 @@ def stored(monkeypatch):
     """The company's one interview with one finished candidate; returns the pages asked for."""
     asked = []
 
-    async def get_interview(interview_id):
+    async def get_interview(session, interview_id):
         return INTERVIEW if interview_id == INTERVIEW.id else None
 
-    async def list_for_company(company_id, offset, limit, since=None, after=None):
+    async def list_for_company(session, company_id, offset, limit, since=None, after=None):
         asked.append((company_id, offset, limit))
 
         return [INTERVIEW] if company_id == COMPANY_ID else []
 
-    async def counts(ids):
+    async def counts(session, ids):
         return {INTERVIEW.id: 1}
 
     async def interview_out(interview, count=0):
@@ -64,7 +64,7 @@ def stored(monkeypatch):
             "created_at": datetime(2026, 10, 1, tzinfo=UTC),
         }
 
-    async def get_candidate(interview_id, invite_id):
+    async def get_candidate(session, interview_id, invite_id):
         return INVITE if invite_id == INVITE.id else None
 
     async def scores(ids):
@@ -88,9 +88,9 @@ def stored(monkeypatch):
     monkeypatch.setattr(interviews, "list_for_company", list_for_company)
     monkeypatch.setattr(candidates, "counts", counts)
     monkeypatch.setattr(candidates, "get", get_candidate)
-    monkeypatch.setattr(internal_api, "interview_out", interview_out)
-    monkeypatch.setattr(internal_api.rounds, "invite_scores", scores)
-    monkeypatch.setattr(internal_api.rounds, "scorecard", scorecard)
+    monkeypatch.setattr(interview_views, "interview_out", interview_out)
+    monkeypatch.setattr(rounds, "invite_scores", scores)
+    monkeypatch.setattr(rounds, "scorecard", scorecard)
     monkeypatch.setattr(candidate_results, "page", page)
 
     return asked

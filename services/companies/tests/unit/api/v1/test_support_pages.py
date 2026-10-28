@@ -74,19 +74,19 @@ def stored(monkeypatch, stored_candidates):
     async def account(user_id):
         return ZOE if user_id == ZOE["user_id"] else None
 
-    async def companies_of_user(user_id, limit):
+    async def companies_of_user(session, user_id, limit):
         return [(ACME, "owner")] if user_id in ("uid-zoe", "uid-gone") else []
 
     async def buyer_purchases(user_id):
         return [TOP_UP] if user_id == "uid-zoe" else []
 
-    async def names(company_ids):
+    async def names(session, company_ids):
         return {str(ACME.id): "Acme"}
 
-    async def candidate(invite_id):
+    async def candidate(session, invite_id):
         return (CID, INTERVIEW, ACME) if invite_id == CID.id else None
 
-    async def interview(interview_id):
+    async def interview(session, interview_id):
         return (INTERVIEW, ACME) if interview_id == INTERVIEW.id else None
 
     async def invite_scores(invite_ids):
@@ -98,7 +98,7 @@ def stored(monkeypatch, stored_candidates):
     async def get_set(set_id):
         return {"title": "Backend", "topics": [{"title": "Python"}, {"title": "SQL"}]}
 
-    async def page(interview_id, offset, limit, by_grade, *args):
+    async def page(session, interview_id, offset, limit, by_grade, *args):
         return [CID] if not by_grade else []
 
     monkeypatch.setattr(library, "account", account)

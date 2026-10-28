@@ -6,6 +6,7 @@ from fastapi import HTTPException, status
 from prepza_common.auth.user import User
 
 from companies.constants.invites import SKIP_REASONS, STARTED, SkipReason
+from companies.core.db import Session
 from companies.models.companies import Company
 from companies.models.interviews import Interview
 from companies.repositories import invites
@@ -23,7 +24,10 @@ async def invite_each(
     skipped: list[SkippedInvite] = []
     out_of_credits = False
     # Looked up at once: an invite the list starts below isn't started either.
-    statuses = await invites.statuses_of(interview.id, [email.lower() for email, _ in found])
+    async with Session() as session:
+        statuses = await invites.statuses_of(
+            session, interview.id, [email.lower() for email, _ in found]
+        )
 
     for email, name in found:
         reason = None

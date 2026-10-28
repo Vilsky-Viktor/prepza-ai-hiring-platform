@@ -17,7 +17,7 @@ from companies.services import candidate_billing, removal_replay, retention
 clock = [0]
 
 
-async def nothing(*args):
+async def nothing(session, *args):
     return None
 
 
@@ -31,23 +31,23 @@ def invite():
     return SimpleNamespace(id=uuid.uuid4(), interview_id=uuid.uuid4(), hold_key="key")
 
 
-async def expired_invites(before, limit):
+async def expired_invites(session, before, limit):
     return read_batch([(uuid.uuid4(), uuid.uuid4(), "ann@example.com", "invited", "key")])
 
 
-async def expiring(before, limit):
+async def expiring(session, before, limit):
     return read_batch([invite()])
 
 
-async def restored(after, limit):
+async def restored(session, after, limit):
     return read_batch([(invite(), uuid.uuid4())])
 
 
-async def no_leftovers(limit):
+async def no_leftovers(session, limit):
     return []
 
 
-async def marked(invite_id, before):
+async def marked(session, invite_id, before):
     return True
 
 
@@ -87,5 +87,5 @@ def test_a_job_with_more_left_stops_at_its_time(monkeypatch, module, job, fakes)
     for (owner, name), fake in fakes.items():
         monkeypatch.setattr(owner, name, fake)
 
-    # The storage never runs out, yet the run ends after its one batch.
+    # The database never runs out, yet the run ends after its one batch.
     assert asyncio.run(job()) == 1

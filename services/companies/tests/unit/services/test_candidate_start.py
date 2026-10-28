@@ -37,7 +37,7 @@ def steps(monkeypatch):
 
         return [{"id": str(uuid.uuid4()), "topic_title": "Python", "status": "in_progress"}]
 
-    async def start(invite_id, user_id, name=None):
+    async def start(session, invite_id, user_id, name=None):
         done.append("started")
 
         return "invited"
@@ -74,7 +74,7 @@ def test_rounds_failing_leaves_the_invite_unstarted_so_expiry_frees_its_credits(
 
 
 def test_an_invite_revoked_while_starting_loses_its_sessions(steps, monkeypatch):
-    async def gone(invite_id, user_id, name=None):
+    async def gone(session, invite_id, user_id, name=None):
         return None
 
     monkeypatch.setattr(invite_progress, "start", gone)
@@ -90,7 +90,7 @@ def test_an_invite_that_expired_while_starting_has_its_credits_set_aside_again(s
     """Expiry gave them back after the invite was read; otherwise it finishes uncharged."""
     held = []
 
-    async def expired(invite_id, user_id, name=None):
+    async def expired(session, invite_id, user_id, name=None):
         steps.append("started")
 
         return "expired"

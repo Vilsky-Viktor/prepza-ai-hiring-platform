@@ -1,23 +1,25 @@
 import uuid
 
-from companies.repositories import candidates, companies, interviews, invites
+from companies.repositories import candidates, interviews, invites
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 async def company_with_interview(title: str):
-    company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+    company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
 
     return company, await interview_of(company, title)
 
 
 async def interview_of(company, title: str):
-    found = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-    await interviews.set_title(found.id, title)
+    found = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+    await transaction(interviews.set_title, found.id, title)
 
     return found
 
 
 async def invite(found, email):
-    await invites.upsert(found.id, email, found.title or "", "Acme", "en")
+    await transaction(invites.upsert, found.id, email, found.title or "", "Acme", "en")
 
 
 def rows(listed):
@@ -37,10 +39,10 @@ def test_a_companys_candidates_are_found_across_its_interviews_newest_first(run)
         await invite(gone, "dan@example.com")
         await invite(elsewhere, "ann@example.com")
         # A deleted interview's candidates go with it.
-        await interviews.remove(gone.id)
+        await factories.interview_removed(gone.id)
 
         def listed(offset, limit, q=""):
-            return candidates.company_page(company.id, offset, limit, q)
+            return transaction(candidates.company_page, company.id, offset, limit, q)
 
         return (
             rows(await listed(0, 2)) + rows(await listed(2, 2)),
@@ -69,6 +71,8 @@ def test_a_companys_candidates_are_found_by_exactly_their_email(run):
         await invite(frontend, "ann@example.com")
         await invite(frontend, "joann@example.com")
 
-        return rows(await candidates.company_page(company.id, 0, 10, email="Ann@Example.com"))
+        return rows(
+            await transaction(candidates.company_page, company.id, 0, 10, email="Ann@Example.com")
+        )
 
     assert run(scenario()) == [("ann@example.com", "Frontend"), ("ann@example.com", "Backend")]

@@ -5,10 +5,10 @@ import pytest
 from fastapi import HTTPException, status
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 
-from companies.api.v1 import members as members_router
 from companies.integrations import billing, billing_prices
 from companies.models.companies import Company, Member
 from companies.repositories import companies, members
+from companies.services import members as members_router
 from companies.services import outbox as outbox_service
 from tests.unit.api.v1.test_members import (  # noqa: F401 (fixture)
     COMPANY_ID,
@@ -50,25 +50,25 @@ def team(monkeypatch):
     turned_off = []
     senders.clear()
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     async def fake_paid(_company_id):
         return True
 
-    async def fake_remove(member_id):
+    async def fake_remove(session, member_id):
         removed.append(member_id)
 
     async def fake_turn_off(company_id, buyer_id=None):
         turned_off.append(buyer_id)
 
-    async def fake_list(company_id, offset, limit):
+    async def fake_list(session, company_id, offset, limit):
         return company.members
 
-    async def fake_set_role(member_id, role):
+    async def fake_set_role(session, member_id, role):
         removed.append((member_id, role))
 
-    async def fake_add(company_id, email, role, sender, most=None):
+    async def fake_add(session, company_id, email, role, sender, most=None):
         removed.append((email, role))
         senders.append(sender)
 

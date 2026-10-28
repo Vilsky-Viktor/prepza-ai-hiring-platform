@@ -1,25 +1,27 @@
 import uuid
 
-from companies.repositories import companies, members, superadmin_companies
+from companies.repositories import companies, superadmin_companies
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 def test_companies_are_found_by_name_with_their_people_and_suspended_and_lifted(run):
     tag = uuid.uuid4().hex[:8]
 
     async def scenario():
-        found = await companies.create(f"Impostor {tag}", f"ann-{tag}", "ann@example.com")
-        other = await companies.create(f"Other {tag}", f"cid-{tag}", "cid@example.com")
-        bob = await members.add(found.id, "bob@example.com", "admin", {})
-        await members.accept(bob, found, f"bob-{tag}")
-        listed = await superadmin_companies.search(f"IMPOSTOR {tag}", 10)
-        suspended = await superadmin_companies.set_suspended(found.id, True)
-        while_suspended = await companies.get(found.id)
-        await superadmin_companies.set_suspended(found.id, False)
-        lifted = await companies.get(found.id)
-        missing = await superadmin_companies.set_suspended(uuid.uuid4(), True)
+        found = await factories.company(f"Impostor {tag}", f"ann-{tag}", "ann@example.com")
+        other = await factories.company(f"Other {tag}", f"cid-{tag}", "cid@example.com")
+        bob = await factories.member(found.id, "bob@example.com", "admin", {})
+        await factories.accepted(bob, found, f"bob-{tag}")
+        listed = await transaction(superadmin_companies.search, f"IMPOSTOR {tag}", 10)
+        suspended = await transaction(superadmin_companies.set_suspended, found.id, True)
+        while_suspended = await transaction(companies.get, found.id)
+        await transaction(superadmin_companies.set_suspended, found.id, False)
+        lifted = await transaction(companies.get, found.id)
+        missing = await transaction(superadmin_companies.set_suspended, uuid.uuid4(), True)
 
         for company in (found, other):
-            await companies.delete(company.id)
+            await factories.deleted(company.id)
 
         return listed, suspended, while_suspended, lifted, missing, found.id
 

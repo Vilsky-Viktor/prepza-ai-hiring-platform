@@ -1,11 +1,10 @@
 import uuid
 
-from prepza_common.events import outbox
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.models.interviews import Interview
-from companies.models.outbox import OutboxEvent
+from companies.repositories import outbox
 
 
 async def add(
@@ -18,7 +17,6 @@ async def add(
     )
     outbox.add(
         session,
-        OutboxEvent,
         event_type,
         {
             "company_id": str(company_id),

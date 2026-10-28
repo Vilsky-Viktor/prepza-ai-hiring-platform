@@ -46,7 +46,7 @@ def stored_invite(monkeypatch):
         topic_limits={},
     )
 
-    async def fake_get(token):
+    async def fake_get(session, token):
         return (invite, interview) if token == "token-1" else None
 
     monkeypatch.setattr(invite_store, "get_by_token", fake_get)
@@ -73,7 +73,7 @@ def test_other_or_unverified_email_is_rejected(client, stored_invite, email, ver
 @pytest.fixture
 def starts(monkeypatch, stored_invite):
     """The candidates whose sessions were started."""
-    import companies.api.v1.invites as routes
+    from companies.services import candidate_start
 
     started = []
 
@@ -82,7 +82,7 @@ def starts(monkeypatch, stored_invite):
 
         return {"sessions": []}
 
-    monkeypatch.setattr(routes, "start_sessions", start)
+    monkeypatch.setattr(candidate_start, "start_sessions", start)
 
     return started
 
@@ -125,7 +125,7 @@ def test_unknown_token(client, stored_invite):
 @pytest.fixture
 def invite_page(monkeypatch, stored_invite):
     """What the invitation page reads besides the invite: its interview and company."""
-    import companies.api.v1.invites as routes
+    from companies.services import invite_pages as pages
 
     async def same(interview):
         interview.question_seconds = 60
@@ -135,16 +135,16 @@ def invite_page(monkeypatch, stored_invite):
     async def title(interview):
         return "Backend"
 
-    async def company(company_id):
+    async def company(session, company_id):
         return None
 
     async def found_set(set_id):
         return {"topics": [{"id": str(uuid.uuid4()), "title": "Python", "question_count": 4}]}
 
-    monkeypatch.setattr(routes, "attach_set", same)
-    monkeypatch.setattr(routes, "interview_title", title)
-    monkeypatch.setattr(routes.companies, "get", company)
-    monkeypatch.setattr(routes.set_cache, "get_set", found_set)
+    monkeypatch.setattr(pages, "attach_set", same)
+    monkeypatch.setattr(pages, "interview_title", title)
+    monkeypatch.setattr(pages.companies, "get", company)
+    monkeypatch.setattr(pages.set_cache, "get_set", found_set)
 
     return stored_invite
 

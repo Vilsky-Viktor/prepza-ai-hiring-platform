@@ -6,13 +6,14 @@ from sqlalchemy import select
 from companies.core.db import Session
 from companies.models.outbox import OutboxEvent
 from companies.repositories import (
-    companies,
     interview_generations,
     interviews,
     invite_expiry,
     invite_progress,
     invites,
 )
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 async def events_about(field: str, value: str) -> list[tuple[str, dict]]:
@@ -24,20 +25,26 @@ async def events_about(field: str, value: str) -> list[tuple[str, dict]]:
 
 def test_a_candidates_start_bounce_expiry_and_removal_are_told_once_each(run):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        started, _ = await invites.upsert(interview.id, "s@example.com", "B", "A", "en")
-        bounced, _ = await invites.upsert(interview.id, "b@example.com", "B", "A", "en")
-        expiring, _ = await invites.upsert(interview.id, "e@example.com", "B", "A", "en")
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        started, _ = await transaction(
+            invites.upsert, interview.id, "s@example.com", "B", "A", "en"
+        )
+        bounced, _ = await transaction(
+            invites.upsert, interview.id, "b@example.com", "B", "A", "en"
+        )
+        expiring, _ = await transaction(
+            invites.upsert, interview.id, "e@example.com", "B", "A", "en"
+        )
         # Twice each: a second start, bounce or expiry changes nothing and tells nobody again.
-        await invite_progress.start(started.id, "u1")
-        await invite_progress.start(started.id, "u1")
-        await invite_progress.mark_undelivered(bounced.id, {"kind": "test"})
-        await invite_progress.mark_undelivered(bounced.id, {"kind": "test"})
+        await transaction(invite_progress.start, started.id, "u1")
+        await transaction(invite_progress.start, started.id, "u1")
+        await transaction(invite_progress.mark_undelivered, bounced.id, {"kind": "test"})
+        await transaction(invite_progress.mark_undelivered, bounced.id, {"kind": "test"})
         later = datetime.now(UTC) + timedelta(seconds=1)
-        await invite_expiry.mark_expired(expiring.id, later)
-        await invite_expiry.mark_expired(expiring.id, later)
-        await invites.remove(started, company.id)
+        await transaction(invite_expiry.mark_expired, expiring.id, later)
+        await transaction(invite_expiry.mark_expired, expiring.id, later)
+        await transaction(invites.remove, started, company.id)
 
         told = {}
 
@@ -68,11 +75,17 @@ def test_a_candidates_start_bounce_expiry_and_removal_are_told_once_each(run):
 
 def test_an_interview_ready_says_whose_it_is(run):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
         generation = uuid.uuid4()
-        interview = await interviews.create(company.id, generation, "en", 60)
-        await interview_generations.set_generated(
-            generation, uuid.uuid4(), "Backend", None, {"kind": "x"}, "ev1"
+        interview = await transaction(interviews.create, company.id, generation, "en", 60)
+        await transaction(
+            interview_generations.set_generated,
+            generation,
+            uuid.uuid4(),
+            "Backend",
+            None,
+            {"kind": "x"},
+            "ev1",
         )
 
         return company, interview, await events_about("interview_id", str(interview.id))
@@ -87,17 +100,17 @@ def test_an_interview_ready_says_whose_it_is(run):
 
 def test_a_candidates_start_pledge_and_finish_times_are_kept_from_the_first_time(run):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        invite, _ = await invites.upsert(interview.id, "t@example.com", "B", "A", "en")
-        await invite_progress.start(invite.id, "u1")
-        first = await invites.get(invite.id)
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        invite, _ = await transaction(invites.upsert, interview.id, "t@example.com", "B", "A", "en")
+        await transaction(invite_progress.start, invite.id, "u1")
+        first = await transaction(invites.get, invite.id)
         # Back through the link later: the first start stays.
-        await invite_progress.start(invite.id, "u1")
-        await invite_progress.finish(invite.id, 80, False, None)
-        await invite_progress.finish(invite.id, 80, False, None)
+        await transaction(invite_progress.start, invite.id, "u1")
+        await transaction(invite_progress.finish, invite.id, 80, False, None)
+        await transaction(invite_progress.finish, invite.id, 80, False, None)
 
-        return first.started_at, first.pledged_at, await invites.get(invite.id)
+        return first.started_at, first.pledged_at, await transaction(invites.get, invite.id)
 
     started_at, pledged_at, done = run(scenario())
 

@@ -50,15 +50,15 @@ def company(monkeypatch):
     ]
     saved = {}
 
-    async def fake_get(_company_id):
+    async def fake_get(session, _company_id):
         return found
 
-    async def fake_set_logo(company_id, content, media_type):
+    async def fake_set_logo(session, company_id, content, media_type):
         saved["logo"] = (content, media_type)
         found.logo_type = media_type
         found.logo_version += 1
 
-    async def fake_get_logo(_company_id):
+    async def fake_get_logo(session, _company_id):
         return (PNG, "image/png") if found.logo_type else None
 
     monkeypatch.setattr(companies, "get", fake_get)
@@ -137,10 +137,10 @@ def test_the_candidate_and_members_see_the_brand_others_dont(client, company, mo
         id=invite_id, interview_id=interview.id, email="ann@example.com", user_id="ann"
     )
 
-    async def fake_invite(_invite_id):
+    async def fake_invite(session, _invite_id):
         return invite
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
     monkeypatch.setattr(invites, "get", fake_invite)

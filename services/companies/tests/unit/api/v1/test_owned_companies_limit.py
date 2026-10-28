@@ -1,9 +1,10 @@
 import pytest
 from fake_redis import FakeRedis
+from sqlalchemy.exc import IntegrityError
 
-from companies.api.v1 import companies as company_routes
 from companies.constants.invites import COMPANY_NAME_TAKEN
 from companies.repositories import companies
+from companies.services import company_creation as company_routes
 from tests.unit.api.v1.test_companies import sign_in
 
 
@@ -14,11 +15,11 @@ def test_nobody_creates_more_companies_than_one_person_may_own(
     owned = {"count": most}
     redis = FakeRedis({"MAX_OWNED_COMPANIES": edited} if edited else None)
 
-    async def owned_count(user_id):
+    async def owned_count(session, user_id):
         return owned["count"]
 
-    async def name_taken(name, user_id, email, most=None):
-        return None
+    async def name_taken(session, name, user_id, email, most=None):
+        raise IntegrityError("INSERT", {}, Exception(companies.NAME_INDEX))
 
     async def no_track(*args, **kwargs):
         return None

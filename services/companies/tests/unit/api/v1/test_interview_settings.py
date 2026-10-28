@@ -60,13 +60,13 @@ def saved(monkeypatch):
         )
     ]
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return Interview(**{**fields, **{k: v for item in changes for k, v in item.items()}})
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
-    async def fake_update(_interview_id, settings):
+    async def fake_update(session, _interview_id, settings):
         changes.append(settings.model_dump(exclude_none=True))
 
     async def no_set(_set_id):

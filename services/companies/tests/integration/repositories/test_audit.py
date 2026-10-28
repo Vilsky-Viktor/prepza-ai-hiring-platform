@@ -8,18 +8,20 @@ from sqlalchemy import func, select, update
 from companies.constants.audit import AUDIT_RETENTION_DAYS
 from companies.core.db import Session
 from companies.models.audit import AuditEvent
-from companies.repositories import accounts, audit, companies
+from companies.repositories import accounts, audit
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 def test_audit_events_list_newest_first_age_out_and_go_with_the_company(run):
     target = uuid.uuid4()
 
     async def scenario():
-        company = await companies.create(f"Audit {uuid.uuid4()}", "ann", "ann@example.com")
-        await audit.record(company.id, "ann", AuditAction.PASS_MARK_CHANGED, target)
-        await audit.record(company.id, "ann", AuditAction.RESULTS_VIEWED, target)
-        await audit.record(company.id, "ann", AuditAction.TOPICS_APPROVED)
-        listed = await audit.list_for_company(company.id, 0, 10)
+        company = await factories.company(f"Audit {uuid.uuid4()}", "ann", "ann@example.com")
+        await transaction(audit.record, company.id, "ann", AuditAction.PASS_MARK_CHANGED, target)
+        await transaction(audit.record, company.id, "ann", AuditAction.RESULTS_VIEWED, target)
+        await transaction(audit.record, company.id, "ann", AuditAction.TOPICS_APPROVED)
+        listed = await transaction(audit.list_for_company, company.id, 0, 10)
         # The first event is three years old: retention takes it, and only it.
         async with Session() as session:
             await session.execute(
@@ -29,9 +31,11 @@ def test_audit_events_list_newest_first_age_out_and_go_with_the_company(run):
             )
             await session.commit()
 
-        aged = await audit.delete_before(datetime.now(UTC) - timedelta(days=AUDIT_RETENTION_DAYS))
-        kept = await audit.list_for_company(company.id, 0, 10)
-        await companies.delete(company.id)
+        aged = await audit.delete_before(
+            Session, datetime.now(UTC) - timedelta(days=AUDIT_RETENTION_DAYS)
+        )
+        kept = await transaction(audit.list_for_company, company.id, 0, 10)
+        await factories.deleted(company.id)
 
         async with Session() as session:
             left = await session.scalar(
@@ -63,16 +67,18 @@ def test_a_deleted_users_decisions_are_exported_then_stay_without_their_id(run):
 
     async def scenario():
         name = f"Audit {uuid.uuid4()}"
-        company = await companies.create(name, "owner", "owner@example.com")
-        await audit.record(company.id, user, AuditAction.RESULTS_VIEWED)
-        await audit.record(company.id, "owner", AuditAction.TOPICS_APPROVED)
-        exported = (await accounts.export(user, "gone@example.com"))["company_decisions"]
-        await audit.forget_user(user)
+        company = await factories.company(name, "owner", "owner@example.com")
+        await transaction(audit.record, company.id, user, AuditAction.RESULTS_VIEWED)
+        await transaction(audit.record, company.id, "owner", AuditAction.TOPICS_APPROVED)
+        exported = (await transaction(accounts.export, user, "gone@example.com"))[
+            "company_decisions"
+        ]
+        await audit.forget_user(Session, user)
         # Safe to repeat.
-        await audit.forget_user(user)
-        listed = await audit.list_for_company(company.id, 0, 10)
-        left = (await accounts.export(user, "gone@example.com"))["company_decisions"]
-        await companies.delete(company.id)
+        await audit.forget_user(Session, user)
+        listed = await transaction(audit.list_for_company, company.id, 0, 10)
+        left = (await transaction(accounts.export, user, "gone@example.com"))["company_decisions"]
+        await factories.deleted(company.id)
 
         return name, exported, listed, left
 
@@ -90,12 +96,16 @@ def test_a_read_through_the_assistant_is_listed_and_exported_with_via(run):
     target = uuid.uuid4()
 
     async def scenario():
-        company = await companies.create(f"Audit {uuid.uuid4()}", user, f"{user}@example.com")
-        await audit.record(company.id, user, AuditAction.RESULTS_VIEWED, target)
-        await audit.record(company.id, user, AuditAction.RESULTS_VIEWED, target, via=VIA_ASSISTANT)
-        listed = await audit.list_for_company(company.id, 0, 10)
-        exported = (await accounts.export(user, f"{user}@example.com"))["company_decisions"]
-        await companies.delete(company.id)
+        company = await factories.company(f"Audit {uuid.uuid4()}", user, f"{user}@example.com")
+        await transaction(audit.record, company.id, user, AuditAction.RESULTS_VIEWED, target)
+        await transaction(
+            audit.record, company.id, user, AuditAction.RESULTS_VIEWED, target, via=VIA_ASSISTANT
+        )
+        listed = await transaction(audit.list_for_company, company.id, 0, 10)
+        exported = (await transaction(accounts.export, user, f"{user}@example.com"))[
+            "company_decisions"
+        ]
+        await factories.deleted(company.id)
 
         return listed, exported
 
@@ -109,12 +119,12 @@ def test_old_audit_events_are_deleted_in_batches_and_new_ones_kept(run):
     from prepza_common.db.db import delete_in_batches
 
     async def scenario():
-        company = await companies.create(f"Batches {uuid.uuid4()}", "ann", "ann@example.com")
+        company = await factories.company(f"Batches {uuid.uuid4()}", "ann", "ann@example.com")
 
         for _ in range(5):
-            await audit.record(company.id, "ann", AuditAction.PASS_MARK_CHANGED)
+            await transaction(audit.record, company.id, "ann", AuditAction.PASS_MARK_CHANGED)
 
-        await audit.record(company.id, "ann", AuditAction.TOPICS_APPROVED)
+        await transaction(audit.record, company.id, "ann", AuditAction.TOPICS_APPROVED)
         old = AuditEvent.company_id == company.id, AuditEvent.action != AuditAction.TOPICS_APPROVED
 
         async with Session() as session:
@@ -129,8 +139,8 @@ def test_old_audit_events_are_deleted_in_batches_and_new_ones_kept(run):
         deleted = await delete_in_batches(
             Session, AuditEvent, mine, AuditEvent.created_at < cutoff, batch=2
         )
-        kept = await audit.list_for_company(company.id, 0, 10)
-        await companies.delete(company.id)
+        kept = await transaction(audit.list_for_company, company.id, 0, 10)
+        await factories.deleted(company.id)
 
         return deleted, kept
 
@@ -147,15 +157,15 @@ def test_a_deleted_users_actions_lose_their_id_batch_after_batch(run, monkeypatc
     user = f"gone-{uuid.uuid4()}"
 
     async def scenario():
-        company = await companies.create(f"Audit {uuid.uuid4()}", "owner", "owner@example.com")
+        company = await factories.company(f"Audit {uuid.uuid4()}", "owner", "owner@example.com")
 
         for _ in range(5):
-            await audit.record(company.id, user, AuditAction.PASS_MARK_CHANGED)
+            await transaction(audit.record, company.id, user, AuditAction.PASS_MARK_CHANGED)
 
-        await audit.record(company.id, "owner", AuditAction.TOPICS_APPROVED)
-        await audit.forget_user(user)
-        listed = await audit.list_for_company(company.id, 0, 10)
-        await companies.delete(company.id)
+        await transaction(audit.record, company.id, "owner", AuditAction.TOPICS_APPROVED)
+        await audit.forget_user(Session, user)
+        listed = await transaction(audit.list_for_company, company.id, 0, 10)
+        await factories.deleted(company.id)
 
         return listed
 
@@ -172,13 +182,13 @@ def test_two_deleted_members_who_viewed_one_candidate_the_same_day_are_both_forg
     candidate = uuid.uuid4()
 
     async def scenario():
-        company = await companies.create(f"Views {uuid.uuid4()}", "owner", "o@example.com")
-        await audit.record_view(company.id, first, candidate)
-        await audit.record_view(company.id, second, candidate)
-        await audit.forget_user(first)
-        await audit.forget_user(second)
-        listed = await audit.list_for_company(company.id, 0, 10)
-        await companies.delete(company.id)
+        company = await factories.company(f"Views {uuid.uuid4()}", "owner", "o@example.com")
+        await transaction(audit.record_view, company.id, first, candidate)
+        await transaction(audit.record_view, company.id, second, candidate)
+        await audit.forget_user(Session, first)
+        await audit.forget_user(Session, second)
+        listed = await transaction(audit.list_for_company, company.id, 0, 10)
+        await factories.deleted(company.id)
 
         return listed
 

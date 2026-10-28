@@ -12,7 +12,6 @@ from prepza_common.events.audit_actions import AuditAction, TargetKind
 from prepza_common.i18n.names import clean_name
 
 from companies.api.v1 import candidates as candidates_router
-from companies.api.v1 import invites as invites_router
 from companies.constants.invites import MAX_CANDIDATE_NAME_LENGTH, InviteStatus
 from companies.main import app
 from companies.models.companies import Company, Member
@@ -21,6 +20,7 @@ from companies.models.invites import CandidateInvite
 from companies.repositories import companies, interviews, invite_progress
 from companies.repositories import invites as invite_store
 from companies.services import candidate_start, interview_access
+from companies.services import candidate_start as invites_router
 from tests.unit import fake_candidates
 from tests.unit.services.test_candidate_start import (  # noqa: F401 (fixture)
     INTERVIEW,
@@ -54,7 +54,7 @@ def test_a_clean_name_is_trimmed_cut_and_blank_is_unknown():
 def test_starting_passes_the_name_from_the_verified_sign_in(steps, monkeypatch):  # noqa: F811
     started = []
 
-    async def start(invite_id, user_id, name=None):
+    async def start(session, invite_id, user_id, name=None):
         started.append((user_id, name))
 
         return "invited"
@@ -77,7 +77,7 @@ def test_a_name_sent_in_the_body_of_a_start_is_ignored(client, monkeypatch):
     interview = Interview(id=INTERVIEW_ID, company_id=COMPANY_ID, set_id=uuid.uuid4())
     users = []
 
-    async def fake_get(token):
+    async def fake_get(session, token):
         return invite, interview
 
     async def fake_start(invite, interview, user):
@@ -112,13 +112,13 @@ def candidate(monkeypatch):
     fake_candidates.add(invite)
     saved = []
 
-    async def fake_interview(_id):
+    async def fake_interview(session, _id):
         return interview
 
-    async def fake_company(_id):
+    async def fake_company(session, _id):
         return company
 
-    async def change(invite_id, values, statuses):
+    async def change(session, invite_id, values, statuses):
         saved.append((invite_id, values["name"]))
 
         return invite.status in statuses
@@ -189,7 +189,7 @@ def test_a_deleted_candidate_cant_be_renamed(client, candidate):
 def test_a_single_invite_passes_its_name(client, candidate, monkeypatch, earlier, code):
     names = []
 
-    async def held(interview_id, email):
+    async def held(session, interview_id, email):
         return earlier, None
 
     async def invite(interview, company, user, email, name=None):

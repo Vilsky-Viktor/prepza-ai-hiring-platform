@@ -8,7 +8,9 @@ from sqlalchemy import select
 
 from companies.core.db import Session
 from companies.models.outbox import OutboxEvent
-from companies.repositories import accounts, companies, interviews, invites
+from companies.repositories import accounts, interviews, invites
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 async def announced() -> set[str]:
@@ -21,33 +23,39 @@ async def announced() -> set[str]:
 
 
 async def guest_and_member_invites():
-    company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-    interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-    guest, _ = await invites.upsert(
-        interview.id, f"g-{uuid.uuid4()}@example.com", "Backend", "Acme", "en", sign_in=False
+    company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+    interview = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+    guest, _ = await transaction(
+        invites.upsert,
+        interview.id,
+        f"g-{uuid.uuid4()}@example.com",
+        "Backend",
+        "Acme",
+        "en",
+        sign_in=False,
     )
-    member, _ = await invites.upsert(
-        interview.id, f"m-{uuid.uuid4()}@example.com", "Backend", "Acme", "en"
+    member, _ = await transaction(
+        invites.upsert, interview.id, f"m-{uuid.uuid4()}@example.com", "Backend", "Acme", "en"
     )
 
     return company, interview, guest, member
 
 
 async def remove_one(company, interview, guest, member):
-    await invites.remove(guest, company.id)
-    await invites.remove(member, company.id)
+    await transaction(invites.remove, guest, company.id)
+    await transaction(invites.remove, member, company.id)
 
 
 async def by_retention(company, interview, guest, member):
-    await accounts.delete_invites([guest.id, member.id])
+    await transaction(accounts.delete_invites, [guest.id, member.id])
 
 
 async def with_the_interview(company, interview, guest, member):
-    await interviews.remove(interview.id)
+    await factories.interview_removed(interview.id)
 
 
 async def with_the_company(company, interview, guest, member):
-    await companies.delete(company.id)
+    await factories.deleted(company.id)
 
 
 @pytest.mark.parametrize("delete", [remove_one, by_retention, with_the_interview, with_the_company])

@@ -3,7 +3,7 @@ import pytest
 
 from companies.api.v1 import links
 from companies.integrations import billing
-from companies.repositories import invites
+from companies.repositories import interviews, invites
 from companies.services import interview_access, link_start
 from tests.unit.api.v1.test_links import INTERVIEW, linked  # noqa: F401
 
@@ -24,7 +24,7 @@ def released(monkeypatch):
 
 
 def with_stored_key(monkeypatch, linked):  # noqa: F811
-    async def held(_interview_id, _email):
+    async def held(session, _interview_id, _email):
         return linked["status"], "stored-key" if linked["status"] else None
 
     monkeypatch.setattr(invites, "held", held)
@@ -88,7 +88,7 @@ def not_ready(monkeypatch):
         link_token="abc",
     )
 
-    async def get_by_link(token):
+    async def get_by_link(session, token):
         return interview
 
     async def as_is(found):
@@ -97,8 +97,8 @@ def not_ready(monkeypatch):
     async def editable(user, interview_id, editor=False):
         return interview, None, None
 
-    monkeypatch.setattr(links.interviews, "get_by_link", get_by_link)
-    monkeypatch.setattr(links, "attach_set", as_is)
+    monkeypatch.setattr(interviews, "get_by_link", get_by_link)
+    monkeypatch.setattr(link_start, "attach_set", as_is)
     monkeypatch.setattr(interview_access, "attach_set", as_is)
     monkeypatch.setattr(links, "interview_for", editable)
 
@@ -123,10 +123,10 @@ def test_the_link_turns_on_only_once_the_interview_has_its_questions(
     not_ready(monkeypatch)
     turned = []
 
-    async def set_link(interview_id, token):
+    async def set_link(session, interview_id, token):
         turned.append(token)
 
-    monkeypatch.setattr(links.interviews, "set_link", set_link)
+    monkeypatch.setattr(interviews, "set_link", set_link)
     on = client.put(f"/interviews/{INTERVIEW.id}/link", json={"on": True})
     off = client.put(f"/interviews/{INTERVIEW.id}/link", json={"on": False})
 

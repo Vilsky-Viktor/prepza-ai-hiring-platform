@@ -2,14 +2,14 @@
 company each candidate and interview belongs to."""
 
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from companies.core.db import Session
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 
 
-async def companies_of_member(email: str, limit: int) -> list[Company]:
+async def companies_of_member(session: AsyncSession, email: str, limit: int) -> list[Company]:
     """Companies with an owner, admin or viewer of that address, whatever its case, newest
     first."""
     query = (
@@ -20,11 +20,12 @@ async def companies_of_member(email: str, limit: int) -> list[Company]:
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def companies_of_user(user_id: str, limit: int) -> list[tuple[Company, str]]:
+async def companies_of_user(
+    session: AsyncSession, user_id: str, limit: int
+) -> list[tuple[Company, str]]:
     """Companies the account with that id (as "copy id" gives it) is a member of, newest
     first, each with the account's role there."""
     query = (
@@ -35,11 +36,12 @@ async def companies_of_user(user_id: str, limit: int) -> list[tuple[Company, str
         .limit(limit)
     )
 
-    async with Session() as session:
-        return [tuple(row) for row in await session.execute(query)]
+    return [tuple(row) for row in await session.execute(query)]
 
 
-async def candidate(invite_id) -> tuple[CandidateInvite, Interview, Company] | None:
+async def candidate(
+    session: AsyncSession, invite_id
+) -> tuple[CandidateInvite, Interview, Company] | None:
     """The candidate invite with its interview and company; None when it's gone."""
     query = (
         select(CandidateInvite, Interview, Company)
@@ -48,13 +50,12 @@ async def candidate(invite_id) -> tuple[CandidateInvite, Interview, Company] | N
         .where(CandidateInvite.id == invite_id)
     )
 
-    async with Session() as session:
-        row = (await session.execute(query)).first()
+    row = (await session.execute(query)).first()
 
     return tuple(row) if row else None
 
 
-async def interview(interview_id) -> tuple[Interview, Company] | None:
+async def interview(session: AsyncSession, interview_id) -> tuple[Interview, Company] | None:
     """The interview with its company; None when it's gone."""
     query = (
         select(Interview, Company)
@@ -62,13 +63,14 @@ async def interview(interview_id) -> tuple[Interview, Company] | None:
         .where(Interview.id == interview_id)
     )
 
-    async with Session() as session:
-        row = (await session.execute(query)).first()
+    row = (await session.execute(query)).first()
 
     return tuple(row) if row else None
 
 
-async def invites_to(email: str, limit: int) -> list[tuple[CandidateInvite, Company]]:
+async def invites_to(
+    session: AsyncSession, email: str, limit: int
+) -> list[tuple[CandidateInvite, Company]]:
     """Candidates invited at that address, whatever its case, newest first, each with the
     company that invited them."""
     query = (
@@ -80,5 +82,4 @@ async def invites_to(email: str, limit: int) -> list[tuple[CandidateInvite, Comp
         .limit(limit)
     )
 
-    async with Session() as session:
-        return [tuple(row) for row in await session.execute(query)]
+    return [tuple(row) for row in await session.execute(query)]

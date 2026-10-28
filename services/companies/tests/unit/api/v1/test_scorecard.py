@@ -5,7 +5,6 @@ import pytest
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 
-from companies.api.v1 import candidates as candidates_router
 from companies.constants.invites import InviteStatus
 from companies.integrations import rounds
 from companies.main import app
@@ -13,6 +12,7 @@ from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 from companies.repositories import companies, interviews
+from companies.services import scorecards
 from tests.unit import fake_candidates
 from tests.unit.api.v1.test_candidates import COMPANY_ID, INTERVIEW_ID, INVITE_ID, sign_in
 
@@ -69,7 +69,7 @@ def tracked(monkeypatch):
     async def track(name, **kwargs):
         events.append(name)
 
-    monkeypatch.setattr(candidates_router, "track", track)
+    monkeypatch.setattr(scorecards, "track", track)
 
     return events
 
@@ -106,10 +106,10 @@ def open_scorecard(client, monkeypatch, headers=None, status=InviteStatus.FINISH
         Member(company_id=COMPANY_ID, user_id="bob", invited_email="bob@example.com", role=role)
     ]
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     started = status == InviteStatus.FINISHED

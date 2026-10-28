@@ -4,13 +4,12 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, status
 from prepza_common.auth.superadmin import SuperadminUser
 from prepza_common.auth.user import User
-from prepza_common.config.constants import MAX_PAGE_SIZE
 from prepza_common.db.paging import PageParams
 
-from companies.helpers.interviews import interviews_page
+from companies.core.db import Session
 from companies.integrations import billing
 from companies.models.companies import Company
-from companies.repositories import audit, companies, members, superadmin_support
+from companies.repositories import companies, superadmin_support
 from companies.schemas.audit import ActionOut
 from companies.schemas.billing import CreditCandidateOut, HistoryEntryOut, InvoiceOut
 from companies.schemas.interviews import InterviewOut
@@ -20,12 +19,17 @@ from companies.schemas.superadmin_support import (
     SupportCandidateRowOut,
     SupportCompanyOut,
     SupportInterviewOut,
-    SupportMemberOut,
     SupportSearchIn,
     SupportSearchOut,
     SupportUserOut,
 )
-from companies.services import action_log, credit_history, support_pages, support_search
+from companies.services import (
+    action_log,
+    credit_history,
+    interview_views,
+    support_pages,
+    support_search,
+)
 
 # The admin zone's support tab: superadmins look into a complaint about an account, a company's
 # top-ups and spending, an interview or a candidate, and put a company's credits right. Each look
@@ -37,7 +41,8 @@ logger = logging.getLogger(__name__)
 
 async def viewed(company_id: UUID, what: str, superadmin: User) -> Company:
     """The company, its view logged; 404 when it's gone."""
-    company = await companies.get(company_id)
+    async with Session() as session:
+        company = await companies.get(session, company_id)
 
     if company is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Company not found")
@@ -51,7 +56,8 @@ async def viewed(company_id: UUID, what: str, superadmin: User) -> Company:
 
 async def viewed_interview(interview_id: UUID, what: str, superadmin: User) -> tuple:
     """The interview and its company, its view logged; 404 when it's gone."""
-    found = await superadmin_support.interview(interview_id)
+    async with Session() as session:
+        found = await superadmin_support.interview(session, interview_id)
 
     if found is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Interview not found")
@@ -85,23 +91,8 @@ async def search(body: SupportSearchIn, superadmin: SuperadminUser) -> SupportSe
 @router.get("/companies/{company_id}")
 async def get_company(company_id: UUID, superadmin: SuperadminUser) -> SupportCompanyOut:
     company = await viewed(company_id, "details", superadmin)
-    people = await members.list_for_company(company_id, 0, MAX_PAGE_SIZE)
-    credits = await billing.company_credits(company_id)
 
-    return SupportCompanyOut(
-        id=company.id,
-        name=company.name,
-        verification_status=company.verification_status,
-        verified_domain=company.verified_domain,
-        suspended=company.suspended_at is not None,
-        created_at=company.created_at,
-        members=[
-            SupportMemberOut(email=member.invited_email, role=member.role, user_id=member.user_id)
-            for member in people
-        ],
-        balance=credits["balance"],
-        reserved=credits["reserved"],
-    )
+    return await support_pages.company_page(company)
 
 
 @router.get("/companies/{company_id}/history")
@@ -129,7 +120,7 @@ async def get_interviews(
 ) -> list[InterviewOut]:
     await viewed(company_id, "interviews", superadmin)
 
-    return await interviews_page(company_id, page.offset, page.limit)
+    return await interview_views.interviews_page(company_id, page.offset, page.limit)
 
 
 @router.get("/companies/{company_id}/audit")
@@ -138,9 +129,8 @@ async def get_audit(
 ) -> list[ActionOut]:
     """The company's action log, newest first, as its owner sees it."""
     await viewed(company_id, "audit log", superadmin)
-    events = await audit.list_for_company(company_id, page.offset, page.limit)
 
-    return await action_log.rows(company_id, events)
+    return await action_log.page(company_id, page.offset, page.limit)
 
 
 @router.get("/companies/{company_id}/invoice")
@@ -159,16 +149,7 @@ async def adjust_credits(
 ) -> None:
     """Adds or removes credits with a note the company's history shows; safe to repeat with the
     same key. Billing refuses taking the available balance below zero (409)."""
-    if await companies.get(company_id) is None:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Company not found")
-
-    await billing.adjust_company(company_id, body.amount, body.note, body.key)
-    logger.warning(
-        "Credits of company %s adjusted by %d by superadmin %s",
-        company_id,
-        body.amount,
-        superadmin.uid,
-    )
+    await support_pages.adjust(company_id, body.amount, body.note, body.key, superadmin.uid)
 
 
 @router.get("/users/{user_id}")
@@ -187,7 +168,8 @@ async def get_user(user_id: str, superadmin: SuperadminUser) -> SupportUserOut:
 
 @router.get("/candidates/{invite_id}")
 async def get_candidate(invite_id: UUID, superadmin: SuperadminUser) -> SupportCandidateOut:
-    found = await superadmin_support.candidate(invite_id)
+    async with Session() as session:
+        found = await superadmin_support.candidate(session, invite_id)
 
     if found is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")

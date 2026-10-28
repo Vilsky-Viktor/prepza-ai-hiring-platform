@@ -13,20 +13,22 @@ from companies.constants.events import CANDIDATE_STARTED
 from companies.constants.invites import InviteStatus
 from companies.core.db import Session
 from companies.models.outbox import OutboxEvent
-from companies.repositories import companies, interviews, invite_expiry, invite_progress, invites
+from companies.repositories import interviews, invite_expiry, invite_progress, invites
+from tests.integration import factories, transactions
+from tests.integration.transactions import transaction
 
 
 def test_two_starts_at_once_start_the_invite_once(run, monkeypatch):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        invite, _ = await invites.upsert(interview.id, "s@example.com", "B", "A", "en")
-        held = hold_first_commit(monkeypatch, invite_progress)
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        invite, _ = await transaction(invites.upsert, interview.id, "s@example.com", "B", "A", "en")
+        held = hold_first_commit(monkeypatch, transactions)
         before = await race(
             os.environ["DATABASE_URL"],
             held,
-            invite_progress.start(invite.id, "uid-1"),
-            invite_progress.start(invite.id, "uid-1"),
+            transaction(invite_progress.start, invite.id, "uid-1"),
+            transaction(invite_progress.start, invite.id, "uid-1"),
         )
 
         async with Session() as session:
@@ -49,18 +51,22 @@ def test_sending_an_expired_invite_again_while_its_candidate_starts_keeps_the_st
     run, monkeypatch
 ):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        invite, _ = await invites.upsert(interview.id, "s@example.com", "B", "A", "en", name="Ann")
-        await invite_expiry.mark_expired(invite.id, datetime.now(UTC) + timedelta(seconds=1))
-        held = hold_first_commit(monkeypatch, invite_progress)
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        invite, _ = await transaction(
+            invites.upsert, interview.id, "s@example.com", "B", "A", "en", name="Ann"
+        )
+        await transaction(
+            invite_expiry.mark_expired, invite.id, datetime.now(UTC) + timedelta(seconds=1)
+        )
+        held = hold_first_commit(monkeypatch, transactions)
         _, (_, revived) = await race(
             os.environ["DATABASE_URL"],
             held,
-            invite_progress.start(invite.id, "uid-1"),
-            invites.upsert(interview.id, "s@example.com", "B", "A", "en", name="Ann"),
+            transaction(invite_progress.start, invite.id, "uid-1"),
+            transaction(invites.upsert, interview.id, "s@example.com", "B", "A", "en", name="Ann"),
         )
 
-        return revived, (await invites.get(invite.id)).status
+        return revived, (await transaction(invites.get, invite.id)).status
 
     assert run(scenario()) == (False, InviteStatus.IN_PROCESS)

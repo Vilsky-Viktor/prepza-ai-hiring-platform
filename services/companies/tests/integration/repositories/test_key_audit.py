@@ -6,24 +6,26 @@ from sqlalchemy import select
 from companies.core.db import Session
 from companies.core.security import REQUEST_KEY, REQUEST_VIA
 from companies.models.audit import AuditEvent
-from companies.repositories import audit, companies
+from companies.repositories import audit
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 def test_an_action_through_an_api_key_is_saved_with_the_key(run):
     key_id = uuid.uuid4()
 
     async def scenario():
-        company = await companies.create(f"Key audit {uuid.uuid4()}", "ann", "ann@example.com")
+        company = await factories.company(f"Key audit {uuid.uuid4()}", "ann", "ann@example.com")
         key = REQUEST_KEY.set(str(key_id))
         via = REQUEST_VIA.set(VIA_MCP)
 
         try:
-            await audit.record(company.id, "ann", "results_viewed")
+            await transaction(audit.record, company.id, "ann", "results_viewed")
         finally:
             REQUEST_KEY.reset(key)
             REQUEST_VIA.reset(via)
 
-        await audit.record(company.id, "ann", "results_viewed")
+        await transaction(audit.record, company.id, "ann", "results_viewed")
 
         async with Session() as session:
             rows = await session.execute(
@@ -33,7 +35,7 @@ def test_an_action_through_an_api_key_is_saved_with_the_key(run):
             )
             saved = [tuple(row) for row in rows]
 
-        await companies.delete(company.id)
+        await factories.deleted(company.id)
 
         return saved
 

@@ -78,7 +78,7 @@ def test_a_list_without_emails_or_with_too_many_is_refused(client, monkeypatch):
 def test_a_candidate_who_already_started_is_skipped_not_emailed_again(client, monkeypatch):
     sent, _ = invite_setup(monkeypatch)
 
-    async def started(_interview_id, emails):
+    async def started(session, _interview_id, emails):
         return {email: "in_process" for email in emails if email == "ann@example.com"}
 
     monkeypatch.setattr(invites, "statuses_of", started)

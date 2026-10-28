@@ -10,6 +10,7 @@ from companies.constants.superadmin import (
     QueryKind,
     SupportKind,
 )
+from companies.core.db import Session
 from companies.integrations import billing, library
 from companies.repositories import companies, superadmin_companies, superadmin_support
 from companies.schemas.superadmin_support import SupportResultOut
@@ -70,13 +71,15 @@ def user_result(account: dict | None) -> list[SupportResultOut]:
 
 
 async def company_by_id(company_id: UUID) -> list[SupportResultOut]:
-    company = await companies.get(company_id)
+    async with Session() as session:
+        company = await companies.get(session, company_id)
 
     return [company_result(company)] if company else []
 
 
 async def interview_by_id(interview_id: UUID) -> list[SupportResultOut]:
-    found = await superadmin_support.interview(interview_id)
+    async with Session() as session:
+        found = await superadmin_support.interview(session, interview_id)
 
     if found is None:
         return []
@@ -95,7 +98,8 @@ async def interview_by_id(interview_id: UUID) -> list[SupportResultOut]:
 
 
 async def candidate_by_id(invite_id: UUID) -> list[SupportResultOut]:
-    found = await superadmin_support.candidate(invite_id)
+    async with Session() as session:
+        found = await superadmin_support.candidate(session, invite_id)
 
     if found is None:
         return []
@@ -136,25 +140,29 @@ async def by_transaction(query: str) -> list[SupportResultOut]:
 async def by_email(query: str) -> list[SupportResultOut]:
     """The account signed in with that address, companies with a member of it, and candidates
     invited at it."""
-    found = user_result(await library.account_by_email(query)) + [
-        company_result(company)
-        for company in await superadmin_support.companies_of_member(query, SUPPORT_RESULTS)
-    ]
+    account = await library.account_by_email(query)
 
-    return found + [
-        candidate_result(invite, company)
-        for invite, company in await superadmin_support.invites_to(query, SUPPORT_RESULTS)
-    ]
+    async with Session() as session:
+        members = await superadmin_support.companies_of_member(session, query, SUPPORT_RESULTS)
+        invited = await superadmin_support.invites_to(session, query, SUPPORT_RESULTS)
+
+    return (
+        user_result(account)
+        + [company_result(company) for company in members]
+        + [candidate_result(invite, company) for invite, company in invited]
+    )
 
 
 async def by_name(query: str) -> list[SupportResultOut]:
     """The account with that id (from "copy id" in its menu or Settings) and the companies it's
     a member of, then companies whose name contains it: an account id reads like a short
     name."""
-    members = [
-        company for company, _ in await superadmin_support.companies_of_user(query, SUPPORT_RESULTS)
-    ]
-    named = [company for company, _ in await superadmin_companies.search(query, SUPPORT_RESULTS)]
+    async with Session() as session:
+        joined = await superadmin_support.companies_of_user(session, query, SUPPORT_RESULTS)
+        found = await superadmin_companies.search(session, query, SUPPORT_RESULTS)
+
+    members = [company for company, _ in joined]
+    named = [company for company, _ in found]
     ids = {company.id for company in members}
 
     return user_result(await library.account(query)) + [

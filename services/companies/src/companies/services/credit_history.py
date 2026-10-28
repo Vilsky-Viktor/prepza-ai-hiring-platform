@@ -1,4 +1,5 @@
 from companies.constants.billing import Reason
+from companies.core.db import Session
 from companies.integrations import billing
 from companies.repositories import credit_invites
 from companies.schemas.billing import CreditCandidateOut, HistoryEntryOut
@@ -19,9 +20,10 @@ async def page(company_id, offset: int, limit: int) -> list[HistoryEntryOut]:
     its candidate, found by the key of its credits in one query; one whose invite is gone (removed,
     or the candidate deleted their account) says so, and nothing more."""
     rows = await billing.company_history(company_id, offset, limit)
-    found = await credit_invites.by_hold_keys(
-        company_id, [row["hold_key"] for row in rows if row["hold_key"]]
-    )
+    async with Session() as session:
+        found = await credit_invites.by_hold_keys(
+            session, company_id, [row["hold_key"] for row in rows if row["hold_key"]]
+        )
     out = []
 
     for row in rows:
@@ -51,6 +53,7 @@ async def page(company_id, offset: int, limit: int) -> list[HistoryEntryOut]:
 
 async def reserved(company_id, offset: int, limit: int) -> list[CreditCandidateOut]:
     """Candidates invited who haven't finished, whose credits are set aside, newest first."""
-    rows = await credit_invites.holding(company_id, offset, limit)
+    async with Session() as session:
+        rows = await credit_invites.holding(session, company_id, offset, limit)
 
     return [candidate_out(invite, interview) for invite, interview in rows]

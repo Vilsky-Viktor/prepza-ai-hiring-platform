@@ -5,6 +5,7 @@ import pytest
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.events.audit_actions import AuditAction, TargetKind
+from sqlalchemy.exc import IntegrityError
 
 from companies.main import app
 from companies.models.companies import Company, Member
@@ -22,16 +23,14 @@ def renamed(monkeypatch):
     ]
     names = []
 
-    async def fake_get(_id):
+    async def fake_get(session, _id):
         return company
 
-    async def fake_rename(_id, name):
+    async def fake_rename(session, _id, name):
         if name.lower() == "taken inc":
-            return False
+            raise IntegrityError("UPDATE", {}, Exception(companies.NAME_INDEX))
 
         names.append(name)
-
-        return True
 
     monkeypatch.setattr(companies, "get", fake_get)
     monkeypatch.setattr(companies, "rename", fake_rename)

@@ -50,10 +50,10 @@ def two_companies(monkeypatch):
     owned = company(OWNED_ID, "My company", "owner")
     joined = company(JOINED_ID, "Arcolabs", "admin")
 
-    async def fake_list(user_id, offset, limit, roles=None, only=None):
+    async def fake_list(session, user_id, offset, limit, roles=None, only=None):
         return [owned, joined]
 
-    async def fake_get(company_id):
+    async def fake_get(session, company_id):
         if company_id == OWNED_ID:
             return owned
 
@@ -62,7 +62,7 @@ def two_companies(monkeypatch):
 
         return None
 
-    async def fake_counts(company_ids):
+    async def fake_counts(session, company_ids):
         return {OWNED_ID: 3}
 
     monkeypatch.setattr(companies, "list_for_user", fake_list)
@@ -108,10 +108,10 @@ def test_unknown_company_is_hidden(client, two_companies):
 def test_owner_removes_company(client, two_companies, monkeypatch):
     removed = []
 
-    async def fake_delete(company_id):
+    async def fake_delete(session, company_id):
         removed.append(company_id)
 
-    async def no_interviews(_company_id, after, limit):
+    async def no_interviews(session, _company_id, after, limit):
         return []
 
     monkeypatch.setattr(companies, "delete", fake_delete)
@@ -134,7 +134,7 @@ def test_lists_the_users_companies_with_their_credits(client, monkeypatch):
 
     asked = []
 
-    async def mine(user_id, offset, limit, roles, only=None):
+    async def mine(session, user_id, offset, limit, roles, only=None):
         asked.append(roles)
 
         return [company]
@@ -161,10 +161,10 @@ def test_lists_the_users_companies_with_their_credits(client, monkeypatch):
 def test_a_taken_company_name_is_refused(client, monkeypatch):
     sign_in()
 
-    async def none_owned(user_id):
+    async def none_owned(session, user_id):
         return 0
 
-    async def name_taken(name, user_id, email, most=None):
+    async def name_taken(session, name, user_id, email, most=None):
         return None
 
     monkeypatch.setattr(companies, "owned_count", none_owned)
@@ -182,7 +182,7 @@ def test_an_unverified_email_creates_no_company(client, monkeypatch):
     sign_in(verified=False)
     made = []
 
-    async def create(name, user_id, email, most=None):
+    async def create(session, name, user_id, email, most=None):
         made.append(name)
 
     monkeypatch.setattr(companies, "create", create)
@@ -207,19 +207,19 @@ def test_a_company_without_its_welcome_credits_is_removed_again(client, monkeypa
     created = Company(id=uuid.uuid4(), name="Acme", created_at=datetime.now(UTC))
     removed = []
 
-    async def none_owned(user_id):
+    async def none_owned(session, user_id):
         return 0
 
-    async def create(name, user_id, email, most=None):
+    async def create(session, name, user_id, email, most=None):
         return created
 
-    async def no_ids(user_id):
+    async def no_ids(session, user_id):
         return []
 
     async def billing_down(*args):
         raise RuntimeError("billing is down")
 
-    async def remove(company_id):
+    async def remove(session, company_id):
         removed.append(company_id)
 
     monkeypatch.setattr(companies, "owned_count", none_owned)

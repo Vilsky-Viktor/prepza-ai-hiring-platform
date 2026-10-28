@@ -12,23 +12,27 @@ from companies.repositories import (
     interviews,
     invite_progress,
     invites,
-    link_invites,
     reminders,
 )
-from companies.schemas.interviews import InterviewSettings
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 async def interview():
-    company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+    company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
 
-    return await interviews.create(company.id, uuid.uuid4(), "en", 60)
+    return await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
 
 
 def test_inviting_the_same_address_again_returns_the_same_invite(run):
     async def scenario():
         found = await interview()
-        first, _ = await invites.upsert(found.id, "Carol@Example.com", "Backend", "Acme", "en")
-        again, _ = await invites.upsert(found.id, "carol@example.com", "Backend", "Acme", "en")
+        first, _ = await transaction(
+            invites.upsert, found.id, "Carol@Example.com", "Backend", "Acme", "en"
+        )
+        again, _ = await transaction(
+            invites.upsert, found.id, "carol@example.com", "Backend", "Acme", "en"
+        )
 
         return first, again
 
@@ -42,13 +46,17 @@ def test_inviting_the_same_address_again_returns_the_same_invite(run):
 def test_an_undelivered_invite_is_marked_until_it_is_sent_again(run):
     async def scenario():
         found = await interview()
-        invite, _ = await invites.upsert(found.id, "erin@example.com", "Backend", "Acme", "en")
-        await invite_progress.mark_undelivered(
-            invite.id, invite_undelivered(found, str(invite.id), invite.email)
+        invite, _ = await transaction(
+            invites.upsert, found.id, "erin@example.com", "Backend", "Acme", "en"
         )
-        bounced, _ = await invites.get_by_token(invite.token)
-        await invites.upsert(found.id, "erin@example.com", "Backend", "Acme", "en")
-        resent, _ = await invites.get_by_token(invite.token)
+        await transaction(
+            invite_progress.mark_undelivered,
+            invite.id,
+            invite_undelivered(found, str(invite.id), invite.email),
+        )
+        bounced, _ = await transaction(invites.get_by_token, invite.token)
+        await transaction(invites.upsert, found.id, "erin@example.com", "Backend", "Acme", "en")
+        resent, _ = await transaction(invites.get_by_token, invite.token)
 
         return bounced, resent
 
@@ -61,12 +69,16 @@ def test_an_undelivered_invite_is_marked_until_it_is_sent_again(run):
 def test_a_started_invite_is_never_marked_undelivered(run):
     async def scenario():
         found = await interview()
-        invite, _ = await invites.upsert(found.id, "fay@example.com", "Backend", "Acme", "en")
-        await invite_progress.start(invite.id, "fay-uid")
-        await invite_progress.mark_undelivered(
-            invite.id, invite_undelivered(found, str(invite.id), invite.email)
+        invite, _ = await transaction(
+            invites.upsert, found.id, "fay@example.com", "Backend", "Acme", "en"
         )
-        stored, _ = await invites.get_by_token(invite.token)
+        await transaction(invite_progress.start, invite.id, "fay-uid")
+        await transaction(
+            invite_progress.mark_undelivered,
+            invite.id,
+            invite_undelivered(found, str(invite.id), invite.email),
+        )
+        stored, _ = await transaction(invites.get_by_token, invite.token)
 
         return stored
 
@@ -76,13 +88,15 @@ def test_a_started_invite_is_never_marked_undelivered(run):
 def test_an_invite_moves_from_invited_to_in_process_to_finished(run):
     async def scenario():
         found = await interview()
-        invite, _ = await invites.upsert(found.id, "dave@example.com", "Backend", "Acme", "en")
-        await invite_progress.start(invite.id, "dave-uid")
-        started, _ = await invites.get_by_token(invite.token)
-        await invite_progress.finish(invite.id, 80, False, None)
+        invite, _ = await transaction(
+            invites.upsert, found.id, "dave@example.com", "Backend", "Acme", "en"
+        )
+        await transaction(invite_progress.start, invite.id, "dave-uid")
+        started, _ = await transaction(invites.get_by_token, invite.token)
+        await transaction(invite_progress.finish, invite.id, 80, False, None)
         # Starting again, e.g. reopening the link, never reopens a finished interview.
-        await invite_progress.start(invite.id, "dave-uid")
-        finished, _ = await invites.get_by_token(invite.token)
+        await transaction(invite_progress.start, invite.id, "dave-uid")
+        finished, _ = await transaction(invites.get_by_token, invite.token)
 
         return started, finished
 
@@ -94,15 +108,19 @@ def test_an_invite_moves_from_invited_to_in_process_to_finished(run):
 
 def test_only_interviews_without_a_candidate_count_as_waiting(run):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        first = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        await interviews.create_from_template(company.id, uuid.uuid4(), "Copied", "en", 60)
-        before = await interviews.without_candidates(company.id)
-        invite, _ = await invites.upsert(first.id, "dan@example.com", "Backend", "Acme", "en")
-        invited = await interviews.without_candidates(company.id)
-        await invites.remove(invite, company.id)
-        revoked = await interviews.without_candidates(company.id)
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        first = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        await transaction(
+            interviews.create_from_template, company.id, uuid.uuid4(), "Copied", "en", 60
+        )
+        before = await transaction(interviews.without_candidates, company.id)
+        invite, _ = await transaction(
+            invites.upsert, first.id, "dan@example.com", "Backend", "Acme", "en"
+        )
+        invited = await transaction(interviews.without_candidates, company.id)
+        await transaction(invites.remove, invite, company.id)
+        revoked = await transaction(interviews.without_candidates, company.id)
 
         return before, invited, revoked
 
@@ -111,56 +129,20 @@ def test_only_interviews_without_a_candidate_count_as_waiting(run):
     assert run(scenario()) == (2, 1, 2)
 
 
-def test_a_link_finds_its_test_and_makes_one_invite_per_email_without_an_email(run):
-    async def scenario():
-        found = await interview()
-        await interviews.set_link(found.id, "link-code")
-        linked = await interviews.get_by_link("link-code")
-        first = await link_invites.for_link(found.id, "Ann@Example.com")
-        again = await link_invites.for_link(found.id, "ann@example.com")
-        await interviews.set_link(found.id, None)
-
-        return (
-            linked.id == found.id,
-            first.id == again.id,
-            first,
-            await interviews.get_by_link("link-code"),
-        )
-
-    same_test, same_invite, invite, after_off = run(scenario())
-
-    assert same_test and same_invite
-    assert (invite.email, invite.status) == ("ann@example.com", "invited")
-    # Turned off, the link finds nothing.
-    assert after_off is None
-
-
-def test_marking_a_test_hired_turns_its_link_off(run):
-    async def scenario():
-        found = await interview()
-        await interviews.set_link(found.id, "hired-code")
-        await interviews.update_settings(found.id, InterviewSettings(hired=False))
-        kept = await interviews.get_by_link("hired-code")
-        await interviews.update_settings(found.id, InterviewSettings(hired=True))
-
-        return kept, await interviews.get_by_link("hired-code")
-
-    kept, after_hired = run(scenario())
-
-    assert kept is not None
-    assert after_hired is None
-
-
 def test_a_candidate_who_has_not_started_is_reminded_once_until_invited_again(run):
     async def scenario():
         found = await interview()
-        await interviews.set_title(found.id, "Backend")
-        invite, _ = await invites.upsert(found.id, "rita@example.com", "Backend", "Acme", "en")
+        await transaction(interviews.set_title, found.id, "Backend")
+        invite, _ = await transaction(
+            invites.upsert, found.id, "rita@example.com", "Backend", "Acme", "en"
+        )
         later = datetime.now(UTC) + timedelta(seconds=1)
-        first = await reminders.remind_unstarted(later)
-        again = await reminders.remind_unstarted(later)
-        await invites.upsert(found.id, "rita@example.com", "Backend", "Acme", "en")
-        after_resend = await reminders.remind_unstarted(datetime.now(UTC) + timedelta(seconds=1))
+        first = await transaction(reminders.remind_unstarted, later)
+        again = await transaction(reminders.remind_unstarted, later)
+        await transaction(invites.upsert, found.id, "rita@example.com", "Backend", "Acme", "en")
+        after_resend = await transaction(
+            reminders.remind_unstarted, datetime.now(UTC) + timedelta(seconds=1)
+        )
 
         async with Session() as session:
             sent = list(
@@ -184,48 +166,16 @@ def test_a_candidate_who_has_not_started_is_reminded_once_until_invited_again(ru
     assert [event["company_id"] for event in sent] == [str(found.company_id)] * 2
 
 
-def test_a_logo_is_saved_served_and_removed_with_a_new_address_each_time(run):
-    png = b"\x89PNG\r\n\x1a\n" + b"0" * 20
-
-    async def scenario():
-        company = await companies.create(f"Logo {uuid.uuid4()}", "owner", "owner@example.com")
-        await companies.set_logo(company.id, png, "image/png")
-        saved = await companies.get_logo(company.id)
-        version = (await companies.get(company.id)).logo_version
-        await companies.set_logo(company.id, None, None)
-
-        return saved, version, await companies.get_logo(company.id)
-
-    saved, version, removed = run(scenario())
-
-    assert saved == (png, "image/png")
-    assert version == 1
-    assert removed is None
-
-
-def test_a_company_cant_take_another_companys_name_in_any_case(run):
-    async def scenario():
-        word = uuid.uuid4().hex[:8]
-        first = await companies.create(f"First {word}", "owner", "owner@example.com")
-        second = await companies.create(f"Second {word}", "owner", "owner@example.com")
-        taken = await companies.rename(second.id, f"FIRST {word}")
-        free = await companies.rename(second.id, f"Third {word}")
-
-        return first, taken, free, (await companies.get(second.id)).name, word
-
-    _, taken, free, name, word = run(scenario())
-
-    assert (taken, free, name) == (False, True, f"Third {word}")
-
-
 def test_a_finished_interview_delivered_twice_notifies_the_company_once(run):
     async def scenario():
         found = await interview()
-        invite, _ = await invites.upsert(found.id, "gus@example.com", "Backend", "Acme", "en")
+        invite, _ = await transaction(
+            invites.upsert, found.id, "gus@example.com", "Backend", "Acme", "en"
+        )
         notice = {"kind": "candidate_finished", "invite": str(invite.id)}
         event_id = str(uuid.uuid4())
-        await invite_progress.finish(invite.id, 70, False, notice, event_id)
-        await invite_progress.finish(invite.id, 70, False, notice, event_id)
+        await transaction(invite_progress.finish, invite.id, 70, False, notice, event_id)
+        await transaction(invite_progress.finish, invite.id, 70, False, notice, event_id)
 
         async with Session() as session:
             return await session.scalar(
@@ -256,16 +206,16 @@ def test_a_candidate_invited_again_after_removal_is_held_under_a_new_key(run, mo
 
     async def scenario():
         found = await interview()
-        await interviews.set_title(found.id, "Backend")
-        await interview_generations.set_set_id(found.id, uuid.uuid4())
-        found = await interviews.get(found.id)
-        company = await companies.get(found.company_id)
+        await transaction(interviews.set_title, found.id, "Backend")
+        await transaction(interview_generations.set_set_id, found.id, uuid.uuid4())
+        found = await transaction(interviews.get, found.id)
+        company = await transaction(companies.get, found.company_id)
         first = await candidate_invites.invite(found, company, owner, "dana@example.com")
         resent = await candidate_invites.invite(found, company, owner, "dana@example.com")
-        await invites.remove(first, found.company_id)
+        await transaction(invites.remove, first, found.company_id)
         again = await candidate_invites.invite(found, company, owner, "dana@example.com")
 
-        return first, resent, again, await invites.held(found.id, "dana@example.com")
+        return first, resent, again, await transaction(invites.held, found.id, "dana@example.com")
 
     first, resent, again, (status, stored) = run(scenario())
 
@@ -279,8 +229,10 @@ def test_a_candidate_invited_again_after_removal_is_held_under_a_new_key(run, mo
 def test_removing_a_candidate_tells_the_other_services_to_forget_them(run):
     async def scenario():
         found = await interview()
-        invite, _ = await invites.upsert(found.id, "hal@example.com", "Backend", "Acme", "en")
-        await invites.remove(invite, found.company_id)
+        invite, _ = await transaction(
+            invites.upsert, found.id, "hal@example.com", "Backend", "Acme", "en"
+        )
+        await transaction(invites.remove, invite, found.company_id)
 
         async with Session() as session:
             events = (
@@ -292,7 +244,7 @@ def test_removing_a_candidate_tells_the_other_services_to_forget_them(run):
                 )
             ).all()
 
-        return found, await invites.status_of(found.id, "hal@example.com"), events
+        return found, await transaction(invites.status_of, found.id, "hal@example.com"), events
 
     found, status, events = run(scenario())
 

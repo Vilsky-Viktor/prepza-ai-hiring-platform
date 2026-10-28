@@ -69,13 +69,13 @@ def queued(monkeypatch):
     ]
     events = []
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
-    async def fake_queue(data):
+    async def fake_queue(session, data):
         events.append(data)
 
     async def no_flush():
@@ -197,7 +197,7 @@ def test_no_report_is_emailed_before_a_candidate_finishes(client, queued, monkey
     interview = Interview(id=INTERVIEW_ID, company_id=COMPANY_ID, title="Backend", language="en")
     fake_candidates.ROWS[:] = [unfinished]
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
     monkeypatch.setattr(interviews, "get", fake_interview)
@@ -217,7 +217,7 @@ def test_a_company_emails_a_limited_number_of_reports_a_day(
 ):
     redis = FakeRedis({"REPORT_EMAILS_PER_COMPANY_DAY": edited} if edited else None)
 
-    async def nothing(*args, **kwargs):
+    async def nothing(session, *args, **kwargs):
         return None
 
     monkeypatch.setattr(report_emails, "get_redis", lambda: redis)

@@ -4,11 +4,17 @@ from time import monotonic
 
 from companies.constants.audit import AUDIT_RETENTION_DAYS
 from companies.constants.invites import CANDIDATE_RETENTION_DAYS, JOB_RUN_SECONDS, RETENTION_BATCH
+from companies.core.db import Session
 from companies.integrations import rounds
 from companies.repositories import accounts, audit
 from companies.services.candidate_billing import release_unfinished
 
 logger = logging.getLogger(__name__)
+
+
+async def expired(before: datetime) -> list[tuple]:
+    async with Session() as session:
+        return await accounts.expired_invites(session, before, RETENTION_BATCH)
 
 
 async def delete_expired_candidates() -> int:
@@ -20,20 +26,21 @@ async def delete_expired_candidates() -> int:
     stop_at = monotonic() + JOB_RUN_SECONDS
     count = 0
 
-    while monotonic() < stop_at and (
-        rows := await accounts.expired_invites(before, RETENTION_BATCH)
-    ):
+    while monotonic() < stop_at and (rows := await expired(before)):
         invite_ids = [row[0] for row in rows]
         await rounds.delete_invite_sessions(invite_ids)
         await release_unfinished([row[1:] for row in rows])
-        await accounts.delete_invites(invite_ids)
+
+        async with Session.begin() as session:
+            await accounts.delete_invites(session, invite_ids)
+
         count += len(rows)
 
     return count
 
 
 async def delete_old_audit_events() -> int:
-    """Audit events older than AUDIT_RETENTION_DAYS go."""
+    """Audit events older than AUDIT_RETENTION_DAYS go, a batch at a time."""
     before = datetime.now(UTC) - timedelta(days=AUDIT_RETENTION_DAYS)
 
-    return await audit.delete_before(before)
+    return await audit.delete_before(Session, before)

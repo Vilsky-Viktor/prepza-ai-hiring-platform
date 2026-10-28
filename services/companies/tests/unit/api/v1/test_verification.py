@@ -29,10 +29,10 @@ def company(monkeypatch):
         Member(company_id=COMPANY_ID, user_id="bob", invited_email="b@x.com", role="admin"),
     ]
 
-    async def fake_get(_id):
+    async def fake_get(session, _id):
         return found
 
-    async def fake_set(_id, domain, email):
+    async def fake_set(session, _id, domain, email):
         """As storage.verification.set_website does it."""
         found.website_domain = domain
         found.verified_domain = None
@@ -46,7 +46,7 @@ def company(monkeypatch):
         else:
             found.verification_status = VerificationStatus.PENDING
 
-    async def no_counts(ids):
+    async def no_counts(session, ids):
         return {}
 
     monkeypatch.setattr(companies, "get", fake_get)

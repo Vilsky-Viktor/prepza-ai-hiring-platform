@@ -10,8 +10,10 @@ from companies.core.db import Session
 from companies.integrations import rounds
 from companies.models.invites import CandidateInvite
 from companies.models.removals import RemovedInvite
-from companies.repositories import companies, interviews, invites
+from companies.repositories import interviews, invites
 from companies.services import removal_replay
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 def test_an_erased_candidate_a_restore_brings_back_is_erased_again(run, monkeypatch):
@@ -23,12 +25,16 @@ def test_an_erased_candidate_a_restore_brings_back_is_erased_again(run, monkeypa
     monkeypatch.setattr(rounds, "delete_invite_sessions", delete_sessions)
 
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        invite, _ = await invites.upsert(interview.id, "gone@example.com", "Backend", "Acme", "en")
-        old, _ = await invites.upsert(interview.id, "old@example.com", "Backend", "Acme", "en")
-        await invites.remove(invite, company.id)
-        await invites.remove(old, company.id)
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        invite, _ = await transaction(
+            invites.upsert, interview.id, "gone@example.com", "Backend", "Acme", "en"
+        )
+        old, _ = await transaction(
+            invites.upsert, interview.id, "old@example.com", "Backend", "Acme", "en"
+        )
+        await transaction(invites.remove, invite, company.id)
+        await transaction(invites.remove, old, company.id)
 
         async with Session() as session:
             # The backup's copy: the invite as it was before the removal.
@@ -54,7 +60,7 @@ def test_an_erased_candidate_a_restore_brings_back_is_erased_again(run, monkeypa
         async with Session() as session:
             kept = set(await session.scalars(select(RemovedInvite.invite_id)))
 
-        return invite, old, first, again, await invites.get(invite.id), kept
+        return invite, old, first, again, await transaction(invites.get, invite.id), kept
 
     invite, old, first, again, found, kept = run(scenario())
 
@@ -70,10 +76,14 @@ def test_a_row_a_deleted_account_once_left_blanked_goes_with_the_daily_job(run, 
     monkeypatch.setattr(rounds, "delete_invite_sessions", nothing)
 
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        blanked, _ = await invites.upsert(interview.id, "x@example.com", "Backend", "Acme", "en")
-        kept, _ = await invites.upsert(interview.id, "y@example.com", "Backend", "Acme", "en")
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        blanked, _ = await transaction(
+            invites.upsert, interview.id, "x@example.com", "Backend", "Acme", "en"
+        )
+        kept, _ = await transaction(
+            invites.upsert, interview.id, "y@example.com", "Backend", "Acme", "en"
+        )
 
         async with Session() as session:
             await session.execute(
@@ -85,7 +95,7 @@ def test_a_row_a_deleted_account_once_left_blanked_goes_with_the_daily_job(run, 
 
         await removal_replay.replay()
 
-        return await invites.get(blanked.id), await invites.get(kept.id)
+        return await transaction(invites.get, blanked.id), await transaction(invites.get, kept.id)
 
     gone, kept = run(scenario())
 
@@ -97,15 +107,20 @@ def test_more_restored_candidates_than_a_batch_are_all_erased_again(run, monkeyp
     monkeypatch.setattr(rounds, "delete_invite_sessions", lambda invite_ids: nothing())
 
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        interview = await interviews.create(company.id, uuid.uuid4(), "en", 60)
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        interview = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
         erased = []
 
         for number in range(3):
-            invite, _ = await invites.upsert(
-                interview.id, f"c{number}-{uuid.uuid4()}@example.com", "Backend", "Acme", "en"
+            invite, _ = await transaction(
+                invites.upsert,
+                interview.id,
+                f"c{number}-{uuid.uuid4()}@example.com",
+                "Backend",
+                "Acme",
+                "en",
             )
-            await invites.remove(invite, company.id)
+            await transaction(invites.remove, invite, company.id)
             erased.append(invite)
 
         async with Session() as session:
@@ -123,8 +138,8 @@ def test_more_restored_candidates_than_a_batch_are_all_erased_again(run, monkeyp
             await session.commit()
 
         count = await removal_replay.replay()
-        found = [await invites.get(invite.id) for invite in erased]
-        await companies.delete(company.id)
+        found = [await transaction(invites.get, invite.id) for invite in erased]
+        await factories.deleted(company.id)
 
         return count, found
 

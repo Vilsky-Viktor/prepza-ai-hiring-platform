@@ -6,8 +6,10 @@ import uuid
 import pytest
 
 from companies.integrations import library
-from companies.repositories import companies, interviews, invites, members, superadmin_support
+from companies.repositories import interviews, invites, superadmin_support
 from companies.services import support_search
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 @pytest.fixture(autouse=True)
@@ -25,11 +27,13 @@ def test_a_support_search_finds_a_company_its_interview_and_its_candidate(run):
     candidate = f"cid-{tag}@example.com"
 
     async def scenario():
-        acme = await companies.create(f"Support {tag}", f"ann-{tag}", f"ann-{tag}@example.com")
-        await members.add(acme.id, member, "admin", {})
-        interview = await interviews.create(acme.id, uuid.uuid4(), "en", 60)
-        await interviews.set_title(interview.id, "Backend")
-        invite, _ = await invites.upsert(interview.id, candidate, "Backend", acme.name, "en")
+        acme = await factories.company(f"Support {tag}", f"ann-{tag}", f"ann-{tag}@example.com")
+        await factories.member(acme.id, member, "admin", {})
+        interview = await transaction(interviews.create, acme.id, uuid.uuid4(), "en", 60)
+        await transaction(interviews.set_title, interview.id, "Backend")
+        invite, _ = await transaction(
+            invites.upsert, interview.id, candidate, "Backend", acme.name, "en"
+        )
         link = f"https://prepza.com/de/companies/{acme.id}/interviews/{interview.id}"
 
         def found(rows):
@@ -52,7 +56,7 @@ def test_a_support_search_finds_a_company_its_interview_and_its_candidate(run):
                 f"nobody-{tag}@example.com",
             )
         ]
-        await companies.delete(acme.id)
+        await factories.deleted(acme.id)
 
         return [found(rows) for rows in searches], acme, interview, invite
 
@@ -81,20 +85,20 @@ def test_a_candidate_and_an_interview_come_with_their_company_and_an_account_wit
     tag = uuid.uuid4().hex[:8]
 
     async def scenario():
-        acme = await companies.create(f"Support {tag}", f"ann-{tag}", f"ann-{tag}@example.com")
-        interview = await interviews.create(acme.id, uuid.uuid4(), "en", 60)
-        invite, _ = await invites.upsert(
-            interview.id, f"cid-{tag}@example.com", "", acme.name, "en"
+        acme = await factories.company(f"Support {tag}", f"ann-{tag}", f"ann-{tag}@example.com")
+        interview = await transaction(interviews.create, acme.id, uuid.uuid4(), "en", 60)
+        invite, _ = await transaction(
+            invites.upsert, interview.id, f"cid-{tag}@example.com", "", acme.name, "en"
         )
         found = (
-            await superadmin_support.candidate(invite.id),
-            await superadmin_support.interview(interview.id),
-            await superadmin_support.companies_of_user(f"ann-{tag}", 10),
-            await superadmin_support.candidate(uuid.uuid4()),
-            await superadmin_support.interview(uuid.uuid4()),
-            await superadmin_support.companies_of_user(f"nobody-{tag}", 10),
+            await transaction(superadmin_support.candidate, invite.id),
+            await transaction(superadmin_support.interview, interview.id),
+            await transaction(superadmin_support.companies_of_user, f"ann-{tag}", 10),
+            await transaction(superadmin_support.candidate, uuid.uuid4()),
+            await transaction(superadmin_support.interview, uuid.uuid4()),
+            await transaction(superadmin_support.companies_of_user, f"nobody-{tag}", 10),
         )
-        await companies.delete(acme.id)
+        await factories.deleted(acme.id)
 
         return found, acme, interview, invite
 

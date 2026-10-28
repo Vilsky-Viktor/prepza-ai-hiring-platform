@@ -9,6 +9,7 @@ from companies.constants.invites import (
     NOT_STARTED,
     InviteStatus,
 )
+from companies.core.db import Session
 from companies.integrations import rounds
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
@@ -30,18 +31,27 @@ async def remove(
     if invite.status not in NOT_STARTED:
         await rounds.delete_invite_sessions([invite.id])
 
-    removed = await invites.remove(invite, interview.company_id)
+    revoked = invite.status in NOT_STARTED
+    action = AuditAction.INVITE_REVOKED if revoked else AuditAction.CANDIDATE_DELETED
+
+    # The invite goes with its line in the action log, in one save.
+    async with Session.begin() as session:
+        removed = await invites.remove(session, invite, interview.company_id)
+        await audit.record(
+            session,
+            interview.company_id,
+            user_id,
+            action,
+            invite.id,
+            via=via,
+            target_kind=TargetKind.CANDIDATE,
+        )
 
     # Started since it was read: the sessions it made go too.
-    if invite.status in NOT_STARTED and removed == InviteStatus.IN_PROCESS:
+    if revoked and removed == InviteStatus.IN_PROCESS:
         await rounds.delete_invite_sessions([invite.id])
 
     await outbox_service.flush_quietly()
-    revoked = invite.status in NOT_STARTED
-    action = AuditAction.INVITE_REVOKED if revoked else AuditAction.CANDIDATE_DELETED
-    await audit.record(
-        interview.company_id, user_id, action, invite.id, via=via, target_kind=TargetKind.CANDIDATE
-    )
 
 
 async def change(
@@ -70,22 +80,30 @@ async def change(
         NOT_STARTED if timed else [item for item in InviteStatus if item != InviteStatus.DELETED]
     )
 
+    if not values:
+        return
+
+    # The changes and their lines in the action log, in one save.
+    async with Session.begin() as session:
+        written = await invites.change(session, invite.id, values, statuses)
+
+        for field, action in CHANGE_ACTIONS.items():
+            if written and field in values:
+                await audit.record(
+                    session,
+                    interview.company_id,
+                    user_id,
+                    action,
+                    invite.id,
+                    via=via,
+                    target_kind=TargetKind.CANDIDATE,
+                )
+
     # Started, or deleted, since it was read.
-    if values and not await invites.change(invite.id, values, statuses):
-        if timed:
-            raise CodedError(
-                status.HTTP_409_CONFLICT, EXTRA_TIME_STARTED, error_codes.CANDIDATE_STARTED
-            )
+    if not written and timed:
+        raise CodedError(
+            status.HTTP_409_CONFLICT, EXTRA_TIME_STARTED, error_codes.CANDIDATE_STARTED
+        )
 
+    if not written:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
-
-    for field, action in CHANGE_ACTIONS.items():
-        if field in values:
-            await audit.record(
-                interview.company_id,
-                user_id,
-                action,
-                invite.id,
-                via=via,
-                target_kind=TargetKind.CANDIDATE,
-            )

@@ -30,10 +30,10 @@ def acme(monkeypatch):
         created_at=datetime(2026, 10, 1, tzinfo=UTC),
     )
 
-    async def get(company_id):
+    async def get(session, company_id):
         return company if company_id == COMPANY_ID else None
 
-    async def list_for_company(company_id, offset, limit):
+    async def list_for_company(session, company_id, offset, limit):
         return [Member(invited_email="ann@acme.com", role="owner", user_id="ann")]
 
     monkeypatch.setattr(companies, "get", get)

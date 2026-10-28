@@ -1,33 +1,27 @@
 import secrets
 
-from prepza_common.events import outbox
-from prepza_common.events.audit_actions import AuditAction, TargetKind
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import delete, func, select, update
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.constants.events import MEMBER_INVITED
 from companies.constants.roles import Role
-from companies.core.db import Session
 from companies.core.exceptions import OverLimit
-from companies.helpers.notifications import member_joined, ownership_received
 from companies.models.companies import Company, Member
-from companies.models.outbox import OutboxEvent
-from companies.repositories import audit
-from companies.repositories.companies import lock_owner
+from companies.repositories import outbox
 
 
 async def add(
+    session: AsyncSession,
     company_id,
     email: str,
     role: str,
     sender: dict,
     most: int | None = None,
-) -> Member | None:
+) -> Member:
     """A pending invite; the role applies once it's accepted. Its email's event is saved with it:
     `sender` (the company, its logo, the inviter and their language) and the join link's token.
-    None when the email was invited meanwhile; OverLimit when the company already has `most`
-    pending invites, counted under a lock (two invites at once can't both pass)."""
+    An IntegrityError when the email was invited meanwhile; OverLimit when the company already
+    has `most` pending invites, counted under a lock (two invites at once can't both pass)."""
     member = Member(
         company_id=company_id,
         invited_email=email.lower(),
@@ -41,123 +35,84 @@ async def add(
         .where(Member.company_id == company_id, Member.user_id.is_(None))
     )
 
-    async with Session() as session:
-        lock = func.pg_advisory_xact_lock(func.hashtext(f"pending-invites:{company_id}"))
-        await session.execute(select(lock))
-        count = await session.scalar(pending)
+    lock = func.pg_advisory_xact_lock(func.hashtext(f"pending-invites:{company_id}"))
+    await session.execute(select(lock))
+    count = await session.scalar(pending)
 
-        if most is not None and count >= most:
-            raise OverLimit(count)
+    if most is not None and count >= most:
+        raise OverLimit(count)
 
-        session.add(member)
-        outbox.add(
-            session,
-            OutboxEvent,
-            MEMBER_INVITED,
-            {**sender, "email": member.invited_email, "token": member.token, "role": role},
-        )
-
-        try:
-            await session.commit()
-        except IntegrityError:
-            return None
+    session.add(member)
+    outbox.add(
+        session,
+        MEMBER_INVITED,
+        {**sender, "email": member.invited_email, "token": member.token, "role": role},
+    )
+    await session.flush()
 
     return member
 
 
-async def get_by_token(token: str) -> tuple[Member, Company] | None:
+async def get_by_token(session: AsyncSession, token: str) -> tuple[Member, Company] | None:
     query = (
         select(Member, Company)
         .join(Company, Company.id == Member.company_id)
         .where(Member.token == token)
     )
 
-    async with Session() as session:
-        row = (await session.execute(query)).first()
+    row = (await session.execute(query)).first()
 
-        return tuple(row) if row else None
-
-
-async def accept(member: Member, company: Company, user_id: str) -> bool:
-    """Joins the member, and tells the owner in the bell, in the same transaction; locked, so
-    two clicks at once join and tell once. False when the invite was removed meanwhile."""
-    async with Session() as session:
-        row = await session.scalar(select(Member).where(Member.id == member.id).with_for_update())
-
-        if row is None:
-            return False
-
-        joining = row.user_id is None
-
-        if joining:
-            row.user_id = user_id
-            session.add(
-                audit.row(
-                    company.id,
-                    user_id,
-                    AuditAction.MEMBER_JOINED,
-                    row.id,
-                    target_kind=TargetKind.MEMBER,
-                )
-            )
-
-        # The link stays, so reopening it says it was used (and opens the company for its
-        # member) instead of "invalid"; joining twice changes nothing.
-
-        owner_id = await session.scalar(
-            select(Member.user_id).where(Member.company_id == company.id, Member.role == Role.OWNER)
-        )
-
-        if joining and owner_id:
-            outbox.add(
-                session, OutboxEvent, NOTIFICATION_REQUESTED, member_joined(company, row, owner_id)
-            )
-
-        await session.commit()
-
-    return True
+    return tuple(row) if row else None
 
 
-async def transfer_ownership(
-    company: Company,
-    owner: Member,
-    member: Member,
-    most: int | None = None,
-) -> bool:
-    """Makes `member`, a joined admin, the owner, and the owner an admin, in one transaction with
-    the new owner's notification. False when either changed meanwhile (another transfer, a role
-    change): nothing changes then, so a company never has two owners or none. OverLimit when
-    `member` already owns `most` companies, counted under a lock."""
-    async with Session() as session:
-        owned = await lock_owner(session, member.user_id)
+async def join(session: AsyncSession, member_id, user_id: str) -> tuple[Member | None, bool]:
+    """The invite, locked, so two clicks at once join once, and whether it joined `user_id` now;
+    (None, False) when it was removed meanwhile. The link stays, so reopening it says it was used
+    (and opens the company for its member) instead of "invalid"; joining twice changes nothing."""
+    # Fresh from the database once locked, though the session may hold it already.
+    query = (
+        select(Member)
+        .where(Member.id == member_id)
+        .with_for_update()
+        .execution_options(populate_existing=True)
+    )
+    row = await session.scalar(query)
 
-        if most is not None and owned >= most:
-            raise OverLimit(owned)
+    if row is None or row.user_id is not None:
+        return row, False
 
-        stepped_down = await session.execute(
-            update(Member)
-            .where(Member.id == owner.id, Member.role == Role.OWNER)
-            .values(role=Role.ADMIN)
-        )
-        stepped_up = await session.execute(
-            update(Member)
-            .where(Member.id == member.id, Member.role == Role.ADMIN, Member.user_id.is_not(None))
-            .values(role=Role.OWNER)
-        )
+    row.user_id = user_id
 
-        if stepped_down.rowcount != 1 or stepped_up.rowcount != 1:
-            await session.rollback()
-
-            return False
-
-        notice = ownership_received(company, member, secrets.token_hex(8))
-        outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
-        await session.commit()
-
-        return True
+    return row, True
 
 
-async def list_for_company(company_id, offset: int, limit: int) -> list[Member]:
+async def owner_user_id(session: AsyncSession, company_id) -> str | None:
+    return await session.scalar(
+        select(Member.user_id).where(Member.company_id == company_id, Member.role == Role.OWNER)
+    )
+
+
+async def lock_both(session: AsyncSession, owner_id, member_id) -> tuple[Member, Member] | None:
+    """The owner's and the member's rows, locked in one order so two transfers at once can't
+    wait on each other; None when either is gone."""
+    rows = await session.scalars(
+        select(Member)
+        .where(Member.id.in_([owner_id, member_id]))
+        .order_by(Member.id)
+        .with_for_update()
+        .execution_options(populate_existing=True)
+    )
+    found = {row.id: row for row in rows}
+
+    if owner_id not in found or member_id not in found:
+        return None
+
+    return found[owner_id], found[member_id]
+
+
+async def list_for_company(
+    session: AsyncSession, company_id, offset: int, limit: int
+) -> list[Member]:
     query = (
         select(Member)
         .where(Member.company_id == company_id)
@@ -166,17 +121,12 @@ async def list_for_company(company_id, offset: int, limit: int) -> list[Member]:
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def set_role(member_id, role: str) -> None:
-    async with Session() as session:
-        await session.execute(update(Member).where(Member.id == member_id).values(role=role))
-        await session.commit()
+async def set_role(session: AsyncSession, member_id, role: str) -> None:
+    await session.execute(update(Member).where(Member.id == member_id).values(role=role))
 
 
-async def remove(member_id) -> None:
-    async with Session() as session:
-        await session.execute(delete(Member).where(Member.id == member_id))
-        await session.commit()
+async def remove(session: AsyncSession, member_id) -> None:
+    await session.execute(delete(Member).where(Member.id == member_id))

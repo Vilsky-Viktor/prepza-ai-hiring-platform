@@ -5,11 +5,11 @@ from types import SimpleNamespace
 import pytest
 from prepza_common.config.constants import MAX_PAGE_SIZE
 
-from companies.api.v1 import internal_api_changes
 from companies.constants.audit import VIA_API
 from companies.constants.invites import EXTRA_TIME_STARTED, NO_EMAILS_FOR_GUEST
 from companies.repositories import candidates, companies, interviews, invites
 from companies.services import candidate_changes, candidate_invites, candidate_results, credits
+from companies.services import outbox as outbox_service
 from tests.unit.api.v1.test_internal_api import COMPANY_ID, HEADERS, INTERVIEW, OTHER_ID
 
 BASE = f"/internal/companies/{COMPANY_ID}"
@@ -25,15 +25,15 @@ def world(monkeypatch):
         "done": [],
     }
 
-    async def get_interview(interview_id):
+    async def get_interview(session, interview_id):
         return INTERVIEW if interview_id == INTERVIEW.id else None
 
-    async def get_candidate(interview_id, invite_id):
+    async def get_candidate(session, interview_id, invite_id):
         invite = state["invite"]
 
         return invite if invite_id == invite.id else None
 
-    async def get_company(company_id):
+    async def get_company(session, company_id):
         return SimpleNamespace(id=company_id) if company_id == COMPANY_ID else None
 
     def record(name):
@@ -50,7 +50,7 @@ def world(monkeypatch):
     monkeypatch.setattr(companies, "get", get_company)
     monkeypatch.setattr(candidate_changes, "remove", record("remove"))
     monkeypatch.setattr(candidate_invites, "invite", record("invite"))
-    monkeypatch.setattr(internal_api_changes.outbox_service, "flush_quietly", outbox)
+    monkeypatch.setattr(outbox_service, "flush_quietly", outbox)
 
     return state
 
@@ -74,7 +74,7 @@ def written(monkeypatch, world):
     """The changes written to the candidate, as the database would take them."""
     changes = []
 
-    async def change(invite_id, values, statuses):
+    async def change(session, invite_id, values, statuses):
         if world["invite"].status not in statuses:
             return False
 
@@ -131,7 +131,7 @@ def test_a_candidate_who_started_meanwhile_keeps_their_time_and_name(
     """Read before they started, written after: the guarded write refuses it."""
     invite = world["invite"]
 
-    async def get_candidate(interview_id, invite_id):
+    async def get_candidate(session, interview_id, invite_id):
         return SimpleNamespace(**{**vars(invite), "status": "invited"})
 
     monkeypatch.setattr(candidates, "get", get_candidate)
@@ -178,7 +178,7 @@ def test_a_candidate_is_found_by_exact_email_in_full_and_credits_are_read(
         finished_at=None,
     )
 
-    async def company_page(company_id, offset, limit, q="", email=""):
+    async def company_page(session, company_id, offset, limit, q="", email=""):
         asked.append((email, limit))
 
         return [(invite, SimpleNamespace(**vars(INTERVIEW), title="Backend"))]

@@ -2,22 +2,25 @@ import secrets
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.events import outbox
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.constants.events import CANDIDATE_JOINED
 from companies.constants.invites import InviteStatus
-from companies.core.db import Session
 from companies.helpers.candidates import new_hold_key
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
-from companies.models.outbox import OutboxEvent
+from companies.repositories import outbox
 from companies.repositories.interviews import company_of
 
 
 async def for_link(
-    interview_id, email: str, hold_key: str | None = None, details: dict | None = None
+    session: AsyncSession,
+    interview_id,
+    email: str,
+    hold_key: str | None = None,
+    details: dict | None = None,
 ) -> CandidateInvite:
     """The candidate who came through the test's link: their invite, made now if it's new (with
     `hold_key`, its credits' key). A new one saves the event that emails them its link, to
@@ -41,28 +44,25 @@ async def for_link(
         .returning(CandidateInvite.id)
     )
 
-    async with Session() as session:
-        made = await session.scalar(statement)
-        invite = await session.scalar(
-            select(CandidateInvite).where(
-                CandidateInvite.interview_id == interview_id, CandidateInvite.email == email
-            )
+    made = await session.scalar(statement)
+    invite = await session.scalar(
+        select(CandidateInvite).where(
+            CandidateInvite.interview_id == interview_id, CandidateInvite.email == email
         )
+    )
 
-        # Only the request that made it: one email, also when two start at once.
-        if made and details:
-            company_id = await session.scalar(
-                select(Interview.company_id).where(Interview.id == interview_id)
-            )
-            data = {
-                "invite_id": str(invite.id),
-                "company_id": str(company_id),
-                "email": email,
-                "token": invite.token,
-                **details,
-            }
-            outbox.add(session, OutboxEvent, CANDIDATE_JOINED, data)
+    # Only the request that made it: one email, also when two start at once.
+    if made and details:
+        company_id = await session.scalar(
+            select(Interview.company_id).where(Interview.id == interview_id)
+        )
+        data = {
+            "invite_id": str(invite.id),
+            "company_id": str(company_id),
+            "email": email,
+            "token": invite.token,
+            **details,
+        }
+        outbox.add(session, CANDIDATE_JOINED, data)
 
-        await session.commit()
-
-        return invite
+    return invite

@@ -10,11 +10,11 @@ import pytest
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 
-from companies.helpers import interviews as helpers
 from companies.main import app
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.repositories import candidates, companies, interview_generations, interviews
+from companies.services import interview_views as helpers
 
 COMPANY_ID = uuid.uuid4()
 
@@ -40,7 +40,7 @@ def stored(monkeypatch):
     """Changes the helpers save: (interview id, failed)."""
     saved = []
 
-    async def set_generation_failed(interview_id, failed):
+    async def set_generation_failed(session, interview_id, failed):
         saved.append((interview_id, failed))
 
     monkeypatch.setattr(interview_generations, "set_generation_failed", set_generation_failed)
@@ -73,13 +73,13 @@ def test_listing_never_asks_generation_and_shows_the_stored_failure(client, monk
         Member(company_id=COMPANY_ID, user_id="bob", invited_email="bob@example.com", role="admin")
     ]
 
-    async def found(_company_id):
+    async def found(session, _company_id):
         return company
 
-    async def listed(company_id, offset, limit, **filters):
+    async def listed(session, company_id, offset, limit, **filters):
         return rows
 
-    async def counts(ids):
+    async def counts(session, ids):
         return {}
 
     monkeypatch.setattr(companies, "get", found)

@@ -34,13 +34,13 @@ def company(monkeypatch):
         ),
     ]
 
-    async def get(_id):
+    async def get(session, _id):
         return acme
 
-    async def set_ai_apps(company_id, allowed):
+    async def set_ai_apps(session, company_id, allowed):
         acme.ai_apps_off_at = None if allowed else datetime.now(UTC)
 
-    async def counts(_ids):
+    async def counts(session, _ids):
         return {}
 
     async def verify_by_email(company, user):

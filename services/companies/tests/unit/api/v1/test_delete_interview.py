@@ -34,10 +34,10 @@ def setup(monkeypatch, role, set_id=SET_ID):
         Member(company_id=COMPANY_ID, user_id="bob", invited_email="bob@example.com", role=role),
     ]
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     async def fake_rounds(found_set_id):
@@ -46,7 +46,7 @@ def setup(monkeypatch, role, set_id=SET_ID):
     async def fake_library(found_set_id):
         calls.append(("library", found_set_id))
 
-    async def fake_remove(interview_id):
+    async def fake_remove(session, interview_id):
         calls.append(("interview", interview_id))
 
         return []
@@ -87,7 +87,7 @@ def test_an_interview_still_generating_is_cancelled_instead(client, monkeypatch)
     async def no_generation(_generation_id, _company_id):
         return None
 
-    monkeypatch.setattr("companies.helpers.interviews.generation_api.get", no_generation)
+    monkeypatch.setattr("companies.services.interview_views.generation_api.get", no_generation)
 
     assert client.delete(URL).status_code == 409
     assert calls == []
@@ -131,7 +131,7 @@ def test_deleting_an_interview_settles_unfinished_candidates_credits(client, mon
     dan = candidate("dan@example.com", "in_process")
     erin = candidate("erin@example.com", "in_process")
 
-    async def unfinished(interview_id, after, size):
+    async def unfinished(session, interview_id, after, size):
         return [carol, dan, erin] if after is None else []
 
     async def scores(invite_ids):
@@ -172,7 +172,7 @@ def test_an_invite_made_while_the_interview_is_deleted_gives_its_credits_back(cl
     setup(monkeypatch, "admin")
     released = []
 
-    async def remove(interview_id):
+    async def remove(session, interview_id):
         return [(INTERVIEW_ID, "late@example.com", "invited", "late-key")]
 
     async def release(key):

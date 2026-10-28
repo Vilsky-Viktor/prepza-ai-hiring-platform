@@ -7,6 +7,7 @@ from prepza_common.auth.auth import CurrentUser
 from prepza_common.db.paging import PageParams
 from prepza_common.events.audit_actions import AuditGroup
 
+from companies.core.db import Session
 from companies.helpers.audit import audit_event_out
 from companies.models.companies import Company
 from companies.repositories import audit
@@ -32,7 +33,9 @@ async def list_audit_events(
 ) -> list[AuditEventOut]:
     """Every action the company's members took, newest first; for the owner only."""
     company = await owned_company(user, company_id)
-    rows = await audit.list_for_company(company.id, page.offset, page.limit)
+
+    async with Session() as session:
+        rows = await audit.list_for_company(session, company.id, page.offset, page.limit)
 
     return [audit_event_out(row) for row in rows]
 
@@ -61,8 +64,4 @@ async def list_actions(
 
         user_id = member.user_id
 
-    events = await audit.list_for_company(
-        company.id, page.offset, page.limit, user_id, group, start, end
-    )
-
-    return await action_log.rows(company.id, events)
+    return await action_log.page(company.id, page.offset, page.limit, user_id, group, start, end)

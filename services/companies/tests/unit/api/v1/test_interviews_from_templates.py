@@ -7,12 +7,12 @@ from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 
-from companies.api.v1 import interviews as routes
 from companies.integrations import library
 from companies.main import app
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.repositories import companies, interviews
+from companies.services import interview_creation as routes
 
 COMPANY_ID = uuid.uuid4()
 TEMPLATE_ID = uuid.uuid4()
@@ -34,7 +34,7 @@ def setup(monkeypatch):
         )
     ]
 
-    async def get_company(_company_id):
+    async def get_company(session, _company_id):
         return company if _company_id == COMPANY_ID else None
 
     async def copy(template_id, company_id):
@@ -43,7 +43,7 @@ def setup(monkeypatch):
 
         return {"id": str(SET_ID), "title": "Bookkeeper", "language": "de", "level": "hard"}
 
-    async def create(company_id, set_id, title, language, seconds):
+    async def create(session, company_id, set_id, title, language, seconds):
         made.append((company_id, set_id, title, language, seconds))
 
         return Interview(

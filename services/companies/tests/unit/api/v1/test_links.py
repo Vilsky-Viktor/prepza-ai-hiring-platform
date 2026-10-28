@@ -8,14 +8,13 @@ from fastapi import HTTPException
 from prepza_common.auth.auth import current_user, optional_user
 from prepza_common.auth.user import User
 
-from companies.api.v1 import links
 from companies.constants.invites import EMAIL_NOT_VERIFIED, NO_PLEDGE, InviteStatus
 from companies.integrations import billing
 from companies.main import app
 from companies.models.interviews import Interview
 from companies.repositories import companies, interviews, invites, link_invites
 from companies.schemas.invites import InviteStartOut
-from companies.services import link_start
+from companies.services import invite_pages, link_start
 
 # The limits' defaults: new candidates one link takes, and one address starts, an hour.
 LINK_STARTS_PER_HOUR = 30
@@ -48,13 +47,13 @@ def linked(monkeypatch):
         "limits": redis.limits,
     }
 
-    async def get_by_link(token):
+    async def get_by_link(session, token):
         return INTERVIEW if token == "abc" else None
 
-    async def status_of(_interview_id, _email):
+    async def status_of(session, _interview_id, _email):
         return state["status"]
 
-    async def held(_interview_id, _email):
+    async def held(session, _interview_id, _email):
         return state["status"], None
 
     async def hold(company_id, key):
@@ -63,7 +62,7 @@ def linked(monkeypatch):
 
         state["held"].append(key)
 
-    async def for_link(interview_id, email, hold_key=None, details=None):
+    async def for_link(session, interview_id, email, hold_key=None, details=None):
         return SimpleNamespace(email=email, hold_key=hold_key)
 
     async def start(invite, interview, user_id):
@@ -126,7 +125,7 @@ def test_a_new_invite_that_cant_be_saved_gives_its_credits_back(client, linked, 
     """Its interview was deleted meanwhile."""
     released = []
 
-    async def gone(interview_id, email, hold_key=None, details=None):
+    async def gone(session, interview_id, email, hold_key=None, details=None):
         raise RuntimeError("interview deleted")
 
     async def release(key):
@@ -176,7 +175,7 @@ def test_an_unverified_email_cant_start(client, linked):
 
 
 def test_the_link_says_when_the_signed_in_person_already_finished(client, linked, monkeypatch):
-    async def no_company(_company_id):
+    async def no_company(session, _company_id):
         return None
 
     async def title(_interview):
@@ -186,8 +185,8 @@ def test_the_link_says_when_the_signed_in_person_already_finished(client, linked
         return {"topics": [{"id": str(uuid.uuid4()), "title": "Python", "question_count": 3}]}
 
     monkeypatch.setattr(companies, "get", no_company)
-    monkeypatch.setattr(links, "interview_title", title)
-    monkeypatch.setattr(links.set_cache, "get_set", found_set)
+    monkeypatch.setattr(invite_pages, "interview_title", title)
+    monkeypatch.setattr(invite_pages.set_cache, "get_set", found_set)
     linked["status"] = "finished"
     app.dependency_overrides[optional_user] = lambda: User(
         uid="cand", email="cand@example.com", email_verified=True
@@ -260,7 +259,7 @@ def test_a_candidate_already_invited_is_never_held_back_by_the_limits(client, li
 
 
 def test_an_unverified_email_learns_nothing_of_that_addresss_status(client, linked, monkeypatch):
-    async def no_company(_company_id):
+    async def no_company(session, _company_id):
         return None
 
     async def title(_interview):
@@ -270,8 +269,8 @@ def test_an_unverified_email_learns_nothing_of_that_addresss_status(client, link
         return {"topics": []}
 
     monkeypatch.setattr(companies, "get", no_company)
-    monkeypatch.setattr(links, "interview_title", title)
-    monkeypatch.setattr(links.set_cache, "get_set", found_set)
+    monkeypatch.setattr(invite_pages, "interview_title", title)
+    monkeypatch.setattr(invite_pages.set_cache, "get_set", found_set)
     linked["status"] = "finished"
     app.dependency_overrides[optional_user] = lambda: User(
         uid="x", email="cand@example.com", email_verified=False

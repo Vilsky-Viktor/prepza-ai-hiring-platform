@@ -4,14 +4,12 @@ from uuid import UUID
 from fastapi import APIRouter, Query, Request
 from prepza_common.auth.auth import CurrentUser
 from prepza_common.db.paging import PageParams
-from prepza_common.events.audit_actions import AuditAction, TargetKind
 from prepza_common.http.visitor_country import VisitorCountry
 from prepza_common.i18n.i18n import request_language
 from prepza_common.limits.rate_limit import hit_or_skip
 
 from companies.integrations import billing, billing_prices
 from companies.integrations.redis import get_redis
-from companies.repositories import audit
 from companies.schemas.billing import (
     CreditCandidateOut,
     HistoryEntryOut,
@@ -21,7 +19,7 @@ from companies.schemas.billing import (
     TopUpCheckoutOut,
 )
 from companies.schemas.currencies import CatalogOut, CompanyCurrencyOut, CurrencyIn
-from companies.services import credit_history
+from companies.services import billing_settings, credit_history
 from companies.services.access import require_company, require_editor
 
 # Owners and admins, who top up, see where the credits went; viewers don't.
@@ -121,16 +119,10 @@ async def choose_currency(
 ) -> CompanyCurrencyOut:
     """What the company's top-ups are priced and charged in from now on, automatic ones too."""
     await require_editor(user, company_id)
-    chosen = await billing_prices.choose_currency(company_id, body.currency)
-    await audit.record(
-        company_id,
-        user.uid,
-        AuditAction.CURRENCY_CHANGED,
-        company_id,
-        target_kind=TargetKind.COMPANY,
-    )
 
-    return CompanyCurrencyOut(**chosen)
+    return CompanyCurrencyOut(
+        **await billing_settings.choose_currency(company_id, body.currency, user.uid)
+    )
 
 
 @router.get("/payment-failure")

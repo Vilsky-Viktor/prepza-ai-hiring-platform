@@ -19,7 +19,7 @@ def invites_redis(monkeypatch):
     the Redis returned; the action log isn't what these tests check."""
     redis = FakeRedis()
 
-    async def nothing(*args, **kwargs):
+    async def nothing(session, *args, **kwargs):
         return None
 
     invite_setup(monkeypatch)

@@ -16,11 +16,15 @@ from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 from companies.models.outbox import OutboxEvent
 from companies.repositories import audit, batch_deletion, companies, interviews, invites
+from companies.services import batch_deletion as batch_service
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 @pytest.fixture(autouse=True)
 def small_batches(monkeypatch):
     monkeypatch.setattr(batch_deletion, "DELETE_BATCH", 2)
+    monkeypatch.setattr(batch_service, "DELETE_BATCH", 2)
     monkeypatch.setattr(db, "DELETE_BATCH", 2)
 
 
@@ -41,12 +45,15 @@ async def events(event_type: str, key: str, value: str) -> list[dict]:
 async def company_with_candidates():
     """A company with three interviews, five invites on the first (two guests, one finished),
     and three actions logged."""
-    company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-    made = [await interviews.create(company.id, uuid.uuid4(), "en", 60) for _ in range(3)]
+    company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+    made = [
+        await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60) for _ in range(3)
+    ]
     sent = []
 
     for number in range(5):
-        invite, _ = await invites.upsert(
+        invite, _ = await transaction(
+            invites.upsert,
             made[0].id,
             f"c{number}-{uuid.uuid4()}@example.com",
             "Backend",
@@ -65,7 +72,7 @@ async def company_with_candidates():
         await session.commit()
 
     for _ in range(3):
-        await audit.record(company.id, "owner", AuditAction.PASS_MARK_CHANGED)
+        await transaction(audit.record, company.id, "owner", AuditAction.PASS_MARK_CHANGED)
 
     return company, made, sent
 
@@ -74,7 +81,7 @@ def test_a_deleted_companys_rows_go_batch_after_batch(run):
     async def scenario():
         company, _, sent = await company_with_candidates()
         other, _, _ = await company_with_candidates()
-        await companies.delete(company.id)
+        await factories.deleted(company.id)
         left = [
             await count(CandidateInvite, CandidateInvite.company_id == company.id),
             await count(AuditEvent, AuditEvent.company_id == company.id),
@@ -86,8 +93,8 @@ def test_a_deleted_companys_rows_go_batch_after_batch(run):
             await count(Interview, Interview.company_id == other.id),
         ]
         announced = await events("company.deleted", "company_id", str(company.id))
-        gone = await companies.get(company.id)
-        await companies.delete(other.id)
+        gone = await transaction(companies.get, company.id)
+        await factories.deleted(other.id)
 
         return sent, left, others, announced, gone, await guests_announced()
 
@@ -103,10 +110,10 @@ def test_a_deleted_companys_rows_go_batch_after_batch(run):
 def test_a_removed_interviews_invites_go_batch_after_batch(run):
     async def scenario():
         company, made, sent = await company_with_candidates()
-        removed = await interviews.remove(made[0].id)
+        removed = await factories.interview_removed(made[0].id)
         left = await count(CandidateInvite, CandidateInvite.interview_id == made[0].id)
         announced = await events("interview.deleted", "interview_id", str(made[0].id))
-        await companies.delete(company.id)
+        await factories.deleted(company.id)
 
         return sent, removed, left, announced, await guests_announced()
 

@@ -17,7 +17,7 @@ def saved(monkeypatch):
     """The results stored, by invite id."""
     rows = {}
 
-    async def fake_save(results):
+    async def fake_save(session, results):
         rows.update(results)
 
     monkeypatch.setattr(candidates, "save_results", fake_save)

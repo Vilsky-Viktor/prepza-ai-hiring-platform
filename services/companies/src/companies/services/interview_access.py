@@ -5,13 +5,14 @@ from prepza_common.auth.auth import CurrentUser
 from prepza_common.limits.pause import refuse_if_paused
 
 from companies.constants.invites import INTERVIEW_NOT_READY
-from companies.helpers.interviews import attach_set
+from companies.core.db import Session
 from companies.integrations.redis import get_redis
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 from companies.repositories import candidates, interviews
 from companies.services.access import require_company, require_editor
+from companies.services.interview_views import attach_set
 
 
 async def interview_for(
@@ -20,7 +21,8 @@ async def interview_for(
     """The interview, when the user is a member of its company (with `editor`, an owner or
     admin of a company not suspended); 404 otherwise, as if it weren't there. Every user route
     about one interview starts here, so none can miss the check."""
-    interview = await interviews.get(interview_id)
+    async with Session() as session:
+        interview = await interviews.get(session, interview_id)
 
     if interview is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Interview not found")
@@ -37,8 +39,9 @@ async def candidate_for(
 ) -> tuple[Interview, CandidateInvite, Company, Member]:
     """The interview's candidate, as interview_for checks the interview; 404 when either isn't
     there or the candidate belongs to another interview."""
-    interview = await interviews.get(interview_id)
-    invite = await candidates.get(interview_id, invite_id) if interview else None
+    async with Session() as session:
+        interview = await interviews.get(session, interview_id)
+        invite = await candidates.get(session, interview_id, invite_id) if interview else None
 
     if interview is None or invite is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")

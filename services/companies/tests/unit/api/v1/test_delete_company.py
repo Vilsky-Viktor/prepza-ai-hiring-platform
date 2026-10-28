@@ -39,10 +39,10 @@ def calls(monkeypatch):
         Member(company_id=COMPANY_ID, user_id="bob", invited_email="bob@example.com", role="owner"),
     ]
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
-    async def fake_list(_company_id, after, limit):
+    async def fake_list(session, _company_id, after, limit):
         # One page, then none.
         if after is not None:
             return []
@@ -61,7 +61,7 @@ def calls(monkeypatch):
     async def fake_get(generation_id, _company_id):
         return {"preparation_id": FINISHED_SET_ID if generation_id == FINISHING_ID else None}
 
-    async def fake_set_id(_interview_id, _set_id):
+    async def fake_set_id(session, _interview_id, _set_id):
         return None
 
     async def fake_rounds(set_id):
@@ -70,7 +70,7 @@ def calls(monkeypatch):
     async def fake_library(set_id):
         recorded.append(("library", set_id))
 
-    async def fake_delete(company_id):
+    async def fake_delete(session, company_id):
         recorded.append(("company", company_id))
 
     async def fake_billing(company_id):

@@ -9,6 +9,9 @@ from companies.constants.roles import EDITORS
 from companies.core.db import Session
 from companies.models.outbox import OutboxEvent
 from companies.repositories import audit, companies, members
+from companies.services import members as member_service
+from tests.integration import factories, transactions
+from tests.integration.transactions import transaction
 
 
 def test_a_used_invite_link_still_finds_its_member_and_a_removed_admin_is_gone(run):
@@ -16,14 +19,14 @@ def test_a_used_invite_link_still_finds_its_member_and_a_removed_admin_is_gone(r
     owner nothing more."""
 
     async def scenario():
-        company = await companies.create(f"Members {uuid.uuid4()}", "ann", "ann@example.com")
-        bob = await members.add(company.id, "bob@example.com", "admin", {})
-        cid = await members.add(company.id, "cid@example.com", "admin", {})
-        await members.accept(bob, company, "bob")
-        await members.accept(bob, company, "bob")
-        reused = await members.get_by_token(bob.token)
-        await members.remove(cid.id)
-        left = await members.list_for_company(company.id, 0, 10)
+        company = await factories.company(f"Members {uuid.uuid4()}", "ann", "ann@example.com")
+        bob = await factories.member(company.id, "bob@example.com", "admin", {})
+        cid = await factories.member(company.id, "cid@example.com", "admin", {})
+        await factories.accepted(bob, company, "bob")
+        await factories.accepted(bob, company, "bob")
+        reused = await transaction(members.get_by_token, bob.token)
+        await transaction(members.remove, cid.id)
+        left = await transaction(members.list_for_company, company.id, 0, 10)
 
         async with Session() as session:
             joined = (
@@ -34,8 +37,8 @@ def test_a_used_invite_link_still_finds_its_member_and_a_removed_admin_is_gone(r
                 )
             ).all()
 
-        logged = await audit.list_for_company(company.id, 0, 10)
-        await companies.delete(company.id)
+        logged = await transaction(audit.list_for_company, company.id, 0, 10)
+        await factories.deleted(company.id)
 
         return reused, left, joined, bob.token, logged, bob.id
 
@@ -57,16 +60,16 @@ def test_a_viewer_keeps_their_role_on_joining_and_the_owner_changes_it(run):
     uid = f"bob-{uuid.uuid4()}"
 
     async def scenario():
-        company = await companies.create(f"Viewers {uuid.uuid4()}", "ann", "ann@example.com")
-        bob = await members.add(company.id, "bob@example.com", "viewer", {})
+        company = await factories.company(f"Viewers {uuid.uuid4()}", "ann", "ann@example.com")
+        bob = await factories.member(company.id, "bob@example.com", "viewer", {})
         # An id of its own: other tests' companies have a "bob" too.
-        await members.accept(bob, company, uid)
-        joined = await members.list_for_company(company.id, 0, 10)
-        top_up_before = await companies.list_for_user(uid, 0, 10, EDITORS)
-        await members.set_role(bob.id, "admin")
-        changed = await members.list_for_company(company.id, 0, 10)
-        top_up_after = await companies.list_for_user(uid, 0, 10, EDITORS)
-        await companies.delete(company.id)
+        await factories.accepted(bob, company, uid)
+        joined = await transaction(members.list_for_company, company.id, 0, 10)
+        top_up_before = await transaction(companies.list_for_user, uid, 0, 10, EDITORS)
+        await transaction(members.set_role, bob.id, "admin")
+        changed = await transaction(members.list_for_company, company.id, 0, 10)
+        top_up_after = await transaction(companies.list_for_user, uid, 0, 10, EDITORS)
+        await factories.deleted(company.id)
 
         return joined, changed, top_up_before, [item.id for item in top_up_after], company.id
 
@@ -81,8 +84,8 @@ def test_a_viewer_keeps_their_role_on_joining_and_the_owner_changes_it(run):
 
 def test_an_invite_saves_its_email_with_the_join_link(run):
     async def scenario():
-        company = await companies.create(f"Emails {uuid.uuid4()}", "ann", "ann@example.com")
-        dan = await members.add(company.id, "Dan@example.com", "viewer", {"company": "Acme"})
+        company = await factories.company(f"Emails {uuid.uuid4()}", "ann", "ann@example.com")
+        dan = await factories.member(company.id, "Dan@example.com", "viewer", {"company": "Acme"})
 
         async with Session() as session:
             sent = list(
@@ -94,7 +97,7 @@ def test_an_invite_saves_its_email_with_the_join_link(run):
                 )
             )
 
-        await companies.delete(company.id)
+        await factories.deleted(company.id)
 
         return dan, sent
 
@@ -107,11 +110,11 @@ def test_an_invite_saves_its_email_with_the_join_link(run):
 
 def test_the_owner_hears_once_that_a_member_joined(run):
     async def scenario():
-        company = await companies.create(f"Joined {uuid.uuid4()}", "ann", "ann@example.com")
-        dan = await members.add(company.id, "dan@example.com", "viewer", {})
-        await members.accept(dan, company, "dan")
+        company = await factories.company(f"Joined {uuid.uuid4()}", "ann", "ann@example.com")
+        dan = await factories.member(company.id, "dan@example.com", "viewer", {})
+        await factories.accepted(dan, company, "dan")
         # Accepting again (a retried request) changes nothing.
-        await members.accept(dan, company, "dan")
+        await factories.accepted(dan, company, "dan")
 
         async with Session() as session:
             sent = list(
@@ -124,7 +127,7 @@ def test_the_owner_hears_once_that_a_member_joined(run):
                 )
             )
 
-        await companies.delete(company.id)
+        await factories.deleted(company.id)
 
         return company, dan, sent
 
@@ -144,19 +147,19 @@ def test_the_owner_hears_once_that_a_member_joined(run):
 
 def test_two_joins_at_once_tell_the_owner_once_and_a_removed_invite_joins_no_one(run, monkeypatch):
     async def scenario():
-        company = await companies.create(f"Members {uuid.uuid4()}", "ann", "ann@example.com")
-        bob = await members.add(company.id, "bob@example.com", "admin", {})
-        cid = await members.add(company.id, "cid@example.com", "admin", {})
-        twice = await members.add(company.id, "cid@example.com", "admin", {})
-        held = hold_first_commit(monkeypatch, members)
+        company = await factories.company(f"Members {uuid.uuid4()}", "ann", "ann@example.com")
+        bob = await factories.member(company.id, "bob@example.com", "admin", {})
+        cid = await factories.member(company.id, "cid@example.com", "admin", {})
+        twice = await factories.member(company.id, "cid@example.com", "admin", {})
+        held = hold_first_commit(monkeypatch, member_service)
         both = await race(
             os.environ["DATABASE_URL"],
             held,
-            members.accept(bob, company, "bob"),
-            members.accept(bob, company, "bob"),
+            factories.accepted(bob, company, "bob"),
+            factories.accepted(bob, company, "bob"),
         )
-        await members.remove(cid.id)
-        removed = await members.accept(cid, company, "cid")
+        await transaction(members.remove, cid.id)
+        removed = await factories.accepted(cid, company, "cid")
 
         async with Session() as session:
             joined = (
@@ -167,7 +170,7 @@ def test_two_joins_at_once_tell_the_owner_once_and_a_removed_invite_joins_no_one
                 )
             ).all()
 
-        await companies.delete(company.id)
+        await factories.deleted(company.id)
 
         return twice, both, removed, len(joined)
 
@@ -180,7 +183,7 @@ def test_the_database_refuses_a_second_owner(run):
     from companies.models.companies import Member
 
     async def scenario():
-        company = await companies.create(f"Owners {uuid.uuid4()}", "ann", "ann@example.com")
+        company = await factories.company(f"Owners {uuid.uuid4()}", "ann", "ann@example.com")
 
         async with Session() as session:
             session.add(
@@ -204,13 +207,13 @@ def test_two_invites_at_once_cant_both_take_the_last_pending_place(run, monkeypa
     from companies.core.exceptions import OverLimit
 
     async def scenario():
-        company = await companies.create(f"Pending {uuid.uuid4()}", "ann", "ann@example.com")
-        held = hold_first_commit(monkeypatch, members)
+        company = await factories.company(f"Pending {uuid.uuid4()}", "ann", "ann@example.com")
+        held = hold_first_commit(monkeypatch, transactions)
         outcomes = await race(
             os.environ["DATABASE_URL"],
             held,
             *(
-                members.add(company.id, f"{name}@example.com", "viewer", {}, most=1)
+                factories.member(company.id, f"{name}@example.com", "viewer", {}, most=1)
                 for name in ("bob", "cid")
             ),
         )
@@ -226,12 +229,12 @@ def test_two_companies_at_once_cant_both_take_the_last_owned_place(run, monkeypa
     owner = f"owner-{uuid.uuid4()}"
 
     async def scenario():
-        held = hold_first_commit(monkeypatch, companies)
+        held = hold_first_commit(monkeypatch, transactions)
         outcomes = await race(
             os.environ["DATABASE_URL"],
             held,
             *(
-                companies.create(f"{name} {uuid.uuid4()}", owner, "o@example.com", most=1)
+                factories.company(f"{name} {uuid.uuid4()}", owner, "o@example.com", most=1)
                 for name in ("First", "Second")
             ),
         )

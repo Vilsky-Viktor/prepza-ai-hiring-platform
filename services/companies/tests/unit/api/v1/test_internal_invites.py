@@ -16,15 +16,15 @@ INTERVIEW = SimpleNamespace(id=uuid.uuid4(), company_id=uuid.uuid4(), title="Bac
 def test_notifications_marks_an_invite_undelivered_and_the_company_is_told(client, monkeypatch):
     marked = []
 
-    async def fake_get(invite_id):
+    async def fake_get(session, invite_id):
         return SimpleNamespace(
             id=invite_id, interview_id=INTERVIEW.id, email="erin@example.com", name=None
         )
 
-    async def fake_interview(interview_id):
+    async def fake_interview(session, interview_id):
         return INTERVIEW
 
-    async def fake_mark(invite_id, notice):
+    async def fake_mark(session, invite_id, notice):
         marked.append((invite_id, notice))
 
     async def no_flush():
@@ -58,7 +58,7 @@ def test_marking_needs_a_service_token(client):
 def test_notifications_asks_which_companies_invited_an_address(client, monkeypatch):
     asked = []
 
-    async def fake_company_ids(email):
+    async def fake_company_ids(session, email):
         asked.append(email)
 
         return ["c-1"]

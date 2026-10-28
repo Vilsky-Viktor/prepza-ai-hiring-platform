@@ -13,7 +13,7 @@ COMPANY_ID = uuid.uuid4()
 
 
 def test_members_say_who_can_act_and_leave_out_pending_invites(client, monkeypatch):
-    async def with_members(company_ids):
+    async def with_members(session, company_ids):
         return [
             SimpleNamespace(
                 id=COMPANY_ID,
@@ -57,7 +57,7 @@ WINDOWS = {
 def test_the_companies_with_waiting_interviews_come_a_page_at_a_time(client, monkeypatch):
     asked = []
 
-    async def waiting_company_ids(ready, started, after, limit):
+    async def waiting_company_ids(session, ready, started, after, limit):
         asked.append((ready, started, after, limit))
 
         return [COMPANY_ID]
@@ -87,7 +87,7 @@ def test_waiting_interviews_of_some_companies_pass_the_windows_through(client, m
         created_at=datetime(2026, 10, 1, tzinfo=UTC),
     )
 
-    async def waiting_of(ready, started, company_ids):
+    async def waiting_of(session, ready, started, company_ids):
         calls.append((ready, started, company_ids))
 
         return [row], []

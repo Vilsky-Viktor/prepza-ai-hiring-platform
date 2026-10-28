@@ -1,22 +1,31 @@
 """The admin zone's support pages of an account, a candidate and an interview: metadata only,
 never a candidate's questions or answers."""
 
+import logging
+
+from fastapi import HTTPException, status
+from prepza_common.config.constants import MAX_PAGE_SIZE
+
 from companies.constants.superadmin import CREDIT_STATES
+from companies.core.db import Session
 from companies.helpers.candidates import candidate_out
-from companies.helpers.interviews import interview_out
 from companies.integrations import billing, library, rounds
-from companies.repositories import candidates, companies, superadmin_support
+from companies.repositories import candidates, companies, members, superadmin_support
 from companies.schemas.superadmin_support import (
     SupportCandidateOut,
     SupportCandidateRowOut,
+    SupportCompanyOut,
     SupportInterviewOut,
+    SupportMemberOut,
     SupportSignalsOut,
     SupportTopUpOut,
     SupportUserCompanyOut,
     SupportUserOut,
 )
 from companies.services import candidate_results, set_cache
+from companies.services.interview_views import interview_out
 
+logger = logging.getLogger(__name__)
 # Every company an account is a member of: a handful at most.
 USER_COMPANIES = 1000
 
@@ -24,13 +33,17 @@ USER_COMPANIES = 1000
 async def user_page(user_id: str) -> SupportUserOut | None:
     """None when there's neither an account nor a membership with that id."""
     account = await library.account(user_id)
-    memberships = await superadmin_support.companies_of_user(user_id, USER_COMPANIES)
+
+    async with Session() as session:
+        memberships = await superadmin_support.companies_of_user(session, user_id, USER_COMPANIES)
 
     if account is None and not memberships:
         return None
 
     bought = await billing.buyer_purchases(user_id)
-    names = await companies.names([row["company_id"] for row in bought])
+
+    async with Session() as session:
+        names = await companies.names(session, [row["company_id"] for row in bought])
 
     return SupportUserOut(
         user_id=user_id,
@@ -78,7 +91,9 @@ async def candidate_page(invite, interview, company) -> SupportCandidateOut:
 
 
 async def interview_page(interview, company) -> SupportInterviewOut:
-    count = (await candidates.counts([interview.id])).get(interview.id, 0)
+    async with Session() as session:
+        count = (await candidates.counts(session, [interview.id])).get(interview.id, 0)
+
     base = await interview_out(interview, count)
     found = await set_cache.get_set(interview.set_id) if interview.set_id else None
 
@@ -113,3 +128,41 @@ async def interview_candidates(interview, offset: int, limit: int) -> list[Suppo
         )
         for row in rows
     ]
+
+
+async def company_page(company) -> SupportCompanyOut:
+    """The company with its members and credits."""
+    async with Session() as session:
+        people = await members.list_for_company(session, company.id, 0, MAX_PAGE_SIZE)
+
+    credits = await billing.company_credits(company.id)
+
+    return SupportCompanyOut(
+        id=company.id,
+        name=company.name,
+        verification_status=company.verification_status,
+        verified_domain=company.verified_domain,
+        suspended=company.suspended_at is not None,
+        created_at=company.created_at,
+        members=[
+            SupportMemberOut(email=member.invited_email, role=member.role, user_id=member.user_id)
+            for member in people
+        ],
+        balance=credits["balance"],
+        reserved=credits["reserved"],
+    )
+
+
+async def adjust(company_id, amount: int, note: str, key: str, superadmin_id: str) -> None:
+    """Adds or removes credits with a note the company's history shows; safe to repeat with the
+    same key. Billing refuses taking the available balance below zero (409)."""
+    async with Session() as session:
+        company = await companies.get(session, company_id)
+
+    if company is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Company not found")
+
+    await billing.adjust_company(company_id, amount, note, key)
+    logger.warning(
+        "Credits of company %s adjusted by %d by superadmin %s", company_id, amount, superadmin_id
+    )

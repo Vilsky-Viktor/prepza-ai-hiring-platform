@@ -10,12 +10,12 @@ from prepza_common.auth.user import User
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.api.v1 import auto_top_ups as auto_top_ups_router
-from companies.api.v1 import links as links_router
 from companies.integrations import billing_prices, library
 from companies.main import app
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.repositories import companies, interviews
+from companies.services import interview_changes
 
 COMPANY_ID = uuid.uuid4()
 INTERVIEW_ID = uuid.uuid4()
@@ -52,10 +52,10 @@ def company(monkeypatch):
     )
     top_up = dict(OFF)
 
-    async def get_company(_id):
+    async def get_company(session, _id):
         return acme
 
-    async def get_interview(_id):
+    async def get_interview(session, _id):
         return interview
 
     async def nothing(*args, **kwargs):
@@ -76,7 +76,7 @@ def company(monkeypatch):
         (library, "rename_set"),
         (interviews, "set_title"),
         (interviews, "set_link"),
-        (links_router, "ready_for_invites"),
+        (interview_changes, "ready_for_invites"),
         (billing_prices, "turn_off_auto_top_up"),
         (auto_top_ups_router, "count_checkout_call"),
     ):

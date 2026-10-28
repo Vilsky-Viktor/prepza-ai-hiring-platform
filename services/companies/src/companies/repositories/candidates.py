@@ -5,13 +5,13 @@ import uuid
 from datetime import datetime
 
 from sqlalchemy import bindparam, func, or_, select, update
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.constants.invites import CandidateFilter, InviteStatus
-from companies.core.db import Session
 from companies.helpers.search import escape_like
-from companies.helpers.sync import changed_since
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
+from companies.repositories.sync import changed_since
 
 
 def candidate_filters(
@@ -59,6 +59,7 @@ def candidate_order(by_grade: bool) -> list:
 
 
 async def page(
+    session: AsyncSession,
     interview_id,
     offset: int,
     limit: int,
@@ -80,12 +81,11 @@ async def page(
 
     query = select(CandidateInvite).where(*filters).order_by(*order).offset(offset).limit(limit)
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
 async def company_page(
-    company_id, offset: int, limit: int, q: str = "", email: str = ""
+    session: AsyncSession, company_id, offset: int, limit: int, q: str = "", email: str = ""
 ) -> list[tuple[CandidateInvite, Interview]]:
     """The company's candidates across its interviews, each with its interview, newest first,
     narrowed to an email or name containing `q`, or to exactly `email`. A deleted interview's
@@ -107,11 +107,12 @@ async def company_page(
         .limit(limit)
     )
 
-    async with Session() as session:
-        return [tuple(row) for row in await session.execute(query)]
+    return [tuple(row) for row in await session.execute(query)]
 
 
-async def for_report(interview_id, offset: int, limit: int) -> list[CandidateInvite]:
+async def for_report(
+    session: AsyncSession, interview_id, offset: int, limit: int
+) -> list[CandidateInvite]:
     """A batch of the candidates but deleted ones (they have no email to show), best grade
     first: the report reads them `limit` at a time."""
     query = (
@@ -125,11 +126,10 @@ async def for_report(interview_id, offset: int, limit: int) -> list[CandidateInv
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def counts(interview_ids: list) -> dict:
+async def counts(session: AsyncSession, interview_ids: list) -> dict:
     """Each interview's number of candidates, by id; interviews without any are missing."""
     if not interview_ids:
         return {}
@@ -140,21 +140,19 @@ async def counts(interview_ids: list) -> dict:
         .group_by(CandidateInvite.interview_id)
     )
 
-    async with Session() as session:
-        return {interview_id: count for interview_id, count in await session.execute(query)}
+    return {interview_id: count for interview_id, count in await session.execute(query)}
 
 
-async def get(interview_id, invite_id: uuid.UUID) -> CandidateInvite | None:
+async def get(session: AsyncSession, interview_id, invite_id: uuid.UUID) -> CandidateInvite | None:
     """The interview's candidate; None when the invite belongs to another interview."""
     query = select(CandidateInvite).where(
         CandidateInvite.id == invite_id, CandidateInvite.interview_id == interview_id
     )
 
-    async with Session() as session:
-        return await session.scalar(query)
+    return await session.scalar(query)
 
 
-async def any_finished(interview_id) -> bool:
+async def any_finished(session: AsyncSession, interview_id) -> bool:
     query = select(
         select(CandidateInvite.id)
         .where(
@@ -164,11 +162,10 @@ async def any_finished(interview_id) -> bool:
         .exists()
     )
 
-    async with Session() as session:
-        return bool(await session.scalar(query))
+    return bool(await session.scalar(query))
 
 
-async def unscored(interview_id) -> list[uuid.UUID]:
+async def unscored(session: AsyncSession, interview_id) -> list[uuid.UUID]:
     """Finished candidates without a stored grade: finished before grades were stored, or
     rounds didn't answer when they finished."""
     query = select(CandidateInvite.id).where(
@@ -177,11 +174,12 @@ async def unscored(interview_id) -> list[uuid.UUID]:
         CandidateInvite.grade.is_(None),
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def save_results(results: dict[uuid.UUID, tuple[int | None, bool]]) -> None:
+async def save_results(
+    session: AsyncSession, results: dict[uuid.UUID, tuple[int | None, bool]]
+) -> None:
     """Stores these candidates' (grade, flagged). Their status is left alone: only
     interview.finished marks an invite finished, as it settles the candidate's credits, so an
     invite removed before that event still gets its hold released."""
@@ -200,6 +198,4 @@ async def save_results(results: dict[uuid.UUID, tuple[int | None, bool]]) -> Non
     ]
 
     # One statement sent for every row at once (executemany), not a round trip each.
-    async with Session() as session:
-        await session.execute(query, rows)
-        await session.commit()
+    await session.execute(query, rows)

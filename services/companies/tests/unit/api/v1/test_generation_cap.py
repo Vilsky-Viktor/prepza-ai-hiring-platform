@@ -8,12 +8,12 @@ from prepza_common.ai import ai_cap
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 
-from companies.api.v1 import interview_generation
 from companies.integrations import billing, generation
 from companies.main import app
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.repositories import audit, companies, interview_generations, interviews
+from companies.services import generation_steps
 
 COMPANY_ID = uuid.uuid4()
 INTERVIEW_ID = uuid.uuid4()
@@ -37,10 +37,10 @@ def generating(monkeypatch):
     company.members = [Member(company_id=COMPANY_ID, user_id="bob", role="owner")]
     interview = Interview(id=INTERVIEW_ID, company_id=COMPANY_ID, generation_id=uuid.uuid4())
 
-    async def get_interview(_interview_id):
+    async def get_interview(session, _interview_id):
         return interview
 
-    async def get_company(_company_id):
+    async def get_company(session, _company_id):
         return company
 
     async def paid(_company_id):
@@ -51,7 +51,7 @@ def generating(monkeypatch):
 
         return httpx.Response(200, json={"status": "generating"})
 
-    async def nothing(*args, **kwargs):
+    async def nothing(session, *args, **kwargs):
         return None
 
     monkeypatch.setattr(interviews, "get", get_interview)
@@ -59,7 +59,7 @@ def generating(monkeypatch):
     monkeypatch.setattr(billing, "company_paid", paid)
     monkeypatch.setattr(generation, "review", generate)
     monkeypatch.setattr(generation, "retry", generate)
-    monkeypatch.setattr(interview_generation, "get_redis", lambda: redis)
+    monkeypatch.setattr(generation_steps, "get_redis", lambda: redis)
     monkeypatch.setattr(interview_generations, "set_generation_failed", nothing)
     # The action log isn't what these tests check.
     monkeypatch.setattr(audit, "record_interview", nothing)

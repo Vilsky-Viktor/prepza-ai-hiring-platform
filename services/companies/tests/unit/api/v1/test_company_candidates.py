@@ -52,10 +52,10 @@ def asked(monkeypatch):
     )
     pages = []
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
-    async def fake_page(company_id, offset, limit, q, email=""):
+    async def fake_page(session, company_id, offset, limit, q, email=""):
         pages.append((company_id, offset, limit, q))
 
         return [(invite, interview)]

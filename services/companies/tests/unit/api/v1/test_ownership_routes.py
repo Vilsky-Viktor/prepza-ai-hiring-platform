@@ -1,9 +1,8 @@
 import pytest
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 
-from companies.api.v1 import members as members_router
 from companies.constants.roles import ONLY_ADMINS_OWN
-from companies.repositories import companies, members
+from companies.repositories import companies, members, outbox
 from tests.unit.api.v1 import test_team_members
 from tests.unit.api.v1.test_members import COMPANY_ID, sign_in
 
@@ -12,21 +11,30 @@ team = test_team_members.team
 
 
 @pytest.fixture
-def transfers(monkeypatch):
-    """The transfers made, and how many companies each new owner already owns (none)."""
+def transfers(monkeypatch, team):
+    """The transfers made (each saved with the new owner's notification), and how many
+    companies each new owner already owns (none)."""
+    people, _, _ = team
+    by_id = {member.id: member for member in people}
     made = []
     owned = {}
+    locked = []
 
-    async def transfer(company, owner, member, most=None):
-        made.append((owner.user_id, member.user_id))
-
-        return True
-
-    async def owned_count(user_id):
+    async def owned_count(session, user_id):
         return owned.get(user_id, 0)
 
-    monkeypatch.setattr(members, "transfer_ownership", transfer)
+    async def lock_both(session, owner_id, member_id):
+        locked.append((by_id[owner_id].user_id, by_id[member_id].user_id))
+
+        return by_id[owner_id], by_id[member_id]
+
+    def notify(session, notice):
+        made.append(locked[-1])
+
     monkeypatch.setattr(companies, "owned_count", owned_count)
+    monkeypatch.setattr(companies, "lock_owner", owned_count)
+    monkeypatch.setattr(members, "lock_both", lock_both)
+    monkeypatch.setattr(outbox, "notify", notify)
 
     return made, owned
 
@@ -85,4 +93,3 @@ def test_the_team_says_who_the_owner_can_make_owner(client, team):
         "bob@example.com": True,
         "cid@example.com": False,
     }
-    assert members_router.ONLY_ADMINS_OWN

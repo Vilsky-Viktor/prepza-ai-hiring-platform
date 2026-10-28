@@ -1,9 +1,9 @@
 from datetime import datetime
 
 from sqlalchemy import and_, case, func, or_, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.constants.invites import InviteStatus
-from companies.core.db import Session
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 
@@ -25,7 +25,7 @@ def of_companies(company_ids: list, since: datetime, until: datetime) -> list:
 
 
 async def changed(
-    company_ids: list, since: datetime, until: datetime, limit: int
+    session: AsyncSession, company_ids: list, since: datetime, until: datetime, limit: int
 ) -> list[tuple[CandidateInvite, Interview]]:
     """Up to `limit` of the companies' candidates who started, finished or whose invite wasn't
     delivered after `since` and up to `until`, with their interviews, the latest step first: they
@@ -49,11 +49,12 @@ async def changed(
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.execute(query))
+    return list(await session.execute(query))
 
 
-async def counts(company_ids: list, since: datetime, until: datetime) -> tuple[int, ...]:
+async def counts(
+    session: AsyncSession, company_ids: list, since: datetime, until: datetime
+) -> tuple[int, ...]:
     """How many of the companies' candidates started, finished, finished and passed (a grade at
     the interview's pass mark), and weren't delivered after `since` and up to `until`."""
     finished = between(CandidateInvite.finished_at, since, until)
@@ -69,5 +70,4 @@ async def counts(company_ids: list, since: datetime, until: datetime) -> tuple[i
         .where(*of_companies(company_ids, since, until))
     )
 
-    async with Session() as session:
-        return tuple((await session.execute(query)).one())
+    return tuple((await session.execute(query)).one())

@@ -9,10 +9,12 @@ from companies.config import settings
 from companies.core.db import Session
 from companies.models.outbox import OutboxEvent
 from companies.repositories import companies, verification
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 async def company(name="Acme"):
-    return await companies.create(f"{name} {uuid.uuid4()}", "ann", "ann@acme.com")
+    return await factories.company(f"{name} {uuid.uuid4()}", "ann", "ann@acme.com")
 
 
 async def notices(kind):
@@ -25,14 +27,16 @@ async def notices(kind):
 def test_proof_sends_the_current_name_for_review_and_approval_gives_the_badge(run):
     async def scenario():
         found = await company()
-        await verification.set_website(found.id, "acme.com", None)
-        waiting = await companies.get(found.id)
-        await verification.set_website(found.id, "acme.com", "ann@acme.com")
-        pending = await companies.get(found.id)
-        approved = await verification.decide(found.id, True, "root", None, [{"kind": "x"}])
-        again = await verification.decide(found.id, False, "root", "No", [])
+        await transaction(verification.set_website, found.id, "acme.com", None)
+        waiting = await transaction(companies.get, found.id)
+        await transaction(verification.set_website, found.id, "acme.com", "ann@acme.com")
+        pending = await transaction(companies.get, found.id)
+        approved = await transaction(
+            verification.decide, found.id, True, "root", None, [{"kind": "x"}]
+        )
+        again = await transaction(verification.decide, found.id, False, "root", "No", [])
 
-        return waiting, pending, approved, again, await companies.get(found.id)
+        return waiting, pending, approved, again, await transaction(companies.get, found.id)
 
     waiting, pending, approved, again, decided = run(scenario())
 
@@ -51,12 +55,12 @@ def test_proof_sends_the_current_name_for_review_and_approval_gives_the_badge(ru
 def test_a_decline_keeps_its_reason_and_notifies_in_the_same_transaction(run):
     async def scenario():
         found = await company()
-        await verification.set_website(found.id, "acme.com", "ann@acme.com")
+        await transaction(verification.set_website, found.id, "acme.com", "ann@acme.com")
         notice = {"kind": "verification_declined", "recipient_id": str(found.id)}
-        await verification.decide(found.id, False, "root", "Not them", [notice])
+        await transaction(verification.decide, found.id, False, "root", "Not them", [notice])
         sent = await notices("verification_declined")
 
-        return await companies.get(found.id), sent, found.id
+        return await transaction(companies.get, found.id), sent, found.id
 
     declined, sent, company_id = run(scenario())
 
@@ -68,15 +72,19 @@ def test_a_decline_keeps_its_reason_and_notifies_in_the_same_transaction(run):
 def test_renaming_takes_the_badge_away_until_the_new_name_is_reviewed(run):
     async def scenario():
         approved = await company()
-        await verification.set_website(approved.id, "acme.com", "ann@acme.com")
-        await verification.decide(approved.id, True, "root", None, [])
+        await transaction(verification.set_website, approved.id, "acme.com", "ann@acme.com")
+        await transaction(verification.decide, approved.id, True, "root", None, [])
         waiting = await company("Waiting")
-        await verification.set_website(waiting.id, "waiting.com", None)
+        await transaction(verification.set_website, waiting.id, "waiting.com", None)
         new_name = f"Renamed {uuid.uuid4()}"
-        await companies.rename(approved.id, new_name)
-        await companies.rename(waiting.id, f"Other {uuid.uuid4()}")
+        await factories.renamed(approved.id, new_name)
+        await factories.renamed(waiting.id, f"Other {uuid.uuid4()}")
 
-        return await companies.get(approved.id), await companies.get(waiting.id), new_name
+        return (
+            await transaction(companies.get, approved.id),
+            await transaction(companies.get, waiting.id),
+            new_name,
+        )
 
     renamed, still_waiting, new_name = run(scenario())
 
@@ -94,14 +102,14 @@ def test_the_list_has_pending_first_then_the_latest_decided(run):
 
         for _ in range(3):
             found = await company()
-            await verification.set_website(found.id, "acme.com", "ann@acme.com")
+            await transaction(verification.set_website, found.id, "acme.com", "ann@acme.com")
             ids.append(found.id)
 
-        await verification.decide(ids[0], True, "root", None, [])
-        await verification.decide(ids[1], False, "root", None, [])
+        await transaction(verification.decide, ids[0], True, "root", None, [])
+        await transaction(verification.decide, ids[1], False, "root", None, [])
         waiting = await company()
-        await verification.set_website(waiting.id, "acme.com", None)
-        rows = await verification.requests(0, 1000)
+        await transaction(verification.set_website, waiting.id, "acme.com", None)
+        rows = await transaction(verification.requests, 0, 1000)
 
         return [row.id for row in rows], ids, waiting.id
 
@@ -153,14 +161,18 @@ def test_the_migration_keeps_verified_companies_approved():
 def test_approval_needs_the_name_and_domain_the_superadmin_saw(run):
     async def scenario():
         found = await company()
-        await verification.set_website(found.id, "acme.com", "ann@acme.com")
+        await transaction(verification.set_website, found.id, "acme.com", "ann@acme.com")
         renamed = f"Renamed {uuid.uuid4()}"
-        await companies.rename(found.id, renamed)
-        stale = await verification.decide(
-            found.id, True, "root", None, [], (found.name, "acme.com")
+        await factories.renamed(found.id, renamed)
+        stale = await transaction(
+            verification.decide, found.id, True, "root", None, [], (found.name, "acme.com")
         )
-        other = await verification.decide(found.id, True, "root", None, [], (renamed, "acme.org"))
-        fresh = await verification.decide(found.id, True, "root", None, [], (renamed, "acme.com"))
+        other = await transaction(
+            verification.decide, found.id, True, "root", None, [], (renamed, "acme.org")
+        )
+        fresh = await transaction(
+            verification.decide, found.id, True, "root", None, [], (renamed, "acme.com")
+        )
 
         return stale, other, fresh
 
@@ -170,11 +182,11 @@ def test_approval_needs_the_name_and_domain_the_superadmin_saw(run):
 def test_a_declined_company_goes_for_review_again_only_after_a_rename(run):
     async def scenario():
         found = await company("Beta")
-        await verification.set_website(found.id, "beta.com", "ann@beta.com")
-        await verification.decide(found.id, False, "root", "Not them", [])
-        await companies.rename(found.id, f"Beta {uuid.uuid4().hex[:6]}")
+        await transaction(verification.set_website, found.id, "beta.com", "ann@beta.com")
+        await transaction(verification.decide, found.id, False, "root", "Not them", [])
+        await factories.renamed(found.id, f"Beta {uuid.uuid4().hex[:6]}")
 
-        return await companies.get(found.id)
+        return await transaction(companies.get, found.id)
 
     renamed = run(scenario())
 

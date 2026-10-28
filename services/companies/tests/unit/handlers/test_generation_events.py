@@ -45,7 +45,7 @@ def emulator(monkeypatch):
 
 @pytest.fixture(autouse=True)
 def interview(monkeypatch):
-    async def found(generation_id):
+    async def found(session, generation_id):
         return INTERVIEW
 
     async def no_flush():
@@ -66,7 +66,7 @@ def test_finished_generation_is_stored_on_its_interview_and_the_company_told(
     sent the level keeps the test's own (None)."""
     stored = []
 
-    async def set_generated(generation_id, set_id, title, seconds, notice, event_id):
+    async def set_generated(session, generation_id, set_id, title, seconds, notice, event_id):
         stored.append((generation_id, set_id, title, seconds, notice))
 
     monkeypatch.setattr(interview_generations, "set_generated", set_generated)
@@ -95,7 +95,7 @@ def test_finished_generation_is_stored_on_its_interview_and_the_company_told(
 def test_a_cancelled_generation_removes_its_interview_and_tells_the_company(client, monkeypatch):
     removed = []
 
-    async def remove_for_generation(generation_id, notice):
+    async def remove_for_generation(session, generation_id, notice):
         removed.append((generation_id, notice))
 
     monkeypatch.setattr(interview_generations, "remove_for_generation", remove_for_generation)
@@ -112,7 +112,7 @@ def test_a_cancelled_generation_removes_its_interview_and_tells_the_company(clie
 def test_a_failed_generation_marks_its_interview_once_per_event(client, monkeypatch):
     marked = []
 
-    async def mark_failed(generation_id, event_id):
+    async def mark_failed(session, generation_id, event_id):
         marked.append((generation_id, event_id))
 
     monkeypatch.setattr(interview_generations, "mark_failed", mark_failed)
@@ -123,7 +123,7 @@ def test_a_failed_generation_marks_its_interview_once_per_event(client, monkeypa
 
 
 def test_an_interview_already_removed_is_left_alone(client, monkeypatch):
-    async def gone(generation_id):
+    async def gone(session, generation_id):
         return None
 
     monkeypatch.setattr(interview_generations, "get_for_generation", gone)
@@ -138,7 +138,7 @@ def test_other_events_are_accepted_without_action(client):
 
 
 def test_a_failure_answers_with_an_error_so_pubsub_retries(client, monkeypatch):
-    async def database_down(*args):
+    async def database_down(session, *args):
         raise ConnectionError("database is down")
 
     monkeypatch.setattr(interview_generations, "set_generated", database_down)

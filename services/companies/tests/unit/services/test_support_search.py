@@ -27,13 +27,13 @@ def stored(monkeypatch):
     """The emails and names each search was asked for, in order."""
     asked = []
 
-    async def get(company_id):
+    async def get(session, company_id):
         return ACME if company_id == ACME.id else None
 
-    async def interview(interview_id):
+    async def interview(session, interview_id):
         return (INTERVIEW, ACME) if interview_id == INTERVIEW.id else None
 
-    async def candidate(invite_id):
+    async def candidate(session, invite_id):
         return (INVITE, INTERVIEW, ACME) if invite_id == INVITE.id else None
 
     async def account(user_id):
@@ -53,22 +53,22 @@ def stored(monkeypatch):
             else None
         )
 
-    async def companies_of_member(email, limit):
+    async def companies_of_member(session, email, limit):
         asked.append(("member", email))
 
         return [ACME] if email == "ann@example.com" else []
 
-    async def invites_to(email, limit):
+    async def invites_to(session, email, limit):
         asked.append(("candidate", email))
 
         return [(INVITE, ACME)] if email == "ann@example.com" else []
 
-    async def companies_of_user(user_id, limit):
+    async def companies_of_user(session, user_id, limit):
         asked.append(("user", user_id))
 
         return [(ACME, "owner")] if user_id == "uid-ann" else []
 
-    async def search(q, limit):
+    async def search(session, q, limit):
         asked.append(("name", q, limit))
 
         return [(ACME, 2)] if q == "acm" else []
@@ -159,7 +159,7 @@ def test_unknown_ids_find_nothing():
 
 
 def test_a_search_finds_at_most_the_limit(monkeypatch):
-    async def many(email, limit):
+    async def many(session, email, limit):
         return [ACME] * limit
 
     monkeypatch.setattr(superadmin_support, "companies_of_member", many)

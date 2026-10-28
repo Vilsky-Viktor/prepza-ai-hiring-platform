@@ -6,12 +6,13 @@ from types import SimpleNamespace
 import pytest
 from fastapi import HTTPException
 from prepza_common.auth.user import User
+from sqlalchemy.exc import IntegrityError
 
-from companies.api.v1 import superadmin_companies as routes
 from companies.constants.invites import COMPANY_SUSPENDED, INTERVIEW_UNAVAILABLE, InviteStatus
 from companies.models.companies import Company, Member
 from companies.repositories import companies, superadmin_companies
 from companies.services import candidate_invites
+from companies.services import superadmin_companies as routes
 from companies.services.access import require_editor
 from tests.unit.api.v1.test_invites import invite_page, stored_invite  # noqa: F401 (fixtures)
 
@@ -34,10 +35,10 @@ def suspended_company() -> Company:
 def test_only_a_superadmin_finds_and_suspends_companies(client, superadmin, monkeypatch):
     suspended = []
 
-    async def search(q, limit):
+    async def search(session, q, limit):
         return [(suspended_company(), 2)]
 
-    async def set_suspended(company_id, value):
+    async def set_suspended(session, company_id, value):
         suspended.append(value)
 
         return True
@@ -61,11 +62,12 @@ def test_only_a_superadmin_finds_and_suspends_companies(client, superadmin, monk
 def test_a_superadmin_renames_to_a_free_name_and_deletes(client, superadmin, monkeypatch):
     deleted = []
 
-    async def get(company_id):
+    async def get(session, company_id):
         return suspended_company()
 
-    async def rename(company_id, name):
-        return name != "Taken"
+    async def rename(session, company_id, name):
+        if name == "Taken":
+            raise IntegrityError("UPDATE", {}, Exception(companies.NAME_INDEX))
 
     async def delete_company(company_id):
         deleted.append(company_id)
@@ -83,7 +85,7 @@ def test_a_superadmin_renames_to_a_free_name_and_deletes(client, superadmin, mon
 
 
 def test_a_suspended_company_is_read_not_changed(monkeypatch):
-    async def get(company_id):
+    async def get(session, company_id):
         return suspended_company()
 
     monkeypatch.setattr(companies, "get", get)
@@ -115,12 +117,10 @@ def test_candidates_find_its_interview_unavailable_unless_already_in_it(
     current,
     code,
 ):
-    import companies.api.v1.invites as invite_routes
-
-    async def get(company_id):
+    async def get(session, company_id):
         return suspended_company()
 
-    monkeypatch.setattr(invite_routes.companies, "get", get)
+    monkeypatch.setattr(companies, "get", get)
     invite_page.status = current
     response = client.get("/invites/token-1")
 

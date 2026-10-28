@@ -12,7 +12,7 @@ from tests.unit.api.v1.test_candidate_invites import URL, invite_setup
 def test_a_finished_candidate_is_not_invited_again(client, monkeypatch):
     sent, used = invite_setup(monkeypatch)
 
-    async def finished(_interview_id, _email):
+    async def finished(session, _interview_id, _email):
         return InviteStatus.FINISHED, "key"
 
     monkeypatch.setattr(invites, "held", finished)

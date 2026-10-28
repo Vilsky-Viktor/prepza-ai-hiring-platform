@@ -50,7 +50,7 @@ def passed(monkeypatch):
     ]
     countries = []
 
-    async def get(_company_id):
+    async def get(session, _company_id):
         return company
 
     def answering(answer):
@@ -61,7 +61,7 @@ def passed(monkeypatch):
 
         return call
 
-    async def nothing(*args, **kwargs):
+    async def nothing(session, *args, **kwargs):
         return None
 
     monkeypatch.setattr(companies, "get", get)
@@ -108,13 +108,13 @@ def test_a_company_is_created_without_the_country_and_billing_gets_it_with_one(
     created = Company(id=uuid.uuid4(), name="Acme", created_at=datetime.now(UTC))
     welcomed = []
 
-    async def none_owned(user_id):
+    async def none_owned(session, user_id):
         return 0
 
-    async def create(name, user_id, email, most=None):
+    async def create(session, name, user_id, email, most=None):
         return created
 
-    async def no_ids(user_id):
+    async def no_ids(session, user_id):
         return []
 
     async def welcome(company_id, email, referral, related, from_country):

@@ -48,7 +48,7 @@ def superadmin(monkeypatch):
 def test_superadmin_sees_each_interviews_rates_with_its_timeouts(client, monkeypatch, superadmin):
     asked = {}
 
-    async def page(by_finished, after, limit):
+    async def page(session, by_finished, after, limit):
         asked["page"] = (by_finished, after, limit)
         row = SimpleNamespace(
             id=uuid.uuid4(),

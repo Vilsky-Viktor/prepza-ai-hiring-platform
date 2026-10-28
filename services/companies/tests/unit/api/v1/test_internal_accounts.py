@@ -15,7 +15,7 @@ BODY = {"email": "ann@example.com"}
 def test_notifications_gets_every_company_of_a_user(client, monkeypatch):
     asked = []
 
-    async def fake_ids(user_id):
+    async def fake_ids(session, user_id):
         asked.append(user_id)
 
         return ["acme", "globex"]
@@ -40,7 +40,7 @@ def test_deleting_and_exporting_an_account_read_the_email_from_the_body(client, 
     async def delete_user(user_id, email):
         asked.append(("delete", user_id, email))
 
-    async def export(user_id, email):
+    async def export(session, user_id, email):
         asked.append(("export", user_id, email))
 
         return {"company_memberships": []}

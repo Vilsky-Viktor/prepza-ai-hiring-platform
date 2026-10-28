@@ -7,18 +7,19 @@ from sqlalchemy import select
 from companies.core.db import Session
 from companies.models.outbox import OutboxEvent
 from companies.repositories import (
-    companies,
     interview_generations,
     interviews,
     invite_progress,
     invites,
 )
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 async def interview():
-    company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+    company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
 
-    return await interviews.create(company.id, uuid.uuid4(), "en", 60)
+    return await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
 
 
 async def events(event_type: str, key: str, value: str) -> list[dict]:
@@ -36,11 +37,13 @@ async def events(event_type: str, key: str, value: str) -> list[dict]:
 def test_a_finished_candidate_delivered_twice_is_announced_once(run):
     async def scenario():
         found = await interview()
-        invite, _ = await invites.upsert(found.id, "gus@example.com", "Backend", "Acme", "en")
+        invite, _ = await transaction(
+            invites.upsert, found.id, "gus@example.com", "Backend", "Acme", "en"
+        )
         result = {"candidate_invite_id": str(invite.id), "grade": 70, "passed": True}
         event_id = str(uuid.uuid4())
-        await invite_progress.finish(invite.id, 70, False, None, event_id, result)
-        await invite_progress.finish(invite.id, 70, False, None, event_id, result)
+        await transaction(invite_progress.finish, invite.id, 70, False, None, event_id, result)
+        await transaction(invite_progress.finish, invite.id, 70, False, None, event_id, result)
 
         return result, await events("candidate.finished", "candidate_invite_id", str(invite.id))
 
@@ -55,8 +58,14 @@ def test_an_interview_made_ready_twice_by_one_event_is_announced_once(run):
         event_id = str(uuid.uuid4())
 
         for _ in range(2):
-            await interview_generations.set_generated(
-                found.generation_id, uuid.uuid4(), "Backend", None, {"kind": "x"}, event_id
+            await transaction(
+                interview_generations.set_generated,
+                found.generation_id,
+                uuid.uuid4(),
+                "Backend",
+                None,
+                {"kind": "x"},
+                event_id,
             )
 
         return found, await events("interview.ready", "interview_id", str(found.id))
@@ -69,8 +78,8 @@ def test_an_interview_made_ready_twice_by_one_event_is_announced_once(run):
 def test_a_removed_interview_is_announced_once(run):
     async def scenario():
         found = await interview()
-        await interviews.remove(found.id)
-        await interviews.remove(found.id)
+        await factories.interview_removed(found.id)
+        await factories.interview_removed(found.id)
 
         return found, await events("interview.deleted", "interview_id", str(found.id))
 
@@ -82,8 +91,12 @@ def test_a_removed_interview_is_announced_once(run):
 def test_a_cancelled_generations_interview_is_announced_as_deleted(run):
     async def scenario():
         found = await interview()
-        await interview_generations.remove_for_generation(found.generation_id, {"kind": "x"})
-        await interview_generations.remove_for_generation(found.generation_id, {"kind": "x"})
+        await transaction(
+            interview_generations.remove_for_generation, found.generation_id, {"kind": "x"}
+        )
+        await transaction(
+            interview_generations.remove_for_generation, found.generation_id, {"kind": "x"}
+        )
 
         return found, await events("interview.deleted", "interview_id", str(found.id))
 
@@ -95,10 +108,10 @@ def test_a_cancelled_generations_interview_is_announced_as_deleted(run):
 def test_interviews_by_ids_skip_the_ones_gone(run):
     async def scenario():
         kept, gone = await interview(), await interview()
-        await interviews.remove(gone.id)
-        found = await interviews.by_ids([kept.id, gone.id, uuid.uuid4()])
+        await factories.interview_removed(gone.id)
+        found = await transaction(interviews.by_ids, [kept.id, gone.id, uuid.uuid4()])
 
-        return kept, [item.id for item in found], await interviews.by_ids([])
+        return kept, [item.id for item in found], await transaction(interviews.by_ids, [])
 
     kept, found, none = run(scenario())
 
@@ -109,21 +122,27 @@ def test_a_failed_generation_marks_its_interview_once_until_the_questions_come(r
     async def scenario():
         found = await interview()
         event_id = str(uuid.uuid4())
-        await interview_generations.mark_failed(found.generation_id, event_id)
-        failed = (await interviews.get(found.id)).generation_failed
+        await transaction(interview_generations.mark_failed, found.generation_id, event_id)
+        failed = (await transaction(interviews.get, found.id)).generation_failed
         # Retried; the same event delivered again doesn't mark it again.
-        await interview_generations.set_generation_failed(found.id, False)
-        await interview_generations.mark_failed(found.generation_id, event_id)
-        redelivered = (await interviews.get(found.id)).generation_failed
+        await transaction(interview_generations.set_generation_failed, found.id, False)
+        await transaction(interview_generations.mark_failed, found.generation_id, event_id)
+        redelivered = (await transaction(interviews.get, found.id)).generation_failed
         # Failed again, then the retry's questions come: they clear it, and a late failure of
         # an earlier run leaves the ready interview alone.
-        await interview_generations.mark_failed(found.generation_id, str(uuid.uuid4()))
-        await interview_generations.set_generated(
-            found.generation_id, uuid.uuid4(), "Backend", None, {"kind": "x"}, str(uuid.uuid4())
+        await transaction(interview_generations.mark_failed, found.generation_id, str(uuid.uuid4()))
+        await transaction(
+            interview_generations.set_generated,
+            found.generation_id,
+            uuid.uuid4(),
+            "Backend",
+            None,
+            {"kind": "x"},
+            str(uuid.uuid4()),
         )
-        await interview_generations.mark_failed(found.generation_id, str(uuid.uuid4()))
+        await transaction(interview_generations.mark_failed, found.generation_id, str(uuid.uuid4()))
 
-        return failed, redelivered, await interviews.get(found.id)
+        return failed, redelivered, await transaction(interviews.get, found.id)
 
     failed, redelivered, ready = run(scenario())
 
@@ -134,11 +153,19 @@ def test_a_failed_generation_marks_its_interview_once_until_the_questions_come(r
 def test_a_removed_interview_returns_its_unfinished_invites_for_their_credits(run):
     async def scenario():
         found = await interview()
-        waiting, _ = await invites.upsert(found.id, "w@example.com", "Backend", "Acme", "en")
-        done, _ = await invites.upsert(found.id, "d@example.com", "Backend", "Acme", "en")
-        await invite_progress.finish(done.id, 80, False, None)
+        waiting, _ = await transaction(
+            invites.upsert, found.id, "w@example.com", "Backend", "Acme", "en"
+        )
+        done, _ = await transaction(
+            invites.upsert, found.id, "d@example.com", "Backend", "Acme", "en"
+        )
+        await transaction(invite_progress.finish, done.id, 80, False, None)
 
-        return waiting, await interviews.remove(found.id), await interviews.remove(found.id)
+        return (
+            waiting,
+            await factories.interview_removed(found.id),
+            await factories.interview_removed(found.id),
+        )
 
     waiting, removed, again = run(scenario())
 
@@ -150,11 +177,13 @@ def test_a_removed_interview_returns_its_unfinished_invites_for_their_credits(ru
 def test_a_removed_invite_says_its_status_as_it_was_deleted(run):
     async def scenario():
         found = await interview()
-        invite, _ = await invites.upsert(found.id, "s@example.com", "Backend", "Acme", "en")
-        await invite_progress.start(invite.id, "s-uid")
+        invite, _ = await transaction(
+            invites.upsert, found.id, "s@example.com", "Backend", "Acme", "en"
+        )
+        await transaction(invite_progress.start, invite.id, "s-uid")
 
-        return await invites.remove(invite, found.company_id), await invites.remove(
-            invite, found.company_id
+        return await transaction(invites.remove, invite, found.company_id), await transaction(
+            invites.remove, invite, found.company_id
         )
 
     # Started since it was read: revoking it erases the sessions that start made.
@@ -164,7 +193,7 @@ def test_a_removed_invite_says_its_status_as_it_was_deleted(run):
 def test_a_deleted_interview_tells_the_services_that_keep_its_candidates(run):
     async def scenario():
         found = await interview()
-        await interviews.remove(found.id)
+        await factories.interview_removed(found.id)
 
         return found, await events("candidate.interview_deleted", "interview_id", str(found.id))
 

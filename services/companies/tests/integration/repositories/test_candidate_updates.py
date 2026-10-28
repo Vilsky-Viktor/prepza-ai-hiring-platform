@@ -8,6 +8,7 @@ from companies.helpers.notifications import invite_undelivered
 from companies.models.invites import CandidateInvite
 from companies.repositories import candidate_updates, invite_progress, invites
 from tests.integration.repositories.test_invites import interview
+from tests.integration.transactions import transaction
 
 SINCE = datetime(2026, 10, 1, 9, tzinfo=UTC)
 UNTIL = datetime(2026, 10, 1, 17, tzinfo=UTC)
@@ -15,7 +16,7 @@ UNTIL = datetime(2026, 10, 1, 17, tzinfo=UTC)
 
 async def invited(found, email, **values):
     """An invite of `found` with these columns set as given."""
-    invite, _ = await invites.upsert(found.id, email, "Backend", "Acme", "en")
+    invite, _ = await transaction(invites.upsert, found.id, email, "Backend", "Acme", "en")
 
     async with Session() as session:
         await session.execute(
@@ -40,7 +41,7 @@ def test_changed_finds_the_company_invites_with_a_step_in_the_window(run):
         await invited(found, "eve@example.com", finished_at=UNTIL + timedelta(seconds=1))
         await invited(found, "fay@example.com", started_at=inside, status=InviteStatus.DELETED)
         await invited(other, "gil@example.com", started_at=inside)
-        rows = await candidate_updates.changed([found.company_id], SINCE, UNTIL, 50)
+        rows = await transaction(candidate_updates.changed, [found.company_id], SINCE, UNTIL, 50)
 
         return rows, expected, found
 
@@ -70,8 +71,8 @@ def test_only_the_newest_are_listed_and_every_one_is_counted(run):
             )
 
         await invited(found, "late@example.com", undelivered_at=SINCE + timedelta(minutes=40))
-        newest = await candidate_updates.changed([found.company_id], SINCE, UNTIL, 2)
-        counts = await candidate_updates.counts([found.company_id], SINCE, UNTIL)
+        newest = await transaction(candidate_updates.changed, [found.company_id], SINCE, UNTIL, 2)
+        counts = await transaction(candidate_updates.counts, [found.company_id], SINCE, UNTIL)
 
         return [invite.email for invite, _ in newest], counts
 
@@ -85,13 +86,17 @@ def test_only_the_newest_are_listed_and_every_one_is_counted(run):
 def test_marking_an_invite_undelivered_records_when(run):
     async def scenario():
         found = await interview()
-        invite, _ = await invites.upsert(found.id, "hal@example.com", "Backend", "Acme", "en")
+        invite, _ = await transaction(
+            invites.upsert, found.id, "hal@example.com", "Backend", "Acme", "en"
+        )
         before = datetime.now(UTC)
-        await invite_progress.mark_undelivered(
-            invite.id, invite_undelivered(found, str(invite.id), invite.email)
+        await transaction(
+            invite_progress.mark_undelivered,
+            invite.id,
+            invite_undelivered(found, str(invite.id), invite.email),
         )
 
-        return before, await invites.get(invite.id)
+        return before, await transaction(invites.get, invite.id)
 
     before, marked = run(scenario())
 

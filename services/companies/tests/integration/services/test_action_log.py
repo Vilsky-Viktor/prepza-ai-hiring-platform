@@ -11,14 +11,16 @@ from sqlalchemy import select, text, update
 
 from companies.core.db import Session
 from companies.models.audit import AuditEvent
-from companies.repositories import audit, companies, interviews, invites
-from companies.services import action_log, retention
+from companies.repositories import audit, interviews, invites
+from companies.services import action_log, audit_events, retention
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 NOW = datetime.now(UTC)
 
 
 async def new_company(owner: str):
-    return await companies.create(f"Log {uuid.uuid4()}", owner, f"{owner}@example.com")
+    return await factories.company(f"Log {uuid.uuid4()}", owner, f"{owner}@example.com")
 
 
 async def rows_of(company_id) -> list[AuditEvent]:
@@ -55,27 +57,36 @@ def event(company_id, action, at, user_id="ann", **extra) -> dict:
 def test_the_filters_find_one_members_one_groups_or_some_days_actions_newest_first(run):
     async def scenario():
         acme = await new_company("ann")
-        await audit.record(acme.id, "ann", AuditAction.INTERVIEW_CREATED)
-        await audit.record(acme.id, "bob", AuditAction.CANDIDATE_INVITED)
-        await audit.record(acme.id, "ann", AuditAction.MEMBER_INVITED)
-        old = (await audit.list_for_company(acme.id, 0, 10))[-1]
+        await transaction(audit.record, acme.id, "ann", AuditAction.INTERVIEW_CREATED)
+        await transaction(audit.record, acme.id, "bob", AuditAction.CANDIDATE_INVITED)
+        await transaction(audit.record, acme.id, "ann", AuditAction.MEMBER_INVITED)
+        old = (await transaction(audit.list_for_company, acme.id, 0, 10))[-1]
         await move(old.id, NOW - timedelta(days=40))
 
         def actions(rows):
             return [row.action for row in rows]
 
         found = [
-            actions(await audit.list_for_company(acme.id, 0, 10)),
-            actions(await audit.list_for_company(acme.id, 0, 10, user_id="ann")),
-            actions(await audit.list_for_company(acme.id, 0, 10, group=AuditGroup.CANDIDATES)),
+            actions(await transaction(audit.list_for_company, acme.id, 0, 10)),
+            actions(await transaction(audit.list_for_company, acme.id, 0, 10, user_id="ann")),
             actions(
-                await audit.list_for_company(
-                    acme.id, 0, 10, start=NOW - timedelta(days=50), end=NOW - timedelta(days=30)
+                await transaction(
+                    audit.list_for_company, acme.id, 0, 10, group=AuditGroup.CANDIDATES
                 )
             ),
-            actions(await audit.list_for_company(acme.id, 1, 1)),
+            actions(
+                await transaction(
+                    audit.list_for_company,
+                    acme.id,
+                    0,
+                    10,
+                    start=NOW - timedelta(days=50),
+                    end=NOW - timedelta(days=30),
+                )
+            ),
+            actions(await transaction(audit.list_for_company, acme.id, 1, 1)),
         ]
-        await companies.delete(acme.id)
+        await factories.deleted(acme.id)
 
         return found
 
@@ -109,19 +120,19 @@ def test_another_services_event_is_stored_once_at_its_own_time_and_never_for_a_g
     async def scenario():
         acme = await new_company("ann")
         gone = await new_company("gil")
-        await companies.delete(gone.id)
+        await factories.deleted(gone.id)
         earlier = NOW - timedelta(hours=2)
         paid = event(acme.id, AuditAction.TOP_UP_PAID, NOW, target_kind=TargetKind.COMPANY)
         late = event(acme.id, AuditAction.ATS_CONNECTED, earlier, target_label="Workable")
 
-        await audit.store_event("billing-1", paid, NOW)
+        await audit_events.record("billing-1", paid, NOW)
         # Redelivered: stored once.
-        await audit.store_event("billing-1", paid, NOW)
+        await audit_events.record("billing-1", paid, NOW)
         # Sent before the top-up but arriving after it: placed by when it happened.
-        await audit.store_event("ats-1", late, earlier)
-        await audit.store_event("ats-2", event(gone.id, AuditAction.ATS_CONNECTED, NOW), NOW)
-        listed = await audit.list_for_company(acme.id, 0, 10)
-        await companies.delete(acme.id)
+        await audit_events.record("ats-1", late, earlier)
+        await audit_events.record("ats-2", event(gone.id, AuditAction.ATS_CONNECTED, NOW), NOW)
+        listed = await transaction(audit.list_for_company, acme.id, 0, 10)
+        await factories.deleted(acme.id)
 
         async with Session() as session:
             kept_for_gone = await session.scalar(
@@ -146,18 +157,20 @@ def test_results_viewed_are_one_row_a_member_candidate_and_day(run):
     async def scenario():
         acme = await new_company("ann")
         # Views at the same moment: one row.
-        await asyncio.gather(*(audit.record_view(acme.id, "ann", candidate) for _ in range(5)))
+        await asyncio.gather(
+            *(transaction(audit.record_view, acme.id, "ann", candidate) for _ in range(5))
+        )
         once = await rows_of(acme.id)
         # The same view yesterday: today's is another row.
         yesterday = NOW - timedelta(days=1)
         await move(once[0].id, yesterday, yesterday.date())
-        await audit.record_view(acme.id, "ann", candidate, via="assistant")
+        await transaction(audit.record_view, acme.id, "ann", candidate, via="assistant")
         # Another member's view of the same candidate today: a row of its own.
-        await audit.record_view(acme.id, "bob", candidate)
+        await transaction(audit.record_view, acme.id, "bob", candidate)
         # Ann again today: her row moves to now.
-        await audit.record_view(acme.id, "ann", candidate)
+        await transaction(audit.record_view, acme.id, "ann", candidate)
         rows = await rows_of(acme.id)
-        await companies.delete(acme.id)
+        await factories.deleted(acme.id)
 
         return once, rows
 
@@ -180,14 +193,14 @@ def test_results_viewed_are_one_row_a_member_candidate_and_day(run):
 def test_retention_takes_actions_older_than_12_months_only(run):
     async def scenario():
         acme = await new_company("ann")
-        await audit.record(acme.id, "ann", AuditAction.COMPANY_RENAMED)
-        await audit.record(acme.id, "ann", AuditAction.LOGO_CHANGED)
+        await transaction(audit.record, acme.id, "ann", AuditAction.COMPANY_RENAMED)
+        await transaction(audit.record, acme.id, "ann", AuditAction.LOGO_CHANGED)
         old, recent = await rows_of(acme.id)
         await move(old.id, NOW - timedelta(days=370))
         await move(recent.id, NOW - timedelta(days=330))
         await retention.delete_old_audit_events()
         left = [row.action for row in await rows_of(acme.id)]
-        await companies.delete(acme.id)
+        await factories.deleted(acme.id)
 
         return left
 
@@ -197,21 +210,27 @@ def test_retention_takes_actions_older_than_12_months_only(run):
 def test_rows_name_members_and_candidates_only_while_they_are_there(run):
     async def scenario():
         acme = await new_company("ann")
-        interview = await interviews.create(acme.id, uuid.uuid4(), "en", 60)
-        invite, _ = await invites.upsert(
-            interview.id, "cara@example.com", "Backend", acme.name, "en"
+        interview = await transaction(interviews.create, acme.id, uuid.uuid4(), "en", 60)
+        invite, _ = await transaction(
+            invites.upsert, interview.id, "cara@example.com", "Backend", acme.name, "en"
         )
-        await audit.record(
-            acme.id, "ann", AuditAction.EXTRA_TIME_SET, invite.id, target_kind=TargetKind.CANDIDATE
+        await transaction(
+            audit.record,
+            acme.id,
+            "ann",
+            AuditAction.EXTRA_TIME_SET,
+            invite.id,
+            target_kind=TargetKind.CANDIDATE,
         )
-        await audit.record(
+        await transaction(
+            audit.record,
             acme.id,
             "left",
             AuditAction.CANDIDATE_DELETED,
             uuid.uuid4(),
             target_kind=TargetKind.CANDIDATE,
         )
-        await audit.store_event(
+        await audit_events.record(
             f"api-{uuid.uuid4()}",
             event(
                 acme.id,
@@ -226,8 +245,8 @@ def test_rows_name_members_and_candidates_only_while_they_are_there(run):
             # tests can leave more than a second behind.
             datetime.now(UTC) + timedelta(seconds=1),
         )
-        rows = await action_log.rows(acme.id, await audit.list_for_company(acme.id, 0, 10))
-        await companies.delete(acme.id)
+        rows = await action_log.page(acme.id, 0, 10)
+        await factories.deleted(acme.id)
 
         return rows
 

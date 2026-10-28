@@ -34,33 +34,35 @@ def calls(monkeypatch):
     async def delete_company(company_id):
         done.append(("company", company_id))
 
-    async def remove_member(member_id):
+    async def remove_member(session, member_id):
         done.append(("member", member_id))
 
-    async def forget(user_id, email):
+    async def candidate_invites(session, user_id, email):
         done.append(("candidate", user_id, email))
+
+        return []
 
     monkeypatch.setattr(company_deletion, "delete_company", delete_company)
     monkeypatch.setattr(accounts, "remove_member", remove_member)
-    monkeypatch.setattr(accounts, "forget_candidate", forget)
+    monkeypatch.setattr(accounts, "candidate_invites", candidate_invites)
 
-    async def forget_verification(email):
+    async def forget_verification(session, email):
         done.append(("verification", email))
 
     monkeypatch.setattr(accounts, "forget_verification_email", forget_verification)
 
-    async def forget_member_invites(email):
+    async def forget_member_invites(session, email):
         done.append(("team invites", email))
 
     monkeypatch.setattr(accounts, "forget_member_invites", forget_member_invites)
 
-    async def forget_decisions(user_id):
+    async def forget_decisions(sessions, user_id):
         done.append(("audit", user_id))
 
     monkeypatch.setattr(audit, "forget_user", forget_decisions)
 
     # Nothing the user owns is shared with others, unless a test says so.
-    async def owned(user_id):
+    async def owned(session, user_id):
         return []
 
     monkeypatch.setattr(accounts, "owned", owned)
@@ -73,7 +75,7 @@ def test_a_company_goes_with_its_only_owner_other_memberships_just_end(calls, mo
     shared = membership(Role.OWNER, owners=2)
     admin = membership(Role.ADMIN, owners=1)
 
-    async def memberships(user_id):
+    async def memberships(session, user_id):
         return [sole, shared, admin]
 
     monkeypatch.setattr(accounts, "memberships", memberships)
@@ -101,7 +103,7 @@ def test_a_candidate_deleting_their_account_mid_interview_is_settled_as_if_remov
     waiting = SimpleNamespace(id=uuid.uuid4(), status=InviteStatus.INVITED, hold_key="h3")
     settled = []
 
-    async def unfinished(user_id, email):
+    async def unfinished(session, user_id, email):
         return [picked, opened, waiting]
 
     async def scores(invite_ids):
@@ -113,7 +115,7 @@ def test_a_candidate_deleting_their_account_mid_interview_is_settled_as_if_remov
     async def release(key):
         settled.append(("released", key))
 
-    async def no_memberships(user_id):
+    async def no_memberships(session, user_id):
         return []
 
     monkeypatch.setattr(accounts, "memberships", no_memberships)
@@ -132,10 +134,10 @@ def test_an_owner_of_a_company_others_joined_cant_delete_their_account_yet(calls
     another member is made owner first (or the company deleted)."""
     shared = Company(id=uuid.uuid4(), name="Acme")
 
-    async def owned(user_id):
+    async def owned(session, user_id):
         return [(shared, True)]
 
-    async def memberships(user_id):
+    async def memberships(session, user_id):
         return [membership(Role.OWNER, owners=1)]
 
     monkeypatch.setattr(accounts, "owned", owned)
@@ -164,7 +166,7 @@ def test_retention_deletes_results_and_holds_before_the_invites_in_batches(monke
         [],
     ]
 
-    async def expired_invites(before, limit):
+    async def expired_invites(session, before, limit):
         return batches.pop(0)
 
     async def release(key):
@@ -173,7 +175,7 @@ def test_retention_deletes_results_and_holds_before_the_invites_in_batches(monke
     async def delete_sessions(invite_ids):
         done.append(("rounds", invite_ids))
 
-    async def delete_invites(invite_ids):
+    async def delete_invites(session, invite_ids):
         done.append(("invites", invite_ids))
 
     monkeypatch.setattr(accounts, "expired_invites", expired_invites)
@@ -193,13 +195,13 @@ def test_retention_deletes_results_and_holds_before_the_invites_in_batches(monke
 def test_retention_keeps_the_invites_when_rounds_fails(monkeypatch):
     deleted = []
 
-    async def expired_invites(before, limit):
+    async def expired_invites(session, before, limit):
         return [(uuid.uuid4(), INTERVIEW_ID, "ann@example.com", InviteStatus.INVITED)]
 
     async def rounds_down(invite_ids):
         raise httpx.ConnectError("rounds is down")
 
-    async def delete_invites(invite_ids):
+    async def delete_invites(session, invite_ids):
         deleted.append(invite_ids)
 
     monkeypatch.setattr(accounts, "expired_invites", expired_invites)
@@ -213,12 +215,12 @@ def test_retention_keeps_the_invites_when_rounds_fails(monkeypatch):
 
 
 def test_cloud_scheduler_runs_retention_through_its_route(client, monkeypatch):
-    async def expired_invites(before, limit):
+    async def expired_invites(session, before, limit):
         return []
 
     cutoffs = []
 
-    async def delete_before(before):
+    async def delete_before(session, before):
         cutoffs.append(before)
 
         return 0

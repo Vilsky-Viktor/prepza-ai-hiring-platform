@@ -9,7 +9,7 @@ def test_every_interviews_company_goes_to_rounds_a_batch_at_a_time(monkeypatch):
     rows = sorted((uuid.uuid4(), uuid.uuid4(), uuid.uuid4()) for _ in range(3))
     sent = []
 
-    async def set_companies(after, limit):
+    async def set_companies(session, after, limit):
         later = [row for row in rows if after is None or row[0] > after]
 
         return later[:limit]

@@ -11,10 +11,9 @@ from prepza_common.events.audit_actions import (
 )
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from sqlalchemy.orm import aliased
 
-from companies.core.db import Session
 from companies.core.security import REQUEST_KEY, REQUEST_VIA
 from companies.models.audit import AuditEvent
 
@@ -50,14 +49,16 @@ def row(*args, **details) -> AuditEvent:
     return AuditEvent(**fields(*args, **details))
 
 
-async def record(company_id, user_id: str, action: str, target_id=None, **details) -> None:
+async def record(
+    session: AsyncSession, company_id, user_id: str, action: str, target_id=None, **details
+) -> None:
     """An action, once its change is saved (row has the `details`)."""
-    async with Session() as session:
-        session.add(row(company_id, user_id, action, target_id, **details))
-        await session.commit()
+    session.add(row(company_id, user_id, action, target_id, **details))
 
 
-async def record_view(company_id, user_id: str, invite_id, via: str | None = None) -> None:
+async def record_view(
+    session: AsyncSession, company_id, user_id: str, invite_id, via: str | None = None
+) -> None:
     """A member viewed a candidate's results: one row a member, candidate and UTC day, which a
     later view that day moves to its own time and way (the unique index makes two views at once
     one row too)."""
@@ -81,14 +82,15 @@ async def record_view(company_id, user_id: str, invite_id, via: str | None = Non
         },
     )
 
-    async with Session() as session:
-        await session.execute(query)
-        await session.commit()
+    await session.execute(query)
 
 
-async def record_interview(interview, user_id: str, action: str, via: str | None = None) -> None:
+async def record_interview(
+    session: AsyncSession, interview, user_id: str, action: str, via: str | None = None
+) -> None:
     """An action on an interview, with its title as it is now, so it still reads once it's gone."""
     await record(
+        session,
         interview.company_id,
         user_id,
         action,
@@ -99,9 +101,10 @@ async def record_interview(interview, user_id: str, action: str, via: str | None
     )
 
 
-async def store_event(event_id: str, data: dict, at: datetime) -> None:
-    """Another service's action (prepza_common.events.audit), once however often it comes, at the time
-    it happened. A company deleted since keeps nothing."""
+async def store_event(session: AsyncSession, event_id: str, data: dict, at: datetime) -> None:
+    """Another service's action (prepza_common.events.audit), once however often it comes, at the
+    time it happened. An IntegrityError when its company is gone (its foreign key): the caller
+    keeps nothing then."""
     query = (
         insert(AuditEvent)
         .values(
@@ -119,16 +122,11 @@ async def store_event(event_id: str, data: dict, at: datetime) -> None:
         .on_conflict_do_nothing(index_elements=["event_id"])
     )
 
-    async with Session() as session:
-        try:
-            await session.execute(query)
-            await session.commit()
-        except IntegrityError:
-            # The company is gone (its foreign key).
-            await session.rollback()
+    await session.execute(query)
 
 
 async def list_for_company(
+    session: AsyncSession,
     company_id,
     offset: int,
     limit: int,
@@ -154,15 +152,15 @@ async def list_for_company(
 
     query = query.order_by(AuditEvent.created_at.desc(), AuditEvent.id).offset(offset).limit(limit)
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def forget_user(user_id: str) -> None:
+async def forget_user(sessions: async_sessionmaker, user_id: str) -> None:
     """The user's actions stay in their companies' logs, without the user's id; a batch at a
     time, so a run cut off midway goes on when run again. A view of a candidate's results that
     day already kept for a deleted user (another member who deleted their account) holds it: the
-    log keeps one view a candidate and day, so this one goes instead of colliding with it."""
+    log keeps one view a candidate and day, so this one goes instead of colliding with it. Each
+    batch is its own transaction (`sessions` makes them)."""
     kept = aliased(AuditEvent)
     already_kept = (
         select(kept.id)
@@ -176,17 +174,23 @@ async def forget_user(user_id: str) -> None:
         .exists()
     )
     await delete_in_batches(
-        Session,
+        sessions,
         AuditEvent,
         AuditEvent.user_id == user_id,
         AuditEvent.action == AuditAction.RESULTS_VIEWED,
         already_kept,
     )
     await update_in_batches(
-        Session, AuditEvent, {"user_id": DELETED_USER}, AuditEvent.user_id == user_id
+        sessions, AuditEvent, {"user_id": DELETED_USER}, AuditEvent.user_id == user_id
     )
 
 
-async def delete_before(before: datetime) -> int:
-    """Audit events from before `before`, deleted a batch at a time; how many."""
-    return await delete_in_batches(Session, AuditEvent, AuditEvent.created_at < before)
+async def delete_before(sessions: async_sessionmaker, before: datetime) -> int:
+    """Audit events from before `before`, deleted a batch at a time, each its own transaction;
+    how many."""
+    return await delete_in_batches(sessions, AuditEvent, AuditEvent.created_at < before)
+
+
+async def delete_company(sessions: async_sessionmaker, company_id) -> None:
+    """A deleted company's action log, a batch at a time, each its own transaction."""
+    await delete_in_batches(sessions, AuditEvent, AuditEvent.company_id == company_id)

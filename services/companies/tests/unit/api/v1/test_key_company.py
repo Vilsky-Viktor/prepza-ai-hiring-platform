@@ -38,7 +38,7 @@ def test_a_key_lists_only_its_company(client, company, monkeypatch):  # noqa: F8
     acme = company
     asked = []
 
-    async def list_for_user(user_id, offset, limit, roles=None, only=None):
+    async def list_for_user(session, user_id, offset, limit, roles=None, only=None):
         asked.append(only)
 
         return [acme]
@@ -55,24 +55,14 @@ def test_a_keys_action_is_audited_with_the_key(monkeypatch):
     added = []
 
     class FakeSession:
-        async def __aenter__(self):
-            return self
-
-        async def __aexit__(self, *args):
-            return None
-
         def add(self, row):
             added.append(row)
 
-        async def commit(self):
-            return None
-
-    monkeypatch.setattr(audit, "Session", FakeSession)
     token = audit.REQUEST_KEY.set(str(KEY_ID))
 
     # The real one: the tests' audit log in memory replaces it.
     try:
-        asyncio.run(real_record(COMPANY_ID, "bob", "results_viewed", via="mcp"))
+        asyncio.run(real_record(FakeSession(), COMPANY_ID, "bob", "results_viewed", via="mcp"))
     finally:
         audit.REQUEST_KEY.reset(token)
 

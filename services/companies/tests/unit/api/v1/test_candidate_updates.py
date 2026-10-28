@@ -120,12 +120,12 @@ def test_the_assistant_gets_the_updates(client, monkeypatch):
     asked = []
     row = invite("kim@example.com", finished=at(1), grade=90)
 
-    async def fake_changed(company_ids, since, until, limit):
+    async def fake_changed(session, company_ids, since, until, limit):
         asked.append((company_ids, since, until, limit))
 
         return [(row, INTERVIEW)]
 
-    async def fake_counts(company_ids, since, until):
+    async def fake_counts(session, company_ids, since, until):
         return 3, 2, 1, 0
 
     monkeypatch.setattr(updates_storage, "changed", fake_changed)
@@ -154,7 +154,7 @@ def test_the_assistant_gets_the_updates(client, monkeypatch):
 
 
 def test_another_service_is_not_allowed(client, monkeypatch):
-    async def fake_changed(company_ids, since, until, limit):
+    async def fake_changed(session, company_ids, since, until, limit):
         raise AssertionError("not reached")
 
     monkeypatch.setattr(updates_storage, "changed", fake_changed)

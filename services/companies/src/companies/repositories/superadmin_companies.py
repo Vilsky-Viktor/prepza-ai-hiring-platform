@@ -1,13 +1,13 @@
 from datetime import UTC, datetime
 
 from sqlalchemy import func, select, update
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from companies.core.db import Session
 from companies.helpers.search import escape_like
 from companies.models.companies import Company, Member
 
 
-async def search(q: str, limit: int) -> list[tuple[Company, int]]:
+async def search(session: AsyncSession, q: str, limit: int) -> list[tuple[Company, int]]:
     """Companies whose name has `q` in it, whatever its case (all when empty), newest first, each
     with how many people joined it."""
     joined = (
@@ -21,11 +21,10 @@ async def search(q: str, limit: int) -> list[tuple[Company, int]]:
     if q:
         query = query.where(Company.name.ilike(f"%{escape_like(q.lower())}%", escape="\\"))
 
-    async with Session() as session:
-        return [tuple(row) for row in await session.execute(query)]
+    return [tuple(row) for row in await session.execute(query)]
 
 
-async def set_suspended(company_id, suspended: bool) -> bool:
+async def set_suspended(session: AsyncSession, company_id, suspended: bool) -> bool:
     """False when there's no such company."""
     query = (
         update(Company)
@@ -34,8 +33,6 @@ async def set_suspended(company_id, suspended: bool) -> bool:
         .returning(Company.id)
     )
 
-    async with Session() as session:
-        found = await session.scalar(query)
-        await session.commit()
+    found = await session.scalar(query)
 
     return found is not None

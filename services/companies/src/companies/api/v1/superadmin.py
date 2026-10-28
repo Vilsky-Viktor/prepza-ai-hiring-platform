@@ -6,10 +6,10 @@ from prepza_common.db.paging import PageParams
 from prepza_common.db.stats import Period, StatsOut
 
 from companies.constants.monitoring import PassRateSort
-from companies.helpers.pass_rates import outside_triggers, percent
-from companies.integrations import rounds
-from companies.repositories import pass_rates, stats
+from companies.core.db import Session
+from companies.repositories import stats
 from companies.schemas.monitoring import PassRateOut
+from companies.services import pass_rates
 
 # The superadmin's monitoring (internal_docs/compliance/post-market-monitoring-plan.md) and stats;
 # everyone else gets "not found".
@@ -25,23 +25,7 @@ async def list_pass_rates(
 ) -> list[PassRateOut]:
     """A page after the interview `after` (the last one shown): paged by key, as the list grows
     across every company."""
-    rows = await pass_rates.page(sort == PassRateSort.FINISHED, after, page.limit)
-    answers = await rounds.answer_counts([row.set_id for row in rows if row.set_id])
-
-    return [
-        PassRateOut(
-            interview_id=row.id,
-            title=row.title,
-            company=row.company,
-            finished=row.finished,
-            pass_rate=percent(row.passed, row.finished),
-            pass_mark=row.pass_mark,
-            average_grade=round(row.average),
-            timeout_share=percent(*answers.get(str(row.set_id), (0, 0))),
-            outside_triggers=outside_triggers(row.passed, row.finished),
-        )
-        for row in rows
-    ]
+    return await pass_rates.page(sort == PassRateSort.FINISHED, after, page.limit)
 
 
 @router.get("/stats")
@@ -49,4 +33,5 @@ async def get_stats(superadmin: SuperadminUser, period: Period = None) -> StatsO
     """Companies, interviews and candidates, all time or in one year or
     month, for the stats tab."""
 
-    return StatsOut(counts=await stats.stats(period))
+    async with Session() as session:
+        return StatsOut(counts=await stats.stats(session, period))

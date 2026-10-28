@@ -9,6 +9,7 @@ from prepza_common.auth.user import User
 import companies.api.v1.invites as routes
 from companies.constants.invites import INVITE_EXPIRED, NOT_THE_GUEST, InviteStatus
 from companies.main import app
+from companies.services import candidate_start, invite_pages
 from tests.unit.api.v1.test_invites import (  # noqa: F401 (fixtures)
     INVITE_ID,
     invite_page,
@@ -37,7 +38,7 @@ def guest_invite(monkeypatch, invite_page):  # noqa: F811
 
         return {"sessions": []}
 
-    monkeypatch.setattr(routes, "start_sessions", start)
+    monkeypatch.setattr(candidate_start, "start_sessions", start)
     monkeypatch.setattr(
         firebase_auth, "create_custom_token", lambda uid: f"custom-for-{uid}".encode()
     )
@@ -93,11 +94,9 @@ def test_only_a_guest_invitation_may_be_embedded_and_only_on_the_companys_verifi
     monkeypatch,
     invite_page,  # noqa: F811
 ):
-    import companies.api.v1.invites as routes
-
     verified = {"domain": None}
 
-    async def company(company_id):
+    async def company(session, company_id):
         return SimpleNamespace(
             name="Acme",
             website_domain="acme.com",
@@ -109,8 +108,8 @@ def test_only_a_guest_invitation_may_be_embedded_and_only_on_the_companys_verifi
             suspended_at=None,
         )
 
-    monkeypatch.setattr(routes.companies, "get", company)
-    monkeypatch.setattr(routes, "logo_path", lambda company: None)
+    monkeypatch.setattr(invite_pages.companies, "get", company)
+    monkeypatch.setattr(invite_pages, "logo_path", lambda company: None)
 
     assert client.get("/invites/token-1").json()["embed_domain"] is None
 

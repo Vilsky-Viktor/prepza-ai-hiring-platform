@@ -14,16 +14,16 @@ def failing_setup(monkeypatch, current, step):
     _, used = invite_setup(monkeypatch)
     released = []
 
-    async def fake_held(_interview_id, email):
+    async def fake_held(session, _interview_id, email):
         return current, "stored-key" if current else None
 
-    async def fake_status(_interview_id, email):
+    async def fake_status(session, _interview_id, email):
         return current
 
     async def fake_release(key):
         released.append(key)
 
-    async def broken(*args, **kwargs):
+    async def broken(session, *args, **kwargs):
         raise httpx.ConnectError("down")
 
     monkeypatch.setattr(invites, "held", fake_held)

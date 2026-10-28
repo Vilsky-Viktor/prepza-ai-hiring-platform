@@ -2,14 +2,11 @@
 
 from datetime import UTC, datetime
 
-from prepza_common.events import outbox
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import case, select, update
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.constants.verification import VerificationStatus
-from companies.core.db import Session
 from companies.models.companies import Company
-from companies.models.outbox import OutboxEvent
 
 # A new request clears the last one's decision.
 UNDECIDED = {
@@ -17,9 +14,12 @@ UNDECIDED = {
     "verification_decided_by": None,
     "verification_decided_at": None,
 }
+from companies.repositories import outbox
 
 
-async def set_website(company_id, domain: str | None, email: str | None) -> None:
+async def set_website(
+    session: AsyncSession, company_id, domain: str | None, email: str | None
+) -> None:
     """Saves the website's domain and takes the badge away. With `email`, the address on it
     that proves it, the company's current name goes for review; without, it waits for one. None
     clears the website and the verification with it."""
@@ -41,12 +41,11 @@ async def set_website(company_id, domain: str | None, email: str | None) -> None
         values["verification_name"] = Company.name
         values["verification_submitted_at"] = datetime.now(UTC)
 
-    async with Session() as session:
-        await session.execute(update(Company).where(Company.id == company_id).values(**values))
-        await session.commit()
+    await session.execute(update(Company).where(Company.id == company_id).values(**values))
 
 
 async def decide(
+    session: AsyncSession,
     company_id,
     approved: bool,
     superadmin_id: str,
@@ -67,30 +66,27 @@ async def decide(
     if seen is not None:
         conditions += [Company.verification_name == seen[0], Company.website_domain == seen[1]]
 
-    async with Session() as session:
-        decided = await session.scalar(
-            update(Company)
-            .where(*conditions)
-            .values(
-                verification_status=status,
-                verified_domain=Company.website_domain if approved else None,
-                decline_reason=None if approved else reason,
-                verification_decided_by=superadmin_id,
-                verification_decided_at=datetime.now(UTC),
-            )
-            .returning(Company.id)
+    decided = await session.scalar(
+        update(Company)
+        .where(*conditions)
+        .values(
+            verification_status=status,
+            verified_domain=Company.website_domain if approved else None,
+            decline_reason=None if approved else reason,
+            verification_decided_by=superadmin_id,
+            verification_decided_at=datetime.now(UTC),
         )
+        .returning(Company.id)
+    )
 
-        if decided is not None:
-            for notice in notices:
-                outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
-
-        await session.commit()
+    if decided is not None:
+        for notice in notices:
+            outbox.notify(session, notice)
 
     return decided is not None
 
 
-async def requests(offset: int, limit: int) -> list[Company]:
+async def requests(session: AsyncSession, offset: int, limit: int) -> list[Company]:
     """Companies sent for review: the pending ones first, oldest first, then those decided,
     latest first."""
     pending = Company.verification_status == VerificationStatus.PENDING
@@ -115,5 +111,4 @@ async def requests(offset: int, limit: int) -> list[Company]:
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))

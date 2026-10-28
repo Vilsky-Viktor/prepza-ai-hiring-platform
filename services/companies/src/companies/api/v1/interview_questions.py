@@ -3,19 +3,11 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, status
 from prepza_common.auth.auth import CurrentUser
 from prepza_common.db.paging import PageParams
-from prepza_common.events.audit_actions import AuditAction
-from prepza_common.http.http import passed_on
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit
 
-from companies.constants.interviews import NO_QUESTIONS_LEFT
-from companies.helpers.interviews import interview_questions
-from companies.integrations import billing, library
-from companies.integrations import generation as generation_api
-from companies.integrations.redis import get_redis
+from companies.integrations import library
 from companies.models.interviews import Interview
-from companies.repositories import audit, interviews
 from companies.schemas.interviews import QuestionText, ReportOut, TopicLimitIn
+from companies.services import interview_changes, question_steps
 from companies.services.interview_access import interview_for
 
 router = APIRouter(prefix="/interviews", tags=["interviews"])
@@ -51,42 +43,14 @@ async def set_topic_limit(
     interview_id: UUID, topic_id: UUID, body: TopicLimitIn, user: CurrentUser
 ) -> None:
     interview = await generated_interview(user, interview_id, editor=True)
-    found = await library.get_set(interview.set_id) or {}
-    topic = next(
-        (item for item in found.get("topics", []) if str(item["id"]) == str(topic_id)), None
-    )
-
-    if topic is None:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Topic not found")
-
-    if body.limit > topic["question_count"]:
-        raise HTTPException(
-            status.HTTP_422_UNPROCESSABLE_CONTENT,
-            f"The topic has only {topic['question_count']} questions",
-        )
-
-    # Every candidate gets at least one question.
-    def keeps_questions(limits: dict[str, int]) -> bool:
-        return bool(interview_questions(found, limits))
-
-    if not await interviews.set_topic_limit(interview.id, topic_id, body.limit, keeps_questions):
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, NO_QUESTIONS_LEFT)
-
-    await audit.record_interview(interview, user.uid, AuditAction.INTERVIEW_SETTINGS_CHANGED)
+    await interview_changes.set_topic_limit(interview, topic_id, body.limit, user.uid)
 
 
 @router.post("/{interview_id}/questions/{question_id}/regenerate")
 async def regenerate_question(interview_id: UUID, question_id: UUID, user: CurrentUser) -> dict:
     interview = await generated_interview(user, interview_id, editor=True)
-    await refuse_if_paused(get_redis(), "question_regeneration", interview.company_id, user.uid)
-    response = await generation_api.regenerate_question(
-        question_id, interview.set_id, user.uid, await billing.company_paid(interview.company_id)
-    )
 
-    question = passed_on(response).json()
-    await audit.record_interview(interview, user.uid, AuditAction.QUESTIONS_REGENERATED)
-
-    return question
+    return await question_steps.regenerate(interview, question_id, user.uid)
 
 
 @router.post(
@@ -95,16 +59,7 @@ async def regenerate_question(interview_id: UUID, question_id: UUID, user: Curre
 async def mark_wrong(interview_id: UUID, question_id: UUID, user: CurrentUser) -> None:
     """One click: the marked answer is wrong. The verifier checks it and fixes or replaces it."""
     interview = await generated_interview(user, interview_id, editor=True)
-    context = await library.get_question_context(question_id)
-
-    if context is None or str(context["set_id"]) != str(interview.set_id):
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Question not found")
-
-    # Each mark starts the AI verifier: a company can't use up everyone's day of it.
-    key = f"rate:wrong-marks:{interview.company_id}"
-    await hit(get_redis(), key, "WRONG_MARKS_PER_COMPANY_DAY", company_id=interview.company_id)
-    await library.mark_wrong(question_id)
-    await audit.record_interview(interview, user.uid, AuditAction.ANSWER_KEY_REPORTED)
+    await question_steps.mark_wrong(interview, question_id, user.uid)
 
 
 @router.get("/{interview_id}/questions/{question_id}/reports")

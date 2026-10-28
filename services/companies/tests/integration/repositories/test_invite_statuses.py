@@ -3,20 +3,24 @@
 import uuid
 
 from companies.constants.invites import InviteStatus
-from companies.repositories import companies, interviews, invites
+from companies.repositories import interviews, invites
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 def test_a_lists_invite_statuses_are_read_at_once(run):
     async def scenario():
         found = await an_interview()
-        await invites.upsert(found.id, "ann@example.com", "Backend", "Acme", "en")
+        await transaction(invites.upsert, found.id, "ann@example.com", "Backend", "Acme", "en")
 
-        return await invites.statuses_of(found.id, ["ann@example.com", "bob@example.com"])
+        return await transaction(
+            invites.statuses_of, found.id, ["ann@example.com", "bob@example.com"]
+        )
 
     assert run(scenario()) == {"ann@example.com": InviteStatus.INVITED}
 
 
 async def an_interview():
-    company = await companies.create(f"Statuses {uuid.uuid4()}", "owner", "owner@example.com")
+    company = await factories.company(f"Statuses {uuid.uuid4()}", "owner", "owner@example.com")
 
-    return await interviews.create(company.id, uuid.uuid4(), "en", 60)
+    return await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)

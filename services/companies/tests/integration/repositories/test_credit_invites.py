@@ -5,19 +5,23 @@ from sqlalchemy import update
 from companies.constants.invites import InviteStatus
 from companies.core.db import Session
 from companies.models.invites import CandidateInvite
-from companies.repositories import companies, credit_invites, interviews, invites
+from companies.repositories import credit_invites, interviews, invites
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 
 async def interview_of(company, title: str):
-    found = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-    await interviews.set_title(found.id, title)
+    found = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+    await transaction(interviews.set_title, found.id, title)
 
     return found
 
 
 async def invite(found, email, status=InviteStatus.INVITED, hold_key=None):
     """An invite in this status; without a hold key, like invites made before they had one."""
-    created, _ = await invites.upsert(found.id, email, "", "Acme", "en", hold_key=hold_key)
+    created, _ = await transaction(
+        invites.upsert, found.id, email, "", "Acme", "en", hold_key=hold_key
+    )
 
     async with Session() as session:
         await session.execute(
@@ -30,8 +34,8 @@ async def invite(found, email, status=InviteStatus.INVITED, hold_key=None):
 
 def test_only_open_invites_hold_credits_newest_first(run):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        other = await companies.create(f"Other {uuid.uuid4()}", "owner", "owner@example.com")
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        other = await factories.company(f"Other {uuid.uuid4()}", "owner", "owner@example.com")
         backend = await interview_of(company, "Backend")
         frontend = await interview_of(company, "Frontend")
         # Invited in this order, so newest first is cleo, ben, ann.
@@ -46,9 +50,9 @@ def test_only_open_invites_hold_credits_newest_first(run):
         await invite(await interview_of(other, "Elsewhere"), "gus@example.com")
 
         return (
-            await credit_invites.count_holding(company.id),
-            await credit_invites.holding(company.id, 0, 2),
-            await credit_invites.holding(company.id, 2, 2),
+            await transaction(credit_invites.count_holding, company.id),
+            await transaction(credit_invites.holding, company.id, 0, 2),
+            await transaction(credit_invites.holding, company.id, 2, 2),
         )
 
     count, first, second = run(scenario())
@@ -63,8 +67,8 @@ def test_only_open_invites_hold_credits_newest_first(run):
 
 def test_history_keys_find_only_the_companys_own_invites(run):
     async def scenario():
-        company = await companies.create(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
-        other = await companies.create(f"Other {uuid.uuid4()}", "owner", "owner@example.com")
+        company = await factories.company(f"Acme {uuid.uuid4()}", "owner", "owner@example.com")
+        other = await factories.company(f"Other {uuid.uuid4()}", "owner", "owner@example.com")
         backend = await interview_of(company, "Backend")
         elsewhere = await interview_of(other, "Elsewhere")
         await invite(backend, "ann@example.com", InviteStatus.FINISHED, "h-ann")
@@ -72,7 +76,7 @@ def test_history_keys_find_only_the_companys_own_invites(run):
         await invite(elsewhere, "dan@example.com", InviteStatus.FINISHED, "h-dan")
         keys = ["h-ann", "h-cid", "h-dan", "h-unknown"]
 
-        return await credit_invites.by_hold_keys(company.id, keys)
+        return await transaction(credit_invites.by_hold_keys, company.id, keys)
 
     found = run(scenario())
 
@@ -83,4 +87,4 @@ def test_history_keys_find_only_the_companys_own_invites(run):
 
 
 def test_no_keys_ask_nothing(run):
-    assert run(credit_invites.by_hold_keys(uuid.uuid4(), [])) == {}
+    assert run(transaction(credit_invites.by_hold_keys, uuid.uuid4(), [])) == {}

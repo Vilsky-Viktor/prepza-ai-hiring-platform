@@ -48,7 +48,7 @@ def generate(client, monkeypatch, waiting, paid=False, redis=None, refusal=None,
     reached = []
     redis = redis or FakeRedis()
 
-    async def fake_waiting(company_id):
+    async def fake_waiting(session, company_id):
         return waiting
 
     async def fake_generation(*args):
@@ -62,7 +62,7 @@ def generate(client, monkeypatch, waiting, paid=False, redis=None, refusal=None,
     async def fake_paid(company_id):
         return paid
 
-    async def fake_create(company_id, generation_id, language, seconds, most=None):
+    async def fake_create(session, company_id, generation_id, language, seconds, most=None):
         # Another made meanwhile took the last place: `taken` is the count under the lock.
         if taken is not None:
             raise OverLimit(taken)

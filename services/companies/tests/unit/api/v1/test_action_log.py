@@ -78,18 +78,18 @@ def log(monkeypatch):
     ]
     asked = []
 
-    async def get(_id):
+    async def get(session, _id):
         return acme
 
-    async def list_for_company(company_id, offset, limit, *filters):
+    async def list_for_company(session, company_id, offset, limit, *filters):
         asked.append((offset, limit, *filters))
 
         return rows
 
-    async def member_emails(company_id, user_ids):
+    async def member_emails(session, company_id, user_ids):
         return {"ann": "ann@x.com", "bob": "bob@x.com"}
 
-    async def target_names(company_id, ids):
+    async def target_names(session, company_id, ids):
         return {candidate_id: "cara@example.com"}
 
     monkeypatch.setattr(companies, "get", get)
@@ -164,7 +164,7 @@ def test_an_unknown_group_is_refused(client, log):
 def test_only_another_services_action_is_stored_at_the_time_it_happened(monkeypatch):
     stored = []
 
-    async def store_event(event_id, data, at):
+    async def store_event(session, event_id, data, at):
         stored.append((event_id, data["action"], at))
 
     monkeypatch.setattr(audit, "store_event", store_event)

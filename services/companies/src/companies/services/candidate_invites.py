@@ -1,4 +1,4 @@
-from fastapi import status
+from fastapi import HTTPException, status
 from prepza_common.auth.user import User
 from prepza_common.events.analytics import track
 from prepza_common.events.audit_actions import AuditAction, TargetKind
@@ -7,23 +7,27 @@ from prepza_common.i18n.names import clean_name
 from prepza_common.limits.rate_limit import hit_emails, recipient_key
 
 from companies.constants import error_codes
+from companies.constants.audit import VIA_API
 from companies.constants.invites import (
     ALREADY_FINISHED,
     COMPANY_SUSPENDED,
     INTERVIEW_NOT_READY,
+    NO_EMAILS_FOR_GUEST,
     NOT_STARTED,
     InviteStatus,
 )
+from companies.core.db import Session
 from companies.helpers.candidates import new_hold_key
-from companies.helpers.interviews import interview_title
 from companies.helpers.logos import logo_path
 from companies.integrations import billing
 from companies.integrations.redis import get_redis
 from companies.models.companies import Company
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
-from companies.repositories import audit, invites
+from companies.repositories import audit, companies, invites
+from companies.services import outbox as outbox_service
 from companies.services.candidate_billing import hold_again
+from companies.services.interview_views import interview_title
 
 
 async def invite(
@@ -47,7 +51,9 @@ async def invite(
 
     email = email.lower()
 
-    current, stored = await invites.held(interview.id, email)
+    async with Session() as session:
+        current, stored = await invites.held(session, interview.id, email)
+
     key = stored if current else new_hold_key(interview.id)
 
     # Their results are in: inviting them again would only email them for nothing.
@@ -74,16 +80,15 @@ async def invite(
         recipient = f"{interview.id}:{recipient_key(email)}"
         await hit_emails(get_redis(), user.uid, recipient, company.id)
 
-        invite, revived = await invites.upsert(
-            interview.id,
+        action = AuditAction.CANDIDATE_INVITED if current is None else AuditAction.INVITE_RESENT
+        invite, revived = await save(
+            interview,
+            company,
             email,
             title,
-            company.name,
-            interview.language,
-            logo_path(company),
+            (user.uid, action, via),
             hold_key=key,
             name=clean_name(name),
-            verified=company.verified_domain is not None,
             return_url=return_url,
             sign_in=sign_in,
             theme=theme,
@@ -104,12 +109,40 @@ async def invite(
     if current is None:
         await track("candidate_invited", user_id=user.uid, company_id=company.id)
 
-    action = AuditAction.CANDIDATE_INVITED if current is None else AuditAction.INVITE_RESENT
-    await audit.record(
-        company.id, user.uid, action, invite.id, via=via, target_kind=TargetKind.CANDIDATE
-    )
-
     return invite
+
+
+async def save(
+    interview: Interview, company: Company, email: str, title: str, audited: tuple, **options
+) -> tuple[CandidateInvite, bool]:
+    """The invite with its email queued (invites.upsert, with its `options`) and its line in the
+    action log (`audited`: the user's id, the action and the way it came), in one save; whether
+    it revived an expired invite."""
+    user_id, action, via = audited
+
+    async with Session.begin() as session:
+        invite, revived = await invites.upsert(
+            session,
+            interview.id,
+            email,
+            title,
+            company.name,
+            interview.language,
+            logo_path(company),
+            verified=company.verified_domain is not None,
+            **options,
+        )
+        await audit.record(
+            session,
+            company.id,
+            user_id,
+            action,
+            invite.id,
+            via=via,
+            target_kind=TargetKind.CANDIDATE,
+        )
+
+    return invite, revived
 
 
 async def give_back(interview: Interview, company: Company, email: str, current, key: str) -> None:
@@ -122,8 +155,31 @@ async def give_back(interview: Interview, company: Company, email: str, current,
 
     await billing.release_candidate(key)
 
-    if current == InviteStatus.EXPIRED and await invites.status_of(interview.id, email) not in (
-        InviteStatus.EXPIRED,
-        InviteStatus.DELETED,
-    ):
+    if current != InviteStatus.EXPIRED:
+        return
+
+    async with Session() as session:
+        now = await invites.status_of(session, interview.id, email)
+
+    if now not in (InviteStatus.EXPIRED, InviteStatus.DELETED):
         await billing.hold_candidate(company.id, key)
+
+
+async def resend(company_id, interview: Interview, found: CandidateInvite, user_id: str) -> None:
+    """Sends the invite again, as an owner or admin does on the candidate's page, for the public
+    API: refused for a candidate who finished (409) or one prepza doesn't email (invited without
+    a sign-in, 409); the invite keeps its return address and theme."""
+    if found.status == InviteStatus.DELETED:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
+
+    if found.guest:
+        raise CodedError(
+            status.HTTP_409_CONFLICT, NO_EMAILS_FOR_GUEST, error_codes.INVITED_WITHOUT_SIGN_IN
+        )
+
+    async with Session() as session:
+        company = await companies.get(session, company_id)
+
+    sender = User(uid=user_id, email="", email_verified=True)
+    await invite(interview, company, sender, found.email, via=VIA_API)
+    await outbox_service.flush_quietly()

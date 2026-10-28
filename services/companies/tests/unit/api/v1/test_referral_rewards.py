@@ -26,7 +26,7 @@ def test_the_referral_lists_rewarded_companies_by_name(client, monkeypatch):
         )
     ]
 
-    async def get_company(_company_id):
+    async def get_company(session, _company_id):
         return company
 
     async def referral(_company_id):
@@ -40,7 +40,7 @@ def test_the_referral_lists_rewarded_companies_by_name(client, monkeypatch):
             ],
         }
 
-    async def names(company_ids):
+    async def names(session, company_ids):
         return {JOINED: "Globex"}
 
     monkeypatch.setattr(companies, "get", get_company)

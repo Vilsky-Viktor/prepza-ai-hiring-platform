@@ -5,11 +5,11 @@ import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
 
-from companies.api.v1 import members as members_router
 from companies.constants.roles import TOO_MANY_PENDING
 from companies.integrations import billing
 from companies.models.companies import Member
-from companies.repositories import audit, companies, members
+from companies.repositories import audit, companies, members, outbox
+from companies.services import members as members_router
 from tests.unit.api.v1.test_members import COMPANY_ID, sign_in
 from tests.unit.api.v1.test_team_members import team  # noqa: F401
 
@@ -23,7 +23,7 @@ def limits(monkeypatch):
     action log isn't what these tests check."""
     redis = FakeRedis()
 
-    async def nothing(*args, **kwargs):
+    async def nothing(session, *args, **kwargs):
         return None
 
     monkeypatch.setattr(members_router, "get_redis", lambda: redis)
@@ -127,16 +127,20 @@ def test_nobody_becomes_owner_of_more_companies_than_one_person_may(
     if edited:
         limits.limits["MAX_OWNED_COMPANIES"] = str(edited)
 
-    async def transfer(company, owner, member, most=None):
-        made.append(member.user_id)
+    owner = team[0][0]
 
-        return True
+    async def lock_both(session, owner_id, member_id):
+        return owner, bob
 
-    async def owned_count(user_id):
+    async def owned_count(session, user_id):
         return owned[user_id]
 
-    monkeypatch.setattr(members, "transfer_ownership", transfer)
+    monkeypatch.setattr(members, "lock_both", lock_both)
+    monkeypatch.setattr(
+        outbox, "notify", lambda session, notice: made.append(notice["recipient_id"])
+    )
     monkeypatch.setattr(companies, "owned_count", owned_count)
+    monkeypatch.setattr(companies, "lock_owner", owned_count)
     sign_in("ann@example.com", uid="ann")
     refused = client.post(f"/members/{bob.id}/owner?company_id={COMPANY_ID}")
     owned["bob"] = most - 1

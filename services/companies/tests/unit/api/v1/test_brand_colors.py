@@ -53,7 +53,7 @@ def test_a_theme_without_colors_of_its_own_is_prepzas():
 def saved(monkeypatch, company):  # noqa: F811
     calls = []
 
-    async def fake_set(company_id, theme, colors):
+    async def fake_set(session, company_id, theme, colors):
         calls.append((theme, colors))
 
     monkeypatch.setattr(companies, "set_brand_colors", fake_set)
@@ -107,7 +107,7 @@ def test_prepzas_colors_font_and_rounding_are_public(client):
 def styled(monkeypatch, company):  # noqa: F811
     calls = []
 
-    async def fake_set(company_id, font, radius, button_radius):
+    async def fake_set(session, company_id, font, radius, button_radius):
         calls.append((font, radius, button_radius))
 
     monkeypatch.setattr(companies, "set_brand_style", fake_set)

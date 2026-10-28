@@ -7,7 +7,7 @@ from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 
-import companies.api.v1.interview_questions as question_routes
+import companies.services.question_steps as question_routes
 from companies.integrations import billing, generation, library
 from companies.main import app
 from companies.models.companies import Company, Member
@@ -67,10 +67,10 @@ def test_only_owner_or_admin_can_regenerate(client, monkeypatch, audited):
     for role, expected in (("viewer", 403), ("admin", 200), ("owner", 200)):
         interview, company = interview_and_company(role)
 
-        async def fake_interview(_interview_id, interview=interview):
+        async def fake_interview(session, _interview_id, interview=interview):
             return interview
 
-        async def fake_company(_company_id, company=company):
+        async def fake_company(session, _company_id, company=company):
             return company
 
         monkeypatch.setattr(interviews, "get", fake_interview)
@@ -105,10 +105,10 @@ def test_only_owner_or_admin_reads_reports(client, monkeypatch):
     for role, expected in (("viewer", 403), ("admin", 200)):
         interview, company = interview_and_company(role)
 
-        async def fake_interview(_interview_id, interview=interview):
+        async def fake_interview(session, _interview_id, interview=interview):
             return interview
 
-        async def fake_company(_company_id, company=company):
+        async def fake_company(session, _company_id, company=company):
             return company
 
         monkeypatch.setattr(interviews, "get", fake_interview)
@@ -138,10 +138,10 @@ def test_topic_questions_come_with_their_options(client, monkeypatch):
         )
     ]
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     # A multi-answer question: two right options.
@@ -192,10 +192,10 @@ def test_a_manager_marks_a_questions_answer_wrong_in_one_click(client, monkeypat
     for role, expected in (("viewer", 403), ("admin", 204)):
         interview, company = interview_and_company(role)
 
-        async def fake_interview(_interview_id, interview=interview):
+        async def fake_interview(session, _interview_id, interview=interview):
             return interview
 
-        async def fake_company(_company_id, company=company):
+        async def fake_company(session, _company_id, company=company):
             return company
 
         async def fake_context(question_id, interview=interview):
@@ -231,10 +231,10 @@ def test_marks_past_the_companys_daily_limit_are_refused_before_the_verifier(
     interview, company = interview_and_company("admin")
     redis = FakeRedis({"WRONG_MARKS_PER_COMPANY_DAY": 1})
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     async def fake_context(_question_id):

@@ -23,9 +23,10 @@ src/companies/
 ├── handlers/               # Pub/Sub events (finished interviews, generation outcomes, other
 │                           # services' actions for the log); dispatch.py picks one
 ├── services/               # Access checks, invites, links, credits, results, reports,
-│                           # account and company deletion, the action log
+│                           # account and company deletion, the action log; each opens its
+│                           # transaction
 ├── repositories/           # Database queries: companies, members, interviews, invites,
-│                           # candidates, the action log, ...
+│                           # candidates, the action log, ...; take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (lists, brand colors, notifications); fixed values
 └── integrations/           # billing, generation, library, rounds, Firebase, Redis
@@ -35,6 +36,14 @@ migrations/                       # Alembic
 
 Every route that reaches a company's data resolves it and checks the caller's role on it
 (`services/access.py`); `tests/unit/test_route_guards.py` fails on a route without a guard.
+
+Routes and handlers call services; services open the transaction (`async with
+Session.begin() as session:`) and pass it to the repositories, so a change and its line in the
+action log, its email or its notification are saved together, and call billing, generation,
+library, rounds and Redis outside it. A plain read may open `async with Session() as session:`
+in the route. `tests/unit/test_layers.py` checks the imports and that no repository commits;
+batched deletions (a company's or an interview's invites, interviews and action log) take a
+transaction per batch.
 
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,
 `prepend_sys_path` for Alembic), so the package imports as `companies`

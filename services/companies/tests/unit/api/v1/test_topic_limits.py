@@ -42,16 +42,16 @@ def setup(monkeypatch, saved, limits=None, topics=None):
         )
     ]
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
     async def fake_set(_set_id):
         return {"topics": topics or [{"id": str(TOPIC_ID), "title": "SQL", "question_count": 10}]}
 
-    async def fake_save(_interview_id, topic_id, limit, allowed):
+    async def fake_save(session, _interview_id, topic_id, limit, allowed):
         new = {**interview.topic_limits, str(topic_id): limit}
 
         if not allowed(new):

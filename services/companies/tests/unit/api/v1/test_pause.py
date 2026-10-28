@@ -7,7 +7,6 @@ from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.config.constants import PAUSED
 
-from companies.api.v1 import invites as invite_routes
 from companies.api.v1 import pause as pause_routes
 from companies.constants.invites import InviteStatus
 from companies.main import app
@@ -16,6 +15,7 @@ from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 from companies.repositories import companies, interviews, invites, link_invites
 from companies.schemas.invites import InviteStartOut
+from companies.services import candidate_start as invite_routes
 from companies.services import link_start
 
 INTERVIEW = Interview(
@@ -68,20 +68,20 @@ def stored_invite(monkeypatch, status):
         created_at=datetime.now(UTC),
     )
 
-    async def get_by_token(token):
+    async def get_by_token(session, token):
         return invite, INTERVIEW
 
     monkeypatch.setattr(invites, "get_by_token", get_by_token)
 
 
 def linked(monkeypatch, status):
-    async def get_by_link(token):
+    async def get_by_link(session, token):
         return INTERVIEW
 
-    async def held(interview_id, email):
+    async def held(session, interview_id, email):
         return status, None
 
-    async def for_link(interview_id, email, hold_key=None, details=None):
+    async def for_link(session, interview_id, email, hold_key=None, details=None):
         return SimpleNamespace(email=email, hold_key=hold_key)
 
     monkeypatch.setattr(interviews, "get_by_link", get_by_link)
@@ -138,10 +138,10 @@ def test_paused_previews_generations_and_regenerations_are_refused(
         id=INTERVIEW.id, company_id=company.id, generation_id=uuid.uuid4(), set_id=uuid.uuid4()
     )
 
-    async def get_interview(_interview_id):
+    async def get_interview(session, _interview_id):
         return generated
 
-    async def get_company(_company_id):
+    async def get_company(session, _company_id):
         return company
 
     monkeypatch.setattr(interviews, "get", get_interview)

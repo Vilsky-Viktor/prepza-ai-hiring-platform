@@ -2,8 +2,19 @@ from datetime import UTC, datetime, timedelta
 from time import monotonic
 
 from companies.constants.invites import JOB_RUN_SECONDS, REMOVAL_KEEP_DAYS, RETENTION_BATCH
+from companies.core.db import Session
 from companies.integrations import rounds
 from companies.repositories import accounts, invites, removals
+
+
+async def blanked() -> list:
+    async with Session() as session:
+        return await accounts.blanked_invites(session, RETENTION_BATCH)
+
+
+async def restored(before: datetime) -> list[tuple]:
+    async with Session() as session:
+        return await removals.restored(session, before, RETENTION_BATCH)
 
 
 async def replay() -> int:
@@ -14,18 +25,20 @@ async def replay() -> int:
     wait for the next. Returns how many it erased again."""
     before = datetime.now(UTC) - timedelta(days=REMOVAL_KEEP_DAYS)
     stop_at = monotonic() + JOB_RUN_SECONDS
-    await removals.forget(before)
+    await removals.forget(Session, before)
     # Rows deleted accounts once left behind, blanked but not anonymous: they go too.
-    while monotonic() < stop_at and (leftovers := await accounts.blanked_invites(RETENTION_BATCH)):
-        await accounts.delete_invites(leftovers)
+    while monotonic() < stop_at and (leftovers := await blanked()):
+        async with Session.begin() as session:
+            await accounts.delete_invites(session, leftovers)
 
     erased = 0
 
-    while monotonic() < stop_at and (rows := await removals.restored(before, RETENTION_BATCH)):
+    while monotonic() < stop_at and (rows := await restored(before)):
         await rounds.delete_invite_sessions([invite.id for invite, _ in rows])
 
-        for invite, company_id in rows:
-            await invites.remove(invite, company_id)
+        async with Session.begin() as session:
+            for invite, company_id in rows:
+                await invites.remove(session, invite, company_id)
 
         erased += len(rows)
 

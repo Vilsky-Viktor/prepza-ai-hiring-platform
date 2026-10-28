@@ -47,13 +47,15 @@ def listed_with(client, monkeypatch, url, scores=None, flagged=False):
     )
     asked = []
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
-    async def fake_page(interview_id, offset, limit, by_grade, q, filter_by, pass_mark, *synced):
+    async def fake_page(
+        session, interview_id, offset, limit, by_grade, q, filter_by, pass_mark, *synced
+    ):
         asked.append((by_grade, q, filter_by, pass_mark))
 
         return [invite]
@@ -112,7 +114,7 @@ def test_passed_and_flagged_are_filtered_in_storage_with_the_pass_mark(client, m
 
 
 def test_results_missing_on_finished_invites_are_stored_before_sorting(client, monkeypatch):
-    async def unscored(_interview_id):
+    async def unscored(session, _interview_id):
         return [INVITE_ID]
 
     monkeypatch.setattr(candidates, "unscored", unscored)

@@ -82,13 +82,13 @@ def viewer(monkeypatch):
     )
     fake_candidates.add(invite)
 
-    async def fake_company(_company_id):
+    async def fake_company(session, _company_id):
         return company
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
-    async def fake_invite(_invite_id):
+    async def fake_invite(session, _invite_id):
         return invite
 
     monkeypatch.setattr(companies, "get", fake_company)
@@ -108,7 +108,7 @@ def test_a_viewer_changes_nothing(client, viewer, method, url, body):
 def test_a_viewer_reads_the_company_without_verifying_it(client, viewer, monkeypatch):
     verified = []
 
-    async def fake_counts(company_ids):
+    async def fake_counts(session, company_ids):
         return {}
 
     async def fake_verify(company, user):
@@ -117,10 +117,10 @@ def test_a_viewer_reads_the_company_without_verifying_it(client, viewer, monkeyp
     async def fake_credits(company_id):
         return {"available": 900, "low": False, "candidates": 3}
 
-    async def fake_list(company_id, offset, limit):
+    async def fake_list(session, company_id, offset, limit):
         return viewer.members
 
-    async def fake_holding(company_id):
+    async def fake_holding(session, company_id):
         return 0
 
     monkeypatch.setattr(interviews, "counts", fake_counts)
@@ -168,7 +168,7 @@ def test_a_viewer_reads_an_interview_with_the_language_it_is_written_in(
         created_at=datetime.now(UTC),
     )
 
-    async def fake_interview(_interview_id):
+    async def fake_interview(session, _interview_id):
         return interview
 
     async def no_set(_set_id):

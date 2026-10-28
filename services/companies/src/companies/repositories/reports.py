@@ -1,12 +1,9 @@
-from prepza_common.events import outbox
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.constants.events import REPORT_SHARED
-from companies.core.db import Session
-from companies.models.outbox import OutboxEvent
+from companies.repositories import outbox
 
 
-async def queue_email(data: dict) -> None:
+async def queue_email(session: AsyncSession, data: dict) -> None:
     """Saves the report.shared event; the outbox publishes it and notifications sends it."""
-    async with Session() as session:
-        outbox.add(session, OutboxEvent, REPORT_SHARED, data)
-        await session.commit()
+    outbox.add(session, REPORT_SHARED, data)

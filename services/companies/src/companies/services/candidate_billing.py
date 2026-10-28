@@ -13,6 +13,7 @@ from companies.constants.invites import (
     SETTLE_BATCH,
     InviteStatus,
 )
+from companies.core.db import Session
 from companies.helpers.candidates import finished_result, stored_results
 from companies.helpers.notifications import candidate_finished
 from companies.integrations import billing, rounds
@@ -26,13 +27,12 @@ async def finish(data: dict, event_id: str) -> None:
     """A finished interview charges the company for the candidate if they picked at least one
     answer, and tells it once, with their grade, however often the event comes; one finished
     without an answer gives the credits back. Billing counts each charge or release once too."""
-    invite = await invites.get(uuid.UUID(data["candidate_invite_id"]))
+    invite, interview = await invite_and_interview(uuid.UUID(data["candidate_invite_id"]))
 
     # Removed, or the candidate deleted their account: its credits were settled then.
     if invite is None or invite.status == InviteStatus.DELETED:
         return
 
-    interview = await interviews.get(invite.interview_id)
     charged = data["answered"] > 0
     key = invite.hold_key
 
@@ -53,7 +53,10 @@ async def finish(data: dict, event_id: str) -> None:
         notice = candidate_finished(interview, invite.id, invite.email, grade, invite.name)
 
     result = finished_result(interview, invite.id, grade, flagged)
-    await invite_progress.finish(invite.id, grade, flagged, notice, event_id, result)
+
+    async with Session.begin() as session:
+        await invite_progress.finish(session, invite.id, grade, flagged, notice, event_id, result)
+
     await outbox_service.flush_quietly()
     await track(
         "interview_finished",
@@ -61,6 +64,15 @@ async def finish(data: dict, event_id: str) -> None:
         answered=data["answered"],
         charged=charged,
     )
+
+
+async def invite_and_interview(invite_id: uuid.UUID) -> tuple:
+    """The invite and its interview; (None, None) when the invite is gone."""
+    async with Session() as session:
+        invite = await invites.get(session, invite_id)
+        interview = await interviews.get(session, invite.interview_id) if invite else None
+
+    return invite, interview
 
 
 async def expire_unstarted() -> int:
@@ -72,15 +84,16 @@ async def expire_unstarted() -> int:
 
     # Each invite's credits are released before it's marked expired: if billing fails, the
     # rest stay unexpired and the next run tries them again, so no hold is left open.
-    while monotonic() < stop_at and (
-        rows := await invite_expiry.expiring(before, EXPIRIES_PER_BATCH)
-    ):
+    while monotonic() < stop_at and (rows := await expiring(before)):
         for invite in rows:
             key = invite.hold_key
             await billing.release_candidate(key)
 
+            async with Session.begin() as session:
+                expired = await invite_expiry.mark_expired(session, invite.id, before)
+
             # Started or sent again since it was read: it keeps its credits after all.
-            if not await invite_expiry.mark_expired(invite.id, before):
+            if not expired:
                 await hold_again(invite, key)
 
         count += len(rows)
@@ -88,17 +101,24 @@ async def expire_unstarted() -> int:
     return count
 
 
+async def expiring(before: datetime) -> list:
+    async with Session() as session:
+        return await invite_expiry.expiring(session, before, EXPIRIES_PER_BATCH)
+
+
 async def hold_again(invite, key: str) -> None:
     """Sets aside again the credits of an invite revived while it was expiring; the run goes on
     if billing refuses. One expired meanwhile by an overlapping run (a retried schedule), or
     removed, keeps nothing set aside."""
     try:
-        current = await invites.get(invite.id)
+        async with Session() as session:
+            current = await invites.get(session, invite.id)
+            gone = current is None or current.status in (InviteStatus.EXPIRED, InviteStatus.DELETED)
+            interview = None if gone else await interviews.get(session, invite.interview_id)
 
-        if current is None or current.status in (InviteStatus.EXPIRED, InviteStatus.DELETED):
+        if gone:
             return
 
-        interview = await interviews.get(invite.interview_id)
         await billing.hold_candidate(interview.company_id, key)
     except Exception:
         logger.warning("Couldn't hold credits again for invite %s", invite.id, exc_info=True)
@@ -118,7 +138,9 @@ async def settle_unfinished(interview_id) -> None:
     after = None
 
     while True:
-        rows = await invites.unfinished(interview_id, after, SETTLE_BATCH)
+        async with Session() as session:
+            rows = await invites.unfinished(session, interview_id, after, SETTLE_BATCH)
+
         await settle_removed(rows)
 
         if len(rows) < SETTLE_BATCH:

@@ -24,12 +24,12 @@ def test_invites_never_started_expire_and_give_their_credits_back(ledger, monkey
     waiting = [stale]
     asked = []
 
-    async def fake_expiring(before, limit):
+    async def fake_expiring(session, before, limit):
         asked.append(before)
 
         return list(waiting)
 
-    async def fake_mark(invite_id, before):
+    async def fake_mark(session, invite_id, before):
         # Released first, then marked: a release that fails leaves it for the next run.
         assert ledger == [("release", f"{INTERVIEW_ID}:dave-key")]
         waiting.clear()
@@ -54,21 +54,21 @@ def test_an_invite_started_or_sent_again_while_expiring_keeps_its_credits(ledger
     )
     waiting = [revived]
 
-    async def fake_expiring(before, limit):
+    async def fake_expiring(session, before, limit):
         return list(waiting)
 
-    async def not_marked(invite_id, before):
+    async def not_marked(session, invite_id, before):
         waiting.clear()
 
         return False
 
-    async def fake_interview(interview_id):
+    async def fake_interview(session, interview_id):
         return SimpleNamespace(id=interview_id, company_id=COMPANY_ID)
 
     async def hold(company_id, key):
         ledger.append(("hold", key))
 
-    async def sent_again(invite_id):
+    async def sent_again(session, invite_id):
         return SimpleNamespace(id=invite_id, status=InviteStatus.INVITED)
 
     monkeypatch.setattr(invite_expiry, "expiring", fake_expiring)
@@ -94,15 +94,15 @@ def test_an_invite_another_run_expired_meanwhile_keeps_nothing_set_aside(ledger,
     )
     waiting = [stale]
 
-    async def fake_expiring(before, limit):
+    async def fake_expiring(session, before, limit):
         return list(waiting)
 
-    async def not_marked(invite_id, before):
+    async def not_marked(session, invite_id, before):
         waiting.clear()
 
         return False
 
-    async def expired(invite_id):
+    async def expired(session, invite_id):
         return SimpleNamespace(id=invite_id, status=InviteStatus.EXPIRED)
 
     async def hold(company_id, key):

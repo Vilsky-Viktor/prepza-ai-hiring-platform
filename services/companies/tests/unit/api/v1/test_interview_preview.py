@@ -6,13 +6,13 @@ from fastapi import HTTPException
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 
-from companies.api.v1 import interviews as interview_routes
 from companies.constants.invites import NO_PLEDGE
 from companies.integrations import library, rounds
 from companies.main import app
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.repositories import companies, interviews
+from companies.services import previews as interview_routes
 
 COMPANY_ID = uuid.uuid4()
 SET_ID = uuid.uuid4()
@@ -45,10 +45,10 @@ def started(monkeypatch):
             topic_limits={},
         )
 
-    async def get_interview(_interview_id):
+    async def get_interview(session, _interview_id):
         return interview()
 
-    async def get_company(_company_id):
+    async def get_company(session, _company_id):
         return company
 
     async def content(_set_id):

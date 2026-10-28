@@ -2,30 +2,16 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, status
 from prepza_common.auth.auth import CurrentUser
-from prepza_common.auth.human_check import require_human
-from prepza_common.config.constants import REFERRAL_COOKIE
 from prepza_common.db.paging import PageParams
-from prepza_common.events.analytics import track
-from prepza_common.events.audit_actions import AuditAction, TargetKind
 from prepza_common.http.visitor_country import VisitorCountry
-from prepza_common.limits.limits import at_most, limit
 
 from companies.api.dependencies import Via
-from companies.config import settings
-from companies.constants.invites import (
-    COMPANY_NAME_TAKEN,
-    EMAIL_NOT_VERIFIED,
-    TOO_MANY_COMPANIES,
-)
-from companies.constants.roles import EDITORS, Role
-from companies.core.exceptions import OverLimit
-from companies.core.security import REQUEST_COMPANY
+from companies.constants.roles import Role
+from companies.core.db import Session
 from companies.helpers.brand import color_sets, style_of
 from companies.helpers.logos import logo_path
-from companies.integrations import billing
-from companies.integrations.redis import get_redis
 from companies.models.companies import Company
-from companies.repositories import audit, companies, interviews
+from companies.repositories import interviews
 from companies.schemas.companies import (
     CompanyBalanceOut,
     CompanyCreate,
@@ -36,7 +22,13 @@ from companies.schemas.companies import (
     ReferralRewardOut,
 )
 from companies.schemas.logos import BrandColorSets, BrandStyle
-from companies.services import company_deletion, credits
+from companies.services import (
+    company_creation,
+    company_deletion,
+    company_settings,
+    company_views,
+    credits,
+)
 from companies.services.access import can_edit, is_owner, require_company, require_editor
 from companies.services.verification import verify_by_email
 
@@ -80,59 +72,7 @@ async def create_company(
     """A company needs its owner's verified email, as the welcome credits come once per email. A
     person's first company, which gets them, needs them to show they're a person, on the site;
     through the assistant or an AI app (no browser) it can't be asked."""
-    # The welcome credits come once per owner's email: only a verified one may claim them.
-    if not user.email_verified:
-        raise HTTPException(status.HTTP_403_FORBIDDEN, EMAIL_NOT_VERIFIED)
-
-    owned = await companies.owned_count(user.uid)
-
-    if owned == 0 and via is None:
-        await require_human(request, settings.turnstile_secret_key)
-
-    async def refuse_over(count: int) -> None:
-        await at_most(
-            get_redis(),
-            "MAX_OWNED_COMPANIES",
-            count,
-            # Waiting won't free one: a quota, not a rate limit.
-            status.HTTP_409_CONFLICT,
-            TOO_MANY_COMPANIES,
-            user_id=user.uid,
-        )
-
-    try:
-        await refuse_over(owned)
-        most = await limit(get_redis(), "MAX_OWNED_COMPANIES")
-
-        try:
-            company = await companies.create(body.name, user.uid, user.email, most)
-        except OverLimit as over:
-            # Another company of theirs was made meanwhile: counted again under its lock.
-            await refuse_over(over.count)
-            raise
-    except HTTPException:
-        await track("limit_hit", user_id=user.uid, which="companies_owned")
-        raise
-
-    if company is None:
-        raise HTTPException(status.HTTP_409_CONFLICT, COMPANY_NAME_TAKEN)
-
-    # When billing still fails after its tries, the company is removed again, so trying again
-    # doesn't find its name taken.
-    try:
-        await billing.welcome_company(
-            company.id,
-            user.email,
-            request.cookies.get(REFERRAL_COOKIE),
-            await companies.ids_for_user(user.uid),
-            country,
-        )
-    except Exception:
-        await companies.delete(company.id)
-
-        raise
-
-    await track("company_created", user_id=user.uid, company_id=company.id)
+    company = await company_creation.create(body.name, user, request, via, country)
 
     return CompanyOut(
         id=company.id,
@@ -150,24 +90,18 @@ async def create_company(
 @router.get("")
 async def list_companies(user: CurrentUser, page: PageParams) -> list[CompanyOut]:
     """The user's companies; for an AI agent signed in with an API key, the key's only."""
-    rows = await companies.list_for_user(
-        user.uid, page.offset, page.limit, only=REQUEST_COMPANY.get()
-    )
-    totals = await interviews.counts([item.id for item in rows])
+    rows = await company_views.listed(user.uid, page.offset, page.limit)
 
-    return [company_out(item, user.uid, totals.get(item.id, 0)) for item in rows]
+    return [company_out(item, user.uid, count) for item, count in rows]
 
 
 @router.get("/credits")
 async def list_credits(user: CurrentUser, page: PageParams) -> list[CompanyBalanceOut]:
     """The companies the user may top up, as an owner or admin, with their credits. Declared
     before /{company_id}, which would otherwise take "credits" as an id."""
-    rows = await companies.list_for_user(
-        user.uid, page.offset, page.limit, EDITORS, REQUEST_COMPANY.get()
-    )
-    credits = await billing.companies_credits([item.id for item in rows]) if rows else {}
+    rows = await company_views.with_credits(user.uid, page.offset, page.limit)
 
-    return [CompanyBalanceOut(id=item.id, name=item.name, **credits[str(item.id)]) for item in rows]
+    return [CompanyBalanceOut(id=item.id, name=item.name, **credits) for item, credits in rows]
 
 
 @router.delete("/{company_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -194,8 +128,7 @@ async def get_referral(company_id: UUID, user: CurrentUser) -> ReferralOut:
     """The company's referral link; any member may share it."""
     await require_company(user, company_id)
 
-    found = await billing.company_referral(company_id)
-    names = await companies.names([row["company_id"] for row in found["rewards"]])
+    found = await company_views.referral(company_id)
 
     return ReferralOut(
         code=found["code"],
@@ -203,7 +136,7 @@ async def get_referral(company_id: UUID, user: CurrentUser) -> ReferralOut:
         rewarded=found["rewarded"],
         rewards=[
             ReferralRewardOut(
-                name=names.get(row["company_id"]),
+                name=found["names"].get(row["company_id"]),
                 rewarded_at=row["rewarded_at"],
                 credits=row["credits"],
             )
@@ -221,7 +154,8 @@ async def get_company(company_id: UUID, user: CurrentUser) -> CompanyOut:
     if can_edit(member):
         await verify_by_email(company, user)
 
-    totals = await interviews.counts([company.id])
+    async with Session() as session:
+        totals = await interviews.counts(session, [company.id])
 
     return company_out(company, user.uid, totals.get(company.id, 0))
 
@@ -230,22 +164,4 @@ async def get_company(company_id: UUID, user: CurrentUser) -> CompanyOut:
 async def rename_company(company_id: UUID, body: CompanyRename, user: CurrentUser) -> None:
     """Owners and admins rename the company; names stay unique across prepza, ignoring case."""
     company, _ = await require_editor(user, company_id)
-    name = body.title.strip()
-
-    if not name:
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "Name the company")
-
-    if name == company.name:
-        return
-
-    if not await companies.rename(company.id, name):
-        raise HTTPException(status.HTTP_409_CONFLICT, COMPANY_NAME_TAKEN)
-
-    await audit.record(
-        company.id,
-        user.uid,
-        AuditAction.COMPANY_RENAMED,
-        company.id,
-        target_kind=TargetKind.COMPANY,
-        target_label=name,
-    )
+    await company_settings.rename(company, user.uid, body.title)

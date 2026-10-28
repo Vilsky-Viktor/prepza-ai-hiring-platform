@@ -7,6 +7,8 @@ from prepza_common.limits.rate_limit import hit_emails
 from redis.asyncio import Redis
 
 from companies.config import settings
+from tests.integration import factories
+from tests.integration.transactions import transaction
 
 TOO_MANY_REQUESTS = "Too many requests. Try again later."
 
@@ -61,7 +63,7 @@ def test_invites_refused_for_credits_use_up_no_email_limits(run, monkeypatch):
     from prepza_common.auth.user import User
 
     from companies.integrations import billing
-    from companies.repositories import companies, interview_generations, interviews
+    from companies.repositories import interview_generations, interviews
     from companies.services import candidate_invites
 
     credits = {"left": False}
@@ -77,12 +79,12 @@ def test_invites_refused_for_credits_use_up_no_email_limits(run, monkeypatch):
     async def scenario():
         redis = Redis.from_url(settings.redis_url)
         monkeypatch.setattr(candidate_invites, "get_redis", lambda: redis)
-        company = await companies.create(f"Acme {uuid.uuid4()}", sender.uid, "o@example.com")
-        created = await interviews.create(company.id, uuid.uuid4(), "en", 60)
-        await interview_generations.set_set_id(created.id, uuid.uuid4())
+        company = await factories.company(f"Acme {uuid.uuid4()}", sender.uid, "o@example.com")
+        created = await transaction(interviews.create, company.id, uuid.uuid4(), "en", 60)
+        await transaction(interview_generations.set_set_id, created.id, uuid.uuid4())
         # Titled, so nothing asks library for it.
-        await interviews.set_title(created.id, "Backend interview")
-        interview = await interviews.get(created.id)
+        await transaction(interviews.set_title, created.id, "Backend interview")
+        interview = await transaction(interviews.get, created.id)
         codes = []
 
         try:

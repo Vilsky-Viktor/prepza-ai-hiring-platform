@@ -40,13 +40,13 @@ def stored(monkeypatch):
     """The company and its two interviews; returns the invites sent and the outbox flushes."""
     calls = {"invites": [], "flushes": 0}
 
-    async def get_company(company_id):
+    async def get_company(session, company_id):
         return COMPANY if company_id == COMPANY.id else None
 
-    async def get_interview(interview_id):
+    async def get_interview(session, interview_id):
         return {READY.id: READY, MAKING.id: MAKING}.get(interview_id)
 
-    async def by_ids(ids):
+    async def by_ids(session, ids):
         return [item for item in (READY, MAKING) if item.id in ids]
 
     async def invite(
@@ -68,7 +68,7 @@ def stored(monkeypatch):
     async def flush():
         calls["flushes"] += 1
 
-    async def find(interview_id, email):
+    async def find(session, interview_id, email):
         return calls.get("found")
 
     monkeypatch.setattr(companies, "get", get_company)

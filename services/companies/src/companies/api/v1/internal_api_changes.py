@@ -1,18 +1,12 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.user import User
 from prepza_common.config.constants import MAX_PAGE_SIZE
-from prepza_common.i18n.i18n import CodedError
-from prepza_common.limits.pause import refuse_if_paused
 
 from companies.api.dependencies import ServiceCaller
-from companies.api.v1.internal_api import company_interview
-from companies.constants import error_codes
 from companies.constants.audit import VIA_API
-from companies.constants.invites import NO_EMAILS_FOR_GUEST, InviteStatus
-from companies.integrations.redis import get_redis
-from companies.repositories import candidates, companies
+from companies.core.db import Session
+from companies.repositories import candidates
 from companies.schemas.companies import CompanyCreditsOut
 from companies.schemas.interviews import InterviewCreate, InterviewOut
 from companies.schemas.invites import CandidateChangesIn, CandidateSearchIn, CompanyCandidateOut
@@ -23,7 +17,7 @@ from companies.services import (
     credits,
     interview_creation,
 )
-from companies.services import outbox as outbox_service
+from companies.services.interview_views import company_interview
 
 # What an API key changes, as `user_id`, the owner or admin who made it (the api service
 # checked they still are), and finds by email.
@@ -32,7 +26,9 @@ router = APIRouter(prefix="/internal/companies/{company_id}", tags=["internal"])
 
 async def company_candidate(company_id: UUID, interview_id: UUID, invite_id: UUID):
     interview = await company_interview(company_id, interview_id)
-    invite = await candidates.get(interview.id, invite_id)
+
+    async with Session() as session:
+        invite = await candidates.get(session, interview.id, invite_id)
 
     if invite is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
@@ -44,15 +40,7 @@ async def company_candidate(company_id: UUID, interview_id: UUID, invite_id: UUI
 async def create_interview(
     company_id: UUID, body: InterviewCreate, user_id: str, caller: ServiceCaller
 ) -> InterviewOut:
-    await refuse_if_paused(get_redis(), "interview_generation", company_id, user_id)
-    company = await companies.get(company_id)
-
-    if company is None:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Company not found")
-
-    return await interview_creation.create(
-        company, user_id, None, body.text, body.generate_in, VIA_API
-    )
+    return await interview_creation.create_for_api(company_id, user_id, body.text, body.generate_in)
 
 
 @router.delete(
@@ -98,19 +86,7 @@ async def resend_invite(
     candidate who finished (409) or one prepza doesn't email (invited without a sign-in, 409);
     the invite keeps its return address and theme."""
     interview, invite = await company_candidate(company_id, interview_id, invite_id)
-
-    if invite.status == InviteStatus.DELETED:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
-
-    if invite.guest:
-        raise CodedError(
-            status.HTTP_409_CONFLICT, NO_EMAILS_FOR_GUEST, error_codes.INVITED_WITHOUT_SIGN_IN
-        )
-
-    company = await companies.get(company_id)
-    sender = User(uid=user_id, email="", email_verified=True)
-    await candidate_invites.invite(interview, company, sender, invite.email, via=VIA_API)
-    await outbox_service.flush_quietly()
+    await candidate_invites.resend(company_id, interview, invite, user_id)
 
 
 @router.post("/candidates/search")

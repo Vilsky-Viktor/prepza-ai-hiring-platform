@@ -25,15 +25,15 @@ def asked(monkeypatch):
     ]
     searches = []
 
-    async def found(_company_id):
+    async def found(session, _company_id):
         return company
 
-    async def listed(company_id, offset, limit, q=""):
+    async def listed(session, company_id, offset, limit, q=""):
         searches.append((company_id, offset, limit, q))
 
         return []
 
-    async def counts(_ids):
+    async def counts(session, _ids):
         return {}
 
     monkeypatch.setattr(companies, "get", found)
