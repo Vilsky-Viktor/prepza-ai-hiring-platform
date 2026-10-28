@@ -15,7 +15,9 @@ def queue(monkeypatch):
     """Generations that are recorded, not run."""
     created = []
 
-    async def fake_create(owner_uid, text, company_id=None, language="en", generation_id=None):
+    async def fake_create(
+        session, owner_uid, text, company_id=None, language="en", generation_id=None
+    ):
         created.append((owner_uid, company_id, language))
 
         return Generation(

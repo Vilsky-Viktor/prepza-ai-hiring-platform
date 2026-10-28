@@ -16,15 +16,15 @@ SUBJECT_ID = uuid.uuid4()
 WHO = {"company_id": COMPANY_ID, "user_id": "bob", "subject_id": SUBJECT_ID}
 
 
-def used(events):
-    return [data for kind, data in events if kind == AI_USED]
+def used(published):
+    return [data for kind, data in published if kind == AI_USED]
 
 
-def hits(events):
-    return [data for kind, data in events if kind == LIMIT_HIT]
+def hits(published):
+    return [data for kind, data in published if kind == LIMIT_HIT]
 
 
-def test_a_run_records_one_call_per_model_with_its_summed_usage(events):
+def test_a_run_records_one_call_per_model_with_its_summed_usage(published):
     chat = Chat(
         replies=[reply(300_000, 60_000), reply(200_000, 40_000), reply(10, 2, "gpt-6-luna")]
     )
@@ -36,7 +36,7 @@ def test_a_run_records_one_call_per_model_with_its_summed_usage(events):
 
     asyncio.run(run())
 
-    by_model = {data["model"]: data for data in used(events)}
+    by_model = {data["model"]: data for data in used(published)}
     assert set(by_model) == {MODEL, "gpt-6-luna"}
     data = by_model[MODEL]
     assert (data["input_tokens"], data["output_tokens"]) == (500_000, 100_000)
@@ -50,7 +50,7 @@ def test_a_run_records_one_call_per_model_with_its_summed_usage(events):
     )
 
 
-def test_a_run_cut_short_records_its_unanswered_call_estimated(events):
+def test_a_run_cut_short_records_its_unanswered_call_estimated(published):
     chat = Chat(replies=[reply(100, 10), HANG])
     prompt = "Write the questions"
 
@@ -65,7 +65,7 @@ def test_a_run_cut_short_records_its_unanswered_call_estimated(events):
 
     asyncio.run(cancelled())
 
-    answered, unanswered = used(events)
+    answered, unanswered = used(published)
     assert (answered["input_tokens"], answered["outcome"]) == (100, "cut")
     assert (unanswered["input_tokens"], unanswered["output_tokens"]) == (
         estimated_tokens(prompt),
@@ -74,7 +74,7 @@ def test_a_run_cut_short_records_its_unanswered_call_estimated(events):
     assert (unanswered["model"], unanswered["outcome"]) == (MODEL, "cut")
 
 
-def test_a_run_that_fails_records_what_it_used_as_failed(events):
+def test_a_run_that_fails_records_what_it_used_as_failed(published):
     chat = Chat(replies=[reply(100, 10)])
 
     async def run():
@@ -86,7 +86,7 @@ def test_a_run_that_fails_records_what_it_used_as_failed(events):
     with pytest.raises(ValueError):
         asyncio.run(run())
 
-    [data] = used(events)
+    [data] = used(published)
     assert (data["input_tokens"], data["outcome"]) == (100, "failed")
 
 
@@ -94,7 +94,7 @@ def test_a_run_that_fails_records_what_it_used_as_failed(events):
     "code, limit",
     [("insufficient_quota", "OPENAI_QUOTA"), ("rate_limit_exceeded", "OPENAI_RATE_LIMIT")],
 )
-def test_openai_refusing_a_call_is_recorded_as_its_limit_hit(events, code, limit):
+def test_openai_refusing_a_call_is_recorded_as_its_limit_hit(published, code, limit):
     chat = Chat(replies=[refused(code)])
 
     async def run():
@@ -104,7 +104,7 @@ def test_openai_refusing_a_call_is_recorded_as_its_limit_hit(events, code, limit
     with pytest.raises(openai.RateLimitError):
         asyncio.run(run())
 
-    [hit] = hits(events)
+    [hit] = hits(published)
     assert (hit["limit"], hit["kind"], hit["what"]) == (
         limit,
         "provider:openai",
@@ -112,7 +112,7 @@ def test_openai_refusing_a_call_is_recorded_as_its_limit_hit(events, code, limit
     )
     assert (hit["company_id"], hit["user_id"]) == (str(COMPANY_ID), "bob")
     # The call it refused is recorded as failed, its input estimated.
-    [data] = used(events)
+    [data] = used(published)
     assert data["outcome"] == "failed"
 
 
@@ -128,7 +128,7 @@ class Embeddings:
 
 
 def test_embeddings_are_recorded_for_the_runs_company_with_their_input_estimated(
-    events, monkeypatch
+    published, monkeypatch
 ):
     monkeypatch.setattr(llm, "get_embeddings", lambda: Embeddings())
     texts = ["Python: asyncio", "SQL: joins"]
@@ -139,7 +139,7 @@ def test_embeddings_are_recorded_for_the_runs_company_with_their_input_estimated
 
     assert asyncio.run(run()) == [[1.0], [1.0]]
 
-    [data] = used(events)
+    [data] = used(published)
     assert (data["action"], data["model"], data["outcome"]) == (
         EMBEDDINGS,
         settings.embedding_model,
@@ -149,13 +149,13 @@ def test_embeddings_are_recorded_for_the_runs_company_with_their_input_estimated
     assert (data["company_id"], data["user_id"]) == (str(COMPANY_ID), "bob")
 
 
-def test_refused_embeddings_are_a_provider_hit_and_a_failed_call(events, monkeypatch):
+def test_refused_embeddings_are_a_provider_hit_and_a_failed_call(published, monkeypatch):
     monkeypatch.setattr(llm, "get_embeddings", lambda: Embeddings(refused("insufficient_quota")))
 
     with pytest.raises(openai.RateLimitError):
         asyncio.run(usage.embed(["Python"]))
 
-    [hit] = hits(events)
+    [hit] = hits(published)
     assert (hit["limit"], hit["what"]) == ("OPENAI_QUOTA", EMBEDDINGS)
-    [data] = used(events)
+    [data] = used(published)
     assert (data["action"], data["outcome"], data["company_id"]) == (EMBEDDINGS, "failed", None)

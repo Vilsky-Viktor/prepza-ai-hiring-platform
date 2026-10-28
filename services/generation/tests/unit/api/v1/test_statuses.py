@@ -18,7 +18,7 @@ def test_statuses_say_who_started_each_generation_and_since_when(client, monkeyp
         updated_at=datetime(2026, 10, 7, tzinfo=UTC),
     )
 
-    async def by_ids(ids):
+    async def by_ids(session, ids):
         return [found]
 
     monkeypatch.setattr(generations, "by_ids", by_ids)

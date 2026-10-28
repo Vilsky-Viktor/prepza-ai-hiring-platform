@@ -74,7 +74,7 @@ def generate(calls: int) -> None:
     asyncio.run(run())
 
 
-def test_a_generation_run_is_one_trace_tagged_with_the_generation_id_only(langfuse, events):
+def test_a_generation_run_is_one_trace_tagged_with_the_generation_id_only(langfuse, published):
     generate(3)
 
     [handler] = langfuse["handlers"]
@@ -91,7 +91,7 @@ def test_a_generation_run_is_one_trace_tagged_with_the_generation_id_only(langfu
     assert "Acme" not in tags and "jane@example.com" not in tags
 
 
-def test_a_langgraph_runs_model_calls_report_to_the_runs_trace(langfuse, events):
+def test_a_langgraph_runs_model_calls_report_to_the_runs_trace(langfuse, published):
     class State(TypedDict):
         text: str
 
@@ -119,7 +119,7 @@ def test_a_langgraph_runs_model_calls_report_to_the_runs_trace(langfuse, events)
     assert handler.calls == 2
 
 
-def test_a_generations_runs_before_and_after_review_share_one_trace(langfuse, events):
+def test_a_generations_runs_before_and_after_review_share_one_trace(langfuse, published):
     generate(1)
     generate(1)
 
@@ -127,7 +127,7 @@ def test_a_generations_runs_before_and_after_review_share_one_trace(langfuse, ev
     assert first.trace_id == resumed.trace_id
 
 
-def test_without_langfuses_keys_nothing_is_traced(langfuse, events, monkeypatch):
+def test_without_langfuses_keys_nothing_is_traced(langfuse, published, monkeypatch):
     monkeypatch.delenv("LANGFUSE_SECRET_KEY")
 
     generate(1)

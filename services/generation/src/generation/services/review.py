@@ -10,6 +10,7 @@ from generation.constants.generation import (
     TOO_MANY_SUBTOPICS,
 )
 from generation.constants.statuses import Status
+from generation.core.db import Session
 from generation.integrations import tasks
 from generation.integrations.redis import get_redis
 from generation.models.generation import Generation
@@ -55,11 +56,15 @@ async def submit_review(generation: Generation, body: ReviewRequest) -> Generati
             user_id=generation.owner_uid,
         )
 
-    if not await generations.claim_review(generation.id):
+    async with Session.begin() as session:
+        claimed = await generations.claim_review(session, generation.id)
+
+    if not claimed:
         raise HTTPException(status.HTTP_409_CONFLICT, NOT_AWAITING_REVIEW)
 
     await tasks.enqueue(
         RUN_GENERATION, {"generation_id": str(generation.id), "resume": body.model_dump()}
     )
 
-    return await generations.get(generation.id)
+    async with Session() as session:
+        return await generations.get(session, generation.id)

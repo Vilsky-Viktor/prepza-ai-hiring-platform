@@ -23,7 +23,7 @@ def started(monkeypatch):
     """Generations and regenerated questions that got past the checks."""
     calls = []
 
-    async def create(owner_uid, text, company_id=None, language="en", **kwargs):
+    async def create(session, owner_uid, text, company_id=None, language="en", **kwargs):
         calls.append(("generation", owner_uid))
 
         return Generation(
@@ -79,7 +79,7 @@ def regenerate(client, paid):
 
 @pytest.mark.parametrize("call", [generate, regenerate])
 def test_an_unpaid_companys_ai_stops_once_the_unpaid_spend_reaches_the_default_cap(
-    client, redis, events, started, call
+    client, redis, published, started, call
 ):
     spent(redis, LIMITS["AI_SPEND_UNPAID_DAY"].default)
 
@@ -88,7 +88,7 @@ def test_an_unpaid_companys_ai_stops_once_the_unpaid_spend_reaches_the_default_c
     assert refused.status_code == 503
     assert refused.json()["detail"] == AI_PAUSED_TODAY
     assert started == []
-    [(kind, hit)] = events
+    [(kind, hit)] = published
     assert kind == LIMIT_HIT
     assert (hit["limit"], hit["company_id"], hit["user_id"]) == (
         "AI_SPEND_UNPAID_DAY",

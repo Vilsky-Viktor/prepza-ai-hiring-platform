@@ -27,7 +27,7 @@ class FakeStore:
         ):
             monkeypatch.setattr(storage, name, getattr(self, name))
 
-    async def add(self, kind, subject_id, key, step, payload, body):
+    async def add(self, session, kind, subject_id, key, step, payload, body):
         if any(
             (r.kind, r.subject_id, r.key) == (kind, subject_id, key) for r in self.rows.values()
         ):
@@ -46,27 +46,27 @@ class FakeStore:
         )
         self.rows[row.id] = row
 
-    async def unsent(self, limit):
+    async def unsent(self, session, limit):
         return [row for row in self.rows.values() if row.batch_id is None][:limit]
 
-    async def sent_batches(self):
+    async def sent_batches(self, session):
         return sorted({row.batch_id for row in self.rows.values() if row.batch_id})
 
-    async def in_batch(self, batch_id):
+    async def in_batch(self, session, batch_id):
         return [row for row in self.rows.values() if row.batch_id == batch_id]
 
-    async def set_batch(self, ids, batch_id):
+    async def set_batch(self, session, ids, batch_id):
         for work_id in ids:
             self.rows[work_id].batch_id = batch_id
 
-    async def next_step(self, work_id, batch_id, step, attempt, payload, body):
+    async def next_step(self, session, work_id, batch_id, step, attempt, payload, body):
         row = self.rows.get(work_id)
 
         if row is not None and row.batch_id == batch_id:
             row.step, row.attempt, row.payload, row.body = step, attempt, payload, body
             row.batch_id = None
 
-    async def remove(self, ids):
+    async def remove(self, session, ids):
         for work_id in ids:
             self.rows.pop(work_id, None)
 

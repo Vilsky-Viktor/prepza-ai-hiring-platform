@@ -29,12 +29,12 @@ def claimed(monkeypatch):
     """Reviews that got past the checks to the claim."""
     claims = []
 
-    async def claim_review(generation_id):
+    async def claim_review(session, generation_id):
         claims.append(generation_id)
 
         return True
 
-    async def get(generation_id):
+    async def get(session, generation_id):
         return awaiting_review()
 
     monkeypatch.setattr(generations, "claim_review", claim_review)

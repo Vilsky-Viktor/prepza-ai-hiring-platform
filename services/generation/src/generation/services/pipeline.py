@@ -17,8 +17,8 @@ from generation.integrations import library
 from generation.integrations.redis import get_redis
 from generation.integrations.usage import ai_run
 from generation.models.generation import Generation
-from generation.repositories import generations
 from generation.services import outbox as outbox_service
+from generation.services.run_state import is_cancelled, save
 from generation.services.sample_checks import check_sample
 
 
@@ -54,7 +54,7 @@ async def run_pipeline(graph, generation: Generation, resume: dict | None) -> No
     async with ai_run(action, subject_id=generation.id, **who) as run:
         await stream_graph(graph, generation, graph_input, config, topic_size(values))
 
-        if await generations.is_cancelled(generation.id):
+        if await is_cancelled(generation.id):
             run.outcome = Outcome.CUT
 
 
@@ -66,23 +66,21 @@ async def stream_graph(graph, generation: Generation, graph_input, config: dict,
     async with aclosing(graph.astream(graph_input, config, stream_mode="updates")) as stream:
         async for chunk in stream:
             # Stop spending tokens as soon as the user cancels.
-            if await generations.is_cancelled(generation.id):
+            if await is_cancelled(generation.id):
                 return
 
             # The stream ends by itself after an interrupt; leaving early would abort the run.
             if "__interrupt__" in chunk:
                 topics = chunk["__interrupt__"][0].value["topics"]
-                await generations.update(
-                    generation.id, status=Status.AWAITING_REVIEW, topics=topics
-                )
+                await save(generation.id, status=Status.AWAITING_REVIEW, topics=topics)
                 paused = True
 
                 continue
 
             if track_progress(progress, chunk, size):
-                await generations.update(generation.id, progress=progress)
+                await save(generation.id, progress=progress)
 
-    if paused or await generations.is_cancelled(generation.id):
+    if paused or await is_cancelled(generation.id):
         return
 
     values = (await graph.aget_state(config)).values
@@ -118,7 +116,5 @@ async def stream_graph(graph, generation: Generation, graph_input, config: dict,
 async def finish(generation_id: uuid.UUID, set_id: uuid.UUID, event=None) -> None:
     """Marks the generation done with its saved set. Cancelled while the set was being saved,
     it stays cancelled, and the set nobody will use is deleted."""
-    if not await generations.update(
-        generation_id, event=event, status=Status.DONE, preparation_id=set_id
-    ):
+    if not await save(generation_id, event, status=Status.DONE, preparation_id=set_id):
         await library.delete_set(set_id)

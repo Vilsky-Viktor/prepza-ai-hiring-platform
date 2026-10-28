@@ -17,6 +17,7 @@ from generation.schemas.generation import ReviewRequest
 from generation.services import pipeline
 from generation.services.review import submit_review
 from generation.services.topic_caps import generation_out
+from tests.integration.transactions import transaction
 
 # Values only generation reads, so no other service's tests in database 15 touch them.
 NAMES = ("MAX_TOPICS", "MAX_SUBTOPICS", "INTERVIEW_QUESTIONS_PER_TOPIC")
@@ -46,11 +47,11 @@ def controls(run):
 
 
 async def awaiting_review(count: int):
-    created = await generations.create(f"ann-{uuid.uuid4().hex}", "Backend developer")
+    created = await transaction(generations.create, f"ann-{uuid.uuid4().hex}", "Backend developer")
     topics = [{"main_topic": f"Topic {i}", "subtopics": []} for i in range(count)]
-    await generations.update(created.id, status=Status.AWAITING_REVIEW, topics=topics)
+    await transaction(generations.update, created.id, status=Status.AWAITING_REVIEW, topics=topics)
 
-    return await generations.get(created.id)
+    return await transaction(generations.get, created.id)
 
 
 def test_a_review_is_held_to_the_caps_set_in_controls(run, controls):
@@ -95,7 +96,9 @@ def test_the_next_run_takes_its_questions_per_topic_from_controls(run, controls,
     monkeypatch.setattr(pipeline, "stream_graph", stream)
 
     async def scenario():
-        generation = await generations.create(f"ann-{uuid.uuid4().hex}", "Backend developer")
+        generation = await transaction(
+            generations.create, f"ann-{uuid.uuid4().hex}", "Backend developer"
+        )
         await pipeline.run_pipeline(NewGraph(), generation, None)
         get_redis.cache_clear()
 
@@ -117,7 +120,9 @@ def test_without_an_edit_a_run_takes_the_default(run, controls, monkeypatch):
     monkeypatch.setattr(pipeline, "stream_graph", stream)
 
     async def scenario():
-        generation = await generations.create(f"ann-{uuid.uuid4().hex}", "Backend developer")
+        generation = await transaction(
+            generations.create, f"ann-{uuid.uuid4().hex}", "Backend developer"
+        )
         await pipeline.run_pipeline(NewGraph(), generation, None)
         get_redis.cache_clear()
 

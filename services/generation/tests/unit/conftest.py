@@ -1,14 +1,11 @@
-import base64
 import itertools
-import json
 import uuid
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.events import pubsub
 from prepza_common.redis import memory_cache
 
-from generation.api.v1 import internal, superadmin, superadmin_additions
+from generation.api.v1 import internal, superadmin
 from generation.integrations import library, llm
 from generation.repositories import generations
 from generation.services import (
@@ -20,6 +17,7 @@ from generation.services import (
     review,
     sample_checks,
     screen,
+    starts,
     top_up,
     topic_caps,
 )
@@ -67,7 +65,7 @@ def redis(monkeypatch):
         batch_usage,
         internal,
         superadmin,
-        superadmin_additions,
+        starts,
         budget,
         review,
         additions,
@@ -80,22 +78,6 @@ def redis(monkeypatch):
         monkeypatch.setattr(module, "get_redis", lambda: fake)
 
     return fake
-
-
-@pytest.fixture(autouse=True)
-def events(monkeypatch):
-    """The events published straight to Pub/Sub (AI used, limit hit), as (type, data); none
-    reaches it."""
-    sent = []
-
-    async def publish_batch(messages, timeout=None):
-        for message in messages:
-            data = json.loads(base64.b64decode(message["data"]))
-            sent.append((message["attributes"]["type"], data))
-
-    monkeypatch.setattr(pubsub, "publish_batch", publish_batch)
-
-    return sent
 
 
 class Embeddings:
@@ -149,7 +131,7 @@ def writer(monkeypatch):
 
         return [[uuid.uuid4()] for _ in added.topics]
 
-    async def update(generation_id, event=None, **values):
+    async def update(session, generation_id, event=None, **values):
         recorded["updates"].append(values)
 
         return True

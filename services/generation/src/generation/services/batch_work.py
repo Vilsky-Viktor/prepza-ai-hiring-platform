@@ -11,6 +11,7 @@ import uuid
 from generation.constants.actions import CAMPAIGN_TRANSLATION, NEWS_TRANSLATION, QUESTION_VERIFY
 from generation.constants.batch_work import MAX_BATCH_WORK, BatchKind, BatchStep
 from generation.constants.quality import BATCH_RETRY_STATUSES
+from generation.core.db import Session
 from generation.integrations import library, notifications, openai_batch
 from generation.integrations.usage import ai_run
 from generation.models.batch_work import BatchWork
@@ -35,7 +36,9 @@ async def queue(kind: str, subject_id: uuid.UUID, step: str, payload: dict, key:
     """Queues a piece of work at its first step; one already waiting for the same subject (and
     language) keeps its place."""
     body = body_for(kind, step, payload)
-    await batch_work.add(kind, subject_id, key, step, payload, body)
+
+    async with Session.begin() as session:
+        await batch_work.add(session, kind, subject_id, key, step, payload, body)
 
 
 async def queue_rewrite(
@@ -69,26 +72,32 @@ def question_payload(context: QuestionContext, text: str, reasons: list[str]) ->
 
 async def submit_pending() -> None:
     """Sends the waiting pieces, up to MAX_BATCH_WORK, as one batch."""
-    waiting = await batch_work.unsent(MAX_BATCH_WORK)
+    async with Session() as session:
+        waiting = await batch_work.unsent(session, MAX_BATCH_WORK)
 
     if not waiting:
         return
 
     batch_id = await openai_batch.submit({str(work.id): work.body for work in waiting})
-    await batch_work.set_batch([work.id for work in waiting], batch_id)
+    await set_batch([work.id for work in waiting], batch_id)
     logger.info("Sent %d pieces of batch work in batch %s", len(waiting), batch_id)
 
 
 async def collect_finished() -> None:
     """Moves on every piece of a finished batch. A failed or expired batch's pieces without a
     reply go out again in the next batch."""
-    for batch_id in await batch_work.sent_batches():
+    async with Session() as session:
+        batch_ids = await batch_work.sent_batches(session)
+
+    for batch_id in batch_ids:
         status, output_file_id = await openai_batch.status(batch_id)
 
         if status != "completed" and status not in BATCH_RETRY_STATUSES:
             continue
 
-        pieces = await batch_work.in_batch(batch_id)
+        async with Session() as session:
+            pieces = await batch_work.in_batch(session, batch_id)
+
         replies, used = await openai_batch.results(output_file_id) if output_file_id else ({}, [])
         labels = {
             str(work.id): (
@@ -102,7 +111,7 @@ async def collect_finished() -> None:
 
         for work in pieces:
             if str(work.id) not in replies and status != "completed":
-                await batch_work.set_batch([work.id], None)
+                await set_batch([work.id], None)
 
                 continue
 
@@ -112,7 +121,7 @@ async def collect_finished() -> None:
             except Exception:
                 # Sent again in the next batch; a failing subject gives up after its attempts.
                 logger.exception("Batch work %s on %s failed", work.kind, work.subject_id)
-                await batch_work.set_batch([work.id], None)
+                await set_batch([work.id], None)
 
 
 async def move_on(work: BatchWork, batch_id: str, reply: str | None) -> None:
@@ -121,20 +130,32 @@ async def move_on(work: BatchWork, batch_id: str, reply: str | None) -> None:
 
     if found.give_up:
         logger.warning("Batch work %s on %s gave up", work.kind, work.subject_id)
-        await batch_work.remove([work.id])
+        await remove(work.id)
 
         return
 
     if found.result is None:
         body = body_for(work.kind, found.step, found.payload)
-        await batch_work.next_step(
-            work.id, batch_id, found.step, work.attempt + 1, found.payload, body
-        )
+
+        async with Session.begin() as session:
+            await batch_work.next_step(
+                session, work.id, batch_id, found.step, work.attempt + 1, found.payload, body
+            )
 
         return
 
     await save(work, found.result)
-    await batch_work.remove([work.id])
+    await remove(work.id)
+
+
+async def set_batch(ids: list[uuid.UUID], batch_id: str | None) -> None:
+    async with Session.begin() as session:
+        await batch_work.set_batch(session, ids, batch_id)
+
+
+async def remove(work_id: uuid.UUID) -> None:
+    async with Session.begin() as session:
+        await batch_work.remove(session, [work_id])
 
 
 async def save(work: BatchWork, result) -> None:

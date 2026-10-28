@@ -16,7 +16,7 @@ from generation.services import budget
 COMPANY_ID = uuid.uuid4()
 
 
-def test_generations_past_the_daily_limits_edited_value_wait_until_tomorrow(redis, events):
+def test_generations_past_the_daily_limits_edited_value_wait_until_tomorrow(redis, published):
     redis.limits["DAILY_GENERATION_LIMIT"] = "2"
 
     asyncio.run(budget.use_daily_budget())
@@ -30,7 +30,7 @@ def test_generations_past_the_daily_limits_edited_value_wait_until_tomorrow(redi
     assert paused.value.detail == GENERATIONS_PAUSED
     [key] = redis.counts
     assert key.startswith(f"{BUDGET_KEY}:")
-    [(kind, hit)] = events
+    [(kind, hit)] = published
     assert kind == LIMIT_HIT
     assert (hit["limit"], hit["company_id"], hit["user_id"]) == (
         "DAILY_GENERATION_LIMIT",

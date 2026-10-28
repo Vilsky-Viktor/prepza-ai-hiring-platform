@@ -2,7 +2,6 @@
 what a run stores, a second run in the same week, and a superadmin's review."""
 
 import pytest
-from prepza_common.events import pubsub
 from sqlalchemy import delete, inspect
 
 from generation.constants.patterns import PATTERN_DONE_KEY, PatternStatus
@@ -13,18 +12,15 @@ from generation.integrations.redis import get_redis
 from generation.models.patterns import QualityPattern
 from generation.repositories import patterns
 from generation.services import patterns as job
+from tests.integration.transactions import transaction
 from tests.unit.services.test_pattern_checks import signal
 from tests.unit.services.test_pattern_job import Model, found
 
 
 @pytest.fixture(autouse=True)
-def no_events(monkeypatch):
-    """The run's AI cost isn't published: it would reach the local billing's records."""
-
-    async def publish_batch(messages, timeout=None):
-        pass
-
-    monkeypatch.setattr(pubsub, "publish_batch", publish_batch)
+def fresh_redis():
+    """A Redis client made on this test's event loop (the shared fixtures keep its AI cost from
+    being published)."""
     get_redis.cache_clear()
 
 
@@ -93,7 +89,7 @@ def test_a_run_stores_a_proposed_pattern_and_a_second_run_that_week_counts_nothi
             await job.run()
             done = await get_redis().exists(PATTERN_DONE_KEY.format(flag=flag))
 
-            return await patterns.for_flag(flag), done
+            return await transaction(patterns.for_flag, flag), done
         finally:
             await cleanup(flag)
 
@@ -121,7 +117,7 @@ def test_a_pattern_found_again_next_week_adds_to_its_count_and_last_seen(run, mo
             await get_redis().delete(PATTERN_DONE_KEY.format(flag=flag))
             await job.run()
 
-            return await patterns.for_flag(flag)
+            return await transaction(patterns.for_flag, flag)
         finally:
             await cleanup(flag)
 
@@ -136,12 +132,12 @@ def test_a_superadmins_review_is_kept_with_who_and_when_once(run):
 
     async def scenario():
         try:
-            await patterns.add("The scenario leaves out a detail.", flag, 3)
-            [pattern] = await patterns.for_flag(flag)
-            first = await patterns.review(pattern.id, PatternStatus.DISMISSED, "ann")
-            again = await patterns.review(pattern.id, PatternStatus.APPROVED, "bob")
-            dismissed = await patterns.by_status(PatternStatus.DISMISSED, 0, 1000)
-            proposed = await patterns.by_status(PatternStatus.PROPOSED, 0, 1000)
+            await transaction(patterns.add, "The scenario leaves out a detail.", flag, 3)
+            [pattern] = await transaction(patterns.for_flag, flag)
+            first = await transaction(patterns.review, pattern.id, PatternStatus.DISMISSED, "ann")
+            again = await transaction(patterns.review, pattern.id, PatternStatus.APPROVED, "bob")
+            dismissed = await transaction(patterns.by_status, PatternStatus.DISMISSED, 0, 1000)
+            proposed = await transaction(patterns.by_status, PatternStatus.PROPOSED, 0, 1000)
 
             return pattern.id, first, again, dismissed, proposed
         finally:

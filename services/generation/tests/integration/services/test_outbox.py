@@ -1,5 +1,3 @@
-import base64
-import json
 import uuid
 from datetime import UTC, datetime, timedelta
 
@@ -11,6 +9,8 @@ from generation.core.db import Session
 from generation.models.outbox import OutboxEvent
 from generation.repositories import generations
 from generation.services import outbox as outbox_service
+from generation.services import schedules
+from tests.integration.transactions import transaction
 
 
 async def waiting():
@@ -20,33 +20,23 @@ async def waiting():
         )
 
 
-def test_an_expired_interview_review_saves_its_event_and_the_flush_publishes_it(run, monkeypatch):
-    sent = []
-
-    async def publish_batch(messages, timeout):
-        sent.extend(
-            (message["attributes"]["type"], json.loads(base64.b64decode(message["data"])))
-            for message in messages
-        )
-
-    monkeypatch.setattr(pubsub, "publish_batch", publish_batch)
-
+def test_an_expired_interview_review_saves_its_event_and_the_flush_publishes_it(run, published):
     async def scenario():
-        interview = await generations.create("ann", "job", uuid.uuid4())
-        await generations.update(interview.id, status=Status.AWAITING_REVIEW)
+        interview = await transaction(generations.create, "ann", "job", uuid.uuid4())
+        await transaction(generations.update, interview.id, status=Status.AWAITING_REVIEW)
 
-        await generations.expire_reviews(datetime.now(UTC) + timedelta(seconds=1))
+        await schedules.cancel_reviews(datetime.now(UTC) + timedelta(seconds=1))
         saved = [(row.event_type, row.data) for row in await waiting()]
-        published = await outbox_service.flush()
+        flushed = await outbox_service.flush()
 
-        return interview.id, saved, published, await waiting()
+        return interview.id, saved, flushed, await waiting()
 
-    interview_id, saved, published, left = run(scenario())
+    interview_id, saved, flushed, left = run(scenario())
 
     expected = ("generation.cancelled", {"generation_id": str(interview_id)})
     assert expected in saved
-    assert expected in sent
-    assert published == len(saved)
+    assert expected in published
+    assert flushed == len(saved)
     assert left == []
 
 
@@ -70,12 +60,12 @@ def test_a_failed_publish_leaves_the_event_for_the_next_flush(run, monkeypatch):
 
 def test_a_stuck_interview_generation_saves_its_failed_event_and_a_template_none(run):
     async def scenario():
-        interview = await generations.create("ann", "job", uuid.uuid4())
-        template = await generations.create("ann", "template", kind="template")
-        await generations.claim_run(interview.id)
-        await generations.claim_run(template.id)
+        interview = await transaction(generations.create, "ann", "job", uuid.uuid4())
+        template = await transaction(generations.create, "ann", "template", kind="template")
+        await transaction(generations.claim_run, interview.id)
+        await transaction(generations.claim_run, template.id)
         later = datetime.now(UTC) + timedelta(seconds=1)
-        await generations.fail_stuck(later, later, "stopped")
+        await schedules.fail_stuck(later, later)
         saved = [(row.event_type, row.data) for row in await waiting()]
 
         return interview.id, template.id, saved

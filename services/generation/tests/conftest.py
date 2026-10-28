@@ -23,6 +23,7 @@ os.environ.setdefault("NOTIFICATIONS_SERVICE_SECRET", "test-secret-that-is-at-le
 
 import pytest
 from fastapi.testclient import TestClient
+from no_publishing import no_publishing, published  # noqa: F401
 from prepza_common.redis import memory_cache
 
 from generation.main import app

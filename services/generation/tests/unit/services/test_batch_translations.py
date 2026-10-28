@@ -75,7 +75,7 @@ def test_each_missing_language_is_one_piece_queued_once(store, saved):
 
 
 def test_a_reply_within_the_limits_is_saved_and_priced_at_batch_price(
-    store, saved, monkeypatch, events
+    store, saved, monkeypatch, published
 ):
     asyncio.run(translate_news(NEWS_ID))
 
@@ -91,7 +91,7 @@ def test_a_reply_within_the_limits_is_saved_and_priced_at_batch_price(
         ("news", NEWS_ID, {"fr": {"title": "French title", "text": "French text"}}),
     ]
     assert store.rows == {}
-    used = [data for kind, data in events if kind == AI_USED]
+    used = [data for kind, data in published if kind == AI_USED]
     assert {data["action"] for data in used} == {NEWS_TRANSLATION}
     assert {data["subject_id"] for data in used} == {str(NEWS_ID)}
 

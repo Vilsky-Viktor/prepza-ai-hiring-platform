@@ -85,7 +85,7 @@ def test_a_wrong_set_waits_for_the_next_batch_with_every_marked_option(monkeypat
     record(monkeypatch, flag=QualityFlag.WRONG_KEY, quality=multi_answer)
     queued = []
 
-    async def fake_add(question_id, text, marked):
+    async def fake_add(session, question_id, text, marked):
         queued.append((question_id, text, marked))
 
     monkeypatch.setattr(key_checks, "add", fake_add)

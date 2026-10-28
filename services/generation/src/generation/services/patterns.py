@@ -1,5 +1,7 @@
 import logging
+from uuid import UUID
 
+from fastapi import HTTPException, status
 from langchain_core.messages import HumanMessage, SystemMessage
 from prepza_common.limits import pause
 from prepza_common.redis import redis_lock
@@ -16,6 +18,7 @@ from generation.constants.patterns import (
     PATTERN_WINDOW_DAYS,
     PatternStatus,
 )
+from generation.core.db import Session
 from generation.helpers.patterns import (
     known_block,
     names_something,
@@ -26,6 +29,7 @@ from generation.helpers.patterns import (
 from generation.integrations import library, llm
 from generation.integrations.redis import get_redis
 from generation.integrations.usage import ai_run
+from generation.models.patterns import QualityPattern
 from generation.prompts.patterns import FLAG_MEANINGS, PATTERNS_INPUT, PATTERNS_SYSTEM
 from generation.repositories import patterns
 from generation.schemas.patterns import ProposedPattern, ProposedPatterns, QualitySignal
@@ -69,11 +73,38 @@ async def find_patterns(
 
 async def propose(flag: str, signals: list[QualitySignal]) -> None:
     """Asks the model for the recurring mistakes in one flag's questions; a new one is stored as
-    proposed, a known one counts again (a dismissed one stays dismissed)."""
-    known = await patterns.for_flag(flag)
+    proposed, a known one counts again (a dismissed one stays dismissed). What the model found
+    is saved in one transaction, after its call: all of it or, on a failure, none."""
+    async with Session() as session:
+        known = await patterns.for_flag(session, flag)
 
     async with ai_run(QUALITY_PATTERNS):
         result = await find_patterns(flag, signals, [pattern.text for pattern in known])
+
+    seen, new = sorted_out(flag, signals, known, result)
+
+    async with Session.begin() as session:
+        for pattern_id, count in seen:
+            await patterns.seen(session, pattern_id, count)
+
+        for text, count in new:
+            await patterns.add(session, text, flag, count)
+
+    for _, count in new:
+        logger.info("Pattern for %s proposed, shown by %d questions", flag, count)
+
+
+def sorted_out(
+    flag: str,
+    signals: list[QualitySignal],
+    known: list[QualityPattern],
+    result: ProposedPatterns,
+) -> tuple[list[tuple[UUID, int]], list[tuple[str, int]]]:
+    """The model's patterns sorted out: the known ones it found again, as (id, questions), and
+    the new ones to keep, as (text, questions). Too few questions, a dismissed pattern and a
+    rejected text are left out."""
+    seen = []
+    new = []
 
     for proposed in result.patterns:
         proposed.text = proposed.text.strip()
@@ -92,7 +123,7 @@ async def propose(flag: str, signals: list[QualitySignal]) -> None:
 
         if same:
             if same[0].status != PatternStatus.DISMISSED:
-                await patterns.seen(same[0].id, count)
+                seen.append((same[0].id, count))
 
             logger.info("Pattern %s for %s seen again in %d questions", same[0].id, flag, count)
 
@@ -106,8 +137,20 @@ async def propose(flag: str, signals: list[QualitySignal]) -> None:
 
             continue
 
-        await patterns.add(proposed.text, flag, count)
-        logger.info("Pattern for %s proposed, shown by %d questions", flag, count)
+        new.append((proposed.text, count))
+
+    return seen, new
+
+
+async def review(pattern_id: UUID, decision: PatternStatus, superadmin_id: str) -> None:
+    """A superadmin approves or dismisses a proposed pattern; only one review wins."""
+    async with Session.begin() as session:
+        reviewed = await patterns.review(session, pattern_id, decision, superadmin_id)
+
+    if not reviewed:
+        raise HTTPException(status.HTTP_409_CONFLICT, "This pattern was already reviewed")
+
+    logger.info("Quality pattern %s %s by superadmin %s", pattern_id, decision, superadmin_id)
 
 
 async def run() -> None:

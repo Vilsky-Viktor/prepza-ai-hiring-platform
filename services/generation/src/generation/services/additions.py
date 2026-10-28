@@ -31,8 +31,8 @@ from generation.integrations import library
 from generation.integrations.redis import get_redis
 from generation.integrations.usage import ai_run, embed
 from generation.models.generation import Generation
-from generation.repositories import generations
 from generation.schemas.library import ReuseIn
+from generation.services import run_state
 from generation.services.dedupe import distinct_by_meaning
 from generation.services.nodes.questions import focus_for, generate_questions
 from generation.services.nodes.reuse import topic_text
@@ -64,7 +64,7 @@ async def run_addition(generation: Generation) -> None:
 
     ids = await library.add_questions(generation.preparation_id, AddedQuestionsIn(topics=written))
     await check_topics(ids)
-    await generations.update(generation.id, status=Status.DONE)
+    await run_state.save(generation.id, status=Status.DONE)
 
 
 async def write(
@@ -94,9 +94,9 @@ async def write(
         else:
             progress["done"] = min(progress["done"] + 1, progress["total"])
 
-        await generations.update(generation.id, progress=dict(progress))
+        await run_state.save(generation.id, progress=dict(progress))
 
-    await generations.update(generation.id, progress=dict(progress))
+    await run_state.save(generation.id, progress=dict(progress))
 
     async def topic_questions(topic, practice, company, reused) -> TopicAdditionIn:
         # Each side holds its share of multi-answer questions and, on material in a formal

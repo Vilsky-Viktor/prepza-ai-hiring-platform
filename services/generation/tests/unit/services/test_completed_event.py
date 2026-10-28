@@ -41,7 +41,7 @@ def published(monkeypatch):
     async def saved(_payload):
         return SET_ID
 
-    async def update(generation_id, event=None, **values):
+    async def update(session, generation_id, event=None, **values):
         if event:
             sent.append(event)
 
@@ -53,7 +53,7 @@ def published(monkeypatch):
     async def nothing_for(_set_id):
         return None
 
-    async def not_cancelled(_generation_id):
+    async def not_cancelled(session, _generation_id):
         return False
 
     monkeypatch.setattr(outbox_service, "flush_quietly", nothing)
@@ -107,7 +107,7 @@ def test_a_finished_template_is_saved_without_telling_companies(published):
 def test_a_set_saved_after_a_cancel_is_deleted(published, monkeypatch):
     deleted = []
 
-    async def cancelled(generation_id, event=None, **values):
+    async def cancelled(session, generation_id, event=None, **values):
         return False
 
     async def delete_set(set_id):
@@ -135,7 +135,7 @@ def test_a_run_makes_as_many_ai_calls_at_once_as_set_in_controls(
     async def stream(graph, generation, graph_input, config, size):
         configs.append(config)
 
-    async def not_cancelled(_generation_id):
+    async def not_cancelled(session, _generation_id):
         return False
 
     monkeypatch.setattr(pipeline, "stream_graph", stream)
@@ -171,7 +171,7 @@ def test_a_new_run_takes_its_questions_per_topic_from_controls(
     async def stream(graph, generation, graph_input, config, size):
         started.append((graph_input["topic_size"], size))
 
-    async def not_cancelled(_generation_id):
+    async def not_cancelled(session, _generation_id):
         return False
 
     monkeypatch.setattr(pipeline, "stream_graph", stream)
@@ -196,7 +196,7 @@ def test_a_continued_run_keeps_the_size_it_started_with(monkeypatch, redis):
     async def stream(graph, generation, graph_input, config, size):
         sizes.append((graph_input, size))
 
-    async def not_cancelled(_generation_id):
+    async def not_cancelled(session, _generation_id):
         return False
 
     monkeypatch.setattr(pipeline, "stream_graph", stream)

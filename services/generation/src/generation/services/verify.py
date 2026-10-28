@@ -8,6 +8,7 @@ from prepza_common.ai.multi_answer import is_multi
 from generation.constants.actions import QUESTION_VERIFY
 from generation.constants.generation import MAX_MULTI_CORRECT
 from generation.constants.quality import QualityFlag
+from generation.core.db import Session
 from generation.helpers.prompts import bullet_list, checker_messages
 from generation.integrations import library, llm
 from generation.integrations.usage import ai_run
@@ -200,11 +201,14 @@ async def verify(question_id: UUID, flag: QualityFlag, now: bool = False) -> Non
         if question.flag == QualityFlag.WRONG_KEY and now:
             # Checked now, so a check still waiting in a batch is dropped: its result would
             # come after this one's.
-            await key_checks.remove([question_id])
+            async with Session.begin() as session:
+                await key_checks.remove(session, [question_id])
+
             await check_key(question_id, question, context, now=True)
         elif question.flag == QualityFlag.WRONG_KEY:
             # Nobody waits on it, so it goes in the next OpenAI batch at half price.
-            await key_checks.add(question_id, question.text, marked_answer(question))
+            async with Session.begin() as session:
+                await key_checks.add(session, question_id, question.text, marked_answer(question))
         elif question.flag == QualityFlag.WEAK_OPTIONS:
             await new_options(question_id, question, context)
         else:

@@ -36,10 +36,10 @@ def pattern(status=PatternStatus.PROPOSED, text="Two options say the same thing.
 def stored(monkeypatch):
     rows = [pattern(), pattern(PatternStatus.APPROVED, "The scenario leaves out a detail.")]
 
-    async def by_status(status, offset, limit):
+    async def by_status(session, status, offset, limit):
         return [row for row in rows if row.status == status][offset : offset + limit]
 
-    async def review(pattern_id, status, reviewed_by):
+    async def review(session, pattern_id, status, reviewed_by):
         found = [row for row in rows if row.id == pattern_id]
 
         if not found or found[0].status != PatternStatus.PROPOSED:

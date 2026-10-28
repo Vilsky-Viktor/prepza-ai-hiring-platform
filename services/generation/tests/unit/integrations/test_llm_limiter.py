@@ -28,7 +28,7 @@ def test_without_redis_requests_are_not_held_back(monkeypatch):
     assert asyncio.run(SharedRateLimiter().aacquire()) is True
 
 
-def test_waiting_for_the_next_second_is_recorded_once_a_request(monkeypatch, events):
+def test_waiting_for_the_next_second_is_recorded_once_a_request(monkeypatch, published):
     redis = FakeRedis({"GENERATION_CALLS_PER_SECOND": 1})
     now = [1000.5]
 
@@ -47,7 +47,7 @@ def test_waiting_for_the_next_second_is_recorded_once_a_request(monkeypatch, eve
 
     assert asyncio.run(two()) == [True, True]
     assert now[0] == 1002.5
-    hits = [data for kind, data in events if kind == LIMIT_HIT]
+    hits = [data for kind, data in published if kind == LIMIT_HIT]
     assert [(hit["limit"], hit["kind"], hit["scope"]) for hit in hits] == [
         ("OPENAI_THROTTLED", "provider:openai", "everyone")
     ]

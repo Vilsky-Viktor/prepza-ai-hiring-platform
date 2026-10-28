@@ -174,7 +174,7 @@ def test_worker_skips_a_generation_cancelled_while_queued(monkeypatch):
 
     started = []
 
-    async def cancelled(_generation_id):
+    async def cancelled(session, _generation_id):
         return False
 
     async def run_pipeline(*args):

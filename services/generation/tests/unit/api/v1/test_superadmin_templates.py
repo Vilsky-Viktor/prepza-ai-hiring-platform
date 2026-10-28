@@ -15,7 +15,13 @@ def created(monkeypatch):
     rows = []
 
     async def create(
-        owner_uid, text, company_id=None, language="en", generation_id=None, kind="interview"
+        session,
+        owner_uid,
+        text,
+        company_id=None,
+        language="en",
+        generation_id=None,
+        kind="interview",
     ):
         row = Generation(
             id=uuid.uuid4(),
@@ -67,7 +73,7 @@ def test_anyone_else_cant(client, created):
 def test_a_company_generation_isnt_reachable_through_admin_routes(client, created, monkeypatch):
     sign_in("ann@example.com")
 
-    async def get(_generation_id):
+    async def get(session, _generation_id):
         return Generation(id=uuid.uuid4(), kind="interview", status="running")
 
     monkeypatch.setattr(generations, "get", get)

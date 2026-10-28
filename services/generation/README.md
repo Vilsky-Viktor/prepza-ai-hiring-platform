@@ -38,6 +38,14 @@ tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic (and LangGraph's checkpoint tables)
 ```
 
+Routes call services; services open the transaction (`async with Session.begin() as
+session:`) and pass it to the repositories, and call the model, library, notifications, Cloud
+Tasks and Redis outside it: a run's row is saved between model calls, a start is saved before
+its job is queued, and what the weekly pattern job found is saved in one transaction after its
+call. A plain read may open `async with Session() as session:` in the route.
+`tests/unit/test_layers.py` checks the imports and that no repository commits; clearing old
+pasted texts takes a transaction per batch.
+
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,
 `prepend_sys_path` for Alembic, `evals/run.sh` and `scripts/graph-diagrams.sh`), so the package
 imports as `generation` (`generation.api.v1.internal`). The worker's command names

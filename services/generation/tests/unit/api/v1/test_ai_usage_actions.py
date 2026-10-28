@@ -36,11 +36,11 @@ COMPANY_ID = uuid.uuid4()
 QUESTION_ID = uuid.uuid4()
 
 
-def recorded(events):
+def recorded(published):
     """Each recorded call's action, company, user and outcome."""
     return [
         (data["action"], data["company_id"], data["user_id"], data["outcome"])
-        for kind, data in events
+        for kind, data in published
         if kind == AI_USED
     ]
 
@@ -69,12 +69,12 @@ class Graph:
     ],
 )
 def test_a_generation_run_is_recorded_for_its_kind_company_and_owner(
-    events, monkeypatch, kind, company_id, action, cancelled, outcome
+    published, monkeypatch, kind, company_id, action, cancelled, outcome
 ):
-    async def is_cancelled(generation_id):
+    async def is_cancelled(session, generation_id):
         return cancelled
 
-    async def update(generation_id, event=None, **values):
+    async def update(session, generation_id, event=None, **values):
         return True
 
     monkeypatch.setattr(generations, "is_cancelled", is_cancelled)
@@ -86,7 +86,7 @@ def test_a_generation_run_is_recorded_for_its_kind_company_and_owner(
     asyncio.run(pipeline.run_pipeline(Graph(), generation, None))
 
     company = str(company_id) if company_id else None
-    assert recorded(events) == [(action, company, "bob", outcome)]
+    assert recorded(published) == [(action, company, "bob", outcome)]
 
 
 def question_context(kind="interview"):
@@ -110,7 +110,9 @@ def written_by(chat):
     return write
 
 
-def test_a_regenerated_question_is_recorded_for_its_company_and_user(client, events, monkeypatch):
+def test_a_regenerated_question_is_recorded_for_its_company_and_user(
+    client, published, monkeypatch
+):
     found = question_context()
 
     async def context(question_id):
@@ -130,10 +132,10 @@ def test_a_regenerated_question_is_recorded_for_its_company_and_user(client, eve
     )
 
     assert response.status_code == 200
-    assert recorded(events) == [(QUESTION_REGENERATION, str(COMPANY_ID), "bob", "ok")]
+    assert recorded(published) == [(QUESTION_REGENERATION, str(COMPANY_ID), "bob", "ok")]
 
 
-def test_a_regeneration_out_of_time_is_recorded_cut(client, events, monkeypatch):
+def test_a_regeneration_out_of_time_is_recorded_cut(client, published, monkeypatch):
     found = question_context()
 
     async def context(question_id):
@@ -150,10 +152,10 @@ def test_a_regeneration_out_of_time_is_recorded_cut(client, events, monkeypatch)
     )
 
     assert response.status_code == 502
-    assert recorded(events) == [(QUESTION_REGENERATION, str(COMPANY_ID), "bob", "cut")]
+    assert recorded(published) == [(QUESTION_REGENERATION, str(COMPANY_ID), "bob", "cut")]
 
 
-def test_a_regenerated_template_question_is_the_superadmins(client, events, monkeypatch):
+def test_a_regenerated_template_question_is_the_superadmins(client, published, monkeypatch):
     found = question_context("template")
 
     async def context(question_id):
@@ -181,10 +183,10 @@ def test_a_regenerated_template_question_is_the_superadmins(client, events, monk
         app.dependency_overrides.clear()
 
     assert response.status_code == 200
-    assert recorded(events) == [(TEMPLATE_QUESTION_REGENERATION, None, "ann", "ok")]
+    assert recorded(published) == [(TEMPLATE_QUESTION_REGENERATION, None, "ann", "ok")]
 
 
-def test_a_flagged_questions_check_and_a_sample_key_check_are_recorded(events, monkeypatch):
+def test_a_flagged_questions_check_and_a_sample_key_check_are_recorded(published, monkeypatch):
     chat = Chat(replies=[reply(100, 10), reply(100, 10)])
     flagged = question().model_copy(update={"flag": QualityFlag.REWRITE})
 
@@ -206,13 +208,13 @@ def test_a_flagged_questions_check_and_a_sample_key_check_are_recorded(events, m
     asyncio.run(sample_checks.check_one(QUESTION_ID))
 
     # The flag's check is prepza's own work; a new test's sample is its company's.
-    assert recorded(events) == [
+    assert recorded(published) == [
         (QUESTION_VERIFY, None, None, "ok"),
         (SAMPLE_KEY_CHECK, str(COMPANY_ID), None, "ok"),
     ]
 
 
-def test_tagging_examples_notation_is_recorded(events, monkeypatch):
+def test_tagging_examples_notation_is_recorded(published, monkeypatch):
     chat = Chat(replies=[reply(100, 10)])
     pages = [[{"id": "q1", "text": "Q?\n```\nprint(1)\n```"}], []]
 
@@ -232,10 +234,10 @@ def test_tagging_examples_notation_is_recorded(events, monkeypatch):
     monkeypatch.setattr(tag_job, "tag_examples", tagged)
 
     assert asyncio.run(tag_job.tag_code_languages()) == 1
-    assert recorded(events) == [(CODE_TAGS, None, None, "ok")]
+    assert recorded(published) == [(CODE_TAGS, None, None, "ok")]
 
 
-def test_embedding_templates_topics_is_recorded(events, monkeypatch):
+def test_embedding_templates_topics_is_recorded(published, monkeypatch):
     batches = [[{"id": "t1", "title": "Python", "subtopics": ["asyncio"]}], []]
 
     class Embeddings:
@@ -253,4 +255,4 @@ def test_embedding_templates_topics_is_recorded(events, monkeypatch):
     monkeypatch.setattr(library, "save_embeddings", saved)
 
     assert asyncio.run(embed_templates()) == 1
-    assert recorded(events) == [(EMBEDDINGS, None, None, "ok")]
+    assert recorded(published) == [(EMBEDDINGS, None, None, "ok")]

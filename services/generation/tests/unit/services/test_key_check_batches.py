@@ -21,19 +21,19 @@ class FakeStore:
         self.rows = dict(rows)
 
     def install(self, monkeypatch):
-        async def unsent(limit):
+        async def unsent(session, limit):
             return [row(qid) for qid, batch in self.rows.items() if batch is None]
 
-        async def sent_batches():
+        async def sent_batches(session):
             return sorted({batch for batch in self.rows.values() if batch})
 
-        async def in_batch(batch_id):
+        async def in_batch(session, batch_id):
             return [row(qid) for qid, batch in self.rows.items() if batch == batch_id]
 
-        async def set_batch(question_ids, batch_id):
+        async def set_batch(session, question_ids, batch_id):
             self.rows.update({qid: batch_id for qid in question_ids})
 
-        async def remove(question_ids):
+        async def remove(session, question_ids):
             for qid in question_ids:
                 self.rows.pop(qid, None)
 

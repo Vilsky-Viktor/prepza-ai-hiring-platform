@@ -50,10 +50,10 @@ def stored(monkeypatch):
     """The patterns table in memory, as a list of rows."""
     rows = []
 
-    async def for_flag(flag):
+    async def for_flag(session, flag):
         return [row for row in rows if row.flag == flag]
 
-    async def add(text, flag, question_count):
+    async def add(session, text, flag, question_count):
         rows.append(
             SimpleNamespace(
                 id=uuid.uuid4(),
@@ -65,7 +65,7 @@ def stored(monkeypatch):
             )
         )
 
-    async def seen(pattern_id, question_count):
+    async def seen(session, pattern_id, question_count):
         [row] = [row for row in rows if row.id == pattern_id]
         row.question_count += question_count
         row.seen_again += 1
@@ -198,10 +198,10 @@ def test_a_pattern_failing_a_check_isnt_stored(monkeypatch, stored, redis, text)
 def test_only_the_rules_text_flag_count_and_status_are_stored(monkeypatch, redis):
     calls = []
 
-    async def add(*args, **kwargs):
+    async def add(session, *args, **kwargs):
         calls.append((args, kwargs))
 
-    async def none(flag):
+    async def none(session, flag):
         return []
 
     monkeypatch.setattr(storage, "add", add)
@@ -264,12 +264,12 @@ def test_the_emergency_pause_skips_the_job(monkeypatch, stored, redis):
     assert (model.prompts, stored) == ([], [])
 
 
-def test_the_runs_ai_cost_is_recorded_under_its_own_line(monkeypatch, stored, redis, events):
+def test_the_runs_ai_cost_is_recorded_under_its_own_line(monkeypatch, stored, redis, published):
     given(monkeypatch, flagged(2), [found(RULE, [1, 2])])
 
     asyncio.run(job.run())
 
-    used = [data for kind, data in events if kind == AI_USED]
+    used = [data for kind, data in published if kind == AI_USED]
     assert [(data["action"], data["company_id"], data["user_id"]) for data in used] == [
         (QUALITY_PATTERNS, None, None)
     ]

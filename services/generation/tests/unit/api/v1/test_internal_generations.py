@@ -36,7 +36,7 @@ def company_generation():
 
 
 def fake_get(monkeypatch):
-    async def get(_generation_id):
+    async def get(session, _generation_id):
         return company_generation()
 
     monkeypatch.setattr(generations, "get", get)
@@ -100,7 +100,7 @@ def test_only_a_failed_generation_is_retried(client, monkeypatch, queued):
     fake_get(monkeypatch)
     claims = iter([True, False])
 
-    async def fake_claim(_generation_id):
+    async def fake_claim(session, _generation_id):
         return next(claims)
 
     monkeypatch.setattr(generations, "claim_retry", fake_claim)
@@ -117,7 +117,7 @@ def drafted(monkeypatch, count):
     generation = company_generation()
     generation.topics = [{"main_topic": f"Topic {i}", "subtopics": []} for i in range(count)]
 
-    async def get(_generation_id):
+    async def get(session, _generation_id):
         return generation
 
     monkeypatch.setattr(generations, "get", get)
@@ -200,10 +200,10 @@ def test_more_than_max_topics_is_fine_with_instructions_to_revise(client, monkey
 def test_company_cancels_its_interview_generation(client, monkeypatch):
     generation = company_generation()
 
-    async def get(_generation_id):
+    async def get(session, _generation_id):
         return generation
 
-    async def fake_cancel(_generation_id):
+    async def fake_cancel(session, _generation_id):
         generation.status = "cancelled"
 
         return True

@@ -7,19 +7,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[4]
 SHARED = ROOT / "packages/common/tests/no_publishing.py"
 IMPORT = "from no_publishing import no_publishing, published"
-# Generation is moving to the src layout in its own change; it takes the fixtures with it.
-MOVING = {"generation"}
 COPY = re.compile(r"^\s*(async )?def publish_batch\(", re.MULTILINE)
 
 pytest_plugins = ["pytester"]
 
 
 def services():
-    return sorted(
-        path.parent.name
-        for path in ROOT.glob("services/*/pyproject.toml")
-        if path.parent.name not in MOVING
-    )
+    return sorted(path.parent.name for path in ROOT.glob("services/*/pyproject.toml"))
 
 
 def test_every_service_takes_the_shared_fixtures_in_all_its_tests():
@@ -29,7 +23,7 @@ def test_every_service_takes_the_shared_fixtures_in_all_its_tests():
         if IMPORT not in (ROOT / "services" / name / "tests/conftest.py").read_text()
     ]
 
-    assert len(services()) >= 8
+    assert len(services()) >= 9
     assert missing == []
 
 

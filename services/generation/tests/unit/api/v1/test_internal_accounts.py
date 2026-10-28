@@ -9,7 +9,7 @@ HEADERS = {
 
 
 def test_library_exports_a_users_generations_with_a_post(client, monkeypatch):
-    async def export(user_id):
+    async def export(session, user_id):
         return [{"owner": user_id}]
 
     monkeypatch.setattr(accounts, "export", export)

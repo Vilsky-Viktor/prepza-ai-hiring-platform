@@ -11,6 +11,7 @@ from generation.constants.quality import (
     MAX_DIRECT_KEY_CHECKS,
     QualityFlag,
 )
+from generation.core.db import Session
 from generation.helpers.prompts import checker_messages
 from generation.integrations import library, openai_batch
 from generation.integrations.usage import ai_run
@@ -58,7 +59,10 @@ async def submit_pending() -> None:
     sent = []
     gone = []
 
-    for check in await key_checks.unsent(MAX_BATCH_KEY_CHECKS):
+    async with Session() as session:
+        waiting = await key_checks.unsent(session, MAX_BATCH_KEY_CHECKS)
+
+    for check in waiting:
         found = await current(check)
 
         if found is None:
@@ -70,7 +74,7 @@ async def submit_pending() -> None:
             sent.append(check)
 
     if gone:
-        await key_checks.remove(gone)
+        await remove(gone)
 
     if requests:
         try:
@@ -80,7 +84,7 @@ async def submit_pending() -> None:
 
             raise
 
-        await key_checks.set_batch([check.question_id for check in sent], batch_id)
+        await set_batch([check.question_id for check in sent], batch_id)
         logger.info("Sent %d key checks in batch %s", len(requests), batch_id)
 
 
@@ -116,13 +120,18 @@ async def collect_finished() -> None:
     price), so a run ends well within its lock; the rest go out in the next batch."""
     direct = 0
 
-    for batch_id in await key_checks.sent_batches():
+    async with Session() as session:
+        batch_ids = await key_checks.sent_batches(session)
+
+    for batch_id in batch_ids:
         status, output_file_id = await openai_batch.status(batch_id)
 
         if status != "completed" and status not in BATCH_RETRY_STATUSES:
             continue
 
-        checks = await key_checks.in_batch(batch_id)
+        async with Session() as session:
+            checks = await key_checks.in_batch(session, batch_id)
+
         replies, used = await openai_batch.results(output_file_id) if output_file_id else ({}, [])
         labels = {
             custom_id: (KEY_CHECK_BATCH, custom_id, f"{QUESTION_VERIFY}:{custom_id}")
@@ -135,7 +144,7 @@ async def collect_finished() -> None:
 
             if parsed(reply) is None:
                 if status != "completed" or direct >= MAX_DIRECT_KEY_CHECKS:
-                    await key_checks.set_batch([check.question_id], None)
+                    await set_batch([check.question_id], None)
 
                     continue
 
@@ -147,8 +156,18 @@ async def collect_finished() -> None:
                     await apply_reply(check, reply)
             except Exception:
                 logger.exception("Key check of question %s failed", check.question_id)
-                await key_checks.set_batch([check.question_id], None)
+                await set_batch([check.question_id], None)
 
                 continue
 
-            await key_checks.remove([check.question_id])
+            await remove([check.question_id])
+
+
+async def set_batch(question_ids: list, batch_id: str | None) -> None:
+    async with Session.begin() as session:
+        await key_checks.set_batch(session, question_ids, batch_id)
+
+
+async def remove(question_ids: list) -> None:
+    async with Session.begin() as session:
+        await key_checks.remove(session, question_ids)

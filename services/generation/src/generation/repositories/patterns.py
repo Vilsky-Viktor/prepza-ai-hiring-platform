@@ -1,13 +1,13 @@
 import uuid
 
 from sqlalchemy import func, select, update
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from generation.constants.patterns import PatternStatus
-from generation.core.db import Session
 from generation.models.patterns import QualityPattern
 
 
-async def for_flag(flag: str) -> list[QualityPattern]:
+async def for_flag(session: AsyncSession, flag: str) -> list[QualityPattern]:
     """Every pattern of a flag, whatever its status, oldest first."""
     query = (
         select(QualityPattern)
@@ -15,37 +15,33 @@ async def for_flag(flag: str) -> list[QualityPattern]:
         .order_by(QualityPattern.created_at, QualityPattern.id)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def add(text: str, flag: str, question_count: int) -> None:
-    async with Session() as session:
-        session.add(
-            QualityPattern(
-                text=text,
-                flag=flag,
-                question_count=question_count,
-                status=PatternStatus.PROPOSED,
-            )
+async def add(session: AsyncSession, text: str, flag: str, question_count: int) -> None:
+    session.add(
+        QualityPattern(
+            text=text,
+            flag=flag,
+            question_count=question_count,
+            status=PatternStatus.PROPOSED,
         )
-        await session.commit()
+    )
 
 
-async def seen(pattern_id: uuid.UUID, question_count: int) -> None:
+async def seen(session: AsyncSession, pattern_id: uuid.UUID, question_count: int) -> None:
     """Found again: its count grows and it's seen now."""
     statement = (
         update(QualityPattern)
         .where(QualityPattern.id == pattern_id)
         .values(question_count=QualityPattern.question_count + question_count, last_seen=func.now())
     )
-
-    async with Session() as session:
-        await session.execute(statement)
-        await session.commit()
+    await session.execute(statement)
 
 
-async def by_status(status: str, offset: int, limit: int) -> list[QualityPattern]:
+async def by_status(
+    session: AsyncSession, status: str, offset: int, limit: int
+) -> list[QualityPattern]:
     """Patterns of a status, most recently seen first."""
     query = (
         select(QualityPattern)
@@ -55,11 +51,12 @@ async def by_status(status: str, offset: int, limit: int) -> list[QualityPattern
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def review(pattern_id: uuid.UUID, status: str, reviewed_by: str) -> bool:
+async def review(
+    session: AsyncSession, pattern_id: uuid.UUID, status: str, reviewed_by: str
+) -> bool:
     """Approves or dismisses a proposed pattern; False when it isn't proposed (any more)."""
     statement = (
         update(QualityPattern)
@@ -68,8 +65,4 @@ async def review(pattern_id: uuid.UUID, status: str, reviewed_by: str) -> bool:
         .returning(QualityPattern.id)
     )
 
-    async with Session() as session:
-        changed = (await session.execute(statement)).first() is not None
-        await session.commit()
-
-        return changed
+    return (await session.execute(statement)).first() is not None

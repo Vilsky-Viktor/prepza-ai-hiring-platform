@@ -12,7 +12,7 @@ from tests.unit.fake_ai import MODEL, refused
 from tests.unit.services.test_key_check_batches import KEPT, FakeStore, library_with
 
 
-def test_a_finished_batchs_usage_is_recorded_once_at_batch_price(events, monkeypatch):
+def test_a_finished_batchs_usage_is_recorded_once_at_batch_price(published, monkeypatch):
     store = FakeStore({KEPT: "batch-1"})
     store.install(monkeypatch)
     library_with(monkeypatch, {KEPT})
@@ -41,7 +41,7 @@ def test_a_finished_batchs_usage_is_recorded_once_at_batch_price(events, monkeyp
     store.rows[KEPT] = "batch-1"
     asyncio.run(key_check_batches.collect_finished())
 
-    [data] = [data for kind, data in events if kind == AI_USED]
+    [data] = [data for kind, data in published if kind == AI_USED]
     assert (data["action"], data["model"], data["input_tokens"], data["subject_id"]) == (
         KEY_CHECK_BATCH,
         MODEL,
@@ -61,7 +61,7 @@ def test_a_finished_batchs_usage_is_recorded_once_at_batch_price(events, monkeyp
     assert (cost, output) == (pytest.approx(1.0), '{"correct_indexes": [1]}')
 
 
-def test_openai_refusing_a_batch_is_recorded_as_its_limit_hit(events, monkeypatch):
+def test_openai_refusing_a_batch_is_recorded_as_its_limit_hit(published, monkeypatch):
     store = FakeStore({KEPT: None})
     store.install(monkeypatch)
     library_with(monkeypatch, {KEPT})
@@ -74,7 +74,7 @@ def test_openai_refusing_a_batch_is_recorded_as_its_limit_hit(events, monkeypatc
     with pytest.raises(openai.RateLimitError):
         asyncio.run(key_check_batches.submit_pending())
 
-    [hit] = [data for kind, data in events if kind == LIMIT_HIT]
+    [hit] = [data for kind, data in published if kind == LIMIT_HIT]
     assert (hit["limit"], hit["kind"], hit["what"]) == (
         "OPENAI_RATE_LIMIT",
         "provider:openai",

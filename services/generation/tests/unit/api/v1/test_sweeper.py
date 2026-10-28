@@ -22,10 +22,10 @@ class FakeCheckpointer:
 
 
 def no_finished_threads(monkeypatch, threads=(), expired=()):
-    async def fake_threads():
+    async def fake_threads(session):
         return list(threads)
 
-    async def fake_expire(before):
+    async def fake_expire(session, before):
         return list(expired)
 
     monkeypatch.setattr(generations, "finished_threads", fake_threads)
@@ -35,7 +35,7 @@ def no_finished_threads(monkeypatch, threads=(), expired=()):
 def test_sweep_fails_generations_untouched_for_longer_than_a_job_may_run(monkeypatch):
     calls = []
 
-    async def fake_fail_stuck(running_before, queued_before, error):
+    async def fake_fail_stuck(session, running_before, queued_before, error):
         calls.append((running_before, queued_before, error))
 
         return []
@@ -58,7 +58,7 @@ def test_sweep_fails_generations_untouched_for_longer_than_a_job_may_run(monkeyp
 
 
 def test_sweep_deletes_checkpoints_of_finished_generations(monkeypatch):
-    async def fake_fail_stuck(running_before, queued_before, error):
+    async def fake_fail_stuck(session, running_before, queued_before, error):
         return []
 
     checkpointer = FakeCheckpointer()
@@ -70,14 +70,10 @@ def test_sweep_deletes_checkpoints_of_finished_generations(monkeypatch):
     assert checkpointer.deleted == ["done-1", "cancelled-1"]
 
 
-def fake_session(monkeypatch, statements, rowcount=0):
+def fake_session(statements, rowcount=0):
+    """A session that records the statements a repository function runs."""
+
     class FakeSession:
-        async def __aenter__(self):
-            return self
-
-        async def __aexit__(self, *args):
-            return False
-
         async def execute(self, statement):
             statements.append(statement)
 
@@ -93,10 +89,7 @@ def fake_session(monkeypatch, statements, rowcount=0):
 
             return []
 
-        async def commit(self):
-            pass
-
-    monkeypatch.setattr(generations, "Session", FakeSession)
+    return FakeSession()
 
 
 def compiled(statement) -> str:
@@ -107,9 +100,11 @@ def compiled(statement) -> str:
 
 def test_only_queued_and_running_rows_are_swept(monkeypatch):
     statements = []
-    fake_session(monkeypatch, statements)
+    session = fake_session(statements)
 
-    asyncio.run(generations.fail_stuck(datetime.now(UTC), datetime.now(UTC), GENERATION_STOPPED))
+    asyncio.run(
+        generations.fail_stuck(session, datetime.now(UTC), datetime.now(UTC), GENERATION_STOPPED)
+    )
 
     sql = compiled(statements[0])
     assert "status = 'running' AND generations.updated_at <" in sql
@@ -119,9 +114,7 @@ def test_only_queued_and_running_rows_are_swept(monkeypatch):
 
 def test_only_done_and_cancelled_checkpoints_are_deleted(monkeypatch):
     statements = []
-    fake_session(monkeypatch, statements)
-
-    asyncio.run(generations.finished_threads())
+    asyncio.run(generations.finished_threads(fake_session(statements)))
 
     sql = compiled(statements[0])
     assert "IN ('done', 'cancelled')" in sql
@@ -159,7 +152,7 @@ def test_worker_runs_only_a_generation_it_claims_from_the_queue(monkeypatch):
     same job: it isn't queued any more, so this job doesn't run it."""
     started = []
 
-    async def not_queued(_generation_id):
+    async def not_queued(session, _generation_id):
         return False
 
     async def run_pipeline(*args):
@@ -175,9 +168,9 @@ def test_worker_runs_only_a_generation_it_claims_from_the_queue(monkeypatch):
 
 def test_claiming_a_run_moves_only_a_queued_generation(monkeypatch):
     statements = []
-    fake_session(monkeypatch, statements, rowcount=1)
+    session = fake_session(statements, rowcount=1)
 
-    assert asyncio.run(generations.claim_run(uuid.uuid4())) is True
+    assert asyncio.run(generations.claim_run(session, uuid.uuid4())) is True
 
     sql = compiled(statements[0])
     assert "status='running'" in sql.replace(" ", "")
@@ -186,8 +179,8 @@ def test_claiming_a_run_moves_only_a_queued_generation(monkeypatch):
 
 def test_updates_never_touch_a_finished_generation(monkeypatch):
     statements = []
-    fake_session(monkeypatch, statements, rowcount=0)
+    session = fake_session(statements, rowcount=0)
 
-    assert asyncio.run(generations.update(uuid.uuid4(), status="failed")) is False
+    assert asyncio.run(generations.update(session, uuid.uuid4(), status="failed")) is False
 
     assert "NOT IN ('done', 'cancelled')" in compiled(statements[0])

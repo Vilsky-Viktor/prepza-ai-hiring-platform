@@ -5,6 +5,7 @@ import pytest
 from prepza_common.ai.sets import AdditionContext, AdditionTopic, QuestionIn
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
+from sqlalchemy.exc import IntegrityError
 
 from generation.constants.additions import (
     ADDED_QUESTIONS_INVALID,
@@ -61,9 +62,12 @@ def superadmin(monkeypatch):
     async def get_addition_context(template_id):
         return state["context"] if template_id == TEMPLATE_ID else None
 
-    async def create_addition(owner_uid, template_id, language, question_count):
+    async def create_addition(session, owner_uid, template_id, language, question_count):
         if state["running"]:
-            return None
+            # The unique index on a template's queued or running addition.
+            raise IntegrityError(
+                "INSERT", {}, Exception("ix_generations_one_addition_per_template")
+            )
 
         row = Generation(
             id=uuid.uuid4(),
@@ -130,7 +134,7 @@ def test_the_page_reads_the_latest_addition_and_the_numbers_it_may_ask_for(
 ):
     latest = {}
 
-    async def latest_addition(template_id):
+    async def latest_addition(session, template_id):
         return latest.get(template_id)
 
     monkeypatch.setattr(generations, "latest_addition", latest_addition)
@@ -223,10 +227,10 @@ def test_the_job_runs_an_addition_without_the_graph(monkeypatch):
     ran = []
     generation = Generation(id=uuid.uuid4(), kind="template_questions")
 
-    async def claim_run(generation_id):
+    async def claim_run(session, generation_id):
         return True
 
-    async def get(generation_id):
+    async def get(session, generation_id):
         return generation
 
     async def run_addition(row):

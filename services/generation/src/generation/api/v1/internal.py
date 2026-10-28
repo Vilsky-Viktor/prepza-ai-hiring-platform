@@ -2,24 +2,22 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, status
 from prepza_common.ai.ai_cap import refuse_if_capped
-from prepza_common.i18n.text_language import text_language
 from prepza_common.limits.pause import refuse_if_paused
 from prepza_common.limits.rate_limit import hit
 
 from generation.api.dependencies import ServiceCaller
 from generation.constants.actions import (
     CAMPAIGN_TRANSLATION,
-    INTERVIEW_GENERATION,
     NEWS_TRANSLATION,
     QUESTION_REGENERATION,
     QUESTION_VERIFY,
 )
 from generation.constants.generation import (
-    RUN_GENERATION,
     TRANSLATE_CAMPAIGN,
     TRANSLATE_NEWS,
     VERIFY_QUESTION,
 )
+from generation.core.db import Session
 from generation.helpers.questions import set_company
 from generation.integrations import library, tasks
 from generation.integrations.redis import get_redis
@@ -35,14 +33,15 @@ from generation.services.cancel import cancel_generation
 from generation.services.regenerate import regenerate
 from generation.services.retry import retry_generation
 from generation.services.review import submit_review
-from generation.services.screen import refuse_if_nothing_to_test
+from generation.services.starts import start_interview
 from generation.services.topic_caps import generation_out
 
 router = APIRouter(prefix="/internal", tags=["internal"])
 
 
 async def get_company_generation(generation_id: UUID, company_id: UUID) -> Generation:
-    generation = await generations.get(generation_id)
+    async with Session() as session:
+        generation = await generations.get(session, generation_id)
 
     if generation is None or generation.company_id != company_id:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Generation not found")
@@ -55,23 +54,7 @@ async def create_interview_generation(
     body: InterviewGenerationCreate, caller: ServiceCaller, request: Request
 ) -> GenerationOut:
     """A company's test; companies charges per candidate, so generating it is free."""
-    who = {"company_id": body.company_id, "user_id": body.owner_uid}
-
-    if not body.paid:
-        await refuse_if_capped(get_redis(), **who)
-
-    await hit(get_redis(), f"rate:generations:{body.owner_uid}", "GENERATION_LIMIT", **who)
-    await use_daily_budget(body.paid, **who)
-    await refuse_if_nothing_to_test(body.text, INTERVIEW_GENERATION, **who)
-    generation = await generations.create(
-        body.owner_uid,
-        body.text,
-        body.company_id,
-        body.generate_in or text_language(body.text, body.language),
-    )
-    await tasks.enqueue(RUN_GENERATION, {"generation_id": str(generation.id)})
-
-    return await generation_out(generation)
+    return await generation_out(await start_interview(body))
 
 
 @router.post("/generations/statuses")
@@ -80,7 +63,8 @@ async def generation_statuses(
 ) -> GenerationStatusesOut:
     """Notifications, for its reminders: the status of each of those generations that still
     exists, who started it and since when."""
-    found = await generations.by_ids(body.ids)
+    async with Session() as session:
+        found = await generations.by_ids(session, body.ids)
 
     return GenerationStatusesOut(
         generations=[GenerationStatusOut.model_validate(row) for row in found]

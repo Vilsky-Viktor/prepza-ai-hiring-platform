@@ -55,10 +55,10 @@ def test_fix_now_checks_a_wrong_key_at_once_instead_of_batching(monkeypatch):
     async def check_key(question_id, question, found_context, now=False):
         calls.append("now" if now else "not now")
 
-    async def add(question_id, text, marked):
+    async def add(session, question_id, text, marked):
         calls.append("batch")
 
-    async def remove(question_ids):
+    async def remove(session, question_ids):
         calls.append("dropped from the batch")
 
     monkeypatch.setattr(library, "get_question_context", context)

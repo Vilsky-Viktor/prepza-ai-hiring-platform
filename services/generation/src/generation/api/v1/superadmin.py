@@ -2,27 +2,26 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
 from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.i18n.text_language import text_language
 from prepza_common.limits.limit_schemas import BudgetOut
 from prepza_common.limits.pause import refuse_if_paused
 from prepza_common.limits.rate_limit import hit
 
 from generation.constants.actions import TEMPLATE_GENERATION, TEMPLATE_QUESTION_REGENERATION
-from generation.constants.generation import RUN_GENERATION
 from generation.constants.kinds import GenerationKind
-from generation.integrations import library, tasks
+from generation.core.db import Session
+from generation.integrations import library
 from generation.integrations.redis import get_redis
 from generation.integrations.usage import ai_run
 from generation.models.generation import Generation
 from generation.repositories import generations
 from generation.schemas.generation import GenerationOut, ReviewRequest, TemplateGenerationCreate
 from generation.schemas.regenerate import RegeneratedOut
-from generation.services.budget import budgets, use_daily_budget
+from generation.services.budget import budgets
 from generation.services.cancel import cancel_generation
 from generation.services.regenerate import regenerate
 from generation.services.retry import retry_generation
 from generation.services.review import submit_review
-from generation.services.screen import refuse_if_nothing_to_test
+from generation.services.starts import start_template
 from generation.services.topic_caps import generation_out
 
 # The superadmin's templates (docs/features/admin-zone.md, Templates): the same pipeline as a company's test,
@@ -31,7 +30,8 @@ router = APIRouter(prefix="/superadmin", tags=["superadmin"])
 
 
 async def get_template_generation(generation_id: UUID) -> Generation:
-    generation = await generations.get(generation_id)
+    async with Session() as session:
+        generation = await generations.get(session, generation_id)
 
     if generation is None or generation.kind != GenerationKind.TEMPLATE:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Generation not found")
@@ -43,16 +43,7 @@ async def get_template_generation(generation_id: UUID) -> Generation:
 async def create_template(
     body: TemplateGenerationCreate, superadmin: SuperadminUser
 ) -> GenerationOut:
-    await refuse_if_paused(get_redis(), TEMPLATE_GENERATION, user_id=superadmin.uid)
-    await use_daily_budget(user_id=superadmin.uid)
-    await refuse_if_nothing_to_test(body.text, TEMPLATE_GENERATION, user_id=superadmin.uid)
-    generation = await generations.create(
-        superadmin.uid,
-        body.text,
-        language=body.generate_in or text_language(body.text, superadmin.language),
-        kind=GenerationKind.TEMPLATE,
-    )
-    await tasks.enqueue(RUN_GENERATION, {"generation_id": str(generation.id)})
+    generation = await start_template(body, superadmin.uid, superadmin.language)
 
     return await generation_out(generation)
 

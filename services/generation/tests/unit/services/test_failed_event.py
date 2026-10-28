@@ -18,13 +18,13 @@ def failing_run(monkeypatch):
     saved = []
     flushes = []
 
-    async def claimed(_generation_id):
+    async def claimed(session, _generation_id):
         return True
 
     async def broken(*args):
         raise RuntimeError("model down")
 
-    async def update(generation_id, event=None, **values):
+    async def update(session, generation_id, event=None, **values):
         saved.append((event, values))
 
         return True
@@ -40,7 +40,7 @@ def failing_run(monkeypatch):
     def run(kind):
         generation = Generation(id=uuid.uuid4(), kind=kind, owner_uid="ann", text="job")
 
-        async def found(_generation_id):
+        async def found(session, _generation_id):
             return generation
 
         monkeypatch.setattr(generations, "get", found)
