@@ -111,8 +111,11 @@ async def reward(
     paid = referrer is not None and rewarded_this_year <= REFERRALS_PER_YEAR
 
     if paid:
-        await add(session, owner_type, referrer_id, amount, f"{key}:referrer", Reason.REFERRAL)
-        save(session, events_for(referrer_id))
+        referrer_key = f"{key}:referrer"
+
+        # Told only when the reward moved, never again for one paid before.
+        if await add(session, owner_type, referrer_id, amount, referrer_key, Reason.REFERRAL):
+            save(session, events_for(referrer_id))
 
     # Over their yearly limit, or deleted: nothing to tell them.
     return referrer_id if paid else None

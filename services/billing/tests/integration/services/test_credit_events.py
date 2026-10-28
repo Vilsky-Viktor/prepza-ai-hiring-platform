@@ -1,5 +1,5 @@
 """Events about credits are saved through the outbox with the credits: once, however often
-Paddle repeats a top-up, and a bell notice kept until Pub/Sub takes it."""
+Paddle repeats a top-up or an adjustment, and a bell notice kept until Pub/Sub takes it."""
 
 import uuid
 from datetime import UTC, datetime
@@ -7,12 +7,15 @@ from datetime import UTC, datetime
 from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import select
 
+from billing.constants.events import CREDITS_ADDED
 from billing.constants.products import OwnerType
 from billing.core.db import Session
 from billing.models.outbox import OutboxEvent
 from billing.repositories.events import tell
 from billing.services import topups
+from billing.services.adjustments import handle_adjustment
 from billing.services.credit_events import credits_added
+from tests.unit.paddle_events import adjustment
 
 NOW = datetime(2026, 10, 10, 12, tzinfo=UTC)
 
@@ -71,3 +74,22 @@ def test_a_bell_notice_is_kept_in_the_outbox(run):
             )
 
     assert run(scenario()) == [notice]
+
+
+def test_a_reversed_chargeback_paddle_repeats_tells_of_its_credits_once(run):
+    """A redelivered adjustment moves no credits, so it publishes nothing again."""
+    acme = str(uuid.uuid4())
+    txn = f"txn_{uuid.uuid4().hex}"
+    reversal = adjustment("chargeback_reverse", total="3000")["data"] | {"transaction_id": txn}
+
+    async def scenario():
+        await topups.grant(
+            OwnerType.COMPANY, acme, 100, 1, txn, "topup_50", None, "3000", "USD", NOW
+        )
+
+        for _ in range(2):
+            await handle_adjustment(reversal)
+
+        return [kind for kind, _ in await saved(acme) if kind == CREDITS_ADDED]
+
+    assert run(scenario()) == [CREDITS_ADDED]

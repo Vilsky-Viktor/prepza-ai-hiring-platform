@@ -134,10 +134,13 @@ async def take_back(
 
     if counted is None:
         await ensure(session, owner_type, owner_id)
-        await add(
+        moved = await add(
             session, owner_type, owner_id, amount, prefix + adjustment_id, reason, total, currency
         )
-        save(session, events)
+
+        # A repeated adjustment moves nothing, so it tells nobody again.
+        if moved:
+            save(session, events)
 
     return await session.scalar(
         select(func.coalesce(-func.sum(Entry.amount), 0)).where(
