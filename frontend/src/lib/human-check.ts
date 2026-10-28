@@ -22,7 +22,9 @@ let waiting: ((token: string) => void) | null = null
 /** Turnstile's script, once; null when it can't load (a blocker): the service then refuses,
  * and its message says what to do. */
 function load(): Promise<Turnstile | null> {
-  if (window.turnstile) {
+  // An element with id "turnstile" shows up as window.turnstile too (DOM clobbering): only the
+  // script's object counts.
+  if (typeof window.turnstile?.render === "function") {
     return Promise.resolve(window.turnstile)
   }
 

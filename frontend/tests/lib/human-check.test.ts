@@ -16,7 +16,7 @@ function fakePage() {
     reset: vi.fn(),
     answer: (() => {}) as (token: string) => void,
   }
-  const window: { turnstile?: typeof turnstile } = {}
+  const window: { turnstile?: object } = {}
   const element = () => ({ className: "" })
 
   vi.stubGlobal("window", window)
@@ -90,5 +90,16 @@ describe("human check", () => {
 
     expect(await humanToken()).toBe("")
     expect(added).toHaveLength(0)
+  })
+
+  it("loads the script when an element on the page is named turnstile", async () => {
+    const { added, turnstile } = fakePage()
+    ;(globalThis.window as { turnstile?: object }).turnstile = { nodeType: 1 }
+    const { prepareHumanCheck } = await humanCheck()
+
+    await prepareHumanCheck()
+
+    expect(added).toHaveLength(1)
+    expect(turnstile.render).toHaveBeenCalledTimes(1)
   })
 })
