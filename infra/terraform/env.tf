@@ -79,6 +79,9 @@ locals {
       API_URL       = local.run_url["api"]
       ASSISTANT_URL = local.run_url["assistant"]
     }
+    site = {
+      INVOKER_AUDIENCE = local.run_url["site"]
+    }
     assistant = {
       INVOKER_AUDIENCE = local.run_url["assistant"]
       # Its tools read the api service's settings page too.

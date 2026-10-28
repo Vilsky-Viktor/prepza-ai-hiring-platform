@@ -71,6 +71,7 @@ jobs:
           - { name: api, path: services/api }
           - { name: assistant, path: services/assistant }
           - { name: accounts, path: services/accounts }
+          - { name: site, path: services/site }
           - { name: common, path: packages/common }
     env:
       CHANGED: ${{ contains(fromJSON(needs.changes.outputs.changed), matrix.name) }}
@@ -156,6 +157,7 @@ jobs:
           - { name: api, context: ., file: services/api/Dockerfile }
           - { name: assistant, context: ., file: services/assistant/Dockerfile }
           - { name: accounts, context: ., file: services/accounts/Dockerfile }
+          - { name: site, context: ., file: services/site/Dockerfile }
           - { name: frontend, context: frontend, file: frontend/Dockerfile }
     env:
       CHANGED: ${{ contains(fromJSON(needs.changes.outputs.changed), matrix.name) }}

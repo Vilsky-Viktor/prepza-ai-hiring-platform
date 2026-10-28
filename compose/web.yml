@@ -1,7 +1,43 @@
-# The site, the gateway in front of it and the services (http://localhost:8090), and the
-# scheduled jobs.
+# The site, the service serving its content (the FAQ, guides, legal texts, the contact form and
+# news), the gateway in front of it and the services (http://localhost:8090), and the scheduled
+# jobs.
+
+x-site-env: &site-env
+  DATABASE_URL: postgresql://site:${POSTGRES_PASSWORD}@postgres:5432/site
+  REDIS_URL: redis://redis:6379
+  SERVICE_SECRET: ${SERVICE_SECRET}
+
+# Its mounted source; migrations read it too, so new ones run without a rebuild.
+x-site-source: &site-source
+  - ./services/site/src:/services/site/src
+  - ./services/site/migrations:/services/site/migrations
+  - ./services/site/alembic.ini:/services/site/alembic.ini:ro
+  - ./packages/common/src:/packages/common/src
 
 services:
+  site-migrate:
+    extends: {file: compose/base.yml, service: migrate}
+    build:
+      context: .
+      dockerfile: services/site/Dockerfile
+      target: dev
+    volumes: *site-source
+    environment: *site-env
+
+  site:
+    extends: {file: compose/base.yml, service: server}
+    build:
+      context: .
+      dockerfile: services/site/Dockerfile
+      target: dev
+    volumes: *site-source
+    environment: *site-env
+    depends_on:
+      site-migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
   frontend:
     restart: unless-stopped
     build:

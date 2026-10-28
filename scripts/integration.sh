@@ -17,7 +17,7 @@ fi
 services=("$@")
 
 if [[ ${#services[@]} -eq 0 ]]; then
-  services=(library generation rounds companies billing notifications ats api assistant accounts)
+  services=(library generation rounds companies billing notifications ats api assistant accounts site)
 fi
 
 # Tests make and drop their "<service>_test" database and create extensions in it, which a

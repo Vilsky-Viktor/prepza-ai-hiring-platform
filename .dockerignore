@@ -11,6 +11,7 @@
 !services/api
 !services/assistant
 !services/accounts
+!services/site
 # rounds serves the site's guide articles (frontend/content).
 !frontend/content
 **/.venv

@@ -12,6 +12,7 @@ CREATE DATABASE ats;
 CREATE DATABASE api;
 CREATE DATABASE assistant;
 CREATE DATABASE accounts;
+CREATE DATABASE site;
 
 -- pgvector isn't a trusted extension, so library's own user can't create it: the admin does,
 -- and library's migration finds it there (as in production, where the admin made it first).

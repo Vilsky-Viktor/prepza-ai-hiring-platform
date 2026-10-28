@@ -29,6 +29,7 @@ CHECKED_FROM = {
     "library": "0032",
     "notifications": "0013",
     "rounds": "0027",
+    "site": "0001",
 }
 ALLOWED = "# migration-check:"
 # Raw SQL: (pattern, what it breaks). Matched on one statement, case-insensitively.

@@ -9,6 +9,7 @@ updates:
       - /database
       - /firebase
       - /frontend
+      - /services/accounts
       - /services/ats
       - /services/api
       - /services/assistant
@@ -18,6 +19,7 @@ updates:
       - /services/library
       - /services/notifications
       - /services/rounds
+      - /services/site
     schedule:
       interval: weekly
     cooldown:
@@ -70,6 +72,7 @@ updates:
   - package-ecosystem: uv
     directories:
       - /packages/common
+      - /services/accounts
       - /services/api
       - /services/assistant
       - /services/ats
@@ -79,6 +82,7 @@ updates:
       - /services/library
       - /services/notifications
       - /services/rounds
+      - /services/site
     schedule:
       interval: weekly
     cooldown:

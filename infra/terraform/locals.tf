@@ -10,7 +10,8 @@ locals {
   # `connections` is what one instance may open to Postgres: a pool of 2 plus 1 extra
   # (prepza_common's DB_POOL_SIZE and DB_MAX_OVERFLOW); 1 plus 1 for notifications, ats, api,
   # the assistant and generation, which with its worker keeps 2 more for LangGraph's checkpoints
-  # (CHECKPOINTER_POOL_SIZE). `max` instances keep the total within the database's budget, even
+  # (CHECKPOINTER_POOL_SIZE); 1 alone for accounts and site, whose requests mostly wait on other
+  # services or read files. `max` instances keep the total within the database's budget, even
   # while a deploy runs old and new instances side by side (see database.tf): db-g1-small's 50
   # connections, so most services run on one instance and rounds and companies on two. The APIs
   # take 40 requests at once per instance (the others 80) and queue briefly on their small pool;
@@ -40,7 +41,11 @@ locals {
     # Users' accounts: the account page's data, email settings, accepted terms, and deleting or
     # downloading an account across every service (each call up to a minute, two at a time). Pages
     # ask it in the background (the user menu), so it starts cold.
-    accounts          = { image = "accounts", public = true, path = "accounts", port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 150, concurrency = 80, database = "accounts", command = null }
+    accounts = { image = "accounts", public = true, path = "accounts", port = 8000, min = 0, max = 1, connections = 1, cpu = "1", memory = "512Mi", timeout = 150, concurrency = 80, database = "accounts", command = null }
+    # The site's content: the FAQ, page guides, guide articles, legal texts, the contact form and
+    # news. Mostly files baked into its image; its database holds only news and its events, so one
+    # connection does.
+    site              = { image = "site", public = true, path = "site", port = 8000, min = 0, max = 1, connections = 1, cpu = "1", memory = "512Mi", timeout = 60, concurrency = 80, database = "site", command = null }
     generation-worker = { image = "generation", public = false, path = null, port = 8000, min = 0, max = 1, connections = 4, cpu = "1", memory = "2Gi", timeout = 1800, concurrency = 10, database = "generation", command = ["uvicorn", "generation.worker_main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", "--timeout-graceful-shutdown", "8"] }
   }
 
@@ -79,7 +84,7 @@ locals {
     "superadmin/stats",
   ]
 
-  databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts"]
+  databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts", "site"]
 
   # Which services each one calls; it gets their keys, to sign tokens for them.
   calls = {
@@ -105,6 +110,7 @@ locals {
     # Every service holding part of a user's data, for deleting and downloading an account;
     # billing also sets a new account's currency.
     accounts = ["companies", "rounds", "generation", "billing", "notifications", "ats", "api", "assistant", "library"]
+    site     = []
   }
 
   # Each service's own key checks calls to it. The worker and the stream share generation's and
@@ -122,6 +128,7 @@ locals {
     api                  = "api"
     assistant            = "assistant"
     accounts             = "accounts"
+    site                 = "site"
   }
 
   # Secrets each service reads (Secret Manager name => environment variable).
@@ -138,6 +145,7 @@ locals {
     ats                  = { redis-url = "REDIS_URL", ats-encryption-key = "ATS_ENCRYPTION_KEY" }
     api                  = { redis-url = "REDIS_URL", api-encryption-key = "API_ENCRYPTION_KEY" }
     accounts             = { redis-url = "REDIS_URL" }
+    site                 = { redis-url = "REDIS_URL" }
     assistant            = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
   }
 

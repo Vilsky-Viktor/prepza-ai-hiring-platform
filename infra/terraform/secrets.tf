@@ -37,7 +37,7 @@ resource "google_secret_manager_secret" "sign_in" {
 # Secrets Terraform makes: each service's own key. Tokens calling a service are signed with its
 # key and addressed to it, so a leaked key lets someone call one service, not all of them.
 locals {
-  keyed_services = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts"]
+  keyed_services = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts", "site"]
 }
 
 resource "random_password" "service_secret" {
