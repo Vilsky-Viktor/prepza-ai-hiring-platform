@@ -34,7 +34,7 @@ jobs:
           version: "0.12.24"
       - run: uvx "ruff@$RUFF_VERSION" check services packages evals
       - run: uvx "ruff@$RUFF_VERSION" format --check services packages evals
-      - run: scripts/check_migrations.py && uvx --with pytest pytest -q scripts/tests
+      - run: scripts/check_migrations.py && uvx "pytest==9.1.1" -q scripts/tests
       # The evals' frozen datasets: shape, duplicates, overlap with the prompts' examples.
       - run: python3 evals/scripts/check_datasets.py
 

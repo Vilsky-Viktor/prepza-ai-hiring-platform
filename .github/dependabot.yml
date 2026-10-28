@@ -1,6 +1,7 @@
 # Weekly pull requests that update the pinned images (tag and digest: base images and the local
-# stack's), GitHub Actions (pinned by commit) and the frontend's and services' packages (their lock
-# files). A new version waits a week (cooldown), so a hijacked release is usually pulled before it's
+# stack's), GitHub Actions (pinned by commit), the frontend's, the browser tests' and services'
+# packages (their lock files) and Terraform's providers (its lock file); scripts/tests checks
+# every lock file is listed here. A new version waits a week (cooldown), so a hijacked release is usually pulled before it's
 # proposed; security updates don't wait. Merge after CI passes; close to skip a version.
 version: 2
 updates:
@@ -64,6 +65,35 @@ updates:
       default-days: 7
     groups:
       frontend:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # The browser tests' packages: they run against the local stack and in CI, with its secrets.
+  - package-ecosystem: npm
+    directories:
+      - /e2e_tests/pages
+      - /e2e_tests/signed-in
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      browser-tests:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: terraform
+    directory: /infra/terraform
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      terraform:
         patterns: ["*"]
     ignore:
       - dependency-name: "*"

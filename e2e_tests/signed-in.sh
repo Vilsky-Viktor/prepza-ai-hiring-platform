@@ -51,7 +51,7 @@ COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude 
     -e API_URL=http://gateway/api \
     -e HOST_RULES="MAP localhost:8090 gateway:80, MAP $emulator firebase-auth:9199" \
     -e FORWARDS="8090=gateway:80,${emulator##*:}=firebase-auth:9199" \
-    mcr.microsoft.com/playwright:v1.63.0-noble \
+    mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27 \
     sh -c 'tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test "$@"' sh "$@" ||
   status=$?
 

@@ -37,5 +37,5 @@ for service in "${services[@]}"; do
     -v "$PWD/services/$service/tests:/services/$service/tests" \
     -v "$PWD/packages/common/tests:/packages/common/tests:ro" \
     "$service" \
-    uv run --no-sync --with pytest --with pytest-reverse pytest -q tests/integration
+    uv run --no-sync --with pytest==9.1.1 --with pytest-reverse==1.9.0 pytest -q tests/integration
 done
