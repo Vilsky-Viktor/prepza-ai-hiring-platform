@@ -35,6 +35,14 @@ tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
 
+Routes and handlers call services; services open the transaction (`async with
+Session.begin() as session:`) and pass it to the repositories, so an action's steps are saved
+together (a new conversation with its first question; an account's conversations with its AI
+apps' connections), and call OpenAI, Redis, Langfuse and the other services outside it. A plain
+read may open `async with Session() as session:` in the route. `tests/unit/test_layers.py`
+checks the imports and that no repository commits; retention and the deletions after a company's
+or a candidate's events take the session factory, each batch its own transaction.
+
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,
 `prepend_sys_path` for Alembic), so the package imports as `assistant`
 (`assistant.api.v1.chat`).

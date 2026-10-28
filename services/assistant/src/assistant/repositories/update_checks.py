@@ -3,20 +3,19 @@ from datetime import datetime
 from prepza_common.db.db import delete_in_batches
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from assistant.core.db import Session
 from assistant.models.updates import UpdateCheck
 
 
-async def last(connection_id: str) -> datetime | None:
+async def last(session: AsyncSession, connection_id: str) -> datetime | None:
     """When the connection last called get_updates; None before its first call."""
-    async with Session() as session:
-        return await session.scalar(
-            select(UpdateCheck.checked_at).where(UpdateCheck.connection_id == connection_id)
-        )
+    return await session.scalar(
+        select(UpdateCheck.checked_at).where(UpdateCheck.connection_id == connection_id)
+    )
 
 
-async def save(connection_id: str, at: datetime) -> None:
+async def save(session: AsyncSession, connection_id: str, at: datetime) -> None:
     """Its call at `at` is its last; a later one already saved stays."""
     query = insert(UpdateCheck).values(connection_id=connection_id, checked_at=at)
     query = query.on_conflict_do_update(
@@ -25,12 +24,10 @@ async def save(connection_id: str, at: datetime) -> None:
         where=UpdateCheck.checked_at < at,
     )
 
-    async with Session() as session:
-        await session.execute(query)
-        await session.commit()
+    await session.execute(query)
 
 
-async def delete_before(before: datetime) -> int:
+async def delete_before(sessions: async_sessionmaker, before: datetime) -> int:
     """Checks older than `before` (connections or keys long unused, or gone): how many went, in
     batches."""
-    return await delete_in_batches(Session, UpdateCheck, UpdateCheck.checked_at < before)
+    return await delete_in_batches(sessions, UpdateCheck, UpdateCheck.checked_at < before)

@@ -19,6 +19,7 @@ from assistant.repositories import oauth, oauth_requests
 from assistant.services.oauth_provider import Provider
 from tests.integration.api.v1.test_mcp import site_client
 from tests.integration.repositories.test_oauth import connect
+from tests.integration.transactions import transaction
 from tests.unit.api.v1.test_connect import REQUEST
 
 
@@ -30,7 +31,7 @@ async def register(client_id: str) -> None:
         "redirect_uris": ["https://claude.ai/api/mcp/auth_callback"],
         "token_endpoint_auth_method": "none",
     }
-    await oauth.save_client(client_id, info)
+    await transaction(oauth.save_client, client_id, info)
 
 
 async def revoke(client_id: str, token: str) -> int:
@@ -52,7 +53,7 @@ def test_an_app_revoking_its_own_token_removes_the_connection(run, kind):
         grant, tokens = await connect(user, client_id)
         answered = await revoke(client_id, tokens[kind])
 
-        return answered, [found.id for found in await oauth.of_user(user)], grant.id
+        return answered, [found.id for found in await transaction(oauth.of_user, user)], grant.id
 
     answered, left, revoked_id = run(scenario())
 
@@ -72,7 +73,12 @@ def test_an_app_cant_revoke_a_token_given_to_another_app(run, kind):
         answered = await revoke(other, tokens[kind])
         works = await Provider().load_access_token(tokens["access_token"])
 
-        return answered, [found.id for found in await oauth.of_user(user)], grant.id, works
+        return (
+            answered,
+            [found.id for found in await transaction(oauth.of_user, user)],
+            grant.id,
+            works,
+        )
 
     answered, left, grant_id, works = run(scenario())
 

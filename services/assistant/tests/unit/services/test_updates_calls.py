@@ -39,10 +39,10 @@ def world(monkeypatch):
     held: list[tuple[datetime, datetime]] = []
     reads = []
 
-    async def last(connection):
+    async def last(session, connection):
         return checks.get(connection)
 
-    async def save(connection, at):
+    async def save(session, connection, at):
         checks[connection] = max(at, checks.get(connection, at))
 
     async def read(arguments, token, language, period, via, site, sees_credits):

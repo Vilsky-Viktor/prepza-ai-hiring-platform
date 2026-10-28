@@ -43,10 +43,10 @@ def kept(monkeypatch):
     async def save_code(code_hash, code):
         store.codes[code_hash] = code
 
-    async def of_user(user_id):
+    async def of_user(session, user_id):
         return [grant for grant in store.grants.values() if grant.user_id == user_id]
 
-    async def remove(grant_id, user_id=None):
+    async def remove(session, grant_id, user_id=None):
         grant = store.grants.get(grant_id)
 
         if grant is None or grant.user_id != user_id:

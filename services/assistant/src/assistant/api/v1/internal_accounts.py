@@ -1,12 +1,9 @@
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.ai.tracing import tracing_on
 from prepza_common.auth.user import UserEmailIn
 
 from assistant.api.dependencies import ServiceCaller
-from assistant.integrations import trace_retention
-from assistant.repositories import actions, conversations, messages, oauth
-from assistant.schemas.connect import ConnectionOut
+from assistant.services import accounts
 
 router = APIRouter(prefix="/internal", tags=["internal"])
 
@@ -16,24 +13,11 @@ async def delete_user(user_id: str, body: UserEmailIn, caller: ServiceCaller) ->
     """Library, deleting an account: their conversations go, with every message and tool call,
     the actions they hadn't confirmed yet, and their connected AI apps (whose access stops).
     Safe to repeat."""
-    # Their answers' Langfuse traces first: once the messages go, nothing finds them.
-    if tracing_on():
-        await trace_retention.delete_traces(await conversations.trace_ids_of_user(user_id))
-
-    await conversations.delete_user(user_id)
-    await actions.delete_user(user_id)
-    await oauth.delete_user(user_id)
+    await accounts.delete_user(user_id)
 
 
 @router.post("/users/{user_id}/export")
 async def export_user(user_id: str, body: UserEmailIn, caller: ServiceCaller) -> dict:
     """Library, for "Download my data": their conversations and messages (text, and the ids
     their blocks refer to), and the AI apps they connected (names and dates)."""
-    connected = [ConnectionOut.model_validate(grant) for grant in await oauth.of_user(user_id)]
-
-    return jsonable_encoder(
-        {
-            "assistant_conversations": await messages.export(user_id),
-            "connected_ai_apps": connected,
-        }
-    )
+    return jsonable_encoder(await accounts.export_user(user_id))

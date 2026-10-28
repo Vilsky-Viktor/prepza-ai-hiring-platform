@@ -10,7 +10,6 @@ from prepza_common.auth.user import User
 
 from assistant.api.dependencies import user_with_token
 from assistant.api.v1 import chat as chat_router
-from assistant.api.v1 import conversations as conversations_router
 from assistant.constants.limits import MAX_AUDIO_SECONDS
 from assistant.integrations import services
 from assistant.main import app
@@ -39,7 +38,7 @@ def created(monkeypatch):
     """Conversations created; none must be when a message is refused."""
     made = []
 
-    async def create(user_id, company_id, title):
+    async def create(session, user_id, company_id, title):
         made.append((user_id, company_id, title))
 
     monkeypatch.setattr(conversations, "create", create)
@@ -140,10 +139,10 @@ def test_a_conversation_about_a_company_lost_to_the_user_is_deleted_on_opening(
     conversation = Conversation(id=uuid.uuid4(), user_id="ann", company_id=COMPANY, title="t")
     deleted = []
 
-    async def owned(conversation_id, user_id):
+    async def owned(session, conversation_id, user_id):
         return conversation
 
-    async def delete_one(conversation_id):
+    async def delete_one(session, conversation_id):
         deleted.append(conversation_id)
 
     monkeypatch.setattr(conversations, "owned", owned)
@@ -187,7 +186,7 @@ def test_a_visitors_earlier_chat_is_cut_to_a_messages_length_and_limited_in_coun
 def test_only_a_recent_conversation_is_brought_back(client, signed_in, monkeypatch):
     windows = []
 
-    async def latest(user_id, minutes):
+    async def latest(session, user_id, minutes):
         windows.append((user_id, minutes))
 
         return latest.found
@@ -216,7 +215,7 @@ def voted(monkeypatch):
     saved, mirrored = [], []
     state = {"owned": True, "trace": "a" * 32}
 
-    async def set_vote(conversation_id, user_id, message_id, vote):
+    async def set_vote(session, conversation_id, user_id, message_id, vote):
         saved.append((conversation_id, user_id, message_id, vote))
 
         return state["owned"], state["trace"] if state["owned"] else None
@@ -226,7 +225,7 @@ def voted(monkeypatch):
     async def mirror_vote(trace_id, current):
         mirrored.append(trace_id)
 
-    monkeypatch.setattr(conversations_router, "mirror_vote", mirror_vote)
+    monkeypatch.setattr(conversation_service, "mirror_vote", mirror_vote)
 
     return saved, mirrored, state
 

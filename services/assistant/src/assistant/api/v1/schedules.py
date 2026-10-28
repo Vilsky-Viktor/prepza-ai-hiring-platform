@@ -1,17 +1,8 @@
-import logging
-from datetime import UTC, datetime, timedelta
-
 from fastapi import APIRouter, status
 from prepza_common.auth.google import Invoker
 
-from assistant.config import settings
-from assistant.constants.assistant import RETENTION_BATCH
-from assistant.constants.mcp import IDLE_CLIENT_DAYS
-from assistant.constants.updates import KEEP_DAYS
 from assistant.integrations import trace_retention
-from assistant.repositories import conversations, oauth, update_checks
-
-logger = logging.getLogger(__name__)
+from assistant.services import retention as retention_service
 
 router = APIRouter(prefix="/internal/schedules", tags=["schedules"], dependencies=[Invoker])
 
@@ -30,26 +21,4 @@ async def retention() -> None:
     apps' connections whose refresh token expired, apps with no connection that registered over
     IDLE_CLIENT_DAYS ago, and get_updates checks no connection or key made in KEEP_DAYS. Safe to
     run twice at once or again: each deletes what's still there."""
-    now = datetime.now(UTC)
-    grants, clients = await oauth.delete_expired(now, now - timedelta(days=IDLE_CLIENT_DAYS))
-
-    if grants or clients:
-        logger.info("Deleted %d expired AI app connections and %d idle apps", grants, clients)
-
-    checks = await update_checks.delete_before(now - timedelta(days=KEEP_DAYS))
-
-    if checks:
-        logger.info("Deleted %d stale get_updates checks", checks)
-
-    before = now - timedelta(days=settings.assistant_retention_days)
-    deleted = 0
-
-    while True:
-        batch = await conversations.delete_idle(before, RETENTION_BATCH)
-        deleted += batch
-
-        if batch < RETENTION_BATCH:
-            break
-
-    if deleted:
-        logger.info("Deleted %d assistant conversations past their retention", deleted)
+    await retention_service.delete_old()

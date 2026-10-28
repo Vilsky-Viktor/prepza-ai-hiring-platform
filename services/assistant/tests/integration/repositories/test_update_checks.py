@@ -9,6 +9,7 @@ import httpx
 from assistant.constants.updates import KEEP_DAYS
 from assistant.main import app
 from assistant.repositories import update_checks
+from tests.integration.transactions import transaction
 
 
 def test_a_connections_check_is_kept_and_never_moved_back(run):
@@ -16,14 +17,14 @@ def test_a_connections_check_is_kept_and_never_moved_back(run):
     now = datetime.now(UTC)
 
     async def scenario():
-        before = await update_checks.last(connection)
-        await update_checks.save(connection, now)
+        before = await transaction(update_checks.last, connection)
+        await transaction(update_checks.save, connection, now)
         # A slower call that started earlier ends after it: it doesn't move the check back.
-        await update_checks.save(connection, now - timedelta(minutes=1))
-        kept = await update_checks.last(connection)
-        await update_checks.save(connection, now + timedelta(minutes=1))
+        await transaction(update_checks.save, connection, now - timedelta(minutes=1))
+        kept = await transaction(update_checks.last, connection)
+        await transaction(update_checks.save, connection, now + timedelta(minutes=1))
 
-        return before, kept, await update_checks.last(connection)
+        return before, kept, await transaction(update_checks.last, connection)
 
     before, kept, later = run(scenario())
 
@@ -35,8 +36,8 @@ def test_retention_drops_checks_unused_for_the_bells_keep_days(run):
     now = datetime.now(UTC)
 
     async def scenario():
-        await update_checks.save(stale, now - timedelta(days=KEEP_DAYS + 1))
-        await update_checks.save(recent, now - timedelta(days=KEEP_DAYS - 1))
+        await transaction(update_checks.save, stale, now - timedelta(days=KEEP_DAYS + 1))
+        await transaction(update_checks.save, recent, now - timedelta(days=KEEP_DAYS - 1))
         transport = httpx.ASGITransport(app=app)
 
         async with httpx.AsyncClient(transport=transport, base_url="http://assistant") as api:
@@ -44,8 +45,8 @@ def test_retention_drops_checks_unused_for_the_bells_keep_days(run):
 
         return (
             response.status_code,
-            await update_checks.last(stale),
-            await update_checks.last(recent),
+            await transaction(update_checks.last, stale),
+            await transaction(update_checks.last, recent),
         )
 
     status, gone, kept = run(scenario())

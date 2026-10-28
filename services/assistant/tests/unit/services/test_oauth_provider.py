@@ -39,19 +39,19 @@ def kept(monkeypatch):
     async def take_code(code_hash):
         return store.codes.pop(code_hash, None)
 
-    async def add_grant(grant):
+    async def add_grant(session, grant):
         grant.id = uuid.uuid4()
         store.grants[grant.id] = grant
 
         return grant
 
     def finder(field):
-        async def find(value):
+        async def find(session, value):
             return next((g for g in store.grants.values() if getattr(g, field) == value), None)
 
         return find
 
-    async def rotate(grant_id, refresh_hash, values):
+    async def rotate(session, grant_id, refresh_hash, values):
         grant = store.grants.get(grant_id)
 
         if grant is None or grant.refresh_hash != refresh_hash:
@@ -65,7 +65,7 @@ def kept(monkeypatch):
 
         return True
 
-    async def remove(grant_id, user_id=None):
+    async def remove(session, grant_id, user_id=None):
         return store.grants.pop(grant_id, None)
 
     async def track(event, **props):

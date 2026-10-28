@@ -1,6 +1,7 @@
 from uuid import UUID
 
 from assistant.constants.chat import MESSAGES_SHOWN
+from assistant.core.db import Session
 from assistant.repositories import actions, messages
 from assistant.schemas.conversations import MessageOut, MessagesOut
 from assistant.services.live_blocks import live
@@ -12,7 +13,11 @@ async def messages_page(
     """MESSAGES_SHOWN of the conversation's messages before `before` (the latest without it),
     oldest first; their blocks are fetched again with the user's token, so they show what the
     user may see now, with the cards still waiting for the user's confirmation."""
-    found, earlier = await messages.page_before(conversation_id, before, MESSAGES_SHOWN)
+    async with Session() as session:
+        found, earlier = await messages.page_before(
+            session, conversation_id, before, MESSAGES_SHOWN
+        )
+
     # Cards still waiting for the user's confirmation (in Redis for a while), by their answer.
     cards: dict[str, list] = {}
 

@@ -168,6 +168,7 @@ The limits for everyone hold only people in a company that never topped up, so f
 ## What's stored
 
 - Kept (Postgres `assistant`): the user's messages (with the page each was asked on: its key, path and ids) and the assistant's answers (text, the user's vote on it, and its Langfuse trace id when Langfuse was set up), each answer's blocks as references only (their kind, the ids of what they showed and their links, which are app paths of ids), and which tools an answer called with how long they took and how they ended (argument names, no values; no results). Opening a conversation fetches its blocks again with the user's token: what they may see now, without anything deleted or erased since.
+- A new message is saved before the model answers, in one save with its new conversation and the chat from before signing in, so a failure leaves no conversation without its question; the answer is saved when the turn ends, however it ends.
 - Not kept: tools' results (other people's data, such as candidates' results), pending actions' arguments (Redis, 10 minutes) and voice recordings (in memory only).
 
 ### Votes in Langfuse
@@ -180,7 +181,7 @@ With `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` set (local only for now: no
 - With Langfuse set up, every Langfuse trace (the assistant's, the help chat's and generation's) is deleted daily (`/internal/schedules/traces`) a day short of 30 days (`src/assistant/integrations/trace_retention.py`, its settings in `src/assistant/constants/trace_retention.py`): root observations found through `/api/public/v2/observations` and deleted through `/api/public/traces` a page at a time, its rate limit waited out up to 10 s, no page started after 240 s, the rest left to the next day's run. Deleting an account deletes the traces of the user's answers too (`delete_traces`, by the trace ids kept with them).
 - Deleting a company (`company.deleted`) deletes its conversations; a redelivered event deletes nothing more.
 - Opening a conversation about a company the user can no longer see (removed from its team, or the company is gone) deletes it, and it's not found.
-- Deleting an account deletes the user's conversations, their pending actions in Redis and their connected AI apps; "Download my data" includes their conversations, messages, the blocks' references and their connected AI apps (library calls `/internal/users/{id}`).
+- Deleting an account deletes the user's conversations and their connected AI apps in one save, then their pending actions in Redis; "Download my data" includes their conversations, messages, the blocks' references and their connected AI apps (library calls `/internal/users/{id}`).
 - Expired AI app connections and apps with none go daily too (see [AI apps over MCP](mcp.md#connections-and-tokens)), and so do `get_updates` checks no connection or key made in 90 days (`update_checks`).
 
 ## Tools

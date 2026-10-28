@@ -8,6 +8,7 @@ from assistant.constants.chat import Source
 from assistant.main import app
 from assistant.repositories import conversations, messages
 from assistant.services import conversation_pages
+from tests.integration.transactions import transaction
 
 
 def client() -> httpx.AsyncClient:
@@ -19,10 +20,10 @@ def test_a_conversation_opens_on_its_latest_messages_and_pages_back(run, user, m
     monkeypatch.setattr(conversation_pages, "MESSAGES_SHOWN", 2)
 
     async def scenario():
-        chat = await conversations.create(uid, None, "Long chat")
+        chat = await transaction(conversations.create, uid, None, "Long chat")
 
         for number in range(5):
-            await messages.add_question(chat.id, f"Question {number}?", Source.TEXT)
+            await transaction(messages.add_question, chat.id, f"Question {number}?", Source.TEXT)
 
         async with client() as api:
             opened = (await api.get(f"/conversations/{chat.id}", headers=bearer(token))).json()
@@ -52,8 +53,8 @@ def test_another_users_conversation_has_no_pages(run, user):
     _uid, token = user
 
     async def scenario():
-        chat = await conversations.create("someone-else", None, "Theirs")
-        question = await messages.add_question(chat.id, "Mine?", Source.TEXT)
+        chat = await transaction(conversations.create, "someone-else", None, "Theirs")
+        question = await transaction(messages.add_question, chat.id, "Mine?", Source.TEXT)
 
         async with client() as api:
             path = f"/conversations/{chat.id}/messages?before={question.id}"

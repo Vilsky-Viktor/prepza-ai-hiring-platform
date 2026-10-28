@@ -4,21 +4,25 @@ conversation is opened, and only on the user's own answers."""
 
 from prepza_common.http.http import bearer
 
-from assistant.api.v1 import conversations as routes
 from assistant.constants.chat import Status
 from assistant.models.answers import Answer
 from assistant.repositories import conversations, messages
+from assistant.services import conversations as conversation_service
 from tests.integration.api.v1.test_chat import client
+from tests.integration.transactions import transaction
 
 TRACE = "a" * 32
 
 
 async def answered(user_id):
     """A conversation of `user_id`'s with a question and an answer written in trace TRACE."""
-    conversation = await conversations.create(user_id, None, "Votes")
-    question = await messages.add_question(conversation.id, "Who passed?", "text")
-    answer_id = await messages.add_answer(
-        conversation.id, Answer(parts=["Ann passed."], trace_id=TRACE), Status.COMPLETE
+    conversation = await transaction(conversations.create, user_id, None, "Votes")
+    question = await transaction(messages.add_question, conversation.id, "Who passed?", "text")
+    answer_id = await transaction(
+        messages.add_answer,
+        conversation.id,
+        Answer(parts=["Ann passed."], trace_id=TRACE),
+        Status.COMPLETE,
     )
 
     return conversation.id, question.id, answer_id
@@ -32,7 +36,7 @@ def test_the_owner_votes_changes_and_clears_and_sees_it_when_opening(run, user, 
     async def mirror_vote(trace_id, current):
         mirrored.append(trace_id)
 
-    monkeypatch.setattr(routes, "mirror_vote", mirror_vote)
+    monkeypatch.setattr(conversation_service, "mirror_vote", mirror_vote)
 
     async def scenario():
         conversation_id, _, answer_id = await answered(uid)
@@ -42,12 +46,12 @@ def test_the_owner_votes_changes_and_clears_and_sees_it_when_opening(run, user, 
         async with client() as api:
             for value in (1, -1):
                 await api.put(path, json={"value": value}, headers=headers)
-                seen.append(await messages.vote_of(answer_id))
+                seen.append(await transaction(messages.vote_of, answer_id))
 
             opened = (await api.get(f"/conversations/{conversation_id}", headers=headers)).json()
             cleared = await api.put(path, json={"value": None}, headers=headers)
 
-        return seen, opened, cleared, await messages.vote_of(answer_id)
+        return seen, opened, cleared, await transaction(messages.vote_of, answer_id)
 
     seen, opened, cleared, after = run(scenario())
 
@@ -64,7 +68,7 @@ def test_no_vote_on_someone_elses_answer_or_on_a_question(run, user, monkeypatch
     async def mirror_vote(trace_id, current):
         return None
 
-    monkeypatch.setattr(routes, "mirror_vote", mirror_vote)
+    monkeypatch.setattr(conversation_service, "mirror_vote", mirror_vote)
 
     async def scenario():
         theirs, _, their_answer = await answered("someone-else")
@@ -88,7 +92,7 @@ def test_no_vote_on_someone_elses_answer_or_on_a_question(run, user, monkeypatch
                 headers=headers,
             )
 
-        return other, mixed, question, await messages.vote_of(their_answer)
+        return other, mixed, question, await transaction(messages.vote_of, their_answer)
 
     other, mixed, question, kept = run(scenario())
 

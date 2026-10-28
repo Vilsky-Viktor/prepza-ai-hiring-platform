@@ -7,6 +7,7 @@ from prepza_common.auth.user import User
 from assistant.constants.actions_flow import CONFIRMED_NOTE
 from assistant.constants.chat import HISTORY_CHARACTERS, HISTORY_MESSAGES
 from assistant.constants.company_actions import CREATE_COMPANY
+from assistant.core.db import Session
 from assistant.models.answers import Turn
 from assistant.repositories import messages
 from assistant.services import actions
@@ -45,7 +46,10 @@ async def confirm(
         user.name,
         new_question=False,
     )
-    earlier = await messages.recent(conversation_id, HISTORY_MESSAGES)
+
+    async with Session() as session:
+        earlier = await messages.recent(session, conversation_id, HISTORY_MESSAGES)
+
     note = CONFIRMED_NOTE.format(
         tool=tool.name, result=json.dumps(result.content, ensure_ascii=False)
     )

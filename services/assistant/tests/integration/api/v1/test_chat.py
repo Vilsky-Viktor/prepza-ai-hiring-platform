@@ -17,6 +17,7 @@ from assistant.main import app
 from assistant.models.conversations import ToolCall
 from assistant.repositories import conversations, messages
 from tests.fake_model import FakeModel, calls, text
+from tests.integration.transactions import transaction
 
 PAGE = {"key": "companies", "path": "/companies"}
 SETTINGS = {"key": "settings", "path": "/settings"}
@@ -54,7 +55,7 @@ def test_a_conversation_is_streamed_saved_listed_exported_and_deleted(run, user,
             second = events((await api.post("/chat", json=body, headers=headers)).text)
             listed = (await api.get("/conversations", headers=headers)).json()
             opened = (await api.get(f"/conversations/{conversation_id}", headers=headers)).json()
-            stored = await messages.recent(uuid.UUID(conversation_id), 20)
+            stored = await transaction(messages.recent, uuid.UUID(conversation_id), 20)
             calls = await tool_calls_of(stored[1].id)
             body = {"email": "ann@example.com"}
             exported = await api.post(f"/internal/users/{uid}/export", json=body, headers=library())
@@ -131,14 +132,14 @@ def test_a_company_the_user_cant_see_is_refused_and_a_stored_one_is_deleted(run,
 
     async def scenario():
         # Stored while the user could see it; they've since lost access.
-        stored = await conversations.create(uid, company_id, "Old")
+        stored = await transaction(conversations.create, uid, company_id, "Old")
 
         async with client() as api:
             body = {"message": "Hi", "company_id": str(company_id)}
             started = await api.post("/chat", json=body, headers=headers)
             opened = await api.get(f"/conversations/{stored.id}", headers=headers)
 
-        return started, opened, await conversations.owned(stored.id, uid)
+        return started, opened, await transaction(conversations.owned, stored.id, uid)
 
     started, opened, left = run(scenario())
 
@@ -152,13 +153,13 @@ def test_someone_elses_conversation_is_not_found(run, user):
     headers = bearer(token)
 
     async def scenario():
-        other = await conversations.create("someone-else", None, "Theirs")
+        other = await transaction(conversations.create, "someone-else", None, "Theirs")
 
         async with client() as api:
             opened = await api.get(f"/conversations/{other.id}", headers=headers)
             deleted = await api.delete(f"/conversations/{other.id}", headers=headers)
 
-        return opened, deleted, await conversations.owned(other.id, "someone-else")
+        return opened, deleted, await transaction(conversations.owned, other.id, "someone-else")
 
     opened, deleted, kept = run(scenario())
 

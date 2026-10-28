@@ -29,6 +29,7 @@ from assistant.constants.mcp import (
 )
 from assistant.constants.tool_calls import UNKNOWN_TOOL
 from assistant.constants.updates import GET_UPDATES
+from assistant.core.db import Session
 from assistant.helpers.arguments import texts_in
 from assistant.helpers.mcp_schema import mcp_tool
 from assistant.helpers.oauth import funnel_client
@@ -98,7 +99,8 @@ async def mark_active(access: Access) -> None:
 
     try:
         if access.grant_id:
-            await oauth.used(uuid.UUID(access.grant_id), datetime.now(UTC))
+            async with Session.begin() as session:
+                await oauth.used(session, uuid.UUID(access.grant_id), datetime.now(UTC))
 
         key = ACTIVE_KEY.format(user_id=access.subject, client=client)
 

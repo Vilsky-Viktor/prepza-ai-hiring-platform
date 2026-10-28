@@ -93,10 +93,10 @@ def kept(monkeypatch):
     """Kept copies (Postgres) and what the app's site answers, in memory."""
     store = {"copies": {}, "answers": {}, "reads": 0}
 
-    async def read_document(client_id):
+    async def read_document(session, client_id):
         return store["copies"].get(client_id)
 
-    async def keep_document(client_id, info, read_at):
+    async def keep_document(session, client_id, info, read_at):
         store["copies"][client_id] = (info, read_at)
 
     async def read(url):
@@ -147,7 +147,7 @@ def test_a_document_that_isnt_valid_any_more_refuses_the_app(kept):
 def test_the_provider_reads_a_document_app_and_a_registered_one_from_storage(kept, monkeypatch):
     kept["answers"][URL] = DOCUMENT
 
-    async def get_client(client_id):
+    async def get_client(session, client_id):
         return {"client_id": client_id, "redirect_uris": ["https://claude.ai/cb"]}
 
     monkeypatch.setattr(oauth, "get_client", get_client)

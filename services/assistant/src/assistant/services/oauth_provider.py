@@ -23,6 +23,7 @@ from assistant.constants.mcp import (
     OTHER_RESOURCE,
     REFRESH_REUSE_GRACE_SECONDS,
 )
+from assistant.core.db import Session
 from assistant.helpers.mcp_clients import describe_client, is_document_id, refused_redirect
 from assistant.helpers.oauth import (
     funnel_client,
@@ -44,16 +45,19 @@ async def revoke_if_replayed(refresh_hash: str) -> None:
     """A refresh token a refresh replaced, used again: within REFRESH_REUSE_GRACE_SECONDS, an app
     that refreshed twice at once (just refused); later, likely a stolen copy, so the connection
     goes and the app asks the user again (OAuth 2.1)."""
-    grant = await oauth.by_previous_refresh(refresh_hash)
-
-    if grant is None or grant.refreshed_at is None:
-        return
-
     grace = timedelta(seconds=REFRESH_REUSE_GRACE_SECONDS)
 
-    if datetime.now(UTC) - grant.refreshed_at > grace:
-        logger.warning("A replaced refresh token was used again: connection %s revoked", grant.id)
-        await oauth.remove(grant.id)
+    async with Session.begin() as session:
+        grant = await oauth.by_previous_refresh(session, refresh_hash)
+
+        if grant is None or grant.refreshed_at is None:
+            return
+
+        if datetime.now(UTC) - grant.refreshed_at > grace:
+            logger.warning(
+                "A replaced refresh token was used again: connection %s revoked", grant.id
+            )
+            await oauth.remove(session, grant.id)
 
 
 class Provider:
@@ -66,7 +70,8 @@ class Provider:
         if is_document_id(client_id):
             found = await client_documents.client_of(client_id)
         else:
-            found = await oauth.get_client(client_id)
+            async with Session() as session:
+                found = await oauth.get_client(session, client_id)
 
         return Client.model_validate(found) if found else None
 
@@ -80,7 +85,8 @@ class Provider:
         if any(refused_redirect(str(uri)) for uri in client_info.redirect_uris or []):
             raise RegistrationError("invalid_redirect_uri", "Return addresses must open an app.")
 
-        await oauth.save_client(client_info.client_id, info)
+        async with Session.begin() as session:
+            await oauth.save_client(session, client_info.client_id, info)
 
     async def authorize(
         self, client: OAuthClientInformationFull, params: AuthorizationParams
@@ -149,7 +155,10 @@ class Provider:
             redirect_host=authorization_code.redirect_host,
             **kept,
         )
-        await oauth.add_grant(grant)
+
+        async with Session.begin() as session:
+            await oauth.add_grant(session, grant)
+
         client_label = funnel_client(authorization_code.client_name)
         await track("mcp_connected", user_id=authorization_code.subject, client=client_label)
 
@@ -158,7 +167,8 @@ class Provider:
     async def load_refresh_token(
         self, client: OAuthClientInformationFull, refresh_token: str
     ) -> Refresh | None:
-        grant = await oauth.by_refresh(hashed(refresh_token))
+        async with Session() as session:
+            grant = await oauth.by_refresh(session, hashed(refresh_token))
 
         if grant is None:
             await revoke_if_replayed(hashed(refresh_token))
@@ -186,7 +196,12 @@ class Provider:
         scope = MCP_SCOPE if MCP_SCOPE in refresh_token.scopes else refresh_token.scopes[0]
         token, kept = new_tokens(scope)
 
-        if not await oauth.rotate(UUID(refresh_token.grant_id), hashed(refresh_token.token), kept):
+        grant_id = UUID(refresh_token.grant_id)
+
+        async with Session.begin() as session:
+            rotated = await oauth.rotate(session, grant_id, hashed(refresh_token.token), kept)
+
+        if not rotated:
             raise TokenError("invalid_grant", "refresh token does not exist")
 
         return token
@@ -196,7 +211,8 @@ class Provider:
         if token.startswith(API_KEY_PREFIX):
             return await key_access(token)
 
-        grant = await oauth.by_access(hashed(token))
+        async with Session() as session:
+            grant = await oauth.by_access(session, hashed(token))
 
         if grant is None or grant.access_expires_at <= datetime.now(UTC):
             return None
@@ -218,7 +234,8 @@ class Provider:
         if token.grant_id is None:
             return
 
-        removed = await oauth.remove(UUID(token.grant_id))
+        async with Session.begin() as session:
+            removed = await oauth.remove(session, UUID(token.grant_id))
 
         if removed is not None:
             await track("mcp_disconnected", user_id=removed.user_id, by="client")

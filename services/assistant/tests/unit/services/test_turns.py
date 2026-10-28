@@ -33,7 +33,7 @@ def saved(monkeypatch):
     found = Saved()
     found.tokens = []
 
-    async def add_answer(conversation_id, answer, status):
+    async def add_answer(session, conversation_id, answer, status):
         found.append((status, answer.content, [result.tool for result in answer.results]))
 
         return MESSAGE_ID
@@ -144,7 +144,7 @@ def test_an_expired_session_says_so_with_its_code(monkeypatch, saved):
 
 
 def test_an_answer_that_cant_be_saved_is_an_error(monkeypatch, saved):
-    async def gone(conversation_id, answer, status):
+    async def gone(session, conversation_id, answer, status):
         raise RuntimeError("conversation deleted")
 
     monkeypatch.setattr(turns.messages, "add_answer", gone)

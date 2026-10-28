@@ -25,6 +25,7 @@ from assistant.constants.chat import (
     TURNS_BUSY_RETRY_SECONDS,
     Status,
 )
+from assistant.core.db import Session
 from assistant.integrations.redis import get_redis
 from assistant.models.answers import Answer, Turn
 from assistant.repositories import actions as pending_actions
@@ -79,16 +80,20 @@ async def start(body: ChatRequest, user: User, token: str, language: str) -> Asy
     require_company(company_id, companies)
 
     await limits.check(redis, user.uid, company_id)
-
-    if conversation is None:
-        conversation = await conversations.create(user.uid, company_id, body.message[:TITLE_LENGTH])
-
-        if body.earlier:
-            await messages.add_earlier(conversation.id, body.earlier)
-
-    earlier = await messages.recent(conversation.id, HISTORY_MESSAGES)
     page = body.page.model_dump(exclude_none=True) if body.page else None
-    await messages.add_question(conversation.id, body.message, body.source, page)
+
+    # A new conversation, the chat from before signing in and the question: one save.
+    async with Session.begin() as session:
+        if conversation is None:
+            title = body.message[:TITLE_LENGTH]
+            conversation = await conversations.create(session, user.uid, company_id, title)
+
+            if body.earlier:
+                await messages.add_earlier(session, conversation.id, body.earlier)
+
+        earlier = await messages.recent(session, conversation.id, HISTORY_MESSAGES)
+        await messages.add_question(session, conversation.id, body.message, body.source, page)
+
     turn = Turn(conversation.id, user.uid, company_id, token, language, companies, user.name)
 
     return stream(turn, build_messages(turn, earlier, body.message, page, HISTORY_CHARACTERS))
@@ -163,7 +168,8 @@ async def run_turn(turn: Turn, prompt: list, emit: Emit) -> None:
     last = error or {"error": translate(CHAT_FAILED, turn.language)}
 
     try:
-        message_id = await messages.add_answer(turn.conversation_id, answer, status)
+        async with Session.begin() as session:
+            message_id = await messages.add_answer(session, turn.conversation_id, answer, status)
 
         # Its cards show under it again when the conversation is opened, while they wait.
         for action_id in answer.pending:

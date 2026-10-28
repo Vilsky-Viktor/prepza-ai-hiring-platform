@@ -4,83 +4,71 @@ from uuid import UUID
 from prepza_common.db.db import delete_in_batches
 from sqlalchemy import delete, exists, func, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from assistant.constants.mcp import LAST_USED_EVERY_SECONDS
-from assistant.core.db import Session
 from assistant.models.oauth import McpGrant, OAuthClient
 
 
-async def save_client(client_id: str, info: dict) -> None:
-    async with Session() as session:
-        await session.execute(
-            insert(OAuthClient).values(client_id=client_id, info=info).on_conflict_do_nothing()
-        )
-        await session.commit()
+async def save_client(session: AsyncSession, client_id: str, info: dict) -> None:
+    await session.execute(
+        insert(OAuthClient).values(client_id=client_id, info=info).on_conflict_do_nothing()
+    )
 
 
-async def get_client(client_id: str) -> dict | None:
-    async with Session() as session:
-        return await session.scalar(
-            select(OAuthClient.info).where(OAuthClient.client_id == client_id)
-        )
+async def get_client(session: AsyncSession, client_id: str) -> dict | None:
+    return await session.scalar(select(OAuthClient.info).where(OAuthClient.client_id == client_id))
 
 
-async def read_document(client_id: str) -> tuple[dict, datetime] | None:
+async def read_document(session: AsyncSession, client_id: str) -> tuple[dict, datetime] | None:
     """A metadata document app's kept copy and when it was read."""
-    async with Session() as session:
-        found = await session.execute(
-            select(OAuthClient.info, OAuthClient.created_at).where(
-                OAuthClient.client_id == client_id
-            )
-        )
-        row = found.first()
+    found = await session.execute(
+        select(OAuthClient.info, OAuthClient.created_at).where(OAuthClient.client_id == client_id)
+    )
+    row = found.first()
 
-        return (row.info, row.created_at) if row else None
+    return (row.info, row.created_at) if row else None
 
 
-async def keep_document(client_id: str, info: dict, read_at: datetime) -> None:
+async def keep_document(
+    session: AsyncSession, client_id: str, info: dict, read_at: datetime
+) -> None:
     """A metadata document app's copy, as just read; it replaces the one kept (its connections
     stay)."""
-    async with Session() as session:
-        values = {"client_id": client_id, "info": info, "created_at": read_at}
-        await session.execute(
-            insert(OAuthClient)
-            .values(**values)
-            .on_conflict_do_update(
-                index_elements=[OAuthClient.client_id],
-                set_={"info": info, "created_at": read_at},
-            )
+    values = {"client_id": client_id, "info": info, "created_at": read_at}
+    await session.execute(
+        insert(OAuthClient)
+        .values(**values)
+        .on_conflict_do_update(
+            index_elements=[OAuthClient.client_id],
+            set_={"info": info, "created_at": read_at},
         )
-        await session.commit()
+    )
 
 
-async def add_grant(grant: McpGrant) -> McpGrant:
-    async with Session() as session:
-        session.add(grant)
-        await session.commit()
+async def add_grant(session: AsyncSession, grant: McpGrant) -> McpGrant:
+    session.add(grant)
+    await session.flush()
 
-        return grant
-
-
-async def by_access(access_hash: str) -> McpGrant | None:
-    async with Session() as session:
-        return await session.scalar(select(McpGrant).where(McpGrant.access_hash == access_hash))
+    return grant
 
 
-async def by_refresh(refresh_hash: str) -> McpGrant | None:
-    async with Session() as session:
-        return await session.scalar(select(McpGrant).where(McpGrant.refresh_hash == refresh_hash))
+async def by_access(session: AsyncSession, access_hash: str) -> McpGrant | None:
+    return await session.scalar(select(McpGrant).where(McpGrant.access_hash == access_hash))
 
 
-async def by_previous_refresh(refresh_hash: str) -> McpGrant | None:
+async def by_refresh(session: AsyncSession, refresh_hash: str) -> McpGrant | None:
+    return await session.scalar(select(McpGrant).where(McpGrant.refresh_hash == refresh_hash))
+
+
+async def by_previous_refresh(session: AsyncSession, refresh_hash: str) -> McpGrant | None:
     """The connection whose last refresh replaced this refresh token."""
-    async with Session() as session:
-        return await session.scalar(
-            select(McpGrant).where(McpGrant.previous_refresh_hash == refresh_hash)
-        )
+    return await session.scalar(
+        select(McpGrant).where(McpGrant.previous_refresh_hash == refresh_hash)
+    )
 
 
-async def rotate(grant_id: UUID, refresh_hash: str, values: dict) -> bool:
+async def rotate(session: AsyncSession, grant_id: UUID, refresh_hash: str, values: dict) -> bool:
     """New tokens for the connection, only while `refresh_hash` is still its refresh token: of
     two refreshes with the same token, one gets them, the other nothing (False)."""
     query = (
@@ -89,14 +77,12 @@ async def rotate(grant_id: UUID, refresh_hash: str, values: dict) -> bool:
         .values(**values, previous_refresh_hash=refresh_hash, refreshed_at=func.now())
     )
 
-    async with Session() as session:
-        result = await session.execute(query)
-        await session.commit()
+    result = await session.execute(query)
 
-        return result.rowcount == 1
+    return result.rowcount == 1
 
 
-async def used(grant_id: UUID, now: datetime) -> None:
+async def used(session: AsyncSession, grant_id: UUID, now: datetime) -> None:
     """Writes when the connection was last used, at most once in LAST_USED_EVERY_SECONDS."""
     every = timedelta(seconds=LAST_USED_EVERY_SECONDS)
     query = (
@@ -108,12 +94,10 @@ async def used(grant_id: UUID, now: datetime) -> None:
         .values(last_used_at=now)
     )
 
-    async with Session() as session:
-        await session.execute(query)
-        await session.commit()
+    await session.execute(query)
 
 
-async def of_user(user_id: str) -> list[McpGrant]:
+async def of_user(session: AsyncSession, user_id: str) -> list[McpGrant]:
     """The user's connections, the latest first."""
     query = (
         select(McpGrant)
@@ -121,38 +105,35 @@ async def of_user(user_id: str) -> list[McpGrant]:
         .order_by(McpGrant.created_at.desc(), McpGrant.id)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def remove(grant_id: UUID, user_id: str | None = None) -> McpGrant | None:
+async def remove(
+    session: AsyncSession, grant_id: UUID, user_id: str | None = None
+) -> McpGrant | None:
     """Deletes the connection (only the user's, when one is given); what was deleted, or None."""
     query = delete(McpGrant).where(McpGrant.id == grant_id)
 
     if user_id is not None:
         query = query.where(McpGrant.user_id == user_id)
 
-    async with Session() as session:
-        found = await session.scalar(query.returning(McpGrant))
-        await session.commit()
-
-        return found
+    return await session.scalar(query.returning(McpGrant))
 
 
-async def delete_user(user_id: str) -> None:
+async def delete_user(session: AsyncSession, user_id: str) -> None:
     """Every connection of the user's (deleting their account). Safe to repeat."""
-    async with Session() as session:
-        await session.execute(delete(McpGrant).where(McpGrant.user_id == user_id))
-        await session.commit()
+    await session.execute(delete(McpGrant).where(McpGrant.user_id == user_id))
 
 
-async def delete_expired(now: datetime, idle_before: datetime) -> tuple[int, int]:
+async def delete_expired(
+    sessions: async_sessionmaker, now: datetime, idle_before: datetime
+) -> tuple[int, int]:
     """Connections whose refresh token expired, then apps registered before `idle_before` that
     have no connection: how many of each went, in batches (delete_in_batches)."""
     no_grant = ~exists().where(McpGrant.client_id == OAuthClient.client_id)
-    grants = await delete_in_batches(Session, McpGrant, McpGrant.refresh_expires_at < now)
+    grants = await delete_in_batches(sessions, McpGrant, McpGrant.refresh_expires_at < now)
     clients = await delete_in_batches(
-        Session, OAuthClient, OAuthClient.created_at < idle_before, no_grant
+        sessions, OAuthClient, OAuthClient.created_at < idle_before, no_grant
     )
 
     return grants, clients

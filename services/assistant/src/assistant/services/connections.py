@@ -9,6 +9,7 @@ from prepza_common.events.analytics import track
 from prepza_common.limits.rate_limit import hit_or_skip
 
 from assistant.constants.mcp import CODE_BYTES, CODE_SECONDS, MCP_SCOPE, NOT_FOUND, OTHER_BROWSER
+from assistant.core.db import Session
 from assistant.helpers.oauth import auth_settings, granted_scope
 from assistant.integrations.redis import get_redis
 from assistant.models.oauth import McpGrant
@@ -99,13 +100,15 @@ async def taken(request_id: str) -> dict:
 
 
 async def of_user(user_id: str) -> list[McpGrant]:
-    return await oauth.of_user(user_id)
+    async with Session() as session:
+        return await oauth.of_user(session, user_id)
 
 
 async def disconnect(grant_id: UUID, user_id: str) -> None:
     """The user disconnects one of their apps; its tokens stop working at once. A 404 for one
     that isn't theirs."""
-    removed = await oauth.remove(grant_id, user_id)
+    async with Session.begin() as session:
+        removed = await oauth.remove(session, grant_id, user_id)
 
     if removed is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, NOT_FOUND)

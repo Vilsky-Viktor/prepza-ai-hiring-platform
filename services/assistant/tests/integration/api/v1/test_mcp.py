@@ -18,6 +18,7 @@ from assistant.config import settings
 from assistant.constants.chat import OTHER_COMPANY
 from assistant.main import app
 from assistant.repositories import oauth
+from tests.integration.transactions import transaction
 
 REDIRECT = "http://127.0.0.1:33418/callback"
 
@@ -109,7 +110,15 @@ def test_an_app_connects_with_oauth_and_calls_tools_as_the_user(run, user):
                 )
                 excluded = await client.call_tool("delete_account", {})
 
-        return answered, listed, me, companies, refused, excluded, await oauth.of_user(uid)
+        return (
+            answered,
+            listed,
+            me,
+            companies,
+            refused,
+            excluded,
+            await transaction(oauth.of_user, uid),
+        )
 
     answered, listed, me, companies, refused, excluded, grants = run(scenario())
 

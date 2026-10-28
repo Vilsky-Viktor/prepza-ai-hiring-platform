@@ -14,6 +14,7 @@ from assistant.constants.updates import (
     INVALID_SINCE,
     SETTLE_SECONDS,
 )
+from assistant.core.db import Session
 from assistant.helpers.arguments import problems
 from assistant.helpers.updates import parsed_since
 from assistant.models.answers import Turn
@@ -58,7 +59,10 @@ async def for_app(arguments: dict, access: Access, token: str, language: str) ->
         asked = since is not None
 
         if since is None:
-            since = await update_checks.last(connection) or now - timedelta(FIRST_CHECK_DAYS)
+            async with Session() as session:
+                last = await update_checks.last(session, connection)
+
+            since = last or now - timedelta(FIRST_CHECK_DAYS)
 
         period = (since, now)
         sees_credits = key_may_use(access, CREDITS_TOOL)
@@ -69,7 +73,8 @@ async def for_app(arguments: dict, access: Access, token: str, language: str) ->
         return result(arguments, started, refused.status, {"detail": refused.detail})
 
     if not asked:
-        await update_checks.save(connection, now)
+        async with Session.begin() as session:
+            await update_checks.save(session, connection, now)
 
     return result(arguments, started, 200, content)
 

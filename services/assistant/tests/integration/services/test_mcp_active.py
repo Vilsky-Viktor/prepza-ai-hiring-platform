@@ -11,6 +11,7 @@ from assistant.models.oauth_tokens import Access
 from assistant.repositories import oauth
 from assistant.services import mcp_tools
 from tests.integration.repositories.test_oauth import connect
+from tests.integration.transactions import transaction
 
 
 def access(user: str, grant_id: uuid.UUID, client_name: str) -> Access:
@@ -43,7 +44,9 @@ def test_an_app_in_use_is_counted_active_once_a_day(run, monkeypatch):
         expiry = [await get_redis().ttl(key) for key in keys]
         await get_redis().delete(*keys)
 
-        return expiry, {grant.id: grant.last_used_at for grant in await oauth.of_user(user)}
+        return expiry, {
+            grant.id: grant.last_used_at for grant in await transaction(oauth.of_user, user)
+        }
 
     expiry, last_used = run(scenario())
 

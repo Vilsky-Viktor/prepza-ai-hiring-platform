@@ -22,7 +22,7 @@ def down(monkeypatch):
 def test_an_app_registers_with_redis_down(client, down, monkeypatch):
     saved = []
 
-    async def save_client(client_id, info):
+    async def save_client(session, client_id, info):
         saved.append(info)
 
     monkeypatch.setattr(oauth, "save_client", save_client)
@@ -47,7 +47,7 @@ def test_an_apps_calls_go_on_with_redis_down(down):
 def test_an_apps_call_isnt_failed_when_its_use_cant_be_recorded(down, monkeypatch):
     tracked = []
 
-    async def used(grant_id, now):
+    async def used(session, grant_id, now):
         pass
 
     async def track(*args, **kwargs):

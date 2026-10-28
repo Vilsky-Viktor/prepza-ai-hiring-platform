@@ -51,7 +51,7 @@ def test_a_browser_app_may_send_every_protocol_revisions_headers(client):
 
 
 def test_an_unknown_token_is_refused(client, monkeypatch):
-    async def none(access_hash):
+    async def none(session, access_hash):
         return None
 
     monkeypatch.setattr(oauth, "by_access", none)
@@ -64,7 +64,7 @@ def test_an_unknown_token_is_refused(client, monkeypatch):
 def test_an_app_registers_without_a_secret_within_the_limits(client, monkeypatch):
     saved, counted = [], []
 
-    async def save_client(client_id, info):
+    async def save_client(session, client_id, info):
         saved.append(info)
 
     async def hit(redis, key, name):

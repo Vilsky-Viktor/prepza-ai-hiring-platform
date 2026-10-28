@@ -9,6 +9,7 @@ from prepza_common.ai.tracing import traced_run
 from assistant.config import settings
 from assistant.constants.ai_usage import TITLE_ACTION
 from assistant.constants.titles import TITLE_SOURCE_CHARACTERS
+from assistant.core.db import Session
 from assistant.helpers.history import history
 from assistant.helpers.titles import clean_title, should_title, title_prompt
 from assistant.integrations import llm
@@ -37,10 +38,12 @@ async def refresh(turn: Turn) -> str | None:
     """A new title for the conversation when it's time (should_title), written by the cheap
     model call; its tokens count against the budgets. None when it isn't time or the call
     failed, and the old title stays."""
-    if not should_title(await messages.count_questions(turn.conversation_id)):
-        return None
+    async with Session() as session:
+        if not should_title(await messages.count_questions(session, turn.conversation_id)):
+            return None
 
-    earlier = await messages.recent(turn.conversation_id, 20)
+        earlier = await messages.recent(session, turn.conversation_id, 20)
+
     prompt = title_prompt(history(earlier, TITLE_SOURCE_CHARACTERS), turn.language)
     who = {"company_id": turn.company_id, "user_id": turn.user_id}
     recorded = {**who, "subject_id": turn.conversation_id}
@@ -66,6 +69,7 @@ async def refresh(turn: Turn) -> str | None:
     title = clean_title(text)
 
     if title:
-        await conversations.set_title(turn.conversation_id, title)
+        async with Session.begin() as session:
+            await conversations.set_title(session, turn.conversation_id, title)
 
     return title

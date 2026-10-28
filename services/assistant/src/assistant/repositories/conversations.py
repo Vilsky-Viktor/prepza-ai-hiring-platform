@@ -3,32 +3,32 @@ from uuid import UUID
 
 from prepza_common.db.db import delete_in_batches
 from sqlalchemy import Text, cast, delete, func, or_, select, update
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from assistant.core.db import Session
 from assistant.models.conversations import Conversation, Message, ToolCall
 
 
-async def create(user_id: str, company_id: UUID | None, title: str) -> Conversation:
-    async with Session() as session:
-        conversation = Conversation(user_id=user_id, company_id=company_id, title=title)
-        session.add(conversation)
-        await session.commit()
+async def create(
+    session: AsyncSession, user_id: str, company_id: UUID | None, title: str
+) -> Conversation:
+    conversation = Conversation(user_id=user_id, company_id=company_id, title=title)
+    session.add(conversation)
+    await session.flush()
 
-        return conversation
+    return conversation
 
 
-async def owned(conversation_id: UUID, user_id: str) -> Conversation | None:
+async def owned(session: AsyncSession, conversation_id: UUID, user_id: str) -> Conversation | None:
     """The user's own conversation; None when it's gone or someone else's."""
-    async with Session() as session:
-        return await session.scalar(
-            select(Conversation).where(
-                Conversation.id == conversation_id, Conversation.user_id == user_id
-            )
+    return await session.scalar(
+        select(Conversation).where(
+            Conversation.id == conversation_id, Conversation.user_id == user_id
         )
+    )
 
 
 async def of_user(
-    user_id: str, company_id: UUID | None, offset: int, limit: int
+    session: AsyncSession, user_id: str, company_id: UUID | None, offset: int, limit: int
 ) -> list[Conversation]:
     """The user's conversations, the latest first; about one company when it's given."""
     query = select(Conversation).where(Conversation.user_id == user_id)
@@ -38,41 +38,38 @@ async def of_user(
 
     query = query.order_by(Conversation.updated_at.desc(), Conversation.id)
 
-    async with Session() as session:
-        return list(await session.scalars(query.offset(offset).limit(limit)))
+    return list(await session.scalars(query.offset(offset).limit(limit)))
 
 
-async def delete_one(conversation_id: UUID) -> None:
+async def delete_one(session: AsyncSession, conversation_id: UUID) -> None:
     """With its messages and their tool calls (the foreign keys cascade)."""
-    async with Session() as session:
-        await session.execute(delete(Conversation).where(Conversation.id == conversation_id))
-        await session.commit()
+    await session.execute(delete(Conversation).where(Conversation.id == conversation_id))
 
 
-async def delete_idle(before: datetime, limit: int) -> int:
+async def delete_idle(session: AsyncSession, before: datetime, limit: int) -> int:
     """Up to `limit` conversations nobody added to since `before`; how many went."""
     idle = (
         select(Conversation.id).where(Conversation.updated_at < before).limit(limit)
     ).scalar_subquery()
 
-    async with Session() as session:
-        result = await session.execute(delete(Conversation).where(Conversation.id.in_(idle)))
-        await session.commit()
+    result = await session.execute(delete(Conversation).where(Conversation.id.in_(idle)))
 
-        return result.rowcount
+    return result.rowcount
 
 
-async def delete_company(company_id: UUID) -> int:
-    """Every conversation about the company, with its messages, a batch at a time; how many
-    went (none when run again)."""
-    return await delete_in_batches(Session, Conversation, Conversation.company_id == company_id)
+async def delete_company(sessions: async_sessionmaker, company_id: UUID) -> int:
+    """Every conversation about the company, with its messages, a batch at a time (each its
+    own transaction); how many went (none when run again)."""
+    return await delete_in_batches(sessions, Conversation, Conversation.company_id == company_id)
 
 
 def mentions(text, needle: str):
     return func.strpos(func.lower(text), needle.lower()) > 0
 
 
-async def delete_mentioning(company_id: UUID, needles: list[str]) -> int:
+async def delete_mentioning(
+    sessions: async_sessionmaker, company_id: UUID, needles: list[str]
+) -> int:
     """The company's conversations whose messages or tools' results mention any of `needles`
     (an erased candidate's email or invite, a deleted interview): they go whole, as what's left
     of one would still read as about that person. A batch at a time; how many went (none when
@@ -102,14 +99,14 @@ async def delete_mentioning(company_id: UUID, needles: list[str]) -> int:
     )
 
     return await delete_in_batches(
-        Session,
+        sessions,
         Conversation,
         Conversation.company_id == company_id,
         or_(Conversation.id.in_(said), Conversation.id.in_(read)),
     )
 
 
-async def trace_ids_of_user(user_id: str) -> list[str]:
+async def trace_ids_of_user(session: AsyncSession, user_id: str) -> list[str]:
     """The Langfuse traces of the user's conversations' answers."""
     query = (
         select(Message.trace_id)
@@ -117,32 +114,26 @@ async def trace_ids_of_user(user_id: str) -> list[str]:
         .where(Conversation.user_id == user_id, Message.trace_id.is_not(None))
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def delete_user(user_id: str) -> None:
-    async with Session() as session:
-        await session.execute(delete(Conversation).where(Conversation.user_id == user_id))
-        await session.commit()
+async def delete_user(session: AsyncSession, user_id: str) -> None:
+    await session.execute(delete(Conversation).where(Conversation.user_id == user_id))
 
 
-async def set_title(conversation_id: UUID, title: str) -> None:
-    async with Session() as session:
-        await session.execute(
-            update(Conversation).where(Conversation.id == conversation_id).values(title=title)
-        )
-        await session.commit()
+async def set_title(session: AsyncSession, conversation_id: UUID, title: str) -> None:
+    await session.execute(
+        update(Conversation).where(Conversation.id == conversation_id).values(title=title)
+    )
 
 
-async def latest(user_id: str, minutes: int) -> Conversation | None:
+async def latest(session: AsyncSession, user_id: str, minutes: int) -> Conversation | None:
     """The user's conversation with the latest message, if that's at most `minutes` old."""
     since = datetime.now(UTC) - timedelta(minutes=minutes)
 
-    async with Session() as session:
-        return await session.scalar(
-            select(Conversation)
-            .where(Conversation.user_id == user_id, Conversation.updated_at >= since)
-            .order_by(Conversation.updated_at.desc())
-            .limit(1)
-        )
+    return await session.scalar(
+        select(Conversation)
+        .where(Conversation.user_id == user_id, Conversation.updated_at >= since)
+        .order_by(Conversation.updated_at.desc())
+        .limit(1)
+    )

@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from assistant.repositories import conversations
+from assistant.services import conversations
 
 
 async def handle(company_id: UUID, data: dict) -> int:

@@ -16,6 +16,7 @@ from assistant.helpers.oauth import new_tokens
 from assistant.main import app
 from assistant.models.oauth import McpGrant, OAuthClient
 from assistant.repositories import oauth, oauth_requests
+from tests.integration.transactions import transaction
 
 
 def internal() -> httpx.AsyncClient:
@@ -32,13 +33,13 @@ def internal() -> httpx.AsyncClient:
 async def connect(user_id: str, client_id: str | None = None) -> tuple[McpGrant, dict]:
     """A registered app and a connection of the user's to it: (the row, its tokens)."""
     client_id = client_id or uuid.uuid4().hex
-    await oauth.save_client(client_id, {"client_id": client_id, "client_name": "App"})
+    await transaction(oauth.save_client, client_id, {"client_id": client_id, "client_name": "App"})
     token, kept = new_tokens()
     grant = McpGrant(
         user_id=user_id, client_id=client_id, client_name="App", redirect_host="claude.ai", **kept
     )
 
-    return await oauth.add_grant(grant), token.model_dump()
+    return await transaction(oauth.add_grant, grant), token.model_dump()
 
 
 def test_a_connection_is_found_by_its_tokens_hashes_only(run):
@@ -46,9 +47,9 @@ def test_a_connection_is_found_by_its_tokens_hashes_only(run):
 
     async def scenario():
         grant, tokens = await connect(user)
-        by_access = await oauth.by_access(hashed(tokens["access_token"]))
-        by_refresh = await oauth.by_refresh(hashed(tokens["refresh_token"]))
-        by_raw = await oauth.by_access(tokens["access_token"])
+        by_access = await transaction(oauth.by_access, hashed(tokens["access_token"]))
+        by_refresh = await transaction(oauth.by_refresh, hashed(tokens["refresh_token"]))
+        by_raw = await transaction(oauth.by_access, tokens["access_token"])
 
         return grant, by_access, by_refresh, by_raw
 
@@ -64,12 +65,12 @@ def test_of_two_refreshes_with_one_token_only_the_first_gets_new_tokens(run):
     async def scenario():
         grant, tokens = await connect(user)
         old = hashed(tokens["refresh_token"])
-        first = await oauth.rotate(grant.id, old, new_tokens()[1])
-        second = await oauth.rotate(grant.id, old, new_tokens()[1])
+        first = await transaction(oauth.rotate, grant.id, old, new_tokens()[1])
+        second = await transaction(oauth.rotate, grant.id, old, new_tokens()[1])
 
-        replaced = await oauth.by_previous_refresh(old)
+        replaced = await transaction(oauth.by_previous_refresh, old)
 
-        return first, second, await oauth.by_refresh(old), replaced, grant.id
+        return first, second, await transaction(oauth.by_refresh, old), replaced, grant.id
 
     first, second, current, replaced, grant_id = run(scenario())
 
@@ -84,12 +85,12 @@ def test_last_used_is_written_at_most_once_an_hour(run):
 
     async def scenario():
         grant, _ = await connect(user)
-        await oauth.used(grant.id, now)
-        await oauth.used(grant.id, now + timedelta(minutes=30))
-        first = (await oauth.of_user(user))[0].last_used_at
-        await oauth.used(grant.id, now + timedelta(minutes=61))
+        await transaction(oauth.used, grant.id, now)
+        await transaction(oauth.used, grant.id, now + timedelta(minutes=30))
+        first = (await transaction(oauth.of_user, user))[0].last_used_at
+        await transaction(oauth.used, grant.id, now + timedelta(minutes=61))
 
-        return first, (await oauth.of_user(user))[0].last_used_at
+        return first, (await transaction(oauth.of_user, user))[0].last_used_at
 
     first, later = run(scenario())
 
@@ -104,14 +105,20 @@ def test_a_user_disconnects_only_their_own_and_deleting_the_account_removes_the_
         first, _ = await connect(ann)
         await connect(ann)
         bobs, _ = await connect(bob)
-        not_hers = await oauth.remove(bobs.id, ann)
-        removed = await oauth.remove(first.id, ann)
-        left = len(await oauth.of_user(ann))
+        not_hers = await transaction(oauth.remove, bobs.id, ann)
+        removed = await transaction(oauth.remove, first.id, ann)
+        left = len(await transaction(oauth.of_user, ann))
 
         async with internal() as api:
             await api.request("DELETE", f"/internal/users/{ann}", json={"email": "a@example.com"})
 
-        return not_hers, removed, left, await oauth.of_user(ann), await oauth.of_user(bob)
+        return (
+            not_hers,
+            removed,
+            left,
+            await transaction(oauth.of_user, ann),
+            await transaction(oauth.of_user, bob),
+        )
 
     not_hers, removed, left, ann_after, bob_after = run(scenario())
 
@@ -146,7 +153,7 @@ def test_retention_deletes_expired_connections_and_idle_apps(run):
         expired, _ = await connect(user)
         kept, _ = await connect(user)
         idle = uuid.uuid4().hex
-        await oauth.save_client(idle, {"client_id": idle})
+        await transaction(oauth.save_client, idle, {"client_id": idle})
 
         async with Session() as session:
             past = datetime.now(UTC) - timedelta(days=31)
@@ -163,9 +170,14 @@ def test_retention_deletes_expired_connections_and_idle_apps(run):
         async with internal() as api:
             await api.post("/internal/schedules/retention")
 
-        left = [grant.id for grant in await oauth.of_user(user)]
+        left = [grant.id for grant in await transaction(oauth.of_user, user)]
 
-        return left, kept.id, await oauth.get_client(idle), await oauth.get_client(kept.client_id)
+        return (
+            left,
+            kept.id,
+            await transaction(oauth.get_client, idle),
+            await transaction(oauth.get_client, kept.client_id),
+        )
 
     left, kept_id, idle_client, kept_client = run(scenario())
 
@@ -199,12 +211,16 @@ def test_a_metadata_document_app_keeps_its_long_id_and_newest_copy_and_connectio
     first = datetime(2026, 10, 1, tzinfo=UTC)
 
     async def scenario():
-        await oauth.keep_document(client_id, {"client_id": client_id, "client_name": "A"}, first)
+        await transaction(
+            oauth.keep_document, client_id, {"client_id": client_id, "client_name": "A"}, first
+        )
         grant, _ = await connect("doc-user-" + uuid.uuid4().hex[:8], client_id)
         later = first + timedelta(days=2)
-        await oauth.keep_document(client_id, {"client_id": client_id, "client_name": "B"}, later)
-        found = await oauth.read_document(client_id)
-        still = await oauth.by_access(grant.access_hash)
+        await transaction(
+            oauth.keep_document, client_id, {"client_id": client_id, "client_name": "B"}, later
+        )
+        found = await transaction(oauth.read_document, client_id)
+        still = await transaction(oauth.by_access, grant.access_hash)
 
         return found, still, grant
 
