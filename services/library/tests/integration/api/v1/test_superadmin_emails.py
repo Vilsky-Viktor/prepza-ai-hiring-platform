@@ -9,7 +9,7 @@ from sqlalchemy import select
 from library.core.db import Session
 from library.main import app
 from library.models.emails import EmailConsent
-from library.repositories import emails
+from library.services import email_preferences
 
 ACCOUNT = SimpleNamespace(uid="asked-by-email", email="asked@example.com")
 
@@ -28,7 +28,9 @@ def test_a_superadmin_turns_settings_off_once_logged_as_admin_with_their_id(run,
     off = {"updates": False, "promotions": False, "reminders": False}
 
     async def scenario():
-        await emails.change(ACCOUNT.uid, {"updates": True, "promotions": True}, "sign_in")
+        await email_preferences.change(
+            ACCOUNT.uid, {"updates": True, "promotions": True}, "sign_in"
+        )
         transport = httpx.ASGITransport(app=app)
 
         async with httpx.AsyncClient(transport=transport, base_url="http://library") as client:

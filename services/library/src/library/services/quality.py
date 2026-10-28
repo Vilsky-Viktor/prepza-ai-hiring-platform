@@ -5,11 +5,12 @@ from datetime import UTC, datetime, timedelta
 from prepza_common.events.notifications import NotificationKind
 
 from library.constants.quality import FLAG_RESEND_AFTER_HOURS, MAX_FLAG_RESENDS, QualityFlag
-from library.helpers.notifications import question_notification
+from library.core.db import Session
 from library.helpers.quality import flag_for, no_separation, too_slow
 from library.integrations import generation
-from library.repositories import preparations, quality
+from library.repositories import quality
 from library.services import outbox
+from library.services.notices import owner_notice
 
 logger = logging.getLogger(__name__)
 
@@ -26,14 +27,23 @@ async def mark_wrong(question_id: uuid.UUID) -> None:
     """The test's owner says the marked answer is wrong: flagged at once, and the verifier
     checks it and fixes or replaces the question, as for a flag from answers. Marking it again
     while that check waits changes nothing."""
-    current = await quality.current_flag(question_id)
+    async with Session.begin() as session:
+        current = await quality.current_flag(session, question_id)
 
-    if current == QualityFlag.WRONG_KEY:
-        return
+        if current == QualityFlag.WRONG_KEY:
+            return
 
-    # Marked twice at once, only one is sent.
-    if await quality.change_flag(question_id, current, QualityFlag.WRONG_KEY):
+        # Marked twice at once, only one is sent.
+        changed = await quality.change_flag(session, question_id, current, QualityFlag.WRONG_KEY)
+
+    if changed:
         await send_to_verifier(question_id, QualityFlag.WRONG_KEY)
+
+
+async def keep(question_id: uuid.UUID) -> None:
+    """The flag is wrong: the question is served again and isn't flagged until it changes."""
+    async with Session.begin() as session:
+        await quality.save_flag(session, question_id, None, kept=True)
 
 
 async def review(question_id: uuid.UUID) -> None:
@@ -43,15 +53,34 @@ async def review(question_id: uuid.UUID) -> None:
     or answer once it has MIN_ANSWERS.
     """
     try:
-        found = await quality.load(question_id)
+        flagged = await save_review(question_id)
+
+        if flagged is None:
+            return
+
+        flag, noticed = flagged
+
+        if noticed:
+            await outbox.flush_quietly()
+
+        await send_to_verifier(question_id, flag)
+    except Exception:
+        logger.exception("Couldn't review question %s", question_id)
+
+
+async def save_review(question_id: uuid.UUID) -> tuple[str, bool] | None:
+    """Saves the flag the question's answers and feedback give it; the new flag and whether its
+    owner is told, or None when nothing goes to the verifier."""
+    async with Session.begin() as session:
+        found = await quality.load(session, question_id)
 
         if found is None:
-            return
+            return None
 
         question, stats, reports, likes, dislikes = found
 
         if stats is not None and stats.kept:
-            return
+            return None
 
         flag = flag_for(
             question.options,
@@ -63,44 +92,38 @@ async def review(question_id: uuid.UUID) -> None:
             dislikes,
             stats is not None and (no_separation(stats) or too_slow(stats)),
         )
-
         previous = stats.flag if stats else None
 
         if flag == previous:
-            return
-
-        # The owner hears only of a newly flagged question, not of a flag that changes.
-        notice = None
-
-        if flag is not None and previous is None:
-            question_set = await preparations.get_for_question(question_id)
-            topic = await preparations.topic_of_question(question_id)
-            notice = question_notification(question_set, topic, NotificationKind.QUESTION_FLAGGED)
+            return None
 
         # A flag cleared needs no check. A review of the same question at the same moment (an
         # answer and its finished topic) reads the same flag: only one of them changes it.
         if flag is None:
-            await quality.save_flag(question_id, None)
+            await quality.save_flag(session, question_id, None)
 
-            return
+            return None
+
+        # The owner hears only of a newly flagged question, not of a flag that changes.
+        notice = None
+
+        if previous is None:
+            notice = await owner_notice(session, question_id, NotificationKind.QUESTION_FLAGGED)
 
         # Saved before the verifier hears of it, so the verifier finds the flag it acts on.
-        if not await quality.change_flag(question_id, previous, flag, notice):
-            return
+        if not await quality.change_flag(session, question_id, previous, flag, notice):
+            return None
 
-        if notice is not None:
-            await outbox.flush_quietly()
-
-        await send_to_verifier(question_id, flag)
-    except Exception:
-        logger.exception("Couldn't review question %s", question_id)
+        return flag, notice is not None
 
 
 async def resend_stale_flags() -> int:
     """Daily: flags the verifier hasn't acted on for FLAG_RESEND_AFTER_HOURS go to it again, so
     a lost job doesn't leave a question flagged for good. How many were sent."""
     before = datetime.now(UTC) - timedelta(hours=FLAG_RESEND_AFTER_HOURS)
-    stale = await quality.take_stale_flags(before, MAX_FLAG_RESENDS)
+
+    async with Session.begin() as session:
+        stale = await quality.take_stale_flags(session, before, MAX_FLAG_RESENDS)
 
     for question_id, flag in stale:
         await send_to_verifier(question_id, flag)

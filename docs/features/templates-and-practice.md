@@ -11,7 +11,7 @@ Each template question belongs to one pool, fixed when it's made and never chang
 | **practice** | Free practice and the role pages' sample questions only; public, shown with its answer | 30 (`PRACTICE_QUESTIONS`) |
 | **company** | Company interviews copied from the template, and the bank new generations reuse from; never shown publicly | 60 (`COMPANY_QUESTIONS`) |
 
-- A new template's topic (`repositories/templates.py` `create_template`, `helpers/pools.py`): questions reused from the bank are company questions; of the fresh ones, 30 go to practice and the rest to companies. With 90 a topic and at most half reused, there are always enough fresh ones for 30 practice.
+- A new template's topic (`helpers/sets.py` `new_template`, `helpers/pools.py`): questions reused from the bank are company questions; of the fresh ones, 30 go to practice and the rest to companies. With 90 a topic and at most half reused, there are always enough fresh ones for 30 practice.
 - No question moves between pools. A wrong answer key or a flagged question is still fixed or replaced, and the fix reaches the copies.
 - Company interviews' own questions have no pool: they're never shared and never in the bank.
 - Templates made before the pools got them from their old stages (library migration 0027): revealed questions are practice, private and retiring ones company. Their counts vary, so a topic may be short of either; the admin zone's template page shows each topic's counts and tops them up (below).
@@ -70,6 +70,10 @@ A practice test's page and its result both offer the template for hiring. The bu
 
 - goes straight to the test in the user's only company,
 - or lists their companies, or lets them create one, to choose where it's copied.
+
+## How it's built
+
+Library's routes and event handlers call services (`src/library/services/`), which open each transaction and pass it to the repositories; generation, the other services, Firebase and Redis are called outside it. A question's replacement (its old content kept as a revision, the new content, its owner's notification and the `question.fixed` event for its copies) is one save, and so is each batch of copies fixed after it, with their companies' notifications. A new news post is saved with its notification for everyone, and an edit with its translations dropped. When an account is deleted, library's own rows and the note that replays the deletion after a restore (`erasures`) are one save, made once every other service has deleted the account; a failure keeps both and the sign-in, so the user's retry does it all again.
 
 ## Related pages
 

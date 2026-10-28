@@ -6,6 +6,7 @@ from prepza_common.db.paging import IdPageParams
 
 from library.api.dependencies import ServiceCaller
 from library.constants.emails import ConsentSource, EmailSetting
+from library.core.db import Session
 from library.repositories import emails
 from library.schemas.emails import (
     EmailPreferencesOut,
@@ -15,6 +16,7 @@ from library.schemas.emails import (
     UserIdsOut,
     WithSettingIn,
 )
+from library.services import email_preferences
 from library.services.email_recipients import recipients, user_ids_after
 
 router = APIRouter(prefix="/internal/users", tags=["internal"])
@@ -30,7 +32,8 @@ async def user_ids(
     privacy policy; with a `setting`, the users who have it on (a campaign's product updates or
     offers)."""
     if setting is not None:
-        found = await emails.ids_with(EmailSetting(setting), page.after, page.limit)
+        async with Session() as session:
+            found = await emails.ids_with(session, EmailSetting(setting), page.after, page.limit)
 
         return UserIdsOut(user_ids=found)
 
@@ -41,7 +44,8 @@ async def user_ids(
 async def users_with_setting(body: WithSettingIn, caller: ServiceCaller) -> UserIdsOut:
     """Notifications, for a campaign to some groups (companies, candidates, learners): those of
     the users who have its setting on."""
-    return UserIdsOut(user_ids=await emails.having(body.setting, body.user_ids))
+    async with Session() as session:
+        return UserIdsOut(user_ids=await emails.having(session, body.setting, body.user_ids))
 
 
 @router.post("/{user_id}/unsubscribe")
@@ -52,7 +56,9 @@ async def unsubscribe(
     logged as an unsubscribe. Safe to repeat: a setting already off logs nothing."""
     changes = dict.fromkeys(body.settings, False)
 
-    return EmailPreferencesOut(**await emails.change(user_id, changes, ConsentSource.UNSUBSCRIBE))
+    saved = await email_preferences.change(user_id, changes, ConsentSource.UNSUBSCRIBE)
+
+    return EmailPreferencesOut(**saved)
 
 
 @router.post("/email-recipients")

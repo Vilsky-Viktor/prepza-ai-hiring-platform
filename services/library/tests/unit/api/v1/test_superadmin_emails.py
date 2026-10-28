@@ -9,6 +9,7 @@ from prepza_common.auth.user import User
 from library.constants.emails import ADMIN_CANT_CONSENT, DEFAULTS
 from library.main import app
 from library.repositories import emails
+from library.services import email_preferences
 
 ACCOUNT = SimpleNamespace(uid="ann", email="ann@example.com")
 # A company's guest candidate: an account without an address.
@@ -40,7 +41,7 @@ def signed_in(monkeypatch):
 
         return ACCOUNT
 
-    async def preferences(user_id):
+    async def preferences(session, user_id):
         return dict(DEFAULTS)
 
     async def change(user_id, settings, source, changed_by=None):
@@ -51,7 +52,7 @@ def signed_in(monkeypatch):
     monkeypatch.setattr(firebase_auth, "get_user_by_email", get_user_by_email)
     monkeypatch.setattr(firebase_auth, "get_user", get_user)
     monkeypatch.setattr(emails, "preferences", preferences)
-    monkeypatch.setattr(emails, "change", change)
+    monkeypatch.setattr(email_preferences, "change", change)
 
     def sign_in(email="sam@prepza.dev"):
         app.dependency_overrides[current_user] = lambda: User(

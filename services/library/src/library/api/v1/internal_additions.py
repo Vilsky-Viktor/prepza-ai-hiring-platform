@@ -1,34 +1,25 @@
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, status
 from prepza_common.ai.sets import AddedQuestionsIn, AdditionContext, AdditionTopic
 
 from library.api.dependencies import ServiceCaller
-from library.constants.sets import Pool, SetKind
+from library.constants.sets import Pool
 from library.helpers.pools import missing
-from library.repositories import pools, preparations
+from library.services import additions
 
 # For generation: adding questions to a template's topics, a top-up or a superadmin's addition
 # (docs/features/admin-zone.md, Templates).
 router = APIRouter(prefix="/internal/templates", tags=["internal"])
 
 
-async def find_template(template_id: UUID):
-    template = await preparations.get(template_id)
-
-    if template is None or template.kind != SetKind.TEMPLATE:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Template not found")
-
-    return template
-
-
 @router.get("/{template_id}/additions")
 async def addition_context(template_id: UUID, caller: ServiceCaller) -> AdditionContext:
     """Each topic with every question's text, and what it lacks of each pool."""
-    template = await find_template(template_id)
+    template, found = await additions.context(template_id)
     topics = []
 
-    for topic in await pools.topics_with_questions(template_id):
+    for topic in found:
         practice_missing, company_missing = missing(
             sum(question.pool == Pool.PRACTICE for question in topic.questions),
             sum(question.pool == Pool.COMPANY for question in topic.questions),
@@ -53,10 +44,4 @@ async def add_questions(
 ) -> list[list[UUID]]:
     """Saves the new questions of every topic at once; each topic's new question ids, for the
     answer-key checks. Interviews already copied from the template don't change."""
-    await find_template(template_id)
-    saved = await pools.add_questions(template_id, body.topics)
-
-    if saved is None:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Topic not found")
-
-    return saved
+    return await additions.add(template_id, body.topics)

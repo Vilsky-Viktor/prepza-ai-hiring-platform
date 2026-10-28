@@ -56,7 +56,7 @@ def stored(monkeypatch):
     """The answers record_answer was given."""
     stored = []
 
-    async def record_answer(event_id, question_id, question_text, options, credit):
+    async def record_answer(session, event_id, question_id, question_text, options, credit):
         stored.append((event_id, question_id, question_text, options, credit))
 
         return {question_id: MIN_ANSWERS}
@@ -123,7 +123,7 @@ def test_an_event_counted_before_isnt_reviewed_again(client, monkeypatch, no_rev
 def test_a_scored_topic_counts_each_result_in_the_candidates_group(client, monkeypatch):
     stored = []
 
-    async def record_results(event_id, group, results):
+    async def record_results(session, event_id, group, results):
         stored.append((event_id, group, [result["question_id"] for result in results]))
 
         return []

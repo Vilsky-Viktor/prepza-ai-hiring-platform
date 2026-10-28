@@ -6,7 +6,6 @@ from prepza_common.config.constants import MAX_UPDATES, UPDATES_CALLER
 
 from library.api.dependencies import ServiceCaller
 from library.constants.quality import COMPANY_INTERVIEWS_LINK, PATTERN_SIGNALS_CALLER
-from library.repositories import feedback, quality, question_updates
 from library.schemas.quality import (
     QuestionQuality,
     QuestionUpdateOut,
@@ -15,8 +14,8 @@ from library.schemas.quality import (
     ReportNote,
 )
 from library.schemas.quality_report import QualitySignalOut
+from library.services import admin_quality, quality_signals, question_updates
 from library.services import quality as quality_service
-from library.services import quality_signals
 
 router = APIRouter(prefix="/internal/questions", tags=["internal"])
 
@@ -41,8 +40,9 @@ async def company_question_updates(
     newly flagged or fixed after `since` and up to `until`, named by its topic: the newest
     MAX_UPDATES of each kind, and how many of each in all."""
     only_from(caller, UPDATES_CALLER)
-    window = (body.company_ids, body.since, body.until)
-    rows = await question_updates.between(*window, MAX_UPDATES)
+    rows, counts = await question_updates.between(
+        body.company_ids, body.since, body.until, MAX_UPDATES
+    )
 
     return QuestionUpdatesOut(
         items=[
@@ -56,19 +56,18 @@ async def company_question_updates(
             )
             for kind, at, company_id, title, topic in rows
         ],
-        counts=await question_updates.counts(*window),
+        counts=counts,
     )
 
 
 @router.get("/{question_id}/quality")
 async def get_quality(question_id: UUID, caller: ServiceCaller) -> QuestionQuality:
-    found = await quality.load(question_id)
+    found = await admin_quality.with_reports(question_id)
 
     if found is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Question not found")
 
-    question, stats = found[0], found[1]
-    reports = await feedback.list_reports(question_id)
+    question, stats, reports = found
 
     return QuestionQuality(
         text=question.text,
@@ -83,7 +82,7 @@ async def get_quality(question_id: UUID, caller: ServiceCaller) -> QuestionQuali
 @router.post("/{question_id}/keep", status_code=status.HTTP_204_NO_CONTENT)
 async def keep(question_id: UUID, caller: ServiceCaller) -> None:
     """The verifier found nothing wrong: serve the question again and stop flagging it."""
-    await quality.save_flag(question_id, None, kept=True)
+    await quality_service.keep(question_id)
 
 
 @router.post("/{question_id}/wrong", status_code=status.HTTP_204_NO_CONTENT)

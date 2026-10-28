@@ -5,6 +5,7 @@ from firebase_admin import auth as firebase_auth
 from prepza_common.auth.auth import claims_language
 
 from library.constants.emails import FIREBASE_LOOKUP_LIMIT
+from library.core.db import Session
 from library.repositories import emails
 
 
@@ -20,7 +21,8 @@ async def recipients(user_ids: list[str]) -> list[dict]:
         )
         accounts += [account for account in found.users if account.email and not account.disabled]
 
-    preferences = await emails.preferences_of([account.uid for account in accounts])
+    async with Session() as session:
+        preferences = await emails.preferences_of(session, [account.uid for account in accounts])
 
     return [
         {

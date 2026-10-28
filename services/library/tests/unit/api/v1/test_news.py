@@ -13,7 +13,7 @@ from prepza_common.http.http import bearer
 from library.helpers.notifications import news_notification
 from library.integrations import generation
 from library.main import app
-from library.repositories import news
+from library.repositories import news, outbox
 from library.services import news as news_service
 
 POST_ID = uuid.uuid4()
@@ -41,26 +41,37 @@ def admin(monkeypatch):
     async def translate_news(news_id):
         sent.append(news_id)
 
-    async def create(body):
+    async def create(session, body):
         saved.append(body)
 
         return post_row(title=body.title, text=body.text, published_on=body.published_on)
 
-    async def update(news_id, body):
+    async def lock(session, news_id):
+        return post_row()
+
+    async def clear_translations(session, news_id):
+        saved.append(("cleared", news_id))
+
+    async def save(session, row, body):
         saved.append(body)
-        row = post_row(title=body.title, text=body.text, published_on=body.published_on)
 
-        return row, (body.title, body.text) != (BODY["title"], BODY["text"])
+        return post_row(title=body.title, text=body.text, published_on=body.published_on)
 
-    async def missing_languages(news_id):
+    def notify(session, notice):
+        saved.append(("notice", notice["kind"]))
+
+    async def missing_languages(session, news_id):
         return ["de"]
 
-    async def remove(news_id):
+    async def remove(session, news_id):
         saved.append(("deleted", news_id))
 
     monkeypatch.setattr(generation, "translate_news", translate_news)
     monkeypatch.setattr(news, "create", create)
-    monkeypatch.setattr(news, "update", update)
+    monkeypatch.setattr(news, "lock", lock)
+    monkeypatch.setattr(news, "clear_translations", clear_translations)
+    monkeypatch.setattr(news, "save", save)
+    monkeypatch.setattr(outbox, "notify", notify)
     monkeypatch.setattr(news, "missing_languages", missing_languages)
     monkeypatch.setattr(news, "remove", remove)
 
@@ -113,6 +124,7 @@ def test_a_new_post_at_the_limits_is_saved_trimmed_and_sent_to_be_translated(cli
     assert response.status_code == 201
     assert response.json()["title"] == "t" * MAX_NEWS_TITLE_LENGTH
     assert response.json()["translated"] is False
+    assert admin.saved[1:] == [("notice", "news")]
     assert admin.sent == [POST_ID]
 
 
@@ -130,6 +142,7 @@ def test_a_new_date_alone_keeps_the_translations(client, admin):
 
     assert response.status_code == 200
     assert response.json()["published_on"] == "2026-10-01"
+    assert ("cleared", POST_ID) not in admin.saved
     assert admin.sent == []
 
 
@@ -137,14 +150,15 @@ def test_a_new_text_is_translated_again(client, admin):
     response = client.put(f"/superadmin/news/{POST_ID}", json=BODY | {"text": "Changed."})
 
     assert response.status_code == 200
+    assert admin.saved[0] == ("cleared", POST_ID)
     assert admin.sent == [POST_ID]
 
 
 def test_editing_a_deleted_post_is_not_found(client, admin, monkeypatch):
-    async def gone(news_id, body):
+    async def gone(session, news_id):
         return None
 
-    monkeypatch.setattr(news, "update", gone)
+    monkeypatch.setattr(news, "lock", gone)
 
     assert client.put(f"/superadmin/news/{POST_ID}", json=BODY).status_code == 404
 
@@ -157,7 +171,7 @@ def test_deleting_a_post(client, admin):
 def test_the_news_page_needs_no_sign_in_and_is_in_the_readers_language(client, monkeypatch):
     asked = []
 
-    async def list_news(language, offset, limit):
+    async def list_news(session, language, offset, limit):
         asked.append((language, offset, limit))
 
         return [(post_row(), "Übung auf Thai", "Zeile eins.")]
@@ -192,13 +206,13 @@ def service_token(lifetime=60):
 def test_only_services_read_and_translate_posts(client, monkeypatch):
     saved = []
 
-    async def get(news_id):
+    async def get(session, news_id):
         return post_row()
 
-    async def missing_languages(news_id):
+    async def missing_languages(session, news_id):
         return ["de", "fr"]
 
-    async def save_translations(news_id, title, text, translations):
+    async def save_translations(session, news_id, title, text, translations):
         saved.append((title, text, {code: item.title for code, item in translations.items()}))
 
     monkeypatch.setattr(news, "get", get)
@@ -224,7 +238,7 @@ def test_only_services_read_and_translate_posts(client, monkeypatch):
 def test_posts_still_missing_a_translation_are_sent_again(monkeypatch):
     sent = []
 
-    async def untranslated():
+    async def untranslated(session):
         return [POST_ID]
 
     async def translate_news(news_id):
@@ -253,7 +267,7 @@ def test_a_new_post_is_one_notification_for_everyone_naming_it():
 def test_the_bell_asks_for_titles_in_the_readers_language(client, monkeypatch):
     asked = []
 
-    async def titles(news_ids, language):
+    async def titles(session, news_ids, language):
         asked.append((news_ids, language))
 
         return {str(POST_ID): "Üben auf Thai"}

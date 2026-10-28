@@ -3,7 +3,9 @@ import uuid
 from library.constants.reuse import MIN_REUSE_ANSWERS
 from library.constants.sets import Pool
 from library.repositories import answer_stats, preparations, quality, reuse, templates
-from tests.integration.factories import COPYABLE, a_company, direction, interview
+from library.services import templates as template_service
+from tests.integration.factories import COPYABLE, a_company, copy_of, direction, interview
+from tests.integration.transactions import transaction
 
 
 def test_templates_are_searched_and_filtered_and_keep_their_embeddings(run):
@@ -22,11 +24,15 @@ def test_templates_are_searched_and_filtered_and_keep_their_embeddings(run):
             return [row.title for row in rows]
 
         return (
-            titles(await templates.list_templates(word, None, [], 0, 10)),
-            titles(await templates.list_templates(f"accountant {word}", "hard", ["en"], 0, 10)),
-            titles(await templates.list_templates(word, None, ["de"], 0, 10)),
-            titles(await templates.list_templates("0%", None, [], 0, 10)),
-            await preparations.get_topics(accountant),
+            titles(await transaction(templates.list_templates, word, None, [], 0, 10)),
+            titles(
+                await transaction(
+                    templates.list_templates, f"accountant {word}", "hard", ["en"], 0, 10
+                )
+            ),
+            titles(await transaction(templates.list_templates, word, None, ["de"], 0, 10)),
+            titles(await transaction(templates.list_templates, "0%", None, [], 0, 10)),
+            await transaction(preparations.get_topics, accountant),
         )
 
     every, hard, german, percent, topics = run(scenario())
@@ -53,8 +59,12 @@ def test_templates_are_found_by_a_topic_or_a_subtopic_too(run):
             return [row.title for row in rows]
 
         return (
-            titles(await templates.list_templates(f"kubernetes {word}", None, [], 0, 10)),
-            titles(await templates.list_templates(f"helm charts {word}x", None, [], 0, 10)),
+            titles(
+                await transaction(templates.list_templates, f"kubernetes {word}", None, [], 0, 10)
+            ),
+            titles(
+                await transaction(templates.list_templates, f"helm charts {word}x", None, [], 0, 10)
+            ),
         )
 
     by_topic, by_subtopic = run(scenario())
@@ -66,13 +76,13 @@ def test_templates_are_found_by_a_topic_or_a_subtopic_too(run):
 def test_a_template_is_copied_into_a_company_test_and_stays_a_template(run):
     async def scenario():
         template = await interview("Bookkeeper", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, a_company("9"))
-        missing = await templates.copy_template(copy.id, a_company("9"))
+        copy = await copy_of(template, a_company("9"))
+        missing = await copy_of(copy.id, a_company("9"))
 
         return (
-            await preparations.get(template),
-            await preparations.get(copy.id),
-            await preparations.get_topics(copy.id),
+            await transaction(preparations.get, template),
+            await transaction(preparations.get, copy.id),
+            await transaction(preparations.get_topics, copy.id),
             missing,
         )
 
@@ -99,10 +109,12 @@ def test_companies_see_only_the_templates_they_can_copy(run):
             return sorted(row.title for row in rows)
 
         return (
-            titles(await templates.list_templates(word, None, [], 0, 10, copyable=True)),
-            titles(await templates.list_templates(word, None, [], 0, 10)),
-            await templates.copy_template(full, a_company("4")) is not None,
-            await templates.copy_template(short, a_company("4")) is None,
+            titles(
+                await transaction(templates.list_templates, word, None, [], 0, 10, copyable=True)
+            ),
+            titles(await transaction(templates.list_templates, word, None, [], 0, 10)),
+            await copy_of(full, a_company("4")) is not None,
+            await copy_of(short, a_company("4")) is None,
         )
 
     copyable, every, full_copied, short_refused = run(scenario())
@@ -116,9 +128,9 @@ def test_companies_see_only_the_templates_they_can_copy(run):
 def test_a_template_splits_its_questions_and_copies_take_only_company_ones(run):
     async def scenario():
         template = await interview("Nurse", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, a_company("3"))
-        original = await preparations.get_content(template)
-        copied = await preparations.get_content(copy.id)
+        copy = await copy_of(template, a_company("3"))
+        original = await transaction(preparations.get_content, template)
+        copied = await transaction(preparations.get_content, copy.id)
 
         return original.topics[0].questions, copied.topics[0].questions
 
@@ -138,16 +150,21 @@ def test_the_bank_offers_only_proven_company_template_questions(run):
         )
         # A company test on the same subject isn't part of the bank.
         await interview("Company accountant", level="hard", questions=3, embedding=direction(1))
-        questions = (await preparations.get_content(template)).topics[0].questions
+        questions = (await transaction(preparations.get_content, template)).topics[0].questions
         practice, (company, unproven) = questions[0], questions[30:]
 
         for question in (company, practice):
             for _ in range(MIN_REUSE_ANSWERS):
-                await answer_stats.record_answer(
-                    str(uuid.uuid4()), question.id, question.text, ["right"], 1.0
+                await transaction(
+                    answer_stats.record_answer,
+                    str(uuid.uuid4()),
+                    question.id,
+                    question.text,
+                    ["right"],
+                    1.0,
                 )
 
-        found = await reuse.find(direction(1), "hard", "en", 10)
+        found = await transaction(reuse.find, direction(1), "hard", "en", 10)
 
         return found, company.id, unproven.id, practice.id
 
@@ -163,8 +180,8 @@ def test_finished_topics_count_strong_weak_and_timeouts_for_copies_and_originals
 
     async def scenario():
         template = await interview("Chemist", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, a_company("8"))
-        question = (await preparations.get_content(copy.id)).topics[0].questions[0]
+        copy = await copy_of(template, a_company("8"))
+        question = (await transaction(preparations.get_content, copy.id)).topics[0].questions[0]
         result = {
             "question_id": str(question.id),
             "question_text": question.text,
@@ -178,8 +195,8 @@ def test_finished_topics_count_strong_weak_and_timeouts_for_copies_and_originals
             {"final_score": 20, "answers": [result | {"correct": False, "timed_out": True}]},
         )
 
-        _, copy_stats, *_ = await quality.load(question.id)
-        _, original_stats, *_ = await quality.load(question.source_question_id)
+        _, copy_stats, *_ = await transaction(quality.load, question.id)
+        _, original_stats, *_ = await transaction(quality.load, question.source_question_id)
 
         return copy_stats, original_stats
 
@@ -196,13 +213,13 @@ def test_a_new_template_never_puts_questions_reused_from_the_bank_in_practice(ru
 
     async def scenario():
         older = await interview("Older template", template=True, questions=33)
-        company = (await preparations.get_content(older)).topics[0].questions[30:]
+        company = (await transaction(preparations.get_content, older)).topics[0].questions[30:]
         option = [{"answer": "right", "correct": True}, {"answer": "wrong", "correct": False}]
         reused = [
             {"text": row.text, "options": option, "source_id": str(row.id)} for row in company
         ]
         fresh = [{"text": f"New question {index}?", "options": option} for index in range(31)]
-        newer = await templates.create_template(
+        newer = await template_service.save_template(
             PreparationIn.model_validate(
                 {
                     "generation_id": str(uuid.uuid4()),
@@ -218,7 +235,7 @@ def test_a_new_template_never_puts_questions_reused_from_the_bank_in_practice(ru
             0.1,
         )
 
-        return (await preparations.get_content(newer)).topics[0].questions
+        return (await transaction(preparations.get_content, newer)).topics[0].questions
 
     rows = run(scenario())
 

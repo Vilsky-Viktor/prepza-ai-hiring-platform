@@ -6,6 +6,7 @@ from prepza_common.http.http import bearer
 from library.constants.emails import DEFAULTS
 from library.main import app
 from library.repositories import emails
+from library.services import email_preferences
 from tests.unit.api.v1.test_internal import token
 
 USER = User(uid="ann", email="ann@example.com", email_verified=True, name="Ann")
@@ -13,10 +14,10 @@ USER = User(uid="ann", email="ann@example.com", email_verified=True, name="Ann")
 
 @pytest.fixture
 def signed_in(monkeypatch):
-    """Ann is signed in; returns the changes the routes pass to storage."""
+    """Ann is signed in; returns the changes the routes save."""
     calls = []
 
-    async def preferences(user_id):
+    async def preferences(session, user_id):
         return dict(DEFAULTS)
 
     async def change(user_id, changes, source):
@@ -25,7 +26,7 @@ def signed_in(monkeypatch):
         return {**DEFAULTS, **changes}
 
     monkeypatch.setattr(emails, "preferences", preferences)
-    monkeypatch.setattr(emails, "change", change)
+    monkeypatch.setattr(email_preferences, "change", change)
     app.dependency_overrides[current_user] = lambda: USER
     yield calls
 

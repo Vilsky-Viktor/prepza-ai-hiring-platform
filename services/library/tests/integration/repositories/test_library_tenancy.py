@@ -11,6 +11,7 @@ from library.core.db import Session
 from library.models.sets import Question, QuestionSet, Topic
 from library.repositories import preparations
 from tests.integration.factories import interview
+from tests.integration.transactions import transaction
 
 
 def companies_of(set_id):
@@ -52,7 +53,7 @@ def test_a_companys_set_and_its_rows_carry_the_company_a_templates_none(run):
 def test_two_questions_swap_places_but_cant_share_one(run):
     async def scenario():
         set_id = await interview(questions=2)
-        first, second = (await preparations.get_content(set_id)).topics[0].questions
+        first, second = (await transaction(preparations.get_content, set_id)).topics[0].questions
 
         async with Session() as session:
             await session.execute(

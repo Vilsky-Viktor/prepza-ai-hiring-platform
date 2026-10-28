@@ -31,7 +31,7 @@ def test_recipients_have_their_address_language_and_preferences(client, monkeypa
             ]
         )
 
-    async def preferences_of(user_ids):
+    async def preferences_of(session, user_ids):
         return {user_id: {**DEFAULTS, "reminders": user_id != "bob"} for user_id in user_ids}
 
     monkeypatch.setattr(firebase_auth, "get_users", get_users)
@@ -61,7 +61,7 @@ def test_firebase_is_asked_at_most_a_hundred_at_a_time(client, monkeypatch):
 
         return SimpleNamespace(users=[])
 
-    async def preferences_of(user_ids):
+    async def preferences_of(session, user_ids):
         return {}
 
     monkeypatch.setattr(firebase_auth, "get_users", get_users)
@@ -101,7 +101,7 @@ def test_every_account_is_listed_a_page_at_a_time_for_a_notice_to_everyone(clien
 def test_a_campaign_asks_only_for_the_users_with_its_setting_on(client, monkeypatch):
     asked = []
 
-    async def ids_with(setting, after, limit):
+    async def ids_with(session, setting, after, limit):
         asked.append((setting, after, limit))
 
         return ["ann"]
@@ -123,7 +123,7 @@ def test_a_campaign_asks_only_for_the_users_with_its_setting_on(client, monkeypa
 def test_of_some_users_notifications_learns_who_has_a_campaigns_setting_on(client, monkeypatch):
     asked = []
 
-    async def having(setting, user_ids):
+    async def having(session, setting, user_ids):
         asked.append((setting, user_ids))
 
         return user_ids[:1]

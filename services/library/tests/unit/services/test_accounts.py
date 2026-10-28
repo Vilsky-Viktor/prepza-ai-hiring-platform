@@ -29,10 +29,10 @@ def steps(monkeypatch):
     async def delete_in(service, user_id, email):
         done.append(("service", service))
 
-    async def delete_library(user_id):
+    async def delete_library(session, user_id):
         done.append(("library", user_id))
 
-    async def remember(user_id, email):
+    async def remember(session, user_id, email):
         done.append(("erasure", user_id, email))
 
     monkeypatch.setattr(account_services, "delete_user", delete_in)
@@ -130,7 +130,7 @@ def test_candidate_data_is_matched_by_a_verified_email_only(monkeypatch, verifie
 
         return {}
 
-    async def nothing(user_id):
+    async def nothing(session, user_id):
         return {}
 
     monkeypatch.setattr(account_services, "delete_user", delete_in)
@@ -138,7 +138,7 @@ def test_candidate_data_is_matched_by_a_verified_email_only(monkeypatch, verifie
     monkeypatch.setattr(accounts, "delete_user", nothing)
     monkeypatch.setattr(accounts, "export", nothing)
 
-    async def remember(user_id, email):
+    async def remember(session, user_id, email):
         pass
 
     monkeypatch.setattr(erasures, "record", remember)
@@ -155,7 +155,7 @@ def test_the_export_holds_every_service_and_downloads_as_a_file(client, monkeypa
     async def export_from(service, user_id, email):
         return {"from": service}
 
-    async def library_export(user_id):
+    async def library_export(session, user_id):
         return {"question_votes": [], "question_reports": []}
 
     monkeypatch.setattr(account_services, "export_user", export_from)
@@ -270,7 +270,7 @@ def test_data_downloads_past_the_hourly_limit_are_refused_before_asking_anyone(c
 
         return {}
 
-    async def library_export(user_id):
+    async def library_export(session, user_id):
         return {}
 
     monkeypatch.setattr(account_services, "export_user", export_from)

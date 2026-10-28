@@ -26,7 +26,7 @@ BODY = {
 def between(monkeypatch):
     asked = []
 
-    async def found(company_ids, since, until, limit):
+    async def found(session, company_ids, since, until, limit):
         asked.append((company_ids, since, until, limit))
 
         return [
@@ -34,7 +34,7 @@ def between(monkeypatch):
             ("question_fixed", FIXED_AT, "company-b", "Frontend", "React"),
         ]
 
-    async def counts(company_ids, since, until):
+    async def counts(session, company_ids, since, until):
         return {"question_flagged": 4, "question_fixed": 1}
 
     monkeypatch.setattr(question_updates, "between", found)

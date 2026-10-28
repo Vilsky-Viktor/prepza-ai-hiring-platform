@@ -1,27 +1,29 @@
 import uuid
 
 from library.repositories import answer_stats, preparations, quality, quality_report
+from library.services import questions as question_service
 from tests.integration.factories import interview
+from tests.integration.transactions import transaction
 
 
 def test_the_quality_tab_lists_flagged_and_replaced_questions(run):
     async def scenario():
         template = await interview("Quality template", template=True, questions=2)
-        flagged, kept = (await preparations.get_content(template)).topics[0].questions
-        await answer_stats.record_answer(
-            str(uuid.uuid4()), flagged.id, flagged.text, ["right"], 1.0
+        flagged, kept = (await transaction(preparations.get_content, template)).topics[0].questions
+        await transaction(
+            answer_stats.record_answer, str(uuid.uuid4()), flagged.id, flagged.text, ["right"], 1.0
         )
-        await quality.save_flag(flagged.id, "wrong_key")
-        await preparations.replace_question(
+        await transaction(quality.save_flag, flagged.id, "wrong_key")
+        await question_service.replace(
             kept.id, "A clearer question?", [{"answer": "Yes", "correct": True}]
         )
-        await preparations.replace_question(
+        await question_service.replace(
             kept.id, "The clearest question?", [{"answer": "Yes", "correct": True}]
         )
 
         return (
-            await quality_report.flagged(0, 100),
-            await quality_report.replaced(None, 100),
+            await transaction(quality_report.flagged, 0, 100),
+            await transaction(quality_report.replaced, None, 100),
             flagged.id,
             kept,
         )
@@ -52,15 +54,13 @@ def test_the_quality_tab_lists_flagged_and_replaced_questions(run):
 def test_replaced_questions_page_by_key_after_the_last_one_shown(run):
     async def scenario():
         template = await interview("Paged template", template=True, questions=1)
-        [question] = (await preparations.get_content(template)).topics[0].questions
+        [question] = (await transaction(preparations.get_content, template)).topics[0].questions
 
         for text in ("Second?", "Third?", "Fourth?"):
-            await preparations.replace_question(
-                question.id, text, [{"answer": "Yes", "correct": True}]
-            )
+            await question_service.replace(question.id, text, [{"answer": "Yes", "correct": True}])
 
-        first = await quality_report.replaced(None, 2)
-        rest = await quality_report.replaced(first[-1][0].id, 100)
+        first = await transaction(quality_report.replaced, None, 2)
+        rest = await transaction(quality_report.replaced, first[-1][0].id, 100)
         mine = [row[0].text for row in first + rest if row[0].question_id == question.id]
 
         return [row[0].id for row in first], [row[0].id for row in rest], mine

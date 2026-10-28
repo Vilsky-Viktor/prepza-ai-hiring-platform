@@ -17,7 +17,7 @@ AUTH = bearer(token())
 def redis(monkeypatch):
     """Rate limits count in memory."""
     fake = FakeRedis()
-    monkeypatch.setattr("library.api.v1.internal_feedback.get_redis", lambda: fake)
+    monkeypatch.setattr("library.services.question_feedback.get_redis", lambda: fake)
 
     return fake
 
@@ -26,10 +26,10 @@ def test_a_candidate_rates_a_question_and_reads_it_back(client, monkeypatch):
     stored = {}
     reviewed = []
 
-    async def fake_rate(question_id, user_id, value):
+    async def fake_rate(session, question_id, user_id, value):
         stored[user_id] = value
 
-    async def fake_mine(question_id, user_id):
+    async def fake_mine(session, question_id, user_id):
         return stored.get(user_id)
 
     async def fake_review(question_id):
@@ -37,7 +37,7 @@ def test_a_candidate_rates_a_question_and_reads_it_back(client, monkeypatch):
 
     monkeypatch.setattr(feedback, "rate_question", fake_rate)
     monkeypatch.setattr(feedback, "my_question_rating", fake_mine)
-    monkeypatch.setattr("library.api.v1.internal_feedback.review", fake_review)
+    monkeypatch.setattr("library.services.question_feedback.review", fake_review)
     url = f"/internal/questions/{QUESTION_ID}/rating"
 
     empty = client.get(url, params={"user_id": "ann"}, headers=AUTH)
@@ -60,14 +60,14 @@ def test_a_users_ratings_are_limited_a_day(client, monkeypatch, redis, published
     if edited:
         redis.limits["RATINGS_PER_DAY"] = str(edited)
 
-    async def fake_rate(question_id, user_id, value):
+    async def fake_rate(session, question_id, user_id, value):
         pass
 
     async def fake_review(question_id):
         pass
 
     monkeypatch.setattr(feedback, "rate_question", fake_rate)
-    monkeypatch.setattr("library.api.v1.internal_feedback.review", fake_review)
+    monkeypatch.setattr("library.services.question_feedback.review", fake_review)
     body = {"user_id": "voter", "value": 1}
 
     for _ in range(allowed):

@@ -31,13 +31,13 @@ def topic(monkeypatch):
         id=SET_ID, kind="template", owner_id="u1", level="hard", language="en"
     )
 
-    async def with_texts(topic_id):
+    async def with_texts(session, topic_id):
         return question_set, found
 
-    async def context(question_id):
+    async def context(session, question_id):
         return question_set, found
 
-    async def no_stats(question_ids):
+    async def no_stats(session, question_ids):
         return {}
 
     monkeypatch.setattr(preparations, "get_topic_with_question_texts", with_texts)

@@ -1,12 +1,12 @@
 import uuid
 from datetime import UTC, datetime, timedelta
-from types import SimpleNamespace
 
 import jwt
 from prepza_common.http.http import bearer
 
-from library.constants.sets import SetKind
-from library.models.sets import QuestionSet
+from library.constants.reuse import MIN_COPY_QUESTIONS
+from library.constants.sets import Pool, SetKind
+from library.models.sets import Question, QuestionSet, Topic
 from library.repositories import preparations, templates
 
 GENERATION_ID = uuid.uuid4()
@@ -36,14 +36,16 @@ def post(client, value):
 def test_create_with_service_token(client, monkeypatch):
     new_id = uuid.uuid4()
 
-    async def fake_find(generation_id):
+    async def fake_find(session, generation_id):
         return None
 
-    async def fake_create(payload):
+    async def fake_add(session, question_set, embeddings):
+        assert (question_set.kind, question_set.owner_id) == (SetKind.INTERVIEW, "user-1")
+
         return new_id
 
     monkeypatch.setattr(preparations, "find_by_generation", fake_find)
-    monkeypatch.setattr(preparations, "create_interview", fake_create)
+    monkeypatch.setattr(preparations, "add", fake_add)
 
     response = post(client, token())
 
@@ -54,16 +56,16 @@ def test_create_with_service_token(client, monkeypatch):
 def test_retried_interview_save_returns_the_existing_set(client, monkeypatch):
     existing_id = uuid.uuid4()
 
-    async def fake_find(generation_id):
+    async def fake_find(session, generation_id):
         assert generation_id == GENERATION_ID
 
         return existing_id
 
-    async def fail_create(payload):
+    async def fail_add(session, question_set, embeddings):
         raise AssertionError("must not create a second set")
 
     monkeypatch.setattr(preparations, "find_by_generation", fake_find)
-    monkeypatch.setattr(preparations, "create_interview", fail_create)
+    monkeypatch.setattr(preparations, "add", fail_add)
 
     response = client.post(
         "/internal/interviews",
@@ -77,10 +79,10 @@ def test_retried_interview_save_returns_the_existing_set(client, monkeypatch):
 def interview_delete(client, monkeypatch, kind):
     removed = []
 
-    async def fake_get(set_id):
+    async def fake_get(session, set_id):
         return None if kind is None else QuestionSet(id=set_id, kind=kind)
 
-    async def fake_remove(set_id):
+    async def fake_remove(session, set_id):
         removed.append(set_id)
 
     monkeypatch.setattr(preparations, "get", fake_get)
@@ -110,12 +112,30 @@ def test_rejects_expired_token(client):
 
 
 def test_a_template_copy_carries_its_level_for_the_tests_seconds_a_question(client, monkeypatch):
-    copy = SimpleNamespace(id=uuid.uuid4(), title="Backend", language="de", level="hard")
+    copy_id, topic_id = uuid.uuid4(), uuid.uuid4()
+    company = [
+        Question(id=uuid.uuid4(), position=n, text=f"Q{n}?", options=[], pool=Pool.COMPANY)
+        for n in range(MIN_COPY_QUESTIONS)
+    ]
+    template = QuestionSet(
+        title="Backend",
+        language="de",
+        level="hard",
+        source_text="Job",
+        requirements=[],
+        topics=[Topic(id=topic_id, title="SQL", subtopics=[], questions=company)],
+    )
+    saved = []
 
-    async def copy_template(template_id, company_id):
-        return copy
+    async def with_questions(session, template_id):
+        return template
 
-    monkeypatch.setattr(templates, "copy_template", copy_template)
+    async def add_copy(session, copy, sources):
+        copy.id = copy_id
+        saved.append((copy.owner_id, sources))
+
+    monkeypatch.setattr(templates, "with_questions", with_questions)
+    monkeypatch.setattr(templates, "add_copy", add_copy)
 
     response = client.post(
         f"/internal/templates/{uuid.uuid4()}/copy",
@@ -125,8 +145,9 @@ def test_a_template_copy_carries_its_level_for_the_tests_seconds_a_question(clie
 
     assert response.status_code == 201
     assert response.json() == {
-        "id": str(copy.id),
+        "id": str(copy_id),
         "title": "Backend",
         "language": "de",
         "level": "hard",
     }
+    assert saved == [("company-1", [topic_id])]

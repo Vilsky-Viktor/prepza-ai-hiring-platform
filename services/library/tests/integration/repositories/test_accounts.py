@@ -5,26 +5,27 @@ from prepza_common.http import http
 from library.integrations import accounts as account_services
 from library.repositories import accounts, feedback, legal
 from tests.integration.factories import interview, question_ids
+from tests.integration.transactions import transaction
 
 
 def test_deleting_a_user_removes_their_votes_and_reports_and_the_export_has_them(run):
     async def scenario():
         set_id = await interview("Ledgers")
         first, second, _ = await question_ids(set_id)
-        await feedback.rate_question(first, "gone", -1)
-        await feedback.report_question(second, "gone", "unclear", "Two answers fit.")
-        await feedback.rate_question(first, "stays", 1)
-        exported = await accounts.export("gone")
+        await transaction(feedback.rate_question, first, "gone", -1)
+        await transaction(feedback.report_question, second, "gone", "unclear", "Two answers fit.")
+        await transaction(feedback.rate_question, first, "stays", 1)
+        exported = await transaction(accounts.export, "gone")
 
-        await accounts.delete_user("gone")
+        await transaction(accounts.delete_user, "gone")
         # Safe to repeat: a retried deletion finds nothing left.
-        await accounts.delete_user("gone")
+        await transaction(accounts.delete_user, "gone")
 
         return (
             exported,
-            await feedback.my_question_rating(first, "gone"),
-            await feedback.has_reported(second, "gone"),
-            await feedback.my_question_rating(first, "stays"),
+            await transaction(feedback.my_question_rating, first, "gone"),
+            await transaction(feedback.has_reported, second, "gone"),
+            await transaction(feedback.my_question_rating, first, "stays"),
         )
 
     exported, vote, reported, kept = run(scenario())
@@ -58,13 +59,13 @@ def test_the_terms_accepted_are_kept_once_exported_and_deleted_with_the_account(
     user_id = f"terms-{uuid.uuid4()}"
 
     async def scenario():
-        await legal.accept_terms(user_id, "2026-10-10")
+        await transaction(legal.accept_terms, user_id, "2026-10-10")
         # A retried sign-up keeps the first acceptance.
-        await legal.accept_terms(user_id, "2026-10-10")
-        exported = await accounts.export(user_id)
-        await accounts.delete_user(user_id)
+        await transaction(legal.accept_terms, user_id, "2026-10-10")
+        exported = await transaction(accounts.export, user_id)
+        await transaction(accounts.delete_user, user_id)
 
-        return exported, await legal.accepted_terms(user_id)
+        return exported, await transaction(legal.accepted_terms, user_id)
 
     exported, left = run(scenario())
 

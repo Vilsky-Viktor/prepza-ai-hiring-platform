@@ -13,12 +13,12 @@ def test_generation_reads_untagged_examples_and_saves_their_languages(client, mo
 
     asked = []
 
-    async def untagged(limit, fence, after):
+    async def untagged(session, limit, fence, after):
         asked.append((limit, fence, after))
 
         return [(QUESTION, "Q?\n```\nx\n```")]
 
-    async def tag(languages, fence):
+    async def tag(session, languages, fence):
         saved.append((languages, fence))
 
     monkeypatch.setattr(code, "untagged", untagged)
@@ -47,7 +47,7 @@ def test_generation_reads_untagged_examples_and_saves_their_languages(client, mo
 def test_a_language_that_could_break_the_fence_is_refused(client, monkeypatch):
     saved = []
 
-    async def tag(languages, fence):
+    async def tag(session, languages, fence):
         saved.append(languages)
 
     monkeypatch.setattr(code, "tag", tag)

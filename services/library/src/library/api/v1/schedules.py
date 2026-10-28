@@ -1,17 +1,11 @@
 import logging
-from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, status
 from prepza_common.auth.google import Invoker
-from prepza_common.events import processed_events
 
-from library.constants.events import PROCESSED_EVENT_DAYS
-from library.core.db import Session
-from library.models.events import ProcessedEvent
 from library.services import erasures as erasures_service
-from library.services import news as news_service
+from library.services import housekeeping
 from library.services import outbox as outbox_service
-from library.services import quality as quality_service
 
 logger = logging.getLogger(__name__)
 
@@ -38,11 +32,4 @@ async def daily_housekeeping() -> None:
     """Daily, from Cloud Scheduler: sends flags the verifier hasn't acted on to it again, news
     posts still missing translations to be translated again, and forgets old notes of processed
     events."""
-    now = datetime.now(UTC)
-    resent = await quality_service.resend_stale_flags()
-    logger.info("Sent %d flagged questions to the verifier again", resent)
-    untranslated = await news_service.resend_untranslated()
-    logger.info("Sent %d news posts to be translated again", untranslated)
-    await processed_events.forget(
-        Session, ProcessedEvent, now - timedelta(days=PROCESSED_EVENT_DAYS)
-    )
+    await housekeeping.daily()

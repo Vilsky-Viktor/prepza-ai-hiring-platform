@@ -9,7 +9,7 @@ from library.constants.events import QUESTION_FIXED
 from library.constants.quality import QualityFlag
 from library.integrations import generation
 from library.repositories import preparations, quality
-from library.services import outbox
+from library.services import outbox, questions
 from library.services.quality import review
 
 QUESTION_ID = uuid.uuid4()
@@ -42,21 +42,21 @@ def run_review(monkeypatch, previous_flag, question_set):
         kept=False,
     )
 
-    async def fake_load(_question_id):
+    async def fake_load(session, _question_id):
         return question, stats, {"wrong_answer": 2}, 0, 0
 
     async def fake_verify(question_id, flag):
         pass
 
-    async def fake_change(question_id, previous, flag, notice=None):
+    async def fake_change(session, question_id, previous, flag, notice=None):
         saved.append(notice)
 
         return True
 
-    async def fake_set(_question_id):
+    async def fake_set(session, _question_id):
         return question_set
 
-    async def fake_topic(_question_id):
+    async def fake_topic(session, _question_id):
         return TOPIC
 
     async def fake_flush():
@@ -97,39 +97,54 @@ def test_a_flagged_question_is_not_notified_again(monkeypatch):
 
 
 def fake_session(monkeypatch, flag, archived=None, question_set=None):
+    """Replaces the question with every repository faked; the rows added to the transaction."""
     added = []
-    # What the session's lookups find, in order: the question's flag, its set and its topic.
-    replies = [flag, question_set or kit(), TOPIC]
 
     class FakeSession:
+        @classmethod
+        def begin(cls):
+            return cls()
+
         async def __aenter__(self):
             return self
 
         async def __aexit__(self, *args):
             return False
 
-        async def scalar(self, statement):
-            return replies.pop(0)
-
-        async def get(self, model, question_id):
-            # The question's content before it's replaced.
-            return SimpleNamespace(text="What is a debit?", options=OPTIONS)
-
-        async def execute(self, statement):
-            pass
-
         def add(self, row):
             added.append(row)
 
-        async def commit(self):
-            pass
+    async def current_flag(session, question_id):
+        return flag
+
+    async def question(session, question_id):
+        # The question's content before it's replaced.
+        return SimpleNamespace(text="What is a debit?", options=OPTIONS)
+
+    async def set_content(session, question_id, text, options):
+        pass
+
+    async def fake_set(session, question_id):
+        return question_set or kit()
+
+    async def fake_topic(session, question_id):
+        return TOPIC
 
     async def fake_archive(session, question_id, fixed=False):
         if archived is not None:
             archived.append(fixed)
 
-    monkeypatch.setattr(preparations, "Session", FakeSession)
+    async def no_flush():
+        pass
+
+    monkeypatch.setattr(questions, "Session", FakeSession)
+    monkeypatch.setattr(quality, "current_flag", current_flag)
+    monkeypatch.setattr(preparations, "question", question)
+    monkeypatch.setattr(preparations, "set_content", set_content)
+    monkeypatch.setattr(preparations, "get_for_question", fake_set)
+    monkeypatch.setattr(preparations, "topic_of_question", fake_topic)
     monkeypatch.setattr(quality, "archive", fake_archive)
+    monkeypatch.setattr(outbox, "flush_quietly", no_flush)
 
     return added
 
@@ -137,7 +152,7 @@ def fake_session(monkeypatch, flag, archived=None, question_set=None):
 def test_fixing_a_flagged_question_notifies_its_owner(monkeypatch):
     added = fake_session(monkeypatch, QualityFlag.WRONG_KEY)
 
-    asyncio.run(preparations.replace_question(QUESTION_ID, "What is debit?", OPTIONS))
+    asyncio.run(questions.replace(QUESTION_ID, "What is debit?", OPTIONS))
 
     assert [(row.event_type, row.data) for row in added] == [
         (
@@ -161,7 +176,7 @@ def test_fixing_a_flagged_question_notifies_its_owner(monkeypatch):
 def test_fixing_a_flagged_template_question_notifies_no_company(monkeypatch):
     added = fake_session(monkeypatch, QualityFlag.WRONG_KEY, question_set=kit("platform", "prepza"))
 
-    asyncio.run(preparations.replace_question(QUESTION_ID, "What is debit?", OPTIONS))
+    asyncio.run(questions.replace(QUESTION_ID, "What is debit?", OPTIONS))
 
     # Only its copies in companies' tests are fixed after it, and those companies told then.
     assert [row.event_type for row in added] == [QUESTION_FIXED]
@@ -170,7 +185,7 @@ def test_fixing_a_flagged_template_question_notifies_no_company(monkeypatch):
 def test_replacing_an_unflagged_question_notifies_nobody(monkeypatch):
     added = fake_session(monkeypatch, None)
 
-    asyncio.run(preparations.replace_question(QUESTION_ID, "What is debit?", OPTIONS))
+    asyncio.run(questions.replace(QUESTION_ID, "What is debit?", OPTIONS))
 
     assert added == []
 
@@ -180,6 +195,6 @@ def test_only_a_flagged_questions_revision_counts_as_fixed(monkeypatch, flag, fi
     archived = []
     fake_session(monkeypatch, flag, archived)
 
-    asyncio.run(preparations.replace_question(QUESTION_ID, "What is debit?", OPTIONS))
+    asyncio.run(questions.replace(QUESTION_ID, "What is debit?", OPTIONS))
 
     assert archived == [fixed]

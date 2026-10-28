@@ -6,15 +6,17 @@ from library.constants.events import QUESTION_FIXED
 from library.core.db import Session
 from library.models.outbox import OutboxEvent
 from library.models.sets import Question
-from library.repositories import preparations, quality, templates
+from library.repositories import preparations, quality
 from library.services import copy_fixes
-from tests.integration.factories import COPYABLE, a_company, interview
+from library.services import questions as question_service
+from tests.integration.factories import COPYABLE, a_company, copy_of, interview
+from tests.integration.transactions import transaction
 
 FIXED = [{"answer": "Right", "correct": True}, {"answer": "Wrong", "correct": False}]
 
 
 async def first_question(set_id):
-    return (await preparations.get_content(set_id)).topics[0].questions[0]
+    return (await transaction(preparations.get_content, set_id)).topics[0].questions[0]
 
 
 async def fixed_event(question_id) -> dict:
@@ -43,8 +45,8 @@ async def notified_companies(question_ids) -> list[str]:
 def test_a_fixed_bank_question_fixes_its_unchanged_copies_in_companies_tests(run):
     async def scenario():
         template = await interview("Rigger", template=True, questions=COPYABLE)
-        acme = await templates.copy_template(template, a_company("acme-fix"))
-        globex = await templates.copy_template(template, a_company("globex-fix"))
+        acme = await copy_of(template, a_company("acme-fix"))
+        globex = await copy_of(template, a_company("globex-fix"))
         copy = await first_question(acme.id)
         changed = await first_question(globex.id)
 
@@ -55,8 +57,8 @@ def test_a_fixed_bank_question_fixes_its_unchanged_copies_in_companies_tests(run
             )
             await session.commit()
 
-        await quality.save_flag(copy.source_question_id, "wrong_key")
-        await preparations.replace_question(copy.source_question_id, "Which is right?", FIXED)
+        await transaction(quality.save_flag, copy.source_question_id, "wrong_key")
+        await question_service.replace(copy.source_question_id, "Which is right?", FIXED)
         event = await fixed_event(copy.source_question_id)
         await copy_fixes.fix_copies(event)
         # Pushed again, it fixes nothing twice.
@@ -81,9 +83,9 @@ def test_a_fixed_bank_question_fixes_its_unchanged_copies_in_companies_tests(run
 def test_a_bank_question_rewritten_without_a_flag_leaves_its_copies(run):
     async def scenario():
         template = await interview("Scaffolder", template=True, questions=COPYABLE)
-        acme = await templates.copy_template(template, a_company("acme-nofix"))
+        acme = await copy_of(template, a_company("acme-nofix"))
         copy = await first_question(acme.id)
-        await preparations.replace_question(copy.source_question_id, "Reworded?", FIXED)
+        await question_service.replace(copy.source_question_id, "Reworded?", FIXED)
 
         return copy, await first_question(acme.id)
 
@@ -99,11 +101,11 @@ def test_copies_are_fixed_a_batch_at_a_time_and_a_push_past_its_time_comes_back(
 
     async def scenario():
         template = await interview("Welder", template=True, questions=COPYABLE)
-        first = await templates.copy_template(template, a_company("initech-fix"))
-        second = await templates.copy_template(template, a_company("hooli-fix"))
+        first = await copy_of(template, a_company("initech-fix"))
+        second = await copy_of(template, a_company("hooli-fix"))
         original = (await first_question(first.id)).source_question_id
-        await quality.save_flag(original, "wrong_key")
-        await preparations.replace_question(original, "Which is right?", FIXED)
+        await transaction(quality.save_flag, original, "wrong_key")
+        await question_service.replace(original, "Which is right?", FIXED)
         event = await fixed_event(original)
 
         with pytest.raises(HTTPException) as busy:

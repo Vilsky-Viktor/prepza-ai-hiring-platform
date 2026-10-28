@@ -4,7 +4,7 @@ from types import SimpleNamespace
 from prepza_common.http import http
 from prepza_common.http.http import bearer
 
-from library.repositories import preparations
+from library.repositories import preparations, quality
 from library.services import outbox
 from tests.unit.api.v1.test_internal import token
 
@@ -31,16 +31,22 @@ def test_a_replaced_question_leaves_past_answers_alone(client, monkeypatch):
     replaced = []
     outgoing = NoCalls()
 
-    async def fake_replace(question_id, text, options):
+    async def fake_replace(session, question_id, text, options):
         replaced.append((question_id, text, options))
+
+    async def nothing(session, *args, **kwargs):
+        return None
 
     async def fake_flush():
         return None
 
-    async def fake_set(question_id):
+    async def fake_set(session, question_id):
         return SimpleNamespace(id=uuid.uuid4())
 
-    monkeypatch.setattr(preparations, "replace_question", fake_replace)
+    monkeypatch.setattr(preparations, "set_content", fake_replace)
+    monkeypatch.setattr(preparations, "question", nothing)
+    monkeypatch.setattr(quality, "current_flag", nothing)
+    monkeypatch.setattr(quality, "archive", nothing)
     monkeypatch.setattr(preparations, "get_for_question", fake_set)
     monkeypatch.setattr(outbox, "flush_quietly", fake_flush)
     monkeypatch.setattr(http, "get_client", lambda: outgoing)

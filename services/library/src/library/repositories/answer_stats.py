@@ -5,7 +5,6 @@ from prepza_common.events import processed_events
 from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from library.core.db import Session
 from library.models.events import ProcessedEvent
 from library.models.sets import Question
 
@@ -82,78 +81,78 @@ async def with_sources(
 
 
 async def record_answer(
-    event_id: str, question_id: uuid.UUID, question_text: str, options: list[str], credit: float
+    session: AsyncSession,
+    event_id: str,
+    question_id: uuid.UUID,
+    question_text: str,
+    options: list[str],
+    credit: float,
 ) -> dict[uuid.UUID, int] | None:
     """Counts one answer (the options picked, and its credit from 0 to 1) for the question and
-    its bank original, in one transaction and once per event. How often each counted question has now been shown, or None when the event was
-    counted before. A question whose text has changed since isn't counted."""
-    async with Session() as session:
-        if not await processed_events.claim(session, ProcessedEvent, event_id):
-            return None
+    its bank original, in the caller's transaction and once per event. How often each counted
+    question has now been shown, or None when the event was counted before. A question whose
+    text has changed since isn't counted."""
+    if not await processed_events.claim(session, ProcessedEvent, event_id):
+        return None
 
-        questions = (await with_sources(session, [question_id]))[question_id]
-        shown = {}
+    questions = (await with_sources(session, [question_id]))[question_id]
+    shown = {}
 
-        # Rows are always updated in the same order, so two events never wait on each other.
-        for answered in sorted(questions):
-            times = await session.scalar(
-                RECORD_ANSWER_SQL,
-                {
-                    "question_id": answered,
-                    "question_text": question_text,
-                    "picks": json.dumps(dict.fromkeys(options, 1)),
-                    "credit": credit,
-                },
-            )
+    # Rows are always updated in the same order, so two events never wait on each other.
+    for answered in sorted(questions):
+        times = await session.scalar(
+            RECORD_ANSWER_SQL,
+            {
+                "question_id": answered,
+                "question_text": question_text,
+                "picks": json.dumps(dict.fromkeys(options, 1)),
+                "credit": credit,
+            },
+        )
 
-            if times is not None:
-                shown[answered] = times
+        if times is not None:
+            shown[answered] = times
 
-        await session.commit()
-
-        return shown
+    return shown
 
 
 async def record_results(
-    event_id: str, group: str | None, results: list[dict]
+    session: AsyncSession, event_id: str, group: str | None, results: list[dict]
 ) -> list[uuid.UUID] | None:
     """Counts one finished topic's results ({"question_id", "question_text", "correct",
     "credit", "timed_out"}; events from before multi-answer questions have no credit: 1 when
     correct) for each question and its bank original, in one transaction and once per
     event. `group` is the candidate's: strong, weak, or None in between (not counted there).
     The questions counted, or None when the event was counted before."""
-    async with Session() as session:
-        if not await processed_events.claim(session, ProcessedEvent, event_id):
-            return None
+    if not await processed_events.claim(session, ProcessedEvent, event_id):
+        return None
 
-        ids = [uuid.UUID(result["question_id"]) for result in results]
-        sources = await with_sources(session, ids)
-        # Rows are always updated in the same order, so two events never wait on each other.
-        rows = sorted(
-            (
-                (answered, result)
-                for question_id, result in zip(ids, results)
-                for answered in sources[question_id]
-            ),
-            key=lambda row: row[0],
+    ids = [uuid.UUID(result["question_id"]) for result in results]
+    sources = await with_sources(session, ids)
+    # Rows are always updated in the same order, so two events never wait on each other.
+    rows = sorted(
+        (
+            (answered, result)
+            for question_id, result in zip(ids, results)
+            for answered in sources[question_id]
+        ),
+        key=lambda row: row[0],
+    )
+    counted = []
+
+    for answered, result in rows:
+        await session.execute(
+            RECORD_RESULT_SQL,
+            {
+                "question_id": answered,
+                "question_text": result["question_text"],
+                "strong": int(group == "strong"),
+                "strong_correct": credit(result) if group == "strong" else 0.0,
+                "weak": int(group == "weak"),
+                "weak_correct": credit(result) if group == "weak" else 0.0,
+                "timed_out": int(result["timed_out"]),
+            },
         )
-        counted = []
+        counted.append(answered)
 
-        for answered, result in rows:
-            await session.execute(
-                RECORD_RESULT_SQL,
-                {
-                    "question_id": answered,
-                    "question_text": result["question_text"],
-                    "strong": int(group == "strong"),
-                    "strong_correct": credit(result) if group == "strong" else 0.0,
-                    "weak": int(group == "weak"),
-                    "weak_correct": credit(result) if group == "weak" else 0.0,
-                    "timed_out": int(result["timed_out"]),
-                },
-            )
-            counted.append(answered)
-
-        await session.commit()
-
-        return list(dict.fromkeys(counted))
+    return list(dict.fromkeys(counted))

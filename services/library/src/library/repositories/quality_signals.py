@@ -2,14 +2,16 @@ import uuid
 from datetime import datetime
 
 from sqlalchemy import func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from library.core.db import Session
 from library.models.feedback import QuestionRating, QuestionReport
 from library.models.quality import QuestionRevision, QuestionStats
 from library.models.sets import Question
 
 
-async def flagged_since(since: datetime, limit: int) -> list[tuple[Question, QuestionStats]]:
+async def flagged_since(
+    session: AsyncSession, since: datetime, limit: int
+) -> list[tuple[Question, QuestionStats]]:
     """Questions flagged now whose flag was set (or sent again) since `since`, newest first."""
     query = (
         select(Question, QuestionStats)
@@ -19,11 +21,10 @@ async def flagged_since(since: datetime, limit: int) -> list[tuple[Question, Que
         .limit(limit)
     )
 
-    async with Session() as session:
-        return [tuple(row) for row in await session.execute(query)]
+    return [tuple(row) for row in await session.execute(query)]
 
 
-async def feedback(question_ids: list[uuid.UUID]) -> tuple[dict, dict]:
+async def feedback(session: AsyncSession, question_ids: list[uuid.UUID]) -> tuple[dict, dict]:
     """Each question's reports per reason, and its (likes, dislikes)."""
     reports = (
         select(QuestionReport.question_id, QuestionReport.reason, func.count())
@@ -41,16 +42,17 @@ async def feedback(question_ids: list[uuid.UUID]) -> tuple[dict, dict]:
     )
     reasons = {}
 
-    async with Session() as session:
-        for question_id, reason, count in await session.execute(reports):
-            reasons.setdefault(question_id, {})[reason] = count
+    for question_id, reason, count in await session.execute(reports):
+        reasons.setdefault(question_id, {})[reason] = count
 
-        votes = {row[0]: (row[1], row[2]) for row in await session.execute(ratings)}
+    votes = {row[0]: (row[1], row[2]) for row in await session.execute(ratings)}
 
     return reasons, votes
 
 
-async def replaced_since(since: datetime, limit: int) -> list[tuple[QuestionRevision, Question]]:
+async def replaced_since(
+    session: AsyncSession, since: datetime, limit: int
+) -> list[tuple[QuestionRevision, Question]]:
     """Revisions kept since `since`, newest first, with their question as it is now."""
     query = (
         select(QuestionRevision, Question)
@@ -60,11 +62,12 @@ async def replaced_since(since: datetime, limit: int) -> list[tuple[QuestionRevi
         .limit(limit)
     )
 
-    async with Session() as session:
-        return [tuple(row) for row in await session.execute(query)]
+    return [tuple(row) for row in await session.execute(query)]
 
 
-async def revisions_of(question_ids: set[uuid.UUID]) -> list[QuestionRevision]:
+async def revisions_of(
+    session: AsyncSession, question_ids: set[uuid.UUID]
+) -> list[QuestionRevision]:
     """Every revision of these questions, oldest first."""
     query = (
         select(QuestionRevision)
@@ -72,5 +75,4 @@ async def revisions_of(question_ids: set[uuid.UUID]) -> list[QuestionRevision]:
         .order_by(QuestionRevision.replaced_at, QuestionRevision.id)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))

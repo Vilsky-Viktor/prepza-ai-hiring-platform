@@ -45,15 +45,15 @@ def stored(monkeypatch):
     """Templates served without a database; returns what the list was asked for."""
     asked = []
 
-    async def list_templates(q, level, languages, offset, limit):
+    async def list_templates(session, q, level, languages, offset, limit, copyable=False):
         asked.append((q, level, languages))
 
         return [TEMPLATE]
 
-    async def get(set_id):
+    async def get(session, set_id):
         return TEMPLATE if set_id == TEMPLATE.id else SimpleNamespace(kind="interview")
 
-    async def duplicate_ids(ids):
+    async def duplicate_ids(session, ids):
         return set()
 
     monkeypatch.setattr(templates, "list_templates", list_templates)
@@ -107,7 +107,7 @@ def test_like_wildcards_are_matched_as_typed():
 
 
 def test_a_member_reviews_a_templates_topics(client, signed_in, stored, monkeypatch):
-    async def get_topics(set_id):
+    async def get_topics(session, set_id):
         return [(SimpleNamespace(id=uuid.uuid4(), title="Ledgers", subtopics=["Accruals"]), 70)]
 
     monkeypatch.setattr(preparations, "get_topics", get_topics)
@@ -122,7 +122,7 @@ def test_a_member_reviews_a_templates_topics(client, signed_in, stored, monkeypa
 
 
 def test_the_practice_pages_read_templates_without_signing_in(client, stored, monkeypatch):
-    async def get_topics(set_id):
+    async def get_topics(session, set_id):
         return [(SimpleNamespace(id=uuid.uuid4(), title="Ledgers", subtopics=["Accruals"]), 70)]
 
     monkeypatch.setattr(preparations, "get_topics", get_topics)
@@ -150,16 +150,16 @@ def flagged_question(monkeypatch):
     done = []
     state = {"kind": "template", "flag": "wrong_key"}
 
-    async def get_for_question(_question_id):
+    async def get_for_question(session, _question_id):
         return SimpleNamespace(kind=state["kind"])
 
-    async def load(_question_id):
+    async def load(session, _question_id):
         return SimpleNamespace(), SimpleNamespace(flag=state["flag"]), {}, 0, 0
 
     async def verify(question_id, flag, now=False):
         done.append(("verify", flag, now))
 
-    async def save_flag(question_id, flag, kept=False, notice=None):
+    async def save_flag(session, question_id, flag, kept=False, notice=None):
         done.append(("save", flag, kept))
 
     from library.integrations import generation
@@ -201,7 +201,7 @@ def test_a_replaced_questions_kept_reports_are_listed_newest_first(client, signe
         ]
     )
 
-    async def revision(_revision_id):
+    async def revision(session, _revision_id):
         return kept
 
     monkeypatch.setattr(quality_report, "revision", revision)
@@ -213,10 +213,10 @@ def test_a_replaced_questions_kept_reports_are_listed_newest_first(client, signe
 
 
 def test_a_template_says_whether_its_pages_are_indexed(client, stored, monkeypatch):
-    async def get_topics(set_id):
+    async def get_topics(session, set_id):
         return []
 
-    async def duplicate_ids(ids):
+    async def duplicate_ids(session, ids):
         return set(ids)
 
     monkeypatch.setattr(preparations, "get_topics", get_topics)

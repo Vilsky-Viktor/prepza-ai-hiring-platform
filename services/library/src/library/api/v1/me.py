@@ -6,9 +6,9 @@ from prepza_common.http.visitor_country import VisitorCountry
 from prepza_common.limits.rate_limit import hit_or_skip
 
 from library.integrations.redis import get_redis
-from library.repositories import emails
 from library.schemas.emails import EmailPreferencesIn, EmailPreferencesOut
 from library.schemas.me import MeOut, SettingsIn
+from library.services import email_preferences
 from library.services.accounts import delete_account, export_account, set_language
 
 router = APIRouter()
@@ -29,7 +29,7 @@ async def update_settings(
 
 @router.get("/me/email-preferences")
 async def get_email_preferences(user: CurrentUser) -> EmailPreferencesOut:
-    return EmailPreferencesOut(**await emails.preferences(user.uid))
+    return EmailPreferencesOut(**await email_preferences.preferences(user.uid))
 
 
 @router.put("/me/email-preferences")
@@ -37,7 +37,9 @@ async def update_email_preferences(
     body: EmailPreferencesIn, user: CurrentUser
 ) -> EmailPreferencesOut:
     """Changes some settings; each change is logged as consent given or withdrawn."""
-    return EmailPreferencesOut(**await emails.change(user.uid, body.changes, body.source))
+    saved = await email_preferences.change(user.uid, body.changes, body.source)
+
+    return EmailPreferencesOut(**saved)
 
 
 @router.delete("/me", status_code=status.HTTP_204_NO_CONTENT)

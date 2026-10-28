@@ -6,9 +6,12 @@ import uuid
 
 from prepza_common.ai.sets import PreparationIn
 
-from library.repositories import preparations, templates
+from library.repositories import preparations
+from library.services import sets as set_service
+from library.services import templates as template_service
 from library.services.set_saves import save_once
 from tests.integration.factories import a_company
+from tests.integration.transactions import transaction
 
 
 def payload(generation_id: uuid.UUID, title: str) -> PreparationIn:
@@ -45,11 +48,8 @@ def test_two_saves_of_one_generation_at_once_return_one_set(run):
     generation_id = uuid.uuid4()
     body = payload(generation_id, f"Backend {uuid.uuid4().hex[:6]}")
 
-    async def create():
-        return await preparations.create_interview(body)
-
     async def scenario():
-        return await asyncio.gather(*(save_once(generation_id, create) for _ in range(2)))
+        return await asyncio.gather(*(set_service.create_interview(body) for _ in range(2)))
 
     first, second = run(scenario())
 
@@ -62,14 +62,14 @@ def test_two_templates_of_one_title_at_once_each_get_a_slug(run):
 
     def creator(body):
         async def create():
-            return await templates.create_template(body, 0.1)
+            return await template_service.save_template(body, 0.1)
 
         return create
 
     async def scenario():
         made = await asyncio.gather(*(save_once(b.generation_id, creator(b)) for b in bodies))
 
-        return [(await preparations.get(set_id)).slug for set_id in made]
+        return [(await transaction(preparations.get, set_id)).slug for set_id in made]
 
     slugs = run(scenario())
 

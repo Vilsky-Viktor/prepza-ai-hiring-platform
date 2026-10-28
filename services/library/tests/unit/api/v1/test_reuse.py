@@ -16,7 +16,7 @@ def find(client, body):
 def test_proven_questions_are_offered_for_a_similar_topic(client, monkeypatch):
     asked = {}
 
-    async def fake_find(embedding, level, language, count):
+    async def fake_find(session, embedding, level, language, count):
         asked.update(embedding=embedding, level=level, language=language, count=count)
 
         return [(SOURCE_ID, "A customer pays cash. Which entry is recorded?", OPTIONS)]

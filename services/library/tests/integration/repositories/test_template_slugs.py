@@ -8,6 +8,7 @@ from library.constants.sets import Pool
 from library.models.sets import QuestionSet
 from library.repositories import preparations, templates
 from tests.integration.factories import COPYABLE, direction, interview, question_ids, set_pool
+from tests.integration.transactions import transaction
 
 
 def test_a_template_gets_a_free_slug_and_is_found_by_it(run):
@@ -19,11 +20,11 @@ def test_a_template_gets_a_free_slug_and_is_found_by_it(run):
         company = await interview(f"Lookup {word}")
 
         return (
-            (await templates.get_by_slug(f"lookup-{word}")).id,
-            (await templates.get_by_slug(f"lookup-{word}-2")).id,
+            (await transaction(templates.get_by_slug, f"lookup-{word}")).id,
+            (await transaction(templates.get_by_slug, f"lookup-{word}-2")).id,
             first,
             second,
-            (await preparations.get(company)).slug,
+            (await transaction(preparations.get, company)).slug,
         )
 
     by_slug, by_second_slug, first, second, company_slug = run(scenario())
@@ -74,8 +75,8 @@ def test_the_sample_has_at_most_ten_practice_questions_spread_across_topics(run)
         await set_pool(await question_ids(empty), Pool.COMPANY)
 
         return (
-            await templates.sample_questions(template, 10),
-            await templates.sample_questions(empty, 10),
+            await transaction(templates.sample_questions, template, 10),
+            await transaction(templates.sample_questions, empty, 10),
         )
 
     sample, empty = run(scenario())
@@ -95,7 +96,7 @@ def test_a_later_template_of_the_same_title_and_language_is_a_near_duplicate(run
         other_language = await interview(f"Duplicate {word}", template=True, language="fr")
 
         return (
-            await templates.duplicate_ids([first, same, other_language]),
+            await transaction(templates.duplicate_ids, [first, same, other_language]),
             first,
             same,
         )
@@ -109,10 +110,10 @@ def test_a_later_template_of_the_same_title_and_language_is_a_near_duplicate(run
 def test_a_rename_moves_a_templates_updated_at(run):
     async def scenario():
         template_id = await interview(f"Rename {uuid.uuid4().hex[:8]}", template=True)
-        before = (await preparations.get(template_id)).updated_at
-        await preparations.set_title(template_id, "Renamed")
+        before = (await transaction(preparations.get, template_id)).updated_at
+        await transaction(preparations.set_title, template_id, "Renamed")
 
-        return before, (await preparations.get(template_id)).updated_at
+        return before, (await transaction(preparations.get, template_id)).updated_at
 
     before, after = run(scenario())
 

@@ -11,7 +11,9 @@ from library.handlers.dispatch import handle
 from library.integrations import generation
 from library.models.quality import QuestionStats
 from library.repositories import answer_stats, preparations, quality
+from library.services import questions as question_service
 from tests.integration.factories import interview
+from tests.integration.transactions import transaction
 
 # Two right options of four.
 MULTI = [
@@ -25,10 +27,10 @@ MULTI = [
 async def multi_question(title):
     """A company test's one question, made multi-answer."""
     set_id = await interview(title, questions=1)
-    question = (await preparations.get_content(set_id)).topics[0].questions[0]
-    await preparations.replace_question(question.id, f"{title}: which are assets?", MULTI)
+    question = (await transaction(preparations.get_content, set_id)).topics[0].questions[0]
+    await question_service.replace(question.id, f"{title}: which are assets?", MULTI)
 
-    return (await preparations.get_content(set_id)).topics[0].questions[0]
+    return (await transaction(preparations.get_content, set_id)).topics[0].questions[0]
 
 
 def test_an_answer_counts_a_pick_for_every_option_ticked_and_its_credit(run):
@@ -36,11 +38,16 @@ def test_an_answer_counts_a_pick_for_every_option_ticked_and_its_credit(run):
         question = await multi_question("Ledger picks")
 
         for options, credit in ((["Cash", "Bank"], 1.0), (["Cash"], 0.5), (["Cash", "Revenue"], 0)):
-            await answer_stats.record_answer(
-                str(uuid.uuid4()), question.id, question.text, options, credit
+            await transaction(
+                answer_stats.record_answer,
+                str(uuid.uuid4()),
+                question.id,
+                question.text,
+                options,
+                credit,
             )
 
-        _, stats, *_ = await quality.load(question.id)
+        _, stats, *_ = await transaction(quality.load, question.id)
 
         return stats
 
@@ -61,7 +68,7 @@ def test_answer_events_old_and_new_add_up_in_the_statistics(run):
         for event in (partly, old):
             await handle(str(uuid.uuid4()), "answer.recorded", event)
 
-        _, stats, *_ = await quality.load(question.id)
+        _, stats, *_ = await transaction(quality.load, question.id)
 
         return stats
 
@@ -80,7 +87,7 @@ def test_a_scored_topic_counts_each_answers_credit_in_its_group(run):
         weak = result | {"correct": True, "timed_out": False}
         await handle(str(uuid.uuid4()), "session.scored", {"final_score": 90, "answers": [strong]})
         await handle(str(uuid.uuid4()), "session.scored", {"final_score": 20, "answers": [weak]})
-        _, stats, *_ = await quality.load(question.id)
+        _, stats, *_ = await transaction(quality.load, question.id)
 
         return stats
 
@@ -113,7 +120,7 @@ def test_a_wrong_option_ticked_more_than_a_right_one_flags_a_multi_answer_key(ru
         for _ in range(MIN_ANSWERS):
             await handle(str(uuid.uuid4()), "answer.recorded", ticked)
 
-        _, stats, *_ = await quality.load(question.id)
+        _, stats, *_ = await transaction(quality.load, question.id)
 
         return stats.flag
 
@@ -144,7 +151,11 @@ def test_the_credit_migration_keeps_counts_and_takes_fractions(run, column):
     command.downgrade(config, "0027")
     command.upgrade(config, "head")
     kept = run(stored(question.id))
-    run(answer_stats.record_answer(str(uuid.uuid4()), question.id, question.text, ["Cash"], 0.5))
+    run(
+        transaction(
+            answer_stats.record_answer, str(uuid.uuid4()), question.id, question.text, ["Cash"], 0.5
+        )
+    )
 
     assert kept == 2
     assert run(stored(question.id)) == (2.5 if column == "correct" else 2)
@@ -153,10 +164,10 @@ def test_the_credit_migration_keeps_counts_and_takes_fractions(run, column):
 def test_a_replaced_multi_answer_question_keeps_its_credit_in_its_revision(run):
     async def scenario():
         question = await multi_question("Ledger revision")
-        await answer_stats.record_answer(
-            str(uuid.uuid4()), question.id, question.text, ["Cash"], 0.5
+        await transaction(
+            answer_stats.record_answer, str(uuid.uuid4()), question.id, question.text, ["Cash"], 0.5
         )
-        await preparations.replace_question(question.id, "Which are liabilities?", MULTI)
+        await question_service.replace(question.id, "Which are liabilities?", MULTI)
 
         async with Session() as session:
             return await session.scalar(

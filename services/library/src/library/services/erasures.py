@@ -11,9 +11,11 @@ from library.constants.accounts import (
     ERASURE_KEEP_DAYS,
     ERASURE_RUN_SECONDS,
 )
+from library.core.db import Session
 from library.integrations import accounts as services
 from library.models.erasures import Erasure
-from library.repositories import accounts, erasures
+from library.repositories import erasures
+from library.services.accounts import delete_data
 
 logger = logging.getLogger(__name__)
 
@@ -26,13 +28,15 @@ async def replay() -> int:
     were deleted in Firebase, which no restore brings back."""
     now = datetime.now(UTC)
     before = now - timedelta(days=ERASURE_KEEP_DAYS)
-    await erasures.forget(before)
+    await erasures.forget(Session, before)
     stop_at = time.monotonic() + ERASURE_RUN_SECONDS
     below = None
     count = 0
 
     while True:
-        batch = await erasures.page(before, below, ERASURE_BATCH)
+        async with Session() as session:
+            batch = await erasures.page(session, before, below, ERASURE_BATCH)
+
         results = await asyncio.gather(
             *(erase_again(erasure) for erasure in batch), return_exceptions=True
         )
@@ -78,4 +82,4 @@ async def erase_again(erasure: Erasure) -> None:
 
         logger.error("Erasure of account %s refused by %s", erasure.user_id, service)
 
-    await accounts.delete_user(erasure.user_id)
+    await delete_data(erasure.user_id)

@@ -12,7 +12,8 @@ import uuid
 
 from prepza_common.ai.sets import OptionIn, PreparationIn, QuestionIn, TopicIn
 
-from library.repositories import preparations, templates
+from library.services import templates
+from library.services.set_saves import saved_by
 
 GENERATION_ID = uuid.UUID("00000000-0000-4000-8000-0000000e2e01")
 TOPICS = ("SQL basics", "Indexes")
@@ -49,14 +50,14 @@ def fixture() -> PreparationIn:
 
 
 async def main() -> None:
-    existing = await preparations.find_by_generation(GENERATION_ID)
+    existing = await saved_by(GENERATION_ID)
 
     if existing:
         print(f"E2E template already there: {existing}")
 
         return
 
-    print(f"E2E template added: {await templates.create_template(fixture())}")
+    print(f"E2E template added: {await templates.create(fixture())}")
 
 
 asyncio.run(main())

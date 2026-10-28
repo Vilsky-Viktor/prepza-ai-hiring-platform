@@ -34,7 +34,7 @@ def done(monkeypatch):
     calls = Calls()
     kept = {"rows": erased(1)}
 
-    async def page(after, below, size):
+    async def page(session, after, below, size):
         calls.append(("page", after.tzinfo is not None, below))
         rows = kept["rows"]
         keys = [(row.erased_at, row.user_id) for row in rows]
@@ -42,13 +42,13 @@ def done(monkeypatch):
 
         return rows[start : start + size]
 
-    async def forget(before):
+    async def forget(session, before):
         calls.append("forget")
 
     async def delete_user(service, user_id, email):
         calls.append((service, user_id, email))
 
-    async def delete_library(user_id):
+    async def delete_library(session, user_id):
         calls.append(("library", user_id))
 
     monkeypatch.setattr(erasures, "page", page)

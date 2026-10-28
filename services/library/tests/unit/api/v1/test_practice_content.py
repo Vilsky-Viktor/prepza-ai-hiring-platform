@@ -34,7 +34,7 @@ def test_practice_gets_only_practice_questions_and_skips_empty_topics(client, mo
         ],
     )
 
-    async def get_content(set_id):
+    async def get_content(session, set_id):
         return template if set_id == TEMPLATE_ID else None
 
     monkeypatch.setattr(preparations, "get_content", get_content)

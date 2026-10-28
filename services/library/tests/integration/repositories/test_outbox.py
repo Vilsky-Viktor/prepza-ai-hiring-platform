@@ -7,6 +7,7 @@ from library.core.db import Session
 from library.models.outbox import OutboxEvent
 from library.repositories import quality
 from tests.integration.factories import a_company, interview, question_ids
+from tests.integration.transactions import transaction
 
 
 def test_a_flag_and_its_notification_are_saved_together(run):
@@ -14,7 +15,7 @@ def test_a_flag_and_its_notification_are_saved_together(run):
 
     async def scenario():
         [question_id, *_] = await question_ids(await interview())
-        await quality.save_flag(question_id, "wrong_key", notice=notice)
+        await transaction(quality.save_flag, question_id, "wrong_key", notice=notice)
 
         async with Session() as session:
             events = list(

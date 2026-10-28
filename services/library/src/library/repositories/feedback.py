@@ -2,13 +2,14 @@ import uuid
 
 from sqlalchemy import func, select
 from sqlalchemy.dialects.postgresql import insert
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from library.core.db import Session
 from library.models.feedback import QuestionRating, QuestionReport, QuestionReporter
 
 
-async def rate_question(question_id: uuid.UUID, user_id: str, value: int) -> None:
+async def rate_question(
+    session: AsyncSession, question_id: uuid.UUID, user_id: str, value: int
+) -> None:
     """Sets the user's thumbs up or down; voting again changes it."""
     statement = (
         insert(QuestionRating)
@@ -19,21 +20,22 @@ async def rate_question(question_id: uuid.UUID, user_id: str, value: int) -> Non
         )
     )
 
-    async with Session() as session:
-        await session.execute(statement)
-        await session.commit()
+    await session.execute(statement)
 
 
-async def my_question_rating(question_id: uuid.UUID, user_id: str) -> int | None:
+async def my_question_rating(
+    session: AsyncSession, question_id: uuid.UUID, user_id: str
+) -> int | None:
     query = select(QuestionRating.value).where(
         QuestionRating.question_id == question_id, QuestionRating.user_id == user_id
     )
 
-    async with Session() as session:
-        return await session.scalar(query)
+    return await session.scalar(query)
 
 
-async def question_stats(question_ids: list[uuid.UUID]) -> dict[uuid.UUID, dict[str, int]]:
+async def question_stats(
+    session: AsyncSession, question_ids: list[uuid.UUID]
+) -> dict[uuid.UUID, dict[str, int]]:
     """Likes, dislikes and reports per question; questions without feedback are missing."""
     ratings = (
         select(
@@ -51,19 +53,18 @@ async def question_stats(question_ids: list[uuid.UUID]) -> dict[uuid.UUID, dict[
     )
     stats = {}
 
-    async with Session() as session:
-        for question_id, likes, dislikes in await session.execute(ratings):
-            stats[question_id] = {"likes": likes, "dislikes": dislikes, "reports": 0}
+    for question_id, likes, dislikes in await session.execute(ratings):
+        stats[question_id] = {"likes": likes, "dislikes": dislikes, "reports": 0}
 
-        for question_id, count in await session.execute(reports):
-            stats.setdefault(question_id, {"likes": 0, "dislikes": 0, "reports": 0})
-            stats[question_id]["reports"] = count
+    for question_id, count in await session.execute(reports):
+        stats.setdefault(question_id, {"likes": 0, "dislikes": 0, "reports": 0})
+        stats[question_id]["reports"] = count
 
     return stats
 
 
 async def list_reports(
-    question_id: uuid.UUID, offset: int = 0, limit: int | None = None
+    session: AsyncSession, question_id: uuid.UUID, offset: int = 0, limit: int | None = None
 ) -> list[QuestionReport]:
     """Newest first; without a limit, every report (the verifier reads them all)."""
     query = (
@@ -74,11 +75,12 @@ async def list_reports(
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def report_question(question_id: uuid.UUID, user_id: str, reason: str, comment: str) -> bool:
+async def report_question(
+    session: AsyncSession, question_id: uuid.UUID, user_id: str, reason: str, comment: str
+) -> bool:
     """False when the user has reported the question before, in this revision or an earlier one."""
     reporter = (
         insert(QuestionReporter)
@@ -87,28 +89,23 @@ async def report_question(question_id: uuid.UUID, user_id: str, reason: str, com
         .returning(QuestionReporter.user_id)
     )
 
-    async with Session() as session:
-        if await session.scalar(reporter) is None:
-            return False
+    if await session.scalar(reporter) is None:
+        return False
 
-        session.add(
-            QuestionReport(question_id=question_id, user_id=user_id, reason=reason, comment=comment)
-        )
+    session.add(
+        QuestionReport(question_id=question_id, user_id=user_id, reason=reason, comment=comment)
+    )
 
-        try:
-            await session.commit()
-        except IntegrityError:
-            await session.rollback()
+    # A report this user made before reporters were kept breaks the unique report per user
+    # and question: the IntegrityError reaches the service, which answers as for a repeat.
+    await session.flush()
 
-            return False
-
-        return True
+    return True
 
 
-async def has_reported(question_id: uuid.UUID, user_id: str) -> bool:
+async def has_reported(session: AsyncSession, question_id: uuid.UUID, user_id: str) -> bool:
     query = select(QuestionReporter.user_id).where(
         QuestionReporter.question_id == question_id, QuestionReporter.user_id == user_id
     )
 
-    async with Session() as session:
-        return await session.scalar(query) is not None
+    return await session.scalar(query) is not None

@@ -10,6 +10,7 @@ from library.main import app
 from library.repositories import feedback, legal
 from library.services import guest_events
 from tests.integration.factories import interview, question_ids
+from tests.integration.transactions import transaction
 
 
 def push(data: dict) -> dict:
@@ -35,10 +36,10 @@ def test_a_deleted_guests_rows_and_sign_in_go_and_others_stay_however_often_it_c
         first, second, _ = await question_ids(set_id)
 
         for user_id in (guest, other):
-            await legal.accept_terms(user_id, "2026-10-10")
-            await feedback.rate_question(first, user_id, 1)
+            await transaction(legal.accept_terms, user_id, "2026-10-10")
+            await transaction(feedback.rate_question, first, user_id, 1)
 
-        await feedback.report_question(second, guest, "unclear", "Two answers fit.")
+        await transaction(feedback.report_question, second, guest, "unclear", "Two answers fit.")
         # A user who isn't a guest is never taken from this event.
         event = push({"user_ids": [guest, other]})
         transport = httpx.ASGITransport(app=app)
@@ -48,11 +49,11 @@ def test_a_deleted_guests_rows_and_sign_in_go_and_others_stay_however_often_it_c
 
         return (
             codes,
-            await legal.accepted_terms(guest),
-            await feedback.my_question_rating(first, guest),
-            await feedback.has_reported(second, guest),
-            len(await legal.accepted_terms(other)),
-            await feedback.my_question_rating(first, other),
+            await transaction(legal.accepted_terms, guest),
+            await transaction(feedback.my_question_rating, first, guest),
+            await transaction(feedback.has_reported, second, guest),
+            len(await transaction(legal.accepted_terms, other)),
+            await transaction(feedback.my_question_rating, first, other),
         )
 
     codes, terms, rating, reported, other_terms, other_rating = run(scenario())

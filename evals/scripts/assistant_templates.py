@@ -15,7 +15,7 @@ from pathlib import Path
 from assistant_fixture import TEMPLATES
 from prepza_common.ai.sets import OptionIn, PreparationIn, QuestionIn, TopicIn
 
-from library.repositories import preparations, templates
+from library.services import sets, templates
 
 # Not common.py's paths: library has no OpenAI packages.
 IDS = Path(__file__).resolve().parents[1] / "results" / "assistant_templates.json"
@@ -56,7 +56,7 @@ def fixture(title: str, topics: tuple[str, ...]) -> PreparationIn:
 async def main(command: str) -> None:
     if command == "create":
         # No multi-answer questions: the candidates pick the one option starting with "Right".
-        ids = [str(await templates.create_template(fixture(*item), 0)) for item in TEMPLATES]
+        ids = [str(await templates.save_template(fixture(*item), 0)) for item in TEMPLATES]
         IDS.parent.mkdir(parents=True, exist_ok=True)
         IDS.write_text(json.dumps(ids))
         print(f"templates added: {ids}")
@@ -64,7 +64,7 @@ async def main(command: str) -> None:
         return
 
     for template_id in json.loads(IDS.read_text()):
-        await preparations.remove(uuid.UUID(template_id))
+        await sets.delete(uuid.UUID(template_id))
 
     IDS.unlink()
     print("templates removed")

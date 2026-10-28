@@ -101,3 +101,22 @@ def flag_for(
         return QualityFlag.WEAK_OPTIONS
 
     return None
+
+
+def replacement(revision, question, versions) -> tuple[str, list]:
+    """The text and options that replaced `revision`: the next kept revision of its question, or
+    the question as it is now."""
+    following = next(
+        (
+            version
+            for version in versions
+            if version.question_id == revision.question_id
+            and version.replaced_at > revision.replaced_at
+        ),
+        None,
+    )
+
+    if following is not None:
+        return following.text, following.options
+
+    return question.text, question.options

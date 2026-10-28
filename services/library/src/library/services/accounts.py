@@ -12,6 +12,7 @@ from prepza_common.config.constants import (
 )
 from prepza_common.events.analytics import track
 
+from library.core.db import Session
 from library.helpers.accounts import candidate_email
 from library.integrations import accounts as services
 from library.integrations.billing import remember_currency
@@ -56,7 +57,8 @@ async def set_language(user: User, language: Language, country: str | None = Non
 
     if LANGUAGE_CLAIM not in (record.custom_claims or {}):
         # Signing in the first time accepts the terms (the sign-in shows them).
-        await legal.accept_terms(user.uid, LEGAL_VERSIONS["terms"])
+        async with Session.begin() as session:
+            await legal.accept_terms(session, user.uid, LEGAL_VERSIONS["terms"])
 
         # A company's guest candidate has no account of their own: not a sign-up.
         if not user.uid.startswith(GUEST_UID_PREFIX):
@@ -94,10 +96,19 @@ async def delete_account(user: User) -> None:
     if failed:
         raise failed[0]
 
-    await accounts.delete_user(user.uid)
-    # Run again after a restore from a backup (services/erasures.py).
-    await erasures.record(user.uid, candidate_email(user))
+    # One save: library's rows go with the note that runs the deletion again after a restore
+    # from a backup (services/erasures.py), so neither is kept without the other.
+    async with Session.begin() as session:
+        await accounts.delete_user(session, user.uid)
+        await erasures.record(session, user.uid, email)
+
     await asyncio.to_thread(delete_sign_in, user.uid)
+
+
+async def delete_data(user_id: str) -> None:
+    """What library keeps under the user's id (accounts.delete_user), in one save."""
+    async with Session.begin() as session:
+        await accounts.delete_user(session, user_id)
 
 
 async def export_account(user: User) -> dict:
@@ -108,6 +119,9 @@ async def export_account(user: User) -> dict:
         )
     )
 
+    async with Session() as session:
+        library = await accounts.export(session, user.uid)
+
     return {
         "account": {
             "id": user.uid,
@@ -115,6 +129,6 @@ async def export_account(user: User) -> dict:
             "name": user.name,
             "language": user.language,
         },
-        "library": await accounts.export(user.uid),
+        "library": library,
         **dict(zip(services.services(), exports, strict=True)),
     }

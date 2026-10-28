@@ -7,7 +7,6 @@ from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from library.core.db import Session
 from library.models.feedback import QuestionRating, QuestionReport
 from library.models.outbox import OutboxEvent
 from library.models.quality import QuestionRevision, QuestionStats
@@ -25,6 +24,7 @@ async def rating_counts(session: AsyncSession, question_id: uuid.UUID) -> tuple[
 
 
 async def load(
+    session: AsyncSession,
     question_id: uuid.UUID,
 ) -> tuple[Question, QuestionStats | None, dict[str, int], int, int] | None:
     """The question, its answer stats, report counts per reason, likes and dislikes."""
@@ -34,26 +34,29 @@ async def load(
         .group_by(QuestionReport.reason)
     )
 
-    async with Session() as session:
-        question = await session.get(Question, question_id)
+    question = await session.get(Question, question_id)
 
-        if question is None:
-            return None
+    if question is None:
+        return None
 
-        stats = await session.get(QuestionStats, question_id)
-        likes, dislikes = await rating_counts(session, question_id)
+    stats = await session.get(QuestionStats, question_id)
+    likes, dislikes = await rating_counts(session, question_id)
 
-        return (
-            question,
-            stats,
-            dict((await session.execute(reports)).all()),
-            likes,
-            dislikes,
-        )
+    return (
+        question,
+        stats,
+        dict((await session.execute(reports)).all()),
+        likes,
+        dislikes,
+    )
 
 
 async def save_flag(
-    question_id: uuid.UUID, flag: str | None, kept: bool = False, notice: dict | None = None
+    session: AsyncSession,
+    question_id: uuid.UUID,
+    flag: str | None,
+    kept: bool = False,
+    notice: dict | None = None,
 ) -> None:
     """Also for a question nobody has answered yet: reports alone can flag it. `notice` is the
     owner's notification, saved with the flag."""
@@ -75,17 +78,18 @@ async def save_flag(
         )
     )
 
-    async with Session() as session:
-        await session.execute(statement)
+    await session.execute(statement)
 
-        if notice is not None:
-            outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
-
-        await session.commit()
+    if notice is not None:
+        outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
 
 
 async def change_flag(
-    question_id: uuid.UUID, previous: str | None, flag: str, notice: dict | None = None
+    session: AsyncSession,
+    question_id: uuid.UUID,
+    previous: str | None,
+    flag: str,
+    notice: dict | None = None,
 ) -> bool:
     """Flags the question only if its flag is still `previous`, as read before; `notice`, the
     owner's notification, is saved with it. False when another event changed it meanwhile, so
@@ -112,25 +116,23 @@ async def change_flag(
         .returning(QuestionStats.question_id)
     )
 
-    async with Session() as session:
-        changed = (await session.execute(statement)).first() is not None
+    changed = (await session.execute(statement)).first() is not None
 
-        if changed and notice is not None:
-            outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
+    if changed and notice is not None:
+        outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
 
-        await session.commit()
-
-        return changed
+    return changed
 
 
-async def current_flag(question_id: uuid.UUID) -> str | None:
-    async with Session() as session:
-        return await session.scalar(
-            select(QuestionStats.flag).where(QuestionStats.question_id == question_id)
-        )
+async def current_flag(session: AsyncSession, question_id: uuid.UUID) -> str | None:
+    return await session.scalar(
+        select(QuestionStats.flag).where(QuestionStats.question_id == question_id)
+    )
 
 
-async def take_stale_flags(before: datetime, limit: int) -> list[tuple[uuid.UUID, str]]:
+async def take_stale_flags(
+    session: AsyncSession, before: datetime, limit: int
+) -> list[tuple[uuid.UUID, str]]:
     """Up to `limit` flags set or last sent before `before`, oldest first, each dated now so the
     next sweep waits for it again: (question_id, flag). Two sweeps at once take different
     ones."""
@@ -148,11 +150,9 @@ async def take_stale_flags(before: datetime, limit: int) -> list[tuple[uuid.UUID
         .returning(QuestionStats.question_id, QuestionStats.flag)
     )
 
-    async with Session() as session:
-        taken = [tuple(row) for row in await session.execute(statement)]
-        await session.commit()
+    taken = [tuple(row) for row in await session.execute(statement)]
 
-        return taken
+    return taken
 
 
 async def archive(session: AsyncSession, question_id: uuid.UUID, fixed: bool = False) -> None:

@@ -50,16 +50,16 @@ def stored(monkeypatch):
     """One template, found by its id or slug; anything else is a company's test or missing."""
     asked = []
 
-    async def get(set_id):
+    async def get(session, set_id):
         return TEMPLATE if set_id == TEMPLATE.id else SimpleNamespace(kind="interview")
 
-    async def get_by_slug(slug):
+    async def get_by_slug(session, slug):
         return TEMPLATE if slug == TEMPLATE.slug else None
 
-    async def get_topics(set_id):
+    async def get_topics(session, set_id):
         return [(SimpleNamespace(id=uuid.uuid4(), title="Ledgers", subtopics=[]), 5)]
 
-    async def sample_questions(template_id, limit):
+    async def sample_questions(session, template_id, limit):
         asked.append((template_id, limit))
         question = SimpleNamespace(
             id=uuid.uuid4(), text="Debit?", options=[{"answer": "Left", "correct": True}]
@@ -67,7 +67,7 @@ def stored(monkeypatch):
 
         return [(question, "Ledgers")]
 
-    async def duplicate_ids(ids):
+    async def duplicate_ids(session, ids):
         return set()
 
     monkeypatch.setattr(preparations, "get", get)

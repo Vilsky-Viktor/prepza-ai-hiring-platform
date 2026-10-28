@@ -3,6 +3,7 @@ import uuid
 
 from library.constants.events import ANSWER_RECORDED, SESSION_SCORED
 from library.constants.quality import MIN_ANSWERS
+from library.core.db import Session
 from library.helpers.quality import score_group
 from library.repositories import answer_stats
 from library.services.quality import review
@@ -32,7 +33,9 @@ async def record_answer(event_id: str, data: dict) -> None:
         return
 
     # Counted only while the question still reads as answered (see RECORD_ANSWER_SQL).
-    shown = await answer_stats.record_answer(event_id, *answer)
+    async with Session.begin() as session:
+        shown = await answer_stats.record_answer(session, event_id, *answer)
+
     # Answers say nothing about a question shown fewer than MIN_ANSWERS times (flag_for,
     # too_slow), so its review would come out as the last one did: it's skipped.
     await review_each(
@@ -50,7 +53,10 @@ async def record_results(event_id: str, data: dict) -> None:
 
         return
 
-    await review_each(await answer_stats.record_results(event_id, *results))
+    async with Session.begin() as session:
+        counted = await answer_stats.record_results(session, event_id, *results)
+
+    await review_each(counted)
 
 
 async def review_each(counted: list[uuid.UUID] | None) -> None:

@@ -19,10 +19,12 @@ src/library/
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
 ├── handlers/               # Pub/Sub events (answers, scored topics, deleted guests, fixed
 │                           # bank questions); dispatch.py picks one
-├── services/               # Quality reviews, account deletion and export, erasures, news,
-│                           # copy fixes, set saves
+├── services/               # Sets and templates, quality reviews and fixes, feedback, email
+│                           # settings, news, account deletion and export, erasures; each
+│                           # opens its transaction
 ├── repositories/           # Database queries: sets, templates, pools, statistics, quality,
-│                           # feedback, email settings, news, erasures, ...
+│                           # feedback, email settings, news, erasures, ...; take the
+│                           # session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (pools, slugs, quality flags); fixed values
 ├── integrations/           # Other services (account deletion, billing, generation), Redis
@@ -30,6 +32,13 @@ src/library/
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
+
+Routes and handlers call services; services open the transaction (`async with
+Session.begin() as session:`) and pass it to the repositories, so an action's steps are saved
+together, and call generation, the other services, Firebase and Redis outside it. A plain read
+may open `async with Session() as session:` in the route. `tests/unit/test_layers.py` checks the
+imports and that no repository commits; batched deletions take the session factory, each batch
+its own transaction.
 
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,
 `prepend_sys_path` for Alembic, `evals/run.sh`), so the package imports as `library`

@@ -1,15 +1,11 @@
 from typing import Annotated
-from uuid import UUID
 
-from fastapi import APIRouter, HTTPException, Query, status
+from fastapi import APIRouter, Query
 from prepza_common.auth.user import Language, Level
 from prepza_common.config.constants import LANGUAGES, LEVELS, MAX_TITLE_LENGTH
 from prepza_common.db.paging import PageParams
 
-from library.constants.sets import SetKind
 from library.constants.templates import SAMPLE_QUESTIONS
-from library.models.sets import QuestionSet
-from library.repositories import preparations, templates
 from library.schemas.preparations import TopicOut
 from library.schemas.templates import (
     SampleQuestionOut,
@@ -17,7 +13,7 @@ from library.schemas.templates import (
     TemplateOut,
     TemplateSummary,
 )
-from library.services.templates import summaries
+from library.services import templates
 
 # Templates: public, for the practice pages search engines index and for companies to start a
 # test from. Topics, and a sample of the practice questions practice shows anyway; never the
@@ -37,9 +33,7 @@ async def list_templates(
     level: Level | None = None,
     language: Annotated[list[Language] | None, Query()] = None,
 ) -> list[TemplateSummary]:
-    rows = await templates.list_templates(q.strip(), level, language or [], page.offset, page.limit)
-
-    return await summaries(rows)
+    return await templates.listed(q.strip(), level, language or [], page.offset, page.limit)
 
 
 @router.get("/copyable")
@@ -51,37 +45,15 @@ async def list_copyable_templates(
 ) -> list[TemplateSummary]:
     """The templates a company can start a test from: only those it can copy, so using one never
     fails. Practice lists every template."""
-    rows = await templates.list_templates(
+    return await templates.listed(
         q.strip(), level, language or [], page.offset, page.limit, copyable=True
     )
-
-    return await summaries(rows)
-
-
-async def find_template(key: str) -> QuestionSet:
-    """A template by its id or its slug; 404 when there's none."""
-    try:
-        template_id = UUID(key)
-    except ValueError:
-        template_id = None
-
-    if template_id is None:
-        template = await templates.get_by_slug(key)
-    else:
-        template = await preparations.get(template_id)
-
-    if template is None or template.kind != SetKind.TEMPLATE:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Template not found")
-
-    return template
 
 
 @router.get("/{key}")
 async def get_template(key: str) -> TemplateOut:
     """A template's topics and subtopics, by its id or slug, to review before using it."""
-    template = await find_template(key)
-    topics = await preparations.get_topics(template.id)
-    [summary] = await summaries([template])
+    summary, topics = await templates.with_topics(key)
 
     return TemplateOut(
         **summary.model_dump(),
@@ -98,8 +70,7 @@ async def get_template(key: str) -> TemplateOut:
 async def sample_questions(key: str) -> list[SampleQuestionOut]:
     """A few of the template's practice questions, with answers, spread across its topics, for
     its practice page. Company questions are never shown."""
-    template = await find_template(key)
-    rows = await templates.sample_questions(template.id, SAMPLE_QUESTIONS)
+    rows = await templates.sample(key, SAMPLE_QUESTIONS)
 
     return [
         SampleQuestionOut(id=question.id, topic=topic, text=question.text, options=question.options)

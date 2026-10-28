@@ -1,59 +1,21 @@
 import uuid
 
-from prepza_common.ai.sets import PreparationIn
 from sqlalchemy import Text, and_, cast, func, or_, select, text
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import aliased, selectinload
 
 from library.constants.reuse import MIN_COPY_QUESTIONS
-from library.constants.sets import PLATFORM_OWNER, OwnerType, Pool, SetKind
-from library.core.db import Session
-from library.helpers.pools import assign_pools
+from library.constants.sets import Pool, SetKind
 from library.helpers.search import escape_like
-from library.helpers.slugs import slugify, unique_slug
+from library.helpers.slugs import unique_slug
 from library.models.sets import Question, QuestionSet, Topic
-from library.repositories import reuse
-from library.repositories.preparations import new_topics
 
 COPY_EMBEDDING_SQL = text(
     "UPDATE topics SET embedding = (SELECT embedding FROM topics WHERE id = :source) WHERE id = :id"
 )
 
 
-async def create_template(payload: PreparationIn, share: float) -> uuid.UUID:
-    """An admin's template, with its topics' embeddings for the question bank; `share` of each
-    topic's practice questions are multi-answer (assign_pools)."""
-    question_set = QuestionSet(
-        generation_id=payload.generation_id,
-        kind=SetKind.TEMPLATE,
-        owner_type=OwnerType.PLATFORM,
-        owner_id=PLATFORM_OWNER,
-        title=payload.title,
-        source_text=payload.source_text,
-        level=payload.level,
-        language=payload.language,
-        requirements=payload.requirements,
-        topics=new_topics(payload),
-        topic_count=len(payload.topics),
-    )
-
-    for topic in question_set.topics:
-        assign_pools(topic.questions, share)
-
-    async with Session() as session:
-        question_set.slug = await free_slug(session, slugify(payload.title))
-        session.add(question_set)
-        await session.flush()
-        await reuse.save_embeddings(
-            session,
-            [topic.id for topic in question_set.topics],
-            [topic.embedding for topic in payload.topics],
-        )
-        await session.commit()
-
-    return question_set.id
-
-
-async def free_slug(session, base: str) -> str:
+async def free_slug(session: AsyncSession, base: str) -> str:
     """`base`, or it with the first free "-2", "-3"… A slug holds only letters, digits and "-",
     so it needs no escaping in LIKE."""
     query = select(QuestionSet.slug).where(
@@ -63,14 +25,13 @@ async def free_slug(session, base: str) -> str:
     return unique_slug(base, set(await session.scalars(query)))
 
 
-async def get_by_slug(slug: str) -> QuestionSet | None:
+async def get_by_slug(session: AsyncSession, slug: str) -> QuestionSet | None:
     query = select(QuestionSet).where(QuestionSet.slug == slug)
 
-    async with Session() as session:
-        return await session.scalar(query)
+    return await session.scalar(query)
 
 
-async def duplicate_ids(ids: list[uuid.UUID]) -> set[uuid.UUID]:
+async def duplicate_ids(session: AsyncSession, ids: list[uuid.UUID]) -> set[uuid.UUID]:
     """The templates among `ids` with an older template of the same title (any case) and
     language: near-duplicates of it. Of two made at once, the one with the smaller id is older."""
     older = aliased(QuestionSet)
@@ -89,11 +50,12 @@ async def duplicate_ids(ids: list[uuid.UUID]) -> set[uuid.UUID]:
     )
     query = select(QuestionSet.id).where(QuestionSet.id.in_(ids), has_older)
 
-    async with Session() as session:
-        return set(await session.scalars(query))
+    return set(await session.scalars(query))
 
 
-async def sample_questions(template_id: uuid.UUID, limit: int) -> list[tuple[Question, str]]:
+async def sample_questions(
+    session: AsyncSession, template_id: uuid.UUID, limit: int
+) -> list[tuple[Question, str]]:
     """Up to `limit` practice questions with their topic's title, spread across topics: each
     topic's first, in topic order, then each one's second, and so on."""
     rank = (
@@ -113,79 +75,33 @@ async def sample_questions(template_id: uuid.UUID, limit: int) -> list[tuple[Que
         .limit(limit)
     )
 
-    async with Session() as session:
-        return [(question, title) for question, title in await session.execute(query)]
+    return [(question, title) for question, title in await session.execute(query)]
 
 
-async def copy_template(template_id: uuid.UUID, company_id: str) -> QuestionSet | None:
-    """A company's own test made from a template, with no generation: its topics with their
-    company questions and embeddings, each question remembering its original so its answers
-    count there too. Topics with fewer than MIN_COPY_QUESTIONS company questions are skipped. None when there's no such template, or none of its topics is left."""
+async def with_questions(session: AsyncSession, template_id: uuid.UUID) -> QuestionSet | None:
+    """A template with its topics and their questions; None when there's no such template."""
     query = (
         select(QuestionSet)
         .where(QuestionSet.id == template_id, QuestionSet.kind == SetKind.TEMPLATE)
         .options(selectinload(QuestionSet.topics).selectinload(Topic.questions))
     )
 
-    async with Session() as session:
-        template = await session.scalar(query)
+    return await session.scalar(query)
 
-        if template is None:
-            return None
 
-        kept = []
+async def add_copy(session: AsyncSession, copy: QuestionSet, sources: list[uuid.UUID]) -> None:
+    """Saves a test copied from a template; its topics get the embeddings of the template's
+    topics they came from (`sources`, in topic order)."""
+    session.add(copy)
+    await session.flush()
+    copied = [{"id": new.id, "source": source} for new, source in zip(copy.topics, sources)]
 
-        for topic in template.topics:
-            company = [q for q in topic.questions if q.pool == Pool.COMPANY]
-
-            if len(company) >= MIN_COPY_QUESTIONS:
-                kept.append((topic, company))
-
-        if not kept:
-            return None
-
-        copy = QuestionSet(
-            kind=SetKind.INTERVIEW,
-            owner_type=OwnerType.COMPANY,
-            owner_id=company_id,
-            title=template.title,
-            source_text=template.source_text,
-            level=template.level,
-            language=template.language,
-            requirements=template.requirements,
-            topic_count=len(kept),
-            topics=[
-                Topic(
-                    position=position,
-                    title=topic.title,
-                    subtopics=topic.subtopics,
-                    questions=[
-                        Question(
-                            position=q.position,
-                            text=q.text,
-                            options=q.options,
-                            source_question_id=q.id,
-                        )
-                        for q in company
-                    ],
-                )
-                for position, (topic, company) in enumerate(kept)
-            ],
-        )
-        session.add(copy)
-        await session.flush()
-
-        copied = [{"id": new.id, "source": topic.id} for new, (topic, _) in zip(copy.topics, kept)]
-
-        if copied:
-            await session.execute(COPY_EMBEDDING_SQL, copied)
-
-        await session.commit()
-
-        return copy
+    if copied:
+        await session.execute(COPY_EMBEDDING_SQL, copied)
 
 
 async def list_templates(
+    session: AsyncSession,
     q: str,
     level: str | None,
     languages: list[str],
@@ -238,5 +154,4 @@ async def list_templates(
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))

@@ -5,6 +5,7 @@ from library.handlers.dispatch import handle
 from library.integrations import generation
 from library.repositories import preparations, quality
 from tests.integration.factories import interview
+from tests.integration.transactions import transaction
 
 
 def test_answers_flag_a_question_once_it_has_been_shown_enough(run, monkeypatch):
@@ -17,7 +18,7 @@ def test_answers_flag_a_question_once_it_has_been_shown_enough(run, monkeypatch)
 
     async def scenario():
         template = await interview("Glazier", template=True, questions=3)
-        question = (await preparations.get_content(template)).topics[0].questions[0]
+        question = (await transaction(preparations.get_content, template)).topics[0].questions[0]
         wrong = next(option["answer"] for option in question.options if not option["correct"])
         picked = {
             "question_id": str(question.id),
@@ -31,7 +32,7 @@ def test_answers_flag_a_question_once_it_has_been_shown_enough(run, monkeypatch)
         # MIN_ANSWERS answers to say so.
         for _ in range(MIN_ANSWERS):
             await handle(str(uuid.uuid4()), "answer.recorded", picked)
-            _, stats, *_ = await quality.load(question.id)
+            _, stats, *_ = await transaction(quality.load, question.id)
             flags.append(stats.flag)
 
         return flags

@@ -7,6 +7,7 @@ from library.core.db import Session
 from library.models.outbox import OutboxEvent
 from library.repositories import answer_stats, preparations, quality
 from tests.integration.factories import interview
+from tests.integration.transactions import transaction
 
 
 async def notices(question_id) -> int:
@@ -28,24 +29,26 @@ def test_two_reviews_at_once_flag_a_question_once(run):
         # With no statistics yet, and with statistics but no flag.
         for answered in (False, True):
             set_id = await interview(f"Race {answered}", questions=1)
-            question = (await preparations.get_content(set_id)).topics[0].questions[0]
+            question = (await transaction(preparations.get_content, set_id)).topics[0].questions[0]
 
             if answered:
-                await answer_stats.record_answer(
-                    "race-event", question.id, question.text, ["a"], 1.0
+                await transaction(
+                    answer_stats.record_answer, "race-event", question.id, question.text, ["a"], 1.0
                 )
 
             notice = {"kind": "question_flagged", "key": f"flag:{question.id}"}
             changed = await asyncio.gather(
                 *[
-                    quality.change_flag(question.id, None, QualityFlag.WRONG_KEY, notice)
+                    transaction(
+                        quality.change_flag, question.id, None, QualityFlag.WRONG_KEY, notice
+                    )
                     for _ in range(2)
                 ]
             )
             results.append(
                 (
                     sorted(changed),
-                    await quality.current_flag(question.id),
+                    await transaction(quality.current_flag, question.id),
                     await notices(question.id),
                 )
             )
@@ -61,11 +64,11 @@ def test_two_reviews_at_once_flag_a_question_once(run):
 def test_a_flag_changed_meanwhile_is_left_as_it_is(run):
     async def scenario():
         set_id = await interview("Changed meanwhile", questions=1)
-        question = (await preparations.get_content(set_id)).topics[0].questions[0]
-        await quality.save_flag(question.id, QualityFlag.REWRITE)
+        question = (await transaction(preparations.get_content, set_id)).topics[0].questions[0]
+        await transaction(quality.save_flag, question.id, QualityFlag.REWRITE)
         # Read before the rewrite flag was saved.
-        changed = await quality.change_flag(question.id, None, QualityFlag.WRONG_KEY)
+        changed = await transaction(quality.change_flag, question.id, None, QualityFlag.WRONG_KEY)
 
-        return changed, await quality.current_flag(question.id)
+        return changed, await transaction(quality.current_flag, question.id)
 
     assert run(scenario()) == (False, QualityFlag.REWRITE)

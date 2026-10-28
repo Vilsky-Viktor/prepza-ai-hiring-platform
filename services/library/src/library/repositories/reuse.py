@@ -5,7 +5,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from library.constants.reuse import MAX_TOPIC_DISTANCE, MIN_REUSE_ANSWERS
 from library.constants.sets import Pool, SetKind
-from library.core.db import Session
 
 # The bank: proven company questions of templates of the level whose topic is close to the new
 # one. The same text can sit in several templates; each is offered once, from its closest topic.
@@ -41,7 +40,9 @@ def as_vector(embedding: list[float]) -> str:
 
 
 async def save_embeddings(
-    session: AsyncSession, topic_ids: list[uuid.UUID], embeddings: list[list[float] | None]
+    session: AsyncSession,
+    topic_ids: list[uuid.UUID],
+    embeddings: list[list[float] | None],
 ) -> None:
     rows = [
         {"id": topic_id, "embedding": as_vector(embedding)}
@@ -64,25 +65,22 @@ MISSING_SQL = text(
 )
 
 
-async def missing(limit: int) -> list[tuple[uuid.UUID, str, list[str]]]:
+async def missing(session: AsyncSession, limit: int) -> list[tuple[uuid.UUID, str, list[str]]]:
     """Template and company test topics without an embedding: templates copied in by hand, and
     tests saved before their embeddings were kept."""
     params = {"template": SetKind.TEMPLATE, "interview": SetKind.INTERVIEW, "limit": limit}
 
-    async with Session() as session:
-        rows = await session.execute(MISSING_SQL, params)
+    rows = await session.execute(MISSING_SQL, params)
 
-        return [tuple(row) for row in rows]
+    return [tuple(row) for row in rows]
 
 
-async def save(embeddings: dict[uuid.UUID, list[float]]) -> None:
-    async with Session() as session:
-        await save_embeddings(session, list(embeddings), list(embeddings.values()))
-        await session.commit()
+async def save(session: AsyncSession, embeddings: dict[uuid.UUID, list[float]]) -> None:
+    await save_embeddings(session, list(embeddings), list(embeddings.values()))
 
 
 async def find(
-    embedding: list[float], level: str, language: str, count: int
+    session: AsyncSession, embedding: list[float], level: str, language: str, count: int
 ) -> list[tuple[uuid.UUID, str, list]]:
     params = {
         "embedding": as_vector(embedding),
@@ -95,5 +93,4 @@ async def find(
         "count": count,
     }
 
-    async with Session() as session:
-        return [tuple(row) for row in await session.execute(FIND_SQL, params)]
+    return [tuple(row) for row in await session.execute(FIND_SQL, params)]

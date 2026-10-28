@@ -17,19 +17,19 @@ AUTH = bearer(token())
 def redis(monkeypatch):
     """Rate limits count in memory."""
     fake = FakeRedis()
-    monkeypatch.setattr("library.api.v1.internal_feedback.get_redis", lambda: fake)
+    monkeypatch.setattr("library.services.question_feedback.get_redis", lambda: fake)
 
     return fake
 
 
-async def not_reported(question_id, user_id):
+async def not_reported(session, question_id, user_id):
     return False
 
 
 def test_a_candidates_second_report_is_rejected(client, monkeypatch):
     reported = set()
 
-    async def fake_report(question_id, user_id, reason, comment):
+    async def fake_report(session, question_id, user_id, reason, comment):
         if (question_id, user_id) in reported:
             return False
 
@@ -37,7 +37,7 @@ def test_a_candidates_second_report_is_rejected(client, monkeypatch):
 
         return True
 
-    async def fake_has_reported(question_id, user_id):
+    async def fake_has_reported(session, question_id, user_id):
         return (question_id, user_id) in reported
 
     async def fake_review(question_id):
@@ -45,7 +45,7 @@ def test_a_candidates_second_report_is_rejected(client, monkeypatch):
 
     monkeypatch.setattr(feedback, "report_question", fake_report)
     monkeypatch.setattr(feedback, "has_reported", fake_has_reported)
-    monkeypatch.setattr("library.api.v1.internal_feedback.review", fake_review)
+    monkeypatch.setattr("library.services.question_feedback.review", fake_review)
     url = f"/internal/questions/{QUESTION_ID}/reports"
     body = {"user_id": "ann", "reason": "unclear"}
 
@@ -62,7 +62,7 @@ def test_a_candidates_second_report_is_rejected(client, monkeypatch):
 def test_a_question_reported_as_hard_to_read_is_saved_with_that_reason(client, monkeypatch):
     saved = []
 
-    async def fake_report(question_id, user_id, reason, comment):
+    async def fake_report(session, question_id, user_id, reason, comment):
         saved.append((question_id, user_id, reason))
 
         return True
@@ -72,7 +72,7 @@ def test_a_question_reported_as_hard_to_read_is_saved_with_that_reason(client, m
 
     monkeypatch.setattr(feedback, "report_question", fake_report)
     monkeypatch.setattr(feedback, "has_reported", not_reported)
-    monkeypatch.setattr("library.api.v1.internal_feedback.review", fake_review)
+    monkeypatch.setattr("library.services.question_feedback.review", fake_review)
     url = f"/internal/questions/{QUESTION_ID}/reports"
     body = {"user_id": "ann", "reason": "hard_to_read"}
 
@@ -88,7 +88,7 @@ def test_a_users_reports_are_limited_a_day(client, monkeypatch, redis, published
     if edited:
         redis.limits["REPORTS_PER_DAY"] = str(edited)
 
-    async def fake_report(question_id, user_id, reason, comment):
+    async def fake_report(session, question_id, user_id, reason, comment):
         return True
 
     async def fake_review(question_id):
@@ -96,7 +96,7 @@ def test_a_users_reports_are_limited_a_day(client, monkeypatch, redis, published
 
     monkeypatch.setattr(feedback, "report_question", fake_report)
     monkeypatch.setattr(feedback, "has_reported", not_reported)
-    monkeypatch.setattr("library.api.v1.internal_feedback.review", fake_review)
+    monkeypatch.setattr("library.services.question_feedback.review", fake_review)
     body = {"user_id": "spammer", "reason": "unclear"}
 
     for _ in range(allowed):

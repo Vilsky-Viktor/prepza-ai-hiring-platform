@@ -86,7 +86,7 @@ def stored(flag=None, kept=False, answers=0):
 def record(monkeypatch, found, generation_down=False):
     calls = []
 
-    async def fake_load(_question_id):
+    async def fake_load(session, _question_id):
         return found
 
     async def fake_verify(question_id, flag):
@@ -95,18 +95,18 @@ def record(monkeypatch, found, generation_down=False):
 
         calls.append(("verify", flag))
 
-    async def fake_save(question_id, flag, kept=False, notice=None):
+    async def fake_save(session, question_id, flag, kept=False, notice=None):
         calls.append(("save", flag))
 
-    async def fake_change(question_id, previous, flag, notice=None):
+    async def fake_change(session, question_id, previous, flag, notice=None):
         calls.append(("save", flag))
 
         return True
 
-    async def fake_set(_question_id):
+    async def fake_set(session, _question_id):
         return SimpleNamespace(id=uuid.uuid4(), owner_type="user", owner_id="u1", title="Kit")
 
-    async def fake_topic(_question_id):
+    async def fake_topic(session, _question_id):
         return "Bookkeeping"
 
     async def fake_flush():
@@ -163,10 +163,10 @@ def test_marking_wrong_again_while_the_check_waits_changes_nothing(monkeypatch):
     calls = record(monkeypatch, stored())
     current = {"flag": None}
 
-    async def current_flag(_question_id):
+    async def current_flag(session, _question_id):
         return current["flag"]
 
-    async def change(question_id, previous, flag, notice=None):
+    async def change(session, question_id, previous, flag, notice=None):
         current["flag"] = flag
         calls.append(("save", flag))
 
@@ -190,7 +190,7 @@ def test_flags_left_unfixed_go_to_the_verifier_again(monkeypatch):
     calls = record(monkeypatch, stored(), generation_down=False)
     asked = []
 
-    async def take_stale_flags(before, limit):
+    async def take_stale_flags(session, before, limit):
         asked.append((before, limit))
 
         return [(QUESTION_ID, QualityFlag.REWRITE)]

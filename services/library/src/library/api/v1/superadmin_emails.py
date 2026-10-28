@@ -4,14 +4,13 @@ from fastapi import APIRouter, HTTPException, status
 from prepza_common.auth.superadmin import SuperadminUser
 from prepza_common.auth.user import UserEmailIn
 
-from library.constants.emails import ADMIN_CANT_CONSENT, MARKETING_SETTINGS, ConsentSource
-from library.repositories import emails
 from library.schemas.emails import (
     AdminEmailChangesIn,
     EmailAccountOut,
     EmailLookupOut,
     EmailPreferencesOut,
 )
+from library.services import email_preferences
 from library.services.accounts import account_by_email, account_by_id
 
 # The email settings of the admin zone's support tab: a superadmin stops a user's emails for someone who asked prepza
@@ -25,7 +24,7 @@ async def account_out(account) -> EmailAccountOut:
     return EmailAccountOut(
         user_id=account.uid,
         email=account.email,
-        preferences=EmailPreferencesOut(**await emails.preferences(account.uid)),
+        preferences=EmailPreferencesOut(**await email_preferences.preferences(account.uid)),
     )
 
 
@@ -58,18 +57,6 @@ async def change_preferences(
     """Changes some of the user's settings, each change logged with the admin source and the
     superadmin's id. Marketing only goes off: consent to it is the user's own. Safe to repeat: a
     setting already as asked logs nothing."""
-    if any(on and setting in MARKETING_SETTINGS for setting, on in body.changes.items()):
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, ADMIN_CANT_CONSENT)
-
-    if await account_by_id(user_id) is None:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Not found")
-
-    saved = await emails.change(user_id, body.changes, ConsentSource.ADMIN, superadmin.uid)
-    logger.warning(
-        "Email settings of user %s changed by superadmin %s: %s",
-        user_id,
-        superadmin.uid,
-        {setting.value: on for setting, on in body.changes.items()},
-    )
+    saved = await email_preferences.change_by_admin(user_id, body.changes, superadmin.uid)
 
     return EmailPreferencesOut(**saved)

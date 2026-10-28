@@ -14,9 +14,10 @@ from library.repositories import (
     feedback,
     preparations,
     quality,
-    templates,
 )
-from tests.integration.factories import COPYABLE, a_company, direction, interview, set_pool
+from library.services import questions as question_service
+from tests.integration.factories import COPYABLE, a_company, copy_of, direction, interview, set_pool
+from tests.integration.transactions import transaction
 
 
 async def embedding_of(topic_id):
@@ -29,17 +30,17 @@ async def embedding_of(topic_id):
 def test_an_answer_is_counted_once_however_often_its_event_arrives(run):
     async def scenario():
         template = await interview("Welder", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, a_company("11"))
-        question = (await preparations.get_content(copy.id)).topics[0].questions[0]
+        copy = await copy_of(template, a_company("11"))
+        question = (await transaction(preparations.get_content, copy.id)).topics[0].questions[0]
         event_id = str(uuid.uuid4())
-        first = await answer_stats.record_answer(
-            event_id, question.id, question.text, ["right"], 1.0
+        first = await transaction(
+            answer_stats.record_answer, event_id, question.id, question.text, ["right"], 1.0
         )
-        again = await answer_stats.record_answer(
-            event_id, question.id, question.text, ["right"], 1.0
+        again = await transaction(
+            answer_stats.record_answer, event_id, question.id, question.text, ["right"], 1.0
         )
-        _, copy_stats, *_ = await quality.load(question.id)
-        _, original_stats, *_ = await quality.load(question.source_question_id)
+        _, copy_stats, *_ = await transaction(quality.load, question.id)
+        _, original_stats, *_ = await transaction(quality.load, question.source_question_id)
 
         return first, again, question, copy_stats, original_stats
 
@@ -55,7 +56,7 @@ def test_an_answer_is_counted_once_however_often_its_event_arrives(run):
 def test_a_scored_topic_is_counted_once_however_often_its_event_arrives(run):
     async def scenario():
         template = await interview("Plumber", template=True, questions=3)
-        question = (await preparations.get_content(template)).topics[0].questions[0]
+        question = (await transaction(preparations.get_content, template)).topics[0].questions[0]
         result = {
             "question_id": str(question.id),
             "question_text": question.text,
@@ -67,7 +68,7 @@ def test_a_scored_topic_is_counted_once_however_often_its_event_arrives(run):
         for _ in range(2):
             await handle(event_id, "session.scored", {"final_score": 90, "answers": [result]})
 
-        _, stats, *_ = await quality.load(question.id)
+        _, stats, *_ = await transaction(quality.load, question.id)
 
         return stats
 
@@ -79,15 +80,17 @@ def test_a_scored_topic_is_counted_once_however_often_its_event_arrives(run):
 def test_old_notes_of_processed_events_are_forgotten(run):
     async def scenario():
         template = await interview("Roofer", template=True, questions=3)
-        question = (await preparations.get_content(template)).topics[0].questions[0]
+        question = (await transaction(preparations.get_content, template)).topics[0].questions[0]
         event_id = str(uuid.uuid4())
-        await answer_stats.record_answer(event_id, question.id, question.text, ["right"], 1.0)
+        await transaction(
+            answer_stats.record_answer, event_id, question.id, question.text, ["right"], 1.0
+        )
         forgotten = await processed_events.forget(
             Session, ProcessedEvent, datetime.now(UTC) + timedelta(seconds=1)
         )
         # Forgotten, it would count again: only events past Pub/Sub's redeliveries are dropped.
-        again = await answer_stats.record_answer(
-            event_id, question.id, question.text, ["right"], 1.0
+        again = await transaction(
+            answer_stats.record_answer, event_id, question.id, question.text, ["right"], 1.0
         )
 
         return forgotten, again
@@ -101,15 +104,18 @@ def test_old_notes_of_processed_events_are_forgotten(run):
 def test_a_copy_made_before_the_pools_of_a_now_practice_question_is_not_served(run):
     async def scenario():
         template = await interview("Baker", template=True, questions=COPYABLE)
-        copy = await templates.copy_template(template, a_company("12"))
-        copied = (await preparations.get_content(copy.id)).topics[0].questions
+        copy = await copy_of(template, a_company("12"))
+        copied = (await transaction(preparations.get_content, copy.id)).topics[0].questions
         # The migration put a question revealed after it was copied into practice.
         await set_pool([copied[0].source_question_id], Pool.PRACTICE)
 
         return (
             copied[0].id,
-            [q.id for q in (await preparations.get_content(copy.id)).topics[0].questions],
-            [count for _, count in await preparations.get_topics(copy.id)],
+            [
+                q.id
+                for q in (await transaction(preparations.get_content, copy.id)).topics[0].questions
+            ],
+            [count for _, count in await transaction(preparations.get_topics, copy.id)],
         )
 
     practice_copy, served, counts = run(scenario())
@@ -127,16 +133,16 @@ def test_thin_template_topics_are_left_out_of_a_copy_which_keeps_their_embedding
             questions=COPYABLE,
             topic_embeddings=[direction(1), direction(2)],
         )
-        content = await preparations.get_content(template)
+        content = await transaction(preparations.get_content, template)
         # As an older template's topic can be, after the migration: with 4 company questions.
         company = [q.id for q in content.topics[1].questions if q.pool == Pool.COMPANY]
         await set_pool(company[:6], Pool.PRACTICE)
-        copy = await templates.copy_template(template, a_company("13"))
-        topics = await preparations.get_topics(copy.id)
+        copy = await copy_of(template, a_company("13"))
+        topics = await transaction(preparations.get_topics, copy.id)
         await set_pool(
             [q.id for q in content.topics[0].questions if q.pool == Pool.COMPANY], Pool.PRACTICE
         )
-        nothing_left = await templates.copy_template(template, a_company("13"))
+        nothing_left = await copy_of(template, a_company("13"))
 
         return (
             [(topic.title, count) for topic, count in topics],
@@ -158,16 +164,16 @@ def test_thin_template_topics_are_left_out_of_a_copy_which_keeps_their_embedding
 def test_a_user_reports_a_question_once_across_its_revisions(run):
     async def scenario():
         set_id = await interview("Reported", questions=1)
-        question = (await preparations.get_content(set_id)).topics[0].questions[0]
-        first = await feedback.report_question(question.id, "ann-r", "unclear", "")
-        await preparations.replace_question(
+        question = (await transaction(preparations.get_content, set_id)).topics[0].questions[0]
+        first = await transaction(feedback.report_question, question.id, "ann-r", "unclear", "")
+        await question_service.replace(
             question.id, "A clearer question?", [{"answer": "Yes", "correct": True}]
         )
-        again = await feedback.report_question(question.id, "ann-r", "unclear", "")
-        reported = await feedback.has_reported(question.id, "ann-r")
-        other = await feedback.report_question(question.id, "bob-r", "unclear", "")
-        await accounts.delete_user("ann-r")
-        after_deletion = await feedback.has_reported(question.id, "ann-r")
+        again = await transaction(feedback.report_question, question.id, "ann-r", "unclear", "")
+        reported = await transaction(feedback.has_reported, question.id, "ann-r")
+        other = await transaction(feedback.report_question, question.id, "bob-r", "unclear", "")
+        await transaction(accounts.delete_user, "ann-r")
+        after_deletion = await transaction(feedback.has_reported, question.id, "ann-r")
 
         return first, again, reported, other, after_deletion
 
@@ -180,13 +186,19 @@ def test_a_user_reports_a_question_once_across_its_revisions(run):
 def test_flags_left_unfixed_are_taken_for_sending_again_once_a_while(run):
     async def scenario():
         set_id = await interview("Flagged", questions=1)
-        question = (await preparations.get_content(set_id)).topics[0].questions[0]
-        await quality.save_flag(question.id, "rewrite")
-        taken = await quality.take_stale_flags(datetime.now(UTC) + timedelta(seconds=1), 1000)
+        question = (await transaction(preparations.get_content, set_id)).topics[0].questions[0]
+        await transaction(quality.save_flag, question.id, "rewrite")
+        taken = await transaction(
+            quality.take_stale_flags, datetime.now(UTC) + timedelta(seconds=1), 1000
+        )
         # Dated now when taken, so an earlier cutoff doesn't take it again.
-        again = await quality.take_stale_flags(datetime.now(UTC) - timedelta(hours=1), 1000)
-        await quality.save_flag(question.id, None, kept=True)
-        cleared = await quality.take_stale_flags(datetime.now(UTC) + timedelta(seconds=1), 1000)
+        again = await transaction(
+            quality.take_stale_flags, datetime.now(UTC) - timedelta(hours=1), 1000
+        )
+        await transaction(quality.save_flag, question.id, None, kept=True)
+        cleared = await transaction(
+            quality.take_stale_flags, datetime.now(UTC) + timedelta(seconds=1), 1000
+        )
 
         return question.id, taken, again, cleared
 
@@ -200,8 +212,8 @@ def test_flags_left_unfixed_are_taken_for_sending_again_once_a_while(run):
 def test_a_flag_another_sweep_holds_is_skipped_not_waited_for(run):
     async def scenario():
         set_id = await interview("Held", questions=1)
-        question = (await preparations.get_content(set_id)).topics[0].questions[0]
-        await quality.save_flag(question.id, "rewrite")
+        question = (await transaction(preparations.get_content, set_id)).topics[0].questions[0]
+        await transaction(quality.save_flag, question.id, "rewrite")
 
         # Another sweep holds the flag's row in its open transaction.
         async with Session() as other:
@@ -209,7 +221,9 @@ def test_a_flag_another_sweep_holds_is_skipped_not_waited_for(run):
                 text("SELECT 1 FROM question_stats WHERE question_id = :id FOR UPDATE"),
                 {"id": question.id},
             )
-            taken = await quality.take_stale_flags(datetime.now(UTC) + timedelta(seconds=1), 1000)
+            taken = await transaction(
+                quality.take_stale_flags, datetime.now(UTC) + timedelta(seconds=1), 1000
+            )
             await other.rollback()
 
         return question.id, taken
@@ -225,14 +239,16 @@ def test_a_replaced_question_starts_its_own_statistics(run):
 
     async def scenario():
         set_id = await interview("Rewritten", questions=1)
-        question = (await preparations.get_content(set_id)).topics[0].questions[0]
-        await answer_stats.record_answer(str(uuid.uuid4()), question.id, question.text, ["a"], 1.0)
-        await preparations.replace_question(
+        question = (await transaction(preparations.get_content, set_id)).topics[0].questions[0]
+        await transaction(
+            answer_stats.record_answer, str(uuid.uuid4()), question.id, question.text, ["a"], 1.0
+        )
+        await question_service.replace(
             question.id, "A clearer question?", [{"answer": "Yes", "correct": True}]
         )
-        _, replaced, *_ = await quality.load(question.id)
-        late = await answer_stats.record_answer(
-            str(uuid.uuid4()), question.id, question.text, ["a"], 1.0
+        _, replaced, *_ = await transaction(quality.load, question.id)
+        late = await transaction(
+            answer_stats.record_answer, str(uuid.uuid4()), question.id, question.text, ["a"], 1.0
         )
 
         return replaced, late

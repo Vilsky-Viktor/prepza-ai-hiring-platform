@@ -130,10 +130,10 @@ def superadmin(monkeypatch):
         sign_in_provider="google.com",
     )
 
-    async def get(set_id):
+    async def get(session, set_id):
         return TEMPLATE if set_id == TEMPLATE.id else SimpleNamespace(kind="interview")
 
-    async def duplicate_ids(ids):
+    async def duplicate_ids(session, ids):
         return set()
 
     from library.repositories import templates
@@ -155,7 +155,7 @@ def test_the_superadmin_sees_each_topics_pools_and_whether_a_top_up_is_due(
 ):
     counts = [(topic("Ledgers"), 30, 60), (topic("Payroll"), 30, 58)]
 
-    async def topic_counts(template_id):
+    async def topic_counts(session, template_id):
         return counts
 
     monkeypatch.setattr(pools, "topic_counts", topic_counts)
@@ -181,7 +181,7 @@ def test_generation_gets_each_topics_texts_and_what_each_pool_lacks(
     ]
     ledgers = SimpleNamespace(**vars(topic("Ledgers")), questions=questions)
 
-    async def topics_with_questions(template_id):
+    async def topics_with_questions(session, template_id):
         return [ledgers]
 
     monkeypatch.setattr(pools, "topics_with_questions", topics_with_questions)
@@ -204,7 +204,7 @@ def test_added_questions_are_saved_by_pool_and_never_into_another_templates_topi
     ids = [[uuid.uuid4()]]
     foreign_topic = uuid.uuid4()
 
-    async def add_questions(template_id, added):
+    async def add_questions(session, template_id, added):
         saved.append((template_id, added))
 
         return None if added[0].topic_id == foreign_topic else ids

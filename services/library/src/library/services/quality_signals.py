@@ -2,15 +2,17 @@ from collections import Counter
 from datetime import UTC, datetime, timedelta
 
 from library.constants.quality import MAX_PATTERN_SIGNALS
-from library.helpers.quality import flag_for
+from library.core.db import Session
+from library.helpers.quality import flag_for, replacement
 from library.repositories import quality_signals
-from library.repositories.quality_report import replacement
 from library.schemas.quality_report import QualitySignalOut
 
 
 async def flagged(since: datetime) -> list[QualitySignalOut]:
-    found = await quality_signals.flagged_since(since, MAX_PATTERN_SIGNALS)
-    reasons, votes = await quality_signals.feedback([question.id for question, _ in found])
+    async with Session() as session:
+        found = await quality_signals.flagged_since(session, since, MAX_PATTERN_SIGNALS)
+        ids = [question.id for question, _ in found]
+        reasons, votes = await quality_signals.feedback(session, ids)
 
     return [
         QualitySignalOut(
@@ -33,8 +35,11 @@ async def replaced(since: datetime) -> list[QualitySignalOut]:
     """Replaced questions with the flag they had, or, for revisions kept before flags were
     kept with them, the flag their answers and feedback give; an owner's edit of a question
     nothing was wrong with is left out."""
-    found = await quality_signals.replaced_since(since, MAX_PATTERN_SIGNALS)
-    versions = await quality_signals.revisions_of({revision.question_id for revision, _ in found})
+    async with Session() as session:
+        found = await quality_signals.replaced_since(session, since, MAX_PATTERN_SIGNALS)
+        ids = {revision.question_id for revision, _ in found}
+        versions = await quality_signals.revisions_of(session, ids)
+
     signals = []
 
     for revision, question in found:

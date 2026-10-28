@@ -5,6 +5,7 @@ from library.core.db import Session
 from library.models.sets import Question
 from library.repositories import code
 from tests.integration.factories import interview, question_ids
+from tests.integration.transactions import transaction
 
 UNTAGGED = "What does it print?\n```\nprint(1)\n```"
 # A question already tagged, with text after its example: its closing fence is followed by a
@@ -38,11 +39,13 @@ async def texts_of(ids):
 def test_only_examples_without_a_language_are_listed_and_tagged_once(run):
     async def scenario():
         ids = await with_texts(UNTAGGED, TAGGED, UNTAGGED_THEN_TEXT, PLAIN)
-        listed = {question_id for question_id, _ in await code.untagged(100)} & set(ids)
-        await code.tag({ids[0]: "python", ids[2]: "sql"})
+        listed = {question_id for question_id, _ in await transaction(code.untagged, 100)} & set(
+            ids
+        )
+        await transaction(code.tag, {ids[0]: "python", ids[2]: "sql"})
         # Tagging again changes nothing: the question no longer counts as untagged.
-        await code.tag({ids[0]: "bash", ids[1]: "bash"})
-        left = {question_id for question_id, _ in await code.untagged(100)} & set(ids)
+        await transaction(code.tag, {ids[0]: "bash", ids[1]: "bash"})
+        left = {question_id for question_id, _ in await transaction(code.untagged, 100)} & set(ids)
 
         return ids, listed, left, await texts_of(ids)
 
@@ -65,15 +68,17 @@ def test_examples_tagged_text_are_listed_in_pages_and_retagged_once(run):
     async def scenario():
         ids = sorted(await with_texts(files, rows, TAGGED, UNTAGGED))
         mine = set(ids)
-        first = [i for i, _ in await code.untagged(100, TEXT_FENCE) if i in mine]
-        after = [i for i, _ in await code.untagged(100, TEXT_FENCE, first[0]) if i in mine]
+        first = [i for i, _ in await transaction(code.untagged, 100, TEXT_FENCE) if i in mine]
+        after = [
+            i for i, _ in await transaction(code.untagged, 100, TEXT_FENCE, first[0]) if i in mine
+        ]
         texts = await texts_of(ids)
         target = next(i for i in ids if texts[i] == files)
-        await code.tag({target: "json"}, TEXT_FENCE)
+        await transaction(code.tag, {target: "json"}, TEXT_FENCE)
         # The untagged one's fence is never touched by a "text" re-tag.
         untagged = next(i for i in ids if texts[i] == UNTAGGED)
-        await code.tag({untagged: "bash"}, TEXT_FENCE)
-        left = [i for i, _ in await code.untagged(100, TEXT_FENCE) if i in mine]
+        await transaction(code.tag, {untagged: "bash"}, TEXT_FENCE)
+        left = [i for i, _ in await transaction(code.untagged, 100, TEXT_FENCE) if i in mine]
 
         return first, after, left, await texts_of(ids)
 

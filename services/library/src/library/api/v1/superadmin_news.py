@@ -4,11 +4,11 @@ from fastapi import APIRouter, HTTPException, status
 from prepza_common.auth.superadmin import SuperadminUser
 from prepza_common.db.paging import PageParams
 
+from library.core.db import Session
 from library.models.news import News
 from library.repositories import news
 from library.schemas.news import AdminNewsOut, NewsIn
-from library.services import outbox as outbox_service
-from library.services.news import send_to_translator
+from library.services import news as news_service
 
 # The admin zone's news tab: a superadmin writes posts in English; each is translated into the
 # other languages after it's saved. Everyone else gets "not found".
@@ -28,39 +28,28 @@ def admin_post(post: News, translations: int) -> AdminNewsOut:
 
 @router.get("")
 async def list_news(superadmin: SuperadminUser, page: PageParams) -> list[AdminNewsOut]:
-    rows = await news.list_with_counts(page.offset, page.limit)
+    async with Session() as session:
+        rows = await news.list_with_counts(session, page.offset, page.limit)
 
     return [admin_post(post, count) for post, count in rows]
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
 async def create_news(body: NewsIn, superadmin: SuperadminUser) -> AdminNewsOut:
-    post = await news.create(body)
-    await outbox_service.flush_quietly()
-    await send_to_translator(post.id)
-
-    return admin_post(post, 0)
+    return admin_post(await news_service.create(body), 0)
 
 
 @router.put("/{news_id}")
 async def update_news(news_id: UUID, body: NewsIn, superadmin: SuperadminUser) -> AdminNewsOut:
     """A changed title or text is translated again; a new date alone keeps the translations."""
-    saved = await news.update(news_id, body)
+    saved = await news_service.update(news_id, body)
 
     if saved is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Not found")
 
-    post, changed = saved
-
-    if changed:
-        await send_to_translator(post.id)
-
-    missing = await news.missing_languages(post.id)
-
-    return admin_post(post, len(news.OTHER_LANGUAGES) - len(missing))
+    return admin_post(*saved)
 
 
 @router.delete("/{news_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_news(news_id: UUID, superadmin: SuperadminUser) -> None:
-    await news.remove(news_id)
-    await outbox_service.flush_quietly()
+    await news_service.remove(news_id)

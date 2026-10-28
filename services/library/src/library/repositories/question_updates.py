@@ -1,9 +1,9 @@
 from datetime import datetime
 
 from sqlalchemy import func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from library.constants.sets import OwnerType
-from library.core.db import Session
 from library.models.quality import QuestionRevision, QuestionStats
 from library.models.sets import Question, QuestionSet, Topic
 
@@ -41,25 +41,25 @@ def kinds(company_ids: list[str], since: datetime, until: datetime) -> dict:
 
 
 async def between(
-    company_ids: list[str], since: datetime, until: datetime, limit: int
+    session: AsyncSession, company_ids: list[str], since: datetime, until: datetime, limit: int
 ) -> list[tuple]:
     """The newest `limit` of each kind (kinds): (kind, at, company id, interview, topic)."""
     found = []
 
-    async with Session() as session:
-        for kind, (query, at) in kinds(company_ids, since, until).items():
-            rows = await session.execute(query.order_by(at.desc()).limit(limit))
-            found += [(kind, *row) for row in rows]
+    for kind, (query, at) in kinds(company_ids, since, until).items():
+        rows = await session.execute(query.order_by(at.desc()).limit(limit))
+        found += [(kind, *row) for row in rows]
 
     return found
 
 
-async def counts(company_ids: list[str], since: datetime, until: datetime) -> dict[str, int]:
+async def counts(
+    session: AsyncSession, company_ids: list[str], since: datetime, until: datetime
+) -> dict[str, int]:
     """How many of each kind (kinds) there are in all."""
     found = {}
 
-    async with Session() as session:
-        for kind, (query, _) in kinds(company_ids, since, until).items():
-            found[kind] = await session.scalar(select(func.count()).select_from(query.subquery()))
+    for kind, (query, _) in kinds(company_ids, since, until).items():
+        found[kind] = await session.scalar(select(func.count()).select_from(query.subquery()))
 
     return found

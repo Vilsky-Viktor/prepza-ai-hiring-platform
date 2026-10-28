@@ -10,7 +10,9 @@ from library.core.db import Session
 from library.models.quality import QuestionRevision
 from library.repositories import answer_stats, feedback, preparations, quality
 from library.services import quality_signals
+from library.services import questions as question_service
 from tests.integration.factories import interview
+from tests.integration.transactions import transaction
 
 COMMENT = "Private note from a candidate"
 # The company that owns these tests (sets.owner_id holds a company's uuid).
@@ -22,12 +24,14 @@ async def questions(title, count):
     starts with the test's title."""
     created = await interview(title, owner=OWNER, questions=count)
 
-    return created, (await preparations.get_content(created)).topics[0].questions
+    return created, (await transaction(preparations.get_content, created)).topics[0].questions
 
 
 async def reported(question_id, reason, times=2):
     for _ in range(times):
-        await feedback.report_question(question_id, f"user-{uuid.uuid4()}", reason, COMMENT)
+        await transaction(
+            feedback.report_question, question_id, f"user-{uuid.uuid4()}", reason, COMMENT
+        )
 
 
 def mine(signals, *texts):
@@ -39,12 +43,17 @@ def test_a_flagged_question_comes_with_its_flag_answers_and_feedback(run):
 
     async def scenario():
         set_id, [question, _] = await questions(title, 2)
-        await answer_stats.record_answer(
-            str(uuid.uuid4()), question.id, question.text, ["wrong"], 0.0
+        await transaction(
+            answer_stats.record_answer,
+            str(uuid.uuid4()),
+            question.id,
+            question.text,
+            ["wrong"],
+            0.0,
         )
         await reported(question.id, "wrong_answer")
-        await feedback.rate_question(question.id, "user-1", -1)
-        await quality.save_flag(question.id, "wrong_key")
+        await transaction(feedback.rate_question, question.id, "user-1", -1)
+        await transaction(quality.save_flag, question.id, "wrong_key")
 
         return set_id, question, await quality_signals.recent(7)
 
@@ -76,12 +85,12 @@ def test_a_replaced_question_comes_with_the_flag_it_had_and_what_replaced_it(run
     async def scenario():
         _, [flagged, edited] = await questions(title, 2)
         await reported(flagged.id, "unclear")
-        await quality.save_flag(flagged.id, "rewrite")
-        await preparations.replace_question(
+        await transaction(quality.save_flag, flagged.id, "rewrite")
+        await question_service.replace(
             flagged.id, f"{title} clearer?", [{"answer": "Yes", "correct": True}]
         )
         # An owner's edit of a question nothing was wrong with.
-        await preparations.replace_question(
+        await question_service.replace(
             edited.id, f"{title} edited?", [{"answer": "Yes", "correct": True}]
         )
 
@@ -107,7 +116,7 @@ def test_a_revision_kept_before_flags_were_kept_gets_the_flag_its_feedback_gives
     async def scenario():
         _, [question] = await questions(title, 1)
         await reported(question.id, "off_topic")
-        await preparations.replace_question(
+        await question_service.replace(
             question.id, f"{title} new?", [{"answer": "Yes", "correct": True}]
         )
 

@@ -1,8 +1,12 @@
 import uuid
 
+from fastapi import HTTPException
 from prepza_common.ai.sets import PreparationIn
 
-from library.repositories import preparations, templates
+from library.repositories import preparations
+from library.services import sets as set_service
+from library.services import templates as template_service
+from tests.integration.transactions import transaction
 
 DIMENSIONS = 256
 # A new template's first 30 fresh questions of a topic go to practice: with 40, a topic has 10
@@ -69,13 +73,22 @@ async def interview(
     )
 
     if template:
-        return await templates.create_template(payload, 0.1)
+        return await template_service.save_template(payload, 0.1)
 
-    return await preparations.create_interview(payload)
+    return await set_service.create_interview(payload)
+
+
+async def copy_of(template_id, company_id):
+    """A company's test copied from a template, as companies asks for one; None when the
+    template can't be copied (the service answers 404)."""
+    try:
+        return await template_service.copy_template(template_id, company_id)
+    except HTTPException:
+        return None
 
 
 async def question_ids(set_id):
-    content = await preparations.get_content(set_id)
+    content = await transaction(preparations.get_content, set_id)
 
     return [question.id for topic in content.topics for question in topic.questions]
 

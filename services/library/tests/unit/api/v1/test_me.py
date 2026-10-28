@@ -72,7 +72,7 @@ def settings_with(monkeypatch, claims):
     async def track(event, **values):
         tracked.append((event, values))
 
-    async def accept_terms(user_id, version):
+    async def accept_terms(session, user_id, version):
         tracked.append(("terms", {"user_id": user_id, "version": version}))
 
     async def remember_currency(user_id, country):

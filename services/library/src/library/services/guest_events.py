@@ -3,8 +3,7 @@ import logging
 
 from prepza_common.config.constants import GUEST_UID_PREFIX
 
-from library.repositories import accounts
-from library.services.accounts import delete_sign_in
+from library.services.accounts import delete_data, delete_sign_in
 
 logger = logging.getLogger(__name__)
 
@@ -26,5 +25,5 @@ async def delete_guests(event_id: str, data: dict) -> None:
 
             continue
 
-        await accounts.delete_user(user_id)
+        await delete_data(user_id)
         await asyncio.to_thread(delete_sign_in, user_id)

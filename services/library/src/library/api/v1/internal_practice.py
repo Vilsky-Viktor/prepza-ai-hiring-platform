@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException, status
 
 from library.api.dependencies import ServiceCaller
 from library.constants.sets import Pool, SetKind
+from library.core.db import Session
 from library.repositories import preparations
 from library.schemas.preparations import QuestionOut
 from library.schemas.sets import SetContent, SetTopicOut
@@ -16,7 +17,8 @@ router = APIRouter(prefix="/internal", tags=["internal"])
 async def practice_content(template_id: UUID, caller: ServiceCaller) -> SetContent:
     """The template's practice questions, with answers, by topic; topics without any are left
     out. Rounds picks each practice round's questions from them."""
-    template = await preparations.get_content(template_id)
+    async with Session() as session:
+        template = await preparations.get_content(session, template_id)
 
     if template is None or template.kind != SetKind.TEMPLATE:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Template not found")

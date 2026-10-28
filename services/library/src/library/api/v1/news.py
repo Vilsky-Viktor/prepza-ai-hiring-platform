@@ -2,6 +2,7 @@ from fastapi import APIRouter, Request
 from prepza_common.db.paging import PageParams
 from prepza_common.i18n.i18n import request_language
 
+from library.core.db import Session
 from library.repositories import news
 from library.schemas.news import NewsOut
 
@@ -12,7 +13,8 @@ router = APIRouter(prefix="/news", tags=["news"])
 
 @router.get("")
 async def list_news(page: PageParams, request: Request) -> list[NewsOut]:
-    rows = await news.list_news(request_language(request), page.offset, page.limit)
+    async with Session() as session:
+        rows = await news.list_news(session, request_language(request), page.offset, page.limit)
 
     return [
         NewsOut(
