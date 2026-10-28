@@ -3,8 +3,8 @@ import uuid
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 
-from app.integrations import workable
-from app.main import app
+from ats.integrations import workable
+from ats.main import app
 
 COMPANY_ID = uuid.uuid4()
 OTHER_COMPANY = uuid.uuid4()

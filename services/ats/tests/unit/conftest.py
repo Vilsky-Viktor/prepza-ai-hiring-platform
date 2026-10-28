@@ -5,13 +5,13 @@ import pytest
 from cryptography.fernet import Fernet
 from fastapi import HTTPException
 
-from app.config.settings import settings
-from app.integrations import companies, workable
-from app.integrations.errors import KeyRejected
-from app.main import app
-from app.models.ats import AtsConnection
-from app.services import ats as ats_service
-from app.storage import ats, ats_candidates, ats_links
+from ats.config import settings
+from ats.integrations import companies, workable
+from ats.integrations.errors import KeyRejected
+from ats.main import app
+from ats.models.ats import AtsConnection
+from ats.repositories import ats, ats_candidates, ats_links
+from ats.services import ats as ats_service
 from tests.unit.workable_setup import (
     COMPANY_ID,
     INTERVIEW_ID,

@@ -3,10 +3,10 @@ from logging.config import fileConfig
 from alembic import context
 from prepza_common.db.db import migration_engine
 
-import app.models.ats
-import app.models.outbox  # noqa: F401
-from app.config.settings import settings
-from app.models.base import Base
+import ats.models.ats
+import ats.models.outbox  # noqa: F401
+from ats.config import settings
+from ats.models.base import Base
 
 fileConfig(context.config.config_file_name)
 

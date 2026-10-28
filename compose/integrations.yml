@@ -106,7 +106,7 @@ x-notifications-source: &notifications-source
   - ./packages/common/src:/packages/common/src
 
 x-ats-source: &ats-source
-  - ./services/ats/app:/services/ats/app
+  - ./services/ats/src:/services/ats/src
   - ./services/ats/migrations:/services/ats/migrations
   - ./services/ats/alembic.ini:/services/ats/alembic.ini:ro
   - ./packages/common/src:/packages/common/src

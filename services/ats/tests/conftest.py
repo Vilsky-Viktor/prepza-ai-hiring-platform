@@ -20,7 +20,7 @@ import pytest
 from fastapi.testclient import TestClient
 from prepza_common.redis import memory_cache
 
-from app.main import app
+from ats.main import app
 
 
 @pytest.fixture(scope="session")

@@ -135,7 +135,7 @@ prepza sets up Breezy HR's web hook itself, so the company only pastes the key:
 
 ## Results back to the ATS
 
-When such a candidate finishes, companies publishes `candidate.finished` (grade, passed, flagged), and ats writes a comment about them in the ATS, for the company's team: in the interface language of the member who connected the ATS (saved on the connection when they connect, `language`; a reconnect updates it), else in the interview's language the event carries as `language` (one of the 23 the app speaks, with the app's own words for grade, passing grade, flags and scorecard), and in English when neither is known. The texts are in `services/ats/app/templates/languages/<language>.py`:
+When such a candidate finishes, companies publishes `candidate.finished` (grade, passed, flagged), and ats writes a comment about them in the ATS, for the company's team: in the interface language of the member who connected the ATS (saved on the connection when they connect, `language`; a reconnect updates it), else in the interview's language the event carries as `language` (one of the 23 the app speaks, with the app's own words for grade, passing grade, flags and scorecard), and in English when neither is known. The texts are in `services/ats/src/ats/templates/languages/<language>.py`:
 
 - their grade,
 - whether they passed,
@@ -162,9 +162,9 @@ When such a candidate finishes, companies publishes `candidate.finished` (grade,
 - All of it is the `ats` service (`services/ats`, its own database).
 - It asks companies who is a member or editor, the interviews' titles, and to send invites.
 - A candidate who couldn't be invited keeps when that first happened (`ats_candidates.failed_at`, migration 0012; a retry that fails again keeps it). The assistant's `get_updates` reads them one by one through `POST /internal/candidates/not-invited` (those who first failed after `since` and up to `until` and still aren't invited, with the interview's title, the ATS, the reason and a link to the ATS's page); only the assistant's service token may call it ([AI apps over MCP](mcp.md#whats-new-get_updates)).
-- Each ATS's API is one client module (`app/integrations/workable.py`, `greenhouse.py`, `teamtailor.py`, `recruitee.py`, `breezy.py`) with the same functions. Each names the credentials it takes (`KEYS`), so a connection can keep others, like a web hook's secret key.
-- `app/integrations/ats_clients.py` picks the module by provider. A new ATS adds its module there.
-- The web hook handlers are in `app/services/ats_webhooks.py`, one per ATS.
+- Each ATS's API is one client module (`src/ats/integrations/workable.py`, `greenhouse.py`, `teamtailor.py`, `recruitee.py`, `breezy.py`) with the same functions. Each names the credentials it takes (`KEYS`), so a connection can keep others, like a web hook's secret key.
+- `src/ats/integrations/ats_clients.py` picks the module by provider. A new ATS adds its module there.
+- The web hook handlers are in `src/ats/services/ats_webhooks.py`, one per ATS.
 - The webhook routes stay open in maintenance mode (see [Admin zone](admin-zone.md#maintenance-mode)).
 
 See also [Architecture](../architecture.md) for the events ats consumes.

@@ -1,8 +1,8 @@
 """Pub/Sub, faked for ATS web hooks: the ats.candidate_arrived event of each candidate a web hook
 saved is delivered once the request flushes its outbox, and invites them as invite_arrived does."""
 
-from app.services import ats_candidates as flow
-from app.storage import ats_candidates
+from ats.repositories import ats_candidates
+from ats.services import ats_candidates as flow
 
 
 def deliver_arrivals(monkeypatch, rows: dict, then=None, connection=None) -> None:

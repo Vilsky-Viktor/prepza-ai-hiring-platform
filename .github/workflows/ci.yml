@@ -67,7 +67,7 @@ jobs:
           - { name: companies, path: services/companies }
           - { name: notifications, path: services/notifications }
           - { name: billing, path: services/billing }
-          - { name: ats, path: services/ats }
+          - { name: ats, path: services/ats, code: src }
           - { name: api, path: services/api, code: src }
           - { name: assistant, path: services/assistant }
           - { name: common, path: packages/common, code: src }
