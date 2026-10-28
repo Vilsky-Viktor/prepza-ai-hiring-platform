@@ -29,13 +29,13 @@ def signed_in(monkeypatch):
     ]
     calls = SimpleNamespace(added=[], removed=[], invited=[], names=[])
 
-    async def of_address(address):
+    async def of_address(session, address):
         return rows if address == ANN else []
 
-    async def add(address, company_id, invite_id=None, by_admin=False):
+    async def add(session, address, company_id, invite_id=None, by_admin=False):
         calls.added.append((address, company_id, invite_id, by_admin))
 
-    async def remove_admin_stop(address, company_id):
+    async def remove_admin_stop(session, address, company_id):
         calls.removed.append((address, company_id))
 
     async def invited_company_ids(email):

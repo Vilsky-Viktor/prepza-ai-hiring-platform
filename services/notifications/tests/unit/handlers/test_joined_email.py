@@ -24,7 +24,7 @@ def sent(monkeypatch):
     async def send(email):
         to.append(email.to)
 
-    async def not_opted_out(address, company_id, invite_id=None):
+    async def not_opted_out(session, address, company_id, invite_id=None):
         return False
 
     monkeypatch.setattr(smtp, "send", send)
@@ -51,7 +51,7 @@ def test_a_joined_event_sends_its_email(client, sent):
 
 
 def test_no_email_to_someone_who_stopped_the_companys_emails(client, sent, monkeypatch):
-    async def opted_out(address, company_id, invite_id=None):
+    async def opted_out(session, address, company_id, invite_id=None):
         return True
 
     monkeypatch.setattr(events.opt_outs, "opted_out", opted_out)

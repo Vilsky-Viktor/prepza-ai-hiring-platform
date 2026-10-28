@@ -14,6 +14,7 @@ from notifications.main import app
 from notifications.repositories import bulk_sends, notifications
 from notifications.services import bulk, delivery, legal_notices
 from tests.integration.factories import api
+from tests.integration.transactions import transaction
 
 # Far enough ahead to be noticed, and a version of its own in the shared database.
 LATER = (datetime.now(UTC).date() + timedelta(days=30 + uuid.uuid4().int % 300)).isoformat()
@@ -74,11 +75,14 @@ def test_a_notice_is_asked_once_goes_in_everyones_bell_and_emails_each_account_o
 
     async def scenario():
         asked = await asyncio.gather(ask(), ask())
-        send = await bulk_sends.get("legal_terms", LATER)
+        send = await transaction(bulk_sends.get, "legal_terms", LATER)
         everyone = [
             item
-            for item in await notifications.latest(
-                [(Recipient.USER, ann)], 100, datetime.now(UTC) - timedelta(days=1)
+            for item in await transaction(
+                notifications.latest,
+                [(Recipient.USER, ann)],
+                100,
+                datetime.now(UTC) - timedelta(days=1),
             )
             if item.kind == "legal_terms" and item.data.get("date") == LATER
         ]

@@ -5,6 +5,7 @@ import uuid
 
 from fastapi import HTTPException, status
 from prepza_common.config.constants import DEFAULT_LANGUAGE
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from notifications.constants.bulk import BulkKind
 from notifications.constants.campaigns import (
@@ -14,25 +15,23 @@ from notifications.constants.campaigns import (
     NEWS_BUTTON,
     NEWS_LINK,
     NO_BUTTON_TEXT,
+    NOT_FOUND,
     OWNERS_NEED_COMPANIES,
     AudienceGroup,
 )
-from notifications.integrations import companies, generation, library
-from notifications.models.bulk import BulkSend
+from notifications.core.db import Session
+from notifications.integrations import generation, library
 from notifications.models.campaigns import Campaign
-from notifications.repositories import bulk_sends, campaigns
+from notifications.repositories import campaigns
 from notifications.schemas.campaigns import (
     AudienceIn,
     CampaignIn,
     CampaignOut,
-    CampaignRowOut,
     CampaignTexts,
-    CompanyOut,
 )
+from notifications.services.campaign_views import get, out
 
 logger = logging.getLogger(__name__)
-
-NOT_FOUND = "Not found"
 
 
 def english_of(body: CampaignTexts) -> dict:
@@ -81,15 +80,6 @@ def fields_of(body: CampaignIn) -> dict:
     }
 
 
-def refused(outcome) -> None:
-    """A storage answer that refuses: gone (None) or already sent."""
-    if outcome is None:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, NOT_FOUND)
-
-    if outcome == ALREADY_SENT:
-        raise HTTPException(status.HTTP_409_CONFLICT, ALREADY_SENT)
-
-
 async def send_to_translator(campaign_id: uuid.UUID) -> None:
     """Never raises: the campaign is saved first, and saving it again sends it again."""
     try:
@@ -98,96 +88,12 @@ async def send_to_translator(campaign_id: uuid.UUID) -> None:
         logger.exception("Couldn't send campaign %s to be translated", campaign_id)
 
 
-async def companies_of(campaign: Campaign) -> list[CompanyOut]:
-    """The companies an important notice goes to, by name, as chosen; those gone are left out."""
-    if not campaign.company_ids:
-        return []
-
-    found = await companies.members([str(company_id) for company_id in campaign.company_ids])
-    names = {company["id"]: company["name"] for company in found}
-
-    return [
-        CompanyOut(id=company_id, name=names[str(company_id)])
-        for company_id in campaign.company_ids
-        if str(company_id) in names
-    ]
-
-
-async def out(campaign: Campaign) -> CampaignOut:
-    _, texts = await campaigns.get(campaign.id)
-    row = await row_out(campaign, texts[DEFAULT_LANGUAGE]["subject"], len(texts))
-
-    return CampaignOut(
-        **row.model_dump(),
-        link=campaign.link,
-        groups=campaign.groups,
-        editors_only=campaign.editors_only,
-        companies=await companies_of(campaign),
-        texts=texts,
-    )
-
-
-def status_of(send) -> str:
-    if send is None:
-        return "draft"
-
-    if send.stopped_at:
-        return "stopped"
-
-    return "sent" if send.finished_at else "sending"
-
-
-def row_of(
-    campaign: Campaign, subject: str, languages: int, send: BulkSend | None, counts: dict | None
-) -> CampaignRowOut:
-    return CampaignRowOut(
-        id=campaign.id,
-        kind=campaign.kind,
-        subject=subject,
-        created_at=campaign.created_at,
-        sent_at=campaign.sent_at,
-        translated=languages > len(campaigns.OTHER_LANGUAGES),
-        status=status_of(send),
-        counts=counts if send and send.prepared_at else None,
-    )
-
-
-async def rows_out(rows: list[tuple[Campaign, str, int]]) -> list[CampaignRowOut]:
-    """Each campaign with its send and the send's counts, read for all of them at once."""
-    sent = [(campaign.kind, str(campaign.id)) for campaign, _, _ in rows if campaign.sent_at]
-    sends = await bulk_sends.of_campaigns(sent)
-    counts = await bulk_sends.counts([send.id for send in sends.values()]) if sends else {}
-    out = []
-
-    for campaign, subject, languages in rows:
-        send = sends.get((campaign.kind, str(campaign.id))) if campaign.sent_at else None
-        out.append(
-            row_of(campaign, subject, languages, send, counts.get(send.id) if send else None)
-        )
-
-    return out
-
-
-async def row_out(campaign: Campaign, subject: str, languages: int) -> CampaignRowOut:
-    [row] = await rows_out([(campaign, subject, languages)])
-
-    return row
-
-
-async def list_campaigns(offset: int, limit: int) -> list[CampaignRowOut]:
-    return await rows_out(await campaigns.list_campaigns(offset, limit))
-
-
-async def get(campaign_id: uuid.UUID) -> CampaignOut:
-    found = await campaigns.get(campaign_id)
-    refused(found)
-
-    return await out(found[0])
-
-
 async def create(body: CampaignIn, user_id: str) -> CampaignOut:
     body = checked(body)
-    campaign = await campaigns.create(fields_of(body), user_id, english_of(body))
+
+    async with Session.begin() as session:
+        campaign = await campaigns.create(session, fields_of(body), user_id, english_of(body))
+
     await send_to_translator(campaign.id)
 
     return await out(campaign)
@@ -211,13 +117,35 @@ async def from_news(news_id: uuid.UUID, user_id: str) -> CampaignOut:
     return await create(body, user_id)
 
 
+async def unsent(session: AsyncSession, campaign_id: uuid.UUID) -> Campaign:
+    """The campaign, locked so it can't be sent meanwhile; 404 when it's gone, 409 once it's
+    sent (raised inside the transaction, which saves nothing)."""
+    campaign = await campaigns.lock(session, campaign_id)
+
+    if campaign is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, NOT_FOUND)
+
+    if campaign.sent_at is not None:
+        raise HTTPException(status.HTTP_409_CONFLICT, ALREADY_SENT)
+
+    return campaign
+
+
 async def update(campaign_id: uuid.UUID, body: CampaignIn) -> CampaignOut:
-    """A changed English text is translated again; a new kind, audience or link alone keeps the
-    other languages."""
+    """Saves the campaign as written in English, in one save. A changed English text deletes
+    the other languages and is translated again; a new kind, audience or link alone keeps
+    them."""
     body = checked(body)
-    saved = await campaigns.update(campaign_id, fields_of(body), english_of(body))
-    refused(saved)
-    campaign, changed = saved
+    english = english_of(body)
+
+    async with Session.begin() as session:
+        campaign = await unsent(session, campaign_id)
+        changed = await campaigns.english(session, campaign_id) != english
+
+        if changed:
+            await campaigns.replace_texts(session, campaign_id, english)
+
+        campaign = await campaigns.change(session, campaign, fields_of(body))
 
     if changed:
         await send_to_translator(campaign_id)
@@ -230,10 +158,39 @@ async def set_texts(campaign_id: uuid.UUID, language: str, body: CampaignTexts) 
     if language == DEFAULT_LANGUAGE:
         raise HTTPException(status.HTTP_404_NOT_FOUND, NOT_FOUND)
 
-    refused(await campaigns.set_texts(campaign_id, language, english_of(body)) or "ok")
+    async with Session.begin() as session:
+        await unsent(session, campaign_id)
+        await campaigns.set_texts(session, campaign_id, language, english_of(body))
 
     return await get(campaign_id)
 
 
+async def save_translations(
+    campaign_id: uuid.UUID, english: dict, translations: dict[str, dict]
+) -> None:
+    """Saves translations of the campaign as its English reads `english`; nothing when it
+    changed since, was sent or is gone. A language that has texts already (edited by hand, or
+    saved by an earlier run) keeps them."""
+    others = {code: texts for code, texts in translations.items() if code != DEFAULT_LANGUAGE}
+
+    async with Session.begin() as session:
+        campaign = await campaigns.lock(session, campaign_id)
+
+        if campaign is None or campaign.sent_at is not None:
+            return
+
+        if await campaigns.english(session, campaign_id) != english:
+            return
+
+        await campaigns.add_translations(session, campaign_id, others)
+
+
 async def remove(campaign_id: uuid.UUID) -> None:
-    refused(await campaigns.remove(campaign_id) or "ok")
+    """Deletes a campaign not sent yet; 409 for one that was. Safe to repeat."""
+    async with Session.begin() as session:
+        campaign = await campaigns.lock(session, campaign_id)
+
+        if campaign is not None and campaign.sent_at is not None:
+            raise HTTPException(status.HTTP_409_CONFLICT, ALREADY_SENT)
+
+        await campaigns.remove(session, campaign_id)

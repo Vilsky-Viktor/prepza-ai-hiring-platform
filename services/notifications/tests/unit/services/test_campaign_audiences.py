@@ -206,7 +206,7 @@ def test_a_notice_reaches_everyone_whatever_their_settings_but_never_a_suppresse
 
         return [person(user_id) for user_id in ids]
 
-    async def among(hashes):
+    async def among(session, hashes):
         return {address_hash("cat@example.com")} & set(hashes)
 
     monkeypatch.setattr(audiences.companies, "member_ids", member_ids)

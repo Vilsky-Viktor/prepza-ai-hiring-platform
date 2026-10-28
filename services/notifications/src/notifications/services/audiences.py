@@ -9,6 +9,7 @@ from prepza_common.db.paging import ID_PAGE_SIZE
 
 from notifications.constants.bulk import LEGAL_KINDS, OPTIONAL_KINDS, BulkKind
 from notifications.constants.campaigns import AudienceGroup
+from notifications.core.db import Session
 from notifications.integrations import companies, library, rounds
 from notifications.models.audience import Audience, Source
 from notifications.repositories import campaigns
@@ -71,7 +72,8 @@ async def audience_of(kind: str, about: str) -> Audience:
     if kind in LEGAL_KINDS:
         return Audience([library.user_ids])
 
-    found = await campaigns.get(uuid.UUID(about))
+    async with Session() as session:
+        found = await campaigns.get(session, uuid.UUID(about))
 
     if found is None:
         return Audience([])

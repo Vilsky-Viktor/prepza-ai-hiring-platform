@@ -21,6 +21,7 @@ from notifications.models.slack import SlackPost
 from notifications.repositories import notifications
 from notifications.repositories import slack as storage
 from tests.integration.factories import api, company, finished, push
+from tests.integration.transactions import transaction
 
 KEY = "Zm9vYmFyYmF6cXV4cXV1eGNvcmdlZ3JhdWx0Z2FycGw="
 
@@ -59,7 +60,8 @@ async def connect(
     company_id, channel="#hiring", kinds=("candidate_finished",), token=None, user_id="u1"
 ):
     """The company's channel; its workspace's token is its own unless `token` names a shared one."""
-    await storage.connect(
+    await transaction(
+        storage.connect,
         company_id,
         "Acme",
         channel,
@@ -77,17 +79,17 @@ def test_a_deleted_makers_channel_stays_without_their_id_and_stops_posting(run, 
 
     async def scenario():
         await connect(company_id, user_id=maker)
-        exported = await storage.made_by(maker)
-        stopped = await storage.forget_maker(maker)
+        exported = await transaction(storage.made_by, maker)
+        stopped = await transaction(storage.forget_maker, maker)
         # Safe to repeat: it stopped once.
-        again = await storage.forget_maker(maker)
+        again = await transaction(storage.forget_maker, maker)
 
         async with api() as client:
             await client.post("/internal/events", json=event)
 
-        found = await storage.get(company_id)
+        found = await transaction(storage.get, company_id)
 
-        return exported, found, await storage.made_by(maker), stopped, again
+        return exported, found, await transaction(storage.made_by, maker), stopped, again
 
     exported, found, left, stopped, again = run(scenario())
 
@@ -104,14 +106,14 @@ def test_reconnecting_replaces_the_channel_and_keeps_the_kinds(run):
 
     async def scenario():
         await connect(company_id)
-        await storage.set_kinds(company_id, ["interview_ready"], "u1")
-        assert await storage.mark_broken(company_id)
+        await transaction(storage.set_kinds, company_id, ["interview_ready"], "u1")
+        assert await transaction(storage.mark_broken, company_id)
         # Already broken: it didn't stop working now.
-        assert not await storage.mark_broken(company_id)
-        broken = await storage.connected(company_id)
+        assert not await transaction(storage.mark_broken, company_id)
+        broken = await transaction(storage.connected, company_id)
         await connect(company_id, channel="#new", kinds=["candidate_finished"])
 
-        return broken, await storage.get(company_id)
+        return broken, await transaction(storage.get, company_id)
 
     broken, found = run(scenario())
 
@@ -165,7 +167,7 @@ def test_a_retry_after_slack_was_down_posts_it_without_a_second_bell_notificatio
             configured["down"] = False
             retried = [(await client.post("/internal/events", json=event)) for _ in range(2)]
 
-        bell = await notifications.latest([("company", company_id)], limit=None)
+        bell = await transaction(notifications.latest, [("company", company_id)], limit=None)
 
         return failed.status_code, [answer.status_code for answer in retried], len(bell)
 
@@ -194,7 +196,7 @@ def test_a_burst_grouped_in_the_bell_posts_each_once(run, configured):
             for body in [*bodies[1:], bodies[0], bodies[1]]:
                 await client.post("/internal/events", json=body)
 
-        return await notifications.latest([("company", company_id)], limit=None)
+        return await transaction(notifications.latest, [("company", company_id)], limit=None)
 
     [bell] = run(scenario())
 
@@ -213,7 +215,7 @@ def test_a_deleted_companys_channel_and_app_go(run, configured):
         async with api() as client:
             await client.post("/internal/events", json=deleted)
 
-        return await storage.get(company_id)
+        return await transaction(storage.get, company_id)
 
     assert run(scenario()) is None
     assert configured["revoked"] == [f"token-{company_id}"]
@@ -278,9 +280,13 @@ def test_a_slack_mark_is_taken_once_freed_on_failure_and_pruned_when_expired(run
             session.add(SlackPost(event_id=old_key, posted_at=expired))
             await session.commit()
 
-        taken = [await storage.claim(key), await storage.claim(key)]
-        await storage.release(key)
-        taken.append(await storage.claim(key))
+        now = datetime.now(UTC)
+        taken = [
+            await transaction(storage.claim, key, now),
+            await transaction(storage.claim, key, now),
+        ]
+        await transaction(storage.release, key)
+        taken.append(await transaction(storage.claim, key, now))
 
         async with Session() as session:
             return taken, await session.get(SlackPost, old_key)

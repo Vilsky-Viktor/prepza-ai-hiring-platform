@@ -1,34 +1,33 @@
 import uuid
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta
 
 from prepza_common.config.constants import DELETED_USER
 from prepza_common.events import audit
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy import delete, exists, select, update
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from notifications.constants.notifications import EXPIRED_PER_PRUNE, KEEP_DAYS
 from notifications.constants.slack import SlackStatus
-from notifications.core.db import Session
 from notifications.models.outbox import OutboxEvent
 from notifications.models.slack import SlackConnection, SlackPost
 
 
-async def get(company_id: str) -> SlackConnection | None:
-    async with Session() as session:
-        return await session.get(SlackConnection, company_id)
+async def get(session: AsyncSession, company_id: str) -> SlackConnection | None:
+    return await session.get(SlackConnection, company_id)
 
 
-async def token_in_use(token_hash: str) -> bool:
+async def token_in_use(session: AsyncSession, token_hash: str) -> bool:
     """Whether a company still has the workspace token of that hash (helpers/slack.py
     token_hash): companies on one workspace share it."""
-    async with Session() as session:
-        return bool(
-            await session.scalar(select(exists().where(SlackConnection.token_hash == token_hash)))
-        )
+    return bool(
+        await session.scalar(select(exists().where(SlackConnection.token_hash == token_hash)))
+    )
 
 
 async def connect(
+    session: AsyncSession,
     company_id: str,
     team: str,
     channel: str,
@@ -55,21 +54,19 @@ async def connect(
         .on_conflict_do_update(index_elements=["company_id"], set_=values)
     )
 
-    async with Session() as session:
-        await session.execute(query)
-        audit.add(
-            session,
-            OutboxEvent,
-            company_id,
-            user_id,
-            AuditAction.SLACK_CONNECTED,
-            TargetKind.INTEGRATION,
-            target_label=channel,
-        )
-        await session.commit()
+    await session.execute(query)
+    audit.add(
+        session,
+        OutboxEvent,
+        company_id,
+        user_id,
+        AuditAction.SLACK_CONNECTED,
+        TargetKind.INTEGRATION,
+        target_label=channel,
+    )
 
 
-async def set_kinds(company_id: str, kinds: list, user_id: str) -> None:
+async def set_kinds(session: AsyncSession, company_id: str, kinds: list, user_id: str) -> None:
     """The company's action log gets it as `user_id`'s, when the company has a channel."""
     query = (
         update(SlackConnection)
@@ -78,24 +75,21 @@ async def set_kinds(company_id: str, kinds: list, user_id: str) -> None:
         .returning(SlackConnection.channel)
     )
 
-    async with Session() as session:
-        channel = await session.scalar(query)
+    channel = await session.scalar(query)
 
-        if channel is not None:
-            audit.add(
-                session,
-                OutboxEvent,
-                company_id,
-                user_id,
-                AuditAction.SLACK_NOTIFICATIONS_CHANGED,
-                TargetKind.INTEGRATION,
-                target_label=channel,
-            )
-
-        await session.commit()
+    if channel is not None:
+        audit.add(
+            session,
+            OutboxEvent,
+            company_id,
+            user_id,
+            AuditAction.SLACK_NOTIFICATIONS_CHANGED,
+            TargetKind.INTEGRATION,
+            target_label=channel,
+        )
 
 
-async def mark_broken(company_id: str) -> bool:
+async def mark_broken(session: AsyncSession, company_id: str) -> bool:
     """True when it stopped working just now: of several calls at once, only one."""
     query = (
         update(SlackConnection)
@@ -107,21 +101,16 @@ async def mark_broken(company_id: str) -> bool:
         .returning(SlackConnection.company_id)
     )
 
-    async with Session() as session:
-        stopped = await session.scalar(query)
-        await session.commit()
-
-    return stopped is not None
+    return await session.scalar(query) is not None
 
 
-async def made_by(user_id: str) -> list[SlackConnection]:
+async def made_by(session: AsyncSession, user_id: str) -> list[SlackConnection]:
     query = select(SlackConnection).where(SlackConnection.created_by == user_id)
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def forget_maker(user_id: str) -> list[str]:
+async def forget_maker(session: AsyncSession, user_id: str) -> list[str]:
     """The channels the user connected stay with their companies, without the user's id, and
     stop working, as when their maker stops being an editor: an editor reconnects them. The
     companies whose channel stopped working just now."""
@@ -137,15 +126,13 @@ async def forget_maker(user_id: str) -> list[str]:
         .values(created_by=DELETED_USER)
     )
 
-    async with Session() as session:
-        stopped = list(await session.scalars(working))
-        await session.execute(rest)
-        await session.commit()
+    stopped = list(await session.scalars(working))
+    await session.execute(rest)
 
     return stopped
 
 
-async def remove(company_id: str, user_id: str | None = None) -> None:
+async def remove(session: AsyncSession, company_id: str, user_id: str | None = None) -> None:
     """A member's (`user_id`) goes to the company's action log."""
     query = (
         delete(SlackConnection)
@@ -153,24 +140,21 @@ async def remove(company_id: str, user_id: str | None = None) -> None:
         .returning(SlackConnection.channel)
     )
 
-    async with Session() as session:
-        channel = await session.scalar(query)
+    channel = await session.scalar(query)
 
-        if channel is not None and user_id is not None:
-            audit.add(
-                session,
-                OutboxEvent,
-                company_id,
-                user_id,
-                AuditAction.SLACK_DISCONNECTED,
-                TargetKind.INTEGRATION,
-                target_label=channel,
-            )
-
-        await session.commit()
+    if channel is not None and user_id is not None:
+        audit.add(
+            session,
+            OutboxEvent,
+            company_id,
+            user_id,
+            AuditAction.SLACK_DISCONNECTED,
+            TargetKind.INTEGRATION,
+            target_label=channel,
+        )
 
 
-async def connected(company_id: str) -> SlackConnection | None:
+async def connected(session: AsyncSession, company_id: str) -> SlackConnection | None:
     """The company's working channel, if any. An id that can't be a company's has none, so an
     event naming one is handled instead of failing on every redelivery."""
     try:
@@ -182,37 +166,30 @@ async def connected(company_id: str) -> SlackConnection | None:
         SlackConnection.company_id == company_id, SlackConnection.status == SlackStatus.CONNECTED
     )
 
-    async with Session() as session:
-        return await session.scalar(query)
+    return await session.scalar(query)
 
 
-async def claim(key: str) -> bool:
+async def claim(session: AsyncSession, key: str, now: datetime) -> bool:
     """Marks the notification `key` as posted to Slack; False when it already was (or is being
     posted right now), so a retried or duplicate event posts it once. Expired marks go, at most
     EXPIRED_PER_PRUNE a call, long after Pub/Sub stops redelivering (7 days)."""
-    now = datetime.now(UTC)
     expired = (
         select(SlackPost.event_id)
         .where(SlackPost.posted_at < now - timedelta(days=KEEP_DAYS))
         .limit(EXPIRED_PER_PRUNE)
         .with_for_update(skip_locked=True)
     )
-
-    async with Session() as session:
-        await session.execute(delete(SlackPost).where(SlackPost.event_id.in_(expired)))
-        claimed = await session.scalar(
-            insert(SlackPost)
-            .values(event_id=key, posted_at=now)
-            .on_conflict_do_nothing(index_elements=["event_id"])
-            .returning(SlackPost.event_id)
-        )
-        await session.commit()
+    await session.execute(delete(SlackPost).where(SlackPost.event_id.in_(expired)))
+    claimed = await session.scalar(
+        insert(SlackPost)
+        .values(event_id=key, posted_at=now)
+        .on_conflict_do_nothing(index_elements=["event_id"])
+        .returning(SlackPost.event_id)
+    )
 
     return claimed is not None
 
 
-async def release(key: str) -> None:
+async def release(session: AsyncSession, key: str) -> None:
     """Slack didn't take the notification `key`: the event's retry may post it."""
-    async with Session() as session:
-        await session.execute(delete(SlackPost).where(SlackPost.event_id == key))
-        await session.commit()
+    await session.execute(delete(SlackPost).where(SlackPost.event_id == key))

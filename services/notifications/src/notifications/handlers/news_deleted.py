@@ -1,6 +1,6 @@
-from notifications.repositories import notifications
+from notifications.services import notices
 
 
 async def handle(data: dict, event_id: str) -> None:
     """A deleted news post's notification for everyone goes."""
-    await notifications.remove_news(data["news_id"])
+    await notices.remove_news(data["news_id"])

@@ -2,8 +2,8 @@ import pytest
 
 from notifications.integrations import billing, companies, generation, library
 from notifications.integrations.resend import ResendBusy
-from notifications.repositories import digest_activity, sent_emails, suppressed
-from notifications.services import delivery, member_pages
+from notifications.repositories import digest_activity, suppressed
+from notifications.services import delivery, member_pages, member_sends
 from tests.unit.member_world import COMPANY, finished, person
 
 
@@ -12,7 +12,7 @@ def nothing_suppressed(monkeypatch):
     """No address is on the suppression list unless a test puts it there: unit tests have no
     database (tests/integration checks the real list)."""
 
-    async def get(address):
+    async def get(session, address):
         return None
 
     monkeypatch.setattr(suppressed, "get", get)
@@ -100,7 +100,7 @@ def world(monkeypatch):
 
         state["sent"].append((email, key))
 
-    async def active_companies(kinds, since, until, after, limit):
+    async def active_companies(session, kinds, since, until, after, limit):
         state["window"] = (since, until)
         state["pages"].append(after)
 
@@ -108,7 +108,7 @@ def world(monkeypatch):
 
         return [company_id for company_id in active if company_id > after][:limit]
 
-    async def companies_activity(kinds, since, until, company_ids):
+    async def companies_activity(session, kinds, since, until, company_ids):
         return [item for item in state["activity"] if item.recipient_id in company_ids]
 
     async def cursor(job, day):
@@ -126,8 +126,8 @@ def world(monkeypatch):
     monkeypatch.setattr(library, "recipients", recipients)
     monkeypatch.setattr(billing, "low_companies", low_companies)
     monkeypatch.setattr(generation, "statuses", statuses)
-    monkeypatch.setattr(sent_emails, "claim", claim)
-    monkeypatch.setattr(sent_emails, "release", release)
+    monkeypatch.setattr(member_sends, "claim", claim)
+    monkeypatch.setattr(member_sends, "release", release)
     monkeypatch.setattr(delivery, "send", send)
     monkeypatch.setattr(companies, "company_ids", company_ids)
     monkeypatch.setattr(digest_activity, "active_companies", active_companies)

@@ -67,7 +67,7 @@ def test_everyones_notifications_are_the_users_after_their_account_was_made(monk
 def test_a_deleted_news_posts_notification_goes(monkeypatch):
     removed = []
 
-    async def remove_news(news_id):
+    async def remove_news(session, news_id):
         removed.append(news_id)
 
     monkeypatch.setattr(notifications, "remove_news", remove_news)

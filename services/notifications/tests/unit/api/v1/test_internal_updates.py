@@ -35,7 +35,7 @@ def test_the_assistant_reads_its_companies_updates_with_each_ones_company(client
         created_at=datetime(2026, 10, 18, 8, tzinfo=UTC),
     )
 
-    async def of_companies(company_ids, since, until):
+    async def of_companies(session, company_ids, since, until):
         asked.append((company_ids, since.isoformat(), until.isoformat()))
 
         return [row]
@@ -61,7 +61,7 @@ def test_the_assistant_reads_its_companies_updates_with_each_ones_company(client
 
 
 def test_no_companies_give_no_updates_without_reading(client, monkeypatch):
-    async def of_companies(company_ids, since, until):
+    async def of_companies(session, company_ids, since, until):
         raise AssertionError("read")
 
     monkeypatch.setattr(updates, "of_companies", of_companies)

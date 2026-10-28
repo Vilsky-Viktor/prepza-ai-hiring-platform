@@ -2,6 +2,7 @@ import logging
 
 from fastapi import HTTPException, status
 
+from notifications.core.db import Session
 from notifications.helpers.unsubscribe import address_hash
 from notifications.integrations import companies
 from notifications.repositories import opt_outs
@@ -12,7 +13,9 @@ logger = logging.getLogger(__name__)
 async def companies_for(email: str) -> list[dict]:
     """The companies that invited the address or whose emails it stopped, by name, with what it
     stopped; a company that's gone is left out."""
-    rows = await opt_outs.of_address(address_hash(email))
+    async with Session() as session:
+        rows = await opt_outs.of_address(session, address_hash(email))
+
     ids = set(await companies.invited_company_ids(email)) | {row.company_id for row in rows}
     found = await companies.members(sorted(ids))
 
@@ -44,13 +47,14 @@ async def set_stopped(email: str, company_id: str, stopped: bool, superadmin_id:
     the logs, without the address."""
     address = address_hash(email)
 
-    if stopped:
-        if company_id not in await companies.invited_company_ids(email):
-            raise HTTPException(status.HTTP_404_NOT_FOUND, "Not found")
+    if stopped and company_id not in await companies.invited_company_ids(email):
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Not found")
 
-        await opt_outs.add(address, company_id, by_admin=True)
-    else:
-        await opt_outs.remove_admin_stop(address, company_id)
+    async with Session.begin() as session:
+        if stopped:
+            await opt_outs.add(session, address, company_id, by_admin=True)
+        else:
+            await opt_outs.remove_admin_stop(session, address, company_id)
 
     logger.warning(
         "Company %s's emails to address %s %s by superadmin %s",

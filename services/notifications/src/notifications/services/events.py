@@ -1,6 +1,7 @@
 import logging
 
 from notifications.config import settings
+from notifications.core.db import Session
 from notifications.helpers.emails import (
     candidate_invite_email,
     candidate_joined_email,
@@ -8,8 +9,8 @@ from notifications.helpers.emails import (
 )
 from notifications.helpers.unsubscribe import address_hash
 from notifications.models.email import Email
-from notifications.repositories import notifications, opt_outs
-from notifications.services import delivery, service_emails, slack
+from notifications.repositories import opt_outs
+from notifications.services import delivery, notices, service_emails, slack
 from notifications.services.feed import announce
 from notifications.services.webhooks import report_undelivered
 
@@ -22,6 +23,12 @@ async def deliver(email: Email, event_id: str) -> None:
     await delivery.send(email, f"events/{event_id}")
 
 
+async def opted_out(email: str, company_id: str, invite_id: str | None = None) -> bool:
+    """Whether the candidate stopped the company's emails, or (given an invite) its reminders."""
+    async with Session() as session:
+        return await opt_outs.opted_out(session, address_hash(email), company_id, invite_id)
+
+
 async def notify(data: dict, event_id: str) -> None:
     """Stores a requested notification, tells the recipient's open tabs, and posts a new one to
     the company's Slack channel; one that adds to a group isn't posted again. A retried event is
@@ -32,7 +39,7 @@ async def notify(data: dict, event_id: str) -> None:
     # With a `key`, its producer asking again is the same notification.
     key = data.get("key") or event_id
 
-    if await notifications.add(key, data):
+    if await notices.store(key, data):
         try:
             await announce(data["recipient"], data["recipient_id"])
         except Exception:
@@ -47,9 +54,7 @@ async def invite(data: dict, event_id: str) -> None:
     undelivered, as with a bounce. Events saved before they carried the company's id are sent."""
     email = candidate_invite_email(data, settings.site_url, settings.email_link_secret)
 
-    if data.get("company_id") and await opt_outs.opted_out(
-        address_hash(data["email"]), data["company_id"]
-    ):
+    if data.get("company_id") and await opted_out(data["email"], data["company_id"]):
         logger.info("Invite %s not sent: the candidate opted out", data.get("invite_id"))
         await report_undelivered(email.tags)
 
@@ -60,7 +65,7 @@ async def invite(data: dict, event_id: str) -> None:
 
 async def joined(data: dict, event_id: str) -> None:
     """Not to a candidate who stopped the company's emails."""
-    if await opt_outs.opted_out(address_hash(data["email"]), data["company_id"]):
+    if await opted_out(data["email"], data["company_id"]):
         logger.info("Link for %s not sent: the candidate opted out", data["invite_id"])
 
         return
@@ -73,8 +78,8 @@ async def joined(data: dict, event_id: str) -> None:
 async def remind(data: dict, event_id: str) -> None:
     """No reminder to a candidate who stopped the company's emails or this invite's reminders;
     the invite itself reached them, so the company isn't told."""
-    if data.get("company_id") and await opt_outs.opted_out(
-        address_hash(data["email"]), data["company_id"], data.get("invite_id")
+    if data.get("company_id") and await opted_out(
+        data["email"], data["company_id"], data.get("invite_id")
     ):
         logger.info("Reminder for %s not sent: the candidate opted out", data.get("invite_id"))
 

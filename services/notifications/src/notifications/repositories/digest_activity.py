@@ -3,8 +3,8 @@ from datetime import datetime
 
 from prepza_common.events.notifications import Recipient
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from notifications.core.db import Session
 from notifications.models.notifications import Notification
 
 
@@ -20,31 +20,38 @@ def in_window(kinds: list[str], since: datetime, until: datetime) -> tuple:
 
 
 async def active_companies(
-    kinds: list[str], since: datetime, until: datetime, after: str, limit: int
+    session: AsyncSession,
+    kinds: list[str],
+    since: datetime,
+    until: datetime,
+    after: str,
+    limit: int,
 ) -> list[str]:
     """A page of the companies that had such notifications: up to `limit` ids after `after`, in
     order."""
-    async with Session() as session:
-        rows = await session.scalars(
-            select(Notification.recipient_id)
-            .where(*in_window(kinds, since, until), Notification.recipient_id > after)
-            .distinct()
-            .order_by(Notification.recipient_id)
-            .limit(limit)
-        )
+    rows = await session.scalars(
+        select(Notification.recipient_id)
+        .where(*in_window(kinds, since, until), Notification.recipient_id > after)
+        .distinct()
+        .order_by(Notification.recipient_id)
+        .limit(limit)
+    )
 
-        return list(rows)
+    return list(rows)
 
 
 async def companies_activity(
-    kinds: list[str], since: datetime, until: datetime, company_ids: list[str]
+    session: AsyncSession,
+    kinds: list[str],
+    since: datetime,
+    until: datetime,
+    company_ids: list[str],
 ) -> list[Notification]:
     """Those companies' notifications of those kinds between those times."""
-    async with Session() as session:
-        rows = await session.scalars(
-            select(Notification).where(
-                *in_window(kinds, since, until), Notification.recipient_id.in_(company_ids)
-            )
+    rows = await session.scalars(
+        select(Notification).where(
+            *in_window(kinds, since, until), Notification.recipient_id.in_(company_ids)
         )
+    )
 
-        return list(rows)
+    return list(rows)

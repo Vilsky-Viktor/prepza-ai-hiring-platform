@@ -43,8 +43,8 @@ async def each_page(
     (time.monotonic()): read_page(after) gives the next page's company ids, after `after` in
     order, and where the page after it starts; send_page(company_ids) sends theirs and says how
     many went. A page done in time moves the cursor on; one cut short is done again by the next
-    run, whose claims (storage/sent_emails.py) skip who got theirs, so two runs at once send
-    nothing twice either. Returns how many were sent."""
+    run, whose claims (member_sends.claim) skip who got theirs, so two runs at once send nothing
+    twice either. Returns how many were sent."""
     after = await cursor(job, day)
     sent = 0
 

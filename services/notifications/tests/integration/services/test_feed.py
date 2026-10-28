@@ -13,8 +13,9 @@ from notifications.constants.notifications import DROPDOWN_LIMIT
 from notifications.handlers import dispatch
 from notifications.integrations import companies, library, subscription
 from notifications.repositories import notifications
-from notifications.services import feed
+from notifications.services import feed, notices
 from tests.integration.factories import company, finished
+from tests.integration.transactions import transaction
 
 
 @pytest.fixture
@@ -45,9 +46,9 @@ def test_the_feed_holds_the_users_and_their_companies_notifications(run, member_
     member_of[user] = [mine]
 
     async def scenario():
-        await notifications.add(str(uuid.uuid4()), own(user, "credits"))
-        await notifications.add(str(uuid.uuid4()), finished(mine))
-        await notifications.add(str(uuid.uuid4()), finished(other))
+        await notices.store(str(uuid.uuid4()), own(user, "credits"))
+        await notices.store(str(uuid.uuid4()), finished(mine))
+        await notices.store(str(uuid.uuid4()), finished(other))
 
         return await feed.feed(user, "en")
 
@@ -65,7 +66,7 @@ def test_the_dropdown_shows_the_latest_few(run, member_of):
 
     async def scenario():
         for number in range(DROPDOWN_LIMIT + 2):
-            await notifications.add(str(uuid.uuid4()), own(user, str(number)))
+            await notices.store(str(uuid.uuid4()), own(user, str(number)))
 
         return await feed.feed(user, "en")
 
@@ -82,10 +83,10 @@ def test_opening_the_bell_reads_everything_so_far_for_that_user_only(run, member
     member_of.update({ann: [shared], bob: [shared]})
 
     async def scenario():
-        await notifications.add(str(uuid.uuid4()), finished(shared, "Backend"))
-        await notifications.mark_seen(ann)
+        await notices.store(str(uuid.uuid4()), finished(shared, "Backend"))
+        await notices.mark_seen(ann)
         after_seen = (await feed.feed(ann, "en")).unread
-        await notifications.add(str(uuid.uuid4()), finished(shared, "Frontend"))
+        await notices.store(str(uuid.uuid4()), finished(shared, "Frontend"))
 
         return after_seen, (await feed.feed(ann, "en")).unread, (await feed.feed(bob, "en")).unread
 
@@ -96,12 +97,12 @@ def test_a_deleted_account_takes_only_its_own_notifications(run, member_of):
     user, mine = f"u-{uuid.uuid4()}", company()
 
     async def scenario():
-        await notifications.add(str(uuid.uuid4()), own(user, "credits"))
-        await notifications.add(str(uuid.uuid4()), finished(mine))
-        exported = await notifications.latest([(Recipient.USER, user)], limit=None)
-        await notifications.remove_user(user)
-        left = await notifications.latest(
-            [(Recipient.USER, user), (Recipient.COMPANY, mine)], limit=None
+        await notices.store(str(uuid.uuid4()), own(user, "credits"))
+        await notices.store(str(uuid.uuid4()), finished(mine))
+        exported = await transaction(notifications.latest, [(Recipient.USER, user)], limit=None)
+        await transaction(notifications.remove_user, user)
+        left = await transaction(
+            notifications.latest, [(Recipient.USER, user), (Recipient.COMPANY, mine)], limit=None
         )
 
         return [row.kind for row in exported], [row.kind for row in left]

@@ -12,6 +12,7 @@ from notifications.helpers.unsubscribe import address_hash
 from notifications.main import app
 from notifications.repositories import suppressed
 from tests.integration.factories import api
+from tests.integration.transactions import transaction
 
 
 def as_user(uid: str, email: str) -> None:
@@ -25,9 +26,9 @@ def test_a_superadmin_sees_why_an_address_is_suppressed_and_takes_it_off(run, mo
     monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
 
     async def scenario():
-        await suppressed.add(address_hash(address), SuppressionReason.BOUNCED)
+        await transaction(suppressed.add, address_hash(address), SuppressionReason.BOUNCED)
         # A later complaint keeps the first reason.
-        await suppressed.add(address_hash(address), SuppressionReason.COMPLAINED)
+        await transaction(suppressed.add, address_hash(address), SuppressionReason.COMPLAINED)
 
         async with api() as client:
             as_user("ann", "ann@example.com")
@@ -43,7 +44,13 @@ def test_a_superadmin_sees_why_an_address_is_suppressed_and_takes_it_off(run, mo
 
         app.dependency_overrides.clear()
 
-        return outsider, found, removed, again, await suppressed.among([address_hash(address)])
+        return (
+            outsider,
+            found,
+            removed,
+            again,
+            await transaction(suppressed.among, [address_hash(address)]),
+        )
 
     outsider, found, removed, again, left = run(scenario())
 
@@ -59,9 +66,9 @@ def test_every_reason_is_kept(run, reason):
     address = address_hash(f"r{uuid.uuid4().hex[:12]}@example.com")
 
     async def scenario():
-        await suppressed.add(address, reason)
+        await transaction(suppressed.add, address, reason)
 
-        return await suppressed.get(address)
+        return await transaction(suppressed.get, address)
 
     assert run(scenario()).reason == reason
 
@@ -85,13 +92,13 @@ def test_taking_an_address_off_takes_it_off_resends_list_first(
     )
 
     async def scenario():
-        await suppressed.add(address_hash(address), SuppressionReason.BOUNCED)
+        await transaction(suppressed.add, address_hash(address), SuppressionReason.BOUNCED)
 
         async with api() as client:
             as_user("sam", "sam@prepza.dev")
             response = await client.post("/superadmin/suppressed/remove", json={"email": address})
 
-        return response.status_code, await suppressed.among([address_hash(address)])
+        return response.status_code, await transaction(suppressed.among, [address_hash(address)])
 
     code, found = run(scenario())
 

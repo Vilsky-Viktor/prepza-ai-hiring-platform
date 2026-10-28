@@ -4,10 +4,9 @@ from prepza_common.auth.auth import CurrentUser, FreshUser
 from prepza_common.http.sse import event_stream
 from prepza_common.i18n.i18n import request_language
 
-from notifications.repositories import notifications
 from notifications.schemas.legal_notices import LegalChangeOut
 from notifications.schemas.notifications import FeedOut
-from notifications.services import legal_notices
+from notifications.services import legal_notices, notices
 from notifications.services.feed import feed, open_stream
 
 router = APIRouter(prefix="/me", tags=["notifications"])
@@ -31,7 +30,7 @@ async def legal_changes(user: CurrentUser) -> list[LegalChangeOut]:
 @router.post("/seen", status_code=status.HTTP_204_NO_CONTENT)
 async def mark_seen(user: CurrentUser) -> None:
     """Opening the bell: everything so far counts as read."""
-    await notifications.mark_seen(user.uid)
+    await notices.mark_seen(user.uid)
 
 
 @router.get("/stream")

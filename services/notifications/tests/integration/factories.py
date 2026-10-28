@@ -6,12 +6,16 @@ import time
 import uuid
 
 import httpx
+from fastapi import HTTPException
 from prepza_common.config.constants import EVENT_ID_ATTRIBUTE
 from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
+from notifications.constants.campaigns import ONE_A_DAY
 from notifications.core.db import Session
 from notifications.main import app
 from notifications.models.outbox import OutboxEvent
+from notifications.repositories import bulk_sends
+from notifications.services import campaign_sends
 
 
 def company() -> str:
@@ -74,7 +78,7 @@ async def receive(
 ) -> tuple[int, int | None]:
     """Resend's web hook signed with `secret` (its own delivery unless given), then its recorded
     event pushed back as Pub/Sub does: both answers' statuses (None when nothing was recorded).
-    Its test keeps the request from publishing (webhook_routes.outbox_service.flush_quietly)."""
+    Its test keeps the request from publishing (outbox_service.flush_quietly)."""
     headers = signed(body, secret, delivery_id)
     answered = await client.post("/webhooks/resend", content=body, headers=headers)
     event_id = uuid.uuid5(uuid.NAMESPACE_URL, f"resend:{headers['svix-id']}")
@@ -90,3 +94,18 @@ async def receive(
     )
 
     return answered.status_code, pushed.status_code
+
+
+async def marked_sent(campaign_id: uuid.UUID, kind: str, asked_by: str, per_day: int):
+    """Marks the campaign sent as sending it does (campaign_sends.mark_sent): its bulk send's id,
+    or why it wasn't (ALREADY_SENT, CHANGED, ONE_A_DAY)."""
+    try:
+        sent = await campaign_sends.mark_sent(campaign_id, kind, asked_by, per_day)
+    except HTTPException as refused:
+        return refused.detail
+
+    if not sent:
+        return ONE_A_DAY
+
+    async with Session() as session:
+        return (await bulk_sends.get(session, kind, str(campaign_id))).id

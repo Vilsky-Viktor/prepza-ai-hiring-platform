@@ -8,7 +8,9 @@ from notifications.constants.notifications import EXPIRED_PER_PRUNE, KEEP_DAYS, 
 from notifications.core.db import Session
 from notifications.models.notifications import Notification, Received
 from notifications.repositories import notifications
+from notifications.services import notices
 from tests.integration.factories import company, finished
+from tests.integration.transactions import transaction
 
 
 def expired_at() -> datetime:
@@ -57,9 +59,9 @@ async def count_expired() -> tuple[int, int]:
 def test_each_new_notification_removes_a_bounded_batch_of_expired_rows(run):
     async def scenario():
         await store_expired(EXPIRED_PER_PRUNE + 5)
-        await notifications.add(str(uuid.uuid4()), finished(company()))
+        await notices.store(str(uuid.uuid4()), finished(company()))
         after_one = await count_expired()
-        await notifications.add(str(uuid.uuid4()), finished(company()))
+        await notices.store(str(uuid.uuid4()), finished(company()))
 
         return after_one, await count_expired()
 
@@ -86,9 +88,7 @@ def test_cleanup_skips_expired_rows_another_call_holds_and_never_waits(run):
                     .with_for_update()
                 )
             )
-            added = await asyncio.wait_for(
-                notifications.add(str(uuid.uuid4()), finished(company())), 5
-            )
+            added = await asyncio.wait_for(notices.store(str(uuid.uuid4()), finished(company())), 5)
             await holder.rollback()
 
         return len(held), len(held_events), added, await count_expired()
@@ -110,8 +110,8 @@ def test_a_recipient_keeps_only_their_newest(run):
             )
             await session.commit()
 
-        await notifications.add(str(uuid.uuid4()), finished(company_id))
-        kept = await notifications.latest([("company", company_id)], limit=None)
+        await notices.store(str(uuid.uuid4()), finished(company_id))
+        kept = await transaction(notifications.latest, [("company", company_id)], limit=None)
 
         return len(kept), kept[0].kind, min(item.created_at for item in kept)
 

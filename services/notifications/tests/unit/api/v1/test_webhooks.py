@@ -7,7 +7,6 @@ import time
 import pytest
 from prepza_common.config.constants import WEBHOOK_SIGNATURE_REFUSED
 
-from notifications.api.v1 import webhooks as webhook_routes
 from notifications.config import settings
 from notifications.constants.events import EMAIL_WEBHOOK
 from notifications.handlers.dispatch import handle
@@ -16,6 +15,7 @@ from notifications.helpers.unsubscribe import address_hash
 from notifications.helpers.webhooks import signature_valid
 from notifications.integrations import companies, library
 from notifications.repositories import opt_outs, suppressed, webhook_deliveries
+from notifications.services import outbox as outbox_service
 
 # Svix's published example (docs.svix.com, "Verifying Webhooks Manually"), not a real secret. Put
 # together from parts so secret scanners don't take the literal for a leaked key.
@@ -79,10 +79,10 @@ def reported(monkeypatch):
     monkeypatch.setattr(companies, "invite_undelivered", fake_invite)
 
     # The suppression list has its own tests (test_bell_for_everyone.py).
-    async def fake_suppress(address, reason):
+    async def fake_suppress(session, address, reason):
         return None
 
-    async def fake_opt_out(address, company_id, invite_id=None):
+    async def fake_opt_out(session, address, company_id, invite_id=None):
         calls.append(("opt_out", address, company_id, invite_id))
 
     monkeypatch.setattr(library, "unsubscribe", fake_unsubscribe)
@@ -98,7 +98,7 @@ def deliver_recorded(monkeypatch) -> dict:
     back as its event once the request publishes, and is handled as Pub/Sub's push would be."""
     recorded, waiting = {}, []
 
-    async def record(delivery_id, event):
+    async def record(session, delivery_id, event):
         if delivery_id in recorded:
             return False
 
@@ -112,7 +112,7 @@ def deliver_recorded(monkeypatch) -> dict:
             await handle(EMAIL_WEBHOOK, {"event": waiting.pop(0)}, "event-1")
 
     monkeypatch.setattr(webhook_deliveries, "record", record)
-    monkeypatch.setattr(webhook_routes.outbox_service, "flush_quietly", flush)
+    monkeypatch.setattr(outbox_service, "flush_quietly", flush)
 
     return recorded
 
@@ -232,7 +232,7 @@ def test_the_answer_waits_only_for_the_record_not_the_work(client, reported, mon
     async def down(invite_id):
         raise AssertionError("asked before the answer")
 
-    monkeypatch.setattr(webhook_routes.outbox_service, "flush_quietly", published)
+    monkeypatch.setattr(outbox_service, "flush_quietly", published)
     monkeypatch.setattr(companies, "invite_undelivered", down)
 
     assert signed_post(client, event("email.bounced", "candidate_invite")).status_code == 204

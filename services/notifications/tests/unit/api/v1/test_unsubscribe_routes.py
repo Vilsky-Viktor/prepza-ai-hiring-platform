@@ -49,10 +49,10 @@ def applied(monkeypatch):
     async def unsubscribe(user_id, email_settings):
         calls.append(("library", user_id, email_settings))
 
-    async def add(address, company_id, invite_id=None):
+    async def add(session, address, company_id, invite_id=None):
         calls.append(("opt_out", address, company_id, invite_id))
 
-    async def mark_unsubscribed(user_id, kind):
+    async def mark_unsubscribed(session, user_id, kind):
         calls.append(("campaign", user_id, kind))
 
     monkeypatch.setattr(library, "unsubscribe", unsubscribe)
@@ -138,7 +138,7 @@ def outbox(monkeypatch):
     async def report_undelivered(tags):
         record["undelivered"].append(tags["id"])
 
-    async def opted_out(address, company_id, invite_id=None):
+    async def opted_out(session, address, company_id, invite_id=None):
         return (address, company_id, None) in record["opted"] or (
             invite_id is not None and (address, company_id, invite_id) in record["opted"]
         )

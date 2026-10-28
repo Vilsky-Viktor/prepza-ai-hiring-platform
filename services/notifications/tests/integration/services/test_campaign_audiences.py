@@ -12,6 +12,8 @@ from notifications.helpers.unsubscribe import address_hash
 from notifications.repositories import bulk_sends, suppressed
 from notifications.repositories import campaigns as campaigns_store
 from notifications.services import bulk, campaigns
+from tests.integration.factories import marked_sent
+from tests.integration.transactions import transaction
 
 MAILPIT = os.getenv("MAILPIT_URL", "http://mailpit:8025")
 ENGLISH = {"subject": "Planned downtime", "text": "Down on Sunday.", "button": None}
@@ -75,13 +77,17 @@ def test_a_notice_reaches_its_groups_once_each_whatever_their_settings(run, peop
     ann, lea, sup = people
 
     async def scenario():
-        await suppressed.add(address_hash(f"{sup}@example.com"), "bounced")
+        await transaction(suppressed.add, address_hash(f"{sup}@example.com"), "bounced")
         groups = ["members", "candidates", "learners"]
-        campaign = await campaigns_store.create(fields("notices", groups), "sam", ENGLISH)
-        send_id = await campaigns_store.mark_sent(campaign.id, "notices", "sam", 1)
-        await bulk.prepare(await bulk_sends.get("notices", str(campaign.id)), until=1e12)
+        campaign = await transaction(
+            campaigns_store.create, fields("notices", groups), "sam", ENGLISH
+        )
+        send_id = await marked_sent(campaign.id, "notices", "sam", 1)
+        await bulk.prepare(
+            await transaction(bulk_sends.get, "notices", str(campaign.id)), until=1e12
+        )
         await bulk.send_bulk(datetime.now(UTC))
-        counts = (await bulk_sends.counts([send_id]))[send_id]
+        counts = (await transaction(bulk_sends.counts, [send_id]))[send_id]
         found = {}
 
         async with httpx.AsyncClient(base_url=MAILPIT) as mailpit:
@@ -95,7 +101,7 @@ def test_a_notice_reaches_its_groups_once_each_whatever_their_settings(run, peop
                 ids = [one["ID"] for one in messages]
                 await mailpit.request("DELETE", "/api/v1/messages", json={"IDs": ids})
 
-        await suppressed.remove(address_hash(f"{sup}@example.com"))
+        await transaction(suppressed.remove, address_hash(f"{sup}@example.com"))
 
         return counts, found
 
@@ -111,12 +117,12 @@ def test_a_notice_reaches_its_groups_once_each_whatever_their_settings(run, peop
 
 def test_a_notice_keeps_its_own_day_limit_and_a_changed_kind_is_refused(run, people):
     async def scenario():
-        notice = await campaigns_store.create(fields("notices"), "sam", ENGLISH)
-        changed = await campaigns_store.mark_sent(notice.id, "updates", "sam", 1)
+        notice = await transaction(campaigns_store.create, fields("notices"), "sam", ENGLISH)
+        changed = await marked_sent(notice.id, "updates", "sam", 1)
         # An update sent today counts against the updates only.
-        update = await campaigns_store.create(fields("updates"), "sam", ENGLISH)
-        await campaigns_store.mark_sent(update.id, "updates", "sam", 1_000)
-        sent = await campaigns_store.mark_sent(notice.id, "notices", "sam", 1_000)
+        update = await transaction(campaigns_store.create, fields("updates"), "sam", ENGLISH)
+        await marked_sent(update.id, "updates", "sam", 1_000)
+        sent = await marked_sent(notice.id, "notices", "sam", 1_000)
 
         return changed, sent
 
@@ -139,4 +145,4 @@ def test_a_notice_keeps_its_own_day_limit_and_a_changed_kind_is_refused(run, peo
 )
 def test_the_database_refuses_an_audience_the_service_would(run, chosen):
     with pytest.raises(IntegrityError):
-        run(campaigns_store.create(chosen, "sam", ENGLISH))
+        run(transaction(campaigns_store.create, chosen, "sam", ENGLISH))

@@ -14,6 +14,7 @@ from notifications.helpers.unsubscribe import address_hash, candidate_token, sig
 from notifications.models.opt_outs import CandidateOptOut
 from notifications.repositories import opt_outs
 from tests.integration.factories import api, push
+from tests.integration.transactions import transaction
 
 
 def invite(company_id: str, email: str = "ann@example.com") -> dict:
@@ -165,14 +166,14 @@ def test_a_deleted_company_takes_its_opt_outs_with_it(run):
     company = str(uuid.uuid4())
 
     async def scenario():
-        await opt_outs.add(address_hash("ann@example.com"), company)
-        await opt_outs.add(address_hash("bob@example.com"), company, str(uuid.uuid4()))
+        await transaction(opt_outs.add, address_hash("ann@example.com"), company)
+        await transaction(opt_outs.add, address_hash("bob@example.com"), company, str(uuid.uuid4()))
 
         async with api() as client:
             await client.post(
                 "/internal/events", json=push("company.deleted", {"company_id": company})
             )
 
-        return await opt_outs.opted_out(address_hash("ann@example.com"), company)
+        return await transaction(opt_outs.opted_out, address_hash("ann@example.com"), company)
 
     assert run(scenario()) is False

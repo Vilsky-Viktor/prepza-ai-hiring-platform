@@ -8,8 +8,9 @@ from prepza_common.auth.user import User
 
 from notifications.constants.legal_notices import ALREADY_ASKED, TOO_LATE
 from notifications.main import app
-from notifications.repositories import bulk_recipients, bulk_sends, notifications
+from notifications.repositories import bulk_recipients, bulk_sends
 from notifications.services import audiences, bulk, bulk_content, legal_notices
+from notifications.services import notices as bell
 
 TODAY = datetime.now(UTC).date()
 LATER = (TODAY + timedelta(days=20)).isoformat()
@@ -26,7 +27,7 @@ def notices(monkeypatch):
         {"terms": LATER, "privacy": SOON, "dpa": TODAY.isoformat()},
     )
 
-    async def start(kind, about, asked_by):
+    async def start(session, kind, about, asked_by):
         if (kind, about) in state.sends:
             return None
 
@@ -36,18 +37,18 @@ def notices(monkeypatch):
 
         return state.sends[(kind, about)].id
 
-    async def of_kinds(kinds):
+    async def of_kinds(session, kinds):
         return [send for send in state.sends.values() if send.kind in kinds]
 
-    async def get(kind, about):
+    async def get(session, kind, about):
         return state.sends.get((kind, about))
 
-    async def save_page(send_id, after, last, user_ids, done):
+    async def save_page(session, send_id, after, last, user_ids, done):
         state.prepared[send_id] = user_ids
 
         return True
 
-    async def is_recipient(send_id, user_id):
+    async def is_recipient(session, send_id, user_id):
         return user_id in state.prepared.get(send_id, [])
 
     async def user_ids(after, setting=None):
@@ -76,7 +77,7 @@ def notices(monkeypatch):
     monkeypatch.setattr(bulk_recipients, "is_recipient", is_recipient)
     monkeypatch.setattr(audiences.library, "user_ids", user_ids)
     monkeypatch.setattr(audiences.companies, "member_ids", member_ids)
-    monkeypatch.setattr(notifications, "add", add)
+    monkeypatch.setattr(bell, "store", add)
     monkeypatch.setattr(bulk_content, "announce", announce)
 
     return state

@@ -9,15 +9,17 @@ from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.db.lock_waits import hold_first_commit, race
 
-from notifications.api.v1 import webhooks as webhook_routes
 from notifications.config import settings
 from notifications.constants.campaigns import ALREADY_SENT, ONE_A_DAY
 from notifications.helpers.unsubscribe import address_hash
 from notifications.main import app
 from notifications.repositories import bulk_sends, suppressed
 from notifications.repositories import campaigns as campaigns_store
-from notifications.services import bulk, campaigns
-from tests.integration.factories import api, receive
+from notifications.schemas.campaigns import CampaignIn, CampaignTexts
+from notifications.services import bulk, campaign_sends, campaigns
+from notifications.services import outbox as outbox_service
+from tests.integration.factories import api, marked_sent, receive
+from tests.integration.transactions import transaction
 
 MAILPIT = os.getenv("MAILPIT_URL", "http://mailpit:8025")
 SECRET = "whsec_dGVzdC13ZWJob29rLWtleQ=="
@@ -76,12 +78,14 @@ def test_a_campaign_goes_from_start_to_mailpit_once_and_only_to_who_chose_it(
     monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
 
     async def scenario():
-        campaign = await campaigns_store.create(fields("promotions"), "sam", ENGLISH)
-        send_id = await campaigns_store.mark_sent(campaign.id, "promotions", "sam", 1)
-        again = await campaigns_store.mark_sent(campaign.id, "promotions", "sam", 1)
-        await bulk.prepare(await bulk_sends.get("promotions", str(campaign.id)), until=0)
+        campaign = await transaction(campaigns_store.create, fields("promotions"), "sam", ENGLISH)
+        send_id = await marked_sent(campaign.id, "promotions", "sam", 1)
+        again = await marked_sent(campaign.id, "promotions", "sam", 1)
+        await bulk.prepare(
+            await transaction(bulk_sends.get, "promotions", str(campaign.id)), until=0
+        )
         await bulk.send_bulk(datetime.now(UTC))
-        counts = (await bulk_sends.counts([send_id]))[send_id]
+        counts = (await transaction(bulk_sends.counts, [send_id]))[send_id]
 
         async with httpx.AsyncClient(base_url=MAILPIT) as mailpit:
             found = (await mailpit.get("/api/v1/search", params={"query": f"to:{address}"})).json()
@@ -103,14 +107,17 @@ def test_a_kinds_campaigns_a_day_stay_within_the_limit_even_sent_at_once(run, qu
     test sends an "updates" campaign, in a database of their own."""
 
     async def scenario():
-        drafts = [await campaigns_store.create(fields("updates"), "sam", ENGLISH) for _ in range(3)]
-        await campaigns_store.mark_sent(drafts[0].id, "updates", "sam", 2)
-        held = hold_first_commit(monkeypatch, campaigns_store)
+        drafts = [
+            await transaction(campaigns_store.create, fields("updates"), "sam", ENGLISH)
+            for _ in range(3)
+        ]
+        await marked_sent(drafts[0].id, "updates", "sam", 2)
+        held = hold_first_commit(monkeypatch, campaign_sends)
 
         return await race(
             os.environ["DATABASE_URL"],
             held,
-            *(campaigns_store.mark_sent(draft.id, "updates", "sam", 2) for draft in drafts[1:]),
+            *(marked_sent(draft.id, "updates", "sam", 2) for draft in drafts[1:]),
         )
 
     first, second = run(scenario())
@@ -119,11 +126,15 @@ def test_a_kinds_campaigns_a_day_stay_within_the_limit_even_sent_at_once(run, qu
     assert second == ONE_A_DAY
 
 
-def test_a_changed_english_drops_the_translations_but_a_hand_edit_survives_a_late_job(run):
+def test_a_changed_english_drops_the_translations_but_a_hand_edit_survives_a_late_job(run, quiet):
     async def scenario():
-        campaign = await campaigns_store.create(fields("updates", "/pricing"), "sam", ENGLISH)
-        await campaigns_store.set_texts(campaign.id, "de", {**ENGLISH, "subject": "Von Hand"})
-        await campaigns_store.save_translations(
+        campaign = await transaction(
+            campaigns_store.create, fields("updates", "/pricing"), "sam", ENGLISH
+        )
+        await campaigns.set_texts(
+            campaign.id, "de", CampaignTexts(**{**ENGLISH, "subject": "Von Hand"})
+        )
+        await campaigns.save_translations(
             campaign.id,
             ENGLISH,
             {
@@ -131,12 +142,12 @@ def test_a_changed_english_drops_the_translations_but_a_hand_edit_survives_a_lat
                 "fr": {**ENGLISH, "subject": "Machine"},
             },
         )
-        _, kept = await campaigns_store.get(campaign.id)
-        changed = {**ENGLISH, "text": "Now with more code."}
-        await campaigns_store.update(campaign.id, fields("updates", "/pricing"), changed)
+        _, kept = await transaction(campaigns_store.get, campaign.id)
+        changed = {**ENGLISH, "text": "Now with more code.", "button": "See the prices"}
+        await campaigns.update(campaign.id, CampaignIn(kind="updates", link="/pricing", **changed))
         # A job that translated the old text arrives late: dropped.
-        await campaigns_store.save_translations(campaign.id, ENGLISH, {"de": ENGLISH})
-        _, after = await campaigns_store.get(campaign.id)
+        await campaigns.save_translations(campaign.id, ENGLISH, {"de": ENGLISH})
+        _, after = await transaction(campaigns_store.get, campaign.id)
 
         return kept, after
 
@@ -161,14 +172,14 @@ def test_a_signed_complaint_puts_the_address_on_the_suppression_list(run, monkey
         return None
 
     # The test pushes the recorded event back itself, as Pub/Sub would (receive).
-    monkeypatch.setattr(webhook_routes.outbox_service, "flush_quietly", unpublished)
+    monkeypatch.setattr(outbox_service, "flush_quietly", unpublished)
 
     async def scenario():
         async with api() as client:
             answers = await receive(client, SECRET, body)
 
-        found = await suppressed.among([address_hash(address)])
-        await suppressed.remove(address_hash(address))
+        found = await transaction(suppressed.among, [address_hash(address)])
+        await transaction(suppressed.remove, address_hash(address))
 
         return answers, found
 

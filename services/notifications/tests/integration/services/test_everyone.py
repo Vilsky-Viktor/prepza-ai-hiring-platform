@@ -5,7 +5,8 @@ from prepza_common.events.notifications import EVERYONE, NotificationKind, Recip
 
 from notifications.integrations import companies, library
 from notifications.repositories import notifications
-from notifications.services import feed
+from notifications.services import feed, notices
+from tests.integration.transactions import transaction
 
 
 def test_everyones_news_reaches_users_older_than_it_is_seen_per_user_and_goes_with_the_post(run):
@@ -20,21 +21,21 @@ def test_everyones_news_reaches_users_older_than_it_is_seen_per_user_and_goes_wi
         return [(Recipient.USER, user_id)]
 
     async def news_of(user_id, since):
-        items = await notifications.latest(mine(user_id), 100, since)
+        items = await transaction(notifications.latest, mine(user_id), 100, since)
 
         return [item for item in items if item.data.get("news_id") == news_id]
 
     async def scenario():
-        first = await notifications.add(f"news:{news_id}", event)
-        again = await notifications.add(f"news:{news_id}", event)
+        first = await notices.store(f"news:{news_id}", event)
+        again = await notices.store(f"news:{news_id}", event)
         seen = (
             await news_of(older, before),
             await news_of(newer, after),
-            await notifications.unread_count(mine(older), older, before),
+            await transaction(notifications.unread_count, mine(older), older, before),
         )
-        await notifications.mark_seen(older)
-        unread_after = await notifications.unread_count(mine(older), older, before)
-        await notifications.remove_news(news_id)
+        await notices.mark_seen(older)
+        unread_after = await transaction(notifications.unread_count, mine(older), older, before)
+        await notices.remove_news(news_id)
 
         return first, again, seen, unread_after, await news_of(older, before)
 
@@ -80,9 +81,9 @@ def test_the_bell_names_the_news_in_the_readers_language_for_accounts_older_than
         ]
 
     async def scenario():
-        await notifications.add(f"news:{news_id}", event)
+        await notices.store(f"news:{news_id}", event)
         seen = news(await feed.feed(older, "de")), news(await feed.feed(newer, "de"))
-        await notifications.remove_news(news_id)
+        await notices.remove_news(news_id)
 
         return seen, news(await feed.feed(older, "de"))
 

@@ -12,9 +12,10 @@ from prepza_common.http import http
 from notifications.config import settings
 from notifications.constants.member_emails import DIGEST_HOUR
 from notifications.integrations import smtp
-from notifications.repositories import digest_activity, notifications, sent_emails
-from notifications.services import digest, member_pages, reminders
+from notifications.repositories import digest_activity
+from notifications.services import digest, member_pages, member_sends, notices, reminders
 from tests.integration.factories import api
+from tests.integration.transactions import transaction
 
 TODAY = date(2026, 10, 8)
 
@@ -29,14 +30,14 @@ def test_a_claim_is_taken_once_even_by_two_runs_at_once(run, monkeypatch):
 
     async def scenario():
         # The second waits on the user's claim lock until the first commits.
-        held = hold_first_commit(monkeypatch, sent_emails)
+        held = hold_first_commit(monkeypatch, member_sends)
         both = await race(
             os.environ["DATABASE_URL"],
             held,
-            sent_emails.claim(ann, "digest", TODAY, 1),
-            sent_emails.claim(ann, "digest", TODAY, 1),
+            member_sends.claim(ann, "digest", TODAY, 1),
+            member_sends.claim(ann, "digest", TODAY, 1),
         )
-        tomorrow = await sent_emails.claim(ann, "digest", TODAY + timedelta(days=1), 1)
+        tomorrow = await member_sends.claim(ann, "digest", TODAY + timedelta(days=1), 1)
 
         return both, tomorrow
 
@@ -50,12 +51,12 @@ def test_a_reminder_waits_a_week_and_never_names_the_same_thing_twice(run):
     ann = user()
 
     async def scenario():
-        first = await sent_emails.claim(ann, "no_candidates", TODAY, 7, ["i1"])
-        same_week = await sent_emails.claim(
+        first = await member_sends.claim(ann, "no_candidates", TODAY, 7, ["i1"])
+        same_week = await member_sends.claim(
             ann, "no_candidates", TODAY + timedelta(days=6), 7, ["i2"]
         )
-        again = await sent_emails.claim(ann, "no_candidates", TODAY + timedelta(days=7), 7, ["i1"])
-        new = await sent_emails.claim(
+        again = await member_sends.claim(ann, "no_candidates", TODAY + timedelta(days=7), 7, ["i1"])
+        new = await member_sends.claim(
             ann, "no_candidates", TODAY + timedelta(days=7), 7, ["i1", "i2"]
         )
 
@@ -68,10 +69,10 @@ def test_a_released_claim_is_sent_by_the_next_run(run):
     ann = user()
 
     async def scenario():
-        await sent_emails.claim(ann, "no_candidates", TODAY, 7, ["i1"])
-        await sent_emails.release(ann, "no_candidates", TODAY, ["i1"])
+        await member_sends.claim(ann, "no_candidates", TODAY, 7, ["i1"])
+        await member_sends.release(ann, "no_candidates", TODAY, ["i1"])
 
-        return await sent_emails.claim(ann, "no_candidates", TODAY, 7, ["i1"])
+        return await member_sends.claim(ann, "no_candidates", TODAY, 7, ["i1"])
 
     assert run(scenario()) == ["i1"]
 
@@ -179,7 +180,7 @@ def test_the_digest_tells_yesterdays_activity_once_in_the_users_language(run, ou
     )
 
     async def scenario():
-        await notifications.add(str(uuid.uuid4()), event)
+        await notices.store(str(uuid.uuid4()), event)
         # The run at the next DIGEST_HOUR covers it, whatever the time now; a second run that
         # hour sends nothing more.
         later = now if now.hour < DIGEST_HOUR else now + timedelta(days=1)
@@ -208,21 +209,25 @@ def test_the_digest_reads_active_companies_a_page_at_a_time_in_its_window(run):
         for company_id in ids:
             # Two notifications of a company count it once.
             for _ in range(2):
-                await notifications.add(str(uuid.uuid4()), finished_at(company_id))
+                await notices.store(str(uuid.uuid4()), finished_at(company_id))
 
-        await notifications.add(
+        await notices.store(
             str(uuid.uuid4()),
             notification(
                 Recipient.COMPANY, other, NotificationKind.INTERVIEW_READY, "/", title="x"
             ),
         )
         until = datetime.now(UTC) + timedelta(seconds=1)
-        first = await digest_activity.active_companies(kinds, since, until, "", 2)
-        rest = await digest_activity.active_companies(kinds, since, until, first[-1], 2)
-        later = await digest_activity.active_companies(
-            kinds, until, until + timedelta(days=1), "", 2
+        first = await transaction(digest_activity.active_companies, kinds, since, until, "", 2)
+        rest = await transaction(
+            digest_activity.active_companies, kinds, since, until, first[-1], 2
         )
-        activity = await digest_activity.companies_activity(kinds, since, until, ids[:1])
+        later = await transaction(
+            digest_activity.active_companies, kinds, until, until + timedelta(days=1), "", 2
+        )
+        activity = await transaction(
+            digest_activity.companies_activity, kinds, since, until, ids[:1]
+        )
 
         return first, rest, later, activity
 

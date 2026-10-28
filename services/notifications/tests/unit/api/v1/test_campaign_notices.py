@@ -9,6 +9,7 @@ from prepza_common.auth.user import User
 
 from notifications.constants.campaigns import CHANGED, NOT_ACKNOWLEDGED
 from notifications.main import app
+from notifications.repositories import bulk_sends
 from notifications.repositories import campaigns as campaigns_store
 from notifications.services import campaign_sends
 
@@ -18,15 +19,21 @@ TEXTS = {"en": {"subject": "Planned downtime", "text": "Down on Sunday.", "butto
 @pytest.fixture
 def sending(monkeypatch):
     """A draft notice; what was asked of the day's limit and the sent marker."""
-    state = SimpleNamespace(kind="notices", marked=[], hits=[], outcome=uuid.uuid4())
+    state = SimpleNamespace(kind="notices", locked_kind="notices", marked=[], hits=[])
 
-    async def get(campaign_id):
+    async def get(session, campaign_id):
         return SimpleNamespace(kind=state.kind), TEXTS
 
-    async def mark_sent(campaign_id, kind, user_id, per_day):
-        state.marked.append((kind, per_day))
+    async def lock(session, campaign_id):
+        return SimpleNamespace(kind=state.locked_kind, sent_at=None)
 
-        return state.outcome
+    async def sent_since(session, kind, since):
+        state.counted = kind
+
+        return 0
+
+    async def mark_sent(session, campaign, now):
+        state.marked.append(campaign.kind)
 
     async def limit(redis, name):
         state.limit = name
@@ -40,7 +47,11 @@ def sending(monkeypatch):
         state.hits.append(name)
 
     monkeypatch.setattr(campaigns_store, "get", get)
+    monkeypatch.setattr(campaigns_store, "lock", lock)
+    monkeypatch.setattr(campaigns_store, "lock_kind", nothing)
+    monkeypatch.setattr(campaigns_store, "sent_since", sent_since)
     monkeypatch.setattr(campaigns_store, "mark_sent", mark_sent)
+    monkeypatch.setattr(bulk_sends, "add", nothing)
     monkeypatch.setattr(campaign_sends, "limit", limit)
     monkeypatch.setattr(campaign_sends, "get_redis", lambda: None)
     monkeypatch.setattr(campaign_sends, "record_hit", record_hit)
@@ -59,11 +70,11 @@ def test_a_notice_is_sent_only_once_confirmed_as_one_under_its_own_day_limit(sen
 
     asyncio.run(campaign_sends.send(uuid.uuid4(), "sam", acknowledged=True))
 
-    assert sending.marked == [("notices", 1)] and sending.limit == "NOTICES_PER_DAY"
+    assert sending.marked == ["notices"] and sending.limit == "NOTICES_PER_DAY"
 
 
 def test_a_campaign_whose_kind_changed_before_it_was_marked_sent_is_refused(sending):
-    sending.outcome = CHANGED
+    sending.locked_kind = "updates"
 
     with pytest.raises(HTTPException) as refused:
         asyncio.run(campaign_sends.send(uuid.uuid4(), "sam", acknowledged=True))

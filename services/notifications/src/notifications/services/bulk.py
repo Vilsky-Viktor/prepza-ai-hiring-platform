@@ -22,11 +22,12 @@ from notifications.constants.bulk import (
     SkipReason,
 )
 from notifications.constants.member_emails import SEND_INTERVAL_SECONDS
+from notifications.core.db import Session
 from notifications.helpers.unsubscribe import address_hash
 from notifications.integrations import library
 from notifications.integrations.redis import get_redis
 from notifications.integrations.resend import EmailRefused, ResendBusy
-from notifications.models.bulk import BulkSend
+from notifications.models.bulk import BulkRecipient, BulkSend
 from notifications.repositories import bulk_recipients, bulk_sends, suppressed
 from notifications.services import delivery
 from notifications.services.audiences import audience_of, page_of
@@ -51,7 +52,10 @@ async def prepare(send: BulkSend, until: float) -> None:
             await legal_in_bell(send.kind, send.about, user_ids)
 
         # Another run saved this page already: it goes on with the rest.
-        if not await bulk_sends.save_page(send.id, cursor, after, user_ids, done):
+        async with Session.begin() as session:
+            saved = await bulk_sends.save_page(session, send.id, cursor, after, user_ids, done)
+
+        if not saved:
             return
 
         if done:
@@ -70,9 +74,22 @@ async def prepare_now(kind: str, about: str) -> None:
     them for an audience of one page); the runs work out the rest. Never raises: the next run
     prepares a send this couldn't."""
     try:
-        await prepare(await bulk_sends.get(kind, about), until=0)
+        async with Session() as session:
+            send = await bulk_sends.get(session, kind, about)
+
+        await prepare(send, until=0)
     except Exception:
         logger.exception("Couldn't work out the recipients of %s %s yet", kind, about)
+
+
+async def stop(send_id) -> None:
+    """Finishes the send at once, so it gives no run another recipient, then skips its pending
+    recipients a batch at a time; a run sending one of them right now finishes that one first
+    (its row is locked). Safe to repeat."""
+    async with Session.begin() as session:
+        await bulk_sends.stop(session, send_id, datetime.now(UTC))
+
+    await bulk_sends.skip_pending(Session, send_id)
 
 
 async def quota_left(sent_today: int) -> int:
@@ -99,43 +116,59 @@ def skip_reason(kind: str, person: dict | None, suppressed_hashes: set[str]) -> 
 
 
 async def send_one(row: tuple, person: dict | None, hashes: set[str], campaign) -> bool:
-    """Sends one recipient's email (bulk_recipients.claimed); whether it went out. A failure is
-    tried again in a later run, up to MAX_ATTEMPTS; one Resend refuses for good fails at once.
-    Over Resend's limit, ResendBusy stops the run and the row stays pending."""
-    row_id, send_id, user_id, kind, about = row
+    """Sends one recipient's email, while its row is still pending; whether it went out. Its
+    outcome is saved after: no transaction stays open while the email goes, as one bulk run
+    works at a time (send_bulk), and Resend's idempotency key keeps a run cut off after
+    sending from sending twice. Over Resend's limit, ResendBusy stops the run and the row
+    stays pending."""
+    async with Session() as session:
+        claimed = await bulk_recipients.still_pending(session, row[0])
 
-    async with bulk_recipients.claimed(row_id) as claimed:
-        if claimed is None:
-            return False
+    if claimed is None:
+        return False
 
-        reason = skip_reason(kind, person, hashes)
+    sent = await attempt(row, claimed, person, hashes, campaign)
 
-        if reason is None and kind in CAMPAIGN_KINDS and campaign is None:
-            reason = SkipReason.STOPPED
+    async with Session.begin() as session:
+        await bulk_recipients.save(session, claimed)
 
-        if reason is not None:
-            claimed.status, claimed.reason = RecipientStatus.SKIPPED, reason
+    return sent
 
-            return False
 
-        email = email_for(kind, about, str(send_id), person, campaign)
+async def attempt(
+    row: tuple, claimed: BulkRecipient, person: dict | None, hashes: set[str], campaign
+) -> bool:
+    """Sends the email, or skips it, and leaves the outcome on `claimed`. A failure is tried
+    again in a later run, up to MAX_ATTEMPTS; one Resend refuses for good fails at once."""
+    _, send_id, user_id, kind, about = row
+    reason = skip_reason(kind, person, hashes)
 
-        try:
-            await delivery.transmit(email, f"bulk/{send_id}/{user_id}")
-        except ResendBusy:
-            raise
-        except Exception as error:
-            claimed.attempts += 1
-            claimed.reason = f"{type(error).__name__}: {error}"[:MAX_REASON_LENGTH]
+    if reason is None and kind in CAMPAIGN_KINDS and campaign is None:
+        reason = SkipReason.STOPPED
 
-            if isinstance(error, EmailRefused) or claimed.attempts >= MAX_ATTEMPTS:
-                claimed.status = RecipientStatus.FAILED
+    if reason is not None:
+        claimed.status, claimed.reason = RecipientStatus.SKIPPED, reason
 
-            logger.warning("Bulk email %s to %s failed", send_id, user_id, exc_info=True)
+        return False
 
-            return False
+    email = email_for(kind, about, str(send_id), person, campaign)
 
-        claimed.status, claimed.sent_at = RecipientStatus.SENT, datetime.now(UTC)
+    try:
+        await delivery.transmit(email, f"bulk/{send_id}/{user_id}")
+    except ResendBusy:
+        raise
+    except Exception as error:
+        claimed.attempts += 1
+        claimed.reason = f"{type(error).__name__}: {error}"[:MAX_REASON_LENGTH]
+
+        if isinstance(error, EmailRefused) or claimed.attempts >= MAX_ATTEMPTS:
+            claimed.status = RecipientStatus.FAILED
+
+        logger.warning("Bulk email %s to %s failed", send_id, user_id, exc_info=True)
+
+        return False
+
+    claimed.status, claimed.sent_at = RecipientStatus.SENT, datetime.now(UTC)
 
     return True
 
@@ -162,20 +195,28 @@ async def send_run(now: datetime) -> int:
     address or a deleted account counts. Returns how many were sent."""
     stop = deadline()
 
-    for send in await bulk_sends.unprepared():
+    async with Session() as session:
+        unprepared = await bulk_sends.unprepared(session)
+
+    for send in unprepared:
         if time.monotonic() > stop:
             break
 
         await prepare(send, stop)
 
     midnight = now.replace(hour=0, minute=0, second=0, microsecond=0)
-    left = await quota_left(await bulk_recipients.sent_since(midnight))
+
+    async with Session() as session:
+        sent_today = await bulk_recipients.sent_since(session, midnight)
+
+    left = await quota_left(sent_today)
     sent = 0
     tried = []
     loaded = {}
 
     while time.monotonic() < stop and left > sent:
-        batch = await bulk_recipients.pending(min(BULK_BATCH, left - sent), tried)
+        async with Session() as session:
+            batch = await bulk_recipients.pending(session, min(BULK_BATCH, left - sent), tried)
 
         if not batch:
             break
@@ -184,7 +225,11 @@ async def send_run(now: datetime) -> int:
             person["user_id"]: person
             for person in await library.recipients(list({row[2] for row in batch}))
         }
-        hashes = await suppressed.among([address_hash(p["email"]) for p in people.values()])
+
+        async with Session() as session:
+            hashes = await suppressed.among(
+                session, [address_hash(p["email"]) for p in people.values()]
+            )
 
         for row in batch:
             if time.monotonic() > stop:
@@ -200,10 +245,14 @@ async def send_run(now: datetime) -> int:
                 sent += 1
                 await asyncio.sleep(SEND_INTERVAL_SECONDS)
 
-    if left <= sent and await bulk_recipients.pending(1, []):
+    async with Session() as session:
+        more = left <= sent and await bulk_recipients.pending(session, 1, [])
+
+    if more:
         logger.warning("Bulk emails reached today's share of Resend's quota: the rest go tomorrow")
         await record_hit("RESEND_DAILY_LIMIT", what="bulk_email")
 
-    await bulk_sends.finish_done()
+    async with Session.begin() as session:
+        await bulk_sends.finish_done(session)
 
     return sent

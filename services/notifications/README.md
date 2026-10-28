@@ -20,9 +20,12 @@ src/notifications/
 │                           # reports, contact messages, Resend's web hooks, deletions);
 │                           # dispatch.py picks one
 ├── services/               # Sending (Resend, pacing, suppression), the bell, Slack, the
-│                           # morning emails, bulk sends, campaigns, legal notices, unsubscribes
+│                           # morning emails, bulk sends, campaigns, legal notices,
+│                           # unsubscribes, account and company deletion; each opens its
+│                           # transaction
 ├── repositories/           # Database queries: notifications, sent emails, bulk sends,
-│                           # campaigns, opt-outs, suppression, Slack, ...
+│                           # campaigns, opt-outs, suppression, Slack, ...; take the session,
+│                           # never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (emails, unsubscribe links, Slack messages); fixed
 │                           # values
@@ -31,6 +34,13 @@ src/notifications/
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
+
+Routes and handlers call services; services open the transaction (`async with
+Session.begin() as session:`) and pass it to the repositories, so an action's steps are saved
+together, and call Resend, Slack, Redis and the other services outside it. A plain read may open
+`async with Session() as session:` in the route. `tests/unit/test_layers.py` checks the imports
+and that no repository commits; batched deletions and the skipping of a stopped send's
+recipients take the session factory, each batch its own transaction.
 
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,
 `prepend_sys_path` for Alembic), so the package imports as `notifications`

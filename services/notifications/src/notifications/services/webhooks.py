@@ -1,5 +1,7 @@
 import logging
 
+from sqlalchemy.exc import IntegrityError
+
 from notifications.constants.unsubscribe import USER_SETTINGS
 from notifications.constants.webhooks import (
     CANDIDATE_KINDS,
@@ -10,13 +12,27 @@ from notifications.constants.webhooks import (
     KIND_TAG,
     UNDELIVERED_EVENTS,
 )
+from notifications.core.db import Session
 from notifications.helpers.unsubscribe import address_hash
 from notifications.integrations import companies
-from notifications.repositories import opt_outs
+from notifications.repositories import opt_outs, webhook_deliveries
+from notifications.services import outbox as outbox_service
 from notifications.services.suppression import from_webhook
 from notifications.services.unsubscribe import apply
 
 logger = logging.getLogger(__name__)
+
+
+async def record(delivery_id: str, event: dict) -> None:
+    """A Resend web hook's event, saved as an email.webhook_received event whose id stands for
+    its delivery (svix-id), so Resend sending it again keeps the one saved; then published."""
+    try:
+        async with Session.begin() as session:
+            await webhook_deliveries.record(session, delivery_id, event)
+    except IntegrityError:
+        pass
+
+    await outbox_service.flush_quietly()
 
 
 async def handle(event: dict) -> None:
@@ -48,8 +64,9 @@ async def complained(tags: dict[str, str], addresses: list[str]) -> None:
         await apply({"type": kind, "user_id": about})
 
     if kind == CANDIDATE_REMINDER_KIND and about and tags.get(COMPANY_TAG):
-        for address in addresses:
-            await opt_outs.add(address_hash(address), tags[COMPANY_TAG], about)
+        async with Session.begin() as session:
+            for address in addresses:
+                await opt_outs.add(session, address_hash(address), tags[COMPANY_TAG], about)
 
 
 async def report_undelivered(tags: dict[str, str]) -> None:

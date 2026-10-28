@@ -18,13 +18,13 @@ CONTACT = {"name": "Eve", "email": "eve@example.com", "message": "Hi", "language
 def suppressing(monkeypatch):
     state = {"added": [], "complained": [], "soft": {}}
 
-    async def add(address, reason):
+    async def add(session, address, reason):
         state["added"].append((address, reason))
 
-    async def mark_complained(send_id, user_id):
+    async def mark_complained(session, send_id, user_id):
         state["complained"].append((str(send_id), user_id))
 
-    async def add_soft(address, email_id, since):
+    async def add_soft(session, address, email_id, since):
         state["soft"].setdefault(address, set()).add(email_id)
 
         return len(state["soft"][address])
@@ -79,7 +79,7 @@ def outbox(monkeypatch):
     async def transmit(email, key):
         state["sent"].append(email.to)
 
-    async def get(address):
+    async def get(session, address):
         return object() if address in state["listed"] else None
 
     async def undelivered(invite_id):

@@ -1,4 +1,5 @@
 from notifications.constants.unsubscribe import USER_SETTINGS, UnsubscribeType
+from notifications.core.db import Session
 from notifications.helpers.unsubscribe import token_address
 from notifications.integrations import library
 from notifications.repositories import bulk_recipients, opt_outs
@@ -14,9 +15,12 @@ async def apply(payload: dict) -> None:
 
         # Counted against the last campaign of that kind the user got.
         if kind in (UnsubscribeType.UPDATES, UnsubscribeType.PROMOTIONS):
-            await bulk_recipients.mark_unsubscribed(payload["user_id"], kind)
+            async with Session.begin() as session:
+                await bulk_recipients.mark_unsubscribed(session, payload["user_id"], kind)
 
         return
 
     invite_id = payload["invite_id"] if kind == UnsubscribeType.INVITE_REMINDERS else None
-    await opt_outs.add(token_address(payload), payload["company_id"], invite_id)
+
+    async with Session.begin() as session:
+        await opt_outs.add(session, token_address(payload), payload["company_id"], invite_id)

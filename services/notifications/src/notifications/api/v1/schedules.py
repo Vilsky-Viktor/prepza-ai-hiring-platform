@@ -1,15 +1,14 @@
 import logging
 import time
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, status
 from prepza_common.auth.google import Invoker
 
-from notifications.constants.member_emails import CLEANUP_SECONDS, SENT_KEEP_DAYS
-from notifications.constants.suppression import SOFT_BOUNCE_DAYS
+from notifications.constants.member_emails import CLEANUP_SECONDS
 from notifications.integrations.resend import ResendBusy
-from notifications.repositories import sent_emails, soft_bounces
 from notifications.services import outbox as outbox_service
+from notifications.services import retention
 from notifications.services.bulk import send_bulk
 from notifications.services.digest import send_digests
 from notifications.services.reminders import send_reminders
@@ -34,8 +33,7 @@ async def reminders() -> None:
     now = datetime.now(UTC)
     until = time.monotonic() + CLEANUP_SECONDS
     await run("reminders", send_reminders)
-    await sent_emails.forget(now.date() - timedelta(days=SENT_KEEP_DAYS), until)
-    await soft_bounces.forget(now - timedelta(days=SOFT_BOUNCE_DAYS), until)
+    await retention.forget_old(now, until)
 
 
 @router.post("/bulk", status_code=status.HTTP_204_NO_CONTENT)

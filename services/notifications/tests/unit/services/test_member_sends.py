@@ -9,8 +9,8 @@ from prepza_common.events.notifications import NotificationKind, Recipient, noti
 from notifications.constants.email import AUTOMATED_HEADERS
 from notifications.constants.member_emails import CLEANUP_SECONDS
 from notifications.integrations.resend import ResendBusy
-from notifications.repositories import notifications, sent_emails, soft_bounces
-from notifications.services import digest, events, member_sends, reminders
+from notifications.repositories import sent_emails, soft_bounces
+from notifications.services import digest, events, member_sends, notices, reminders
 from tests.unit.member_world import NOW, person
 
 
@@ -28,7 +28,7 @@ def test_the_digest_goes_to_every_member_once_a_day_for_the_hours_before_this_on
 
 def test_the_catch_up_hours_digest_covers_the_same_day_and_skips_who_got_it(world, monkeypatch):
     """Its window is the morning run's: a member the first hour missed gets the same digest."""
-    claim = sent_emails.claim
+    claim = member_sends.claim
 
     async def once(user_id, kind, today, every_days, items):
         # Ann got hers in the first hour.
@@ -37,7 +37,7 @@ def test_the_catch_up_hours_digest_covers_the_same_day_and_skips_who_got_it(worl
 
         return await claim(user_id, kind, today, every_days, items)
 
-    monkeypatch.setattr(sent_emails, "claim", once)
+    monkeypatch.setattr(member_sends, "claim", once)
     sent = asyncio.run(digest.send_digests(NOW.replace(hour=10, minute=5)))
 
     assert sent == 1
@@ -117,7 +117,7 @@ def test_the_reminders_run_deletes_old_rows_only_until_its_cleanup_deadline(
 ):
     deadlines = []
 
-    async def forget(before, until):
+    async def forget(sessions, before, until):
         deadlines.append(until)
 
     monkeypatch.setattr(sent_emails, "forget", forget)
@@ -139,7 +139,7 @@ def test_a_failed_top_up_emails_the_companys_owners_and_admins_at_once(world, mo
     async def nothing(*args):
         return None
 
-    monkeypatch.setattr(notifications, "add", stored)
+    monkeypatch.setattr(notices, "store", stored)
     monkeypatch.setattr(events, "announce", nothing)
     monkeypatch.setattr(events.slack, "deliver", nothing)
     event = notification(Recipient.COMPANY, "c1", NotificationKind.AUTO_TOP_UP_FAILED, "/top-up")
@@ -162,7 +162,7 @@ def test_other_notifications_email_nobody(world, monkeypatch):
     async def nothing(*args):
         return None
 
-    monkeypatch.setattr(notifications, "add", stored)
+    monkeypatch.setattr(notices, "store", stored)
     monkeypatch.setattr(events, "announce", nothing)
     monkeypatch.setattr(events.slack, "deliver", nothing)
     event = notification(

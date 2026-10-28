@@ -51,7 +51,7 @@ class BulkSend(Base):
 
 class BulkRecipient(Base):
     """One user a bulk send goes to, once: (send_id, user_id) is unique, and each row is claimed
-    under a lock while it's sent (storage/bulk_recipients.py). `status` is a RecipientStatus,
+    while it's pending (services/bulk.py send_one). `status` is a RecipientStatus,
     `reason` why it was skipped or failed. A spam complaint or an unsubscribe from the email is
     marked on it, for the campaign's counts."""
 

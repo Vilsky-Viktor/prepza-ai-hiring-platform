@@ -1,5 +1,4 @@
 import asyncio
-from contextlib import asynccontextmanager
 from datetime import UTC, datetime
 from types import SimpleNamespace
 
@@ -52,7 +51,7 @@ def store(monkeypatch):
 
     state.add = add
 
-    async def pending(limit, skip):
+    async def pending(session, limit, skip):
         found = [
             (row.id, SEND, row.user_id, state.kind, state.about)
             for row in state.rows.values()
@@ -61,27 +60,22 @@ def store(monkeypatch):
 
         return found[:limit]
 
-    @asynccontextmanager
-    async def claimed(row_id):
+    async def still_pending(session, row_id):
         row = state.rows[row_id]
-        saved = vars(row).copy()
 
         if row_id in state.taken or row.status != "pending":
-            yield None
+            return None
 
-            return
+        # A copy, as a row read in a session that's closed again.
+        return SimpleNamespace(**vars(row))
 
-        try:
-            yield row
-        except BaseException:
-            vars(row).update(saved)
-
-            raise
+    async def save(session, row):
+        vars(state.rows[row.id]).update(vars(row))
 
     async def recipients(ids):
         return [state.people[user_id] for user_id in ids if user_id in state.people]
 
-    async def among(hashes):
+    async def among(session, hashes):
         return {address for address in hashes if address in state.suppressed}
 
     async def transmit(email, key):
@@ -94,25 +88,26 @@ def store(monkeypatch):
         state.sent.append(email)
         state.keys.append(key)
 
-    async def get_campaign(campaign_id):
+    async def get_campaign(session, campaign_id):
         return SimpleNamespace(link=None), TEXTS
 
     async def nothing(*args):
         return []
 
-    async def sent_since(since):
+    async def sent_since(session, since):
         return state.sent_today
 
     async def no_wait(_seconds):
         return None
 
-    async def finish_done():
+    async def finish_done(session):
         return None
 
     monkeypatch.setattr(bulk_sends, "unprepared", nothing)
     monkeypatch.setattr(bulk_sends, "finish_done", finish_done)
     monkeypatch.setattr(bulk_recipients, "pending", pending)
-    monkeypatch.setattr(bulk_recipients, "claimed", claimed)
+    monkeypatch.setattr(bulk_recipients, "still_pending", still_pending)
+    monkeypatch.setattr(bulk_recipients, "save", save)
     monkeypatch.setattr(bulk_recipients, "sent_since", sent_since)
     monkeypatch.setattr(bulk.library, "recipients", recipients)
     monkeypatch.setattr(suppressed, "among", among)
@@ -245,7 +240,7 @@ def test_a_legal_notice_goes_whatever_the_settings(store):
 
 
 def test_a_campaign_deleted_while_sending_is_stopped_for_the_rest(store, monkeypatch):
-    async def gone(campaign_id):
+    async def gone(session, campaign_id):
         return None
 
     monkeypatch.setattr(campaigns, "get", gone)

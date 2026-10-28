@@ -1,6 +1,7 @@
 import logging
 import secrets
 import time
+from datetime import UTC, datetime
 from urllib.parse import urlencode
 
 import httpx
@@ -22,12 +23,13 @@ from notifications.constants.slack import (
     SLACK_STATE_PURPOSE,
     SLACK_STATE_SECONDS,
 )
+from notifications.core.db import Session
 from notifications.helpers.slack import message, read_state, signed_state, token_hash
 from notifications.integrations import companies, slack
 from notifications.integrations.redis import get_redis
-from notifications.repositories import notifications
 from notifications.repositories import slack as storage
 from notifications.schemas.slack import SlackOut
+from notifications.services import notices
 from notifications.services import outbox as outbox_service
 from notifications.services.feed import announce
 
@@ -41,7 +43,9 @@ def available() -> bool:
 
 
 async def overview(company_id: str) -> SlackOut:
-    found = await storage.get(company_id)
+    async with Session() as session:
+        found = await storage.get(session, company_id)
+
     kinds = [str(kind) for kind in SLACK_KINDS]
 
     if found is None:
@@ -110,18 +114,21 @@ async def finish(code: str | None, state: str, error: str | None) -> str:
 
         return f"{page}?slack=failed"
 
-    earlier = await storage.get(company_id)
     key = settings.slack_encryption_key
-    await storage.connect(
-        company_id,
-        hook["team"],
-        hook["channel"],
-        encrypt(key, hook["url"]),
-        encrypt(key, hook["token"]),
-        token_hash(hook["token"]),
-        earlier.kinds if earlier else [str(kind) for kind in SLACK_DEFAULT_KINDS],
-        user_id,
-    )
+
+    async with Session.begin() as session:
+        earlier = await storage.get(session, company_id)
+        await storage.connect(
+            session,
+            company_id,
+            hook["team"],
+            hook["channel"],
+            encrypt(key, hook["url"]),
+            encrypt(key, hook["token"]),
+            token_hash(hook["token"]),
+            earlier.kinds if earlier else [str(kind) for kind in SLACK_DEFAULT_KINDS],
+            user_id,
+        )
 
     await outbox_service.flush_quietly()
 
@@ -132,11 +139,14 @@ async def finish(code: str | None, state: str, error: str | None) -> str:
 
 
 async def set_kinds(company_id: str, kinds: list[str], user_id: str) -> None:
-    if await storage.get(company_id) is None:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Slack isn't connected")
-
     chosen = [kind for kind in map(str, SLACK_KINDS) if kind in kinds]
-    await storage.set_kinds(company_id, chosen, user_id)
+
+    async with Session.begin() as session:
+        if await storage.get(session, company_id) is None:
+            raise HTTPException(status.HTTP_404_NOT_FOUND, "Slack isn't connected")
+
+        await storage.set_kinds(session, company_id, chosen, user_id)
+
     await outbox_service.flush_quietly()
 
 
@@ -145,17 +155,26 @@ async def remove_app(sealed_token: str) -> None:
     company reconnecting to it) the same token, and revoking it removes the app for all of them."""
     token = decrypt(settings.slack_encryption_key, sealed_token)
 
-    if token and not await storage.token_in_use(token_hash(token)):
+    if not token:
+        return
+
+    async with Session() as session:
+        in_use = await storage.token_in_use(session, token_hash(token))
+
+    if not in_use:
         await slack.revoke(token)
 
 
 async def disconnect(company_id: str, user_id: str | None = None) -> None:
     """Removes the channel, then prepza's app from the workspace (as far as Slack answers) unless
     another company still uses it. A member's (`user_id`) goes to the company's action log."""
-    found = await storage.get(company_id)
+    async with Session.begin() as session:
+        found = await storage.get(session, company_id)
+
+        if found is not None:
+            await storage.remove(session, company_id, user_id)
 
     if found is not None:
-        await storage.remove(company_id, user_id)
         await outbox_service.flush_quietly()
         await remove_app(found.token)
 
@@ -172,7 +191,10 @@ async def deliver(event: dict, key: str) -> None:
         return
 
     company_id = event["recipient_id"]
-    found = await storage.connected(company_id)
+
+    async with Session() as session:
+        found = await storage.connected(session, company_id)
+
     text = message(event, settings.site_url)
 
     if found is None or event.get("kind") not in found.kinds or text is None:
@@ -193,7 +215,10 @@ async def deliver(event: dict, key: str) -> None:
         return
 
     # Claimed before posting, so two deliveries of one event at once post it once.
-    if not await storage.claim(key):
+    async with Session.begin() as session:
+        claimed = await storage.claim(session, key, datetime.now(UTC))
+
+    if not claimed:
         return
 
     try:
@@ -205,14 +230,18 @@ async def deliver(event: dict, key: str) -> None:
             "Slack refused a %s notification for %s: %s", event["kind"], company_id, refused.error
         )
     except Exception:
-        await storage.release(key)
+        async with Session.begin() as session:
+            await storage.release(session, key)
 
         raise
 
 
 async def stop(company_id: str) -> None:
     """Marks the company's channel for reconnecting; told once when it stops working."""
-    if await storage.mark_broken(company_id):
+    async with Session.begin() as session:
+        broken = await storage.mark_broken(session, company_id)
+
+    if broken:
         await stopped(company_id)
 
 
@@ -229,7 +258,7 @@ async def stopped(company_id: str) -> None:
     )
 
     try:
-        await notifications.add(f"connection_broken:{secrets.token_hex(16)}", data)
+        await notices.store(f"connection_broken:{secrets.token_hex(16)}", data)
         await announce(Recipient.COMPANY, company_id)
     except Exception:
         logger.exception("Couldn't tell company %s its Slack channel stopped working", company_id)

@@ -26,6 +26,7 @@ NEWS_LINK = "/news#{news_id}"
 ONE_A_DAY = (
     "Today's limit of campaigns of this kind ({limit}) is reached. Send the next one tomorrow."
 )
+NOT_FOUND = "Not found"
 ALREADY_SENT = "This campaign was already sent, so it can't be changed."
 NOT_SENT = "This campaign hasn't been sent."
 CHANGED = "This campaign's kind was changed meanwhile. Check it and send it again."

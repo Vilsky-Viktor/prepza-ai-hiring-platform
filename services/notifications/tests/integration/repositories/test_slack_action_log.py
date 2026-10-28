@@ -9,6 +9,7 @@ from notifications.models.outbox import OutboxEvent
 from notifications.repositories import slack as storage
 from tests.integration.api.v1.test_slack import connect
 from tests.integration.factories import company
+from tests.integration.transactions import transaction
 
 
 async def logged(company_id) -> list[dict]:
@@ -31,11 +32,11 @@ def test_a_members_slack_actions_reach_the_action_log_through_the_outbox(run):
 
     async def scenario():
         await connect(company_id, user_id="ann")
-        await storage.set_kinds(company_id, ["interview_ready"], "bob")
-        await storage.remove(company_id, "ann")
+        await transaction(storage.set_kinds, company_id, ["interview_ready"], "bob")
+        await transaction(storage.remove, company_id, "ann")
         # No channel: nothing changed, nothing logged.
-        await storage.set_kinds(other, ["interview_ready"], "bob")
-        await storage.remove(other, "bob")
+        await transaction(storage.set_kinds, other, ["interview_ready"], "bob")
+        await transaction(storage.remove, other, "bob")
 
         return await logged(company_id), await logged(other)
 

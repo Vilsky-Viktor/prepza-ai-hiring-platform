@@ -7,8 +7,7 @@ from prepza_common.config.constants import WEBHOOK_SIGNATURE_REFUSED
 from notifications.config import settings
 from notifications.constants.webhooks import WEBHOOK_FIELDS, WEBHOOK_TOLERANCE_SECONDS
 from notifications.helpers.webhooks import signature_valid
-from notifications.repositories import webhook_deliveries
-from notifications.services import outbox as outbox_service
+from notifications.services import webhooks
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/webhooks", tags=["webhooks"])
@@ -39,5 +38,4 @@ async def resend_webhook(request: Request) -> None:
         "type": event.get("type"),
         "data": {key: data[key] for key in WEBHOOK_FIELDS if key in data},
     }
-    await webhook_deliveries.record(request.headers["svix-id"], kept)
-    await outbox_service.flush_quietly()
+    await webhooks.record(request.headers["svix-id"], kept)

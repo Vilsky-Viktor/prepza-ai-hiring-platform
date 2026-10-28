@@ -27,6 +27,7 @@ from notifications.constants.notifications import (
     STREAM_SLOT_SECONDS,
     STREAMS_LIMIT,
 )
+from notifications.core.db import Session
 from notifications.integrations import companies, library
 from notifications.integrations.redis import get_redis
 from notifications.integrations.subscription import listening
@@ -107,13 +108,14 @@ async def in_language(items: list[NotificationOut], language: str) -> list[Notif
 async def feed(user_id: str, language: str, fresh: bool = False) -> FeedOut:
     recipients, _ = await recipients_of(user_id, fresh)
     since = await account_created(user_id)
-    items = await notifications.latest(recipients, DROPDOWN_LIMIT, since)
+
+    async with Session() as session:
+        items = await notifications.latest(session, recipients, DROPDOWN_LIMIT, since)
+        unread = await notifications.unread_count(session, recipients, user_id, since)
+
     shown = [NotificationOut.model_validate(item) for item in items]
 
-    return FeedOut(
-        items=await in_language(shown, language),
-        unread=await notifications.unread_count(recipients, user_id, since),
-    )
+    return FeedOut(items=await in_language(shown, language), unread=unread)
 
 
 async def announce(recipient: str, recipient_id: str) -> None:

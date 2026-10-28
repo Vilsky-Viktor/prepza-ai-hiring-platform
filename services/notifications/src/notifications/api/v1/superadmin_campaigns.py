@@ -16,7 +16,7 @@ from notifications.schemas.campaigns import (
     RecipientsOut,
     SendIn,
 )
-from notifications.services import campaign_sends, campaigns
+from notifications.services import campaign_sends, campaign_views, campaigns
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +29,7 @@ router = APIRouter(prefix="/superadmin/campaigns", tags=["superadmin"])
 @router.get("")
 async def list_campaigns(superadmin: SuperadminUser, page: PageParams) -> list[CampaignRowOut]:
     """Newest first, with each sent one's counts."""
-    return await campaigns.list_campaigns(page.offset, page.limit)
+    return await campaign_views.list_campaigns(page.offset, page.limit)
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
@@ -52,7 +52,7 @@ async def campaign_from_news(news_id: UUID, superadmin: SuperadminUser) -> Campa
 
 @router.get("/{campaign_id}")
 async def get_campaign(campaign_id: UUID, superadmin: SuperadminUser) -> CampaignOut:
-    return await campaigns.get(campaign_id)
+    return await campaign_views.get(campaign_id)
 
 
 @router.put("/{campaign_id}")

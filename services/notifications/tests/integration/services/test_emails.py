@@ -7,13 +7,14 @@ import pytest
 from prepza_common.ai.ai_constants import LIMIT_HIT
 from prepza_common.http import http
 
-from notifications.api.v1 import webhooks as webhook_routes
 from notifications.config import settings
 from notifications.helpers.member_emails import digest_email
 from notifications.helpers.unsubscribe import address_hash
 from notifications.repositories import opt_outs
 from notifications.services import delivery
+from notifications.services import outbox as outbox_service
 from tests.integration.factories import api, push, receive, signed
+from tests.integration.transactions import transaction
 
 SECRET = "whsec_" + base64.b64encode(b"test-webhook-key").decode()
 INVITE_ID = "6f1c2c1e-0000-4000-8000-000000000001"
@@ -71,7 +72,7 @@ def pushed_back(monkeypatch):
     async def unpublished():
         return None
 
-    monkeypatch.setattr(webhook_routes.outbox_service, "flush_quietly", unpublished)
+    monkeypatch.setattr(outbox_service, "flush_quietly", unpublished)
 
 
 def post_events(run, *pushes) -> list[int]:
@@ -208,8 +209,8 @@ def test_a_spam_complaint_on_a_reminder_stops_only_that_invites_reminders(
         hashed = address_hash(address)
 
         return (
-            await opt_outs.opted_out(hashed, company, INVITE_ID),
-            await opt_outs.opted_out(hashed, company),
+            await transaction(opt_outs.opted_out, hashed, company, INVITE_ID),
+            await transaction(opt_outs.opted_out, hashed, company),
         )
 
     assert run(scenario()) == (True, False)

@@ -3,7 +3,9 @@ import uuid
 from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
 from notifications.repositories import notifications
+from notifications.services import notices
 from tests.integration.factories import api, company, finished, push
+from tests.integration.transactions import transaction
 
 
 def test_a_deleted_companys_notifications_go_and_none_come_after(run):
@@ -11,8 +13,8 @@ def test_a_deleted_companys_notifications_go_and_none_come_after(run):
     deleted = push("company.deleted", {"company_id": company_id}, message_id="m-del")
 
     async def scenario():
-        await notifications.add(str(uuid.uuid4()), finished(company_id, email="a@x.com"))
-        await notifications.add(str(uuid.uuid4()), finished(other_id, email="b@x.com"))
+        await notices.store(str(uuid.uuid4()), finished(company_id, email="a@x.com"))
+        await notices.store(str(uuid.uuid4()), finished(other_id, email="b@x.com"))
 
         async with api() as client:
             # Pub/Sub may deliver it twice.
@@ -23,9 +25,13 @@ def test_a_deleted_companys_notifications_go_and_none_come_after(run):
         late = notification(
             Recipient.COMPANY, company_id, NotificationKind.INTERVIEW_READY, "/x", title="T"
         )
-        stored_late = await notifications.add(str(uuid.uuid4()), late)
-        left = await notifications.latest([(Recipient.COMPANY, company_id)], limit=None)
-        others = await notifications.latest([(Recipient.COMPANY, other_id)], limit=None)
+        stored_late = await notices.store(str(uuid.uuid4()), late)
+        left = await transaction(
+            notifications.latest, [(Recipient.COMPANY, company_id)], limit=None
+        )
+        others = await transaction(
+            notifications.latest, [(Recipient.COMPANY, other_id)], limit=None
+        )
 
         return codes, stored_late, left, others
 
@@ -47,7 +53,9 @@ def test_an_erased_candidate_leaves_only_that_companys_bell_and_a_deleted_accoun
     )
 
     async def latest(recipient_id):
-        found = await notifications.latest([(Recipient.COMPANY, recipient_id)], limit=None)
+        found = await transaction(
+            notifications.latest, [(Recipient.COMPANY, recipient_id)], limit=None
+        )
 
         return [item.data["email"] for item in found]
 
@@ -57,14 +65,14 @@ def test_an_erased_candidate_leaves_only_that_companys_bell_and_a_deleted_accoun
             (company_id, "stays@x.com"),
             (other_id, "gone@x.com"),
         ]:
-            await notifications.add(str(uuid.uuid4()), finished(recipient_id, email=email))
+            await notices.store(str(uuid.uuid4()), finished(recipient_id, email=email))
 
         async with api() as client:
             code = (await client.post("/internal/events", json=removed)).status_code
 
         after_erasure = (await latest(company_id), await latest(other_id))
         # The candidate deletes their prepza account: every company forgets them.
-        await notifications.remove_candidate("Gone@x.com")
+        await transaction(notifications.remove_candidate, "Gone@x.com")
 
         return code, after_erasure, await latest(other_id)
 
@@ -92,10 +100,10 @@ def test_a_deleted_account_takes_the_owners_notice_that_it_joined(run):
         )
 
     async def scenario():
-        await notifications.add(str(uuid.uuid4()), joined("gone@x.com"))
-        await notifications.add(str(uuid.uuid4()), joined("stays@x.com"))
-        await notifications.remove_member("Gone@x.com")
-        left = await notifications.latest([(Recipient.USER, owner)], limit=None)
+        await notices.store(str(uuid.uuid4()), joined("gone@x.com"))
+        await notices.store(str(uuid.uuid4()), joined("stays@x.com"))
+        await transaction(notifications.remove_member, "Gone@x.com")
+        left = await transaction(notifications.latest, [(Recipient.USER, owner)], limit=None)
 
         return [item.data["email"] for item in left]
 
@@ -124,14 +132,16 @@ def test_a_deleted_interviews_candidates_leave_the_bell_and_its_other_news_stays
             about(NotificationKind.INTERVIEW_CANCELLED, page, title="Backend"),
             about(NotificationKind.CANDIDATE_FINISHED, other_page, email="stays@x.com"),
         ):
-            await notifications.add(str(uuid.uuid4()), item)
+            await notices.store(str(uuid.uuid4()), item)
 
         async with api() as client:
             codes = [
                 (await client.post("/internal/events", json=deleted)).status_code for _ in "ab"
             ]
 
-        left = await notifications.latest([(Recipient.COMPANY, company_id)], limit=None)
+        left = await transaction(
+            notifications.latest, [(Recipient.COMPANY, company_id)], limit=None
+        )
 
         return codes, sorted(item.data.get("email") or item.kind for item in left)
 

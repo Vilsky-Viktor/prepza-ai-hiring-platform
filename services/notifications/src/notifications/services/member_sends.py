@@ -3,7 +3,7 @@ import hashlib
 import logging
 import time
 from collections.abc import Callable
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta
 
 from notifications.constants.member_emails import (
     LAST_RUN_MINUTE,
@@ -11,6 +11,7 @@ from notifications.constants.member_emails import (
     SEND_INTERVAL_SECONDS,
     MemberEmail,
 )
+from notifications.core.db import Session
 from notifications.models.email import Email
 from notifications.repositories import sent_emails
 from notifications.services import delivery
@@ -40,6 +41,36 @@ def stopped(kind: MemberEmail) -> None:
     logger.info("Stopped sending %s emails for now; the next run goes on", kind)
 
 
+async def claim(
+    user_id: str, kind: str, today: date, every_days: int, items: list[str] = ()
+) -> list[str] | None:
+    """Claims sending the `kind` email to the user today. None when one went out within the
+    last `every_days` days, or when a reminder's `items` were all named before; otherwise the
+    items not named yet, now marked as named. One user's claims of a kind run one at a time
+    (a lock), so two runs at once can't both claim."""
+    async with Session.begin() as session:
+        await sent_emails.lock(session, user_id, kind)
+
+        if await sent_emails.sent_after(session, user_id, kind, today - timedelta(days=every_days)):
+            return None
+
+        named = await sent_emails.named(session, user_id, kind, list(items))
+        new = [item for item in items if item not in named]
+
+        if items and not new:
+            return None
+
+        await sent_emails.mark(session, user_id, kind, today, new)
+
+    return new
+
+
+async def release(user_id: str, kind: str, today: date, items: list[str]) -> None:
+    """Takes back a claim whose email couldn't be sent, so a later run sends it."""
+    async with Session.begin() as session:
+        await sent_emails.release(session, user_id, kind, today, items)
+
+
 async def send_once(
     kind: MemberEmail, today: date, every_days: int, jobs: list[Job], until: float
 ) -> int:
@@ -55,7 +86,7 @@ async def send_once(
 
             break
 
-        new = await sent_emails.claim(user_id, kind, today, every_days, items)
+        new = await claim(user_id, kind, today, every_days, items)
 
         if new is None:
             continue
@@ -68,7 +99,7 @@ async def send_once(
         try:
             await delivery.send(email, f"{kind}/{user_id}/{content}")
         except Exception:
-            await sent_emails.release(user_id, kind, today, new)
+            await release(user_id, kind, today, new)
 
             raise
 

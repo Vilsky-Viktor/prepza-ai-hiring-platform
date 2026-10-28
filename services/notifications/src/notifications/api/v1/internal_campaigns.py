@@ -1,11 +1,10 @@
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException, status
-from prepza_common.config.constants import DEFAULT_LANGUAGE
+from fastapi import APIRouter, status
 
 from notifications.api.dependencies import ServiceCaller
-from notifications.repositories import campaigns
 from notifications.schemas.campaigns import CampaignSourceOut, CampaignTranslationsIn
+from notifications.services import campaign_views, campaigns
 
 # Campaigns' translations, written by generation (its translate-campaign job).
 router = APIRouter(prefix="/internal/campaigns", tags=["internal"])
@@ -14,15 +13,7 @@ router = APIRouter(prefix="/internal/campaigns", tags=["internal"])
 @router.get("/{campaign_id}")
 async def get_campaign_source(campaign_id: UUID, caller: ServiceCaller) -> CampaignSourceOut:
     """Its English texts and the languages it lacks; none once it's sent."""
-    found = await campaigns.get(campaign_id)
-
-    if found is None:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, "Not found")
-
-    campaign, texts = found
-    missing = [code for code in campaigns.OTHER_LANGUAGES if code not in texts]
-
-    return CampaignSourceOut(**texts[DEFAULT_LANGUAGE], missing=[] if campaign.sent_at else missing)
+    return await campaign_views.source(campaign_id)
 
 
 @router.put("/{campaign_id}/translations", status_code=status.HTTP_204_NO_CONTENT)

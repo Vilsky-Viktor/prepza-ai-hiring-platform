@@ -15,6 +15,7 @@ from notifications.main import app
 from notifications.models.opt_outs import CandidateOptOut
 from notifications.repositories import opt_outs
 from tests.integration.factories import api
+from tests.integration.transactions import transaction
 
 
 @pytest.fixture
@@ -64,7 +65,7 @@ def test_stopping_twice_stores_one_stop_and_lifting_it_keeps_the_candidates_own(
 
     async def scenario():
         # One invite's reminders, stopped from an email's link.
-        await opt_outs.add(address, acme, str(uuid.uuid4()))
+        await transaction(opt_outs.add, address, acme, str(uuid.uuid4()))
 
         async with api() as client:
             body = {"email": email.upper(), "company_id": acme, "stopped": True}
@@ -77,7 +78,7 @@ def test_stopping_twice_stores_one_stop_and_lifting_it_keeps_the_candidates_own(
                 through = await client.put("/superadmin/candidate-opt-outs", json=body)
 
             # The candidate stops every email themselves; the superadmin can't lift that.
-            await opt_outs.add(address, acme)
+            await transaction(opt_outs.add, address, acme)
             kept = await client.put("/superadmin/candidate-opt-outs", json=body)
 
         return stops, stored, through.json(), kept.json(), await count()

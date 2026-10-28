@@ -8,6 +8,7 @@ from notifications.constants.member_emails import (
     MemberEmail,
 )
 from notifications.constants.unsubscribe import DIGEST_KINDS
+from notifications.core.db import Session
 from notifications.helpers.member_emails import digest_email
 from notifications.helpers.member_selection import digest_sections
 from notifications.integrations import companies, library
@@ -27,9 +28,10 @@ async def send_digests(now: datetime) -> int:
     stop = deadline()
 
     async def read_page(after: str) -> tuple[list[str], str]:
-        found = await digest_activity.active_companies(
-            DIGEST_KINDS, since, until, after, MEMBER_PAGE
-        )
+        async with Session() as session:
+            found = await digest_activity.active_companies(
+                session, DIGEST_KINDS, since, until, after, MEMBER_PAGE
+            )
 
         return found, found[-1] if found else after
 
@@ -38,7 +40,12 @@ async def send_digests(now: datetime) -> int:
         user_ids = sorted({member["user_id"] for company in found for member in company["members"]})
         theirs = await their_companies(user_ids)
         everywhere = await companies.members(theirs)
-        activity = await digest_activity.companies_activity(DIGEST_KINDS, since, until, theirs)
+
+        async with Session() as session:
+            activity = await digest_activity.companies_activity(
+                session, DIGEST_KINDS, since, until, theirs
+            )
+
         site = settings.site_url.rstrip("/")
         jobs = []
 

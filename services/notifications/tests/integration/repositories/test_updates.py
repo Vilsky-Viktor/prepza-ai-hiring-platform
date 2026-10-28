@@ -8,6 +8,7 @@ from notifications.core.db import Session
 from notifications.models.notifications import Notification
 from notifications.repositories import notifications, updates
 from tests.integration.factories import company
+from tests.integration.transactions import transaction
 
 SINCE = datetime(2026, 10, 17, 9, tzinfo=UTC)
 UNTIL = SINCE + timedelta(days=1)
@@ -54,7 +55,7 @@ def test_updates_are_the_companies_notifications_between_the_times_newest_first(
         await stored(Recipient.USER, user, SINCE + timedelta(hours=3))
 
         try:
-            rows = await updates.of_companies([first, second], SINCE, UNTIL)
+            rows = await transaction(updates.of_companies, [first, second], SINCE, UNTIL)
         finally:
             await forget(first, second, other, user)
 
@@ -78,9 +79,9 @@ def test_reading_updates_marks_nothing_as_seen(run):
         await stored(Recipient.COMPANY, shared, SINCE + timedelta(hours=2))
 
         try:
-            before = await notifications.unread_count(recipients, user)
-            read = await updates.of_companies([shared], SINCE, UNTIL)
-            after = await notifications.unread_count(recipients, user)
+            before = await transaction(notifications.unread_count, recipients, user)
+            read = await transaction(updates.of_companies, [shared], SINCE, UNTIL)
+            after = await transaction(notifications.unread_count, recipients, user)
         finally:
             await forget(shared)
 

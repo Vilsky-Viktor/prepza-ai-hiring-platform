@@ -11,7 +11,7 @@ from sqlalchemy import func, select, update
 from notifications.constants.notifications import GROUP_HOURS
 from notifications.core.db import Session
 from notifications.models.notifications import Notification, Received
-from notifications.repositories import notifications
+from notifications.services import notices
 from tests.integration.factories import api, company, finished, push
 
 
@@ -86,11 +86,11 @@ def test_candidates_finishing_one_test_add_up_in_one_notification(run):
 
     async def scenario():
         for email in ["a@x.com", "b@x.com", "c@x.com"]:
-            await notifications.add(str(uuid.uuid4()), finished(company_id, email=email))
+            await notices.store(str(uuid.uuid4()), finished(company_id, email=email))
 
         # A retried event of the group doesn't count twice.
-        await notifications.add("retried", finished(company_id, email="d@x.com"))
-        await notifications.add("retried", finished(company_id, email="d@x.com"))
+        await notices.store("retried", finished(company_id, email="d@x.com"))
+        await notices.store("retried", finished(company_id, email="d@x.com"))
 
         return await rows(company_id)
 
@@ -104,10 +104,10 @@ def test_another_test_or_an_ungrouped_kind_makes_its_own_notification(run):
     ready = notification("company", company_id, NotificationKind.INTERVIEW_READY, "/x", title="T")
 
     async def scenario():
-        await notifications.add(str(uuid.uuid4()), finished(company_id, "Backend"))
-        await notifications.add(str(uuid.uuid4()), finished(company_id, "Frontend"))
-        await notifications.add(str(uuid.uuid4()), ready)
-        await notifications.add(str(uuid.uuid4()), ready)
+        await notices.store(str(uuid.uuid4()), finished(company_id, "Backend"))
+        await notices.store(str(uuid.uuid4()), finished(company_id, "Frontend"))
+        await notices.store(str(uuid.uuid4()), ready)
+        await notices.store(str(uuid.uuid4()), ready)
 
         return await rows(company_id)
 
@@ -125,7 +125,7 @@ def test_a_group_older_than_the_window_starts_a_new_one(run):
     company_id = company()
 
     async def scenario():
-        await notifications.add(str(uuid.uuid4()), finished(company_id))
+        await notices.store(str(uuid.uuid4()), finished(company_id))
 
         async with Session() as session:
             await session.execute(
@@ -135,8 +135,8 @@ def test_a_group_older_than_the_window_starts_a_new_one(run):
             )
             await session.commit()
 
-        await notifications.add(str(uuid.uuid4()), finished(company_id))
-        await notifications.add(str(uuid.uuid4()), finished(company_id))
+        await notices.store(str(uuid.uuid4()), finished(company_id))
+        await notices.store(str(uuid.uuid4()), finished(company_id))
 
         return await rows(company_id)
 

@@ -11,6 +11,7 @@ from notifications.constants.legal_notices import (
     TOO_LATE,
     LegalNoticeState,
 )
+from notifications.core.db import Session
 from notifications.repositories import bulk_recipients, bulk_sends
 from notifications.services.bulk import prepare_now
 from notifications.services.bulk_content import document_of
@@ -27,10 +28,10 @@ def kind_of(document: str) -> str:
 
 async def states() -> list[dict]:
     """Each document's current version, and where its notice stands."""
-    asked = {
-        (document_of(send.kind), send.about): send
-        for send in await bulk_sends.of_kinds(list(LEGAL_KINDS))
-    }
+    async with Session() as session:
+        sends = await bulk_sends.of_kinds(session, list(LEGAL_KINDS))
+
+    asked = {(document_of(send.kind), send.about): send for send in sends}
     today = datetime.now(UTC).date()
     earliest = earliest_version(today)
     found = []
@@ -64,7 +65,10 @@ async def ask(document: str, user_id: str) -> None:
     if version < earliest_version(datetime.now(UTC).date()):
         raise HTTPException(status.HTTP_409_CONFLICT, TOO_LATE)
 
-    if await bulk_sends.start(kind_of(document), version, user_id) is None:
+    async with Session.begin() as session:
+        started = await bulk_sends.start(session, kind_of(document), version, user_id)
+
+    if started is None:
         raise HTTPException(status.HTTP_409_CONFLICT, ALREADY_ASKED)
 
     await prepare_now(kind_of(document), version)
@@ -76,13 +80,16 @@ async def upcoming(user_id: str) -> list[dict]:
     today = datetime.now(UTC).date().isoformat()
     found = []
 
-    for send in await bulk_sends.of_kinds(list(LEGAL_KINDS)):
-        document = document_of(send.kind)
+    async with Session() as session:
+        for send in await bulk_sends.of_kinds(session, list(LEGAL_KINDS)):
+            document = document_of(send.kind)
 
-        if send.about <= today or LEGAL_VERSIONS.get(document) != send.about:
-            continue
+            if send.about <= today or LEGAL_VERSIONS.get(document) != send.about:
+                continue
 
-        if document in EVERYONE or await bulk_recipients.is_recipient(send.id, user_id):
-            found.append({"document": document, "version": send.about})
+            if document in EVERYONE or await bulk_recipients.is_recipient(
+                session, send.id, user_id
+            ):
+                found.append({"document": document, "version": send.about})
 
     return found

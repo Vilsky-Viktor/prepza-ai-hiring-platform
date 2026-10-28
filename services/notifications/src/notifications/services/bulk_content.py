@@ -6,10 +6,12 @@ from prepza_common.events.notifications import EVERYONE, Recipient
 
 from notifications.config import settings
 from notifications.constants.bulk import CAMPAIGN_KINDS, BulkKind
+from notifications.core.db import Session
 from notifications.helpers.campaign_emails import campaign_email
 from notifications.helpers.member_emails import legal_email
 from notifications.models.email import Email
-from notifications.repositories import campaigns, notifications
+from notifications.repositories import campaigns
+from notifications.services import notices
 from notifications.services.feed import announce
 
 
@@ -38,13 +40,14 @@ async def legal_in_bell(kind: str, version: str, user_ids: list[str]) -> None:
             "data": data,
         }
 
-        if await notifications.add(f"{kind}:{version}:{recipient_id}", event):
+        if await notices.store(f"{kind}:{version}:{recipient_id}", event):
             await announce(str(recipient), recipient_id)
 
 
 async def campaign_texts(about: str) -> tuple[str | None, dict[str, dict]] | None:
     """A campaign's button link and texts by language; None once it's deleted."""
-    found = await campaigns.get(uuid.UUID(about))
+    async with Session() as session:
+        found = await campaigns.get(session, uuid.UUID(about))
 
     if found is None:
         return None

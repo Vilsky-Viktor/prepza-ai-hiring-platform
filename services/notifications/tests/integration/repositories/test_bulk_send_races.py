@@ -9,19 +9,20 @@ from prepza_common.db.lock_waits import hold_first_commit, race
 
 from notifications.constants.bulk import BulkKind
 from notifications.repositories import bulk_sends
+from tests.integration import transactions
 
 
 def test_a_send_started_twice_at_once_starts_once(run, monkeypatch):
     about = str(uuid.uuid4())
 
     async def scenario():
-        held = hold_first_commit(monkeypatch, bulk_sends)
+        held = hold_first_commit(monkeypatch, transactions)
 
         return await race(
             os.environ["DATABASE_URL"],
             held,
-            bulk_sends.start(BulkKind.LEGAL_TERMS, about, "sam"),
-            bulk_sends.start(BulkKind.LEGAL_TERMS, about, "sam"),
+            transactions.transaction(bulk_sends.start, BulkKind.LEGAL_TERMS, about, "sam"),
+            transactions.transaction(bulk_sends.start, BulkKind.LEGAL_TERMS, about, "sam"),
         )
 
     first, second = run(scenario())

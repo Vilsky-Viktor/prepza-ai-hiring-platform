@@ -5,6 +5,7 @@ The `notifications` service sends prepza's emails and keeps the bell's notificat
 - [The bell](#the-bell)
 - [Slack](#slack)
 - [Emails](#emails)
+- [How it's built](#how-its-built)
 
 ## The bell
 
@@ -230,3 +231,7 @@ To show invites whose email bounced, was marked as spam or couldn't be sent ("Em
 3. Restart notifications.
 
 Without the secret, every webhook is refused. A webhook is answered once its signature is checked and it's recorded as an `email.webhook_received` event, keyed by its delivery (`svix-id`), so Resend sending it again records it once; its work (the suppression list, telling companies and library) runs when Pub/Sub pushes that event back, retried there, and every step is safe to repeat. The event keeps only what the work reads (`to`, `tags`, `email_id`, `bounce`), for the outbox's 7 days. Locally, Resend reaches the webhook only through a tunnel, as with Paddle (see [Credits and payments](billing.md#setting-up-paddle)).
+
+## How it's built
+
+Notifications' routes and event handlers call services (`src/notifications/services/`), which open each transaction and pass it to the repositories; Resend, Slack, Redis and the other services are called outside it, so no email or post waits inside a transaction. A notification is stored in one save: the recipient's lock, the check that it isn't a deleted company, the mark that its key came, the new row or its group's, and the pruning of the recipient's oldest. When an account is deleted, its notifications, its sent log, its rows in bulk sends, companies' notifications about it and the Slack channels it connected are one save, and each company whose channel stopped working is told after it; a deleted company's notifications and its candidates' opt-outs are one save, then its Slack channel goes. A complaint's suppressed addresses and the complaint counted against its campaign are one save, a temporary bounce is counted with the suppression it brings, and a reminder's complaint stops the invite's reminders to all its addresses at once. A campaign is marked sent with its bulk send in one save. Claims around a send stay apart from it: a member email's claim is given back when the send fails, a Slack post's mark is freed when Slack fails, and a bulk recipient's outcome is saved after its email went.

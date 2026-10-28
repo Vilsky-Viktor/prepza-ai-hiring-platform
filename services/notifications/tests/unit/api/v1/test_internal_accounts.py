@@ -13,16 +13,16 @@ def test_deleting_an_account_reads_the_email_from_the_body_and_forgets_their_cha
 ):
     done = []
 
-    async def remove_user(user_id):
+    async def remove_user(session, user_id):
         done.append(("own", user_id))
 
-    async def remove_candidate(email):
+    async def remove_candidate(session, email):
         done.append(("candidate", email))
 
-    async def remove_member(email):
+    async def remove_member(session, email):
         done.append(("member", email))
 
-    async def forget_maker(user_id):
+    async def forget_maker(session, user_id):
         done.append(("slack", user_id))
 
         return []
@@ -31,12 +31,12 @@ def test_deleting_an_account_reads_the_email_from_the_body_and_forgets_their_cha
     monkeypatch.setattr(notifications, "remove_candidate", remove_candidate)
     monkeypatch.setattr(notifications, "remove_member", remove_member)
 
-    async def forget_sent(user_id):
+    async def forget_sent(session, user_id):
         done.append(("sent", user_id))
 
     monkeypatch.setattr(slack, "forget_maker", forget_maker)
 
-    async def forget_bulk(user_id):
+    async def forget_bulk(session, user_id):
         done.append(("bulk", user_id))
 
     monkeypatch.setattr(sent_emails, "remove_user", forget_sent)
@@ -58,10 +58,10 @@ def test_deleting_an_account_reads_the_email_from_the_body_and_forgets_their_cha
 
 
 def test_an_export_holds_the_slack_channels_they_connected(client, monkeypatch):
-    async def latest(recipients, limit):
+    async def latest(session, recipients, limit):
         return []
 
-    async def made_by(user_id):
+    async def made_by(session, user_id):
         return [SlackConnection(company_id="c1", team="Acme", channel="#hiring", created_at=None)]
 
     monkeypatch.setattr(notifications, "latest", latest)

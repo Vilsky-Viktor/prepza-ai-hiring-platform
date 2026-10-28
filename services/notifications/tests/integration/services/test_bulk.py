@@ -10,6 +10,7 @@ from notifications.core.db import Session
 from notifications.models.bulk import BulkRecipient
 from notifications.repositories import bulk_recipients, bulk_sends, campaigns
 from notifications.services import audiences, bulk, delivery
+from tests.integration.transactions import transaction
 
 ENGLISH = {"subject": "Code questions", "text": "Now with code.", "button": None}
 
@@ -61,9 +62,11 @@ def legal_send(user_ids):
     async def scenario():
         # A day far ahead, as a version is; each test starts with no sends.
         version = "2099-01-01"
-        send_id = await bulk_sends.start("legal_terms", version, "sam")
-        first = await bulk_sends.save_page(send_id, "", user_ids[-1], user_ids, True)
-        again = await bulk_sends.save_page(send_id, "", "late", [*user_ids, "late"], True)
+        send_id = await transaction(bulk_sends.start, "legal_terms", version, "sam")
+        first = await transaction(bulk_sends.save_page, send_id, "", user_ids[-1], user_ids, True)
+        again = await transaction(
+            bulk_sends.save_page, send_id, "", "late", [*user_ids, "late"], True
+        )
 
         return send_id, first, again
 
@@ -76,7 +79,7 @@ def test_recipients_are_worked_out_once_and_two_runs_at_once_send_each_one_email
     async def scenario():
         send_id, first, again = await legal_send(users)
         await asyncio.gather(bulk.send_bulk(datetime.now(UTC)), bulk.send_bulk(datetime.now(UTC)))
-        counts = (await bulk_sends.counts([send_id]))[send_id]
+        counts = (await transaction(bulk_sends.counts, [send_id]))[send_id]
 
         return send_id, first, again, counts
 
@@ -91,15 +94,15 @@ def test_recipients_are_worked_out_once_and_two_runs_at_once_send_each_one_email
 @pytest.mark.parametrize("batch", [1000, 2])
 def test_stopping_skips_the_rest_and_keeps_what_was_sent(run, sending, monkeypatch, batch):
     """Whether the rest fit in one batch or take several."""
-    monkeypatch.setattr(bulk_sends, "DELETE_BATCH", batch)
+    monkeypatch.setattr("prepza_common.db.db.DELETE_BATCH", batch)
     users = [f"u-{uuid.uuid4()}" for _ in range(3)]
 
     async def scenario():
         send_id, _, _ = await legal_send(users)
-        await bulk_sends.stop(send_id)
+        await bulk.stop(send_id)
         await bulk.send_bulk(datetime.now(UTC))
 
-        return send_id, (await bulk_sends.counts([send_id]))[send_id]
+        return send_id, (await transaction(bulk_sends.counts, [send_id]))[send_id]
 
     send_id, counts = run(scenario())
 
@@ -111,20 +114,25 @@ def test_unsubscribes_count_against_the_last_campaign_and_a_deleted_account_leav
     user = f"u-{uuid.uuid4()}"
 
     async def scenario():
-        send_id = await bulk_sends.start("updates", str(uuid.uuid4()), "sam")
-        await bulk_sends.save_page(send_id, "", user, [user], True)
+        send_id = await transaction(bulk_sends.start, "updates", str(uuid.uuid4()), "sam")
+        await transaction(bulk_sends.save_page, send_id, "", user, [user], True)
 
-        [row_id] = [row[0] for row in await bulk_recipients.pending(10_000, []) if row[2] == user]
+        [row_id] = [
+            row[0]
+            for row in await transaction(bulk_recipients.pending, 10_000, [])
+            if row[2] == user
+        ]
 
-        async with bulk_recipients.claimed(row_id) as row:
-            row.status, row.sent_at = "sent", datetime.now(UTC)
+        row = await transaction(bulk_recipients.still_pending, row_id)
+        row.status, row.sent_at = "sent", datetime.now(UTC)
+        await transaction(bulk_recipients.save, row)
 
-        await bulk_recipients.mark_unsubscribed(user, "updates")
-        await bulk_recipients.mark_complained(send_id, user)
-        counts = (await bulk_sends.counts([send_id]))[send_id]
-        await bulk_recipients.remove_user(user)
+        await transaction(bulk_recipients.mark_unsubscribed, user, "updates")
+        await transaction(bulk_recipients.mark_complained, send_id, user)
+        counts = (await transaction(bulk_sends.counts, [send_id]))[send_id]
+        await transaction(bulk_recipients.remove_user, user)
 
-        return counts, await bulk_recipients.is_recipient(send_id, user)
+        return counts, await transaction(bulk_recipients.is_recipient, send_id, user)
 
     counts, still = run(scenario())
 
@@ -164,10 +172,10 @@ def test_a_run_that_dies_halfway_leaves_the_rest_for_the_next_without_double_sen
         except Crash:
             pass
 
-        halfway = (await bulk_sends.counts([send_id]))[send_id]
+        halfway = (await transaction(bulk_sends.counts, [send_id]))[send_id]
         await bulk.send_bulk(datetime.now(UTC))
 
-        return halfway, (await bulk_sends.counts([send_id]))[send_id]
+        return halfway, (await transaction(bulk_sends.counts, [send_id]))[send_id]
 
     halfway, done = run(scenario())
     mine = [key for key in sending if key.startswith(f"bulk/{send_ids[0]}/")]
@@ -183,8 +191,10 @@ def test_campaigns_sends_are_found_at_once_by_kind_and_what_they_are_about(run):
     about = str(uuid.uuid4())
 
     async def scenario():
-        send_id = await bulk_sends.start("updates", about, "sam")
-        found = await bulk_sends.of_campaigns([("updates", about), ("promotions", about)])
+        send_id = await transaction(bulk_sends.start, "updates", about, "sam")
+        found = await transaction(
+            bulk_sends.of_campaigns, [("updates", about), ("promotions", about)]
+        )
 
         return send_id, {key: send.id for key, send in found.items()}
 
@@ -216,8 +226,8 @@ def campaign_send():
 
     async def scenario():
         everyone = {"kind": "updates", "groups": [], "editors_only": False, "company_ids": []}
-        campaign = await campaigns.create({**everyone, "link": None}, "sam", ENGLISH)
-        await bulk_sends.start("updates", str(campaign.id), "sam")
+        campaign = await transaction(campaigns.create, {**everyone, "link": None}, "sam", ENGLISH)
+        await transaction(bulk_sends.start, "updates", str(campaign.id), "sam")
 
         return "updates", str(campaign.id)
 
@@ -226,7 +236,7 @@ def campaign_send():
 
 async def recipients_of(kind, about):
     """The send and the users saved as its recipients so far (sent only once it's prepared)."""
-    send = await bulk_sends.get(kind, about)
+    send = await transaction(bulk_sends.get, kind, about)
 
     async with Session() as session:
         rows = await session.scalars(
@@ -245,7 +255,7 @@ def test_an_audience_is_worked_out_a_page_a_run_each_going_on_where_the_last_sto
 
         # A run out of time works out one page; the next goes on after its last id.
         for _ in range(3):
-            await bulk.prepare(await bulk_sends.get(kind, about), until=0)
+            await bulk.prepare(await transaction(bulk_sends.get, kind, about), until=0)
             send, saved = await recipients_of(kind, about)
             pages.append((saved, send.prepared_at is not None))
 
@@ -268,10 +278,10 @@ def test_two_runs_working_out_one_audience_at_once_save_each_user_once(run, audi
 
     async def scenario():
         kind, about = await campaign_send()
-        send = await bulk_sends.get(kind, about)
+        send = await transaction(bulk_sends.get, kind, about)
         await asyncio.gather(bulk.prepare(send, until=1e12), bulk.prepare(send, until=1e12))
         # Whichever stopped first, a later run finishes what's left.
-        await bulk.prepare(await bulk_sends.get(kind, about), until=1e12)
+        await bulk.prepare(await transaction(bulk_sends.get, kind, about), until=1e12)
 
         return await recipients_of(kind, about)
 

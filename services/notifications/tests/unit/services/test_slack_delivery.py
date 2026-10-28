@@ -34,7 +34,7 @@ def channel(monkeypatch):
         kinds=["candidate_finished"], webhook=encrypt(KEY, "https://hooks/x"), created_by="u1"
     )
 
-    async def connected(company_id):
+    async def connected(session, company_id):
         return hook if company_id == "c1" else None
 
     async def post(webhook, text):
@@ -43,7 +43,7 @@ def channel(monkeypatch):
 
         found["posted"].append((webhook, text))
 
-    async def mark_broken(company_id):
+    async def mark_broken(session, company_id):
         stopped = company_id not in found["broken"]
         found["broken"].append(company_id)
 
@@ -57,13 +57,13 @@ def channel(monkeypatch):
     async def announce(recipient, recipient_id):
         pass
 
-    async def claim(key):
+    async def claim(session, key, now):
         new = key not in found["claimed"]
         found["claimed"].add(key)
 
         return new
 
-    async def release(key):
+    async def release(session, key):
         found["claimed"].discard(key)
 
     async def access(company_id, user_id):
@@ -74,7 +74,7 @@ def channel(monkeypatch):
     monkeypatch.setattr(settings, "slack_encryption_key", KEY)
     monkeypatch.setattr(storage, "connected", connected)
     monkeypatch.setattr(storage, "mark_broken", mark_broken)
-    monkeypatch.setattr(slack.notifications, "add", add)
+    monkeypatch.setattr(slack.notices, "store", add)
     monkeypatch.setattr(slack, "announce", announce)
     monkeypatch.setattr(storage, "claim", claim)
     monkeypatch.setattr(storage, "release", release)

@@ -1,6 +1,7 @@
 import asyncio
 import re
 import uuid
+from datetime import UTC, datetime
 from html import unescape
 from types import SimpleNamespace
 
@@ -91,7 +92,7 @@ def test_the_button_opens_a_page_on_the_site_and_has_a_text(link, button, error)
 def test_the_recipients_are_users_with_the_setting_on_with_an_address_not_suppressed(monkeypatch):
     asked = []
 
-    async def get(campaign_id):
+    async def get(session, campaign_id):
         return SimpleNamespace(
             kind="promotions", groups=[], editors_only=False, company_ids=[]
         ), TEXTS
@@ -106,7 +107,7 @@ def test_the_recipients_are_users_with_the_setting_on_with_an_address_not_suppre
 
         return [person("ann", promotions=True), person("bob", promotions=True), person("cat")]
 
-    async def among(hashes):
+    async def among(session, hashes):
         return {address_hash("bob@example.com")} & set(hashes)
 
     monkeypatch.setattr(campaigns_store, "get", get)
@@ -150,15 +151,25 @@ def test_a_second_send_or_one_over_the_kinds_limit_today_is_refused(
     monkeypatch, outcome, edited, code, detail
 ):
     """The day's limit of a kind is as edited in Controls, and a refusal over it is recorded."""
-    asked, hits = [], []
+    hits, marked = [], []
 
-    async def get(campaign_id):
+    async def get(session, campaign_id):
         return SimpleNamespace(kind="updates"), TEXTS
 
-    async def mark_sent(campaign_id, kind, user_id, per_day):
-        asked.append(per_day)
+    async def lock(session, campaign_id):
+        sent_at = datetime.now(UTC) if outcome == ALREADY_SENT else None
 
-        return outcome
+        return SimpleNamespace(kind="updates", sent_at=sent_at)
+
+    async def sent_since(session, kind, since):
+        # As many as the limit allows: the next one is over it.
+        return edited.get("CAMPAIGNS_PER_KIND_DAY", 1)
+
+    async def mark_sent(session, campaign, now):
+        marked.append(campaign)
+
+    async def nothing(*args):
+        return None
 
     async def record_hit(name, **who):
         hits.append((name, who))
@@ -167,6 +178,9 @@ def test_a_second_send_or_one_over_the_kinds_limit_today_is_refused(
     monkeypatch.setattr(campaign_sends, "get_redis", lambda: EditedLimits(edited))
     monkeypatch.setattr(campaign_sends, "record_hit", record_hit)
     monkeypatch.setattr(campaigns_store, "get", get)
+    monkeypatch.setattr(campaigns_store, "lock", lock)
+    monkeypatch.setattr(campaigns_store, "lock_kind", nothing)
+    monkeypatch.setattr(campaigns_store, "sent_since", sent_since)
     monkeypatch.setattr(campaigns_store, "mark_sent", mark_sent)
 
     with pytest.raises(HTTPException) as refused:
@@ -175,7 +189,7 @@ def test_a_second_send_or_one_over_the_kinds_limit_today_is_refused(
     assert (refused.value.status_code, refused.value.detail) == (code, detail)
     # The day's limit says when it frees up; a campaign sent already never does.
     assert ("Retry-After" in (refused.value.headers or {})) == (outcome == ONE_A_DAY)
-    assert asked == [edited.get("CAMPAIGNS_PER_KIND_DAY", 1)]
+    assert marked == []
     assert hits == (
         [("CAMPAIGNS_PER_KIND_DAY", {"user_id": "sam"})] if outcome == ONE_A_DAY else []
     )
@@ -189,7 +203,7 @@ def test_unsubscribing_from_a_campaign_turns_off_only_its_setting_and_counts_aga
     async def library_unsubscribe(user_id, settings):
         turned_off.append(settings)
 
-    async def mark_unsubscribed(user_id, kind):
+    async def mark_unsubscribed(session, user_id, kind):
         marked.append((user_id, kind))
 
     monkeypatch.setattr(unsubscribe.library, "unsubscribe", library_unsubscribe)

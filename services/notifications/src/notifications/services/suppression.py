@@ -20,6 +20,7 @@ from notifications.constants.webhooks import (
     ID_TAG,
     SUPPRESSED_EVENT,
 )
+from notifications.core.db import Session
 from notifications.helpers.unsubscribe import address_hash
 from notifications.integrations import resend
 from notifications.repositories import bulk_recipients, soft_bounces, suppressed
@@ -37,8 +38,8 @@ async def from_webhook(event: dict) -> None:
     """A permanent bounce, a spam complaint or Resend's own suppression of any email (a
     candidate's invite too: an address that bounced or complained does so whichever company
     writes) suppresses its addresses, and so do SOFT_BOUNCES temporary bounces within
-    SOFT_BOUNCE_DAYS; a complaint about a campaign counts against it. Safe to repeat: Resend may
-    send the web hook again."""
+    SOFT_BOUNCE_DAYS; a complaint about a campaign counts against it, in the same save. Safe to
+    repeat: Resend may send the web hook again."""
     reason = REASONS.get(event.get("type"))
     data = event.get("data") or {}
     tags = data.get("tags") or {}
@@ -51,11 +52,12 @@ async def from_webhook(event: dict) -> None:
 
         return
 
-    for address in data.get("to") or []:
-        await suppressed.add(address_hash(address), reason)
+    async with Session.begin() as session:
+        for address in data.get("to") or []:
+            await suppressed.add(session, address_hash(address), reason)
 
-    if reason == SuppressionReason.COMPLAINED and tags.get(SEND_TAG) and tags.get(ID_TAG):
-        await bulk_recipients.mark_complained(uuid.UUID(tags[SEND_TAG]), tags[ID_TAG])
+        if reason == SuppressionReason.COMPLAINED and tags.get(SEND_TAG) and tags.get(ID_TAG):
+            await bulk_recipients.mark_complained(session, uuid.UUID(tags[SEND_TAG]), tags[ID_TAG])
 
 
 def permanent(data: dict) -> bool:
@@ -68,24 +70,28 @@ def permanent(data: dict) -> bool:
 
 async def soft_bounced(data: dict) -> None:
     """Counts a temporary bounce once per email (Resend's id); the one that makes SOFT_BOUNCES
-    within SOFT_BOUNCE_DAYS suppresses the address."""
+    within SOFT_BOUNCE_DAYS suppresses the address, in the same save."""
     since = datetime.now(UTC) - timedelta(days=SOFT_BOUNCE_DAYS)
 
-    for address in data.get("to") or []:
-        hashed = address_hash(address)
+    async with Session.begin() as session:
+        for address in data.get("to") or []:
+            hashed = address_hash(address)
+            count = await soft_bounces.add(session, hashed, data.get("email_id") or "", since)
 
-        if await soft_bounces.add(hashed, data.get("email_id") or "", since) >= SOFT_BOUNCES:
-            await suppressed.add(hashed, SuppressionReason.SOFT_BOUNCED)
+            if count >= SOFT_BOUNCES:
+                await suppressed.add(session, hashed, SuppressionReason.SOFT_BOUNCED)
 
 
 async def skipped(email: str) -> bool:
     """Whether the address is on the list, so nothing may be sent to it."""
-    return await suppressed.get(address_hash(email)) is not None
+    async with Session() as session:
+        return await suppressed.get(session, address_hash(email)) is not None
 
 
 async def lookup(email: str) -> dict | None:
     """Whether the address is suppressed: why and since when."""
-    row = await suppressed.get(address_hash(email))
+    async with Session() as session:
+        row = await suppressed.get(session, address_hash(email))
 
     return {"reason": row.reason, "created_at": row.created_at} if row else None
 
@@ -104,5 +110,7 @@ async def remove(email: str, superadmin_id: str) -> None:
 
             raise HTTPException(status.HTTP_502_BAD_GATEWAY) from None
 
-    await suppressed.remove(address)
+    async with Session.begin() as session:
+        await suppressed.remove(session, address)
+
     logger.warning("Superadmin %s removed %s from the suppression list", superadmin_id, address)

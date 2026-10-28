@@ -15,7 +15,7 @@ from prepza_common.events.notifications import (
 from notifications.main import app
 from notifications.models.notifications import Notification
 from notifications.repositories import notifications
-from notifications.services import events, feed
+from notifications.services import events, feed, notices
 
 MADE = datetime(2026, 10, 1, tzinfo=UTC)
 EVENT = notification(
@@ -60,7 +60,7 @@ def test_a_notification_is_stored_and_announced_once(client, monkeypatch):
     async def fake_announce(recipient, recipient_id):
         announced.append((recipient, recipient_id))
 
-    monkeypatch.setattr(notifications, "add", fake_add)
+    monkeypatch.setattr(notices, "store", fake_add)
     monkeypatch.setattr(events, "announce", fake_announce)
 
     assert client.post("/internal/events", json=push("m-1")).status_code == 204
@@ -76,7 +76,7 @@ def test_the_bell_shows_the_users_and_their_companies_notifications(client, monk
     async def fake_companies(user_id):
         return ["c1"]
 
-    async def fake_latest(recipients, limit, since):
+    async def fake_latest(session, recipients, limit, since):
         asked["recipients"], asked["limit"], asked["since"] = recipients, limit, since
 
         return [
@@ -89,7 +89,7 @@ def test_the_bell_shows_the_users_and_their_companies_notifications(client, monk
             )
         ]
 
-    async def fake_unread(recipients, user_id, since):
+    async def fake_unread(session, recipients, user_id, since):
         return 3
 
     async def fake_created(user_id):
@@ -117,7 +117,7 @@ def test_opening_the_bell_marks_everything_seen(client, monkeypatch):
     sign_in()
     seen = []
 
-    async def fake_mark(user_id):
+    async def fake_mark(session, user_id, now):
         seen.append(user_id)
 
     monkeypatch.setattr(notifications, "mark_seen", fake_mark)

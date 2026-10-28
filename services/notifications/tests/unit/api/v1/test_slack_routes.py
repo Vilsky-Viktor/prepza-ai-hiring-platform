@@ -126,13 +126,13 @@ def saved(monkeypatch):
     no other company has one."""
     found = {"saved": None, "revoked": [], "earlier": None}
 
-    async def get(company_id):
+    async def get(session, company_id):
         return found["earlier"]
 
-    async def connect(*args):
+    async def connect(session, *args):
         found["saved"] = args
 
-    async def token_in_use(token_hash):
+    async def token_in_use(session, token_hash):
         return bool(found["saved"]) and found["saved"][5] == token_hash
 
     async def revoke(token):
@@ -218,10 +218,10 @@ def test_cancelled_refused_and_expired_trips(client, monkeypatch, saved):
 def test_only_known_kinds_are_saved(client, monkeypatch):
     chosen = []
 
-    async def get(company_id):
+    async def get(session, company_id):
         return SimpleNamespace()
 
-    async def set_kinds(company_id, kinds, user_id):
+    async def set_kinds(session, company_id, kinds, user_id):
         chosen.append((kinds, user_id))
 
     monkeypatch.setattr(storage, "get", get)

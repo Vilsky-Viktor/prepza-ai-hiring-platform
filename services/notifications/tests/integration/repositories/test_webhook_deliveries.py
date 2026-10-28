@@ -2,12 +2,15 @@
 
 import uuid
 
+import pytest
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 
 from notifications.constants.events import EMAIL_WEBHOOK
 from notifications.core.db import Session
 from notifications.models.outbox import OutboxEvent
 from notifications.repositories import webhook_deliveries
+from tests.integration.transactions import transaction
 
 
 def test_a_delivery_is_recorded_once_however_often_it_comes(run):
@@ -15,8 +18,11 @@ def test_a_delivery_is_recorded_once_however_often_it_comes(run):
     event = {"type": "email.bounced", "data": {"tags": {"kind": "digest"}}}
 
     async def scenario():
-        first = await webhook_deliveries.record(delivery, event)
-        again = await webhook_deliveries.record(delivery, event)
+        await transaction(webhook_deliveries.record, delivery, event)
+
+        # Resend sending it again: its delivery's event is there already.
+        with pytest.raises(IntegrityError):
+            await transaction(webhook_deliveries.record, delivery, event)
 
         async with Session() as session:
             rows = list(
@@ -27,9 +33,6 @@ def test_a_delivery_is_recorded_once_however_often_it_comes(run):
                 )
             )
 
-        return first, again, [(row.event_type, row.data) for row in rows]
+        return [(row.event_type, row.data) for row in rows]
 
-    first, again, rows = run(scenario())
-
-    assert (first, again) == (True, False)
-    assert rows == [(EMAIL_WEBHOOK, {"event": event})]
+    assert run(scenario()) == [(EMAIL_WEBHOOK, {"event": event})]

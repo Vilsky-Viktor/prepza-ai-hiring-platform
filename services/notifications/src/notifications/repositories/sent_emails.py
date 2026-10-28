@@ -1,9 +1,9 @@
-from datetime import date, timedelta
+from datetime import date
 
 from prepza_common.db.db import delete_in_batches
 from sqlalchemy import delete, exists, func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from notifications.core.db import Session
 from notifications.models.sent_emails import SentEmail
 
 
@@ -15,70 +15,69 @@ def about_keys(items: list[str]) -> list[str]:
     return [f"about:{item}" for item in items]
 
 
-async def claim(
-    user_id: str, kind: str, today: date, every_days: int, items: list[str] = ()
-) -> list[str] | None:
-    """Claims sending the `kind` email to the user today. None when one went out within the
-    last `every_days` days, or when a reminder's `items` were all named before; otherwise the
-    items not named yet, now marked as named. One user's claims of a kind run one at a time,
-    so two runs at once can't both claim."""
-    async with Session() as session:
-        await session.execute(
-            select(func.pg_advisory_xact_lock(func.hashtext(f"{user_id}:{kind}")))
-        )
-        mine = (SentEmail.user_id == user_id, SentEmail.kind == kind)
-        recent = await session.scalar(
+async def lock(session: AsyncSession, user_id: str, kind: str) -> None:
+    """One user's claims of a kind run one at a time, so two runs at once can't both claim."""
+    await session.execute(select(func.pg_advisory_xact_lock(func.hashtext(f"{user_id}:{kind}"))))
+
+
+async def sent_after(session: AsyncSession, user_id: str, kind: str, after: date) -> bool:
+    """Whether a `kind` email went to the user on a day after `after`."""
+    return bool(
+        await session.scalar(
             select(
                 exists().where(
-                    *mine,
+                    SentEmail.user_id == user_id,
+                    SentEmail.kind == kind,
                     SentEmail.key.startswith("day:"),
-                    SentEmail.sent_on > today - timedelta(days=every_days),
+                    SentEmail.sent_on > after,
                 )
             )
         )
+    )
 
-        if recent:
-            return None
 
-        named = set(
-            await session.scalars(
-                select(SentEmail.key).where(*mine, SentEmail.key.in_(about_keys(items)))
-            )
+async def named(session: AsyncSession, user_id: str, kind: str, items: list[str]) -> set[str]:
+    """Which of the items a `kind` email named to the user before."""
+    keys = await session.scalars(
+        select(SentEmail.key).where(
+            SentEmail.user_id == user_id,
+            SentEmail.kind == kind,
+            SentEmail.key.in_(about_keys(items)),
         )
-        new = [item for item in items if f"about:{item}" not in named]
+    )
 
-        if items and not new:
-            return None
-
-        session.add_all(
-            SentEmail(user_id=user_id, kind=kind, key=key, sent_on=today)
-            for key in [day_key(today), *about_keys(new)]
-        )
-        await session.commit()
-
-        return new
+    return {key.removeprefix("about:") for key in keys}
 
 
-async def release(user_id: str, kind: str, today: date, items: list[str]) -> None:
+async def mark(
+    session: AsyncSession, user_id: str, kind: str, today: date, items: list[str]
+) -> None:
+    """The `kind` email to the user today, naming the items."""
+    session.add_all(
+        SentEmail(user_id=user_id, kind=kind, key=key, sent_on=today)
+        for key in [day_key(today), *about_keys(items)]
+    )
+    await session.flush()
+
+
+async def release(
+    session: AsyncSession, user_id: str, kind: str, today: date, items: list[str]
+) -> None:
     """Takes back a claim whose email couldn't be sent, so a later run sends it."""
-    async with Session() as session:
-        await session.execute(
-            delete(SentEmail).where(
-                SentEmail.user_id == user_id,
-                SentEmail.kind == kind,
-                SentEmail.key.in_([day_key(today), *about_keys(items)]),
-            )
+    await session.execute(
+        delete(SentEmail).where(
+            SentEmail.user_id == user_id,
+            SentEmail.kind == kind,
+            SentEmail.key.in_([day_key(today), *about_keys(items)]),
         )
-        await session.commit()
+    )
 
 
-async def forget(before: date, until: float | None = None) -> None:
-    """Rows older than every window that reads them go, in batches, none started after `until`
-    (time.monotonic()); the next run deletes the rest."""
-    await delete_in_batches(Session, SentEmail, SentEmail.sent_on < before, until=until)
+async def forget(sessions, before: date, until: float | None = None) -> None:
+    """Rows older than every window that reads them go, in batches (each its own transaction),
+    none started after `until` (time.monotonic()); the next run deletes the rest."""
+    await delete_in_batches(sessions, SentEmail, SentEmail.sent_on < before, until=until)
 
 
-async def remove_user(user_id: str) -> None:
-    async with Session() as session:
-        await session.execute(delete(SentEmail).where(SentEmail.user_id == user_id))
-        await session.commit()
+async def remove_user(session: AsyncSession, user_id: str) -> None:
+    await session.execute(delete(SentEmail).where(SentEmail.user_id == user_id))
