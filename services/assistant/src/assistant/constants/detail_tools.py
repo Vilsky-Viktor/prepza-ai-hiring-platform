@@ -106,7 +106,7 @@ DETAIL_TOOLS = {
         "max_length": MAX_GOAL_LENGTH,
     },
     "list_news": {
-        "service": "library",
+        "service": "site",
         "method": "GET",
         "path": "/news",
         "params": ["offset", "limit"],

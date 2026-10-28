@@ -1,4 +1,4 @@
-from prepza_common.events.notifications import EVERYONE, NotificationKind, Recipient, notification
+from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
 from library.constants.quality import COMPANY_INTERVIEWS_LINK
 from library.constants.sets import OwnerType
@@ -19,18 +19,4 @@ def question_notification(question_set, topic: str, kind: NotificationKind) -> d
         COMPANY_INTERVIEWS_LINK.format(company_id=question_set.owner_id),
         title=question_set.title,
         topic=topic,
-    )
-
-
-def news_notification(post) -> dict:
-    """One notification for everyone, opening the post on the news page; the bell shows its
-    title in each user's language (notifications asks for it)."""
-    return notification(
-        Recipient.ALL,
-        EVERYONE,
-        NotificationKind.NEWS,
-        f"/news#{post.id}",
-        key=str(post.id),
-        news_id=str(post.id),
-        title=post.title,
     )

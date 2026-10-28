@@ -84,15 +84,18 @@ locals {
     "superadmin/stats",
   ]
 
-  # The site's content under /api/<service>/: site's routes, kept at the addresses rounds had
-  # (load_balancer.tf; gateway/nginx.conf has the same list). Each path is a prefix: "help/guide"
-  # takes the platform guide and the guide articles; site serves each at the same path.
+  # The site's content under /api/<service>/: site's routes, kept at the addresses rounds and
+  # library had (load_balancer.tf; gateway/nginx.conf has the same list). Each path is a prefix:
+  # "help/guide" takes the platform guide and the guide articles, "news" only /news (no other
+  # library route starts so); site serves each at the same path.
   site_paths = [
     { from = "rounds", path = "help/faq" },
     { from = "rounds", path = "help/guide" },
     { from = "rounds", path = "help/pages/" },
     { from = "rounds", path = "help/legal/" },
     { from = "rounds", path = "help/contact" },
+    { from = "library", path = "news" },
+    { from = "library", path = "superadmin/news" },
   ]
 
   databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts", "site"]
@@ -100,18 +103,20 @@ locals {
   # Which services each one calls; it gets their keys, to sign tokens for them.
   calls = {
     frontend = []
-    # accounts: library's old account routes forward there for one release.
-    library           = ["generation", "accounts"]
-    generation        = ["library", "notifications"]
-    generation-worker = ["library", "notifications"]
+    # accounts and site: library's old account and news routes forward there for one release.
+    library = ["generation", "accounts", "site"]
+    # site: the news posts it translates.
+    generation        = ["library", "notifications", "site"]
+    generation-worker = ["library", "notifications", "site"]
     # site: rounds' old content routes forward there for one release.
     rounds    = ["library", "site"]
     companies = ["generation", "library", "rounds", "billing", "accounts"]
     # companies' names and accounts' emails, for the AI costs tab.
     billing = ["companies", "accounts"]
-    # rounds: a campaign's candidates and learners.
-    notifications        = ["companies", "library", "billing", "generation", "rounds", "accounts"]
-    notifications-stream = ["companies", "library", "accounts"]
+    # rounds: a campaign's candidates and learners; site, the news the bell names (library, which
+    # had them, for one release while the version before still asks it).
+    notifications        = ["companies", "library", "billing", "generation", "rounds", "accounts", "site"]
+    notifications-stream = ["companies", "library", "accounts", "site"]
     ats                  = ["companies"]
     api                  = ["companies"]
     # Its X-Assistant header, so companies audits reads made through it as such; billing, whether
@@ -123,7 +128,8 @@ locals {
     # Every service holding part of a user's data, for deleting and downloading an account;
     # billing also sets a new account's currency.
     accounts = ["companies", "rounds", "generation", "billing", "notifications", "ats", "api", "assistant", "library", "site"]
-    site     = []
+    # generation: translating news posts.
+    site = ["generation"]
   }
 
   # Each service's own key checks calls to it. The worker and the stream share generation's and

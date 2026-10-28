@@ -6,13 +6,16 @@ x-library-env: &library-env
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
   GENERATION_URL: http://generation:8000
-  # Library's old account routes forward there for one release.
+  # Library's old account and news routes forward there for one release.
   ACCOUNTS_URL: http://accounts:8000
+  SITE_SERVICE_URL: http://site:8000
 
 x-generation-env: &generation-env
   DATABASE_URL: postgresql://generation:${POSTGRES_PASSWORD}@postgres:5432/generation
   REDIS_URL: redis://redis:6379
   LIBRARY_URL: http://library:8000
+  # The news posts it translates.
+  SITE_SERVICE_URL: http://site:8000
   SERVICE_SECRET: ${SERVICE_SECRET}
   INTERVIEW_MODEL: ${INTERVIEW_MODEL:-gpt-6.1-sol}
   INTERVIEW_REASONING_EFFORT: ${INTERVIEW_REASONING_EFFORT:-low}

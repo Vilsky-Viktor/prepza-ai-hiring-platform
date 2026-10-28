@@ -12,7 +12,7 @@ from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH
 
 from generation.constants.actions import NEWS_TRANSLATION
 from generation.constants.batch_work import BATCH_WORK_ATTEMPTS, BatchKind
-from generation.integrations import library, notifications
+from generation.integrations import notifications, site
 from generation.schemas.campaigns import CampaignSource
 from generation.schemas.news import NewsSource
 from generation.services.translation_jobs import translate_campaign, translate_news
@@ -51,8 +51,8 @@ def saved(monkeypatch):
             ("campaign", campaign_id, {k: v.model_dump() for k, v in translations.items()})
         )
 
-    monkeypatch.setattr(library, "get_news_source", news_source)
-    monkeypatch.setattr(library, "save_news_translations", save_news)
+    monkeypatch.setattr(site, "get_news_source", news_source)
+    monkeypatch.setattr(site, "save_news_translations", save_news)
     monkeypatch.setattr(notifications, "get_campaign_source", campaign_source)
     monkeypatch.setattr(notifications, "save_campaign_translations", save_campaign)
 

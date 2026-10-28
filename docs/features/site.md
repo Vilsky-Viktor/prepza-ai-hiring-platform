@@ -172,7 +172,7 @@ The FAQ ("How do I report a problem?") and the help chat and assistant's guide s
 `/news` ("prepza news.") lists prepza's posts newest first, one after another: title (ending with the blue dot, like the site's headings), date and text. No pictures, links or detail pages; the text is plain, with its line breaks. Superadmins write them in the [admin zone](admin-zone.md#news).
 
 - Posts are written in English and translated into every other language after they're saved. Each language's page (`/de/news`, …) shows its translation, or the English post while there's none.
-- The first page is rendered on the server; the next loads when you scroll near the end (library's public `GET /news?offset=&limit=`, in the `Accept-Language` language, no sign-in).
+- The first page is rendered on the server; the next loads when you scroll near the end (site's public `GET /news?offset=&limit=`, at library's old address `/api/library/news`, in the `Accept-Language` language, no sign-in).
 - Posts are read fresh on every request, not through the public data cache, so a new, changed or deleted post shows at once (`lib/news-posts.ts`).
 - **In the bell:** each post reaches every signed-in user's bell, named in their language, opening it here; deleting the post takes it back (see [Notifications](notifications.md#the-bell)). News isn't emailed by itself: a superadmin can send a post as a product update to those who chose them.
 - **Search engines:** its own title and meta description in each language, canonical and hreflang addresses for every language, the link-preview picture, and structured data: a `Blog` with the page's posts as `BlogPosting`s by prepza (`newsData` in `lib/structured-data.ts`). The sitemap lists it in every language, dated by its newest post.

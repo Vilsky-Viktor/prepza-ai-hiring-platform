@@ -2,6 +2,8 @@
 deletions (rule 11: each is safe to repeat; an email carries the event's id as its idempotency
 key, a notification its key, and deleting twice deletes nothing more)."""
 
+from prepza_common.events.notifications import NEWS_WITHDRAWN
+
 from notifications.constants.events import (
     CANDIDATE_INTERVIEW_DELETED,
     CANDIDATE_INVITED,
@@ -43,6 +45,7 @@ HANDLERS = {
     CANDIDATE_REMOVED: candidate_removed.handle,
     CANDIDATE_INTERVIEW_DELETED: candidate_interview_deleted.handle,
     NEWS_DELETED: news_deleted.handle,
+    NEWS_WITHDRAWN: news_deleted.handle,
     CONTACT_SENT: contact_sent.handle,
 }
 

@@ -10,6 +10,9 @@ from prepza_common.events import pubsub
 logger = logging.getLogger(__name__)
 
 NOTIFICATION_REQUESTED = "notification.requested"
+# A deleted news post's notification for everyone is taken back (site publishes it, notifications
+# deletes it). In the notification family, so notifications' subscription takes it with the rest.
+NEWS_WITHDRAWN = "notification.news_withdrawn"
 
 
 class NotificationKind(StrEnum):

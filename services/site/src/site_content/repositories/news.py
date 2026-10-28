@@ -1,16 +1,15 @@
 import uuid
 
 from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
-from prepza_common.events import outbox
+from prepza_common.events.notifications import NEWS_WITHDRAWN
 from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from library.constants.events import NEWS_DELETED
-from library.constants.news import NEWS_RESEND_BATCH
-from library.models.news import News, NewsTranslation
-from library.models.outbox import OutboxEvent
-from library.schemas.news import NewsIn, NewsTranslationIn
+from site_content.constants.news import NEWS_RESEND_BATCH
+from site_content.models.news import News, NewsTranslation
+from site_content.repositories import outbox
+from site_content.schemas.news import NewsIn, NewsTranslationIn
 
 # Newest first; posts of one day by when they were written.
 NEWEST_FIRST = (News.published_on.desc(), News.created_at.desc(), News.id.desc())
@@ -88,12 +87,12 @@ async def save(session: AsyncSession, row: News, post: NewsIn) -> News:
 
 
 async def remove(session: AsyncSession, news_id: uuid.UUID) -> None:
-    """Deletes the post with its translations, and its notification goes too (NEWS_DELETED,
+    """Deletes the post with its translations, and its notification goes too (NEWS_WITHDRAWN,
     in the same transaction); safe to repeat."""
     removed = await session.scalar(delete(News).where(News.id == news_id).returning(News.id))
 
     if removed is not None:
-        outbox.add(session, OutboxEvent, NEWS_DELETED, {"news_id": str(news_id)})
+        outbox.add(session, NEWS_WITHDRAWN, {"news_id": str(news_id)})
 
 
 async def titles(session: AsyncSession, news_ids: list[uuid.UUID], language: str) -> dict[str, str]:

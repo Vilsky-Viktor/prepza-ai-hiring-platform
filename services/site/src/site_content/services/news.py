@@ -1,13 +1,13 @@
 import logging
 import uuid
 
-from library.core.db import Session
-from library.helpers.notifications import news_notification
-from library.integrations import generation
-from library.models.news import News
-from library.repositories import news, outbox
-from library.schemas.news import NewsIn, NewsTranslationIn
-from library.services import outbox as outbox_service
+from site_content.core.db import Session
+from site_content.helpers.notifications import news_notification
+from site_content.integrations import generation
+from site_content.models.news import News
+from site_content.repositories import news, outbox
+from site_content.schemas.news import NewsIn, NewsTranslationIn
+from site_content.services import outbox as outbox_service
 
 logger = logging.getLogger(__name__)
 

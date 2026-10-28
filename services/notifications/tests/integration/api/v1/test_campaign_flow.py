@@ -206,7 +206,7 @@ def test_a_news_post_becomes_a_product_update_with_a_button_to_it(run, quiet, mo
             else None
         )
 
-    monkeypatch.setattr(campaigns.library, "news_post", news_post)
+    monkeypatch.setattr(campaigns.site, "news_post", news_post)
 
     async def scenario():
         async with api() as client:

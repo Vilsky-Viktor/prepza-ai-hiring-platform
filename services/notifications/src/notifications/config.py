@@ -39,9 +39,11 @@ class Settings(ServiceSettings):
     # companies a user belongs to, whose notifications they see.
     companies_url: str
     # Accounts keeps each user's address, language and email settings; an unsubscribe link turns
-    # them off there. Library keeps the news the bell names.
+    # them off there.
     accounts_url: str
-    library_url: str
+    # The site's content service keeps the news the bell names (SITE_URL is the site's own
+    # address).
+    site_service_url: str
     # Billing says which companies run low on credits, and generation which topics wait for a
     # review: the reminders. Generation also translates campaigns.
     billing_url: str

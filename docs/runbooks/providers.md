@@ -77,7 +77,7 @@ What to do when a provider prepza depends on fails, a payment isn't credited or 
 - **Regenerating one question:** past 90 seconds of writing the old question stays and the company is told to try again ([Generation](../generation.md)).
 - **Help chat:** 1 retry, a 25-second timeout ([assistant llm.py](../../services/assistant/src/assistant/integrations/llm.py), `get_help_llm`). **Assistant:** 2 retries, a 60-second timeout; the failed answer is saved as failed and its tokens still count toward the budgets ([assistant llm.py](../../services/assistant/src/assistant/integrations/llm.py), [turns.py](../../services/assistant/src/assistant/services/turns.py)).
 - **Answer-key checks** (OpenAI's Batch API, every 10 minutes): a batch that expires or fails keeps the results it has, and the rest go out again ([Generation](../generation.md)).
-- **News translations:** the job fails, so Cloud Tasks runs it again (up to 3 attempts), and library's daily schedule sends any post still missing a language again ([Admin zone](../features/admin-zone.md#news)).
+- **News translations:** the job fails, so Cloud Tasks runs it again (up to 3 attempts), and site's daily schedule sends any post still missing a language again ([Admin zone](../features/admin-zone.md#news)).
 
 **What to do**
 

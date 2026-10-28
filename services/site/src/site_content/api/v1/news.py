@@ -2,9 +2,9 @@ from fastapi import APIRouter, Request
 from prepza_common.db.paging import PageParams
 from prepza_common.i18n.i18n import request_language
 
-from library.core.db import Session
-from library.repositories import news
-from library.schemas.news import NewsOut
+from site_content.core.db import Session
+from site_content.repositories import news
+from site_content.schemas.news import NewsOut
 
 # The news page: public, newest first, in the reader's language (Accept-Language) where the post
 # is translated, in English where it isn't yet.

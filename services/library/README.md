@@ -2,14 +2,17 @@
 
 The question bank: every test's and template's topics and questions (companies' interviews and
 the public templates), question reuse across tests, practice content, the questions'
-statistics and quality checks (ratings, reports, flags, revisions and the patterns behind them),
-and news posts. It keeps all of it in its own database. Users' accounts (email settings, accepted
+statistics and quality checks (ratings, reports, flags, revisions and the patterns behind them).
+It keeps all of it in its own database. Users' accounts (email settings, accepted
 terms, deleting and downloading an account, the erasures replayed after a restore) are the
 accounts service's, which asks library for a user's votes and reports
 (`/internal/users/{id}`). Library's old account routes stay one release: its internal ones
 forward to accounts (`api/v1/internal_moved.py`), its public ones send the browser there
 (`api/v1/moved_public.py`); its old tables (`email_preferences`, `email_consents`,
-`terms_acceptances`, `erasures`) go in the next release. What it does and its settings:
+`terms_acceptances`, `erasures`) go in the next release. News posts are the site service's the
+same way: its old news routes forward to site (`api/v1/internal_news_moved.py`) or send the
+browser there (`api/v1/moved_news.py`) for one release, and its `news` and `news_translations`
+tables go in the next. What it does and its settings:
 [templates and practice](../../docs/features/templates-and-practice.md) and
 [the admin zone](../../docs/features/admin-zone.md).
 
@@ -24,10 +27,10 @@ src/library/
 ├── handlers/               # Pub/Sub events (answers, scored topics, deleted guests, fixed
 │                           # bank questions, deleted interviews and companies); dispatch.py
 │                           # picks one
-├── services/               # Sets and templates, quality reviews and fixes, feedback, news, a
+├── services/               # Sets and templates, quality reviews and fixes, feedback, a
 │                           # user's votes and reports; each opens its transaction
 ├── repositories/           # Database queries: sets, templates, pools, statistics, quality,
-│                           # feedback, news, ...; take the session, never commit
+│                           # feedback, ...; take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (pools, slugs, quality flags); fixed values
 ├── integrations/           # Other services (generation; accounts, for the old routes), Redis

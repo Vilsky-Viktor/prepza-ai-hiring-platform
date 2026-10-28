@@ -19,7 +19,8 @@ COMPANY_DELETED = "company.deleted"
 CANDIDATE_REMOVED = "candidate.removed"
 # A company deleted an interview, its candidates with it: the notifications about them go.
 CANDIDATE_INTERVIEW_DELETED = "candidate.interview_deleted"
-# Library: a news post was deleted; its notification for everyone goes.
+# Library, before the news moved to site: a news post was deleted; its notification for everyone
+# goes. Kept one release for a library still publishing it; site publishes NEWS_WITHDRAWN.
 NEWS_DELETED = "news.deleted"
 # Its own: a Resend web hook received and verified, recorded by its delivery (svix-id); its work
 # (suppression, telling companies and accounts) runs from this event, so the web hook is answered

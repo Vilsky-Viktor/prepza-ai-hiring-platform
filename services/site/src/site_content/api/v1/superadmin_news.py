@@ -4,11 +4,11 @@ from fastapi import APIRouter, HTTPException, status
 from prepza_common.auth.superadmin import SuperadminUser
 from prepza_common.db.paging import PageParams
 
-from library.core.db import Session
-from library.models.news import News
-from library.repositories import news
-from library.schemas.news import AdminNewsOut, NewsIn
-from library.services import news as news_service
+from site_content.core.db import Session
+from site_content.models.news import News
+from site_content.repositories import news
+from site_content.schemas.news import AdminNewsOut, NewsIn
+from site_content.services import news as news_service
 
 # The admin zone's news tab: a superadmin writes posts in English; each is translated into the
 # other languages after it's saved. Everyone else gets "not found".

@@ -28,7 +28,7 @@ from notifications.constants.notifications import (
     STREAMS_LIMIT,
 )
 from notifications.core.db import Session
-from notifications.integrations import accounts, companies, library
+from notifications.integrations import accounts, companies, site
 from notifications.integrations.redis import get_redis
 from notifications.integrations.subscription import listening
 from notifications.repositories import notifications
@@ -71,7 +71,7 @@ async def account_created(user_id: str) -> datetime | None:
         try:
             created = await accounts.account_created(user_id)
         except httpx.HTTPError as error:
-            logger.warning("Library didn't say when %s's account was made: %s", user_id, error)
+            logger.warning("Accounts didn't say when %s's account was made: %s", user_id, error)
 
             return None
 
@@ -83,16 +83,16 @@ async def account_created(user_id: str) -> datetime | None:
 
 async def in_language(items: list[NotificationOut], language: str) -> list[NotificationOut]:
     """News posts are named in the reader's language (English until translated), and a post
-    deleted meanwhile isn't shown. While library doesn't answer, they keep their English title."""
+    deleted meanwhile isn't shown. While site doesn't answer, they keep their English title."""
     ids = [item.data["news_id"] for item in items if item.kind == NotificationKind.NEWS]
 
     if not ids:
         return items
 
     try:
-        titles = await library.news_titles(ids, language)
+        titles = await site.news_titles(ids, language)
     except httpx.HTTPError as error:
-        logger.warning("Library didn't name the news posts: %s", error)
+        logger.warning("Site didn't name the news posts: %s", error)
 
         return items
 

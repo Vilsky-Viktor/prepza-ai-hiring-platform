@@ -487,217 +487,6 @@
     }
    }
   },
-  "/superadmin/news": {
-   "get": {
-    "tags": [
-     "superadmin"
-    ],
-    "summary": "List News",
-    "operationId": "list_news_superadmin_news_get",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "offset",
-      "in": "query",
-      "required": false,
-      "schema": {
-       "type": "integer",
-       "minimum": 0,
-       "description": "Number of items to skip",
-       "default": 0,
-       "title": "Offset"
-      },
-      "description": "Number of items to skip"
-     },
-     {
-      "name": "limit",
-      "in": "query",
-      "required": false,
-      "schema": {
-       "type": "integer",
-       "maximum": 100,
-       "minimum": 1,
-       "description": "Number of items to return, up to 100",
-       "default": 100,
-       "title": "Limit"
-      },
-      "description": "Number of items to return, up to 100"
-     }
-    ],
-    "responses": {
-     "200": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {
-         "type": "array",
-         "items": {
-          "$ref": "#/components/schemas/AdminNewsOut"
-         },
-         "title": "Response List News Superadmin News Get"
-        }
-       }
-      }
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   },
-   "post": {
-    "tags": [
-     "superadmin"
-    ],
-    "summary": "Create News",
-    "operationId": "create_news_superadmin_news_post",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "requestBody": {
-     "required": true,
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/NewsIn"
-       }
-      }
-     }
-    },
-    "responses": {
-     "201": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/AdminNewsOut"
-        }
-       }
-      }
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
-  "/superadmin/news/{news_id}": {
-   "put": {
-    "tags": [
-     "superadmin"
-    ],
-    "summary": "Update News",
-    "description": "A changed title or text is translated again; a new date alone keeps the translations.",
-    "operationId": "update_news_superadmin_news__news_id__put",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "news_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "format": "uuid",
-       "title": "News Id"
-      }
-     }
-    ],
-    "requestBody": {
-     "required": true,
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/NewsIn"
-       }
-      }
-     }
-    },
-    "responses": {
-     "200": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/AdminNewsOut"
-        }
-       }
-      }
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   },
-   "delete": {
-    "tags": [
-     "superadmin"
-    ],
-    "summary": "Delete News",
-    "operationId": "delete_news_superadmin_news__news_id__delete",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "news_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "format": "uuid",
-       "title": "News Id"
-      }
-     }
-    ],
-    "responses": {
-     "204": {
-      "description": "Successful Response"
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
   "/superadmin/quality/flagged": {
    "get": {
     "tags": [
@@ -1478,70 +1267,6 @@
           "$ref": "#/components/schemas/SampleQuestionOut"
          },
          "title": "Response Sample Questions Templates  Key  Sample Get"
-        }
-       }
-      }
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
-  "/news": {
-   "get": {
-    "tags": [
-     "news"
-    ],
-    "summary": "List News",
-    "operationId": "list_news_news_get",
-    "parameters": [
-     {
-      "name": "offset",
-      "in": "query",
-      "required": false,
-      "schema": {
-       "type": "integer",
-       "minimum": 0,
-       "description": "Number of items to skip",
-       "default": 0,
-       "title": "Offset"
-      },
-      "description": "Number of items to skip"
-     },
-     {
-      "name": "limit",
-      "in": "query",
-      "required": false,
-      "schema": {
-       "type": "integer",
-       "maximum": 100,
-       "minimum": 1,
-       "description": "Number of items to return, up to 100",
-       "default": 100,
-       "title": "Limit"
-      },
-      "description": "Number of items to return, up to 100"
-     }
-    ],
-    "responses": {
-     "200": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {
-         "type": "array",
-         "items": {
-          "$ref": "#/components/schemas/NewsOut"
-         },
-         "title": "Response List News News Get"
         }
        }
       }
@@ -2602,7 +2327,7 @@
      "schedules"
     ],
     "summary": "Daily Housekeeping",
-    "description": "Daily, from Cloud Scheduler: sends flags the verifier hasn't acted on to it again, news\nposts still missing translations to be translated again, and forgets old notes of processed\nevents.",
+    "description": "Daily, from Cloud Scheduler: sends flags the verifier hasn't acted on to it again, and\nforgets old notes of processed events.",
     "operationId": "daily_housekeeping_internal_schedules_bank_post",
     "responses": {
      "204": {
@@ -2873,36 +2598,13 @@
      "internal"
     ],
     "summary": "News Titles",
-    "description": "The posts' titles in the reader's language, in English until it's translated.",
     "operationId": "news_titles_internal_news_titles_post",
-    "requestBody": {
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/NewsTitlesIn"
-       }
-      }
-     },
-     "required": true
-    },
     "responses": {
      "200": {
       "description": "Successful Response",
       "content": {
        "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/NewsTitlesOut"
-        }
-       }
-      }
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
+        "schema": {}
        }
       }
      }
@@ -2933,7 +2635,6 @@
       "required": true,
       "schema": {
        "type": "string",
-       "format": "uuid",
        "title": "News Id"
       }
      }
@@ -2943,9 +2644,7 @@
       "description": "Successful Response",
       "content": {
        "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/NewsSourceOut"
-        }
+        "schema": {}
        }
       }
      },
@@ -2968,7 +2667,6 @@
      "internal"
     ],
     "summary": "Save News Translations",
-    "description": "Safe to repeat; translations of an older version of the post, or of a deleted one, are\ndropped.",
     "operationId": "save_news_translations_internal_news__news_id__translations_put",
     "security": [
      {
@@ -2982,24 +2680,18 @@
       "required": true,
       "schema": {
        "type": "string",
-       "format": "uuid",
        "title": "News Id"
       }
      }
     ],
-    "requestBody": {
-     "required": true,
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/NewsTranslationsIn"
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
        }
       }
-     }
-    },
-    "responses": {
-     "204": {
-      "description": "Successful Response"
      },
      "422": {
       "description": "Validation Error",
@@ -3677,47 +3369,6 @@
     "title": "AdditionTopic",
     "description": "A template topic, as generation needs it to add questions to it."
    },
-   "AdminNewsOut": {
-    "properties": {
-     "id": {
-      "type": "string",
-      "format": "uuid",
-      "title": "Id"
-     },
-     "title": {
-      "type": "string",
-      "title": "Title"
-     },
-     "text": {
-      "type": "string",
-      "title": "Text"
-     },
-     "published_on": {
-      "type": "string",
-      "format": "date",
-      "title": "Published On"
-     },
-     "updated_at": {
-      "type": "string",
-      "format": "date-time",
-      "title": "Updated At"
-     },
-     "translated": {
-      "type": "boolean",
-      "title": "Translated"
-     }
-    },
-    "type": "object",
-    "required": [
-     "id",
-     "title",
-     "text",
-     "published_on",
-     "updated_at",
-     "translated"
-    ],
-    "title": "AdminNewsOut"
-   },
    "CodeLanguageIn": {
     "properties": {
      "id": {
@@ -3891,239 +3542,6 @@
      "reported"
     ],
     "title": "MyReportOut"
-   },
-   "NewsIn": {
-    "properties": {
-     "title": {
-      "type": "string",
-      "maxLength": 120,
-      "minLength": 1,
-      "title": "Title"
-     },
-     "text": {
-      "type": "string",
-      "maxLength": 500,
-      "minLength": 1,
-      "title": "Text"
-     },
-     "published_on": {
-      "type": "string",
-      "format": "date",
-      "title": "Published On"
-     }
-    },
-    "type": "object",
-    "required": [
-     "title",
-     "text",
-     "published_on"
-    ],
-    "title": "NewsIn",
-    "description": "A post as a superadmin writes it, in English."
-   },
-   "NewsOut": {
-    "properties": {
-     "id": {
-      "type": "string",
-      "format": "uuid",
-      "title": "Id"
-     },
-     "title": {
-      "type": "string",
-      "title": "Title"
-     },
-     "text": {
-      "type": "string",
-      "title": "Text"
-     },
-     "published_on": {
-      "type": "string",
-      "format": "date",
-      "title": "Published On"
-     },
-     "updated_at": {
-      "type": "string",
-      "format": "date-time",
-      "title": "Updated At"
-     }
-    },
-    "type": "object",
-    "required": [
-     "id",
-     "title",
-     "text",
-     "published_on",
-     "updated_at"
-    ],
-    "title": "NewsOut",
-    "description": "A post as the news page shows it, in the reader's language when it's translated."
-   },
-   "NewsSourceOut": {
-    "properties": {
-     "title": {
-      "type": "string",
-      "title": "Title"
-     },
-     "text": {
-      "type": "string",
-      "title": "Text"
-     },
-     "missing": {
-      "items": {
-       "type": "string"
-      },
-      "type": "array",
-      "title": "Missing"
-     }
-    },
-    "type": "object",
-    "required": [
-     "title",
-     "text",
-     "missing"
-    ],
-    "title": "NewsSourceOut",
-    "description": "A post to translate (generation): its English text and the languages it lacks."
-   },
-   "NewsTitlesIn": {
-    "properties": {
-     "news_ids": {
-      "items": {
-       "type": "string",
-       "format": "uuid"
-      },
-      "type": "array",
-      "title": "News Ids"
-     },
-     "language": {
-      "type": "string",
-      "enum": [
-       "en",
-       "ru",
-       "uk",
-       "es",
-       "pt",
-       "de",
-       "fr",
-       "it",
-       "pl",
-       "nl",
-       "tr",
-       "ar",
-       "he",
-       "fa",
-       "ja",
-       "zh",
-       "ko",
-       "hi",
-       "id",
-       "th",
-       "vi",
-       "fil",
-       "et"
-      ],
-      "title": "Language"
-     }
-    },
-    "type": "object",
-    "required": [
-     "news_ids",
-     "language"
-    ],
-    "title": "NewsTitlesIn",
-    "description": "Posts the bell names (notifications), and the reader's language."
-   },
-   "NewsTitlesOut": {
-    "properties": {
-     "titles": {
-      "additionalProperties": {
-       "type": "string"
-      },
-      "type": "object",
-      "title": "Titles"
-     }
-    },
-    "type": "object",
-    "required": [
-     "titles"
-    ],
-    "title": "NewsTitlesOut"
-   },
-   "NewsTranslationIn": {
-    "properties": {
-     "title": {
-      "type": "string",
-      "maxLength": 120,
-      "minLength": 1,
-      "title": "Title"
-     },
-     "text": {
-      "type": "string",
-      "maxLength": 500,
-      "minLength": 1,
-      "title": "Text"
-     }
-    },
-    "type": "object",
-    "required": [
-     "title",
-     "text"
-    ],
-    "title": "NewsTranslationIn"
-   },
-   "NewsTranslationsIn": {
-    "properties": {
-     "title": {
-      "type": "string",
-      "title": "Title"
-     },
-     "text": {
-      "type": "string",
-      "title": "Text"
-     },
-     "translations": {
-      "additionalProperties": {
-       "$ref": "#/components/schemas/NewsTranslationIn"
-      },
-      "propertyNames": {
-       "enum": [
-        "en",
-        "ru",
-        "uk",
-        "es",
-        "pt",
-        "de",
-        "fr",
-        "it",
-        "pl",
-        "nl",
-        "tr",
-        "ar",
-        "he",
-        "fa",
-        "ja",
-        "zh",
-        "ko",
-        "hi",
-        "id",
-        "th",
-        "vi",
-        "fil",
-        "et"
-       ]
-      },
-      "type": "object",
-      "title": "Translations"
-     }
-    },
-    "type": "object",
-    "required": [
-     "title",
-     "text",
-     "translations"
-    ],
-    "title": "NewsTranslationsIn",
-    "description": "Translations of the post's English `title` and `text`: saved only while the post still\nreads so, since an edit made during translation starts a new one."
    },
    "OptionIn": {
     "properties": {
@@ -5567,7 +4985,7 @@
      "email"
     ],
     "title": "UserEmailIn",
-    "description": "An email address sent in the body, so request logs don't record it: the account's, in\nlibrary's calls to delete or export a user's data, or the one a superadmin looks up."
+    "description": "An email address sent in the body, so request logs don't record it: the account's, in\naccounts' calls to delete or export a user's data, or the one a superadmin looks up."
    },
    "ValidationError": {
     "properties": {

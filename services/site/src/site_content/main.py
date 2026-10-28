@@ -12,7 +12,15 @@ from prepza_common.limits.maintenance import MaintenanceMiddleware
 from prepza_common.observability.logging import RequestLogMiddleware, configure_logging
 from prepza_common.observability.sentry import init_sentry
 
-from site_content.api.v1 import help, internal_accounts, internal_help, schedules
+from site_content.api.v1 import (
+    help,
+    internal_accounts,
+    internal_help,
+    internal_news,
+    news,
+    schedules,
+    superadmin_news,
+)
 from site_content.config import settings
 from site_content.core.db import engine
 from site_content.integrations.redis import get_redis
@@ -45,6 +53,9 @@ app.include_router(help.router)
 app.include_router(internal_help.router)
 app.include_router(internal_accounts.router)
 app.include_router(schedules.router)
+app.include_router(news.router)
+app.include_router(superadmin_news.router)
+app.include_router(internal_news.router)
 
 
 app.include_router(health_router(engine))

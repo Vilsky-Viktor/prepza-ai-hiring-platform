@@ -25,12 +25,12 @@ timeouts: `python-services.md`; scaling: `scalability.md`; tables: `database.md`
   services is a sign of a wrong boundary, not of a need for a fourth.
 - Owners today: companies (companies, members, interviews, candidates' invites, results), rounds
   (candidates' sessions and answers, practice rounds), site (the public site's content: the FAQ,
-  page guides, guide articles, legal texts), library (the question bank), generation
-  (AI drafting and checking), billing (credits, payments, AI costs, limits), notifications
-  (email, Slack, the bell), ats (ATS connections), api (the public API, web hooks), assistant
-  (Mira, the help chat for visitors, and MCP), accounts (users' accounts: settings, email
-  settings, accepted terms, deleting and downloading an account). New code goes to its owner; code found in the
-  wrong service moves there.
+  page guides, guide articles, legal texts, the contact form, news), library (the question
+  bank), generation (AI drafting and checking), billing (credits, payments, AI costs, limits),
+  notifications (email, Slack, the bell), ats (ATS connections), api (the public API, web hooks),
+  assistant (Mira, the help chat for visitors, and MCP), accounts (users' accounts: settings,
+  email settings, accepted terms, deleting and downloading an account). New code goes to its
+  owner; code found in the wrong service moves there.
 
 ## 2. Database per service
 

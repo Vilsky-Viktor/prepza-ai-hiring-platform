@@ -5,7 +5,7 @@ from prepza_common.config.constants import MAX_NEWS_TITLE_LENGTH
 from sqlalchemy import DateTime, ForeignKey, Index, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column
 
-from library.models.base import Base
+from site_content.models.base import Base
 
 
 class News(Base):

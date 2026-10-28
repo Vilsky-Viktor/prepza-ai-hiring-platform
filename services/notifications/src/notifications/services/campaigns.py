@@ -20,7 +20,7 @@ from notifications.constants.campaigns import (
     AudienceGroup,
 )
 from notifications.core.db import Session
-from notifications.integrations import generation, library
+from notifications.integrations import generation, site
 from notifications.models.campaigns import Campaign
 from notifications.repositories import campaigns
 from notifications.schemas.campaigns import (
@@ -101,7 +101,7 @@ async def create(body: CampaignIn, user_id: str) -> CampaignOut:
 
 async def from_news(news_id: uuid.UUID, user_id: str) -> CampaignOut:
     """A new product update made from a news post: its title, text and a button to it."""
-    post = await library.news_post(str(news_id))
+    post = await site.news_post(str(news_id))
 
     if post is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, NOT_FOUND)

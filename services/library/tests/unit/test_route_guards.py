@@ -6,13 +6,12 @@ from prepza_common.auth.route_guards import unguarded
 from library.main import app
 
 PUBLIC = {
-    # The public template library and news, the same for everyone.
+    # The public template library, the same for everyone.
     "GET /templates/filters",
     "GET /templates",
     "GET /templates/copyable",
     "GET /templates/{key}",
     "GET /templates/{key}/sample",
-    "GET /news",
     # Library's old account addresses, kept one release: each only sends the browser to the same
     # route in accounts (307), which checks who's asking (api/v1/moved_public.py).
     "GET /me",
@@ -23,6 +22,13 @@ PUBLIC = {
     "POST /superadmin/emails/{path:path}",
     "PUT /superadmin/emails/{path:path}",
     "GET /superadmin/stats",
+    # Library's old news addresses, kept one release: each only sends the browser to the same
+    # route in site (307), which checks who's asking (api/v1/moved_news.py).
+    "GET /news",
+    "GET /superadmin/news",
+    "POST /superadmin/news",
+    "PUT /superadmin/news/{news_id}",
+    "DELETE /superadmin/news/{news_id}",
     "GET /health",
     "GET /ready",
 }

@@ -30,7 +30,8 @@ resource "google_pubsub_subscription" "dead_letter" {
 # adds 24 bytes plus its name. An entry ending in ".*" is a whole family, every type up to its
 # first dot, matched on the event's `family` attribute (prepza_common.events.pubsub) in 25 bytes plus the
 # family's name: notifications and api take all "candidate." events that way, as listing them one
-# by one outgrew the cap, and ignore the ones they don't handle. A family of one type today
+# by one outgrew the cap, and ignore the ones they don't handle; notifications takes the
+# "notification." family too (notification.requested, and site's notification.news_withdrawn). A family of one type today
 # (company, contact, member, report, credits) is taken whole to save bytes; a consumer ignores any
 # type of it it doesn't handle. Companies takes `audit.recorded`, members' actions in billing,
 # ats, notifications and api, for the company's action log. Notifications and ats take their own
@@ -42,7 +43,7 @@ locals {
     library       = ["answer.recorded", "session.scored", "guests.deleted", "question.fixed", "interview.deleted", "company.deleted"]
     rounds        = ["interview.deleted", "company.deleted"]
     companies     = ["generation.completed", "generation.failed", "generation.cancelled", "interview.finished", "audit.recorded"]
-    notifications = ["notification.requested", "candidate.*", "member.*", "report.*", "contact.*", "company.*", "email.*"]
+    notifications = ["notification.*", "candidate.*", "member.*", "report.*", "contact.*", "company.*", "email.*"]
     ats           = ["candidate.finished", "candidate.removed", "interview.ready", "interview.deleted", "company.*", "credits.*", "ats.*"]
     api           = ["candidate.*", "interview.ready", "company.deleted"]
     assistant     = ["company.deleted", "candidate.removed", "candidate.interview_deleted"]

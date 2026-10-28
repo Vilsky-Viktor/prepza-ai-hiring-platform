@@ -8,6 +8,7 @@
 30 3 * * * curl -s -X POST http://companies:8000/internal/schedules/invite-expiry
 0 9 * * * curl -s -X POST http://companies:8000/internal/schedules/invite-reminders
 45 3 * * * curl -s -X POST http://library:8000/internal/schedules/bank
+50 3 * * * curl -s -X POST http://site:8000/internal/schedules/news
 # Assistant conversations idle past their retention.
 0 4 * * * curl -s -X POST http://assistant:8000/internal/schedules/retention
 30 4 * * * curl -s -X POST http://assistant:8000/internal/schedules/traces

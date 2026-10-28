@@ -3,6 +3,7 @@ import uuid
 from datetime import UTC, datetime
 
 import httpx
+import pytest
 
 from notifications.handlers import dispatch
 from notifications.repositories import notifications
@@ -24,7 +25,7 @@ def test_news_is_named_in_the_readers_language_and_a_deleted_post_left_out(monke
 
         return {"n1": "Neu: Code-Fragen"}
 
-    monkeypatch.setattr(feed.library, "news_titles", news_titles)
+    monkeypatch.setattr(feed.site, "news_titles", news_titles)
     items = [item("news", news_id="n1", title="New"), item("news", news_id="n2"), item("x")]
 
     shown = asyncio.run(feed.in_language(items, "de"))
@@ -36,11 +37,11 @@ def test_news_is_named_in_the_readers_language_and_a_deleted_post_left_out(monke
     assert asked == [(["n1", "n2"], "de")]
 
 
-def test_with_library_down_news_keeps_its_english_title(monkeypatch):
+def test_with_site_down_news_keeps_its_english_title(monkeypatch):
     async def news_titles(ids, language):
         raise httpx.ConnectError("down")
 
-    monkeypatch.setattr(feed.library, "news_titles", news_titles)
+    monkeypatch.setattr(feed.site, "news_titles", news_titles)
     items = [item("news", news_id="n1", title="New")]
 
     assert asyncio.run(feed.in_language(items, "de")) == items
@@ -64,7 +65,12 @@ def test_everyones_notifications_are_the_users_after_their_account_was_made(monk
     assert calls == [user]
 
 
-def test_a_deleted_news_posts_notification_goes(monkeypatch):
+@pytest.mark.parametrize(
+    # Site's event, and library's old one for the release the news moved in.
+    "event_type",
+    ["notification.news_withdrawn", "news.deleted"],
+)
+def test_a_deleted_news_posts_notification_goes(monkeypatch, event_type):
     removed = []
 
     async def remove_news(session, news_id):
@@ -72,6 +78,6 @@ def test_a_deleted_news_posts_notification_goes(monkeypatch):
 
     monkeypatch.setattr(notifications, "remove_news", remove_news)
 
-    asyncio.run(dispatch.handle("news.deleted", {"news_id": "n1"}, "e1"))
+    asyncio.run(dispatch.handle(event_type, {"news_id": "n1"}, "e1"))
 
     assert removed == ["n1"]

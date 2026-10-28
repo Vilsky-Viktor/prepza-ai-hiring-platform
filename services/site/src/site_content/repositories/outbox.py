@@ -1,4 +1,5 @@
 from prepza_common.events import outbox
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -9,6 +10,11 @@ from site_content.models.outbox import OutboxEvent
 def add(session: AsyncSession, event_type: str, data: dict) -> None:
     """Keeps the event with the transaction's change, until it's published."""
     outbox.add(session, OutboxEvent, event_type, data)
+
+
+def notify(session: AsyncSession, notice: dict) -> None:
+    """A notification for notifications to deliver, saved in `session` with its change."""
+    add(session, NOTIFICATION_REQUESTED, notice)
 
 
 def from_sender(email: str):

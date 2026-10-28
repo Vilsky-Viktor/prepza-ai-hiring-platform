@@ -1,4 +1,4 @@
-import type { components } from "@/types/api/library"
+import type { components } from "@/types/api/site"
 
 type Schemas = components["schemas"]
 

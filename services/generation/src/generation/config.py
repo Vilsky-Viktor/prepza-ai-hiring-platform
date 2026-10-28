@@ -10,6 +10,9 @@ class Settings(ServiceSettings):
     database_url: str
     redis_url: str
     library_url: str
+    # The site's content service keeps the news posts this service translates (SITE_URL is the
+    # site's own address).
+    site_service_url: str
     # Notifications keeps the campaigns this service translates.
     notifications_url: str = "http://notifications:8000"
     # Where Cloud Tasks (or, locally, the API itself) sends jobs.

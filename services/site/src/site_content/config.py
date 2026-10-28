@@ -15,6 +15,8 @@ class Settings(ServiceSettings):
     service_secret: str
     # Billing's public prices, which the FAQ and the platform guide name.
     billing_url: str
+    # Translates news posts into the other languages.
+    generation_url: str
 
 
 settings = Settings()

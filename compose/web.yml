@@ -10,6 +10,8 @@ x-site-env: &site-env
   BILLING_URL: http://billing:8000
   # The "I'm not a robot" check on the contact form.
   TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
+  # Translates news posts.
+  GENERATION_URL: http://generation:8000
 
 # Its mounted source; migrations read it too, so new ones run without a rebuild.
 x-site-source: &site-source

@@ -22,19 +22,19 @@ Ready-made interviews by role (see [Templates and practice](templates-and-practi
 
 The posts on the public [news page](site.md#news), newest first, like the templates list.
 
-- **New post** opens a dialog: a title (up to 120 characters), a date (today unless changed) and the text (up to 500 characters, with a live count of the characters left). Library checks the limits (`MAX_NEWS_TITLE_LENGTH`, `MAX_NEWS_TEXT_LENGTH` in `prepza_common.config.constants`); the form only shows them.
+- **New post** opens a dialog: a title (up to 120 characters), a date (today unless changed) and the text (up to 500 characters, with a live count of the characters left). The site service checks the limits (`MAX_NEWS_TITLE_LENGTH`, `MAX_NEWS_TEXT_LENGTH` in `prepza_common.config.constants`); the form only shows them.
 - Posts are written in English only. Each row's pencil opens the same dialog to edit it; its bin deletes it after asking. Its send button, **Send as a campaign**, makes a new product update campaign from the post (its title, text and a button to it) and opens it to check and send.
 - A published post goes in every user's bell (see [Notifications](notifications.md#the-bell)); deleting it takes it back.
 - Each row says "translated" once the post is in every other language, "translating…" until then.
 
-**Translation:** after a save, library asks generation (`POST /internal/news/{id}/translate`), which queues a worker job (Cloud Tasks). The job reads the post and the languages it lacks from library and queues one translation for each in generation's next OpenAI batch (the Batch API, half price; batches go out every 10 minutes and usually come back within an hour, at most 24 hours), with the translation model (meaning, not words: each language's hiring terms; "prepza" and product and ATS names kept). Each translation that comes back within the limits is saved (`PUT /internal/news/{id}/translations`).
+**Translation:** after a save, the site service asks generation (`POST /internal/news/{id}/translate`), which queues a worker job (Cloud Tasks). The job reads the post and the languages it lacks from site and queues one translation for each in generation's next OpenAI batch (the Batch API, half price; batches go out every 10 minutes and usually come back within an hour, at most 24 hours), with the translation model (meaning, not words: each language's hiring terms; "prepza" and product and ATS names kept). Each translation that comes back within the limits is saved (`PUT /internal/news/{id}/translations`).
 
-- Until its translation is saved, a language shows the English post. A translation past the limits, or none, is asked for again in the next batch, up to 6 times, then given up; library's daily schedule sends every post that still lacks a language again. A language already waiting isn't queued twice.
+- Until its translation is saved, a language shows the English post. A translation past the limits, or none, is asked for again in the next batch, up to 6 times, then given up; site's daily schedule (`news-translations`) sends every post that still lacks a language again. A language already waiting isn't queued twice.
 - A changed title or text deletes the post's translations and starts a new translation; a new date alone keeps them. Translations of an older text that arrive after an edit are dropped, and saving the same translation again replaces it.
 - While the emergency pause is on, generation refuses the request and the daily schedule sends the post later.
 - Without an OpenAI key (locally), nothing is translated, and every language shows the English post.
 
-Routes (library): `GET/POST /superadmin/news`, `PUT/DELETE /superadmin/news/{id}`.
+Routes (site, at library's old addresses `/api/library/superadmin/news...`, which the gateway and the load balancer send to it): `GET/POST /superadmin/news`, `PUT/DELETE /superadmin/news/{id}`.
 
 ## Campaigns
 

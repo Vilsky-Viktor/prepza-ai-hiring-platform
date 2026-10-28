@@ -4,14 +4,14 @@
 from uuid import UUID
 
 from generation.constants.batch_work import BatchKind, BatchStep
-from generation.integrations import library, notifications
+from generation.integrations import notifications, site
 from generation.services.batch_work import queue
 
 
 async def translate_news(news_id: UUID) -> None:
     """Queues the post's translation into each language it lacks. Safe to repeat: a language
     already waiting isn't queued twice, and one translated since isn't missing any more."""
-    source = await library.get_news_source(news_id)
+    source = await site.get_news_source(news_id)
 
     if source is None:
         return

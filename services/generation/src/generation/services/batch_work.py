@@ -12,7 +12,7 @@ from generation.constants.actions import CAMPAIGN_TRANSLATION, NEWS_TRANSLATION,
 from generation.constants.batch_work import MAX_BATCH_WORK, BatchKind, BatchStep
 from generation.constants.quality import BATCH_RETRY_STATUSES
 from generation.core.db import Session
-from generation.integrations import library, notifications, openai_batch
+from generation.integrations import library, notifications, openai_batch, site
 from generation.integrations.usage import ai_run
 from generation.models.batch_work import BatchWork
 from generation.repositories import batch_work
@@ -163,7 +163,7 @@ async def save(work: BatchWork, result) -> None:
     since); a question's new text and options, only while it's still the one flagged."""
     if work.kind == BatchKind.NEWS:
         source = NewsSource(**work.payload["source"])
-        await library.save_news_translations(work.subject_id, source, {work.key: result})
+        await site.save_news_translations(work.subject_id, source, {work.key: result})
 
         return
 

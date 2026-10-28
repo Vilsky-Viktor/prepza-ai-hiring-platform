@@ -11,6 +11,9 @@ class Settings(ServiceSettings):
     generation_url: str
     # Users' accounts: library's old account routes forward there for one release.
     accounts_url: str
+    # The site's content service (SITE_URL is the site's own address): library's old internal
+    # news routes forward there for one release.
+    site_service_url: str
 
 
 settings = Settings()

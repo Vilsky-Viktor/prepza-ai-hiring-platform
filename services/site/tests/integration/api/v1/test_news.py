@@ -6,13 +6,13 @@ from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from sqlalchemy import select
 
-from library.core.db import Session
-from library.integrations import generation
-from library.main import app
-from library.models.outbox import OutboxEvent
-from library.repositories import news
-from library.schemas.news import NewsIn, NewsTranslationIn
-from library.services import news as news_service
+from site_content.core.db import Session
+from site_content.integrations import generation
+from site_content.main import app
+from site_content.models.outbox import OutboxEvent
+from site_content.repositories import news
+from site_content.schemas.news import NewsIn, NewsTranslationIn
+from site_content.services import news as news_service
 from tests.integration.transactions import transaction
 
 
@@ -131,7 +131,7 @@ def test_the_admin_tab_and_the_public_page_end_to_end(run, monkeypatch):
     async def scenario():
         transport = httpx.ASGITransport(app=app)
 
-        async with httpx.AsyncClient(transport=transport, base_url="http://library") as client:
+        async with httpx.AsyncClient(transport=transport, base_url="http://site") as client:
             created = (await client.post("/superadmin/news", json=body)).json()
             before = (await client.get("/news", headers={"Accept-Language": "ja"})).json()
             await transaction(
@@ -200,7 +200,7 @@ def test_a_post_tells_everyones_bell_and_its_deletion_takes_the_notification_bac
 
     assert [list(found.values()) for found in titles] == [["Im Glöckchen"], ["In the bell"]]
     # Removed twice, announced once.
-    assert events == [("news.deleted", None), ("notification.requested", "all")]
+    assert events == [("notification.news_withdrawn", None), ("notification.requested", "all")]
     assert gone == {}
 
 

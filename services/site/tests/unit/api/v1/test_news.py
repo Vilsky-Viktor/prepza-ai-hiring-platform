@@ -10,11 +10,11 @@ from prepza_common.auth.user import User
 from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
 from prepza_common.http.http import bearer
 
-from library.helpers.notifications import news_notification
-from library.integrations import generation
-from library.main import app
-from library.repositories import news, outbox
-from library.services import news as news_service
+from site_content.helpers.notifications import news_notification
+from site_content.integrations import generation
+from site_content.main import app
+from site_content.repositories import news, outbox
+from site_content.services import news as news_service
 
 POST_ID = uuid.uuid4()
 BODY = {"title": "Practice in Thai", "text": "Line one.\nLine two.", "published_on": "2026-10-08"}
@@ -197,7 +197,7 @@ def service_token(lifetime=60):
     exp = datetime.now(UTC) + timedelta(seconds=lifetime)
 
     return jwt.encode(
-        {"iss": "generation", "aud": "library", "exp": exp},
+        {"iss": "generation", "aud": "site", "exp": exp},
         "test-secret-that-is-at-least-32-bytes",
         algorithm="HS256",
     )

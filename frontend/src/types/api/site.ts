@@ -241,10 +241,169 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/schedules/news": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Resend News
+     * @description Daily, from Cloud Scheduler: sends news posts still missing translations to be translated
+     *     again.
+     */
+    post: operations["resend_news_internal_schedules_news_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/news": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** List News */
+    get: operations["list_news_news_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/superadmin/news": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** List News */
+    get: operations["list_news_superadmin_news_get"]
+    put?: never
+    /** Create News */
+    post: operations["create_news_superadmin_news_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/superadmin/news/{news_id}": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    /**
+     * Update News
+     * @description A changed title or text is translated again; a new date alone keeps the translations.
+     */
+    put: operations["update_news_superadmin_news__news_id__put"]
+    post?: never
+    /** Delete News */
+    delete: operations["delete_news_superadmin_news__news_id__delete"]
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/news/titles": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * News Titles
+     * @description The posts' titles in the reader's language, in English until it's translated.
+     */
+    post: operations["news_titles_internal_news_titles_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/news/{news_id}": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Get News Source */
+    get: operations["get_news_source_internal_news__news_id__get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/news/{news_id}/translations": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    /**
+     * Save News Translations
+     * @description Safe to repeat; translations of an older version of the post, or of a deleted one, are
+     *     dropped.
+     */
+    put: operations["save_news_translations_internal_news__news_id__translations_put"]
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
 export type webhooks = Record<string, never>
 export interface components {
   schemas: {
+    /** AdminNewsOut */
+    AdminNewsOut: {
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string
+      /** Title */
+      title: string
+      /** Text */
+      text: string
+      /**
+       * Published On
+       * Format: date
+       */
+      published_on: string
+      /**
+       * Updated At
+       * Format: date-time
+       */
+      updated_at: string
+      /** Translated */
+      translated: boolean
+    }
     /** ContactRequest */
     ContactRequest: {
       /** Name */
@@ -364,6 +523,123 @@ export interface components {
       items: string[]
     }
     /**
+     * NewsIn
+     * @description A post as a superadmin writes it, in English.
+     */
+    NewsIn: {
+      /** Title */
+      title: string
+      /** Text */
+      text: string
+      /**
+       * Published On
+       * Format: date
+       */
+      published_on: string
+    }
+    /**
+     * NewsOut
+     * @description A post as the news page shows it, in the reader's language when it's translated.
+     */
+    NewsOut: {
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string
+      /** Title */
+      title: string
+      /** Text */
+      text: string
+      /**
+       * Published On
+       * Format: date
+       */
+      published_on: string
+      /**
+       * Updated At
+       * Format: date-time
+       */
+      updated_at: string
+    }
+    /**
+     * NewsSourceOut
+     * @description A post to translate (generation): its English text and the languages it lacks.
+     */
+    NewsSourceOut: {
+      /** Title */
+      title: string
+      /** Text */
+      text: string
+      /** Missing */
+      missing: string[]
+    }
+    /**
+     * NewsTitlesIn
+     * @description Posts the bell names (notifications), and the reader's language.
+     */
+    NewsTitlesIn: {
+      /** News Ids */
+      news_ids: string[]
+      /**
+       * Language
+       * @enum {string}
+       */
+      language:
+        | "en"
+        | "ru"
+        | "uk"
+        | "es"
+        | "pt"
+        | "de"
+        | "fr"
+        | "it"
+        | "pl"
+        | "nl"
+        | "tr"
+        | "ar"
+        | "he"
+        | "fa"
+        | "ja"
+        | "zh"
+        | "ko"
+        | "hi"
+        | "id"
+        | "th"
+        | "vi"
+        | "fil"
+        | "et"
+    }
+    /** NewsTitlesOut */
+    NewsTitlesOut: {
+      /** Titles */
+      titles: {
+        [key: string]: string
+      }
+    }
+    /** NewsTranslationIn */
+    NewsTranslationIn: {
+      /** Title */
+      title: string
+      /** Text */
+      text: string
+    }
+    /**
+     * NewsTranslationsIn
+     * @description Translations of the post's English `title` and `text`: saved only while the post still
+     *     reads so, since an edit made during translation starts a new one.
+     */
+    NewsTranslationsIn: {
+      /** Title */
+      title: string
+      /** Text */
+      text: string
+      /** Translations */
+      translations: {
+        [key: string]: components["schemas"]["NewsTranslationIn"]
+      }
+    }
+    /**
      * PageGuideOut
      * @description A page's guide: what it's for (`text`), what you can do there, tips, and the guide
      *     article to read more in, if the page has one.
@@ -384,7 +660,7 @@ export interface components {
     /**
      * UserEmailIn
      * @description An email address sent in the body, so request logs don't record it: the account's, in
-     *     library's calls to delete or export a user's data, or the one a superadmin looks up.
+     *     accounts' calls to delete or export a user's data, or the one a superadmin looks up.
      */
     UserEmailIn: {
       /** Email */
@@ -750,6 +1026,286 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+    }
+  }
+  resend_news_internal_schedules_news_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  list_news_news_get: {
+    parameters: {
+      query?: {
+        /** @description Number of items to skip */
+        offset?: number
+        /** @description Number of items to return, up to 100 */
+        limit?: number
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["NewsOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  list_news_superadmin_news_get: {
+    parameters: {
+      query?: {
+        /** @description Number of items to skip */
+        offset?: number
+        /** @description Number of items to return, up to 100 */
+        limit?: number
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["AdminNewsOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  create_news_superadmin_news_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NewsIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["AdminNewsOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  update_news_superadmin_news__news_id__put: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        news_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NewsIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["AdminNewsOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  delete_news_superadmin_news__news_id__delete: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        news_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  news_titles_internal_news_titles_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NewsTitlesIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["NewsTitlesOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_news_source_internal_news__news_id__get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        news_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["NewsSourceOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  save_news_translations_internal_news__news_id__translations_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        news_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NewsTranslationsIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
       }
     }
   }

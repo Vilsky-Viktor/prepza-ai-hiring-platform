@@ -37,6 +37,8 @@ locals {
     # In the morning (UTC), not the night: a reminder candidates see.
     invite-reminders = { service = "companies", path = "/internal/schedules/invite-reminders", cron = "0 9 * * *" }
     bank-stages      = { service = "library", path = "/internal/schedules/bank", cron = "45 3 * * *" }
+    # News posts still missing a translation, sent to be translated again.
+    news-translations = { service = "site", path = "/internal/schedules/news", cron = "50 3 * * *" }
     # The last 14 days' account deletions run again (and older ones forgotten), so a database
     # restored from a backup brings nobody back; run it by hand right after a restore too.
     erasures = { service = "accounts", path = "/internal/schedules/erasures", cron = "0 5 * * *" }

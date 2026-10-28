@@ -2,11 +2,11 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
 
-from library.api.dependencies import ServiceCaller
-from library.core.db import Session
-from library.repositories import news
-from library.schemas.news import NewsSourceOut, NewsTitlesIn, NewsTitlesOut, NewsTranslationsIn
-from library.services import news as news_service
+from site_content.api.dependencies import ServiceCaller
+from site_content.core.db import Session
+from site_content.repositories import news
+from site_content.schemas.news import NewsSourceOut, NewsTitlesIn, NewsTitlesOut, NewsTranslationsIn
+from site_content.services import news as news_service
 
 # News posts' translations, written by generation (its translate-news job), and their titles
 # for the bell (notifications).

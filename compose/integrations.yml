@@ -28,9 +28,9 @@ x-notifications-env: &notifications-env
   # Candidates' emails, watched apart; empty: MAIL_FROM.
   MAIL_FROM_CANDIDATES: ${MAIL_FROM_CANDIDATES:-}
   COMPANIES_URL: http://companies:8000
-  # Users' addresses, languages and email settings; library has the news the bell names.
+  # Users' addresses, languages and email settings; site has the news the bell names.
   ACCOUNTS_URL: http://accounts:8000
-  LIBRARY_URL: http://library:8000
+  SITE_SERVICE_URL: http://site:8000
   # The reminders ask billing for low credits and generation for topics waiting for review.
   BILLING_URL: http://billing:8000
   GENERATION_URL: http://generation:8000

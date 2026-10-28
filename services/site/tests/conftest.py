@@ -13,6 +13,8 @@ os.environ.setdefault("DATABASE_URL", "postgresql://test:test@localhost/test")
 os.environ.setdefault("REDIS_URL", "redis://localhost:6379")
 os.environ.setdefault("SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("BILLING_URL", "http://billing")
+os.environ.setdefault("GENERATION_URL", "http://generation:8000")
+os.environ.setdefault("GENERATION_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 
 import pytest
 from fastapi.testclient import TestClient

@@ -2,10 +2,17 @@
 
 The public site's content: the FAQ, each page's guide, the guide articles and the legal texts the
 site shows, the knowledge the assistant's help chat answers from
-(`GET /internal/help/knowledge`), and the contact form. It keeps the contact page's messages as
+(`GET /internal/help/knowledge`), the contact form and the news. It keeps the contact page's messages as
 `contact.sent` events in its own database's outbox until they're published, and a week after
 (notifications emails them); accounts deletes and exports the ones sent from a user's email
-(`/internal/users/{id}`), with Turnstile and per-address limits (`CONTACT_*`) on the form. What it does:
+(`/internal/users/{id}`), with Turnstile and per-address limits (`CONTACT_*`) on the form. It
+also keeps the news posts and their translations (`news`, `news_translations`): the news page,
+the admin zone's news tab, the bell's notification for each post (`notification.requested`, taken
+back with `notification.news_withdrawn`), generation's translations
+(`/internal/news/{id}`, `/translations`) and the bell's titles (`/internal/news/titles`); a
+daily schedule (`/internal/schedules/news`) sends posts still missing a language again. A
+one-off job copied library's news rows (`python -m site_content.jobs.copy_from_library`, safe to
+repeat). What it does:
 [the site](../../docs/features/site.md).
 
 Its Python package is `site_content`, not `site`: `site` is a module of Python's own, loaded when
@@ -19,12 +26,13 @@ src/site_content/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
-├── services/               # The help knowledge, contact, deletion and export, the outbox;
+├── services/               # The help knowledge, contact, news, deletion and export, the outbox;
 │                           # each opens its transaction
-├── repositories/           # Database queries (the outbox); take the session, never commit
+├── repositories/           # Database queries (news, the outbox); take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (guides, legal versions); fixed values, the FAQ
-├── integrations/           # billing (public prices), Redis
+├── integrations/           # billing (public prices), generation (translations), Redis
+├── jobs/                   # One-off: the copy of library's news rows
 ├── prompts/                # The platform guide's texts, sent with the help knowledge
 ├── page_guides/            # Each page's guide, one JSON file per language
 ├── legal_versions/         # Every published version of the legal texts
@@ -34,9 +42,9 @@ migrations/                       # Alembic
 ```
 
 Its routes keep rounds' public addresses (`/api/rounds/help/faq`, `/help/guide`,
-`/help/pages/...`, `/help/guides...`, `/help/legal/...`, `/help/contact`), which the gateway and the load
-balancer send to it (`locals.site_paths`); it serves each at the same path under `/api/site/`
-too.
+`/help/pages/...`, `/help/guides...`, `/help/legal/...`, `/help/contact`) and library's
+(`/api/library/news`, `/api/library/superadmin/news...`), which the gateway and the load balancer
+send to it (`locals.site_paths`); it serves each at the same path under `/api/site/` too.
 
 The help articles come from `frontend/content` at the repo root (`constants/help.py`); the
 images copy it to `/frontend/content`, at the same place relative to the code.

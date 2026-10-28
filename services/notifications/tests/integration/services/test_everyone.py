@@ -3,7 +3,7 @@ from datetime import UTC, datetime, timedelta
 
 from prepza_common.events.notifications import EVERYONE, NotificationKind, Recipient, notification
 
-from notifications.integrations import accounts, companies, library
+from notifications.integrations import accounts, companies, site
 from notifications.repositories import notifications
 from notifications.services import feed, notices
 from tests.integration.transactions import transaction
@@ -71,7 +71,7 @@ def test_the_bell_names_the_news_in_the_readers_language_for_accounts_older_than
 
     monkeypatch.setattr(companies, "company_ids", company_ids)
     monkeypatch.setattr(accounts, "account_created", account_created)
-    monkeypatch.setattr(library, "news_titles", news_titles)
+    monkeypatch.setattr(site, "news_titles", news_titles)
 
     def news(found):
         return [
