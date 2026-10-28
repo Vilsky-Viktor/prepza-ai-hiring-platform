@@ -2669,12 +2669,12 @@ export interface components {
       font: components["schemas"]["BrandFont"]
       /**
        * Radius
-       * @default 10
+       * @default 14
        */
       radius: number
       /**
        * Button Radius
-       * @default 24
+       * @default 14
        */
       button_radius: number
     }

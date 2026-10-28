@@ -8378,14 +8378,14 @@
       "maximum": 24.0,
       "minimum": 0.0,
       "title": "Radius",
-      "default": 10
+      "default": 14
      },
      "button_radius": {
       "type": "integer",
       "maximum": 24.0,
       "minimum": 0.0,
       "title": "Button Radius",
-      "default": 24
+      "default": 14
      }
     },
     "type": "object",
