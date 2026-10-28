@@ -6,6 +6,13 @@ import {
   YOUTUBE_ORIGINS,
 } from "@/config/security"
 
+/** A fresh nonce for one page: 128 random bits (CSP3 asks for at least that), base64. */
+export function newNonce() {
+  return btoa(
+    String.fromCharCode(...crypto.getRandomValues(new Uint8Array(16)))
+  )
+}
+
 /**
  * The page's Content-Security-Policy. Scripts run only with this request's nonce, or when a
  * script with it loads them ('strict-dynamic'), which covers Firebase loading Google's sign-in

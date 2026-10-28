@@ -8,7 +8,7 @@ import {
 } from "@/config/maintenance"
 import { LOCALE_HEADER, PLAIN_ADDRESS_HEADER } from "@/config/seo"
 import { EMBED_PAGE } from "@/config/embed"
-import { contentSecurityPolicy } from "@/lib/csp"
+import { contentSecurityPolicy, newNonce } from "@/lib/csp"
 import { embedAncestors } from "@/lib/embed"
 import {
   hasLanguageVersions,
@@ -24,7 +24,7 @@ import { maintenanceState } from "@/lib/maintenance"
  * pages are kept out of search results. No site may frame a page, but a company's allowed
  * domains its embedded interview. */
 export async function proxy(request: NextRequest) {
-  const nonce = Buffer.from(crypto.randomUUID()).toString("base64")
+  const nonce = newNonce()
   const embedded = EMBED_PAGE.exec(request.nextUrl.pathname)
   // Asked together: who may frame an embedded interview, and whether maintenance is on.
   const [ancestors, maintenance] = await Promise.all([

@@ -1,6 +1,6 @@
 import { afterEach, expect, it, vi } from "vitest"
 
-import { contentSecurityPolicy } from "@/lib/csp"
+import { contentSecurityPolicy, newNonce } from "@/lib/csp"
 
 afterEach(() => {
   vi.unstubAllEnvs()
@@ -30,4 +30,13 @@ it("lets no one frame a page, but a company's own site its embedded interview", 
   expect(
     contentSecurityPolicy("nonce", false, "acme.com *.acme.com")
   ).toContain("frame-ancestors acme.com *.acme.com")
+})
+
+it("makes a nonce of 128 random bits, new for every page", () => {
+  const nonces = Array.from({ length: 50 }, () => newNonce())
+
+  expect(new Set(nonces).size).toBe(50)
+  for (const nonce of nonces) {
+    expect(atob(nonce)).toHaveLength(16)
+  }
 })
