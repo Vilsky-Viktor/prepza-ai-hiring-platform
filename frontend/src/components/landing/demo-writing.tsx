@@ -2,7 +2,7 @@ import { cn } from "cn"
 import { CheckIcon, LoaderCircleIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { AiPulse } from "@/components/ai-pulse"
+import { AiPulse } from "@/components/common/ai-pulse"
 import { Progress } from "@/components/ui/progress"
 
 /** The questions being written, as the generation page shows it (components/generation/

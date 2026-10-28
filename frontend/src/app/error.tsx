@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { startTransition, useEffect } from "react"
 
-import { ReportProblem } from "@/components/report-problem"
+import { ReportProblem } from "@/components/common/report-problem"
 import { Button } from "@/components/ui/button"
 
 /** A page that failed: what happened, Retry (the page's data read again, then shown) and the way

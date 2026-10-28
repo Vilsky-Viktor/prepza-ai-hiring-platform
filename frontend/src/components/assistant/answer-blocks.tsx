@@ -13,8 +13,8 @@ import {
   CandidateTable,
   InterviewTable,
 } from "@/components/assistant/compact-rows"
-import { LocalizedLink } from "@/components/localized-link"
-import { SignInOptions } from "@/components/sign-in-options"
+import { LocalizedLink } from "@/components/common/localized-link"
+import { SignInOptions } from "@/components/common/sign-in-options"
 import { buttonVariants } from "@/components/ui/button"
 import { PAGE_LABELS } from "@/config/assistant"
 import { answerParts, linkPage } from "@/lib/assistant"

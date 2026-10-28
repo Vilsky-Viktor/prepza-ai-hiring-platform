@@ -5,8 +5,8 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { Chips } from "@/components/company/ats-steps"
-import { CopyValue } from "@/components/copy-field"
-import { InputAction } from "@/components/input-action"
+import { CopyValue } from "@/components/common/copy-field"
+import { InputAction } from "@/components/common/input-action"
 import { WEBHOOKS, type AtsProvider } from "@/config/ats"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 

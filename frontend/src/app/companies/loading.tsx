@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server"
 
-import { LoadingSpinner } from "@/components/loading-spinner"
+import { LoadingSpinner } from "@/components/common/loading-spinner"
 
 /** What a company's page shows at once while its data loads (companies, billing and the other
  * services it asks can take seconds after idle): the site's header and footer stay, and the

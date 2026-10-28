@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl"
 
 import type { CandidateRowData } from "@/components/company/candidate-row"
 import { InterviewStatus } from "@/components/company/interview-status"
-import { LocalizedLink } from "@/components/localized-link"
+import { LocalizedLink } from "@/components/common/localized-link"
 import { Badge } from "@/components/ui/badge"
 import { formatPercent } from "@/lib/format"
 import { gradeTone } from "@/lib/grade-tone"

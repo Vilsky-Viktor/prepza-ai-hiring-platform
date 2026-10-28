@@ -1,5 +1,5 @@
 import { LinkView } from "@/components/company/link-view"
-import { PausedNotice } from "@/components/paused-notice"
+import { PausedNotice } from "@/components/common/paused-notice"
 import { isPaused } from "@/lib/pause"
 import { translatedTitle } from "@/lib/site"
 import { START_PAGE } from "@/config/start-page"

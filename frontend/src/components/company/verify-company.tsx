@@ -7,7 +7,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { PendingBadge } from "@/components/company/pending-badge"
-import { InputAction } from "@/components/input-action"
+import { InputAction } from "@/components/common/input-action"
 import {
   Dialog,
   DialogContent,

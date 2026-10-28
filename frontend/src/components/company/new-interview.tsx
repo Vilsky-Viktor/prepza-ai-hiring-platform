@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 
-import { DescriptionBox } from "@/components/description-box"
+import { DescriptionBox } from "@/components/common/description-box"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import type { Interview } from "@/types/company"
 

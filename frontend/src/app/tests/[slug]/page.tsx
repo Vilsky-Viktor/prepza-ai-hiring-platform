@@ -2,10 +2,10 @@ import Link from "next/link"
 import { notFound, permanentRedirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { BackLink } from "@/components/back-link"
-import { FaqList } from "@/components/faq-list"
-import { JsonLd } from "@/components/json-ld"
-import { PageHeader } from "@/components/page-header"
+import { BackLink } from "@/components/common/back-link"
+import { FaqList } from "@/components/common/faq-list"
+import { JsonLd } from "@/components/common/json-ld"
+import { PageHeader } from "@/components/common/page-header"
 import { SubtopicList } from "@/components/questions/subtopic-list"
 import { SampleQuestions } from "@/components/tests/sample-questions"
 import { Badge } from "@/components/ui/badge"
@@ -28,7 +28,7 @@ import {
 import type { FaqItem } from "@/types/help"
 import type { SampleQuestion, Template } from "@/types/superadmin"
 import { LIST_BOX, ROW_HOVER } from "@/config/lists"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 type Params = { params: Promise<{ slug: string }> }
 

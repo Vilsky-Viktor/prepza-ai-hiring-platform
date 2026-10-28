@@ -18,7 +18,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { FloatingTextarea } from "@/components/ui/floating-field"
-import { PillSelect } from "@/components/pill-select"
+import { PillSelect } from "@/components/common/pill-select"
 import { FEEDBACK_HOVER_CLASS, REPORT_REASONS } from "@/config/feedback"
 import { MAX_REPORT_COMMENT_LENGTH } from "@/config/limits"
 import { ApiError, apiErrorMessage, apiFetch } from "@/lib/api"

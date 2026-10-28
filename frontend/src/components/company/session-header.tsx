@@ -5,7 +5,7 @@ import { Countdown } from "@/components/company/countdown"
 import { Progress } from "@/components/ui/progress"
 import type { InterviewSession } from "@/types/company"
 import type { NextQuestion } from "@/types/round"
-import { Dot } from "@/components/dot"
+import { Dot } from "@/components/common/dot"
 
 /** The interview's header: the company's logo, the section's title and place, the question's
  * clock and the progress. */

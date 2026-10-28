@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from "lucide-react"
 
-import { LocalizedLink } from "@/components/localized-link"
+import { LocalizedLink } from "@/components/common/localized-link"
 import type { ContentPage } from "@/lib/content"
 import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 

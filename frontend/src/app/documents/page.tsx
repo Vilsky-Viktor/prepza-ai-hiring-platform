@@ -3,12 +3,12 @@ import Link from "next/link"
 import { getLocale, getTranslations } from "next-intl/server"
 
 import { Badge } from "@/components/ui/badge"
-import { IconButton } from "@/components/icon-button"
+import { IconButton } from "@/components/common/icon-button"
 import { DOCUMENTS } from "@/config/documents"
 import { DEFAULT_LOCALE } from "@/config/i18n"
 import { pageMetadata } from "@/lib/site"
 import { LIST_BOX, ROW_HOVER } from "@/config/lists"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 // Like the report's download button (components/company/report-actions.tsx).
 export async function generateMetadata() {

@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
 import { NewTemplate } from "@/components/superadmin/new-template"
-import { BackLink } from "@/components/back-link"
+import { BackLink } from "@/components/common/back-link"
 import { translatedTitle } from "@/lib/site"
 
 export const generateMetadata = () => translatedTitle("superadmin", "new")

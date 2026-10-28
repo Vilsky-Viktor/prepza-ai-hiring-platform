@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 
 import type { ReactNode } from "react"
 
-import { SideMenuLayout } from "@/components/side-menu"
+import { SideMenuLayout } from "@/components/common/side-menu"
 
 /** The API page's menu beside its content (`children`): its keys, and its web hooks. */
 export function ApiNav({

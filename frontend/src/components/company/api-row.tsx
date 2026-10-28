@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 
 import { IntegrationRow } from "@/components/company/integration-row"
 import { Button } from "@/components/ui/button"
-import { DottedText } from "@/components/dot"
+import { DottedText } from "@/components/common/dot"
 import { API_DOCS_PATH } from "@/config/api"
 import { INTEGRATION_ACTIONS } from "@/config/lists"
 import type { ApiSettings } from "@/types/api-access"

@@ -9,7 +9,7 @@ import {
   PermissionTags,
   PermissionTicks,
 } from "@/components/company/api-permissions"
-import { Dot } from "@/components/dot"
+import { Dot } from "@/components/common/dot"
 import { WebhookActions } from "@/components/company/webhook-actions"
 import { MAX_KEY_NAME, MAX_WEBHOOK_URL } from "@/config/api"
 import type { ApiKey, ApiWebhook, PermissionOptions } from "@/types/api-access"

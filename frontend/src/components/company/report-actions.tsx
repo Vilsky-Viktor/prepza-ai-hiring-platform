@@ -6,7 +6,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { ShareReport } from "@/components/company/share-report"
-import { IconButton } from "@/components/icon-button"
+import { IconButton } from "@/components/common/icon-button"
 import { reportPdf } from "@/lib/report-pdf"
 
 /** Download a PDF report, or share it by email or chat. It's made from the hidden element

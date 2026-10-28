@@ -48,7 +48,7 @@ paths:
 
 ## Structured data
 
-- JSON-LD from `lib/structured-data.ts`, escaped (`components/json-ld.tsx`); only types Google
+- JSON-LD from `lib/structured-data.ts`, escaped (`components/common/json-ld.tsx`); only types Google
   documents and only facts the page shows. Organization (name, url, a crawlable logo of at least
   112 px, `sameAs`, a full `PostalAddress`) and WebSite on the home or about page; Article with
   `headline`, `image`, `dateModified` and the canonical as `url`; BreadcrumbList with absolute

@@ -1,18 +1,18 @@
 import { cookies } from "next/headers"
 import { getTranslations } from "next-intl/server"
 
-import { BackLink } from "@/components/back-link"
-import { PageHeader } from "@/components/page-header"
+import { BackLink } from "@/components/common/back-link"
+import { PageHeader } from "@/components/common/page-header"
 import { PracticeRoundList } from "@/components/practice/practice-round-list"
 import { StartPractice } from "@/components/practice/start-practice"
-import { SignInPrompt } from "@/components/sign-in-prompt"
+import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { TOKEN_COOKIE } from "@/config/auth"
 import { publicFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { PracticeRoundSummary, PracticeSize } from "@/types/round"
 import type { Template } from "@/types/superadmin"
 import { PAGE_SIZE } from "@/config/lists"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 export const generateMetadata = () => translatedTitle("practice", "history")
 

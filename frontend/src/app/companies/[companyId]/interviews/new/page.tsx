@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { BackLink } from "@/components/back-link"
+import { BackLink } from "@/components/common/back-link"
 import { NewInterview } from "@/components/company/new-interview"
-import { PausedNotice } from "@/components/paused-notice"
-import { SignInPage } from "@/components/sign-in-page"
+import { PausedNotice } from "@/components/common/paused-notice"
+import { SignInPage } from "@/components/common/sign-in-page"
 import { isPaused } from "@/lib/pause"
 import { serverFetch, signedIn } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"

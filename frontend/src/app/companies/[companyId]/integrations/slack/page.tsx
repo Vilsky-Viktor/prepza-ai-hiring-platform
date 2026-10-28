@@ -3,16 +3,16 @@ import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { Suspense } from "react"
 
-import { BackLink } from "@/components/back-link"
+import { BackLink } from "@/components/common/back-link"
 import {
   SlackActions,
   SlackStatus,
 } from "@/components/company/slack-connection"
 import { SlackKinds } from "@/components/company/slack-kinds"
 import { SlackReturned } from "@/components/company/slack-returned"
-import { PageHeader } from "@/components/page-header"
-import { SignInPrompt } from "@/components/sign-in-prompt"
-import { Dot } from "@/components/dot"
+import { PageHeader } from "@/components/common/page-header"
+import { SignInPrompt } from "@/components/common/sign-in-prompt"
+import { Dot } from "@/components/common/dot"
 import { TOKEN_COOKIE } from "@/config/auth"
 import { SLACK } from "@/config/slack"
 import { serverFetch } from "@/lib/server-api"

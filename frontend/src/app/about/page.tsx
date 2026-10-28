@@ -1,18 +1,18 @@
 import Image from "next/image"
 import { getTranslations } from "next-intl/server"
 
-import { BackLink } from "@/components/back-link"
-import { LinkedInIcon } from "@/components/brand-icons"
+import { BackLink } from "@/components/common/back-link"
+import { LinkedInIcon } from "@/components/icons/brand-icons"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { JsonLd } from "@/components/json-ld"
+import { JsonLd } from "@/components/common/json-ld"
 import { FOUNDER } from "@/config/about"
 import { pageMetadata, siteUrl } from "@/lib/site"
 import { personData } from "@/lib/structured-data"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 import { CARD } from "@/config/cards"
 
 export async function generateMetadata() {

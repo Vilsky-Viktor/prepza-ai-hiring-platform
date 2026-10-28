@@ -3,8 +3,8 @@
 import { useLocale, useTranslations } from "next-intl"
 
 import { Badge } from "@/components/ui/badge"
-import { VirtualList } from "@/components/virtual-list"
-import { Dot } from "@/components/dot"
+import { VirtualList } from "@/components/common/virtual-list"
+import { Dot } from "@/components/common/dot"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { formatPercent } from "@/lib/format"
 import type { PassRate } from "@/types/superadmin"

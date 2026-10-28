@@ -1,7 +1,7 @@
 import { cn } from "cn"
 
-import { KeepAcronyms } from "@/components/keep-acronyms"
-import { LocalizedLink } from "@/components/localized-link"
+import { KeepAcronyms } from "@/components/common/keep-acronyms"
+import { LocalizedLink } from "@/components/common/localized-link"
 import { buttonVariants } from "@/components/ui/button"
 import { endsWithQuestionMark } from "@/lib/question-mark"
 

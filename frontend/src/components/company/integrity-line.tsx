@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 import { cn } from "cn"
 import { WARNING_TONE } from "@/config/tones"
-import { Dot } from "@/components/dot"
+import { Dot } from "@/components/common/dot"
 
 /** What the candidate's browser and timing showed; counts above zero stand out. */
 export async function IntegrityLine({

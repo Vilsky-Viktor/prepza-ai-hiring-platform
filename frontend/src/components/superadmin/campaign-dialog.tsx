@@ -7,7 +7,7 @@ import { toast } from "sonner"
 
 import { FloatingInput } from "@/components/ui/floating-field"
 import { LabeledField } from "@/components/labeled-field"
-import { PillSelect } from "@/components/pill-select"
+import { PillSelect } from "@/components/common/pill-select"
 import { CampaignAudience } from "@/components/superadmin/campaign-audience"
 import { Button } from "@/components/ui/button"
 import {
@@ -19,7 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { WarningCard } from "@/components/warning-card"
+import { WarningCard } from "@/components/common/warning-card"
 import { LANGUAGE_NAMES, type Locale } from "@/config/i18n"
 import {
   MAX_CAMPAIGN_BUTTON_LENGTH,

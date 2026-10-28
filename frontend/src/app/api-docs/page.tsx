@@ -11,9 +11,9 @@ import {
 } from "@/components/api-docs/mcp-tab"
 import { Operation } from "@/components/api-docs/operation"
 import { RichText } from "@/components/api-docs/rich-text"
-import { CopyValue } from "@/components/copy-field"
+import { CopyValue } from "@/components/common/copy-field"
 import { DocsMenu } from "@/components/api-docs/docs-menu"
-import { JsonLd } from "@/components/json-ld"
+import { JsonLd } from "@/components/common/json-ld"
 import { DOC_TABS } from "@/config/api-docs"
 import { DEFAULT_LOCALE } from "@/config/i18n"
 import { MCP_APP_PAGES, MCP_SUB_PAGES, MCP_TOOLS_PATH } from "@/config/mcp-docs"
@@ -29,7 +29,7 @@ import { pageMetadata, previewImage, siteUrl } from "@/lib/site"
 import { breadcrumbData, techArticleData } from "@/lib/structured-data"
 import type { McpTools } from "@/types/mcp"
 import type { OpenApi } from "@/types/openapi"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 export async function generateMetadata() {
   const t = await getTranslations("apiDocs")

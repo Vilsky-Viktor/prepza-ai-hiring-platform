@@ -1,7 +1,7 @@
 import { RssIcon } from "lucide-react"
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { JsonLd } from "@/components/json-ld"
+import { JsonLd } from "@/components/common/json-ld"
 import { NewsList } from "@/components/news/news-list"
 import {
   Tooltip,
@@ -15,7 +15,7 @@ import { localizedPath } from "@/lib/locale-path"
 import { newsPosts } from "@/lib/news-posts"
 import { pageMetadata, siteUrl, urlLocale } from "@/lib/site"
 import { newsData } from "@/lib/structured-data"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 /** The page's own address, or its feed's, in the language of the address it was asked for. */
 async function ownPath(path: string) {

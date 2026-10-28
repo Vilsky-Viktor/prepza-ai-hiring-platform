@@ -3,7 +3,7 @@ import { BriefcaseBusinessIcon } from "lucide-react"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 
-import { CornerSign } from "@/components/corner-sign"
+import { CornerSign } from "@/components/common/corner-sign"
 import { Button } from "@/components/ui/button"
 import { SIGN_CARD } from "@/config/cards"
 

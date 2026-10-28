@@ -3,7 +3,7 @@
 import { cn } from "cn"
 import { UserRoundIcon } from "lucide-react"
 
-import { KeepAcronyms } from "@/components/keep-acronyms"
+import { KeepAcronyms } from "@/components/common/keep-acronyms"
 import { FREE_LINES, RECEIPT_STEPS } from "@/config/free-to-start-demo"
 import { countedAt, useDemoSteps } from "@/hooks/use-demo-steps"
 

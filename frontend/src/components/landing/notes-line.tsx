@@ -1,4 +1,4 @@
-import { Dotted } from "@/components/dot"
+import { Dotted } from "@/components/common/dot"
 import { DOT_CLASS } from "@/config/dot"
 
 /** Short facts under a section's picture: from tablets up, one centered line split by the logo's

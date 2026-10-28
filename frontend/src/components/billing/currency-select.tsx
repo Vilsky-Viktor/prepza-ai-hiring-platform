@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl"
 
-import { SearchPicker } from "@/components/search-picker"
+import { SearchPicker } from "@/components/common/search-picker"
 
 /** A choice of the currencies billing offers, with a search field, each by its name in the
  * page's language and its code ("Japanese Yen (JPY)"), so "yen", "JPY" or "円" finds it;

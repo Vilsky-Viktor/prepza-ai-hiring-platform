@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 
 import type { ReactNode } from "react"
 
-import { SideMenuLayout } from "@/components/side-menu"
+import { SideMenuLayout } from "@/components/common/side-menu"
 
 /** The interview's page menu beside its tab's content (`children`); settings only for those who can change them (owners and admins). */
 export function InterviewNav({

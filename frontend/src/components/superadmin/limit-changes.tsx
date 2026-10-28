@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 
-import { Dotted } from "@/components/dot"
+import { Dotted } from "@/components/common/dot"
 import { useLimitAmount } from "@/components/superadmin/ai-budgets"
 import { useAdminName } from "@/hooks/use-admin-name"
 import { useLocalTime } from "@/hooks/use-local-time"

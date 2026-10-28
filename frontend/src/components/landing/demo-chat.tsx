@@ -4,7 +4,7 @@ import { cn } from "cn"
 import { CheckCheckIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 
-import { WhatsAppIcon } from "@/components/chat-icons"
+import { WhatsAppIcon } from "@/components/icons/chat-icons"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   DEMO_CHAT,

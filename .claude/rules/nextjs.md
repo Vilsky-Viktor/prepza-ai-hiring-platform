@@ -23,9 +23,11 @@ messages/, content/       # Translations; articles and documents (rounds reads c
 tests/                    # vitest
 ```
 
-Still to move from the old layout: feature folders in `components/` (company, billing, assistant,
-generation, landing, …) → `features/<name>/`; shared components → `components/common/` (with the
-site's header, footer and page chrome).
+Shared components, with the site's header, footer and page chrome, are in `components/common/`,
+icons in `components/icons/`. Still to move from the old layout: feature folders in `components/`
+(company, billing, assistant, generation, landing, …) → `features/<name>/`, each with the loose
+components only it uses (`chat-input`, `delete-account`, `instructions-dialog`, `labeled-field`,
+`text-editor`, `tab-panels`).
 
 ## Languages and direction
 

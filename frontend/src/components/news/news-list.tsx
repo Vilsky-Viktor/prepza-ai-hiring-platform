@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl"
 
-import { VirtualList } from "@/components/virtual-list"
+import { VirtualList } from "@/components/common/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { formatDay } from "@/lib/format"
 import { postHeading } from "@/lib/news"

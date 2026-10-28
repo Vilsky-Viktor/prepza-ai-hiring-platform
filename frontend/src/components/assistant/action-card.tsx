@@ -4,7 +4,7 @@ import { cn } from "cn"
 import { ArrowRightIcon, CheckIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { LocalizedLink } from "@/components/localized-link"
+import { LocalizedLink } from "@/components/common/localized-link"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { previewValue } from "@/lib/action-values"
 import { linkPage } from "@/lib/assistant"

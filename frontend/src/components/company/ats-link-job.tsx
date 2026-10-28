@@ -5,9 +5,9 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { DescriptionBox } from "@/components/description-box"
+import { DescriptionBox } from "@/components/common/description-box"
 import { InterviewPicker } from "@/components/company/interview-picker"
-import { PillSelect } from "@/components/pill-select"
+import { PillSelect } from "@/components/common/pill-select"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

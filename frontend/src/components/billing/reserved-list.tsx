@@ -3,9 +3,9 @@
 import Link from "next/link"
 
 import { NoName } from "@/components/company/no-name"
-import { VirtualList } from "@/components/virtual-list"
-import { WrappedEmail } from "@/components/wrapped-email"
-import { Dot } from "@/components/dot"
+import { VirtualList } from "@/components/common/virtual-list"
+import { WrappedEmail } from "@/components/common/wrapped-email"
+import { Dot } from "@/components/common/dot"
 import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { candidateHref, type CandidateLinks } from "@/lib/candidate-links"

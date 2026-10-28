@@ -2,15 +2,15 @@ import { cookies } from "next/headers"
 import { notFound, redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { BackLink } from "@/components/back-link"
+import { BackLink } from "@/components/common/back-link"
 import {
   AtsAccount,
   AtsActions,
   AtsStatus,
 } from "@/components/company/ats-connection"
 import { AtsJobLinks } from "@/components/company/ats-job-links"
-import { PageHeader } from "@/components/page-header"
-import { SignInPrompt } from "@/components/sign-in-prompt"
+import { PageHeader } from "@/components/common/page-header"
+import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { ATS_PROVIDERS } from "@/config/ats"
 import { TOKEN_COOKIE } from "@/config/auth"
 import { serverFetch } from "@/lib/server-api"

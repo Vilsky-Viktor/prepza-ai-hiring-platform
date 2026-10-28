@@ -4,7 +4,7 @@ import { cn } from "cn"
 import { DownloadIcon, Share2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { CHAT_APPS } from "@/components/chat-apps"
+import { CHAT_APPS } from "@/components/common/chat-apps"
 import { DemoEmailField, DemoPopup } from "@/components/landing/demo-popup"
 import { buttonVariants } from "@/components/ui/button"
 

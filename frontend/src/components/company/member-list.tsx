@@ -1,7 +1,7 @@
 "use client"
 
 import { MemberRow } from "@/components/company/member-row"
-import { VirtualList } from "@/components/virtual-list"
+import { VirtualList } from "@/components/common/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import type { CompanyMember } from "@/types/company"
 import { LIST_BOX } from "@/config/lists"

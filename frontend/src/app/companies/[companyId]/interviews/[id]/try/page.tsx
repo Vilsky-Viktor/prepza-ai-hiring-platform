@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { BackLink } from "@/components/back-link"
+import { BackLink } from "@/components/common/back-link"
 import { BrandColorsOn } from "@/components/company/brand-colors-on"
 import { InviteIntro } from "@/components/company/invite-intro"
 import { StartPreview } from "@/components/company/start-preview"
-import { SignInPage } from "@/components/sign-in-page"
+import { SignInPage } from "@/components/common/sign-in-page"
 import { serverFetch, signedIn } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { Company, InterviewDetail } from "@/types/company"

@@ -5,7 +5,7 @@ import { CheckIcon, CornerRightDownIcon, TimerIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
-import { CodeEditor } from "@/components/code-editor"
+import { CodeEditor } from "@/components/common/code-editor"
 import { DemoLogo } from "@/components/landing/demo-logo"
 import { useStill } from "@/hooks/use-still"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
@@ -19,7 +19,7 @@ import {
 } from "@/config/candidates-demo"
 import type { CodeToken } from "@/lib/code-tokens"
 import { clock } from "@/lib/countdown"
-import { Dot } from "@/components/dot"
+import { Dot } from "@/components/common/dot"
 
 /** A question as a candidate plays it, small, for the landing: the company's logo, the topic,
  * the clock and the progress; the multi-choice tag and hint on a multi-answer question; its text and example; the

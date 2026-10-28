@@ -4,7 +4,7 @@ import { ClockIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactElement } from "react"
 
-import { IconStat } from "@/components/icon-stat"
+import { IconStat } from "@/components/common/icon-stat"
 import {
   Tooltip,
   TooltipContent,

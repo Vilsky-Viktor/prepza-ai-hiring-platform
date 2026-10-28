@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { BackLink } from "@/components/back-link"
+import { BackLink } from "@/components/common/back-link"
 import { CampaignView } from "@/components/superadmin/campaign-view"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"

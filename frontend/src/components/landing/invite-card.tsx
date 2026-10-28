@@ -8,8 +8,8 @@ import {
   SparklesIcon,
 } from "lucide-react"
 
-import { KeepAcronyms } from "@/components/keep-acronyms"
-import { McpIcon } from "@/components/mcp-icon"
+import { KeepAcronyms } from "@/components/common/keep-acronyms"
+import { McpIcon } from "@/components/icons/mcp-icon"
 import { ATS_PROVIDERS } from "@/config/ats"
 import { PHONE_ATS_LOGOS, type InviteSource } from "@/config/invite-demo"
 import { SLACK } from "@/config/slack"

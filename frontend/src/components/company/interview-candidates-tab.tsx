@@ -1,6 +1,6 @@
 import { CandidateList } from "@/components/company/candidate-list"
 import { CandidateSearch } from "@/components/company/candidate-search"
-import { SearchedList } from "@/components/searched-list"
+import { SearchedList } from "@/components/common/searched-list"
 import type { CandidateSort } from "@/config/interviews"
 import { candidatesPath } from "@/lib/interview-page"
 import type {

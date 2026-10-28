@@ -53,7 +53,7 @@ export function StatsPicker({
         {t("statsAllTime")}
       </label>
       <DropdownMenu>
-        {/* Looks like the site's select (components/pill-select.tsx); opens the site's menu. */}
+        {/* Looks like the site's select (common/pill-select.tsx); opens the site's menu. */}
         <DropdownMenuTrigger
           disabled={choice.allTime}
           render={

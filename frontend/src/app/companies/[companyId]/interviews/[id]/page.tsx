@@ -7,7 +7,7 @@ import { InterviewSettings } from "@/components/company/interview-settings"
 import { ShareLink } from "@/components/company/share-link"
 import { InterviewTopics } from "@/components/company/interview-topics"
 import { WhatsNext } from "@/components/company/whats-next"
-import { SignInPage } from "@/components/sign-in-page"
+import { SignInPage } from "@/components/common/sign-in-page"
 import { READY_PARAM } from "@/config/interviews"
 import {
   type InterviewQuery,

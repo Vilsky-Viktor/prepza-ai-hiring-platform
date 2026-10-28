@@ -1,8 +1,8 @@
 import { Noto_Sans_JP, Noto_Sans_KR, Noto_Sans_SC } from "next/font/google"
 
 // The Japanese, Chinese and Korean fonts: hundreds of character ranges each, so only pages in
-// those languages load them (components/cjk-fonts.tsx), keeping them out of every other page's
-// stylesheet. As in fonts.ts, next/font reads the options literally: not preloaded.
+// those languages load them (components/common/cjk-fonts.tsx), keeping them out of every other
+// page's stylesheet. As in fonts.ts, next/font reads the options literally: not preloaded.
 
 const japanese = Noto_Sans_JP({ preload: false, display: "swap" })
 const chinese = Noto_Sans_SC({ preload: false, display: "swap" })

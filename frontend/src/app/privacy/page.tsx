@@ -1,4 +1,4 @@
-import { LegalPage } from "@/components/legal-page"
+import { LegalPage } from "@/components/common/legal-page"
 import { pageMetadata } from "@/lib/site"
 
 export const generateMetadata = () =>

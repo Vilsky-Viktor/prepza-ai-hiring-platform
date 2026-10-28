@@ -9,13 +9,13 @@ import { AnswerPoints } from "@/components/questions/answer-points"
 import { InlineText } from "@/components/questions/inline-text"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { QuestionText } from "@/components/questions/question-text"
-import { VirtualList } from "@/components/virtual-list"
+import { VirtualList } from "@/components/common/virtual-list"
 import { languageOf } from "@/lib/locale"
 import { verdict } from "@/lib/rounds"
 import type { ReviewItem } from "@/types/round"
 import { LIST_BOX } from "@/config/lists"
 import { WARNING_TONE } from "@/config/tones"
-import { Dot } from "@/components/dot"
+import { Dot } from "@/components/common/dot"
 
 /** A section's questions as the candidate answered them; the questions and options in the
  * interview's `language`, the marks and signals in the page's. */

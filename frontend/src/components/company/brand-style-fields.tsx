@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
-import { PillSelect } from "@/components/pill-select"
+import { PillSelect } from "@/components/common/pill-select"
 import { FloatingInput } from "@/components/ui/floating-field"
 import { BRAND_FONTS } from "@/config/brand-fonts"
 import type { BrandStyle } from "@/types/company"

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { useSignIn } from "@/components/sign-in-dialog"
+import { useSignIn } from "@/components/common/sign-in-dialog"
 import { useAuth } from "@/providers/auth-provider"
 import { PracticeTiming } from "@/components/practice/practice-timing"
 import { Button } from "@/components/ui/button"

@@ -11,7 +11,7 @@ import { localizedPath } from "@/lib/locale-path"
 import { serverFetch } from "@/lib/server-api"
 import { pageMetadata, urlLocale } from "@/lib/site"
 import { PUBLIC_TEMPLATES_PATH } from "@/config/lists"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 import type { PracticeStatus } from "@/types/round"
 
 export async function generateMetadata() {

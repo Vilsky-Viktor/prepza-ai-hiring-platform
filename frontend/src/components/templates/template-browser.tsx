@@ -1,8 +1,8 @@
 import { SearchIcon } from "lucide-react"
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { InputAction } from "@/components/input-action"
-import { SearchedList } from "@/components/searched-list"
+import { InputAction } from "@/components/common/input-action"
+import { SearchedList } from "@/components/common/searched-list"
 import {
   ALL_LANGUAGES,
   TemplateFilterBar,

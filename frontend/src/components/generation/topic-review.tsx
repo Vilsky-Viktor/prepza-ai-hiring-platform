@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { MAX_INSTRUCTIONS_LENGTH } from "@/config/limits"
 import type { DraftTopic } from "@/types/generation"
 import { LIST_BOX } from "@/config/lists"
-import { Dot } from "@/components/dot"
+import { Dot } from "@/components/common/dot"
 import { bdiText } from "@/lib/bidi"
 
 type TopicReviewProps = {

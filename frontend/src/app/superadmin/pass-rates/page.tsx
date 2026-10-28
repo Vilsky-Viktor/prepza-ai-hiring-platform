@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server"
 
 import { PassRateList } from "@/components/superadmin/pass-rate-list"
 import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
-import { SortMenu } from "@/components/sort-menu"
+import { SortMenu } from "@/components/common/sort-menu"
 import { PAGE_SIZE } from "@/config/lists"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
@@ -37,7 +37,7 @@ export default async function PassRatesPage({
       <SuperadminHeader current="pass-rates">
         <div className="space-y-4">
           <div className="flex justify-end">
-            {/* A grey pill like the site's selects (components/pill-select.tsx). */}
+            {/* A grey pill like the site's selects (components/common/pill-select.tsx). */}
             <SortMenu
               className="h-12 rounded-xl bg-surface px-5 text-base hover:bg-surface"
               current={sort}

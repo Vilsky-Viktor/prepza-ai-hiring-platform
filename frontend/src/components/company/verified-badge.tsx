@@ -3,7 +3,7 @@
 import { BadgeCheckIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { IconStat } from "@/components/icon-stat"
+import { IconStat } from "@/components/common/icon-stat"
 import { bdiText } from "@/lib/bidi"
 
 /** The check beside a verified company's name, wherever it's shown; its tooltip names the

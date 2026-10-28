@@ -13,7 +13,10 @@ import {
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { type SideMenuItem, SideMenuLayout } from "@/components/side-menu"
+import {
+  type SideMenuItem,
+  SideMenuLayout,
+} from "@/components/common/side-menu"
 
 export type CompanyTab =
   | "interviews"

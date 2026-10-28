@@ -1,6 +1,6 @@
 import { cn } from "cn"
 
-import { CodeEditor } from "@/components/code-editor"
+import { CodeEditor } from "@/components/common/code-editor"
 import { InlineText } from "@/components/questions/inline-text"
 import type { CodeToken } from "@/lib/code-tokens"
 import { splitCodeBlocks } from "@/lib/question-text"

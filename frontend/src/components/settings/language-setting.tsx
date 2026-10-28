@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { LanguagePicker } from "@/components/language-picker"
+import { LanguagePicker } from "@/components/common/language-picker"
 import { LOCALES, type Locale } from "@/config/i18n"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { firebaseAuth } from "@/lib/firebase"

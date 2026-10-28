@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
-import { WarningCard } from "@/components/warning-card"
+import { WarningCard } from "@/components/common/warning-card"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { formatDate } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"

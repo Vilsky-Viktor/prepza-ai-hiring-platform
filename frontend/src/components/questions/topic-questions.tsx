@@ -15,8 +15,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { VirtualList } from "@/components/virtual-list"
-import { WarningCard } from "@/components/warning-card"
+import { VirtualList } from "@/components/common/virtual-list"
+import { WarningCard } from "@/components/common/warning-card"
 import { apiFetch, serviceRefusal } from "@/lib/api"
 import { languageOf } from "@/lib/locale"
 import type { QuestionStats } from "@/types/feedback"

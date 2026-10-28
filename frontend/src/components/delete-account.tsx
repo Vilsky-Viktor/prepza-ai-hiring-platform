@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
-import { Dot } from "@/components/dot"
+import { Dot } from "@/components/common/dot"
 import {
   Dialog,
   DialogClose,

@@ -1,6 +1,6 @@
 import { translatedTitle } from "@/lib/site"
 import { AdminInvite } from "@/components/company/admin-invite"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 export const generateMetadata = () => translatedTitle("members", "inviteTitle")
 

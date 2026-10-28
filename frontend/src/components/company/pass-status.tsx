@@ -2,7 +2,7 @@ import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
 import { gradeTone } from "@/lib/grade-tone"
-import { Dot } from "@/components/dot"
+import { Dot } from "@/components/common/dot"
 
 /** Whether a candidate passed, in the grade's green or red, then the test's passing grade, muted
  * (it's about the test, not the candidate); "not finished yet" while undecided. */

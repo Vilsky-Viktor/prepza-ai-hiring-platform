@@ -2,8 +2,8 @@
 
 import Markdown from "react-markdown"
 
-import { LocalizedLink } from "@/components/localized-link"
-import { MarkdownCode } from "@/components/markdown-code"
+import { LocalizedLink } from "@/components/common/localized-link"
+import { MarkdownCode } from "@/components/common/markdown-code"
 import { ANSWER_MARKDOWN } from "@/lib/markdown"
 
 /** An assistant's answer: its limited markdown (lib/markdown.ts), links to the app's own pages

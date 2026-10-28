@@ -1,5 +1,5 @@
-// The site's select pill (components/menu-pill.tsx): the trigger that opens the site's menu, and
-// the chevron at its end. Shared by the phone menu's sub-page bar.
+// The site's select pill (components/common/menu-pill.tsx): the trigger that opens the site's menu,
+// and the chevron at its end. Shared by the phone menu's sub-page bar.
 export const MENU_PILL_CLASS =
   "relative flex h-14 w-full items-center rounded-xl border border-transparent bg-surface px-6 pe-16 text-start text-lg transition-colors outline-none focus-visible:border-ring-gradient disabled:opacity-50"
 

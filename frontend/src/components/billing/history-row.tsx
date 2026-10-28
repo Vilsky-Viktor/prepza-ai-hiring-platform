@@ -6,7 +6,7 @@ import { useFormatter, useLocale, useTranslations } from "next-intl"
 
 import { useLocalTime } from "@/hooks/use-local-time"
 import { InvoiceLink } from "@/components/billing/invoice-link"
-import { Dotted } from "@/components/dot"
+import { Dotted } from "@/components/common/dot"
 import { candidateHref, type CandidateLinks } from "@/lib/candidate-links"
 import { formatPrice } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"

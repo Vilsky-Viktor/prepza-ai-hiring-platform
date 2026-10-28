@@ -63,8 +63,8 @@ export async function urlLocale() {
   return (await headers()).get(LOCALE_HEADER)
 }
 
-/** The language links on a page lead to the versions of (components/localized-link.tsx): its
- * address's (/de/pricing gives de); none on the plain address of a page with versions, which is
+/** The language links on a page lead to the versions of (components/common/localized-link.tsx):
+ * its address's (/de/pricing gives de); none on the plain address of a page with versions, which is
  * English; the interface's on a page with one address (signed-in pages, the legal pages), so a
  * German interface's links lead to /de/pricing. Null for English. */
 export async function linkLocale(interfaceLocale: string) {

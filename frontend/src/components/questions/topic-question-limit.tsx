@@ -3,8 +3,8 @@
 import { UserIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { IconStat } from "@/components/icon-stat"
-import { QuestionMarkIcon } from "@/components/question-mark-icon"
+import { IconStat } from "@/components/common/icon-stat"
+import { QuestionMarkIcon } from "@/components/icons/question-mark-icon"
 import { TopicLimit } from "@/components/questions/topic-limit"
 
 /** A topic's question count, in one short line under its "manage questions" button: how many

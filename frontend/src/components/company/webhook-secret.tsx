@@ -6,9 +6,9 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { useLocalTime } from "@/hooks/use-local-time"
-import { ConfirmDialog } from "@/components/confirm-dialog"
-import { CopyValue } from "@/components/copy-field"
-import { IconButton } from "@/components/icon-button"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { CopyValue } from "@/components/common/copy-field"
+import { IconButton } from "@/components/common/icon-button"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

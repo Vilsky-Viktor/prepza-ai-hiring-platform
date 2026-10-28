@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 
-import { Dotted } from "@/components/dot"
+import { Dotted } from "@/components/common/dot"
 import type { ReviewItem } from "@/types/round"
 
 /** A multi-answer answer's points: the right options picked of all, any wrong ones, and the

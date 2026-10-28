@@ -3,7 +3,7 @@
 import { HistoryIcon, SquarePenIcon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { MenuPill } from "@/components/menu-pill"
+import { MenuPill } from "@/components/common/menu-pill"
 import { Button } from "@/components/ui/button"
 import { DialogClose } from "@/components/ui/dialog"
 import type { Company } from "@/types/company"

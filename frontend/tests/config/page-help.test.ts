@@ -23,12 +23,12 @@ const locales = readdirSync(join(FRONTEND, "messages")).map((name) =>
 // What registers a page's key for the assistant, and the shared component that does it for the
 // pages using it (each of which must register itself).
 const REGISTERS: [RegExp, string][] = [
-  [/<PageHelp\b/, "components/page-help.tsx"],
-  [/<PageKey\b/, "components/page-key.tsx"],
-  [/\bhelp=/, "components/back-link.tsx"],
+  [/<PageHelp\b/, "components/common/page-help.tsx"],
+  [/<PageKey\b/, "components/common/page-key.tsx"],
+  [/\bhelp=/, "components/common/back-link.tsx"],
   [/<CompanyHeader\b/, "components/company/company-header.tsx"],
   [/<InterviewHeader\b/, "components/company/interview-header.tsx"],
-  [/<LegalPage\b/, "components/legal-page.tsx"],
+  [/<LegalPage\b/, "components/common/legal-page.tsx"],
   [
     /\b(categoryRoute|hubArticleRoute)\(/,
     "components/content/content-article.tsx",

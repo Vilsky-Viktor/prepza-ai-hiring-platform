@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 import { Fragment, useState } from "react"
 import { toast } from "sonner"
 
-import { IconButton } from "@/components/icon-button"
+import { IconButton } from "@/components/common/icon-button"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"

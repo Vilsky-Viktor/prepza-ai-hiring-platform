@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server"
 
 import { CandidateSortMenu } from "@/components/company/candidate-sort"
 import { CandidateStatusFilter } from "@/components/company/candidate-status-filter"
-import { InputAction } from "@/components/input-action"
+import { InputAction } from "@/components/common/input-action"
 import type { CandidateSort } from "@/config/interviews"
 import { MAX_SEARCH_LENGTH } from "@/config/limits"
 

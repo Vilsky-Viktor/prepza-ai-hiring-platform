@@ -5,10 +5,10 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { ConfirmDialog } from "@/components/confirm-dialog"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import { WarningCard } from "@/components/warning-card"
+import { WarningCard } from "@/components/common/warning-card"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { Campaign } from "@/types/campaigns"
 

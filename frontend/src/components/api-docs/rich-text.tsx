@@ -1,7 +1,7 @@
 import Link from "next/link"
 
-import { HighlightedCode } from "@/components/highlighted-code"
-import { KeepAcronyms } from "@/components/keep-acronyms"
+import { HighlightedCode } from "@/components/common/highlighted-code"
+import { KeepAcronyms } from "@/components/common/keep-acronyms"
 import { richText } from "@/lib/openapi"
 
 type Section = ReturnType<typeof richText>[number]

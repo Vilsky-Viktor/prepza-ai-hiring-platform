@@ -14,7 +14,7 @@ import {
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
-import { IconButton } from "@/components/icon-button"
+import { IconButton } from "@/components/common/icon-button"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 

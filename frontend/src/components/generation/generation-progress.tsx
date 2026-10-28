@@ -3,8 +3,8 @@
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { AiPulse } from "@/components/ai-pulse"
-import { BackLink } from "@/components/back-link"
+import { AiPulse } from "@/components/common/ai-pulse"
+import { BackLink } from "@/components/common/back-link"
 import { WritingProgress } from "@/components/generation/writing-progress"
 import type { Generation } from "@/types/generation"
 

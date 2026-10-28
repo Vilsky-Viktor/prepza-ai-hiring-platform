@@ -1,6 +1,6 @@
 import { ConnectView } from "@/components/connect/connect-view"
 import { translatedTitle } from "@/lib/site"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 export const generateMetadata = () => translatedTitle("connect", "pageTitle")
 

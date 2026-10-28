@@ -1,14 +1,14 @@
 import Link from "next/link"
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { JsonLd } from "@/components/json-ld"
+import { JsonLd } from "@/components/common/json-ld"
 import { Button } from "@/components/ui/button"
-import { InfoCard } from "@/components/warning-card"
+import { InfoCard } from "@/components/common/warning-card"
 import { formatPrice } from "@/lib/format"
 import { pageMetadata, siteUrl } from "@/lib/site"
 import { softwareData } from "@/lib/structured-data"
 import { visitorCatalog } from "@/lib/catalog"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 import { ROW_HOVER } from "@/config/lists"
 
 export async function generateMetadata() {

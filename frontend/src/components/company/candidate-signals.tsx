@@ -3,7 +3,7 @@
 import { CopyIcon, LogOutIcon, ZapIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { IconStat } from "@/components/icon-stat"
+import { IconStat } from "@/components/common/icon-stat"
 import type { Candidate } from "@/types/company"
 
 /** A candidate's integrity signals at a glance: page leaves, copy attempts and answers picked

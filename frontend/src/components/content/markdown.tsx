@@ -3,9 +3,9 @@ import type { ComponentProps, ReactNode } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 
-import { LocalizedLink } from "@/components/localized-link"
-import { HighlightedCode } from "@/components/highlighted-code"
-import { markdownCode } from "@/components/markdown-code"
+import { LocalizedLink } from "@/components/common/localized-link"
+import { HighlightedCode } from "@/components/common/highlighted-code"
+import { markdownCode } from "@/components/common/markdown-code"
 import { TEXT_LINK } from "@/config/links"
 import { endsWithQuestionMark } from "@/lib/question-mark"
 

@@ -4,7 +4,7 @@ import { HistoryIcon, SparklesIcon, SquarePenIcon, XIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { Fragment, useEffect, useRef, useState } from "react"
 
-import { ChatBubble, ThinkingDots } from "@/components/chat-bubble"
+import { ChatBubble, ThinkingDots } from "@/components/common/chat-bubble"
 import { AskAgentCards } from "@/components/landing/ask-agent-cards"
 import {
   DemoActionCard,

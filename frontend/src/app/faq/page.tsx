@@ -1,13 +1,13 @@
 import { getTranslations } from "next-intl/server"
 
-import { FaqList } from "@/components/faq-list"
-import { JsonLd } from "@/components/json-ld"
+import { FaqList } from "@/components/common/faq-list"
+import { JsonLd } from "@/components/common/json-ld"
 import { faqPath } from "@/lib/catalog"
 import { plainAnswer } from "@/lib/markdown"
 import { publicFetch } from "@/lib/server-api"
 import { pageMetadata } from "@/lib/site"
 import type { FaqItem } from "@/types/help"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 export async function generateMetadata() {
   const t = await getTranslations("faq")

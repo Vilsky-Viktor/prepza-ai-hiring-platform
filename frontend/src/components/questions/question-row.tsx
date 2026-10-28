@@ -16,7 +16,7 @@ import { AnswerOptions } from "@/components/questions/answer-options"
 import { QuestionReports } from "@/components/questions/question-reports"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { QuestionText } from "@/components/questions/question-text"
-import { IconStat } from "@/components/icon-stat"
+import { IconStat } from "@/components/common/icon-stat"
 import { Button } from "@/components/ui/button"
 import {
   Tooltip,

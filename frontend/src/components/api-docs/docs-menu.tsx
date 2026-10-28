@@ -8,8 +8,11 @@ import {
 } from "lucide-react"
 import type { ReactNode } from "react"
 
-import { McpIcon } from "@/components/mcp-icon"
-import { type SideMenuItem, SideMenuLayout } from "@/components/side-menu"
+import { McpIcon } from "@/components/icons/mcp-icon"
+import {
+  type SideMenuItem,
+  SideMenuLayout,
+} from "@/components/common/side-menu"
 import type { DocTab } from "@/config/api-docs"
 
 // Each tab's icon in the menu.

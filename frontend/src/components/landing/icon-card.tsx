@@ -1,7 +1,7 @@
 import { cn } from "cn"
 import type { LucideIcon } from "lucide-react"
 
-import { KeepAcronyms } from "@/components/keep-acronyms"
+import { KeepAcronyms } from "@/components/common/keep-acronyms"
 
 /** A grey landing card: a title ending with the logo's blue dot, a short line and its icon in
  * the top corner; ringed, with its icon blue, while `lit`. */

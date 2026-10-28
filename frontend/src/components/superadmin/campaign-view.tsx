@@ -3,9 +3,9 @@
 import { useLocale, useTranslations } from "next-intl"
 import { type ReactNode, useEffect, useState } from "react"
 
-import { EditableTitle } from "@/components/editable-title"
-import { PageHeader } from "@/components/page-header"
-import { PillSelect } from "@/components/pill-select"
+import { EditableTitle } from "@/components/common/editable-title"
+import { PageHeader } from "@/components/common/page-header"
+import { PillSelect } from "@/components/common/pill-select"
 import { CampaignActions } from "@/components/superadmin/campaign-actions"
 import { CampaignStatus } from "@/components/superadmin/campaign-status"
 import { DeleteCampaign } from "@/components/superadmin/delete-campaign"

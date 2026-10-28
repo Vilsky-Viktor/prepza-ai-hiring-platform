@@ -9,8 +9,8 @@ import { OPERATOR } from "@/config/operator"
 import { formatDay } from "@/lib/format"
 import { pageMetadata } from "@/lib/site"
 import { timeTag } from "@/lib/time-tag"
-import { BackLink } from "@/components/back-link"
-import { PageKey } from "@/components/page-key"
+import { BackLink } from "@/components/common/back-link"
+import { PageKey } from "@/components/common/page-key"
 
 export async function generateMetadata() {
   const t = await getTranslations("accessibility")

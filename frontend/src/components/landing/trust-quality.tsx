@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server"
 
-import { KeepAcronyms } from "@/components/keep-acronyms"
+import { KeepAcronyms } from "@/components/common/keep-acronyms"
 import { DEMO_GROUP } from "@/components/landing/demo-panel"
 import { QualityLoop } from "@/components/landing/quality-loop"
 import { LandingSection } from "@/components/landing/section"
-import { LocalizedLink } from "@/components/localized-link"
+import { LocalizedLink } from "@/components/common/localized-link"
 import {
   QUALITY_STEPS,
   type QualityStep,

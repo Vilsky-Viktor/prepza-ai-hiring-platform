@@ -3,7 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server"
 import { ContentList } from "@/components/content/content-list"
 import { contentPages } from "@/lib/content"
 import { pageMetadata } from "@/lib/site"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 export async function generateMetadata() {
   const t = await getTranslations("compare")

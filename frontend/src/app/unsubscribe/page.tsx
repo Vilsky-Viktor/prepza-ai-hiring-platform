@@ -1,6 +1,6 @@
 import { translatedTitle } from "@/lib/site"
-import { UnsubscribeView } from "@/components/unsubscribe-view"
-import { PageKey } from "@/components/page-key"
+import { UnsubscribeView } from "@/components/common/unsubscribe-view"
+import { PageKey } from "@/components/common/page-key"
 
 export const generateMetadata = () => translatedTitle("unsubscribe", "title")
 

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 
 import { useLocalTime } from "@/hooks/use-local-time"
 import { InterviewStatus } from "@/components/company/interview-status"
-import { IconStat } from "@/components/icon-stat"
+import { IconStat } from "@/components/common/icon-stat"
 
 /** An interview's row content: its title and date, then its status (when it has one) and how
  * many candidates it has. */

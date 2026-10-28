@@ -4,7 +4,7 @@ import { ArrowUpIcon } from "lucide-react"
 import { Caret } from "@/components/landing/caret"
 import { buttonVariants } from "@/components/ui/button"
 
-/** The home page's job description box (components/start-test.tsx) as a picture, filling its
+/** The home page's job description box (components/common/start-test.tsx) as a picture, filling its
  * space: `full` typed up to `letters` (the `placeholder` while null), a caret while `typing`,
  * and its send button (`sendRef`), dimmed while there's no text, ringed while `pressed`. The whole text keeps
  * its place unseen, so the box never grows as it's typed. */

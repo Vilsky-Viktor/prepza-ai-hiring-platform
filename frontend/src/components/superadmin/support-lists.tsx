@@ -3,9 +3,9 @@
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 
-import { VirtualList } from "@/components/virtual-list"
-import { WrappedEmail } from "@/components/wrapped-email"
-import { Dotted } from "@/components/dot"
+import { VirtualList } from "@/components/common/virtual-list"
+import { WrappedEmail } from "@/components/common/wrapped-email"
+import { Dotted } from "@/components/common/dot"
 import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 import { useLocalTime } from "@/hooks/use-local-time"
 import { usePagedList } from "@/hooks/use-paged-list"

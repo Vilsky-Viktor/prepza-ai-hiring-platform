@@ -5,7 +5,7 @@ import { TimerIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 
-import { IconStat } from "@/components/icon-stat"
+import { IconStat } from "@/components/common/icon-stat"
 import { clock, warningSeconds } from "@/lib/countdown"
 
 function secondsUntil(end: number) {

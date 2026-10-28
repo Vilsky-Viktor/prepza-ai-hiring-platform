@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { CHAT_APPS } from "@/components/chat-apps"
+import { CHAT_APPS } from "@/components/common/chat-apps"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

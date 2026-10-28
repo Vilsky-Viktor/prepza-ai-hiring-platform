@@ -6,11 +6,11 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { ConfirmDialog } from "@/components/confirm-dialog"
-import { CopyValue } from "@/components/copy-field"
-import { KeepAcronyms } from "@/components/keep-acronyms"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
+import { CopyValue } from "@/components/common/copy-field"
+import { KeepAcronyms } from "@/components/common/keep-acronyms"
 import { FloatingInput } from "@/components/ui/floating-field"
-import { PillSelect } from "@/components/pill-select"
+import { PillSelect } from "@/components/common/pill-select"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -22,7 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { WarningCard } from "@/components/warning-card"
+import { WarningCard } from "@/components/common/warning-card"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 
 /** Making a key or a web hook: one field (and a key's expiry and permissions), then what the API

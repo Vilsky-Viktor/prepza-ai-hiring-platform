@@ -4,7 +4,7 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { BackLink } from "@/components/back-link"
+import { BackLink } from "@/components/common/back-link"
 import { ApiNav } from "@/components/company/api-nav"
 import {
   AddWebhook,
@@ -12,8 +12,8 @@ import {
   ApiWebhooks,
   NewKey,
 } from "@/components/company/api-settings"
-import { PageHeader } from "@/components/page-header"
-import { SignInPrompt } from "@/components/sign-in-prompt"
+import { PageHeader } from "@/components/common/page-header"
+import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { Button } from "@/components/ui/button"
 import { API_DOCS_PATH } from "@/config/api"
 import { TOKEN_COOKIE } from "@/config/auth"

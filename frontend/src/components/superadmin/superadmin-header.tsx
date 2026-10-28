@@ -14,7 +14,7 @@ import {
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { SideMenuLayout } from "@/components/side-menu"
+import { SideMenuLayout } from "@/components/common/side-menu"
 
 // The pages with pages of their own: each one's path under its page and its label's message.
 const SUBTABS = {

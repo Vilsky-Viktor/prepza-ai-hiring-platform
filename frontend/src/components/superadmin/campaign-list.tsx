@@ -3,9 +3,9 @@
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 
-import { Dotted } from "@/components/dot"
+import { Dotted } from "@/components/common/dot"
 import { CampaignStatus } from "@/components/superadmin/campaign-status"
-import { VirtualList } from "@/components/virtual-list"
+import { VirtualList } from "@/components/common/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 import { formatDate } from "@/lib/format"

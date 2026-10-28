@@ -6,9 +6,9 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { useLocalTime } from "@/hooks/use-local-time"
-import { ConfirmDialog } from "@/components/confirm-dialog"
+import { ConfirmDialog } from "@/components/common/confirm-dialog"
 import { Button } from "@/components/ui/button"
-import { Dot } from "@/components/dot"
+import { Dot } from "@/components/common/dot"
 import {
   Tooltip,
   TooltipContent,

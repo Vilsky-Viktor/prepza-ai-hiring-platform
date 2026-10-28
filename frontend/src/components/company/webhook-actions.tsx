@@ -6,7 +6,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { useLocalTime } from "@/hooks/use-local-time"
-import { IconButton } from "@/components/icon-button"
+import { IconButton } from "@/components/common/icon-button"
 import { RollSecret } from "@/components/company/webhook-secret"
 import { Button } from "@/components/ui/button"
 import {

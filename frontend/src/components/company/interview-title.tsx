@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server"
 
 import { InterviewStatus } from "@/components/company/interview-status"
-import { EditableTitle } from "@/components/editable-title"
-import { EntityId } from "@/components/entity-id"
+import { EditableTitle } from "@/components/common/editable-title"
+import { EntityId } from "@/components/common/entity-id"
 import type { InterviewDetail } from "@/types/company"
 
 /** An interview's title (editable by those who can), or what's happening while it has none

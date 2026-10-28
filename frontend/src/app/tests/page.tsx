@@ -6,7 +6,7 @@ import { DEFAULT_LOCALE } from "@/config/i18n"
 import { localizedPath } from "@/lib/locale-path"
 import { pageMetadata, urlLocale } from "@/lib/site"
 import { PUBLIC_TEMPLATES_PATH } from "@/config/lists"
-import { PageKey } from "@/components/page-key"
+import { PageKey } from "@/components/common/page-key"
 
 export async function generateMetadata() {
   const t = await getTranslations("tests")

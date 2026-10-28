@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 
 import { Chips } from "@/components/company/ats-steps"
-import { CopyValue } from "@/components/copy-field"
+import { CopyValue } from "@/components/common/copy-field"
 import { InstructionsDialog } from "@/components/instructions-dialog"
 import {
   CHATGPT_AUTH,

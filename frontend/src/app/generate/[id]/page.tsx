@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { GenerationView } from "@/components/generation/generation-view"
-import { SignInPage } from "@/components/sign-in-page"
+import { SignInPage } from "@/components/common/sign-in-page"
 import { READY_PARAM } from "@/config/interviews"
 import { signedIn } from "@/lib/server-api"
 

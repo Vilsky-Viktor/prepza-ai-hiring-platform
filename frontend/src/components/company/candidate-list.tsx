@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { CandidateRow } from "@/components/company/candidate-row"
-import { VirtualList } from "@/components/virtual-list"
+import { VirtualList } from "@/components/common/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
 import type { Candidate } from "@/types/company"

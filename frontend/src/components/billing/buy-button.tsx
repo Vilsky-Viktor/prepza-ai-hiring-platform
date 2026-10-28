@@ -6,7 +6,7 @@ import { useTheme } from "next-themes"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { useSignIn } from "@/components/sign-in-dialog"
+import { useSignIn } from "@/components/common/sign-in-dialog"
 import { useAuth } from "@/providers/auth-provider"
 import { Button } from "@/components/ui/button"
 import { apiFetch } from "@/lib/api"

@@ -72,7 +72,7 @@ The articles are `/pre-employment-testing`, `/ai-interviews`, `/compare` and its
 
 `/faq` has the common questions, in the interface language, with today's prices; its intro points to Mira, the AI assistant ("ask Mira" in the header) for anything else. Without prices (billing not answering), rounds refuses the FAQ (503) instead of building it with blanks: the site keeps showing the last good page, a role page leaves its FAQ section out, and the help chat answers without prices.
 
-The questions are in `services/rounds/src/rounds/constants/faq/<language>.py`; a question not translated yet shows in English. An answer is plain text that may link to the site's own pages as `[text](/path)` (a guide, pricing, the API docs, ...): the page shows it as a link that opens in the same tab, in the address's language (`components/faq-list.tsx`, `FAQ_MARKDOWN` in `lib/markdown.ts`). Only a path on the site becomes a link; any other target stays its text, and the rest of the answer is shown as text. Every language links the same pages as English, in the same order (`tests/unit/test_faq.py`). The FAQ's structured data has each answer as plain text, its links as their text; the help chat and the assistant read the answers with their links as written.
+The questions are in `services/rounds/src/rounds/constants/faq/<language>.py`; a question not translated yet shows in English. An answer is plain text that may link to the site's own pages as `[text](/path)` (a guide, pricing, the API docs, ...): the page shows it as a link that opens in the same tab, in the address's language (`components/common/faq-list.tsx`, `FAQ_MARKDOWN` in `lib/markdown.ts`). Only a path on the site becomes a link; any other target stays its text, and the rest of the answer is shown as text. Every language links the same pages as English, in the same order (`tests/unit/test_faq.py`). The FAQ's structured data has each answer as plain text, its links as their text; the help chat and the assistant read the answers with their links as written.
 
 The help chat (rounds' `POST /help/chat`) answers signed-out visitors in the [assistant's panel](assistant.md#the-panel):
 
@@ -143,7 +143,7 @@ The description's text may hold bold, inline code, links (`[text](/api-docs?tab=
 
 ### Code
 
-Code anywhere on the site shows in one editor (`components/code-editor.tsx`): a header with its language and a copy button, then numbered lines in the language's colors (shiki's GitHub themes, light and dark; plain for a language shiki doesn't know). The site's own code (articles, the developer docs, the home page's demo question, a role page's sample questions) is colored on the server (`components/highlighted-code.tsx`, `lib/code-tokens.ts`), so those pages never load shiki; code that arrives in the browser (the assistant's answers, interviews, practice) is colored there once shiki loads, plain until then. An example in several languages gets a language menu in the header instead, and picking one switches every editor on the page that has it (kept while the tab stays open, `lib/code-language.ts`). The developer docs, the articles and the assistant's answers (Markdown code blocks, `components/markdown-code.tsx`) use it, and so does a question's example in interviews and practice, without the header (`lib/question-text.ts` reads the block's language from its fence). The code itself is a named region that takes keyboard focus (with a focus ring inside its box), so code wider than its box scrolls with the arrow keys.
+Code anywhere on the site shows in one editor (`components/common/code-editor.tsx`): a header with its language and a copy button, then numbered lines in the language's colors (shiki's GitHub themes, light and dark; plain for a language shiki doesn't know). The site's own code (articles, the developer docs, the home page's demo question, a role page's sample questions) is colored on the server (`components/common/highlighted-code.tsx`, `lib/code-tokens.ts`), so those pages never load shiki; code that arrives in the browser (the assistant's answers, interviews, practice) is colored there once shiki loads, plain until then. An example in several languages gets a language menu in the header instead, and picking one switches every editor on the page that has it (kept while the tab stays open, `lib/code-language.ts`). The developer docs, the articles and the assistant's answers (Markdown code blocks, `components/common/markdown-code.tsx`) use it, and so does a question's example in interviews and practice, without the header (`lib/question-text.ts` reads the block's language from its fence). The code itself is a named region that takes keyboard focus (with a focus ring inside its box), so code wider than its box scrolls with the arrow keys.
 
 ## Contact us
 
@@ -156,14 +156,14 @@ Code anywhere on the site shows in one editor (`components/code-editor.tsx`): a 
 
 ### IDs to quote
 
-So support finds what a message is about at once, the page asks visitors to paste the ID of what they write about. Each one has a "copy id" button (`components/entity-id.tsx`) that copies its ID and shows a check mark for 3 seconds:
+So support finds what a message is about at once, the page asks visitors to paste the ID of what they write about. Each one has a "copy id" button (`components/common/entity-id.tsx`) that copies its ID and shows a check mark for 3 seconds:
 
 - a company's, under its name in the company's header;
 - an interview's, under its title, beside its status (also while it generates, or after it failed);
 - a candidate's invite, on the line under their email;
 - the account's (the Firebase uid), as a small button under the email in the account menu, and as a button in Settings, under "Your account".
 
-The FAQ ("How do I report a problem?") and the help chat and assistant's guide say the same. An email shown large (a candidate's page, the candidate, team and credits-held lists, the interview report) breaks before its `@` when it doesn't fit (`components/wrapped-email.tsx`), so it never runs off a phone's screen.
+The FAQ ("How do I report a problem?") and the help chat and assistant's guide say the same. An email shown large (a candidate's page, the candidate, team and credits-held lists, the interview report) breaks before its `@` when it doesn't fit (`components/common/wrapped-email.tsx`), so it never runs off a phone's screen.
 
 ## News
 
@@ -188,7 +188,7 @@ While a company's page loads its data (a service waking up can take a few second
 
 Corners are rounded the same everywhere, as the side menu's items are (`rounded-xl`): cards, lists, dialogs, menus, tooltips, fields and buttons; something set close inside one of them (a button in a field, a menu's item) is a step less rounded (`rounded-lg`), so the corners nest. Only avatars (except the account's in the header), dots, progress bars, sliders, switches, chips and a field's raised name are round. A field shows its name inside it: where the value goes while it's empty, and as a small pill on its top edge once it's focused or filled; a unit (s, px) sits inside the field at its end.
 
-A search over a list (a company's interviews, an interview's candidates, the templates and the practice tests, the admin zone's support search) joins it as one block: the search on top, rounded at the top, and the list, or its empty state, straight under it, rounded at the bottom, the same width and inside one border, with a single line between them (`components/searched-list.tsx`).
+A search over a list (a company's interviews, an interview's candidates, the templates and the practice tests, the admin zone's support search) joins it as one block: the search on top, rounded at the top, and the list, or its empty state, straight under it, rounded at the bottom, the same width and inside one border, with a single line between them (`components/common/searched-list.tsx`).
 
 On phones dialogs and menus span the screen's width, with square corners. A dialog's buttons stay in sight at its bottom edge, with only its body scrolling, and help dialogs fill the screen. Lists, search boxes and gray panels reach the screen's edges, a page's main button ("new company", "new interview", "add member") takes its own full-width line under the title, and rows put their numbers and buttons under their title. On touch screens the keyboard hints ("⌘/Ctrl + Enter to send" under the long text boxes, "Enter to send, ⌘/Ctrl + Enter for a new line" under the assistant's chat) are hidden, and everything that can be tapped dims a little while pressed.
 

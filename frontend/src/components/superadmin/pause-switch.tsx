@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { CornerSign } from "@/components/corner-sign"
+import { CornerSign } from "@/components/common/corner-sign"
 import { Switch } from "@/components/ui/switch"
 import { SIGN_CARD } from "@/config/cards"
 import { apiErrorMessage, apiFetch } from "@/lib/api"

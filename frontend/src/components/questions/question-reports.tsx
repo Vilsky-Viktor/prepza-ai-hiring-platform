@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 
 import { useLocalTime } from "@/hooks/use-local-time"
 import { Button } from "@/components/ui/button"
-import { VirtualList } from "@/components/virtual-list"
+import { VirtualList } from "@/components/common/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
 import { hasMessage } from "@/lib/messages"

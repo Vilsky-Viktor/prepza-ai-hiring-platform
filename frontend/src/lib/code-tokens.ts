@@ -10,7 +10,7 @@ export function editorText(code: string) {
 
 /** The code's lines as colored tokens in both themes (shiki, loaded on first use); null without
  * a language or for one shiki doesn't know, so the code shows plain. Runs on the server for
- * pages' own code (components/highlighted-code.tsx) and in the browser for code that arrives
+ * pages' own code (components/common/highlighted-code.tsx) and in the browser for code that arrives
  * there (hooks/use-highlight.ts). */
 export async function codeTokens(
   code: string,

@@ -9,7 +9,7 @@ import { InviteExample } from "@/components/company/invite-example"
 import { InviteFileTab } from "@/components/company/invite-file-tab"
 import { InviteProblems } from "@/components/company/invite-problems"
 import { FloatingInput } from "@/components/ui/floating-field"
-import { TabNav, TabPanel } from "@/components/tab-nav"
+import { TabNav, TabPanel } from "@/components/common/tab-nav"
 import { INVITE_TAB_ICONS } from "@/components/company/invite-tab-icons"
 import { Button } from "@/components/ui/button"
 import {

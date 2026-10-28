@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { CornerSign } from "@/components/corner-sign"
+import { CornerSign } from "@/components/common/corner-sign"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

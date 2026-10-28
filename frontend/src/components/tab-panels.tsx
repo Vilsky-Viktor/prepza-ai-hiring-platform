@@ -2,7 +2,7 @@
 
 import { type ReactNode, useId, useState } from "react"
 
-import { TabNav, TabPanel } from "@/components/tab-nav"
+import { TabNav, TabPanel } from "@/components/common/tab-nav"
 
 /** Sections of a page as tabs (the site's TabNav as buttons), the first open: each panel's
  * content is made by the page, so a server page can pass its own. */

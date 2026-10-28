@@ -1,4 +1,4 @@
-import { HighlightedCode } from "@/components/highlighted-code"
+import { HighlightedCode } from "@/components/common/highlighted-code"
 import { SetupSection } from "@/components/company/ai-apps-setup"
 import { TabPanels } from "@/components/tab-panels"
 import { MCP_LANGUAGES } from "@/config/mcp-docs"

@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import { cookies } from "next/headers"
 import { getTranslations } from "next-intl/server"
 
-import { PageHeader } from "@/components/page-header"
-import { SignInPrompt } from "@/components/sign-in-prompt"
+import { PageHeader } from "@/components/common/page-header"
+import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { TOKEN_COOKIE } from "@/config/auth"
 
 export async function generateMetadata(): Promise<Metadata> {

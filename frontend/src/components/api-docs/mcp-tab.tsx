@@ -1,4 +1,4 @@
-import { HighlightedCode } from "@/components/highlighted-code"
+import { HighlightedCode } from "@/components/common/highlighted-code"
 import { DocSection } from "@/components/api-docs/doc-section"
 import { McpExamples } from "@/components/api-docs/mcp-examples"
 import { RichText } from "@/components/api-docs/rich-text"
@@ -7,7 +7,7 @@ import {
   ClaudeSteps,
   ServerAddress,
 } from "@/components/company/ai-apps-setup"
-import { Dotted } from "@/components/dot"
+import { Dotted } from "@/components/common/dot"
 import { MCP_PATH } from "@/config/ai-apps"
 import { LIST_BOX } from "@/config/lists"
 import {
