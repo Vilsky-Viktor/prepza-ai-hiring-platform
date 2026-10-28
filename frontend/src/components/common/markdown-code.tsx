@@ -18,7 +18,7 @@ export function markdownCode(children?: ReactNode) {
 }
 
 /** A Markdown code block in the code editor, colored in the browser (the assistant's answers);
- * the site's own Markdown colors it on the server (components/content/markdown.tsx). */
+ * the site's own Markdown colors it on the server (components/common/markdown.tsx). */
 export function MarkdownCode({ children }: { children?: ReactNode }) {
   const block = markdownCode(children)
 

@@ -1,6 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { ContentList } from "@/components/content/content-list"
+import { ContentList } from "@/features/content/components/content-list"
 import { contentPages } from "@/lib/content"
 import { pageMetadata } from "@/lib/site"
 import { PageKey } from "@/components/common/page-key"

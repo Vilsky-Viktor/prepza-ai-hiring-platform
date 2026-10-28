@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 
-import { SiteLink } from "@/components/content/markdown"
+import { SiteLink } from "@/components/common/markdown"
 import { FAQ_MARKDOWN } from "@/lib/markdown"
 
 import type { FaqItem } from "@/types/help"

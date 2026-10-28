@@ -1,4 +1,4 @@
-import { hubArticleRoute } from "@/components/content/content-routes"
+import { hubArticleRoute } from "@/features/content/components/content-routes"
 
 /** One page of content/guides, under its hub. */
 const route = hubArticleRoute("guides")

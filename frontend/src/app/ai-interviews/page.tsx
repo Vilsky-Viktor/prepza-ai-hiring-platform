@@ -1,4 +1,4 @@
-import { categoryRoute } from "@/components/content/content-routes"
+import { categoryRoute } from "@/features/content/components/content-routes"
 
 /** A category page (content/pages/ai-interviews.md). */
 const route = categoryRoute("ai-interviews", "aiInterviews")

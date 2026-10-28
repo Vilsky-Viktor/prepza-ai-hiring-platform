@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { ContentArticle } from "@/components/content/content-article"
+import { ContentArticle } from "@/features/content/components/content-article"
 import type { ContentFolder } from "@/config/content"
 import { contentLanguages, contentPage } from "@/lib/content"
 import { pageMetadata } from "@/lib/site"

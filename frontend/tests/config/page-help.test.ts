@@ -31,7 +31,7 @@ const REGISTERS: [RegExp, string][] = [
   [/<LegalPage\b/, "components/common/legal-page.tsx"],
   [
     /\b(categoryRoute|hubArticleRoute)\(/,
-    "components/content/content-article.tsx",
+    "features/content/components/content-article.tsx",
   ],
   [/<GenerationView\b/, "features/generation/components/generation-view.tsx"],
   [
