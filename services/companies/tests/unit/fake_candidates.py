@@ -1,6 +1,6 @@
 """The candidate storage the routers use, in memory: a test adds its invites to ROWS."""
 
-from app.constants.invites import InviteStatus
+from companies.constants.invites import InviteStatus
 
 ROWS = []
 # (invite id, grade, flagged) as saved.

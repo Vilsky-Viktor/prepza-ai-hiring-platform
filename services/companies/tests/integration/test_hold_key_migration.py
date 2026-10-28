@@ -1,8 +1,8 @@
 from prepza_common.limits.credit_keys import invite_key, ledger_key, rekeyed
 from sqlalchemy import text
 
-from app.config.settings import settings
-from app.storage.db import Session
+from companies.config import settings
+from companies.core.db import Session
 
 INTERVIEW = "1b4e28ba-2fa1-11d2-883f-0016d3cca427"
 

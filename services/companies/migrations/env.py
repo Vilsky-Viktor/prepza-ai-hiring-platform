@@ -3,16 +3,16 @@ from logging.config import fileConfig
 from alembic import context
 from prepza_common.db.db import migration_engine
 
-import app.models.audit
-import app.models.companies
-import app.models.events
-import app.models.interview_results
-import app.models.interviews
-import app.models.invites
-import app.models.outbox
-import app.models.removals  # noqa: F401
-from app.config.settings import settings
-from app.models.base import Base
+import companies.models.audit
+import companies.models.companies
+import companies.models.events
+import companies.models.interview_results
+import companies.models.interviews
+import companies.models.invites
+import companies.models.outbox
+import companies.models.removals  # noqa: F401
+from companies.config import settings
+from companies.models.base import Base
 
 fileConfig(context.config.config_file_name)
 

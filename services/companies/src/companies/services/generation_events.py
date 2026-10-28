@@ -1,0 +1,57 @@
+"""An interview generation's outcome: what it produced is stored on its interview, a failed one
+marks the interview, a cancelled one removes it; the company is told once, however often the
+event comes. An interview already removed has nothing to store and nobody to tell."""
+
+import uuid
+
+from prepza_common.events.analytics import track
+from prepza_common.limits.limits import question_seconds
+
+from companies.helpers.notifications import interview_cancelled, interview_ready
+from companies.integrations.redis import get_redis
+from companies.repositories import interview_generations
+from companies.services import outbox as outbox_service
+
+
+async def completed(data: dict, event_id: str) -> None:
+    generation_id = uuid.UUID(data["generation_id"])
+    interview = await interview_generations.get_for_generation(generation_id)
+
+    if interview is None:
+        return
+
+    # An event from before generation sent the level keeps the seconds the test has.
+    level = data.get("level")
+    seconds = await question_seconds(get_redis(), level) if level else None
+    await interview_generations.set_generated(
+        generation_id,
+        uuid.UUID(data["set_id"]),
+        data["title"],
+        seconds,
+        interview_ready(interview, data["title"]),
+        event_id,
+    )
+    await track("test_ready", company_id=interview.company_id, how="generated")
+    await outbox_service.flush_quietly()
+
+
+async def failed(data: dict, event_id: str) -> None:
+    generation_id = uuid.UUID(data["generation_id"])
+    interview = await interview_generations.get_for_generation(generation_id)
+
+    if interview is None:
+        return
+
+    await interview_generations.mark_failed(generation_id, event_id)
+    await outbox_service.flush_quietly()
+
+
+async def cancelled(data: dict, event_id: str) -> None:
+    generation_id = uuid.UUID(data["generation_id"])
+    interview = await interview_generations.get_for_generation(generation_id)
+
+    if interview is None:
+        return
+
+    await interview_generations.remove_for_generation(generation_id, interview_cancelled(interview))
+    await outbox_service.flush_quietly()

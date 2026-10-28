@@ -1,0 +1,123 @@
+import uuid
+from datetime import UTC, datetime
+
+from prepza_common.db.db import one_of
+from sqlalchemy import (
+    CheckConstraint,
+    DateTime,
+    ForeignKey,
+    Index,
+    LargeBinary,
+    SmallInteger,
+    String,
+    Text,
+    UniqueConstraint,
+    func,
+    text,
+)
+from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from companies.constants.brand import BrandFont
+from companies.constants.logos import LOGO_SIGNATURES
+from companies.constants.roles import Role
+from companies.constants.verification import MAX_DECLINE_REASON_LENGTH, VerificationStatus
+from companies.models.base import Base
+
+
+class Company(Base):
+    __tablename__ = "companies"
+    # Names are unique across prepza, ignoring case (migration 0012).
+    __table_args__ = (
+        Index("uq_companies_lower_name", text("lower(name)"), unique=True),
+        CheckConstraint(one_of("brand_font", BrandFont), name="ck_companies_brand_font"),
+        CheckConstraint(
+            one_of("verification_status", VerificationStatus),
+            name="ck_companies_verification_status",
+        ),
+        CheckConstraint(
+            one_of("logo_type", sorted({kind for _, kind in LOGO_SIGNATURES})),
+            name="ck_companies_logo_type",
+        ),
+    )
+
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    name: Mapped[str] = mapped_column(Text())
+    # The company's logo on candidates' pages, emails and reports: the image itself (small,
+    # loaded only when served), its media type, and a version that changes with every upload so
+    # its address can be cached for good.
+    logo: Mapped[bytes | None] = mapped_column(LargeBinary, deferred=True)
+    logo_type: Mapped[str | None] = mapped_column(String(32))
+    logo_version: Mapped[int] = mapped_column(default=0, server_default="0")
+    # Its own colors on candidates' pages, by theme ({"light": {...}, "dark": {...}}, each with
+    # constants/brand.py's keys as "#rrggbb"); a theme missing: prepza's.
+    brand_colors: Mapped[dict | None] = mapped_column(JSONB)
+    # Its font, and its cards' and buttons' corner rounding (px), on those pages; None: prepza's.
+    brand_font: Mapped[str | None] = mapped_column(String(32))
+    brand_radius: Mapped[int | None] = mapped_column(SmallInteger)
+    brand_button_radius: Mapped[int | None] = mapped_column(SmallInteger)
+    # Verification: the website's domain an owner or admin gave, and the same domain once a
+    # superadmin approved it (the badge). Before that, one of them proves the domain with a
+    # verified email on it (`verification_email`), which sends the company's name
+    # (`verification_name`) for review; the superadmin's decision is kept with it.
+    website_domain: Mapped[str | None] = mapped_column(String(253))
+    verified_domain: Mapped[str | None] = mapped_column(String(253))
+    verification_status: Mapped[str] = mapped_column(
+        String(16), default=VerificationStatus.NONE, server_default=VerificationStatus.NONE
+    )
+    verification_email: Mapped[str | None] = mapped_column(String(320))
+    verification_name: Mapped[str | None] = mapped_column(Text())
+    verification_submitted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    decline_reason: Mapped[str | None] = mapped_column(String(MAX_DECLINE_REASON_LENGTH))
+    verification_decided_by: Mapped[str | None] = mapped_column(String(128))
+    verification_decided_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
+    )
+    # A superadmin suspended it (impersonation, abuse): nothing new happens until it's lifted.
+    suspended_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # Since when members may not use its data from AI apps they connected (None: they may); its
+    # owners and admins decide.
+    ai_apps_off_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # The data processing agreement's version in force when it was made (None before they were
+    # recorded): its owner accepted it with the terms. Later versions apply after their notice.
+    dpa_version: Mapped[str | None] = mapped_column(String(10))
+
+    members: Mapped[list["Member"]] = relationship(cascade="all, delete-orphan")
+
+
+class Member(Base):
+    """A company owner or admin. Invited admins bind to a user_id when they accept."""
+
+    __tablename__ = "members"
+    __table_args__ = (
+        UniqueConstraint("company_id", "invited_email"),
+        # Invites to an address across companies (support's lookup).
+        Index("ix_members_invited_email", "invited_email"),
+        # A person is a member of a company once.
+        Index(
+            "uq_members_company_user",
+            "company_id",
+            "user_id",
+            unique=True,
+            postgresql_where=text("user_id IS NOT NULL"),
+        ),
+        # A company has one owner: a transfer demotes the owner before it promotes the admin.
+        Index(
+            "uq_members_one_owner",
+            "company_id",
+            unique=True,
+            postgresql_where=text("role = 'owner'"),
+        ),
+        CheckConstraint(one_of("role", Role), name="ck_members_role"),
+    )
+
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    company_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("companies.id", ondelete="CASCADE"))
+    user_id: Mapped[str | None] = mapped_column(String(128), index=True)
+    invited_email: Mapped[str] = mapped_column(String(320))
+    token: Mapped[str | None] = mapped_column(String(64), unique=True)
+    role: Mapped[str] = mapped_column(String(32), default=Role.ADMIN)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
+    )

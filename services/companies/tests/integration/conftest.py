@@ -12,7 +12,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
 
 if not os.getenv("INTEGRATION_TESTS"):
-    collect_ignore_glob = ["test_*.py"]
+    collect_ignore_glob = ["test_*.py", "*/test_*.py"]
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -50,7 +50,7 @@ def clean_start(database):
 def run():
     """Runs a coroutine on a fresh event loop; the pool is emptied after, as its connections
     belong to that loop."""
-    from app.storage.db import engine
+    from companies.core.db import engine
 
     def run(coroutine):
         async def wrapped():

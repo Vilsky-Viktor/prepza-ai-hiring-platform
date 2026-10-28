@@ -3,7 +3,7 @@ export const TOKEN_COOKIE = "prepza_token";
 // Screenshots, one folder per spec, in the results folder Playwright empties at the start of a run;
 // git ignores it.
 export const SCREENSHOTS = "test-results/screenshots";
-// The shortest time per question the API allows (services/companies/app/constants/interviews.py).
+// The shortest time per question the API allows (services/companies/src/companies/constants/interviews.py).
 export const MIN_QUESTION_SECONDS = 10;
 // The companies database, for the invite links candidates are emailed (like e2e.py).
 export const POSTGRES_HOST = "postgres";

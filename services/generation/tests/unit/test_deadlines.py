@@ -24,7 +24,9 @@ def cloud_run_timeout(service: str) -> int:
 
 
 def test_a_regeneration_ends_before_companies_stops_waiting_for_it():
-    waits = constant("services/companies/app/constants/generation.py", "REGENERATE_CALL_SECONDS")
+    waits = constant(
+        "services/companies/src/companies/constants/generation.py", "REGENERATE_CALL_SECONDS"
+    )
     # Reading the question and saving the new one, and recording two models' usage.
     work = (
         REGENERATE_TIMEOUT_SECONDS

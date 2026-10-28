@@ -12,7 +12,7 @@ import sqlalchemy as sa
 from alembic import op
 from prepza_common.limits.credit_keys import rekeyed
 
-from app.config.settings import settings
+from companies.config import settings
 
 revision = "0057"
 down_revision = "0056"

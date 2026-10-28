@@ -64,7 +64,7 @@ jobs:
           - { name: library, path: services/library, code: src }
           - { name: generation, path: services/generation }
           - { name: rounds, path: services/rounds, code: src }
-          - { name: companies, path: services/companies }
+          - { name: companies, path: services/companies, code: src }
           - { name: notifications, path: services/notifications, code: src }
           - { name: billing, path: services/billing, code: src }
           - { name: ats, path: services/ats, code: src }

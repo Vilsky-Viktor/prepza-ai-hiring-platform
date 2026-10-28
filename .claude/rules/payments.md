@@ -1,11 +1,11 @@
 ---
 paths:
   - "services/billing/**"
-  - "services/companies/app/routers/billing.py"
-  - "services/companies/app/routers/auto_top_ups.py"
-  - "services/companies/app/integrations/billing_prices.py"
-  - "services/companies/app/schemas/billing.py"
-  - "services/companies/app/schemas/auto_top_ups.py"
+  - "services/companies/src/companies/api/v1/billing.py"
+  - "services/companies/src/companies/api/v1/auto_top_ups.py"
+  - "services/companies/src/companies/integrations/billing_prices.py"
+  - "services/companies/src/companies/schemas/billing.py"
+  - "services/companies/src/companies/schemas/auto_top_ups.py"
   - "frontend/lib/paddle.ts"
   - "frontend/lib/top-up.ts"
   - "frontend/constants/paddle.ts"

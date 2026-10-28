@@ -79,7 +79,7 @@ x-rounds-source: &rounds-source
   - ./frontend/content:/frontend/content:ro
 
 x-companies-source: &companies-source
-  - ./services/companies/app:/services/companies/app
+  - ./services/companies/src:/services/companies/src
   - ./services/companies/migrations:/services/companies/migrations
   - ./services/companies/alembic.ini:/services/companies/alembic.ini:ro
   - ./packages/common/src:/packages/common/src

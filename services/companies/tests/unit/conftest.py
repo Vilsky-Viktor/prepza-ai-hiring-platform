@@ -5,10 +5,10 @@ from prepza_common.events.audit_actions import AuditAction, TargetKind
 from prepza_common.limits import limits
 from prepza_common.redis import memory_cache
 
-from app.integrations import billing
-from app.main import app
-from app.service_auth import REQUEST_VIA
-from app.storage import accounts, audit, candidates, companies, invites
+from companies.core.security import REQUEST_VIA
+from companies.integrations import billing
+from companies.main import app
+from companies.repositories import accounts, audit, candidates, companies, invites
 from tests.unit import fake_candidates
 
 

@@ -3,7 +3,7 @@ a new route without a guard fails here until it gets one or is listed below with
 
 from prepza_common.auth.route_guards import unguarded
 
-from app.main import app
+from companies.main import app
 
 PUBLIC = {
     # Fixed lists and prepza's own brand, the same for everyone.
