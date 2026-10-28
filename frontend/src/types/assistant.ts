@@ -1,5 +1,5 @@
 // The in-app assistant's API (services/assistant), as the panel reads it; a signed-out
-// visitor's answers come from rounds' help chat.
+// visitor's answers come from the assistant's help chat.
 import type { PageHelpKey } from "@/types/page-help"
 import type { SignInProvider } from "@/types/sign-in"
 

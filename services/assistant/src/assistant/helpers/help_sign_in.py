@@ -4,7 +4,7 @@ from prepza_common.ai.secrets_check import SECRET_REMOVED
 from prepza_common.http.sse import sse_event
 from prepza_common.i18n.i18n import translate
 
-from rounds.constants.help import SIGN_IN_MARKER, SIGN_IN_PREFIX
+from assistant.constants.help_chat import SIGN_IN_MARKER, SIGN_IN_PREFIX
 
 
 def sign_in_block(provider: str | None) -> dict:

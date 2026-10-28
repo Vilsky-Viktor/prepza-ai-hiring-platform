@@ -3,8 +3,6 @@ paths:
   - "services/*/src/*/prompts/**"
   - "services/generation/**"
   - "services/assistant/**"
-  - "services/rounds/src/rounds/integrations/llm.py"
-  - "services/rounds/src/rounds/api/v1/help.py"
   - "packages/common/src/prepza_common/ai/llm.py"
   - "packages/common/src/prepza_common/ai/ai_*.py"
   - "packages/common/src/prepza_common/ai/tracing.py"

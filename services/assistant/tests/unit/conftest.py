@@ -8,6 +8,7 @@ from assistant.repositories import actions as store
 from assistant.services import actions
 from tests.fake_model import FakeRoutingModel
 from tests.unit.actions_setup import COMPANY
+from tests.unit.help_setup import help_redis, knowledge  # noqa: F401
 
 
 class Writes(list):

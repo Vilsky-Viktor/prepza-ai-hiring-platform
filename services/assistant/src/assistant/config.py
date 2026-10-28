@@ -21,6 +21,13 @@ class Settings(ServiceSettings):
     # Picks the groups of tools a turn is offered (services/tool_routing.py): a few tokens.
     routing_model: str = "gpt-6-luna"
     routing_reasoning_effort: str = "none"
+    # The help chat for visitors who aren't signed in, free and answering from fixed texts: fast
+    # and cheap; at effort "none" it also takes a temperature.
+    help_model: str = "gpt-6-luna"
+    help_reasoning_effort: str = "none"
+    # Cloudflare Turnstile's secret: the "I'm not a robot" check on a visitor's first help chat
+    # message. Empty: no check.
+    turnstile_secret_key: str = ""
     # Turns a held voice message into text.
     transcribe_model: str = "gpt-4o-mini-transcribe"
     # Conversations nobody has added to for this many days are deleted.

@@ -20,6 +20,8 @@ from assistant.api.v1 import (
     connect,
     conversations,
     events,
+    help_chat,
+    help_votes,
     internal_accounts,
     mcp,
     mcp_docs,
@@ -67,6 +69,8 @@ app.add_middleware(BodyLimitMiddleware, max_bytes=MAX_BODY_BYTES)
 compress_answers(app)
 app.include_router(chat.router)
 app.include_router(transcribe.router)
+app.include_router(help_chat.router)
+app.include_router(help_votes.router)
 app.include_router(conversations.router)
 app.include_router(actions.router)
 app.include_router(events.router)

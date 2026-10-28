@@ -67,7 +67,7 @@ What to do when a provider prepza depends on fails, a payment isn't credited or 
 
 **How you notice**
 
-- **prepza OpenAI failing:** over 10 OpenAI errors in 15 minutes ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)). It counts errors whose traceback or message names `openai.`: generation's and the help chat's failures by their traceback, the assistant's by its message, which names only the error's type, such as `openai.APIConnectionError` ([turns.py](../../services/assistant/src/assistant/services/turns.py)).
+- **prepza OpenAI failing:** over 10 OpenAI errors in 15 minutes ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)). It counts errors whose traceback or message names `openai.`: generation's failures by their traceback, the assistant's and the help chat's by their message, which names only the error's type, such as `openai.APIConnectionError` ([turns.py](../../services/assistant/src/assistant/services/turns.py), [help_answers.py](../../services/assistant/src/assistant/services/help_answers.py)).
 - **prepza generations failing:** over 2 generations failed in an hour, counted from the logs: a run that errored, or the sweep marking stuck ones failed ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)). A failed generation doesn't fail its task, which saves the failure on the generation ([jobs.py](../../services/generation/src/generation/services/jobs.py)), so **prepza generation tasks failing** fires for other tasks, such as news translations, and a worker that crashes.
 - Users: a generation ends as failed, "Generation failed. Please try again.", with **Retry**; the help chat and the assistant answer "Couldn't get a reply right now. Please try again."; voice input fails with a `502` ([assistant.md](../features/assistant.md)). Candidates' interviews don't call OpenAI.
 
@@ -75,17 +75,17 @@ What to do when a provider prepza depends on fails, a payment isn't credited or 
 
 - **Generation:** each AI call is tried again up to twice (`LLM_MAX_RETRIES`), and one silent for 5 minutes counts as hung (`LLM_TIMEOUT_SECONDS`, [generation.py](../../services/generation/src/generation/constants/generation.py)). A run that still fails is saved as failed, and companies hears it through the `generation.failed` event. Nothing retries it: the user does, and **Retry** continues from the run's last checkpoint ([retry.py](../../services/generation/src/generation/services/retry.py), [Generation](../generation.md)).
 - **Regenerating one question:** past 90 seconds of writing the old question stays and the company is told to try again ([Generation](../generation.md)).
-- **Help chat:** 1 retry, a 25-second timeout ([rounds llm.py](../../services/rounds/src/rounds/integrations/llm.py)). **Assistant:** 2 retries, a 60-second timeout; the failed answer is saved as failed and its tokens still count toward the budgets ([assistant llm.py](../../services/assistant/src/assistant/integrations/llm.py), [turns.py](../../services/assistant/src/assistant/services/turns.py)).
+- **Help chat:** 1 retry, a 25-second timeout ([assistant llm.py](../../services/assistant/src/assistant/integrations/llm.py), `get_help_llm`). **Assistant:** 2 retries, a 60-second timeout; the failed answer is saved as failed and its tokens still count toward the budgets ([assistant llm.py](../../services/assistant/src/assistant/integrations/llm.py), [turns.py](../../services/assistant/src/assistant/services/turns.py)).
 - **Answer-key checks** (OpenAI's Batch API, every 10 minutes): a batch that expires or fails keeps the results it has, and the rest go out again ([Generation](../generation.md)).
 - **News translations:** the job fails, so Cloud Tasks runs it again (up to 3 attempts), and library's daily schedule sends any post still missing a language again ([Admin zone](../features/admin-zone.md#news)).
 
 **What to do**
 
 1. Check OpenAI's status page, then the account's usage limits and credit balance in OpenAI's dashboard.
-2. Read the errors of `generation-worker`, `rounds` or `assistant` (command above). An authentication error means the key: add the right one to `openai-api-key` and restart the four services that read it:
+2. Read the errors of `generation-worker` or `assistant` (command above). An authentication error means the key: add the right one to `openai-api-key` and restart the three services that read it:
    ```bash
    printf '%s' "$OPENAI_API_KEY" | gcloud secrets versions add openai-api-key --data-file=-
-   for service in generation generation-worker rounds assistant; do
+   for service in generation generation-worker assistant; do
      gcloud run services update $service --region=europe-west1 --update-labels=restarted=$(date +%s)
    done
    ```

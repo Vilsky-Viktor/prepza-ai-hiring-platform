@@ -4,13 +4,13 @@ from uuid import UUID
 
 from prepza_common.auth.tokens import purpose_key, same_secret
 
-from rounds.constants.help import HELP_SIGNING_PURPOSE, HelpRole
-from rounds.schemas.help import HelpMessage
+from assistant.constants.help_chat import HELP_SIGNING_PURPOSE, HelpRole
+from assistant.schemas.help_chat import HelpMessage
 
 
 def help_signing_key(service_secret: str) -> str:
     """Signs the help chat's replies and votes: a key of its own, made from the service's, so a
-    service holding rounds' key to call it can't sign them."""
+    service holding the assistant's key to call it can't sign them."""
     return purpose_key(service_secret, HELP_SIGNING_PURPOSE)
 
 

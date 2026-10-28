@@ -135,7 +135,7 @@ What AI cost and why, for the same period as General (the choice is shared). Bil
 4. **By model:** calls, tokens and spend, with the share of input read from OpenAI's cache.
 5. **Companies and users that cost most:** 20 of each, by spend, each opening its support page.
 6. **By day,** for a month, or **by month,** for a year or all time.
-7. **Shared budgets today:** today's (UTC) use of each limit for everyone: generation's new generations and quality checks, the assistant's messages and tokens, the help chat's questions and tokens, and the unpaid users' AI spend against its cap (`AI_SPEND_UNPAID_DAY`). Each owning service reads its own Redis counters.
+7. **Shared budgets today:** today's (UTC) use of each limit for everyone: generation's new generations and quality checks, the assistant's messages and tokens and its help chat's questions and tokens, and the unpaid users' AI spend against its cap (`AI_SPEND_UNPAID_DAY`). Each owning service reads its own Redis counters.
 8. **Limits hit:** ours and our providers' (OpenAI's rate limit and quota, waits in generation's own request limiter, Resend's, the ATSs', Firebase's), each with its hits in the period, its current value, and the 5 companies and users that hit it most, opening their support pages.
 
 A service that doesn't answer leaves its part out.
@@ -143,7 +143,7 @@ A service that doesn't answer leaves its part out.
 ```
 GET /billing/superadmin/ai-costs?period=          # 1 to 6
 GET /billing/superadmin/limit-hits?period=        # 8
-GET /{generate|assistant|rounds}/superadmin/budgets   # 7
+GET /{generate|assistant}/superadmin/budgets   # 7
 GET /billing/superadmin/ai-spend?company_id=|user_id=  # the support pages' line
 ```
 
@@ -211,7 +211,7 @@ POST /notifications/superadmin/legal-notices/{terms|privacy|dpa}
 
 ### Limits
 
-Every usage limit of ours, grouped by the service that enforces it (`prepza_common.limits.limit_list.LIMITS`): the assistant, companies, generation, rounds, library, the API, ATS integrations, notifications (Resend's emails a day, campaigns of each kind a day, important notices a day) and billing (the unpaid users' daily AI spend cap). Among them, generous hourly limits that only stop floods of costly actions, each skipped while Redis is down: web hook test events (`WEBHOOK_TESTS_PER_HOUR`, 30 a company), interviews copied from templates (`TEMPLATE_COPIES_PER_HOUR`, 30 a company), "Download my data" (`DATA_EXPORTS_PER_HOUR`, 5 a user, as each asks every service) and ATS connections made or replaced (`ATS_CONNECTS_PER_HOUR`, 20 a company). Each shows:
+Every usage limit of ours, grouped by the service that enforces it (`prepza_common.limits.limit_list.LIMITS`): the assistant (its help chat's `HELP_*` limits too), companies, generation, rounds, library, the API, ATS integrations, notifications (Resend's emails a day, campaigns of each kind a day, important notices a day) and billing (the unpaid users' daily AI spend cap). Among them, generous hourly limits that only stop floods of costly actions, each skipped while Redis is down: web hook test events (`WEBHOOK_TESTS_PER_HOUR`, 30 a company), interviews copied from templates (`TEMPLATE_COPIES_PER_HOUR`, 30 a company), "Download my data" (`DATA_EXPORTS_PER_HOUR`, 5 a user, as each asks every service) and ATS connections made or replaced (`ATS_CONNECTS_PER_HOUR`, 20 a company). Each shows:
 
 - its name, window (an hour, a day, … or "at a time" for a count of what exists, such as API keys) and whom it counts (a user, a company, an address or everyone),
 - its default and its hits in the last 7 days, so a change's effect shows,

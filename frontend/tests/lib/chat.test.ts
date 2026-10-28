@@ -61,7 +61,7 @@ describe("streamHelp", () => {
     await deltas(streamed([]))
 
     const [url, init] = vi.mocked(fetch).mock.calls[0]
-    expect(url).toBe("/api/rounds/help/chat")
+    expect(url).toBe("/api/assistant/help/chat")
     expect(init?.method).toBe("POST")
     expect(JSON.parse(String(init?.body))).toMatchObject({ messages: [] })
   })

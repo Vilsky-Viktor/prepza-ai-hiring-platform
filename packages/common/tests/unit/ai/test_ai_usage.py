@@ -77,7 +77,7 @@ def test_a_failed_call_of_a_model_without_a_price_is_recorded_at_no_cost(publish
     )
 
     data = published[0][1]
-    assert (data["cost_usd"], data["outcome"], data["service"]) == (0.0, "failed", "rounds")
+    assert (data["cost_usd"], data["outcome"], data["service"]) == (0.0, "failed", "assistant")
 
 
 def test_a_publish_that_fails_never_fails_the_call(monkeypatch):

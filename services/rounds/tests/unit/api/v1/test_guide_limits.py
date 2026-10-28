@@ -1,15 +1,8 @@
-import asyncio
-
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from prepza_common.auth.service_auth import issue_token
 from prepza_common.limits.limit_list import LIMITS
 from prepza_common.redis import memory_cache
 
-from rounds.constants.help import HELP_ALL_KEY, HELP_SPEND_KEY
-from rounds.main import app
-from rounds.schemas.help import HelpMessage
-from rounds.services.help import build_messages
 from tests.unit.api.v1.test_help import CATALOG, fake_catalog
 
 # Limits as the Controls tab edited them; none is its default.
@@ -60,49 +53,10 @@ def test_the_platform_guide_names_the_limits_current_values(client, redis, monke
     assert named(after, defaults) == []
 
 
-def test_the_help_chat_names_the_limits_current_values(redis):
+def test_the_help_chats_knowledge_names_the_limits_current_values(client, redis):
     redis.limits.update(EDITED)
-    question = [HelpMessage(role="user", content="How many companies can I own?")]
+    token = issue_token("assistant", "rounds", "test-secret-that-is-at-least-32-bytes")
 
-    system = asyncio.run(build_messages(question, "en", CATALOG))[0].content
+    found = client.get("/internal/help/knowledge", headers={"Authorization": f"Bearer {token}"})
 
-    assert len(named(system, EDITED)) == len(EDITED)
-
-
-@pytest.fixture
-def signed_in(monkeypatch):
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
-
-    def sign_in(email):
-        app.dependency_overrides[current_user] = lambda: User(
-            uid=email,
-            email=email,
-            email_verified=True,
-            sign_in_provider="google.com",
-        )
-
-    yield sign_in
-    app.dependency_overrides.clear()
-
-
-def test_the_superadmin_sees_how_much_of_the_help_chats_budgets_is_used(client, redis, signed_in):
-    redis.limits["HELP_TOKENS_PER_DAY"] = 2_000_000
-    redis.counts[HELP_SPEND_KEY] = 500_000
-    redis.counts[HELP_ALL_KEY] = 12
-    signed_in("ann@example.com")
-
-    response = client.get("/superadmin/budgets")
-
-    assert response.status_code == 200
-    assert [
-        (item["name"], item["used"], item["limit"], item["unit"]) for item in response.json()
-    ] == [
-        ("HELP_TOKENS_PER_DAY", 500_000, 2_000_000, "tokens"),
-        ("HELP_DAILY_LIMIT", 12, LIMITS["HELP_DAILY_LIMIT"].default, "calls"),
-    ]
-
-
-def test_nobody_else_sees_the_budgets(client, signed_in):
-    signed_in("bob@example.com")
-
-    assert client.get("/superadmin/budgets").status_code == 404
+    assert len(named(found.json()["knowledge"], EDITED)) == len(EDITED)

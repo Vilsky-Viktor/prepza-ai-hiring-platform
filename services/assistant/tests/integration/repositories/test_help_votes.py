@@ -5,9 +5,9 @@ import uuid
 
 from sqlalchemy import inspect, select
 
-from rounds.core.db import Session, engine
-from rounds.models.help_votes import HelpVote
-from rounds.repositories import help_votes
+from assistant.core.db import Session, engine
+from assistant.models.help_votes import HelpVote
+from assistant.repositories import help_votes
 from tests.integration.transactions import transaction
 
 

@@ -115,7 +115,7 @@ export function streamHelp(
 
   return humanHeaders(first).then((headers) =>
     streamEvents(
-      "/rounds/help/chat",
+      "/assistant/help/chat",
       { messages, chat_id: helpChat, ...(page && { page }) },
       onEvent,
       signal,

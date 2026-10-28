@@ -11,6 +11,7 @@ from assistant.constants.chat import (
     MODEL_RETRIES,
     MODEL_TIMEOUT_SECONDS,
 )
+from assistant.constants.help_chat import HELP_MAX_OUTPUT_TOKENS, HELP_RETRIES, HELP_TIMEOUT_SECONDS
 from assistant.constants.titles import TITLE_MAX_TOKENS
 from assistant.constants.tool_groups import (
     ROUTING_MAX_TOKENS,
@@ -65,4 +66,19 @@ def get_title_model() -> ChatOpenAI:
         max_tokens=TITLE_MAX_TOKENS,
         timeout=MODEL_TIMEOUT_SECONDS,
         max_retries=MODEL_RETRIES,
+    )
+
+
+@cache
+def get_help_llm() -> ChatOpenAI:
+    """The help chat's model; at effort "none" it answers at a low temperature."""
+    return chat_model(
+        settings.help_model,
+        settings.help_reasoning_effort,
+        temperature=0.3,
+        max_retries=HELP_RETRIES,
+        timeout=HELP_TIMEOUT_SECONDS,
+        max_tokens=HELP_MAX_OUTPUT_TOKENS,
+        # The last chunk carries the answer's tokens, for the daily budget.
+        stream_usage=True,
     )

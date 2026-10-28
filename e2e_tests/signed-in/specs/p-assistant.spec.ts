@@ -171,7 +171,7 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
 test("a visitor who signs in from the sign-in card keeps their chat", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
-  await page.route("**/api/rounds/help/chat", (route) =>
+  await page.route("**/api/assistant/help/chat", (route) =>
     route.fulfill({
       contentType: "text/event-stream",
       body: events(

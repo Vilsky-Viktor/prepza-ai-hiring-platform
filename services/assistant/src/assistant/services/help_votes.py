@@ -5,13 +5,13 @@ from prepza_common.ai.answer_votes import mirror_vote
 from prepza_common.auth.tokens import same_secret
 from prepza_common.limits.rate_limit import hit_or_skip
 
-from rounds.config import settings
-from rounds.constants.help import NO_SUCH_ANSWER
-from rounds.core.db import Session
-from rounds.helpers.help_replies import help_signing_key, vote_signature
-from rounds.integrations.redis import get_redis
-from rounds.repositories import help_votes
-from rounds.schemas.help import HelpVoteIn
+from assistant.config import settings
+from assistant.constants.help_chat import NO_SUCH_ANSWER
+from assistant.core.db import Session
+from assistant.helpers.help_replies import help_signing_key, vote_signature
+from assistant.integrations.redis import get_redis
+from assistant.repositories import help_votes
+from assistant.schemas.help_chat import HelpVoteIn
 
 
 async def vote(answer_id: UUID, body: HelpVoteIn, address: str) -> None:

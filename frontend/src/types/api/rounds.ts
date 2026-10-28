@@ -285,7 +285,7 @@ export interface paths {
     }
     /**
      * Get Guide
-     * @description Everything prepza's help chat answers from, as text: how prepza works and how to use it,
+     * @description Everything prepza's help chat (in the assistant) answers from, as text: how prepza works and how to use it,
      *     the FAQ in the page's language, today's prices, the terms and the privacy policy; public.
      */
     get: operations["get_guide_help_guide_get"]
@@ -395,12 +395,8 @@ export interface paths {
     put?: never
     /**
      * Help Chat
-     * @description Answers questions about prepza, for visitors too. Streams server-sent events:
-     *     {"delta"}... (and a {"block"} sign-in card when a visitor asks to sign in or sign up), then
-     *     {"done"} or {"error"}. Prices are in the visitor's country's currency (US dollars without
-     *     one). Refused during the emergency pause, as it's AI. A conversation with a
-     *     secret in it (a key, a token, a password) is answered at once, before anything else, with a
-     *     fixed reply ({"removed"} first: the panel drops that message), and nothing of it is used.
+     * @description The help chat moved to the assistant (POST /api/assistant/help/chat): the browser asks
+     *     there again with the same request. Kept for one release, for pages loaded before it.
      */
     post: operations["help_chat_help_chat_post"]
     delete?: never
@@ -440,10 +436,8 @@ export interface paths {
     get?: never
     /**
      * Vote
-     * @description A thumbs up or down on one of the help chat's answers, for visitors too: one an answer, a
-     *     new vote replaces it, null clears it. The help chat keeps no conversation, so the answer's
-     *     signature (from its last event) shows the vote comes from the page that got it. Sent on to
-     *     Langfuse as a score on the answer's trace when that's set up.
+     * @description The help chat's votes moved to the assistant (PUT /api/assistant/help/answers/{id}/vote):
+     *     the browser sends the vote there again. Kept for one release, for pages loaded before it.
      */
     put: operations["vote_help_answers__answer_id__vote_put"]
     post?: never
@@ -655,26 +649,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/superadmin/budgets": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /**
-     * Get Budgets
-     * @description How much of the help chat's shared daily budgets is used today, for the AI costs tab.
-     */
-    get: operations["get_budgets_superadmin_budgets_get"]
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/users/{user_id}": {
     parameters: {
       query?: never
@@ -748,6 +722,29 @@ export interface paths {
      * @description Companies' retention: candidates' sessions go with their expired invites.
      */
     post: operations["delete_invite_sessions_internal_invites_delete_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/help/knowledge": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Knowledge
+     * @description What the assistant's help chat answers from, in English: the platform guide with the
+     *     prices in the currency of the visitor's `country` (as the load balancer names it; billing
+     *     checks it, and an unknown one means US dollars), and the guide of the `page` asked on
+     *     (its key; an unknown one has none).
+     */
+    get: operations["knowledge_internal_help_knowledge_get"]
+    put?: never
+    post?: never
     delete?: never
     options?: never
     head?: never
@@ -850,26 +847,6 @@ export interface components {
        */
       fast: boolean
     }
-    /**
-     * BudgetOut
-     * @description How much of a shared daily budget (a limit for everyone) is used today, for the admin
-     *     zone's AI costs tab: each owning service's GET /superadmin/budgets.
-     */
-    BudgetOut: {
-      /** Name */
-      name: string
-      /** Used */
-      used: number
-      /** Limit */
-      limit: number
-      /** Unit */
-      unit: string
-      /**
-       * Share
-       * @description Of the limit, the share used, 0 to 1 (more once over it).
-       */
-      readonly share: number
-    }
     /** ContactRequest */
     ContactRequest: {
       /** Name */
@@ -936,44 +913,15 @@ export interface components {
       detail?: components["schemas"]["ValidationError"][]
     }
     /**
-     * HelpChatRequest
-     * @description The conversation so far, ending with the new question; the page keeps it. `page`: the
-     *     key of the page the visitor asks on, whose guide the answer reads (an unknown one is
-     *     ignored).
+     * HelpKnowledgeOut
+     * @description What the help chat answers from, in English: the platform guide (with the prices in the
+     *     visitor's currency) and the guide of the page asked on, as text, if it's a known page.
      */
-    HelpChatRequest: {
-      /** Messages */
-      messages: components["schemas"]["HelpMessage"][]
-      /** Page */
-      page?: string | null
-      /** Chat Id */
-      chat_id?: string | null
-    }
-    /** HelpMessage */
-    HelpMessage: {
-      role: components["schemas"]["HelpRole"]
-      /** Content */
-      content: string
-      /** Signature */
-      signature?: string | null
-    }
-    /**
-     * HelpRole
-     * @enum {string}
-     */
-    HelpRole: "user" | "assistant"
-    /**
-     * HelpVoteIn
-     * @description A thumbs up (1) or down (-1) on a help chat answer, null to clear it, with the answer's
-     *     run and signature as its last event gave them.
-     */
-    HelpVoteIn: {
-      /** Trace Id */
-      trace_id?: string | null
-      /** Signature */
-      signature: string
-      /** Value */
-      value: (1 | -1) | null
+    HelpKnowledgeOut: {
+      /** Knowledge */
+      knowledge: string
+      /** Page Guide */
+      page_guide?: string | null
     }
     /**
      * IntegritySignal
@@ -2195,34 +2143,19 @@ export interface operations {
   help_chat_help_chat_post: {
     parameters: {
       query?: never
-      header?: {
-        "X-Client-Country"?: string | null
-      }
+      header?: never
       path?: never
       cookie?: never
     }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["HelpChatRequest"]
-      }
-    }
+    requestBody?: never
     responses: {
       /** @description Successful Response */
-      200: {
+      307: {
         headers: {
           [name: string]: unknown
         }
         content: {
           "application/json": unknown
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
@@ -2267,18 +2200,16 @@ export interface operations {
       }
       cookie?: never
     }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["HelpVoteIn"]
-      }
-    }
+    requestBody?: never
     responses: {
       /** @description Successful Response */
-      204: {
+      307: {
         headers: {
           [name: string]: unknown
         }
-        content?: never
+        content: {
+          "application/json": unknown
+        }
       }
       /** @description Validation Error */
       422: {
@@ -2589,26 +2520,6 @@ export interface operations {
       }
     }
   }
-  get_budgets_superadmin_budgets_get: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["BudgetOut"][]
-        }
-      }
-    }
-  }
   delete_user_internal_users__user_id__delete: {
     parameters: {
       query?: never
@@ -2724,6 +2635,38 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  knowledge_internal_help_knowledge_get: {
+    parameters: {
+      query?: {
+        country?: string | null
+        page?: string | null
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HelpKnowledgeOut"]
+        }
       }
       /** @description Validation Error */
       422: {

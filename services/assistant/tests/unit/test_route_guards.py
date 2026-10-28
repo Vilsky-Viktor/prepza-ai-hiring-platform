@@ -8,6 +8,8 @@ from assistant.main import app
 PUBLIC = {
     # The panel's limits, asked signed out too.
     "GET /config",
+    # A vote on a help chat answer, for visitors too: it carries its answer's signature.
+    "PUT /help/answers/{answer_id}/vote",
     # What AI apps may call, listed for the public docs; uptime checks.
     "GET /mcp/tools",
     "GET /health",

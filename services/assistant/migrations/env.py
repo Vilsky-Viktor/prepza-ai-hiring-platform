@@ -4,6 +4,7 @@ from alembic import context
 from prepza_common.db.db import migration_engine
 
 import assistant.models.conversations
+import assistant.models.help_votes
 import assistant.models.oauth
 import assistant.models.updates  # noqa: F401
 from assistant.config import settings

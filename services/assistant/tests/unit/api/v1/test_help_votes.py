@@ -8,11 +8,12 @@ import uuid
 import pytest
 from fake_redis import FakeRedis
 
-from rounds.config import settings
-from rounds.helpers.help_replies import help_signing_key, vote_signature
-from rounds.repositories import help_votes
-from rounds.services import help_votes as routes
-from tests.unit.api.v1.test_help import CATALOG, fake_catalog
+from assistant.config import settings
+from assistant.helpers.help_replies import help_signing_key, vote_signature
+from assistant.repositories import help_votes
+from assistant.services import help_answers
+from assistant.services import help_votes as routes
+from tests.unit.help_setup import answering
 
 ANSWER = uuid.uuid4()
 TRACE = "a" * 32
@@ -106,21 +107,17 @@ def test_only_a_thumbs_up_or_down_is_taken(client, stored, value):
     assert stored == ({}, [])
 
 
-def test_with_langfuse_the_answer_names_the_trace_its_model_call_reports_to(client, monkeypatch):
-    trace_ids = []
-
-    async def fake_stream(messages, used=None, trace_id=None, session_id=None):
-        trace_ids.append(trace_id)
-        yield "Paste it."
-
-    monkeypatch.setattr("rounds.api.v1.help.billing.catalog", fake_catalog(CATALOG))
-    monkeypatch.setattr("rounds.api.v1.help.stream_reply", fake_stream)
-    monkeypatch.setattr("rounds.api.v1.help.new_trace_id", lambda: TRACE)
+def test_with_langfuse_the_answer_names_the_trace_its_model_call_reports_to(
+    client, monkeypatch, help_redis
+):
+    asked = []
+    monkeypatch.setattr(help_answers, "stream_reply", answering("Paste it.", asked=asked))
+    monkeypatch.setattr(help_answers, "new_trace_id", lambda: TRACE)
 
     response = client.post("/help/chat", json={"messages": [{"role": "user", "content": "Hi"}]})
     done = json.loads(response.text.strip().split("\n\n")[-1][6:])
 
-    assert trace_ids == [TRACE]
+    assert [trace for _, trace, _ in asked] == [TRACE]
     assert done["answer"]["trace_id"] == TRACE
     expected = vote_signature(
         uuid.UUID(done["answer"]["id"]), TRACE, help_signing_key(settings.service_secret)

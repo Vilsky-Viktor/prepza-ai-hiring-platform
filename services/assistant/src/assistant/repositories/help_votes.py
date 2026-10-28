@@ -4,7 +4,7 @@ from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from rounds.models.help_votes import HelpVote
+from assistant.models.help_votes import HelpVote
 
 
 async def save(

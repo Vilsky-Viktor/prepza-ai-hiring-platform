@@ -14,7 +14,8 @@ Contents: [Baselines (2026-10-04)](#baselines-2026-10-04) ·
 [Help chat: automatic top-up](#help-chat-automatic-top-ups-pause-and-price-notice-2026-10-21-kept) ·
 [Help chat: Mira](#help-chat-mira-an-ai-assistant-that-says-so-2026-10-22-kept) ·
 [The scope rule's language](#the-scope-rule-names-no-language-of-its-own-2026-10-22-kept) ·
-[Help chat: the shareable link's tab](#help-chat-the-shareable-link-on-the-settings-tab-2026-10-23-kept)
+[Help chat: the shareable link's tab](#help-chat-the-shareable-link-on-the-settings-tab-2026-10-23-kept) ·
+[Help chat: moved to the assistant](#help-chat-moved-from-rounds-to-the-assistant-2026-10-29-kept)
 
 ## Baselines (2026-10-04)
 
@@ -269,3 +270,13 @@ none, judged by `gpt-6.1-sol` high, against `results/help_chat_scope.json` (24 �
 `…_link.json`: passed 95.8% (88.5–98.6) → 94.7% (87.1–97.9); h25 3 of 3; made up 4.2% → 4.0%;
 sign-in marker 100% both; off-topic 3 → 2 of 3 (h12 declined in two sentences, not one); the
 other misses are h17's known invented retake limit. Within the noise. $1.53.
+
+## Help chat: moved from rounds to the assistant (2026-10-29, kept)
+
+The help chat moved to the assistant with its prompt, model and settings unchanged; rounds still
+owns the site's documents and sends them (`GET /internal/help/knowledge`). The rendered messages
+for three cases (two pages, two countries, a signed reply) were byte-identical before and after.
+`help_chat.py`, 25 × 3, `gpt-6-luna` at none, judged by `gpt-6.1-sol` high, in rounds just
+before (`results/help_chat_before_move.json`) → in the assistant (`…_after_move.json`): passed
+96.0% (88.9–98.6) both; made up 4.0% both; sign-in marker 100% both; language 3 of 6 both; the
+misses are h17's known invented retake limit. $1.64 and $1.17.

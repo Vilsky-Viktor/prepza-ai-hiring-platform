@@ -85,7 +85,7 @@ describe("voteAnswer", () => {
     await voteAnswer(null, { ...writing(), helpAnswer: HELP_ANSWER }, null)
 
     const [url, init] = vi.mocked(fetch).mock.calls[0]
-    expect(url).toBe(`/api/rounds/help/answers/${HELP_ANSWER.id}/vote`)
+    expect(url).toBe(`/api/assistant/help/answers/${HELP_ANSWER.id}/vote`)
     expect(JSON.parse(String(init?.body))).toEqual({
       trace_id: HELP_ANSWER.trace_id,
       signature: HELP_ANSWER.signature,

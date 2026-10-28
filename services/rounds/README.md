@@ -1,10 +1,12 @@
 # rounds
 
-Candidates' interview sessions and their answers, and free practice rounds; the FAQ, the help
-chat for signed-out visitors, each page's guide and the legal texts the site shows, and the
-contact form. It keeps sessions, answers, integrity signals and help votes in its own database;
-questions come from library, and scores go out as events; a deleted interview's or company's
-sessions go when its `interview.deleted` or `company.deleted` arrives. What it does and its settings:
+Candidates' interview sessions and their answers, and free practice rounds; the FAQ, each
+page's guide, the guide articles and the legal texts the site shows, the knowledge the
+assistant's help chat answers from (`GET /internal/help/knowledge`), and the contact form. It
+keeps sessions, answers and integrity signals in its own database (its old `help_votes` table is
+unused, until the next release drops it); questions come from library, and scores go out as
+events; a deleted interview's or company's sessions go when its `interview.deleted` or
+`company.deleted` arrives. What it does and its settings:
 [candidates](../../docs/features/candidates.md),
 [templates and practice](../../docs/features/templates-and-practice.md) and
 [the site](../../docs/features/site.md).
@@ -20,20 +22,23 @@ src/rounds/
 ├── handlers/               # Pub/Sub events (deleted interviews and companies); dispatch.py
 │                           # picks one
 ├── services/               # Interview steps, answers, timed sessions, practice, signals,
-│                           # the help chat, votes, contact, deletions; each opens its
+│                           # the help knowledge, contact, deletions; each opens its
 │                           # transaction
-├── repositories/           # Database queries (sessions, answers, signals, votes, ...);
+├── repositories/           # Database queries (sessions, answers, signals, ...);
 │                           # take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (scores, exports, guides); fixed values, the FAQ
-├── integrations/           # library, billing, the help chat's model, Redis
-├── prompts/                # The help chat's prompt
+├── integrations/           # library, billing, Redis
+├── prompts/                # The platform guide's texts, sent with the help knowledge
 ├── page_guides/            # Each page's guide, one JSON file per language
 ├── legal_versions/         # Every published version of the legal texts
 └── legal_archive.py        # `python -m rounds.legal_archive`: keeps a new legal version
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
+
+Rounds' old `POST /help/chat` and `PUT /help/answers/{id}/vote` answer a 307 to the
+assistant's addresses for one release.
 
 Routes call services; services open the transaction (`async with Session.begin() as
 session:`) and pass it to the repositories, so an action's steps are saved together (an
@@ -56,6 +61,5 @@ images copy it to `/frontend/content`, at the same place relative to the code.
 docker compose up -d --build rounds              # the service and its migrations
 cd services/rounds && uv run pytest              # unit tests
 scripts/integration.sh rounds                    # integration tests (real Postgres and Redis)
-evals/run.sh rounds help_chat.py --label base    # the help chat's offline eval
 scripts/assistant-openapi.sh                     # refresh the assistant's snapshot of these routes
 ```

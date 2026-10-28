@@ -8,8 +8,9 @@ from rounds.models.base import Base
 
 
 class HelpVote(Base):
-    """A thumbs up or down on one of the help chat's answers. The help chat keeps no messages,
-    so only the vote is kept, by the answer's id: never its text, the question or who voted."""
+    """Votes on the help chat's answers from before it moved to the assistant (which keeps them
+    now, in its own help_votes). Nothing writes here any more; the next release drops the table
+    (expand, then contract)."""
 
     __tablename__ = "help_votes"
     __table_args__ = (CheckConstraint("vote IN (-1, 1)", name="ck_help_votes_vote"),)

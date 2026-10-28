@@ -26,10 +26,3 @@ def test_paused_no_practice_round_starts(client):
 
     assert refused.status_code == 503
     assert refused.json()["detail"] == PAUSED
-
-
-def test_paused_the_help_chat_answers_nothing(client):
-    refused = client.post("/help/chat", json={"messages": [{"role": "user", "content": "Hi"}]})
-
-    assert refused.status_code == 503
-    assert refused.json()["detail"] == PAUSED

@@ -177,4 +177,7 @@ def test_the_shared_budgets_are_read_from_redis_with_their_current_limits():
     assert [(b.name, b.used, b.limit, b.unit) for b in found] == [
         ("TOKENS_PER_DAY", 1_500_000, 200_000_000, "tokens"),
         ("MESSAGES_PER_DAY", 125, 500, "calls"),
+        # The help chat's, at their defaults, nothing used yet today.
+        ("HELP_TOKENS_PER_DAY", 0, 50_000_000, "tokens"),
+        ("HELP_DAILY_LIMIT", 0, 5_000, "calls"),
     ]

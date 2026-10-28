@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 
-from rounds.helpers.sign_in import sign_in_block, with_sign_in
+from assistant.helpers.help_sign_in import sign_in_block, with_sign_in
 
 
 def events(chunks: list[str]) -> list[dict]:

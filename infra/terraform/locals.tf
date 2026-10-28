@@ -34,7 +34,8 @@ locals {
     # The public API at /api/v1/ (path "v1").
     api = { image = "api", public = true, path = "v1", port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 60, concurrency = 80, database = "api", command = null }
     # The in-app assistant: a turn streams up to 90 s while its tools call the other services. It
-    # also serves AI apps over MCP at the site's root (mcp_paths below).
+    # also serves AI apps over MCP at the site's root (mcp_paths below) and the help chat for
+    # visitors, which streams within the same TURNS_AT_ONCE.
     assistant         = { image = "assistant", public = true, path = "assistant", port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 300, concurrency = 80, database = "assistant", command = null }
     generation-worker = { image = "generation", public = false, path = null, port = 8000, min = 0, max = 1, connections = 4, cpu = "1", memory = "2Gi", timeout = 1800, concurrency = 10, database = "generation", command = ["uvicorn", "generation.worker_main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", "--timeout-graceful-shutdown", "8"] }
   }
@@ -76,7 +77,7 @@ locals {
     rounds            = ["library"]
     companies         = ["generation", "library", "rounds", "billing"]
     # companies' names and accounts' emails, for the AI costs tab.
-    billing              = ["companies", "library"]
+    billing = ["companies", "library"]
     # rounds: a campaign's candidates and learners.
     notifications        = ["companies", "library", "billing", "generation", "rounds"]
     notifications-stream = ["companies", "library"]
@@ -85,8 +86,8 @@ locals {
     # Its X-Assistant header, so companies audits reads made through it as such; billing, whether
     # a company ever paid (its limits); api, checking an AI agent's API key at the MCP server;
     # notifications, ats and library, what get_updates reads (the bell, ATS candidates not
-    # invited, questions flagged or fixed).
-    assistant = ["companies", "billing", "api", "notifications", "ats", "library"]
+    # invited, questions flagged or fixed); rounds, what the help chat answers from.
+    assistant = ["companies", "billing", "api", "notifications", "ats", "library", "rounds"]
   }
 
   # Each service's own key checks calls to it. The worker and the stream share generation's and
@@ -111,14 +112,14 @@ locals {
     library              = { redis-url = "REDIS_URL" }
     generation           = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY" }
     generation-worker    = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY" }
-    rounds               = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
+    rounds               = { redis-url = "REDIS_URL", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
     companies            = { redis-url = "REDIS_URL", person-hash-key = "PERSON_HASH_KEY", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
     billing              = { redis-url = "REDIS_URL", person-hash-key = "PERSON_HASH_KEY", paddle-webhook-secret = "PADDLE_WEBHOOK_SECRET", paddle-api-key = "PADDLE_API_KEY" }
     notifications        = { redis-url = "REDIS_URL", email-link-secret = "EMAIL_LINK_SECRET", person-hash-key = "PERSON_HASH_KEY", resend-api-key = "RESEND_API_KEY", resend-webhook-secret = "RESEND_WEBHOOK_SECRET", slack-client-id = "SLACK_CLIENT_ID", slack-client-secret = "SLACK_CLIENT_SECRET", slack-encryption-key = "SLACK_ENCRYPTION_KEY" }
     notifications-stream = { redis-url = "REDIS_URL", email-link-secret = "EMAIL_LINK_SECRET", person-hash-key = "PERSON_HASH_KEY" }
     ats                  = { redis-url = "REDIS_URL", ats-encryption-key = "ATS_ENCRYPTION_KEY" }
     api                  = { redis-url = "REDIS_URL", api-encryption-key = "API_ENCRYPTION_KEY" }
-    assistant            = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY" }
+    assistant            = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
   }
 
   secrets = {

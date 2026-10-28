@@ -105,7 +105,7 @@ test("a visitor votes on the help chat's answers with the answer's signature", a
   browser,
 }) => {
   const page = await (await browser.newContext()).newPage();
-  await page.route("**/api/rounds/help/chat", (route) =>
+  await page.route("**/api/assistant/help/chat", (route) =>
     route.fulfill({
       contentType: "text/event-stream",
       body: events(
@@ -114,7 +114,7 @@ test("a visitor votes on the help chat's answers with the answer's signature", a
       ),
     })
   );
-  const sent = await savedVotes(page, `**/api/rounds/help/answers/${HELP_ANSWER.id}/vote`);
+  const sent = await savedVotes(page, `**/api/assistant/help/answers/${HELP_ANSWER.id}/vote`);
   await visit(page, "/");
   const panel = await openPanel(page);
   await ask(panel, "How do I start?");

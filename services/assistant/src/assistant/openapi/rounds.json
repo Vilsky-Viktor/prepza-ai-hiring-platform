@@ -831,7 +831,7 @@
      "help"
     ],
     "summary": "Get Guide",
-    "description": "Everything prepza's help chat answers from, as text: how prepza works and how to use it,\nthe FAQ in the page's language, today's prices, the terms and the privacy policy; public.",
+    "description": "Everything prepza's help chat (in the assistant) answers from, as text: how prepza works and how to use it,\nthe FAQ in the page's language, today's prices, the terms and the privacy policy; public.",
     "operationId": "get_guide_help_guide_get",
     "responses": {
      "200": {
@@ -1061,57 +1061,14 @@
      "help"
     ],
     "summary": "Help Chat",
-    "description": "Answers questions about prepza, for visitors too. Streams server-sent events:\n{\"delta\"}... (and a {\"block\"} sign-in card when a visitor asks to sign in or sign up), then\n{\"done\"} or {\"error\"}. Prices are in the visitor's country's currency (US dollars without\none). Refused during the emergency pause, as it's AI. A conversation with a\nsecret in it (a key, a token, a password) is answered at once, before anything else, with a\nfixed reply ({\"removed\"} first: the panel drops that message), and nothing of it is used.",
+    "description": "The help chat moved to the assistant (POST /api/assistant/help/chat): the browser asks\nthere again with the same request. Kept for one release, for pages loaded before it.",
     "operationId": "help_chat_help_chat_post",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "X-Client-Country",
-      "in": "header",
-      "required": false,
-      "schema": {
-       "anyOf": [
-        {
-         "type": "string"
-        },
-        {
-         "type": "null"
-        }
-       ],
-       "title": "X-Client-Country"
-      }
-     }
-    ],
-    "requestBody": {
-     "required": true,
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/HelpChatRequest"
-       }
-      }
-     }
-    },
     "responses": {
-     "200": {
+     "307": {
       "description": "Successful Response",
       "content": {
        "application/json": {
         "schema": {}
-       }
-      }
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
        }
       }
      }
@@ -1159,7 +1116,7 @@
      "help"
     ],
     "summary": "Vote",
-    "description": "A thumbs up or down on one of the help chat's answers, for visitors too: one an answer, a\nnew vote replaces it, null clears it. The help chat keeps no conversation, so the answer's\nsignature (from its last event) shows the vote comes from the page that got it. Sent on to\nLangfuse as a score on the answer's trace when that's set up.",
+    "description": "The help chat's votes moved to the assistant (PUT /api/assistant/help/answers/{id}/vote):\nthe browser sends the vote there again. Kept for one release, for pages loaded before it.",
     "operationId": "vote_help_answers__answer_id__vote_put",
     "parameters": [
      {
@@ -1173,19 +1130,14 @@
       }
      }
     ],
-    "requestBody": {
-     "required": true,
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/HelpVoteIn"
+    "responses": {
+     "307": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
        }
       }
-     }
-    },
-    "responses": {
-     "204": {
-      "description": "Successful Response"
      },
      "422": {
       "description": "Validation Error",
@@ -1631,37 +1583,6 @@
     }
    }
   },
-  "/superadmin/budgets": {
-   "get": {
-    "tags": [
-     "superadmin"
-    ],
-    "summary": "Get Budgets",
-    "description": "How much of the help chat's shared daily budgets is used today, for the AI costs tab.",
-    "operationId": "get_budgets_superadmin_budgets_get",
-    "responses": {
-     "200": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {
-         "items": {
-          "$ref": "#/components/schemas/BudgetOut"
-         },
-         "type": "array",
-         "title": "Response Get Budgets Superadmin Budgets Get"
-        }
-       }
-      }
-     }
-    },
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ]
-   }
-  },
   "/internal/users/{user_id}": {
    "delete": {
     "tags": [
@@ -1866,6 +1787,78 @@
       "HTTPBearer": []
      }
     ]
+   }
+  },
+  "/internal/help/knowledge": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Knowledge",
+    "description": "What the assistant's help chat answers from, in English: the platform guide with the\nprices in the currency of the visitor's `country` (as the load balancer names it; billing\nchecks it, and an unknown one means US dollars), and the guide of the `page` asked on\n(its key; an unknown one has none).",
+    "operationId": "knowledge_internal_help_knowledge_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     },
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 40
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Page"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HelpKnowledgeOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
    }
   },
   "/internal/maintenance/running": {
@@ -2082,42 +2075,6 @@
     ],
     "title": "AnswerView"
    },
-   "BudgetOut": {
-    "properties": {
-     "name": {
-      "type": "string",
-      "title": "Name"
-     },
-     "used": {
-      "type": "number",
-      "title": "Used"
-     },
-     "limit": {
-      "type": "number",
-      "title": "Limit"
-     },
-     "unit": {
-      "type": "string",
-      "title": "Unit"
-     },
-     "share": {
-      "type": "number",
-      "title": "Share",
-      "description": "Of the limit, the share used, 0 to 1 (more once over it).",
-      "readOnly": true
-     }
-    },
-    "type": "object",
-    "required": [
-     "name",
-     "used",
-     "limit",
-     "unit",
-     "share"
-    ],
-    "title": "BudgetOut",
-    "description": "How much of a shared daily budget (a limit for everyone) is used today, for the admin\nzone's AI costs tab: each owning service's GET /superadmin/budgets."
-   },
    "ContactRequest": {
     "properties": {
      "name": {
@@ -2265,130 +2222,30 @@
     "type": "object",
     "title": "HTTPValidationError"
    },
-   "HelpChatRequest": {
+   "HelpKnowledgeOut": {
     "properties": {
-     "messages": {
-      "items": {
-       "$ref": "#/components/schemas/HelpMessage"
-      },
-      "type": "array",
-      "maxItems": 200,
-      "minItems": 1,
-      "title": "Messages"
-     },
-     "page": {
-      "anyOf": [
-       {
-        "type": "string",
-        "maxLength": 40
-       },
-       {
-        "type": "null"
-       }
-      ],
-      "title": "Page"
-     },
-     "chat_id": {
-      "anyOf": [
-       {
-        "type": "string",
-        "format": "uuid"
-       },
-       {
-        "type": "null"
-       }
-      ],
-      "title": "Chat Id"
-     }
-    },
-    "type": "object",
-    "required": [
-     "messages"
-    ],
-    "title": "HelpChatRequest",
-    "description": "The conversation so far, ending with the new question; the page keeps it. `page`: the\nkey of the page the visitor asks on, whose guide the answer reads (an unknown one is\nignored)."
-   },
-   "HelpMessage": {
-    "properties": {
-     "role": {
-      "$ref": "#/components/schemas/HelpRole"
-     },
-     "content": {
+     "knowledge": {
       "type": "string",
-      "maxLength": 10000,
-      "minLength": 1,
-      "title": "Content"
+      "title": "Knowledge"
      },
-     "signature": {
+     "page_guide": {
       "anyOf": [
        {
-        "type": "string",
-        "maxLength": 64
+        "type": "string"
        },
        {
         "type": "null"
        }
       ],
-      "title": "Signature"
+      "title": "Page Guide"
      }
     },
     "type": "object",
     "required": [
-     "role",
-     "content"
+     "knowledge"
     ],
-    "title": "HelpMessage"
-   },
-   "HelpRole": {
-    "type": "string",
-    "enum": [
-     "user",
-     "assistant"
-    ],
-    "title": "HelpRole"
-   },
-   "HelpVoteIn": {
-    "properties": {
-     "trace_id": {
-      "anyOf": [
-       {
-        "type": "string",
-        "maxLength": 32
-       },
-       {
-        "type": "null"
-       }
-      ],
-      "title": "Trace Id"
-     },
-     "signature": {
-      "type": "string",
-      "maxLength": 64,
-      "title": "Signature"
-     },
-     "value": {
-      "anyOf": [
-       {
-        "type": "integer",
-        "enum": [
-         1,
-         -1
-        ]
-       },
-       {
-        "type": "null"
-       }
-      ],
-      "title": "Value"
-     }
-    },
-    "type": "object",
-    "required": [
-     "signature",
-     "value"
-    ],
-    "title": "HelpVoteIn",
-    "description": "A thumbs up (1) or down (-1) on a help chat answer, null to clear it, with the answer's\nrun and signature as its last event gave them."
+    "title": "HelpKnowledgeOut",
+    "description": "What the help chat answers from, in English: the platform guide (with the prices in the\nvisitor's currency) and the guide of the page asked on, as text, if it's a known page."
    },
    "IntegritySignal": {
     "type": "string",

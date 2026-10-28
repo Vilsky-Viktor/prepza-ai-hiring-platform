@@ -145,11 +145,11 @@ evals/run.sh assistant transcription_test.py --label new-model   # --repeat 2
 
 ## The help chat
 
-The help chat's test runs in rounds' container, with the service's own prompt, platform guide,
-FAQ, prices and page guides:
+The help chat's test runs in the assistant's container, with the service's own prompt and model,
+reading the platform guide, FAQ, prices and page guides from rounds as the service does:
 
 ```bash
-evals/run.sh rounds help_chat.py --label new-prompt          # --repeat 3, --only h01,h10
+evals/run.sh assistant help_chat.py --label new-prompt       # --repeat 3, --only h01,h10
 ```
 
 ## What each costs

@@ -30,6 +30,15 @@ ROUNDS = "rounds"
 EVERYONE = "everyone"
 
 LIMITS = {
+    # The help chat for visitors (the assistant): questions, its tokens and votes.
+    "HELP_USER_LIMIT": Limit(ASSISTANT, 30, "calls", HOUR_SECONDS, 1, 1_000, "user"),
+    # Thumbs up or down on the help chat's answers (each may tell Langfuse).
+    "HELP_VOTES_PER_IP_HOUR": Limit(ASSISTANT, 120, "calls", HOUR_SECONDS, 1, 10_000, "ip"),
+    "HELP_IP_LIMIT": Limit(ASSISTANT, 60, "calls", HOUR_SECONDS, 1, 1_000, "ip"),
+    "HELP_DAILY_LIMIT": Limit(ASSISTANT, 5_000, "calls", DAY_SECONDS, 1, 1_000_000, "everyone"),
+    "HELP_TOKENS_PER_DAY": Limit(
+        ASSISTANT, 50_000_000, "tokens", DAY_SECONDS, 100_000, 5_000_000_000, "everyone"
+    ),
     # The assistant: messages and their tokens, voice messages, actions.
     "MESSAGES_PER_USER_HOUR": Limit(ASSISTANT, 30, "calls", HOUR_SECONDS, 1, 1_000, "user"),
     "MESSAGES_PER_USER_DAY": Limit(ASSISTANT, 200, "calls", DAY_SECONDS, 1, 10_000, "user"),
@@ -180,18 +189,10 @@ LIMITS = {
     # least one AI call). The topic review follows them.
     "MAX_TOPICS": Limit(GENERATION, 10, "items", None, 1, 20, EVERYONE, counted=False),
     "MAX_SUBTOPICS": Limit(GENERATION, 5, "items", None, 1, 20, EVERYONE, counted=False),
-    # Rounds: practice, interview sessions, the help chat and the contact page.
+    # Rounds: practice, interview sessions and the contact page.
     "PRACTICE_ROUNDS_PER_HOUR": Limit(ROUNDS, 20, "calls", HOUR_SECONDS, 1, 1_000, "user"),
     "SIGNALS_PER_MINUTE": Limit(ROUNDS, 60, "calls", SIGNALS_WINDOW, 1, 1_000, "user"),
     "MAX_SIGNALS_PER_QUESTION": Limit(ROUNDS, 50, "items", None, 1, 1_000, "user"),
-    "HELP_USER_LIMIT": Limit(ROUNDS, 30, "calls", HOUR_SECONDS, 1, 1_000, "user"),
-    # Thumbs up or down on the help chat's answers (each may tell Langfuse).
-    "HELP_VOTES_PER_IP_HOUR": Limit(ROUNDS, 120, "calls", HOUR_SECONDS, 1, 10_000, "ip"),
-    "HELP_IP_LIMIT": Limit(ROUNDS, 60, "calls", HOUR_SECONDS, 1, 1_000, "ip"),
-    "HELP_DAILY_LIMIT": Limit(ROUNDS, 5_000, "calls", DAY_SECONDS, 1, 1_000_000, "everyone"),
-    "HELP_TOKENS_PER_DAY": Limit(
-        ROUNDS, 50_000_000, "tokens", DAY_SECONDS, 100_000, 5_000_000_000, "everyone"
-    ),
     "CONTACT_IP_LIMIT": Limit(ROUNDS, 5, "calls", DAY_SECONDS, 1, 100, "ip"),
     "CONTACT_DAILY_LIMIT": Limit(ROUNDS, 200, "calls", DAY_SECONDS, 1, 10_000, "everyone"),
     # Library: feedback on questions.

@@ -1,5 +1,3 @@
-import asyncio
-
 import pytest
 from prepza_common.ai.page_keys import PAGE_KEYS
 from prepza_common.config.constants import LANGUAGES
@@ -7,9 +5,6 @@ from prepza_common.config.constants import LANGUAGES
 from rounds.constants.help import NO_SUCH_PAGE
 from rounds.helpers import page_guides
 from rounds.helpers.page_guides import GUIDES
-from rounds.schemas.help import HelpMessage
-from rounds.services.help import build_messages
-from tests.unit.api.v1.test_help import CATALOG
 
 
 def test_every_page_has_its_guide_in_english():
@@ -52,14 +47,3 @@ def test_an_unknown_page_has_no_guide(client):
     assert response.status_code == 404
     assert response.json()["detail"] == NO_SUCH_PAGE
     assert client.get("/help/pages/" + "x" * 100).status_code == 422
-
-
-def test_the_help_chat_reads_the_guide_of_the_page_it_is_asked_on(redis):
-    question = [HelpMessage(role="user", content="What can I do here?")]
-    on_pricing = asyncio.run(build_messages(question, "de", CATALOG, "pricing"))[0].content
-    nowhere = asyncio.run(build_messages(question, "de", CATALOG, "superadmin"))[0].content
-    guide = GUIDES["en"]["pricing"]
-
-    assert guide["text"] in on_pricing
-    assert all(item in on_pricing for item in guide["actions"] + guide["tips"])
-    assert guide["text"] not in nowhere

@@ -6,6 +6,7 @@ from prepza_common.limits.limits import limit
 from prepza_common.limits.rate_limit import add_spent, hit, spend
 from redis.exceptions import RedisError
 
+from assistant.constants.help_chat import HELP_ALL_KEY, HELP_SPEND_KEY
 from assistant.constants.limits import ALL_MESSAGES_KEY, ALL_TOKENS_KEY, PAID_CACHE_SECONDS
 from assistant.integrations import billing
 
@@ -102,12 +103,15 @@ async def record(redis, user_id: str, company_id: UUID | None, tokens: int) -> N
 
 
 async def shared_budgets(redis) -> list[BudgetOut]:
-    """How much of the budgets for everyone is used today: tokens and messages."""
+    """How much of the budgets for everyone is used today: the assistant's tokens and messages,
+    and the help chat's."""
     found = []
 
     for name, key, unit in (
         ("TOKENS_PER_DAY", ALL_TOKENS_KEY, "tokens"),
         ("MESSAGES_PER_DAY", ALL_MESSAGES_KEY, "calls"),
+        ("HELP_TOKENS_PER_DAY", HELP_SPEND_KEY, "tokens"),
+        ("HELP_DAILY_LIMIT", HELP_ALL_KEY, "calls"),
     ):
         used = int(await redis.get(key) or 0)
         found.append(BudgetOut(name=name, used=used, limit=await limit(redis, name), unit=unit))

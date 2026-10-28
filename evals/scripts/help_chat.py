@@ -2,8 +2,9 @@
 datasets/help_questions.json: each message asked as the service asks it (its own prompt, the
 platform guide, the FAQ, prices and the page's guide) and answered by its own model, then checked
 by code (the sign-in marker) and judged by judges/help_answer.md against the same information.
+The help chat is the assistant's; what it answers from comes from rounds, as in the service.
 
-    evals/run.sh rounds help_chat.py --label base               # --repeat 3, --only h01,h10
+    evals/run.sh assistant help_chat.py --label base            # --repeat 3, --only h01,h10
 
 The help model runs at effort "none" with a little temperature, so each message is asked
 `--repeat` times. Costs about $0.01 for the answers and $0.30-0.60 for the judge (the
@@ -19,14 +20,12 @@ from prepza_common.config.constants import LANGUAGES
 from pydantic import BaseModel, Field
 from stats import share
 
-from rounds.config import settings
-from rounds.constants.help import HelpRole
-from rounds.helpers.help import knowledge
-from rounds.helpers.page_guides import guide_text, page_guide
-from rounds.integrations import billing, llm
-from rounds.integrations.redis import get_redis
-from rounds.schemas.help import HelpMessage
-from rounds.services.help import build_messages, guide_limits
+from assistant.config import settings
+from assistant.constants.help_chat import HelpRole
+from assistant.integrations import llm
+from assistant.integrations.help_knowledge import help_knowledge
+from assistant.schemas.help_chat import HelpMessage
+from assistant.services.help_chat import build_messages
 
 SIGN_IN = "[[sign_in"
 
@@ -52,17 +51,18 @@ def passed(rows: list[dict]) -> int:
     return sum(r["passed"] and r["marker_ok"] for r in rows)
 
 
-async def answer(item: dict, catalog: dict | None) -> dict:
+async def answer(item: dict) -> dict:
     message = HelpMessage(role=HelpRole.USER, content=item["question"])
-    messages = await build_messages([message], item["language"], catalog, item["page"])
+    known = await help_knowledge(None, item["page"])
+    messages = build_messages([message], item["language"], known, item["page"])
     result = await llm.get_help_llm().ainvoke(messages)
 
     return {"text": result.content, "cost": cost(settings.help_model, result.usage_metadata or {})}
 
 
 async def review(item: dict, info: str, found: dict) -> dict:
-    guide = page_guide(item["page"], "en") if item["page"] else None
-    page = f"\n\n<page_guide>\n{guide_text(guide)}\n</page_guide>" if guide else ""
+    guide = (await help_knowledge(None, item["page"])).page_guide if item["page"] else None
+    page = f"\n\n<page_guide>\n{guide}\n</page_guide>" if guide else ""
     text = prompt("help_answer").format(
         knowledge=info + page,
         page=item["page"] or "unknown",
@@ -88,14 +88,13 @@ async def review(item: dict, info: str, found: dict) -> dict:
 async def main(label: str, only: str, repeat: int) -> None:
     items = load(DATASETS / "help_questions.json")["questions"]
     items = [item for item in items if not only or item["id"] in only.split(",")]
-    catalog = await billing.catalog()
     # The judge reads what the chat reads, in English (the FAQ in the page's language aside).
-    info = knowledge("en", catalog, await guide_limits(get_redis()))
+    info = (await help_knowledge(None, None)).knowledge
     limit = asyncio.Semaphore(6)
 
     async def one(item: dict, turn: int) -> dict:
         async with limit:
-            found = await answer(item, catalog)
+            found = await answer(item)
 
             return {"id": item["id"], "turn": turn, **found, **await review(item, info, found)}
 

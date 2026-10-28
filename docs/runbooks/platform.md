@@ -52,7 +52,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## Candidate answers slow
 
-**How you notice:** **prepza candidate answers slow** (a page) or **prepza candidate answers slowing** (a ticket): fewer than 95% of the interview service's (rounds) requests answer within 2 seconds at the load balancer, over 28 days ([monitoring_slo.tf](../../infra/terraform/monitoring_slo.tf)). Candidates wait at every question; the help chat, which rounds also serves, counts too.
+**How you notice:** **prepza candidate answers slow** (a page) or **prepza candidate answers slowing** (a ticket): fewer than 95% of the interview service's (rounds) requests answer within 2 seconds at the load balancer, over 28 days ([monitoring_slo.tf](../../infra/terraform/monitoring_slo.tf)). Candidates wait at every question.
 
 **What the system does by itself:** Cloud Run adds rounds instances up to its `max` (`locals.tf`); nothing else.
 

@@ -2,6 +2,7 @@ import pytest
 from fake_redis import FakeRedis
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
+from prepza_common.limits.limit_list import LIMITS
 
 from assistant.api.v1 import superadmin
 from assistant.main import app
@@ -21,11 +22,12 @@ def sign_in(monkeypatch):
     app.dependency_overrides.clear()
 
 
-def test_a_superadmin_reads_how_much_of_the_shared_budgets_is_used_today(
+def test_a_superadmin_reads_how_much_of_the_shared_budgets_and_the_help_chats_is_used_today(
     client, sign_in, monkeypatch
 ):
     redis = FakeRedis({"TOKENS_PER_DAY": 5_000_000})
     redis.counts.update({"spend:assistant:all": 1_250_000, "rate:assistant:all": 40})
+    redis.counts.update({"spend:help:all": 500_000, "rate:help:all": 12})
     monkeypatch.setattr(superadmin, "get_redis", lambda: redis)
     sign_in("ann@example.com")
 
@@ -38,6 +40,8 @@ def test_a_superadmin_reads_how_much_of_the_shared_budgets_is_used_today(
     ] == [
         ("TOKENS_PER_DAY", 1_250_000, 5_000_000, "tokens"),
         ("MESSAGES_PER_DAY", 40, 20_000, "calls"),
+        ("HELP_TOKENS_PER_DAY", 500_000, LIMITS["HELP_TOKENS_PER_DAY"].default, "tokens"),
+        ("HELP_DAILY_LIMIT", 12, LIMITS["HELP_DAILY_LIMIT"].default, "calls"),
     ]
     assert response.json()[0]["share"] == 0.25
 

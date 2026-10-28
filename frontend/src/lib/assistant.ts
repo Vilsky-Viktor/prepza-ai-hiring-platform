@@ -285,7 +285,7 @@ export function voteAnswer(
   const help = answer.helpAnswer
   const [path, body] = help
     ? [
-        `/rounds/help/answers/${help.id}/vote`,
+        `/assistant/help/answers/${help.id}/vote`,
         { trace_id: help.trace_id, signature: help.signature, value },
       ]
     : [

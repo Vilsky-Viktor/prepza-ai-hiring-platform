@@ -1,8 +1,8 @@
 import type { components as billing } from "@/types/api/billing"
 import type { components as companies } from "@/types/api/companies"
+import type { components as generation } from "@/types/api/generation"
 import type { components } from "@/types/api/library"
 import type { components as notifications } from "@/types/api/notifications"
-import type { components as rounds } from "@/types/api/rounds"
 
 type Schemas = components["schemas"]
 
@@ -75,7 +75,7 @@ export type AiCosts = Billing["AiCostsOut"]
 export type LimitHitLists = Billing["LimitHitListsOut"]
 export type LimitHits = Billing["LimitHitsOut"]
 /** A shared daily budget's use today, from the service that owns it. */
-export type Budget = rounds["schemas"]["BudgetOut"]
+export type Budget = generation["schemas"]["BudgetOut"]
 /** A company's or user's AI spend lately, on its support page. */
 export type AiSpend = Billing["AiSpendOut"]
 /** Every limit, as the Controls tab edits them, and their changes. */

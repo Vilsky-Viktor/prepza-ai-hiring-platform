@@ -1,7 +1,6 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from prepza_common.ai.trace_prices import sync_model_prices
 from prepza_common.auth.auth import start_firebase
 from prepza_common.http.body_limit import BodyLimitMiddleware
 from prepza_common.http.compression import compress_answers
@@ -19,6 +18,7 @@ from rounds.api.v1 import (
     help_votes,
     internal,
     internal_accounts,
+    internal_help,
     internal_maintenance,
     interview_flow,
     practice,
@@ -38,7 +38,6 @@ init_sentry("rounds")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     start_firebase(settings.firebase_project_id)
-    await sync_model_prices()
 
     yield
 
@@ -67,6 +66,7 @@ app.include_router(events.router)
 app.include_router(schedules.router)
 app.include_router(superadmin.router)
 app.include_router(internal_accounts.router)
+app.include_router(internal_help.router)
 app.include_router(internal_maintenance.router)
 
 

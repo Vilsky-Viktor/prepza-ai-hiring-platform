@@ -79,11 +79,16 @@ x-assistant-env: &assistant-env
   ROUTING_MODEL: ${ROUTING_MODEL:-gpt-6-luna}
   ROUTING_REASONING_EFFORT: ${ROUTING_REASONING_EFFORT:-none}
   TRANSCRIBE_MODEL: ${TRANSCRIBE_MODEL:-gpt-4o-mini-transcribe}
+  HELP_MODEL: ${HELP_MODEL:-gpt-6-luna}
+  HELP_REASONING_EFFORT: ${HELP_REASONING_EFFORT:-none}
+  # The "I'm not a robot" check on a visitor's first help chat message.
+  TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
   ASSISTANT_RETENTION_DAYS: ${ASSISTANT_RETENTION_DAYS:-90}
   # AI apps connect to <SITE_URL>/mcp; their calls sign the user in with Firebase's web key.
   SITE_URL: ${SITE_URL:-http://localhost:8090}
   FIREBASE_WEB_API_KEY: ${FIREBASE_WEB_API_KEY:-demo-api-key}
-  # The services whose GET routes are its tools, called with the user's own token.
+  # The services whose GET routes are its tools, called with the user's own token; rounds also
+  # sends the help chat what it answers from.
   COMPANIES_URL: http://companies:8000
   BILLING_URL: http://billing:8000
   LIBRARY_URL: http://library:8000

@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 from decimal import Decimal
 
-from prepza_common.ai.ai_constants import ACTIONS, Category, Outcome
+from prepza_common.ai.ai_constants import ACTIONS, PAST_AI_SERVICES, Category, Outcome
 from prepza_common.db.db import one_of
 from sqlalchemy import (
     BigInteger,
@@ -31,7 +31,8 @@ class AiUsage(Base):
         Index("ix_ai_usage_occurred_at", "occurred_at"),
         CheckConstraint(one_of("action", sorted(ACTIONS)), name="ck_ai_usage_action"),
         CheckConstraint(
-            one_of("service", sorted(set(ACTIONS.values()))), name="ck_ai_usage_service"
+            one_of("service", sorted({*ACTIONS.values(), *PAST_AI_SERVICES})),
+            name="ck_ai_usage_service",
         ),
         CheckConstraint(one_of("outcome", Outcome), name="ck_ai_usage_outcome"),
         CheckConstraint(one_of("category", Category), name="ck_ai_usage_category"),

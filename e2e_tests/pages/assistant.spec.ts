@@ -8,7 +8,7 @@ import { loaded, scrollAtRest } from "./helpers/waits";
 
 /** The help chat answering with these server-sent events. */
 async function helpAnswers(page: Page, events: object[]) {
-  await page.route("**/api/rounds/help/chat", (route) =>
+  await page.route("**/api/assistant/help/chat", (route) =>
     route.fulfill({
       contentType: "text/event-stream",
       body: [...events, { done: true }].map((event) => `data: ${JSON.stringify(event)}\n\n`).join(""),
@@ -130,7 +130,7 @@ test("a visitor asking to sign in gets the sign-in card, their way first", async
 
 test("a reply goes back with its signature, and the next question isn't checked again", async ({ page }) => {
   const sent: { body: { messages: object[] }; checked: boolean }[] = [];
-  await page.route("**/api/rounds/help/chat", (route) => {
+  await page.route("**/api/assistant/help/chat", (route) => {
     const request = route.request();
     sent.push({ body: request.postDataJSON(), checked: "x-human-check" in request.headers() });
     const events = [{ delta: "Paste it." }, { done: true, signature: `sig-${sent.length}` }];
@@ -158,7 +158,7 @@ test("a reply goes back with its signature, and the next question isn't checked 
 
 test("a failed answer shows its error and Try again asks again", async ({ page }) => {
   let calls = 0;
-  await page.route("**/api/rounds/help/chat", (route) => {
+  await page.route("**/api/assistant/help/chat", (route) => {
     calls += 1;
 
     return calls === 1
