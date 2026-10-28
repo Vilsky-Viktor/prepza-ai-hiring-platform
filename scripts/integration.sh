@@ -20,7 +20,8 @@ if [[ ${#services[@]} -eq 0 ]]; then
   services=(library generation rounds companies billing notifications ats api assistant)
 fi
 
-# Langfuse's keys emptied: tests trace nothing.
+# Langfuse's keys emptied: tests trace nothing. The shared test helpers (packages/common/tests:
+# the fake Redis, the fixtures that keep tests from publishing) are mounted as they are now.
 for service in "${services[@]}"; do
   echo "== $service"
   "${compose[@]}" run --rm --no-deps \
@@ -29,6 +30,7 @@ for service in "${services[@]}"; do
     -e LANGFUSE_PUBLIC_KEY= -e LANGFUSE_SECRET_KEY= \
     -e PYTEST_ADDOPTS \
     -v "$PWD/services/$service/tests:/services/$service/tests" \
+    -v "$PWD/packages/common/tests:/packages/common/tests:ro" \
     "$service" \
     uv run --no-sync --with pytest --with pytest-reverse pytest -q tests/integration
 done

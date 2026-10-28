@@ -29,12 +29,10 @@ os.environ.setdefault("ATS_URL", "http://ats:8000")
 os.environ.setdefault("API_URL", "http://api:8000")
 os.environ.setdefault("ASSISTANT_URL", "http://assistant:8000")
 
-import base64
-import json
 
 import pytest
 from fastapi.testclient import TestClient
-from prepza_common.events import pubsub
+from no_publishing import no_publishing, published  # noqa: F401
 from prepza_common.redis import memory_cache
 
 from library.main import app
@@ -65,18 +63,3 @@ def clean_process(monkeypatch):
     yield
 
     app.dependency_overrides.clear()
-
-
-@pytest.fixture
-def published(monkeypatch):
-    """The events published, as (type, data); nothing reaches Pub/Sub."""
-    sent = []
-
-    async def publish_batch(messages, timeout=None):
-        for message in messages:
-            data = json.loads(base64.b64decode(message["data"]))
-            sent.append((message["attributes"]["type"], data))
-
-    monkeypatch.setattr(pubsub, "publish_batch", publish_batch)
-
-    return sent

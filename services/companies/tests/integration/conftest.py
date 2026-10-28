@@ -46,19 +46,6 @@ def clean_start(database):
     start_clean(os.environ["DATABASE_URL"], database, os.environ["REDIS_URL"])
 
 
-@pytest.fixture(autouse=True)
-def nothing_published(monkeypatch):
-    """The outbox's events stay in the test database to be read: published, they would reach
-    the running stack's Pub/Sub and its services, which would act on the tests' made-up rows."""
-    from companies.services import outbox as outbox_service
-
-    async def kept(*args, **kwargs):
-        return 0
-
-    monkeypatch.setattr(outbox_service, "flush", kept)
-    monkeypatch.setattr(outbox_service, "flush_quietly", kept)
-
-
 @pytest.fixture
 def run():
     """Runs a coroutine on a fresh event loop; the pool is emptied after, as its connections

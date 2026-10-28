@@ -61,6 +61,11 @@ and every service's unit tests import (`from fake_redis import FakeRedis`; each 
 checks a service in the src layout from its code: imports go one way (routes and handlers →
 services → repositories → models) and repositories never commit; each moved service's
 `tests/unit/test_layers.py` runs `layer_problems` on its package.
+No test publishes to Pub/Sub, whose local emulator would push a test's events to the running
+services: every service's `tests/conftest.py` imports `no_publishing` and `published` from
+`tests/no_publishing.py`, so its unit and integration tests keep what they publish in `published`
+(as type and data), and a test whose code still reaches a Pub/Sub publish endpoint fails
+(`tests/unit/test_no_publishing.py` checks every service takes them).
 Integration tests: `clean_start` gives every test in a service's `tests/integration` a clean start (the
 tables a fresh migration left empty truncated, the tests' Redis database 15 flushed, the shared HTTP
 client dropped); it refuses any database but a `_test` one and any Redis database but 15. A race

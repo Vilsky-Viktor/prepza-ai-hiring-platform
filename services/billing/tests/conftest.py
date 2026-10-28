@@ -25,7 +25,7 @@ os.environ.setdefault("PADDLE_PRODUCT_CANDIDATES", "pro_candidates")
 
 import pytest
 from fastapi.testclient import TestClient
-from prepza_common.events import pubsub
+from no_publishing import no_publishing, published  # noqa: F401
 from prepza_common.redis import memory_cache
 
 from billing.main import app
@@ -46,15 +46,3 @@ def clean_process(monkeypatch):
     yield
 
     app.dependency_overrides.clear()
-
-
-@pytest.fixture(autouse=True)
-def no_publishing(monkeypatch):
-    """No test sends events into a real Pub/Sub (the dev stack's, where integration tests run):
-    other services would act on its made-up companies. Tests that check events fake it again."""
-
-    async def published(*args, **kwargs):
-        return None
-
-    monkeypatch.setattr(pubsub, "publish", published)
-    monkeypatch.setattr(pubsub, "publish_batch", published)

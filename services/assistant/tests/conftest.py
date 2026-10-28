@@ -20,12 +20,9 @@ os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "demo-test")
 os.environ.setdefault("SITE_URL", "http://localhost:8090")
 os.environ.setdefault("FIREBASE_WEB_API_KEY", "demo-api-key")
 
-import base64
-import json
-
 import pytest
 from fastapi.testclient import TestClient
-from prepza_common.events import pubsub
+from no_publishing import no_publishing, published  # noqa: F401
 from prepza_common.redis import memory_cache
 
 from assistant.main import app
@@ -46,19 +43,3 @@ def clean_process(monkeypatch):
     yield
 
     app.dependency_overrides.clear()
-
-
-@pytest.fixture(autouse=True)
-def published(monkeypatch):
-    """The events published (AI calls and limit hits recorded), as (type, data); nothing reaches
-    Pub/Sub, so the running stack's billing never stores a test's."""
-    sent = []
-
-    async def publish_batch(messages, timeout=None):
-        for message in messages:
-            data = json.loads(base64.b64decode(message["data"]))
-            sent.append((message["attributes"]["type"], data))
-
-    monkeypatch.setattr(pubsub, "publish_batch", publish_batch)
-
-    return sent

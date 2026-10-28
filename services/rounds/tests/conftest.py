@@ -22,6 +22,7 @@ os.environ.setdefault("BILLING_SERVICE_SECRET", "test-secret-that-is-at-least-32
 
 import pytest
 from fastapi.testclient import TestClient
+from no_publishing import no_publishing, published  # noqa: F401
 from prepza_common.redis import memory_cache
 
 from rounds.main import app

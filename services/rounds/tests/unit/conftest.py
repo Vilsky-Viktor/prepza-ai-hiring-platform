@@ -1,9 +1,5 @@
-import base64
-import json
-
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.events import pubsub
 from prepza_common.redis import memory_cache
 
 from rounds.repositories import session_expiry
@@ -43,19 +39,3 @@ def redis(monkeypatch):
         monkeypatch.setattr(f"{module}.get_redis", lambda: fake)
 
     return fake
-
-
-@pytest.fixture(autouse=True)
-def published(monkeypatch):
-    """The events published (AI calls and limit hits), as (type, data); nothing reaches
-    Pub/Sub."""
-    sent = []
-
-    async def publish_batch(messages, timeout=None):
-        for message in messages:
-            data = json.loads(base64.b64decode(message["data"]))
-            sent.append((message["attributes"]["type"], data))
-
-    monkeypatch.setattr(pubsub, "publish_batch", publish_batch)
-
-    return sent
