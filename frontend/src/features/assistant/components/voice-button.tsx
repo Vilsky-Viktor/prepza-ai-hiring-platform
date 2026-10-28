@@ -5,6 +5,7 @@ import { LoaderCircleIcon, MicIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useEffectEvent, useRef, useState } from "react"
 
+import { Count } from "@/components/common/count"
 import { Button } from "@/components/ui/button"
 import { CANCEL_DISTANCE_PX } from "@/config/assistant"
 import { ROUND_ICON_BUTTON } from "@/config/buttons"
@@ -236,7 +237,7 @@ export function VoiceButton({
         {status}
         {recordingNow && (
           <span aria-hidden className="tabular-nums">
-            {clock(elapsed)} / {clock(maxSeconds)}
+            <Count done={clock(elapsed)} total={clock(maxSeconds)} />
           </span>
         )}
       </p>

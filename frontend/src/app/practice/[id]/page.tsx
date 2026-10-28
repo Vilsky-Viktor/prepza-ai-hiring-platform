@@ -4,6 +4,7 @@ import { notFound, permanentRedirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { BackLink } from "@/components/common/back-link"
+import { Count } from "@/components/common/count"
 import { CornerSign } from "@/components/common/corner-sign"
 import { JsonLd } from "@/components/common/json-ld"
 import { PageHeader } from "@/components/common/page-header"
@@ -190,7 +191,11 @@ export default async function PracticeTestPage({
                       className="flex-1"
                     />
                     <span className="shrink-0 text-base text-muted-foreground tabular-nums">
-                      {step ? `${step.answered} / ${step.total}` : "—"}
+                      {step ? (
+                        <Count done={step.answered} total={step.total} />
+                      ) : (
+                        "—"
+                      )}
                     </span>
                   </span>
                 )}

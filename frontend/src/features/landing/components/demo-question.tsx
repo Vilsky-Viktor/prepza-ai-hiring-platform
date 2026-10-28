@@ -5,6 +5,7 @@ import { CheckIcon, CornerRightDownIcon, TimerIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
+import { Count } from "@/components/common/count"
 import { CodeEditor } from "@/components/common/code-editor"
 import { DemoLogo } from "@/features/landing/components/demo-logo"
 import { useStill } from "@/hooks/use-still"
@@ -65,7 +66,7 @@ export function DemoQuestion({
             <p className="flex shrink-0 items-center tabular-nums">
               <DemoClock running={active} />
               <Dot />
-              {question.answered} / {DEMO_SECTION_QUESTIONS}
+              <Count done={question.answered} total={DEMO_SECTION_QUESTIONS} />
             </p>
           </div>
           <Progress

@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
+import { Count } from "@/components/common/count"
 import { Countdown } from "@/features/company/components/countdown"
 import { Progress } from "@/components/ui/progress"
 import type { InterviewSession } from "@/types/company"
@@ -69,7 +70,7 @@ export function SessionHeader({
                 <Dot />
               </>
             )}
-            {progress.answered} / {progress.total}
+            <Count done={progress.answered} total={progress.total} />
           </p>
         </div>
         <Progress
