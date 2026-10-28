@@ -36,8 +36,8 @@ Search for each, and update what describes the changed behaviour, in every langu
 
 - READMEs: root `README.md`, `infra/README.md`, the changed code's README;
 - `docs/` (`docs/features/<area>.md`);
-- help texts and page guides (`services/rounds/app/page_guides/`), the help chat's guide
-  (`services/rounds/app/prompts/help.py`);
+- help texts and page guides (`services/rounds/src/rounds/page_guides/`), the help chat's guide
+  (`services/rounds/src/rounds/prompts/help.py`);
 - the FAQ and articles in `frontend/content/` (`.claude/rules/content-i18n.md`);
 - the assistant's knowledge: its prompts, tool descriptions and snapshots (the `api-types`
   skill when routes or schemas changed);

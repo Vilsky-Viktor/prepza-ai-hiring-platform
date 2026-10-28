@@ -3,13 +3,13 @@ from logging.config import fileConfig
 from alembic import context
 from prepza_common.db.db import migration_engine
 
-import app.models.answers  # registers the tables on Base.metadata
-import app.models.help_votes
-import app.models.outbox
-import app.models.sessions
-import app.models.signals  # noqa: F401
-from app.config.settings import settings
-from app.models.base import Base
+import rounds.models.answers  # registers the tables on Base.metadata
+import rounds.models.help_votes
+import rounds.models.outbox
+import rounds.models.sessions
+import rounds.models.signals  # noqa: F401
+from rounds.config import settings
+from rounds.models.base import Base
 
 fileConfig(context.config.config_file_name)
 

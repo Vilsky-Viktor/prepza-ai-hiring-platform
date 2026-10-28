@@ -1,6 +1,6 @@
 import uuid
 
-from app.schemas.library import TopicQuestions
+from rounds.schemas.library import TopicQuestions
 
 # A multi-answer question's options: two right of four.
 MULTI = [

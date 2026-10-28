@@ -40,8 +40,9 @@ for name in MODEL EFFORT JUDGE_MODEL JUDGE_EFFORT OVERSAMPLE; do
   fi
 done
 
-# Langfuse tracing off (its keys emptied): test runs would fill it with eval traffic.
-docker exec -w "/services/$code" -e "PYTHONPATH=/services/$code:$copy/scripts" \
+# Langfuse tracing off (its keys emptied): test runs would fill it with eval traffic. The service's
+# code imports from src/ (src layout, as `rounds.…`) or from its folder (`app.…`).
+docker exec -w "/services/$code" -e "PYTHONPATH=/services/$code/src:/services/$code:$copy/scripts" \
   -e LANGFUSE_PUBLIC_KEY= -e LANGFUSE_SECRET_KEY= \
   "${env_args[@]+"${env_args[@]}"}" "$container" \
   uv run --no-sync python "$copy/scripts/$script" "$@"

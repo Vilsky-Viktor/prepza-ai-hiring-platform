@@ -88,7 +88,7 @@ The shareable link (`/apply/{token}`) is one link per interview, for a job ad. O
 - Unanswered questions count as wrong.
 - Candidates never see their scores or whether an answer was right.
 
-The backend decides which section and question come next, and when the interview is done: `POST /sessions/{id}/step` and `/finish-interview` in rounds (`app/routers/interview_flow.py`).
+The backend decides which section and question come next, and when the interview is done: `POST /sessions/{id}/step` and `/finish-interview` in rounds (`src/rounds/api/v1/interview_flow.py`).
 
 Questions and options carry the interview's language (`lang`), so screen readers read them in it whatever the interface language.
 

@@ -24,7 +24,7 @@ For each item:
 2. Fix it the simplest way that solves it (rule 4), reusing code rather than copying (rule 10):
    when the same pattern is copied in several places, fix all of them through one helper.
 3. Update everything the change touches: tests (rule 8: behaviour, not wording), docs and READMEs (rule 9), help texts,
-   the FAQ, the help chat's guide (`services/rounds/app/prompts/help.py`), the assistant's
+   the FAQ, the help chat's guide (`services/rounds/src/rounds/prompts/help.py`), the assistant's
    prompts, and every language (use the `translate` skill).
 4. Verify (the `verify` skill).
 5. Commit that item alone, by rule 13 of CLAUDE.md, naming the item in the body

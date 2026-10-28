@@ -1,0 +1,35 @@
+from uuid import UUID
+
+from fastapi import APIRouter, HTTPException, Request, status
+from prepza_common.ai.answer_votes import mirror_vote
+from prepza_common.auth.tokens import same_secret
+from prepza_common.http.client_ip import limit_address
+from prepza_common.limits.rate_limit import hit_or_skip
+
+from rounds.config import settings
+from rounds.constants.help import NO_SUCH_ANSWER
+from rounds.helpers.help_replies import help_signing_key, vote_signature
+from rounds.integrations.redis import get_redis
+from rounds.repositories import help_votes
+from rounds.schemas.help import HelpVoteIn
+
+router = APIRouter(prefix="/help", tags=["help"])
+
+
+@router.put("/answers/{answer_id}/vote", status_code=status.HTTP_204_NO_CONTENT)
+async def vote(answer_id: UUID, body: HelpVoteIn, request: Request) -> None:
+    """A thumbs up or down on one of the help chat's answers, for visitors too: one an answer, a
+    new vote replaces it, null clears it. The help chat keeps no conversation, so the answer's
+    signature (from its last event) shows the vote comes from the page that got it. Sent on to
+    Langfuse as a score on the answer's trace when that's set up."""
+    expected = vote_signature(answer_id, body.trace_id, help_signing_key(settings.service_secret))
+
+    if not same_secret(body.signature, expected):
+        raise HTTPException(status.HTTP_404_NOT_FOUND, NO_SUCH_ANSWER)
+
+    # A signed vote can be sent again and again: counted per address once it's proved real.
+    key = f"rate:help-votes:{limit_address(request)}"
+    await hit_or_skip(get_redis(), key, "HELP_VOTES_PER_IP_HOUR")
+
+    await help_votes.save(answer_id, body.trace_id, body.value)
+    await mirror_vote(body.trace_id, lambda: help_votes.vote_of(answer_id))

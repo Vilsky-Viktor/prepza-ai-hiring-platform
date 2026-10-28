@@ -6,16 +6,16 @@ from fake_redis import FakeRedis
 from prepza_common.events import pubsub
 from prepza_common.redis import memory_cache
 
-from app.storage import session_expiry
+from rounds.repositories import session_expiry
 
 # The modules that reach Redis, which unit tests replace.
 REDIS_USERS = [
-    "app.routers.help",
-    "app.routers.practice",
-    "app.routers.sessions",
-    "app.routers.superadmin",
-    "app.services.help",
-    "app.storage.signals",
+    "rounds.api.v1.help",
+    "rounds.api.v1.practice",
+    "rounds.api.v1.sessions",
+    "rounds.api.v1.superadmin",
+    "rounds.services.help",
+    "rounds.repositories.signals",
 ]
 
 

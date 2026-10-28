@@ -12,7 +12,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
 
 if not os.getenv("INTEGRATION_TESTS"):
-    collect_ignore_glob = ["test_*.py"]
+    collect_ignore_glob = ["test_*.py", "*/test_*.py"]
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -50,8 +50,8 @@ def clean_start(database):
 def run():
     """Runs a coroutine on a fresh event loop; the pool and the Redis client are dropped after,
     as their connections belong to that loop."""
-    from app.integrations.redis import get_redis
-    from app.storage.db import engine
+    from rounds.core.db import engine
+    from rounds.integrations.redis import get_redis
 
     def run(coroutine):
         async def wrapped():

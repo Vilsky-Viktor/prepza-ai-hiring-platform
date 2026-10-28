@@ -71,7 +71,7 @@ x-generation-source: &generation-source
   - ./packages/common/src:/packages/common/src
 
 x-rounds-source: &rounds-source
-  - ./services/rounds/app:/services/rounds/app
+  - ./services/rounds/src:/services/rounds/src
   - ./services/rounds/migrations:/services/rounds/migrations
   - ./services/rounds/alembic.ini:/services/rounds/alembic.ini:ro
   - ./packages/common/src:/packages/common/src

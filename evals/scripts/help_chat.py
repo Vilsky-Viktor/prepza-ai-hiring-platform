@@ -19,14 +19,14 @@ from prepza_common.config.constants import LANGUAGES
 from pydantic import BaseModel, Field
 from stats import share
 
-from app.config.settings import settings
-from app.constants.help import HelpRole
-from app.helpers.help import knowledge
-from app.helpers.page_guides import guide_text, page_guide
-from app.integrations import billing, llm
-from app.integrations.redis import get_redis
-from app.schemas.help import HelpMessage
-from app.services.help import build_messages, guide_limits
+from rounds.config import settings
+from rounds.constants.help import HelpRole
+from rounds.helpers.help import knowledge
+from rounds.helpers.page_guides import guide_text, page_guide
+from rounds.integrations import billing, llm
+from rounds.integrations.redis import get_redis
+from rounds.schemas.help import HelpMessage
+from rounds.services.help import build_messages, guide_limits
 
 SIGN_IN = "[[sign_in"
 
