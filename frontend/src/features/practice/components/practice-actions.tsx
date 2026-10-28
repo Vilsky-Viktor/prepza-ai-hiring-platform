@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 
 import { useAuth } from "@/providers/auth-provider"
-import { StartPractice } from "@/components/practice/start-practice"
+import { StartPractice } from "@/features/practice/components/start-practice"
 import { Button } from "@/components/ui/button"
 import type { PracticeTiming } from "@/types/round"
 

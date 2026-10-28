@@ -7,7 +7,7 @@ import { toast } from "sonner"
 
 import { useSignIn } from "@/components/common/sign-in-dialog"
 import { useAuth } from "@/providers/auth-provider"
-import { PracticeTiming } from "@/components/practice/practice-timing"
+import { PracticeTiming } from "@/features/practice/components/practice-timing"
 import { Button } from "@/components/ui/button"
 import { apiErrorMessage, serviceRefusal } from "@/lib/api"
 import { startPracticeRound } from "@/lib/practice"
