@@ -704,7 +704,9 @@ export interface paths {
     put?: never
     /**
      * Receive Event
-     * @description Pub/Sub pushes the services' records of AI calls and limit hits here.
+     * @description Pub/Sub pushes the services' records of AI calls and limit hits here. A failure answers
+     *     with an error, so Pub/Sub retries it; an event no retry can handle is logged and
+     *     acknowledged (handle_or_drop).
      */
     post: operations["receive_event_internal_events_post"]
     delete?: never

@@ -104,7 +104,8 @@ export interface paths {
      *     Pub/Sub retries it, and moves it to the dead-letter topic after the subscription's maximum
      *     attempts; neither Resend nor Slack gets the same message twice. Over Resend's per-second limit
      *     (a burst of invites) it answers 429: Pub/Sub retries with backoff, and it isn't counted as a
-     *     server error.
+     *     server error. An event no retry can handle (one missing the data its email needs) is logged
+     *     and acknowledged (handle_or_drop).
      */
     post: operations["receive_event_internal_events_post"]
     delete?: never

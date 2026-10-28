@@ -173,7 +173,7 @@
      "internal"
     ],
     "summary": "Receive Event",
-    "description": "Pub/Sub pushes every event here. A failed email or Slack post answers with an error, so\nPub/Sub retries it, and moves it to the dead-letter topic after the subscription's maximum\nattempts; neither Resend nor Slack gets the same message twice. Over Resend's per-second limit\n(a burst of invites) it answers 429: Pub/Sub retries with backoff, and it isn't counted as a\nserver error.",
+    "description": "Pub/Sub pushes every event here. A failed email or Slack post answers with an error, so\nPub/Sub retries it, and moves it to the dead-letter topic after the subscription's maximum\nattempts; neither Resend nor Slack gets the same message twice. Over Resend's per-second limit\n(a burst of invites) it answers 429: Pub/Sub retries with backoff, and it isn't counted as a\nserver error. An event no retry can handle (one missing the data its email needs) is logged\nand acknowledged (handle_or_drop).",
     "operationId": "receive_event_internal_events_post",
     "requestBody": {
      "content": {

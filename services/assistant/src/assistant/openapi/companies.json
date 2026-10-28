@@ -5908,7 +5908,7 @@
      "internal"
     ],
     "summary": "Receive Event",
-    "description": "Pub/Sub pushes every event here. A failure answers with an error, so Pub/Sub retries it,\nand moves it to the dead-letter topic after the subscription's maximum attempts.",
+    "description": "Pub/Sub pushes every event here. A failure answers with an error, so Pub/Sub retries it,\nand moves it to the dead-letter topic after the subscription's maximum attempts. An event no\nretry can handle is logged and acknowledged (handle_or_drop).",
     "operationId": "receive_event_internal_events_post",
     "requestBody": {
      "content": {

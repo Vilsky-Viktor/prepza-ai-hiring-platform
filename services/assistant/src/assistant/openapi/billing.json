@@ -2218,7 +2218,7 @@
      "internal"
     ],
     "summary": "Receive Event",
-    "description": "Pub/Sub pushes the services' records of AI calls and limit hits here.",
+    "description": "Pub/Sub pushes the services' records of AI calls and limit hits here. A failure answers\nwith an error, so Pub/Sub retries it; an event no retry can handle is logged and\nacknowledged (handle_or_drop).",
     "operationId": "receive_event_internal_events_post",
     "requestBody": {
      "content": {

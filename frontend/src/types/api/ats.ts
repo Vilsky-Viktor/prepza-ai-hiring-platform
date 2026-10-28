@@ -415,7 +415,8 @@ export interface paths {
     /**
      * Receive Event
      * @description Pub/Sub pushes every event here. A failure answers with an error, so Pub/Sub retries it,
-     *     and moves it to the dead-letter topic after the subscription's maximum attempts.
+     *     and moves it to the dead-letter topic after the subscription's maximum attempts. An event no
+     *     retry can handle is logged and acknowledged (handle_or_drop).
      */
     post: operations["receive_event_internal_events_post"]
     delete?: never
