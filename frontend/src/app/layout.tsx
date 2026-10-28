@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getMessages, getTranslations } from "next-intl/server"
 
 import "@/styles/globals.css"
-import { AssistantProvider } from "@/components/assistant/assistant-provider"
+import { AssistantProvider } from "@/features/assistant/components/assistant-provider"
 import { PaidNotice } from "@/features/billing/components/paid-notice"
 import { PaymentFailed } from "@/features/billing/components/payment-failed"
 import { AuthProvider } from "@/providers/auth-provider"

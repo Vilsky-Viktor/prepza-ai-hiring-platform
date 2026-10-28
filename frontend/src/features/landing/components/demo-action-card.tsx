@@ -8,7 +8,7 @@ import { CARD } from "@/config/cards"
 
 export type DemoCardState = "pending" | "running" | "done"
 
-/** The card the assistant shows before it invites a candidate (components/assistant/
+/** The card the assistant shows before it invites a candidate (features/assistant/components/
  * action-card.tsx) as a small picture: what it will do, with the email, Confirm (`confirmRef`,
  * ringed while `pressed`) and Cancel; then Done, with the candidates' page. */
 export function DemoActionCard({

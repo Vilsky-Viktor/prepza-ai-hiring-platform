@@ -15,7 +15,7 @@ import { saveChat, wasOpen } from "@/lib/assistant-storage"
 // with every page: public pages, invites and the interview itself never ship it unopened.
 const AssistantPanel = dynamic(
   () =>
-    import("@/components/assistant/assistant-panel").then(
+    import("@/features/assistant/components/assistant-panel").then(
       (module) => module.AssistantPanel
     ),
   { ssr: false }

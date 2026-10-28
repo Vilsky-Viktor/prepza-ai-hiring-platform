@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 
-import { AssistantButton } from "@/components/assistant/assistant-button"
+import { AssistantButton } from "@/features/assistant/components/assistant-button"
 import { useAuth } from "@/providers/auth-provider"
 import { LocalizedLink } from "@/components/common/localized-link"
 import { NotificationBell } from "@/components/common/notification-bell"

@@ -7,12 +7,12 @@ import { useTranslations } from "next-intl"
 import {
   ActionCard,
   type CardActions,
-} from "@/components/assistant/action-card"
+} from "@/features/assistant/components/action-card"
 import { BalanceTooltip } from "@/components/common/balance-tooltip"
 import {
   CandidateTable,
   InterviewTable,
-} from "@/components/assistant/compact-rows"
+} from "@/features/assistant/components/compact-rows"
 import { LocalizedLink } from "@/components/common/localized-link"
 import { SignInOptions } from "@/components/common/sign-in-options"
 import { buttonVariants } from "@/components/ui/button"

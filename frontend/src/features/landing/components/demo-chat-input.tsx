@@ -4,10 +4,10 @@ import { ArrowUpIcon, MicIcon } from "lucide-react"
 import { Caret } from "@/features/landing/components/caret"
 import { buttonVariants } from "@/components/ui/button"
 
-/** The assistant's chat input (components/chat-input.tsx) as a small picture: `text` as typed
- * so far (the `placeholder` while null), with a caret and the field's focus border while
- * `typing`, the voice button's microphone, and its send button (`sendRef`), dimmed while there's no text, ringed while
- * `pressed`. */
+/** The assistant's chat input (features/assistant/components/chat-input.tsx) as a small
+ * picture: `text` as typed so far (the `placeholder` while null), with a caret and the field's
+ * focus border while `typing`, the voice button's microphone, and its send button (`sendRef`),
+ * dimmed while there's no text, ringed while `pressed`. */
 export function DemoChatInput({
   ref,
   sendRef,

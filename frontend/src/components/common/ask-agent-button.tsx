@@ -4,7 +4,7 @@ import { cn } from "cn"
 import { SparklesIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { useAssistant } from "@/components/assistant/assistant-provider"
+import { useAssistant } from "@/features/assistant/components/assistant-provider"
 import { Button } from "@/components/ui/button"
 
 /** "ask mira", all lowercase: opens the assistant's panel, signed in or not. The size of the demos button,

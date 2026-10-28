@@ -2,10 +2,10 @@
 
 import { useTranslations } from "next-intl"
 
-import { AnswerBlocks } from "@/components/assistant/answer-blocks"
-import { type CardActions } from "@/components/assistant/action-card"
-import { AnswerMarkdown } from "@/components/assistant/answer-markdown"
-import { AnswerVote } from "@/components/assistant/answer-vote"
+import { AnswerBlocks } from "@/features/assistant/components/answer-blocks"
+import { type CardActions } from "@/features/assistant/components/action-card"
+import { AnswerMarkdown } from "@/features/assistant/components/answer-markdown"
+import { AnswerVote } from "@/features/assistant/components/answer-vote"
 import { ChatBubble, ThinkingDots } from "@/components/common/chat-bubble"
 import { KeepAcronyms } from "@/components/common/keep-acronyms"
 import { Button } from "@/components/ui/button"

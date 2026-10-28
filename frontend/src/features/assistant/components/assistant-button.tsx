@@ -3,7 +3,7 @@
 import { SparklesIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { useAssistant } from "@/components/assistant/assistant-provider"
+import { useAssistant } from "@/features/assistant/components/assistant-provider"
 import { useAuth } from "@/providers/auth-provider"
 import { Button } from "@/components/ui/button"
 
