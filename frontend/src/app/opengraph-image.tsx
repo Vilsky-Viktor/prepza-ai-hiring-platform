@@ -1,5 +1,5 @@
 import { PREVIEW_SIZE } from "@/constants/preview-image"
-import english from "@/messages/en.json"
+import english from "../../messages/en.json"
 import { drawPreview } from "@/lib/preview-image"
 
 // The site's link preview (LinkedIn, Slack, X): the logo over the home page's promise, for the

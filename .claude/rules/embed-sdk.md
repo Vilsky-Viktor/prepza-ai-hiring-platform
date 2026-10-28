@@ -1,11 +1,11 @@
 ---
 paths:
   - "frontend/public/embed/**"
-  - "frontend/app/embedded/**"
-  - "frontend/components/company/embed-view.tsx"
-  - "frontend/lib/embed.ts"
-  - "frontend/constants/embed.ts"
-  - "frontend/proxy.ts"
+  - "frontend/src/app/embedded/**"
+  - "frontend/src/components/company/embed-view.tsx"
+  - "frontend/src/lib/embed.ts"
+  - "frontend/src/constants/embed.ts"
+  - "frontend/src/proxy.ts"
   - "frontend/tests/lib/embed.test.ts"
   - "e2e_tests/signed-in/specs/i-api-embed.spec.ts"
 ---

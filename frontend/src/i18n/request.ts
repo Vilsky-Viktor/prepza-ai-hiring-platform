@@ -24,13 +24,13 @@ export default getRequestConfig(async () => {
       : (preferredLocale(requestHeaders.get("accept-language")) ??
         DEFAULT_LOCALE)
 
-  const english = (await import("../messages/en.json")).default
+  const english = (await import("../../messages/en.json")).default
   const messages =
     locale === DEFAULT_LOCALE
       ? english
       : withFallback(
           english,
-          (await import(`../messages/${locale}.json`)).default
+          (await import(`../../messages/${locale}.json`)).default
         )
 
   // A message that can't be shown (a missing key, a wrong argument) is reported, never silent;

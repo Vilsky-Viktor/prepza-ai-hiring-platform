@@ -9,9 +9,9 @@ import { createTranslator } from "next-intl"
 import { describe, expect, it } from "vitest"
 
 import { bdiText } from "@/lib/bidi"
-import de from "@/messages/de.json"
-import en from "@/messages/en.json"
-import ru from "@/messages/ru.json"
+import de from "../../messages/de.json"
+import en from "../../messages/en.json"
+import ru from "../../messages/ru.json"
 
 const DIR = path.resolve(__dirname, "../../messages")
 const CODES = readdirSync(DIR).map((name) => name.replace(".json", ""))

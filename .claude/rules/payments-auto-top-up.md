@@ -2,7 +2,7 @@
 paths:
   - "services/billing/**/*auto_top_up*"
   - "services/companies/src/companies/**/auto_top_ups.py"
-  - "frontend/components/billing/auto-top-up*"
+  - "frontend/src/components/billing/auto-top-up*"
   - "e2e_tests/signed-in/**/*auto-top-up*"
 ---
 

@@ -9,7 +9,7 @@ limit=300
 # Rule 2's exempt kinds: generated files, data, and the site's articles.
 exempt='(^|/)(uv\.lock|pnpm-lock\.yaml)$'
 exempt+='|^services/assistant/src/assistant/openapi/'
-exempt+='|^frontend/types/api/'
+exempt+='|^frontend/src/types/api/'
 exempt+='|^frontend/messages/'
 exempt+='|^services/rounds/src/rounds/page_guides/'
 exempt+='|^services/notifications/src/notifications/templates/languages/'

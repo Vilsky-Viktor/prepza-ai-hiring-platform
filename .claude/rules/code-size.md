@@ -30,7 +30,7 @@ CLAUDE.md rule 2 sets the limits; this is how to meet them.
 - Splitting the opposite way is a smell too: one concept scattered across many files means one
   change touches all of them. Merge back when that happens.
 - Exempt (regenerated or data, never read as code): lockfiles, OpenAPI snapshots,
-  `frontend/types/api/`, `frontend/messages/`, page guides, `templates/languages/`,
+  `frontend/src/types/api/`, `frontend/messages/`, page guides, `templates/languages/`,
   `evals/datasets/`, fixtures, binary files, articles in `frontend/content/`. Tests are not exempt.
 - `scripts/check_file_size.sh` is the check; run it before committing. A new exempt kind is added
   there and to rule 2 in the same change.

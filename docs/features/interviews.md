@@ -87,7 +87,7 @@ Any company member can preview an interview as a candidate, with the play button
 
 - Every list loads more as you scroll and renders only what's on screen, however long it gets. A page that fails to load says so with **Try again**, and the list can still load the rest; a list whose first page fails says so too, rather than looking empty (`hooks/use-paged-list.ts`).
 - Dates and times show in the visitor's own time zone: the server renders them in UTC, and the browser shows them local as soon as the page runs (`hooks/use-local-time.ts`, `components/local-date.tsx`). A calendar day (an article's update, a statement's review) is the same day everywhere (`formatDay`).
-- Every text field stops at the length its service accepts, so nothing is refused on sending. The limits live in the services; `frontend/constants/limits.ts` mirrors them.
+- Every text field stops at the length its service accepts, so nothing is refused on sending. The limits live in the services; `frontend/src/constants/limits.ts` mirrors them.
 
 | Field | Limit (characters) |
 |---|---|

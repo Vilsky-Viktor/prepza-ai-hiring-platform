@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 
 import { NOTIFICATION_LOOKS } from "@/constants/notifications"
-import en from "@/messages/en.json"
+import en from "../../messages/en.json"
 
 describe("the bell's notification kinds", () => {
   it("gives every kind the services send a look and a text", () => {

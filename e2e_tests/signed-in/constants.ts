@@ -1,4 +1,4 @@
-// The token cookie the frontend writes once signed in (frontend/constants/auth.ts).
+// The token cookie the frontend writes once signed in (frontend/src/constants/auth.ts).
 export const TOKEN_COOKIE = "prepza_token";
 // Screenshots, one folder per spec, in the results folder Playwright empties at the start of a run;
 // git ignores it.

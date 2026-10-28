@@ -85,7 +85,7 @@ test("the create demo's later panels wait for the earlier steps", async ({ page 
 });
 
 // The finished interview's topic rows each show how many questions were written for the topic:
-// DEMO_INTERVIEW.topicQuestions (frontend/constants/create-demo.ts), not what one candidate gets.
+// DEMO_INTERVIEW.topicQuestions (frontend/src/constants/create-demo.ts), not what one candidate gets.
 test("the create demo's topics show each topic's question count", async ({ page }) => {
   test.setTimeout(120_000);
   await page.emulateMedia({ reducedMotion: "reduce" });

@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
 
-import en from "@/messages/en.json"
+import en from "../../messages/en.json"
 
 // A date inside a sentence is a <time> tag around its value, so the page shows it in a <time>
 // element (in italics). Every language keeps the tag around the same value as English.

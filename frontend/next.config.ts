@@ -2,9 +2,9 @@ import { withSentryConfig } from "@sentry/nextjs/config"
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 
-import { EMBED_SCRIPT_HEADERS } from "./constants/embed"
-import { REPORT_SAMPLES_HEADERS } from "./constants/report-samples"
-import { DOCUMENT_HEADERS, PICTURE_HEADERS } from "./constants/static-files"
+import { EMBED_SCRIPT_HEADERS } from "./src/constants/embed"
+import { REPORT_SAMPLES_HEADERS } from "./src/constants/report-samples"
+import { DOCUMENT_HEADERS, PICTURE_HEADERS } from "./src/constants/static-files"
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -84,7 +84,7 @@ const nextConfig: NextConfig = {
 
 // Errors reach Sentry through /monitoring on our own domain, so ad blockers don't drop them and
 // the Content-Security-Policy needs no new origin. Source maps upload only with SENTRY_AUTH_TOKEN.
-// next-intl reads the interface language per request in i18n/request.ts.
+// next-intl reads the interface language per request in src/i18n/request.ts.
 const withNextIntl = createNextIntlPlugin()
 
 export default withSentryConfig(withNextIntl(nextConfig), {

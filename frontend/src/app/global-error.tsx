@@ -41,8 +41,8 @@ export default function GlobalError({
   useEffect(() => {
     const locale = visitorLocale()
 
-    import(`../messages/${locale}.json`)
-      .catch(() => import("../messages/en.json"))
+    import(`../../messages/${locale}.json`)
+      .catch(() => import("../../messages/en.json"))
       .then((loaded) => setFound({ locale, messages: loaded.default }))
   }, [])
 

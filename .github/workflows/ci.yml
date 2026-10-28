@@ -268,7 +268,7 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm api-types
-          git diff --exit-code types/api
+          git diff --exit-code src/types/api
       # Each service's tests/integration, against the stack's real Postgres and Redis.
       - name: Integration tests
         run: ./scripts/integration.sh

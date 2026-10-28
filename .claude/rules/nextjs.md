@@ -17,13 +17,16 @@ src/
 ├── features/<name>/      # A feature's components/, hooks/, services/, types/, utils/
 ├── config/, contexts/, hooks/, lib/, providers/, styles/, types/ (api/), utils/
 └── stores/               # Only if client state is ever needed
-public/assets/            # fonts/, images/, svgs/
+public/                   # Served as is: its addresses never change (emails, the embed script)
+assets/fonts/             # Read by the server (preview pictures), never public
+messages/, content/       # Translations; articles and documents (rounds reads content/ too)
 tests/                    # vitest
 ```
 
-From today's layout: everything under `src/`; `constants/` → `config/`; feature folders in
-`components/` (company, billing, assistant, generation, landing, …) → `features/<name>/`; shared
-components → `components/common/`; providers → `providers/`; `app/globals.css` → `styles/`.
+Still to move from the old layout: `constants/` → `config/`; feature folders in `components/`
+(company, billing, assistant, generation, landing, …) → `features/<name>/`; shared components →
+`components/common/` (with the site's header, footer and page chrome); providers →
+`providers/`; `app/globals.css` → `styles/`.
 
 ## Languages and direction
 

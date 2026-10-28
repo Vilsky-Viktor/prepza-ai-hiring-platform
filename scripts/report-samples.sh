@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Makes the landing's sample reports again (frontend/public/samples/prepza-report-samples.zip):
 # the report of all candidates and one candidate's report, made by the app's own PDF export from
-# the made-up data in frontend/constants/report-samples-fixture.ts. Run it when the reports'
+# the made-up data in frontend/src/constants/report-samples-fixture.ts. Run it when the reports'
 # design changes. Needs the local stack running (the development page /report-samples).
 # Usage: scripts/report-samples.sh
 set -euo pipefail

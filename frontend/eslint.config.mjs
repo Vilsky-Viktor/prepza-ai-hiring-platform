@@ -8,7 +8,7 @@ const eslintConfig = defineConfig([
   // eslint-plugin-react can't auto-detect the React version under ESLint 10.
   { settings: { react: { version: "19" } } },
   // Rule 2: a function's branching stays readable; the generated API types are exempt.
-  { ignores: ["types/api/**"], rules: { complexity: ["error", 15] } },
+  { ignores: ["src/types/api/**"], rules: { complexity: ["error", 15] } },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:

@@ -1,13 +1,13 @@
 ---
 paths:
-  - "frontend/app/**"
+  - "frontend/src/app/**"
   - "frontend/content/**"
-  - "frontend/lib/site.ts"
-  - "frontend/lib/locale-path.ts"
-  - "frontend/lib/structured-data.ts"
-  - "frontend/constants/seo.ts"
-  - "frontend/constants/i18n.ts"
-  - "frontend/proxy.ts"
+  - "frontend/src/lib/site.ts"
+  - "frontend/src/lib/locale-path.ts"
+  - "frontend/src/lib/structured-data.ts"
+  - "frontend/src/constants/seo.ts"
+  - "frontend/src/constants/i18n.ts"
+  - "frontend/src/proxy.ts"
 ---
 
 # SEO for public pages

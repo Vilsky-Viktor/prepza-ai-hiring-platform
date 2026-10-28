@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
 
-import en from "@/messages/en.json"
+import en from "../../messages/en.json"
 
 import { SOURCE_ROOT, sourceFiles } from "../source-files"
 

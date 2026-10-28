@@ -1,13 +1,10 @@
-import { existsSync, readdirSync, statSync } from "node:fs"
+import { readdirSync, statSync } from "node:fs"
 import path from "node:path"
 
-// The frontend's folder, and where its code is: frontend/ today, frontend/src/ once it moves
-// there (the layout migration). Tests that read the code by path start from SOURCE_ROOT, so
-// they find it in either place.
+// The frontend's folder, and its code in src/. Tests that read the code by path start from
+// SOURCE_ROOT; messages/, content/ and public/ stay in the frontend's folder.
 export const FRONTEND = path.resolve(__dirname, "..")
-export const SOURCE_ROOT = existsSync(path.join(FRONTEND, "src", "app"))
-  ? path.join(FRONTEND, "src")
-  : FRONTEND
+export const SOURCE_ROOT = path.join(FRONTEND, "src")
 
 function files(dir: string, pattern: RegExp): string[] {
   return readdirSync(dir).flatMap((name) => {

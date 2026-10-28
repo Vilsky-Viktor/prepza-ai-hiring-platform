@@ -1,7 +1,7 @@
 import { createTranslator } from "next-intl"
 import { describe, expect, it } from "vitest"
 
-import fil from "@/messages/fil.json"
+import fil from "../../messages/fil.json"
 
 // Filipino's `one` form covers 3 as well, so the free candidates' plural must use `=1` to show "3".
 describe("Filipino free candidates", () => {

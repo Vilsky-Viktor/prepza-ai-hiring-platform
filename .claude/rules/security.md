@@ -44,7 +44,7 @@ the Top 10 for LLM applications 2025.
 ## Browser
 
 - A nonce CSP with `'strict-dynamic'`, `object-src 'none'`, `base-uri` and `frame-ancestors`
-  (`frontend/lib/csp.ts`); `nosniff`, `Referrer-Policy`, `Permissions-Policy` and HSTS on every
+  (`frontend/src/lib/csp.ts`); `nosniff`, `Referrer-Policy`, `Permissions-Policy` and HSTS on every
   response; no `X-Powered-By`; `Cache-Control: no-store` on responses with private data.
 - No CORS (same origin; exact origins only if one is ever needed); writes need a bearer token in
   a header, never a cookie alone (a cookie used for writes would need SameSite plus a token or
