@@ -19,10 +19,10 @@ from prepza_common.ai.llm import transcription_cost
 from stats import mean, share
 from text_checks import in_script
 
-from app.config.settings import settings
-from app.constants.transcribe import TRANSCRIBE_LANGUAGES
-from app.helpers.audio import audio_seconds
-from app.integrations.llm import get_openai
+from assistant.config import settings
+from assistant.constants.transcribe import TRANSCRIBE_LANGUAGES
+from assistant.helpers.audio import audio_seconds
+from assistant.integrations.llm import get_openai
 
 # A message is heard right when at most this share of its characters is wrong.
 MAX_ERROR_RATE = 0.1

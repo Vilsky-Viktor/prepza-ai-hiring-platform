@@ -4,9 +4,9 @@ from pathlib import Path
 
 from prepza_common.i18n.translations import TRANSLATIONS
 
-from app.constants.tool_calls import INVALID_ARGUMENTS
+from assistant.constants.tool_calls import INVALID_ARGUMENTS
 
-APP = Path(__file__).resolve().parents[2] / "app"
+APP = Path(__file__).resolve().parents[2] / "src" / "assistant"
 # Names that stay as they are in every language.
 NAMES = {"Slack"}
 

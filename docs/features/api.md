@@ -34,7 +34,7 @@ Each key may do only what was ticked when it was made, so a key for a dashboard 
 | Credits | `credits:read` | `GET /credits` |
 | AI agents | `mcp` | Signing in to the MCP server (`/mcp`) |
 
-- Over MCP (`mcp`), each tool needs one of these too (`services/assistant/app/constants/key_tools.py`): `get_updates`, what's new in the key's company, needs `candidates:read`, and tells low credits only with `credits:read` ([AI apps over MCP](mcp.md#whats-new-get_updates)).
+- Over MCP (`mcp`), each tool needs one of these too (`services/assistant/src/assistant/constants/key_tools.py`): `get_updates`, what's new in the key's company, needs `candidates:read`, and tells low credits only with `credits:read` ([AI apps over MCP](mcp.md#whats-new-get_updates)).
 - A new key starts with `interviews:read` and `candidates:read` ticked (`DEFAULT_PERMISSIONS`, which the API page's form starts from); at least one is needed.
 - A permission that changes something comes with reading what it changes (`IMPLIED`): ticking `candidates:invite` ticks `candidates:read`, and the form keeps it ticked. The api service applies the rule and answers the groups, the implied reads and the defaults (`GET /manage`); the form only shows them.
 - Each public route declares its permission (`needs()` in `api/dependencies.py`; the key's check is `services/key_checks.py`), and the API docs name it on the route. A key without it gets `403` with `{"detail": "This API key doesn't have the <permission> permission.", "code": "missing_permission"}`. A test fails on a public route that declares none.

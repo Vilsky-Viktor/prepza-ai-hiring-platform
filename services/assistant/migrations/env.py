@@ -3,11 +3,11 @@ from logging.config import fileConfig
 from alembic import context
 from prepza_common.db.db import migration_engine
 
-import app.models.conversations
-import app.models.oauth
-import app.models.updates  # noqa: F401
-from app.config.settings import settings
-from app.models.base import Base
+import assistant.models.conversations
+import assistant.models.oauth
+import assistant.models.updates  # noqa: F401
+from assistant.config import settings
+from assistant.models.base import Base
 
 fileConfig(context.config.config_file_name)
 

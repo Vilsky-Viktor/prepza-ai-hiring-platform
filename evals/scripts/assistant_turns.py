@@ -14,13 +14,13 @@ from types import SimpleNamespace
 from common import cost
 from fastapi import HTTPException
 
-from app.config.settings import settings
-from app.constants.chat import HISTORY_CHARACTERS, Role
-from app.models.answers import Answer, Turn
-from app.services import chat, show
-from app.services.registry import tools
-from app.services.tenancy import user_companies
-from app.storage import actions
+from assistant.config import settings
+from assistant.constants.chat import HISTORY_CHARACTERS, Role
+from assistant.models.answers import Answer, Turn
+from assistant.repositories import actions
+from assistant.services import chat, show
+from assistant.services.registry import tools
+from assistant.services.tenancy import user_companies
 
 # What answers, for the results.
 MODEL = f"{settings.assistant_model} ({settings.assistant_reasoning_effort})"

@@ -10,7 +10,7 @@ import asyncio
 
 from common import DATASETS, load
 
-from app.integrations.llm import get_openai
+from assistant.integrations.llm import get_openai
 
 VOICE_MODEL = "gpt-4o-mini-tts"
 VOICE = "alloy"

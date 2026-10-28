@@ -29,8 +29,8 @@ from common import DATASETS, RESULTS, load, prompt, run_record, save
 from page_context import PairReview, judge_general, page_of, reviewed, share
 from pydantic import BaseModel, Field
 
-from app.services import chat
-from app.services.registry import tools
+from assistant.services import chat
+from assistant.services.registry import tools
 
 VARIANTS = ("without", "with")
 GUIDE_TOOLS = {"list_guides", "get_guide"}

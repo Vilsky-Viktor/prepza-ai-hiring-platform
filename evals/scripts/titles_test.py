@@ -23,10 +23,10 @@ from pydantic import BaseModel, Field
 from stats import share
 from text_checks import in_script
 
-from app.config.settings import settings
-from app.constants.titles import MAX_TITLE_LENGTH
-from app.helpers.titles import clean_title, title_prompt
-from app.services.titles import write_title
+from assistant.config import settings
+from assistant.constants.titles import MAX_TITLE_LENGTH
+from assistant.helpers.titles import clean_title, title_prompt
+from assistant.services.titles import write_title
 
 PHONE = re.compile(r"\+?\d[\d ()-]{7,}\d")
 EMAIL = re.compile(r"\S+@\S+")

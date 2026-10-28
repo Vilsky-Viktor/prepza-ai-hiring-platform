@@ -15,7 +15,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
 
 if not os.getenv("INTEGRATION_TESTS"):
-    collect_ignore_glob = ["test_*.py"]
+    collect_ignore_glob = ["test_*.py", "*/test_*.py", "*/*/test_*.py"]
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -55,8 +55,8 @@ def run():
     are closed after, as their connections belong to that loop."""
     from prepza_common.http import http
 
-    from app.integrations.redis import get_redis
-    from app.storage.db import engine
+    from assistant.core.db import engine
+    from assistant.integrations.redis import get_redis
 
     def run(coroutine):
         async def wrapped():
@@ -112,8 +112,8 @@ def token(user):
 def no_openai_titles(monkeypatch):
     """Titles and the routing of a turn's tools come from fake models: integration tests never
     call OpenAI."""
-    from app.constants.tool_groups import ToolGroup
-    from app.integrations import llm
+    from assistant.constants.tool_groups import ToolGroup
+    from assistant.integrations import llm
     from tests.fake_model import FakeRoutingModel, FakeTitleModel
 
     monkeypatch.setattr(llm, "get_title_model", lambda: FakeTitleModel("Your companies"))

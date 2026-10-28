@@ -20,7 +20,7 @@ from assistant_turns import MODEL, ask
 from common import DATASETS, RESULTS, load, run_record, save
 from stats import mean, share
 
-from app.services import chat, tool_calls
+from assistant.services import chat, tool_calls
 
 MARKDOWN_LINK = re.compile(r"\]\([^)]*\)")
 # A turn that keeps retrying makes more failed calls than this.

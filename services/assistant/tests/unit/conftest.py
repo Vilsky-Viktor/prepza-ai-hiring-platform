@@ -2,10 +2,10 @@ import httpx
 import pytest
 from fake_redis import FakeRedis
 
-from app.constants.tool_groups import ToolGroup
-from app.integrations import llm, services
-from app.services import actions
-from app.storage import actions as store
+from assistant.constants.tool_groups import ToolGroup
+from assistant.integrations import llm, services
+from assistant.repositories import actions as store
+from assistant.services import actions
 from tests.fake_model import FakeRoutingModel
 from tests.unit.actions_setup import COMPANY
 
@@ -82,7 +82,7 @@ def users_companies(monkeypatch):
     nothing is kept between tests."""
     from prepza_common.redis import memory_cache
 
-    from app.integrations import companies
+    from assistant.integrations import companies
 
     async def company_ids(user_id):
         return [COMPANY]

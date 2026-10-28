@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Writes the OpenAPI description of each service the assistant's tools call into
-# services/assistant/app/openapi/<service>.json, from the running stack's code (app.openapi(),
-# which builds even where /openapi.json is off). The assistant builds its tools from these at
-# startup; CI runs this and fails when a snapshot changed, so a changed route forces a refresh.
+# services/assistant/src/assistant/openapi/<service>.json, from the running stack's code
+# (app.openapi(), which builds even where /openapi.json is off). The assistant builds its tools
+# from these at startup; CI runs this and fails when a snapshot changed, so a changed route
+# forces a refresh.
 # Usage: scripts/assistant-openapi.sh   (with the stack up: docker compose up)
 set -euo pipefail
 
@@ -40,5 +41,5 @@ print(json.dumps(kept, indent=1, ensure_ascii=False))
 for service in companies billing library notifications ats api rounds; do
   echo "== $service"
   "${compose[@]}" exec -T "$service" uv run --no-sync python -c "$script" "$service" \
-    > "services/assistant/app/openapi/$service.json"
+    > "services/assistant/src/assistant/openapi/$service.json"
 done

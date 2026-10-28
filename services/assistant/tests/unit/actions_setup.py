@@ -3,9 +3,9 @@ import uuid
 
 from prepza_common.auth.user import User
 
-from app.models.answers import Turn
-from app.services import actions
-from app.services.registry import tools
+from assistant.models.answers import Turn
+from assistant.services import actions
+from assistant.services.registry import tools
 
 ANN = User(uid="ann", email="ann@example.com", email_verified=True, name="Ann Lee")
 BOB = User(uid="bob", email="bob@example.com", email_verified=True)

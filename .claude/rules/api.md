@@ -5,8 +5,8 @@ paths:
   - "services/*/app/schemas/**"
   - "services/*/src/*/api/v1/**"
   - "services/*/src/*/schemas/**"
-  - "services/assistant/app/**/mcp*.py"
-  - "services/assistant/app/constants/*_tools.py"
+  - "services/assistant/src/assistant/**/mcp*.py"
+  - "services/assistant/src/assistant/constants/*_tools.py"
 ---
 
 # HTTP APIs, the public API and MCP

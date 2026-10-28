@@ -1,11 +1,11 @@
 ---
 paths:
-  - "services/assistant/app/**/mcp*.py"
-  - "services/assistant/app/**/oauth*.py"
-  - "services/assistant/app/helpers/authorize_guard.py"
-  - "services/assistant/app/routers/connect.py"
-  - "services/assistant/app/services/connections.py"
-  - "services/assistant/app/constants/key_tools.py"
+  - "services/assistant/src/assistant/**/mcp*.py"
+  - "services/assistant/src/assistant/**/oauth*.py"
+  - "services/assistant/src/assistant/helpers/authorize_guard.py"
+  - "services/assistant/src/assistant/api/v1/connect.py"
+  - "services/assistant/src/assistant/services/connections.py"
+  - "services/assistant/src/assistant/constants/key_tools.py"
   - "services/assistant/tests/**/test_mcp*.py"
   - "services/assistant/tests/**/test_oauth*.py"
   - "docs/features/mcp.md"

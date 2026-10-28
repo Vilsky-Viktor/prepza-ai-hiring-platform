@@ -28,9 +28,9 @@ from page_context import reviewed
 from pydantic import BaseModel, Field
 from stats import mean, share
 
-from app.models.tools import ToolResult
-from app.services import actions, chat
-from app.services.registry import tools
+from assistant.models.tools import ToolResult
+from assistant.services import actions, chat
+from assistant.services.registry import tools
 
 MEMBER_EMAIL = "noor.member@example.com"
 # The case a turn runs (its injection), for the patched tool calls of that turn alone.

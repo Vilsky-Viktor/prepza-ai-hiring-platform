@@ -118,7 +118,7 @@ x-api-source: &api-source
   - ./packages/common/src:/packages/common/src
 
 x-assistant-source: &assistant-source
-  - ./services/assistant/app:/services/assistant/app
+  - ./services/assistant/src:/services/assistant/src
   - ./services/assistant/migrations:/services/assistant/migrations
   - ./services/assistant/alembic.ini:/services/assistant/alembic.ini:ro
   - ./packages/common/src:/packages/common/src

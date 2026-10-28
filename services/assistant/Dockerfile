@@ -15,6 +15,8 @@ WORKDIR /services/assistant
 # The environment's commands (uvicorn, alembic, python) run directly, not through uv, so they get
 # the container's signals.
 ENV PATH="/services/assistant/.venv/bin:$PATH"
+# The service's package (src/assistant) is imported from src, not installed.
+ENV PYTHONPATH=/services/assistant/src
 
 COPY packages/common /packages/common
 COPY services/assistant/pyproject.toml services/assistant/uv.lock services/assistant/.python-version ./
@@ -31,16 +33,16 @@ ENV PYTHONPYCACHEPREFIX=/tmp/pycache WATCHFILES_FORCE_POLLING=true
 
 # Open chat streams would hold a reload or a shutdown forever: after 5 seconds they're closed,
 # and the answer being streamed stops there.
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
+CMD ["uvicorn", "assistant.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
     "--timeout-graceful-shutdown", "5", \
-    "--reload", "--reload-dir", "app", "--reload-dir", "/packages/common/src"]
+    "--reload", "--reload-dir", "src", "--reload-dir", "/packages/common/src"]
 
 # Production: the source is part of the image, uv isn't. Migrations run in a one-off container
 # (alembic upgrade head) before the API starts.
 FROM python AS prod
 
 WORKDIR /services/assistant
-ENV PATH="/services/assistant/.venv/bin:$PATH"
+ENV PATH="/services/assistant/.venv/bin:$PATH" PYTHONPATH=/services/assistant/src
 # Only the installed environment and the shared package it links to (an editable install).
 COPY --from=base /packages/common /packages/common
 COPY --from=base /services/assistant/.venv ./.venv
@@ -49,15 +51,15 @@ EXPOSE 8000
 
 COPY services/assistant/alembic.ini ./
 COPY services/assistant/migrations ./migrations
-COPY services/assistant/app ./app
+COPY services/assistant/src ./src
 
 # An unprivileged user that can read the code but not change it. Bytecode is compiled now, as
 # that user can't write it later.
-RUN python -m compileall -q app && adduser -D -H -u 10001 app
+RUN python -m compileall -q src && adduser -D -H -u 10001 app
 # The commit the image is built from, as the release Sentry tags its errors with.
 ARG SENTRY_RELEASE
 ENV SENTRY_RELEASE=$SENTRY_RELEASE
 USER app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
+CMD ["uvicorn", "assistant.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
     "--timeout-graceful-shutdown", "5"]
