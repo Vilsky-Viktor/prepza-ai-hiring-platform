@@ -24,7 +24,7 @@ import {
   Work_Sans,
 } from "next/font/google"
 
-import { SITE_FONTS } from "@/constants/fonts"
+import { SITE_FONTS } from "@/config/fonts"
 
 // The fonts a company can pick for its candidates' pages (services/companies constants/brand.py
 // lists the same): prepza's pair, Poppins titles over Geist text (the default, which changes

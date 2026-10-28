@@ -2,8 +2,8 @@ import * as Sentry from "@sentry/nextjs"
 import { getRequestConfig } from "next-intl/server"
 import { cookies, headers } from "next/headers"
 
-import { DEFAULT_LOCALE, LOCALE_COOKIE } from "@/constants/i18n"
-import { LOCALE_HEADER, PLAIN_ADDRESS_HEADER } from "@/constants/seo"
+import { DEFAULT_LOCALE, LOCALE_COOKIE } from "@/config/i18n"
+import { LOCALE_HEADER, PLAIN_ADDRESS_HEADER } from "@/config/seo"
 import { isLocale, preferredLocale } from "@/lib/locale"
 
 // The interface language: the address's (/de/pricing, set by proxy.ts), and English on the plain

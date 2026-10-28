@@ -8,14 +8,14 @@ import { PageHeader } from "@/components/page-header"
 import { RefreshOnFocus } from "@/components/billing/refresh-on-focus"
 import { SignInPrompt } from "@/components/sign-in-prompt"
 import { Button } from "@/components/ui/button"
-import { TOKEN_COOKIE } from "@/constants/auth"
+import { TOKEN_COOKIE } from "@/config/auth"
 import { optionalFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyCurrencyPath, visitorCatalog } from "@/lib/catalog"
 import type { CompanyCurrency } from "@/types/billing"
 import type { CompanyBalance } from "@/types/company"
-import { LIST_BOX } from "@/constants/lists"
-import { CARD } from "@/constants/cards"
+import { LIST_BOX } from "@/config/lists"
+import { CARD } from "@/config/cards"
 
 export const generateMetadata = () => translatedTitle("topUp", "title")
 

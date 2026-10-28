@@ -1,4 +1,4 @@
-import { ADMIN_MESSAGES, SERVER_ONLY_MESSAGES } from "@/constants/i18n"
+import { ADMIN_MESSAGES, SERVER_ONLY_MESSAGES } from "@/config/i18n"
 
 type Messages = Record<string, unknown>
 

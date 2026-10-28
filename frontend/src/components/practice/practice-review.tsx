@@ -9,7 +9,7 @@ import { QuestionText } from "@/components/questions/question-text"
 import { VirtualList } from "@/components/virtual-list"
 import { languageOf } from "@/lib/locale"
 import type { ReviewItem } from "@/types/round"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 /** A finished practice round's questions, laid out like a scorecard: each with right or wrong,
  * every option with the right one marked, and the talent's own pick. Under each, the talent

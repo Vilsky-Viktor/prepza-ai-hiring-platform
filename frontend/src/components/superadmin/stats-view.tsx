@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 import { StatsCards } from "@/components/superadmin/stats-cards"
 import { StatsPicker } from "@/components/superadmin/stats-picker"
-import { STATS_SOURCES } from "@/constants/stats"
+import { STATS_SOURCES } from "@/config/stats"
 import { useStatsChoice } from "@/hooks/use-stats-choice"
 import { apiFetch } from "@/lib/api"
 import type { Stats } from "@/types/superadmin"

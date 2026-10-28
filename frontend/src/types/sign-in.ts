@@ -1,4 +1,4 @@
-import type { SIGN_IN_PROVIDERS } from "@/constants/auth"
+import type { SIGN_IN_PROVIDERS } from "@/config/auth"
 
 export type SignInProvider = (typeof SIGN_IN_PROVIDERS)[number]
 

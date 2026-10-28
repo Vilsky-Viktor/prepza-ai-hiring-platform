@@ -8,7 +8,7 @@ import { formatDay } from "@/lib/format"
 import { postHeading } from "@/lib/news"
 import { byId } from "@/lib/paged-list"
 import type { NewsPost } from "@/types/news"
-import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 
 /** The news page's posts, newest first, one after another. `initial` is the server's first
  * page; the next loads near the end. */

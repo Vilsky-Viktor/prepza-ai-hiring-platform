@@ -9,7 +9,7 @@ import { apiFetch } from "@/lib/api"
 import { readTokenCookie, writeTokenCookie } from "@/lib/auth"
 import { firebaseAuth } from "@/lib/firebase"
 import { isLocale, readLocaleCookie, writeLocaleCookie } from "@/lib/locale"
-import { SIGNED_IN_BEFORE_KEY } from "@/constants/auth"
+import { SIGNED_IN_BEFORE_KEY } from "@/config/auth"
 import type { AuthState } from "@/types/auth"
 
 const AuthContext = createContext<AuthState>({ user: null, loading: true })

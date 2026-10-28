@@ -1,6 +1,6 @@
 import type { ErrorEvent } from "@sentry/nextjs"
 
-import { SENTRY_TRACES_SAMPLE_RATE } from "@/constants/security"
+import { SENTRY_TRACES_SAMPLE_RATE } from "@/config/security"
 
 const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g
 // The secret in invite, job-ad, admin-invite, embedded and unsubscribe links, on pages and in API

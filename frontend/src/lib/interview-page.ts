@@ -1,5 +1,5 @@
-import { CANDIDATE_SORTS, type CandidateSort } from "@/constants/interviews"
-import { PAGE_SIZE } from "@/constants/lists"
+import { CANDIDATE_SORTS, type CandidateSort } from "@/config/interviews"
+import { PAGE_SIZE } from "@/config/lists"
 import { serverFetch } from "@/lib/server-api"
 import type {
   Candidate,

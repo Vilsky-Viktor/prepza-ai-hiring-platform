@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { apiErrorMessage } from "@/lib/api"
 import { setCompanyEmails } from "@/lib/superadmin-emails"
 import type { CandidateOptOuts } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 type Company = CandidateOptOuts["companies"][number]
 

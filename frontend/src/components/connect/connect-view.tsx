@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { InfoCard } from "@/components/warning-card"
 import { ApiError, apiFetch } from "@/lib/api"
 import type { ConnectRequest } from "@/types/connections"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 /** The consent page's states: an expired or used request (also one that expires while the
  * card is open); signed out, Sign in (the request is read only signed in); signed in, the

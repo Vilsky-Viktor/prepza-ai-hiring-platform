@@ -19,7 +19,7 @@ import { usePagedList } from "@/hooks/use-paged-list"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { formatPercent } from "@/lib/format"
 import type { QualityRow } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 // A row is a question as flagged now, or one revision of it as replaced.
 function rowKey(row: QualityRow) {

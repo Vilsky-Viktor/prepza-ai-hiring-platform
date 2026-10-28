@@ -3,7 +3,7 @@ import type { ComponentProps, ReactNode } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { SEARCH_OVER_LIST } from "@/constants/lists"
+import { SEARCH_OVER_LIST } from "@/config/lists"
 
 export function InputAction({
   action,

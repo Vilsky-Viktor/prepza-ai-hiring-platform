@@ -4,7 +4,7 @@ import { MemberRow } from "@/components/company/member-row"
 import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import type { CompanyMember } from "@/types/company"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 function byEmail(member: CompanyMember) {
   return member.email

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-import { COPIED_MS } from "@/constants/layout"
+import { COPIED_MS } from "@/config/layout"
 
 /** Copies `id` to the clipboard; `copied` is true for COPIED_MS after, for a check mark. */
 export function useCopyId(id: string) {

@@ -1,4 +1,4 @@
-import { PAGE_SIZE } from "@/constants/lists"
+import { PAGE_SIZE } from "@/config/lists"
 
 export function pagePath(path: string, offset: number) {
   const separator = path.includes("?") ? "&" : "?"

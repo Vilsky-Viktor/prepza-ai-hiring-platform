@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { LOCALES } from "@/constants/i18n"
+import { LOCALES } from "@/config/i18n"
 import { englishLanguageName } from "@/lib/english-language-name"
 
 describe("englishLanguageName", () => {

@@ -23,10 +23,9 @@ messages/, content/       # Translations; articles and documents (rounds reads c
 tests/                    # vitest
 ```
 
-Still to move from the old layout: `constants/` → `config/`; feature folders in `components/`
-(company, billing, assistant, generation, landing, …) → `features/<name>/`; shared components →
-`components/common/` (with the site's header, footer and page chrome); providers →
-`providers/`; `app/globals.css` → `styles/`.
+Still to move from the old layout: feature folders in `components/` (company, billing, assistant,
+generation, landing, …) → `features/<name>/`; shared components → `components/common/` (with the
+site's header, footer and page chrome); providers → `providers/`; `app/globals.css` → `styles/`.
 
 ## Languages and direction
 
@@ -68,7 +67,7 @@ themselves: `.claude/rules/content-i18n.md`.
   outside the header, dots, rings, sliders, switches, chips and label pills. Labelled fields use
   `components/ui/floating-field.tsx`; units go in its `suffix`, never beside the field.
 - Grey backgrounds: `bg-surface` only (fields, hovered rows as `ROW_HOVER`, grey buttons and cards);
-  cards' padding is `CARD_PADDING` (`constants/cards.ts`).
+  cards' padding is `CARD_PADDING` (`config/cards.ts`).
 - Primary fills and borders: `bg-primary-gradient`, `border-primary-gradient` (`app/gradients.css`),
   `gradient-soft` on small things; a field's focus is `border-ring-gradient`.
 

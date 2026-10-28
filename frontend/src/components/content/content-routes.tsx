@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import { getLocale, getTranslations } from "next-intl/server"
 
 import { ContentArticle } from "@/components/content/content-article"
-import type { ContentFolder } from "@/constants/content"
+import type { ContentFolder } from "@/config/content"
 import { contentLanguages, contentPage } from "@/lib/content"
 import { pageMetadata } from "@/lib/site"
 import type { PageHelpKey } from "@/types/page-help"

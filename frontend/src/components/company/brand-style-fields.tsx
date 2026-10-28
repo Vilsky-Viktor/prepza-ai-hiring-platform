@@ -5,7 +5,7 @@ import { useState } from "react"
 
 import { PillSelect } from "@/components/pill-select"
 import { FloatingInput } from "@/components/ui/floating-field"
-import { BRAND_FONTS } from "@/constants/brand-fonts"
+import { BRAND_FONTS } from "@/config/brand-fonts"
 import type { BrandStyle } from "@/types/company"
 
 // The rounding companies takes, in px.

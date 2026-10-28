@@ -10,7 +10,7 @@ Shared test rules are in `testing.md`; CLAUDE.md wins on any conflict.
 
 ## Vitest
 
-- Covers `lib/`, hooks, constants and messages. Not adopted: component tests in vitest;
+- Covers `lib/`, hooks, `config/` and messages. Not adopted: component tests in vitest;
   components are covered by browser tests (rule 8).
 - Fake timers (`vi.useFakeTimers`, `advanceTimersByTime`) instead of real delays.
 - Test what a function returns or does, never its internal state.

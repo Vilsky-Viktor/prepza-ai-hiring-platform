@@ -4,8 +4,8 @@ import { getTranslations } from "next-intl/server"
 import { CandidateSortMenu } from "@/components/company/candidate-sort"
 import { CandidateStatusFilter } from "@/components/company/candidate-status-filter"
 import { InputAction } from "@/components/input-action"
-import type { CandidateSort } from "@/constants/interviews"
-import { MAX_SEARCH_LENGTH } from "@/constants/limits"
+import type { CandidateSort } from "@/config/interviews"
+import { MAX_SEARCH_LENGTH } from "@/config/limits"
 
 /** Searches an interview's candidates by email, with the status and result filter and the sort inside the field, like
  * the templates search. A new search keeps the tab, sort and status. */

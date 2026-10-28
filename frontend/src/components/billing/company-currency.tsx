@@ -5,7 +5,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { CurrencySelect } from "@/components/billing/currency-select"
-import { BILLING_REFRESHED } from "@/constants/billing"
+import { BILLING_REFRESHED } from "@/config/billing"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { formatPrice } from "@/lib/format"
 import type { CompanyCurrency } from "@/types/billing"

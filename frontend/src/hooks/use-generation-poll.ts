@@ -2,7 +2,7 @@
 
 import { useEffect, useEffectEvent } from "react"
 
-import { ACTIVE_STATUSES, POLL_MIN_MS } from "@/constants/generation"
+import { ACTIVE_STATUSES, POLL_MIN_MS } from "@/config/generation"
 import { ApiError, apiFetch } from "@/lib/api"
 import { nextPollDelay } from "@/lib/poll"
 import type { Generation } from "@/types/generation"

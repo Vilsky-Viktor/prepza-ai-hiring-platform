@@ -6,11 +6,11 @@ import remarkGfm from "remark-gfm"
 import { LocalizedLink } from "@/components/localized-link"
 import { HighlightedCode } from "@/components/highlighted-code"
 import { markdownCode } from "@/components/markdown-code"
-import { TEXT_LINK } from "@/constants/links"
+import { TEXT_LINK } from "@/config/links"
 import { endsWithQuestionMark } from "@/lib/question-mark"
 
 /** A link in the site's text: the site's own pages open in place, in the address's language;
- * others in a new tab; styled as an in-text link (constants/links.ts). */
+ * others in a new tab; styled as an in-text link (config/links.ts). */
 export function SiteLink({
   href = "",
   children,
@@ -82,7 +82,7 @@ const ELEMENTS: ComponentProps<typeof ReactMarkdown>["components"] = {
   },
   table: ({ children }) => (
     <div className="overflow-x-auto rounded-xl border">
-      {/* A body row lights up on hover in the search field's grey, as ROW_HOVER (constants/lists.ts)
+      {/* A body row lights up on hover in the search field's grey, as ROW_HOVER (config/lists.ts)
           colours the site's list rows, so the eye follows it. */}
       <table className="w-full text-sm [&_tbody_tr]:transition-colors [&_tbody_tr:hover]:bg-surface">
         {children}

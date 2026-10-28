@@ -6,7 +6,7 @@ import { EmailPreferencesSetting } from "@/components/settings/email-preferences
 import { CurrencySetting } from "@/components/settings/currency-setting"
 import { LanguageSetting } from "@/components/settings/language-setting"
 import { SettingsSection } from "@/components/settings/settings-section"
-import type { Locale } from "@/constants/i18n"
+import type { Locale } from "@/config/i18n"
 import { currencyPath } from "@/lib/catalog"
 import { serverFetch } from "@/lib/server-api"
 import type { CurrencyChoice } from "@/types/billing"

@@ -14,7 +14,7 @@ import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { Addition } from "@/types/generation"
 import type { PooledTemplate } from "@/types/superadmin"
-import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 
 export const generateMetadata = () => translatedTitle("superadmin", "templates")
 

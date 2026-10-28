@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl"
 
 import { ReportActions } from "@/components/company/report-actions"
-import { REPORT_ID } from "@/constants/report"
+import { REPORT_ID } from "@/config/report"
 import { useReportTranslate } from "@/hooks/use-report-translate"
 import { reportSummary } from "@/lib/report-summary"
 import type { CandidateReportData } from "@/types/company"

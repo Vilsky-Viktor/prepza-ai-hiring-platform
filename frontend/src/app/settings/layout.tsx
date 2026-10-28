@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server"
 
 import { PageHeader } from "@/components/page-header"
 import { SignInPrompt } from "@/components/sign-in-prompt"
-import { TOKEN_COOKIE } from "@/constants/auth"
+import { TOKEN_COOKIE } from "@/config/auth"
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("settings")

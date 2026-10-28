@@ -2,7 +2,7 @@ import { headers } from "next/headers"
 import { getTranslations } from "next-intl/server"
 
 import { WarningCard } from "@/components/warning-card"
-import { MAINTENANCE_HEADER } from "@/constants/maintenance"
+import { MAINTENANCE_HEADER } from "@/config/maintenance"
 
 /** While maintenance mode is on, superadmins still see the site, with a warning card above
  * every page saying so (WarningCard); otherwise

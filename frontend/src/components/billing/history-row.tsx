@@ -11,7 +11,7 @@ import { candidateHref, type CandidateLinks } from "@/lib/candidate-links"
 import { formatPrice } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"
 import type { CreditHistoryEntry } from "@/types/company"
-import { ROW_HOVER } from "@/constants/lists"
+import { ROW_HOVER } from "@/config/lists"
 
 /** One movement of a company's credits: what it was, when, and the credits it moved; a top-up
  * with what was paid and its invoice, a candidate's charge with the candidate and their test,

@@ -2,18 +2,18 @@ import type { Metadata } from "next"
 import { headers } from "next/headers"
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/constants/i18n"
+import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/config/i18n"
 import {
   PREVIEW_TITLE_MAX,
   PREVIEW_UNSUPPORTED,
-} from "@/constants/preview-image"
-import { CATEGORY_PAGES } from "@/constants/content"
+} from "@/config/preview-image"
+import { CATEGORY_PAGES } from "@/config/content"
 import {
   LOCALE_HEADER,
   LOCALIZED_ARTICLE,
   PLAIN_ADDRESS_HEADER,
   SITE_NAME,
-} from "@/constants/seo"
+} from "@/config/seo"
 import { withoutIsolates } from "@/lib/bidi"
 import { sliceGraphemes } from "@/lib/graphemes"
 import { hasMessage } from "@/lib/messages"

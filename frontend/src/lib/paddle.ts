@@ -1,6 +1,6 @@
 import type { Paddle } from "@paddle/paddle-js"
 
-import { PADDLE_FALLBACK_LOCALE, PADDLE_LOCALES } from "@/constants/paddle"
+import { PADDLE_FALLBACK_LOCALE, PADDLE_LOCALES } from "@/config/paddle"
 import type { Catalog } from "@/types/billing"
 
 let paddle: Promise<Paddle | undefined> | null = null

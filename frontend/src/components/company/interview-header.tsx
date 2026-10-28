@@ -9,7 +9,7 @@ import { InterviewNav } from "@/components/company/interview-nav"
 import { InterviewTitle } from "@/components/company/interview-title"
 import { PageHeader } from "@/components/page-header"
 import { Button } from "@/components/ui/button"
-import { INTERVIEW_TAB_HELP } from "@/constants/page-help"
+import { INTERVIEW_TAB_HELP } from "@/config/page-help"
 import type { InterviewTab } from "@/lib/interview-page"
 import type { InterviewDetail } from "@/types/company"
 

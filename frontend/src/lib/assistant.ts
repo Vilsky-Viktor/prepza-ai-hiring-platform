@@ -1,4 +1,4 @@
-import { COMPANY_PATH, LINK_PAGES } from "@/constants/assistant"
+import { COMPANY_PATH, LINK_PAGES } from "@/config/assistant"
 import { ApiError, apiFetch, authHeaders, errorDetail } from "@/lib/api"
 import { streamEvents } from "@/lib/chat"
 import { firebaseAuth } from "@/lib/firebase"

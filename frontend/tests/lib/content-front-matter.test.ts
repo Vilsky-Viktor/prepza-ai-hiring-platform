@@ -3,8 +3,8 @@ import path from "node:path"
 
 import { describe, expect, it } from "vitest"
 
-import { CONTENT_ROOT, type ContentFolder } from "@/constants/content"
-import { DEFAULT_LOCALE } from "@/constants/i18n"
+import { CONTENT_ROOT, type ContentFolder } from "@/config/content"
+import { DEFAULT_LOCALE } from "@/config/i18n"
 import { contentLanguages, contentPages, parseContent } from "@/lib/content"
 
 // Rule 23's limits: search results cut longer titles and snippets.

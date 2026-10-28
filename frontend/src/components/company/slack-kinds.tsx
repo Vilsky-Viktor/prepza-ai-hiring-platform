@@ -7,7 +7,7 @@ import { toast } from "sonner"
 import { Checkbox } from "@/components/ui/checkbox"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { hasMessage } from "@/lib/messages"
-import { CARD_PADDING } from "@/constants/cards"
+import { CARD_PADDING } from "@/config/cards"
 
 /** Which of the company's notifications go to its Slack channel, one row each in a list like the
  * interview's settings; each change is saved at once. Viewers see them without changing. */

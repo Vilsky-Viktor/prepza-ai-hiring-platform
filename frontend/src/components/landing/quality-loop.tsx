@@ -15,7 +15,7 @@ import { useStill } from "@/hooks/use-still"
 import { NetOutside } from "@/components/landing/net-outside"
 import { NetWave } from "@/components/landing/net-wave"
 import { Wire, wireLength } from "@/components/landing/wire"
-import { INVITE_SPEED } from "@/constants/invite-demo"
+import { INVITE_SPEED } from "@/config/invite-demo"
 import {
   NET_CELL,
   NET_WAVE_SECONDS,
@@ -25,7 +25,7 @@ import {
   QUALITY_PAUSE_MS,
   QUALITY_STEPS,
   type QualityStep,
-} from "@/constants/trust-quality-demo"
+} from "@/config/trust-quality-demo"
 import { ON_SCREEN, useDemoSteps } from "@/hooks/use-demo-steps"
 import { ellipsePoints, ellipseWires } from "@/lib/ellipse-wires"
 import { type Area, sectionArea } from "@/lib/section-area"

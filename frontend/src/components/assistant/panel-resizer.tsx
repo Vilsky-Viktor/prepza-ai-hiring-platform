@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 
-import { PANEL_WIDTH } from "@/constants/assistant"
+import { PANEL_WIDTH } from "@/config/assistant"
 import { clampPanelWidth, maxPanelWidth } from "@/lib/panel-width"
 
 /** The handle on the panel's inner edge that sets its width: dragged, or with the arrow keys.

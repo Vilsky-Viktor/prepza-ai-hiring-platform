@@ -2,7 +2,7 @@
 
 import { useId } from "react"
 
-import { NET_WAVE_SECONDS, NET_WAVES } from "@/constants/trust-quality-demo"
+import { NET_WAVE_SECONDS, NET_WAVES } from "@/config/trust-quality-demo"
 
 // A ring's width and its blur's deviation, in pixels, and the room its glow takes beyond the
 // net's edge: half its width and three deviations.

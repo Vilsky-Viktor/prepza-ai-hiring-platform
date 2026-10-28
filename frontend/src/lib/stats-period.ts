@@ -1,4 +1,4 @@
-import { STATS_FIRST_YEAR, STATS_STORAGE_KEY } from "@/constants/stats"
+import { STATS_FIRST_YEAR, STATS_STORAGE_KEY } from "@/config/stats"
 
 /** What the stats tab shows: all time, or a year ("2026") or month ("2026-07") in UTC. */
 export type StatsChoice = { allTime: boolean; period: string }

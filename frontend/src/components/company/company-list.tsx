@@ -7,7 +7,7 @@ import { CompanyCard } from "@/components/company/company-card"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
 import type { Company } from "@/types/company"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 const PATH = "/companies/companies"
 

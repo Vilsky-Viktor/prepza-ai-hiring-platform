@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
 
-import { ADMIN_MESSAGES, SERVER_ONLY_MESSAGES } from "@/constants/i18n"
+import { ADMIN_MESSAGES, SERVER_ONLY_MESSAGES } from "@/config/i18n"
 
 import { SOURCE_ROOT, sourceFiles } from "../source-files"
 

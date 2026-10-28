@@ -6,7 +6,7 @@ import { visit } from "./navigation"
 
 // The email boxes under the sign-in buttons to tick first; both start unticked.
 export type SignInEmails = { noUpdates?: boolean; promotions?: boolean }
-// The ways to sign in the site offers (frontend/src/constants/auth.ts).
+// The ways to sign in the site offers (frontend/src/config/auth.ts).
 export type SignInProvider = "google" | "linkedin" | "github"
 
 

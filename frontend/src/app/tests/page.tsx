@@ -2,10 +2,10 @@ import { getTranslations } from "next-intl/server"
 
 import { TemplateBrowser } from "@/components/templates/template-browser"
 import type { TemplateSearchParams } from "@/components/templates/template-browser"
-import { DEFAULT_LOCALE } from "@/constants/i18n"
+import { DEFAULT_LOCALE } from "@/config/i18n"
 import { localizedPath } from "@/lib/locale-path"
 import { pageMetadata, urlLocale } from "@/lib/site"
-import { PUBLIC_TEMPLATES_PATH } from "@/constants/lists"
+import { PUBLIC_TEMPLATES_PATH } from "@/config/lists"
 import { PageKey } from "@/components/page-key"
 
 export async function generateMetadata() {

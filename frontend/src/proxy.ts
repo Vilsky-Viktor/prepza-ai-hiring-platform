@@ -1,13 +1,13 @@
 import { NextResponse, type NextRequest } from "next/server"
 
-import { TOKEN_COOKIE } from "@/constants/auth"
-import { LOCALE_COOKIE, LOCALE_COOKIE_MAX_AGE } from "@/constants/i18n"
+import { TOKEN_COOKIE } from "@/config/auth"
+import { LOCALE_COOKIE, LOCALE_COOKIE_MAX_AGE } from "@/config/i18n"
 import {
   MAINTENANCE_HEADER,
   MAINTENANCE_OPEN_PAGES,
-} from "@/constants/maintenance"
-import { LOCALE_HEADER, PLAIN_ADDRESS_HEADER } from "@/constants/seo"
-import { EMBED_PAGE } from "@/constants/embed"
+} from "@/config/maintenance"
+import { LOCALE_HEADER, PLAIN_ADDRESS_HEADER } from "@/config/seo"
+import { EMBED_PAGE } from "@/config/embed"
 import { contentSecurityPolicy } from "@/lib/csp"
 import { embedAncestors } from "@/lib/embed"
 import {

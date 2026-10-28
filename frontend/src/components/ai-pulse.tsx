@@ -1,6 +1,6 @@
 import { cn } from "cn"
 
-import { AI_CHIP_MASK } from "@/constants/ai-mark"
+import { AI_CHIP_MASK } from "@/config/ai-mark"
 
 /** prepza's loading mark: the AI chip from the landing's quality loop, lit like the "ask Mira"
  * button's border (a bright arc of the primary colour circling over a faint one, shown only

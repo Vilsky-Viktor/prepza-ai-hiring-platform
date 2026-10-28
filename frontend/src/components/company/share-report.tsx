@@ -15,7 +15,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { MAX_EMAIL_LENGTH } from "@/constants/limits"
+import { MAX_EMAIL_LENGTH } from "@/config/limits"
 import { apiFetch, serviceRefusal } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import { fileBase64 } from "@/lib/files"

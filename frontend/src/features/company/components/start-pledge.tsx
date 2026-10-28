@@ -5,7 +5,7 @@ import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import { START_BUTTON } from "@/constants/start-page"
+import { START_BUTTON } from "@/config/start-page"
 
 /** An interview's start button, with the candidate's pledge to answer on their own above it: the
  * start works once it's ticked, and the start request carries it (the API refuses a first start

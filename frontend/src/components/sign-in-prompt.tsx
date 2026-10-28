@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { SignInOptions } from "@/components/sign-in-options"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 /** A page that only asks to sign in: a title and the ways to sign in right there. */
 export function SignInPrompt() {

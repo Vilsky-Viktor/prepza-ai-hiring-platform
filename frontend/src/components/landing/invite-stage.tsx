@@ -8,7 +8,7 @@ import { ArrivingCandidates } from "@/components/landing/arriving-candidates"
 import { InviteCard } from "@/components/landing/invite-card"
 import { InterviewHeader } from "@/components/landing/interview-header"
 import { Wire } from "@/components/landing/wire"
-import { SLACK } from "@/constants/slack"
+import { SLACK } from "@/config/slack"
 import {
   DEMO_INVITE_CANDIDATES,
   DEMO_INVITE_INTERVIEW,
@@ -19,8 +19,8 @@ import {
   INVITE_WIRE_INSET,
   type InviteSource,
   INVITE_SPEED,
-} from "@/constants/invite-demo"
-import { SEE_THROUGH_CARD } from "@/constants/landing-backgrounds"
+} from "@/config/invite-demo"
+import { SEE_THROUGH_CARD } from "@/config/landing-backgrounds"
 import { ON_SCREEN, useDemoSteps } from "@/hooks/use-demo-steps"
 import { boxOf, sourceWires } from "@/lib/source-wires"
 

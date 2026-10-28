@@ -2,10 +2,10 @@ import { Fragment } from "react"
 import { getTranslations } from "next-intl/server"
 
 import { ContactForm } from "@/components/contact-form"
-import { OPERATOR } from "@/constants/operator"
+import { OPERATOR } from "@/config/operator"
 import { pageMetadata } from "@/lib/site"
 import { PageKey } from "@/components/page-key"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 export async function generateMetadata() {
   const t = await getTranslations("contact")

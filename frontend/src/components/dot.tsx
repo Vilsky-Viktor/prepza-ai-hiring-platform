@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from "react"
 
-import { DOT_CLASS, WRITTEN_DOT } from "@/constants/dot"
+import { DOT_CLASS, WRITTEN_DOT } from "@/config/dot"
 
 /** The separator alone; screen readers hear a comma. */
 export function Dot({ className = "" }: { className?: string }) {

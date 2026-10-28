@@ -1,4 +1,4 @@
-import type { Locale } from "@/constants/i18n"
+import type { Locale } from "@/config/i18n"
 
 export const SITE_NAME = "prepza."
 

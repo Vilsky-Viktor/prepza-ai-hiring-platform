@@ -4,10 +4,10 @@ import { getLocale, getTranslations } from "next-intl/server"
 
 import { Badge } from "@/components/ui/badge"
 import { IconButton } from "@/components/icon-button"
-import { DOCUMENTS } from "@/constants/documents"
-import { DEFAULT_LOCALE } from "@/constants/i18n"
+import { DOCUMENTS } from "@/config/documents"
+import { DEFAULT_LOCALE } from "@/config/i18n"
 import { pageMetadata } from "@/lib/site"
-import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 import { PageKey } from "@/components/page-key"
 
 // Like the report's download button (components/company/report-actions.tsx).

@@ -16,13 +16,13 @@ import {
 import { LocalizedLink } from "@/components/localized-link"
 import { SignInOptions } from "@/components/sign-in-options"
 import { buttonVariants } from "@/components/ui/button"
-import { PAGE_LABELS } from "@/constants/assistant"
+import { PAGE_LABELS } from "@/config/assistant"
 import { answerParts, linkPage } from "@/lib/assistant"
 import { bdi } from "@/lib/bidi"
 import type { AssistantBlock } from "@/types/assistant"
-import { WARNING_TONE } from "@/constants/tones"
-import { CARD } from "@/constants/cards"
-import { ROW_HOVER } from "@/constants/lists"
+import { WARNING_TONE } from "@/config/tones"
+import { CARD } from "@/config/cards"
+import { ROW_HOVER } from "@/config/lists"
 
 type Item = Record<string, unknown>
 

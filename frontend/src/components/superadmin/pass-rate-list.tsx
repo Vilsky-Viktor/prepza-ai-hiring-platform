@@ -8,7 +8,7 @@ import { Dot } from "@/components/dot"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { formatPercent } from "@/lib/format"
 import type { PassRate } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 function rowKey(row: PassRate) {
   return row.interview_id

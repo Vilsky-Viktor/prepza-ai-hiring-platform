@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 /** What a support page knows about something, one fact a row: its name, then its value. A fact
  * with nothing to say (no value) is left out. */

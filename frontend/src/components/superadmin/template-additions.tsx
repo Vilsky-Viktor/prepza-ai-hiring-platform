@@ -17,11 +17,11 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { ACTIVE_STATUSES } from "@/constants/generation"
+import { ACTIVE_STATUSES } from "@/config/generation"
 import { useGenerationPoll } from "@/hooks/use-generation-poll"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { Addition } from "@/types/generation"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 /** A superadmin adds questions to every topic of a template: "Top up" (when the backend says a
  * topic lacks practice or company questions) writes what's missing, "Add questions" a number of

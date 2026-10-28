@@ -6,7 +6,7 @@ import { flushSync } from "react-dom"
 
 import { InterviewReport } from "@/components/company/interview-report"
 import { ReportActions } from "@/components/company/report-actions"
-import { INTERVIEW_REPORT_ID } from "@/constants/report"
+import { INTERVIEW_REPORT_ID } from "@/config/report"
 import { useReportTranslate } from "@/hooks/use-report-translate"
 import { apiFetch } from "@/lib/api"
 import { candidatesSummary } from "@/lib/report-summary"

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { POLL_MAX_MS, POLL_MIN_MS } from "@/constants/generation"
+import { POLL_MAX_MS, POLL_MIN_MS } from "@/config/generation"
 import { nextPollDelay } from "@/lib/poll"
 
 describe("nextPollDelay", () => {

@@ -23,7 +23,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import type { AtsProvider } from "@/constants/ats"
+import type { AtsProvider } from "@/config/ats"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 
 // What each ATS's connect form asks for: its fields as the API takes them, and the steps to

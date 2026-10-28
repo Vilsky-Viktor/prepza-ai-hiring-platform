@@ -13,7 +13,7 @@ import {
   TEAMTAILOR_KEY_PATH,
   WORKABLE_SCOPES,
   WORKABLE_TOKEN_PATH,
-} from "@/constants/ats"
+} from "@/config/ats"
 
 /** An ATS's own words (menus, scopes, events), in chips like code in questions. */
 export function Chips({ items, path }: { items: string[]; path?: boolean }) {

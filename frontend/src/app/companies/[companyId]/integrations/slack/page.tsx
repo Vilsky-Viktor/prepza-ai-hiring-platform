@@ -13,12 +13,12 @@ import { SlackReturned } from "@/components/company/slack-returned"
 import { PageHeader } from "@/components/page-header"
 import { SignInPrompt } from "@/components/sign-in-prompt"
 import { Dot } from "@/components/dot"
-import { TOKEN_COOKIE } from "@/constants/auth"
-import { SLACK } from "@/constants/slack"
+import { TOKEN_COOKIE } from "@/config/auth"
+import { SLACK } from "@/config/slack"
 import { serverFetch } from "@/lib/server-api"
 import type { Company } from "@/types/company"
 import type { SlackOverview } from "@/types/notifications"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 export const generateMetadata = () => ({ title: SLACK.name })
 

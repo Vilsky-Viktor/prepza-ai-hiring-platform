@@ -1,4 +1,4 @@
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 /** Numbers as cards, three to a row and centred, like the pricing cards: each its label under a
  * large number. The admin zone's stats and a campaign's counts. */

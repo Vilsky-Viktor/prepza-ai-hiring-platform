@@ -5,7 +5,7 @@ import { QuestionText } from "@/components/questions/question-text"
 import { questionCodeColors } from "@/lib/code-tokens"
 import { textDirection } from "@/lib/locale"
 import type { SampleQuestion } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 /** A role's sample interview questions with their answers: questions already public in free
  * practice, never ones candidates still get. In the template's language. */

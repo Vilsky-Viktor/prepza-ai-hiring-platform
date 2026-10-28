@@ -9,7 +9,7 @@ import { SignInPage } from "@/components/sign-in-page"
 import { serverFetch, signedIn } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { Company, InterviewDetail } from "@/types/company"
-import { START_PAGE } from "@/constants/start-page"
+import { START_PAGE } from "@/config/start-page"
 
 export const generateMetadata = () => translatedTitle("invite", "title")
 

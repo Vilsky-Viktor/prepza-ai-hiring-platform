@@ -14,7 +14,7 @@ import {
   MCP_DOCS_PATH,
   MCP_NAME,
   MCP_PATH,
-} from "@/constants/ai-apps"
+} from "@/config/ai-apps"
 import { useOrigin } from "@/lib/origin"
 
 /** The MCP server's Instructions button, on its row and its page, like the other integrations':

@@ -5,9 +5,9 @@ import {
   PUBLIC_REVALIDATE_SECONDS,
   PUBLIC_TIMEOUT_MS,
   SERVER_TIMEOUT_MS,
-} from "@/constants/api"
-import { TOKEN_COOKIE } from "@/constants/auth"
-import { REFERRAL_COOKIE } from "@/constants/referral"
+} from "@/config/api"
+import { TOKEN_COOKIE } from "@/config/auth"
+import { REFERRAL_COOKIE } from "@/config/referral"
 
 // Signed out, not allowed, missing, or a malformed id in the URL: the page shows
 // "not found" or a sign-in prompt.

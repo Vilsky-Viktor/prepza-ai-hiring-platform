@@ -10,10 +10,10 @@ import {
   FLOAT_LABEL,
   FLOAT_LABEL_REST,
   FLOAT_LABEL_UP,
-} from "@/constants/floating-label"
-import { MAX_SEARCH_LENGTH } from "@/constants/limits"
-import { SEARCH_DELAY_MS } from "@/constants/lists"
-import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/constants/menu-pill"
+} from "@/config/floating-label"
+import { MAX_SEARCH_LENGTH } from "@/config/limits"
+import { SEARCH_DELAY_MS } from "@/config/lists"
+import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/config/menu-pill"
 import { apiFetch } from "@/lib/api"
 import type { Interview } from "@/types/company"
 

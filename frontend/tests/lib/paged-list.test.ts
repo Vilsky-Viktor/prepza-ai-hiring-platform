@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { PAGE_SIZE } from "@/constants/lists"
+import { PAGE_SIZE } from "@/config/lists"
 import { byId, mergePages, nextPagePath, pagePath } from "@/lib/paged-list"
 
 describe("pagePath", () => {

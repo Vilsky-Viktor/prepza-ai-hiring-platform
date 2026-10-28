@@ -11,7 +11,7 @@ import { serverFetch, signedIn } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { Company } from "@/types/company"
 import type { Template } from "@/types/superadmin"
-import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 
 export const generateMetadata = () => translatedTitle("templates", "title")
 

@@ -17,7 +17,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Switch } from "@/components/ui/switch"
-import { SIGN_CARD } from "@/constants/cards"
+import { SIGN_CARD } from "@/config/cards"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { MaintenanceSwitchState } from "@/types/company"
 

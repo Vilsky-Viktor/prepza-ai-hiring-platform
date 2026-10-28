@@ -5,7 +5,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { LanguagePicker } from "@/components/language-picker"
-import { LOCALES, type Locale } from "@/constants/i18n"
+import { LOCALES, type Locale } from "@/config/i18n"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { firebaseAuth } from "@/lib/firebase"
 

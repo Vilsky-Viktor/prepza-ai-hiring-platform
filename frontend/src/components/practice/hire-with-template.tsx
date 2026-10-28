@@ -5,7 +5,7 @@ import { getTranslations } from "next-intl/server"
 
 import { CornerSign } from "@/components/corner-sign"
 import { Button } from "@/components/ui/button"
-import { SIGN_CARD } from "@/constants/cards"
+import { SIGN_CARD } from "@/config/cards"
 
 /** For a hiring manager who found or just took a practice interview: this test for their own
  * candidates, in a company they choose (app/companies/templates). */

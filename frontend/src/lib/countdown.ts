@@ -1,4 +1,4 @@
-import { COUNTDOWN_WARNING_SECONDS } from "@/constants/interviews"
+import { COUNTDOWN_WARNING_SECONDS } from "@/config/interviews"
 
 /** When a question's countdown turns red: its last COUNTDOWN_WARNING_SECONDS, or its last third
  * when that's shorter, so a short question isn't red the whole time. */

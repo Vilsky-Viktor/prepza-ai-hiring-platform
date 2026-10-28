@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 
 import { FloatingInput } from "@/components/ui/floating-field"
 import { PillSelect } from "@/components/pill-select"
-import { ACTION_GROUPS } from "@/constants/action-log"
+import { ACTION_GROUPS } from "@/config/action-log"
 import { dayStart, today } from "@/lib/format"
 import type { CompanyMember } from "@/types/company"
 

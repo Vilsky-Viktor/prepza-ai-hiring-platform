@@ -6,8 +6,8 @@ import { useEffect, useState } from "react"
 import { cn } from "cn"
 
 import ErrorPage from "@/app/error"
-import { FONT_VARIABLES } from "@/constants/fonts"
-import { DEFAULT_LOCALE, LOCALE_COOKIE, type Locale } from "@/constants/i18n"
+import { FONT_VARIABLES } from "@/config/fonts"
+import { DEFAULT_LOCALE, LOCALE_COOKIE, type Locale } from "@/config/i18n"
 import { isLocale, preferredLocale, textDirection } from "@/lib/locale"
 
 import "./globals.css"

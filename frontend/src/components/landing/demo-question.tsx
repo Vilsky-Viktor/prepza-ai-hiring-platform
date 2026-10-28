@@ -16,7 +16,7 @@ import {
   DEMO_SECTION_QUESTIONS,
   DEMO_SECTIONS,
   type DemoQuestion as Question,
-} from "@/constants/candidates-demo"
+} from "@/config/candidates-demo"
 import type { CodeToken } from "@/lib/code-tokens"
 import { clock } from "@/lib/countdown"
 import { Dot } from "@/components/dot"

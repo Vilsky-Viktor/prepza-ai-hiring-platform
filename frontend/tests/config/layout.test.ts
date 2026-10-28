@@ -1,6 +1,6 @@
 import { expect, it } from "vitest"
 
-import { COMPANY_INTERVIEW_PAGE } from "@/constants/layout"
+import { COMPANY_INTERVIEW_PAGE } from "@/config/layout"
 
 it("knows a company's interview pages, which show no header or footer", () => {
   for (const path of [

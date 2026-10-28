@@ -2,7 +2,7 @@ import Link from "next/link"
 import type { ReactNode } from "react"
 
 import { Dotted } from "@/components/dot"
-import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 
 export type AmountRow = {
   key: string

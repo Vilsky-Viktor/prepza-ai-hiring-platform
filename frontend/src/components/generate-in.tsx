@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
 import { LanguagePicker } from "@/components/language-picker"
-import type { Locale } from "@/constants/i18n"
+import type { Locale } from "@/config/i18n"
 import { apiFetch } from "@/lib/api"
 import { isLocale } from "@/lib/locale"
 

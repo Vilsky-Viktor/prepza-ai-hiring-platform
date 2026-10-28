@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { AI_CHIP_MASK } from "@/constants/ai-mark"
+import { AI_CHIP_MASK } from "@/config/ai-mark"
 
 describe("AI_CHIP_MASK", () => {
   it("is a CSS url of an SVG image drawing the chip's body and pins", () => {

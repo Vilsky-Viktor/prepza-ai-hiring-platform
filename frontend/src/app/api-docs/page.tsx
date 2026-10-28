@@ -14,13 +14,9 @@ import { RichText } from "@/components/api-docs/rich-text"
 import { CopyValue } from "@/components/copy-field"
 import { DocsMenu } from "@/components/api-docs/docs-menu"
 import { JsonLd } from "@/components/json-ld"
-import { DOC_TABS } from "@/constants/api-docs"
-import { DEFAULT_LOCALE } from "@/constants/i18n"
-import {
-  MCP_APP_PAGES,
-  MCP_SUB_PAGES,
-  MCP_TOOLS_PATH,
-} from "@/constants/mcp-docs"
+import { DOC_TABS } from "@/config/api-docs"
+import { DEFAULT_LOCALE } from "@/config/i18n"
+import { MCP_APP_PAGES, MCP_SUB_PAGES, MCP_TOOLS_PATH } from "@/config/mcp-docs"
 import { mcpExamples } from "@/lib/mcp-examples"
 import {
   descriptionTabs,

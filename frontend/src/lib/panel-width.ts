@@ -1,4 +1,4 @@
-import { PANEL_WIDTH, SAVED_PANEL_WIDTH_KEY } from "@/constants/assistant"
+import { PANEL_WIDTH, SAVED_PANEL_WIDTH_KEY } from "@/config/assistant"
 
 /** The widest the panel may be in a window this wide. */
 export function maxPanelWidth(windowWidth: number) {

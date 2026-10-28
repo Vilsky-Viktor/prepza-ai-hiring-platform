@@ -1,4 +1,4 @@
-import { LANGUAGE_NAMES, type Locale } from "@/constants/i18n"
+import { LANGUAGE_NAMES, type Locale } from "@/config/i18n"
 
 // The preview fields that hold a language code, shown by the language's name.
 const LANGUAGE_FIELDS = ["generate_in", "language"]

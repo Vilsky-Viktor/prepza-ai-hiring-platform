@@ -6,7 +6,7 @@ import { useState } from "react"
 
 import { CampaignDialog } from "@/components/superadmin/campaign-dialog"
 import { Button } from "@/components/ui/button"
-import { LANGUAGE_NAMES, type Locale } from "@/constants/i18n"
+import { LANGUAGE_NAMES, type Locale } from "@/config/i18n"
 import type { Campaign } from "@/types/campaigns"
 
 /** A draft campaign's edit button, on its title's line: writes it in the language its preview

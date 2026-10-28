@@ -17,8 +17,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { MAX_COMPANY_NAME_LENGTH } from "@/constants/limits"
-import { COMPANIES_CHANGED } from "@/constants/notifications"
+import { MAX_COMPANY_NAME_LENGTH } from "@/config/limits"
+import { COMPANIES_CHANGED } from "@/config/notifications"
 import { useHumanCheck } from "@/hooks/use-human-check"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { refreshVerification } from "@/lib/auth"

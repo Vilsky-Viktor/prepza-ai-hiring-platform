@@ -11,8 +11,8 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import type { Locale } from "@/constants/i18n"
-import { HREFLANG_CODES } from "@/constants/seo"
+import type { Locale } from "@/config/i18n"
+import { HREFLANG_CODES } from "@/config/seo"
 import { englishLanguageName } from "@/lib/english-language-name"
 import { isLocale } from "@/lib/locale"
 

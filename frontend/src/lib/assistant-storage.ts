@@ -1,4 +1,4 @@
-import { SAVED_CHAT_KEY, SAVED_VISITOR_CHAT_KEY } from "@/constants/assistant"
+import { SAVED_CHAT_KEY, SAVED_VISITOR_CHAT_KEY } from "@/config/assistant"
 import type { AssistantConfig, ChatMessage } from "@/types/assistant"
 
 /** The panel as it was before a reload: open or not, the company picked (signed in), and the

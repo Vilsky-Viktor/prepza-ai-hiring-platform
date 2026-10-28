@@ -12,7 +12,7 @@ import {
   MAX_CONTACT_MESSAGE_LENGTH,
   MAX_CONTACT_NAME_LENGTH,
   MAX_EMAIL_LENGTH,
-} from "@/constants/limits"
+} from "@/config/limits"
 import { useOneAtATime } from "@/hooks/use-one-at-a-time"
 import { useHumanCheck } from "@/hooks/use-human-check"
 import { apiErrorMessage, apiFetch } from "@/lib/api"

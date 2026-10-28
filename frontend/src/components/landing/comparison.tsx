@@ -3,8 +3,8 @@ import { CalendarSyncIcon, PhoneIcon, type LucideIcon } from "lucide-react"
 import { getLocale, getTranslations } from "next-intl/server"
 
 import { LandingSection, MoreLink } from "@/components/landing/section"
-import { COMPARED } from "@/constants/comparison"
-import { BAND } from "@/constants/landing-backgrounds"
+import { COMPARED } from "@/config/comparison"
+import { BAND } from "@/config/landing-backgrounds"
 import { candidatePriceRange } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
 

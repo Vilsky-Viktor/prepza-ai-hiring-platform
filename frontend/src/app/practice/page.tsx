@@ -5,12 +5,12 @@ import {
   TemplateBrowser,
   type TemplateSearchParams,
 } from "@/components/templates/template-browser"
-import { TOKEN_COOKIE } from "@/constants/auth"
-import { DEFAULT_LOCALE } from "@/constants/i18n"
+import { TOKEN_COOKIE } from "@/config/auth"
+import { DEFAULT_LOCALE } from "@/config/i18n"
 import { localizedPath } from "@/lib/locale-path"
 import { serverFetch } from "@/lib/server-api"
 import { pageMetadata, urlLocale } from "@/lib/site"
-import { PUBLIC_TEMPLATES_PATH } from "@/constants/lists"
+import { PUBLIC_TEMPLATES_PATH } from "@/config/lists"
 import { PageKey } from "@/components/page-key"
 import type { PracticeStatus } from "@/types/round"
 

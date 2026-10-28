@@ -8,8 +8,8 @@ import {
   ServerAddress,
 } from "@/components/company/ai-apps-setup"
 import { Dotted } from "@/components/dot"
-import { MCP_PATH } from "@/constants/ai-apps"
-import { LIST_BOX } from "@/constants/lists"
+import { MCP_PATH } from "@/config/ai-apps"
+import { LIST_BOX } from "@/config/lists"
 import {
   MCP_AGENTS,
   MCP_APP_PAGES,
@@ -22,7 +22,7 @@ import {
   MCP_TOOL_LABELS,
   MCP_TOOLS_TEXT,
   MCP_UPDATES,
-} from "@/constants/mcp-docs"
+} from "@/config/mcp-docs"
 import type { McpExample, McpTool, McpTools } from "@/types/mcp"
 
 /** The developer docs' MCP tab's overview: the server and how to sign in, daily updates, the

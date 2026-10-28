@@ -1,4 +1,4 @@
-import { PREVIEW_SIZE } from "@/constants/preview-image"
+import { PREVIEW_SIZE } from "@/config/preview-image"
 import english from "../../messages/en.json"
 import { drawPreview } from "@/lib/preview-image"
 

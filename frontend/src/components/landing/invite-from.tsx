@@ -3,8 +3,8 @@ import { getTranslations } from "next-intl/server"
 import { DEMO_GROUP } from "@/components/landing/demo-panel"
 import { InviteStage } from "@/components/landing/invite-stage"
 import { LandingSection, MoreLink } from "@/components/landing/section"
-import { INVITE_SOURCES, type InviteSource } from "@/constants/invite-demo"
-import { DOT_GRID } from "@/constants/landing-backgrounds"
+import { INVITE_SOURCES, type InviteSource } from "@/config/invite-demo"
+import { DOT_GRID } from "@/config/landing-backgrounds"
 
 /** Every way candidates come into an interview, around it, each wired to it, and Slack told
  * about them; above the interview, a link to the developer docs. */

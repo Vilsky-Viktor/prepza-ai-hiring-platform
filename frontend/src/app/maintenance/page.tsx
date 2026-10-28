@@ -2,7 +2,7 @@ import { headers } from "next/headers"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { MAINTENANCE_HEADER } from "@/constants/maintenance"
+import { MAINTENANCE_HEADER } from "@/config/maintenance"
 import { translatedTitle } from "@/lib/site"
 
 export const generateMetadata = () => translatedTitle("maintenance", "title")

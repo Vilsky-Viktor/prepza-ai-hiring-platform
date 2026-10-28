@@ -5,8 +5,8 @@ import { useTranslations } from "next-intl"
 import { useRef } from "react"
 
 import { Button } from "@/components/ui/button"
-import { INVITE_EXAMPLES } from "@/constants/invites"
-import { MAX_BULK_TEXT_LENGTH } from "@/constants/limits"
+import { INVITE_EXAMPLES } from "@/config/invites"
+import { MAX_BULK_TEXT_LENGTH } from "@/config/limits"
 
 /** The invite dialog's file tab: the button that picks a CSV or TXT file, what it may hold, and
  * the example files to download. `onChoose` gets the file, or null with why when it's too large

@@ -10,7 +10,7 @@ import { DemoQuestion } from "@/components/landing/demo-question"
 import {
   DEMO_QUESTIONS,
   type DemoQuestion as Question,
-} from "@/constants/candidates-demo"
+} from "@/config/candidates-demo"
 import { type DemoStep, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
 import type { CodeToken } from "@/lib/code-tokens"
 

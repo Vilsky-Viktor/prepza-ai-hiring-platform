@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { SearchPicker } from "@/components/search-picker"
-import { LANGUAGE_NAMES, type Locale } from "@/constants/i18n"
+import { LANGUAGE_NAMES, type Locale } from "@/config/i18n"
 
 /** A dropdown of languages with a search field, each named in its own language. `compact` is
  * the small trigger that sits next to a text box's send button. */

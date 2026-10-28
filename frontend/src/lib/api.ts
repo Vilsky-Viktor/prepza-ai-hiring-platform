@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE } from "@/constants/i18n"
+import { DEFAULT_LOCALE } from "@/config/i18n"
 import { firebaseAuth } from "@/lib/firebase"
 
 /** A refused request. `fromService`: the message is the service's own (in the user's language);

@@ -12,7 +12,7 @@ import {
   TemplateBrowser,
   type TemplateSearchParams,
 } from "@/components/templates/template-browser"
-import { TOKEN_COOKIE } from "@/constants/auth"
+import { TOKEN_COOKIE } from "@/config/auth"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyHeaderProps } from "@/lib/company-header"

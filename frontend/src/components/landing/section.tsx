@@ -20,7 +20,7 @@ export function LandingSection({
   // Usually plain text; a section may end it with a link.
   text: React.ReactNode
   extra?: React.ReactNode
-  // Its background across the window, top to bottom (constants/landing-backgrounds.ts).
+  // Its background across the window, top to bottom (config/landing-backgrounds.ts).
   background?: string
   children?: React.ReactNode
 }) {

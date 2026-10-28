@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
-import { DEFAULT_LOCALE } from "@/constants/i18n"
-import { NEWS_FEED_SIZE } from "@/constants/news"
+import { DEFAULT_LOCALE } from "@/config/i18n"
+import { NEWS_FEED_SIZE } from "@/config/news"
 import { newsFeed } from "@/lib/news-feed"
 import { isLocale } from "@/lib/locale"
 import { localizedPath } from "@/lib/locale-path"

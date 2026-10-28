@@ -1,7 +1,7 @@
 import { headers } from "next/headers"
 import { getLocale } from "next-intl/server"
 
-import { COUNTRY_HEADER } from "@/constants/billing"
+import { COUNTRY_HEADER } from "@/config/billing"
 import { candidatePriceRange } from "@/lib/format"
 import { publicFetch, serverFetch, signedIn } from "@/lib/server-api"
 import type { Catalog } from "@/types/billing"

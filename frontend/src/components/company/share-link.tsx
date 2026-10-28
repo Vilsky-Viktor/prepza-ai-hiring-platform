@@ -10,7 +10,7 @@ import { toast } from "sonner"
 import { CopyField } from "@/components/copy-field"
 import { CornerSign } from "@/components/corner-sign"
 import { Switch } from "@/components/ui/switch"
-import { SIGN_CARD } from "@/constants/cards"
+import { SIGN_CARD } from "@/config/cards"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 
 /** One link for many candidates, for a job ad: on or off, and the link to copy while it's on.

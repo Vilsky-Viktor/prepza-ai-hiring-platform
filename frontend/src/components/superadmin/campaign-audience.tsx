@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 
 import { CompanyPicker } from "@/components/superadmin/company-picker"
 import { Checkbox } from "@/components/ui/checkbox"
-import { SEARCH_DELAY_MS } from "@/constants/lists"
+import { SEARCH_DELAY_MS } from "@/config/lists"
 import { apiFetch } from "@/lib/api"
 import { compactNumber } from "@/lib/format"
 import type {

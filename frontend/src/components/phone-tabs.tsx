@@ -15,7 +15,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/constants/menu-pill"
+import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/config/menu-pill"
 import { splitPhoneTabs } from "@/lib/phone-tabs"
 
 /** A page menu on phones and narrow screens: the site's tabs, the first three in the row and

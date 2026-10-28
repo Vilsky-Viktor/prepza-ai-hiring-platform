@@ -1,6 +1,6 @@
-import { FOUNDER } from "@/constants/about"
-import { OPERATOR, OPERATOR_POSTAL_ADDRESS } from "@/constants/operator"
-import { SITE_NAME } from "@/constants/seo"
+import { FOUNDER } from "@/config/about"
+import { OPERATOR, OPERATOR_POSTAL_ADDRESS } from "@/config/operator"
+import { SITE_NAME } from "@/config/seo"
 import { moneyAmount } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
 

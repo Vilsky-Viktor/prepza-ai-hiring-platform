@@ -17,7 +17,7 @@ import { bdiText } from "@/lib/bidi"
 import { formatDay } from "@/lib/format"
 import { byId } from "@/lib/paged-list"
 import type { AdminNewsPost } from "@/types/news"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 /** The news tab's posts, newest first, like the templates list: each row's paper plane makes a
  * product-update campaign of it, its pencil opens the post to edit, and its bin deletes it after

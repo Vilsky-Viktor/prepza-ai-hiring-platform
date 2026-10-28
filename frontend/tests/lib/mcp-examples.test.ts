@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { MCP_EXAMPLES } from "@/constants/mcp-docs"
+import { MCP_EXAMPLES } from "@/config/mcp-docs"
 import { mcpExamples } from "@/lib/mcp-examples"
 
 describe("the MCP tab's example agents", () => {

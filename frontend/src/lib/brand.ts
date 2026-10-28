@@ -1,4 +1,4 @@
-import { BRAND_VARIABLES } from "@/constants/brand"
+import { BRAND_VARIABLES } from "@/config/brand"
 import type { BrandColors, Theme } from "@/types/company"
 
 /** A company's colors, font and corner rounding (px: cards' and buttons', as drawn: cards are

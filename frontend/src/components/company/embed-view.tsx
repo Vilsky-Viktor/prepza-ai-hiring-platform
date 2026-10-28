@@ -9,7 +9,7 @@ import {
   EMBED_EVENTS,
   EMBED_SOURCE,
   EMBED_VERSION,
-} from "@/constants/embed"
+} from "@/config/embed"
 
 /** A candidate's interview inside a company's own site (public/embed/v1.js frames it): the
  * invitation, then the questions in place. The company's page hears when it's ready, started and

@@ -4,7 +4,7 @@ import {
   PADDLE_ORIGINS,
   TURNSTILE_ORIGINS,
   YOUTUBE_ORIGINS,
-} from "@/constants/security"
+} from "@/config/security"
 
 /**
  * The page's Content-Security-Policy. Scripts run only with this request's nonce, or when a

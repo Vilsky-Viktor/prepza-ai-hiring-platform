@@ -15,7 +15,7 @@
 @custom-variant searched (&:where([data-slot="searched-list"] *));
 
 /* The script fonts in fallback order. The CJK fonts are only on Chinese, Japanese and Korean
-   pages (constants/cjk-fonts.ts), and :lang() puts each one's own font first. */
+   pages (config/cjk-fonts.ts), and :lang() puts each one's own font first. */
 :root {
   --font-scripts:
     var(--font-arabic), var(--font-hebrew), var(--font-devanagari),
@@ -36,7 +36,7 @@
 
 @theme inline {
   /* Poppins has no Cyrillic: those letters fall back to Geist, never to a serif. Letters neither
-     has fall back to the script fonts (constants/fonts.ts); Chinese, Japanese and Korean pages
+     has fall back to the script fonts (config/fonts.ts); Chinese, Japanese and Korean pages
      put their own first (below), as the three draw shared characters differently. */
   --font-heading:
     var(--font-poppins), var(--font-geist), var(--font-scripts), sans-serif;

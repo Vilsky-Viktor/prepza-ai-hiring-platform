@@ -1,6 +1,6 @@
 /** A card's sign, large and half transparent on its start edge, centred vertically and running
  * under the start border, the same size on a card of any height (a short card also clips its top
- * and bottom). The card is `SIGN_CARD` (constants/cards.ts): it clips the sign and leaves room for
+ * and bottom). The card is `SIGN_CARD` (config/cards.ts): it clips the sign and leaves room for
  * it. */
 export function CornerSign({ children }: { children: React.ReactNode }) {
   return (

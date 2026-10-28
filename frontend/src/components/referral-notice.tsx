@@ -9,7 +9,7 @@ import {
   REFERRAL_COOKIE,
   REFERRAL_DAYS,
   REFERRAL_PARAM,
-} from "@/constants/referral"
+} from "@/config/referral"
 
 /** A referral link asks before it's kept: the cookie serves the referral, not the page the
  * visitor asked for, so it's set only once they agree (EU cookie consent). */

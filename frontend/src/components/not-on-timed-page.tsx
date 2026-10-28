@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation"
 import { type ReactNode, useSyncExternalStore } from "react"
 
-import { COMPANY_INTERVIEW_PAGE, TIMED_PAGE } from "@/constants/layout"
+import { COMPANY_INTERVIEW_PAGE, TIMED_PAGE } from "@/config/layout"
 import { subscribeTimedPageOver, timedPageOver } from "@/lib/timed-page"
 
 /** Its children everywhere but on a timed question's page while its questions run, where they

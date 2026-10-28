@@ -7,7 +7,7 @@ import { BalanceTooltip } from "@/components/billing/balance-tooltip"
 import { RefreshOnFocus } from "@/components/billing/refresh-on-focus"
 import { TopUpDialog } from "@/components/billing/top-up-dialog"
 import { useCountUp } from "@/hooks/use-count-up"
-import { WARNING_TONE } from "@/constants/tones"
+import { WARNING_TONE } from "@/config/tones"
 
 /** The company's credits for candidates, with a top-up next to them, in the page header.
  * Without `canEdit` (a viewer) only the balance shows. */

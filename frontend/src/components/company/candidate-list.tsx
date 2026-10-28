@@ -7,7 +7,7 @@ import { VirtualList } from "@/components/virtual-list"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
 import type { Candidate } from "@/types/company"
-import { LIST_BOX, LIST_EMPTY } from "@/constants/lists"
+import { LIST_BOX, LIST_EMPTY } from "@/config/lists"
 
 /** An interview's candidates, a page at a time, from `path` (the API list with its sort and
 filters); `initial` is the server's first page. `narrowed` when a search or filter is on.

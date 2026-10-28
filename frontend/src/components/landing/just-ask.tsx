@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server"
 
 import { AskAgentDemo } from "@/components/landing/ask-agent-demo"
 import { LandingSection } from "@/components/landing/section"
-import { GLOW } from "@/constants/landing-backgrounds"
+import { GLOW } from "@/config/landing-backgrounds"
 
 /** Just ask the agent: the assistant's panel answering about results and how-tos and inviting a
  * candidate once confirmed, with the three things it does beside it. */

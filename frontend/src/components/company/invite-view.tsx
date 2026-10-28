@@ -16,7 +16,7 @@ import { refreshVerification, signInAsGuest } from "@/lib/auth"
 import { useBrandColors } from "@/hooks/use-brand-colors"
 import { useLinkData } from "@/hooks/use-link-data"
 import type { InviteView as Invite, SessionSummary } from "@/types/company"
-import { START_BUTTON } from "@/constants/start-page"
+import { START_BUTTON } from "@/config/start-page"
 import { StartPledge } from "@/features/company/components/start-pledge"
 
 /** The invitation. Embedded in a company's site, `onStarted` opens the interview in place

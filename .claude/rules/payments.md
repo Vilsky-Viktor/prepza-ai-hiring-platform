@@ -8,7 +8,7 @@ paths:
   - "services/companies/src/companies/schemas/auto_top_ups.py"
   - "frontend/src/lib/paddle.ts"
   - "frontend/src/lib/top-up.ts"
-  - "frontend/src/constants/paddle.ts"
+  - "frontend/src/config/paddle.ts"
   - "frontend/src/components/billing/**"
   - "frontend/src/app/top-up/**"
   - "e2e_tests/signed-in/helpers/paddle.ts"
@@ -107,7 +107,7 @@ CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed a
 ## Checkout in the browser
 
 - Paddle.js comes from Paddle's CDN through `@paddle/paddle-js`, initialised once; the CSP allows
-  Paddle's origins (`frontend/src/constants/security.ts`). Card details are typed only into Paddle's
+  Paddle's origins (`frontend/src/config/security.ts`). Card details are typed only into Paddle's
   frames, so prepza never sees them (PCI DSS SAQ A territory; Paddle is the merchant).
 - Open checkout by `transactionId` only, with the site's theme and language; a failed payment
   shows billing's advice and can be retried on the same transaction.

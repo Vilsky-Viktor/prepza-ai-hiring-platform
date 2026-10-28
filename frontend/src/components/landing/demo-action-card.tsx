@@ -3,11 +3,8 @@ import { ArrowRightIcon, CheckIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { buttonVariants } from "@/components/ui/button"
-import {
-  ASK_AGENT_EMAIL,
-  ASK_AGENT_INTERVIEW,
-} from "@/constants/ask-agent-demo"
-import { CARD } from "@/constants/cards"
+import { ASK_AGENT_EMAIL, ASK_AGENT_INTERVIEW } from "@/config/ask-agent-demo"
+import { CARD } from "@/config/cards"
 
 export type DemoCardState = "pending" | "running" | "done"
 

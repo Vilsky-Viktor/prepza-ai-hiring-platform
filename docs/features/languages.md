@@ -21,7 +21,7 @@ The public pages have an address in every other language: home, pricing, FAQ, ab
 
 - A prefixed address carries the language: `/de/pricing`, or `/fr` for the home page.
 - English keeps the plain address.
-- The language versions are linked with hreflang, in the head and the sitemap alike. hreflang uses the codes search engines read: Filipino is `tl` and Simplified Chinese `zh-Hans`, while their addresses stay `/fil/` and `/zh/` (`HREFLANG_CODES` in `constants/seo.ts`).
+- The language versions are linked with hreflang, in the head and the sitemap alike. hreflang uses the codes search engines read: Filipino is `tl` and Simplified Chinese `zh-Hans`, while their addresses stay `/fil/` and `/zh/` (`HREFLANG_CODES` in `config/seo.ts`).
 - `proxy.ts` serves a prefixed address from its page in that language.
 - The footer's language menu, a slim grey pill right after the copyright (a languages icon, the page's language and a chevron), appears on a page with versions and lists them: each language a plain link to its version, the ones the page's hreflang names (`components/language-switch.tsx`). The names are in English and sorted (`lib/english-language-name.ts`) whatever the page's language, so a visitor who can't read the page still finds theirs.
 - The plain address is always the English page, whatever language the visitor chose before, as its canonical and hreflang say (`proxy.ts` marks it, `i18n/request.ts` follows).
@@ -32,7 +32,7 @@ Some pages exist only in certain languages: a skills test page and a free practi
 
 ## Fonts
 
-Scripts other than Latin and Cyrillic use Noto fonts (`constants/fonts.ts`), loaded only on pages that need them. The Japanese, Chinese and Korean fonts (`constants/cjk-fonts.ts`) are only on pages in those languages, so other pages' stylesheets stay small. The heading font loads Latin Extended too, for Polish, Turkish and Estonian.
+Scripts other than Latin and Cyrillic use Noto fonts (`config/fonts.ts`), loaded only on pages that need them. The Japanese, Chinese and Korean fonts (`config/cjk-fonts.ts`) are only on pages in those languages, so other pages' stylesheets stay small. The heading font loads Latin Extended too, for Polish, Turkish and Estonian.
 
 Per script (`app/scripts.css`): Arabic and Persian get no letter spacing, which breaks their joined letters; headings in Arabic, Persian, Hindi, Thai and Vietnamese get taller lines for the marks above and below; Japanese, Chinese and Korean small text is a step larger. Initials and typed-out text count characters as people see them (`lib/graphemes.ts`), never splitting an emoji or a Hindi cluster.
 

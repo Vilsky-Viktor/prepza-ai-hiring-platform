@@ -14,7 +14,7 @@ import {
   DEMO_REPORT_COMPANY,
   DEMO_REPORT_INTERVIEW,
   DEMO_REPORT_TOPICS,
-} from "@/constants/reports-demo"
+} from "@/config/reports-demo"
 import { useReportTranslate } from "@/hooks/use-report-translate"
 import { reportSummary } from "@/lib/report-summary"
 

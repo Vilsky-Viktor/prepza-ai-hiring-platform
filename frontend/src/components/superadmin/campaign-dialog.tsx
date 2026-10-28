@@ -20,12 +20,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { WarningCard } from "@/components/warning-card"
-import { LANGUAGE_NAMES, type Locale } from "@/constants/i18n"
+import { LANGUAGE_NAMES, type Locale } from "@/config/i18n"
 import {
   MAX_CAMPAIGN_BUTTON_LENGTH,
   MAX_CAMPAIGN_SUBJECT_LENGTH,
   MAX_CAMPAIGN_TEXT_LENGTH,
-} from "@/constants/limits"
+} from "@/config/limits"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { campaignForm } from "@/lib/campaigns"
 import type { Campaign, CampaignKind } from "@/types/campaigns"

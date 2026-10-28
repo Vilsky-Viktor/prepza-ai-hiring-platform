@@ -1,4 +1,4 @@
-import type { REPORT_REASONS } from "@/constants/feedback"
+import type { REPORT_REASONS } from "@/config/feedback"
 import type { components } from "@/types/api/library"
 
 type Schemas = components["schemas"]

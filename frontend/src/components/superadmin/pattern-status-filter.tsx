@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 
 import { PillSelect } from "@/components/pill-select"
-import { PATTERN_STATUSES, type PatternStatus } from "@/constants/patterns"
+import { PATTERN_STATUSES, type PatternStatus } from "@/config/patterns"
 
 /** Which patterns the tab lists, by status; the choice lives in the address (`?status=`), so the
  * server renders the first page of them. */

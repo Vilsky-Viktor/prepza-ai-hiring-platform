@@ -17,7 +17,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
-import { MAX_PROBLEM_REPORT_LENGTH } from "@/constants/limits"
+import { MAX_PROBLEM_REPORT_LENGTH } from "@/config/limits"
 
 /** "Report" on the error page: what the user was doing, sent to Sentry with the error it was
  * recorded as, so the description sits next to the page, browser and stack trace. */

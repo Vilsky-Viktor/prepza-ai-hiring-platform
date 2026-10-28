@@ -1,6 +1,6 @@
 import { afterEach, expect, it, vi } from "vitest"
 
-import { EMBED_PAGE } from "@/constants/embed"
+import { EMBED_PAGE } from "@/config/embed"
 import { embedAncestors, originOf } from "@/lib/embed"
 
 afterEach(() => {

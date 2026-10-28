@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { ChoiceOptions } from "@/components/session/choice-options"
 import { Button } from "@/components/ui/button"
 import { brandStyle } from "@/lib/brand"
-import { BRAND_FONTS } from "@/constants/brand-fonts"
+import { BRAND_FONTS } from "@/config/brand-fonts"
 import type { BrandColors, BrandStyle } from "@/types/company"
 
 /** A candidate's pages in the company's colors, font and rounding, as they're picked: a rule, a question with a

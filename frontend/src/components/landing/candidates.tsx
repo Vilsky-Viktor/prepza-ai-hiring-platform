@@ -4,7 +4,7 @@ import { CandidatesDemo } from "@/components/landing/candidates-demo"
 import { DEMO_GROUP } from "@/components/landing/demo-panel"
 import { NotesLine } from "@/components/landing/notes-line"
 import { LandingSection } from "@/components/landing/section"
-import { CANDIDATE_NOTES, DEMO_QUESTIONS } from "@/constants/candidates-demo"
+import { CANDIDATE_NOTES, DEMO_QUESTIONS } from "@/config/candidates-demo"
 import { codeTokens, editorText } from "@/lib/code-tokens"
 
 /** What candidates see: the invitation accepted and three kinds of question answered, played in

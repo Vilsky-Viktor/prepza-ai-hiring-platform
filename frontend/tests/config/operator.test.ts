@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs"
 
 import { describe, expect, it } from "vitest"
 
-import { OPERATOR, OPERATOR_POSTAL_ADDRESS } from "@/constants/operator"
+import { OPERATOR, OPERATOR_POSTAL_ADDRESS } from "@/config/operator"
 
 // The legal texts and the emails take the operator from the shared Python constants; the site's
 // footer, contact page and structured data from this mirror. They must say the same.

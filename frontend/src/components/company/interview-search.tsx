@@ -2,7 +2,7 @@ import { SearchIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
 import { InputAction } from "@/components/input-action"
-import { MAX_SEARCH_LENGTH } from "@/constants/limits"
+import { MAX_SEARCH_LENGTH } from "@/config/limits"
 
 /** Searches a company's interviews by title, like the templates and candidates searches; the
  * address keeps the search (`?q=`). */

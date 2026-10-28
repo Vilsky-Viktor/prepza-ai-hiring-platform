@@ -16,9 +16,9 @@ import { PageHelp } from "@/components/page-help"
 import { Dotted } from "@/components/dot"
 import { HeroWires } from "@/components/landing/hero-wires"
 import { StartTest } from "@/components/start-test"
-import { LOCALES } from "@/constants/i18n"
-import { READY_MINUTES } from "@/constants/landing"
-import { SITE_NAME } from "@/constants/seo"
+import { LOCALES } from "@/config/i18n"
+import { READY_MINUTES } from "@/config/landing"
+import { SITE_NAME } from "@/config/seo"
 import { publicFetch } from "@/lib/server-api"
 import { pageMetadata, siteUrl } from "@/lib/site"
 import { organizationData } from "@/lib/structured-data"
@@ -53,7 +53,7 @@ export default async function HomePage() {
 
   return (
     // As wide as the page's box (the window less a scrollbar's gutter), for the sections'
-    // window-wide backgrounds (constants/landing-backgrounds.ts).
+    // window-wide backgrounds (config/landing-backgrounds.ts).
     <div className="@container">
       <main className="mx-auto max-w-page px-6">
         <JsonLd

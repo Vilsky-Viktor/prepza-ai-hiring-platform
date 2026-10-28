@@ -9,8 +9,8 @@ import {
 import { AskAgentButton } from "@/components/landing/ask-agent-button"
 import { LanguageSwitch } from "@/components/language-switch"
 import { LocalizedLink } from "@/components/localized-link"
-import { FOOTER_COLUMNS } from "@/constants/navigation"
-import { OPERATOR } from "@/constants/operator"
+import { FOOTER_COLUMNS } from "@/config/navigation"
+import { OPERATOR } from "@/config/operator"
 
 // A social icon: the text colour (white in dark) and a little larger on hover.
 const SOCIAL =

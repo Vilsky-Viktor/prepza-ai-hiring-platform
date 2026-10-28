@@ -4,7 +4,7 @@ import { useFormatter, useTranslations } from "next-intl"
 
 import { Dot, Dotted } from "@/components/dot"
 import { VirtualList } from "@/components/virtual-list"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 import { useLocalTime } from "@/hooks/use-local-time"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"

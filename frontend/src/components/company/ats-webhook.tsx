@@ -7,7 +7,7 @@ import { toast } from "sonner"
 import { Chips } from "@/components/company/ats-steps"
 import { CopyValue } from "@/components/copy-field"
 import { InputAction } from "@/components/input-action"
-import { WEBHOOKS, type AtsProvider } from "@/constants/ats"
+import { WEBHOOKS, type AtsProvider } from "@/config/ats"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 
 type Webhook = { url: string; secret: string }

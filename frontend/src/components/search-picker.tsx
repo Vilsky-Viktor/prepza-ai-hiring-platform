@@ -6,8 +6,8 @@ import { CheckIcon, ChevronDownIcon, SearchIcon } from "lucide-react"
 
 import { useId } from "react"
 
-import { PILL_FILL } from "@/constants/floating-label"
-import { MAX_PICKER_SEARCH_LENGTH } from "@/constants/limits"
+import { PILL_FILL } from "@/config/floating-label"
+import { MAX_PICKER_SEARCH_LENGTH } from "@/config/limits"
 import { languageOf } from "@/lib/locale"
 
 /** A dropdown of choices with a search field above them, matching what each is called

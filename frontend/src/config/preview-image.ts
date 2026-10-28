@@ -1,4 +1,4 @@
-import type { Locale } from "@/constants/i18n"
+import type { Locale } from "@/config/i18n"
 
 // The link preview images (lib/preview-image.tsx): the size link previews expect, and the site's
 // dark theme (globals.css .dark): background, logo, muted text for the title and the blue dot.

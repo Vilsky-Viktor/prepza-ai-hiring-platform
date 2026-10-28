@@ -11,7 +11,7 @@ import {
   DEMO_REPORT_CANDIDATES,
   DEMO_REPORT_INTERVIEW,
   type DemoCandidate,
-} from "@/constants/reports-demo"
+} from "@/config/reports-demo"
 import { formatPercent } from "@/lib/format"
 import { gradeTone } from "@/lib/grade-tone"
 

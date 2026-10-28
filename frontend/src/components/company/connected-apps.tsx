@@ -9,11 +9,11 @@ import { useLocalTime } from "@/hooks/use-local-time"
 import { ConfirmDialog } from "@/components/confirm-dialog"
 import { Button } from "@/components/ui/button"
 import { Dot } from "@/components/dot"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { AiConnection } from "@/types/connections"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 /** The AI apps the user connected to their account, in one list like the API keys: each with
  * its name, where it runs, when it was connected and last used, and Disconnect. */

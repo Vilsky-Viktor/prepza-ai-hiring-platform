@@ -7,7 +7,7 @@ import { useId, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { MAX_TOPIC_NAME_LENGTH } from "@/constants/limits"
+import { MAX_TOPIC_NAME_LENGTH } from "@/config/limits"
 import type { DraftTopic } from "@/types/generation"
 import { bdiText } from "@/lib/bidi"
 

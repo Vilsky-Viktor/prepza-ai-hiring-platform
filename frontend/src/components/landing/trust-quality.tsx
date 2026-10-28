@@ -9,8 +9,8 @@ import {
   QUALITY_STEPS,
   type QualityStep,
   TRUST_CARDS,
-} from "@/constants/trust-quality-demo"
-import { TEXT_LINK } from "@/constants/links"
+} from "@/config/trust-quality-demo"
+import { TEXT_LINK } from "@/config/links"
 
 /** Trust, quality and compliance: the loop that keeps questions good, and what keeps the
  * hiring fair and lawful under it, with links to the documents. */

@@ -1,4 +1,4 @@
-import { POLL_BACKOFF, POLL_MAX_MS, POLL_MIN_MS } from "@/constants/generation"
+import { POLL_BACKOFF, POLL_MAX_MS, POLL_MIN_MS } from "@/config/generation"
 
 /** The wait before the next poll: the shortest after a change, longer after each poll that
  * brought none, up to the longest. */

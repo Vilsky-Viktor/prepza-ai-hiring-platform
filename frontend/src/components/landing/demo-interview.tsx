@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 import { InterviewEstimate } from "@/components/company/interview-estimate"
 import { InterviewHeader } from "@/components/landing/interview-header"
 import { buttonVariants } from "@/components/ui/button"
-import { DEMO_INTERVIEW } from "@/constants/create-demo"
+import { DEMO_INTERVIEW } from "@/config/create-demo"
 
 /** A new interview's page (app/companies/[companyId]/interviews/[id]), small: its title, its
  * `status` and size, what it adds up to for each candidate, its topics with how many questions

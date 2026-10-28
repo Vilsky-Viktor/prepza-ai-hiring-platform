@@ -4,7 +4,7 @@ import { UsersIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { Avatar, AvatarFallback, AvatarGroup } from "@/components/ui/avatar"
-import { DEMO_INVITE_CANDIDATES } from "@/constants/invite-demo"
+import { DEMO_INVITE_CANDIDATES } from "@/config/invite-demo"
 
 const { from, initials, shown } = DEMO_INVITE_CANDIDATES
 

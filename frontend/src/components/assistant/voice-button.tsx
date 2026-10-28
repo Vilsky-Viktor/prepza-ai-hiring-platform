@@ -6,8 +6,8 @@ import { useTranslations } from "next-intl"
 import { useEffect, useEffectEvent, useRef, useState } from "react"
 
 import { Button } from "@/components/ui/button"
-import { CANCEL_DISTANCE_PX } from "@/constants/assistant"
-import { ROUND_ICON_BUTTON } from "@/constants/buttons"
+import { CANCEL_DISTANCE_PX } from "@/config/assistant"
+import { ROUND_ICON_BUTTON } from "@/config/buttons"
 import { apiErrorMessage } from "@/lib/api"
 import { transcribe } from "@/lib/assistant"
 import {

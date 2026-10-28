@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
-import { PUBLIC_REVALIDATE_SECONDS } from "@/constants/api"
+import { PUBLIC_REVALIDATE_SECONDS } from "@/config/api"
 import { optionalFetch, publicFetch, serverFetch } from "@/lib/server-api"
 
 // A signed-in visitor: the token cookie is there.

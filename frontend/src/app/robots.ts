@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-import { UNCRAWLED_PATHS } from "@/constants/seo"
+import { UNCRAWLED_PATHS } from "@/config/seo"
 import { siteUrl } from "@/lib/site"
 
 export default function robots(): MetadataRoute.Robots {

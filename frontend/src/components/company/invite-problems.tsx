@@ -3,7 +3,7 @@
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
-import { SHOWN_LINE_PROBLEMS } from "@/constants/invites"
+import { SHOWN_LINE_PROBLEMS } from "@/config/invites"
 import type { BulkInviteResult } from "@/types/company"
 import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"

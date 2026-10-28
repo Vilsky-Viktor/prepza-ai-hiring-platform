@@ -1,4 +1,4 @@
-import type { PAGE_HELP_KEYS } from "@/constants/page-help"
+import type { PAGE_HELP_KEYS } from "@/config/page-help"
 
 // A page with a guide: every page where the assistant's panel opens.
 export type PageHelpKey = (typeof PAGE_HELP_KEYS)[number]

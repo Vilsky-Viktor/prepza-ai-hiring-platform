@@ -5,7 +5,7 @@ import { useTheme } from "next-themes"
 import { useEffect } from "react"
 
 import { brandStyle, pickTheme } from "@/lib/brand"
-import { BRAND_FONTS } from "@/constants/brand-fonts"
+import { BRAND_FONTS } from "@/config/brand-fonts"
 import type { BrandColorSets, BrandStyle, Theme } from "@/types/company"
 
 /** A company's colors, font and corner rounding over the whole page while it's open (a candidate's invitation, questions

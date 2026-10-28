@@ -15,8 +15,8 @@ import {
   FLOAT_LABEL,
   FLOAT_LABEL_REST,
   FLOAT_LABEL_UP,
-} from "@/constants/floating-label"
-import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/constants/menu-pill"
+} from "@/config/floating-label"
+import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/config/menu-pill"
 import { languageOf } from "@/lib/locale"
 
 /** The site's select pill (as components/pill-select.tsx looks) opening the site's menu, not the

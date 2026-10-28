@@ -9,11 +9,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { JsonLd } from "@/components/json-ld"
-import { FOUNDER } from "@/constants/about"
+import { FOUNDER } from "@/config/about"
 import { pageMetadata, siteUrl } from "@/lib/site"
 import { personData } from "@/lib/structured-data"
 import { PageKey } from "@/components/page-key"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 export async function generateMetadata() {
   const t = await getTranslations("about")

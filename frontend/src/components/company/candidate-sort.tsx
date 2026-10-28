@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { SortMenu } from "@/components/sort-menu"
-import { CANDIDATE_SORTS, type CandidateSort } from "@/constants/interviews"
+import { CANDIDATE_SORTS, type CandidateSort } from "@/config/interviews"
 
 /** Chooses how the candidates are listed (components/sort-menu.tsx). */
 export function CandidateSortMenu({ current }: { current: CandidateSort }) {

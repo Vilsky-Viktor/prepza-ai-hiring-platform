@@ -9,7 +9,7 @@ import { cn } from "cn"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import type { ReactNode, RefObject } from "react"
 
-import { INITIAL_VIEWPORT, LOAD_AHEAD, OVERSCAN } from "@/constants/lists"
+import { INITIAL_VIEWPORT, LOAD_AHEAD, OVERSCAN } from "@/config/lists"
 
 type VirtualListProps<T> = {
   items: T[]

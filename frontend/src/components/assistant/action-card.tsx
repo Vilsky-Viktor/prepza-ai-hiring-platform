@@ -11,7 +11,7 @@ import { linkPage } from "@/lib/assistant"
 import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
 import type { AssistantBlock } from "@/types/assistant"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 export type CardActions = {
   onConfirm: (actionId: string) => void

@@ -1,7 +1,7 @@
 import {
   MAINTENANCE_CACHE_MS,
   MAINTENANCE_TIMEOUT_MS,
-} from "@/constants/maintenance"
+} from "@/config/maintenance"
 
 export type MaintenanceState = "off" | "open" | "closed"
 

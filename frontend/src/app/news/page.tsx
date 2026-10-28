@@ -8,9 +8,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { DEFAULT_LOCALE } from "@/constants/i18n"
-import { PAGE_SIZE } from "@/constants/lists"
-import { NEWS_FEED } from "@/constants/seo"
+import { DEFAULT_LOCALE } from "@/config/i18n"
+import { PAGE_SIZE } from "@/config/lists"
+import { NEWS_FEED } from "@/config/seo"
 import { localizedPath } from "@/lib/locale-path"
 import { newsPosts } from "@/lib/news-posts"
 import { pageMetadata, siteUrl, urlLocale } from "@/lib/site"

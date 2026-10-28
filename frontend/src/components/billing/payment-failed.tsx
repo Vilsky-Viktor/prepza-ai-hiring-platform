@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 
 import { OutcomeDialog } from "@/components/billing/outcome-dialog"
 import { Button } from "@/components/ui/button"
-import { PAYMENT_FAILURE_TIMEOUT_MS } from "@/constants/paddle"
+import { PAYMENT_FAILURE_TIMEOUT_MS } from "@/config/paddle"
 import { apiFetch } from "@/lib/api"
 import { hasMessage } from "@/lib/messages"
 import {

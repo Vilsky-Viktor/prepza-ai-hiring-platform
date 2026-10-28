@@ -5,7 +5,7 @@ import {
   INTEGRATION_LINK,
   INTEGRATION_LOGO,
   INTEGRATION_ROW,
-} from "@/constants/lists"
+} from "@/config/lists"
 
 /** One row of the integrations tab, laid out like the companies list: the logo tile the row's
  * full height, the name with its status tag, a line of text; the row opens `href`, the buttons

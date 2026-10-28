@@ -5,7 +5,7 @@ import { useEffect, useId, useRef } from "react"
 
 import { Comet } from "@/components/landing/comet"
 import { useStill } from "@/hooks/use-still"
-import { PULSE_SECONDS, SPARK_SPEED } from "@/constants/landing"
+import { PULSE_SECONDS, SPARK_SPEED } from "@/config/landing"
 
 /** One wire of the landing page, for an SVG in the focused border's colour (`text-ring`): the
  * curve `d`, in pixels, and a traveller running along it that fades in at its start and out at

@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
-import { FEEDBACK_HOVER_CLASS } from "@/constants/feedback"
+import { FEEDBACK_HOVER_CLASS } from "@/config/feedback"
 import { apiFetch } from "@/lib/api"
 
 type Thumb = 1 | -1

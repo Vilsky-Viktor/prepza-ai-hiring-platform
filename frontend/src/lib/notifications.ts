@@ -1,4 +1,4 @@
-import { MAX_RECONNECT_MS, RECONNECT_MS } from "@/constants/notifications"
+import { MAX_RECONNECT_MS, RECONNECT_MS } from "@/config/notifications"
 import { authHeaders } from "@/lib/api"
 
 /** Keeps the bell's live stream open until `signal` aborts, calling onNew whenever a

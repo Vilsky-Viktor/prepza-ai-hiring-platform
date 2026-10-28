@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next"
 
-import { PUBLIC_TIMEOUT_MS } from "@/constants/api"
-import { CATEGORY_PAGES } from "@/constants/content"
-import { DEFAULT_LOCALE, LOCALES } from "@/constants/i18n"
-import { LOCALIZED_PATHS, PUBLIC_PATHS } from "@/constants/seo"
+import { PUBLIC_TIMEOUT_MS } from "@/config/api"
+import { CATEGORY_PAGES } from "@/config/content"
+import { DEFAULT_LOCALE, LOCALES } from "@/config/i18n"
+import { LOCALIZED_PATHS, PUBLIC_PATHS } from "@/config/seo"
 import { contentLanguages, contentPage, contentPages } from "@/lib/content"
 import {
   languageAlternates,

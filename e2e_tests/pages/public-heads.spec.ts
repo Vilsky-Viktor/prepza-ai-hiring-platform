@@ -6,7 +6,7 @@ import { REQUEST_URL } from "./helpers/env";
 // get it: its title and description, a canonical equal to its own address, hreflang sets that
 // agree between the language versions, and a complete link preview. Wording is never checked.
 
-// Pages with an address in every language (constants/seo.ts LOCALIZED_PATHS), and one article of
+// Pages with an address in every language (config/seo.ts LOCALIZED_PATHS), and one article of
 // each kind.
 const LOCALIZED = [
   "/",

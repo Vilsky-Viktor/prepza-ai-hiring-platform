@@ -2,7 +2,7 @@ import { LinkView } from "@/components/company/link-view"
 import { PausedNotice } from "@/components/paused-notice"
 import { isPaused } from "@/lib/pause"
 import { translatedTitle } from "@/lib/site"
-import { START_PAGE } from "@/constants/start-page"
+import { START_PAGE } from "@/config/start-page"
 
 export const generateMetadata = () => translatedTitle("invite", "title")
 

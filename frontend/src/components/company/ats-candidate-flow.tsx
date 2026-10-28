@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { InstructionsDialog } from "@/components/instructions-dialog"
-import type { AtsProvider } from "@/constants/ats"
+import type { AtsProvider } from "@/config/ats"
 
 const STEPS = [
   "flowStage",

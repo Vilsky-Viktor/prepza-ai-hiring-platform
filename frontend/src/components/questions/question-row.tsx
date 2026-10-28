@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/tooltip"
 import { apiFetch } from "@/lib/api"
 import { languageOf } from "@/lib/locale"
-import { ROUND_ICON_BUTTON } from "@/constants/buttons"
+import { ROUND_ICON_BUTTON } from "@/config/buttons"
 import type { QuestionStats } from "@/types/feedback"
 
 export function QuestionRow({

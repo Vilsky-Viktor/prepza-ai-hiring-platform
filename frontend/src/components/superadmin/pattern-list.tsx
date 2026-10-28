@@ -13,7 +13,7 @@ import { Dot } from "@/components/dot"
 import { usePagedList } from "@/hooks/use-paged-list"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { QualityPattern } from "@/types/generation"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 function rowKey(row: QualityPattern) {
   return row.id

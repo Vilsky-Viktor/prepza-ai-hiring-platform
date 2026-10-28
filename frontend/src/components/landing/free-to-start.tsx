@@ -7,7 +7,7 @@ import { Receipt } from "@/components/landing/receipt"
 import { LandingSection, MoreLink } from "@/components/landing/section"
 import { StartButton } from "@/components/landing/start-button"
 import { Badge } from "@/components/ui/badge"
-import { DEMO_INVITED, FREE_LINES, NOTES } from "@/constants/free-to-start-demo"
+import { DEMO_INVITED, FREE_LINES, NOTES } from "@/config/free-to-start-demo"
 import { formatPrice } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
 

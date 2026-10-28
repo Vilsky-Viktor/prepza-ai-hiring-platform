@@ -1,4 +1,4 @@
-import { ACTION_FILTERS } from "@/constants/action-log"
+import { ACTION_FILTERS } from "@/config/action-log"
 
 /** The action log's filters the address gives (member, group of actions, from and to), for
  * the API; empty ones are left out. */

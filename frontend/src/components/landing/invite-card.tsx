@@ -10,9 +10,9 @@ import {
 
 import { KeepAcronyms } from "@/components/keep-acronyms"
 import { McpIcon } from "@/components/mcp-icon"
-import { ATS_PROVIDERS } from "@/constants/ats"
-import { PHONE_ATS_LOGOS, type InviteSource } from "@/constants/invite-demo"
-import { SLACK } from "@/constants/slack"
+import { ATS_PROVIDERS } from "@/config/ats"
+import { PHONE_ATS_LOGOS, type InviteSource } from "@/config/invite-demo"
+import { SLACK } from "@/config/slack"
 
 const ICONS = {
   email: MailIcon,

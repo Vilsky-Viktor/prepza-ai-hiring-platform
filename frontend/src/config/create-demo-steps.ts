@@ -7,7 +7,7 @@ import {
   DEMO_INVITE_EMAIL,
   DEMO_NEW_TOPIC,
   DEMO_TOPICS,
-} from "@/constants/create-demo"
+} from "@/config/create-demo"
 import type { DemoStep } from "@/hooks/use-demo-steps"
 
 // The topics the questions are written for: the adjusted ones.

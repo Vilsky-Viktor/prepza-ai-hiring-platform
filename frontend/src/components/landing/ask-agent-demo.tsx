@@ -19,7 +19,7 @@ import {
   ASK_AGENT_RESULTS,
   type AskAgentCard,
   type AskAgentQuestion,
-} from "@/constants/ask-agent-demo"
+} from "@/config/ask-agent-demo"
 import { type DemoStep, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
 import { bdi, bdiText } from "@/lib/bidi"
 import { formatPercent } from "@/lib/format"

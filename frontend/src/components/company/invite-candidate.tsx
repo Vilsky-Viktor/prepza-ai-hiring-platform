@@ -22,15 +22,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
-import {
-  INVITE_TAB_KEY,
-  INVITE_TABS,
-  type InviteTab,
-} from "@/constants/invites"
+import { INVITE_TAB_KEY, INVITE_TABS, type InviteTab } from "@/config/invites"
 import {
   MAX_BULK_TEXT_LENGTH,
   MAX_CANDIDATE_NAME_LENGTH,
-} from "@/constants/limits"
+} from "@/config/limits"
 import { ApiError, apiFetch } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { BulkInviteResult } from "@/types/company"

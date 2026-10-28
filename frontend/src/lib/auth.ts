@@ -7,7 +7,7 @@ import {
   POPUP_CLOSED_CODES,
   TOKEN_COOKIE,
   TOKEN_COOKIE_MAX_AGE,
-} from "@/constants/auth"
+} from "@/config/auth"
 import { firebaseAuth } from "@/lib/firebase"
 import type { SignInProvider, SignInResult } from "@/types/sign-in"
 

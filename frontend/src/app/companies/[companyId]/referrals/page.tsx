@@ -8,14 +8,14 @@ import { ReferralLink } from "@/components/billing/referral-link"
 import { CompanyHeader } from "@/components/company/company-header"
 import { CornerSign } from "@/components/corner-sign"
 import { SignInPrompt } from "@/components/sign-in-prompt"
-import { TOKEN_COOKIE } from "@/constants/auth"
+import { TOKEN_COOKIE } from "@/config/auth"
 import { LocalDate } from "@/components/local-date"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyHeaderProps } from "@/lib/company-header"
 import type { Company, CompanyReferral } from "@/types/company"
-import { SIGN_CARD } from "@/constants/cards"
-import { LIST_BOX } from "@/constants/lists"
+import { SIGN_CARD } from "@/config/cards"
+import { LIST_BOX } from "@/config/lists"
 
 export const generateMetadata = () => translatedTitle("company", "referrals")
 

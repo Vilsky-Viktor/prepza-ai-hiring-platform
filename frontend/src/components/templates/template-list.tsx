@@ -18,7 +18,7 @@ import { hasMessage } from "@/lib/messages"
 import { localizedPath } from "@/lib/locale-path"
 import type { PracticeStatus } from "@/types/round"
 import type { TemplateSummary } from "@/types/superadmin"
-import { LIST_BOX, LIST_EMPTY, ROW_HOVER } from "@/constants/lists"
+import { LIST_BOX, LIST_EMPTY, ROW_HOVER } from "@/config/lists"
 
 /** The templates at `path`, newest first, a page at a time; `initial` is the server's first
  * page, and `empty` shows when there are none. A row opens the template under `openBase` (by its

@@ -3,13 +3,13 @@ import { join } from "node:path"
 
 import { ImageResponse } from "next/og"
 
-import type { Locale } from "@/constants/i18n"
+import type { Locale } from "@/config/i18n"
 import {
   PREVIEW_COLORS,
   PREVIEW_FALLBACK_FONT,
   PREVIEW_SCRIPT_FONTS,
   PREVIEW_SIZE,
-} from "@/constants/preview-image"
+} from "@/config/preview-image"
 
 // A title's end that takes no blue dot, as with the site's question titles.
 const ENDS_IN_PUNCTUATION = /[.?!。？！]$/

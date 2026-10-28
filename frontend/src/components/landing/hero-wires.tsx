@@ -8,7 +8,7 @@ import {
   OUT_SPEED,
   WIRE_GAP,
   WIRE_UNIT,
-} from "@/constants/landing"
+} from "@/config/landing"
 import { useElementSize } from "@/hooks/use-element-size"
 
 /** Wires around the job description box, in the focused box's border colour: on the left, from

@@ -13,7 +13,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { MAX_TITLE_LENGTH } from "@/constants/limits"
+import { MAX_TITLE_LENGTH } from "@/config/limits"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 
 const titleClass =

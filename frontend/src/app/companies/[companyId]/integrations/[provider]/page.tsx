@@ -11,8 +11,8 @@ import {
 import { AtsJobLinks } from "@/components/company/ats-job-links"
 import { PageHeader } from "@/components/page-header"
 import { SignInPrompt } from "@/components/sign-in-prompt"
-import { ATS_PROVIDERS } from "@/constants/ats"
-import { TOKEN_COOKIE } from "@/constants/auth"
+import { ATS_PROVIDERS } from "@/config/ats"
+import { TOKEN_COOKIE } from "@/config/auth"
 import { serverFetch } from "@/lib/server-api"
 import type {
   AtsIntegrations,
@@ -20,7 +20,7 @@ import type {
   Company,
   Interview,
 } from "@/types/company"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 type Params = Promise<{ companyId: string; provider: string }>
 

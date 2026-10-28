@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
 
-import { INVITE_EXAMPLE_LINES } from "@/constants/invites"
-import { CARD } from "@/constants/cards"
+import { INVITE_EXAMPLE_LINES } from "@/config/invites"
+import { CARD } from "@/config/cards"
 
 /** How a list is written, in the gray info card: the hint (with the most a list may hold, when
  * known), then example lines. */

@@ -1,4 +1,4 @@
-import { MIN_RECORDING_MS, RECORDING_TYPES } from "@/constants/assistant"
+import { MIN_RECORDING_MS, RECORDING_TYPES } from "@/config/assistant"
 
 // The voice button's steps: idle, recording while held, then transcribing what was recorded.
 export type VoicePhase = "idle" | "recording" | "transcribing"

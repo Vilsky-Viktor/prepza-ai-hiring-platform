@@ -10,7 +10,7 @@ import { DialogTrigger } from "@/components/ui/dialog"
 import { formatDay, formatPrice } from "@/lib/format"
 import { timeTag } from "@/lib/time-tag"
 import type { AutoTopUp } from "@/types/billing"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 type State = "off" | "on" | "waiting" | "paused"
 

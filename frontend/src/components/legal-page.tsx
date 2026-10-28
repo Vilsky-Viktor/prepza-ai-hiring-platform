@@ -6,14 +6,14 @@ import { getLocale, getTranslations } from "next-intl/server"
 import { BackLink } from "@/components/back-link"
 import { EmailText } from "@/components/email-text"
 import { PageKey } from "@/components/page-key"
-import { DEFAULT_LOCALE } from "@/constants/i18n"
+import { DEFAULT_LOCALE } from "@/config/i18n"
 import { formatDay } from "@/lib/format"
 import { textDirection } from "@/lib/locale"
 import { publicFetch } from "@/lib/server-api"
 import { timeTag } from "@/lib/time-tag"
 import type { LegalDocument } from "@/types/help"
-import { TEXT_LINK } from "@/constants/links"
-import { CARD } from "@/constants/cards"
+import { TEXT_LINK } from "@/config/links"
+import { CARD } from "@/config/cards"
 
 // A version's name: the day it applies from.
 const VERSION = /^\d{4}-\d{2}-\d{2}$/

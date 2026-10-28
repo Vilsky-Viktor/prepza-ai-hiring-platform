@@ -11,7 +11,7 @@ import {
   typeOf,
 } from "@/lib/openapi"
 import type { OpenApi, Operation as OperationSpec } from "@/types/openapi"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 /** One route (or web hook): its method and path, what it does, what it takes, what it returns
  * and the errors it may answer with. */

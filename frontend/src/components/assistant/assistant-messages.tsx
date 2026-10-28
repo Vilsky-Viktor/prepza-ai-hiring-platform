@@ -9,7 +9,7 @@ import { AnswerVote } from "@/components/assistant/answer-vote"
 import { ChatBubble, ThinkingDots } from "@/components/chat-bubble"
 import { KeepAcronyms } from "@/components/keep-acronyms"
 import { Button } from "@/components/ui/button"
-import { WELCOME_QUESTIONS } from "@/constants/assistant"
+import { WELCOME_QUESTIONS } from "@/config/assistant"
 import { hasMessage } from "@/lib/messages"
 import type { ChatMessage, Vote } from "@/types/assistant"
 

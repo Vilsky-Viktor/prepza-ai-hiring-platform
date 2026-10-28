@@ -2,7 +2,7 @@ import { statSync } from "node:fs"
 
 import { describe, expect, it } from "vitest"
 
-import { ATS_PROVIDERS } from "@/constants/ats"
+import { ATS_PROVIDERS } from "@/config/ats"
 
 // The ATS logos show at most 48 px wide (24 px on the home page): small files, never photos.
 const MAX_BYTES = 20_000

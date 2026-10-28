@@ -13,8 +13,8 @@ import { VirtualList } from "@/components/virtual-list"
 import { languageOf } from "@/lib/locale"
 import { verdict } from "@/lib/rounds"
 import type { ReviewItem } from "@/types/round"
-import { LIST_BOX } from "@/constants/lists"
-import { WARNING_TONE } from "@/constants/tones"
+import { LIST_BOX } from "@/config/lists"
+import { WARNING_TONE } from "@/config/tones"
 import { Dot } from "@/components/dot"
 
 /** A section's questions as the candidate answered them; the questions and options in the

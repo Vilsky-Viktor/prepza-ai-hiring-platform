@@ -9,7 +9,7 @@ import { pageMetadata, siteUrl } from "@/lib/site"
 import { softwareData } from "@/lib/structured-data"
 import { visitorCatalog } from "@/lib/catalog"
 import { PageKey } from "@/components/page-key"
-import { ROW_HOVER } from "@/constants/lists"
+import { ROW_HOVER } from "@/config/lists"
 
 export async function generateMetadata() {
   const t = await getTranslations("pricing")

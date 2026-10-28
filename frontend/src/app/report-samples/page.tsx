@@ -3,11 +3,11 @@ import { notFound } from "next/navigation"
 import { CandidateReport } from "@/components/company/candidate-report"
 import { InterviewReport } from "@/components/company/interview-report"
 import { ReportActions } from "@/components/company/report-actions"
-import { INTERVIEW_REPORT_ID, REPORT_ID } from "@/constants/report"
+import { INTERVIEW_REPORT_ID, REPORT_ID } from "@/config/report"
 import {
   CANDIDATE_SAMPLE,
   INTERVIEW_SAMPLE,
-} from "@/constants/report-samples-fixture"
+} from "@/config/report-samples-fixture"
 
 /** The landing's sample reports, made from made-up data by the same reports and download
  * buttons as a company's pages: scripts/report-samples.sh clicks both. Development only. */

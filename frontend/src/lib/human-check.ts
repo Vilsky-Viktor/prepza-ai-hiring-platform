@@ -1,4 +1,4 @@
-import { HUMAN_CHECK_HEADER, TURNSTILE_SCRIPT } from "@/constants/security"
+import { HUMAN_CHECK_HEADER, TURNSTILE_SCRIPT } from "@/config/security"
 
 // Cloudflare Turnstile's own interface, as much of it as this uses.
 type Turnstile = {

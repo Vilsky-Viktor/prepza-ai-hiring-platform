@@ -19,8 +19,8 @@ import {
   MAX_BADGE_COUNT,
   NOTIFICATION_DEFAULTS,
   NOTIFICATION_LOOKS,
-} from "@/constants/notifications"
-import { ROUND_ICON_BUTTON } from "@/constants/buttons"
+} from "@/config/notifications"
+import { ROUND_ICON_BUTTON } from "@/config/buttons"
 import { apiFetch } from "@/lib/api"
 import { bdi, bdiText } from "@/lib/bidi"
 import { formatDay, formatPercent, formatPrice } from "@/lib/format"

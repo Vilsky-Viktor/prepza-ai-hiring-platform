@@ -1,5 +1,5 @@
 import { ProtectedEmail } from "@/components/protected-email"
-import { EMAIL_PATTERN } from "@/constants/contact"
+import { EMAIL_PATTERN } from "@/config/contact"
 
 /** Text whose email addresses reach the page only through ProtectedEmail. A server component, so
 the full addresses stay out of what's sent to the browser. */

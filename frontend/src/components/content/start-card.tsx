@@ -6,7 +6,7 @@ import { CornerSign } from "@/components/corner-sign"
 import { LocalizedLink } from "@/components/localized-link"
 import { Button } from "@/components/ui/button"
 import { priceValues, visitorCatalog } from "@/lib/catalog"
-import { SIGN_CARD } from "@/constants/cards"
+import { SIGN_CARD } from "@/config/cards"
 
 /** The way from a content page to a first test: the home page, where a job description becomes
  * an interview, signed in or not, with the price per candidate in the visitor's currency. Built

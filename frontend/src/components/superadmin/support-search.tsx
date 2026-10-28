@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 import { InputAction } from "@/components/input-action"
 import { SearchedList } from "@/components/searched-list"
-import { LIST_BOX, LIST_EMPTY, ROW_HOVER } from "@/constants/lists"
+import { LIST_BOX, LIST_EMPTY, ROW_HOVER } from "@/config/lists"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { SupportResult } from "@/types/superadmin"

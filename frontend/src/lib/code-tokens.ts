@@ -1,4 +1,4 @@
-import { CODE_THEMES } from "@/constants/code"
+import { CODE_THEMES } from "@/config/code"
 import { splitCodeBlocks } from "@/lib/question-text"
 
 export type CodeToken = { content: string; style?: Record<string, string> }

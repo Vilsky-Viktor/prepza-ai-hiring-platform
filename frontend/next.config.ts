@@ -2,9 +2,9 @@ import { withSentryConfig } from "@sentry/nextjs/config"
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 
-import { EMBED_SCRIPT_HEADERS } from "./src/constants/embed"
-import { REPORT_SAMPLES_HEADERS } from "./src/constants/report-samples"
-import { DOCUMENT_HEADERS, PICTURE_HEADERS } from "./src/constants/static-files"
+import { EMBED_SCRIPT_HEADERS } from "./src/config/embed"
+import { REPORT_SAMPLES_HEADERS } from "./src/config/report-samples"
+import { DOCUMENT_HEADERS, PICTURE_HEADERS } from "./src/config/static-files"
 
 const nextConfig: NextConfig = {
   output: "standalone",

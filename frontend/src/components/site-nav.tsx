@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 
 import { useAuth } from "@/components/auth-provider"
 import { LocalizedLink, useUrlLocale } from "@/components/localized-link"
-import { NAV_LINKS } from "@/constants/navigation"
+import { NAV_LINKS } from "@/config/navigation"
 import { localizeHref } from "@/lib/locale-path"
 
 export function SiteNav() {

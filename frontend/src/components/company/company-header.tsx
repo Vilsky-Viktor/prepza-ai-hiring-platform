@@ -13,8 +13,8 @@ import { WarningCard } from "@/components/warning-card"
 import { VerifyCompany } from "@/components/company/verify-company"
 import { EditableTitle } from "@/components/editable-title"
 import { EntityId } from "@/components/entity-id"
-import { MAX_COMPANY_NAME_LENGTH } from "@/constants/limits"
-import { COMPANY_TAB_HELP } from "@/constants/page-help"
+import { MAX_COMPANY_NAME_LENGTH } from "@/config/limits"
+import { COMPANY_TAB_HELP } from "@/config/page-help"
 import type { VerificationStatus } from "@/types/company"
 
 /** A company page: the way back, its logo, name and action, and its menu beside the page's

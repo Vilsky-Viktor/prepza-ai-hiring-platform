@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 
 import { HistoryRow } from "@/components/billing/history-row"
 import { VirtualList } from "@/components/virtual-list"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 import { usePagedList } from "@/hooks/use-paged-list"
 import type { CandidateLinks } from "@/lib/candidate-links"
 import type { CreditHistoryEntry } from "@/types/company"

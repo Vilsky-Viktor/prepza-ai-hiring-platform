@@ -2,7 +2,7 @@
 
 import { type RefObject, useEffect } from "react"
 
-import { PHONE_QUERY } from "@/constants/assistant"
+import { PHONE_QUERY } from "@/config/assistant"
 
 /** While the panel (`root`, mounted only while it's open) is there, the wheel over it scrolls
  * only its messages (`scroller`, with overscroll-behavior: contain), never the page behind, even

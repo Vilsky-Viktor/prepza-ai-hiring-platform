@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server"
 
 import { refName } from "@/lib/openapi"
 import type { Field } from "@/types/openapi"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 /** Fields in one list like the site's others: each name, its type (an object's links to it),
  * whether it's required and what it is. */

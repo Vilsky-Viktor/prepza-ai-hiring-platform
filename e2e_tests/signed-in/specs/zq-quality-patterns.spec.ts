@@ -12,7 +12,7 @@ import { shot } from "../helpers/screenshots"
 import { uidOf } from "../helpers/sign-in"
 import { randomId } from "../helpers/users"
 
-// The status pill's choices, in its menu's order (frontend/src/constants/patterns.ts).
+// The status pill's choices, in its menu's order (frontend/src/config/patterns.ts).
 const STATUSES = ["proposed", "approved", "in_use", "dismissed"]
 // A row's buttons, in their order: dismiss, then approve.
 const DISMISS = 0

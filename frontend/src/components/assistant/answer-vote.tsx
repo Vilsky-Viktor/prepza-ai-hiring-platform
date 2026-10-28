@@ -5,7 +5,7 @@ import { ThumbsDownIcon, ThumbsUpIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/button"
-import { FEEDBACK_HOVER_CLASS } from "@/constants/feedback"
+import { FEEDBACK_HOVER_CLASS } from "@/config/feedback"
 import type { Vote } from "@/types/assistant"
 
 /** Small thumbs up and down in a little card on the bottom edge of one of the assistant's

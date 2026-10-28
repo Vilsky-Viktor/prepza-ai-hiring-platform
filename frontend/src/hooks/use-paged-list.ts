@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
 
-import { PAGE_SIZE } from "@/constants/lists"
+import { PAGE_SIZE } from "@/config/lists"
 import { apiFetch } from "@/lib/api"
 import { mergePages, nextPagePath, pagePath } from "@/lib/paged-list"
 

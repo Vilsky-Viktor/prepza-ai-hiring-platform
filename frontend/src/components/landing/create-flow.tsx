@@ -24,7 +24,7 @@ import {
   DEMO_INVITE_EMAIL,
   DEMO_NEW_TOPIC,
   DEMO_TOPICS,
-} from "@/constants/create-demo"
+} from "@/config/create-demo"
 import {
   ADJUST,
   APPLIED,
@@ -36,7 +36,7 @@ import {
   STEPS,
   WRITING,
   WRITTEN,
-} from "@/constants/create-demo-steps"
+} from "@/config/create-demo-steps"
 import { countedAt, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
 import { bdi } from "@/lib/bidi"
 

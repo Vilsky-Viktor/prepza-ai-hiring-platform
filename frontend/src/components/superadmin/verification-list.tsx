@@ -15,7 +15,7 @@ import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
 import { decisionFailed } from "@/lib/verification"
 import type { VerificationRequest } from "@/types/superadmin"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 
 function rowKey(row: VerificationRequest) {
   return row.company_id

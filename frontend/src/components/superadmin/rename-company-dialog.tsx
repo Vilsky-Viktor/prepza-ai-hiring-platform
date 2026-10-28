@@ -14,7 +14,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { MAX_COMPANY_NAME_LENGTH } from "@/constants/limits"
+import { MAX_COMPANY_NAME_LENGTH } from "@/config/limits"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { SuperadminCompany } from "@/types/superadmin"
 

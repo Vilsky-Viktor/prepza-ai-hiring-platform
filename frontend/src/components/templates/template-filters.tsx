@@ -14,7 +14,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { LANGUAGE_NAMES, type Locale } from "@/constants/i18n"
+import { LANGUAGE_NAMES, type Locale } from "@/config/i18n"
 import { formatList } from "@/lib/format"
 import { isLocale, languageOf } from "@/lib/locale"
 import { hasMessage } from "@/lib/messages"

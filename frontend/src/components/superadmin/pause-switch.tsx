@@ -7,7 +7,7 @@ import { toast } from "sonner"
 
 import { CornerSign } from "@/components/corner-sign"
 import { Switch } from "@/components/ui/switch"
-import { SIGN_CARD } from "@/constants/cards"
+import { SIGN_CARD } from "@/config/cards"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 
 /** The emergency pause, as the share link's switch: while on, every service refuses new

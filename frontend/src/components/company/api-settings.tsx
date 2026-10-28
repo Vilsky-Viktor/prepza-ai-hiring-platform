@@ -11,12 +11,12 @@ import {
 } from "@/components/company/api-permissions"
 import { Dot } from "@/components/dot"
 import { WebhookActions } from "@/components/company/webhook-actions"
-import { MAX_KEY_NAME, MAX_WEBHOOK_URL } from "@/constants/api"
+import { MAX_KEY_NAME, MAX_WEBHOOK_URL } from "@/config/api"
 import type { ApiKey, ApiWebhook, PermissionOptions } from "@/types/api-access"
-import { LIST_BOX } from "@/constants/lists"
+import { LIST_BOX } from "@/config/lists"
 import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 /** "New key", in the title row while the keys tab is open: a name, when it expires and what it
  * may do (starting from the api service's defaults), then the key itself, shown this once. */

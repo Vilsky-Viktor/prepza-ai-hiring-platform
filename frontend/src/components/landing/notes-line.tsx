@@ -1,5 +1,5 @@
 import { Dotted } from "@/components/dot"
-import { DOT_CLASS } from "@/constants/dot"
+import { DOT_CLASS } from "@/config/dot"
 
 /** Short facts under a section's picture: from tablets up, one centered line split by the logo's
  * blue dots, a fact staying whole and lines breaking between facts; on phones, one fact a row,

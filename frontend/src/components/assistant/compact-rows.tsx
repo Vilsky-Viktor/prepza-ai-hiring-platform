@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { formatPercent } from "@/lib/format"
 import { gradeTone } from "@/lib/grade-tone"
 import { hasMessage } from "@/lib/messages"
-import { ROW_HOVER } from "@/constants/lists"
+import { ROW_HOVER } from "@/config/lists"
 
 type Row = { item: Record<string, unknown>; href: string | null }
 

@@ -4,8 +4,8 @@ import {
   ACCESSIBILITY_DONE,
   ACCESSIBILITY_LIMITS,
   ACCESSIBILITY_REVIEWED,
-} from "@/constants/accessibility"
-import { OPERATOR } from "@/constants/operator"
+} from "@/config/accessibility"
+import { OPERATOR } from "@/config/operator"
 import { formatDay } from "@/lib/format"
 import { pageMetadata } from "@/lib/site"
 import { timeTag } from "@/lib/time-tag"

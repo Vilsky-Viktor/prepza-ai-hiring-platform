@@ -15,7 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH } from "@/constants/limits"
+import { MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH } from "@/config/limits"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { today } from "@/lib/format"
 import type { AdminNewsPost } from "@/types/news"

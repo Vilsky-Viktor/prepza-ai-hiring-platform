@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
-import { SCROLL_TOP_AFTER_PX } from "@/constants/layout"
+import { SCROLL_TOP_AFTER_PX } from "@/config/layout"
 
 /** Back to the top of a long page, in its bottom end corner once it's scrolled down a screen.
  * Hidden on pages with their own bar at the bottom (topic review, an interview underway). */

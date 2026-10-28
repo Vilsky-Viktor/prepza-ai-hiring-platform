@@ -13,7 +13,7 @@ import { gradeTone } from "@/lib/grade-tone"
 import type { Candidate } from "@/types/company"
 import { formatPercent } from "@/lib/format"
 import { hasMessage } from "@/lib/messages"
-import { ROW_HOVER } from "@/constants/lists"
+import { ROW_HOVER } from "@/config/lists"
 
 // What a row shows; the assistant's answers may leave out the date or the progress.
 export type CandidateRowData = Pick<

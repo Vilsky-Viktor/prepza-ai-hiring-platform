@@ -5,8 +5,8 @@ paths:
   - "frontend/src/lib/site.ts"
   - "frontend/src/lib/locale-path.ts"
   - "frontend/src/lib/structured-data.ts"
-  - "frontend/src/constants/seo.ts"
-  - "frontend/src/constants/i18n.ts"
+  - "frontend/src/config/seo.ts"
+  - "frontend/src/config/i18n.ts"
   - "frontend/src/proxy.ts"
 ---
 

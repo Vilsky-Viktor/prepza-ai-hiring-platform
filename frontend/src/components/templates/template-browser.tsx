@@ -8,9 +8,9 @@ import {
   TemplateFilterBar,
 } from "@/components/templates/template-filters"
 import { TemplateList } from "@/components/templates/template-list"
-import { DEFAULT_LOCALE } from "@/constants/i18n"
-import { MAX_TITLE_LENGTH } from "@/constants/limits"
-import { PAGE_SIZE, PUBLIC_TEMPLATES_PATH } from "@/constants/lists"
+import { DEFAULT_LOCALE } from "@/config/i18n"
+import { MAX_TITLE_LENGTH } from "@/config/limits"
+import { PAGE_SIZE, PUBLIC_TEMPLATES_PATH } from "@/config/lists"
 import { publicFetch, serverFetch } from "@/lib/server-api"
 import { templateChoice, templateQuery } from "@/lib/templates"
 import type { PracticeStatus } from "@/types/round"

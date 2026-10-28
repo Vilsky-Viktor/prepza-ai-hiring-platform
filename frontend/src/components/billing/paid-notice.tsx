@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
 import { OutcomeDialog } from "@/components/billing/outcome-dialog"
-import { BILLING_REFRESHED } from "@/constants/billing"
+import { BILLING_REFRESHED } from "@/config/billing"
 import { whenPaid, type PaidKind } from "@/lib/paddle"
 
 // When to read the page again for the new balance after a payment, in seconds: Paddle's web hook

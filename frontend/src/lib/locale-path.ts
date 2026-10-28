@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/constants/i18n"
+import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/config/i18n"
 import {
   HREFLANG_CODES,
   LOCALIZED_ARTICLE,
@@ -6,7 +6,7 @@ import {
   NEWS_FEED,
   PRIVATE_PATHS,
   TEMPLATE_PAGE,
-} from "@/constants/seo"
+} from "@/config/seo"
 import { isLocale } from "@/lib/locale"
 
 /** Whether a page has an address in every language: the listed pages and the articles. */

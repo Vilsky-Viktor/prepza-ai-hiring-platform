@@ -4,7 +4,7 @@ import { CreateFlow } from "@/components/landing/create-flow"
 import { DEMO_GROUP } from "@/components/landing/demo-panel"
 import { NotesLine } from "@/components/landing/notes-line"
 import { LandingSection } from "@/components/landing/section"
-import { BAND } from "@/constants/landing-backgrounds"
+import { BAND } from "@/config/landing-backgrounds"
 
 /** How an interview is created, as three panels playing on their own, joined by arrows: a job
  * description typed, its topics adjusted, and the interview made from them. In one row from

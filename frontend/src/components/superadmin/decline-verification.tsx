@@ -16,7 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
-import { MAX_DECLINE_REASON_LENGTH } from "@/constants/limits"
+import { MAX_DECLINE_REASON_LENGTH } from "@/config/limits"
 import { apiFetch } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import { decisionFailed } from "@/lib/verification"

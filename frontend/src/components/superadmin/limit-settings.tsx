@@ -12,7 +12,7 @@ import { useLimitAmount } from "@/components/superadmin/ai-budgets"
 import { LimitChanges } from "@/components/superadmin/limit-changes"
 import { LimitField } from "@/components/superadmin/limit-field"
 import { Badge } from "@/components/ui/badge"
-import { SIGN_CARD } from "@/constants/cards"
+import { SIGN_CARD } from "@/config/cards"
 import { apiFetch } from "@/lib/api"
 import type { Limit, LimitChange, Limits } from "@/types/superadmin"
 

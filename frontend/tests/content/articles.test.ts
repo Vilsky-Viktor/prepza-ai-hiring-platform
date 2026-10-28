@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
 
-import { LOCALES } from "@/constants/i18n"
+import { LOCALES } from "@/config/i18n"
 
 // The articles' rules (.claude/rules/content-i18n.md): front matter, the body's first heading,
 // slugs, and one translation per language that keeps the original's sections and links.

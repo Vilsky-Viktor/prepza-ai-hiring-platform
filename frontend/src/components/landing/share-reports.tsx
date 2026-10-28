@@ -7,8 +7,8 @@ import { ReportsDemo } from "@/components/landing/reports-demo"
 import { LandingSection, OUTLINE_BUTTON } from "@/components/landing/section"
 import { StartButton } from "@/components/landing/start-button"
 import { buttonVariants } from "@/components/ui/button"
-import { BAND } from "@/constants/landing-backgrounds"
-import { REPORT_SAMPLES_URL } from "@/constants/report-samples"
+import { BAND } from "@/config/landing-backgrounds"
+import { REPORT_SAMPLES_URL } from "@/config/report-samples"
 
 /** Detailed reports and quick sharing: the candidates list and a candidate's report, each
  * shared, played in one panel; then the button to create an interview and, beside it, the

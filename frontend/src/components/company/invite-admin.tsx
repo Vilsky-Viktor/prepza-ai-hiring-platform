@@ -17,8 +17,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { MAX_EMAIL_LENGTH } from "@/constants/limits"
-import { MEMBER_ROLES, type MemberRole } from "@/constants/roles"
+import { MAX_EMAIL_LENGTH } from "@/config/limits"
+import { MEMBER_ROLES, type MemberRole } from "@/config/roles"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import type { CompanyMember } from "@/types/company"
 

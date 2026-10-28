@@ -18,7 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { BILLING_REFRESHED } from "@/constants/billing"
+import { BILLING_REFRESHED } from "@/config/billing"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { formatPrice } from "@/lib/format"
 import { openCheckout } from "@/lib/paddle"

@@ -10,7 +10,7 @@ import type { ReactNode } from "react"
 
 import { McpIcon } from "@/components/mcp-icon"
 import { type SideMenuItem, SideMenuLayout } from "@/components/side-menu"
-import type { DocTab } from "@/constants/api-docs"
+import type { DocTab } from "@/config/api-docs"
 
 // Each tab's icon in the menu.
 const ICONS = {

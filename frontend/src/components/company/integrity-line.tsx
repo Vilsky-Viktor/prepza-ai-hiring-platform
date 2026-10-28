@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server"
 import { cn } from "cn"
-import { WARNING_TONE } from "@/constants/tones"
+import { WARNING_TONE } from "@/config/tones"
 import { Dot } from "@/components/dot"
 
 /** What the candidate's browser and timing showed; counts above zero stand out. */

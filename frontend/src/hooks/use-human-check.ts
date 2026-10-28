@@ -3,7 +3,7 @@
 import { useEffect } from "react"
 import { preconnect } from "react-dom"
 
-import { TURNSTILE_ORIGINS } from "@/constants/security"
+import { TURNSTILE_ORIGINS } from "@/config/security"
 import { prepareHumanCheck } from "@/lib/human-check"
 
 /** For a form whose request passes Turnstile's check (lib/human-check.ts): connects to

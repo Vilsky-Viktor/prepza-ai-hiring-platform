@@ -6,7 +6,7 @@ import { AskAgentButton } from "@/components/landing/ask-agent-button"
 import { DemosButton } from "@/components/landing/demos-button"
 import { MoreLink } from "@/components/landing/section"
 import { StartButton } from "@/components/landing/start-button"
-import { GLOW } from "@/constants/landing-backgrounds"
+import { GLOW } from "@/config/landing-backgrounds"
 
 /** The landing page's last screen: a two-line call to create the first interview, each line
  * ending with the logo's blue dot, the button back up to the job description box and the free

@@ -11,7 +11,7 @@ import { DemoPointer } from "@/components/landing/demo-pointer"
 import { DemoReport } from "@/components/landing/demo-report"
 import { DemoSentNotice } from "@/components/landing/demo-popup"
 import { DemoSharePopup } from "@/components/landing/demo-share"
-import { DEMO_SHARE_EMAIL } from "@/constants/reports-demo"
+import { DEMO_SHARE_EMAIL } from "@/config/reports-demo"
 import {
   countedAt,
   type DemoStep,

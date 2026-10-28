@@ -1,4 +1,4 @@
-import { LEGAL_BANNER_KEY } from "@/constants/notifications"
+import { LEGAL_BANNER_KEY } from "@/config/notifications"
 import type { LegalChange } from "@/types/campaigns"
 
 function storageKey(change: LegalChange) {

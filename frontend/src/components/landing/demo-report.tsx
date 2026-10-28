@@ -16,8 +16,8 @@ import {
   DEMO_REPORT_TOPICS,
   type DemoAnswer,
   type DemoTopic,
-} from "@/constants/reports-demo"
-import { WARNING_TONE } from "@/constants/tones"
+} from "@/config/reports-demo"
+import { WARNING_TONE } from "@/config/tones"
 import { useElementSize } from "@/hooks/use-element-size"
 import { formatPercent } from "@/lib/format"
 import { gradeTone } from "@/lib/grade-tone"

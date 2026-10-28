@@ -1,6 +1,6 @@
 import { UploadIcon, UserIcon, UsersIcon } from "lucide-react"
 
-import type { InviteTab } from "@/constants/invites"
+import type { InviteTab } from "@/config/invites"
 
 // The invite dialog's tab icons: one candidate, many, a file.
 export const INVITE_TAB_ICONS = {

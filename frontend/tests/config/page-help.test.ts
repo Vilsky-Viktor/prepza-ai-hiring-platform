@@ -2,12 +2,12 @@ import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { dirname, join, relative } from "node:path"
 import { describe, expect, it } from "vitest"
 
-import { COMPANY_INTERVIEW_PAGE, TIMED_PAGE } from "@/constants/layout"
+import { COMPANY_INTERVIEW_PAGE, TIMED_PAGE } from "@/config/layout"
 import {
   COMPANY_TAB_HELP,
   INTERVIEW_TAB_HELP,
   PAGE_HELP_KEYS,
-} from "@/constants/page-help"
+} from "@/config/page-help"
 
 import { FRONTEND, SOURCE_ROOT } from "../source-files"
 

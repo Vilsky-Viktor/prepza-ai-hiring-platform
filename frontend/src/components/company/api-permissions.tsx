@@ -24,7 +24,7 @@ import { lockedReads, permissionsByGroup, tick } from "@/lib/api-permissions"
 import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
 import type { ApiKey, PermissionOptions } from "@/types/api-access"
-import { CARD } from "@/constants/cards"
+import { CARD } from "@/config/cards"
 
 // The sizes of the email preferences' checkboxes: "Select all" like the digest, the rest like
 // its kinds. A checkbox that can't change fades with its text, as a disabled switch does.

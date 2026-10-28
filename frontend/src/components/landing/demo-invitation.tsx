@@ -11,8 +11,8 @@ import {
   DEMO_QUESTION_SECONDS,
   DEMO_TITLE,
   DEMO_TOTAL_MINUTES,
-} from "@/constants/candidates-demo"
-import { START_BUTTON } from "@/constants/start-page"
+} from "@/config/candidates-demo"
+import { START_BUTTON } from "@/config/start-page"
 import { bdi } from "@/lib/bidi"
 
 // The real page's rules, shortened; phones show the first few.

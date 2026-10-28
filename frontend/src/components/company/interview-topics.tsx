@@ -1,7 +1,7 @@
 import { SubtopicList } from "@/components/questions/subtopic-list"
 import { TopicQuestionLimit } from "@/components/questions/topic-question-limit"
 import { TopicQuestions } from "@/components/questions/topic-questions"
-import { LIST_BOX, ROW_HOVER } from "@/constants/lists"
+import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 import { languageOf } from "@/lib/locale"
 import type { InterviewDetail } from "@/types/company"
 

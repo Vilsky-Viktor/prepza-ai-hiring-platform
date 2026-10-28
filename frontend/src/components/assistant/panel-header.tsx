@@ -7,7 +7,7 @@ import { MenuPill } from "@/components/menu-pill"
 import { Button } from "@/components/ui/button"
 import { DialogClose } from "@/components/ui/dialog"
 import type { Company } from "@/types/company"
-import { ROUND_ICON_BUTTON } from "@/constants/buttons"
+import { ROUND_ICON_BUTTON } from "@/config/buttons"
 
 // The company picker's value for all companies.
 const ALL = "all"

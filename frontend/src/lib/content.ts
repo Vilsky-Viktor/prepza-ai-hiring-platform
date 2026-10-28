@@ -1,8 +1,8 @@
 import { readdir, readFile } from "node:fs/promises"
 import path from "node:path"
 
-import { CONTENT_ROOT, type ContentFolder } from "@/constants/content"
-import { DEFAULT_LOCALE, LOCALES } from "@/constants/i18n"
+import { CONTENT_ROOT, type ContentFolder } from "@/config/content"
+import { DEFAULT_LOCALE, LOCALES } from "@/config/i18n"
 import { isLocale } from "@/lib/locale"
 
 /** One page of the content: English in content/<folder>/<slug>.md, a translation in

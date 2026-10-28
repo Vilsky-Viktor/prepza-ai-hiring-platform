@@ -1,4 +1,4 @@
-import { EMBED_LOOKUP_TIMEOUT_MS } from "@/constants/embed"
+import { EMBED_LOOKUP_TIMEOUT_MS } from "@/config/embed"
 
 /** The sources that may frame an invite's embedded interview: the company's website domain and
  * its subdomains, as the companies service says (a guest invite's only), without a scheme so

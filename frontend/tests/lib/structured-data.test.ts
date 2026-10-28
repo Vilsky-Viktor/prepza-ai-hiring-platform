@@ -8,7 +8,7 @@ import {
   softwareData,
   techArticleData,
 } from "@/lib/structured-data"
-import { OPERATOR } from "@/constants/operator"
+import { OPERATOR } from "@/config/operator"
 import type { Catalog } from "@/types/billing"
 
 const SITE = "https://prepza.example"

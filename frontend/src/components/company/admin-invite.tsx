@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { COMPANIES_CHANGED } from "@/constants/notifications"
+import { COMPANIES_CHANGED } from "@/config/notifications"
 import { useAuth } from "@/components/auth-provider"
 import { useSignIn } from "@/components/sign-in-dialog"
 import { LinkStatus } from "@/components/link-status"

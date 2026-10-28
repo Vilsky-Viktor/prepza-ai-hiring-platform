@@ -3,7 +3,7 @@
 import { useState } from "react"
 
 import { FloatingInput } from "@/components/ui/floating-field"
-import { HEX_COLOR } from "@/constants/brand"
+import { HEX_COLOR } from "@/config/brand"
 
 /** One color: its swatch opens the system's color picker, and its hex code can be typed;
  * a code counts once it's whole ("#1a2b3c"). The code's field is the site's, its name raised on

@@ -1,4 +1,4 @@
-import { ALWAYS_FILLED_TYPES } from "@/constants/floating-label"
+import { ALWAYS_FILLED_TYPES } from "@/config/floating-label"
 import { graphemes } from "@/lib/graphemes"
 
 /** Whether an input of this type always shows something (a date's "dd/mm/yyyy"), so its label

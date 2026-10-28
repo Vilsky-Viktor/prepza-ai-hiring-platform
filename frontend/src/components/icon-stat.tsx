@@ -8,7 +8,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { ROUND_ICON_BUTTON } from "@/constants/buttons"
+import { ROUND_ICON_BUTTON } from "@/config/buttons"
 
 /** An icon with what it counts (`children`: a number, a time) or alone (a status, read as an
  * image), its meaning in a tooltip and as its accessible name (`label`). It isn't a control, but

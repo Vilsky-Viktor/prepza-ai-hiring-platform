@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 import { CornerSign } from "@/components/corner-sign"
 import { Switch } from "@/components/ui/switch"
-import { SIGN_CARD } from "@/constants/cards"
+import { SIGN_CARD } from "@/config/cards"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 
 /** Whether members may use the company's data from the AI apps they connected, as the

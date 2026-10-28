@@ -1,7 +1,7 @@
 import { HighlightedCode } from "@/components/highlighted-code"
 import { SetupSection } from "@/components/company/ai-apps-setup"
 import { TabPanels } from "@/components/tab-panels"
-import { MCP_LANGUAGES } from "@/constants/mcp-docs"
+import { MCP_LANGUAGES } from "@/config/mcp-docs"
 import type { McpExample } from "@/types/mcp"
 
 /** The shared sign-in file, then the agents (LangGraph, LangChain, LlamaIndex) as tabs; each in

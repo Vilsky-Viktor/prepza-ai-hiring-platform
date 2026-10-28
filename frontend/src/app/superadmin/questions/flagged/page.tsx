@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server"
 
 import { QualityList } from "@/components/superadmin/quality-list"
 import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
-import { PAGE_SIZE } from "@/constants/lists"
+import { PAGE_SIZE } from "@/config/lists"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import type { FlaggedQuestion } from "@/types/superadmin"

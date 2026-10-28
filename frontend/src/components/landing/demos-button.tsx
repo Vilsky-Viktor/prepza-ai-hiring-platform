@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { DEMOS_URL } from "@/constants/landing"
+import { DEMOS_URL } from "@/config/landing"
 
 /** "demos": prepza's demo videos on YouTube, in a new tab, as an outline button with a play icon
  * and a tooltip saying where it leads; `label` replaces its text. */

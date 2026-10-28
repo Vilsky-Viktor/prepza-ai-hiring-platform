@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises"
 import path from "node:path"
 
-import { MCP_EXAMPLES, MCP_EXAMPLES_DIR } from "@/constants/mcp-docs"
+import { MCP_EXAMPLES, MCP_EXAMPLES_DIR } from "@/config/mcp-docs"
 import type { McpExample } from "@/types/mcp"
 
 /** The example agents, each in Python and TypeScript, read from their files: the files shown

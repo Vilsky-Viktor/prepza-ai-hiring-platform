@@ -1,5 +1,5 @@
 import { apiFetch } from "@/lib/api"
-import { DIGEST_KINDS, OTHER_EMAILS } from "@/constants/emails"
+import { DIGEST_KINDS, OTHER_EMAILS } from "@/config/emails"
 import type { EmailChanges, EmailPreferences } from "@/types/emails"
 import type { CandidateOptOuts } from "@/types/superadmin"
 

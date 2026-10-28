@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { MenuPill } from "@/components/menu-pill"
-import { MEMBER_ROLES, type MemberRole } from "@/constants/roles"
+import { MEMBER_ROLES, type MemberRole } from "@/config/roles"
 
 /** A member's role, admin or viewer: the site's select pill opening a menu with a line on what
  * each role allows. With `onMakeOwner` (a member the API says can own the company), "owner"

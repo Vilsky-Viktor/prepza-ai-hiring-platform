@@ -14,9 +14,9 @@ import {
 } from "@/components/company/brand-style-fields"
 import { ColorField } from "@/components/company/color-field"
 import { Button } from "@/components/ui/button"
-import { BRAND_GROUPS } from "@/constants/brand"
-import { FLOAT_LABEL, FLOAT_LABEL_UP } from "@/constants/floating-label"
-import { LIST_BOX } from "@/constants/lists"
+import { BRAND_GROUPS } from "@/config/brand"
+import { FLOAT_LABEL, FLOAT_LABEL_UP } from "@/config/floating-label"
+import { LIST_BOX } from "@/config/lists"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type {
   BrandColorSets,

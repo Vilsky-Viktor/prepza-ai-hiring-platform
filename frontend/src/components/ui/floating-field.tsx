@@ -15,7 +15,7 @@ import {
   FLOAT_LABEL_REST,
   FLOAT_LABEL_REST_TOP,
   FLOAT_LABEL_UP,
-} from "@/constants/floating-label"
+} from "@/config/floating-label"
 import { adornmentRoom, alwaysFilled } from "@/lib/floating-field"
 
 /** The site's grey field with its name: inside, where the value goes, while the field is empty,

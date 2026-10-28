@@ -16,7 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { MAX_ADJUSTMENT_NOTE } from "@/constants/limits"
+import { MAX_ADJUSTMENT_NOTE } from "@/config/limits"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 

@@ -1,5 +1,5 @@
-import { LOCALES, type Locale } from "@/constants/i18n"
-import { PREVIEW_TITLE_MAX } from "@/constants/preview-image"
+import { LOCALES, type Locale } from "@/config/i18n"
+import { PREVIEW_TITLE_MAX } from "@/config/preview-image"
 import { sliceGraphemes } from "@/lib/graphemes"
 import { drawPreview } from "@/lib/preview-image"
 import { validPreviewSignature } from "@/lib/preview-signature"

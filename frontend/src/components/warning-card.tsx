@@ -2,7 +2,7 @@ import { cn } from "cn"
 import { InfoIcon, TriangleAlertIcon } from "lucide-react"
 
 import { CornerSign } from "@/components/corner-sign"
-import { SIGN_CARD } from "@/constants/cards"
+import { SIGN_CARD } from "@/config/cards"
 
 type CardProps = {
   children: React.ReactNode

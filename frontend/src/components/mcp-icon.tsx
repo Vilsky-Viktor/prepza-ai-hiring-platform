@@ -1,6 +1,6 @@
 import { cn } from "cn"
 
-import { MCP_MARK } from "@/constants/ai-apps"
+import { MCP_MARK } from "@/config/ai-apps"
 
 /** The MCP mark as an icon: its shape in the current text colour, sized by `className`, so it
  * sits in menus and cards like the other icons (the side menu colours the open page's icon). */

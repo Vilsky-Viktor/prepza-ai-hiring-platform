@@ -18,11 +18,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import type { Locale } from "@/constants/i18n"
-import type { AtsProvider } from "@/constants/ats"
+import type { Locale } from "@/config/i18n"
+import type { AtsProvider } from "@/config/ats"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { AtsItem, Interview } from "@/types/company"
-import { CARD_PADDING } from "@/constants/cards"
+import { CARD_PADDING } from "@/config/cards"
 
 // The interview menu's first choice: a new interview made from the job's own text.
 const NEW = "new"

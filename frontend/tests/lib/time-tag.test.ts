@@ -3,7 +3,7 @@ import { type ComponentProps, createElement, type ReactNode } from "react"
 import { renderToStaticMarkup } from "react-dom/server"
 import { describe, expect, it } from "vitest"
 
-import type { Locale } from "@/constants/i18n"
+import type { Locale } from "@/config/i18n"
 import { useLocalTime } from "@/hooks/use-local-time"
 import { timeTag } from "@/lib/time-tag"
 
