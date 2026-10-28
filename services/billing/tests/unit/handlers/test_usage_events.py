@@ -1,11 +1,10 @@
 """Billing's consumption of the services' records of AI calls and limit hits."""
 
 import asyncio
-import base64
-import json
 from datetime import UTC, datetime
 
 import pytest
+from event_pushes import push
 from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT, Category
 
 from billing.handlers import ai_used, dispatch
@@ -95,10 +94,7 @@ def test_a_limit_hit_is_stored_and_other_events_are_ignored(stored):
 
 
 def test_pubsub_pushes_events_to_billing(client, stored):
-    data = base64.b64encode(json.dumps(CALL).encode()).decode()
-    attributes = {"type": AI_USED, "event_id": "e9", "occurred_at": WHEN.isoformat()}
-    message = {"data": data, "attributes": attributes, "messageId": "1"}
-    body = {"message": message, "subscription": "s"}
+    body = push(AI_USED, CALL, "e9", occurred_at=WHEN)
 
     assert client.post("/internal/events", json=body).status_code == 204
     assert stored["usage"] == {"e9": (WHEN, CALL)}

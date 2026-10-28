@@ -1,10 +1,9 @@
 """Retention, company.deleted and the limits against the real database and Redis."""
 
-import base64
-import json
 import uuid
 from datetime import UTC, datetime, timedelta
 
+from event_pushes import push
 import httpx
 import pytest
 from fastapi import HTTPException
@@ -61,17 +60,6 @@ def test_retention_deletes_idle_conversations_in_batches_and_is_safe_to_repeat(r
 
     assert (first.status_code, again.status_code) == (204, 204)
     assert [item.title for item in left] == ["recent"]
-
-
-def push(event_type: str, data: dict) -> dict:
-    return {
-        "message": {
-            "data": base64.b64encode(json.dumps(data).encode()).decode(),
-            "attributes": {"type": event_type},
-            "messageId": uuid.uuid4().hex,
-        },
-        "subscription": "assistant-events",
-    }
 
 
 def test_company_deleted_deletes_its_conversations_once_and_again_changes_nothing(run):

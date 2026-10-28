@@ -2,6 +2,7 @@ import uuid
 from datetime import UTC, datetime, timedelta
 from urllib.parse import parse_qs, urlparse
 
+from event_pushes import push
 import httpx
 import pytest
 from prepza_common.auth.auth import current_user
@@ -20,7 +21,7 @@ from notifications.main import app
 from notifications.models.slack import SlackPost
 from notifications.repositories import notifications
 from notifications.repositories import slack as storage
-from tests.integration.factories import api, company, finished, push
+from tests.integration.factories import api, company, finished
 from tests.integration.transactions import transaction
 
 KEY = "Zm9vYmFyYmF6cXV4cXV1eGNvcmdlZ3JhdWx0Z2FycGw="
@@ -207,7 +208,7 @@ def test_a_burst_grouped_in_the_bell_posts_each_once(run, configured):
 
 def test_a_deleted_companys_channel_and_app_go(run, configured):
     company_id = company()
-    deleted = push("company.deleted", {"company_id": company_id}, message_id="m-s2")
+    deleted = push("company.deleted", {"company_id": company_id}, event_id=None, message_id="m-s2")
 
     async def scenario():
         await connect(company_id)
@@ -241,7 +242,7 @@ def test_the_app_stays_while_another_company_uses_its_workspace(run, configured)
 
 
 def gone(company_id, message_id):
-    return push("company.deleted", {"company_id": company_id}, message_id=message_id)
+    return push("company.deleted", {"company_id": company_id}, event_id=None, message_id=message_id)
 
 
 def test_an_add_to_slack_trip_finishes_once(run, monkeypatch):

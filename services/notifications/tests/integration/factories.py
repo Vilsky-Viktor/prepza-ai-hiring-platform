@@ -1,13 +1,12 @@
 import base64
 import hashlib
 import hmac
-import json
 import time
 import uuid
 
 import httpx
+from event_pushes import push
 from fastapi import HTTPException
-from prepza_common.config.constants import EVENT_ID_ATTRIBUTE
 from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
 from notifications.constants.campaigns import ONE_A_DAY
@@ -33,20 +32,6 @@ def finished(company_id: str, title: str = "Backend", **data) -> dict:
         title=title,
         **data,
     )
-
-
-def push(event_type: str, data: dict, outbox_id: str | None = None, message_id: str = "m-1"):
-    """A Pub/Sub push of one event; an outbox event carries its own id as an attribute."""
-    attributes = {"type": event_type, **({EVENT_ID_ATTRIBUTE: outbox_id} if outbox_id else {})}
-
-    return {
-        "message": {
-            "data": base64.b64encode(json.dumps(data).encode()).decode(),
-            "attributes": attributes,
-            "messageId": message_id,
-        },
-        "subscription": "projects/demo-test/subscriptions/notifications-events",
-    }
 
 
 def api() -> httpx.AsyncClient:

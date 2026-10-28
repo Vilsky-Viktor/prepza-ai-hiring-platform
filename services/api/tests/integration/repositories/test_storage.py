@@ -1,9 +1,8 @@
-import base64
-import json
 import os
 import uuid
 from datetime import UTC, datetime, timedelta
 
+from event_pushes import push
 import httpx
 from prepza_common.db.lock_waits import hold_first_commit, race
 from sqlalchemy import select, update
@@ -28,17 +27,6 @@ def api() -> httpx.AsyncClient:
     transport = httpx.ASGITransport(app=app, raise_app_exceptions=False)
 
     return httpx.AsyncClient(transport=transport, base_url="http://api")
-
-
-def push(event_type: str, data: dict, message_id: str) -> dict:
-    return {
-        "message": {
-            "data": base64.b64encode(json.dumps(data).encode()).decode(),
-            "attributes": {"type": event_type},
-            "messageId": message_id,
-        },
-        "subscription": "projects/demo-test/subscriptions/api-events",
-    }
 
 
 def test_a_key_is_found_by_its_hash_and_its_use_noted_at_most_once_a_minute(run):
@@ -107,7 +95,7 @@ def test_a_web_hook_remembers_an_event_once_and_forgets_old_ones(run):
 
 def test_a_deleted_company_loses_its_keys_web_hooks_and_their_deliveries(run):
     company, other = uuid.uuid4(), uuid.uuid4()
-    deleted = push("company.deleted", {"company_id": str(company)}, f"m-{uuid.uuid4()}")
+    deleted = push("company.deleted", {"company_id": str(company)}, f"e-{uuid.uuid4()}")
 
     async def scenario():
         await transaction(

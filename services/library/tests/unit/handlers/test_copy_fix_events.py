@@ -4,11 +4,11 @@ back."""
 
 import uuid
 
+from event_pushes import push
 import pytest
 
 from library.repositories import copy_fixes as copy_storage
 from library.services import copy_fixes
-from tests.unit.handlers.test_answer_events import push
 
 QUESTION_ID = uuid.uuid4()
 EVENT = {"question_id": str(QUESTION_ID), "text": "Old?", "options": [{"answer": "A"}]}

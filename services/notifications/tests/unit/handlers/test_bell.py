@@ -1,8 +1,7 @@
-import base64
-import json
 import uuid
 from datetime import UTC, datetime
 
+from event_pushes import push
 import pytest
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
@@ -21,17 +20,6 @@ MADE = datetime(2026, 10, 1, tzinfo=UTC)
 EVENT = notification(
     "company", "c1", NotificationKind.CANDIDATE_FINISHED, "/companies/c1", email="a@b.c"
 )
-
-
-def push(message_id):
-    return {
-        "message": {
-            "data": base64.b64encode(json.dumps(EVENT).encode()).decode(),
-            "attributes": {"type": NOTIFICATION_REQUESTED},
-            "messageId": message_id,
-        },
-        "subscription": "projects/demo-test/subscriptions/notifications-events",
-    }
 
 
 @pytest.fixture(autouse=True)
@@ -63,9 +51,13 @@ def test_a_notification_is_stored_and_announced_once(client, monkeypatch):
     monkeypatch.setattr(notices, "store", fake_add)
     monkeypatch.setattr(events, "announce", fake_announce)
 
-    assert client.post("/internal/events", json=push("m-1")).status_code == 204
+    assert (
+        client.post("/internal/events", json=push(NOTIFICATION_REQUESTED, EVENT)).status_code == 204
+    )
     # Pub/Sub delivering it again: stored once, announced once.
-    assert client.post("/internal/events", json=push("m-1")).status_code == 204
+    assert (
+        client.post("/internal/events", json=push(NOTIFICATION_REQUESTED, EVENT)).status_code == 204
+    )
     assert announced == [("company", "c1")]
 
 

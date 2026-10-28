@@ -1,7 +1,6 @@
-import base64
-import json
 import uuid
 
+from event_pushes import push
 import pytest
 
 from library.constants.quality import MIN_ANSWERS
@@ -9,18 +8,6 @@ from library.repositories import answer_stats
 from library.services import answer_events
 
 QUESTION_ID = uuid.uuid4()
-
-
-def push(event_type, data):
-    """A Pub/Sub push of one event, as the emulator sends it (no token)."""
-    return {
-        "message": {
-            "data": base64.b64encode(json.dumps(data).encode()).decode(),
-            "attributes": {"type": event_type},
-            "messageId": "1",
-        },
-        "subscription": "projects/demo-test/subscriptions/library-events",
-    }
 
 
 RECORDED = {
@@ -70,7 +57,7 @@ def test_recorded_answer_goes_into_the_question_statistics(client, stored, no_re
     response = client.post("/internal/events", json=push("answer.recorded", RECORDED))
 
     assert response.status_code == 204
-    assert stored == [("1", QUESTION_ID, "Which account is debited?", ["Cash"], 1.0)]
+    assert stored == [("e-1", QUESTION_ID, "Which account is debited?", ["Cash"], 1.0)]
     assert no_reviews == [QUESTION_ID]
 
 
@@ -79,7 +66,7 @@ def test_a_multi_answer_answer_counts_every_option_ticked_and_its_credit(client,
 
     client.post("/internal/events", json=push("answer.recorded", partly))
 
-    assert stored == [("1", QUESTION_ID, "Which account is debited?", ["Cash", "Bank"], 2 / 3)]
+    assert stored == [("e-1", QUESTION_ID, "Which account is debited?", ["Cash", "Bank"], 2 / 3)]
 
 
 @pytest.mark.parametrize(("correct", "credit"), [(True, 1.0), (False, 0.0)])
@@ -88,7 +75,7 @@ def test_an_event_from_before_multi_answer_questions_still_counts(client, stored
 
     client.post("/internal/events", json=push("answer.recorded", old | {"correct": correct}))
 
-    assert stored == [("1", QUESTION_ID, "Which account is debited?", ["Cash"], credit)]
+    assert stored == [("e-1", QUESTION_ID, "Which account is debited?", ["Cash"], credit)]
 
 
 def test_an_answer_isnt_reviewed_before_the_question_has_enough_to_say(
@@ -134,7 +121,7 @@ def test_a_scored_topic_counts_each_result_in_the_candidates_group(client, monke
 
     client.post("/internal/events", json=push("session.scored", scored))
 
-    assert stored == [("1", "strong", [str(QUESTION_ID)])]
+    assert stored == [("e-1", "strong", [str(QUESTION_ID)])]
 
 
 def test_other_events_are_accepted_without_action(client):

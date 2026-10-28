@@ -2,6 +2,7 @@ import hashlib
 import json
 import uuid
 
+from event_pushes import push
 import httpx
 import pytest
 from prepza_common.http import http
@@ -13,7 +14,7 @@ from notifications.core.db import Session
 from notifications.helpers.unsubscribe import address_hash, candidate_token, sign, user_token
 from notifications.models.opt_outs import CandidateOptOut
 from notifications.repositories import opt_outs
-from tests.integration.factories import api, push
+from tests.integration.factories import api
 from tests.integration.transactions import transaction
 
 
@@ -171,7 +172,8 @@ def test_a_deleted_company_takes_its_opt_outs_with_it(run):
 
         async with api() as client:
             await client.post(
-                "/internal/events", json=push("company.deleted", {"company_id": company})
+                "/internal/events",
+                json=push("company.deleted", {"company_id": company}, event_id=None),
             )
 
         return await transaction(opt_outs.opted_out, address_hash("ann@example.com"), company)

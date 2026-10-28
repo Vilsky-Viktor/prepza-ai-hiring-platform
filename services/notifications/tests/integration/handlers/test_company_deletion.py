@@ -1,16 +1,17 @@
 import uuid
 
+from event_pushes import push
 from prepza_common.events.notifications import NotificationKind, Recipient, notification
 
 from notifications.repositories import notifications
 from notifications.services import notices
-from tests.integration.factories import api, company, finished, push
+from tests.integration.factories import api, company, finished
 from tests.integration.transactions import transaction
 
 
 def test_a_deleted_companys_notifications_go_and_none_come_after(run):
     company_id, other_id = company(), company()
-    deleted = push("company.deleted", {"company_id": company_id}, message_id="m-del")
+    deleted = push("company.deleted", {"company_id": company_id}, event_id=None, message_id="m-del")
 
     async def scenario():
         await notices.store(str(uuid.uuid4()), finished(company_id, email="a@x.com"))
@@ -49,6 +50,7 @@ def test_an_erased_candidate_leaves_only_that_companys_bell_and_a_deleted_accoun
     removed = push(
         "candidate.removed",
         {"company_id": company_id, "interview_id": str(uuid.uuid4()), "email": "gone@x.com"},
+        event_id=None,
         message_id=f"m-{uuid.uuid4()}",
     )
 
@@ -117,6 +119,7 @@ def test_a_deleted_interviews_candidates_leave_the_bell_and_its_other_news_stays
     deleted = push(
         "candidate.interview_deleted",
         {"company_id": company_id, "interview_id": interview_id},
+        event_id=None,
         message_id=f"m-{uuid.uuid4()}",
     )
 

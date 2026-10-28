@@ -1,4 +1,5 @@
 import pytest
+from event_pushes import push
 from fastapi.testclient import TestClient
 from prepza_common.config.constants import LANGUAGES
 
@@ -6,10 +7,7 @@ from notifications.helpers.emails import member_invite_email
 from notifications.integrations import smtp
 from notifications.main import app
 from notifications.templates.emails import EMAILS
-from tests.unit.handlers.test_events import (  # noqa: F401 (the emulator fixture is autouse)
-    emulator,
-    push,
-)
+from tests.unit.handlers.test_events import emulator  # noqa: F401 (the fixture is autouse)
 
 MEMBER = {
     "email": "dan@example.com",

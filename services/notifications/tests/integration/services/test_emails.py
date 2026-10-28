@@ -2,6 +2,7 @@ import base64
 import json
 import uuid
 
+from event_pushes import push
 import httpx
 import pytest
 from prepza_common.ai.ai_constants import LIMIT_HIT
@@ -13,7 +14,7 @@ from notifications.helpers.unsubscribe import address_hash
 from notifications.repositories import opt_outs
 from notifications.services import delivery
 from notifications.services import outbox as outbox_service
-from tests.integration.factories import api, push, receive, signed
+from tests.integration.factories import api, receive, signed
 from tests.integration.transactions import transaction
 
 SECRET = "whsec_" + base64.b64encode(b"test-webhook-key").decode()
@@ -86,7 +87,7 @@ def post_events(run, *pushes) -> list[int]:
 
 
 def test_a_shared_report_goes_through_resend_keyed_by_its_event(run, outside):
-    codes = post_events(run, push("report.shared", REPORT, outbox_id="outbox-7"))
+    codes = post_events(run, push("report.shared", REPORT, event_id="outbox-7"))
     [request] = outside["requests"]
     sent = json.loads(request.content)
 
@@ -102,7 +103,7 @@ def test_a_shared_report_goes_through_resend_keyed_by_its_event(run, outside):
 
 def test_a_contact_message_goes_to_the_inbox_and_replies_to_the_visitor(run, outside):
     message = {"name": "Eve", "email": "eve@example.com", "language": "en", "message": "Hi"}
-    post_events(run, push("contact.sent", message, message_id="pubsub-9"))
+    post_events(run, push("contact.sent", message, event_id=None, message_id="pubsub-9"))
     [request] = outside["requests"]
     sent = json.loads(request.content)
 
@@ -114,14 +115,14 @@ def test_a_contact_message_goes_to_the_inbox_and_replies_to_the_visitor(run, out
 def test_a_failing_resend_answers_with_an_error_so_pub_sub_retries(run, outside):
     outside["resend"] = 503
 
-    assert post_events(run, push("report.shared", REPORT)) == [500]
+    assert post_events(run, push("report.shared", REPORT, event_id=None)) == [500]
 
 
 def test_a_burst_over_resends_limit_is_retried_without_a_server_error(run, outside, published):
     outside["resend"] = 429
-    busy = post_events(run, push("candidate.invited", INVITE, outbox_id="outbox-9"))
+    busy = post_events(run, push("candidate.invited", INVITE, event_id="outbox-9"))
     outside["resend"] = 200
-    retried = post_events(run, push("candidate.invited", INVITE, outbox_id="outbox-9"))
+    retried = post_events(run, push("candidate.invited", INVITE, event_id="outbox-9"))
     keys = {request.headers["Idempotency-Key"] for request in outside["requests"]}
 
     # Pub/Sub retries a 429 with backoff; the retry sends it, under the same key.
@@ -136,7 +137,7 @@ def test_a_burst_over_resends_limit_is_retried_without_a_server_error(run, outsi
 def test_an_invite_resend_refuses_is_marked_undelivered_and_not_retried(run, outside):
     outside["resend"] = 422
 
-    assert post_events(run, push("candidate.invited", INVITE)) == [204]
+    assert post_events(run, push("candidate.invited", INVITE, event_id=None)) == [204]
     assert [str(request.url) for request in outside["requests"][1:]] == [
         f"http://companies/internal/invites/{INVITE_ID}/undelivered"
     ]
@@ -186,7 +187,7 @@ def test_after_a_hard_bounce_no_invite_goes_to_the_address_and_it_shows_undelive
             return await receive(client, SECRET, body)
 
     assert run(scenario()) == (204, 204)
-    codes = post_events(run, push("candidate.invited", {**INVITE, "email": address}))
+    codes = post_events(run, push("candidate.invited", {**INVITE, "email": address}, event_id=None))
     undelivered = f"http://companies/internal/invites/{INVITE_ID}/undelivered"
 
     assert codes == [204]

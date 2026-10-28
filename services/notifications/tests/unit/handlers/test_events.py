@@ -1,9 +1,8 @@
 import asyncio
-import base64
-import json
 
 import httpx
 import pytest
+from event_pushes import push
 from prepza_common.config.constants import LANGUAGES
 
 from notifications.config import settings
@@ -12,18 +11,6 @@ from notifications.integrations import companies, resend, smtp
 from notifications.templates.emails import EMAILS
 
 DATA = {"email": "bob@example.com", "token": "abc", "title": "Backend", "company": "Acme"}
-
-
-def push(event_type="candidate.invited", data=DATA, message_id="m-1"):
-    """A Pub/Sub push of one event, as the emulator sends it (no token)."""
-    return {
-        "message": {
-            "data": base64.b64encode(json.dumps(data).encode()).decode(),
-            "attributes": {"type": event_type},
-            "messageId": message_id,
-        },
-        "subscription": "projects/demo-test/subscriptions/notifications-events",
-    }
 
 
 @pytest.fixture(autouse=True)
@@ -67,7 +54,7 @@ def test_an_invite_event_sends_its_email(client, monkeypatch):
 
     monkeypatch.setattr(smtp, "send", fake_send)
 
-    assert client.post("/internal/events", json=push()).status_code == 204
+    assert client.post("/internal/events", json=push("candidate.invited", DATA)).status_code == 204
     assert sent == ["bob@example.com"]
 
 
@@ -80,8 +67,8 @@ def test_resend_gets_the_message_id_so_a_retry_never_sends_twice(client, monkeyp
     monkeypatch.setattr(settings, "resend_api_key", "re_test")
     monkeypatch.setattr(resend, "send", fake_send)
 
-    client.post("/internal/events", json=push(message_id="m-7"))
-    client.post("/internal/events", json=push(message_id="m-7"))
+    client.post("/internal/events", json=push("candidate.invited", DATA, "m-7"))
+    client.post("/internal/events", json=push("candidate.invited", DATA, "m-7"))
 
     assert sent == [("bob@example.com", "events/m-7")] * 2
 
@@ -96,7 +83,7 @@ def test_an_event_re_sent_from_the_outbox_keeps_its_key(client, monkeypatch):
     monkeypatch.setattr(resend, "send", fake_send)
 
     for message_id in ("m-8", "m-9"):
-        body = push(message_id=message_id)
+        body = push("candidate.invited", DATA, message_id)
         body["message"]["attributes"]["event_id"] = "row-1"
         client.post("/internal/events", json=body)
 
@@ -110,7 +97,7 @@ def test_a_failed_send_answers_with_an_error_so_pubsub_retries(client, monkeypat
     monkeypatch.setattr(smtp, "send", failing_send)
 
     with pytest.raises(ConnectionError):
-        client.post("/internal/events", json=push())
+        client.post("/internal/events", json=push("candidate.invited", DATA))
 
 
 def test_other_events_are_accepted_without_an_email(client):
@@ -149,7 +136,7 @@ def test_over_resends_limit_pubsub_retries_without_a_server_error(client, monkey
     resend_answering(monkeypatch, 429)
     monkeypatch.setattr(settings, "resend_api_key", "re_test")
 
-    response = client.post("/internal/events", json=push())
+    response = client.post("/internal/events", json=push("candidate.invited", DATA))
 
     assert (response.status_code, response.headers["Retry-After"]) == (429, "1")
 

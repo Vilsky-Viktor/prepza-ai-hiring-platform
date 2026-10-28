@@ -1,9 +1,8 @@
 """A deleted guest invite's guest goes from library: its terms, ratings, reports and sign-in."""
 
-import base64
-import json
 import uuid
 
+from event_pushes import push
 import httpx
 
 from library.main import app
@@ -11,17 +10,6 @@ from library.repositories import feedback, legal
 from library.services import guest_events
 from tests.integration.factories import interview, question_ids
 from tests.integration.transactions import transaction
-
-
-def push(data: dict) -> dict:
-    return {
-        "message": {
-            "data": base64.b64encode(json.dumps(data).encode()).decode(),
-            "attributes": {"type": "guests.deleted", "event_id": str(uuid.uuid4())},
-            "messageId": "1",
-        },
-        "subscription": "projects/demo-test/subscriptions/library-events",
-    }
 
 
 def test_a_deleted_guests_rows_and_sign_in_go_and_others_stay_however_often_it_comes(
@@ -41,7 +29,7 @@ def test_a_deleted_guests_rows_and_sign_in_go_and_others_stay_however_often_it_c
 
         await transaction(feedback.report_question, second, guest, "unclear", "Two answers fit.")
         # A user who isn't a guest is never taken from this event.
-        event = push({"user_ids": [guest, other]})
+        event = push("guests.deleted", {"user_ids": [guest, other]}, str(uuid.uuid4()))
         transport = httpx.ASGITransport(app=app)
 
         async with httpx.AsyncClient(transport=transport, base_url="http://library") as client:

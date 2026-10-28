@@ -1,10 +1,10 @@
 import pytest
+from event_pushes import push
 
 from notifications.helpers.emails import candidate_joined_email
 from notifications.integrations import smtp
 from notifications.repositories import opt_outs
 from notifications.services import events
-from tests.unit.handlers.test_events import push
 
 DATA = {
     "invite_id": "inv-1",

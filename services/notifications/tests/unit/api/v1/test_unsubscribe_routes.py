@@ -1,7 +1,6 @@
-import base64
 import hashlib
-import json
 
+from event_pushes import push
 import pytest
 
 from notifications.config import settings
@@ -28,17 +27,6 @@ def token(kind: UnsubscribeType) -> str:
         return candidate_token(INVITE, kind, settings.email_link_secret)
 
     return user_token("ann", kind, settings.email_link_secret)
-
-
-def push(event_type: str, data: dict) -> dict:
-    return {
-        "message": {
-            "data": base64.b64encode(json.dumps(data).encode()).decode(),
-            "attributes": {"type": event_type},
-            "messageId": "m-1",
-        },
-        "subscription": "projects/demo-test/subscriptions/notifications-events",
-    }
 
 
 @pytest.fixture

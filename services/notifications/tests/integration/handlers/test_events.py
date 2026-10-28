@@ -1,6 +1,7 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
+from event_pushes import push
 from prepza_common.events.notifications import (
     NOTIFICATION_REQUESTED,
     NotificationKind,
@@ -12,7 +13,7 @@ from notifications.constants.notifications import GROUP_HOURS
 from notifications.core.db import Session
 from notifications.models.notifications import Notification, Received
 from notifications.services import notices
-from tests.integration.factories import api, company, finished, push
+from tests.integration.factories import api, company, finished
 
 
 async def rows(company_id: str) -> list[Notification]:
