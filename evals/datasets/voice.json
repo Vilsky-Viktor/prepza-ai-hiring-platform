@@ -1,7 +1,7 @@
 {
- "about": "Made-up voice messages to the in-app assistant (requests about interviews, candidates and settings), in all 23 interface languages (English three times), spoken by OpenAI's text-to-speech into datasets/audio/<id>.ogg (Ogg Opus, as browsers record) by build_audio.py, for the speech-to-text the assistant's microphone uses. Graded by code (`also`: other right ways to write it, such as digits for a number): character error rate against the text, and the language's script. Hand-written.",
+ "about": "Made-up voice messages to the in-app assistant (requests about interviews, candidates and settings), in all 23 interface languages (English three times), spoken by OpenAI's realtime speech model into datasets/audio/<id>.ogg (Ogg Opus, as browsers record) by build_audio.py, for the speech-to-text the assistant's microphone uses. Graded by code (`also`: other right ways to write it, such as digits for a number): character error rate against the text, and the language's script. Hand-written.",
  "built": "2026-10-29",
- "model": "by hand; audio gpt-4o-mini-tts",
+ "model": "by hand; audio gpt-realtime-2.1-mini",
  "items": [
   {
    "id": "v01",

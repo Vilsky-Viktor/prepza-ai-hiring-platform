@@ -79,3 +79,17 @@ interface languages (26 messages, audio rebuilt; v03 also accepts "70 percent"),
 0.4% ± 0.3 both (paired per message −0.0% ± 0.5); right script 100% both; median 2.9 → 2.8 s.
 Price $0.003 → $0.0045 a minute, about $0.0003 → $0.0004 a message. Kept: as accurate, and the
 old model is going away; every language code is accepted (Filipino as `tl`).
+
+## Voice messages: audio by `gpt-realtime-2.1-mini` instead of `gpt-4o-mini-tts` (2026-10-29, kept)
+
+OpenAI shuts its text-to-speech models (`gpt-4o-mini-tts`, `tts-1`, `tts-1-hd`) down on
+2027-01-06 and names `gpt-realtime-2.1-mini` (Realtime API) as the replacement
+(developers.openai.com/api/docs/deprecations). `voice.json`'s 26 clips rebuilt once with it
+(voice `marin`, "Say exactly the following" with no context, PCM encoded to Ogg Opus by ffmpeg),
+`transcription_test.py` on `gpt-transcribe`, 3 repeats, before → after: heard right 100%
+(95.3–100) → 98.7% (93.1–99.8); character errors 0.4% ± 0.3 → 0.7% ± 0.4; right script 100%
+both; median 2.8 → 2.9 s; $0.0004 → $0.00035 a message. Within the noise and above the 95%
+target; the one miss is v14 (Filipino, "aplikanteng" heard as "aktibong", 1 of 3). The old clips,
+rerun the same day, still gave 100% / 0.4%. Two earlier tries were dropped: the message sent as a
+user turn (voice `alloy`, then `marin`) let the model drift (Thai and Filipino words misspoken,
+an Italian clip opening with "Ecco come suona la frase"), 92.3–96.2% heard right.

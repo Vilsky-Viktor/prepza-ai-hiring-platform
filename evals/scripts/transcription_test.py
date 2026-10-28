@@ -10,14 +10,12 @@ Costs about a cent."""
 import argparse
 import asyncio
 import json
-import re
 import time
-import unicodedata
 
 from common import DATASETS, RESULTS, load, run_record, save
 from prepza_common.ai.llm import transcription_cost
 from stats import mean, share
-from text_checks import in_script
+from text_checks import error_rate, in_script
 
 from assistant.config import settings
 from assistant.helpers.audio import audio_seconds
@@ -25,27 +23,6 @@ from assistant.services.transcribe import speech_to_text
 
 # A message is heard right when at most this share of its characters is wrong.
 MAX_ERROR_RATE = 0.1
-
-
-def plain(text: str) -> str:
-    text = unicodedata.normalize("NFKC", text).lower()
-
-    return re.sub(r"[^\w]+", "", text)
-
-
-def error_rate(said: str, heard: str) -> float:
-    """Levenshtein distance between the two, case, spaces and punctuation aside, over the
-    length of what was said."""
-    a, b = plain(said), plain(heard)
-    row = list(range(len(b) + 1))
-
-    for i, x in enumerate(a, 1):
-        previous, row[0] = row[0], i
-
-        for j, y in enumerate(b, 1):
-            previous, row[j] = row[j], min(row[j] + 1, row[j - 1] + 1, previous + (x != y))
-
-    return row[-1] / max(len(a), 1)
 
 
 async def hear(item: dict) -> dict:

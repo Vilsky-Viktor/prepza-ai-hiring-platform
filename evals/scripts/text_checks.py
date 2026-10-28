@@ -1,7 +1,9 @@
-"""Checks by code on text a model wrote in a given language, shared by the translation and title
-tests: whether it's written in that language's script, and what it must keep as it is."""
+"""Checks by code on text a model wrote in a given language, shared by the translation, title and
+voice tests: whether it's written in that language's script, what it must keep as it is, and how
+far it is from the text it should match."""
 
 import re
+import unicodedata
 
 # The letters each language is written in; Latin for the rest.
 SCRIPTS = {
@@ -49,3 +51,24 @@ def keeps(text: str, names: list[str]) -> bool:
 
 def paragraphs(text: str) -> int:
     return len([part for part in re.split(r"\n\s*\n", text.strip()) if part.strip()])
+
+
+def plain(text: str) -> str:
+    text = unicodedata.normalize("NFKC", text).lower()
+
+    return re.sub(r"[^\w]+", "", text)
+
+
+def error_rate(said: str, heard: str) -> float:
+    """Levenshtein distance between the two, case, spaces and punctuation aside, over the
+    length of what was said."""
+    a, b = plain(said), plain(heard)
+    row = list(range(len(b) + 1))
+
+    for i, x in enumerate(a, 1):
+        previous, row[0] = row[0], i
+
+        for j, y in enumerate(b, 1):
+            previous, row[j] = row[j], min(row[j] + 1, row[j - 1] + 1, previous + (x != y))
+
+    return row[-1] / max(len(a), 1)

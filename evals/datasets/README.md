@@ -197,12 +197,14 @@ same (reworded, reordered) and 11 traps that share most words but ask something 
 last, opens vs closes, signs vs drafts), in English, German, Japanese, Arabic, Russian, Hindi
 and Thai. Graded by code (`duplicates_test.py`).
 
-## `voice.json` and `audio/` (by hand, 2026-10-22, all 23 languages 2026-10-29; audio by `gpt-4o-mini-tts`)
+## `voice.json` and `audio/` (by hand, 2026-10-22, all 23 languages 2026-10-29; audio by `gpt-realtime-2.1-mini`, 2026-10-29)
 
 26 made-up voice messages to the assistant (invites, results, settings, a company's new name) in
-all 23 interface languages (English three times), spoken once by OpenAI's text-to-speech into
-`audio/<id>.ogg` (Ogg Opus, as browsers record; `build_audio.py`, rebuilt only on purpose). `also` lists other right ways to write a message (digits for a
-number). Graded by code (`transcription_test.py`).
+all 23 interface languages (English three times), spoken once by OpenAI's realtime speech model
+(voice `marin`; its text-to-speech models shut down on 2027-01-06) into `audio/<id>.ogg` (Ogg
+Opus, as browsers record; `build_audio.py`, then ffmpeg; rebuilt only on purpose). `also` lists
+other right ways to write a message (digits for a number). Graded by code
+(`transcription_test.py`).
 
 ## `screen.json` (by hand, 2026-10-22)
 
