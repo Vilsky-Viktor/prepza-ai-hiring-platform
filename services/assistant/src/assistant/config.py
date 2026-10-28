@@ -29,7 +29,7 @@ class Settings(ServiceSettings):
     # message. Empty: no check.
     turnstile_secret_key: str = ""
     # Turns a held voice message into text.
-    transcribe_model: str = "gpt-4o-mini-transcribe"
+    transcribe_model: str = "gpt-transcribe"
     # Conversations nobody has added to for this many days are deleted.
     assistant_retention_days: int = Field(default=90, gt=0)
     # The services whose user-facing GET routes are the assistant's tools, called with the

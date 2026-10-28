@@ -95,5 +95,6 @@ def test_embeddings_cost_their_input_only():
 
 
 def test_transcription_costs_by_the_minute():
+    assert transcription_cost("gpt-transcribe", 120) == pytest.approx(0.009)
     assert transcription_cost("gpt-4o-mini-transcribe", 90) == pytest.approx(0.0045)
     assert transcription_cost("unknown-model", 90) is None

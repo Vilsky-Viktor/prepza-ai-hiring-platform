@@ -1,6 +1,6 @@
 """Tests the assistant's speech to text (the microphone's voice messages) on datasets/voice.json
-and its audio (build_audio.py): each recording is sent as the service sends it (its model, the
-interface's language, Ogg Opus), and the text graded by code: the character error rate against
+and its audio (build_audio.py): each recording is sent through the service's own call (its model,
+the interface's language, Ogg Opus), and the text graded by code: the character error rate against
 what was said (case and punctuation aside) and the language's script.
 
     evals/run.sh assistant transcription_test.py --label base     # --repeat 2
@@ -20,9 +20,8 @@ from stats import mean, share
 from text_checks import in_script
 
 from assistant.config import settings
-from assistant.constants.transcribe import TRANSCRIBE_LANGUAGES
 from assistant.helpers.audio import audio_seconds
-from assistant.integrations.llm import get_openai
+from assistant.services.transcribe import speech_to_text
 
 # A message is heard right when at most this share of its characters is wrong.
 MAX_ERROR_RATE = 0.1
@@ -52,11 +51,7 @@ def error_rate(said: str, heard: str) -> float:
 async def hear(item: dict) -> dict:
     audio = (DATASETS / "audio" / f"{item['id']}.ogg").read_bytes()
     started = time.monotonic()
-    result = await get_openai().audio.transcriptions.create(
-        model=settings.transcribe_model,
-        file=("audio.ogg", audio, "audio/ogg"),
-        language=TRANSCRIBE_LANGUAGES.get(item["language"], item["language"]),
-    )
+    result = await speech_to_text("audio.ogg", audio, "audio/ogg", item["language"])
     seconds = audio_seconds(getattr(result, "usage", None), len(audio))
     rate = min(error_rate(said, result.text) for said in [item["text"], *item.get("also", [])])
 

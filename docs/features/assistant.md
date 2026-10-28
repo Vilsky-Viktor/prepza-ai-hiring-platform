@@ -124,7 +124,7 @@ data: {"done": {"message_id": "a93e…"}}
 
 Signed in, the panel's microphone button takes a spoken question: hold it to talk and let go to send (sliding away or Esc cancels; from the keyboard, Enter or Space starts and stops). The recording (webm/opus, or mp4 on Safari) stops by itself after `max_audio_seconds` (60, from `GET /config`); under half a second nothing is sent. It's hidden where the browser can't record.
 
-`POST /transcribe` takes the recording as the request's body (`Content-Type` `audio/webm`, `audio/mp4` or `audio/ogg`, at most 2 MB; else `415` or `413`), kept in memory: it's never written to disk, the database or the logs. OpenAI's `TRANSCRIBE_MODEL` hears it in the interface's language (Filipino as Tagalog) and the text comes back (`{"text"}`); nothing heard is a `422`, OpenAI failing a `502`. The panel sends the text as a message with `source: "voice"`. Sign-in, the emergency pause and the limits apply: 60 transcriptions a user an hour, and their tokens count against the user's and everyone's budgets.
+`POST /transcribe` takes the recording as the request's body (`Content-Type` `audio/webm`, `audio/mp4` or `audio/ogg`, at most 2 MB; else `415` or `413`), kept in memory: it's never written to disk, the database or the logs. OpenAI's `TRANSCRIBE_MODEL` hears it in the interface's language (Filipino as Tagalog) and the text comes back (`{"text"}`); nothing heard is a `422`, OpenAI failing a `502`. The panel sends the text as a message with `source: "voice"`. Sign-in, the emergency pause and the limits apply: 60 transcriptions a user an hour; the model is priced by the minute, so a transcription's cost is recorded by its seconds and it adds no tokens to the budgets (the message it becomes does).
 
 ## Secrets pasted into the chat
 
@@ -204,7 +204,7 @@ An action is the same in `src/assistant/constants/company_actions.py`, `intervie
 | `ASSISTANT_MODEL`, `ASSISTANT_REASONING_EFFORT` | `gpt-6-luna`, `low` | The chat model |
 | `TITLE_MODEL`, `TITLE_REASONING_EFFORT` | `gpt-6-luna`, `none` | The conversations' titles |
 | `ROUTING_MODEL`, `ROUTING_REASONING_EFFORT` | `gpt-6-luna`, `none` | Which groups of tools a turn is offered |
-| `TRANSCRIBE_MODEL` | `gpt-4o-mini-transcribe` | Voice input |
+| `TRANSCRIBE_MODEL` | `gpt-transcribe` | Voice input |
 | `HELP_MODEL`, `HELP_REASONING_EFFORT` | `gpt-6-luna`, `none` | The help chat for signed-out visitors, see [Public site](site.md#faq-and-help-chat) |
 | `ASSISTANT_RETENTION_DAYS` | 90 | Days a conversation is kept after its last message |
 | `OPENAI_API_KEY` | | OpenAI's key |

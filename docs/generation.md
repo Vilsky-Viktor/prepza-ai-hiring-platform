@@ -208,7 +208,7 @@ Each AI task has its own model and reasoning effort. The effort is `none`, `mini
 | In-app assistant | `ASSISTANT_MODEL` (`gpt-6-luna`) | `ASSISTANT_REASONING_EFFORT` (`low`) |
 | Assistant's conversation titles | `TITLE_MODEL` (`gpt-6-luna`) | `TITLE_REASONING_EFFORT` (`none`) |
 | Assistant's tools for a turn (the groups it's offered) | `ROUTING_MODEL` (`gpt-6-luna`) | `ROUTING_REASONING_EFFORT` (`none`) |
-| Assistant's voice messages to text | `TRANSCRIBE_MODEL` (`gpt-4o-mini-transcribe`) | None |
+| Assistant's voice messages to text | `TRANSCRIBE_MODEL` (`gpt-transcribe`) | None |
 
 Every service builds its chat models with `prepza_common.ai.llm.chat_model`, which leaves the temperature out at any effort but `none`.
 

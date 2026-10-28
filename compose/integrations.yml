@@ -80,7 +80,7 @@ x-assistant-env: &assistant-env
   TITLE_REASONING_EFFORT: ${TITLE_REASONING_EFFORT:-none}
   ROUTING_MODEL: ${ROUTING_MODEL:-gpt-6-luna}
   ROUTING_REASONING_EFFORT: ${ROUTING_REASONING_EFFORT:-none}
-  TRANSCRIBE_MODEL: ${TRANSCRIBE_MODEL:-gpt-4o-mini-transcribe}
+  TRANSCRIBE_MODEL: ${TRANSCRIBE_MODEL:-gpt-transcribe}
   HELP_MODEL: ${HELP_MODEL:-gpt-6-luna}
   HELP_REASONING_EFFORT: ${HELP_REASONING_EFFORT:-none}
   # The "I'm not a robot" check on a visitor's first help chat message.

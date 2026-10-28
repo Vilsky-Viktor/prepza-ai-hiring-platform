@@ -89,7 +89,6 @@ def test_a_secret_said_aloud_never_comes_back_as_text(client, monkeypatch):
     monkeypatch.setattr(transcribe, "get_openai", lambda: client_)
     monkeypatch.setattr(transcribe, "refuse_if_paused", nothing)
     monkeypatch.setattr(transcribe.limits, "check_transcription", nothing)
-    monkeypatch.setattr(transcribe.limits, "record", nothing)
     response = client.post(
         "/transcribe", content=b"\x1a\x45\xdf\xa3opus", headers={"Content-Type": "audio/webm"}
     )

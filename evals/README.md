@@ -114,7 +114,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Quality patterns: planted found / kept supported / no rule when none / known named; judge traps | 100% (79.6–100) / 100% (84.5–100) / 3 of 3 / 3 of 3; 10 of 10; $0.016 and 30 s a run | `patterns.json`, 4 groups × 3 | 2026-10-22 |
 | Assistant titles: code checks / sums up / right language / natural; judge traps | 97.6% (87.7–99.6) / 88.1% (75.0–94.8) / 100% / 100%; 11 of 11; $0.00003 and 2.8 s a title | `titles.json`, 14 × 3 | 2026-10-22 |
 | Repeated questions: distinct kept / repeats dropped | 100% (74.1–100) / 18.2% (5.1–47.7); the closest distinct pair at 0.084, the threshold 0.08 | `duplicates.json`, 22 pairs | 2026-10-22 |
-| Voice messages: heard right / character errors / script | 95.8% (79.8–99.3) / 1.6% ± 1.3 / 100%; $0.0006 a message | `voice.json`, 12 × 2 | 2026-10-22 |
+| Voice messages (`gpt-transcribe`): heard right / character errors / script | 100% (95.3–100) / 0.4% ± 0.3 / 100%; $0.0004 and 2.8 s a message | `voice.json`, 26 × 3 (all 23 languages) | 2026-10-29 |
 | Text check: false refusals / accepted / refused | 0 / 100% (95.9–100) / 100% (90.4–100); $0.00003 and 1.9 s a check | `screen.json`, 42 × 3 | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
 | Help chat: passed / made up / sign-in marker; who-are-you answers | 96.0% (88.9–98.6) / 4.0% / 100%; 18/18; in the assistant, the same as in rounds just before the move | `help_questions.json` (25), 3 repeats | 2026-10-29 |

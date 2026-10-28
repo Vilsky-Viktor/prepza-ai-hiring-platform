@@ -20,10 +20,9 @@ AAC = b"\x00\x00\x00\x18ftypM4A aac"
 
 @pytest.fixture
 def openai(monkeypatch):
-    """OpenAI's speech to text, answering `answer.text`; the calls it got, and what was counted."""
+    """OpenAI's speech to text, answering `answer.text`; the calls it got."""
     calls = []
-    recorded = []
-    answer = SimpleNamespace(text="Who passed?", usage=SimpleNamespace(total_tokens=42))
+    answer = SimpleNamespace(text="Who passed?", usage=SimpleNamespace(seconds=4.0))
 
     async def create(**arguments):
         calls.append(arguments)
@@ -39,37 +38,32 @@ def openai(monkeypatch):
     async def check_transcription(redis, user_id, company_ids):
         pass
 
-    async def record(redis, user_id, company_id, tokens):
-        recorded.append((user_id, company_id, tokens))
-
     client = SimpleNamespace(audio=SimpleNamespace(transcriptions=SimpleNamespace(create=create)))
     monkeypatch.setattr(transcribe, "get_openai", lambda: client)
     monkeypatch.setattr(transcribe, "refuse_if_paused", not_paused)
     monkeypatch.setattr(transcribe.limits, "check_transcription", check_transcription)
-    monkeypatch.setattr(transcribe.limits, "record", record)
     app.dependency_overrides[user_with_token] = lambda: (ANN, "user-token")
 
-    yield SimpleNamespace(calls=calls, recorded=recorded, answer=answer)
+    yield SimpleNamespace(calls=calls, answer=answer)
 
     app.dependency_overrides.clear()
 
 
-def test_a_recording_is_heard_in_the_interface_language_and_its_tokens_count(client, openai):
+def test_a_recording_is_heard_in_the_interface_language(client, openai):
     response = client.post("/transcribe", content=OPUS, headers={**WEBM, "Accept-Language": "de"})
 
     assert response.json() == {"text": "Who passed?"}
     [call] = openai.calls
     assert call["file"] == ("audio.webm", OPUS, "audio/webm")
-    assert call["language"] == "de"
-    assert call["model"] == "gpt-4o-mini-transcribe"
-    assert openai.recorded == [("ann", None, 42)]
+    assert call["languages"] == ["de"]
+    assert call["model"] == "gpt-transcribe"
 
 
 def test_filipino_is_heard_as_tagalog(client, openai):
     headers = {"Content-Type": "audio/mp4", "Accept-Language": "fil"}
     client.post("/transcribe", content=AAC, headers=headers)
 
-    assert openai.calls[0]["language"] == "tl"
+    assert openai.calls[0]["languages"] == ["tl"]
     assert openai.calls[0]["file"][0] == "audio.mp4"
 
 
@@ -114,14 +108,14 @@ def test_openai_failing_is_a_502_and_nothing_is_logged_of_the_recording(client, 
 
 
 def test_a_transcription_is_recorded_with_its_audio_seconds(client, openai, published):
-    openai.answer.usage = SimpleNamespace(total_tokens=42, seconds=7.5)
+    openai.answer.usage = SimpleNamespace(type="duration", seconds=7.5)
     client.post("/transcribe", content=OPUS, headers=WEBM)
 
     [(kind, data)] = published
     assert kind == "ai.used"
     assert (data["action"], data["model"], data["audio_seconds"]) == (
         "transcription",
-        "gpt-4o-mini-transcribe",
+        "gpt-transcribe",
         7.5,
     )
     assert (data["user_id"], data["company_id"], data["outcome"]) == ("ann", None, "ok")

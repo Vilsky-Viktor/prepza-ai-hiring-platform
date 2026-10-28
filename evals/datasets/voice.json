@@ -1,6 +1,6 @@
 {
- "about": "Made-up voice messages to the in-app assistant (requests about interviews, candidates and settings), in English and eight other languages, spoken by OpenAI's text-to-speech into datasets/audio/<id>.ogg (Ogg Opus, as browsers record) by build_audio.py, for the speech-to-text the assistant's microphone uses. Graded by code (`also`: other right ways to write it, such as digits for a number): character error rate against the text, and the language's script. Hand-written.",
- "built": "2026-10-22",
+ "about": "Made-up voice messages to the in-app assistant (requests about interviews, candidates and settings), in all 23 interface languages (English three times), spoken by OpenAI's text-to-speech into datasets/audio/<id>.ogg (Ogg Opus, as browsers record) by build_audio.py, for the speech-to-text the assistant's microphone uses. Graded by code (`also`: other right ways to write it, such as digits for a number): character error rate against the text, and the language's script. Hand-written.",
+ "built": "2026-10-29",
  "model": "by hand; audio gpt-4o-mini-tts",
  "items": [
   {
@@ -18,7 +18,8 @@
    "language": "en",
    "text": "Set the pass mark to seventy percent and give everyone ninety seconds a question.",
    "also": [
-    "Set the pass mark to 70% and give everyone 90 seconds a question."
+    "Set the pass mark to 70% and give everyone 90 seconds a question.",
+    "Set the pass mark to 70 percent and give everyone 90 seconds a question."
    ]
   },
   {
@@ -65,6 +66,76 @@
    "id": "v12",
    "language": "en",
    "text": "Rename the company to Northwind Supplies and turn on the weekly email."
+  },
+  {
+   "id": "v13",
+   "language": "et",
+   "text": "Saada kõigile kandidaatidele meeldetuletus, kes pole veel testi lõpetanud."
+  },
+  {
+   "id": "v14",
+   "language": "fil",
+   "text": "Ilan ang mga aplikanteng pumasa sa pagsusulit para sa kahera ngayong buwan?"
+  },
+  {
+   "id": "v15",
+   "language": "fr",
+   "text": "Ajoute une nouvelle question sur la sécurité au test pour le poste de cariste."
+  },
+  {
+   "id": "v16",
+   "language": "he",
+   "text": "כמה מועמדים סיימו את המבחן לתפקיד מנהל המשמרת?"
+  },
+  {
+   "id": "v17",
+   "language": "id",
+   "text": "Kirim undangan wawancara kepada pelamar untuk posisi staf gudang."
+  },
+  {
+   "id": "v18",
+   "language": "it",
+   "text": "Quanti candidati hanno superato la prova per il ruolo di magazziniere?"
+  },
+  {
+   "id": "v19",
+   "language": "ko",
+   "text": "이번 주에 면접을 마친 지원자 목록을 보여 주세요."
+  },
+  {
+   "id": "v20",
+   "language": "nl",
+   "text": "Verander de naam van het bedrijf en zet de wekelijkse e-mail uit."
+  },
+  {
+   "id": "v21",
+   "language": "pl",
+   "text": "Wyślij przypomnienie kandydatom, którzy nie zaczęli jeszcze testu z księgowości."
+  },
+  {
+   "id": "v22",
+   "language": "pt",
+   "text": "Quantos candidatos concluíram a entrevista para recepcionista esta semana?"
+  },
+  {
+   "id": "v23",
+   "language": "tr",
+   "text": "Depo sorumlusu mülakatına yeni bir konu ekle ve adaylara davet gönder."
+  },
+  {
+   "id": "v24",
+   "language": "uk",
+   "text": "Скільки кандидатів склали тест на посаду бухгалтера минулого тижня?"
+  },
+  {
+   "id": "v25",
+   "language": "vi",
+   "text": "Hãy gửi lời mời phỏng vấn cho tất cả ứng viên vị trí thu ngân."
+  },
+  {
+   "id": "v26",
+   "language": "zh",
+   "text": "请把仓库主管面试的提醒发给所有还没开始的候选人。"
   }
  ]
 }

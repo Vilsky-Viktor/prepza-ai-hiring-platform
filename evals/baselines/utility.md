@@ -1,7 +1,8 @@
 # Baselines of the small utility prompts
 
 The runs behind the README's numbers for translations, code-language tags, the weekly quality
-patterns and the assistant's conversation titles, by date; the rest are in `README.md`.
+patterns, the assistant's conversation titles and voice messages, by date; the rest are in
+`README.md`.
 
 ## Code-language tags: a role and tagged examples (2026-10-22, kept)
 
@@ -67,3 +68,14 @@ low, judged by `gpt-6.1-sol` high, direct call → batch request: code checks 10
 90.0% (80.8–95.1) → 88.6% (79.0–94.1); native 98.6% (92.3–99.7) → 97.1% (90.2–99.2); one
 language 100% both; judge traps 97 of 97 both; $0.158 both at once, so $0.079 in a batch. Within
 the intervals; kept for the price (the user approved the wait: up to a day, usually an hour).
+
+## Voice messages: `gpt-transcribe` instead of `gpt-4o-mini-transcribe` (2026-10-29, kept)
+
+OpenAI shuts `gpt-4o-mini-transcribe` (and `whisper-1`, `gpt-4o-transcribe`) down on
+2027-02-26 and recommends `gpt-transcribe` for recorded speech; it takes the language as
+`languages` (a list) and reports the audio's seconds, not tokens. `voice.json` grew to all 23
+interface languages (26 messages, audio rebuilt; v03 also accepts "70 percent"), 3 repeats,
+`transcription_test.py`, before → after: heard right 100% (95.3–100) both; character errors
+0.4% ± 0.3 both (paired per message −0.0% ± 0.5); right script 100% both; median 2.9 → 2.8 s.
+Price $0.003 → $0.0045 a minute, about $0.0003 → $0.0004 a message. Kept: as accurate, and the
+old model is going away; every language code is accepted (Filipino as `tl`).
