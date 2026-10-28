@@ -25,13 +25,13 @@ ARTICLE = {
 
 
 @pytest.fixture
-def rounds(monkeypatch):
+def site(monkeypatch):
     """Rounds answering with one guide; what was asked, as (service, path, language)."""
     asked = []
 
     async def get(service, path, query, token, language, via=None):
         asked.append((service, path, language))
-        request = httpx.Request("GET", "http://rounds")
+        request = httpx.Request("GET", "http://site")
 
         if path == "/help/guides/hire-testers":
             return httpx.Response(200, json=ARTICLE, request=request)
@@ -48,13 +48,13 @@ def rounds(monkeypatch):
     return asked
 
 
-def test_the_guides_are_listed_and_read_from_rounds_in_the_users_language(rounds):
+def test_the_guides_are_listed_and_read_from_site_in_the_users_language(site):
     listed = asyncio.run(call_tool("list_guides", {}, "user-token", "de", None))
     read = asyncio.run(call_tool("get_guide", {"slug": "hire-testers"}, "user-token", "de", None))
 
-    assert rounds == [
-        ("rounds", "/help/guides", "de"),
-        ("rounds", "/help/guides/hire-testers", "de"),
+    assert site == [
+        ("site", "/help/guides", "de"),
+        ("site", "/help/guides/hire-testers", "de"),
     ]
     assert listed.content["data"] == [
         {"slug": "hire-testers", "title": "Tester einstellen", "description": "Ein Prozess."}
@@ -68,7 +68,7 @@ def test_the_guides_are_listed_and_read_from_rounds_in_the_users_language(rounds
     assert not tools()["get_guide"].confirm and not tools()["list_guides"].confirm
 
 
-def test_a_guide_link_opens_the_guides_page_named_by_its_title(rounds):
+def test_a_guide_link_opens_the_guides_page_named_by_its_title(site):
     content, block = asyncio.run(
         show({"kind": "link", "page": "guide", "slug": "hire-testers"}, TURN, set())
     )
@@ -76,11 +76,11 @@ def test_a_guide_link_opens_the_guides_page_named_by_its_title(rounds):
     assert content == {"detail": "Shown under your answer."}
     assert block["links"] == ["/guides/hire-testers"]
     assert block["label"] == "Tester einstellen"
-    assert ("rounds", "/help/guides/hire-testers", "de") in rounds
+    assert ("site", "/help/guides/hire-testers", "de") in site
 
 
 @pytest.mark.parametrize("slug", ["missing", "../faq", None])
-def test_no_link_is_shown_to_a_guide_that_isnt_there(rounds, slug):
+def test_no_link_is_shown_to_a_guide_that_isnt_there(site, slug):
     content, block = asyncio.run(show({"kind": "link", "page": "guide", "slug": slug}, TURN, set()))
 
     assert block is None

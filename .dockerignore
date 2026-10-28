@@ -12,7 +12,7 @@
 !services/assistant
 !services/accounts
 !services/site
-# rounds serves the site's guide articles (frontend/content).
+# site serves the site's guide articles (frontend/content).
 !frontend/content
 **/.venv
 **/__pycache__

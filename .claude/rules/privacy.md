@@ -11,8 +11,8 @@ paths:
 prepza is the controller for its users' accounts and the processor for candidates' data, which
 belongs to the company. Every retention, export and deletion of a candidate's data is something
 the company can explain to the candidate. What is processed, why and for how long is in the
-privacy policy (`services/rounds/src/rounds/constants/privacy.py`) and the records of processing
-(`internal_docs/compliance/records-of-processing.md`, local).
+privacy policy (`services/site/src/site_content/constants/privacy.py`) and the records of
+processing (`internal_docs/compliance/records-of-processing.md`, local).
 
 ## A new kind of personal data
 

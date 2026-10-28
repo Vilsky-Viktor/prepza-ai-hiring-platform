@@ -82,19 +82,19 @@ def test_a_message_carries_its_page():
     assert body.page.model_dump(exclude_none=True) == PAGE
 
 
-def test_the_page_guide_tool_reads_rounds_by_the_key(monkeypatch):
+def test_the_page_guide_tool_reads_site_by_the_key(monkeypatch):
     asked = []
 
     async def get(service, path, query, token, language, via=None):
         asked.append((service, path, token, language))
         guide = {"key": "billing", "title": "Billing", "text": "t", "actions": [], "tips": []}
 
-        return httpx.Response(200, json=guide, request=httpx.Request("GET", "http://rounds"))
+        return httpx.Response(200, json=guide, request=httpx.Request("GET", "http://site"))
 
     monkeypatch.setattr(services, "get", get)
 
     result = asyncio.run(call_tool("get_page_guide", {"key": "billing"}, "user-token", "de", None))
 
-    assert asked == [("rounds", "/help/pages/billing", "user-token", "de")]
+    assert asked == [("site", "/help/pages/billing", "user-token", "de")]
     assert result.content["data"]["title"] == "Billing"
     assert not tools()["get_page_guide"].confirm

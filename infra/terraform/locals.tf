@@ -84,6 +84,16 @@ locals {
     "superadmin/stats",
   ]
 
+  # The site's content under /api/<service>/: site's routes, kept at the addresses rounds had
+  # (load_balancer.tf; gateway/nginx.conf has the same list). Each path is a prefix: "help/guide"
+  # takes the platform guide and the guide articles; site serves each at the same path.
+  site_paths = [
+    { from = "rounds", path = "help/faq" },
+    { from = "rounds", path = "help/guide" },
+    { from = "rounds", path = "help/pages/" },
+    { from = "rounds", path = "help/legal/" },
+  ]
+
   databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts", "site"]
 
   # Which services each one calls; it gets their keys, to sign tokens for them.
@@ -93,8 +103,9 @@ locals {
     library           = ["generation", "accounts"]
     generation        = ["library", "notifications"]
     generation-worker = ["library", "notifications"]
-    rounds            = ["library"]
-    companies         = ["generation", "library", "rounds", "billing", "accounts"]
+    # site: rounds' old content routes forward there for one release.
+    rounds    = ["library", "site"]
+    companies = ["generation", "library", "rounds", "billing", "accounts"]
     # companies' names and accounts' emails, for the AI costs tab.
     billing = ["companies", "accounts"]
     # rounds: a campaign's candidates and learners.
@@ -105,8 +116,9 @@ locals {
     # Its X-Assistant header, so companies audits reads made through it as such; billing, whether
     # a company ever paid (its limits); api, checking an AI agent's API key at the MCP server;
     # notifications, ats and library, what get_updates reads (the bell, ATS candidates not
-    # invited, questions flagged or fixed); rounds, what the help chat answers from.
-    assistant = ["companies", "billing", "api", "notifications", "ats", "library", "rounds", "accounts"]
+    # invited, questions flagged or fixed); rounds, a user's practice rounds; site, what the help
+    # chat answers from and the FAQ, guides and news its tools read.
+    assistant = ["companies", "billing", "api", "notifications", "ats", "library", "rounds", "accounts", "site"]
     # Every service holding part of a user's data, for deleting and downloading an account;
     # billing also sets a new account's currency.
     accounts = ["companies", "rounds", "generation", "billing", "notifications", "ats", "api", "assistant", "library"]

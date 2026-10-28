@@ -3,7 +3,7 @@ name = "rounds"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
-    "prepza-common[money]",
+    "prepza-common",
     "alembic>=1.20.0",
     "fastapi>=0.141.1",
     "firebase-admin>=7.7.0",
@@ -15,7 +15,6 @@ dependencies = [
     "sqlalchemy[asyncio]>=2.1.1",
     "uvicorn>=0.54.0",
     "email-validator>=2.3.0",
-    "babel>=2.17",
 ]
 
 # The shared package, from this repo. To use a published version, drop this source and require

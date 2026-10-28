@@ -1,0 +1,49 @@
+import pytest
+from prepza_common.ai.page_keys import PAGE_KEYS
+from prepza_common.config.constants import LANGUAGES
+
+from site_content.constants.help import NO_SUCH_PAGE
+from site_content.helpers import page_guides
+from site_content.helpers.page_guides import GUIDES
+
+
+def test_every_page_has_its_guide_in_english():
+    assert list(GUIDES["en"]) == list(PAGE_KEYS)
+
+
+@pytest.mark.parametrize("language", sorted(LANGUAGES))
+def test_every_page_has_a_whole_guide_in_every_language(language):
+    for key in PAGE_KEYS:
+        guide, english = GUIDES[language][key], GUIDES["en"][key]
+
+        assert guide["title"] and guide["text"], (language, key)
+        assert len(guide["actions"]) == len(english["actions"]), (language, key)
+        assert len(guide["tips"]) == len(english["tips"]), (language, key)
+        assert all(guide["actions"] + guide["tips"]), (language, key)
+
+    assert set(GUIDES[language]) == set(PAGE_KEYS)
+
+
+def test_a_guide_is_served_in_the_pages_language(client):
+    german = client.get("/help/pages/billing", headers={"Accept-Language": "de"}).json()
+    english = client.get("/help/pages/billing", headers={"Accept-Language": "en"}).json()
+
+    assert german == {"key": "billing", **GUIDES["de"]["billing"], "article": None}
+    assert english == {"key": "billing", **GUIDES["en"]["billing"], "article": None}
+
+
+def test_a_guide_not_translated_yet_is_served_in_english(client, monkeypatch):
+    untranslated = {key: guide for key, guide in GUIDES["de"].items() if key != "billing"}
+    monkeypatch.setitem(page_guides.GUIDES, "de", untranslated)
+
+    found = client.get("/help/pages/billing", headers={"Accept-Language": "de"}).json()
+
+    assert found == {"key": "billing", **GUIDES["en"]["billing"], "article": None}
+
+
+def test_an_unknown_page_has_no_guide(client):
+    response = client.get("/help/pages/superadmin", headers={"Accept-Language": "en"})
+
+    assert response.status_code == 404
+    assert response.json()["detail"] == NO_SUCH_PAGE
+    assert client.get("/help/pages/" + "x" * 100).status_code == 422

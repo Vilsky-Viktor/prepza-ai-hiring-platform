@@ -137,7 +137,7 @@ TOOLS = {
         "fields": ["id", "title", "level", "language", "topic_count", "topics", "subtopics"],
     },
     "get_faq": {
-        "service": "rounds",
+        "service": "site",
         "method": "GET",
         "path": "/help/faq",
         "params": [],
@@ -146,7 +146,7 @@ TOOLS = {
         "max_length": 2_000,
     },
     "get_page_guide": {
-        "service": "rounds",
+        "service": "site",
         "method": "GET",
         "path": "/help/pages/{key}",
         "params": ["key"],
@@ -159,7 +159,7 @@ TOOLS = {
         ),
     },
     "list_guides": {
-        "service": "rounds",
+        "service": "site",
         "method": "GET",
         "path": "/help/guides",
         "params": [],
@@ -173,7 +173,7 @@ TOOLS = {
         ),
     },
     "get_guide": {
-        "service": "rounds",
+        "service": "site",
         "method": "GET",
         "path": "/help/guides/{slug}",
         "params": ["slug"],
@@ -186,7 +186,7 @@ TOOLS = {
         ),
     },
     "get_platform_guide": {
-        "service": "rounds",
+        "service": "site",
         "method": "GET",
         "path": "/help/guide",
         "params": [],

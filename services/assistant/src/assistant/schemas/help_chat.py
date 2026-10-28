@@ -56,7 +56,7 @@ class HelpVoteIn(BaseModel):
 
 
 class HelpKnowledge(BaseModel):
-    """What rounds sends the help chat to answer from, in English: the platform guide (with the
+    """What site sends the help chat to answer from, in English: the platform guide (with the
     prices in the visitor's currency) and the guide of the page asked on, if it's a known one."""
 
     knowledge: str

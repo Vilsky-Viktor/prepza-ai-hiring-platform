@@ -76,7 +76,7 @@ async def start(
     try:
         known = await help_knowledge(country, body.page)
     except httpx.HTTPError:
-        logger.warning("The help chat's knowledge isn't available from rounds", exc_info=True)
+        logger.warning("The help chat's knowledge isn't available from site", exc_info=True)
 
         return failed(language)
 

@@ -25,6 +25,7 @@ SERVICE_URLS = {
     "ats": "ats_url",
     "api": "api_url",
     "rounds": "rounds_url",
+    "site": "site_service_url",
 }
 # What the model reads when a tool's service didn't answer.
 SERVICE_UNAVAILABLE = "The service didn't answer. Try again later."

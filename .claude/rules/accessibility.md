@@ -2,6 +2,7 @@
 paths:
   - "frontend/**"
   - "services/rounds/**"
+  - "services/site/**"
   - "services/companies/src/companies/constants/invites.py"
   - "services/notifications/src/notifications/templates/**"
 ---

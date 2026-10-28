@@ -8,7 +8,6 @@ from rounds.repositories import session_expiry
 REDIS_USERS = [
     "rounds.api.v1.practice",
     "rounds.services.contact",
-    "rounds.services.help",
     "rounds.services.practice",
     "rounds.services.signals",
 ]

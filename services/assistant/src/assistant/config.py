@@ -42,6 +42,9 @@ class Settings(ServiceSettings):
     ats_url: str
     api_url: str
     rounds_url: str
+    # The site's content service (the FAQ, guides, legal texts, news): the help chat's knowledge
+    # and its tools. Not SITE_URL, which is the site's own address.
+    site_service_url: str
     # The site's address: AI apps connect to <SITE_URL>/mcp, and it's the issuer of their access.
     site_url: str
     # Firebase's public web key (the frontend's NEXT_PUBLIC_FIREBASE_API_KEY): an AI app's calls

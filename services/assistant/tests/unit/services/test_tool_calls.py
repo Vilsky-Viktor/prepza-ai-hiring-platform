@@ -145,7 +145,7 @@ def test_the_platform_guide_is_read_whole_as_text(calls):
     calls.answer = answer(text=guide, headers={"content-type": "text/plain"})
     result = run("get_platform_guide", {})
 
-    assert calls[0][:3] == ("rounds", "/help/guide", {})
+    assert calls[0][:3] == ("site", "/help/guide", {})
     assert result.content == {"data": guide, "source": "get_platform_guide"}
     assert result.block is None
 

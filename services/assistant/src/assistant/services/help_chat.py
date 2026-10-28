@@ -29,7 +29,7 @@ from assistant.schemas.help_chat import HelpKnowledge, HelpMessage
 def build_messages(
     conversation: list[HelpMessage], language: str, known: HelpKnowledge, page: str | None = None
 ) -> list[BaseMessage]:
-    """The system prompt holds everything the chat may answer from (`known`, from rounds, in
+    """The system prompt holds everything the chat may answer from (`known`, from site, in
     English), with the guide of the page the visitor asks on (`page`, its key) when it's a known
     one. The reply's language is chosen here: the visitor's question's own, else the page's.
     Each of the visitor's messages is tagged as data."""

@@ -19,7 +19,7 @@ src/
 └── stores/               # Only if client state is ever needed
 public/                   # Served as is: its addresses never change (emails, the embed script)
 assets/fonts/             # Read by the server (preview pictures), never public
-messages/, content/       # Translations; articles and documents (rounds reads content/ too)
+messages/, content/       # Translations; articles and documents (site reads content/ too)
 tests/                    # vitest
 ```
 

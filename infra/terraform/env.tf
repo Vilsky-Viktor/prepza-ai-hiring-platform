@@ -15,6 +15,8 @@ locals {
     NOTIFICATIONS_URL       = local.run_url["notifications"]
     ATS_URL                 = local.run_url["ats"]
     ACCOUNTS_URL            = local.run_url["accounts"]
+    # The site's content service; SITE_URL is the site's own address.
+    SITE_SERVICE_URL = local.run_url["site"]
   }
 
   # And each service its own; INVOKER_AUDIENCE is the service's address, which Google's signed

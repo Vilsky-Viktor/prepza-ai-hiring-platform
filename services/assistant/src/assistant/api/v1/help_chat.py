@@ -15,7 +15,7 @@ router = APIRouter(prefix="/help", tags=["help"])
 async def help_chat(
     body: HelpChatRequest, request: Request, user: OptionalUser, country: VisitorCountry = None
 ) -> StreamingResponse:
-    """Answers questions about prepza, for visitors too, from the site's documents (rounds').
+    """Answers questions about prepza, for visitors too, from the site's documents (site's).
     Streams server-sent events: {"delta"}... (and a {"block"} sign-in card when a visitor asks
     to sign in or sign up), then {"done"} or {"error"}. Prices are in the visitor's country's
     currency (US dollars without one). Refused during the emergency pause, as it's AI. A

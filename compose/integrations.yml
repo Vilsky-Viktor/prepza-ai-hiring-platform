@@ -89,7 +89,7 @@ x-assistant-env: &assistant-env
   # AI apps connect to <SITE_URL>/mcp; their calls sign the user in with Firebase's web key.
   SITE_URL: ${SITE_URL:-http://localhost:8090}
   FIREBASE_WEB_API_KEY: ${FIREBASE_WEB_API_KEY:-demo-api-key}
-  # The services whose GET routes are its tools, called with the user's own token; rounds also
+  # The services whose GET routes are its tools, called with the user's own token; site also
   # sends the help chat what it answers from.
   COMPANIES_URL: http://companies:8000
   BILLING_URL: http://billing:8000
@@ -99,6 +99,7 @@ x-assistant-env: &assistant-env
   ATS_URL: http://ats:8000
   API_URL: http://api:8000
   ROUNDS_URL: http://rounds:8000
+  SITE_SERVICE_URL: http://site:8000
 
 x-accounts-env: &accounts-env
   DATABASE_URL: postgresql://accounts:${POSTGRES_PASSWORD}@postgres:5432/accounts

@@ -38,9 +38,9 @@ else
       changed="$changed frontend"
     fi
 
-    # rounds serves the site's guide articles from its image.
+    # site serves the site's guide articles from its image.
     if grep -qE '^frontend/content/([a-z]+/)?guides/' <<< "$files"; then
-      changed="$changed rounds"
+      changed="$changed site"
     fi
 
     if grep -q '^packages/common/' <<< "$files"; then

@@ -6,9 +6,9 @@ from prepza_common.auth.route_guards import unguarded
 from rounds.main import app
 
 PUBLIC = {
-    # A template's public size, and the help pages for visitors (Turnstile and per-address
-    # limits on the contact form); the help chat and its votes, moved to the assistant, only
-    # send the browser there.
+    # A template's public size, and the contact form for visitors (Turnstile and per-address
+    # limits); the help chat and its votes, moved to the assistant, and the help pages, moved to
+    # site, only send the browser there.
     "GET /practice/{template_id}/size",
     "GET /help/faq",
     "GET /help/guide",

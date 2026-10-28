@@ -39,7 +39,7 @@ HELP_RETRIES = 1
 LAST_NOT_QUESTION = "The conversation must end with a question."
 # The longest page key a request may name.
 MAX_PAGE_KEY_LENGTH = 40
-# Rounds' route with what the help chat answers from (the site's documents stay rounds').
+# Site's route with what the help chat answers from (the site's documents are site's).
 KNOWLEDGE_PATH = "/internal/help/knowledge"
 # A reply to a visitor asking to sign in or sign up starts with this marker (the prompt says
 # so), naming the way they asked for if any; the chat sends a sign-in card in its place.

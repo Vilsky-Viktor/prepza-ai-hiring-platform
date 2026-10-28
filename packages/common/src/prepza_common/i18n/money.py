@@ -1,4 +1,5 @@
-# An amount of money as a language writes it: rounds' FAQ and help chat, notifications' emails.
+# An amount of money as a language writes it: site's FAQ and help chat's knowledge,
+# notifications' emails.
 # Needs the `money` extra (babel).
 from babel import Locale
 from babel.numbers import format_currency, get_currency_precision

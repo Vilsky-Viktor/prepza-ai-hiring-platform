@@ -4,5 +4,5 @@ SERVICE_NAME = "site"
 
 
 def service_token(callee: str) -> str:
-    """A token for calling `callee` (companies, rounds, ...), signed with that service's key."""
+    """A token for calling `callee` (generation, ...), signed with that service's key."""
     return issue_token(SERVICE_NAME, callee, callee_secret(callee))

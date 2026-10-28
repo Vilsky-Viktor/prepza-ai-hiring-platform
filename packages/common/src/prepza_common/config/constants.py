@@ -252,9 +252,9 @@ ACCOUNT_OWNS_SHARED = (
 )
 
 # Each legal document's version: the day it applies from, which may come after the day it's
-# published. Rounds serves the documents (a changed text needs a new version and its copy:
-# python -m app.legal_archive in rounds); library records the terms a new account accepts, and
-# companies the DPA a new company does.
+# published. Site serves the documents (a changed text needs a new version and its copy:
+# python -m site_content.legal_archive in site); accounts records the terms a new account
+# accepts, and companies the DPA a new company does.
 LEGAL_VERSIONS = {
     "terms": "2026-10-23",
     "privacy": "2026-10-23",

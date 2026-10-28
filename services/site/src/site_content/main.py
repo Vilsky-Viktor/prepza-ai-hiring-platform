@@ -12,6 +12,7 @@ from prepza_common.limits.maintenance import MaintenanceMiddleware
 from prepza_common.observability.logging import RequestLogMiddleware, configure_logging
 from prepza_common.observability.sentry import init_sentry
 
+from site_content.api.v1 import help, internal_help
 from site_content.config import settings
 from site_content.core.db import engine
 from site_content.integrations.redis import get_redis
@@ -40,6 +41,8 @@ app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
 compress_answers(app)
+app.include_router(help.router)
+app.include_router(internal_help.router)
 
 
 app.include_router(health_router(engine))

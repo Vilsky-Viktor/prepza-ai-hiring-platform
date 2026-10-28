@@ -1,0 +1,73 @@
+from site_content.constants.legal import COMPANY
+
+# The data processing agreement (GDPR Article 28) between prepza and each company, in English
+# only: it's a legal text, and a translation would need its own legal review. The terms make it
+# part of every company's agreement. The FAQ page's chat answers from it too.
+DPA_INTRO = f"This agreement applies when a company uses prepza to assess candidates. The company is the controller of its candidates' data and {COMPANY['name']} (registry code {COMPANY['registry_code']}), {COMPANY['address']}, processes it on the company's behalf. It forms part of the terms and is accepted with them; nothing needs to be signed. prepza.ai also shows this document in other languages; only this English version is binding, and where a translation differs, the English version applies."
+
+DPA_SECTIONS = [
+    {
+        "heading": "What is processed",
+        "items": [
+            "Purpose: running the company's interviews: inviting candidates, timing and scoring their answers, showing the company the results and the integrity signals, sending the emails the company asks for, sending results to the tools the company connects (its applicant tracking system, Slack, and its own systems through prepza's API and web hooks), keeping the results for the company, and keeping a log of what its members do with its candidates for the company's owner.",
+            "People: the candidates the company invites, who apply through its link or whom its applicant tracking system sends. The company's members aren't covered here: prepza is the controller of their accounts, under its privacy policy.",
+            "Data: candidates' email addresses, their names (given by the company or its applicant tracking system, or from their sign-in) and account ids from their sign-in, their answers, how long each took, page leaves, copy attempts and answers too fast to have read the question during the interview, when they confirmed before starting that they'd answer on their own, any extra time the company gives them (without a reason), and the results; the email, name and applicant tracking system id of candidates that system sends; the emails of people the company sends a report to; a one-way hash of the email address of each candidate who stops the company's emails; and the company's action log of its members' actions on candidates, such as inviting them, viewing their results or removing them: who did it, when, and which candidate's invite, never the candidate's email.",
+            "Duration: while the company uses prepza. Candidates' results are deleted 12 months after their invitation was last sent, candidates an applicant tracking system sends 12 months after they arrive, each action in the action log 12 months after it was taken, and everything when the company is deleted.",
+        ],
+    },
+    {
+        "heading": "Our duties",
+        "items": [
+            "We process the data only to provide prepza as the company uses it, following its instructions given through the product and these terms, unless the law requires otherwise; we tell the company if an instruction seems to break data protection law.",
+            "Everyone who can access the data is bound to confidentiality.",
+            "We keep the data secure: encrypted in transit and at rest, access limited to what each service needs, sign-in through Firebase (Google, LinkedIn or GitHub), signed calls between services, backups with point-in-time recovery, error reports without email addresses, and logs kept briefly.",
+            "We help the company answer candidates' requests (access, correction, deletion, objection, review by a person) and with its impact assessments and consultations, as far as the information is ours.",
+            "We tell the company without undue delay, and within 48 hours where we can, after becoming aware of a breach of its data, with what we know.",
+            "At the end, the data is deleted as described above; the company can download its results before deleting its company.",
+            "Tools the company connects (an applicant tracking system, a Slack workspace, or its own systems through prepza's API and web hooks) are its own recipients, not our sub-processors: we send them data only on the company's instruction, given when its owner or admin connects them, and stop when they are disconnected. Where they are outside the EU, that transfer is the company's responsibility.",
+            "AI apps a member connects to their own prepza account (such as Claude or ChatGPT) are that member's recipients, not our sub-processors: only when a member connects one, it reads and changes the company's data that member asks it to, within their role, and the data it receives is then under that app's own terms. A connection stops when the member disconnects it or deletes their account. The company's owners and admins decide whether its members may do this: \"Allow AI apps\" on the company's AI apps page, on unless they turn it off; while it's off, no AI app reads or changes the company's data. Deleting the account or a company is never done through such an app.",
+            "Invites and reminders sent on the company's behalf include links for the candidate to stop the company's emails, or that interview's reminders. After a candidate stops the company's emails, prepza doesn't email them for the company again and the company sees their invite as undelivered. The request is kept as a one-way hash of the email address until the company is deleted, also when the company erases the candidate.",
+            "We give the company the information needed to show that this agreement is kept, and allow and contribute to audits, including inspections, by the company or an auditor it mandates, on reasonable notice, at the company's cost, and at most once a year unless a breach or a supervisory authority requires more.",
+        ],
+    },
+    {
+        "heading": "Sub-processors",
+        "paragraphs": [
+            "The company authorises these sub-processors, each bound by data protection terms at least as protective as these:",
+        ],
+        "items": [
+            "Google Cloud (hosting, database, events; EU, Belgium) and Google Firebase (sign-in; Google LLC, United States, under the EU-US Data Privacy Framework).",
+            "OpenAI (writing and improving questions, including checking reported questions by the reasons given, never their comments; the assistant's answers, from a member's questions and the data it reads with their access, and turning voice messages into text; told not to store it; under its API terms it keeps the data for at most 30 days, only to check for abuse, and uses nothing for training; OpenAI Ireland Ltd, which transfers it to OpenAI in the United States under the European Commission's standard contractual clauses).",
+            "Resend (emails; EU, Ireland).",
+            "Google Workspace (our email inbox: messages from companies and candidates, and requests passed on to a company; Google Ireland Ltd, mail may be stored outside the EU under the EU-US Data Privacy Framework and standard contractual clauses).",
+            "Sentry (error reports, without email addresses; EU).",
+            "Langfuse (records of AI calls, to monitor and improve the quality of answers: what is sent to the AI and its answers, which can include candidates' data the AI handles, such as the results the assistant reads to answer a member, and votes on the assistant's answers; kept 30 days; Langfuse GmbH, Germany, its EU cloud).",
+            "Cloudflare (the \"I'm not a robot\" check, Turnstile, when a candidate starts through a job ad's link: their browser's signals and address, from which we keep only whether it passed; Cloudflare, Inc., United States, under the EU-US Data Privacy Framework).",
+            "Upstash (short-lived counters for limits and live updates; EU, Belgium).",
+        ],
+    },
+    {
+        "heading": "Changes and transfers",
+        "paragraphs": [
+            "We email the company's owners and admins about a new sub-processor, or any other significant change to this agreement, at least 14 days before it applies; every earlier version stays readable on this page; a company that objects for reasonable data protection reasons can stop using prepza and delete its company.",
+            "Transfers outside the EU, all to the United States, are covered as listed above: to Google Firebase and Cloudflare under the EU-US Data Privacy Framework, and by OpenAI Ireland Ltd to OpenAI under the European Commission's standard contractual clauses; the company can ask for a copy of the safeguards.",
+        ],
+    },
+    {
+        "heading": "The company's duties",
+        "items": [
+            "The company has a lawful basis to assess its candidates, tells them how their results are used, and answers their requests.",
+            "A candidate who deletes their own prepza account erases their answers and results with it, for every company; the company sees them as a deleted candidate.",
+            "prepza makes no decision about a candidate. The company reviews results before deciding, doesn't reject a candidate on the score alone, gives candidates who need it an accommodation such as extra time, and lets a candidate ask for a person to review their result. This applies equally to results sent to its applicant tracking system or other tools: the company doesn't set them up to reject candidates automatically.",
+            "The company allows prepza to use candidates' answers, combined and without identifying anyone, to measure and improve the quality of questions across prepza.",
+            "The questions prepza generates for the company are the company's content under the terms, not candidates' personal data, so this agreement doesn't cover them: under the licence in the terms, prepza may reuse them in other customers' interviews and practice, stripped of anything that identifies the company or anyone else, unless the company keeps an interview's questions out of this in its settings.",
+            "Where the law requires it, the company carries out an impact assessment, and gives candidates the notices its jurisdiction requires.",
+        ],
+    },
+    {
+        "heading": "Contact",
+        "paragraphs": [
+            f"Questions about this agreement, and notices under it: {COMPANY['email']}.",
+        ],
+    },
+]

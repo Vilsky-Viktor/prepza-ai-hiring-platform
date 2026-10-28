@@ -2,7 +2,7 @@
 datasets/help_questions.json: each message asked as the service asks it (its own prompt, the
 platform guide, the FAQ, prices and the page's guide) and answered by its own model, then checked
 by code (the sign-in marker) and judged by judges/help_answer.md against the same information.
-The help chat is the assistant's; what it answers from comes from rounds, as in the service.
+The help chat is the assistant's; what it answers from comes from site, as in the service.
 
     evals/run.sh assistant help_chat.py --label base            # --repeat 3, --only h01,h10
 

@@ -25,6 +25,8 @@ for name in (
 ):
     os.environ.setdefault(f"{name.upper()}_URL", f"http://{name}")
 
+os.environ.setdefault("SITE_SERVICE_URL", "http://site")
+
 os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "demo-test")
 os.environ.setdefault("SITE_URL", "http://localhost:8090")
 os.environ.setdefault("FIREBASE_WEB_API_KEY", "demo-api-key")

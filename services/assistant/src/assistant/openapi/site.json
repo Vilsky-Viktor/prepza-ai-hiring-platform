@@ -1,0 +1,701 @@
+{
+ "paths": {
+  "/help/faq": {
+   "get": {
+    "tags": [
+     "help"
+    ],
+    "summary": "Get Faq",
+    "description": "The FAQ in the page's language, with today's prices in the currency of the visitor's\n`country` (the site passes it on; US dollars without one); public. Without prices (billing not\nanswering) it's refused rather than built with blanks: the site keeps its last good page.",
+    "operationId": "get_faq_help_faq_get",
+    "parameters": [
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/FaqItemOut"
+         },
+         "title": "Response Get Faq Help Faq Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/help/guide": {
+   "get": {
+    "tags": [
+     "help"
+    ],
+    "summary": "Get Guide",
+    "description": "Everything prepza's help chat (in the assistant) answers from, as text: how prepza works and how to use it,\nthe FAQ in the page's language, today's prices, the terms and the privacy policy; public.",
+    "operationId": "get_guide_help_guide_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "text/plain": {
+        "schema": {
+         "type": "string"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/help/pages/{key}": {
+   "get": {
+    "tags": [
+     "help"
+    ],
+    "summary": "Get Page Guide",
+    "description": "A page's guide, by its key, in the page's language (English until it's translated), with\nthe guide article to read more in, if any: its info button shows it, and the assistant reads\nit about the page the user is on; public.",
+    "operationId": "get_page_guide_help_pages__key__get",
+    "parameters": [
+     {
+      "name": "key",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "maxLength": 40,
+       "title": "Key"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PageGuideOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/help/guides": {
+   "get": {
+    "tags": [
+     "help"
+    ],
+    "summary": "List Guides",
+    "description": "The site's guide articles (hiring advice and how-tos: hiring engineers, interviewing in\nthe age of AI, AI hiring and the law, ATS integration, MCP and the API, ...), by title, in\nthe page's language where translated; public.",
+    "operationId": "list_guides_help_guides_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/GuideItemOut"
+         },
+         "type": "array",
+         "title": "Response List Guides Help Guides Get"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/help/guides/{slug}": {
+   "get": {
+    "tags": [
+     "help"
+    ],
+    "summary": "Get Guide Article",
+    "description": "One guide article, by its slug, with its Markdown text, in the page's language (English\nuntil it's translated); public.",
+    "operationId": "get_guide_article_help_guides__slug__get",
+    "parameters": [
+     {
+      "name": "slug",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "maxLength": 80,
+       "title": "Slug"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GuideOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/help/legal/{document}": {
+   "get": {
+    "tags": [
+     "help"
+    ],
+    "summary": "Get Legal",
+    "description": "The terms, the privacy policy or the DPA: the current version, or an earlier one, with\nevery published version (the day each applies from), in `language` when it's translated\n(the English text is the binding one); public.",
+    "operationId": "get_legal_help_legal__document__get",
+    "parameters": [
+     {
+      "name": "document",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "$ref": "#/components/schemas/LegalDocument"
+      }
+     },
+     {
+      "name": "version",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 10
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Version"
+      }
+     },
+     {
+      "name": "language",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "enum": [
+        "en",
+        "ru",
+        "uk",
+        "es",
+        "pt",
+        "de",
+        "fr",
+        "it",
+        "pl",
+        "nl",
+        "tr",
+        "ar",
+        "he",
+        "fa",
+        "ja",
+        "zh",
+        "ko",
+        "hi",
+        "id",
+        "th",
+        "vi",
+        "fil",
+        "et"
+       ],
+       "type": "string",
+       "default": "en",
+       "title": "Language"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/LegalOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/help/knowledge": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Knowledge",
+    "description": "What the assistant's help chat answers from, in English: the platform guide with the\nprices in the currency of the visitor's `country` (as the load balancer names it; billing\nchecks it, and an unknown one means US dollars), and the guide of the `page` asked on\n(its key; an unknown one has none).",
+    "operationId": "knowledge_internal_help_knowledge_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     },
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 40
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Page"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HelpKnowledgeOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "FaqItemOut": {
+    "properties": {
+     "key": {
+      "type": "string",
+      "title": "Key"
+     },
+     "question": {
+      "type": "string",
+      "title": "Question"
+     },
+     "answer": {
+      "type": "string",
+      "title": "Answer"
+     }
+    },
+    "type": "object",
+    "required": [
+     "key",
+     "question",
+     "answer"
+    ],
+    "title": "FaqItemOut"
+   },
+   "GuideItemOut": {
+    "properties": {
+     "slug": {
+      "type": "string",
+      "title": "Slug"
+     },
+     "language": {
+      "type": "string",
+      "title": "Language"
+     },
+     "title": {
+      "type": "string",
+      "title": "Title"
+     },
+     "description": {
+      "type": "string",
+      "title": "Description"
+     },
+     "updated": {
+      "type": "string",
+      "title": "Updated"
+     },
+     "path": {
+      "type": "string",
+      "title": "Path"
+     }
+    },
+    "type": "object",
+    "required": [
+     "slug",
+     "language",
+     "title",
+     "description",
+     "updated",
+     "path"
+    ],
+    "title": "GuideItemOut",
+    "description": "A guide article of the site: its title and summary in `language` (English until it's\ntranslated), and where the site shows it."
+   },
+   "GuideOut": {
+    "properties": {
+     "slug": {
+      "type": "string",
+      "title": "Slug"
+     },
+     "language": {
+      "type": "string",
+      "title": "Language"
+     },
+     "title": {
+      "type": "string",
+      "title": "Title"
+     },
+     "description": {
+      "type": "string",
+      "title": "Description"
+     },
+     "updated": {
+      "type": "string",
+      "title": "Updated"
+     },
+     "path": {
+      "type": "string",
+      "title": "Path"
+     },
+     "body": {
+      "type": "string",
+      "title": "Body"
+     }
+    },
+    "type": "object",
+    "required": [
+     "slug",
+     "language",
+     "title",
+     "description",
+     "updated",
+     "path",
+     "body"
+    ],
+    "title": "GuideOut",
+    "description": "A guide article with its Markdown text."
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "type": "array",
+      "title": "Detail"
+     }
+    },
+    "type": "object",
+    "title": "HTTPValidationError"
+   },
+   "HelpKnowledgeOut": {
+    "properties": {
+     "knowledge": {
+      "type": "string",
+      "title": "Knowledge"
+     },
+     "page_guide": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Page Guide"
+     }
+    },
+    "type": "object",
+    "required": [
+     "knowledge"
+    ],
+    "title": "HelpKnowledgeOut",
+    "description": "What the help chat answers from, in English: the platform guide (with the prices in the\nvisitor's currency) and the guide of the page asked on, as text, if it's a known page."
+   },
+   "LegalDocument": {
+    "type": "string",
+    "enum": [
+     "terms",
+     "privacy",
+     "dpa"
+    ],
+    "title": "LegalDocument"
+   },
+   "LegalOut": {
+    "properties": {
+     "language": {
+      "type": "string",
+      "title": "Language"
+     },
+     "intro": {
+      "type": "string",
+      "title": "Intro"
+     },
+     "version": {
+      "type": "string",
+      "title": "Version"
+     },
+     "state": {
+      "type": "string",
+      "enum": [
+       "in_force",
+       "upcoming",
+       "replaced"
+      ],
+      "title": "State"
+     },
+     "current": {
+      "type": "string",
+      "title": "Current"
+     },
+     "in_force": {
+      "type": "string",
+      "title": "In Force"
+     },
+     "versions": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Versions"
+     },
+     "sections": {
+      "items": {
+       "$ref": "#/components/schemas/LegalSectionOut"
+      },
+      "type": "array",
+      "title": "Sections"
+     }
+    },
+    "type": "object",
+    "required": [
+     "language",
+     "intro",
+     "version",
+     "state",
+     "current",
+     "in_force",
+     "versions",
+     "sections"
+    ],
+    "title": "LegalOut"
+   },
+   "LegalSectionOut": {
+    "properties": {
+     "heading": {
+      "type": "string",
+      "title": "Heading"
+     },
+     "paragraphs": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Paragraphs",
+      "default": []
+     },
+     "items": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Items",
+      "default": []
+     }
+    },
+    "type": "object",
+    "required": [
+     "heading"
+    ],
+    "title": "LegalSectionOut"
+   },
+   "PageGuideOut": {
+    "properties": {
+     "key": {
+      "type": "string",
+      "title": "Key"
+     },
+     "title": {
+      "type": "string",
+      "title": "Title"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "actions": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Actions"
+     },
+     "tips": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Tips"
+     },
+     "article": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/GuideItemOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "type": "object",
+    "required": [
+     "key",
+     "title",
+     "text",
+     "actions",
+     "tips"
+    ],
+    "title": "PageGuideOut",
+    "description": "A page's guide: what it's for (`text`), what you can do there, tips, and the guide\narticle to read more in, if the page has one."
+   },
+   "ValidationError": {
+    "properties": {
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Location"
+     },
+     "msg": {
+      "type": "string",
+      "title": "Message"
+     },
+     "type": {
+      "type": "string",
+      "title": "Error Type"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "ctx": {
+      "type": "object",
+      "title": "Context"
+     }
+    },
+    "type": "object",
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError"
+   }
+  },
+  "securitySchemes": {
+   "HTTPBearer": {
+    "type": "http",
+    "scheme": "bearer"
+   }
+  }
+ }
+}

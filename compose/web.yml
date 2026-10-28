@@ -6,6 +6,8 @@ x-site-env: &site-env
   DATABASE_URL: postgresql://site:${POSTGRES_PASSWORD}@postgres:5432/site
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
+  # Today's prices, which the FAQ and the platform guide name.
+  BILLING_URL: http://billing:8000
 
 # Its mounted source; migrations read it too, so new ones run without a rebuild.
 x-site-source: &site-source
@@ -13,6 +15,8 @@ x-site-source: &site-source
   - ./services/site/migrations:/services/site/migrations
   - ./services/site/alembic.ini:/services/site/alembic.ini:ro
   - ./packages/common/src:/packages/common/src
+  # The site's guide articles, which the help routes serve too.
+  - ./frontend/content:/frontend/content:ro
 
 services:
   site-migrate:

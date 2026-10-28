@@ -35,8 +35,15 @@ kept = {"paths": spec["paths"], "components": spec.get("components", {})}
 print(json.dumps(kept, indent=1, ensure_ascii=False))
 '
 
-for service in companies billing library notifications ats api rounds accounts; do
+for service in companies billing library notifications ats api rounds accounts site; do
   echo "== $service"
-  "${compose[@]}" exec -T "$service" uv run --no-sync python -c "$script" "$service" \
+  # Each service's package is named after it, but site's (site is a module of Python's own).
+  package="$service"
+
+  if [[ $service == site ]]; then
+    package=site_content
+  fi
+
+  "${compose[@]}" exec -T "$service" uv run --no-sync python -c "$script" "$package" \
     > "services/assistant/src/assistant/openapi/$service.json"
 done

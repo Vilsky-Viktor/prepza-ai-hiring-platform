@@ -24,7 +24,8 @@ timeouts: `python-services.md`; scaling: `scalability.md`; tables: `database.md`
 - Things that change for the same reason live in one service; a feature that has to change three
   services is a sign of a wrong boundary, not of a need for a fourth.
 - Owners today: companies (companies, members, interviews, candidates' invites, results), rounds
-  (candidates' sessions and answers, practice rounds), library (the question bank), generation
+  (candidates' sessions and answers, practice rounds), site (the public site's content: the FAQ,
+  page guides, guide articles, legal texts), library (the question bank), generation
   (AI drafting and checking), billing (credits, payments, AI costs, limits), notifications
   (email, Slack, the bell), ats (ATS connections), api (the public API, web hooks), assistant
   (Mira, the help chat for visitors, and MCP), accounts (users' accounts: settings, email

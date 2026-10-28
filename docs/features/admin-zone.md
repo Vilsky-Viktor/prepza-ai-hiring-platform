@@ -186,7 +186,7 @@ These stay open, so no event, job or payment is lost:
 - `/internal/` (calls between services, Pub/Sub and Scheduler pushes),
 - `/webhooks/` (Paddle, Resend, the ATSs).
 - unsubscribing (`/unsubscribe/` in notifications, and its page): an email's one-click link must always work,
-- the legal texts (`/help/legal/` in rounds, and the privacy, terms, DPA, documents and accessibility pages; `MAINTENANCE_OPEN_PAGES` in the frontend).
+- the legal texts (`/help/legal/` in site, and the privacy, terms, DPA, documents and accessibility pages; `MAINTENANCE_OPEN_PAGES` in the frontend).
 
 Billing isn't switched; its only public route is the price catalog.
 

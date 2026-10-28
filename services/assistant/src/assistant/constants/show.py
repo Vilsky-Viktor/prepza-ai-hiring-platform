@@ -43,7 +43,7 @@ PAGE_NAMES = {
     "interview": ("companies", "/interviews/{interview_id}", "title"),
     "interview_candidates": ("companies", "/interviews/{interview_id}", "title"),
     "company": ("companies", "/companies/{company_id}", "name"),
-    "guide": ("rounds", "/help/guides/{slug}", "title"),
+    "guide": ("site", "/help/guides/{slug}", "title"),
 }
 # Reads of a setting, and the page it's changed on: an answer about one links there when the
 # model gave no link (show.implied_link).

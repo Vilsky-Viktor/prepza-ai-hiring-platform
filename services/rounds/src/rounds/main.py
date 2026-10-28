@@ -18,9 +18,10 @@ from rounds.api.v1 import (
     help_votes,
     internal,
     internal_accounts,
-    internal_help,
     internal_maintenance,
+    internal_moved,
     interview_flow,
+    moved_public,
     practice,
     schedules,
     session_feedback,
@@ -59,6 +60,7 @@ app.include_router(sessions.router)
 app.include_router(interview_flow.router)
 app.include_router(practice.router)
 app.include_router(session_feedback.router)
+app.include_router(moved_public.router)
 app.include_router(help.router)
 app.include_router(help_votes.router)
 app.include_router(internal.router)
@@ -66,7 +68,7 @@ app.include_router(events.router)
 app.include_router(schedules.router)
 app.include_router(superadmin.router)
 app.include_router(internal_accounts.router)
-app.include_router(internal_help.router)
+app.include_router(internal_moved.router)
 app.include_router(internal_maintenance.router)
 
 

@@ -8,14 +8,14 @@ from assistant.schemas.help_chat import HelpKnowledge
 
 
 async def help_knowledge(country: str | None, page: str | None) -> HelpKnowledge:
-    """What the help chat answers from, from rounds (which owns the site's documents): the
+    """What the help chat answers from, from site (which owns the site's documents): the
     platform guide with the prices in the currency of the visitor's `country`, and the guide of
-    the `page` asked on. Raises when rounds doesn't answer."""
+    the `page` asked on. Raises when site doesn't answer."""
     query = {key: value for key, value in {"country": country, "page": page}.items() if value}
     response = await http.get_client().get(
-        settings.rounds_url + KNOWLEDGE_PATH,
+        settings.site_service_url + KNOWLEDGE_PATH,
         params=query,
-        headers=bearer(service_token("rounds")),
+        headers=bearer(service_token("site")),
     )
     response.raise_for_status()
 

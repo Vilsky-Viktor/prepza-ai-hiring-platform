@@ -6,6 +6,13 @@ from prepza_common.auth.route_guards import unguarded
 from site_content.main import app
 
 PUBLIC = {
+    # The site's help pages for visitors: read-only content.
+    "GET /help/faq",
+    "GET /help/guide",
+    "GET /help/pages/{key}",
+    "GET /help/guides",
+    "GET /help/guides/{slug}",
+    "GET /help/legal/{document}",
     "GET /health",
     "GET /ready",
 }

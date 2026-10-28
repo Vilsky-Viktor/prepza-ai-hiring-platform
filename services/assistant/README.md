@@ -7,7 +7,7 @@ applies; actions that change something wait for the user's confirmation. It serv
 to the user's own AI apps over MCP (`/mcp`), with its OAuth authorization server, and deletes
 Langfuse's traces on time. It also runs the help chat for signed-out visitors
 (`POST /help/chat`, votes at `PUT /help/answers/{id}/vote`; `HELP_MODEL`,
-`TURNSTILE_SECRET_KEY` and the `HELP_*` limits), answering from the knowledge rounds sends it
+`TURNSTILE_SECRET_KEY` and the `HELP_*` limits), answering from the knowledge site sends it
 (`GET /internal/help/knowledge`). It keeps conversations, AI apps' connections and the help
 chat's votes (`help_votes`) in its own database, and its rate and spending limits in Redis.
 What it does and its settings: [the assistant](../../docs/features/assistant.md),
@@ -37,7 +37,7 @@ src/assistant/
 │                           # the help chat)
 ├── openapi/                # The other services' OpenAPI snapshots the tools are built from
 │                           # (written by scripts/assistant-openapi.sh)
-└── integrations/           # OpenAI, Firebase tokens, the other services (rounds' help
+└── integrations/           # OpenAI, Firebase tokens, the other services (site's help
                             # knowledge too), Langfuse, Redis
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic

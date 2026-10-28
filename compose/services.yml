@@ -33,7 +33,8 @@ x-rounds-env: &rounds-env
   TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
   REDIS_URL: redis://redis:6379
   LIBRARY_URL: http://library:8000
-  BILLING_URL: http://billing:8000
+  # The site's content service: rounds' old content routes forward there for one release.
+  SITE_SERVICE_URL: http://site:8000
   SERVICE_SECRET: ${SERVICE_SECRET}
 
 x-companies-env: &companies-env
@@ -65,8 +66,6 @@ x-rounds-source: &rounds-source
   - ./services/rounds/migrations:/services/rounds/migrations
   - ./services/rounds/alembic.ini:/services/rounds/alembic.ini:ro
   - ./packages/common/src:/packages/common/src
-  # The site's guide articles, which the help routes serve too.
-  - ./frontend/content:/frontend/content:ro
 
 x-companies-source: &companies-source
   - ./services/companies/src:/services/companies/src
