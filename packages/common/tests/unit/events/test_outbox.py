@@ -6,7 +6,7 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common.config.constants import OUTBOX_BATCH, OUTBOX_MAX_ATTEMPTS
+from prepza_common.config.event_constants import OUTBOX_BATCH, OUTBOX_MAX_ATTEMPTS
 from prepza_common.events import outbox, pubsub
 
 
@@ -18,6 +18,7 @@ def row(name, attempts=0):
         attempts=attempts,
         published_at=None,
         created_at=datetime(2026, 10, 15, tzinfo=UTC),
+        trace=None,
     )
 
 

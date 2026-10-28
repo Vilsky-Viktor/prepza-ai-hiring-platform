@@ -4,7 +4,7 @@ the record of every refusal, ours or a provider's, which billing stores for the 
 import logging
 
 from prepza_common.ai.ai_constants import LIMIT_HIT, RECORD_ATTEMPTS
-from prepza_common.config.constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
+from prepza_common.config.event_constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
 from prepza_common.events.pubsub import publish_retried
 from prepza_common.i18n.i18n import TemplateError
 from prepza_common.limits.limit_list import (

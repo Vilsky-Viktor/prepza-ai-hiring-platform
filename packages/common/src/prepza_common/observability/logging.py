@@ -59,6 +59,17 @@ def trace_of(header: str | None) -> str | None:
     return f"projects/{project}/traces/{trace_id}"
 
 
+def follow_trace(header: str | None) -> None:
+    """Ties the lines logged from here on in this context (an event's handling) to `header`'s
+    trace, and passes it on to the services called meanwhile, so a consumer's lines join the
+    action that saved the event. Without a header, nothing changes."""
+    if not header:
+        return
+
+    current_trace.set(trace_of(header))
+    trace_header.set(header)
+
+
 def route_of(request: Request) -> str:
     """The template of the route that served `request` (set once routing matched it), or
     UNMATCHED_ROUTE for a request no route took."""

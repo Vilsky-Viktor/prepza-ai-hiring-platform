@@ -5,7 +5,7 @@ import pytest
 from fake_redis import DownRedis, FakeRedis
 from fastapi import HTTPException
 from prepza_common.ai.ai_constants import LIMIT_HIT
-from prepza_common.config.constants import EVENT_ID_ATTRIBUTE
+from prepza_common.config.event_constants import EVENT_ID_ATTRIBUTE
 from prepza_common.events import pubsub
 from prepza_common.limits.limit_list import LIMITS, LIMITS_CACHE_SECONDS
 from prepza_common.limits.limits import at_most, limit, question_seconds, record_hit

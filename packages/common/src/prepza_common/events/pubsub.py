@@ -7,17 +7,19 @@ import uuid
 from datetime import UTC, datetime
 
 from prepza_common.auth.google import access_token, project, running_locally
-from prepza_common.config.constants import (
+from prepza_common.config.constants import HTTP_TIMEOUT_SECONDS
+from prepza_common.config.event_constants import (
     EVENT_ID_ATTRIBUTE,
     EVENTS_TOPIC,
     FAMILY_ATTRIBUTE,
-    HTTP_TIMEOUT_SECONDS,
     OCCURRED_AT_ATTRIBUTE,
     PUBLISH_RETRY_FIRST_WAIT,
     PUBSUB_URL,
+    TRACE_ATTRIBUTE,
 )
 from prepza_common.http import http
 from prepza_common.http.backoff import wait_seconds
+from prepza_common.observability.logging import follow_trace, trace_header
 from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
@@ -28,17 +30,21 @@ def message(
     data: dict,
     event_id: str | None = None,
     occurred_at: datetime | None = None,
+    trace: str | None = None,
 ) -> dict:
     """One event as Pub/Sub takes it, with its own id: `event_id` when given (it stays the same on
     a re-send), otherwise a new one. Consumers never fall back on Pub/Sub's message id, which the
     local emulator numbers from 1 again after a restart, so a new event could look like one already
-    handled and be dropped."""
+    handled and be dropped. `trace` (the saving request's trace header) goes as an attribute."""
     attributes = {
         "type": event_type,
         FAMILY_ATTRIBUTE: event_type.split(".", 1)[0],
         EVENT_ID_ATTRIBUTE: event_id or uuid.uuid4().hex,
         OCCURRED_AT_ATTRIBUTE: (occurred_at or datetime.now(UTC)).isoformat(),
     }
+
+    if trace:
+        attributes[TRACE_ATTRIBUTE] = trace
 
     return {"data": base64.b64encode(json.dumps(data).encode()).decode(), "attributes": attributes}
 
@@ -66,8 +72,8 @@ async def publish_batch(messages: list[dict], timeout: float = HTTP_TIMEOUT_SECO
 
 
 async def publish(event_type: str, data: dict, timeout: float = HTTP_TIMEOUT_SECONDS) -> None:
-    """Publishes one domain event (see publish_batch)."""
-    await publish_batch([message(event_type, data)], timeout)
+    """Publishes one domain event (see publish_batch), with the current request's trace."""
+    await publish_batch([message(event_type, data, trace=trace_header.get())], timeout)
 
 
 async def publish_retried(event_type: str, data: dict, attempts: int, timeout: float) -> None:
@@ -76,7 +82,7 @@ async def publish_retried(event_type: str, data: dict, attempts: int, timeout: f
     with a jittered wait between tries (callers that failed together don't retry together), all
     within `timeout` seconds, as the request it's recorded in waits for it; then given up and
     logged, never raised."""
-    sent = message(event_type, data)
+    sent = message(event_type, data, trace=trace_header.get())
     deadline = asyncio.get_running_loop().time() + timeout
 
     for attempt in range(1, attempts + 1):
@@ -114,9 +120,12 @@ class PushBody(BaseModel):
 
 def event_of(body: PushBody) -> tuple[str, dict, str]:
     """The event's type, its data, and its id: the outbox's id, the same however often the event
-    is re-sent, or else Pub/Sub's (the same across Pub/Sub's own retries)."""
+    is re-sent, or else Pub/Sub's (the same across Pub/Sub's own retries). The lines logged while
+    it's handled, and the calls and events it leads to, carry the trace of the request that
+    saved it (follow_trace)."""
     data = json.loads(base64.b64decode(body.message.data)) if body.message.data else {}
     attributes = body.message.attributes
+    follow_trace(attributes.get(TRACE_ATTRIBUTE))
     event_id = attributes.get(EVENT_ID_ATTRIBUTE) or body.message.messageId
 
     return attributes.get("type", ""), data, event_id

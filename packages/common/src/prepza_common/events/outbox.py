@@ -5,8 +5,8 @@ from contextvars import ContextVar
 from datetime import UTC, datetime, timedelta
 
 import httpx
-from prepza_common.config.constants import (
-    HTTP_TIMEOUT_SECONDS,
+from prepza_common.config.constants import HTTP_TIMEOUT_SECONDS
+from prepza_common.config.event_constants import (
     OUTBOX_BATCH,
     OUTBOX_FLUSH_SECONDS,
     OUTBOX_KEEP_DAYS,
@@ -16,6 +16,7 @@ from prepza_common.config.constants import (
 )
 from prepza_common.db.db import delete_in_batches
 from prepza_common.events import pubsub
+from prepza_common.observability.logging import trace_header
 from sqlalchemy import select
 
 logger = logging.getLogger(__name__)
@@ -29,8 +30,10 @@ def add(session, model, event_type: str, data: dict, event_id: uuid.UUID | None 
     """Saves an event in the caller's transaction, so it exists exactly when the change does.
     Its row id goes with it as the event's id (pubsub.EVENT_ID_ATTRIBUTE): `event_id` when the
     event stands for something with an id of its own (a provider's delivery), so saving it twice
-    breaks the row's key and keeps one."""
-    row = model(id=event_id or uuid.uuid4(), event_type=event_type, data=data)
+    breaks the row's key and keeps one. The request's trace goes with it to its consumers."""
+    row = model(
+        id=event_id or uuid.uuid4(), event_type=event_type, data=data, trace=trace_header.get()
+    )
     session.add(row)
     saved = saved_ids.get()
 
@@ -65,7 +68,8 @@ async def send(rows: list, timeout: float) -> None:
     each row is tried alone, so only a row it won't take is counted against. Any other failure
     (an outage) raises and counts against no row."""
     messages = [
-        pubsub.message(row.event_type, row.data, str(row.id), row.created_at) for row in rows
+        pubsub.message(row.event_type, row.data, str(row.id), row.created_at, row.trace)
+        for row in rows
     ]
 
     try:

@@ -4,7 +4,8 @@ import logging
 import os
 from datetime import UTC, datetime
 
-from prepza_common.config.constants import FUNNEL_PREFIX, PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
+from prepza_common.config.constants import FUNNEL_PREFIX
+from prepza_common.config.event_constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
 from prepza_common.events.pubsub import publish
 
 logger = logging.getLogger(__name__)

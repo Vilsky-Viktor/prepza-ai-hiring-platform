@@ -8,7 +8,7 @@ import logging
 import openai
 from prepza_common.ai.ai_constants import ACTIONS, AI_USED, RECORD_ATTEMPTS, Outcome
 from prepza_common.ai.llm import call_cost, transcription_cost
-from prepza_common.config.constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
+from prepza_common.config.event_constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
 from prepza_common.events.pubsub import publish_retried
 from prepza_common.limits.limits import record_hit
 

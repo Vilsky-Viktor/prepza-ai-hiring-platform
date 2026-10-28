@@ -24,6 +24,8 @@ class OutboxColumns:
     published_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), index=True)
     # Times Pub/Sub refused it; parked past OUTBOX_MAX_ATTEMPTS.
     attempts: Mapped[int] = mapped_column(default=0, server_default="0")
+    # The trace header of the request that saved it, sent with it (pubsub.TRACE_ATTRIBUTE).
+    trace: Mapped[str | None] = mapped_column(String(256))
 
 
 class ProcessedEventColumns:

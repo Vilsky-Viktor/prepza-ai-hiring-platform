@@ -87,6 +87,9 @@ Logs: `logging.configure_logging` writes one JSON line per entry in the fields C
 (`severity`, `message`), and `RequestLogMiddleware` ties every line logged while serving a request
 to its trace (`logging.googleapis.com/trace`, from the load balancer's `X-Cloud-Trace-Context`),
 which `http.get_client` passes on to the services a request calls, so their lines join the same trace.
+An event carries it too: the outbox row keeps the saving request's trace header (`trace`), Pub/Sub
+sends it as the `trace` attribute, and `pubsub.event_of` hands it to the consumer's lines, calls and
+events (`logging.follow_trace`), so one action reads as one trace across its events.
 Each request's own line names its route's template (`/invites/{token}`), never the path, which can
 carry a secret token; uvicorn's access log, which prints paths and visitors' addresses, is off.
 Every line's message and error are scrubbed (`scrub.scrub`: emails, URLs cut to their host), and the
@@ -225,12 +228,14 @@ out or listed under another area):
 ### `config/`
 
 - `constants`: the values every service shares: timeouts, pools, limits, languages, keys.
-- `event_constants`: the answers of other services that make an event unhandleable for good.
+- `event_constants`: Pub/Sub's topic and message attributes, the outbox's batches and limits, and
+  the answers of other services that make an event unhandleable for good.
 - `settings`: the base of every service's settings.
 
 ### `observability/`
 
-- `logging`: one-line JSON logs with severity and trace, and each request's line.
+- `logging`: one-line JSON logs with severity and trace, each request's line, and an event's trace
+  followed by its consumer (`follow_trace`).
 - `scrub`: emails, URLs and people's names taken out of logs, errors and traces.
 - `scrub_patterns`: the patterns `scrub` takes out.
 - `sentry`: Sentry without personal data, and which requests are traced.

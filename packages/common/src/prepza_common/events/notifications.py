@@ -4,7 +4,7 @@
 import logging
 from enum import StrEnum
 
-from prepza_common.config.constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
+from prepza_common.config.event_constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
 from prepza_common.events import pubsub
 
 logger = logging.getLogger(__name__)

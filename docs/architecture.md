@@ -140,6 +140,7 @@ Billing's outbox carries its members' actions (a top-up paid), `credits.added` a
 Refusals and duplicates:
 
 - An event Pub/Sub refuses is counted in its row's `attempts`, and parked after 5 refusals, so it can't hold up the rest. A parked event is logged as an error, which Sentry reports.
+- Each event also carries the trace of the request that saved it (the outbox row's `trace`, sent as the `trace` attribute), and the consumer's log lines, calls and events carry it on, so a user's action and everything its events cause read as one trace in Cloud Logging.
 - Each event carries a stable `event_id` attribute (its outbox row id), so a consumer that gets it twice acts once. Library's statistics and companies keep the ids they handled in `processed_events` (companies stores an `audit.recorded` event once by its id in `audit_events.event_id`, at the time it happened, so a late one keeps its place in the log); notifications passes the id to Resend as the email's idempotency key and stores one bell notification per key; api records each web hook's delivery per event; ats invites a candidate once (a unique key and a claim), sends a result back once (`reported_at`) and deletes idempotently.
 
 Delivery:
