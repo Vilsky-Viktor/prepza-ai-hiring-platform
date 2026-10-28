@@ -5,8 +5,8 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { useEffect, useState, type ReactNode } from "react"
 
-import { AutoTopUpSetting } from "@/components/billing/auto-top-up"
-import { CustomTopUp } from "@/components/billing/custom-top-up"
+import { AutoTopUpSetting } from "@/components/common/auto-top-up"
+import { CustomTopUp } from "@/components/common/custom-top-up"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

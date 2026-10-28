@@ -6,7 +6,7 @@ import type { Catalog } from "@/types/billing"
 let paddle: Promise<Paddle | undefined> | null = null
 
 // What a checkout pays for: a top-up, the card that turns automatic top-up on, or a new card
-// for it. The success dialog (components/billing/paid-notice.tsx) says which.
+// for it. The success dialog (features/billing/components/paid-notice.tsx) says which.
 export type PaidKind = "top_up" | "auto_top_up" | "card"
 
 export type CheckoutOptions = {
@@ -31,8 +31,8 @@ export type PaymentFailure = {
 }
 
 // The checkout open now, to open it again after a failed payment; and who's told when a payment
-// completes (the success dialog, components/billing/paid-notice.tsx) or fails (the failure
-// dialog, components/billing/payment-failed.tsx).
+// completes (the success dialog, features/billing/components/paid-notice.tsx) or fails (the
+// failure dialog, features/billing/components/payment-failed.tsx).
 let opened: CheckoutOptions | null = null
 let onPaid: ((paid: PaidKind) => void) | null = null
 let onFailed: ((failure: PaymentFailure) => void) | null = null

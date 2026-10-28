@@ -8,7 +8,7 @@ import {
   ActionCard,
   type CardActions,
 } from "@/components/assistant/action-card"
-import { BalanceTooltip } from "@/components/billing/balance-tooltip"
+import { BalanceTooltip } from "@/components/common/balance-tooltip"
 import {
   CandidateTable,
   InterviewTable,

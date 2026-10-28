@@ -3,9 +3,9 @@
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
-import { BalanceTooltip } from "@/components/billing/balance-tooltip"
-import { RefreshOnFocus } from "@/components/billing/refresh-on-focus"
-import { TopUpDialog } from "@/components/billing/top-up-dialog"
+import { BalanceTooltip } from "@/components/common/balance-tooltip"
+import { RefreshOnFocus } from "@/components/common/refresh-on-focus"
+import { TopUpDialog } from "@/components/common/top-up-dialog"
 import { useCountUp } from "@/hooks/use-count-up"
 import { WARNING_TONE } from "@/config/tones"
 

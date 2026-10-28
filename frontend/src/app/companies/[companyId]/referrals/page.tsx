@@ -4,7 +4,7 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { ReferralLink } from "@/components/billing/referral-link"
+import { ReferralLink } from "@/features/billing/components/referral-link"
 import { CompanyHeader } from "@/features/company/components/company-header"
 import { CornerSign } from "@/components/common/corner-sign"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"

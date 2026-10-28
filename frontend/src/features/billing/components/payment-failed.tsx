@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
-import { OutcomeDialog } from "@/components/billing/outcome-dialog"
+import { OutcomeDialog } from "@/features/billing/components/outcome-dialog"
 import { Button } from "@/components/ui/button"
 import { PAYMENT_FAILURE_TIMEOUT_MS } from "@/config/paddle"
 import { apiFetch } from "@/lib/api"

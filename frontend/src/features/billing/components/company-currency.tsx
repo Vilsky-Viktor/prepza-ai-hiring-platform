@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { CurrencySelect } from "@/components/billing/currency-select"
+import { CurrencySelect } from "@/components/common/currency-select"
 import { BILLING_REFRESHED } from "@/config/billing"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { formatPrice } from "@/lib/format"

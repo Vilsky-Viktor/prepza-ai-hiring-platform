@@ -4,9 +4,9 @@ import { cn } from "cn"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { BalanceTooltip } from "@/components/billing/balance-tooltip"
-import { AutoTopUpSetting } from "@/components/billing/auto-top-up"
-import { TopUpDialog } from "@/components/billing/top-up-dialog"
+import { BalanceTooltip } from "@/components/common/balance-tooltip"
+import { AutoTopUpSetting } from "@/components/common/auto-top-up"
+import { TopUpDialog } from "@/components/common/top-up-dialog"
 import { useCountUp } from "@/hooks/use-count-up"
 import type { Catalog } from "@/types/billing"
 

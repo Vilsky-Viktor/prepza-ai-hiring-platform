@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { cn } from "cn"
 import { Fragment, useState } from "react"
 
-import { BuyButton } from "@/components/billing/buy-button"
+import { BuyButton } from "@/components/common/buy-button"
 import { Slider } from "@/components/ui/slider"
 import {
   Tooltip,

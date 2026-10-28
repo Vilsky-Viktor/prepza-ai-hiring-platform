@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
-import { OutcomeDialog } from "@/components/billing/outcome-dialog"
+import { OutcomeDialog } from "@/features/billing/components/outcome-dialog"
 import { BILLING_REFRESHED } from "@/config/billing"
 import { whenPaid, type PaidKind } from "@/lib/paddle"
 

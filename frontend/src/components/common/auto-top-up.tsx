@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { useAuth } from "@/providers/auth-provider"
-import { AutoTopUpStatus } from "@/components/billing/auto-top-up-status"
+import { AutoTopUpStatus } from "@/components/common/auto-top-up-status"
 import { Dotted } from "@/components/common/dot"
 import { PillSelect } from "@/components/common/pill-select"
 import { Button } from "@/components/ui/button"
