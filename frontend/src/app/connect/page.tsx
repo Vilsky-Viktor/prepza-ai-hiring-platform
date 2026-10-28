@@ -1,4 +1,4 @@
-import { ConnectView } from "@/components/connect/connect-view"
+import { ConnectView } from "@/features/connect/components/connect-view"
 import { translatedTitle } from "@/lib/site"
 import { PageKey } from "@/components/common/page-key"
 

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
 import { useAuth } from "@/providers/auth-provider"
-import { ConsentCard } from "@/components/connect/consent-card"
+import { ConsentCard } from "@/features/connect/components/consent-card"
 import { useSignIn } from "@/components/common/sign-in-dialog"
 import { Button } from "@/components/ui/button"
 import { InfoCard } from "@/components/common/warning-card"
