@@ -36,8 +36,10 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   matching the body (else `400`, `-32020`); an unsupported version is `400` with the supported
   ones; GET and DELETE are `405` in the modern era. The SDK enforces these; don't bypass it.
 - The browser preflight allows every header a revision sends (`MCP_REQUEST_HEADERS`), so
-  browser-based apps (MCP Inspector) work. CORS is `*` without credentials: access rides on the
-  bearer header, never a cookie.
+  browser-based apps (MCP Inspector) work. CORS answers exact origins only (the site and
+  `BROWSER_APP_ORIGINS`), the OAuth endpoints too, without credentials: access rides on the
+  bearer header, never a cookie. Claude, ChatGPT, Cursor and VS Code call from servers or
+  desktop apps, which CORS doesn't touch; a new browser-based app is added to the list.
 - Origin: the spec says to validate it against DNS rebinding. Not adopted for this remote server:
   every call needs a bearer token no page can read, and browser-based apps must work; local
   servers are where rebinding bites.

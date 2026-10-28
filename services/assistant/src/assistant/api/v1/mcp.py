@@ -9,11 +9,11 @@ from mcp.server.caching import CacheHint
 from mcp.server.lowlevel import Server
 from mcp.server.streamable_http_manager import StreamableHTTPSessionManager
 from starlette.middleware.authentication import AuthenticationMiddleware
-from starlette.middleware.cors import CORSMiddleware
 from starlette.routing import Route
 from starlette.types import Receive, Scope, Send
 
 from assistant.constants.mcp import CACHE_TTL_MS, MCP_PATH, MCP_READ_SCOPE, MCP_REQUEST_HEADERS
+from assistant.helpers.cors import browser_cors
 from assistant.helpers.oauth import auth_settings
 from assistant.prompts.mcp import MCP_INSTRUCTIONS
 from assistant.services import mcp_tools
@@ -65,7 +65,8 @@ async def handle(scope: Scope, receive: Receive, send: Send) -> None:
 
 def routes() -> list[Route]:
     """The MCP endpoint, for the bearer of an access token prepza issued for it; without one, a
-    401 naming where to learn how to get one. Browser-based apps (MCP Inspector) may call it."""
+    401 naming where to learn how to get one. Browser-based apps we know (MCP Inspector) may call
+    it."""
     resource = auth_settings().resource_server_url
     verifier = ProviderTokenVerifier(Provider())
     required = RequireAuthMiddleware(
@@ -74,12 +75,11 @@ def routes() -> list[Route]:
     authenticated = AuthenticationMiddleware(
         required, backend=BearerAuthBackend(verifier, resource_server_url=resource)
     )
-    endpoint = CORSMiddleware(
+    endpoint = browser_cors(
         authenticated,
-        allow_origins=["*"],
-        allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
-        allow_headers=MCP_REQUEST_HEADERS,
-        expose_headers=["WWW-Authenticate", "Mcp-Session-Id"],
+        ["GET", "POST", "DELETE", "OPTIONS"],
+        MCP_REQUEST_HEADERS,
+        expose=["WWW-Authenticate", "Mcp-Session-Id"],
     )
 
     return [Route(MCP_PATH, endpoint=endpoint)]

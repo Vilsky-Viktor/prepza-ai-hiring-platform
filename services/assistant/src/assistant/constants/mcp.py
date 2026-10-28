@@ -22,6 +22,10 @@ MCP_REQUEST_HEADERS = [
     "Mcp-Protocol-Version",
     "Mcp-Session-Id",
 ]
+# The browser-based apps that may call the MCP and OAuth endpoints from a page besides the site
+# itself (CORS): MCP Inspector on its default address. Claude, ChatGPT, Cursor, VS Code and
+# agents call from servers or desktop apps, where CORS doesn't apply; any other page is refused.
+BROWSER_APP_ORIGINS = ("http://localhost:6274", "http://127.0.0.1:6274")
 CONNECT_PATH = "/connect"
 AUTHORIZATION_METADATA_PATH = "/.well-known/oauth-authorization-server"
 # Some apps look for the resource's metadata at the root, without the resource's path.

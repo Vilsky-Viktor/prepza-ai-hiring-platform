@@ -7,14 +7,12 @@ from mcp.server.auth.routes import (
     REVOCATION_PATH,
     TOKEN_PATH,
     build_metadata,
-    cors_middleware,
     create_auth_routes,
     create_protected_resource_routes,
 )
 from mcp.server.auth.settings import ClientRegistrationOptions, RevocationOptions
 from mcp.server.transport_security import DEFAULT_MAX_REQUEST_BODY_SIZE, RequestBodyLimitMiddleware
 from mcp.shared.inbound import MCP_PROTOCOL_VERSION_HEADER
-from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.routing import Route, request_response
@@ -29,6 +27,7 @@ from assistant.constants.mcp import (
     ROOT_RESOURCE_METADATA_PATH,
 )
 from assistant.helpers.authorize_guard import GuardAuthorize
+from assistant.helpers.cors import browser_cors, narrowed
 from assistant.helpers.oauth import auth_settings, other_resource
 from assistant.services.oauth_limits import Limited, token_refusal
 from assistant.services.oauth_provider import Provider
@@ -77,7 +76,8 @@ def token_endpoint() -> ASGIApp:
     SDK's handler doesn't pass `resource` on. One naming none is for the MCP endpoint. Every
     other request is counted against the app's token limit before the handler looks its code or
     token up. The form read here is the one the handler reads (Starlette keeps it on the
-    request). Wrapped as the SDK wraps its own: CORS outermost, the body's size limited."""
+    request). Wrapped as the SDK wraps its own: CORS outermost (browser_origins only), the body's size
+    limited."""
     provider = Provider()
     handler = TokenHandler(provider, ClientAuthenticator(provider))
 
@@ -102,18 +102,14 @@ def token_endpoint() -> ASGIApp:
 
     limited = RequestBodyLimitMiddleware(request_response(token), DEFAULT_MAX_REQUEST_BODY_SIZE)
 
-    return CORSMiddleware(
-        limited,
-        allow_origins="*",
-        allow_methods=["POST", "OPTIONS"],
-        allow_headers=[MCP_PROTOCOL_VERSION_HEADER],
-    )
+    return browser_cors(limited, ["POST", "OPTIONS"], [MCP_PROTOCOL_VERSION_HEADER])
 
 
 def routes() -> list[Route]:
     """prepza as the authorization server of AI apps, at the site's root (the MCP SDK's
     handlers): its metadata, /authorize (to the consent page), /token, /register and /revoke; and
-    the MCP endpoint's resource metadata, which names it."""
+    the MCP endpoint's resource metadata, which names it. Browsers may call them only from the
+    pages the MCP endpoint answers (helpers/cors.py), not from any origin as the SDK has them."""
     urls = auth_settings()
     issuer = urls.issuer_url
     registration = ClientRegistrationOptions(
@@ -131,11 +127,12 @@ def routes() -> list[Route]:
 
     for route in create_auth_routes(Provider(), issuer, None, registration, revocation):
         if route.path == AUTHORIZATION_METADATA_PATH:
-            handler = cors_middleware(MetadataHandler(metadata).handle, ["GET", "OPTIONS"])
+            handler = request_response(MetadataHandler(metadata).handle)
+            handler = browser_cors(handler, ["GET", "OPTIONS"], [MCP_PROTOCOL_VERSION_HEADER])
             route = Route(route.path, endpoint=handler, methods=["GET", "OPTIONS"])
         elif route.path == REGISTRATION_PATH:
             limited = Limited(
-                route.app,
+                narrowed(route.app),
                 "register",
                 "invalid_client_metadata",
                 "REGISTRATIONS_PER_IP_HOUR",
@@ -150,7 +147,9 @@ def routes() -> list[Route]:
         elif route.path == TOKEN_PATH:
             route = Route(route.path, endpoint=token_endpoint(), methods=["POST", "OPTIONS"])
         elif route.path == REVOCATION_PATH:
-            handler = cors_middleware(revoke, ["POST", "OPTIONS"])
+            handler = browser_cors(
+                request_response(revoke), ["POST", "OPTIONS"], [MCP_PROTOCOL_VERSION_HEADER]
+            )
             route = Route(route.path, endpoint=handler, methods=["POST", "OPTIONS"])
 
         found.append(route)
@@ -158,6 +157,10 @@ def routes() -> list[Route]:
     resource = create_protected_resource_routes(
         urls.resource_server_url, [issuer], scopes_supported=MCP_SCOPES, resource_name="prepza"
     )
+    resource = [
+        Route(route.path, endpoint=narrowed(route.app), methods=["GET", "OPTIONS"])
+        for route in resource
+    ]
     root = Route(ROOT_RESOURCE_METADATA_PATH, endpoint=resource[0].app, methods=["GET", "OPTIONS"])
 
     return [*found, *resource, root]
