@@ -5,7 +5,7 @@ import { CheckIcon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { gradeTone } from "@/lib/grade-tone"
-import { InlineText } from "@/components/questions/inline-text"
+import { InlineText } from "@/components/common/inline-text"
 
 /** A question's answer options: the right ones with a green check, the wrong ones with a red
  * cross, in the scorecards' colors. `picked` marks the options a talent or candidate chose. */

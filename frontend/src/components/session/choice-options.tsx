@@ -1,7 +1,7 @@
 import { cn } from "cn"
 import { CheckIcon } from "lucide-react"
 
-import { InlineText } from "@/components/questions/inline-text"
+import { InlineText } from "@/components/common/inline-text"
 
 type ChoiceOptionsProps = {
   options: string[]

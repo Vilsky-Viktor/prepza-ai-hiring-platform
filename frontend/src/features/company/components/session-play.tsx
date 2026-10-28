@@ -7,9 +7,9 @@ import {
   SessionFooter,
 } from "@/features/company/components/session-finish"
 import { SessionHeader } from "@/features/company/components/session-header"
-import { QuestionActions } from "@/components/questions/question-actions"
-import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
-import { QuestionText } from "@/components/questions/question-text"
+import { QuestionActions } from "@/components/common/question-actions"
+import { MultiChoiceTag } from "@/components/common/multi-choice-tag"
+import { QuestionText } from "@/components/common/question-text"
 import { ChoiceOptions } from "@/components/session/choice-options"
 import { useIntegritySignals } from "@/hooks/use-integrity-signals"
 import { languageOf } from "@/lib/locale"

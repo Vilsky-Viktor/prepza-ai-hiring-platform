@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 
 import { IconStat } from "@/components/common/icon-stat"
 import { QuestionMarkIcon } from "@/components/icons/question-mark-icon"
-import { TopicLimit } from "@/components/questions/topic-limit"
+import { TopicLimit } from "@/components/common/topic-limit"
 
 /** A topic's question count, in one short line under its "manage questions" button: how many
  * each candidate gets (editable with `limitPath`) of how many the topic has; just the count

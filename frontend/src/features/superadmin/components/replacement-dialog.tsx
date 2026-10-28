@@ -2,8 +2,8 @@
 
 import { useTranslations } from "next-intl"
 
-import { AnswerOptions } from "@/components/questions/answer-options"
-import { QuestionText } from "@/components/questions/question-text"
+import { AnswerOptions } from "@/components/common/answer-options"
+import { QuestionText } from "@/components/common/question-text"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

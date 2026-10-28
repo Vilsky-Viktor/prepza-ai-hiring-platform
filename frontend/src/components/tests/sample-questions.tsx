@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
-import { AnswerOptions } from "@/components/questions/answer-options"
-import { QuestionText } from "@/components/questions/question-text"
+import { AnswerOptions } from "@/components/common/answer-options"
+import { QuestionText } from "@/components/common/question-text"
 import { questionCodeColors } from "@/lib/code-tokens"
 import { textDirection } from "@/lib/locale"
 import type { SampleQuestion } from "@/types/superadmin"

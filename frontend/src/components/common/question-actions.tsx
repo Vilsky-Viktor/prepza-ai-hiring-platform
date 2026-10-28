@@ -2,8 +2,8 @@
 
 import { useTranslations } from "next-intl"
 
-import { QuestionRating } from "@/components/questions/question-rating"
-import { ReportDialog } from "@/components/questions/report-dialog"
+import { QuestionRating } from "@/components/common/question-rating"
+import { ReportDialog } from "@/components/common/report-dialog"
 
 export function QuestionActions({
   basePath,

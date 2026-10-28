@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import { CodeEditor } from "@/components/common/code-editor"
 import { DemoLogo } from "@/features/landing/components/demo-logo"
 import { useStill } from "@/hooks/use-still"
-import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
+import { MultiChoiceTag } from "@/components/common/multi-choice-tag"
 import { buttonVariants } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import {

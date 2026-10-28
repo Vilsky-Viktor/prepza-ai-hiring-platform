@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
-import { QuestionRow } from "@/components/questions/question-row"
+import { QuestionRow } from "@/components/common/question-row"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
