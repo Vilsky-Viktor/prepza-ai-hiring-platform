@@ -2327,7 +2327,7 @@
     "intro": "Alle sollen prepza nutzen können: um ein Interview zu machen, das dir ein Unternehmen schickt, um zu üben und um die Personalauswahl eines Unternehmens zu leiten. Wir wollen Stufe AA der Richtlinien für barrierefreie Webinhalte (WCAG) 2.2 erfüllen.",
     "done": {
       "title": "Was wir tun",
-      "themes": "Dunkles und helles Design: standardmäßig dunkel oder, wenn du es wählst, passend zur Einstellung deines Geräts.",
+      "themes": "Helles und dunkles Design: standardmäßig passend zur Einstellung deines Geräts oder hell bzw. dunkel, wenn du eines wählst.",
       "contrast": "Farben, die ein Unternehmen für seine Interviewseiten wählt, werden abgelehnt, wenn Text darauf schwer lesbar wäre (unter dem WCAG-Kontrast).",
       "languages": "Die Website in 23 Sprachen, von rechts nach links, wo die Sprache so geschrieben wird.",
       "phones": "Die Seiten passen auf Smartphone-Bildschirme und funktionieren auch, wenn du hineinzoomst.",

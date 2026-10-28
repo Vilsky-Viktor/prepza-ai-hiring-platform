@@ -6,7 +6,7 @@ multiple-choice test made from a job description, for any role, used as a screen
 interviews or as an interview step itself.
 
 Menus: the header has "hiring" (companies) and "pricing" (on wide screens). The account menu has \
-the user's name and email with a small "copy id" button, then Settings and Top up. The site is dark until the visitor picks a theme: three buttons \
+the user's name and email with a small "copy id" button, then Settings and Top up. The site follows the device's light or dark setting until the visitor picks a theme: three buttons \
 (system, light, dark) in the header for visitors on wide screens, in the account menu once signed \
 in; "system" follows the device's light or dark setting. The footer has three columns. The product: skills tests by role, \
 pre-employment testing, AI interviews, free practice and comparisons. Resources: guides, the FAQ, \

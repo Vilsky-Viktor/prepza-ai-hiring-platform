@@ -2327,7 +2327,7 @@
     "intro": "Gusto naming magamit ng lahat ang prepza: para kumuha ng interview na ipinadala sa iyo ng isang kumpanya, para mag-practice, at para patakbuhin ang hiring ng isang kumpanya. Layunin naming maabot ang level AA ng Web Content Accessibility Guidelines (WCAG) 2.2.",
     "done": {
       "title": "Ang ginagawa namin",
-      "themes": "Dark at light na tema: dark bilang default, o ang setting ng device mo kung iyon ang pipiliin mo.",
+      "themes": "Light at dark na tema: ang setting ng device mo bilang default, o light o dark kung pipili ka ng isa.",
       "contrast": "Tinatanggihan ang mga kulay na pinipili ng kumpanya para sa mga page ng interview nito kapag mahirap basahin ang text sa mga ito (mas mababa sa WCAG contrast).",
       "languages": "Ang site sa 23 wika, mula kanan pakaliwa sa mga wikang ganoon isinusulat.",
       "phones": "Kasya ang mga page sa screen ng phone at gumagana kahit naka-zoom in.",

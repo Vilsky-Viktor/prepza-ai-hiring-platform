@@ -2327,7 +2327,7 @@
     "intro": "Kami ingin semua orang bisa memakai prepza: untuk mengikuti wawancara yang dikirim perusahaan kepadamu, untuk berlatih, dan untuk menjalankan rekrutmen perusahaan. Kami menargetkan level AA dari Pedoman Aksesibilitas Konten Web (WCAG) 2.2.",
     "done": {
       "title": "Yang kami lakukan",
-      "themes": "Tema gelap dan terang: gelap secara bawaan, atau mengikuti pengaturan perangkatmu jika kamu memilihnya.",
+      "themes": "Tema terang dan gelap: mengikuti pengaturan perangkatmu secara bawaan, atau terang atau gelap jika kamu memilih salah satunya.",
       "contrast": "Warna yang dipilih perusahaan untuk halaman wawancaranya ditolak jika teks di atasnya akan sulit dibaca (di bawah kontras WCAG).",
       "languages": "Situs dalam 23 bahasa, dari kanan ke kiri untuk bahasa yang ditulis seperti itu.",
       "phones": "Halaman pas di layar ponsel dan tetap berfungsi saat diperbesar.",

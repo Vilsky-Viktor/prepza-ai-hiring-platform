@@ -1,7 +1,7 @@
 import type { Page } from "@playwright/test"
 
-// The site is dark until a visitor picks a theme, whatever the device says, so a test that wants
-// a scheme picks it as a visitor would: next-themes' saved choice ("theme" in localStorage).
+// A test that wants a scheme sets the device's setting and also picks it as a visitor would
+// (next-themes' saved choice, "theme" in localStorage), so the page shows it however it decides.
 
 /** Shows `page` in `scheme` from now on: the device's setting and the saved choice both, on the
  * page that's open and on every page it loads next. */

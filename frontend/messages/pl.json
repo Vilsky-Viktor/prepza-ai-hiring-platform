@@ -2327,7 +2327,7 @@
     "intro": "Chcemy, aby każdy mógł korzystać z prepza: przejść rozmowę, którą wysyła Ci firma, ćwiczyć i prowadzić rekrutację w firmie. Dążymy do spełnienia poziomu AA Wytycznych dla dostępności treści internetowych (WCAG) 2.2.",
     "done": {
       "title": "Co robimy",
-      "themes": "Ciemny i jasny motyw: domyślnie ciemny albo, jeśli wybierzesz, zgodny z ustawieniem Twojego urządzenia.",
+      "themes": "Jasny i ciemny motyw: domyślnie zgodny z ustawieniem Twojego urządzenia albo jasny lub ciemny, jeśli wybierzesz jeden z nich.",
       "contrast": "Kolory, które firma wybiera dla stron swojej rozmowy, są odrzucane, gdy tekst na nich byłby trudny do odczytania (kontrast poniżej wymagań WCAG).",
       "languages": "Strona w 23 językach, od prawej do lewej tam, gdzie język tak się zapisuje.",
       "phones": "Strony mieszczą się na ekranach telefonów i działają po powiększeniu.",

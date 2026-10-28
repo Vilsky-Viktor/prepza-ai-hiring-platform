@@ -2327,7 +2327,7 @@
     "intro": "Chúng tôi muốn ai cũng dùng được prepza: để làm bài phỏng vấn một công ty gửi cho bạn, để luyện tập và để điều hành việc tuyển dụng của một công ty. Chúng tôi hướng tới mức AA của Hướng dẫn về Khả năng Tiếp cận Nội dung Web (WCAG) 2.2.",
     "done": {
       "title": "Những gì chúng tôi làm",
-      "themes": "Giao diện tối và sáng: mặc định là tối, hoặc theo cài đặt của thiết bị bạn nếu bạn chọn.",
+      "themes": "Giao diện sáng và tối: mặc định theo cài đặt của thiết bị bạn, hoặc sáng hay tối nếu bạn chọn một trong hai.",
       "contrast": "Màu mà công ty chọn cho các trang phỏng vấn của mình sẽ bị từ chối nếu chữ trên đó khó đọc (độ tương phản dưới mức WCAG).",
       "languages": "Trang web có 23 ngôn ngữ, hiển thị từ phải sang trái với các ngôn ngữ viết theo cách đó.",
       "phones": "Các trang vừa với màn hình điện thoại và vẫn dùng được khi phóng to.",

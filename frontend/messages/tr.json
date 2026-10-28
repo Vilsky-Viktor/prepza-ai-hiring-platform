@@ -2327,7 +2327,7 @@
     "intro": "Herkesin prepza'yı kullanabilmesini istiyoruz: bir şirketin size gönderdiği mülakata girmek, pratik yapmak ve bir şirketin işe alım sürecini yürütmek için. Web İçeriği Erişilebilirlik Yönergeleri (WCAG) 2.2'nin AA düzeyini karşılamayı hedefliyoruz.",
     "done": {
       "title": "Neler yapıyoruz",
-      "themes": "Koyu ve açık tema: varsayılan olarak koyu ya da seçerseniz cihazınızın ayarına göre.",
+      "themes": "Açık ve koyu tema: varsayılan olarak cihazınızın ayarına göre ya da birini seçerseniz açık veya koyu.",
       "contrast": "Bir şirketin mülakat sayfaları için seçtiği renkler, üzerlerindeki metin zor okunacaksa (WCAG kontrastının altında) reddedilir.",
       "languages": "Site 23 dilde; sağdan sola yazılan dillerde sağdan sola.",
       "phones": "Sayfalar telefon ekranlarına sığar ve yakınlaştırdığınızda da çalışır.",
