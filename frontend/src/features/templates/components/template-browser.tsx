@@ -6,13 +6,16 @@ import { SearchedList } from "@/components/common/searched-list"
 import {
   ALL_LANGUAGES,
   TemplateFilterBar,
-} from "@/components/templates/template-filters"
-import { TemplateList } from "@/components/templates/template-list"
+} from "@/features/templates/components/template-filters"
+import { TemplateList } from "@/features/templates/components/template-list"
 import { DEFAULT_LOCALE } from "@/config/i18n"
 import { MAX_TITLE_LENGTH } from "@/config/limits"
 import { PAGE_SIZE, PUBLIC_TEMPLATES_PATH } from "@/config/lists"
 import { publicFetch, serverFetch } from "@/lib/server-api"
-import { templateChoice, templateQuery } from "@/lib/templates"
+import {
+  templateChoice,
+  templateQuery,
+} from "@/features/templates/utils/templates"
 import type { PracticeStatus } from "@/types/round"
 import type { TemplateFilters, TemplateSummary } from "@/types/superadmin"
 

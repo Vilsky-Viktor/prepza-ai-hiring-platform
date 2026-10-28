@@ -5,7 +5,7 @@ import { getTranslations } from "next-intl/server"
 import {
   TemplateBrowser,
   type TemplateSearchParams,
-} from "@/components/templates/template-browser"
+} from "@/features/templates/components/template-browser"
 import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
 import { Button } from "@/components/ui/button"
 import { translatedTitle } from "@/lib/site"

@@ -1,7 +1,7 @@
 import {
   ALL_LANGUAGES,
   type TemplateChoice,
-} from "@/components/templates/template-filters"
+} from "@/features/templates/components/template-filters"
 import type { TemplateFilters } from "@/types/superadmin"
 
 /** The search and filters the address asks for (`q`, `level` and the `lang`s it gave, `asked`),

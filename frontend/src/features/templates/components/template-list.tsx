@@ -7,7 +7,7 @@ import { cn } from "cn"
 
 import { useLocalTime } from "@/hooks/use-local-time"
 import { useUrlLocale } from "@/components/common/localized-link"
-import { UseTemplate } from "@/components/templates/use-template"
+import { UseTemplate } from "@/features/templates/components/use-template"
 import { IconStat } from "@/components/common/icon-stat"
 import { Badge } from "@/components/ui/badge"
 import { VirtualList } from "@/components/common/virtual-list"

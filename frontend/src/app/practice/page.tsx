@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server"
 import {
   TemplateBrowser,
   type TemplateSearchParams,
-} from "@/components/templates/template-browser"
+} from "@/features/templates/components/template-browser"
 import { TOKEN_COOKIE } from "@/config/auth"
 import { DEFAULT_LOCALE } from "@/config/i18n"
 import { localizedPath } from "@/lib/locale-path"

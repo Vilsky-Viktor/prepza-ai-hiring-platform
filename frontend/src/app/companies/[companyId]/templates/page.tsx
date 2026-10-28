@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import {
   TemplateBrowser,
   type TemplateSearchParams,
-} from "@/components/templates/template-browser"
+} from "@/features/templates/components/template-browser"
 import { TOKEN_COOKIE } from "@/config/auth"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"

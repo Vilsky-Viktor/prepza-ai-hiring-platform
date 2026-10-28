@@ -17,7 +17,12 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["cobertura"],
-      include: ["src/lib/**", "src/hooks/**", "src/config/**"],
+      include: [
+        "src/lib/**",
+        "src/hooks/**",
+        "src/config/**",
+        "src/features/*/utils/**",
+      ],
     },
   },
 })

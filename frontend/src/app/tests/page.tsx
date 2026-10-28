@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
-import { TemplateBrowser } from "@/components/templates/template-browser"
-import type { TemplateSearchParams } from "@/components/templates/template-browser"
+import { TemplateBrowser } from "@/features/templates/components/template-browser"
+import type { TemplateSearchParams } from "@/features/templates/components/template-browser"
 import { DEFAULT_LOCALE } from "@/config/i18n"
 import { localizedPath } from "@/lib/locale-path"
 import { pageMetadata, urlLocale } from "@/lib/site"

@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest"
 
-import { templateChoice, templateQuery } from "@/lib/templates"
+import {
+  templateChoice,
+  templateQuery,
+} from "@/features/templates/utils/templates"
 import type { TemplateFilters } from "@/types/superadmin"
 
 const filters = {
