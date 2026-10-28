@@ -923,6 +923,8 @@ export interface components {
       messages: components["schemas"]["HelpMessage"][]
       /** Page */
       page?: string | null
+      /** Chat Id */
+      chat_id?: string | null
     }
     /** HelpMessage */
     HelpMessage: {
