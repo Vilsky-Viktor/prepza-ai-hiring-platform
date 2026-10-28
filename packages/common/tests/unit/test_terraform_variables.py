@@ -14,7 +14,7 @@ PUBLIC = {"firebase_web_api_key", "paddle_client_token"}
 
 def test_no_secret_is_a_terraform_variable():
     text = (ROOT / "infra/terraform/variables.tf").read_text()
-    blocks = re.findall(r'variable "(\w+)" \{(.*?)\n\}', text, re.S)
+    blocks = re.findall(r'variable "(\w+)" \{(.*?)\n\}', text, re.DOTALL)
     sensitive = [name for name, body in blocks if re.search(r"sensitive\s*=\s*true", body)]
     named = [name for name, _ in blocks if SECRET_NAME.search(name) and name not in PUBLIC]
 
