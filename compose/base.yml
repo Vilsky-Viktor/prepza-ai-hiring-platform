@@ -59,6 +59,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      # Each migration runs as its service's own user, which db-roles makes.
+      db-roles:
+        condition: service_completed_successfully
       # Every API publishes events, so the topic must exist before any of them starts.
       pubsub:
         condition: service_healthy

@@ -2,7 +2,7 @@
 # public API and the in-app assistant; each with its migrations, run first.
 
 x-billing-env: &billing-env
-  DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/billing
+  DATABASE_URL: postgresql://billing:${POSTGRES_PASSWORD}@postgres:5432/billing
   # The limits' values every service reads, and the unpaid AI spend cap's counter.
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
@@ -17,7 +17,7 @@ x-billing-env: &billing-env
   PADDLE_API_KEY: ${PADDLE_API_KEY:-}
 
 x-notifications-env: &notifications-env
-  DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/notifications
+  DATABASE_URL: postgresql://notifications:${POSTGRES_PASSWORD}@postgres:5432/notifications
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
   RESEND_API_KEY: ${RESEND_API_KEY:-}
@@ -45,7 +45,7 @@ x-notifications-env: &notifications-env
   SLACK_ENCRYPTION_KEY: ${SLACK_ENCRYPTION_KEY:-}
 
 x-ats-env: &ats-env
-  DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/ats
+  DATABASE_URL: postgresql://ats:${POSTGRES_PASSWORD}@postgres:5432/ats
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
   COMPANIES_URL: http://companies:8000
@@ -55,7 +55,7 @@ x-ats-env: &ats-env
   SITE_URL: ${SITE_URL:-http://localhost:8090}
 
 x-api-env: &api-env
-  DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/api
+  DATABASE_URL: postgresql://api:${POSTGRES_PASSWORD}@postgres:5432/api
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
   COMPANIES_URL: http://companies:8000
@@ -65,7 +65,7 @@ x-api-env: &api-env
   SITE_URL: ${SITE_URL:-http://localhost:8090}
 
 x-assistant-env: &assistant-env
-  DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/assistant
+  DATABASE_URL: postgresql://assistant:${POSTGRES_PASSWORD}@postgres:5432/assistant
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
   OPENAI_API_KEY: ${OPENAI_API_KEY}

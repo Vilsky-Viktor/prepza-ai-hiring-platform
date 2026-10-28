@@ -67,12 +67,15 @@ Settings are described with the feature they shape:
 
 ## Databases and migrations
 
+- Each service connects as its own Postgres user (named after its database), which owns only that database, as in production: the short-lived `db-roles` container (library's `db_roles` job) creates the users and moves ownership to them before any migration; it's safe to repeat. `prepza` is the admin; the integration tests use it to make their `<service>_test` databases.
 - Each API's database migrations run once, in a short-lived `*-migrate` container, before the API starts.
 - A Postgres volume made before a database was added needs that database created once, for example:
 
   ```bash
   docker compose exec postgres createdb -U prepza ats
   ```
+
+  The next `docker compose up` gives it to its service's user.
 
 - Docker marks an API healthy only when `/ready` confirms its database answers. Redis isn't checked, so a Redis outage doesn't stop a service from starting.
 

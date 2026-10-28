@@ -2,7 +2,7 @@
 # practice rounds, and companies; each with its migrations, run first.
 
 x-library-env: &library-env
-  DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/library
+  DATABASE_URL: postgresql://library:${POSTGRES_PASSWORD}@postgres:5432/library
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
   ROUNDS_URL: http://rounds:8000
@@ -15,7 +15,7 @@ x-library-env: &library-env
   ASSISTANT_URL: http://assistant:8000
 
 x-generation-env: &generation-env
-  DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/generation
+  DATABASE_URL: postgresql://generation:${POSTGRES_PASSWORD}@postgres:5432/generation
   REDIS_URL: redis://redis:6379
   LIBRARY_URL: http://library:8000
   SERVICE_SECRET: ${SERVICE_SECRET}
@@ -34,7 +34,7 @@ x-generation-env: &generation-env
   SCREEN_REASONING_EFFORT: ${SCREEN_REASONING_EFFORT:-none}
 
 x-rounds-env: &rounds-env
-  DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/rounds
+  DATABASE_URL: postgresql://rounds:${POSTGRES_PASSWORD}@postgres:5432/rounds
   TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
   REDIS_URL: redis://redis:6379
   LIBRARY_URL: http://library:8000
@@ -50,7 +50,7 @@ x-rounds-env: &rounds-env
 x-companies-env: &companies-env
   TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
   BILLING_URL: http://billing:8000
-  DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/companies
+  DATABASE_URL: postgresql://companies:${POSTGRES_PASSWORD}@postgres:5432/companies
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
   GENERATION_URL: http://generation:8000
@@ -85,6 +85,32 @@ x-companies-source: &companies-source
   - ./packages/common/src:/packages/common/src
 
 services:
+  # Gives each service its own Postgres user owning only its database, as in production (the
+  # db-roles job, from library's image), before any migration runs; safe to repeat. Locally every
+  # user's password is POSTGRES_PASSWORD.
+  db-roles:
+    restart: "no"
+    build:
+      context: .
+      dockerfile: services/library/Dockerfile
+      target: dev
+    volumes: *library-source
+    command: ["python", "-m", "library.jobs.db_roles"]
+    environment:
+      ADMIN_DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/postgres
+      DATABASE_URL_LIBRARY: postgresql://library:${POSTGRES_PASSWORD}@postgres:5432/library
+      DATABASE_URL_GENERATION: postgresql://generation:${POSTGRES_PASSWORD}@postgres:5432/generation
+      DATABASE_URL_ROUNDS: postgresql://rounds:${POSTGRES_PASSWORD}@postgres:5432/rounds
+      DATABASE_URL_COMPANIES: postgresql://companies:${POSTGRES_PASSWORD}@postgres:5432/companies
+      DATABASE_URL_BILLING: postgresql://billing:${POSTGRES_PASSWORD}@postgres:5432/billing
+      DATABASE_URL_NOTIFICATIONS: postgresql://notifications:${POSTGRES_PASSWORD}@postgres:5432/notifications
+      DATABASE_URL_ATS: postgresql://ats:${POSTGRES_PASSWORD}@postgres:5432/ats
+      DATABASE_URL_API: postgresql://api:${POSTGRES_PASSWORD}@postgres:5432/api
+      DATABASE_URL_ASSISTANT: postgresql://assistant:${POSTGRES_PASSWORD}@postgres:5432/assistant
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   library-migrate:
     extends: {file: compose/base.yml, service: migrate}
     build:

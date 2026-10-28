@@ -6,7 +6,8 @@ URL (DATABASE_URL_<NAME>: that service's user, password and database). Safe to r
 created or get their password again, ownership moves only if it hasn't yet.
 
 Users are made here, by SQL, not through Cloud SQL's API, which makes every user it creates a
-member of cloudsqlsuperuser; these get nothing but their own database.
+member of cloudsqlsuperuser; these get nothing but their own database. Docker Compose runs it
+too (`db-roles`), before every migration, with the local admin `prepza`.
 
     uv run --no-sync python -m library.jobs.db_roles
 """
@@ -55,13 +56,48 @@ def give_database(admin, database: str, user: str) -> None:
     admin.execute(sql.SQL("GRANT CONNECT, TEMPORARY ON DATABASE {} TO {}").format(name, role))
 
 
+# The relations in `public` the admin owns, but not a sequence that moves with its table's column
+# (serial, identity), which can't change owner on its own.
+OWN_RELATIONS = """
+SELECT c.oid::regclass::text FROM pg_class c
+JOIN pg_namespace n ON n.oid = c.relnamespace
+WHERE n.nspname = 'public' AND c.relkind IN ('r', 'p', 'v', 'S')
+  AND c.relowner = (SELECT oid FROM pg_roles WHERE rolname = CURRENT_USER)
+  AND NOT EXISTS (
+    SELECT 1 FROM pg_depend d WHERE d.objid = c.oid AND d.deptype IN ('a', 'i')
+  )
+"""
+# The functions in `public` the admin owns (the migrations' triggers'), but not an extension's.
+OWN_FUNCTIONS = """
+SELECT p.oid::regprocedure::text FROM pg_proc p
+JOIN pg_namespace n ON n.oid = p.pronamespace
+WHERE n.nspname = 'public'
+  AND p.proowner = (SELECT oid FROM pg_roles WHERE rolname = CURRENT_USER)
+  AND NOT EXISTS (SELECT 1 FROM pg_depend d WHERE d.objid = p.oid AND d.deptype = 'e')
+"""
+# Postgres's bootstrap superuser: the local container's admin (POSTGRES_USER), never Cloud SQL's.
+BOOTSTRAP_USER = "SELECT oid = 10 FROM pg_roles WHERE rolname = CURRENT_USER"
+
+
 def give_objects(admin_url: str, database: str, user: str) -> None:
     """What the admin created in the database (tables, sequences, the vector extension) moves to
-    the user. The admin owns no database any more by now, so nothing outside it moves."""
+    the user. The admin owns no database any more by now, so nothing outside it moves. Postgres
+    refuses to reassign everything the bootstrap superuser owns (the local admin), so then only
+    its tables, views, sequences and functions move, one at a time."""
     url = urlparse(admin_url)._replace(path=f"/{database}").geturl()
+    role = sql.Identifier(user)
 
     with psycopg.connect(url, autocommit=True) as conn:
-        conn.execute(sql.SQL("REASSIGN OWNED BY CURRENT_USER TO {}").format(sql.Identifier(user)))
+        if not conn.execute(BOOTSTRAP_USER).fetchone()[0]:
+            conn.execute(sql.SQL("REASSIGN OWNED BY CURRENT_USER TO {}").format(role))
+
+            return
+
+        for (name,) in conn.execute(OWN_RELATIONS).fetchall():
+            conn.execute(sql.SQL("ALTER TABLE {} OWNER TO {}").format(sql.SQL(name), role))
+
+        for (name,) in conn.execute(OWN_FUNCTIONS).fetchall():
+            conn.execute(sql.SQL("ALTER FUNCTION {} OWNER TO {}").format(sql.SQL(name), role))
 
 
 def main() -> None:
