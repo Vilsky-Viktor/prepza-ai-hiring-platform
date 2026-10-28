@@ -7,6 +7,7 @@ import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
+import { openAddress } from "@/lib/navigation"
 
 /** Opens a top-up's invoice: its link is made on request and expires soon after. `api` is the
  * company's billing routes (its own, or the admin zone's support ones). */
@@ -27,7 +28,7 @@ export function InvoiceLink({
       const { url } = await apiFetch<{ url: string }>(
         `${api}/invoice?transaction_id=${encodeURIComponent(transactionId)}`
       )
-      window.location.assign(url)
+      openAddress(url)
     } catch (error) {
       toast.error(apiErrorMessage(error, t("invoiceFailed")))
     } finally {

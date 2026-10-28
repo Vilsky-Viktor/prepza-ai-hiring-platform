@@ -14,6 +14,7 @@ import { CARD, SIGN_CARD } from "@/config/cards"
 import { ApiError, apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { bdi } from "@/lib/bidi"
 import type { ConnectAnswer, ConnectRequest } from "@/types/connections"
+import { openAddress } from "@/lib/navigation"
 
 /** Asks the signed-in user whether an AI app may use their account: who asks, what it can and
  * can't do, whether it may make changes (on unless the app asked only to read), a warning for an
@@ -56,7 +57,7 @@ export function ConsentCard({
           ? { method: "POST", body: JSON.stringify({ read_only: !changes }) }
           : { method: "POST" }
       )
-      window.location.assign(redirect_url)
+      openAddress(redirect_url)
     } catch (error) {
       if (error instanceof ApiError && error.status === 404) {
         onExpired()

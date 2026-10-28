@@ -15,6 +15,7 @@ import { INTEGRATION_ACTIONS } from "@/config/lists"
 import { SLACK } from "@/config/slack"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { SlackOverview } from "@/types/notifications"
+import { openAddress } from "@/lib/navigation"
 
 const STEPS = ["stepAdd", "stepChannel", "stepKinds", "stepPrivacy"] as const
 
@@ -87,7 +88,7 @@ export function SlackActions({
       const { url } = await apiFetch<{ url: string }>(
         `/notifications/slack/start?company_id=${companyId}`
       )
-      window.location.assign(url)
+      openAddress(url)
     } catch (error) {
       toast.error(apiErrorMessage(error, t("connectFailed")))
       setBusy(false)
