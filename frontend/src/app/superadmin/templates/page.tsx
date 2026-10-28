@@ -6,7 +6,7 @@ import {
   TemplateBrowser,
   type TemplateSearchParams,
 } from "@/components/templates/template-browser"
-import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
+import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
 import { Button } from "@/components/ui/button"
 import { translatedTitle } from "@/lib/site"
 

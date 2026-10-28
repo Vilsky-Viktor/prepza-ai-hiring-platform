@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
-import { CampaignDialog } from "@/components/superadmin/campaign-dialog"
+import { CampaignDialog } from "@/features/superadmin/components/campaign-dialog"
 import { Button } from "@/components/ui/button"
 
 /** The campaigns tab's "New campaign" button, as the news tab's "New post": it opens an empty

@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { PassRateList } from "@/components/superadmin/pass-rate-list"
-import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
+import { PassRateList } from "@/features/superadmin/components/pass-rate-list"
+import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
 import { SortMenu } from "@/components/common/sort-menu"
 import { PAGE_SIZE } from "@/config/lists"
 import { serverFetch } from "@/lib/server-api"

@@ -6,9 +6,9 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { FloatingInput } from "@/components/ui/floating-field"
-import { LabeledField } from "@/components/labeled-field"
+import { LabeledField } from "@/features/superadmin/components/labeled-field"
 import { PillSelect } from "@/components/common/pill-select"
-import { CampaignAudience } from "@/components/superadmin/campaign-audience"
+import { CampaignAudience } from "@/features/superadmin/components/campaign-audience"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -32,7 +32,10 @@ import type { Campaign, CampaignKind } from "@/types/campaigns"
 
 // The rich text editor (TipTap) is large and only this dialog uses it: loaded when it opens.
 const TextEditor = dynamic(
-  () => import("@/components/text-editor").then((module) => module.TextEditor),
+  () =>
+    import("@/features/superadmin/components/text-editor").then(
+      (module) => module.TextEditor
+    ),
   { ssr: false }
 )
 

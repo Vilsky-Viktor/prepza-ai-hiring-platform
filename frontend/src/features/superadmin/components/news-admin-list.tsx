@@ -7,7 +7,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { ConfirmDialog } from "@/components/common/confirm-dialog"
-import { NewsDialog } from "@/components/superadmin/news-dialog"
+import { NewsDialog } from "@/features/superadmin/components/news-dialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { VirtualList } from "@/components/common/virtual-list"

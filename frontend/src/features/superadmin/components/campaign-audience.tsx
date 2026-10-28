@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
-import { CompanyPicker } from "@/components/superadmin/company-picker"
+import { CompanyPicker } from "@/features/superadmin/components/company-picker"
 import { Checkbox } from "@/components/ui/checkbox"
 import { SEARCH_DELAY_MS } from "@/config/lists"
 import { apiFetch } from "@/lib/api"

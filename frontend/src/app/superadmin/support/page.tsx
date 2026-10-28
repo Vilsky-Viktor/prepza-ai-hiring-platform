@@ -1,5 +1,5 @@
-import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
-import { SupportSearch } from "@/components/superadmin/support-search"
+import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
+import { SupportSearch } from "@/features/superadmin/components/support-search"
 import { translatedTitle } from "@/lib/site"
 
 export const generateMetadata = () => translatedTitle("superadmin", "zone")

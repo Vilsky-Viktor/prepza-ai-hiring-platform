@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
 
-import { CampaignList } from "@/components/superadmin/campaign-list"
-import { NewCampaign } from "@/components/superadmin/new-campaign"
-import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
+import { CampaignList } from "@/features/superadmin/components/campaign-list"
+import { NewCampaign } from "@/features/superadmin/components/new-campaign"
+import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
 import { PAGE_SIZE } from "@/config/lists"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"

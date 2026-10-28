@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react"
 
-import { AiCostSections } from "@/components/superadmin/ai-cost-sections"
-import { AiBudgets } from "@/components/superadmin/ai-budgets"
-import { LimitHitLists } from "@/components/superadmin/limit-hit-lists"
-import { StatsPicker } from "@/components/superadmin/stats-picker"
+import { AiCostSections } from "@/features/superadmin/components/ai-cost-sections"
+import { AiBudgets } from "@/features/superadmin/components/ai-budgets"
+import { LimitHitLists } from "@/features/superadmin/components/limit-hit-lists"
+import { StatsPicker } from "@/features/superadmin/components/stats-picker"
 import { BUDGET_SOURCES } from "@/config/ai-costs"
 import { useStatsChoice } from "@/hooks/use-stats-choice"
 import { apiFetch } from "@/lib/api"

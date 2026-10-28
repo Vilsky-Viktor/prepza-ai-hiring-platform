@@ -4,7 +4,7 @@ import { SquarePenIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
-import { CampaignDialog } from "@/components/superadmin/campaign-dialog"
+import { CampaignDialog } from "@/features/superadmin/components/campaign-dialog"
 import { Button } from "@/components/ui/button"
 import { LANGUAGE_NAMES, type Locale } from "@/config/i18n"
 import type { Campaign } from "@/types/campaigns"

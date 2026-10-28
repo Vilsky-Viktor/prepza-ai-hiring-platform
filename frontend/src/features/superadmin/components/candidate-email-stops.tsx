@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-import { CompanyOptOuts } from "@/components/superadmin/company-opt-outs"
+import { CompanyOptOuts } from "@/features/superadmin/components/company-opt-outs"
 import { companyEmails } from "@/lib/superadmin-emails"
 import type { CandidateOptOuts } from "@/types/superadmin"
 

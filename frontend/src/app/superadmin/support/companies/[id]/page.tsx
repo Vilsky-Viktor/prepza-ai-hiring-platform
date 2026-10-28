@@ -10,10 +10,13 @@ import { VerifiedBadge } from "@/components/common/verified-badge"
 import { EntityId } from "@/components/common/entity-id"
 import { LocalDate } from "@/components/common/local-date"
 import { PageHeader } from "@/components/common/page-header"
-import { AdjustCredits } from "@/components/superadmin/adjust-credits"
-import { aiSpend, AiSpendLine } from "@/components/superadmin/ai-spend-line"
-import { CompanyActions } from "@/components/superadmin/company-actions"
-import { SupportInterviews } from "@/components/superadmin/support-lists"
+import { AdjustCredits } from "@/features/superadmin/components/adjust-credits"
+import {
+  aiSpend,
+  AiSpendLine,
+} from "@/features/superadmin/components/ai-spend-line"
+import { CompanyActions } from "@/features/superadmin/components/company-actions"
+import { SupportInterviews } from "@/features/superadmin/components/support-lists"
 import { TabNav } from "@/components/common/tab-nav"
 import { Badge } from "@/components/ui/badge"
 import { WrappedEmail } from "@/components/common/wrapped-email"

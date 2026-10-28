@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 import { ConfirmDialog } from "@/components/common/confirm-dialog"
 import { IconButton } from "@/components/common/icon-button"
-import { RenameCompanyDialog } from "@/components/superadmin/rename-company-dialog"
+import { RenameCompanyDialog } from "@/features/superadmin/components/rename-company-dialog"
 import { Button } from "@/components/ui/button"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import { bdi, bdiText } from "@/lib/bidi"

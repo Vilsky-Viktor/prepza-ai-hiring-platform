@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from "next-intl"
 
-import { NumberCards } from "@/components/superadmin/number-cards"
+import { NumberCards } from "@/features/superadmin/components/number-cards"
 import { STATS_CARDS, STATS_SOURCES } from "@/config/stats"
 import { compactNumber, compactPrice } from "@/lib/format"
 import type { Stats } from "@/types/superadmin"

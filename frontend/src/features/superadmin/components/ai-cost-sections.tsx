@@ -3,8 +3,8 @@
 import { useFormatter, useLocale, useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { AmountRows } from "@/components/superadmin/amount-rows"
-import { NumberCards } from "@/components/superadmin/number-cards"
+import { AmountRows } from "@/features/superadmin/components/amount-rows"
+import { NumberCards } from "@/features/superadmin/components/number-cards"
 import { useAdminName } from "@/hooks/use-admin-name"
 import { hasMessage } from "@/lib/messages"
 import { compactNumber, formatPercent, formatUsd } from "@/lib/format"

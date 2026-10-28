@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { QualityList } from "@/components/superadmin/quality-list"
-import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
+import { QualityList } from "@/features/superadmin/components/quality-list"
+import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
 import { PAGE_SIZE } from "@/config/lists"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 
-import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
-import { VerificationList } from "@/components/superadmin/verification-list"
+import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
+import { VerificationList } from "@/features/superadmin/components/verification-list"
 import { PAGE_SIZE } from "@/config/lists"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"

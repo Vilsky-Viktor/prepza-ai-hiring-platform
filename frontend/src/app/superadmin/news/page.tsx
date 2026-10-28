@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
 
-import { NewPost } from "@/components/superadmin/new-post"
-import { NewsAdminList } from "@/components/superadmin/news-admin-list"
-import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
+import { NewPost } from "@/features/superadmin/components/new-post"
+import { NewsAdminList } from "@/features/superadmin/components/news-admin-list"
+import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
 import { PAGE_SIZE } from "@/config/lists"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"

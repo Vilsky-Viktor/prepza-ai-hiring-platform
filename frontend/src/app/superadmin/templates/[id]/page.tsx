@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { DeleteTemplate } from "@/components/superadmin/delete-template"
-import { TemplateAdditions } from "@/components/superadmin/template-additions"
+import { DeleteTemplate } from "@/features/superadmin/components/delete-template"
+import { TemplateAdditions } from "@/features/superadmin/components/template-additions"
 import { BackLink } from "@/components/common/back-link"
 import { EditableTitle } from "@/components/common/editable-title"
 import { PageHeader } from "@/components/common/page-header"

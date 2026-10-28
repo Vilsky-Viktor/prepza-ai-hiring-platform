@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { Dotted } from "@/components/common/dot"
-import { useLimitAmount } from "@/components/superadmin/ai-budgets"
+import { useLimitAmount } from "@/features/superadmin/components/ai-budgets"
 import { useAdminName } from "@/hooks/use-admin-name"
 import { useLocalTime } from "@/hooks/use-local-time"
 import type { LimitChange } from "@/types/superadmin"

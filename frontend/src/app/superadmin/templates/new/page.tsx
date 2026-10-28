@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server"
 
-import { NewTemplate } from "@/components/superadmin/new-template"
+import { NewTemplate } from "@/features/superadmin/components/new-template"
 import { BackLink } from "@/components/common/back-link"
 import { translatedTitle } from "@/lib/site"
 

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
-import { NewsDialog } from "@/components/superadmin/news-dialog"
+import { NewsDialog } from "@/features/superadmin/components/news-dialog"
 import { Button } from "@/components/ui/button"
 
 /** The news tab's "New post" button, opening an empty post; the list shows it once saved. */

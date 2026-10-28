@@ -3,9 +3,9 @@
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 
-import { useLimitAmount } from "@/components/superadmin/ai-budgets"
+import { useLimitAmount } from "@/features/superadmin/components/ai-budgets"
 import { useAdminName } from "@/hooks/use-admin-name"
-import { AmountRows } from "@/components/superadmin/amount-rows"
+import { AmountRows } from "@/features/superadmin/components/amount-rows"
 import type { LimitHitLists as Hits, LimitHits } from "@/types/superadmin"
 import { bdi } from "@/lib/bidi"
 

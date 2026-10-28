@@ -1,5 +1,5 @@
-import { AiCostsView } from "@/components/superadmin/ai-costs-view"
-import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
+import { AiCostsView } from "@/features/superadmin/components/ai-costs-view"
+import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
 import { translatedTitle } from "@/lib/site"
 
 export const generateMetadata = () => translatedTitle("superadmin", "zone")

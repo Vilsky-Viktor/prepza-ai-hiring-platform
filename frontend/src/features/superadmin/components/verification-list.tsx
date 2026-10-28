@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 
 import { useLocalTime } from "@/hooks/use-local-time"
-import { DeclineVerification } from "@/components/superadmin/decline-verification"
+import { DeclineVerification } from "@/features/superadmin/components/decline-verification"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { VirtualList } from "@/components/common/virtual-list"

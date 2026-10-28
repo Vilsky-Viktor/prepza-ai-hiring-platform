@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
 
-import { PatternList } from "@/components/superadmin/pattern-list"
-import { PatternStatusFilter } from "@/components/superadmin/pattern-status-filter"
-import { SuperadminHeader } from "@/components/superadmin/superadmin-header"
+import { PatternList } from "@/features/superadmin/components/pattern-list"
+import { PatternStatusFilter } from "@/features/superadmin/components/pattern-status-filter"
+import { SuperadminHeader } from "@/features/superadmin/components/superadmin-header"
 import { PAGE_SIZE } from "@/config/lists"
 import { PATTERN_STATUSES } from "@/config/patterns"
 import { serverFetch } from "@/lib/server-api"

@@ -36,7 +36,7 @@ describe("the messages the browser gets", () => {
       ({ file, group }) =>
         (ADMIN_MESSAGES as readonly string[]).includes(group) &&
         !file.startsWith("app/superadmin") &&
-        !file.startsWith("components/superadmin")
+        !file.startsWith("features/superadmin")
     )
 
     expect(outside).toEqual([])
