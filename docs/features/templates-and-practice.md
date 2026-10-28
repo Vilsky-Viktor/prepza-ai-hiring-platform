@@ -22,7 +22,7 @@ Each template question belongs to one pool, fixed when it's made and never chang
 Template topics keep embeddings, so proven questions on similar topics can be found and reused by new interviews (see [Generation](../generation.md#reusing-proven-questions)). Template topics without an embedding get one from:
 
 ```bash
-docker compose exec generation uv run --no-sync python -m app.jobs.embed_templates
+docker compose exec generation uv run --no-sync python -m generation.jobs.embed_templates
 ```
 
 ## Adding questions

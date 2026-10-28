@@ -62,7 +62,7 @@ jobs:
       matrix:
         include:
           - { name: library, path: services/library, code: src }
-          - { name: generation, path: services/generation }
+          - { name: generation, path: services/generation, code: src }
           - { name: rounds, path: services/rounds, code: src }
           - { name: companies, path: services/companies, code: src }
           - { name: notifications, path: services/notifications, code: src }

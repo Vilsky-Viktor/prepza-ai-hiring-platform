@@ -36,7 +36,7 @@ locals {
     # The in-app assistant: a turn streams up to 90 s while its tools call the other services. It
     # also serves AI apps over MCP at the site's root (mcp_paths below).
     assistant         = { image = "assistant", public = true, path = "assistant", port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 300, concurrency = 80, database = "assistant", command = null }
-    generation-worker = { image = "generation", public = false, path = null, port = 8000, min = 0, max = 1, connections = 4, cpu = "1", memory = "2Gi", timeout = 1800, concurrency = 10, database = "generation", command = ["uvicorn", "app.worker_main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", "--timeout-graceful-shutdown", "8"] }
+    generation-worker = { image = "generation", public = false, path = null, port = 8000, min = 0, max = 1, connections = 4, cpu = "1", memory = "2Gi", timeout = 1800, concurrency = 10, database = "generation", command = ["uvicorn", "generation.worker_main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", "--timeout-graceful-shutdown", "8"] }
   }
 
   # AI apps' MCP endpoint and its OAuth authorization server, at the site's root; the load

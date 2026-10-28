@@ -38,12 +38,12 @@ from common import (
 from langchain_core.callbacks import get_usage_metadata_callback
 from prepza_common.ai.examples import example_count
 
-from app.config.settings import settings
-from app.helpers.questions import build_options, with_example
-from app.integrations import llm
-from app.schemas.questions import QuestionItemList
-from app.services.key_self_check import self_check
-from app.services.nodes.questions import focus_for, question_messages
+from generation.config import settings
+from generation.helpers.questions import build_options, with_example
+from generation.integrations import llm
+from generation.schemas.questions import QuestionItemList
+from generation.services.key_self_check import self_check
+from generation.services.nodes.questions import focus_for, question_messages
 
 # Multi-answer questions the self-check saw, and dropped by reason, over the run.
 CHECKED = [0]

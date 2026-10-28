@@ -65,7 +65,7 @@ x-library-source: &library-source
   - ./packages/common/src:/packages/common/src
 
 x-generation-source: &generation-source
-  - ./services/generation/app:/services/generation/app
+  - ./services/generation/src:/services/generation/src
   - ./services/generation/migrations:/services/generation/migrations
   - ./services/generation/alembic.ini:/services/generation/alembic.ini:ro
   - ./packages/common/src:/packages/common/src
@@ -147,8 +147,8 @@ services:
     volumes: *generation-source
     command:
       [
-        "uvicorn", "app.worker_main:app", "--host", "0.0.0.0",
-        "--port", "8000", "--no-server-header", "--reload", "--reload-dir", "app",
+        "uvicorn", "generation.worker_main:app", "--host", "0.0.0.0",
+        "--port", "8000", "--no-server-header", "--reload", "--reload-dir", "src",
         "--reload-dir", "/packages/common/src",
       ]
     environment:

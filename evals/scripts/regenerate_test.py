@@ -31,11 +31,11 @@ from common import (
 from langchain_core.callbacks import get_usage_metadata_callback
 from prepza_common.ai.examples import has_example
 
-from app.config.settings import settings
-from app.constants.batch_work import BatchKind, BatchStep
-from app.schemas.regenerate import QuestionContext
-from app.services.batch_work import question_payload
-from app.services.regenerate import write
+from generation.config import settings
+from generation.constants.batch_work import BatchKind, BatchStep
+from generation.schemas.regenerate import QuestionContext
+from generation.services.batch_work import question_payload
+from generation.services.regenerate import write
 
 # The most other questions of a subtopic a context lists, as a topic's existing questions.
 MAX_EXISTING = 9

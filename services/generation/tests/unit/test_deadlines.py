@@ -6,7 +6,7 @@ from pathlib import Path
 
 from prepza_common.config.constants import HTTP_TIMEOUT_SECONDS, PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
 
-from app.constants.generation import ENQUEUE_TIMEOUT_SECONDS, REGENERATE_TIMEOUT_SECONDS
+from generation.constants.generation import ENQUEUE_TIMEOUT_SECONDS, REGENERATE_TIMEOUT_SECONDS
 
 ROOT = Path(__file__).resolve().parents[4]
 

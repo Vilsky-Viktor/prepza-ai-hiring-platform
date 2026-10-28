@@ -8,9 +8,10 @@ from fake_redis import FakeRedis
 from prepza_common.events import pubsub
 from prepza_common.redis import memory_cache
 
-from app.integrations import library, llm
-from app.routers import internal, superadmin, superadmin_additions
-from app.services import (
+from generation.api.v1 import internal, superadmin, superadmin_additions
+from generation.integrations import library, llm
+from generation.repositories import generations
+from generation.services import (
     additions,
     batch_usage,
     budget,
@@ -22,8 +23,7 @@ from app.services import (
     top_up,
     topic_caps,
 )
-from app.services.nodes import reuse
-from app.storage import generations
+from generation.services.nodes import reuse
 from tests.unit.batch_fakes import FakeStore
 from tests.unit.fakes import EXAMPLE, MULTI_OPTIONS, OPTIONS
 

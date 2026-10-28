@@ -16,8 +16,8 @@ from common import DATASETS, RESULTS, cost, generation_models, load, run_record,
 from langchain_core.callbacks import get_usage_metadata_callback
 from stats import share
 
-from app.config.settings import settings
-from app.services.screen import names_something_testable
+from generation.config import settings
+from generation.services.screen import names_something_testable
 
 
 async def one(item: dict) -> dict:

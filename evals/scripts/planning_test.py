@@ -31,12 +31,12 @@ from prepza_common.config.constants import LANGUAGES
 from stats import share
 from text_checks import in_script
 
-from app.config.settings import settings
-from app.constants.generation import MAX_TOPIC_NAME_LENGTH
-from app.services.nodes import extraction, topics
-from app.services.nodes.revision import revise_topics
-from app.services.topic_caps import topic_caps
-from app.storage import draft_cache
+from generation.config import settings
+from generation.constants.generation import MAX_TOPIC_NAME_LENGTH
+from generation.repositories import draft_cache
+from generation.services.nodes import extraction, topics
+from generation.services.nodes.revision import revise_topics
+from generation.services.topic_caps import topic_caps
 
 SEED = 7
 

@@ -3,8 +3,8 @@ multi-answer, and a verifier that answers the self-check of a new multi-answer q
 
 import re
 
-from app.schemas.questions import QuestionItem, QuestionItemList
-from app.schemas.verify import SelfCheck
+from generation.schemas.questions import QuestionItem, QuestionItemList
+from generation.schemas.verify import SelfCheck
 
 # A single-answer question's options, and a multi-answer one's: right ones start with "Right".
 SINGLE = (["Right"], ["W1", "W2", "W3"])

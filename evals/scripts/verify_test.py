@@ -42,10 +42,10 @@ from common import (
 from langchain_core.callbacks import get_usage_metadata_callback
 from stats import share
 
-from app.helpers.prompts import checker_messages
-from app.schemas.regenerate import QuestionContext, RegeneratedOption
-from app.schemas.verify import KeyCheck, QuestionQuality, ReportNote
-from app.services.verify import confirm_prompt, key_check_prompt, option_order
+from generation.helpers.prompts import checker_messages
+from generation.schemas.regenerate import QuestionContext, RegeneratedOption
+from generation.schemas.verify import KeyCheck, QuestionQuality, ReportNote
+from generation.services.verify import confirm_prompt, key_check_prompt, option_order
 
 
 def flawed_ids(multi: bool) -> set[str]:

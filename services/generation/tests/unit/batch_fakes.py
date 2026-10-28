@@ -5,8 +5,8 @@ import itertools
 import uuid
 from types import SimpleNamespace
 
-from app.integrations import openai_batch
-from app.storage import batch_work as storage
+from generation.integrations import openai_batch
+from generation.repositories import batch_work as storage
 
 
 class FakeStore:
@@ -103,7 +103,7 @@ class FakeBatches:
 
 def run_batches(monkeypatch, answer, rounds: int = 1) -> FakeBatches:
     """Sends the waiting batch work and moves on what comes back, `rounds` times."""
-    from app.services import batch_work
+    from generation.services import batch_work
 
     batches = FakeBatches(answer)
     batches.install(monkeypatch)

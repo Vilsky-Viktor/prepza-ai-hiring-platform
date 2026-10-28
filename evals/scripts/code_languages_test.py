@@ -16,9 +16,9 @@ from common import DATASETS, RESULTS, cost, generation_models, load, run_record,
 from langchain_core.callbacks import get_usage_metadata_callback
 from stats import share
 
-from app.config.settings import settings
-from app.constants.code import TAG_BATCH_SIZE
-from app.services.code_tags import tag_examples
+from generation.config import settings
+from generation.constants.code import TAG_BATCH_SIZE
+from generation.services.code_tags import tag_examples
 
 SEED = 7
 

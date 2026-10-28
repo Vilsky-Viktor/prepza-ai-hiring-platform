@@ -15,6 +15,8 @@ WORKDIR /services/generation
 # The environment's commands (uvicorn, alembic, python) run directly, not through uv, so they get
 # the container's signals.
 ENV PATH="/services/generation/.venv/bin:$PATH"
+# The service's package (src/generation) is imported from src, not installed.
+ENV PYTHONPATH=/services/generation/src
 
 COPY packages/common /packages/common
 COPY services/generation/pyproject.toml services/generation/uv.lock services/generation/.python-version ./
@@ -29,15 +31,15 @@ FROM base AS dev
 # .pyc that a reloading container then fails to import. Polling sees changes from the host.
 ENV PYTHONPYCACHEPREFIX=/tmp/pycache WATCHFILES_FORCE_POLLING=true
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
-    "--reload", "--reload-dir", "app", "--reload-dir", "/packages/common/src"]
+CMD ["uvicorn", "generation.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
+    "--reload", "--reload-dir", "src", "--reload-dir", "/packages/common/src"]
 
 # Production: the source is part of the image, uv isn't. Migrations run in a one-off container
 # (alembic upgrade head) before the API starts.
 FROM python AS prod
 
 WORKDIR /services/generation
-ENV PATH="/services/generation/.venv/bin:$PATH"
+ENV PATH="/services/generation/.venv/bin:$PATH" PYTHONPATH=/services/generation/src
 # Only the installed environment and the shared package it links to (an editable install).
 COPY --from=base /packages/common /packages/common
 COPY --from=base /services/generation/.venv ./.venv
@@ -46,11 +48,11 @@ EXPOSE 8000
 
 COPY services/generation/alembic.ini ./
 COPY services/generation/migrations ./migrations
-COPY services/generation/app ./app
+COPY services/generation/src ./src
 
 # An unprivileged user that can read the code but not change it. Bytecode is compiled now, as
 # that user can't write it later.
-RUN python -m compileall -q app && adduser -D -H -u 10001 app
+RUN python -m compileall -q src && adduser -D -H -u 10001 app
 # The commit the image is built from, as the release Sentry tags its errors with.
 ARG SENTRY_RELEASE
 ENV SENTRY_RELEASE=$SENTRY_RELEASE
@@ -58,5 +60,5 @@ USER app
 
 # Cloud Run kills the container 10 seconds after asking it to stop: requests still running
 # after 8 are dropped, so the app's shutdown (and Sentry's last reports) still run.
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
+CMD ["uvicorn", "generation.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", \
     "--timeout-graceful-shutdown", "8"]

@@ -21,7 +21,7 @@ SHOUTED = {"ALWAYS", "NEVER", "MUST", "IMPORTANT", "CRITICAL", "EVERY", "ALL", "
 SHOUTED |= {"ONLY", "NOT", "YES", "NO", "DO", "DON'T"}
 # Modules that send messages to a model with the system message made elsewhere: the retry of a
 # topic draft adds to the conversation the draft started.
-SYSTEM_ELSEWHERE = {"services/generation/app/services/topic_planning.py"}
+SYSTEM_ELSEWHERE = {"services/generation/src/generation/services/topic_planning.py"}
 # Helpers that send a schema as structured output (the Batch API's request bodies): the
 # position of the schema among their arguments, and its parameter's name there.
 SCHEMA_HELPERS = {"request_body": 3, "translation_body": 1, "writing_body": 1}

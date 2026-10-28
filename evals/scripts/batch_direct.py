@@ -3,8 +3,8 @@ it (generation's batch_steps.body_for), sent straight to chat completions, and i
 by the service's own `advance`, until the work is done or given up. Measures what a batch would
 write without waiting a day for one; the price is the direct one (a batch costs half)."""
 
-from app.integrations import openai_batch
-from app.services.batch_steps import advance, body_for
+from generation.integrations import openai_batch
+from generation.services.batch_steps import advance, body_for
 
 
 async def run_direct(kind: str, step: str, payload: dict) -> tuple[object, list[tuple[str, dict]]]:

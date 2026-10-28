@@ -18,7 +18,7 @@ ALLOWED = {
     # The instance's one Redis subscription for the bell's open streams, dropped with the last.
     "services/notifications/src/notifications/integrations/subscription.py",
     # Locally only: there's no Cloud Tasks queue, so a job calls the worker in the background.
-    "services/generation/app/integrations/tasks.py",
+    "services/generation/src/generation/integrations/tasks.py",
     # Integration tests' races only: both calls are awaited before the test ends.
     "packages/common/src/prepza_common/db/lock_waits.py",
 }

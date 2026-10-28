@@ -33,11 +33,11 @@ from langchain_core.messages import HumanMessage
 from pydantic import BaseModel, Field
 from stats import share
 
-from app.config.settings import settings
-from app.constants.patterns import MIN_PATTERN_QUESTIONS
-from app.helpers.patterns import question_block
-from app.schemas.patterns import QualitySignal
-from app.services.patterns import find_patterns, rejection
+from generation.config import settings
+from generation.constants.patterns import MIN_PATTERN_QUESTIONS
+from generation.helpers.patterns import question_block
+from generation.schemas.patterns import QualitySignal
+from generation.services.patterns import find_patterns, rejection
 
 
 class Match(BaseModel):

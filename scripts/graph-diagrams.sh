@@ -13,4 +13,5 @@ FIREBASE_PROJECT_ID="demo-diagrams" \
   REDIS_URL="redis://localhost" \
   LIBRARY_URL="http://library" \
   SERVICE_SECRET="diagrams-placeholder-secret-of-32-bytes" \
-  uv run --quiet python -m app.jobs.graph_diagrams
+  PYTHONPATH=src \
+  uv run --quiet python -m generation.jobs.graph_diagrams

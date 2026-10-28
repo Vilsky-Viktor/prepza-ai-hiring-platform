@@ -25,7 +25,7 @@ import pytest
 from fastapi.testclient import TestClient
 from prepza_common.redis import memory_cache
 
-from app.main import app
+from generation.main import app
 
 
 @pytest.fixture(scope="session")
@@ -48,7 +48,7 @@ def clean_process(monkeypatch):
 @pytest.fixture(autouse=True)
 def queued(monkeypatch):
     """Worker jobs the code queues, recorded instead of sent: (path, payload)."""
-    from app.integrations import tasks
+    from generation.integrations import tasks
 
     jobs = []
 

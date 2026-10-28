@@ -1,6 +1,6 @@
 # Generation jobs: one task runs one generation on the worker. A delivery that fails before the
 # job starts (a worker restarting) is tried again; a started generation is claimed once, so a
-# repeated delivery does nothing (services/generation/app/services/jobs.py).
+# repeated delivery does nothing (services/generation/src/generation/services/jobs.py).
 resource "google_cloud_tasks_queue" "generation" {
   name     = "generation"
   location = var.region

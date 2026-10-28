@@ -109,12 +109,12 @@ Prices follow the visitor's country, which the load balancer gives in production
 cd frontend && pnpm api-types
 
 # Give template topics without an embedding one
-docker compose exec generation uv run --no-sync python -m app.jobs.embed_templates
+docker compose exec generation uv run --no-sync python -m generation.jobs.embed_templates
 
 # Tag the language of question examples saved before they were tagged (once after deploying it)
-docker compose exec generation uv run --no-sync python -m app.jobs.tag_code_languages
+docker compose exec generation uv run --no-sync python -m generation.jobs.tag_code_languages
 # Re-tag "text" examples that are in a notation after all (examples of several files; once)
-docker compose exec generation uv run --no-sync python -m app.jobs.tag_code_languages --text
+docker compose exec generation uv run --no-sync python -m generation.jobs.tag_code_languages --text
 
 # Rebuild the documents for companies after changing their sources
 ./scripts/documents/build.sh   # needs uv (for pandoc) and Docker (Chromium prints the PDFs)

@@ -16,10 +16,10 @@ import time
 from common import DATASETS, RESULTS, load, run_record, save
 from stats import share
 
-from app.config.settings import settings
-from app.constants.generation import DUPLICATE_DISTANCE
-from app.integrations import llm
-from app.services.dedupe import distinct_by_meaning
+from generation.config import settings
+from generation.constants.generation import DUPLICATE_DISTANCE
+from generation.integrations import llm
+from generation.services.dedupe import distinct_by_meaning
 
 
 async def main(label: str) -> None:

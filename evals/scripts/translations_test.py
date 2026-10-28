@@ -36,10 +36,10 @@ from pydantic import BaseModel, Field
 from stats import share
 from text_checks import in_script, keeps, paragraphs
 
-from app.config.settings import settings
-from app.constants.batch_work import BatchKind, BatchStep
-from app.schemas.campaigns import CampaignSource
-from app.schemas.news import NewsSource
+from generation.config import settings
+from generation.constants.batch_work import BatchKind, BatchStep
+from generation.schemas.campaigns import CampaignSource
+from generation.schemas.news import NewsSource
 
 SEED = 7
 LINK = re.compile(r"\]\((\S+?)\)")
