@@ -1,5 +1,5 @@
 """The scripts' tests find the services' code with the shared library's tests' helper
-(`packages/common/tests/service_code.py`), so both see the same files in either layout."""
+(`packages/common/tests/service_code.py`), so both see the same files."""
 
 import sys
 from pathlib import Path

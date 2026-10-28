@@ -61,19 +61,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { name: library, path: services/library, code: src }
-          - { name: generation, path: services/generation, code: src }
-          - { name: rounds, path: services/rounds, code: src }
-          - { name: companies, path: services/companies, code: src }
-          - { name: notifications, path: services/notifications, code: src }
-          - { name: billing, path: services/billing, code: src }
-          - { name: ats, path: services/ats, code: src }
-          - { name: api, path: services/api, code: src }
-          - { name: assistant, path: services/assistant, code: src }
-          - { name: common, path: packages/common, code: src }
+          - { name: library, path: services/library }
+          - { name: generation, path: services/generation }
+          - { name: rounds, path: services/rounds }
+          - { name: companies, path: services/companies }
+          - { name: notifications, path: services/notifications }
+          - { name: billing, path: services/billing }
+          - { name: ats, path: services/ats }
+          - { name: api, path: services/api }
+          - { name: assistant, path: services/assistant }
+          - { name: common, path: packages/common }
     env:
       CHANGED: ${{ contains(fromJSON(needs.changes.outputs.changed), matrix.name) }}
-      CODE: ${{ matrix.code || 'app' }}
       BASE: ${{ needs.changes.outputs.base }}
     defaults:
       run:
@@ -92,7 +91,7 @@ jobs:
       - if: env.CHANGED == 'true'
         run: uv sync --locked
       - if: env.CHANGED == 'true'
-        run: uv run pytest -q --cov="$CODE" --cov-report=xml
+        run: uv run pytest -q --cov=src --cov-report=xml
       # The share of the changed lines the unit tests run, in the job's summary (docs/testing.md).
       - if: env.CHANGED == 'true'
         run: ../../scripts/changed_lines_coverage.sh coverage.xml

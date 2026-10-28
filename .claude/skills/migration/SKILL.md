@@ -54,8 +54,8 @@ Each service with a database has its own Alembic history in `services/<svc>/migr
 
 5. A value added to a closed set (an enum a `CHECK` is built from) needs a migration that drops
    and adds that `CHECK` with the new list (`NOT VALID`, then validated).
-6. Change the model in `app/models/` to match: column types, `server_default`, `ondelete` and an
-   index on every new foreign key as the database rule says.
+6. Change the model in `src/<svc>/models/` to match: column types, `server_default`, `ondelete`
+   and an index on every new foreign key as the database rule says.
 
 ## Run and check
 

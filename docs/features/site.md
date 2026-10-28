@@ -139,7 +139,7 @@ The `/api-docs` page ("developer docs" in the footer) is the public API's refere
 - **MCP**: connecting AI apps and one's own agents to prepza's MCP server, in pages of its own listed under it in the menu (`?tab=mcp&page=<id>`): an overview, a page per AI app, the server's tools, and agent frameworks with example agents in Python and TypeScript (its own English text in `constants/mcp-docs.ts` and `content/mcp/`; see [AI apps over MCP](mcp.md#connecting));
 - **objects**: what the routes and the web hook return; a type anywhere links to its object here.
 
-The description's text may hold bold, inline code, links (`[text](/api-docs?tab=sdk)`: the API tab links its mentions of the web hook and of embedding to their tabs) and code blocks, each with its language ("```python"); code blocks that follow each other are one example in several languages, such as the routes' examples in curl, Python and JavaScript (`app/constants/docs.py` in the api service). See [Public API](api.md).
+The description's text may hold bold, inline code, links (`[text](/api-docs?tab=sdk)`: the API tab links its mentions of the web hook and of embedding to their tabs) and code blocks, each with its language ("```python"); code blocks that follow each other are one example in several languages, such as the routes' examples in curl, Python and JavaScript (`src/api/constants/docs.py` in the api service). See [Public API](api.md).
 
 ### Code
 

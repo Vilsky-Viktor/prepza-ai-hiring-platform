@@ -20,11 +20,8 @@ script='
 import json
 import sys
 from importlib import import_module
-from pathlib import Path
 
-# A service moved to the src layout imports as its own package, one not moved yet as app.
-package = sys.argv[1] if Path("src").is_dir() else "app"
-app = import_module(f"{package}.main").app
+app = import_module(f"{sys.argv[1]}.main").app
 
 if sys.argv[1] == "api":
     # The company API page'"'"'s routes are hidden from the public reference, but they are tools.

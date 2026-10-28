@@ -21,7 +21,7 @@ A company can connect its own platform to prepza through the public API: list it
 
 ## Permissions
 
-Each key may do only what was ticked when it was made, so a key for a dashboard only reads and a leaked key can do as little as possible. The permissions (`app/constants/permissions.py`), by what they touch:
+Each key may do only what was ticked when it was made, so a key for a dashboard only reads and a leaked key can do as little as possible. The permissions (`src/api/constants/permissions.py`), by what they touch:
 
 | Group | Permission | Routes |
 |---|---|---|

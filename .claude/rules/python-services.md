@@ -8,8 +8,7 @@ paths:
 
 ## Layout
 
-Every Python service follows this layout (it replaces the `app/` layout; rule 3's one kind per
-module still holds):
+Every Python service follows this layout (rule 3's one kind per module still holds):
 
 ```
 my_service/
@@ -25,11 +24,9 @@ my_service/
 └── migrations/              # Alembic
 ```
 
-From today's layout: `routers/` → `api/v1/`, `storage/` → `repositories/`, `auth.py` and
-`service_auth.py` → `api/dependencies.py` and `core/`, `storage/db.py` → `core/db.py`, the
-Pub/Sub event handling → `handlers/` (one module per event, `dispatch.py` picks it);
-`helpers/`, `constants/`, `prompts/`, `integrations/` and `jobs/` stay their own folders in the
-package.
+The engine and sessions are in `core/db.py`; the Pub/Sub event handling is in `handlers/` (one
+module per event, `dispatch.py` picks it); `helpers/`, `constants/`, `prompts/`, `integrations/`
+and `jobs/` are their own folders in the package.
 
 ## Routes, services, repositories
 

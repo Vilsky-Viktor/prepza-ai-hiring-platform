@@ -1,7 +1,5 @@
 ---
 paths:
-  - "services/*/app/models/**"
-  - "services/*/app/storage/**"
   - "services/*/src/*/models/**"
   - "services/*/src/*/repositories/**"
   - "services/*/migrations/**"

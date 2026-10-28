@@ -1,6 +1,6 @@
 # The assistant's tools: user-facing GET routes of the other services, called with the user's own
 # token, so roles and every other rule apply there unchanged. Each entry names its service and
-# route (the path as that service sees it, in its snapshot in app/openapi/), and:
+# route (the path as that service sees it, in its snapshot in openapi/), and:
 # - params: the route's parameters the model may set (every required one among them);
 # - fields: the keys the model reads, at every level of the data (all when left out);
 # - max_items: the longest list it reads (DEFAULT_MAX_ITEMS when left out); a `limit` the model

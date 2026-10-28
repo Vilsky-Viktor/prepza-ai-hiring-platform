@@ -1,6 +1,5 @@
 ---
 paths:
-  - "services/*/app/prompts/**"
   - "services/*/src/*/prompts/**"
   - "services/generation/**"
   - "services/assistant/**"

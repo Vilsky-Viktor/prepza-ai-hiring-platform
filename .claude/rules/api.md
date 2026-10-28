@@ -1,8 +1,6 @@
 ---
 paths:
   - "services/api/**"
-  - "services/*/app/routers/**"
-  - "services/*/app/schemas/**"
   - "services/*/src/*/api/v1/**"
   - "services/*/src/*/schemas/**"
   - "services/assistant/src/assistant/**/mcp*.py"

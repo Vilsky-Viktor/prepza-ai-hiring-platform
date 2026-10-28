@@ -22,10 +22,10 @@ resource "google_pubsub_subscription" "dead_letter" {
   }
 }
 
-# The event types each consumer handles (its app/services/*events*.py, candidate_billing.py and
-# candidate_results.py). A consumer that starts handling a new type needs it added here. Changing
-# a filter replaces the subscription, dropping the messages it still holds: apply when its backlog
-# is empty. Funnel events go only to BigQuery (analytics.tf).
+# The event types each consumer handles (the table in its src/<service>/handlers/dispatch.py).
+# A consumer that starts handling a new type needs it added here. Changing a filter replaces the
+# subscription, dropping the messages it still holds: apply when its backlog is empty. Funnel
+# events go only to BigQuery (analytics.tf).
 # Pub/Sub caps a filter at 256 bytes (scripts/tests/test_pubsub_filters.py checks each): a type
 # adds 24 bytes plus its name. An entry ending in ".*" is a whole family, every type up to its
 # first dot, matched on the event's `family` attribute (prepza_common.events.pubsub) in 25 bytes plus the

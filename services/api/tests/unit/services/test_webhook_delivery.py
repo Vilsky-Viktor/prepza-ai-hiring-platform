@@ -266,7 +266,7 @@ def test_a_failed_send_is_logged_without_the_web_hooks_url(endpoints, monkeypatc
 def test_a_send_isnt_logged_with_its_url(monkeypatch, caplog):
     client = httpx.AsyncClient(transport=httpx.MockTransport(lambda _: httpx.Response(200)))
     monkeypatch.setattr(integration, "get_client", lambda: client)
-    caplog.set_level("INFO", logger="app")
+    caplog.set_level("INFO", logger="api")
     asyncio.run(integration.post(SECRET_URL, "203.0.113.10", b"{}", "s"))
 
     assert "s3cr3t" not in caplog.text
