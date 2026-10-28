@@ -7,7 +7,7 @@ from companies.services import accounts as account_service
 URL = "/internal/users/ann/companies"
 HEADERS = {
     "Authorization": "Bearer "
-    + issue_token("library", "companies", "test-secret-that-is-at-least-32-bytes")
+    + issue_token("accounts", "companies", "test-secret-that-is-at-least-32-bytes")
 }
 BODY = {"email": "ann@example.com"}
 

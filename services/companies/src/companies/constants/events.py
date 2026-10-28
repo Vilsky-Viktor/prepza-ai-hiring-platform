@@ -33,7 +33,7 @@ PROCESSED_EVENT_DAYS = 8
 # A company erased a candidate (removed them, results included): other services forget them.
 CANDIDATE_REMOVED = "candidate.removed"
 # Guest invites (signed in by the company's own platform, no account of their own) were deleted:
-# library deletes each guest's sign-in and what it stored under it (terms, ratings, reports).
+# accounts deletes each guest's sign-in and accepted terms, library their ratings and reports.
 GUESTS_DELETED = "guests.deleted"
 # An interview was deleted, its candidates with it: notifications removes the company's
 # notifications about them, and the api their results waiting to be sent to web hooks. Named

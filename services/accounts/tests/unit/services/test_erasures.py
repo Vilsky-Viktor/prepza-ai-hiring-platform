@@ -8,9 +8,9 @@ from types import SimpleNamespace
 import httpx
 import pytest
 
-from library.integrations import accounts as services
-from library.repositories import accounts, erasures
-from library.services import erasures as replays
+from accounts.integrations import services
+from accounts.repositories import erasures, user_data
+from accounts.services import erasures as replays
 
 NOW = datetime.now(UTC)
 
@@ -48,13 +48,13 @@ def done(monkeypatch):
     async def delete_user(service, user_id, email):
         calls.append((service, user_id, email))
 
-    async def delete_library(session, user_id):
-        calls.append(("library", user_id))
+    async def delete_own(session, user_id):
+        calls.append(("own", user_id))
 
     monkeypatch.setattr(erasures, "page", page)
     monkeypatch.setattr(erasures, "forget", forget)
     monkeypatch.setattr(services, "delete_user", delete_user)
-    monkeypatch.setattr(accounts, "delete_user", delete_library)
+    monkeypatch.setattr(user_data, "delete_user", delete_own)
     calls.kept = kept
 
     return calls
@@ -67,7 +67,7 @@ def test_every_recent_erasure_is_run_again_in_every_service_after_older_ones_go(
     assert sorted(done[2:-1]) == sorted(
         (service, "u0", "u0@example.com") for service in services.services()
     )
-    assert done[-1] == ("library", "u0")
+    assert done[-1] == ("own", "u0")
 
 
 def test_erasures_are_read_a_batch_at_a_time_by_key(done, monkeypatch):
@@ -87,7 +87,7 @@ def test_a_run_past_its_time_leaves_the_rest_to_the_next(done, monkeypatch):
     done.kept["rows"] = erased(3)
 
     assert asyncio.run(replays.replay()) == 2
-    assert ("library", "u2") not in done
+    assert ("own", "u2") not in done
 
 
 def test_a_service_refusing_a_shared_company_doesnt_stop_the_others(done, monkeypatch):
@@ -101,7 +101,7 @@ def test_a_service_refusing_a_shared_company_doesnt_stop_the_others(done, monkey
     monkeypatch.setattr(services, "delete_user", refuse)
 
     assert asyncio.run(replays.replay()) == 1
-    assert "rounds" in done and ("library", "u0") in done
+    assert "rounds" in done and ("own", "u0") in done
 
 
 def test_a_service_failing_fails_the_run_to_be_retried(done, monkeypatch):
@@ -114,4 +114,4 @@ def test_a_service_failing_fails_the_run_to_be_retried(done, monkeypatch):
     with pytest.raises(httpx.ConnectError):
         asyncio.run(replays.replay())
 
-    assert ("library", "u0") not in done
+    assert ("own", "u0") not in done

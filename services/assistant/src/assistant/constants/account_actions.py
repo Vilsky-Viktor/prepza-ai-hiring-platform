@@ -52,7 +52,7 @@ ACCOUNT_ACTIONS = {
         "link": "/settings",
     },
     "delete_account": {
-        "service": "library",
+        "service": "accounts",
         "method": "DELETE",
         "path": "/me",
         "params": [],

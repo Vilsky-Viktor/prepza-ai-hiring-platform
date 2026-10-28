@@ -39,7 +39,7 @@ locals {
     bank-stages      = { service = "library", path = "/internal/schedules/bank", cron = "45 3 * * *" }
     # The last 14 days' account deletions run again (and older ones forgotten), so a database
     # restored from a backup brings nobody back; run it by hand right after a restore too.
-    erasures = { service = "library", path = "/internal/schedules/erasures", cron = "0 5 * * *" }
+    erasures = { service = "accounts", path = "/internal/schedules/erasures", cron = "0 5 * * *" }
     # Assistant conversations nobody added to for its retention period (90 days), AI apps'
     # connections whose refresh token expired, and apps with no connection for 30 days.
     assistant-retention = { service = "assistant", path = "/internal/schedules/retention", cron = "0 4 * * *" }

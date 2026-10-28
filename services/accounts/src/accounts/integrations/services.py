@@ -1,14 +1,14 @@
 from prepza_common.http import http
 from prepza_common.http.http import bearer
 
-from library.config import settings
-from library.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
-from library.core.security import service_token
+from accounts.config import settings
+from accounts.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
+from accounts.core.security import service_token
 
 
 def services() -> dict[str, str]:
     """The services that hold their own part of a user's data, by name; companies first, as it
-    may refuse a deletion (services/accounts.py)."""
+    may refuse a deletion (services/deletion.py)."""
     return {
         "companies": settings.companies_url,
         "rounds": settings.rounds_url,
@@ -18,7 +18,7 @@ def services() -> dict[str, str]:
         "ats": settings.ats_url,
         "api": settings.api_url,
         "assistant": settings.assistant_url,
-        "accounts": settings.accounts_url,
+        "library": settings.library_url,
     }
 
 

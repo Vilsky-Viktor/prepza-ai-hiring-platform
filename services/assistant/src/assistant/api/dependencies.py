@@ -22,5 +22,5 @@ def user_with_token(
 
 UserWithToken = Annotated[tuple[User, str], Depends(user_with_token)]
 
-# Calls to this service (library deleting or exporting a user's data), signed with its own key.
+# Calls to this service (accounts deleting or exporting a user's data), signed with its own key.
 ServiceCaller = service_caller(settings.service_secret, SERVICE_NAME)

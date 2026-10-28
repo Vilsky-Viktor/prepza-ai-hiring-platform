@@ -13,6 +13,16 @@ PUBLIC = {
     "GET /templates/{key}",
     "GET /templates/{key}/sample",
     "GET /news",
+    # Library's old account addresses, kept one release: each only sends the browser to the same
+    # route in accounts (307), which checks who's asking (api/v1/moved_public.py).
+    "GET /me",
+    "DELETE /me",
+    "GET /me/{path:path}",
+    "PUT /me/{path:path}",
+    "GET /superadmin/emails/{path:path}",
+    "POST /superadmin/emails/{path:path}",
+    "PUT /superadmin/emails/{path:path}",
+    "GET /superadmin/stats",
     "GET /health",
     "GET /ready",
 }

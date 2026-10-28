@@ -3,8 +3,8 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from library.core.db import Session
-from library.repositories import erasures
+from accounts.core.db import Session
+from accounts.repositories import erasures
 from tests.integration.transactions import transaction
 
 

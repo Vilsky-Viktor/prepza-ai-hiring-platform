@@ -4,7 +4,7 @@ from api.repositories import keys, webhook_retries, webhooks
 
 HEADERS = {
     "Authorization": "Bearer "
-    + issue_token("library", "api", "test-secret-that-is-at-least-32-bytes")
+    + issue_token("accounts", "api", "test-secret-that-is-at-least-32-bytes")
 }
 
 
@@ -12,7 +12,7 @@ async def nothing(session, user_id):
     return []
 
 
-def test_library_deletes_and_exports_a_users_keys_web_hooks_and_waiting_results(
+def test_accounts_deletes_and_exports_a_users_keys_web_hooks_and_waiting_results(
     client, monkeypatch
 ):
     removed = []

@@ -137,7 +137,7 @@ The digest and reminders are sent by `notifications` on a schedule: `POST /inter
 
 ### Email preferences and consent
 
-Each user chooses, in Settings > Emails, which emails they get beyond service emails (invites, reports, billing problems, legal changes), which always go out. the accounts service stores the choices (at `/library/me/email-preferences`, the address they always had, which the gateway sends to accounts; other services read them through accounts' `POST /internal/users/email-recipients`):
+Each user chooses, in Settings > Emails, which emails they get beyond service emails (invites, reports, billing problems, legal changes), which always go out. The accounts service stores the choices (at `/library/me/email-preferences`, the address they always had, which the gateway sends to accounts; other services read them through accounts' `POST /internal/users/email-recipients`):
 
 - the activity digest, one setting per kind: a candidate finished, an invite wasn't delivered, an ATS candidate wasn't invited, an interview is ready; on by default, with one checkbox in Settings that turns all four on or off,
 - reminders (low credits, an interview with no candidates, topics waiting for review); on by default,

@@ -64,7 +64,7 @@ line, a trace, a third-party call) does all of this in the same change:
 
 - Erased data in backups is put beyond use: never restored for use, read or shared, and gone when
   the backups roll off (14 days).
-- A restore or clone replays the erasures made since the backup (library's `erasures`, kept as
+- A restore or clone replays the erasures made since the backup (accounts' `erasures`, kept as
   long as the backups; the `erasures` job); dumps and clones made for a recovery are deleted when
   it's done.
 - An on-demand backup is deleted once automated backups work again, so the policy's period stays

@@ -3,8 +3,7 @@ from logging.config import fileConfig
 from alembic import context
 from prepza_common.db.db import migration_engine
 
-import library.models.erasures  # registers the tables on Base.metadata
-import library.models.events
+import library.models.events  # registers the tables on Base.metadata
 import library.models.feedback
 import library.models.news
 import library.models.outbox
@@ -16,10 +15,10 @@ from library.models.base import Base
 fileConfig(context.config.config_file_name)
 
 
-# Users' email settings, their consent log and accepted terms moved to the accounts service;
-# library no longer reads these tables, which go in the release after the move (expand, then
-# contract: the version before still reads them while this one deploys).
-MOVED_TO_ACCOUNTS = {"email_preferences", "email_consents", "terms_acceptances"}
+# Users' email settings, their consent log, accepted terms and recent erasures moved to the
+# accounts service; library no longer reads these tables, which go in the release after the move
+# (expand, then contract: the version before still reads them while this one deploys).
+MOVED_TO_ACCOUNTS = {"email_preferences", "email_consents", "terms_acceptances", "erasures"}
 
 
 def include_object(object, name, type_, reflected, compare_to):

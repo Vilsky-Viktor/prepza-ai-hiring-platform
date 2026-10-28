@@ -181,7 +181,7 @@ With `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` set (local only for now: no
 - With Langfuse set up, every Langfuse trace (the assistant's, the help chat's and generation's) is deleted daily (`/internal/schedules/traces`) a day short of 30 days (`src/assistant/integrations/trace_retention.py`, its settings in `src/assistant/constants/trace_retention.py`): root observations found through `/api/public/v2/observations` and deleted through `/api/public/traces` a page at a time, its rate limit waited out up to 10 s, no page started after 240 s, the rest left to the next day's run. Deleting an account deletes the traces of the user's answers too (`delete_traces`, by the trace ids kept with them).
 - Deleting a company (`company.deleted`) deletes its conversations; a redelivered event deletes nothing more.
 - Opening a conversation about a company the user can no longer see (removed from its team, or the company is gone) deletes it, and it's not found.
-- Deleting an account deletes the user's conversations and their connected AI apps in one save, then their pending actions in Redis; "Download my data" includes their conversations, messages, the blocks' references and their connected AI apps (library calls `/internal/users/{id}`).
+- Deleting an account deletes the user's conversations and their connected AI apps in one save, then their pending actions in Redis; "Download my data" includes their conversations, messages, the blocks' references and their connected AI apps (accounts calls `/internal/users/{id}`).
 - Expired AI app connections and apps with none go daily too (see [AI apps over MCP](mcp.md#connections-and-tokens)), and so do `get_updates` checks no connection or key made in 90 days (`update_checks`).
 
 ## Tools

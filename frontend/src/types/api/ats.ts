@@ -481,7 +481,7 @@ export interface paths {
     post?: never
     /**
      * Delete User
-     * @description Library, deleting an account: an ATS's records of them as a candidate go; the ATS
+     * @description Accounts, deleting an account: an ATS's records of them as a candidate go; the ATS
      *     connections they made stay with their companies, without their id, and each company is
      *     told they need reconnecting.
      */
@@ -502,7 +502,7 @@ export interface paths {
     put?: never
     /**
      * Export User
-     * @description Library, for "Download my data": what ATSs sent about them as a candidate, and the ATS
+     * @description Accounts, for "Download my data": what ATSs sent about them as a candidate, and the ATS
      *     connections they made.
      */
     post: operations["export_user_internal_users__user_id__export_post"]

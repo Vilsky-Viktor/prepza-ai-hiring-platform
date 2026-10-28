@@ -5,7 +5,7 @@ class Settings(ServiceSettings):
     # Companies' API keys and web hooks; Redis holds the rate limits and maintenance mode.
     database_url: str
     redis_url: str
-    # Signs calls from other services (library deletes and exports a user's keys).
+    # Signs calls from other services (accounts deletes and exports a user's keys).
     service_secret: str
     # The Fernet key that encrypts web hooks' signing secrets; empty (or not a key), web hooks
     # can't be added and none is sent.

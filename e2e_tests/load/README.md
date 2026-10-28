@@ -67,7 +67,7 @@ Targets for production (Cloud Run, a production frontend build): p95 under 300 m
 After every `candidates` and `dashboard` run, and on `clean`, `load.sh`:
 
 1. lists the throwaway companies and users still in the databases (`leftovers.sh ids`);
-2. deletes every throwaway account (`clean.js`) the way a user does in settings (`DELETE /api/library/me`), candidates first, which also deletes the companies they alone own;
+2. deletes every throwaway account (`clean.js`) the way a user does in settings (`DELETE /api/library/me`, which the gateway sends to accounts), candidates first, which also deletes the companies they alone own;
 3. counts the rows left that hold one of those ids in companies, members, tests, candidates, audit events, rounds' sections, library's sets, billing's wallets and holds, ATS connections and users' and companies' notifications (`leftovers.sh count`), and fails when any is.
 
 Only load runs' rows ever match: companies named `Load <run> <n>`, owners at `load-<run>-owner-<n>@example.com`, candidates at `delivered+load-<run>-candidate-<n>@resend.dev` (Resend's test domain, which delivers to nobody). The users' own local records are never touched.

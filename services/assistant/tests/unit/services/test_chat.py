@@ -85,8 +85,8 @@ def test_parallel_calls_run_in_one_step_and_the_model_reads_every_result(model, 
     )
 
     assert sorted(made) == [
+        ("accounts", "/me", "user-token", "de"),
         ("companies", "/pause", "user-token", "de"),
-        ("library", "/me", "user-token", "de"),
     ]
     assert [event["tool"]["state"] for event in events if "tool" in event] == [
         "running",

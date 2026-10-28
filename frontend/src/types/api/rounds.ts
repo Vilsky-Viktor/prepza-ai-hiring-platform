@@ -661,7 +661,7 @@ export interface paths {
     post?: never
     /**
      * Delete User
-     * @description Part of deleting an account (library coordinates it); safe to repeat.
+     * @description Part of deleting an account (accounts coordinates it); safe to repeat.
      */
     delete: operations["delete_user_internal_users__user_id__delete"]
     options?: never

@@ -5,14 +5,8 @@ x-library-env: &library-env
   DATABASE_URL: postgresql://library:${POSTGRES_PASSWORD}@postgres:5432/library
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
-  ROUNDS_URL: http://rounds:8000
   GENERATION_URL: http://generation:8000
-  COMPANIES_URL: http://companies:8000
-  BILLING_URL: http://billing:8000
-  NOTIFICATIONS_URL: http://notifications:8000
-  ATS_URL: http://ats:8000
-  API_URL: http://api:8000
-  ASSISTANT_URL: http://assistant:8000
+  # Library's old account routes forward there for one release.
   ACCOUNTS_URL: http://accounts:8000
 
 x-generation-env: &generation-env

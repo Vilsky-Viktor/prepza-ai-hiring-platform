@@ -233,7 +233,7 @@
      "internal"
     ],
     "summary": "Delete User",
-    "description": "Library, deleting an account: the user's own notifications go, and companies'\nnotifications about them as a candidate (their email and grade), and owners' notifications\nthat they joined a company (their email); the Slack channels they\nconnected stay with their companies, without their id, and each company is told they need\nreconnecting. The log of digests and reminders\nsent to them goes too, and their rows in bulk sends (legal notices, campaigns).",
+    "description": "Accounts, deleting an account: the user's own notifications go, and companies'\nnotifications about them as a candidate (their email and grade), and owners' notifications\nthat they joined a company (their email); the Slack channels they\nconnected stay with their companies, without their id, and each company is told they need\nreconnecting. The log of digests and reminders\nsent to them goes too, and their rows in bulk sends (legal notices, campaigns).",
     "operationId": "delete_user_internal_users__user_id__delete",
     "security": [
      {
@@ -284,7 +284,7 @@
      "internal"
     ],
     "summary": "Export User",
-    "description": "Library, for \"Download my data\": the user's own notifications and the Slack channels\nthey connected.",
+    "description": "Accounts, for \"Download my data\": the user's own notifications and the Slack channels\nthey connected.",
     "operationId": "export_user_internal_users__user_id__export_post",
     "security": [
      {

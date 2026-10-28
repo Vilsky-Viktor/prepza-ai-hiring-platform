@@ -71,10 +71,10 @@ locals {
   ]
 
   # Users' accounts under /api/library/: accounts' routes, kept at the addresses library had
-  # (load_balancer.tf; gateway/nginx.conf has the same list). Each is a path prefix.
+  # (load_balancer.tf; gateway/nginx.conf has the same list). Each is a path prefix: "me" takes
+  # /me and everything under it (no other library route starts so).
   account_paths = [
-    "me/settings",
-    "me/email-preferences",
+    "me",
     "superadmin/emails/",
     "superadmin/stats",
   ]
@@ -83,8 +83,9 @@ locals {
 
   # Which services each one calls; it gets their keys, to sign tokens for them.
   calls = {
-    frontend          = []
-    library           = ["rounds", "generation", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts"]
+    frontend = []
+    # accounts: library's old account routes forward there for one release.
+    library           = ["generation", "accounts"]
     generation        = ["library", "notifications"]
     generation-worker = ["library", "notifications"]
     rounds            = ["library"]
@@ -101,8 +102,9 @@ locals {
     # notifications, ats and library, what get_updates reads (the bell, ATS candidates not
     # invited, questions flagged or fixed); rounds, what the help chat answers from.
     assistant = ["companies", "billing", "api", "notifications", "ats", "library", "rounds", "accounts"]
-    # billing: a new account's currency.
-    accounts = ["billing"]
+    # Every service holding part of a user's data, for deleting and downloading an account;
+    # billing also sets a new account's currency.
+    accounts = ["companies", "rounds", "generation", "billing", "notifications", "ats", "api", "assistant", "library"]
   }
 
   # Each service's own key checks calls to it. The worker and the stream share generation's and

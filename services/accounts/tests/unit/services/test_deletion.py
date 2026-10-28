@@ -11,12 +11,12 @@ from prepza_common.auth.user import User
 from prepza_common.config.constants import ACCOUNT_OWNS_SHARED, GOOGLE_TIMEOUT_SECONDS
 from prepza_common.http import http
 
-from library.api.v1 import me as me_routes
-from library.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
-from library.integrations import accounts as account_services
-from library.main import app
-from library.repositories import accounts, erasures
-from library.services import accounts as account_service
+from accounts.api.v1 import me as me_routes
+from accounts.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
+from accounts.integrations import services as account_services
+from accounts.main import app
+from accounts.repositories import erasures, user_data
+from accounts.services import deletion as account_service
 
 USER = User(uid="ann", email="Ann@Example.com", email_verified=True, name="Ann")
 
@@ -29,14 +29,14 @@ def steps(monkeypatch):
     async def delete_in(service, user_id, email):
         done.append(("service", service))
 
-    async def delete_library(session, user_id):
-        done.append(("library", user_id))
+    async def delete_own(session, user_id):
+        done.append(("own", user_id))
 
     async def remember(session, user_id, email):
         done.append(("erasure", user_id, email))
 
     monkeypatch.setattr(account_services, "delete_user", delete_in)
-    monkeypatch.setattr(accounts, "delete_user", delete_library)
+    monkeypatch.setattr(user_data, "delete_user", delete_own)
     monkeypatch.setattr(erasures, "record", remember)
     monkeypatch.setattr(
         account_service, "delete_sign_in", lambda uid: done.append(("sign-in", uid))
@@ -51,17 +51,17 @@ def test_every_service_is_cleaned_before_the_sign_in_goes(steps):
     # Companies first (it may refuse), then the others together.
     assert steps[0] == ("service", "companies")
     assert sorted(steps[1:9]) == [
-        ("service", "accounts"),
         ("service", "api"),
         ("service", "assistant"),
         ("service", "ats"),
         ("service", "billing"),
         ("service", "generation"),
+        ("service", "library"),
         ("service", "notifications"),
         ("service", "rounds"),
     ]
     assert steps[9:] == [
-        ("library", "ann"),
+        ("own", "ann"),
         # Kept for the backups' life, to run again after a restore.
         ("erasure", "ann", "Ann@Example.com"),
         ("sign-in", "ann"),
@@ -136,8 +136,8 @@ def test_candidate_data_is_matched_by_a_verified_email_only(monkeypatch, verifie
 
     monkeypatch.setattr(account_services, "delete_user", delete_in)
     monkeypatch.setattr(account_services, "export_user", export_from)
-    monkeypatch.setattr(accounts, "delete_user", nothing)
-    monkeypatch.setattr(accounts, "export", nothing)
+    monkeypatch.setattr(user_data, "delete_user", nothing)
+    monkeypatch.setattr(user_data, "export", nothing)
 
     async def remember(session, user_id, email):
         pass
@@ -156,11 +156,11 @@ def test_the_export_holds_every_service_and_downloads_as_a_file(client, monkeypa
     async def export_from(service, user_id, email):
         return {"from": service}
 
-    async def library_export(session, user_id):
-        return {"question_votes": [], "question_reports": []}
+    async def own_export(session, user_id):
+        return {"terms_accepted": []}
 
     monkeypatch.setattr(account_services, "export_user", export_from)
-    monkeypatch.setattr(accounts, "export", library_export)
+    monkeypatch.setattr(user_data, "export", own_export)
     monkeypatch.setattr(me_routes, "get_redis", lambda: FakeRedis())
     app.dependency_overrides[current_user] = lambda: USER
 
@@ -178,7 +178,7 @@ def test_the_export_holds_every_service_and_downloads_as_a_file(client, monkeypa
             "name": "Ann",
             "language": "en",
         },
-        "library": {"question_votes": [], "question_reports": []},
+        "accounts": {"terms_accepted": []},
         "companies": {"from": "companies"},
         "rounds": {"from": "rounds"},
         "generation": {"from": "generation"},
@@ -187,7 +187,7 @@ def test_the_export_holds_every_service_and_downloads_as_a_file(client, monkeypa
         "ats": {"from": "ats"},
         "api": {"from": "api"},
         "assistant": {"from": "assistant"},
-        "accounts": {"from": "accounts"},
+        "library": {"from": "library"},
     }
 
 
@@ -219,7 +219,7 @@ def test_deletion_and_export_send_the_email_in_the_body_not_the_url(monkeypatch)
 def test_deleting_and_exporting_in_a_service_waits_longer_than_an_ordinary_call(monkeypatch):
     from prepza_common.config.constants import HTTP_TIMEOUT_SECONDS
 
-    from library.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
+    from accounts.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
 
     waits = []
 
@@ -247,11 +247,11 @@ def test_data_downloads_past_the_hourly_limit_are_refused_before_asking_anyone(c
 
         return {}
 
-    async def library_export(session, user_id):
+    async def own_export(session, user_id):
         return {}
 
     monkeypatch.setattr(account_services, "export_user", export_from)
-    monkeypatch.setattr(accounts, "export", library_export)
+    monkeypatch.setattr(user_data, "export", own_export)
     redis = FakeRedis({"DATA_EXPORTS_PER_HOUR": 1})
     monkeypatch.setattr(me_routes, "get_redis", lambda: redis)
     app.dependency_overrides[current_user] = lambda: USER
@@ -267,11 +267,11 @@ def test_data_downloads_past_the_hourly_limit_are_refused_before_asking_anyone(c
     assert len(asked) == asked_once
 
 
-def test_a_deletion_fits_librarys_own_request_timeout():
+def test_a_deletion_fits_accounts_own_request_timeout():
     """Companies, then the others together, then the sign-in's revocation and deletion."""
     services_tf = (Path(__file__).resolve().parents[5] / "infra/terraform/locals.tf").read_text()
-    library = int(
-        re.search(r"^\s+library\s+= \{.*?timeout = (\d+)", services_tf, re.MULTILINE).group(1)
+    accounts = int(
+        re.search(r"^\s+accounts\s+= \{.*?timeout = (\d+)", services_tf, re.MULTILINE).group(1)
     )
 
-    assert 2 * ACCOUNT_CALL_TIMEOUT_SECONDS + 2 * GOOGLE_TIMEOUT_SECONDS < library
+    assert 2 * ACCOUNT_CALL_TIMEOUT_SECONDS + 2 * GOOGLE_TIMEOUT_SECONDS < accounts

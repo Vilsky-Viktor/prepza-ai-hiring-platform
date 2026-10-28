@@ -9,7 +9,7 @@ router = APIRouter(prefix="/internal", tags=["internal"])
 
 @router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user(user_id: str, body: UserEmailIn, caller: ServiceCaller) -> None:
-    """Library, deleting an account: the user's own notifications go, and companies'
+    """Accounts, deleting an account: the user's own notifications go, and companies'
     notifications about them as a candidate (their email and grade), and owners' notifications
     that they joined a company (their email); the Slack channels they
     connected stay with their companies, without their id, and each company is told they need
@@ -20,6 +20,6 @@ async def delete_user(user_id: str, body: UserEmailIn, caller: ServiceCaller) ->
 
 @router.post("/users/{user_id}/export")
 async def export_user(user_id: str, caller: ServiceCaller) -> dict:
-    """Library, for "Download my data": the user's own notifications and the Slack channels
+    """Accounts, for "Download my data": the user's own notifications and the Slack channels
     they connected."""
     return await accounts.export(user_id)

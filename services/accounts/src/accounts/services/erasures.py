@@ -6,16 +6,16 @@ from datetime import UTC, datetime, timedelta
 import httpx
 from fastapi import status
 
-from library.constants.accounts import (
+from accounts.constants.accounts import (
     ERASURE_BATCH,
     ERASURE_KEEP_DAYS,
     ERASURE_RUN_SECONDS,
 )
-from library.core.db import Session
-from library.integrations import accounts as services
-from library.models.erasures import Erasure
-from library.repositories import erasures
-from library.services.accounts import delete_data
+from accounts.core.db import Session
+from accounts.integrations import services
+from accounts.models.erasures import Erasure
+from accounts.repositories import erasures
+from accounts.services.user_data import delete_data
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +59,7 @@ async def replay() -> int:
 
 
 async def erase_again(erasure: Erasure) -> None:
-    """One account's deletion run again in every service at once, then in library."""
+    """One account's deletion run again in every service at once, then here."""
     results = await asyncio.gather(
         *(
             services.delete_user(service, erasure.user_id, erasure.email)

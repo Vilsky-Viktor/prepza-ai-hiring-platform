@@ -67,7 +67,7 @@ Each service's `tests/integration` runs against the running stack's real Postgre
 
 ## The assistant's OpenAPI snapshots
 
-The assistant builds its tools from snapshots of the other services' OpenAPI descriptions in `services/assistant/src/assistant/openapi/`. After changing a route of companies, billing, library, notifications, ats, api or rounds, refresh them with the stack running and commit the result; CI's stack job runs the script and fails when a snapshot differs.
+The assistant builds its tools from snapshots of the other services' OpenAPI descriptions in `services/assistant/src/assistant/openapi/`. After changing a route of companies, billing, library, notifications, ats, api, rounds or accounts, refresh them with the stack running and commit the result; CI's stack job runs the script and fails when a snapshot differs.
 
 ```bash
 ./scripts/assistant-openapi.sh

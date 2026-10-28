@@ -1,5 +1,5 @@
-"""Copies users' email settings, their consent log and accepted terms from library's database,
-which held them before this service, into this one. A one-off, run once where library has such
+"""Copies users' email settings, their consent log, accepted terms and recent erasures from
+library's database, which held them before this service, into this one. A one-off, run once where library has such
 rows (locally; production had none before launch), before library stops using its tables. Safe
 to repeat: a row already here (by its key) is left as it is, so nothing changed here since is
 overwritten.

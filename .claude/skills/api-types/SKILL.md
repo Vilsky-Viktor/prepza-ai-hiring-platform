@@ -9,8 +9,8 @@ A change to a service's routes or schemas must reach two generated copies in the
 
 - the assistant's snapshots, `services/assistant/src/assistant/openapi/<service>.json`, which its
   tools are built from;
-- the frontend's types, `frontend/src/types/api/<service>.ts` (ats, billing, companies, generation,
-  library, notifications, rounds).
+- the frontend's types, `frontend/src/types/api/<service>.ts` (accounts, ats, billing, companies,
+  generation, library, notifications, rounds).
 
 The local stack must be running with the change loaded (the services reload on save).
 

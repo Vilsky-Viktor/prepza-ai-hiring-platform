@@ -1,69 +1,5 @@
 {
  "paths": {
-  "/me": {
-   "get": {
-    "summary": "Me",
-    "operationId": "me_me_get",
-    "responses": {
-     "200": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/MeOut"
-        }
-       }
-      }
-     }
-    },
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ]
-   },
-   "delete": {
-    "summary": "Delete Me",
-    "description": "Deletes the account and everything about it. A company the user alone owns goes too.",
-    "operationId": "delete_me_me_delete",
-    "responses": {
-     "204": {
-      "description": "Successful Response"
-     }
-    },
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ]
-   }
-  },
-  "/me/export": {
-   "get": {
-    "summary": "Export Me",
-    "description": "Everything prepza holds about the user, as one JSON file to download.",
-    "operationId": "export_me_me_export_get",
-    "responses": {
-     "200": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {
-         "additionalProperties": true,
-         "type": "object",
-         "title": "Response Export Me Me Export Get"
-        }
-       }
-      }
-     }
-    },
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ]
-   }
-  },
   "/superadmin/templates": {
    "get": {
     "tags": [
@@ -2403,6 +2339,117 @@
     ]
    }
   },
+  "/internal/users/{user_id}": {
+   "delete": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Delete User",
+    "description": "Accounts, deleting an account: the votes and reports the user gave on questions as a\ncandidate go; safe to repeat.",
+    "operationId": "delete_user_internal_users__user_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserEmailIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/users/{user_id}/export": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Export User",
+    "description": "Accounts, for \"Download my data\": the user's votes and reports on questions.",
+    "operationId": "export_user_internal_users__user_id__export_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserEmailIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Export User Internal Users  User Id  Export Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/templates/{template_id}/additions": {
    "get": {
     "tags": [
@@ -2540,7 +2587,7 @@
      "schedules"
     ],
     "summary": "Replay Erasures",
-    "description": "Daily, from Cloud Scheduler, and by hand right after a database restore or clone: the\naccounts deleted in the backups' life are deleted again everywhere (safe to repeat).",
+    "description": "The replay of recent account deletions moved to the accounts service (its own\n/internal/schedules/erasures). Kept one release for a Cloud Scheduler job still calling\nhere: it does nothing, and the next daily run reaches accounts.",
     "operationId": "replay_erasures_internal_schedules_erasures_post",
     "responses": {
      "204": {
@@ -3831,76 +3878,6 @@
      "user_id"
     ],
     "title": "InternalReportIn"
-   },
-   "MeOut": {
-    "properties": {
-     "uid": {
-      "type": "string",
-      "title": "Uid"
-     },
-     "email": {
-      "type": "string",
-      "title": "Email"
-     },
-     "email_verified": {
-      "type": "boolean",
-      "title": "Email Verified"
-     },
-     "name": {
-      "anyOf": [
-       {
-        "type": "string"
-       },
-       {
-        "type": "null"
-       }
-      ],
-      "title": "Name"
-     },
-     "language": {
-      "type": "string",
-      "enum": [
-       "en",
-       "ru",
-       "uk",
-       "es",
-       "pt",
-       "de",
-       "fr",
-       "it",
-       "pl",
-       "nl",
-       "tr",
-       "ar",
-       "he",
-       "fa",
-       "ja",
-       "zh",
-       "ko",
-       "hi",
-       "id",
-       "th",
-       "vi",
-       "fil",
-       "et"
-      ],
-      "title": "Language",
-      "default": "en"
-     },
-     "is_superadmin": {
-      "type": "boolean",
-      "title": "Is Superadmin"
-     }
-    },
-    "type": "object",
-    "required": [
-     "uid",
-     "email",
-     "email_verified",
-     "is_superadmin"
-    ],
-    "title": "MeOut",
-    "description": "The signed-in user, and whether they may open the superadmin pages."
    },
    "MyReportOut": {
     "properties": {
@@ -5577,6 +5554,20 @@
      "text"
     ],
     "title": "UntaggedQuestion"
+   },
+   "UserEmailIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "title": "Email"
+     }
+    },
+    "type": "object",
+    "required": [
+     "email"
+    ],
+    "title": "UserEmailIn",
+    "description": "An email address sent in the body, so request logs don't record it: the account's, in\nlibrary's calls to delete or export a user's data, or the one a superadmin looks up."
    },
    "ValidationError": {
     "properties": {

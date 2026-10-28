@@ -1,5 +1,43 @@
 {
  "paths": {
+  "/me": {
+   "get": {
+    "summary": "Me",
+    "operationId": "me_me_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MeOut"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   },
+   "delete": {
+    "summary": "Delete Me",
+    "description": "Deletes the account and everything about it. A company the user alone owns goes too.",
+    "operationId": "delete_me_me_delete",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
   "/me/settings": {
    "put": {
     "summary": "Update Settings",
@@ -108,6 +146,32 @@
        "application/json": {
         "schema": {
          "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/me/export": {
+   "get": {
+    "summary": "Export Me",
+    "description": "Everything prepza holds about the user, as one JSON file to download.",
+    "operationId": "export_me_me_export_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Export Me Me Export Get"
         }
        }
       }
@@ -804,6 +868,21 @@
      }
     }
    }
+  },
+  "/internal/schedules/erasures": {
+   "post": {
+    "tags": [
+     "schedules"
+    ],
+    "summary": "Replay Erasures",
+    "description": "Daily, from Cloud Scheduler, and by hand right after a database restore or clone: the\naccounts deleted in the backups' life are deleted again everywhere (safe to repeat).",
+    "operationId": "replay_erasures_internal_schedules_erasures_post",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     }
+    }
+   }
   }
  },
  "components": {
@@ -1009,6 +1088,76 @@
     },
     "type": "object",
     "title": "HTTPValidationError"
+   },
+   "MeOut": {
+    "properties": {
+     "uid": {
+      "type": "string",
+      "title": "Uid"
+     },
+     "email": {
+      "type": "string",
+      "title": "Email"
+     },
+     "email_verified": {
+      "type": "boolean",
+      "title": "Email Verified"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "language": {
+      "type": "string",
+      "enum": [
+       "en",
+       "ru",
+       "uk",
+       "es",
+       "pt",
+       "de",
+       "fr",
+       "it",
+       "pl",
+       "nl",
+       "tr",
+       "ar",
+       "he",
+       "fa",
+       "ja",
+       "zh",
+       "ko",
+       "hi",
+       "id",
+       "th",
+       "vi",
+       "fil",
+       "et"
+      ],
+      "title": "Language",
+      "default": "en"
+     },
+     "is_superadmin": {
+      "type": "boolean",
+      "title": "Is Superadmin"
+     }
+    },
+    "type": "object",
+    "required": [
+     "uid",
+     "email",
+     "email_verified",
+     "is_superadmin"
+    ],
+    "title": "MeOut",
+    "description": "The signed-in user, and whether they may open the superadmin pages."
    },
    "PushBody": {
     "properties": {

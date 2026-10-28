@@ -2,7 +2,7 @@ import logging
 
 from prepza_common.config.constants import GUEST_UID_PREFIX
 
-from library.services.accounts import delete_data
+from library.services.user_data import delete_data
 
 logger = logging.getLogger(__name__)
 

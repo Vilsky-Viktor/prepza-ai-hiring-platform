@@ -8,7 +8,7 @@ class Settings(ServiceSettings):
     # Conversations and their messages; Redis counts each user's messages and spending.
     database_url: str
     redis_url: str
-    # Signs calls from other services (library deletes and exports a user's conversations).
+    # Signs calls from other services (accounts deletes and exports a user's conversations).
     service_secret: str
     # OpenAI: the chat and speech-to-text. Empty in CI, where nothing calls OpenAI.
     openai_api_key: str = ""

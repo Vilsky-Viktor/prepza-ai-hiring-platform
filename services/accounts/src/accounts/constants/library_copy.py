@@ -30,6 +30,7 @@ LIBRARY_TABLES = {
         ("id",),
     ),
     "terms_acceptances": (("user_id", "version", "accepted_at"), ("user_id", "version")),
+    "erasures": (("user_id", "email", "erased_at"), ("user_id",)),
 }
 # Rows read and written at once, each batch its own transaction.
 COPY_BATCH = 1000

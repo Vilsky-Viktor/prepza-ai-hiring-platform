@@ -9,11 +9,11 @@ from library.core.db import Session
 from library.handlers.dispatch import handle
 from library.models.events import ProcessedEvent
 from library.repositories import (
-    accounts,
     answer_stats,
     feedback,
     preparations,
     quality,
+    user_data,
 )
 from library.services import questions as question_service
 from tests.integration.factories import COPYABLE, a_company, copy_of, direction, interview, set_pool
@@ -172,7 +172,7 @@ def test_a_user_reports_a_question_once_across_its_revisions(run):
         again = await transaction(feedback.report_question, question.id, "ann-r", "unclear", "")
         reported = await transaction(feedback.has_reported, question.id, "ann-r")
         other = await transaction(feedback.report_question, question.id, "bob-r", "unclear", "")
-        await transaction(accounts.delete_user, "ann-r")
+        await transaction(user_data.delete_user, "ann-r")
         after_deletion = await transaction(feedback.has_reported, question.id, "ann-r")
 
         return first, again, reported, other, after_deletion

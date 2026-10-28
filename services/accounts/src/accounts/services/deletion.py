@@ -2,24 +2,14 @@ import asyncio
 
 import httpx
 from fastapi import HTTPException, status
-from firebase_admin import auth as firebase_auth
 from prepza_common.auth.user import User
 from prepza_common.config.constants import ACCOUNT_OWNS_SHARED
 
-from library.core.db import Session
-from library.helpers.accounts import candidate_email
-from library.integrations import accounts as services
-from library.repositories import accounts, erasures
-
-
-def delete_sign_in(user_id: str) -> None:
-    """Revokes the account's sign-ins, then deletes it: its ID tokens are refused at once for
-    any change (auth.py checks revocation on writes), not only once they expire."""
-    try:
-        firebase_auth.revoke_refresh_tokens(user_id)
-        firebase_auth.delete_user(user_id)
-    except firebase_auth.UserNotFoundError:
-        pass
+from accounts.core.db import Session
+from accounts.helpers.accounts import candidate_email
+from accounts.integrations import services
+from accounts.repositories import erasures, user_data
+from accounts.services.accounts import delete_sign_in
 
 
 async def delete_account(user: User) -> None:
@@ -29,7 +19,7 @@ async def delete_account(user: User) -> None:
     the sign-in, which lets the user retry, goes last. Companies goes first: it refuses (409)
     while the user owns a company others have joined, before any service deleted anything. The
     other services then delete at once, so the whole request takes two calls' time, not nine,
-    within library's own request timeout. Accounts deletes the email settings and accepted terms.
+    within accounts' own request timeout.
     """
     first, *others = services.services()
     email = candidate_email(user)
@@ -52,19 +42,13 @@ async def delete_account(user: User) -> None:
     if failed:
         raise failed[0]
 
-    # One save: library's rows go with the note that runs the deletion again after a restore
+    # One save: accounts' rows go with the note that runs the deletion again after a restore
     # from a backup (services/erasures.py), so neither is kept without the other.
     async with Session.begin() as session:
-        await accounts.delete_user(session, user.uid)
+        await user_data.delete_user(session, user.uid)
         await erasures.record(session, user.uid, email)
 
     await asyncio.to_thread(delete_sign_in, user.uid)
-
-
-async def delete_data(user_id: str) -> None:
-    """What library keeps under the user's id (accounts.delete_user), in one save."""
-    async with Session.begin() as session:
-        await accounts.delete_user(session, user_id)
 
 
 async def export_account(user: User) -> dict:
@@ -76,7 +60,7 @@ async def export_account(user: User) -> dict:
     )
 
     async with Session() as session:
-        library = await accounts.export(session, user.uid)
+        own = await user_data.export(session, user.uid)
 
     return {
         "account": {
@@ -85,6 +69,6 @@ async def export_account(user: User) -> dict:
             "name": user.name,
             "language": user.language,
         },
-        "library": library,
+        "accounts": own,
         **dict(zip(services.services(), exports, strict=True)),
     }

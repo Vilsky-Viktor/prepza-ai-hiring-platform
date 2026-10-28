@@ -28,9 +28,6 @@ locals {
     }
     library = {
       INVOKER_AUDIENCE = local.run_url["library"]
-      # The api service (not common: the frontend's API_URL is the site itself).
-      API_URL       = local.run_url["api"]
-      ASSISTANT_URL = local.run_url["assistant"]
     }
     generation = {
       INVOKER_AUDIENCE = local.run_url["generation"]
@@ -78,6 +75,9 @@ locals {
     }
     accounts = {
       INVOKER_AUDIENCE = local.run_url["accounts"]
+      # The api service (not common: the frontend's API_URL is the site itself).
+      API_URL       = local.run_url["api"]
+      ASSISTANT_URL = local.run_url["assistant"]
     }
     assistant = {
       INVOKER_AUDIENCE = local.run_url["assistant"]

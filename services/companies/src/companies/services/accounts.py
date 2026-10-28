@@ -65,7 +65,7 @@ async def delete_user(user_id: str, email: str) -> None:
             leaving.append(member.id)
 
     # As if the company removed them: one who picked an answer is charged, the others' credits
-    # come back. Rounds still has their answers, as library asks companies first.
+    # come back. Rounds still has their answers, as accounts asks companies first.
     async with Session() as session:
         unfinished = await accounts.unfinished_invites(session, user_id, email)
 

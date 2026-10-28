@@ -1,8 +1,9 @@
-"""The one-off copy of library's email settings, consent log and accepted terms: every row comes
+"""The one-off copy of library's email settings, consent log, accepted terms and erasures:
 over once, and a second run adds nothing and keeps what changed here since."""
 
 import os
 import uuid
+from datetime import UTC, datetime, timedelta
 
 import psycopg
 import pytest
@@ -11,9 +12,10 @@ from sqlalchemy.engine import make_url
 from accounts.core.db import Session
 from accounts.jobs.copy_from_library import main
 from accounts.models.emails import EmailPreferences
-from accounts.repositories import emails, legal
+from accounts.repositories import emails, erasures, legal
 from tests.integration.transactions import transaction
 
+NOW = datetime.now(UTC)
 LIBRARY_TABLES = """
 CREATE TABLE email_preferences (user_id varchar(128) PRIMARY KEY,
   candidate_finished bool NOT NULL, invite_undelivered bool NOT NULL,
@@ -25,6 +27,8 @@ CREATE TABLE email_consents (id uuid PRIMARY KEY, user_id varchar(128) NOT NULL,
   created_at timestamptz NOT NULL);
 CREATE TABLE terms_acceptances (user_id varchar(128), version varchar(10),
   accepted_at timestamptz NOT NULL, PRIMARY KEY (user_id, version));
+CREATE TABLE erasures (user_id varchar(128) PRIMARY KEY, email varchar(320) NOT NULL,
+  erased_at timestamptz NOT NULL);
 """
 
 
@@ -56,6 +60,7 @@ def library(monkeypatch):
                 [uuid.uuid4(), user],
             )
             source.execute("INSERT INTO terms_acceptances VALUES (%s, '2026-10-10', now())", [user])
+            source.execute("INSERT INTO erasures VALUES (%s, 'gone@example.com', now())", [user])
 
         monkeypatch.setenv("LIBRARY_DATABASE_URL", plain(url.set(database=name)))
 
@@ -81,16 +86,22 @@ def test_every_row_comes_over_once_and_a_rerun_keeps_what_changed_here(run, libr
             await transaction(emails.preferences, library),
             await transaction(emails.consents, library),
             await transaction(legal.accepted_terms, library),
+            [
+                row.user_id
+                for row in await transaction(erasures.page, NOW - timedelta(days=1), None, 100)
+            ],
         )
 
-    preferences, consents, terms = run(found())
+    preferences, consents, terms, erased = run(found())
     printed = capsys.readouterr().out
 
     assert (preferences["updates"], preferences["reminders"]) == (True, True)
     assert [(row["setting"], row["basis"]) for row in consents] == [("updates", "soft_opt_in")]
     assert [row["version"] for row in terms] == ["2026-10-10"]
-    assert printed.splitlines()[3:] == [
+    assert library in erased
+    assert printed.splitlines()[4:] == [
         "email_preferences: 0 rows copied",
         "email_consents: 0 rows copied",
         "terms_acceptances: 0 rows copied",
+        "erasures: 0 rows copied",
     ]

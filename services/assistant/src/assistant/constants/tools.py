@@ -110,7 +110,7 @@ TOOLS = {
         ],
     },
     "get_me": {
-        "service": "library",
+        "service": "accounts",
         "method": "GET",
         "path": "/me",
         "params": [],

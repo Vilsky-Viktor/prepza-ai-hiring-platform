@@ -3,7 +3,7 @@ from datetime import UTC, datetime
 from sqlalchemy import DateTime, String
 from sqlalchemy.orm import Mapped, mapped_column
 
-from library.models.base import Base
+from accounts.models.base import Base
 
 
 class Erasure(Base):

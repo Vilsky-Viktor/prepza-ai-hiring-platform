@@ -14,6 +14,7 @@ from prepza_common.observability.sentry import init_sentry
 
 from library.api.v1 import (
     internal,
+    internal_accounts,
     internal_additions,
     internal_code,
     internal_events,
@@ -23,7 +24,7 @@ from library.api.v1 import (
     internal_practice,
     internal_quality,
     internal_reuse,
-    me,
+    moved_public,
     news,
     schedules,
     superadmin,
@@ -58,7 +59,7 @@ app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
 compress_answers(app)
-app.include_router(me.router)
+app.include_router(moved_public.router)
 app.include_router(superadmin.router)
 app.include_router(superadmin_news.router)
 app.include_router(superadmin_quality.router)
@@ -66,6 +67,7 @@ app.include_router(templates.router)
 app.include_router(news.router)
 app.include_router(internal.router)
 app.include_router(internal_moved.router)
+app.include_router(internal_accounts.router)
 app.include_router(internal_additions.router)
 app.include_router(schedules.router)
 app.include_router(internal_events.router)

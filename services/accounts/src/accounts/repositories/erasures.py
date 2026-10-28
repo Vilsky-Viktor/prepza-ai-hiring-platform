@@ -5,7 +5,7 @@ from sqlalchemy import select, tuple_
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from library.models.erasures import Erasure
+from accounts.models.erasures import Erasure
 
 
 async def record(session: AsyncSession, user_id: str, email: str) -> None:

@@ -84,7 +84,7 @@ Settings are described with the feature they shape:
 [`docker-compose.yml`](../docker-compose.yml) is for local development only. It includes the files
 in [`compose/`](../compose), split by kind: `infrastructure.yml` (Postgres, Redis, the Pub/Sub and
 Firebase Auth emulators, Mailpit), `services.yml` (library, generation, rounds, companies),
-`integrations.yml` (billing, notifications, ats, api, assistant), `web.yml` (the frontend, the gateway, the
+`integrations.yml` (billing, notifications, ats, api, assistant, accounts), `web.yml` (the frontend, the gateway, the
 scheduler); each API service and its migrations extend `base.yml`. Together they:
 
 - builds each image's `dev` target,

@@ -195,9 +195,9 @@ LIMITS = {
     "MAX_SIGNALS_PER_QUESTION": Limit(ROUNDS, 50, "items", None, 1, 1_000, "user"),
     "CONTACT_IP_LIMIT": Limit(ROUNDS, 5, "calls", DAY_SECONDS, 1, 100, "ip"),
     "CONTACT_DAILY_LIMIT": Limit(ROUNDS, 200, "calls", DAY_SECONDS, 1, 10_000, "everyone"),
+    # Accounts: "Download my data", each asking every service for the account's data.
+    "DATA_EXPORTS_PER_HOUR": Limit("accounts", 5, "calls", HOUR_SECONDS, 1, 100, "user"),
     # Library: feedback on questions.
-    # "Download my data": each asks every service for the account's data.
-    "DATA_EXPORTS_PER_HOUR": Limit("library", 5, "calls", HOUR_SECONDS, 1, 100, "user"),
     "RATINGS_PER_DAY": Limit("library", 200, "calls", DAY_SECONDS, 1, 10_000, "user"),
     "REPORTS_PER_DAY": Limit("library", 30, "calls", DAY_SECONDS, 1, 1_000, "user"),
     # The public API: keys, web hooks and requests.

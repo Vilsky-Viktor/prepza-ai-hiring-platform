@@ -7,7 +7,7 @@ class Settings(ServiceSettings):
     # The bell's notifications; Redis tells every open tab of a recipient at once.
     database_url: str
     redis_url: str
-    # Signs calls from other services (library deletes and exports a user's notifications).
+    # Signs calls from other services (accounts deletes and exports a user's notifications).
     service_secret: str
     # With a Resend key emails go out through Resend; without one, to the SMTP server (mailpit).
     resend_api_key: str = ""

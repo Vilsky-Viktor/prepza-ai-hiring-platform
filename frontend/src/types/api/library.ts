@@ -4,47 +4,6 @@
  */
 
 export interface paths {
-  "/me": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Me */
-    get: operations["me_me_get"]
-    put?: never
-    post?: never
-    /**
-     * Delete Me
-     * @description Deletes the account and everything about it. A company the user alone owns goes too.
-     */
-    delete: operations["delete_me_me_delete"]
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/me/export": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /**
-     * Export Me
-     * @description Everything prepza holds about the user, as one JSON file to download.
-     */
-    get: operations["export_me_me_export_get"]
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/superadmin/templates": {
     parameters: {
       query?: never
@@ -734,6 +693,47 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/users/{user_id}": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    post?: never
+    /**
+     * Delete User
+     * @description Accounts, deleting an account: the votes and reports the user gave on questions as a
+     *     candidate go; safe to repeat.
+     */
+    delete: operations["delete_user_internal_users__user_id__delete"]
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/users/{user_id}/export": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Export User
+     * @description Accounts, for "Download my data": the user's votes and reports on questions.
+     */
+    post: operations["export_user_internal_users__user_id__export_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/templates/{template_id}/additions": {
     parameters: {
       query?: never
@@ -807,8 +807,9 @@ export interface paths {
     put?: never
     /**
      * Replay Erasures
-     * @description Daily, from Cloud Scheduler, and by hand right after a database restore or clone: the
-     *     accounts deleted in the backups' life are deleted again everywhere (safe to repeat).
+     * @description The replay of recent account deletions moved to the accounts service (its own
+     *     /internal/schedules/erasures). Kept one release for a Cloud Scheduler job still calling
+     *     here: it does nothing, and the next daily run reaches accounts.
      */
     post: operations["replay_erasures_internal_schedules_erasures_post"]
     delete?: never
@@ -1344,51 +1345,6 @@ export interface components {
       comment: string
       /** User Id */
       user_id: string
-    }
-    /**
-     * MeOut
-     * @description The signed-in user, and whether they may open the superadmin pages.
-     */
-    MeOut: {
-      /** Uid */
-      uid: string
-      /** Email */
-      email: string
-      /** Email Verified */
-      email_verified: boolean
-      /** Name */
-      name?: string | null
-      /**
-       * Language
-       * @default en
-       * @enum {string}
-       */
-      language:
-        | "en"
-        | "ru"
-        | "uk"
-        | "es"
-        | "pt"
-        | "de"
-        | "fr"
-        | "it"
-        | "pl"
-        | "nl"
-        | "tr"
-        | "ar"
-        | "he"
-        | "fa"
-        | "ja"
-        | "zh"
-        | "ko"
-        | "hi"
-        | "id"
-        | "th"
-        | "vi"
-        | "fil"
-        | "et"
-      /** Is Superadmin */
-      is_superadmin: boolean
     }
     /** MyReportOut */
     MyReportOut: {
@@ -2182,6 +2138,15 @@ export interface components {
       /** Text */
       text: string
     }
+    /**
+     * UserEmailIn
+     * @description An email address sent in the body, so request logs don't record it: the account's, in
+     *     library's calls to delete or export a user's data, or the one a superadmin looks up.
+     */
+    UserEmailIn: {
+      /** Email */
+      email: string
+    }
     /** ValidationError */
     ValidationError: {
       /** Location */
@@ -2204,66 +2169,6 @@ export interface components {
 }
 export type $defs = Record<string, never>
 export interface operations {
-  me_me_get: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["MeOut"]
-        }
-      }
-    }
-  }
-  delete_me_me_delete: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-    }
-  }
-  export_me_me_export_get: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": {
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
   list_templates_superadmin_templates_get: {
     parameters: {
       query?: {
@@ -3589,6 +3494,76 @@ export interface operations {
         }
         content: {
           "application/json": unknown
+        }
+      }
+    }
+  }
+  delete_user_internal_users__user_id__delete: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        user_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UserEmailIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  export_user_internal_users__user_id__export_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        user_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UserEmailIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": {
+            [key: string]: unknown
+          }
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }

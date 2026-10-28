@@ -7,7 +7,7 @@ class Settings(ServiceSettings):
     # Connections, linked jobs and the candidates an ATS sent; Redis holds maintenance mode.
     database_url: str
     redis_url: str
-    # Signs calls from other services (library deletes and exports a user's ATS candidates).
+    # Signs calls from other services (accounts deletes and exports a user's ATS candidates).
     service_secret: str
     # The Fernet key that encrypts companies' ATS keys; empty (or not a key) turns ATS
     # integrations off.

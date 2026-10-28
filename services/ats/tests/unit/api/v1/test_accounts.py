@@ -11,7 +11,7 @@ SECRET = "test-secret-that-is-at-least-32-bytes"
 
 
 def headers(callee="ats"):
-    return bearer(issue_token("library", callee, SECRET))
+    return bearer(issue_token("accounts", callee, SECRET))
 
 
 def test_deleting_an_account_deletes_its_candidates_and_forgets_its_connections(

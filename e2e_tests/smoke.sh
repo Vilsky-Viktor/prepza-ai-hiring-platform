@@ -30,6 +30,7 @@ check /api/ats/ready
 check /api/v1/ready
 check /api/assistant/ready
 check /api/notifications/ready
+check /api/accounts/ready
 # AI apps reach the assistant at the site's root (MCP and its OAuth server).
 check /.well-known/oauth-authorization-server
 check /.well-known/oauth-protected-resource/mcp

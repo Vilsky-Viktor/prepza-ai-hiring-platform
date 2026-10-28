@@ -148,7 +148,7 @@ export interface paths {
     post?: never
     /**
      * Delete User
-     * @description Library, deleting an account: the user's own notifications go, and companies'
+     * @description Accounts, deleting an account: the user's own notifications go, and companies'
      *     notifications about them as a candidate (their email and grade), and owners' notifications
      *     that they joined a company (their email); the Slack channels they
      *     connected stay with their companies, without their id, and each company is told they need
@@ -172,7 +172,7 @@ export interface paths {
     put?: never
     /**
      * Export User
-     * @description Library, for "Download my data": the user's own notifications and the Slack channels
+     * @description Accounts, for "Download my data": the user's own notifications and the Slack channels
      *     they connected.
      */
     post: operations["export_user_internal_users__user_id__export_post"]

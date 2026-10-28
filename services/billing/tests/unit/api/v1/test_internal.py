@@ -112,8 +112,8 @@ def test_a_removed_members_card_turns_off_only_their_auto_top_up(client, monkeyp
     assert calls == [("company", "acme", "ann")]
 
 
-def test_library_exports_a_users_purchases_and_automatic_top_ups_with_a_post(client, monkeypatch):
-    """The export is a POST, like every service's, so library sends nothing in the URL. An
+def test_accounts_exports_a_users_purchases_and_automatic_top_ups_with_a_post(client, monkeypatch):
+    """The export is a POST, like every service's, so accounts sends nothing in the URL. An
     automatic top-up the user turned on charges their card, so it's theirs to see too."""
 
     async def purchases_of(session, user_id):
