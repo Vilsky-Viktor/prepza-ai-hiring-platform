@@ -1,4 +1,4 @@
-import { EmbedView } from "@/components/company/embed-view"
+import { EmbedView } from "@/features/company/components/embed-view"
 import { originOf } from "@/lib/embed"
 import { translatedTitle } from "@/lib/site"
 

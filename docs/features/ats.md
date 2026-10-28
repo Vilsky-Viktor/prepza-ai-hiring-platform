@@ -37,7 +37,7 @@ On a company's **Integrations** tab, an owner or admin connects an ATS with its 
 
 **Link a job** links one of the ATS's jobs, and one of its stages, to an interview; linking reads that one job and its stages from the ATS, to check them and keep their names. A job deleted in the ATS meanwhile isn't linked: "That job or stage isn't in <ATS>". The interview is either:
 
-- an existing one, chosen in a picker whose menu starts with a search: the newest 100 at first, and any of the company's interviews by part of its title (`GET /companies/interviews?q=` in companies, `components/company/interview-picker.tsx`),
+- an existing one, chosen in a picker whose menu starts with a search: the newest 100 at first, and any of the company's interviews by part of its title (`GET /companies/interviews?q=` in companies, `features/company/components/interview-picker.tsx`),
 - or a new interview made from the job's text in the ATS. The company checks and edits the text first, then reviews its topics as usual.
 
 ## The ATS pages

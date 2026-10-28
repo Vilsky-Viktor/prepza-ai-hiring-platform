@@ -4,7 +4,7 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { CompanyHeader } from "@/components/company/company-header"
+import { CompanyHeader } from "@/features/company/components/company-header"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { InfoCard } from "@/components/common/warning-card"
 import { Button } from "@/components/ui/button"

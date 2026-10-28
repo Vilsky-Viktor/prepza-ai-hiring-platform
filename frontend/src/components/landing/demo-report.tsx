@@ -3,7 +3,7 @@
 import { cn } from "cn"
 import { useLocale, useTranslations } from "next-intl"
 
-import { PassStatus } from "@/components/company/pass-status"
+import { PassStatus } from "@/components/common/pass-status"
 import { Dot, Dotted } from "@/components/common/dot"
 import { DemoReportActions } from "@/components/landing/demo-share"
 import { AnswerOptions } from "@/components/questions/answer-options"

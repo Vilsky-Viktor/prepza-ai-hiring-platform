@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/site"
 import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 import { PageKey } from "@/components/common/page-key"
 
-// Like the report's download button (components/company/report-actions.tsx).
+// Like the report's download button (features/company/components/report-actions.tsx).
 export async function generateMetadata() {
   const t = await getTranslations("docs")
 

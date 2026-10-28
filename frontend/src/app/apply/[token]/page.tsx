@@ -1,4 +1,4 @@
-import { LinkView } from "@/components/company/link-view"
+import { LinkView } from "@/features/company/components/link-view"
 import { PausedNotice } from "@/components/common/paused-notice"
 import { isPaused } from "@/lib/pause"
 import { translatedTitle } from "@/lib/site"

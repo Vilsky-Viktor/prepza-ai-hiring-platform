@@ -6,7 +6,7 @@ import {
   ChatGptSteps,
   ClaudeSteps,
   ServerAddress,
-} from "@/components/company/ai-apps-setup"
+} from "@/components/common/ai-apps-setup"
 import { Dotted } from "@/components/common/dot"
 import { MCP_PATH } from "@/config/ai-apps"
 import { LIST_BOX } from "@/config/lists"

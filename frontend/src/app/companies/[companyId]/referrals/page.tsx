@@ -5,7 +5,7 @@ import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { ReferralLink } from "@/components/billing/referral-link"
-import { CompanyHeader } from "@/components/company/company-header"
+import { CompanyHeader } from "@/features/company/components/company-header"
 import { CornerSign } from "@/components/common/corner-sign"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { TOKEN_COOKIE } from "@/config/auth"

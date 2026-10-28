@@ -1,6 +1,6 @@
 "use client"
 
-import { ScorecardMark } from "@/components/company/scorecard-review"
+import { ScorecardMark } from "@/components/common/scorecard-review"
 import { AnswerOptions } from "@/components/questions/answer-options"
 import { AnswerPoints } from "@/components/questions/answer-points"
 import { QuestionActions } from "@/components/questions/question-actions"

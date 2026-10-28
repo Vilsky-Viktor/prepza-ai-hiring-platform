@@ -1,4 +1,4 @@
-import { SessionView } from "@/components/company/session-view"
+import { SessionView } from "@/features/company/components/session-view"
 import { translatedTitle } from "@/lib/site"
 
 export const generateMetadata = () => translatedTitle("session", "title")

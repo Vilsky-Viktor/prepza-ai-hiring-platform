@@ -3,7 +3,7 @@
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
-import { InterviewStatus } from "@/components/company/interview-status"
+import { InterviewStatus } from "@/components/common/interview-status"
 import { Dotted } from "@/components/common/dot"
 
 /** An interview's page header, small, for the landing's pictures: its title (a size up when

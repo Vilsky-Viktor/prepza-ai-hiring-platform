@@ -7,8 +7,8 @@ import {
   AtsAccount,
   AtsActions,
   AtsStatus,
-} from "@/components/company/ats-connection"
-import { AtsJobLinks } from "@/components/company/ats-job-links"
+} from "@/features/company/components/ats-connection"
+import { AtsJobLinks } from "@/features/company/components/ats-job-links"
 import { PageHeader } from "@/components/common/page-header"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { ATS_PROVIDERS } from "@/config/ats"

@@ -3,7 +3,7 @@
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
-import { InterviewEstimate } from "@/components/company/interview-estimate"
+import { InterviewEstimate } from "@/components/common/interview-estimate"
 import { InterviewHeader } from "@/components/landing/interview-header"
 import { buttonVariants } from "@/components/ui/button"
 import { DEMO_INTERVIEW } from "@/config/create-demo"

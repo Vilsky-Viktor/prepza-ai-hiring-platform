@@ -7,9 +7,9 @@ import { BackLink } from "@/components/common/back-link"
 import {
   SlackActions,
   SlackStatus,
-} from "@/components/company/slack-connection"
-import { SlackKinds } from "@/components/company/slack-kinds"
-import { SlackReturned } from "@/components/company/slack-returned"
+} from "@/features/company/components/slack-connection"
+import { SlackKinds } from "@/features/company/components/slack-kinds"
+import { SlackReturned } from "@/features/company/components/slack-returned"
 import { PageHeader } from "@/components/common/page-header"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { Dot } from "@/components/common/dot"

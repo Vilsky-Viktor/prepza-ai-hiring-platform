@@ -3,7 +3,7 @@
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
-import { TimeFact } from "@/components/company/invite-intro"
+import { TimeFact } from "@/components/common/invite-intro"
 import { DemoLogo } from "@/components/landing/demo-logo"
 import { buttonVariants } from "@/components/ui/button"
 import {

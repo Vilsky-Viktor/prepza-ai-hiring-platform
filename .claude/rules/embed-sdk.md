@@ -2,7 +2,7 @@
 paths:
   - "frontend/public/embed/**"
   - "frontend/src/app/embedded/**"
-  - "frontend/src/components/company/embed-view.tsx"
+  - "frontend/src/features/company/components/embed-view.tsx"
   - "frontend/src/lib/embed.ts"
   - "frontend/src/config/embed.ts"
   - "frontend/src/proxy.ts"

@@ -2,7 +2,7 @@ import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { BackLink } from "@/components/common/back-link"
-import { NewInterview } from "@/components/company/new-interview"
+import { NewInterview } from "@/features/company/components/new-interview"
 import { PausedNotice } from "@/components/common/paused-notice"
 import { SignInPage } from "@/components/common/sign-in-page"
 import { isPaused } from "@/lib/pause"

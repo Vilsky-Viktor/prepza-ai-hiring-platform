@@ -1,9 +1,9 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-import { CompanyHeader } from "@/components/company/company-header"
-import { InviteAdmin } from "@/components/company/invite-admin"
-import { MemberList } from "@/components/company/member-list"
+import { CompanyHeader } from "@/features/company/components/company-header"
+import { InviteAdmin } from "@/features/company/components/invite-admin"
+import { MemberList } from "@/features/company/components/member-list"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { TOKEN_COOKIE } from "@/config/auth"
 import { PAGE_SIZE } from "@/config/lists"

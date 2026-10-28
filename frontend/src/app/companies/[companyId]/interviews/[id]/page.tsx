@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { InterviewCandidatesTab } from "@/components/company/interview-candidates-tab"
-import { InterviewHeader } from "@/components/company/interview-header"
-import { InterviewSettings } from "@/components/company/interview-settings"
-import { ShareLink } from "@/components/company/share-link"
-import { InterviewTopics } from "@/components/company/interview-topics"
-import { WhatsNext } from "@/components/company/whats-next"
+import { InterviewCandidatesTab } from "@/features/company/components/interview-candidates-tab"
+import { InterviewHeader } from "@/features/company/components/interview-header"
+import { InterviewSettings } from "@/features/company/components/interview-settings"
+import { ShareLink } from "@/features/company/components/share-link"
+import { InterviewTopics } from "@/features/company/components/interview-topics"
+import { WhatsNext } from "@/features/company/components/whats-next"
 import { SignInPage } from "@/components/common/sign-in-page"
 import { READY_PARAM } from "@/config/interviews"
 import {

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { NoName } from "@/components/company/no-name"
+import { NoName } from "@/components/common/no-name"
 import { VirtualList } from "@/components/common/virtual-list"
 import { WrappedEmail } from "@/components/common/wrapped-email"
 import { Dot } from "@/components/common/dot"

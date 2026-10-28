@@ -1,5 +1,5 @@
 import { translatedTitle } from "@/lib/site"
-import { InviteView } from "@/components/company/invite-view"
+import { InviteView } from "@/features/company/components/invite-view"
 import { PausedNotice } from "@/components/common/paused-notice"
 import { isPaused } from "@/lib/pause"
 import { START_PAGE } from "@/config/start-page"

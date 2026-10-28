@@ -5,13 +5,13 @@ import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { BackLink } from "@/components/common/back-link"
-import { ApiNav } from "@/components/company/api-nav"
+import { ApiNav } from "@/features/company/components/api-nav"
 import {
   AddWebhook,
   ApiKeys,
   ApiWebhooks,
   NewKey,
-} from "@/components/company/api-settings"
+} from "@/features/company/components/api-settings"
 import { PageHeader } from "@/components/common/page-header"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { Button } from "@/components/ui/button"

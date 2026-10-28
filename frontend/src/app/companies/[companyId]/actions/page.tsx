@@ -1,9 +1,9 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-import { ActionFilters } from "@/components/company/action-filters"
-import { ActionList } from "@/components/company/action-list"
-import { CompanyHeader } from "@/components/company/company-header"
+import { ActionFilters } from "@/features/company/components/action-filters"
+import { ActionList } from "@/features/company/components/action-list"
+import { CompanyHeader } from "@/features/company/components/company-header"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { TOKEN_COOKIE } from "@/config/auth"
 import { PAGE_SIZE } from "@/config/lists"

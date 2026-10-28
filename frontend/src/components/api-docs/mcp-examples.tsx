@@ -1,5 +1,5 @@
 import { HighlightedCode } from "@/components/common/highlighted-code"
-import { SetupSection } from "@/components/company/ai-apps-setup"
+import { SetupSection } from "@/components/common/ai-apps-setup"
 import { TabPanels } from "@/components/tab-panels"
 import { MCP_LANGUAGES } from "@/config/mcp-docs"
 import type { McpExample } from "@/types/mcp"

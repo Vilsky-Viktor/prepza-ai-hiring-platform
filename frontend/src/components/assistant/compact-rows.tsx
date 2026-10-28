@@ -3,8 +3,8 @@
 import { cn } from "cn"
 import { useLocale, useTranslations } from "next-intl"
 
-import type { CandidateRowData } from "@/components/company/candidate-row"
-import { InterviewStatus } from "@/components/company/interview-status"
+import type { CandidateRowData } from "@/components/common/candidate-row"
+import { InterviewStatus } from "@/components/common/interview-status"
 import { LocalizedLink } from "@/components/common/localized-link"
 import { Badge } from "@/components/ui/badge"
 import { formatPercent } from "@/lib/format"

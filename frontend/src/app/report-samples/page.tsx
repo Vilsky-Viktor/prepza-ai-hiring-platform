@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
 
-import { CandidateReport } from "@/components/company/candidate-report"
-import { InterviewReport } from "@/components/company/interview-report"
-import { ReportActions } from "@/components/company/report-actions"
+import { CandidateReport } from "@/features/company/components/candidate-report"
+import { InterviewReport } from "@/features/company/components/interview-report"
+import { ReportActions } from "@/features/company/components/report-actions"
 import { INTERVIEW_REPORT_ID, REPORT_ID } from "@/config/report"
 import {
   CANDIDATE_SAMPLE,

@@ -6,9 +6,9 @@ import { useTranslations } from "next-intl"
 import { DemoEmailField, DemoPopup } from "@/components/landing/demo-popup"
 import { buttonVariants } from "@/components/ui/button"
 
-/** The invite dialog (components/company/invite-candidate.tsx), small, over the whole panel
- * while `open`: its title, the candidate's email (`email` as typed so far, a caret while
- * `typing`), then cancel and invite, ringed while `pressed`. */
+/** The invite dialog (features/company/components/invite-candidate.tsx), small, over the
+ * whole panel while `open`: its title, the candidate's email (`email` as typed so far, a caret
+ * while `typing`), then cancel and invite, ringed while `pressed`. */
 export function DemoInvitePopup({
   open,
   email,
