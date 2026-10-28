@@ -6,7 +6,7 @@ from billing.repositories import stats
 def test_superadmin_gets_the_counts_of_the_month_asked(client, monkeypatch, signed_in):
     asked = []
 
-    async def counts(period):
+    async def counts(session, period):
         asked.append(period)
 
         return {"top_ups": 3}, {"USD": 5_000, "EUR": 4_000, "GBP": 0}
@@ -25,7 +25,7 @@ def test_superadmin_gets_the_counts_of_the_month_asked(client, monkeypatch, sign
 def test_without_a_month_the_counts_are_all_time(client, monkeypatch, signed_in):
     asked = []
 
-    async def counts(period):
+    async def counts(session, period):
         asked.append(period)
 
         return {}, {}
@@ -40,7 +40,7 @@ def test_without_a_month_the_counts_are_all_time(client, monkeypatch, signed_in)
 def test_a_year_is_a_period_too(client, monkeypatch, signed_in):
     asked = []
 
-    async def counts(period):
+    async def counts(session, period):
         asked.append(period)
 
         return {}, {}

@@ -1,34 +1,35 @@
-from sqlalchemy import exists, select, update
+from prepza_common.db.db import delete_in_batches
+from sqlalchemy import delete, exists, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from billing.config import settings
-from billing.constants.credits import LOW_BALANCE, WELCOME_COMPANY, WELCOME_GIFT, HoldStatus, Reason
+from billing.constants.credits import LOW_BALANCE, HoldStatus, Reason
 from billing.constants.products import OwnerType
-from billing.core.db import Session
-from billing.helpers.gifts import gift_key, legacy_gift_key
 from billing.models.billing import AutoTopUp, Entry, Gift, Hold, Wallet
 
 
-async def wallet(owner_type: str, owner_id: str) -> Wallet:
+async def wallet(session: AsyncSession, owner_type: str, owner_id: str) -> Wallet:
     """The wallet, created empty the first time."""
-    async with Session() as session:
-        await ensure(session, owner_type, owner_id)
-        await session.commit()
+    await ensure(session, owner_type, owner_id)
 
-        return await session.get(Wallet, (owner_type, owner_id))
+    return await session.get(Wallet, (owner_type, owner_id), populate_existing=True)
 
 
-async def wallets(owner_type: str, owner_ids: list[str]) -> dict[str, Wallet]:
+async def wallets(
+    session: AsyncSession, owner_type: str, owner_ids: list[str]
+) -> dict[str, Wallet]:
     """Existing wallets by owner id; owners without one have nothing yet."""
     query = select(Wallet).where(Wallet.owner_type == owner_type, Wallet.owner_id.in_(owner_ids))
 
-    async with Session() as session:
-        return {row.owner_id: row for row in await session.scalars(query)}
+    return {row.owner_id: row for row in await session.scalars(query)}
 
 
 async def running_low(
-    owner_type: str, owner_ids: list[str] | None = None, after: str = "", limit: int | None = None
+    session: AsyncSession,
+    owner_type: str,
+    owner_ids: list[str] | None = None,
+    after: str = "",
+    limit: int | None = None,
 ) -> list[Wallet]:
     """Wallets running low (as helpers/wallets.py tells it) that no automatic top-up refills;
     with `owner_ids`, only theirs; else up to `limit` by owner id, those after `after`."""
@@ -46,121 +47,92 @@ async def running_low(
     else:
         query = query.where(Wallet.owner_id > after).order_by(Wallet.owner_id).limit(limit)
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def welcome_company(company_id: str, owner_email: str) -> bool:
-    """Creates the company's wallet with the welcome credits, once per owner's email: a person's
-    first company. Deleting and creating one again doesn't repeat it. True when this company got
-    the gift, now or in an earlier try whose answer was lost."""
-    async with Session() as session:
-        await ensure(session, OwnerType.COMPANY, company_id)
-        given_before = await session.get(
-            Gift, legacy_gift_key(WELCOME_GIFT, owner_email, settings.person_hash_key)
-        )
-        new = await session.scalar(
-            insert(Gift)
-            .values(key=gift_key(WELCOME_GIFT, owner_email, settings.person_hash_key))
-            .on_conflict_do_nothing()
-            .returning(Gift.key)
-        )
-        # Given under the key before inbox_of: not again.
-        new = new if given_before is None else None
+async def claim_gift(session: AsyncSession, key: str, legacy_key: str) -> bool:
+    """Notes a gift given under `key`, once: False when it was given before, under this key or
+    under `legacy_key`, the key of the same gift before inbox_of."""
+    given_before = await session.get(Gift, legacy_key)
+    new = await session.scalar(
+        insert(Gift).values(key=key).on_conflict_do_nothing().returning(Gift.key)
+    )
 
-        if new:
-            await add(
-                session,
-                OwnerType.COMPANY,
-                company_id,
-                WELCOME_COMPANY,
-                f"welcome:{company_id}",
-                Reason.WELCOME,
-            )
-
-        welcomed = await session.scalar(
-            select(Entry.key).where(Entry.key == f"welcome:{company_id}")
-        )
-        await session.commit()
-
-        return welcomed is not None
+    return new is not None and given_before is None
 
 
-async def reserve(owner_type: str, owner_id: str, amount: int, key: str, reason: str) -> bool:
+async def has_entry(session: AsyncSession, key: str) -> bool:
+    return await session.scalar(select(Entry.key).where(Entry.key == key)) is not None
+
+
+async def reserve(
+    session: AsyncSession, owner_type: str, owner_id: str, amount: int, key: str, reason: str
+) -> bool:
     """Sets credits aside. Repeating the same key does it once; a released hold can be taken
     again. False when the available balance is too low."""
-    async with Session() as session:
-        await ensure(session, owner_type, owner_id)
-        # The wallet's lock comes first, so two requests for the same hold can't both add it.
-        row = await session.get(Wallet, (owner_type, owner_id), with_for_update=True)
-        hold = await session.get(Hold, key)
+    await ensure(session, owner_type, owner_id)
+    # The wallet's lock comes first, so two requests for the same hold can't both add it.
+    row = await session.get(
+        Wallet, (owner_type, owner_id), with_for_update=True, populate_existing=True
+    )
+    hold = await session.get(Hold, key)
 
-        if hold is not None and hold.status != HoldStatus.RELEASED:
-            await session.commit()
-
-            return True
-
-        if row.balance - row.reserved < amount:
-            await session.commit()
-
-            return False
-
-        row.reserved += amount
-        # A new hold, or the released one with this key opened again.
-        await session.merge(
-            Hold(
-                key=key,
-                owner_type=owner_type,
-                owner_id=owner_id,
-                amount=amount,
-                reason=reason,
-                status=HoldStatus.OPEN,
-            )
-        )
-        await session.commit()
-
+    if hold is not None and hold.status != HoldStatus.RELEASED:
         return True
 
+    if row.balance - row.reserved < amount:
+        return False
 
-async def charge(key: str) -> None:
+    row.reserved += amount
+    # A new hold, or the released one with this key opened again.
+    await session.merge(
+        Hold(
+            key=key,
+            owner_type=owner_type,
+            owner_id=owner_id,
+            amount=amount,
+            reason=reason,
+            status=HoldStatus.OPEN,
+        )
+    )
+
+    return True
+
+
+async def charge(session: AsyncSession, key: str) -> None:
     """Takes the credits a hold set aside. Safe to repeat; does nothing without an open hold."""
-    async with Session() as session:
-        hold = await open_hold(session, key)
+    hold = await open_hold(session, key)
 
-        if hold is None:
-            return
+    if hold is None:
+        return
 
-        await session.execute(
-            update(Wallet)
-            .where(Wallet.owner_type == hold.owner_type, Wallet.owner_id == hold.owner_id)
-            .values(reserved=Wallet.reserved - hold.amount)
-        )
-        await add(session, hold.owner_type, hold.owner_id, -hold.amount, key, hold.reason)
-        hold.status = HoldStatus.CHARGED
-        await session.commit()
+    await session.execute(
+        update(Wallet)
+        .where(Wallet.owner_type == hold.owner_type, Wallet.owner_id == hold.owner_id)
+        .values(reserved=Wallet.reserved - hold.amount)
+    )
+    await add(session, hold.owner_type, hold.owner_id, -hold.amount, key, hold.reason)
+    hold.status = HoldStatus.CHARGED
 
 
-async def release(key: str) -> None:
+async def release(session: AsyncSession, key: str) -> None:
     """Gives back credits a hold set aside. Safe to repeat."""
-    async with Session() as session:
-        hold = await open_hold(session, key)
+    hold = await open_hold(session, key)
 
-        if hold is None:
-            return
+    if hold is None:
+        return
 
-        await session.execute(
-            update(Wallet)
-            .where(Wallet.owner_type == hold.owner_type, Wallet.owner_id == hold.owner_id)
-            .values(reserved=Wallet.reserved - hold.amount)
-        )
-        hold.status = HoldStatus.RELEASED
-        await session.commit()
+    await session.execute(
+        update(Wallet)
+        .where(Wallet.owner_type == hold.owner_type, Wallet.owner_id == hold.owner_id)
+        .values(reserved=Wallet.reserved - hold.amount)
+    )
+    hold.status = HoldStatus.RELEASED
 
 
-async def hold_status(key: str) -> str | None:
+async def hold_status(session: AsyncSession, key: str) -> str | None:
     """Whether the hold is open, charged or released; None when there's none."""
-    async with Session() as session:
-        return await session.scalar(select(Hold.status).where(Hold.key == key))
+    return await session.scalar(select(Hold.status).where(Hold.key == key))
 
 
 async def open_hold(session: AsyncSession, key: str) -> Hold | None:
@@ -178,7 +150,7 @@ async def open_hold(session: AsyncSession, key: str) -> Hold | None:
 
 
 async def ensure(session: AsyncSession, owner_type: str, owner_id: str) -> None:
-    """Creates the wallet, empty; the welcome gift comes from welcome()."""
+    """Creates the wallet, empty; the welcome gift comes from services/wallets.py."""
     await session.execute(
         insert(Wallet)
         .values(owner_type=owner_type, owner_id=owner_id, balance=0, reserved=0)
@@ -229,20 +201,36 @@ async def add(
     return True
 
 
-async def adjust(owner_type: str, owner_id: str, amount: int, key: str, note: str) -> bool:
+async def adjust(
+    session: AsyncSession, owner_type: str, owner_id: str, amount: int, key: str, note: str
+) -> bool:
     """A superadmin's adjustment, once per key; False, changing nothing, when it would take the
     available balance (not counting credits set aside for candidates) below zero."""
-    async with Session() as session, session.begin():
-        await ensure(session, owner_type, owner_id)
-        wallet = await session.scalar(
-            select(Wallet)
-            .where(Wallet.owner_type == owner_type, Wallet.owner_id == owner_id)
-            .with_for_update()
-        )
+    await ensure(session, owner_type, owner_id)
+    wallet = await session.scalar(
+        select(Wallet)
+        .where(Wallet.owner_type == owner_type, Wallet.owner_id == owner_id)
+        .with_for_update()
+        .execution_options(populate_existing=True)
+    )
 
-        if wallet.balance - wallet.reserved + amount < 0:
-            return False
+    if wallet.balance - wallet.reserved + amount < 0:
+        return False
 
-        await add(session, owner_type, owner_id, amount, key, Reason.ADJUSTMENT, note=note)
+    await add(session, owner_type, owner_id, amount, key, Reason.ADJUSTMENT, note=note)
 
     return True
+
+
+async def delete_history(sessions, company_id: str) -> None:
+    """A deleted company's holds and history, a batch at a time, each batch its own transaction
+    from the factory `sessions`. Cut off midway, it goes on when run again."""
+    for model in (Hold, Entry):
+        owned = (model.owner_type == OwnerType.COMPANY, model.owner_id == company_id)
+        await delete_in_batches(sessions, model, *owned)
+
+
+async def delete_wallet(session: AsyncSession, company_id: str) -> None:
+    await session.execute(
+        delete(Wallet).filter_by(owner_type=OwnerType.COMPANY, owner_id=company_id)
+    )

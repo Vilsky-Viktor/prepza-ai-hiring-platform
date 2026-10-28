@@ -1,22 +1,21 @@
 from datetime import datetime
 
-from prepza_common.db.db import delete_in_batches
 from prepza_common.events import audit
 from prepza_common.events.audit_actions import AuditAction, TargetKind
-from sqlalchemy import delete, func, select, update
+from sqlalchemy import func, select, update
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from billing.constants.credits import Reason
 from billing.constants.products import OwnerType
-from billing.core.db import Session
-from billing.models.billing import Entry, Hold, Purchase, Wallet
+from billing.models.billing import Entry, Purchase
 from billing.models.outbox import OutboxEvent
-from billing.repositories import referrals
 from billing.repositories.events import save
 from billing.repositories.ledger import add, ensure
 
 
 async def grant(
+    session: AsyncSession,
     owner_type: str,
     owner_id: str,
     credits: int,
@@ -33,82 +32,79 @@ async def grant(
     """Adds a paid top-up once per product of a transaction, however often Paddle retries, with
     `events` (type, data) for the outbox in the same transaction. `credits` is what the whole
     line buys; `quantity` is kept for the accounts."""
-    async with Session() as session:
-        new = await session.scalar(
-            insert(Purchase)
-            .values(
-                transaction_id=transaction_id,
-                product=product,
-                quantity=quantity,
-                owner_type=owner_type,
-                owner_id=owner_id,
-                buyer_id=buyer_id,
-                total_minor=int(total),
-                currency=currency,
-                created_at=now,
-            )
-            .on_conflict_do_nothing()
-            .returning(Purchase.id)
+    new = await session.scalar(
+        insert(Purchase)
+        .values(
+            transaction_id=transaction_id,
+            product=product,
+            quantity=quantity,
+            owner_type=owner_type,
+            owner_id=owner_id,
+            buyer_id=buyer_id,
+            total_minor=int(total),
+            currency=currency,
+            created_at=now,
         )
+        .on_conflict_do_nothing()
+        .returning(Purchase.id)
+    )
 
-        if new is None:
-            await session.commit()
+    if new is None:
+        return False
 
-            return False
+    await ensure(session, owner_type, owner_id)
+    await add(
+        session,
+        owner_type,
+        owner_id,
+        credits,
+        f"{transaction_id}:{product}",
+        Reason.TOPUP,
+        total,
+        currency,
+        automatic,
+    )
+    save(session, events)
 
-        await ensure(session, owner_type, owner_id)
-        await add(
-            session,
-            owner_type,
-            owner_id,
-            credits,
-            f"{transaction_id}:{product}",
-            Reason.TOPUP,
-            total,
-            currency,
-            automatic,
-        )
-
-        # A member's own top-up goes to the company's action log; an automatic one isn't theirs.
-        if owner_type == OwnerType.COMPANY and buyer_id and not automatic:
-            audit.add(
-                session,
-                OutboxEvent,
-                owner_id,
-                buyer_id,
-                AuditAction.TOP_UP_PAID,
-                TargetKind.COMPANY,
-                owner_id,
-            )
-
-        save(session, events)
-        await session.commit()
-
-        return True
+    return True
 
 
-async def for_transaction(transaction_id: str) -> tuple[str, str, int, int] | None:
+def log_top_up(session: AsyncSession, company_id: str, buyer_id: str) -> None:
+    """The member's top-up, for the company's action log, through the outbox."""
+    audit.add(
+        session,
+        OutboxEvent,
+        company_id,
+        buyer_id,
+        AuditAction.TOP_UP_PAID,
+        TargetKind.COMPANY,
+        company_id,
+    )
+
+
+async def for_transaction(
+    session: AsyncSession, transaction_id: str
+) -> tuple[str, str, int, int] | None:
     """Whose wallet a transaction topped up, the credits it bought, and what was paid."""
-    async with Session() as session:
-        rows = list(
-            await session.scalars(select(Purchase).where(Purchase.transaction_id == transaction_id))
+    rows = list(
+        await session.scalars(select(Purchase).where(Purchase.transaction_id == transaction_id))
+    )
+
+    if not rows:
+        return None
+
+    granted = await session.scalar(
+        select(func.coalesce(func.sum(Entry.amount), 0)).where(
+            Entry.key.in_([f"{transaction_id}:{row.product}" for row in rows])
         )
-
-        if not rows:
-            return None
-
-        granted = await session.scalar(
-            select(func.coalesce(func.sum(Entry.amount), 0)).where(
-                Entry.key.in_([f"{transaction_id}:{row.product}" for row in rows])
-            )
-        )
-
+    )
     first = rows[0]
 
     return first.owner_type, first.owner_id, granted, first.total_minor
 
 
 async def take_back(
+    session: AsyncSession,
     owner_type: str,
     owner_id: str,
     amount: int,
@@ -121,55 +117,43 @@ async def take_back(
 ) -> int:
     """Moves an adjustment's credits once, whatever the balance (a refund or chargeback may leave
     it negative), with `events` for the outbox when it moves them, and returns how many credits
-    the transaction's adjustments have taken back so far, less what reversals returned. The transaction's lines are locked, so adjustments of one
-    transaction arriving together are counted one after the other."""
+    the transaction's adjustments have taken back so far, less what reversals returned. The
+    transaction's lines are locked, so adjustments of one transaction arriving together are
+    counted one after the other."""
     prefix = f"adjustment:{transaction_id}:"
+    await session.execute(
+        select(Purchase.id)
+        .where(Purchase.transaction_id == transaction_id)
+        .order_by(Purchase.id)
+        .with_for_update()
+    )
+    # Adjustments counted before their keys carried the transaction aren't counted again.
+    counted = await session.scalar(
+        select(Entry.id).where(Entry.key == f"adjustment:{adjustment_id}")
+    )
 
-    async with Session() as session:
-        await session.execute(
-            select(Purchase.id)
-            .where(Purchase.transaction_id == transaction_id)
-            .order_by(Purchase.id)
-            .with_for_update()
+    if counted is None:
+        await ensure(session, owner_type, owner_id)
+        await add(
+            session, owner_type, owner_id, amount, prefix + adjustment_id, reason, total, currency
         )
-        # Adjustments counted before their keys carried the transaction aren't counted again.
-        counted = await session.scalar(
-            select(Entry.id).where(Entry.key == f"adjustment:{adjustment_id}")
+        save(session, events)
+
+    return await session.scalar(
+        select(func.coalesce(-func.sum(Entry.amount), 0)).where(
+            Entry.key.startswith(prefix, autoescape=True)
         )
-
-        if counted is None:
-            await ensure(session, owner_type, owner_id)
-            await add(
-                session,
-                owner_type,
-                owner_id,
-                amount,
-                prefix + adjustment_id,
-                reason,
-                total,
-                currency,
-            )
-            save(session, events)
-
-        taken = await session.scalar(
-            select(func.coalesce(-func.sum(Entry.amount), 0)).where(
-                Entry.key.startswith(prefix, autoescape=True)
-            )
-        )
-        await session.commit()
-
-    return taken
+    )
 
 
-async def credited(transaction_ids: list[str]) -> set[str]:
+async def credited(session: AsyncSession, transaction_ids: list[str]) -> set[str]:
     """Which of these transactions have added their credits."""
     query = select(Purchase.transaction_id).where(Purchase.transaction_id.in_(transaction_ids))
 
-    async with Session() as session:
-        return set(await session.scalars(query))
+    return set(await session.scalars(query))
 
 
-async def counted(adjustments: list[tuple[str, str]]) -> set[str]:
+async def counted(session: AsyncSession, adjustments: list[tuple[str, str]]) -> set[str]:
     """Which of these adjustments, as (transaction id, adjustment id), have moved credits."""
     keys = {
         f"adjustment:{transaction_id}:{adjustment_id}": adjustment_id
@@ -177,21 +161,19 @@ async def counted(adjustments: list[tuple[str, str]]) -> set[str]:
     }
     query = select(Entry.key).where(Entry.key.in_(list(keys)))
 
-    async with Session() as session:
-        return {keys[key] for key in await session.scalars(query)}
+    return {keys[key] for key in await session.scalars(query)}
 
 
-async def paid(owner_type: str, owner_id: str) -> bool:
+async def paid(session: AsyncSession, owner_type: str, owner_id: str) -> bool:
     """Whether this wallet was ever topped up."""
     query = select(Purchase.id).where(
         Purchase.owner_type == owner_type, Purchase.owner_id == owner_id
     )
 
-    async with Session() as session:
-        return await session.scalar(query.limit(1)) is not None
+    return await session.scalar(query.limit(1)) is not None
 
 
-async def owns(owner_type: str, owner_id: str, transaction_id: str) -> bool:
+async def owns(session: AsyncSession, owner_type: str, owner_id: str, transaction_id: str) -> bool:
     """Whether the transaction topped up this wallet."""
     query = select(Purchase.id).where(
         Purchase.transaction_id == transaction_id,
@@ -199,18 +181,16 @@ async def owns(owner_type: str, owner_id: str, transaction_id: str) -> bool:
         Purchase.owner_id == owner_id,
     )
 
-    async with Session() as session:
-        return await session.scalar(query.limit(1)) is not None
+    return await session.scalar(query.limit(1)) is not None
 
 
-async def purchases_of(user_id: str) -> list[Purchase]:
+async def purchases_of(session: AsyncSession, user_id: str) -> list[Purchase]:
     query = select(Purchase).where(Purchase.buyer_id == user_id).order_by(Purchase.created_at)
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def bought_by(user_id: str, limit: int) -> list:
+async def bought_by(session: AsyncSession, user_id: str, limit: int) -> list:
     """The company top-ups the user paid for, one per transaction, newest first: each
     transaction's lines share its total."""
     query = (
@@ -229,29 +209,11 @@ async def bought_by(user_id: str, limit: int) -> list:
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.execute(query))
+    return list(await session.execute(query))
 
 
-async def forget_buyer(user_id: str) -> None:
+async def forget_buyer(session: AsyncSession, user_id: str) -> None:
     """Purchases stay with their companies for the accounts, without who paid."""
-    async with Session() as session:
-        await session.execute(
-            update(Purchase).where(Purchase.buyer_id == user_id).values(buyer_id=None)
-        )
-        await session.commit()
-
-
-async def delete_company(company_id: str) -> None:
-    """A deleted company's holds and history, a batch at a time, then its wallet; its purchases
-    stay for the accounts. Cut off midway, it goes on when run again."""
-    for model in (Hold, Entry):
-        owned = (model.owner_type == OwnerType.COMPANY, model.owner_id == company_id)
-        await delete_in_batches(Session, model, *owned)
-
-    async with Session() as session:
-        await session.execute(
-            delete(Wallet).filter_by(owner_type=OwnerType.COMPANY, owner_id=company_id)
-        )
-        await referrals.forget(session, OwnerType.COMPANY, company_id)
-        await session.commit()
+    await session.execute(
+        update(Purchase).where(Purchase.buyer_id == user_id).values(buyer_id=None)
+    )

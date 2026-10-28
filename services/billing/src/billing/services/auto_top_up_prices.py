@@ -10,6 +10,7 @@ from billing.constants.auto_top_up_prices import (
 from billing.constants.currencies import DEFAULT_CURRENCY, ChoiceOwner, Currency
 from billing.constants.notifications import COMPANY_BILLING_LINK
 from billing.constants.products import TOP_UPS
+from billing.core.db import Session
 from billing.helpers.credits import top_up_price
 from billing.models.billing import AutoTopUp
 from billing.repositories import auto_top_up_prices, currencies
@@ -44,8 +45,10 @@ async def check_prices(now: datetime) -> None:
     after = ("", "")
 
     for _ in range(PRICE_CHECK_MAX_PAGES):
-        rows = await auto_top_up_prices.running(after, PRICE_CHECK_BATCH)
-        chosen = await currencies.chosen_many(ChoiceOwner.COMPANY, [row.owner_id for row in rows])
+        async with Session() as session:
+            rows = await auto_top_up_prices.running(session, after, PRICE_CHECK_BATCH)
+            owners = [row.owner_id for row in rows]
+            chosen = await currencies.chosen_many(session, ChoiceOwner.COMPANY, owners)
 
         for row in rows:
             currency = Currency(chosen.get(row.owner_id, DEFAULT_CURRENCY))
@@ -65,7 +68,10 @@ async def check_price(row: AutoTopUp, currency: Currency, now: datetime) -> None
     # Nothing agreed to keep: the price list's from now on, without a notice.
     if row.price is None or row.price_currency != currency or row.price == price:
         if (row.price, row.price_currency, row.next_price) != (price, currency, None):
-            await auto_top_up_prices.agree(row.owner_type, row.owner_id, price, currency)
+            async with Session.begin() as session:
+                await auto_top_up_prices.agree(
+                    session, row.owner_type, row.owner_id, price, currency
+                )
 
         return
 
@@ -86,4 +92,7 @@ async def check_price(row: AutoTopUp, currency: Currency, now: datetime) -> None
         currency=currency,
         date=since.date().isoformat(),
     )
-    await auto_top_up_prices.announce(row.owner_type, row.owner_id, row, price, since, event)
+    async with Session.begin() as session:
+        await auto_top_up_prices.announce(
+            session, row.owner_type, row.owner_id, row, price, since, event
+        )

@@ -3,14 +3,14 @@ deleted, so every top-up counts; a deleted company's spent credits go with its h
 
 from prepza_common.db.stats import counted
 from sqlalchemy import func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from billing.constants.credits import Reason
 from billing.constants.currencies import Currency
-from billing.core.db import Session
 from billing.models.billing import Entry, Purchase
 
 
-async def stats(period: str | None) -> tuple[dict[str, int], dict[str, int]]:
+async def stats(session: AsyncSession, period: str | None) -> tuple[dict[str, int], dict[str, int]]:
     """All time or in `period` (a year or a month): the paid top-ups and the credits companies
     spent on candidates; and what the top-ups paid in each currency (minor units, tax included,
     refunds not taken off). Each product line of a transaction holds the whole transaction's
@@ -26,26 +26,25 @@ async def stats(period: str | None) -> tuple[dict[str, int], dict[str, int]]:
     )
     at = transactions.c.created_at
 
-    async with Session() as session:
-        paid = {
-            currency: await counted(
-                session,
-                func.sum(transactions.c.paid),
-                at,
-                period,
-                transactions.c.currency == currency,
-            )
-            for currency in Currency
-        }
-        counts = {
-            "top_ups": await counted(session, func.count(at), at, period),
-            "credits_spent": await counted(
-                session,
-                -func.sum(Entry.amount),
-                Entry.created_at,
-                period,
-                Entry.reason == Reason.CANDIDATE,
-            ),
-        }
+    paid = {
+        currency: await counted(
+            session,
+            func.sum(transactions.c.paid),
+            at,
+            period,
+            transactions.c.currency == currency,
+        )
+        for currency in Currency
+    }
+    counts = {
+        "top_ups": await counted(session, func.count(at), at, period),
+        "credits_spent": await counted(
+            session,
+            -func.sum(Entry.amount),
+            Entry.created_at,
+            period,
+            Entry.reason == Reason.CANDIDATE,
+        ),
+    }
 
     return counts, paid

@@ -14,7 +14,9 @@ from billing.repositories import auto_top_ups as rows
 from billing.repositories import ledger
 from billing.schemas.billing import AutoTopUpIn
 from billing.services import auto_top_ups
+from tests.integration.factories import welcomed
 from tests.integration.services.test_auto_top_ups import checkout_data
+from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
 CHOICE = AutoTopUpIn(product="topup_50", threshold=500)
@@ -24,10 +26,12 @@ DAY = timedelta(days=1)
 async def running_low(acme: str, sub: str) -> None:
     """Acme's automatic top-up runs on Ann's card, and its balance is under the threshold."""
     ann = f"user-{uuid.uuid4()}"
-    await ledger.welcome_company(acme, f"{acme}@example.com")
+    await welcomed(acme, f"{acme}@example.com")
     await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD)
     await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
-    await ledger.reserve(COMPANY, acme, WELCOME_COMPANY - 1, f"candidate:{acme}", Reason.CANDIDATE)
+    await transaction(
+        ledger.reserve, COMPANY, acme, WELCOME_COMPANY - 1, f"candidate:{acme}", Reason.CANDIDATE
+    )
 
 
 def test_soft_declines_are_tried_again_after_1_3_and_7_days_then_it_pauses(run, paddle_calls):
@@ -39,20 +43,22 @@ def test_soft_declines_are_tried_again_after_1_3_and_7_days_then_it_pauses(run, 
         at, waited, paused = start, [], []
 
         for wait in (*AUTO_TOP_UP_RETRY_WAITS, None):
-            assert await rows.claim_charge(COMPANY, acme, at) is not None
-            paused.append(await charges.declined(COMPANY, acme, at))
+            assert await transaction(rows.claim_charge, COMPANY, acme, at) is not None
+            paused.append(await transaction(charges.declined, COMPANY, acme, at))
 
             if wait is None:
                 break
 
             # Not before its wait is over, and then once.
-            early = await rows.claim_charge(COMPANY, acme, at + wait - timedelta(minutes=1))
+            early = await transaction(
+                rows.claim_charge, COMPANY, acme, at + wait - timedelta(minutes=1)
+            )
             waited.append(early is None)
             at += wait
 
-        later = await rows.claim_charge(COMPANY, acme, at + 60 * DAY)
+        later = await transaction(rows.claim_charge, COMPANY, acme, at + 60 * DAY)
 
-        return waited, paused, later, await rows.get(COMPANY, acme)
+        return waited, paused, later, await transaction(rows.get, COMPANY, acme)
 
     waited, paused, later, row = run(scenario())
 
@@ -69,9 +75,9 @@ def test_a_hard_decline_pauses_at_once_and_saving_the_setting_doesnt_retry_it(ru
     async def scenario():
         await running_low(acme, sub)
         await auto_top_ups.check(COMPANY, acme)
-        row = await rows.get(COMPANY, acme)
+        row = await transaction(rows.get, COMPANY, acme)
         await auto_top_ups.turn_on(COMPANY, acme, CHOICE, row.buyer_id, Currency.USD)
-        later = await rows.claim_charge(COMPANY, acme, datetime.now(UTC) + 60 * DAY)
+        later = await transaction(rows.claim_charge, COMPANY, acme, datetime.now(UTC) + 60 * DAY)
 
         return row, later, await auto_top_ups.out(COMPANY, acme, Currency.USD)
 
@@ -90,14 +96,14 @@ def test_a_card_saved_after_the_pause_resumes_it_once(run, paddle_calls):
 
     async def scenario():
         await running_low(acme, sub)
-        await charges.declined(COMPANY, acme, paused_at)
-        await charges.pause(COMPANY, acme, paused_at)
+        await transaction(charges.declined, COMPANY, acme, paused_at)
+        await transaction(charges.pause, COMPANY, acme, paused_at)
         # A card saved before the pause (a late or replayed web hook) changes nothing.
-        before = await charges.resume(sub, paused_at - timedelta(minutes=1))
-        after = await charges.resume(sub, paused_at + timedelta(minutes=1))
-        again = await charges.resume(sub, paused_at + timedelta(minutes=2))
+        before = await transaction(charges.resume, sub, paused_at - timedelta(minutes=1))
+        after = await transaction(charges.resume, sub, paused_at + timedelta(minutes=1))
+        again = await transaction(charges.resume, sub, paused_at + timedelta(minutes=2))
 
-        return before, after, again, await rows.get(COMPANY, acme)
+        return before, after, again, await transaction(rows.get, COMPANY, acme)
 
     before, after, again, row = run(scenario())
 
@@ -113,10 +119,10 @@ def test_a_charge_that_goes_through_starts_the_declines_over(run, paddle_calls):
     async def scenario():
         await running_low(acme, f"sub_{uuid.uuid4().hex[:12]}")
         # Declined ten days ago: its retry is due.
-        await charges.declined(COMPANY, acme, datetime.now(UTC) - 10 * DAY)
+        await transaction(charges.declined, COMPANY, acme, datetime.now(UTC) - 10 * DAY)
         await auto_top_ups.check(COMPANY, acme)
 
-        return await rows.get(COMPANY, acme)
+        return await transaction(rows.get, COMPANY, acme)
 
     row = run(scenario())
 

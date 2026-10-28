@@ -17,7 +17,7 @@ from billing.services import ai_costs
 def test_the_months_spend_is_a_share_of_the_budget_set_in_controls(
     monkeypatch, edited, budget, share
 ):
-    async def totals(where):
+    async def totals(session, where):
         return 75.0, 10, 0, 0, 0
 
     monkeypatch.setattr(memory_cache, "_entries", {})

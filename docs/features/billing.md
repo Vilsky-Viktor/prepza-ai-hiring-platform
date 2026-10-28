@@ -199,6 +199,10 @@ Prices are in the local currency in Canada, Australia, Israel, Poland, Switzerla
 - The FAQ and the help chat name prices in the visitor's country's currency; the admin zone's stats show what was paid in each currency apart.
 - Deleting an account or a company deletes its saved currency; a user's data export includes theirs.
 
+## How it's built
+
+Routes call services (`src/billing/services/` in billing), which open each transaction and pass it to the repositories; Paddle, companies and Redis are called outside it. A company's welcome (its wallet and welcome credits, the referral it came through and its currency) is one save, and so is the end of a deletion: a company's wallet, referral and currency once its holds and history are gone, and an account's automatic top-ups, its id on its purchases and its currency once Paddle has cancelled its card's subscriptions. A failure saves none of it, so the retry finds it all still to do. A hold, a charge, a top-up, a refund and a referral reward are each one save, guarded by row locks and unique keys against two at once; a declined automatic charge is saved in steps, as Paddle is read between them.
+
 ## Setting up Paddle
 
 `billing` sells through [Paddle](https://www.paddle.com), which is the merchant of record: it handles VAT and sales tax. Businesses and consumers can both buy; prices don't include VAT or sales tax: where it applies, Paddle adds it at checkout, on top of the listed price, and the checkout shows the total before the buyer pays. A company pays in its own currency (see [Currencies](#currencies)); a card in another currency may be converted by its bank or card issuer.

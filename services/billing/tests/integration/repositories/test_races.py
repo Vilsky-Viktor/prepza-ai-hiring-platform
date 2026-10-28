@@ -1,6 +1,8 @@
 """Billing's races against Postgres, each proven: the first call's transaction stays open at its
 commit until the second is seen waiting on its lock (prepza_common.db.lock_waits), so the two really
-overlap. Spending credits, charging a hold, a Paddle top-up and the automatic top-up."""
+overlap. Spending credits, charging a hold, a Paddle top-up and the automatic top-up. The held
+transaction is the one its service opens (holds, topups) or, for a repository's own guarded
+write, the one tests/integration/transactions.py opens for it."""
 
 import os
 import uuid
@@ -10,7 +12,10 @@ from prepza_common.db.lock_waits import hold_first_commit, race
 
 from billing.constants.credits import CANDIDATE_CREDITS, WELCOME_COMPANY, Reason
 from billing.constants.products import TOP_UPS, OwnerType
-from billing.repositories import auto_top_ups, ledger, purchases
+from billing.repositories import auto_top_ups, ledger
+from billing.services import holds, topups
+from tests.integration import transactions
+from tests.integration.factories import welcomed
 from tests.integration.services.test_auto_top_up_retries import running_low
 
 COMPANY = OwnerType.COMPANY
@@ -21,16 +26,17 @@ def test_two_holds_at_once_cant_both_take_the_last_credits(run, monkeypatch):
     acme = str(uuid.uuid4())
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        held = hold_first_commit(monkeypatch, ledger)
+        await welcomed(acme, f"{acme}@example.com")
+        held = hold_first_commit(monkeypatch, transactions)
+        reserve = (ledger.reserve, COMPANY, acme, WELCOME_COMPANY)
         results = await race(
             os.environ["DATABASE_URL"],
             held,
-            ledger.reserve(COMPANY, acme, WELCOME_COMPANY, "candidate:a", Reason.CANDIDATE),
-            ledger.reserve(COMPANY, acme, WELCOME_COMPANY, "candidate:b", Reason.CANDIDATE),
+            transactions.transaction(*reserve, "candidate:a", Reason.CANDIDATE),
+            transactions.transaction(*reserve, "candidate:b", Reason.CANDIDATE),
         )
 
-        return results, await ledger.wallet(COMPANY, acme)
+        return results, await transactions.transaction(ledger.wallet, COMPANY, acme)
 
     results, wallet = run(scenario())
 
@@ -43,12 +49,14 @@ def test_a_hold_charged_twice_at_once_takes_its_credits_once(run, monkeypatch):
     key = f"candidate:{acme}"
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        await ledger.reserve(COMPANY, acme, CANDIDATE_CREDITS, key, Reason.CANDIDATE)
-        held = hold_first_commit(monkeypatch, ledger)
-        await race(os.environ["DATABASE_URL"], held, ledger.charge(key), ledger.charge(key))
+        await welcomed(acme, f"{acme}@example.com")
+        await holds.hold(acme, acme)
+        held = hold_first_commit(monkeypatch, holds)
+        await race(os.environ["DATABASE_URL"], held, holds.charge(acme), holds.charge(acme))
 
-        return await ledger.wallet(COMPANY, acme), await ledger.hold_status(key)
+        wallet = await transactions.transaction(ledger.wallet, COMPANY, acme)
+
+        return wallet, await transactions.transaction(ledger.hold_status, key)
 
     wallet, status = run(scenario())
 
@@ -61,15 +69,16 @@ def test_a_top_up_paddle_sends_twice_at_once_is_granted_once(run, monkeypatch):
     top_up = TOP_UPS[0]
 
     def grant():
-        return purchases.grant(
+        return topups.grant(
             COMPANY, acme, 1_000, 1, f"txn_{acme}", top_up.key, "ann", "1000", "USD", NOW
         )
 
     async def scenario():
-        held = hold_first_commit(monkeypatch, purchases)
+        held = hold_first_commit(monkeypatch, topups)
         results = await race(os.environ["DATABASE_URL"], held, grant(), grant())
+        wallet = await transactions.transaction(ledger.wallet, COMPANY, acme)
 
-        return results, (await ledger.wallet(COMPANY, acme)).balance
+        return results, wallet.balance
 
     assert run(scenario()) == ((True, False), 1_000)
 
@@ -79,14 +88,14 @@ def test_two_checks_at_once_charge_the_automatic_top_up_once(run, monkeypatch, p
 
     async def scenario():
         await running_low(acme, f"sub_{uuid.uuid4().hex[:12]}")
-        held = hold_first_commit(monkeypatch, auto_top_ups)
-        now = datetime.now(UTC)
+        held = hold_first_commit(monkeypatch, transactions)
+        claim = (auto_top_ups.claim_charge, COMPANY, acme, datetime.now(UTC))
 
         return await race(
             os.environ["DATABASE_URL"],
             held,
-            auto_top_ups.claim_charge(COMPANY, acme, now),
-            auto_top_ups.claim_charge(COMPANY, acme, now),
+            transactions.transaction(*claim),
+            transactions.transaction(*claim),
         )
 
     first, second = run(scenario())

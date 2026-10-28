@@ -2,6 +2,7 @@ import logging
 from datetime import datetime
 
 from billing.constants.reconciliation import RECONCILE_WINDOW
+from billing.core.db import Session
 from billing.integrations import paddle
 from billing.repositories import purchases
 from billing.services.adjustments import handle_adjustment
@@ -19,25 +20,35 @@ async def reconcile(now: datetime) -> None:
     since = now - RECONCILE_WINDOW
     transactions = await paddle.completed_transactions(since)
     ids = [transaction["id"] for transaction in transactions]
-    known = await purchases.credited(ids)
+    known = await credited(ids)
 
     for transaction in transactions:
         if transaction["id"] not in known:
             await quietly(handle_completed, transaction)
 
-    for found in await purchases.credited([id_ for id_ in ids if id_ not in known]):
+    for found in await credited([id_ for id_ in ids if id_ not in known]):
         logger.warning("Reconciliation credited transaction %s: its web hook didn't", found)
 
     adjustments = await paddle.approved_adjustments(since)
     pairs = [(item["transaction_id"], item["id"]) for item in adjustments]
-    counted = await purchases.counted(pairs)
+    done = await counted(pairs)
 
     for adjustment in adjustments:
-        if adjustment["id"] not in counted:
+        if adjustment["id"] not in done:
             await quietly(handle_adjustment, adjustment)
 
-    for found in await purchases.counted(pairs) - counted:
+    for found in await counted(pairs) - done:
         logger.warning("Reconciliation counted adjustment %s: its web hook didn't", found)
+
+
+async def credited(ids: list[str]) -> set[str]:
+    async with Session() as session:
+        return await purchases.credited(session, ids)
+
+
+async def counted(pairs: list[tuple[str, str]]) -> set[str]:
+    async with Session() as session:
+        return await purchases.counted(session, pairs)
 
 
 async def quietly(handler, data: dict) -> None:

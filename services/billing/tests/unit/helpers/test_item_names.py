@@ -11,7 +11,7 @@ from prepza_common.config.constants import LANGUAGES
 from billing.constants.item_names import CANDIDATES_NAMES
 from billing.helpers.item_names import candidates_name
 from billing.integrations import paddle
-from billing.services import auto_top_ups
+from billing.services import auto_top_up_charging
 from tests.unit.api.v1.test_internal import AUTH
 from tests.unit.services.test_custom_top_ups import URL, made, product  # noqa: F401 (fixtures)
 
@@ -90,6 +90,6 @@ def test_an_automatic_charge_is_named_in_the_language_of_whoever_turned_it_on(
 
     monkeypatch.setattr(paddle, "charge", charge)
 
-    asyncio.run(auto_top_ups.charge(row, "acme", datetime.now(UTC)))
+    asyncio.run(auto_top_up_charging.charge(row, "acme", datetime.now(UTC)))
 
     assert charged == [(name, {"top_up": "topup_200"})]

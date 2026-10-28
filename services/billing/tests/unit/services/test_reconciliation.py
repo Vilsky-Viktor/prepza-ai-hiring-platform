@@ -32,10 +32,10 @@ def world(monkeypatch):
     async def approved_adjustments(since):
         return state["adjustments"]
 
-    async def credited(ids):
+    async def credited(session, ids):
         return {id_ for id_ in ids if id_ in state["credited"]}
 
-    async def counted(pairs):
+    async def counted(session, pairs):
         return {adjustment for _, adjustment in pairs if adjustment in state["counted"]}
 
     async def handle_completed(data):

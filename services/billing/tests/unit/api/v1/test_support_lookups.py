@@ -17,7 +17,7 @@ NOW = datetime(2026, 10, 10, 12, tzinfo=UTC)
 def test_a_persons_top_ups_newest_first(client, monkeypatch):
     asked = []
 
-    async def bought_by(user_id, limit):
+    async def bought_by(session, user_id, limit):
         asked.append((user_id, limit))
         row = SimpleNamespace(
             transaction_id="txn_01", owner_id="acme", total="5000", currency="USD", created_at=NOW
@@ -42,7 +42,7 @@ def test_a_persons_top_ups_newest_first(client, monkeypatch):
 
 
 def test_a_candidates_credits_by_the_key_companies_gave_them(client, monkeypatch):
-    async def hold_status(key):
+    async def hold_status(session, key):
         return "charged" if key == "candidate:interview-1:abc" else None
 
     monkeypatch.setattr(ledger, "hold_status", hold_status)

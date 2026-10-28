@@ -14,6 +14,8 @@ from billing.core.db import Session
 from billing.helpers.history import history_entry_out
 from billing.models.billing import Purchase
 from billing.repositories import history, purchases
+from billing.services import topups
+from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
 NOW = datetime.now(UTC)
@@ -22,21 +24,19 @@ NOW = datetime.now(UTC)
 def test_a_top_up_keeps_its_total_as_an_integer_and_the_api_as_a_string(run):
     acme = str(uuid.uuid4())
     ann = f"user-{uuid.uuid4()}"
-    transaction = f"txn_{uuid.uuid4().hex}"
+    txn = f"txn_{uuid.uuid4().hex}"
 
     async def scenario():
-        await purchases.grant(
-            COMPANY, acme, 5_000, 1, transaction, "topup_50", ann, "750", "JPY", NOW
-        )
+        await topups.grant(COMPANY, acme, 5_000, 1, txn, "topup_50", ann, "750", "JPY", NOW)
 
         async with Session() as session:
             stored = await session.scalar(
-                select(Purchase.total_minor).where(Purchase.transaction_id == transaction)
+                select(Purchase.total_minor).where(Purchase.transaction_id == txn)
             )
 
-        owner = await purchases.for_transaction(transaction)
-        [listed] = await purchases.bought_by(ann, 10)
-        [entry] = await history.page(COMPANY, acme, 0, 1)
+        owner = await transaction(purchases.for_transaction, txn)
+        [listed] = await transaction(purchases.bought_by, ann, 10)
+        [entry] = await transaction(history.page, COMPANY, acme, 0, 1)
 
         return stored, owner[3], listed.total, history_entry_out(entry).total
 

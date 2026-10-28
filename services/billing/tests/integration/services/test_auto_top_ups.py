@@ -9,9 +9,11 @@ from billing.constants.products import AUTO_TOP_UP_COOLDOWN, OwnerType
 from billing.repositories import auto_top_ups as rows
 from billing.repositories import ledger
 from billing.schemas.billing import AutoTopUpIn
-from billing.services import auto_top_ups
+from billing.services import accounts, auto_top_ups
 from billing.services.topups import handle_completed
 from tests.integration.conftest import charged
+from tests.integration.factories import welcomed
+from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
 
@@ -26,7 +28,7 @@ def test_turning_on_waits_for_the_checkout_then_refills_under_the_threshold_once
     sub = f"sub_{uuid.uuid4().hex[:12]}"
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
+        await welcomed(acme, f"{acme}@example.com")
         waiting = await auto_top_ups.turn_on(
             COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
         )
@@ -38,10 +40,14 @@ def test_turning_on_waits_for_the_checkout_then_refills_under_the_threshold_once
         # The welcome credits aren't under 500, so nothing is charged. Inviting candidates takes
         # them under: one charge, however often it's checked, while its credits haven't come.
         await auto_top_ups.check(COMPANY, acme)
-        await ledger.reserve(COMPANY, acme, WELCOME_COMPANY - 1, "candidate:x", Reason.CANDIDATE)
+        await transaction(
+            ledger.reserve, COMPANY, acme, WELCOME_COMPANY - 1, "candidate:x", Reason.CANDIDATE
+        )
         await auto_top_ups.check(COMPANY, acme)
         await auto_top_ups.check(COMPANY, acme)
-        later = await rows.claim_charge(COMPANY, acme, datetime.now(UTC) + AUTO_TOP_UP_COOLDOWN * 2)
+        later = await transaction(
+            rows.claim_charge, COMPANY, acme, datetime.now(UTC) + AUTO_TOP_UP_COOLDOWN * 2
+        )
 
         return waiting, started, later
 
@@ -109,11 +115,11 @@ def test_an_automatic_charge_credits_the_wallet_its_subscription_belongs_to(run,
         )
         # The $0 checkout starts it and buys nothing; the charge carries no custom data.
         await handle_completed(card)
-        opened = await ledger.wallet(COMPANY, acme)
+        opened = await transaction(ledger.wallet, COMPANY, acme)
         # Charged in pounds: the same 10 candidates as in dollars.
         await handle_completed(charged(sub, currency="GBP", subtotal="4000"))
 
-        return opened.balance, (await ledger.wallet(COMPANY, acme)).balance
+        return opened.balance, (await transaction(ledger.wallet, COMPANY, acme)).balance
 
     opened, after = run(scenario())
 
@@ -133,10 +139,10 @@ def test_the_same_subscription_twice_stays_attached_and_a_deleted_buyer_turns_it
             COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
         )
         # Paddle's two events for one checkout, handled at the same moment.
-        first = await rows.start(COMPANY, acme, ann, sub, "USD")
-        second = await rows.start(COMPANY, acme, ann, sub, "USD")
+        first = await transaction(rows.start, COMPANY, acme, ann, sub, "USD")
+        second = await transaction(rows.start, COMPANY, acme, ann, sub, "USD")
         # The buyer deletes their account: their card is never charged again.
-        await auto_top_ups.forget_buyer(ann)
+        await accounts.delete_user(ann)
 
         return first, second, await auto_top_ups.out(COMPANY, acme, Currency.USD)
 

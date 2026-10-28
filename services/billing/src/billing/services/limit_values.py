@@ -11,13 +11,15 @@ from prepza_common.i18n.i18n import TemplateError
 from prepza_common.limits.limit_list import LIMITS, LIMITS_KEY, PROVIDER_LIMITS
 
 from billing.constants.usage import HITS_DAYS, OUT_OF_BOUNDS, UNKNOWN_LIMIT
+from billing.core.db import Session
 from billing.integrations.redis import get_redis
 from billing.repositories import limit_hits, limit_settings
 from billing.schemas.limits import LimitOut, LimitsOut, ProviderLimitOut
 
 
 async def sync() -> None:
-    values = await limit_settings.values()
+    async with Session() as session:
+        values = await limit_settings.values(session)
 
     async with get_redis().pipeline(transaction=True) as pipe:
         pipe.delete(LIMITS_KEY)
@@ -57,15 +59,20 @@ async def change(name: str, value: float | None, user: User) -> None:
         if value == found.default:
             value = None
 
-    await limit_settings.change(name, value, user.uid, user.email)
+    async with Session.begin() as session:
+        await limit_settings.change(session, name, value, user.uid, user.email)
+
     await sync()
 
 
 async def limits_out() -> LimitsOut:
     """Every limit, its unpaid counterpart beside its paid one, with its hits of the last
     HITS_DAYS days; then the providers' limits, read-only."""
-    values = await limit_settings.values()
-    hits = await limit_hits.counts_since(datetime.now(UTC) - timedelta(days=HITS_DAYS))
+    async with Session() as session:
+        values = await limit_settings.values(session)
+        since = datetime.now(UTC) - timedelta(days=HITS_DAYS)
+        hits = await limit_hits.counts_since(session, since)
+
     shown = {}
 
     for name, found in LIMITS.items():

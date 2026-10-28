@@ -37,13 +37,13 @@ def top_up(monkeypatch, saved):
     """A top-up whose grant is new (or Paddle's repeat) and whose referral pays `referrer`."""
     state = {"granted": True, "referrer": None}
 
-    async def grant(*args):
+    async def grant(session, *args):
         if state["granted"]:
             saved.extend(event for event in args[11] if event[0] == CREDITS_ADDED)
 
         return state["granted"]
 
-    async def reward(owner_type, owner_id, transaction_id, events_for=lambda _: []):
+    async def reward(session, owner_type, owner_id, transaction_id, events_for=lambda _: []):
         if state["referrer"] is None:
             return None
 
@@ -80,15 +80,15 @@ def test_a_referral_reward_tells_both_companies_once_each(top_up, saved):
 
 @pytest.fixture
 def adjusted(monkeypatch, saved):
-    async def bought(transaction_id):
+    async def bought(session, transaction_id):
         return ("company", "acme", 1_000, 1000)
 
-    async def take_back_credits(*args):
+    async def take_back_credits(session, *args):
         saved.extend(args[8])
 
         return 0
 
-    async def take_back(transaction_id):
+    async def take_back(session, transaction_id):
         return False
 
     monkeypatch.setattr(purchases, "for_transaction", bought)

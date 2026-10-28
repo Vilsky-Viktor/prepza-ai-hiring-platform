@@ -17,7 +17,7 @@ COMPANY = "/internal/companies/acme"
 
 @pytest.fixture
 def no_auto_top_up(monkeypatch):
-    async def none(owner_type, owner_id):
+    async def none(session, owner_type, owner_id):
         return None
 
     monkeypatch.setattr(auto_top_ups, "get", none)
@@ -99,10 +99,10 @@ def test_a_companys_prices_are_in_its_currency_with_or_without_a_country(
 def test_a_company_is_welcomed_with_or_without_its_owners_country(
     client, monkeypatch, saved_currencies
 ):
-    async def welcomed(company_id, owner_email):
+    async def welcomed(session, company_id, owner_email):
         return False
 
-    monkeypatch.setattr("billing.repositories.ledger.welcome_company", welcomed)
+    monkeypatch.setattr("billing.services.wallets.welcome_gift", welcomed)
 
     for company, country in (("acme", None), ("beta", "IE")):
         body = {"owner_email": "ann@example.com", **({"country": country} if country else {})}
@@ -136,7 +136,7 @@ def test_a_company_is_welcomed_with_or_without_its_owners_country(
 def test_a_company_changes_its_currency_and_hears_what_automatic_top_up_now_charges(
     client, monkeypatch, saved_currencies, row, charges
 ):
-    async def get(owner_type, owner_id):
+    async def get(session, owner_type, owner_id):
         return row
 
     monkeypatch.setattr(auto_top_ups, "get", get)
@@ -168,7 +168,7 @@ def test_an_automatic_top_up_charges_in_the_companys_currency(
     import asyncio
 
     from billing.integrations import paddle
-    from billing.services import auto_top_ups as service
+    from billing.services import auto_top_up_charging as service
 
     if company:
         saved_currencies[("company", "acme")] = company
@@ -186,7 +186,7 @@ def test_an_automatic_top_up_charges_in_the_companys_currency(
     async def set_currency(subscription_id, currency):
         patched.append(currency)
 
-    async def record(subscription_id, currency):
+    async def record(session, subscription_id, currency):
         recorded.append(currency)
 
     async def charge(subscription_id, price):

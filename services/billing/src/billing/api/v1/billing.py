@@ -10,8 +10,8 @@ from billing.config import settings
 from billing.constants.currencies import ChoiceOwner
 from billing.constants.products import WEBHOOK_TOLERANCE_SECONDS
 from billing.helpers.paddle import signature_valid
-from billing.repositories import currencies
 from billing.schemas.billing import CatalogOut, CurrencyIn, CurrencyOut
+from billing.services import currencies
 from billing.services.catalog import catalog_out
 from billing.services.currencies import decide, saved
 from billing.services.webhooks import handle

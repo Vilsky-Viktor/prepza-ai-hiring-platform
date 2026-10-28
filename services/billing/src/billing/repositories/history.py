@@ -1,10 +1,12 @@
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from billing.core.db import Session
 from billing.models.billing import Entry
 
 
-async def page(owner_type: str, owner_id: str, offset: int, limit: int) -> list[Entry]:
+async def page(
+    session: AsyncSession, owner_type: str, owner_id: str, offset: int, limit: int
+) -> list[Entry]:
     """A wallet's movements, newest first."""
     query = (
         select(Entry)
@@ -14,5 +16,4 @@ async def page(owner_type: str, owner_id: str, offset: int, limit: int) -> list[
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))

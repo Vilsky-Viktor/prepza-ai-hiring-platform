@@ -7,14 +7,14 @@ from billing.constants.credits import CANDIDATE_CREDITS
 from billing.core.security import service_token
 from billing.repositories import auto_top_ups as auto_top_up_rows
 from billing.repositories import ledger, purchases
-from billing.services import auto_top_ups
+from billing.services import auto_top_up_charging, auto_top_ups
 
 AUTH = bearer(service_token("billing"))
 HOLD = {"company_id": "acme", "key": "session-1"}
 
 
 def test_a_candidate_without_enough_credits_is_refused_with_a_message(client, monkeypatch):
-    async def too_low(owner_type, owner_id, amount, key, reason):
+    async def too_low(session, owner_type, owner_id, amount, key, reason):
         return False
 
     monkeypatch.setattr(ledger, "reserve", too_low)
@@ -32,7 +32,7 @@ def test_a_candidate_holds_its_credits_and_a_top_up_is_checked_before_answering(
     first."""
     done = []
 
-    async def reserve(owner_type, owner_id, amount, key, reason):
+    async def reserve(session, owner_type, owner_id, amount, key, reason):
         done.append(("held", owner_id, amount, key))
 
         return True
@@ -41,7 +41,7 @@ def test_a_candidate_holds_its_credits_and_a_top_up_is_checked_before_answering(
         done.append(("top-up checked", owner_id))
 
     monkeypatch.setattr(ledger, "reserve", reserve)
-    monkeypatch.setattr(auto_top_ups, "check", check)
+    monkeypatch.setattr(auto_top_up_charging, "check", check)
 
     response = client.post("/internal/candidates/hold", params=HOLD, headers=AUTH)
 
@@ -56,7 +56,7 @@ def test_a_slow_top_up_is_cut_off_and_the_hold_still_answers(client, monkeypatch
     """Paddle can take its time: the invite waiting on the hold waits for it only briefly."""
     cut_off = []
 
-    async def reserve(owner_type, owner_id, amount, key, reason):
+    async def reserve(session, owner_type, owner_id, amount, key, reason):
         return True
 
     async def never_answers(owner_type, owner_id):
@@ -67,8 +67,8 @@ def test_a_slow_top_up_is_cut_off_and_the_hold_still_answers(client, monkeypatch
             raise
 
     monkeypatch.setattr(ledger, "reserve", reserve)
-    monkeypatch.setattr(auto_top_ups, "check", never_answers)
-    monkeypatch.setattr(auto_top_ups, "AUTO_TOP_UP_WAIT_SECONDS", 0.01)
+    monkeypatch.setattr(auto_top_up_charging, "check", never_answers)
+    monkeypatch.setattr(auto_top_up_charging, "AUTO_TOP_UP_WAIT_SECONDS", 0.01)
 
     response = client.post("/internal/candidates/hold", params=HOLD, headers=AUTH)
 
@@ -81,7 +81,7 @@ def test_internal_routes_need_a_service_token(client):
 
 
 def test_several_companies_balances_at_once(client, monkeypatch):
-    async def found(owner_type, owner_ids):
+    async def found(session, owner_type, owner_ids):
         return {"a": SimpleNamespace(owner_type="company", balance=1500, reserved=500)}
 
     monkeypatch.setattr(ledger, "wallets", found)
@@ -116,10 +116,10 @@ def test_library_exports_a_users_purchases_and_automatic_top_ups_with_a_post(cli
     """The export is a POST, like every service's, so library sends nothing in the URL. An
     automatic top-up the user turned on charges their card, so it's theirs to see too."""
 
-    async def purchases_of(user_id):
+    async def purchases_of(session, user_id):
         return []
 
-    async def of_buyer(buyer_id):
+    async def of_buyer(session, buyer_id):
         return [
             SimpleNamespace(
                 owner_id="acme",
@@ -156,7 +156,7 @@ def test_library_exports_a_users_purchases_and_automatic_top_ups_with_a_post(cli
 def test_low_companies_say_how_many_credits_are_available(client, monkeypatch):
     asked = []
 
-    async def running_low(owner_type, owner_ids=None, after="", limit=None):
+    async def running_low(session, owner_type, owner_ids=None, after="", limit=None):
         asked.append(owner_ids)
 
         return [SimpleNamespace(owner_id="acme", balance=1400, reserved=300)]
@@ -174,7 +174,7 @@ def test_low_companies_say_how_many_credits_are_available(client, monkeypatch):
 def test_low_companies_can_be_only_those_asked_for(client, monkeypatch):
     asked = []
 
-    async def running_low(owner_type, owner_ids=None, after="", limit=None):
+    async def running_low(session, owner_type, owner_ids=None, after="", limit=None):
         asked.append(owner_ids)
 
         return []

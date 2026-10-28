@@ -5,7 +5,7 @@ from prepza_common.ai.ai_cap import add_unpaid
 from prepza_common.ai.ai_constants import Category
 
 from billing.integrations.redis import get_redis
-from billing.repositories import usage
+from billing.services import usage
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +15,7 @@ UNPAID = (Category.UNPAID, Category.NO_COMPANY)
 async def handle(data: dict, event_id: str, occurred_at: datetime) -> None:
     """An AI call, kept once by its event id; one nobody pays for counts against the cap on
     unpaid AI spend."""
-    category = await usage.store_usage(event_id, occurred_at, data)
+    category = await usage.record_usage(event_id, occurred_at, data)
 
     if category not in UNPAID or not data.get("cost_usd"):
         return

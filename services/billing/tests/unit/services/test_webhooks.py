@@ -48,6 +48,7 @@ def granted(monkeypatch):
     calls = []
 
     async def fake_grant(
+        session,
         owner_type,
         owner_id,
         credits,
@@ -65,7 +66,7 @@ def granted(monkeypatch):
 
         return True
 
-    async def no_referral(owner_type, owner_id, transaction_id, events_for=None):
+    async def no_referral(session, owner_type, owner_id, transaction_id, events_for=None):
         return None
 
     monkeypatch.setattr(purchases, "grant", fake_grant)
@@ -92,15 +93,15 @@ def money(monkeypatch):
     """What each grant keeps on its history entry: the money paid and whether it was automatic."""
     kept = []
 
-    async def fake_grant(*args):
+    async def fake_grant(session, *args):
         kept.append(args[7:9] + args[10:11])
 
         return True
 
-    async def no_referral(owner_type, owner_id, transaction_id, events_for=None):
+    async def no_referral(session, owner_type, owner_id, transaction_id, events_for=None):
         return None
 
-    async def owner_of(subscription_id):
+    async def owner_of(session, subscription_id):
         return ("company", "acme")
 
     monkeypatch.setattr(purchases, "grant", fake_grant)

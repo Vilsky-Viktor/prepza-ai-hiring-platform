@@ -3,9 +3,7 @@ from datetime import UTC, datetime
 from fastapi import APIRouter, status
 from prepza_common.auth.google import Invoker
 
-from billing.constants.usage import CHANGES_KEEP_DAYS, USAGE_KEEP_DAYS
-from billing.repositories import usage
-from billing.services import limit_values
+from billing.services import limit_values, usage
 from billing.services import outbox as outbox_service
 from billing.services.auto_top_up_prices import check_prices
 from billing.services.reconciliation import reconcile
@@ -27,7 +25,7 @@ async def sync_limits() -> None:
 @router.post("/retention", status_code=status.HTTP_204_NO_CONTENT)
 async def retention() -> None:
     """Daily: AI usage and limit hits past 13 months, limit changes past 24."""
-    await usage.drop_old(datetime.now(UTC), USAGE_KEEP_DAYS, CHANGES_KEEP_DAYS)
+    await usage.drop_old(datetime.now(UTC))
 
 
 @router.post("/outbox", status_code=status.HTTP_204_NO_CONTENT)

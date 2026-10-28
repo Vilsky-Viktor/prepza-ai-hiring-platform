@@ -13,6 +13,7 @@ from billing.config import settings
 from billing.constants.declines import PAYMENT_METHOD_CHANGE_ORIGIN
 from billing.constants.notifications import TOP_UP_LINK
 from billing.constants.products import PADDLE_API_ORIGIN, OwnerType
+from billing.core.db import Session
 from billing.repositories import ledger, purchases
 from billing.services import auto_top_ups, credit_events
 from billing.services import outbox as outbox_service
@@ -40,7 +41,7 @@ async def handle_completed(data: dict) -> None:
     if subscription_id:
         # The checkout that turns automatic top-up on; its $0 price buys nothing.
         await auto_top_ups.start(custom, subscription_id, data["currency_code"])
-        owner_type, owner_id = await auto_top_ups.owner(subscription_id) or (
+        owner_type, owner_id = await auto_top_ups.owner_of(subscription_id) or (
             owner_type,
             owner_id,
         )
@@ -57,8 +58,11 @@ async def handle_completed(data: dict) -> None:
 
         return
 
+    async with Session() as session:
+        existing = await ledger.wallets(session, owner_type, [owner_id])
+
     # The company was deleted between the checkout and the payment.
-    if owner_id not in await ledger.wallets(owner_type, [owner_id]):
+    if owner_id not in existing:
         logger.error("Transaction %s pays into a wallet that's gone: refund it", data["id"])
 
         return
@@ -94,7 +98,7 @@ async def handle_completed(data: dict) -> None:
             )
             events.append((NOTIFICATION_REQUESTED, notice))
 
-        granted = await purchases.grant(
+        granted = await grant(
             owner_type,
             owner_id,
             credits,
@@ -115,6 +119,45 @@ async def handle_completed(data: dict) -> None:
 
         if granted:
             await announce_top_up(owner_id, paid_cents, key, data, subscription_id)
+
+
+async def grant(
+    owner_type: str,
+    owner_id: str,
+    credits: int,
+    quantity: int,
+    transaction_id: str,
+    product: str,
+    buyer_id: str | None,
+    total: str,
+    currency: str,
+    now: datetime,
+    automatic: bool = False,
+    events: list[tuple[str, dict]] = (),
+) -> bool:
+    """Adds a paid top-up once per product of a transaction (purchases.grant), and a member's own
+    top-up to the company's action log in the same save; an automatic one isn't theirs."""
+    async with Session.begin() as session:
+        granted = await purchases.grant(
+            session,
+            owner_type,
+            owner_id,
+            credits,
+            quantity,
+            transaction_id,
+            product,
+            buyer_id,
+            total,
+            currency,
+            now,
+            automatic,
+            events,
+        )
+
+        if granted and owner_type == OwnerType.COMPANY and buyer_id and not automatic:
+            purchases.log_top_up(session, owner_id, buyer_id)
+
+    return granted
 
 
 async def announce_top_up(owner_id, paid_cents, key, data, subscription_id) -> None:

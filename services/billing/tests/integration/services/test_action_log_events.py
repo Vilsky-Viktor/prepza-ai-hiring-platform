@@ -10,7 +10,8 @@ from sqlalchemy import select
 from billing.constants.products import TOP_UPS, OwnerType
 from billing.core.db import Session
 from billing.models.outbox import OutboxEvent
-from billing.repositories import ledger, purchases
+from billing.services import topups
+from tests.integration.factories import welcomed
 
 NOW = datetime(2026, 10, 16, 12, tzinfo=UTC)
 TOPUP = TOP_UPS[0]
@@ -36,14 +37,14 @@ def test_a_members_top_up_is_logged_once_and_an_automatic_one_not(run):
     paid, automatic = f"txn_{uuid.uuid4().hex}", f"txn_{uuid.uuid4().hex}"
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
+        await welcomed(acme, f"{acme}@example.com")
 
         for _ in range(2):
-            await purchases.grant(
+            await topups.grant(
                 OwnerType.COMPANY, acme, 1_000, 1, paid, TOPUP.key, "ann", "1000", "USD", NOW
             )
 
-        await purchases.grant(
+        await topups.grant(
             OwnerType.COMPANY,
             acme,
             1_000,

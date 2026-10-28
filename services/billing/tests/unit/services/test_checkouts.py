@@ -16,7 +16,7 @@ def test_a_checkout_opened_in_the_browser_grants_nothing(granted):  # noqa: F811
 
 
 def test_a_payment_into_a_deleted_company_grants_nothing(granted, monkeypatch):  # noqa: F811
-    async def none(owner_type, owner_ids):
+    async def none(session, owner_type, owner_ids):
         return {}
 
     monkeypatch.setattr(ledger, "wallets", none)

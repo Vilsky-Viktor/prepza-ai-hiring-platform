@@ -15,7 +15,9 @@ from billing.repositories import auto_top_ups as rows
 from billing.repositories import ledger
 from billing.schemas.billing import AutoTopUpIn
 from billing.services import auto_top_ups
+from tests.integration.factories import welcomed
 from tests.integration.services.test_auto_top_ups import checkout_data
+from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
 CHOICE = AutoTopUpIn(product="topup_50", threshold=500)
@@ -41,7 +43,7 @@ def test_a_second_member_turning_it_on_before_the_first_checkout_starts_it_with_
             waiting,
             refused.value.status_code,
             await auto_top_ups.out(COMPANY, acme, Currency.USD),
-            await rows.get(COMPANY, acme),
+            await transaction(rows.get, COMPANY, acme),
         )
 
     waiting, refused, after, row = run(scenario())
@@ -77,19 +79,26 @@ def test_a_charge_that_timed_out_isnt_failed_and_is_tried_again_only_after_a_day
     sub = f"sub_timeout_{uuid.uuid4().hex[:12]}"
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
+        await welcomed(acme, f"{acme}@example.com")
         await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD)
         await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
-        await ledger.reserve(
-            COMPANY, acme, WELCOME_COMPANY - 1, f"candidate:{acme}", Reason.CANDIDATE
+        await transaction(
+            ledger.reserve,
+            COMPANY,
+            acme,
+            WELCOME_COMPANY - 1,
+            f"candidate:{acme}",
+            Reason.CANDIDATE,
         )
         # Paddle may have taken it: its web hook would add the credits.
         await auto_top_ups.check(COMPANY, acme)
-        row = await rows.get(COMPANY, acme)
+        row = await transaction(rows.get, COMPANY, acme)
         # Its credits never came: no charge after the cooldown, only after a day.
-        soon = await rows.claim_charge(COMPANY, acme, datetime.now(UTC) + AUTO_TOP_UP_COOLDOWN * 2)
-        next_day = await rows.claim_charge(
-            COMPANY, acme, datetime.now(UTC) + AUTO_TOP_UP_UNCREDITED_WAIT * 2
+        soon = await transaction(
+            rows.claim_charge, COMPANY, acme, datetime.now(UTC) + AUTO_TOP_UP_COOLDOWN * 2
+        )
+        next_day = await transaction(
+            rows.claim_charge, COMPANY, acme, datetime.now(UTC) + AUTO_TOP_UP_UNCREDITED_WAIT * 2
         )
 
         return row, soon, next_day
@@ -112,13 +121,13 @@ def test_its_charges_are_named_in_the_language_of_whoever_pays(run, paddle_calls
     async def scenario():
         await auto_top_ups.turn_on(COMPANY, acme, CHOICE, ann, Currency.USD, "uk")
         await auto_top_ups.turn_on(COMPANY, acme, CHOICE, bob, Currency.USD, "de")
-        waiting = (await rows.get(COMPANY, acme)).language
+        waiting = (await transaction(rows.get, COMPANY, acme)).language
         await auto_top_ups.start(checkout_data(acme, bob), sub, "USD")
         # Ann's save reaching the table anyway (a race past the service's check) keeps Bob's.
-        await rows.save(COMPANY, acme, "topup_50", 500, ann, 5000, "USD", "fr")
-        kept = (await rows.get(COMPANY, acme)).language
+        await transaction(rows.save, COMPANY, acme, "topup_50", 500, ann, 5000, "USD", "fr")
+        kept = (await transaction(rows.get, COMPANY, acme)).language
         await auto_top_ups.turn_on(COMPANY, acme, CHOICE, bob, Currency.USD, "ja")
 
-        return waiting, kept, (await rows.get(COMPANY, acme)).language
+        return waiting, kept, (await transaction(rows.get, COMPANY, acme)).language
 
     assert run(scenario()) == ("de", "de", "ja")

@@ -18,8 +18,10 @@ from billing.handlers import dispatch
 from billing.integrations import names
 from billing.models.limits import LimitChange
 from billing.models.usage import AiUsage, LimitHit
-from billing.repositories import purchases, usage
-from billing.services import ai_costs
+from billing.repositories import usage
+from billing.services import ai_costs, topups
+from billing.services import usage as usage_service
+from tests.integration.transactions import transaction
 
 NOW = datetime(2026, 10, 10, 12, tzinfo=UTC)
 
@@ -70,15 +72,15 @@ def test_a_company_is_paid_from_its_first_top_up_on(run, redis):
     acme, other = str(uuid.uuid4()), str(uuid.uuid4())
 
     async def scenario():
-        transaction = f"txn_{uuid.uuid4().hex}"
-        await purchases.grant(
-            OwnerType.COMPANY, acme, 100, 1, transaction, "topup_50", None, "3000", "USD", NOW
+        txn = f"txn_{uuid.uuid4().hex}"
+        await topups.grant(
+            OwnerType.COMPANY, acme, 100, 1, txn, "topup_50", None, "3000", "USD", NOW
         )
         found = []
 
         for company_id, at in ((acme, NOW - timedelta(hours=1)), (acme, NOW), (other, NOW)):
             data = call(company_id=company_id)
-            found.append(await usage.store_usage(uuid.uuid4().hex, at, data))
+            found.append(await usage_service.record_usage(uuid.uuid4().hex, at, data))
 
         before = await spent_today(redis())
         # A paid company's call is never counted toward the unpaid cap.
@@ -199,7 +201,7 @@ def test_a_support_page_shows_the_last_30_days(run):
     async def scenario():
         for days, cost in ((1, 0.25), (29, 0.5), (31, 4.0)):
             data = call(company_id=acme, cost_usd=cost)
-            await usage.store_usage(uuid.uuid4().hex, now - timedelta(days=days), data)
+            await usage_service.record_usage(uuid.uuid4().hex, now - timedelta(days=days), data)
 
         return await ai_costs.spend_out(acme, None)
 
@@ -213,9 +215,11 @@ def test_a_deleted_user_or_company_is_forgotten_and_its_costs_stay(run):
 
     async def scenario():
         event_id = uuid.uuid4().hex
-        await usage.store_usage(event_id, NOW, call(company_id=acme, user_id=ann))
+        await usage_service.record_usage(event_id, NOW, call(company_id=acme, user_id=ann))
         hit = {"limit": "MAX_API_KEYS", "kind": "ours", "scope": "company"}
-        await usage.store_hit(uuid.uuid4().hex, NOW, {**hit, "company_id": acme, "user_id": ann})
+        await transaction(
+            usage.store_hit, uuid.uuid4().hex, NOW, {**hit, "company_id": acme, "user_id": ann}
+        )
         await internal.delete_user(ann, None)
         await internal.delete_company(acme, None)
 
@@ -242,9 +246,9 @@ def test_usage_and_hits_go_after_13_months_and_limit_changes_after_24(run):
 
     async def scenario():
         for event_id, days in ((kept_id, USAGE_KEEP_DAYS - 1), (dropped_id, USAGE_KEEP_DAYS + 1)):
-            await usage.store_usage(event_id, now - timedelta(days=days), call())
+            await usage_service.record_usage(event_id, now - timedelta(days=days), call())
             hit = {"limit": "MAX_API_KEYS", "kind": "ours", "scope": "company"}
-            await usage.store_hit(event_id, now - timedelta(days=days), hit)
+            await transaction(usage.store_hit, event_id, now - timedelta(days=days), hit)
 
         async with Session() as session:
             for days in (CHANGES_KEEP_DAYS - 1, CHANGES_KEEP_DAYS + 1):
@@ -261,7 +265,7 @@ def test_usage_and_hits_go_after_13_months_and_limit_changes_after_24(run):
 
             await session.commit()
 
-        await usage.drop_old(now, USAGE_KEEP_DAYS, CHANGES_KEEP_DAYS)
+        await usage.drop_old(Session, now, USAGE_KEEP_DAYS, CHANGES_KEEP_DAYS)
 
         async with Session() as session:
             calls = await session.scalars(

@@ -10,9 +10,13 @@ from billing.constants.products import OwnerType
 from billing.core.db import Session
 from billing.helpers.gifts import legacy_gift_key
 from billing.models.billing import Gift
-from billing.repositories import ledger, purchases, referrals
+from billing.repositories import ledger, referrals
+from billing.services import accounts, topups
 from billing.services.adjustments import handle_adjustment
 from billing.services.referrals import reward_after_top_up
+from tests.integration import transactions
+from tests.integration.factories import welcomed
+from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
 
@@ -22,7 +26,7 @@ def company():
 
 
 async def available(owner_type, owner_id):
-    row = await ledger.wallet(owner_type, owner_id)
+    row = await transaction(ledger.wallet, owner_type, owner_id)
 
     return row.balance - row.reserved
 
@@ -31,11 +35,11 @@ def test_a_referral_pays_both_companies_once_on_a_big_enough_top_up(run):
     acme, newco = company(), company()
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        code = await referrals.code_of(COMPANY, acme)
-        same_code = await referrals.code_of(COMPANY, acme)
-        await ledger.welcome_company(newco, f"{newco}@example.com")
-        recorded = await referrals.record(code, COMPANY, newco, [])
+        await welcomed(acme, f"{acme}@example.com")
+        code = await transaction(referrals.code_of, COMPANY, acme)
+        same_code = await transaction(referrals.code_of, COMPANY, acme)
+        await welcomed(newco, f"{newco}@example.com")
+        recorded = await transaction(referrals.record, code, COMPANY, newco, [])
         await reward_after_top_up(COMPANY, newco, "txn_1")
         await reward_after_top_up(COMPANY, newco, "txn_2")
 
@@ -44,8 +48,11 @@ def test_a_referral_pays_both_companies_once_on_a_big_enough_top_up(run):
             recorded,
             await available(COMPANY, acme),
             await available(COMPANY, newco),
-            await referrals.rewarded_count(COMPANY, acme),
-            [(row.owner_id, paid) for row, paid in await referrals.rewards(COMPANY, acme, 10)],
+            await transaction(referrals.rewarded_count, COMPANY, acme),
+            [
+                (row.owner_id, paid)
+                for row, paid in await transaction(referrals.rewards, COMPANY, acme, 10)
+            ],
         )
 
     same, recorded, acme_credits, newco_credits, count, rewarded = run(scenario())
@@ -60,13 +67,13 @@ def test_own_codes_related_companies_and_unknown_codes_refer_nobody(run):
     acme, sister, other = (company() for _ in range(3))
 
     async def scenario():
-        acme_code = await referrals.code_of(COMPANY, acme)
+        acme_code = await transaction(referrals.code_of, COMPANY, acme)
 
         return (
-            await referrals.record(acme_code, COMPANY, acme, []),
-            await referrals.record(acme_code, COMPANY, sister, [acme]),
-            await referrals.record("nope", COMPANY, other, []),
-            await referrals.record(acme_code, COMPANY, other, []),
+            await transaction(referrals.record, acme_code, COMPANY, acme, []),
+            await transaction(referrals.record, acme_code, COMPANY, sister, [acme]),
+            await transaction(referrals.record, "nope", COMPANY, other, []),
+            await transaction(referrals.record, acme_code, COMPANY, other, []),
         )
 
     assert run(scenario()) == (False, False, False, True)
@@ -76,15 +83,15 @@ def test_a_deleted_referrer_leaves_the_new_company_its_own_reward(run):
     acme, newco = str(uuid.uuid4()), str(uuid.uuid4())
 
     async def scenario():
-        await ledger.welcome_company(newco, f"{newco}@example.com")
-        code = await referrals.code_of(OwnerType.COMPANY, acme)
-        await referrals.record(code, OwnerType.COMPANY, newco, [])
-        await purchases.delete_company(acme)
+        await welcomed(newco, f"{newco}@example.com")
+        code = await transaction(referrals.code_of, OwnerType.COMPANY, acme)
+        await transaction(referrals.record, code, OwnerType.COMPANY, newco, [])
+        await accounts.delete_company(acme)
         await reward_after_top_up(OwnerType.COMPANY, newco, "txn_1")
 
         return (
             await available(OwnerType.COMPANY, newco),
-            await ledger.wallets(OwnerType.COMPANY, [acme]),
+            await transaction(ledger.wallets, OwnerType.COMPANY, [acme]),
         )
 
     credits, gone = run(scenario())
@@ -98,17 +105,18 @@ def test_a_referrer_over_the_yearly_limit_is_neither_paid_nor_told(run, monkeypa
     monkeypatch.setattr(referrals, "REFERRALS_PER_YEAR", 1)
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        code = await referrals.code_of(COMPANY, acme)
+        await welcomed(acme, f"{acme}@example.com")
+        code = await transaction(referrals.code_of, COMPANY, acme)
         paid = []
 
         for newco in (first, second):
-            await ledger.welcome_company(newco, f"{newco}@example.com")
-            await referrals.record(code, COMPANY, newco, [])
-            paid.append(await referrals.reward(COMPANY, newco, f"txn_{newco}"))
+            await welcomed(newco, f"{newco}@example.com")
+            await transaction(referrals.record, code, COMPANY, newco, [])
+            paid.append(await transaction(referrals.reward, COMPANY, newco, f"txn_{newco}"))
 
         listed = [
-            (row.owner_id, credits) for row, credits in await referrals.rewards(COMPANY, acme, 10)
+            (row.owner_id, credits)
+            for row, credits in await transaction(referrals.rewards, COMPANY, acme, 10)
         ]
 
         return paid, await available(COMPANY, acme), await available(COMPANY, second), listed
@@ -128,20 +136,20 @@ def test_two_rewards_at_once_dont_pass_the_referrers_yearly_limit(run, monkeypat
     monkeypatch.setattr(referrals, "REFERRALS_PER_YEAR", 1)
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        code = await referrals.code_of(COMPANY, acme)
+        await welcomed(acme, f"{acme}@example.com")
+        code = await transaction(referrals.code_of, COMPANY, acme)
 
         for newco in (first, second):
-            await ledger.welcome_company(newco, f"{newco}@example.com")
-            await referrals.record(code, COMPANY, newco, [])
+            await welcomed(newco, f"{newco}@example.com")
+            await transaction(referrals.record, code, COMPANY, newco, [])
 
         # The second reward waits on the referrer's wallet the first holds until it commits.
-        held = hold_first_commit(monkeypatch, referrals)
+        held = hold_first_commit(monkeypatch, transactions)
         paid = await race(
             os.environ["DATABASE_URL"],
             held,
-            referrals.reward(COMPANY, first, f"txn_{first}"),
-            referrals.reward(COMPANY, second, f"txn_{second}"),
+            transaction(referrals.reward, COMPANY, first, f"txn_{first}"),
+            transaction(referrals.reward, COMPANY, second, f"txn_{second}"),
         )
 
         return paid, await available(COMPANY, acme)
@@ -167,7 +175,7 @@ def test_a_full_refund_of_the_rewarding_top_up_takes_both_rewards_back(run):
     paid, refunded = f"txn_{uuid.uuid4().hex[:12]}", f"txn_{uuid.uuid4().hex[:12]}"
 
     async def top_up(transaction_id):
-        await purchases.grant(
+        await topups.grant(
             COMPANY,
             newco,
             3_000,
@@ -182,9 +190,15 @@ def test_a_full_refund_of_the_rewarding_top_up_takes_both_rewards_back(run):
         await reward_after_top_up(COMPANY, newco, transaction_id)
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        await ledger.welcome_company(newco, f"{newco}@example.com")
-        await referrals.record(await referrals.code_of(COMPANY, acme), COMPANY, newco, [])
+        await welcomed(acme, f"{acme}@example.com")
+        await welcomed(newco, f"{newco}@example.com")
+        await transaction(
+            referrals.record,
+            await transaction(referrals.code_of, COMPANY, acme),
+            COMPANY,
+            newco,
+            [],
+        )
         await top_up(refunded)
         # A partial refund keeps the rewards; a full one, sent twice, takes them back once.
         await handle_adjustment(refund(refunded, "1000"))
@@ -194,11 +208,11 @@ def test_a_full_refund_of_the_rewarding_top_up_takes_both_rewards_back(run):
         await handle_adjustment(full)
         taken_back = (
             await available(COMPANY, acme),
-            await referrals.rewarded_count(COMPANY, acme),
+            await transaction(referrals.rewarded_count, COMPANY, acme),
         )
         # Paddle sending the refunded top-up again pays nothing; the next real top-up pays.
         await reward_after_top_up(COMPANY, newco, refunded)
-        replayed = await referrals.rewarded_count(COMPANY, acme)
+        replayed = await transaction(referrals.rewarded_count, COMPANY, acme)
         await top_up(paid)
 
         return partly, taken_back, replayed, await available(COMPANY, acme)
@@ -220,7 +234,7 @@ def test_an_owner_given_the_welcome_gift_under_the_old_key_isnt_given_it_again(r
             session.add(Gift(key=old))
             await session.commit()
 
-        return await ledger.welcome_company(second, "ann.lee+jobs@gmail.com")
+        return await welcomed(second, "ann.lee+jobs@gmail.com")
 
     assert run(scenario()) is False
     assert first != second
@@ -230,12 +244,12 @@ def test_a_welcome_asked_again_counts_once_and_still_records_the_referral(run):
     acme, newco = company(), company()
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        code = await referrals.code_of(COMPANY, acme)
+        await welcomed(acme, f"{acme}@example.com")
+        code = await transaction(referrals.code_of, COMPANY, acme)
         # The first answer was lost: companies asks again for the same company.
-        first = await ledger.welcome_company(newco, f"{newco}@example.com")
-        again = await ledger.welcome_company(newco, f"{newco}@example.com")
-        recorded = again and await referrals.record(code, COMPANY, newco, [])
+        first = await welcomed(newco, f"{newco}@example.com")
+        again = await welcomed(newco, f"{newco}@example.com")
+        recorded = again and await transaction(referrals.record, code, COMPANY, newco, [])
 
         return first, again, recorded, await available(COMPANY, newco)
 
@@ -249,15 +263,21 @@ def test_deleting_the_referred_company_doesnt_keep_the_referrers_reward_from_a_r
     paid = f"txn_{uuid.uuid4().hex[:12]}"
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        await ledger.welcome_company(newco, f"{newco}@example.com")
-        await referrals.record(await referrals.code_of(COMPANY, acme), COMPANY, newco, [])
-        await purchases.grant(
+        await welcomed(acme, f"{acme}@example.com")
+        await welcomed(newco, f"{newco}@example.com")
+        await transaction(
+            referrals.record,
+            await transaction(referrals.code_of, COMPANY, acme),
+            COMPANY,
+            newco,
+            [],
+        )
+        await topups.grant(
             COMPANY, newco, 3_000, 1, paid, "topup_50", None, "3000", "USD", datetime.now(UTC)
         )
         await reward_after_top_up(COMPANY, newco, paid)
         rewarded = await available(COMPANY, acme)
-        await purchases.delete_company(newco)
+        await accounts.delete_company(newco)
         await handle_adjustment(refund(paid, "3000"))
 
         return rewarded, await available(COMPANY, acme)

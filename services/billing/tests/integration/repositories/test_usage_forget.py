@@ -5,8 +5,10 @@ from datetime import UTC, datetime
 
 from prepza_common.db import db
 
+from billing.core.db import Session
 from billing.models.usage import AiUsage
 from billing.repositories import usage
+from billing.services import usage as usage_service
 from tests.integration.services.test_ai_usage import call, rows_of
 
 NOW = datetime(2026, 10, 10, 12, tzinfo=UTC)
@@ -19,11 +21,11 @@ def test_a_deleted_companys_id_is_emptied_batch_after_batch(run, monkeypatch):
 
     async def scenario():
         for _ in range(3):
-            await usage.store_usage(
+            await usage_service.record_usage(
                 uuid.uuid4().hex, NOW, call(company_id=acme, subject_id=subject)
             )
 
-        await usage.forget("company_id", acme)
+        await usage.forget(Session, "company_id", acme)
 
         return await rows_of(AiUsage.subject_id, subject)
 

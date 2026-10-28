@@ -3,17 +3,28 @@ from prepza_common.auth.auth import current_user, optional_user
 from prepza_common.auth.user import User
 
 from billing.main import app
-from billing.repositories import currencies, ledger
+from billing.repositories import currencies, ledger, purchases
 
 
 @pytest.fixture(autouse=True)
 def wallets_exist(monkeypatch):
     """Unit tests have no database: every owner's wallet exists unless a test says otherwise."""
 
-    async def wallets(owner_type, owner_ids):
+    async def wallets(session, owner_type, owner_ids):
         return {owner_id: object() for owner_id in owner_ids}
 
     monkeypatch.setattr(ledger, "wallets", wallets)
+
+
+@pytest.fixture(autouse=True)
+def no_action_log(monkeypatch):
+    """Unit tests have no database: a member's top-up isn't added to the action log (the
+    integration tests check it is)."""
+
+    def log_top_up(session, company_id, buyer_id):
+        return None
+
+    monkeypatch.setattr(purchases, "log_top_up", log_top_up)
 
 
 @pytest.fixture(autouse=True)
@@ -21,16 +32,16 @@ def saved_currencies(monkeypatch):
     """Unit tests have no database: the currencies saved, by (owner type, id), in memory."""
     saved = {}
 
-    async def chosen(owner_type, owner_id):
+    async def chosen(session, owner_type, owner_id):
         return saved.get((owner_type, owner_id))
 
-    async def choose(owner_type, owner_id, currency):
+    async def choose(session, owner_type, owner_id, currency):
         saved[(owner_type, owner_id)] = currency
 
-    async def remember(owner_type, owner_id, currency):
+    async def remember(session, owner_type, owner_id, currency):
         return saved.setdefault((owner_type, owner_id), currency)
 
-    async def forget(owner_type, owner_id):
+    async def forget(session, owner_type, owner_id):
         saved.pop((owner_type, owner_id), None)
 
     for name, fake in (

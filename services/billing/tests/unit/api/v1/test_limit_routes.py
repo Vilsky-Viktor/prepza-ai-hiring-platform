@@ -15,10 +15,10 @@ def kept(monkeypatch):
     """The changed limits and their history, in memory; syncing to Redis is counted."""
     state = {"values": {}, "changes": [], "syncs": 0}
 
-    async def values():
+    async def values(session):
         return dict(state["values"])
 
-    async def change(name, value, user_id, email):
+    async def change(session, name, value, user_id, email):
         old = state["values"].get(name)
 
         if value is None:
@@ -32,7 +32,7 @@ def kept(monkeypatch):
     async def sync():
         state["syncs"] += 1
 
-    async def counts_since(start):
+    async def counts_since(session, start):
         return {"MAX_API_KEYS": 4, "OPENAI_QUOTA": 1}
 
     monkeypatch.setattr(limit_settings, "values", values)
@@ -217,7 +217,7 @@ def test_the_ai_costs_tab_asks_for_its_period(client, signed_in, monkeypatch):
 
 
 def test_a_support_pages_ai_spend_names_a_company_or_a_user(client, signed_in, monkeypatch):
-    async def spend_of(column, value, start, end):
+    async def spend_of(session, column, value, start, end):
         return 1.5, 3
 
     monkeypatch.setattr(ai_costs.ai_costs, "spend_of", spend_of)

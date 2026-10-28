@@ -13,7 +13,7 @@ from billing.core.security import service_token
 from billing.integrations import paddle
 from billing.repositories import auto_top_up_charges
 from billing.repositories import auto_top_ups as rows
-from billing.services import auto_top_up_declines, auto_top_ups, webhooks
+from billing.services import auto_top_up_charging, auto_top_up_declines, auto_top_ups, webhooks
 from tests.unit.paddle_events import completed
 
 AUTH = bearer(service_token("billing"))
@@ -42,7 +42,7 @@ def stored(monkeypatch):
     """The company's automatic top-up as billing has it (none until set)."""
     found = {"row": None}
 
-    async def get(owner_type, owner_id):
+    async def get(session, owner_type, owner_id):
         return found["row"]
 
     async def update_transaction(subscription_id):
@@ -83,7 +83,7 @@ def test_paddle_saving_the_new_card_resumes_it_and_grants_nothing(monkeypatch, r
     """A repeated web hook, or one for a top-up paused again since, resumes nothing."""
     asked, charged, granted = [], [], []
 
-    async def resume(subscription_id, saved_at):
+    async def resume(session, subscription_id, saved_at):
         asked.append((subscription_id, saved_at))
 
         return resumed
@@ -91,11 +91,11 @@ def test_paddle_saving_the_new_card_resumes_it_and_grants_nothing(monkeypatch, r
     async def check(owner_type, owner_id):
         charged.append(owner_id)
 
-    async def grant(*args):
+    async def grant(session, *args):
         granted.append(args)
 
     monkeypatch.setattr(auto_top_up_charges, "resume", resume)
-    monkeypatch.setattr(auto_top_ups, "check", check)
+    monkeypatch.setattr(auto_top_up_charging, "check", check)
     monkeypatch.setattr("billing.repositories.purchases.grant", grant)
     event = completed()
     event["data"].update(

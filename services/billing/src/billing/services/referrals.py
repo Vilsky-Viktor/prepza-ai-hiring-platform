@@ -8,19 +8,26 @@ from prepza_common.events.notifications import (
 
 from billing.constants.credits import REFERRAL_REWARD
 from billing.constants.notifications import REFERRAL_LINK
+from billing.core.db import Session
 from billing.repositories import referrals
 from billing.schemas.billing import ReferralOut, ReferralRewardOut
 from billing.services import credit_events
 
 
 async def referral_out(owner_type: str, owner_id: str) -> ReferralOut:
+    """The owner's referral code (made the first time it's asked for) and the rewards it paid."""
+    async with Session.begin() as session:
+        code = await referrals.code_of(session, owner_type, owner_id)
+        rewarded = await referrals.rewarded_count(session, owner_type, owner_id)
+        rewards = await referrals.rewards(session, owner_type, owner_id, MAX_PAGE_SIZE)
+
     return ReferralOut(
-        code=await referrals.code_of(owner_type, owner_id),
+        code=code,
         reward=REFERRAL_REWARD,
-        rewarded=await referrals.rewarded_count(owner_type, owner_id),
+        rewarded=rewarded,
         rewards=[
             ReferralRewardOut(company_id=row.owner_id, rewarded_at=row.rewarded_at, credits=paid)
-            for row, paid in await referrals.rewards(owner_type, owner_id, MAX_PAGE_SIZE)
+            for row, paid in rewards
         ],
     )
 
@@ -44,7 +51,8 @@ async def reward_after_top_up(owner_type: str, owner_id: str, transaction_id: st
             (NOTIFICATION_REQUESTED, notice),
         ]
 
-    referrer_id = await referrals.reward(owner_type, owner_id, transaction_id, told)
+    async with Session.begin() as session:
+        referrer_id = await referrals.reward(session, owner_type, owner_id, transaction_id, told)
 
     if referrer_id is not None:
         await track("referral_rewarded", company_id=owner_id)
@@ -52,5 +60,8 @@ async def reward_after_top_up(owner_type: str, owner_id: str, transaction_id: st
 
 async def take_back_reward(owner_id: str, transaction_id: str) -> None:
     """A top-up refunded in full or charged back no longer pays its referral."""
-    if await referrals.take_back(transaction_id):
+    async with Session.begin() as session:
+        taken = await referrals.take_back(session, transaction_id)
+
+    if taken:
         await track("referral_reversed", company_id=owner_id)

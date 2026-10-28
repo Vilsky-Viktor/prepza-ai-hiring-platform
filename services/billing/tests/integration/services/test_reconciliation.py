@@ -10,6 +10,8 @@ from billing.integrations import paddle
 from billing.repositories import ledger
 from billing.services.reconciliation import reconcile
 from billing.services.topups import handle_completed
+from tests.integration.factories import welcomed
+from tests.integration.transactions import transaction
 from tests.unit.paddle_events import PRODUCT, adjustment, completed
 
 COMPANY = OwnerType.COMPANY
@@ -24,9 +26,9 @@ def paid_into(company_id: str) -> dict:
     return data
 
 
-def refund_of(transaction: dict, total: str) -> dict:
+def refund_of(txn: dict, total: str) -> dict:
     data = adjustment(total=total, adjustment_id=f"adj_{uuid.uuid4().hex}")["data"]
-    data["transaction_id"] = transaction["id"]
+    data["transaction_id"] = txn["id"]
     data["created_at"] = NOW.isoformat()
 
     return data
@@ -48,17 +50,17 @@ def paddle_lists(monkeypatch, transactions: list[dict], adjustments: list[dict])
 
 def test_a_payment_and_a_refund_the_web_hooks_missed_count_once(run, monkeypatch):
     acme = str(uuid.uuid4())
-    transaction = paid_into(acme)
+    txn = paid_into(acme)
     # Half of the 5,000 cents paid comes back.
-    paddle_lists(monkeypatch, [transaction], [refund_of(transaction, "2500")])
+    paddle_lists(monkeypatch, [txn], [refund_of(txn, "2500")])
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        before = (await ledger.wallet(COMPANY, acme)).balance
+        await welcomed(acme, f"{acme}@example.com")
+        before = (await transaction(ledger.wallet, COMPANY, acme)).balance
         await reconcile(NOW)
-        once = (await ledger.wallet(COMPANY, acme)).balance
+        once = (await transaction(ledger.wallet, COMPANY, acme)).balance
         await reconcile(NOW)
-        twice = (await ledger.wallet(COMPANY, acme)).balance
+        twice = (await transaction(ledger.wallet, COMPANY, acme)).balance
 
         return once - before, twice - before
 
@@ -70,15 +72,15 @@ def test_a_payment_and_a_refund_the_web_hooks_missed_count_once(run, monkeypatch
 
 def test_a_payment_its_web_hook_credited_isnt_credited_again(run, monkeypatch):
     acme = str(uuid.uuid4())
-    transaction = paid_into(acme)
-    paddle_lists(monkeypatch, [transaction], [])
+    txn = paid_into(acme)
+    paddle_lists(monkeypatch, [txn], [])
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        await handle_completed(transaction)
-        before = (await ledger.wallet(COMPANY, acme)).balance
+        await welcomed(acme, f"{acme}@example.com")
+        await handle_completed(txn)
+        before = (await transaction(ledger.wallet, COMPANY, acme)).balance
         await reconcile(NOW)
 
-        return (await ledger.wallet(COMPANY, acme)).balance - before
+        return (await transaction(ledger.wallet, COMPANY, acme)).balance - before
 
     assert run(scenario()) == 0

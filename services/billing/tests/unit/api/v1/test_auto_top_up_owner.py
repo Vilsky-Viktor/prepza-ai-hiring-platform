@@ -31,10 +31,12 @@ def running(monkeypatch):
         next_price_from=None,
     )
 
-    async def get(owner_type, owner_id):
+    async def get(session, owner_type, owner_id):
         return row
 
-    async def save(owner_type, owner_id, product, threshold, buyer_id, price, currency, language):
+    async def save(
+        session, owner_type, owner_id, product, threshold, buyer_id, price, currency, language
+    ):
         saved.append((product, threshold, buyer_id, price, currency, language))
 
         return row

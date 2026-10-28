@@ -17,15 +17,23 @@ src/billing/
 ├── api/dependencies.py     # Calls from other services; the visitor's country
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
 ├── handlers/               # Pub/Sub events (AI calls, limit hits); dispatch.py picks one
-├── services/               # Top-ups, Paddle's web hooks, refunds, automatic top-ups,
-│                           # reconciliation, referrals, currencies, AI costs, limits
-├── repositories/           # Database queries: ledger, purchases, automatic top-ups, usage, ...
+├── services/               # Holds, top-ups, Paddle's web hooks, refunds, automatic top-ups,
+│                           # reconciliation, referrals, currencies, account deletions, AI
+│                           # costs, limits; each opens its transaction
+├── repositories/           # Database queries: ledger, purchases, automatic top-ups, usage, ...;
+│                           # take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (prices, gift keys, signatures); fixed values
 └── integrations/           # Paddle, companies' names, Redis
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
+
+Routes and handlers call services; services open the transaction (`async with
+Session.begin() as session:`) and pass it to the repositories, so an action's steps are saved
+together, and call Paddle, companies and Redis outside it (`tests/unit/test_layers.py` checks the
+imports and that no repository commits). Batched deletes take the session factory, each batch
+its own transaction.
 
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,
 `prepend_sys_path` for Alembic), so the package imports as `billing`

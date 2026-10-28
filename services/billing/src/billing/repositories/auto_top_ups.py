@@ -3,18 +3,18 @@ from datetime import datetime
 from prepza_common.config.constants import DEFAULT_LANGUAGE
 from sqlalchemy import and_, case, delete, exists, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from billing.constants.products import AUTO_TOP_UP_COOLDOWN, AUTO_TOP_UP_UNCREDITED_WAIT
-from billing.core.db import Session
 from billing.models.billing import AutoTopUp, Entry, Wallet
 
 
-async def get(owner_type: str, owner_id: str) -> AutoTopUp | None:
-    async with Session() as session:
-        return await session.get(AutoTopUp, (owner_type, owner_id))
+async def get(session: AsyncSession, owner_type: str, owner_id: str) -> AutoTopUp | None:
+    return await session.get(AutoTopUp, (owner_type, owner_id))
 
 
 async def save(
+    session: AsyncSession,
     owner_type: str,
     owner_id: str,
     product: str,
@@ -47,67 +47,69 @@ async def save(
     def unless_kept(column, chosen):
         return case((kept, column), else_=chosen)
 
-    async with Session() as session:
-        await session.execute(
-            upsert.on_conflict_do_update(
-                index_elements=["owner_type", "owner_id"],
-                set_={
-                    **values,
-                    "buyer_id": case((waiting, upsert.excluded.buyer_id), else_=AutoTopUp.buyer_id),
-                    "language": case((buyers, upsert.excluded.language), else_=AutoTopUp.language),
-                    "price": unless_kept(AutoTopUp.price, upsert.excluded.price),
-                    "price_currency": unless_kept(
-                        AutoTopUp.price_currency, upsert.excluded.price_currency
-                    ),
-                    "next_price": unless_kept(AutoTopUp.next_price, None),
-                    "next_price_from": unless_kept(AutoTopUp.next_price_from, None),
-                },
-            )
+    await session.execute(
+        upsert.on_conflict_do_update(
+            index_elements=["owner_type", "owner_id"],
+            set_={
+                **values,
+                "buyer_id": case((waiting, upsert.excluded.buyer_id), else_=AutoTopUp.buyer_id),
+                "language": case((buyers, upsert.excluded.language), else_=AutoTopUp.language),
+                "price": unless_kept(AutoTopUp.price, upsert.excluded.price),
+                "price_currency": unless_kept(
+                    AutoTopUp.price_currency, upsert.excluded.price_currency
+                ),
+                "next_price": unless_kept(AutoTopUp.next_price, None),
+                "next_price_from": unless_kept(AutoTopUp.next_price_from, None),
+            },
         )
-        await session.commit()
+    )
 
-        return await session.get(AutoTopUp, (owner_type, owner_id))
+    return await session.get(AutoTopUp, (owner_type, owner_id), populate_existing=True)
 
 
 async def start(
-    owner_type: str, owner_id: str, buyer_id: str, subscription_id: str, currency: str
+    session: AsyncSession,
+    owner_type: str,
+    owner_id: str,
+    buyer_id: str,
+    subscription_id: str,
+    currency: str,
 ) -> bool:
     """Attaches the subscription, and its currency, from the checkout of whoever turned it on;
     once only. Paddle's two events for one checkout can arrive together, so finding it already
     attached counts as started too."""
-    async with Session() as session:
-        started = await session.scalar(
-            update(AutoTopUp)
-            .where(
-                AutoTopUp.owner_type == owner_type,
-                AutoTopUp.owner_id == owner_id,
-                AutoTopUp.buyer_id == buyer_id,
-                or_(
-                    AutoTopUp.subscription_id.is_(None),
-                    AutoTopUp.subscription_id == subscription_id,
-                ),
-            )
-            .values(subscription_id=subscription_id, currency=currency)
-            .returning(AutoTopUp.owner_id)
+    started = await session.scalar(
+        update(AutoTopUp)
+        .where(
+            AutoTopUp.owner_type == owner_type,
+            AutoTopUp.owner_id == owner_id,
+            AutoTopUp.buyer_id == buyer_id,
+            or_(
+                AutoTopUp.subscription_id.is_(None),
+                AutoTopUp.subscription_id == subscription_id,
+            ),
         )
-        await session.commit()
+        .values(subscription_id=subscription_id, currency=currency)
+        .returning(AutoTopUp.owner_id)
+    )
 
-        return started is not None
+    return started is not None
 
 
-async def owner_of(subscription_id: str) -> tuple[str, str] | None:
+async def owner_of(session: AsyncSession, subscription_id: str) -> tuple[str, str] | None:
     """Whose wallet an automatic charge is for."""
     query = select(AutoTopUp.owner_type, AutoTopUp.owner_id).where(
         AutoTopUp.subscription_id == subscription_id
     )
 
-    async with Session() as session:
-        row = (await session.execute(query)).first()
+    row = (await session.execute(query)).first()
 
     return (row.owner_type, row.owner_id) if row else None
 
 
-async def claim_charge(owner_type: str, owner_id: str, now: datetime) -> AutoTopUp | None:
+async def claim_charge(
+    session: AsyncSession, owner_type: str, owner_id: str, now: datetime
+) -> AutoTopUp | None:
     """The running automatic top-up, if the available balance is under its threshold, it
     hasn't charged within the cooldown, it isn't paused and a declined card's retry is due
     (`retry_at`); marks it charged now. Atomic, so two requests at once charge once. The last
@@ -141,14 +143,14 @@ async def claim_charge(owner_type: str, owner_id: str, now: datetime) -> AutoTop
         .returning(AutoTopUp)
     )
 
-    async with Session() as session:
-        row = await session.scalar(query)
-        await session.commit()
+    row = await session.scalar(query)
 
-        return row
+    return row
 
 
-async def remove(owner_type: str, owner_id: str, buyer_id: str | None = None) -> str | None:
+async def remove(
+    session: AsyncSession, owner_type: str, owner_id: str, buyer_id: str | None = None
+) -> str | None:
     """Turns it off, or only when `buyer_id` turned it on; the subscription to cancel, if it had
     started."""
     query = delete(AutoTopUp).where(
@@ -158,47 +160,36 @@ async def remove(owner_type: str, owner_id: str, buyer_id: str | None = None) ->
     if buyer_id is not None:
         query = query.where(AutoTopUp.buyer_id == buyer_id)
 
-    async with Session() as session:
-        subscription_id = await session.scalar(query.returning(AutoTopUp.subscription_id))
-        await session.commit()
+    subscription_id = await session.scalar(query.returning(AutoTopUp.subscription_id))
 
-        return subscription_id
+    return subscription_id
 
 
-async def of_buyer(buyer_id: str) -> list[AutoTopUp]:
+async def of_buyer(session: AsyncSession, buyer_id: str) -> list[AutoTopUp]:
     """The automatic top-ups this person turned on, paid with their card once started."""
-    async with Session() as session:
-        return list(await session.scalars(select(AutoTopUp).where(AutoTopUp.buyer_id == buyer_id)))
+    return list(await session.scalars(select(AutoTopUp).where(AutoTopUp.buyer_id == buyer_id)))
 
 
-async def remove_for_buyer(buyer_id: str) -> list[str]:
+async def remove_for_buyer(session: AsyncSession, buyer_id: str) -> list[str]:
     """Turns off every automatic top-up paid with this person's card; the subscriptions to
     cancel."""
-    async with Session() as session:
-        rows = await session.scalars(
-            delete(AutoTopUp)
-            .where(AutoTopUp.buyer_id == buyer_id)
-            .returning(AutoTopUp.subscription_id)
-        )
-        subscriptions = [row for row in rows if row]
-        await session.commit()
+    rows = await session.scalars(
+        delete(AutoTopUp).where(AutoTopUp.buyer_id == buyer_id).returning(AutoTopUp.subscription_id)
+    )
+    subscriptions = [row for row in rows if row]
 
-        return subscriptions
+    return subscriptions
 
 
-async def set_currency(subscription_id: str, currency: str) -> None:
+async def set_currency(session: AsyncSession, subscription_id: str, currency: str) -> None:
     """The currency Paddle now charges the subscription in."""
-    async with Session() as session:
-        await session.execute(
-            update(AutoTopUp)
-            .where(AutoTopUp.subscription_id == subscription_id)
-            .values(currency=currency)
-        )
-        await session.commit()
+    await session.execute(
+        update(AutoTopUp)
+        .where(AutoTopUp.subscription_id == subscription_id)
+        .values(currency=currency)
+    )
 
 
-async def remove_subscription(subscription_id: str) -> None:
+async def remove_subscription(session: AsyncSession, subscription_id: str) -> None:
     """Paddle ended the subscription: automatic top-up is off."""
-    async with Session() as session:
-        await session.execute(delete(AutoTopUp).where(AutoTopUp.subscription_id == subscription_id))
-        await session.commit()
+    await session.execute(delete(AutoTopUp).where(AutoTopUp.subscription_id == subscription_id))

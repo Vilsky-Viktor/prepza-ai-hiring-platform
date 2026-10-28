@@ -4,8 +4,8 @@ from datetime import datetime
 
 from prepza_common.db.stats import period_range
 from sqlalchemy import func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from billing.core.db import Session
 from billing.models.usage import LimitHit
 
 HITS = func.count(LimitHit.id)
@@ -20,7 +20,7 @@ def since(period: str | None) -> list:
     return [LimitHit.occurred_at >= start, LimitHit.occurred_at < end]
 
 
-async def counts(where: list) -> list:
+async def counts(session: AsyncSession, where: list) -> list:
     """Each limit's hits, most first, with its kind and scope."""
     query = (
         select(LimitHit.limit, LimitHit.kind, func.max(LimitHit.scope), HITS)
@@ -29,11 +29,10 @@ async def counts(where: list) -> list:
         .order_by(HITS.desc())
     )
 
-    async with Session() as session:
-        return list((await session.execute(query)).all())
+    return list((await session.execute(query)).all())
 
 
-async def hitters(column, where: list, top: int) -> list:
+async def hitters(session: AsyncSession, column, where: list, top: int) -> list:
     """(limit, company or user, hits): each limit's `top` that hit it most, most first."""
     rank = func.row_number().over(partition_by=LimitHit.limit, order_by=(HITS.desc(), column))
     counted = (
@@ -48,14 +47,12 @@ async def hitters(column, where: list, top: int) -> list:
         .order_by(counted.c.hits.desc(), counted.c.key)
     )
 
-    async with Session() as session:
-        return list((await session.execute(query)).all())
+    return list((await session.execute(query)).all())
 
 
-async def counts_since(start: datetime) -> dict[str, int]:
+async def counts_since(session: AsyncSession, start: datetime) -> dict[str, int]:
     query = select(LimitHit.limit, HITS).where(LimitHit.occurred_at >= start)
 
-    async with Session() as session:
-        rows = await session.execute(query.group_by(LimitHit.limit))
+    rows = await session.execute(query.group_by(LimitHit.limit))
 
-        return {name: hits for name, hits in rows.all()}
+    return {name: hits for name, hits in rows.all()}

@@ -10,7 +10,10 @@ from billing.constants.credits import Reason
 from billing.constants.products import OwnerType
 from billing.core.db import Session
 from billing.models.billing import Entry, Hold, Wallet
-from billing.repositories import ledger, purchases
+from billing.repositories import ledger
+from billing.services import accounts
+from tests.integration.factories import welcomed
+from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
 
@@ -31,14 +34,14 @@ async def ledger_rows(company_id: str) -> list[int]:
 async def company_with_ledger() -> str:
     """A company with its welcome gift, five holds and three charges."""
     company_id = str(uuid.uuid4())
-    await ledger.welcome_company(company_id, f"{company_id}@example.com")
+    await welcomed(company_id, f"{company_id}@example.com")
 
     for number in range(5):
         key = f"candidate:{company_id}:{number}"
-        await ledger.reserve(COMPANY, company_id, 1, key, Reason.CANDIDATE)
+        await transaction(ledger.reserve, COMPANY, company_id, 1, key, Reason.CANDIDATE)
 
         if number < 3:
-            await ledger.charge(key)
+            await transaction(ledger.charge, key)
 
     return company_id
 
@@ -49,9 +52,9 @@ def test_a_deleted_companys_ledger_goes_batch_after_batch(run, monkeypatch):
     async def scenario():
         acme, other = await company_with_ledger(), await company_with_ledger()
         before = await ledger_rows(acme)
-        await purchases.delete_company(acme)
+        await accounts.delete_company(acme)
         after, kept = await ledger_rows(acme), await ledger_rows(other)
-        await purchases.delete_company(other)
+        await accounts.delete_company(other)
 
         return before, after, kept
 

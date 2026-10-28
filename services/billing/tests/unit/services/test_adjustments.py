@@ -11,13 +11,14 @@ from tests.unit.paddle_events import adjustment
 def moved(monkeypatch):
     calls = []
 
-    async def bought(transaction_id):
+    async def bought(session, transaction_id):
         # $10 paid for 1,000 credits.
         return ("company", "acme", 1_000, 1000)
 
     taken = {}
 
     async def take_back_credits(
+        session,
         owner_type,
         owner_id,
         amount,
@@ -33,7 +34,7 @@ def moved(monkeypatch):
 
         return taken[transaction_id]
 
-    async def take_back(transaction_id):
+    async def take_back(session, transaction_id):
         calls.append(("referral taken back", transaction_id))
 
         return False
@@ -57,10 +58,10 @@ def test_an_approved_refund_takes_the_credits_back(moved):
 def test_a_refund_keeps_the_money_it_returned(monkeypatch):
     kept = []
 
-    async def bought(transaction_id):
+    async def bought(session, transaction_id):
         return ("company", "acme", 1_000, 1000)
 
-    async def take_back_credits(owner_type, owner_id, amount, *rest):
+    async def take_back_credits(session, owner_type, owner_id, amount, *rest):
         kept.append(rest[-3:-1])
 
         return 0

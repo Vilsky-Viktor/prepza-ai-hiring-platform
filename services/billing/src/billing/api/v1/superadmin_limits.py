@@ -2,6 +2,7 @@ from fastapi import APIRouter, status
 from prepza_common.auth.superadmin import SuperadminUser
 
 from billing.constants.usage import CHANGES_SHOWN
+from billing.core.db import Session
 from billing.repositories import limit_settings
 from billing.schemas.limits import LimitChangeOut, LimitIn, LimitsOut
 from billing.services import limit_values
@@ -18,10 +19,10 @@ async def get_limits(superadmin: SuperadminUser) -> LimitsOut:
 @router.get("/changes")
 async def get_changes(superadmin: SuperadminUser) -> list[LimitChangeOut]:
     """The latest changes, newest first."""
-    return [
-        LimitChangeOut.model_validate(row, from_attributes=True)
-        for row in await limit_settings.changes(CHANGES_SHOWN)
-    ]
+    async with Session() as session:
+        rows = await limit_settings.changes(session, CHANGES_SHOWN)
+
+    return [LimitChangeOut.model_validate(row, from_attributes=True) for row in rows]
 
 
 @router.put("/{name}")

@@ -61,7 +61,7 @@ def test_a_candidates_movement_carries_the_key_companies_knows_the_invite_by():
 def test_the_history_route_lists_a_page_with_the_money_and_transaction(client, monkeypatch):
     asked = []
 
-    async def page(owner_type, owner_id, offset, limit):
+    async def page(session, owner_type, owner_id, offset, limit):
         asked.append((owner_type, owner_id, offset, limit))
 
         return [
@@ -103,7 +103,7 @@ def invoices(monkeypatch):
     """The company acme owns txn_01 only; Paddle's invoice links, faked."""
     asked = []
 
-    async def owns(owner_type, owner_id, transaction):
+    async def owns(session, owner_type, owner_id, transaction):
         return (owner_type, owner_id, transaction) == ("company", "acme", "txn_01")
 
     async def invoice_url(transaction):
@@ -145,7 +145,7 @@ def test_the_history_and_invoice_need_a_service_token(client):
 
 
 def test_a_top_ups_transaction_says_whose_wallet_it_paid_into(client, monkeypatch):
-    async def for_transaction(transaction):
+    async def for_transaction(session, transaction):
         return ("company", "acme", 1_000, "1000") if transaction == "txn_01" else None
 
     monkeypatch.setattr(purchases, "for_transaction", for_transaction)

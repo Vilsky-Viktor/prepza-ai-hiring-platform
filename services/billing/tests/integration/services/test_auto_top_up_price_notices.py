@@ -16,6 +16,7 @@ from billing.repositories import auto_top_ups as rows
 from billing.schemas.billing import AutoTopUpIn
 from billing.services import auto_top_up_prices, auto_top_ups
 from tests.integration.services.test_auto_top_ups import checkout_data
+from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
 DAY = timedelta(days=1)
@@ -39,7 +40,7 @@ async def agreed_at(acme: str, ann: str, price: int) -> None:
     choice = AutoTopUpIn(product="topup_50", threshold=500)
     await auto_top_ups.turn_on(COMPANY, acme, choice, ann, Currency.USD)
     await auto_top_ups.start(checkout_data(acme, ann), f"sub_{uuid.uuid4().hex[:12]}", "USD")
-    await price_rows.agree(COMPANY, acme, price, "USD")
+    await transaction(price_rows.agree, COMPANY, acme, price, "USD")
 
 
 def test_a_new_price_is_announced_once_and_charged_only_from_its_day(run, paddle_calls):
@@ -48,16 +49,18 @@ def test_a_new_price_is_announced_once_and_charged_only_from_its_day(run, paddle
 
     async def scenario():
         await agreed_at(acme, ann, 4500)
-        row = await rows.get(COMPANY, acme)
+        row = await transaction(rows.get, COMPANY, acme)
         await auto_top_up_prices.check_price(row, Currency.USD, now)
         # The daily check again, and again with the row read before: one notice.
-        await auto_top_up_prices.check_price(await rows.get(COMPANY, acme), Currency.USD, now)
+        await auto_top_up_prices.check_price(
+            await transaction(rows.get, COMPANY, acme), Currency.USD, now
+        )
         await auto_top_up_prices.check_price(row, Currency.USD, now)
-        announced = await rows.get(COMPANY, acme)
+        announced = await transaction(rows.get, COMPANY, acme)
         # Changing only the level keeps both prices.
         level = AutoTopUpIn(product="topup_50", threshold=1500)
         await auto_top_ups.turn_on(COMPANY, acme, level, ann, Currency.USD)
-        kept = await rows.get(COMPANY, acme)
+        kept = await transaction(rows.get, COMPANY, acme)
 
         return announced, kept, await notices(acme)
 
@@ -77,11 +80,11 @@ def test_charging_on_the_new_day_makes_it_the_agreed_price(run, paddle_calls):
 
     async def scenario():
         await agreed_at(acme, ann, 4500)
-        row = await rows.get(COMPANY, acme)
-        await price_rows.announce(COMPANY, acme, row, 5000, day, {"kind": "test"})
-        await charges.charged(COMPANY, acme, 5000, "USD", day)
+        row = await transaction(rows.get, COMPANY, acme)
+        await transaction(price_rows.announce, COMPANY, acme, row, 5000, day, {"kind": "test"})
+        await transaction(charges.charged, COMPANY, acme, 5000, "USD", day)
 
-        return await rows.get(COMPANY, acme)
+        return await transaction(rows.get, COMPANY, acme)
 
     row = run(scenario())
 
@@ -98,12 +101,14 @@ def test_choosing_another_top_up_agrees_to_its_price_at_once(run, paddle_calls):
 
     async def scenario():
         await agreed_at(acme, ann, 4500)
-        row = await rows.get(COMPANY, acme)
-        await price_rows.announce(COMPANY, acme, row, 5000, datetime.now(UTC) + 31 * DAY, {})
+        row = await transaction(rows.get, COMPANY, acme)
+        await transaction(
+            price_rows.announce, COMPANY, acme, row, 5000, datetime.now(UTC) + 31 * DAY, {}
+        )
         bigger = AutoTopUpIn(product="topup_200", threshold=500)
         await auto_top_ups.turn_on(COMPANY, acme, bigger, ann, Currency.EUR)
 
-        return await rows.get(COMPANY, acme)
+        return await transaction(rows.get, COMPANY, acme)
 
     row = run(scenario())
 

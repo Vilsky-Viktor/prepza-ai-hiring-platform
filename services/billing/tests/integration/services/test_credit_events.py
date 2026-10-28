@@ -10,8 +10,8 @@ from sqlalchemy import select
 from billing.constants.products import OwnerType
 from billing.core.db import Session
 from billing.models.outbox import OutboxEvent
-from billing.repositories import purchases
 from billing.repositories.events import tell
+from billing.services import topups
 from billing.services.credit_events import credits_added
 
 NOW = datetime(2026, 10, 10, 12, tzinfo=UTC)
@@ -33,7 +33,7 @@ def test_a_top_up_saves_its_event_once_however_often_paddle_repeats_it(run):
 
     async def scenario():
         for _ in range(2):
-            await purchases.grant(
+            await topups.grant(
                 OwnerType.COMPANY,
                 acme,
                 100,
@@ -57,7 +57,8 @@ def test_a_bell_notice_is_kept_in_the_outbox(run):
     notice = {"recipient": "company", "recipient_id": str(uuid.uuid4()), "kind": "x"}
 
     async def scenario():
-        await tell(notice)
+        async with Session.begin() as session:
+            tell(session, notice)
 
         async with Session() as session:
             return list(

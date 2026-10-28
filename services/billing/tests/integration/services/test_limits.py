@@ -16,6 +16,7 @@ from billing.api.v1 import schedules
 from billing.models.usage import LimitHit
 from billing.repositories import limit_hits, limit_settings, usage
 from billing.services import limit_hit_lists, limit_values
+from tests.integration.transactions import transaction
 
 # One limit no other service's integration tests touch, as they share Redis database 15.
 NAME = "REGISTRATIONS_PER_DAY"
@@ -34,7 +35,7 @@ async def read(redis) -> int | float:
 async def changes_of_mine() -> list[tuple]:
     return [
         (change.old_value, change.new_value, change.changed_by_email)
-        for change in reversed(await limit_settings.changes(1_000))
+        for change in reversed(await transaction(limit_settings.changes, 1_000))
         if change.name == NAME
     ]
 
@@ -92,7 +93,7 @@ def test_a_redis_wipe_is_healed_by_the_next_sync(run, redis, reset):
 def test_a_sync_never_brings_back_a_reset_value(run, redis, reset):
     async def scenario():
         await limit_values.change(NAME, 700, ANN)
-        await limit_settings.change(NAME, None, "ann", "ann@example.com")
+        await transaction(limit_settings.change, NAME, None, "ann", "ann@example.com")
         await schedules.sync_limits()
 
         return await read(redis)
@@ -104,8 +105,8 @@ def test_two_changes_at_once_each_keep_the_value_before_them(run, redis, reset):
     async def scenario():
         before = await changes_of_mine()
         await asyncio.gather(
-            limit_settings.change(NAME, 300, "ann", "ann@example.com"),
-            limit_settings.change(NAME, 400, "bob", "bob@example.com"),
+            transaction(limit_settings.change, NAME, 300, "ann", "ann@example.com"),
+            transaction(limit_settings.change, NAME, 400, "bob", "bob@example.com"),
         )
 
         return (await changes_of_mine())[len(before) :]
@@ -141,7 +142,9 @@ def test_a_limits_hits_of_the_last_7_days_and_who_hit_it_most(run, redis, reset,
 
         for days in (1, 6, 8):
             who = {"company_id": acme, "user_id": ann}
-            await usage.store_hit(uuid.uuid4().hex, now - timedelta(days=days), {**hit, **who})
+            await transaction(
+                usage.store_hit, uuid.uuid4().hex, now - timedelta(days=days), {**hit, **who}
+            )
 
         lists = await limit_hit_lists.limit_hits_out(now.strftime("%Y-%m"))
 
@@ -165,9 +168,11 @@ def test_only_each_limits_top_hitters_are_read(run):
         for times, company in enumerate(companies, start=1):
             for _ in range(times):
                 data = {"limit": name, "kind": "ours", "scope": "company", "company_id": company}
-                await usage.store_hit(uuid.uuid4().hex, now, data)
+                await transaction(usage.store_hit, uuid.uuid4().hex, now, data)
 
-        rows = await limit_hits.hitters(LimitHit.company_id, [LimitHit.limit == name], 2)
+        rows = await transaction(
+            limit_hits.hitters, LimitHit.company_id, [LimitHit.limit == name], 2
+        )
 
         return [(key, hits) for _, key, hits in rows]
 

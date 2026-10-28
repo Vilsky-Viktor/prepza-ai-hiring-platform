@@ -8,10 +8,10 @@ from prepza_common.events.notifications import NotificationKind, notification
 from billing.constants.declines import DECLINE_READ_TIMEOUT_SECONDS, HARD_DECLINE_CODES
 from billing.constants.notifications import COMPANY_BILLING_LINK, TOP_UP_LINK
 from billing.constants.products import NOT_YOUR_AUTO_TOP_UP, PADDLE_REFUSES_BILLING
+from billing.core.db import Session
 from billing.integrations import paddle
 from billing.models.billing import AutoTopUp
-from billing.repositories import auto_top_up_charges, auto_top_ups
-from billing.repositories.events import tell
+from billing.repositories import auto_top_up_charges, auto_top_ups, events
 from billing.schemas.billing import CheckoutOut
 from billing.services import outbox as outbox_service
 
@@ -47,11 +47,14 @@ async def hard(subscription_id: str, since: datetime) -> bool:
 async def handle_decline(row: AutoTopUp, owner_type: str, owner_id: str, now: datetime) -> None:
     """Counts the decline first, so it counts even if what follows is cut off; then pauses at
     once for a decline that can't pass later. The company's owners and admins are told: that it
-    failed and will be tried again, or that it's paused until the card is updated."""
-    paused = await auto_top_up_charges.declined(owner_type, owner_id, now)
+    failed and will be tried again, or that it's paused until the card is updated. Each step is
+    its own save: Paddle is read between them."""
+    async with Session.begin() as session:
+        paused = await auto_top_up_charges.declined(session, owner_type, owner_id, now)
 
     if not paused and await hard(row.subscription_id, now):
-        paused = await auto_top_up_charges.pause(owner_type, owner_id, now)
+        async with Session.begin() as session:
+            paused = await auto_top_up_charges.pause(session, owner_type, owner_id, now)
 
     if paused:
         event = notification(
@@ -65,14 +68,17 @@ async def handle_decline(row: AutoTopUp, owner_type: str, owner_id: str, now: da
         event = notification(owner_type, owner_id, NotificationKind.AUTO_TOP_UP_FAILED, TOP_UP_LINK)
 
     # Through the outbox, so a Pub/Sub failure doesn't lose it; sent now if Pub/Sub takes it.
-    await tell(event)
+    async with Session.begin() as session:
+        events.tell(session, event)
+
     await outbox_service.flush_quietly()
 
 
 async def card_update(owner_type: str, owner_id: str, buyer_id: str) -> CheckoutOut:
     """The checkout that saves a new card for the running automatic top-up; only for the person
     whose card pays for it. Once Paddle has saved it, a pause ends (auto_top_ups.card_saved)."""
-    row = await auto_top_ups.get(owner_type, owner_id)
+    async with Session() as session:
+        row = await auto_top_ups.get(session, owner_type, owner_id)
 
     if row is None or row.subscription_id is None:
         raise HTTPException(status.HTTP_409_CONFLICT, NOT_RUNNING)

@@ -10,9 +10,9 @@ import pytest
 from prepza_common.events.notifications import notification
 
 from billing.integrations import paddle
-from billing.repositories import auto_top_up_charges
+from billing.repositories import auto_top_up_charges, events
 from billing.repositories import auto_top_ups as rows
-from billing.services import auto_top_up_declines, auto_top_ups
+from billing.services import auto_top_up_charging, auto_top_up_declines
 
 ROW = SimpleNamespace(subscription_id="sub_01", product="topup_50", currency="USD")
 FAILED = notification("company", "acme", "auto_top_up_failed", "/top-up")
@@ -34,15 +34,15 @@ def charging(monkeypatch):
     seen = {"declines": [], "paused": [], "told": []}
     setup = {"pauses_at": None, "code": None, "read_fails": False}
 
-    async def claim_charge(owner_type, owner_id, now):
+    async def claim_charge(session, owner_type, owner_id, now):
         return ROW
 
-    async def declined(owner_type, owner_id, now):
+    async def declined(session, owner_type, owner_id, now):
         seen["declines"].append(owner_id)
 
         return len(seen["declines"]) == setup["pauses_at"]
 
-    async def pause(owner_type, owner_id, now):
+    async def pause(session, owner_type, owner_id, now):
         seen["paused"].append(owner_id)
 
         return True
@@ -53,7 +53,7 @@ def charging(monkeypatch):
 
         return setup["code"]
 
-    async def tell(event):
+    def tell(session, event):
         seen["told"].append(event)
 
     async def nothing():
@@ -63,13 +63,13 @@ def charging(monkeypatch):
         async def charge(row, owner_id, now):
             raise refused(status)
 
-        monkeypatch.setattr(auto_top_ups, "charge", charge)
+        monkeypatch.setattr(auto_top_up_charging, "charge", charge)
 
     monkeypatch.setattr(rows, "claim_charge", claim_charge)
     monkeypatch.setattr(auto_top_up_charges, "declined", declined)
     monkeypatch.setattr(auto_top_up_charges, "pause", pause)
     monkeypatch.setattr(paddle, "charge_error", charge_error)
-    monkeypatch.setattr(auto_top_up_declines, "tell", tell)
+    monkeypatch.setattr(events, "tell", tell)
     monkeypatch.setattr(auto_top_up_declines.outbox_service, "flush_quietly", nothing)
 
     return answer, setup, seen
@@ -85,7 +85,7 @@ def test_a_soft_decline_counts_and_the_company_is_told_it_will_be_tried_again(ch
     answer(status)
     setup["code"] = "not_enough_balance"
 
-    asyncio.run(auto_top_ups.check("company", "acme"))
+    asyncio.run(auto_top_up_charging.check("company", "acme"))
 
     assert seen["declines"] == ["acme"]
     assert seen["paused"] == []
@@ -109,7 +109,7 @@ def test_a_hard_decline_pauses_at_once_and_says_to_update_the_card(charging, cod
     answer(400)
     setup["code"] = code
 
-    asyncio.run(auto_top_ups.check("company", "acme"))
+    asyncio.run(auto_top_up_charging.check("company", "acme"))
 
     assert seen["declines"] == ["acme"]
     assert seen["paused"] == ["acme"]
@@ -124,7 +124,7 @@ def test_the_last_soft_decline_pauses_without_reading_the_code(charging):
     setup["pauses_at"] = 1
     setup["code"] = "fraud"
 
-    asyncio.run(auto_top_ups.check("company", "acme"))
+    asyncio.run(auto_top_up_charging.check("company", "acme"))
 
     assert seen["paused"] == []
     assert [paused_notice(event) for event in seen["told"]] == [
@@ -139,7 +139,7 @@ def test_a_decline_whose_reason_isnt_known_counts_as_one_that_may_pass(charging,
     setup["code"] = code
     setup["read_fails"] = read_fails
 
-    asyncio.run(auto_top_ups.check("company", "acme"))
+    asyncio.run(auto_top_up_charging.check("company", "acme"))
 
     assert seen["paused"] == []
     assert seen["told"] == [FAILED]
@@ -150,6 +150,6 @@ def test_paddle_refusing_billing_isnt_the_companys_card(charging, status):
     answer, _, seen = charging
     answer(status)
 
-    asyncio.run(auto_top_ups.check("company", "acme"))
+    asyncio.run(auto_top_up_charging.check("company", "acme"))
 
     assert seen == {"declines": [], "paused": [], "told": []}

@@ -6,10 +6,16 @@ import pytest
 from prepza_common.events.notifications import NOTIFICATION_REQUESTED, notification
 
 from billing.integrations import paddle
-from billing.repositories import auto_top_up_charges, purchases
+from billing.repositories import auto_top_up_charges, events, purchases
 from billing.repositories import auto_top_ups as auto_top_ups_storage
 from billing.repositories import referrals as referrals_storage
-from billing.services import auto_top_up_declines, auto_top_ups, referrals, topups, webhooks
+from billing.services import (
+    auto_top_up_charging,
+    auto_top_up_declines,
+    referrals,
+    topups,
+    webhooks,
+)
 from tests.unit.paddle_events import completed
 
 
@@ -18,13 +24,13 @@ def notified(monkeypatch):
     """The bell's notifications billing saves through its outbox."""
     sent = []
 
-    async def tell(event):
+    def tell(session, event):
         sent.append(event)
 
     async def nothing():
         pass
 
-    monkeypatch.setattr(auto_top_up_declines, "tell", tell)
+    monkeypatch.setattr(events, "tell", tell)
     monkeypatch.setattr(auto_top_up_declines.outbox_service, "flush_quietly", nothing)
     monkeypatch.setattr(topups.outbox_service, "flush_quietly", nothing)
 
@@ -36,7 +42,7 @@ def bells(events) -> list[dict]:
 
 
 def test_a_rewarded_referrer_is_told_with_the_reward(monkeypatch, notified):
-    async def rewarded(owner_type, owner_id, transaction_id, events_for):
+    async def rewarded(session, owner_type, owner_id, transaction_id, events_for):
         notified.extend(bells(events_for("bob")))
 
         return "bob"
@@ -54,15 +60,15 @@ def test_a_rewarded_referrer_is_told_with_the_reward(monkeypatch, notified):
 
 @pytest.fixture
 def granted(monkeypatch, notified):
-    async def fake_grant(*args):
+    async def fake_grant(session, *args):
         notified.extend(bells(args[11]))
 
         return True
 
-    async def no_referral(owner_type, owner_id, transaction_id, events_for=None):
+    async def no_referral(session, owner_type, owner_id, transaction_id, events_for=None):
         return None
 
-    async def owner(subscription_id):
+    async def owner(session, subscription_id):
         return ("company", "acme")
 
     monkeypatch.setattr(purchases, "grant", fake_grant)
@@ -98,7 +104,7 @@ def paddle_error(code):
 def charge_failing_with(monkeypatch, error):
     """Paddle's charge fails with `error`; the owners marked failed."""
 
-    async def claimed(owner_type, owner_id, now):
+    async def claimed(session, owner_type, owner_id, now):
         return SimpleNamespace(
             subscription_id="sub_01",
             product="topup_50",
@@ -116,7 +122,7 @@ def charge_failing_with(monkeypatch, error):
 
     marked = []
 
-    async def declined(owner_type, owner_id, now):
+    async def declined(session, owner_type, owner_id, now):
         marked.append(owner_id)
 
         return False
@@ -128,7 +134,7 @@ def charge_failing_with(monkeypatch, error):
     monkeypatch.setattr(auto_top_up_charges, "declined", declined)
     monkeypatch.setattr(paddle, "charge", charge)
     monkeypatch.setattr(paddle, "charge_error", no_reason)
-    monkeypatch.setattr(auto_top_ups, "decide", usd)
+    monkeypatch.setattr(auto_top_up_charging, "decide", usd)
 
     return marked
 
@@ -136,7 +142,7 @@ def charge_failing_with(monkeypatch, error):
 def test_a_declined_automatic_charge_tells_the_owner(monkeypatch, notified):
     marked = charge_failing_with(monkeypatch, paddle_error(400))
 
-    asyncio.run(auto_top_ups.check("company", "acme"))
+    asyncio.run(auto_top_up_charging.check("company", "acme"))
 
     assert notified == [notification("company", "acme", "auto_top_up_failed", "/top-up")]
     assert marked == ["acme"]
@@ -146,7 +152,7 @@ def test_a_declined_automatic_charge_tells_the_owner(monkeypatch, notified):
 def test_an_automatic_charge_paddle_may_have_taken_isnt_failed(monkeypatch, notified, error):
     marked = charge_failing_with(monkeypatch, error)
 
-    asyncio.run(auto_top_ups.check("company", "acme"))
+    asyncio.run(auto_top_up_charging.check("company", "acme"))
 
     assert notified == []
     assert marked == []

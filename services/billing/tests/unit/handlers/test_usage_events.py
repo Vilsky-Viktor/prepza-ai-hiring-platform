@@ -9,7 +9,8 @@ import pytest
 from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT, Category
 
 from billing.handlers import ai_used, dispatch
-from billing.repositories import usage
+from billing.helpers.usage import category_of
+from billing.services import usage
 
 WHEN = datetime(2026, 10, 16, 9, tzinfo=UTC)
 CALL = {"action": "assistant_message", "company_id": "c1", "cost_usd": 0.25}
@@ -20,7 +21,7 @@ def stored(monkeypatch):
     """The rows stored and the unpaid spend added; an event id stored before stores nothing."""
     state = {"usage": {}, "hits": {}, "unpaid": [], "category": Category.UNPAID}
 
-    async def store_usage(event_id, occurred_at, data):
+    async def record_usage(event_id, occurred_at, data):
         if event_id in state["usage"]:
             return None
 
@@ -28,14 +29,14 @@ def stored(monkeypatch):
 
         return state["category"]
 
-    async def store_hit(event_id, occurred_at, data):
+    async def record_hit(event_id, occurred_at, data):
         state["hits"].setdefault(event_id, (occurred_at, data))
 
     async def add_unpaid(redis, cost_usd):
         state["unpaid"].append(cost_usd)
 
-    monkeypatch.setattr(usage, "store_usage", store_usage)
-    monkeypatch.setattr(usage, "store_hit", store_hit)
+    monkeypatch.setattr(usage, "record_usage", record_usage)
+    monkeypatch.setattr(usage, "record_hit", record_hit)
     monkeypatch.setattr(ai_used, "add_unpaid", add_unpaid)
     monkeypatch.setattr(ai_used, "get_redis", lambda: None)
 
@@ -115,4 +116,4 @@ def test_pubsub_pushes_events_to_billing(client, stored):
     ],
 )
 def test_who_a_call_was_for(action, company_id, paid, category):
-    assert usage.category_of(action, company_id, paid) == category
+    assert category_of(action, company_id, paid) == category

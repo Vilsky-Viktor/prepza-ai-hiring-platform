@@ -53,10 +53,10 @@ def recorded(monkeypatch):
     """What the check did: prices agreed at once, and new prices announced (with their notice)."""
     done = {"agreed": [], "announced": []}
 
-    async def agree(owner_type, owner_id, price, currency):
+    async def agree(session, owner_type, owner_id, price, currency):
         done["agreed"].append((owner_id, price, currency))
 
-    async def announce(owner_type, owner_id, read, price, since, event):
+    async def announce(session, owner_type, owner_id, read, price, since, event):
         done["announced"].append((price, since, event))
 
         return True
@@ -111,12 +111,12 @@ def test_the_daily_check_reads_every_running_one_page_by_page(monkeypatch, recor
     pages = {("", ""): [row(4500, "USD")], ("company", "acme"): []}
     seen = []
 
-    async def running(after, limit):
+    async def running(session, after, limit):
         seen.append(after)
 
         return pages[after]
 
-    async def chosen_many(owner_type, owner_ids):
+    async def chosen_many(session, owner_type, owner_ids):
         return {}
 
     async def flushed():

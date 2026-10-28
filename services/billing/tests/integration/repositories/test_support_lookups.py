@@ -7,6 +7,9 @@ from datetime import UTC, datetime, timedelta
 from billing.constants.credits import CANDIDATE_CREDITS, HoldStatus, Reason
 from billing.constants.products import TOP_UPS, OwnerType
 from billing.repositories import ledger, purchases
+from billing.services import topups
+from tests.integration.factories import welcomed
+from tests.integration.transactions import transaction
 
 NOW = datetime(2026, 10, 10, 12, tzinfo=UTC)
 COMPANY = OwnerType.COMPANY
@@ -19,19 +22,15 @@ def test_a_persons_top_ups_once_per_transaction_newest_first(run):
     async def scenario():
         # One transaction of two lines, a later one, and another person's.
         for product in (TOP_UPS[0].key, TOP_UPS[1].key):
-            await purchases.grant(
-                COMPANY, acme, 1_000, 1, first, product, buyer, "25000", "USD", NOW
-            )
+            await topups.grant(COMPANY, acme, 1_000, 1, first, product, buyer, "25000", "USD", NOW)
 
         later = NOW + timedelta(days=1)
-        await purchases.grant(
-            COMPANY, acme, 1_000, 1, second, "topup_50", buyer, "5000", "EUR", later
-        )
-        await purchases.grant(
-            COMPANY, acme, 1_000, 1, theirs, "topup_50", other, "5000", "USD", NOW
-        )
+        await topups.grant(COMPANY, acme, 1_000, 1, second, "topup_50", buyer, "5000", "EUR", later)
+        await topups.grant(COMPANY, acme, 1_000, 1, theirs, "topup_50", other, "5000", "USD", NOW)
 
-        return await purchases.bought_by(buyer, 100), await purchases.bought_by(buyer, 1)
+        return await transaction(purchases.bought_by, buyer, 100), await transaction(
+            purchases.bought_by, buyer, 1
+        )
 
     found, limited = run(scenario())
 
@@ -47,18 +46,22 @@ def test_a_candidates_hold_is_open_then_charged_or_released(run):
     charged, released = f"candidate:{uuid.uuid4().hex}", f"candidate:{uuid.uuid4().hex}"
 
     async def scenario():
-        await ledger.welcome_company(acme, f"{acme}@example.com")
-        await ledger.reserve(COMPANY, acme, CANDIDATE_CREDITS, charged, Reason.CANDIDATE)
-        await ledger.reserve(COMPANY, acme, CANDIDATE_CREDITS, released, Reason.CANDIDATE)
-        held = await ledger.hold_status(charged)
-        await ledger.charge(charged)
-        await ledger.release(released)
+        await welcomed(acme, f"{acme}@example.com")
+        await transaction(
+            ledger.reserve, COMPANY, acme, CANDIDATE_CREDITS, charged, Reason.CANDIDATE
+        )
+        await transaction(
+            ledger.reserve, COMPANY, acme, CANDIDATE_CREDITS, released, Reason.CANDIDATE
+        )
+        held = await transaction(ledger.hold_status, charged)
+        await transaction(ledger.charge, charged)
+        await transaction(ledger.release, released)
 
         return (
             held,
-            await ledger.hold_status(charged),
-            await ledger.hold_status(released),
-            await ledger.hold_status("candidate:none"),
+            await transaction(ledger.hold_status, charged),
+            await transaction(ledger.hold_status, released),
+            await transaction(ledger.hold_status, "candidate:none"),
         )
 
     assert run(scenario()) == (HoldStatus.OPEN, HoldStatus.CHARGED, HoldStatus.RELEASED, None)
