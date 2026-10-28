@@ -2,7 +2,7 @@ import { RssIcon } from "lucide-react"
 import { getLocale, getTranslations } from "next-intl/server"
 
 import { JsonLd } from "@/components/common/json-ld"
-import { NewsList } from "@/components/news/news-list"
+import { NewsList } from "@/features/news/components/news-list"
 import {
   Tooltip,
   TooltipContent,
