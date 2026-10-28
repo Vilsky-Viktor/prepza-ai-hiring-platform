@@ -1,10 +1,10 @@
-"""e2e_tests/browser-lock.sh: one browser run at a time, the waiting ones in the order they came."""
+"""e2e_tests/browser_lock.py: one browser run at a time, the waiting ones in the order they came."""
 
 import subprocess
 import time
 from pathlib import Path
 
-LOCK = Path(__file__).resolve().parents[2] / "e2e_tests" / "browser-lock.sh"
+LOCK = Path(__file__).resolve().parents[2] / "e2e_tests" / "browser_lock.py"
 
 
 def until(check, seconds: float = 20) -> None:
@@ -20,7 +20,7 @@ def run(repo: Path, name: str) -> subprocess.Popen:
     """A browser run: takes the slot, notes its name, and holds the slot until `release-<name>`
     exists."""
     script = (
-        f". {LOCK}; take_browser_slot; echo {name} >> got; "
+        f'slot="$(python3 {LOCK} $$)"; trap \'rm -rf "$slot"\' EXIT; echo {name} >> got; '
         f"until [ -e release-{name} ]; do sleep 0.05; done"
     )
 
