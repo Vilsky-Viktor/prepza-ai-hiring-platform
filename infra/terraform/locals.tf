@@ -92,6 +92,7 @@ locals {
     { from = "rounds", path = "help/guide" },
     { from = "rounds", path = "help/pages/" },
     { from = "rounds", path = "help/legal/" },
+    { from = "rounds", path = "help/contact" },
   ]
 
   databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts", "site"]
@@ -121,7 +122,7 @@ locals {
     assistant = ["companies", "billing", "api", "notifications", "ats", "library", "rounds", "accounts", "site"]
     # Every service holding part of a user's data, for deleting and downloading an account;
     # billing also sets a new account's currency.
-    accounts = ["companies", "rounds", "generation", "billing", "notifications", "ats", "api", "assistant", "library"]
+    accounts = ["companies", "rounds", "generation", "billing", "notifications", "ats", "api", "assistant", "library", "site"]
     site     = []
   }
 
@@ -149,7 +150,7 @@ locals {
     library              = { redis-url = "REDIS_URL" }
     generation           = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY" }
     generation-worker    = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY" }
-    rounds               = { redis-url = "REDIS_URL", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
+    rounds               = { redis-url = "REDIS_URL" }
     companies            = { redis-url = "REDIS_URL", person-hash-key = "PERSON_HASH_KEY", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
     billing              = { redis-url = "REDIS_URL", person-hash-key = "PERSON_HASH_KEY", paddle-webhook-secret = "PADDLE_WEBHOOK_SECRET", paddle-api-key = "PADDLE_API_KEY" }
     notifications        = { redis-url = "REDIS_URL", email-link-secret = "EMAIL_LINK_SECRET", person-hash-key = "PERSON_HASH_KEY", resend-api-key = "RESEND_API_KEY", resend-webhook-secret = "RESEND_WEBHOOK_SECRET", slack-client-id = "SLACK_CLIENT_ID", slack-client-secret = "SLACK_CLIENT_SECRET", slack-encryption-key = "SLACK_ENCRYPTION_KEY" }
@@ -157,7 +158,7 @@ locals {
     ats                  = { redis-url = "REDIS_URL", ats-encryption-key = "ATS_ENCRYPTION_KEY" }
     api                  = { redis-url = "REDIS_URL", api-encryption-key = "API_ENCRYPTION_KEY" }
     accounts             = { redis-url = "REDIS_URL" }
-    site                 = { redis-url = "REDIS_URL" }
+    site                 = { redis-url = "REDIS_URL", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
     assistant            = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
   }
 

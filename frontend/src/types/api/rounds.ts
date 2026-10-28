@@ -275,27 +275,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/help/contact": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /**
-     * Contact
-     * @description The contact page's message; notifications emails it to prepza's inbox. Public, so the
-     *     sender shows they're a person.
-     */
-    post: operations["contact_help_contact_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/help/answers/{answer_id}/vote": {
     parameters: {
       query?: never
@@ -710,18 +689,6 @@ export interface components {
        * @default false
        */
       fast: boolean
-    }
-    /** ContactRequest */
-    ContactRequest: {
-      /** Name */
-      name: string
-      /**
-       * Email
-       * Format: email
-       */
-      email: string
-      /** Message */
-      message: string
     }
     /** HTTPValidationError */
     HTTPValidationError: {
@@ -1711,37 +1678,6 @@ export interface operations {
         }
         content: {
           "application/json": unknown
-        }
-      }
-    }
-  }
-  contact_help_contact_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ContactRequest"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }

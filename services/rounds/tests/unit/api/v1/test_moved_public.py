@@ -1,5 +1,5 @@
 """Rounds' old public content addresses, kept one release: a request that still reaches rounds
-goes to the same route in site, with its query."""
+goes to the same route in site, with its method, query and body."""
 
 import pytest
 
@@ -20,3 +20,10 @@ def test_an_old_content_address_sends_the_browser_to_site(client, path, target):
 
     # 307 keeps the method.
     assert (response.status_code, response.headers["location"]) == (307, target)
+
+
+def test_an_old_contact_message_is_sent_to_site_with_its_body(client):
+    response = client.post("/help/contact", json={"name": "Ann"}, follow_redirects=False)
+
+    # 307 keeps the method and the body.
+    assert (response.status_code, response.headers["location"]) == (307, "/api/site/help/contact")

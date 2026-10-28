@@ -26,6 +26,7 @@
 * * * * * curl -s -X POST http://library:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://companies:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://rounds:8000/internal/schedules/outbox
+* * * * * curl -s -X POST http://site:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://generation-worker:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://ats:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://billing:8000/internal/schedules/outbox

@@ -20,7 +20,7 @@ calls didn't change. It's also at
 
 `DELETE /me` asks companies first (it refuses, 409, while the user owns a company others joined,
 before anything is deleted), then every other service at once (rounds, generation, billing,
-notifications, ats, api, assistant, library: `DELETE /internal/users/{id}`, the verified email in
+notifications, ats, api, assistant, library, site: `DELETE /internal/users/{id}`, the verified email in
 the body), then deletes its own rows with a note in `erasures` in one save, and the sign-in last,
 so a failed step leaves the user able to retry; every step is safe to repeat. `GET /me/export`
 asks every service (`POST /internal/users/{id}/export`) and adds its own part. The daily

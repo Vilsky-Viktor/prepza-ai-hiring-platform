@@ -151,7 +151,7 @@ Code anywhere on the site shows in one editor (`components/common/code-editor.ts
 
 `/contact` is a form with a name, an email and a message, named by their placeholders (and `aria-label`s, for screen readers) without visible labels. Beside it from laptops up (above it on narrower screens), two cards: what to write about, and the company that runs prepza as labelled rows (name, registry code, address, and the email as a link).
 
-- The message is emailed to hello@prepza.ai (`CONTACT_EMAIL` in notifications).
+- The site service keeps the message as a `contact.sent` event until it's published, and a week after; notifications emails it to hello@prepza.ai (`CONTACT_EMAIL`). A visitor who later deletes or downloads their account with the same email gets those still kept deleted or in the download. The form's address stays rounds' (`POST /api/rounds/help/contact`), which the gateway and the load balancer send to site.
 - The visitor's address is the reply-to, so answering the email answers them.
 - The sender shows they're a person first ([the "I'm not a robot" check](../architecture.md#the-im-not-a-robot-check)).
 - At most 5 messages a day per address (`CONTACT_IP_LIMIT`) and 200 a day in all (`CONTACT_DAILY_LIMIT`) by default; both are edited in the admin zone's Controls tab.

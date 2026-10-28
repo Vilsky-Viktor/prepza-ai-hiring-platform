@@ -3,6 +3,7 @@ from logging.config import fileConfig
 from alembic import context
 from prepza_common.db.db import migration_engine
 
+import site_content.models.outbox  # noqa: F401  (registers the table on Base.metadata)
 from site_content.config import settings
 from site_content.models.base import Base
 

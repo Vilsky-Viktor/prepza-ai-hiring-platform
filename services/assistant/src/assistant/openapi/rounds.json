@@ -791,41 +791,6 @@
     }
    }
   },
-  "/help/contact": {
-   "post": {
-    "tags": [
-     "help"
-    ],
-    "summary": "Contact",
-    "description": "The contact page's message; notifications emails it to prepza's inbox. Public, so the\nsender shows they're a person.",
-    "operationId": "contact_help_contact_post",
-    "requestBody": {
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/ContactRequest"
-       }
-      }
-     },
-     "required": true
-    },
-    "responses": {
-     "204": {
-      "description": "Successful Response"
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
   "/help/answers/{answer_id}/vote": {
    "put": {
     "tags": [
@@ -1742,34 +1707,6 @@
      "correct"
     ],
     "title": "AnswerView"
-   },
-   "ContactRequest": {
-    "properties": {
-     "name": {
-      "type": "string",
-      "maxLength": 100,
-      "minLength": 1,
-      "title": "Name"
-     },
-     "email": {
-      "type": "string",
-      "format": "email",
-      "title": "Email"
-     },
-     "message": {
-      "type": "string",
-      "maxLength": 5000,
-      "minLength": 1,
-      "title": "Message"
-     }
-    },
-    "type": "object",
-    "required": [
-     "name",
-     "email",
-     "message"
-    ],
-    "title": "ContactRequest"
    },
    "HTTPValidationError": {
     "properties": {

@@ -30,10 +30,10 @@ x-generation-env: &generation-env
 
 x-rounds-env: &rounds-env
   DATABASE_URL: postgresql://rounds:${POSTGRES_PASSWORD}@postgres:5432/rounds
-  TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
   REDIS_URL: redis://redis:6379
   LIBRARY_URL: http://library:8000
-  # The site's content service: rounds' old content routes forward there for one release.
+  # The site's content service: rounds' old internal content route forwards there for one
+  # release.
   SITE_SERVICE_URL: http://site:8000
   SERVICE_SECRET: ${SERVICE_SECRET}
 

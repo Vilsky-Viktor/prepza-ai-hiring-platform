@@ -27,6 +27,7 @@ ASSISTANT = "assistant"
 COMPANIES = "companies"
 GENERATION = "generation"
 ROUNDS = "rounds"
+SITE = "site"
 EVERYONE = "everyone"
 
 LIMITS = {
@@ -193,8 +194,8 @@ LIMITS = {
     "PRACTICE_ROUNDS_PER_HOUR": Limit(ROUNDS, 20, "calls", HOUR_SECONDS, 1, 1_000, "user"),
     "SIGNALS_PER_MINUTE": Limit(ROUNDS, 60, "calls", SIGNALS_WINDOW, 1, 1_000, "user"),
     "MAX_SIGNALS_PER_QUESTION": Limit(ROUNDS, 50, "items", None, 1, 1_000, "user"),
-    "CONTACT_IP_LIMIT": Limit(ROUNDS, 5, "calls", DAY_SECONDS, 1, 100, "ip"),
-    "CONTACT_DAILY_LIMIT": Limit(ROUNDS, 200, "calls", DAY_SECONDS, 1, 10_000, "everyone"),
+    "CONTACT_IP_LIMIT": Limit(SITE, 5, "calls", DAY_SECONDS, 1, 100, "ip"),
+    "CONTACT_DAILY_LIMIT": Limit(SITE, 200, "calls", DAY_SECONDS, 1, 10_000, "everyone"),
     # Accounts: "Download my data", each asking every service for the account's data.
     "DATA_EXPORTS_PER_HOUR": Limit("accounts", 5, "calls", HOUR_SECONDS, 1, 100, "user"),
     # Library: feedback on questions.

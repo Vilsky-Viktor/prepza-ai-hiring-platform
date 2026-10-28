@@ -62,6 +62,7 @@ locals {
     library-outbox       = { service = "library", path = "/internal/schedules/outbox", cron = "* * * * *" }
     companies-outbox     = { service = "companies", path = "/internal/schedules/outbox", cron = "* * * * *" }
     rounds-outbox        = { service = "rounds", path = "/internal/schedules/outbox", cron = "* * * * *" }
+    site-outbox          = { service = "site", path = "/internal/schedules/outbox", cron = "* * * * *" }
     generation-outbox    = { service = "generation-worker", path = "/internal/schedules/outbox", cron = "* * * * *" }
     ats-outbox           = { service = "ats", path = "/internal/schedules/outbox", cron = "* * * * *" }
     billing-outbox       = { service = "billing", path = "/internal/schedules/outbox", cron = "* * * * *" }

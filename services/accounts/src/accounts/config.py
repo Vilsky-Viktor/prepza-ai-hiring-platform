@@ -20,6 +20,8 @@ class Settings(ServiceSettings):
     api_url: str
     assistant_url: str
     library_url: str
+    # The site's content service (contact messages); SITE_URL is the site's own address.
+    site_service_url: str
 
 
 settings = Settings()

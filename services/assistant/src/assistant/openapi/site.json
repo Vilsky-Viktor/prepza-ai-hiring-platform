@@ -284,6 +284,41 @@
     }
    }
   },
+  "/help/contact": {
+   "post": {
+    "tags": [
+     "help"
+    ],
+    "summary": "Contact",
+    "description": "The contact page's message; notifications emails it to prepza's inbox. Public, so the\nsender shows they're a person.",
+    "operationId": "contact_help_contact_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ContactRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/help/knowledge": {
    "get": {
     "tags": [
@@ -355,10 +390,164 @@
      }
     }
    }
+  },
+  "/internal/users/{user_id}": {
+   "delete": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Delete User",
+    "description": "Accounts, deleting an account: the contact messages sent from its email that site still\nkeeps go.",
+    "operationId": "delete_user_internal_users__user_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserEmailIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/users/{user_id}/export": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Export User",
+    "description": "Accounts, for \"Download my data\": the contact messages sent from its email that site\nstill keeps.",
+    "operationId": "export_user_internal_users__user_id__export_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserEmailIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Export User Internal Users  User Id  Export Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/schedules/outbox": {
+   "post": {
+    "tags": [
+     "schedules"
+    ],
+    "summary": "Flush Outbox",
+    "description": "Every minute, from Cloud Scheduler: publishes events that weren't published right after\ntheir change, and deletes those published a week ago.",
+    "operationId": "flush_outbox_internal_schedules_outbox_post",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     }
+    }
+   }
   }
  },
  "components": {
   "schemas": {
+   "ContactRequest": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "email": {
+      "type": "string",
+      "format": "email",
+      "title": "Email"
+     },
+     "message": {
+      "type": "string",
+      "maxLength": 5000,
+      "minLength": 1,
+      "title": "Message"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "email",
+     "message"
+    ],
+    "title": "ContactRequest"
+   },
    "FaqItemOut": {
     "properties": {
      "key": {
@@ -649,6 +838,20 @@
     ],
     "title": "PageGuideOut",
     "description": "A page's guide: what it's for (`text`), what you can do there, tips, and the guide\narticle to read more in, if the page has one."
+   },
+   "UserEmailIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "title": "Email"
+     }
+    },
+    "type": "object",
+    "required": [
+     "email"
+    ],
+    "title": "UserEmailIn",
+    "description": "An email address sent in the body, so request logs don't record it: the account's, in\nlibrary's calls to delete or export a user's data, or the one a superadmin looks up."
    },
    "ValidationError": {
     "properties": {

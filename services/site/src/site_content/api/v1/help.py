@@ -1,9 +1,12 @@
 from fastapi import APIRouter, HTTPException, Path, Query, Request, status
 from fastapi.responses import PlainTextResponse
+from prepza_common.auth.human_check import require_human
 from prepza_common.auth.user import Language
 from prepza_common.config.constants import DEFAULT_LANGUAGE, LEGAL_VERSIONS
+from prepza_common.http.client_ip import limit_address
 from prepza_common.i18n.i18n import request_language
 
+from site_content.config import settings
 from site_content.constants.help import (
     MAX_GUIDE_SLUG_LENGTH,
     MAX_PAGE_KEY_LENGTH,
@@ -19,6 +22,7 @@ from site_content.helpers.guide_articles import guide_article, guide_articles
 from site_content.helpers.help import faq_items
 from site_content.helpers.page_guides import page_guide
 from site_content.integrations import billing
+from site_content.schemas.contact import ContactRequest
 from site_content.schemas.help import (
     FaqItemOut,
     GuideItemOut,
@@ -26,6 +30,7 @@ from site_content.schemas.help import (
     LegalOut,
     PageGuideOut,
 )
+from site_content.services import contact as contact_service
 from site_content.services.help import platform_guide
 
 router = APIRouter(prefix="/help", tags=["help"])
@@ -120,3 +125,11 @@ def get_legal(
         in_force=applies,
         versions=legal.versions(document),
     )
+
+
+@router.post("/contact", status_code=status.HTTP_204_NO_CONTENT)
+async def contact(body: ContactRequest, request: Request) -> None:
+    """The contact page's message; notifications emails it to prepza's inbox. Public, so the
+    sender shows they're a person."""
+    await require_human(request, settings.turnstile_secret_key)
+    await contact_service.send(body, limit_address(request), request_language(request))

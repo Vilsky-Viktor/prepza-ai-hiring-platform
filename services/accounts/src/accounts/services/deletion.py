@@ -18,7 +18,7 @@ async def delete_account(user: User) -> None:
     Each step is safe to repeat and raises on failure, so a failed deletion is retried whole and
     the sign-in, which lets the user retry, goes last. Companies goes first: it refuses (409)
     while the user owns a company others have joined, before any service deleted anything. The
-    other services then delete at once, so the whole request takes two calls' time, not nine,
+    other services then delete at once, so the whole request takes two calls' time, not ten,
     within accounts' own request timeout.
     """
     first, *others = services.services()

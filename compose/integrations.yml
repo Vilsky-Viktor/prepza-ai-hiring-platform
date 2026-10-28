@@ -116,6 +116,7 @@ x-accounts-env: &accounts-env
   API_URL: http://api:8000
   ASSISTANT_URL: http://assistant:8000
   LIBRARY_URL: http://library:8000
+  SITE_SERVICE_URL: http://site:8000
 
 # Each service's mounted source; migrations read it too, so new ones run without a rebuild.
 x-billing-source: &billing-source

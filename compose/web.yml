@@ -8,6 +8,8 @@ x-site-env: &site-env
   SERVICE_SECRET: ${SERVICE_SECRET}
   # Today's prices, which the FAQ and the platform guide name.
   BILLING_URL: http://billing:8000
+  # The "I'm not a robot" check on the contact form.
+  TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
 
 # Its mounted source; migrations read it too, so new ones run without a rebuild.
 x-site-source: &site-source

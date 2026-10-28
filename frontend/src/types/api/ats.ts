@@ -757,7 +757,7 @@ export interface components {
     /**
      * UserEmailIn
      * @description An email address sent in the body, so request logs don't record it: the account's, in
-     *     library's calls to delete or export a user's data, or the one a superadmin looks up.
+     *     accounts' calls to delete or export a user's data, or the one a superadmin looks up.
      */
     UserEmailIn: {
       /** Email */

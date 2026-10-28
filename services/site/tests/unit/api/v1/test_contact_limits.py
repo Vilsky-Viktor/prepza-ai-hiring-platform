@@ -3,7 +3,7 @@ from prepza_common.ai.ai_constants import LIMIT_HIT
 from prepza_common.config.constants import RATE_LIMITED
 from prepza_common.limits.limit_list import LIMITS
 
-import rounds.api.v1.help as help_routes
+import site_content.api.v1.help as help_routes
 
 CONTACT = {"name": "Ann", "email": "ann@example.com", "message": "Do you offer invoices?"}
 
@@ -12,10 +12,13 @@ CONTACT = {"name": "Ann", "email": "ann@example.com", "message": "Do you offer i
 def nothing_sent(monkeypatch):
     """The contact form's messages go nowhere."""
 
+    def keep_nothing(*args):
+        return None
+
     async def nothing(*args):
         return None
 
-    monkeypatch.setattr(help_routes.contact_service.sessions, "add_event", nothing)
+    monkeypatch.setattr(help_routes.contact_service.outbox, "add", keep_nothing)
     monkeypatch.setattr(help_routes.contact_service.outbox_service, "flush_quietly", nothing)
 
 

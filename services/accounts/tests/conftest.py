@@ -31,6 +31,8 @@ os.environ.setdefault("ASSISTANT_URL", "http://assistant:8000")
 os.environ.setdefault("ASSISTANT_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("LIBRARY_URL", "http://library:8000")
 os.environ.setdefault("LIBRARY_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
+os.environ.setdefault("SITE_SERVICE_URL", "http://site:8000")
+os.environ.setdefault("SITE_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 
 import pytest
 from fastapi.testclient import TestClient

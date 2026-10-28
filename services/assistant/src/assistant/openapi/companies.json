@@ -11904,7 +11904,7 @@
      "email"
     ],
     "title": "UserEmailIn",
-    "description": "An email address sent in the body, so request logs don't record it: the account's, in\nlibrary's calls to delete or export a user's data, or the one a superadmin looks up."
+    "description": "An email address sent in the body, so request logs don't record it: the account's, in\naccounts' calls to delete or export a user's data, or the one a superadmin looks up."
    },
    "UserIdsOut": {
     "properties": {

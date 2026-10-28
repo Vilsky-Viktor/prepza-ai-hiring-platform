@@ -7,7 +7,6 @@ from rounds.repositories import session_expiry
 # The modules that reach Redis, which unit tests replace.
 REDIS_USERS = [
     "rounds.api.v1.practice",
-    "rounds.services.contact",
     "rounds.services.practice",
     "rounds.services.signals",
 ]

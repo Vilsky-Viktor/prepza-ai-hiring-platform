@@ -1,11 +1,11 @@
 from prepza_common.limits.rate_limit import hit
 
-from rounds.constants.events import CONTACT_SENT
-from rounds.core.db import Session
-from rounds.integrations.redis import get_redis
-from rounds.repositories import sessions
-from rounds.schemas.contact import ContactRequest
-from rounds.services import outbox as outbox_service
+from site_content.constants.events import CONTACT_SENT
+from site_content.core.db import Session
+from site_content.integrations.redis import get_redis
+from site_content.repositories import outbox
+from site_content.schemas.contact import ContactRequest
+from site_content.services import outbox as outbox_service
 
 
 async def send(body: ContactRequest, address: str, language: str) -> None:
@@ -16,6 +16,6 @@ async def send(body: ContactRequest, address: str, language: str) -> None:
     await hit(redis, "rate:contact:all", "CONTACT_DAILY_LIMIT")
 
     async with Session.begin() as session:
-        await sessions.add_event(session, CONTACT_SENT, {**body.model_dump(), "language": language})
+        outbox.add(session, CONTACT_SENT, {**body.model_dump(), "language": language})
 
     await outbox_service.flush_quietly()

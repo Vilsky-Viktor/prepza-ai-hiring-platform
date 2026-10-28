@@ -50,7 +50,7 @@ def test_every_service_is_cleaned_before_the_sign_in_goes(steps):
 
     # Companies first (it may refuse), then the others together.
     assert steps[0] == ("service", "companies")
-    assert sorted(steps[1:9]) == [
+    assert sorted(steps[1:10]) == [
         ("service", "api"),
         ("service", "assistant"),
         ("service", "ats"),
@@ -59,8 +59,9 @@ def test_every_service_is_cleaned_before_the_sign_in_goes(steps):
         ("service", "library"),
         ("service", "notifications"),
         ("service", "rounds"),
+        ("service", "site"),
     ]
-    assert steps[9:] == [
+    assert steps[10:] == [
         ("own", "ann"),
         # Kept for the backups' life, to run again after a restore.
         ("erasure", "ann", "Ann@Example.com"),
@@ -188,6 +189,7 @@ def test_the_export_holds_every_service_and_downloads_as_a_file(client, monkeypa
         "api": {"from": "api"},
         "assistant": {"from": "assistant"},
         "library": {"from": "library"},
+        "site": {"from": "site"},
     }
 
 

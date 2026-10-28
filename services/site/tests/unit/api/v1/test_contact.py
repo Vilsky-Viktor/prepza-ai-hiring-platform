@@ -1,14 +1,14 @@
 def test_visitors_send_contact_messages(client, monkeypatch):
     saved = []
 
-    async def fake_save(session, event_type, data):
+    def fake_save(session, event_type, data):
         saved.append(data)
 
     async def fake_flush():
         return None
 
-    monkeypatch.setattr("rounds.services.contact.sessions.add_event", fake_save)
-    monkeypatch.setattr("rounds.services.contact.outbox_service.flush_quietly", fake_flush)
+    monkeypatch.setattr("site_content.services.contact.outbox.add", fake_save)
+    monkeypatch.setattr("site_content.services.contact.outbox_service.flush_quietly", fake_flush)
     body = {"name": " Ann ", "email": "ann@example.com", "message": "Do you offer invoices?"}
 
     response = client.post("/help/contact", json=body, headers={"Accept-Language": "de"})
@@ -25,14 +25,14 @@ def test_visitors_send_contact_messages(client, monkeypatch):
 
 
 def test_contact_messages_are_limited_per_address_and_in_all(client, monkeypatch, redis):
-    async def fake_save(session, event_type, data):
+    def fake_save(session, event_type, data):
         return None
 
     async def fake_flush():
         return None
 
-    monkeypatch.setattr("rounds.services.contact.sessions.add_event", fake_save)
-    monkeypatch.setattr("rounds.services.contact.outbox_service.flush_quietly", fake_flush)
+    monkeypatch.setattr("site_content.services.contact.outbox.add", fake_save)
+    monkeypatch.setattr("site_content.services.contact.outbox_service.flush_quietly", fake_flush)
     body = {"name": "Ann", "email": "ann@example.com", "message": "Hi"}
 
     client.post("/help/contact", json=body)

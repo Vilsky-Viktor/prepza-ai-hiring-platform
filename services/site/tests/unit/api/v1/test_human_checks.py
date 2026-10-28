@@ -1,8 +1,8 @@
 import pytest
 from fastapi import HTTPException
 
-import rounds.api.v1.help as help_routes
-from rounds.config import settings
+import site_content.api.v1.help as help_routes
+from site_content.config import settings
 
 
 @pytest.fixture
@@ -17,12 +17,15 @@ def checks(monkeypatch):
         if state["refuse"]:
             raise HTTPException(403, "Confirm you're not a robot, then try again.")
 
+    def keep_nothing(*args):
+        return None
+
     async def nothing(*args):
         return None
 
     monkeypatch.setattr(settings, "turnstile_secret_key", "s3cret")
     monkeypatch.setattr(help_routes, "require_human", require_human)
-    monkeypatch.setattr(help_routes.contact_service.sessions, "add_event", nothing)
+    monkeypatch.setattr(help_routes.contact_service.outbox, "add", keep_nothing)
     monkeypatch.setattr(help_routes.contact_service.outbox_service, "flush_quietly", nothing)
 
     return state
@@ -31,10 +34,10 @@ def checks(monkeypatch):
 def test_a_contact_message_is_asked_and_one_that_fails_isnt_sent(client, checks, monkeypatch):
     saved = []
 
-    async def save(session, event_type, data):
+    def save(session, event_type, data):
         saved.append(data)
 
-    monkeypatch.setattr(help_routes.contact_service.sessions, "add_event", save)
+    monkeypatch.setattr(help_routes.contact_service.outbox, "add", save)
     checks["refuse"] = True
     body = {"name": "Ann", "email": "ann@example.com", "message": "Do you offer invoices?"}
 

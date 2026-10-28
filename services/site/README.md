@@ -1,8 +1,11 @@
 # site
 
 The public site's content: the FAQ, each page's guide, the guide articles and the legal texts the
-site shows, and the knowledge the assistant's help chat answers from
-(`GET /internal/help/knowledge`). It keeps what it holds in its own database. What it does:
+site shows, the knowledge the assistant's help chat answers from
+(`GET /internal/help/knowledge`), and the contact form. It keeps the contact page's messages as
+`contact.sent` events in its own database's outbox until they're published, and a week after
+(notifications emails them); accounts deletes and exports the ones sent from a user's email
+(`/internal/users/{id}`), with Turnstile and per-address limits (`CONTACT_*`) on the form. What it does:
 [the site](../../docs/features/site.md).
 
 Its Python package is `site_content`, not `site`: `site` is a module of Python's own, loaded when
@@ -16,7 +19,9 @@ src/site_content/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
-├── services/               # The help knowledge
+├── services/               # The help knowledge, contact, deletion and export, the outbox;
+│                           # each opens its transaction
+├── repositories/           # Database queries (the outbox); take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (guides, legal versions); fixed values, the FAQ
 ├── integrations/           # billing (public prices), Redis
@@ -29,7 +34,7 @@ migrations/                       # Alembic
 ```
 
 Its routes keep rounds' public addresses (`/api/rounds/help/faq`, `/help/guide`,
-`/help/pages/...`, `/help/guides...`, `/help/legal/...`), which the gateway and the load
+`/help/pages/...`, `/help/guides...`, `/help/legal/...`, `/help/contact`), which the gateway and the load
 balancer send to it (`locals.site_paths`); it serves each at the same path under `/api/site/`
 too.
 

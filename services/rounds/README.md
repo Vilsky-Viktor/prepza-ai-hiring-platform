@@ -1,7 +1,6 @@
 # rounds
 
-Candidates' interview sessions and their answers, and free practice rounds; for now, the contact
-form. It keeps sessions, answers and integrity signals in its own database (its old `help_votes` table is
+Candidates' interview sessions and their answers, and free practice rounds. It keeps sessions, answers and integrity signals in its own database (its old `help_votes` table is
 unused, until the next release drops it); questions come from library, and scores go out as
 events; a deleted interview's or company's sessions go when its `interview.deleted` or
 `company.deleted` arrives. What it does and its settings:
@@ -19,7 +18,7 @@ src/rounds/
 ├── handlers/               # Pub/Sub events (deleted interviews and companies); dispatch.py
 │                           # picks one
 ├── services/               # Interview steps, answers, timed sessions, practice, signals,
-│                           # contact, deletions; each opens its
+│                           # deletions; each opens its
 │                           # transaction
 ├── repositories/           # Database queries (sessions, answers, signals, ...);
 │                           # take the session, never commit
@@ -31,8 +30,9 @@ migrations/                       # Alembic
 ```
 
 Rounds' old `POST /help/chat` and `PUT /help/answers/{id}/vote` answer a 307 to the
-assistant's addresses for one release. The FAQ, page guides, guide articles and legal texts moved
-to the site service: the gateway and the load balancer send rounds' old addresses for them there,
+assistant's addresses for one release. The FAQ, page guides, guide articles, legal texts and the
+contact form moved to the site service: the gateway and the load balancer send rounds' old
+addresses for them there,
 its old public routes (`api/v1/moved_public.py`) answer a 307 to `/api/site/...` and its old
 `GET /internal/help/knowledge` forwards to site, for one release.
 
