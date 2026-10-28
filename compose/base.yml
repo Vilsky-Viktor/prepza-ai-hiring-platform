@@ -25,6 +25,7 @@ x-firebase-env: &firebase-env
   ATS_SERVICE_SECRET: ${SERVICE_SECRET}
   API_SERVICE_SECRET: ${SERVICE_SECRET}
   ASSISTANT_SERVICE_SECRET: ${SERVICE_SECRET}
+  ACCOUNTS_SERVICE_SECRET: ${SERVICE_SECRET}
   # Events go through the Pub/Sub emulator locally; Google Cloud uses the real service.
   GOOGLE_CLOUD_PROJECT: ${FIREBASE_PROJECT_ID}
   PUBSUB_EMULATOR_HOST: pubsub:8085

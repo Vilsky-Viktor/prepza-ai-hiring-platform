@@ -19,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 # Each service's first migration checked: the next one after those of 2026-10-21.
 CHECKED_FROM = {
+    "accounts": "0001",
     "api": "0008",
     "assistant": "0011",
     "ats": "0015",

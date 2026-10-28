@@ -8,7 +8,7 @@
 # Locally: PR_BASE=origin/main scripts/ci_changes.sh
 set -euo pipefail
 
-services="library generation rounds companies billing notifications ats api assistant"
+services="library generation rounds companies billing notifications ats api assistant accounts"
 everything="$services frontend common"
 base="${PR_BASE:-}"
 files=""

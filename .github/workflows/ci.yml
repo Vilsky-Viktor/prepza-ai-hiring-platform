@@ -70,6 +70,7 @@ jobs:
           - { name: ats, path: services/ats }
           - { name: api, path: services/api }
           - { name: assistant, path: services/assistant }
+          - { name: accounts, path: services/accounts }
           - { name: common, path: packages/common }
     env:
       CHANGED: ${{ contains(fromJSON(needs.changes.outputs.changed), matrix.name) }}
@@ -154,6 +155,7 @@ jobs:
           - { name: ats, context: ., file: services/ats/Dockerfile }
           - { name: api, context: ., file: services/api/Dockerfile }
           - { name: assistant, context: ., file: services/assistant/Dockerfile }
+          - { name: accounts, context: ., file: services/accounts/Dockerfile }
           - { name: frontend, context: frontend, file: frontend/Dockerfile }
     env:
       CHANGED: ${{ contains(fromJSON(needs.changes.outputs.changed), matrix.name) }}
@@ -237,16 +239,7 @@ jobs:
       - run: docker compose up --build -d
       # Waits for the services and the frontend's first compile, then checks pages and /ready.
       - name: Smoke test
-        run: |
-          for _ in $(seq 1 40); do
-            if ./e2e_tests/smoke.sh; then
-              exit 0
-            fi
-
-            sleep 15
-          done
-
-          exit 1
+        run: ./scripts/wait-for-stack.sh
       # The assistant's tools are built from the services' OpenAPI snapshots: a changed route must
       # come with refreshed snapshots (scripts/assistant-openapi.sh, committed).
       - name: Assistant's OpenAPI snapshots are current

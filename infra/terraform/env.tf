@@ -75,6 +75,9 @@ locals {
       INVOKER_AUDIENCE = local.run_url["api"]
       SITE_URL         = "https://${var.domain}"
     }
+    accounts = {
+      INVOKER_AUDIENCE = local.run_url["accounts"]
+    }
     assistant = {
       INVOKER_AUDIENCE = local.run_url["assistant"]
       # Its tools read the api service's settings page too.

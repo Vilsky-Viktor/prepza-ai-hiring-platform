@@ -101,6 +101,7 @@ services:
       DATABASE_URL_ATS: postgresql://ats:${POSTGRES_PASSWORD}@postgres:5432/ats
       DATABASE_URL_API: postgresql://api:${POSTGRES_PASSWORD}@postgres:5432/api
       DATABASE_URL_ASSISTANT: postgresql://assistant:${POSTGRES_PASSWORD}@postgres:5432/assistant
+      DATABASE_URL_ACCOUNTS: postgresql://accounts:${POSTGRES_PASSWORD}@postgres:5432/accounts
     depends_on:
       postgres:
         condition: service_healthy

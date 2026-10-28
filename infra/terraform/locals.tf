@@ -36,7 +36,11 @@ locals {
     # The in-app assistant: a turn streams up to 90 s while its tools call the other services. It
     # also serves AI apps over MCP at the site's root (mcp_paths below) and the help chat for
     # visitors, which streams within the same TURNS_AT_ONCE.
-    assistant         = { image = "assistant", public = true, path = "assistant", port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 300, concurrency = 80, database = "assistant", command = null }
+    assistant = { image = "assistant", public = true, path = "assistant", port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 300, concurrency = 80, database = "assistant", command = null }
+    # Users' accounts: the account page's data, email settings, accepted terms, and deleting or
+    # downloading an account across every service (each call up to a minute, two at a time). Pages
+    # ask it in the background (the user menu), so it starts cold.
+    accounts          = { image = "accounts", public = true, path = "accounts", port = 8000, min = 0, max = 1, connections = 2, cpu = "1", memory = "512Mi", timeout = 150, concurrency = 80, database = "accounts", command = null }
     generation-worker = { image = "generation", public = false, path = null, port = 8000, min = 0, max = 1, connections = 4, cpu = "1", memory = "2Gi", timeout = 1800, concurrency = 10, database = "generation", command = ["uvicorn", "generation.worker_main:app", "--host", "0.0.0.0", "--port", "8000", "--no-server-header", "--timeout-graceful-shutdown", "8"] }
   }
 
@@ -66,7 +70,7 @@ locals {
     "auto-top-up/card",
   ]
 
-  databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant"]
+  databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts"]
 
   # Which services each one calls; it gets their keys, to sign tokens for them.
   calls = {
@@ -88,6 +92,7 @@ locals {
     # notifications, ats and library, what get_updates reads (the bell, ATS candidates not
     # invited, questions flagged or fixed); rounds, what the help chat answers from.
     assistant = ["companies", "billing", "api", "notifications", "ats", "library", "rounds"]
+    accounts  = []
   }
 
   # Each service's own key checks calls to it. The worker and the stream share generation's and
@@ -104,6 +109,7 @@ locals {
     ats                  = "ats"
     api                  = "api"
     assistant            = "assistant"
+    accounts             = "accounts"
   }
 
   # Secrets each service reads (Secret Manager name => environment variable).
@@ -119,6 +125,7 @@ locals {
     notifications-stream = { redis-url = "REDIS_URL", email-link-secret = "EMAIL_LINK_SECRET", person-hash-key = "PERSON_HASH_KEY" }
     ats                  = { redis-url = "REDIS_URL", ats-encryption-key = "ATS_ENCRYPTION_KEY" }
     api                  = { redis-url = "REDIS_URL", api-encryption-key = "API_ENCRYPTION_KEY" }
+    accounts             = { redis-url = "REDIS_URL" }
     assistant            = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
   }
 

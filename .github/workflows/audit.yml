@@ -26,6 +26,7 @@ jobs:
       matrix:
         path:
           - packages/common
+          - services/accounts
           - services/api
           - services/assistant
           - services/ats
@@ -106,6 +107,7 @@ jobs:
           - { name: ats, context: ., file: services/ats/Dockerfile }
           - { name: api, context: ., file: services/api/Dockerfile }
           - { name: assistant, context: ., file: services/assistant/Dockerfile }
+          - { name: accounts, context: ., file: services/accounts/Dockerfile }
           - { name: frontend, context: frontend, file: frontend/Dockerfile }
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

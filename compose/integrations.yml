@@ -1,5 +1,5 @@
 # The services around them: billing, notifications (email and Slack), ATS integrations, the
-# public API and the in-app assistant; each with its migrations, run first.
+# public API, the in-app assistant and users' accounts; each with its migrations, run first.
 
 x-billing-env: &billing-env
   DATABASE_URL: postgresql://billing:${POSTGRES_PASSWORD}@postgres:5432/billing
@@ -97,6 +97,11 @@ x-assistant-env: &assistant-env
   API_URL: http://api:8000
   ROUNDS_URL: http://rounds:8000
 
+x-accounts-env: &accounts-env
+  DATABASE_URL: postgresql://accounts:${POSTGRES_PASSWORD}@postgres:5432/accounts
+  REDIS_URL: redis://redis:6379
+  SERVICE_SECRET: ${SERVICE_SECRET}
+
 # Each service's mounted source; migrations read it too, so new ones run without a rebuild.
 x-billing-source: &billing-source
   - ./services/billing/src:/services/billing/src
@@ -126,6 +131,12 @@ x-assistant-source: &assistant-source
   - ./services/assistant/src:/services/assistant/src
   - ./services/assistant/migrations:/services/assistant/migrations
   - ./services/assistant/alembic.ini:/services/assistant/alembic.ini:ro
+  - ./packages/common/src:/packages/common/src
+
+x-accounts-source: &accounts-source
+  - ./services/accounts/src:/services/accounts/src
+  - ./services/accounts/migrations:/services/accounts/migrations
+  - ./services/accounts/alembic.ini:/services/accounts/alembic.ini:ro
   - ./packages/common/src:/packages/common/src
 
 services:
@@ -242,6 +253,29 @@ services:
     environment: *assistant-env
     depends_on:
       assistant-migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+  accounts-migrate:
+    extends: {file: compose/base.yml, service: migrate}
+    build:
+      context: .
+      dockerfile: services/accounts/Dockerfile
+      target: dev
+    volumes: *accounts-source
+    environment: *accounts-env
+
+  accounts:
+    extends: {file: compose/base.yml, service: server}
+    build:
+      context: .
+      dockerfile: services/accounts/Dockerfile
+      target: dev
+    volumes: *accounts-source
+    environment: *accounts-env
+    depends_on:
+      accounts-migrate:
         condition: service_completed_successfully
       redis:
         condition: service_healthy

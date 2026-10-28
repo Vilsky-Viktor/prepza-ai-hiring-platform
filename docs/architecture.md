@@ -24,6 +24,7 @@ flowchart LR
     gateway --> ats
     gateway --> api
     gateway --> assistant
+    gateway --> accounts
     platforms[Companies' platforms] -- API keys --> gateway
     paddle[Paddle] -- payment webhooks --> gateway
     resend[Resend] -- delivery webhooks --> gateway
@@ -92,6 +93,7 @@ flowchart LR
 | `ats` | ATS integrations (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): companies' encrypted ATS keys, linked jobs and the candidates the ATSs send (their webhooks); invites them through companies and writes their results back to the ATS |
 | `api` | The public API at `/api/v1/`: companies' API keys (as hashes, with their expiry), their web hooks (secrets encrypted) and deliveries; reads interviews and candidates and invites through companies, and sends a signed web hook when a candidate finishes |
 | `assistant` | The in-app AI assistant ([feature page](features/assistant.md)): signed-in users' conversations, streamed over server-sent events (`POST /chat`), and tools made from the other services' user-facing GET routes, called with the user's own token. The tools are an allow-list (`src/assistant/constants/tools.py`) over committed OpenAPI snapshots of those services (`src/assistant/openapi/`, written by `scripts/assistant-openapi.sh`); a tool's data is trimmed for the model, and the panel's links are built only from the tool's link template and ids. Calls to companies carry a signed `X-Assistant` header, so companies audits those reads as the assistant's. It also serves those tools to the user's own AI apps over MCP at the site's root (`/mcp`, with its OAuth authorization server; [feature page](features/mcp.md)). It also runs the help chat that answers signed-out visitors in the same panel (`POST /help/chat`, [Public site](features/site.md#faq-and-help-chat)), from the knowledge rounds sends it |
+| `accounts` | Users' accounts (`src/accounts`, its own database `accounts`) |
 | `frontend` | Next.js app; server-rendered pages call the API through the gateway. Its code is in `frontend/src/` (pages in `app/`, laid out as `.claude/rules/nextjs.md` says); `messages/`, `content/` and `public/` stay beside it |
 
 What each service does for users is described in the feature pages, linked from the [README](../README.md#documentation). Generation is described in [Generation and question quality](generation.md).
