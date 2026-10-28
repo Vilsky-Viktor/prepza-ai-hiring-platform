@@ -22,6 +22,7 @@ export function InviteIntro({
   finished,
   viaLink = false,
   fillScreen,
+  back,
   action,
 }: {
   company: string
@@ -41,6 +42,9 @@ export function InviteIntro({
   // whose frame grows to fit its content, so a height taken from the frame would grow it without
   // end.
   fillScreen?: boolean
+  // A member's way back (the back arrow), at the top of the test's column, so it never pushes
+  // the full-height rules down.
+  back?: ReactNode
   action: ReactNode
 }) {
   const t = useTranslations("invite")
@@ -48,6 +52,7 @@ export function InviteIntro({
 
   const header = (
     <div className="space-y-4">
+      {back}
       {/* The logo, with who invited them under it, centered together. */}
       {company && (
         <div className="flex flex-col items-center justify-center gap-4 pb-3">

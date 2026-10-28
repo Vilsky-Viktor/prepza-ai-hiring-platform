@@ -49,6 +49,11 @@ test("the start page shows the whole interview and runs its rules down the scree
       const rules = await box(user.getByTestId("invite-rules"))
       expect(rules.top).toBeLessThanOrEqual(1)
       expect(Math.abs(rules.height - size.height)).toBeLessThanOrEqual(1)
+
+      // The way back stays on the screen, beside the test rather than above the rules.
+      const back = await box(user.getByTestId("back-link").getByRole("link"))
+      expect(back.left).toBeGreaterThanOrEqual(0)
+      expect(back.right).toBeLessThanOrEqual(rules.left)
     }
 
     // On the short screen the rules don't fit: they scroll inside the card.

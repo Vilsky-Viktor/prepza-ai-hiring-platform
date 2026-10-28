@@ -41,14 +41,9 @@ export default async function TryInterviewPage({
         colors={company.candidate_colors ?? null}
         look={company.brand_style ?? null}
       />
-      {/* Only a member's preview has a way back, beside the intro as on other pages. */}
+      {/* Only a member's preview has a way back, beside the intro as on other pages; narrower,
+          at the top of the test's column. */}
       <div className="relative w-full">
-        <BackLink
-          href={`/companies/${companyId}/interviews`}
-          help="tryInterview"
-        >
-          {interviews("title")}
-        </BackLink>
         <InviteIntro
           company={company.name}
           logoUrl={company.logo_url}
@@ -57,6 +52,14 @@ export default async function TryInterviewPage({
           questionSeconds={interview.question_seconds}
           totalMinutes={interview.total_minutes}
           finished={false}
+          back={
+            <BackLink
+              href={`/companies/${companyId}/interviews`}
+              help="tryInterview"
+            >
+              {interviews("title")}
+            </BackLink>
+          }
           action={<StartPreview companyId={companyId} interviewId={id} />}
         />
       </div>
