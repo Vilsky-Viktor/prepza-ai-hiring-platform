@@ -3,24 +3,24 @@ from logging.config import fileConfig
 from alembic import context
 from prepza_common.db.db import migration_engine
 
-import app.models.emails  # registers the tables on Base.metadata
-import app.models.erasures
-import app.models.events
-import app.models.feedback
-import app.models.legal
-import app.models.news
-import app.models.outbox
-import app.models.quality
-import app.models.sets  # noqa: F401
-from app.config.settings import settings
-from app.models.base import Base
+import library.models.emails  # registers the tables on Base.metadata
+import library.models.erasures
+import library.models.events
+import library.models.feedback
+import library.models.legal
+import library.models.news
+import library.models.outbox
+import library.models.quality
+import library.models.sets  # noqa: F401
+from library.config import settings
+from library.models.base import Base
 
 fileConfig(context.config.config_file_name)
 
 
 def include_object(object, name, type_, reflected, compare_to):
     """topics.embedding is a pgvector column (migration 0011), read and written with SQL
-    (storage/reuse.py) rather than mapped: autogenerate leaves it alone."""
+    (repositories/reuse.py) rather than mapped: autogenerate leaves it alone."""
 
     return not (type_ == "column" and name == "embedding" and object.table.name == "topics")
 

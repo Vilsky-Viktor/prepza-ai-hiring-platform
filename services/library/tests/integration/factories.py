@@ -2,7 +2,7 @@ import uuid
 
 from prepza_common.ai.sets import PreparationIn
 
-from app.storage import preparations, templates
+from library.repositories import preparations, templates
 
 DIMENSIONS = 256
 # A new template's first 30 fresh questions of a topic go to practice: with 40, a topic has 10
@@ -85,8 +85,8 @@ async def set_pool(question_ids, pool):
     service itself never moves a question."""
     from sqlalchemy import update
 
-    from app.models.sets import Question
-    from app.storage.db import Session
+    from library.core.db import Session
+    from library.models.sets import Question
 
     async with Session() as session:
         await session.execute(

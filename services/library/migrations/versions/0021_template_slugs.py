@@ -8,7 +8,7 @@ Create Date: 2026-10-06
 import sqlalchemy as sa
 from alembic import op
 
-from app.helpers.slugs import slugify, unique_slug
+from library.helpers.slugs import slugify, unique_slug
 
 revision = "0021"
 down_revision = "0020"

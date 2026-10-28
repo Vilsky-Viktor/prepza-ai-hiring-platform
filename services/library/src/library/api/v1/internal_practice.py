@@ -1,0 +1,42 @@
+from uuid import UUID
+
+from fastapi import APIRouter, HTTPException, status
+
+from library.api.dependencies import ServiceCaller
+from library.constants.sets import Pool, SetKind
+from library.repositories import preparations
+from library.schemas.preparations import QuestionOut
+from library.schemas.sets import SetContent, SetTopicOut
+
+# Free practice for talents: only a template's practice questions, never its company ones.
+router = APIRouter(prefix="/internal", tags=["internal"])
+
+
+@router.get("/templates/{template_id}/practice")
+async def practice_content(template_id: UUID, caller: ServiceCaller) -> SetContent:
+    """The template's practice questions, with answers, by topic; topics without any are left
+    out. Rounds picks each practice round's questions from them."""
+    template = await preparations.get_content(template_id)
+
+    if template is None or template.kind != SetKind.TEMPLATE:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Template not found")
+
+    topics = [
+        SetTopicOut(
+            id=topic.id,
+            title=topic.title,
+            questions=[
+                QuestionOut(id=question.id, text=question.text, options=question.options)
+                for question in topic.questions
+                if question.pool == Pool.PRACTICE
+            ],
+        )
+        for topic in template.topics
+    ]
+
+    return SetContent(
+        id=template.id,
+        title=template.title,
+        level=template.level,
+        topics=[topic for topic in topics if topic.questions],
+    )

@@ -59,7 +59,7 @@ x-companies-env: &companies-env
 
 # Each service's mounted source; migrations read it too, so new ones run without a rebuild.
 x-library-source: &library-source
-  - ./services/library/app:/services/library/app
+  - ./services/library/src:/services/library/src
   - ./services/library/migrations:/services/library/migrations
   - ./services/library/alembic.ini:/services/library/alembic.ini:ro
   - ./packages/common/src:/packages/common/src

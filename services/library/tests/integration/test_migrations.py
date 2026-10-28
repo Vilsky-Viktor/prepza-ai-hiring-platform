@@ -7,7 +7,7 @@ from sqlalchemy import text
 
 
 def test_every_migration_ran_on_a_fresh_database(run):
-    from app.storage.db import engine
+    from library.core.db import engine
 
     async def current():
         async with engine.connect() as connection:
@@ -33,7 +33,7 @@ def test_the_tables_follow_the_database_rules():
     """What `.claude/rules/database.md` asks of every table (prepza_common.db.schema_rules)."""
     from prepza_common.db.schema_rules import problems
 
-    from app.config.settings import settings
+    from library.config import settings
 
     assert problems(settings.database_url) == []
 
@@ -42,17 +42,17 @@ def test_the_models_name_constraints_and_indexes_as_the_database_does():
     """So a migration can drop or rename one by its name (the naming convention, models/base.py)."""
     from prepza_common.db.schema_rules import misnamed
 
-    import app.models
-    from app.config.settings import settings
+    import library.models
+    from library.config import settings
 
-    assert misnamed(settings.database_url, app.models) == []
+    assert misnamed(settings.database_url, library.models) == []
 
 
 def test_every_check_allows_what_its_model_allows():
     """A value added to a closed set in the code changes its CHECK in a migration too."""
     from prepza_common.db.schema_rules import stale_checks
 
-    import app.models
-    from app.config.settings import settings
+    import library.models
+    from library.config import settings
 
-    assert stale_checks(settings.database_url, app.models) == []
+    assert stale_checks(settings.database_url, library.models) == []

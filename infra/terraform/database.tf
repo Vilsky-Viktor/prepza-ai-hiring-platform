@@ -67,7 +67,7 @@ resource "random_password" "database" {
 }
 
 # The instance's admin. No service uses it: only the db-roles job, which gives each service its
-# own user owning only its own database (services/library/app/jobs/db_roles.py).
+# own user owning only its own database (services/library/src/library/jobs/db_roles.py).
 resource "google_sql_user" "prepza" {
   name     = "prepza"
   instance = google_sql_database_instance.main.name

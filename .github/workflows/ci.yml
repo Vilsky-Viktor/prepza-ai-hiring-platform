@@ -61,7 +61,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { name: library, path: services/library }
+          - { name: library, path: services/library, code: src }
           - { name: generation, path: services/generation }
           - { name: rounds, path: services/rounds, code: src }
           - { name: companies, path: services/companies }

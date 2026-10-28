@@ -17,5 +17,5 @@ max-complexity = 15
 
 [lint.isort]
 # The shared package is installed like any other dependency.
-known-first-party = ["app", "api", "ats", "rounds", "billing"]
+known-first-party = ["app", "api", "ats", "rounds", "billing", "library"]
 known-third-party = ["prepza_common"]

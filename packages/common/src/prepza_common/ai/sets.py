@@ -20,7 +20,7 @@ class TopicIn(BaseModel):
     title: str
     subtopics: list[str]
     questions: list[QuestionIn]
-    # Lets the question bank find this topic by meaning (library's storage/reuse.py).
+    # Lets the question bank find this topic by meaning (library's repositories/reuse.py).
     embedding: list[float] | None = None
 
 

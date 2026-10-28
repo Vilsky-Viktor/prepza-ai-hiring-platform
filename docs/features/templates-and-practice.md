@@ -11,7 +11,7 @@ Each template question belongs to one pool, fixed when it's made and never chang
 | **practice** | Free practice and the role pages' sample questions only; public, shown with its answer | 30 (`PRACTICE_QUESTIONS`) |
 | **company** | Company interviews copied from the template, and the bank new generations reuse from; never shown publicly | 60 (`COMPANY_QUESTIONS`) |
 
-- A new template's topic (`storage/templates.py` `create_template`, `helpers/pools.py`): questions reused from the bank are company questions; of the fresh ones, 30 go to practice and the rest to companies. With 90 a topic and at most half reused, there are always enough fresh ones for 30 practice.
+- A new template's topic (`repositories/templates.py` `create_template`, `helpers/pools.py`): questions reused from the bank are company questions; of the fresh ones, 30 go to practice and the rest to companies. With 90 a topic and at most half reused, there are always enough fresh ones for 30 practice.
 - No question moves between pools. A wrong answer key or a flagged question is still fixed or replaced, and the fix reaches the copies.
 - Company interviews' own questions have no pool: they're never shared and never in the bank.
 - Templates made before the pools got them from their old stages (library migration 0027): revealed questions are practice, private and retiring ones company. Their counts vary, so a topic may be short of either; the admin zone's template page shows each topic's counts and tops them up (below).

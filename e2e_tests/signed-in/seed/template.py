@@ -12,7 +12,7 @@ import uuid
 
 from prepza_common.ai.sets import OptionIn, PreparationIn, QuestionIn, TopicIn
 
-from app.storage import preparations, templates
+from library.repositories import preparations, templates
 
 GENERATION_ID = uuid.UUID("00000000-0000-4000-8000-0000000e2e01")
 TOPICS = ("SQL basics", "Indexes")

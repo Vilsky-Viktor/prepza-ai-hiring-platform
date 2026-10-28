@@ -15,7 +15,7 @@ from pathlib import Path
 from assistant_fixture import TEMPLATES
 from prepza_common.ai.sets import OptionIn, PreparationIn, QuestionIn, TopicIn
 
-from app.storage import preparations, templates
+from library.repositories import preparations, templates
 
 # Not common.py's paths: library has no OpenAI packages.
 IDS = Path(__file__).resolve().parents[1] / "results" / "assistant_templates.json"

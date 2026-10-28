@@ -145,7 +145,7 @@ Each user chooses, in Settings > Emails, which emails they get beyond service em
 
 The sign-in dialog shows both checkboxes only on a browser where no one has signed in yet (a `prepza:signed-in-before` flag in local storage, set at every sign-in): an existing account's choices are in its Settings.
 
-Every change is logged and never edited (`email_consents`): the setting, on or off, where (`sign_in`, `settings`, `unsubscribe`, or `admin` with the superadmin's id in `changed_by`), on what basis (`choice`, or `soft_opt_in` for updates turned on at a first sign-in that showed the opt-out), the wording's version (`CONSENT_TEXT_VERSION` in `services/library/app/constants/emails.py`, changed whenever the checkboxes' wording changes) and the time. The account export includes both; deleting the account removes them.
+Every change is logged and never edited (`email_consents`): the setting, on or off, where (`sign_in`, `settings`, `unsubscribe`, or `admin` with the superadmin's id in `changed_by`), on what basis (`choice`, or `soft_opt_in` for updates turned on at a first sign-in that showed the opt-out), the wording's version (`CONSENT_TEXT_VERSION` in `services/library/src/library/constants/emails.py`, changed whenever the checkboxes' wording changes) and the time. The account export includes both; deleting the account removes them.
 
 ### Unsubscribing
 

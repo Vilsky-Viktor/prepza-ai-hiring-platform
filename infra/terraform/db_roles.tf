@@ -48,7 +48,7 @@ resource "google_cloud_run_v2_job" "db_roles" {
 
       containers {
         image   = "${local.registry}/library:${var.image_tag}"
-        command = ["python", "-m", "app.jobs.db_roles"]
+        command = ["python", "-m", "library.jobs.db_roles"]
 
         env {
           name = "ADMIN_DATABASE_URL"
