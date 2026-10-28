@@ -1,7 +1,7 @@
 import { cn } from "cn"
 import { ArrowUpIcon } from "lucide-react"
 
-import { Caret } from "@/components/landing/caret"
+import { Caret } from "@/features/landing/components/caret"
 import { buttonVariants } from "@/components/ui/button"
 
 /** The home page's job description box (components/common/start-test.tsx) as a picture, filling its

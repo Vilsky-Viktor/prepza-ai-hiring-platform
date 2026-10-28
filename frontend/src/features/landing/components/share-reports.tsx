@@ -2,10 +2,13 @@ import { cn } from "cn"
 import { DownloadIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
-import { DEMO_GROUP } from "@/components/landing/demo-panel"
-import { ReportsDemo } from "@/components/landing/reports-demo"
-import { LandingSection, OUTLINE_BUTTON } from "@/components/landing/section"
-import { StartButton } from "@/components/landing/start-button"
+import { DEMO_GROUP } from "@/features/landing/components/demo-panel"
+import { ReportsDemo } from "@/features/landing/components/reports-demo"
+import {
+  LandingSection,
+  OUTLINE_BUTTON,
+} from "@/features/landing/components/section"
+import { StartButton } from "@/features/landing/components/start-button"
 import { buttonVariants } from "@/components/ui/button"
 import { BAND } from "@/config/landing-backgrounds"
 import { REPORT_SAMPLES_URL } from "@/config/report-samples"

@@ -3,7 +3,7 @@
 import { type LucideIcon, UserRoundIcon } from "lucide-react"
 import { useEffect, useId, useRef } from "react"
 
-import { Comet } from "@/components/landing/comet"
+import { Comet } from "@/features/landing/components/comet"
 import { useStill } from "@/hooks/use-still"
 import { PULSE_SECONDS, SPARK_SPEED } from "@/config/landing"
 

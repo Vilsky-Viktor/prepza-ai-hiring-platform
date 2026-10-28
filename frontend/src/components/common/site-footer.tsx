@@ -6,7 +6,7 @@ import {
   XIcon,
   YouTubeIcon,
 } from "@/components/icons/brand-icons"
-import { AskAgentButton } from "@/components/landing/ask-agent-button"
+import { AskAgentButton } from "@/components/common/ask-agent-button"
 import { LanguageSwitch } from "@/components/common/language-switch"
 import { LocalizedLink } from "@/components/common/localized-link"
 import { FOOTER_COLUMNS } from "@/config/navigation"

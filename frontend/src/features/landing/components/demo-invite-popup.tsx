@@ -3,7 +3,10 @@
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
-import { DemoEmailField, DemoPopup } from "@/components/landing/demo-popup"
+import {
+  DemoEmailField,
+  DemoPopup,
+} from "@/features/landing/components/demo-popup"
 import { buttonVariants } from "@/components/ui/button"
 
 /** The invite dialog (features/company/components/invite-candidate.tsx), small, over the

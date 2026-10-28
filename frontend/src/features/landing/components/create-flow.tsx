@@ -4,17 +4,20 @@ import { cn } from "cn"
 import { useTranslations } from "next-intl"
 import { useEffect, useRef } from "react"
 
-import { Caret } from "@/components/landing/caret"
-import { DemoInterview } from "@/components/landing/demo-interview"
-import { DemoInvitePopup } from "@/components/landing/demo-invite-popup"
-import { DemoPanel } from "@/components/landing/demo-panel"
-import { DemoPointer } from "@/components/landing/demo-pointer"
-import { DemoSentNotice } from "@/components/landing/demo-popup"
-import { Waiting } from "@/components/landing/demo-waiting"
-import { DemoWriting } from "@/components/landing/demo-writing"
-import { FlowArrows } from "@/components/landing/flow-arrows"
-import { SubtopicChip, TopicCard } from "@/components/landing/topic-card"
-import { TypedDescription } from "@/components/landing/typed-description"
+import { Caret } from "@/features/landing/components/caret"
+import { DemoInterview } from "@/features/landing/components/demo-interview"
+import { DemoInvitePopup } from "@/features/landing/components/demo-invite-popup"
+import { DemoPanel } from "@/features/landing/components/demo-panel"
+import { DemoPointer } from "@/features/landing/components/demo-pointer"
+import { DemoSentNotice } from "@/features/landing/components/demo-popup"
+import { Waiting } from "@/features/landing/components/demo-waiting"
+import { DemoWriting } from "@/features/landing/components/demo-writing"
+import { FlowArrows } from "@/features/landing/components/flow-arrows"
+import {
+  SubtopicChip,
+  TopicCard,
+} from "@/features/landing/components/topic-card"
+import { TypedDescription } from "@/features/landing/components/typed-description"
 import { buttonVariants } from "@/components/ui/button"
 import {
   DEMO_ADDED_SUBTOPIC,

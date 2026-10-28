@@ -1,7 +1,7 @@
 import { cn } from "cn"
 import { CircleCheckIcon } from "lucide-react"
 
-import { Caret } from "@/components/landing/caret"
+import { Caret } from "@/features/landing/components/caret"
 
 /** A dialog, small, over the whole panel (whose box must be `relative`) while `open`: the
  * panel dimmed and the dialog's card in its middle. */

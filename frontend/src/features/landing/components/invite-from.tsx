@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server"
 
-import { DEMO_GROUP } from "@/components/landing/demo-panel"
-import { InviteStage } from "@/components/landing/invite-stage"
-import { LandingSection, MoreLink } from "@/components/landing/section"
+import { DEMO_GROUP } from "@/features/landing/components/demo-panel"
+import { InviteStage } from "@/features/landing/components/invite-stage"
+import { LandingSection, MoreLink } from "@/features/landing/components/section"
 import { INVITE_SOURCES, type InviteSource } from "@/config/invite-demo"
 import { DOT_GRID } from "@/config/landing-backgrounds"
 

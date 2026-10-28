@@ -4,10 +4,10 @@ import { cn } from "cn"
 import { BellIcon } from "lucide-react"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
-import { ArrivingCandidates } from "@/components/landing/arriving-candidates"
-import { InviteCard } from "@/components/landing/invite-card"
-import { InterviewHeader } from "@/components/landing/interview-header"
-import { Wire } from "@/components/landing/wire"
+import { ArrivingCandidates } from "@/features/landing/components/arriving-candidates"
+import { InviteCard } from "@/features/landing/components/invite-card"
+import { InterviewHeader } from "@/features/landing/components/interview-header"
+import { Wire } from "@/features/landing/components/wire"
 import { SLACK } from "@/config/slack"
 import {
   DEMO_INVITE_CANDIDATES,

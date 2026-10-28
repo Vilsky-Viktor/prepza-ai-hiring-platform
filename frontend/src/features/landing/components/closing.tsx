@@ -2,10 +2,10 @@ import { cn } from "cn"
 import { GiftIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
-import { AskAgentButton } from "@/components/landing/ask-agent-button"
-import { DemosButton } from "@/components/landing/demos-button"
-import { MoreLink } from "@/components/landing/section"
-import { StartButton } from "@/components/landing/start-button"
+import { AskAgentButton } from "@/components/common/ask-agent-button"
+import { DemosButton } from "@/features/landing/components/demos-button"
+import { MoreLink } from "@/features/landing/components/section"
+import { StartButton } from "@/features/landing/components/start-button"
 import { GLOW } from "@/config/landing-backgrounds"
 
 /** The landing page's last screen: a two-line call to create the first interview, each line

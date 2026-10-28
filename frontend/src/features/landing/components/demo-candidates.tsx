@@ -3,8 +3,8 @@
 import { cn } from "cn"
 import { useLocale, useTranslations } from "next-intl"
 
-import { InterviewHeader } from "@/components/landing/interview-header"
-import { DemoReportActions } from "@/components/landing/demo-share"
+import { InterviewHeader } from "@/features/landing/components/interview-header"
+import { DemoReportActions } from "@/features/landing/components/demo-share"
 import { Badge } from "@/components/ui/badge"
 import {
   DEMO_OPENED,

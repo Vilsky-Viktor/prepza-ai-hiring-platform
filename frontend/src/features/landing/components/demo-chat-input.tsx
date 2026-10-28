@@ -1,7 +1,7 @@
 import { cn } from "cn"
 import { ArrowUpIcon, MicIcon } from "lucide-react"
 
-import { Caret } from "@/components/landing/caret"
+import { Caret } from "@/features/landing/components/caret"
 import { buttonVariants } from "@/components/ui/button"
 
 /** The assistant's chat input (components/chat-input.tsx) as a small picture: `text` as typed

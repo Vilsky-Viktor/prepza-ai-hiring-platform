@@ -3,7 +3,7 @@
 import { BookOpenIcon, ChartColumnIcon, ZapIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { IconCard } from "@/components/landing/icon-card"
+import { IconCard } from "@/features/landing/components/icon-card"
 import { ASK_AGENT_CARDS } from "@/config/ask-agent-demo"
 
 const ICONS = {

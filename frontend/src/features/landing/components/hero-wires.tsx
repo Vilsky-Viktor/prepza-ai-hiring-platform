@@ -1,6 +1,6 @@
 "use client"
 
-import { Wire } from "@/components/landing/wire"
+import { Wire } from "@/features/landing/components/wire"
 import {
   HERO_WIRES,
   OUT_SIZE,

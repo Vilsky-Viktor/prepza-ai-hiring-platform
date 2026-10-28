@@ -12,9 +12,9 @@ import {
 import { useEffect, useId, useRef, useState } from "react"
 
 import { useStill } from "@/hooks/use-still"
-import { NetOutside } from "@/components/landing/net-outside"
-import { NetWave } from "@/components/landing/net-wave"
-import { Wire, wireLength } from "@/components/landing/wire"
+import { NetOutside } from "@/features/landing/components/net-outside"
+import { NetWave } from "@/features/landing/components/net-wave"
+import { Wire, wireLength } from "@/features/landing/components/wire"
 import { INVITE_SPEED } from "@/config/invite-demo"
 import {
   NET_CELL,

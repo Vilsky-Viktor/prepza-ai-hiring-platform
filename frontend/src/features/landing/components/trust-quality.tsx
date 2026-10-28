@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server"
 
 import { KeepAcronyms } from "@/components/common/keep-acronyms"
-import { DEMO_GROUP } from "@/components/landing/demo-panel"
-import { QualityLoop } from "@/components/landing/quality-loop"
-import { LandingSection } from "@/components/landing/section"
+import { DEMO_GROUP } from "@/features/landing/components/demo-panel"
+import { QualityLoop } from "@/features/landing/components/quality-loop"
+import { LandingSection } from "@/features/landing/components/section"
 import { LocalizedLink } from "@/components/common/localized-link"
 import {
   QUALITY_STEPS,

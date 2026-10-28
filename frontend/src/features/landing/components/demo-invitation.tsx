@@ -4,7 +4,7 @@ import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
 import { TimeFact } from "@/components/common/invite-intro"
-import { DemoLogo } from "@/components/landing/demo-logo"
+import { DemoLogo } from "@/features/landing/components/demo-logo"
 import { buttonVariants } from "@/components/ui/button"
 import {
   DEMO_COMPANY,

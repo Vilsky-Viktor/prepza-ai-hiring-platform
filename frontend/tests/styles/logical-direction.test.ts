@@ -26,9 +26,9 @@ const ALLOWED = /^(?:left|right)-1\/2$|^-left-\[\d+px\]$/
 // Places measured in the page's own pixels, or drawn on both sides alike.
 const ALLOWED_IN: Record<string, RegExp> = {
   // The demo pointer moves to measured positions (offsetLeft), from the top-left corner.
-  "components/landing/demo-pointer.tsx": /^-?left-(?:0|4)$/,
+  "features/landing/components/demo-pointer.tsx": /^-?left-(?:0|4)$/,
   // One wire runs from each edge of the window.
-  "components/landing/hero-wires.tsx": /^(?:left|right)-full$/,
+  "features/landing/components/hero-wires.tsx": /^(?:left|right)-full$/,
 }
 // Inline styles placed from a physical side.
 const PHYSICAL_STYLE =

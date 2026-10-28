@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
-import { AskAgentDemo } from "@/components/landing/ask-agent-demo"
-import { LandingSection } from "@/components/landing/section"
+import { AskAgentDemo } from "@/features/landing/components/ask-agent-demo"
+import { LandingSection } from "@/features/landing/components/section"
 import { GLOW } from "@/config/landing-backgrounds"
 
 /** Just ask the agent: the assistant's panel answering about results and how-tos and inviting a

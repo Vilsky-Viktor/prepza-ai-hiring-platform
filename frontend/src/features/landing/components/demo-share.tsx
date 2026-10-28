@@ -5,7 +5,10 @@ import { DownloadIcon, Share2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { CHAT_APPS } from "@/components/common/chat-apps"
-import { DemoEmailField, DemoPopup } from "@/components/landing/demo-popup"
+import {
+  DemoEmailField,
+  DemoPopup,
+} from "@/features/landing/components/demo-popup"
 import { buttonVariants } from "@/components/ui/button"
 
 // A report action's icon, like the page's icon buttons, a size down.

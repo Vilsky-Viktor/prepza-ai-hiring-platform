@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server"
 
-import { CreateFlow } from "@/components/landing/create-flow"
-import { DEMO_GROUP } from "@/components/landing/demo-panel"
-import { NotesLine } from "@/components/landing/notes-line"
-import { LandingSection } from "@/components/landing/section"
+import { CreateFlow } from "@/features/landing/components/create-flow"
+import { DEMO_GROUP } from "@/features/landing/components/demo-panel"
+import { NotesLine } from "@/features/landing/components/notes-line"
+import { LandingSection } from "@/features/landing/components/section"
 import { BAND } from "@/config/landing-backgrounds"
 
 /** How an interview is created, as three panels playing on their own, joined by arrows: a job

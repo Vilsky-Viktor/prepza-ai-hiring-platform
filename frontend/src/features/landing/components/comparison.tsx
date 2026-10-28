@@ -2,7 +2,7 @@ import { cn } from "cn"
 import { CalendarSyncIcon, PhoneIcon, type LucideIcon } from "lucide-react"
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { LandingSection, MoreLink } from "@/components/landing/section"
+import { LandingSection, MoreLink } from "@/features/landing/components/section"
 import { COMPARED } from "@/config/comparison"
 import { BAND } from "@/config/landing-backgrounds"
 import { candidatePriceRange } from "@/lib/format"

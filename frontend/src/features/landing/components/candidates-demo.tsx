@@ -3,10 +3,10 @@
 import { cn } from "cn"
 import { createRef, useRef, useState } from "react"
 
-import { DemoInvitation } from "@/components/landing/demo-invitation"
-import { DemoPanel } from "@/components/landing/demo-panel"
-import { DemoPointer } from "@/components/landing/demo-pointer"
-import { DemoQuestion } from "@/components/landing/demo-question"
+import { DemoInvitation } from "@/features/landing/components/demo-invitation"
+import { DemoPanel } from "@/features/landing/components/demo-panel"
+import { DemoPointer } from "@/features/landing/components/demo-pointer"
+import { DemoQuestion } from "@/features/landing/components/demo-question"
 import {
   DEMO_QUESTIONS,
   type DemoQuestion as Question,

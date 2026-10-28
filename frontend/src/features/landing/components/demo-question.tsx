@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
 import { CodeEditor } from "@/components/common/code-editor"
-import { DemoLogo } from "@/components/landing/demo-logo"
+import { DemoLogo } from "@/features/landing/components/demo-logo"
 import { useStill } from "@/hooks/use-still"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { buttonVariants } from "@/components/ui/button"

@@ -5,13 +5,13 @@ import { useLocale, useTranslations } from "next-intl"
 import { Fragment, useEffect, useRef, useState } from "react"
 
 import { ChatBubble, ThinkingDots } from "@/components/common/chat-bubble"
-import { AskAgentCards } from "@/components/landing/ask-agent-cards"
+import { AskAgentCards } from "@/features/landing/components/ask-agent-cards"
 import {
   DemoActionCard,
   type DemoCardState,
-} from "@/components/landing/demo-action-card"
-import { DemoChatInput } from "@/components/landing/demo-chat-input"
-import { DemoPointer } from "@/components/landing/demo-pointer"
+} from "@/features/landing/components/demo-action-card"
+import { DemoChatInput } from "@/features/landing/components/demo-chat-input"
+import { DemoPointer } from "@/features/landing/components/demo-pointer"
 import {
   ASK_AGENT_EMAIL,
   ASK_AGENT_INTERVIEW,

@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl"
 
 import { PassStatus } from "@/components/common/pass-status"
 import { Dot, Dotted } from "@/components/common/dot"
-import { DemoReportActions } from "@/components/landing/demo-share"
+import { DemoReportActions } from "@/features/landing/components/demo-share"
 import { AnswerOptions } from "@/components/questions/answer-options"
 import { MultiChoiceTag } from "@/components/questions/multi-choice-tag"
 import { Badge } from "@/components/ui/badge"
