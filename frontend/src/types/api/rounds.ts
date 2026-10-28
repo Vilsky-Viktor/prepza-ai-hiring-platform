@@ -543,7 +543,8 @@ export interface paths {
     post?: never
     /**
      * Delete Interview Data
-     * @description Called by companies before it deletes an interview; safe to repeat.
+     * @description No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one
+     *     release for a companies still calling it (microservices.md, 3); safe to repeat.
      */
     delete: operations["delete_interview_data_internal_interviews__interview_set_id__delete"]
     options?: never
@@ -562,6 +563,28 @@ export interface paths {
     get: operations["invite_scorecard_internal_invites__invite_id__scorecard_get"]
     put?: never
     post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/events": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Receive Event
+     * @description Pub/Sub pushes every event here. A failure answers with an error, so Pub/Sub retries it,
+     *     and moves it to the dead-letter topic after the subscription's maximum attempts. An event no
+     *     retry can handle is logged and acknowledged (handle_or_drop).
+     */
+    post: operations["receive_event_internal_events_post"]
     delete?: never
     options?: never
     head?: never
@@ -1227,6 +1250,34 @@ export interface components {
       score: number | null
       /** Review */
       review: components["schemas"]["ReviewItem"][]
+    }
+    /**
+     * PushBody
+     * @description What Pub/Sub sends to a push endpoint.
+     */
+    PushBody: {
+      message: components["schemas"]["PushMessage"]
+      /** Subscription */
+      subscription: string
+    }
+    /** PushMessage */
+    PushMessage: {
+      /**
+       * Data
+       * @default
+       */
+      data: string
+      /**
+       * Attributes
+       * @default {}
+       */
+      attributes: {
+        [key: string]: string
+      }
+      /** Messageid */
+      messageId: string
+      /** Publishtime */
+      publishTime?: string | null
     }
     /** Question */
     Question: {
@@ -2428,6 +2479,37 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ScorecardSession"][]
         }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  receive_event_internal_events_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PushBody"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
       }
       /** @description Validation Error */
       422: {

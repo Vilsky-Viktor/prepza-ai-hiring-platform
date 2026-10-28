@@ -3,7 +3,8 @@
 Candidates' interview sessions and their answers, and free practice rounds; the FAQ, the help
 chat for signed-out visitors, each page's guide and the legal texts the site shows, and the
 contact form. It keeps sessions, answers, integrity signals and help votes in its own database;
-questions come from library, and scores go out as events. What it does and its settings:
+questions come from library, and scores go out as events; a deleted interview's or company's
+sessions go when its `interview.deleted` or `company.deleted` arrives. What it does and its settings:
 [candidates](../../docs/features/candidates.md),
 [templates and practice](../../docs/features/templates-and-practice.md) and
 [the site](../../docs/features/site.md).
@@ -16,6 +17,8 @@ src/rounds/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
+├── handlers/               # Pub/Sub events (deleted interviews and companies); dispatch.py
+│                           # picks one
 ├── services/               # Interview steps, answers, timed sessions, practice, signals,
 │                           # the help chat, votes, contact, deletions; each opens its
 │                           # transaction

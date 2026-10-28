@@ -6,6 +6,7 @@ from companies.constants.invites import InviteStatus
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 from companies.repositories import guests
+from companies.repositories.interviews import add_interview_deleted
 
 
 async def delete_invites_batch(session: AsyncSession, *conditions) -> tuple[int, list[tuple]]:
@@ -31,11 +32,19 @@ async def delete_invites_batch(session: AsyncSession, *conditions) -> tuple[int,
 
 
 async def delete_interviews_batch(session: AsyncSession, company_id) -> int:
-    """Deletes up to DELETE_BATCH of the company's interviews; an invite made meanwhile goes with
+    """Deletes up to DELETE_BATCH of the company's interviews, each with interview.deleted (so
+    rounds and library delete its sessions and questions); an invite made meanwhile goes with
     its interview (cascade), its guest announced. Returns how many went."""
     chosen = select(Interview.id).where(Interview.company_id == company_id)
     interview_ids = list(await session.scalars(chosen.limit(DELETE_BATCH)))
     await guests.announce_deleted(session, CandidateInvite.interview_id.in_(interview_ids))
-    await session.execute(delete(Interview).where(Interview.id.in_(interview_ids)))
+    gone = await session.execute(
+        delete(Interview)
+        .where(Interview.id.in_(interview_ids))
+        .returning(Interview.id, Interview.company_id, Interview.set_id, Interview.generation_id)
+    )
+
+    for row in gone:
+        add_interview_deleted(session, *row)
 
     return len(interview_ids)

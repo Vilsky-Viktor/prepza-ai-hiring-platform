@@ -1422,7 +1422,7 @@
      "internal"
     ],
     "summary": "Delete Interview Data",
-    "description": "Called by companies before it deletes an interview; safe to repeat.",
+    "description": "No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one\nrelease for a companies still calling it (microservices.md, 3); safe to repeat.",
     "operationId": "delete_interview_data_internal_interviews__interview_set_id__delete",
     "security": [
      {
@@ -1496,6 +1496,41 @@
         }
        }
       }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/events": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Receive Event",
+    "description": "Pub/Sub pushes every event here. A failure answers with an error, so Pub/Sub retries it,\nand moves it to the dead-letter topic after the subscription's maximum attempts. An event no\nretry can handle is logged and acknowledged (handle_or_drop).",
+    "operationId": "receive_event_internal_events_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PushBody"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
      },
      "422": {
       "description": "Validation Error",
@@ -2974,6 +3009,61 @@
      "review"
     ],
     "title": "PracticeTopicResult"
+   },
+   "PushBody": {
+    "properties": {
+     "message": {
+      "$ref": "#/components/schemas/PushMessage"
+     },
+     "subscription": {
+      "type": "string",
+      "title": "Subscription"
+     }
+    },
+    "type": "object",
+    "required": [
+     "message",
+     "subscription"
+    ],
+    "title": "PushBody",
+    "description": "What Pub/Sub sends to a push endpoint."
+   },
+   "PushMessage": {
+    "properties": {
+     "data": {
+      "type": "string",
+      "title": "Data",
+      "default": ""
+     },
+     "attributes": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "type": "object",
+      "title": "Attributes",
+      "default": {}
+     },
+     "messageId": {
+      "type": "string",
+      "title": "Messageid"
+     },
+     "publishTime": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Publishtime"
+     }
+    },
+    "type": "object",
+    "required": [
+     "messageId"
+    ],
+    "title": "PushMessage"
    },
    "Question": {
     "properties": {

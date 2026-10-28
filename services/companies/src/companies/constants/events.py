@@ -17,8 +17,6 @@ GENERATION_CANCELLED = "generation.cancelled"
 # Rounds: every section of a candidate's interview is finished, with how many answers they
 # picked; the company is charged for the candidate, or gets the credits back without one.
 INTERVIEW_FINISHED = "interview.finished"
-# A company was deleted; notifications removes the company's notifications.
-COMPANY_DELETED = "company.deleted"
 # A candidate's interview.finished was stored: their grade, whether they passed, and the
 # interview's title; ats writes the result back to the ATS that sent them.
 CANDIDATE_FINISHED = "candidate.finished"
@@ -30,8 +28,6 @@ INTERVIEW_READY = "interview.ready"
 CANDIDATE_STARTED = "candidate.started"
 CANDIDATE_UNDELIVERED = "candidate.undelivered"
 CANDIDATE_EXPIRED = "candidate.expired"
-# An interview was deleted; ats removes its job links and the candidates sent for it.
-INTERVIEW_DELETED = "interview.deleted"
 # Processed events are remembered this long: past Pub/Sub's 7 days of redeliveries.
 PROCESSED_EVENT_DAYS = 8
 # A company erased a candidate (removed them, results included): other services forget them.

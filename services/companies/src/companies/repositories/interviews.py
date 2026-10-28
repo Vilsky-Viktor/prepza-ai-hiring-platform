@@ -2,10 +2,11 @@ import uuid
 from collections.abc import Callable
 from datetime import UTC, datetime
 
+from prepza_common.events.deletions import INTERVIEW_DELETED, InterviewDeleted
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from companies.constants.events import CANDIDATE_INTERVIEW_DELETED, INTERVIEW_DELETED
+from companies.constants.events import CANDIDATE_INTERVIEW_DELETED
 from companies.constants.invites import InviteStatus
 from companies.core.exceptions import OverLimit
 from companies.helpers.search import escape_like
@@ -240,21 +241,40 @@ async def remove(session: AsyncSession, interview_id) -> list[tuple]:
         )
     )
     removed = [tuple(row) for row in late]
-    company_id = await session.scalar(
-        delete(Interview).where(Interview.id == interview_id).returning(Interview.company_id)
-    )
+    gone = (
+        await session.execute(
+            delete(Interview)
+            .where(Interview.id == interview_id)
+            .returning(
+                Interview.id, Interview.company_id, Interview.set_id, Interview.generation_id
+            )
+        )
+    ).first()
 
-    if company_id is not None:
-        add_deleted(session, interview_id, company_id)
+    if gone is not None:
+        add_deleted(session, *gone)
 
     return removed
 
 
-def add_deleted(session: AsyncSession, interview_id, company_id) -> None:
-    """ats removes the deleted interview's job links and candidates; notifications and the api
-    forget its candidates."""
-    data = {"interview_id": str(interview_id), "company_id": str(company_id)}
+def add_interview_deleted(session: AsyncSession, interview_id, company_id, set_id, generation_id):
+    """interview.deleted: rounds deletes its candidates' sessions, library its questions, ats its
+    job links and candidates. Returns the event's data."""
+    data = InterviewDeleted(
+        interview_id=interview_id,
+        company_id=company_id,
+        set_id=set_id,
+        generation_id=generation_id,
+    ).model_dump(mode="json")
     outbox.add(session, INTERVIEW_DELETED, data)
+
+    return data
+
+
+def add_deleted(session: AsyncSession, interview_id, company_id, set_id, generation_id) -> None:
+    """interview.deleted, and candidate.interview_deleted for notifications, the api and the
+    assistant to forget its candidates."""
+    data = add_interview_deleted(session, interview_id, company_id, set_id, generation_id)
     outbox.add(session, CANDIDATE_INTERVIEW_DELETED, data)
 
 

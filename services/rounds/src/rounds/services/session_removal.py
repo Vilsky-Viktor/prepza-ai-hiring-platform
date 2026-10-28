@@ -14,6 +14,12 @@ async def remove_invites(candidate_invite_ids: list[uuid.UUID]) -> None:
 
 
 async def remove_interview(interview_set_id: uuid.UUID) -> None:
-    """Before companies deletes an interview: every candidate's sessions on it, a batch at a
-    time; safe to repeat."""
+    """A deleted interview's sessions (interview.deleted): every candidate's and preview's on
+    it, a batch at a time; safe to repeat, so a redelivered event deletes nothing more."""
     await sessions.remove_for_interview(Session, interview_set_id)
+
+
+async def remove_company(company_id: uuid.UUID) -> None:
+    """A deleted company's sessions (company.deleted), as remove_interview; also those of an
+    interview whose own event came first or never named its set."""
+    await sessions.remove_for_company(Session, company_id)

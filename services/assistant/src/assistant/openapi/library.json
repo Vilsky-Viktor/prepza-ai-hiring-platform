@@ -2111,7 +2111,7 @@
      "internal"
     ],
     "summary": "Delete Interview",
-    "description": "Deletes an interview set; safe to repeat.",
+    "description": "No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one\nrelease for a companies still calling it (microservices.md, 3); safe to repeat.",
     "operationId": "delete_interview_internal_interviews__set_id__delete",
     "security": [
      {

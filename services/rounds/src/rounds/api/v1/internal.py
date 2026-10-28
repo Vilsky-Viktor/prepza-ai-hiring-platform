@@ -57,7 +57,8 @@ async def interview_answer_counts(body: SetIdsIn, caller: ServiceCaller) -> dict
 
 @router.delete("/interviews/{interview_set_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_interview_data(interview_set_id: UUID, caller: ServiceCaller) -> None:
-    """Called by companies before it deletes an interview; safe to repeat."""
+    """No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one
+    release for a companies still calling it (microservices.md, 3); safe to repeat."""
     await session_removal.remove_interview(interview_set_id)
 
 

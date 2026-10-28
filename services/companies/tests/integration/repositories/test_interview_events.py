@@ -34,6 +34,16 @@ async def events(event_type: str, key: str, value: str) -> list[dict]:
         )
 
 
+def deleted(found, set_id=None) -> dict:
+    """interview.deleted's data for that interview."""
+    return {
+        "interview_id": str(found.id),
+        "company_id": str(found.company_id),
+        "set_id": str(set_id) if set_id else None,
+        "generation_id": str(found.generation_id),
+    }
+
+
 def test_a_finished_candidate_delivered_twice_is_announced_once(run):
     async def scenario():
         found = await interview()
@@ -75,9 +85,13 @@ def test_an_interview_made_ready_twice_by_one_event_is_announced_once(run):
     assert saved == [{"interview_id": str(found.id), "company_id": str(found.company_id)}]
 
 
-def test_a_removed_interview_is_announced_once(run):
+def test_a_removed_interview_is_announced_once_naming_its_questions(run):
+    """rounds and library find what they keep of it by its set and its generation."""
+    set_id = uuid.uuid4()
+
     async def scenario():
         found = await interview()
+        await transaction(interview_generations.set_set_id, found.id, set_id)
         await factories.interview_removed(found.id)
         await factories.interview_removed(found.id)
 
@@ -85,7 +99,7 @@ def test_a_removed_interview_is_announced_once(run):
 
     found, saved = run(scenario())
 
-    assert saved == [{"interview_id": str(found.id), "company_id": str(found.company_id)}]
+    assert saved == [deleted(found, set_id)]
 
 
 def test_a_cancelled_generations_interview_is_announced_as_deleted(run):
@@ -102,7 +116,7 @@ def test_a_cancelled_generations_interview_is_announced_as_deleted(run):
 
     found, saved = run(scenario())
 
-    assert saved == [{"interview_id": str(found.id), "company_id": str(found.company_id)}]
+    assert saved == [deleted(found)]
 
 
 def test_interviews_by_ids_skip_the_ones_gone(run):
@@ -199,4 +213,30 @@ def test_a_deleted_interview_tells_the_services_that_keep_its_candidates(run):
 
     found, saved = run(scenario())
 
-    assert saved == [{"interview_id": str(found.id), "company_id": str(found.company_id)}]
+    assert saved == [deleted(found)]
+
+
+def test_a_deleted_companys_interviews_are_each_announced_with_their_questions(run):
+    """Deleting a company deletes its interviews a batch at a time; each tells rounds and
+    library which questions and sessions go, then company.deleted follows."""
+    set_id = uuid.uuid4()
+
+    async def scenario():
+        ready, generating = await interview(), await interview()
+        await transaction(interview_generations.set_set_id, ready.id, set_id)
+        await factories.deleted(ready.company_id)
+        await factories.deleted(generating.company_id)
+
+        return (
+            ready,
+            generating,
+            await events("interview.deleted", "interview_id", str(ready.id)),
+            await events("interview.deleted", "interview_id", str(generating.id)),
+            await events("company.deleted", "company_id", str(ready.company_id)),
+        )
+
+    ready, generating, ready_saved, generating_saved, company_saved = run(scenario())
+
+    assert ready_saved == [deleted(ready, set_id)]
+    assert generating_saved == [deleted(generating)]
+    assert company_saved == [{"company_id": str(ready.company_id)}]

@@ -54,15 +54,6 @@ async def answer_counts(set_ids: list[UUID]) -> dict[str, list[int]]:
     return response.json()
 
 
-async def delete_interview_data(set_id: UUID) -> None:
-    response = await http.get_client().delete(
-        f"{settings.rounds_url}/internal/interviews/{set_id}",
-        headers=bearer(service_token("rounds")),
-    )
-
-    response.raise_for_status()
-
-
 async def scorecard(invite_id: UUID) -> list[dict] | None:
     response = await http.get_client().get(
         f"{settings.rounds_url}/internal/invites/{invite_id}/scorecard",

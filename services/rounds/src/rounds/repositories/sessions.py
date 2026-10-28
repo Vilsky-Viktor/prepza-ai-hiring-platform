@@ -208,3 +208,14 @@ async def remove_for_interview(sessions, interview_set_id: uuid.UUID) -> None:
         RoundSession.interview_set_id == interview_set_id,
         batch=SESSION_DELETE_BATCH,
     )
+
+
+async def remove_for_company(sessions, company_id: uuid.UUID) -> None:
+    """Deletes every session of the company's interviews and previews, as remove_for_interview
+    does for one interview."""
+    await delete_in_batches(
+        sessions,
+        RoundSession,
+        RoundSession.company_id == company_id,
+        batch=SESSION_DELETE_BATCH,
+    )

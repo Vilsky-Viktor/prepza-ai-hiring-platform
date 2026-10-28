@@ -54,7 +54,7 @@ async def set_generated(
             generation_failed=False,
             ready_at=func.coalesce(Interview.ready_at, func.now()),
         )
-        .returning(Interview.id, Interview.company_id)
+        .returning(Interview.id, Interview.company_id, Interview.set_id, Interview.generation_id)
     )
     found = row.one_or_none()
 
@@ -96,7 +96,9 @@ async def remove_for_generation(
         await session.execute(
             delete(Interview)
             .where(Interview.generation_id == generation_id, Interview.set_id.is_(None))
-            .returning(Interview.id, Interview.company_id)
+            .returning(
+                Interview.id, Interview.company_id, Interview.set_id, Interview.generation_id
+            )
         )
     ).first()
 

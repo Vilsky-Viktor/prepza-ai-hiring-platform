@@ -124,3 +124,39 @@ def test_previews_over_the_hourly_limit_are_refused(client, started, monkeypatch
         == 429
     )
     assert started == []
+
+
+def test_a_preview_of_an_interview_deleted_meanwhile_loses_its_sessions(
+    client, started, monkeypatch
+):
+    """interview.deleted may reach rounds before the preview's sessions do (a delete before a
+    create): they're deleted here, and the preview refused."""
+    reads = []
+    deleted = []
+
+    async def gone_on_second_read(session, interview_id):
+        reads.append(interview_id)
+
+        if len(reads) > 1:
+            return None
+
+        return Interview(
+            id=interview_id,
+            company_id=COMPANY_ID,
+            generation_id=None,
+            set_id=SET_ID,
+            question_seconds=45,
+            topic_limits={},
+        )
+
+    async def delete_invite_sessions(invite_ids):
+        deleted.extend(invite_ids)
+
+    monkeypatch.setattr(interviews, "get", gone_on_second_read)
+    monkeypatch.setattr(rounds, "delete_invite_sessions", delete_invite_sessions)
+
+    response = client.post(f"/interviews/{uuid.uuid4()}/preview", json={"pledged": True})
+
+    assert response.status_code == 404
+    [_, payload] = started
+    assert deleted == [uuid.UUID(payload["candidate_invite_id"])]

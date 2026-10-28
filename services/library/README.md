@@ -18,7 +18,8 @@ src/library/
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
 ├── handlers/               # Pub/Sub events (answers, scored topics, deleted guests, fixed
-│                           # bank questions); dispatch.py picks one
+│                           # bank questions, deleted interviews and companies); dispatch.py
+│                           # picks one
 ├── services/               # Sets and templates, quality reviews and fixes, feedback, email
 │                           # settings, news, account deletion and export, erasures; each
 │                           # opens its transaction

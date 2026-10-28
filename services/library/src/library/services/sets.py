@@ -47,3 +47,16 @@ async def delete(set_id: uuid.UUID) -> None:
     async with Session.begin() as session:
         if await preparations.get(session, set_id) is not None:
             await preparations.remove(session, set_id)
+
+
+async def remove_interview(company_id: uuid.UUID, set_id: uuid.UUID | None, generation_id) -> None:
+    """A deleted interview's questions (interview.deleted); safe to repeat, so a redelivered
+    event deletes nothing more."""
+    async with Session.begin() as session:
+        await preparations.remove_interview(session, company_id, set_id, generation_id)
+
+
+async def remove_company(company_id: uuid.UUID) -> None:
+    """A deleted company's sets (company.deleted), a batch at a time; also one saved after its
+    interview's own event came."""
+    await preparations.remove_company(Session, company_id)

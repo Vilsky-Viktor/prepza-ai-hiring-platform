@@ -39,7 +39,8 @@ resource "google_pubsub_subscription" "dead_letter" {
 # that.
 locals {
   consumes = {
-    library       = ["answer.recorded", "session.scored", "guests.deleted", "question.fixed"]
+    library       = ["answer.recorded", "session.scored", "guests.deleted", "question.fixed", "interview.deleted", "company.deleted"]
+    rounds        = ["interview.deleted", "company.deleted"]
     companies     = ["generation.completed", "generation.failed", "generation.cancelled", "interview.finished", "audit.recorded"]
     notifications = ["notification.requested", "candidate.*", "member.*", "report.*", "contact.*", "company.*", "email.*"]
     ats           = ["candidate.finished", "candidate.removed", "interview.ready", "interview.deleted", "company.*", "credits.*", "ats.*"]

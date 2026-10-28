@@ -173,6 +173,8 @@ out or listed under another area):
 - `analytics`: funnel events with keyed pseudonymous ids (`track`).
 - `audit`: a member's action in another service, saved in its outbox for companies' action log.
 - `audit_actions`: the action log's actions, targets and groups.
+- `deletions`: the payloads of `interview.deleted` and `company.deleted` (`InterviewDeleted`,
+  `CompanyDeleted`), which the holders of that data consume.
 - `event_models`: the outbox's and processed events' columns every service's tables share.
 - `notifications`: the bell's notifications other services ask for.
 - `outbox`: events saved with their change and published once committed.

@@ -50,8 +50,8 @@ flowchart LR
     library -- re-generate, verify --> generation
     rounds -- questions --> library
     companies --> generation
-    companies --> library
-    companies --> rounds
+    companies -- questions --> library
+    companies -- sessions, scores --> rounds
     companies -- candidate credits --> billing
     ats -- members, interviews, invites --> companies
     api -- members, interviews, candidates, invites --> companies
@@ -65,6 +65,7 @@ flowchart LR
     billing -- credits.added --> pubsub
     library & companies & billing & ats -- notification.requested --> pubsub
     pubsub -- push --> library
+    pubsub -- push --> rounds
     pubsub -- push --> companies
     pubsub -- push --> ats
     pubsub -- push --> api
@@ -144,12 +145,13 @@ Refusals and duplicates:
 Delivery:
 
 - All events go to one Pub/Sub topic, `events`.
-- It pushes each event to the `/internal/events` endpoint of library, companies, notifications, ats, api and assistant.
+- It pushes each event to the `/internal/events` endpoint of library, rounds, companies, notifications, ats, api, assistant and billing.
 - In Google Cloud, each subscription carries only the types its consumer handles ([`infra/terraform/pubsub.tf`](../infra/terraform/pubsub.tf), `locals.consumes`):
 
 | Consumer | Event types |
 |---|---|
-| library | `answer.recorded`, `session.scored`, `guests.deleted` (companies deleted guest invites, by removal, retention or with their interview or company: library deletes each guest's sign-in, terms, ratings and reports; deleting again deletes nothing more), `question.fixed` (its own: a fixed bank question's copies in companies' tests that still hold its old content get the new one, 50 at a time; a push that runs out of time answers 503 and Pub/Sub brings it back for the rest; a copy already fixed no longer matches, so a repeat fixes nothing twice) |
+| library | `answer.recorded`, `session.scored`, `guests.deleted` (companies deleted guest invites, by removal, retention or with their interview or company: library deletes each guest's sign-in, terms, ratings and reports; deleting again deletes nothing more), `question.fixed` (its own: a fixed bank question's copies in companies' tests that still hold its old content get the new one, 50 at a time; a push that runs out of time answers 503 and Pub/Sub brings it back for the rest; a copy already fixed no longer matches, so a repeat fixes nothing twice), `interview.deleted` (the interview's question set, found by its id or by the generation that saved it, of that company only), `company.deleted` (every set of the company, 20 at a time); deleting again deletes nothing more |
+| rounds | `interview.deleted` (by its set: every candidate's and preview's sessions with their answers and signals), `company.deleted` (every session of the company); deleting again deletes nothing more, so a redelivery or a repeat is safe in any order |
 | companies | `generation.completed`, `generation.failed`, `generation.cancelled`, `interview.finished` |
 | notifications | `notification.requested`, every `candidate.*` (it handles `candidate.invited`, `candidate.joined`, `candidate.reminded`, `candidate.removed` and `candidate.interview_deleted`, which companies sends with `interview.deleted` so the bell forgets a deleted interview's candidates), `member.invited`, `report.shared`, `contact.sent`, `company.deleted`, and its own `email.webhook_received` (a Resend web hook recorded by its delivery id before the answer; its work runs from the event) |
 | ats | `candidate.finished`, `candidate.removed`, `interview.ready`, `interview.deleted`, `company.deleted`, `credits.added`, and its own `ats.candidate_arrived` (a candidate an ATS's web hook sent, saved before the answer: invited from the event, once, as the invite claims them) |

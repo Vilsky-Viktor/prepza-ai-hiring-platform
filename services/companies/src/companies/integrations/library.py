@@ -51,15 +51,6 @@ async def rename_set(set_id: UUID, title: str) -> None:
     response.raise_for_status()
 
 
-async def delete_interview(set_id: UUID) -> None:
-    response = await http.get_client().delete(
-        f"{settings.library_url}/internal/interviews/{set_id}",
-        headers=bearer(service_token("library")),
-    )
-
-    response.raise_for_status()
-
-
 async def get_topic_questions(set_id: UUID, topic_id: UUID) -> list[dict] | None:
     response = await http.get_client().get(
         f"{settings.library_url}/internal/sets/{set_id}/topics/{topic_id}/questions",

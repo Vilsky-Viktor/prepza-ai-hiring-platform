@@ -1,10 +1,11 @@
 import uuid
 
-from sqlalchemy import delete, func, select, update
+from prepza_common.db.db import delete_in_batches
+from sqlalchemy import delete, func, or_, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import aliased, selectinload
 
-from library.constants.sets import Pool
+from library.constants.sets import SET_DELETE_BATCH, OwnerType, Pool
 from library.models.sets import Question, QuestionSet, Topic
 from library.repositories import reuse
 
@@ -151,3 +152,37 @@ async def set_title(session: AsyncSession, set_id: uuid.UUID, title: str) -> Non
 async def remove(session: AsyncSession, set_id: uuid.UUID) -> None:
     """Deletes the set; its topics, questions, feedback, invites and joins cascade with it."""
     await session.execute(delete(QuestionSet).where(QuestionSet.id == set_id))
+
+
+async def remove_interview(
+    session: AsyncSession, company_id: uuid.UUID, set_id: uuid.UUID | None, generation_id
+) -> None:
+    """Deletes the company's interview set named by its id or by the generation that made it
+    (saved after companies last looked); never a template or another company's set."""
+    named = []
+
+    if set_id is not None:
+        named.append(QuestionSet.id == set_id)
+
+    if generation_id is not None:
+        named.append(QuestionSet.generation_id == generation_id)
+
+    if not named:
+        return
+
+    await session.execute(
+        delete(QuestionSet).where(
+            QuestionSet.owner_type == OwnerType.COMPANY,
+            QuestionSet.company_id == company_id,
+            or_(*named),
+        )
+    )
+
+
+async def remove_company(sessions, company_id: uuid.UUID) -> None:
+    """Deletes every set of the company, SET_DELETE_BATCH at a time, each batch in its own
+    transaction (from `sessions`); a run cut off keeps what it deleted, and running it again
+    goes on."""
+    await delete_in_batches(
+        sessions, QuestionSet, QuestionSet.company_id == company_id, batch=SET_DELETE_BATCH
+    )

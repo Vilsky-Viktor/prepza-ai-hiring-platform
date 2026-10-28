@@ -26,7 +26,7 @@ put() {
 
 put "$base/topics/events"
 
-for consumer in library companies notifications ats api assistant billing; do
+for consumer in library rounds companies notifications ats api assistant billing; do
   put "$base/subscriptions/$consumer-events" \
     -H "Content-Type: application/json" \
     -d "{\"topic\": \"projects/${GOOGLE_CLOUD_PROJECT}/topics/events\",

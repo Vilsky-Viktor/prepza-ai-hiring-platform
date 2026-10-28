@@ -2,6 +2,7 @@ from datetime import UTC, datetime
 from uuid import UUID
 
 from prepza_common.config.constants import LEGAL_VERSIONS
+from prepza_common.events.deletions import COMPANY_DELETED, CompanyDeleted
 from sqlalchemy import String, and_, cast, func, literal, or_, select, update
 
 # Aliased: this module's own delete() would otherwise shadow it.
@@ -11,7 +12,6 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from companies.constants.events import COMPANY_DELETED
 from companies.constants.roles import Role
 from companies.constants.verification import RENAME_REVIEWED, VerificationStatus
 from companies.core.exceptions import OverLimit
@@ -95,12 +95,14 @@ async def names(session: AsyncSession, company_ids: list) -> dict:
 
 async def delete(session: AsyncSession, company_id) -> None:
     """The company, with its members and the company.deleted event, which the outbox publishes
-    until notifications has it; its invites, action log and interviews went first (a batch at a
+    until Pub/Sub has it (rounds and library delete what they keep of it); its invites, action log and interviews went first (a batch at a
     time: services/batch_deletion.py)."""
     # An invite made meanwhile goes with the company (cascade).
     await guests.announce_deleted(session, CandidateInvite.company_id == company_id)
     await session.execute(sql_delete(Company).where(Company.id == company_id))
-    outbox.add(session, COMPANY_DELETED, {"company_id": str(company_id)})
+    outbox.add(
+        session, COMPANY_DELETED, CompanyDeleted(company_id=company_id).model_dump(mode="json")
+    )
 
 
 async def list_for_user(

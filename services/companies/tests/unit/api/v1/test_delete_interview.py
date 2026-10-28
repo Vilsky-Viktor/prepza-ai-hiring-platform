@@ -2,11 +2,11 @@ import uuid
 from datetime import UTC, datetime
 
 import httpx
-import pytest
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
+from prepza_common.http import http
 
-from companies.integrations import billing, library, rounds
+from companies.integrations import billing, rounds
 from companies.main import app
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
@@ -20,8 +20,17 @@ URL = f"/interviews/{INTERVIEW_ID}"
 
 
 def setup(monkeypatch, role, set_id=SET_ID):
-    """Records the delete calls in order; bob has the given role."""
+    """Records the deletion's steps in order; bob has the given role. Every other service
+    answers 503, as if rounds and library were down: the deletion calls none of them."""
     calls = []
+
+    def down(request):
+        calls.append(("call", request.url.host))
+
+        return httpx.Response(503)
+
+    client = httpx.AsyncClient(transport=httpx.MockTransport(down))
+    monkeypatch.setattr(http, "get_client", lambda: client)
     interview = Interview(
         id=INTERVIEW_ID,
         company_id=COMPANY_ID,
@@ -40,12 +49,6 @@ def setup(monkeypatch, role, set_id=SET_ID):
     async def fake_company(session, _company_id):
         return company
 
-    async def fake_rounds(found_set_id):
-        calls.append(("rounds", found_set_id))
-
-    async def fake_library(found_set_id):
-        calls.append(("library", found_set_id))
-
     async def fake_remove(session, interview_id):
         calls.append(("interview", interview_id))
 
@@ -53,8 +56,6 @@ def setup(monkeypatch, role, set_id=SET_ID):
 
     monkeypatch.setattr(interviews, "get", fake_interview)
     monkeypatch.setattr(companies, "get", fake_company)
-    monkeypatch.setattr(rounds, "delete_interview_data", fake_rounds)
-    monkeypatch.setattr(library, "delete_interview", fake_library)
     monkeypatch.setattr(interviews, "remove", fake_remove)
     app.dependency_overrides[current_user] = lambda: User(
         uid="bob", email="bob@example.com", email_verified=True, name="bob"
@@ -63,11 +64,13 @@ def setup(monkeypatch, role, set_id=SET_ID):
     return calls
 
 
-def test_deletes_results_then_questions_then_the_interview(client, monkeypatch):
+def test_deletes_the_interview_while_rounds_and_library_are_down(client, monkeypatch):
+    """Their data goes with interview.deleted (saved with the interview's removal), so the
+    deletion waits on neither."""
     calls = setup(monkeypatch, "admin")
 
     assert client.delete(URL).status_code == 204
-    assert calls == [("rounds", SET_ID), ("library", SET_ID), ("interview", INTERVIEW_ID)]
+    assert calls == [("interview", INTERVIEW_ID)]
 
     app.dependency_overrides.clear()
 
@@ -95,24 +98,6 @@ def test_an_interview_still_generating_is_cancelled_instead(client, monkeypatch)
     app.dependency_overrides.clear()
 
 
-def test_a_failed_cleanup_keeps_the_interview(client, monkeypatch):
-    calls = setup(monkeypatch, "admin")
-
-    async def failing_rounds(_set_id):
-        request = httpx.Request("DELETE", "http://rounds")
-
-        raise httpx.HTTPStatusError("down", request=request, response=httpx.Response(503))
-
-    monkeypatch.setattr(rounds, "delete_interview_data", failing_rounds)
-
-    with pytest.raises(httpx.HTTPStatusError):
-        client.delete(URL)
-
-    assert calls == []
-
-    app.dependency_overrides.clear()
-
-
 def candidate(email, status):
     return CandidateInvite(
         id=uuid.uuid4(),
@@ -124,8 +109,8 @@ def candidate(email, status):
 
 
 def test_deleting_an_interview_settles_unfinished_candidates_credits(client, monkeypatch):
-    """Charged for one who answered something, given back for the rest, before rounds forgets
-    their answers."""
+    """Charged for one who answered something, given back for the rest, before the interview
+    (and with its event, rounds' answers) goes."""
     calls = setup(monkeypatch, "admin")
     carol = candidate("carol@example.com", "invited")
     dan = candidate("dan@example.com", "in_process")
@@ -160,8 +145,6 @@ def test_deleting_an_interview_settles_unfinished_candidates_credits(client, mon
         ("release", f"{INTERVIEW_ID}:carol-key"),
         ("charge", f"{INTERVIEW_ID}:dan-key"),
         ("release", f"{INTERVIEW_ID}:erin-key"),
-        ("rounds", SET_ID),
-        ("library", SET_ID),
         ("interview", INTERVIEW_ID),
     ]
 

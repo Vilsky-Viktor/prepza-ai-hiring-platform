@@ -14,6 +14,7 @@ from prepza_common.observability.logging import RequestLogMiddleware, configure_
 from prepza_common.observability.sentry import init_sentry
 
 from rounds.api.v1 import (
+    events,
     help,
     help_votes,
     internal,
@@ -62,6 +63,7 @@ app.include_router(session_feedback.router)
 app.include_router(help.router)
 app.include_router(help_votes.router)
 app.include_router(internal.router)
+app.include_router(events.router)
 app.include_router(schedules.router)
 app.include_router(superadmin.router)
 app.include_router(internal_accounts.router)

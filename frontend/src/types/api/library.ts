@@ -621,7 +621,8 @@ export interface paths {
     post?: never
     /**
      * Delete Interview
-     * @description Deletes an interview set; safe to repeat.
+     * @description No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one
+     *     release for a companies still calling it (microservices.md, 3); safe to repeat.
      */
     delete: operations["delete_interview_internal_interviews__set_id__delete"]
     options?: never

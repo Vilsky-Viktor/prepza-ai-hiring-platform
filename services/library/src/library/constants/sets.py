@@ -32,3 +32,7 @@ class Pool(StrEnum):
 # subtopics, as generation lists them round-robin) go to practice and the rest to companies.
 PRACTICE_QUESTIONS = 30
 COMPANY_QUESTIONS = 60
+
+# A deleted company's sets go this many at a time, each batch its own transaction: a set takes
+# its topics and questions with it (cascade), so a batch stays small.
+SET_DELETE_BATCH = 20

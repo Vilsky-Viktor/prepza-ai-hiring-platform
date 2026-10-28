@@ -6,7 +6,7 @@ import pytest
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 
-from companies.integrations import billing, generation, library, rounds
+from companies.integrations import billing, generation
 from companies.main import app
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
@@ -64,12 +64,6 @@ def calls(monkeypatch):
     async def fake_set_id(session, _interview_id, _set_id):
         return None
 
-    async def fake_rounds(set_id):
-        recorded.append(("rounds", set_id))
-
-    async def fake_library(set_id):
-        recorded.append(("library", set_id))
-
     async def fake_delete(session, company_id):
         recorded.append(("company", company_id))
 
@@ -81,8 +75,6 @@ def calls(monkeypatch):
     monkeypatch.setattr(generation, "cancel", fake_cancel)
     monkeypatch.setattr(generation, "get", fake_get)
     monkeypatch.setattr(interview_generations, "set_set_id", fake_set_id)
-    monkeypatch.setattr(rounds, "delete_interview_data", fake_rounds)
-    monkeypatch.setattr(library, "delete_interview", fake_library)
     monkeypatch.setattr(companies, "delete", fake_delete)
     monkeypatch.setattr(billing, "delete_company", fake_billing)
     app.dependency_overrides[current_user] = lambda: User(
@@ -94,32 +86,14 @@ def calls(monkeypatch):
     app.dependency_overrides.clear()
 
 
-def test_cleans_up_every_interview_before_the_company(client, calls):
+def test_stops_every_generation_before_the_company(client, calls):
     assert client.delete(URL).status_code == 204
     assert calls == [
-        ("rounds", READY_SET_ID),
-        ("library", READY_SET_ID),
         ("cancel", GENERATING_ID),
         ("cancel", FINISHING_ID),
-        ("rounds", FINISHED_SET_ID),
-        ("library", FINISHED_SET_ID),
         ("billing", COMPANY_ID),
         ("company", COMPANY_ID),
     ]
-
-
-def test_a_failed_cleanup_keeps_the_company(client, calls, monkeypatch):
-    async def failing_library(_set_id):
-        request = httpx.Request("DELETE", "http://library")
-
-        raise httpx.HTTPStatusError("down", request=request, response=httpx.Response(503))
-
-    monkeypatch.setattr(library, "delete_interview", failing_library)
-
-    with pytest.raises(httpx.HTTPStatusError):
-        client.delete(URL)
-
-    assert ("company", COMPANY_ID) not in calls
 
 
 def test_a_failed_billing_cleanup_keeps_the_company_to_delete_again(client, calls, monkeypatch):
