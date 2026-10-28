@@ -62,13 +62,13 @@ def world(monkeypatch, companies_api):
     )
     state = {"rows": {}, "claims": True, "notices": [], "flushed": 0, "api": companies_api}
 
-    async def get_link(link_id):
+    async def get_link(session, link_id):
         return (link, connection) if link_id == LINK_ID else None
 
     async def key(found):
         return {"subdomain": "acme", "token": TOKEN}
 
-    async def add(connection_id, link_id, interview_id, candidate_id, email, name=None):
+    async def add(session, connection_id, link_id, interview_id, candidate_id, email, name=None):
         return state["rows"].setdefault(
             candidate_id,
             AtsCandidate(
@@ -83,10 +83,10 @@ def world(monkeypatch, companies_api):
             ),
         )
 
-    async def claim(row_id, statuses):
+    async def claim(session, row_id, statuses):
         return state["claims"]
 
-    async def settle(row_id, status_, reason=None, invite_id=None, notice=None):
+    async def settle(session, row_id, status_, reason=None, invite_id=None, notice=None):
         if notice:
             state["notices"].append(notice)
 
@@ -191,7 +191,7 @@ def test_a_connection_whose_maker_is_no_longer_an_editor_asks_for_reconnecting(w
     state, _ = world
     broken = []
 
-    async def mark_broken(connection_id):
+    async def mark_broken(session, connection_id, notice):
         broken.append(connection_id)
 
     monkeypatch.setattr(ats, "mark_broken", mark_broken)
@@ -228,17 +228,17 @@ def test_waiting_candidates_are_invited_once_the_interview_is_ready(world, monke
     receive(event())
     found["ready"] = True
 
-    async def waiting(interview_id):
+    async def waiting(session, interview_id):
         return [row for row in state["rows"].values() if row.interview_id == interview_id]
 
-    async def connection_by_id(connection_id):
+    async def connection_by_id(session, connection_id):
         return AtsConnection(id=connection_id, created_by="ann", status="connected")
 
     monkeypatch.setattr(ats_candidates, "waiting", waiting)
     monkeypatch.setattr(ats, "connection_by_id", connection_by_id)
 
-    async def connections_by_ids(connection_ids):
-        found = {item: await connection_by_id(item) for item in connection_ids}
+    async def connections_by_ids(session, connection_ids):
+        found = {item: await connection_by_id(session, item) for item in connection_ids}
 
         return {item: connection for item, connection in found.items() if connection}
 
@@ -256,19 +256,23 @@ def test_a_top_up_invites_the_candidates_kept_for_lack_of_credits(world, monkeyp
     state["api"]["refuse"] = None
     asked = []
 
-    async def short_of_credits(company_id):
+    async def requeue_short(session, company_id):
         asked.append(company_id)
 
         return [row for row in state["rows"].values() if row.reason == "credits"]
 
-    async def connection_by_id(connection_id):
+    async def requeue_short_rest(sessions, company_id):
+        asked.append(company_id)
+
+    async def connection_by_id(session, connection_id):
         return AtsConnection(id=connection_id, created_by="ann", status="connected")
 
-    monkeypatch.setattr(ats_candidates, "short_of_credits", short_of_credits)
+    monkeypatch.setattr(ats_candidates, "requeue_short", requeue_short)
+    monkeypatch.setattr(ats_candidates, "requeue_short_rest", requeue_short_rest)
     monkeypatch.setattr(ats, "connection_by_id", connection_by_id)
 
-    async def connections_by_ids(connection_ids):
-        found = {item: await connection_by_id(item) for item in connection_ids}
+    async def connections_by_ids(session, connection_ids):
+        found = {item: await connection_by_id(session, item) for item in connection_ids}
 
         return {item: connection for item, connection in found.items() if connection}
 
@@ -276,7 +280,7 @@ def test_a_top_up_invites_the_candidates_kept_for_lack_of_credits(world, monkeyp
     company_id = uuid.uuid4()
     asyncio.run(flow.topped_up(company_id))
 
-    assert asked == [company_id]
+    assert asked == [company_id, company_id]
     assert state["api"]["sent"] == [("ann@example.com", "ann")]
     assert state["rows"]["c-1"].status == "invited"
 

@@ -61,7 +61,7 @@ def test_linked_jobs_show_their_interviews_titles_from_companies(client, stored,
         ),
     ]
 
-    async def links(company_id):
+    async def links(session, company_id):
         return found
 
     monkeypatch.setattr(ats_links, "links", links)

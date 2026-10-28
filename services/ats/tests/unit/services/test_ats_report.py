@@ -12,6 +12,7 @@ from ats.models.ats import AtsCandidate, AtsConnection
 from ats.repositories import ats, ats_results
 from ats.services import ats as integrations
 from ats.services import ats_candidates as flow
+from ats.services import reports
 from ats.templates.comments import COMMENTS
 
 INTERVIEW_ID = uuid.uuid4()
@@ -47,7 +48,7 @@ def finished(monkeypatch):
         "row": row,
     }
 
-    async def for_invite(invite_id):
+    async def for_invite(session, invite_id):
         return (row, connection) if invite_id == row.invite_id else None
 
     async def key(found):
@@ -62,7 +63,7 @@ def finished(monkeypatch):
 
         state["comments"].append((candidate_id, member, text))
 
-    async def claim_report(row_id, data):
+    async def claim_report(session, row_id, data):
         if row_id in state["claimed"]:
             return False
 
@@ -70,13 +71,13 @@ def finished(monkeypatch):
 
         return True
 
-    async def mark_reported(row_id):
+    async def mark_reported(session, row_id):
         state["reported"].append(row_id)
 
-    async def mark_broken(connection_id):
+    async def mark_broken(session, connection_id, notice):
         state["broken"].append(connection_id)
 
-    async def keep_result(row_id, data):
+    async def keep_result(session, row_id, data):
         state["claimed"].discard(row_id)
         state["kept"].append((row_id, data))
 
@@ -85,10 +86,10 @@ def finished(monkeypatch):
     monkeypatch.setattr(ats_results, "mark_reported", mark_reported)
     monkeypatch.setattr(ats_results, "keep", keep_result)
 
-    async def refuse_writes(connection_id, notice):
+    async def refuse_writes(session, connection_id, notice):
         state["refused"].append(notice)
 
-    async def writes_again(connection_id):
+    async def writes_again(session, connection_id):
         state["writes_again"].append(connection_id)
 
     async def no_flush():
@@ -119,7 +120,7 @@ def result(invite_id, grade=82, passed=True) -> dict:
 
 
 def report(invite_id, grade=82, passed=True):
-    asyncio.run(flow.report(result(invite_id, grade, passed)))
+    asyncio.run(reports.report(result(invite_id, grade, passed)))
 
 
 def test_results_go_back_to_workable_once_as_a_comment(finished):
@@ -139,7 +140,7 @@ def test_results_go_back_to_workable_once_as_a_comment(finished):
 
 def test_results_are_written_in_the_language_of_the_interview(finished):
     state, _ = finished
-    asyncio.run(flow.report({**result(state["row"].invite_id), "language": "de"}))
+    asyncio.run(reports.report({**result(state["row"].invite_id), "language": "de"}))
 
     [(_, _, text)] = state["comments"]
     assert "Ergebnis: 82 % (bestanden)" in text
@@ -149,7 +150,7 @@ def test_results_are_written_in_the_language_of_the_interview(finished):
 def test_results_are_written_in_the_language_of_whoever_connected_the_ats(finished):
     state, connection = finished
     connection.language = "uk"
-    asyncio.run(flow.report({**result(state["row"].invite_id), "language": "de"}))
+    asyncio.run(reports.report({**result(state["row"].invite_id), "language": "de"}))
 
     [(_, _, text)] = state["comments"]
     assert COMMENTS["uk"]["decide"] in text
@@ -272,7 +273,7 @@ def test_two_events_at_once_write_the_results_once(finished):
     data = result(state["row"].invite_id)
 
     async def both():
-        await asyncio.gather(flow.report(data), flow.report(data))
+        await asyncio.gather(reports.report(data), reports.report(data))
 
     asyncio.run(both())
 

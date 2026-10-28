@@ -1,12 +1,17 @@
 import asyncio
 import uuid
 
+import pytest
 from sqlalchemy import select
 
 from ats.constants.ats import AtsProvider
 from ats.core.db import Session
 from ats.models.outbox import OutboxEvent
 from ats.repositories import ats
+from ats.services import accounts
+from ats.services import ats as integrations
+from ats.services import outbox as outbox_service
+from tests.integration.transactions import transaction
 
 
 async def broken_notices(company) -> list[dict]:
@@ -21,22 +26,32 @@ async def broken_notices(company) -> list[dict]:
         return list(rows)
 
 
+@pytest.fixture(autouse=True)
+def unsent(monkeypatch):
+    """The outbox isn't sent: the notices stay in it, to be read."""
+
+    async def nothing():
+        pass
+
+    monkeypatch.setattr(outbox_service, "flush_quietly", nothing)
+
+
 def test_a_company_is_told_once_each_time_its_ats_connection_stops_working(run):
     async def scenario():
         company = uuid.uuid4()
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
-        connection = await ats.connection(company, AtsProvider.WORKABLE)
+        await transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
+        connection = await transaction(ats.connection, company, AtsProvider.WORKABLE)
 
         # Found broken twice at once, then again: told once.
-        await asyncio.gather(*[ats.mark_broken(connection.id) for _ in range(2)])
-        await ats.mark_broken(connection.id)
+        await asyncio.gather(*[integrations.mark_broken(connection) for _ in range(2)])
+        await integrations.mark_broken(connection)
         once = await broken_notices(company)
 
         # Reconnected, then broken again: told again.
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed-2", "ann")
-        await ats.mark_broken(connection.id)
+        await transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed-2", "ann")
+        await integrations.mark_broken(connection)
         again = len(await broken_notices(company))
-        await ats.delete_company(company)
+        await transaction(ats.delete_company, company)
 
         return once, again
 
@@ -52,14 +67,16 @@ def test_deleting_an_account_tells_each_company_whose_connection_it_stops(run):
     async def scenario():
         maker = f"maker-{uuid.uuid4()}"
         working, already = uuid.uuid4(), uuid.uuid4()
-        await ats.connect(working, AtsProvider.RECRUITEE, "acme", "sealed", maker)
-        await ats.connect(already, AtsProvider.BREEZY, "acme", "sealed", maker)
-        await ats.mark_broken((await ats.connection(already, AtsProvider.BREEZY)).id)
-        await ats.forget_maker(maker)
+        await transaction(ats.connect, working, AtsProvider.RECRUITEE, "acme", "sealed", maker)
+        await transaction(ats.connect, already, AtsProvider.BREEZY, "acme", "sealed", maker)
+        await integrations.mark_broken(
+            await transaction(ats.connection, already, AtsProvider.BREEZY)
+        )
+        await accounts.remove_user(maker, f"{maker}@x.com")
         found = (len(await broken_notices(working)), len(await broken_notices(already)))
-        kept = await ats.connection(already, AtsProvider.BREEZY)
-        await ats.delete_company(working)
-        await ats.delete_company(already)
+        kept = await transaction(ats.connection, already, AtsProvider.BREEZY)
+        await transaction(ats.delete_company, working)
+        await transaction(ats.delete_company, already)
 
         return found, kept
 

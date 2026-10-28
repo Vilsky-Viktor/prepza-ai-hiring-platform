@@ -69,7 +69,7 @@ def test_a_key_workable_stops_accepting_marks_the_connection_broken(
     async def refuse(subdomain, token):
         raise KeyRejected
 
-    async def mark_broken(connection_id):
+    async def mark_broken(session, connection_id, notice):
         broken.append(connection_id)
 
     monkeypatch.setattr(workable, "jobs", refuse)

@@ -2,30 +2,22 @@ import logging
 import time
 from uuid import UUID
 
-import httpx
 from fastapi import HTTPException, status
+from sqlalchemy.exc import IntegrityError
 
-from ats.config import settings
 from ats.constants.ats import (
     ATS_NAMES,
     INVITE_BATCH,
     MAX_INVITE_ATTEMPTS,
-    NEEDS_AUTHOR,
-    RECOVER_INVITE_SECONDS,
-    REPORT_SECONDS,
-    SCORECARD_LINK,
     CandidateStatus,
     ConnectionStatus,
     FailReason,
 )
-from ats.helpers.ats import (
-    result_comment,
-)
-from ats.helpers.notifications import ats_cannot_write, ats_not_invited
+from ats.core.db import Session
+from ats.helpers.notifications import ats_not_invited
 from ats.integrations import companies
-from ats.integrations.errors import WriteRefused
 from ats.models.ats import AtsCandidate, AtsConnection
-from ats.repositories import ats, ats_candidates, ats_results
+from ats.repositories import ats, ats_candidates
 from ats.services import ats as integrations
 from ats.services import outbox as outbox_service
 
@@ -53,19 +45,20 @@ async def arrived(
 ) -> None:
     """A candidate the ATS sent for a linked job (with their name, if it sent one): saved once,
     with the event that invites them (invite_arrived), so the web hook is answered at once."""
-    await ats_candidates.add(connection.id, link.id, link.interview_id, candidate_id, email, name)
+    async with Session.begin() as session:
+        await ats_candidates.add(
+            session, connection.id, link.id, link.interview_id, candidate_id, email, name
+        )
+
     await outbox_service.flush_quietly()
 
 
 async def invite_arrived(data: dict) -> None:
     """ats.candidate_arrived: invites the candidate an ATS's web hook sent, once (invite claims
     them). Companies not answering raises, so Pub/Sub delivers the event again."""
-    row = await ats_candidates.get(UUID(data["ats_candidate_id"]))
-
-    if row is None:
-        return
-
-    connection = await ats.connection_by_id(row.connection_id)
+    async with Session() as session:
+        row = await ats_candidates.get(session, UUID(data["ats_candidate_id"]))
+        connection = await ats.connection_by_id(session, row.connection_id) if row else None
 
     if connection is None:
         return
@@ -85,7 +78,10 @@ async def invite(row: AtsCandidate, connection: AtsConnection, interview: dict |
     if connection.status != ConnectionStatus.CONNECTED:
         return
 
-    claimed = await ats_candidates.claim(row.id, (CandidateStatus.WAITING, CandidateStatus.FAILED))
+    async with Session.begin() as session:
+        claimed = await ats_candidates.claim(
+            session, row.id, (CandidateStatus.WAITING, CandidateStatus.FAILED)
+        )
 
     if not claimed:
         return
@@ -97,14 +93,13 @@ async def invite(row: AtsCandidate, connection: AtsConnection, interview: dict |
         )
     except HTTPException as error:
         if error.status_code in (status.HTTP_404_NOT_FOUND, status.HTTP_409_CONFLICT):
-            await ats_candidates.settle(row.id, CandidateStatus.WAITING)
+            await settle(row.id, CandidateStatus.WAITING)
 
             return
 
         # Whoever connected the ATS is no longer an owner or admin: an editor reconnects it.
         if error.status_code == status.HTTP_403_FORBIDDEN:
-            await ats.mark_broken(connection.id)
-            await outbox_service.flush_quietly()
+            await integrations.mark_broken(connection)
 
         await refused(row, connection, interview, REASONS.get(error.status_code, FailReason.OTHER))
 
@@ -117,11 +112,30 @@ async def invite(row: AtsCandidate, connection: AtsConnection, interview: dict |
         if row.attempts + 1 >= MAX_INVITE_ATTEMPTS:
             await refused(row, connection, interview, FailReason.OTHER)
         else:
-            await ats_candidates.postpone(row.id)
+            async with Session.begin() as session:
+                await ats_candidates.postpone(session, row.id)
 
         return
 
-    await ats_candidates.settle(row.id, CandidateStatus.INVITED, invite_id=invite_id)
+    await settle(row.id, CandidateStatus.INVITED, invite_id=invite_id)
+
+
+async def settle(
+    row_id: UUID,
+    status: str,
+    reason: str | None = None,
+    invite_id: UUID | None = None,
+    notice: dict | None = None,
+) -> None:
+    """The candidate's outcome, with the company's notification about it, in one transaction.
+    An invite that is another ATS row's already (the same person sent by two connections)
+    settles this one without it, and the other's results go back."""
+    try:
+        async with Session.begin() as session:
+            await ats_candidates.settle(session, row_id, status, reason, invite_id, notice)
+    except IntegrityError:
+        async with Session.begin() as session:
+            await ats_candidates.settle(session, row_id, status, reason, None, notice)
 
 
 async def refused(
@@ -138,7 +152,7 @@ async def refused(
         reason,
         row.name,
     )
-    await ats_candidates.settle(row.id, CandidateStatus.FAILED, reason, notice=notice)
+    await settle(row.id, CandidateStatus.FAILED, reason, notice=notice)
     await outbox_service.flush_quietly()
 
 
@@ -149,7 +163,9 @@ async def invite_all(rows: list[AtsCandidate], stop_at: float | None = None) -> 
     first, so a run again (a redelivered event) invites nobody twice."""
     found = await companies.interviews({row.interview_id for row in rows})
     ready = [row for row in rows if (found.get(row.interview_id) or {}).get("ready")]
-    connections = await ats.connections_by_ids({row.connection_id for row in ready})
+
+    async with Session() as session:
+        connections = await ats.connections_by_ids(session, {row.connection_id for row in ready})
 
     for row in ready if stop_at else ready[:INVITE_BATCH]:
         if stop_at and time.monotonic() >= stop_at:
@@ -163,130 +179,30 @@ async def invite_all(rows: list[AtsCandidate], stop_at: float | None = None) -> 
 
 async def invite_waiting(interview_id: UUID) -> None:
     """An interview just became ready: the candidates the ATS sent for it are invited."""
-    await invite_all(await ats_candidates.waiting(interview_id))
+    async with Session() as session:
+        rows = await ats_candidates.waiting(session, interview_id)
+
+    await invite_all(rows)
 
 
 async def retry(company_id: UUID, link_id: UUID) -> None:
     """A linked job's candidates that weren't invited, or whose invite was cut off, are tried
     again (after a top-up, or once the pause is off): a batch now, the rest by the recovery
     job."""
-    await invite_all(await ats_candidates.not_invited(company_id, link_id))
+    await ats_candidates.requeue_not_invited(Session, company_id, link_id)
+
+    async with Session() as session:
+        rows = await ats_candidates.not_invited(session, company_id, link_id)
+
+    await invite_all(rows)
 
 
 async def topped_up(company_id: UUID) -> None:
     """The company got credits: its candidates not invited for lack of them are invited, as far
     as the credits go (the rest are kept, with a new notification); a batch now, the rest by
     the recovery job."""
-    await invite_all(await ats_candidates.short_of_credits(company_id))
+    async with Session.begin() as session:
+        rows = await ats_candidates.requeue_short(session, company_id)
 
-
-async def recover() -> int:
-    """Every 10 minutes: candidates still waiting (left for later by a run, by companies not
-    answering, or sent while the connection was broken) and invites cut off midway (the server
-    stopped) are invited, until RECOVER_INVITE_SECONDS into the run; results kept while a
-    connection was broken or the ATS failed go back, until REPORT_SECONDS into it. Both go
-    through every connection's in turn. How many candidates were found."""
-    started = time.monotonic()
-    rows = await ats_candidates.recoverable()
-    await invite_all(rows, started + RECOVER_INVITE_SECONDS)
-
-    for row in await ats_results.unreported():
-        if time.monotonic() >= started + REPORT_SECONDS:
-            break
-
-        try:
-            await report(row.result)
-        except Exception:
-            logger.exception("Couldn't send the results of ATS candidate %s", row.id)
-
-    return len(rows)
-
-
-async def report(data: dict) -> None:
-    """A candidate the ATS sent finished (companies' candidate.finished event, or results kept
-    earlier): their results go back to the ATS as a comment, once. They're claimed first, so of
-    two events at once only one writes. While the connection is broken, or when the ATS fails,
-    they're kept (and the claim freed) for the recovery job, and the event is done: a company's
-    failing ATS doesn't hold up Pub/Sub for everyone. No member to write as gives up, and so does
-    a candidate gone from the ATS. Candidates no ATS sent are ignored."""
-    found = await ats_results.for_invite(UUID(data["candidate_invite_id"]))
-
-    if found is None:
-        return
-
-    row, connection = found
-
-    # Workable's comments need an author; Greenhouse's notes don't. Without one, nowhere to write.
-    if connection.provider in NEEDS_AUTHOR and connection.member_id is None:
-        await ats_results.mark_reported(row.id)
-
-        return
-
-    if not await ats_results.claim(row.id, data):
-        return
-
-    if connection.status != ConnectionStatus.CONNECTED or await key_of(connection) is None:
-        await ats_results.keep(row.id, data)
-
-        return
-
-    link = SCORECARD_LINK.format(
-        site=settings.site_url,
-        company_id=data["company_id"],
-        interview_id=data["interview_id"],
-        invite_id=data["candidate_invite_id"],
-    )
-    text = result_comment(
-        data.get("title") or "",
-        data.get("grade"),
-        data["passed"],
-        data["flagged"],
-        link,
-        # The team's language, as the member who connected the ATS uses prepza; else the test's.
-        language=connection.language or data.get("language"),
-    )
-
-    try:
-        await integrations.call(
-            connection,
-            "comment",
-            candidate_id=row.candidate_id,
-            member=connection.member_id,
-            text=text,
-        )
-    except (HTTPException, httpx.HTTPError) as error:
-        # The candidate is gone from the ATS: nowhere to write.
-        if isinstance(error, HTTPException) and error.status_code == status.HTTP_404_NOT_FOUND:
-            await ats_results.mark_reported(row.id)
-
-            return
-
-        # A refused key (the connection was marked broken) or a failing ATS: kept for the
-        # recovery job.
-        logger.warning("Kept the results of ATS candidate %s: %r", row.id, error)
-        await ats_results.keep(row.id, data)
-
-        return
-    except WriteRefused:
-        # The key reads but can't write: kept, and sent once the company reconnects with a key
-        # that can; the connection keeps inviting meanwhile.
-        logger.warning("Kept the results of ATS candidate %s: the key can't write", row.id)
-        await ats_results.keep(row.id, data)
-        notice = ats_cannot_write(
-            connection.company_id, connection.provider, ATS_NAMES[connection.provider]
-        )
-        await ats.refuse_writes(connection.id, notice)
-        await outbox_service.flush_quietly()
-
-        return
-    except Exception:
-        # Anything else: kept too, as the claim would stop the event's redelivery.
-        logger.exception("Kept the results of ATS candidate %s", row.id)
-        await ats_results.keep(row.id, data)
-
-        return
-
-    if connection.write_refused_at is not None:
-        await ats.writes_again(connection.id)
-
-    await ats_results.mark_reported(row.id)
+    await ats_candidates.requeue_short_rest(Session, company_id)
+    await invite_all(rows)

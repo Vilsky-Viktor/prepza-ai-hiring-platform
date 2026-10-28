@@ -8,15 +8,17 @@ from ats.constants.ats import AtsProvider, CandidateStatus
 from ats.core.db import Session
 from ats.models.ats import AtsCandidate, AtsJobLink
 from ats.repositories import ats, ats_candidates, ats_links
+from ats.services import ats_candidates as candidate_service
+from tests.integration.transactions import transaction
 
 JOB = {"id": "A1", "name": "Accountant"}
 STAGE = {"id": "assessment", "name": "Assessment"}
 
 
 async def connected(company, provider):
-    await ats.connect(company, provider, "acme", "sealed", "ann", "m-1")
+    await transaction(ats.connect, company, provider, "acme", "sealed", "ann", "m-1")
 
-    return await ats.connection(company, provider)
+    return await transaction(ats.connection, company, provider)
 
 
 def test_links_and_candidates_carry_their_company(run):
@@ -24,8 +26,12 @@ def test_links_and_candidates_carry_their_company(run):
 
     async def scenario():
         connection = await connected(company, AtsProvider.WORKABLE)
-        link_id = await ats_links.add_link(company, connection.id, interview, JOB, STAGE, "ann")
-        row = await ats_candidates.add(connection.id, link_id, interview, "c-1", "a@x.com")
+        link_id = await transaction(
+            ats_links.add_link, company, connection.id, interview, JOB, STAGE, "ann"
+        )
+        row = await transaction(
+            ats_candidates.add, connection.id, link_id, interview, "c-1", "a@x.com"
+        )
 
         async with Session() as session:
             link = await session.get(AtsJobLink, link_id)
@@ -51,13 +57,18 @@ def test_a_person_two_atss_sent_keeps_the_invite_on_the_first_row(run):
 
         for provider in (AtsProvider.WORKABLE, AtsProvider.GREENHOUSE):
             connection = await connected(company, provider)
-            link_id = await ats_links.add_link(company, connection.id, interview, JOB, STAGE, "ann")
+            link_id = await transaction(
+                ats_links.add_link, company, connection.id, interview, JOB, STAGE, "ann"
+            )
             rows.append(
-                await ats_candidates.add(connection.id, link_id, interview, "c-1", "a@x.com")
+                await transaction(
+                    ats_candidates.add, connection.id, link_id, interview, "c-1", "a@x.com"
+                )
             )
 
         for row in rows:
-            await ats_candidates.settle(row.id, CandidateStatus.INVITED, invite_id=invite)
+            # The service settles a second row with the same invite without it.
+            await candidate_service.settle(row.id, CandidateStatus.INVITED, invite_id=invite)
 
         async with Session() as session:
             return [

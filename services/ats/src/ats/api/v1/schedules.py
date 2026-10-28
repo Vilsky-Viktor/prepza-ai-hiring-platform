@@ -1,15 +1,8 @@
-import logging
-from datetime import UTC, datetime, timedelta
-
 from fastapi import APIRouter, status
 from prepza_common.auth.google import Invoker
 
-from ats.constants.ats import CANDIDATE_RETENTION_DAYS
-from ats.repositories import ats_candidates as candidates_storage
-from ats.services import ats_candidates
 from ats.services import outbox as outbox_service
-
-logger = logging.getLogger(__name__)
+from ats.services import recovery
 
 router = APIRouter(prefix="/internal/schedules", tags=["schedules"], dependencies=[Invoker])
 
@@ -27,13 +20,4 @@ async def recover() -> None:
     invited (companies refuses them during the emergency pause, and they're kept to retry),
     results kept while a connection was broken or the ATS failed go back, and candidates past
     their retention period go."""
-    recovered = await ats_candidates.recover()
-
-    if recovered:
-        logger.info("Found %d ATS candidates waiting or cut off midway", recovered)
-
-    before = datetime.now(UTC) - timedelta(days=CANDIDATE_RETENTION_DAYS)
-    deleted = await candidates_storage.delete_older_than(before)
-
-    if deleted:
-        logger.info("Deleted %d ATS candidates past their retention period", deleted)
+    await recovery.run()

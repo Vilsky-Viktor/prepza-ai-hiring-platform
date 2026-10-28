@@ -52,10 +52,10 @@ def world(monkeypatch, companies_api):
     )
     state = {"connection": connection, "stage": "7", "rows": {}, "sent": companies_api["sent"]}
 
-    async def connection_by_id(connection_id):
+    async def connection_by_id(session, connection_id):
         return state["connection"] if connection_id == CONNECTION_ID else None
 
-    async def link_for_job(connection_id, job_id):
+    async def link_for_job(session, connection_id, job_id):
         if job_id != "101":
             return None
 
@@ -70,7 +70,7 @@ def world(monkeypatch, companies_api):
     async def key(found):
         return {"client_id": "id", "client_secret": "secret", "webhook_secret": SECRET}
 
-    async def add(connection_id, link_id, interview_id, candidate_id, email, name=None):
+    async def add(session, connection_id, link_id, interview_id, candidate_id, email, name=None):
         return state["rows"].setdefault(
             candidate_id,
             AtsCandidate(
@@ -83,7 +83,7 @@ def world(monkeypatch, companies_api):
             ),
         )
 
-    async def claim(row_id, statuses):
+    async def claim(session, row_id, statuses):
         return True
 
     async def nothing(*args, **kwargs):

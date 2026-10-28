@@ -11,7 +11,7 @@ def deliver_arrivals(monkeypatch, rows: dict, then=None, connection=None) -> Non
     look connections up itself."""
     delivered = set()
 
-    async def get(row_id):
+    async def get(session, row_id):
         return next((row for row in rows.values() if row.id == row_id), None)
 
     async def flush():
@@ -23,7 +23,7 @@ def deliver_arrivals(monkeypatch, rows: dict, then=None, connection=None) -> Non
         if then is not None:
             await then()
 
-    async def connection_by_id(connection_id):
+    async def connection_by_id(session, connection_id):
         return connection
 
     if connection is not None:

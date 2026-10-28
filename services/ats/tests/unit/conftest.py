@@ -99,7 +99,7 @@ def stored(monkeypatch, companies_api):
     monkeypatch.setattr(ats_service, "hit_or_skip", count)
 
     async def connect(
-        company_id, provider, account, credentials, user_id, member_id=None, language=None
+        session, company_id, provider, account, credentials, user_id, member_id=None, language=None
     ):
         rows["connection"] = AtsConnection(
             member_id=member_id,
@@ -114,29 +114,29 @@ def stored(monkeypatch, companies_api):
             created_at=datetime.now(UTC),
         )
 
-    async def connection(company_id, provider):
+    async def connection(session, company_id, provider):
         return rows["connection"]
 
-    async def connections(company_id):
+    async def connections(session, company_id):
         return [rows["connection"]] if rows["connection"] else []
 
-    async def disconnect(company_id, provider, user_id=None):
+    async def disconnect(session, company_id, provider, user_id=None):
         rows["connection"] = None
         # Who disconnected it, for the action log (None when prepza undid its own connect).
         rows.setdefault("disconnected_by", []).append(user_id)
 
-    async def add_link(company_id, connection_id, interview_id, job, stage, user_id):
+    async def add_link(session, company_id, connection_id, interview_id, job, stage, user_id):
         rows["links"].append((interview_id, job["id"], stage["id"], user_id))
 
         return uuid.uuid4()
 
-    async def set_subscription(link_id, subscription_id):
+    async def set_subscription(session, link_id, subscription_id):
         rows["subscriptions"].append(subscription_id)
 
-    async def subscriptions(company_id, link_id=None):
+    async def subscriptions(session, company_id, link_id=None):
         return list(rows["subscriptions"])
 
-    async def no_counts(company_id):
+    async def no_counts(session, company_id):
         return {}
 
     async def member_id(subdomain, token, email):

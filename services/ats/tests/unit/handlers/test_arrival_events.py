@@ -33,7 +33,7 @@ def test_the_web_hook_saves_and_publishes_but_invites_no_one(monkeypatch):
 
 
 def test_an_arrival_for_a_candidate_gone_since_does_nothing(monkeypatch):
-    async def get(row_id):
+    async def get(session, row_id):
         return None
 
     async def interviews(ids):

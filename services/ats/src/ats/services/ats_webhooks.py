@@ -13,6 +13,7 @@ from ats.constants.ats import (
     WORKABLE_MOVED,
     AtsProvider,
 )
+from ats.core.db import Session
 from ats.helpers.ats import (
     breezy_signed,
     greenhouse_signed,
@@ -20,6 +21,7 @@ from ats.helpers.ats import (
     teamtailor_signed,
     workable_signed,
 )
+from ats.models.ats import AtsConnection, AtsJobLink
 from ats.repositories import ats, ats_links
 from ats.services import ats as integrations
 from ats.services import ats_candidates as flow
@@ -31,11 +33,22 @@ from ats.services import ats_candidates as flow
 # waits, and is invited once it's reconnected.
 
 
+async def connection_of(connection_id: UUID) -> AtsConnection | None:
+    async with Session() as session:
+        return await ats.connection_by_id(session, connection_id)
+
+
+async def link_for_job(connection: AtsConnection, job_id: str) -> AtsJobLink | None:
+    async with Session() as session:
+        return await ats_links.link_for_job(session, connection.id, job_id)
+
+
 async def receive_workable(link_id: UUID, body: bytes, signature: str) -> None:
     """A Workable event for a linked job: a candidate moved into its stage gets the interview.
     Only events signed with the account's token count; anything for a job or link that's gone,
     or another event, is ignored, so Workable doesn't send it again."""
-    found = await ats_links.link(link_id)
+    async with Session() as session:
+        found = await ats_links.link(session, link_id)
 
     if found is None:
         return
@@ -72,7 +85,7 @@ async def receive_greenhouse(connection_id: UUID, body: bytes, signature: str) -
     """A Greenhouse web hook: a candidate whose application moved into a linked job's stage gets
     the interview. Only events signed with the connection's secret key count; Greenhouse's ping,
     other events, and jobs or stages not linked are ignored."""
-    connection = await ats.connection_by_id(connection_id)
+    connection = await connection_of(connection_id)
 
     if connection is None or connection.provider != AtsProvider.GREENHOUSE:
         return
@@ -95,7 +108,7 @@ async def receive_greenhouse(connection_id: UUID, body: bytes, signature: str) -
         return
 
     for job in application.get("jobs") or []:
-        link = await ats_links.link_for_job(connection.id, str(job.get("id")))
+        link = await link_for_job(connection, str(job.get("id")))
 
         # Its stage by id, or by name (which id Greenhouse's web hooks send isn't settled).
         if link and link.stage_id in (str(stage.get("id")), stage.get("name")):
@@ -115,7 +128,7 @@ async def receive_teamtailor(connection_id: UUID, body: bytes, signature: str) -
     count before it's saved), and only recent ones. The event only says an application changed,
     so the application is read from Teamtailor: its job, stage and candidate as they are now.
     When Teamtailor answers that read with 429 (too many calls), so is the event."""
-    connection = await ats.connection_by_id(connection_id)
+    connection = await connection_of(connection_id)
 
     if connection is None or connection.provider != AtsProvider.TEAMTAILOR:
         return
@@ -139,11 +152,14 @@ async def receive_teamtailor(connection_id: UUID, body: bytes, signature: str) -
         return
 
     # Teamtailor sends every application's changes: read only while a job is linked.
-    if not await ats_links.has_links(connection.id):
+    async with Session() as session:
+        linked = await ats_links.has_links(session, connection.id)
+
+    if not linked:
         return
 
     found = await integrations.call(connection, "application", application_id=str(changed["id"]))
-    link = await ats_links.link_for_job(connection.id, found["job_id"] or "")
+    link = await link_for_job(connection, found["job_id"] or "")
 
     if link and link.stage_id == found["stage_id"] and found["email"]:
         await flow.arrived(
@@ -156,7 +172,7 @@ async def receive_recruitee(connection_id: UUID, body: bytes, signature: str) ->
     events signed with the secret the company saved count. Before it's saved, events (Recruitee's
     test when the web hook is created among them) are answered and ignored: the secret is only
     shown once the web hook exists."""
-    connection = await ats.connection_by_id(connection_id)
+    connection = await connection_of(connection_id)
 
     if connection is None or connection.provider != AtsProvider.RECRUITEE:
         return
@@ -182,7 +198,7 @@ async def receive_recruitee(connection_id: UUID, body: bytes, signature: str) ->
     ):
         return
 
-    link = await ats_links.link_for_job(connection.id, str((payload.get("offer") or {}).get("id")))
+    link = await link_for_job(connection, str((payload.get("offer") or {}).get("id")))
 
     if link and link.stage_id == str(stage.get("id")):
         await flow.arrived(
@@ -193,7 +209,7 @@ async def receive_recruitee(connection_id: UUID, body: bytes, signature: str) ->
 async def receive_breezy(connection_id: UUID, body: bytes, signature: str) -> None:
     """Breezy HR's web hook, created when connecting: a candidate moved into a linked position's
     stage gets the interview. Only events signed with the secret Breezy gave then count."""
-    connection = await ats.connection_by_id(connection_id)
+    connection = await connection_of(connection_id)
 
     if connection is None or connection.provider != AtsProvider.BREEZY:
         return
@@ -214,7 +230,7 @@ async def receive_breezy(connection_id: UUID, body: bytes, signature: str) -> No
     if event.get("type") != BREEZY_STATUS_UPDATED or not candidate.get("email_address"):
         return
 
-    link = await ats_links.link_for_job(connection.id, str(position.get("_id")))
+    link = await link_for_job(connection, str(position.get("_id")))
 
     if link and link.stage_id == str((found.get("stage") or {}).get("id")):
         reference = f"{position['_id']}:{candidate.get('_id')}"

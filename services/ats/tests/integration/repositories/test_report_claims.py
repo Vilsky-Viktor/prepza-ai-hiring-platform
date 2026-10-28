@@ -7,6 +7,7 @@ from ats.constants.ats import STALE_CLAIM_MINUTES, AtsProvider, CandidateStatus
 from ats.core.db import Session
 from ats.models.ats import AtsCandidate
 from ats.repositories import ats, ats_candidates, ats_results
+from tests.integration.transactions import transaction
 
 
 def test_results_whose_write_was_cut_off_are_sent_again_and_only_after(run):
@@ -15,17 +16,19 @@ def test_results_whose_write_was_cut_off_are_sent_again_and_only_after(run):
 
     async def scenario():
         company = uuid.uuid4()
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
-        connection = await ats.connection(company, AtsProvider.WORKABLE)
-        row = await ats_candidates.add(connection.id, None, uuid.uuid4(), "cut", "cut@x.com")
+        await transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
+        connection = await transaction(ats.connection, company, AtsProvider.WORKABLE)
+        row = await transaction(
+            ats_candidates.add, connection.id, None, uuid.uuid4(), "cut", "cut@x.com"
+        )
         invite = uuid.uuid4()
-        await ats_candidates.settle(row.id, CandidateStatus.INVITED, invite_id=invite)
+        await transaction(ats_candidates.settle, row.id, CandidateStatus.INVITED, invite_id=invite)
         data = {"candidate_invite_id": str(invite), "grade": 80}
 
-        claimed = await ats_results.claim(row.id, data)
+        claimed = await transaction(ats_results.claim, row.id, data)
         # A second event while it's being written: nothing.
-        again = await ats_results.claim(row.id, data)
-        writing = [r.id for r in await ats_results.unreported()]
+        again = await transaction(ats_results.claim, row.id, data)
+        writing = [r.id for r in await transaction(ats_results.unreported)]
 
         # Cut off: the claim goes stale.
         async with Session() as session:
@@ -37,11 +40,11 @@ def test_results_whose_write_was_cut_off_are_sent_again_and_only_after(run):
             )
             await session.commit()
 
-        [found] = [r for r in await ats_results.unreported() if r.id == row.id]
-        retaken = await ats_results.claim(row.id, found.result)
-        await ats_results.mark_reported(row.id)
-        done = await ats_results.for_invite(invite)
-        await ats.delete_company(company)
+        [found] = [r for r in await transaction(ats_results.unreported) if r.id == row.id]
+        retaken = await transaction(ats_results.claim, row.id, found.result)
+        await transaction(ats_results.mark_reported, row.id)
+        done = await transaction(ats_results.for_invite, invite)
+        await transaction(ats.delete_company, company)
 
         return claimed, again, row.id in writing, found.result, retaken, done
 

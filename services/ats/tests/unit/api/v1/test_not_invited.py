@@ -51,10 +51,13 @@ def fake(monkeypatch):
         ),
     ]
 
-    async def between(company_ids, since, until, limit):
+    async def between(session, company_ids, since, until, limit):
         asked["between"] = (company_ids, since, until, limit)
 
         return rows
+
+    async def count_between(session, company_ids, since, until):
+        return 7
 
     async def interviews(ids):
         asked["interviews"] = ids
@@ -62,6 +65,7 @@ def fake(monkeypatch):
         return {KNOWN: {"id": str(KNOWN), "title": "Accountant"}}
 
     monkeypatch.setattr(not_invited, "between", between)
+    monkeypatch.setattr(not_invited, "count_between", count_between)
     monkeypatch.setattr(companies, "interviews", interviews)
 
     return asked
@@ -69,13 +73,14 @@ def fake(monkeypatch):
 
 def test_each_candidate_not_invited_comes_with_its_interview_ats_link_and_reason(monkeypatch):
     asked = fake(monkeypatch)
-    items = asyncio.run(not_invited_between([COMPANY], SINCE, UNTIL))
+    found = asyncio.run(not_invited_between([COMPANY], SINCE, UNTIL))
 
     assert asked == {
         "between": ([COMPANY], SINCE, UNTIL, MAX_UPDATES),
         "interviews": {KNOWN, UNKNOWN},
     }
-    assert [item.model_dump() for item in items] == [
+    assert found.total == 7
+    assert [item.model_dump() for item in found.items] == [
         {
             "at": datetime(2026, 10, 17, tzinfo=UTC),
             "company_id": COMPANY,
@@ -111,11 +116,6 @@ def post(client, caller=None):
 
 def test_the_assistant_gets_the_candidates_not_invited(client, monkeypatch):
     fake(monkeypatch)
-
-    async def count_between(company_ids, since, until):
-        return 7
-
-    monkeypatch.setattr(not_invited, "count_between", count_between)
     response = post(client, "assistant")
 
     assert response.status_code == 200

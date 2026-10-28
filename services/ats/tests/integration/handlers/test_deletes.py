@@ -10,7 +10,9 @@ from ats.handlers.dispatch import handle
 from ats.integrations import companies
 from ats.models.ats import AtsCandidate, AtsJobLink
 from ats.repositories import ats, ats_candidates, ats_links
+from ats.services import accounts
 from ats.services import ats_candidates as candidate_service
+from tests.integration.transactions import transaction
 
 JOB = {"id": "A1", "name": "Accountant"}
 STAGE = {"id": "assessment", "name": "Assessment"}
@@ -18,12 +20,14 @@ STAGE = {"id": "assessment", "name": "Assessment"}
 
 async def linked(company_id, interview_id, job=JOB, maker="ann"):
     """A Workable connection with one job linked to the interview and one candidate sent."""
-    await ats.connect(company_id, AtsProvider.WORKABLE, "acme", "sealed", maker)
-    connection = await ats.connection(company_id, AtsProvider.WORKABLE)
-    link_id = await ats_links.add_link(
-        connection.company_id, connection.id, interview_id, job, STAGE, "ann"
+    await transaction(ats.connect, company_id, AtsProvider.WORKABLE, "acme", "sealed", maker)
+    connection = await transaction(ats.connection, company_id, AtsProvider.WORKABLE)
+    link_id = await transaction(
+        ats_links.add_link, connection.company_id, connection.id, interview_id, job, STAGE, "ann"
     )
-    row = await ats_candidates.add(connection.id, link_id, interview_id, "c-1", "Ann@x.com")
+    row = await transaction(
+        ats_candidates.add, connection.id, link_id, interview_id, "c-1", "Ann@x.com"
+    )
 
     return connection, link_id, row
 
@@ -41,13 +45,13 @@ def test_a_deleted_interviews_candidates_go_in_batches(run, monkeypatch):
         connection, link_id, _ = await linked(company, deleted)
 
         for index in range(2, 4):
-            await ats_candidates.add(
-                connection.id, link_id, deleted, f"c-{index}", f"c{index}@x.com"
+            await transaction(
+                ats_candidates.add, connection.id, link_id, deleted, f"c-{index}", f"c{index}@x.com"
             )
 
-        await ats_links.delete_interview(deleted)
+        await accounts.remove_interview(deleted)
         left = await rows_of(AtsCandidate, AtsCandidate.connection_id, connection.id)
-        await ats.delete_company(company)
+        await transaction(ats.delete_company, company)
 
         return left
 
@@ -58,8 +62,14 @@ def test_a_deleted_interview_takes_its_links_and_candidates_even_when_delivered_
     async def scenario():
         company, deleted, kept = uuid.uuid4(), uuid.uuid4(), uuid.uuid4()
         connection, _, _ = await linked(company, deleted)
-        await ats_links.add_link(
-            connection.company_id, connection.id, kept, {"id": "B2", "name": "Clerk"}, STAGE, "ann"
+        await transaction(
+            ats_links.add_link,
+            connection.company_id,
+            connection.id,
+            kept,
+            {"id": "B2", "name": "Clerk"},
+            STAGE,
+            "ann",
         )
         event = {"interview_id": str(deleted), "company_id": str(company)}
         await handle("interview.deleted", event)
@@ -67,9 +77,9 @@ def test_a_deleted_interview_takes_its_links_and_candidates_even_when_delivered_
         found = (
             await rows_of(AtsJobLink, AtsJobLink.connection_id, connection.id),
             await rows_of(AtsCandidate, AtsCandidate.connection_id, connection.id),
-            await ats.connections(company),
+            await transaction(ats.connections, company),
         )
-        await ats.delete_company(company)
+        await transaction(ats.delete_company, company)
 
         return kept, found
 
@@ -88,12 +98,12 @@ def test_a_deleted_company_takes_its_connections_links_and_candidates(run):
         await handle("company.deleted", {"company_id": str(company)})
         await handle("company.deleted", {"company_id": str(company)})
         found = (
-            await ats.connections(company),
+            await transaction(ats.connections, company),
             await rows_of(AtsJobLink, AtsJobLink.connection_id, connection.id),
             await rows_of(AtsCandidate, AtsCandidate.connection_id, connection.id),
             len(await rows_of(AtsCandidate, AtsCandidate.connection_id, theirs.id)),
         )
-        await ats.delete_company(other)
+        await transaction(ats.delete_company, other)
 
         return found
 
@@ -104,10 +114,10 @@ def test_an_accounts_candidates_are_exported_and_deleted_by_email(run):
     async def scenario():
         company = uuid.uuid4()
         await linked(company, uuid.uuid4())
-        exported = await ats_candidates.of_email("ANN@x.com")
-        await ats_candidates.delete_email("ann@X.com")
-        left = await ats_candidates.of_email("ann@x.com")
-        await ats.delete_company(company)
+        exported = await transaction(ats_candidates.of_email, "ANN@x.com")
+        await transaction(ats_candidates.delete_email, "ann@X.com")
+        left = await transaction(ats_candidates.of_email, "ann@x.com")
+        await transaction(ats.delete_company, company)
 
         return exported, left
 
@@ -131,9 +141,11 @@ def test_candidates_past_their_retention_period_go(run):
             )
             await session.commit()
 
-        deleted = await ats_candidates.delete_older_than(datetime.now(UTC) - timedelta(days=365))
+        deleted = await ats_candidates.delete_older_than(
+            Session, datetime.now(UTC) - timedelta(days=365)
+        )
         left = await rows_of(AtsCandidate, AtsCandidate.interview_id, new.interview_id)
-        await ats.delete_company(company)
+        await transaction(ats.delete_company, company)
 
         return deleted, left
 
@@ -147,7 +159,9 @@ def test_a_candidate_the_company_erased_goes_from_the_ats_record_too(run):
     async def scenario():
         company, interview_id = uuid.uuid4(), uuid.uuid4()
         connection, link_id, _ = await linked(company, interview_id)
-        await ats_candidates.add(connection.id, link_id, interview_id, "c-2", "bo@x.com")
+        await transaction(
+            ats_candidates.add, connection.id, link_id, interview_id, "c-2", "bo@x.com"
+        )
         event = {
             "company_id": str(company),
             "interview_id": str(interview_id),
@@ -157,7 +171,7 @@ def test_a_candidate_the_company_erased_goes_from_the_ats_record_too(run):
         await handle("candidate.removed", event)
         await handle("candidate.removed", event)
         left = await rows_of(AtsCandidate, AtsCandidate.connection_id, connection.id)
-        await ats.delete_company(company)
+        await transaction(ats.delete_company, company)
 
         return [row.email for row in left]
 
@@ -178,15 +192,15 @@ def test_a_deleted_makers_connection_stays_without_their_id_and_stops_inviting(r
     async def scenario():
         company, interview_id = uuid.uuid4(), uuid.uuid4()
         _, _, row = await linked(company, interview_id, maker=maker)
-        exported = await ats.made_by(maker)
-        await ats.forget_maker(maker)
+        exported = await transaction(ats.made_by, maker)
+        await transaction(ats.forget_maker, maker)
         # Safe to repeat.
-        await ats.forget_maker(maker)
-        connection = await ats.connection(company, AtsProvider.WORKABLE)
+        await transaction(ats.forget_maker, maker)
+        connection = await transaction(ats.connection, company, AtsProvider.WORKABLE)
         interview = {"company_id": str(company), "title": "Accountant", "ready": True}
         await candidate_service.invite(row, connection, interview)
-        left = await ats.made_by(maker)
-        await ats.delete_company(company)
+        left = await transaction(ats.made_by, maker)
+        await transaction(ats.delete_company, company)
 
         return exported, connection, left
 

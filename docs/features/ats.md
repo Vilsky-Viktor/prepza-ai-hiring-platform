@@ -165,6 +165,7 @@ When such a candidate finishes, companies publishes `candidate.finished` (grade,
 - Each ATS's API is one client module (`src/ats/integrations/workable.py`, `greenhouse.py`, `teamtailor.py`, `recruitee.py`, `breezy.py`) with the same functions. Each names the credentials it takes (`KEYS`), so a connection can keep others, like a web hook's secret key.
 - `src/ats/integrations/ats_clients.py` picks the module by provider. A new ATS adds its module there.
 - The web hook handlers are in `src/ats/services/ats_webhooks.py`, one per ATS.
+- Each action is saved in one transaction, and no ATS or companies call happens inside one: deleting an account (its candidates go and the connections it made are forgotten, with their notices), results a key can't write (kept, with the company's notice), and results that went back (marked reported, clearing an earlier write refusal). Steps with a call to the ATS between them (connecting, linking a Workable job, an invite) are saved apart, each undone or retried on its own.
 - The webhook routes stay open in maintenance mode (see [Admin zone](admin-zone.md#maintenance-mode)).
 
 See also [Architecture](../architecture.md) for the events ats consumes.

@@ -11,6 +11,7 @@ from ats.repositories import ats, ats_candidates, ats_links, ats_results
 from ats.services import ats as integrations
 from ats.services import ats_candidates as flow
 from ats.services import ats_webhooks as hooks
+from ats.services import reports
 from tests.unit.arrivals import deliver_arrivals
 from tests.unit.conftest import interview
 from tests.unit.helpers.test_teamtailor_signatures import signature
@@ -55,10 +56,10 @@ def world(monkeypatch, companies_api):
         "sent": companies_api["sent"],
     }
 
-    async def connection_by_id(connection_id):
+    async def connection_by_id(session, connection_id):
         return state["connection"] if connection_id == CONNECTION_ID else None
 
-    async def link_for_job(connection_id, job_id):
+    async def link_for_job(session, connection_id, job_id):
         if job_id != "101":
             return None
 
@@ -70,7 +71,7 @@ def world(monkeypatch, companies_api):
             stage_id="7",
         )
 
-    async def has_links(connection_id):
+    async def has_links(session, connection_id):
         return state["linked"]
 
     async def key(found):
@@ -81,7 +82,7 @@ def world(monkeypatch, companies_api):
 
         return state["application"]
 
-    async def add(connection_id, link_id, interview_id, candidate_id, email, name=None):
+    async def add(session, connection_id, link_id, interview_id, candidate_id, email, name=None):
         return state["rows"].setdefault(
             candidate_id,
             AtsCandidate(
@@ -94,7 +95,7 @@ def world(monkeypatch, companies_api):
             ),
         )
 
-    async def claim(row_id, statuses):
+    async def claim(session, row_id, statuses):
         return True
 
     async def nothing(*args, **kwargs):
@@ -227,7 +228,7 @@ def finished(monkeypatch):
     row = AtsCandidate(id=uuid.uuid4(), candidate_id="44", invite_id=uuid.uuid4())
     state = {"notes": [], "reported": [], "row": row, "connection": connection}
 
-    async def for_invite(invite_id):
+    async def for_invite(session, invite_id):
         return row, connection
 
     async def key(found):
@@ -236,10 +237,10 @@ def finished(monkeypatch):
     async def comment(host, key, candidate_id, member, text):
         state["notes"].append((host, key, candidate_id, member, text))
 
-    async def claim_report(row_id, data):
+    async def claim_report(session, row_id, data):
         return True
 
-    async def mark_reported(row_id):
+    async def mark_reported(session, row_id):
         state["reported"].append(row_id)
 
     monkeypatch.setattr(ats_results, "for_invite", for_invite)
@@ -261,7 +262,7 @@ def report(state):
         "passed": True,
         "flagged": False,
     }
-    asyncio.run(flow.report(data))
+    asyncio.run(reports.report(data))
 
 
 def test_results_go_back_to_teamtailor_as_a_note_by_the_member(finished):

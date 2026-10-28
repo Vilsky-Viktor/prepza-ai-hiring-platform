@@ -2,9 +2,9 @@ from datetime import datetime
 from uuid import UUID
 
 from sqlalchemy import func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from ats.constants.ats import CandidateStatus
-from ats.core.db import Session
 from ats.models.ats import AtsCandidate, AtsConnection
 
 
@@ -20,7 +20,7 @@ def failed_between(company_ids: list[UUID], since: datetime, until: datetime) ->
 
 
 async def between(
-    company_ids: list[UUID], since: datetime, until: datetime, limit: int
+    session: AsyncSession, company_ids: list[UUID], since: datetime, until: datetime, limit: int
 ) -> list[tuple[AtsCandidate, AtsConnection]]:
     """Up to `limit` of them (failed_between), newest first, with their connections."""
     query = (
@@ -31,11 +31,12 @@ async def between(
         .limit(limit)
     )
 
-    async with Session() as session:
-        return list(await session.execute(query))
+    return list(await session.execute(query))
 
 
-async def count_between(company_ids: list[UUID], since: datetime, until: datetime) -> int:
+async def count_between(
+    session: AsyncSession, company_ids: list[UUID], since: datetime, until: datetime
+) -> int:
     """How many there are in all (failed_between)."""
     query = (
         select(func.count())
@@ -44,5 +45,4 @@ async def count_between(company_ids: list[UUID], since: datetime, until: datetim
         .where(*failed_between(company_ids, since, until))
     )
 
-    async with Session() as session:
-        return await session.scalar(query)
+    return await session.scalar(query)

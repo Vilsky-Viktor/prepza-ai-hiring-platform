@@ -5,21 +5,24 @@ from prepza_common.config.constants import MAX_UPDATES
 
 from ats.constants.ats import ATS_NAMES
 from ats.constants.notifications import ATS_LINK
+from ats.core.db import Session
 from ats.integrations import companies
 from ats.repositories import not_invited
-from ats.schemas.ats import NotInvitedOut
+from ats.schemas.ats import NotInvitedListOut, NotInvitedOut
 
 
 async def not_invited_between(
     company_ids: list[UUID], since: datetime, until: datetime
-) -> list[NotInvitedOut]:
+) -> NotInvitedListOut:
     """Each candidate of these companies' ATSs who first couldn't be invited between the two
     times and still isn't, the newest MAX_UPDATES, newest first, with their interview's title
-    (from companies)."""
-    rows = await not_invited.between(company_ids, since, until, MAX_UPDATES)
-    interviews = await companies.interviews({row.interview_id for row, _ in rows})
+    (from companies), and how many there are in all."""
+    async with Session() as session:
+        rows = await not_invited.between(session, company_ids, since, until, MAX_UPDATES)
+        total = await not_invited.count_between(session, company_ids, since, until)
 
-    return [
+    interviews = await companies.interviews({row.interview_id for row, _ in rows})
+    items = [
         NotInvitedOut(
             at=row.failed_at,
             company_id=connection.company_id,
@@ -33,3 +36,5 @@ async def not_invited_between(
         )
         for row, connection in rows
     ]
+
+    return NotInvitedListOut(items=items, total=total)

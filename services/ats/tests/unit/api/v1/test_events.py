@@ -6,8 +6,9 @@ import pytest
 
 from ats.models.ats import AtsConnection, AtsJobLink
 from ats.repositories import ats, ats_links
+from ats.repositories import ats_candidates as candidate_rows
 from ats.services import ats as integrations
-from ats.services import ats_candidates
+from ats.services import ats_candidates, reports
 
 INTERVIEW_ID = uuid.uuid4()
 COMPANY_ID = uuid.uuid4()
@@ -28,27 +29,32 @@ def calls(monkeypatch):
     """What each event leads to, recorded."""
     seen = []
 
-    def record(name):
+    def record(name, skip=0):
+        """A fake recording its arguments, without the first `skip` (a repository's session)."""
+
         async def fake(*args):
-            seen.append((name, *args))
+            seen.append((name, *args[skip:]))
 
         return fake
 
-    monkeypatch.setattr(ats_candidates, "report", record("report"))
+    monkeypatch.setattr(reports, "report", record("report"))
     monkeypatch.setattr(ats_candidates, "invite_waiting", record("invite_waiting"))
     monkeypatch.setattr(ats_candidates, "topped_up", record("topped_up"))
-    monkeypatch.setattr(ats_links, "delete_interview", record("delete_interview"))
-    monkeypatch.setattr(ats, "delete_company", record("delete_company"))
+    monkeypatch.setattr(
+        candidate_rows, "delete_interview_candidates", record("delete_candidates", 1)
+    )
+    monkeypatch.setattr(ats_links, "delete_interview_links", record("delete_links", 1))
+    monkeypatch.setattr(ats, "delete_company", record("delete_company", 1))
     monkeypatch.setattr(integrations, "unsubscribe", record("unsubscribe"))
     monkeypatch.setattr(integrations, "release", record("release"))
 
-    async def interview_links(interview_id):
+    async def interview_links(session, interview_id):
         return []
 
-    async def connections(company_id):
+    async def connections(session, company_id):
         return []
 
-    async def subscriptions(company_id):
+    async def subscriptions(session, company_id):
         return []
 
     monkeypatch.setattr(ats_links, "interview_links", interview_links)
@@ -75,7 +81,11 @@ def test_a_deleted_interview_or_company_deletes_its_rows(client, calls):
     push(client, "interview.deleted", {"interview_id": str(INTERVIEW_ID), "company_id": "c"})
     push(client, "company.deleted", {"company_id": str(COMPANY_ID)})
 
-    assert calls == [("delete_interview", INTERVIEW_ID), ("delete_company", COMPANY_ID)]
+    assert calls == [
+        ("delete_candidates", INTERVIEW_ID),
+        ("delete_links", INTERVIEW_ID),
+        ("delete_company", COMPANY_ID),
+    ]
 
 
 def test_what_prepza_set_up_in_the_ats_is_cancelled_before_the_rows_go(client, calls, monkeypatch):
@@ -84,13 +94,13 @@ def test_what_prepza_set_up_in_the_ats_is_cancelled_before_the_rows_go(client, c
     linked = AtsJobLink(id=uuid.uuid4(), subscription_id="sub-1")
     unsubscribed = AtsJobLink(id=uuid.uuid4(), subscription_id=None)
 
-    async def interview_links(interview_id):
+    async def interview_links(session, interview_id):
         return [(linked, workable), (unsubscribed, workable)]
 
-    async def connections(company_id):
+    async def connections(session, company_id):
         return [workable, breezy]
 
-    async def subscriptions(company_id):
+    async def subscriptions(session, company_id):
         return ["sub-1", "sub-2"]
 
     monkeypatch.setattr(ats_links, "interview_links", interview_links)
@@ -102,7 +112,8 @@ def test_what_prepza_set_up_in_the_ats_is_cancelled_before_the_rows_go(client, c
 
     assert calls == [
         ("unsubscribe", workable, ["sub-1"]),
-        ("delete_interview", INTERVIEW_ID),
+        ("delete_candidates", INTERVIEW_ID),
+        ("delete_links", INTERVIEW_ID),
         ("release", workable, ["sub-1", "sub-2"]),
         ("release", breezy, ["sub-1", "sub-2"]),
         ("delete_company", COMPANY_ID),
@@ -139,7 +150,7 @@ def test_a_failing_handler_answers_an_error_so_pubsub_retries(client, monkeypatc
     async def failing(data):
         raise RuntimeError("ATS down")
 
-    monkeypatch.setattr(ats_candidates, "report", failing)
+    monkeypatch.setattr(reports, "report", failing)
 
     with pytest.raises(RuntimeError):
         push(client, "candidate.finished", {"candidate_invite_id": "x"})

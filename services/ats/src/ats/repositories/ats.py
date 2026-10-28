@@ -6,10 +6,9 @@ from prepza_common.events.audit_actions import AuditAction, TargetKind
 from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import delete, func, literal_column, select, update
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from ats.constants.ats import ATS_NAMES, ConnectionStatus
-from ats.core.db import Session
-from ats.helpers.notifications import connection_broken
 from ats.models.ats import AtsConnection
 from ats.models.outbox import OutboxEvent
 
@@ -21,35 +20,36 @@ def company_of(connection_id: UUID):
     )
 
 
-async def connections(company_id: UUID) -> list[AtsConnection]:
+async def connections(session: AsyncSession, company_id: UUID) -> list[AtsConnection]:
     query = select(AtsConnection).where(AtsConnection.company_id == company_id)
 
-    async with Session() as session:
-        return list((await session.scalars(query)).all())
+    return list((await session.scalars(query)).all())
 
 
-async def connection(company_id: UUID, provider: str) -> AtsConnection | None:
+async def connection(
+    session: AsyncSession, company_id: UUID, provider: str
+) -> AtsConnection | None:
     query = select(AtsConnection).where(
         AtsConnection.company_id == company_id, AtsConnection.provider == provider
     )
 
-    async with Session() as session:
-        return await session.scalar(query)
+    return await session.scalar(query)
 
 
-async def connection_by_id(connection_id: UUID) -> AtsConnection | None:
-    async with Session() as session:
-        return await session.get(AtsConnection, connection_id)
+async def connection_by_id(session: AsyncSession, connection_id: UUID) -> AtsConnection | None:
+    return await session.get(AtsConnection, connection_id)
 
 
-async def connections_by_ids(connection_ids: set[UUID]) -> dict[UUID, AtsConnection]:
+async def connections_by_ids(
+    session: AsyncSession, connection_ids: set[UUID]
+) -> dict[UUID, AtsConnection]:
     query = select(AtsConnection).where(AtsConnection.id.in_(connection_ids))
 
-    async with Session() as session:
-        return {connection.id: connection for connection in await session.scalars(query)}
+    return {connection.id: connection for connection in await session.scalars(query)}
 
 
 async def connect(
+    session: AsyncSession,
     company_id: UUID,
     provider: str,
     account: str,
@@ -79,23 +79,25 @@ async def connect(
         # two connects at once log one connect and one reconnect.
         .returning(literal_column("xmax = 0"))
     )
-
-    async with Session() as session:
-        inserted = await session.scalar(query)
-        action = AuditAction.ATS_CONNECTED if inserted else AuditAction.ATS_RECONNECTED
-        audit.add(
-            session,
-            OutboxEvent,
-            company_id,
-            user_id,
-            action,
-            TargetKind.INTEGRATION,
-            target_label=ATS_NAMES[provider],
-        )
-        await session.commit()
+    inserted = await session.scalar(query)
+    action = AuditAction.ATS_CONNECTED if inserted else AuditAction.ATS_RECONNECTED
+    audit.add(
+        session,
+        OutboxEvent,
+        company_id,
+        user_id,
+        action,
+        TargetKind.INTEGRATION,
+        target_label=ATS_NAMES[provider],
+    )
 
 
-async def refuse_writes(connection_id: UUID, notice: dict) -> None:
+def notify(session: AsyncSession, notice: dict) -> None:
+    """The company's notification, sent by the outbox once the transaction is saved."""
+    outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
+
+
+async def refuse_writes(session: AsyncSession, connection_id: UUID, notice: dict) -> None:
     """The ATS refused the results written back while the key still reads: `notice` tells the
     company, once, however many results are refused, and also when two at once are."""
     query = (
@@ -105,39 +107,29 @@ async def refuse_writes(connection_id: UUID, notice: dict) -> None:
         .returning(AtsConnection.id)
     )
 
-    async with Session() as session:
-        if await session.scalar(query) is not None:
-            outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
-
-        await session.commit()
+    if await session.scalar(query) is not None:
+        notify(session, notice)
 
 
-async def writes_again(connection_id: UUID) -> None:
+async def writes_again(session: AsyncSession, connection_id: UUID) -> None:
     """A write went through (the key got write access in the ATS): a later refusal tells the
     company again."""
-    async with Session() as session:
-        await session.execute(
-            update(AtsConnection)
-            .where(AtsConnection.id == connection_id)
-            .values(write_refused_at=None)
-        )
-        await session.commit()
+    await session.execute(
+        update(AtsConnection).where(AtsConnection.id == connection_id).values(write_refused_at=None)
+    )
 
 
-async def set_credentials(connection_id: UUID, credentials: str) -> None:
+async def set_credentials(session: AsyncSession, connection_id: UUID, credentials: str) -> None:
     """Replaces the connection's sealed credentials (a web hook's signature key added)."""
     query = (
         update(AtsConnection)
         .where(AtsConnection.id == connection_id)
         .values(credentials=credentials)
     )
-
-    async with Session() as session:
-        await session.execute(query)
-        await session.commit()
+    await session.execute(query)
 
 
-async def restore_broken(earlier: AtsConnection) -> None:
+async def restore_broken(session: AsyncSession, earlier: AtsConnection) -> None:
     """Puts back a connection as it was before a reconnect that failed (its key, account, maker
     and member), marked for reconnecting: its linked jobs and candidates stay."""
     query = (
@@ -151,15 +143,12 @@ async def restore_broken(earlier: AtsConnection) -> None:
             status=ConnectionStatus.BROKEN,
         )
     )
-
-    async with Session() as session:
-        await session.execute(query)
-        await session.commit()
+    await session.execute(query)
 
 
-async def mark_broken(connection_id: UUID) -> None:
-    """Marks the connection for reconnecting; the company is told when it stops working, once,
-    also when several calls find it broken at the same moment."""
+async def mark_broken(session: AsyncSession, connection_id: UUID, notice: dict) -> None:
+    """Marks the connection for reconnecting; `notice` tells the company when it stops working,
+    once, also when several calls find it broken at the same moment."""
     query = (
         update(AtsConnection)
         .where(
@@ -167,31 +156,23 @@ async def mark_broken(connection_id: UUID) -> None:
             AtsConnection.status != ConnectionStatus.BROKEN,
         )
         .values(status=ConnectionStatus.BROKEN)
-        .returning(AtsConnection.company_id, AtsConnection.provider)
+        .returning(AtsConnection.id)
     )
 
-    async with Session() as session:
-        for company_id, provider in await session.execute(query):
-            outbox.add(
-                session,
-                OutboxEvent,
-                NOTIFICATION_REQUESTED,
-                connection_broken(company_id, provider),
-            )
-
-        await session.commit()
+    if await session.scalar(query) is not None:
+        notify(session, notice)
 
 
-async def made_by(user_id: str) -> list[AtsConnection]:
+async def made_by(session: AsyncSession, user_id: str) -> list[AtsConnection]:
     query = select(AtsConnection).where(AtsConnection.created_by == user_id)
 
-    async with Session() as session:
-        return list(await session.scalars(query))
+    return list(await session.scalars(query))
 
 
-async def forget_maker(user_id: str) -> None:
+async def forget_maker(session: AsyncSession, user_id: str) -> list[tuple[UUID, str]]:
     """The connections the user made stay with their companies, without the user's id, and
-    stop inviting, as when their maker stops being an editor: an editor reconnects them."""
+    stop inviting, as when their maker stops being an editor: an editor reconnects them. The
+    company and ATS of each that stops working now, to tell them."""
     working = (
         update(AtsConnection)
         .where(
@@ -206,22 +187,13 @@ async def forget_maker(user_id: str) -> None:
         .where(AtsConnection.created_by == user_id)
         .values(created_by=DELETED_USER)
     )
+    stopped = [tuple(row) for row in await session.execute(working)]
+    await session.execute(rest)
 
-    async with Session() as session:
-        # Each company whose connection stops working now is told.
-        for company_id, provider in await session.execute(working):
-            outbox.add(
-                session,
-                OutboxEvent,
-                NOTIFICATION_REQUESTED,
-                connection_broken(company_id, provider),
-            )
-
-        await session.execute(rest)
-        await session.commit()
+    return stopped
 
 
-async def disconnect(company_id: UUID, provider: str, user_id: str) -> None:
+async def disconnect(session: AsyncSession, company_id: UUID, provider: str, user_id: str) -> None:
     """Deletes the connection and its key at once; its linked jobs go with it. The company's
     action log gets it as the member's (`user_id`)."""
     query = (
@@ -229,26 +201,20 @@ async def disconnect(company_id: UUID, provider: str, user_id: str) -> None:
         .where(AtsConnection.company_id == company_id, AtsConnection.provider == provider)
         .returning(AtsConnection.id)
     )
+    removed = await session.scalar(query)
 
-    async with Session() as session:
-        removed = await session.scalar(query)
-
-        if removed is not None:
-            audit.add(
-                session,
-                OutboxEvent,
-                company_id,
-                user_id,
-                AuditAction.ATS_DISCONNECTED,
-                TargetKind.INTEGRATION,
-                target_label=ATS_NAMES[provider],
-            )
-
-        await session.commit()
+    if removed is not None:
+        audit.add(
+            session,
+            OutboxEvent,
+            company_id,
+            user_id,
+            AuditAction.ATS_DISCONNECTED,
+            TargetKind.INTEGRATION,
+            target_label=ATS_NAMES[provider],
+        )
 
 
-async def delete_company(company_id: UUID) -> None:
+async def delete_company(session: AsyncSession, company_id: UUID) -> None:
     """A company was deleted: its connections go, with their linked jobs and candidates."""
-    async with Session() as session:
-        await session.execute(delete(AtsConnection).where(AtsConnection.company_id == company_id))
-        await session.commit()
+    await session.execute(delete(AtsConnection).where(AtsConnection.company_id == company_id))

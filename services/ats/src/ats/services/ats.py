@@ -15,6 +15,8 @@ from ats.constants.ats import (
     WRITES,
     AtsProvider,
 )
+from ats.core.db import Session
+from ats.helpers.notifications import connection_broken
 from ats.integrations import breezy, workable
 from ats.integrations.ats_clients import client
 from ats.integrations.ats_http import calling_company
@@ -80,10 +82,19 @@ async def workable_key(connection: AtsConnection) -> tuple[str, str]:
     return found["subdomain"], found["token"]
 
 
+async def mark_broken(connection: AtsConnection) -> None:
+    """Marks the connection for reconnecting; the company is told when it stops working, once."""
+    notice = connection_broken(connection.company_id, connection.provider)
+
+    async with Session.begin() as session:
+        await ats.mark_broken(session, connection.id, notice)
+
+    await outbox_service.flush_quietly()
+
+
 async def broken(connection: AtsConnection) -> None:
     """Marks the connection for reconnecting, and tells the company."""
-    await ats.mark_broken(connection.id)
-    await outbox_service.flush_quietly()
+    await mark_broken(connection)
     name = ATS_NAMES[connection.provider]
 
     raise HTTPException(
@@ -93,7 +104,9 @@ async def broken(connection: AtsConnection) -> None:
 
 async def connected(company_id, provider: str) -> AtsConnection:
     require_available()
-    connection = await ats.connection(company_id, provider)
+
+    async with Session() as session:
+        connection = await ats.connection(session, company_id, provider)
 
     if connection is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Not connected")

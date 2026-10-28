@@ -37,7 +37,7 @@ def stored(monkeypatch, companies_api):
     rows = {"key": key, "connection": None, "can_write": True}
 
     async def connect(
-        company_id, provider, account, credentials, user_id, member_id=None, language=None
+        session, company_id, provider, account, credentials, user_id, member_id=None, language=None
     ):
         earlier = rows["connection"]
         rows["connection"] = AtsConnection(
@@ -51,15 +51,15 @@ def stored(monkeypatch, companies_api):
             created_by=user_id,
         )
 
-    async def connection(company_id, provider):
+    async def connection(session, company_id, provider):
         return rows["connection"]
 
-    async def connection_by_id(connection_id):
+    async def connection_by_id(session, connection_id):
         found = rows["connection"]
 
         return found if found and found.id == connection_id else None
 
-    async def link_for_job(connection_id, job_id):
+    async def link_for_job(session, connection_id, job_id):
         return None
 
     async def check(client_id, client_secret):

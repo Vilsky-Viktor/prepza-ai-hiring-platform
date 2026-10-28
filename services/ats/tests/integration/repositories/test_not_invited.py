@@ -7,6 +7,7 @@ from ats.constants.ats import AtsProvider, CandidateStatus, FailReason
 from ats.core.db import Session
 from ats.models.ats import AtsCandidate
 from ats.repositories import ats, ats_candidates, not_invited
+from tests.integration.transactions import transaction
 
 SINCE = datetime(2026, 10, 1, tzinfo=UTC)
 UNTIL = datetime(2026, 10, 18, tzinfo=UTC)
@@ -26,22 +27,24 @@ async def set_failed_at(row_id, at):
 
 
 async def connected(company):
-    await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
+    await transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
 
-    return await ats.connection(company, AtsProvider.WORKABLE)
+    return await transaction(ats.connection, company, AtsProvider.WORKABLE)
 
 
 def test_a_failed_invite_keeps_the_time_it_first_failed(run):
     async def scenario():
         company = uuid.uuid4()
         connection = await connected(company)
-        row = await ats_candidates.add(connection.id, None, uuid.uuid4(), "c-1", "a@example.com")
+        row = await transaction(
+            ats_candidates.add, connection.id, None, uuid.uuid4(), "c-1", "a@example.com"
+        )
         before = await failed_at(row.id)
-        await ats_candidates.settle(row.id, CandidateStatus.FAILED, FailReason.LIMIT)
+        await transaction(ats_candidates.settle, row.id, CandidateStatus.FAILED, FailReason.LIMIT)
         first = await failed_at(row.id)
-        await ats_candidates.settle(row.id, CandidateStatus.FAILED, FailReason.CREDITS)
+        await transaction(ats_candidates.settle, row.id, CandidateStatus.FAILED, FailReason.CREDITS)
         second = await failed_at(row.id)
-        await ats.delete_company(company)
+        await transaction(ats.delete_company, company)
 
         return before, first, second
 
@@ -68,23 +71,34 @@ def test_between_lists_the_companies_candidates_first_failed_in_the_window_newes
         }
 
         for candidate_id, (connection_id, at) in failures.items():
-            row = await ats_candidates.add(
-                connection_id, None, interview, candidate_id, f"{uuid.uuid4()}@example.com"
+            row = await transaction(
+                ats_candidates.add,
+                connection_id,
+                None,
+                interview,
+                candidate_id,
+                f"{uuid.uuid4()}@example.com",
             )
-            await ats_candidates.settle(row.id, CandidateStatus.FAILED, FailReason.LIMIT)
+            await transaction(
+                ats_candidates.settle, row.id, CandidateStatus.FAILED, FailReason.LIMIT
+            )
             await set_failed_at(row.id, at)
 
         # Failed in the window, then invited on a retry: no longer listed.
-        invited = await ats_candidates.add(
-            connection.id, None, interview, "invited", "inv@example.com"
+        invited = await transaction(
+            ats_candidates.add, connection.id, None, interview, "invited", "inv@example.com"
         )
-        await ats_candidates.settle(invited.id, CandidateStatus.FAILED, FailReason.LIMIT)
+        await transaction(
+            ats_candidates.settle, invited.id, CandidateStatus.FAILED, FailReason.LIMIT
+        )
         await set_failed_at(invited.id, SINCE + timedelta(days=3))
-        await ats_candidates.settle(invited.id, CandidateStatus.INVITED, invite_id=uuid.uuid4())
-        rows = await not_invited.between([company], SINCE, UNTIL, 2)
-        total = await not_invited.count_between([company], SINCE, UNTIL)
-        await ats.delete_company(company)
-        await ats.delete_company(other)
+        await transaction(
+            ats_candidates.settle, invited.id, CandidateStatus.INVITED, invite_id=uuid.uuid4()
+        )
+        rows = await transaction(not_invited.between, [company], SINCE, UNTIL, 2)
+        total = await transaction(not_invited.count_between, [company], SINCE, UNTIL)
+        await transaction(ats.delete_company, company)
+        await transaction(ats.delete_company, other)
 
         listed = [(row.candidate_id, row.failed_at, conn.company_id) for row, conn in rows]
 

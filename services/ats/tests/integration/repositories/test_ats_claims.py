@@ -11,6 +11,7 @@ from ats.core.db import Session
 from ats.models.ats import AtsCandidate
 from ats.models.outbox import OutboxEvent
 from ats.repositories import ats, ats_candidates, ats_links, ats_results
+from tests.integration.transactions import transaction
 
 JOB = {"id": "A1", "name": "Accountant"}
 STAGE = {"id": "assessment", "name": "Assessment"}
@@ -20,27 +21,38 @@ def test_a_candidate_is_one_row_claimed_once_counted_and_reported_once(run):
     async def scenario():
         company = uuid.uuid4()
         interview = uuid.uuid4()
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1")
-        connection = await ats.connection(company, AtsProvider.WORKABLE)
-        link_id = await ats_links.add_link(
-            connection.company_id, connection.id, interview, JOB, STAGE, "ann"
+        await transaction(
+            ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1"
         )
-        first = await ats_candidates.add(connection.id, link_id, interview, "c-1", "A@x.com")
-        again = await ats_candidates.add(connection.id, link_id, interview, "c-1", "a@x.com")
+        connection = await transaction(ats.connection, company, AtsProvider.WORKABLE)
+        link_id = await transaction(
+            ats_links.add_link, connection.company_id, connection.id, interview, JOB, STAGE, "ann"
+        )
+        first = await transaction(
+            ats_candidates.add, connection.id, link_id, interview, "c-1", "A@x.com"
+        )
+        again = await transaction(
+            ats_candidates.add, connection.id, link_id, interview, "c-1", "a@x.com"
+        )
         claims = [
-            await ats_candidates.claim(first.id, (CandidateStatus.WAITING,)),
-            await ats_candidates.claim(first.id, (CandidateStatus.WAITING,)),
+            await transaction(ats_candidates.claim, first.id, (CandidateStatus.WAITING,)),
+            await transaction(ats_candidates.claim, first.id, (CandidateStatus.WAITING,)),
         ]
         invite = uuid.uuid4()
-        await ats_candidates.settle(first.id, CandidateStatus.INVITED, invite_id=invite)
-        other = await ats_candidates.add(connection.id, link_id, interview, "c-2", "b@x.com")
-        await ats_candidates.settle(other.id, CandidateStatus.FAILED, "credits")
-        counts = await ats_candidates.counts(company)
-        failed = await ats_candidates.not_invited(company, link_id)
-        to_report = await ats_results.for_invite(invite)
-        await ats_results.mark_reported(first.id)
-        reported = await ats_results.for_invite(invite)
-        await ats.delete_company(company)
+        await transaction(
+            ats_candidates.settle, first.id, CandidateStatus.INVITED, invite_id=invite
+        )
+        other = await transaction(
+            ats_candidates.add, connection.id, link_id, interview, "c-2", "b@x.com"
+        )
+        await transaction(ats_candidates.settle, other.id, CandidateStatus.FAILED, "credits")
+        counts = await transaction(ats_candidates.counts, company)
+        await ats_candidates.requeue_not_invited(Session, company, link_id)
+        failed = await transaction(ats_candidates.not_invited, company, link_id)
+        to_report = await transaction(ats_results.for_invite, invite)
+        await transaction(ats_results.mark_reported, first.id)
+        reported = await transaction(ats_results.for_invite, invite)
+        await transaction(ats.delete_company, company)
 
         return first, again, claims, counts[link_id], failed, to_report, reported
 
@@ -58,13 +70,15 @@ def test_an_invite_cut_off_midway_can_be_claimed_again_after_a_while(run):
     async def scenario():
         company = uuid.uuid4()
         interview = uuid.uuid4()
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
-        connection = await ats.connection(company, AtsProvider.WORKABLE)
-        row = await ats_candidates.add(connection.id, None, interview, "c-1", "a@x.com")
-        first = await ats_candidates.claim(row.id, (CandidateStatus.WAITING,))
+        await transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
+        connection = await transaction(ats.connection, company, AtsProvider.WORKABLE)
+        row = await transaction(
+            ats_candidates.add, connection.id, None, interview, "c-1", "a@x.com"
+        )
+        first = await transaction(ats_candidates.claim, row.id, (CandidateStatus.WAITING,))
         # Started just now: not stale, so nobody else may claim it.
-        fresh = await ats_candidates.claim(row.id, (CandidateStatus.WAITING,))
-        stale_before = [i for i in await ats_candidates.recoverable() if i.id == row.id]
+        fresh = await transaction(ats_candidates.claim, row.id, (CandidateStatus.WAITING,))
+        stale_before = [i for i in await transaction(ats_candidates.recoverable) if i.id == row.id]
 
         async with Session() as session:
             await session.execute(
@@ -74,9 +88,9 @@ def test_an_invite_cut_off_midway_can_be_claimed_again_after_a_while(run):
             )
             await session.commit()
 
-        stale_after = [i for i in await ats_candidates.recoverable() if i.id == row.id]
-        again = await ats_candidates.claim(row.id, (CandidateStatus.WAITING,))
-        await ats.delete_company(company)
+        stale_after = [i for i in await transaction(ats_candidates.recoverable) if i.id == row.id]
+        again = await transaction(ats_candidates.claim, row.id, (CandidateStatus.WAITING,))
+        await transaction(ats.delete_company, company)
 
         return first, fresh, stale_before, stale_after, again
 
@@ -92,15 +106,23 @@ def test_a_top_up_finds_only_the_companys_recent_linked_candidates_short_of_cred
         company = uuid.uuid4()
         other_company = uuid.uuid4()
         interview = uuid.uuid4()
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
-        await ats.connect(company, AtsProvider.GREENHOUSE, "…1234", "sealed", "ann")
-        await ats.connect(other_company, AtsProvider.WORKABLE, "other", "sealed", "bob")
-        workable = await ats.connection(company, AtsProvider.WORKABLE)
-        greenhouse = await ats.connection(company, AtsProvider.GREENHOUSE)
-        theirs = await ats.connection(other_company, AtsProvider.WORKABLE)
+        await transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
+        await transaction(ats.connect, company, AtsProvider.GREENHOUSE, "…1234", "sealed", "ann")
+        await transaction(
+            ats.connect, other_company, AtsProvider.WORKABLE, "other", "sealed", "bob"
+        )
+        workable = await transaction(ats.connection, company, AtsProvider.WORKABLE)
+        greenhouse = await transaction(ats.connection, company, AtsProvider.GREENHOUSE)
+        theirs = await transaction(ats.connection, other_company, AtsProvider.WORKABLE)
         links = {
-            connection.id: await ats_links.add_link(
-                connection.company_id, connection.id, interview, JOB, STAGE, "ann"
+            connection.id: await transaction(
+                ats_links.add_link,
+                connection.company_id,
+                connection.id,
+                interview,
+                JOB,
+                STAGE,
+                "ann",
             )
             for connection in (workable, greenhouse, theirs)
         }
@@ -118,12 +140,17 @@ def test_a_top_up_finds_only_the_companys_recent_linked_candidates_short_of_cred
 
         for candidate_id, (connection_id, status, reason) in rows.items():
             link_id = None if candidate_id == "unlinked" else links[connection_id]
-            row = await ats_candidates.add(
-                connection_id, link_id, interview, candidate_id, f"{candidate_id}@x.com"
+            row = await transaction(
+                ats_candidates.add,
+                connection_id,
+                link_id,
+                interview,
+                candidate_id,
+                f"{candidate_id}@x.com",
             )
 
             if status != CandidateStatus.WAITING:
-                await ats_candidates.settle(row.id, status, reason)
+                await transaction(ats_candidates.settle, row.id, status, reason)
 
         async with Session() as session:
             await session.execute(
@@ -135,9 +162,11 @@ def test_a_top_up_finds_only_the_companys_recent_linked_candidates_short_of_cred
             )
             await session.commit()
 
-        found = await ats_candidates.short_of_credits(company)
-        await ats.delete_company(company)
-        await ats.delete_company(other_company)
+        found = await transaction(ats_candidates.requeue_short, company)
+
+        await ats_candidates.requeue_short_rest(Session, company)
+        await transaction(ats.delete_company, company)
+        await transaction(ats.delete_company, other_company)
 
         return found
 
@@ -150,17 +179,23 @@ def test_a_top_up_finds_only_the_companys_recent_linked_candidates_short_of_cred
 def test_results_are_claimed_once_until_kept(run):
     async def scenario():
         company = uuid.uuid4()
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1")
-        connection = await ats.connection(company, AtsProvider.WORKABLE)
-        row = await ats_candidates.add(connection.id, None, uuid.uuid4(), "c-1", "a@x.com")
+        await transaction(
+            ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1"
+        )
+        connection = await transaction(ats.connection, company, AtsProvider.WORKABLE)
+        row = await transaction(
+            ats_candidates.add, connection.id, None, uuid.uuid4(), "c-1", "a@x.com"
+        )
         claims = [
-            await ats_results.claim(row.id, {"name": "sent"}),
-            await ats_results.claim(row.id, {"name": "sent"}),
+            await transaction(ats_results.claim, row.id, {"name": "sent"}),
+            await transaction(ats_results.claim, row.id, {"name": "sent"}),
         ]
-        await ats_results.keep(row.id, {"name": "kept"})
-        kept = [item.result for item in await ats_results.unreported() if item.id == row.id]
-        claims.append(await ats_results.claim(row.id, {"name": "sent"}))
-        await ats.delete_company(company)
+        await transaction(ats_results.keep, row.id, {"name": "kept"})
+        kept = [
+            item.result for item in await transaction(ats_results.unreported) if item.id == row.id
+        ]
+        claims.append(await transaction(ats_results.claim, row.id, {"name": "sent"}))
+        await transaction(ats.delete_company, company)
 
         return claims, kept
 
@@ -177,18 +212,25 @@ def test_an_interviews_waiting_candidates_come_one_batch_at_a_time(run, monkeypa
     async def scenario():
         company = uuid.uuid4()
         interview = uuid.uuid4()
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1")
-        connection = await ats.connection(company, AtsProvider.WORKABLE)
-        link_id = await ats_links.add_link(
-            connection.company_id, connection.id, interview, JOB, STAGE, "ann"
+        await transaction(
+            ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1"
+        )
+        connection = await transaction(ats.connection, company, AtsProvider.WORKABLE)
+        link_id = await transaction(
+            ats_links.add_link, connection.company_id, connection.id, interview, JOB, STAGE, "ann"
         )
 
         for number in range(3):
-            await ats_candidates.add(
-                connection.id, link_id, interview, f"c-{number}", f"c{number}@x.com"
+            await transaction(
+                ats_candidates.add,
+                connection.id,
+                link_id,
+                interview,
+                f"c-{number}",
+                f"c{number}@x.com",
             )
 
-        return [row.candidate_id for row in await ats_candidates.waiting(interview)]
+        return [row.candidate_id for row in await transaction(ats_candidates.waiting, interview)]
 
     # The oldest first; the third is left for the recovery job.
     assert run(scenario()) == ["c-0", "c-1"]
@@ -197,14 +239,18 @@ def test_an_interviews_waiting_candidates_come_one_batch_at_a_time(run, monkeypa
 def test_a_new_candidate_is_saved_with_one_arrival_event_and_a_repeat_adds_none(run):
     async def scenario():
         company, interview = uuid.uuid4(), uuid.uuid4()
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1")
-        connection = await ats.connection(company, AtsProvider.WORKABLE)
-        link_id = await ats_links.add_link(
-            connection.company_id, connection.id, interview, JOB, STAGE, "ann"
+        await transaction(
+            ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann", "m-1"
         )
-        row = await ats_candidates.add(connection.id, link_id, interview, "c-9", "z@x.com")
+        connection = await transaction(ats.connection, company, AtsProvider.WORKABLE)
+        link_id = await transaction(
+            ats_links.add_link, connection.company_id, connection.id, interview, JOB, STAGE, "ann"
+        )
+        row = await transaction(
+            ats_candidates.add, connection.id, link_id, interview, "c-9", "z@x.com"
+        )
         # The web hook comes again: the same row, and no second event.
-        await ats_candidates.add(connection.id, link_id, interview, "c-9", "z@x.com")
+        await transaction(ats_candidates.add, connection.id, link_id, interview, "c-9", "z@x.com")
 
         async with Session() as session:
             events = await session.scalars(
@@ -212,7 +258,7 @@ def test_a_new_candidate_is_saved_with_one_arrival_event_and_a_repeat_adds_none(
             )
             mine = [data for data in events if data["ats_candidate_id"] == str(row.id)]
 
-        await ats.delete_company(company)
+        await transaction(ats.delete_company, company)
 
         return mine
 

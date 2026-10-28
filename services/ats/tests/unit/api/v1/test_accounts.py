@@ -19,11 +19,13 @@ def test_deleting_an_account_deletes_its_candidates_and_forgets_its_connections(
 ):
     done = []
 
-    async def delete_email(email):
+    async def delete_email(session, email):
         done.append(("candidates", email))
 
-    async def forget_maker(user_id):
+    async def forget_maker(session, user_id):
         done.append(("connections", user_id))
+
+        return []
 
     monkeypatch.setattr(ats_candidates, "delete_email", delete_email)
     monkeypatch.setattr(ats, "forget_maker", forget_maker)
@@ -46,10 +48,10 @@ def test_an_export_lists_what_atss_sent_about_them(client, monkeypatch):
         created_at=at,
     )
 
-    async def of_email(email):
+    async def of_email(session, email):
         return [row] if email == "ann@example.com" else []
 
-    async def made_by(user_id):
+    async def made_by(session, user_id):
         return [
             AtsConnection(company_id=company_id, provider="workable", account="acme", created_at=at)
         ]

@@ -14,9 +14,11 @@ src/ats/
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
 ├── handlers/               # Pub/Sub events, one module per event; dispatch.py picks it
-├── services/               # Connecting, linking jobs, inviting and reporting candidates,
-│                           # the ATSs' web hooks, the outbox
-├── repositories/           # Database queries: connections, links, candidates, kept results
+├── services/               # Connecting, linking jobs, inviting candidates, reporting results,
+│                           # the recovery job, the ATSs' web hooks, account deletions; each
+│                           # opens its transaction
+├── repositories/           # Database queries: connections, links, candidates, kept results;
+│                           # take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions; fixed values
 ├── integrations/           # One client per ATS, companies, Redis
@@ -24,6 +26,12 @@ src/ats/
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
+
+Routes and handlers call services; services open the transaction (`async with
+Session.begin() as session:`) and pass it to the repositories, so an action's steps are saved
+together, and call the ATSs and companies outside it (`tests/unit/test_layers.py` checks the
+imports and that no repository commits). Batched deletes and requeues take the session factory,
+each batch its own transaction.
 
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,
 `prepend_sys_path` for Alembic), so the package imports as `ats` (`ats.api.v1.ats_connect`).

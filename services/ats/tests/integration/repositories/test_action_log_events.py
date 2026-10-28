@@ -11,6 +11,7 @@ from ats.constants.ats import AtsProvider
 from ats.core.db import Session
 from ats.models.outbox import OutboxEvent
 from ats.repositories import ats, ats_links
+from tests.integration.transactions import transaction
 
 JOB = {"id": "A1", "name": "Accountant"}
 STAGE = {"id": "assessment", "name": "Assessment"}
@@ -35,17 +36,19 @@ def test_a_members_ats_actions_are_logged_with_what_they_were_about(run):
     company, interview = uuid.uuid4(), uuid.uuid4()
 
     async def scenario():
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
-        await ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed-2", "bob")
-        connection = await ats.connection(company, AtsProvider.WORKABLE)
-        link = await ats_links.add_link(company, connection.id, interview, JOB, STAGE, "ann")
+        await transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
+        await transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed-2", "bob")
+        connection = await transaction(ats.connection, company, AtsProvider.WORKABLE)
+        link = await transaction(
+            ats_links.add_link, company, connection.id, interview, JOB, STAGE, "ann"
+        )
         # Already linked: nothing more.
-        await ats_links.add_link(company, connection.id, interview, JOB, STAGE, "ann")
-        await ats_links.remove_link(company, link, "bob")
-        await ats_links.remove_link(company, link, "bob")
-        await ats.disconnect(company, AtsProvider.WORKABLE, "ann")
+        await transaction(ats_links.add_link, company, connection.id, interview, JOB, STAGE, "ann")
+        await transaction(ats_links.remove_link, company, link, "bob")
+        await transaction(ats_links.remove_link, company, link, "bob")
+        await transaction(ats.disconnect, company, AtsProvider.WORKABLE, "ann")
         # Nothing left to disconnect.
-        await ats.disconnect(company, AtsProvider.WORKABLE, "ann")
+        await transaction(ats.disconnect, company, AtsProvider.WORKABLE, "ann")
 
         return await logged(company)
 
@@ -68,8 +71,8 @@ def test_two_connects_at_once_log_one_connect_and_one_reconnect(run):
 
     async def scenario():
         await asyncio.gather(
-            ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed", "ann"),
-            ats.connect(company, AtsProvider.WORKABLE, "acme", "sealed-2", "bob"),
+            transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann"),
+            transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed-2", "bob"),
         )
 
         return sorted(entry["action"] for entry in await logged(company))

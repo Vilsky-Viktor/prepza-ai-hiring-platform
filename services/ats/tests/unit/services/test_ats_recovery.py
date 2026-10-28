@@ -10,6 +10,7 @@ from ats.integrations import companies
 from ats.models.ats import AtsCandidate, AtsConnection
 from ats.repositories import ats, ats_candidates, ats_results
 from ats.services import ats_candidates as flow
+from ats.services import recovery
 from tests.unit.conftest import interview
 
 
@@ -37,28 +38,28 @@ def world(monkeypatch, companies_api):
         "notices": [],
     }
 
-    async def connection_by_id(connection_id):
+    async def connection_by_id(session, connection_id):
         return connection
 
-    async def claim(row_id, statuses):
+    async def claim(session, row_id, statuses):
         return True
 
-    async def settle(row_id, status_, reason=None, invite_id=None, notice=None):
+    async def settle(session, row_id, status_, reason=None, invite_id=None, notice=None):
         state["settled"][row_id] = (status_, reason)
 
         if notice:
             state["notices"].append(notice)
 
-    async def postpone(row_id):
+    async def postpone(session, row_id):
         state["postponed"].append(row_id)
 
-    async def nothing():
+    async def nothing(*args):
         return None
 
     monkeypatch.setattr(ats, "connection_by_id", connection_by_id)
 
-    async def connections_by_ids(connection_ids):
-        found = {item: await connection_by_id(item) for item in connection_ids}
+    async def connections_by_ids(session, connection_ids):
+        found = {item: await connection_by_id(session, item) for item in connection_ids}
 
         return {item: connection for item, connection in found.items() if connection}
 
@@ -113,7 +114,7 @@ def test_a_candidate_whose_interview_cant_be_read_waits_for_the_recovery_job(wor
     async def interviews(ids):
         raise httpx.ConnectTimeout("companies didn't answer")
 
-    async def add(connection_id, link_id, interview_id, candidate_id, email, name=None):
+    async def add(session, connection_id, link_id, interview_id, candidate_id, email, name=None):
         return candidate(world, email)
 
     monkeypatch.setattr(companies, "interviews", interviews)
@@ -155,10 +156,10 @@ def test_the_recovery_job_invites_waiting_candidates_and_sends_kept_results(worl
     ]
     reported = []
 
-    async def recoverable():
+    async def recoverable(session):
         return [waiting]
 
-    async def unreported():
+    async def unreported(session):
         return kept
 
     async def report(data):
@@ -170,9 +171,9 @@ def test_the_recovery_job_invites_waiting_candidates_and_sends_kept_results(worl
 
     monkeypatch.setattr(ats_candidates, "recoverable", recoverable)
     monkeypatch.setattr(ats_results, "unreported", unreported)
-    monkeypatch.setattr(flow, "report", report)
+    monkeypatch.setattr(recovery, "report", report)
 
-    assert asyncio.run(flow.recover()) == 1
+    assert asyncio.run(recovery.recover()) == 1
     assert world["api"]["sent"] == [("ann@example.com", "ann")]
     assert world["settled"][waiting.id][0] == "invited"
     assert reported == ["two"]
@@ -184,10 +185,10 @@ def test_the_recovery_job_starts_no_new_result_late_in_the_run(world, monkeypatc
     # Each look at the clock is 20 seconds later: a slow ATS.
     clock = iter(range(0, 1000, 20))
 
-    async def nothing():
+    async def nothing(*args):
         return []
 
-    async def unreported():
+    async def unreported(session):
         return kept
 
     async def report(data):
@@ -195,9 +196,9 @@ def test_the_recovery_job_starts_no_new_result_late_in_the_run(world, monkeypatc
 
     monkeypatch.setattr(ats_candidates, "recoverable", nothing)
     monkeypatch.setattr(ats_results, "unreported", unreported)
-    monkeypatch.setattr(flow, "report", report)
-    monkeypatch.setattr(flow, "time", SimpleNamespace(monotonic=lambda: next(clock)))
-    asyncio.run(flow.recover())
+    monkeypatch.setattr(recovery, "report", report)
+    monkeypatch.setattr(recovery, "time", SimpleNamespace(monotonic=lambda: next(clock)))
+    asyncio.run(recovery.recover())
 
     # Started at 0, so 20 seconds in it sends one; at 40, past REPORT_SECONDS, it stops.
     assert reported == ["a"]
