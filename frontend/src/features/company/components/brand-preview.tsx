@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 
-import { ChoiceOptions } from "@/components/session/choice-options"
+import { ChoiceOptions } from "@/features/company/components/choice-options"
 import { Button } from "@/components/ui/button"
 import { brandStyle } from "@/lib/brand"
 import { BRAND_FONTS } from "@/config/brand-fonts"

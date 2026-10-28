@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl"
 
-import { RoundFooter } from "@/components/session/round-footer"
+import { RoundFooter } from "@/components/common/round-footer"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

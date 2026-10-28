@@ -6,7 +6,7 @@ import type { ReactNode } from "react"
 import { useState } from "react"
 
 import { TopicEditor } from "@/features/generation/components/topic-editor"
-import { RoundFooter } from "@/components/session/round-footer"
+import { RoundFooter } from "@/components/common/round-footer"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
