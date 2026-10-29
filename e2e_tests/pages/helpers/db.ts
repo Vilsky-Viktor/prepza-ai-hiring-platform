@@ -79,11 +79,11 @@ export async function deleteTemplate(id: string) {
   await withDatabase("library", (client) => client.query("DELETE FROM sets WHERE id = $1", [id]));
 }
 
-/** A throwaway news post published today, saved straight into the library database; its id. */
+/** A throwaway news post published today, saved straight into the site database; its id. */
 export async function addNewsPost(): Promise<string> {
   const key = randomUUID().slice(0, 8);
 
-  return withDatabase("library", async (client) => {
+  return withDatabase("site", async (client) => {
     const post = await client.query(
       `INSERT INTO news (id, title, text, published_on)
        VALUES (gen_random_uuid(), $1, 'E2E', current_date) RETURNING id`,
@@ -96,7 +96,7 @@ export async function addNewsPost(): Promise<string> {
 
 /** Deletes a post addNewsPost made; its translations go with it. */
 export async function deleteNewsPost(id: string) {
-  await withDatabase("library", (client) => client.query("DELETE FROM news WHERE id = $1", [id]));
+  await withDatabase("site", (client) => client.query("DELETE FROM news WHERE id = $1", [id]));
 }
 
 // Made-up companies' ids: uuids, as the opt-outs keep them, that no real company is given.
@@ -123,7 +123,7 @@ export async function deleteLeftovers() {
       [STALE],
     ),
   );
-  await withDatabase("library", (client) =>
+  await withDatabase("site", (client) =>
     client.query(
       `DELETE FROM news WHERE title LIKE 'E2E news %' AND text = 'E2E'
          AND created_at < now() - $1::interval`,
