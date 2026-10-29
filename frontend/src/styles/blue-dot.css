@@ -1,0 +1,27 @@
+/* The logo's blue dot, larger than the text it ends (titles, menu links, the wordmark), without
+   making the line taller. */
+:root {
+  --blue-dot-size: 1.7em;
+}
+
+@layer base {
+  /* Titles and the header's and footer's menu links end with it; as text, it scales with their
+     font. Titles that end with a question mark opt out with .no-dot. */
+  h1:not(.no-dot)::after,
+  h2:not(.no-dot)::after,
+  [data-slot="dialog-title"]:not(.no-dot)::after,
+  nav[data-slot="main-nav"] a::after,
+  nav[data-slot="footer-nav"] a::after {
+    content: ".";
+    color: var(--primary);
+    font-size: var(--blue-dot-size);
+    line-height: 0;
+  }
+}
+
+/* As a span (the wordmark, titles built in markup). */
+@utility blue-dot {
+  color: var(--primary);
+  font-size: var(--blue-dot-size);
+  line-height: 0;
+}

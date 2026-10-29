@@ -6,6 +6,8 @@
 @import "./bell.css";
 @import "./animations.css";
 @import "./scripts.css";
+/* The logo's blue dot after titles and menu links (blue-dot for one in markup). */
+@import "./blue-dot.css";
 /* The primary gradient as fills and borders (bg-primary-gradient, border-primary-gradient). */
 @import "./gradients.css";
 
@@ -16,11 +18,6 @@
 
 /* The script fonts in fallback order. The CJK fonts are only on Chinese, Japanese and Korean
    pages (config/cjk-fonts.ts), and :lang() puts each one's own font first. */
-/* The logo's blue dot, larger than the text it ends (titles, menu links, the wordmark). */
-:root {
-  --blue-dot-size: 1.7em;
-}
-
 :root {
   --font-scripts:
     var(--font-arabic), var(--font-hebrew), var(--font-devanagari),
@@ -284,26 +281,6 @@
   ::placeholder {
     text-transform: lowercase;
   }
-  /* Titles and the header's and footer's menu links end with the logo's blue dot; as text, it scales with their font.
-     Titles that end with a question mark opt out with .no-dot. */
-  h1:not(.no-dot)::after,
-  h2:not(.no-dot)::after,
-  [data-slot="dialog-title"]:not(.no-dot)::after,
-  nav[data-slot="main-nav"] a::after,
-  nav[data-slot="footer-nav"] a::after {
-    content: ".";
-    color: var(--primary);
-    font-size: var(--blue-dot-size);
-    line-height: 0;
-  }
-}
-
-/* The logo's blue dot as a span (the wordmark, titles built in markup): larger than its
-   text, without making the line taller. */
-@utility blue-dot {
-  color: var(--primary);
-  font-size: var(--blue-dot-size);
-  line-height: 0;
 }
 
 /* A focused element scrolls clear of the fixed bar at the bottom of an interview (WCAG 2.4.11). */
