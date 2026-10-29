@@ -36,10 +36,11 @@ async function newHardTest(owner: Page, companyId: string, templateId: string) {
   )
 }
 
-// A new test starts with its level's seconds a question, as set in the admin zone's Controls;
-// a change there reaches the next new test, and the value is set back after. The value is global,
-// so the test is tagged @global: it runs alone, after the other tests (signed-in.sh).
-test("a new hard test starts with the hard level's seconds, as set in Controls", { tag: "@global" }, async ({
+// A new test starts with its level's seconds a question, as set in the admin zone's Controls,
+// where the value is saved and set back. That a change reaches the next new test is billing's
+// integration test (test_limits.py) and companies' unit test (test_interviews_from_templates.py).
+// The value is global, but only for the moment it's changed, and no other test makes a hard test.
+test("a new hard test starts with the hard level's seconds, set in Controls", async ({
   signInAs,
   signInSuperadmin,
 }) => {
@@ -77,15 +78,8 @@ test("a new hard test starts with the hard level's seconds, as set in Controls",
     await expect(
       superadmin.getByTestId("limit-changes").getByRole("listitem").first().locator("span").first()
     ).toHaveText(new RegExp(`\\D${CHANGED}\\D*$`))
+    expect((await limits(superadmin)).find((found) => found.name === HARD)!.value).toBe(CHANGED)
     await shot(superadmin, "hard-seconds-changed")
-
-    // Companies reads it within half a minute (LIMITS_CACHE_SECONDS): the next new hard test.
-    await expect
-      .poll(async () => (await newHardTest(owner, company.id, templateId)).question_seconds, {
-        timeout: 60_000,
-        intervals: [5_000],
-      })
-      .toBe(CHANGED)
 
     // Set back.
     await row.getByRole("button").last().click()

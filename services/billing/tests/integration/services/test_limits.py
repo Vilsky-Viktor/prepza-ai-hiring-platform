@@ -63,6 +63,23 @@ def test_a_change_is_read_by_the_services_and_a_reset_brings_the_default_back(ru
     assert history == [(None, 500, "ann@example.com"), (500, None, "bob@example.com")]
 
 
+def test_a_levels_seconds_changed_in_controls_start_the_next_new_test(run, redis):
+    """The hard level's seconds a question, as the companies service reads them for a new test
+    (the browser checks the Controls form that saves it, zn-level-seconds.spec.ts)."""
+    hard = "QUESTION_SECONDS_HARD"
+
+    async def scenario():
+        await limit_values.change(hard, 80, ANN)
+        memory_cache._entries.pop(LIMITS_KEY, None)
+        changed = await limits.question_seconds(redis(), "hard")
+        await limit_values.change(hard, None, ANN)
+        memory_cache._entries.pop(LIMITS_KEY, None)
+
+        return changed, await limits.question_seconds(redis(), "hard")
+
+    assert run(scenario()) == (80, LIMITS[hard].default)
+
+
 def test_a_value_out_of_bounds_changes_nothing(run, redis, reset):
     async def scenario():
         before = await changes_of_mine()
