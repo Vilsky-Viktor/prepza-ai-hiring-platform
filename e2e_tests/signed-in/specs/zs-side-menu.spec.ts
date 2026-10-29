@@ -8,8 +8,8 @@ import { shot } from "../helpers/screenshots"
 import { ownerEmail } from "../helpers/users"
 
 // The page menus: on wide screens a list at the content's side that stays in view and scrolls
-// itself when taller than the window; on phones three tabs and the other pages under "…", an
-// open one of those taking the third place.
+// itself when taller than the window; on phones two tabs and the other pages under "…", an
+// open one of those taking the second place.
 
 // A company's pages for its owner, in the menu's order (the owner sees all of them).
 const COMPANY_PAGES = [
@@ -76,7 +76,7 @@ test("a company's side menu lists its pages, scrolls on its own and stays in vie
   await shot(owner, "menu-in-view", false)
 })
 
-test("on a phone the menu shows three tabs and the rest under more", async ({ signInAs }) => {
+test("on a phone the menu shows two tabs and the rest under more", async ({ signInAs }) => {
   const owner = await signInAs(ownerEmail())
   const company = await createCompany(owner)
   await owner.setViewportSize(PHONE)
@@ -85,26 +85,26 @@ test("on a phone the menu shows three tabs and the rest under more", async ({ si
   const more = menu(owner).getByRole("button")
   const items = owner.getByRole("menu").getByRole("menuitem")
 
-  // The first three, the open one marked; the others in their order under "…".
-  await expect.poll(() => pagesOf(owner, company.id)).toEqual(COMPANY_PAGES.slice(0, 3))
+  // The first two, the open one marked; the others in their order under "…".
+  await expect.poll(() => pagesOf(owner, company.id)).toEqual(COMPANY_PAGES.slice(0, 2))
   await expect(tabs.first()).toHaveAttribute("aria-current", "page")
   await expect(more).toHaveAccessibleName(/.+/)
   await expect(async () => {
     await more.click()
     await expect(owner.getByRole("menu")).toBeVisible({ timeout: 2_000 })
   }).toPass()
-  expect(await pagesOf(owner, company.id, items)).toEqual(COMPANY_PAGES.slice(3))
+  expect(await pagesOf(owner, company.id, items)).toEqual(COMPANY_PAGES.slice(2))
   await shot(owner, "phone-more-open")
 
-  // A page from the menu, once open, takes the third place, and the one it replaces goes under
+  // A page from the menu, once open, takes the second place, and the one it replaces goes under
   // "…".
   await items.last().click()
   await expect(owner).toHaveURL(new RegExp(`/companies/${company.id}/referrals$`))
   await expect
     .poll(() => pagesOf(owner, company.id))
-    .toEqual(["/interviews", "/templates", "/referrals"])
+    .toEqual(["/interviews", "/referrals"])
   await expect(tabs.last()).toHaveAttribute("aria-current", "page")
-  // The three tabs and "…" fit the phone's width: none is cut off at the row's edges.
+  // The two tabs and "…" fit the phone's width: none is cut off at the row's edges.
   const fits = await menu(owner).evaluate((nav) => {
     const row = nav.parentElement!.getBoundingClientRect()
 
@@ -119,6 +119,6 @@ test("on a phone the menu shows three tabs and the rest under more", async ({ si
     await more.click()
     await expect(owner.getByRole("menu")).toBeVisible({ timeout: 2_000 })
   }).toPass()
-  expect(await pagesOf(owner, company.id, items)).toEqual(COMPANY_PAGES.slice(2, 7))
+  expect(await pagesOf(owner, company.id, items)).toEqual(COMPANY_PAGES.slice(1, 7))
   await shot(owner, "phone-overflow-open")
 })

@@ -18,9 +18,9 @@ import {
 import { MENU_PILL_CHEVRON_CLASS, MENU_PILL_CLASS } from "@/config/menu-pill"
 import { splitPhoneTabs } from "@/lib/phone-tabs"
 
-/** A page menu on phones and narrow screens: the site's tabs, the first three in the row and
- * the others, in their order, in a menu under a "…" button; an open page from that menu takes
- * the third place. A page with pages of its own (`sub`) names the open one in a bar under the row,
+/** A page menu on phones and narrow screens: the site's tabs, the first ones in the row
+ * (PHONE_TABS_SHOWN) and the others, in their order, in a menu under a "…" button; an open page
+ * from that menu takes the row's last place. A page with pages of its own (`sub`) names the open one in a bar under the row,
  * which opens the list of them all. */
 export function PhoneTabs({
   items,
@@ -48,8 +48,8 @@ export function PhoneTabs({
                   <Button
                     variant="ghost"
                     size="icon"
-                    // Closer to the last tab than the tabs are to each other, so three tabs and
-                    // the button fit a phone's width.
+                    // Closer to the last tab than the tabs are to each other, so the tabs and the
+                    // button fit a phone's width.
                     className="-ms-4 -mt-1.5 shrink-0 text-muted-foreground hover:text-foreground"
                     aria-label={t("morePages")}
                   />
