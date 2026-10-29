@@ -6,23 +6,21 @@ import { shot } from "../helpers/screenshots"
 import { supportId, supportLink, supportSearch } from "../helpers/support"
 import { ownerEmail, randomId, throwawayEmail } from "../helpers/users"
 
-// Each test opens many support pages, each a server render on the slow local dev server.
+// Each test opens many support pages, each a server render on a busy local stack.
 test.setTimeout(300_000)
 
 // A complaint names a company in whatever way its writer has: the support tab finds it from an
-// ID, a link, a candidate's email or the name, and its page shows the credits and changes them.
-test("superadmin finds a company from a complaint and adjusts its credits", async ({
+// ID, a link, a candidate's email or the name; something unknown finds nothing.
+test("superadmin finds a company from a complaint", async ({
   signInAs,
   signInSuperadmin,
 }) => {
-  const ownerAddress = ownerEmail()
-  const owner = await signInAs(ownerAddress)
+  const owner = await signInAs(ownerEmail())
   const name = `E2E Support ${randomId()}`
   const company = await createCompany(owner, name)
   const interviewId = await createInterview(owner, company.id)
   const candidate = `candidate-${randomId()}@example.com`
   await inviteCandidate(owner, interviewId, candidate)
-  const page = `/superadmin/support/companies/${company.id}`
 
   const superadmin = await signInSuperadmin()
   await visit(superadmin, "/superadmin/support")
@@ -42,6 +40,25 @@ test("superadmin finds a company from a complaint and adjusts its credits", asyn
   await expect(await supportSearch(superadmin, `no-such-${randomId()}`)).toHaveCount(0)
   await supportSearch(superadmin, name)
   await expect(opening).toHaveCount(1)
+})
+
+// A company's page: its credit history, held credits and members as sections in the admin zone's
+// menu (on a phone in the bar under the tabs), and its credits adjusted with a reason the company
+// sees, a removal below zero refused. The adjustments' rules are billing's tests
+// (test_adjustments.py); the page's data the support routes' (test_superadmin_support.py).
+test("superadmin adjusts a company's credits from its page", async ({
+  signInAs,
+  signInSuperadmin,
+}) => {
+  const ownerAddress = ownerEmail()
+  const owner = await signInAs(ownerAddress)
+  const name = `E2E Support ${randomId()}`
+  const company = await createCompany(owner, name)
+  const interviewId = await createInterview(owner, company.id)
+  const candidate = `candidate-${randomId()}@example.com`
+  await inviteCandidate(owner, interviewId, candidate)
+  const page = `/superadmin/support/companies/${company.id}`
+  const superadmin = await signInSuperadmin()
   await visit(superadmin, page)
 
   await expect(superadmin.getByRole("heading", { level: 1 })).toHaveText(name)
@@ -115,9 +132,9 @@ test("superadmin finds a company from a complaint and adjusts its credits", asyn
   await expect(superadmin.getByText(tooMuch)).toHaveCount(0)
 })
 
-// From a company's page to its interviews, their candidates and the people behind them: each
-// page says what happened, from the data, and links to the next.
-test("superadmin follows a company to its interview, a candidate and an account", async ({
+// From a company's page to its interviews and their candidates: each page says what happened,
+// from the data, and links to the next.
+test("superadmin follows a company to its interviews and their candidates", async ({
   signInAs,
   signInSuperadmin,
 }) => {
@@ -193,9 +210,18 @@ test("superadmin follows a company to its interview, a candidate and an account"
   await expect(values.filter({ hasText: /\d+%/ })).toHaveCount(1)
   await expect(values.filter({ hasText: /^\+\d+%$/ })).toHaveCount(0)
   await shot(superadmin, "candidate-finished")
+})
 
-  // The owner's account: their address finds it first, and so does its ID; its page lists
-  // their companies, each opening its page.
+// An owner's account: their address in another case finds it first, and so does its ID; its page
+// lists their companies, each opening its page.
+test("superadmin finds an account by its email and its ID", async ({
+  signInAs,
+  signInSuperadmin,
+}) => {
+  const ownerAddress = ownerEmail()
+  const owner = await signInAs(ownerAddress)
+  const company = await createCompany(owner)
+  const superadmin = await signInSuperadmin()
   const found = await supportSearch(superadmin, ownerAddress.toUpperCase())
   await expect(found.first()).toHaveAttribute("href", /\/superadmin\/support\/users\/[^/]+$/)
   await expect(supportLink(superadmin, "companies", company.id)).toHaveCount(1)
