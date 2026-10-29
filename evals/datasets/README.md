@@ -199,6 +199,15 @@ wrong keys whose stems leave out the deciding condition and whose two options ar
 hidden in a question; and a group with no recurring mistake (no rule expected). Other questions
 are noise with unrelated flaws. `judge_traps`: 5 rule-mistake pairs that match and 5 that don't.
 
+## `pattern_failure_traps.json` (by hand, 2026-10-29)
+
+12 made-up questions in everyday fields (baking, hotels, deliveries, gardening, returns, cycling,
+photography, first aid, invoices, projects, cafés) for six mistakes in how questions are written:
+a giveaway long key, an only-negative distractor, a missing deciding condition, two options saying
+the same, stacked negatives, an absurd option. For each, one question that shows it and one clean
+question beside it (`shows`). The traps of the eval gate's failure judge (`pattern_gate.py`), which
+must get all 12 right before its counts are used.
+
 ## `titles.json` (by hand, 2026-10-22)
 
 14 made-up conversations with the in-app assistant, for their titles in the history: typical

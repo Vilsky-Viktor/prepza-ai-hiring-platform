@@ -34,6 +34,9 @@ class QualityPattern(Base):
     # The superadmin who approved or dismissed it, and when.
     reviewed_by: Mapped[str | None] = mapped_column(String(128))
     reviewed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # The eval gate's run that put it in use (evals/scripts/pattern_gate.py): date, commit and
+    # results file; none before.
+    eval_run: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()

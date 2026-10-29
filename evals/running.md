@@ -116,6 +116,16 @@ groups of flagged questions with planted mistakes:
 evals/run.sh generation patterns_test.py --label new-prompt   # --repeat 3, --only g1,g4
 ```
 
+The eval gate before an approved pattern becomes a rule in use: a fresh set without and with the
+rule on the same subtopics, judged on every dimension and on the pattern's own mistake; `--record`
+puts a pattern that ships in use with its run (then add its text to generation's `QUALITY_RULES`
+and the run to `baselines/generation.md`):
+
+```bash
+evals/run.sh generation pattern_gate.py --pattern <id> --record   # --subtopics 16 for a quick look
+evals/run.sh generation pattern_gate.py --rule "..." --subtopics 16 --label dry   # never recorded
+```
+
 The embeddings that drop a new question asking what an earlier one asks, graded by code (each
 pair's distance is saved):
 
@@ -175,6 +185,7 @@ evals/run.sh assistant help_chat.py --label new-prompt       # --repeat 3, --onl
 | The planning test, 2 repeats | about $0.85 (half the judges) |
 | The translations' test (70 translations) | about $0.62 (three quarters the judge) |
 | The quality patterns' test, 3 repeats | about $0.11 |
+| The eval gate | about $0.09 a subtopic ($1.48 for 16), about $5 on all 53 |
 | The assistant titles' test, 3 repeats | about $0.09 (nearly all the judge) |
 | The code-language tags' test, 3 repeats | about $0.02 |
 | Code check, measurements, dataset checks, traps | free |

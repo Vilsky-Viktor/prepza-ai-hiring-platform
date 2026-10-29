@@ -153,6 +153,18 @@ async def review(pattern_id: UUID, decision: PatternStatus, superadmin_id: str) 
     logger.info("Quality pattern %s %s by superadmin %s", pattern_id, decision, superadmin_id)
 
 
+async def put_in_use(pattern_id: UUID, eval_run: str) -> None:
+    """The eval gate passed an approved pattern (evals/scripts/pattern_gate.py): it's in use, with
+    the run that showed it, once its text is in the rules in use (prompts/quality_rules.py)."""
+    async with Session.begin() as session:
+        changed = await patterns.put_in_use(session, pattern_id, eval_run)
+
+    if not changed:
+        raise ValueError(f"Pattern {pattern_id} isn't approved")
+
+    logger.info("Quality pattern %s in use after eval run %s", pattern_id, eval_run)
+
+
 async def run() -> None:
     """Weekly: the questions flagged or replaced in the last week, by flag, turned into proposed
     general rules for a superadmin to review. One run at a time, none during the emergency

@@ -1,5 +1,6 @@
 from generation.prompts.question_rules import (
     DISTRACTOR_RULES,
+    LEARNED_RULES,
     MULTI_ANSWER_RULES,
     QUESTION_WRITER_ROLE,
     SINGLE_ANSWER_RULES,
@@ -29,6 +30,7 @@ For each multiple-choice question in the request, produce:
 Distractor rules:
 """
     + DISTRACTOR_RULES
+    + LEARNED_RULES
     + """
 
 Then check each question: ambiguous is true if its key could be argued: for a single-answer

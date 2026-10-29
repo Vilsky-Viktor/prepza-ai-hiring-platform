@@ -1,4 +1,7 @@
+import importlib
 import re
+
+import pytest
 
 # Words that name a technology, a standard or a field: prompts must work for any domain.
 FIELD_TERMS = (
@@ -177,3 +180,49 @@ def test_company_and_reviewer_text_reach_the_topic_planner_tagged_in_the_request
     assert "<reviewer_instructions>\nAdd a topic on X\n</reviewer_instructions>" in request.content
     assert "Ignore the rules" not in system.content and "Add a topic" not in system.content
     assert "German" in request.content
+
+
+@pytest.fixture
+def rules_in_use(monkeypatch):
+    """The prompts rebuilt with the rules a test puts in use, rebuilt as they were afterwards."""
+    from generation.prompts import answers, question_rules, quality_rules, questions, regenerate
+
+    modules = (question_rules, questions, answers, regenerate)
+
+    def use(*rules):
+        monkeypatch.setattr(quality_rules, "QUALITY_RULES", rules)
+
+        for module in modules:
+            importlib.reload(module)
+
+        return questions.QUESTIONS_SYSTEM, answers.ANSWERS_SYSTEM, regenerate.REGENERATE_SYSTEM
+
+    yield use
+    monkeypatch.undo()
+
+    for module in modules:
+        importlib.reload(module)
+
+
+def test_rules_in_use_reach_every_prompt_that_writes_questions_or_options(rules_in_use):
+    without = rules_in_use()
+    rule = "Two options say the same thing in {other} words."
+    used = rules_in_use(rule)
+
+    # None in use: the prompts read exactly as without the section.
+    assert all("Rules learned" not in system for system in without)
+
+    for before, after in zip(without, used):
+        assert after != before
+        assert f"- {rule}" in after.format(options=4, max_chars=80, kind="")
+
+
+def test_the_rules_in_use_hold_for_any_domain():
+    from generation.constants.patterns import MAX_PATTERN_CHARS
+    from generation.helpers.patterns import names_something
+    from generation.prompts.quality_rules import QUALITY_RULES
+
+    for rule in QUALITY_RULES:
+        assert len(rule) <= MAX_PATTERN_CHARS
+        assert names_something(rule) is None, rule
+        assert not any(re.search(rf"\b{term}", rule.lower()) for term in FIELD_TERMS), rule

@@ -1,5 +1,5 @@
 """Checks by code of the small utility prompts' datasets (code-language tags, translations,
-quality patterns, titles), of the judge's question times and of the AI models' picks, for
+quality patterns and their eval gate, titles), of the judge's question times and of the AI models' picks, for
 check_datasets.py: each says what it is, has unique ids, and its expectations fit its own text.
 Each returns the texts to check against prompts' examples."""
 
@@ -204,6 +204,21 @@ def check_question_times(problems: list[str]) -> list[str]:
     ]
 
     return []
+
+
+def check_pattern_gate(problems: list[str]) -> list[str]:
+    """The eval gate's failure-judge traps: a question that shows and one that doesn't for every
+    mistake. Returns the questions' texts."""
+    data = load("pattern_failure_traps.json")
+    check_described("pattern_failure_traps.json", data, problems)
+    unique_ids("pattern_failure_traps.json", data["items"], problems)
+    texts = [item["question"] for item in data["items"]]
+
+    for mistake in {item["mistake"] for item in data["items"]}:
+        if {item["shows"] for item in data["items"] if item["mistake"] == mistake} != {True, False}:
+            problems.append(f"pattern_failure_traps.json: {mistake!r} needs both verdicts")
+
+    return texts
 
 
 def check_screen(problems: list[str]) -> list[str]:

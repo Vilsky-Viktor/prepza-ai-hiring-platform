@@ -18,7 +18,7 @@ from generation.repositories import patterns
 SEEN = datetime(2026, 10, 12, 5, tzinfo=UTC)
 
 
-def pattern(status=PatternStatus.PROPOSED, text="Two options say the same thing."):
+def pattern(status=PatternStatus.PROPOSED, text="Two options say the same thing.", eval_run=None):
     return SimpleNamespace(
         id=uuid.uuid4(),
         text=text,
@@ -29,12 +29,19 @@ def pattern(status=PatternStatus.PROPOSED, text="Two options say the same thing.
         status=status,
         reviewed_by=None,
         reviewed_at=None,
+        eval_run=eval_run,
     )
 
 
 @pytest.fixture
 def stored(monkeypatch):
-    rows = [pattern(), pattern(PatternStatus.APPROVED, "The scenario leaves out a detail.")]
+    rows = [
+        pattern(),
+        pattern(PatternStatus.APPROVED, "The scenario leaves out a detail."),
+        pattern(
+            PatternStatus.IN_USE, "One option is the only negative one.", "2026-10-29 abc g.json"
+        ),
+    ]
 
     async def by_status(session, status, offset, limit):
         return [row for row in rows if row.status == status][offset : offset + limit]
@@ -89,6 +96,7 @@ def test_a_superadmin_sees_the_proposed_patterns_by_default(client, stored, sign
             "last_seen": "2026-10-12T05:00:00Z",
             "status": "proposed",
             "reviewed_at": None,
+            "eval_run": None,
         }
     ]
 
@@ -99,6 +107,11 @@ def test_the_list_shows_the_patterns_of_the_status_asked_for(client, stored, sig
     approved = client.get("/superadmin/patterns", params={"status": "approved"}).json()
 
     assert [row["id"] for row in approved] == [str(stored[1].id)]
+    # One in use shows the eval run that put it there.
+    in_use = client.get("/superadmin/patterns", params={"status": "in_use"}).json()
+    assert [(row["id"], row["eval_run"]) for row in in_use] == [
+        (str(stored[2].id), "2026-10-29 abc g.json")
+    ]
     assert client.get("/superadmin/patterns", params={"status": "dismissed"}).json() == []
     assert client.get("/superadmin/patterns", params={"status": "other"}).status_code == 422
 

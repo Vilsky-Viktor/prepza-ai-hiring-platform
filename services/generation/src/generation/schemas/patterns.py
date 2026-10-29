@@ -49,3 +49,4 @@ class PatternOut(BaseModel):
     last_seen: datetime
     status: str
     reviewed_at: datetime | None
+    eval_run: str | None

@@ -19,6 +19,7 @@ from small_datasets import (
     check_ai_picks,
     check_code_languages,
     check_duplicates,
+    check_pattern_gate,
     check_patterns,
     check_postings,
     check_question_times,
@@ -207,6 +208,7 @@ def main() -> None:
     texts += [("code_languages", text) for text in check_code_languages(problems)]
     texts += [("translations", text) for text in check_translations(problems)]
     texts += [("patterns", text) for text in check_patterns(problems)]
+    texts += [("pattern gate", text) for text in check_pattern_gate(problems)]
     texts += [("titles", text) for text in check_titles(problems)]
     texts += [("postings", text) for text in check_postings(problems)]
     texts += [("duplicates", text) for text in check_duplicates(problems)]

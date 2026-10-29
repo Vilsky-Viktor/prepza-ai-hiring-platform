@@ -66,3 +66,20 @@ async def review(
     )
 
     return (await session.execute(statement)).first() is not None
+
+
+async def put_in_use(session: AsyncSession, pattern_id: uuid.UUID, eval_run: str) -> bool:
+    """An approved pattern in use, with the eval run that showed it helps; False when it isn't
+    approved (still proposed, dismissed, or in use already)."""
+    statement = (
+        update(QualityPattern)
+        .where(QualityPattern.id == pattern_id, QualityPattern.status == PatternStatus.APPROVED)
+        .values(status=PatternStatus.IN_USE, eval_run=eval_run)
+        .returning(QualityPattern.id)
+    )
+
+    return (await session.execute(statement)).first() is not None
+
+
+async def by_id(session: AsyncSession, pattern_id: uuid.UUID) -> QualityPattern | None:
+    return await session.get(QualityPattern, pattern_id)

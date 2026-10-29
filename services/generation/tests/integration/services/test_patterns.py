@@ -1,6 +1,8 @@
 """The weekly pattern job and the patterns tab against the real database and Redis (database 15):
 what a run stores, a second run in the same week, and a superadmin's review."""
 
+import uuid
+
 import pytest
 from sqlalchemy import delete, inspect
 
@@ -70,6 +72,7 @@ def test_the_table_holds_no_question_id_or_text(run):
             "status",
             "reviewed_by",
             "reviewed_at",
+            "eval_run",
             "created_at",
             "updated_at",
         ]
@@ -150,3 +153,33 @@ def test_a_superadmins_review_is_kept_with_who_and_when_once(run):
     assert (kept.status, kept.reviewed_by) == (PatternStatus.DISMISSED, "ann")
     assert kept.reviewed_at is not None
     assert pattern_id not in [row.id for row in proposed]
+
+
+def test_only_an_approved_pattern_goes_in_use_with_its_eval_run(run):
+    # Its own text: another test may hold patterns of the same flag.
+    text = f"Two options say the same thing {uuid.uuid4().hex}."
+    eval_run = "2026-10-29 abc1234 results/gate_x.json"
+
+    async def scenario():
+        flag = str(QualityFlag.REWRITE)
+        await transaction(patterns.add, text, flag, 3)
+        [pattern] = [row for row in await transaction(patterns.for_flag, flag) if row.text == text]
+
+        try:
+            proposed = await transaction(patterns.put_in_use, pattern.id, eval_run)
+            await transaction(patterns.review, pattern.id, PatternStatus.APPROVED, "ann")
+            await job.put_in_use(pattern.id, eval_run)
+            stored = await transaction(patterns.by_id, pattern.id)
+
+            with pytest.raises(ValueError):
+                await job.put_in_use(pattern.id, eval_run)
+
+            return proposed, stored
+        finally:
+            async with Session.begin() as session:
+                await session.execute(delete(QualityPattern).where(QualityPattern.id == pattern.id))
+
+    proposed, stored = run(scenario())
+
+    assert proposed is False
+    assert (stored.status, stored.eval_run) == (PatternStatus.IN_USE, eval_run)

@@ -46,6 +46,7 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | | Kept rules the questions they cite support | Judge (`judges/pattern_support.md`) | ≥ 90% |
 | | No rule for a group without a recurring mistake; a known pattern named by its number; no rule from an instruction in a question | Code | 100% |
 | | Price and time per run | Measured | ≤ $0.05, ≤ 60 s |
+| **Eval gate** (an approved pattern before it's a rule in use) | A fresh set written without and with the rule on the same subtopics: how many show the pattern's mistake (`judges/pattern_failure.md`), keys single / multi, clarity, level fit, distractors, seconds to answer (`pattern_gate.py`) | Judges and code | Ships only if its mistake is rarer beyond both intervals and nothing else worse beyond them; the failure judge right on all its traps (`pattern_failure_traps.json`) |
 | **Assistant: conversation titles** | Titles that pass every code check: at most 60 characters before cutting, one line, no person's name, email or phone, in the language's script | Code | 100% |
 | | Sums up the whole conversation / in the right language / natural | Judge (`judges/title.md`), pass/fail each | ≥ 95% / 100% / ≥ 95% |
 | | Price and time per title | Measured | ≤ $0.0001, ≤ 3 s |
@@ -115,6 +116,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Planning: code checks / extraction covered / invented / topics covered / revisions applied / kept; judge traps | 88.2% (73.4–95.3) / 97.1% (85.1–99.5) / 0% / 94.1% (80.9–98.4) / 75.0% (46.8–91.1) / 50.0% (25.4–74.6); 78 of 78; $0.012 and 24 s a plan | `postings.json` (with the Arabic, Thai, Hindi and Russian tests) and 7 of `inputs.json`, 17 × 2, 6 revisions × 2 | 2026-10-22 |
 | Translations (their batch requests): code checks / faithful / native / one language; judge traps | 100% / 88.6% (79.0–94.1) / 97.1% (90.2–99.2) / 100%; 97 of 97; $0.0023 a translation at once, half in a batch | `translations.json`, 10 texts × 7 languages | 2026-10-22 |
 | Quality patterns: planted found / kept supported / no rule when none / known named; judge traps | 100% (79.6–100) / 100% (84.5–100) / 3 of 3 / 3 of 3; 10 of 10; $0.016 and 30 s a run | `patterns.json`, 4 groups × 3 | 2026-10-22 |
+| Eval gate: rules in use; dry run (a rule that isn't a pattern) mistake without / with, keys single / multi, clarity, level fit, distractors, seconds; failure judge traps | none in use (`QUALITY_RULES` empty); 0.0% (0.0–3.9) / 0.0% (0.0–3.9), 95.3% → 98.4% / 100% → 100%, 4.92 → 4.97, 4.36 → 4.26, 2.95 → 2.98, 28.3 → 28.0 s, nothing beyond the noise: doesn't ship; 12 of 12; $1.48 and 538 s | 16 subtopics of `inputs.json` × 6 each way (2 multi) | 2026-10-29 |
 | Assistant titles: code checks / sums up / right language / natural; judge traps | 97.6% (87.7–99.6) / 88.1% (75.0–94.8) / 100% / 100%; 11 of 11; $0.00003 and 2.8 s a title | `titles.json`, 14 × 3 | 2026-10-22 |
 | Repeated questions: distinct kept / repeats dropped | 100% (74.1–100) / 18.2% (5.1–47.7); the closest distinct pair at 0.084, the threshold 0.08 | `duplicates.json`, 22 pairs | 2026-10-22 |
 | Voice messages (`gpt-transcribe`): heard right / character errors / script | 98.7% (93.1–99.8) / 0.7% ± 0.4 / 100%; $0.00035 and 2.9 s a message | `voice.json`, 26 × 3 (all 23 languages; audio by `gpt-realtime-2.1-mini`) | 2026-10-29 |
@@ -150,7 +152,7 @@ it; `scripts/tests/test_ai_rules.py` fails when an action has none.
 | `sample_key_check`, `question_verify`, `key_check_batch` | `verify_test.py` |
 | `embeddings` | `duplicates_test.py` |
 | `news_translation`, `campaign_translation` | `translations_test.py` |
-| `quality_patterns` | `patterns_test.py` |
+| `quality_patterns` | `patterns_test.py`; a pattern before it's a rule in use: `pattern_gate.py` |
 | `code_tags` | `code_languages_test.py` |
 | `assistant_message` | `page_context.py`, `guides.py`, `assistant_actions.py`, `assistant_handover.py` |
 | `assistant_title` | `titles_test.py` |

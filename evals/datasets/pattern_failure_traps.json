@@ -1,0 +1,295 @@
+{
+ "about": "Made-up questions in everyday fields, each with a mistake in how questions are written and whether it shows that mistake (shows) or is a clean question beside it: the traps of the eval gate's failure judge (judges/pattern_failure.md, pattern_gate.py), which must get every one right before its counts are used. One that shows and one that doesn't for each mistake. Hand-written.",
+ "built": "2026-10-29",
+ "model": "by hand",
+ "items": [
+  {
+   "id": "f01",
+   "mistake": "The correct option is much longer and more detailed than the others, which gives it away.",
+   "question": "A bread dough has not risen after an hour in a cold kitchen. What is the most likely cause?",
+   "options": [
+    {
+     "answer": "The yeast is working slowly because the room is colder than it needs to stay active.",
+     "correct": true
+    },
+    {
+     "answer": "Too much flour",
+     "correct": false
+    },
+    {
+     "answer": "The oven is off",
+     "correct": false
+    },
+    {
+     "answer": "Salt was added",
+     "correct": false
+    }
+   ],
+   "shows": true
+  },
+  {
+   "id": "f02",
+   "mistake": "The correct option is much longer and more detailed than the others, which gives it away.",
+   "question": "A guest is booked for three nights from Monday. On which day do they check out?",
+   "options": [
+    {
+     "answer": "Thursday",
+     "correct": true
+    },
+    {
+     "answer": "Wednesday",
+     "correct": false
+    },
+    {
+     "answer": "Friday",
+     "correct": false
+    },
+    {
+     "answer": "Tuesday",
+     "correct": false
+    }
+   ],
+   "shows": false
+  },
+  {
+   "id": "f03",
+   "mistake": "One wrong option is the only negative statement, so it is ruled out at once.",
+   "question": "A delivery van has five stops today. What should the driver do first?",
+   "options": [
+    {
+     "answer": "Plan the route in stop order.",
+     "correct": true
+    },
+    {
+     "answer": "Load the heaviest parcels last.",
+     "correct": false
+    },
+    {
+     "answer": "Call each customer in turn.",
+     "correct": false
+    },
+    {
+     "answer": "Nothing needs planning before leaving.",
+     "correct": false
+    }
+   ],
+   "shows": true
+  },
+  {
+   "id": "f04",
+   "mistake": "One wrong option is the only negative statement, so it is ruled out at once.",
+   "question": "Seedlings on a windowsill grow tall and thin, leaning toward the glass. What is the likely cause?",
+   "options": [
+    {
+     "answer": "Too little light",
+     "correct": true
+    },
+    {
+     "answer": "Too much fertiliser",
+     "correct": false
+    },
+    {
+     "answer": "Pots that are too large",
+     "correct": false
+    },
+    {
+     "answer": "Water that is too cold",
+     "correct": false
+    }
+   ],
+   "shows": false
+  },
+  {
+   "id": "f05",
+   "mistake": "The question leaves out the condition that decides which option is correct.",
+   "question": "How many days does a customer have to return an item?",
+   "options": [
+    {
+     "answer": "14",
+     "correct": true
+    },
+    {
+     "answer": "30",
+     "correct": false
+    },
+    {
+     "answer": "7",
+     "correct": false
+    },
+    {
+     "answer": "60",
+     "correct": false
+    }
+   ],
+   "shows": true
+  },
+  {
+   "id": "f06",
+   "mistake": "The question leaves out the condition that decides which option is correct.",
+   "question": "A shop allows returns within 30 days of purchase. A customer bought an item 12 days ago. How many days are left to return it?",
+   "options": [
+    {
+     "answer": "18",
+     "correct": true
+    },
+    {
+     "answer": "12",
+     "correct": false
+    },
+    {
+     "answer": "30",
+     "correct": false
+    },
+    {
+     "answer": "42",
+     "correct": false
+    }
+   ],
+   "shows": false
+  },
+  {
+   "id": "f07",
+   "mistake": "Two options say the same thing in different words.",
+   "question": "A cyclist's chain keeps slipping when pedalling hard. What should be checked first?",
+   "options": [
+    {
+     "answer": "Chain wear",
+     "correct": true
+    },
+    {
+     "answer": "Tyre pressure",
+     "correct": false
+    },
+    {
+     "answer": "How much air is in the tyres",
+     "correct": false
+    },
+    {
+     "answer": "Saddle height",
+     "correct": false
+    }
+   ],
+   "shows": true
+  },
+  {
+   "id": "f08",
+   "mistake": "Two options say the same thing in different words.",
+   "question": "A photo taken indoors without a flash looks blurred from hand shake. Which change helps most?",
+   "options": [
+    {
+     "answer": "A faster shutter speed",
+     "correct": true
+    },
+    {
+     "answer": "A smaller aperture",
+     "correct": false
+    },
+    {
+     "answer": "A lower sensitivity setting",
+     "correct": false
+    },
+    {
+     "answer": "A longer exposure",
+     "correct": false
+    }
+   ],
+   "shows": false
+  },
+  {
+   "id": "f09",
+   "mistake": "The question stacks two negatives, so it is hard to tell what is asked.",
+   "question": "Which step is not unnecessary when cooling a minor burn?",
+   "options": [
+    {
+     "answer": "Cooling it under running water for 20 minutes",
+     "correct": true
+    },
+    {
+     "answer": "Putting butter on it",
+     "correct": false
+    },
+    {
+     "answer": "Bursting any blisters",
+     "correct": false
+    },
+    {
+     "answer": "Holding ice against it",
+     "correct": false
+    }
+   ],
+   "shows": true
+  },
+  {
+   "id": "f10",
+   "mistake": "The question stacks two negatives, so it is hard to tell what is asked.",
+   "question": "An invoice dated 10 May has 30-day payment terms. When is payment due?",
+   "options": [
+    {
+     "answer": "9 June",
+     "correct": true
+    },
+    {
+     "answer": "10 June",
+     "correct": false
+    },
+    {
+     "answer": "30 May",
+     "correct": false
+    },
+    {
+     "answer": "10 July",
+     "correct": false
+    }
+   ],
+   "shows": false
+  },
+  {
+   "id": "f11",
+   "mistake": "A wrong option is absurd or a joke, so nobody would pick it.",
+   "question": "A task can start only when another task finishes on Friday. When can it start at the earliest?",
+   "options": [
+    {
+     "answer": "After Friday's task finishes",
+     "correct": true
+    },
+    {
+     "answer": "On the Monday before",
+     "correct": false
+    },
+    {
+     "answer": "Before the other task starts",
+     "correct": false
+    },
+    {
+     "answer": "When the moon is full",
+     "correct": false
+    }
+   ],
+   "shows": true
+  },
+  {
+   "id": "f12",
+   "mistake": "A wrong option is absurd or a joke, so nobody would pick it.",
+   "question": "A café's price of 4.00 includes 25% tax added to the base price. What is the base price?",
+   "options": [
+    {
+     "answer": "3.20",
+     "correct": true
+    },
+    {
+     "answer": "3.00",
+     "correct": false
+    },
+    {
+     "answer": "3.75",
+     "correct": false
+    },
+    {
+     "answer": "3.33",
+     "correct": false
+    }
+   ],
+   "shows": false
+  }
+ ]
+}

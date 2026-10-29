@@ -1,4 +1,5 @@
 from generation.prompts.question_rules import (
+    LEARNED_RULES,
     LEVEL_GUIDE,
     MULTI_ANSWER_RULES,
     PRACTICE_GUIDE,
@@ -65,6 +66,7 @@ Rules:
     + LEVEL_GUIDE
     + "\n\n"
     + PRACTICE_GUIDE
+    + LEARNED_RULES
     + """
 
 Write every word of the question in the language the request names, as a native speaker who works in that field would word it, never translated from English. Keep

@@ -1,5 +1,6 @@
 from generation.prompts.question_rules import (
     DISTRACTOR_RULES,
+    LEARNED_RULES,
     LEVEL_GUIDE,
     MULTI_ANSWER_RULES,
     PRACTICE_GUIDE,
@@ -68,6 +69,7 @@ Question rules:
 Option rules:
 """
     + DISTRACTOR_RULES
+    + LEARNED_RULES
     + """
 
 Write every question and option in the language the request names, as a native speaker who works in that field would word it, never translated from English. Keep

@@ -108,3 +108,20 @@ requests: written 40 → 40, keys 97.5% → 100% (91.2–100), clarity 4.97 → 
 4.53, distractors 3.23 → 3.27 (± 0.27); $0.35 → $0.33 at once, half that in a batch. New options
 (no eval before; its first run): 40 written, keys 100%, distractors 2.85 ± 0.30, relevance 4.08.
 Within the intervals; kept for the price.
+
+## The eval gate before a pattern ships (2026-10-29, built)
+
+`pattern_gate.py` writes a fresh set without and with a rule on the same subtopics and judges both
+on every dimension and on the rule's own mistake (`judges/pattern_failure.md`, 12 of 12 on its
+traps). No pattern is approved yet, so a dry run on a rule that isn't one ("The correct option is
+much longer and more detailed than the others, which gives it away."), 16 subtopics of
+`inputs.json` × 6 each way (2 multi), `gpt-6.1-sol` low, judged by `gpt-6.1-sol` high, without →
+with:
+
+| Mistake | Keys single | Keys multi | Clarity | Level fit | Distractors | Seconds |
+|---|---|---|---|---|---|---|
+| 0.0% (0.0–3.9) → 0.0% (0.0–3.9) | 95.3% (87.1–98.4) → 98.4% (91.7–99.7) | 100% (89.0–100) → 100% | 4.92 ± 0.08 → 4.97 ± 0.06 | 4.36 ± 0.17 → 4.26 ± 0.18 | 2.95 ± 0.20 → 2.98 ± 0.19 | 28.3 ± 2.1 → 28.0 ± 1.9 |
+
+Nothing moved beyond the noise, and the mistake never showed without the rule: it doesn't ship,
+as the gate says. $1.48, 538 s. No rule is in use (`QUALITY_RULES` is empty), so the prompts
+read exactly as before.

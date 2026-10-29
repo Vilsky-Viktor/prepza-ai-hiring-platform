@@ -2,6 +2,13 @@
 # regenerate.py), so a question reads the same however it was made. Plain text without braces:
 # the prompts that include them are filled with str.format.
 
+from generation.helpers.prompts import learned_rules
+from generation.prompts.quality_rules import QUALITY_RULES
+
+# The rules in use, learned from flagged questions; empty while there are none, so the prompts
+# read as without them.
+LEARNED_RULES = learned_rules(QUALITY_RULES)
+
 # Who writes questions and their options, for every prompt that does (rule 19: a role
 # generic to prepza's work, never one job, field or language).
 QUESTION_WRITER_ROLE = (
