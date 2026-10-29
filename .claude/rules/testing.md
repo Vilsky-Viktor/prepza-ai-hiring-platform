@@ -98,6 +98,8 @@ Python tests: `testing-backend.md`; vitest and browser, load and smoke tests:
   refuses it, in a role × endpoint × owner matrix: each service's
   `tests/integration/api/test_access_matrix.py` (`packages/common/tests/access_matrix.py`) finds
   its routes from the app; a new route is in it at once, or listed with why it takes no owned id.
+  The same test calls each `/internal` route taking an id with the id that scopes it
+  (`internal_matrix.py`) with an object outside that scope and without the service's token.
 - Dependencies are scanned in CI (pip-audit, `pnpm audit`, osv-scanner; `audit.yml`).
 
 ## Third-party integrations

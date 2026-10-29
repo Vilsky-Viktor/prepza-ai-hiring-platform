@@ -87,7 +87,9 @@ object: each service's `tests/integration/api/test_access_matrix.py` calls every
 of something owned (found from the app) as the owner, another company's owner (with the owner's ids,
 and with its own ids but one of the owner's), a viewer changing something, nobody signed in and, on
 superadmin routes, anyone but the superadmin, against the real database; a route taking an id of
-nothing owned is listed with why. `tests/request_examples.py` builds each request's smallest valid
+nothing owned is listed with why. `tests/internal_matrix.py` does the same for the `/internal` routes
+taking an id with the id that scopes it: the right scope gets through, an object outside it and a call
+without the service's token are refused. `tests/request_examples.py` builds each request's smallest valid
 query and body from the route's models.
 Logs: `logging.configure_logging` writes one JSON line per entry in the fields Cloud Logging reads
 (`severity`, `message`), and `RequestLogMiddleware` ties every line logged while serving a request

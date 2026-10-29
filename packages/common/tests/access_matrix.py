@@ -184,10 +184,11 @@ def outcome(status: int) -> str:
 def request(route: Route, ids: dict, bodies: dict, values: dict) -> dict:
     """The request's URL and keyword arguments for httpx, filled from `ids` and `values`."""
     path_names = re.findall(r"{(\w+)}", route.path)
+    query_names = {item.name for item in route.api.dependant.query_params}
     filled = values | ids
     url = route.path.format(**{name: filled[name] for name in path_names})
     query = request_examples.query(route.api)
-    query |= {name: ids[name] for name in route.owned if name not in path_names}
+    query |= {name: filled[name] for name in query_names & filled.keys()}
     body = bodies.get(str(route))
 
     if callable(body):
@@ -198,18 +199,27 @@ def request(route: Route, ids: dict, bodies: dict, values: dict) -> dict:
     return {"method": route.method, "url": url, "params": query, **parts}
 
 
-async def outcomes(app, route: Route, world: World, bodies: dict, values: dict):
-    """Who got through, by caller, and the statuses they got."""
+async def call_all(app, route: Route, calls: dict, bodies: dict, values: dict):
+    """Who got through and the statuses they got, for `calls`: {caller: (headers, ids)}."""
     statuses = {}
     transport = httpx.ASGITransport(app=app, raise_app_exceptions=False)
 
     async with httpx.AsyncClient(transport=transport, base_url=f"http://{HOST}") as client:
-        for name, (user, ids) in callers(route, world).items():
-            headers = {"Authorization": f"Bearer {user}"} if user else {}
+        for name, (headers, ids) in calls.items():
             response = await client.request(**request(route, ids, bodies, values), headers=headers)
             statuses[name] = response.status_code
 
     return {name: outcome(status) for name, status in statuses.items()}, statuses
+
+
+async def outcomes(app, route: Route, world: World, bodies: dict, values: dict):
+    """Who got through, by caller, and the statuses they got."""
+    calls = {
+        name: ({"Authorization": f"Bearer {user}"} if user else {}, ids)
+        for name, (user, ids) in callers(route, world).items()
+    }
+
+    return await call_all(app, route, calls, bodies, values)
 
 
 def roles(world: World) -> dict:

@@ -1,15 +1,18 @@
-"""The access matrix (tests/access_matrix.py) on a small app of its own: it finds the routes
-taking ids, asks for a reason for those it leaves out, and catches a route that checks the
-company but not the object, and one that lets a viewer change things."""
+"""The access matrix (tests/access_matrix.py, tests/internal_matrix.py) on a small app of its
+own: it finds the routes taking ids, asks for a reason for those it leaves out, and catches a
+route that checks the company but not the object, one that lets a viewer change things, and an
+/internal route that trusts an object outside its scope."""
 
 import asyncio
 from uuid import UUID
 
 import access_matrix
+import internal_matrix
 import pytest
 from access_matrix import ALLOWED, REFUSED, SIGNED_OUT, Side, World
 from fastapi import FastAPI, HTTPException
 from prepza_common.auth.auth import CurrentUser
+from prepza_common.auth.service_auth import service_caller
 from prepza_common.auth.superadmin import SuperadminUser
 from pydantic import BaseModel
 
@@ -79,6 +82,24 @@ async def internal(note_id: UUID) -> dict:
     return {}
 
 
+SECRET = "matrix-secret-that-is-at-least-32-bytes"
+ServiceCaller = service_caller(SECRET, "notes")
+
+
+@app.get("/internal/companies/{company_id}/notes/{note_id}")
+async def scoped_note(company_id: str, note_id: str, caller: ServiceCaller) -> dict:
+    if NOTES.get(note_id) != company_id:
+        raise HTTPException(404)
+
+    return {}
+
+
+@app.delete("/internal/companies/{company_id}/notes/{note_id}")
+async def trusting_removal(company_id: str, note_id: str, caller: ServiceCaller) -> dict:
+    """Trusts the note is the company's."""
+    return {}
+
+
 @pytest.fixture
 def world(monkeypatch):
     mine = Side("ann", {"company_id": "a", "note_id": "n-a"}, "vic")
@@ -134,3 +155,33 @@ def test_a_superadmin_route_lets_only_the_superadmin_through(world):
         "user": REFUSED,
         "superadmin": ALLOWED,
     }
+
+
+def test_an_internal_route_refuses_an_object_outside_its_scope_and_a_call_without_its_token(world):
+    found = {
+        str(route): asyncio.run(
+            internal_matrix.outcomes(app, route, world, (SECRET, "notes"), {}, {})
+        )[0]
+        for route in internal_matrix.routes(app, OWNED, {}, {})
+    }
+
+    assert found == {
+        "GET /internal/companies/{company_id}/notes/{note_id}": {
+            "no token": SIGNED_OUT,
+            "wrong audience": SIGNED_OUT,
+            "cross company_id": REFUSED,
+            "cross note_id": REFUSED,
+            "service": ALLOWED,
+        },
+        "DELETE /internal/companies/{company_id}/notes/{note_id}": {
+            "no token": SIGNED_OUT,
+            "wrong audience": SIGNED_OUT,
+            "cross company_id": ALLOWED,
+            "cross note_id": ALLOWED,
+            "service": ALLOWED,
+        },
+    }
+    assert internal_matrix.unlisted(app, {"company_id"}, {}, {}) == [
+        "GET /internal/companies/{company_id}/notes/{note_id}",
+        "DELETE /internal/companies/{company_id}/notes/{note_id}",
+    ]
