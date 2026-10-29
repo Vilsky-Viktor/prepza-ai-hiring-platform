@@ -7,9 +7,8 @@ MCP_DESCRIPTIONS = {
     "get_company": (
         "One company by company_id: its name, the user's role and what they may change, how "
         "many interviews it has, and its website and verification state (with the reason when "
-        "verification was declined), and the domains allowed to embed its interviews and take "
-        "candidates back (verification only adds the badge). Use it for questions about a "
-        "company's setup; "
+        "verification was declined), and the domains allowed to embed its interviews with the "
+        "SDK (verification only adds the badge). Use it for questions about a company's setup; "
         "list_companies gives the ids."
     ),
     "get_auto_top_up": (

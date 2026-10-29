@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "Nie udało się zapisać dozwolonych adresów IP.",
     "addEntry": "Dodaj",
     "removeEntry": "Usuń {entry}",
-    "allowedDomainsText": "Witryny, które mogą wyświetlać Twoje rozmowy przez SDK i do których może prowadzić adres powrotu z zaproszenia. Dodaj jobs.acme.com dla tej witryny albo *.acme.com dla każdej subdomeny acme.com. Strony muszą używać HTTPS.",
+    "allowedDomainsText": "Witryny, które mogą wyświetlać Twoje rozmowy przez SDK. Dodaj jobs.acme.com dla tej witryny albo *.acme.com dla każdej subdomeny acme.com. Strony muszą używać HTTPS.",
     "domain": "Domena",
     "domainHint": "jobs.acme.com",
     "noDomains": "Nie ma jeszcze domen: żadna witryna nie może wyświetlać Twoich rozmów ani przyjmować powracających kandydatów.",

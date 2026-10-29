@@ -15,8 +15,8 @@ import { apiErrorMessage, apiFetch } from "@/lib/api"
 type Saved = { domains: string[]; allow_localhost: boolean }
 
 /** The API page's SDK tab: the company's allowed domains, the sites that may embed its interviews
- * and that an invite's return address may lead to, then whether localhost may too (to try it on
- * the developer's own computer), as the AI apps switch's card. Owners and admins change both;
+ * with the SDK (nothing else uses them), then whether localhost may too (to try it on the
+ * developer's own computer), as the AI apps switch's card. Owners and admins change both;
  * every change saves at once. Verification has nothing to do with it. On phones the switch's card
  * spans the screen. */
 export function AllowedDomains({

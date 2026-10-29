@@ -264,7 +264,7 @@
       "Open een sleutel om te wijzigen wat hij mag, waarbij elke wijziging meteen wordt opgeslagen, en vanaf welke IP-adressen hij gebruikt mag worden.",
       "Voeg een webhook toe: prepza laat je HTTPS-adres ondertekend weten wanneer een kandidaat begint of klaar is (met de resultaten), wanneer de uitnodiging een kandidaat niet bereikt of verloopt, wanneer een kandidaat wordt verwijderd en wanneer een interview klaarstaat.",
       "Stuur een webhook een testgebeurtenis en zie in het afleverlogboek hoe elke verzending is verlopen.",
-      "Zet op het tabblad SDK de sites die je interviews mogen tonen en kandidaten terugkrijgen, en sta localhost toe zolang je test.",
+      "Zet op het tabblad SDK de sites die je interviews met de SDK mogen tonen, en sta localhost toe zolang je test.",
       "Verwijder de sleutels en webhooks die je niet meer gebruikt.",
       "Open de ontwikkelaarsdocumentatie voor elk endpoint en elke gebeurtenis, en de SDK."
     ],

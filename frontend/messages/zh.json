@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "无法保存允许的 IP。",
     "addEntry": "添加",
     "removeEntry": "移除 {entry}",
-    "allowedDomainsText": "可以通过 SDK 展示你的面试、且邀请的返回地址可以指向的网站。添加 jobs.acme.com 表示该网站，或添加 *.acme.com 表示 acme.com 的所有子域名。页面必须使用 HTTPS。",
+    "allowedDomainsText": "可以通过 SDK 展示你的面试的网站。添加 jobs.acme.com 表示该网站，或添加 *.acme.com 表示 acme.com 的所有子域名。页面必须使用 HTTPS。",
     "domain": "域名",
     "domainHint": "jobs.acme.com",
     "noDomains": "还没有域名：没有任何网站可以展示你的面试或把候选人带回。",

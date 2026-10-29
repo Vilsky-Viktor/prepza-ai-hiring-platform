@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "Die erlaubten IPs konnten nicht gespeichert werden.",
     "addEntry": "Hinzufügen",
     "removeEntry": "{entry} entfernen",
-    "allowedDomainsText": "Die Websites, die deine Interviews mit dem SDK anzeigen dürfen und zu denen die Rücksprungadresse einer Einladung führen darf. Füge jobs.acme.com für diese Website hinzu oder *.acme.com für jede Subdomain von acme.com. Die Seiten müssen HTTPS verwenden.",
+    "allowedDomainsText": "Die Websites, die deine Interviews mit dem SDK anzeigen dürfen. Füge jobs.acme.com für diese Website hinzu oder *.acme.com für jede Subdomain von acme.com. Die Seiten müssen HTTPS verwenden.",
     "domain": "Domain",
     "domainHint": "jobs.acme.com",
     "noDomains": "Noch keine Domains: Keine Website kann deine Interviews anzeigen oder Kandidaten zurückführen.",

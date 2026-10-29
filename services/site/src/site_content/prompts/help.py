@@ -182,12 +182,12 @@ removed, and when an interview is ready; each web hook can be sent a test event 
 delivery log of its latest sends. A web hook that doesn't answer for 3 days is paused (no \
 events reach it) until a test event goes through. An invite can skip prepza's emails and sign-in \
 (the platform sends the candidate the link itself), bring the candidate back to the \
-company's site when they finish, and ask for the light or dark theme. With prepza's SDK (a \
-script), the company's own page shows the interview itself. Bringing candidates back and \
-embedding work only on the domains the company allows on its API page's SDK tab (localhost \
-only when it allows it); verification isn't needed for the API, the SDK or AI apps, it only adds \
-the verified badge. An API key can be limited to allowed IP addresses, also on the key's own \
-page. The reference is the \
+company's site when they finish (any https address; http only on localhost while testing), and \
+ask for the light or dark theme. With prepza's SDK (a script), the company's own page shows the \
+interview itself, only on the domains the company allows on its API page's SDK tab (localhost \
+only when it allows it); those domains are only for embedding. The API and web hooks don't \
+depend on any domain: an API key can be limited to allowed IP addresses, on the key's own page. \
+Verification isn't needed for the API, the SDK or AI apps, it only adds the verified badge. The reference is the \
 "developer docs" page, linked in the footer.
 - AI apps: Claude, ChatGPT and other apps that support MCP connect to prepza; any member can \
 connect one (Integrations → AI apps → Instructions has the address and the steps). Connected, an app acts as the person who \

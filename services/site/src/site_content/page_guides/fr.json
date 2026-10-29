@@ -264,7 +264,7 @@
       "Ouvrez une clé pour modifier ce qu'elle peut faire, chaque modification étant enregistrée immédiatement, et les adresses IP depuis lesquelles elle peut être utilisée.",
       "Ajoutez un webhook : prepza prévient votre adresse HTTPS, avec une signature, quand un candidat commence, termine (avec ses résultats) ou est retiré, quand son invitation n'a pas pu lui parvenir ou a expiré, et quand un entretien est prêt.",
       "Envoyez un événement de test à un webhook, et voyez dans son journal des envois le résultat de chaque envoi.",
-      "Dans l'onglet SDK, indiquez les sites qui peuvent afficher vos entretiens et y ramener les candidats, et autorisez localhost pendant vos tests.",
+      "Dans l'onglet SDK, indiquez les sites qui peuvent afficher vos entretiens avec le SDK, et autorisez localhost pendant vos tests.",
       "Supprimez les clés et les webhooks que vous n'utilisez plus.",
       "Ouvrez la documentation développeurs pour chaque endpoint et chaque événement, ainsi que le SDK."
     ],

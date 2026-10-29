@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "허용 IP를 저장하지 못했습니다.",
     "addEntry": "추가",
     "removeEntry": "{entry} 삭제",
-    "allowedDomainsText": "SDK로 면접을 표시할 수 있고, 초대의 복귀 주소로 연결될 수 있는 사이트입니다. 해당 사이트에는 jobs.acme.com을, acme.com의 모든 하위 도메인에는 *.acme.com을 추가하세요. 페이지는 HTTPS를 사용해야 합니다.",
+    "allowedDomainsText": "SDK로 면접을 표시할 수 있는 사이트입니다. 해당 사이트에는 jobs.acme.com을, acme.com의 모든 하위 도메인에는 *.acme.com을 추가하세요. 페이지는 HTTPS를 사용해야 합니다.",
     "domain": "도메인",
     "domainHint": "jobs.acme.com",
     "noDomains": "아직 도메인이 없습니다. 어떤 사이트도 면접을 표시하거나 지원자를 돌려받을 수 없습니다.",

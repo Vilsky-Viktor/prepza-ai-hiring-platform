@@ -264,7 +264,7 @@
       "Buka kunci untuk mengubah apa yang boleh dilakukannya, setiap perubahan langsung tersimpan, dan alamat IP tempat kunci itu boleh dipakai.",
       "Tambahkan webhook: prepza memberi tahu alamat HTTPS-mu, dengan tanda tangan, saat kandidat mulai, selesai (beserta hasilnya), atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap.",
       "Kirim event uji ke webhook, dan lihat hasil setiap pengiriman di log pengirimannya.",
-      "Di tab SDK, daftarkan situs yang boleh menampilkan wawancaramu dan menerima kandidat kembali, dan izinkan localhost selama kamu menguji.",
+      "Di tab SDK, daftarkan situs yang boleh menampilkan wawancaramu dengan SDK, dan izinkan localhost selama kamu menguji.",
       "Hapus kunci dan webhook yang tidak lagi kamu pakai.",
       "Buka dokumentasi pengembang untuk setiap endpoint dan event, serta SDK."
     ],

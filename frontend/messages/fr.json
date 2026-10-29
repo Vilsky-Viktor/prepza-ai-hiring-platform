@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "Impossible d'enregistrer les IP autorisées.",
     "addEntry": "Ajouter",
     "removeEntry": "Retirer {entry}",
-    "allowedDomainsText": "Les sites qui peuvent afficher vos entretiens avec le SDK, et vers lesquels l'adresse de retour d'une invitation peut mener. Ajoutez jobs.acme.com pour ce site, ou *.acme.com pour tous les sous-domaines d'acme.com. Les pages doivent utiliser HTTPS.",
+    "allowedDomainsText": "Les sites qui peuvent afficher vos entretiens avec le SDK. Ajoutez jobs.acme.com pour ce site, ou *.acme.com pour tous les sous-domaines d'acme.com. Les pages doivent utiliser HTTPS.",
     "domain": "Domaine",
     "domainHint": "jobs.acme.com",
     "noDomains": "Aucun domaine pour l'instant : aucun site ne peut afficher vos entretiens ni y ramener les candidats.",

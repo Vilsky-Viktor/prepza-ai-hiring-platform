@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "Impossibile salvare gli IP consentiti.",
     "addEntry": "Aggiungi",
     "removeEntry": "Rimuovi {entry}",
-    "allowedDomainsText": "I siti che possono mostrare i tuoi colloqui con l'SDK e a cui può portare l'indirizzo di ritorno di un invito. Aggiungi jobs.acme.com per quel sito, o *.acme.com per ogni sottodominio di acme.com. Le pagine devono usare HTTPS.",
+    "allowedDomainsText": "I siti che possono mostrare i tuoi colloqui con l'SDK. Aggiungi jobs.acme.com per quel sito, o *.acme.com per ogni sottodominio di acme.com. Le pagine devono usare HTTPS.",
     "domain": "Dominio",
     "domainHint": "jobs.acme.com",
     "noDomains": "Ancora nessun dominio: nessun sito può mostrare i tuoi colloqui o riportarvi i candidati.",

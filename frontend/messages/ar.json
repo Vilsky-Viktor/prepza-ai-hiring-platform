@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "تعذّر حفظ عناوين IP المسموح بها.",
     "addEntry": "إضافة",
     "removeEntry": "إزالة {entry}",
-    "allowedDomainsText": "المواقع التي يمكنها عرض مقابلاتك عبر SDK، والتي يمكن أن يقود إليها عنوان العودة في الدعوة. أضف jobs.acme.com لذلك الموقع، أو *.acme.com لكل النطاقات الفرعية لـ acme.com. يجب أن تستخدم الصفحات HTTPS.",
+    "allowedDomainsText": "المواقع التي يمكنها عرض مقابلاتك عبر SDK. أضف jobs.acme.com لذلك الموقع، أو *.acme.com لكل النطاقات الفرعية لـ acme.com. يجب أن تستخدم الصفحات HTTPS.",
     "domain": "النطاق",
     "domainHint": "jobs.acme.com",
     "noDomains": "لا نطاقات بعد: لا يمكن لأي موقع عرض مقابلاتك أو إعادة المرشحين إليه.",

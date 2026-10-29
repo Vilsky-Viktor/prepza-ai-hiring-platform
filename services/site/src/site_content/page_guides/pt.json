@@ -264,7 +264,7 @@
       "Abra uma chave para alterar o que ela pode fazer, com cada alteração salva na hora, e os endereços IP de onde ela pode ser usada.",
       "Adicione um webhook: a prepza avisa o seu endereço HTTPS, com assinatura, quando um candidato começa ou termina (com os resultados), quando o convite não chega até ele ou expira, quando ele é removido e quando uma entrevista fica pronta.",
       "Envie um evento de teste a um webhook e veja no registro de entregas o resultado de cada envio.",
-      "Na aba SDK, liste os sites que podem exibir suas entrevistas e receber os candidatos de volta, e permita localhost enquanto você testa.",
+      "Na aba SDK, liste os sites que podem exibir suas entrevistas com o SDK, e permita localhost enquanto você testa.",
       "Exclua as chaves e os webhooks que você não usa mais.",
       "Abra a documentação para desenvolvedores com cada endpoint e evento, e o SDK."
     ],

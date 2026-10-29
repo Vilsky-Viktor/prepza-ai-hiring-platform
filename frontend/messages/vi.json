@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "Không lưu được các IP được phép.",
     "addEntry": "Thêm",
     "removeEntry": "Xóa {entry}",
-    "allowedDomainsText": "Các trang web được hiển thị buổi phỏng vấn của bạn bằng SDK, và là nơi địa chỉ quay lại của lời mời có thể dẫn tới. Thêm jobs.acme.com cho trang đó, hoặc *.acme.com cho mọi tên miền phụ của acme.com. Các trang phải dùng HTTPS.",
+    "allowedDomainsText": "Các trang web được hiển thị buổi phỏng vấn của bạn bằng SDK. Thêm jobs.acme.com cho trang đó, hoặc *.acme.com cho mọi tên miền phụ của acme.com. Các trang phải dùng HTTPS.",
     "domain": "Tên miền",
     "domainHint": "jobs.acme.com",
     "noDomains": "Chưa có tên miền nào: không trang web nào có thể hiển thị buổi phỏng vấn của bạn hoặc đưa ứng viên quay lại.",

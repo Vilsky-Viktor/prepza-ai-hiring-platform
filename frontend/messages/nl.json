@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "De toegestane IP's konden niet worden opgeslagen.",
     "addEntry": "Toevoegen",
     "removeEntry": "{entry} verwijderen",
-    "allowedDomainsText": "De sites die je interviews met de SDK mogen tonen, en waar het terugkeeradres van een uitnodiging naartoe mag leiden. Voeg jobs.acme.com toe voor die site, of *.acme.com voor elk subdomein van acme.com. Pagina's moeten HTTPS gebruiken.",
+    "allowedDomainsText": "De sites die je interviews met de SDK mogen tonen. Voeg jobs.acme.com toe voor die site, of *.acme.com voor elk subdomein van acme.com. Pagina's moeten HTTPS gebruiken.",
     "domain": "Domein",
     "domainHint": "jobs.acme.com",
     "noDomains": "Nog geen domeinen: geen enkele site kan je interviews tonen of kandidaten terugkrijgen.",

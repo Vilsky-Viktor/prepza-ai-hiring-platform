@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "IP yang diizinkan tidak bisa disimpan.",
     "addEntry": "Tambah",
     "removeEntry": "Hapus {entry}",
-    "allowedDomainsText": "Situs yang boleh menampilkan wawancaramu dengan SDK, dan yang boleh dituju alamat kembali dari undangan. Tambahkan jobs.acme.com untuk situs itu, atau *.acme.com untuk semua subdomain acme.com. Halaman harus memakai HTTPS.",
+    "allowedDomainsText": "Situs yang boleh menampilkan wawancaramu dengan SDK. Tambahkan jobs.acme.com untuk situs itu, atau *.acme.com untuk semua subdomain acme.com. Halaman harus memakai HTTPS.",
     "domain": "Domain",
     "domainHint": "jobs.acme.com",
     "noDomains": "Belum ada domain: tidak ada situs yang bisa menampilkan wawancaramu atau menerima kandidat kembali.",

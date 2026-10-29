@@ -264,7 +264,7 @@
       "Apri una chiave per cambiare cosa può fare, con ogni modifica salvata subito, e gli indirizzi IP da cui può essere usata.",
       "Aggiungi un webhook: prepza avvisa il tuo indirizzo HTTPS, con firma, quando un candidato inizia, termina (con i suoi risultati) o viene rimosso, quando il suo invito non gli arriva o scade, e quando un colloquio è pronto.",
       "Invia un evento di test a un webhook e guarda nel suo registro delle consegne com'è andato ogni invio.",
-      "Nella scheda SDK, elenca i siti che possono mostrare i tuoi colloqui e riportarvi i candidati, e consenti localhost mentre fai i test.",
+      "Nella scheda SDK, elenca i siti che possono mostrare i tuoi colloqui con l'SDK, e consenti localhost mentre fai i test.",
       "Elimina le chiavi e i webhook che non usi più.",
       "Apri la documentazione per sviluppatori con ogni endpoint ed evento, e l'SDK."
     ],

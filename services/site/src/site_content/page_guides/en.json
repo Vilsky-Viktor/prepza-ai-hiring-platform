@@ -264,7 +264,7 @@
       "Open a key to change what it may do, each change saved at once, and the IP addresses it may be used from.",
       "Add a web hook: prepza tells your HTTPS address, signed, when a candidate starts, finishes (with their results), isn't reached, expires or is removed, and when an interview is ready.",
       "Send a web hook a test event, and see what each send got in its delivery log.",
-      "On the SDK tab, list the sites that may show your interviews and take candidates back, and allow localhost while you test.",
+      "On the SDK tab, list the sites that may show your interviews with the SDK, and allow localhost while you test.",
       "Delete the keys and web hooks you no longer use.",
       "Open the developer docs for every endpoint and event, and the SDK."
     ],

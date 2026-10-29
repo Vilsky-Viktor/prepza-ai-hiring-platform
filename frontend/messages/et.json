@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "Lubatud IP-sid ei õnnestunud salvestada.",
     "addEntry": "Lisa",
     "removeEntry": "Eemalda {entry}",
-    "allowedDomainsText": "Saidid, mis võivad SDK abil sinu intervjuusid näidata ja kuhu kutse tagasipöördumise aadress võib viia. Lisa jobs.acme.com selle saidi jaoks või *.acme.com kõigi acme.com alamdomeenide jaoks. Lehed peavad kasutama HTTPS-i.",
+    "allowedDomainsText": "Saidid, mis võivad SDK abil sinu intervjuusid näidata. Lisa jobs.acme.com selle saidi jaoks või *.acme.com kõigi acme.com alamdomeenide jaoks. Lehed peavad kasutama HTTPS-i.",
     "domain": "Domeen",
     "domainHint": "jobs.acme.com",
     "noDomains": "Domeene veel pole: ükski sait ei saa sinu intervjuusid näidata ega kandidaate tagasi võtta.",

@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "İzin verilen IP'ler kaydedilemedi.",
     "addEntry": "Ekle",
     "removeEntry": "{entry} öğesini kaldır",
-    "allowedDomainsText": "Mülakatlarınızı SDK ile gösterebilecek ve bir davetin dönüş adresinin yönlendirebileceği siteler. O site için jobs.acme.com, acme.com'un tüm alt alan adları için *.acme.com ekleyin. Sayfalar HTTPS kullanmalıdır.",
+    "allowedDomainsText": "Mülakatlarınızı SDK ile gösterebilecek siteler. O site için jobs.acme.com, acme.com'un tüm alt alan adları için *.acme.com ekleyin. Sayfalar HTTPS kullanmalıdır.",
     "domain": "Alan adı",
     "domainHint": "jobs.acme.com",
     "noDomains": "Henüz alan adı yok: hiçbir site mülakatlarınızı gösteremez veya adayları geri alamaz.",

@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "לא ניתן לשמור את כתובות ה-IP המורשות.",
     "addEntry": "הוספה",
     "removeEntry": "הסרת {entry}",
-    "allowedDomainsText": "האתרים שמורשים להציג את הראיונות שלכם עם ה-SDK, ושכתובת החזרה של הזמנה יכולה להוביל אליהם. הוסיפו jobs.acme.com לאתר הזה, או *.acme.com לכל תת-דומיין של acme.com. הדפים חייבים להשתמש ב-HTTPS.",
+    "allowedDomainsText": "האתרים שמורשים להציג את הראיונות שלכם עם ה-SDK. הוסיפו jobs.acme.com לאתר הזה, או *.acme.com לכל תת-דומיין של acme.com. הדפים חייבים להשתמש ב-HTTPS.",
     "domain": "דומיין",
     "domainHint": "jobs.acme.com",
     "noDomains": "עדיין אין דומיינים: אף אתר לא יכול להציג את הראיונות שלכם או להחזיר אליו מועמדים.",

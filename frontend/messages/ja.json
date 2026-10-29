@@ -1926,7 +1926,7 @@
     "allowedIpsFailed": "許可する IP を保存できませんでした。",
     "addEntry": "追加",
     "removeEntry": "{entry} を削除",
-    "allowedDomainsText": "SDK で面接を表示できるサイト、および招待の戻り先アドレスに指定できるサイトです。そのサイトには jobs.acme.com を、acme.com のすべてのサブドメインには *.acme.com を追加してください。ページは HTTPS を使用する必要があります。",
+    "allowedDomainsText": "SDK で面接を表示できるサイトです。そのサイトには jobs.acme.com を、acme.com のすべてのサブドメインには *.acme.com を追加してください。ページは HTTPS を使用する必要があります。",
     "domain": "ドメイン",
     "domainHint": "jobs.acme.com",
     "noDomains": "ドメインはまだありません。面接を表示したり候補者を戻したりできるサイトはありません。",
