@@ -6,7 +6,7 @@
 # Every test makes its own throwaway users, companies and interviews. Results land in
 # e2e_tests/signed-in/test-results/<run> (screenshots in its screenshots/), one folder per run.
 # Usage: e2e_tests/signed-in.sh [playwright args], e.g. specs/b-candidate.spec.ts; WORKERS=n sets
-# how many tests run at once (default 6).
+# how many tests run at once (default 3).
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -37,7 +37,9 @@ fi
 # is then rebuilt if the frontend changed since its last build.
 source="$(e2e_tests/test_frontend.sh --source)"
 browser_slot="$(python3 e2e_tests/browser_lock.py "$$" "$source$alone")"
-trap 'rm -rf "$browser_slot"' EXIT
+# The browsers' container is named after this script, so stopping the script stops it too.
+container="prepza-browser-tests-$$"
+trap 'rm -rf "$browser_slot"; docker rm -f "$container" >/dev/null 2>&1 || true' EXIT
 e2e_tests/test_frontend.sh "$source"
 
 if docker compose version >/dev/null 2>&1; then
@@ -72,7 +74,7 @@ find "$tests/test-results" -mindepth 1 -maxdepth 1 -type d -mtime +7 -exec rm -r
 # (the `global` project), one at a time with nothing else running. Each phase has its own results
 # folder, as Playwright empties it when it starts.
 COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude test-results -cf - . |
-  docker run -i --rm --ipc=host --network "$network" \
+  docker run -i --rm --name "$container" --ipc=host --network "$network" \
     -v "$results:/tests/test-results" \
     -v "$PWD/.env:/env/.env:ro" \
     -w /tests \

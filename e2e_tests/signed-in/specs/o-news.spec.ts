@@ -31,8 +31,10 @@ async function bellEntry(page: Page, postId: string) {
 // A superadmin writes a news post in the admin zone's news tab: the text's limit is counted down
 // and enforced by the API, the post shows on the news page with its date and in a user's bell,
 // it's turned into a product update campaign from its row, and it's edited and deleted from its
-// row, leaving the bell. Posts and campaigns left by a failed run are deleted at the end.
-test("superadmin writes, edits and deletes a news post", async ({
+// row, leaving the bell. Posts and campaigns left by a failed run are deleted at the end. A post
+// reaches every user's bell, so the test is tagged @global: it runs alone, after the other tests
+// (signed-in.sh).
+test("superadmin writes, edits and deletes a news post", { tag: "@global" }, async ({
   signInAs,
   signInSuperadmin,
 }) => {

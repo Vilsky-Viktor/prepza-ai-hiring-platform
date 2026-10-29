@@ -61,8 +61,8 @@ gateway's port 8082), with the same services and Auth emulator:
   files starts at once. A change to the frontend is tested only after that rebuild, which the
   script does by itself.
 - Development-only pages (`/report-samples`) don't exist there.
-- Tests run in parallel (signed-in: `WORKERS`, default 6). Tests tagged `@global` (maintenance
-  mode, the pause, a limit) run after the others, alone.
+- Tests run in parallel (`WORKERS`, default 3). Tests tagged `@global`
+  (maintenance mode, the pause, a limit) run after the others, alone.
 - Up to `BROWSER_RUNS` runs (default 2) share the stack when they test the same frontend files;
   a run of every signed-in spec, or of a spec with a `@global` test, has it to itself. "waiting
   for earlier browser runs" means one is in progress.

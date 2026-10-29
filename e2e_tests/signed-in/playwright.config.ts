@@ -3,7 +3,8 @@ import { defineConfig, devices } from "@playwright/test"
 // Runs in Playwright's Docker image (e2e_tests/signed-in.sh), like the signed-out page tests,
 // against the production build of the frontend. HOST_RULES points the site and the Firebase Auth
 // emulator at their containers, so the browser keeps the addresses the frontend uses.
-// Every test owns its data, so tests run in parallel (WORKERS, default 6). A test that changes
+// Every test owns its data, so tests run in parallel (WORKERS, default 3: each test's browsers
+// keep the laptop's cores busy, and more workers only slow every page down). A test that changes
 // something global (maintenance mode, the pause, a limit) is tagged @global: signed-in.sh runs
 // those in the `global` project afterwards, one at a time, with nothing else running.
 export default defineConfig({
@@ -14,7 +15,7 @@ export default defineConfig({
   // Deletes every throwaway account and its companies after each run (teardown.ts).
   globalTeardown: "./teardown.ts",
   reporter: "list",
-  workers: Number(process.env.WORKERS ?? 6),
+  workers: Number(process.env.WORKERS ?? 3),
   // A test.only left in fails the run instead of quietly skipping every other test.
   forbidOnly: true,
   // Once more on failure, so a run finishes; a pass on retry is flaky and gets fixed.

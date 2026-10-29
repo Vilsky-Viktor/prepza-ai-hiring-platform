@@ -10,9 +10,12 @@ export default defineConfig({
   reporter: "list",
   // A test.only left in fails the run instead of quietly skipping every other test.
   forbidOnly: true,
-  // Every test owns its data, so tests run in parallel, within a file too. With every worker's
-  // browser at once on one laptop's stack, a page or a lazily loaded part (the assistant's panel)
-  // can take over the defaults (30 s, 5 s) to come; what is checked doesn't change.
+  // Every test owns its data, so tests run in parallel, within a file too: WORKERS at once
+  // (default 3; the landing's moving pictures keep each browser busy, and more workers only slow
+  // every page down). With every worker's browser at once on one laptop's stack, a page or a
+  // lazily loaded part (the assistant's panel) can take over the defaults (30 s, 5 s) to come;
+  // what is checked doesn't change.
+  workers: Number(process.env.WORKERS ?? 3),
   fullyParallel: true,
   timeout: 60_000,
   expect: { timeout: 15_000 },

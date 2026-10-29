@@ -27,6 +27,9 @@ has its browser slot, rebuilds and restarts the test site only when it was built
 laptop, as Next's build cache stays in a BuildKit cache mount between builds (6 to 10 minutes
 with that cache empty, the first time); with the files
 unchanged a run starts at once. Pages only the dev server has (`/report-samples`) aren't there.
+The build is production's but for the local settings it's built with: with the sign-in emulator
+set (never in production) its pages don't ask the browser to upgrade requests to https, which
+Safari would do even on `http://localhost`.
 
 Up to `BROWSER_RUNS` runs (default 2) use the stack at once, whoever starts them, and only runs of
 the same frontend files: a run of other files waits for them to end, so the site is never rebuilt
@@ -60,8 +63,9 @@ A test that wants light or dark calls `setScheme(page, scheme)` (`helpers/theme.
 ./e2e_tests/pages.sh
 ```
 
-Extra arguments go to Playwright, for example a spec's name or `--workers=2`. Tests run in
-parallel, within a file too; a test may take 60 seconds and an assertion waits up to 15, as in the
+Extra arguments go to Playwright, for example a spec's name. Tests run in parallel, within a file
+too, `WORKERS` at once (default 3: the landing's moving pictures keep each browser busy, so more
+only slow every page down); a test may take 60 seconds and an assertion waits up to 15, as in the
 signed-in suite, since every worker's browser runs on one laptop's stack.
 
 Each run copies the specs into its container (a tar stream, as the signed-in suite does) and installs its own packages there, so runs at the same time don't share `node_modules` or see a file half-edited. Its traces and screenshots land in a folder of their own, `e2e_tests/pages/test-results/<run>` (the script prints it at the end): Playwright empties its results folder when a run starts, so a shared one would lose another run's traces. Folders older than a week are deleted at the next run.
@@ -72,11 +76,11 @@ Playwright tests of the signed-in pages, in the same Docker image, against the r
 (on [the browser tests' site](#the-browser-tests-site)).
 
 **In parallel.** Every test owns its users and data, so tests run in parallel (`WORKERS`, default
-6) and in any order. A test that changes what every page sees is tagged `@global`
-(`{ tag: "@global" }`: the pause and maintenance mode, a limit, a level's seconds): those run in
-the `global` project after the others, one at a time with nothing else running, and a run that
-includes them has the stack to itself. Each phase writes its results to its own folder
-(`parallel/`, `global/`).
+3, as in the signed-out suite) and in any order. A test that changes what every page sees is tagged `@global`
+(`{ tag: "@global" }`: the pause and maintenance mode, a limit, a level's seconds, a news post
+in every user's bell): those run in the `global` project after the others, one at a time with
+nothing else running, and a run that includes them has the stack to itself. Each phase writes
+its results to its own folder (`parallel/`, `global/`).
 
 **Signing in.** Users sign in through "Continue with Google" and the Firebase Auth emulator's own sign-in page (local only), optionally ticking the sign-in's email boxes first (`signInAs(email, { noUpdates, promotions })`). The superadmin is the first address in `SUPERADMIN_EMAILS`.
 
@@ -125,7 +129,7 @@ includes them has the stack to itself. Each phase writes its results to its own 
 - API keys and web hooks,
 - a web hook's signed test event and its delivery log,
 - the API's operations: inviting a candidate twice, with and without a client's Idempotency-Key (invited once; the retry is a `200`), a reused key with another body refused, correcting them, extra time, a reminder, finding them by email, the credits, removing them, and a new interview within the app's limits,
-- a candidate invited through the API taking the interview without signing in and going back to the company's platform, refused while the return address is off the company's allowed domains,
+- a candidate invited through the API taking the interview without signing in and going back to the company's platform (any https return address, whatever the allowed domains; an http one off localhost refused),
 - a company's own site embedding a candidate's interview and hearing it finish,
 - each ATS: Workable's linked jobs, and connecting Greenhouse (with who connected it under its title), Teamtailor, Recruitee and Breezy HR,
 - Slack,

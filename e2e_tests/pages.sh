@@ -6,7 +6,8 @@
 # from .env, mounted read-only) and delete them after, so the platform's own templates are never
 # read or changed.
 # Results land in e2e_tests/pages/test-results/<run>, one folder per run.
-# Usage: e2e_tests/pages.sh [playwright args], e.g. --workers=2
+# Usage: e2e_tests/pages.sh [playwright args], e.g. faq.spec.ts; WORKERS=n sets how many tests run
+# at once (default 3).
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -17,7 +18,9 @@ cd "$(dirname "$0")/.."
 # is then rebuilt if the frontend changed since its last build.
 source="$(e2e_tests/test_frontend.sh --source)"
 browser_slot="$(python3 e2e_tests/browser_lock.py "$$" "$source")"
-trap 'rm -rf "$browser_slot"' EXIT
+# The browsers' container is named after this script, so stopping the script stops it too.
+container="prepza-browser-tests-$$"
+trap 'rm -rf "$browser_slot"; docker rm -f "$container" >/dev/null 2>&1 || true' EXIT
 e2e_tests/test_frontend.sh "$source"
 
 if docker compose version >/dev/null 2>&1; then
@@ -46,13 +49,14 @@ find "$tests/test-results" -mindepth 1 -maxdepth 1 -type d -mtime +7 -exec rm -r
 # (two runs sharing a mounted node_modules break each other's) and sees the files as they are now
 # (Docker Desktop's file sharing can serve a file edited moments before as it was).
 COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude test-results -cf - . |
-  docker run -i --rm --network "$network" \
+  docker run -i --rm --name "$container" --network "$network" \
     -v "$results:/tests/test-results" -w /tests \
     -v "$PWD/.env:/env/.env:ro" \
     -e EMAIL_LINK_SECRET \
     -e SITE_URL=http://localhost:8090 \
     -e HOST_RULES="MAP localhost:8090 gateway:8082" \
     -e REQUEST_URL=http://gateway:8082 \
+    -e WORKERS \
     mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27 \
     sh -c 'tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test "$@"' sh "$@" ||
   status=$?

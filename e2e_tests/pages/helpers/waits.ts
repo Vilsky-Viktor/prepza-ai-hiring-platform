@@ -46,7 +46,7 @@ export async function scrollAtRest(page: Page) {
 
 /** Waits until the page has hydrated and knows the visitor is signed out (the header's Sign in
  * shows only then), so whatever it does on load has run, nothing showing by then never will, and
- * keys pressed reach its handlers. A cold dev server can take a while. */
+ * keys pressed reach its handlers. A busy run of every worker's browser can take a while. */
 export async function loaded(page: Page) {
   await expect(page.getByTestId("header-sign-in")).toBeAttached({ timeout: 60_000 });
 }
