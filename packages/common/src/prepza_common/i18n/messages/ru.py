@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor не отвечает",
     "The interview isn't ready yet": "Собеседование ещё не готово",
     "The owner can't be changed": "Владельца нельзя изменить",
-    "This key's creator is no longer an owner or admin of the company": "Создатель этого ключа больше не владелец и не администратор компании",
     "This key's person has no Breezy HR company": "У владельца этого ключа нет компании в Breezy HR",
     "This question isn't open": "Этот вопрос не открыт",
     "Today's limit for question checks is reached; the question is checked later.": "Дневной лимит проверки вопросов исчерпан; вопрос будет проверен позже.",

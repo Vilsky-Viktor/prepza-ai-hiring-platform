@@ -13,26 +13,14 @@ from tests.unit.api_keys import call
 from tests.unit.conftest import INTERVIEW
 
 
-def test_a_missing_or_expired_key_or_a_creator_without_access_says_which(
-    client, companies_api, key
-):
+def test_a_missing_or_expired_key_says_which(client, companies_api, key):
     missing = call(client, "GET", "/interviews", key="pz_unknown")
     key.expires_at = datetime.now(UTC) - timedelta(days=1)
     expired = call(client, "GET", "/interviews")
-    key.expires_at = None
-    companies_api["roles"]["u1"] = "viewer"
-    lost = call(client, "GET", "/interviews")
 
-    assert [(item.status_code, item.json()) for item in (missing, expired, lost)] == [
+    assert [(item.status_code, item.json()) for item in (missing, expired)] == [
         (401, {"detail": "Invalid API key", "code": "invalid_api_key"}),
         (401, {"detail": "This API key has expired", "code": "api_key_expired"}),
-        (
-            401,
-            {
-                "detail": "This key's creator is no longer an owner or admin of the company",
-                "code": "key_creator_lost_access",
-            },
-        ),
     ]
 
 

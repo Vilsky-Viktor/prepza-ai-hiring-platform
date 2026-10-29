@@ -5,6 +5,8 @@ from fastapi import HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials
 from firebase_admin import auth as firebase_auth
 from prepza_common.auth.auth import current_user, fresh_user, optional_user, verify
+from prepza_common.auth.key_actor import key_actor
+from prepza_common.auth.service_auth import issue_token
 from prepza_common.config.constants import SIGN_IN_UNAVAILABLE
 
 CLAIMS = {"uid": "ann", "email": "ann@example.com", "email_verified": True, "name": "Ann"}
@@ -145,3 +147,18 @@ def test_a_signed_out_or_bad_request_is_401_but_404_in_the_admin_zone():
             current_user(at(path), CREDENTIALS)
 
         assert signed_out.value.status_code == bad.value.status_code == code
+
+
+def test_an_api_keys_token_from_the_assistant_is_the_key_for_reads_and_changes(monkeypatch):
+    monkeypatch.setenv("SERVICE_SECRET", "own")
+    token = issue_token("mcp", "companies", "own", {"key": "k1", "company": "c1"})
+    credentials = HTTPAuthorizationCredentials(scheme="Bearer", credentials=token)
+    invalid = firebase_auth.InvalidIdTokenError("not firebase", cause=None)
+
+    with mock.patch.object(firebase_auth, "verify_id_token", side_effect=invalid) as checked:
+        changed = current_user(request("POST"), credentials)
+        read = fresh_user(request("GET"), current_user(request("GET"), credentials), credentials)
+
+    assert changed.uid == read.uid == key_actor("k1")
+    # A key has no Firebase sign-in to revoke: a fresh read doesn't ask Firebase again.
+    assert checked.call_count == 2

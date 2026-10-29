@@ -2,6 +2,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Request, Response, status
+from prepza_common.auth.key_actor import key_actor
 from prepza_common.db.paging import PageParams
 
 from api.api.dependencies import needs
@@ -116,10 +117,7 @@ async def get_candidate(
             "(http only on localhost) (`return_url_invalid`)"
         ),
         429: {
-            **refusal(
-                "The key's creator reached their email limits, or the key its rate limit "
-                "(`rate_limited`)"
-            ),
+            **refusal("The key reached its email limits or its rate limit (`rate_limited`)"),
             "headers": RETRY_AFTER,
         },
     },
@@ -131,8 +129,8 @@ async def invite_candidate(
     response: Response,
     idempotency_key: IdempotencyKey = None,
 ) -> Candidate:
-    """Invites the candidate to the interview on behalf of the key's creator and reserves credits
-    for them, with their name if given. By default prepza emails the invitation and the
+    """Invites the candidate to the interview as the key (the action log names it) and reserves
+    credits for them, with their name if given. By default prepza emails the invitation and the
     candidate signs in with that email; with `sign_in` false, your platform sends them to the
     response's `invite_url`, which opens the interview without signing in. With a `return_url`,
     the finished page takes the candidate back to your platform. Retrying is safe: inviting an
@@ -149,7 +147,7 @@ async def invite_candidate(
         invite_id, created = await companies.invite(
             interview_id,
             str(body.email),
-            key.created_by,
+            key_actor(key.id),
             body.name,
             body.return_url,
             body.sign_in,
@@ -190,9 +188,7 @@ async def invite_candidate(
         ),
         422: refusal("The body is invalid (`validation_failed`)"),
         429: {
-            **refusal(
-                "Your company or the key's creator made as many today as it may (`rate_limited`)"
-            ),
+            **refusal("Your company or the key made as many today as it may (`rate_limited`)"),
             "headers": RETRY_AFTER,
         },
         503: refusal(
@@ -207,8 +203,8 @@ async def create_interview(
     response: Response,
     idempotency_key: IdempotencyKey = None,
 ) -> Interview:
-    """Makes an interview from a job description, as the key's creator would. Its questions take
-    a few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web
+    """Makes an interview from a job description, as the key (the action log names it). Its
+    questions take a few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web
     hook event says when it is. Retrying is safe: the same request from the same key within 15
     minutes returns the interview the first one made, with `200`."""
 
@@ -217,7 +213,7 @@ async def create_interview(
     async def create() -> str:
         nonlocal created
         made = await companies.create_interview(
-            key.company_id, body.job_description, body.language, key.created_by
+            key.company_id, body.job_description, body.language, key_actor(key.id)
         )
         created = True
 

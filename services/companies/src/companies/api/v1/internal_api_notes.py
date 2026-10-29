@@ -9,24 +9,24 @@ from companies.core.db import Session
 from companies.repositories import companies
 from companies.schemas.interview_notes import NoteIn, NoteOut
 from companies.services import interview_notes
-from companies.services.access import member_of
+from companies.services.access import trusted_member
 from companies.services.interview_views import company_interview
 
-# An interview's notes through an API key, as `user_id`, the member who made it (the api
-# service checked they still are one).
+# An interview's notes through an API key, as `user_id`, the key itself (key_actor; the api
+# service checked it's the company's).
 router = APIRouter(
     prefix="/internal/companies/{company_id}/interviews/{interview_id}/notes", tags=["internal"]
 )
 
 
 async def key_member(company_id: UUID, interview_id: UUID, user_id: str):
-    """The interview, its company and the key's maker's membership; 404 when any is missing."""
+    """The interview, its company and the key acting in it; 404 when either is missing."""
     interview = await company_interview(company_id, interview_id)
 
     async with Session() as session:
         company = await companies.get(session, company_id)
 
-    member = member_of(company, user_id) if company else None
+    member = trusted_member(company, user_id) if company else None
 
     if member is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Company not found")

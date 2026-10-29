@@ -1,6 +1,7 @@
-"""An interview's notes through the public API: read and added as the key's creator, within the
+"""An interview's notes through the public API: read and added as the key itself, within the
 key's company, a retried add answered with the first note."""
 
+from prepza_common.auth.key_actor import key_actor
 import uuid
 
 import pytest
@@ -68,7 +69,7 @@ def notes_api(monkeypatch, companies_api):
     return state
 
 
-def test_a_key_reads_the_notes_as_its_creator_with_their_authors_names(client, key, notes_api):
+def test_a_key_reads_the_notes_as_itself_with_their_authors_names(client, key, notes_api):
     notes_api["notes"] = [note("Call Lena", pinned=True), note("Left us", name=None)]
 
     response = call(client, "GET", NOTES)
@@ -93,7 +94,7 @@ def test_a_key_reads_the_notes_as_its_creator_with_their_authors_names(client, k
             "edited_at": None,
         },
     ]
-    assert notes_api["asked"] == [("u1", 0, 100)]
+    assert notes_api["asked"] == [(key_actor(key.id), 0, 100)]
 
 
 def test_a_full_page_of_notes_links_the_next_and_the_last_doesnt(client, key, notes_api):
@@ -107,13 +108,13 @@ def test_a_full_page_of_notes_links_the_next_and_the_last_doesnt(client, key, no
     assert next_page(last) is None
 
 
-def test_a_key_adds_a_note_as_its_creator(client, key, notes_api):
+def test_a_key_adds_a_note_as_itself(client, key, notes_api):
     response = call(client, "POST", NOTES, json={"text": "Shortlist five"})
 
     assert response.status_code == 201
     assert response.json()["text"] == "Shortlist five"
     assert response.json()["author"] == "Maria Schmidt"
-    assert notes_api["added"] == [("Shortlist five", "u1")]
+    assert notes_api["added"] == [("Shortlist five", key_actor(key.id))]
 
 
 def test_a_retried_note_is_added_once_and_answered_with_the_first(client, key, notes_api):
@@ -123,7 +124,10 @@ def test_a_retried_note_is_added_once_and_answered_with_the_first(client, key, n
 
     assert (first.status_code, again.status_code, other.status_code) == (201, 200, 201)
     assert again.json() == first.json()
-    assert notes_api["added"] == [("Shortlist five", "u1"), ("Call Lena", "u1")]
+    assert notes_api["added"] == [
+        ("Shortlist five", key_actor(key.id)),
+        ("Call Lena", key_actor(key.id)),
+    ]
 
 
 def test_a_retry_after_the_first_note_was_deleted_finds_nothing(client, key, notes_api):
@@ -134,7 +138,7 @@ def test_a_retry_after_the_first_note_was_deleted_finds_nothing(client, key, not
 
     assert again.status_code == 404
     assert again.json()["detail"] == "Note not found"
-    assert notes_api["added"] == [("Shortlist five", "u1")]
+    assert notes_api["added"] == [("Shortlist five", key_actor(key.id))]
 
 
 @pytest.mark.parametrize("text", ["", "x" * 2001])

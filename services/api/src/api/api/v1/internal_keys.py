@@ -19,6 +19,5 @@ async def verify_key(body: KeyVerifyIn, caller: ServiceCaller) -> VerifiedKeyOut
     return VerifiedKeyOut(
         id=found.id,
         company_id=found.company_id,
-        created_by=found.created_by,
         permissions=found.permissions,
     )

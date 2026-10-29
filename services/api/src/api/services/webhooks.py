@@ -11,12 +11,10 @@ import httpx
 from fastapi import HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from prepza_common.auth.encryption import decrypt
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
 from prepza_common.http.public_urls import resolved_address
 from pydantic import BaseModel
 
 from api.config import settings
-from api.constants.api import API_PAGE
 from api.constants.events import CANDIDATE_REMOVED, INTERVIEW_READY, TEST_EVENT
 from api.core.db import Session
 from api.helpers.public import candidate_of, interview_of
@@ -40,8 +38,7 @@ async def send(
     occurred_at: datetime,
     build: Callable[[], Awaitable[BaseModel | None]],
 ) -> None:
-    """Sends an event to each of the company's web hooks, once, while whoever added it is still
-    an owner or admin; `build` makes its data, or None when there's nothing to tell any more.
+    """Sends an event to each of the company's web hooks, once; `build` makes its data, or None when there's nothing to tell any more.
     Web hooks that already got it are skipped, so a redelivered event reaches only the ones
     that failed. A web hook that doesn't take it is left to the retry job, and the event is
     done: a company's failing endpoint doesn't hold up Pub/Sub for everyone. A paused one
@@ -53,16 +50,6 @@ async def send(
         got = await webhooks.delivered_to(session, [hook.id for hook in working], event_id)
 
     hooks = [hook for hook in working if hook.id not in got]
-    # A web hook works while whoever added it is still an owner or admin, like an API key.
-    editors = {
-        maker: (await companies.access(company_id, maker))["editor"]
-        for maker in {hook.created_by for hook in hooks}
-    }
-
-    for hook in hooks:
-        await mark_stopped(hook, not editors[hook.created_by])
-
-    hooks = [hook for hook in hooks if editors[hook.created_by]]
 
     if not hooks:
         return
@@ -146,25 +133,6 @@ async def test(hook: Webhook) -> bool:
     event_id = str(uuid4())
 
     return await deliver(hook, event_id, body_of(event_id, TEST_EVENT, {}, datetime.now(UTC)))
-
-
-async def mark_stopped(hook: Webhook, stopped: bool) -> None:
-    """A web hook whose member is no longer an owner or admin stops, and the company is told,
-    once; it works again once its member is an editor again. A lost notification is better than
-    a failed delivery."""
-    if hook.stopped == stopped:
-        return
-
-    notice = notification(
-        Recipient.COMPANY,
-        hook.company_id,
-        NotificationKind.WEBHOOK_STOPPED,
-        API_PAGE.format(company_id=hook.company_id),
-        url=hook.url,
-    )
-
-    async with Session.begin() as session:
-        await webhooks.set_stopped(session, hook.id, stopped, notice if stopped else None)
 
 
 async def deliver(hook: Webhook, event_id: str, body: bytes) -> bool:

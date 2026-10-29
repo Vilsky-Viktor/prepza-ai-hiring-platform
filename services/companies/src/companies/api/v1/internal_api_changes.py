@@ -19,8 +19,8 @@ from companies.services import (
 )
 from companies.services.interview_views import company_interview
 
-# What an API key changes, as `user_id`, the owner or admin who made it (the api service
-# checked they still are), and finds by email.
+# What an API key changes, as `user_id`, the key itself (key_actor; the api service checked it's
+# the company's), and finds by email.
 router = APIRouter(prefix="/internal/companies/{company_id}", tags=["internal"])
 
 

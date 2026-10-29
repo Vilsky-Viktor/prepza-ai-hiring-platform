@@ -2,6 +2,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, status
+from prepza_common.auth.key_actor import key_actor
 
 from api.api.dependencies import needs
 from api.config import settings
@@ -48,7 +49,7 @@ async def update_candidate(
     # Both or neither: companies checks every rule before it writes.
     if changes:
         await companies.change_candidate(
-            key.company_id, interview_id, candidate_id, changes, key.created_by
+            key.company_id, interview_id, candidate_id, changes, key_actor(key.id)
         )
 
     found = await companies.candidate(key.company_id, interview_id, candidate_id)
@@ -71,7 +72,7 @@ async def remove_candidate(
     come back. A candidate who started is erased for good, with their answers and results, for
     example when they ask to have their data deleted; one who answered at least one question is
     charged. Your web hooks get `candidate.removed`."""
-    await companies.remove_candidate(key.company_id, interview_id, candidate_id, key.created_by)
+    await companies.remove_candidate(key.company_id, interview_id, candidate_id, key_actor(key.id))
 
 
 @router.post(
@@ -85,7 +86,7 @@ async def remove_candidate(
             "`sign_in` false, so prepza doesn't email them (`invited_without_sign_in`)"
         ),
         429: {
-            **refusal("The key's creator reached their email limits (`rate_limited`)"),
+            **refusal("The key reached its email limits (`rate_limited`)"),
             "headers": RETRY_AFTER,
         },
     },
@@ -97,4 +98,4 @@ async def resend_invite(
 ) -> None:
     """Emails the candidate their invitation again, as a reminder; an expired invitation comes
     back to life for another 30 days."""
-    await companies.resend(key.company_id, interview_id, candidate_id, key.created_by)
+    await companies.resend(key.company_id, interview_id, candidate_id, key_actor(key.id))

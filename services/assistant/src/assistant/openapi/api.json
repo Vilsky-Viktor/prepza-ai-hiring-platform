@@ -104,7 +104,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -168,7 +168,7 @@
      "Interviews"
     ],
     "summary": "Create an interview",
-    "description": "Makes an interview from a job description, as the key's creator would. Its questions take\na few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web\nhook event says when it is. Retrying is safe: the same request from the same key within 15\nminutes returns the interview the first one made, with `200`.\n\nNeeds the `interviews:create` permission.",
+    "description": "Makes an interview from a job description, as the key (the action log names it). Its\nquestions take a few minutes: until `ready` is true, it can't take candidates; the `interview.ready` web\nhook event says when it is. Retrying is safe: the same request from the same key within 15\nminutes returns the interview the first one made, with `200`.\n\nNeeds the `interviews:create` permission.",
     "operationId": "create_interview",
     "security": [
      {
@@ -197,7 +197,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -217,7 +217,7 @@
       }
      },
      "429": {
-      "description": "Your company or the key's creator made as many today as it may (`rate_limited`)",
+      "description": "Your company or the key made as many today as it may (`rate_limited`)",
       "headers": {
        "Retry-After": {
         "description": "How many seconds to wait before trying again",
@@ -314,7 +314,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -499,7 +499,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -574,7 +574,7 @@
      "Candidates"
     ],
     "summary": "Invite a candidate",
-    "description": "Invites the candidate to the interview on behalf of the key's creator and reserves credits\nfor them, with their name if given. By default prepza emails the invitation and the\ncandidate signs in with that email; with `sign_in` false, your platform sends them to the\nresponse's `invite_url`, which opens the interview without signing in. With a `return_url`,\nthe finished page takes the candidate back to your platform. Retrying is safe: inviting an\naddress whose invite is still open, or who already finished, returns that candidate as they\nare (`200`), without another email or credits; an expired invite is sent again. To send an\nopen invite again, use the resend endpoint.\n\nNeeds the `candidates:invite` permission.",
+    "description": "Invites the candidate to the interview as the key (the action log names it) and reserves\ncredits for them, with their name if given. By default prepza emails the invitation and the\ncandidate signs in with that email; with `sign_in` false, your platform sends them to the\nresponse's `invite_url`, which opens the interview without signing in. With a `return_url`,\nthe finished page takes the candidate back to your platform. Retrying is safe: inviting an\naddress whose invite is still open, or who already finished, returns that candidate as they\nare (`200`), without another email or credits; an expired invite is sent again. To send an\nopen invite again, use the resend endpoint.\n\nNeeds the `candidates:invite` permission.",
     "operationId": "invite_candidate",
     "security": [
      {
@@ -615,7 +615,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -635,7 +635,7 @@
       }
      },
      "429": {
-      "description": "The key's creator reached their email limits, or the key its rate limit (`rate_limited`)",
+      "description": "The key reached its email limits or its rate limit (`rate_limited`)",
       "headers": {
        "Retry-After": {
         "description": "How many seconds to wait before trying again",
@@ -763,7 +763,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -888,7 +888,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1006,7 +1006,7 @@
       "description": "Successful Response"
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1116,7 +1116,7 @@
       "description": "Successful Response"
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1136,7 +1136,7 @@
       }
      },
      "429": {
-      "description": "The key's creator reached their email limits (`rate_limited`)",
+      "description": "The key reached its email limits (`rate_limited`)",
       "headers": {
        "Retry-After": {
         "description": "How many seconds to wait before trying again",
@@ -1272,7 +1272,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1346,7 +1346,7 @@
      "Notes"
     ],
     "summary": "Add a note",
-    "description": "Adds a note to the interview on behalf of the key's creator, for your team to read in\nprepza; candidates never see it. Retrying is safe: the same request from the same key within\n15 minutes returns the note the first one added, with `200`.\n\nNeeds the `notes:add` permission.",
+    "description": "Adds a note to the interview as the key (named as its author), for your team to read in\nprepza; candidates never see it. Retrying is safe: the same request from the same key within\n15 minutes returns the note the first one added, with `200`.\n\nNeeds the `notes:add` permission.",
     "operationId": "add_note",
     "security": [
      {
@@ -1387,7 +1387,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1397,7 +1397,7 @@
       }
      },
      "403": {
-      "description": "The API key doesn't have the permission (`missing_permission`) or doesn't allow the address (`ip_not_allowed`), or your company is suspended (`forbidden`)",
+      "description": "The API key doesn't have the permission (`missing_permission`) or doesn't allow the address (`ip_not_allowed`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1407,7 +1407,7 @@
       }
      },
      "429": {
-      "description": "The key's creator added as many notes this hour as they may (`rate_limited`)",
+      "description": "The key added as many notes this hour as it may (`rate_limited`)",
       "headers": {
        "Retry-After": {
         "description": "How many seconds to wait before trying again",
@@ -1455,7 +1455,7 @@
       }
      },
      "409": {
-      "description": "The same request is still running (`request_in_progress`)",
+      "description": "The same request is still running (`request_in_progress`), or your company is suspended (`company_suspended`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1511,7 +1511,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1640,7 +1640,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1720,7 +1720,7 @@
       }
      },
      "401": {
-      "description": "The API key is missing, invalid or expired, or its creator can no longer use it (`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)",
+      "description": "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)",
       "content": {
        "application/json": {
         "schema": {
@@ -3423,11 +3423,6 @@
       "type": "boolean",
       "title": "Failing"
      },
-     "stopped": {
-      "type": "boolean",
-      "title": "Stopped",
-      "default": false
-     },
      "secret": {
       "type": "string",
       "title": "Secret"
@@ -3860,11 +3855,6 @@
      "failing": {
       "type": "boolean",
       "title": "Failing"
-     },
-     "stopped": {
-      "type": "boolean",
-      "title": "Stopped",
-      "default": false
      }
     },
     "type": "object",

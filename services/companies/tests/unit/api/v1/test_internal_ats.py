@@ -3,6 +3,7 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
+from prepza_common.auth.key_actor import key_actor
 from fastapi import HTTPException
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.http.http import bearer
@@ -203,6 +204,17 @@ def test_no_invite_to_an_interview_gone_or_not_ready(client, stored, interview_i
 
     assert (response.status_code, response.json().get("code")) == (code, reason)
     assert stored["invites"] == []
+
+
+def test_the_api_invites_as_the_key_itself_never_a_member(client, stored):
+    """The api service names the key acting (key_actor), which is no member of the company."""
+    actor = key_actor(uuid.uuid4())
+    body = {"email": "cara@example.com", "sender_id": actor}
+    headers = {"Authorization": "Bearer " + issue_token("api", "companies", SECRET)}
+    response = client.post(f"/internal/interviews/{READY.id}/invites", json=body, headers=headers)
+
+    assert response.status_code == 201
+    assert stored["invites"] == [(READY.id, COMPANY.id, actor, "cara@example.com", "api")]
 
 
 @pytest.mark.parametrize("sender", ["vic", "eve"])

@@ -11,6 +11,7 @@ os.environ.setdefault("REDIS_URL", "redis://localhost:6379")
 os.environ.setdefault("SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("COMPANIES_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("API_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
+os.environ.setdefault("LIBRARY_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("OPENAI_API_KEY", "test")
 
 os.environ.setdefault("COMPANIES_URL", "http://companies")

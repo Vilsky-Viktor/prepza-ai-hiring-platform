@@ -156,8 +156,8 @@ async def create_from_template(company: Company, user_id: str, template_id) -> I
 async def create_for_api(
     company_id, user_id: str, text: str, generate_in: str | None
 ) -> InterviewOut:
-    """create, through the public API as `user_id`, the key's maker (the api service checked
-    they still may): refused during the emergency pause, 404 for a company that's gone."""
+    """create, through the public API as `user_id`, the key itself (key_actor): refused during
+    the emergency pause, 404 for a company that's gone."""
     await refuse_if_paused(get_redis(), "interview_generation", company_id, user_id)
 
     async with Session() as session:

@@ -103,7 +103,7 @@ async def side(kind: str) -> Side:
     candidate, _ = await transaction(
         invites.upsert, interview.id, "candidate@example.com", "Backend", company.name, "en"
     )
-    note = await transaction(interview_notes.add, interview, company.members[0].id, "Matrix")
+    note = await transaction(interview_notes.add, interview, company.members[0].id, None, "Matrix")
     ids = {
         "company_id": company.id,
         "note_id": note.id,

@@ -93,7 +93,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor ei vastanud",
     "The interview isn't ready yet": "Intervjuu pole veel valmis",
     "The owner can't be changed": "Omanikku ei saa muuta",
-    "This key's creator is no longer an owner or admin of the company": "Selle võtme looja pole enam ettevõtte omanik ega administraator",
     "This key's person has no Breezy HR company": "Selle võtme omanikul pole Breezy HR-is ettevõtet",
     "This question isn't open": "See küsimus pole avatud",
     "Today's limit for question checks is reached; the question is checked later.": "Tänane küsimuste kontrollimise piirang on täis; küsimus kontrollitakse hiljem.",

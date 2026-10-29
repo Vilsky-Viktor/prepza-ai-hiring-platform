@@ -38,8 +38,6 @@ class NotificationKind(StrEnum):
     ATS_CANNOT_WRITE = "ats_cannot_write"
     # An ATS or Slack connection stopped working and needs reconnecting.
     CONNECTION_BROKEN = "connection_broken"
-    # A web hook stopped: the member who added it is no longer an owner or admin.
-    WEBHOOK_STOPPED = "webhook_stopped"
     # Someone the owner invited joined the company's team.
     MEMBER_JOINED = "member_joined"
     # The owner made this member the company's owner.

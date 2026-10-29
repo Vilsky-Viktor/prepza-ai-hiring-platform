@@ -1,6 +1,7 @@
 from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
+from prepza_common.auth.key_actor import actor_key
 from prepza_common.config.constants import DELETED_USER
 from prepza_common.db.db import delete_in_batches, update_in_batches
 from prepza_common.events.audit_actions import (
@@ -14,7 +15,7 @@ from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from sqlalchemy.orm import aliased
 
-from companies.core.security import REQUEST_KEY, REQUEST_VIA
+from companies.core.security import REQUEST_VIA
 from companies.models.audit import AuditEvent
 
 
@@ -28,8 +29,9 @@ def fields(
     target_label: str | None = None,
 ) -> dict:
     """An action's columns: with the way the request came through (the assistant or an AI app)
-    unless `via` says, and the API key it came with, if any."""
-    key = REQUEST_KEY.get()
+    unless `via` says, and the API key that took it, when `user_id` is a key acting
+    (key_actor)."""
+    key = actor_key(user_id)
 
     return {
         "company_id": company_id,

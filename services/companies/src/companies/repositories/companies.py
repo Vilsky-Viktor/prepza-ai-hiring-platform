@@ -1,5 +1,4 @@
 from datetime import UTC, datetime
-from uuid import UUID
 
 from prepza_common.config.constants import LEGAL_VERSIONS
 from prepza_common.events.deletions import COMPANY_DELETED, CompanyDeleted
@@ -111,10 +110,9 @@ async def list_for_user(
     offset: int,
     limit: int,
     roles: tuple[str, ...] = tuple(Role),
-    only: str | None = None,
 ) -> list[Company]:
     """The user's companies, by name (alphabetically, in any case), only those where their role is
-    one of `roles` (and with `only`, that one company's id at most)."""
+    one of `roles`."""
     query = (
         select(Company)
         .join(Member, Member.company_id == Company.id)
@@ -124,9 +122,6 @@ async def list_for_user(
         .offset(offset)
         .limit(limit)
     )
-
-    if only is not None:
-        query = query.where(Company.id == UUID(only))
 
     return list((await session.scalars(query)).unique())
 

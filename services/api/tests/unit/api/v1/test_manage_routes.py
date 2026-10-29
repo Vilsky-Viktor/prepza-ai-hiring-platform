@@ -99,7 +99,7 @@ def test_the_api_page_shows_which_web_hooks_are_failing(client, companies_api, s
     ]
 
 
-def test_the_api_page_shows_a_web_hook_stopped_when_its_member_is_no_longer_an_editor(
+def test_a_web_hook_added_by_someone_no_longer_an_editor_shows_as_working(
     client, companies_api, stored, public
 ):
     sign_in()
@@ -108,7 +108,8 @@ def test_the_api_page_shows_a_web_hook_stopped_when_its_member_is_no_longer_an_e
     companies_api["roles"]["u2"] = "viewer"
     [shown] = client.get(f"/manage?company_id={COMPANY}").json()["webhooks"]
 
-    assert shown["stopped"] is True
+    assert (shown["url"], shown["failing"]) == ("https://left.example/x", False)
+    assert "stopped" not in shown
 
 
 def test_only_owners_and_admins_see_a_web_hooks_whole_address(

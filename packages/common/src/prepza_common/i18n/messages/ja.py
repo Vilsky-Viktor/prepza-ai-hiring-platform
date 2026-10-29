@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor から応答がありません",
     "The interview isn't ready yet": "面接はまだ準備ができていません",
     "The owner can't be changed": "所有者は変更できません",
-    "This key's creator is no longer an owner or admin of the company": "このキーの作成者は、もう会社の所有者でも管理者でもありません",
     "This key's person has no Breezy HR company": "このキーのユーザーには Breezy HR の会社がありません",
     "This question isn't open": "この問題は回答できる状態ではありません",
     "Today's limit for question checks is reached; the question is checked later.": "本日の問題チェックの上限に達しました。問題は後でチェックされます。",

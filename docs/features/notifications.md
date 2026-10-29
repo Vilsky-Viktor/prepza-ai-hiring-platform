@@ -29,8 +29,7 @@ Only what matters, for every member of a company:
 - an automatic top-up charged or failed,
 - an ATS candidate who couldn't be invited (`ats_not_invited`, see [ATS integrations](ats.md#candidates-from-workable)),
 - an ATS that takes the company's key but refuses the results written back (`ats_cannot_write`, once until the company reconnects or a write goes through; in the bell only),
-- an ATS or Slack connection that stopped working and needs reconnecting (`connection_broken`, once each time it stops; in the bell only, opening its page),
-- an API web hook that stopped because the member who added it is no longer an owner or admin (`webhook_stopped`, once; in the bell only, opening the API page).
+- an ATS or Slack connection that stopped working and needs reconnecting (`connection_broken`, once each time it stops; in the bell only, opening its page).
 
 Companies' verification decisions reach only the owner and admins, one notification each, as viewers can't act on them (see [Companies](companies.md#verification)).
 

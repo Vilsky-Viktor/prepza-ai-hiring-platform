@@ -54,13 +54,14 @@ class AuditEvent(Base):
     # What isn't a person, as it was named then (an interview's title, an ATS's name, a web
     # hook's host), so it still reads once it's gone. People are looked up when the log is read.
     target_label: Mapped[str | None] = mapped_column(String(MAX_TARGET_LABEL))
-    # What the action took away: an API key's narrowed permissions. None otherwise.
+    # What the action took away: an API key's permissions. None otherwise.
     removed: Mapped[list[str] | None] = mapped_column(ARRAY(String(64)))
     # What it was recorded through when not a person in the app: "assistant" (VIA_ASSISTANT)
     # when the in-app assistant read for the user, "mcp" (VIA_MCP) when an AI app they connected
     # did. None otherwise.
     via: Mapped[str | None] = mapped_column(String(32))
-    # Through an AI agent signed in with an API key: the key (the api service's). None otherwise.
+    # An API key that took it, over the API or MCP (the api service's): the key is its own author
+    # then, `user_id` being the key acting (prepza_common.auth.key_actor). None otherwise.
     key_id: Mapped[uuid.UUID | None]
     # The event another service sent it in (prepza_common.events.audit), so a redelivery stores it once;
     # None for companies' own.

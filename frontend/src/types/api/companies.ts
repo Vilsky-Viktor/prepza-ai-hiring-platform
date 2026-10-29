@@ -2374,7 +2374,9 @@ export interface components {
      *     group, who took it (`user_email`, None once they're no longer a member), and what it was
      *     about: `target_kind` and `target` (a candidate's or member's email, an interview's title, an
      *     API key's name, a web hook's host, an integration's name; None for the company itself, or a
-     *     person who's gone), and what it took away (`removed`: an API key's narrowed permissions).
+     *     person who's gone), and what it took away (`removed`: an API key's permissions). An API key
+     *     that took it is named by `key_name`, its name now (None once it was deleted), instead of a
+     *     member.
      */
     ActionOut: {
       /** User Id */
@@ -2385,6 +2387,8 @@ export interface components {
       target_id: string | null
       /** Via */
       via?: string | null
+      /** Key Id */
+      key_id?: string | null
       /**
        * Created At
        * Format: date-time
@@ -2405,6 +2409,8 @@ export interface components {
       target: string | null
       /** Removed */
       removed?: string[] | null
+      /** Key Name */
+      key_name?: string | null
     }
     /**
      * AdminInviteOut
@@ -2520,6 +2526,8 @@ export interface components {
       target_id: string | null
       /** Via */
       via?: string | null
+      /** Key Id */
+      key_id?: string | null
       /**
        * Created At
        * Format: date-time
@@ -3711,7 +3719,8 @@ export interface components {
     /**
      * NoteAuthor
      * @description Who wrote a note: their name (or email without one) and picture; `former` when they're no
-     *     longer a member, with neither.
+     *     longer a member, with neither. An API key that wrote one (`api_key`) has its name as it is
+     *     now, None once it was deleted.
      */
     NoteAuthor: {
       /** Name */
@@ -3723,6 +3732,11 @@ export interface components {
        * @default false
        */
       former: boolean
+      /**
+       * Api Key
+       * @default false
+       */
+      api_key: boolean
     }
     /** NoteIn */
     NoteIn: {

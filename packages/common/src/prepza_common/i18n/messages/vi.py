@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor không phản hồi",
     "The interview isn't ready yet": "Buổi phỏng vấn chưa sẵn sàng",
     "The owner can't be changed": "Không thể thay đổi chủ sở hữu",
-    "This key's creator is no longer an owner or admin of the company": "Người tạo khóa này không còn là chủ sở hữu hoặc quản trị viên của công ty",
     "This key's person has no Breezy HR company": "Người sở hữu khóa này không có công ty trên Breezy HR",
     "This question isn't open": "Câu hỏi này hiện không mở",
     "Today's limit for question checks is reached; the question is checked later.": "Đã đạt giới hạn kiểm tra câu hỏi hôm nay; câu hỏi sẽ được kiểm tra sau.",

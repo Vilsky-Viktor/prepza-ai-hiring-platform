@@ -34,9 +34,6 @@ IP_NOT_ALLOWED = (
     "in prepza, or call from an allowed one."
 )
 MAX_URL_LENGTH = 500
-# How long a key maker's access (still an owner or admin?) is trusted before companies is asked
-# again, in this instance's memory.
-ACCESS_CACHE_SECONDS = 60
 # A key's "last used" is written at most this often.
 LAST_USED_EVERY = timedelta(minutes=1)
 # How long a web hook's endpoint may take to answer, its whole answer included.
@@ -76,9 +73,6 @@ EMAIL_QUERY_SUNSET_AT = datetime(2027, 5, 1, tzinfo=UTC)
 CANDIDATE_LINK = "{site}/companies/{company_id}/interviews/{interview_id}/candidates/{invite_id}"
 # The candidate's own invite link, to send them yourself.
 INVITE_LINK = "{site}/invite/{token}"
-
-# The API page, as a notification opens it.
-API_PAGE = "/companies/{company_id}/integrations/api"
 
 # Each web hook's delivery log keeps its latest sends.
 WEBHOOK_LOG_KEPT = 20

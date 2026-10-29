@@ -1,3 +1,4 @@
+from prepza_common.auth.key_actor import key_actor
 import uuid
 
 import pytest
@@ -63,13 +64,13 @@ def test_a_candidate_who_hasnt_finished_comes_with_their_invite_link():
     assert found.invite_url == "https://prepza.ai/invite/tok"
 
 
-def test_an_invite_goes_out_as_the_keys_creator(client, companies_api, key):
+def test_an_invite_goes_out_as_the_key_itself(client, companies_api, key):
     response = call(
         client, "POST", f"/interviews/{INTERVIEW}/candidates", json={"email": "bob@example.com"}
     )
 
     assert response.status_code == 201
-    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", "u1")]
+    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", key_actor(key.id))]
 
 
 def test_an_invite_passes_its_name_and_a_candidate_reads_with_theirs(client, companies_api, key):

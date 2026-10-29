@@ -136,7 +136,8 @@ def test_a_deleted_company_loses_its_keys_web_hooks_and_their_deliveries(run):
     assert len(others) == 1
 
 
-def test_a_deleted_account_loses_the_keys_and_web_hooks_it_made(run):
+def test_a_deleted_account_leaves_the_keys_and_web_hooks_it_made_to_the_company(run):
+    """They're the company's: they stay, without the account's id, and keep working."""
     company = uuid.uuid4()
 
     async def scenario():
@@ -170,22 +171,28 @@ def test_a_deleted_account_loses_the_keys_and_web_hooks_it_made(run):
         exported = [key.name for key in await transaction(keys.of_user, "gone")]
         deleted = push("user.deleted", {"user_id": "gone", "email": ""}, f"e-{uuid.uuid4()}")
 
-        # Accounts' event, delivered twice: the second deletes nothing more.
+        # Accounts' event, delivered twice: the second changes nothing more.
         async with api() as client:
             for _ in range(2):
                 assert (await client.post("/internal/events", json=deleted)).status_code == 204
 
-        return (
-            exported,
-            [key.name for key in await transaction(keys.of_company, company)],
-            await transaction(webhooks.of_user, "gone"),
-        )
+        left = [(key.name, key.created_by) for key in await transaction(keys.of_company, company)]
+        hooks = [
+            (hook.url, hook.created_by) for hook in await transaction(webhooks.of_company, company)
+        ]
+        still_theirs = await transaction(keys.of_user, "gone")
+        await transaction(keys.remove_company, company)
+        await transaction(webhooks.remove_company, company)
 
-    exported, left, hooks = run(scenario())
+        return exported, left, hooks, still_theirs
+
+    exported, left, hooks, still_theirs = run(scenario())
 
     assert exported == ["Mine"]
-    assert left == ["Theirs"]
-    assert hooks == []
+    assert left == [("Mine", None), ("Theirs", "stays")]
+    assert hooks == [("https://example.com/x", None)]
+    # Their export has none of them any more.
+    assert still_theirs == []
 
 
 def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run, monkeypatch):
@@ -225,3 +232,24 @@ def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run, monke
         )
 
     assert run(scenario()) == (None, None, MAX_KEYS, MAX_WEBHOOKS)
+
+
+def test_a_companys_keys_are_named_as_they_are_now_and_another_companys_never(run):
+    company, other = uuid.uuid4(), uuid.uuid4()
+
+    def add(company_id, name):
+        return transaction(
+            keys.add, company_id, name, "pz_n", uuid.uuid4().hex * 2, "u1", None, READS, [], 10
+        )
+
+    async def scenario():
+        ours, theirs = await add(company, "Zapier"), await add(other, "Make")
+        gone = uuid.uuid4()
+        found = await transaction(keys.names, company, [ours.id, theirs.id, gone])
+
+        for company_id in (company, other):
+            await transaction(keys.remove_company, company_id)
+
+        return found == {ours.id: "Zapier"}
+
+    assert run(scenario())

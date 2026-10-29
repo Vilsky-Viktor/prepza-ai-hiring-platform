@@ -2,6 +2,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, Response, status
+from prepza_common.auth.key_actor import key_actor
 from prepza_common.config.constants import MAX_PAGE_SIZE
 from prepza_common.db.paging import PageParams
 
@@ -32,7 +33,7 @@ async def list_notes(
     """Returns the notes your team wrote on the interview: the pinned one first, then newest
     first. A full page comes with a `Link` header to the next one (`rel="next"`)."""
     found = await companies.notes(
-        key.company_id, interview_id, key.created_by, page.offset, page.limit
+        key.company_id, interview_id, key_actor(key.id), page.offset, page.limit
     )
     listed = [note_of(item) for item in found]
     link_next(request, response, page.offset, page.limit, listed, False)
@@ -60,9 +61,7 @@ async def list_notes(
         ),
         422: refusal("The body is invalid (`validation_failed`)"),
         429: {
-            **refusal(
-                "The key's creator added as many notes this hour as they may (`rate_limited`)"
-            ),
+            **refusal("The key added as many notes this hour as it may (`rate_limited`)"),
             "headers": RETRY_AFTER,
         },
     },
@@ -74,14 +73,16 @@ async def add_note(
     response: Response,
     idempotency_key: IdempotencyKey = None,
 ) -> Note:
-    """Adds a note to the interview on behalf of the key's creator, for your team to read in
+    """Adds a note to the interview as the key (named as its author), for your team to read in
     prepza; candidates never see it. Retrying is safe: the same request from the same key within
     15 minutes returns the note the first one added, with `200`."""
     created = None
 
     async def add() -> str:
         nonlocal created
-        created = await companies.add_note(key.company_id, interview_id, body.text, key.created_by)
+        created = await companies.add_note(
+            key.company_id, interview_id, body.text, key_actor(key.id)
+        )
 
         return created["id"]
 
@@ -94,7 +95,7 @@ async def add_note(
 
     # A retry: the note the first request added, among the newest.
     response.status_code = status.HTTP_200_OK
-    found = await companies.notes(key.company_id, interview_id, key.created_by, 0, MAX_PAGE_SIZE)
+    found = await companies.notes(key.company_id, interview_id, key_actor(key.id), 0, MAX_PAGE_SIZE)
     first = next((item for item in found if item["id"] == note_id), None)
 
     if first is None:

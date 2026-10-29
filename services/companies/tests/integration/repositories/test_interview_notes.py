@@ -22,7 +22,7 @@ async def note(team, role: str, text: str):
     """A note written by `role`'s membership."""
     _, _, member = await factories.as_member(getattr(team, role), team.interview.id)
 
-    return await transaction(interview_notes.add, team.interview, member.id, text)
+    return await transaction(interview_notes.add, team.interview, member.id, None, text)
 
 
 async def pinned(interview_id) -> list[str]:
@@ -92,7 +92,7 @@ def test_each_interview_lists_its_note_count_and_pinned_note(run):
         await note(team, "viewer", "Agreed")
         await transaction(interview_notes.set_pinned, team.interview.id, first.id, True)
         _, _, member = await factories.as_member(team.owner, team.interview.id)
-        await transaction(interview_notes.add, unpinned, member.id, "Maybe")
+        await transaction(interview_notes.add, unpinned, member.id, None, "Maybe")
         listed = await interviews_page(team.company.id, 0, 10)
 
         return {item.id: (item.note_count, item.pinned_note) for item in listed}, {
@@ -116,7 +116,7 @@ def test_notes_go_with_their_interview_and_their_company(run):
         kept = await transaction(interviews.create, team.company.id, uuid.uuid4(), "en", 60)
         _, _, member = await factories.as_member(team.owner, team.interview.id)
         await note(team, "owner", "Goes with the interview")
-        await transaction(interview_notes.add, kept, member.id, "Goes with the company")
+        await transaction(interview_notes.add, kept, member.id, None, "Goes with the company")
         await factories.interview_removed(team.interview.id)
         after_interview = (
             await note_count(interview_id=team.interview.id),

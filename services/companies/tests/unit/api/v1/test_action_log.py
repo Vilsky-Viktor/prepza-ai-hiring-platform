@@ -6,10 +6,12 @@ from datetime import UTC, datetime
 
 import pytest
 from prepza_common.auth.auth import current_user
+from prepza_common.auth.key_actor import key_actor
 from prepza_common.auth.user import User
 from prepza_common.events.audit_actions import AUDIT_RECORDED, AuditAction, AuditGroup, TargetKind
 
 from companies.handlers import dispatch
+from companies.integrations import api_keys
 from companies.main import app
 from companies.models.audit import AuditEvent
 from companies.models.companies import Company, Member
@@ -20,6 +22,8 @@ BOB_ID = uuid.uuid4()
 INVITED_ID = uuid.uuid4()
 URL = f"/companies/{COMPANY_ID}/actions"
 NOW = datetime(2026, 10, 16, 9, 30, tzinfo=UTC)
+# Two API keys that invited candidates: one over the API, renamed since, one over MCP, deleted.
+RENAMED_KEY, DELETED_KEY = uuid.uuid4(), uuid.uuid4()
 
 
 def sign_in(uid):
@@ -31,8 +35,9 @@ def sign_in(uid):
 @pytest.fixture
 def log(monkeypatch):
     """Acme: Ann its owner, Bob an admin, Vic a viewer, and Cid invited but not joined. Its log
-    has Bob's results view of a candidate, Ann's narrowing of an API key, and an action by a
-    member who left. The filters each list asked with are kept."""
+    has Bob's results view of a candidate, Ann's change of an API key's permissions, an action
+    by a member who left, and invites by two API keys (one renamed, one deleted). The filters
+    each list asked with are kept, and the keys whose names were asked for."""
     acme = Company(id=COMPANY_ID, name="Acme", created_at=NOW)
     acme.members = [
         Member(company_id=COMPANY_ID, user_id="ann", invited_email="ann@x.com", role="owner"),
@@ -75,6 +80,20 @@ def log(monkeypatch):
             target_id=gone_id,
             created_at=NOW,
         ),
+        *[
+            AuditEvent(
+                id=uuid.uuid4(),
+                user_id=key_actor(key_id),
+                action=AuditAction.CANDIDATE_INVITED,
+                group=AuditGroup.CANDIDATES,
+                target_kind=TargetKind.CANDIDATE,
+                target_id=candidate_id,
+                via=via,
+                key_id=key_id,
+                created_at=NOW,
+            )
+            for key_id, via in ((RENAMED_KEY, "api"), (DELETED_KEY, "mcp"))
+        ],
     ]
     asked = []
 
@@ -92,10 +111,17 @@ def log(monkeypatch):
     async def target_names(session, company_id, ids):
         return {candidate_id: "cara@example.com"}
 
+    async def key_names(company_id, key_ids):
+        asked.append(("keys", company_id, sorted(key_ids)))
+
+        # The api service: the renamed key by its name now; the deleted one is gone.
+        return {str(RENAMED_KEY): "Zapier v2"}
+
     monkeypatch.setattr(companies, "get", get)
     monkeypatch.setattr(audit, "list_for_company", list_for_company)
     monkeypatch.setattr(action_names, "member_emails", member_emails)
     monkeypatch.setattr(action_names, "target_names", target_names)
+    monkeypatch.setattr(api_keys, "names", key_names)
 
     yield asked
 
@@ -109,7 +135,7 @@ def test_the_owner_reads_who_did_what_and_about_what(client, log):
     assert response.status_code == 200
     assert [
         (row["action"], row["group"], row["user_email"], row["target"], row["via"], row["removed"])
-        for row in response.json()
+        for row in response.json()[:3]
     ] == [
         ("results_viewed", "candidates", "bob@x.com", "cara@example.com", "assistant", None),
         (
@@ -123,6 +149,22 @@ def test_the_owner_reads_who_did_what_and_about_what(client, log):
         # A former member and a deleted candidate: nobody's email is kept.
         ("candidate_deleted", "candidates", None, None, None, None),
     ]
+
+
+def test_an_api_key_is_its_own_author_named_as_it_is_now(client, log):
+    """Never a person: the key by its name now (None once deleted), and the way it came."""
+    sign_in("ann")
+    rows = client.get(URL).json()
+
+    assert [(row["user_email"], row["key_id"], row["key_name"], row["via"]) for row in rows] == [
+        ("bob@x.com", None, None, "assistant"),
+        ("ann@x.com", None, None, None),
+        (None, None, None, None),
+        (None, str(RENAMED_KEY), "Zapier v2", "api"),
+        (None, str(DELETED_KEY), None, "mcp"),
+    ]
+    # Their names asked for at once.
+    assert log[-1] == ("keys", COMPANY_ID, sorted([RENAMED_KEY, DELETED_KEY]))
 
 
 @pytest.mark.parametrize(("uid", "code"), [("bob", 403), ("vic", 403), ("mallory", 404)])
@@ -150,7 +192,9 @@ def test_the_filters_go_to_the_log_with_a_member_as_their_user(client, log):
             datetime(2026, 10, 1, tzinfo=UTC),
             datetime(2026, 10, 17, tzinfo=UTC),
         ),
-        (0, log[1][1], None, None, None, None),
+        ("keys", COMPANY_ID, sorted([RENAMED_KEY, DELETED_KEY])),
+        (0, log[2][1], None, None, None, None),
+        ("keys", COMPANY_ID, sorted([RENAMED_KEY, DELETED_KEY])),
     ]
 
 

@@ -83,26 +83,18 @@ def test_a_redelivered_event_reaches_only_the_web_hooks_that_failed_and_keeps_on
     ]
 
 
-def test_a_web_hook_added_by_someone_no_longer_an_editor_gets_nothing(endpoints, companies_api):
-    endpoints["hook"]("https://kept.example/x")
-    endpoints["hook"]("https://left.example/x", maker="u2")
+def test_a_web_hook_is_the_companys_whoever_added_it(endpoints, companies_api):
+    """One added by a member now a viewer, or gone (their account deleted), still gets events."""
+    endpoints["hook"]("https://viewer.example/x", maker="u2")
+    endpoints["hook"]("https://gone.example/x", maker=None)
     companies_api["roles"]["u2"] = "viewer"
 
     finish()
-    finish("e2")
 
-    assert [item[0] for item in endpoints["posted"]] == ["https://kept.example/x"] * 2
-    # The company is told once, on the API page.
-    [told] = endpoints["told"]
-    assert (told["kind"], told["data"]) == ("webhook_stopped", {"url": "https://left.example/x"})
-    assert told["link"].endswith("/integrations/api")
-
-    # Its member is an admin again: it works again.
-    companies_api["roles"]["u2"] = "admin"
-    finish("e3")
-
-    assert "https://left.example/x" in [item[0] for item in endpoints["posted"]]
-    assert not endpoints["hooks"][1].stopped
+    assert sorted(item[0] for item in endpoints["posted"]) == [
+        "https://gone.example/x",
+        "https://viewer.example/x",
+    ]
 
 
 def test_without_web_hooks_companies_isnt_asked(endpoints, companies_api):

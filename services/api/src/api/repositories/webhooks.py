@@ -1,9 +1,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.events import audit, outbox
+from prepza_common.events import audit
 from prepza_common.events.audit_actions import AuditAction, TargetKind
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -27,11 +26,8 @@ async def of_company(session: AsyncSession, company_id: uuid.UUID) -> list[Webho
 
 
 async def working_count(session: AsyncSession, company_id: uuid.UUID) -> int:
-    """How many of the company's web hooks get its events: neither paused after failing nor
-    stopped because the member who added it is no longer an owner or admin."""
-    query = select(func.count()).where(
-        Webhook.company_id == company_id, ~Webhook.failing, ~Webhook.stopped
-    )
+    """How many of the company's web hooks get its events: those not paused after failing."""
+    query = select(func.count()).where(Webhook.company_id == company_id, ~Webhook.failing)
 
     return await session.scalar(query)
 
@@ -165,8 +161,10 @@ async def of_user(session: AsyncSession, user_id: str) -> list[Webhook]:
     return list(await session.scalars(select(Webhook).where(Webhook.created_by == user_id)))
 
 
-async def remove_user(session: AsyncSession, user_id: str) -> None:
-    await session.execute(delete(Webhook).where(Webhook.created_by == user_id))
+async def forget_user(session: AsyncSession, user_id: str) -> None:
+    """The web hooks the user added stay the company's, without the user's id."""
+    query = update(Webhook).where(Webhook.created_by == user_id).values(created_by=None)
+    await session.execute(query)
 
 
 async def delivered_to(
@@ -212,22 +210,3 @@ async def set_failing(session: AsyncSession, webhook_id: uuid.UUID, failing: boo
 
     if failing:
         await session.execute(delete(WebhookRetry).where(WebhookRetry.webhook_id == webhook_id))
-
-
-async def set_stopped(
-    session: AsyncSession, webhook_id: uuid.UUID, stopped: bool, notice: dict | None = None
-) -> bool:
-    """True when it changed just now: of several events at once, only one tells the company,
-    with `notice` (a notification's data), sent through the outbox with the change."""
-    query = (
-        update(Webhook)
-        .where(Webhook.id == webhook_id, Webhook.stopped.is_not(stopped))
-        .values(stopped=stopped)
-        .returning(Webhook.id)
-    )
-    changed = await session.scalar(query)
-
-    if changed is not None and notice is not None:
-        outbox.add(session, OutboxEvent, NOTIFICATION_REQUESTED, notice)
-
-    return changed is not None

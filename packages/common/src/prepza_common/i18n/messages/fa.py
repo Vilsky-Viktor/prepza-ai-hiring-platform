@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor پاسخ نداد",
     "The interview isn't ready yet": "مصاحبه هنوز آماده نیست",
     "The owner can't be changed": "مالک را نمی‌توان تغییر داد",
-    "This key's creator is no longer an owner or admin of the company": "سازندهٔ این کلید دیگر مالک یا مدیر شرکت نیست",
     "This key's person has no Breezy HR company": "صاحب این کلید در Breezy HR شرکتی ندارد",
     "This question isn't open": "این پرسش باز نیست",
     "Today's limit for question checks is reached; the question is checked later.": "سقف امروز برای بررسی پرسش‌ها پر شده است؛ پرسش بعداً بررسی می‌شود.",

@@ -210,5 +210,18 @@ async def of_user(session: AsyncSession, user_id: str) -> list[ApiKey]:
     return list(await session.scalars(select(ApiKey).where(ApiKey.created_by == user_id)))
 
 
-async def remove_user(session: AsyncSession, user_id: str) -> None:
-    await session.execute(delete(ApiKey).where(ApiKey.created_by == user_id))
+async def forget_user(session: AsyncSession, user_id: str) -> None:
+    """The keys the user made stay the company's, without the user's id."""
+    query = update(ApiKey).where(ApiKey.created_by == user_id).values(created_by=None)
+    await session.execute(query)
+
+
+async def names(
+    session: AsyncSession, company_id: uuid.UUID, key_ids: list[uuid.UUID]
+) -> dict[uuid.UUID, str]:
+    """The names the company's keys with those ids have now; deleted ones are left out."""
+    query = select(ApiKey.id, ApiKey.name).where(
+        ApiKey.company_id == company_id, ApiKey.id.in_(key_ids)
+    )
+
+    return {key_id: name for key_id, name in await session.execute(query)}

@@ -131,7 +131,8 @@ def test_after_days_of_failing_the_web_hook_is_paused_until_a_test_event_goes_th
     assert endpoints["posted"][-1][1]["id"] == "e3"
 
 
-def test_an_event_with_nowhere_to_go_any_more_is_dropped_unsent(endpoints, companies_api):
+def test_an_event_that_got_there_since_is_dropped_unsent(endpoints, companies_api):
+    """Whoever added a web hook doesn't matter: one added by a member now a viewer is sent to."""
     left = failed_once(endpoints, "https://left.example/x")
     got = failed_once(endpoints, "https://got.example/x")
     endpoints["failing"].clear()
@@ -142,7 +143,7 @@ def test_an_event_with_nowhere_to_go_any_more_is_dropped_unsent(endpoints, compa
     due(endpoints, got)
 
     assert run() == 2
-    assert endpoints["posted"] == []
+    assert [item[0] for item in endpoints["posted"]] == ["https://left.example/x"]
     assert endpoints["retries"] == {}
 
 

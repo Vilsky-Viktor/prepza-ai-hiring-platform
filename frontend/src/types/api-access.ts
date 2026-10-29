@@ -22,8 +22,6 @@ export type ApiWebhook = {
   created_at: string
   // Events stopped reaching it after days of retries; the next one it takes clears this.
   failing: boolean
-  // The member who added it is no longer an owner or admin: it gets no events.
-  stopped: boolean
 }
 
 // A send in a web hook's delivery log; `result` is "delivered", "skipped", the status the

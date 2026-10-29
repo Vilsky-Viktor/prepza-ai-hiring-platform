@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor yanıt vermedi",
     "The interview isn't ready yet": "Mülakat henüz hazır değil",
     "The owner can't be changed": "Sahip değiştirilemez",
-    "This key's creator is no longer an owner or admin of the company": "Bu anahtarı oluşturan kişi artık şirketin sahibi veya yöneticisi değil",
     "This key's person has no Breezy HR company": "Bu anahtarın sahibinin Breezy HR'da şirketi yok",
     "This question isn't open": "Bu soru açık değil",
     "Today's limit for question checks is reached; the question is checked later.": "Bugünkü soru kontrolü sınırına ulaşıldı; soru daha sonra kontrol edilecek.",

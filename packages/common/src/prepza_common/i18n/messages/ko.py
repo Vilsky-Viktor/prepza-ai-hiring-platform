@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor에서 응답이 없습니다",
     "The interview isn't ready yet": "면접이 아직 준비되지 않았습니다",
     "The owner can't be changed": "소유자는 변경할 수 없습니다",
-    "This key's creator is no longer an owner or admin of the company": "이 키를 만든 사람은 더 이상 회사의 소유자나 관리자가 아닙니다",
     "This key's person has no Breezy HR company": "이 키의 사용자에게 Breezy HR 회사가 없습니다",
     "This question isn't open": "이 문제는 열려 있지 않습니다",
     "Today's limit for question checks is reached; the question is checked later.": "오늘의 문제 검토 한도에 도달했습니다. 문제는 나중에 검토됩니다.",

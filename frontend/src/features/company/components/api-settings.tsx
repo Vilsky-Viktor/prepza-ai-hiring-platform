@@ -182,12 +182,10 @@ export function ApiWebhooks({
           details={
             <>
               {t.rich("added", localTime.dateValues(hook.created_at))}
-              {(hook.stopped || hook.failing) && (
+              {hook.failing && (
                 <>
                   <Dot />
-                  <span className="text-destructive">
-                    {t(hook.stopped ? "stopped" : "failing")}
-                  </span>
+                  <span className="text-destructive">{t("failing")}</span>
                 </>
               )}
             </>

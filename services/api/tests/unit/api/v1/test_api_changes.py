@@ -1,3 +1,4 @@
+from prepza_common.auth.key_actor import key_actor
 import asyncio
 
 import pytest
@@ -48,7 +49,7 @@ def changes(monkeypatch, companies_api):
     return done
 
 
-def test_a_key_makes_an_interview_as_its_creator_once_per_idempotency_key(
+def test_a_key_makes_an_interview_as_itself_once_per_idempotency_key(
     client,
     key,
     changes,
@@ -60,7 +61,7 @@ def test_a_key_makes_an_interview_as_its_creator_once_per_idempotency_key(
     # The retry made nothing new.
     assert (first.status_code, again.status_code) == (201, 200)
     assert first.json()["id"] == str(INTERVIEW)
-    assert changes == [("create_interview", COMPANY, "Backend developer", "de", "u1")]
+    assert changes == [("create_interview", COMPANY, "Backend developer", "de", key_actor(key.id))]
 
 
 def test_an_invite_retried_with_its_idempotency_key_goes_out_once(
@@ -77,7 +78,7 @@ def test_an_invite_retried_with_its_idempotency_key_goes_out_once(
     assert (first.status_code, again.status_code) == (201, 200)
     assert first.json()["id"] == again.json()["id"]
 
-    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", "u1")]
+    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", key_actor(key.id))]
 
 
 def test_a_retried_interview_without_a_key_is_made_once_and_another_one_again(client, key, changes):
@@ -101,7 +102,7 @@ def test_a_retried_invite_without_a_key_returns_the_candidate_as_they_are(
 
     assert (first.status_code, again.status_code) == (201, 200)
     assert first.json()["id"] == again.json()["id"]
-    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", "u1")]
+    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", key_actor(key.id))]
 
 
 def test_a_key_used_again_for_another_request_is_refused(client, companies_api, key, changes):
@@ -111,7 +112,7 @@ def test_a_key_used_again_for_another_request_is_refused(client, companies_api, 
 
     assert reused.status_code == 422
     assert reused.json()["detail"] == IDEMPOTENCY_KEY_REUSED
-    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", "u1")]
+    assert companies_api["sent"] == [(INTERVIEW, "bob@example.com", key_actor(key.id))]
 
 
 def test_a_failed_request_frees_its_idempotency_key(client, companies_api, key, changes):
@@ -143,11 +144,11 @@ def test_a_candidate_is_renamed_given_extra_time_resent_and_removed(client, key,
             INTERVIEW,
             CANDIDATE,
             {"name": "Anna", "extra_time": 25},
-            "u1",
+            key_actor(key.id),
         ),
-        ("change_candidate", COMPANY, INTERVIEW, CANDIDATE, {"name": ""}, "u1"),
-        ("resend", COMPANY, INTERVIEW, CANDIDATE, "u1"),
-        ("remove_candidate", COMPANY, INTERVIEW, CANDIDATE, "u1"),
+        ("change_candidate", COMPANY, INTERVIEW, CANDIDATE, {"name": ""}, key_actor(key.id)),
+        ("resend", COMPANY, INTERVIEW, CANDIDATE, key_actor(key.id)),
+        ("remove_candidate", COMPANY, INTERVIEW, CANDIDATE, key_actor(key.id)),
     ]
 
 

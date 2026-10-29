@@ -9,8 +9,7 @@ from assistant.core.security import service_token
 
 async def verify(key: str, ip: str | None) -> dict | None:
     """The api service's check of a company's API key used from `ip`, as the API checks it,
-    counted against the company's API limit: its id, company_id, created_by (the member it acts
-    as) and permissions. None for a key that doesn't work; the api's 403 for an address the key
+    counted against the company's API limit: its id, company_id and permissions. None for a key that doesn't work; the api's 403 for an address the key
     doesn't allow, and over the limit its 429 with its Retry-After."""
     response = await http.get_client().post(
         settings.api_url + VERIFY_KEY_PATH,

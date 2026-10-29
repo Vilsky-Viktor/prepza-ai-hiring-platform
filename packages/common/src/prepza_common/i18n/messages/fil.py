@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Hindi sumagot ang Teamtailor",
     "The interview isn't ready yet": "Hindi pa handa ang interview",
     "The owner can't be changed": "Hindi puwedeng palitan ang may-ari",
-    "This key's creator is no longer an owner or admin of the company": "Hindi na may-ari o admin ng kumpanya ang gumawa ng key na ito",
     "This key's person has no Breezy HR company": "Walang kumpanya sa Breezy HR ang may-ari ng key na ito",
     "This question isn't open": "Hindi bukas ang tanong na ito",
     "Today's limit for question checks is reached; the question is checked later.": "Naabot na ang limit ngayong araw sa pag-check ng mga tanong; mamaya na iche-check ang tanong.",

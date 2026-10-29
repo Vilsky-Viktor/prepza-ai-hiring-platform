@@ -47,7 +47,6 @@ export const NOTIFICATION_LOOKS: Record<
   ats_not_invited: { icon: UserXIcon, alert: true },
   ats_cannot_write: { icon: PencilOffIcon, alert: true },
   connection_broken: { icon: UnplugIcon, alert: true },
-  webhook_stopped: { icon: UnplugIcon, alert: true },
   member_joined: { icon: UserPlusIcon, alert: false },
   ownership_received: { icon: CrownIcon, alert: false },
   news: { icon: NewspaperIcon, alert: false },

@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor ไม่ตอบสนอง",
     "The interview isn't ready yet": "การสัมภาษณ์ยังไม่พร้อม",
     "The owner can't be changed": "ไม่สามารถเปลี่ยนเจ้าของได้",
-    "This key's creator is no longer an owner or admin of the company": "ผู้สร้างคีย์นี้ไม่ได้เป็นเจ้าของหรือผู้ดูแลของบริษัทแล้ว",
     "This key's person has no Breezy HR company": "ผู้ใช้ของคีย์นี้ไม่มีบริษัทใน Breezy HR",
     "This question isn't open": "คำถามนี้ไม่ได้เปิดอยู่",
     "Today's limit for question checks is reached; the question is checked later.": "ถึงขีดจำกัดการตรวจคำถามของวันนี้แล้ว คำถามจะได้รับการตรวจภายหลัง",

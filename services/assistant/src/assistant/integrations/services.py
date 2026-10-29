@@ -1,7 +1,12 @@
 from contextvars import ContextVar
 
 import httpx
-from prepza_common.config.constants import ASSISTANT_HEADER, REFERRAL_COOKIE, VIA_ASSISTANT
+from prepza_common.config.constants import (
+    ASSISTANT_HEADER,
+    REFERRAL_COOKIE,
+    VIA_ASSISTANT,
+    VIA_MCP,
+)
 from prepza_common.http import http
 from prepza_common.http.http import bearer
 
@@ -10,7 +15,8 @@ from assistant.constants.tool_calls import REFERRAL_CODE, SERVICE_URLS, TOOL_TIM
 from assistant.core.security import service_token
 
 # For the MCP call being handled when an AI agent signed in with an API key: the key's company
-# and id, which companies' X-Assistant header carries (it refuses any other company).
+# and id, which companies' X-Assistant header carries (it refuses any other company), and which
+# each call's own token carries, as the key acts as itself.
 KEY_CLAIMS: ContextVar[dict | None] = ContextVar("key_claims", default=None)
 
 
@@ -33,13 +39,16 @@ async def send(
     via: str = VIA_ASSISTANT,
     referral: str | None = None,
 ) -> httpx.Response:
-    """A call to another service's user-facing route as the user, in their language: a read, or
-    a write the user confirmed. Every call carries the assistant's header, signed for companies,
+    """A call to another service's user-facing route as the user (or the API key), in their
+    language: a read, or a write the user confirmed. Every call carries the assistant's header, signed for companies,
     naming what it came through (`via`: the assistant or an AI app): companies audits it as such
     and refuses an AI app the company doesn't allow; the other services pass it on to companies'
     access check, which refuses alike."""
-    headers = {**bearer(token), "Accept-Language": language}
-    headers[ASSISTANT_HEADER] = service_token("companies", via, KEY_CLAIMS.get())
+    claims = KEY_CLAIMS.get()
+    # An AI agent signed in with an API key calls as the key: a token signed for the service.
+    signed = service_token(service, VIA_MCP, claims) if claims else token
+    headers = {**bearer(signed), "Accept-Language": language}
+    headers[ASSISTANT_HEADER] = service_token("companies", via, claims)
 
     # The referral link the user came through (their browser's cookie): a company the
     # assistant creates for them counts for the referrer, as one made on the site does.

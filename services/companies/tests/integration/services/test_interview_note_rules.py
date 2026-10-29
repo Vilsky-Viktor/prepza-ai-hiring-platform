@@ -1,11 +1,12 @@
 """What guards an interview's notes, against the real database and Redis: a suspended company's
 notes are read, not changed (409 with its code); a member's hourly notes (429); each change's
-line in the action log, never the note's text; and the api service's routes, as the key's maker."""
+line in the action log, never the note's text; and the api service's routes, as the key itself."""
 
 import uuid
 
 import httpx
 import pytest
+from prepza_common.auth.key_actor import key_actor
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.events.audit_actions import AuditAction, TargetKind
 from prepza_common.http.http import bearer
@@ -17,7 +18,7 @@ from companies.config import settings
 from companies.constants import error_codes
 from companies.constants.invites import COMPANY_SUSPENDED
 from companies.core.db import Session
-from companies.integrations import accounts
+from companies.integrations import accounts, api_keys
 from companies.main import app
 from companies.models.audit import AuditEvent
 from companies.repositories import superadmin_companies
@@ -145,7 +146,7 @@ def test_each_change_is_logged_without_the_notes_text(run):
 
 
 async def api_call(method: str, team, user_id: str, **kwargs) -> httpx.Response:
-    """The api service's call for an API key made by `user_id`."""
+    """The api service's call as `user_id`, the key acting (key_actor)."""
     token = bearer(issue_token("api", "companies", settings.service_secret))
     url = f"/internal/companies/{team.company.id}/interviews/{team.interview.id}/notes"
     transport = httpx.ASGITransport(app=app)
@@ -156,32 +157,48 @@ async def api_call(method: str, team, user_id: str, **kwargs) -> httpx.Response:
         )
 
 
-def test_the_api_reads_and_writes_notes_as_the_keys_maker(run):
+def test_the_api_reads_and_writes_notes_as_the_key_itself(run, monkeypatch):
+    """No member: the note is the key's, named as it is now; another key may delete and pin it
+    (an admin's), not edit it; someone who's no member gets nothing."""
+    writer, reader = uuid.uuid4(), uuid.uuid4()
+
+    async def names(company_id, key_ids):
+        return {str(writer): "Zapier"}
+
+    monkeypatch.setattr(api_keys, "names", names)
+
     async def scenario():
         team = await factories.team("api")
-        added = await api_call("POST", team, team.viewer, json={"text": "  Through the API  "})
-        listed = await api_call("GET", team, team.owner)
+        body = {"text": "  Through the API  "}
+        added = await api_call("POST", team, key_actor(writer), json=body)
+        listed = await api_call("GET", team, key_actor(reader))
         stranger = await api_call("POST", team, f"gone-{uuid.uuid4()}", json={"text": "No"})
 
         async with Session() as session:
-            via = await session.scalar(
-                select(AuditEvent.via).where(
-                    AuditEvent.company_id == team.company.id,
-                    AuditEvent.action == AuditAction.NOTE_ADDED,
+            logged = (
+                await session.execute(
+                    select(AuditEvent.user_id, AuditEvent.key_id, AuditEvent.via).where(
+                        AuditEvent.company_id == team.company.id,
+                        AuditEvent.action == AuditAction.NOTE_ADDED,
+                    )
                 )
-            )
+            ).all()
 
-        return team, added, listed, stranger, via
+        return added, listed, stranger, logged
 
-    team, added, listed, stranger, via = run(scenario())
+    added, listed, stranger, logged = run(scenario())
 
     assert added.status_code == 201
     assert (added.json()["text"], added.json()["can_edit"]) == ("Through the API", True)
-    assert added.json()["author"]["name"] == f"{team.viewer}@example.com"
-    # The owner sees the viewer's note, may delete and pin it, not edit it.
+    assert added.json()["author"] == {
+        "name": "Zapier",
+        "photo_url": None,
+        "former": False,
+        "api_key": True,
+    }
     assert [
         (item["text"], item["can_edit"], item["can_delete"], item["can_pin"])
         for item in listed.json()
     ] == [("Through the API", False, True, True)]
     assert stranger.status_code == 404
-    assert via == "api"
+    assert [tuple(row) for row in logged] == [(key_actor(writer), writer, "api")]

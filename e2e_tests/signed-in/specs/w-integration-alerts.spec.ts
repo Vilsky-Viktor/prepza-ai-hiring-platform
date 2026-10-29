@@ -32,18 +32,15 @@ async function bellAlert(owner: Page, companyId: string, page: string, named: st
 }
 
 // The company's bell says, in red, when an integration stopped working, and opens its page to
-// reconnect: an ATS that takes the key but refuses the results written back, a connection that
-// stopped working (Slack's web hook gone, an ATS key revoked), and a web hook whose member is no
-// longer an owner or admin.
-test("the bell says when an ATS, Slack or a web hook stopped working", async ({ signInAs }) => {
+// reconnect: an ATS that takes the key but refuses the results written back, and a connection
+// that stopped working (Slack's web hook gone, an ATS key revoked).
+test("the bell says when an ATS or Slack stopped working", async ({ signInAs }) => {
   const owner = await signInAs(ownerEmail());
   const company = await createCompanyHere(owner);
   const integrations = `/companies/${company.id}/integrations`;
-  const url = "https://example.com/prepza";
   const alerts = [
     { kind: "ats_cannot_write", page: `${integrations}/recruitee`, named: "Recruitee", data: { ats: "Recruitee" } },
     { kind: "connection_broken", page: `${integrations}/slack`, named: "Slack", data: { name: "Slack", integration: "slack" } },
-    { kind: "webhook_stopped", page: `${integrations}/api`, named: url, data: { url } },
   ];
 
   for (const { kind, page, data } of alerts) {

@@ -2,6 +2,7 @@ from uuid import UUID
 
 from fastapi import HTTPException, status
 from prepza_common.auth.auth import CurrentUser
+from prepza_common.auth.key_actor import actor_key
 from prepza_common.config.constants import VIA_MCP
 
 from companies.constants.ai_apps import AI_APPS_OFF, KEY_OTHER_COMPANY
@@ -14,7 +15,7 @@ from companies.constants.invites import (
 )
 from companies.constants.roles import EDITORS, Role
 from companies.core.db import Session
-from companies.core.security import REQUEST_COMPANY, REQUEST_VIA
+from companies.core.security import REQUEST_COMPANY, REQUEST_KEY, REQUEST_VIA
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
@@ -69,7 +70,42 @@ def suspension_refusal(company: Company) -> str | None:
 
 
 def member_of(company: Company, user_id: str) -> Member | None:
-    return next((item for item in company.members if item.user_id == user_id), None)
+    """The user's membership; for an AI agent signed in with an API key, the key acting in its
+    own company (key_member)."""
+    found = next((item for item in company.members if item.user_id == user_id), None)
+
+    if found is None and key_company(user_id) == str(company.id):
+        return key_member(company, user_id)
+
+    return found
+
+
+def key_company(user_id: str) -> str | None:
+    """The one company an AI agent signed in with an API key may reach, when `user_id` is that
+    key acting (the assistant's signed X-Assistant header names both); None for a person."""
+    key = actor_key(user_id)
+
+    if key is not None and key == REQUEST_KEY.get():
+        return REQUEST_COMPANY.get()
+
+    return None
+
+
+def key_member(company: Company, user_id: str) -> Member:
+    """An API key acting in its company: not a person and never saved, an admin for the access
+    checks. The key's own permissions decided what it may call; who made it doesn't matter."""
+    return Member(company_id=company.id, user_id=user_id, role=Role.ADMIN, invited_email="")
+
+
+def trusted_member(company: Company, user_id: str) -> Member | None:
+    """member_of for another service's call naming who acts (the api checked the key it names
+    is the company's), so a key acting needs no header of its own."""
+    found = member_of(company, user_id)
+
+    if found is None and actor_key(user_id) is not None:
+        return key_member(company, user_id)
+
+    return found
 
 
 def can_edit(member: Member) -> bool:

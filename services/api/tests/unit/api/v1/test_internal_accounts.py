@@ -13,21 +13,21 @@ async def nothing(session, user_id):
     return []
 
 
-def test_a_deleted_account_takes_its_keys_web_hooks_and_waiting_results_and_exports_them(
+def test_a_deleted_account_leaves_its_keys_and_web_hooks_takes_waiting_results_and_exports(
     client, monkeypatch
 ):
     removed = []
 
-    async def remove_user(session, user_id):
-        removed.append(user_id)
+    async def forget_user(session, user_id):
+        removed.append(("forgotten", user_id))
 
-    monkeypatch.setattr(keys, "remove_user", remove_user)
-    monkeypatch.setattr(webhooks, "remove_user", remove_user)
+    monkeypatch.setattr(keys, "forget_user", forget_user)
+    monkeypatch.setattr(webhooks, "forget_user", forget_user)
     monkeypatch.setattr(keys, "of_user", nothing)
     monkeypatch.setattr(webhooks, "of_user", nothing)
 
     async def remove_email(session, email):
-        removed.append(email)
+        removed.append(("removed", email))
 
     monkeypatch.setattr(webhook_retries, "remove_email", remove_email)
 
@@ -40,6 +40,7 @@ def test_a_deleted_account_takes_its_keys_web_hooks_and_waiting_results_and_expo
     )
 
     assert deleted.status_code == 204
-    # Their keys and web hooks, and their results as a candidate waiting to be sent again.
-    assert removed == ["ann", "ann", "ann@example.com"]
+    # Their keys and web hooks stay the company's, without their id; their results as a
+    # candidate waiting to be sent again go.
+    assert removed == [("forgotten", "ann"), ("forgotten", "ann"), ("removed", "ann@example.com")]
     assert exported.json() == {"api_keys": [], "webhooks": []}

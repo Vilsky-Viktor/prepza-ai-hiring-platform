@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor tidak merespons",
     "The interview isn't ready yet": "Wawancara belum siap",
     "The owner can't be changed": "Pemilik tidak bisa diubah",
-    "This key's creator is no longer an owner or admin of the company": "Pembuat kunci ini bukan lagi pemilik atau admin perusahaan",
     "This key's person has no Breezy HR company": "Pemilik kunci ini tidak punya perusahaan di Breezy HR",
     "This question isn't open": "Soal ini tidak terbuka",
     "Today's limit for question checks is reached; the question is checked later.": "Batas pemeriksaan soal hari ini sudah tercapai; soal akan diperiksa nanti.",

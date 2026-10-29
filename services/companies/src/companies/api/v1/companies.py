@@ -32,7 +32,13 @@ from companies.services import (
     credits,
     menu_counts,
 )
-from companies.services.access import can_edit, is_owner, require_company, require_editor
+from companies.services.access import (
+    can_edit,
+    is_owner,
+    member_of,
+    require_company,
+    require_editor,
+)
 from companies.services.verification import verify_by_email
 
 router = APIRouter(prefix="/companies", tags=["companies"])
@@ -41,7 +47,7 @@ router = APIRouter(prefix="/companies", tags=["companies"])
 def company_out(
     company: Company, user_id: str, language: str, interview_count: int = 0
 ) -> CompanyOut:
-    member = next(item for item in company.members if item.user_id == user_id)
+    member = member_of(company, user_id)
 
     return CompanyOut(
         id=company.id,

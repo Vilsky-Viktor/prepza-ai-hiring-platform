@@ -129,7 +129,6 @@ you don't know by its HTTP status.
 |---|---|---|
 | `invalid_api_key` | 401 | The key is missing or not a key |
 | `api_key_expired` | 401 | The key has expired |
-| `key_creator_lost_access` | 401 | The key's creator is no longer an owner or admin |
 | `ip_not_allowed` | 403 | The key doesn't allow the address the request came from |
 | `missing_permission` | 403 | The key lacks the endpoint's permission |
 | `not_found` | 404 | No such interview or candidate in your company |

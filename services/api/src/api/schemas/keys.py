@@ -14,9 +14,8 @@ class KeyVerifyIn(BaseModel):
 
 
 class VerifiedKeyOut(BaseModel):
-    """A working key: its company, the member it acts as, and what it may do."""
+    """A working key: its company and what it may do. It acts as itself, never its maker."""
 
     id: UUID
     company_id: UUID
-    created_by: str
     permissions: list[Permission]

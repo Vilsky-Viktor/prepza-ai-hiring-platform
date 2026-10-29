@@ -6,6 +6,7 @@ import logging
 
 import httpx
 from fastapi import HTTPException, status
+from prepza_common.auth.key_actor import actor_key
 from prepza_common.events.audit_actions import AuditAction
 from prepza_common.i18n.i18n import CodedError
 from prepza_common.limits.rate_limit import hit_or_skip
@@ -18,7 +19,7 @@ from companies.constants.interview_notes import (
     ONLY_EDITORS_PIN,
 )
 from companies.core.db import Session
-from companies.integrations import accounts
+from companies.integrations import accounts, api_keys
 from companies.integrations.redis import get_redis
 from companies.models.companies import Company, Member
 from companies.models.interview_notes import InterviewNote
@@ -33,7 +34,9 @@ logger = logging.getLogger(__name__)
 async def profiles_of(members: list[Member]) -> dict[str, dict]:
     """The authors' names and pictures; without them when accounts can't be reached (the notes
     still show, by email)."""
-    user_ids = sorted({item.user_id for item in members if item.user_id})
+    user_ids = sorted(
+        {item.user_id for item in members if item.user_id and not actor_key(item.user_id)}
+    )
 
     try:
         return await accounts.profiles(user_ids)
@@ -43,7 +46,29 @@ async def profiles_of(members: list[Member]) -> dict[str, dict]:
         return {}
 
 
-def author_of(author: Member | None, profiles: dict[str, dict]) -> NoteAuthor:
+async def key_names(company_id, notes: list[InterviewNote]) -> dict[str, str]:
+    """The current names of the API keys that wrote any of the notes."""
+    return await api_keys.names(
+        company_id, [note.author_key_id for note in notes if note.author_key_id]
+    )
+
+
+def is_author(note: InterviewNote, member: Member) -> bool:
+    """Whether `member` wrote the note: a member by their membership, an API key by its id."""
+    key = actor_key(member.user_id)
+
+    if key is not None:
+        return str(note.author_key_id) == key
+
+    return note.author_member_id is not None and note.author_member_id == member.id
+
+
+def author_of(
+    note: InterviewNote, author: Member | None, profiles: dict[str, dict], keys: dict[str, str]
+) -> NoteAuthor:
+    if note.author_key_id is not None:
+        return NoteAuthor(name=keys.get(str(note.author_key_id)), api_key=True)
+
     if author is None or author.user_id is None:
         return NoteAuthor(former=True)
 
@@ -55,15 +80,19 @@ def author_of(author: Member | None, profiles: dict[str, dict]) -> NoteAuthor:
 
 
 def note_out(
-    note: InterviewNote, author: Member | None, member: Member, profiles: dict[str, dict]
+    note: InterviewNote,
+    author: Member | None,
+    member: Member,
+    profiles: dict[str, dict],
+    keys: dict[str, str],
 ) -> NoteOut:
     """The note as `member` sees it, with what they may do with it."""
-    own = author is not None and author.id == member.id
+    own = is_author(note, member)
 
     return NoteOut(
         id=note.id,
         text=note.text,
-        author=author_of(author, profiles),
+        author=author_of(note, author, profiles, keys),
         pinned=note.pinned,
         created_at=note.created_at,
         edited_at=note.edited_at,
@@ -82,8 +111,9 @@ async def page(interview: Interview, member: Member, offset: int, limit: int) ->
         )
 
     profiles = await profiles_of([author for _, author in rows if author is not None])
+    keys = await key_names(interview.company_id, [note for note, _ in rows])
 
-    return [note_out(note, author, member, profiles) for note, author in rows]
+    return [note_out(note, author, member, profiles, keys) for note, author in rows]
 
 
 def refuse_if_suspended(company: Company) -> None:
@@ -106,12 +136,21 @@ async def add(
     )
 
     async with Session.begin() as session:
-        note = await interview_notes.add(session, interview, member.id, text)
+        note = await interview_notes.add(
+            session, interview, member.id, actor_key(member.user_id), text
+        )
         await audit.record_interview(
             session, interview, member.user_id, AuditAction.NOTE_ADDED, via
         )
 
-    return note_out(note, member, member, await profiles_of([member]))
+    return await own_note_out(interview, note, member)
+
+
+async def own_note_out(interview: Interview, note: InterviewNote, member: Member) -> NoteOut:
+    """A note `member` just wrote or changed, as they see it."""
+    keys = await key_names(interview.company_id, [note])
+
+    return note_out(note, member, member, await profiles_of([member]), keys)
 
 
 async def found(interview: Interview, note_id) -> InterviewNote:
@@ -136,13 +175,13 @@ async def edit(
         if note is None:
             raise HTTPException(status.HTTP_404_NOT_FOUND, NOTE_NOT_FOUND)
 
-        if note.author_member_id != member.id:
+        if not is_author(note, member):
             raise HTTPException(status.HTTP_403_FORBIDDEN, ONLY_AUTHOR_EDITS)
 
         await interview_notes.set_text(session, note, text)
         await audit.record_interview(session, interview, member.user_id, AuditAction.NOTE_EDITED)
 
-    return note_out(note, member, member, await profiles_of([member]))
+    return await own_note_out(interview, note, member)
 
 
 async def delete(interview: Interview, company: Company, member: Member, note_id) -> None:
@@ -150,7 +189,7 @@ async def delete(interview: Interview, company: Company, member: Member, note_id
     refuse_if_suspended(company)
     note = await found(interview, note_id)
 
-    if note.author_member_id != member.id and not can_edit(member):
+    if not is_author(note, member) and not can_edit(member):
         raise HTTPException(status.HTTP_403_FORBIDDEN, ONLY_AUTHOR_DELETES)
 
     async with Session.begin() as session:

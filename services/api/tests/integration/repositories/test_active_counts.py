@@ -44,10 +44,9 @@ def test_only_the_companys_web_hooks_that_get_events_are_counted(run):
 
     async def scenario():
         await hook(company)
-        failing, stopped = await hook(company), await hook(company)
+        failing = await hook(company)
         await hook(other)
         await transaction(webhooks.set_failing, failing.id, True)
-        await transaction(webhooks.set_stopped, stopped.id, True)
         counted = await transaction(webhooks.working_count, company)
 
         for company_id in (company, other):

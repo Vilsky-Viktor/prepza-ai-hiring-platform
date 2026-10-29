@@ -49,11 +49,15 @@ async def get(session: AsyncSession, interview_id, note_id) -> InterviewNote | N
     return await session.scalar(query)
 
 
-async def add(session: AsyncSession, interview: Interview, member_id, text: str) -> InterviewNote:
+async def add(
+    session: AsyncSession, interview: Interview, member_id, key_id, text: str
+) -> InterviewNote:
+    """A note by a member (`member_id`) or an API key (`key_id`)."""
     note = InterviewNote(
         company_id=interview.company_id,
         interview_id=interview.id,
         author_member_id=member_id,
+        author_key_id=key_id,
         text=text,
     )
     session.add(note)

@@ -5,7 +5,6 @@ from prepza_common.i18n import error_codes as shared
 # only added. Companies' own (app/constants/error_codes.py there) come through as they are.
 INVALID_API_KEY = "invalid_api_key"
 API_KEY_EXPIRED = "api_key_expired"
-KEY_CREATOR_LOST_ACCESS = "key_creator_lost_access"
 IP_NOT_ALLOWED = "ip_not_allowed"
 REQUEST_IN_PROGRESS = "request_in_progress"
 IDEMPOTENCY_KEY_REUSED = "idempotency_key_reused"

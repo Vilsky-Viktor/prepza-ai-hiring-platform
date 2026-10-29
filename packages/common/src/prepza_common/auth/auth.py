@@ -6,10 +6,12 @@ from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from firebase_admin import auth as firebase_auth
 from firebase_admin.exceptions import FirebaseError
+from prepza_common.auth.key_actor import key_user
 from prepza_common.auth.user import User
 from prepza_common.config.constants import (
     DEFAULT_LANGUAGE,
     GOOGLE_TIMEOUT_SECONDS,
+    KEY_SIGN_IN,
     LANGUAGE_CLAIM,
     LANGUAGES,
     READ_METHODS,
@@ -72,13 +74,20 @@ def writes(request: Request) -> bool:
     return request.method not in READ_METHODS
 
 
+def signed_in(request: Request, token: str) -> User | None:
+    """A person's Firebase token (checked for revocation when the request writes), or an API
+    key's token from the assistant (key_user); None for anything else."""
+    return verify(token, check_revoked=writes(request)) or key_user(token)
+
+
 def current_user(
     request: Request,
     credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(optional_bearer)],
 ) -> User:
     """The signed-in user; 401 without a valid token, except on the admin zone's routes, which
-    answer 404 to everyone else, signed out included, so they don't show they exist."""
-    user = verify(credentials.credentials, check_revoked=writes(request)) if credentials else None
+    answer 404 to everyone else, signed out included, so they don't show they exist. An AI
+    agent signed in with an API key is the key (key_actor)."""
+    user = signed_in(request, credentials.credentials) if credentials else None
 
     if user is None:
         if request.scope.get("path", "").startswith(SUPERADMIN_PREFIX):
@@ -100,7 +109,7 @@ def optional_user(
     if credentials is None:
         return None
 
-    return verify(credentials.credentials, check_revoked=writes(request))
+    return signed_in(request, credentials.credentials)
 
 
 def fresh_user(
@@ -111,7 +120,9 @@ def fresh_user(
     """The signed-in user, refused (401) once their sign-in was revoked (a deleted account, a
     signed-out session) even for a read: for reads that hand over a lot of personal data (a
     data export, the admin zone, a long-lived stream). A write's token was checked already."""
-    revocable = credentials is not None and not writes(request)
+    revocable = (
+        credentials is not None and not writes(request) and user.sign_in_provider != KEY_SIGN_IN
+    )
 
     if revocable and verify(credentials.credentials, check_revoked=True) is None:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid token")

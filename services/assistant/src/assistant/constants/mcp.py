@@ -95,8 +95,8 @@ FUNNEL_CLIENTS = {
 }
 
 # An AI agent on a server signs in with a company's API key instead (the api service's, which
-# checks it): it acts as the key's maker, in the key's company only, if the key has the mcp
-# permission (constants/key_tools.py lists the tools each permission allows).
+# checks it): it acts as the key itself, never its maker, in the key's company only, if the key
+# has the mcp permission (constants/key_tools.py lists the tools each permission allows).
 API_KEY_PREFIX = "pz_"
 KEY_MCP_PERMISSION = "mcp"
 VERIFY_KEY_PATH = "/internal/keys/verify"

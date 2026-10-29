@@ -1,5 +1,5 @@
-"""Candidates another service sends: an ATS's, or the public API's (as the member who connected
-it or made the key)."""
+"""Candidates another service sends: an ATS's (as the member who connected it), or the public
+API's (as the key itself)."""
 
 from uuid import UUID
 
@@ -18,7 +18,7 @@ from companies.repositories import companies, interviews, invites
 from companies.schemas.internal_ats import AtsInviteIn
 from companies.services import candidate_invites
 from companies.services import outbox as outbox_service
-from companies.services.access import can_edit, member_of
+from companies.services.access import can_edit, trusted_member
 
 
 async def invite(interview_id: UUID, body: AtsInviteIn, via: str) -> tuple[UUID, bool]:
@@ -46,7 +46,7 @@ async def invite(interview_id: UUID, body: AtsInviteIn, via: str) -> tuple[UUID,
         company = await companies.get(session, interview.company_id)
         found = await invites.find(session, interview_id, str(body.email))
 
-    sender = member_of(company, body.sender_id)
+    sender = trusted_member(company, body.sender_id)
 
     if sender is None or not can_edit(sender):
         raise HTTPException(status.HTTP_403_FORBIDDEN, "Only an owner or admin can invite")

@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor reageerde niet",
     "The interview isn't ready yet": "Het interview is nog niet klaar",
     "The owner can't be changed": "De eigenaar kan niet worden gewijzigd",
-    "This key's creator is no longer an owner or admin of the company": "Wie deze sleutel heeft gemaakt, is geen eigenaar of beheerder van het bedrijf meer",
     "This key's person has no Breezy HR company": "De persoon achter deze sleutel heeft geen bedrijf in Breezy HR",
     "This question isn't open": "Deze vraag staat niet open",
     "Today's limit for question checks is reached; the question is checked later.": "De limiet voor vraagcontroles van vandaag is bereikt; de vraag wordt later gecontroleerd.",

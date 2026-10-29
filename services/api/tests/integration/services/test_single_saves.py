@@ -62,8 +62,9 @@ def reachable(monkeypatch):
 
 
 def test_a_deleted_account_keeps_everything_when_a_later_step_fails(run, monkeypatch):
+    """Its keys keep its id too, so a retry finds them still to forget."""
     company, user = uuid.uuid4(), f"gone-{uuid.uuid4()}"
-    monkeypatch.setattr(webhooks, "remove_user", broken)
+    monkeypatch.setattr(webhooks, "forget_user", broken)
 
     async def scenario():
         await new_key(company, user)
@@ -72,7 +73,11 @@ def test_a_deleted_account_keeps_everything_when_a_later_step_fails(run, monkeyp
         with pytest.raises(RuntimeError):
             await accounts.remove_user(user, "")
 
-        return await transaction(keys.of_user, user)
+        found = await transaction(keys.of_user, user)
+        await transaction(keys.remove_company, company)
+        await transaction(webhooks.remove_company, company)
+
+        return found
 
     assert len(run(scenario())) == 1
 
@@ -140,7 +145,7 @@ def test_an_event_given_up_on_stays_waiting_when_pausing_its_web_hook_fails(run,
             )
 
         with pytest.raises(RuntimeError):
-            await retrying.resend(row, hook, True)
+            await retrying.resend(row, hook)
 
         async with Session() as session:
             return list(

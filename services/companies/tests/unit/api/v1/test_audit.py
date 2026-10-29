@@ -84,6 +84,7 @@ def test_only_the_owner_reads_the_audit_log_newest_first(client, monkeypatch):
             "action": "results_viewed",
             "target_id": str(INVITE_ID),
             "via": None,
+            "key_id": None,
             "created_at": now.isoformat().replace("+00:00", "Z"),
         }
     ]

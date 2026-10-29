@@ -41,7 +41,7 @@ from assistant.models.tools import Tool
 from assistant.repositories import oauth
 from assistant.services import updates
 from assistant.services.actions import checked_arguments, count_action
-from assistant.services.mcp_keys import key_may_use, key_refusal
+from assistant.services.mcp_keys import key_may_use, key_refusal, key_signed_in
 from assistant.services.registry import tools
 from assistant.services.tenancy import foreign_company, user_companies
 from assistant.services.tool_calls import call_tool
@@ -198,7 +198,10 @@ async def call(name: str, arguments: dict, access: Access) -> types.CallToolResu
     the user before calling it. Its result is the data as JSON, with links to prepza's pages;
     an error is a result too, which the app explains."""
     tool = tools().get(name) if name not in MCP_UNLISTED else None
-    signed_in = await firebase_tokens.sign_in(access.subject)
+    # An API key acts as itself; an AI app as the user who connected it.
+    signed_in = (
+        key_signed_in(access) if access.key_id else await firebase_tokens.sign_in(access.subject)
+    )
 
     if signed_in is None:
         return logged("account gone", name, access, ACCOUNT_GONE)

@@ -37,8 +37,7 @@ DEPRECATION_HEADERS = {
 # Every public route can answer these.
 COMMON = {
     401: refusal(
-        "The API key is missing, invalid or expired, or its creator can no longer use it "
-        "(`invalid_api_key`, `api_key_expired`, `key_creator_lost_access`)"
+        "The API key is missing, invalid or expired (`invalid_api_key`, `api_key_expired`)"
     ),
     403: refusal(
         "The API key doesn't have the permission the endpoint needs (`missing_permission`), or "

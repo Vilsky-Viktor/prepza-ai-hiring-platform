@@ -20,7 +20,6 @@ from api.constants.permissions import (
 from api.core.db import Session
 from api.helpers.keys import add_months, expired, new_key, with_implied
 from api.helpers.webhooks import masked, new_secret
-from api.integrations import companies
 from api.integrations.redis import get_redis
 from api.models.api import ApiKey, Webhook
 from api.repositories import keys, webhooks
@@ -38,25 +37,16 @@ from api.services import webhooks as webhook_events
 
 
 async def overview(company_id: UUID, editor: bool) -> ApiSettingsOut:
-    """A web hook shows as stopped while the member who added it is no longer an owner or admin,
-    as it gets no events then (services/webhooks.py). Only an `editor` sees its whole address."""
+    """The company's keys and web hooks; only an `editor` sees a web hook's whole address."""
     async with Session() as session:
         hooks = await webhooks.of_company(session, company_id)
         company_keys = await keys.of_company(session, company_id)
-
-    editors = {
-        maker: (await companies.access(company_id, maker))["editor"]
-        for maker in {hook.created_by for hook in hooks}
-    }
 
     return ApiSettingsOut(
         keys=[key_out(key) for key in company_keys],
         webhooks=[
             WebhookOut.model_validate(hook, from_attributes=True).model_copy(
-                update={
-                    "stopped": not editors[hook.created_by],
-                    "url": hook.url if editor else masked(hook.url),
-                }
+                update={"url": hook.url if editor else masked(hook.url)}
             )
             for hook in hooks
         ],

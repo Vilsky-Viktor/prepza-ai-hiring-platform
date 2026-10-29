@@ -141,7 +141,8 @@ def _candidate_path(company_id: UUID, interview_id: UUID, invite_id: UUID) -> st
 async def create_interview(
     company_id: UUID, text: str, generate_in: str | None, user_id: str
 ) -> dict:
-    """Starts making an interview from a job description, as `user_id`, the key's creator."""
+    """Starts making an interview from a job description, as `user_id`, the key itself
+    (key_actor)."""
     return await _call(
         "POST",
         f"/internal/companies/{company_id}/interviews",
@@ -177,8 +178,8 @@ def _notes_path(company_id: UUID, interview_id: UUID) -> str:
 async def notes(
     company_id: UUID, interview_id: UUID, user_id: str, offset: int, limit: int
 ) -> list[dict]:
-    """A page of the interview's notes as `user_id`, the key's creator, sees them: the pinned
-    one first, then newest first."""
+    """A page of the interview's notes as `user_id`, the key itself, sees them: the pinned one
+    first, then newest first."""
     params = {"user_id": user_id, "offset": offset, "limit": limit}
     found = await _get(_notes_path(company_id, interview_id), params)
 
@@ -186,7 +187,7 @@ async def notes(
 
 
 async def add_note(company_id: UUID, interview_id: UUID, text: str, user_id: str) -> dict:
-    """Adds a note to the interview as `user_id`, the key's creator."""
+    """Adds a note to the interview as `user_id`, the key itself."""
     path = _notes_path(company_id, interview_id)
 
     return await _call("POST", path, {"user_id": user_id}, {"text": text})

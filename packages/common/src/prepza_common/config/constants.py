@@ -125,6 +125,12 @@ MAX_PAGE_SIZE = 100
 MAX_ADJUSTMENT = 1_000_000
 MAX_ADJUSTMENT_NOTE = 200
 
+# The user id an API key acts as, its own and never its maker's: this prefix and the key's id.
+# The action log names the key from it; the key's own permissions decide what it may do.
+KEY_ACTOR_PREFIX = "key:"
+# How a request signed in with an API key shows as a sign-in (User.sign_in_provider).
+KEY_SIGN_IN = "api_key"
+
 # Who a kept row is by once its user deleted their account (a referral, a generation, an ATS or
 # Slack connection, an audit entry): the row stays for its company, without their id.
 DELETED_USER = "deleted-user"

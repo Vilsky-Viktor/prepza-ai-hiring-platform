@@ -7727,6 +7727,18 @@
       ],
       "title": "Via"
      },
+     "key_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Key Id"
+     },
      "created_at": {
       "type": "string",
       "format": "date-time",
@@ -7794,6 +7806,17 @@
        }
       ],
       "title": "Removed"
+     },
+     "key_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Key Name"
      }
     },
     "type": "object",
@@ -7809,7 +7832,7 @@
      "target"
     ],
     "title": "ActionOut",
-    "description": "A row of a company's action log (its owner's tab, the admin zone's support page): its\ngroup, who took it (`user_email`, None once they're no longer a member), and what it was\nabout: `target_kind` and `target` (a candidate's or member's email, an interview's title, an\nAPI key's name, a web hook's host, an integration's name; None for the company itself, or a\nperson who's gone), and what it took away (`removed`: an API key's narrowed permissions)."
+    "description": "A row of a company's action log (its owner's tab, the admin zone's support page): its\ngroup, who took it (`user_email`, None once they're no longer a member), and what it was\nabout: `target_kind` and `target` (a candidate's or member's email, an interview's title, an\nAPI key's name, a web hook's host, an integration's name; None for the company itself, or a\nperson who's gone), and what it took away (`removed`: an API key's permissions). An API key\nthat took it is named by `key_name`, its name now (None once it was deleted), instead of a\nmember."
    },
    "AdminInviteOut": {
     "properties": {
@@ -8050,6 +8073,18 @@
        }
       ],
       "title": "Via"
+     },
+     "key_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Key Id"
      },
      "created_at": {
       "type": "string",
@@ -10985,11 +11020,16 @@
       "type": "boolean",
       "title": "Former",
       "default": false
+     },
+     "api_key": {
+      "type": "boolean",
+      "title": "Api Key",
+      "default": false
      }
     },
     "type": "object",
     "title": "NoteAuthor",
-    "description": "Who wrote a note: their name (or email without one) and picture; `former` when they're no\nlonger a member, with neither."
+    "description": "Who wrote a note: their name (or email without one) and picture; `former` when they're no\nlonger a member, with neither. An API key that wrote one (`api_key`) has its name as it is\nnow, None once it was deleted."
    },
    "NoteIn": {
     "properties": {

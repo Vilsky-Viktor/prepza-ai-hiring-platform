@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor 没有响应",
     "The interview isn't ready yet": "面试尚未准备好",
     "The owner can't be changed": "所有者无法更改",
-    "This key's creator is no longer an owner or admin of the company": "此密钥的创建者已不再是公司的所有者或管理员",
     "This key's person has no Breezy HR company": "此密钥对应的用户在 Breezy HR 中没有公司",
     "This question isn't open": "这道题目前不可作答",
     "Today's limit for question checks is reached; the question is checked later.": "今天的题目检查次数已达上限，题目将稍后检查。",

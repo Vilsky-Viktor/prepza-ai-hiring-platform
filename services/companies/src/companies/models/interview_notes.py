@@ -11,7 +11,7 @@ from companies.models.base import Base
 class InterviewNote(Base):
     """A note a member wrote on an interview, for its team only. It goes with the interview and
     the company; a member who leaves (or deletes their account) leaves their notes behind,
-    shown as a former member's (author_member_id becomes null)."""
+    shown as a former member's (author_member_id becomes null). An API key writes as itself."""
 
     __tablename__ = "interview_notes"
     __table_args__ = (
@@ -37,6 +37,8 @@ class InterviewNote(Base):
     author_member_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("members.id", ondelete="SET NULL"), index=True
     )
+    # The API key that wrote it (the api service's), which acts as itself; None for a member's.
+    author_key_id: Mapped[uuid.UUID | None]
     text: Mapped[str] = mapped_column(Text)
     pinned: Mapped[bool] = mapped_column(default=False, server_default="false")
     created_at: Mapped[datetime] = mapped_column(

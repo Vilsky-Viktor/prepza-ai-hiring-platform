@@ -1,3 +1,5 @@
+import uuid
+
 from prepza_common.auth.service_auth import issue_token
 
 from api.repositories import keys, webhooks
@@ -37,3 +39,24 @@ def test_companies_reads_the_live_keys_and_working_web_hooks_of_the_company(clie
 def test_another_service_or_no_token_reads_no_count(client):
     assert client.get(PATH, headers=headers("assistant")).status_code == 403
     assert client.get(PATH).status_code == 401
+
+
+def test_companies_reads_its_keys_names_as_they_are_now_and_no_one_else_may(client, monkeypatch):
+    kept, gone = uuid.uuid4(), uuid.uuid4()
+    asked = []
+
+    async def names(session, company_id, key_ids):
+        asked.append((company_id, sorted(key_ids)))
+
+        return {kept: "Zapier"}
+
+    monkeypatch.setattr(keys, "names", names)
+    path = f"/internal/companies/{COMPANY}/keys/names"
+    params = {"ids": [str(kept), str(gone)]}
+
+    found = client.get(path, params=params, headers=headers("companies"))
+    refused = client.get(path, params=params, headers=headers("assistant"))
+
+    assert (found.status_code, found.json()) == (200, {str(kept): "Zapier"})
+    assert asked == [(COMPANY, sorted([kept, gone]))]
+    assert refused.status_code == 403

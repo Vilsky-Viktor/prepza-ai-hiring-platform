@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor no respondió",
     "The interview isn't ready yet": "La entrevista aún no está lista",
     "The owner can't be changed": "No se puede cambiar el propietario",
-    "This key's creator is no longer an owner or admin of the company": "Quien creó esta clave ya no es propietario ni administrador de la empresa",
     "This key's person has no Breezy HR company": "La persona de esta clave no tiene una empresa en Breezy HR",
     "This question isn't open": "Esta pregunta no está abierta",
     "Today's limit for question checks is reached; the question is checked later.": "Se alcanzó el límite de hoy de revisiones de preguntas; la pregunta se revisará más tarde.",

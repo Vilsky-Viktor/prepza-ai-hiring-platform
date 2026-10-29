@@ -14,7 +14,7 @@ def verify(client, raw=KEY, headers=HEADERS):
     return client.post("/internal/keys/verify", json={"key": raw}, headers=headers)
 
 
-def test_a_working_key_answers_its_company_maker_and_permissions(
+def test_a_working_key_answers_its_company_and_permissions_never_its_maker(
     client, companies_api, key, stored
 ):
     key.permissions = [Permission.INTERVIEWS_READ, Permission.MCP]
@@ -25,7 +25,6 @@ def test_a_working_key_answers_its_company_maker_and_permissions(
     assert response.json() == {
         "id": str(key.id),
         "company_id": str(COMPANY),
-        "created_by": "u1",
         "permissions": ["interviews:read", "mcp"],
     }
     assert stored["used"] == [key.id]
@@ -41,10 +40,11 @@ def test_an_unknown_or_expired_key_is_refused(client, companies_api, key):
     assert expired.json()["detail"] == "This API key has expired"
 
 
-def test_a_key_whose_maker_cant_edit_is_refused(client, companies_api, key):
-    companies_api["roles"]["u1"] = "viewer"
+def test_a_key_whose_maker_is_gone_still_works(client, companies_api, key):
+    companies_api["roles"].pop("u1")
+    key.created_by = None
 
-    assert verify(client).status_code == 401
+    assert verify(client).status_code == 200
 
 
 def test_a_verification_counts_against_the_companys_limit(client, companies_api, key, stored):

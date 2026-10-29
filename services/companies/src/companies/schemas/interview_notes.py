@@ -21,11 +21,13 @@ class PinIn(BaseModel):
 
 class NoteAuthor(BaseModel):
     """Who wrote a note: their name (or email without one) and picture; `former` when they're no
-    longer a member, with neither."""
+    longer a member, with neither. An API key that wrote one (`api_key`) has its name as it is
+    now, None once it was deleted."""
 
     name: str | None = None
     photo_url: str | None = None
     former: bool = False
+    api_key: bool = False
 
 
 class NoteOut(BaseModel):

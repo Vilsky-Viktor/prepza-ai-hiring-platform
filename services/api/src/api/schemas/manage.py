@@ -69,8 +69,6 @@ class WebhookOut(BaseModel):
     created_at: datetime
     # It didn't take an event for days (it was dropped), and has taken none since.
     failing: bool
-    # The member who added it is no longer an owner or admin: it gets no events.
-    stopped: bool = False
 
 
 class NewWebhookOut(WebhookOut):

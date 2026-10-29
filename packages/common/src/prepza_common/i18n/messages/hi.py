@@ -83,7 +83,6 @@ MESSAGES = {
     "Teamtailor didn't answer": "Teamtailor से जवाब नहीं मिला",
     "The interview isn't ready yet": "इंटरव्यू अभी तैयार नहीं है",
     "The owner can't be changed": "ओनर बदला नहीं जा सकता",
-    "This key's creator is no longer an owner or admin of the company": "इस की को बनाने वाला अब कंपनी का ओनर या एडमिन नहीं है",
     "This key's person has no Breezy HR company": "इस की वाले व्यक्ति की Breezy HR में कोई कंपनी नहीं है",
     "This question isn't open": "यह सवाल खुला नहीं है",
     "Today's limit for question checks is reached; the question is checked later.": "आज की सवाल जाँच की सीमा पूरी हो गई है; सवाल बाद में जाँचा जाएगा।",

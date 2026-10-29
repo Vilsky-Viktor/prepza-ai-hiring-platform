@@ -22,9 +22,10 @@ class ApiKey(Base):
     name: Mapped[str] = mapped_column(String(80))
     shown: Mapped[str] = mapped_column(String(20))
     hash: Mapped[str] = mapped_column(String(64), unique=True)
-    # The owner or admin who made it: the API acts as them (their email limits), while they
-    # still are one.
-    created_by: Mapped[str] = mapped_column(String(128), index=True)
+    # The member who made it, a plain record for their account's export: the key belongs to the
+    # company and acts as itself (prepza_common.auth.key_actor). None once they deleted their
+    # account.
+    created_by: Mapped[str | None] = mapped_column(String(128), index=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=now, server_default=func.now()
     )
@@ -52,15 +53,14 @@ class Webhook(Base):
     # the receiver can switch to the new one without missing events.
     previous_secret: Mapped[str | None] = mapped_column(Text)
     previous_until: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
-    created_by: Mapped[str] = mapped_column(String(128), index=True)
+    # The member who added it, a plain record for their account's export: the web hook belongs
+    # to the company. None once they deleted their account.
+    created_by: Mapped[str | None] = mapped_column(String(128), index=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=now, server_default=func.now()
     )
     # An event it didn't take for RETRY_GIVE_UP was dropped; it took none since.
     failing: Mapped[bool] = mapped_column(default=False, server_default=false())
-    # An event found the member who added it no longer an owner or admin: the company was told,
-    # once. Cleared when its member is an editor again.
-    stopped: Mapped[bool] = mapped_column(default=False, server_default=false())
 
 
 class WebhookDelivery(Base):

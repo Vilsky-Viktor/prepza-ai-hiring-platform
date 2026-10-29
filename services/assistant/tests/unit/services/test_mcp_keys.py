@@ -4,6 +4,7 @@ import json
 import httpx
 import pytest
 from fastapi import HTTPException
+from prepza_common.auth.key_actor import key_actor
 from prepza_common.auth.service_auth import token_claims
 from prepza_common.http import http
 from prepza_common.i18n.i18n import translate
@@ -12,7 +13,7 @@ from assistant.constants.chat import OTHER_COMPANY
 from assistant.constants.key_tools import KEY_TOOLS
 from assistant.constants.mcp import KEY_MISSING_PERMISSION
 from assistant.constants.tool_calls import UNKNOWN_TOOL
-from assistant.integrations import api_keys, services
+from assistant.integrations import api_keys, firebase_tokens, services
 from assistant.integrations.services import KEY_CLAIMS
 from assistant.models.oauth_tokens import Access
 from assistant.services import mcp_tools
@@ -30,7 +31,7 @@ def key(*permissions: str) -> Access:
         token="pz_x",
         client_id=KEY_ID,
         scopes=["prepza"],
-        subject="ann",
+        subject=key_actor(KEY_ID),
         client_name="API key",
         key_id=KEY_ID,
         company_id=COMPANY,
@@ -46,7 +47,6 @@ def verified(monkeypatch, permissions):
         return {
             "id": KEY_ID,
             "company_id": COMPANY,
-            "created_by": "ann",
             "permissions": permissions,
         }
 
@@ -65,12 +65,16 @@ def test_every_key_tool_is_a_tool_an_app_may_call():
     assert set(KEY_TOOLS) <= listed
 
 
-def test_a_key_with_mcp_signs_in_as_its_maker_in_its_company(monkeypatch):
+def test_a_key_with_mcp_signs_in_as_itself_in_its_company(monkeypatch):
     verified(monkeypatch, ["candidates:read", "mcp"])
 
     access = asyncio.run(Provider().load_access_token("pz_key"))
 
-    assert (access.subject, access.company_id, access.key_id) == ("ann", COMPANY, KEY_ID)
+    assert (access.subject, access.company_id, access.key_id) == (
+        key_actor(KEY_ID),
+        COMPANY,
+        KEY_ID,
+    )
     assert access.permissions == ["candidates:read", "mcp"]
 
 
@@ -122,9 +126,24 @@ def test_a_key_is_refused_a_tool_its_permissions_dont_allow(calls):  # noqa: F81
 def test_a_key_is_refused_another_company_before_anything_is_called(calls):  # noqa: F811
     error, content = called("get_company", {"company_id": OTHER}, key())
 
-    # In the user's language (German here).
-    assert (error, content) == (True, {"error": translate(OTHER_COMPANY, "de")})
+    # A key is no person: in English.
+    assert (error, content) == (True, {"error": translate(OTHER_COMPANY, "en")})
     assert calls == []
+
+
+def test_a_keys_calls_act_as_the_key_never_signing_anyone_in(calls, monkeypatch):  # noqa: F811
+    """Its maker's account plays no part: gone or not, the key calls as itself."""
+
+    async def no_sign_in(uid):
+        raise AssertionError("a key signs no one in")
+
+    monkeypatch.setattr(firebase_tokens, "sign_in", no_sign_in)
+
+    error, _ = called("get_company", {"company_id": COMPANY}, key())
+
+    assert not error
+    # No person's token: each call's own is signed for its service (integrations/services.py).
+    assert [(item[3], item[4]) for item in calls] == [("", "en")]
 
 
 def test_a_keys_calls_carry_its_company_and_id_to_companies(calls, monkeypatch):  # noqa: F811
@@ -144,7 +163,7 @@ def test_a_keys_calls_carry_its_company_and_id_to_companies(calls, monkeypatch):
     assert claims == [{"company": COMPANY, "key": KEY_ID}]
 
 
-def test_companies_header_carries_the_keys_company(monkeypatch):
+def test_a_keys_call_is_signed_as_the_key_and_companies_header_carries_its_company(monkeypatch):
     sent = []
 
     class Client:
@@ -159,10 +178,20 @@ def test_companies_header_carries_the_keys_company(monkeypatch):
         KEY_CLAIMS.set({"company": COMPANY, "key": KEY_ID})
         await services.get("companies", "/pause", {}, "token", "en", via="mcp")
 
+    async def as_key_to_library():
+        KEY_CLAIMS.set({"company": COMPANY, "key": KEY_ID})
+        await services.get("library", "/templates", {}, "", "en", via="mcp")
+
     asyncio.run(as_key())
+    asyncio.run(as_key_to_library())
     claims = token_claims(sent[0]["X-Assistant"], SECRET, "companies")
+    signed = token_claims(sent[0]["Authorization"][7:], SECRET, "companies")
+    to_library = token_claims(sent[1]["Authorization"][7:], SECRET, "library")
 
     assert (claims["iss"], claims["company"], claims["key"]) == ("mcp", COMPANY, KEY_ID)
+    # The call itself is the key's, signed for the service it goes to; never a person's token.
+    assert (signed["iss"], signed["key"]) == ("mcp", KEY_ID)
+    assert (to_library["iss"], to_library["key"]) == ("mcp", KEY_ID)
 
 
 def test_the_docs_list_the_tools_and_limits_an_app_meets(client):
@@ -229,4 +258,4 @@ def test_a_keys_use_counts_in_the_funnel_as_an_api_key(monkeypatch, redis):
 
     asyncio.run(mcp_tools.mark_active(key()))
 
-    assert tracked == [("mcp_active", {"user_id": "ann", "client": "api_key"})]
+    assert tracked == [("mcp_active", {"user_id": key_actor(KEY_ID), "client": "api_key"})]

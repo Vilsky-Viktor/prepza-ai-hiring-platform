@@ -163,6 +163,8 @@ out or listed under another area):
 - `encryption`: symmetric encryption of stored secrets, with key rotation.
 - `google`: Google credentials, the invoker check of Google's pushes, timed certificate downloads.
 - `human_check`: the Turnstile check of anonymous flows.
+- `key_actor`: an API key acting as itself (its user id, and the token the assistant signs for an
+  AI agent's key), never as the member who made it.
 - `person_hash`: keyed hashes that stand for a person.
 - `route_guards`: lists the routes that run no guard, and the `/internal` routes that take no service
   token or Google signature, for each service's test.
