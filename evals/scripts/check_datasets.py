@@ -16,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "packages" / "commo
 
 from service_code import service_code
 from small_datasets import (
+    check_ai_picks,
     check_code_languages,
     check_duplicates,
     check_patterns,
@@ -212,6 +213,7 @@ def main() -> None:
     texts += [("voice", text) for text in check_voice(problems)]
     texts += [("screen", text) for text in check_screen(problems)]
     check_question_times(problems)
+    check_ai_picks(problems)
 
     for where, text in texts:
         for example in examples:

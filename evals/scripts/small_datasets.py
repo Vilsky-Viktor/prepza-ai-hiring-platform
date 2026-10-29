@@ -1,6 +1,7 @@
 """Checks by code of the small utility prompts' datasets (code-language tags, translations,
-quality patterns, titles) and of the judge's question times, for check_datasets.py: each says what it is, has unique ids, and
-its expectations fit its own text. Each returns the texts to check against prompts' examples."""
+quality patterns, titles), of the judge's question times and of the AI models' picks, for
+check_datasets.py: each says what it is, has unique ids, and its expectations fit its own text.
+Each returns the texts to check against prompts' examples."""
 
 import json
 import re
@@ -215,3 +216,32 @@ def check_screen(problems: list[str]) -> list[str]:
         problems.append("screen.json: needs texts to accept and texts to refuse")
 
     return [item["text"] for item in data["items"]]
+
+
+def check_ai_picks(problems: list[str]) -> list[str]:
+    """AI models' picks: each for a question of its set, once, each pick None or option
+    indexes of that question."""
+    data = load("ai_picks.json")
+    check_described("ai_picks.json", data, problems)
+    known = {
+        (name, item["id"]): len(item["options"])
+        for name in ("questions.json", "multi_questions.json", "language_questions.json")
+        for item in load(name)["items"]
+    }
+    seen = Counter((item["set"], item["id"]) for item in data["items"])
+    problems += [f"ai_picks.json: {key} appears {n} times" for key, n in seen.items() if n > 1]
+
+    for item in data["items"]:
+        count = known.get((item["set"], item["id"]))
+
+        if count is None:
+            problems.append(f"ai_picks.json: no question {(item['set'], item['id'])}")
+
+            continue
+
+        picks = [*item["picks"].values(), *item["relays"].values()]
+
+        if any(pick is not None and not all(0 <= i < count for i in pick) for pick in picks):
+            problems.append(f"ai_picks.json: {item['id']} picks an option it doesn't have")
+
+    return []

@@ -8,7 +8,8 @@ in `utility.md` (CLAUDE.md rule 20).
 
 Contents: [Baselines (2026-10-04)](#baselines-2026-10-04) ·
 [Eval changes (2026-10-20)](#eval-changes-2026-10-20) ·
-[Fitted question times (2026-10-29)](#fitted-question-times-2026-10-29)
+[Fitted question times (2026-10-29)](#fitted-question-times-2026-10-29) ·
+[Integrity signals (2026-10-29)](#integrity-signals-2026-10-29)
 
 ## Baselines (2026-10-04)
 
@@ -204,4 +205,62 @@ answer, with 0, 5 and 10 s more for a multi-answer question; 30 and none came cl
 0.168, no better than equal). Arabic and Russian came out further than equal (0.199 and 0.277)
 and Japanese and Thai can't be counted in words, so those scripts get weight 1; each rests on 12
 questions only.
+
+## Integrity signals (2026-10-29)
+
+The anti-cheating plan's signals (`internal_docs/plans/anti-cheating.md`), measured before any was
+built. No real candidate's answers exist or may be used (rule 20), so candidates are made up
+(`integrity_population.py`): honest ones answer by the Rasch model with van der Linden's lognormal
+times (reading plus thinking that grows with difficulty, a speed per person, noise per answer);
+relaying ones give the AI's real answer to each question (`ai_picks.json`) in a flat 20–40 s of
+their own (±25% an answer, plus 15% of the reading). Four honest populations: typical, noisy (much
+more noise, thinking that barely follows difficulty, more skimming), weak and strong. Questions are
+the eval's real ones, drawn as interviews with rounds' fitted times; each question's difficulty is
+the share right of 30 simulated answers. 4,000 candidates a population; free.
+
+**AI-trap questions** (`ai_picks.py`, $1.07): of 772 questions, `gpt-6-luna` (no reasoning) and
+`gpt-6.1-sol` (low) never gave the same wrong answer (0.0%, 0.0–0.5): Sol answers 99.6% of the
+generator's own questions right, so the planned traps don't exist. The only traps there are, the
+cheap model's mistakes that Sol gets right (14.5% of questions; 2 of 112 had a key the judge
+found wrong), are given again by the cheap model in another order 44.6% of the time, by Luna at
+medium reasoning 3.6%, by Sol 0%. As a signal (at least 2 traps answered with the AI's answer,
+P ≤ 0.001 for an honest candidate with a generous pull to that option): 0.1% of honest candidates,
+6.6% of relays to the cheap model at 30 questions, 0% of relays to any reasoning model (on the
+simulation's first version, which held the trap's statistics). Dropped (the user, 2026-10-29): the
+planned traps don't exist, and the only ones there are catch no relay to a reasoning model, for an
+AI call a question at generation. `ai_picks.py` stays to rerun the measurement on a new model.
+
+**Timing** (rounds' `flat_timing`): answer times' spread (standard deviation of their logs) and
+their Spearman rho against each question's fitted time (longer by 1 + (1 − share right) when
+known). Rho alone can't separate them (honest times are noisy and fitted times vary little within
+an interview: rho ≤ 0 for 10–22% of honest candidates and 24–41% of relays); spread and rho
+together can:
+
+| Spread ≤ / rho ≤ | Honest, worst population (30 questions) | Relays, all questions | Half | Hard-only |
+|---|---|---|---|---|
+| 0.25 / 0.0 (chosen) | 0.7% | 33% | 3% | 11% |
+| 0.25 / 0.2 | 1.4% | 62% | 6% | 17% |
+| 0.30 / 0.0 | 1.1% | 39% | 7% | 13% |
+| 0.30 / 0.4 | 4.5% | 93% | 19% | 35% |
+
+The weak population sets the limit: candidates who run up against every question's time look
+flat too. At 10 and 20 questions the chosen one flags 0.6–0.7% of honest candidates and catches
+33–34% of full relays.
+
+**Person-fit** (rounds' `unusual_pattern`, lz over questions of known difficulty, at least 8):
+
+| lz ≤ | Honest, worst (30 / 10 questions) | Relays, all (Luna / Sol) | Half | Hard-only |
+|---|---|---|---|---|
+| −3.0 | 2.6% / 1.1% | 12% / 0.3% | 16% | 26% |
+| −3.5 | 1.6% / 0.8% | 5% / 0.1% | 10% | 16% |
+| −4.0 (chosen) | 0.7% / 0.3% | 3% / 0% | 7% | 10% |
+
+A relay to a strong model gets nearly everything right, which leaves no pattern; the signal is
+for partial use (and fires only once questions have 30 answers each, library's `MIN_ANSWERS`).
+
+**Either shipped signal** at the chosen thresholds: honest 0.2–0.7% in every population at 10, 20
+and 30 questions; full relays 33–35%; half 7–9%; hard-only 15–19%. What these rest on: the
+relays' flat timing (a real relay's spread is unknown: at ±35% instead of ±25%, full relays
+caught drop to 8–11%), and honest times as the model draws them. Rerun on real traffic once companies confirm
+cases in follow-up interviews.
 

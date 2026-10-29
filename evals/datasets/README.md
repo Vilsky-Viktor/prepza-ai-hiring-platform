@@ -95,6 +95,16 @@ needs to read and answer each question: all 240 of `questions.json` (2026-10-20)
 question times: no measured answer times exist (local answers come from browser tests). The new
 reviews cost $0.79.
 
+## `ai_picks.json` (`ai_picks.py --build`, 2026-10-29)
+
+Every question of the three question sets (772) answered blind by AI models as a candidate
+would ask an AI app ("Which option is correct?", no role; `ai_pick_prompt.py`): the pick models
+(`gpt-6-luna` without reasoning and `gpt-6.1-sol` low) in one option order, the relay models
+(the same two, and `gpt-6-luna` medium) in another; the verifier's blind check would run on
+questions where every pick model gave the same wrong answer, and there were none. Picks are
+option indexes in the question's own order (None: no usable answer). The AI's real answers for
+the integrity-signals eval's relaying candidates. Cost $1.07.
+
 ## `assistant_questions.json` (by hand, 2026-10-17)
 
 The assistant's page-context test: 8 pages (key, path, the ids the panel sends), 51 general
