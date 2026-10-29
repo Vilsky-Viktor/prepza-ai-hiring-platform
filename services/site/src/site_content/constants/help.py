@@ -41,6 +41,8 @@ NO_SUCH_GUIDE = "There's no such guide."
 MAX_GUIDE_SLUG_LENGTH = 80
 # The guide article a page's guide points to, by the page's key: its help shows it as a link.
 PAGE_ARTICLES = {
+    "landing": "job-description-that-tests-well",
+    "newInterview": "job-description-that-tests-well",
     "interviewSettings": "skills-test-timing-and-extra-time",
     "candidate": "skills-test-timing-and-extra-time",
 }

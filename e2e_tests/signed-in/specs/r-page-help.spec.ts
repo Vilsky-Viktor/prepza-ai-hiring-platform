@@ -115,3 +115,20 @@ test("the candidate page's guide links its guide article", async ({ signInAs }) 
   await expect(owner).toHaveURL(new RegExp(`${guide.article.path}$`))
   await expect(owner.getByRole("heading", { level: 1 })).toHaveText(guide.article.title)
 })
+
+test("the new interview page's guide links its guide article", async ({ signInAs }) => {
+  const owner = await signInAs(ownerEmail())
+  const company = await createCompany(owner)
+  const guide = await api<{ article: { title: string; path: string } }>(
+    owner,
+    "GET",
+    "/site/help/pages/newInterview"
+  )
+  await visit(owner, `/companies/${company.id}/interviews/new`)
+  await openDialog(owner, owner.getByRole("main").getByTestId("page-help"))
+  const link = owner.getByRole("dialog").getByRole("link", { name: guide.article.title })
+  await expect(link).toHaveAttribute("href", guide.article.path)
+  await link.click()
+  await expect(owner).toHaveURL(new RegExp(`${guide.article.path}$`))
+  await expect(owner.getByRole("heading", { level: 1 })).toHaveText(guide.article.title)
+})

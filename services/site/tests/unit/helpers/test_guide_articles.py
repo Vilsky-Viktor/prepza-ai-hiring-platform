@@ -1,5 +1,6 @@
 import pytest
 from prepza_common.ai.page_keys import PAGE_KEYS
+from prepza_common.config.constants import LANGUAGES
 
 from site_content.api.v1 import help as help_router
 from site_content.constants import help as help_constants
@@ -140,3 +141,15 @@ def test_every_linked_article_is_a_real_guide_of_a_real_page():
     for key, slug in PAGE_ARTICLES.items():
         assert key in PAGE_KEYS
         assert guide_articles.guide_article(slug, "en") is not None, slug
+
+
+def test_every_linked_article_is_translated_into_every_language():
+    """A page's help links its guide in the page's language, never an English fallback."""
+    untranslated = [
+        f"{language}/{slug}"
+        for slug in set(PAGE_ARTICLES.values())
+        for language in LANGUAGES
+        if (guide_articles.guide_article(slug, language) or {}).get("language") != language
+    ]
+
+    assert untranslated == []
