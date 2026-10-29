@@ -66,11 +66,13 @@ test("an owner sees the MCP server's instructions and disconnects AI apps", asyn
     await expect(apps).toHaveCount(0)
     await shot(owner, "no-apps")
 
-    // Connected: one "connected" tag, and the apps' names, the latest first.
+    // Connected: one "connected" tag, and the apps' names, the latest first, dot-separated.
     await addAiConnections(uid, ["Claude", "ChatGPT"])
     await visit(owner, tab)
     await expect(row.locator("[data-slot=badge]")).toHaveCount(1)
     await expect(row.getByText("Claude, ChatGPT", { exact: true }).filter({ visible: true })).toBeVisible()
+    // Drawn with the site's dot between the two names (screen readers hear the comma).
+    await expect(row.locator("span[aria-hidden].rounded-full.bg-primary").filter({ visible: true })).toHaveCount(1)
     await shot(owner, "row-connected")
 
     // The row opens the apps' page: each with Disconnect, which asks first.
