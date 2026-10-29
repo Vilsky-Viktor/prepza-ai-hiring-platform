@@ -14,7 +14,6 @@ from notifications.constants.events import (
     CONTACT_SENT,
     EMAIL_WEBHOOK,
     MEMBER_INVITED,
-    NEWS_DELETED,
     NOTIFICATION_REQUESTED,
     REPORT_SHARED,
 )
@@ -28,7 +27,7 @@ from notifications.handlers import (
     contact_sent,
     email_webhook,
     member_invited,
-    news_deleted,
+    news_withdrawn,
     notification_requested,
     report_shared,
 )
@@ -44,8 +43,7 @@ HANDLERS = {
     COMPANY_DELETED: company_deleted.handle,
     CANDIDATE_REMOVED: candidate_removed.handle,
     CANDIDATE_INTERVIEW_DELETED: candidate_interview_deleted.handle,
-    NEWS_DELETED: news_deleted.handle,
-    NEWS_WITHDRAWN: news_deleted.handle,
+    NEWS_WITHDRAWN: news_withdrawn.handle,
     CONTACT_SENT: contact_sent.handle,
 }
 

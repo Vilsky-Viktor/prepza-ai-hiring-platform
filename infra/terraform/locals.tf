@@ -111,10 +111,9 @@ locals {
     companies         = ["generation", "library", "rounds", "billing", "accounts"]
     # companies' names and accounts' emails, for the AI costs tab.
     billing = ["companies", "accounts"]
-    # rounds: a campaign's candidates and learners; site, the news the bell names (library, which
-    # had them, for one release while the version before still asks it).
-    notifications        = ["companies", "library", "billing", "generation", "rounds", "accounts", "site"]
-    notifications-stream = ["companies", "library", "accounts", "site"]
+    # rounds: a campaign's candidates and learners; site, the news the bell names.
+    notifications        = ["companies", "billing", "generation", "rounds", "accounts", "site"]
+    notifications-stream = ["companies", "accounts", "site"]
     ats                  = ["companies"]
     api                  = ["companies"]
     # Its X-Assistant header, so companies audits reads made through it as such; billing, whether

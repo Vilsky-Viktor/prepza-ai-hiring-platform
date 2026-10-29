@@ -3,7 +3,7 @@ import uuid
 from datetime import UTC, datetime
 
 import httpx
-import pytest
+from prepza_common.events.notifications import NEWS_WITHDRAWN
 
 from notifications.handlers import dispatch
 from notifications.repositories import notifications
@@ -65,12 +65,7 @@ def test_everyones_notifications_are_the_users_after_their_account_was_made(monk
     assert calls == [user]
 
 
-@pytest.mark.parametrize(
-    # Site's event, and library's old one for the release the news moved in.
-    "event_type",
-    ["notification.news_withdrawn", "news.deleted"],
-)
-def test_a_deleted_news_posts_notification_goes(monkeypatch, event_type):
+def test_a_deleted_news_posts_notification_goes(monkeypatch):
     removed = []
 
     async def remove_news(session, news_id):
@@ -78,6 +73,6 @@ def test_a_deleted_news_posts_notification_goes(monkeypatch, event_type):
 
     monkeypatch.setattr(notifications, "remove_news", remove_news)
 
-    asyncio.run(dispatch.handle(event_type, {"news_id": "n1"}, "e1"))
+    asyncio.run(dispatch.handle(NEWS_WITHDRAWN, {"news_id": "n1"}, "e1"))
 
     assert removed == ["n1"]
