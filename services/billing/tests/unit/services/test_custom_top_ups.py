@@ -1,4 +1,5 @@
 import asyncio
+import uuid
 
 import pytest
 
@@ -8,11 +9,11 @@ from billing.constants.products import CANDIDATES_OUT_OF_RANGE, CUSTOM_TOP_UP_MA
 from billing.helpers.credits import candidate_tiers
 from billing.integrations import paddle
 from billing.services import adjustments, webhooks
-from tests.unit.api.v1.test_internal import AUTH
 from tests.unit.paddle_events import PRODUCT, completed
 from tests.unit.services.test_webhooks import granted  # noqa: F401 (fixture)
 
-URL = "/internal/companies/acme/checkout"
+COMPANY_ID = str(uuid.uuid4())
+URL = f"/companies/{COMPANY_ID}/billing/checkout"
 
 
 @pytest.fixture(autouse=True)
@@ -22,7 +23,9 @@ def product(monkeypatch):
 
 
 @pytest.fixture
-def made(monkeypatch):
+def made(monkeypatch, editor):
+    """Ann, an owner, buys; the transactions made in Paddle."""
+    editor("ann")
     calls = []
 
     async def create(items, currency, custom_data):
@@ -55,7 +58,7 @@ def test_without_paddles_product_it_isnt_on_sale(client, made, monkeypatch):
     monkeypatch.setattr(settings, "paddle_product_candidates", "")
 
     on_sale = client.get("/catalog").json()["custom"]["on_sale"]
-    response = client.post(URL, params={"buyer_id": "ann"}, json={"candidates": 60}, headers=AUTH)
+    response = client.post(URL, json={"candidates": 60})
 
     assert on_sale is False
     assert response.status_code == 422
@@ -82,10 +85,10 @@ def test_billing_makes_one_item_the_buyer_cant_change_in_the_companys_currency(
     client, made, saved_currencies, country, saved, chosen, candidates, amount, currency
 ):
     if saved:
-        saved_currencies[("company", "acme")] = saved
+        saved_currencies[("company", COMPANY_ID)] = saved
 
-    params = {"buyer_id": "ann", **({"country": country} if country else {})}
-    response = client.post(URL, params=params, json={"candidates": chosen}, headers=AUTH)
+    headers = {"X-Client-Country": country} if country else {}
+    response = client.post(URL, headers=headers, json={"candidates": chosen})
 
     assert response.json() == {"transaction_id": "txn_new"}
     item = {
@@ -97,18 +100,16 @@ def test_billing_makes_one_item_the_buyer_cant_change_in_the_companys_currency(
         "quantity": {"minimum": 1, "maximum": 1},
         "custom_data": {"candidates": str(candidates)},
     }
-    custom = {"owner_type": "company", "owner_id": "acme", "buyer_id": "ann"}
+    custom = {"owner_type": "company", "owner_id": COMPANY_ID, "buyer_id": "ann"}
     assert made == [([{"price": item, "quantity": 1}], currency, custom)]
     assert saved_currencies == (
-        {("company", "acme"): saved or currency} if saved or country else {}
+        {("company", COMPANY_ID): saved or currency} if saved or country else {}
     )
 
 
 @pytest.mark.parametrize("chosen", [0, 9, 1_001])
 def test_a_count_out_of_range_is_refused(client, made, chosen):
-    response = client.post(
-        URL, params={"buyer_id": "ann"}, json={"candidates": chosen}, headers=AUTH
-    )
+    response = client.post(URL, json={"candidates": chosen})
 
     assert response.status_code == 422
     assert response.json()["detail"] == "Choose from 10 to 1,000 candidates."

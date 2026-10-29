@@ -12,7 +12,6 @@ from billing.constants.item_names import CANDIDATES_NAMES
 from billing.helpers.item_names import candidates_name
 from billing.integrations import paddle
 from billing.services import auto_top_up_charging
-from tests.unit.api.v1.test_internal import AUTH
 from tests.unit.services.test_custom_top_ups import URL, made, product  # noqa: F401 (fixtures)
 
 
@@ -51,8 +50,7 @@ def test_every_site_language_has_its_name():
 
 
 def test_a_checkout_names_its_item_in_the_buyers_language(client, made):  # noqa: F811
-    params = {"buyer_id": "ann", "language": "de"}
-    response = client.post(URL, params=params, json={"candidates": 1_000}, headers=AUTH)
+    response = client.post(URL, json={"candidates": 1_000}, headers={"Accept-Language": "de"})
 
     [([item], _, _)] = made
     assert response.status_code == 200
@@ -61,12 +59,12 @@ def test_a_checkout_names_its_item_in_the_buyers_language(client, made):  # noqa
     assert item["price"]["custom_data"] == {"candidates": "1000"}
 
 
-def test_a_checkout_with_a_language_the_site_doesnt_have_is_refused(client, made):  # noqa: F811
-    params = {"buyer_id": "ann", "language": "xx"}
-    response = client.post(URL, params=params, json={"candidates": 10}, headers=AUTH)
+def test_a_checkout_in_a_language_the_site_doesnt_have_is_named_in_english(client, made):  # noqa: F811
+    response = client.post(URL, json={"candidates": 10}, headers={"Accept-Language": "xx"})
 
-    assert response.status_code == 422
-    assert made == []
+    [([item], _, _)] = made
+    assert response.status_code == 200
+    assert item["price"]["name"] == "10 candidates"
 
 
 @pytest.mark.parametrize(("language", "name"), [("ru", "50 кандидатов"), (None, "50 candidates")])

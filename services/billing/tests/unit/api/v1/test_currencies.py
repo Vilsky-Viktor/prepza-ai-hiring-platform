@@ -3,6 +3,7 @@ person's, signed out the visitor's country's. A company's or a person's is saved
 known country billing sees them with; without a country (calls from AI apps, the public API,
 other services, tests) the saved one applies, or US dollars, and nothing is saved."""
 
+import uuid
 from datetime import UTC, datetime
 from types import SimpleNamespace
 
@@ -12,7 +13,8 @@ from billing.constants.currencies import Currency
 from billing.repositories import auto_top_ups
 from tests.unit.api.v1.test_internal import AUTH
 
-COMPANY = "/internal/companies/acme"
+COMPANY_ID = str(uuid.uuid4())
+COMPANY = f"/companies/{COMPANY_ID}"
 
 
 @pytest.fixture
@@ -81,15 +83,16 @@ def test_a_new_accounts_currency_is_saved_only_with_a_country(
     [(None, None, "USD"), (None, "DE", "EUR"), ("GBP", None, "GBP"), ("GBP", "US", "GBP")],
 )
 def test_a_companys_prices_are_in_its_currency_with_or_without_a_country(
-    client, saved_currencies, no_auto_top_up, saved, country, shown
+    client, editor, saved_currencies, no_auto_top_up, saved, country, shown
 ):
     if saved:
-        saved_currencies[("company", "acme")] = saved
+        saved_currencies[("company", COMPANY_ID)] = saved
 
-    params = {"country": country} if country else {}
-    catalog = client.get(f"{COMPANY}/catalog", params=params, headers=AUTH)
-    currency = client.get(f"{COMPANY}/currency", params=params, headers=AUTH)
-    auto_top_up = client.get(f"{COMPANY}/auto-top-up", params=params, headers=AUTH)
+    editor("ann")
+    headers = {"X-Client-Country": country} if country else {}
+    catalog = client.get(f"{COMPANY}/billing/catalog", headers=headers)
+    currency = client.get(f"{COMPANY}/billing/currency", headers=headers)
+    auto_top_up = client.get(f"{COMPANY}/auto-top-up", headers=headers)
 
     assert catalog.json()["currency"] == shown
     assert currency.json()["currency"] == shown
@@ -134,21 +137,22 @@ def test_a_company_is_welcomed_with_or_without_its_owners_country(
     ],
 )
 def test_a_company_changes_its_currency_and_hears_what_automatic_top_up_now_charges(
-    client, monkeypatch, saved_currencies, row, charges
+    client, editor, monkeypatch, saved_currencies, row, charges
 ):
     async def get(session, owner_type, owner_id):
         return row
 
     monkeypatch.setattr(auto_top_ups, "get", get)
+    editor("ann")
 
-    response = client.put(f"{COMPANY}/currency", json={"currency": "EUR"}, headers=AUTH)
+    response = client.put(f"{COMPANY}/billing/currency", json={"currency": "EUR"})
 
     assert response.json() == {
         "currency": "EUR",
         "currencies": [currency.value for currency in Currency],
         "auto_top_up_price": charges,
     }
-    assert saved_currencies == {("company", "acme"): "EUR"}
+    assert saved_currencies == {("company", COMPANY_ID): "EUR"}
 
 
 @pytest.mark.parametrize(

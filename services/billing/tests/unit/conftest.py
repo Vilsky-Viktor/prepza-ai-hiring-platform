@@ -2,8 +2,10 @@ import pytest
 from prepza_common.auth.auth import current_user, optional_user
 from prepza_common.auth.user import User
 
+from billing.api.v1 import company_auto_top_ups, company_payments
 from billing.main import app
-from billing.repositories import currencies, ledger, purchases
+from billing.repositories import company_actions, currencies, ledger, purchases
+from billing.services import checkout_calls
 
 
 @pytest.fixture(autouse=True)
@@ -64,6 +66,31 @@ def signed_in(monkeypatch):
         user = User(uid=email, email=email, email_verified=True, sign_in_provider="google.com")
         app.dependency_overrides[current_user] = lambda: user
         app.dependency_overrides[optional_user] = lambda: user
+
+    yield sign_in
+    app.dependency_overrides.clear()
+
+
+@pytest.fixture
+def editor(monkeypatch):
+    """Signs in as the user given, an owner or admin of every company, for a company's payment
+    routes; the access check and the count of calls to Paddle have their own tests
+    (test_company_payments.py, test_company_auto_top_ups.py), and the action log's lines the
+    integration tests'."""
+
+    async def allowed(*args, **kwargs):
+        return None
+
+    for module in (company_auto_top_ups, company_payments):
+        monkeypatch.setattr(module, "require", allowed)
+
+    monkeypatch.setattr(checkout_calls, "count", allowed)
+    monkeypatch.setattr(company_actions, "log", lambda *args: None)
+
+    def sign_in(user_id):
+        app.dependency_overrides[current_user] = lambda: User(
+            uid=user_id, email=f"{user_id}@example.com", email_verified=True
+        )
 
     yield sign_in
     app.dependency_overrides.clear()

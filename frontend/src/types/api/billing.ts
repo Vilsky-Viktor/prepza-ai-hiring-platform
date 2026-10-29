@@ -403,49 +403,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/companies/{company_id}/catalog": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /**
-     * Company Catalog
-     * @description Every price in the currency the company pays in, wherever the buyer is.
-     */
-    get: operations["company_catalog_internal_companies__company_id__catalog_get"]
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/companies/{company_id}/currency": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Get Company Currency */
-    get: operations["get_company_currency_internal_companies__company_id__currency_get"]
-    /**
-     * Choose Company Currency
-     * @description From now on its top-ups are priced and charged in it, automatic ones too, at once and at
-     *     the price list's price in it (their next charge switches the subscription over), which the
-     *     answer says for a running one.
-     */
-    put: operations["choose_company_currency_internal_companies__company_id__currency_put"]
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/users/{user_id}/currency": {
     parameters: {
       query?: never
@@ -466,30 +423,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/companies/{company_id}/checkout": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /**
-     * Company Checkout
-     * @description A checkout for a top-up of `candidates`, paid into the company by `buyer_id`: companies
-     *     has checked they're its owner or an admin. What it buys and its price are set here from the
-     *     count, in the company's currency, which Paddle then charges wherever the buyer is; its item
-     *     is named in the buyer's interface `language`. A count outside the range, or before Paddle's
-     *     product is set, is refused (422).
-     */
-    post: operations["company_checkout_internal_companies__company_id__checkout_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/companies/{company_id}/auto-top-up": {
     parameters: {
       query?: never
@@ -497,40 +430,14 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    /** Company Auto Top Up */
-    get: operations["company_auto_top_up_internal_companies__company_id__auto_top_up_get"]
-    /**
-     * Turn On Company
-     * @description `language` is the buyer's interface language, which names what each charge buys.
-     */
-    put: operations["turn_on_company_internal_companies__company_id__auto_top_up_put"]
+    get?: never
+    put?: never
     post?: never
     /**
      * Turn Off Company
      * @description With `buyer_id`, off only when that person's card pays for it.
      */
     delete: operations["turn_off_company_internal_companies__company_id__auto_top_up_delete"]
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/companies/{company_id}/auto-top-up/card": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /**
-     * Update Company Card
-     * @description The checkout that saves a new card for a running automatic top-up, for the person whose
-     *     card pays for it; a paused one resumes once Paddle has saved it.
-     */
-    post: operations["update_company_card_internal_companies__company_id__auto_top_up_card_post"]
-    delete?: never
     options?: never
     head?: never
     patch?: never
@@ -684,27 +591,6 @@ export interface paths {
      *     pays for it; a paused one starts again once the card is saved.
      */
     post: operations["update_company_auto_top_up_card_companies__company_id__auto_top_up_card_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/companies/{company_id}/payment-failure": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /**
-     * Company Payment Failure
-     * @description Why the latest payment of `buyer_id`'s checkout into the company failed; 404 for any
-     *     transaction that isn't theirs, so its id alone reveals nothing.
-     */
-    get: operations["company_payment_failure_internal_companies__company_id__payment_failure_get"]
-    put?: never
-    post?: never
     delete?: never
     options?: never
     head?: never
@@ -2315,107 +2201,6 @@ export interface operations {
       }
     }
   }
-  company_catalog_internal_companies__company_id__catalog_get: {
-    parameters: {
-      query?: {
-        country?: string | null
-      }
-      header?: never
-      path: {
-        company_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["CatalogOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  get_company_currency_internal_companies__company_id__currency_get: {
-    parameters: {
-      query?: {
-        country?: string | null
-      }
-      header?: never
-      path: {
-        company_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["CompanyCurrencyOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  choose_company_currency_internal_companies__company_id__currency_put: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        company_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CurrencyIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["CompanyCurrencyOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
   remember_user_currency_internal_users__user_id__currency_post: {
     parameters: {
       query?: {
@@ -2447,163 +2232,6 @@ export interface operations {
       }
     }
   }
-  company_checkout_internal_companies__company_id__checkout_post: {
-    parameters: {
-      query: {
-        buyer_id: string
-        country?: string | null
-        language?:
-          | "en"
-          | "ru"
-          | "uk"
-          | "es"
-          | "pt"
-          | "de"
-          | "fr"
-          | "it"
-          | "pl"
-          | "nl"
-          | "tr"
-          | "ar"
-          | "he"
-          | "fa"
-          | "ja"
-          | "zh"
-          | "ko"
-          | "hi"
-          | "id"
-          | "th"
-          | "vi"
-          | "fil"
-          | "et"
-      }
-      header?: never
-      path: {
-        company_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["TopUpCheckoutIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["TopUpCheckoutOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  company_auto_top_up_internal_companies__company_id__auto_top_up_get: {
-    parameters: {
-      query?: {
-        country?: string | null
-      }
-      header?: never
-      path: {
-        company_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["AutoTopUpOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  turn_on_company_internal_companies__company_id__auto_top_up_put: {
-    parameters: {
-      query: {
-        buyer_id: string
-        country?: string | null
-        language?:
-          | "en"
-          | "ru"
-          | "uk"
-          | "es"
-          | "pt"
-          | "de"
-          | "fr"
-          | "it"
-          | "pl"
-          | "nl"
-          | "tr"
-          | "ar"
-          | "he"
-          | "fa"
-          | "ja"
-          | "zh"
-          | "ko"
-          | "hi"
-          | "id"
-          | "th"
-          | "vi"
-          | "fil"
-          | "et"
-      }
-      header?: never
-      path: {
-        company_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["AutoTopUpIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["AutoTopUpOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
   turn_off_company_internal_companies__company_id__auto_top_up_delete: {
     parameters: {
       query?: {
@@ -2623,39 +2251,6 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  update_company_card_internal_companies__company_id__auto_top_up_card_post: {
-    parameters: {
-      query: {
-        buyer_id: string
-      }
-      header?: never
-      path: {
-        company_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["CheckoutOut"]
-        }
       }
       /** @description Validation Error */
       422: {
@@ -2991,40 +2586,6 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["CheckoutOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  company_payment_failure_internal_companies__company_id__payment_failure_get: {
-    parameters: {
-      query: {
-        transaction_id: string
-        buyer_id: string
-      }
-      header?: never
-      path: {
-        company_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["PaymentFailureOut"]
         }
       }
       /** @description Validation Error */

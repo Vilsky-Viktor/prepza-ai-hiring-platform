@@ -2,21 +2,20 @@
 own checkout into that company."""
 
 import asyncio
+import uuid
 
 import httpx
 import pytest
-from prepza_common.http.http import bearer
 
 from billing.constants.payment_failures import PaymentFailure
-from billing.core.security import service_token
 from billing.helpers.payment_failures import latest_failure
 from billing.integrations import paddle
 from billing.services import payment_failures
 
-AUTH = bearer(service_token("billing"))
 TXN = "txn_01aaaaaaaaaaaaaaaaaaaaaaaa"
-PATH = "/internal/companies/acme/payment-failure"
-OURS = {"owner_type": "company", "owner_id": "acme", "buyer_id": "bob"}
+COMPANY_ID = str(uuid.uuid4())
+PATH = f"/companies/{COMPANY_ID}/billing/payment-failure"
+OURS = {"owner_type": "company", "owner_id": COMPANY_ID, "buyer_id": "bob"}
 
 
 def attempt(code, method="card"):
@@ -100,11 +99,12 @@ def not_found():
     ],
 )
 def test_the_route_answers_only_for_the_buyers_own_checkout(
-    client, monkeypatch, found, status, body
+    client, editor, monkeypatch, found, status, body
 ):
     monkeypatch.setattr(paddle, "transaction", answering(found))
+    editor("bob")
 
-    response = client.get(PATH, params={"transaction_id": TXN, "buyer_id": "bob"}, headers=AUTH)
+    response = client.get(PATH, params={"transaction_id": TXN})
 
     assert response.status_code == status
 
@@ -112,20 +112,19 @@ def test_the_route_answers_only_for_the_buyers_own_checkout(
         assert response.json() == body
 
 
-def test_an_id_that_isnt_a_transactions_never_reaches_paddle(client, monkeypatch):
+def test_an_id_that_isnt_a_transactions_never_reaches_paddle(client, editor, monkeypatch):
     read = []
     monkeypatch.setattr(paddle, "transaction", lambda *args: read.append(args))
+    editor("bob")
 
-    response = client.get(
-        PATH, params={"transaction_id": "../subscriptions", "buyer_id": "bob"}, headers=AUTH
-    )
+    response = client.get(PATH, params={"transaction_id": "../subscriptions"})
 
     assert response.status_code == 422
     assert read == []
 
 
-def test_the_route_needs_a_service_token(client):
-    response = client.get(PATH, params={"transaction_id": TXN, "buyer_id": "bob"})
+def test_the_route_needs_a_signed_in_user(client):
+    response = client.get(PATH, params={"transaction_id": TXN})
 
     assert response.status_code == 401
 
@@ -142,6 +141,6 @@ def test_an_attempt_whose_code_comes_late_is_read_again(monkeypatch):
     monkeypatch.setattr(paddle, "transaction", read)
     monkeypatch.setattr(payment_failures.asyncio, "sleep", no_wait)
 
-    found = asyncio.run(payment_failures.failure("company", "acme", "bob", TXN))
+    found = asyncio.run(payment_failures.failure("company", COMPANY_ID, "bob", TXN))
 
     assert found == PaymentFailure.EXPIRED_CARD

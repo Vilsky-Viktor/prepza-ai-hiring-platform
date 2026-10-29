@@ -19,7 +19,6 @@ from billing.api.v1 import (
     company_payments,
     events,
     internal,
-    payment_failures,
     prices,
     schedules,
     superadmin,
@@ -61,7 +60,6 @@ app.include_router(prices.router)
 app.include_router(auto_top_ups.internal)
 app.include_router(company_payments.router)
 app.include_router(company_auto_top_ups.router)
-app.include_router(payment_failures.router)
 app.include_router(superadmin.router)
 app.include_router(superadmin_ai.router)
 app.include_router(superadmin_limits.router)

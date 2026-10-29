@@ -2,22 +2,21 @@
 saves a new one, and Paddle saving it resumes the top-up; what the company sees meanwhile."""
 
 import asyncio
+import uuid
 from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.http.http import bearer
 
 from billing.constants.products import NOT_YOUR_AUTO_TOP_UP
-from billing.core.security import service_token
 from billing.integrations import paddle
 from billing.repositories import auto_top_up_charges
 from billing.repositories import auto_top_ups as rows
 from billing.services import auto_top_up_charging, auto_top_up_declines, auto_top_ups, webhooks
 from tests.unit.paddle_events import completed
 
-AUTH = bearer(service_token("billing"))
-CARD = "/internal/companies/acme/auto-top-up/card"
+AUTO_TOP_UP = f"/companies/{uuid.uuid4()}/auto-top-up"
+CARD = f"{AUTO_TOP_UP}/card"
 SAVED_AT = "2026-10-21T15:30:00.000000Z"
 
 
@@ -64,18 +63,19 @@ def stored(monkeypatch):
     ],
 )
 def test_only_the_cards_owner_gets_the_checkout_that_saves_a_new_card(
-    client, stored, row, buyer, status, answer
+    client, editor, stored, row, buyer, status, answer
 ):
     stored["row"] = row
+    editor(buyer)
 
-    response = client.post(CARD, params={"buyer_id": buyer}, headers=AUTH)
+    response = client.post(CARD)
 
     assert response.status_code == status
     assert response.json() == answer
 
 
-def test_a_card_update_needs_billings_caller(client, stored):
-    assert client.post(CARD, params={"buyer_id": "ann"}).status_code in (401, 403)
+def test_a_card_update_needs_a_signed_in_user(client, stored):
+    assert client.post(CARD).status_code == 401
 
 
 @pytest.mark.parametrize(("resumed", "checked"), [(("company", "acme"), ["acme"]), (None, [])])
@@ -126,12 +126,13 @@ def test_paddle_saving_the_new_card_resumes_it_and_grants_nothing(monkeypatch, r
     ],
 )
 def test_the_company_sees_whether_its_paused_and_what_each_charge_costs(
-    client, stored, monkeypatch, row, paused, price, coming
+    client, editor, stored, monkeypatch, row, paused, price, coming
 ):
     stored["row"] = row
     monkeypatch.setattr(auto_top_ups, "offered", lambda: True)
+    editor("bob")
 
-    body = client.get("/internal/companies/acme/auto-top-up", headers=AUTH).json()
+    body = client.get(AUTO_TOP_UP).json()
 
     assert body["paused"] is paused
     assert body["prices"]["topup_50"] == price
