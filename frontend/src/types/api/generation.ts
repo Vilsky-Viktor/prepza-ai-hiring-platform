@@ -470,8 +470,10 @@ export interface paths {
     put?: never
     /**
      * Translate Campaign
-     * @description Notifications saved a campaign; the worker translates it into the languages it lacks.
-     *     While paused the call is refused, and saving the campaign again sends it again.
+     * @description Notifications saved a campaign, sending its English texts and the languages it lacks;
+     *     each language is queued for the next batch, and the translations go back as
+     *     `notification.campaign_translated`. While paused the call is refused, and saving the
+     *     campaign again sends it again.
      */
     post: operations["translate_campaign_internal_campaigns__campaign_id__translate_post"]
     delete?: never
@@ -572,6 +574,21 @@ export interface components {
        * @description Of the limit, the share used, 0 to 1 (more once over it).
        */
       readonly share: number
+    }
+    /**
+     * CampaignSource
+     * @description A campaign to translate, sent by notifications: its English texts and the languages it
+     *     lacks.
+     */
+    CampaignSource: {
+      /** Subject */
+      subject: string
+      /** Text */
+      text: string
+      /** Button */
+      button: string | null
+      /** Missing */
+      missing: string[]
     }
     /** DraftTopic */
     DraftTopic: {
@@ -1690,7 +1707,11 @@ export interface operations {
       }
       cookie?: never
     }
-    requestBody?: never
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CampaignSource"]
+      }
+    }
     responses: {
       /** @description Successful Response */
       202: {

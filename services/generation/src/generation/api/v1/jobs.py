@@ -1,11 +1,10 @@
 from fastapi import APIRouter, Request, status
 from prepza_common.auth.google import Invoker
 
-from generation.schemas.campaigns import TranslateCampaign
 from generation.schemas.jobs import RunGeneration, VerifyQuestion
 from generation.schemas.news import TranslateNews
 from generation.services.jobs import run_generation
-from generation.services.translation_jobs import translate_campaign, translate_news
+from generation.services.translation_jobs import translate_news
 from generation.services.verify import verify
 
 router = APIRouter(prefix="/internal/jobs", tags=["jobs"], dependencies=[Invoker])
@@ -26,9 +25,3 @@ async def verify_question_job(body: VerifyQuestion) -> None:
 async def translate_news_job(body: TranslateNews) -> None:
     """A failure answers with an error, so Cloud Tasks tries the missing languages again."""
     await translate_news(body.news_id)
-
-
-@router.post("/translate-campaign", status_code=status.HTTP_204_NO_CONTENT)
-async def translate_campaign_job(body: TranslateCampaign) -> None:
-    """A failure answers with an error, so Cloud Tasks tries the missing languages again."""
-    await translate_campaign(body.campaign_id)

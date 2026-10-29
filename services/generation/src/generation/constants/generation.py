@@ -88,7 +88,6 @@ CLOUD_TASKS_URL = "https://cloudtasks.googleapis.com"
 RUN_GENERATION = "/internal/jobs/run-generation"
 VERIFY_QUESTION = "/internal/jobs/verify-question"
 TRANSLATE_NEWS = "/internal/jobs/translate-news"
-TRANSLATE_CAMPAIGN = "/internal/jobs/translate-campaign"
 # A running job updates its row as it goes; one untouched for longer than a job may run has lost
 # its worker. The margin covers the last update coming a little before the timeout.
 STUCK_AFTER_SECONDS = JOB_TIMEOUT_SECONDS + 10 * 60

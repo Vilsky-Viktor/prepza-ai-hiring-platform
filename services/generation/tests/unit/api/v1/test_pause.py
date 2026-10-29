@@ -55,3 +55,16 @@ def test_paused_the_verifier_takes_no_new_question(client, queued):
 
     assert refused.status_code == 503
     assert queued == []
+
+
+def test_paused_a_campaign_is_not_queued_for_translation(client, batch_store):
+    """Notifications saves it again later, which sends it again."""
+    source = {"subject": "New", "text": "One.", "button": None, "missing": ["de"]}
+    refused = client.post(
+        f"/internal/campaigns/{uuid.uuid4()}/translate",
+        json=source,
+        headers=bearer(service_token("generation")),
+    )
+
+    assert refused.status_code == 503
+    assert batch_store.rows == {}

@@ -81,9 +81,9 @@ locals {
   calls = {
     frontend = []
     library  = ["generation"]
-    # site: the news posts it translates.
-    generation        = ["library", "notifications", "site"]
-    generation-worker = ["library", "notifications", "site"]
+    # site: the news posts it translates (campaigns' translations go to notifications as an event).
+    generation        = ["library", "site"]
+    generation-worker = ["library", "site"]
     rounds            = ["library"]
     companies         = ["generation", "library", "rounds", "billing", "accounts"]
     # companies' names and accounts' emails, for the AI costs tab.

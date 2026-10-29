@@ -13,7 +13,6 @@ from generation.constants.actions import (
     QUESTION_VERIFY,
 )
 from generation.constants.generation import (
-    TRANSLATE_CAMPAIGN,
     TRANSLATE_NEWS,
     VERIFY_QUESTION,
 )
@@ -24,10 +23,12 @@ from generation.integrations.redis import get_redis
 from generation.integrations.usage import ai_run
 from generation.models.generation import Generation
 from generation.repositories import generations
+from generation.schemas.campaigns import CampaignSource
 from generation.schemas.generation import GenerationOut, InterviewGenerationCreate, ReviewRequest
 from generation.schemas.regenerate import RegeneratedOut, RegenerateIn
 from generation.schemas.statuses import GenerationIdsIn, GenerationStatusesOut, GenerationStatusOut
 from generation.schemas.verify import VerifyIn
+from generation.services import translation_jobs
 from generation.services.budget import use_daily_budget, use_verify_budget
 from generation.services.cancel import cancel_generation
 from generation.services.regenerate import regenerate
@@ -166,8 +167,12 @@ async def translate_news(news_id: UUID, caller: ServiceCaller) -> None:
 
 
 @router.post("/campaigns/{campaign_id}/translate", status_code=status.HTTP_202_ACCEPTED)
-async def translate_campaign(campaign_id: UUID, caller: ServiceCaller) -> None:
-    """Notifications saved a campaign; the worker translates it into the languages it lacks.
-    While paused the call is refused, and saving the campaign again sends it again."""
+async def translate_campaign(
+    campaign_id: UUID, body: CampaignSource, caller: ServiceCaller
+) -> None:
+    """Notifications saved a campaign, sending its English texts and the languages it lacks;
+    each language is queued for the next batch, and the translations go back as
+    `notification.campaign_translated`. While paused the call is refused, and saving the
+    campaign again sends it again."""
     await refuse_if_paused(get_redis(), CAMPAIGN_TRANSLATION)
-    await tasks.enqueue(TRANSLATE_CAMPAIGN, {"campaign_id": str(campaign_id)})
+    await translation_jobs.translate_campaign(campaign_id, body)

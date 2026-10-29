@@ -5,6 +5,7 @@ from datetime import UTC, datetime
 
 import httpx
 import pytest
+from event_pushes import push
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.db.lock_waits import hold_first_commit, race
@@ -41,7 +42,7 @@ async def large_resend_quota(redis):
 def quiet(monkeypatch):
     """Generation isn't asked to translate; sending isn't paced."""
 
-    async def translate(campaign_id):
+    async def translate(campaign_id, source):
         return None
 
     async def no_wait(_seconds):
@@ -126,7 +127,24 @@ def test_a_kinds_campaigns_a_day_stay_within_the_limit_even_sent_at_once(run, qu
     assert second == ONE_A_DAY
 
 
-def test_a_changed_english_drops_the_translations_but_a_hand_edit_survives_a_late_job(run, quiet):
+def test_a_changed_english_drops_the_translations_but_a_hand_edit_survives_a_late_job(
+    run, quiet, monkeypatch
+):
+    """Generation is sent the English and the missing languages; its translations come back as
+    `notification.campaign_translated` events: saved once however often they're delivered, a hand
+    edit kept, and a late one of an older English dropped."""
+    sent = []
+
+    async def translate(campaign_id, source):
+        sent.append(source)
+
+    monkeypatch.setattr(campaigns.generation, "translate_campaign", translate)
+
+    def translated(campaign_id, english, translations):
+        data = {"campaign_id": str(campaign_id), **english, "translations": translations}
+
+        return push("notification.campaign_translated", data, f"e-{uuid.uuid4()}")
+
     async def scenario():
         campaign = await transaction(
             campaigns_store.create, fields("updates", "/pricing"), "sam", ENGLISH
@@ -134,27 +152,41 @@ def test_a_changed_english_drops_the_translations_but_a_hand_edit_survives_a_lat
         await campaigns.set_texts(
             campaign.id, "de", CampaignTexts(**{**ENGLISH, "subject": "Von Hand"})
         )
-        await campaigns.save_translations(
+        machine = translated(
             campaign.id,
             ENGLISH,
             {
                 "de": {**ENGLISH, "subject": "Maschine"},
-                "fr": {**ENGLISH, "subject": "Machine"},
+                "fr": {**ENGLISH, "subject": "Machine", "button": ""},
             },
         )
-        _, kept = await transaction(campaigns_store.get, campaign.id)
-        changed = {**ENGLISH, "text": "Now with more code.", "button": "See the prices"}
-        await campaigns.update(campaign.id, CampaignIn(kind="updates", link="/pricing", **changed))
-        # A job that translated the old text arrives late: dropped.
-        await campaigns.save_translations(campaign.id, ENGLISH, {"de": ENGLISH})
+
+        async with api() as client:
+            codes = [
+                (await client.post("/internal/events", json=machine)).status_code for _ in range(2)
+            ]
+            _, kept = await transaction(campaigns_store.get, campaign.id)
+            changed = {**ENGLISH, "text": "Now with more code.", "button": "See the prices"}
+            await campaigns.update(
+                campaign.id, CampaignIn(kind="updates", link="/pricing", **changed)
+            )
+            # A job that translated the old text arrives late: dropped.
+            late = translated(campaign.id, ENGLISH, {"de": ENGLISH})
+            codes.append((await client.post("/internal/events", json=late)).status_code)
+
         _, after = await transaction(campaigns_store.get, campaign.id)
 
-        return kept, after
+        return codes, kept, after
 
-    kept, after = run(scenario())
+    codes, kept, after = run(scenario())
 
+    assert codes == [204, 204, 204]
     assert (kept["de"]["subject"], kept["fr"]["subject"]) == ("Von Hand", "Machine")
+    assert kept["fr"]["button"] is None
     assert list(after) == ["en"]
+    # The changed English went to be translated, with every other language missing.
+    assert sent[-1]["text"] == "Now with more code."
+    assert "de" in sent[-1]["missing"] and "en" not in sent[-1]["missing"]
 
 
 def test_a_signed_complaint_puts_the_address_on_the_suppression_list(run, monkeypatch):

@@ -1,6 +1,7 @@
 """News posts and campaigns translated through OpenAI's Batch API (services/translation_jobs.py,
 batch_work.py, batch_steps.py): one piece per missing language, sent in a batch, each reply
-checked against the limits and saved, or asked for again. OpenAI and storage are fakes."""
+checked against the limits and saved (a campaign's sent to notifications as an event), or asked
+for again. OpenAI and storage are fakes."""
 
 import asyncio
 import json
@@ -9,12 +10,14 @@ import uuid
 import pytest
 from prepza_common.ai.ai_constants import AI_USED
 from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH
+from prepza_common.events.campaigns import CAMPAIGN_TRANSLATED, CampaignTranslated
 
 from generation.constants.actions import NEWS_TRANSLATION
 from generation.constants.batch_work import BATCH_WORK_ATTEMPTS, BatchKind
-from generation.integrations import notifications, site
+from generation.integrations import site
 from generation.schemas.campaigns import CampaignSource
 from generation.schemas.news import NewsSource
+from generation.services import batch_work
 from generation.services.translation_jobs import translate_campaign, translate_news
 from tests.unit.batch_fakes import run_batches
 
@@ -40,21 +43,16 @@ def saved(monkeypatch):
     async def news_source(news_id):
         return POST
 
-    async def campaign_source(campaign_id):
-        return CAMPAIGN
-
     async def save_news(news_id, source, translations):
         calls.append(("news", news_id, {k: v.model_dump() for k, v in translations.items()}))
 
-    async def save_campaign(campaign_id, source, translations):
-        calls.append(
-            ("campaign", campaign_id, {k: v.model_dump() for k, v in translations.items()})
-        )
+    async def flushed():
+        calls.append("published")
 
     monkeypatch.setattr(site, "get_news_source", news_source)
     monkeypatch.setattr(site, "save_news_translations", save_news)
-    monkeypatch.setattr(notifications, "get_campaign_source", campaign_source)
-    monkeypatch.setattr(notifications, "save_campaign_translations", save_campaign)
+    monkeypatch.setattr(batch_work.outbox, "add", lambda session, event: calls.append(event))
+    monkeypatch.setattr(batch_work.outbox_service, "flush_quietly", flushed)
 
     return calls
 
@@ -106,16 +104,26 @@ def test_a_reply_past_the_limits_is_asked_for_again_then_given_up(store, saved, 
     assert store.rows == {}
 
 
-def test_a_campaign_without_a_button_gets_none(store, saved, monkeypatch):
-    asyncio.run(translate_campaign(CAMPAIGN_ID))
+def test_a_campaigns_translation_goes_to_notifications_as_an_event_without_a_made_up_button(
+    store, saved, monkeypatch
+):
+    """Notifications sends the English and the missing languages; each translation goes back as
+    `notification.campaign_translated`, with the English it's of, and no call to notifications."""
+    asyncio.run(translate_campaign(CAMPAIGN_ID, CAMPAIGN))
+    asyncio.run(translate_campaign(CAMPAIGN_ID, CAMPAIGN))
     reply = json.dumps({"subject": "Neu", "text": "Eins.\n\nZwei.", "button": "Erfunden"})
 
     run_batches(monkeypatch, lambda body: reply)
 
-    assert saved == [
-        (
-            "campaign",
-            CAMPAIGN_ID,
-            {"de": {"subject": "Neu", "text": "Eins.\n\nZwei.", "button": ""}},
-        )
-    ]
+    [(kind, data), published] = saved
+    assert (kind, published) == (CAMPAIGN_TRANSLATED, "published")
+    assert data == {
+        "campaign_id": str(CAMPAIGN_ID),
+        "subject": "New",
+        "text": "One.\n\nTwo.",
+        "button": None,
+        "translations": {"de": {"subject": "Neu", "text": "Eins.\n\nZwei.", "button": ""}},
+    }
+    # What notifications reads it as.
+    assert CampaignTranslated.model_validate(data).campaign_id == CAMPAIGN_ID
+    assert store.rows == {}

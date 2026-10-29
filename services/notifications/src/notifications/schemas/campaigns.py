@@ -2,7 +2,6 @@ from datetime import datetime
 from typing import Annotated, Literal
 from uuid import UUID
 
-from prepza_common.auth.user import Language
 from prepza_common.config.constants import (
     MAX_CAMPAIGN_BUTTON_LENGTH,
     MAX_CAMPAIGN_SUBJECT_LENGTH,
@@ -112,19 +111,9 @@ class PreviewOut(BaseModel):
 
 
 class CampaignSourceOut(BaseModel):
-    """A campaign to translate (generation): its English texts and the languages it lacks."""
+    """A campaign to translate, sent to generation: its English texts and the languages it lacks."""
 
     subject: str
     text: str
     button: str | None
     missing: list[str]
-
-
-class CampaignTranslationsIn(BaseModel):
-    """Translations of the campaign's English texts (subject, text, button): saved only while it
-    still reads so and isn't sent."""
-
-    subject: str
-    text: str
-    button: str | None
-    translations: dict[Language, CampaignTexts]

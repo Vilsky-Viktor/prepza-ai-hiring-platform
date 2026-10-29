@@ -50,7 +50,7 @@ flowchart LR
     accounts -- export a user --> companies & rounds & generation & billing & notifications & ats & api & assistant & library & site
     notifications -- members, waiting interviews --> companies
     notifications -- low credits --> billing
-    notifications -- topic review statuses --> generation
+    notifications -- topic review statuses, campaigns to translate --> generation
     notifications -- addresses, languages, email settings --> accounts
     companies -- accounts for the support tab --> accounts
     billing -- accounts' emails --> accounts
@@ -77,6 +77,7 @@ flowchart LR
     billing -- credits.added --> pubsub
     library & companies & billing & ats & site -- notification.requested --> pubsub
     site -- notification.news_withdrawn --> pubsub
+    worker -- notification.campaign_translated --> pubsub
     accounts -- user.deleted --> pubsub
     pubsub -- push --> library
     pubsub -- push --> rounds
@@ -172,7 +173,7 @@ Delivery:
 | library | `answer.recorded`, `session.scored`, `guests.deleted` (companies deleted guest invites, by removal, retention or with their interview or company: library deletes each guest's ratings and reports; deleting again deletes nothing more), `question.fixed` (its own: a fixed bank question's copies in companies' tests that still hold its old content get the new one, 50 at a time; a push that runs out of time answers 503 and Pub/Sub brings it back for the rest; a copy already fixed no longer matches, so a repeat fixes nothing twice), `interview.deleted` (the interview's question set, found by its id or by the generation that saved it, of that company only), `company.deleted` (every set of the company, 20 at a time), `user.deleted` (the user's votes and reports on questions); deleting again deletes nothing more |
 | rounds | `interview.deleted` (by its set: every candidate's and preview's sessions with their answers and signals), `company.deleted` (every session of the company), `user.deleted` (every session the user had, with its answers, a batch at a time); deleting again deletes nothing more, so a redelivery or a repeat is safe in any order |
 | companies | `generation.completed`, `generation.failed`, `generation.cancelled`, `interview.finished` |
-| notifications | the `notification.` family (`notification.requested`, and `notification.news_withdrawn`: a deleted news post's notification goes), every `candidate.*` (it handles `candidate.invited`, `candidate.joined`, `candidate.reminded`, `candidate.removed` and `candidate.interview_deleted`, which companies sends with `interview.deleted` so the bell forgets a deleted interview's candidates), `member.invited`, `report.shared`, `contact.sent`, `company.deleted`, `user.deleted` (the user's notifications, sent log and bulk-send rows, companies' notifications about them; the Slack channels they connected stay without them, each company told once), and its own `email.webhook_received` (a Resend web hook recorded by its delivery id before the answer; its work runs from the event) |
+| notifications | the `notification.` family (`notification.requested`, `notification.news_withdrawn`: a deleted news post's notification goes, and generation's `notification.campaign_translated`: a campaign's translations, saved while its English still reads so), every `candidate.*` (it handles `candidate.invited`, `candidate.joined`, `candidate.reminded`, `candidate.removed` and `candidate.interview_deleted`, which companies sends with `interview.deleted` so the bell forgets a deleted interview's candidates), `member.invited`, `report.shared`, `contact.sent`, `company.deleted`, `user.deleted` (the user's notifications, sent log and bulk-send rows, companies' notifications about them; the Slack channels they connected stay without them, each company told once), and its own `email.webhook_received` (a Resend web hook recorded by its delivery id before the answer; its work runs from the event) |
 | ats | `candidate.finished`, `candidate.removed`, `interview.ready`, `interview.deleted` (the `interview.` family), `company.deleted`, `credits.added`, `user.deleted` (an ATS's records of them as a candidate; the connections they made stay without them, each company told once), and its own `ats.candidate_arrived` (a candidate an ATS's web hook sent, saved before the answer: invited from the event, once, as the invite claims them) |
 | api | `candidate.finished`, `candidate.removed`, `candidate.interview_deleted` (its candidates' results waiting to be sent again go), `company.deleted`, `user.deleted` (the keys and web hooks they made, their results waiting to be sent again) |
 | accounts | `guests.deleted` (deletes each guest's sign-in and accepted terms; deleting again deletes nothing more) |

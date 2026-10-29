@@ -17,7 +17,8 @@ src/notifications/
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
 ├── handlers/               # Pub/Sub events (requested notifications, invites, reminders,
-│                           # reports, contact messages, Resend's web hooks, deletions);
+│                           # reports, contact messages, Resend's web hooks, campaigns'
+│                           # translations, deletions);
 │                           # dispatch.py picks one
 ├── services/               # Sending (Resend, pacing, suppression), the bell, Slack, the
 │                           # morning emails, bulk sends, campaigns, legal notices,

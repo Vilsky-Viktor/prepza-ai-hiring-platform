@@ -1,5 +1,5 @@
-# Campaigns as superadmins write them: in English, translated by generation, and changeable per
-# language until they're sent.
+# Campaigns as superadmins write them: in English, translated by generation (its translations come
+# back as `notification.campaign_translated`), and changeable per language until they're sent.
 import logging
 import uuid
 
@@ -29,7 +29,7 @@ from notifications.schemas.campaigns import (
     CampaignOut,
     CampaignTexts,
 )
-from notifications.services.campaign_views import get, out
+from notifications.services.campaign_views import get, out, source
 
 logger = logging.getLogger(__name__)
 
@@ -81,9 +81,11 @@ def fields_of(body: CampaignIn) -> dict:
 
 
 async def send_to_translator(campaign_id: uuid.UUID) -> None:
-    """Never raises: the campaign is saved first, and saving it again sends it again."""
+    """Sends the campaign's English texts and the languages it lacks to generation. Never
+    raises: the campaign is saved first, and saving it again sends it again."""
     try:
-        await generation.translate_campaign(str(campaign_id))
+        found = await source(campaign_id)
+        await generation.translate_campaign(str(campaign_id), found.model_dump())
     except Exception:
         logger.exception("Couldn't send campaign %s to be translated", campaign_id)
 

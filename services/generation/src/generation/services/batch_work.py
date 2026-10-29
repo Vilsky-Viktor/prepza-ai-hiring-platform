@@ -8,18 +8,21 @@
 import logging
 import uuid
 
+from prepza_common.events.campaigns import CAMPAIGN_TRANSLATED
+
 from generation.constants.actions import CAMPAIGN_TRANSLATION, NEWS_TRANSLATION, QUESTION_VERIFY
 from generation.constants.batch_work import MAX_BATCH_WORK, BatchKind, BatchStep
 from generation.constants.quality import BATCH_RETRY_STATUSES
 from generation.core.db import Session
-from generation.integrations import library, notifications, openai_batch, site
+from generation.integrations import library, openai_batch, site
 from generation.integrations.usage import ai_run
 from generation.models.batch_work import BatchWork
-from generation.repositories import batch_work
-from generation.schemas.campaigns import CampaignSource
+from generation.repositories import batch_work, outbox
+from generation.schemas.campaigns import TranslatedCampaign
 from generation.schemas.news import NewsSource
 from generation.schemas.regenerate import QuestionContext, RegeneratedQuestion
 from generation.services.batch_steps import advance, body_for
+from generation.services import outbox as outbox_service
 from generation.services.batch_usage import record_batch
 
 logger = logging.getLogger(__name__)
@@ -158,6 +161,26 @@ async def remove(work_id: uuid.UUID) -> None:
         await batch_work.remove(session, [work_id])
 
 
+async def campaign_translated(
+    campaign_id: uuid.UUID, source: dict, language: str, result: TranslatedCampaign
+) -> None:
+    """A campaign's translation goes to notifications as an event, with the English it's of, so
+    it's dropped there if the text changed since. Published at once, or by the outbox's flush; a
+    repeat saves nothing twice there."""
+    data = {
+        "campaign_id": str(campaign_id),
+        "subject": source["subject"],
+        "text": source["text"],
+        "button": source["button"],
+        "translations": {language: result.model_dump()},
+    }
+
+    async with Session.begin() as session:
+        outbox.add(session, (CAMPAIGN_TRANSLATED, data))
+
+    await outbox_service.flush_quietly()
+
+
 async def save(work: BatchWork, result) -> None:
     """A translation into its post's or campaign's language (dropped there if the text changed
     since); a question's new text and options, only while it's still the one flagged."""
@@ -168,8 +191,7 @@ async def save(work: BatchWork, result) -> None:
         return
 
     if work.kind == BatchKind.CAMPAIGN:
-        source = CampaignSource(**work.payload["source"])
-        await notifications.save_campaign_translations(work.subject_id, source, {work.key: result})
+        await campaign_translated(work.subject_id, work.payload["source"], work.key, result)
 
         return
 

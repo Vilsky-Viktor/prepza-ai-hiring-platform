@@ -42,7 +42,7 @@ def people(monkeypatch):
     taken off the list again afterwards."""
     ann, lea, sup = (f"n{uuid.uuid4().hex[:12]}" for _ in range(3))
 
-    async def translate(campaign_id):
+    async def translate(campaign_id, source):
         return None
 
     async def no_wait(_seconds):

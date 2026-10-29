@@ -587,47 +587,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/campaigns/{campaign_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /**
-     * Get Campaign Source
-     * @description Its English texts and the languages it lacks; none once it's sent.
-     */
-    get: operations["get_campaign_source_internal_campaigns__campaign_id__get"]
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/campaigns/{campaign_id}/translations": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    /**
-     * Save Campaign Translations
-     * @description Safe to repeat; translations of an older text, or of a campaign sent or deleted since,
-     *     are dropped, and a language edited by hand keeps its wording.
-     */
-    put: operations["save_campaign_translations_internal_campaigns__campaign_id__translations_put"]
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/updates": {
     parameters: {
       query?: never
@@ -902,20 +861,6 @@ export interface components {
       counts: components["schemas"]["CampaignCounts"] | null
     }
     /**
-     * CampaignSourceOut
-     * @description A campaign to translate (generation): its English texts and the languages it lacks.
-     */
-    CampaignSourceOut: {
-      /** Subject */
-      subject: string
-      /** Text */
-      text: string
-      /** Button */
-      button: string | null
-      /** Missing */
-      missing: string[]
-    }
-    /**
      * CampaignTexts
      * @description A campaign in one language: its subject (also the email's heading), its text (in Markdown:
      *     the editor's bold, italic, links and lists) and its button's text.
@@ -927,23 +872,6 @@ export interface components {
       text: string
       /** Button */
       button?: string | null
-    }
-    /**
-     * CampaignTranslationsIn
-     * @description Translations of the campaign's English texts (subject, text, button): saved only while it
-     *     still reads so and isn't sent.
-     */
-    CampaignTranslationsIn: {
-      /** Subject */
-      subject: string
-      /** Text */
-      text: string
-      /** Button */
-      button: string | null
-      /** Translations */
-      translations: {
-        [key: string]: components["schemas"]["CampaignTexts"]
-      }
     }
     /**
      * CandidateOptOutIn
@@ -2355,70 +2283,6 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["SuppressionOut"]
         }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  get_campaign_source_internal_campaigns__campaign_id__get: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        campaign_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["CampaignSourceOut"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  save_campaign_translations_internal_campaigns__campaign_id__translations_put: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        campaign_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CampaignTranslationsIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
       }
       /** @description Validation Error */
       422: {

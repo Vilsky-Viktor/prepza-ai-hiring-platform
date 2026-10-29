@@ -4,7 +4,8 @@
 from uuid import UUID
 
 from generation.constants.batch_work import BatchKind, BatchStep
-from generation.integrations import notifications, site
+from generation.integrations import site
+from generation.schemas.campaigns import CampaignSource
 from generation.services.batch_work import queue
 
 
@@ -21,14 +22,9 @@ async def translate_news(news_id: UUID) -> None:
         await queue(BatchKind.NEWS, news_id, BatchStep.TRANSLATE, payload, key=language)
 
 
-async def translate_campaign(campaign_id: UUID) -> None:
-    """Queues the campaign's translation into each language it lacks; nothing once it's sent or
-    deleted. Safe to repeat, as the post's."""
-    source = await notifications.get_campaign_source(campaign_id)
-
-    if source is None:
-        return
-
+async def translate_campaign(campaign_id: UUID, source: CampaignSource) -> None:
+    """Queues the campaign's translation into each language it lacks (none once it's sent), as
+    notifications sent it. Safe to repeat, as the post's."""
     for language in source.missing:
         payload = {"source": source.model_dump(), "language": language}
         await queue(BatchKind.CAMPAIGN, campaign_id, BatchStep.TRANSLATE, payload, key=language)

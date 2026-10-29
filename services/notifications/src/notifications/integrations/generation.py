@@ -14,11 +14,13 @@ async def statuses(generation_ids: list[str]) -> list[dict]:
     return await post_ids(url, service_token("generation"), "ids", generation_ids, "generations")
 
 
-async def translate_campaign(campaign_id: str) -> None:
-    """Queues the campaign's translation into every language it lacks; raises if generation
-    can't."""
+async def translate_campaign(campaign_id: str, source: dict) -> None:
+    """Queues the campaign's translation into every language it lacks (`source`: its English
+    texts and those languages); raises if generation can't. The translations come back as
+    `notification.campaign_translated`."""
     response = await http.get_client().post(
         f"{settings.generation_url}/internal/campaigns/{campaign_id}/translate",
+        json=source,
         headers=bearer(service_token("generation")),
     )
 
