@@ -5,15 +5,18 @@ from types import SimpleNamespace
 import pytest
 from fastapi import HTTPException
 from prepza_common.auth.auth import current_user
+from prepza_common.auth.tokens import hashed
 from prepza_common.auth.user import User
 from prepza_common.limits import limits
 from prepza_common.redis import memory_cache
 
 from api.config import settings
+from api.constants.permissions import Permission
 from api.integrations import companies
 from api.main import app
 from api.repositories import keys, webhooks
 from api.services import key_checks
+from tests.unit.api_keys import KEY as API_KEY
 from tests.unit.ids import CANDIDATE, COMPANY, INTERVIEW, KEY
 
 # The web hook fakes, a fixture of their own module.
@@ -250,3 +253,15 @@ def stored(monkeypatch):
     monkeypatch.setattr(key_checks, "hit_or_skip", hit)
 
     return state
+
+
+@pytest.fixture
+def key(stored):
+    """A working API key of COMPANY (API_KEY), made by u1 (an owner)."""
+    row = type("Key", (), {})()
+    row.id, row.company_id, row.created_by = uuid.uuid4(), COMPANY, "u1"
+    row.hash, row.expires_at, row.last_used_at = hashed(API_KEY), None, None
+    row.permissions, row.allowed_ips = list(Permission), []
+    stored["keys"].append(row)
+
+    return row

@@ -1,7 +1,5 @@
 import asyncio
 
-# The key fixture is imported from test_public_routes and named in the tests.
-# ruff: noqa: F811
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
@@ -9,7 +7,7 @@ from fastapi import HTTPException
 from api.constants.api import IDEMPOTENCY_KEY_REUSED
 from api.integrations import companies
 from api.services import idempotency
-from tests.unit.api.v1.test_public_routes import KEY, call, key  # noqa: F401 (fixture)
+from tests.unit.api_keys import KEY, call
 from tests.unit.conftest import CANDIDATE, COMPANY, INTERVIEW, candidate, interview
 
 CANDIDATE_PATH = f"/interviews/{INTERVIEW}/candidates/{CANDIDATE}"

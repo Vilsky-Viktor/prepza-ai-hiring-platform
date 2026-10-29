@@ -3,7 +3,7 @@ from prepza_common.limits import limits, rate_limit
 
 from api.services import key_checks
 from tests.unit.api.v1.test_manage_routes import public  # noqa: F401 (fixture)
-from tests.unit.api.v1.test_public_routes import call, key  # noqa: F401 (fixture)
+from tests.unit.api_keys import call
 from tests.unit.conftest import COMPANY, sign_in
 
 KEYS = f"/manage/keys?company_id={COMPANY}"
@@ -82,7 +82,7 @@ def test_a_company_has_at_most_the_web_hook_limits_web_hooks(
 def test_a_companys_requests_a_minute_are_limited(
     client,
     companies_api,
-    key,  # noqa: F811
+    key,
     edited,
     limit_hits,
     monkeypatch,

@@ -4,14 +4,12 @@ sunset and says so."""
 from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
 
-# The key fixture is imported from test_public_routes and named in the tests.
-# ruff: noqa: F811
 import pytest
 
 from api.config import settings
 from api.integrations import companies
 from api.main import app
-from tests.unit.api.v1.test_public_routes import call, key  # noqa: F401 (fixture)
+from tests.unit.api_keys import call
 from tests.unit.conftest import CANDIDATE, INTERVIEW, candidate
 
 

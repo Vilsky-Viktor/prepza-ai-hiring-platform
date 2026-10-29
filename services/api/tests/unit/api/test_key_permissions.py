@@ -11,7 +11,7 @@ from api.constants.permissions import Permission
 from api.helpers.keys import with_implied
 from api.integrations import companies
 from tests.unit.api.v1.test_api_changes import changes  # noqa: F401 (fixture)
-from tests.unit.api.v1.test_public_routes import call, key  # noqa: F401 (fixture)
+from tests.unit.api_keys import call
 from tests.unit.conftest import CANDIDATE, COMPANY, INTERVIEW, sign_in
 
 CANDIDATE_PATH = f"/interviews/{INTERVIEW}/candidates/{CANDIDATE}"

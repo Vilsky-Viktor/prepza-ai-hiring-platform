@@ -1,12 +1,10 @@
 """A full page of a list says where the next one is (`Link: <...>; rel="next"`)."""
 
-# The key fixture is imported from test_public_routes and named in the tests.
-# ruff: noqa: F811
 from urllib.parse import parse_qs, urlsplit
 
 from api.config import settings
 from api.integrations import companies
-from tests.unit.api.v1.test_public_routes import call, key  # noqa: F401 (fixture)
+from tests.unit.api_keys import call
 from tests.unit.conftest import CANDIDATE, INTERVIEW, candidate
 
 

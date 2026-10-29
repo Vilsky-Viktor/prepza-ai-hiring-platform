@@ -2,14 +2,14 @@
 
 from datetime import UTC, datetime, timedelta
 
-# The key fixture is imported from test_public_routes and named in the tests.
+# The changes and post fixtures are imported from test_api_changes and named in the tests.
 # ruff: noqa: F811
 import pytest
 from prepza_common.i18n.i18n import CodedError
 
 from api.integrations import companies
 from tests.unit.api.v1.test_api_changes import changes, post  # noqa: F401 (fixture)
-from tests.unit.api.v1.test_public_routes import call, key  # noqa: F401 (fixture)
+from tests.unit.api_keys import call
 from tests.unit.conftest import INTERVIEW
 
 

@@ -1,9 +1,7 @@
-# The key fixture is imported from the route tests and named in the tests.
-# ruff: noqa: F811
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.http.http import bearer
 
-from tests.unit.api.v1.test_public_routes import KEY, key  # noqa: F401 (fixture)
+from tests.unit.api_keys import KEY
 from tests.unit.conftest import COMPANY, sign_in
 
 SECRET = "test-secret-that-is-at-least-32-bytes"
