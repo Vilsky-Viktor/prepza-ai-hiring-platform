@@ -17,7 +17,7 @@ from ats.core.db import Session
 from ats.helpers.notifications import ats_not_invited
 from ats.integrations import companies
 from ats.models.ats import AtsCandidate, AtsConnection
-from ats.repositories import ats, ats_candidates
+from ats.repositories import ats, ats_candidates, ats_links
 from ats.services import ats as integrations
 from ats.services import outbox as outbox_service
 
@@ -188,7 +188,13 @@ async def invite_waiting(interview_id: UUID) -> None:
 async def retry(company_id: UUID, link_id: UUID) -> None:
     """A linked job's candidates that weren't invited, or whose invite was cut off, are tried
     again (after a top-up, or once the pause is off): a batch now, the rest by the recovery
-    job."""
+    job. Another company's link is not found (404), as if it weren't there."""
+    async with Session() as session:
+        found = await ats_links.link(session, link_id)
+
+    if found is None or found[1].company_id != company_id:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Link not found")
+
     await ats_candidates.requeue_not_invited(Session, company_id, link_id)
 
     async with Session() as session:
