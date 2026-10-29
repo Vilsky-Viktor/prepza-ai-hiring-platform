@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "Nur die Person selbst kann Produkt-Updates und Angebote einschalten. Du kannst sie nur ausschalten.",
     "That would take the available balance below zero.": "Dadurch würde das verfügbare Guthaben unter null fallen.",
     "The amount can't be zero.": "Der Betrag darf nicht null sein.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "Die Berechtigungen eines Schlüssels lassen sich nur einschränken; für eine weitere erstelle einen neuen Schlüssel.",
     "This API key works only in its own company.": "Dieser API-Schlüssel funktioniert nur in seinem eigenen Unternehmen.",
     "Every topic already has its practice and company questions.": "Jedes Thema hat bereits seine Übungs- und Unternehmensfragen.",
     "Questions are already being added to this template.": "Dieser Vorlage werden bereits Fragen hinzugefügt.",

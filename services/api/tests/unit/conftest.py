@@ -142,16 +142,16 @@ def companies_api(monkeypatch):
 @pytest.fixture
 def stored(monkeypatch):
     """Keys and web hooks in memory instead of the database, and requests never rate limited
-    unless a test says so (the rate counters asked for are in "counted"). A narrowing that takes
-    something away is in "narrowed" as (key id, user id, what it took away), as the action log
-    gets it."""
+    unless a test says so (the rate counters asked for are in "counted"). A change of a key's
+    permissions is in "changed" as (key id, user id, what it took away), as the action log gets
+    it."""
     state = {
         "keys": [],
         "webhooks": [],
         "used": [],
         "limited": False,
         "counted": [],
-        "narrowed": [],
+        "changed": [],
     }
 
     async def by_hash(session, hashed):
@@ -189,16 +189,15 @@ def stored(monkeypatch):
     async def get_key(session, company_id, key_id):
         return next((key for key in await keys_of(session, company_id) if key.id == key_id), None)
 
-    async def narrow(session, company_id, key_id, permissions, user_id):
+    async def change_permissions(session, company_id, key_id, permissions, user_id):
         key = await get_key(session, company_id, key_id)
 
-        if key is None or not set(permissions) <= set(key.permissions):
+        if key is None:
             return None
 
-        removed = [item for item in key.permissions if item not in permissions]
-
-        if removed:
-            state["narrowed"].append((key.id, user_id, removed))
+        if set(permissions) != set(key.permissions):
+            removed = [item for item in key.permissions if item not in permissions]
+            state["changed"].append((key.id, user_id, removed or None))
 
         key.permissions = permissions
 
@@ -244,7 +243,7 @@ def stored(monkeypatch):
     monkeypatch.setattr(keys, "add", add_key)
     monkeypatch.setattr(keys, "of_company", keys_of)
     monkeypatch.setattr(keys, "get", get_key)
-    monkeypatch.setattr(keys, "narrow", narrow)
+    monkeypatch.setattr(keys, "change_permissions", change_permissions)
     monkeypatch.setattr(keys, "set_allowed_ips", set_allowed_ips)
     monkeypatch.setattr(webhooks, "add", add_webhook)
     monkeypatch.setattr(webhooks, "of_company", webhooks_of)

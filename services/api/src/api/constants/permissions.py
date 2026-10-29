@@ -39,4 +39,3 @@ DEFAULT_PERMISSIONS = [Permission.INTERVIEWS_READ, Permission.CANDIDATES_READ]
 # The answer to a route the key may not call: its code, and its message with the permission.
 MISSING_PERMISSION = "missing_permission"
 MISSING_PERMISSION_MESSAGE = "This API key doesn't have the {permission} permission."
-ONLY_NARROWING = "A key's permissions can only be narrowed; make a new key to add one."

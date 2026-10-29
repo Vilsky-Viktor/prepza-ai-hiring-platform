@@ -2413,6 +2413,7 @@
       "api_key_created": "Created an API key",
       "api_key_deleted": "Deleted an API key",
       "api_key_narrowed": "Narrowed an API key's permissions",
+      "api_key_permissions_changed": "Changed an API key's permissions",
       "webhook_added": "Added a web hook",
       "webhook_tested": "Tested a web hook",
       "webhook_deleted": "Deleted a web hook",

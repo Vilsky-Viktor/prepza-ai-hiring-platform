@@ -269,7 +269,7 @@
     "tips": [
       "Yeni bir anahtar ve webhook'un gizli anahtarı yalnızca bir kez gösterilir: hemen kopyalayın.",
       "Her anahtar için bir son geçerlilik tarihi seçin: sızdırılmış süresiz bir anahtar kullanılabilir kalır.",
-      "Bir anahtarın yetkilerinin işaretini daha sonra kaldırabilirsiniz ama asla yetki ekleyemezsiniz: daha fazlası için yeni bir anahtar oluşturun."
+      "Bir anahtarın yetkilerini daha sonra işaretleyebilir veya işaretini kaldırabilirsiniz; her anahtara yalnızca platformunun ihtiyaç duyduğunu verin."
     ]
   },
   "aiApps": {

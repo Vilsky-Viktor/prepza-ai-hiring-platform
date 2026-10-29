@@ -86,41 +86,40 @@ async def used(session: AsyncSession, key_id: uuid.UUID) -> None:
     await session.execute(query)
 
 
-async def narrow(
+async def change_permissions(
     session: AsyncSession,
     company_id: uuid.UUID,
     key_id: uuid.UUID,
     permissions: list[str],
     user_id: str,
 ) -> ApiKey | None:
-    """Sets the key's permissions to `permissions` if they're all among its current ones; the key
-    is locked meanwhile, so two narrowings at once can't add back what the other took away. None
-    when the company has no such key or it would gain a permission. The company's action log
-    gets what was taken away, if anything, as `user_id`'s."""
+    """Replaces the key's permissions with `permissions`; the key is locked meanwhile, so two
+    changes at once apply one after the other. None when the company has no such key. The
+    company's action log gets the change, when there is one, as `user_id`'s, with what was
+    taken away."""
     query = (
         select(ApiKey).where(ApiKey.company_id == company_id, ApiKey.id == key_id).with_for_update()
     )
     key = await session.scalar(query)
 
-    if key is None or not set(permissions) <= set(key.permissions):
+    if key is None:
         return None
 
-    removed = [item for item in key.permissions if item not in permissions]
-    key.permissions = permissions
-
-    if removed:
+    if set(permissions) != set(key.permissions):
+        removed = [item for item in key.permissions if item not in permissions]
         audit.add(
             session,
             OutboxEvent,
             company_id,
             user_id,
-            AuditAction.API_KEY_NARROWED,
+            AuditAction.API_KEY_PERMISSIONS_CHANGED,
             TargetKind.API_KEY,
             key_id,
             key.name,
-            removed,
+            removed or None,
         )
 
+    key.permissions = permissions
     await session.flush()
 
     return key

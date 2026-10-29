@@ -269,7 +269,7 @@
     "tips": [
       "Uma chave nova e o segredo de um webhook aparecem só uma vez: copie-os na hora.",
       "Escolha uma validade para cada chave: uma chave vazada que nunca expira continua utilizável.",
-      "Depois você pode desmarcar permissões de uma chave, mas nunca adicionar uma: para ter mais, crie uma nova chave."
+      "Depois você pode marcar ou desmarcar permissões de uma chave; dê a cada chave só o que a plataforma dela precisa."
     ]
   },
   "aiApps": {

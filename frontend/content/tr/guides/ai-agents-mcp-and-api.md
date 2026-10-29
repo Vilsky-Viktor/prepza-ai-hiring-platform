@@ -117,7 +117,7 @@ Bundan sonra sohbetinizde bir iş arkadaşınıza sorar gibi sorun: "prepza'da �
 
 Yapay zekâ olmadan otomasyon için prepza'nın [geliştirici belgelerinde](/api-docs) açıklanan bir API'si vardır.
 
-1. Bir sahip veya yönetici, bir şirketin **Entegrasyonlar** sekmesini, ardından **API**'yi açar ve **Yeni anahtar**'ı seçer. Anahtara onu kullanacak platformun adını verin, ne zaman sona ereceğini seçin ve yalnızca ihtiyaç duyduklarını işaretleyin: bir panonun anahtarı yalnızca okur, bir kariyer sitesinin anahtarı davet de eder. Yetkileri daha sonra kaldırabilirsiniz ama asla ekleyemezsiniz. Anahtar yalnızca bir kez gösterilir; güvenli bir yerde saklayın.
+1. Bir sahip veya yönetici, bir şirketin **Entegrasyonlar** sekmesini, ardından **API**'yi açar ve **Yeni anahtar**'ı seçer. Anahtara onu kullanacak platformun adını verin, ne zaman sona ereceğini seçin ve yalnızca ihtiyaç duyduklarını işaretleyin: bir panonun anahtarı yalnızca okur, bir kariyer sitesinin anahtarı davet de eder. Yetkileri daha sonra ekleyebilir veya kaldırabilirsiniz. Anahtar yalnızca bir kez gösterilir; güvenli bir yerde saklayın.
 2. Platformunuz bu anahtarla istek gönderir: şirketin mülakatlarını listeler, adayları notları, geçip geçmedikleri ve dürüstlük uyarılarıyla birlikte listeler veya okur ve bir adayı davet eder.
 3. Bir **webhook** ekleyin: bir aday başladığında, bitirdiğinde, daveti kendisine ulaşamadığında, davetinin süresi dolduğunda veya kaldırıldığında ve bir mülakat hazır olduğunda prepza'nın imzalı olarak çağırdığı, platformunuzdaki bir adres; böylece sürekli sormanız gerekmez. API sayfası ona bir test olayı gönderebilir ve teslim günlüğünü gösterir.
 

@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "제품 업데이트와 혜택은 본인만 켤 수 있습니다. 관리자는 끄기만 할 수 있습니다.",
     "That would take the available balance below zero.": "사용 가능한 잔액이 0 미만이 됩니다.",
     "The amount can't be zero.": "수량은 0일 수 없습니다.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "키의 권한은 줄이기만 할 수 있습니다. 권한을 추가하려면 새 키를 만드세요.",
     "This API key works only in its own company.": "이 API 키는 해당 회사에서만 작동합니다.",
     "Every topic already has its practice and company questions.": "모든 주제에 연습용 문제와 회사용 문제가 이미 다 있습니다.",
     "Questions are already being added to this template.": "이 템플릿에 이미 문제를 추가하고 있습니다.",

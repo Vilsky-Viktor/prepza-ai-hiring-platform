@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "Hanya orang itu sendiri yang dapat mengaktifkan pembaruan produk dan penawaran. Anda hanya dapat mematikannya.",
     "That would take the available balance below zero.": "Itu akan membuat saldo yang tersedia di bawah nol.",
     "The amount can't be zero.": "Jumlahnya tidak boleh nol.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "Hak akses kunci hanya bisa dipersempit; buat kunci baru untuk menambahkannya.",
     "This API key works only in its own company.": "Kunci API ini hanya berfungsi di perusahaannya sendiri.",
     "Every topic already has its practice and company questions.": "Setiap topik sudah punya soal latihan dan soal perusahaannya.",
     "Questions are already being added to this template.": "Soal sedang ditambahkan ke templat ini.",

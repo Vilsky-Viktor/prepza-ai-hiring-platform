@@ -117,7 +117,7 @@ From then on, ask in your chat as you would ask a colleague: "In prepza, who are
 
 For automation without AI, prepza has an API, described in its [developer docs](/api-docs).
 
-1. An owner or admin opens a company's **Integrations** tab, then **API**, and selects **New key**. Name it after the platform that will use it, choose when it expires, and tick only what it needs: a dashboard's key only reads, a careers site's key also invites. You can take permissions away later, never add them. The key is shown once; store it somewhere safe.
+1. An owner or admin opens a company's **Integrations** tab, then **API**, and selects **New key**. Name it after the platform that will use it, choose when it expires, and tick only what it needs: a dashboard's key only reads, a careers site's key also invites. You can add or take away permissions later. The key is shown once; store it somewhere safe.
 2. Your platform sends requests with that key: list the company's interviews, list or read candidates with their grade, whether they passed and their integrity signals, and invite a candidate.
 3. Add a **web hook**: an address on your platform that prepza calls, signed, when a candidate starts, finishes, isn't reached, expires or is removed, and when an interview is ready, so you don't have to keep asking. The API page can send it a test event and shows its delivery log.
 

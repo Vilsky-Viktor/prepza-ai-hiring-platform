@@ -269,7 +269,7 @@
     "tips": [
       "Ein neuer Schlüssel und das Secret eines Webhooks werden nur einmal angezeigt: Kopiere sie sofort.",
       "Wähle für jeden Schlüssel ein Ablaufdatum: Ein geleakter Schlüssel ohne Ablauf bleibt nutzbar.",
-      "Berechtigungen eines Schlüssels kannst du später abwählen, aber nie hinzufügen: Für mehr erstelle einen neuen Schlüssel."
+      "Berechtigungen eines Schlüssels kannst du später an- oder abwählen; gib jedem Schlüssel nur, was seine Plattform braucht."
     ]
   },
   "aiApps": {

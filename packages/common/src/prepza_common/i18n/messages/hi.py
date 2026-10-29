@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "प्रोडक्ट अपडेट और ऑफ़र केवल वही व्यक्ति खुद चालू कर सकता है। आप उन्हें केवल बंद कर सकते हैं।",
     "That would take the available balance below zero.": "इससे उपलब्ध बैलेंस शून्य से नीचे चला जाएगा।",
     "The amount can't be zero.": "क्रेडिट की संख्या शून्य नहीं हो सकती।",
-    "A key's permissions can only be narrowed; make a new key to add one.": "कुंजी की अनुमतियाँ सिर्फ़ घटाई जा सकती हैं; अनुमति जोड़ने के लिए नई कुंजी बनाएँ।",
     "This API key works only in its own company.": "यह API कुंजी सिर्फ़ अपनी कंपनी में काम करती है।",
     "Every topic already has its practice and company questions.": "हर विषय में प्रैक्टिस और कंपनी के सवाल पहले से पूरे हैं।",
     "Questions are already being added to this template.": "इस टेम्पलेट में सवाल पहले से जोड़े जा रहे हैं।",

@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "Chỉ chính người đó mới bật được cập nhật sản phẩm và ưu đãi. Bạn chỉ có thể tắt chúng.",
     "That would take the available balance below zero.": "Thao tác này sẽ khiến số dư khả dụng xuống dưới 0.",
     "The amount can't be zero.": "Số lượng không được bằng 0.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "Quyền của khóa chỉ có thể thu hẹp; để thêm quyền, hãy tạo khóa mới.",
     "This API key works only in its own company.": "Khóa API này chỉ hoạt động trong công ty của chính nó.",
     "Every topic already has its practice and company questions.": "Mọi chủ đề đã có đủ câu hỏi luyện tập và câu hỏi cho công ty.",
     "Questions are already being added to this template.": "Câu hỏi đang được thêm vào mẫu này.",

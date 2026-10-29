@@ -117,7 +117,7 @@ Ensuite, posez vos questions dans la conversation comme vous le feriez à un col
 
 Pour une automatisation sans IA, prepza propose une API, décrite dans sa [documentation développeurs](/api-docs).
 
-1. Un propriétaire ou un admin ouvre l'onglet **Intégrations** d'une entreprise, puis **API**, et sélectionne **Nouvelle clé**. Donnez-lui le nom de la plateforme qui l'utilisera, choisissez sa date d'expiration et cochez uniquement ce dont elle a besoin : la clé d'un tableau de bord ne fait que lire, celle d'un site carrières invite aussi. Vous pourrez retirer des autorisations plus tard, jamais en ajouter. La clé ne s'affiche qu'une fois ; conservez-la en lieu sûr.
+1. Un propriétaire ou un admin ouvre l'onglet **Intégrations** d'une entreprise, puis **API**, et sélectionne **Nouvelle clé**. Donnez-lui le nom de la plateforme qui l'utilisera, choisissez sa date d'expiration et cochez uniquement ce dont elle a besoin : la clé d'un tableau de bord ne fait que lire, celle d'un site carrières invite aussi. Vous pourrez ajouter ou retirer des autorisations plus tard. La clé ne s'affiche qu'une fois ; conservez-la en lieu sûr.
 2. Votre plateforme envoie des requêtes avec cette clé : lister les entretiens de l'entreprise, lister ou consulter les candidats avec leur note, s'ils ont réussi et leurs alertes d'intégrité, et inviter un candidat.
 3. Ajoutez un **webhook** : une adresse sur votre plateforme que prepza appelle, avec une signature, quand un candidat commence, termine ou est retiré, quand son invitation n'a pas pu lui parvenir ou a expiré, et quand un entretien est prêt, pour ne pas avoir à demander sans cesse. La page API peut lui envoyer un événement de test et affiche son journal des envois.
 

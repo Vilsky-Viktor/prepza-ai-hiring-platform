@@ -269,7 +269,7 @@
     "tips": [
       "Khóa mới và khóa bí mật của webhook chỉ hiện một lần: hãy sao chép ngay.",
       "Đặt thời hạn cho mỗi khóa: khóa bị lộ mà không bao giờ hết hạn thì vẫn dùng được mãi.",
-      "Sau này bạn có thể bỏ chọn quyền của khóa, nhưng không bao giờ thêm được: muốn nhiều hơn, hãy tạo khóa mới."
+      "Sau này bạn có thể chọn hoặc bỏ chọn quyền của khóa; chỉ cấp cho mỗi khóa những gì nền tảng của nó cần."
     ]
   },
   "aiApps": {

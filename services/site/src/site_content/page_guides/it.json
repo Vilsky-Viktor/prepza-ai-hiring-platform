@@ -269,7 +269,7 @@
     "tips": [
       "Una nuova chiave e il secret di un webhook vengono mostrati una sola volta: copiali subito.",
       "Scegli una scadenza per ogni chiave: una chiave trapelata che non scade mai resta utilizzabile.",
-      "In seguito puoi togliere la spunta ai permessi di una chiave, ma mai aggiungerne: per averne di più, crea una nuova chiave."
+      "In seguito puoi spuntare o togliere la spunta ai permessi di una chiave; dai a ogni chiave solo ciò che serve alla sua piattaforma."
     ]
   },
   "aiApps": {

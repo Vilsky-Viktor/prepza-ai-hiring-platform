@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "只有本人才能开启产品更新和优惠。你只能关闭它们。",
     "That would take the available balance below zero.": "这会使可用余额低于零。",
     "The amount can't be zero.": "数量不能为零。",
-    "A key's permissions can only be narrowed; make a new key to add one.": "密钥的权限只能缩小；如需添加权限，请新建密钥。",
     "This API key works only in its own company.": "此 API 密钥只能在其所属公司中使用。",
     "Every topic already has its practice and company questions.": "每个主题的练习题和公司题都已齐全。",
     "Questions are already being added to this template.": "正在为此模板添加题目。",

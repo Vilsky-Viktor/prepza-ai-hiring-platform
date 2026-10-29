@@ -168,8 +168,8 @@ after a top-up they're invited by themselves.
 - API: for a company's own platform. On the API page an owner or admin makes API keys (shown \
 once; they expire in 1, 3, 6 or 12 months, or never), ticking what each may do (read or create \
 interviews; read, invite, change or remove candidates; read credits; use with AI agents), and \
-web hooks. A new key starts with reading interviews and candidates; a key's permissions can \
-later be narrowed but never widened (for more, make a new key), and a call it may not make \
+web hooks. A new key starts with reading interviews and candidates; owners and admins can \
+later change a key's permissions, adding or taking away any, and a call it may not make \
 gets a 403 naming the missing permission. A key creates tests from \
 job descriptions, lists the company's tests and candidates with their results, invites \
 candidates (an Idempotency-Key makes a retry safe), reminds, renames, gives extra time to or \

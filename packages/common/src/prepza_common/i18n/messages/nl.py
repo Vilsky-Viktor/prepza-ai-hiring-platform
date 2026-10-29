@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "Alleen de persoon zelf kan productupdates en aanbiedingen aanzetten. Jij kunt ze alleen uitzetten.",
     "That would take the available balance below zero.": "Daardoor zou het beschikbare saldo onder nul komen.",
     "The amount can't be zero.": "Het aantal mag niet nul zijn.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "De rechten van een sleutel kunnen alleen worden beperkt; maak een nieuwe sleutel om er een toe te voegen.",
     "This API key works only in its own company.": "Deze API-sleutel werkt alleen in zijn eigen bedrijf.",
     "Every topic already has its practice and company questions.": "Elk onderwerp heeft al zijn oefen- en bedrijfsvragen.",
     "Questions are already being added to this template.": "Er worden al vragen aan dit sjabloon toegevoegd.",

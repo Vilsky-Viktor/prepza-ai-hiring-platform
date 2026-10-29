@@ -269,7 +269,7 @@
     "tips": [
       "Une nouvelle clé et le secret d'un webhook ne s'affichent qu'une fois : copiez-les tout de suite.",
       "Choisissez une date d'expiration pour chaque clé : une clé divulguée qui n'expire jamais reste utilisable.",
-      "Vous pourrez décocher plus tard des autorisations d'une clé, mais jamais en ajouter : pour davantage, créez une nouvelle clé."
+      "Vous pourrez cocher ou décocher plus tard des autorisations d'une clé ; ne donnez à chaque clé que ce dont sa plateforme a besoin."
     ]
   },
   "aiApps": {

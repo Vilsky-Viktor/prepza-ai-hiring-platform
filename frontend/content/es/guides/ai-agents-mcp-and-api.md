@@ -117,7 +117,7 @@ A partir de ahí, pregunta en tu chat como le preguntarías a un compañero: «E
 
 Para automatizaciones sin IA, prepza tiene una API, descrita en su [documentación para desarrolladores](/api-docs).
 
-1. Un propietario o administrador abre la pestaña **Integraciones** de una empresa, luego **API**, y selecciona **Nueva clave**. Ponle el nombre de la plataforma que la va a usar, elige cuándo caduca y marca solo lo que necesita: la clave de un panel solo lee; la de un portal de empleo también invita. Más adelante puedes quitarle permisos, pero nunca añadirlos. La clave se muestra una sola vez; guárdala en un lugar seguro.
+1. Un propietario o administrador abre la pestaña **Integraciones** de una empresa, luego **API**, y selecciona **Nueva clave**. Ponle el nombre de la plataforma que la va a usar, elige cuándo caduca y marca solo lo que necesita: la clave de un panel solo lee; la de un portal de empleo también invita. Más adelante puedes añadirle o quitarle permisos. La clave se muestra una sola vez; guárdala en un lugar seguro.
 2. Tu plataforma envía peticiones con esa clave: listar las entrevistas de la empresa, listar o consultar candidatos con su calificación, si aprobaron y sus alertas de integridad, e invitar a un candidato.
 3. Añade un **webhook**: una dirección de tu plataforma a la que prepza llama, con firma, cuando un candidato empieza, termina, no recibe la invitación, su invitación caduca o se le elimina, y cuando una entrevista está lista, para que no tengas que estar preguntando. La página de la API puede enviarle un evento de prueba y muestra su registro de entregas.
 

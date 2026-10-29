@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "Ürün güncellemelerini ve teklifleri yalnızca kişinin kendisi açabilir. Siz yalnızca kapatabilirsiniz.",
     "That would take the available balance below zero.": "Bu, kullanılabilir bakiyeyi sıfırın altına düşürür.",
     "The amount can't be zero.": "Miktar sıfır olamaz.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "Bir anahtarın yetkileri yalnızca daraltılabilir; yetki eklemek için yeni bir anahtar oluşturun.",
     "This API key works only in its own company.": "Bu API anahtarı yalnızca kendi şirketinde çalışır.",
     "Every topic already has its practice and company questions.": "Her konunun pratik ve şirket soruları zaten tamam.",
     "Questions are already being added to this template.": "Bu şablona zaten soru ekleniyor.",

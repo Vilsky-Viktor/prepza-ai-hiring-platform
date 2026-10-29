@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "لا يمكن تشغيل تحديثات المنتج والعروض إلا من قِبل الشخص نفسه. يمكنك إيقافها فقط.",
     "That would take the available balance below zero.": "سيؤدي ذلك إلى نزول الرصيد المتاح إلى ما دون الصفر.",
     "The amount can't be zero.": "لا يمكن أن تكون الكمية صفرًا.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "لا يمكن إلا تقليص صلاحيات المفتاح؛ لإضافة صلاحية أنشئ مفتاحًا جديدًا.",
     "This API key works only in its own company.": "لا يعمل مفتاح API هذا إلا في شركته.",
     "Every topic already has its practice and company questions.": "كل موضوع لديه بالفعل أسئلته للتدريب وللشركات.",
     "Questions are already being added to this template.": "تجري بالفعل إضافة أسئلة إلى هذا القالب.",

@@ -269,7 +269,7 @@
     "tips": [
       "A new key and a web hook's secret show only once: copy them right away.",
       "Choose an expiry for each key: a leaked key that never expires stays usable.",
-      "You can untick a key's permissions later, but never add one: for more, make a new key."
+      "You can tick or untick a key's permissions later; give each key only what its platform needs."
     ]
   },
   "aiApps": {

@@ -46,16 +46,16 @@ async def create_key(company_id: UUID, body: KeyIn, user: CurrentUser) -> NewKey
 
 
 @router.patch("/keys/{key_id}")
-async def narrow_key(
+async def change_key_permissions(
     company_id: UUID, key_id: UUID, body: KeyPermissionsIn, user: CurrentUser
 ) -> KeyOut:
-    """Owners and admins take permissions away from a key; adding one is refused."""
+    """Owners and admins replace a key's permissions, adding or taking away any."""
     await companies.require(company_id, user.uid, editor=True)
 
-    narrowed = await manage.narrow_key(company_id, key_id, body.permissions, user.uid)
+    changed = await manage.change_key_permissions(company_id, key_id, body.permissions, user.uid)
     await outbox_service.flush_quietly()
 
-    return narrowed
+    return changed
 
 
 @router.put("/keys/{key_id}/allowed-ips")

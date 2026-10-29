@@ -31,7 +31,7 @@ class ApiKey(Base):
     # None: it never expires.
     expires_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
-    # What it may do (constants/permissions.py): only ever narrowed after it's made.
+    # What it may do (constants/permissions.py); owners and admins can change it any time.
     permissions: Mapped[list[str]] = mapped_column(ARRAY(String(32)))
     # The addresses it may be used from (IPv4 or IPv6, single or CIDR ranges); empty: any.
     allowed_ips: Mapped[list[str]] = mapped_column(

@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "فقط خودِ فرد می‌تواند تازه‌های محصول و پیشنهادها را روشن کند. شما فقط می‌توانید آن‌ها را خاموش کنید.",
     "That would take the available balance below zero.": "این کار موجودی در دسترس را به زیر صفر می‌برد.",
     "The amount can't be zero.": "مقدار نمی‌تواند صفر باشد.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "دسترسی‌های یک کلید را فقط می‌توان محدودتر کرد؛ برای افزودن دسترسی، کلید تازه‌ای بسازید.",
     "This API key works only in its own company.": "این کلید API فقط در شرکت خودش کار می‌کند.",
     "Every topic already has its practice and company questions.": "همه موضوع‌ها از قبل پرسش‌های تمرینی و شرکتی خود را دارند.",
     "Questions are already being added to this template.": "افزودن پرسش به این قالب از قبل در جریان است.",

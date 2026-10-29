@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "เฉพาะเจ้าตัวเท่านั้นที่เปิดรับอัปเดตผลิตภัณฑ์และข้อเสนอได้ คุณปิดได้อย่างเดียว",
     "That would take the available balance below zero.": "การดำเนินการนี้จะทำให้ยอดคงเหลือที่ใช้ได้ต่ำกว่าศูนย์",
     "The amount can't be zero.": "จำนวนต้องไม่เป็นศูนย์",
-    "A key's permissions can only be narrowed; make a new key to add one.": "สิทธิ์ของคีย์ลดได้อย่างเดียว หากต้องการเพิ่มสิทธิ์ ให้สร้างคีย์ใหม่",
     "This API key works only in its own company.": "คีย์ API นี้ใช้ได้เฉพาะในบริษัทของตัวเองเท่านั้น",
     "Every topic already has its practice and company questions.": "ทุกหัวข้อมีคำถามสำหรับฝึกซ้อมและสำหรับบริษัทครบแล้ว",
     "Questions are already being added to this template.": "กำลังเพิ่มคำถามลงในเทมเพลตนี้อยู่แล้ว",

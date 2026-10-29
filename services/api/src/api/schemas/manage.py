@@ -54,7 +54,7 @@ class KeyIn(BaseModel):
 
 
 class KeyPermissionsIn(BaseModel):
-    # Only ones the key already has, at least one; the reads they imply are kept.
+    # The key's whole new set, at least one; the reads they imply are added.
     permissions: list[Permission] = Field(min_length=1)
 
 

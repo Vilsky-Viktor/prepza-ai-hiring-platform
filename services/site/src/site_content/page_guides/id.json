@@ -269,7 +269,7 @@
     "tips": [
       "Kunci baru dan secret webhook hanya ditampilkan sekali: segera salin.",
       "Pilih masa berlaku untuk setiap kunci: kunci bocor yang tidak pernah kedaluwarsa tetap bisa dipakai.",
-      "Kamu bisa menghapus centang hak akses kunci nanti, tetapi tidak pernah bisa menambahkannya: untuk lebih banyak, buat kunci baru."
+      "Kamu bisa mencentang atau menghapus centang hak akses kunci nanti; beri setiap kunci hanya yang dibutuhkan platformnya."
     ]
   },
   "aiApps": {

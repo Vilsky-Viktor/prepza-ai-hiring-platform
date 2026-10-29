@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "Включить новости продукта и предложения может только сам человек. Вы можете их только выключить.",
     "That would take the available balance below zero.": "Доступный баланс станет меньше нуля.",
     "The amount can't be zero.": "Количество не может быть равно нулю.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "Права ключа можно только сузить; чтобы добавить право, создайте новый ключ.",
     "This API key works only in its own company.": "Этот API-ключ работает только в своей компании.",
     "Every topic already has its practice and company questions.": "Во всех темах уже есть все вопросы для тренировок и для компаний.",
     "Questions are already being added to this template.": "Вопросы в этот шаблон уже добавляются.",

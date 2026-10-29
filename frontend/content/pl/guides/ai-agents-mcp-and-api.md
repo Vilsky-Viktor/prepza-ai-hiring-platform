@@ -117,7 +117,7 @@ Od tej chwili pytaj w czacie tak, jak pytasz współpracownika: „Kto w prepza 
 
 Do automatyzacji bez AI prepza ma API, opisane w [dokumentacji dla deweloperów](/api-docs).
 
-1. Właściciel lub administrator otwiera zakładkę **Integracje** firmy, potem **API**, i wybiera **Nowy klucz**. Nazwij go tak jak platformę, która będzie z niego korzystać, wybierz, kiedy wygaśnie, i zaznacz tylko to, czego potrzebuje: klucz pulpitu tylko odczytuje, a klucz strony kariery także zaprasza. Uprawnienia możesz później odebrać, ale nigdy dodać. Klucz jest wyświetlany tylko raz; przechowuj go w bezpiecznym miejscu.
+1. Właściciel lub administrator otwiera zakładkę **Integracje** firmy, potem **API**, i wybiera **Nowy klucz**. Nazwij go tak jak platformę, która będzie z niego korzystać, wybierz, kiedy wygaśnie, i zaznacz tylko to, czego potrzebuje: klucz pulpitu tylko odczytuje, a klucz strony kariery także zaprasza. Uprawnienia możesz później dodać lub odebrać. Klucz jest wyświetlany tylko raz; przechowuj go w bezpiecznym miejscu.
 2. Twoja platforma wysyła żądania z tym kluczem: pobiera listę rozmów firmy, pobiera listę kandydatów lub dane pojedynczego kandydata z wynikiem, informacją, czy zaliczył, i sygnałami nieuczciwości, oraz zaprasza kandydata.
 3. Dodaj **webhook**: adres na Twojej platformie, który prepza wywołuje z podpisem, gdy kandydat zaczyna lub kończy, gdy zaproszenie do niego nie dotrze lub wygaśnie, gdy kandydat zostanie usunięty i gdy rozmowa jest gotowa, więc nie musisz ciągle dopytywać. Na stronie API możesz wysłać do niego zdarzenie testowe i zobaczyć jego dziennik dostarczeń.
 

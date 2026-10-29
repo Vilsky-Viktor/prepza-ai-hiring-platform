@@ -117,7 +117,7 @@ Setelah itu, bertanyalah di chat seperti kamu bertanya kepada rekan kerja: "Di p
 
 Untuk otomatisasi tanpa AI, prepza punya API, yang dijelaskan di [dokumentasi pengembang](/api-docs)-nya.
 
-1. Pemilik atau admin membuka tab **Integrasi** sebuah perusahaan, lalu **API**, dan memilih **Kunci baru**. Beri nama sesuai platform yang akan memakainya, pilih kapan kunci itu kedaluwarsa, dan centang hanya yang dibutuhkannya: kunci dasbor hanya membaca, kunci situs karier juga mengundang. Hak akses bisa dikurangi nanti, tetapi tidak pernah bisa ditambah. Kunci hanya ditampilkan sekali; simpan di tempat yang aman.
+1. Pemilik atau admin membuka tab **Integrasi** sebuah perusahaan, lalu **API**, dan memilih **Kunci baru**. Beri nama sesuai platform yang akan memakainya, pilih kapan kunci itu kedaluwarsa, dan centang hanya yang dibutuhkannya: kunci dasbor hanya membaca, kunci situs karier juga mengundang. Hak akses bisa ditambah atau dikurangi nanti. Kunci hanya ditampilkan sekali; simpan di tempat yang aman.
 2. Platformmu mengirim permintaan dengan kunci itu: menampilkan daftar wawancara perusahaan, menampilkan daftar atau membaca kandidat beserta nilainya, lulus atau tidak, dan tanda integritasnya, serta mengundang kandidat.
 3. Tambahkan **webhook**: alamat di platformmu yang dipanggil prepza, dengan tanda tangan, saat kandidat mulai, selesai, atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap, sehingga kamu tidak perlu terus-menerus bertanya. Halaman API dapat mengirim event uji ke webhook ini dan menampilkan log pengirimannya.
 

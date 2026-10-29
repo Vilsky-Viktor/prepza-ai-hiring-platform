@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "Ang tao lang mismo ang puwedeng mag-on ng mga update tungkol sa produkto at mga alok. Puwede mo lang i-off ang mga ito.",
     "That would take the available balance below zero.": "Bababa sa zero ang available na balanse kapag ginawa ito.",
     "The amount can't be zero.": "Hindi puwedeng zero ang halaga.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "Mababawasan lang ang mga pahintulot ng isang key; gumawa ng bagong key para magdagdag.",
     "This API key works only in its own company.": "Gumagana lang ang API key na ito sa sarili nitong kumpanya.",
     "Every topic already has its practice and company questions.": "May practice at company na mga tanong na ang bawat topic.",
     "Questions are already being added to this template.": "Nagdadagdag na ng mga tanong sa template na ito.",

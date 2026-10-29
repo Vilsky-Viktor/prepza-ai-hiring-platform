@@ -28,36 +28,46 @@ def new_key(company, permissions):
     )
 
 
-def test_a_keys_permissions_are_only_narrowed(run):
+def test_a_keys_permissions_are_replaced_and_logged_when_they_change(run):
     company = uuid.uuid4()
 
     async def scenario():
         made = await new_key(company, ["candidates:invite", *READS])
-        narrowed = await transaction(keys.narrow, company, made.id, ["candidates:read"], "u2")
-        widened = await transaction(keys.narrow, company, made.id, READS, "u2")
-        elsewhere = await transaction(keys.narrow, uuid.uuid4(), made.id, ["candidates:read"], "u2")
-        # Nothing taken away: nothing to log.
-        same = await transaction(keys.narrow, company, made.id, ["candidates:read"], "u2")
+        taken = await transaction(
+            keys.change_permissions, company, made.id, ["candidates:read"], "u2"
+        )
+        added = await transaction(
+            keys.change_permissions, company, made.id, ["candidates:read", "mcp"], "u2"
+        )
+        elsewhere = await transaction(
+            keys.change_permissions, uuid.uuid4(), made.id, ["credits:read"], "u2"
+        )
+        # The same set again: nothing to log.
+        same = await transaction(
+            keys.change_permissions, company, made.id, ["candidates:read", "mcp"], "u2"
+        )
 
         return (
-            narrowed,
-            widened,
+            taken,
+            added,
             elsewhere,
             same,
             await transaction(keys.get, company, made.id),
             made,
         )
 
-    narrowed, widened, elsewhere, same, stored, made = run(scenario())
+    taken, added, elsewhere, same, stored, made = run(scenario())
     events = run(logged(company))
 
-    assert narrowed.permissions == ["candidates:read"] == same.permissions
-    assert widened is None and elsewhere is None
-    assert stored.permissions == ["candidates:read"]
-    # Made and narrowed, for the company's action log, with what was taken away and by whom.
+    assert taken.permissions == ["candidates:read"]
+    assert added.permissions == ["candidates:read", "mcp"] == same.permissions
+    assert elsewhere is None
+    assert stored.permissions == ["candidates:read", "mcp"]
+    # Made and changed twice, for the company's action log, with what was taken away and by whom.
     assert [(row["action"], row["user_id"], row["removed"]) for row in events] == [
         ("api_key_created", "u1", None),
-        ("api_key_narrowed", "u2", ["candidates:invite", "interviews:read"]),
+        ("api_key_permissions_changed", "u2", ["candidates:invite", "interviews:read"]),
+        ("api_key_permissions_changed", "u2", None),
     ]
     assert (events[1]["target_kind"], events[1]["target_id"], events[1]["target_label"]) == (
         "api_key",
@@ -66,21 +76,26 @@ def test_a_keys_permissions_are_only_narrowed(run):
     )
 
 
-def test_two_narrowings_at_once_never_add_back_what_the_other_took(run):
+def test_two_changes_at_once_apply_one_after_the_other(run):
     company = uuid.uuid4()
+    first = ["credits:read", "interviews:read"]
+    second = ["candidates:read", "mcp"]
 
     async def scenario():
-        made = await new_key(company, ["credits:read", *READS])
+        made = await new_key(company, READS)
         await asyncio.gather(
-            transaction(keys.narrow, company, made.id, ["credits:read", "interviews:read"], "u1"),
-            transaction(keys.narrow, company, made.id, ["credits:read", "candidates:read"], "u2"),
+            transaction(keys.change_permissions, company, made.id, first, "u1"),
+            transaction(keys.change_permissions, company, made.id, second, "u2"),
         )
 
         return await transaction(keys.get, company, made.id)
 
     stored = run(scenario())
+    events = run(logged(company))
 
-    assert set(stored.permissions) < {"credits:read", *READS}
+    # One whole set wins, never a mix of the two, and both changes are logged.
+    assert stored.permissions in (first, second)
+    assert [row["action"] for row in events].count("api_key_permissions_changed") == 2
 
 
 def test_keys_made_before_permissions_keep_every_api_permission_but_mcp(run):

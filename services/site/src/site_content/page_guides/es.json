@@ -269,7 +269,7 @@
     "tips": [
       "Una clave nueva y el secreto de un webhook se muestran solo una vez: cópialos de inmediato.",
       "Elige una caducidad para cada clave: una clave filtrada que nunca caduca sigue siendo utilizable.",
-      "Más adelante puedes desmarcar permisos de una clave, pero nunca añadir uno: para más, crea una clave nueva."
+      "Más adelante puedes marcar o desmarcar permisos de una clave; dale a cada clave solo lo que necesita su plataforma."
     ]
   },
   "aiApps": {

@@ -58,7 +58,7 @@ def log(monkeypatch):
         AuditEvent(
             id=uuid.uuid4(),
             user_id="ann",
-            action=AuditAction.API_KEY_NARROWED,
+            action=AuditAction.API_KEY_PERMISSIONS_CHANGED,
             group=AuditGroup.INTEGRATIONS,
             target_kind=TargetKind.API_KEY,
             target_id=uuid.uuid4(),
@@ -112,7 +112,14 @@ def test_the_owner_reads_who_did_what_and_about_what(client, log):
         for row in response.json()
     ] == [
         ("results_viewed", "candidates", "bob@x.com", "cara@example.com", "assistant", None),
-        ("api_key_narrowed", "integrations", "ann@x.com", "Zapier", None, ["candidates:delete"]),
+        (
+            "api_key_permissions_changed",
+            "integrations",
+            "ann@x.com",
+            "Zapier",
+            None,
+            ["candidates:delete"],
+        ),
         # A former member and a deleted candidate: nobody's email is kept.
         ("candidate_deleted", "candidates", None, None, None, None),
     ]

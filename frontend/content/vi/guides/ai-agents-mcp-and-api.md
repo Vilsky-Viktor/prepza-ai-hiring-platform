@@ -117,7 +117,7 @@ Từ đó trở đi, hãy hỏi trong chat như khi hỏi một đồng nghiệp
 
 Để tự động hóa không cần AI, prepza có API, được mô tả trong [tài liệu cho nhà phát triển](/api-docs).
 
-1. Chủ sở hữu hoặc quản trị viên mở tab **Tích hợp** của một công ty, rồi **API**, và chọn **Khóa mới**. Đặt tên theo nền tảng sẽ dùng nó, chọn thời điểm hết hạn và chỉ đánh dấu những gì nó cần: khóa của bảng điều khiển chỉ đọc, khóa của trang tuyển dụng còn mời ứng viên. Sau này bạn có thể bớt quyền, nhưng không bao giờ thêm được. Khóa chỉ hiển thị một lần; hãy lưu ở nơi an toàn.
+1. Chủ sở hữu hoặc quản trị viên mở tab **Tích hợp** của một công ty, rồi **API**, và chọn **Khóa mới**. Đặt tên theo nền tảng sẽ dùng nó, chọn thời điểm hết hạn và chỉ đánh dấu những gì nó cần: khóa của bảng điều khiển chỉ đọc, khóa của trang tuyển dụng còn mời ứng viên. Sau này bạn có thể thêm hoặc bớt quyền. Khóa chỉ hiển thị một lần; hãy lưu ở nơi an toàn.
 2. Nền tảng của bạn gửi yêu cầu bằng khóa đó: liệt kê các buổi phỏng vấn của công ty, liệt kê hoặc xem ứng viên cùng điểm, kết quả đạt hay không và các cảnh báo về tính trung thực, và mời ứng viên.
 3. Thêm một **webhook**: một địa chỉ trên nền tảng của bạn mà prepza gọi tới, có chữ ký, khi một ứng viên bắt đầu, làm xong, không nhận được lời mời, hết hạn lời mời hoặc bị xóa khỏi buổi phỏng vấn, và khi một buổi phỏng vấn sẵn sàng, để bạn không phải hỏi đi hỏi lại. Trang API có thể gửi cho webhook này một sự kiện thử nghiệm và hiển thị nhật ký gửi của nó.
 

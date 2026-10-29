@@ -117,7 +117,7 @@ Ab dann fragst du in deinem Chat so, wie du einen Kollegen fragen würdest: „W
 
 Für Automatisierung ohne KI hat prepza eine API, beschrieben in der [Entwicklerdokumentation](/api-docs).
 
-1. Ein Inhaber oder Admin öffnet den Tab **Integrationen** eines Unternehmens, dann **API**, und wählt **Neuer Schlüssel**. Benenne ihn nach der Plattform, die ihn nutzen wird, wähle, wann er abläuft, und setze nur die Häkchen, die er braucht: Der Schlüssel eines Dashboards liest nur, der einer Karriereseite lädt auch ein. Berechtigungen kannst du später entziehen, aber nie hinzufügen. Der Schlüssel wird nur einmal angezeigt; bewahre ihn sicher auf.
+1. Ein Inhaber oder Admin öffnet den Tab **Integrationen** eines Unternehmens, dann **API**, und wählt **Neuer Schlüssel**. Benenne ihn nach der Plattform, die ihn nutzen wird, wähle, wann er abläuft, und setze nur die Häkchen, die er braucht: Der Schlüssel eines Dashboards liest nur, der einer Karriereseite lädt auch ein. Berechtigungen kannst du später hinzufügen oder entziehen. Der Schlüssel wird nur einmal angezeigt; bewahre ihn sicher auf.
 2. Deine Plattform sendet Anfragen mit diesem Schlüssel: die Interviews des Unternehmens auflisten, Kandidaten mit ihrem Ergebnis, ob sie bestanden haben, und ihren Hinweisen zur Integrität auflisten oder abrufen und einen Kandidaten einladen.
 3. Füge einen **Webhook** hinzu: eine Adresse auf deiner Plattform, die prepza signiert aufruft, wenn ein Kandidat beginnt, fertig ist, seine Einladung nicht zugestellt werden kann oder abläuft oder er entfernt wird, und wenn ein Interview bereit ist, damit du nicht ständig nachfragen musst. Auf der API-Seite kannst du ihm ein Testereignis senden und sein Zustellprotokoll sehen.
 

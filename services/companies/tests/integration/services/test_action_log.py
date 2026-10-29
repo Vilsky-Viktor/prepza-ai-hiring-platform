@@ -234,7 +234,7 @@ def test_rows_name_members_and_candidates_only_while_they_are_there(run):
             f"api-{uuid.uuid4()}",
             event(
                 acme.id,
-                AuditAction.API_KEY_NARROWED,
+                AuditAction.API_KEY_PERMISSIONS_CHANGED,
                 NOW,
                 target_kind=TargetKind.API_KEY,
                 target_id=str(uuid.uuid4()),
@@ -253,7 +253,7 @@ def test_rows_name_members_and_candidates_only_while_they_are_there(run):
     rows = run(scenario())
 
     assert [(row.action, row.user_email, row.target, row.removed) for row in rows] == [
-        (AuditAction.API_KEY_NARROWED, "ann@example.com", "Zapier", ["mcp"]),
+        (AuditAction.API_KEY_PERMISSIONS_CHANGED, "ann@example.com", "Zapier", ["mcp"]),
         (AuditAction.CANDIDATE_DELETED, None, None, None),
         (AuditAction.EXTRA_TIME_SET, "ann@example.com", "cara@example.com", None),
     ]

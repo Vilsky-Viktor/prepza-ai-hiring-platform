@@ -14,7 +14,6 @@ from api.constants.api import KEY_EXPIRY_MONTHS, SECRET_OVERLAP, KeyExpiry
 from api.constants.permissions import (
     DEFAULT_PERMISSIONS,
     IMPLIED,
-    ONLY_NARROWING,
     PERMISSION_GROUPS,
     Permission,
 )
@@ -119,18 +118,18 @@ async def create_key(
     return NewKeyOut(**key_out(row).model_dump(), key=key)
 
 
-async def narrow_key(
+async def change_key_permissions(
     company_id: UUID, key_id: UUID, permissions: list[Permission], user_id: str
 ) -> KeyOut:
-    """Only takes permissions away: a leaked key never gains one."""
+    """Replaces the key's permissions, with the reads they imply; the change applies to its next
+    call."""
     async with Session.begin() as session:
-        row = await keys.narrow(session, company_id, key_id, with_implied(permissions), user_id)
-
-        if row is None and await keys.get(session, company_id, key_id) is None:
-            raise HTTPException(status.HTTP_404_NOT_FOUND, "API key not found")
+        row = await keys.change_permissions(
+            session, company_id, key_id, with_implied(permissions), user_id
+        )
 
     if row is None:
-        raise HTTPException(status.HTTP_409_CONFLICT, ONLY_NARROWING)
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "API key not found")
 
     return key_out(row)
 

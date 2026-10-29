@@ -269,7 +269,7 @@
     "tips": [
       "Een nieuwe sleutel en het secret van een webhook worden maar één keer getoond: kopieer ze meteen.",
       "Kies voor elke sleutel een vervaldatum: een gelekte sleutel die nooit verloopt, blijft bruikbaar.",
-      "Je kunt de rechten van een sleutel later uitvinken, maar nooit een recht toevoegen: maak voor meer een nieuwe sleutel."
+      "Je kunt de rechten van een sleutel later aan- of uitvinken; geef elke sleutel alleen wat zijn platform nodig heeft."
     ]
   },
   "aiApps": {

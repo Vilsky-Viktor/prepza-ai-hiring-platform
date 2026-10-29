@@ -269,7 +269,7 @@
     "tips": [
       "Nowy klucz i sekret webhooka są pokazywane tylko raz: skopiuj je od razu.",
       "Ustaw termin ważności każdego klucza: wyciekły klucz bez terminu ważności można używać bez końca.",
-      "Uprawnienia klucza możesz później odznaczyć, ale nigdy nie dodasz nowego: jeśli potrzebujesz więcej, utwórz nowy klucz."
+      "Uprawnienia klucza możesz później zaznaczyć lub odznaczyć; dawaj każdemu kluczowi tylko to, czego potrzebuje jego platforma."
     ]
   },
   "aiApps": {

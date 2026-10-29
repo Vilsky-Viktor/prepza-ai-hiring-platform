@@ -2,6 +2,7 @@
 # ruff: noqa: F811
 import importlib.util
 import re
+import uuid
 from pathlib import Path
 
 import pytest
@@ -136,56 +137,84 @@ def made_key(client, permissions):
     return client.post(KEYS, json=body).json()["id"]
 
 
-def narrow(client, key_id, permissions):
+def change(client, key_id, permissions):
     path = f"/manage/keys/{key_id}?company_id={COMPANY}"
 
     return client.patch(path, json={"permissions": permissions})
 
 
-def test_a_keys_permissions_narrow_and_keep_the_reads_they_imply(client, companies_api, stored):
+def test_a_keys_permissions_are_taken_away_keeping_the_reads_they_imply(
+    client, companies_api, stored
+):
     key_id = made_key(client, ["candidates:invite", "candidates:delete", "credits:read"])
 
-    response = narrow(client, key_id, ["candidates:invite"])
+    response = change(client, key_id, ["candidates:invite"])
 
     assert response.status_code == 200
     assert response.json()["permissions"] == ["candidates:read", "candidates:invite"]
     assert stored["keys"][0].permissions == ["candidates:read", "candidates:invite"]
     # The action log gets what was taken away, and by whom.
-    assert stored["narrowed"] == [
+    assert stored["changed"] == [
         (stored["keys"][0].id, "u1", ["candidates:delete", "credits:read"])
     ]
 
 
-@pytest.mark.parametrize("added", [["credits:read"], ["mcp"], ["candidates:invite"]])
-def test_a_key_never_gains_a_permission(client, companies_api, stored, added):
+def test_a_key_gains_permissions_with_the_reads_they_imply(client, companies_api, stored):
+    key_id = made_key(client, ["credits:read"])
+
+    response = change(client, key_id, ["credits:read", "candidates:invite", "mcp"])
+
+    assert response.status_code == 200
+    assert response.json()["permissions"] == [
+        "candidates:read",
+        "candidates:invite",
+        "credits:read",
+        "mcp",
+    ]
+    assert stored["keys"][0].permissions == response.json()["permissions"]
+    # Logged as a change that took nothing away.
+    assert stored["changed"] == [(stored["keys"][0].id, "u1", None)]
+
+
+def test_the_same_permissions_again_change_nothing(client, companies_api, stored):
+    key_id = made_key(client, ["candidates:invite"])
+
+    response = change(client, key_id, ["candidates:invite"])
+
+    assert response.status_code == 200
+    assert stored["keys"][0].permissions == ["candidates:read", "candidates:invite"]
+    assert stored["changed"] == []
+
+
+@pytest.mark.parametrize("permissions", [[], ["candidates:read", "candidates:everything"]])
+def test_a_key_keeps_at_least_one_known_permission(client, companies_api, stored, permissions):
     key_id = made_key(client, ["candidates:read"])
 
-    response = narrow(client, key_id, ["candidates:read", *added])
-
-    assert response.status_code == 409
-    assert response.json()["detail"] == (
-        "A key's permissions can only be narrowed; make a new key to add one."
-    )
+    assert change(client, key_id, permissions).status_code == 422
     assert stored["keys"][0].permissions == ["candidates:read"]
-    assert stored["narrowed"] == []
+    assert stored["changed"] == []
 
 
-def test_a_key_keeps_at_least_one_permission(client, companies_api, stored):
-    key_id = made_key(client, ["candidates:read"])
-
-    assert narrow(client, key_id, []).status_code == 422
-
-
-def test_only_editors_narrow_their_companys_keys(client, companies_api, stored):
+def test_only_editors_change_their_companys_keys(client, companies_api, stored):
     key_id = made_key(client, ["candidates:read", "credits:read"])
     companies_api["roles"]["u2"] = "viewer"
     sign_in("u2")
 
-    assert narrow(client, key_id, ["credits:read"]).status_code == 403
-    assert narrow(client, "00000000-0000-0000-0000-000000000000", ["mcp"]).status_code == 403
+    assert change(client, key_id, ["mcp"]).status_code == 403
+    assert change(client, "00000000-0000-0000-0000-000000000000", ["mcp"]).status_code == 403
     sign_in()
-    assert narrow(client, "00000000-0000-0000-0000-000000000000", ["mcp"]).status_code == 404
+    assert change(client, "00000000-0000-0000-0000-000000000000", ["mcp"]).status_code == 404
     assert stored["keys"][0].permissions == ["candidates:read", "credits:read"]
+    assert stored["changed"] == []
+
+
+def test_another_companys_key_is_not_found(client, companies_api, stored):
+    key_id = made_key(client, ["credits:read"])
+    stored["keys"][0].company_id = uuid.uuid4()
+
+    assert change(client, key_id, ["mcp"]).status_code == 404
+    assert stored["keys"][0].permissions == ["credits:read"]
+    assert stored["changed"] == []
 
 
 def test_keys_made_before_permissions_keep_every_api_permission_but_mcp():

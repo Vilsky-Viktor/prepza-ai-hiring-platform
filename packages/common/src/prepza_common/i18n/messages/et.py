@@ -244,7 +244,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "Tooteuudised ja pakkumised saab sisse lülitada ainult inimene ise. Sina saad need ainult välja lülitada.",
     "That would take the available balance below zero.": "See viiks saadaoleva saldo alla nulli.",
     "The amount can't be zero.": "Kogus ei saa olla null.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "Võtme õigusi saab ainult kitsendada; õiguse lisamiseks loo uus võti.",
     "This API key works only in its own company.": "See API-võti töötab ainult oma ettevõttes.",
     "Every topic already has its practice and company questions.": "Igal teemal on juba olemas harjutamise ja ettevõtete küsimused.",
     "Questions are already being added to this template.": "Sellele mallile lisatakse juba küsimusi.",

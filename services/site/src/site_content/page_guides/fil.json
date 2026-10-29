@@ -269,7 +269,7 @@
     "tips": [
       "Isang beses lang ipinapakita ang bagong key at ang secret ng webhook: kopyahin agad.",
       "Pumili ng expiry para sa bawat key: magagamit pa rin ang na-leak na key na hindi nag-e-expire.",
-      "Puwede mong alisin ang check sa mga pahintulot ng key sa ibang pagkakataon, pero hindi kailanman magdagdag: para sa higit pa, gumawa ng bagong key."
+      "Puwede mong i-check o alisin ang check sa mga pahintulot ng key sa ibang pagkakataon; ibigay lang sa bawat key ang kailangan ng platform nito."
     ]
   },
   "aiApps": {

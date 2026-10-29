@@ -117,7 +117,7 @@ Da quel momento, chiedi nella chat come faresti con un collega: «In prepza, chi
 
 Per automazioni senza IA, prepza ha un'API, descritta nella sua [documentazione per sviluppatori](/api-docs).
 
-1. Un proprietario o un amministratore apre la scheda **Integrazioni** di un'azienda, poi **API**, e seleziona **Nuova chiave**. Dalle il nome della piattaforma che la userà, scegli quando scade e spunta solo ciò che le serve: la chiave di una dashboard legge soltanto, quella di un sito carriere invita anche. Potrai togliere permessi in seguito, mai aggiungerne. La chiave viene mostrata una sola volta: conservala in un posto sicuro.
+1. Un proprietario o un amministratore apre la scheda **Integrazioni** di un'azienda, poi **API**, e seleziona **Nuova chiave**. Dalle il nome della piattaforma che la userà, scegli quando scade e spunta solo ciò che le serve: la chiave di una dashboard legge soltanto, quella di un sito carriere invita anche. Potrai aggiungere o togliere permessi in seguito. La chiave viene mostrata una sola volta: conservala in un posto sicuro.
 2. La tua piattaforma invia richieste con quella chiave: elencare i colloqui dell'azienda, elencare o leggere i candidati con il loro punteggio, se hanno superato il test e le segnalazioni di integrità, e invitare un candidato.
 3. Aggiungi un **webhook**: un indirizzo sulla tua piattaforma che prepza chiama, con una firma, quando un candidato inizia, termina o viene rimosso, quando il suo invito non gli arriva o scade, e quando un colloquio è pronto, così non devi continuare a chiedere. La pagina API può inviargli un evento di test e ne mostra il registro delle consegne.
 

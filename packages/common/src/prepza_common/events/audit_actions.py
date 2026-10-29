@@ -81,7 +81,9 @@ class AuditAction(StrEnum):
     SLACK_NOTIFICATIONS_CHANGED = "slack_notifications_changed"
     API_KEY_CREATED = "api_key_created"
     API_KEY_DELETED = "api_key_deleted"
+    # Kept so older log rows still read; a change of permissions is now api_key_permissions_changed.
     API_KEY_NARROWED = "api_key_narrowed"
+    API_KEY_PERMISSIONS_CHANGED = "api_key_permissions_changed"
     API_KEY_IPS_CHANGED = "api_key_ips_changed"
     WEBHOOK_ADDED = "webhook_added"
     WEBHOOK_TESTED = "webhook_tested"
@@ -146,6 +148,7 @@ _GROUPS = {
         AuditAction.API_KEY_CREATED,
         AuditAction.API_KEY_DELETED,
         AuditAction.API_KEY_NARROWED,
+        AuditAction.API_KEY_PERMISSIONS_CHANGED,
         AuditAction.API_KEY_IPS_CHANGED,
         AuditAction.EMBED_DOMAINS_CHANGED,
         AuditAction.WEBHOOK_ADDED,

@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "製品の最新情報とキャンペーンをオンにできるのはご本人だけです。こちらからはオフにすることしかできません。",
     "That would take the available balance below zero.": "利用可能な残高がマイナスになります。",
     "The amount can't be zero.": "数量を0にすることはできません。",
-    "A key's permissions can only be narrowed; make a new key to add one.": "キーの権限は減らすことしかできません。権限を追加するには新しいキーを作成してください。",
     "This API key works only in its own company.": "この API キーは自身の会社でのみ使えます。",
     "Every topic already has its practice and company questions.": "すべてのトピックに練習用と会社用の問題がすでに揃っています。",
     "Questions are already being added to this template.": "このテンプレートにはすでに問題を追加中です。",

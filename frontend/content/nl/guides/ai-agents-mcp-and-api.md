@@ -117,7 +117,7 @@ Vanaf dan vraag je in je chat wat je ook een collega zou vragen: "Wie zijn in pr
 
 Voor automatisering zonder AI heeft prepza een API, beschreven in de [ontwikkelaarsdocumentatie](/api-docs).
 
-1. Een eigenaar of beheerder opent het tabblad **Integraties** van een bedrijf, dan **API**, en kiest **Nieuwe sleutel**. Geef hem de naam van het platform dat hem gaat gebruiken, kies wanneer hij verloopt en vink alleen aan wat hij nodig heeft: de sleutel van een dashboard leest alleen, die van een vacaturesite nodigt ook uit. Rechten kun je later intrekken, maar nooit toevoegen. De sleutel wordt één keer getoond; bewaar hem op een veilige plek.
+1. Een eigenaar of beheerder opent het tabblad **Integraties** van een bedrijf, dan **API**, en kiest **Nieuwe sleutel**. Geef hem de naam van het platform dat hem gaat gebruiken, kies wanneer hij verloopt en vink alleen aan wat hij nodig heeft: de sleutel van een dashboard leest alleen, die van een vacaturesite nodigt ook uit. Rechten kun je later toevoegen of intrekken. De sleutel wordt één keer getoond; bewaar hem op een veilige plek.
 2. Je platform stuurt verzoeken met die sleutel: de interviews van het bedrijf ophalen, kandidaten ophalen of opvragen met hun score, of ze geslaagd zijn en hun integriteitssignalen, en een kandidaat uitnodigen.
 3. Voeg een **webhook** toe: een adres op je platform dat prepza ondertekend aanroept wanneer een kandidaat begint of klaar is, wanneer de uitnodiging een kandidaat niet bereikt of verloopt, wanneer een kandidaat wordt verwijderd en wanneer een interview klaarstaat, zodat je niet steeds hoeft te vragen. Op de API-pagina kun je er een testgebeurtenis naartoe sturen en zie je het afleverlogboek.
 

@@ -234,7 +234,6 @@ MESSAGES = {
     "Only the person can turn on product updates and offers. You can only turn them off.": "רק האדם עצמו יכול להפעיל עדכוני מוצר ומבצעים. אתם יכולים רק לכבות אותם.",
     "That would take the available balance below zero.": "פעולה זו תוריד את היתרה הזמינה אל מתחת לאפס.",
     "The amount can't be zero.": "הכמות לא יכולה להיות אפס.",
-    "A key's permissions can only be narrowed; make a new key to add one.": "אפשר רק לצמצם את ההרשאות של מפתח; כדי להוסיף הרשאה, צרו מפתח חדש.",
     "This API key works only in its own company.": "מפתח ה-API הזה פועל רק בחברה שלו.",
     "Every topic already has its practice and company questions.": "לכל נושא כבר יש את שאלות התרגול והשאלות לחברות שלו.",
     "Questions are already being added to this template.": "כבר מוסיפים שאלות לתבנית הזו.",

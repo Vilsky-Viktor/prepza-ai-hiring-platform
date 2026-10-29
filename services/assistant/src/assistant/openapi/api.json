@@ -1616,9 +1616,9 @@
     "tags": [
      "manage"
     ],
-    "summary": "Narrow Key",
-    "description": "Owners and admins take permissions away from a key; adding one is refused.",
-    "operationId": "narrow_key",
+    "summary": "Change Key Permissions",
+    "description": "Owners and admins replace a key's permissions, adding or taking away any.",
+    "operationId": "change_key_permissions",
     "security": [
      {
       "HTTPBearer": []
