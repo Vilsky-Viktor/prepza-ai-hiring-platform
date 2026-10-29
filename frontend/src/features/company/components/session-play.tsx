@@ -11,11 +11,12 @@ import { SessionHeader } from "@/features/company/components/session-header"
 import { QuestionActions } from "@/components/common/question-actions"
 import { MultiChoiceTag } from "@/components/common/multi-choice-tag"
 import { QuestionText } from "@/components/common/question-text"
-import { ChoiceOptions } from "@/features/company/components/choice-options"
 import { CARD_PADDING } from "@/config/cards"
+import { ChoiceOptions } from "@/features/company/components/choice-options"
 import { useIntegritySignals } from "@/hooks/use-integrity-signals"
 import { useScrolls } from "@/hooks/use-scrolls"
 import { languageOf } from "@/lib/locale"
+import { proseAndCode } from "@/lib/question-text"
 import type { InterviewSession } from "@/types/company"
 import type { AnswerInput, NextQuestion } from "@/types/round"
 
@@ -66,6 +67,7 @@ export function SessionPlay({
   const { ref: cardRef, scrolls } = useScrolls<HTMLDivElement>(questionId)
   const chosen = pick.question === questionId ? pick.options : []
   const multi = Boolean(question?.multi)
+  const { prose, code } = proseAndCode(question?.text ?? "")
   const answered = progress.answered + (chosen.length ? 1 : 0)
   const allAnswered = progress.total > 0 && answered === progress.total
 
@@ -156,22 +158,29 @@ export function SessionPlay({
                 role: "region",
                 "aria-label": t("question"),
               })}
-              className={cn(
-                "space-y-3 rounded-xl bg-surface outline-none focus-visible:ring-3 focus-visible:ring-ring/50 max-sm:-mx-6 max-sm:rounded-none lg:max-h-[calc(100dvh-26rem)] lg:overflow-y-auto",
-                CARD_PADDING
-              )}
+              className="space-y-3 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 lg:max-h-[calc(100dvh-26rem)] lg:overflow-y-auto"
             >
-              {/* The tag and the hint are the site's, so read in its language. */}
-              {multi && (
-                <div {...languageOf(locale)}>
-                  <MultiChoiceTag />
-                </div>
-              )}
-              <QuestionText
-                heading
-                text={question.text}
-                className="text-2xl leading-snug font-medium"
-              />
+              {/* The question in its card, its code examples under it. */}
+              <div
+                data-testid="question-box"
+                className={cn(
+                  "space-y-3 rounded-xl bg-surface max-sm:-mx-6 max-sm:rounded-none",
+                  CARD_PADDING
+                )}
+              >
+                {/* The tag and the hint are the site's, so read in its language. */}
+                {multi && (
+                  <div {...languageOf(locale)}>
+                    <MultiChoiceTag />
+                  </div>
+                )}
+                <QuestionText
+                  heading
+                  text={prose}
+                  className="text-2xl leading-snug font-medium"
+                />
+              </div>
+              {code && <QuestionText text={code} />}
             </div>
             <div
               {...languageOf(locale)}

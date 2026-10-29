@@ -43,3 +43,20 @@ export function splitCodeBlocks(text: string): TextPart[] {
 export function splitInlineCode(text: string): TextPart[] {
   return split(text, INLINE_CODE)
 }
+
+/** A question's text apart from its code blocks, and its code blocks (still fenced), so a page
+ * can show the code under the question. */
+export function proseAndCode(text: string) {
+  const parts = splitCodeBlocks(text)
+
+  return {
+    prose: parts
+      .filter((part) => !part.code)
+      .map((part) => part.text.trim())
+      .join("\n\n"),
+    code: parts
+      .filter((part) => part.code)
+      .map((part) => `\`\`\`${part.language ?? ""}\n${part.text}\n\`\`\``)
+      .join("\n"),
+  }
+}

@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest"
 
-import { splitCodeBlocks, splitInlineCode } from "@/lib/question-text"
+import {
+  proseAndCode,
+  splitCodeBlocks,
+  splitInlineCode,
+} from "@/lib/question-text"
 
 describe("splitCodeBlocks", () => {
   it("keeps plain text as one text part", () => {
@@ -71,5 +75,33 @@ describe("splitInlineCode", () => {
     expect(splitInlineCode("a ` b")).toEqual([{ code: false, text: "a ` b" }])
     expect(splitInlineCode("a `` b")).toEqual([{ code: false, text: "a `` b" }])
     expect(splitInlineCode("`a\nb`")).toEqual([{ code: false, text: "`a\nb`" }])
+  })
+})
+
+describe("proseAndCode", () => {
+  it("puts the text together and the code blocks, still fenced, after it", () => {
+    expect(
+      proseAndCode(
+        "What does it print?\n```python\nprint(1)\n```\nPick one.\n```\nx\n```"
+      )
+    ).toEqual({
+      prose: "What does it print?\n\nPick one.",
+      code: "```python\nprint(1)\n```\n```\nx\n```",
+    })
+  })
+
+  it("gives no code for a question without a block", () => {
+    expect(proseAndCode("What does `len` return?")).toEqual({
+      prose: "What does `len` return?",
+      code: "",
+    })
+  })
+
+  it("gives the code back as the same blocks", () => {
+    const { code } = proseAndCode("Look:\n```sql\nSELECT 1\n```")
+
+    expect(splitCodeBlocks(code)).toEqual([
+      { code: true, text: "SELECT 1", language: "sql" },
+    ])
   })
 })

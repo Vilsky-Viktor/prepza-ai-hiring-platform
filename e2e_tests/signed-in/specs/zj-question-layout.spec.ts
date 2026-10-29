@@ -103,7 +103,8 @@ test("an interview question sits beside its options and rates before a pick", as
     await expect(card).not.toHaveAttribute("role")
     // The page's width (the scroll bar left out), which the page's main area spans on a phone.
     const { width } = await box(main)
-    const phoneCard = await box(card)
+    // The question's gray card, out to the screen's edges.
+    const phoneCard = await box(candidate.getByTestId("question-box"))
     expect(phoneCard.left).toBe(0)
     expect(phoneCard.width).toBe(width)
     const phoneOptions = await Promise.all(options.map((option) => box(option)))
