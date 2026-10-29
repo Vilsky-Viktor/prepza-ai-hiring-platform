@@ -1,18 +1,44 @@
 #!/usr/bin/env bash
 # Browser tests of the signed-in pages (e2e_tests/signed-in), in Playwright's Docker image,
-# against the running local stack. Users sign in through the Firebase Auth emulator's own sign-in
+# against the running local stack, on the gateway's test port (8082: the production build of the
+# frontend, test_frontend.sh). Users sign in through the Firebase Auth emulator's own sign-in
 # page, so this runs only where the emulator is set up (NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL).
 # Every test makes its own throwaway users, companies and interviews. Results land in
 # e2e_tests/signed-in/test-results/<run> (screenshots in its screenshots/), one folder per run.
-# Usage: e2e_tests/signed-in.sh [playwright args]
+# Usage: e2e_tests/signed-in.sh [playwright args], e.g. specs/b-candidate.spec.ts; WORKERS=n sets
+# how many tests run at once (default 6).
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-# One browser run at a time on the local stack (BROWSER_RUNS), whoever starts it; the slot is
-# freed when this script exits.
-browser_slot="$(python3 e2e_tests/browser_lock.py "$$")"
+# A run of every spec, or of a spec with a @global test, has the stack to itself: those tests turn
+# on what every page sees (maintenance mode, the pause, a limit). A run of named specs without one
+# shares it. A spec named in a way not found here counts as global.
+alone=" alone"
+specs=()
+
+for arg in "$@"; do
+  if [[ "$arg" == *.spec.ts || "$arg" == *.spec.ts:* ]]; then
+    specs+=("e2e_tests/signed-in/${arg%%:*}")
+  fi
+done
+
+if ((${#specs[@]})); then
+  grep -qs "@global" "${specs[@]}" && found=0 || found=$?
+
+  if ((found == 1)); then
+    alone=""
+  fi
+fi
+
+# The tests open a production build of the frontend (test_frontend.sh), never the dev server.
+# At most BROWSER_RUNS browser runs at once on the local stack, whoever starts them, all of the
+# same frontend files (browser_lock.py); the slot is freed when this script exits. The test site
+# is then rebuilt if the frontend changed since its last build.
+source="$(e2e_tests/test_frontend.sh --source)"
+browser_slot="$(python3 e2e_tests/browser_lock.py "$$" "$source$alone")"
 trap 'rm -rf "$browser_slot"' EXIT
+e2e_tests/test_frontend.sh "$source"
 
 if docker compose version >/dev/null 2>&1; then
   compose=(docker compose)
@@ -42,17 +68,31 @@ find "$tests/test-results" -mindepth 1 -maxdepth 1 -type d -mtime +7 -exec rm -r
 # The specs go in through a tar stream rather than a mount: Docker Desktop's file sharing can
 # serve a file edited moments before as it was. Results and screenshots come back through a mount.
 # --ipc=host: Chromium's shared memory, as Playwright advises for Docker (pages crash without it).
+# The tests run in parallel first; then, in a run that has the stack to itself, the @global ones
+# (the `global` project), one at a time with nothing else running. Each phase has its own results
+# folder, as Playwright empties it when it starts.
 COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude test-results -cf - . |
   docker run -i --rm --ipc=host --network "$network" \
     -v "$results:/tests/test-results" \
     -v "$PWD/.env:/env/.env:ro" \
     -w /tests \
     -e SITE_URL=http://localhost:8090 \
-    -e API_URL=http://gateway/api \
-    -e HOST_RULES="MAP localhost:8090 gateway:80, MAP $emulator firebase-auth:9199" \
-    -e FORWARDS="8090=gateway:80,${emulator##*:}=firebase-auth:9199" \
+    -e API_URL=http://gateway:8082/api \
+    -e FRONTEND_URL=http://gateway:8082 \
+    -e HOST_RULES="MAP localhost:8090 gateway:8082, MAP $emulator firebase-auth:9199" \
+    -e FORWARDS="8090=gateway:8082,${emulator##*:}=firebase-auth:9199" \
+    -e GLOBAL="${alone:+1}" \
+    -e WORKERS \
     mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27 \
-    sh -c 'tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test "$@"' sh "$@" ||
+    sh -c '
+      tar -xf - && npm ci --no-audit --no-fund --loglevel=error || exit 1
+      npx playwright test --project=chromium --project=firefox --project=webkit \
+        --output=test-results/parallel "$@"
+      parallel=$?
+      [ -z "$GLOBAL" ] && exit "$parallel"
+      npx playwright test --project=global --pass-with-no-tests --output=test-results/global "$@"
+      exit $((parallel | $?))
+    ' sh "$@" ||
   status=$?
 
 echo "Results: ${results#"$PWD"/}"

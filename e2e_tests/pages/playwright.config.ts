@@ -1,8 +1,8 @@
 import { defineConfig, devices } from "@playwright/test"
 
-// Runs in Playwright's Docker image (e2e_tests/pages.sh). The browser keeps the site's own
-// address, so Next.js sees its usual origin; HOST_RULES points it at the gateway on the compose
-// network.
+// Runs in Playwright's Docker image (e2e_tests/pages.sh), against the production build of the
+// frontend. The browser keeps the site's own address, so Next.js sees its usual origin;
+// HOST_RULES points it at the gateway's test port on the compose network.
 export default defineConfig({
   testDir: ".",
   // Deletes what stopped runs left behind (helpers/db.ts).
@@ -10,9 +10,10 @@ export default defineConfig({
   reporter: "list",
   // A test.only left in fails the run instead of quietly skipping every other test.
   forbidOnly: true,
-  // The local frontend is a dev server: with every worker's browser at once, a page or a lazily
-  // loaded part (the assistant's panel) can take well over the defaults (30 s, 5 s) to come.
-  // The same waits as the signed-in suite's; what is checked doesn't change.
+  // Every test owns its data, so tests run in parallel, within a file too. With every worker's
+  // browser at once on one laptop's stack, a page or a lazily loaded part (the assistant's panel)
+  // can take over the defaults (30 s, 5 s) to come; what is checked doesn't change.
+  fullyParallel: true,
   timeout: 60_000,
   expect: { timeout: 15_000 },
   use: {

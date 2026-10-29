@@ -70,6 +70,7 @@ Then open the app at http://localhost:8090. Sign-in uses the Firebase Auth emula
 | [Generation and question quality](docs/generation.md) | The generation pipeline, question reuse and checks, generation settings, models, rate limits |
 | [Development](docs/development.md) | Running locally, settings, the local stack, everyday commands, conventions |
 | [Testing](docs/testing.md) | Unit, integration, browser, end-to-end and load tests; CI |
+| [Browser tests](docs/browser-tests.md) | The browser tests' production build of the site, signed-out and signed-in pages, parallel runs |
 | [Deployment](docs/deployment.md) | Production images, migrations, Sentry, CI/CD, releases and rollbacks |
 | [Runbooks](docs/runbooks.md) | What to do when an alert fires (each one's section: a provider failing, the site or an API down or slow, waiting events, the database, a stuck generation, a failed migration), how to run an incident and write its postmortem |
 | [infra/README.md](infra/README.md) | Google Cloud with Terraform: bootstrap, deploys, restore drill |

@@ -1,4 +1,5 @@
-"""e2e_tests/browser_lock.py: one browser run at a time, the waiting ones in the order they came."""
+"""e2e_tests/browser_lock.py: BROWSER_RUNS browser runs at a time, the waiting ones in the order
+they came; only runs of the same frontend share the stack, and a run that needs it alone has it."""
 
 import subprocess
 import time
@@ -16,11 +17,12 @@ def until(check, seconds: float = 20) -> None:
         time.sleep(0.05)
 
 
-def run(repo: Path, name: str) -> subprocess.Popen:
-    """A browser run: takes the slot, notes its name, and holds the slot until `release-<name>`
-    exists."""
+def run(repo: Path, name: str, source: str = "frontend", runs: int = 1) -> subprocess.Popen:
+    """A browser run of the frontend as `source`: takes a slot (of `runs`), notes its name, and
+    holds the slot until `release-<name>` exists."""
     script = (
-        f'slot="$(python3 {LOCK} $$)"; trap \'rm -rf "$slot"\' EXIT; echo {name} >> got; '
+        f'slot="$(BROWSER_RUNS={runs} python3 {LOCK} $$ "{source}")"; '
+        f"trap 'rm -rf \"$slot\"' EXIT; echo {name} >> got; "
         f"until [ -e release-{name} ]; do sleep 0.05; done"
     )
 
@@ -106,6 +108,63 @@ def test_a_stray_file_in_the_queue_does_not_let_a_run_skip_it(tmp_path):
         until(lambda: got.read_text().split() == ["first", "second"])
     finally:
         for name in ["first", "second"]:
+            (tmp_path / f"release-{name}").touch()
+
+        for process in runs:
+            process.wait(timeout=20)
+
+
+def started(got: Path) -> list[str]:
+    return got.read_text().split() if got.exists() else []
+
+
+def test_runs_of_the_same_frontend_share_the_stack_and_others_wait(tmp_path):
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    got = tmp_path / "got"
+    queue = tmp_path / ".git" / "prepza-browser-runs" / "queue"
+    runs = [run(tmp_path, "first", "old", runs=3)]
+
+    try:
+        until(lambda: started(got) == ["first"])
+        runs.append(run(tmp_path, "same", "old", runs=3))
+        until(lambda: started(got) == ["first", "same"])
+        runs.append(run(tmp_path, "rebuilt", "new", runs=3))
+        until(lambda: len(list(queue.iterdir())) == 1)
+
+        (tmp_path / "release-first").touch()
+        (tmp_path / "release-same").touch()
+        until(lambda: started(got) == ["first", "same", "rebuilt"])
+    finally:
+        for name in ["first", "same", "rebuilt"]:
+            (tmp_path / f"release-{name}").touch()
+
+        for process in runs:
+            process.wait(timeout=20)
+
+
+def test_a_run_that_needs_the_stack_alone_waits_and_keeps_others_waiting(tmp_path):
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    got = tmp_path / "got"
+    queue = tmp_path / ".git" / "prepza-browser-runs" / "queue"
+    runs = [run(tmp_path, "first", "frontend", runs=3)]
+
+    try:
+        until(lambda: started(got) == ["first"])
+        runs.append(run(tmp_path, "alone", "frontend alone", runs=3))
+        until(lambda: len(list(queue.iterdir())) == 1)
+        runs.append(run(tmp_path, "later", "frontend", runs=3))
+        until(lambda: len(list(queue.iterdir())) == 2)
+
+        (tmp_path / "release-first").touch()
+        until(lambda: started(got) == ["first", "alone"])
+        until(lambda: len(list(queue.iterdir())) == 1)
+
+        assert started(got) == ["first", "alone"]
+
+        (tmp_path / "release-alone").touch()
+        until(lambda: started(got) == ["first", "alone", "later"])
+    finally:
+        for name in ["first", "alone", "later"]:
             (tmp_path / f"release-{name}").touch()
 
         for process in runs:

@@ -1,13 +1,12 @@
 ---
 name: verify
-description: Choose and run the right test suites for a change (unit, database, browser, end to end) and handle the slow local dev server. Use before calling any change done.
+description: Choose and run the right test suites for a change (unit, database, browser, end to end) and handle the browser tests' local test site. Use before calling any change done.
 ---
 
 # Verify a change
 
 Rule 8: every change ships with its tests, and the affected suites run before it's done.
-For a change a user sees, only after the user has approved the UI (rule 14): a test run slows
-the local site so much that the user can't review it meanwhile.
+For a change a user sees, only after the user has approved the UI (rule 14).
 
 ## Which suites
 
@@ -20,7 +19,7 @@ the local site so much that the user can't review it meanwhile.
 | Frontend code | `cd frontend && npx tsc --noEmit -p . && npx eslint <files> && pnpm test` |
 | Frontend texts | `cd frontend && node scripts/check-messages.mjs` |
 | A signed-in screen or flow | `e2e_tests/signed-in.sh specs/<name>.spec.ts --retries=0` |
-| A public page | `e2e_tests/pages.sh <name>.spec.ts --workers=1` |
+| A public page | `e2e_tests/pages.sh <name>.spec.ts --retries=0` |
 | The whole hiring flow | `python3 e2e_tests/flow.py` (a real generation: a few cents of OpenAI) |
 | Terraform | `docker run --rm -v "$PWD/infra/terraform:/tf" -w /tf hashicorp/terraform fmt -check` / `validate` |
 
@@ -51,21 +50,24 @@ Find elements by role and position (`getByRole("main").getByRole("textbox")`, a 
 apart, never by fixed wording. A toast: `[data-sonner-toast][data-type="error"]` for its kind,
 its text only when it's an error.
 
-## The local dev server
+## The browser tests' site
 
-The frontend is a Next.js dev server and compiles pages on first visit, so browser tests can
-time out on cold pages. These are not code failures:
+Browser tests never open the dev server the user browses (port 8090). `pages.sh` and
+`signed-in.sh` open a production build of the frontend (compose's `frontend-test`, the
+gateway's port 8082), with the same services and Auth emulator:
 
-- Warm the pages a test opens first: `curl -s -m 180 -o /dev/null http://127.0.0.1:8090/<path>`.
-- A `page.goto` timeout, `ERR_ABORTED`, a 502 or a 90-second `visit` timeout: run the test again.
-- A failure at a different step on each run is timing; the same failure twice is real.
-- When the frontend container passes about 6 GB (`docker stats --no-stream`), restart it:
-  `/opt/homebrew/bin/docker-compose restart frontend`, then warm pages again.
-- Browser runs queue: `pages.sh` and `signed-in.sh` run one at a time across every agent
-  (`BROWSER_RUNS`, default 1); "waiting for another browser run" means one is in progress.
-- If the frontend hangs on "Compiling" with long "filesystem cache" lines, its Turbopack cache
-  has grown too large: stop the frontend, run
-  `docker run --rm -v prepza_frontend-next:/next alpine rm -rf /next/dev`, and start it again.
+- The scripts rebuild it when the frontend's files changed since its last build (uncommitted
+  changes too): about 2 minutes (up to 10 with a cold build cache), then every run of the same
+  files starts at once. A change to the frontend is tested only after that rebuild, which the
+  script does by itself.
+- Development-only pages (`/report-samples`) don't exist there.
+- Tests run in parallel (signed-in: `WORKERS`, default 6). Tests tagged `@global` (maintenance
+  mode, the pause, a limit) run after the others, alone.
+- Up to `BROWSER_RUNS` runs (default 2) share the stack when they test the same frontend files;
+  a run of every signed-in spec, or of a spec with a `@global` test, has it to itself. "waiting
+  for earlier browser runs" means one is in progress.
+- A failure is a failure: no compiling or restarting server to blame. A test that fails once
+  and passes on retry is flaky and gets fixed (`.claude/rules/testing.md`).
 - A run with no output for many minutes may be stuck: find it with
   `ps aux | grep signed-in.sh`, kill it, and run again.
 - `pages.sh -g "a|b"` breaks on the pipe: run each name separately.
@@ -73,4 +75,4 @@ time out on cold pages. These are not code failures:
 ## Report
 
 Say which suites ran and their counts, and name anything not checked (for example a path only
-a production build can show).
+the dev server has).

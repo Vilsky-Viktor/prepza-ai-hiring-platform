@@ -23,7 +23,11 @@ ARG SENTRY_ORG
 ARG SENTRY_PROJECT
 # The commit, as the release Sentry's build plugin names (and tags errors with).
 ARG SENTRY_RELEASE
-RUN --mount=type=secret,id=sentry_auth_token,env=SENTRY_AUTH_TOKEN pnpm build
+# Next's build cache stays in a cache mount, outside the image, so a rebuild on the same machine
+# (the browser tests' site, compose's frontend-test) compiles only what changed.
+RUN --mount=type=secret,id=sentry_auth_token,env=SENTRY_AUTH_TOKEN \
+    --mount=type=cache,id=prepza-frontend-build,target=/frontend/.next/cache,sharing=locked \
+    pnpm build
 
 # Development: docker-compose.yml mounts the source, and Next reloads on change.
 FROM node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1 AS dev

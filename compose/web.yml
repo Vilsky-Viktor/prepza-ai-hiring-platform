@@ -69,6 +69,39 @@ services:
       - ./frontend:/frontend
       - frontend-modules:/frontend/node_modules
       - frontend-next:/frontend/.next
+
+  # The site the browser tests open (the gateway's port 8082): a production build of the frontend,
+  # so tests never wait on the dev server above compiling pages, and never slow it down. Only the
+  # test scripts start it (e2e_tests/test_frontend.sh), rebuilt when the frontend's files change;
+  # the label names the files it was built from. NEXT_PUBLIC_* values are baked in at build time.
+  frontend-test:
+    profiles: [test]
+    restart: unless-stopped
+    build:
+      context: frontend
+      target: prod
+      args:
+        NEXT_PUBLIC_FIREBASE_API_KEY: ${NEXT_PUBLIC_FIREBASE_API_KEY}
+        NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN}
+        NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${NEXT_PUBLIC_FIREBASE_PROJECT_ID}
+        NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL: ${NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL}
+        NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:-}
+        NEXT_PUBLIC_ENVIRONMENT: ${ENVIRONMENT:-development}
+    labels:
+      prepza.frontend-source: ${FRONTEND_TEST_SOURCE:-}
+    environment:
+      API_URL: http://gateway:8081
+      SITE_URL: ${SITE_URL:-http://localhost:8090}
+      PREVIEW_SECRET: ${PREVIEW_SECRET}
+      GOOGLE_SITE_VERIFICATION: ${GOOGLE_SITE_VERIFICATION:-}
+      BING_SITE_VERIFICATION: ${BING_SITE_VERIFICATION:-}
+    # Ready once it serves a page (`up --wait` waits for this).
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/robots.txt"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
   gateway:
     restart: unless-stopped
     image: nginx:1.29.8-alpine@sha256:5616878291a2eed594aee8db4dade5878cf7edcb475e59193904b198d9b830de

@@ -34,8 +34,10 @@ print(a.size, b.size, ImageChops.difference(a, b).getbbox() if a.size == b.size 
 EOF
 ```
 
-Random test data (company names) and the Next.js dev-tools badge also differ: find where the
-difference is before calling it a regression.
+Random test data (company names) also differs: find where the difference is before calling it a
+regression. The browser tests run on a production build of the current files (the `verify`
+skill), so a screenshot shows the change only once the run has rebuilt it; the scripts do that
+themselves.
 
 ## Share
 

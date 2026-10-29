@@ -37,8 +37,9 @@ async function newHardTest(owner: Page, companyId: string, templateId: string) {
 }
 
 // A new test starts with its level's seconds a question, as set in the admin zone's Controls;
-// a change there reaches the next new test, and the value is set back after.
-test("a new hard test starts with the hard level's seconds, as set in Controls", async ({
+// a change there reaches the next new test, and the value is set back after. The value is global,
+// so the test is tagged @global: it runs alone, after the other tests (signed-in.sh).
+test("a new hard test starts with the hard level's seconds, as set in Controls", { tag: "@global" }, async ({
   signInAs,
   signInSuperadmin,
 }) => {

@@ -87,7 +87,9 @@ Firebase Auth emulators, Mailpit), `services.yml` (library, generation, rounds, 
 `integrations.yml` (billing, notifications, ats, api, assistant, accounts), `web.yml` (the site's content service, the frontend, the
 gateway, the scheduler); each API service and its migrations extend `base.yml`. Together they:
 
-- builds each image's `dev` target,
+- builds each image's `dev` target (but `frontend-test`, behind the `test` profile: the frontend's
+  `prod` target, which only the browser tests start and open, on the gateway's port 8082 inside
+  the stack's network; see [Browser tests](browser-tests.md#the-browser-tests-site)),
 - mounts the source, so servers reload on change (a server reloads only once its open requests
   end: a code change during a generation leaves `generation-worker` finishing that run first, and
   until then it takes no new job; one started meanwhile is lost locally and waits in "queued", so
@@ -149,4 +151,4 @@ See [CLAUDE.md](../CLAUDE.md). In short:
 - the simplest solution that works,
 - no business logic on the frontend: rules, thresholds and decisions live in the services.
 
-Claude Code skills for the repo's recurring work live in `.claude/skills/`: `translate` (a text in all 23 languages), `api-types` (the assistant's API snapshots and the frontend's types), `verify` (which suites to run, and the slow dev server), `review-batch` (working through a platform review), `ui-build` (a screen in the app's design language, from its shared components), `ui-check` (screenshots, desktop and phone) and `migration` (an Alembic migration).
+Claude Code skills for the repo's recurring work live in `.claude/skills/`: `translate` (a text in all 23 languages), `api-types` (the assistant's API snapshots and the frontend's types), `verify` (which suites to run, and the browser tests' site), `review-batch` (working through a platform review), `ui-build` (a screen in the app's design language, from its shared components), `ui-check` (screenshots, desktop and phone) and `migration` (an Alembic migration).

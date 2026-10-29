@@ -1,19 +1,24 @@
 #!/usr/bin/env bash
 # Browser tests of the signed-out pages (e2e_tests/pages), in Playwright's Docker image, against
-# the running stack: the browser opens SITE_URL, which Chromium resolves to the gateway on the
-# stack's own network. Tests that need templates add their own straight into the library database
-# (POSTGRES_PASSWORD from .env, mounted read-only) and delete them after, so the platform's own
-# templates are never read or changed.
+# the running stack: the browser opens SITE_URL, which Chromium resolves to the gateway's test port
+# (8082: the production build of the frontend, test_frontend.sh) on the stack's own network.
+# Tests that need templates add their own straight into the library database (POSTGRES_PASSWORD
+# from .env, mounted read-only) and delete them after, so the platform's own templates are never
+# read or changed.
 # Results land in e2e_tests/pages/test-results/<run>, one folder per run.
 # Usage: e2e_tests/pages.sh [playwright args], e.g. --workers=2
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-# One browser run at a time on the local stack (BROWSER_RUNS), whoever starts it; the slot is
-# freed when this script exits.
-browser_slot="$(python3 e2e_tests/browser_lock.py "$$")"
+# The tests open a production build of the frontend (test_frontend.sh), never the dev server.
+# At most BROWSER_RUNS browser runs at once on the local stack, whoever starts them, all of the
+# same frontend files (browser_lock.py); the slot is freed when this script exits. The test site
+# is then rebuilt if the frontend changed since its last build.
+source="$(e2e_tests/test_frontend.sh --source)"
+browser_slot="$(python3 e2e_tests/browser_lock.py "$$" "$source")"
 trap 'rm -rf "$browser_slot"' EXIT
+e2e_tests/test_frontend.sh "$source"
 
 if docker compose version >/dev/null 2>&1; then
   compose=(docker compose)
@@ -46,8 +51,8 @@ COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude 
     -v "$PWD/.env:/env/.env:ro" \
     -e EMAIL_LINK_SECRET \
     -e SITE_URL=http://localhost:8090 \
-    -e HOST_RULES="MAP localhost:8090 gateway:80" \
-    -e REQUEST_URL=http://gateway \
+    -e HOST_RULES="MAP localhost:8090 gateway:8082" \
+    -e REQUEST_URL=http://gateway:8082 \
     mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27 \
     sh -c 'tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test "$@"' sh "$@" ||
   status=$?

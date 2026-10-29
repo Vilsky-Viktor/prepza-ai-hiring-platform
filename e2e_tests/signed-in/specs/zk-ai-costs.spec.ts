@@ -148,8 +148,9 @@ test("superadmin sees a month's AI costs, top spenders and limit hits", async ({
 })
 
 // A limit's change is global: the test changes one only when it's at its default, and always sets
-// it back and removes its history entries, even when a step fails.
-test("superadmin changes a limit, the services apply it, and sets it back", async ({
+// it back and removes its history entries, even when a step fails. Tagged @global: it runs alone,
+// after the other tests (signed-in.sh).
+test("superadmin changes a limit, the services apply it, and sets it back", { tag: "@global" }, async ({
   signInSuperadmin,
 }) => {
   const superadmin = await signInSuperadmin()

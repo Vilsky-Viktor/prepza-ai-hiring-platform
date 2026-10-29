@@ -116,8 +116,9 @@ async function maintenanceOn(page: Page) {
 }
 
 // Both switches are global: they're turned on only when found off, and always turned off again
-// when the test ends, even when a step fails or it runs out of time (switchesOffAfter).
-test("superadmin turns the pause and maintenance mode on and off", async ({
+// when the test ends, even when a step fails or it runs out of time (switchesOffAfter). Tagged
+// @global: it runs alone, after the other tests (signed-in.sh).
+test("superadmin turns the pause and maintenance mode on and off", { tag: "@global" }, async ({
   signInAs,
   signInSuperadmin,
   switchesOffAfter,
