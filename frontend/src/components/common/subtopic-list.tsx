@@ -6,7 +6,7 @@ import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 
 // Tags shown before "+N more".
-const SHOWN = 3
+const SHOWN = 2
 const TAG = "h-7 px-3 text-sm font-light text-muted-foreground"
 
 /** A topic's subtopics as quiet tags: the first few, then a "+N more" tag that shows the rest. */

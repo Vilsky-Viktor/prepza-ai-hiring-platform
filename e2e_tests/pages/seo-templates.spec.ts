@@ -1,3 +1,4 @@
+import { SUBTOPICS } from "./helpers/db";
 import { REQUEST_URL } from "./helpers/env";
 import { expect, test } from "./helpers/templates";
 
@@ -13,7 +14,7 @@ function buttonLinks(page: import("@playwright/test").Page) {
 }
 
 // The two ways on are links drawn as the site's buttons: creating a test first, practising it
-// second.
+// second; each topic shows two subtopics and the rest on a click.
 test("a role test page is for hiring, with the way to practise second", async ({
   page,
   addTemplate,
@@ -23,6 +24,16 @@ test("a role test page is for hiring, with the way to practise second", async ({
 
   await expect(page.locator("h1")).toContainText(template.title);
   expect(await buttonLinks(page)).toEqual(["/", `/practice/${template.slug}`]);
+  // A topic's first two subtopics, then a button that shows the rest.
+  const topic = page.locator("main li").filter({ hasText: "E2E topic 1" });
+  const tags = topic.locator("[data-slot=badge]").filter({ hasText: /^E2E / });
+  await expect(tags).toHaveText(SUBTOPICS.slice(0, 2));
+  const more = topic.locator("button[aria-expanded]");
+  await expect(more).toHaveAttribute("aria-expanded", "false");
+  await expect(more).toContainText(String(SUBTOPICS.length - 2));
+  await more.click();
+  await expect(tags).toHaveText(SUBTOPICS);
+  await expect(more).toHaveAttribute("aria-expanded", "true");
   const data = await page
     .locator('script[type="application/ld+json"]')
     .allTextContents();

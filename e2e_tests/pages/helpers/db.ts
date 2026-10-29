@@ -30,8 +30,11 @@ async function withDatabase<T>(database: string, work: (client: pg.Client) => Pr
   }
 }
 
+// Each throwaway topic's subtopics.
+export const SUBTOPICS = ["E2E joins", "E2E indexes", "E2E views", "E2E locks"];
+
 /** A throwaway template with its own readable address, saved straight into the library database
- * (a real one needs an OpenAI generation). Each topic has a subtopic, two company questions and
+ * (a real one needs an OpenAI generation). Each topic has four subtopics, two company questions and
  * one practice one. Its title is unique, so with at least 3 topics (MIN_INDEXABLE_TOPICS in
  * services/library) it's indexable, and with fewer it isn't. */
 export async function addTemplate(language: string, topics: number): Promise<Template> {
@@ -57,8 +60,8 @@ export async function addTemplate(language: string, topics: number): Promise<Tem
     for (let position = 0; position < topics; position++) {
       const topic = await client.query(
         `INSERT INTO topics (id, set_id, position, title, subtopics)
-         VALUES (gen_random_uuid(), $1, $2, $3, '["E2E subtopic"]') RETURNING id`,
-        [id, position, `E2E topic ${position + 1}`],
+         VALUES (gen_random_uuid(), $1, $2, $3, $4) RETURNING id`,
+        [id, position, `E2E topic ${position + 1}`, JSON.stringify(SUBTOPICS)],
       );
 
       for (const [index, pool] of ["company", "company", "practice"].entries()) {
