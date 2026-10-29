@@ -17,6 +17,7 @@ import {
   type SideMenuItem,
   SideMenuLayout,
 } from "@/components/common/side-menu"
+import type { MenuCounts } from "@/types/company"
 
 export type CompanyTab =
   | "interviews"
@@ -31,12 +32,14 @@ export type CompanyTab =
 /** A company's page menu beside its page's content (`children`); brand and billing only for
  * owners and admins (`canEdit`), who set its colors and top up; the action log only for the
  * owner (`canSeeActions`). The open page's own pages (`sub`, `currentSub` the open one) are
- * listed under it. */
+ * listed under it. Interviews, the team, integrations and referrals show how many they hold
+ * (`counts`, none while they load or when they failed). */
 export function CompanyNav({
   companyId,
   current,
   canEdit,
   canSeeActions,
+  counts,
   sub,
   currentSub,
   className,
@@ -46,6 +49,8 @@ export function CompanyNav({
   current: CompanyTab
   canEdit: boolean
   canSeeActions: boolean
+  // As the API gives them; none shows at 0 or null.
+  counts: MenuCounts | null
   sub?: SideMenuItem["sub"]
   currentSub?: string
   // The content's spacing, as the page's.
@@ -59,6 +64,7 @@ export function CompanyNav({
       href: `/companies/${companyId}/interviews`,
       label: t("interviews"),
       icon: BriefcaseBusinessIcon,
+      count: counts?.interviews,
     },
     {
       id: "templates",
@@ -71,12 +77,14 @@ export function CompanyNav({
       href: `/companies/${companyId}/members`,
       label: t("team"),
       icon: UsersIcon,
+      count: counts?.members,
     },
     {
       id: "integrations",
       href: `/companies/${companyId}/integrations`,
       label: t("integrations"),
       icon: BlocksIcon,
+      count: counts?.integrations ?? undefined,
     },
     ...(canEdit
       ? [
@@ -109,6 +117,7 @@ export function CompanyNav({
       href: `/companies/${companyId}/referrals`,
       label: t("referrals"),
       icon: UsersRoundCollaborationIcon,
+      count: counts?.referrals ?? undefined,
     },
   ]
 

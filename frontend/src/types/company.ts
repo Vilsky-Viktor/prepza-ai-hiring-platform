@@ -41,6 +41,8 @@ export type SessionAnswerResult = RoundSchemas["SessionAnswerResult"] & {
   option_index?: number | null
 }
 export type CompanyReferral = Schemas["ReferralOut"]
+// How many things each of a company's menu pages holds; null for a part the API couldn't give.
+export type MenuCounts = Schemas["MenuCountsOut"]
 // One movement of a company's credits, and a candidate whose invite holds or was charged credits.
 export type CreditHistoryEntry = Schemas["HistoryEntryOut"]
 export type CreditCandidate = Schemas["CreditCandidateOut"]

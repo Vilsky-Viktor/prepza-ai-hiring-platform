@@ -2,7 +2,8 @@
 
 Companies' ATS connections (Workable, Greenhouse, Teamtailor, Recruitee, Breezy): the jobs
 linked to interviews, the candidates each ATS sends (invited through companies) and the results
-written back when they finish. It keeps connections, linked jobs and candidates in its own
+written back when they finish; companies asks it how many connections work, for the company's
+menu (`/internal/companies/{id}/active-count`). It keeps connections, linked jobs and candidates in its own
 database. What it does and its settings: [docs/features/ats.md](../../docs/features/ats.md).
 
 ## Layout

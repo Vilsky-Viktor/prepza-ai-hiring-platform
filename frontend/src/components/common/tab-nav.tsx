@@ -4,19 +4,22 @@ import { cn } from "cn"
 import Link from "next/link"
 import { type ComponentType, type ReactNode, useEffect, useRef } from "react"
 
+import { MenuCount } from "@/components/common/menu-count"
+
 /** A menu item's icon: a lucide icon or another icon sized by its class (McpIcon). */
 export type MenuIcon = ComponentType<{
   className?: string
   "aria-hidden"?: boolean | "true" | "false"
 }>
 
-/** One tab: a link to `href`, or with `onSelect` a button. */
+/** One tab: a link to `href`, or with `onSelect` a button; `count` shows after its label. */
 export type TabItem = {
   id: string
   href?: string
   label: string
   keepCase?: boolean
   icon?: MenuIcon
+  count?: number
 }
 
 /** A page's slim tabs under its title: the current one over a blue line. Labels are lowercase
@@ -143,9 +146,10 @@ export function TabNav({
               ref={item.id === current ? active : undefined}
               href={item.href ?? ""}
               aria-current={item.id === current ? "page" : undefined}
-              className={className}
+              className={cn(className, "flex items-center gap-2")}
             >
               {item.label}
+              <MenuCount count={item.count} />
             </Link>
           )
         })}

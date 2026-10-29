@@ -208,6 +208,8 @@ out or listed under another area):
 - `capped`: `gather_capped`: calls run together, at most so many at a time.
 - `client_ip`: the visitor's address behind the load balancer, and its rate-limit key.
 - `compression`: gzip for the services' answers, streams left alone (`compress_answers`).
+- `counts`: `CountOut`, the `{count}` a service's internal route answers another service with
+  (a company's working integrations, for its menu).
 - `health`: `/health` (the process) and `/ready` (its database).
 - `http`: the shared HTTP client (a timeout, the trace passed on, no retries) and `passed_on`.
 - `no_store`: `Cache-Control: no-store` on signed-in and secret-token answers.

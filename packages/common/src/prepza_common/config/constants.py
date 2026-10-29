@@ -67,6 +67,8 @@ ASSISTANT_HEADER = "X-Assistant"
 # the most updates one lists, newest first (with the counts of all).
 UPDATES_CALLER = "assistant"
 MAX_UPDATES = 50
+# The only service that may read how many integrations a company has working (its menu).
+INTEGRATIONS_CALLER = "companies"
 NOT_ALLOWED = "Not allowed"
 SIGN_IN_UNAVAILABLE = "Sign-in is temporarily unavailable. Please try again shortly."
 MINUTE_SECONDS = 60

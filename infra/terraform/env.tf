@@ -46,6 +46,9 @@ locals {
     }
     companies = {
       INVOKER_AUDIENCE = local.run_url["companies"]
+      # The api service and the assistant: how many of a company's integrations work (its menu).
+      API_URL       = local.run_url["api"]
+      ASSISTANT_URL = local.run_url["assistant"]
     }
     billing = merge(
       {

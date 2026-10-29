@@ -1,7 +1,9 @@
 # api
 
 The public API at `/api/v1/` (companies' API keys, their interviews and candidates, web hooks)
-and the API page's management routes. It keeps the keys, web hooks, deliveries and retries in its
+and the API page's management routes, and the count of a company's working keys and web hooks
+for its menu (`/internal/companies/{id}/active-count`, companies only). It keeps the keys, web
+hooks, deliveries and retries in its
 own database; interviews, candidates and invites come from the companies service. What it does
 and its settings: [docs/features/api.md](../../docs/features/api.md).
 

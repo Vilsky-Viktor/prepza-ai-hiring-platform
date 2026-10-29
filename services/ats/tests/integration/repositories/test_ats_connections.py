@@ -159,3 +159,22 @@ def test_an_interviews_links_and_whether_a_connection_has_any(run):
 
     assert [(link.id, connection.provider) for link, connection in found] == [(link_id, "workable")]
     assert has == (True, False)
+
+
+def test_only_the_companys_working_atss_are_counted(run):
+    async def scenario():
+        company, other = uuid.uuid4(), uuid.uuid4()
+        await transaction(ats.connect, company, AtsProvider.WORKABLE, "acme", "sealed", "ann")
+        await transaction(ats.connect, company, AtsProvider.GREENHOUSE, "acme", "sealed", "ann")
+        await transaction(ats.connect, other, AtsProvider.WORKABLE, "beta", "sealed", "bob")
+        broken = await transaction(ats.connection, company, AtsProvider.GREENHOUSE)
+        await transaction(ats.mark_broken, broken.id, connection_broken(company, broken.provider))
+        counted = await transaction(ats.connected_count, company)
+
+        for company_id in (company, other):
+            await transaction(ats.delete_company, company_id)
+
+        return counted
+
+    # Workable works; Greenhouse is broken; the other company's isn't counted.
+    assert run(scenario()) == 1

@@ -340,6 +340,55 @@
     }
    }
   },
+  "/companies/{company_id}/menu-counts": {
+   "get": {
+    "tags": [
+     "companies"
+    ],
+    "summary": "Get Menu Counts",
+    "description": "How many things each of the company's menu pages holds; any member sees them.",
+    "operationId": "get_menu_counts_companies__company_id__menu_counts_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MenuCountsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/companies/{company_id}/referral": {
    "get": {
     "tags": [
@@ -10342,6 +10391,49 @@
      "role"
     ],
     "title": "MemberRoleIn"
+   },
+   "MenuCountsOut": {
+    "properties": {
+     "interviews": {
+      "type": "integer",
+      "title": "Interviews"
+     },
+     "members": {
+      "type": "integer",
+      "title": "Members"
+     },
+     "integrations": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Integrations"
+     },
+     "referrals": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Referrals"
+     }
+    },
+    "type": "object",
+    "required": [
+     "interviews",
+     "members",
+     "integrations",
+     "referrals"
+    ],
+    "title": "MenuCountsOut",
+    "description": "How many things each of the company's menu pages holds; None for a part another service\ncouldn't give in time, which the menu then shows without."
    },
    "OwnedCompany": {
     "properties": {

@@ -19,6 +19,7 @@ from ats.api.v1 import (
     ats_webhooks,
     events,
     internal_accounts,
+    internal_companies,
     internal_updates,
     schedules,
 )
@@ -59,6 +60,7 @@ app.include_router(events.router)
 app.include_router(schedules.router)
 app.include_router(internal_accounts.router)
 app.include_router(internal_updates.router)
+app.include_router(internal_companies.router)
 
 
 app.include_router(health_router(engine))

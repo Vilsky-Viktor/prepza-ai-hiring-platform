@@ -8,7 +8,8 @@ to the user's own AI apps over MCP (`/mcp`), with its OAuth authorization server
 Langfuse's traces on time. It also runs the help chat for signed-out visitors
 (`POST /help/chat`, votes at `PUT /help/answers/{id}/vote`; `HELP_MODEL`,
 `TURNSTILE_SECRET_KEY` and the `HELP_*` limits), answering from the knowledge site sends it
-(`GET /internal/help/knowledge`). It keeps conversations, AI apps' connections and the help
+(`GET /internal/help/knowledge`). It tells companies how many AI apps a user has connected, for the company's menu
+(`/internal/users/{id}/active-count`). It keeps conversations, AI apps' connections and the help
 chat's votes (`help_votes`) in its own database, and its rate and spending limits in Redis.
 What it does and its settings: [the assistant](../../docs/features/assistant.md),
 [the help chat](../../docs/features/site.md#faq-and-help-chat),

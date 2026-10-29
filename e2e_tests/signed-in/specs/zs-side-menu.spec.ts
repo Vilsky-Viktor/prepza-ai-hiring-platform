@@ -1,11 +1,12 @@
 import type { Page } from "@playwright/test"
 
 import { expect, test } from "../fixtures"
-import { createCompany, createInterview } from "../helpers/api"
+import { api, createCompany, createInterview } from "../helpers/api"
+import { addSlackConnection } from "../helpers/db-integrations"
 import { PHONE } from "../helpers/layout"
 import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
-import { ownerEmail } from "../helpers/users"
+import { ownerEmail, throwawayEmail } from "../helpers/users"
 
 // The page menus: on wide screens a list at the content's side that stays in view and scrolls
 // itself when taller than the window; on phones two tabs and the other pages under "…", an
@@ -28,6 +29,11 @@ function menu(page: Page) {
   return page.getByRole("main").getByRole("navigation").first()
 }
 
+/** The count beside the menu's page that leads to `path` (nothing at 0). */
+function countOf(page: Page, path: string) {
+  return menu(page).locator(`a[href$="${path}"]`).getByTestId("menu-count")
+}
+
 /** Where the menu's links lead, each as the end of its address after the company's. */
 async function pagesOf(page: Page, companyId: string, links = menu(page).getByRole("link")) {
   const hrefs = await links.evaluateAll((all) => all.map((link) => link.getAttribute("href") ?? ""))
@@ -37,6 +43,7 @@ async function pagesOf(page: Page, companyId: string, links = menu(page).getByRo
 
 // On a wide screen: the company's pages in order with the open one marked; taller than the
 // window, the menu scrolls on its own; and while a page scrolls it holds under the window's top.
+// Beside a page's name, how many things it holds: nothing at 0.
 test("a company's side menu lists its pages, scrolls on its own and stays in view", async ({
   signInAs,
 }) => {
@@ -46,6 +53,25 @@ test("a company's side menu lists its pages, scrolls on its own and stays in vie
   await visit(owner, `/companies/${company.id}/members`)
 
   await expect.poll(() => pagesOf(owner, company.id)).toEqual(COMPANY_PAGES)
+  // One interview and the owner alone; no integration or referral yet, so no count beside them.
+  await expect(countOf(owner, "/interviews")).toHaveText("1")
+  await expect(countOf(owner, "/members")).toHaveText("1")
+  await expect(countOf(owner, "/integrations")).toHaveCount(0)
+  await expect(countOf(owner, "/referrals")).toHaveCount(0)
+  await expect(countOf(owner, "/templates")).toHaveCount(0)
+  // A pending invite counts in the team, a working Slack in the integrations.
+  await api(owner, "POST", `/companies/members?company_id=${company.id}`, {
+    email: throwawayEmail("menu-count"),
+    role: "viewer",
+  })
+  await addSlackConnection(company.id)
+  // The menu leaves out a count another service didn't give within 2 s (a busy local stack), so
+  // the page is opened again until it has it.
+  await expect(async () => {
+    await owner.reload()
+    await expect(countOf(owner, "/members")).toHaveText("2", { timeout: 5_000 })
+    await expect(countOf(owner, "/integrations")).toHaveText("1", { timeout: 5_000 })
+  }).toPass({ timeout: 60_000 })
   const open = menu(owner).locator('a[aria-current="page"]')
   await expect(open).toHaveCount(1)
   await expect(open).toHaveAttribute("href", `/companies/${company.id}/members`)

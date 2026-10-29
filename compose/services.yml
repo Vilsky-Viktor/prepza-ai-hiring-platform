@@ -42,6 +42,11 @@ x-companies-env: &companies-env
   LIBRARY_URL: http://library:8000
   ROUNDS_URL: http://rounds:8000
   ACCOUNTS_URL: http://accounts:8000
+  # How many integrations a company has working, for its menu.
+  ATS_URL: http://ats:8000
+  NOTIFICATIONS_URL: http://notifications:8000
+  API_URL: http://api:8000
+  ASSISTANT_URL: http://assistant:8000
 
 # Each service's mounted source; migrations read it too, so new ones run without a rebuild.
 x-library-source: &library-source

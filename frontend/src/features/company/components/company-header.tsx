@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import type { ReactNode } from "react"
+import { type ReactNode, useEffect, useState } from "react"
 
 import { BackLink } from "@/components/common/back-link"
 import {
@@ -18,7 +18,8 @@ import { EditableTitle } from "@/components/common/editable-title"
 import { EntityId } from "@/components/common/entity-id"
 import { MAX_COMPANY_NAME_LENGTH } from "@/config/limits"
 import { COMPANY_TAB_HELP } from "@/config/page-help"
-import type { VerificationStatus } from "@/types/company"
+import { apiFetch } from "@/lib/api"
+import type { MenuCounts, VerificationStatus } from "@/types/company"
 
 /** A company page: the way back, its logo, name and action, and its menu beside the page's
  * content (`children`, spaced by `className`), with the page's own pages under it (`sub`). */
@@ -69,6 +70,14 @@ export function CompanyHeader({
   const reviewed = ["approved", "pending", "declined"].includes(
     verificationStatus ?? ""
   )
+  // The menu's counts, asked for once the page shows, so no page waits on them; none on failure.
+  const [counts, setCounts] = useState<MenuCounts | null>(null)
+
+  useEffect(() => {
+    apiFetch<MenuCounts>(`/companies/companies/${companyId}/menu-counts`)
+      .then(setCounts)
+      .catch(() => setCounts(null))
+  }, [companyId])
 
   return (
     <div className="space-y-4">
@@ -134,6 +143,7 @@ export function CompanyHeader({
         current={current}
         canEdit={canEdit}
         canSeeActions={canSeeActions}
+        counts={counts}
         sub={sub}
         currentSub={currentSub}
         className={className}

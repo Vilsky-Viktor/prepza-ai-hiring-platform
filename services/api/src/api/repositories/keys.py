@@ -18,6 +18,16 @@ async def of_company(session: AsyncSession, company_id: uuid.UUID) -> list[ApiKe
     return list(await session.scalars(query))
 
 
+async def live_count(session: AsyncSession, company_id: uuid.UUID, now: datetime) -> int:
+    """How many of the company's keys still work: never expiring, or not yet expired (a revoked
+    key is deleted)."""
+    query = select(func.count()).where(
+        ApiKey.company_id == company_id, or_(ApiKey.expires_at.is_(None), ApiKey.expires_at > now)
+    )
+
+    return await session.scalar(query)
+
+
 async def add(
     session: AsyncSession,
     company_id: uuid.UUID,

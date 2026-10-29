@@ -26,6 +26,15 @@ async def connections(session: AsyncSession, company_id: UUID) -> list[AtsConnec
     return list((await session.scalars(query)).all())
 
 
+async def connected_count(session: AsyncSession, company_id: UUID) -> int:
+    """How many of the company's ATSs are connected and working (not broken)."""
+    query = select(func.count()).where(
+        AtsConnection.company_id == company_id, AtsConnection.status == ConnectionStatus.CONNECTED
+    )
+
+    return await session.scalar(query)
+
+
 async def connection(
     session: AsyncSession, company_id: UUID, provider: str
 ) -> AtsConnection | None:

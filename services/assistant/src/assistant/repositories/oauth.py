@@ -108,6 +108,16 @@ async def of_user(session: AsyncSession, user_id: str) -> list[McpGrant]:
     return list(await session.scalars(query))
 
 
+async def connected_app_count(session: AsyncSession, user_id: str, now: datetime) -> int:
+    """How many apps the user has connected whose connection hasn't expired; an app connected
+    twice counts once, by its name, as the integrations page lists them."""
+    query = select(func.count(McpGrant.client_name.distinct())).where(
+        McpGrant.user_id == user_id, McpGrant.refresh_expires_at > now
+    )
+
+    return await session.scalar(query)
+
+
 async def remove(
     session: AsyncSession, grant_id: UUID, user_id: str | None = None
 ) -> McpGrant | None:

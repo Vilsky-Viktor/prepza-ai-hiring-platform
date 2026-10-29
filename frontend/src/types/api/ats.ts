@@ -512,6 +512,26 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/companies/{company_id}/active-count": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Active Count
+     * @description Companies, for the company's menu: how many of its ATSs are connected and working.
+     */
+    get: operations["active_count_internal_companies__company_id__active_count_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
 export type webhooks = Record<string, never>
 export interface components {
@@ -558,6 +578,15 @@ export interface components {
      * @enum {string}
      */
     ConnectionStatus: "connected" | "broken"
+    /**
+     * CountOut
+     * @description How many of something a service holds, for another service's internal call (a company's
+     *     working integrations, for its menu).
+     */
+    CountOut: {
+      /** Count */
+      count: number
+    }
     /** GreenhouseIn */
     GreenhouseIn: {
       /** Client Id */
@@ -1606,6 +1635,37 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["NotInvitedListOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  active_count_internal_companies__company_id__active_count_get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["CountOut"]
         }
       }
       /** @description Validation Error */

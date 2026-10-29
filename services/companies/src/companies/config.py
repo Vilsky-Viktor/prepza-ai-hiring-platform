@@ -17,6 +17,11 @@ class Settings(ServiceSettings):
     billing_url: str
     # Who an account id or an address belongs to, for the admin zone's support tab.
     accounts_url: str
+    # Each service holding a kind of integration, for how many are working (the company's menu).
+    ats_url: str
+    notifications_url: str
+    api_url: str
+    assistant_url: str
     # Keys the hashes in older invites' credit keys (prepza_common.limits.credit_keys, migration 0057).
     person_hash_key: str
 

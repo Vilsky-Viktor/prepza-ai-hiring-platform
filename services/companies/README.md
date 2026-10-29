@@ -4,8 +4,9 @@ Companies and who may do what in them: companies, members, roles and their invit
 access checks every company route runs, interviews (tests) and their settings, candidates and
 their invites (one by one, from lists, through a shareable link, from an ATS or the public
 API), results and reports, the company's brand (logo, colors, style), domain verification, AI
-app and integration settings, the action log, and the admin zone's company pages and support
-search. Credits are held and charged through billing. It keeps all of it in its own database.
+app and integration settings, the action log, the counts beside the company's menu pages
+(integrations and referrals asked of ats, notifications, api, assistant and billing), and the
+admin zone's company pages and support search. Credits are held and charged through billing. It keeps all of it in its own database.
 What it does and its settings: [companies](../../docs/features/companies.md),
 [interviews](../../docs/features/interviews.md), [candidates](../../docs/features/candidates.md),
 [the admin zone](../../docs/features/admin-zone.md) and
@@ -29,7 +30,9 @@ src/companies/
 │                           # candidates, the action log, ...; take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (lists, brand colors, notifications); fixed values
-└── integrations/           # accounts, billing, generation, library, rounds, Firebase, Redis
+└── integrations/           # accounts, billing, generation, library, rounds, the menu's
+                            # integration counts (ats, notifications, api, assistant),
+                            # Firebase, Redis
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```

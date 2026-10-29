@@ -20,10 +20,16 @@ os.environ.setdefault("ROUNDS_SERVICE_SECRET", "test-secret-that-is-at-least-32-
 os.environ.setdefault("COMPANIES_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("BILLING_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("ACCOUNTS_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
+for callee in ("ATS", "NOTIFICATIONS", "API", "ASSISTANT"):
+    os.environ.setdefault(f"{callee}_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("GENERATION_URL", "http://generation")
 os.environ.setdefault("LIBRARY_URL", "http://library")
 os.environ.setdefault("ACCOUNTS_URL", "http://accounts")
 os.environ.setdefault("ROUNDS_URL", "http://rounds")
+os.environ.setdefault("ATS_URL", "http://ats")
+os.environ.setdefault("NOTIFICATIONS_URL", "http://notifications")
+os.environ.setdefault("API_URL", "http://api")
+os.environ.setdefault("ASSISTANT_URL", "http://assistant")
 
 import pytest
 from fastapi.testclient import TestClient

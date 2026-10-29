@@ -26,6 +26,16 @@ async def of_company(session: AsyncSession, company_id: uuid.UUID) -> list[Webho
     return list(await session.scalars(query))
 
 
+async def working_count(session: AsyncSession, company_id: uuid.UUID) -> int:
+    """How many of the company's web hooks get its events: neither paused after failing nor
+    stopped because the member who added it is no longer an owner or admin."""
+    query = select(func.count()).where(
+        Webhook.company_id == company_id, ~Webhook.failing, ~Webhook.stopped
+    )
+
+    return await session.scalar(query)
+
+
 async def add(
     session: AsyncSession,
     company_id: uuid.UUID,

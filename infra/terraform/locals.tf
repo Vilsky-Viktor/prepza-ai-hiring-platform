@@ -85,7 +85,8 @@ locals {
     generation        = ["library"]
     generation-worker = ["library"]
     rounds            = ["library"]
-    companies         = ["generation", "library", "rounds", "billing", "accounts"]
+    # ats, notifications, api and assistant: how many integrations a company has working (its menu).
+    companies = ["generation", "library", "rounds", "billing", "accounts", "ats", "notifications", "api", "assistant"]
     # companies' names and accounts' emails, for the AI costs tab.
     billing = ["companies", "accounts"]
     # rounds: a campaign's candidates and learners; site, the news the bell names.

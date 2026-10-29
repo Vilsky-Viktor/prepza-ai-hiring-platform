@@ -115,6 +115,8 @@ The services' own limits (generation, emails, credits) apply as they do in the a
 | `/api/assistant/connections` (`GET`, `DELETE …/{id}`) | The user's connected apps (Firebase token) |
 | `/api/assistant/mcp/tools` | The listed tools and the limits, for the developer docs (public) |
 
+`GET /internal/users/{id}/active-count` (companies only, `INTEGRATIONS_CALLER`) gives how many apps the user has connected, counted once by name, for the integrations count in a company's menu ([Companies](companies.md)).
+
 The root paths are exact matches in the gateway (`gateway/nginx.conf`) and the load balancer (`infra/terraform/locals.tf` `mcp_paths`), sent to the assistant as they are; no frontend page may use them.
 
 ## Settings

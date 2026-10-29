@@ -16,6 +16,7 @@ from prepza_common.observability.sentry import init_sentry
 from notifications.api.v1 import (
     events,
     internal_accounts,
+    internal_companies,
     internal_updates,
     me,
     schedules,
@@ -68,6 +69,7 @@ app.include_router(superadmin_legal.router)
 app.include_router(superadmin_campaigns.router)
 app.include_router(superadmin_suppressed.router)
 app.include_router(internal_updates.router)
+app.include_router(internal_companies.router)
 app.include_router(schedules.router)
 
 

@@ -18,6 +18,7 @@ from api.api.v1 import (
     company,
     events,
     internal_accounts,
+    internal_companies,
     internal_keys,
     manage,
     public,
@@ -82,6 +83,7 @@ app.include_router(manage.router)
 app.include_router(events.router)
 app.include_router(internal_accounts.router)
 app.include_router(internal_keys.router)
+app.include_router(internal_companies.router)
 app.include_router(schedules.router)
 
 app.include_router(health_router(engine))

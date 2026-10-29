@@ -4,6 +4,7 @@ import { cn } from "cn"
 import Link from "next/link"
 import { Fragment, type ReactNode } from "react"
 
+import { MenuCount } from "@/components/common/menu-count"
 import { PhoneTabs } from "@/components/common/phone-tabs"
 import type { MenuIcon, TabItem } from "@/components/common/tab-nav"
 
@@ -52,6 +53,7 @@ export function SideMenuLayout({
               label={item.label}
               icon={item.icon}
               keepCase={item.keepCase}
+              count={item.count}
               open={item.id === current}
               // A page with pages of its own: the row of the open one under it is marked.
               marked={item.id === current && !item.sub}
@@ -83,6 +85,7 @@ function MenuLink({
   label,
   icon: Icon,
   keepCase,
+  count,
   open,
   marked,
   nested,
@@ -91,6 +94,7 @@ function MenuLink({
   label: string
   icon?: MenuIcon
   keepCase?: boolean
+  count?: number
   open: boolean
   marked: boolean
   nested?: boolean
@@ -117,10 +121,11 @@ function MenuLink({
         />
       )}
       {/* Ending with the logo's blue dot, as the site's titles do. */}
-      <span className="min-w-0">
+      <span className="min-w-0 flex-1">
         {label}
         <span className="blue-dot">.</span>
       </span>
+      <MenuCount count={count} />
     </Link>
   )
 }

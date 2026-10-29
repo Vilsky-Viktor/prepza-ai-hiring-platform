@@ -23,6 +23,7 @@ from assistant.api.v1 import (
     help_chat,
     help_votes,
     internal_accounts,
+    internal_users,
     mcp,
     mcp_docs,
     oauth,
@@ -76,6 +77,7 @@ app.include_router(actions.router)
 app.include_router(events.router)
 app.include_router(schedules.router)
 app.include_router(internal_accounts.router)
+app.include_router(internal_users.router)
 app.include_router(connect.router)
 app.include_router(mcp_docs.router)
 app.include_router(superadmin.router)

@@ -19,6 +19,7 @@ from companies.schemas.companies import (
     CompanyCreditsOut,
     CompanyOut,
     CompanyRename,
+    MenuCountsOut,
     ReferralOut,
     ReferralRewardOut,
 )
@@ -29,6 +30,7 @@ from companies.services import (
     company_settings,
     company_views,
     credits,
+    menu_counts,
 )
 from companies.services.access import can_edit, is_owner, require_company, require_editor
 from companies.services.verification import verify_by_email
@@ -131,6 +133,14 @@ async def get_credits(company_id: UUID, user: CurrentUser) -> CompanyCreditsOut:
     await require_company(user, company_id)
 
     return await credits.credits_of(company_id)
+
+
+@router.get("/{company_id}/menu-counts")
+async def get_menu_counts(company_id: UUID, user: CurrentUser) -> MenuCountsOut:
+    """How many things each of the company's menu pages holds; any member sees them."""
+    company, _ = await require_company(user, company_id)
+
+    return await menu_counts.menu_counts(company, user.uid)
 
 
 @router.get("/{company_id}/referral")

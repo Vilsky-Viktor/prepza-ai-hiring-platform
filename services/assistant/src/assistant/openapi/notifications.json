@@ -1708,6 +1708,55 @@
     ]
    }
   },
+  "/internal/companies/{company_id}/active-count": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Active Count",
+    "description": "Companies, for the company's menu: 1 while its Slack channel is connected and working,\nelse 0.",
+    "operationId": "active_count_internal_companies__company_id__active_count_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CountOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/schedules/digest": {
    "post": {
     "tags": [
@@ -2303,6 +2352,20 @@
      "name"
     ],
     "title": "CompanyOut"
+   },
+   "CountOut": {
+    "properties": {
+     "count": {
+      "type": "integer",
+      "title": "Count"
+     }
+    },
+    "type": "object",
+    "required": [
+     "count"
+    ],
+    "title": "CountOut",
+    "description": "How many of something a service holds, for another service's internal call (a company's\nworking integrations, for its menu)."
    },
    "FeedOut": {
     "properties": {

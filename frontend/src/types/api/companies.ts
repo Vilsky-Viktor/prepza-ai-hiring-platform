@@ -92,6 +92,26 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/companies/{company_id}/menu-counts": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get Menu Counts
+     * @description How many things each of the company's menu pages holds; any member sees them.
+     */
+    get: operations["get_menu_counts_companies__company_id__menu_counts_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/companies/{company_id}/referral": {
     parameters: {
       query?: never
@@ -3576,6 +3596,21 @@ export interface components {
        */
       role: "admin" | "viewer"
     }
+    /**
+     * MenuCountsOut
+     * @description How many things each of the company's menu pages holds; None for a part another service
+     *     couldn't give in time, which the menu then shows without.
+     */
+    MenuCountsOut: {
+      /** Interviews */
+      interviews: number
+      /** Members */
+      members: number
+      /** Integrations */
+      integrations: number | null
+      /** Referrals */
+      referrals: number | null
+    }
     /** OwnedCompany */
     OwnedCompany: {
       /**
@@ -4696,6 +4731,37 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["CompanyCreditsOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_menu_counts_companies__company_id__menu_counts_get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["MenuCountsOut"]
         }
       }
       /** @description Validation Error */

@@ -133,6 +133,17 @@ class ReferralOut(BaseModel):
     rewards: list[ReferralRewardOut]
 
 
+class MenuCountsOut(BaseModel):
+    """How many things each of the company's menu pages holds; None for a part another service
+    couldn't give in time, which the menu then shows without."""
+
+    interviews: int
+    # Joined members and pending invites, as the Team page lists them.
+    members: int
+    integrations: int | None
+    referrals: int | None
+
+
 class CompanyCreditsOut(BaseModel):
     available: int
     # Set aside for candidates invited who haven't finished.

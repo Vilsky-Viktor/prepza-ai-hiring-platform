@@ -3,7 +3,8 @@
 prepza's emails, Slack messages and in-app notices: invites, reminders, reports and contact
 messages from other services' events; the members' digest and reminders each morning; legal
 notices and campaigns through the bulk sender; the bell's notifications and their live stream;
-posts to a company's Slack channel; unsubscribe links, candidates' opt-outs and the suppression
+posts to a company's Slack channel (and whether it's connected, for the company's menu:
+`/internal/companies/{id}/active-count`, companies only); unsubscribe links, candidates' opt-outs and the suppression
 list fed by Resend's web hooks. It keeps all of it in its own database. What it does and its
 settings: [notifications and emails](../../docs/features/notifications.md); the email rules:
 `.claude/rules/email.md`.
