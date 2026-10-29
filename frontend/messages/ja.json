@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, other {# 問}}",
     "firstSeen": "初回検出 <time>{date}</time>",
     "lastSeen": "最終検出 <time>{date}</time>",
+    "patternEvalRun": "評価実行 {run} 以降使用中",
     "replacedWith": "置き換え後",
     "answers": "{count, plural, other {回答 # 件}}",
     "right": "正答率 {percent}",

@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {# питання} few {# питання} many {# питань} other {# питання}}",
     "firstSeen": "перша поява <time>{date}</time>",
     "lastSeen": "остання поява <time>{date}</time>",
+    "patternEvalRun": "використовується після оцінювального прогону {run}",
     "replacedWith": "Замінено на",
     "answers": "{count, plural, one {# відповідь} few {# відповіді} many {# відповідей} other {# відповіді}}",
     "right": "{percent} правильних",

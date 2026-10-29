@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {# सवाल} other {# सवाल}}",
     "firstSeen": "पहली बार दिखा <time>{date}</time>",
     "lastSeen": "आख़िरी बार दिखा <time>{date}</time>",
+    "patternEvalRun": "मूल्यांकन रन {run} के बाद से इस्तेमाल में",
     "replacedWith": "इससे बदला गया",
     "answers": "{count, plural, one {# जवाब} other {# जवाब}}",
     "right": "{percent} सही",

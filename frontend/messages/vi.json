@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, other {# câu hỏi}}",
     "firstSeen": "phát hiện lần đầu <time>{date}</time>",
     "lastSeen": "phát hiện gần nhất <time>{date}</time>",
+    "patternEvalRun": "đang dùng sau lần chạy đánh giá {run}",
     "replacedWith": "Được thay bằng",
     "answers": "{count, plural, other {# câu trả lời}}",
     "right": "{percent} đúng",

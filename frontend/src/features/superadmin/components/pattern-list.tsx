@@ -20,8 +20,9 @@ function rowKey(row: QualityPattern) {
 }
 
 /** Patterns of one status, a page at a time, most recently seen first: the rule, the flag of
- * the questions it comes from, how many showed it, and when it was first and last seen. A
- * proposed one is approved or dismissed here, and leaves the list. */
+ * the questions it comes from, how many showed it, when it was first and last seen, and for one
+ * in use the eval run that put it there. A proposed one is approved or dismissed here, and
+ * leaves the list. */
 export function PatternList({
   path,
   initial,
@@ -80,6 +81,12 @@ export function PatternList({
               {t.rich("firstSeen", localTime.dateValues(row.first_seen))}
               <Dot />
               {t.rich("lastSeen", localTime.dateValues(row.last_seen))}
+              {row.eval_run && (
+                <>
+                  <Dot />
+                  {t("patternEvalRun", { run: row.eval_run })}
+                </>
+              )}
             </p>
           </div>
           <div className="flex shrink-0 flex-col items-end gap-2 text-sm text-muted-foreground tabular-nums max-sm:items-start">

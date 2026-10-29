@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {# vraag} other {# vragen}}",
     "firstSeen": "eerst gezien <time>{date}</time>",
     "lastSeen": "laatst gezien <time>{date}</time>",
+    "patternEvalRun": "in gebruik na evaluatierun {run}",
     "replacedWith": "Vervangen door",
     "answers": "{count, plural, one {# antwoord} other {# antwoorden}}",
     "right": "{percent} goed",

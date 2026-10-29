@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, other {# 道题}}",
     "firstSeen": "首次发现 <time>{date}</time>",
     "lastSeen": "最近发现 <time>{date}</time>",
+    "patternEvalRun": "自评估运行 {run} 起使用中",
     "replacedWith": "替换为",
     "answers": "{count, plural, other {# 次作答}}",
     "right": "正确率 {percent}",

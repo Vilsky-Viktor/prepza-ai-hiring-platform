@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {# پرسش} other {# پرسش}}",
     "firstSeen": "نخستین مشاهده <time>{date}</time>",
     "lastSeen": "آخرین مشاهده <time>{date}</time>",
+    "patternEvalRun": "در حال استفاده پس از اجرای ارزیابی {run}",
     "replacedWith": "جایگزین شده با",
     "answers": "{count, plural, one {# پاسخ} other {# پاسخ}}",
     "right": "{percent} درست",

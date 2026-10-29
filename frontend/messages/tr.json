@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {# soru} other {# soru}}",
     "firstSeen": "ilk görülme <time>{date}</time>",
     "lastSeen": "son görülme <time>{date}</time>",
+    "patternEvalRun": "{run} değerlendirme çalıştırmasından beri kullanımda",
     "replacedWith": "Yerine gelen",
     "answers": "{count, plural, one {# cevap} other {# cevap}}",
     "right": "{percent} doğru",

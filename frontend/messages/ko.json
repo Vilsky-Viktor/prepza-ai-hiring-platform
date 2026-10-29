@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, other {문제 #개}}",
     "firstSeen": "처음 발견 <time>{date}</time>",
     "lastSeen": "마지막 발견 <time>{date}</time>",
+    "patternEvalRun": "평가 실행 {run} 이후 사용 중",
     "replacedWith": "교체된 문제",
     "answers": "{count, plural, other {답변 #개}}",
     "right": "정답률 {percent}",

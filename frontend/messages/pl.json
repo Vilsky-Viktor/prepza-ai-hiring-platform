@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}}",
     "firstSeen": "pierwsze wystąpienie <time>{date}</time>",
     "lastSeen": "ostatnie wystąpienie <time>{date}</time>",
+    "patternEvalRun": "w użyciu po przebiegu ewaluacji {run}",
     "replacedWith": "Zastąpione przez",
     "answers": "{count, plural, one {# odpowiedź} few {# odpowiedzi} many {# odpowiedzi} other {# odpowiedzi}}",
     "right": "{percent} poprawnych",

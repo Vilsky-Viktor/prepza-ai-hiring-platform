@@ -48,6 +48,9 @@ async function show(page: Page, status: string) {
 test("superadmin approves and dismisses proposed patterns", async ({ signInSuperadmin }) => {
   const marker = randomId()
   const [approved, dismissed, kept] = await addPatterns(marker, 3)
+  // One the eval gate put in use, with its run.
+  const evalRun = `2026-10-29 abc1234 gate_${marker}.json`
+  const [inUse] = await addPatterns(marker, 1, "in_use", evalRun)
 
   try {
     const superadmin = await signInSuperadmin()
@@ -82,6 +85,13 @@ test("superadmin approves and dismisses proposed patterns", async ({ signInSuper
     await expect(row(superadmin, dismissed)).toBeVisible()
     await expect(row(superadmin, dismissed).getByRole("button")).toHaveCount(0)
     await expect(row(superadmin, approved)).toHaveCount(0)
+
+    // One in use shows the eval run that put it there, with nothing left to decide.
+    await show(superadmin, "in_use")
+    await expect(row(superadmin, inUse)).toContainText(evalRun)
+    await expect(row(superadmin, inUse).getByRole("button")).toHaveCount(0)
+    await expect(row(superadmin, approved)).toHaveCount(0)
+    await shot(superadmin, "patterns-in-use")
 
     // A reload of the proposed list shows only the one left.
     await show(superadmin, "proposed")

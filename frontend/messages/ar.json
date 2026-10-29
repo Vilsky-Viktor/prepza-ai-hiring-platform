@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, zero {لا أسئلة} one {سؤال واحد} two {سؤالان} few {# أسئلة} many {# سؤالًا} other {# سؤال}}",
     "firstSeen": "أول ظهور <time>{date}</time>",
     "lastSeen": "آخر ظهور <time>{date}</time>",
+    "patternEvalRun": "قيد الاستخدام بعد تشغيل التقييم {run}",
     "replacedWith": "استُبدل بـ",
     "answers": "{count, plural, zero {لا إجابات} one {إجابة واحدة} two {إجابتان} few {# إجابات} many {# إجابةً} other {# إجابة}}",
     "right": "{percent} صحيحة",

@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, other {# คำถาม}}",
     "firstSeen": "พบครั้งแรก <time>{date}</time>",
     "lastSeen": "พบล่าสุด <time>{date}</time>",
+    "patternEvalRun": "ใช้งานอยู่หลังรอบการประเมิน {run}",
     "replacedWith": "แทนที่ด้วย",
     "answers": "{count, plural, other {# คำตอบ}}",
     "right": "ถูก {percent}",

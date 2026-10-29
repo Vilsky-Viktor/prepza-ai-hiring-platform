@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, other {# soal}}",
     "firstSeen": "pertama terlihat <time>{date}</time>",
     "lastSeen": "terakhir terlihat <time>{date}</time>",
+    "patternEvalRun": "digunakan setelah uji evaluasi {run}",
     "replacedWith": "Diganti dengan",
     "answers": "{count, plural, other {# jawaban}}",
     "right": "{percent} benar",

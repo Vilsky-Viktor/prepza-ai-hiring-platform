@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {שאלה אחת} two {# שאלות} other {# שאלות}}",
     "firstSeen": "נראה לראשונה <time>{date}</time>",
     "lastSeen": "נראה לאחרונה <time>{date}</time>",
+    "patternEvalRun": "בשימוש אחרי הרצת ההערכה {run}",
     "replacedWith": "הוחלפה ב",
     "answers": "{count, plural, one {תשובה אחת} two {# תשובות} other {# תשובות}}",
     "right": "{percent} נכונות",

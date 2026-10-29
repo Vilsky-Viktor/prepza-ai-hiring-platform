@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {# question} other {# questions}}",
     "firstSeen": "first seen <time>{date}</time>",
     "lastSeen": "last seen <time>{date}</time>",
+    "patternEvalRun": "in use after eval run {run}",
     "replacedWith": "Replaced with",
     "answers": "{count, plural, one {# answer} other {# answers}}",
     "right": "{percent} right",

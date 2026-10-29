@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {# küsimus} other {# küsimust}}",
     "firstSeen": "esimest korda leitud <time>{date}</time>",
     "lastSeen": "viimati leitud <time>{date}</time>",
+    "patternEvalRun": "kasutusel pärast hindamiskäivitust {run}",
     "replacedWith": "Asendatud",
     "answers": "{count, plural, one {# vastus} other {# vastust}}",
     "right": "{percent} õigesti",

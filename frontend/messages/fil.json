@@ -184,6 +184,7 @@
     "patternQuestions": "{count, plural, one {# tanong} other {# tanong}}",
     "firstSeen": "unang nakita <time>{date}</time>",
     "lastSeen": "huling nakita <time>{date}</time>",
+    "patternEvalRun": "ginagamit mula sa evaluation run na {run}",
     "replacedWith": "Pinalitan ng",
     "answers": "{count, plural, one {# sagot} other {# sagot}}",
     "right": "{percent} tama",
