@@ -136,6 +136,7 @@ prepza에서 면접은 채용 공고로 만드는, 시간 제한이 있는 객�
 - [하루 만에 지원자 100명을 선별하는 방법](/guides/screen-100-applicants-in-a-day)
 - [역량 테스트 vs 이력서 심사](/guides/skills-tests-vs-cv-screening)
 - [AI 시대의 개발자 면접](/guides/interviewing-in-the-age-of-ai)
+- [온라인 평가의 부정행위와 실제로 효과 있는 대응](/guides/cheating-in-online-assessments)
 - [채용 전 테스트: 실무 가이드](/pre-employment-testing)
 
 ## 출처

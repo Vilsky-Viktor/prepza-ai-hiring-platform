@@ -136,6 +136,7 @@ updated: "2026-10-29"
 - [Как отобрать 100 кандидатов за день](/guides/screen-100-applicants-in-a-day)
 - [Тесты навыков или отбор по резюме](/guides/skills-tests-vs-cv-screening)
 - [Собеседования с инженерами в эпоху ИИ](/guides/interviewing-in-the-age-of-ai)
+- [Списывание в онлайн-тестах и что действительно помогает](/guides/cheating-in-online-assessments)
 - [Тестирование кандидатов при найме: практическое руководство](/pre-employment-testing)
 
 ## Источники

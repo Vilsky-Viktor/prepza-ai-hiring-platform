@@ -136,6 +136,7 @@ updated: "2026-10-29"
 - [كيف تفرز 100 متقدم في يوم واحد](/guides/screen-100-applicants-in-a-day)
 - [اختبارات المهارات مقابل فرز السير الذاتية](/guides/skills-tests-vs-cv-screening)
 - [مقابلة المهندسين في عصر الذكاء الاصطناعي](/guides/interviewing-in-the-age-of-ai)
+- [الغش في الاختبارات عبر الإنترنت، وما الذي ينفع ضده](/guides/cheating-in-online-assessments)
 - [اختبارات ما قبل التوظيف: دليل عملي](/pre-employment-testing)
 
 ## المصادر

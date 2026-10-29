@@ -136,6 +136,7 @@ Sebelum mengundang siapa pun, kerjakan sendiri wawancaranya dari halamannya: gra
 - [Cara menyaring 100 pelamar dalam sehari](/guides/screen-100-applicants-in-a-day)
 - [Tes keterampilan vs penyaringan CV](/guides/skills-tests-vs-cv-screening)
 - [Mewawancarai engineer di era AI: apa yang perlu diuji sekarang](/guides/interviewing-in-the-age-of-ai)
+- [Kecurangan dalam tes online, dan cara yang benar-benar efektif mengatasinya](/guides/cheating-in-online-assessments)
 - [Tes seleksi karyawan: panduan praktis](/pre-employment-testing)
 
 ## Sumber

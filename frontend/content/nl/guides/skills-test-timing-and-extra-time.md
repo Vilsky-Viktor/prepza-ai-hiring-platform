@@ -136,6 +136,7 @@ Doe het interview zelf vanaf de pagina ervan voordat je iemand uitnodigt: het is
 - [Zo screen je 100 sollicitanten in één dag](/guides/screen-100-applicants-in-a-day)
 - [Vaardigheidstests vs. cv-screening](/guides/skills-tests-vs-cv-screening)
 - [Developers interviewen in het tijdperk van AI](/guides/interviewing-in-the-age-of-ai)
+- [Valsspelen bij online assessments, en wat ertegen helpt](/guides/cheating-in-online-assessments)
 - [Selectietests: een praktische gids](/pre-employment-testing)
 
 ## Bronnen

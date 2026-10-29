@@ -105,5 +105,6 @@ Yapay zekâ asistanları kod üretmeyi ucuzlattı, kodu değerlendirmeyi ise dah
 
 - [Mühendis işe alımı nasıl yapılır](/guides/hiring-engineers)
 - [Pozisyona göre beceri testleri](/tests)
+- [Online değerlendirmelerde kopya ve buna karşı işe yarayanlar](/guides/cheating-in-online-assessments)
 - [Yapay zekâ mülakatları: nedir ve adil şekilde nasıl kullanılır](/ai-interviews)
 - [Beceri testleri ve CV taraması](/guides/skills-tests-vs-cv-screening)

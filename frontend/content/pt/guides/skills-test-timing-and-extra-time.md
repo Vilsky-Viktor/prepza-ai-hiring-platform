@@ -136,6 +136,7 @@ Antes de convidar alguém, faça você mesmo a entrevista pela página dela: é 
 - [Como fazer a triagem de 100 candidatos em um dia](/guides/screen-100-applicants-in-a-day)
 - [Testes de habilidades x triagem de currículos](/guides/skills-tests-vs-cv-screening)
 - [Entrevistando engenheiros na era da IA](/guides/interviewing-in-the-age-of-ai)
+- [Cola em testes de recrutamento online, e o que funciona contra ela](/guides/cheating-in-online-assessments)
 - [Teste de seleção: guia prático](/pre-employment-testing)
 
 ## Fontes

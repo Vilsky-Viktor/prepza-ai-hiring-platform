@@ -105,5 +105,6 @@ updated: "2026-10-29"
 
 - [كيف توظّف المهندسين](/guides/hiring-engineers)
 - [اختبارات المهارات حسب الوظيفة](/tests)
+- [الغش في الاختبارات عبر الإنترنت، وما الذي ينفع ضده](/guides/cheating-in-online-assessments)
 - [مقابلات الذكاء الاصطناعي: ما هي وكيف تستخدمها بعدالة](/ai-interviews)
 - [اختبارات المهارات مقابل فرز السير الذاتية](/guides/skills-tests-vs-cv-screening)

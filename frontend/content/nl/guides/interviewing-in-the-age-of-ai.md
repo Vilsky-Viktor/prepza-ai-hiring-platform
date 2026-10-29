@@ -105,5 +105,6 @@ AI-assistenten hebben code maken goedkoper en code beoordelen belangrijker gemaa
 
 - [Developers werven](/guides/hiring-engineers)
 - [Vaardigheidstests per functie](/tests)
+- [Valsspelen bij online assessments, en wat ertegen helpt](/guides/cheating-in-online-assessments)
 - [AI-interviews: wat ze zijn en hoe je ze eerlijk inzet](/ai-interviews)
 - [Vaardigheidstests vs. cv-screening](/guides/skills-tests-vs-cv-screening)

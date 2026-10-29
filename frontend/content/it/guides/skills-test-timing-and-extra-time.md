@@ -136,6 +136,7 @@ Prima di invitare qualcuno, svolgi tu stesso il colloquio dalla sua pagina: è g
 - [Come fare lo screening di 100 candidati in un giorno](/guides/screen-100-applicants-in-a-day)
 - [Test di competenze o screening dei CV](/guides/skills-tests-vs-cv-screening)
 - [Colloqui tecnici nell'era dell'IA](/guides/interviewing-in-the-age-of-ai)
+- [Imbrogli nei test di selezione online e come contrastarli](/guides/cheating-in-online-assessments)
 - [Test pre-assunzione: una guida pratica](/pre-employment-testing)
 
 ## Fonti

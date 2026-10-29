@@ -105,5 +105,6 @@ Os assistentes de IA baratearam a produção de código e tornaram mais importan
 
 - [Como contratar engenheiros](/guides/hiring-engineers)
 - [Testes de habilidades por cargo](/tests)
+- [Cola em testes de recrutamento online, e o que funciona contra ela](/guides/cheating-in-online-assessments)
 - [Entrevistas com IA: o que são e como usá-las de forma justa](/ai-interviews)
 - [Testes de habilidades x triagem de currículos](/guides/skills-tests-vs-cv-screening)

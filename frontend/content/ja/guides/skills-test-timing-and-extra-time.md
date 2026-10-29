@@ -136,6 +136,7 @@ prepza の面接は、求人票から作られる、時間制限のある多肢�
 - [応募者 100 人を 1 日で選考する方法](/guides/screen-100-applicants-in-a-day)
 - [スキルテストと書類選考の比較](/guides/skills-tests-vs-cv-screening)
 - [AI 時代のエンジニア面接](/guides/interviewing-in-the-age-of-ai)
+- [Web テストの不正行為と、本当に効く対策](/guides/cheating-in-online-assessments)
 - [採用前テスト：実践ガイド](/pre-employment-testing)
 
 ## 出典

@@ -136,6 +136,7 @@ Kimseyi davet etmeden önce mülakatı sayfasından kendiniz çözün: ücretsiz
 - [Bir günde 100 başvuru nasıl elenir](/guides/screen-100-applicants-in-a-day)
 - [Beceri testleri ve CV taraması](/guides/skills-tests-vs-cv-screening)
 - [Yapay zekâ çağında mühendislerle mülakat](/guides/interviewing-in-the-age-of-ai)
+- [Online değerlendirmelerde kopya ve buna karşı işe yarayanlar](/guides/cheating-in-online-assessments)
 - [İşe alım öncesi testler: pratik bir rehber](/pre-employment-testing)
 
 ## Kaynaklar

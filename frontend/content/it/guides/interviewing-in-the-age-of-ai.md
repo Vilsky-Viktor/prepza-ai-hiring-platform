@@ -105,5 +105,6 @@ Gli assistenti IA hanno reso più economico produrre codice e più importante gi
 
 - [Come assumere sviluppatori](/guides/hiring-engineers)
 - [Test di selezione per ruolo](/tests)
+- [Imbrogli nei test di selezione online e come contrastarli](/guides/cheating-in-online-assessments)
 - [Colloqui con IA: cosa sono e come usarli in modo equo](/ai-interviews)
 - [Test attitudinali e di competenze o screening dei CV](/guides/skills-tests-vs-cv-screening)

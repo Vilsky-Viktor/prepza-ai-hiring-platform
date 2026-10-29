@@ -136,6 +136,7 @@ updated: "2026-10-29"
 - [איך למיין 100 מועמדים ביום אחד](/guides/screen-100-applicants-in-a-day)
 - [מבחני מיומנויות מול סינון קורות חיים](/guides/skills-tests-vs-cv-screening)
 - [ראיונות מהנדסים בעידן ה-AI](/guides/interviewing-in-the-age-of-ai)
+- [רמאות במבחנים מקוונים, ומה באמת עובד נגדה](/guides/cheating-in-online-assessments)
 - [מבחני מיון לעבודה: מדריך מעשי](/pre-employment-testing)
 
 ## מקורות

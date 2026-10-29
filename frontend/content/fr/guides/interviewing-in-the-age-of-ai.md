@@ -105,5 +105,6 @@ Les assistants IA ont rendu la production de code moins chère et le jugement du
 
 - [Comment recruter des développeurs](/guides/hiring-engineers)
 - [Tests de compétences par poste](/tests)
+- [La triche aux tests de recrutement en ligne, et ce qui marche contre elle](/guides/cheating-in-online-assessments)
 - [Entretiens IA : ce qu'ils sont et comment les utiliser équitablement](/ai-interviews)
 - [Tests de compétences ou tri de CV](/guides/skills-tests-vs-cv-screening)

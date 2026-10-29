@@ -105,5 +105,6 @@ AI 助手让写代码变得更便宜，也让判断代码变得更重要。好�
 
 - [如何招聘工程师](/guides/hiring-engineers)
 - [按岗位分类的技能测试](/tests)
+- [在线测评中的作弊行为，以及真正有效的应对方法](/guides/cheating-in-online-assessments)
 - [AI 面试：是什么，以及如何公平地使用](/ai-interviews)
 - [技能测试与简历筛选对比](/guides/skills-tests-vs-cv-screening)

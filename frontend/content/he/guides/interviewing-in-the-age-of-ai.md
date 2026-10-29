@@ -105,5 +105,6 @@ prepza מתאימה היטב לשלב 2. היא הופכת את תיאור המ�
 
 - [איך לגייס מהנדסי תוכנה](/guides/hiring-engineers)
 - [מבחני מיומנויות לפי תפקיד](/tests)
+- [רמאות במבחנים מקוונים, ומה באמת עובד נגדה](/guides/cheating-in-online-assessments)
 - [ראיונות AI: מה הם ואיך להשתמש בהם בהוגנות](/ai-interviews)
 - [מבחני מיומנויות מול סינון קורות חיים](/guides/skills-tests-vs-cv-screening)

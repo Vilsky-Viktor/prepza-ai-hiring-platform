@@ -105,5 +105,6 @@ Asystenci AI sprawili, że tworzenie kodu jest tańsze, a jego ocena ważniejsza
 
 - [Jak rekrutować programistów](/guides/hiring-engineers)
 - [Testy umiejętności według roli](/tests)
+- [Oszukiwanie w testach rekrutacyjnych online i co naprawdę przed nim chroni](/guides/cheating-in-online-assessments)
 - [Rozmowy rekrutacyjne z AI: czym są i jak korzystać z nich uczciwie](/ai-interviews)
 - [Testy umiejętności a selekcja CV](/guides/skills-tests-vs-cv-screening)

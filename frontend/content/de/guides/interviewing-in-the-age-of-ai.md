@@ -105,5 +105,6 @@ KI-Assistenten haben das Produzieren von Code billiger und das Beurteilen von Co
 
 - [Entwickler einstellen](/guides/hiring-engineers)
 - [Fachtests nach Stelle](/tests)
+- [Schummeln bei Online-Einstellungstests und was dagegen hilft](/guides/cheating-in-online-assessments)
 - [KI-Interviews: was sie sind und wie du sie fair einsetzt](/ai-interviews)
 - [Fachtests vs. Lebenslauf-Screening](/guides/skills-tests-vs-cv-screening)

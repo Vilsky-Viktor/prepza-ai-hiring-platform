@@ -105,5 +105,6 @@ prepza เหมาะกับขั้นที่ 2 prepza เปลี่ย
 
 - [วิธีจ้างวิศวกร](/guides/hiring-engineers)
 - [แบบทดสอบทักษะตามตำแหน่ง](/tests)
+- [การทุจริตในการทดสอบออนไลน์ และวิธีที่ได้ผลจริง](/guides/cheating-in-online-assessments)
 - [สัมภาษณ์งานด้วย AI: คืออะไร และใช้อย่างไรให้เป็นธรรม](/ai-interviews)
 - [แบบทดสอบทักษะ เทียบกับการคัดกรองเรซูเม่](/guides/skills-tests-vs-cv-screening)

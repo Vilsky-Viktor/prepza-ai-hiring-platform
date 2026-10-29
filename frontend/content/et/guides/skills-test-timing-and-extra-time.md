@@ -136,6 +136,7 @@ Enne kellegi kutsumist tee intervjuu ise selle lehelt läbi: see on tasuta, ei l
 - [Kuidas sõeluda 100 kandidaati päevaga](/guides/screen-100-applicants-in-a-day)
 - [Oskustestid vs CV-de sõelumine](/guides/skills-tests-vs-cv-screening)
 - [Inseneride intervjueerimine AI ajastul](/guides/interviewing-in-the-age-of-ai)
+- [Spikerdamine veebitestides ja mis selle vastu aitab](/guides/cheating-in-online-assessments)
 - [Kandidaatide testimine värbamisel: praktiline juhend](/pre-employment-testing)
 
 ## Allikad

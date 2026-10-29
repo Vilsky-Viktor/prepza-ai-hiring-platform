@@ -105,5 +105,6 @@ Trợ lý AI khiến việc tạo ra code rẻ hơn và việc đánh giá code 
 
 - [Cách tuyển kỹ sư phần mềm](/guides/hiring-engineers)
 - [Bài kiểm tra kỹ năng theo vị trí](/tests)
+- [Gian lận trong bài kiểm tra trực tuyến và cách phòng chống hiệu quả](/guides/cheating-in-online-assessments)
 - [Phỏng vấn AI: là gì và cách dùng công bằng](/ai-interviews)
 - [Bài kiểm tra kỹ năng và sàng lọc CV](/guides/skills-tests-vs-cv-screening)

@@ -105,5 +105,6 @@ AI-assistendid on muutnud koodi tootmise odavamaks ja koodi hindamise olulisemak
 
 - [Kuidas värvata insenere](/guides/hiring-engineers)
 - [Oskustestid rollide kaupa](/tests)
+- [Spikerdamine veebitestides ja mis selle vastu aitab](/guides/cheating-in-online-assessments)
 - [AI-intervjuud: mis need on ja kuidas neid õiglaselt kasutada](/ai-interviews)
 - [Oskustestid vs CV-de sõelumine](/guides/skills-tests-vs-cv-screening)

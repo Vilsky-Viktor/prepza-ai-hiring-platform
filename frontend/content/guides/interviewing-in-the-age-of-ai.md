@@ -105,5 +105,6 @@ AI assistants have made producing code cheaper and judging code more important. 
 
 - [How to hire engineers](/guides/hiring-engineers)
 - [Skills tests by role](/tests)
+- [Cheating in online assessments, and what works against it](/guides/cheating-in-online-assessments)
 - [AI interviews: what they are and how to use them fairly](/ai-interviews)
 - [Skills tests vs CV screening](/guides/skills-tests-vs-cv-screening)

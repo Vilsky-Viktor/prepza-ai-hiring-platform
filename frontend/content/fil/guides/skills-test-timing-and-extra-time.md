@@ -136,6 +136,7 @@ Bago mag-imbita ng kahit sino, kunin mo mismo ang interview mula sa pahina nito:
 - [Paano mag-screen ng 100 aplikante sa isang araw](/guides/screen-100-applicants-in-a-day)
 - [Skills tests vs CV screening](/guides/skills-tests-vs-cv-screening)
 - [Pag-interview ng mga engineer sa panahon ng AI: ano ang dapat i-test ngayon](/guides/interviewing-in-the-age-of-ai)
+- [Pandaraya sa mga online assessment, at ang talagang epektibo laban dito](/guides/cheating-in-online-assessments)
 - [Pre-employment testing: isang praktikal na gabay](/pre-employment-testing)
 
 ## Mga pinagkunan

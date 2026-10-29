@@ -105,5 +105,6 @@ Pinamura ng AI assistants ang paggawa ng code at pinahalaga ang paghusga rito. S
 
 - [Paano mag-hire ng mga engineer](/guides/hiring-engineers)
 - [Skills tests ayon sa role](/tests)
+- [Pandaraya sa mga online assessment, at ang talagang epektibo laban dito](/guides/cheating-in-online-assessments)
 - [AI interviews: ano ang mga ito at paano gamitin nang patas](/ai-interviews)
 - [Skills tests vs CV screening](/guides/skills-tests-vs-cv-screening)

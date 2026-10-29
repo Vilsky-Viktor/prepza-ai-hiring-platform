@@ -136,6 +136,7 @@ Zanim kogokolwiek zaprosisz, przejdź rozmowę samodzielnie z jej strony: to nic
 - [Jak przeprowadzić selekcję 100 kandydatów w jeden dzień](/guides/screen-100-applicants-in-a-day)
 - [Testy umiejętności a selekcja CV](/guides/skills-tests-vs-cv-screening)
 - [Rozmowy z programistami w erze AI](/guides/interviewing-in-the-age-of-ai)
+- [Oszukiwanie w testach rekrutacyjnych online i co naprawdę przed nim chroni](/guides/cheating-in-online-assessments)
 - [Testy rekrutacyjne: praktyczny poradnik](/pre-employment-testing)
 
 ## Źródła

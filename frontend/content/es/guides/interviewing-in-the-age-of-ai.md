@@ -105,5 +105,6 @@ Los asistentes de IA han abaratado la producción de código y han hecho más im
 
 - [Cómo contratar ingenieros](/guides/hiring-engineers)
 - [Pruebas de habilidades por puesto](/tests)
+- [Trampas en las pruebas de selección en línea y qué funciona contra ellas](/guides/cheating-in-online-assessments)
 - [Entrevistas con IA: qué son y cómo usarlas de forma justa](/ai-interviews)
 - [Pruebas de habilidades frente a filtrado de CV](/guides/skills-tests-vs-cv-screening)

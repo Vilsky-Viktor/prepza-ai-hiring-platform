@@ -105,5 +105,6 @@ Asisten AI membuat produksi kode makin murah dan penilaian kode makin penting. P
 
 - [Cara merekrut engineer](/guides/hiring-engineers)
 - [Tes keterampilan per posisi](/tests)
+- [Kecurangan dalam tes online, dan cara yang benar-benar efektif mengatasinya](/guides/cheating-in-online-assessments)
 - [Wawancara AI: apa itu dan cara memakainya secara adil](/ai-interviews)
 - [Tes keterampilan vs penyaringan CV](/guides/skills-tests-vs-cv-screening)

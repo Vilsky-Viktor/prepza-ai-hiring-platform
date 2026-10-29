@@ -105,5 +105,6 @@ AI 어시스턴트로 코드를 만드는 비용은 낮아졌고 코드를 판�
 
 - [개발자 채용 방법](/guides/hiring-engineers)
 - [직무별 역량 테스트](/tests)
+- [온라인 평가의 부정행위와 실제로 효과 있는 대응](/guides/cheating-in-online-assessments)
 - [AI 면접: 무엇이고 어떻게 공정하게 활용할까](/ai-interviews)
 - [역량 테스트 vs 이력서 심사](/guides/skills-tests-vs-cv-screening)

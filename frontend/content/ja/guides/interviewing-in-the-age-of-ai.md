@@ -105,5 +105,6 @@ AI アシスタントによって、コードを作ることは安くなり、�
 
 - [エンジニア採用の進め方](/guides/hiring-engineers)
 - [職種別のスキルテスト](/tests)
+- [Web テストの不正行為と、本当に効く対策](/guides/cheating-in-online-assessments)
 - [AI 面接とは：種類と公正な使い方](/ai-interviews)
 - [スキルテストと書類選考の比較](/guides/skills-tests-vs-cv-screening)
