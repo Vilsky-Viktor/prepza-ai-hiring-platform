@@ -8,75 +8,9 @@ export const MIN_QUESTION_SECONDS = 10;
 // The companies database, for the invite links candidates are emailed (like e2e.py).
 export const POSTGRES_HOST = "postgres";
 // The API as the test process reaches it: the gateway on the stack's network (signed-in.sh).
-export const API_URL = process.env.API_URL ?? "http://gateway/api";
-// The site as the test process reaches it, for warming up the dev server's pages.
-export const FRONTEND_URL = process.env.FRONTEND_URL ?? "http://gateway";
-const SOME_ID = "00000000-0000-0000-0000-000000000000";
-// Every page the specs open, so each is compiled before the browser starts (warm-up.ts).
-export const WARM_UP_PATHS = [
-  "/",
-  "/companies",
-  `/companies/${SOME_ID}/interviews`,
-  `/companies/${SOME_ID}/interviews/new`,
-  `/companies/${SOME_ID}/brand`,
-  `/companies/${SOME_ID}/interviews/${SOME_ID}`,
-  `/companies/${SOME_ID}/interviews/${SOME_ID}/candidates/${SOME_ID}`,
-  `/companies/${SOME_ID}/templates`,
-  `/companies/${SOME_ID}/members`,
-  `/companies/${SOME_ID}/integrations`,
-  `/companies/${SOME_ID}/integrations/workable`,
-  `/companies/${SOME_ID}/integrations/slack`,
-  `/companies/${SOME_ID}/integrations/api`,
-  `/companies/${SOME_ID}/integrations/ai`,
-  `/companies/${SOME_ID}/interviews/${SOME_ID}/try`,
-  `/companies/${SOME_ID}/billing`,
-  `/companies/${SOME_ID}/referrals`,
-  `/companies/${SOME_ID}/templates/${SOME_ID}`,
-  `/companies/${SOME_ID}/actions`,
-  `/companies/${SOME_ID}/interviews/${SOME_ID}/candidates`,
-  `/companies/templates/${SOME_ID}`,
-  "/top-up",
-  "/practice",
-  `/practice/rounds/${SOME_ID}`,
-  `/practice/${SOME_ID}`,
-  `/practice/history/${SOME_ID}`,
-  // Pages the specs reach through a link (the assistant's, the footer's).
-  "/pricing",
-  "/news",
-  "/contact",
-  "/guides/warm-up",
-  "/connect",
-  `/invite/${SOME_ID}`,
-  `/apply/${SOME_ID}`,
-  `/join/${SOME_ID}`,
-  "/unsubscribe",
-  `/sessions/${SOME_ID}`,
-  // A company's site frames it (i-api-embed, in three browsers).
-  "/embedded/warm-up",
-  "/maintenance",
-  "/superadmin/pass-rates",
-  "/superadmin/verification",
-  "/superadmin/controls",
-  "/superadmin/emails",
-  "/superadmin/news",
-  "/superadmin/campaigns",
-  `/superadmin/campaigns/${SOME_ID}`,
-  `/superadmin/support/users/${SOME_ID}`,
-  "/superadmin/support",
-  `/superadmin/support/companies/${SOME_ID}`,
-  "/superadmin/stats/general",
-  "/superadmin/stats/ai-costs",
-  `/superadmin/support/candidates/${SOME_ID}`,
-  `/superadmin/support/interviews/${SOME_ID}`,
-  "/superadmin/questions",
-  "/superadmin/questions/flagged",
-  "/superadmin/questions/patterns",
-  "/superadmin/questions/replaced",
-  "/superadmin/templates",
-  "/superadmin/templates/new",
-  `/superadmin/templates/${SOME_ID}`,
-  "/settings",
-];
+export const API_URL = process.env.API_URL ?? "http://gateway:8082/api";
+// The site as the test process reaches it: the gateway's test port on the stack's network.
+export const FRONTEND_URL = process.env.FRONTEND_URL ?? "http://gateway:8082";
 
 // The web hook secret key of the Greenhouse connection the tests save.
 export const GREENHOUSE_E2E_SECRET = "e2e-webhook-secret";

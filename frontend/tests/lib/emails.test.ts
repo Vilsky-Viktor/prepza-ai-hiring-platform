@@ -27,7 +27,7 @@ describe("saveEmailPreferences", () => {
   it("sends the changes with where they were made", async () => {
     await saveEmailPreferences({ updates: true }, "sign_in")
 
-    expect(apiFetch).toHaveBeenCalledWith("/library/me/email-preferences", {
+    expect(apiFetch).toHaveBeenCalledWith("/accounts/me/email-preferences", {
       method: "PUT",
       body: JSON.stringify({ changes: { updates: true }, source: "sign_in" }),
     })

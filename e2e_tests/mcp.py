@@ -180,7 +180,7 @@ def disconnect(id_token: str) -> None:
 
 def delete_account(project: str, local_id: str, id_token: str) -> None:
     """The account goes the way a user deletes it (with its company and connections)."""
-    send("DELETE", f"{SITE}/api/library/me", headers={"Authorization": f"Bearer {id_token}"})
+    send("DELETE", f"{SITE}/api/accounts/me", headers={"Authorization": f"Bearer {id_token}"})
     send(
         "POST",
         f"{AUTH}/identitytoolkit.googleapis.com/v1/projects/{project}/accounts:delete",

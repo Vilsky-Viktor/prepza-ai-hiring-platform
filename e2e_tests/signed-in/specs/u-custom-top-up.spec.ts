@@ -94,7 +94,7 @@ test("the top-up slider runs right to left in Arabic", async ({ signInAs, signIn
   const owner = await signInAs(email)
   const company = await createCompany(owner)
   // A new sign-in's token carries the account's new language.
-  await api(owner, "PUT", "/library/me/settings", { language: "ar" })
+  await api(owner, "PUT", "/accounts/me/settings", { language: "ar" })
   const arabic = await signInWith(email, false)
   const dialog = await openTopUp(arabic, company.id)
   await expect(arabic.locator("html")).toHaveAttribute("dir", "rtl")

@@ -47,8 +47,8 @@ export function NewsDialog({
     try {
       const saved = await apiFetch<AdminNewsPost>(
         post
-          ? `/library/superadmin/news/${post.id}`
-          : "/library/superadmin/news",
+          ? `/site/superadmin/news/${post.id}`
+          : "/site/superadmin/news",
         {
           method: post ? "PUT" : "POST",
           body: JSON.stringify({ title, text, published_on: day }),

@@ -10,7 +10,7 @@ type Legal = { current: string; in_force: string; versions: string[] };
 
 test("the terms show since when they apply", async ({ page }) => {
   const legal: Legal = await (
-    await page.request.get(`${REQUEST_URL}/api/rounds/help/legal/terms`)
+    await page.request.get(`${REQUEST_URL}/api/site/help/legal/terms`)
   ).json();
   expect(legal.in_force).toBe(legal.current);
   await page.goto("/terms");

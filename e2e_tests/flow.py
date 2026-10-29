@@ -144,7 +144,7 @@ def clean_up() -> None:
 
     for local_id, token in reversed(CREATED):
         try:
-            api("DELETE", "/library/me", token)
+            api("DELETE", "/accounts/me", token)
             call(
                 "POST",
                 f"{auth}/projects/{project}/accounts:delete",

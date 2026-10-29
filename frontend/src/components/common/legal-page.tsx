@@ -40,7 +40,7 @@ export async function LegalPage({
   }
 
   const document = await publicFetch<LegalDocument>(
-    `/rounds/help/legal/${name}?${query}`
+    `/site/help/legal/${name}?${query}`
   )
 
   if (!document) {

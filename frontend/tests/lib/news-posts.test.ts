@@ -22,7 +22,7 @@ describe("newsPosts", () => {
     expect(await newsPosts(0, 20)).toEqual([])
 
     const [url, init] = fetchMock.mock.calls[0]
-    expect(url).toMatch(/\/api\/library\/news\?offset=0&limit=20$/)
+    expect(url).toMatch(/\/api\/site\/news\?offset=0&limit=20$/)
     expect(init.cache).toBe("no-store")
     expect(init.next).toBeUndefined()
     expect(init.headers).toEqual({ "Accept-Language": "de" })

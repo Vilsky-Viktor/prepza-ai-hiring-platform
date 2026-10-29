@@ -53,7 +53,7 @@ export function PageHelp({
     }
 
     setError(null)
-    apiFetch<PageGuide>(`/rounds/help/pages/${page}`)
+    apiFetch<PageGuide>(`/site/help/pages/${page}`)
       .then(setGuide)
       .catch((failure) => setError(apiErrorMessage(failure, common("failed"))))
   }

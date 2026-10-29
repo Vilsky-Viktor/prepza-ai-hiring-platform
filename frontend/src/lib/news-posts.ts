@@ -10,7 +10,7 @@ export async function newsPosts(
   locale?: string
 ): Promise<NewsPost[]> {
   const posts = await publicFetch<NewsPost[]>(
-    `/library/news?offset=${offset}&limit=${limit}`,
+    `/site/news?offset=${offset}&limit=${limit}`,
     { locale, fresh: true }
   )
 

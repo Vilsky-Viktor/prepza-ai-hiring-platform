@@ -8,7 +8,7 @@ test("a contact message sent twice quickly goes once", async ({ page }) => {
   // The first send stays unanswered until both presses are in.
   let answer = () => {};
   const answered = new Promise<void>((resolve) => (answer = resolve));
-  await page.route("**/api/rounds/help/contact", async (route) => {
+  await page.route("**/api/site/help/contact", async (route) => {
     sent += 1;
     await answered;
     await route.fulfill({ status: 204 });

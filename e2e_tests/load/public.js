@@ -29,7 +29,7 @@ const PAGES =
 const API = {
   catalog: "/billing/catalog",
   templates: "/library/templates?language=en",
-  help_faq: "/rounds/help/faq",
+  help_faq: "/site/help/faq",
 }
 
 export const options = {

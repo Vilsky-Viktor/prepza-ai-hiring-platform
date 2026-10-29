@@ -75,29 +75,6 @@ locals {
     "auto-top-up/card",
   ]
 
-  # Users' accounts under /api/library/: accounts' routes, kept at the addresses library had
-  # (load_balancer.tf; gateway/nginx.conf has the same list). Each is a path prefix: "me" takes
-  # /me and everything under it (no other library route starts so).
-  account_paths = [
-    "me",
-    "superadmin/emails/",
-    "superadmin/stats",
-  ]
-
-  # The site's content under /api/<service>/: site's routes, kept at the addresses rounds and
-  # library had (load_balancer.tf; gateway/nginx.conf has the same list). Each path is a prefix:
-  # "help/guide" takes the platform guide and the guide articles, "news" only /news (no other
-  # library route starts so); site serves each at the same path.
-  site_paths = [
-    { from = "rounds", path = "help/faq" },
-    { from = "rounds", path = "help/guide" },
-    { from = "rounds", path = "help/pages/" },
-    { from = "rounds", path = "help/legal/" },
-    { from = "rounds", path = "help/contact" },
-    { from = "library", path = "news" },
-    { from = "library", path = "superadmin/news" },
-  ]
-
   databases = ["library", "generation", "rounds", "companies", "billing", "notifications", "ats", "api", "assistant", "accounts", "site"]
 
   # Which services each one calls; it gets their keys, to sign tokens for them.

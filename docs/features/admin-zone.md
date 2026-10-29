@@ -34,7 +34,7 @@ The posts on the public [news page](site.md#news), newest first, like the templa
 - While the emergency pause is on, generation refuses the request and the daily schedule sends the post later.
 - Without an OpenAI key (locally), nothing is translated, and every language shows the English post.
 
-Routes (site, at library's old addresses `/api/library/superadmin/news...`, which the gateway and the load balancer send to it): `GET/POST /superadmin/news`, `PUT/DELETE /superadmin/news/{id}`.
+Routes (site, under `/api/site/`): `GET/POST /superadmin/news`, `PUT/DELETE /superadmin/news/{id}`.
 
 ## Campaigns
 
@@ -115,7 +115,7 @@ Numbers show short from a thousand up, in the language's own way ("1.5K", "$12.3
 
 ### How it counts
 
-Companies, rounds and billing each count their own records, through the shared `prepza_common.db.stats`; accounts counts the sign-in accounts, which live in Firebase only, by when each was made (it reads them all, page by page; at `/library/superadmin/stats`, library's address, which the gateway and the load balancer send to accounts):
+Companies, rounds and billing each count their own records, through the shared `prepza_common.db.stats`; accounts counts the sign-in accounts, which live in Firebase only, by when each was made (it reads them all, page by page; at `/accounts/superadmin/stats`):
 
 ```
 GET /superadmin/stats?period=2026-10   # a month

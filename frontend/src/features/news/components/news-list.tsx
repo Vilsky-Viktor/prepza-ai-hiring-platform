@@ -14,7 +14,7 @@ import { LIST_BOX, ROW_HOVER } from "@/config/lists"
  * page; the next loads near the end. */
 export function NewsList({ initial }: { initial: NewsPost[] }) {
   const t = useTranslations("news")
-  const { items, loadMore } = usePagedList("/library/news", byId, initial)
+  const { items, loadMore } = usePagedList("/site/news", byId, initial)
 
   if (items.length === 0) {
     return (

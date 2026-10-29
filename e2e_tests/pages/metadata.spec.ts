@@ -101,7 +101,7 @@ test("the legal pages are dated in the sitemap by their last update", async ({
 
   for (const path of ["/privacy", "/terms", "/dpa"]) {
     const legal = await (
-      await page.request.get(`${REQUEST_URL}/api/rounds/help/legal${path}`)
+      await page.request.get(`${REQUEST_URL}/api/site/help/legal${path}`)
     ).json();
     expect(sitemap.replace(/\s+/g, ""), path).toContain(
       `${path}</loc><lastmod>${legal.current}</lastmod>`,

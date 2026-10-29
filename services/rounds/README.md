@@ -28,9 +28,8 @@ tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
 
-The FAQ, page guides, guide articles, legal texts and the contact form are the site service's:
-the gateway and the load balancer send rounds' old public addresses for them
-(`/api/rounds/help/...`) to site; the help chat is the assistant's.
+The FAQ, page guides, guide articles, legal texts and the contact form are the site service's
+(`/api/site/help/...`); the help chat is the assistant's.
 
 Routes call services; services open the transaction (`async with Session.begin() as
 session:`) and pass it to the repositories, so an action's steps are saved together (an

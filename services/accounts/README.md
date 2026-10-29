@@ -10,11 +10,8 @@ the sign-ins are Firebase's. What it does: [notifications](../../docs/features/n
 (email settings), [the public site](../../docs/features/site.md) (accepted terms) and
 [support](../../docs/features/admin-support.md).
 
-Its public routes keep the addresses library had: the gateway (`gateway/nginx.conf`) and the
-load balancer (`locals.account_paths`) send `/api/library/me` and everything under it,
-`/api/library/superadmin/emails/...` and `/api/library/superadmin/stats` here, so the frontend's
-calls didn't change. It's also at
-`/api/accounts/` (its API description, for the frontend's types).
+Its public routes are under `/api/accounts/` (`/api/accounts/me`, the admin zone's
+`/api/accounts/superadmin/emails/...` and `/api/accounts/superadmin/stats`).
 
 ## Deleting and downloading an account
 

@@ -42,7 +42,7 @@ describe("saveForUser", () => {
     await saveForUser("u1", { updates: false })
 
     expect(apiFetch).toHaveBeenCalledWith(
-      "/library/superadmin/emails/u1/preferences",
+      "/accounts/superadmin/emails/u1/preferences",
       { method: "PUT", body: JSON.stringify({ changes: { updates: false } }) }
     )
   })

@@ -33,7 +33,7 @@ test("an owner stops AI apps from using the company's data, and allows them agai
 
   // Right to left (Arabic): the knob stays inside its track, on and off.
   // A new sign-in's token carries the account's new language.
-  await api(owner, "PUT", "/library/me/settings", { language: "ar" })
+  await api(owner, "PUT", "/accounts/me/settings", { language: "ar" })
   const arabic = await signInWith(email, false)
   await visit(arabic, `/companies/${company.id}/integrations/ai`)
   await expect(arabic.locator("html")).toHaveAttribute("dir", "rtl")

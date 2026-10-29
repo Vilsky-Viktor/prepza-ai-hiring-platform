@@ -191,7 +191,7 @@ class Fixture:
 
         for local_id, email in reversed(self.accounts):
             try:
-                await self.api("DELETE", "/library/me", await self.token(email))
+                await self.api("DELETE", "/accounts/me", await self.token(email))
             except httpx.HTTPError as error:
                 print(f"clean-up: couldn't delete an account's data: {error}")
             await self.http.post(

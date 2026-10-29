@@ -41,10 +41,8 @@ tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
 
-Its routes keep rounds' public addresses (`/api/rounds/help/faq`, `/help/guide`,
-`/help/pages/...`, `/help/guides...`, `/help/legal/...`, `/help/contact`) and library's
-(`/api/library/news`, `/api/library/superadmin/news...`), which the gateway and the load balancer
-send to it (`locals.site_paths`); it serves each at the same path under `/api/site/` too.
+Its public routes are under `/api/site/` (`/api/site/help/faq`, `/help/guide`, `/help/pages/...`,
+`/help/guides...`, `/help/legal/...`, `/help/contact`, `/news`, `/superadmin/news...`).
 
 The help articles come from `frontend/content` at the repo root (`constants/help.py`); the
 images copy it to `/frontend/content`, at the same place relative to the code.

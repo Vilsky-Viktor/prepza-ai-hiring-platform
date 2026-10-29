@@ -105,15 +105,12 @@ DELETE /companies/superadmin/companies/{id}
 GET  /companies/superadmin/support/interviews/{id}
 GET  /companies/superadmin/support/interviews/{id}/candidates             ?offset&limit
 GET  /companies/superadmin/support/candidates/{invite id}
-GET  /library/superadmin/emails/accounts/{user_id}
-POST /library/superadmin/emails/lookup                                    {email}
-PUT  /library/superadmin/emails/{user_id}/preferences                     {changes}
+GET  /accounts/superadmin/emails/accounts/{user_id}
+POST /accounts/superadmin/emails/lookup                                   {email}
+PUT  /accounts/superadmin/emails/{user_id}/preferences                    {changes}
 POST /notifications/superadmin/candidate-opt-outs/lookup                  {email}
 PUT  /notifications/superadmin/candidate-opt-outs                         {email, company_id, stopped}
 ```
-
-The `/library/superadmin/emails/...` routes are the accounts service's, kept at library's addresses
-(the gateway and the load balancer send them to accounts).
 
 Behind them, internal routes:
 

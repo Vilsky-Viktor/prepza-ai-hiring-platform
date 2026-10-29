@@ -89,7 +89,7 @@ export function deleteAccounts(run) {
 
   for (const email of emails) {
     try {
-      api("DELETE", "/library/me", signIn(email))
+      api("DELETE", "/accounts/me", signIn(email))
     } catch (error) {
       console.warn(`couldn't delete ${email}: ${error}`)
     }

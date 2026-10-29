@@ -89,7 +89,7 @@ test("superadmin writes, edits and deletes a news post", async ({
     await shot(superadmin, "news-page");
 
     const [{ id: postId }] = (
-      await api<Post[]>(superadmin, "GET", "/library/superadmin/news?limit=100")
+      await api<Post[]>(superadmin, "GET", "/site/superadmin/news?limit=100")
     ).filter((item) => item.title === title);
 
     // In the user's bell, named by its title, opening the post.
@@ -175,11 +175,11 @@ test("superadmin writes, edits and deletes a news post", async ({
     const posts = await api<Post[]>(
       superadmin,
       "GET",
-      "/library/superadmin/news?limit=100",
+      "/site/superadmin/news?limit=100",
     );
 
     for (const left of posts.filter((item) => item.title.startsWith(title))) {
-      await api(superadmin, "DELETE", `/library/superadmin/news/${left.id}`);
+      await api(superadmin, "DELETE", `/site/superadmin/news/${left.id}`);
     }
   }
 });

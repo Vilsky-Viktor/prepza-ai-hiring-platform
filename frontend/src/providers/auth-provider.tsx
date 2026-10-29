@@ -56,7 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // A new account keeps the language it signed up in, for the interface and its emails.
         // The refreshed token carries it, and this runs again with it.
         if (!claims.language && isLocale(document.documentElement.lang)) {
-          await apiFetch("/library/me/settings", {
+          await apiFetch("/accounts/me/settings", {
             method: "PUT",
             body: JSON.stringify({ language: document.documentElement.lang }),
           })

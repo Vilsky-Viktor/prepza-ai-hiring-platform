@@ -22,7 +22,7 @@ export const MAX_REPORT_COMMENT_LENGTH = 1000
 export const MAX_PROBLEM_REPORT_LENGTH = 2000
 // assistant MAX_HELP_QUESTION_LENGTH: a question to the help chat.
 export const MAX_HELP_QUESTION_LENGTH = 1000
-// rounds MAX_CONTACT_NAME_LENGTH and MAX_CONTACT_MESSAGE_LENGTH: the contact form.
+// site MAX_CONTACT_NAME_LENGTH and MAX_CONTACT_MESSAGE_LENGTH: the contact form.
 export const MAX_CONTACT_NAME_LENGTH = 100
 export const MAX_CONTACT_MESSAGE_LENGTH = 5000
 // A picker's search (languages, currencies): it only filters the list in the browser, and names

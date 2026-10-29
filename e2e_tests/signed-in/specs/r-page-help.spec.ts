@@ -49,7 +49,7 @@ test("the info buttons explain the companies list, an interview and a candidate"
   for (const [path, key, name] of pages) {
     await visit(owner, path)
     // The guide rounds serves for the page, which the assistant reads too.
-    const guide = await api<{ title: string }>(owner, "GET", `/rounds/help/pages/${key}`)
+    const guide = await api<{ title: string }>(owner, "GET", `/site/help/pages/${key}`)
     expect(await checkHelp(owner, name)).toBe(guide.title)
   }
 
@@ -74,7 +74,7 @@ test("the candidate page's guide links its guide article", async ({ signInAs }) 
   const guide = await api<{ article: { title: string; path: string } }>(
     owner,
     "GET",
-    "/rounds/help/pages/candidate"
+    "/site/help/pages/candidate"
   )
   await visit(owner, `/companies/${company.id}/interviews/${interviewId}/candidates/${candidate.id}`)
   await openDialog(owner, owner.getByRole("main").getByTestId("page-help"))

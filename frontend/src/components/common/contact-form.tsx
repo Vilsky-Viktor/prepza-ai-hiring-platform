@@ -46,7 +46,7 @@ export function ContactForm() {
       setSending(true)
 
       try {
-        await apiFetch("/rounds/help/contact", {
+        await apiFetch("/site/help/contact", {
           method: "POST",
           body: JSON.stringify({ name, email, message }),
           headers: await humanHeaders(),

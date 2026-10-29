@@ -10,7 +10,7 @@ export function saveEmailPreferences(
   changes: EmailChanges,
   source: EmailSource
 ) {
-  return apiFetch<EmailPreferences>("/library/me/email-preferences", {
+  return apiFetch<EmailPreferences>("/accounts/me/email-preferences", {
     method: "PUT",
     body: JSON.stringify({ changes, source }),
   })

@@ -180,7 +180,7 @@ async def main(label: str, only: str, repeat: int) -> None:
     async with httpx.AsyncClient() as http:
         slugs = {slug for item in guide_items for slug in item["guides"]}
         articles = {
-            slug: (await http.get(f"{API}/rounds/help/guides/{slug}")).json()["body"]
+            slug: (await http.get(f"{API}/site/help/guides/{slug}")).json()["body"]
             for slug in slugs
         }
 

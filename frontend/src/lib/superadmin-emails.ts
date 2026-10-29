@@ -24,7 +24,7 @@ export function allOptionalEmailsOff(): EmailChanges {
 /** Saves a user's email settings on their behalf; the API logs them as the superadmin's. */
 export function saveForUser(userId: string, changes: EmailChanges) {
   return apiFetch<EmailPreferences>(
-    `/library/superadmin/emails/${userId}/preferences`,
+    `/accounts/superadmin/emails/${userId}/preferences`,
     { method: "PUT", body: JSON.stringify({ changes }) }
   )
 }

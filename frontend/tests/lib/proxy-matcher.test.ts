@@ -29,7 +29,7 @@ describe("the proxy's matcher", () => {
 
   it("leaves out Next's files and the API, and runs on pages", () => {
     expect(matched("/_next/static/chunks/main.js")).toBe(false)
-    expect(matched("/api/library/me")).toBe(false)
+    expect(matched("/api/accounts/me")).toBe(false)
 
     for (const page of ["/", "/about", "/documents", "/de/about", "/api-docs"]) {
       expect(matched(page), page).toBe(true)

@@ -12,8 +12,7 @@ from accounts.services import email_preferences
 from accounts.services.accounts import set_language
 from accounts.services.deletion import delete_account, export_account
 
-# Public at /api/accounts/ and, as before, at /api/library/me... (gateway/nginx.conf and the
-# load balancer's account_paths send those to this service).
+# Public at /api/accounts/.
 router = APIRouter()
 
 

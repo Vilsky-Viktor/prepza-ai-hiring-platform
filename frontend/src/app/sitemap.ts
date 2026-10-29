@@ -55,7 +55,7 @@ async function templates(): Promise<Template[]> {
 /** The day of the newest news post, for the news page's date; none without posts. */
 async function latestNews(): Promise<string | undefined> {
   const response = await fetch(
-    `${process.env.API_URL}/api/library/news?offset=0&limit=1`,
+    `${process.env.API_URL}/api/site/news?offset=0&limit=1`,
     { cache: "no-store", signal: AbortSignal.timeout(PUBLIC_TIMEOUT_MS) }
   ).catch(() => null)
 
@@ -76,7 +76,7 @@ async function legalUpdated(): Promise<Record<string, string | undefined>> {
   const days = await Promise.all(
     LEGAL_PATHS.map(async (path) => {
       const response = await fetch(
-        `${process.env.API_URL}/api/rounds/help/legal${path}`,
+        `${process.env.API_URL}/api/site/help/legal${path}`,
         { cache: "no-store", signal: AbortSignal.timeout(PUBLIC_TIMEOUT_MS) }
       ).catch(() => null)
 

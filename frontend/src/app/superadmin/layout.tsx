@@ -13,7 +13,7 @@ export default async function SuperadminLayout({
 }: {
   children: React.ReactNode
 }) {
-  const me = await serverFetch<{ is_superadmin: boolean }>("/library/me")
+  const me = await serverFetch<{ is_superadmin: boolean }>("/accounts/me")
 
   if (!me?.is_superadmin) {
     notFound()

@@ -17,7 +17,7 @@ async function withCountry(path: string) {
 
 /** The FAQ, its prices in the visitor's country's currency. */
 export function faqPath() {
-  return withCountry("/rounds/help/faq")
+  return withCountry("/site/help/faq")
 }
 
 /** The signed-in person's currency, and the ones they can choose. */

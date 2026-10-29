@@ -1,7 +1,7 @@
 // The admin zone's stats tab: each card in order, the service whose stats it comes from (its
 // API path) and the metric there. Paid comes apart, in cents per currency.
 export const STATS_CARDS = [
-  { source: "library", metric: "users" },
+  { source: "accounts", metric: "users" },
   { source: "companies", metric: "companies" },
   { source: "companies", metric: "verified" },
   { source: "companies", metric: "interviews" },
@@ -14,7 +14,7 @@ export const STATS_CARDS = [
 ] as const
 
 export const STATS_SOURCES = [
-  "library",
+  "accounts",
   "companies",
   "rounds",
   "billing",

@@ -232,7 +232,7 @@ async def main(label: str, only: str, repeat: int) -> None:
     keys = {data["pages"][item["page"]]["key"] for item in data["page"] if item["kind"] == "guide"}
 
     async with httpx.AsyncClient() as http:
-        guides = {key: (await http.get(f"{API}/rounds/help/pages/{key}")).text for key in keys}
+        guides = {key: (await http.get(f"{API}/site/help/pages/{key}")).text for key in keys}
 
     limit = asyncio.Semaphore(8)
 

@@ -18,7 +18,7 @@ export function LanguageSetting({ current }: { current: Locale }) {
     setSaving(true)
 
     try {
-      await apiFetch("/library/me/settings", {
+      await apiFetch("/accounts/me/settings", {
         method: "PUT",
         body: JSON.stringify({ language }),
       })

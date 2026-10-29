@@ -29,9 +29,9 @@ export function StatsView() {
       STATS_SOURCES.map((source) =>
         apiFetch<Stats>(`/${source}/superadmin/stats${query}`).catch(() => null)
       )
-    ).then(([library, companies, rounds, billing]) => {
+    ).then(([accounts, companies, rounds, billing]) => {
       if (current) {
-        setStats({ library, companies, rounds, billing })
+        setStats({ accounts, companies, rounds, billing })
       }
     })
 
@@ -46,7 +46,7 @@ export function StatsView() {
       <StatsCards
         stats={
           stats ?? {
-            library: null,
+            accounts: null,
             companies: null,
             rounds: null,
             billing: null,

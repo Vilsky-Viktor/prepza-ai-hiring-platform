@@ -29,7 +29,7 @@ export function NewsAdminList({ initial }: { initial: AdminNewsPost[] }) {
   const locale = useLocale()
   const router = useRouter()
   const { items, setItems, loadMore } = usePagedList(
-    "/library/superadmin/news",
+    "/site/superadmin/news",
     byId,
     initial
   )
@@ -62,7 +62,7 @@ export function NewsAdminList({ initial }: { initial: AdminNewsPost[] }) {
     setBusy(true)
 
     try {
-      await apiFetch(`/library/superadmin/news/${deleting.id}`, {
+      await apiFetch(`/site/superadmin/news/${deleting.id}`, {
         method: "DELETE",
       })
       setItems((current) => current.filter((item) => item.id !== deleting.id))

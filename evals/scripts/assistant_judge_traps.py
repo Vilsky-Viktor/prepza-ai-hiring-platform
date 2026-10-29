@@ -92,7 +92,7 @@ async def page_traps(run: dict, data: dict, limit: int, rng) -> list:
     keys = {data["pages"][items[key.split(".")[0]]["page"]]["key"] for key in chosen}
 
     async with httpx.AsyncClient(timeout=60) as http:
-        guides = {key: (await http.get(f"{API}/rounds/help/pages/{key}")).text for key in keys}
+        guides = {key: (await http.get(f"{API}/site/help/pages/{key}")).text for key in keys}
 
     found = []
 
@@ -118,7 +118,7 @@ async def guide_traps(run: dict, data: dict, pages: dict, limit: int, rng) -> li
 
     async with httpx.AsyncClient(timeout=60) as http:
         articles = {
-            slug: (await http.get(f"{API}/rounds/help/guides/{slug}")).json()["body"]
+            slug: (await http.get(f"{API}/site/help/guides/{slug}")).json()["body"]
             for slug in slugs
         }
 

@@ -76,7 +76,7 @@ async function deleteUser(project: string, user: EmulatorUser) {
     password: PASSWORD,
     returnSecureToken: true,
   })
-  const deleted = await fetch(`${API_URL}/library/me`, {
+  const deleted = await fetch(`${API_URL}/accounts/me`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${idToken}` },
   })

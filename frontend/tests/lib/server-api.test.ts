@@ -38,7 +38,7 @@ describe("publicFetch", () => {
 
   it("is null for a missing resource and throws on a failure", async () => {
     fetchMock.mockResolvedValueOnce(new Response(null, { status: 404 }))
-    expect(await publicFetch("/rounds/help/legal/x")).toBeNull()
+    expect(await publicFetch("/site/help/legal/x")).toBeNull()
 
     fetchMock.mockResolvedValueOnce(new Response(null, { status: 503 }))
     await expect(publicFetch("/billing/catalog")).rejects.toThrow("503")

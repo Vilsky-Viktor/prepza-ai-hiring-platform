@@ -16,7 +16,7 @@ export default async function GeneralSettingsPage() {
   const t = await getTranslations("settings")
   const locale = (await getLocale()) as Locale
   const [emails, currency] = await Promise.all([
-    serverFetch<EmailPreferences>("/library/me/email-preferences"),
+    serverFetch<EmailPreferences>("/accounts/me/email-preferences"),
     serverFetch<CurrencyChoice>(await currencyPath()),
   ])
 

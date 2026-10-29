@@ -41,7 +41,7 @@ export default async function SupportUserPage({
   const [user, account, spend] = await Promise.all([
     serverFetch<SupportUser>(`/companies/superadmin/support/users/${id}`),
     serverFetch<NonNullable<EmailLookup["account"]>>(
-      `/library/superadmin/emails/accounts/${id}`
+      `/accounts/superadmin/emails/accounts/${id}`
     ),
     aiSpend(`user_id=${encodeURIComponent(id)}`),
   ])

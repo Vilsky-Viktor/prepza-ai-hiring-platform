@@ -44,7 +44,7 @@ export function UserMenu() {
       return
     }
 
-    apiFetch<{ is_superadmin: boolean }>("/library/me")
+    apiFetch<{ is_superadmin: boolean }>("/accounts/me")
       .then((me) => setSuperadminUid(me.is_superadmin ? user.uid : null))
       .catch(() => setSuperadminUid(null))
   }, [user])

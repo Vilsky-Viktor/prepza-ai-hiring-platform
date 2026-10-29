@@ -49,7 +49,7 @@ export function DeleteAccount({
     setDeleting(true)
 
     try {
-      await apiFetch("/library/me", { method: "DELETE" })
+      await apiFetch("/accounts/me", { method: "DELETE" })
       await signOut()
       onOpenChange(false)
       toast.success(t("deleted"))

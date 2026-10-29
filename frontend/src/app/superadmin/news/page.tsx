@@ -14,7 +14,7 @@ export const generateMetadata = () => translatedTitle("superadmin", "zone")
  * after saving. The API answers superadmins only. */
 export default async function NewsAdminPage() {
   const first = await serverFetch<AdminNewsPost[]>(
-    `/library/superadmin/news?offset=0&limit=${PAGE_SIZE}`
+    `/site/superadmin/news?offset=0&limit=${PAGE_SIZE}`
   )
 
   if (!first) {
