@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "غيّر إشعارات Slack",
       "api_key_created": "أنشأ مفتاح API",
       "api_key_deleted": "حذف مفتاح API",
-      "api_key_narrowed": "قلّص صلاحيات مفتاح API",
       "api_key_permissions_changed": "غيّر صلاحيات مفتاح API",
       "api_key_ips_changed": "غيّر عناوين IP المسموح بها لمفتاح API",
       "embed_domains_changed": "غيّر النطاقات المسموح بها",

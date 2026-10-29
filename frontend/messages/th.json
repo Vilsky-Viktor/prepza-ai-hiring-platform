@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "เปลี่ยนการแจ้งเตือนของ Slack",
       "api_key_created": "สร้างคีย์ API",
       "api_key_deleted": "ลบคีย์ API",
-      "api_key_narrowed": "ลดสิทธิ์ของคีย์ API",
       "api_key_permissions_changed": "เปลี่ยนสิทธิ์ของคีย์ API",
       "api_key_ips_changed": "เปลี่ยน IP ที่อนุญาตของคีย์ API",
       "embed_domains_changed": "เปลี่ยนโดเมนที่อนุญาต",

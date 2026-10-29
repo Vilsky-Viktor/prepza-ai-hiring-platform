@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "Изменил уведомления Slack",
       "api_key_created": "Создал API-ключ",
       "api_key_deleted": "Удалил API-ключ",
-      "api_key_narrowed": "Сузил права API-ключа",
       "api_key_permissions_changed": "Изменил права API-ключа",
       "api_key_ips_changed": "Изменил разрешённые IP API-ключа",
       "embed_domains_changed": "Изменил разрешённые домены",

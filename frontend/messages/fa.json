@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "اعلان‌های Slack را تغییر داد",
       "api_key_created": "یک کلید API ساخت",
       "api_key_deleted": "یک کلید API را حذف کرد",
-      "api_key_narrowed": "دسترسی‌های یک کلید API را محدودتر کرد",
       "api_key_permissions_changed": "دسترسی‌های یک کلید API را تغییر داد",
       "api_key_ips_changed": "IPهای مجاز یک کلید API را تغییر داد",
       "embed_domains_changed": "دامنه‌های مجاز را تغییر داد",

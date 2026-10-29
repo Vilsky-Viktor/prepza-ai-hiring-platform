@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "更改了 Slack 通知",
       "api_key_created": "创建了 API 密钥",
       "api_key_deleted": "删除了 API 密钥",
-      "api_key_narrowed": "缩小了 API 密钥的权限",
       "api_key_permissions_changed": "更改了 API 密钥的权限",
       "api_key_ips_changed": "更改了 API 密钥允许的 IP",
       "embed_domains_changed": "更改了允许的域名",

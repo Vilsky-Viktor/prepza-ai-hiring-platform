@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "Đã đổi thông báo Slack",
       "api_key_created": "Đã tạo một khóa API",
       "api_key_deleted": "Đã xóa một khóa API",
-      "api_key_narrowed": "Đã thu hẹp quyền của một khóa API",
       "api_key_permissions_changed": "Đã thay đổi quyền của một khóa API",
       "api_key_ips_changed": "Đã thay đổi IP được phép của một khóa API",
       "embed_domains_changed": "Đã thay đổi các tên miền được phép",

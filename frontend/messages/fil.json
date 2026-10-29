@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "Binago ang mga notification ng Slack",
       "api_key_created": "Gumawa ng API key",
       "api_key_deleted": "Nag-delete ng API key",
-      "api_key_narrowed": "Binawasan ang mga pahintulot ng isang API key",
       "api_key_permissions_changed": "Binago ang mga pahintulot ng isang API key",
       "api_key_ips_changed": "Binago ang mga pinapayagang IP ng isang API key",
       "embed_domains_changed": "Binago ang mga pinapayagang domain",

@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "Slack の通知を変更しました",
       "api_key_created": "API キーを作成しました",
       "api_key_deleted": "API キーを削除しました",
-      "api_key_narrowed": "API キーの権限を絞りました",
       "api_key_permissions_changed": "API キーの権限を変更しました",
       "api_key_ips_changed": "API キーの許可 IP を変更しました",
       "embed_domains_changed": "許可するドメインを変更しました",

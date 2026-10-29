@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "Slack की सूचनाएँ बदलीं",
       "api_key_created": "एक API कुंजी बनाई",
       "api_key_deleted": "एक API कुंजी हटाई",
-      "api_key_narrowed": "एक API कुंजी की अनुमतियाँ घटाईं",
       "api_key_permissions_changed": "एक API कुंजी की अनुमतियाँ बदलीं",
       "api_key_ips_changed": "एक API कुंजी के अनुमत IP बदले",
       "embed_domains_changed": "अनुमत डोमेन बदले",

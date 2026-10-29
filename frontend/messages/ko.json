@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "Slack 알림을 변경함",
       "api_key_created": "API 키를 만듦",
       "api_key_deleted": "API 키를 삭제함",
-      "api_key_narrowed": "API 키의 권한을 줄임",
       "api_key_permissions_changed": "API 키의 권한을 변경함",
       "api_key_ips_changed": "API 키의 허용 IP를 변경함",
       "embed_domains_changed": "허용 도메인을 변경함",

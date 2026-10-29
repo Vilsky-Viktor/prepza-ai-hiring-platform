@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "שינה/תה את ההתראות של Slack",
       "api_key_created": "יצר/ה מפתח API",
       "api_key_deleted": "מחק/ה מפתח API",
-      "api_key_narrowed": "צמצם/ה את ההרשאות של מפתח API",
       "api_key_permissions_changed": "שינה/תה את ההרשאות של מפתח API",
       "api_key_ips_changed": "שינה/תה את כתובות ה-IP המורשות של מפתח API",
       "embed_domains_changed": "שינה/תה את הדומיינים המורשים",

@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "A modifié les notifications Slack",
       "api_key_created": "A créé une clé API",
       "api_key_deleted": "A supprimé une clé API",
-      "api_key_narrowed": "A réduit les autorisations d'une clé API",
       "api_key_permissions_changed": "A modifié les autorisations d'une clé API",
       "api_key_ips_changed": "A modifié les IP autorisées d'une clé API",
       "embed_domains_changed": "A modifié les domaines autorisés",

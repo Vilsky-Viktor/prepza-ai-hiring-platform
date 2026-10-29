@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "Slack bildirimlerini değiştirdi",
       "api_key_created": "Bir API anahtarı oluşturdu",
       "api_key_deleted": "Bir API anahtarını sildi",
-      "api_key_narrowed": "Bir API anahtarının yetkilerini daralttı",
       "api_key_permissions_changed": "Bir API anahtarının yetkilerini değiştirdi",
       "api_key_ips_changed": "Bir API anahtarının izin verilen IP'lerini değiştirdi",
       "embed_domains_changed": "İzin verilen alan adlarını değiştirdi",

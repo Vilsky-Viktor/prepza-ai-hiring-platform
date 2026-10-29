@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "Mengubah notifikasi Slack",
       "api_key_created": "Membuat kunci API",
       "api_key_deleted": "Menghapus kunci API",
-      "api_key_narrowed": "Mempersempit hak akses kunci API",
       "api_key_permissions_changed": "Mengubah hak akses kunci API",
       "api_key_ips_changed": "Mengubah IP yang diizinkan untuk kunci API",
       "embed_domains_changed": "Mengubah domain yang diizinkan",

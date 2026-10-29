@@ -2485,7 +2485,6 @@
       "slack_notifications_changed": "Wijzigde de meldingen van Slack",
       "api_key_created": "Maakte een API-sleutel",
       "api_key_deleted": "Verwijderde een API-sleutel",
-      "api_key_narrowed": "Beperkte de rechten van een API-sleutel",
       "api_key_permissions_changed": "Wijzigde de rechten van een API-sleutel",
       "api_key_ips_changed": "Wijzigde de toegestane IP's van een API-sleutel",
       "embed_domains_changed": "Wijzigde de toegestane domeinen",
