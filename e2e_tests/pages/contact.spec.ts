@@ -11,6 +11,8 @@ test("each contact field keeps its accessible name, also once filled", async ({ 
   const fields = form.getByRole("textbox");
   await expect(fields).toHaveCount(3);
   await expect(form.locator("label")).toHaveCount(0);
+  // The message box shows the send shortcut.
+  await expect(form.getByTestId("submit-hint")).toBeVisible();
 
   for (const field of await fields.all()) {
     await field.fill("Anna Kowalska");

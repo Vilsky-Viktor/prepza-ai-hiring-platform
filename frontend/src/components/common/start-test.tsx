@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
+import { SubmitHint } from "@/components/common/submit-hint"
 import { useSignIn } from "@/components/common/sign-in-dialog"
 import { useAuth } from "@/providers/auth-provider"
 import { GenerateIn } from "@/components/common/generate-in"
@@ -36,7 +37,6 @@ export function StartTest({
 }) {
   const t = useTranslations("start")
   useHumanCheck()
-  const common = useTranslations("common")
   const signIn = useSignIn()
   const router = useRouter()
   const { user } = useAuth()
@@ -154,9 +154,7 @@ export function StartTest({
           className="max-h-72 min-h-40 resize-none border-0 bg-transparent p-2 text-base shadow-none focus-visible:ring-0 max-[399px]:min-h-28 md:text-base dark:bg-transparent [@media(max-height:700px)]:min-h-28"
         />
         <div className="flex flex-wrap items-center justify-between gap-4 ps-2 pt-2">
-          <p className="text-xs text-muted-foreground pointer-coarse:hidden">
-            {common("submitHint")}
-          </p>
+          <SubmitHint />
           <div className="ms-auto flex items-center gap-3">
             <GenerateIn value={generateIn} onChange={setGenerateIn} />
             <Button

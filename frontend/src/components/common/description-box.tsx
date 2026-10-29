@@ -1,9 +1,10 @@
 "use client"
 
 import { ArrowUpIcon } from "lucide-react"
-import { useLocale, useTranslations } from "next-intl"
+import { useLocale } from "next-intl"
 import { useState } from "react"
 
+import { SubmitHint } from "@/components/common/submit-hint"
 import { GenerateIn } from "@/components/common/generate-in"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -31,7 +32,6 @@ export function DescriptionBox({
   // Text to start from, which the user can edit (an ATS job's description).
   initialText?: string
 }) {
-  const common = useTranslations("common")
   const [text, setText] = useState(initialText)
   // Starts on the interface's language; any supported one can be chosen.
   const [generateIn, setGenerateIn] = useState(useLocale() as Locale)
@@ -72,9 +72,7 @@ export function DescriptionBox({
         autoFocus
       />
       <div className="flex flex-wrap items-center justify-between gap-4 ps-2 pt-2">
-        <p className="text-xs text-muted-foreground pointer-coarse:hidden">
-          {common("submitHint")}
-        </p>
+        <SubmitHint />
         <div className="ms-auto flex items-center gap-3">
           <GenerateIn value={generateIn} onChange={setGenerateIn} />
           <Button

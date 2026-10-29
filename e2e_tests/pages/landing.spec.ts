@@ -152,6 +152,8 @@ test("the hero's box asks a visitor to sign in to start an interview", async ({
   const form = page.locator("main form").first();
   const submit = form.locator('button[type="submit"]');
   await expect(submit).toBeDisabled();
+  // The box shows the send shortcut.
+  await expect(form.getByTestId("submit-hint")).toBeVisible();
   await form.locator("textarea").fill("A backend developer who knows Python and Postgres");
 
   await expect(async () => {

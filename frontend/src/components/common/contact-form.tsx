@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import { useId, useState } from "react"
 import { toast } from "sonner"
 
+import { SubmitHint } from "@/components/common/submit-hint"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -29,7 +30,6 @@ const FIELD = `h-14 px-6 text-lg md:text-lg ${BORDERLESS}`
 export function ContactForm() {
   const t = useTranslations("contact")
   useHumanCheck()
-  const common = useTranslations("common")
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
@@ -116,9 +116,7 @@ export function ContactForm() {
           }}
           className={`min-h-48 resize-none rounded-xl px-6 pt-4 pb-20 text-lg md:text-lg ${BORDERLESS}`}
         />
-        <p className="pointer-events-none absolute start-6 bottom-6 text-xs text-muted-foreground pointer-coarse:hidden">
-          {common("submitHint")}
-        </p>
+        <SubmitHint className="pointer-events-none absolute start-6 bottom-6" />
         <Button
           type="submit"
           size="icon-lg"
