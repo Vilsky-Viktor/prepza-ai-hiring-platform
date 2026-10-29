@@ -103,18 +103,34 @@ describe("a visitor's chat after a reload", () => {
   const messages = [{ role: "user" as const, content: "Hi", blocks: [] }]
   const now = Date.parse("2026-10-09T12:00:00Z")
 
-  it("comes back within the service's window", () => {
+  it("comes back within the service's window, up to its last moment", () => {
     const lastAt = "2026-10-09T11:31:00Z"
 
     expect(recentVisitorChat({ messages, lastAt }, config, now)).toEqual(
       messages
     )
+    expect(
+      recentVisitorChat(
+        { messages, lastAt: "2026-10-09T11:30:00Z" },
+        config,
+        now
+      )
+    ).toEqual(messages)
   })
 
   it("doesn't when it's older, has no time, or the window is unknown", () => {
     const old = { messages, lastAt: "2026-10-09T11:29:00Z" }
+    const justPast = { messages, lastAt: "2026-10-09T11:29:59.999Z" }
 
     expect(recentVisitorChat(old, config, now)).toBeNull()
+    expect(recentVisitorChat(justPast, config, now)).toBeNull()
+    expect(
+      recentVisitorChat(
+        { messages: [], lastAt: "2026-10-09T11:59:00Z" },
+        config,
+        now
+      )
+    ).toBeNull()
     expect(recentVisitorChat({ messages }, config, now)).toBeNull()
     expect(
       recentVisitorChat({ messages, lastAt: "2026-10-09T11:59:00Z" }, null, now)
