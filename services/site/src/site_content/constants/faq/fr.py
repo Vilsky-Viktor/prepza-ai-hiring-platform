@@ -90,7 +90,7 @@ FAQ = [
     {
         "key": "candidates",
         "question": "Que voient les candidats ?",
-        "answer": "Le nom et le logo de votre entreprise, aux couleurs et dans la police de votre entreprise (définies dans son onglet Marque), ce qui les attend avant de commencer, puis une question chronométrée à la fois. Ils ne voient jamais leur score ni si une réponse était juste.",
+        "answer": "Le nom et le logo de votre entreprise, aux couleurs et dans les polices de votre entreprise (définies dans son onglet Marque), ce qui les attend avant de commencer, puis une question chronométrée à la fois. Ils ne voient jamais leur score ni si une réponse était juste.",
     },
     {
         "key": "verified",

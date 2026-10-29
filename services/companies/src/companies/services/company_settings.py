@@ -138,15 +138,5 @@ async def set_brand_colors(company: Company, user_id: str, theme: str, colors: d
     )
 
 
-async def set_brand_style(
-    company: Company, user_id: str, font: str, radius: int, button_radius: int
-) -> None:
-    await changed(
-        company.id,
-        user_id,
-        AuditAction.BRAND_CHANGED,
-        companies.set_brand_style,
-        font,
-        radius,
-        button_radius,
-    )
+async def set_brand_style(company: Company, user_id: str, style: dict) -> None:
+    await changed(company.id, user_id, AuditAction.BRAND_CHANGED, companies.set_brand_style, style)

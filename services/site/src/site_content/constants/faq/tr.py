@@ -90,7 +90,7 @@ FAQ = [
     {
         "key": "candidates",
         "question": "Adaylar ne görür?",
-        "answer": "Şirketinizin adını ve logosunu, şirketinizin renkleri ve yazı tipiyle (Marka sekmesinde ayarlanır), başlamadan önce neyle karşılaşacaklarını, ardından her seferinde bir süreli soru. Puanlarını ya da bir cevabın doğru olup olmadığını asla görmezler.",
+        "answer": "Şirketinizin adını ve logosunu, şirketinizin renkleri ve yazı tipleriyle (Marka sekmesinde ayarlanır), başlamadan önce neyle karşılaşacaklarını, ardından her seferinde bir süreli soru. Puanlarını ya da bir cevabın doğru olup olmadığını asla görmezler.",
     },
     {
         "key": "verified",

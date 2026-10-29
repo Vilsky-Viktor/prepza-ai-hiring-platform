@@ -80,7 +80,7 @@ class CompanyOut(BaseModel):
     # Why a theme's saved colors are refused now, by theme, in the user's language (a check added
     # since they were saved); its candidates see prepza's colors for that theme until they change.
     brand_problems: dict[str, str] = {}
-    # Its font and corner rounding on those pages, prepza's where it set none.
+    # Its fonts (titles and text) and corner rounding on those pages, prepza's where it set none.
     brand_style: BrandStyle | None = None
     # The website's domain, and the same once a superadmin approved it (the badge); where its
     # verification stands, and why it was declined, when the superadmin said.

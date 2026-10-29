@@ -159,13 +159,17 @@ async def set_brand_colors(
     )
 
 
-async def set_brand_style(
-    session: AsyncSession, company_id, font: str, radius: int, button_radius: int
-) -> None:
+async def set_brand_style(session: AsyncSession, company_id, style: dict) -> None:
+    """The fonts and rounding, as BrandStyle holds them."""
     await session.execute(
         update(Company)
         .where(Company.id == company_id)
-        .values(brand_font=font, brand_radius=radius, brand_button_radius=button_radius)
+        .values(
+            brand_heading_font=style["heading_font"],
+            brand_text_font=style["text_font"],
+            brand_radius=style["radius"],
+            brand_button_radius=style["button_radius"],
+        )
     )
 
 

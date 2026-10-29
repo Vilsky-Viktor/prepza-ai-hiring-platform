@@ -16,6 +16,7 @@ import {
   PT_Sans,
   Playfair_Display,
   Plus_Jakarta_Sans,
+  Poppins,
   Raleway,
   Roboto,
   Rubik,
@@ -25,13 +26,21 @@ import {
 } from "next/font/google"
 
 import { SITE_FONTS } from "@/config/fonts"
+import type { BrandStyle } from "@/types/company"
 
 // The fonts a company can pick for its candidates' pages (services/companies constants/brand.py
-// lists the same): prepza's pair, Poppins titles over Geist text (the default, which changes
-// nothing; the two only together), and single fonts for all the text: the most used web fonts,
-// bundled with the site and not preloaded, so a page downloads only the one it uses. Each falls
-// back to Geist for letters it lacks. next/font reads its options literally, so each repeats
-// them.
+// lists the same), one for the titles and one for the text, as the site has: prepza's own,
+// Poppins and Geist (Poppins titles over Geist text, the default, which changes nothing), and the
+// most used web fonts, bundled with the site and not preloaded, so a page downloads only the ones
+// it uses. Each falls back to Geist for letters it lacks. next/font reads its options literally,
+// so each repeats them.
+// Poppins for text too: the site's own loads only its titles' weights.
+const poppins = Poppins({
+  preload: false,
+  display: "swap",
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500", "600", "700"],
+})
 const inter = Inter({
   preload: false,
   display: "swap",
@@ -155,10 +164,13 @@ const playfairDisplay = Playfair_Display({
 
 const fallback = SITE_FONTS.geist
 
-/** By id: prepza's pair first, then the others by name. `family` is what all the text is set in,
- * none for the pair, which draws its name in Poppins. */
-export const BRAND_FONTS: Record<string, { label: string; family?: string }> = {
-  poppins_geist: { label: "Poppins & Geist" },
+/** By id, each with the family it's set in. */
+export const BRAND_FONTS: Record<string, { label: string; family: string }> = {
+  poppins: {
+    label: "Poppins",
+    family: `${poppins.style.fontFamily}, ${fallback}`,
+  },
+  geist: { label: "Geist", family: fallback },
   inter: { label: "Inter", family: `${inter.style.fontFamily}, ${fallback}` },
   roboto: {
     label: "Roboto",
@@ -239,4 +251,19 @@ export const BRAND_FONTS: Record<string, { label: string; family?: string }> = {
     label: "Playfair Display",
     family: `${playfairDisplay.style.fontFamily}, ${fallback}`,
   },
+}
+
+/** The families a company's titles and text are set in: none where it's the site's own in its
+ * own role (Poppins titles, Geist text), which changes nothing and downloads nothing more. */
+export function brandFonts(look: BrandStyle) {
+  return {
+    headingFont:
+      look.heading_font === "poppins"
+        ? undefined
+        : BRAND_FONTS[look.heading_font]?.family,
+    textFont:
+      look.text_font === "geist"
+        ? undefined
+        : BRAND_FONTS[look.text_font]?.family,
+  }
 }

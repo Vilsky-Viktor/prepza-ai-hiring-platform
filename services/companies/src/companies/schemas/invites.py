@@ -122,7 +122,7 @@ class LinkView(BaseModel):
     company: str
     logo_url: str | None = None
     verified_domain: str | None = None
-    # The test's colors by theme (the candidate's own theme picks which), font and rounding.
+    # The test's colors by theme (the candidate's own theme picks which), fonts and rounding.
     brand_colors: BrandColorSets | None = None
     brand_style: BrandStyle | None = None
     question_seconds: int

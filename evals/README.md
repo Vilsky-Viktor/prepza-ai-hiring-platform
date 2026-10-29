@@ -119,7 +119,9 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Text check: false refusals / accepted / refused | 0 / 100% (95.9–100) / 100% (90.4–100); $0.00003 and 1.9 s a check | `screen.json`, 42 × 3 | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
 | Fitted question times: distance from the judge's times, fitted / equal; judge's own repeat | 0.158 ± 0.002 / 0.167 ± 0.002 of the average (basic 0.116 / 0.147; with an example 0.181 / 0.209; text-only medium 0.193 / 0.186, within the noise); repeat Spearman 0.95, 2.1 s apart | `question_times.json` (452 questions, 40 twice), `gpt-6.1-sol` high; free | 2026-10-29 |
-| Help chat: passed / made up / sign-in marker; who-are-you answers | 97.3% (90.8–99.3) / 1.3% / 100%; 18/18; with the average time per question (100% / 0.0% just before, within the noise) | `help_questions.json` (25), 3 repeats | 2026-10-29 |
+| Integrity signals: honest flagged / relays caught (all questions to an AI / half / the hard ones), either signal | ≤ 0.7% (each population, 10–30 questions) / 33–35% / 7–9% / 15–19%; timing alone 0.6–0.7% / 33–34%; person-fit alone ≤ 0.5% / 0–3% (2–10% of half and hard-only relays) | 4,000 made-up candidates a population on the eval's questions, `ai_picks.json`; free | 2026-10-29 |
+| AI-trap questions: traps / relays giving the trap's answer | 0.0% (0.0–0.5) the planned way (both models agree); the cheap model's mistakes the main model gets right: 14.5% of questions, given again by `gpt-6-luna` none 44.6%, medium 3.6%, `gpt-6.1-sol` 0% | `ai_picks.json` (772 questions); $1.07 | 2026-10-29 |
+| Help chat: passed / made up / sign-in marker; who-are-you answers | 96.0% (88.9–98.6) / 4.0% / 100%; 18/18; with two brand fonts (97.3% / 1.3% just before, within the noise; every miss h17's known retake limit) | `help_questions.json` (25), 3 repeats | 2026-10-29 |
 
 ## Datasets
 

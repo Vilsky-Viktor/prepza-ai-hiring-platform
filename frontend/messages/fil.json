@@ -1948,8 +1948,8 @@
     "colorsText": "Nakikita ng mga aplikante ang mga kulay na ito kapag {theme, select, dark {dark} other {light}} na tema ang kanilang interview: dahil sa sarili nilang setting, o dahil hinihingi ito ng iyong link, ng API o ng SDK. Hindi mase-save ang mga kulay na masyadong mababa ang contrast para madaling mabasa.",
     "groups": {
       "font": {
-        "name": "Font",
-        "text": "Lahat ng text sa mga page ng iyong mga aplikante, sa dalawang tema."
+        "name": "Mga font",
+        "text": "Isa para sa mga title at isa para sa iba pang text sa mga page ng iyong mga aplikante, sa dalawang tema."
       },
       "rounding": {
         "name": "Pag-ikot",
@@ -1989,9 +1989,10 @@
     },
     "save": "I-save",
     "saved": "Na-save",
-    "styleTitle": "Font at mga sulok",
+    "styleTitle": "Mga font at mga sulok",
     "styleText": "Nalalapat ang mga ito sa light at dark na tema.",
-    "font": "Font",
+    "headingFont": "Font ng mga title",
+    "textFont": "Font ng text",
     "radius": "Pag-ikot ng mga card",
     "buttonRadius": "Pag-ikot ng mga button",
     "reset": "I-reset",

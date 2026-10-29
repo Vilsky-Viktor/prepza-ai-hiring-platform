@@ -1948,8 +1948,8 @@
     "colorsText": "Kandidaadid näevad neid värve, kui nende intervjuu on {theme, select, dark {tumedas} other {heledas}} teemas: oma seadistuse tõttu või seetõttu, et sinu link, API või SDK seda nõuab. Värve, mille kontrast on kergeks lugemiseks liiga väike, salvestada ei saa.",
     "groups": {
       "font": {
-        "name": "Font",
-        "text": "Kogu tekst sinu kandidaatide lehtedel, mõlemas teemas."
+        "name": "Fondid",
+        "text": "Üks pealkirjadele ja teine ülejäänud tekstile sinu kandidaatide lehtedel, mõlemas teemas."
       },
       "rounding": {
         "name": "Ümarus",
@@ -1989,9 +1989,10 @@
     },
     "save": "Salvesta",
     "saved": "Salvestatud",
-    "styleTitle": "Font ja nurgad",
+    "styleTitle": "Fondid ja nurgad",
     "styleText": "Need kehtivad nii heledas kui ka tumedas teemas.",
-    "font": "Font",
+    "headingFont": "Pealkirjade font",
+    "textFont": "Teksti font",
     "radius": "Kaartide ümarus",
     "buttonRadius": "Nuppude ümarus",
     "reset": "Lähtesta",

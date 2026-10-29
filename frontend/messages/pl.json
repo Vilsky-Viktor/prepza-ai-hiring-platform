@@ -1948,8 +1948,8 @@
     "colorsText": "Kandydaci widzą te kolory, gdy ich rozmowa jest w {theme, select, dark {ciemnym} other {jasnym}} motywie: z powodu własnego ustawienia albo dlatego, że wymaga tego Twój link, API lub SDK. Kolorów o zbyt małym kontraście, przy którym trudno czytać, nie da się zapisać.",
     "groups": {
       "font": {
-        "name": "Czcionka",
-        "text": "Cały tekst na stronach Twoich kandydatów, w obu motywach."
+        "name": "Czcionki",
+        "text": "Jedna do tytułów i jedna do reszty tekstu na stronach Twoich kandydatów, w obu motywach."
       },
       "rounding": {
         "name": "Zaokrąglenie",
@@ -1989,9 +1989,10 @@
     },
     "save": "Zapisz",
     "saved": "Zapisano",
-    "styleTitle": "Czcionka i rogi",
+    "styleTitle": "Czcionki i rogi",
     "styleText": "Dotyczą zarówno jasnego, jak i ciemnego motywu.",
-    "font": "Czcionka",
+    "headingFont": "Czcionka tytułów",
+    "textFont": "Czcionka tekstu",
     "radius": "Zaokrąglenie kart",
     "buttonRadius": "Zaokrąglenie przycisków",
     "reset": "Resetuj",

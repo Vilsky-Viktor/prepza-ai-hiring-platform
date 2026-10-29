@@ -4,7 +4,8 @@ from companies.constants.brand import (
     HEX_COLOR,
     MAX_RADIUS,
     PREPZA_BUTTON_RADIUS,
-    PREPZA_FONT,
+    PREPZA_HEADING_FONT,
+    PREPZA_TEXT_FONT,
     PREPZA_RADIUS,
     BrandFont,
     Theme,
@@ -61,10 +62,11 @@ class BrandColorSets(BaseModel):
 
 
 class BrandStyle(BaseModel):
-    """A company's font, and its cards' and buttons' corner rounding (px), on its candidates'
-    pages."""
+    """A company's fonts, for titles and for the text, and its cards' and buttons' corner
+    rounding (px), on its candidates' pages."""
 
-    font: BrandFont = PREPZA_FONT
+    heading_font: BrandFont = PREPZA_HEADING_FONT
+    text_font: BrandFont = PREPZA_TEXT_FONT
     radius: int = Field(default=PREPZA_RADIUS, ge=0, le=MAX_RADIUS)
     button_radius: int = Field(default=PREPZA_BUTTON_RADIUS, ge=0, le=MAX_RADIUS)
 

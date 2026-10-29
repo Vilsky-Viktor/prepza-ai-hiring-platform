@@ -1948,8 +1948,8 @@
     "colorsText": "Kandidaten zien deze kleuren als hun interview in het {theme, select, dark {donkere} other {lichte}} thema staat: door hun eigen instelling, of omdat je link, de API of de SDK erom vraagt. Kleuren met te weinig contrast om makkelijk te lezen kunnen niet worden opgeslagen.",
     "groups": {
       "font": {
-        "name": "Lettertype",
-        "text": "Alle tekst op de pagina's van je kandidaten, in beide thema's."
+        "name": "Lettertypen",
+        "text": "Eén voor de titels en één voor de rest van de tekst op de pagina's van je kandidaten, in beide thema's."
       },
       "rounding": {
         "name": "Afronding",
@@ -1989,9 +1989,10 @@
     },
     "save": "Opslaan",
     "saved": "Opgeslagen",
-    "styleTitle": "Lettertype en hoeken",
+    "styleTitle": "Lettertypen en hoeken",
     "styleText": "Deze gelden voor zowel het lichte als het donkere thema.",
-    "font": "Lettertype",
+    "headingFont": "Lettertype van titels",
+    "textFont": "Lettertype van tekst",
     "radius": "Afronding van kaarten",
     "buttonRadius": "Afronding van knoppen",
     "reset": "Herstellen",

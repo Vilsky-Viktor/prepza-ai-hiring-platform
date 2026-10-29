@@ -1948,8 +1948,8 @@
     "colorsText": "Adaylar, mülakatları {theme, select, dark {koyu} other {açık}} temada olduğunda bu renkleri görür: kendi ayarları nedeniyle ya da bağlantınız, API veya SDK bunu istediği için. Kolayca okunamayacak kadar düşük kontrastlı renkler kaydedilemez.",
     "groups": {
       "font": {
-        "name": "Yazı tipi",
-        "text": "Adaylarınızın sayfalarındaki tüm metin, iki temada da."
+        "name": "Yazı tipleri",
+        "text": "Biri başlıklar, biri adaylarınızın sayfalarındaki diğer metin için, iki temada da."
       },
       "rounding": {
         "name": "Yuvarlaklık",
@@ -1989,9 +1989,10 @@
     },
     "save": "Kaydet",
     "saved": "Kaydedildi",
-    "styleTitle": "Yazı tipi ve köşeler",
+    "styleTitle": "Yazı tipleri ve köşeler",
     "styleText": "Bunlar hem açık hem koyu temada geçerlidir.",
-    "font": "Yazı tipi",
+    "headingFont": "Başlık yazı tipi",
+    "textFont": "Metin yazı tipi",
     "radius": "Kart yuvarlaklığı",
     "buttonRadius": "Düğme yuvarlaklığı",
     "reset": "Sıfırla",

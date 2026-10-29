@@ -9,7 +9,7 @@ import { toast } from "sonner"
 import { BrandPreview } from "@/features/company/components/brand-preview"
 import { BrandGroup } from "@/features/company/components/brand-group"
 import {
-  BrandFontField,
+  BrandFontFields,
   BrandRoundingFields,
 } from "@/features/company/components/brand-style-fields"
 import { ColorField } from "@/features/company/components/color-field"
@@ -28,12 +28,12 @@ import type {
 } from "@/types/company"
 
 /** A company's colors on its candidates' pages, a set for each theme, by group, beside a
- * preview of those pages, then their font and corner rounding (the same in both themes). Save
- * keeps what's on screen: the theme's colors, the font and the rounding; it refuses colors whose
+ * preview of those pages, then their fonts and corner rounding (the same in both themes). Save
+ * keeps what's on screen: the theme's colors, the fonts and the rounding; it refuses colors whose
  * text would be hard to read (companies says which). Reset brings back what was last saved;
  * reset to prepza defaults, shown while anything saved isn't prepza's, goes back to prepza's
- * colors in both themes, font and rounding. Each part is a page of brand's in the side menu
- * (`page`): "general" holds the font and rounding (the logo is above it, on the page), each theme
+ * colors in both themes, fonts and rounding. Each part is a page of brand's in the side menu
+ * (`page`): "general" holds the fonts and rounding (the logo is above it, on the page), each theme
  * its colors; save and reset act on what the page shows, and edits elsewhere are kept while
  * switching. A theme whose saved colors a check now refuses shows why above its colors (its
  * candidates see prepza's meanwhile) until colors that pass are saved. */
@@ -48,7 +48,7 @@ export function BrandColorsForm({
 }: {
   companyId: string
   saved: SavedBrandColors | null
-  // The colors the candidates' pages use now (the company's, or prepza's), and their font and
+  // The colors the candidates' pages use now (the company's, or prepza's), and their fonts and
   // rounding.
   current: BrandColorSets
   // Why a theme's saved colors are refused now, by theme (companies says).
@@ -198,14 +198,14 @@ export function BrandColorsForm({
       <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
         <div className="space-y-8">
           {general ? (
-            // The font and the rounding, each a group like the colors' (the same in both themes).
+            // The fonts and the rounding, each a group like the colors' (the same in both themes).
             <ul className={LIST_BOX} data-testid="brand-style">
               <BrandGroup
                 id="font"
                 name={t("groups.font.name")}
                 text={t("groups.font.text")}
               >
-                <BrandFontField look={look} onChange={setLook} />
+                <BrandFontFields look={look} onChange={setLook} />
               </BrandGroup>
               <BrandGroup
                 id="rounding"

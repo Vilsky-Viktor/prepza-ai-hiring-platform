@@ -1948,8 +1948,8 @@
     "colorsText": "I candidati vedono questi colori quando il loro colloquio è in tema {theme, select, dark {scuro} other {chiaro}}: per una loro impostazione o perché lo richiede il tuo link, l'API o l'SDK. I colori con un contrasto troppo basso per leggere facilmente non si possono salvare.",
     "groups": {
       "font": {
-        "name": "Carattere",
-        "text": "Tutto il testo nelle pagine dei tuoi candidati, in entrambi i temi."
+        "name": "Caratteri",
+        "text": "Uno per i titoli e uno per il resto del testo nelle pagine dei tuoi candidati, in entrambi i temi."
       },
       "rounding": {
         "name": "Arrotondamento",
@@ -1989,9 +1989,10 @@
     },
     "save": "Salva",
     "saved": "Salvato",
-    "styleTitle": "Carattere e angoli",
+    "styleTitle": "Caratteri e angoli",
     "styleText": "Valgono sia per il tema chiaro sia per quello scuro.",
-    "font": "Carattere",
+    "headingFont": "Carattere dei titoli",
+    "textFont": "Carattere del testo",
     "radius": "Arrotondamento delle schede",
     "buttonRadius": "Arrotondamento dei pulsanti",
     "reset": "Ripristina",

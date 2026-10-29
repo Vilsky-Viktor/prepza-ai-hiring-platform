@@ -5,10 +5,10 @@ import { useTranslations } from "next-intl"
 import { ChoiceOptions } from "@/features/company/components/choice-options"
 import { Button } from "@/components/ui/button"
 import { brandStyle } from "@/lib/brand"
-import { BRAND_FONTS } from "@/config/brand-fonts"
+import { brandFonts } from "@/config/brand-fonts"
 import type { BrandColors, BrandStyle } from "@/types/company"
 
-/** A candidate's pages in the company's colors, font and rounding, as they're picked: a rule, a question with a
+/** A candidate's pages in the company's colors, fonts and rounding, as they're picked: a rule, a question with a
  * picked answer, the start button and the finish dialog. */
 export function BrandPreview({
   colors,
@@ -26,10 +26,11 @@ export function BrandPreview({
       style={brandStyle(colors, {
         radius: look.radius,
         buttonRadius: look.button_radius,
-        font: BRAND_FONTS[look.font]?.family,
+        ...brandFonts(look),
       })}
       aria-hidden
       inert
+      data-testid="brand-preview"
       className="space-y-5 rounded-2xl border bg-background p-6 font-sans text-foreground"
     >
       <h3 className="font-heading text-2xl font-medium">{t("sampleTitle")}</h3>

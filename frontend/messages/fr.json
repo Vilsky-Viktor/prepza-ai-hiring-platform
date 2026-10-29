@@ -1948,8 +1948,8 @@
     "colorsText": "Les candidats voient ces couleurs quand leur entretien est en thème {theme, select, dark {sombre} other {clair}} : selon leur propre réglage, ou parce que votre lien, l'API ou le SDK le demande. Les couleurs trop peu contrastées pour être lues facilement ne peuvent pas être enregistrées.",
     "groups": {
       "font": {
-        "name": "Police",
-        "text": "Tout le texte des pages de vos candidats, dans les deux thèmes."
+        "name": "Polices",
+        "text": "Une pour les titres et une pour le reste du texte des pages de vos candidats, dans les deux thèmes."
       },
       "rounding": {
         "name": "Arrondi",
@@ -1989,9 +1989,10 @@
     },
     "save": "Enregistrer",
     "saved": "Enregistré",
-    "styleTitle": "Police et coins",
+    "styleTitle": "Polices et coins",
     "styleText": "Ces réglages s'appliquent au thème clair comme au thème sombre.",
-    "font": "Police",
+    "headingFont": "Police des titres",
+    "textFont": "Police du texte",
     "radius": "Arrondi des cartes",
     "buttonRadius": "Arrondi des boutons",
     "reset": "Réinitialiser",

@@ -1948,8 +1948,8 @@
     "colorsText": "Los candidatos ven estos colores cuando su entrevista está en tema {theme, select, dark {oscuro} other {claro}}: por su propia configuración o porque lo pide tu enlace, la API o el SDK. No se pueden guardar colores con tan poco contraste que cueste leerlos.",
     "groups": {
       "font": {
-        "name": "Fuente",
-        "text": "Todo el texto de las páginas de tus candidatos, en ambos temas."
+        "name": "Fuentes",
+        "text": "Una para los títulos y otra para el resto del texto de las páginas de tus candidatos, en ambos temas."
       },
       "rounding": {
         "name": "Redondeo",
@@ -1989,9 +1989,10 @@
     },
     "save": "Guardar",
     "saved": "Guardado",
-    "styleTitle": "Fuente y esquinas",
+    "styleTitle": "Fuentes y esquinas",
     "styleText": "Se aplican tanto al tema claro como al oscuro.",
-    "font": "Fuente",
+    "headingFont": "Fuente de los títulos",
+    "textFont": "Fuente del texto",
     "radius": "Redondeo de tarjetas",
     "buttonRadius": "Redondeo de botones",
     "reset": "Restablecer",

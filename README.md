@@ -16,7 +16,7 @@ Timed knowledge interviews for hiring, made from a job description or a ready-ma
 - **Scorecards and reports:** grades against a pass mark, integrity flags, and PDF reports to download, email or share.
 - **Invites three ways:** by email, from a list or file, or through one shareable link for a job ad.
 - **Teams and verified companies:** owners, admins and viewers; a check next to a verified company's name.
-- **The company's brand:** on its brand tab a company sets its logo, colors (a light and a dark set, refused when any text would be hard to read), font (prepza's Poppins and Geist pair or one of the most used web fonts) and how round cards and buttons are, with a live preview; candidates see the whole interview process in them, without prepza's header or footer, in the theme the link, SDK or API asks for, or their own.
+- **The company's brand:** on its brand tab a company sets its logo, colors (a light and a dark set, refused when any text would be hard to read), fonts, one for titles and one for text (prepza's Poppins and Geist, or any of the most used web fonts) and how round cards and buttons are, with a live preview; candidates see the whole interview process in them, without prepza's header or footer, in the theme the link, SDK or API asks for, or their own.
 - **Questions that fix themselves:** answers, votes and reports flag weak questions, and a verifier fixes them.
 - **ATS integrations:** candidates from Workable, Greenhouse, Teamtailor, Recruitee and Breezy HR are invited automatically, and results go back.
 - **Slack:** a company picks a channel and which of its notifications go there.

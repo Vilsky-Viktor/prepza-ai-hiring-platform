@@ -13,7 +13,8 @@ Contents: [Help chat: a tighter rule for what the information doesn't say (2026-
 [Help chat: the shareable link on the Settings tab (2026-10-23, kept)](#help-chat-the-shareable-link-on-the-settings-tab-2026-10-23-kept) ·
 [Help chat: moved from rounds to the assistant (2026-10-29, kept)](#help-chat-moved-from-rounds-to-the-assistant-2026-10-29-kept) ·
 [Help chat: the page guide's contact card (2026-10-29, kept)](#help-chat-the-page-guides-contact-card-2026-10-29-kept) ·
-[Help chat: allowed domains only for the SDK (2026-10-29, kept)](#help-chat-allowed-domains-only-for-the-sdk-2026-10-29-kept)
+[Help chat: allowed domains only for the SDK (2026-10-29, kept)](#help-chat-allowed-domains-only-for-the-sdk-2026-10-29-kept) ·
+[Help chat: two brand fonts (2026-10-29, kept)](#help-chat-two-brand-fonts-2026-10-29-kept)
 
 ## Help chat: a tighter rule for what the information doesn't say (2026-10-20, reverted)
 
@@ -144,3 +145,13 @@ otherwise) → after (`…_fitted-times-new.json`): passed 100% (95.1–100) →
 up 0.0% → 1.3%; sign-in marker 100% both; the misses are h12's poem not declined (twice) and
 h17's known invented retake limit, neither about timing. Within the noise; kept so the guide
 says what is true. $1.59.
+
+## Help chat: two brand fonts (2026-10-29, kept)
+
+The Brand tab's line now says a company picks two fonts, one for titles and one for the text,
+each from Poppins, Geist and about twenty popular web fonts. `help_chat.py`, 25 × 3, `gpt-6-luna`
+at none, judged by `gpt-6.1-sol` high, against the fitted-times run just before
+(`results/help_chat_fitted-times-new.json`) → after (`…_two-fonts.json`): passed 97.3%
+(90.8–99.3) → 96.0% (88.9–98.6); made up 1.3% → 4.0%; sign-in marker 100% both; every miss is
+h17's known invented retake limit (3 of 3), not about brands. Within the noise; kept so the guide
+says what is true. $1.62.

@@ -90,7 +90,7 @@ FAQ = [
     {
         "key": "candidates",
         "question": "Was sehen Kandidaten?",
-        "answer": "Den Namen und das Logo deines Unternehmens, in den Farben und der Schriftart deines Unternehmens (festgelegt im Tab Marke), vor dem Start, was sie erwartet, dann jeweils eine Frage mit Zeitlimit. Sie sehen nie ihr Ergebnis oder ob eine Antwort richtig war.",
+        "answer": "Den Namen und das Logo deines Unternehmens, in den Farben und Schriftarten deines Unternehmens (festgelegt im Tab Marke), vor dem Start, was sie erwartet, dann jeweils eine Frage mit Zeitlimit. Sie sehen nie ihr Ergebnis oder ob eine Antwort richtig war.",
     },
     {
         "key": "verified",

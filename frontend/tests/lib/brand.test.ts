@@ -24,6 +24,17 @@ it("sets every theme variable the candidate's pages use", () => {
   expect(style["--input"]).toBe("#2c3640")
 })
 
+it("sets the titles' font over the site's Poppins and the text's over its Geist", () => {
+  const look = { radius: 14, buttonRadius: 14 }
+
+  expect(
+    brandStyle(COLORS, { ...look, headingFont: "Lora", textFont: "Inter" })
+  ).toMatchObject({ "--font-poppins": "Lora", "--font-geist": "Inter" })
+  // None given: the site's own stays.
+  expect(brandStyle(COLORS, look)).not.toHaveProperty("--font-poppins")
+  expect(brandStyle(COLORS, look)).not.toHaveProperty("--font-geist")
+})
+
 it("shows the theme the address asks for, else the invite's, else the visitor's", () => {
   expect(pickTheme("dark", "light", "light")).toBe("dark")
   expect(pickTheme("default", "dark", "light")).toBe("light")

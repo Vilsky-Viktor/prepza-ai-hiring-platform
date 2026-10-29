@@ -115,7 +115,12 @@ def test_only_owners_and_admins_set_colors(client, saved):
 def test_prepzas_colors_font_and_rounding_are_public(client):
     assert client.get("/brand/prepza").json() == {
         "colors": PREPZA_COLORS,
-        "style": {"font": "poppins_geist", "radius": 14, "button_radius": 14},
+        "style": {
+            "heading_font": "poppins",
+            "text_font": "geist",
+            "radius": 14,
+            "button_radius": 14,
+        },
     }
 
 
@@ -123,43 +128,44 @@ def test_prepzas_colors_font_and_rounding_are_public(client):
 def styled(monkeypatch, company):  # noqa: F811
     calls = []
 
-    async def fake_set(session, company_id, font, radius, button_radius):
-        calls.append((font, radius, button_radius))
+    async def fake_set(session, company_id, style):
+        calls.append(style)
 
     monkeypatch.setattr(companies, "set_brand_style", fake_set)
 
     return calls
 
 
-def test_an_admin_sets_the_font_and_rounding_within_their_bounds(client, styled):
+def test_an_admin_sets_the_fonts_and_rounding_within_their_bounds(client, styled):
     sign_in("bob")
+    path = f"/companies/{COMPANY_ID}/brand-style"
+    style = {"heading_font": "lora", "text_font": "inter", "radius": 0, "button_radius": 6}
 
-    saved = client.put(
-        f"/companies/{COMPANY_ID}/brand-style",
-        json={"font": "inter", "radius": 0, "button_radius": 6},
-    )
+    saved = client.put(path, json=style)
 
     assert saved.status_code == 200
-    assert (
-        client.put(
-            f"/companies/{COMPANY_ID}/brand-style", json={"font": "comic", "radius": 10}
-        ).status_code
-        == 422
-    )
-    assert (
-        client.put(
-            f"/companies/{COMPANY_ID}/brand-style", json={"font": "inter", "radius": 25}
-        ).status_code
-        == 422
-    )
-    assert styled == [("inter", 0, 6)]
+    # Either font from outside the list, or a rounding out of bounds, is refused.
+    assert client.put(path, json={**style, "heading_font": "comic"}).status_code == 422
+    assert client.put(path, json={**style, "text_font": "poppins_geist"}).status_code == 422
+    assert client.put(path, json={**style, "radius": 25}).status_code == 422
+    assert styled == [style]
 
 
-def test_a_font_no_longer_offered_is_prepzas():
+def test_a_font_no_longer_offered_is_prepzas_in_its_role():
     from types import SimpleNamespace
 
     from companies.helpers.brand import style_of
 
-    old = SimpleNamespace(brand_font="poppins", brand_radius=4, brand_button_radius=None)
+    old = SimpleNamespace(
+        brand_heading_font="comic",
+        brand_text_font="lora",
+        brand_radius=4,
+        brand_button_radius=None,
+    )
 
-    assert style_of(old) == {"font": "poppins_geist", "radius": 4, "button_radius": 14}
+    assert style_of(old) == {
+        "heading_font": "poppins",
+        "text_font": "lora",
+        "radius": 4,
+        "button_radius": 14,
+    }

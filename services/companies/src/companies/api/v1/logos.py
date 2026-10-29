@@ -41,7 +41,7 @@ async def remove_logo(company_id: UUID, user: CurrentUser) -> None:
 
 @router.get("/brand/prepza")
 async def prepza_brand() -> PrepzaBrand:
-    """prepza's own colors (by theme), font and rounding: where a company's start, and what they
+    """prepza's own colors (by theme), fonts and rounding: where a company's start, and what they
     go back to."""
     return PrepzaBrand(colors=BrandColorSets(**PREPZA_COLORS), style=BrandStyle())
 
@@ -62,12 +62,10 @@ async def set_brand_colors(
 
 @router.put("/companies/{company_id}/brand-style")
 async def set_brand_style(company_id: UUID, body: BrandStyle, user: CurrentUser) -> BrandStyle:
-    """Any of the company's owners and admins sets the font and corner rounding of its
-    candidates' pages, the same in both themes."""
+    """Any of the company's owners and admins sets the fonts (titles and text) and corner
+    rounding of its candidates' pages, the same in both themes."""
     company, _ = await require_editor(user, company_id)
-    await company_settings.set_brand_style(
-        company, user.uid, body.font, body.radius, body.button_radius
-    )
+    await company_settings.set_brand_style(company, user.uid, body.model_dump())
 
     return body
 

@@ -1,13 +1,18 @@
 import { BRAND_VARIABLES } from "@/config/brand"
 import type { BrandColors, Theme } from "@/types/company"
 
-/** A company's colors, font and corner rounding (px: cards' and buttons', as drawn: cards are
+/** A company's colors, fonts and corner rounding (px: cards' and buttons', as drawn: cards are
  * rounded-xl, 1.4 times the theme's --radius, which the other corners scale from) as the theme
- * variables they set: on an element's style, everything inside takes them. A font family replaces both
- * of the site's, so it's all the text's; none keeps prepza's pair. */
+ * variables they set: on an element's style, everything inside takes them. The titles' font
+ * replaces the site's Poppins and the text's its Geist; none keeps the site's. */
 export function brandStyle(
   colors: BrandColors,
-  look?: { radius: number; buttonRadius: number; font?: string }
+  look?: {
+    radius: number
+    buttonRadius: number
+    headingFont?: string
+    textFont?: string
+  }
 ): Record<string, string> {
   return {
     ...Object.fromEntries(
@@ -21,9 +26,8 @@ export function brandStyle(
           "--button-radius": `${look.buttonRadius}px`,
         }
       : {}),
-    ...(look?.font
-      ? { "--font-poppins": look.font, "--font-geist": look.font }
-      : {}),
+    ...(look?.headingFont ? { "--font-poppins": look.headingFont } : {}),
+    ...(look?.textFont ? { "--font-geist": look.textFont } : {}),
   }
 }
 

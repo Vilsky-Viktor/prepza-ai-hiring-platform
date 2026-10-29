@@ -4,7 +4,8 @@ from companies.constants.brand import (
     CONTRAST_RULES,
     PREPZA_BUTTON_RADIUS,
     PREPZA_COLORS,
-    PREPZA_FONT,
+    PREPZA_HEADING_FONT,
+    PREPZA_TEXT_FONT,
     PREPZA_RADIUS,
     BrandFont,
     Theme,
@@ -60,14 +61,18 @@ def brand_problems(saved: dict | None, language: str) -> dict[str, str]:
 
 
 def style_of(company) -> dict:
-    """A company's font and corner rounding, prepza's where it has none."""
+    """A company's fonts and corner rounding, prepza's where it has none."""
 
     def saved(value, default):
         return default if company is None or value is None else value
 
-    return {
+    def font(value, default):
         # A font no longer offered is prepza's.
-        "font": font if (font := company and company.brand_font) in set(BrandFont) else PREPZA_FONT,
+        return value if value in set(BrandFont) else default
+
+    return {
+        "heading_font": font(company and company.brand_heading_font, PREPZA_HEADING_FONT),
+        "text_font": font(company and company.brand_text_font, PREPZA_TEXT_FONT),
         "radius": saved(company and company.brand_radius, PREPZA_RADIUS),
         "button_radius": saved(company and company.brand_button_radius, PREPZA_BUTTON_RADIUS),
     }

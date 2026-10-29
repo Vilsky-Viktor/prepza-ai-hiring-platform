@@ -90,7 +90,7 @@ FAQ = [
     {
         "key": "candidates",
         "question": "Ano ang nakikita ng mga aplikante?",
-        "answer": "Ang pangalan at logo ng iyong kumpanya, sa mga kulay at font ng iyong kumpanya (itinakda sa tab nitong Brand), kung ano ang aasahan bago sila magsimula, pagkatapos ay isang timed na tanong sa bawat pagkakataon. Hindi nila kailanman nakikita ang kanilang score o kung tama ang isang sagot.",
+        "answer": "Ang pangalan at logo ng iyong kumpanya, sa mga kulay at mga font ng iyong kumpanya (itinakda sa tab nitong Brand), kung ano ang aasahan bago sila magsimula, pagkatapos ay isang timed na tanong sa bawat pagkakataon. Hindi nila kailanman nakikita ang kanilang score o kung tama ang isang sagot.",
     },
     {
         "key": "verified",

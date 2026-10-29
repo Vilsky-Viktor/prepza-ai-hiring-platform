@@ -1949,7 +1949,7 @@
     "groups": {
       "font": {
         "name": "Phông chữ",
-        "text": "Toàn bộ chữ trên các trang của ứng viên, ở cả hai giao diện."
+        "text": "Một phông cho tiêu đề và một phông cho phần chữ còn lại trên các trang của ứng viên, ở cả hai giao diện."
       },
       "rounding": {
         "name": "Bo góc",
@@ -1991,7 +1991,8 @@
     "saved": "Đã lưu",
     "styleTitle": "Phông chữ và góc",
     "styleText": "Các thiết lập này áp dụng cho cả giao diện sáng và tối.",
-    "font": "Phông chữ",
+    "headingFont": "Phông chữ tiêu đề",
+    "textFont": "Phông chữ nội dung",
     "radius": "Độ bo góc thẻ",
     "buttonRadius": "Độ bo góc nút",
     "reset": "Đặt lại",

@@ -55,7 +55,17 @@ def test_stopping_ai_apps_whose_log_line_fails_keeps_them_allowed(run, monkeypat
 @pytest.mark.parametrize(
     ("change", "args"),
     [
-        (company_settings.set_brand_style, (BrandFont.INTER, 4, 12)),
+        (
+            company_settings.set_brand_style,
+            (
+                {
+                    "heading_font": BrandFont.LORA,
+                    "text_font": BrandFont.INTER,
+                    "radius": 4,
+                    "button_radius": 12,
+                },
+            ),
+        ),
         (company_settings.set_brand_colors, ("dark", None)),
         (company_settings.remove_logo, ()),
     ],
@@ -72,7 +82,7 @@ def test_a_brand_change_whose_log_line_fails_isnt_kept(run, monkeypatch, change,
             await change(company, user.uid, *args)
 
         after = await transaction(companies.get, company.id)
-        columns = ("brand_font", "brand_radius", "brand_colors", "logo_version")
+        columns = ("brand_heading_font", "brand_text_font", "brand_radius", "brand_colors")
 
         return [getattr(row, column) for row in (before, after) for column in columns]
 

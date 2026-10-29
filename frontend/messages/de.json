@@ -1948,8 +1948,8 @@
     "colorsText": "Kandidaten sehen diese Farben, wenn ihr Interview im {theme, select, dark {dunklen} other {hellen}} Design angezeigt wird: durch ihre eigene Einstellung oder weil dein Link, die API oder das SDK es vorgibt. Farben mit zu wenig Kontrast, um gut lesbar zu sein, lassen sich nicht speichern.",
     "groups": {
       "font": {
-        "name": "Schriftart",
-        "text": "Der gesamte Text auf den Seiten deiner Kandidaten, in beiden Designs."
+        "name": "Schriftarten",
+        "text": "Eine für die Titel und eine für den übrigen Text auf den Seiten deiner Kandidaten, in beiden Designs."
       },
       "rounding": {
         "name": "Rundung",
@@ -1989,9 +1989,10 @@
     },
     "save": "Speichern",
     "saved": "Gespeichert",
-    "styleTitle": "Schriftart und Ecken",
+    "styleTitle": "Schriftarten und Ecken",
     "styleText": "Diese gelten für das helle und das dunkle Design.",
-    "font": "Schriftart",
+    "headingFont": "Schriftart der Titel",
+    "textFont": "Schriftart des Texts",
     "radius": "Kartenrundung",
     "buttonRadius": "Buttonrundung",
     "reset": "Zurücksetzen",

@@ -13,31 +13,33 @@ const MAX_RADIUS = 24
 
 type Props = { look: BrandStyle; onChange: (look: BrandStyle) => void }
 
-/** The font of all the text on the company's candidates' pages, the same in both themes. */
-export function BrandFontField({ look, onChange }: Props) {
+/** The titles' and the text's fonts on the company's candidates' pages, the same in both
+ * themes, each picked from the same fonts, by name. */
+export function BrandFontFields({ look, onChange }: Props) {
   const t = useTranslations("brand")
+  const options = Object.entries(BRAND_FONTS)
+    .map(([value, font]) => ({
+      value,
+      label: font.label,
+      fontFamily: font.family,
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label))
 
   return (
-    <PillSelect
-      label={t("font")}
-      value={look.font}
-      options={Object.entries(BRAND_FONTS)
-        .map(([value, font]) => ({
-          value,
-          label: font.label,
-          fontFamily: font.family ?? "var(--font-poppins)",
-        }))
-        .sort((a, b) =>
-          a.value === "poppins_geist" || b.value === "poppins_geist"
-            ? Number(b.value === "poppins_geist") -
-              Number(a.value === "poppins_geist")
-            : a.label.localeCompare(b.label)
-        )}
-      onChange={(font) =>
-        onChange({ ...look, font: font as BrandStyle["font"] })
-      }
-      pillClassName="w-72 justify-between"
-    />
+    <>
+      {(["heading_font", "text_font"] as const).map((key) => (
+        <PillSelect
+          key={key}
+          label={t(key === "heading_font" ? "headingFont" : "textFont")}
+          value={look[key]}
+          options={options}
+          onChange={(font) =>
+            onChange({ ...look, [key]: font as BrandStyle[typeof key] })
+          }
+          pillClassName="w-72 justify-between"
+        />
+      ))}
+    </>
   )
 }
 

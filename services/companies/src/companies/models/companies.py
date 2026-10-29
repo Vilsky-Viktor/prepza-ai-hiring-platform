@@ -32,7 +32,10 @@ class Company(Base):
     # Names are unique across prepza, ignoring case (migration 0012).
     __table_args__ = (
         Index("uq_companies_lower_name", text("lower(name)"), unique=True),
-        CheckConstraint(one_of("brand_font", BrandFont), name="ck_companies_brand_font"),
+        CheckConstraint(
+            one_of("brand_heading_font", BrandFont), name="ck_companies_brand_heading_font"
+        ),
+        CheckConstraint(one_of("brand_text_font", BrandFont), name="ck_companies_brand_text_font"),
         CheckConstraint(
             one_of("verification_status", VerificationStatus),
             name="ck_companies_verification_status",
@@ -54,8 +57,10 @@ class Company(Base):
     # Its own colors on candidates' pages, by theme ({"light": {...}, "dark": {...}}, each with
     # constants/brand.py's keys as "#rrggbb"); a theme missing: prepza's.
     brand_colors: Mapped[dict | None] = mapped_column(JSONB)
-    # Its font, and its cards' and buttons' corner rounding (px), on those pages; None: prepza's.
-    brand_font: Mapped[str | None] = mapped_column(String(32))
+    # Its titles' and text's fonts, and its cards' and buttons' corner rounding (px), on those
+    # pages; None: prepza's.
+    brand_heading_font: Mapped[str | None] = mapped_column(String(32))
+    brand_text_font: Mapped[str | None] = mapped_column(String(32))
     brand_radius: Mapped[int | None] = mapped_column(SmallInteger)
     brand_button_radius: Mapped[int | None] = mapped_column(SmallInteger)
     # Verification: the website's domain an owner or admin gave, and the same domain once a

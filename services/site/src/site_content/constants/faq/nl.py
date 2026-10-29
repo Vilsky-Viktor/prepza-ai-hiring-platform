@@ -90,7 +90,7 @@ FAQ = [
     {
         "key": "candidates",
         "question": "Wat zien kandidaten?",
-        "answer": "De naam en het logo van je bedrijf, in de kleuren en het lettertype van je bedrijf (ingesteld op het tabblad Merk), wat ze kunnen verwachten voordat ze beginnen, en daarna één vraag met tijdslimiet tegelijk. Ze zien nooit hun score of of een antwoord goed was.",
+        "answer": "De naam en het logo van je bedrijf, in de kleuren en lettertypen van je bedrijf (ingesteld op het tabblad Merk), wat ze kunnen verwachten voordat ze beginnen, en daarna één vraag met tijdslimiet tegelijk. Ze zien nooit hun score of of een antwoord goed was.",
     },
     {
         "key": "verified",

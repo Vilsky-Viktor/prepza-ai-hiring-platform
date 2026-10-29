@@ -997,7 +997,7 @@ export interface paths {
     }
     /**
      * Prepza Brand
-     * @description prepza's own colors (by theme), font and rounding: where a company's start, and what they
+     * @description prepza's own colors (by theme), fonts and rounding: where a company's start, and what they
      *     go back to.
      */
     get: operations["prepza_brand_brand_prepza_get"]
@@ -1041,8 +1041,8 @@ export interface paths {
     get?: never
     /**
      * Set Brand Style
-     * @description Any of the company's owners and admins sets the font and corner rounding of its
-     *     candidates' pages, the same in both themes.
+     * @description Any of the company's owners and admins sets the fonts (titles and text) and corner
+     *     rounding of its candidates' pages, the same in both themes.
      */
     put: operations["set_brand_style_companies__company_id__brand_style_put"]
     post?: never
@@ -2463,7 +2463,8 @@ export interface components {
      * @enum {string}
      */
     BrandFont:
-      | "poppins_geist"
+      | "poppins"
+      | "geist"
       | "inter"
       | "roboto"
       | "open_sans"
@@ -2504,12 +2505,14 @@ export interface components {
     }
     /**
      * BrandStyle
-     * @description A company's font, and its cards' and buttons' corner rounding (px), on its candidates'
-     *     pages.
+     * @description A company's fonts, for titles and for the text, and its cards' and buttons' corner
+     *     rounding (px), on its candidates' pages.
      */
     BrandStyle: {
-      /** @default poppins_geist */
-      font: components["schemas"]["BrandFont"]
+      /** @default poppins */
+      heading_font: components["schemas"]["BrandFont"]
+      /** @default geist */
+      text_font: components["schemas"]["BrandFont"]
       /**
        * Radius
        * @default 14

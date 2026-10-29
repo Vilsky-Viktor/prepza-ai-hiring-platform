@@ -10,10 +10,10 @@ import { ownerEmail, throwawayEmail } from "../helpers/users"
 type Saved = {
   // None until colors are saved.
   brand_colors: { light: { background: string } | null; dark: unknown } | null
-  brand_style: { font: string; radius: number; button_radius: number }
+  brand_style: { heading_font: string; text_font: string; radius: number; button_radius: number }
 }
 
-// An owner picks the company's colors on its brand pages (general: the font and rounding; then
+// An owner picks the company's colors on its brand pages (general: the fonts and rounding; then
 // each theme's colors), sees them in the preview, can't save unreadable ones, and its
 // candidate's invitation shows them.
 test("an owner sets the company's colors and its candidates see them", async ({ signInAs }) => {
@@ -56,7 +56,7 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
     expect(menu.locator('a[aria-current="page"]:visible')).toHaveAttribute("href", `${brand}${path}`)
 
   await owner.setViewportSize({ width: 1280, height: 1300 })
-  // General first: the logo, the font and the rounding, no colors.
+  // General first: the logo, the fonts and the rounding, no colors.
   await visit(owner, brand)
   await open("")
   await expect(style).toBeVisible()
@@ -90,15 +90,21 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
 
       return [current.brand_colors?.light?.background, current.brand_style]
     })
-    // The font and rounding, untouched on general, stay prepza's.
+    // The fonts and rounding, untouched on general, stay prepza's.
     .toEqual(["#101418", prepzaStyle])
 
-  // The font and the cards' and buttons' rounding on general, the same in both themes.
+  // The titles' and the text's fonts and the cards' and buttons' rounding on general, the same in
+  // both themes; the preview sets its title and its text in them.
   await subPage("").click()
-  await style.getByRole("button").click()
-  await expect(owner.getByRole("menuitemradio", { name: "Inter" })).toBeVisible()
+  await style.getByRole("button").first().click()
+  await expect(owner.getByRole("menuitemradio", { name: "Lora" })).toBeVisible()
   await shot(owner, "fonts")
+  await owner.getByRole("menuitemradio", { name: "Lora" }).click()
+  await style.getByRole("button").nth(1).click()
   await owner.getByRole("menuitemradio", { name: "Inter" }).click()
+  const preview = owner.getByTestId("brand-preview")
+  await expect(preview.locator("h3")).toHaveCSS("font-family", /Lora/)
+  await expect(preview.locator("p").last()).toHaveCSS("font-family", /Inter/)
   await style.getByRole("spinbutton").first().fill("4")
   await style.getByRole("spinbutton").last().fill("8")
   await shot(owner, "picked")
@@ -108,7 +114,7 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   await save.click()
   await expect
     .poll(async () => (await saved()).brand_style)
-    .toEqual({ font: "inter", radius: 4, button_radius: 8 })
+    .toEqual({ heading_font: "lora", text_font: "inter", radius: 4, button_radius: 8 })
   // Saved colors of its own: the way back to prepza's shows, reset waits for a change.
   await expect(resetToPrepza).toBeVisible()
   await expect(reset).toBeDisabled()
@@ -116,7 +122,7 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   await shot(owner, "saved-phone")
   await owner.setViewportSize({ width: 1280, height: 1300 })
 
-  // Back to prepza's defaults and saved again: colors, font and rounding.
+  // Back to prepza's defaults and saved again: colors, fonts and rounding.
   await resetToPrepza.click()
   await expect
     .poll(async () => {

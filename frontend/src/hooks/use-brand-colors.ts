@@ -5,10 +5,10 @@ import { useTheme } from "next-themes"
 import { useEffect } from "react"
 
 import { brandStyle, pickTheme } from "@/lib/brand"
-import { BRAND_FONTS } from "@/config/brand-fonts"
+import { brandFonts } from "@/config/brand-fonts"
 import type { BrandColorSets, BrandStyle, Theme } from "@/types/company"
 
-/** A company's colors, font and corner rounding over the whole page while it's open (a candidate's invitation, questions
+/** A company's colors, fonts and corner rounding over the whole page while it's open (a candidate's invitation, questions
  * and finished page), whatever the visitor's own theme: the set of the theme the address asks
  * for (`?theme=light`, `dark`, or `default`: the visitor's own; the SDK passes it so), else the
  * one its invite asked for through the API, else the visitor's own. prepza's again after. */
@@ -27,7 +27,7 @@ export function useBrandColors(
   const colors = sets?.[theme]
   const radius = look?.radius
   const buttonRadius = look?.button_radius
-  const font = look ? BRAND_FONTS[look.font]?.family : undefined
+  const { headingFont, textFont } = look ? brandFonts(look) : {}
 
   useEffect(() => {
     if (!colors) {
@@ -40,7 +40,7 @@ export function useBrandColors(
         colors,
         radius === undefined || buttonRadius === undefined
           ? undefined
-          : { radius, buttonRadius, font }
+          : { radius, buttonRadius, headingFont, textFont }
       ),
       "color-scheme": theme,
     }
@@ -54,7 +54,7 @@ export function useBrandColors(
         root.style.removeProperty(property)
       }
     }
-  }, [colors, theme, radius, buttonRadius, font])
+  }, [colors, theme, radius, buttonRadius, headingFont, textFont])
 
   return theme
 }

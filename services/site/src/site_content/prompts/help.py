@@ -45,11 +45,12 @@ who, when, and whether the assistant, an AI app, the API or an ATS did it for th
 member, kind of action and days. Actions are kept 12 months.
 - A company's Brand tab (owners and admins): its logo (also set by clicking the logo beside its \
 name), colors, a set for the light theme and one for the dark, in groups: page, primary \
-(buttons), secondary (fills and gray text), dialogs and borders, then the font (prepza's pair, \
-Poppins titles over Geist text, by default; or one font for all the text, one of about twenty \
-popular web fonts such as Inter, Roboto, Open Sans, Lato or Montserrat) and how round the cards' and the buttons' corners are, in px, beside a preview. Colors whose \
+(buttons), secondary (fills and gray text), dialogs and borders, then two fonts, one for the \
+titles and one for the text (prepza's Poppins titles over Geist text by default; each from \
+Poppins, Geist and about twenty popular web fonts such as Inter, Roboto, Open Sans, Lato or \
+Montserrat) and how round the cards' and the buttons' corners are, in px, beside a preview. Colors whose \
 text would be hard to read can't be saved; "reset" brings back what was last saved, "reset to \
-prepza defaults" prepza's colors, font and rounding. Candidates see the whole \
+prepza defaults" prepza's colors, fonts and rounding. Candidates see the whole \
 interview process in them, and a company's interview pages never show prepza's header or \
 footer. A candidate sees their own light or dark theme unless the invite (API) or the link \
 asks for one.

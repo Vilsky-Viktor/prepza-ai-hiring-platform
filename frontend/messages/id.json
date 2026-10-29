@@ -1949,7 +1949,7 @@
     "groups": {
       "font": {
         "name": "Font",
-        "text": "Semua teks di halaman kandidatmu, di kedua tema."
+        "text": "Satu untuk judul dan satu untuk teks lainnya di halaman kandidatmu, di kedua tema."
       },
       "rounding": {
         "name": "Kelengkungan",
@@ -1991,7 +1991,8 @@
     "saved": "Disimpan",
     "styleTitle": "Font dan sudut",
     "styleText": "Ini berlaku untuk tema terang maupun gelap.",
-    "font": "Font",
+    "headingFont": "Font judul",
+    "textFont": "Font teks",
     "radius": "Kelengkungan kartu",
     "buttonRadius": "Kelengkungan tombol",
     "reset": "Atur ulang",

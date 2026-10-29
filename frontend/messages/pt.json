@@ -1948,8 +1948,8 @@
     "colorsText": "Os candidatos veem estas cores quando a entrevista deles está no tema {theme, select, dark {escuro} other {claro}}: pela própria configuração ou porque o seu link, a API ou o SDK pede isso. Cores com contraste baixo demais para ler com facilidade não podem ser salvas.",
     "groups": {
       "font": {
-        "name": "Fonte",
-        "text": "Todo o texto das páginas dos seus candidatos, nos dois temas."
+        "name": "Fontes",
+        "text": "Uma para os títulos e outra para o resto do texto das páginas dos seus candidatos, nos dois temas."
       },
       "rounding": {
         "name": "Arredondamento",
@@ -1989,9 +1989,10 @@
     },
     "save": "Salvar",
     "saved": "Salvo",
-    "styleTitle": "Fonte e cantos",
+    "styleTitle": "Fontes e cantos",
     "styleText": "Valem tanto para o tema claro quanto para o escuro.",
-    "font": "Fonte",
+    "headingFont": "Fonte dos títulos",
+    "textFont": "Fonte do texto",
     "radius": "Arredondamento dos cartões",
     "buttonRadius": "Arredondamento dos botões",
     "reset": "Redefinir",

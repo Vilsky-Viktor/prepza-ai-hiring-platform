@@ -1948,8 +1948,8 @@
     "colorsText": "Candidates see these colors when their interview is {theme, select, dark {dark} other {light}}: by their own setting, or because your link, the API or the SDK asks for it. Colors with too little contrast to read easily can't be saved.",
     "groups": {
       "font": {
-        "name": "Font",
-        "text": "All the text on your candidates' pages, in both themes."
+        "name": "Fonts",
+        "text": "One for the titles and one for the rest of the text on your candidates' pages, in both themes."
       },
       "rounding": {
         "name": "Rounding",
@@ -1989,9 +1989,10 @@
     },
     "save": "Save",
     "saved": "Saved",
-    "styleTitle": "Font and corners",
+    "styleTitle": "Fonts and corners",
     "styleText": "These apply to both the light and the dark theme.",
-    "font": "Font",
+    "headingFont": "Titles font",
+    "textFont": "Text font",
     "radius": "Card rounding",
     "buttonRadius": "Button rounding",
     "reset": "Reset",

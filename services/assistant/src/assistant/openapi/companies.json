@@ -3386,7 +3386,7 @@
      "logos"
     ],
     "summary": "Prepza Brand",
-    "description": "prepza's own colors (by theme), font and rounding: where a company's start, and what they\ngo back to.",
+    "description": "prepza's own colors (by theme), fonts and rounding: where a company's start, and what they\ngo back to.",
     "operationId": "prepza_brand_brand_prepza_get",
     "responses": {
      "200": {
@@ -3485,7 +3485,7 @@
      "logos"
     ],
     "summary": "Set Brand Style",
-    "description": "Any of the company's owners and admins sets the font and corner rounding of its\ncandidates' pages, the same in both themes.",
+    "description": "Any of the company's owners and admins sets the fonts (titles and text) and corner\nrounding of its candidates' pages, the same in both themes.",
     "operationId": "set_brand_style_companies__company_id__brand_style_put",
     "security": [
      {
@@ -7637,7 +7637,8 @@
    "BrandFont": {
     "type": "string",
     "enum": [
-     "poppins_geist",
+     "poppins",
+     "geist",
      "inter",
      "roboto",
      "open_sans",
@@ -7733,9 +7734,13 @@
    },
    "BrandStyle": {
     "properties": {
-     "font": {
+     "heading_font": {
       "$ref": "#/components/schemas/BrandFont",
-      "default": "poppins_geist"
+      "default": "poppins"
+     },
+     "text_font": {
+      "$ref": "#/components/schemas/BrandFont",
+      "default": "geist"
      },
      "radius": {
       "type": "integer",
@@ -7754,7 +7759,7 @@
     },
     "type": "object",
     "title": "BrandStyle",
-    "description": "A company's font, and its cards' and buttons' corner rounding (px), on its candidates'\npages."
+    "description": "A company's fonts, for titles and for the text, and its cards' and buttons' corner\nrounding (px), on its candidates' pages."
    },
    "BulkInviteIn": {
     "properties": {

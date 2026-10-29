@@ -1949,7 +1949,7 @@
     "groups": {
       "font": {
         "name": "字体",
-        "text": "候选人页面上的所有文字，两种主题通用。"
+        "text": "一种用于标题，一种用于候选人页面上的其余文字，两种主题通用。"
       },
       "rounding": {
         "name": "圆角",
@@ -1991,7 +1991,8 @@
     "saved": "已保存",
     "styleTitle": "字体和圆角",
     "styleText": "这些设置同时适用于浅色和深色主题。",
-    "font": "字体",
+    "headingFont": "标题字体",
+    "textFont": "正文字体",
     "radius": "卡片圆角",
     "buttonRadius": "按钮圆角",
     "reset": "重置",

@@ -90,7 +90,7 @@ FAQ = [
     {
         "key": "candidates",
         "question": "Cosa vedono i candidati?",
-        "answer": "Il nome e il logo della tua azienda, con i colori e il carattere della tua azienda (impostati nella sua scheda Brand), cosa aspettarsi prima di iniziare, poi una domanda a tempo alla volta. Non vedono mai il punteggio né se una risposta era giusta.",
+        "answer": "Il nome e il logo della tua azienda, con i colori e i caratteri della tua azienda (impostati nella sua scheda Brand), cosa aspettarsi prima di iniziare, poi una domanda a tempo alla volta. Non vedono mai il punteggio né se una risposta era giusta.",
     },
     {
         "key": "verified",
