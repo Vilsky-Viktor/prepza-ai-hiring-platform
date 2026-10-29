@@ -13,6 +13,9 @@ With --confirm, the blind confirmation a moved key needs (no option marked, a sh
 on each question once: it must name the question's real key.
     evals/run.sh generation verify_test.py --confirm gpt-6.1-sol/medium
 
+Flagged questions whose wrong key a replacement moved (datasets/flagged_traps.json) join the
+traps, each with its right key, when there are any.
+
 With --multi, the same on datasets/multi_key_traps.json and the multi-answer questions of
 datasets/multi_questions.json (a key is a set of options); questions the judge's review of that
 dataset found flawed (results/reviews_datasets_multi_questions_*.json) are left out:
@@ -80,6 +83,26 @@ def cases(multi: bool) -> list[dict]:
         right = correct_options(original)
         found.append({"kind": "trap", "item": trap, "right": right})
         found.append({"kind": "real key", "item": original, "right": right})
+
+    return found
+
+
+def flagged_cases(multi: bool) -> list[dict]:
+    """Flagged questions whose wrong key a replacement moved (datasets/flagged_traps.json, from
+    export_flagged.py), of the kind asked for, and the same question with its right key."""
+    path = DATASETS / "flagged_traps.json"
+    found = []
+
+    for item in load(path)["items"] if path.exists() else []:
+        right = set(item.get("right_key", []))
+
+        if not right or (len(right) > 1) != multi:
+            continue
+
+        options = [{**option, "correct": option["answer"] in right} for option in item["options"]]
+        real = {**item, "id": f"{item['id']}-real", "options": options}
+        found.append({"kind": "flagged trap", "item": item, "right": right})
+        found.append({"kind": "flagged real key", "item": real, "right": right})
 
     return found
 
@@ -182,11 +205,11 @@ def report(setting: str, results: list[dict]) -> dict:
 
 
 async def main(settings: list[str], multi: bool, confirm: bool) -> None:
-    found = cases(multi)
+    found = cases(multi) + flagged_cases(multi)
 
     if confirm:
         # The confirmation sees no mark, so a trap and its question read the same: one each.
-        found = [{**case, "kind": "confirm"} for case in found if case["kind"] == "real key"]
+        found = [{**case, "kind": "confirm"} for case in found if case["kind"].endswith("real key")]
         print(f"{len(found)} blind confirmations, one a question")
     else:
         print(f"{len(found)} checks: {len(found) // 2} traps and the same questions with their key")

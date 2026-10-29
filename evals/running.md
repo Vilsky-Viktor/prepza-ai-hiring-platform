@@ -39,6 +39,11 @@ evals/run.sh generation regenerate_test.py --label x
 evals/run.sh generation regenerate_test.py --label x --mode new-options
 evals/run.sh generation review_questions.py results/regenerated_x.json
 
+# Flagged templates' questions as traps (datasets/flagged_traps.json, free, in library's container);
+# the verifier and the judge read them with the planted traps
+evals/run.sh library export_flagged.py
+evals/run.sh generation review_questions.py datasets/flagged_traps.json
+
 # Verifier settings, on the traps and the same questions with their real key; --confirm for the
 # blind confirmation a moved key needs
 evals/run.sh generation verify_test.py gpt-6.1-sol/low gpt-6.1-sol/medium

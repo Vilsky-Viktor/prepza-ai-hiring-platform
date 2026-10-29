@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from library.models.feedback import QuestionRating, QuestionReport
 from library.models.quality import QuestionRevision, QuestionStats
-from library.models.sets import Question
+from library.models.sets import Question, QuestionSet, Topic
 
 
 async def flagged_since(
@@ -76,3 +76,37 @@ async def revisions_of(
     )
 
     return list(await session.scalars(query))
+
+
+async def flagged_templates(
+    session: AsyncSession,
+) -> list[tuple[Question, QuestionStats, Topic, QuestionSet]]:
+    """Platform templates' questions flagged now, with their topic and template, for the evals'
+    traps (evals/scripts/export_flagged.py); never a company's question."""
+    query = (
+        select(Question, QuestionStats, Topic, QuestionSet)
+        .join(QuestionStats, QuestionStats.question_id == Question.id)
+        .join(Topic, Topic.id == Question.topic_id)
+        .join(QuestionSet, QuestionSet.id == Topic.set_id)
+        .where(QuestionStats.flag.is_not(None), QuestionSet.company_id.is_(None))
+        .order_by(Question.id)
+    )
+
+    return [tuple(row) for row in await session.execute(query)]
+
+
+async def replaced_templates(
+    session: AsyncSession,
+) -> list[tuple[QuestionRevision, Question, Topic, QuestionSet]]:
+    """Platform templates' questions replaced while flagged, as they were (the revision), with
+    the question now, its topic and template, for the evals' traps; never a company's question."""
+    query = (
+        select(QuestionRevision, Question, Topic, QuestionSet)
+        .join(Question, Question.id == QuestionRevision.question_id)
+        .join(Topic, Topic.id == Question.topic_id)
+        .join(QuestionSet, QuestionSet.id == Topic.set_id)
+        .where(QuestionRevision.flag.is_not(None), QuestionSet.company_id.is_(None))
+        .order_by(QuestionRevision.replaced_at, QuestionRevision.id)
+    )
+
+    return [tuple(row) for row in await session.execute(query)]

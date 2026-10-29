@@ -57,13 +57,13 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | | Price and time per check | Measured | ≤ $0.0001, ≤ 3 s |
 | **Code-language tags** | Examples tagged with the notation expected (`code_languages.json`: look-alike notations, plain-text traps, several files) | Code | ≥ 98% (regression: near 100%) |
 | | Price and time per batch of 20 | Measured | ≤ $0.01, ≤ 15 s |
-| **Verifier** | Planted wrong keys fixed, real keys kept, and the blind confirmation naming the real key (`verify_test.py`, `--confirm`) | Code | 100% (regression) |
+| **Verifier** | Planted wrong keys fixed, real keys kept, and the blind confirmation naming the real key (`verify_test.py`, `--confirm`); flagged templates' questions whose wrong key a replacement moved join them (`flagged_traps.json`) | Code | 100% (regression) |
 | | Price and time per check | Measured | ≤ $0.002, ≤ 10 s |
 | **Fitted question times** (rounds' estimate of each question's time, code only) | How far each question's time lands from the time the judge's estimates would give it, with fitted times against equal ones, over draws of 10 at 60 s (`question_times.py`, `question_times.json`) | Code against the judge's seconds | Fitted closer than equal, overall and on each kind given fitted times; a kind that isn't gets weight 1 |
 | **Integrity signals** (rounds' answer patterns, code only) | Honest made-up candidates flagged (typical, noisy, weak, strong) / relaying ones caught (every question to an AI, half of them, the ones hard for them), at 10, 20 and 30 questions (`integrity_signals.py`, `integrity_population.py`, the AI's answers from `ai_picks.json`) | Code | Each signal ≤ 1% of every honest population; caught: report |
 | **AI-trap questions** (dropped 2026-10-29: no traps the planned way) | Questions where every pick model gives the same wrong answer and the judge finds the key right; how often a relay's AI then gives it (`ai_picks.py`) | Code | Report |
 | **Judge reliability** | Planted broken translations it fails (a sentence left out, a number changed) | `translations_test.py` | 100% |
-| | Planted wrong keys it catches (`key_traps.json`, `multi_key_traps.json`) | `review_questions.py` | 100% |
+| | Planted wrong keys it catches (`key_traps.json`, `multi_key_traps.json`); flagged templates' questions whose problem it finds (`flagged_traps.json`: a moved wrong key, distractors ≤ 2 for weak options, clarity or level fit ≤ 3 or an arguable key for a rewrite) | `review_questions.py` | 100% / report |
 | | Agreement with the reference verdicts (`reviews.json`): right keys kept, wrong keys found, Cohen's kappa | `review_questions.py --compare-reference` | ≥ 95%, every wrong key found |
 
 Questions also report their average length and the share that show an example (code, a query,
@@ -104,9 +104,9 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Correct option the longest | 11% (multi: 57% against 75% by chance) | `questions.json` | 2026-10-04 |
 | Price and time per 100-question topic | $0.21–0.25, 49–61 s | full interviews | 2026-10-04 |
 | Other languages: keys / clarity / relevance / distractors | 100% (72) / 4.99 / 3.67 / 2.25 | `language_inputs.json` | 2026-10-22 |
-| Verifier: traps fixed / real keys kept | 60/60, 60/60; multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json` | 2026-10-22 |
+| Verifier: traps fixed / real keys kept | 60/60, 60/60 (with the flagged traps, none exported yet: 60/60, 60/60, $0.0010 a check, 2026-10-29); multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json`, `flagged_traps.json` (none yet) | 2026-10-22 |
 | Blind confirmation before a key moves: real key named | 60/60; multi 263/263; $0.0009–0.0010 a check | the same questions | 2026-10-22 |
-| Judge: traps caught / reference agreement | 60/60, multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
+| Judge: traps caught / reference agreement | 60/60 (again 2026-10-29, $0.28; flagged traps none yet), multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
 | Assistant page context: general correct with / without; page checks; who-are-you answers | 123/153 / 134/153; 25/27; 24/24 | `assistant_questions.json`, 3 repeats | 2026-10-22 |
 | Assistant guides: guide questions correct; read and linked | 39/40; 40/40, 38/40 | `assistant_guides.json`, 2 repeats | 2026-10-22 |
 | Assistant handover when a call fails: contact page linked after a failure / without one / no link in the text | 100% (75.7–100) / 0 of 4 / 100%; $0.0023 a turn | `assistant_handover.json`, 2 repeats | 2026-10-22 |

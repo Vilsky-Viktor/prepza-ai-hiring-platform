@@ -9,6 +9,7 @@ from sqlalchemy import update
 from library.core.db import Session
 from library.models.quality import QuestionRevision
 from library.repositories import answer_stats, feedback, preparations, quality
+from library.repositories import quality_signals as quality_signals_repository
 from library.services import quality_signals
 from library.services import questions as question_service
 from tests.integration.factories import interview
@@ -134,3 +135,38 @@ def test_a_revision_kept_before_flags_were_kept_gets_the_flag_its_feedback_gives
     question, signals = run(scenario())
 
     assert mine(signals, question.text)[question.text].flag == "rewrite"
+
+
+def test_the_evals_export_reads_templates_flagged_questions_and_never_a_companys(run):
+    title = f"Export {uuid.uuid4()}"
+
+    async def scenario():
+        template = await interview(title, template=True, questions=40)
+        flagged, replaced = (
+            (await transaction(preparations.get_content, template)).topics[0].questions[:2]
+        )
+        _, [company_question] = await questions(title, 1)
+
+        for question, flag in ((flagged, "weak_options"), (replaced, "wrong_key")):
+            await transaction(quality.save_flag, question.id, flag)
+
+        await transaction(quality.save_flag, company_question.id, "weak_options")
+        moved = [{"answer": "right", "correct": False}, {"answer": "wrong", "correct": True}]
+        await question_service.replace(replaced.id, replaced.text, moved)
+        now = await transaction(quality_signals_repository.flagged_templates)
+        before = await transaction(quality_signals_repository.replaced_templates)
+
+        return flagged, replaced, company_question, now, before
+
+    flagged, replaced, company_question, now, before = run(scenario())
+
+    found = {
+        question.id: (stats.flag, topic.title, template.title)
+        for question, stats, topic, template in now
+    }
+    assert found.get(flagged.id) == ("weak_options", "Python", title)
+    assert company_question.id not in found
+    [revision] = [row for row in before if row[1].id == replaced.id]
+    assert (revision[0].text, revision[0].flag) == (replaced.text, "wrong_key")
+    assert [option["correct"] for option in revision[0].options] == [True, False]
+    assert all(row[1].id != company_question.id for row in before)

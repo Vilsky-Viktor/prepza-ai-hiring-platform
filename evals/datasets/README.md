@@ -17,7 +17,8 @@ when they were last built, one section each. Best practices behind them:
   general questions, page questions and named-vs-page edge cases.
 - **Every real AI failure adds a case**, rewritten as a made-up one that fails the same way
   (a reported wrong key, a thumbs-down answer in Langfuse, a support complaint): never the
-  real text. Hand-made assistant cases go into `assistant_questions.json` or
+  real text. The one exception is platform templates' own flagged questions, which are ours
+  and go in word for word (`flagged_traps.json`). Hand-made assistant cases go into `assistant_questions.json` or
   `assistant_guides.json` with what a right answer does, help chat cases into
   `help_questions.json`; a question failure (a wrong key, an arguable one) becomes a made-up
   question that fails the same way, with its right key, in the `key_traps.json` format, in a
@@ -207,6 +208,20 @@ a giveaway long key, an only-negative distractor, a missing deciding condition, 
 the same, stacked negatives, an absurd option. For each, one question that shows it and one clean
 question beside it (`shows`). The traps of the eval gate's failure judge (`pattern_gate.py`), which
 must get all 12 right before its counts are used.
+
+## `flagged_traps.json` (`export_flagged.py` in library's container, free; none yet)
+
+Platform templates' flagged questions, word for word as they were when flagged (the version a
+replacement took over, or the question now while it's still flagged), as traps for the verifier
+(`verify_test.py`) and the judge (`review_questions.py datasets/flagged_traps.json`). What each is
+a trap for (`flagged_labels.py`): a wrong key only once a replacement with the same options moved
+it (`expected_key_correct` false, `right_key`), since a flag alone may be wrong; weak options and
+rewrites by their flag. A question already in the file stays as it is; new ones are added. The
+evals' own throwaway templates are left out. Companies' questions never: they may join only after
+the shared question bank's filter (no company, product, person or place details) exists, and never
+from an interview kept out of the bank (`company_questions()` in the script is where they'd
+come in). On 2026-10-29 no template question was flagged locally beyond the throwaway ones, so
+the file isn't there yet.
 
 ## `titles.json` (by hand, 2026-10-22)
 

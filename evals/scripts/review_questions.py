@@ -2,6 +2,7 @@
 
     evals/run.sh generation review_questions.py datasets/questions.json [--sample 40]
     evals/run.sh generation review_questions.py datasets/key_traps.json        # catch rate
+    evals/run.sh generation review_questions.py datasets/flagged_traps.json    # flagged ones
     evals/run.sh generation review_questions.py datasets/multi_questions.json  # multi-answer
     evals/run.sh generation review_questions.py results/test_x.json --sample 40  # a new test
     evals/run.sh generation review_questions.py datasets/questions.json --save-reference
@@ -37,6 +38,7 @@ from common import (
     save,
     tokens_of,
 )
+from flagged_labels import caught
 from langchain_core.callbacks import get_usage_metadata_callback
 from langchain_core.messages import HumanMessage
 from pydantic import BaseModel, Field
@@ -161,8 +163,15 @@ def compare(reviews: list[dict], items: dict[str, dict]) -> dict:
     expected = [r for r in reviews if "expected_key_correct" in items[r["id"]]]
 
     if expected:
-        caught = sum(r["key_correct"] == items[r["id"]]["expected_key_correct"] for r in expected)
-        found["traps_caught"] = f"{caught} of {len(expected)}"
+        right = sum(r["key_correct"] == items[r["id"]]["expected_key_correct"] for r in expected)
+        found["traps_caught"] = f"{right} of {len(expected)}"
+
+    # Flagged questions (flagged_traps.json): each flag's problem found, by flagged_labels.py.
+    for flag in sorted({items[r["id"]]["flag"] for r in reviews if "flag" in items[r["id"]]}):
+        rows = [r for r in reviews if items[r["id"]].get("flag") == flag]
+        found[f"flagged_{flag}_caught"] = (
+            f"{sum(caught(r, items[r['id']]) for r in rows)} of {len(rows)}"
+        )
 
     reference_path = DATASETS / "reviews.json"
     reference = {r["id"]: r for r in reviews_of(reference_path)} if reference_path.exists() else {}
@@ -210,7 +219,7 @@ async def main(
     spent = round(sum(r["judge_cost"] for r in reviews), 4)
     print(f"judged by {JUDGE_MODEL} ({JUDGE_EFFORT}), ${spent:.2f}:", scores)
 
-    if compare_reference or any("expected_key_correct" in item for item in chosen):
+    if compare_reference or any("expected_key_correct" in i or "flag" in i for i in chosen):
         scores["checks"] = compare(reviews, by_id)
 
     # How the questions were made (a dataset's model and date, a test's run), beside the review.

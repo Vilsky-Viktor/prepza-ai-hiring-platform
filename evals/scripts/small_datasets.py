@@ -208,7 +208,8 @@ def check_question_times(problems: list[str]) -> list[str]:
 
 def check_pattern_gate(problems: list[str]) -> list[str]:
     """The eval gate's failure-judge traps: a question that shows and one that doesn't for every
-    mistake. Returns the questions' texts."""
+    mistake; and the exported flagged questions, if any: a known flag, a right key among its
+    options. Returns the questions' texts."""
     data = load("pattern_failure_traps.json")
     check_described("pattern_failure_traps.json", data, problems)
     unique_ids("pattern_failure_traps.json", data["items"], problems)
@@ -218,7 +219,23 @@ def check_pattern_gate(problems: list[str]) -> list[str]:
         if {item["shows"] for item in data["items"] if item["mistake"] == mistake} != {True, False}:
             problems.append(f"pattern_failure_traps.json: {mistake!r} needs both verdicts")
 
-    return texts
+    if not (DATASETS / "flagged_traps.json").exists():
+        return texts
+
+    flagged = load("flagged_traps.json")
+    check_described("flagged_traps.json", flagged, problems)
+    unique_ids("flagged_traps.json", flagged["items"], problems)
+
+    for item in flagged["items"]:
+        answers = {option["answer"] for option in item["options"]}
+
+        if item["flag"] not in ("wrong_key", "weak_options", "rewrite"):
+            problems.append(f"flagged_traps.json: {item['id']} has an unknown flag")
+
+        if not set(item.get("right_key", [])) <= answers:
+            problems.append(f"flagged_traps.json: {item['id']} has a right key it doesn't offer")
+
+    return texts + [item["question"] for item in flagged["items"]]
 
 
 def check_screen(problems: list[str]) -> list[str]:
