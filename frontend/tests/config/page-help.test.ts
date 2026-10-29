@@ -102,8 +102,11 @@ describe("page help", () => {
   it.each(locales)("keeps no guide text of its own in %s", (code) => {
     const help = JSON.parse(read(`messages/${code}.json`)).pageHelp
 
+    // The window's own wording only: its titles and the feedback card's text and link.
     expect(Object.keys(help).sort()).toEqual([
       "actionsTitle",
+      "feedbackLink",
+      "feedbackText",
       "label",
       "tipsTitle",
     ])
