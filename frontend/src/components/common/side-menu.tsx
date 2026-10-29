@@ -119,7 +119,7 @@ function MenuLink({
       {/* Ending with the logo's blue dot, as the site's titles do. */}
       <span className="min-w-0">
         {label}
-        <span className="text-primary">.</span>
+        <span className="blue-dot">.</span>
       </span>
     </Link>
   )

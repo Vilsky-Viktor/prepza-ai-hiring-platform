@@ -52,7 +52,7 @@ export async function ComparisonSection({ catalog }: { catalog: Catalog }) {
                   )}
                   <span className="font-heading text-xl font-medium lowercase">
                     {t(`${key}.name`)}
-                    {ours && <span className="text-primary">.</span>}
+                    {ours && <span className="blue-dot">.</span>}
                   </span>
                 </div>
                 {(["checks", "time", "cost"] as const).map((fact) => (

@@ -33,7 +33,7 @@ export function IconCard({
       />
       <span className="font-heading text-xl font-medium lowercase">
         <KeepAcronyms text={title} />
-        <span className="text-primary">.</span>
+        <span className="blue-dot">.</span>
       </span>
       <span className="text-sm leading-snug text-muted-foreground">
         {children}

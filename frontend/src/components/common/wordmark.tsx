@@ -12,7 +12,7 @@ export function Wordmark({ className, shortOnPhones = false }: WordmarkProps) {
       className={cn("font-heading font-semibold tracking-tight", className)}
     >
       p<span className={cn(shortOnPhones && "hidden sm:inline")}>repza</span>
-      <span className="text-primary">.</span>
+      <span className="blue-dot">.</span>
     </span>
   )
 }

@@ -34,7 +34,7 @@ export async function Closing({
             .map((line) => (
               <span key={line} className="block">
                 {line}
-                <span className="text-primary">.</span>
+                <span className="blue-dot">.</span>
               </span>
             ))}
         </h2>

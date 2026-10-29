@@ -45,7 +45,7 @@ function Post({ post }: { post: NewsPost }) {
       <div className="space-y-1">
         <h2 className="no-dot font-heading text-2xl font-medium break-words normal-case">
           {heading.text}
-          {heading.dot && <span className="text-primary">.</span>}
+          {heading.dot && <span className="blue-dot">.</span>}
         </h2>
         <p className="text-sm text-muted-foreground italic">
           <time dateTime={post.published_on}>

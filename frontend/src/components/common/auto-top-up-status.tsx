@@ -127,7 +127,7 @@ function StatusCard(props: Props) {
       <div className="min-w-0 flex-1 space-y-1">
         <p className="font-heading text-base font-medium lowercase">
           {t("title")}
-          <span className="text-primary">.</span>
+          <span className="blue-dot">.</span>
         </p>
         <p
           className={cn(

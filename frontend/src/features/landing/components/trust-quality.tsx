@@ -45,7 +45,7 @@ export async function TrustQualitySection() {
             >
               <h3 className="font-heading text-xl font-medium lowercase">
                 <KeepAcronyms text={t(`cards.${key}.title`)} />
-                <span className="text-primary">.</span>
+                <span className="blue-dot">.</span>
               </h3>
               <p className="text-base leading-relaxed text-muted-foreground">
                 {key === "laws"

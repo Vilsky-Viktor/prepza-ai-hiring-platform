@@ -81,7 +81,7 @@ export default async function HomePage() {
                     .map((line) => (
                       <span key={line} className="block">
                         {line}
-                        <span className="text-primary">.</span>
+                        <span className="blue-dot">.</span>
                       </span>
                     ))}
                 </h1>

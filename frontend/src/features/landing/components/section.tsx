@@ -44,7 +44,7 @@ export function LandingSection({
             title.split("\n").map((line) => (
               <span key={line} className="block">
                 <KeepAcronyms text={line} />
-                <span className="text-primary">.</span>
+                <span className="blue-dot">.</span>
               </span>
             ))
           ) : (

@@ -88,7 +88,7 @@ export function AllowedDomains({
         <span className="min-w-0 flex-1 space-y-1">
           <span className="block font-medium lowercase">
             {t("localhostTitle")}
-            <span className="text-primary">.</span>
+            <span className="blue-dot">.</span>
           </span>
           <span className="block text-sm text-muted-foreground">
             {t("localhostText")}
