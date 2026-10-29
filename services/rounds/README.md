@@ -1,7 +1,6 @@
 # rounds
 
-Candidates' interview sessions and their answers, and free practice rounds. It keeps sessions, answers and integrity signals in its own database (its old `help_votes` table is
-unused, until the next release drops it); questions come from library, and scores go out as
+Candidates' interview sessions and their answers, and free practice rounds. It keeps sessions, answers and integrity signals in its own database; questions come from library, and scores go out as
 events; a deleted interview's or company's sessions go when its `interview.deleted` or
 `company.deleted` arrives. What it does and its settings:
 [candidates](../../docs/features/candidates.md) and
@@ -24,17 +23,14 @@ src/rounds/
 │                           # take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (scores, exports); fixed values
-└── integrations/           # library, site (old routes), Redis
+└── integrations/           # library, Redis
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
 
-Rounds' old `POST /help/chat` and `PUT /help/answers/{id}/vote` answer a 307 to the
-assistant's addresses for one release. The FAQ, page guides, guide articles, legal texts and the
-contact form moved to the site service: the gateway and the load balancer send rounds' old
-addresses for them there,
-its old public routes (`api/v1/moved_public.py`) answer a 307 to `/api/site/...` and its old
-`GET /internal/help/knowledge` forwards to site, for one release.
+The FAQ, page guides, guide articles, legal texts and the contact form are the site service's:
+the gateway and the load balancer send rounds' old public addresses for them
+(`/api/rounds/help/...`) to site; the help chat is the assistant's.
 
 Routes call services; services open the transaction (`async with Session.begin() as
 session:`) and pass it to the repositories, so an action's steps are saved together (an

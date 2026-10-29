@@ -16,9 +16,9 @@ resource "google_compute_security_policy" "edge" {
     }
   }
 
-  # The help chat (the assistant's; rounds' old address only sends the browser there) is open to
-  # visitors; each IP gets 20 questions per 10 minutes, so one visitor can't run up its model
-  # costs. The service also caps accounts and the daily total.
+  # The help chat (the assistant's) is open to visitors; each IP gets 20 questions per 10
+  # minutes, so one visitor can't run up its model costs. The service also caps accounts and the
+  # daily total.
   rule {
     action      = "throttle"
     priority    = 1100
@@ -26,7 +26,7 @@ resource "google_compute_security_policy" "edge" {
 
     match {
       expr {
-        expression = "request.path.urlDecode().lower().matches('^/+api/+(rounds|assistant)/+help/+chat/*$')"
+        expression = "request.path.urlDecode().lower().matches('^/+api/+assistant/+help/+chat/*$')"
       }
     }
 

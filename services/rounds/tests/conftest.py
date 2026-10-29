@@ -11,14 +11,12 @@ os.environ.setdefault("FIREBASE_PROJECT_ID", "demo-test")
 os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "demo-test")
 os.environ.setdefault("DATABASE_URL", "postgresql://test:test@localhost/test")
 os.environ.setdefault("LIBRARY_URL", "http://library")
-os.environ.setdefault("SITE_SERVICE_URL", "http://site")
 os.environ.setdefault("REDIS_URL", "redis://localhost")
 os.environ.setdefault("SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("LIBRARY_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("GENERATION_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("ROUNDS_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 os.environ.setdefault("COMPANIES_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
-os.environ.setdefault("SITE_SERVICE_SECRET", "test-secret-that-is-at-least-32-bytes")
 
 import pytest
 from fastapi.testclient import TestClient

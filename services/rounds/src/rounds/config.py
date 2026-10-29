@@ -8,9 +8,6 @@ class Settings(ServiceSettings):
     database_url: str
     redis_url: str
     library_url: str
-    # The site's content service (SITE_URL is the site's own address): rounds' old internal content
-    # route forwards there for one release.
-    site_service_url: str
     service_secret: str
 
 

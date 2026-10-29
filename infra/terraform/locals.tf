@@ -108,9 +108,8 @@ locals {
     # site: the news posts it translates.
     generation        = ["library", "notifications", "site"]
     generation-worker = ["library", "notifications", "site"]
-    # site: rounds' old content routes forward there for one release.
-    rounds    = ["library", "site"]
-    companies = ["generation", "library", "rounds", "billing", "accounts"]
+    rounds            = ["library"]
+    companies         = ["generation", "library", "rounds", "billing", "accounts"]
     # companies' names and accounts' emails, for the AI costs tab.
     billing = ["companies", "accounts"]
     # rounds: a campaign's candidates and learners; site, the news the bell names (library, which

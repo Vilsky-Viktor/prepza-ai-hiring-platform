@@ -18,7 +18,7 @@ from rounds.schemas.sessions import (
     SetIdsIn,
 )
 from rounds.services import invite_scores as invite_scores_service
-from rounds.services import sections, session_removal
+from rounds.services import sections
 from rounds.services import session_companies as session_companies_service
 
 router = APIRouter(prefix="/internal", tags=["internal"])
@@ -53,13 +53,6 @@ async def interview_answer_counts(body: SetIdsIn, caller: ServiceCaller) -> dict
         found = await answer_counts.for_sets(session, body.set_ids)
 
     return {str(set_id): counts for set_id, counts in found.items()}
-
-
-@router.delete("/interviews/{interview_set_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_interview_data(interview_set_id: UUID, caller: ServiceCaller) -> None:
-    """No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one
-    release for a companies still calling it (microservices.md, 3); safe to repeat."""
-    await session_removal.remove_interview(interview_set_id)
 
 
 @router.get("/invites/{invite_id}/scorecard")

@@ -771,68 +771,6 @@
     }
    }
   },
-  "/help/chat": {
-   "post": {
-    "tags": [
-     "help"
-    ],
-    "summary": "Help Chat",
-    "description": "The help chat moved to the assistant (POST /api/assistant/help/chat): the browser asks\nthere again with the same request. Kept for one release, for pages loaded before it.",
-    "operationId": "help_chat_help_chat_post",
-    "responses": {
-     "307": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {}
-       }
-      }
-     }
-    }
-   }
-  },
-  "/help/answers/{answer_id}/vote": {
-   "put": {
-    "tags": [
-     "help"
-    ],
-    "summary": "Vote",
-    "description": "The help chat's votes moved to the assistant (PUT /api/assistant/help/answers/{id}/vote):\nthe browser sends the vote there again. Kept for one release, for pages loaded before it.",
-    "operationId": "vote_help_answers__answer_id__vote_put",
-    "parameters": [
-     {
-      "name": "answer_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "format": "uuid",
-       "title": "Answer Id"
-      }
-     }
-    ],
-    "responses": {
-     "307": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {}
-       }
-      }
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
   "/internal/sessions": {
    "post": {
     "tags": [
@@ -1047,48 +985,6 @@
       "HTTPBearer": []
      }
     ]
-   }
-  },
-  "/internal/interviews/{interview_set_id}": {
-   "delete": {
-    "tags": [
-     "internal"
-    ],
-    "summary": "Delete Interview Data",
-    "description": "No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one\nrelease for a companies still calling it (microservices.md, 3); safe to repeat.",
-    "operationId": "delete_interview_data_internal_interviews__interview_set_id__delete",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "interview_set_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "format": "uuid",
-       "title": "Interview Set Id"
-      }
-     }
-    ],
-    "responses": {
-     "204": {
-      "description": "Successful Response"
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
    }
   },
   "/internal/invites/{invite_id}/scorecard": {
@@ -1459,30 +1355,6 @@
         "schema": {
          "$ref": "#/components/schemas/HTTPValidationError"
         }
-       }
-      }
-     }
-    },
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ]
-   }
-  },
-  "/internal/help/knowledge": {
-   "get": {
-    "tags": [
-     "internal"
-    ],
-    "summary": "Knowledge",
-    "operationId": "knowledge_internal_help_knowledge_get",
-    "responses": {
-     "200": {
-      "description": "Successful Response",
-      "content": {
-       "application/json": {
-        "schema": {}
        }
       }
      }

@@ -254,48 +254,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/help/chat": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /**
-     * Help Chat
-     * @description The help chat moved to the assistant (POST /api/assistant/help/chat): the browser asks
-     *     there again with the same request. Kept for one release, for pages loaded before it.
-     */
-    post: operations["help_chat_help_chat_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/help/answers/{answer_id}/vote": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    /**
-     * Vote
-     * @description The help chat's votes moved to the assistant (PUT /api/assistant/help/answers/{id}/vote):
-     *     the browser sends the vote there again. Kept for one release, for pages loaded before it.
-     */
-    put: operations["vote_help_answers__answer_id__vote_put"]
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/sessions": {
     parameters: {
       query?: never
@@ -369,27 +327,6 @@ export interface paths {
      */
     post: operations["interview_answer_counts_internal_answer_counts_post"]
     delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/interviews/{interview_set_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    post?: never
-    /**
-     * Delete Interview Data
-     * @description No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one
-     *     release for a companies still calling it (microservices.md, 3); safe to repeat.
-     */
-    delete: operations["delete_interview_data_internal_interviews__interview_set_id__delete"]
     options?: never
     head?: never
     patch?: never
@@ -571,23 +508,6 @@ export interface paths {
      * @description Companies' retention: candidates' sessions go with their expired invites.
      */
     post: operations["delete_invite_sessions_internal_invites_delete_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/help/knowledge": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Knowledge */
-    get: operations["knowledge_internal_help_knowledge_get"]
-    put?: never
-    post?: never
     delete?: never
     options?: never
     head?: never
@@ -1662,57 +1582,6 @@ export interface operations {
       }
     }
   }
-  help_chat_help_chat_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      307: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-    }
-  }
-  vote_help_answers__answer_id__vote_put: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        answer_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      307: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
   create_sessions_internal_sessions_post: {
     parameters: {
       query?: never
@@ -1841,35 +1710,6 @@ export interface operations {
             [key: string]: number[]
           }
         }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  delete_interview_data_internal_interviews__interview_set_id__delete: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        interview_set_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
       }
       /** @description Validation Error */
       422: {
@@ -2134,26 +1974,6 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  knowledge_internal_help_knowledge_get: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
         }
       }
     }
