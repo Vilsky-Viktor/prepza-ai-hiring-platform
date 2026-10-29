@@ -10,7 +10,6 @@ import random
 import uuid
 
 import httpx
-import psycopg
 
 API = "http://gateway/api"
 AUTH = "http://firebase-auth:9199/identitytoolkit.googleapis.com/v1"
@@ -28,17 +27,6 @@ TEMPLATES = (
     ("Backend Developer (eval)", ("SQL basics", "Indexes")),
     ("Data Analyst (eval)", ("Spreadsheets", "Statistics")),
 )
-
-
-def invite_token(invite_id: str) -> str:
-    """The token in the invite link the candidate is emailed, read from the companies database
-    as e2e_tests/flow.py does: the email itself isn't read."""
-    url = os.environ["DATABASE_URL"].rsplit("/", 1)[0] + "/companies"
-
-    with psycopg.connect(url) as connection:
-        query = "SELECT token FROM candidate_invites WHERE id = %s"
-
-        return connection.execute(query, (invite_id,)).fetchone()[0]
 
 
 class Fixture:
@@ -92,8 +80,11 @@ class Fixture:
         about `right` of it correctly."""
         path = f"/companies/interviews/{interview_id}/candidates"
         invite = await self.api("POST", path, self.owner_token, {"email": email})
+        # The invite link's token, as the owner copies it from the candidate's page (the email
+        # itself isn't read).
+        scorecard = await self.api("GET", f"{path}/{invite['id']}", self.owner_token)
         # A first start takes the candidate's pledge to answer on their own.
-        start = f"/companies/invites/{invite_token(invite['id'])}/start"
+        start = f"/companies/invites/{scorecard['invite_token']}/start"
         started = await self.api("POST", start, token, {"pledged": True})
         session = started["sessions"][0]["id"]
         step = await self.api("POST", f"/rounds/sessions/{session}/step", token)
