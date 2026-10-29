@@ -3,13 +3,14 @@
 # whether the whole-stack tests run, and the commit compared with.
 # A pull request compares with its base (PR_BASE); main with the last commit CI passed on
 # (through `gh api`, GH_TOKEN and GITHUB_REPOSITORY). Each service also depends on
-# packages/common; a change to CI itself or the Python version counts as everything.
+# packages/common; a change to CI itself or the Python version counts as everything. db-roles is
+# the database users job (database/roles).
 # Writes changed, stack and base to $GITHUB_OUTPUT (stdout when it isn't set).
 # Locally: PR_BASE=origin/main scripts/ci_changes.sh
 set -euo pipefail
 
 services="library generation rounds companies billing notifications ats api assistant accounts site"
-everything="$services frontend common"
+everything="$services frontend common db-roles"
 base="${PR_BASE:-}"
 files=""
 
@@ -41,6 +42,10 @@ else
     # site serves the site's guide articles from its image.
     if grep -qE '^frontend/content/([a-z]+/)?guides/' <<< "$files"; then
       changed="$changed site"
+    fi
+
+    if grep -q '^database/roles/' <<< "$files"; then
+      changed="$changed db-roles"
     fi
 
     if grep -q '^packages/common/' <<< "$files"; then

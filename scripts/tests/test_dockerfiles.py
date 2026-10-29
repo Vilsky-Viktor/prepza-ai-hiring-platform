@@ -1,4 +1,4 @@
-"""The services' and the frontend's images (.claude/rules/ci.md): base images pinned by tag and
+"""The services', the database users job's and the frontend's images (.claude/rules/ci.md): base images pinned by tag and
 digest, packages only from the lock, no build tools (uv) in the production stage, and a non-root
 user there."""
 
@@ -6,7 +6,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SERVICES = sorted(ROOT.glob("services/*/Dockerfile"))
+# The services' and the database users job's Python images.
+SERVICES = [*sorted(ROOT.glob("services/*/Dockerfile")), ROOT / "database" / "roles" / "Dockerfile"]
 DOCKERFILES = [*SERVICES, ROOT / "frontend" / "Dockerfile"]
 
 

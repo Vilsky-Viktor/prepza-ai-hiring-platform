@@ -10,7 +10,7 @@ import psycopg
 import pytest
 from psycopg import sql
 
-from library.jobs import db_roles
+import db_roles
 
 OBJECTS = """
 CREATE TABLE things (id serial PRIMARY KEY, name text);

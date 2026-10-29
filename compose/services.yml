@@ -72,16 +72,15 @@ x-companies-source: &companies-source
 
 services:
   # Gives each service its own Postgres user owning only its database, as in production (the
-  # db-roles job, from library's image), before any migration runs; safe to repeat. Locally every
+  # db-roles job, database/roles), before any migration runs; safe to repeat. Locally every
   # user's password is POSTGRES_PASSWORD.
   db-roles:
     restart: "no"
     build:
-      context: .
-      dockerfile: services/library/Dockerfile
+      context: database/roles
       target: dev
-    volumes: *library-source
-    command: ["python", "-m", "library.jobs.db_roles"]
+    volumes:
+      - ./database/roles/src:/database/roles/src
     environment:
       ADMIN_DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/postgres
       DATABASE_URL_LIBRARY: postgresql://library:${POSTGRES_PASSWORD}@postgres:5432/library

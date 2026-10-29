@@ -1,0 +1,17 @@
+[project]
+name = "db-roles"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "psycopg[binary]>=3.3.6",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "pytest-randomly>=5.0.0",
+]

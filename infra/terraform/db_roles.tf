@@ -47,8 +47,9 @@ resource "google_cloud_run_v2_job" "db_roles" {
       }
 
       containers {
-        image   = "${local.registry}/library:${var.image_tag}"
-        command = ["python", "-m", "library.jobs.db_roles"]
+        # Its own small image (database/roles), built by CI; deploy.yml moves it to each release's.
+        image   = "${local.registry}/db-roles:${var.image_tag}"
+        command = ["python", "-m", "db_roles"]
 
         env {
           name = "ADMIN_DATABASE_URL"

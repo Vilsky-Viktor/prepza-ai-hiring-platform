@@ -7,9 +7,10 @@ created or get their password again, ownership moves only if it hasn't yet.
 
 Users are made here, by SQL, not through Cloud SQL's API, which makes every user it creates a
 member of cloudsqlsuperuser; these get nothing but their own database. Docker Compose runs it
-too (`db-roles`), before every migration, with the local admin `prepza`.
+too (`db-roles`), before every migration, with the local admin `prepza`. Its own small image
+(database/roles/Dockerfile), as it belongs to no service.
 
-    uv run --no-sync python -m library.jobs.db_roles
+    python -m db_roles
 """
 
 import os

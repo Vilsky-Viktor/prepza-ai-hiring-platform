@@ -32,7 +32,7 @@ env:
   REGION: ${{ vars.GCP_REGION }}
   REGISTRY: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/prepza
   VERSION: ${{ inputs.tag || github.ref_name }}
-  SERVICES: library generation rounds companies billing notifications ats api assistant accounts site frontend
+  SERVICES: library generation rounds companies billing notifications ats api assistant accounts site frontend db-roles
 
 jobs:
   verify:
@@ -109,7 +109,7 @@ jobs:
       # The images CI built for the commit also get the version's name, as a label; adding it again
       # is harmless. Each image's digest is read once from the commit's tag, and every step below
       # deploys image@sha256:…, so what ships is exactly what CI built and tested, whatever a tag
-      # points to later. IMAGE_LIBRARY, IMAGE_FRONTEND and so on hold them.
+      # points to later. IMAGE_LIBRARY, IMAGE_FRONTEND, IMAGE_DB_ROLES and so on hold them.
       - name: Version the images and read their digests
         run: |
           for name in $SERVICES; do
@@ -122,13 +122,14 @@ jobs:
               exit 1
             fi
 
-            echo "IMAGE_${name^^}=$REGISTRY/$name@$digest" >> "$GITHUB_ENV"
+            variable="IMAGE_${name^^}"
+            echo "${variable//-/_}=$REGISTRY/$name@$digest" >> "$GITHUB_ENV"
           done
       # Each service's own database user, owning only its database; safe to repeat. Runs before
       # migrations, which connect as those users.
       - name: Database users
         run: |
-          gcloud run jobs update db-roles --image="$IMAGE_LIBRARY" --region="$REGION" --quiet
+          gcloud run jobs update db-roles --image="$IMAGE_DB_ROLES" --region="$REGION" --quiet
           gcloud run jobs execute db-roles --region="$REGION" --wait --quiet
       # Migrations run before any service moves, so new code never meets an old schema.
       - name: Migrations

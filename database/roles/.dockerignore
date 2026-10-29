@@ -1,0 +1,5 @@
+# Only the locked project and its code go into the image.
+.venv
+**/__pycache__
+.pytest_cache
+tests

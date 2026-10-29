@@ -72,6 +72,7 @@ jobs:
           - { name: assistant, path: services/assistant }
           - { name: accounts, path: services/accounts }
           - { name: site, path: services/site }
+          - { name: db-roles, path: database/roles }
           - { name: common, path: packages/common }
     env:
       CHANGED: ${{ contains(fromJSON(needs.changes.outputs.changed), matrix.name) }}
@@ -158,6 +159,8 @@ jobs:
           - { name: assistant, context: ., file: services/assistant/Dockerfile }
           - { name: accounts, context: ., file: services/accounts/Dockerfile }
           - { name: site, context: ., file: services/site/Dockerfile }
+          # The database users job (database/roles), built from its own folder.
+          - { name: db-roles, context: database/roles, file: database/roles/Dockerfile }
           - { name: frontend, context: frontend, file: frontend/Dockerfile }
     env:
       CHANGED: ${{ contains(fromJSON(needs.changes.outputs.changed), matrix.name) }}

@@ -8,6 +8,7 @@ updates:
   - package-ecosystem: docker
     directories:
       - /database
+      - /database/roles
       - /firebase
       - /frontend
       - /services/accounts
@@ -101,6 +102,7 @@ updates:
 
   - package-ecosystem: uv
     directories:
+      - /database/roles
       - /packages/common
       - /services/accounts
       - /services/api

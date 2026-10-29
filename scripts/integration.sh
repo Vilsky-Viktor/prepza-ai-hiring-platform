@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Runs each service's integration tests (tests/integration) in a one-off container next to the
 # running stack: real Postgres and Redis, but a "<service>_test" database and Redis database 15,
-# so dev data is never touched. Usage: scripts/integration.sh [service...]
+# so dev data is never touched. Usage: scripts/integration.sh [service...]; `db-roles` is the
+# database users job (database/roles).
 # PYTEST_ADDOPTS reaches pytest: PYTEST_ADDOPTS=--reverse runs the tests in reverse order
 # (pytest-reverse), to check that none depends on another's leftovers.
 set -euo pipefail
@@ -17,7 +18,7 @@ fi
 services=("$@")
 
 if [[ ${#services[@]} -eq 0 ]]; then
-  services=(library generation rounds companies billing notifications ats api assistant accounts site)
+  services=(library generation rounds companies billing notifications ats api assistant accounts site db-roles)
 fi
 
 # Tests make and drop their "<service>_test" database and create extensions in it, which a
@@ -28,13 +29,19 @@ password="${POSTGRES_PASSWORD:-$(grep -E '^POSTGRES_PASSWORD=' .env | cut -d= -f
 # the fake Redis, the fixtures that keep tests from publishing) are mounted as they are now.
 for service in "${services[@]}"; do
   echo "== $service"
+  dir="services/$service"
+
+  if [[ "$service" == db-roles ]]; then
+    dir="database/roles"
+  fi
+
   "${compose[@]}" run --rm --no-deps \
     -e INTEGRATION_TESTS=1 \
     -e DATABASE_URL="postgresql://prepza:${password}@postgres:5432/${service}" \
     -e REDIS_URL=redis://redis:6379/15 \
     -e LANGFUSE_PUBLIC_KEY= -e LANGFUSE_SECRET_KEY= \
     -e PYTEST_ADDOPTS \
-    -v "$PWD/services/$service/tests:/services/$service/tests" \
+    -v "$PWD/$dir/tests:/$dir/tests" \
     -v "$PWD/packages/common/tests:/packages/common/tests:ro" \
     "$service" \
     uv run --no-sync --with pytest==9.1.1 --with pytest-reverse==1.9.0 pytest -q tests/integration

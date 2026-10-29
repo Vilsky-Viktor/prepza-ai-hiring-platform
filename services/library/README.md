@@ -27,8 +27,7 @@ src/library/
 │                           # feedback, ...; take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (pools, slugs, quality flags); fixed values
-├── integrations/           # Other services (generation), Redis
-└── jobs/db_roles.py        # `python -m library.jobs.db_roles`: each service's Postgres user
+└── integrations/           # Other services (generation), Redis
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```

@@ -25,6 +25,7 @@ jobs:
       fail-fast: false
       matrix:
         path:
+          - database/roles
           - packages/common
           - services/accounts
           - services/api
@@ -110,6 +111,7 @@ jobs:
           - { name: assistant, context: ., file: services/assistant/Dockerfile }
           - { name: accounts, context: ., file: services/accounts/Dockerfile }
           - { name: site, context: ., file: services/site/Dockerfile }
+          - { name: db-roles, context: database/roles, file: database/roles/Dockerfile }
           - { name: frontend, context: frontend, file: frontend/Dockerfile }
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
