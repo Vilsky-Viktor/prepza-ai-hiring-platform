@@ -24,8 +24,9 @@ async function ownPath(path: string) {
 
 export async function generateMetadata() {
   const t = await getTranslations("news")
+  const nav = await getTranslations("nav")
   const metadata = await pageMetadata(
-    t("title"),
+    nav("news"),
     t("metaDescription"),
     "/news",
     true

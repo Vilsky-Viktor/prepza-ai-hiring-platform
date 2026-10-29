@@ -29,9 +29,8 @@ const LOCALIZED = [
 // Pages with one address.
 const SINGLE = ["/privacy", "/terms", "/dpa", "/api-docs"];
 // Pages whose own title names prepza, so their head names it twice: a comparison, by design
-// ("prepza vs TestGorilla"); and a known issue, the news page, whose title is its heading,
-// "prepza news" ("prepza news · prepza."), a change of wording waiting for the user's approval.
-const NAMES_SITE_TWICE = /^(\/[a-z]{2,3})?\/(news|compare\/[^/]+)$/;
+// ("prepza vs TestGorilla").
+const NAMES_SITE_TWICE = /^(\/[a-z]{2,3})?\/compare\/[^/]+$/;
 // hreflang codes: two letters, a script where one is named, and the default.
 const HREFLANG = /^([a-z]{2}(-[A-Z][a-z]{3})?|x-default)$/;
 
