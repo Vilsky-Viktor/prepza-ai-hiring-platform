@@ -53,8 +53,12 @@ export async function templatesBySize(page: Page): Promise<Template[]> {
 }
 
 /** An interview made from the smallest template a company can use, with the shortest time per
- * question. */
-export async function createInterview(page: Page, companyId: string) {
+ * question unless `questionSeconds` says otherwise. */
+export async function createInterview(
+  page: Page,
+  companyId: string,
+  questionSeconds = MIN_QUESTION_SECONDS
+) {
   const [template] = await templatesBySize(page)
   const interview = await api<{ id: string }>(
     page,
@@ -63,7 +67,7 @@ export async function createInterview(page: Page, companyId: string) {
     { template_id: template.id }
   )
   await api(page, "PATCH", `/companies/interviews/${interview.id}/settings`, {
-    question_seconds: MIN_QUESTION_SECONDS,
+    question_seconds: questionSeconds,
   })
 
   return interview.id

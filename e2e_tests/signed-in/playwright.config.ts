@@ -46,7 +46,8 @@ export default defineConfig({
   // Every spec in Chromium (its @global tests in `global`, run on their own by signed-in.sh); the
   // embedded interview also in Firefox and WebKit, where a company's site gets the frame's storage
   // partitioned and no third-party cookies (Playwright starts Chromium with its storage
-  // partitioning off).
+  // partitioning off); and a candidate's interview in WebKit on an iPhone (`iphone`), as most
+  // candidates on iPhones take it in Safari.
   projects: [
     { name: "chromium", grepInvert: /@global/ },
     { name: "global", grep: /@global/, workers: 1 },
@@ -61,5 +62,11 @@ export default defineConfig({
         launchOptions: {},
       },
     })),
+    {
+      name: "iphone",
+      testMatch: /b-candidate\.spec\.ts/,
+      grep: /candidate takes the interview from the invite link/,
+      use: { ...devices["iPhone 15"], launchOptions: {} },
+    },
   ],
 })

@@ -91,6 +91,11 @@ in every user's bell): those run in the `global` project after the others, one a
 nothing else running, and a run that includes them has the stack to itself. Each phase writes
 its results to its own folder (`parallel/`, `global/`).
 
+**Other browsers.** Every spec runs in Chromium. The embedded interview (`i-api-embed`) also runs
+in Firefox and WebKit, where a company's site gets the frame's storage partitioned, and a
+candidate's interview from the invite link (`b-candidate`) in WebKit on an iPhone (the `iphone`
+project), as candidates on iPhones take it in Safari.
+
 **Signing in.** Most tests sign in straight at the Firebase Auth emulator (local only): `signInAs` signs in with Google at its REST API with an unsigned Google ID token, which only the emulator takes, makes the calls the site makes at a first sign-in (the account's language, the sign-in's email choices) and opens a fresh browser context holding the session as the site's Firebase keeps it (its local storage) and its token cookie. The tests of signing in itself go through "Continue with Google" and the emulator's own sign-in page, ticking the sign-in's email boxes first where they test them (`signInAs(email, { ui: true, noUpdates, promotions })`): the owner's first sign-in, the email boxes, the sign-in filling a candidate's name, a join link opened by another account, the assistant's sign-in card, and each provider's popup. The superadmin is the first address in `SUPERADMIN_EMAILS`.
 
 **Test data.** Every test makes throwaway users, companies and interviews. Interviews are made from local templates: no OpenAI. The owner spec adds and deletes its own throwaway templates in the library database.

@@ -89,7 +89,7 @@ COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude 
     mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27 \
     sh -c '
       tar -xf - && npm ci --no-audit --no-fund --loglevel=error || exit 1
-      npx playwright test --project=chromium --project=firefox --project=webkit \
+      npx playwright test --project=chromium --project=firefox --project=webkit --project=iphone \
         --output=test-results/parallel "$@"
       parallel=$?
       [ -z "$GLOBAL" ] && exit "$parallel"

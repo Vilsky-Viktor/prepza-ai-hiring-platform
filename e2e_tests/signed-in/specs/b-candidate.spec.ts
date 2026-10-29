@@ -9,7 +9,10 @@ import { openDialog, visit } from "../helpers/navigation";
 import { shot } from "../helpers/screenshots";
 import { answered } from "../helpers/session";
 import { ownerEmail, throwawayEmail } from "../helpers/users";
-import { MIN_QUESTION_SECONDS } from "../constants";
+// Each question's time: long enough for the first question's steps (pick, report, Next) in
+// the slowest browser here (WebKit on an iPhone opens the report dialog in seconds), and the
+// second question's still short enough to wait out.
+const QUESTION_SECONDS = 30;
 
 // A candidate takes an interview from their invite link: picks, changes the pick, goes on, lets a
 // question's time run out, and finishes.
@@ -18,7 +21,11 @@ test("candidate takes the interview from the invite link", async ({
 }) => {
   const owner = await signInAs(ownerEmail());
   const company = await createCompany(owner);
-  const interviewId = await createInterview(owner, company.id);
+  const interviewId = await createInterview(
+    owner,
+    company.id,
+    QUESTION_SECONDS,
+  );
   const email = throwawayEmail("candidate");
   await inviteCandidate(owner, interviewId, email);
 
@@ -79,7 +86,7 @@ test("candidate takes the interview from the invite link", async ({
   await expect(candidate.getByRole("timer")).toBeVisible();
   await shot(candidate, "timer");
   await expect(question).not.toHaveText(second ?? "", {
-    timeout: (MIN_QUESTION_SECONDS + 10) * 1000,
+    timeout: (QUESTION_SECONDS + 10) * 1000,
   });
   await expect.poll(() => answered(candidate)).toBe("2");
   await shot(candidate, "after-timeout");
