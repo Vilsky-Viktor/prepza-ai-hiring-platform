@@ -63,7 +63,8 @@
    tests for anything that touches the database, Redis or another service
    (`services/<svc>/tests/integration`, run with `scripts/integration.sh`), and a
    browser test for every user-facing flow or screen (`e2e_tests/pages` signed out,
-   `e2e_tests/signed-in` signed in). A bug fix adds a test that fails without it.
+   `e2e_tests/signed-in` signed in). A bug fix comes with a check that fails without it,
+   added to an existing test of that behaviour where one fits; a new test only when none does.
    Run the affected suites before calling the work done. Every test of every kind (unit,
    integration, browser, load, evals, scripted end-to-end) starts absolutely clean: its own data
    and users, a fresh browser, no state left by another test, and passes alone and in any order

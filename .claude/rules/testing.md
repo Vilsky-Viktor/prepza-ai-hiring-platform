@@ -26,6 +26,12 @@ Python tests: `testing-backend.md`; vitest and browser, load and smoke tests:
   `tests/integration` = medium (localhost, a database, Redis, emulators), `e2e_tests` = large
   (end to end). Every size can run in parallel.
 
+## Adding tests
+
+- Extend before adding: a bug fix or a new edge case goes into the existing test of that
+  behaviour (another assertion, a parametrised case, a step in the flow) when one fits; a new
+  test or spec only when no existing one makes sense to extend.
+
 ## No fixed waits
 
 - No fixed waits in any suite: in Python, wait for the state (another transaction holding a
