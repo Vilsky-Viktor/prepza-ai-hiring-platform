@@ -3,7 +3,7 @@ import type { Page } from "@playwright/test"
 import { expect, test } from "../fixtures"
 import { api, createCompany } from "../helpers/api"
 import { addReplacedVersion, addTemplate, deleteTemplate } from "../helpers/db-library"
-import { openDialog, visit } from "../helpers/navigation"
+import { openDialog, visit, visitUntil } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { ownerEmail, randomId } from "../helpers/users"
 
@@ -96,15 +96,6 @@ async function flip(page: Page, index: number, on: boolean) {
   await expect(toggle).toBeChecked({ checked: !on })
   await toggle.click()
   await expect(toggle).toBeChecked({ checked: on })
-}
-
-/** Opens `path` until it answers `status` (the maintenance screen is a 503): the frontend keeps
- * maintenance mode's state for a few seconds (MAINTENANCE_CACHE_MS). */
-async function visitUntil(page: Page, path: string, status: number) {
-  await expect(async () => {
-    const response = await page.goto(path)
-    expect(response?.status(), path).toBe(status)
-  }).toPass({ timeout: 60_000, intervals: [2_000] })
 }
 
 async function paused(page: Page) {
@@ -219,45 +210,6 @@ test("superadmin sees each legal document's notice on the controls page", async 
   // The notices' list: the terms, the privacy policy and the data processing agreement.
   await expect(superadmin.getByTestId("legal-notices").getByRole("listitem")).toHaveCount(3)
   await shot(superadmin, "legal-notices")
-})
-
-// The admin zone is for superadmins only: anyone else finds no such page (a 404, without the
-// zone's tabs), the ones that read nothing first (a new template) included.
-test("someone who isn't a superadmin finds no admin page", async ({ signInAs }) => {
-  const owner = await signInAs(ownerEmail())
-
-  for (const path of [
-    "/superadmin/templates/new",
-    "/superadmin/stats/general",
-    "/superadmin/news",
-  ]) {
-    await visitUntil(owner, path, 404)
-    await expect(owner.locator('a[href="/superadmin/stats/general"]'), path).toHaveCount(0)
-  }
-})
-
-// Questions and stats are tabs with tabs of their own: the old addresses of what moved into them
-// open their new places, with the tab and its sub-tab both marked open.
-test("the admin zone's older addresses open their tabs' new places", async ({
-  signInSuperadmin,
-}) => {
-  const superadmin = await signInSuperadmin()
-  const moved = {
-    "/superadmin/questions": "/superadmin/questions/flagged",
-    "/superadmin/flagged": "/superadmin/questions/flagged",
-    "/superadmin/replaced": "/superadmin/questions/replaced",
-    "/superadmin/stats": "/superadmin/stats/general",
-    "/superadmin/ai-costs": "/superadmin/stats/ai-costs",
-  }
-
-  for (const [from, to] of Object.entries(moved)) {
-    await visit(superadmin, from)
-    await expect(superadmin, from).toHaveURL(new RegExp(`${to}$`))
-    // The side menu marks the moved page, listed under the zone's page it belongs to.
-    const open = superadmin.getByRole("main").locator('a[aria-current="page"]:visible')
-    await expect(open, from).toHaveCount(1)
-    await expect(open, from).toHaveAttribute("href", to)
-  }
 })
 
 // A template's page shows each topic's practice and company questions. One short of either can

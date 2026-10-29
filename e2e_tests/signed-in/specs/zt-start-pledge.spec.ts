@@ -1,5 +1,5 @@
 import { expect, test } from "../fixtures"
-import { API_URL } from "../constants"
+import { API_URL, MIN_QUESTION_SECONDS } from "../constants"
 import { api, createCompany, createInterview } from "../helpers/api"
 import { inviteToken } from "../helpers/db"
 import { PHONE } from "../helpers/layout"
@@ -8,10 +8,14 @@ import { shot } from "../helpers/screenshots"
 import { tokenOf } from "../helpers/sign-in"
 import { ownerEmail, throwawayEmail } from "../helpers/users"
 
-// A candidate starts only after pledging to answer on their own, without AI tools or other people:
-// the box gates the start, from the keyboard too, the API refuses a start without it, and the
-// candidate's page tells the company they pledged.
-test("a candidate pledges to answer on their own before starting", async ({ signInAs }) => {
+// A candidate's invite before they start. Given extra time (a disability, say), they see each
+// question's longer time on it: 100% more doubles it. They start only after pledging to answer
+// on their own, without AI tools or other people: the box gates the start, from the keyboard
+// too, the API refuses a start without it, and the candidate's page tells the company they
+// pledged.
+test("a candidate sees their extra time and pledges to answer on their own before starting", async ({
+  signInAs,
+}) => {
   const owner = await signInAs(ownerEmail())
   const company = await createCompany(owner)
   const interviewId = await createInterview(owner, company.id)
@@ -22,6 +26,9 @@ test("a candidate pledges to answer on their own before starting", async ({ sign
     `/companies/interviews/${interviewId}/candidates`,
     { email }
   )
+  await api(owner, "PUT", `/companies/interviews/${interviewId}/candidates/${invite.id}/extra-time`, {
+    extra_time: 100,
+  })
   const token = await inviteToken(email)
   const candidate = await signInAs(email)
 
@@ -32,6 +39,10 @@ test("a candidate pledges to answer on their own before starting", async ({ sign
   await expect(owner.getByTestId("pledged")).toHaveCount(0)
 
   await visit(candidate, `/invite/${token}`)
+  // The seconds per question: the first of the time facts above the start (the whole
+  // interview's minutes come after it; the rules are a list).
+  const seconds = candidate.getByRole("main").locator("p span.tabular-nums").first()
+  await expect(seconds).toHaveText(String(MIN_QUESTION_SECONDS * 2))
   const start = candidate.getByRole("main").getByRole("button")
   const pledge = candidate.getByRole("checkbox")
   await expect(pledge).not.toBeChecked()
@@ -39,7 +50,7 @@ test("a candidate pledges to answer on their own before starting", async ({ sign
   await shot(candidate, "unchecked")
 
   // Clicking the line ticks it; again unticks it.
-  await candidate.getByTestId("start-pledge").locator("..").click()
+  await candidate.getByTestId("start-pledge").filter({ visible: true }).locator("..").click()
   await expect(pledge).toBeChecked()
   await expect(start).toBeEnabled()
   await pledge.click()
@@ -73,6 +84,7 @@ test("a candidate pledges to answer on their own before starting", async ({ sign
   await expect(candidate.getByRole("checkbox")).toHaveCount(0)
 
   await visit(owner, report)
-  await expect(owner.getByTestId("pledged")).toBeVisible()
+  // The visible one: the page can hold a hidden copy of its part while it streams in.
+  await expect(owner.getByTestId("pledged").filter({ visible: true })).toBeVisible()
   await shot(owner, "report")
 })

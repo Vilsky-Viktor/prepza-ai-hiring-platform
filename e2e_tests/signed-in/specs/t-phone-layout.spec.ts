@@ -6,15 +6,17 @@ import {
   createCompany,
   createInterview,
   deleteOwnCompanies,
+  finishOneAnswer,
+  inviteCandidate,
   templatesBySize,
 } from "../helpers/api";
 import { box, PHONE, settled } from "../helpers/layout";
 import { integrationRow, visit } from "../helpers/navigation";
-import { throwawayEmail } from "../helpers/users";
+import { ownerEmail, throwawayEmail } from "../helpers/users";
 
 // How the signed-in pages fit a phone: lists and panels out to the screen's edges, actions on
-// their own lines, dialogs across the screen with their buttons side by side, and timed questions
-// with nothing around them.
+// their own lines, dialogs across the screen with their buttons side by side, a long email
+// breaking before its @, and timed questions with nothing around them.
 
 // The page's visible width, without the scrollbar desktop Chrome draws (phones draw none): also
 // on a company's interview pages, which have no header to measure.
@@ -33,7 +35,8 @@ async function expectEdgeToEdge(page: Page, locator: Locator) {
 
 test("a company's pages on a phone", async ({ signInAs }) => {
   test.setTimeout(300_000);
-  const user = await signInAs(throwawayEmail("phone"));
+  // An owner's own inbox: a first company's welcome credits pay for the candidate invited below.
+  const user = await signInAs(ownerEmail());
   const company = await createCompany(user);
   const interview = await createInterview(user, company.id);
   await api(user, "POST", `/companies/members?company_id=${company.id}`, {
@@ -126,6 +129,18 @@ test("a company's pages on a phone", async ({ signInAs }) => {
     expect(slackName.left).toBeGreaterThan(logo.right);
     expect(instructions.top).toBeGreaterThan(logo.bottom);
     expect(instructions.left).toBeLessThan(logo.right);
+
+    // A finished candidate's page: a long email has no spaces to wrap at, so it breaks before the
+    // @ rather than running off the screen, and the note under the results spans the screen.
+    const candidate = throwawayEmail("averyveryverylongcandidateaddress");
+    await inviteCandidate(user, interview, candidate);
+    await finishOneAnswer(await signInAs(candidate), candidate);
+    await visit(user, `/companies/${company.id}/interviews/${interview}?tab=candidates`);
+    await user.getByRole("link").filter({ hasText: "averyveryverylong" }).click();
+    await expect(user.getByTestId("human-review")).toBeVisible();
+    expect(await user.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+      PHONE.width,
+    );
   } finally {
     await deleteOwnCompanies(user);
   }
@@ -145,11 +160,12 @@ test("timed questions on their own, with nothing around them", async ({
   try {
     // The preview shows what candidates see: no header or footer from its invitation on.
     await visit(user, `/companies/${company.id}/interviews/${interview}/try`);
-    const start = user.getByTestId("accept-start");
+    // The visible ones: the page can hold a hidden copy of its parts while they stream in.
+    const start = user.getByTestId("accept-start").filter({ visible: true });
     await expect(start).toBeVisible();
     await expect(user.getByRole("banner")).toHaveCount(0);
     await expect(user.getByRole("contentinfo")).toHaveCount(0);
-    await user.getByTestId("start-pledge").click();
+    await user.getByTestId("start-pledge").filter({ visible: true }).click();
     await start.click();
     await expect(user).toHaveURL(/\/sessions\//, { timeout: 90_000 });
     const finish = user.getByTestId("finish-interview");

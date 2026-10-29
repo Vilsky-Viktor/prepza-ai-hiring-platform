@@ -77,24 +77,3 @@ test("Settings and the account menu copy the account's ID", async ({ signInAs })
   await visit(owner, "/settings")
   await shot(owner, "settings-phone")
 })
-
-// A long email has no spaces to wrap at: on a phone it breaks before the @ rather than running
-// off the screen, and the note under the results spans the screen.
-test("a long email wraps on a phone", async ({ signInAs }) => {
-  const owner = await signInAs(ownerEmail())
-  const company = await createCompany(owner)
-  const interviewId = await createInterview(owner, company.id)
-  const email = throwawayEmail("averyveryverylongcandidateaddress")
-  await inviteCandidate(owner, interviewId, email)
-  await finishOneAnswer(await signInAs(email), email)
-
-  await owner.setViewportSize(PHONE)
-  await visit(owner, `/companies/${company.id}/interviews/${interviewId}?tab=candidates`)
-  await owner.getByRole("link").filter({ hasText: "averyveryverylong" }).click()
-  await expect(owner.getByTestId("human-review")).toBeVisible()
-  // Nothing wider than the screen.
-  expect(await owner.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
-    PHONE.width
-  )
-  await shot(owner, "long-email-phone")
-})

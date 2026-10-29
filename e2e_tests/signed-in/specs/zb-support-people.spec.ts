@@ -129,33 +129,3 @@ test("superadmin stops and resumes the emails to an address", async ({
   await expect(stopped.getByTestId("resume-emails")).toHaveCount(0)
   await expect(theirs.getByRole("button")).toHaveCount(0)
 })
-
-// The emails tab's old address leads to support. Anyone else finds no such pages: not the
-// support tab, an account's page or a candidate's, only the not-found page's way home.
-test("the support pages are for superadmins only", async ({ signInAs, signInSuperadmin }) => {
-  const address = ownerEmail()
-  const owner = await signInAs(address)
-  const company = await createCompany(owner)
-  const interviewId = await createInterview(owner, company.id)
-  const invite = await api<{ id: string }>(owner, "POST", `/companies/interviews/${interviewId}/candidates`, {
-    email: throwawayEmail("candidate"),
-  })
-
-  const superadmin = await signInSuperadmin()
-  await visit(superadmin, "/superadmin/emails")
-  await expect(superadmin).toHaveURL(/\/superadmin\/support$/)
-  const userId = await supportId((await supportSearch(superadmin, address)).first())
-
-  for (const path of [
-    "/superadmin/emails",
-    "/superadmin/support",
-    `/superadmin/support/users/${userId}`,
-    `/superadmin/support/candidates/${invite.id}`,
-  ]) {
-    await visit(owner, path)
-    await expect(owner.getByRole("main").locator('a[href="/"]')).toBeVisible()
-    await expect(owner.getByRole("main").getByRole("textbox")).toHaveCount(0)
-    await expect(emailBoxes(owner)).toHaveCount(0)
-    await expect(owner.getByRole("main").getByText(address)).toHaveCount(0)
-  }
-})

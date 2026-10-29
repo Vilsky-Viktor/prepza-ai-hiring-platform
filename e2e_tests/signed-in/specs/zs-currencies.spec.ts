@@ -106,56 +106,8 @@ test("a company's top-up is in the company's currency", async ({ signInAs }) => 
   await visit(owner, `/companies/${company.id}/billing`)
   await expect(currency).toHaveAttribute("data-currency", "USD")
   await shots(owner, "billing-phone")
-
 })
 
-// A company in pounds: its billing page and top-up price in pounds, and Paddle's checkout
-// charges them.
-test("a company in pounds is charged in pounds", async ({ signInAs }) => {
-  const owner = await signInAs(throwawayEmail("currency-gbp"))
-  await fromCountry(owner, "GB")
-  const company = await createCompany(owner)
-  await visit(owner, `/companies/${company.id}/billing`)
-  await expect(owner.getByTestId("company-currency")).toHaveAttribute("data-currency", "GBP")
-  await shots(owner, "billing-gbp", true)
-
-  await openDialog(owner, owner.getByTestId("top-up").first())
-  await expect(owner.getByTestId("pays-in")).toHaveAttribute("data-currency", "GBP")
-  await shots(owner, "top-up-gbp", true)
-
-  // Paddle's sandbox checkout charges pounds, wherever this browser is (nothing is paid).
-  await expect(owner.getByRole("dialog").getByRole("slider")).toBeVisible()
-  const buy = owner.getByRole("dialog").getByRole("button").first()
-  test.skip(await buy.isDisabled(), "Paddle's product isn't set locally")
-  await buy.click()
-  const checkout = owner.frameLocator("iframe[name=paddle_frame]")
-  await expect(checkout.getByText(/£/).first()).toBeVisible({ timeout: 30_000 })
-  await shot(owner, "paddle-checkout-gbp", false)
-})
-
-// A company created from Canada pays in Canadian dollars: its billing page and top-up dialog.
-test("a company in Canadian dollars is priced in them", async ({ signInAs }) => {
-  const owner = await signInAs(throwawayEmail("currency-cad"))
-  await fromCountry(owner, "CA")
-  const company = await createCompany(owner)
-  await visit(owner, `/companies/${company.id}/billing`)
-  await expect(owner.getByTestId("company-currency")).toHaveAttribute("data-currency", "CAD")
-
-  await openDialog(owner, owner.getByTestId("top-up").first())
-  await expect(owner.getByTestId("pays-in")).toHaveAttribute("data-currency", "CAD")
-  await expect(owner.getByRole("dialog").getByTestId("custom-quote")).toContainText("CA$70")
-  await shots(owner, "top-up-cad", true)
-})
-
-// A company created from Japan pays in yen, whole yen as Paddle counts them.
-test("a company in yen is priced in whole yen", async ({ signInAs }) => {
-  const owner = await signInAs(throwawayEmail("currency-jpy"))
-  await fromCountry(owner, "JP")
-  const company = await createCompany(owner)
-  await visit(owner, `/companies/${company.id}/billing`)
-  await expect(owner.getByTestId("company-currency")).toHaveAttribute("data-currency", "JPY")
-
-  await openDialog(owner, owner.getByTestId("top-up").first())
-  await expect(owner.getByRole("dialog").getByTestId("custom-quote")).toContainText("¥7,500")
-  await shots(owner, "top-up-jpy", true)
-})
+// Each currency's prices (whole yen included) and the checkout's currency are billing's unit
+// tests (test_credits.py, test_custom_top_ups.py); how each is written is
+// frontend/tests/lib/format.test.ts.

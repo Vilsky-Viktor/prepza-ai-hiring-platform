@@ -48,6 +48,16 @@ export async function visit(page: Page, path: string) {
   }).toPass({ timeout: 90_000, intervals: [2_000] })
 }
 
+/** Opens `path` until it answers `status` (the maintenance screen is a 503): the frontend keeps
+ * maintenance mode's state for a few seconds (MAINTENANCE_CACHE_MS); a page's guard may answer
+ * its 404 only once the site is back. */
+export async function visitUntil(page: Page, path: string, status: number) {
+  await expect(async () => {
+    const response = await page.goto(path)
+    expect(response?.status(), path).toBe(status)
+  }).toPass({ timeout: 60_000, intervals: [2_000] })
+}
+
 /** An integration's row on a company's integrations tab, by the page it opens (`path`, such as
  * "/workable", "/slack", "/api" or "/ai"). */
 export function integrationRow(page: Page, path: string) {

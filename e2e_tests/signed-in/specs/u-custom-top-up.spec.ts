@@ -128,6 +128,8 @@ test("the automatic top-up card changes the setting it shows", async ({ signInAs
 
   await expect(card.getByTestId("auto-top-up-on")).toContainText("$50")
   await expect(card.getByTestId("auto-top-up-on")).toContainText("500")
+  // On, it's the setting as text with its edit icon, not the button that sets it up.
+  await expect(card.getByTestId("set-up-auto-top-up")).toHaveCount(0)
   await card.getByRole("button").click()
   // The setup's dialog, over the top-up's (which is then hidden from the accessibility tree).
   const setup = owner.getByRole("dialog")
@@ -171,4 +173,22 @@ test("an automatic top-up that's off is set up from its card", async ({ signInAs
   // Close and Turn on, which needs no change.
   await expect(setup.locator("[data-slot=dialog-footer]").getByRole("button")).toHaveCount(2)
   await expect(setup.locator("button[type=submit]")).toBeEnabled()
+
+  // The amount and the level are two pills picked from the site's menu, not the browser's.
+  const pills = setup.locator("form").getByRole("button")
+  await expect(pills).toHaveCount(2)
+  await expect(owner.locator("select")).toHaveCount(0)
+
+  for (const [index, name] of ["amount", "level"].entries()) {
+    const pill = pills.nth(index)
+    await pill.click()
+    const items = owner.getByRole("menu").getByRole("menuitemradio")
+    await expect(items.nth(1)).toBeVisible()
+    await shot(owner, `menu-${name}`)
+    // The option's first line: the amount (its candidates under it) or the level.
+    const picked = (await items.last().innerText()).split("\n")[0]
+    await items.last().click()
+    await expect(owner.getByRole("menu")).toHaveCount(0)
+    await expect(pill).toContainText(picked)
+  }
 })

@@ -3,10 +3,11 @@ import { api, createCompany, createInterview } from "../helpers/api";
 import { visit } from "../helpers/navigation";
 import { throwawayEmail } from "../helpers/users";
 
-// An editable title needs at least 3 characters: a shorter one isn't saved, and says why.
-test("a test's title under three characters isn't saved", async ({
-  signInAs,
-}) => {
+// An editable title needs at least 3 characters: a shorter one isn't saved, and says why. A
+// company name needs at least 2 (EY and 3M are companies): one letter is refused under the
+// field, and no other company is made. The rules themselves are the API's (test_company_names.py
+// and the interview title's schema).
+test("a short test title or company name is refused, saying why", async ({ signInAs }) => {
   const owner = await signInAs(throwawayEmail("title-length"));
   const company = await createCompany(owner);
   const interviewId = await createInterview(owner, company.id);
@@ -26,12 +27,6 @@ test("a test's title under three characters isn't saved", async ({
   await expect(heading).toHaveText(before);
   await owner.reload();
   await expect(heading).toHaveText(before);
-});
-
-// A company name needs at least 2 characters (EY and 3M are companies): one letter is refused
-// under the field, and no company is made.
-test("a one-letter company name isn't accepted", async ({ signInAs }) => {
-  const owner = await signInAs(throwawayEmail("company-name-length"));
 
   await visit(owner, "/companies");
   await owner.getByTestId("new-company").click();
@@ -46,5 +41,7 @@ test("a one-letter company name isn't accepted", async ({ signInAs }) => {
     "Use at least 2 characters.",
   );
   await expect(owner).toHaveURL(/\/companies$/);
-  expect(await api<unknown[]>(owner, "GET", "/companies/companies")).toEqual([]);
+  expect(await api<{ id: string }[]>(owner, "GET", "/companies/companies")).toEqual([
+    expect.objectContaining({ id: company.id }),
+  ]);
 });

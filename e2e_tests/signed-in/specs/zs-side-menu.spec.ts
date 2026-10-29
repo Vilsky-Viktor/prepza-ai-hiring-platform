@@ -35,9 +35,14 @@ async function pagesOf(page: Page, companyId: string, links = menu(page).getByRo
   return hrefs.map((href) => href.replace(`/companies/${companyId}`, ""))
 }
 
-test("a company's side menu lists its pages and marks the open one", async ({ signInAs }) => {
+// On a wide screen: the company's pages in order with the open one marked; taller than the
+// window, the menu scrolls on its own; and while a page scrolls it holds under the window's top.
+test("a company's side menu lists its pages, scrolls on its own and stays in view", async ({
+  signInAs,
+}) => {
   const owner = await signInAs(ownerEmail())
   const company = await createCompany(owner)
+  const interview = await createInterview(owner, company.id)
   await visit(owner, `/companies/${company.id}/members`)
 
   await expect.poll(() => pagesOf(owner, company.id)).toEqual(COMPANY_PAGES)
@@ -45,19 +50,23 @@ test("a company's side menu lists its pages and marks the open one", async ({ si
   await expect(open).toHaveCount(1)
   await expect(open).toHaveAttribute("href", `/companies/${company.id}/members`)
   await shot(owner, "company-menu")
-})
 
-test("the side menu stays in view while the page scrolls", async ({ signInAs }) => {
-  const owner = await signInAs(ownerEmail())
-  const company = await createCompany(owner)
-  const interview = await createInterview(owner, company.id)
-  await owner.setViewportSize({ width: 1280, height: 500 })
-  await visit(owner, `/companies/${company.id}/interviews/${interview}`)
+  await owner.setViewportSize({ width: 1280, height: 400 })
+  await visit(owner, `/companies/${company.id}/interviews`)
   const nav = menu(owner)
-  await expect(nav.locator('a[aria-current="page"]')).toBeVisible()
+  await expect(nav.getByRole("link")).toHaveCount(COMPANY_PAGES.length)
+  expect(await nav.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(true)
+  await nav.hover()
+  await owner.mouse.wheel(0, 200)
+  await expect.poll(() => nav.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+  await expect(nav.getByRole("link").last()).toBeInViewport()
+  await shot(owner, "menu-scrolled", false)
 
   // Scrolled past where the menu starts, it holds 24px under the window's top (sticky's
   // top-6), where it would otherwise have gone above it.
+  await owner.setViewportSize({ width: 1280, height: 500 })
+  await visit(owner, `/companies/${company.id}/interviews/${interview}`)
+  await expect(nav.locator('a[aria-current="page"]')).toBeVisible()
   const start = await nav.evaluate((element) => element.getBoundingClientRect().top + window.scrollY)
   await owner.evaluate((top) => window.scrollTo(0, top + 100), start)
   await expect
@@ -65,22 +74,6 @@ test("the side menu stays in view while the page scrolls", async ({ signInAs }) 
     .toBe(24)
   await expect(nav.locator('a[aria-current="page"]')).toBeInViewport()
   await shot(owner, "menu-in-view", false)
-})
-
-test("a side menu taller than the window scrolls on its own", async ({ signInAs }) => {
-  const owner = await signInAs(ownerEmail())
-  const company = await createCompany(owner)
-  await owner.setViewportSize({ width: 1280, height: 400 })
-  await visit(owner, `/companies/${company.id}/interviews`)
-  const nav = menu(owner)
-  await expect(nav.getByRole("link")).toHaveCount(COMPANY_PAGES.length)
-
-  expect(await nav.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(true)
-  await nav.hover()
-  await owner.mouse.wheel(0, 200)
-  await expect.poll(() => nav.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
-  await expect(nav.getByRole("link").last()).toBeInViewport()
-  await shot(owner, "menu-scrolled", false)
 })
 
 test("on a phone the menu shows three tabs and the rest under more", async ({ signInAs }) => {
