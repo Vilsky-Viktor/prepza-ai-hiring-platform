@@ -961,6 +961,7 @@
     "empty": "Belum ada perusahaan.",
     "owner": "Pemilik",
     "interviewCount": "{count, plural, other {# wawancara}}",
+    "memberCount": "{count, plural, other {# anggota}}",
     "interviews": "Wawancara",
     "templates": "Templat",
     "team": "Tim",

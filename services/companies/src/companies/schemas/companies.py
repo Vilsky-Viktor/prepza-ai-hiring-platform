@@ -71,6 +71,8 @@ class CompanyOut(BaseModel):
     # Only the owner sees the company's action log.
     can_see_actions: bool = False
     interview_count: int
+    # Its team as the Team page counts it (members and pending invites).
+    member_count: int = 0
     # The logo's address on the site; None until one is set.
     logo_url: str | None = None
     # Its own colors on candidates' pages, by theme (a theme missing: prepza's), and the colors

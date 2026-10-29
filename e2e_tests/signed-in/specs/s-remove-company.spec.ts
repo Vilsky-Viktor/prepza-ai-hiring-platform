@@ -6,7 +6,7 @@ import { visit } from "../helpers/navigation";
 import { shot } from "../helpers/screenshots";
 import { ownerEmail } from "../helpers/users";
 
-/** The Remove button on a company's card in the companies list, the card's one button. */
+/** The Remove button on a company's row in the companies list, the row's one button. */
 function removeButton(page: Page, companyId: string) {
   return page
     .getByRole("listitem")

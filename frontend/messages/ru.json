@@ -961,6 +961,7 @@
     "empty": "Компаний пока нет.",
     "owner": "Владелец",
     "interviewCount": "{count, plural, one {# собеседование} few {# собеседования} many {# собеседований} other {# собеседования}}",
+    "memberCount": "{count, plural, one {# участник} few {# участника} many {# участников} other {# участника}}",
     "interviews": "Собеседования",
     "templates": "Шаблоны",
     "team": "Команда",

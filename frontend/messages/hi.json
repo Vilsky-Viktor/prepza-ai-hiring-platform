@@ -961,6 +961,7 @@
     "empty": "अभी कोई कंपनी नहीं है।",
     "owner": "ओनर",
     "interviewCount": "{count, plural, one {# इंटरव्यू} other {# इंटरव्यू}}",
+    "memberCount": "{count, plural, one {# सदस्य} other {# सदस्य}}",
     "interviews": "इंटरव्यू",
     "templates": "टेम्पलेट",
     "team": "टीम",

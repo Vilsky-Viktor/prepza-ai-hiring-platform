@@ -961,6 +961,7 @@
     "empty": "Ettevõtteid veel pole.",
     "owner": "Omanik",
     "interviewCount": "{count, plural, one {# intervjuu} other {# intervjuud}}",
+    "memberCount": "{count, plural, one {# liige} other {# liiget}}",
     "interviews": "Intervjuud",
     "templates": "Mallid",
     "team": "Meeskond",

@@ -961,6 +961,7 @@
     "empty": "还没有公司。",
     "owner": "所有者",
     "interviewCount": "{count, plural, other {# 场面试}}",
+    "memberCount": "{count, plural, other {# 名成员}}",
     "interviews": "面试",
     "templates": "模板",
     "team": "团队",

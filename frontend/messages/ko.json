@@ -961,6 +961,7 @@
     "empty": "아직 회사가 없습니다.",
     "owner": "소유자",
     "interviewCount": "{count, plural, other {면접 #개}}",
+    "memberCount": "{count, plural, other {멤버 #명}}",
     "interviews": "면접",
     "templates": "템플릿",
     "team": "팀",

@@ -48,6 +48,15 @@ def company(company_id, name, role):
 @pytest.fixture
 def two_companies(monkeypatch):
     owned = company(OWNED_ID, "My company", "owner")
+    # A pending invite counts in the team, as the Team page lists it.
+    owned.members.append(
+        Member(
+            company_id=OWNED_ID,
+            invited_email="ann@example.com",
+            role="viewer",
+            created_at=datetime.now(UTC),
+        )
+    )
     joined = company(JOINED_ID, "Arcolabs", "admin")
 
     async def fake_list(session, user_id, offset, limit, roles=None, only=None):
@@ -75,9 +84,12 @@ def test_lists_every_membership(client, two_companies):
     response = client.get("/companies")
 
     assert response.status_code == 200
-    assert [(row["name"], row["role"], row["interview_count"]) for row in response.json()] == [
-        ("My company", "owner", 3),
-        ("Arcolabs", "admin", 0),
+    assert [
+        (row["name"], row["role"], row["interview_count"], row["member_count"])
+        for row in response.json()
+    ] == [
+        ("My company", "owner", 3, 2),
+        ("Arcolabs", "admin", 0, 1),
     ]
 
 

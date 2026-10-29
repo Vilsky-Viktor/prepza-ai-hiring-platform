@@ -961,6 +961,7 @@
     "empty": "لا توجد شركات بعد.",
     "owner": "المالك",
     "interviewCount": "{count, plural, zero {لا مقابلات} one {مقابلة واحدة} two {مقابلتان} few {# مقابلات} many {# مقابلةً} other {# مقابلة}}",
+    "memberCount": "{count, plural, zero {لا أعضاء} one {عضو واحد} two {عضوان} few {# أعضاء} many {# عضوًا} other {# عضو}}",
     "interviews": "المقابلات",
     "templates": "القوالب",
     "team": "الفريق",

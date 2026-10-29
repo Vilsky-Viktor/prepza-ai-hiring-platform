@@ -961,6 +961,7 @@
     "empty": "Henüz şirket yok.",
     "owner": "Sahibi",
     "interviewCount": "{count, plural, one {# mülakat} other {# mülakat}}",
+    "memberCount": "{count, plural, one {# üye} other {# üye}}",
     "interviews": "Mülakatlar",
     "templates": "Şablonlar",
     "team": "Ekip",

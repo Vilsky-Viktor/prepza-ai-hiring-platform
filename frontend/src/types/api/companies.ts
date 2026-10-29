@@ -2958,6 +2958,11 @@ export interface components {
       can_see_actions: boolean
       /** Interview Count */
       interview_count: number
+      /**
+       * Member Count
+       * @default 0
+       */
+      member_count: number
       /** Logo Url */
       logo_url?: string | null
       brand_colors?: components["schemas"]["SavedBrandColors"] | null

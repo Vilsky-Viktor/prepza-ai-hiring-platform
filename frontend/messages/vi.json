@@ -961,6 +961,7 @@
     "empty": "Chưa có công ty nào.",
     "owner": "Chủ sở hữu",
     "interviewCount": "{count, plural, other {# buổi phỏng vấn}}",
+    "memberCount": "{count, plural, other {# thành viên}}",
     "interviews": "Phỏng vấn",
     "templates": "Mẫu",
     "team": "Nhóm",

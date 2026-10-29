@@ -961,6 +961,7 @@
     "empty": "ยังไม่มีบริษัท",
     "owner": "เจ้าของ",
     "interviewCount": "{count, plural, other {# การสัมภาษณ์}}",
+    "memberCount": "{count, plural, other {สมาชิก # คน}}",
     "interviews": "การสัมภาษณ์",
     "templates": "เทมเพลต",
     "team": "ทีม",

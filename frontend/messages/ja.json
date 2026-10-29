@@ -961,6 +961,7 @@
     "empty": "会社はまだありません。",
     "owner": "所有者",
     "interviewCount": "{count, plural, other {面接 # 件}}",
+    "memberCount": "{count, plural, other {メンバー # 人}}",
     "interviews": "面接",
     "templates": "テンプレート",
     "team": "チーム",

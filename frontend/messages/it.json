@@ -961,6 +961,7 @@
     "empty": "Ancora nessuna azienda.",
     "owner": "Proprietario",
     "interviewCount": "{count, plural, one {# colloquio} other {# colloqui}}",
+    "memberCount": "{count, plural, one {# membro} other {# membri}}",
     "interviews": "Colloqui",
     "templates": "Modelli",
     "team": "Team",

@@ -8707,6 +8707,11 @@
       "type": "integer",
       "title": "Interview Count"
      },
+     "member_count": {
+      "type": "integer",
+      "title": "Member Count",
+      "default": 0
+     },
      "logo_url": {
       "anyOf": [
        {

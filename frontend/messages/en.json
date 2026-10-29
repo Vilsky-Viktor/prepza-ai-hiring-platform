@@ -961,6 +961,7 @@
     "empty": "No companies yet.",
     "owner": "Owner",
     "interviewCount": "{count, plural, one {# interview} other {# interviews}}",
+    "memberCount": "{count, plural, one {# member} other {# members}}",
     "interviews": "Interviews",
     "templates": "Templates",
     "team": "Team",

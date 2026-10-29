@@ -961,6 +961,7 @@
     "empty": "עדיין אין חברות.",
     "owner": "בעלים",
     "interviewCount": "{count, plural, one {ראיון אחד} two {# ראיונות} other {# ראיונות}}",
+    "memberCount": "{count, plural, one {חבר צוות אחד} two {# חברי צוות} other {# חברי צוות}}",
     "interviews": "ראיונות",
     "templates": "תבניות",
     "team": "צוות",

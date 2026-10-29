@@ -50,6 +50,7 @@ def company_out(
         can_manage_members=is_owner(member),
         can_see_actions=is_owner(member),
         interview_count=interview_count,
+        member_count=len(company.members),
         logo_url=logo_path(company),
         brand_colors=company.brand_colors,
         candidate_colors=BrandColorSets(**color_sets(company.brand_colors)),

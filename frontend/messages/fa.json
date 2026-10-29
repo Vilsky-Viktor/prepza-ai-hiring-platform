@@ -961,6 +961,7 @@
     "empty": "هنوز شرکتی نیست.",
     "owner": "مالک",
     "interviewCount": "{count, plural, one {# مصاحبه} other {# مصاحبه}}",
+    "memberCount": "{count, plural, one {# عضو} other {# عضو}}",
     "interviews": "مصاحبه‌ها",
     "templates": "قالب‌ها",
     "team": "تیم",

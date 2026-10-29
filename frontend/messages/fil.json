@@ -961,6 +961,7 @@
     "empty": "Wala pang kumpanya.",
     "owner": "May-ari",
     "interviewCount": "{count, plural, one {# interview} other {# interview}}",
+    "memberCount": "{count, plural, one {# miyembro} other {# miyembro}}",
     "interviews": "Mga interview",
     "templates": "Mga template",
     "team": "Team",

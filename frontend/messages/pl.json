@@ -961,6 +961,7 @@
     "empty": "Nie ma jeszcze firm.",
     "owner": "Właściciel",
     "interviewCount": "{count, plural, one {# rozmowa} few {# rozmowy} many {# rozmów} other {# rozmowy}}",
+    "memberCount": "{count, plural, one {# członek zespołu} few {# członków zespołu} many {# członków zespołu} other {# członka zespołu}}",
     "interviews": "Rozmowy",
     "templates": "Szablony",
     "team": "Zespół",

@@ -961,6 +961,7 @@
     "empty": "Nog geen bedrijven.",
     "owner": "Eigenaar",
     "interviewCount": "{count, plural, one {# interview} other {# interviews}}",
+    "memberCount": "{count, plural, one {# lid} other {# leden}}",
     "interviews": "Interviews",
     "templates": "Sjablonen",
     "team": "Team",
