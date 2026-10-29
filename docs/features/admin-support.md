@@ -44,6 +44,8 @@ There's a page for an id with an account or a membership; any other is "not foun
 - its interviews, with their candidates count and status,
 - its action log, newest first, in the same rows as the owner's **Action log** tab (one component): what a member did and about what (a candidate's email, an interview's title, a member's email, a key's or web hook's name), who they were ("A former member" once they've left), the date and time in the viewer's time zone, and whether the assistant, an AI app, the API or an ATS did it (see [Companies](companies.md#action-log)).
 
+Its credits (the history), reserved credits, interviews, members and action log are each a page of their own, listed under Support in the admin zone's menu while the company is open (on a phone, the bar under the tabs that opens a menu of them), at `?page=reserved`, `?page=interviews`, `?page=members` and `?page=audit` (the credits at the company's own address; the older `?tab=` addresses lead there). The balance and the AI cost sit above each.
+
 On phones, the actions take two rows (adjust credits and suspend side by side, then rename and delete), and the balance two lines. It can be:
 
 - **suspended,** after a confirmation (see [Companies](companies.md#suspension)), and the suspension lifted,

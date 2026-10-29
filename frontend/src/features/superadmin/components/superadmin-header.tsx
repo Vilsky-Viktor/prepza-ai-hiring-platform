@@ -1,33 +1,12 @@
 "use client"
 
-import {
-  ChartColumnIcon,
-  FormIcon,
-  LifeBuoyIcon,
-  MegaphoneIcon,
-  MessagesSquareIcon,
-  NewspaperIcon,
-  PercentIcon,
-  ShieldCheckIcon,
-  SlidersHorizontalIcon,
-} from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { SideMenuLayout } from "@/components/common/side-menu"
-
-// The pages with pages of their own: each one's path under its page and its label's message.
-const SUBTABS = {
-  questions: [
-    { id: "flagged", label: "flagged" },
-    { id: "replaced", label: "replaced" },
-    { id: "patterns", label: "patterns" },
-  ],
-  stats: [
-    { id: "general", label: "statsGeneral" },
-    { id: "ai-costs", label: "aiCosts" },
-  ],
-} as const
+import {
+  SuperadminMenu,
+  type SuperadminPage,
+} from "@/features/superadmin/components/superadmin-menu"
 
 /** The admin zone's title, with `action` on the right, and its menu beside the page's content
  * (`children`), as a company's pages have them. Questions and stats have pages of their own,
@@ -38,16 +17,7 @@ export function SuperadminHeader({
   action,
   children,
 }: {
-  current:
-    | "templates"
-    | "questions"
-    | "pass-rates"
-    | "verification"
-    | "support"
-    | "stats"
-    | "controls"
-    | "news"
-    | "campaigns"
+  current: SuperadminPage
   sub?: "flagged" | "replaced" | "patterns" | "general" | "ai-costs"
   action?: ReactNode
   children: ReactNode
@@ -67,78 +37,9 @@ export function SuperadminHeader({
           </div>
         )}
       </div>
-      <SideMenuLayout
-        items={[
-          {
-            id: "templates",
-            href: "/superadmin/templates",
-            label: t("templates"),
-            icon: FormIcon,
-          },
-          {
-            id: "news",
-            href: "/superadmin/news",
-            label: t("news"),
-            icon: NewspaperIcon,
-          },
-          {
-            id: "campaigns",
-            href: "/superadmin/campaigns",
-            label: t("campaigns"),
-            icon: MegaphoneIcon,
-          },
-          {
-            id: "questions",
-            href: "/superadmin/questions/flagged",
-            label: t("questions"),
-            icon: MessagesSquareIcon,
-            sub: SUBTABS.questions.map(({ id, label }) => ({
-              id,
-              href: `/superadmin/questions/${id}`,
-              label: t(label),
-            })),
-          },
-          {
-            id: "pass-rates",
-            href: "/superadmin/pass-rates",
-            label: t("passRates"),
-            icon: PercentIcon,
-          },
-          {
-            id: "verification",
-            href: "/superadmin/verification",
-            label: t("verification"),
-            icon: ShieldCheckIcon,
-          },
-          {
-            id: "support",
-            href: "/superadmin/support",
-            label: t("support"),
-            icon: LifeBuoyIcon,
-          },
-          {
-            id: "stats",
-            href: "/superadmin/stats/general",
-            label: t("stats"),
-            icon: ChartColumnIcon,
-            sub: SUBTABS.stats.map(({ id, label }) => ({
-              id,
-              href: `/superadmin/stats/${id}`,
-              label: t(label),
-            })),
-          },
-          {
-            id: "controls",
-            href: "/superadmin/controls",
-            label: t("controls"),
-            icon: SlidersHorizontalIcon,
-          },
-        ]}
-        current={current}
-        currentSub={sub}
-      >
+      <SuperadminMenu current={current} sub={sub}>
         {children}
-      </SideMenuLayout>
+      </SuperadminMenu>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { BackLink } from "@/components/common/back-link"
@@ -17,7 +17,7 @@ import {
 } from "@/features/superadmin/components/ai-spend-line"
 import { CompanyActions } from "@/features/superadmin/components/company-actions"
 import { SupportInterviews } from "@/features/superadmin/components/support-lists"
-import { TabNav } from "@/components/common/tab-nav"
+import { SuperadminMenu } from "@/features/superadmin/components/superadmin-menu"
 import { Badge } from "@/components/ui/badge"
 import { WrappedEmail } from "@/components/common/wrapped-email"
 import { Dot } from "@/components/common/dot"
@@ -57,26 +57,44 @@ function MemberLink({
   )
 }
 
-const TABS = ["money", "reserved", "interviews", "members", "audit"] as const
+const PAGES = ["money", "reserved", "interviews", "members", "audit"] as const
+
+/** A section's address: credits at the company's own, the others as its `?page=`. */
+function pageHref(href: string, name: string) {
+  return name === "money" ? href : `${href}?page=${name}`
+}
+
+/** The section asked for, credits when none; the sections were tabs once (`?tab=`), and their
+ * old addresses open the matching page. */
+function openPage(
+  href: string,
+  { page, tab }: { page?: string; tab?: string }
+) {
+  if (tab) {
+    redirect(pageHref(href, PAGES.find((name) => name === tab) ?? "money"))
+  }
+
+  return PAGES.find((name) => name === page) ?? "money"
+}
 
 /** A company in the admin zone's support tab, to look into a complaint: its balance, where its
  * credits came from and went (with Paddle's transactions and invoices), the candidates holding
- * credits, its interviews, members and audit log; and what a superadmin can do about it. The
- * API answers superadmins only and logs each look. */
+ * credits, its interviews, members and audit log, each a page of support's in the admin zone's
+ * menu (`?page=`); and what a superadmin can do about it. The API answers superadmins only and
+ * logs each look. */
 export default async function SupportCompanyPage({
   params,
   searchParams,
 }: {
   params: Promise<{ id: string }>
-  searchParams: Promise<{ tab?: string }>
+  searchParams: Promise<{ page?: string; tab?: string }>
 }) {
   const { id } = await params
-  const asked = (await searchParams).tab
-  const tab = TABS.find((name) => name === asked) ?? "money"
+  const href = `/superadmin/support/companies/${id}`
+  const tab = openPage(href, await searchParams)
   const t = await getTranslations("superadmin")
-  const roles = await getTranslations("roles")
   const api = `/companies/superadmin/support/companies/${id}`
-  // Only the open tab's first page, asked with the company and its AI spend.
+  // Only the open page's first page, asked with the company and its AI spend.
   const first = <T,>(path: string) =>
     serverFetch<T[]>(`${api}/${path}?limit=${PAGE_SIZE}`)
   const [company, spend, history, reserved, interviews, audit] =
@@ -92,8 +110,6 @@ export default async function SupportCompanyPage({
   if (!company) {
     notFound()
   }
-
-  const href = `/superadmin/support/companies/${id}`
 
   return (
     <main className="mx-auto max-w-page space-y-10 px-6 py-12">
@@ -137,88 +153,98 @@ export default async function SupportCompanyPage({
         </div>
       </div>
 
-      {/* One line on desktop; on phones, the held credits on a line of their own. */}
-      <p className="text-lg">
-        {t("supportAvailable", {
-          available: company.balance - company.reserved,
-        })}
-        <Dot className="max-sm:hidden" />
-        <span className="max-sm:block">
-          {t("supportHeld", { reserved: company.reserved })}
-        </span>
-      </p>
+      <SuperadminMenu
+        current="support"
+        // Support's pages in the menu: the company's sections.
+        pages={PAGES.map((name) => ({
+          id: name,
+          href: pageHref(href, name),
+          label: t(`supportTabs.${name}`),
+        }))}
+        sub={tab}
+        className="space-y-10"
+      >
+        {/* One line on desktop; on phones, the held credits on a line of their own. */}
+        <p className="text-lg">
+          {t("supportAvailable", {
+            available: company.balance - company.reserved,
+          })}
+          <Dot className="max-sm:hidden" />
+          <span className="max-sm:block">
+            {t("supportHeld", { reserved: company.reserved })}
+          </span>
+        </p>
 
-      <AiSpendLine spend={spend} />
+        <AiSpendLine spend={spend} />
 
-      <div className="space-y-6">
-        <TabNav
-          items={TABS.map((name) => ({
-            id: name,
-            href: name === "money" ? href : `${href}?tab=${name}`,
-            label: t(`supportTabs.${name}`),
-          }))}
-          current={tab}
-        />
-        {history && (
-          <CreditHistory
-            companyId={id}
-            initial={history}
-            api={api}
-            links="support"
-          />
-        )}
-        {reserved && (
-          <ReservedList
-            companyId={id}
-            initial={reserved}
-            api={api}
-            links="support"
-          />
-        )}
-        {interviews && <SupportInterviews api={api} initial={interviews} />}
-        {audit && <ActionList path={`${api}/audit`} initial={audit} />}
-        {tab === "members" && (
-          <ul className={LIST_BOX}>
-            {company.members.map((member) => (
-              // On desktop the role sits on the right; on phones, right after the status. A
-              // member who joined opens their user page.
-              <li key={member.email}>
-                <MemberLink
-                  userId={member.user_id}
-                  className="flex items-center justify-between gap-4 p-6"
-                >
-                  <span className="min-w-0 space-y-1">
-                    <span className="block text-lg font-medium">
-                      <WrappedEmail email={member.email} />
-                    </span>
-                    <span className="flex items-center gap-3 text-sm text-muted-foreground">
-                      {member.user_id
-                        ? t("supportJoined")
-                        : t("supportInvited")}
-                      <Badge
-                        variant="outline"
-                        className="h-7 px-3 text-sm font-light sm:hidden"
-                      >
-                        {hasMessage(roles, member.role)
-                          ? roles(member.role)
-                          : member.role}
-                      </Badge>
-                    </span>
-                  </span>
-                  <Badge
-                    variant="outline"
-                    className="h-7 px-3 text-sm font-light max-sm:hidden"
-                  >
-                    {hasMessage(roles, member.role)
-                      ? roles(member.role)
-                      : member.role}
-                  </Badge>
-                </MemberLink>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+        <div className="space-y-6">
+          {history && (
+            <CreditHistory
+              companyId={id}
+              initial={history}
+              api={api}
+              links="support"
+            />
+          )}
+          {reserved && (
+            <ReservedList
+              companyId={id}
+              initial={reserved}
+              api={api}
+              links="support"
+            />
+          )}
+          {interviews && <SupportInterviews api={api} initial={interviews} />}
+          {audit && <ActionList path={`${api}/audit`} initial={audit} />}
+          {tab === "members" && <Members members={company.members} />}
+        </div>
+      </SuperadminMenu>
     </main>
+  )
+}
+
+/** The company's members: a member who joined opens their user page. */
+async function Members({ members }: { members: SupportCompany["members"] }) {
+  const t = await getTranslations("superadmin")
+  const roles = await getTranslations("roles")
+
+  return (
+    <ul className={LIST_BOX}>
+      {members.map((member) => (
+        // On desktop the role sits on the right; on phones, right after the status. A
+        // member who joined opens their user page.
+        <li key={member.email}>
+          <MemberLink
+            userId={member.user_id}
+            className="flex items-center justify-between gap-4 p-6"
+          >
+            <span className="min-w-0 space-y-1">
+              <span className="block text-lg font-medium">
+                <WrappedEmail email={member.email} />
+              </span>
+              <span className="flex items-center gap-3 text-sm text-muted-foreground">
+                {member.user_id ? t("supportJoined") : t("supportInvited")}
+                <Badge
+                  variant="outline"
+                  className="h-7 px-3 text-sm font-light sm:hidden"
+                >
+                  {hasMessage(roles, member.role)
+                    ? roles(member.role)
+                    : member.role}
+                </Badge>
+              </span>
+            </span>
+            <Badge
+              variant="outline"
+              className="h-7 px-3 text-sm font-light max-sm:hidden"
+            >
+              {hasMessage(roles, member.role)
+                ? roles(member.role)
+                : member.role}
+            </Badge>
+          </MemberLink>
+        </li>
+      ))}
+    </ul>
   )
 }

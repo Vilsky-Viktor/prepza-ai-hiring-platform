@@ -48,10 +48,34 @@ test("superadmin finds a company from a complaint and adjusts its credits", asyn
   // The history: the welcome credits; held: the invited candidate; members: the owner.
   await expect(superadmin.getByRole("main").getByText("+1,500")).toBeVisible()
   await shot(superadmin, "company")
-  await visit(superadmin, `${page}?tab=reserved`)
+  // The company's sections are pages under Support in the admin zone's menu: credits at the
+  // company's own address, the open one marked.
+  const menu = superadmin.getByRole("main").getByRole("navigation")
+  const marked = menu.locator('a[aria-current="page"]:visible')
+  await expect(marked).toHaveAttribute("href", page)
+  await menu.locator(`a[href="${page}?page=reserved"]:visible`).click()
+  await expect(superadmin).toHaveURL(new RegExp(`${page}\\?page=reserved$`), { timeout: 90_000 })
+  await expect(marked).toHaveAttribute("href", `${page}?page=reserved`)
   await expect(superadmin.getByText(candidate)).toBeVisible()
+  // The old tabs' addresses open the matching page.
   await visit(superadmin, `${page}?tab=members`)
+  await expect(superadmin).toHaveURL(new RegExp(`${page}\\?page=members$`))
   await expect(superadmin.getByText(ownerAddress)).toBeVisible()
+
+  // On a phone, the sections are in the bar under the tabs, the open one checked.
+  await superadmin.setViewportSize({ width: 390, height: 844 })
+  const bar = menu.last().getByRole("button")
+  await bar.click()
+  const sections = superadmin.getByRole("menu").getByRole("menuitem")
+  await expect(sections).toHaveCount(5)
+  await expect(superadmin.getByRole("menu").locator('[aria-current="page"]')).toHaveAttribute(
+    "href",
+    `${page}?page=members`
+  )
+  await shot(superadmin, "company-phone")
+  await superadmin.getByRole("menu").locator(`a[href="${page}?page=audit"]`).click()
+  await expect(superadmin).toHaveURL(new RegExp(`${page}\\?page=audit$`), { timeout: 90_000 })
+  await superadmin.setViewportSize({ width: 1280, height: 800 })
   await visit(superadmin, page)
 
   // Credits added for a complaint: the history shows the reason, to the company too.
@@ -120,11 +144,11 @@ test("superadmin follows a company to its interview, a candidate and an account"
   const page = `/superadmin/support/companies/${company.id}`
 
   // Its interviews, each opening its page; the audit log: what the owner did, and who.
-  await visit(superadmin, `${page}?tab=interviews`)
+  await visit(superadmin, `${page}?page=interviews`)
   await expect(supportLink(superadmin, "interviews", interviewId)).toBeVisible()
   await expect(supportLink(superadmin, "interviews", failedId)).toBeVisible()
   await shot(superadmin, "company-interviews")
-  await visit(superadmin, `${page}?tab=audit`)
+  await visit(superadmin, `${page}?page=audit`)
   await expect(superadmin.getByRole("main").getByText(ownerAddress).first()).toBeVisible()
   await expect(superadmin.getByRole("main").getByText(finished).first()).toBeVisible()
   await shot(superadmin, "company-audit")
