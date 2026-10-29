@@ -84,11 +84,16 @@ test("superadmin writes, previews, tests, edits and deletes a campaign", async (
     const preview = superadmin.frameLocator("main iframe")
     await expect(preview.locator("strong")).toHaveText("Bold words")
     await expect(preview.locator(`a[href="${LINK}"]`)).toHaveText(LINK)
-    // Before sending, who'd get it, as the API counts them.
-    const { count } = await api<{ count: number }>(superadmin, "GET", `${PATH}/${id}/recipients`)
-    await expect(superadmin.getByTestId("campaign-recipients")).toContainText(
-      new Intl.NumberFormat("en", { notation: "compact" }).format(count)
-    )
+    // Before sending, who'd get it, as the API counts them. Other tests' users come and go
+    // meanwhile, so the page is read again until it and the API agree.
+    await expect(async () => {
+      await superadmin.reload()
+      const { count } = await api<{ count: number }>(superadmin, "GET", `${PATH}/${id}/recipients`)
+      await expect(superadmin.getByTestId("campaign-recipients")).toContainText(
+        new Intl.NumberFormat("en", { notation: "compact" }).format(count),
+        { timeout: 5_000 }
+      )
+    }).toPass({ timeout: 60_000 })
     await shot(superadmin, "campaign-draft")
 
     // The test reaches the superadmin's own address, formatted as previewed.
