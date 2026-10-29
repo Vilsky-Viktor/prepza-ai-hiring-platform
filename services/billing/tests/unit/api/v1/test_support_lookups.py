@@ -51,8 +51,3 @@ def test_a_candidates_credits_by_the_key_companies_gave_them(client, monkeypatch
 
     assert (found.status_code, found.json()) == (200, {"status": "charged"})
     assert missing.status_code == 404
-
-
-def test_only_services_ask(client):
-    assert client.get("/internal/purchases", params={"buyer_id": "ann"}).status_code == 401
-    assert client.get("/internal/candidates/hold", params={"key": "k"}).status_code == 401

@@ -74,8 +74,3 @@ def test_an_account_by_its_address_whatever_its_case(client, firebase):
     assert (response.status_code, response.json()) == (200, FOUND)
     assert gone.status_code == 404
     assert firebase == ["ann@example.com", "zoe@example.com"]
-
-
-def test_only_services_ask(client):
-    assert client.get("/internal/accounts/ann").status_code == 401
-    assert client.post("/internal/accounts/lookup", json={"email": "a@b.c"}).status_code == 401

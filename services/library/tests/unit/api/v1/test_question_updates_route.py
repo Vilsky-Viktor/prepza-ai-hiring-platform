@@ -84,8 +84,3 @@ def test_any_other_service_is_refused(client, between, caller):
     assert refused.status_code == 403
     assert refused.json()["detail"] == "Not allowed"
     assert between == []
-
-
-def test_without_a_service_token_its_refused(client, between):
-    assert client.post("/internal/questions/updates", json=BODY).status_code == 401
-    assert between == []

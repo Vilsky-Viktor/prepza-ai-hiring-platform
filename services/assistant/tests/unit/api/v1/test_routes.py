@@ -122,14 +122,9 @@ def test_the_panel_reads_the_message_limits_as_edited(client, monkeypatch):
     assert (config["messages_per_hour"], config["messages_per_day"]) == (12, 90)
 
 
-def test_signed_out_and_unsigned_calls_are_refused(client):
+def test_signed_out_calls_are_refused(client):
     assert client.post("/chat", json={"message": "Hi"}).status_code in (401, 403)
     assert client.get("/conversations").status_code in (401, 403)
-    response = client.request("DELETE", "/internal/users/ann", json={"email": "a@b.c"})
-    assert response.status_code in (401, 403)
-    forged = {"Authorization": "Bearer forged"}
-    response = client.post("/internal/users/ann/export", json={"email": "a@b.c"}, headers=forged)
-    assert response.status_code == 401
 
 
 @pytest.mark.parametrize("status, kept", [(200, True), (403, False), (404, False)])

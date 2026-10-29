@@ -23,7 +23,8 @@ the Top 10 for LLM applications 2025.
   `candidate_for`, `require_company`, `require_editor`); an unguessable id never replaces the
   check. Test access with a second account that must be refused.
 - Each service's `test_route_guards.py` (`prepza_common.auth.route_guards`) fails on a route that runs
-  no guard; a route public on purpose is listed there with why. Its `test_access_matrix.py`
+  no guard, and on an `/internal` route that takes neither a service token nor Google's
+  signature; a route public on purpose is listed there with why. Its `test_access_matrix.py`
   (`packages/common/tests/access_matrix.py`) fails on a route that lets the wrong caller through.
 - Superadmin routes answer 404 to everyone else.
 - Service-to-service calls carry short-lived (60 s), audience-bound tokens with one key per

@@ -30,10 +30,6 @@ def test_notifications_gets_every_company_of_a_user(client, monkeypatch):
     assert asked == ["ann"]
 
 
-def test_the_companies_of_a_user_need_a_service_token(client):
-    assert client.get(URL).status_code in (401, 403)
-
-
 def test_deleting_and_exporting_an_account_read_the_email_from_the_body(client, monkeypatch):
     asked = []
 

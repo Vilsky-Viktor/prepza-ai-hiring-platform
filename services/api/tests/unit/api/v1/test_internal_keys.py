@@ -53,9 +53,3 @@ def test_a_verification_counts_against_the_companys_limit(client, companies_api,
     stored["limited"] = True
 
     assert verify(client).status_code == 429
-
-
-def test_only_a_service_may_verify_a_key(client, companies_api, key):
-    response = verify(client, headers={"Authorization": f"Bearer {KEY}"})
-
-    assert response.status_code == 401

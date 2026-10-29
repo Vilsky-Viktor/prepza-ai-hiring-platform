@@ -39,9 +39,3 @@ def test_an_export_gives_the_users_votes_and_reports(client, stored):
         "question_votes": [{"question": "Why?", "vote": 1}],
         "question_reports": [],
     }
-
-
-def test_a_call_without_librarys_key_is_refused(client, stored):
-    response = client.request("DELETE", "/internal/users/ann", json=BODY)
-
-    assert (response.status_code, stored) == (401, [])

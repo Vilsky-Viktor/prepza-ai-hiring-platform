@@ -79,12 +79,6 @@ def test_another_service_is_not_allowed(client):
     assert response.json()["detail"] == "Not allowed"
 
 
-def test_a_call_without_a_token_is_refused(client):
-    response = client.post("/internal/updates", json=body())
-
-    assert response.status_code == 401
-
-
 def test_a_time_without_a_time_zone_is_refused(client):
     response = client.post(
         "/internal/updates", json=body(since="2026-10-17T09:00:00"), headers=headers(UPDATES_CALLER)

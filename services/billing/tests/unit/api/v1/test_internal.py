@@ -76,10 +76,6 @@ def test_a_slow_top_up_is_cut_off_and_the_hold_still_answers(client, monkeypatch
     assert cut_off == ["acme"]
 
 
-def test_internal_routes_need_a_service_token(client):
-    assert client.post("/internal/candidates/hold", params=HOLD).status_code == 401
-
-
 def test_several_companies_balances_at_once(client, monkeypatch):
     async def found(session, owner_type, owner_ids):
         return {"a": SimpleNamespace(owner_type="company", balance=1500, reserved=500)}

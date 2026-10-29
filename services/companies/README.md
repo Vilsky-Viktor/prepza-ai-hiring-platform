@@ -35,7 +35,8 @@ migrations/                       # Alembic
 ```
 
 Every route that reaches a company's data resolves it and checks the caller's role on it
-(`services/access.py`); `tests/unit/test_route_guards.py` fails on a route without a guard, and
+(`services/access.py`); `tests/unit/test_route_guards.py` fails on a route without a guard
+(or an `/internal` one without a service token or Google's signature), and
 `tests/integration/api/test_access_matrix.py` on one that lets another company, a viewer's change
 or anyone signed out through.
 

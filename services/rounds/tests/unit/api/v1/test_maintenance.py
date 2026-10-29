@@ -7,13 +7,11 @@ from rounds.api.v1 import internal_maintenance, schedules
 from rounds.core.security import service_token
 
 
-def test_the_running_count_is_for_services_only(client, monkeypatch):
+def test_a_service_reads_the_running_count(client, monkeypatch):
     async def three(session):
         return 3
 
     monkeypatch.setattr(internal_maintenance.running, "running_interviews", three)
-
-    assert client.get("/internal/maintenance/running").status_code == 401
 
     response = client.get(
         "/internal/maintenance/running",
@@ -23,7 +21,7 @@ def test_the_running_count_is_for_services_only(client, monkeypatch):
     assert response.json() == {"running": 3}
 
 
-def test_giving_time_back_is_for_services_only(client, monkeypatch):
+def test_a_service_gives_the_time_back(client, monkeypatch):
     given = []
 
     async def give_time_back(session, stopped):
@@ -31,8 +29,6 @@ def test_giving_time_back_is_for_services_only(client, monkeypatch):
 
     monkeypatch.setattr(internal_maintenance.running, "give_time_back", give_time_back)
     url = "/internal/maintenance/resume"
-
-    assert client.post(url, json={"seconds": 90}).status_code == 401
 
     response = client.post(
         url,

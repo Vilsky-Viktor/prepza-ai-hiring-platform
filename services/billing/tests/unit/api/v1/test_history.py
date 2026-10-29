@@ -134,16 +134,6 @@ def test_another_companys_transaction_is_not_found_and_paddle_isnt_asked(client,
     assert invoices == []
 
 
-def test_the_history_and_invoice_need_a_service_token(client):
-    assert client.get("/internal/companies/acme/history").status_code == 401
-    assert (
-        client.get(
-            "/internal/companies/acme/invoice", params={"transaction_id": "txn_01"}
-        ).status_code
-        == 401
-    )
-
-
 def test_a_top_ups_transaction_says_whose_wallet_it_paid_into(client, monkeypatch):
     async def for_transaction(session, transaction):
         return ("company", "acme", 1_000, "1000") if transaction == "txn_01" else None
@@ -155,4 +145,3 @@ def test_a_top_ups_transaction_says_whose_wallet_it_paid_into(client, monkeypatc
 
     assert found.json() == {"owner_type": "company", "owner_id": "acme"}
     assert unknown.status_code == 404
-    assert client.get("/internal/purchases/txn_01").status_code == 401

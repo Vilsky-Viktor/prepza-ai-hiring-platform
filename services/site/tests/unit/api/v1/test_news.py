@@ -203,7 +203,7 @@ def service_token(lifetime=60):
     )
 
 
-def test_only_services_read_and_translate_posts(client, monkeypatch):
+def test_a_service_reads_and_translates_a_post(client, monkeypatch):
     saved = []
 
     async def get(session, news_id):
@@ -219,9 +219,6 @@ def test_only_services_read_and_translate_posts(client, monkeypatch):
     monkeypatch.setattr(news, "missing_languages", missing_languages)
     monkeypatch.setattr(news, "save_translations", save_translations)
     body = {"title": "T", "text": "X", "translations": {"de": {"title": "D", "text": "Y"}}}
-
-    assert client.get(f"/internal/news/{POST_ID}").status_code == 401
-    assert client.put(f"/internal/news/{POST_ID}/translations", json=body).status_code == 401
 
     headers = bearer(service_token())
     found = client.get(f"/internal/news/{POST_ID}", headers=headers)
@@ -274,8 +271,6 @@ def test_the_bell_asks_for_titles_in_the_readers_language(client, monkeypatch):
 
     monkeypatch.setattr(news, "titles", titles)
     body = {"news_ids": [str(POST_ID)], "language": "de"}
-
-    assert client.post("/internal/news/titles", json=body).status_code == 401
 
     response = client.post("/internal/news/titles", json=body, headers=bearer(service_token()))
 

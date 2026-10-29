@@ -50,4 +50,3 @@ def test_notifications_reads_the_candidates_or_the_learners_a_page_at_a_time(cli
         client.get("/internal/users/ids", params={"group": "everyone"}, headers=headers).status_code
         == 422
     )
-    assert client.get("/internal/users/ids", params={"group": "learners"}).status_code in (401, 403)

@@ -4,7 +4,9 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, FastAPI
 from prepza_common.auth.auth import CurrentUser
-from prepza_common.auth.route_guards import unguarded
+from prepza_common.auth.google import verify_invoker
+from prepza_common.auth.route_guards import not_from_a_service, unguarded
+from prepza_common.auth.service_auth import service_caller
 
 
 def own_key():
@@ -35,3 +37,26 @@ def test_routes_without_a_guard_are_found_unless_public():
 
     assert unguarded(app, set()) == ["GET /things/open", "POST /things/keyed", "GET /health"]
     assert unguarded(app, {"GET /health"}, {"own_key"}) == ["GET /things/open"]
+
+
+def test_internal_routes_take_only_a_services_token_or_googles_signature():
+    caller = service_caller("library-secret-that-is-at-least-32-bytes", "library")
+    app = FastAPI()
+
+    @app.get("/internal/signed")
+    def signed(name: caller):
+        return {}
+
+    @app.get("/internal/by-a-user")
+    def by_a_user(user: CurrentUser):
+        return {}
+
+    @app.post("/internal/events", dependencies=[Depends(verify_invoker)])
+    def events():
+        return {}
+
+    @app.get("/mine")
+    def mine(user: CurrentUser):
+        return {}
+
+    assert not_from_a_service(app) == ["GET /internal/by-a-user"]

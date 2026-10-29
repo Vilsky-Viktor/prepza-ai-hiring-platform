@@ -51,7 +51,3 @@ def test_the_guide_of_the_page_asked_on_comes_in_english_and_an_unknown_page_has
     assert all(item in pricing["page_guide"] for item in guide["actions"] + guide["tips"])
     assert unknown["page_guide"] is None
     assert client.get(URL, params={"page": "x" * 100}, headers=FROM_ASSISTANT).status_code == 422
-
-
-def test_only_another_service_reads_the_help_chats_knowledge(client):
-    assert client.get(URL).status_code == 401

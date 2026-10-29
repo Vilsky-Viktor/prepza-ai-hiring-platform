@@ -60,7 +60,3 @@ def test_a_language_that_could_break_the_fence_is_refused(client, monkeypatch):
 
     assert response.status_code == 422
     assert saved == []
-
-
-def test_only_services_reach_the_examples(client):
-    assert client.get("/internal/code/untagged").status_code == 401

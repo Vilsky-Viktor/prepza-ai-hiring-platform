@@ -38,10 +38,3 @@ def test_a_users_export_holds_their_contact_messages(client, monkeypatch):
     assert response.json() == {
         "contact_messages": [{"name": "Ann", "email": "ann@example.com", "message": "Hi"}]
     }
-
-
-def test_only_another_service_may_delete_or_export_a_user(client):
-    body = {"email": "ann@example.com"}
-
-    assert client.request("DELETE", "/internal/users/u1", json=body).status_code == 401
-    assert client.post("/internal/users/u1/export", json=body).status_code == 401

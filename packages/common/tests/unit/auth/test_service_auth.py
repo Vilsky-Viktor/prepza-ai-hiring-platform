@@ -65,6 +65,10 @@ def test_other_tokens_are_refused(token):
     assert call(token).status_code == 401
 
 
+def test_a_call_without_a_token_is_refused():
+    assert library().get("/internal").status_code == 401
+
+
 def test_a_caller_reads_the_key_of_the_service_it_calls(monkeypatch):
     monkeypatch.setenv("LIBRARY_SERVICE_SECRET", LIBRARY_SECRET)
 

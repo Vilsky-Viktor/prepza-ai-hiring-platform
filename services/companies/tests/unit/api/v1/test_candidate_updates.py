@@ -164,7 +164,3 @@ def test_another_service_is_not_allowed(client, monkeypatch):
 
     assert response.status_code == 403
     assert response.json()["detail"] == "Not allowed"
-
-
-def test_the_updates_need_a_service_token(client):
-    assert client.post(URL, json=body()).status_code == 401

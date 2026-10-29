@@ -82,7 +82,9 @@ Compression: `compression.compress_answers(app)` gzips every service's answers o
 server-sent event streams stay uncompressed, so each event goes out as it comes.
 Access checks: `route_guards.unguarded(app, public)` lists the routes that run no guard (a signed-in user,
 a superadmin, another service, Google's pushes): each service's `test_route_guards.py` fails on one
-that isn't listed as public on purpose. `tests/access_matrix.py` checks the guard looks at the right
+that isn't listed as public on purpose, and `route_guards.not_from_a_service(app)` on an `/internal`
+route that takes neither a service token nor Google's signature (what the token itself refuses is
+tested once, in `test_service_auth.py`). `tests/access_matrix.py` checks the guard looks at the right
 object: each service's `tests/integration/api/test_access_matrix.py` calls every route taking an id
 of something owned (found from the app) as the owner, another company's owner (with the owner's ids,
 and with its own ids but one of the owner's), a viewer changing something, nobody signed in and, on
@@ -162,7 +164,8 @@ out or listed under another area):
 - `google`: Google credentials, the invoker check of Google's pushes, timed certificate downloads.
 - `human_check`: the Turnstile check of anonymous flows.
 - `person_hash`: keyed hashes that stand for a person.
-- `route_guards`: lists the routes that run no guard, for each service's test.
+- `route_guards`: lists the routes that run no guard, and the `/internal` routes that take no service
+  token or Google signature, for each service's test.
 - `service_auth`: short-lived, audience-bound tokens for calls between services.
 - `superadmin`: prepza's own team, signed in with Google, for the admin zone.
 - `tokens`: secret tokens kept as their hashes, compared in constant time.

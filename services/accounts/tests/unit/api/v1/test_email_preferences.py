@@ -119,9 +119,3 @@ def test_an_unsubscribe_names_known_settings(client, signed_in, settings):
 
     assert response.status_code == 422
     assert signed_in == []
-
-
-def test_only_services_unsubscribe_a_user(client, signed_in):
-    response = client.post("/internal/users/ann/unsubscribe", json={"settings": ["updates"]})
-
-    assert response.status_code == 401
