@@ -109,4 +109,5 @@ prepza के साथ आप सिर्फ़ उन उम्मीदव�
 
 - [प्री-एम्प्लॉयमेंट टेस्टिंग: एक प्रैक्टिकल गाइड](/pre-employment-testing)
 - [स्किल्स टेस्ट बनाम CV स्क्रीनिंग](/guides/skills-tests-vs-cv-screening)
+- [ऐसा जॉब डिस्क्रिप्शन कैसे लिखें जिससे अच्छा टेस्ट बने](/guides/job-description-that-tests-well)
 - [टेस्ट की लागत की तुलना कैसे करें](/compare/cheapest-pre-employment-test)

@@ -109,4 +109,5 @@ updated: "2026-10-29"
 
 - [آزمون‌های استخدامی: راهنمای عملی](/pre-employment-testing)
 - [آزمون مهارت در برابر غربالگری رزومه](/guides/skills-tests-vs-cv-screening)
+- [چطور شرح شغلی بنویسیم که از آن آزمون خوبی ساخته شود](/guides/job-description-that-tests-well)
 - [چطور هزینه آزمون‌ها را مقایسه کنیم](/compare/cheapest-pre-employment-test)

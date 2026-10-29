@@ -109,4 +109,5 @@ Với prepza, bạn chỉ trả tiền cho những ứng viên trả lời ít n
 
 - [Kiểm tra trước tuyển dụng: hướng dẫn thực tế](/pre-employment-testing)
 - [Bài kiểm tra kỹ năng và sàng lọc CV](/guides/skills-tests-vs-cv-screening)
+- [Cách viết mô tả công việc để tạo bài kiểm tra tốt](/guides/job-description-that-tests-well)
 - [Cách so sánh chi phí bài kiểm tra](/compare/cheapest-pre-employment-test)

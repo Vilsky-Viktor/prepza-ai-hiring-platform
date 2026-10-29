@@ -109,4 +109,5 @@ Met prepza betaal je alleen voor kandidaten die minstens één vraag beantwoorde
 
 - [Selectietests: een praktische gids](/pre-employment-testing)
 - [Vaardigheidstests vs. cv-screening](/guides/skills-tests-vs-cv-screening)
+- [Zo schrijf je een functieomschrijving waar een goede test uit komt](/guides/job-description-that-tests-well)
 - [Zo vergelijk je de kosten van tests](/compare/cheapest-pre-employment-test)

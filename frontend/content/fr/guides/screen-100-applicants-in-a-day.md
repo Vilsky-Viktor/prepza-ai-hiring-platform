@@ -109,4 +109,5 @@ Avec prepza, vous ne payez que pour les candidats qui répondent à au moins une
 
 - [Tests de recrutement : guide pratique](/pre-employment-testing)
 - [Tests de compétences ou tri de CV](/guides/skills-tests-vs-cv-screening)
+- [Rédiger une fiche de poste qui donne un bon test de recrutement](/guides/job-description-that-tests-well)
 - [Comment comparer le coût des tests](/compare/cheapest-pre-employment-test)

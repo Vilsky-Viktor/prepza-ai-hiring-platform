@@ -109,4 +109,5 @@ Mit prepza zahlst du nur für Kandidaten, die mindestens eine Frage beantworten:
 
 - [Einstellungstests: ein Praxisleitfaden](/pre-employment-testing)
 - [Fachtests vs. Lebenslauf-Screening](/guides/skills-tests-vs-cv-screening)
+- [So schreibst du eine Stellenbeschreibung, die sich gut testen lässt](/guides/job-description-that-tests-well)
 - [Kosten von Einstellungstests vergleichen](/compare/cheapest-pre-employment-test)

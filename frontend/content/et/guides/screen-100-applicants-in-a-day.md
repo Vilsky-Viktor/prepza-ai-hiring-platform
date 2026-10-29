@@ -109,4 +109,5 @@ prepzaga maksad ainult kandidaatide eest, kes vastavad vähemalt ühele küsimus
 
 - [Kandidaatide testimine värbamisel: praktiline juhend](/pre-employment-testing)
 - [Oskustestid vs CV-de sõelumine](/guides/skills-tests-vs-cv-screening)
+- [Kuidas kirjutada töökuulutus, mille põhjal saab hea testi](/guides/job-description-that-tests-well)
 - [Kuidas võrrelda värbamistestide hindu](/compare/cheapest-pre-employment-test)

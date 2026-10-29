@@ -109,4 +109,5 @@ updated: "2026-10-29"
 
 - [招聘前测评：实用指南](/pre-employment-testing)
 - [技能测试与简历筛选对比](/guides/skills-tests-vs-cv-screening)
+- [如何写出便于技能测试的职位描述](/guides/job-description-that-tests-well)
 - [如何比较测评费用](/compare/cheapest-pre-employment-test)

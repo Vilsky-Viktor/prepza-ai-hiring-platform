@@ -109,4 +109,5 @@ Sa prepza, nagbabayad ka lang para sa mga aplikanteng sumagot ng kahit isang tan
 
 - [Pre-employment testing: isang praktikal na gabay](/pre-employment-testing)
 - [Skills tests vs CV screening](/guides/skills-tests-vs-cv-screening)
+- [Paano sumulat ng job description na madaling gawan ng test](/guides/job-description-that-tests-well)
 - [Paano ikumpara ang gastos ng mga test](/compare/cheapest-pre-employment-test)

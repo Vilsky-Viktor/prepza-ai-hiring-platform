@@ -109,4 +109,5 @@ updated: "2026-10-29"
 
 - [اختبارات ما قبل التوظيف: دليل عملي](/pre-employment-testing)
 - [اختبارات المهارات مقابل فرز السير الذاتية](/guides/skills-tests-vs-cv-screening)
+- [كيف تكتب وصفًا وظيفيًا يُبنى منه اختبار جيد](/guides/job-description-that-tests-well)
 - [كيف تقارن تكاليف اختبارات ما قبل التوظيف](/compare/cheapest-pre-employment-test)

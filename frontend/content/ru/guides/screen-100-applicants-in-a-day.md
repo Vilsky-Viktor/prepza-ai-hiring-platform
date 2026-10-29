@@ -109,4 +109,5 @@ updated: "2026-10-29"
 
 - [Тестирование кандидатов при найме: практическое руководство](/pre-employment-testing)
 - [Тесты навыков или отбор по резюме](/guides/skills-tests-vs-cv-screening)
+- [Как написать описание вакансии, по которому получится хороший тест](/guides/job-description-that-tests-well)
 - [Как сравнить стоимость тестирования кандидатов](/compare/cheapest-pre-employment-test)

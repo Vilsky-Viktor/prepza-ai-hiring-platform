@@ -109,4 +109,5 @@ Con prepza, solo pagas por los candidatos que responden al menos una pregunta: $
 
 - [Pruebas de selección de personal: guía práctica](/pre-employment-testing)
 - [Pruebas de habilidades frente a filtrado de CV](/guides/skills-tests-vs-cv-screening)
+- [Cómo redactar una descripción del puesto que sirva para evaluar](/guides/job-description-that-tests-well)
 - [Cómo comparar el coste de las pruebas](/compare/cheapest-pre-employment-test)

@@ -109,4 +109,5 @@ prepza에서는 최소 한 문항 이상 답한 지원자에 대해서만 비용
 
 - [채용 전 테스트: 실무 가이드](/pre-employment-testing)
 - [역량 테스트 vs 이력서 심사](/guides/skills-tests-vs-cv-screening)
+- [역량 테스트에 잘 맞는 채용 공고 쓰는 법](/guides/job-description-that-tests-well)
 - [테스트 비용 비교 방법](/compare/cheapest-pre-employment-test)

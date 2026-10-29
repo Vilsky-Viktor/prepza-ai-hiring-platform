@@ -109,4 +109,5 @@ prepza では、1 問以上回答した候補者の分だけお支払いいた�
 
 - [採用前テスト：実践ガイド](/pre-employment-testing)
 - [スキルテストと書類選考の比較](/guides/skills-tests-vs-cv-screening)
+- [スキルテストに生かせる求人票の書き方](/guides/job-description-that-tests-well)
 - [テスト費用の比較方法](/compare/cheapest-pre-employment-test)
