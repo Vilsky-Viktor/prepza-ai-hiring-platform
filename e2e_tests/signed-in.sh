@@ -6,7 +6,7 @@
 # Every test makes its own throwaway users, companies and interviews. Results land in
 # e2e_tests/signed-in/test-results/<run> (screenshots in its screenshots/), one folder per run.
 # Usage: e2e_tests/signed-in.sh [playwright args], e.g. specs/b-candidate.spec.ts; WORKERS=n sets
-# how many tests run at once (default 3).
+# how many tests run at once (default 3); SHOTS=1 takes the review screenshots.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -85,6 +85,7 @@ COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude 
     -e FORWARDS="8090=gateway:8082,${emulator##*:}=firebase-auth:9199" \
     -e GLOBAL="${alone:+1}" \
     -e WORKERS \
+    -e SHOTS \
     mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27 \
     sh -c '
       tar -xf - && npm ci --no-audit --no-fund --loglevel=error || exit 1

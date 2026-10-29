@@ -6,9 +6,15 @@ import { SCREENSHOTS } from "../constants"
 // Screenshots taken so far in each spec, to number them in order.
 const counts = new Map<string, number>()
 
-/** A screenshot in screenshots/<spec>/<number>-<name>.png, of the whole page unless `fullPage`
- * is false (the home page's landing sections are long). */
+/** A review screenshot in screenshots/<spec>/<number>-<name>.png, of the whole page unless
+ * `fullPage` is false (the home page's landing sections are long). Taken only when SHOTS=1
+ * (signed-in.sh passes it on; the ui-check skill sets it): nothing compares them, and each costs
+ * a second or more under a full run. */
 export async function shot(page: Page, name: string, fullPage = true) {
+  if (process.env.SHOTS !== "1") {
+    return
+  }
+
   const spec = path.basename(test.info().file, ".spec.ts")
   const count = (counts.get(spec) ?? 0) + 1
   counts.set(spec, count)

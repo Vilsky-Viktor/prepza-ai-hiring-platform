@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 import { REQUEST_URL } from "./helpers/env";
+import { shot } from "./helpers/screenshots";
 import { loaded } from "./helpers/waits";
 
 // The terms in force: the page says since when, with no link to another version, and its
@@ -20,7 +21,7 @@ test("the terms show since when they apply", async ({ page }) => {
   await expect(header).toContainText(/[A-Z][a-z]{2} \d{1,2}, \d{4}/);
   // The version in force needs no link onwards to another version.
   await expect(header.locator('a[href*="version="]')).toHaveCount(0);
-  await page.screenshot({ path: test.info().outputPath("terms.png"), fullPage: true });
+  await shot(page, "terms", true);
   // The versions card, with every other version linked by its date.
   await expect(page.locator("main nav")).toHaveCount(1);
   const hrefs = await page
@@ -41,7 +42,7 @@ test("the terms show in the page's language with a link to the binding English",
   // Dates as German writes them.
   const header = page.locator("main header");
   await expect(header).toContainText(/\d{2}\.\d{2}\.\d{4}/);
-  await page.screenshot({ path: test.info().outputPath("terms-de.png") });
+  await shot(page, "terms-de");
 
   await header.locator('a[href="/terms?language=en"]').click();
   await expect(page).toHaveURL(/\/terms\?language=en$/, { timeout: 15_000 });
@@ -50,5 +51,5 @@ test("the terms show in the page's language with a link to the binding English",
   await page.context().addCookies([{ name: "prepza_locale", value: "ar", url: baseURL! }]);
   await page.goto("/privacy");
   await expect(text).toHaveAttribute("dir", "rtl");
-  await page.screenshot({ path: test.info().outputPath("privacy-ar.png") });
+  await shot(page, "privacy-ar");
 });

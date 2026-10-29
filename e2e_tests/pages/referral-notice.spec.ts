@@ -1,5 +1,6 @@
 import { expect, type Page, test } from "@playwright/test";
 
+import { shot } from "./helpers/screenshots";
 import { loaded } from "./helpers/waits";
 
 const KEPT = "prepza_ref";
@@ -18,7 +19,7 @@ test("a referral link asks before it's kept in a cookie", async ({ page }) => {
   await page.goto("/?ref=e2eRef01");
   await expect(notice(page)).toBeVisible();
   expect(await referral(page)).toBeUndefined();
-  await page.screenshot({ path: test.info().outputPath("referral-notice.png") });
+  await shot(page, "referral-notice");
 
   await notice(page).locator("button[data-action]").click();
   expect((await referral(page))?.value).toBe("e2eRef01");

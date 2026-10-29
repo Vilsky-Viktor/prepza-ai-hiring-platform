@@ -10,10 +10,13 @@ scripts: they sign in through the Auth emulator with throwaway users and clean u
 
 ## Take screenshots
 
+- Screenshots are taken only with `SHOTS=1` (`SHOTS=1 ./e2e_tests/signed-in.sh specs/<spec>`);
+  a run without it takes none.
 - **Signed in:** in a spec under `e2e_tests/signed-in/specs/`, call `shot(page, "name")`
-  (`helpers/screenshots.ts`). Files land in
-  `e2e_tests/signed-in/test-results/screenshots/<spec>/NN-name.png`.
-- **Public pages:** in `e2e_tests/pages/`, `page.screenshot({ path: test.info().outputPath("name.png") })`.
+  (`helpers/screenshots.ts`). Files land in the run's folder,
+  `e2e_tests/signed-in/test-results/<run>/screenshots/<spec>/NN-name.png`.
+- **Public pages:** in `e2e_tests/pages/`, call `shot(page, "name")` (`helpers/screenshots.ts`);
+  files land in the test's folder under `e2e_tests/pages/test-results/<run>/`.
 - **Phone:** `await page.setViewportSize(PHONE)` (`helpers/layout.ts`, 390 × 844).
 - Show exactly the state asked for: closed or open, empty or filled, focused or not.
 - Reach that state the way a test does: by role and position or a `data-testid`, never by the
